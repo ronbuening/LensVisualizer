@@ -316,6 +316,7 @@ const opticalSummary = {
   aberrationT: 0.4,
   imagePlaneZMm: 60,
   totalTrackMm: 60,
+  telephotoRatio: 1.18,
   surfaceCount: 2,
   opticalPath: "sequential",
   cardinalEFLMm: 50.9,
@@ -463,7 +464,8 @@ describe("prepared-state analysis tabs", () => {
     expect(inward).toContain("(inward residual)");
   });
 
-  it("routes optical summary work through an analysis request", () => {
+  it.each([1.18, null])("routes optical summary requests and renders telephoto ratio %s", (telephotoRatio) => {
+    mockComputeOpticalSummary.mockReturnValue({ ...opticalSummary, telephotoRatio });
     const html = renderToStaticMarkup(
       React.createElement(OpticalSummaryTab, {
         L: lens,
@@ -480,6 +482,11 @@ describe("prepared-state analysis tabs", () => {
     );
 
     expect(html).toContain("Optical State");
+    expect(html).toMatch(
+      telephotoRatio === null
+        ? /TELEPHOTO RATIO<\/span><span[^>]*>n\/a<\/span>/
+        : /TELEPHOTO RATIO<\/span><span[^>]*>1\.18<\/span>/,
+    );
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeOpticalSummary).toHaveBeenCalledWith(
       expect.objectContaining({

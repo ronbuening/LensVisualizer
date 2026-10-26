@@ -114,7 +114,6 @@ export default function OpticalSummaryTab({
         <AnalysisMetricRow label="Current EFL" value={formatMm(summary.currentEFLMm)} t={t} />
         <AnalysisMetricRow label="Infinity EFL" value={formatMm(summary.infinityEFLMm)} t={t} />
         <AnalysisMetricRow label="Breathing" value={formatSignedPercent(summary.breathingPercent)} t={t} />
-        <AnalysisMetricRow label="BFD" value={formatMm(summary.bfdMm)} t={t} />
         <AnalysisMetricRow label="FFD" value={formatMm(summary.ffdMm)} t={t} />
         <AnalysisMetricRow label="Hiatus" value={formatMm(summary.principalHiatusMm)} t={t} />
       </SummarySection>
@@ -134,11 +133,20 @@ export default function OpticalSummaryTab({
           note={perspectiveContext ? "camera frame" : undefined}
           t={t}
         />
-        <AnalysisMetricRow label="Total track" value={formatMm(summary.totalTrackMm)} t={t} />
         <AnalysisMetricRow
           label="Cardinal EFL"
           value={formatMm(summary.cardinalEFLMm)}
           note="intrinsic / lens-local"
+          t={t}
+        />
+      </SummarySection>
+      <SummarySection title="Geometry" t={t}>
+        <AnalysisMetricRow label="BFD" value={formatMm(summary.bfdMm)} t={t} />
+        <AnalysisMetricRow label="Total track" value={formatMm(summary.totalTrackMm)} t={t} />
+        <AnalysisMetricRow
+          label="Telephoto ratio"
+          value={summary.telephotoRatio === null ? "n/a" : summary.telephotoRatio.toFixed(2)}
+          note="track ÷ focal length; below 1 is telephoto"
           t={t}
         />
       </SummarySection>

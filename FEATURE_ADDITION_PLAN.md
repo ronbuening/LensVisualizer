@@ -89,8 +89,7 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
   `computeCardinalElements(request: AnalysisRequest, layout?)`
   (`src/optics/analysis/summary/cardinals.ts`: principal planes, focal points, nodal points). (Was AO#6.)
 - **Group movement / mechanics overlay** — `computeGroupMovementProfile(request: AnalysisRequest, mode)`
-  (`src/optics/analysis/summary/groupMovement.ts`) + the `mv` URL param. (Covers much of AO#7; remaining
-  mechanics ideas folded into F3.)
+  (`src/optics/analysis/summary/groupMovement.ts`) + the `mv` URL param. (Covers much of AO#7.)
 - **Folded trace diagnostics readout** — public `RayTraceResult.diagnostics`
   (`FoldedPathTraceDiagnostics`, `src/types/optics.ts`) plus a compact development readout (ML
   backlog item 1).
@@ -123,9 +122,9 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
 
 What: a metrics table in comparison mode — metric | lens A | lens B | delta — computed at the
 shared slider state. First version: cheap rows only (EFL, effective f-number, total track, BFD,
-half-field angle, focus-breathing %, telephoto ratio after F3). Heavier rows (edge distortion,
-edge relative illumination, SA, coma span, EP/XP shift) go behind a collapsed "More metrics"
-section computed lazily on expand.
+half-field angle, focus-breathing %, telephoto ratio (total track ÷ |current EFL|)). Heavier rows
+(edge distortion, edge relative illumination, SA, coma span, EP/XP shift) go behind a collapsed
+"More metrics" section computed lazily on expand.
 
 Files to touch:
 
@@ -352,15 +351,13 @@ field; numbers reconcile with the 1D curve; sliders stay responsive; gate passes
 
 One row per remaining open item. Tier: T1 quick wins · T2 core · T3 depth · T4 formerly deferred,
 now specified · T5 absorbed from the analysis roadmap · Mirror = the Mirror/Folded backlog
-(engineering-heavy; each needs optics-fixture work, not just UI). Ordering constraints: F3 before
-F4's telephoto row; F7 before F22; F12 and F14 share point-set inputs; M1 before F13-on-annular
-and M2.
+(engineering-heavy; each needs optics-fixture work, not just UI). Ordering constraints: F7 before
+F22; F12 and F14 share point-set inputs; M1 before F13-on-annular and M2.
 
 | Id  | Tier / effort  | Source              | What (one sentence)                                                                                                                                                                                                                                                                                                                         | Start here                                                                                                     |
 | --- | -------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | F1  | T1 · S         | plan                | Decade chips (1930s … 2020s) that set `patentYearMin`/`patentYearMax` on the existing lens-index year filter, decade list derived from the panel's `bounds`, chip active when the range equals its decade; no new URL state.                                                                                                                | `src/pages/lensIndex/LensIndexFilterPanel.tsx`, `src/pages/lensIndex/useLensIndexFilters.ts`                   |
 | F2  | T1 · S         | plan                | Mount/format badges in comparison panel headers linking to `/mounts/:mountId` and `/formats/:formatId`, labels resolved only through the taxonomy ids, rendering nothing when metadata is absent.                                                                                                                                          | `src/comparison/ComparisonContent.tsx`, `src/utils/catalog/lensTaxonomy.ts`                                    |
-| F3  | T1 · S         | AO#5, AO#7 rest     | "GEOMETRY" group in the Summary tab: add `telephotoRatio` (EFL ÷ total track, `null` when track is missing) to `computeOpticalSummary(request: AnalysisRequest)` and group it with the existing BFD/track rows.                                                                                                                                              | `src/optics/analysis/summary/summary.ts`, `src/components/display/analysis/OpticalSummaryTab.tsx`                      |
 | F6  | T2 · M         | AO#16               | Sensor tab (`"sensor"`): chief-ray incidence angle vs field from `solveChiefRayForRuntimeLens` (public `src/optics/fieldGeometry.ts` adapter; skip `bracket-failed`, mark `paraxial-fallback`), exit-pupil distance, and a near-telecentric (< 5°) / moderate (< 15°) / oblique verdict; gate folded systems like the pupils tab.                                                                       | `src/optics/field/chiefRaySolve.ts`, `src/components/display/analysis/PupilAberrationTab.tsx`                       |
 | F7  | T2 · S-M       | AO#23 + AO#22 part  | Per-element role table (glass, nd, vd, APD, asphere, annotated role) plus counts (aspheric, nd > 1.78, vd ≥ 70, APD) as a collapsed Summary-tab section; row click dispatches the existing element-select action.                                                                                                                          | `src/optics/glassCatalog.ts`, `src/components/display/analysis/OpticalSummaryTab.tsx`                          |
 | F9  | T3 · S-M       | AO#21               | Asphere utilization: per aspheric surface `{ surfIdx, elementId, peakDepartureUm, rimDepartureUm, sign }` ranked by peak departure from `computeAsphericDepartureFromProfiles`, shown as ranked bars with the existing departure-profile overlay.                                                                                                      | `src/optics/analysis/asphericComparison/comparison.ts`, `src/components/display/overlays/`                                |

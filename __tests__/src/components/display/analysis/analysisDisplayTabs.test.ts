@@ -202,6 +202,12 @@ describe("analysis display tabs", () => {
     expect(html).toContain("HALF FIELD");
     expect(html).toContain("Image Plane");
     expect(html).toContain("CARDINAL EFL");
+    const geometry = html.slice(html.indexOf(">Geometry</h3>"));
+    expect(geometry).toContain("BFD");
+    expect(geometry).toContain("TOTAL TRACK");
+    expect(geometry).toContain("TELEPHOTO RATIO");
+    expect(geometry).toContain((prepareRuntimeState(L, focusT, zoomT).totalTrack / Math.abs(dynamicEFL)).toFixed(2));
+    expect(geometry).toContain("track ÷ focal length; below 1 is telephoto");
   });
 
   it("DistortionChart labels the x-axis as image height percentage", async () => {
