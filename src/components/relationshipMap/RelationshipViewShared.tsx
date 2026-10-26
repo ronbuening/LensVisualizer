@@ -5,7 +5,7 @@ import type { RelationshipInsights } from "../../utils/catalog/relationshipInsig
 import type { UniversalPartyNode } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import useBalancedColumns, { balancedItemStyle, balancedRowStyle, widthClass } from "../hooks/useBalancedColumns.js";
+import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../hooks/useBalancedColumns.js";
 
 const VIEW_CHOICE_MIN_WIDTH = 150;
 const VIEW_CHOICE_GAP = 12;
@@ -49,10 +49,7 @@ export function viewButton(t: Theme, active = false): CSSProperties {
   };
 }
 
-/**
- * Phone and tablet header for a section that can fold away: a short title, a one-line summary
- * while collapsed, and the site's LESS/MORE pill.
- */
+/** Header for a section that can fold away: a short title, a one-line summary while folded, and the LESS/MORE pill. */
 export function CompactSection({
   title,
   summary,
@@ -101,20 +98,17 @@ export function ViewChoices<V extends string>({
   onChange,
   theme: t,
   label,
-  collapsible = false,
 }: {
   views: readonly (readonly [V, string])[];
   value: V;
   onChange: (id: V) => void;
   theme: Theme;
   label: string;
-  /** Below desktop width, fold the buttons under a header that names the current view. */
-  collapsible?: boolean;
 }) {
   // Equal-width buttons in balanced rows (4 + 4 rather than 5 + 3); labels may wrap on narrow screens.
-  const { ref, columns, width } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
+  // The buttons fold under a header that names the current view; they start open.
+  const { ref, columns } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
   const [open, setOpen] = useState(true);
-  const compact = collapsible && widthClass(width) !== "desktop";
   const buttons = (
     <div role="group" aria-label={label} style={balancedRowStyle(VIEW_CHOICE_GAP)}>
       {views.map(([id, name]) => (
@@ -137,19 +131,15 @@ export function ViewChoices<V extends string>({
   );
   return (
     <div ref={ref} style={{ margin: controlRow.margin }}>
-      {compact ? (
-        <CompactSection
-          title="View"
-          summary={views.find(([id]) => id === value)?.[1]}
-          expanded={open}
-          onToggle={() => setOpen((current) => !current)}
-          theme={t}
-        >
-          {buttons}
-        </CompactSection>
-      ) : (
-        buttons
-      )}
+      <CompactSection
+        title="View"
+        summary={views.find(([id]) => id === value)?.[1]}
+        expanded={open}
+        onToggle={() => setOpen((current) => !current)}
+        theme={t}
+      >
+        {buttons}
+      </CompactSection>
     </div>
   );
 }

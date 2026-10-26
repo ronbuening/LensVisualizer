@@ -74,7 +74,7 @@ export default function UniversalRelationshipMapPage() {
   const [mounted, setMounted] = useState(false);
   const statsLayout = useBalancedColumns(STATS.length, STAT_MIN_WIDTH, STAT_GAP);
   const statsWidthClass = widthClass(statsLayout.width);
-  // null follows the layout default: folded on phones, open on tablets; a click pins the reader's choice.
+  // null follows the layout default: folded on phones, open on wider screens; a click pins the reader's choice.
   const [statsOpen, setStatsOpen] = useState<boolean | null>(null);
   const statsExpanded = statsOpen ?? statsWidthClass !== "phone";
   useEffect(() => setMounted(true), []);
@@ -221,28 +221,16 @@ export default function UniversalRelationshipMapPage() {
             </p>
 
             <div ref={statsLayout.ref} style={{ marginBottom: "1rem" }}>
-              {statsWidthClass === "desktop" ? (
-                statCards
-              ) : (
-                <CompactSection
-                  title="Catalog"
-                  summary={STAT_SUMMARY}
-                  expanded={statsExpanded}
-                  onToggle={() => setStatsOpen(!statsExpanded)}
-                  theme={t}
-                >
-                  {statCards}
-                </CompactSection>
-              )}
+              <CompactSection
+                title="Catalog"
+                summary={STAT_SUMMARY}
+                expanded={statsExpanded}
+                onToggle={() => setStatsOpen(!statsExpanded)}
+                theme={t}
+              >
+                {statCards}
+              </CompactSection>
             </div>
-
-            {explore.view === "network" && (
-              <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
-                Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom,
-                drag to pan, and select any node for details. Double-click the overview to zoom in on that spot. Labels
-                appear as you zoom in.
-              </p>
-            )}
 
             <ClientOnly
               fallback={
@@ -259,10 +247,16 @@ export default function UniversalRelationshipMapPage() {
                     onChange={(view) => changeExplore({ ...explore, view })}
                     theme={t}
                     label="Relationship map views"
-                    collapsible
                   />
                 </div>
                 <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
+                {explore.view === "network" && (
+                  <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0.7rem 0 0.6rem" }}>
+                    Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to
+                    zoom, drag to pan, and select any node for details. Double-click the overview to zoom in on that
+                    spot. Hub names stay labeled; more labels appear as you zoom in.
+                  </p>
+                )}
                 <RetainedMapView active={explore.view === "network"}>
                   <UniversalRelationshipMap
                     graph={UNIVERSAL_GRAPH}
