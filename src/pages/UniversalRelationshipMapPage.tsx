@@ -369,14 +369,14 @@ export default function UniversalRelationshipMapPage() {
                     fullScreenBottomInset={phone && selectedNode ? DETAIL_SHEET_RESERVED_HEIGHT : undefined}
                   />
                 </RetainedMapView>
-                {explore.view === "neighborhoods" && (
+                <RetainedMapView active={explore.view === "neighborhoods"}>
                   <UniversalNeighborhoodSummary
                     graph={UNIVERSAL_GRAPH}
                     theme={t}
                     selectedNodeId={selectedNodeId}
                     onShowInNetwork={showInNetwork}
                   />
-                )}
+                </RetainedMapView>
                 {explore.view === "trace" && (
                   <UniversalConnectionTrace
                     graph={UNIVERSAL_GRAPH}

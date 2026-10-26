@@ -3,9 +3,10 @@
 /** Interaction coverage for the universal relationship SVG and entity panel. */
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent } from "@testing-library/react";
+import { act, cleanup, fireEvent, waitFor, within } from "@testing-library/react";
 import UniversalEntityDetailCard from "../../../../src/components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../../../../src/components/relationshipMap/UniversalRelationshipMap.js";
+import UniversalDetailSheet from "../../../../src/components/relationshipMap/UniversalDetailSheet.js";
 import type {
   UniversalPartyNode,
   UniversalRelationshipGraph,
@@ -232,10 +233,12 @@ describe("UniversalRelationshipMap", () => {
     expect(document.body.style.position).toBe("fixed");
     // Full screen covers the page, so the details move into the overlay.
     expect(getByRole("dialog", { name: "Full-screen relationship map" })).toBe(box);
+    expect(box.getAttribute("aria-modal")).toBe("true");
     expect(box.contains(getByText("Selection details"))).toBe(true);
     fireEvent.keyDown(close, { key: "Escape" });
     expect(box.style.position).toBe("relative");
     expect(box.getAttribute("role")).toBeNull();
+    expect(box.getAttribute("aria-modal")).toBeNull();
     expect(box.nextElementSibling).toBe(getByText("Selection details"));
     expect(document.activeElement).toBe(getByRole("button", { name: "Full screen" }));
     expect(document.body.style.overflow).toBe(originalOverflow);
@@ -243,6 +246,86 @@ describe("UniversalRelationshipMap", () => {
     fireEvent.click(toggle);
     fireEvent.click(getByRole("button", { name: "Close full screen" }));
     expect(document.activeElement).toBe(toggle);
+  });
+
+  it("inerts only background branches, cycles Tab through the map and companion, and preserves sheet Escape layering", () => {
+    const closeSheet = vi.fn();
+    const { getByRole, getByText } = renderWithRouter(
+      <main>
+        <button>Background</button>
+        <div inert>Already inert</div>
+        <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />
+        <div>
+          <button>Sheet sibling</button>
+          <UniversalDetailSheet graph={graph} node={author} theme={themes.dark} onClose={closeSheet}>
+            <a href="#details">Detail link</a>
+          </UniversalDetailSheet>
+        </div>
+      </main>,
+    );
+    const background = getByRole("button", { name: "Background" });
+    const preexisting = getByText("Already inert");
+    const sheet = getByRole("region", { name: author.name });
+    const toggle = getByRole("button", { name: "Full screen" });
+    expect(background.hasAttribute("inert")).toBe(false);
+    fireEvent.click(toggle);
+    expect(background.hasAttribute("inert")).toBe(true);
+    expect(getByRole("button", { name: "Sheet sibling" }).hasAttribute("inert")).toBe(true);
+    expect(sheet.hasAttribute("data-map-companion")).toBe(true);
+    expect(sheet.closest("[inert]")).toBeNull();
+    const overlay = getByRole("dialog", { name: "Full-screen relationship map" });
+    const first = within(overlay).getByRole("button", { name: "Zoom in" });
+    const details = within(sheet).getByRole("button", { name: "Details" });
+    const last = within(sheet).getByRole("button", { name: "Close details" });
+    first.focus();
+    fireEvent.keyDown(first, { key: "Tab", shiftKey: true });
+    expect(document.activeElement).toBe(last);
+    fireEvent.keyDown(last, { key: "Tab" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.click(details);
+    expect(sheet.getAttribute("aria-modal")).toBeNull();
+    const link = getByRole("link", { name: "Detail link" });
+    link.focus();
+    fireEvent.keyDown(link, { key: "Tab" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.keyDown(link, { key: "Escape" });
+    expect(sheet.getAttribute("role")).toBe("region");
+    expect(overlay.getAttribute("aria-modal")).toBe("true");
+    fireEvent.keyDown(details, { key: "Escape" });
+    expect(closeSheet).toHaveBeenCalledOnce();
+    expect(overlay.getAttribute("aria-modal")).toBe("true");
+    fireEvent.keyDown(toggle, { key: "Escape" });
+    expect(background.hasAttribute("inert")).toBe(false);
+    expect(getByRole("button", { name: "Sheet sibling" }).hasAttribute("inert")).toBe(false);
+    expect(preexisting.hasAttribute("inert")).toBe(true);
+    expect(document.activeElement).toBe(toggle);
+  });
+
+  it("keeps a newly mounted companion usable and removes owned inert state on unmount", async () => {
+    const props = { graph, theme: themes.dark, selectedNodeId: null, onSelectNode: vi.fn() };
+    const content = (companion: boolean) => (
+      <>
+        <button>Background</button>
+        <UniversalRelationshipMap {...props} />
+        <div data-testid="sheet-branch">
+          {companion && (
+            <section data-map-companion>
+              <button>Companion control</button>
+            </section>
+          )}
+        </div>
+      </>
+    );
+    const { getByRole, getByTestId, rerender, unmount } = renderWithRouter(content(false));
+    const background = getByRole("button", { name: "Background" });
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(getByTestId("sheet-branch").hasAttribute("inert")).toBe(true);
+    rerender(content(true));
+    await waitFor(() => expect(getByRole("button", { name: "Companion control" }).closest("[inert]")).toBeNull());
+    expect(background.hasAttribute("inert")).toBe(true);
+    unmount();
+    expect(background.hasAttribute("inert")).toBe(false);
+    expect(document.body.style.position).not.toBe("fixed");
   });
 
   it("ends full screen above a page's bottom panel, and on leaving the view", () => {

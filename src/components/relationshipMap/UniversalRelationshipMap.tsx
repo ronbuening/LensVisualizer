@@ -144,6 +144,7 @@ export default function UniversalRelationshipMap({
   if (!active && isFullScreen) setIsFullScreen(false);
   const fullScreen = isFullScreen && active;
   const fullScreenToggleRef = useRef<HTMLButtonElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const [coarsePointer, setCoarsePointer] = useState(false);
   useEffect(() => {
     const media = window.matchMedia?.("(pointer: coarse)");
@@ -216,7 +217,52 @@ export default function UniversalRelationshipMap({
   }, [fullScreen, reset]);
   useEffect(() => {
     if (!fullScreen) return;
+    const overlay = overlayRef.current;
+    if (!overlay) return;
     const body = document.body;
+    const madeInert = new Set<Element>();
+    const companions = () => [...body.querySelectorAll<HTMLElement>("[data-map-companion]")];
+    const synchronizeInert = () => {
+      const protectedRoots = [overlay, ...companions()];
+      const outside = new Set<Element>();
+      const visit = (element: Element) => {
+        if (protectedRoots.includes(element as HTMLElement)) return;
+        if (protectedRoots.some((protectedRoot) => element.contains(protectedRoot))) {
+          for (const child of element.children) visit(child);
+        } else outside.add(element);
+      };
+      // Protect the overlay's ancestor chain, and descend sibling branches only to reach a companion sheet.
+      for (let branch: Element = overlay; branch.parentElement; branch = branch.parentElement) {
+        for (const sibling of branch.parentElement.children) {
+          if (sibling !== branch) visit(sibling);
+        }
+        if (branch.parentElement === body) break;
+      }
+      for (const element of madeInert) {
+        if (!outside.has(element)) {
+          element.removeAttribute("inert");
+          madeInert.delete(element);
+        }
+      }
+      for (const element of outside) {
+        if (!element.hasAttribute("inert")) {
+          element.setAttribute("inert", "");
+          madeInert.add(element);
+        }
+      }
+    };
+    synchronizeInert();
+    // A phone selection can mount or remove the sheet while full screen remains open. Panning re-renders the
+    // overlay itself many times a second; those changes cannot move the boundary, so skip them.
+    const observer = new MutationObserver((records) => {
+      if (records.some((record) => !overlay.contains(record.target))) synchronizeInert();
+    });
+    observer.observe(body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-map-companion"],
+    });
     const root = document.documentElement;
     const previous = {
       overflow: body.style.overflow,
@@ -235,14 +281,40 @@ export default function UniversalRelationshipMap({
     const toggle = fullScreenToggleRef.current;
     toggle?.focus({ preventScroll: true });
     const onKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape" && !event.defaultPrevented) {
+      if (event.defaultPrevented || event.isComposing) return;
+      if (event.key === "Escape") {
         event.preventDefault();
         setIsFullScreen(false);
+      } else if (event.key === "Tab") {
+        const roots = [overlay, ...companions()];
+        const focusable = [
+          ...body.querySelectorAll<HTMLElement | SVGElement>(
+            "a[href], button, input, select, textarea, summary, [tabindex]",
+          ),
+        ].filter((element) => {
+          if (element.tabIndex < 0 || element.matches(":disabled") || element.closest("[inert], [hidden]"))
+            return false;
+          if (!roots.some((root) => root.contains(element))) return false;
+          for (let ancestor: Element | null = element; ancestor; ancestor = ancestor.parentElement) {
+            const style = getComputedStyle(ancestor);
+            if (style.display === "none" || style.visibility === "hidden") return false;
+          }
+          return true;
+        });
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const index = focusable.findIndex((element) => element === document.activeElement);
+        if (index < 0 || (event.shiftKey ? document.activeElement === first : document.activeElement === last)) {
+          event.preventDefault();
+          (event.shiftKey ? last : first)?.focus({ preventScroll: true });
+        }
       }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
+      observer.disconnect();
+      for (const element of madeInert) element.removeAttribute("inert");
       body.style.overflow = previous.overflow;
       body.style.position = previous.position;
       body.style.top = previous.top;
@@ -529,8 +601,10 @@ export default function UniversalRelationshipMap({
   return (
     <div ref={containerRef} style={{ position: "relative" }}>
       <div
+        ref={overlayRef}
         data-map-box=""
         role={fullScreen ? "dialog" : undefined}
+        aria-modal={fullScreen ? "true" : undefined}
         aria-label={fullScreen ? "Full-screen relationship map" : undefined}
         style={{
           border: `1px solid ${t.panelBorder}`,

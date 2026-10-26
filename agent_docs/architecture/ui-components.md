@@ -188,11 +188,16 @@ the panel as an obstacle; fitting the viewport leaves selection and details inta
 network's aspect ratio within 320 px to `min(70vh, 760px)`. On coarse pointers the map opts into
 `useViewBoxZoom`'s `touchGesture: "two-finger"`: one finger scrolls the page (a brief hint says to use two) and two
 fingers pan and zoom; other diagrams keep the one-finger default. Full screen is a fixed `role="dialog"` overlay
-(z-index 1000) with one-finger pan, page scroll lock, Escape, and focus returned to its toggle; it refits on entry and
+(z-index 1000, `aria-modal="true"`) with one-finger pan, page scroll lock, Escape, and focus returned to its toggle; it refits on entry and
 exit, ends when the view goes inactive, and stops above a page panel named by `fullScreenBottomInset`. Each node has
 an invisible hit circle of at least 12 screen pixels radius (22 on coarse pointers), and its label also selects it.
 The page passes selection details as `belowMap`, rendered under the map box, or floating over its bottom-left corner
 in full screen. The legend starts folded on phones.
+While full screen, the map walks ancestor siblings up to body and makes background subtrees `inert`, descending
+branches that contain a `data-map-companion` sheet so it stays operable. It tracks only newly inert elements and
+restores those on exit or unmount, preserving pre-existing inert state. A DOM observer updates this boundary as the
+sheet mounts or closes; Tab wraps through the overlay and sheet together. Escape in the sheet collapses, then closes
+it without also exiting full screen; the sheet remains non-modal.
 Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
 and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
 replacement heading without scrolling; pointer navigation leaves page focus alone.
@@ -219,7 +224,11 @@ card. Escape inside it collapses, then closes it. A bare phone visit opens Neigh
 `UniversalNeighborhoodSummary` lists one card per layout hub cluster (`universalNeighborhoods.ts`), largest first by
 patent and model records, filterable by the anchor or a member company name. Cross-neighborhood edges become patent
 (weighted by distinct patents), corporate, or catalog bridges. A card hands its anchor to the Network view in one
-history entry (view, selection, and focus request together).
+history entry (view, selection, and focus request together). With an empty filter, the measured-width list starts at
+12 cards on phones (below 560 CSS pixels), or 24 on tablet and desktop; a selected neighborhood beyond that cap is
+appended. Show all / Show fewer retains the reader's choice across view changes; expansion focuses the first newly
+revealed card. Filtering shows all matches and hides the toggle. Measurement starts at desktop width for matching
+server and first-client markup.
 `UniversalConnectionTrace` uses `universalConnectionPaths.ts` to find shortest paths over undirected traversal of the
 original edges, with an option to exclude corporate records. A BFS predecessor graph retains alternate shortest routes;
 bounded enumeration returns at most five plus a truncation indicator. The path diagram opens the same detail cards,

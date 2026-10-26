@@ -102,6 +102,7 @@ export default function UniversalDetailSheet({
     <>
       <div aria-hidden="true" style={{ height: DETAIL_SHEET_RESERVED_HEIGHT }} />
       <section
+        data-map-companion=""
         role={expanded ? "dialog" : "region"}
         aria-labelledby={titleId}
         onKeyDown={onKeyDown}

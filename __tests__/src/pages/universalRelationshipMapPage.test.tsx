@@ -400,6 +400,18 @@ describe("UniversalRelationshipMapPage on a phone", () => {
     expect(await screen.findByRole("list", { name: "Hub neighborhoods" })).toBeDefined();
   });
 
+  it("retains the expanded Neighborhoods list when switching views", async () => {
+    renderUniversalPage();
+    fireEvent.click(await screen.findByRole("button", { name: /^Show all \d+ neighborhoods$/ }));
+    const count = within(screen.getByRole("list", { name: "Hub neighborhoods" })).getAllByRole("button").length;
+    const select = screen.getByRole("combobox", { name: "View" });
+    fireEvent.change(select, { target: { value: "network" } });
+    expect(screen.queryByRole("list", { name: "Hub neighborhoods" })).toBeNull();
+    fireEvent.change(select, { target: { value: "neighborhoods" } });
+    expect(screen.getByRole("button", { name: "Show fewer" })).toBeDefined();
+    expect(within(screen.getByRole("list", { name: "Hub neighborhoods" })).getAllByRole("button")).toHaveLength(count);
+  });
+
   it.each([
     ["an explicit network view", () => "#view=network"],
     ["a shared node", () => universalMapHash("", buildUniversalRelationshipGraph().nodes[0].id)],
@@ -470,6 +482,7 @@ describe("UniversalRelationshipMapPage on a phone", () => {
     expect(details.getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(details);
     const dialog = screen.getByRole("dialog", { name: assignee.name });
+    expect(dialog.getAttribute("aria-modal")).toBeNull();
     expect(dialog).toBe(sheet);
     expect(details.getAttribute("aria-expanded")).toBe("true");
     const link = within(dialog).getByRole("link", { name: /Open focused relationship map/ });

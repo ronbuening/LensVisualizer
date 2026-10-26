@@ -31,7 +31,7 @@ flowchart LR
   n_src_components_relationshipMap_React_components --> |13| n_external_src_types
   n_src_components_relationshipMap_TypeScript_modules --> |12| n_external_src_utils_catalog
   n_src_components_relationshipMap_React_components --> |11| n_external_src_utils_style
-  n_src_components_relationshipMap_React_components --> |9| n_external_src_components_hooks
+  n_src_components_relationshipMap_React_components --> |10| n_external_src_components_hooks
   n_src_components_relationshipMap_React_components --> |9| n_external_src_utils_text_ts
   n_src_components_relationshipMap_React_components --> |4| n_external_src_components_content
   n_src_components_relationshipMap_TypeScript_modules --> |2| n_external_pkg_react
@@ -51,7 +51,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (38), same folder (32), package:react (17), src/types (15), src/utils/style (11), src/components/hooks (9), src/utils/text.ts (9), src/components/content (4), +6 more
+- Main outbound areas: src/utils/catalog (38), same folder (32), package:react (17), src/types (15), src/utils/style (11), src/components/hooks (10), src/utils/text.ts (9), src/components/content (4), +6 more
 - External consumers: src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -80,6 +80,6 @@ flowchart LR
 | `UniversalMapOverview.tsx` | React component module | package:react, same folder, src/components/hooks, src/types, src/utils/style, +1 more | same folder | default, UniversalMapOverview |
 | `UniversalMapSearch.tsx` | React component module | src/utils/catalog (2), package:react, src/components/layout, src/types, src/utils/style | same folder, src/pages/UniversalRelationshipMapPage.tsx | default, UniversalMapSearch |
 | `universalNeighborhoods.ts` | Universal Neighborhoods helper module | src/utils/catalog (3), same folder | same folder | UniversalBridgeCategory, UNIVERSAL_BRIDGE_CATEGORIES, UniversalNeighborhood, UniversalNeighborhoodBridge, UniversalNeighborhoodModel, UniversalNeighborLink, UniversalBridgeGroup, universalBridgeCategory, +5 more |
-| `UniversalNeighborhoodSummary.tsx` | React component module | same folder (3), package:react, src/types, src/utils/catalog, src/utils/style, +1 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalNeighborhoodSummary |
+| `UniversalNeighborhoodSummary.tsx` | React component module | same folder (3), package:react, src/components/hooks, src/types, src/utils/catalog, +2 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalNeighborhoodSummary |
 | `UniversalRelationshipMap.tsx` | React component module | same folder (4), src/components/hooks (3), src/utils/catalog (2), package:react, src/types, +3 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalRelationshipMap |
 | `useRelationshipViewParams.ts` | React hook module | package:react, package:react-router, src/utils/state | same folder (3), src/pages/RelationshipMapPage.tsx | useRelationshipViewParams |

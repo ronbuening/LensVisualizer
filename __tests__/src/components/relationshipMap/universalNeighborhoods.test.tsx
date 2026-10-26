@@ -22,7 +22,10 @@ import {
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
 
 function node(kind: UniversalNodeKind, slug: string, name: string): UniversalRelationshipNode {
   const id = `${kind}:${slug}`;
@@ -202,7 +205,8 @@ describe("UniversalNeighborhoodSummary", () => {
   const model = buildUniversalNeighborhoods(graph, layoutUniversalRelationshipGraph(graph));
   const ranked = filterUniversalNeighborhoods(model.neighborhoods, "");
 
-  it("renders one named card per neighborhood, largest first, and hands the anchor to the network", () => {
+  it("renders the first 24 named cards on desktop, largest first, and hands the anchor to the network", () => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(912);
     const show = vi.fn();
     const selected = ranked[1];
     render(
@@ -214,7 +218,7 @@ describe("UniversalNeighborhoodSummary", () => {
       />,
     );
     const cards = within(screen.getByRole("list", { name: "Hub neighborhoods" })).getAllByRole("button");
-    expect(cards).toHaveLength(model.neighborhoods.length);
+    expect(cards).toHaveLength(24);
     expect(cards[0].getAttribute("aria-label")).toBe(`Show ${ranked[0].anchorLabel} in the network`);
     expect(cards[0].textContent).toContain(`${ranked[0].patents} patents`);
     expect(cards[1].getAttribute("aria-current")).toBe("true");
@@ -223,6 +227,72 @@ describe("UniversalNeighborhoodSummary", () => {
     expect(show).toHaveBeenCalledWith(ranked[0].anchorId, true);
     fireEvent.click(cards[1], { detail: 1 });
     expect(show).toHaveBeenLastCalledWith(ranked[1].anchorId, false);
+  });
+
+  it.each([390, 559, 560, 859, 912])("caps at the measured width %i, expands with focus, and collapses", (width) => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(width);
+    render(
+      <UniversalNeighborhoodSummary
+        graph={graph}
+        theme={themes.dark}
+        selectedNodeId={null}
+        onShowInNetwork={vi.fn()}
+      />,
+    );
+    const cards = () => within(screen.getByRole("list", { name: "Hub neighborhoods" })).getAllByRole("button");
+    const limit = width < 560 ? 12 : 24;
+    expect(cards()).toHaveLength(limit);
+    expect(screen.getByRole("status").textContent).toBe(`${limit} of ${ranked.length} neighborhoods`);
+    fireEvent.click(screen.getByRole("button", { name: `Show all ${ranked.length} neighborhoods` }));
+    expect(cards()).toHaveLength(ranked.length);
+    expect(document.activeElement).toBe(cards()[limit]);
+    fireEvent.click(screen.getByRole("button", { name: "Show fewer" }));
+    expect(cards()).toHaveLength(limit);
+  });
+
+  it.each([390, 912])(
+    "appends the selected neighborhood beyond the cap at %i and focuses the first new card",
+    (width) => {
+      vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(width);
+      const selected = ranked[ranked.length - 1];
+      render(
+        <UniversalNeighborhoodSummary
+          graph={graph}
+          theme={themes.dark}
+          selectedNodeId={selected.anchorId}
+          onShowInNetwork={vi.fn()}
+        />,
+      );
+      const cards = () => within(screen.getByRole("list", { name: "Hub neighborhoods" })).getAllByRole("button");
+      const limit = width < 560 ? 12 : 24;
+      expect(cards()).toHaveLength(limit + 1);
+      expect(cards()[limit].getAttribute("aria-current")).toBe("true");
+      fireEvent.click(screen.getByRole("button", { name: `Show all ${ranked.length} neighborhoods` }));
+      expect(document.activeElement).toBe(cards()[limit]);
+      expect(cards()[limit].getAttribute("aria-label")).toBe(`Show ${ranked[limit].anchorLabel} in the network`);
+    },
+  );
+
+  it("shows every filter match beyond either cap, hides the toggle, and retains the expansion choice", () => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(390);
+    const nodes = Array.from({ length: 30 }, (_, index) =>
+      node("maker", `hub-${index}`, `Hub ${String(index).padStart(2, "0")}`),
+    );
+    const many = { ...graph, nodes, edges: [], components: nodes.map((node) => [node.id]) };
+    render(
+      <UniversalNeighborhoodSummary graph={many} theme={themes.dark} selectedNodeId={null} onShowInNetwork={vi.fn()} />,
+    );
+    const input = screen.getByRole("searchbox");
+    fireEvent.change(input, { target: { value: "Hub" } });
+    expect(within(screen.getByRole("list")).getAllByRole("button")).toHaveLength(30);
+    expect(screen.queryByRole("button", { name: /Show all|Show fewer/ })).toBeNull();
+    fireEvent.change(input, { target: { value: "" } });
+    expect(within(screen.getByRole("list")).getAllByRole("button")).toHaveLength(12);
+    fireEvent.click(screen.getByRole("button", { name: "Show all 30 neighborhoods" }));
+    fireEvent.change(input, { target: { value: "Hub 01" } });
+    fireEvent.change(input, { target: { value: "" } });
+    expect(within(screen.getByRole("list")).getAllByRole("button")).toHaveLength(30);
+    expect(screen.getByRole("button", { name: "Show fewer" })).toBeDefined();
   });
 
   it("filters cards by name and reports the visible count", () => {
