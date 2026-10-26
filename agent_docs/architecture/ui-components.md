@@ -158,7 +158,8 @@ The catalog-wide `/relationships/universal` route uses `src/utils/catalog/univer
 `universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
 regardless of patent count (families still require eight assignment edges; networks without assignees fall back to
 the highest-degree node); shared inventors never absorb a small assignee into an unrelated hub. Each node joins its nearest
-deterministic hub in capacity-limited local rings, and the neighborhoods are contracted into a hierarchical-affinity hub
+deterministic hub in capacity-limited local rings, except that an inventor joins the hub holding most of their
+assigned patents (newest patents break ties) and an unassigned patent follows its inventors; the neighborhoods are contracted into a hierarchical-affinity hub
 graph. Center, orbit, and angular-neighbor selection use lexicographic priority: corporate-history edge count, then
 unique cross-neighborhood patent count, then neighborhood node count. `UniversalRelationshipMap.tsx` renders halos
 inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
