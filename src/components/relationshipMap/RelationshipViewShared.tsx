@@ -1,10 +1,11 @@
-import { memo, useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { memo, useEffect, useId, useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import type { RelationshipInsights } from "../../utils/catalog/relationshipInsights.js";
 import type { UniversalPartyNode } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
-import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../hooks/useBalancedColumns.js";
+import CollapseButton from "../controls/CollapseButton.js";
+import useBalancedColumns, { balancedItemStyle, balancedRowStyle, widthClass } from "../hooks/useBalancedColumns.js";
 
 const VIEW_CHOICE_MIN_WIDTH = 150;
 const VIEW_CHOICE_GAP = 12;
@@ -48,28 +49,74 @@ export function viewButton(t: Theme, active = false): CSSProperties {
   };
 }
 
+/**
+ * Phone and tablet header for a section that can fold away: a short title, a one-line summary
+ * while collapsed, and the site's LESS/MORE pill.
+ */
+export function CompactSection({
+  title,
+  summary,
+  expanded,
+  onToggle,
+  theme: t,
+  children,
+}: {
+  title: string;
+  summary: ReactNode;
+  expanded: boolean;
+  onToggle: () => void;
+  theme: Theme;
+  children: ReactNode;
+}) {
+  const contentId = useId();
+  return (
+    <>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 0.5rem" }}>
+        <span style={{ color: t.label, fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+          {title}
+        </span>
+        {!expanded && (
+          <span style={{ color: t.muted, fontSize: "0.7rem", flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
+            {summary}
+          </span>
+        )}
+        <CollapseButton
+          expanded={expanded}
+          onToggle={onToggle}
+          controls={contentId}
+          theme={t}
+          style={{ marginLeft: "auto", minHeight: 32, padding: "6px 12px", fontSize: 10, flexShrink: 0 }}
+        />
+      </div>
+      <div id={contentId} hidden={!expanded}>
+        {children}
+      </div>
+    </>
+  );
+}
+
 export function ViewChoices<V extends string>({
   views,
   value,
   onChange,
   theme: t,
   label,
+  collapsible = false,
 }: {
   views: readonly (readonly [V, string])[];
   value: V;
   onChange: (id: V) => void;
   theme: Theme;
   label: string;
+  /** Below desktop width, fold the buttons under a header that names the current view. */
+  collapsible?: boolean;
 }) {
   // Equal-width buttons in balanced rows (4 + 4 rather than 5 + 3); labels may wrap on narrow screens.
-  const { ref, columns } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
-  return (
-    <div
-      ref={ref}
-      role="group"
-      aria-label={label}
-      style={{ ...balancedRowStyle(VIEW_CHOICE_GAP), margin: controlRow.margin }}
-    >
+  const { ref, columns, width } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
+  const [open, setOpen] = useState(true);
+  const compact = collapsible && widthClass(width) !== "desktop";
+  const buttons = (
+    <div role="group" aria-label={label} style={balancedRowStyle(VIEW_CHOICE_GAP)}>
       {views.map(([id, name]) => (
         <button
           type="button"
@@ -86,6 +133,23 @@ export function ViewChoices<V extends string>({
           {name}
         </button>
       ))}
+    </div>
+  );
+  return (
+    <div ref={ref} style={{ margin: controlRow.margin }}>
+      {compact ? (
+        <CompactSection
+          title="View"
+          summary={views.find(([id]) => id === value)?.[1]}
+          expanded={open}
+          onToggle={() => setOpen((current) => !current)}
+          theme={t}
+        >
+          {buttons}
+        </CompactSection>
+      ) : (
+        buttons
+      )}
     </div>
   );
 }

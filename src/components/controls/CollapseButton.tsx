@@ -13,12 +13,20 @@ interface CollapseButtonProps {
   theme: Theme;
   /** Static label shown regardless of state (e.g. "LEGEND"). Omit for LESS/MORE. */
   label?: string;
+  /** Id of the region this button shows and hides. */
+  controls?: string;
   style?: CSSProperties;
 }
 
-export default function CollapseButton({ expanded, onToggle, theme: t, label, style }: CollapseButtonProps) {
+export default function CollapseButton({ expanded, onToggle, theme: t, label, controls, style }: CollapseButtonProps) {
   return (
-    <button type="button" aria-expanded={expanded} onClick={onToggle} style={{ ...collapseBtn(t), ...style }}>
+    <button
+      type="button"
+      aria-expanded={expanded}
+      aria-controls={controls}
+      onClick={onToggle}
+      style={{ ...collapseBtn(t), ...style }}
+    >
       <span>{label ?? (expanded ? "LESS" : "MORE")}</span>
       <span style={{ fontSize: 11, lineHeight: 1 }}>{expanded ? "\u25B4" : "\u25BE"}</span>
     </button>

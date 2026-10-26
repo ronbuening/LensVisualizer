@@ -81,7 +81,7 @@ flowchart LR
 - Direct source files: 15
 - Direct subfolders: 0
 - Main outbound areas: src/types (21), same folder (12), src/utils/style (11), package:react (10), src/optics/optics.ts (4), src/components/content (2), src/optics/chromatic.ts (2), src/optics/projection.ts (2), +8 more
-- External consumers: src/comparison, src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
+- External consumers: src/comparison, src/components/display, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx
 
 ## Files
 
@@ -89,7 +89,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `CardinalControls.tsx` | React component module | src/types, src/utils/style | src/components/layout (2), same folder | default, CardinalControls |
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic.ts, src/utils/style | same folder | default, ChromaticControls |
-| `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
+| `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2), src/components/relationshipMap | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | same folder (4), src/types (3), src/optics/optics.ts (2), package:react, src/components/hooks, +5 more | src/components/layout | default, DiagramControls |
 | `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/chromatic.ts, +5 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (2) | default, HelpTooltipButton |

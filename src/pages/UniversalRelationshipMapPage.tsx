@@ -20,8 +20,12 @@ import InventorAffiliationMap from "../components/relationshipMap/InventorAffili
 import CompanyRelationshipViews from "../components/relationshipMap/CompanyRelationshipViews.js";
 import RelationshipEvidenceLanes from "../components/relationshipMap/RelationshipEvidenceLanes.js";
 import UniversalNeighborhoodSummary from "../components/relationshipMap/UniversalNeighborhoodSummary.js";
-import { RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
-import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../components/hooks/useBalancedColumns.js";
+import { CompactSection, RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import useBalancedColumns, {
+  balancedItemStyle,
+  balancedRowStyle,
+  widthClass,
+} from "../components/hooks/useBalancedColumns.js";
 import { SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { getRelationshipCatalog } from "../utils/catalog/relationshipCatalog.js";
 import SEOHead from "../components/SEOHead.js";
@@ -51,6 +55,15 @@ const STATS: readonly (readonly [number, string])[] = [
   [UNIVERSAL_GRAPH.stats.components, "connected networks"],
 ];
 // One row when the cards fit; otherwise balanced rows (4 + 3), with labels free to wrap.
+// Collapsed phone summary; non-breaking spaces keep each count with its noun when the line wraps.
+const STAT_SUMMARY = [
+  [SUMMARY_KEYS.length, "lenses"],
+  [UNIVERSAL_GRAPH.stats.patents, "patents"],
+  [UNIVERSAL_GRAPH.stats.authors, "inventors"],
+  [UNIVERSAL_GRAPH.stats.assignees, "assignees"],
+]
+  .map(([value, noun]) => `${value}\u00a0${noun}`)
+  .join(" · ");
 const STAT_MIN_WIDTH = 112;
 const STAT_GAP = 9;
 
@@ -60,6 +73,10 @@ export default function UniversalRelationshipMapPage() {
   const navigationType = useNavigationType();
   const [mounted, setMounted] = useState(false);
   const statsLayout = useBalancedColumns(STATS.length, STAT_MIN_WIDTH, STAT_GAP);
+  const statsWidthClass = widthClass(statsLayout.width);
+  // null follows the layout default: folded on phones, open on tablets; a click pins the reader's choice.
+  const [statsOpen, setStatsOpen] = useState<boolean | null>(null);
+  const statsExpanded = statsOpen ?? statsWidthClass !== "phone";
   useEffect(() => setMounted(true), []);
   const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
   const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS);
@@ -174,18 +191,9 @@ export default function UniversalRelationshipMapPage() {
         />
       }
     >
-      {({ theme: t }) => (
-        <>
-          <h1 style={H1_STYLE}>Universal Relationship Map</h1>
-          <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
-            Explore the entire catalog through the original network, a summary of its hub neighborhoods, connection
-            tracing, inventor affiliations, company bridges, a comparison matrix, company chords, and patent evidence
-            lanes. Patents connect their inventors and assignees; dated corporate records reconnect historical company
-            names. Non-patent models connect to their explicit catalog maker grouping. A neighborhood halo does not
-            imply corporate ownership.
-          </p>
-
-          <div ref={statsLayout.ref} style={{ ...balancedRowStyle(STAT_GAP), marginBottom: "1rem" }}>
+      {({ theme: t }) => {
+        const statCards = (
+          <div style={balancedRowStyle(STAT_GAP)}>
             {STATS.map(([value, label]) => (
               <div
                 key={label}
@@ -200,115 +208,144 @@ export default function UniversalRelationshipMapPage() {
               </div>
             ))}
           </div>
-
-          {explore.view === "network" && (
-            <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
-              Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom, drag
-              to pan, and select any node for details. Double-click the overview to zoom in on that spot. Labels appear
-              as you zoom in.
+        );
+        return (
+          <>
+            <h1 style={H1_STYLE}>Universal Relationship Map</h1>
+            <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
+              Explore the entire catalog through the original network, a summary of its hub neighborhoods, connection
+              tracing, inventor affiliations, company bridges, a comparison matrix, company chords, and patent evidence
+              lanes. Patents connect their inventors and assignees; dated corporate records reconnect historical company
+              names. Non-patent models connect to their explicit catalog maker grouping. A neighborhood halo does not
+              imply corporate ownership.
             </p>
-          )}
 
-          <ClientOnly
-            fallback={
-              <div style={{ ...panelCard(t), padding: "2rem", color: t.muted, textAlign: "center" }}>
-                Preparing the universal relationship map…
-              </div>
-            }
-          >
-            <PanelErrorBoundary lensKey="universal-relationship-map">
-              <div ref={viewChoicesRef} style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}>
-                <ViewChoices
-                  views={UNIVERSAL_VIEWS}
-                  value={explore.view}
-                  onChange={(view) => changeExplore({ ...explore, view })}
+            <div ref={statsLayout.ref} style={{ marginBottom: "1rem" }}>
+              {statsWidthClass === "desktop" ? (
+                statCards
+              ) : (
+                <CompactSection
+                  title="Catalog"
+                  summary={STAT_SUMMARY}
+                  expanded={statsExpanded}
+                  onToggle={() => setStatsOpen(!statsExpanded)}
                   theme={t}
-                  label="Relationship map views"
-                />
-              </div>
-              <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
-              <RetainedMapView active={explore.view === "network"}>
-                <UniversalRelationshipMap
-                  graph={UNIVERSAL_GRAPH}
-                  theme={t}
-                  selectedNodeId={selectedNodeId}
-                  onSelectNode={(nodeId) => selectNode(nodeId)}
-                  focusRequest={focusRequest}
-                  viewResetRequest={viewResetRequest}
-                  active={explore.view === "network"}
-                />
-              </RetainedMapView>
-              {explore.view === "neighborhoods" && (
-                <UniversalNeighborhoodSummary
-                  graph={UNIVERSAL_GRAPH}
-                  theme={t}
-                  selectedNodeId={selectedNodeId}
-                  onShowInNetwork={showInNetwork}
-                />
+                >
+                  {statCards}
+                </CompactSection>
               )}
-              {explore.view === "trace" && (
-                <UniversalConnectionTrace
-                  graph={UNIVERSAL_GRAPH}
-                  theme={t}
-                  from={explore.from}
-                  to={explore.to}
-                  includeCorporate={explore.includeCorporate}
-                  selectedNodeId={selectedNodeId}
-                  onChange={(from, to, includeCorporate) => changeExplore({ ...explore, from, to, includeCorporate })}
-                  onSelectNode={focusNode}
-                />
-              )}
-              {explore.view === "affiliations" && (
-                <InventorAffiliationMap
-                  graph={UNIVERSAL_GRAPH}
-                  network={INSIGHTS}
-                  theme={t}
-                  selectedNodeId={selectedNodeId}
-                  onSelectNode={focusNode}
-                  focusRequest={focusRequest}
-                />
-              )}
-              {(explore.view === "bridge" || explore.view === "matrix" || explore.view === "chords") && (
-                <CompanyRelationshipViews
-                  view={explore.view}
-                  insights={INSIGHTS}
-                  theme={t}
-                  onSelectPatent={focusNode}
-                />
-              )}
-              {explore.view === "evidence" && (
-                <RelationshipEvidenceLanes
-                  insights={INSIGHTS}
-                  theme={t}
-                  onSelectPatent={focusNode}
-                  selectedInventorId={selectedNode?.kind === "author" ? selectedNode.id : null}
-                />
-              )}
+            </div>
 
-              {selectedNode?.kind === "patent" && (
-                <PatentDetailCard
-                  patent={selectedNode.patent}
-                  theme={t}
-                  onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
-                  onClose={() => selectNode(null)}
-                  headingRef={detailsHeadingRef}
-                />
-              )}
+            {explore.view === "network" && (
+              <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
+                Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom,
+                drag to pan, and select any node for details. Double-click the overview to zoom in on that spot. Labels
+                appear as you zoom in.
+              </p>
+            )}
 
-              {selectedNode && selectedNode.kind !== "patent" && (
-                <UniversalEntityDetailCard
-                  graph={UNIVERSAL_GRAPH}
-                  node={selectedNode}
-                  theme={t}
-                  onClose={() => selectNode(null)}
-                  onSelectNode={focusNode}
-                  headingRef={detailsHeadingRef}
-                />
-              )}
-            </PanelErrorBoundary>
-          </ClientOnly>
-        </>
-      )}
+            <ClientOnly
+              fallback={
+                <div style={{ ...panelCard(t), padding: "2rem", color: t.muted, textAlign: "center" }}>
+                  Preparing the universal relationship map…
+                </div>
+              }
+            >
+              <PanelErrorBoundary lensKey="universal-relationship-map">
+                <div ref={viewChoicesRef} style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}>
+                  <ViewChoices
+                    views={UNIVERSAL_VIEWS}
+                    value={explore.view}
+                    onChange={(view) => changeExplore({ ...explore, view })}
+                    theme={t}
+                    label="Relationship map views"
+                    collapsible
+                  />
+                </div>
+                <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
+                <RetainedMapView active={explore.view === "network"}>
+                  <UniversalRelationshipMap
+                    graph={UNIVERSAL_GRAPH}
+                    theme={t}
+                    selectedNodeId={selectedNodeId}
+                    onSelectNode={(nodeId) => selectNode(nodeId)}
+                    focusRequest={focusRequest}
+                    viewResetRequest={viewResetRequest}
+                    active={explore.view === "network"}
+                  />
+                </RetainedMapView>
+                {explore.view === "neighborhoods" && (
+                  <UniversalNeighborhoodSummary
+                    graph={UNIVERSAL_GRAPH}
+                    theme={t}
+                    selectedNodeId={selectedNodeId}
+                    onShowInNetwork={showInNetwork}
+                  />
+                )}
+                {explore.view === "trace" && (
+                  <UniversalConnectionTrace
+                    graph={UNIVERSAL_GRAPH}
+                    theme={t}
+                    from={explore.from}
+                    to={explore.to}
+                    includeCorporate={explore.includeCorporate}
+                    selectedNodeId={selectedNodeId}
+                    onChange={(from, to, includeCorporate) => changeExplore({ ...explore, from, to, includeCorporate })}
+                    onSelectNode={focusNode}
+                  />
+                )}
+                {explore.view === "affiliations" && (
+                  <InventorAffiliationMap
+                    graph={UNIVERSAL_GRAPH}
+                    network={INSIGHTS}
+                    theme={t}
+                    selectedNodeId={selectedNodeId}
+                    onSelectNode={focusNode}
+                    focusRequest={focusRequest}
+                  />
+                )}
+                {(explore.view === "bridge" || explore.view === "matrix" || explore.view === "chords") && (
+                  <CompanyRelationshipViews
+                    view={explore.view}
+                    insights={INSIGHTS}
+                    theme={t}
+                    onSelectPatent={focusNode}
+                  />
+                )}
+                {explore.view === "evidence" && (
+                  <RelationshipEvidenceLanes
+                    insights={INSIGHTS}
+                    theme={t}
+                    onSelectPatent={focusNode}
+                    selectedInventorId={selectedNode?.kind === "author" ? selectedNode.id : null}
+                  />
+                )}
+
+                {selectedNode?.kind === "patent" && (
+                  <PatentDetailCard
+                    patent={selectedNode.patent}
+                    theme={t}
+                    onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
+                    onClose={() => selectNode(null)}
+                    headingRef={detailsHeadingRef}
+                  />
+                )}
+
+                {selectedNode && selectedNode.kind !== "patent" && (
+                  <UniversalEntityDetailCard
+                    graph={UNIVERSAL_GRAPH}
+                    node={selectedNode}
+                    theme={t}
+                    onClose={() => selectNode(null)}
+                    onSelectNode={focusNode}
+                    headingRef={detailsHeadingRef}
+                  />
+                )}
+              </PanelErrorBoundary>
+            </ClientOnly>
+          </>
+        );
+      }}
     </StaticPageShell>
   );
 }

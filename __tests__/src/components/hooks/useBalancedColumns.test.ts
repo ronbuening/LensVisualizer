@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { balancedColumns } from "../../../../src/components/hooks/useBalancedColumns.js";
+import { balancedColumns, widthClass } from "../../../../src/components/hooks/useBalancedColumns.js";
 
 describe("balancedColumns", () => {
   it("keeps every item on one row when they all fit", () => {
@@ -16,5 +16,11 @@ describe("balancedColumns", () => {
     expect(balancedColumns(1, 912, 150, 12)).toBe(1);
     expect(balancedColumns(0, 912, 150, 12)).toBe(1);
     expect(balancedColumns(5, 40, 150, 12)).toBe(1);
+  });
+
+  it("classes container widths as phone, tablet or desktop", () => {
+    expect(widthClass(342)).toBe("phone");
+    expect(widthClass(720)).toBe("tablet");
+    expect(widthClass(912)).toBe("desktop");
   });
 });

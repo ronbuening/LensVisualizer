@@ -17,6 +17,13 @@ export function balancedColumns(count: number, width: number, minItemWidth: numb
   return Math.ceil(count / rows);
 }
 
+export type WidthClass = "phone" | "tablet" | "desktop";
+
+/** Container-width classes for pages laid out in the site's 912 px content column. */
+export function widthClass(width: number): WidthClass {
+  return width < 560 ? "phone" : width < 860 ? "tablet" : "desktop";
+}
+
 export function balancedRowStyle(gap: number): CSSProperties {
   return { display: "flex", flexWrap: "wrap", justifyContent: "center", gap };
 }
@@ -35,7 +42,7 @@ export default function useBalancedColumns(
   minItemWidth: number,
   gap: number,
   initialWidth = 912,
-): { ref: RefObject<HTMLDivElement>; columns: number } {
+): { ref: RefObject<HTMLDivElement>; columns: number; width: number } {
   const ref = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   const [width, setWidth] = useState(initialWidth);
 
@@ -50,5 +57,5 @@ export default function useBalancedColumns(
     return () => observer.disconnect();
   }, [initialWidth]);
 
-  return { ref, columns: balancedColumns(count, width, minItemWidth, gap) };
+  return { ref, columns: balancedColumns(count, width, minItemWidth, gap), width };
 }

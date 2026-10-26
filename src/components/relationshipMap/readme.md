@@ -83,7 +83,7 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (37), same folder (30), package:react (16), src/types (14), src/utils/style (11), src/components/hooks (8), src/utils/text.ts (8), src/components/content (4), +5 more
+- Main outbound areas: src/utils/catalog (37), same folder (30), package:react (16), src/types (14), src/utils/style (11), src/components/hooks (8), src/utils/text.ts (8), src/components/content (4), +6 more
 - External consumers: src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -102,7 +102,7 @@ flowchart LR
 | `RelationshipEntityPicker.tsx` | React component module | src/utils/catalog (4), package:react, same folder, src/components/hooks, src/types, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipEntityPicker |
 | `RelationshipEvidenceLanes.tsx` | React component module | same folder (3), package:react | same folder, src/pages/UniversalRelationshipMapPage.tsx | default, RelationshipEvidenceLanes |
 | `RelationshipMap.tsx` | React component module | package:react, same folder, src/components/hooks, src/types, src/utils/catalog, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipMap |
-| `RelationshipViewShared.tsx` | React component module | src/utils/catalog (2), package:react, package:react-router, src/components/hooks, src/types, +1 more | same folder (5), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | RelationshipViewProps, RetainedMapView, controlRow, viewButton, ViewChoices, ViewPanel, ViewSelect, CompanySelect, +6 more |
+| `RelationshipViewShared.tsx` | React component module | src/utils/catalog (2), package:react, package:react-router, src/components/controls, src/components/hooks, +2 more | same folder (5), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | RelationshipViewProps, RetainedMapView, controlRow, viewButton, CompactSection, ViewChoices, ViewPanel, ViewSelect, +7 more |
 | `roleChip.ts` | Role Chip module with default export | src/types (2), package:react | same folder, src/pages/RelationshipMapPage.tsx | default, roleChip |
 | `UniversalConnectionTrace.tsx` | React component module | same folder (2), src/utils/catalog (2), package:react, src/types, src/utils/style, +1 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalConnectionTrace |
 | `UniversalEntityDetailCard.tsx` | React component module | src/utils/catalog (3), package:react, package:react-router, src/components/content, src/types, +2 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalEntityDetailCard |
