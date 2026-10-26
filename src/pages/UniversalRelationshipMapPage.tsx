@@ -21,6 +21,7 @@ import CompanyRelationshipViews from "../components/relationshipMap/CompanyRelat
 import RelationshipEvidenceLanes from "../components/relationshipMap/RelationshipEvidenceLanes.js";
 import UniversalNeighborhoodSummary from "../components/relationshipMap/UniversalNeighborhoodSummary.js";
 import { RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../components/hooks/useBalancedColumns.js";
 import { SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { getRelationshipCatalog } from "../utils/catalog/relationshipCatalog.js";
 import SEOHead from "../components/SEOHead.js";
@@ -40,12 +41,25 @@ import {
 
 const { graph: UNIVERSAL_GRAPH, insights: INSIGHTS } = getRelationshipCatalog();
 const UNIVERSAL_NODE_IDS = new Set(UNIVERSAL_GRAPH.nodes.map((node) => node.id));
+const STATS: readonly (readonly [number, string])[] = [
+  [SUMMARY_KEYS.length, "catalog lenses"],
+  [UNIVERSAL_GRAPH.stats.patents, "patents"],
+  [UNIVERSAL_GRAPH.stats.lenses, "non-patent models"],
+  [UNIVERSAL_GRAPH.stats.authors, "inventors"],
+  [UNIVERSAL_GRAPH.stats.assignees, "assignees"],
+  [UNIVERSAL_GRAPH.stats.corporateRelationships, "corporate links"],
+  [UNIVERSAL_GRAPH.stats.components, "connected networks"],
+];
+// One row when the cards fit; otherwise balanced rows (4 + 3), with labels free to wrap.
+const STAT_MIN_WIDTH = 112;
+const STAT_GAP = 9;
 
 export default function UniversalRelationshipMapPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const navigationType = useNavigationType();
   const [mounted, setMounted] = useState(false);
+  const statsLayout = useBalancedColumns(STATS.length, STAT_MIN_WIDTH, STAT_GAP);
   useEffect(() => setMounted(true), []);
   const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
   const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS);
@@ -171,24 +185,16 @@ export default function UniversalRelationshipMapPage() {
             imply corporate ownership.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-              gap: "0.55rem",
-              marginBottom: "1rem",
-            }}
-          >
-            {[
-              [SUMMARY_KEYS.length, "catalog lenses"],
-              [UNIVERSAL_GRAPH.stats.patents, "patents"],
-              [UNIVERSAL_GRAPH.stats.lenses, "non-patent models"],
-              [UNIVERSAL_GRAPH.stats.authors, "inventors"],
-              [UNIVERSAL_GRAPH.stats.assignees, "assignees"],
-              [UNIVERSAL_GRAPH.stats.corporateRelationships, "corporate links"],
-              [UNIVERSAL_GRAPH.stats.components, "connected networks"],
-            ].map(([value, label]) => (
-              <div key={label} style={{ ...panelCard(t), padding: "0.65rem 0.75rem" }}>
+          <div ref={statsLayout.ref} style={{ ...balancedRowStyle(STAT_GAP), marginBottom: "1rem" }}>
+            {STATS.map(([value, label]) => (
+              <div
+                key={label}
+                style={{
+                  ...panelCard(t),
+                  ...balancedItemStyle(statsLayout.columns, STAT_GAP),
+                  padding: "0.65rem 0.75rem",
+                }}
+              >
                 <strong style={{ color: t.title, display: "block", fontSize: "1rem" }}>{value}</strong>
                 <span style={{ color: t.muted, fontSize: "0.68rem" }}>{label}</span>
               </div>

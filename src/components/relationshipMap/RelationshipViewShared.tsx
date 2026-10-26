@@ -4,6 +4,10 @@ import type { Theme } from "../../types/theme.js";
 import type { RelationshipInsights } from "../../utils/catalog/relationshipInsights.js";
 import type { UniversalPartyNode } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
+import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../hooks/useBalancedColumns.js";
+
+const VIEW_CHOICE_MIN_WIDTH = 150;
+const VIEW_CHOICE_GAP = 12;
 
 export interface RelationshipViewProps {
   insights: RelationshipInsights;
@@ -32,8 +36,10 @@ export const controlRow: CSSProperties = {
   margin: "0.8rem 0",
 };
 export function viewButton(t: Theme, active = false): CSSProperties {
+  // Drop the segmented-control `borderRight: none`; React would apply it after `border` and erase the right edge.
+  const { borderRight: _segmentEdge, ...base } = toggleBtn(t, active, { flex: 0, hasRightBorder: false });
   return {
-    ...toggleBtn(t, active, { flex: 0, hasRightBorder: false }),
+    ...base,
     border: `1px solid ${t.toggleBorder}`,
     borderRadius: 4,
     padding: "8px 12px",
@@ -55,14 +61,26 @@ export function ViewChoices<V extends string>({
   theme: Theme;
   label: string;
 }) {
+  // Equal-width buttons in balanced rows (4 + 4 rather than 5 + 3); labels may wrap on narrow screens.
+  const { ref, columns } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
   return (
-    <div role="group" aria-label={label} style={controlRow}>
+    <div
+      ref={ref}
+      role="group"
+      aria-label={label}
+      style={{ ...balancedRowStyle(VIEW_CHOICE_GAP), margin: controlRow.margin }}
+    >
       {views.map(([id, name]) => (
         <button
           type="button"
           key={id}
           aria-pressed={value === id}
-          style={viewButton(t, value === id)}
+          style={{
+            ...viewButton(t, value === id),
+            ...balancedItemStyle(columns, VIEW_CHOICE_GAP),
+            whiteSpace: "normal",
+            textAlign: "center",
+          }}
           onClick={() => onChange(id)}
         >
           {name}
