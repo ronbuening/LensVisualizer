@@ -8,6 +8,7 @@
 
 import type { CSSProperties, KeyboardEvent } from "react";
 import { formatFilterValue } from "./catalog.js";
+import { patentDecadeRange, type PatentDecadeOption } from "./patentDecades.js";
 import type {
   CustomFilterState,
   FilterBounds,
@@ -25,6 +26,7 @@ interface LensIndexFilterPanelProps {
   customFilter: CustomFilterState;
   bounds: FilterBounds;
   makerOptions: MakerOption[];
+  patentDecadeOptions: PatentDecadeOption[];
   mountOptions: MountOption[];
   imageFormatOptions: ImageFormatOption[];
   filterInputValues: Record<NumericFilterField, string>;
@@ -239,6 +241,7 @@ export default function LensIndexFilterPanel({
   customFilter,
   bounds,
   makerOptions,
+  patentDecadeOptions,
   mountOptions,
   imageFormatOptions,
   filterInputValues,
@@ -255,6 +258,16 @@ export default function LensIndexFilterPanel({
   onNumericInputCommit,
   onNumericInputKeyDown,
 }: LensIndexFilterPanelProps) {
+  const allYearsSelected =
+    customFilter.patentYearMin === bounds.patentYearMin && customFilter.patentYearMax === bounds.patentYearMax;
+  const togglePatentDecade = (decade: number | null) => {
+    const range = decade === null ? bounds : patentDecadeRange(decade, bounds);
+    const active =
+      customFilter.patentYearMin === range.patentYearMin && customFilter.patentYearMax === range.patentYearMax;
+    // Apply min before max so the hook's coupled endpoints settle on the requested range.
+    onApplyNumericField("patentYearMin", active ? bounds.patentYearMin : range.patentYearMin);
+    onApplyNumericField("patentYearMax", active ? bounds.patentYearMax : range.patentYearMax);
+  };
   const filterBlockStyle: CSSProperties = {
     backgroundColor: t.panelBg,
     border: `1px solid ${t.panelBorder}`,
@@ -428,6 +441,31 @@ export default function LensIndexFilterPanel({
               {customFilter.patentYearMin}–{customFilter.patentYearMax}
             </span>
           </h3>
+          <div role="group" aria-label="Patent decade" style={{ ...FILTER_CHIP_GROUP_STYLE, marginBottom: "0.75rem" }}>
+            <button
+              type="button"
+              style={{ ...buildToggleButtonStyle(t, allYearsSelected), textAlign: "left" }}
+              aria-pressed={allYearsSelected}
+              onClick={() => togglePatentDecade(null)}
+            >
+              All years
+            </button>
+            {patentDecadeOptions.map(({ decade, count, patentYearMin, patentYearMax }) => {
+              const active =
+                customFilter.patentYearMin === patentYearMin && customFilter.patentYearMax === patentYearMax;
+              return (
+                <button
+                  key={decade}
+                  type="button"
+                  style={{ ...buildToggleButtonStyle(t, active), textAlign: "left" }}
+                  aria-pressed={active}
+                  onClick={() => togglePatentDecade(decade)}
+                >
+                  {decade}s ({count})
+                </button>
+              );
+            })}
+          </div>
           <div style={rangeGridStyle}>
             {patentYearControls.map((control) => (
               <NumericFilterControl

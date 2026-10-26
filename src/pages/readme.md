@@ -41,7 +41,7 @@ flowchart LR
   n_external_pkg_react["pkg:react"]
   n_external_src_components_search["src/components/search"]
   n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |11| n_external_src_components_relationshipMap
-  n_src_pages_src_pages_LensIndexPage_tsx --> |10| n_src_pages_src_pages_lensIndex
+  n_src_pages_src_pages_LensIndexPage_tsx --> |11| n_src_pages_src_pages_lensIndex
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |7| n_external_src_components_relationshipMap
   n_src_pages_src_pages_HomePage_tsx --> |6| n_external_src_components_homepage
   n_src_pages_src_pages_MakerPage_tsx --> |6| n_external_src_utils_catalog
@@ -83,7 +83,7 @@ flowchart LR
 
 - Direct source files: 23
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (71), src/components/content (34), src/utils/seo (24), src/utils/style (23), src/components/layout (22), src/components/SEOHead.tsx (22), package:react-router (20), src/pages/lensIndex (20), +20 more
+- Main outbound areas: src/utils/catalog (71), src/components/content (34), src/utils/seo (24), src/utils/style (23), src/components/layout (22), src/components/SEOHead.tsx (22), src/pages/lensIndex (21), package:react-router (20), +20 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -104,7 +104,7 @@ flowchart LR
 | `FormatPage.tsx` | Route-level React page | src/utils/catalog (3), src/pages/lensIndex (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, FormatPage |
 | `FormatsIndexPage.tsx` | Route-level React page | src/components/content (2), src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, FormatsIndexPage |
 | `HomePage.tsx` | Route-level React page | src/components/homepage (6), src/utils/catalog (2), src/utils/seo (2), package:react, package:react-router, +8 more | src/routes | default, HomePage |
-| `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (10), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +5 more | src/routes | default, LensIndexPage |
+| `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (11), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +5 more | src/routes | default, LensIndexPage |
 | `LensPage.tsx` | Route-level React page | src/utils/catalog (3), package:react-router, src/components/ClientOnly.tsx, src/components/content, src/components/layout, +3 more | src/routes | default, LensPage |
 | `MakerPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (3), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakerPage |
 | `MakersIndexPage.tsx` | Route-level React page | src/utils/catalog (4), src/components/content (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakersIndexPage |

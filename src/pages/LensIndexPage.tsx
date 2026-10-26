@@ -14,6 +14,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
+import { buildPatentDecadeOptions } from "./lensIndex/patentDecades.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
@@ -57,6 +58,10 @@ export default function LensIndexPage() {
     [catalogEntries, requestedViewMode],
   );
   const makerOptions = useMemo(() => buildMakerOptions(catalogEntries), [catalogEntries]);
+  const patentDecadeOptions = useMemo(
+    () => buildPatentDecadeOptions(catalogEntries, filterBounds),
+    [catalogEntries, filterBounds],
+  );
   const mountOptions = useMemo(() => buildMountOptions(catalogEntries), [catalogEntries]);
   const imageFormatOptions = useMemo(() => buildImageFormatOptions(catalogEntries), [catalogEntries]);
   const parsedUrlState = useMemo(
@@ -411,6 +416,7 @@ export default function LensIndexPage() {
             customFilter={customFilter}
             bounds={filterBounds}
             makerOptions={makerOptions}
+            patentDecadeOptions={patentDecadeOptions}
             mountOptions={mountOptions}
             imageFormatOptions={imageFormatOptions}
             filterInputValues={filterInputValues}
