@@ -70,6 +70,8 @@ interface LensDiagramPanelProps {
   fillAvailableHeight?: boolean;
   /** Desktop comparison view: the shared dock under both panes replaces this panel's analysis launcher. */
   sharedAnalysisControls?: boolean;
+  /** Passed to DiagramHeader; false hides the Flickr search link. */
+  showPhotoSearch?: boolean;
 }
 
 export default function LensDiagramPanel({
@@ -96,6 +98,7 @@ export default function LensDiagramPanel({
   sideLayoutEnabled = false,
   fillAvailableHeight = false,
   sharedAnalysisControls = false,
+  showPhotoSearch,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -565,6 +568,7 @@ export default function LensDiagramPanel({
                 onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
                 minHeaderHeight={minHeaderHeight}
                 comparisonDetails={comparisonDetails}
+                showPhotoSearch={showPhotoSearch}
               />
             ) : null
           }

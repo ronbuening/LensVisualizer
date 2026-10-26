@@ -268,3 +268,43 @@ patent attribution, never employment, formal teams, contracts, or inferred techn
 `ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,
 math, table styling) and a `description` variant (compact typography, themed colors, GFM, math, safe external links).
 Keep article-specific behavior in the renderer rather than duplicating markdown component maps in pages.
+
+## Lens Builder
+
+`LensBuilderPage` owns the client-only `/lens-builder/` experiment. `ENABLE_LENS_BUILDER` follows Vite's `DEV`
+boolean (on in dev and Vitest, off in production); plain-Node metadata readers default it to false. To ship, set it
+true; remove the flag and inline the route once released, or remove the builder when abandoned. It has no navigation
+or sitemap entry and declares noindex/nofollow.
+
+`SingleLensContent` accepts an optional side panel, a prebuilt `RuntimeLens` and `showPhotoSearch={false}` (threaded
+through `LensDiagramPanel` to `DiagramHeader`, which hides the Flickr link for drafts). The builder uses the slot for a
+65/35 split at 900 px and stacks the editor below the diagram on smaller screens, under the static pages' `PageNavBar`
+breadcrumb ("Home / Lens builder") whose theme toggles dispatch into the builder's own `useLensState`. Those contexts
+keep sliders and the analysis drawer working without URL slider updates, and `usePreferences` persists theme and ray
+toggles as the viewer does. Builds debounce for 250 ms; invalid drafts retain the last successful runtime lens.
+Storage failures are ignored, autosave restores unfinished geometry, and replacing a modified draft from the toolbar
+requires confirmation. `?from=<catalog-key>` copies authored data, then is removed from the URL so a reload restores
+the autosave instead of asking again.
+
+The prescription table is fixed-layout and compact (0.75 rem monospace inputs whose accessible names stay
+`"<surface label> <field>"` while the column headers carry the visible meaning). Below about 1360 px the 35% pane is
+narrower than the table, which then scrolls sideways with the surface column pinned and a fade cue. Each row's ▸
+disclosure holds its medium select and asphere terms; row actions are always-rendered icon buttons with full
+`aria-label`s. Action refusals appear in a sticky alert at the foot of the editor.
+
+React-free `src/lensBuilder/` operates on `LensDataV2Input`, never a reconstructed runtime prescription. Every edit
+returns a new object. An element's id names the medium **after** a surface; its ordinary exit omits medium for air.
+Each surface's `d` is the axial spacing after it; variable spacings remain exclusively in `gaps[label].values`.
+Insertion splits fixed air space, deletion merges it, and reordering moves whole glass runs (an element or cemented
+group with its exit surface) or air planes.
+The form refuses changes involving referenced gap labels, spans, annotations, errata, cemented boundaries or folded
+paths when it cannot preserve their meaning. Use validated Advanced JSON for those structures.
+
+The form edits identity, surface geometry, medium, sparse conic/polynomial aspheres, glass coordinates and labels,
+aperture, close focus and vertical fill. Glass suggestions include vendor and nearest nd/vd; native spectral data
+must be reconciled in Advanced JSON before choosing replacement glass. Source, catalog, zoom/focus schedules, rear
+plates and all other authored fields survive ordinary edits and JSON transport. `.data.ts` export prints the house
+root-level type import, header, `const LENS_DATA = { ... } satisfies LensDataV2Input` and default export, using canonical
+group order. It retains authored values, not original source comments; it does not import conversion-only optics code.
+The built-in triplet is a synthetic teaching design with catalog N-BK7/N-F2 glasses, approximately 49 mm EFL at f/2.8,
+declared 135 full frame so field-dependent analyses chart to a real format corner.

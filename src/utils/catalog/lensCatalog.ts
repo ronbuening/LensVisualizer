@@ -35,6 +35,7 @@ function identityOfFile(data: LensDataV2Input): LensIdentity {
   return { key: data.key, name: data.name, visible: data.visible, maker: data.maker, opticalConfiguration };
 }
 
+const INPUTS: Record<string, LensDataV2Input> = {};
 const AUTHORED: Record<string, LensIdentity> = {};
 const LENS_CATALOG: Record<string, CanonicalLens> = {};
 const PATH_BY_KEY: Record<string, string> = {};
@@ -46,6 +47,7 @@ for (const [path, mod] of Object.entries(_modules)) {
     }
     PATH_BY_KEY[data.key] = path;
     AUTHORED[data.key] = identityOfFile(data);
+    INPUTS[data.key] = data;
     let entry: CanonicalLens | undefined;
     Object.defineProperty(LENS_CATALOG, data.key, {
       enumerable: true,
@@ -209,3 +211,8 @@ export {
   cachedMdForKey,
   loadMdForKey,
 };
+
+/** Independent authored V2 input, without canonical defaults or runtime reconstruction. */
+export function authoredInputForKey(key: string): LensDataV2Input | undefined {
+  return Object.hasOwn(INPUTS, key) ? structuredClone(INPUTS[key]) : undefined;
+}

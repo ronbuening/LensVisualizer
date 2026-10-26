@@ -11,6 +11,7 @@
  */
 
 import type { ComponentType } from "react";
+import { ENABLE_LENS_BUILDER } from "../utils/featureFlags.js";
 
 export interface RouteManifestEntry {
   path: string;
@@ -19,6 +20,7 @@ export interface RouteManifestEntry {
 
 const routeManifest: RouteManifestEntry[] = [
   { path: "/", load: () => import("../pages/HomePage.js") },
+  ...(ENABLE_LENS_BUILDER ? [{ path: "/lens-builder", load: () => import("../pages/LensBuilderPage.js") }] : []),
   { path: "/search", load: () => import("../pages/SearchPage.js") },
   { path: "/lenses", load: () => import("../pages/LensIndexPage.js") },
   { path: "/lens/:slug", load: () => import("../pages/LensPage.js") },

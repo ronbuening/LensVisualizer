@@ -85,6 +85,8 @@ interface DiagramHeaderProps {
   minHeaderHeight?: number;
   /** Independent desktop comparison disclosure; mobile keeps its existing preference. */
   comparisonDetails?: { expanded: boolean; onChange: (expanded: boolean) => void };
+  /** The lens builder's drafts have no production lens to photograph, so it hides the Flickr search link. */
+  showPhotoSearch?: boolean;
 }
 
 const DiagramHeader = memo(
@@ -141,6 +143,7 @@ const DiagramHeader = memo(
       onHeaderInfoExpandedChange,
       minHeaderHeight,
       comparisonDetails,
+      showPhotoSearch = true,
     },
     ref,
   ) {
@@ -196,7 +199,7 @@ const DiagramHeader = memo(
               >
                 {L.source.name}
               </h1>
-              {!compact && (
+              {!compact && showPhotoSearch && (
                 <a
                   href={`https://www.flickr.com/search/?text=${encodeURIComponent(photoSearchName)}`}
                   target="_blank"

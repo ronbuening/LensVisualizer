@@ -30,3 +30,8 @@ export const ENABLE_ANALYSIS_VIEW = false;
 
 // Remove when cardinal element overlays ship or are abandoned.
 export const ENABLE_CARDINAL_ELEMENTS = true;
+
+// On under npm run dev and Vitest; off in production/SSR builds. Set true to ship.
+// Remove the flag and inline the route when shipped, or remove the builder if abandoned.
+// Plain-Node metadata scripts also import this module, without Vite’s import.meta.env.
+export const ENABLE_LENS_BUILDER = import.meta.env?.DEV ?? false;

@@ -29,6 +29,7 @@ build metadata.
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
 | `TeleconverterPage.tsx` | `src/pages/` | Teleconverter page at `/teleconverters/:teleconverterKey`: specs, patent, and the lenses it can mount on. No diagram; each lens link opens the viewer with `?v=1&tc=<key>`. |
 | `TeleconvertersIndexPage.tsx` | `src/pages/` | Teleconverter index at `/teleconverters`. |
+| `LensBuilderPage.tsx` | `src/pages/` | Flagged client-only editor at `/lens-builder/`; noindex/nofollow, excluded from metadata/sitemap and navigation. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
@@ -241,3 +242,7 @@ When adding a route pattern:
    `CLIENT_ONLY_PATTERNS` in `scripts/prerender.mjs` if it is intentionally not prerendered.
 3. Update `buildRouteFreshness()` and sitemap priority logic if the route should appear in generated SEO artifacts.
 4. Add page smoke tests plus route-sync, SEO, and structured-data tests that apply.
+
+The experimental `/lens-builder` manifest path is conditional on `ENABLE_LENS_BUILDER`. Like comparison paths, it is
+listed in `CLIENT_ONLY_PATTERNS` and has app-shell 200 fallbacks in `public/_redirects`. The viewer mounts inside
+`ClientOnly`, so importing the page during SSR does not access browser APIs.

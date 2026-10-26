@@ -76,10 +76,12 @@ src/components/           - React UI components and hooks
   layout/                 - LensViewer, diagram panels, page chrome
     lensDiagram/          - Per-panel diagram viewport, drawer, and control wiring
     lensViewer/           - Viewer-level chrome, content layout, and header helpers
+  lensBuilder/            - Prescription editor, commit inputs, and glass picker
   markdown/               - Shared markdown renderer
   mount/                  - Mount interface diagram components (MountDiagram, panel)
   relationshipMap/        - focused and universal relationship maps (layouts, SVG renderers, search, details, overview)
   search/                 - Catalog search box and results list
+src/lensBuilder/          - Pure authored V2 draft edits, validation, serialization, and glass search
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   geometry/               - Surface sag, slope, normals, and profiles (one implementation); ray-surface intersection

@@ -53,7 +53,7 @@ flowchart LR
 - Direct source files: 7
 - Direct subfolders: 0
 - Main outbound areas: same folder (10), src/types (6), package:react (3), src/utils/holidays.ts (2), src/utils/state (2), package:react-router, src/utils/useMediaQuery.ts
-- External consumers: src/benchmarks, src/components/HolidayFavicon.tsx, src/components/layout, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, src/utils/state
+- External consumers: src/benchmarks, src/components/HolidayFavicon.tsx, src/components/layout, src/pages/HomePage.tsx, src/pages/LensBuilderPage.tsx, src/pages/LensIndexPage.tsx, src/utils/state
 
 ## Files
 
@@ -61,8 +61,8 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `holidayThemes.ts` | Holiday Themes helper module | src/types, src/utils/holidays.ts | same folder (4), src/components/HolidayFavicon.tsx | HolidayTheme, HOLIDAY_THEMES |
 | `themeConstants.ts` | Theme Constants helper module | same folder (2) | src/components/layout | THEME_ICON, THEME_LABEL, themeSlotDisplay |
-| `themePreferences.ts` | Theme Preferences helper module | same folder (2), src/types (2) | src/components/layout (5), same folder (3), src/utils/state | ThemeMode, SystemThemePreferences, ResolvedThemePreferences, readSystemThemePreferences, themeModeFromDarkPreference, darkPreferenceFromThemeMode, nextThemeMode, resolveDarkPreference, +6 more |
+| `themePreferences.ts` | Theme Preferences helper module | same folder (2), src/types (2) | src/components/layout (5), same folder (3), src/pages/LensBuilderPage.tsx, src/utils/state | ThemeMode, SystemThemePreferences, ResolvedThemePreferences, readSystemThemePreferences, themeModeFromDarkPreference, darkPreferenceFromThemeMode, nextThemeMode, resolveDarkPreference, +6 more |
 | `themes.ts` | Themes module with default export | src/types | same folder, src/benchmarks | createTheme, default |
-| `useActiveHoliday.ts` | React hook module | package:react, package:react-router, same folder, src/utils/holidays.ts | src/components/layout (2), same folder | useActiveHoliday |
+| `useActiveHoliday.ts` | React hook module | package:react, package:react-router, same folder, src/utils/holidays.ts | src/components/layout (2), same folder, src/pages/LensBuilderPage.tsx | useActiveHoliday |
 | `usePageTheme.ts` | React hook module | package:react, same folder, src/types, src/utils/state | none | usePageTheme |
 | `usePageThemeToggle.ts` | React hook module | same folder (4), package:react, src/types, src/utils/state, src/utils/useMediaQuery.ts | src/components/layout, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx | usePageThemeToggle, ThemeMode |

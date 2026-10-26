@@ -49,7 +49,7 @@ function findKatexStylesheet() {
  *   (every teleconverter can be a hidden test model). A partly emitted section
  *   is still checked.
  */
-const CLIENT_ONLY_PATTERNS = ["/compare/:slugA/:slugB"];
+const CLIENT_ONLY_PATTERNS = ["/compare/:slugA/:slugB", "/lens-builder"];
 const OPTIONAL_SECTIONS = ["/teleconverters"];
 
 function isUnpublishedOptionalSection(pattern, routes) {

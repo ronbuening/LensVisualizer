@@ -40,13 +40,13 @@ flowchart LR
   n_external_src_components_display["src/components/display"]
   n_external_pkg_react_dom["pkg:react-dom"]
   n_external_pkg_react_router["pkg:react-router"]
-  n_external_src_comparison["src/comparison"]
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |8| n_external_src_components_hooks
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |5| n_external_src_utils_state
   n_src_components_layout_src_components_layout_DiagramControlPanel_tsx --> |4| n_external_src_types
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |4| n_external_src_utils_catalog
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |3| n_external_src_pages_lensIndex
   n_src_components_layout_src_components_layout_ControlsBar_tsx --> |3| n_external_src_types
+  n_src_components_layout_src_components_layout_SingleLensContent_tsx --> |3| n_external_src_types
   n_src_components_layout_src_components_layout_ThemeToggleGroup_tsx --> |3| n_external_src_utils_theme
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |3| n_src_components_layout_src_components_layout_lensDiagram
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |3| n_src_components_layout_src_components_layout_lensViewer
@@ -56,7 +56,6 @@ flowchart LR
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |2| n_external_src_components_hooks
   n_src_components_layout_src_components_layout_AnalysisDrawer_tsx --> |2| n_external_src_types
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |2| n_external_src_types
-  n_src_components_layout_src_components_layout_SingleLensContent_tsx --> |2| n_external_src_types
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |2| n_external_src_utils_catalog
   n_src_components_layout_src_components_layout_TopBar_tsx --> |2| n_external_src_utils_catalog
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |2| n_external_src_utils_state
@@ -70,13 +69,13 @@ flowchart LR
   n_src_components_layout_src_components_layout_OverlayModal_tsx --> n_external_pkg_react
   n_src_components_layout_src_components_layout_PageNavBar_tsx --> n_external_pkg_react
   n_src_components_layout_src_components_layout_PanelOverlay_tsx --> n_external_pkg_react
+  n_src_components_layout_src_components_layout_SingleLensContent_tsx --> n_external_pkg_react
   n_src_components_layout_src_components_layout_StaticPageShell_tsx --> n_external_pkg_react
   n_src_components_layout_src_components_layout_DropdownPanel_tsx --> n_external_pkg_react_dom
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> n_external_pkg_react_router
   n_src_components_layout_src_components_layout_LensViewer_tsx --> n_external_pkg_react_router
   n_src_components_layout_src_components_layout_PageNavBar_tsx --> n_external_pkg_react_router
   n_src_components_layout_src_components_layout_StaticPageShell_tsx --> n_external_pkg_react_router
-  n_src_components_layout_src_components_layout_LensViewer_tsx --> n_external_src_comparison
   n_src_components_layout_truncated["additional relationships omitted"]
 ```
 
@@ -84,8 +83,8 @@ flowchart LR
 
 - Direct source files: 17
 - Direct subfolders: 2
-- Main outbound areas: src/types (24), src/components/hooks (13), package:react (11), same folder (11), src/utils/state (10), src/utils/style (10), src/utils/catalog (9), src/utils/theme (9), +22 more
-- External consumers: src/comparison, src/components/controls, src/components/layout, src/components/relationshipMap, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +18 more
+- Main outbound areas: src/types (25), src/components/hooks (13), package:react (12), same folder (11), src/utils/state (10), src/utils/style (10), src/utils/catalog (9), src/utils/theme (9), +22 more
+- External consumers: src/comparison, src/components/controls, src/components/layout, src/components/lensBuilder, src/components/relationshipMap, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, +20 more
 
 ## Subfolders
 
@@ -103,14 +102,14 @@ flowchart LR
 | `ControlsBar.tsx` | React component module | src/types (3), package:react, src/components/controls, src/optics/chromatic.ts, src/utils/featureFlags.ts, +2 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |
 | `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
-| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | src/components/controls, src/components/relationshipMap | DropdownPanelPos, default |
+| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | src/components/controls, src/components/lensBuilder, src/components/relationshipMap | DropdownPanelPos, default |
 | `LensDiagramPanel.tsx` | React component module | src/components/hooks (8), same folder (3), src/types (2), src/utils/state (2), package:react, +9 more | same folder, src/comparison | default, LensDiagramPanel |
 | `LensViewer.tsx` | React component module | src/utils/state (5), same folder (3), src/components/hooks (2), src/utils/catalog (2), src/utils/theme (2), +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |
 | `OverlayModal.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | default, OverlayModal |
-| `PageNavBar.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/style, +2 more | same folder, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx | default, PageNavBar |
+| `PageNavBar.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/style, +2 more | same folder, src/pages/HomePage.tsx, src/pages/LensBuilderPage.tsx, src/pages/LensIndexPage.tsx | default, PageNavBar |
 | `PanelOverlay.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder | default, PanelOverlay |
 | `PrimerToggleButton.tsx` | React component module | src/types | same folder | default, PrimerToggleButton |
-| `SingleLensContent.tsx` | React component module | same folder (2), src/types (2), src/utils/featureFlags.ts | same folder | default, SingleLensContent |
+| `SingleLensContent.tsx` | React component module | src/types (3), same folder (2), package:react, src/utils/featureFlags.ts | same folder, src/pages/LensBuilderPage.tsx | default, SingleLensContent |
 | `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +13 more | default, StaticPageShell |
 | `ThemeToggleGroup.tsx` | React component module | src/utils/theme (3), src/types, src/utils/style | same folder (2) | default, ThemeToggleGroup |
 | `TopBar.tsx` | React component module | src/components/controls (2), src/utils/catalog (2), src/components/display, src/types, src/utils/style | same folder | default, TopBar |
