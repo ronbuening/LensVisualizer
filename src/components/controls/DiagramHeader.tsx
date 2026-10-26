@@ -17,6 +17,7 @@ import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
+import LensTaxonomyBadges from "./LensTaxonomyBadges.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
@@ -214,6 +215,13 @@ const DiagramHeader = memo(
                   flickr ↗
                 </a>
               )}
+              <LensTaxonomyBadges
+                key={L.source.key}
+                lensMounts={L.source.catalog.lensMounts}
+                imageFormat={L.source.catalog.imageFormat}
+                t={t}
+                compact={compact}
+              />
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
               {displaySubtitle && (
