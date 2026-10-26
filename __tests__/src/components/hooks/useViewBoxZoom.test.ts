@@ -348,6 +348,92 @@ describe("useViewBoxZoom", () => {
   });
 
   describe("contained native gestures", () => {
+    it.each(["mouse", "pen"])("keeps %s drag panning in two-finger touch mode", (pointerType) => {
+      const svgTarget = createSvgTarget();
+      const { result } = renderHook(() =>
+        useViewBoxZoom(SVG_W, SVG_H, true, undefined, { touchGesture: "two-finger" }),
+      );
+      act(() =>
+        result.current.handlePointerDown({
+          button: 0,
+          clientX: 100,
+          clientY: 100,
+          pointerId: 1,
+          pointerType,
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+      act(() =>
+        result.current.handlePointerMove({
+          clientX: 130,
+          clientY: 140,
+          pointerType,
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+      expect(result.current.state.vbX).toBeCloseTo(-30);
+      expect(result.current.state.vbY).toBeCloseTo(-40);
+      expect(result.current.isPanning).toBe(true);
+    });
+
+    it("lets one finger scroll and pans and pinches with two fingers only when opted in", () => {
+      const svgTarget = createNativeSvgTarget();
+      const onOneFingerDrag = vi.fn();
+      const { result, unmount } = renderHook(() =>
+        useViewBoxZoom(
+          SVG_W,
+          SVG_H,
+          true,
+          { current: svgTarget },
+          {
+            touchGesture: "two-finger",
+            onOneFingerDrag,
+          },
+        ),
+      );
+      const dispatchTouch = (type: string, touches: Touch[]) => {
+        const event = createNativeEvent(type, { touches });
+        act(() => svgTarget.dispatchEvent(event));
+        return event;
+      };
+      const initial = result.current.state;
+      expect(dispatchTouch("touchstart", [createTouch(100, 100)]).defaultPrevented).toBe(false);
+      expect(dispatchTouch("touchmove", [createTouch(140, 150)]).defaultPrevented).toBe(false);
+      expect(result.current.state).toBe(initial);
+      expect(result.current.isPanning).toBe(false);
+      expect(onOneFingerDrag).toHaveBeenCalledOnce();
+      dispatchTouch("touchmove", [createTouch(160, 170)]);
+      expect(onOneFingerDrag).toHaveBeenCalledOnce();
+
+      expect(dispatchTouch("touchstart", [createTouch(100, 100), createTouch(200, 100)]).defaultPrevented).toBe(true);
+      expect(dispatchTouch("touchmove", [createTouch(130, 140), createTouch(230, 140)]).defaultPrevented).toBe(true);
+      expect(result.current.state.zoom).toBe(1);
+      expect(result.current.state.vbX).toBeCloseTo(-30);
+      expect(result.current.state.vbY).toBeCloseTo(-40);
+      expect(result.current.isPanning).toBe(true);
+      dispatchTouch("touchmove", [createTouch(80, 140), createTouch(280, 140)]);
+      expect(result.current.state.zoom).toBe(2);
+      const pinched = result.current.state;
+      dispatchTouch("touchend", [createTouch(80, 140)]);
+      dispatchTouch("touchmove", [createTouch(50, 100)]);
+      expect(result.current.state).toBe(pinched);
+      expect(result.current.isPanning).toBe(false);
+      unmount();
+      expect(dispatchTouch("touchmove", [createTouch(0, 0), createTouch(100, 0)]).defaultPrevented).toBe(false);
+    });
+
+    it("keeps native one-finger pan and scroll containment by default", () => {
+      const svgTarget = createNativeSvgTarget();
+      const { result, unmount } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true, { current: svgTarget }));
+      act(() => svgTarget.dispatchEvent(createNativeEvent("touchstart", { touches: [createTouch(100, 100)] })));
+      const move = createNativeEvent("touchmove", { touches: [createTouch(140, 150)] });
+      act(() => svgTarget.dispatchEvent(move));
+      expect(move.defaultPrevented).toBe(true);
+      expect(result.current.state.vbX).toBeCloseTo(-40);
+      expect(result.current.state.vbY).toBeCloseTo(-50);
+      unmount();
+    });
+
     it("contains native wheel zoom on the supplied SVG only", () => {
       const svgTarget = createNativeSvgTarget();
       const outsideTarget = createNativeSvgTarget();

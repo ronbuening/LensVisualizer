@@ -5,7 +5,7 @@ import type { RelationshipInsights } from "../../utils/catalog/relationshipInsig
 import type { UniversalPartyNode } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import useBalancedColumns, { balancedItemStyle, balancedRowStyle } from "../hooks/useBalancedColumns.js";
+import useBalancedColumns, { balancedItemStyle, balancedRowStyle, widthClass } from "../hooks/useBalancedColumns.js";
 
 const VIEW_CHOICE_MIN_WIDTH = 150;
 const VIEW_CHOICE_GAP = 12;
@@ -106,9 +106,49 @@ export function ViewChoices<V extends string>({
   label: string;
 }) {
   // Equal-width buttons in balanced rows (4 + 4 rather than 5 + 3); labels may wrap on narrow screens.
-  // The buttons fold under a header that names the current view; they start open.
-  const { ref, columns } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
+  // The buttons fold under a header that names the current view; they start open. Phones get one native select,
+  // which takes a single row where eight buttons took four. The measured wrapper stays the same element in both.
+  const { ref, columns, width } = useBalancedColumns(views.length, VIEW_CHOICE_MIN_WIDTH, VIEW_CHOICE_GAP);
   const [open, setOpen] = useState(true);
+  const selectId = useId();
+  if (widthClass(width) === "phone") {
+    return (
+      <div ref={ref} style={{ margin: controlRow.margin, display: "flex", alignItems: "center", gap: 10 }}>
+        <label
+          htmlFor={selectId}
+          style={{ color: t.label, fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase" }}
+        >
+          View
+        </label>
+        <select
+          id={selectId}
+          value={value}
+          onChange={(event) => {
+            const next = views.find(([id]) => id === event.target.value);
+            if (next) onChange(next[0]);
+          }}
+          style={{
+            flex: 1,
+            minWidth: 0,
+            minHeight: 44,
+            padding: "6px 8px",
+            font: "inherit",
+            fontSize: "16px",
+            color: t.body,
+            background: t.panelBg,
+            border: `1px solid ${t.toggleBorder}`,
+            borderRadius: 4,
+          }}
+        >
+          {views.map(([id, name]) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
   const buttons = (
     <div role="group" aria-label={label} style={balancedRowStyle(VIEW_CHOICE_GAP)}>
       {views.map(([id, name]) => (

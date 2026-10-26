@@ -57,7 +57,7 @@ flowchart LR
 - Direct source files: 13
 - Direct subfolders: 0
 - Main outbound areas: same folder (19), src/utils/catalog (5), src/comparison (2), src/optics/glassCatalog.ts
-- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +26 more
+- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +27 more
 
 ## Files
 
@@ -75,4 +75,4 @@ flowchart LR
 | `optics.ts` | Shared TypeScript types | same folder (4), src/utils/catalog | src/optics/prescription (30), src/components/display (26), src/optics/analysis (15), src/components/diagram (14), src/optics/trace (12), +17 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +60 more |
 | `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (12), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
 | `teleconverter.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/optics/prescription (8), same folder | TeleconverterData, TeleconverterDataInput, AttachedTeleconverterInfo, TeleconverterIncompatibility, TeleconverterGeometry, TeleconverterCompatibility |
-| `theme.ts` | Shared TypeScript types | same folder | src/components/display (60), src/components/layout (22), src/components/diagram (16), src/components/controls (14), src/components/relationshipMap (12), +13 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |
+| `theme.ts` | Shared TypeScript types | same folder | src/components/display (60), src/components/layout (22), src/components/diagram (16), src/components/controls (14), src/components/relationshipMap (13), +14 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |

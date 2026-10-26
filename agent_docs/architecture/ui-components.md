@@ -180,8 +180,18 @@ Escape, outside interaction, and Tab dismiss it; selection clears the query and 
 Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
 centers at readable magnification through `useViewBoxZoom.centerOn`. Requests are consumed once, including repeated
 requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
-The persistent navigation controls reuse that hook for bounded zoom, fit-all, and readable selection centering;
-fitting the viewport leaves selection and details intact.
+The navigation controls overlay the map's top-right corner at every width: icon buttons for bounded zoom, fit-all,
+readable selection centering, and full screen, then the emphasis and overview toggles (on phones, outside full screen,
+the toggles sit in a row under the map box so the overlay stays one row). Labels and network captions treat
+the panel as an obstacle; fitting the viewport leaves selection and details intact. The map box height follows the
+network's aspect ratio within 320 px to `min(70vh, 760px)`. On coarse pointers the map opts into
+`useViewBoxZoom`'s `touchGesture: "two-finger"`: one finger scrolls the page (a brief hint says to use two) and two
+fingers pan and zoom; other diagrams keep the one-finger default. Full screen is a fixed `role="dialog"` overlay
+(z-index 1000) with one-finger pan, page scroll lock, Escape, and focus returned to its toggle; it refits on entry and
+exit, ends when the view goes inactive, and stops above a page panel named by `fullScreenBottomInset`. Each node has
+an invisible hit circle of at least 12 screen pixels radius (22 on coarse pointers), and its label also selects it.
+The page passes selection details as `belowMap`, rendered under the map box, or floating over its bottom-left corner
+in full screen. The legend starts folded on phones.
 Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
 and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
 replacement heading without scrolling; pointer navigation leaves page focus alone.
@@ -193,11 +203,18 @@ all elements remain operable, and clearing selection temporarily suspends emphas
 `UniversalMapOverview` reuses the same layout for a cached simplified scene and shows the visible viewport measured
 through the main SVG's inverse screen transform (`useSvgViewport` / `svgCoordinates`). Click/tap centers without
 changing selection or zoom; double-click centers and doubles the zoom; arrow keys pan and Home fits the map. The
-overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
-toggle. It does not run another layout or filter the graph.
+overview sits inside viewports at least 600 CSS pixels wide (and in full screen); below that it sits under the map and
+starts hidden. A local toggle keeps the reader's choice. It does not run another layout or filter the graph.
 
 The universal page likewise retains the original Network view after its first use while offering Neighborhoods, Trace connections, Inventor affiliations,
-Company bridge, Affiliation matrix, Company chords, and Evidence lanes.
+Company bridge, Affiliation matrix, Company chords, and Evidence lanes. Its width class (`widthClass()` on the measured
+catalog row) starts as desktop for the server and first client render. Phones get a native view select (in the shared
+`ViewChoices`, so inventor maps get it too), a two-line intro with More/Less, the Network note behind "How to use the
+map", and details in `UniversalDetailSheet`: a fixed bottom sheet (z-index 1001, above full screen) whose collapsed row
+shows the name, a one-line summary, Details, and close, and which expands into a non-modal dialog holding the detail
+card. Escape inside it collapses, then closes it. A bare phone visit opens Neighborhoods, chosen once after measurement
+(see [Routing and content](routing-and-content.md#pages-and-routes)). Tablet and desktop show details through
+`belowMap` in the Network view and under the other views.
 `UniversalNeighborhoodSummary` lists one card per layout hub cluster (`universalNeighborhoods.ts`), largest first by
 patent and model records, filterable by the anchor or a member company name. Cross-neighborhood edges become patent
 (weighted by distinct patents), corporate, or catalog bridges. A card hands its anchor to the Network view in one

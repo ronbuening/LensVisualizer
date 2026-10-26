@@ -4,8 +4,9 @@
  * Page-level coverage for the catalog-wide universal relationship map.
  */
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { Route, Routes, RouterProvider, createMemoryRouter, useLocation, useNavigate } from "react-router";
 import { buildUniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import { universalMapHash } from "../../../src/utils/state/universalMapUrl.js";
@@ -32,12 +33,16 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
     selectedNodeId,
     focusRequest,
     viewResetRequest,
+    belowMap,
+    fullScreenBottomInset,
   }: {
     graph: UniversalRelationshipGraph;
     onSelectNode: (nodeId: string) => void;
     selectedNodeId: string | null;
     focusRequest?: { nodeId: string; requestId: number };
     viewResetRequest?: number;
+    belowMap?: ReactNode;
+    fullScreenBottomInset?: string;
   }) {
     const patent = graph.nodes.find((node) => node.kind === "patent")!;
     const assignee = graph.nodes.find((node) => node.kind === "assignee")!;
@@ -50,6 +55,7 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
         data-focus={focusRequest?.nodeId}
         data-request={focusRequest?.requestId}
         data-reset={viewResetRequest}
+        data-bottom-inset={fullScreenBottomInset}
       >
         <button type="button" onClick={() => onSelectNode(patent.id)}>
           Select test patent
@@ -60,6 +66,7 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
         <button type="button" onClick={() => onSelectNode(family.id)}>
           Select test family
         </button>
+        {belowMap}
       </div>
     );
   },
@@ -294,6 +301,19 @@ describe("UniversalRelationshipMapPage", () => {
     expect(screen.getByRole("link", { name: "Relationship map" }).getAttribute("href")).toBe("/relationships/");
   });
 
+  it("shows details under the network map and after the other views on wider screens", async () => {
+    renderUniversalPage();
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    fireEvent.click(within(map).getByRole("button", { name: "Select test assignee" }));
+    expect(within(map).getByRole("button", { name: "Close entity details" })).toBeDefined();
+    expect(screen.queryByRole("button", { name: "Close details" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Trace connections" }));
+    expect(screen.getByRole("button", { name: "Close entity details" })).toBeDefined();
+    expect(screen.queryByRole("button", { name: "Details" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "How to use the map" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "More" })).toBeNull();
+  });
+
   it("opens shared patent details without requiring a center party", async () => {
     renderUniversalPage();
     fireEvent.click(await screen.findByRole("button", { name: "Select test patent" }));
@@ -342,5 +362,145 @@ describe("UniversalRelationshipMapPage", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Select test family" }));
     await waitFor(() => expect(screen.getAllByRole("link", { name: "Source ↗" }).length).toBeGreaterThan(0));
     expect(document.body.textContent).toMatch(/\d{4}/);
+  });
+});
+
+describe("UniversalRelationshipMapPage on a phone", () => {
+  let width: MockInstance;
+
+  function currentHash() {
+    return screen.getByRole("status", { name: "Current location" }).textContent!.split("#")[1] ?? "";
+  }
+
+  beforeEach(() => {
+    clearBrowserState();
+    installMatchMediaMock(false);
+    width = vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(390);
+  });
+
+  afterEach(() => {
+    cleanup();
+    width.mockRestore();
+  });
+
+  it("opens Neighborhoods for a bare visit without writing the default into the URL", async () => {
+    renderUniversalPage("/relationships/universal?keep=yes");
+    expect(await screen.findByRole("list", { name: "Hub neighborhoods" })).toBeDefined();
+    expect(screen.queryByRole("group", { name: "Universal relationship map test double" })).toBeNull();
+    const select = screen.getByRole("combobox", { name: "View" }) as HTMLSelectElement;
+    expect(select.value).toBe("neighborhoods");
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toBe(
+      "/relationships/universal?keep=yes",
+    );
+    // The network must stay explicit once chosen: a bare fragment means Neighborhoods on this visit.
+    fireEvent.change(select, { target: { value: "network" } });
+    expect(await screen.findByRole("group", { name: "Universal relationship map test double" })).toBeDefined();
+    expect(new URLSearchParams(currentHash()).get("view")).toBe("network");
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(await screen.findByRole("list", { name: "Hub neighborhoods" })).toBeDefined();
+  });
+
+  it.each([
+    ["an explicit network view", () => "#view=network"],
+    ["a shared node", () => universalMapHash("", buildUniversalRelationshipGraph().nodes[0].id)],
+  ])("opens the network for %s", async (_label, hash) => {
+    renderUniversalPage(`/relationships/universal${hash()}`);
+    expect(await screen.findByRole("group", { name: "Universal relationship map test double" })).toBeDefined();
+    expect((screen.getByRole("combobox", { name: "View" }) as HTMLSelectElement).value).toBe("network");
+    expect(screen.queryByRole("list", { name: "Hub neighborhoods" })).toBeNull();
+  });
+
+  it("keeps the network open after its shared selection is closed", async () => {
+    const node = buildUniversalRelationshipGraph().nodes.find((entry) => entry.kind === "assignee")!;
+    renderUniversalPage(`/relationships/universal${universalMapHash("", node.id)}`);
+    fireEvent.click(await screen.findByRole("button", { name: "Close details" }));
+    expect(currentHash()).toBe("");
+    expect(screen.getByRole("group", { name: "Universal relationship map test double" })).toBeDefined();
+  });
+
+  it("picks views from one native select instead of the button grid", async () => {
+    renderUniversalPage("/relationships/universal#view=network");
+    const select = (await screen.findByRole("combobox", { name: "View" })) as HTMLSelectElement;
+    expect(screen.queryByRole("button", { name: "Trace connections" })).toBeNull();
+    expect(screen.queryByRole("group", { name: "Relationship map views" })).toBeNull();
+    expect([...select.options].map((option) => option.textContent)).toContain("Evidence lanes");
+    fireEvent.change(select, { target: { value: "trace" } });
+    expect(await screen.findByRole("combobox", { name: "Start entity" })).toBeDefined();
+    expect(new URLSearchParams(currentHash()).get("view")).toBe("trace");
+  });
+
+  it("clamps the intro to two lines until More is pressed", () => {
+    renderUniversalPage();
+    const more = screen.getByRole("button", { name: "More" });
+    const intro = document.getElementById(more.getAttribute("aria-controls")!)!;
+    expect(more.getAttribute("aria-expanded")).toBe("false");
+    expect(intro.style.webkitLineClamp).toBe("2");
+    fireEvent.click(more);
+    expect(more.textContent).toBe("Less");
+    expect(more.getAttribute("aria-expanded")).toBe("true");
+    expect(intro.style.webkitLineClamp).toBe("");
+  });
+
+  it("folds the network note behind a how-to toggle", async () => {
+    renderUniversalPage("/relationships/universal#view=network");
+    const toggle = await screen.findByRole("button", { name: "How to use the map" });
+    const note = document.getElementById(toggle.getAttribute("aria-controls")!)!;
+    expect(note.textContent).toMatch(/^Soft halos group/);
+    expect(note.hidden).toBe(true);
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute("aria-expanded")).toBe("true");
+    expect(note.hidden).toBe(false);
+  });
+
+  it("shows a selection in a bottom sheet that expands, collapses with Escape, and closes", async () => {
+    renderUniversalPage("/relationships/universal#view=network");
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    fireEvent.click(within(map).getByRole("button", { name: "Select test assignee" }));
+    const assignee = buildUniversalRelationshipGraph().nodes.find(
+      (node) => node.id === map.getAttribute("data-selected"),
+    )!;
+    const sheet = screen.getByRole("region", { name: assignee.name });
+    expect(within(map).queryByRole("article")).toBeNull();
+    // Full screen ends above the collapsed sheet.
+    expect(map.getAttribute("data-bottom-inset")).toMatch(/^calc\(62px/);
+    expect(within(sheet).getByText(/^Assignee · \d+ patents?$/)).toBeDefined();
+    expect(within(sheet).queryByRole("link", { name: /Open focused relationship map/ })).toBeNull();
+
+    const details = within(sheet).getByRole("button", { name: "Details" });
+    expect(details.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(details);
+    const dialog = screen.getByRole("dialog", { name: assignee.name });
+    expect(dialog).toBe(sheet);
+    expect(details.getAttribute("aria-expanded")).toBe("true");
+    const link = within(dialog).getByRole("link", { name: /Open focused relationship map/ });
+
+    fireEvent.keyDown(link, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(screen.getByRole("region", { name: assignee.name })).toBe(sheet);
+    expect(document.activeElement).toBe(details);
+    expect(currentHash()).toContain("node=");
+
+    fireEvent.keyDown(details, { key: "Escape" });
+    expect(screen.queryByRole("region", { name: assignee.name })).toBeNull();
+    expect(new URLSearchParams(currentHash()).get("node")).toBeNull();
+    expect(map.getAttribute("data-selected")).toBeNull();
+    expect(map.getAttribute("data-bottom-inset")).toBeNull();
+
+    fireEvent.click(within(map).getByRole("button", { name: "Select test patent" }));
+    fireEvent.click(screen.getByRole("button", { name: "Close details" }));
+    expect(map.getAttribute("data-selected")).toBeNull();
+    expect(new URLSearchParams(currentHash()).get("view")).toBe("network");
+  });
+
+  it("uses the sheet for selections made in the other views", async () => {
+    renderUniversalPage("/relationships/universal#view=trace");
+    const input = await screen.findByRole("combobox", { name: "Search the map" });
+    expect(input.getAttribute("placeholder")).toBe("Search names, lenses, patents");
+    fireEvent.change(input, { target: { value: "Nikon Corporation" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    const sheet = screen.getByRole("region", { name: "Nikon Corporation" });
+    fireEvent.click(within(sheet).getByRole("button", { name: "Details" }));
+    expect(within(sheet).getByRole("heading", { level: 3, name: "Nikon Corporation" })).toBeDefined();
+    expect(new URLSearchParams(currentHash()).get("view")).toBe("trace");
   });
 });

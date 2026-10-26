@@ -23,6 +23,7 @@ afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 const author: UniversalPartyNode = {
@@ -162,6 +163,181 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it.each([390, 599, 600, 768, 1024])("defaults the overview by container width (%i px)", (width) => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(width);
+    const { getByRole, queryByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const toggle = getByRole("button", { name: "Overview" });
+    expect(toggle.getAttribute("aria-expanded")).toBe(String(width >= 600));
+    // Phones keep the overlay to one icon row; the text toggles move under the map box.
+    expect(getByRole("group", { name: "Map navigation" }).contains(toggle)).toBe(width >= 560);
+    expect(queryByRole("group", { name: "Map overview" }) !== null).toBe(width >= 600);
+    fireEvent.click(toggle);
+    expect(queryByRole("group", { name: "Map overview" }) !== null).toBe(width < 600);
+    expect(getByRole("button", { name: /MORE|LESS/ }).getAttribute("aria-expanded")).toBe(String(width >= 560));
+  });
+
+  it("retains the reader's overview and legend choices after resizing", () => {
+    const observer = installResizeObserverMock();
+    let width = 390;
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => width);
+    const { getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: /MORE/ }));
+    width = 900;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("true");
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: /LESS/ }));
+    width = 390;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("false");
+    width = 900;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("false");
+    expect(getByRole("button", { name: /MORE/ }).getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("opens full screen, refits, closes with Escape or Close, and restores focus and page scrolling", () => {
+    const { container, getByRole, getByText } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={graph}
+        theme={themes.dark}
+        selectedNodeId={author.id}
+        onSelectNode={vi.fn()}
+        belowMap={<div>Selection details</div>}
+      />,
+    );
+    const main = container.querySelector("svg")!;
+    const box = main.parentElement!;
+    expect(box.nextElementSibling).toBe(getByText("Selection details"));
+    const initialView = main.getAttribute("viewBox");
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const toggle = getByRole("button", { name: "Full screen" });
+    toggle.focus();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    expect(main.getAttribute("viewBox")).not.toBe(initialView);
+    fireEvent.click(toggle);
+    const close = getByRole("button", { name: "Close full screen" });
+    expect(document.activeElement).toBe(close);
+    expect(box.style.position).toBe("fixed");
+    expect(box.style.inset).toBe("0px");
+    expect(box.style.zIndex).toBe("1000");
+    expect(main.getAttribute("viewBox")).toBe(initialView);
+    expect(document.body.style.overflow).toBe("hidden");
+    expect(document.body.style.position).toBe("fixed");
+    // Full screen covers the page, so the details move into the overlay.
+    expect(getByRole("dialog", { name: "Full-screen relationship map" })).toBe(box);
+    expect(box.contains(getByText("Selection details"))).toBe(true);
+    fireEvent.keyDown(close, { key: "Escape" });
+    expect(box.style.position).toBe("relative");
+    expect(box.getAttribute("role")).toBeNull();
+    expect(box.nextElementSibling).toBe(getByText("Selection details"));
+    expect(document.activeElement).toBe(getByRole("button", { name: "Full screen" }));
+    expect(document.body.style.overflow).toBe(originalOverflow);
+    expect(document.body.style.position).toBe(originalPosition);
+    fireEvent.click(toggle);
+    fireEvent.click(getByRole("button", { name: "Close full screen" }));
+    expect(document.activeElement).toBe(toggle);
+  });
+
+  it("ends full screen above a page's bottom panel, and on leaving the view", () => {
+    const props = { graph, theme: themes.dark, selectedNodeId: author.id, onSelectNode: vi.fn() };
+    const { container, getByRole, rerender } = renderWithRouter(
+      <UniversalRelationshipMap {...props} fullScreenBottomInset="62px" />,
+    );
+    const box = container.querySelector<HTMLElement>("[data-map-box]")!;
+    // Text controls size to their labels rather than shrinking onto each other.
+    expect(getByRole("button", { name: "Emphasize connections" }).style.flex).toBe("0 0 auto");
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(box.style.inset).toBe("0 0 62px");
+    rerender(<UniversalRelationshipMap {...props} fullScreenBottomInset="62px" active={false} />);
+    expect(box.style.position).toBe("relative");
+    expect(document.body.style.position).not.toBe("fixed");
+    rerender(<UniversalRelationshipMap {...props} fullScreenBottomInset="62px" active />);
+    expect(box.style.position).toBe("relative");
+  });
+
+  it("lets phone drags scroll, briefly hints at two-finger gestures, and allows full-screen one-finger pan", () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
+    );
+    const { container, getByRole, getByText, unmount } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    vi.spyOn(main, "getBoundingClientRect").mockReturnValue({ width: 390, height: 320, left: 0, top: 0 } as DOMRect);
+    const initialView = main.getAttribute("viewBox");
+    const hint = getByText("Use two fingers to move the map");
+    expect(main.style.touchAction).toBe("pan-x pan-y");
+    fireEvent.touchStart(main, { touches: [{ clientX: 100, clientY: 100 }] });
+    fireEvent.touchMove(main, { touches: [{ clientX: 100, clientY: 150 }] });
+    expect(main.getAttribute("viewBox")).toBe(initialView);
+    expect(hint.style.opacity).toBe("1");
+    act(() => vi.advanceTimersByTime(1500));
+    expect(hint.style.opacity).toBe("0");
+    fireEvent.touchEnd(main, { touches: [] });
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(main.style.touchAction).toBe("none");
+    fireEvent.touchStart(main, { touches: [{ clientX: 100, clientY: 100 }] });
+    fireEvent.touchMove(main, { touches: [{ clientX: 130, clientY: 140 }] });
+    expect(main.getAttribute("viewBox")).not.toBe(initialView);
+    unmount();
+    expect(document.body.style.position).not.toBe("fixed");
+  });
+
+  it("selects a node by its label text or transparent label box, keeping labels aria-hidden", () => {
+    const select = vi.fn();
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />,
+    );
+    const label = container.querySelector('[data-node-label="assignee:example"]')!;
+    expect(label.closest('[aria-hidden="true"]')).not.toBeNull();
+    fireEvent.click(label);
+    expect(select).toHaveBeenLastCalledWith(assignee.id);
+    const hit = container.querySelector('[data-label-hit-area="assignee:example"]')!;
+    expect(hit.getAttribute("pointer-events")).toBe("all");
+    fireEvent.click(hit);
+    expect(select).toHaveBeenCalledTimes(2);
+  });
+
+  it.each([false, true])("keeps invisible node targets large on screen across zoom (coarse pointer: %s)", (coarse) => {
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({ matches: coarse, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
+    );
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 390,
+      height: 320,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    const verifyTargets = () => {
+      const [, , width, height] = main.getAttribute("viewBox")!.split(" ").map(Number);
+      const scale = Math.min(390 / width, 320 / height);
+      const targets = main.querySelectorAll("[data-node-hit-area]");
+      expect(targets).toHaveLength(graph.nodes.length);
+      for (const target of targets) {
+        expect(Number(target.getAttribute("r")) * scale).toBeGreaterThanOrEqual((coarse ? 22 : 12) - 1e-9);
+        expect(target.getAttribute("fill")).toBe("transparent");
+        expect(target.getAttribute("pointer-events")).toBe("all");
+      }
+    };
+    verifyTargets();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    verifyTargets();
+  });
+
   it("uses one haloed label layer with constant screen size across zoom and resize", () => {
     const observer = installResizeObserverMock();
     let width = 800;

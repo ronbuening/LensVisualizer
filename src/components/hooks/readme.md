@@ -60,7 +60,7 @@ flowchart LR
 | `mtfWorkerClient.ts` | Mtf Worker Client helper module | src/optics/buildLens.ts (2), src/types (2) | same folder (2) | MtfJob, MtfWorkerRequest, MtfWorkerReply, MtfWorkerPort, MtfWorkerClient |
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/analysis.ts, src/optics/fieldGeometry.ts, src/optics/optics.ts, src/optics/projection.ts, +1 more | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic.ts, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
-| `useBalancedColumns.ts` | React hook module | package:react | src/components/relationshipMap, src/pages/UniversalRelationshipMapPage.tsx | balancedColumns, WidthClass, widthClass, balancedRowStyle, balancedItemStyle, default, useBalancedColumns |
+| `useBalancedColumns.ts` | React hook module | package:react | src/components/relationshipMap (2), src/pages/UniversalRelationshipMapPage.tsx | balancedColumns, WidthClass, widthClass, balancedRowStyle, balancedItemStyle, default, useBalancedColumns |
 | `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), src/optics/chromatic.ts (2), +3 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
@@ -80,4 +80,4 @@ flowchart LR
 | `useRayTracing.ts` | React hook module | same folder (5), src/types (2), package:react, src/optics/fieldGeometry.ts, src/optics/perspective.ts | src/components/layout | default, useRayTracing |
 | `useSideLayoutDetection.ts` | React hook module | package:react (2) | src/components/layout | default, useSideLayoutDetection |
 | `useSvgViewport.ts` | React hook module | package:react, src/utils/svgCoordinates.ts | src/components/relationshipMap (2) | default, useSvgViewport |
-| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (4), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
+| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (4), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, ViewBoxZoomOptions, default, useViewBoxZoom |

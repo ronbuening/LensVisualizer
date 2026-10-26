@@ -40,7 +40,7 @@ flowchart LR
   n_external_src_components_content["src/components/content"]
   n_external_pkg_react["pkg:react"]
   n_external_src_components_search["src/components/search"]
-  n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |10| n_external_src_components_relationshipMap
+  n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |11| n_external_src_components_relationshipMap
   n_src_pages_src_pages_LensIndexPage_tsx --> |10| n_src_pages_src_pages_lensIndex
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |7| n_external_src_components_relationshipMap
   n_src_pages_src_pages_HomePage_tsx --> |6| n_external_src_components_homepage
@@ -117,5 +117,5 @@ flowchart LR
 | `teleconverterIndex.ts` | Teleconverter Index helper module | src/utils/catalog (5), src/pages/lensIndex | src/pages/TeleconvertersIndexPage.tsx | TeleconverterGroupMode, TELECONVERTER_GROUP_OPTIONS, TeleconverterGroup, parseTeleconverterGroupMode, groupTeleconverters |
 | `TeleconverterPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (3), src/utils/seo (2), package:react-router, src/components/layout, +4 more | src/routes | default, TeleconverterPage |
 | `TeleconvertersIndexPage.tsx` | Route-level React page | src/utils/catalog (3), src/components/content (2), src/utils/style (2), package:react, package:react-router, +5 more | src/routes | default, TeleconvertersIndexPage |
-| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (10), src/utils/catalog (3), src/utils/seo (2), src/utils/style (2), package:react, +7 more | src/routes | default, UniversalRelationshipMapPage |
+| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (11), src/utils/catalog (3), src/utils/seo (2), src/utils/style (2), package:react, +8 more | src/routes | default, UniversalRelationshipMapPage |
 | `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |

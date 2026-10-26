@@ -6,12 +6,15 @@
  * the focused ego-map workflow, available through explicit detail-card links.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useLocation, useNavigate, useNavigationType } from "react-router";
 import ClientOnly from "../components/ClientOnly.js";
 import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
+import UniversalDetailSheet, {
+  DETAIL_SHEET_RESERVED_HEIGHT,
+} from "../components/relationshipMap/UniversalDetailSheet.js";
 import UniversalEntityDetailCard from "../components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../components/relationshipMap/UniversalRelationshipMap.js";
 import UniversalMapSearch from "../components/relationshipMap/UniversalMapSearch.js";
@@ -33,13 +36,16 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
+import type { Theme } from "../types/theme.js";
 import { panelCard } from "../utils/style/styles.js";
 import {
   universalMapHash,
   universalMapNodeFromHash,
   universalMapExploreFromHash,
   universalMapExploreHash,
+  universalMapHashPinsView,
   type UniversalMapExploreState,
+  type UniversalMapView,
   UNIVERSAL_VIEWS,
 } from "../utils/state/universalMapUrl.js";
 
@@ -66,22 +72,56 @@ const STAT_SUMMARY = [
   .join(" · ");
 const STAT_MIN_WIDTH = 112;
 const STAT_GAP = 9;
+const NETWORK_NOTE =
+  "Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom, drag to pan, and select any node for details. Double-click the overview to zoom in on that spot. Hub names stay labeled; more labels appear as you zoom in.";
+// Two lines of intro on phones, so the map starts closer to the top of the screen.
+const CLAMPED_INTRO: CSSProperties = {
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 2,
+  overflow: "hidden",
+};
+
+function textButton(t: Theme): CSSProperties {
+  return {
+    background: "none",
+    border: "none",
+    padding: "6px 0",
+    minHeight: 32,
+    font: "inherit",
+    fontSize: "0.74rem",
+    color: t.descLinkColor,
+    cursor: "pointer",
+  };
+}
 
 export default function UniversalRelationshipMapPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const navigationType = useNavigationType();
   const [mounted, setMounted] = useState(false);
+  // The catalog row spans the content column, so its measurement sizes the whole page.
   const statsLayout = useBalancedColumns(STATS.length, STAT_MIN_WIDTH, STAT_GAP);
-  const statsWidthClass = widthClass(statsLayout.width);
+  const phone = widthClass(statsLayout.width) === "phone";
   // null follows the layout default: folded on phones, open on wider screens; a click pins the reader's choice.
   const [statsOpen, setStatsOpen] = useState<boolean | null>(null);
-  const statsExpanded = statsOpen ?? statsWidthClass !== "phone";
+  const statsExpanded = statsOpen ?? !phone;
+  const introId = useId();
+  const [introOpen, setIntroOpen] = useState(false);
+  const networkNoteId = useId();
+  const [networkNoteOpen, setNetworkNoteOpen] = useState(false);
   useEffect(() => setMounted(true), []);
+  // A bare visit on a phone opens Neighborhoods, which reads well there; a link naming a view or node opens as
+  // shared. Server and first renders keep the desktop default; the choice is made once, at the first client render
+  // (after the catalog row is measured), so later navigation, rotation, or resizing never switches views.
+  const [defaultView, setDefaultView] = useState<UniversalMapView | null>(null);
+  if (mounted && defaultView === null)
+    setDefaultView(phone && !universalMapHashPinsView(location.hash, UNIVERSAL_NODE_IDS) ? "neighborhoods" : "network");
+  const startView = defaultView ?? "network";
   const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
-  const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS);
+  const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS, startView);
   const changeExplore = (state: UniversalMapExploreState) => {
-    const hash = universalMapExploreHash(location.hash, state);
+    const hash = universalMapExploreHash(location.hash, state, startView);
     if (hash !== location.hash)
       void navigate({ pathname: location.pathname, search: location.search, hash }, { preventScrollReset: true });
   };
@@ -117,7 +157,11 @@ export default function UniversalRelationshipMapPage() {
   // A neighborhood card hands its hub to the Network view in one history entry: switch, select, and frame it.
   const showInNetwork = (nodeId: string, keyboard = false) => {
     if (!UNIVERSAL_NODE_IDS.has(nodeId)) return;
-    const hash = universalMapExploreHash(universalMapHash(location.hash, nodeId), { ...explore, view: "network" });
+    const hash = universalMapExploreHash(
+      universalMapHash(location.hash, nodeId),
+      { ...explore, view: "network" },
+      startView,
+    );
     if (hash === location.hash) {
       focusNode(nodeId, keyboard);
       return;
@@ -209,16 +253,58 @@ export default function UniversalRelationshipMapPage() {
             ))}
           </div>
         );
+        const detailCard =
+          selectedNode?.kind === "patent" ? (
+            <PatentDetailCard
+              patent={selectedNode.patent}
+              theme={t}
+              onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
+              onClose={() => selectNode(null)}
+              headingRef={detailsHeadingRef}
+            />
+          ) : selectedNode ? (
+            <UniversalEntityDetailCard
+              graph={UNIVERSAL_GRAPH}
+              node={selectedNode}
+              theme={t}
+              onClose={() => selectNode(null)}
+              onSelectNode={focusNode}
+              headingRef={detailsHeadingRef}
+            />
+          ) : null;
+        const networkActive = explore.view === "network";
+        const noteStyle: CSSProperties = { color: t.label, fontSize: "0.72rem", lineHeight: 1.5 };
         return (
           <>
             <h1 style={H1_STYLE}>Universal Relationship Map</h1>
-            <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
+            <p
+              id={introId}
+              style={{
+                color: t.muted,
+                fontSize: "0.85rem",
+                lineHeight: 1.6,
+                margin: phone ? 0 : "0 0 1rem",
+                maxWidth: "52rem",
+                ...(phone && !introOpen ? CLAMPED_INTRO : {}),
+              }}
+            >
               Explore the entire catalog through the original network, a summary of its hub neighborhoods, connection
               tracing, inventor affiliations, company bridges, a comparison matrix, company chords, and patent evidence
               lanes. Patents connect their inventors and assignees; dated corporate records reconnect historical company
               names. Non-patent models connect to their explicit catalog maker grouping. A neighborhood halo does not
               imply corporate ownership.
             </p>
+            {phone && (
+              <button
+                type="button"
+                aria-expanded={introOpen}
+                aria-controls={introId}
+                onClick={() => setIntroOpen((open) => !open)}
+                style={{ ...textButton(t), display: "block", marginBottom: "0.6rem" }}
+              >
+                {introOpen ? "Less" : "More"}
+              </button>
+            )}
 
             <div ref={statsLayout.ref} style={{ marginBottom: "1rem" }}>
               <CompactSection
@@ -250,14 +336,26 @@ export default function UniversalRelationshipMapPage() {
                   />
                 </div>
                 <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
-                {explore.view === "network" && (
-                  <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0.7rem 0 0.6rem" }}>
-                    Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to
-                    zoom, drag to pan, and select any node for details. Double-click the overview to zoom in on that
-                    spot. Hub names stay labeled; more labels appear as you zoom in.
-                  </p>
-                )}
-                <RetainedMapView active={explore.view === "network"}>
+                {networkActive &&
+                  (phone ? (
+                    <div style={{ margin: "0.2rem 0 0.4rem" }}>
+                      <button
+                        type="button"
+                        aria-expanded={networkNoteOpen}
+                        aria-controls={networkNoteId}
+                        onClick={() => setNetworkNoteOpen((open) => !open)}
+                        style={textButton(t)}
+                      >
+                        How to use the map <span aria-hidden="true">{networkNoteOpen ? "\u25B4" : "\u25BE"}</span>
+                      </button>
+                      <p id={networkNoteId} hidden={!networkNoteOpen} style={{ ...noteStyle, margin: "0.2rem 0 0" }}>
+                        {NETWORK_NOTE}
+                      </p>
+                    </div>
+                  ) : (
+                    <p style={{ ...noteStyle, margin: "0.7rem 0 0.6rem" }}>{NETWORK_NOTE}</p>
+                  ))}
+                <RetainedMapView active={networkActive}>
                   <UniversalRelationshipMap
                     graph={UNIVERSAL_GRAPH}
                     theme={t}
@@ -265,7 +363,10 @@ export default function UniversalRelationshipMapPage() {
                     onSelectNode={(nodeId) => selectNode(nodeId)}
                     focusRequest={focusRequest}
                     viewResetRequest={viewResetRequest}
-                    active={explore.view === "network"}
+                    active={networkActive}
+                    belowMap={phone ? undefined : detailCard}
+                    // The phone sheet stays above full screen; the map ends above its collapsed row.
+                    fullScreenBottomInset={phone && selectedNode ? DETAIL_SHEET_RESERVED_HEIGHT : undefined}
                   />
                 </RetainedMapView>
                 {explore.view === "neighborhoods" && (
@@ -315,25 +416,18 @@ export default function UniversalRelationshipMapPage() {
                   />
                 )}
 
-                {selectedNode?.kind === "patent" && (
-                  <PatentDetailCard
-                    patent={selectedNode.patent}
-                    theme={t}
-                    onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
-                    onClose={() => selectNode(null)}
-                    headingRef={detailsHeadingRef}
-                  />
-                )}
-
-                {selectedNode && selectedNode.kind !== "patent" && (
-                  <UniversalEntityDetailCard
+                {/* Wider screens show details under the network map, or under the other views; phones use a sheet. */}
+                {!phone && !networkActive && detailCard}
+                {phone && selectedNode && (
+                  <UniversalDetailSheet
                     graph={UNIVERSAL_GRAPH}
                     node={selectedNode}
                     theme={t}
                     onClose={() => selectNode(null)}
-                    onSelectNode={focusNode}
                     headingRef={detailsHeadingRef}
-                  />
+                  >
+                    {detailCard}
+                  </UniversalDetailSheet>
                 )}
               </PanelErrorBoundary>
             </ClientOnly>

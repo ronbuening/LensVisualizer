@@ -17,6 +17,7 @@ import {
   type CSSProperties,
   type KeyboardEvent,
   type PointerEvent,
+  type ReactNode,
 } from "react";
 import type { Theme } from "../../types/theme.js";
 import type {
@@ -31,6 +32,8 @@ import type { SvgBounds } from "../../utils/svgCoordinates.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useSvgViewport from "../hooks/useSvgViewport.js";
+import useBalancedColumns, { widthClass } from "../hooks/useBalancedColumns.js";
+import { CompactSection } from "./RelationshipViewShared.js";
 import UniversalMapOverview from "./UniversalMapOverview.js";
 import { layoutUniversalRelationshipGraph, type UniversalLayoutNode } from "./universalLayout.js";
 import {
@@ -57,6 +60,13 @@ interface UniversalRelationshipMapProps {
   focusRequest?: { nodeId: string; requestId: number };
   viewResetRequest?: number;
   active?: boolean;
+  /**
+   * Rendered directly below the map box, before the overview and legend (the page's selection details). Full screen
+   * covers the page, so there it floats over the map's bottom-left corner instead.
+   */
+  belowMap?: ReactNode;
+  /** CSS height of a fixed panel the page shows over the screen's bottom edge; full screen ends above it. */
+  fullScreenBottomInset?: string;
 }
 
 function isActivateKey(event: KeyboardEvent): boolean {
@@ -124,13 +134,51 @@ export default function UniversalRelationshipMap({
   focusRequest,
   viewResetRequest,
   active = true,
+  belowMap,
+  fullScreenBottomInset,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
+  const { ref: containerRef, width } = useBalancedColumns(1, 1, 0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  // Leaving the view (Back, for one) ends full screen, so returning to the Network view never reopens it.
+  if (!active && isFullScreen) setIsFullScreen(false);
+  const fullScreen = isFullScreen && active;
+  const fullScreenToggleRef = useRef<HTMLButtonElement>(null);
+  const [coarsePointer, setCoarsePointer] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia?.("(pointer: coarse)");
+    if (!media) return;
+    const update = () => setCoarsePointer(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  const twoFingerTouch = coarsePointer && !fullScreen;
+  const [showTouchHint, setShowTouchHint] = useState(false);
+  const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showScrollHint = useCallback(() => {
+    setShowTouchHint(true);
+    if (hintTimer.current) clearTimeout(hintTimer.current);
+    hintTimer.current = setTimeout(() => setShowTouchHint(false), 1500);
+  }, []);
+  useEffect(
+    () => () => {
+      if (hintTimer.current) clearTimeout(hintTimer.current);
+    },
+    [],
+  );
   const svgRef = useRef<SVGSVGElement>(null);
-  const zoom = useViewBoxZoom(layout.width, layout.height, active, svgRef);
+  const zoom = useViewBoxZoom(layout.width, layout.height, active, svgRef, {
+    touchGesture: twoFingerTouch ? "two-finger" : undefined,
+    onOneFingerDrag: showScrollHint,
+  });
   const viewport = useSvgViewport(svgRef, zoom.viewBox);
   const overviewId = useId();
-  const [showOverview, setShowOverview] = useState(true);
+  // Null follows the responsive default until the reader makes their own choice.
+  const [overviewChoice, setOverviewChoice] = useState<boolean | null>(null);
+  const showOverview = overviewChoice ?? width >= 600;
+  const [legendChoice, setLegendChoice] = useState<boolean | null>(null);
+  const legendOpen = legendChoice ?? widthClass(width) !== "phone";
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [emphasizeConnections, setEmphasizeConnections] = useState(false);
   const [keyboardNodeId, setKeyboardNodeId] = useState<string | null>(null);
@@ -163,6 +211,47 @@ export default function UniversalRelationshipMap({
   const currentZoom = zoom.state.zoom;
   const handledReset = useRef(0);
   const { reset } = zoom;
+  useEffect(() => {
+    reset();
+  }, [fullScreen, reset]);
+  useEffect(() => {
+    if (!fullScreen) return;
+    const body = document.body;
+    const root = document.documentElement;
+    const previous = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      rootOverflow: root.style.overflow,
+    };
+    const { scrollX, scrollY } = window;
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `${-scrollY}px`;
+    body.style.width = "100%";
+    root.style.overflow = "hidden";
+    // This button stays mounted while its label switches between Full screen and Close.
+    const toggle = fullScreenToggleRef.current;
+    toggle?.focus({ preventScroll: true });
+    const onKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape" && !event.defaultPrevented) {
+        event.preventDefault();
+        setIsFullScreen(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      body.style.overflow = previous.overflow;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.width = previous.width;
+      root.style.overflow = previous.rootOverflow;
+      if (scrollX || scrollY) window.scrollTo(scrollX, scrollY);
+      toggle?.focus({ preventScroll: true });
+    };
+  }, [fullScreen]);
   useEffect(() => {
     if (!active || viewResetRequest === undefined || viewResetRequest === handledReset.current) return;
     handledReset.current = viewResetRequest;
@@ -234,7 +323,7 @@ export default function UniversalRelationshipMap({
   /* ── Screen-space obstacles for labels: the inset overview panel and readable network captions ── */
   const overviewBox = useMemo(
     () =>
-      showOverview && viewport.width >= 600 && overviewSize?.width && overviewSize.height
+      showOverview && (viewport.width >= 600 || fullScreen) && overviewSize?.width && overviewSize.height
         ? {
             x: viewport.width - 8 - overviewSize.width - OVERVIEW_LABEL_GAP,
             y: viewport.height - 8 - overviewSize.height - OVERVIEW_LABEL_GAP,
@@ -242,7 +331,11 @@ export default function UniversalRelationshipMap({
             height: overviewSize.height + OVERVIEW_LABEL_GAP,
           }
         : null,
-    [showOverview, viewport.width, viewport.height, overviewSize],
+    [showOverview, viewport.width, viewport.height, overviewSize, fullScreen],
+  );
+  const controlsBox = useMemo(
+    () => ({ x: Math.max(0, viewport.width - 328), y: 0, width: 328, height: 124 }),
+    [viewport.width],
   );
   const componentCaptions = useMemo(() => {
     const screenWidth = visibleBounds.width * scale;
@@ -267,6 +360,7 @@ export default function UniversalRelationshipMap({
             box.y >= 0 &&
             box.x + box.width <= screenWidth &&
             box.y + box.height <= screenHeight &&
+            !boundsIntersect(box, controlsBox) &&
             !(overviewBox && boundsIntersect(box, overviewBox)),
         );
       if (!caption) continue;
@@ -277,10 +371,14 @@ export default function UniversalRelationshipMap({
       });
     }
     return captions;
-  }, [layout.components, visibleBounds, scale, overviewBox]);
+  }, [layout.components, visibleBounds, scale, overviewBox, controlsBox]);
   const labelObstacles = useMemo(
-    () => [...(overviewBox ? [overviewBox] : []), ...[...componentCaptions.values()].map((caption) => caption.box)],
-    [overviewBox, componentCaptions],
+    () => [
+      ...(viewport.width > 0 ? [controlsBox] : []),
+      ...(overviewBox ? [overviewBox] : []),
+      ...[...componentCaptions.values()].map((caption) => caption.box),
+    ],
+    [viewport.width, controlsBox, overviewBox, componentCaptions],
   );
   const measured = viewport.width > 0 && viewport.height > 0;
   const labels = useMemo(
@@ -380,7 +478,11 @@ export default function UniversalRelationshipMap({
     delete base.borderRight;
     return {
       ...base,
+      // Size to the label: the shared zero basis would shrink text buttons to minWidth and overlap their labels.
+      flex: "0 0 auto",
+      minWidth: 44,
       minHeight: 44,
+      fontSize: "0.75rem",
       borderRadius: 4,
       border: `1px solid ${t.toggleBorder}`,
       opacity: disabled ? 0.5 : 1,
@@ -397,62 +499,112 @@ export default function UniversalRelationshipMap({
     transform: shape === "diamond" ? "rotate(45deg) scale(0.78)" : undefined,
     clipPath: shape === "hexagon" ? "polygon(25% 7%, 75% 7%, 100% 50%, 75% 93%, 25% 93%, 0 50%)" : undefined,
   });
+  // A phone's map box is short, so its text toggles sit in a row under the box and the overlay keeps one icon row.
+  const togglesBelowMap = widthClass(width) === "phone" && !fullScreen;
+  const mapToggles = (
+    <>
+      <button
+        type="button"
+        title="Emphasize connections"
+        aria-pressed={emphasizeConnections}
+        disabled={!selectedNodeId}
+        onClick={() => setEmphasizeConnections((value) => !value)}
+        style={controlStyle(emphasizeConnections, !selectedNodeId)}
+      >
+        Emphasize connections
+      </button>
+      <button
+        type="button"
+        title="Overview"
+        aria-expanded={showOverview}
+        aria-controls={showOverview ? overviewId : undefined}
+        onClick={() => setOverviewChoice(!showOverview)}
+        style={controlStyle(showOverview)}
+      >
+        Overview
+      </button>
+    </>
+  );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div ref={containerRef} style={{ position: "relative" }}>
       <div
-        role="group"
-        aria-label="Map navigation"
-        style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}
-      >
-        {[
-          { label: "Zoom in", action: zoom.zoomIn, disabled: !zoom.canZoomIn },
-          { label: "Zoom out", action: zoom.zoomOut, disabled: !zoom.canZoomOut },
-          { label: "Fit all", action: zoom.reset, disabled: false },
-          {
-            label: "Center selection",
-            action: () => {
-              if (selectedNodeId) focusNode(selectedNodeId);
-            },
-            disabled: !selectedNodeId,
-          },
-        ].map(({ label, action, disabled }) => (
-          <button key={label} type="button" onClick={action} disabled={disabled} style={controlStyle(false, disabled)}>
-            {label}
-          </button>
-        ))}
-        <button
-          type="button"
-          aria-pressed={emphasizeConnections}
-          disabled={!selectedNodeId}
-          onClick={() => setEmphasizeConnections((value) => !value)}
-          style={controlStyle(emphasizeConnections, !selectedNodeId)}
-        >
-          Emphasize connections
-        </button>
-        <button
-          type="button"
-          aria-expanded={showOverview}
-          aria-controls={showOverview ? overviewId : undefined}
-          onClick={() => setShowOverview((value) => !value)}
-          style={controlStyle(showOverview)}
-        >
-          Overview
-        </button>
-      </div>
-
-      <div
+        data-map-box=""
+        role={fullScreen ? "dialog" : undefined}
+        aria-label={fullScreen ? "Full-screen relationship map" : undefined}
         style={{
           border: `1px solid ${t.panelBorder}`,
-          borderRadius: 8,
+          borderRadius: fullScreen ? 0 : 8,
           overflow: "hidden",
-          height: "70vh",
-          minHeight: 520,
-          maxHeight: 760,
+          height: fullScreen
+            ? undefined
+            : `clamp(320px, ${Math.round(((width * layout.height) / layout.width) * 1.04)}px, min(70vh, 760px))`,
           background: t.panelBg,
-          position: "relative",
+          position: fullScreen ? "fixed" : "relative",
+          // Ending above the page's bottom panel keeps the overview, labels, and centering in the visible area.
+          inset: fullScreen ? (fullScreenBottomInset ? `0 0 ${fullScreenBottomInset}` : 0) : undefined,
+          zIndex: fullScreen ? 1000 : undefined,
         }}
       >
+        <div
+          role="group"
+          aria-label="Map navigation"
+          style={{
+            position: "absolute",
+            top: "max(8px, env(safe-area-inset-top))",
+            right: "max(8px, env(safe-area-inset-right))",
+            zIndex: 1,
+            padding: 6,
+            borderRadius: 6,
+            border: `1px solid ${t.panelBorder}`,
+            background: `color-mix(in srgb, ${t.panelBg} 92%, transparent)`,
+            backdropFilter: "blur(6px)",
+            maxWidth: "calc(100% - 16px)",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "flex-end", gap: 4 }}>
+            {[
+              { label: "Zoom in", icon: "+", action: zoom.zoomIn, disabled: !zoom.canZoomIn },
+              { label: "Zoom out", icon: "−", action: zoom.zoomOut, disabled: !zoom.canZoomOut },
+              { label: "Fit all", icon: "⛶", action: zoom.reset, disabled: false },
+              {
+                label: "Center selection",
+                icon: "◎",
+                action: () => {
+                  if (selectedNodeId) focusNode(selectedNodeId);
+                },
+                disabled: !selectedNodeId,
+              },
+            ].map(({ label, icon, action, disabled }) => (
+              <button
+                key={label}
+                type="button"
+                aria-label={label}
+                title={label}
+                onClick={action}
+                disabled={disabled}
+                style={{ ...controlStyle(false, disabled), width: 44, padding: 0, fontSize: "1.4rem" }}
+              >
+                <span aria-hidden="true">{icon}</span>
+              </button>
+            ))}
+            <button
+              ref={fullScreenToggleRef}
+              type="button"
+              aria-label={fullScreen ? "Close full screen" : "Full screen"}
+              title={fullScreen ? "Close full screen" : "Full screen"}
+              onClick={() => setIsFullScreen((value) => !value)}
+              style={{ ...controlStyle(fullScreen), width: 44, padding: 0, fontSize: "1.4rem" }}
+            >
+              <span aria-hidden="true">{fullScreen ? "×" : "⤢"}</span>
+            </button>
+          </div>
+          {!togglesBelowMap && (
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: 4, marginTop: 4 }}>
+              {mapToggles}
+            </div>
+          )}
+        </div>
         <svg
           ref={svgRef}
           role="group"
@@ -463,12 +615,13 @@ export default function UniversalRelationshipMap({
             width: "100%",
             height: "100%",
             display: "block",
-            touchAction: "none",
+            touchAction: twoFingerTouch ? "pan-x pan-y" : "none",
             cursor: zoom.isPanning ? "grabbing" : "grab",
           }}
           onPointerDown={zoom.handlePointerDown}
           onPointerMove={zoom.handlePointerMove}
           onPointerUp={zoom.handlePointerUp}
+          onPointerCancel={zoom.handlePointerUp}
         >
           {layout.components.map((component) => {
             const caption = componentCaptions.get(component.id);
@@ -621,6 +774,15 @@ export default function UniversalRelationshipMap({
                 }}
               >
                 <title>{node.name}</title>
+                <circle
+                  data-node-hit-area={node.id}
+                  cx={layoutNode.x}
+                  cy={layoutNode.y}
+                  r={Math.max(layoutNode.r, (coarsePointer ? 22 : 12) / scale)}
+                  fill="transparent"
+                  pointerEvents="all"
+                  vectorEffect="non-scaling-stroke"
+                />
                 {node.kind === "assignee" || node.kind === "maker" ? (
                   <rect
                     x={layoutNode.x - layoutNode.r}
@@ -669,73 +831,147 @@ export default function UniversalRelationshipMap({
               </g>
             );
           })}
-          <g data-label-layer="nodes" pointerEvents="none" aria-hidden="true">
+          <g data-label-layer="nodes" aria-hidden="true">
             {labels.map((label) => (
-              <text
+              <g
                 key={label.id}
-                data-node-label={label.id}
-                x={label.x}
-                y={label.y}
-                fontSize={13 / scale}
-                fontFamily={MAP_FONT}
-                fill={label.id === selectedNodeId || label.id === hoveredNodeId ? t.title : t.label}
-                opacity={emphasisActive && !selectedNeighborhood?.has(label.id) ? 0.15 : 1}
-                stroke={t.panelBg}
-                strokeWidth={4 / scale}
-                strokeLinejoin="round"
-                paintOrder="stroke"
+                style={{ cursor: "pointer" }}
+                onPointerDown={stopNodePointerDown}
+                onClick={() => onSelectNode(label.id === selectedNodeId ? null : label.id)}
               >
-                {label.text}
-              </text>
+                <rect
+                  data-label-hit-area={label.id}
+                  x={visibleBounds.x + label.box.x / scale}
+                  y={visibleBounds.y + label.box.y / scale}
+                  width={label.box.width / scale}
+                  height={label.box.height / scale}
+                  fill="transparent"
+                  pointerEvents="all"
+                />
+                <text
+                  data-node-label={label.id}
+                  x={label.x}
+                  y={label.y}
+                  fontSize={13 / scale}
+                  fontFamily={MAP_FONT}
+                  fill={label.id === selectedNodeId || label.id === hoveredNodeId ? t.title : t.label}
+                  opacity={emphasisActive && !selectedNeighborhood?.has(label.id) ? 0.15 : 1}
+                  stroke={t.panelBg}
+                  strokeWidth={4 / scale}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
+                >
+                  {label.text}
+                </text>
+              </g>
             ))}
           </g>
         </svg>
-        {showOverview && viewport.width >= 600 && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "max-content",
+            maxWidth: "calc(100% - 32px)",
+            padding: "10px 14px",
+            borderRadius: 6,
+            color: t.title,
+            background: t.panelBg,
+            border: `1px solid ${t.panelBorder}`,
+            fontSize: "0.8rem",
+            textAlign: "center",
+            pointerEvents: "none",
+            opacity: showTouchHint && twoFingerTouch ? 1 : 0,
+            transition: "opacity 180ms ease",
+          }}
+        >
+          Use two fingers to move the map
+        </div>
+        {showOverview && (viewport.width >= 600 || fullScreen) && (
           <div ref={measureOverview} style={{ position: "absolute", right: 8, bottom: 8 }}>
             {overview}
           </div>
         )}
-      </div>
-      {showOverview && viewport.width < 600 && <div style={{ marginTop: 8 }}>{overview}</div>}
-
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "0.8rem",
-          marginTop: "0.55rem",
-          fontSize: "0.68rem",
-          color: t.muted,
-        }}
-      >
-        <span style={legendItemStyle}>
-          <span style={legendSwatch(t.rayWarm, "circle")} /> Inventor
-        </span>
-        <span style={legendItemStyle}>
-          <span style={legendSwatch(t.rayCool, "square")} /> Assignee
-        </span>
-        <span style={legendItemStyle}>
-          <span style={legendSwatch(t.stop, "circle")} /> Patent
-        </span>
-        <span style={legendItemStyle}>
-          <span style={legendSwatch(t.pupilExit, "diamond")} /> Organization
-        </span>
-        <span style={legendItemStyle}>
-          <span style={legendSwatch(t.sliderAccent, "hexagon")} /> Corporate family
-        </span>
-        {graph.stats.lenses > 0 && (
-          <>
-            <span style={legendItemStyle}>
-              <span style={legendSwatch(t.pupilExit, "square")} /> Catalog maker
-            </span>
-            <span style={legendItemStyle}>
-              <span style={legendSwatch(t.imgLine, "diamond")} /> Non-patent model
-            </span>
-            <span style={legendItemStyle}>Dotted links · catalog maker grouping</span>
-          </>
+        {fullScreen && belowMap && (
+          <div
+            style={{
+              position: "absolute",
+              left: 8,
+              bottom: 8,
+              zIndex: 1,
+              width: `min(420px, calc(100% - ${16 + (overviewBox ? overviewBox.width + 8 : 0)}px))`,
+              maxHeight: "45%",
+              overflowY: "auto",
+              overscrollBehavior: "contain",
+            }}
+          >
+            {belowMap}
+          </div>
         )}
-        <span style={legendItemStyle}>Solid/dashed colored links · corporate history</span>
-        <span style={legendItemStyle}>Soft halos · hub neighborhoods</span>
+      </div>
+      {togglesBelowMap && (
+        <div
+          role="group"
+          aria-label="Map display"
+          style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: 8, marginTop: 8 }}
+        >
+          {mapToggles}
+        </div>
+      )}
+      {!fullScreen && belowMap}
+      {showOverview && viewport.width < 600 && !fullScreen && <div style={{ marginTop: 8 }}>{overview}</div>}
+
+      <div style={{ marginTop: "0.75rem" }}>
+        <CompactSection
+          title="Legend"
+          summary="Node shapes and connections"
+          expanded={legendOpen}
+          onToggle={() => setLegendChoice(!legendOpen)}
+          theme={t}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.8rem",
+              marginTop: "0.55rem",
+              fontSize: "0.68rem",
+              color: t.muted,
+            }}
+          >
+            <span style={legendItemStyle}>
+              <span style={legendSwatch(t.rayWarm, "circle")} /> Inventor
+            </span>
+            <span style={legendItemStyle}>
+              <span style={legendSwatch(t.rayCool, "square")} /> Assignee
+            </span>
+            <span style={legendItemStyle}>
+              <span style={legendSwatch(t.stop, "circle")} /> Patent
+            </span>
+            <span style={legendItemStyle}>
+              <span style={legendSwatch(t.pupilExit, "diamond")} /> Organization
+            </span>
+            <span style={legendItemStyle}>
+              <span style={legendSwatch(t.sliderAccent, "hexagon")} /> Corporate family
+            </span>
+            {graph.stats.lenses > 0 && (
+              <>
+                <span style={legendItemStyle}>
+                  <span style={legendSwatch(t.pupilExit, "square")} /> Catalog maker
+                </span>
+                <span style={legendItemStyle}>
+                  <span style={legendSwatch(t.imgLine, "diamond")} /> Non-patent model
+                </span>
+                <span style={legendItemStyle}>Dotted links · catalog maker grouping</span>
+              </>
+            )}
+            <span style={legendItemStyle}>Solid/dashed colored links · corporate history</span>
+            <span style={legendItemStyle}>Soft halos · hub neighborhoods</span>
+          </div>
+        </CompactSection>
       </div>
     </div>
   );
