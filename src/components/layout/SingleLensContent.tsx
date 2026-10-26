@@ -26,6 +26,8 @@ interface SingleLensContentProps {
   runtimeLens?: RuntimeLens;
   /** Passed to the diagram header; false hides the Flickr search link. */
   showPhotoSearch?: boolean;
+  /** Element to highlight as if hovered, for a side panel that points at elements (the lens builder). */
+  highlightElementId?: number | null;
 }
 
 export default function SingleLensContent({
@@ -39,6 +41,7 @@ export default function SingleLensContent({
   sidePanel,
   runtimeLens,
   showPhotoSearch,
+  highlightElementId,
 }: SingleLensContentProps) {
   const resolvedDesktopView = sidePanel ? "both" : ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
   const singleDiagramContent = (
@@ -53,6 +56,7 @@ export default function SingleLensContent({
       sideLayoutEnabled={isWide && resolvedDesktopView === "diagram"}
       fillAvailableHeight={isWide}
       showPhotoSearch={showPhotoSearch}
+      highlightElementId={highlightElementId}
     />
   );
 

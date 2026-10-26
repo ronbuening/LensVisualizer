@@ -72,6 +72,8 @@ interface LensDiagramPanelProps {
   sharedAnalysisControls?: boolean;
   /** Passed to DiagramHeader; false hides the Flickr search link. */
   showPhotoSearch?: boolean;
+  /** Element highlighted from outside the diagram (the lens builder's hovered card); it wins over hover and selection. */
+  highlightElementId?: number | null;
 }
 
 export default function LensDiagramPanel({
@@ -99,6 +101,7 @@ export default function LensDiagramPanel({
   fillAvailableHeight = false,
   sharedAnalysisControls = false,
   showPhotoSearch,
+  highlightElementId = null,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -324,7 +327,12 @@ export default function LensDiagramPanel({
     [dispatch, selectedElementPanelId, sel],
   );
 
-  const act = L ? (zoomPanActive ? null : sel || hov) : null;
+  /* An outside highlight for an element the built lens lacks (a draft edit not yet rebuilt) must not mask hover. */
+  const externalHighlight =
+    highlightElementId != null && L?.elements.some((element) => element.id === highlightElementId)
+      ? highlightElementId
+      : null;
+  const act = L ? (zoomPanActive ? null : (externalHighlight ?? (sel || hov))) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
   const heavyRayWork = Boolean(L && isHeavyLensForRayWork(L));
   const effectiveRayDensity = sliderInteracting && heavyRayWork ? "normal" : rayDensity;

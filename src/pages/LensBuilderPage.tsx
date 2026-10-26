@@ -84,6 +84,8 @@ export function LensBuilder() {
     return { result, lens: result.ok ? result.lens : fallback.lens, draft: initial.draft };
   });
   const [state, dispatch, isWide] = useLensState([initial.draft.key], initial.draft.key);
+  /* The element whose editor card is hovered or focused; the diagram highlights it like its own hover. */
+  const [highlight, setHighlight] = useState<number | null>(null);
   /* Theme and ray-toggle preferences are shared with the lens pages, as on any viewer route. */
   usePreferences(state);
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true, clientOnly: true });
@@ -189,6 +191,7 @@ export function LensBuilder() {
                 runtimeLens={build.lens}
                 markdown={null}
                 showPhotoSearch={false}
+                highlightElementId={highlight}
                 sidePanel={
                   <BuilderEditor
                     key={editorRevision}
@@ -199,6 +202,9 @@ export function LensBuilder() {
                     pending={draft !== build.draft}
                     onChange={setDraft}
                     onReplace={replace}
+                    isWide={isWide}
+                    selectedElementId={state.panels.selectedElementId}
+                    onHighlight={setHighlight}
                   />
                 }
               />

@@ -45,18 +45,20 @@ describe("lens builder page", () => {
     const svg = () => container.querySelector('svg[aria-label^="Lens cross-section"]')?.innerHTML;
     const original = svg();
     expect(original).toBeTruthy();
-    edit("1 thickness", "4.5");
+    edit("L1 thickness", "4.5");
     await waitFor(() => expect(screen.queryByText("Rebuilding…")).toBeNull());
     expect(svg()).not.toBe(original);
     const valid = svg();
-    edit("1 R", "0");
+    /* A steep front radius passes the element model but fails the geometry check at the rim. */
+    edit("L1 front radius", "12");
     await screen.findByText("Showing the last valid version");
     expect(svg()).toBe(valid);
-    expect(screen.getByText(/surfaces\[0\]/)).toBeTruthy();
+    expect(screen.getAllByText(/surfaces\[0\]/).length).toBeGreaterThan(0);
+    expect(screen.getByLabelText("L1 front radius").getAttribute("aria-invalid")).toBe("true");
     expect((screen.getByRole("button", { name: "Download .data.ts" }) as HTMLButtonElement).disabled).toBe(true);
-    edit("1 R", "30");
+    edit("L1 front radius", "30");
     await screen.findByText("Valid prescription");
-    expect((screen.getByLabelText("1 thickness") as HTMLInputElement).value).toBe("4.5");
+    expect((screen.getByLabelText("L1 thickness") as HTMLInputElement).value).toBe("4.5");
   });
 
   it("downloads and copies the authored export; retains invalid typed text", async () => {
@@ -68,9 +70,9 @@ describe("lens builder page", () => {
     const blob = vi.mocked(URL.createObjectURL).mock.calls[0][0] as Blob;
     expect(await blob.text()).toBe(exportDataTs(createTemplate()));
     expect(HTMLAnchorElement.prototype.click).toHaveBeenCalledOnce();
-    edit("1 thickness", "oops");
-    expect((screen.getByLabelText("1 thickness") as HTMLInputElement).value).toBe("oops");
-    expect(screen.getByLabelText("1 thickness").getAttribute("aria-invalid")).toBe("true");
+    edit("L1 thickness", "oops");
+    expect((screen.getByLabelText("L1 thickness") as HTMLInputElement).value).toBe("oops");
+    expect(screen.getByLabelText("L1 thickness").getAttribute("aria-invalid")).toBe("true");
     expect(screen.getByText("Enter a finite number")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Copy .data.ts" }));
     expect(navigator.clipboard.writeText).toHaveBeenLastCalledWith(exportDataTs(createTemplate()));
@@ -96,7 +98,7 @@ describe("lens builder page", () => {
     );
   });
 
-  it("exercises viewer sliders, analysis dock and keyboard glass popover", async () => {
+  it("exercises viewer sliders, analysis dock, the keyboard material picker and the diagram link", async () => {
     installMatchMediaMock(true);
     const { container } = renderPage(<LensBuilderPage />, { initialEntries: ["/lens-builder/"] });
     await screen.findByText("Valid prescription");
@@ -113,23 +115,36 @@ describe("lens builder page", () => {
     expect(summary).toBeTruthy();
     fireEvent.click(summary);
     expect(summary.getAttribute("aria-pressed")).toBe("true");
-    fireEvent.click(screen.getByRole("button", { name: "Choose glass for L1" }));
-    expect(screen.getByRole("dialog", { name: "Glass for L1" })).toBeTruthy();
+    const chip = screen.getByRole("button", { name: "L1 material" });
+    fireEvent.click(chip);
+    expect(screen.getByRole("dialog", { name: "Choose material for L1" })).toBeTruthy();
     fireEvent.keyDown(screen.getByLabelText("Search glass for L1"), { key: "Escape" });
-    expect(screen.queryByRole("dialog", { name: "Glass for L1" })).toBeNull();
+    expect(screen.queryByRole("dialog", { name: "Choose material for L1" })).toBeNull();
+    expect(document.activeElement).toBe(chip);
+    /* Focusing a card's field highlights its element in the diagram; clicking the element there marks its card. */
+    const path = () => svg.querySelector('path[aria-label="Select lens element L2"]')!;
+    const idle = path().getAttribute("stroke-width");
+    const card = screen.getByRole("article", { name: "Element L2" });
+    const thickness = screen.getByLabelText("L2 thickness") as HTMLInputElement;
+    act(() => thickness.focus());
+    await waitFor(() => expect(path().getAttribute("stroke-width")).not.toBe(idle));
+    act(() => thickness.blur());
+    await waitFor(() => expect(path().getAttribute("stroke-width")).toBe(idle));
+    fireEvent.click(path());
+    await waitFor(() => expect(card.getAttribute("aria-current")).toBe("true"));
   });
 
   it("confirms and clears uncommitted invalid text on replacement", async () => {
     const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
     renderPage(<LensBuilderPage />);
     await screen.findByText("Valid prescription");
-    edit("1 thickness", "oops");
+    edit("L1 thickness", "oops");
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(confirm).toHaveBeenCalledOnce();
-    expect((screen.getByLabelText("1 thickness") as HTMLInputElement).value).toBe("oops");
+    expect((screen.getByLabelText("L1 thickness") as HTMLInputElement).value).toBe("oops");
     confirm.mockReturnValue(true);
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
-    expect((screen.getByLabelText("1 thickness") as HTMLInputElement).value).toBe("4");
+    expect((screen.getByLabelText("L1 thickness") as HTMLInputElement).value).toBe("4");
   });
 
   it("starts from a catalog query and confirms before replacing an autosaved draft", async () => {
@@ -148,14 +163,16 @@ describe("lens builder page", () => {
     expect(authoredInputForKey(key)?.key).toBe(key);
   });
 
-  it("restores an unfinished draft even when its surface labels fail ingest", async () => {
+  it("restores an unfinished draft even when its surface labels fail ingest, falling back to Advanced JSON", async () => {
     const draft = createTemplate();
     draft.surfaces[1].label = "1";
     localStorage.setItem("surface-stop-lens-builder-v2", exportJson(draft));
     renderPage(<LensBuilderPage />);
     await screen.findByText("Showing the last valid version");
-    expect(screen.getAllByLabelText("1 label")).toHaveLength(2);
     expect(screen.getByText(/surfaces\[1\]\.label/)).toBeTruthy();
+    expect(screen.getByText(/Surface labels must be unique/)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "L1 material" })).toBeNull();
+    expect((screen.getByLabelText("Advanced JSON").closest("details") as HTMLDetailsElement).open).toBe(true);
   });
 
   it("works with unavailable storage and renders no browser viewer during SSR", async () => {
