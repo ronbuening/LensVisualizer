@@ -522,4 +522,24 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "CDGM Zemax catalog 2022-06 via refractiveindex.info, specs/cdgm/optical/F13.yml; formula 3 polynomial, 0.365-1.014 um.",
   },
+  {
+    name: "D-ZLaF52LA",
+    vendor: "CDGM",
+    B: [1.88205933, 0.302908859, 1.2538738],
+    C: [0.00984915169, 0.0406191391, 95.893604],
+    nd: 1.81,
+    vd: 40.992863,
+    source:
+      "CDGM Zemax catalog updated Sep. 2026 (cdgmgd.com downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), D-ZLAF52LA, Sellmeier K1-L3; accessed 2026-10-25.",
+  },
+  {
+    name: "H-LaF50B",
+    vendor: "CDGM",
+    B: [1.17461263, 1.65889744, 0.413174064],
+    C: [82.6267633, 0.0080512806, 0.026961264],
+    nd: 1.7725,
+    vd: 49.598996,
+    source:
+      "CDGM Zemax catalog updated Sep. 2026 (cdgmgd.com downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), H-LAF50B, Sellmeier K1-L3; accessed 2026-10-25.",
+  },
 ];

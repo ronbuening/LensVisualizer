@@ -26,4 +26,24 @@ export const NHG_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "NHG optical glass catalog 2024-10, printed p. 108 (PDF p. 113), H-LaK77, A0-A5; https://hbnhg.com/uploadfiles/2024/10/NHG产品数据手册%20202410.pdf (accessed 2026-09-12).",
   },
+  {
+    name: "H-ZLaF82",
+    vendor: "NHG",
+    polynomial: [3.8328227, -0.0156183327, 0.0535172772, 0.00275764007, -0.00012813013, 0.0000218199756],
+    nd: 2.001,
+    vd: 29.14,
+    PgF: 0.5997,
+    source:
+      "NHG H-ZLaF82 data sheet (d-code 001291, formula constants A0-A5); https://www.hbnhg.com/uploadfiles/file/productpdf/H-ZLaF82.pdf (accessed 2026-10-25).",
+  },
+  {
+    name: "H-FK90",
+    vendor: "NHG",
+    polynomial: [2.10866977, -0.00481589397, 0.00702478609, -0.0000248667024, 0.0000178185408, -0.00000109874507],
+    nd: 1.4586,
+    vd: 90.19,
+    PgF: 0.5388,
+    source:
+      "NHG H-FK90 data sheet (d-code 459902, formula constants A0-A5); https://www.hbnhg.com/uploadfiles/file/productpdf/H-FK90.pdf (accessed 2026-10-25).",
+  },
 ];

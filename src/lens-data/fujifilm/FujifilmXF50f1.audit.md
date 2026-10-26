@@ -66,3 +66,11 @@ Production and local browser views inspected. Corrected local midpoint gaps show
 ## 2026-10-08 — Glass coverage: catalog row for one unresolved element
 
 L1g (1.80809 / 22.76, patent θgF 0.63073) was labelled with a family description that named no glass and traced on the Abbe estimate. It is now labelled S-NPH1 (OHARA 1.80810 / 22.76, catalog θgF 0.6307), in the same catalog-compatible form as the file's S-NPH3 and S-NPH4 elements, and traces on that curve. Stored nd, νd and dPgF are unchanged.
+
+## 2026-10-25 — Glass coverage: nd 1.88300 / νd 39.22 resolved to CDGM H-ZLaF68N
+
+L2b and L2d (1.88300 / 39.22, patent Table 9 θgF 0.57295) carried a class label ("LaF") that resolved to no glass.
+CDGM H-ZLaF68N, already in the catalog, matches nd and νd exactly and its own curve gives θgF 0.5729, so both are
+relabelled "H-ZLaF68N (CDGM; its curve reproduces the patent's θgF)". NHG H-ZLaF68L at the same coordinate gives θgF
+0.5709 and is not chosen. The stored dPgF is unchanged. A corpus resolution dump before and after changes only these
+two elements and L12/L33 of the X100V. The analysis L2b/L2d lines and the spectral-proxy summary are updated.

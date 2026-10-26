@@ -50,7 +50,7 @@ L11 is the front element and the negative component of the G1 cemented doublet. 
 
 ### L12 — Positive Meniscus (convex to object), cemented to L11
 
-$n_d = 1.88300$, $\nu_d = 39.22$. Glass: Unmatched (lanthanum-dense flint; nearest catalog entry S-LAH79 (OHARA) matches $n_d$ exactly but $\Delta\nu_d = 1.54$). $f \approx +17.0$ mm.
+$n_d = 1.88300$, $\nu_d = 39.22$. Glass: H-ZLaF68N (CDGM coordinate equivalent; production supplier unspecified), an exact match at the printed $n_d$ and $\nu_d$. $f \approx +17.0$ mm.
 
 L12 is the positive element of the G1 doublet and carries the group's net positive power. Its very high refractive index ($n_d = 1.883$) allows strong positive curvature at the cemented junction ($R = +12.43$ mm) while maintaining a relatively weak rear surface ($R = +64.18$ mm). The cemented surface is convex toward the object side, which the patent (¶0040) identifies as advantageous for suppressing wavelength-dependent spherical aberration. The $n_d$ matches S-LAH79 exactly, but the $\nu_d = 39.22$ is approximately 1.5 units below S-LAH79's published Abbe number (40.76). This discrepancy suggests either a proprietary glass variant or a melt-specific adjustment. The same glass is reused for L33.
 
@@ -98,7 +98,7 @@ The use of high-dispersion S-TIM35 flint glass ($\nu_d = 30.05$) in this positio
 
 ### L33 — Plano-Convex Positive
 
-$n_d = 1.88300$, $\nu_d = 39.22$. Glass: Unmatched (same glass as L12). $f \approx +93.4$ mm.
+$n_d = 1.88300$, $\nu_d = 39.22$. Glass: H-ZLaF68N (CDGM coordinate equivalent; same glass as L12). $f \approx +93.4$ mm.
 
 L33 is the final optical element before the cover glass and image plane. It is a weak positive plano-convex singlet (front surface $R = +82.50$ mm, flat rear surface). The patent (¶0044) states that "disposing the positive lens closest to the image side in the third lens group G3 is advantageous in correcting distortion." L33's gentle positive power bends the chief ray toward the optical axis, reducing the angle of incidence on the sensor — an important consideration for digital sensors with microlens arrays that suffer efficiency losses at steep incidence angles. Its Petzval contribution ($+0.0057$ mm$^{-1}$) partially offsets L32's strong negative contribution, fine-tuning the net Petzval sum.
 
@@ -109,7 +109,7 @@ The design uses six distinct glass types across eight elements. Two glasses — 
 | Element | $n_d$ | $\nu_d$ | Best catalog match | Confidence | Role |
 |---------|-------|---------|-------------------|------------|------|
 | L11 | 1.71736 | 29.51 | S-TIH1 (OHARA) | Exact | Dense flint, chromatic partner in G1 doublet |
-| L12, L33 | 1.88300 | 39.22 | Unmatched (near S-LAH79 (OHARA), $\Delta\nu_d = 1.54$) | Approximate | High-index LaF, positive power carriers |
+| L12, L33 | 1.88300 | 39.22 | H-ZLaF68N (CDGM) | Exact | High-index LaF, positive power carriers |
 | L21, L32 | 1.69895 | 30.05 | S-TIM35 (OHARA) | Exact | Titanium flint, chromatic correction and field flattening |
 | L22 | 1.77250 | 49.61 | S-LAH66 (OHARA) | Exact | Lanthanum flint, lower-dispersion partner in G2 doublet |
 | L23 | 1.80780 | 40.86 | Unmatched (near TAFD33 (HOYA), $\Delta n_d = 0.0017$) | Approximate | Aspherical biconvex, primary convergence in G2 |
@@ -117,7 +117,7 @@ The design uses six distinct glass types across eight elements. Two glasses — 
 
 The chromatic correction strategy relies on two cemented doublets. In G1, the S-TIH1 flint ($\nu_d = 29.5$) partners with the high-index lanthanum-dense flint ($\nu_d = 39.2$) — a modest Abbe differential of approximately 10 units, supplemented by the high refractive-index differential at the cemented junction. In G2, S-TIM35 ($\nu_d = 30.1$) partners with S-LAH66 ($\nu_d = 49.6$) — a larger Abbe differential of approximately 19.5 units, providing the primary axial chromatic correction. No ED or anomalous-partial-dispersion glasses are used; the design achieves its chromatic correction through conventional high/low-dispersion flint pairings.
 
-The two glasses that lack exact catalog matches ($n_d = 1.88300 / \nu_d = 39.22$ and $n_d = 1.80780 / \nu_d = 40.86$) share a common pattern: their $n_d$ values match known catalog entries, but the $\nu_d$ values diverge by 1–2 units. This is consistent with either proprietary glass compositions (particularly for the precision-molded aspherical L23) or deliberate slight obfuscation in the patent filing — a common practice in Japanese optical patents.
+The $n_d = 1.88300 / \nu_d = 39.22$ glass of L12 and L33 is an exact coordinate match for CDGM's H-ZLaF68N; Fujifilm's patents for other lenses (the XF 50mm f/1.0 among them) print a partial dispersion for this coordinate that the H-ZLaF68N curve reproduces. The one glass without an exact catalog match, L23's $n_d = 1.80780 / \nu_d = 40.86$, is consistent with a proprietary composition for the precision-molded asphere.
 
 ## Focus Mechanism
 
