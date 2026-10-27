@@ -24,7 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                                     ║
  * ║  The patent publishes no clear apertures. SDs are inferred from meridional   ║
  * ║  rays, patent image heights/field angles, Figure 1, and current geometry     ║
- * ║  limits. Full-field edge bundles may vignette where front geometry binds.    ║
+ * ║  limits. L5 rims 10A/11A are capped at 9.9 mm, below 11A turnover.         ║
+ * ║  16A retains 10.3 mm: the stated axial beam needs 7.923 mm across zoom,     ║
+ * ║  beyond its 6.267 mm reversal, so the turnover cap would lose aperture.    ║
+ * ║  Peripheral localization remains unresolved; coefficients match Table 2. ║
  * ║                                                                              ║
  * ║  NOTE ON SPECTRAL DATA:                                                      ║
  * ║  The patent publishes nd and νd only. No nC, nF, ng, or dPgF is invented.    ║
@@ -269,7 +272,7 @@ const LENS_DATA = {
       label: "10A",
       R: 22.9021,
       d: 5.8,
-      sd: 10.9,
+      sd: 9.9,
       medium: 6,
       asphere: { K: 0, A4: -1.01233e-5, A6: -8.60053e-8, A8: 2.86697e-9, A10: -2.94258e-11, A12: 1.68258e-13, A14: 0 },
     },
@@ -277,7 +280,7 @@ const LENS_DATA = {
       label: "11A",
       R: -51.3183,
       d: 2.83,
-      sd: 10.2,
+      sd: 9.9,
       asphere: {
         K: 0,
         A4: 1.58943e-5,
