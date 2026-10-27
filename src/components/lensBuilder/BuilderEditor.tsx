@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { Theme } from "../../types/theme.js";
-import { ALL_CATALOG_KEYS, lensNameForKey, authoredInputForKey } from "../../utils/catalog/lensCatalog.js";
+import { PUBLIC_CATALOG_KEYS, lensNameForKey, publicAuthoredInputForKey } from "../../utils/catalog/lensCatalog.js";
 import { createTemplate, copyCatalogInput, type DraftValidation } from "../../lensBuilder/draft.js";
 import { exportDataTs, exportJson, importJson, draftFilename } from "../../lensBuilder/serialize.js";
 import { requireUntrustedDraft, MAX_DRAFT_BYTES } from "../../lensBuilder/untrusted.js";
@@ -35,7 +35,7 @@ interface BuilderEditorProps {
   onHighlight?: (elementId: number | null) => void;
 }
 
-const STARTING_LENSES = ALL_CATALOG_KEYS.map((key) => ({ key, name: lensNameForKey(key) }))
+const STARTING_LENSES = PUBLIC_CATALOG_KEYS.map((key) => ({ key, name: lensNameForKey(key) }))
   .map((lens) => ({ ...lens, search: `${lens.key} ${lens.name}`.toLowerCase() }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -185,7 +185,7 @@ export default function BuilderEditor({
                   if (!e.target.value) return;
                   if (e.target.value === "template") replace(createTemplate());
                   else {
-                    const input = authoredInputForKey(e.target.value);
+                    const input = publicAuthoredInputForKey(e.target.value);
                     if (input) replace(copyCatalogInput(input));
                   }
                 })

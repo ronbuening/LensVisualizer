@@ -282,8 +282,11 @@ static pages' `PageNavBar` breadcrumb ("Home / Lens builder") whose theme toggle
 `useLensState`. Those contexts keep sliders and the analysis drawer working without URL slider updates, and
 `usePreferences` persists theme and ray toggles as the viewer does. Builds debounce for 250 ms; invalid drafts retain
 the last successful runtime lens. Storage failures are ignored, autosave restores unfinished geometry, and replacing a
-modified draft from the toolbar requires confirmation. `?from=<catalog-key>` copies authored data, then is removed from
-the URL so a reload restores the autosave instead of asking again.
+modified draft from the toolbar requires confirmation. `?from=<catalog-key>` and the toolbar picker copy authored data
+for `PUBLIC_CATALOG_KEYS` only (hidden fixtures and withheld lenses stay out); the parameter is then removed from the
+URL so a reload restores the autosave instead of asking again. Autosave stores the built draft from an effect, so only
+a draft the diagram has rendered is kept, and `src/lensBuilder/untrusted.ts` bounds the numbers that drive per-render
+work (`layout` scale, `maxInteractions`).
 
 The editor pane is an optical train read from the object (top) to the image (bottom), built on the element model in
 `src/lensBuilder/elementModel.ts` (its doc comments are the contract). `BuilderEditor` derives the model from the draft
