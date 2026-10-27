@@ -51,3 +51,29 @@ UnresolvedL31 material remains follow-up. Batch21–30 fullgates/commit pending.
   focus). Glass `J-BK7` (Hikari, exact 1.51680 / 63.88 coordinate).
 - Paraxial check against the previous data: EFL identical and paraxial defocus unchanged at infinity and near focus,
   because the old fold was stored unrounded. Physical track grows by 0.545 mm to the source TL 54.610 mm.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 3 (PDF p. 47, native 300 ppi 1-bit raster, rotated object-left) was read on its label-free half, element by
+element, for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Pixel pairs
+are cap end / element edge from the axis; L11 reads the same on the other half (205 / 221.5 px). Every land starts at
+the old `sd`, which an earlier audit put at the cap end, and the element edge matches the partner face's `sd`. So each
+face now takes its partner's `sd` and the cut sits at the old one: the land is drawn and tracing is unchanged.
+
+| Surface | Figure land (px, q) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 18.072) | 204 / 220.5, 0.925 | 1.10 mm | 6.21 mm | 6.2 → 6.7 | 5.00 mm |
+| 9 (L23 front, R −11.081) | 225.5 / 266.5, 0.846 | 2.41 mm | 6.90 mm | 6.9 → 8.2 | 4.31 mm |
+| 14A (L31 front, asph) | 403.5 / 431.5, 0.935 | 2.35 mm | 12.32 mm | 12.3 → 13.1 | 4.44 mm |
+| 18 (L41 front, R −34.466) | 480.5 / 530.5, 0.906 | 3.25 mm | 14.61 mm | 14.6 → 16.1 | 2.43 mm |
+
+- q × the partner `sd` gives 6.20 / 6.94 / 12.25 / 14.58 mm, each within 0.05 mm of the old `sd`.
+- The other concave faces run to their element edges in the figure: 1 (L11 front, 0.33 mm sag), 8 (L22 rear) and 19
+  (L41 rear); no cut. The short square step on L22's front outside L21's rim is the cemented junction (7), not a land.
+- No cap can reach the stop plane: STO sits between flat surface 4 and convex surface 6.
+- The aperture audit is unchanged (one station within 3 % of f/2.909; no rim, trace or failed rows, no rim-cut
+  limiter); the surface audit passes and the image-circle audit finds nothing undersized. At the 21.6 mm full field,
+  side vignetting with the cut radii as clips is unchanged at 2, 9 and 14A and moves 41 % → 40 % at 18 (infinity);
+  at close focus it is unchanged except 2 (12 % → 11 %).
+- The rendered section now draws L11, L23, L31 and L41 with square edges and flat lands like Figure 3, where the old
+  unequal rims drew slanted edges.

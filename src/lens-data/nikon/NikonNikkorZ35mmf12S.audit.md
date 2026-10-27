@@ -152,3 +152,38 @@ the SD method and the 25A turnover (departure −1.23 mm at 17.2 mm) added.
   legacy 12.434 was the patent's rounded BFa, while 10.38 + 1.6/1.5168 + 1.00 = 12.43485 mm. Physical track grows
   0.546 mm, t(1 − 1/n) = 0.545 mm plus rounding, and now matches the patent TL 163.987 mm. Surface validator and
   image-circle check pass.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 1 (PDF p. 41, the same image as the front-page abstract figure; native 2677 × 2909 raster at 812 ppi, scale
+0.0704 mm/px from the 2144 px S1–S33 vertex span) was read element by element on both halves of the upper
+(infinity) panel for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 7 (L14 front, R −38.631) | 0.911 (24.4 / 26.7 mm) | 8.40 mm | 24.05 mm | 26.4 | 20.46 mm |
+| 17 (L19 rear, R 56.178) | 0.88 (20.9 / 23.7 mm) | 4.49 mm | 22.01 mm | 23.0 (was 22.0) | 20.18 mm |
+| 31 (L43 rear, R 37.802) | 0.955 (18.1 / 18.9 mm) | 4.56 mm | 18.00 mm | 19.3 (was 18.0) | 9.21 mm |
+| 32A (L44 front, R −124.601) | 0.933 (17.6 / 18.9 mm) | 1.96 mm | 17.73 mm | 19.0 | 6.05 mm |
+
+- 7 and 32A: the face's `sd` is the element edge, so the cut radius is the figure share of `sd`.
+- 17 and 31: the stored `sd` sat inside the drawn square edge (31 was held at 18.0 for the L43/L44 gap). Each now
+  takes its partner face's rim (16 at 23.0, 30 at 19.3 mm), and the cut sits at the old `sd`, so tracing is
+  unchanged there. On 17 the figure share (cut radius 20.24 mm) would sit only 0.06 mm above the close-focus axial
+  ray, so the land drawn is shorter than the figure's (22.01 of 23.0 mm).
+- Concave faces 4A (L12 rear), 6 (L13 rear), 14 (L17 rear), 26 (L32 rear), 28 (L41 rear) and 33 (L44 rear) run
+  to their element edge in the figure; no cut.
+- No cap reaches the stop plane: surface 17's land clears it by 1.14 mm (fixed gap), surface 19 by 8.68 mm.
+- Surface audit clean; aperture audit unchanged (stated f/1.23 traced; no rim, trace, iris or failed rows, no
+  rim-cut limiter); image-circle check passes. At Y = 21.6 mm (ω = 32.62°) the stop-edge rim rays fail on the
+  lens's own geometry, so a meridional fan scan replaced the clear-aperture probe: the transmitted share of the
+  axial pupil stays 38.0 % at full field (S8 and 25A limit it) and is unchanged at 10–30°, with all four cut radii
+  applied. Chief rays meet the cut faces at 11.28, 2.62, 15.32 and 15.91 mm, inside every cut.
+
+Lands seen but not cut:
+
+- 2 (L11 rear, R 31.105): land at 0.826 (cap end 25.8 mm, edge 31.2 mm). The stored `sd` 26.3 already sits at
+  the cap end, but the face cannot take its partner's 31.2 mm rim because the sphere ends at 31.1 mm. The diagram
+  keeps its sloped edge from 26.3 to 31.2 mm.
+- 19 (L21 front, R −38.223): short land at 0.963 (18.2 / 18.9 mm). The cut radius would be 18.30 mm, inside the
+  18.31 mm close-focus axial ray, so it would slow the lens.

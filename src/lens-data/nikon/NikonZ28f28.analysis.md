@@ -69,7 +69,7 @@ The source near D0 is135.390mm from object to first surface. Adding the original
 
 ## Semi-Diameter Estimation Notes
 
-Original Figure3 on PDF p.47 was rendered at600dpi and rotated for inspection. The40.927mm first-to-last-lens vertex span calibrates optical rims independently of the filter, brackets and callouts. Front optical radii are6.7/6.2mm; L12 uses6.2mm. G2's cemented pair uses6.0/6.0/6.4mm, L23 uses6.9/8.2mm, and compound L24 uses11mm. G3 uses12.3/13.1mm on L31 and14.3mm on L32; G4 uses14.6/16.1mm. Unequal optical radii exclude the drawn mechanical shoulders.
+Original Figure3 on PDF p.47 was rendered at600dpi and rotated for inspection. The40.927mm first-to-last-lens vertex span calibrates optical rims independently of the filter, brackets and callouts. Front optical radii are6.7/6.2mm; L12 uses6.2mm. G2's cemented pair uses6.0/6.0/6.4mm, L23 uses6.9/8.2mm, and compound L24 uses11mm. G3 uses12.3/13.1mm on L31 and14.3mm on L32; G4 uses14.6/16.1mm. On L11, L23, L31 and L41 the smaller radius is where a concave face's cap ends at the flat land Figure 3 draws; those faces now run to the element edge (6.7, 8.2, 13.1 and 16.1 mm) with a rim cut at the cap end, so the land is drawn and tracing is unchanged.
 
 These replace larger ray-envelope estimates. The adopted values pass surface/image-circle checks and show no hidden runtime trimming at infinity, midpoint or near. They are inferred optical outlines, not source-listed clear apertures.
 

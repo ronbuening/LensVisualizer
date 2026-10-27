@@ -6,6 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Filter FL (surfaces 20–21) is modeled in `rearPlates` (traced, not drawn): D19 = 11.223,
  * FL 1.600 mm nd 1.51680 νd 63.88, then Bf 0.860 to the image (Bfa 13.138 air-equivalent).
  * Optical rims are inferred from Figure3 at600dpi, excluding shoulders and callouts.
+ * Rim cuts (2026-10-27): Figure 3 draws flat lands at the rims of the concave faces 2 (L11),
+ * 9 (L23), 14A (L31) and 18 (L41), so each takes its partner face's sd (6.7 / 8.2 / 13.1 / 16.1 mm)
+ * with rimCutDepthMm ending its cap at the former rim, 6.21 / 6.90 / 12.32 / 14.61 mm: tracing is unchanged.
  */
 
 const LENS_DATA = {
@@ -189,7 +192,7 @@ const LENS_DATA = {
   surfaces: [
     // ── G1 — Front group (positive, f = +187.2 mm) ──
     { label: "1", R: -67.65263, d: 0.8, sd: 6.7, medium: 1 }, // L11 front
-    { label: "2", R: 18.07229, d: 1.03, sd: 6.2 }, // L11 rear → air
+    { label: "2", R: 18.07229, d: 1.03, sd: 6.7, rimCutDepthMm: 1.1 }, // L11 rear → air; land, cap to 6.2
     { label: "3", R: 19.61204, d: 2.3, sd: 6.2, medium: 2 }, // L12 front
     { label: "4", R: "flat", d: 1.0, sd: 6.2 }, // L12 rear → air
 
@@ -200,7 +203,7 @@ const LENS_DATA = {
     { label: "6", R: 39.03942, d: 3.0, sd: 6, medium: 3 }, // L21 front
     { label: "7", R: -14.018, d: 0.7, sd: 6, medium: 4 }, // L21→L22 junction
     { label: "8", R: 44.52125, d: 3.457, sd: 6.4 }, // L22 rear → air
-    { label: "9", R: -11.08066, d: 0.9, sd: 6.9, medium: 5 }, // L23 front
+    { label: "9", R: -11.08066, d: 0.9, sd: 8.2, rimCutDepthMm: 2.41, medium: 5 }, // L23 front; land, cap to 6.9
     { label: "10", R: -29.93301, d: 0.15, sd: 8.2 }, // L23 rear → air
     { label: "11", R: "flat", d: 6.55, sd: 11, medium: 6 }, // L24g front (flat)
     { label: "12", R: -17.50329, d: 0.14, sd: 11, medium: 7 }, // L24g/resin junction
@@ -224,7 +227,8 @@ const LENS_DATA = {
       label: "14A",
       R: -26.85154,
       d: 2.0,
-      sd: 12.3,
+      sd: 13.1,
+      rimCutDepthMm: 2.35,
       medium: 8,
       asphere: {
         K: 0,
@@ -234,7 +238,7 @@ const LENS_DATA = {
         A10: 1.30136e-12,
         A12: 8.8976e-16,
       },
-    }, // L31 front (asph)
+    }, // L31 front (asph); land, cap to 12.3
     {
       label: "15A",
       R: -28.96313,
@@ -253,7 +257,7 @@ const LENS_DATA = {
     { label: "17", R: -36.85132, sd: 14.3 }, // L32 rear → air — D17, variable
 
     // ── G4 — Rear negative group (fixed, f = −44.3 mm) ──
-    { label: "18", R: -34.46648, d: 1.2, sd: 14.6, medium: 10 }, // L41 front
+    { label: "18", R: -34.46648, d: 1.2, sd: 16.1, rimCutDepthMm: 3.25, medium: 10 }, // L41 front; land, cap to 14.6
     { label: "19", R: 173.14403, d: 11.223, sd: 16.1 }, // L41 rear → filter FL (D19)
   ],
 

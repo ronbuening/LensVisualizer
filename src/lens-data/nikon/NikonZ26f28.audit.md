@@ -33,3 +33,32 @@ Patent: WO 2023/190222 A1
 - Four source tests and surface/image-circle audits passed. Full11–20 batch gates follow before commit.
 
 - Batch glass-report RCA: the named S-BAL41 catalog entry is incompatible with the source 1.58313/59.46–59.5 coordinate. Replaced the misleading label with inferred M-BACD12, which preserves the source values and resolves compatibly. Added an explicit resolver regression; the regenerated catalog-mismatch report is empty.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 63, native 300 ppi raster, axis vertical) was read element by element on both halves for flat
+lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Scale 50.5 px/mm from the
+27.39 mm first-to-last vertex span.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L1 rear, R 13.383) | 0.89 (0.888 / 0.896) | 0.93 mm | 4.90 mm | 5.5 | 4.46 mm |
+| 10A (L6 front, R −9.528) | 0.88 (0.880 / 0.889) | 2.26 mm | 6.45 mm | 7.3 | 2.97 mm |
+| 12 (L7 front, R −9.362) | 0.765 (both halves) | 3.37 mm | 7.19 mm | 9.3 (was 7.2) | 2.31 mm |
+
+- Surface 12: the 2026-09-08 audit had put its sd at the cap end (7.2 mm), below rear face 13 (9.7 mm), so the
+  section drew a slanted edge. Figure 1 draws L7 with a square edge at the rear face's height (9.78 mm) and a long
+  land down to the cap. The sd now rises to 9.3 mm, just inside the face's 9.362 mm radius of curvature (a sphere's
+  sag is undefined past it), so the edge rises only 0.4 mm to 13's 9.7 mm. The cut keeps the traced cap end at the old
+  rim (depth rounded down: 7.193 mm), so tracing is unchanged; the figure's own cap end would sit at 7.42 mm.
+- Concave faces with no land: 4 (L2 front) and 9 (L5 rear) run to their element edges. 14A (L8 resin front) reaches
+  the resin edge with a short near-flat run that matches its low aspheric rim slope, not a resolvable land.
+- The flat on L8's glass front from the resin rim (12.2 mm) to the glass edge (14 mm) belongs to cemented junction
+  15, the mechanical flange the 2026-09-08 audit excluded; the L4/L5 step is the larger L5 front beyond cemented
+  junction 8. Neither is an air-side land.
+- No cap reaches the stop plane (unit focus moves the stop with the optics): the cut raises surface 2's clearance
+  from 0.44 to 0.69 mm; surface 4 clears it by 1.26 mm.
+- The aperture audit is unchanged: the stated f/2.90 traces within 3 %, with no rim, trace, failed or rim-cut rows.
+  At the full field (image height 21.6 mm, ω 41.0°) side vignetting at surface 2 goes from 0 to 3 % and at 10A from
+  0 to 13 %; surface 12's cut lies outside the full-field bundle (6.96 mm).
+- No land was skipped.
