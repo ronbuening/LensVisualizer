@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1007**
-- Files with both `lensMounts` and `imageFormat`: **965**
-- Files missing `lensMounts`: **33** (24 public lenses and 9 hidden reference fixtures)
+- Total lens data files: **1014**
+- Files with both `lensMounts` and `imageFormat`: **971**
+- Files missing `lensMounts`: **34** (25 public lenses and 9 hidden reference fixtures)
 - Files missing `imageFormat`: **32** (23 public lenses and 9 hidden reference fixtures)
 - Files missing both fields: **23**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -38,12 +38,15 @@ with remaining compatibility questions explained in the lens analysis.
 | Schneider TV-Variogon 20–600mm f/2.1 | The 1¼-inch tube application does not identify the lens-to-camera/prism mounting interface. Do not substitute a modern ⅔-inch B4 fitting. |
 | Schneider Xenar 50mm f/2.8 | The source set does not select one historical mechanical variant for the scaled patent example. |
 | Vivitar Series 1 70–210mm f/2.8–4 | The 1984 brochure supports the exact 14/10 production generation, but does not establish its complete mount list. The earlier f/3.5 service manual is not evidence for this version. |
+| Tamron SP 70-150mm f/2.8 Soft (51A) | Adaptall-2 lens: the optical unit takes Tamron's interchangeable camera-side adapters, and the reviewed 1980 sources (Tamron's 51A page, the brochure) do not list the adapters issued for this model. Tie a period Adaptall-2 mount list to the 51A before assigning ids. |
 | Vivitar Series 1 450mm f/4.5 | Secondary material describes T-mount, but the source set lacks a manufacturer mechanical specification for this rare production correlation. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
-| Zeiss S-Biogon 40mm f/5.6; Voigtländer Cine-Tele-Anastigmat 100mm f/4.5; Voigtländer Tele-Dynar 100mm f/6.3 | Added after the last source review; neither field has been reviewed against sources yet. |
+| Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
+| Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
+| Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
 
 ### Hidden reference fixtures
 
@@ -68,7 +71,9 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Fujinar 210mm | The manufacturer history and museum record establish the large-format family and 21 cm product, but no specific frame or image-circle class for this example. Do not substitute Fujinon/SC specifications. |
 | Agfa Color-Magnolar II 100mm; Kodak Enlarging Ektar 100mm | Finite-conjugate enlarger objectives: Kodak’s cited brochure describes a negative up to 2¼ × 3¼ inches, not the modeled image-plane frame. A catalog format needs an explicit object/image-side convention; no arbitrary output-print format is assigned. |
 | Voigtländer Dynar; symmetric Heliar; second asymmetric Heliar | Normalized patent examples are not tied to a uniquely chosen production focal length/frame combination. |
-| Zeiss S-Biogon 40mm f/5.6; Voigtländer Cine-Tele-Anastigmat 100mm f/4.5; Voigtländer Tele-Dynar 100mm f/6.3 | Added after the last source review; neither field has been reviewed against sources yet. |
+| Zeiss S-Biogon 40mm f/5.6 | The only frame figure, 32 × 45 mm on 35 mm microfilm at 1:30, is a Zeiss staff forum post, not a Zeiss publication, and Cavina describes the Mikrobox output as microfiche. No canonical microfilm format id exists; do not substitute `135-full-frame`. |
+| Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No source ties the research-correlated name to a film gauge or gate. Do not infer a cinema format from the “Cine” name or the patent’s 100 mm f/4.5 scale. |
+| Voigtländer Tele-Dynar 100mm f/6.3 | No 100 mm production variant exists in the period lists, and their 14–32 cm sizes are matched to the focal length of each camera’s lens, not specified for a recording format. |
 
 Source details and the product/patent qualifications remain in each lens’s analysis. Sources for completed compact-camera,
 tube and cinema assignments are centralized in `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`; completed production

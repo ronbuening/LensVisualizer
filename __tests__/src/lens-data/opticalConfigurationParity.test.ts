@@ -54,6 +54,16 @@ const CONTRACTS: Record<string, ConfigurationContract> = {
     trailingSpacing: "re-solved",
     closeFocus: "solved-per-configuration",
   },
+  // JP 2021-096331 A Numerical Examples 5/6, paragraphs 0564-0568: the built-in
+  // TC occupies the gap after 33; the same rear doublet follows as surfaces 45-47.
+  // Finite-focus endpoints are separately reconstructed, not source-published.
+  "olympus-mzuiko-150400-f45-tc125-is-pro-configurations": {
+    sharedLeadingSurfaces: 33,
+    insertionGapLabel: "33",
+    sharedTrailingSurfaces: 3,
+    trailingSpacing: "shared",
+    closeFocus: "solved-per-configuration",
+  },
   // CN 120276109 A Example 1: one prescription with separate MF (G2 + stop) and
   // AF (G3a) focusing tables that share the infinity spacings.
   "laowa-180mm-f45-dual-focus": {

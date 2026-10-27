@@ -2,7 +2,7 @@
 import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
 import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import type { ComponentProps } from "react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -32,6 +32,17 @@ function lens(overrides: Partial<RuntimeLens> = {}): RuntimeLens {
     }),
     ...overrides,
   } as RuntimeLens;
+}
+
+function lensWithCatalog(catalog: Partial<RuntimeLens["source"]["catalog"]>): RuntimeLens {
+  const L = lens();
+  return {
+    ...L,
+    source: {
+      ...L.source,
+      catalog: { ...L.source.catalog, lensMounts: undefined, imageFormat: undefined, ...catalog },
+    },
+  };
 }
 
 function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> = {}) {
@@ -74,6 +85,72 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
 }
 
 describe("DiagramHeader", () => {
+  it("places taxonomy-labelled mount and format links after Flickr with canonical paths", () => {
+    renderHeader({ L: lensWithCatalog({ lensMounts: ["leica-m"], imageFormat: "135-full-frame" }) });
+
+    const group = screen.getByRole("group", { name: "Mount and image format" });
+    const links = within(group).getAllByRole("link");
+    expect(links.map((link) => link.textContent)).toEqual(["Leica M", "135 / Full-frame"]);
+    expect(within(group).getByRole("link", { name: "Mount: Leica M" }).getAttribute("href")).toBe("/mounts/leica-m/");
+    expect(within(group).getByRole("link", { name: "Image format: 135 / Full-frame" }).getAttribute("href")).toBe(
+      "/formats/135-full-frame/",
+    );
+    expect(group.previousElementSibling).toBe(screen.getByRole("link", { name: "flickr ↗" }));
+  });
+
+  it("omits the taxonomy group when neither field is authored", () => {
+    renderHeader({ L: lensWithCatalog({}) });
+    expect(screen.queryByRole("group", { name: "Mount and image format" })).toBeNull();
+  });
+
+  it("does not default an unauthored image format even when mounts are present", () => {
+    renderHeader({ L: lensWithCatalog({ lensMounts: ["nikon-f"] }) });
+    const group = screen.getByRole("group", { name: "Mount and image format" });
+    expect(within(group).getAllByRole("link")).toHaveLength(1);
+    expect(within(group).queryByRole("link", { name: /^Image format:/ })).toBeNull();
+  });
+
+  it("expands five mounts from two in place and keeps the format last", () => {
+    renderHeader({
+      L: lensWithCatalog({
+        lensMounts: ["leica-m", "nikon-f", "canon-ef", "pentax-k", "sony-fe"],
+        imageFormat: "aps-c",
+      }),
+    });
+    const group = screen.getByRole("group", { name: "Mount and image format" });
+    expect(
+      within(group)
+        .getAllByRole("link")
+        .map((link) => link.textContent),
+    ).toEqual(["Leica M", "Nikon F", "APS-C"]);
+    const more = within(group).getByRole("button", { name: "+3 more" });
+    expect(more.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(more);
+    expect(more.getAttribute("aria-expanded")).toBe("true");
+    expect(
+      within(group)
+        .getAllByRole("link")
+        .map((link) => link.textContent),
+    ).toEqual(["Leica M", "Nikon F", "Canon EF", "Pentax K", "Sony E", "APS-C"]);
+    expect(group.lastElementChild).toBe(within(group).getByRole("link", { name: "Image format: APS-C" }));
+    fireEvent.click(within(group).getByRole("button", { name: "Show fewer" }));
+    expect(more.getAttribute("aria-expanded")).toBe("false");
+    expect(within(group).getAllByRole("link")).toHaveLength(3);
+  });
+
+  it("renders taxonomy pills after the compact title even with comparison details collapsed", () => {
+    renderHeader({
+      L: lensWithCatalog({ lensMounts: ["leica-m"], imageFormat: "135-full-frame" }),
+      compact: true,
+      comparisonDetails: { expanded: false, onChange: vi.fn() },
+    });
+    const group = screen.getByRole("group", { name: "Mount and image format" });
+    expect(within(group).getByRole("link", { name: "Mount: Leica M" })).toBeTruthy();
+    expect(within(group).getByRole("link", { name: "Image format: 135 / Full-frame" })).toBeTruthy();
+    expect(group.previousElementSibling).toBe(screen.getByRole("heading", { name: "Header Test Lens" }));
+    expect(screen.queryByText("flickr ↗")).toBeNull();
+  });
+
   it("renders a compact patent identifier as a link rather than plain text", () => {
     const L = lens();
     renderHeader({

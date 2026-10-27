@@ -687,4 +687,52 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-LaSFn16 (LaF21 type; ne 1.79226, νe 47.17). It shares a six-digit code with another vendor's row, so code6 is omitted.",
   },
+  /* October 2026 Kyocera patent rows (JP 2706781 B2 sole example, Yashica Samurai Z zoom): the patent's
+   * one-decimal coordinates equal these first-party rows exactly.
+   */
+  {
+    name: "K-SFLD6",
+    vendor: "Sumita",
+    polynomial: [3.1176009, -0.012108189, 0.044689743, 0.0016574765, 0.000041984442, 0.0000129135],
+    nd: 1.80518,
+    vd: 25.4,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-SFLD6. It shares a six-digit code with other vendors' rows, so code6 is omitted.",
+  },
+  {
+    name: "LLF6",
+    vendor: "Sumita",
+    polynomial: [2.302702, -0.00731109, 0.01565646, -0.0000644047, 0.00005443751, -0.000001986544],
+    nd: 1.53172,
+    vd: 48.9,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for legacy LLF6. It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
+  {
+    name: "LASFN14",
+    vendor: "Sumita",
+    polynomial: [3.259241, -0.0132339, 0.03450325, 0.001064015, -0.00001421305, 0.000005373569],
+    nd: 1.834,
+    vd: 37.2,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for legacy LASFN14. It shares a six-digit code with other vendors' rows, so code6 is omitted.",
+  },
+  {
+    name: "SFLDN3",
+    vendor: "Sumita",
+    polynomial: [3.257487, -0.01640373, 0.04427185, 0.00416624, -0.000314258, 0.00003929085],
+    nd: 1.84666,
+    vd: 23.9,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for legacy SFLDN3. It shares a six-digit code with other vendors' rows, so code6 is omitted.",
+  },
+  {
+    name: "K7",
+    vendor: "Sumita",
+    polynomial: [2.250929, -0.007831266, 0.01211101, -0.00007171256, 0.00003722015, -0.000001788258],
+    nd: 1.51112,
+    vd: 60.5,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for legacy K7. It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
 ];

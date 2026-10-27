@@ -14,7 +14,11 @@ The patent identifies Voigtländer as applicant and specifies a 100 mm, f/4.5 ex
 but it does not name that commercial lens or establish a factory prescription match.
 No manufacturer source establishing the exact product's mount, image format, introduction date,
 minimum focusing distance or mechanical focusing arrangement has been verified.
-Those production fields are therefore left unspecified rather than inferred from the selected name.
+Neither Voigtländer period list reviewed for this record names a Cine-Tele-Anastigmat:
+the English catalogue Nr. 1709.7.25 and the French price list of about 1930 offer the Tele-Dynar f/6.3
+as their only telephoto lens, and the catalogue lists no cine objective. [5, 6]
+Those production fields are therefore left unspecified rather than inferred from the selected name;
+the "Cine" designation does not select a camera fitting or a film gauge.
 The patent's effective date is retained under its own label, not asserted as a separately verified filing date.
 
 The patent and Figure 2 establish four glass elements in three air-separated groups.
@@ -184,3 +188,8 @@ check is asserted by these portable computations. Those remain separate integrat
    SF2 sheet dated 1 February 2014, including separate D- and d-line indices.
 4. **SCHOTT**, [LF5 optical glass data](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/LF5/c/glass-LF5),
    refractive-index and dispersion tables. Catalog sources checked 2 October 2026.
+5. **Voigtländer**, [Catalogue Nr. 1709.7.25](https://www.pacificrimcamera.com/rl/00476/00476.pdf),
+   PDF p.29, printed p.28: Tele-Dynar F/6.3, the catalogue's only telephoto lens; no cine objective is listed.
+6. **Voigtländer & Sohn**, [Prix courant pour les appareils Voigtlaender et accessoires photographiques](https://cnum.cnam.fr/pgi/redir.php?ident=M11191&onglet=c),
+   CNAM M11191, about 1930; printed p.20, Télé-Objectif Télé-Dynar F:6,3, the list's only telephoto lens.
+   Product lists checked 26 October 2026.

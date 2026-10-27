@@ -102,7 +102,7 @@ export default function UniversalMapSearch({
         aria-controls={visible ? `${id}-results` : undefined}
         aria-activedescendant={visible && shown[activeIndex] ? `${id}-result-${activeIndex}` : undefined}
         autoComplete="off"
-        placeholder="Entity, inventor, lens, or patent number"
+        placeholder="Search names, lenses, patents"
         value={query}
         onChange={(event) => {
           setQuery(event.target.value);

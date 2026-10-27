@@ -12,9 +12,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1007** lenses scanned
-- **11469** glass elements examined
-- **3273** elements have multiple coordinate-compatible candidates
+- **1014** lenses scanned
+- **11570** glass elements examined
+- **3276** elements have multiple coordinate-compatible candidates
 - **589** lens files are affected
 - **319** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **211** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1902 |
 | Evidence-source priority | 1015 |
-| Vendor context | 342 |
+| Vendor context | 345 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -188,7 +188,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `583594 — BAL42 class (OHARA S-BAL42 spectral proxy; patent vendor unresolved)` | 1.58313 / 59.40 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | L-BAL42 (Ohara, code, vendor ✓, alternate code row)<br>J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E1 |
 | `487702 — FSL5/FK5 class (OHARA S-FSL5 spectral proxy; patent vendor unresolved)` | 1.48749 / 70.20 (d) | S-FSL5 — Annotation vendor context matches Ohara. | FK5 (Sumita, name, vendor ✗) | 1 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E2 |
 | `911353 — high-index low-dispersion class (CDGM H-ZLaF4LA spectral proxy; patent vendor unresolved)` | 1.91082 / 35.30 (d) | H-ZLaF4LA — direct name evidence outranks six-digit code evidence. | TAFD35 (Hoya, code, vendor ✗, preferred code row) | 2 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E3 |
-| `532488 — TIL6/LLF6/QF6A class (OHARA S-TIL6 spectral proxy; patent vendor unresolved)` | 1.53172 / 48.80 (d) | S-TIL6 — direct name evidence outranks six-digit code evidence. | J-LLF6 (Hikari, code, vendor ✗, preferred code row) | 1 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E4 |
+| `532488 — TIL6/LLF6/QF6A class (OHARA S-TIL6 spectral proxy; patent vendor unresolved)` | 1.53172 / 48.80 (d) | S-TIL6 — Annotation vendor context matches Ohara. | LLF6 (Sumita, name, vendor ✗)<br>J-LLF6 (Hikari, code, vendor ✗, preferred code row) | 1 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E4 |
 | `497816 — FPL51/FCD1 class (OHARA S-FPL51 spectral proxy; patent vendor unresolved)` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗)<br>H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>M-FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E5 |
 | `805254 — TIH6/SF6 class (OHARA S-TIH6 spectral proxy; patent vendor unresolved)` | 1.80518 / 25.40 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗)<br>N-SF6 (Schott, code, vendor ✗, alternate code row) | 2 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E6 |
 | `729547 — LAL18/TAC8 class (OHARA S-LAL18 spectral proxy; patent vendor unresolved)` | 1.72916 / 54.70 (d) | S-LAL18 — Annotation vendor context matches Ohara. | TAC8 (Hoya, name, vendor ✗) | 2 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) E7 |
@@ -1307,6 +1307,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `F5 (Schott) / S-TIM5 (Ohara)` | 1.60342 / 38.00 (d) | S-TIM5 — smallest d-line \|Δn\| (1.5e-7 vs 2.6e-7) | F5 (Schott, name, vendor ✓) | 1 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) L2 |
 | `S-LAH65V class (Ohara, near 804/466)` | 1.80279 / 46.80 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row) | 1 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) L3 |
 | `SF6 (Schott) / S-TIH6 (Ohara)` | 1.80518 / 25.50 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, name, vendor ✓) | 2 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) L4 |
+| `S-TIL6 (Ohara) / LLF6 class` | 1.53172 / 48.90 (d) | S-TIL6 — Annotation vendor context matches Ohara. | LLF6 (Sumita, name, vendor ✗) | 1 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) L5a |
 | `S-TIH6 (OHARA; 805/254 dense flint)` | 1.80500 / 25.30 (d) | S-TIH6 — direct name evidence outranks six-digit code evidence. | N-SF6 (Schott, code, vendor ✗, alternate code row)<br>SF6 (Schott, code, vendor ✗, alternate code row) | 3 | [NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) L1 |
 | `S-BSM14 (OHARA; 603/607 barium crown)` | 1.60300 / 60.60 (d) | S-BSM14 — direct name evidence outranks six-digit code evidence. | J-SK14 (Hikari, code, vendor ✗, alternate code row)<br>BACD14 (Hoya, code, vendor ✗, alternate code row) | 2 | [NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) L2 |
 | `J-LASF017 class (795/454; patent rounded 796/455)` | 1.79600 / 45.50 (d) | J-LASF017 — direct name evidence outranks six-digit code evidence. | TAF2 (Hoya, code, preferred code row) | 3 | [NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) L4 |
@@ -1388,6 +1389,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `713539 — lanthanum crown, LaK8 class (J-LAK8 HIKARI / LAC8 HOYA coordinate-compatible; supplier unconfirmed)` | 1.71300 / 53.90 (d) | J-LAK8 — smallest d-line \|Δn\| (1.5e-8 vs 1.8e-7) | LAC8 (Hoya, name, vendor ✓)<br>MP-LAC8-30 (Hoya, code, vendor ✓, alternate code row) | 1 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) L3 |
 | `717295 — dense flint, SF1 class (J-SF1 HIKARI / SF1 SCHOTT coordinate-compatible; supplier unconfirmed)` | 1.71736 / 29.50 (d) | J-SF1 — smallest d-line \|Δn\| (2.7e-8 vs 1.5e-7) | SF1 (Schott, name, vendor ✓)<br>S-TIH1 (Ohara, code, vendor ✗, alternate code row) | 1 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) L4 |
 | `744494 — lanthanum flint (nearest NBF1 HOYA / S-LAM60 OHARA, Δnd −0.0011; supplier unconfirmed)` | 1.74443 / 49.40 (d) | NBF1 — smallest d-line \|Δn\| (1.1e-3 vs 1.2e-3) | S-LAM60 (Ohara, name, vendor ✓) | 1 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) L5 |
+| `J-LLF6 (HIKARI catalog equivalent; LLF6-class light flint 532491, vendor unspecified)` | 1.53172 / 49.10 (d) | J-LLF6 — Annotation vendor context matches Hikari. | LLF6 (Sumita, name, vendor ✗) | 1 | [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) L1 |
 | `E-FD2 (HOYA catalog equivalent; SF2-class dense flint, patent 648338, vendor unspecified)` | 1.64831 / 33.80 (d) | E-FD2 — Annotation vendor context matches Hoya. | SF2 (Schott, name, vendor ✗)<br>H-ZF1 (CDGM, code, vendor ✗, alternate code row)<br>S-TIM22 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) L2b |
 | `744449 - lanthanum glass class (vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 1.4e-6) | LAF2 (Hoya, code, alternate code row)<br>N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) L2 |
 | `620603 - SK16-class crown (vendor unresolved)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) L5 |
@@ -1526,6 +1528,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `755275 - SF4 class (vendor unresolved)` | 1.75520 / 27.50 (d) | SF4 — direct name evidence outranks six-digit code evidence. | E-FD4 (Hoya, code, preferred code row)<br>H-ZF6 (CDGM, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L3 |
 | `689311 - SF8 class (vendor unresolved)` | 1.68893 / 31.10 (d) | N-SF8 — alias evidence outranks six-digit code evidence. | S-TIM28 (Ohara, code, preferred code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L4 |
 | `620363 - F2 class (vendor unresolved)` | 1.62004 / 36.30 (d) | F2 — direct name evidence outranks six-digit code evidence. | E-F2 (Hoya, code, alternate code row)<br>S-TIM2 (Ohara, code, preferred code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L8 |
+| `532489 - LLF6 class (vendor unresolved)` | 1.53172 / 48.90 (d) | LLF6 — direct name evidence outranks six-digit code evidence. | S-TIL6 (Ohara, code, preferred code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L10 |
 | `517642 - BK7 class (vendor unresolved)` | 1.51680 / 64.20 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L12 |
 | `744449 - LAF2 class (vendor unresolved)` | 1.74400 / 44.90 (d) | LAF2 — direct name evidence outranks six-digit code evidence. | H-LaF3B (CDGM, code, preferred code row)<br>N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L13 |
 | `PCD4 class (618/634 dense phosphate crown; vendor uncertain)` | 1.61800 / 63.38 (d) | PCD4 — direct name evidence outranks six-digit code evidence. | S-PHM52 (Ohara, code, preferred code row)<br>N-PSK53A (Schott, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [OLYMPUS E.ZUIKO AUTO-T 1000mm f/11](../../src/lens-data/olympus/OlympusEZuiko1000mmf11.data.ts) L1 |

@@ -30,6 +30,13 @@ export interface OpticalSummaryMetrics {
   aberrationT: number;
   imagePlaneZMm: number | null;
   totalTrackMm: number | null;
+  /**
+   * Prepared total track / |current EFL|, dimensionless. Sequential track is the axial
+   * distance from the first surface vertex to the image plane, including synthetic rear
+   * plates at their physical thicknesses and gaps. Null for folded paths, whose prepared
+   * track is a Z bounding extent rather than the physical front-to-image length.
+   */
+  telephotoRatio: number | null;
   /** Authored lens surfaces; synthetic rear plates are reported separately. */
   surfaceCount: number;
   rearPlateCount: number;
@@ -57,6 +64,11 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
   const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const L = runtimeView(state.lens);
   const currentEFLMm = finiteOrNull(dynamicEFL);
+  const totalTrackMm = finiteOrNull(state.totalTrack);
+  const telephotoRatio =
+    !state.lens.flags.isFoldedOptics && totalTrackMm !== null && currentEFLMm !== null && Math.abs(currentEFLMm) > 1e-9
+      ? finiteOrNull(totalTrackMm / Math.abs(currentEFLMm))
+      : null;
   const infinityEFLMm = finiteOrNull(eflAtZoom(state.zoomT, L));
   const breathingPercent =
     currentEFLMm !== null && infinityEFLMm !== null && Math.abs(infinityEFLMm) > 1e-9
@@ -85,7 +97,8 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
     focusT: state.focusT,
     aberrationT: state.aberrationT,
     imagePlaneZMm: finiteOrNull(state.imgZ),
-    totalTrackMm: finiteOrNull(state.totalTrack),
+    totalTrackMm,
+    telephotoRatio,
     surfaceCount: L.S.filter((surface) => !surface.synthetic).length,
     rearPlateCount: L.source.rearPlates?.length ?? 0,
     rearPlateThicknessMm: (L.source.rearPlates ?? []).reduce((sum, plate) => sum + plate.thicknessMm, 0),

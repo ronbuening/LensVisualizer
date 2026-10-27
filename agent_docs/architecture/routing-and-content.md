@@ -65,7 +65,8 @@ can become stale when Back interrupts a concurrent navigation. Changed selection
 reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
 intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
 Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
-the overview. The same fragment also stores `view=trace|affiliations` (absent means Network), validated `from` and `to`
+the overview. The same fragment also stores `view=trace|affiliations` (absent means Network, except that a phone visit
+naming neither `view` nor `node` opens Neighborhoods and then writes `view=network` explicitly), validated `from` and `to`
 trace endpoints, and `corporate=0` when corporate history is excluded. Additional universal view ids are `bridge`,
 `matrix`, `chords`, and `evidence`. View and endpoint changes push history without
 changing the original network camera; the Network renderer mounts on first use, then stays mounted with gestures and
