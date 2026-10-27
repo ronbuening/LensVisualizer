@@ -220,7 +220,7 @@ function writeSurfaces(
     if (keepNumber) write.restore(record, at, "R", `${at}.R`);
     else write.put(record, at, "R", surface.R, `${at}.R`);
     if (!gapSurfaces.has(surface.label)) write.put(record, at, "d", surface.d, `${at}.d`);
-    write.copy(record, at, surface, at, ["sd", "innerSd"]);
+    write.copy(record, at, surface, at, ["sd", "innerSd", "rimCutDepthMm"]);
     if (surface.medium !== null) {
       const medium = typeof surface.medium === "string" ? mediumIds.get(surface.medium) : surface.medium;
       write.put(record, at, "medium", medium, `${at}.medium`);

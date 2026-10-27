@@ -349,6 +349,7 @@ function surfaceView(
   out.elemId = elemId;
   put(out, "sd", surface.sd ?? ignoredAt(view, `${at}.sd`) ?? view.stopRadius);
   put(out, "innerSd", surface.innerSd);
+  put(out, "rimCutDepthMm", surface.rimCutDepthMm);
   put(out, "stopPlacement", surface.stopPlacement);
   put(out, "interaction", surface.interaction);
   put(out, "diffractive", surface.diffractive);

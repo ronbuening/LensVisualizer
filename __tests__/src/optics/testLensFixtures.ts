@@ -279,6 +279,30 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
   });
 }
 
+/**
+ * Positive meniscus whose concave rear (R = 20, sd = 12) sags 4 mm rearward at its rim. `rimCutDepthMm` cuts that
+ * rim flat; at 2 mm the cap ends at r = √76 ≈ 8.718 mm.
+ */
+export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens"): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      {
+        label: "2",
+        R: 20,
+        nd: 1.0,
+        sd: 12,
+        d: 80,
+        elemId: 0,
+        ...(rimCutDepthMm === undefined ? {} : { rimCutDepthMm }),
+      },
+    ],
+  });
+}
+
 /** Source-style rear plate: 2 mm N-BK7 cover glass followed by 1 mm air to the image plane. */
 export const REAR_PLATE_FIXTURE: RearPlateData = Object.freeze({
   label: "CG",

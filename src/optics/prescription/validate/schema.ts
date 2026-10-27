@@ -483,6 +483,16 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
         errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be smaller than sd`);
       }
     }
+    if (s.rimCutDepthMm !== undefined) {
+      if (typeof s.rimCutDepthMm !== "number" || !isFinite(s.rimCutDepthMm) || s.rimCutDepthMm <= 0) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimCutDepthMm must be a positive finite number when provided`);
+      }
+      if (s.label === "STO" || s.innerSd !== undefined || s.interaction !== undefined) {
+        errors.push(
+          `surfaces[${i}] ("${s.label}"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface or one with an interaction`,
+        );
+      }
+    }
     if (s.interaction !== undefined) {
       if (!s.interaction || typeof s.interaction !== "object" || Array.isArray(s.interaction)) {
         errors.push(`surfaces[${i}] ("${s.label}"): interaction must be an object when provided`);

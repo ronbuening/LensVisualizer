@@ -2202,6 +2202,67 @@ describe("validateLensData — conic h_max", () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════
+ *  Rim cuts
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe("validateLensData — rim cut", () => {
+  /* L1's concave rear (R = 20, sd = 12) sags 4 mm toward L2's front, 2 mm behind it. */
+  const rimCutLens = (cut: Record<string, unknown> = {}, frontR = 15) =>
+    makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 6 },
+        { label: "1", R: frontR, d: 6, nd: 1.5, elemId: 1, sd: 12 },
+        { label: "2", R: 20, d: 2, nd: 1.0, elemId: 0, sd: 12, ...cut },
+        { label: "3", R: 100, d: 4, nd: 1.5, elemId: 2, sd: 10 },
+        { label: "4", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+  const errorsFor = (data: Record<string, unknown>) => validateLensData(data);
+
+  it("measures cross-gap intrusion and edge thickness to the land", () => {
+    expect(errorsFor(rimCutLens()).some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }))).toEqual([]);
+    /* A deeper front cap leaves 3.2 mm of edge uncut, and less than none once the land removes 3.5 mm of it. */
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      false,
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 0.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      true,
+    );
+  });
+
+  it("refuses a depth the cap does not reach inside sd", () => {
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 4.5 }))).toContain(
+      'Surface "2": rimCutDepthMm 4.5 must be smaller than the cap\'s sag at sd=12 (4.000 mm)',
+    );
+  });
+
+  it("refuses a cut where the rim bends into glass", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    (data.surfaces as Record<string, unknown>[])[4].rimCutDepthMm = 0.2;
+    expect(
+      errorsFor(data).some((e) => e.startsWith('Surface "4": a rim cut trims glass where the rim bends into air')),
+    ).toBe(true);
+  });
+
+  it("refuses a cut on the stop, an annular surface or a non-positive depth", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    const surfaces = data.surfaces as Record<string, unknown>[];
+    surfaces[0].rimCutDepthMm = 0.1;
+    surfaces[3].rimCutDepthMm = -1;
+    const errors = errorsFor(data);
+    expect(errors).toContain(
+      'surfaces[0] ("STO"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface or one with an interaction',
+    );
+    expect(errors).toContain('surfaces[3] ("3"): rimCutDepthMm must be a positive finite number when provided');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
  *  Slope-based rim check (replaces old sd/|R| ratio check)
  * ═══════════════════════════════════════════════════════════════════ */
 

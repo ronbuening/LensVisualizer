@@ -54,6 +54,11 @@ export interface SurfaceV2Input {
    */
   sd?: number;
   innerSd?: number;
+  /**
+   * Depth in mm, from the vertex, of a flat opaque land that cuts the rim where it bends into the air beside the
+   * surface. The cap ends where its sag reaches the land, which is the surface's clear radius for tracing.
+   */
+  rimCutDepthMm?: number;
   /** The medium after this surface: an element id, a `media` id, or left out for air. */
   medium?: number | string;
   /** Sparse aspheric terms; a term left out is zero. */

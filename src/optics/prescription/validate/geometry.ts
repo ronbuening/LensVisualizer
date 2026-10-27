@@ -4,6 +4,8 @@ import type { AsphericCoefficients } from "../../../types/optics.js";
 import { buildAsphereIndex } from "../compileAspheres.js";
 import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "../../geometry/surfaceProfile.js";
 import { sharedMaterialBand } from "../../geometry/apertureBands.js";
+import { cutOutlineSag, resolveRimCut, rimCutReentryRadius } from "../../geometry/rimCut.js";
+import type { RimCut } from "../../geometry/rimCut.js";
 
 export function validateGeometry(
   data: UntrustedLensData,
@@ -21,6 +23,9 @@ export function validateGeometry(
    *  and (b) the front/rear SDs are consistent.
    */
   const asphByIdx = buildAsphereIndex(data.asph as Record<string, AsphericCoefficients> | undefined, labelToIdx);
+  const cuts = validateRimCuts(S, asphByIdx, errors);
+  /* Sag of the drawn outline: the cap, or a rim cut's land beyond its radius. */
+  const rimSag = (i: number, h: number) => cutOutlineSag((r) => conicPolySag(r, S[i].R, asphByIdx[i]), cuts[i], h);
 
   for (const elem of data.elements) {
     const explicitSpan = explicitSpans.get(elem.id);
@@ -44,8 +49,8 @@ export function validateGeometry(
     const sd = Math.min(front.sd, rear.sd);
 
     /* Edge thickness check (uses aspherical sag when available) */
-    const sagFront = conicPolySag(sd, front.R, asphByIdx[s1]);
-    const sagRear = conicPolySag(sd, rear.R, asphByIdx[s2]);
+    const sagFront = rimSag(s1, sd);
+    const sagRear = rimSag(s2, sd);
     let centerThickness = 0;
     for (let i = s1; i < s2; i++) centerThickness += typeof S[i].d === "number" ? S[i].d : 0;
     const edgeThickness = centerThickness + sagRear - sagFront;
@@ -108,12 +113,14 @@ export function validateGeometry(
         );
     }
 
-    const slope = Math.abs(sagSlopeRaw(s.sd, s.R, asph));
+    /* A rim cut ends the cap at its radius; the land beyond is flat. */
+    const capEdge = cuts[i] ? Math.min(s.sd, cuts[i]!.radius) : s.sd;
+    const slope = Math.abs(sagSlopeRaw(capEdge, s.R, asph));
     if (slope > maxRimSlopeTan) {
       const angleDeg = (Math.atan(slope) * 180) / Math.PI;
       const maxAngleDeg = (Math.atan(maxRimSlopeTan) * 180) / Math.PI;
       errors.push(
-        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${maxRimSlopeTan.toFixed(2)} (${maxAngleDeg.toFixed(1)}°) — risk of TIR and rendering artifacts`,
+        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at ${cuts[i] ? `the rim cut, r=${capEdge.toFixed(3)}` : `sd=${s.sd}`} exceeds threshold ${maxRimSlopeTan.toFixed(2)} (${maxAngleDeg.toFixed(1)}°) — risk of TIR and rendering artifacts`,
       );
     }
   }
@@ -146,7 +153,7 @@ export function validateGeometry(
     return gapOverrides;
   };
 
-  _checkCrossGapOverlap(S, asphByIdx, junctionIdx >= 0 ? withJunctionSpan({}) : null, errors, "", gapSagFrac);
+  _checkCrossGapOverlap(S, rimSag, junctionIdx >= 0 ? withJunctionSpan({}) : null, errors, "", gapSagFrac);
 
   /* For zoom lenses, also check at each zoom position's variable thickness.
    * Air gaps can change dramatically across zoom positions. */
@@ -165,7 +172,7 @@ export function validateGeometry(
       }
       _checkCrossGapOverlap(
         S,
-        asphByIdx,
+        rimSag,
         withJunctionSpan(gapOverrides),
         errors,
         ` at zoom position ${zi} (${data.zoomPositions[zi]} mm)`,
@@ -182,7 +189,7 @@ export function validateGeometry(
  * values, then again per zoom position with overridden gap thicknesses.
  *
  * @param S             — surface array
- * @param asphByIdx     — aspheric coefficients by surface index
+ * @param rimSag        — drawn-outline sag of surface i at height h
  * @param gapOverrides  — { surfIdx: overrideD } for variable gaps, or null
  * @param errors        — error accumulator (mutated)
  * @param context       — suffix for error messages (e.g. " at zoom position 0")
@@ -190,7 +197,7 @@ export function validateGeometry(
  */
 function _checkCrossGapOverlap(
   S: UntrustedLensData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
+  rimSag: (i: number, h: number) => number,
   gapOverrides: Record<number, number> | null,
   errors: string[],
   context: string,
@@ -211,8 +218,8 @@ function _checkCrossGapOverlap(
      * material. A central corrector inside a mirror hole has no shared band with
      * the annular mirror shell, so it is not a physical cross-gap overlap. */
     const sdCheck = sharedBand.outer;
-    const sagFwd = conicPolySag(sdCheck, curr.R, asphByIdx[i]);
-    const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);
+    const sagFwd = rimSag(i, sdCheck);
+    const sagBack = rimSag(i + 1, sdCheck);
     const intrusion = sagFwd - sagBack;
     const maxIntrusion = gapD * Math.min(gapSagFrac, 1);
     if (intrusion > maxIntrusion)
@@ -220,4 +227,50 @@ function _checkCrossGapOverlap(
         `Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds allowed gap intrusion (${maxIntrusion.toFixed(3)} mm of ${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`,
       );
   }
+}
+
+/**
+ * Resolve every authored rim cut, refusing one that cuts nothing or cuts the wrong side.
+ *
+ * A cut trims glass that reaches past the vertex plane into air: the cap must reach the depth inside `sd` and stay
+ * beyond it out to `sd`, with glass on the vertex side and air on the side the rim bends toward.
+ *
+ * @returns the resolved cut per surface index; null where a surface has none or it is refused
+ */
+function validateRimCuts(
+  S: UntrustedLensData[],
+  asphByIdx: Record<number, AsphericCoefficients>,
+  errors: string[],
+): (RimCut | null)[] {
+  return S.map((s, i) => {
+    const depth = s.rimCutDepthMm;
+    if (typeof depth !== "number" || !(depth > 0) || typeof s.sd !== "number" || typeof s.R !== "number") return null;
+    const sag = (h: number) => conicPolySag(h, s.R, asphByIdx[i]);
+    const cut = resolveRimCut(sag, s.sd, depth);
+    if (!cut) {
+      errors.push(
+        `Surface "${s.label}": rimCutDepthMm ${depth} must be smaller than the cap's sag at sd=${s.sd} (${Math.abs(sag(s.sd)).toFixed(3)} mm)`,
+      );
+      return null;
+    }
+    const reentry = rimCutReentryRadius(sag, s.sd, cut);
+    if (reentry !== null) {
+      errors.push(
+        `Surface "${s.label}": the cap turns back inside the rim cut at r=${reentry.toFixed(3)} mm, so the land would not bound the glass`,
+      );
+      return null;
+    }
+    const glass = (index: number) => index >= 0 && typeof S[index].elemId === "number" && S[index].elemId !== 0;
+    const air = (index: number) => index < 0 || (S[index].elemId === 0 && S[index].nd === 1);
+    /* The medium after surface i - 1 lies before surface i; a rim bending rearward (positive sag) reaches into the
+     * medium after it. */
+    const [vertexSide, rimSide] = cut.sag > 0 ? [i - 1, i] : [i, i - 1];
+    if (!glass(vertexSide) || !air(rimSide)) {
+      errors.push(
+        `Surface "${s.label}": a rim cut trims glass where the rim bends into air, so it needs glass on the vertex side and air on the ${cut.sag > 0 ? "rear" : "front"}, where this rim bends`,
+      );
+      return null;
+    }
+    return cut;
+  });
 }

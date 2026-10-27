@@ -1,6 +1,8 @@
 import { constructionFixtureData } from "../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { build, buildRimCutLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
+import { engineTraceToRuntimeRayResult } from "../../../../src/optics/trace/runtimeRayResult.js";
 import { mtfTraceClassification } from "../../../../src/optics/analysis/mtf/mtfRayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
 import * as foldedDiagnostics from "../../../../src/optics/trace/foldedDiagnostics.js";
@@ -266,5 +268,43 @@ describe("trace capture policies", () => {
     } finally {
       diagnostics.mockRestore();
     }
+  });
+});
+
+describe("rim cut", () => {
+  /* The stop is opened wide so the cut, not the iris, decides which rays pass. */
+  const traceAt = (depth: number | undefined, y: number) => {
+    const state = prepareRuntimeState(buildRimCutLens(depth), 0, 0);
+    const trace = traceEngineRay(
+      state,
+      { origin: [0, y, -5], direction: [0, 0, 1] },
+      { checkSemiDiameter: true, stopOnClip: true, stopSemiDiameter: 20 },
+    );
+    return { state, trace };
+  };
+
+  it("clips at the cut radius, inside the semi-diameter", () => {
+    const { state } = traceAt(2, 0);
+    expect(state.surfaces[2].rimCut?.radius).toBeCloseTo(Math.sqrt(76), 9);
+
+    const uncut = traceAt(undefined, 10.5).trace;
+    expect(uncut.status).toBe("ok");
+    const rearRadius = uncut.hits[2].radius;
+    expect(rearRadius).toBeGreaterThan(Math.sqrt(76));
+    expect(rearRadius).toBeLessThan(12);
+
+    const cut = traceAt(2, 10.5).trace;
+    expect(cut.status).toBe("clipped");
+    expect(cut.hits[2]).toMatchObject({ surfaceLabel: "2", clipped: true, clipReason: "semi-diameter" });
+    expect(traceAt(2, 9.5).trace.status).toBe("ok");
+  });
+
+  it("draws the clipped ray to the land, not the removed cap", () => {
+    const { state, trace } = traceAt(2, 10.5);
+    const ray = engineTraceToRuntimeRayResult(trace, [-5, 10.5], true, state.lens);
+    const [z, y] = ray.ghostPts[0];
+    expect(z).toBeCloseTo(state.z[2] + 2, 9);
+    expect(trace.hits[2].point[2]).toBeGreaterThan(z);
+    expect(y).toBeGreaterThan(Math.sqrt(76));
   });
 });

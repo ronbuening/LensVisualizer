@@ -222,7 +222,7 @@ const surface = object(
   {
     label: surfaceLabel,
     R: either(number, literal("flat")),
-    ...numericFields("d", "sd", "innerSd"),
+    ...numericFields("d", "sd", "innerSd", "rimCutDepthMm"),
     medium: either(number, text),
     asphere: object(numericFields(...ASPHERIC_COEFFICIENT_SCHEMA.map((c) => c.key))),
     diffractive: object(
