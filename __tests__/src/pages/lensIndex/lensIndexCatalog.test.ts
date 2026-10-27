@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   ALL_CATALOG_ENTRIES,
+  buildImageFormatOptions,
+  buildMountOptions,
   defaultCustomFilter,
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
@@ -42,6 +44,24 @@ function entry(
 }
 
 describe("lens index catalog metadata filters", () => {
+  /* A table lookup of an inherited name used to hand back Object members, which crashed the module-level options. */
+  it("leaves ids outside the taxonomy out of the mount and format options", () => {
+    const bogus = (id: string) =>
+      ({ id, label: id, sortOrder: 1 }) as unknown as CatalogLensEntry["lensMounts"][number];
+    const unknownLookups = ["__proto__", "constructor", "toString"].map(
+      (id) => (LENS_MOUNT_BY_ID as Record<string, unknown>)[id],
+    ) as CatalogLensEntry["lensMounts"];
+    const entries = [
+      entry("real", { lensMounts: [LENS_MOUNT_BY_ID["sony-fe"]], imageFormat: IMAGE_FORMAT_BY_ID["aps-c"] }),
+      entry("bogus", {
+        lensMounts: [...unknownLookups, bogus("__proto__"), bogus("constructor"), bogus("toString")],
+        imageFormat: bogus("constructor") as unknown as CatalogLensEntry["imageFormat"],
+      }),
+    ];
+    expect(buildMountOptions(entries)).toEqual([{ id: "sony-fe", label: "Sony E", count: 1 }]);
+    expect(buildImageFormatOptions(entries)).toEqual([{ id: "aps-c", label: "APS-C", count: 1 }]);
+  });
+
   it("exposes visible, all, and debug catalog entry sets", () => {
     expect(catalogEntriesForView("visible").map((entry) => entry.key)).toEqual(CATALOG_KEYS);
     expect(catalogEntriesForView("all").length).toBe(ALL_CATALOG_ENTRIES.length);

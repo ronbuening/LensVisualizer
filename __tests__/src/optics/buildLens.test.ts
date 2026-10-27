@@ -17,6 +17,7 @@ import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { computeFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
+import { expandCanonicalRearPlates } from "../../../src/optics/prescription/rearPlates.js";
 import {
   REAR_PLATE_FIXTURE,
   buildRearPlateAirEquivalentLens,
@@ -801,6 +802,11 @@ describe("buildLens — rear plates", () => {
     for (const sd of plateSds(buildRearPlateLens({ imageFormat: "135-full-frame" }))) {
       expect(sd).toBeCloseTo((1.5 * 43.3) / 2, 10);
     }
+    /* An inherited object member is no format: the rim sizes as if none were given, never NaN. */
+    const source = buildRearPlateLens().source;
+    const catalog = { ...source.catalog, imageFormat: "constructor" as never };
+    const expanded = expandCanonicalRearPlates({ ...source, catalog });
+    expect(expanded.surfaces.filter((surface) => surface.synthetic).map((surface) => surface.sd)).toEqual([22.5, 22.5]);
   });
 
   /* V2 leaves a derived stop's `sd` out, so a generated rim must not grow with a value the engine never reads. */

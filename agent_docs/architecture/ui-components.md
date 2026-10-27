@@ -268,3 +268,59 @@ patent attribution, never employment, formal teams, contracts, or inferred techn
 `ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,
 math, table styling) and a `description` variant (compact typography, themed colors, GFM, math, safe external links).
 Keep article-specific behavior in the renderer rather than duplicating markdown component maps in pages.
+
+## Lens Builder
+
+`LensBuilderPage` owns the client-only `/lens-builder/` experiment. `ENABLE_LENS_BUILDER` follows Vite's `DEV`
+boolean (on in dev and Vitest, off in production); plain-Node metadata readers default it to false. To ship, set it
+true; remove the flag and inline the route once released, or remove the builder when abandoned. It has no navigation
+or sitemap entry and declares noindex/nofollow.
+
+`SingleLensContent` accepts an optional side panel, a prebuilt `RuntimeLens`, `showPhotoSearch={false}` (threaded
+through `LensDiagramPanel` to `DiagramHeader`, which hides the Flickr link for drafts) and `highlightElementId`. The
+builder uses the slot for a 65/35 split at 900 px and stacks the editor below the diagram on smaller screens, under the
+static pages' `PageNavBar` breadcrumb ("Home / Lens builder") whose theme toggles dispatch into the builder's own
+`useLensState`. Those contexts keep sliders and the analysis drawer working without URL slider updates, and
+`usePreferences` persists theme and ray toggles as the viewer does. Builds debounce for 250 ms; invalid drafts retain
+the last successful runtime lens. Storage failures are ignored, autosave restores unfinished geometry, and replacing a
+modified draft from the toolbar requires confirmation. `?from=<catalog-key>` copies authored data, then is removed from
+the URL so a reload restores the autosave instead of asking again.
+
+The editor pane is an optical train read from the object (top) to the image (bottom), built on the element model in
+`src/lensBuilder/elementModel.ts` (its doc comments are the contract). `BuilderEditor` derives the model from the draft
+on each change; `OpticalTrain` applies every edit as a pure model operation and writes it back with
+`applyElementModel`, so rebuild, autosave and export only ever see a V2 draft. Model refusals (`BuilderEditError`) and
+other action errors appear in a sticky alert at the foot of the pane. A draft the model cannot show (folded paths,
+media, spans, no single air stop, non-contiguous media) lists the reasons in place of the train and opens Advanced
+JSON once.
+
+- `GroupCard`: one card per air-separated group. An element block holds its name and description, the material chip,
+  centre thickness, front/rear R with an ∞ toggle, Ø per surface (2 × semi-diameter, with a link toggle that sets every
+  surface of the group), an aspheric disclosure per surface (conic and even terms; odd orders folded) and a computed
+  shape and paraxial focal-length readout. A cemented card stacks its element blocks around each shared junction
+  ("Cemented junction", with Split) and carries group move/delete plus per-element removal. An element's V2 `type`
+  follows its computed shape on edits unless the author's type already differed from it.
+- `OpticalTrain` gap rows: "Air gap after L1" between items and "Back focus to image" last, with Cement (between two
+  groups on a fixed gap), + Element and, without a stop, + Stop. A prime's focus-scheduled gap edits every keyframe
+  through `setGapSchedule`; zoom and aberration-ring schedules are read-only with a jump to Advanced JSON. The air
+  stop row shows Ø as auto, because the engine sizes the air stop from the f-number or station schedule.
+- `MaterialPicker`: the chip (glass, nd, νd, vendor when the catalog name resolves) opens a popover beside the pane, or
+  under or over the chip on phones, with Search (common-glass row, name matches, nearest to the current nd/νd), a
+  `GlassMap` nd–νd scatter of the catalog (vendor filter, click or arrow keys plus Enter; touch taps only move the
+  cursor and Pick confirms) and Custom nd/νd with nearest matches. Escape closes it and returns focus to the chip.
+  Elements with native spectral data must be reconciled in Advanced JSON before a new glass is chosen.
+- Diagram link: hovering or focusing an element block sets `highlightElementId`, which `LensDiagramPanel` puts ahead of
+  its own hover and selection; clicking an element in the diagram selects it as usual, and the matching card is marked
+  (`aria-current`) and, on wide screens, scrolled into view.
+
+Every input's accessible name includes its element (`L2 front radius`, `L2 thickness`, `Air gap after L2`,
+`L2 material`, `L2/L3 junction radius`). `CommitInput` commits on blur or Enter, keeps refused text, rounds mm values
+for display and reveals the exact value on focus, so an untouched field never rewrites authored precision.
+`BuilderTouchContext` raises fields to 16 px below the wide breakpoint so iOS does not zoom.
+
+The form also edits identity, aperture, close focus and vertical fill. Source, catalog, zoom/focus schedules, rear
+plates and all other authored fields survive edits and JSON transport. `.data.ts` export prints the house root-level
+type import, header, `const LENS_DATA = { ... } satisfies LensDataV2Input` and default export, using canonical group
+order. It retains authored values, not original source comments; it does not import conversion-only optics code. The
+built-in triplet is a synthetic teaching design with catalog N-BK7/N-F2 glasses, approximately 49 mm EFL at f/2.8,
+declared 135 full frame so field-dependent analyses chart to a real format corner.

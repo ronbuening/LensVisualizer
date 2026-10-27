@@ -29,6 +29,7 @@ build metadata.
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
 | `TeleconverterPage.tsx` | `src/pages/` | Teleconverter page at `/teleconverters/:teleconverterKey`: specs, patent, and the lenses it can mount on. No diagram; each lens link opens the viewer with `?v=1&tc=<key>`. |
 | `TeleconvertersIndexPage.tsx` | `src/pages/` | Teleconverter index at `/teleconverters`. |
+| `LensBuilderPage.tsx` | `src/pages/` | Flagged client-only editor at `/lens-builder/`; noindex/nofollow, excluded from metadata/sitemap and navigation. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
@@ -204,7 +205,9 @@ Metadata generation is split across:
   TypeScript compiler API, never running it, and reads V2 identity fields (mounts
   and format live in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
   in the catalog through the converter runner, prints its report, and stops on a refusal. It rewrites a filed V2
-  file's `types/lensDataV2.js` import.
+  file's `types/lensDataV2.js` import. Maker slugs are one safe path segment (an unsafe first word is reduced to its
+  letters and digits), and `assertMovePlanContained` refuses, before anything changes, a move whose source or
+  destination resolves outside `src/lens-data/` through `realpath`. `--dry-run` prints the checked plan only.
   The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
   each value (`walkLensDataSource`).
 - `scripts/lens-summaries.mjs` - lens and teleconverter display summaries, selected from canonical prescriptions
@@ -241,3 +244,7 @@ When adding a route pattern:
    `CLIENT_ONLY_PATTERNS` in `scripts/prerender.mjs` if it is intentionally not prerendered.
 3. Update `buildRouteFreshness()` and sitemap priority logic if the route should appear in generated SEO artifacts.
 4. Add page smoke tests plus route-sync, SEO, and structured-data tests that apply.
+
+The experimental `/lens-builder` manifest path is conditional on `ENABLE_LENS_BUILDER`. Like comparison paths, it is
+listed in `CLIENT_ONLY_PATTERNS` and has app-shell 200 fallbacks in `public/_redirects`. The viewer mounts inside
+`ClientOnly`, so importing the page during SSR does not access browser APIs.

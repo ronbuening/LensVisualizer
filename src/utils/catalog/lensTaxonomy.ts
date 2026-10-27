@@ -108,13 +108,25 @@ export interface LensMountMetadata {
   sortOrder: number;
 }
 
-export const LENS_MOUNT_BY_ID = Object.fromEntries(LENS_MOUNTS.map((mount) => [mount.id, mount])) as Record<
-  LensMountId,
-  LensMountMetadata
->;
+/**
+ * Index taxonomy rows by id in a null-prototype table. Ids reach these tables from lens data and URLs, so an
+ * inherited name such as `constructor` or `__proto__` must miss like any other unknown id.
+ */
+function idTable<Row extends { id: string }>(rows: readonly Row[]): Record<string, Row> {
+  const table = Object.create(null) as Record<string, Row>;
+  for (const row of rows) table[row.id] = row;
+  return table;
+}
+
+export const LENS_MOUNT_BY_ID = idTable<LensMountMetadata>(LENS_MOUNTS) as Record<LensMountId, LensMountMetadata>;
 
 export function isLensMountId(value: unknown): value is LensMountId {
-  return typeof value === "string" && value in LENS_MOUNT_BY_ID;
+  return typeof value === "string" && Object.hasOwn(LENS_MOUNT_BY_ID, value);
+}
+
+/** Mount metadata for a canonical id; undefined for anything else, so callers can skip it. */
+export function lensMountMetadata(value: unknown): LensMountMetadata | undefined {
+  return isLensMountId(value) ? LENS_MOUNT_BY_ID[value] : undefined;
 }
 
 export const IMAGE_FORMATS = [
@@ -429,7 +441,7 @@ export interface ImageFormatMetadata {
   sortOrder: number;
 }
 
-export const IMAGE_FORMAT_BY_ID = Object.fromEntries(IMAGE_FORMATS.map((format) => [format.id, format])) as Record<
+export const IMAGE_FORMAT_BY_ID = idTable<ImageFormatMetadata>(IMAGE_FORMATS) as Record<
   ImageFormatId,
   ImageFormatMetadata
 >;
@@ -437,9 +449,14 @@ export const IMAGE_FORMAT_BY_ID = Object.fromEntries(IMAGE_FORMATS.map((format) 
 export const DEFAULT_IMAGE_FORMAT_ID: ImageFormatId = "135-full-frame";
 
 export function isImageFormatId(value: unknown): value is ImageFormatId {
-  return typeof value === "string" && value in IMAGE_FORMAT_BY_ID;
+  return typeof value === "string" && Object.hasOwn(IMAGE_FORMAT_BY_ID, value);
+}
+
+/** Format metadata for a canonical id; undefined for anything else, so callers can skip it. */
+export function imageFormatMetadata(value: unknown): ImageFormatMetadata | undefined {
+  return isImageFormatId(value) ? IMAGE_FORMAT_BY_ID[value] : undefined;
 }
 
 export function resolveImageFormatMetadata(value: unknown): ImageFormatMetadata {
-  return isImageFormatId(value) ? IMAGE_FORMAT_BY_ID[value] : IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID];
+  return imageFormatMetadata(value) ?? IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID];
 }

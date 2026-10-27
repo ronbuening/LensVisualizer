@@ -6,6 +6,7 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
+  renameSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -110,6 +111,67 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Rokkor-PG 58mm f/1.2")).toBe("minolta");
     expect(deriveMakerSlug("Zuiko Auto-W 21mm f/2")).toBe("olympus");
     expect(deriveMakerSlug("Acme Prototype 50 mm")).toBe("acme");
+  });
+
+  it("reduces an unsafe maker or name to one plain folder segment", () => {
+    expect(deriveMakerSlug("Lens", "../../../escaped")).toBe("escaped");
+    expect(deriveMakerSlug("../../../escaped Lens")).toBe("escaped");
+    expect(deriveMakerSlug("Lens", "..")).toBe("unattributed");
+    expect(deriveMakerSlug(".hidden Lens")).toBe("hidden");
+    expect(deriveMakerSlug("a\\b/c Lens")).toBe("a-b-c");
+  });
+
+  it.each([
+    ["maker", { maker: "../../../escaped", name: "Escape Test" }],
+    ["name-derived fallback", { name: "../../../escaped Lens" }],
+  ])("files a lens whose %s climbs out of the tree inside it instead", async (_case, identity) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    writeLensDataFile(join(lensDataDir, "Escape.data.ts"), { key: "escape-test", ...identity });
+
+    const [plannedMove] = collectRootLensMovePlan(lensDataDir);
+    expect(plannedMove.targetDir).toBe(join(lensDataDir, "escaped"));
+    await organizeRootLensFiles(lensDataDir, { log: () => undefined });
+    expect(existsSync(join(lensDataDir, "escaped", "Escape.data.ts"))).toBe(true);
+    expect(existsSync(join(lensDataDir, "../../../escaped", "Escape.data.ts"))).toBe(false);
+  });
+
+  it.each([
+    ["destination folder", (lensDataDir: string, outside: string) => symlinkSync(outside, join(lensDataDir, "canon"))],
+    [
+      "source file",
+      (lensDataDir: string, outside: string) => {
+        renameSync(join(lensDataDir, "Escape.data.ts"), join(outside, "Escape.data.ts"));
+        symlinkSync(join(outside, "Escape.data.ts"), join(lensDataDir, "Escape.data.ts"));
+      },
+    ],
+  ])("refuses a %s that a symlink points outside the tree, before changing anything", async (_case, link) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const outside = join(rootDir, "outside");
+    mkdirSync(outside);
+    writeLensDataFile(join(lensDataDir, "Escape.data.ts"), { key: "escape-test", maker: "Canon", name: "Canon Test" });
+    link(lensDataDir, outside);
+    const before = { inside: readdirSync(lensDataDir), outside: readdirSync(outside) };
+    const source = readFileSync(join(lensDataDir, "Escape.data.ts"), "utf-8");
+
+    await expect(organizeRootLensFiles(lensDataDir, { log: () => undefined })).rejects.toThrow(/resolves outside/);
+    expect({ inside: readdirSync(lensDataDir), outside: readdirSync(outside) }).toEqual(before);
+    expect(readFileSync(join(lensDataDir, "Escape.data.ts"), "utf-8")).toBe(source);
+  });
+
+  it("reports the move plan on a dry run and changes nothing", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    writeLensDataFile(join(lensDataDir, "TestLens.data.ts"), { key: "test-lens", maker: "Canon", name: "CANON TEST" });
+    const before = readFileSync(join(lensDataDir, "TestLens.data.ts"), "utf-8");
+    const lines: string[] = [];
+
+    const result = await organizeRootLensFiles(lensDataDir, { log: (line: string) => lines.push(line), dryRun: true });
+    expect(result.movedFileCount).toBe(0);
+    expect(lines.join("\n")).toContain(join(lensDataDir, "canon", "TestLens.data.ts"));
+    expect(readdirSync(lensDataDir)).toEqual(["TestLens.data.ts"]);
+    expect(readFileSync(join(lensDataDir, "TestLens.data.ts"), "utf-8")).toBe(before);
   });
 
   it("plans paired data and analysis moves into canonical maker folders", () => {

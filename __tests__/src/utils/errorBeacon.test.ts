@@ -6,6 +6,7 @@ import {
   reportErrorBeacon,
   resetErrorBeaconSessionForTests,
   sanitizeErrorMessage,
+  setGlobalErrorTelemetryId,
 } from "../../../src/utils/errorBeacon.js";
 
 function installGoatCounterMock() {
@@ -79,6 +80,21 @@ describe("reportErrorBeacon", () => {
     });
   });
 
+  it("sends only a constant telemetry id and the error class when one is given", () => {
+    vi.stubEnv("PROD", true);
+    const count = installGoatCounterMock();
+
+    reportErrorBeacon("lens-diagram-panel", new TypeError('label "secret-surface" failed'), "secret-draft", {
+      telemetryId: "lens-builder",
+    });
+
+    expect(count).toHaveBeenCalledWith({
+      path: "/_error/lens-builder",
+      title: "lens-diagram-panel: TypeError",
+      event: true,
+    });
+  });
+
   it("queues startup errors until the async analytics script is ready", () => {
     vi.useFakeTimers();
     vi.stubEnv("PROD", true);
@@ -121,5 +137,20 @@ describe("installGlobalErrorBeacons", () => {
       title: "unhandled-rejection: rejected boom",
       event: true,
     });
+  });
+
+  it("sends only the constant id while a private-data page redacts window-level reports", () => {
+    vi.stubEnv("PROD", true);
+    const count = installGoatCounterMock();
+    installGlobalErrorBeacons();
+    setGlobalErrorTelemetryId("lens-builder");
+    try {
+      window.dispatchEvent(new ErrorEvent("error", { error: new Error('Element "secret-draft" failed') }));
+    } finally {
+      setGlobalErrorTelemetryId(undefined);
+    }
+
+    expect(count).toHaveBeenCalledWith({ path: "/_error/lens-builder", title: "window-error: Error", event: true });
+    expect(JSON.stringify(count.mock.calls)).not.toContain("secret");
   });
 });

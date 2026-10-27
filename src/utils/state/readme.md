@@ -81,15 +81,15 @@ flowchart LR
 - Direct source files: 15
 - Direct subfolders: 0
 - Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/optics.ts, src/optics/perspective.ts, src/optics/validation.ts, +5 more
-- External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, +2 more
+- External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx, src/pages/LensBuilderPage.tsx, +3 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `authorSortPreference.ts` | Author Sort Preference helper module | none | src/pages/AuthorsIndexPage.tsx | AuthorSort, AUTHOR_SORT_PREFERENCE_KEY, DEFAULT_AUTHOR_SORT, loadAuthorSortPreference, saveAuthorSortPreference |
-| `LensContext.ts` | Lens Context helper module | src/types (2), package:react | src/components/layout (3), src/comparison, src/components/hooks | LensCtxValue, LensStateContext, LensDispatchContext, useLensCtx, useLensDispatch, PanelStateContext, usePanelCtx |
-| `lensReducer.ts` | Lens Reducer module with default export | src/comparison (2), src/types (2), same folder, src/utils/appConfig.ts, src/utils/featureFlags.ts, +1 more | src/components/layout (5), same folder (3), src/components/hooks (2), src/comparison | SET_LENS_A, SET_LENS_B, SET_OPTICAL_CONFIGURATION, SET_TELECONVERTER, SWAP_LENSES, SET_DARK, SET_HIGH_CONTRAST, SET_MOBILE_VIEW, +29 more |
+| `LensContext.ts` | Lens Context helper module | src/types (2), package:react | src/components/layout (3), src/comparison, src/components/hooks, src/pages/LensBuilderPage.tsx | LensCtxValue, LensStateContext, LensDispatchContext, useLensCtx, useLensDispatch, PanelStateContext, usePanelCtx |
+| `lensReducer.ts` | Lens Reducer module with default export | src/comparison (2), src/types (2), same folder, src/utils/appConfig.ts, src/utils/featureFlags.ts, +1 more | src/components/layout (5), same folder (3), src/components/hooks (2), src/comparison, src/pages/LensBuilderPage.tsx | SET_LENS_A, SET_LENS_B, SET_OPTICAL_CONFIGURATION, SET_TELECONVERTER, SWAP_LENSES, SET_DARK, SET_HIGH_CONTRAST, SET_MOBILE_VIEW, +29 more |
 | `lensViewUrlState.ts` | Lens View Url State helper module | src/types (2), src/optics/perspective.ts, src/optics/validation.ts | same folder (5), src/comparison | LensViewQueryState, BuildLensViewQueryOptions, VIEW_STATE_FIELDS, ViewStateField, ViewStateFieldKey, parseLensViewQuery, buildLensViewQuery, buildLensViewQueryFromState, +1 more |
 | `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/utils/catalog, src/utils/seo | same folder | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +4 more |
 | `mtfDataWarnings.ts` | Mtf Data Warnings helper module | src/types | src/components/hooks | noMtfDataWarningsDismissed, getDismissedMtfDataWarnings, dismissMtfDataWarnings, subscribeMtfDataWarnings, resetMtfDataWarnings |
@@ -98,7 +98,7 @@ flowchart LR
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, PREFS_VERSION, loadPrefs |
 | `relationshipViewUrl.ts` | Relationship View Url helper module | none | src/components/relationshipMap (2), src/pages/RelationshipMapPage.tsx | INVENTOR_VIEWS, InventorRelationshipView, inventorViewFromHash, relationshipViewHash |
 | `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash, UNIVERSAL_VIEWS, UniversalMapView, UniversalMapExploreState, universalMapHashPinsView, universalMapExploreFromHash, universalMapExploreHash |
-| `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
-| `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
+| `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout, src/pages/LensBuilderPage.tsx | default, useLensState |
+| `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout, src/pages/LensBuilderPage.tsx | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), src/utils/catalog (2), package:react, src/types | src/components/layout | default, useURLSync |
 | `zoomConversion.ts` | Zoom Conversion helper module | src/optics/optics.ts | same folder (2) | ZoomConvertibleLens, focalLengthToZoomT, zoomTToFocalLength |

@@ -70,6 +70,12 @@ interface LensDiagramPanelProps {
   fillAvailableHeight?: boolean;
   /** Desktop comparison view: the shared dock under both panes replaces this panel's analysis launcher. */
   sharedAnalysisControls?: boolean;
+  /** Passed to DiagramHeader; false hides the Flickr search link. */
+  showPhotoSearch?: boolean;
+  /** Element highlighted from outside the diagram (the lens builder's hovered card); it wins over hover and selection. */
+  highlightElementId?: number | null;
+  /** Constant id error reports use in place of the lens key, for a private draft (the lens builder). */
+  telemetryId?: string;
 }
 
 export default function LensDiagramPanel({
@@ -96,6 +102,9 @@ export default function LensDiagramPanel({
   sideLayoutEnabled = false,
   fillAvailableHeight = false,
   sharedAnalysisControls = false,
+  showPhotoSearch,
+  highlightElementId = null,
+  telemetryId,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -321,7 +330,12 @@ export default function LensDiagramPanel({
     [dispatch, selectedElementPanelId, sel],
   );
 
-  const act = L ? (zoomPanActive ? null : sel || hov) : null;
+  /* An outside highlight for an element the built lens lacks (a draft edit not yet rebuilt) must not mask hover. */
+  const externalHighlight =
+    highlightElementId != null && L?.elements.some((element) => element.id === highlightElementId)
+      ? highlightElementId
+      : null;
+  const act = L ? (zoomPanActive ? null : (externalHighlight ?? (sel || hov))) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
   const heavyRayWork = Boolean(L && isHeavyLensForRayWork(L));
   const effectiveRayDensity = sliderInteracting && heavyRayWork ? "normal" : rayDensity;
@@ -351,26 +365,28 @@ export default function LensDiagramPanel({
     chromV,
     lensKey: systemKey,
   });
+  /* Issue links name the lens, except for a private draft. */
+  const reportKey = telemetryId ?? systemKey;
   return (
-    <PanelErrorBoundary lensKey={systemKey}>
+    <PanelErrorBoundary lensKey={systemKey} telemetryId={telemetryId}>
       {buildError ? (
         <LensDiagramErrorState
           error={buildError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (buildLens)"
           title="Failed to build lens"
         />
       ) : shapeError ? (
         <LensDiagramErrorState
           error={shapeError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (element shapes)"
           title="Failed to compute lens element shapes"
         />
       ) : rayError ? (
         <LensDiagramErrorState
           error={rayError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (ray tracing)"
           title="Ray tracing failed"
         />
@@ -565,6 +581,7 @@ export default function LensDiagramPanel({
                 onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
                 minHeaderHeight={minHeaderHeight}
                 comparisonDetails={comparisonDetails}
+                showPhotoSearch={showPhotoSearch}
               />
             ) : null
           }

@@ -116,6 +116,13 @@ export function collectRootLensMovePlan(
   },
 ): LensMovePlanEntry[];
 
+/** Throws unless every maker folder is one safe segment and every move resolves inside `lensDataDir`. */
+export function assertMovePlanContained(
+  lensDataDir: string,
+  movePlan: LensMovePlanEntry[],
+  options?: { realpath?: (path: string) => string; lstat?: (path: string) => unknown },
+): void;
+
 export function organizeRootLensFiles(
   lensDataDir: string,
   options?: {
@@ -126,5 +133,7 @@ export function organizeRootLensFiles(
     rewriteImport?: (filePath: string) => void;
     stdout?: { write(text: string): unknown };
     stderr?: { write(text: string): unknown };
+    /** Check and log the move plan, then return without converting or moving anything. */
+    dryRun?: boolean;
   },
 ): Promise<OrganizeRootLensFilesResult>;

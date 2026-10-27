@@ -49,6 +49,7 @@ export function createTheme(t: ThemeColorTokens): Theme {
  */
 const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
   dark: createTheme({
+    error: "#ff8a8a",
     bg: "#0c0d10",
     headerBgColor: "#0c0d12",
     headerBgImage: "linear-gradient(180deg,rgba(14,16,22,1),rgba(10,11,14,1))",
@@ -166,6 +167,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     _strokeDefault: "rgba(180,200,225,0.55)",
   }),
   light: createTheme({
+    error: "#a31515",
     bg: "#ffffff",
     headerBgColor: "#f5f6f8",
     headerBgImage: "none",
@@ -283,6 +285,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     _strokeDefault: "rgba(60,80,110,0.55)",
   }),
   darkHC: createTheme({
+    error: "#ffaaaa",
     bg: "#000000",
     headerBgColor: "#040507",
     headerBgImage: "linear-gradient(180deg,rgba(8,10,14,1),rgba(0,0,0,1))",
@@ -400,6 +403,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     _strokeDefault: "rgba(195,215,240,0.70)",
   }),
   lightHC: createTheme({
+    error: "#8b0000",
     bg: "#ffffff",
     headerBgColor: "#f2f3f6",
     headerBgImage: "none",
