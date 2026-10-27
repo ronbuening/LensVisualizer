@@ -279,7 +279,7 @@ Semi-diameters were estimated by tracing a marginal ray at f/1.4 (EP SD = 17.86 
 
 The edge thickness constraint proved to be the binding limit for the front group elements. L1's meniscus geometry restricts its SD to approximately 18.9 mm before the edge falls below 0.5 mm, yet the f/1.4 marginal ray requires a minimum of 17.86 mm — leaving only about 1 mm of headroom for off-axis beam contribution. L2 is similarly constrained, with its steeper curvatures imposing a maximum SD of approximately 17 mm for a 0.5 mm edge.
 
-The most severe constraint is the slope limit on surface r₆ (L3 rear). With R₆ = 13.82 mm scaled, the maximum SD for a slope angle of 64.2° (sd/|R| = 0.90 for a sphere) is approximately 12.4 mm. The f/1.4 marginal ray crosses r₆ at 11.7 mm, inside that limit, so the steep surface does not clip the axial beam; its deep sag (7.72 mm at the rim) instead fixes how close to it the stop can sit (§3.4).
+The most severe constraint is the slope limit on surface r₆ (L3 rear). With R₆ = 13.82 mm scaled, the maximum SD for a slope angle of 64.2° (sd/|R| = 0.90 for a sphere) is approximately 12.4 mm. However, the f/1.4 marginal ray reaches 13.1 mm at this surface. Setting SD = 12.4 mm means the rendered aperture is marginally smaller than the true f/1.4 beam — the steep rear surface of L3 becomes the effective vignetting aperture, trimming the outermost rays before they reach the stop. This is a genuine physical characteristic of high-aperture Double Gauss designs where the negative meniscus surfaces operate at extreme slopes.
 
 These tight constraints confirm that the production lens vignettes significantly at full field and full aperture — a well-known characteristic of f/1.4 Double Gauss designs, which typically lose 1–2 stops of illumination at the extreme corners when wide open.
 
@@ -292,15 +292,15 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₁ | 1 | 18.5 | L1 edge thickness |
 | r₂ | 2 | 18.5 | L1 edge thickness |
 | r₃ | 3 | 16.5 | L2 edge thickness |
-| r₄ | 4 | 15.4 | f/1.4 marginal ray (15.30 mm) |
-| r₅ | 5 | 14.5 | f/1.4 marginal ray (14.45 mm) |
+| r₄ | 4 | 15.0 | Marginal ray + off-axis margin |
+| r₅ | 5 | 13.0 | Marginal ray + margin |
 | r₆ | 6 | 12.4 | R₆ slope limit (sd/|R| = 0.90) |
 | STO | STO | 11.6 | f/1.4 marginal ray at stop (derived) |
 | r₇ | 7 | 11.5 | Marginal ray + margin |
-| r₈ | 8 | 14.7 | Cemented junction; L5 square with r₉ |
-| r₉ | 9 | 14.7 | f/1.4 marginal ray (14.69 mm) |
-| r₁₀ | 10 | 15.7 | L6 square with r₁₁ |
-| r₁₁ | 11 | 15.7 | f/1.4 marginal ray (15.63 mm); L6 edge 0.77 mm |
+| r₈ | 8 | 13.0 | Cemented junction (doublet) |
+| r₉ | 9 | 13.0 | L5 edge thickness / marginal ray |
+| r₁₀ | 10 | 14.0 | Marginal ray + off-axis |
+| r₁₁ | 11 | 14.0 | L6 edge thickness |
 | r₁₂ | 12 | 16.5 | Corner chief ray (15.87 mm) + clearance |
 | r₁₃ | 13 | 16.5 | Corner chief ray (15.93 mm) + clearance |
 

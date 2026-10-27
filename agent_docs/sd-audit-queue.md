@@ -282,11 +282,11 @@ The other diagnoses are not rim problems:
   rim (a prescription suspect). Four inferred stop planes that sat inside the preceding surface's cap, where the ray
   leaves that surface past the stop plane, were moved just behind the cap: Olympus G.Zuiko Auto-S 50mm f/1.4, Leica
   Elmarit 90mm f/2.8, Zeiss Jena Sonnar 50mm f/2 and Nikon AI-S Zoom-Nikkor 35-70mm f/3.5 (their audit logs give the
-  construction). That uncovered rim limits on the Olympus and the Sonnar, raised in the same pass against their
-  figures; all four now trace their stated f-numbers.
+  construction). That uncovered rim limits on two, now ordinary `rim` rows: the Olympus traces f/1.55 at surface 9
+  (`--raise` asks for six surfaces, up to 13.1 %; read the figure first) and the Sonnar f/2.07 at surface 5
+  (9.5 → 10.0 mm).
 - Stop planes that a neighbouring clear cap crosses inside the wide-open iris, at some station or focus end, which the
-  infinity on-axis audit does not reach. These and the 25-50mm row wait on a feature to trim the long rim "fingers"
-  of deeply concave surfaces where they pass the stop plane. The Canon EF 24mm f/1.4L II's following cap reaches 1.83 mm ahead of its
+  infinity on-axis audit does not reach. The Canon EF 24mm f/1.4L II's following cap reaches 1.83 mm ahead of its
   printed stop at close focus over the inferred 2.423 mm close gap: decide whether the stop travels with the L2 focus
   unit. The Voigtländer Nokton 50mm f/1's inferred surface-8 rim crosses the printed stop plane 0.28 mm inside the
   f/1 iris. The Olympus Zuiko 24mm f/2 (0.03 mm, close focus) and Pentax DA 18-55mm (0.004 mm) are negligible.

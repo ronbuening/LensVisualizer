@@ -132,7 +132,7 @@ const LENS_DATA = {
     /* ── Group 2: Cemented triplet (L2 + L3 + L4) ── */
     { label: "3", R: 18.1, d: 5.0, sd: 13.0, medium: 2 }, // L2 front
     { label: "4", R: 55.0, d: 3.0, sd: 13.0, medium: 3 }, // L2→L3 junction
-    { label: "5", R: -150.0, d: 3.4, sd: 10.0, medium: 4 }, // L3→L4 junction; f/2 on-axis ray (drawn ≈ 11 mm)
+    { label: "5", R: -150.0, d: 3.4, sd: 9.5, medium: 4 }, // L3→L4 junction
     { label: "6", R: 11.85, d: 3.4, sd: 8.25 }, // L4 rear → air; stop just behind this cap (sag 3.34 mm)
 
     /* ── Aperture stop ── */
