@@ -275,8 +275,22 @@ function throughputForField(
   exitPupilPlane: Plane3,
 ): PerspectiveVignettingThroughput | null {
   if (!field?.pupilBundle) return null;
+  // A sample no ray could be aimed at keeps its quadrature weight and transmits nothing.
+  const unaimed = field.pupilBundle.unaimed.map(
+    (sample): PerspectiveVignettingRayContribution => ({
+      weight: sample.weight,
+      transmitted: false,
+      transmission: 0,
+      exitPoint: null,
+      exitNormal: null,
+      sensorPoint: null,
+    }),
+  );
   return integratePerspectiveVignettingRays(
-    field.pupilBundle.samples.map((sample) => perspectiveVignettingRayContribution(sample, exitPupilPlane)),
+    [
+      ...field.pupilBundle.samples.map((sample) => perspectiveVignettingRayContribution(sample, exitPupilPlane)),
+      ...unaimed,
+    ],
     sensorNormal,
   );
 }

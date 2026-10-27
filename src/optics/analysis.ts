@@ -147,6 +147,31 @@ export type {
   DistortionSample,
 } from "./analysis/distortion/distortion.js";
 export {
+  AIMED_PUPIL_MAX_ITERATIONS,
+  AIMED_PUPIL_RESIDUAL_TOLERANCE,
+  prepareAimedPupilLaunch,
+  prepareAimedPupilLaunchForState,
+  prepareAimedPupilTrace,
+} from "./analysis/pupils/aimedPupil.js";
+export type {
+  AimedBoundingSphereField,
+  AimedFiniteObjectField,
+  AimedLaunchFrameField,
+  AimedObjectPlaneField,
+  AimedPupilAimedRay,
+  AimedPupilAperture,
+  AimedPupilBlockedRay,
+  AimedPupilFieldGeometry,
+  AimedPupilLaunch,
+  AimedPupilLaunchSurface,
+  AimedPupilRay,
+  AimedPupilSampleInput,
+  AimedPupilTrace,
+  AimedPupilTracedRay,
+  AimedPupilUnaimedRay,
+  AimedPupilUnaimedReason,
+} from "./analysis/pupils/aimedPupil.js";
+export {
   PUPIL_ABERRATION_SAMPLE_COUNT,
   computeBothPupilAberrationProfiles,
   computeExitPupilAberrationProfile,

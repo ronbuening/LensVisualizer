@@ -317,11 +317,6 @@ const ANALYSIS_NUMERIC_LEAVES: Readonly<Record<string, AnalysisNumericLeaf>> = {
       "L: RuntimeLens, context: BokehTraceContext, sensorZ: number, currentEPSD: number, currentPhysStopSD: number, label: string, sampling: AnalysisSamplingOptions = {}",
     reason: "Reduces footprints from the existing prepared context at an independent sensor plane and aperture.",
   },
-  "src/optics/analysis/chromatic/rayFan.ts#traceOffAxisChromaticMarginal": {
-    parameters:
-      "geometry: ProjectionAwareOffAxisFieldGeometry, fraction: number, adapter: PreparedRayTrace, L: RuntimeLens, currentEPSD: number, imagePlaneZ: number",
-    reason: "Prepared adapter owns tracing state; pupil fraction, aperture and intercept plane are independent inputs.",
-  },
 };
 
 /* ── Source scanning ── */

@@ -7,7 +7,7 @@
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import { thick } from "../../state/layout.js";
 import { sampleCircularPupil } from "../sampling.js";
-import { prepareRayTrace, skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 import type {
@@ -29,6 +29,8 @@ import {
   computeRealRayHit,
   computeSymmetricRealSample,
   peakAtPlane,
+  prepareAxialZoneLaunch,
+  symmetricZoneFractions,
   rmsAtPlane,
   transverseCoordinateAtPlane,
 } from "./shared.js";
@@ -37,10 +39,15 @@ const SA_BLUR_CHARACTER_MIN_VALID_SAMPLES = 5;
 const SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM = 5e-4;
 const SA_BLUR_CHARACTER_DEFOCUS_SCALE = 0.5;
 
+/** Every zone the SA section traces, as ± pairs: near-axis, marginal candidates and the profile. */
+const SA_ZONE_FRACTIONS = [
+  ...new Set(symmetricZoneFractions([NEAR_AXIS_REAL_FRAC, ...MARGINAL_FRACS, ...PROFILE_FRACS])),
+];
+
 /**
  * Compute on-axis longitudinal and transverse spherical aberration.
  *
- * Uses symmetric real-ray pairs at near-axis and marginal pupil fractions. The
+ * Uses symmetric real-ray pairs aimed at near-axis and marginal fractions of the stop radius. The
  * headline longitudinal SA is marginal intercept minus near-axis intercept; the
  * blur metrics are measured at the current and least-squares best-focus planes.
  *
@@ -52,27 +59,30 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
   const zPos = state.z as number[];
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const { entrancePupilSemiDiameterMm: currentEPSD } = request.aperture;
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
-  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
-  const nearAxisSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, NEAR_AXIS_REAL_FRAC, prepared);
+  const zones = prepareAxialZoneLaunch(request, SA_ZONE_FRACTIONS);
+  if (zones === null) return null;
+  const nearAxisSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, NEAR_AXIS_REAL_FRAC, zones);
   if (nearAxisSample === null) return null;
 
+  // The stop no longer clips an aimed zone: a later candidate stands in only when another aperture vignettes this one.
   let marginalSample = null;
   for (const fraction of MARGINAL_FRACS) {
-    marginalSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+    if (zones.unaimed(fraction)) break;
+    marginalSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, fraction, zones);
     if (marginalSample !== null) break;
   }
   if (marginalSample === null) return null;
 
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
-    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, zones);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, zones);
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
   });
@@ -106,6 +116,7 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
     bestFocusZ,
     bestFocusShiftMm: bestFocusZ - imagePlaneZ,
     validSampleCount: hits.length,
+    unaimedZoneCount: PROFILE_FRACS.filter((fraction) => zones.unaimed(fraction)).length,
   };
 }
 
@@ -123,17 +134,18 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
   const zPos = state.z as number[];
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const { entrancePupilSemiDiameterMm: currentEPSD } = request.aperture;
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return [];
 
-  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
+  const zones = prepareAxialZoneLaunch(request, symmetricZoneFractions(PROFILE_FRACS));
+  if (zones === null) return [];
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
-    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, zones);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, zones);
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
   });

@@ -11,6 +11,7 @@ import {
   uniformFieldFraction,
 } from "../sampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
+import type { AimedPupilUnaimedReason } from "../pupils/aimedPupil.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
@@ -32,9 +33,10 @@ export interface SphericalAberrationBlurCharacterResult {
   rearDefocus: SphericalAberrationBlurCharacterSample;
 }
 
-/** Result of a spherical aberration computation. */
+/** Result of a spherical aberration computation. Fractions are of the stop radius the zones are aimed at. */
 export interface SphericalAberrationResult {
   nearAxisFraction: number;
+  /** Marginal candidate used: the first one no aperture vignettes. */
   marginalFraction: number;
   longitudinalSaMm: number;
   longitudinalSaUm: number;
@@ -53,16 +55,22 @@ export interface SphericalAberrationResult {
   bestFocusZ: number;
   bestFocusShiftMm: number;
   validSampleCount: number;
+  /** Profile zones with no ray aimed at their stop fraction on either side. */
+  unaimedZoneCount: number;
 }
 
 /** One dense pupil sample for the meridional coma view. */
 export interface MeridionalComaSample {
   index: number;
   pupilFraction: number;
+  /** Launch height of the traced ray in mm; NaN for an unaimed sample. */
   launchHeight: number;
   imageHeight: number | null;
   relativeImageHeight: number | null;
+  /** Vignetted: an aperture blocked the aimed ray. */
   clipped: boolean;
+  /** Why no ray could be aimed at this sample's stop position, or null. */
+  unaimedReason: AimedPupilUnaimedReason | null;
 }
 
 /** Dense meridional coma analysis result for the current lens state. */
@@ -72,6 +80,8 @@ export interface MeridionalComaResult {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
+  unaimedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -92,10 +102,14 @@ export interface MeridionalComaResult {
 export interface SagittalComaSample {
   index: number;
   pupilFraction: number;
+  /** Sagittal launch coordinate of the traced ray in mm; NaN for an unaimed sample. */
   launchX: number;
   imageX: number | null;
   relativeImageX: number | null;
+  /** Vignetted: an aperture blocked the aimed ray. */
   clipped: boolean;
+  /** Why no ray could be aimed at this sample's stop position, or null. */
+  unaimedReason: AimedPupilUnaimedReason | null;
 }
 
 /** Dense sagittal coma analysis result for the current lens state. */
@@ -105,6 +119,8 @@ export interface SagittalComaResult {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
+  unaimedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -129,6 +145,8 @@ export interface ComaPreviewFieldResult {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
+  unaimedSampleCount: number;
   chiefIntercept: number;
   minRelativeIntercept: number;
   maxRelativeIntercept: number;
@@ -164,6 +182,8 @@ export interface ComaPointCloudPreviewFieldResult {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
+  unaimedSampleCount: number;
   chiefIntercept: number;
   minRelativeTangentialImageHeight: number;
   maxRelativeTangentialImageHeight: number;
@@ -359,6 +379,8 @@ export interface BokehFieldResult {
   fieldAngleDeg: number;
   totalRays: number;
   passedRays: number;
+  /** Rays no launch could be aimed at the stop for; neither traced nor vignetted. */
+  unaimedRays: number;
   points: BokehPoint[];
   centroidSagittal: number;
   centroidTangential: number;

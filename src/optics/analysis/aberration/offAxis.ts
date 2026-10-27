@@ -23,7 +23,6 @@ import {
 } from "../../state/fieldAdapters.js";
 import { solveChiefRay as solvePreparedChiefRay } from "../../field/chiefRaySolve.js";
 import type { ChiefRaySolveResult } from "../../field/chiefRaySolve.js";
-import { offsetVectorFieldRay } from "../../field/launch.js";
 import type { FieldGeometryState, VectorFieldRayLaunch } from "../../field/launch.js";
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
@@ -31,6 +30,8 @@ import { isFisheyeProjection, projectionLaunchSlopeForField } from "../../field/
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { bestRelativeFocusPlane } from "./shared.js";
 import type { TransverseFocusHit } from "./shared.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
+import type { AimedPupilLaunch, AimedPupilUnaimedReason } from "../pupils/aimedPupil.js";
 
 /** Orientation of an orthogonal off-axis pupil fan. */
 export type OffAxisFanOrientation = "tangential" | "sagittal";
@@ -85,24 +86,34 @@ export interface OffAxisTracedSample {
   imagePoint: SkewImagePlaneIntercept;
 }
 
+/** A pupil sample no ray could be aimed at; it is reported, never traced. */
+export interface OffAxisUnaimedSample {
+  sourceSampleIndex: number;
+  reason: AimedPupilUnaimedReason;
+}
+
 /** Complete off-axis bundle with chief ray and surviving pupil samples. */
 export interface OffAxisBundle {
   geometry: ProjectionAwareOffAxisFieldGeometry;
   chiefRay: OffAxisChiefRaySample;
   sampleCount: number;
   validSampleCount: number;
+  /** Aimed samples an aperture blocked (vignetted). */
   clippedSampleCount: number;
+  /** Samples with no aimed ray, which are neither traced nor counted as clipped. */
+  unaimedSampleCount: number;
+  unaimedSamples: OffAxisUnaimedSample[];
+  /** The aimed launch whose rays were traced, one per requested sample in request order. */
+  launch: AimedPupilLaunch;
   samples: OffAxisTracedSample[];
 }
 
 function mapTracedSample(
   sample: SkewBundleSourceSample,
-  entrancePupilSemiDiameter: number,
-  yChief: number,
   trace: SkewRayTraceResult,
   imagePoint: SkewImagePlaneIntercept,
-  launchX = sample.xFraction * entrancePupilSemiDiameter,
-  launchY = yChief + sample.yFraction * entrancePupilSemiDiameter,
+  launchX: number,
+  launchY: number,
 ): OffAxisTracedSample {
   return {
     index: sample.index,
@@ -429,17 +440,17 @@ export function traceOffAxisChiefRay(
 }
 
 /**
- * Trace an arbitrary set of pupil samples around an off-axis chief ray.
+ * Trace an arbitrary set of pupil samples about an off-axis chief ray.
  *
- * Scalar geometry launches chief-relative skew rays from the entrance pupil.
- * Vector geometry offsets the bounding-sphere launch using radial/sagittal pupil
- * axes so fisheye fields stay in a consistent 3D launch convention.
+ * Sample coordinates are positions on the real stop: each sample is aimed through `prepareAimedPupilLaunch` at
+ * (px·R, py·R) on the stop, along the field's own launch (object-plane slope or bounding-sphere vector), and its
+ * returned ray is traced through every aperture. Unaimed samples are counted with their reason and not traced.
  *
+ * @param request - prepared geometry and current stop radius
  * @param samples - orthogonal or circular pupil samples
  * @param geometry - scalar or vector off-axis field geometry
- * @param state - prepared geometry
- * @param channel - optional chromatic channel
- * @returns chief ray plus surviving traced samples, or null when chief ray fails
+ * @param channel - optional chromatic channel, aimed and traced at that wavelength
+ * @returns chief ray plus surviving traced samples, or null when the chief ray fails
  */
 export function traceOffAxisBundleFromSamples(
   request: AnalysisRequest,
@@ -456,45 +467,19 @@ export function traceOffAxisBundleFromSamples(
   const chiefRay = traceOffAxisChiefRay(request, geometry, channel, adapter);
   if (chiefRay === null) return null;
 
-  const tracedSamples = samples.flatMap((sample) => {
-    if (isOffAxisVectorFieldGeometry(geometry)) {
-      const vectorRay = offsetVectorFieldRay(
-        geometry.vectorLaunch,
-        sample.xFraction * entrancePupilSemiDiameter,
-        sample.yFraction * entrancePupilSemiDiameter,
-      );
-      const trace = adapter.skewVector(vectorRay);
-      if (trace.clipped) return [];
+  const launch = prepareAimedPupilLaunch(request, samples, geometry, channel);
+  if (launch === null) return null;
+  const tracer = prepareAimedPupilTrace(request.preparedGeometry, launch, channel);
+  const vector = isOffAxisVectorFieldGeometry(geometry);
 
-      const imagePoint = skewImagePlaneIntercept(
-        trace.x,
-        trace.y,
-        trace.ux,
-        trace.uy,
-        geometry.lastSurfZ,
-        geometry.imagePlaneZ,
-      );
-      if (imagePoint === null) return [];
-
-      return [
-        mapTracedSample(
-          sample,
-          entrancePupilSemiDiameter,
-          0,
-          trace,
-          imagePoint,
-          vectorRay.origin[0],
-          vectorRay.origin[1],
-        ),
-      ];
+  const unaimedSamples: OffAxisUnaimedSample[] = [];
+  const tracedSamples = samples.flatMap((sample, position) => {
+    const ray = launch.rays[position];
+    if (ray.status === "unaimed") {
+      unaimedSamples.push({ sourceSampleIndex: sample.index, reason: ray.reason });
+      return [];
     }
-
-    const trace = adapter.skew(
-      sample.xFraction * entrancePupilSemiDiameter,
-      geometry.yChief + sample.yFraction * entrancePupilSemiDiameter,
-      0,
-      geometry.uField,
-    );
+    const trace = tracer.skew(ray);
     if (trace.clipped) return [];
 
     const imagePoint = skewImagePlaneIntercept(
@@ -507,7 +492,9 @@ export function traceOffAxisBundleFromSamples(
     );
     if (imagePoint === null) return [];
 
-    return [mapTracedSample(sample, entrancePupilSemiDiameter, geometry.yChief, trace, imagePoint)];
+    // Scalar launches report their first-vertex-plane coordinates, vector launches their origin.
+    const [launchX, launchY] = vector ? [ray.origin[0], ray.origin[1]] : ray.launch;
+    return [mapTracedSample(sample, trace, imagePoint, launchX, launchY)];
   });
 
   return {
@@ -515,7 +502,10 @@ export function traceOffAxisBundleFromSamples(
     chiefRay,
     sampleCount: samples.length,
     validSampleCount: tracedSamples.length,
-    clippedSampleCount: samples.length - tracedSamples.length,
+    clippedSampleCount: samples.length - tracedSamples.length - unaimedSamples.length,
+    unaimedSampleCount: unaimedSamples.length,
+    unaimedSamples,
+    launch,
     samples: tracedSamples,
   };
 }

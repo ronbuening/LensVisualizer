@@ -41,7 +41,7 @@ import {
   epAtZoomClamped as epAtZoom,
 } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
-import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay, traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js";
@@ -152,6 +152,13 @@ function standardizedFieldFocusAt(
 
 function mkSingleElement(): RuntimeLens {
   return buildSimplePositiveElementLens("test-aberration-single-element");
+}
+
+/** The singlet with element rims narrower than its stop, so they vignette what the stop admits. */
+function mkVignettedSingleElement(elementSd: number): RuntimeLens {
+  return buildSimplePositiveElementLens(`test-aberration-vignetted-single-element-${Math.round(elementSd * 100)}`, {
+    elementSd,
+  });
 }
 
 describe("computeSphericalAberration", () => {
@@ -280,24 +287,33 @@ describe("computeSphericalAberration", () => {
     expect(result!.longitudinalSaMm).toBeLessThan(0);
   });
 
-  it("uses a near-axis real-ray reference fraction", () => {
+  it("references a near-axis zone aimed at that fraction of the stop radius", () => {
     const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
     const lastSurfZ = zPos[L.N - 1];
+    const request = analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD, currentPhysStopSD });
+    const state = request.preparedGeometry;
+    const lead = state.lens.constants.rayLead ?? 0;
+    const stopHeight = (height: number) =>
+      traceEngineRay(
+        state,
+        { origin: [0, height, state.z[0] - lead], direction: [0, 0, 1] },
+        { stopAt: state.lens.stop.surfaceIndex + 1 },
+      ).terminalPoint[1];
+    // Independent of the analysis's Newton aim: bisect the launch height onto 0.1 R at the stop.
+    let lo = 0;
+    let hi = currentEPSD;
+    for (let i = 0; i < 80; i++) {
+      const mid = (lo + hi) / 2;
+      if (stopHeight(mid) < NEAR_AXIS_REAL_FRAC * currentPhysStopSD) lo = mid;
+      else hi = mid;
+    }
 
-    const nearAxisRay = traceRay(NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L, 0);
+    const nearAxisRay = traceRay(lo, 0, zPos, 0, 0, undefined, true, L, 0);
     expect(nearAxisRay.clipped).toBe(false);
     const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
-    const result = computeSphericalAberration(
-      analysisRequestAt(L, {
-        zPos,
-        focusT: 0,
-        zoomT: 0,
-        currentEPSD,
-        currentPhysStopSD,
-      }),
-    );
+    const result = computeSphericalAberration(request);
     expect(result).not.toBeNull();
     expect(result!.nearAxisFraction).toBe(NEAR_AXIS_REAL_FRAC);
     expect(result!.nearAxisRealIntercept).toBeCloseTo(nearAxisIntercept, 6);
@@ -479,23 +495,26 @@ describe("computeSphericalAberration", () => {
 
   /* ── Clipped ray handling ── */
 
-  it("returns null when stop is too small to pass the marginal ray", () => {
-    const L = sharedSonnar50f15();
+  it("returns null when an element rim vignettes every marginal candidate", () => {
+    // Zones are aimed inside the 12 mm stop, so only the 6 mm element rims can clip them: 0.1 R passes, 0.8 R does not.
+    const L = mkVignettedSingleElement(6);
     const { z: zPos } = doLayout(0, 0, L);
-    const { currentEPSD } = apertureAt(L, 0, 0);
 
-    /* Use a tiny stop that will clip the 0.95× marginal ray */
-    const tinyStopSD = currentEPSD * 0.01;
     const result = computeSphericalAberration(
-      analysisRequestAt(L, {
-        zPos,
-        focusT: 0,
-        zoomT: 0,
-        currentEPSD,
-        currentPhysStopSD: tinyStopSD,
-      }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
     );
     expect(result).toBeNull();
+  });
+
+  it("falls back to the next marginal candidate only when an element rim vignettes the first", () => {
+    // 0.97 R = 11.64 mm clears neither rim edge; 0.95 R = 11.4 mm passes the 11.5 mm rims.
+    const L = mkVignettedSingleElement(11.5);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
+    );
+    expect(result?.marginalFraction).toBe(0.95);
   });
 });
 
@@ -679,12 +698,13 @@ describe("computeSAProfile", () => {
 
   /* ── Edge cases ── */
 
-  it("returns empty array when fewer than two zone samples survive clipping", () => {
-    const L = mkSingleElement();
+  it("returns empty array when fewer than two zone samples survive vignetting", () => {
+    // Every profile zone (from 0.05 R = 0.6 mm) lies outside the 0.5 mm element rims.
+    const L = mkVignettedSingleElement(0.5);
     const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(
-      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.5 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
     );
     expect(profile).toEqual([]);
   });
@@ -903,12 +923,12 @@ describe("computeMeridionalComa", () => {
     expect(result!.spanMm).toBeCloseTo(result!.maxRelativeIntercept - result!.minRelativeIntercept, 8);
   });
 
-  it("returns null when clipping removes one side of the pupil fan", () => {
-    const L = mkSingleElement();
+  it("returns null when vignetting leaves the fan too few rays", () => {
+    const L = mkVignettedSingleElement(0.05);
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeMeridionalComa(
-      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.05 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
     );
     expect(result).toBeNull();
   });
@@ -1200,11 +1220,11 @@ describe("computeComaPreview", () => {
   });
 
   it("returns null when fewer than two preview tiles are usable", () => {
-    const L = mkSingleElement();
+    const L = mkVignettedSingleElement(0.2);
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeComaPreview(
-      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.2 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
     );
     expect(result).toBeNull();
   });
@@ -1350,11 +1370,11 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("returns null when fewer than two point-cloud preview tiles are usable", () => {
-    const L = mkSingleElement();
+    const L = mkVignettedSingleElement(0.2);
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeComaPointCloudPreview(
-      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.2 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 12 }),
     );
     expect(result).toBeNull();
   });

@@ -1,0 +1,730 @@
+/**
+ * Aimed pupil launch — pupil coordinates are positions on the real aperture stop.
+ *
+ * A sample at normalised (px, py) is the ray from the field's object point that crosses the stop surface at
+ * (px·R, py·R) about the axis, R being the current stopped-down stop radius: the convention of OpticStudio with ray
+ * aiming on and of CODE V. Every ray-based analysis launches its pupil samples here, so one field shows the same
+ * pupil in every tab, and an external cross-checker calling this function gets the tabs' rays bit for bit.
+ *
+ * Lens-design programs aim through mathematically extended surfaces. Here a ray far outside a clear aperture can
+ * meet a surface beyond the next vertex, where the surfaces of an element cross, and the trace fails. A target only
+ * such rays could reach is `blocked` when the ray toward it is already outside a clear aperture before it fails: its
+ * light is vignetted there, and the returned blocking ray is traced as clipped.
+ */
+
+import type { ChromaticChannel, RayTraceResult } from "../../../types/optics.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../../chromatic/channels.js";
+import type { VectorFieldRayLaunch } from "../../field/launch.js";
+import { directionFromSkewSlope } from "../../math/vector.js";
+import { transmissionTraceCapture } from "../../trace/bulkAbsorption.js";
+import { prepareEngineTrace } from "../../trace/rayAdapters.js";
+import { engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult } from "../../trace/runtimeRayResult.js";
+import type { RuntimeSkewRayTraceResult } from "../../trace/runtimeRayResult.js";
+import { traceToStopViaGeneralized } from "../../trace/stopTrace.js";
+import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
+import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
+import { mtfTraceClassification } from "../mtf/mtfRayClassification.js";
+import type { AnalysisRequest } from "../request.js";
+
+/**
+ * Stop-crossing residual a converged aim accepts, per millimetre of stop radius.
+ *
+ * It is the chief-ray solve's 1e-7 mm at a 1 mm stop, scaled with R so the relative accuracy is the same at every
+ * aperture. The full trace admits the stop out to R plus this tolerance, so a rim sample aimed at R cannot be
+ * blocked by the rounding of its own solve.
+ */
+export const AIMED_PUPIL_RESIDUAL_TOLERANCE = 1e-7;
+/** Stop traces one sample may spend, its seed included. */
+export const AIMED_PUPIL_MAX_ITERATIONS = 24;
+/** Halvings of a correction step that lands where no ray reaches the stop before the target is declared unreachable. */
+const AIMED_PUPIL_MAX_STEP_HALVINGS = 12;
+/** Finite-difference step of the field's launch-to-stop Jacobian, as a fraction of the launch scale. */
+const AIMED_PUPIL_JACOBIAN_STEP = 1e-3;
+/** Smaller steps tried when a Jacobian probe of the chief cannot be traced. */
+const AIMED_PUPIL_JACOBIAN_STEP_RETRIES = 3;
+/** Relative determinant below which the launch-to-stop map is treated as folded at that point. */
+const AIMED_PUPIL_SINGULAR_DETERMINANT = 1e-12;
+/**
+ * Once a step has met an untraceable launch, an accepted step that shrinks the residual by less than this share means
+ * the solve is creeping along the edge of the reachable stop region rather than converging.
+ */
+const AIMED_PUPIL_EDGE_PROGRESS = 0.01;
+
+/** Why a sample has no launch. Unaimed samples are never traced. */
+export type AimedPupilUnaimedReason = "aim-not-converged" | "stop-unreachable" | "trace-failed";
+
+/** How the field launches its rays; the launch coordinates are two lengths in that frame. */
+export type AimedPupilLaunchSurface = "object-plane" | "bounding-sphere" | "finite-object" | "launch-frame";
+
+/** One requested pupil sample in normalised stop coordinates. */
+export interface AimedPupilSampleInput {
+  readonly xFraction: number;
+  readonly yFraction: number;
+  /** Sample weight; equal weights (1 / sample count) when absent. */
+  readonly weight?: number | null;
+}
+
+/** Collimated field launched on the first-vertex plane at slope `uField` (scalar off-axis geometry). */
+export interface AimedObjectPlaneField {
+  readonly uField: number;
+  /** Solved chief-ray launch height on the first-vertex plane, in mm. */
+  readonly yChief: number;
+}
+
+/** Collimated fisheye or past-cap field launched from the bounding sphere (vector off-axis geometry). */
+export interface AimedBoundingSphereField {
+  readonly kind: "vector";
+  readonly vectorLaunch: VectorFieldRayLaunch;
+}
+
+/** Finite object point; rays leave it through points of a launch plane at `leadZ`. */
+export interface AimedFiniteObjectField {
+  readonly kind: "finite-object";
+  readonly objectPoint: Vec3;
+  /** Axial position of the launch plane in mm, between the object and the first surface. */
+  readonly leadZ: number;
+}
+
+/**
+ * Collimated chief ray already solved through the stop centre, with its pupil axes (perspective lens frame).
+ * Pupil coordinates follow these axes: x along the sagittal axis, y along the radial one, both as they meet the stop.
+ */
+export interface AimedLaunchFrameField {
+  readonly kind: "launch-frame";
+  readonly chiefRay: Ray3;
+  readonly sagittalAxis: Vec3;
+  readonly radialAxis: Vec3;
+  readonly launchBoundT?: number;
+}
+
+/** Field geometry the aim launches from; the off-axis scalar and vector geometries qualify as they are. */
+export type AimedPupilFieldGeometry =
+  | AimedObjectPlaneField
+  | AimedBoundingSphereField
+  | AimedFiniteObjectField
+  | AimedLaunchFrameField;
+
+interface AimedPupilRayBase {
+  /** Position of the sample in the requested list. */
+  index: number;
+  xFraction: number;
+  yFraction: number;
+  /** Requested stop crossing (px·R, py·R) in mm. */
+  targetStopMm: readonly [number, number];
+  /** Stop crossing of the returned ray, or of the last traced attempt for an unaimed sample. */
+  achievedStopMm: readonly [number, number] | null;
+  /** Distance between achieved and target crossings in mm; NaN when nothing reached the stop. */
+  residualMm: number;
+  /** Stop traces this sample spent. */
+  iterations: number;
+  weight: number;
+  /** Launch coordinates of the returned ray (or last attempt) in the field's launch frame, in mm. */
+  launch: readonly [number, number];
+}
+
+/** A sample whose ray crosses the stop at its target within the tolerance. */
+export interface AimedPupilAimedRay extends AimedPupilRayBase {
+  status: "aimed";
+  reason: null;
+  /** Ray origin in optical coordinates; tabs trace exactly this ray. */
+  origin: Vec3;
+  /** Unit ray direction. */
+  direction: Vec3;
+}
+
+/**
+ * A sample whose target no traceable ray reaches because a clear aperture before the stop blocks the way: the ray
+ * toward it leaves that aperture before the trace fails. Its light is vignetted; the returned ray is that blocking
+ * ray, which the full trace clips.
+ */
+export interface AimedPupilBlockedRay extends AimedPupilRayBase {
+  status: "blocked";
+  reason: null;
+  origin: Vec3;
+  direction: Vec3;
+  /** Surface whose clear aperture blocks the ray. */
+  blockedAtSurfaceIndex: number;
+}
+
+/** A sample no ray was found for; it is counted with its reason and never traced. */
+export interface AimedPupilUnaimedRay extends AimedPupilRayBase {
+  status: "unaimed";
+  reason: AimedPupilUnaimedReason;
+  origin: null;
+  direction: null;
+}
+
+export type AimedPupilRay = AimedPupilAimedRay | AimedPupilBlockedRay | AimedPupilUnaimedRay;
+/** A sample with a ray to trace: aimed, or blocked before the stop. */
+export type AimedPupilTracedRay = AimedPupilAimedRay | AimedPupilBlockedRay;
+
+/** One field's aimed launch for a list of pupil samples. */
+export interface AimedPupilLaunch {
+  launchSurface: AimedPupilLaunchSurface;
+  stopSurfaceIndex: number;
+  /** Stop radius R the targets scale with, in mm. */
+  stopSemiDiameterMm: number;
+  residualToleranceMm: number;
+  /** Stop radius the full trace checks: R plus the residual tolerance (the rim rule). */
+  clipSemiDiameterMm: number;
+  launchBoundT?: number;
+  /** The stop-centre ray (0, 0). */
+  chief: AimedPupilRay;
+  /** One ray per requested sample, in request order. */
+  rays: AimedPupilRay[];
+  aimedCount: number;
+  blockedCount: number;
+  unaimedCount: number;
+  unaimedByReason: Readonly<Record<AimedPupilUnaimedReason, number>>;
+}
+
+/** Aperture inputs of a state-level aim. */
+export interface AimedPupilAperture {
+  /** Current stop radius R in mm. */
+  stopSemiDiameterMm: number;
+  /** Size of the beam on the launch frame in mm (the paraxial entrance-pupil radius); scales the Jacobian probes. */
+  launchScaleMm: number;
+}
+
+type Vec2 = readonly [number, number];
+/** Row-major 2×2 launch-to-stop Jacobian [[∂x/∂a, ∂x/∂b], [∂y/∂a, ∂y/∂b]]. */
+type Matrix2 = [number, number, number, number];
+
+interface LaunchFrame {
+  surface: AimedPupilLaunchSurface;
+  ray(a: number, b: number): Ray3;
+  /** Stop crossing (mm) of normalised pupil coordinates at stop radius R. */
+  stopTarget(xFraction: number, yFraction: number, R: number): Vec2;
+  /** Launch coordinates of the chief seed. */
+  chief: Vec2;
+  launchBoundT?: number;
+}
+
+interface FieldModel {
+  frame: LaunchFrame;
+  stopAt: (launch: Vec2) => Vec2 | null;
+  /** Surface whose clear aperture clips a launch before the stop, or null. */
+  blockedAt: (launch: Vec2) => number | null;
+  toleranceMm: number;
+  chief: Vec2;
+  chiefStop: Vec2 | null;
+  jacobian: Matrix2 | null;
+}
+
+interface SampleSolve {
+  status: AimedPupilRay["status"];
+  reason: AimedPupilUnaimedReason | null;
+  launch: Vec2;
+  stop: Vec2 | null;
+  iterations: number;
+  /** For a blocked sample: the blocking launch and the surface that clips it. */
+  blocked?: { launch: Vec2; surfaceIndex: number };
+}
+
+/**
+ * Aim pupil samples at the real stop for one field of the request's current state.
+ *
+ * Each sample's launch is solved by Newton's method on its two launch coordinates, seeded from the chief ray and the
+ * field's launch-to-stop Jacobian and corrected with Broyden updates of that Jacobian, so a sample costs two or three
+ * stop traces. Aim rays are traced to the stop without aperture checks; the caller then traces every returned ray
+ * through everything with apertures checked (`prepareAimedPupilTrace`), so a sample the stop admits but another
+ * aperture blocks is vignetted, not unaimed. The solve depends only on the request, field, channel and the sample
+ * itself: no state carries between samples or calls, and nothing is cached.
+ *
+ * @param request - prepared geometry and the current stop radius R
+ * @param samples - pupil samples in normalised stop coordinates
+ * @param geometry - field launch: scalar or vector off-axis geometry, a finite object point or a solved launch frame
+ * @param channel - chromatic channel the rays are aimed at; the authored reference indices when absent
+ * @returns aimed launch, or null when the request has no stop or surfaces
+ */
+export function prepareAimedPupilLaunch(
+  request: AnalysisRequest,
+  samples: readonly AimedPupilSampleInput[],
+  geometry: AimedPupilFieldGeometry,
+  channel?: ChromaticChannel,
+): AimedPupilLaunch | null {
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
+  return prepareAimedPupilLaunchForState(
+    request.preparedGeometry,
+    { stopSemiDiameterMm, launchScaleMm: entrancePupilSemiDiameterMm },
+    samples,
+    geometry,
+    channel,
+  );
+}
+
+/**
+ * State-level form of `prepareAimedPupilLaunch`, for callers that trace a state other than the request's own (the
+ * perspective lens frame) or that hold no request.
+ *
+ * @param state - prepared geometry the rays are traced through
+ * @param aperture - stop radius R and launch scale in mm
+ * @param samples - pupil samples in normalised stop coordinates
+ * @param geometry - field launch
+ * @param channel - chromatic channel the rays are aimed at
+ * @returns aimed launch, or null when there is no stop or surface
+ */
+export function prepareAimedPupilLaunchForState(
+  state: PreparedGeometry,
+  aperture: AimedPupilAperture,
+  samples: readonly AimedPupilSampleInput[],
+  geometry: AimedPupilFieldGeometry,
+  channel?: ChromaticChannel,
+): AimedPupilLaunch | null {
+  const R = aperture.stopSemiDiameterMm;
+  if (!(R > 0) || !Number.isFinite(R) || state.surfaces.length < 1) return null;
+
+  const frame = launchFrame(state, geometry);
+  const toleranceMm = AIMED_PUPIL_RESIDUAL_TOLERANCE * R;
+  const stopAt = stopCrossingTracer(state, frame, channel);
+  const blockedAt = apertureBlockTracer(state, frame, R + toleranceMm, channel);
+  const launchScale =
+    aperture.launchScaleMm > 0 && Number.isFinite(aperture.launchScaleMm) ? aperture.launchScaleMm : R;
+  const model = fieldModel(frame, stopAt, blockedAt, toleranceMm, launchScale);
+
+  const unaimedByReason: Record<AimedPupilUnaimedReason, number> = {
+    "aim-not-converged": 0,
+    "stop-unreachable": 0,
+    "trace-failed": 0,
+  };
+  const defaultWeight = samples.length > 0 ? 1 / samples.length : 1;
+  const toRay = (
+    index: number,
+    xFraction: number,
+    yFraction: number,
+    weight: number,
+    solve: SampleSolve,
+  ): AimedPupilRay => {
+    const target = frame.stopTarget(xFraction, yFraction, R);
+    const residualMm = solve.stop ? Math.hypot(solve.stop[0] - target[0], solve.stop[1] - target[1]) : NaN;
+    const base = {
+      index,
+      xFraction,
+      yFraction,
+      targetStopMm: target,
+      achievedStopMm: solve.stop,
+      residualMm,
+      iterations: solve.iterations,
+      weight,
+      launch: solve.launch,
+    };
+    if (solve.status === "aimed") {
+      const ray = frame.ray(solve.launch[0], solve.launch[1]);
+      return { ...base, status: "aimed", reason: null, origin: ray.origin, direction: ray.direction };
+    }
+    if (solve.status === "blocked" && solve.blocked) {
+      const ray = frame.ray(solve.blocked.launch[0], solve.blocked.launch[1]);
+      return {
+        ...base,
+        launch: solve.blocked.launch,
+        status: "blocked",
+        reason: null,
+        origin: ray.origin,
+        direction: ray.direction,
+        blockedAtSurfaceIndex: solve.blocked.surfaceIndex,
+      };
+    }
+    return { ...base, status: "unaimed", reason: solve.reason ?? "aim-not-converged", origin: null, direction: null };
+  };
+
+  const chief = toRay(-1, 0, 0, 0, aimSample(model, [0, 0]));
+  const rays = samples.map((sample, index) => {
+    const ray = toRay(
+      index,
+      sample.xFraction,
+      sample.yFraction,
+      sample.weight ?? defaultWeight,
+      aimSample(model, frame.stopTarget(sample.xFraction, sample.yFraction, R)),
+    );
+    if (ray.status === "unaimed") unaimedByReason[ray.reason]++;
+    return ray;
+  });
+  const aimedCount = rays.filter((ray) => ray.status === "aimed").length;
+  const blockedCount = rays.filter((ray) => ray.status === "blocked").length;
+
+  return {
+    launchSurface: frame.surface,
+    stopSurfaceIndex: state.lens.stop.surfaceIndex,
+    stopSemiDiameterMm: R,
+    residualToleranceMm: toleranceMm,
+    clipSemiDiameterMm: R + toleranceMm,
+    launchBoundT: frame.launchBoundT,
+    chief,
+    rays,
+    aimedCount,
+    blockedCount,
+    unaimedCount: rays.length - aimedCount - blockedCount,
+    unaimedByReason,
+  };
+}
+
+/** Full-system traces of returned rays with every aperture checked and the stop at the launch's clip radius. */
+export interface AimedPupilTrace {
+  engine(ray: Ray3): EngineTraceResult<"terminal" | "hits">;
+  skew(ray: Ray3): RuntimeSkewRayTraceResult;
+  meridional(ray: Ray3): RayTraceResult;
+}
+
+/**
+ * Bind the full trace of an aimed launch's rays.
+ *
+ * Rays are traced exactly as returned (their directions are already unit vectors), stopping at the first clip. A
+ * clipped ray is vignetted: an aimed ray by an aperture other than the stop, a blocked ray by the aperture named.
+ *
+ * @param state - prepared geometry the launch was aimed through
+ * @param launch - aimed launch supplying the clip radius and launch bound
+ * @param channel - chromatic channel the launch was aimed at
+ * @returns engine, skew-result and meridional-result tracers
+ */
+export function prepareAimedPupilTrace(
+  state: PreparedGeometry,
+  launch: Pick<AimedPupilLaunch, "clipSemiDiameterMm" | "launchBoundT">,
+  channel?: ChromaticChannel,
+): AimedPupilTrace {
+  const shared = {
+    checkSemiDiameter: true,
+    stopSemiDiameter: launch.clipSemiDiameterMm,
+    stopOnClip: true,
+    directionNormalized: true,
+    launchBoundT: launch.launchBoundT,
+    ...channelTraceOptions(state, channel),
+  };
+  const traceSkew = prepareEngineTrace(state, { ...shared, capture: transmissionTraceCapture(state.lens) });
+  const traceMeridional = prepareEngineTrace(state, shared);
+  return {
+    engine: traceSkew,
+    skew: (ray) => engineTraceToRuntimeSkewResult(traceSkew(ray), state.lens),
+    meridional: (ray) =>
+      engineTraceToRuntimeRayResult(traceMeridional(ray), [ray.origin[2], ray.origin[1]], false, state.lens),
+  };
+}
+
+function channelTraceOptions(
+  state: PreparedGeometry,
+  channel: ChromaticChannel | undefined,
+): Pick<TraceOptions, "indexAtSurface" | "wavelengthNm"> {
+  return channel
+    ? {
+        indexAtSurface: (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd,
+        wavelengthNm: CHROMATIC_CHANNEL_WAVELENGTH_NM[channel],
+      }
+    : {};
+}
+
+function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry): LaunchFrame {
+  if ("kind" in geometry && geometry.kind === "vector") {
+    const launch = geometry.vectorLaunch;
+    return {
+      surface: "bounding-sphere",
+      ray: (a, b) => ({
+        origin: offsetOrigin(launch.origin, launch.sagittalPupilAxis, a, launch.radialPupilAxis, b),
+        direction: launch.direction,
+      }),
+      stopTarget: axisAlignedTarget,
+      chief: [0, 0],
+      launchBoundT: launch.launchBoundT,
+    };
+  }
+  if ("kind" in geometry && geometry.kind === "launch-frame") {
+    const { chiefRay, sagittalAxis, radialAxis } = geometry;
+    return {
+      surface: "launch-frame",
+      ray: (a, b) => ({
+        origin: offsetOrigin(chiefRay.origin, sagittalAxis, a, radialAxis, b),
+        direction: chiefRay.direction,
+      }),
+      stopTarget: fieldAlignedTarget(sagittalAxis, radialAxis),
+      chief: [0, 0],
+      launchBoundT: geometry.launchBoundT,
+    };
+  }
+  if ("kind" in geometry && geometry.kind === "finite-object") {
+    const { objectPoint, leadZ } = geometry;
+    // Seed the chief on the straight line from the object point to the stop centre.
+    const stopZ = state.z[state.lens.stop.surfaceIndex] ?? 0;
+    const seedFraction = (stopZ - leadZ) / (stopZ - objectPoint[2]);
+    return {
+      surface: "finite-object",
+      ray: (a, b) => {
+        const origin: Vec3 = [a, b, leadZ];
+        const dx = origin[0] - objectPoint[0];
+        const dy = origin[1] - objectPoint[1];
+        const dz = origin[2] - objectPoint[2];
+        const length = Math.hypot(dx, dy, dz);
+        return { origin, direction: [dx / length, dy / length, dz / length] };
+      },
+      stopTarget: axisAlignedTarget,
+      chief: [objectPoint[0] * seedFraction, objectPoint[1] * seedFraction],
+    };
+  }
+  const { uField, yChief } = geometry;
+  // The skew adapters' launch: coordinates on the first-vertex plane, origin stepped back by the lead.
+  const lead = state.lens.constants.rayLead ?? 0;
+  const firstZ = state.z[0] ?? 0;
+  const ux = 0;
+  const direction = directionFromSkewSlope(ux, uField) ?? ([0, 0, 1] as Vec3);
+  return {
+    surface: "object-plane",
+    ray: (a, b) => ({ origin: [a - ux * lead, b - uField * lead, firstZ - lead], direction }),
+    stopTarget: axisAlignedTarget,
+    chief: [0, yChief],
+  };
+}
+
+/** Off-axis fields lie in the meridional y–z plane, so pupil x and y are the stop's own x and y. */
+function axisAlignedTarget(xFraction: number, yFraction: number, R: number): Vec2 {
+  return [xFraction * R, yFraction * R];
+}
+
+/** Pupil x and y along a field's sagittal and radial axes, as projected onto the stop plane. */
+function fieldAlignedTarget(sagittalAxis: Vec3, radialAxis: Vec3): LaunchFrame["stopTarget"] {
+  const unit = (axis: Vec3): Vec2 => {
+    const length = Math.hypot(axis[0], axis[1]);
+    return length > 0 ? [axis[0] / length, axis[1] / length] : [0, 0];
+  };
+  const s = unit(sagittalAxis);
+  const r = unit(radialAxis);
+  return (xFraction, yFraction, R) => [
+    R * (xFraction * s[0] + yFraction * r[0]),
+    R * (xFraction * s[1] + yFraction * r[1]),
+  ];
+}
+
+function offsetOrigin(origin: Vec3, axisA: Vec3, a: number, axisB: Vec3, b: number): Vec3 {
+  return [
+    origin[0] + axisA[0] * a + axisB[0] * b,
+    origin[1] + axisA[1] * a + axisB[1] * b,
+    origin[2] + axisA[2] * a + axisB[2] * b,
+  ];
+}
+
+/**
+ * Trace a launch to the stop surface without aperture checks.
+ * @returns the stop crossing (x, y) in mm, or null when the ray cannot reach the stop
+ */
+function stopCrossingTracer(
+  state: PreparedGeometry,
+  frame: LaunchFrame,
+  channel: ChromaticChannel | undefined,
+): (launch: Vec2) => Vec2 | null {
+  const stopIndex = state.lens.stop.surfaceIndex;
+  const spectral = channelTraceOptions(state, channel);
+  const finite = (x: number, y: number): Vec2 | null => (Number.isFinite(x) && Number.isFinite(y) ? [x, y] : null);
+  if (state.lens.flags.isFoldedOptics) {
+    const options = { checkSemiDiameter: false, launchBoundT: frame.launchBoundT, ...spectral };
+    return (launch) => {
+      const result = traceToStopViaGeneralized(state, frame.ray(launch[0], launch[1]), stopIndex, options);
+      return result.found ? finite(result.x, result.y) : null;
+    };
+  }
+  const trace = prepareEngineTrace(state, {
+    capture: "terminal",
+    stopAt: stopIndex + 1,
+    checkSemiDiameter: false,
+    directionNormalized: true,
+    launchBoundT: frame.launchBoundT,
+    ...spectral,
+  });
+  return (launch) => {
+    const result = trace(frame.ray(launch[0], launch[1]));
+    if (result.status !== "ok" || result.terminalSurfaceIndex !== stopIndex) return null;
+    return finite(result.terminalPoint[0], result.terminalPoint[1]);
+  };
+}
+
+/**
+ * Trace a launch toward the stop with every clear aperture checked, and name the surface that physically stops it.
+ *
+ * The MTF's classifier decides: an aperture clip, total internal reflection, or a failed intersection proven to miss
+ * the next surface's clear cap is blocking; any other failure is not, so an unresolved ray never poses as vignetting.
+ *
+ * @returns the blocking surface before the stop, or null
+ */
+function apertureBlockTracer(
+  state: PreparedGeometry,
+  frame: LaunchFrame,
+  clipSemiDiameterMm: number,
+  channel: ChromaticChannel | undefined,
+): (launch: Vec2) => number | null {
+  const stopIndex = state.lens.stop.surfaceIndex;
+  // Generalized paths have no ordered surface to blame before the stop; their unreachable targets stay unaimed.
+  if (state.lens.flags.isFoldedOptics) return () => null;
+  const trace = prepareEngineTrace(state, {
+    capture: "terminal",
+    stopAt: stopIndex + 1,
+    checkSemiDiameter: true,
+    stopSemiDiameter: clipSemiDiameterMm,
+    stopOnClip: true,
+    directionNormalized: true,
+    launchBoundT: frame.launchBoundT,
+    ...channelTraceOptions(state, channel),
+  });
+  return (launch) => {
+    const result = trace(frame.ray(launch[0], launch[1]));
+    if (result.status === "ok" || mtfTraceClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    const missed = result.failureReason === "noBracket" || result.failureReason === "noConvergedIntersection";
+    const surfaceIndex = missed ? result.terminalSurfaceIndex + 1 : result.terminalSurfaceIndex;
+    return surfaceIndex < stopIndex ? surfaceIndex : null;
+  };
+}
+
+/**
+ * The field's chief crossing and launch-to-stop Jacobian, shared by every sample of the field.
+ *
+ * A converged chief launch is kept as it is (the chief-ray solve's own ray); otherwise the chief is aimed like any
+ * sample. The Jacobian is a central difference about the chief, the step shrinking when a probe cannot be traced.
+ */
+function fieldModel(
+  frame: LaunchFrame,
+  stopAt: (launch: Vec2) => Vec2 | null,
+  blockedAt: (launch: Vec2) => number | null,
+  toleranceMm: number,
+  launchScale: number,
+): FieldModel {
+  const model: FieldModel = {
+    frame,
+    stopAt,
+    blockedAt,
+    toleranceMm,
+    chief: frame.chief,
+    chiefStop: stopAt(frame.chief),
+    jacobian: null,
+  };
+  if (!model.chiefStop) return model;
+  model.jacobian = jacobianAt(stopAt, frame.chief, launchScale);
+  if (!model.jacobian) return model;
+  const chiefAcceptMm = Math.max(toleranceMm, CHIEF_RAY_RESIDUAL_TOLERANCE_MM);
+  if (Math.hypot(model.chiefStop[0], model.chiefStop[1]) <= chiefAcceptMm) return model;
+  // The supplied chief does not pass the stop centre (a finite object's straight-line seed, or a fallback solve).
+  const solved = newtonAim(model, [0, 0]);
+  if (solved.status !== "aimed" || !solved.stop) return model;
+  model.chief = solved.launch;
+  model.chiefStop = solved.stop;
+  model.jacobian = jacobianAt(stopAt, solved.launch, launchScale) ?? model.jacobian;
+  return model;
+}
+
+/** The chief-ray solve's absolute stop-height tolerance at fields of one degree and more. */
+const CHIEF_RAY_RESIDUAL_TOLERANCE_MM = 1e-7;
+
+function jacobianAt(stopAt: (launch: Vec2) => Vec2 | null, at: Vec2, launchScale: number): Matrix2 | null {
+  let step = AIMED_PUPIL_JACOBIAN_STEP * launchScale;
+  for (let attempt = 0; attempt <= AIMED_PUPIL_JACOBIAN_STEP_RETRIES; attempt++, step /= 10) {
+    const aPlus = stopAt([at[0] + step, at[1]]);
+    const aMinus = stopAt([at[0] - step, at[1]]);
+    const bPlus = stopAt([at[0], at[1] + step]);
+    const bMinus = stopAt([at[0], at[1] - step]);
+    if (!aPlus || !aMinus || !bPlus || !bMinus) continue;
+    const jacobian: Matrix2 = [
+      (aPlus[0] - aMinus[0]) / (2 * step),
+      (bPlus[0] - bMinus[0]) / (2 * step),
+      (aPlus[1] - aMinus[1]) / (2 * step),
+      (bPlus[1] - bMinus[1]) / (2 * step),
+    ];
+    if (solve2(jacobian, [1, 0]) && solve2(jacobian, [0, 1])) return jacobian;
+  }
+  return null;
+}
+
+/** Solve J·d = r; null when J is singular relative to its own scale. */
+function solve2(j: Matrix2, r: Vec2): Vec2 | null {
+  const det = j[0] * j[3] - j[1] * j[2];
+  const scale = (Math.abs(j[0]) + Math.abs(j[1])) * (Math.abs(j[2]) + Math.abs(j[3]));
+  if (!(Math.abs(det) > AIMED_PUPIL_SINGULAR_DETERMINANT * scale)) return null;
+  return [(j[3] * r[0] - j[1] * r[1]) / det, (j[0] * r[1] - j[2] * r[0]) / det];
+}
+
+/** Broyden's rank-one update: the secant through the last step replaces the Jacobian's action along it. */
+function broydenUpdate(j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 {
+  const norm = dp[0] * dp[0] + dp[1] * dp[1];
+  if (!(norm > 0)) return j;
+  const e0 = ds[0] - (j[0] * dp[0] + j[1] * dp[1]);
+  const e1 = ds[1] - (j[2] * dp[0] + j[3] * dp[1]);
+  const next: Matrix2 = [
+    j[0] + (e0 * dp[0]) / norm,
+    j[1] + (e0 * dp[1]) / norm,
+    j[2] + (e1 * dp[0]) / norm,
+    j[3] + (e1 * dp[1]) / norm,
+  ];
+  return next.every(Number.isFinite) ? next : j;
+}
+
+function aimSample(model: FieldModel, target: Vec2): SampleSolve {
+  if (!model.chiefStop)
+    return { status: "unaimed", reason: "trace-failed", launch: model.chief, stop: null, iterations: 0 };
+  return newtonAim(model, target);
+}
+
+/**
+ * Newton's method from the chief with Broyden-updated Jacobian corrections.
+ *
+ * A step whose ray cannot reach the stop is halved; a step that fails to reduce the residual updates the Jacobian
+ * and is retried shorter. A solve that meets untraceable launches and then stops converging has reached the edge of
+ * the stop region rays from this field can reach: the sample is `blocked` when the untraceable ray toward the target
+ * already left a clear aperture, and otherwise unaimed as `stop-unreachable`, as is a folded (singular) map. When the
+ * current ray is itself vignetted and the step beyond it is blocked, the solve stops there: the transmitted part of
+ * an ordinary stop is convex enough that nothing further out toward the target gets through.
+ */
+function newtonAim(model: FieldModel, target: Vec2): SampleSolve {
+  const { stopAt, toleranceMm } = model;
+  let launch = model.chief;
+  let stop = model.chiefStop!;
+  let jacobian = model.jacobian;
+  let iterations = 0;
+  let lambda = 1;
+  let unreachable = false;
+  let blocked: SampleSolve["blocked"];
+  const residual = (s: Vec2): number => Math.hypot(target[0] - s[0], target[1] - s[1]);
+  let current = residual(stop);
+  if (current <= toleranceMm) return { status: "aimed", reason: null, launch, stop, iterations };
+  if (!jacobian) return { status: "unaimed", reason: "trace-failed", launch, stop, iterations };
+
+  while (iterations < AIMED_PUPIL_MAX_ITERATIONS) {
+    const step = solve2(jacobian, [target[0] - stop[0], target[1] - stop[1]]);
+    if (!step) {
+      unreachable = true;
+      break;
+    }
+    const trial: Vec2 = [launch[0] + lambda * step[0], launch[1] + lambda * step[1]];
+    const trialStop = stopAt(trial);
+    iterations++;
+    if (!trialStop) {
+      unreachable = true;
+      const surfaceIndex = model.blockedAt(trial);
+      if (surfaceIndex !== null) {
+        blocked = { launch: trial, surfaceIndex };
+        // Already vignetted on the way and blocked beyond: every ray left toward the target is lost too.
+        if (model.blockedAt(launch) !== null) break;
+      }
+      lambda /= 2;
+      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) break;
+      continue;
+    }
+    jacobian = broydenUpdate(
+      jacobian,
+      [trial[0] - launch[0], trial[1] - launch[1]],
+      [trialStop[0] - stop[0], trialStop[1] - stop[1]],
+    );
+    const trialResidual = residual(trialStop);
+    if (trialResidual < current) {
+      const progress = (current - trialResidual) / current;
+      launch = trial;
+      stop = trialStop;
+      current = trialResidual;
+      lambda = 1;
+      if (current <= toleranceMm) return { status: "aimed", reason: null, launch, stop, iterations };
+      if (unreachable && progress < AIMED_PUPIL_EDGE_PROGRESS) break;
+    } else {
+      lambda /= 2;
+      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) break;
+    }
+  }
+  if (unreachable && blocked) return { status: "blocked", reason: null, launch, stop, iterations, blocked };
+  return {
+    status: "unaimed",
+    reason: unreachable ? "stop-unreachable" : "aim-not-converged",
+    launch,
+    stop,
+    iterations,
+  };
+}

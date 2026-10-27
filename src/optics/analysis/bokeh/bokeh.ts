@@ -117,6 +117,7 @@ function makeEmptyFieldResult(
     fieldAngleDeg,
     totalRays,
     passedRays: 0,
+    unaimedRays: 0,
     points: [],
     centroidSagittal: 0,
     centroidTangential: 0,
@@ -235,6 +236,7 @@ function computeBokehFieldFootprintFromContext(
   if (points.length < BOKEH_MIN_VALID_SAMPLES) {
     return {
       ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
+      unaimedRays: bundle.unaimedSampleCount,
       pupilFootprint,
     };
   }
@@ -243,6 +245,7 @@ function computeBokehFieldFootprintFromContext(
   if (!Number.isFinite(totalWeight) || totalWeight <= 0) {
     return {
       ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
+      unaimedRays: bundle.unaimedSampleCount,
       pupilFootprint,
     };
   }
@@ -273,6 +276,7 @@ function computeBokehFieldFootprintFromContext(
     fieldAngleDeg: geometry.fieldAngleDeg,
     totalRays: bundle.sampleCount,
     passedRays: points.length,
+    unaimedRays: bundle.unaimedSampleCount,
     points,
     centroidSagittal,
     centroidTangential,
