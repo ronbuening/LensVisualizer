@@ -139,3 +139,38 @@ unchanged.
   `projection` override is single-valued and would be wrong at tele, so none was added.
 - The close-focus D3/D4 pairs and the iris schedule are calculated, not published. All rims are figure measurements,
   because the patent lists no effective diameters.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 1 (PDF p. 29, native 300 ppi raster, 898 × 1347 px, axis vertical with the object at the bottom, axis column
+x = 451–452 px) was read element by element, on both halves, for flat lands square to the axis at the rims of concave
+faces, the shape `rimCutDepthMm` draws. Pixel pairs in the table are cap end / edge from the axis, on each half.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2A (L11 rear, R 18.8098) | 0.764 (223.5/292.5 px; 224/293.5) | 9.29 mm | 22.41 mm | 22.4 → 29.2 | 3.61 mm |
+| 4A (L12 rear, R 22.702) | 0.777 (149.5/192.5 px, both halves) | 7.32 mm | 14.50 mm | 14.5 → 19.3 | 4.84 mm |
+| 26A (L52 front, R −38.9341) | 0.94 (110.5/117.5 px; 111/118) | 2.03 mm | 10.99 mm | 11.7 | 4.71 mm |
+
+- 2A and 4A: the 2026-09-23 audit had put each `sd` at the cap end, below the partner face (S1 29.2, S3 19.3 mm),
+  while the figure draws a square edge at the partner's height with a long land in between. Each `sd` now takes the
+  partner's value and the cut ends the cap at the old rim, so tracing is unchanged. The figure's own cap ends,
+  q × sd = 22.3 and 15.0 mm, sit 0.1 and 0.5 mm from those rims. Both aspheres keep rising out to the new rims (sag
+  13.49 mm at 29.2 and 17.93 mm at 19.3), so the land is valid.
+- 26A: a short land, 6–7 px on each half, joins the cap to L52's edge. The cut radius is q × 11.7 mm; the cap's
+  departure there is −447 µm and its slope 25.6°.
+- No land: 5 (L13 front) and 23 (L41 rear) run into the edge corner on both halves; 6 (L13 rear) and 17A (L32 rear)
+  meet the edge within 2 px, below what the raster resolves. 8, 10, 13, 24 and 27 are nearly flat (at most 0.44 mm,
+  about 4 px, of sag across the face), so a land could not be told apart from the curve.
+- No cap reaches the stop plane at any zoom or focus state: surface 13 clears it by 2.38 mm.
+- `audit:aperture`: all three stations trace the stated f/4.00 before and after, limited by the stop, with no `rim`,
+  `trace`, `failed` or `(rim cut)` rows. The surface validator and the image-circle check pass.
+- Field: with the cut radii standing in for the rims, a meridional clear-aperture probe (Y = 21.6 mm) shows no
+  change at 2A and 4A, whose full-field bundles stay inside 21.43 and 14.07 mm. At 26A the unvignetted full-field
+  bundle reaches 11.25 mm, so the cut takes 15 % of that side there. In the engine, though, the relay rims already
+  stop those rays: a meridional fan at the full field (59.62° / 46.72° / 35.16°), at 50° / 40° / 30° and on axis
+  passes the same launch span before and after (3.73 / 7.57 / 8.18 mm at full field), and no ray ends on the 26A
+  land.
+- Live, wide end at infinity: L11 and L12 now end their caps in square lands with the edges at 29.2 and 19.3 mm, in
+  place of the slanted joins from the cap end to the S1 / S3 rim, and L52 shows the short land at 26A, as in Fig. 1.
+  No other element moved.

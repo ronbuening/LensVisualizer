@@ -20,6 +20,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * image height, and edge/rim/cross-gap constraints. A 300 dpi Figure 5 rim audit refined the front
  * collector, G2/G3, front G4, and G6 outlines. Deliberate front-group vignetting follows the patent
  * silhouette.
+ * Rim cuts (2026-10-27): Figure 5 draws flat lands at the rims of the concave rear faces 5 (L3), 10 (L6),
+ * 21 (L12) and 35 (L20); rimCutDepthMm ends those caps at 37.5, 22.2, 18.2 and 10.4 mm, outside the stated
+ * on-axis beam. Faces 10 and 21 now run to their cemented partners' 25.3 / 20.1 mm edges, square as drawn,
+ * with the cut at the former 22.25 / 18.25 mm rim, so their traced clear aperture is unchanged.
  *
  * The physical L25 hybrid counts as one production/patent lens but is represented by two modeled media
  * records (L25r resin and L25g glass), as required for the bonded aspherical layer. Example 2 publishes
@@ -370,12 +374,12 @@ const LENS_DATA = {
     { label: "2", R: -466.6312, d: 26.9019, sd: 47.0 },
     { label: "3", R: 187.3246, d: 9.2687, sd: 40.7, medium: 2 },
     { label: "4", R: -230.5965, d: 2.5000, sd: 40.7, medium: 3 },
-    { label: "5", R: 246.0023, d: 3.0000, sd: 40.7 },
+    { label: "5", R: 246.0023, d: 3.0000, sd: 40.7, rimCutDepthMm: 2.87 },
     { label: "6", R: 190.2720, d: 6.2969, sd: 38.9, medium: 4 },
     { label: "7", R: -1072.1852, sd: 38.9 },
     { label: "8", R: 77.8587, d: 7.3231, sd: 25.3, medium: 5 },
     { label: "9", R: -142.2214, d: 1.5000, sd: 25.3, medium: 6 },
-    { label: "10", R: 63.5272, d: 4.7685, sd: 22.25 },
+    { label: "10", R: 63.5272, d: 4.7685, sd: 25.3, rimCutDepthMm: 4.02 },
     { label: "11", R: -244.1937, d: 1.7000, sd: 20.5, medium: 7 },
     { label: "12", R: 104.9919, sd: 20.5 },
     { label: "13", R: -97.9818, d: 1.5000, sd: 22.0, medium: 8 },
@@ -386,7 +390,7 @@ const LENS_DATA = {
     { label: "18", R: 334.8743, d: 0.2000, sd: 21.2 },
     { label: "19", R: 46.5822, d: 7.9673, sd: 20.1, medium: 11 },
     { label: "20", R: -114.8096, d: 1.5000, sd: 20.1, medium: 12 },
-    { label: "21", R: 63.6089, d: 6.7379, sd: 18.25 },
+    { label: "21", R: 63.6089, d: 6.7379, sd: 20.1, rimCutDepthMm: 2.67 },
     { label: "STO", R: "flat", d: 2.5000 },
     { label: "23", R: 234.0486, d: 3.3421, sd: 16.75, medium: 13 },
     { label: "24", R: -102.1570, d: 0.6914, sd: 16.75 },
@@ -400,7 +404,7 @@ const LENS_DATA = {
     { label: "32", R: 45.2983, d: 3.9688, sd: 14.2, medium: 19 },
     { label: "33", R: -174.4977, sd: 14.2 },
     { label: "34", R: 152.9104, d: 1.0000, sd: 11.8, medium: 20 },
-    { label: "35", R: 34.1887, sd: 11.8 },
+    { label: "35", R: 34.1887, sd: 11.8, rimCutDepthMm: 1.61 },
     { label: "36", R: -37.7950, d: 1.1000, sd: 13.7, medium: 21 },
     { label: "37", R: 26.7942, d: 7.4286, sd: 13.7, medium: 22 },
     { label: "38", R: -28.1806, d: 0.7000, sd: 13.7 },
