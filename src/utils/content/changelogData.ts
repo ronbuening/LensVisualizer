@@ -21,20 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-26",
     type: "fix",
-    summary:
-      "The Chromatic tab's lateral color now follows each wavelength's own chief ray through the center of the stop",
-  },
-  {
-    date: "2026-10-26",
-    type: "fix",
-    summary:
-      "The Pupils tab and every other field analysis now trace a real chief ray through the stop below 1° of field, as they already did above it",
-  },
-  {
-    date: "2026-10-26",
-    type: "fix",
-    summary:
-      "The Chromatic tab and colored rays now trace catalog-matched glasses at the patent's own refractive index, so their foci agree with the Aberrations tab",
+    summary: "Fixed Chromatic and Pupils tab results to use true chief rays and the patent's glass indices",
   },
   {
     date: "2026-10-26",
