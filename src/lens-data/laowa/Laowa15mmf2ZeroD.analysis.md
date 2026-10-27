@@ -195,6 +195,8 @@ Because the square-root term is written as $1-(1+K)(y/r)^2$, the tabulated **K**
 
 The front pair works where the field angles are largest and where distortion, coma, and astigmatism are most strongly generated. The rear pair works near the image plane, where small shape changes can efficiently trim residual distortion, astigmatism, and field curvature.
 
+**The printed prescription contradicts its own plots.** Every coefficient above, including K = +1.1397 at surface 22, matches the patent table, and the sag equation is the standard $(1+K)$ form. Yet the table traces to about +5.1 mm of longitudinal spherical aberration at full aperture, where the patent's Fig. 2 plots its spherical aberration on a ±0.3 mm axis, and its field curvature runs far outside that figure's ±0.5 mm axis. Reversing the sign of surface 22's K repairs the axial correction but gives about −25 % distortion and too small an image circle, so it is not the misprint either. The data keeps the printed values and records the contradiction as an unresolved source erratum; until it is resolved, the traced off-axis rays and the vignetting tab's relative illumination beyond about 9° do not represent the production lens.
+
 The patent does not publish clear semi-diameters for the aspherical surfaces. The data file therefore uses inferred render semi-diameters constrained by conic limit, rim slope, edge thickness, and cross-gap sag intrusion, but this analysis does not quote rim departures as patent facts.
 
 ## Conditional Expressions and Paraxial Verification
