@@ -770,6 +770,24 @@ radius (`finiteRadiusLimit()`): samples past it count as no surface rather than 
 step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets. The closed
 form described below applies the same rule through the sign of the conic root.
 
+The sequential trace meets the next surface of the sequence along the ray's line in either direction
+(`intersectSequentialSurface()` in `trace/pathPlanner.ts`), as OpticStudio and CODE V trace a negative thickness and as
+the Ray-Trace Comparator's contract defines a sequential trace. A stop plane set inside the sag of the surface before
+it, or two neighbouring surfaces that cross inside their clear apertures, lie behind the ray's last hit. The search
+runs forward from that hit as before; only where it finds no root (`noBracket`) is the line behind the hit searched,
+nearest root first, back to 1 mm in front of the surface's rim-sag plane (`sequentialSurfaceBackT()`). The hit is on
+the surface's own sag branch, and its `t`, `segmentLength` and `opticalPathLength` are negative, so the sequential OPL
+(`recordOpticalPath`) and bulk absorption charge the step with its sign. A forward hit, and any forward failure other
+than `noBracket`, is unchanged, so every ray that passed before passes bit for bit. An iterative solve whose probe
+rays were lost this way (the chief-ray solve, stop sizing, image-height inversion) can take another path: inside a
+lens's field it lands within its tolerance, and elsewhere on the root a lost probe hid. There is no step back to the
+first surface (the launch lies in front of the lens), for a ray whose direction z is not above `1e-12` (it is blocked
+at the next surface, as the contract also says), or on a folded path (`traversal.kind === "generalized"`, its
+sequential partial traces included): the generalized tracer searches forward only, and the contract blocks a hit
+behind the ray there. Where the trace may step back, `provesApertureMiss()` proves a miss over the whole line, so a crossing behind
+the hit inside the cap is never counted as vignetting; MTF, vignetting and the aimed pupil launch all read it through
+`traceRayClassification()`.
+
 Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, with one
 implementation and one caller, the kernel's iterative path, using the surface's `sd`): the first root inside the
 radial cylinder `r <= sd`, in ray order, wins over any polynomial-continuation root outside it, while a ray with no
