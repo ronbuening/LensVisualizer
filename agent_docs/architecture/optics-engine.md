@@ -1622,7 +1622,10 @@ rather than usable structures containing non-finite metrics.
 `analysis/chromatic/rayFan.ts` owns first-usable-fraction on/off-axis fans. All take `AnalysisRequest`, exposed through
 `analysis.ts`. Channels normalize into R/G/B/V order, with G as reference when requested and the first channel otherwise.
 The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
-geometry. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
+geometry. Lateral color traces each channel's own chief ray (`computeOffAxisChannelFieldGeometry`, solved through the
+stop's centre at that channel's indices) at the field angle the channels share; the reference channel's solve is the
+channel-less one to the bit. The off-axis fans and every other off-axis caller keep the one channel-less chief ray of
+`computeOffAxisFieldGeometry`. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
 its authored folded image plane, while the fan uses the current folded focus plane.
 
 `ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by

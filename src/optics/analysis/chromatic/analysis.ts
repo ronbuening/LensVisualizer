@@ -10,7 +10,7 @@ import type { PreparedGeometry } from "../../types.js";
 
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { ChromaticChannel, ChromaticRayFanSpread } from "../../../types/optics.js";
-import { computeOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
+import { computeOffAxisChannelFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
@@ -278,11 +278,16 @@ function computeLateralColorField(
   channels: readonly ChromaticChannel[],
   stateGeometry: FieldGeometryState,
 ): LateralColorFieldSample {
-  const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, fieldFraction, stateGeometry);
-  if (geometry === null) return emptyLateralField(fieldFraction, referenceChannel, channels);
+  // Each channel traces its own chief ray, through the stop's centre at that channel; the field angle is shared.
+  const geometries = channels.map((channel) =>
+    computeOffAxisChannelFieldGeometry(request.preparedGeometry, fieldFraction, channel, stateGeometry),
+  );
+  const fieldGeometry = geometries.find((geometry) => geometry !== null);
+  if (!fieldGeometry) return emptyLateralField(fieldFraction, referenceChannel, channels);
 
-  const rawSamples = channels.map((channel) => {
-    const chiefRay = traceOffAxisChiefRay(request, geometry, channel);
+  const rawSamples = channels.map((channel, index) => {
+    const geometry = geometries[index];
+    const chiefRay = geometry ? traceOffAxisChiefRay(request, geometry, channel) : null;
     return {
       channel,
       imageHeightMm: chiefRay?.imagePoint.y ?? null,
@@ -299,7 +304,7 @@ function computeLateralColorField(
   return {
     fieldFraction,
     label: labelForFieldFraction(fieldFraction),
-    fieldAngleDeg: geometry.fieldAngleDeg,
+    fieldAngleDeg: fieldGeometry.fieldAngleDeg,
     referenceChannel,
     referenceImageHeightMm,
     lateralSpreadMm,
