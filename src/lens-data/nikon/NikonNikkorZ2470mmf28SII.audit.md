@@ -425,3 +425,37 @@ Open limitations:
 - The chamfered rims of L1 and L14 and the unreproduced cemented steps remain as described in the previous section.
 - The ED positions were not re-read from Nikon's construction drawing in this review.
 - The near-state iris is a modelling assumption; a diaphragm that opened with focus would pass the display ray.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 3 (PDF p. 69, native 300 ppi 1-bit raster, 2478 × 3507 px, axis vertical at x = 1249.5 px with the object at
+the bottom, 13.46 px/mm) was read element by element on both halves for flat lands square to the axis at the rims of
+concave faces, the shape `rimCutDepthMm` draws. Pixel pairs are cap end / edge from the axis, right half then left.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2A (L1 rear, R 24.9268) | 0.797 (322/404.5 px; 322/403.5) | 13.45 mm | 24.00 mm | 30 (was 24.0) | 11.41 mm |
+| 24 (L14 front, R −25.2494) | 0.899 (216.5/240.5 px; 215/239.5) | 5.72 mm | 16.00 mm | 18 (was 16.0) | 5.32 mm |
+
+- Both faces stored their sd at the cap end, below the partner face (1A 30, 25A 18 mm), while the figure draws a
+  square edge at the partner's height (30.0 and 17.9 mm) and an 84 px and a 26 px land at constant axial position
+  down to the cap. Each sd now equals the partner's and the cut sits at the old sd, so the traced clear aperture is
+  unchanged. The figure's own cap ends, q × sd = 23.9 and 16.2 mm, lie within 0.2 mm of those radii, and its lands
+  sit within 0.2 mm of the cut depths; the rims were not refitted to them.
+- The 2A asphere keeps rising out to the new rim (sag 13.45 mm at 24 mm, 20.88 mm at 30 mm), so the land bounds the
+  glass; the rim slope at the cut is 51.2°. This closes the chamfered L1 and L14 rims recorded in the two
+  2026-10-06 sections: L14's land sits 5.72 mm ahead of its vertex, as far forward as the old 16 mm rim, so it
+  still clears L13 at the tele end.
+- No land: 3, 5 and 10 are nearly flat (0.84, 1.66 and 0.69 mm of sag at sd), so a land could not be told from the
+  curve; 8, 15 and 16 run into their element edge corners; 22A flattens toward its rim with the asphere (10.6° from
+  square at 14 mm) and meets L13's edge within about 3 px, below what the raster resolves. The step between L2 and
+  L3 lies on the cemented junction 4, not on an air face.
+- No cap reaches the stop plane at any zoom or focus state: surface 15 clears it by 1.89 mm.
+- `audit:aperture` is unchanged: all three stations trace within 3 % of f/2.91, with no rim, trace, iris, failed or
+  `(rim cut)` rows. The surface validator reports no errors and the image-circle check no undersized surface.
+- Field: with the cut radii standing in for the rims, the meridional clear-aperture probe at Y = 21.6 mm gives the
+  same rows as before in the infinity and near states. The full-field bundle at 2A stays inside 23.00 mm, and 24
+  keeps its 12 % side vignetting. The engine's half-field estimate (37.15°, 25.95° and 21.37° at infinity) and the
+  analysis field (42.72°, 22.62° and 17.01°) are unchanged.
+- Live, wide and tele ends at infinity: L1 and L14 now end their caps in square lands with edges parallel to the
+  axis at 30 and 18 mm, in place of the slanted joins, as in Figure 3. No other element moved.

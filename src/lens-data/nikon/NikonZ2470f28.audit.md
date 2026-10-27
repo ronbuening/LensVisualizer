@@ -99,3 +99,31 @@ Table 1 pp. 34–37, Figure 4 p. 83 (600 dpi).
 
 Final focused checks:85tests/5files pass; prior validator-inclusive159tests pass.
 Full typecheck/format/lint/test/build and generated reports are due at lens20.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 4 (PDF p. 83, the single wide-end panel; native 300 ppi raster, 11.49 px/mm from surface 1 to the image
+plane) was read element by element for flat lands square to the axis at the rims of concave faces. Each candidate rim
+was also fitted against its own cap, so a land counts only where the drawn rim leaves the cap's curve.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 9 (L22 rear, R 59.686) | 0.91 | 1.48 mm | 13.21 mm | 14.5 | 9.90 mm |
+| 22 (L51 front, R −23.924) | 0.95 | 2.99 mm | 11.58 mm | 12.2 | 9.61 mm |
+
+- Faces 5, 8, 12, 16, 28, 30A and 31 follow their caps to the element edge within about 1 px; face 3 is too flat
+  to show a land. No cut.
+- Surface 7 (L21 rear) has a clear square shoulder: the cap ends at 16.2 mm of a 21.45 mm edge (0.755). Its stored
+  sd of 16.3 already sits at the cap end, and raising it to L21's 21.5 mm edge for a cut is impossible because
+  R = 18.70 mm ends the sphere first. Left as is; the diagram keeps a diagonal edge where the figure draws the
+  shoulder.
+- Surface 26 (L61 front) ends in a short straight run that stays within 1 px of the cap, below what the figure
+  resolves. A cut at its visible kink (0.92, 13.28 mm) would also raise full-field side vignetting there from 67 %
+  to 87 %. Not cut.
+- Surface 32 (L73 front) ends its cap near 15.2 mm (0.91) and then runs a slanted bevel to the edge, not a land
+  square to the axis; a cut there would add 59 points of side vignetting. Not cut.
+- The L11 flange beyond L12 (surface 2) and the L41 flange beyond L42 (surface 20) are cemented faces, not lands.
+- No cap reaches the stop plane: STO's neighbours 13 and 15A both curve away from it.
+- The aperture audit is unchanged: all three stations trace the stated f/2.92, with no rim, trace or rim-cut
+  limiter. The cut on 9 lies outside the full-field bundle (12.25 mm) at every station. The cut on 22 raises
+  full-field side vignetting at that surface from 62 % to 71 % (61 % to 69 % at close focus).

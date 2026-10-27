@@ -19,12 +19,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * nominalFNumber 2.91 at the middle station is an explicit constant-aperture assumption.
  * The inferred iris schedule is calibrated from nominalFNumber, not measured diameters.
  * Every physical SD is estimated from Figure 3, then constrained by ray/geometry
- * checks. 2A=24.0 is the figure's optical extent of L1's rear surface (a flat annulus
- * lies beyond it; traced rays reach 23.1). 3=23.1 and 19/21=12.9 follow the figure (about 23.7
+ * checks. L1's rear cap (2A) ends at 24.0 mm, the figure's optical extent of that surface
+ * (traced rays reach 23.1). 3=23.1 and 19/21=12.9 follow the figure (about 23.7
  * and 12.2-12.9) and clear the wide/near full-field chief (21.12 mm at surface 3) and
  * the tele/near on-axis marginal ray (12.77 / 12.60 mm at surfaces 19 / 21).
- * 24=16.0 is likewise the figure's optical extent of L14's concave front surface (a flat
- * annulus continues to the 18 mm rim kept on 25A; rays passed by the other rims reach 15.4).
+ * L14's concave front cap (24) likewise ends at 16.0 mm (rays passed by the other rims reach 15.4).
+ * Rim cuts (2026-10-27): Figure 3 draws flat lands square to the axis from those cap ends
+ * out to the element rims, so 2A and 24 take their partners' sd (30 / 18 mm) with
+ * rimCutDepthMm 13.45 / 5.72; the cut radii, 24.0 and 16.0 mm, keep tracing unchanged.
  * Shared junction SDs 7=18.0 / 20=13.0 mm are ray-envelope refinements beyond the
  * figure estimate. These are not published SDs.
  * Zoom/focus interpolation is schematic; no CODE V cam, aperture, plate,
@@ -286,7 +288,8 @@ const LENS_DATA = {
       label: "2A",
       R: 24.9268,
       d: 14.774,
-      sd: 24.0,
+      sd: 30,
+      rimCutDepthMm: 13.45,
       asphere: {
         K: -1.0,
         A4: 5.692e-6,
@@ -344,7 +347,7 @@ const LENS_DATA = {
         A14: 0,
       },
     },
-    { label: "24", R: -25.2494, d: 1.3, sd: 16.0, medium: 14 },
+    { label: "24", R: -25.2494, d: 1.3, sd: 18, medium: 14, rimCutDepthMm: 5.72 },
     {
       label: "25A",
       R: -170.9229,

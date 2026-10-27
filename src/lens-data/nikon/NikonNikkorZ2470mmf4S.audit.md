@@ -126,3 +126,33 @@ pp. 13–14; Fig. 1A–1C p. 38 (300 dpi raster, axis horizontal); Fig. 3 close-
 - Paraxial check against the previous data: EFL identical; defocus changes by at most 0.0009 mm (tele), the rounding in
   the patent's printed air-equivalent BF (35.599 against 34.444 + 1.600/1.5168 + 0.101 = 35.5999). Physical track grows
   by 0.545 mm and now matches the patent's 121.58–151.03 mm total length.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1A (PDF p. 38, native 300 ppi raster, axis horizontal, 0.2423 mm/px) was read element by element on both halves
+of the section for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. The
+L52 land was also measured on Figure 1C.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 5A (L21 rear, R 17.042 asph) | 0.715 (59.2 / 82.2 px upper, 58.8 / 82.8 px lower) | 7.47 mm | 14.40 mm | 21.5 (was 14.4) | 5.73 mm |
+| 25 (L52 front, R −24.365) | 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower; Fig. 1C 0.84) | 5.26 mm | 15.12 mm | 18.0 | 4.67 mm |
+
+- 5A: Figure 1A draws L21 as a rectangle; the rear cap stops at the curve end the 2026-09-23 audit measured for `sd`
+  (14.4 mm), and a vertical land runs from there to the element's top and bottom edges, level with the front face's
+  rim. `sd` is raised to the front face's 21.5 mm and the cut sits at the old 14.4 mm rim (depth = sag there), so
+  tracing is unchanged. The land sits 7.47 mm behind the 5A vertex and L22's front rim 7.56 mm, a 0.09 mm gap the
+  validator accepts; the figure draws the two about 3 px (0.7 mm) apart.
+- 25: the L52 front cap ends short of the element edge with a vertical land at both rims; the cut radius is
+  0.84 × the stored 18.0 mm `sd`.
+- Every other concave face (6, 7, 9 in G2, 16 L34 front, 19 L41 front, 23 L51 front, 26 L52 rear) runs to its
+  element's corner in the figure; no cut. Surface 3 (L12 rear, R 417) bends only 0.84 mm (3.5 px) over its height and
+  its stroke reaches the corner; any land there is below what the figure resolves.
+- No cap reaches the stop plane at any zoom or focus state (surface 9 clears it by 2.48 mm).
+- The aperture audit is unchanged: all three stations trace the stated f/4 within 3 %, with no rim, trace, iris or
+  rim-cut limiter. Surface validator: no errors; image-circle floor: 0 undersized. With the cut radii emulated at
+  Y = 21.6 mm, 5A keeps its wide-end side vignetting (12 % before, 11 % now, the 0.001 mm rounding of the cut), and the
+  full-field bundle at 25 peaks at 13.84 mm (13.78 mm at close focus), inside the 15.12 mm cut: no new vignetting.
+  The engine's field estimate reads the cut radius, so the wide-end half-field estimate is unchanged.
+- The rendered wide-end section now shows L21 as the figure's rectangle with its rear land and the L52 front land;
+  nothing else moved.
