@@ -371,6 +371,7 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
         <div style={{ flex: 1, minWidth: 0 }}>
           <CommitInput
             label={`${e.name} description`}
+            stringRule="name"
             labelMode="hidden"
             value={e.label}
             placeholder="Description"

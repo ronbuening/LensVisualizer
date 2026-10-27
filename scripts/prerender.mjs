@@ -14,7 +14,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, resolve, sep } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
@@ -164,6 +164,10 @@ async function prerender() {
 
     /* Write to the appropriate path */
     const outPath = route === "/" ? join(DIST_DIR, "index.html") : join(DIST_DIR, route.slice(1), "index.html");
+    /* Routes derive from lens-data keys and taxonomy ids; never let one write outside dist/. */
+    if (!resolve(outPath).startsWith(resolve(DIST_DIR) + sep)) {
+      throw new Error(`Prerender route ${JSON.stringify(route)} resolves outside ${DIST_DIR}`);
+    }
 
     mkdirSync(dirname(outPath), { recursive: true });
     writeFileSync(outPath, pageHtml, "utf-8");

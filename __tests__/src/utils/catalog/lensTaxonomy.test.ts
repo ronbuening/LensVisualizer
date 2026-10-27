@@ -1,8 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_IMAGE_FORMAT_ID,
+  IMAGE_FORMAT_BY_ID,
   IMAGE_FORMATS,
+  LENS_MOUNT_BY_ID,
   LENS_MOUNTS,
+  imageFormatMetadata,
+  isImageFormatId,
+  isLensMountId,
+  lensMountMetadata,
   resolveImageFormatMetadata,
 } from "../../../../src/utils/catalog/lensTaxonomy.js";
 
@@ -118,6 +124,18 @@ describe("lensTaxonomy", () => {
         "6x8",
       ]),
     );
+  });
+
+  /* Ids come from lens data and URLs; an Object.prototype member must miss like any unknown id. */
+  it.each(["__proto__", "constructor", "toString"])("treats the inherited name %s as an unknown id", (id) => {
+    expect(isLensMountId(id)).toBe(false);
+    expect(isImageFormatId(id)).toBe(false);
+    expect(lensMountMetadata(id)).toBeUndefined();
+    expect(imageFormatMetadata(id)).toBeUndefined();
+    expect((LENS_MOUNT_BY_ID as Record<string, unknown>)[id]).toBeUndefined();
+    expect((IMAGE_FORMAT_BY_ID as Record<string, unknown>)[id]).toBeUndefined();
+    expect(resolveImageFormatMetadata(id)).toBe(IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID]);
+    expect(lensMountMetadata("sony-fe")?.label).toBe("Sony E");
   });
 
   it("falls back to full-frame metadata when a format id is missing", () => {

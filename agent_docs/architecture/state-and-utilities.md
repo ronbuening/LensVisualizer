@@ -112,6 +112,8 @@ Catalog modules live under `src/utils/catalog/`, content registries under `src/u
   author/assignee/patent catalogs, which must never ship full prescriptions.
 - `lensTaxonomy.ts` owns the canonical mount and image-format ids (`src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`);
   `makerDetails.ts`, `mountDetails.ts`, and `imageFormatDetails.ts` hold the display metadata for taxonomy pages.
+  Its `*_BY_ID` tables have no prototype and the guards use `Object.hasOwn`; look up an id from data or a URL with
+  `lensMountMetadata` / `imageFormatMetadata`, which return `undefined` for anything else, and skip it.
 - `patentRecords.ts` is the pure, index-free leaf shared by `patentCatalog.ts` and `authorCatalog.ts`;
   `lensPatentMetadata.ts` is re-exported by `lensMetadata.ts` so lens pages and cards share patent subtitles.
 - `src/utils/content/changelogData.ts` is the hand-maintained update history (rules in `agent_docs/changelog.md`);
@@ -122,7 +124,9 @@ Catalog modules live under `src/utils/catalog/`, content registries under `src/u
 
 - `src/utils/errorReporting.ts` builds the prefilled GitHub issue URLs used by every `ErrorDisplay`.
 - `src/utils/errorBeacon.ts` reports boundary, window, and rejection errors as privacy-sanitized GoatCounter events;
-  startup events wait briefly for the async analytics script instead of being dropped.
+  startup events wait briefly for the async analytics script instead of being dropped. A `telemetryId` (the lens
+  builder passes `"lens-builder"` through `SingleLensContent` → `LensDiagramPanel` → `PanelErrorBoundary`) replaces
+  the lens key and drops the message, so a private draft's text never leaves the browser.
 - `src/utils/perfProbe.ts` is a dev-only timing wrapper that logs a `console.table` summary every 10 calls; no-op in
   production.
 - `src/utils/style/` holds the shared inline style factories, slider stop collections, and static-page base styles;

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { parseUntrustedDraft } from "../../../src/lensBuilder/untrusted.js";
 import { createTemplate, validateDraft } from "../../../src/lensBuilder/draft.js";
 import {
   applyElementModel,
@@ -55,7 +56,14 @@ function ordered(draft: LensDataV2Input): boolean {
 }
 
 function catalogWith(predicate: (draft: LensDataV2Input) => boolean): LensDataV2Input {
-  const found = catalog.find((draft) => predicate(draft) && ordered(draft) && toElementModel(draft).ok);
+  const found = catalog.find((draft) => {
+    if (!predicate(draft) || !ordered(draft) || !parseUntrustedDraft(draft).ok) return false;
+    const model = toElementModel(draft);
+    return (
+      model.ok &&
+      model.model.items.every((item) => item.kind === "stop" || item.elements.length === 1 || item.cementName)
+    );
+  });
   expect(found, "The catalog must exercise this supported V2 structure").toBeDefined();
   return found!;
 }
@@ -97,6 +105,24 @@ describe("element model V2 mapping", () => {
       expect(expectBuild(model, draft), draft.key).toStrictEqual(draft);
       expect(draft).toStrictEqual(before);
     }
+  });
+
+  it("ignores inherited gap schedules and retains dangerous own keys as data in model maps", () => {
+    const draft = createTemplate();
+    draft.surfaces.at(-1)!.label = "toString";
+    draft.gaps = {};
+    draft.aberrationControl = { label: "AB", gaps: {} };
+    const model = modelOf(draft);
+    expect(model.gaps.at(-1)!.schedule).toBeUndefined();
+    expect(model.gaps.at(-1)!.aberrationControlled).toBeUndefined();
+    const group = groupOf(model, model.items.length - 1);
+    group.surfaces.at(-1)!.label = "__proto__";
+    model.gaps.at(-1)!.schedule = [[40, 42]];
+    model.gaps.at(-1)!.mm = 40;
+    const applied = applyElementModel(draft, model);
+    expect(Object.hasOwn(applied.gaps!, "__proto__")).toBe(true);
+    expect(Object.getPrototypeOf(applied.gaps!)).toBe(Object.prototype);
+    expect(Object.getOwnPropertyDescriptor(applied.gaps!, "__proto__")!.value.values).toEqual([[40, 42]]);
   });
 
   it("derives maximal cemented runs from media, with their exit gaps and sparse extras", () => {

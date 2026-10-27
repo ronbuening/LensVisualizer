@@ -59,7 +59,8 @@ export function resolveLabel(
 }
 
 export function buildLabelIndex(surfaces: readonly Pick<SurfaceData, "label">[]): Record<string, number> {
-  const labelIdx: Record<string, number> = {};
+  // Null prototype: labels such as `toString` or `__proto__` resolve to their own entry or to nothing.
+  const labelIdx: Record<string, number> = Object.create(null);
   for (let i = 0; i < surfaces.length; i++) {
     labelIdx[surfaces[i].label] = i;
   }

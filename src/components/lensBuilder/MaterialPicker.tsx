@@ -16,6 +16,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from "react";
+import { draftStringIssue, MAX_DRAFT_NUMBER } from "../../lensBuilder/untrusted.js";
 import { allEntries, type GlassEntry } from "../../optics/glassCatalog.js";
 import type { BuilderMaterial } from "../../lensBuilder/elementModel.js";
 import { commonGlasses, findGlass, nearestGlass, searchGlass } from "../../lensBuilder/glassSearch.js";
@@ -194,6 +195,7 @@ export default function MaterialPicker({
     <>
       <input
         ref={tab === "search" ? firstField : undefined}
+        maxLength={200}
         type="search"
         aria-label={`Search glass for ${elementName}`}
         placeholder="Glass name, e.g. N-BK7"
@@ -228,14 +230,16 @@ export default function MaterialPicker({
 
   const typedNd = Number(customNd);
   const typedVd = Number(customVd);
-  const typedValid = customNd.trim() !== "" && Number.isFinite(typedNd) && typedNd > 1;
+  const typedValid = customNd.trim() !== "" && Number.isFinite(typedNd) && typedNd > 1 && typedNd <= MAX_DRAFT_NUMBER;
   const customPanel = (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         if (!typedValid) return setCustomError("Enter an nd greater than 1");
-        if (customVd.trim() && !(Number.isFinite(typedVd) && typedVd > 0))
+        if (customVd.trim() && !(Number.isFinite(typedVd) && typedVd > 0 && typedVd <= MAX_DRAFT_NUMBER))
           return setCustomError("Enter a positive νd, or leave it blank");
+        const issue = draftStringIssue(customName, "glass");
+        if (issue) return setCustomError(issue);
         pick({
           nd: typedNd,
           ...(customVd.trim() ? { vd: typedVd } : {}),
@@ -254,6 +258,7 @@ export default function MaterialPicker({
             <input
               ref={i === 0 && tab === "custom" ? firstField : undefined}
               aria-label={name}
+              maxLength={40}
               inputMode="decimal"
               value={value}
               onChange={(e) => {
@@ -269,6 +274,7 @@ export default function MaterialPicker({
         <span style={builderCaptionStyle(t)}>Name (optional)</span>
         <input
           aria-label={`Custom glass name for ${elementName}`}
+          maxLength={60}
           value={customName}
           placeholder="e.g. patent glass 1.7234/38.0"
           onChange={(e) => setCustomName(e.target.value)}

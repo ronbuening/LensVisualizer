@@ -293,7 +293,7 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
   const byId = new Map(draft.elements.map((e) => [e.id, e]));
   const used = new Set<number>();
   const appendGap = (surface: SurfaceV2Input) => {
-    const scheduled = draft.gaps?.[surface.label];
+    const scheduled = draft.gaps && Object.hasOwn(draft.gaps, surface.label) ? draft.gaps[surface.label] : undefined;
     model.gaps.push({
       mm: scheduled?.values[0]?.[0] ?? surface.d ?? 0,
       ...(scheduled
@@ -302,7 +302,9 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
             ...(scheduled.label !== undefined ? { scheduleLabel: scheduled.label } : {}),
           }
         : {}),
-      ...(draft.aberrationControl?.gaps[surface.label] ? { aberrationControlled: true } : {}),
+      ...(draft.aberrationControl && Object.hasOwn(draft.aberrationControl.gaps, surface.label)
+        ? { aberrationControlled: true }
+        : {}),
     });
   };
   for (let i = 0; i < draft.surfaces.length; i++) {
@@ -325,7 +327,10 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
         reasons.push(`Surface ${current.label}: element media must form contiguous, two-surface elements used once.`);
         break;
       }
-      if (draft.gaps?.[current.label] || draft.aberrationControl?.gaps[current.label]) {
+      if (
+        (draft.gaps && Object.hasOwn(draft.gaps, current.label)) ||
+        (draft.aberrationControl && Object.hasOwn(draft.aberrationControl.gaps, current.label))
+      ) {
         reasons.push(`Surface ${current.label}: a variable gap inside glass cannot be shown as air spacing.`);
         break;
       }
@@ -377,7 +382,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
   const next = structuredClone(draft);
   next.elements = [];
   next.surfaces = [];
-  const gaps: NonNullable<LensDataV2Input["gaps"]> = {};
+  const gaps: NonNullable<LensDataV2Input["gaps"]> = Object.create(null);
   const usedNames = new Set(
     model.items.flatMap((item) => (item.kind === "group" && item.cementName ? [item.cementName] : [])),
   );

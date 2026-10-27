@@ -205,7 +205,9 @@ Metadata generation is split across:
   TypeScript compiler API, never running it, and reads V2 identity fields (mounts
   and format live in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
   in the catalog through the converter runner, prints its report, and stops on a refusal. It rewrites a filed V2
-  file's `types/lensDataV2.js` import.
+  file's `types/lensDataV2.js` import. Maker slugs are one safe path segment (an unsafe first word is reduced to its
+  letters and digits), and `assertMovePlanContained` refuses, before anything changes, a move whose source or
+  destination resolves outside `src/lens-data/` through `realpath`. `--dry-run` prints the checked plan only.
   The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
   each value (`walkLensDataSource`).
 - `scripts/lens-summaries.mjs` - lens and teleconverter display summaries, selected from canonical prescriptions

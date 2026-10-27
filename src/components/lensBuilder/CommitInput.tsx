@@ -1,4 +1,10 @@
 import { createContext, useContext, useState, type CSSProperties } from "react";
+import {
+  draftStringIssue,
+  draftStringLimit,
+  MAX_DRAFT_NUMBER,
+  type DraftStringRule,
+} from "../../lensBuilder/untrusted.js";
 import type { Theme } from "../../types/theme.js";
 
 interface CommitInputProps {
@@ -8,6 +14,8 @@ interface CommitInputProps {
   theme: Theme;
   onCommit: (text: string) => void;
   numeric?: boolean;
+  stringRule?: DraftStringRule;
+  maxLength?: number;
   flat?: boolean;
   optional?: boolean;
   invalid?: boolean;
@@ -82,6 +90,8 @@ export default function CommitInput({
   theme,
   onCommit,
   numeric,
+  stringRule = "text",
+  maxLength,
   flat,
   optional,
   invalid,
@@ -118,6 +128,12 @@ export default function CommitInput({
         (trimmed === "" || !Number.isFinite(Number(trimmed)))
       )
         throw new Error("Enter a finite number");
+      if (numeric && Math.abs(Number(trimmed)) > MAX_DRAFT_NUMBER)
+        throw new Error(`Magnitude must be at most ${MAX_DRAFT_NUMBER.toExponential()}`);
+      if (!numeric) {
+        const issue = draftStringIssue(text, stringRule);
+        if (issue) throw new Error(issue);
+      }
       onCommit(text);
       setError("");
     } catch (e) {
@@ -127,6 +143,7 @@ export default function CommitInput({
   const input = (
     <input
       data-draft-edit
+      maxLength={maxLength ?? (numeric ? 40 : draftStringLimit(stringRule))}
       aria-label={label}
       aria-invalid={!!error || invalid}
       value={text}

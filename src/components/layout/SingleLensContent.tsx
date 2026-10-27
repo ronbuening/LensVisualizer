@@ -28,6 +28,8 @@ interface SingleLensContentProps {
   showPhotoSearch?: boolean;
   /** Element to highlight as if hovered, for a side panel that points at elements (the lens builder). */
   highlightElementId?: number | null;
+  /** Constant id error reports use in place of `lensKey`, for a private draft (the lens builder). */
+  telemetryId?: string;
 }
 
 export default function SingleLensContent({
@@ -42,6 +44,7 @@ export default function SingleLensContent({
   runtimeLens,
   showPhotoSearch,
   highlightElementId,
+  telemetryId,
 }: SingleLensContentProps) {
   const resolvedDesktopView = sidePanel ? "both" : ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
   const singleDiagramContent = (
@@ -57,6 +60,7 @@ export default function SingleLensContent({
       fillAvailableHeight={isWide}
       showPhotoSearch={showPhotoSearch}
       highlightElementId={highlightElementId}
+      telemetryId={telemetryId}
     />
   );
 

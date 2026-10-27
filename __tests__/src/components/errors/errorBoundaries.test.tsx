@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import ErrorBoundary, { ErrorDisplay } from "../../../../src/components/errors/ErrorBoundary.js";
 import PanelErrorBoundary from "../../../../src/components/errors/PanelErrorBoundary.js";
+import { resetErrorBeaconSessionForTests } from "../../../../src/utils/errorBeacon.js";
 
 /* Suppress React error boundary console noise */
 let errorSpy: ReturnType<typeof vi.spyOn>;
@@ -190,5 +191,46 @@ describe("PanelErrorBoundary", () => {
     shouldThrow = false;
     fireEvent.click(screen.getByText("Retry"));
     expect(screen.getByText("Panel OK")).toBeTruthy();
+  });
+
+  describe("error beacon", () => {
+    afterEach(() => {
+      vi.unstubAllEnvs();
+      resetErrorBeaconSessionForTests();
+      delete window.goatcounter;
+    });
+
+    function beaconFor(props: { lensKey: string; telemetryId?: string }) {
+      vi.stubEnv("PROD", true);
+      const count = vi.fn();
+      window.goatcounter = { count };
+      render(
+        <PanelErrorBoundary {...props}>
+          <ThrowingChild />
+        </PanelErrorBoundary>,
+      );
+      return { count, issueHref: screen.getByText("Report Issue on GitHub").closest("a")!.getAttribute("href")! };
+    }
+
+    it("reports the lens key and message by default", () => {
+      const { count, issueHref } = beaconFor({ lensKey: "lens-a" });
+      expect(count).toHaveBeenCalledWith({
+        path: "/_error/lens-a",
+        title: "lens-diagram-panel: Test error message",
+        event: true,
+      });
+      expect(issueHref).toContain("lens-a");
+    });
+
+    it("reports only the telemetry id when one is set", () => {
+      const { count, issueHref } = beaconFor({ lensKey: "private-draft", telemetryId: "lens-builder" });
+      expect(count).toHaveBeenCalledWith({
+        path: "/_error/lens-builder",
+        title: "lens-diagram-panel: Error",
+        event: true,
+      });
+      expect(JSON.stringify(count.mock.calls)).not.toMatch(/private-draft|Test error message/);
+      expect(issueHref).not.toContain("private-draft");
+    });
   });
 });

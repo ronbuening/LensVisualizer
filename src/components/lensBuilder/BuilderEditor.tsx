@@ -4,6 +4,7 @@ import type { Theme } from "../../types/theme.js";
 import { ALL_CATALOG_KEYS, lensNameForKey, authoredInputForKey } from "../../utils/catalog/lensCatalog.js";
 import { createTemplate, copyCatalogInput, type DraftValidation } from "../../lensBuilder/draft.js";
 import { exportDataTs, exportJson, importJson, draftFilename } from "../../lensBuilder/serialize.js";
+import { requireUntrustedDraft, MAX_DRAFT_BYTES } from "../../lensBuilder/untrusted.js";
 import { LENS_KEY_PATTERN } from "../../optics/validation.js";
 import { toggleBtn, toggleGroup, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import CommitInput, {
@@ -19,6 +20,9 @@ interface BuilderEditorProps {
   theme: Theme;
   validation: DraftValidation;
   pending: boolean;
+  storageMessage?: string;
+  hasBackup?: boolean;
+  onDiscardBackup?: () => void;
   onChange: (draft: LensDataV2Input) => void;
   onReplace: (draft: LensDataV2Input) => boolean;
   onDirty: () => void;
@@ -58,13 +62,17 @@ export default function BuilderEditor({
   theme: t,
   validation,
   pending,
-  onChange,
+  onChange: commitDraft,
+  storageMessage,
+  hasBackup,
+  onDiscardBackup,
   onReplace,
   onDirty,
   isWide = true,
   selectedElementId,
   onHighlight,
 }: BuilderEditorProps) {
+  const onChange = (next: LensDataV2Input) => commitDraft(requireUntrustedDraft(next));
   const touch = !isWide;
   const [search, setSearch] = useState("");
   const [advanced, setAdvanced] = useState<string | null>(null);
@@ -158,6 +166,7 @@ export default function BuilderEditor({
         <section aria-label="Builder toolbar" style={{ display: "grid", gap: 6, marginTop: 10 }}>
           <div style={{ display: "flex", gap: 6, minWidth: 0 }}>
             <input
+              maxLength={200}
               type="search"
               aria-label="Search starting lenses"
               title={`Filter the template and ${STARTING_LENSES.length} catalog lenses`}
@@ -258,6 +267,10 @@ export default function BuilderEditor({
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     e.target.value = "";
+                    if (file && file.size > MAX_DRAFT_BYTES) {
+                      setActionError("JSON must be at most 1 MB");
+                      return;
+                    }
                     if (file)
                       void file
                         .text()
@@ -309,6 +322,12 @@ export default function BuilderEditor({
               </ul>
             </>
           )}
+          {storageMessage && <p style={{ margin: "2px 0 0", color: t.error }}>{storageMessage}</p>}
+          {hasBackup && (
+            <button type="button" onClick={onDiscardBackup}>
+              Discard backup
+            </button>
+          )}
           {message && <p style={{ margin: "2px 0 0", color: t.muted }}>{message}</p>}
         </div>
 
@@ -320,6 +339,7 @@ export default function BuilderEditor({
             <CommitInput
               label="Name"
               labelMode="side"
+              stringRule="name"
               value={draft.name}
               theme={t}
               onCommit={(name) => onChange({ ...draft, name })}
@@ -327,6 +347,7 @@ export default function BuilderEditor({
           </div>
           <CommitInput
             label="Key"
+            stringRule="key"
             labelMode="side"
             value={draft.key}
             theme={t}
@@ -335,6 +356,7 @@ export default function BuilderEditor({
           />
           <CommitInput
             label="Maker"
+            stringRule="maker"
             labelMode="side"
             value={draft.maker ?? ""}
             theme={t}
@@ -445,6 +467,7 @@ export default function BuilderEditor({
           <textarea
             data-draft-edit
             aria-label="Advanced JSON"
+            maxLength={MAX_DRAFT_BYTES}
             value={advanced ?? exportJson(draft)}
             rows={20}
             spellCheck={false}

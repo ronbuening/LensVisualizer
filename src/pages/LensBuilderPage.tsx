@@ -4,12 +4,16 @@ import ClientOnly from "../components/ClientOnly.js";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import SingleLensContent from "../components/layout/SingleLensContent.js";
+import BuilderErrorBoundary from "../components/lensBuilder/BuilderErrorBoundary.js";
+import { restoreDraft, STORAGE_KEY, BACKUP_KEY } from "../lensBuilder/storage.js";
+import { parseUntrustedDraft } from "../lensBuilder/untrusted.js";
 import BuilderEditor from "../components/lensBuilder/BuilderEditor.js";
 import { createTemplate, copyCatalogInput, validateDraft } from "../lensBuilder/draft.js";
 import type { DraftValidation } from "../lensBuilder/draft.js";
 import { exportJson } from "../lensBuilder/serialize.js";
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { authoredInputForKey } from "../utils/catalog/lensCatalog.js";
+import { setGlobalErrorTelemetryId } from "../utils/errorBeacon.js";
 import useLensState from "../utils/state/useLensState.js";
 import usePreferences from "../utils/state/usePreferences.js";
 import { SET_DARK, SET_HIGH_CONTRAST } from "../utils/state/lensReducer.js";
@@ -24,55 +28,69 @@ import {
 } from "../utils/theme/themePreferences.js";
 import { useActiveHoliday } from "../utils/theme/useActiveHoliday.js";
 
-const STORAGE_KEY = "surface-stop-lens-builder-v2";
 const NO_URL_UPDATE = () => {};
 
-function savedDraft(): LensDataV2Input | undefined {
-  try {
-    const text = localStorage.getItem(STORAGE_KEY);
-    if (text) {
-      const parsed: LensDataV2Input = JSON.parse(text);
-      // Check the records the form reads, while retaining unfinished references (for example duplicate labels).
-      // Full ingest/geometry diagnostics belong to validateDraft so a reload does not discard invalid edits.
-      if (
-        parsed?.schema === 2 &&
-        typeof parsed.key === "string" &&
-        typeof parsed.name === "string" &&
-        Array.isArray(parsed.elements) &&
-        parsed.elements.every(
-          (e) =>
-            e &&
-            typeof e.id === "number" &&
-            typeof e.name === "string" &&
-            typeof e.label === "string" &&
-            typeof e.nd === "number",
-        ) &&
-        Array.isArray(parsed.surfaces) &&
-        parsed.surfaces.every((s) => s && typeof s.label === "string" && (typeof s.R === "number" || s.R === "flat")) &&
-        Array.isArray(parsed.aperture?.fStops) &&
-        parsed.aperture.fStops.every((n) => typeof n === "number") &&
-        typeof parsed.focus?.closeFocusM === "number" &&
-        typeof parsed.layout?.yScFill === "number" &&
-        (parsed.media === undefined ||
-          (Array.isArray(parsed.media) && parsed.media.every((m) => m && typeof m.id === "string")))
-      )
-        return parsed;
+export function LensBuilder() {
+  const [revision, setRevision] = useState(0);
+  const [resetNotice, setResetNotice] = useState("");
+  const reset = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(BACKUP_KEY);
+      setResetNotice("");
+    } catch {
+      setResetNotice("Draft reset, but browser storage could not be cleared.");
     }
-  } catch {
-    /* Storage may be blocked, malformed or from an older schema. */
-  }
-  return undefined;
+    setRevision((value) => value + 1);
+  };
+  return (
+    <BuilderErrorBoundary key={revision} onReset={reset}>
+      <LensBuilderEditor skipRestore={revision > 0} onReset={reset} resetNotice={resetNotice} />
+    </BuilderErrorBoundary>
+  );
 }
 
-export function LensBuilder() {
+function LensBuilderEditor({
+  skipRestore,
+  onReset,
+  resetNotice,
+}: {
+  skipRestore: boolean;
+  onReset: () => void;
+  resetNotice: string;
+}) {
   const { pathname, search, hash } = useLocation();
   const navigate = useNavigate();
   const [initial] = useState(() => {
-    const saved = savedDraft();
+    const saved = skipRestore ? { notice: "", hasBackup: false } : restoreDraft(localStorage);
     const from = new URLSearchParams(search).get("from");
-    const input = from ? authoredInputForKey(from) : undefined;
-    return { draft: saved ?? (input ? copyCatalogInput(input) : createTemplate()), saved: !!saved };
+    const input = !skipRestore && from ? authoredInputForKey(from) : undefined;
+    let copied: LensDataV2Input | undefined;
+    let notice = saved.notice;
+    if (!saved.draft && !saved.hasBackup && input) {
+      try {
+        copied = copyCatalogInput(input);
+      } catch {
+        notice = "Catalog copy failed the draft input rules. Started from the template.";
+      }
+    }
+    return { ...saved, notice, draft: saved.draft ?? copied ?? createTemplate(), saved: !!saved.draft };
   });
+  const [storageMessage, setStorageMessage] = useState(resetNotice);
+  const [recoveryNotice, setRecoveryNotice] = useState(initial.notice);
+  const [hasBackup, setHasBackup] = useState(initial.hasBackup);
+  const [preserveOriginal, setPreserveOriginal] = useState(!!initial.preserveOriginal);
+  const discardBackup = () => {
+    try {
+      localStorage.removeItem(BACKUP_KEY);
+      if (preserveOriginal) localStorage.removeItem(STORAGE_KEY);
+      setPreserveOriginal(false);
+      setHasBackup(false);
+      setRecoveryNotice("");
+    } catch {
+      setStorageMessage("Could not discard backup: browser storage is unavailable.");
+    }
+  };
   const [draft, setDraft] = useState(initial.draft);
   const [localEdits, setLocalEdits] = useState(false);
   const [editorRevision, setEditorRevision] = useState(0);
@@ -113,13 +131,25 @@ export function LensBuilder() {
     const input = authoredInputForKey(key);
     if (!input || (first && !initial.saved)) return;
     if (window.confirm("Replace the current draft with a copy of this catalog lens?")) {
-      const next = copyCatalogInput(input);
+      let next: LensDataV2Input;
+      try {
+        next = copyCatalogInput(input);
+      } catch {
+        setStorageMessage("Catalog copy failed the draft input rules.");
+        return;
+      }
       setDraft(next);
       setBaseline(exportJson(next));
       setLocalEdits(false);
       setEditorRevision((revision) => revision + 1);
     }
   }, [search, pathname, hash, navigate, initial.saved]);
+
+  // Uncaught errors here may quote draft text; window-level reports carry only the builder's constant id.
+  useEffect(() => {
+    setGlobalErrorTelemetryId("lens-builder");
+    return () => setGlobalErrorTelemetryId(undefined);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -130,14 +160,23 @@ export function LensBuilder() {
   }, [draft]);
 
   useEffect(() => {
+    // Reset clears storage until the next edit; never immediately recreate the removed autosave.
+    if (preserveOriginal || (skipRestore && draft === initial.draft)) return;
     try {
       localStorage.setItem(STORAGE_KEY, exportJson(draft));
+      setStorageMessage("");
     } catch {
-      /* Quotas and privacy settings must not disable editing. */
+      setStorageMessage("Autosave failed: browser storage is unavailable or full. Export JSON to keep your changes.");
     }
-  }, [draft]);
+  }, [draft, preserveOriginal, skipRestore, initial.draft]);
 
   const replace = (next: LensDataV2Input) => {
+    const parsed = parseUntrustedDraft(next);
+    if (!parsed.ok) {
+      setStorageMessage(parsed.issues.join("\n"));
+      return false;
+    }
+    next = parsed.draft;
     if (
       (localEdits || exportJson(draft) !== baseline) &&
       !window.confirm("Replace the modified draft? Unsaved edits will be lost.")
@@ -178,6 +217,9 @@ export function LensBuilder() {
                 </Link>
                 <span style={{ color: theme.muted, margin: "0 0.35em" }}>/</span>
                 <span style={{ color: theme.body }}>Lens builder</span>
+                <button type="button" onClick={onReset}>
+                  Reset draft
+                </button>
               </PageNavBar>
             </div>
             <main style={isWide ? { flex: "1 1 auto", minHeight: 0, overflow: "hidden" } : undefined}>
@@ -187,25 +229,31 @@ export function LensBuilder() {
                 effectiveDesktopView="both"
                 showDesktopToggle={false}
                 mobileView="diagram"
+                telemetryId="lens-builder"
                 lensKey={build.lens.source.key}
                 runtimeLens={build.lens}
                 markdown={null}
                 showPhotoSearch={false}
                 highlightElementId={highlight}
                 sidePanel={
-                  <BuilderEditor
-                    key={editorRevision}
-                    onDirty={() => setLocalEdits(true)}
-                    draft={draft}
-                    theme={theme}
-                    validation={build.result}
-                    pending={draft !== build.draft}
-                    onChange={setDraft}
-                    onReplace={replace}
-                    isWide={isWide}
-                    selectedElementId={state.panels.selectedElementId}
-                    onHighlight={setHighlight}
-                  />
+                  <BuilderErrorBoundary key={editorRevision} onReset={onReset}>
+                    <BuilderEditor
+                      key={editorRevision}
+                      onDirty={() => setLocalEdits(true)}
+                      draft={draft}
+                      theme={theme}
+                      validation={build.result}
+                      pending={draft !== build.draft}
+                      storageMessage={[recoveryNotice, storageMessage].filter(Boolean).join(" ")}
+                      hasBackup={hasBackup}
+                      onDiscardBackup={discardBackup}
+                      onChange={setDraft}
+                      onReplace={replace}
+                      isWide={isWide}
+                      selectedElementId={state.panels.selectedElementId}
+                      onHighlight={setHighlight}
+                    />
+                  </BuilderErrorBoundary>
                 }
               />
             </main>

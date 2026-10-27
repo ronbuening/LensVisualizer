@@ -58,7 +58,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `appConfig.ts` | App Config helper module | none | src/utils/state | DEFAULT_COLOR_TRACING, DEFAULT_RAY_TRACKS_FOCUS |
 | `chunkLoadRetry.ts` | Chunk Load Retry helper module | none | src/router.tsx, src/utils/catalog | loadChunkWithReload |
-| `errorBeacon.ts` | Error Beacon helper module | none | src/components/errors (3), src/main.tsx | sanitizeErrorMessage, errorBeaconKey, reportErrorBeacon, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
+| `errorBeacon.ts` | Error Beacon helper module | none | src/components/errors (3), src/main.tsx, src/pages/LensBuilderPage.tsx | sanitizeErrorMessage, errorBeaconKey, ErrorBeaconOptions, reportErrorBeacon, setGlobalErrorTelemetryId, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
 | `errorReporting.ts` | Error Reporting helper module | none | src/components/errors | REPO_URL, buildIssueURL |
 | `featureFlags.ts` | Feature Flags helper module | none | src/components/layout (5), src/components/controls (2), src/components/diagram (2), src/components/display (2), src/components/hooks (2), +4 more | ENABLE_UNIFORM_SCALING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_REAL_RAY_LSA_DIAGNOSTIC, ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS, ENABLE_LENS_BUILDER |
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |

@@ -1,12 +1,13 @@
 import { describe, it, expect } from "vitest";
 import ts from "typescript";
+import { parseUntrustedDraft } from "../../../src/lensBuilder/untrusted.js";
 import { createTemplate, cloneDraft, copyCatalogInput, validateDraft } from "../../../src/lensBuilder/draft.js";
 import { exportDataTs, exportJson, importJson, draftFilename } from "../../../src/lensBuilder/serialize.js";
 import { commonGlasses, findGlass, searchGlass, nearestGlass } from "../../../src/lensBuilder/glassSearch.js";
 import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
 
-const catalog = ALL_CATALOG_KEYS.map((k) => authoredInputForKey(k)!);
+const catalog = ALL_CATALOG_KEYS.map((k) => authoredInputForKey(k)!).filter((d) => parseUntrustedDraft(d).ok);
 const inputs = [
   catalog.find((d) => !d.zoom && !d.opticalPath)!,
   catalog.find((d) => d.zoom && d.gaps && d.surfaces.some((s) => s.asphere))!,

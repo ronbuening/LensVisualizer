@@ -1,7 +1,8 @@
 import { buildLens, ingestLens } from "../optics/buildLens.js";
-import { validateCanonicalLens, LENS_KEY_PATTERN } from "../optics/validation.js";
+import { validateCanonicalLens } from "../optics/validation.js";
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import type { RuntimeLens } from "../types/optics.js";
+import { requireUntrustedDraft, parseUntrustedDraft } from "./untrusted.js";
 
 /** A teaching design, not a reconstruction of a production lens. All distances are mm. */
 export function createTemplate(): LensDataV2Input {
@@ -40,7 +41,22 @@ export function cloneDraft(draft: LensDataV2Input): LensDataV2Input {
 }
 
 export function copyCatalogInput(input: LensDataV2Input): LensDataV2Input {
-  return { ...cloneDraft(input), key: `${input.key}-copy`, name: `${input.name} (copy)`, visible: false };
+  // A catalog file may record an afocal element's display focal length as `Infinity`, which JSON cannot carry.
+  const portable: LensDataV2Input = {
+    ...input,
+    elements: input.elements.map((element) =>
+      element.focalLengthMm === undefined || Number.isFinite(element.focalLengthMm)
+        ? element
+        : (({ focalLengthMm: _afocal, ...rest }) => rest)(element),
+    ),
+  };
+  const safe = requireUntrustedDraft(portable);
+  return requireUntrustedDraft({
+    ...safe,
+    key: `${safe.key.slice(0, 75).replace(/-$/, "")}-copy`,
+    name: `${safe.name.slice(0, 193)} (copy)`,
+    visible: false,
+  });
 }
 
 export type DraftValidation = { ok: true; lens: RuntimeLens } | { ok: false; issues: string[] };
@@ -64,8 +80,9 @@ function authoredIssues(draft: LensDataV2Input, issues: string[]): string[] {
 
 export function validateDraft(draft: LensDataV2Input): DraftValidation {
   try {
-    if (!LENS_KEY_PATTERN.test(draft.key))
-      return { ok: false, issues: ["key: use lowercase words separated by hyphens"] };
+    const gate = parseUntrustedDraft(draft);
+    if (!gate.ok) return gate;
+    draft = gate.draft;
     const issues = validateCanonicalLens(ingestLens(draft));
     if (issues.length) return { ok: false, issues: authoredIssues(draft, issues) };
     return { ok: true, lens: buildLens(draft) };

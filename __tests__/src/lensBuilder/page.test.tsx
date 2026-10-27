@@ -5,6 +5,7 @@ import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import LensBuilderPage from "../../../src/pages/LensBuilderPage.js";
 import { clearBrowserState, installMatchMediaMock, installResizeObserverMock, renderPage } from "../../testUtils.js";
+import { parseUntrustedDraft } from "../../../src/lensBuilder/untrusted.js";
 import { createTemplate } from "../../../src/lensBuilder/draft.js";
 import { exportDataTs, exportJson } from "../../../src/lensBuilder/serialize.js";
 import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
@@ -148,7 +149,7 @@ describe("lens builder page", () => {
   });
 
   it("starts from a catalog query and confirms before replacing an autosaved draft", async () => {
-    const key = ALL_CATALOG_KEYS[0];
+    const key = ALL_CATALOG_KEYS.find((key) => parseUntrustedDraft(authoredInputForKey(key)).ok)!;
     const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
     const view = renderPage(<LensBuilderPage />, { initialEntries: [`/lens-builder/?from=${key}`] });
     await screen.findByRole("heading", { name: "Build your own lens" });
@@ -192,5 +193,90 @@ describe("lens builder page", () => {
     );
     expect(html).not.toContain("svg");
     expect(html).not.toContain("textarea");
+  });
+  it("recovers a malformed autosave, preserves exact bytes, and discards the backup", async () => {
+    const bad = JSON.stringify({ ...createTemplate(), zoom: { stations: {} } });
+    localStorage.setItem("surface-stop-lens-builder-v2", bad);
+    renderPage(<LensBuilderPage />);
+    await screen.findByText("Valid prescription");
+    expect(screen.getByText(/Rejected autosave saved as a backup/)).toBeTruthy();
+    expect(localStorage.getItem("surface-stop-lens-builder-v2-backup")).toBe(bad);
+    expect((screen.getByLabelText("Name") as HTMLInputElement).value).toBe(createTemplate().name);
+    fireEvent.click(screen.getByRole("button", { name: "Discard backup" }));
+    expect(localStorage.getItem("surface-stop-lens-builder-v2-backup")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Discard backup" })).toBeNull();
+  });
+
+  it("retains the original and pauses autosave when the rejected payload cannot be backed up", async () => {
+    const bad = '{"schema":2}';
+    localStorage.setItem("surface-stop-lens-builder-v2", bad);
+    const originalSet = Storage.prototype.setItem;
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (this: Storage, key, value) {
+      if (key === "surface-stop-lens-builder-v2-backup") throw new Error("quota");
+      originalSet.call(this, key, value);
+    });
+    renderPage(<LensBuilderPage />);
+    await screen.findByText("Valid prescription");
+    expect(screen.getByText(/Original retained; autosave paused/)).toBeTruthy();
+    edit("Name", "Safe edit");
+    expect(localStorage.getItem("surface-stop-lens-builder-v2")).toBe(bad);
+    fireEvent.click(screen.getByRole("button", { name: "Discard backup" }));
+    await waitFor(() =>
+      expect(JSON.parse(localStorage.getItem("surface-stop-lens-builder-v2")!).name).toBe("Safe edit"),
+    );
+  });
+
+  it("surfaces quota failures in the status line and always offers a reset that clears the saved draft", async () => {
+    localStorage.setItem("surface-stop-lens-builder-v2-backup", "bad backup");
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("quota");
+    });
+    renderPage(<LensBuilderPage />);
+    await screen.findByText(/Autosave failed: browser storage/);
+    edit("Name", "Edited");
+    fireEvent.click(screen.getByRole("button", { name: "Reset draft" }));
+    expect((screen.getByLabelText("Name") as HTMLInputElement).value).toBe(createTemplate().name);
+    expect(localStorage.getItem("surface-stop-lens-builder-v2-backup")).toBeNull();
+  });
+
+  it("rejects unsafe typed edits inline and keeps the committed draft intact", async () => {
+    renderPage(<LensBuilderPage />);
+    await screen.findByText("Valid prescription");
+    edit("Maker", "../../../escape");
+    expect(screen.getByText("Maker must form one safe path segment")).toBeTruthy();
+    edit("Key", "constructor/escape");
+    expect(screen.getByText("Use lowercase words separated by hyphens")).toBeTruthy();
+    edit("Name", "Secret\u202elens");
+    expect(screen.getByText(/Control characters, BiDi controls/)).toBeTruthy();
+    edit("L1 thickness", "1e400");
+    expect(screen.getByText("Enter a finite number")).toBeTruthy();
+    edit("L1 thickness", "2e18");
+    expect(screen.getByText("Magnitude must be at most 1e+18")).toBeTruthy();
+    expect(screen.getByLabelText("Maker").getAttribute("maxlength")).toBe("60");
+    expect(screen.getByLabelText("Key").getAttribute("maxlength")).toBe("80");
+    expect(screen.getByLabelText("L1 description").getAttribute("maxlength")).toBe("200");
+    expect(JSON.parse(localStorage.getItem("surface-stop-lens-builder-v2")!)).toEqual(createTemplate());
+  });
+
+  it("refuses wrong-typed paste and file imports, and checks file size before reading", async () => {
+    renderPage(<LensBuilderPage />);
+    await screen.findByText("Valid prescription");
+    const draft = createTemplate();
+    const bad = JSON.stringify({ ...draft, subtitle: {} });
+    fireEvent.change(screen.getByLabelText("Advanced JSON"), { target: { value: bad } });
+    fireEvent.click(screen.getByRole("button", { name: "Apply JSON" }));
+    expect(screen.getByRole("alert").textContent).toContain("draft.subtitle");
+    expect((screen.getByLabelText("Name") as HTMLInputElement).value).toBe(draft.name);
+    const file = new File([bad], "bad.json", { type: "application/json" });
+    const read = vi.fn().mockResolvedValue(bad);
+    Object.defineProperty(file, "text", { value: read });
+    fireEvent.change(screen.getByLabelText("Import JSON"), { target: { files: [file] } });
+    await waitFor(() => expect(read).toHaveBeenCalledOnce());
+    await waitFor(() => expect(screen.getByRole("alert").textContent).toContain("draft.subtitle"));
+    Object.defineProperty(file, "size", { value: 1_000_001 });
+    fireEvent.change(screen.getByLabelText("Import JSON"), { target: { files: [file] } });
+    expect(screen.getByRole("alert").textContent).toContain("at most 1 MB");
+    expect(read).toHaveBeenCalledOnce();
+    expect(JSON.parse(localStorage.getItem("surface-stop-lens-builder-v2")!)).toEqual(draft);
   });
 });

@@ -68,7 +68,13 @@ function nearestTo(glasses: readonly GlassEntry[], px: number, py: number, limit
 
 /** The nearest glass in a 90° cone towards an arrow key, weighting sideways distance so the walk stays on course. */
 function step(glasses: readonly GlassEntry[], from: GlassEntry, key: string): GlassEntry | null {
-  const [dx, dy] = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[key] ?? [0, 0];
+  const directions: Record<string, number[]> = {
+    ArrowLeft: [-1, 0],
+    ArrowRight: [1, 0],
+    ArrowUp: [0, -1],
+    ArrowDown: [0, 1],
+  };
+  const [dx, dy] = Object.hasOwn(directions, key) ? directions[key] : [0, 0];
   const fx = x(from.vd);
   const fy = y(from.nd);
   let best: GlassEntry | null = null;

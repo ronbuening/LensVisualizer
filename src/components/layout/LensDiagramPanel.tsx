@@ -74,6 +74,8 @@ interface LensDiagramPanelProps {
   showPhotoSearch?: boolean;
   /** Element highlighted from outside the diagram (the lens builder's hovered card); it wins over hover and selection. */
   highlightElementId?: number | null;
+  /** Constant id error reports use in place of the lens key, for a private draft (the lens builder). */
+  telemetryId?: string;
 }
 
 export default function LensDiagramPanel({
@@ -102,6 +104,7 @@ export default function LensDiagramPanel({
   sharedAnalysisControls = false,
   showPhotoSearch,
   highlightElementId = null,
+  telemetryId,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -362,26 +365,28 @@ export default function LensDiagramPanel({
     chromV,
     lensKey: systemKey,
   });
+  /* Issue links name the lens, except for a private draft. */
+  const reportKey = telemetryId ?? systemKey;
   return (
-    <PanelErrorBoundary lensKey={systemKey}>
+    <PanelErrorBoundary lensKey={systemKey} telemetryId={telemetryId}>
       {buildError ? (
         <LensDiagramErrorState
           error={buildError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (buildLens)"
           title="Failed to build lens"
         />
       ) : shapeError ? (
         <LensDiagramErrorState
           error={shapeError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (element shapes)"
           title="Failed to compute lens element shapes"
         />
       ) : rayError ? (
         <LensDiagramErrorState
           error={rayError}
-          lensKey={systemKey}
+          lensKey={reportKey}
           component="LensDiagramPanel (ray tracing)"
           title="Ray tracing failed"
         />

@@ -2,8 +2,8 @@ import { useState, type CSSProperties } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import {
-  IMAGE_FORMAT_BY_ID,
-  LENS_MOUNT_BY_ID,
+  imageFormatMetadata,
+  lensMountMetadata,
   type ImageFormatId,
   type LensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
@@ -18,9 +18,11 @@ interface LensTaxonomyBadgesProps {
 
 export default function LensTaxonomyBadges({ lensMounts = [], imageFormat, t, compact }: LensTaxonomyBadgesProps) {
   const [expanded, setExpanded] = useState(false);
+  // Builder drafts reach here unvalidated, so an id outside the taxonomy gets no badge rather than a dead link.
+  const mounts = lensMounts.flatMap((id) => lensMountMetadata(id) ?? []);
   // Only authored formats belong here; the optical analysis resolver supplies a default.
-  const format = imageFormat ? IMAGE_FORMAT_BY_ID[imageFormat] : undefined;
-  if (lensMounts.length === 0 && !format) return null;
+  const format = imageFormatMetadata(imageFormat);
+  if (mounts.length === 0 && !format) return null;
 
   const pillStyle: CSSProperties = {
     color: t.descLinkColor,
@@ -41,24 +43,24 @@ export default function LensTaxonomyBadges({ lensMounts = [], imageFormat, t, co
       aria-label="Mount and image format"
       style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 4, maxWidth: "100%" }}
     >
-      {(expanded ? lensMounts : lensMounts.slice(0, 2)).map((id) => (
+      {(expanded ? mounts : mounts.slice(0, 2)).map((mount) => (
         <Link
-          key={id}
-          to={canonicalPagePath(`/mounts/${id}`)}
-          aria-label={`Mount: ${LENS_MOUNT_BY_ID[id].label}`}
+          key={mount.id}
+          to={canonicalPagePath(`/mounts/${mount.id}`)}
+          aria-label={`Mount: ${mount.label}`}
           style={pillStyle}
         >
-          {LENS_MOUNT_BY_ID[id].label}
+          {mount.label}
         </Link>
       ))}
-      {lensMounts.length > 2 && (
+      {mounts.length > 2 && (
         <button
           type="button"
           aria-expanded={expanded}
           onClick={() => setExpanded(!expanded)}
           style={{ ...pillStyle, background: "none", cursor: "pointer" }}
         >
-          {expanded ? "Show fewer" : `+${lensMounts.length - 2} more`}
+          {expanded ? "Show fewer" : `+${mounts.length - 2} more`}
         </button>
       )}
       {format && (

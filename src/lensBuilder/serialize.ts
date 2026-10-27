@@ -1,5 +1,6 @@
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { validateDraft } from "./draft.js";
+import { requireUntrustedDraft, escapeExportString, escapeExportJsonText, MAX_DRAFT_BYTES } from "./untrusted.js";
 
 // Declaration order from lensDataV2.ts. Unknown nested records keep their authored order.
 const ORDERS: Record<string, string[]> = {
@@ -140,19 +141,21 @@ function print(node: unknown, group = "", depth = 0): string {
     if (!Number.isFinite(node)) throw new Error("Export requires finite numbers");
     return Object.is(node, -0) ? "-0" : String(node);
   }
-  if (node === null || typeof node !== "object") return JSON.stringify(node);
+  if (node === null || typeof node !== "object")
+    return typeof node === "string" ? escapeExportString(node) : JSON.stringify(node);
   const list = Array.isArray(node);
   const record = node as Record<string, unknown>;
   const keys = Object.keys(node).filter((key) => record[key] !== undefined);
-  const order = ORDERS[group] ?? [];
+  const order = Object.hasOwn(ORDERS, group) ? ORDERS[group] : [];
   if (!list)
     keys.sort((a, b) => {
       const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length);
       return rank(a) - rank(b);
     });
   const entries = keys.map((key) => {
+    if (["__proto__", "constructor", "prototype"].includes(key)) throw new Error("Dangerous export key");
     const value = print(record[key], list ? group : group === "gaps" ? "gap" : key, depth + 1);
-    return list ? value : `${/^[a-zA-Z_$][\w$]*$/.test(key) ? key : JSON.stringify(key)}: ${value}`;
+    return list ? value : `${/^[a-zA-Z_$][\w$]*$/.test(key) ? key : escapeExportString(key)}: ${value}`;
   });
   const [open, close] = list ? ["[", "]"] : ["{", "}"];
   const compact = list ? `[${entries.join(", ")}]` : entries.length ? `{ ${entries.join(", ")} }` : "{}";
@@ -180,7 +183,11 @@ function wrapWords(text: string, width: number): string[] {
 }
 
 export function exportDataTs(draft: LensDataV2Input): string {
-  const name = draft.name.replaceAll("*/", "* /").replace(/[\r\n]/g, " ");
+  draft = requireUntrustedDraft(draft);
+  const name = draft.name
+    .replace(/[\r\n]/g, " ")
+    .replace(/[\p{C}\u2028\u2029]/gu, "")
+    .replaceAll("*/", "* /");
   const rule = "═".repeat(70);
   const line = (text: string) =>
     wrapWords(text, 68)
@@ -191,24 +198,23 @@ export function exportDataTs(draft: LensDataV2Input): string {
 }
 
 export function exportJson(draft: LensDataV2Input): string {
-  return JSON.stringify(draft, null, 2) + "\n";
+  const safe = requireUntrustedDraft(draft);
+  const pretty = escapeExportJsonText(JSON.stringify(safe, null, 2)) + "\n";
+  if (new TextEncoder().encode(pretty).length <= MAX_DRAFT_BYTES) return pretty;
+  const compact = escapeExportJsonText(JSON.stringify(safe));
+  if (new TextEncoder().encode(compact).length > MAX_DRAFT_BYTES) throw new Error("Export JSON must be at most 1 MB");
+  return compact;
 }
 
 export function importJson(text: string): LensDataV2Input {
-  let value: unknown;
-  try {
-    value = JSON.parse(text);
-  } catch (error) {
-    throw new Error(`Invalid JSON: ${error instanceof Error ? error.message : String(error)}`);
-  }
-  if (!value || typeof value !== "object" || Array.isArray(value) || !("schema" in value) || value.schema !== 2)
-    throw new Error("Expected a LensDataV2Input object with schema: 2");
-  const draft = value as LensDataV2Input;
+  const draft = requireUntrustedDraft(text);
   const result = validateDraft(draft);
   if (!result.ok) throw new Error(result.issues.join("\n"));
   return draft;
 }
 
 export function draftFilename(draft: LensDataV2Input, extension: "data.ts" | "json" = "data.ts"): string {
-  return `${draft.key.replace(/[^a-z0-9-]/gi, "-") || "custom-lens"}.${extension}`;
+  let stem = draft.key.replace(/[^a-z0-9-]/gi, "-") || "custom-lens";
+  if (/^(con|prn|aux|nul|com[1-9]|lpt[1-9])$/i.test(stem)) stem = `_${stem}`;
+  return `${stem.slice(0, 80 - extension.length - 1)}.${extension}`;
 }

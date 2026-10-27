@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it } from "vitest";
 import LensTaxonomyBadges from "../../../../src/components/controls/LensTaxonomyBadges.js";
 import themes from "../../../../src/utils/theme/themes.js";
+import type { ImageFormatId, LensMountId } from "../../../../src/utils/catalog/lensTaxonomy.js";
 
 afterEach(() => cleanup());
 
@@ -17,6 +18,24 @@ describe("LensTaxonomyBadges", () => {
     );
     expect(screen.getAllByRole("link")).toHaveLength(1);
     expect(screen.getByRole("link", { name: "Image format: APS-C" }).getAttribute("href")).toBe("/formats/aps-c/");
+  });
+
+  it("skips ids outside the taxonomy, inherited object members included", () => {
+    const unknown = ["__proto__", "constructor", "toString"] as unknown as LensMountId[];
+    const { container } = render(
+      <MemoryRouter>
+        <LensTaxonomyBadges
+          lensMounts={[...unknown, "leica-m"]}
+          imageFormat={"constructor" as ImageFormatId}
+          t={themes.dark}
+          compact={false}
+        />
+        <LensTaxonomyBadges lensMounts={unknown} imageFormat={"toString" as ImageFormatId} t={themes.dark} compact />
+      </MemoryRouter>,
+    );
+    expect(screen.getAllByRole("link").map((link) => link.getAttribute("href"))).toEqual(["/mounts/leica-m/"]);
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(container.querySelectorAll('[role="group"]')).toHaveLength(1);
   });
 
   it("includes canonical links in server-rendered markup with the same initial disclosure as the client", () => {

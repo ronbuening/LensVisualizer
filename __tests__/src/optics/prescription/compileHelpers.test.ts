@@ -124,3 +124,12 @@ describe("compiler helpers", () => {
     expect(firstInfinityThickness("bad", true)).toBeNull();
   });
 });
+
+describe("buildLabelIndex with prototype-named labels", () => {
+  it("resolves only own labels", () => {
+    const index = buildLabelIndex([{ label: "1" }, { label: "__proto__" }]);
+    expect(index["__proto__"]).toBe(1);
+    expect(index["toString"]).toBeUndefined();
+    expect(index["constructor"]).toBeUndefined();
+  });
+});
