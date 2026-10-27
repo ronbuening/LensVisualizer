@@ -292,15 +292,15 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₁ | 1 | 18.5 | L1 edge thickness |
 | r₂ | 2 | 18.5 | L1 edge thickness |
 | r₃ | 3 | 16.5 | L2 edge thickness |
-| r₄ | 4 | 15.4 | f/1.4 marginal ray (15.30 mm) |
-| r₅ | 5 | 14.5 | f/1.4 marginal ray (14.45 mm) |
+| r₄ | 4 | 15.5 | f/1.4 marginal ray (15.30 mm) + 1 % |
+| r₅ | 5 | 14.6 | f/1.4 marginal ray (14.45 mm) + 1 % |
 | r₆ | 6 | 12.4 | R₆ slope limit (sd/|R| = 0.90) |
 | STO | STO | 11.6 | f/1.4 marginal ray at stop (derived) |
-| r₇ | 7 | 11.5 | Marginal ray + margin |
-| r₈ | 8 | 14.7 | Cemented junction; L5 square with r₉ |
-| r₉ | 9 | 14.7 | f/1.4 marginal ray (14.69 mm) |
-| r₁₀ | 10 | 15.7 | L6 square with r₁₁ |
-| r₁₁ | 11 | 15.7 | f/1.4 marginal ray (15.63 mm); L6 edge 0.77 mm |
+| r₇ | 7 | 11.6 | f/1.4 marginal ray (11.47 mm) + 1 % |
+| r₈ | 8 | 14.9 | Cemented junction; L5 square with r₉ |
+| r₉ | 9 | 14.9 | f/1.4 marginal ray (14.69 mm) + 1 % |
+| r₁₀ | 10 | 15.8 | L6 square with r₁₁ |
+| r₁₁ | 11 | 15.8 | f/1.4 marginal ray (15.63 mm) + 1 %; L6 edge 0.71 mm |
 | r₁₂ | 12 | 16.5 | Corner chief ray (15.87 mm) + clearance |
 | r₁₃ | 13 | 16.5 | Corner chief ray (15.93 mm) + clearance |
 

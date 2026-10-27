@@ -78,3 +78,21 @@ With the stop plane clear of r₆ (entry above), `audit:aperture` showed the f/1
 Figure check (FIG. 1, PDF page 2, rendered at 200 dpi; 44.185 mm of glass over 540 px, 0.0818 mm/px, read by hand): L2 is drawn to about 16.7 mm, L3's front to 15.5, the L4/L5 block to 15.2 and L6 to 16.2 mm, so every raised rim stays inside the drawn element (L1 reads 18.8 against the stored 18.5, confirming the scale). Largest raise 13.1 % (surface 9), inside the procedure's ~15 % band. `audit:surface --sd` accepts the set; L6's edge is 0.77 mm at 15.7 mm and the L5–L6 and L6–L7 gaps open toward the rim.
 
 Result: f/1.4 traces f/1.40, iris-limited. `audit:image-circle` reports nothing undersized; `audit:field-coverage` still reaches the format corner. The rendered section was compared with FIG. 1: the doublet block and L6 now stand nearer their drawn heights, L5 stays square, and the stop sits just clear of L3's r₆ tips.
+
+## 2026-10-27 — Rims given a stated margin
+
+The rims raised above stood exactly at the stated ray's height, rounded up to 0.1 mm, where rounding decides whether the f/1.4 ray passes. Every inferred rim within 1 % of that ray now stands at least 1 % above it, rounded up to 0.1 mm, so a change of the stated beam of up to about 0.3 % (the f-number work's expected size) cannot clip it. Square elements keep both faces at the higher value.
+
+| Surface | Before | After | f/1.4 ray | Margin |
+|---|---:|---:|---:|---:|
+| 4 (L2 rear) | 15.4 | 15.5 | 15.302 | 1.3 % |
+| 5 (L3 front) | 14.5 | 14.6 | 14.453 | 1.0 % |
+| 7 (L4 front) | 11.5 | 11.6 | 11.467 | 1.2 % |
+| 8 (L4/L5 junction) | 14.7 | 14.9 | 14.235 | L5 square with 9 |
+| 9 (L5 rear) | 14.7 | 14.9 | 14.694 | 1.4 % |
+| 10 (L6 front) | 15.7 | 15.8 | 15.411 | L6 square with 11 |
+| 11 (L6 rear) | 15.7 | 15.8 | 15.631 | 1.1 % |
+
+Surface 7 was not raised before, but stood only 0.3 % above the ray. Each value stays inside FIG. 1's drawn element: L2 to about 16.7 mm, L3's front to 15.5, the L4/L5 block to 15.2 and L6 to 16.2. The largest total raise over the original estimates is 14.6 % (surface 9, 13.0 to 14.9), inside the procedure's ~15 % band. L6's edge is 0.71 mm, above this file's 0.7 mm rule.
+
+Why the inferred rims were short. The original estimates came from a combined marginal and chief-ray trace "at f/1.4" with about 8 % clearance. But the stop plane then sat inside r₆'s cap, so the traced marginal ray could not reach the stop above the beam that passes at f/1.73. The rims behind the stop were sized against that smaller beam, and no audit traced the stated f/1.4 beam past the stop until the plane moved. The rims are re-derived after the f-number work lands.

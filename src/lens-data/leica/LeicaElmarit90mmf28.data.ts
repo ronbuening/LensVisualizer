@@ -29,10 +29,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    ~7 % of the figure and are retained.                             ║
  * ║                                                                     ║
  * ║  NOTE ON STOP AND FOCUS:                                           ║
- * ║    Fig. 1 draws no diaphragm; the iris 3.10 mm into air gap a₂,    ║
- * ║    just behind r₅'s clear cap (sag 3.05 mm at its 13.5 mm rim),    ║
- * ║    is a model choice. The stop radius is derived from the design   ║
- * ║    f-number, f/2.8; its real marginal-ray height is about 12.9 mm. ║
+ * ║    The patent gives no stop position: Fig. 1 draws no diaphragm,   ║
+ * ║    and the text fixes f/2.8 only by entrance height (17.9 per 100  ║
+ * ║    mm, col. 1 ll. 60-66). The iris 3.10 mm into air gap a₂, just   ║
+ * ║    behind r₅'s clear cap (sag 3.05 mm at its 13.5 mm rim), is a    ║
+ * ║    model choice. Its radius derives from f/2.8: about 13.05 mm.    ║
  * ║    The 1 m close-focus gap (84.40 mm) is a calculated paraxial      ║
  * ║    unit-focus extension (+10.07 mm) for 1 m object-to-image.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝

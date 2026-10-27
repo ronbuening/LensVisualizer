@@ -60,3 +60,15 @@ With the stop plane clear of r₆ (entry above), `audit:aperture` showed the f/2
 Figure check (Fig. 1 of US 1,998,704, PDF page 1, rendered at 200 dpi, read by hand; 30.10 mm of glass over about 308 px): L4's flat-topped junction rim is drawn at about 11.1 mm, below L2/L3's tips, so 10.0 mm stays inside the drawing. `audit:patent-figure` could not settle the crop (leader lines and labels pulled its axis), so the hand reading stands. `audit:surface --sd 5=10` accepts the value.
 
 Result: f/2 traces f/2.00, iris-limited. `audit:image-circle` reports nothing undersized; `audit:field-coverage` still reaches the format corner. The rendered section was compared with Fig. 1: L4's junction sits below the L2/L3 tips as drawn, and the stop clears L4's concave tips.
+
+## 2026-10-27 — Junction rim given a stated margin
+
+The L3/L4 junction stood exactly at the f/2 ray's height rounded up to 0.1 mm, where rounding decides pass or block. It now stands at least 1 % above it, rounded up to 0.1 mm, so a change of the stated beam of up to about 0.3 % (the f-number work's expected size) cannot clip it.
+
+| Surface | Before | After | f/2 ray | Margin |
+|---|---:|---:|---:|---:|
+| 5 (L3/L4 junction) | 10.0 | 10.1 | 9.945 | 1.6 % |
+
+No other rim is within 1 % of the ray. 10.1 mm stays inside Fig. 1's junction, drawn at about 11.1 mm. The total raise over the original estimate is 6.3 % (9.5 to 10.1 mm).
+
+Why the inferred rim was short. It was estimated while the stop plane sat inside r₆'s cap, where the traced f/2 marginal ray could not reach the stop above the f/2.08 beam. The junction was sized against that smaller beam, and no audit traced the stated f/2 beam past the stop until the plane moved. The rim is re-derived after the f-number work lands.
