@@ -595,10 +595,10 @@ function channelSpan(
 }
 
 function chromaticFieldSummary(field: FieldCurvatureFieldResult): ChromaticFieldFocusFieldSummary | null {
-  const shifts = field.chromaticFieldShifts?.filter(
-    (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
-  );
-  if (!field.usable || !shifts || shifts.length < 2) return null;
+  const shifts = field.chromaticFieldShifts;
+  // Every channel or none, as computeChromaticFieldShifts solves them: a field never compares fewer channels unsaid.
+  const complete = shifts?.every((shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm));
+  if (!field.usable || !shifts || !complete || shifts.length < 2) return null;
   const tangential = channelSpan(shifts, "tangentialShiftMm");
   const sagittal = channelSpan(shifts, "sagittalShiftMm");
   const maxFocusSpreadMm = Math.max(tangential.spreadMm, sagittal.spreadMm);

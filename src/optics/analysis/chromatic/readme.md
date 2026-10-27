@@ -22,8 +22,8 @@ flowchart LR
   n_external_src_types["src/types"]
   n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_rayFan_ts --> |6| n_external_src_optics_analysis
   n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_analysis_ts --> |4| n_external_src_optics_analysis
-  n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_analysis_ts --> |2| n_external_src_optics_chromatic
-  n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_rayFan_ts --> |2| n_external_src_optics_chromatic
+  n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_analysis_ts --> |3| n_external_src_optics_chromatic
+  n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_rayFan_ts --> |3| n_external_src_optics_chromatic
   n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_rayFan_ts --> |2| n_external_src_optics_prescription
   n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_analysis_ts --> |2| n_external_src_optics_state
   n_src_optics_analysis_chromatic_src_optics_analysis_chromatic_rayFan_ts --> |2| n_external_src_optics_state
@@ -41,13 +41,13 @@ flowchart LR
 
 - Direct source files: 3
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (10), src/optics/chromatic (5), src/optics/state (4), src/optics/prescription (3), src/types (3), src/optics/types.ts (2), src/optics/field
+- Main outbound areas: src/optics/analysis (10), src/optics/chromatic (7), src/optics/state (4), src/optics/prescription (3), src/types (3), src/optics/types.ts (2), src/optics/field
 - External consumers: src/optics/analysis, src/optics/analysis.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysis.ts` | Analysis helper module | src/optics/analysis (4), src/optics/chromatic (2), src/optics/state (2), src/optics/field, src/optics/prescription, +2 more | src/optics/analysis (2), src/optics/analysis.ts | DEFAULT_CHROMATIC_ANALYSIS_CHANNELS, DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS, DEFAULT_LATERAL_COLOR_FIELD_FRACTIONS, ChromaticAnalysisOptions, LongitudinalChromaticFocusSample, LongitudinalChromaticFocusResult, LateralColorChannelSample, LateralColorFieldSample, +5 more |
-| `rayFan.ts` | Ray Fan helper module | src/optics/analysis (6), src/optics/chromatic (2), src/optics/prescription (2), src/optics/state (2), src/optics/types.ts, +1 more | src/optics/analysis, src/optics/analysis.ts | ChromaticRayFanAnalysisOptions, ChromaticRayFanAnalysis, computeChromaticRayFanAnalysis |
+| `analysis.ts` | Analysis helper module | src/optics/analysis (4), src/optics/chromatic (3), src/optics/state (2), src/optics/field, src/optics/prescription, +2 more | src/optics/analysis (2), src/optics/analysis.ts | DEFAULT_CHROMATIC_ANALYSIS_CHANNELS, DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS, DEFAULT_LATERAL_COLOR_FIELD_FRACTIONS, ChromaticAnalysisOptions, LongitudinalChromaticFocusSample, LongitudinalChromaticFocusResult, LateralColorChannelSample, LateralColorFieldSample, +5 more |
+| `rayFan.ts` | Ray Fan helper module | src/optics/analysis (6), src/optics/chromatic (3), src/optics/prescription (2), src/optics/state (2), src/optics/types.ts, +1 more | src/optics/analysis, src/optics/analysis.ts | ChromaticRayFanAnalysisOptions, ChromaticRayFanAnalysis, computeChromaticRayFanAnalysis |
 | `rayFanScaling.ts` | Ray Fan Scaling helper module | src/optics/chromatic, src/types | src/optics/analysis.ts | REFERENCE_LOCA_MM, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM, ChromaticBarResult, computeChromaticBarOffsets, computeLocaBarOffsets |
