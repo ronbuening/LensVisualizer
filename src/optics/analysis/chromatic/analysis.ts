@@ -45,7 +45,7 @@ export interface LongitudinalChromaticFocusSample {
 export interface LongitudinalChromaticFocusResult {
   channels: readonly ChromaticChannel[];
   referenceChannel: ChromaticChannel;
-  /** Stop fraction the marginal zone was aimed at: the first candidate no aperture vignettes for two channels. */
+  /** Stop fraction the marginal zone was aimed at: the first candidate at least two channels pass. */
   marginalFraction: number;
   imagePlaneZ: number;
   lastSurfaceZ: number;
@@ -198,21 +198,12 @@ export function computeLongitudinalChromaticFocus(
     }
     return { marginalFraction, marginalRays, clippedByChannel };
   };
-  // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
-  const candidates: ReturnType<typeof zoneRays>[] = [];
-  for (const marginalFraction of fractions) {
-    if (channels.some((channel) => zonesByChannel.get(channel)?.ray(marginalFraction)?.status === "unaimed")) break;
-    candidates.push(zoneRays(marginalFraction));
-  }
-  // Every wavelength crosses the stop at the same zone, but a rim behind it can vignette one colour before another:
-  // compare all channels at the outermost zone they all pass, and only failing that at the first two pass.
-  const validCount = (candidate: ReturnType<typeof zoneRays>) => Object.keys(candidate.marginalRays).length;
-  const chosen =
-    candidates.find((candidate) => validCount(candidate) === channels.length) ??
-    candidates.find((candidate) => validCount(candidate) >= 2);
-  if (chosen) {
-    const { marginalFraction, marginalRays, clippedByChannel } = chosen;
+  for (const fraction of fractions) {
+    // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
+    if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) break;
+    const { marginalFraction, marginalRays, clippedByChannel } = zoneRays(fraction);
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
+    if (validChannels.length < 2) continue;
 
     const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ);
     const referenceChannel = referenceChannelFor(channels);
