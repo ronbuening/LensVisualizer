@@ -842,3 +842,35 @@ The patent publishes infinity spacings only (D0 = ∞, β blank), so the close c
 **Checks on the result.** The surface validator reports no errors; engine EFL 71.404 mm, f/2.891 and stop radius 17.96 mm are unchanged; the image-circle floor passes; traced field coverage is 100 % of 21.65 mm at all three stations; the meridional real-ray check shows no axial clipping and no blocked chief ray at infinity or closest focus; all 18 glasses resolve.
 
 **Open limitations.** Close-focus spacings remain a reconstruction (the 135 mm state by a declared travel-ratio rule). Semi-diameters are modeled or figure-measured, not published. The sibling first-generation file does not set `acceptsTeleconverters`, although Nikon lists the same converters for it; that file was outside this review.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1, wide-end panel (広角端), drawing sheet 1/27 (PDF p. 83), was read from the native 2478 × 3507 CCITT raster
+(319 ppi, about 6.8 px/mm at the drawing scale, axis at row 911.5) element by element, on both halves, for flat lands
+square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge, lower / upper) | Cut depth | Cut radius | sd (was → now) | Largest stated axial ray |
+| --- | --- | --- | --- | --- | --- |
+| 4 (L12 rear, R 58.6156) | 0.961 / 0.966 | 10.28 mm | 33.16 mm | 33.15 → 34.2 | 31.85 mm |
+| 8 (L21 rear, R 36.2521) | 0.911 / 0.905 | 6.50 mm | 20.71 mm | 20.7 → 22.6 | 17.91 mm |
+| 31 (L52 rear, R 33.0069) | 0.880 / 0.881 | 2.11 mm | 11.61 mm | 11.6 → 12.4 | 11.12 mm |
+| 34A (L71 front, R −34.6941) | 0.927 / 0.920 | 4.19 mm | 17.51 mm | 17.5 → 18.7 | 5.62 mm |
+
+- All four faces had their `sd` at the cap end (the 2026-10-05 figure pass put 8 and 34A there), while the figure draws
+  each element's square edge at the partner face's height (3: 34.2, 7: 22.6, 30: 12.4, 35: 18.7). Each `sd` was raised
+  to that value and the cut placed at the old rim (depth = |sag(old sd)|, rounded up), so the traced clear radius
+  sits at or up to 0.013 mm outside the old rim. The figure's own ratios put the cap ends at 32.9, 20.5, 10.9 and 17.2 mm, within a pixel or two of
+  the old rims, except on 31, where 10.9 mm would fall inside the stated axial beam; the old rim is kept there.
+- On L12 the land runs from L13's rim (surface 5, sd 33.15) out to L12's edge, as the figure draws it; the land sits
+  0.10 mm ahead of L13's rim corner.
+- Every other concave face (2, 9, 10, 12, 13, 14, 16, 22, 27, 30) runs to its element edge in the figure; no cut. 12
+  and 13 are drawn in edge contact. The step at the L43/L44 junction (21) is a cemented-junction step, not a land.
+- No cap reaches the stop plane: its neighbours 18A (convex rear) and 20 (convex front) bend away from it, and G4 is
+  fixed, so the vertex clearances of 3.46 and 6.57 mm hold at every zoom and focus state.
+- The surface validator reports no errors. The aperture audit is unchanged: all three stations trace within 3 % of
+  f/2.891 / 2.904 / 2.905, with no rim, trace or failed rows and no rim-cut limiter.
+- Full-field (Y = 21.6) side vignetting with the cut radii as clips stays 55 / 42 / 48 / 54 % at 4 / 8 / 31 / 34A,
+  identical to the old rims; no chief ray is blocked. The engine half-field moves from 19.677° / 10.459° / 7.103° to
+  19.683° / 10.462° / 7.105°, with the cut radii up to 0.013 mm outside the old rims.
+- The wide-end render now draws all four lands as flat steps square to the axis, matching the figure; nothing else
+  moved.

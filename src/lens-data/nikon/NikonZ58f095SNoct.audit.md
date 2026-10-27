@@ -51,3 +51,30 @@ Production baseline and local infinity, near, midpoint, f16 and movement chart v
 - Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and near (the old fold was
   exact). Physical track grows by 1.6(1 − 1/1.5168) = 0.545 mm, so `closeFocusM` moves from the filter-omitted
   0.499367 m to the physical object-to-image 0.499913 m.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 46, native 300 ppi CCITT raster, axis vertical, object at the bottom) was read element by element
+on both halves for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Scale
+13.12 px/mm from the 143.65 mm S1–S28A vertex span.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd (was) | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 3 (L12 rear, R 50.252) | 0.88 | 9.01 mm | 28.71 mm | 33 (28.7) | 28.30 mm |
+| 4 (L13 front, R −60.72) | 0.89 | 7.22 mm | 28.72 mm | 33 (28.7) | 28.63 mm |
+| 13 (L24 rear, R 47.074) | 0.84 | 7.19 mm | 25.00 mm | 29.5 (25) | 24.25 mm |
+| 22 (L29 rear, R 55.51) | 0.86 | 3.54 mm | 19.51 mm | 22.8 (19.5) | 17.59 mm |
+
+- The figure draws each of these elements' edge at its partner face's height (L12 33.0 mm, L13 32.8, L24 29.5, L29
+  22.7; partners S2, S5, S12, S21) and ends the cap at 29.0, 29.2, 24.9 and 19.6 mm. The 2026-09-08 audit had put
+  these four sds at the cap ends as "mechanical shoulders". Each sd now rises to its partner's and the cut sits at
+  the former sd (depth rounded up), so the traced aperture is unchanged.
+- This settles the S3/S4 follow-up from 2026-09-08: the drawn 33 mm edges now carry lands that sit
+  18.12 − 9.01 − 7.22 = 1.89 mm apart (the figure shows about 1 mm), with no air-gap intrusion.
+- Surface 15 (L25 front) ends at its 24.8 mm edge with at most a 2 px sag step (q ≈ 0.98), below what the figure
+  resolves; no cut. Surfaces 25 (L32 rear) and 28A (L34 rear) run to their element edges; no cut.
+- No cap crosses the stop plane: the land on 13 sits 1.51 mm ahead of it and the cap of 15 clears it by 2.00 mm at
+  both focus ends (GF and the stop move together).
+- The aperture audit is unchanged (f/0.98 within 3 %, no rim, trace, iris or failed rows), and the engine half-field
+  stays 25.17°. At the full field (Y = 21.6 mm) side vignetting at 3, 4, 13 and 22 is unchanged: 55, 44, 0 and 50 %
+  at infinity, 41, 34, 0 and 34 % at 0.5 m. The full-field bundle at 13 (24.78 mm) stays inside the cut radius.

@@ -95,3 +95,34 @@ Source follow-up: national grant JP7131609B2 (Google Patents original, stored lo
 - Paraxial check against the previous data: EFL identical; defocus unchanged at infinity and close focus (the old fold
   was computed exactly). Physical track grows by 0.545 mm to the patent's 92.330 mm total length, so `closeFocusM` returns
   from the D0-preserving 0.399455 m to the source's 0.4 m object-to-image distance (D0 = 307.67 mm is unchanged).
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 17 (PDF p. 154, native 300 ppi CCITT raster, axis vertical) was read element by element on the leader-free half
+and checked on the other, for flat lands square to the axis at the rims of concave faces. Scale 0.0454 mm/px (L13 rear
+to L23 rear vertex, 48.767 mm over 1074 px).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 11 (L16 rear, R 20.990) | 0.855 (271.5/318 px; 274.5/320.5) | 3.77 mm | 12.00 mm | 13.5 (was 12.0) | 11.68 mm |
+| 14 (L21 front, R −23.418) | 0.888 (237.5/267.5 px; 240/270.5) | 3.02 mm | 11.50 mm | 12.3 (was 11.5) | 10.84 mm |
+| 23 (L33 front, R −50.208) | 0.952 (391.5/411 px; 393.5/413.5) | 3.01 mm | 17.12 mm | 18.0 | 3.85 mm |
+
+- 11 and 14: earlier passes (issue #290; the 2026-09-08 rim review) had put each `sd` at the cap end, below the
+  partner face (S10 13.5, S15 12.3 mm), while the figure draws L16 and L21 with a square edge at constant height (14.4 and 12.2 mm on the
+  figure) and a land at constant axial position down to the cap. Each `sd` now equals the partner's and the cut sits
+  at the old `sd`; rounding the depth down moves the cut radii in by 0.012 and 0.015 mm. The figure's own cap ends,
+  q × sd = 11.54 and 10.92 mm, would clip the stated axial ray on 11 and clear it by only 0.08 mm on 14, so the caps
+  keep their old ends and the drawn lands are narrower than the figure's. The lands hold the close-focus spacing the
+  reduced rims protected: 1.40 mm ahead of and 2.10 mm behind the stop plane.
+- 23: `sd` is the element edge (plano rear 24 also 18.0), so the cut is q × sd. The figure ends the cap level with
+  L32's drawn edge, and the land runs from there to L33's edge.
+- Concave faces with no land: 1, 3, 4, 8, 15, 18 and 20 meet their element edges in a sharp corner. The steps at the
+  cemented junctions 2 (L11 above L12), 10 (L15 above L16) and 21 (L32 above L31) are junction steps, not lands.
+- No cap reaches the stop plane at either focus end (closest: the 11 land 1.40 mm, the 14 land 2.10 mm).
+- The aperture audit is unchanged: f/1.85 stated, f/1.88 traced, limiter 10, with no rim, trace or rim-cut limiter.
+  Full-field (Y 21.6 mm) side vignetting is unchanged at 11 (3 %) and 14 (5 % at close focus; at infinity the upper
+  rim ray misses the surface-19 sphere, so the probe bounds only the lower side). The full-field bundle at 23 stays
+  inside the 17.12 mm cut: 16.20 mm at close focus, 16.72 mm for the passing meridional fan at infinity.
+- The cut on 23 becomes the engine's half-field limiter: the estimate drops from 25.03° to 24.63° (off-axis display
+  fan 15.02° → 14.78°), still above the stated 22.9°. The cuts on 11 and 14 alone leave it unchanged.
