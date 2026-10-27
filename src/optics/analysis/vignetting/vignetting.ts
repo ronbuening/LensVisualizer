@@ -50,11 +50,11 @@ import {
   mtfLaunchGrid,
   mtfLaunchRay,
   mtfMirrorSymmetric,
-  mtfTraceClassification,
   mtfTraceOptions,
   prepareMtfFieldLaunch,
 } from "../mtf/mtfTracing.js";
 import type { MtfFieldLaunch } from "../mtf/mtfTracing.js";
+import { traceRayClassification } from "../../trace/rayClassification.js";
 import type { MtfFootprint } from "../mtf/mtfFootprint.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import type { MtfOptions, MtfSupport } from "../../../types/mtf.js";
@@ -187,7 +187,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingSamp
   const litChiefHeight = (launch: MtfFieldLaunch | null): number | null => {
     if (!launch) return null;
     const trace = traceRay(mtfLaunchRay(launch, 0, 0));
-    return mtfTraceClassification(trace, state, currentPhysStopSD) === "valid"
+    return traceRayClassification(trace, state, currentPhysStopSD) === "valid"
       ? (mtfImagePoint(state, trace)?.y ?? null)
       : null;
   };
@@ -295,7 +295,7 @@ function traceBeam(
       const trace = traceRay(
         mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step),
       );
-      if (mtfTraceClassification(trace, state, stopRadius) !== "valid") continue;
+      if (traceRayClassification(trace, state, stopRadius) !== "valid") continue;
       const w = bulkTransmissionForTrace(state.lens, trace.hits);
       cells += mirror ? 2 : 1;
       transmitted += mirror ? 2 * w : w;

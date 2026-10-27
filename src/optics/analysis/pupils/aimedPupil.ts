@@ -23,7 +23,7 @@ import type { RuntimeSkewRayTraceResult } from "../../trace/runtimeRayResult.js"
 import { traceToStopViaGeneralized } from "../../trace/stopTrace.js";
 import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
 import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
-import { mtfTraceClassification } from "../mtf/mtfRayClassification.js";
+import { traceRayClassification } from "../../trace/rayClassification.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -597,7 +597,7 @@ function apertureBlockTracer(
   return (launch) => {
     const result = trace(frame.ray(launch[0], launch[1]));
     if (result.status === "ok" || result.failureReason === "totalInternalReflection") return null;
-    if (mtfTraceClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    if (traceRayClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
     const missed = result.failureReason === "noBracket" || result.failureReason === "noConvergedIntersection";
     const surfaceIndex = missed ? result.terminalSurfaceIndex + 1 : result.terminalSurfaceIndex;
     return surfaceIndex < stopIndex ? surfaceIndex : null;

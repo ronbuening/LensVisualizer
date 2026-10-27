@@ -122,13 +122,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
-  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
-    kind: "weak-owner",
-    owner: "CompiledStateSurface",
-    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
-    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
-  },
-  "src/optics/analysis/mtf/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
   "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
     kind: "weak-owner",
     owner: "PreparedGeometry",
@@ -284,6 +277,13 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 256,
     limit: "TRACE_OPTIONS_CACHE_LIMIT",
   },
+  "src/optics/trace/rayClassification.ts#boundsBySurface": {
+    kind: "weak-owner",
+    owner: "CompiledStateSurface",
+    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
+    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
+  },
+  "src/optics/trace/symmetry.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
 };
 
 /** All module-level containers are registered; no unbounded-cache exceptions remain. */
