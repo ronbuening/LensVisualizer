@@ -26,7 +26,7 @@ const PH = VB_H - MT - MB;
 
 function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "parabasal" | "realRay"): number {
   if (mode === "realRay") {
-    return Math.abs(field.diagnosticAstigmaticDifferenceMm ?? field.astigmaticDifferenceMm);
+    return Math.abs(field.diagnosticAstigmaticDifferenceMm ?? NaN);
   }
   return Math.abs(field.astigmaticDifferenceMm);
 }
@@ -38,8 +38,11 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
   );
   const withinImageCircle = (field: FieldCurvatureFieldResult) =>
     Math.abs(field.chiefImageHeight) <= imageCircleRadiusMm + 1e-9;
-  const markerFields = result.fields.filter((field) => field.usable && withinImageCircle(field));
-  const curveFields = result.curveFields.filter((field) => field.usable && withinImageCircle(field));
+  // A field whose fans lacked two-sided coverage has no real-ray split; it is left out, not drawn at the parabasal one.
+  const measured = (field: FieldCurvatureFieldResult) =>
+    mode !== "realRay" || field.diagnosticAstigmaticDifferenceMm !== undefined;
+  const markerFields = result.fields.filter((field) => field.usable && withinImageCircle(field) && measured(field));
+  const curveFields = result.curveFields.filter((field) => field.usable && withinImageCircle(field) && measured(field));
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   if (plotFields.length < 2) return null;
 

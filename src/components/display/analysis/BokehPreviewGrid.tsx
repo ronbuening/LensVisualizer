@@ -278,6 +278,8 @@ export default function BokehPreviewGrid({ result, t }: BokehPreviewGridProps) {
         const transmissionPct = field.usable ? `${(field.transmission * 100).toFixed(0)}% T` : "T --";
         const shiftPct = field.usable ? `${(field.pupilFootprint.shiftRadius * 100).toFixed(0)}% shift` : "shift --";
         const ratioLabel = field.usable ? `C/R ${field.centerToRimRatio.toFixed(2)}` : "";
+        // Rays no launch could be aimed at are left out of T; the tile says how many.
+        const unaimedLabel = field.unaimedRays > 0 ? ` · ${field.unaimedRays} unaimed` : "";
 
         return (
           <TileShell
@@ -287,7 +289,7 @@ export default function BokehPreviewGrid({ result, t }: BokehPreviewGridProps) {
             angleLabel={angleFmt}
             footerLine1={formatCharacterLabel(field.brightnessCharacter)}
             footerLine2={`${transmissionPct} · ${shiftPct}`}
-            footerLine3={ratioLabel}
+            footerLine3={`${ratioLabel}${unaimedLabel}`}
             footerLine1Color={characterColor(field.brightnessCharacter, t)}
             t={t}
           >

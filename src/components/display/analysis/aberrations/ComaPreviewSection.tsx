@@ -42,7 +42,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       <SectionHeader
         title="Chief-Ray Spot Footprints"
         helpLabel="Spot footprint help"
-        helpText="The traced pane samples a fixed circular pupil pattern at representative fields and plots each image-plane hit relative to the chief ray. These real-ray footprints include coma plus defocus, astigmatism, clipping, and higher-order aberrations. The schematic pane is not another trace; it converts the measured footprint extents into a textbook-style coma sketch for visual comparison."
+        helpText="The traced pane samples a fixed circular pattern of positions on the real aperture stop, evenly as in OpticStudio with ray aiming and in CODE V, at representative fields and plots each image-plane hit relative to the chief ray. These real-ray footprints include coma plus defocus, astigmatism, clipping, and higher-order aberrations. The schematic pane is not another trace; it converts the measured footprint extents into a textbook-style coma sketch for visual comparison."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}

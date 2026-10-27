@@ -10,7 +10,7 @@ import type { PreparedGeometry } from "../../types.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { mtfLaunchRay, mtfTraceOptions } from "./mtfTracing.js";
-import { mtfTraceClassification } from "./mtfRayClassification.js";
+import { traceRayClassification } from "../../trace/rayClassification.js";
 import type { MtfFieldLaunch } from "./mtfTracing.js";
 
 /** Doublings of the starting bracket before giving up on finding a blocked ray. */
@@ -47,7 +47,7 @@ export function resolveMtfAperture(
   const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
   const traceRay = prepareEngineTrace(state, traceOptions);
   const trace = (y: number) => traceRay(mtfLaunchRay(launch, 0, y));
-  const transmits = (y: number) => mtfTraceClassification(trace(y), state, options.stopSemiDiameterMm) === "valid";
+  const transmits = (y: number) => traceRayClassification(trace(y), state, options.stopSemiDiameterMm) === "valid";
   if (!transmits(0)) return null;
   let inside = 0;
   let outside = Math.max(Math.abs(footprint.y0), Math.abs(footprint.y1));
