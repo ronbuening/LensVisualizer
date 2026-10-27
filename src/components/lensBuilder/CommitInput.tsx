@@ -6,6 +6,7 @@ import {
   type DraftStringRule,
 } from "../../lensBuilder/untrusted.js";
 import type { Theme } from "../../types/theme.js";
+import { toggleBtn } from "../../utils/style/styles.js";
 
 interface CommitInputProps {
   /** Accessible name; also the visible caption unless `labelMode` is "hidden" or a `caption` is given. */
@@ -40,6 +41,17 @@ interface CommitInputProps {
  * for touch.
  */
 export const BuilderTouchContext = createContext(false);
+
+/** Small standalone action button (recovery and backup actions), matching the builder toolbar. */
+export function builderButtonStyle(t: Theme): CSSProperties {
+  // Drop the segmented-control edge; a full border follows, and React would apply the longhand after it.
+  const { borderRight: _segmentEdge, ...base } = toggleBtn(t, false, {
+    hasRightBorder: false,
+    padding: "3px 9px",
+    flex: 0,
+  });
+  return { ...base, border: `1px solid ${t.toggleBorder}`, borderRadius: 4, fontSize: 10, cursor: "pointer" };
+}
 
 /** Compact monospace field shared by every builder input. */
 export function builderInputStyle(t: Theme, invalid = false, touch = false): CSSProperties {

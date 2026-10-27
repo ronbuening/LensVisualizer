@@ -5,6 +5,7 @@ import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import SingleLensContent from "../components/layout/SingleLensContent.js";
 import BuilderErrorBoundary from "../components/lensBuilder/BuilderErrorBoundary.js";
+import { builderButtonStyle } from "../components/lensBuilder/CommitInput.js";
 import { restoreDraft, STORAGE_KEY, BACKUP_KEY } from "../lensBuilder/storage.js";
 import { parseUntrustedDraft } from "../lensBuilder/untrusted.js";
 import BuilderEditor from "../components/lensBuilder/BuilderEditor.js";
@@ -217,7 +218,17 @@ function LensBuilderEditor({
                 </Link>
                 <span style={{ color: theme.muted, margin: "0 0.35em" }}>/</span>
                 <span style={{ color: theme.body }}>Lens builder</span>
-                <button type="button" onClick={onReset}>
+                <button
+                  type="button"
+                  onClick={onReset}
+                  style={{
+                    ...builderButtonStyle(theme),
+                    display: "inline-flex",
+                    verticalAlign: "middle",
+                    padding: "1px 8px",
+                    marginLeft: 12,
+                  }}
+                >
                   Reset draft
                 </button>
               </PageNavBar>
@@ -236,7 +247,7 @@ function LensBuilderEditor({
                 showPhotoSearch={false}
                 highlightElementId={highlight}
                 sidePanel={
-                  <BuilderErrorBoundary key={editorRevision} onReset={onReset}>
+                  <BuilderErrorBoundary key={editorRevision} onReset={onReset} theme={theme}>
                     <BuilderEditor
                       key={editorRevision}
                       onDirty={() => setLocalEdits(true)}

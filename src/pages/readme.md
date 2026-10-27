@@ -30,9 +30,9 @@ flowchart LR
   n_external_src_components_ClientOnly_tsx["src/components/ClientOnly.tsx"]
   n_external_src_types["src/types"]
   n_external_src_utils_theme["src/utils/theme"]
+  n_external_src_components_lensBuilder["src/components/lensBuilder"]
   n_external_src_components_search["src/components/search"]
   n_external_src_components_errors["src/components/errors"]
-  n_external_src_components_lensBuilder["src/components/lensBuilder"]
   n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_external_src_comparison["src/comparison"]
   n_external_src_components_controls["src/components/controls"]
@@ -61,9 +61,9 @@ flowchart LR
   n_src_pages_React_components --> |4| n_external_src_components_ClientOnly_tsx
   n_src_pages_React_components --> |4| n_external_src_types
   n_src_pages_React_components --> |4| n_external_src_utils_theme
+  n_src_pages_React_components --> |3| n_external_src_components_lensBuilder
   n_src_pages_React_components --> |3| n_external_src_components_search
   n_src_pages_React_components --> |2| n_external_src_components_errors
-  n_src_pages_React_components --> |2| n_external_src_components_lensBuilder
   n_src_pages_React_components --> |2| n_external_src_utils_useMediaQuery_ts
   n_src_pages_React_components --> n_external_src_comparison
   n_src_pages_React_components --> n_external_src_components_controls
@@ -102,7 +102,7 @@ flowchart LR
 | `FormatPage.tsx` | Route-level React page | src/utils/catalog (3), src/pages/lensIndex (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, FormatPage |
 | `FormatsIndexPage.tsx` | Route-level React page | src/components/content (2), src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, FormatsIndexPage |
 | `HomePage.tsx` | Route-level React page | src/components/homepage (6), src/utils/catalog (2), src/utils/seo (2), package:react, package:react-router, +8 more | src/routes | default, HomePage |
-| `LensBuilderPage.tsx` | Route-level React page | src/lensBuilder (5), src/utils/state (4), src/components/layout (2), src/components/lensBuilder (2), src/utils/theme (2), +8 more | src/routes | LensBuilder, default, LensBuilderPage |
+| `LensBuilderPage.tsx` | Route-level React page | src/lensBuilder (5), src/utils/state (4), src/components/lensBuilder (3), src/components/layout (2), src/utils/theme (2), +8 more | src/routes | LensBuilder, default, LensBuilderPage |
 | `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (11), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +5 more | src/routes | default, LensIndexPage |
 | `LensPage.tsx` | Route-level React page | src/utils/catalog (3), package:react-router, src/components/ClientOnly.tsx, src/components/content, src/components/layout, +3 more | src/routes | default, LensPage |
 | `MakerPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (3), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakerPage |

@@ -8,6 +8,7 @@ import { requireUntrustedDraft, MAX_DRAFT_BYTES } from "../../lensBuilder/untrus
 import { LENS_KEY_PATTERN } from "../../optics/validation.js";
 import { toggleBtn, toggleGroup, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import CommitInput, {
+  builderButtonStyle,
   BuilderTouchContext,
   builderCaptionStyle,
   builderInputStyle,
@@ -324,7 +325,7 @@ export default function BuilderEditor({
           )}
           {storageMessage && <p style={{ margin: "2px 0 0", color: t.error }}>{storageMessage}</p>}
           {hasBackup && (
-            <button type="button" onClick={onDiscardBackup}>
+            <button type="button" onClick={onDiscardBackup} style={{ ...builderButtonStyle(t), marginTop: 4 }}>
               Discard backup
             </button>
           )}
