@@ -32,7 +32,7 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 | `optics.ts` | Layout and station values, RuntimeLens state adapters, exact ray adapters, focus/aperture controls, pupil-ray density and display formatting |
 | `fieldGeometry.ts` | Field and pupil geometry, image-height inversion, RuntimeLens chief-ray adapters and bounded chief-ray diagnostic snapshots |
 | `projection.ts` | Projection domains, fisheye mapping, slopes and bounding-sphere launch vectors |
-| `analysis.ts` | Analysis requests, memoized contexts, movement availability, `analysisJobs`, `analysisPreviewJobs`, the aimed pupil launch (`prepareAimedPupilLaunch`, `prepareAimedPupilLaunchForState`, `prepareAimedPupilTrace`), summary/cardinal and aberration/chromatic/bokeh/aspheric families |
+| `analysis.ts` | Analysis requests, memoized contexts, movement availability, `analysisJobs`, `analysisPreviewJobs`, the aimed pupil launch (`prepareAimedPupilLaunch`, `prepareAimedPupilLaunchForState`, `prepareAimedPupilTrace`), the vignetting stop lattice and per-field results (`vignettingStopLattice`, `computeVignettingField`, `computeVignettingCurve`), summary/cardinal and aberration/chromatic/bokeh/aspheric families |
 | `mtf.ts` | MTF support, spectrum, orchestration and the numerical helpers used by reports and benchmarks |
 | `perspective.ts` | Movement clamping, transforms, trace context, diagram fans, viewport and analysis types |
 | `diagramGeometry.ts` | SVG transforms, shapes, surface paths, display sag/trimming and folded-path labels |

@@ -89,4 +89,4 @@ flowchart LR
 | `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | same folder (10), src/optics/glassCatalog.ts, src/optics/types.ts | GlassEntry |
 | `indexResolver.ts` | Index Resolver helper module | same folder (5), src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis, src/optics/chromatic.ts, src/optics/perspective | CHROMATIC_CHANNELS, CHANNEL_WAVELENGTH_NM, SurfaceIndexResolver, wavelengthNd, indexAtPreparedSurface, indexAtRuntimeSurface, channelIndexResolverForState, anchoredIndexAtWavelength, +1 more |
 | `materialResolver.ts` | Material Resolver helper module | same folder (2), src/types (2) | same folder (3), src/optics/chromatic.ts | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, makeSurfaceDispersion |
-| `spectralLines.ts` | Spectral Lines helper module | none | same folder (3), src/optics/analysis (3), src/optics/chromatic.ts, src/optics/math | LINE_NM |
+| `spectralLines.ts` | Spectral Lines helper module | none | same folder (3), src/optics/analysis (2), src/optics/chromatic.ts, src/optics/math | LINE_NM |

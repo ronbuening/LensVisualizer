@@ -1252,8 +1252,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
 - **Not aimed.** Diagram rays (`useOnAxisRays`, `useOffAxisRays`, `useChromaticRays`' segments, folded display fans and
   the moved-lens diagram fan, `launch: "paraxial-entrance"`) are rendering samplers and keep paraxial entrance-pupil
   fractions. The field-curvature parabasal pair (`FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM`, 0.01 mm about the chief)
-  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting curve and the
-  MTF lattice keep their launch-plane sampling until their own changes move them onto this launch.
+  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting tab launches
+  its stop lattice through this launch (see Vignetting); the MTF lattice keeps its launch-plane sampling until its own
+  change moves it onto this launch.
 
 Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back only when another aperture vignettes a
 zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA keeps the first zone at least two
@@ -1625,25 +1626,35 @@ use perspective analysis.
 
 ## Vignetting
 
-`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and samples each field's
-transmitted beam in 2D with the MTF's machinery (`prepareMtfFieldLaunch`, `findMtfFieldFootprint`, `mtfLaunchGrid` at 64
-cells across the beam, mirrored half pupils when `mtfMirrorSymmetric`), at the authored indices and collimated at every
-focus. Field spacing is unchanged; `vignettingPupilSampleCount` overrides the cells across the beam.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes OpticStudio's
+two field analyses on one lattice on the stop per field. `vignettingStopLattice(n)` keeps the cells of an n × n grid
+(`BEAM_GRID_CELLS` = 64 across the stop's diameter; `vignettingPupilSampleCount` overrides it, at least 4) whose centre
+lies in the unit disc, at coordinates (2k + 1 − n)/n so mirror columns are exact negatives. Each field launches the
+lattice through `prepareAimedPupilLaunch` (see [Pupil Convention](#pupil-convention)) and traces every aimed ray with
+every aperture checked; on a meridional field of a system `mirrorSymmetricAboutMeridian` accepts, the +px half is
+traced and the −px half mirrors it. Field spacing is unchanged. `computeVignettingField(request, fraction)` returns one
+field's rays, per-cell flags, direction cosines and cosine-space areas; `computeVignettingCurve` returns the tab's
+curve and the reason a state has none.
 
-`geometricTransmission` is the lit lattice area on the launch plane over the axis's; it exceeds 1 where the stop's image
-grows off axis (its footprint on the axial launch plane grows as the image turns to face the field). `relativeIllumination`
-is conservation of energy: the transmission-weighted lit area times cos θ over the image area per unit object solid
-angle, normalized to the axis. That area is (dh/dθ)(h/sin θ) from lit chief rays 0.01° apart, or, where the chief ray is
-vignetted, the median sub-lattice ray tube's ∂P/∂ω with its stop crossing held (launch-point derivatives from
-neighbouring cells). Both hold the stop crossing: pivoting on the launch point, or taking each ray's own exit-direction
-cosine area, reads a field that focuses off the image plane as brighter (a singlet with field curvature rose above 1),
-and a mean over tubes lets rim-zone rays that turn sharply scatter the figure. Keeping the two figures separate is
-required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
-States `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse (fisheye, folded, mirror, diffractive, annular, tilted
-image plane), and curves with a bounding-sphere field, return no curve rather than mix in the old meridional sweep; a
-field with no solvable chief ray counts as dark. A prescription whose image height peaks before the format corner (the
-GF 80 mm f/1.7's data, which omits its patent's odd aspheric terms) puts the analysis edge on that fold, where
-dh/dθ → 0 and the edge reads very bright.
+- **Vignetting** (`unvignettedFraction`): the share of the lattice's samples that reach the image, as OpticStudio's
+  Vignetting Diagram counts rays. Geometric (no absorption or coating loss), absolute and at most 1; the axis reads
+  below 1 only where an aperture clips the axial beam. Blocked samples count as vignetted. Unaimed samples are left out
+  of both counts and counted; a field with more than `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its lattice unaimed has
+  neither figure.
+- **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
+  point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
+  crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the paraxial
+  exit-pupil plane, to that point. A cell contributes n′² · bulk transmission · |det J| · cell area, J the Jacobian of
+  (px, py) → (L, M) by finite differences between transmitted neighbours (central, one-sided at the beam's edge, and
+  borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one). The field's
+  sum over its beam is divided by the axis's. Taking each ray's own exit direction instead reads a field that focuses
+  off the image plane as brighter (a singlet with field curvature rises above 1); the referred cone is the exit pupil
+  as seen from the image point. The chief ray that names the image point is traced without aperture checks.
+- **No figure, with a reason.** A field whose cell map folds or collapses in cosine space (a transmitted cell's oriented
+  area reversed, or below `RIMMER_MIN_CELL_AREA_RATIO` of the median), whose transmitted ray misses the reference
+  sphere, or whose beam has a cell with no neighbour in its row and column has no relative illumination. States
+  `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse and curves with a bounding-sphere field have no curve.
+  Each carries its reason, and the chart breaks its curve at a field without a figure.
 
 The job table and lazy context accessor dispatch the request directly. `VignettingTab` reuses the deferred context request or memoizes one from the
 prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by
