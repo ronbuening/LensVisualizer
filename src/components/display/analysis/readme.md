@@ -80,7 +80,7 @@ flowchart LR
 | `BokehPreviewContent.tsx` | React component module | src/components/display, src/optics/analysis.ts, src/types | src/components/display | default, BokehPreviewContent |
 | `BokehPreviewGrid.tsx` | React component module | src/optics/analysis.ts (2), package:react, src/types | src/components/display | default, BokehPreviewGrid |
 | `BokehTab.tsx` | React component module | src/components/display (4), src/optics/analysis.ts (2), src/types (2), package:react, src/optics/types.ts | src/components/layout | default, BokehTab |
-| `chromaticChartUtils.ts` | Chromatic Chart Utils helper module | src/types (2), src/optics/chromatic.ts | src/components/display (5), src/components/diagram (2) | chromaticChannelColor, chromaticChannelLegendLabel, formatSignedUm, formatUmMagnitude, formatSpreadUmFromMm |
+| `chromaticChartUtils.ts` | Chromatic Chart Utils helper module | src/types (2), src/optics/chromatic.ts | src/components/display (5), src/components/diagram (3) | chromaticChannelColor, chromaticChannelLegendLabel, formatSignedUm, formatUmMagnitude, formatSpreadUmFromMm, formatOmittedChannels, formatChromaticZone, formatZoneSearchEnd |
 | `ChromaticFieldCurvaturePlot.tsx` | React component module | src/components/display (2), src/types (2), src/optics/analysis.ts, src/optics/chromatic.ts | src/components/display (2) | default, ChromaticFieldCurvaturePlot |
 | `ChromaticTab.tsx` | React component module | src/components/display (7), src/optics/analysis.ts (2), src/types (2), package:react, src/optics/chromatic.ts, +3 more | src/components/layout | default, ChromaticTab |
 | `ComaPreviewGrid.tsx` | React component module | package:react, src/optics/analysis.ts, src/types | src/components/display | default, ComaPreviewGrid |
