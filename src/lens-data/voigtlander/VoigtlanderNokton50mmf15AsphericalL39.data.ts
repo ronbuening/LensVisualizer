@@ -17,6 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * high, so surfaces 9 and 10 share one rim (15.5 mm, 3 % above the figure); L6 keeps 16 mm
  * (figure 15.2 mm). Surface 12A turns over at 12.95 mm, below the f/1.53 axial ray height of
  * 12.97 mm there, so its rim lies past the turnover; FIG. 3 draws that reversal.
+ * Rimmer localization audit: the 23.19° field reaches max referred deviation 0.05529 in
+ * skew rays crossing 12A at 15.46–15.52 mm, past the reversal and the drawn rim. These rays
+ * also graze cemented interface 9 (about 78° incidence); the failure is not isolated to one
+ * coefficient. No source-supported numerical correction or beam-preserving turnover cap.
+ * source.errata discloses the previously recorded unresolved f5 summary/ratio discrepancy.
  * LABELS: the patent names five lens groups 21-25 (claim 1: positive, positive, negative, negative,
  * positive) with stop 27 between the third and fourth; `groups` G1-G5 follow that order.
  * `diagramLabel` carries the FIG. 3 numerals: 21, 22, 23 and 25 are single-lens groups, 24a/24b the
@@ -53,6 +58,12 @@ const LENS_DATA = {
     patentYear: 2000,
     authors: ["Koji Shiokawa"],
     assignees: ["Cosina Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example 2 Table 3 (PDF p5) gives rear-singlet f5 = 41.258080 mm and f5/f = 0.799573431, versus the printed f5 = 41.28 mm and inclusive 0.8 lower bound in paragraphs 0022–0023. System f = 51.60 mm and back focus = 36.4275 mm are reproduced. No unique source correction is established; the printed prescription is retained.",
+      },
+    ],
   },
 
   elements: [
