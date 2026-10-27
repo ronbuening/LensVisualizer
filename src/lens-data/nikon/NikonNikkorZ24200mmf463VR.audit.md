@@ -156,3 +156,33 @@ the figure within about 10 %: L21 13.4 mm, L22 11.1 mm, L23 9.6 mm, L31 8.4 mm a
 - Example 1 versus Example 2 as the production design is unresolved from public data.
 - L44's dPgF 0.028 is a family value; the patent lists no θgF.
 - The engine's paraxial wide half-field (37.3°) underestimates the patent's 42.59°.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 56, 300 ppi native raster, axis turned horizontal, 7.78 px/mm) was read element by element on the
+label-free half for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each
+land found was checked on the other half.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 75.981) | 0.97 (both halves 0.967–0.976) | 6.20 mm | 30.06 mm | 31.0 | 14.81 mm |
+| 8 (L21 rear, R 19.039) | 0.83 | 3.94 mm | 11.60 mm | 13.0 (was 11.6) | 5.87 mm |
+| 32 (L61 front, R −17.000) | 0.91 | 6.41 mm | 13.30 mm | 14.6 (was 13.3) | 3.04 mm |
+
+- On 8 and 32 the stored sd sat at the cap end, below the partner face (S7 13.0 mm, S33A 14.6 mm), while the figure
+  draws a square edge at the partner's height with the land below it. Each sd was raised to the partner's value and the
+  cut put at the old sd, so tracing is unchanged (rounding the depth down moves each cut radius in by 0.002 mm). On 32
+  the figure's 0.91 equals 13.3 / 14.6. On 8 the figure ends the cap lower, at 0.83 (10.7 mm on a 13.0 mm edge); a cut
+  there would raise the full-field side vignetting at that surface from 12 % to 75 %, so the cap keeps its 11.6 mm end
+  and the drawn land is narrower than the figure's.
+- Concave faces with no land: 9, 10, 13, 21 and 31A run to their element edges (13 merges with L23's rear rim in the
+  drawing; 21 shows at most a 1 px step). The shallow 6 (R 390) and 14 (R 417) sag less than 1 px over their outer
+  3 mm, so no land can be resolved there.
+- No cap reaches the stop plane at any zoom or focus state (surface 14 clears it by 0.99 mm).
+- All four stations still trace the stated f/4.12 / 5.59 / 6.40 / 6.50 with the stop as limiter; the surface validator
+  and the image-circle audit stay clean.
+- Field effect of the cut on 2: outside the full-field bundle at 50 mm (28.0 mm) and at the wide end (23.3 mm at
+  ω = 40°; the wide station cannot reach Y = 21.6 mm). Side vignetting there goes 9 % → 20 % at 105 mm and
+  43 % → 49 % at 194 mm, both inside what surface 3 (L12 front) already clips on that side (28 % / 54 %).
+- The engine's half-field estimate limits each face at its clear radius, so S32 still bounds it at the 13.3 mm cut
+  radius: the station half-fields stay at 37.28 / 23.90 / 13.36 / 7.79°.
