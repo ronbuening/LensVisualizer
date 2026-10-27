@@ -2141,8 +2141,10 @@ describe("computeFieldCurvature", () => {
     expect(at(1).usable).toBe(true);
     expect(at(1).diagnosticTangentialShiftMm).toBeUndefined();
     expect(at(1).diagnosticSagittalShiftMm).toBeUndefined();
+    expect(at(1).diagnosticUnavailableReason).toBe("one-sided-fan");
     expect(tangentialReach(0.75)).toBeGreaterThanOrEqual(0.25);
     expect(at(0.75).diagnosticTangentialShiftMm).toBeDefined();
+    expect(at(0.75).diagnosticUnavailableReason).toBeUndefined();
   });
 
   it("shows measurable astigmatic separation away from center", () => {

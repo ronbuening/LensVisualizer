@@ -6,7 +6,12 @@
 
 import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../../trace/chiefRelative.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
-import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
+import type {
+  ChromaticFieldShift,
+  FieldCurvatureDiagnosticGap,
+  FieldCurvatureFieldResult,
+  FieldCurvatureResult,
+} from "./types.js";
 import {
   FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
   FIELD_CURVATURE_FIELD_FRACTIONS,
@@ -254,19 +259,21 @@ function computeStandardizedFieldFocus(
   };
 }
 
-function coversBothSides(bundle: OffAxisBundle): boolean {
+/** Why a traced fan cannot give a real-ray focus, or null when it can. */
+function fanGap(bundle: OffAxisBundle): FieldCurvatureDiagnosticGap | null {
+  if (bundle.validSampleCount < 3) return "too-few-rays";
   const fractions = bundle.samples.map((sample) => sample.pupilFraction ?? 0);
-  return (
+  const twoSided =
     Math.min(...fractions) <= -FIELD_CURVATURE_MIN_FAN_HALF_SPAN &&
-    Math.max(...fractions) >= FIELD_CURVATURE_MIN_FAN_HALF_SPAN
-  );
+    Math.max(...fractions) >= FIELD_CURVATURE_MIN_FAN_HALF_SPAN;
+  return twoSided ? null : "one-sided-fan";
 }
 
 function computeDiagnosticFieldFocus(
   request: AnalysisRequest,
   geometry: OffAxisFieldGeometry,
   sampleCount = MERIDIONAL_COMA_SAMPLE_COUNT,
-): DiagnosticFieldFocus | null {
+): DiagnosticFieldFocus | FieldCurvatureDiagnosticGap {
   const tangentialBundle = traceOffAxisBundleFromSamples(
     request,
     sampleOrthogonalPupilFan(sampleCount, "tangential"),
@@ -279,9 +286,9 @@ function computeDiagnosticFieldFocus(
     geometry,
     undefined,
   );
-  if (tangentialBundle === null || sagittalBundle === null) return null;
-  if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
-  if (!coversBothSides(tangentialBundle) || !coversBothSides(sagittalBundle)) return null;
+  if (tangentialBundle === null || sagittalBundle === null) return "trace-failed";
+  const gap = fanGap(tangentialBundle) ?? fanGap(sagittalBundle);
+  if (gap) return gap;
 
   const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
   const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
@@ -341,11 +348,8 @@ function computeFieldCurvatureField(
   const standardizedFieldFocus = computeStandardizedFieldFocus(request, geometry, undefined);
   if (standardizedFieldFocus === null) return emptyFieldCurvatureFieldResult(meta);
 
-  const diagnosticFieldFocus = computeDiagnosticFieldFocus(
-    request,
-    geometry,
-    sampling.fieldCurvatureDiagnosticSampleCount,
-  );
+  const diagnostic = computeDiagnosticFieldFocus(request, geometry, sampling.fieldCurvatureDiagnosticSampleCount);
+  const diagnosticFieldFocus = typeof diagnostic === "string" ? null : diagnostic;
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
   const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalShiftMm;
@@ -372,6 +376,7 @@ function computeFieldCurvatureField(
     diagnosticSagittalShiftMm: diagnosticFieldFocus?.sagittalShiftMm,
     diagnosticAstigmaticDifferenceMm: diagnosticFieldFocus?.astigmaticDifferenceMm,
     diagnosticAstigmaticDifferenceUm: diagnosticFieldFocus?.astigmaticDifferenceUm,
+    ...(typeof diagnostic === "string" ? { diagnosticUnavailableReason: diagnostic } : {}),
     chromaticFieldShifts: chromatic ? computeChromaticFieldShifts(request, geometry) : null,
     usable: true,
   };

@@ -294,7 +294,8 @@ describe("useChromaticRays", () => {
   });
 
   it("computes chromaticRayFanSpread with 2+ channels", () => {
-    // Stopped to f/2: wide open a rim behind the stop vignettes blue's aimed 0.97 R zone before red's and green's.
+    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
+    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
       0,
       0,
@@ -397,7 +398,8 @@ describe("useChromaticRays", () => {
   });
 
   it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
-    // Stopped to f/2: wide open a rim behind the stop vignettes blue's aimed 0.97 R zone before red's and green's.
+    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
+    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
       0,
       0,

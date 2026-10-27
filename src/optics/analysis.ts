@@ -49,6 +49,7 @@ export type {
   ComaPreviewFieldResult,
   ComaPreviewResult,
   ComaTailDirection,
+  FieldCurvatureDiagnosticGap,
   FieldCurvatureFieldResult,
   FieldCurvatureResult,
   MeridionalComaResult,

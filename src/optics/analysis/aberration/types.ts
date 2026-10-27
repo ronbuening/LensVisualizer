@@ -240,6 +240,12 @@ export interface ChromaticFieldShift {
   sagittalShiftMm: number;
 }
 
+/**
+ * Why a field has no real-ray focus: a fan could not be traced, fewer than three rays of a fan survive, or a fan's
+ * survivors do not reach a quarter of the stop radius on both sides of the chief ray (coma would read as defocus).
+ */
+export type FieldCurvatureDiagnosticGap = "trace-failed" | "too-few-rays" | "one-sided-fan";
+
 /** One field sample in the field-curvature / astigmatism sweep. */
 export interface FieldCurvatureFieldResult {
   fieldFraction: number;
@@ -263,6 +269,8 @@ export interface FieldCurvatureFieldResult {
   diagnosticSagittalShiftMm?: number;
   diagnosticAstigmaticDifferenceMm?: number;
   diagnosticAstigmaticDifferenceUm?: number;
+  /** Set when a usable field has no real-ray focus: why the diagnostic values above are absent. */
+  diagnosticUnavailableReason?: FieldCurvatureDiagnosticGap;
   chromaticFieldShifts: ChromaticFieldShift[] | null;
   usable: boolean;
 }
