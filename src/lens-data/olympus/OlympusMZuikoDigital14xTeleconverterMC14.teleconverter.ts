@@ -42,7 +42,7 @@ const TELECONVERTER_DATA = {
     example: { label: "Example 1", id: "1" },
     patentYear: 2015,
     authors: ["Yasuji Ogata", "Yasuharu Yamada"],
-    assignees: ["Olympus Imaging Corp."],
+    assignees: ["Olympus Imaging Corporation"],
   },
 
   magnification: 1.4,

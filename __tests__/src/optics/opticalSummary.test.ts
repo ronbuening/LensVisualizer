@@ -40,8 +40,35 @@ describe("computeOpticalSummary", () => {
     expect(summary.focusDistanceM).toBeCloseTo(L.closeFocusM / focusT, 6);
     expect(summary.imagePlaneZMm).toBeCloseTo(state.imgZ, 6);
     expect(summary.totalTrackMm).toBeCloseTo(state.totalTrack, 6);
+    expect(summary.telephotoRatio).toBeCloseTo(state.totalTrack / Math.abs(dynamicEFL), 6);
     expect(summary.cardinalEFLMm).not.toBeNull();
     expect(summary.bfdMm).not.toBeNull();
+  });
+
+  it.each([
+    { track: 60, efl: 100, expected: 0.6 },
+    { track: 60, efl: -100, expected: 0.6 },
+    { track: 60, efl: 40, expected: 1.5 },
+    { track: undefined, efl: 100, expected: null },
+    { track: Number.NaN, efl: 100, expected: null },
+    { track: 60, efl: 0, expected: null },
+    { track: 60, efl: 1e-10, expected: null },
+    { track: 60, efl: -1e-10, expected: null },
+    { track: 60, efl: Number.NaN, expected: null },
+    { track: 60, efl: undefined, expected: null },
+  ])("returns telephoto ratio $expected for track $track and current EFL $efl", ({ track, efl, expected }) => {
+    const L = buildSimplePositiveElementLens();
+    const state = prepareRuntimeState(L, 0, 0);
+    const summary = computeOpticalSummary(
+      createAnalysisRequest({
+        // Exercise unavailable geometry at the summary boundary, including an absent track.
+        preparedState: { ...state, totalTrack: track as number },
+        dynamicEFL: efl as number,
+        ...apertureAt(L, 0),
+      }),
+    );
+
+    expect(summary.telephotoRatio).toBe(expected);
   });
 
   it("keeps folded mirror summaries available even when cardinal data is path-limited", () => {
@@ -61,6 +88,7 @@ describe("computeOpticalSummary", () => {
     expect(summary.focusDistanceM).toBeNull();
     expect(summary.imagePlaneZMm).toBeCloseTo(state.imgZ, 6);
     expect(summary.totalTrackMm).toBeCloseTo(state.totalTrack, 6);
+    expect(summary.telephotoRatio).toBeNull();
   });
 
   it("counts authored surfaces only and reports modeled rear plates separately", () => {
@@ -78,6 +106,9 @@ describe("computeOpticalSummary", () => {
     expect(summary.surfaceCount).toBe(L.N - 2);
     expect(summary.rearPlateCount).toBe(1);
     expect(summary.rearPlateThicknessMm).toBe(REAR_PLATE_FIXTURE.thicknessMm);
+    // Stop-to-element gap (1) + element (5) + rear air (44) + plate (2) + image gap (1).
+    expect(summary.totalTrackMm).toBeCloseTo(53, 6);
+    expect(summary.telephotoRatio).toBeCloseTo(53 / Math.abs(L.EFL), 6);
   });
 });
 

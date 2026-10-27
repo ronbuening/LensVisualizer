@@ -346,6 +346,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Jos. Schneider Optische Werke GmbH": {
+    corporateFamily: [
+      {
+        family: "Schneider-Kreuznach",
+        effectiveFrom: "1913",
+        sourceUrl: SOURCES.schneiderHistory,
+        note: "The date marks the documented company lineage, not the first use of this exact legal style.",
+      },
+    ],
+  },
   "Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG": {
     corporateFamily: [
       {
@@ -458,6 +468,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [
       { family: "Konica Minolta", effectiveFrom: "2003-08-05", sourceUrl: SOURCES.konicaMinoltaHistory },
+    ],
+  },
+  "Kyocera Corporation": {
+    corporateFamily: [
+      {
+        family: "Yashica–Kyocera",
+        effectiveFrom: "1983-10",
+        sourceUrl: SOURCES.yashicaHistory,
+        note: "The window starts with Kyocera's acquisition of Yashica Co., Ltd.; Kyocera's own Yashica-branded lens patents follow from it.",
+      },
     ],
   },
   "Leica Camera GmbH": {

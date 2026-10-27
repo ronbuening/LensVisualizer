@@ -65,6 +65,13 @@ export interface ViewBoxZoomResult {
   canZoomOut: boolean;
 }
 
+export interface ViewBoxZoomOptions {
+  /** Opt in to page scrolling with one finger and map pan/zoom with two. */
+  touchGesture?: "two-finger";
+  /** Called once when a single contact starts scrolling in two-finger mode. */
+  onOneFingerDrag?: () => void;
+}
+
 /** Clamp pan so at least PAN_VISIBLE_FRACTION of the diagram remains in view */
 function clampPan(vbX: number, vbY: number, vbW: number, vbH: number, svgW: number, svgH: number) {
   const minVisible = PAN_VISIBLE_FRACTION;
@@ -93,7 +100,9 @@ export default function useViewBoxZoom(
   svgH: number,
   active: boolean,
   containedGestureTarget?: RefObject<SVGSVGElement | null>,
+  options: ViewBoxZoomOptions = {},
 ): ViewBoxZoomResult {
+  const { touchGesture, onOneFingerDrag } = options;
   const [state, setState] = useState<ViewBoxState>(() => defaultState(svgW, svgH));
   const [isPanning, setIsPanning] = useState(false);
 
@@ -106,7 +115,14 @@ export default function useViewBoxZoom(
   const dragStart = useRef<{ x: number; y: number; vbX: number; vbY: number } | null>(null);
 
   /* Refs for pinch tracking */
-  const pinchStart = useRef<{ dist: number; zoom: number; midX: number; midY: number } | null>(null);
+  const pinchStart = useRef<{
+    dist: number;
+    zoom: number;
+    midX: number;
+    midY: number;
+    state: ViewBoxState;
+  } | null>(null);
+  const scrollStart = useRef<{ x: number; y: number } | null>(null);
   const gestureStartZoom = useRef<number | null>(null);
   const touchInteractionActive = useRef(false);
 
@@ -117,6 +133,7 @@ export default function useViewBoxZoom(
     pinchStart.current = null;
     gestureStartZoom.current = null;
     touchInteractionActive.current = false;
+    scrollStart.current = null;
   }, [svgW, svgH]);
 
   /** Convert client coords to SVG viewBox coords using the SVG element's bounding rect */
@@ -223,25 +240,52 @@ export default function useViewBoxZoom(
     (e: React.TouchEvent<SVGSVGElement>) => {
       if (!active) return;
       if (e.touches.length === 2) {
+        if (touchGesture === "two-finger") {
+          // Claim a two-contact gesture before the browser starts native scrolling.
+          e.preventDefault();
+          dragStart.current = null;
+          scrollStart.current = null;
+          setIsPanning(true);
+        }
         const dist = touchDist(e.touches[0], e.touches[1]);
         pinchStart.current = {
           dist,
           zoom: latestState.current.zoom,
           midX: (e.touches[0].clientX + e.touches[1].clientX) / 2,
           midY: (e.touches[0].clientY + e.touches[1].clientY) / 2,
+          state: latestState.current,
         };
       } else if (e.touches.length === 1) {
+        if (touchGesture === "two-finger") {
+          scrollStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          dragStart.current = null;
+          pinchStart.current = null;
+          setIsPanning(false);
+          return;
+        }
         const { vbX, vbY } = latestState.current;
         dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, vbX, vbY };
         setIsPanning(true);
       }
     },
-    [active],
+    [active, touchGesture],
   );
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent<SVGSVGElement>) => {
       if (!active) return;
+      if (touchGesture === "two-finger" && e.touches.length !== 2) {
+        const start = scrollStart.current;
+        if (
+          e.touches.length === 1 &&
+          start &&
+          Math.hypot(e.touches[0].clientX - start.x, e.touches[0].clientY - start.y) > 8
+        ) {
+          scrollStart.current = null;
+          onOneFingerDrag?.();
+        }
+        return;
+      }
       e.preventDefault();
 
       if (e.touches.length === 2 && pinchStart.current) {
@@ -252,6 +296,18 @@ export default function useViewBoxZoom(
         const svgEl = e.currentTarget;
         const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
         const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+        if (touchGesture === "two-finger") {
+          const start = pinchStart.current;
+          const anchor = clientToSvg(start.midX, start.midY, svgEl, start.state);
+          const rect = svgEl.getBoundingClientRect();
+          const vbW = svgW / newZoom;
+          const vbH = svgH / newZoom;
+          const vbX = anchor.svgX - ((midX - rect.left) / rect.width) * vbW;
+          const vbY = anchor.svgY - ((midY - rect.top) / rect.height) * vbH;
+          setState({ ...clampPan(vbX, vbY, vbW, vbH, svgW, svgH), vbW, vbH, zoom: newZoom });
+          return;
+        }
 
         setState((prev) => {
           const { svgX, svgY } = clientToSvg(midX, midY, svgEl, prev);
@@ -281,7 +337,7 @@ export default function useViewBoxZoom(
         });
       }
     },
-    [active, svgW, svgH, clientToSvg],
+    [active, svgW, svgH, clientToSvg, touchGesture, onOneFingerDrag],
   );
 
   const handleTouchEnd = useCallback(
@@ -289,6 +345,7 @@ export default function useViewBoxZoom(
       if (!active) return;
       pinchStart.current = null;
       dragStart.current = null;
+      scrollStart.current = null;
       setIsPanning(false);
     },
     [active],

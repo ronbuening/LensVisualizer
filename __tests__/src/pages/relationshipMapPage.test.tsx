@@ -191,6 +191,23 @@ describe("RelationshipMapPage", () => {
     expect(screen.getByRole("group", { name: /Relationship map centered on/ })).toBe(map);
   });
 
+  it("switches inventor views from one native select on phones", async () => {
+    const width = vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(390);
+    try {
+      const author = AUTHORS.find((entry) => entry.name === "Hisayuki Yamanaka")!;
+      renderRoutes(`/relationships/#focus=author:${author.slug}`, PAGE_ROUTE);
+      const select = (await screen.findByRole("combobox", { name: "View" })) as HTMLSelectElement;
+      expect(select.value).toBe("relationships");
+      expect(screen.queryByRole("group", { name: "Inventor relationship map views" })).toBeNull();
+      fireEvent.change(select, { target: { value: "timeline" } });
+      expect(await screen.findByRole("region", { name: "Patent timeline" })).toBeDefined();
+      const hash = screen.getByTestId("location-echo").textContent!.split("#")[1];
+      expect(new URLSearchParams(hash).get("view")).toBe("timeline");
+    } finally {
+      width.mockRestore();
+    }
+  });
+
   it("restores an inventor timeline directly and retains legacy URL filters", async () => {
     const author = AUTHORS.find((entry) => entry.name === "Hisayuki Yamanaka")!;
     renderRoutes(`/relationships?focus=author:${author.slug}&extra=yes#view=timeline&year=2014`, PAGE_ROUTE);

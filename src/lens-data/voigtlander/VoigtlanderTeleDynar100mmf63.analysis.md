@@ -25,6 +25,11 @@ variants of 14, 20, 25.5, 29 and 32 cm, rather than 10 cm. Its product descripti
 the historical family but do not establish a particular glass prescription. [3]
 A separate manufacturer catalogue, Nr. 1709.7.25, lists five sizes from 5½ to 12⅝ inches,
 also without a 100 mm production variant. [6]
+The catalogue supplies each size as two cells that replace the components of the camera's own
+anastigmat in its shutter; the price list offers them in a Compur shutter, without a shutter
+and, above 14 cm, in a helical focusing mount.
+None of these fittings is a standardized camera mount, and each size is matched to the focal length of
+the camera's lens rather than specified for a recording format. [3, 6]
 No specific lens mount, image format, release date or minimum focusing distance is assigned
 to this normalized example. Patent publication date is not treated as a product launch date.
 

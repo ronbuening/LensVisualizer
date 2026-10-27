@@ -24,6 +24,8 @@ The production lens taken as the counterpart is the Carl Zeiss S-Biogon 5,6/40, 
 
 The correlation is limited. Examples 5, 6, and 7 (FIG. 2) and Example 10 (FIG. 4) are also f/5.6 designs with 62–66° fields, and none of the third-party sources reproduces a prescription. Example 11 is the selected embodiment, not a manufacturer-confirmed one. One dealer text attributes the lens to Charles G. Wynne for X-ray screening; that attribution is unsupported by any other source and is not adopted.
 
+No catalog mount or image format is assigned. Cröll places the S-Biogon in Zeiss Oberkochen's series of lenses for reduction and enlarging on microfilm, and Cavina names the Mikrobox recorder as its installation; neither is a camera system. The only fitting the sources describe is the M50 × 0.75 rear thread given by Delta Lenses, an industrial thread rather than a camera mount. The only recording-frame figure, 32 × 45 mm on 35 mm microfilm, comes from the staff forum post rather than a Zeiss publication, and Cavina describes the Mikrobox output as microfiche. The catalog taxonomy has no id for this thread or for a microfilm frame, and the 24 × 36 mm diagonal discussed below is a comparison, not a recording format.
+
 ## Optical Architecture
 
 Example 11 is an all-spherical eight-element, five-group Biogon-type wide-angle objective. Read front to rear, the component powers follow the sequence weak positive (A), negative (B), strong positive (C), positive (D), negative (E). The diaphragm space lies between C and D. Components A, B, and E all turn their concave surfaces toward that central space, as the patent requires (col. 2, ll. 7–14).

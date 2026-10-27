@@ -15,6 +15,7 @@ export function universalMapHash(hash: string, nodeId: string | null): string {
 
 export const UNIVERSAL_VIEWS = [
   ["network", "Network"],
+  ["neighborhoods", "Neighborhoods"],
   ["trace", "Trace connections"],
   ["affiliations", "Inventor affiliations"],
   ["bridge", "Company bridge"],
@@ -31,23 +32,41 @@ export interface UniversalMapExploreState {
   includeCorporate: boolean;
 }
 
-export function universalMapExploreFromHash(hash: string, nodeIds: ReadonlySet<string>): UniversalMapExploreState {
+/** True when the fragment names a known view or a selected node; such links open as shared, never a device default. */
+export function universalMapHashPinsView(hash: string, nodeIds: ReadonlySet<string>): boolean {
+  const view = new URLSearchParams(hash.replace(/^#/, "")).get("view");
+  return UNIVERSAL_VIEWS.some(([id]) => id === view) || universalMapNodeFromHash(hash, nodeIds) !== null;
+}
+
+/** `defaultView` is the view a fragment without `view` opens: the network, or Neighborhoods on a bare phone visit. */
+export function universalMapExploreFromHash(
+  hash: string,
+  nodeIds: ReadonlySet<string>,
+  defaultView: UniversalMapView = "network",
+): UniversalMapExploreState {
   const params = new URLSearchParams(hash.replace(/^#/, ""));
   const view = params.get("view");
   const from = params.get("from");
   const to = params.get("to");
   return {
-    view: UNIVERSAL_VIEWS.find(([id]) => id === view)?.[0] ?? "network",
+    view: UNIVERSAL_VIEWS.find(([id]) => id === view)?.[0] ?? defaultView,
     from: from && nodeIds.has(from) ? from : null,
     to: to && nodeIds.has(to) ? to : null,
     includeCorporate: params.get("corporate") !== "0",
   };
 }
 
-/** Keep selection and unrelated fragments while sharing the chosen view and trace. */
-export function universalMapExploreHash(hash: string, state: UniversalMapExploreState): string {
+/**
+ * Keep selection and unrelated fragments while sharing the chosen view and trace. The network stays implicit only
+ * while it is also the page's default, so a phone that opened on Neighborhoods records a later switch to it.
+ */
+export function universalMapExploreHash(
+  hash: string,
+  state: UniversalMapExploreState,
+  defaultView: UniversalMapView = "network",
+): string {
   const params = new URLSearchParams(hash.replace(/^#/, ""));
-  if (state.view === "network") params.delete("view");
+  if (state.view === "network" && defaultView === "network") params.delete("view");
   else params.set("view", state.view);
   for (const key of ["from", "to"] as const) {
     if (state[key]) params.set(key, state[key]);

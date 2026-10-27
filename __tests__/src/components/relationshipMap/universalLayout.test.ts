@@ -216,6 +216,38 @@ describe("layoutUniversalRelationshipGraph", () => {
     expect(halosOverlap(layout.clusters[0], layout.clusters[1])).toBe(false);
   });
 
+  it("places an inventor with the neighborhood holding most of their patents, newest patents breaking ties", () => {
+    const large = partyNode("assignee:large", "Large Optics", "assignee");
+    const small = partyNode("assignee:small", "Small Optics", "assignee");
+    const mostlySmall = partyNode("author:mostly-small", "Mostly Small", "author");
+    const newerSmall = partyNode("author:newer-small", "Newer Small", "author");
+    const newerLarge = partyNode("author:newer-large", "Newer Large", "author");
+    // Patent years are 2000 + index.
+    const largePatents = Array.from({ length: 10 }, (_, index) => patentNode(index + 1, "LG"));
+    const smallPatents = Array.from({ length: 3 }, (_, index) => patentNode(index + 1, "SM"));
+    const unassigned = patentNode(1, "UN");
+    const graph = makeGraph(
+      [large, small, mostlySmall, newerSmall, newerLarge, ...largePatents, ...smallPatents, unassigned],
+      [
+        ...largePatents.map((patent) => [patent.id, large.id] satisfies [string, string]),
+        ...smallPatents.map((patent) => [patent.id, small.id] satisfies [string, string]),
+        [largePatents[1].id, mostlySmall.id],
+        [smallPatents[0].id, mostlySmall.id],
+        [smallPatents[1].id, mostlySmall.id],
+        [unassigned.id, mostlySmall.id],
+        [largePatents[0].id, newerSmall.id],
+        [smallPatents[2].id, newerSmall.id],
+        [largePatents[8].id, newerLarge.id],
+        [smallPatents[1].id, newerLarge.id],
+      ],
+    );
+    const layout = layoutUniversalRelationshipGraph(graph);
+    expect(layout.nodeById[mostlySmall.id].clusterId).toBe(`cluster:${small.id}`);
+    expect(layout.nodeById[unassigned.id].clusterId).toBe(`cluster:${small.id}`);
+    expect(layout.nodeById[newerSmall.id].clusterId).toBe(`cluster:${small.id}`);
+    expect(layout.nodeById[newerLarge.id].clusterId).toBe(`cluster:${large.id}`);
+  });
+
   it("uses a qualifying corporate family as one hub for its assignee names", () => {
     const family = corporateNode("family:lineage", "Example lineage");
     const early = partyNode("assignee:early", "Early Optics", "assignee");

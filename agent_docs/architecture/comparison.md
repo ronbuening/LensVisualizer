@@ -84,8 +84,8 @@ missing from the address bar until some unrelated view state changed.
 ## Header Details And Vertical Space
 
 Desktop comparison panes expose an independent Details disclosure for specifications and current optical readouts.
-The lens name, patent link, and inventors remain visible. Details default to collapsed at viewport heights up to 800px,
-and expanded above that height. Manual choices survive resizing and slider changes; replacing a lens resets only its
+The lens name, mount/format links (shared with the single-lens header), patent link, and inventors remain visible.
+Details default to collapsed at viewport heights up to 800px, and expanded above that height. Manual choices survive resizing and slider changes; replacing a lens resets only its
 pane's choice. Mobile retains the existing header preference.
 
 The comparison content owns vertical scrolling. Each desktop diagram reserves at least 280px and grows into additional

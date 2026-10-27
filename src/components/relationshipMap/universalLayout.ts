@@ -283,6 +283,80 @@ function selectClusterHubs(
   ];
 }
 
+/** More connecting patents wins, then the newer patents (compared newest first), then hub order. */
+function compareHomes(
+  [leftId, leftYears]: readonly [string, readonly number[]],
+  [rightId, rightYears]: readonly [string, readonly number[]],
+  hubOrder: ReadonlyMap<string, number>,
+): number {
+  if (leftYears.length !== rightYears.length) return rightYears.length - leftYears.length;
+  for (let index = 0; index < leftYears.length; index++) {
+    if (leftYears[index] !== rightYears[index]) return rightYears[index] - leftYears[index];
+  }
+  return (hubOrder.get(leftId) ?? Number.POSITIVE_INFINITY) - (hubOrder.get(rightId) ?? Number.POSITIVE_INFINITY);
+}
+
+/** Hub holding the most connecting patents; `tally` maps hub id to those patents' years. */
+function strongestHome(
+  tally: ReadonlyMap<string, number[]>,
+  hubOrder: ReadonlyMap<string, number>,
+): string | undefined {
+  let best: [string, number[]] | undefined;
+  for (const [hubId, years] of tally) {
+    const entry: [string, number[]] = [hubId, [...years].sort((left, right) => right - left)];
+    if (!best || compareHomes(entry, best, hubOrder) < 0) best = entry;
+  }
+  return best?.[0];
+}
+
+/**
+ * An inventor sits two steps from every assignee they patented with, so nearest-hub ownership ties and the
+ * strongest hub won regardless of patent counts. Move each inventor to the neighborhood holding most of their
+ * assigned patents (newest patents break ties); patents without an assignee then follow their inventors.
+ */
+function settleInventorNeighborhoods(
+  componentNodes: readonly UniversalRelationshipNode[],
+  hubs: readonly ClusterHub[],
+  graphNodeById: ReadonlyMap<string, UniversalRelationshipNode>,
+  adjacency: ReadonlyMap<string, ReadonlySet<string>>,
+  ownerById: Map<string, string>,
+): void {
+  if (hubs.length < 2) return;
+  const hubOrder = new Map(hubs.map((hub, index) => [hub.id, index]));
+  const hasNeighborOfKind = (id: string, kind: UniversalNodeKind) =>
+    [...(adjacency.get(id) ?? [])].some((neighbor) => graphNodeById.get(neighbor)?.kind === kind);
+  const patents = componentNodes.filter((node) => node.kind === "patent");
+  const assignedPatentIds = new Set(
+    patents.filter((patent) => hasNeighborOfKind(patent.id, "assignee")).map((patent) => patent.id),
+  );
+
+  for (const author of componentNodes) {
+    if (author.kind !== "author") continue;
+    const tally = new Map<string, number[]>();
+    for (const neighbor of adjacency.get(author.id) ?? []) {
+      const patent = graphNodeById.get(neighbor);
+      const home = ownerById.get(neighbor);
+      if (patent?.kind !== "patent" || !home || !assignedPatentIds.has(patent.id)) continue;
+      tally.set(home, [...(tally.get(home) ?? []), patent.patent.patentYear ?? Number.NEGATIVE_INFINITY]);
+    }
+    const home = strongestHome(tally, hubOrder);
+    if (home) ownerById.set(author.id, home);
+  }
+
+  for (const patent of patents) {
+    if (patent.kind !== "patent" || assignedPatentIds.has(patent.id)) continue;
+    const year = patent.patent.patentYear ?? Number.NEGATIVE_INFINITY;
+    const tally = new Map<string, number[]>();
+    for (const neighbor of adjacency.get(patent.id) ?? []) {
+      const home = ownerById.get(neighbor);
+      if (graphNodeById.get(neighbor)?.kind !== "author" || !home) continue;
+      tally.set(home, [...(tally.get(home) ?? []), year]);
+    }
+    const home = strongestHome(tally, hubOrder);
+    if (home) ownerById.set(patent.id, home);
+  }
+}
+
 function preferredAngle(
   nodeId: string,
   nodeLevel: number,
@@ -579,6 +653,7 @@ function layoutComponent(
     }
     ownerById.set(node.id, owner.id);
   }
+  settleInventorNeighborhoods(componentNodes, hubs, graphNodeById, adjacency, ownerById);
 
   const localClusters = hubs
     .map((hub) => {
