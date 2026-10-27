@@ -1,5 +1,12 @@
 import { chromaticChannelIndexLabel } from "../../../optics/chromatic.js";
-import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticChannelOmission,
+  ChromaticChannelOmissionReason,
+  ChromaticRayFanSpread,
+  ChromaticZoneSearchEnd,
+  RefractiveIndexReferenceLine,
+} from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
 export function chromaticChannelColor(t: Theme, channel: ChromaticChannel): string {
@@ -40,4 +47,51 @@ export function formatSpreadUmFromMm(mm: number): string {
   const um = Math.abs(mm * 1000);
   if (um === 0) return "< 0.1 µm";
   return um >= 1 ? `${um.toFixed(0)} µm` : `${um.toFixed(1)} µm`;
+}
+
+const OMISSION_REASON_LABEL: Record<ChromaticChannelOmissionReason, string> = {
+  vignetted: "vignetted",
+  "no-axis-crossing": "no axis crossing",
+  unaimed: "unaimed",
+  untraced: "not traced",
+};
+
+/** Name the channels a spread leaves out, grouped by reason: "B, V vignetted"; empty when none is left out. */
+export function formatOmittedChannels(omitted: readonly ChromaticChannelOmission[] | undefined): string {
+  const byReason = new Map<ChromaticChannelOmissionReason, ChromaticChannel[]>();
+  for (const { channel, reason } of omitted ?? []) byReason.set(reason, [...(byReason.get(reason) ?? []), channel]);
+  return Array.from(byReason, ([reason, channels]) => `${channels.join(", ")} ${OMISSION_REASON_LABEL[reason]}`).join(
+    "; ",
+  );
+}
+
+/**
+ * State a chromatic spread's zone and the channels it compares: "0.97 R, R–G–B", or "0.90 R, R–G; B vignetted" when
+ * a selected channel is left out.
+ *
+ * @param spread - the spread's signed fraction, compared channels and omissions
+ * @param radius - what the fraction is of: "R", the stop radius, for aimed zones; "EP", the paraxial entrance-pupil
+ *   radius, for the diagram's display fans
+ */
+export function formatChromaticZone(
+  spread: Pick<ChromaticRayFanSpread, "fraction" | "channels" | "omittedChannels" | "searchEndedBy">,
+  radius: "R" | "EP" = "R",
+): string {
+  const zone = spread.fraction === undefined ? "" : `${spread.fraction.toFixed(2)} ${radius}, `;
+  const parts = [`${zone}${(spread.channels ?? []).join("–")}`];
+  const omitted = formatOmittedChannels(spread.omittedChannels);
+  if (omitted) parts.push(omitted);
+  if (spread.searchEndedBy) parts.push(`search ended at ${formatZoneSearchEnd(spread.searchEndedBy, radius)}`);
+  return parts.join("; ");
+}
+
+const UNAIMED_REASON_LABEL: Record<ChromaticZoneSearchEnd["reason"], string> = {
+  "aim-not-converged": "aim did not converge",
+  "stop-unreachable": "stop unreachable",
+  "trace-failed": "trace failed",
+};
+
+/** State the unaimed ray that ended a zone search: "0.75 R: B unaimed (stop unreachable)". */
+export function formatZoneSearchEnd(end: ChromaticZoneSearchEnd, radius: "R" | "EP" = "R"): string {
+  return `${end.fraction.toFixed(2)} ${radius}: ${end.channel} unaimed (${UNAIMED_REASON_LABEL[end.reason]})`;
 }

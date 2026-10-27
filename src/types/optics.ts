@@ -674,6 +674,28 @@ export interface LayoutResult {
 
 export type ChromaticChannel = "R" | "G" | "B" | "V";
 
+/**
+ * Why a selected channel has no ray in a chromatic spread's zone or field: an aperture clips it, it leaves parallel to
+ * the axis, no ray could be aimed at its stop target (or chief), or the display sampler traced none.
+ */
+export type ChromaticChannelOmissionReason = "vignetted" | "no-axis-crossing" | "unaimed" | "untraced";
+
+/** A selected channel a chromatic spread leaves out, with why. */
+export interface ChromaticChannelOmission {
+  channel: ChromaticChannel;
+  reason: ChromaticChannelOmissionReason;
+}
+
+/**
+ * The ray that ended a chromatic zone search: the first channel no ray could be aimed for, at the first such zone.
+ * `reason` is the aimed launch's unaimed reason.
+ */
+export interface ChromaticZoneSearchEnd {
+  fraction: number;
+  channel: ChromaticChannel;
+  reason: "aim-not-converged" | "stop-unreachable" | "trace-failed";
+}
+
 export interface ChromaticRayFanSpread {
   axialInterceptSpreadMm: number;
   imagePlaneHeightSpreadMm: number;
@@ -682,6 +704,10 @@ export interface ChromaticRayFanSpread {
   axis?: "onAxis" | "offAxis";
   fraction?: number;
   channels?: ChromaticChannel[];
+  /** Selected channels left out of `channels`, each with why; empty when every one is compared. */
+  omittedChannels?: ChromaticChannelOmission[];
+  /** Set when an unaimed ray ended the zone search before any zone passed every channel. */
+  searchEndedBy?: ChromaticZoneSearchEnd;
 }
 
 export interface ChromaticRayFanSpreadByAxis {
