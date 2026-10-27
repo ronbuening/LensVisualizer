@@ -14,15 +14,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Estimated from marginal + chief ray (60% field) with 8%         ║
  * ║    clearance. Front elements constrained by 77 mm filter thread    ║
  * ║    and cross-gap sag intrusion (S2→S3 gap = 2.75 mm is binding).  ║
+ * ║    S8 raised 16.0→17.1 mm for the stated f/1.75 axial beam;      ║
+ * ║    S9 stays 16.0 mm (FIG. 2 shows a stepped L23 rim).            ║
+ * ║    L34 S21/S22 raised 18.0→18.8 mm, square: the printed 19° /     ║
+ * ║    Y = 27.35 mm chief ray crosses S22 at 18.29 mm (floor + 0.5;   ║
+ * ║    FIG. 2 draws L34 about 6 % larger relative to the lens).      ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
- * ║    The patent's aspheric equation uses BOTH odd and even powers    ║
- * ║    (A3 through A20). This data file can only encode even powers   ║
- * ║    (A4–A20). The odd-power coefficients (A5, A7, A9, A11, A13,    ║
- * ║    A15, A17, A19) are non-zero in the patent and contribute       ║
- * ║    materially to the sag profile. Their omission here means the   ║
- * ║    rendered aspherical departure is approximate. Refer to the      ║
- * ║    analysis document and the patent for the full coefficient set.  ║
+ * ║    Full Example 1 Table 4 terms A3–A20 are transcribed, including  ║
+ * ║    every non-zero odd term (A3 = 0 on both surfaces). The former ║
+ * ║    even-only transcription omitted A5–A19 odd; no refit is used. ║
+ * ║    Source lengths are mm (scale s = 1); KA = 1 gives K = 0.     ║
  * ║                                                                    ║
  * ║  NOTE ON CONIC CONVENTION:                                         ║
  * ║    The patent uses KA where KA = 1 + K (standard). Both aspheric  ║
@@ -233,11 +235,8 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  /* (moved from asph) ── Aspherical coefficients ──
-   *  IMPORTANT: The patent specifies odd-power terms (A3–A19 odd) in
-   *  addition to even powers. Only even-power terms are encoded here.
-   *  See file header note for details.
-   *
+  /* ── Aspherical coefficients: Example 1 Table 4, PDF page 19 ──
+   *  Full odd/even polynomial in radial height h (mm), A3–A20.
    *  Patent conic convention: KA = 1 + K.  KA = 1.0 → K = 0.
    */
   surfaces: [
@@ -251,7 +250,7 @@ const LENS_DATA = {
     { label: "5", R: 41.3284, d: 7.02, sd: 23.5, medium: 3 },
     { label: "6", R: 285.6388, d: 0.2, sd: 23.5 },
     { label: "7", R: 28.5038, d: 8.21, sd: 20.0, medium: 4 }, // L22 front
-    { label: "8", R: 329.044, d: 1.63, sd: 16.0, medium: 5 }, // L22→L23 junction
+    { label: "8", R: 329.044, d: 1.63, sd: 17.1, medium: 5 }, // L22→L23 junction
     { label: "9", R: 17.9857, d: 9.8099, sd: 16.0 }, // L23 rear → air
     { label: "STO", R: "flat", d: 6.0118 }, // aperture stop
     { label: "11", R: -40.9786, d: 5.42, sd: 14.0, medium: 6 }, // L24 front
@@ -265,14 +264,23 @@ const LENS_DATA = {
       medium: 8,
       asphere: {
         K: 0,
+        A3: 0,
         A4: -1.0088242e-6,
+        A5: -2.6513493e-7,
         A6: 1.7071672e-8,
+        A7: 8.2564362e-10,
         A8: -1.0054449e-12,
+        A9: -1.7643417e-11,
         A10: 6.0868319e-13,
+        A11: 4.7629976e-14,
         A12: 1.3561314e-17,
+        A13: -1.9007385e-16,
         A14: 5.4134773e-18,
+        A15: -6.3292092e-19,
         A16: 6.8084206e-21,
+        A17: 4.8308631e-21,
         A18: -1.8685654e-22,
+        A19: -3.6580337e-24,
         A20: 1.880646e-25,
       },
     }, // L26 front (asph)
@@ -282,14 +290,23 @@ const LENS_DATA = {
       sd: 19.2,
       asphere: {
         K: 0,
+        A3: 0,
         A4: 1.3965451e-7,
+        A5: -2.3150181e-7,
         A6: 1.5432308e-8,
+        A7: 4.7477332e-10,
         A8: -8.1934546e-11,
+        A9: -8.2435003e-13,
         A10: 1.574072e-13,
+        A11: 1.2547704e-14,
         A12: -9.8161787e-16,
+        A13: -1.6440179e-17,
         A14: 3.9921882e-18,
+        A15: -7.9972791e-20,
         A16: -7.0611745e-21,
+        A17: 1.5944044e-22,
         A18: 3.8876927e-24,
+        A19: 5.0171611e-25,
         A20: -2.1180317e-26,
       },
     }, // L26 rear (asph), DD[15] inf
@@ -300,8 +317,8 @@ const LENS_DATA = {
     { label: "18", R: "flat", d: 2.33, sd: 19.5 }, // L32 rear → air
     { label: "19", R: -105.4941, d: 1.3, sd: 18.5, medium: 11 }, // L33 front
     { label: "20", R: "flat", d: 2.89, sd: 18.5 }, // L33 rear → air
-    { label: "21", R: -86.5553, d: 1.3, sd: 18.0, medium: 12 }, // L34 front
-    { label: "22", R: "flat", d: 20.1247, sd: 18.0 }, // L34 rear → PP (patent gap)
+    { label: "21", R: -86.5553, d: 1.3, sd: 18.8, medium: 12 }, // L34 front
+    { label: "22", R: "flat", d: 20.1247, sd: 18.8 }, // L34 rear → PP (patent gap)
   ],
 
   /* ── Focus configuration ── */
@@ -315,7 +332,7 @@ const LENS_DATA = {
         objectDistanceMm: 576.6736,
         distanceReference: "first-surface",
         source:
-          "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus.",
+          "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
       },
     ],
   },

@@ -155,13 +155,11 @@ The patent states several advantages of this focus architecture (¶0043): inner 
 
 The production lens specifies an MFD of 0.7 m with a maximum magnification of 0.15×, and uses a DC motor with a GMR (giant magnetoresistive) position sensor for autofocus.
 
-For finite MTF, the published close station is explicitly recorded in `finiteConjugates`. Paragraph 0084 measures
+For finite MTF, the published close station is explicitly recorded in `focus.conjugates`. Paragraph 0084 measures
 700 mm from the object to the physical image plane. Summing Table 1's physical spacings with Table 3's close gaps,
 including PP and its following air gap, gives 123.3264 mm from the first vertex to that plane. The object therefore
-lies 576.6736 mm ahead of the first vertex. MTF retains this object location because the authored model removes PP
-and uses an air-equivalent back focus; interpreting 700 mm relative to that shortened model plane would move the
-object. This certifies the source station only, not intermediate focus positions or production-lens MTF. Existing
-omitted odd aspheric terms and the omitted PP remain model limitations.
+lies 576.6736 mm ahead of the first vertex. The model traces PP in `rearPlates` at the printed physical thickness and
+gaps. This identifies the source station only; it does not certify intermediate focus positions or production-lens MTF.
 
 
 ## Aspherical Surfaces
@@ -178,7 +176,7 @@ where $C = 1/R$, $K_A$ is the conic coefficient (equivalent to $1 + K$ in the st
 
 **Odd-power terms:** This patent uses both odd and even powers in the polynomial ($A_3$ through $A_{20}$). This is a standard convention in Fujifilm patents; the radial coordinate $h$ is always non-negative in the context of the rotationally symmetric sag equation, so odd powers do not introduce left–right asymmetry but rather provide additional degrees of freedom for shaping the sag profile as a function of aperture height. Although $A_3 = 0$ for both surfaces, the remaining odd-power coefficients ($A_5, A_7, A_9, \ldots, A_{19}$) are non-zero and contribute materially to the total aspherical departure — in some cases comparably to adjacent even-power terms.
 
-**Data-file limitation:** The companion `.data.ts` file encodes only the even-power coefficients ($A_4, A_6, \ldots, A_{20}$) because the current schema does not support odd powers. The odd-power coefficients are listed in full below for reference. The rendered aspherical sag in the viewer is therefore approximate; the full patent polynomial should be used for any quantitative sag computation.
+**Data transcription:** The companion `.data.ts` file encodes the complete Table 4 polynomial ($A_3$ through $A_{20}$), including every non-zero odd term and the printed $A_3 = 0$ on both surfaces. The earlier even-only transcription has been replaced by the printed coefficients, with no fitted terms. Paragraph 0092 gives lengths in mm, so the prescription is used at scale $s = 1$ and the coefficients need no rescaling. The coefficient tables below were checked against rendered PDF page 19 (printed page 8).
 
 ### Surface 14 (L26 front, $R$ = −146.6394 mm)
 
@@ -234,14 +232,33 @@ Surface 15 has a weaker even $A_4$ term ($+1.40 \times 10^{-7}$, positive), whil
 
 The placement of the aspherical element at the trailing edge of G2 (rather than at the front of the lens or near the stop) is significant: at this position, the marginal ray height is moderate and the chief ray is diverging, so the aspherical correction acts on both axial (spherical aberration) and off-axis (coma, astigmatism) wavefront errors simultaneously.
 
+At the data-file semi-diameters, the complete polynomial gives departures from the $K = 0$ base sphere of
+−133.3 µm at S14 ($h = 18.4$ mm) and −77.8 µm at S15 ($h = 19.2$ mm). S14's first slope reversal is near
+19.61 mm, beyond its authored rim; S15 has no reversal within its authored rim. The inferred aspheric rims therefore
+need no turnover cap. The d-line longitudinal spherical aberration at the full stated entrance pupil is about
+−0.010 mm relative to the near-axis focus, with a +0.021 mm zone at 85% pupil. The corrected field curves have the
+small sagittal bow, positive tangential shift and positive distortion shown in FIG. 3 (PDF page 3), whose
+spherical/astigmatism axes span ±500 µm and distortion axis spans ±3%.
+
+### Estimated rims and illumination
+
+The patent publishes no effective-diameter column. S8's semi-diameter is 17.1 mm, the minimum at 0.1 mm precision
+needed by the printed $f$/1.75 axial beam (previously 16.0 mm). FIG. 2 shows a stepped L23 rim, so S9 retains
+16.0 mm. L34 retains a square rim with S21/S22 at 18.8 mm (previously 18.0 mm): the printed 19° chief ray reaches
+$Y' = 27.3495$ mm and crosses S22 at 18.29 mm, and the rim sits 0.5 mm outside that floor. All other inferred rims are retained. These estimates support
+localized rays and relative illumination across the modeled field, but strong outer-field clipping remains; the
+illumination curve is sensitive to the inferred rims and is not a measured production-lens result. The model reaches
+about 27.36 mm image height, consistent with the printed $Y = 27.35$ mm; the format's slightly larger 27.39 mm corner
+still clips S22 by about 0.02 mm.
+
 
 ## Conditional Expressions
 
-The patent specifies eleven conditional expressions governing the design space. All are satisfied by Example 1:
+The patent tabulates the following eleven conditional-expression values for Example 1. Its total-length-dependent value rests on a summary discrepancy described below:
 
 | No. | Expression | Bounds | Value (Ex. 1) | Status |
 |-----|-----------|--------|---------------|--------|
-| (1) | $TL^2 / (Y \times f)$ | 4 < … < 7.5 | 4.985 | ✓ |
+| (1) | $TL^2 / (Y \times f)$ | 4 < … < 7.5 | 4.985 (printed) | Full spacing sum gives 6.943; both within bounds |
 | (2) | $G1TL / Gsum$ | 0.04 < … < 0.14 | 0.092 | ✓ |
 | (3) | $N_2$ | 1.6 < … < 2.2 | 1.755 | ✓ |
 | (4) | $R_c / f_{22}$ | −0.7 < … < −0.1 | −0.415 | ✓ |
@@ -253,7 +270,12 @@ The patent specifies eleven conditional expressions governing the design space. 
 | (10) | $\max(\nu_p - \nu_n)$ | 30 < … < 75 | 62.48 | ✓ |
 | (11) | $Bf / f$ | 0.1 < … < 0.5 | 0.296 | ✓ |
 
-All eleven values were independently verified by paraxial ray trace. The computed system EFL is 78.682 mm, matching the patent's stated 78.68 mm to four significant figures.
+The computed system EFL is 78.682 mm, matching the patent's stated 78.68 mm to four significant figures.
+However, Table 2 prints $TL = 103.58$ mm, while the Table 1/3 spacings give a physical track of 123.3264 mm and
+an air-equivalent total length of 122.2361 mm under paragraph 0083. Omitting the two variable gaps, whose sum is
+18.6600 mm, gives 103.5761 mm and reproduces the printed TL after rounding. Table 17's value 4.985 for condition (1)
+uses that shorter TL; using the full spacing sum gives 6.943. The printed prescription is retained; no spacing was
+adjusted to force the shorter length.
 
 
 ## Verification Summary
