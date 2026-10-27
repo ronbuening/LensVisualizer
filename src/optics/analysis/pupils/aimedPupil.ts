@@ -24,6 +24,7 @@ import { traceToStopViaGeneralized } from "../../trace/stopTrace.js";
 import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
 import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
+import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -34,8 +35,16 @@ import type { AnalysisRequest } from "../request.js";
  * blocked by the rounding of its own solve.
  */
 export const AIMED_PUPIL_RESIDUAL_TOLERANCE = 1e-7;
-/** Stop traces one sample may spend, its seed included. */
+/** Stop traces one sample may spend reaching the tolerance, its seed included. */
 export const AIMED_PUPIL_MAX_ITERATIONS = 24;
+/**
+ * Residual, per millimetre of stop radius, at which a converged aim stops polishing. Past the tolerance each sample
+ * keeps taking Newton steps until its residual reaches this or stops falling, so the returned ray is set by the optics
+ * (the root, to rounding) rather than by the path its seed took.
+ */
+export const AIMED_PUPIL_POLISH_TOLERANCE = 1e-12;
+/** Extra stop traces a converged sample may spend polishing. */
+const AIMED_PUPIL_MAX_POLISH_ITERATIONS = 6;
 /** Halvings of a correction step that lands where no ray reaches the stop before the target is declared unreachable. */
 const AIMED_PUPIL_MAX_STEP_HALVINGS = 12;
 /** Finite-difference step of the field's launch-to-stop Jacobian, as a fraction of the launch scale. */
@@ -44,11 +53,6 @@ const AIMED_PUPIL_JACOBIAN_STEP = 1e-3;
 const AIMED_PUPIL_JACOBIAN_STEP_RETRIES = 3;
 /** Relative determinant below which the launch-to-stop map is treated as folded at that point. */
 const AIMED_PUPIL_SINGULAR_DETERMINANT = 1e-12;
-/**
- * Once a step has met an untraceable launch, an accepted step that shrinks the residual by less than this share means
- * the solve is creeping along the edge of the reachable stop region rather than converging.
- */
-const AIMED_PUPIL_EDGE_PROGRESS = 0.01;
 /**
  * Reference targets the field's stop-to-launch fit is aimed at, in normalised stop coordinates: rings of eight at half
  * and full radius. Fixed per field, so the fit, and every seed taken from it, depend on nothing a caller asks for.
@@ -210,6 +214,13 @@ interface LaunchFrame {
   /** Launch coordinates of the chief seed. */
   chief: Vec2;
   launchBoundT?: number;
+  /**
+   * The frame and the optics are exactly mirror-symmetric about the meridian (y–z plane), with launch coordinate a = 0
+   * on it: a sample with x = 0 is solved in b alone with a pinned at 0, and (−px, py) is the exact mirror of (px, py).
+   */
+  meridional: boolean;
+  /** Also rotationally symmetric about the axis (an axial object): (0, −py) is the exact negation of (0, py). */
+  axial: boolean;
 }
 
 interface FieldModel {
@@ -223,6 +234,10 @@ interface FieldModel {
   jacobian: Matrix2 | null;
   /** Cubic stop-to-launch map fitted on the aimed reference targets, or null. */
   fit: StopToLaunchFit | null;
+  /** The chief crossing a (0, 0) sample accepts: the chief-ray solve's own max(1e-7·R, 1e-7 mm). */
+  chiefAcceptMm: number;
+  /** Residual below which converged samples stop polishing. */
+  polishToleranceMm: number;
 }
 
 /** Launch offset from the chief as a cubic without constant in the normalised target (u, v) = target / R. */
@@ -249,6 +264,9 @@ interface SampleSolve {
   /** For a blocked sample: the blocking launch and the surface that clips it. */
   blocked?: { launch: Vec2; surfaceIndex: number };
 }
+
+/** How a sample's canonical solve maps back onto it: mirrored across the meridian, negated on the axis, or as is. */
+type SampleSymmetry = "none" | "mirror-x" | "negate-y";
 
 /**
  * Aim pupil samples at the real stop for one field of the request's current state.
@@ -321,22 +339,26 @@ export function prepareAimedPupilLaunchForState(
     "trace-failed": 0,
   };
   const defaultWeight = samples.length > 0 ? 1 / samples.length : 1;
-  const toRay = (
-    index: number,
-    xFraction: number,
-    yFraction: number,
-    weight: number,
-    solve: SampleSolve,
-  ): AimedPupilRay => {
+  const toRay = (index: number, xFraction: number, yFraction: number, weight: number): AimedPupilRay => {
     const target = frame.stopTarget(xFraction, yFraction, R);
-    const residualMm = solve.stop ? Math.hypot(solve.stop[0] - target[0], solve.stop[1] - target[1]) : NaN;
+    // Symmetric fields solve one canonical sample and map it back exactly, so mirror images agree to the bit.
+    let symmetry: SampleSymmetry = "none";
+    if (frame.meridional && xFraction < 0) symmetry = "mirror-x";
+    else if (frame.axial && xFraction === 0 && yFraction < 0) symmetry = "negate-y";
+    const canonical: Vec2 =
+      symmetry === "mirror-x" ? [-target[0], target[1]] : symmetry === "negate-y" ? [target[0], -target[1]] : target;
+    const solved = aimSample(model, canonical, frame.meridional && xFraction === 0);
+    const solve = mapSolve(solved, symmetry, model.chief);
     const base = {
       index,
       xFraction,
       yFraction,
       targetStopMm: target,
-      achievedStopMm: solve.stop,
-      residualMm,
+      achievedStopMm: solve.status === "blocked" ? null : solve.stop,
+      residualMm:
+        solve.status !== "blocked" && solve.stop
+          ? Math.hypot(solve.stop[0] - target[0], solve.stop[1] - target[1])
+          : NaN,
       iterations: solve.iterations,
       weight,
       launch: solve.launch,
@@ -360,15 +382,9 @@ export function prepareAimedPupilLaunchForState(
     return { ...base, status: "unaimed", reason: solve.reason ?? "aim-not-converged", origin: null, direction: null };
   };
 
-  const chief = toRay(-1, 0, 0, 0, aimSample(model, [0, 0]));
+  const chief = toRay(-1, 0, 0, 0);
   const rays = samples.map((sample, index) => {
-    const ray = toRay(
-      index,
-      sample.xFraction,
-      sample.yFraction,
-      sample.weight ?? defaultWeight,
-      aimSample(model, frame.stopTarget(sample.xFraction, sample.yFraction, R)),
-    );
+    const ray = toRay(index, sample.xFraction, sample.yFraction, sample.weight ?? defaultWeight);
     if (ray.status === "unaimed") unaimedByReason[ray.reason]++;
     return ray;
   });
@@ -445,21 +461,36 @@ function channelTraceOptions(
 }
 
 function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry): LaunchFrame {
+  const symmetric = mirrorSymmetricAboutMeridian(state);
   if ("kind" in geometry && geometry.kind === "vector") {
     const launch = geometry.vectorLaunch;
+    // A field in the meridian is mirror-symmetric to the bit only once rounding is cleared from its x components.
+    const meridional = symmetric && launch.fieldAngleXDeg === 0;
+    const origin = meridional ? inMeridian(launch.origin) : launch.origin;
+    const direction = meridional ? inMeridian(launch.direction) : launch.direction;
+    const radialAxis = meridional ? inMeridian(launch.radialPupilAxis) : launch.radialPupilAxis;
+    const sagittalAxis: Vec3 = meridional
+      ? [Math.sign(launch.sagittalPupilAxis[0]) || 1, 0, 0]
+      : launch.sagittalPupilAxis;
     return {
       surface: "bounding-sphere",
-      ray: (a, b) => ({
-        origin: offsetOrigin(launch.origin, launch.sagittalPupilAxis, a, launch.radialPupilAxis, b),
-        direction: launch.direction,
-      }),
+      ray: (a, b) => ({ origin: offsetOrigin(origin, sagittalAxis, a, radialAxis, b), direction }),
       stopTarget: axisAlignedTarget,
       chief: [0, 0],
       launchBoundT: launch.launchBoundT,
+      meridional,
+      axial: false,
     };
   }
   if ("kind" in geometry && geometry.kind === "launch-frame") {
     const { chiefRay, sagittalAxis, radialAxis } = geometry;
+    const meridional =
+      symmetric &&
+      chiefRay.origin[0] === 0 &&
+      chiefRay.direction[0] === 0 &&
+      radialAxis[0] === 0 &&
+      sagittalAxis[1] === 0 &&
+      sagittalAxis[2] === 0;
     return {
       surface: "launch-frame",
       ray: (a, b) => ({
@@ -469,10 +500,14 @@ function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry)
       stopTarget: fieldAlignedTarget(sagittalAxis, radialAxis),
       chief: [0, 0],
       launchBoundT: geometry.launchBoundT,
+      meridional,
+      axial: false,
     };
   }
   if ("kind" in geometry && geometry.kind === "finite-object") {
     const { objectPoint, leadZ } = geometry;
+    const meridional = symmetric && objectPoint[0] === 0;
+    const axial = meridional && objectPoint[1] === 0;
     // Seed the chief on the straight line from the object point to the stop centre.
     const stopZ = state.z[state.lens.stop.surfaceIndex] ?? 0;
     const seedFraction = (stopZ - leadZ) / (stopZ - objectPoint[2]);
@@ -487,7 +522,9 @@ function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry)
         return { origin, direction: [dx / length, dy / length, dz / length] };
       },
       stopTarget: axisAlignedTarget,
-      chief: [objectPoint[0] * seedFraction, objectPoint[1] * seedFraction],
+      chief: axial ? [0, 0] : [objectPoint[0] * seedFraction, objectPoint[1] * seedFraction],
+      meridional,
+      axial,
     };
   }
   const { uField, yChief } = geometry;
@@ -501,7 +538,14 @@ function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry)
     ray: (a, b) => ({ origin: [a - ux * lead, b - uField * lead, firstZ - lead], direction }),
     stopTarget: axisAlignedTarget,
     chief: [0, yChief],
+    meridional: symmetric,
+    axial: symmetric && uField === 0 && yChief === 0,
   };
+}
+
+/** The vector with its x component cleared: the meridian's own launch, without the rounding of its construction. */
+function inMeridian(v: Vec3): Vec3 {
+  return [0, v[1], v[2]];
 }
 
 /** Off-axis fields lie in the meridional y–z plane, so pupil x and y are the stop's own x and y. */
@@ -521,6 +565,20 @@ function fieldAlignedTarget(sagittalAxis: Vec3, radialAxis: Vec3): LaunchFrame["
     R * (xFraction * s[0] + yFraction * r[0]),
     R * (xFraction * s[1] + yFraction * r[1]),
   ];
+}
+
+/** Map a canonical solve back onto its sample: mirror a about the meridian, or negate b about the axial chief. */
+function mapSolve(solve: SampleSolve, symmetry: SampleSymmetry, chief: Vec2): SampleSolve {
+  if (symmetry === "none") return solve;
+  const map = (point: Vec2): Vec2 =>
+    symmetry === "mirror-x" ? [-point[0], point[1]] : [point[0], 2 * chief[1] - point[1]];
+  const mapStop = (point: Vec2): Vec2 => (symmetry === "mirror-x" ? [-point[0], point[1]] : [point[0], -point[1]]);
+  return {
+    ...solve,
+    launch: map(solve.launch),
+    stop: solve.stop && mapStop(solve.stop),
+    blocked: solve.blocked && { ...solve.blocked, launch: map(solve.blocked.launch) },
+  };
 }
 
 function offsetOrigin(origin: Vec3, axisA: Vec3, a: number, axisB: Vec3, b: number): Vec3 {
@@ -607,8 +665,9 @@ function apertureBlockTracer(
 /**
  * The field's chief crossing and launch-to-stop Jacobian, shared by every sample of the field.
  *
- * A converged chief launch is kept as it is (the chief-ray solve's own ray); otherwise the chief is aimed like any
- * sample. The Jacobian is a central difference about the chief, the step shrinking when a probe cannot be traced.
+ * A chief launch that crosses within the chief-ray solve's own acceptance, max(1e-7·R, 1e-7 mm), is kept as it is
+ * (the chief-ray solve's own ray); otherwise the chief is aimed like any sample. The Jacobian is a central difference
+ * about the chief, the step shrinking when a probe cannot be traced.
  */
 function fieldModel(
   frame: LaunchFrame,
@@ -627,14 +686,15 @@ function fieldModel(
     chiefStop: stopAt(frame.chief),
     jacobian: null,
     fit: null,
+    chiefAcceptMm: Math.max(toleranceMm, CHIEF_RAY_RESIDUAL_TOLERANCE_MM),
+    polishToleranceMm: AIMED_PUPIL_POLISH_TOLERANCE * stopSemiDiameterMm,
   };
   if (!model.chiefStop) return model;
   model.jacobian = jacobianAt(stopAt, frame.chief, launchScale);
   if (!model.jacobian) return model;
-  const chiefAcceptMm = Math.max(toleranceMm, CHIEF_RAY_RESIDUAL_TOLERANCE_MM);
-  if (Math.hypot(model.chiefStop[0], model.chiefStop[1]) > chiefAcceptMm) {
+  if (Math.hypot(model.chiefStop[0], model.chiefStop[1]) > model.chiefAcceptMm) {
     // The supplied chief does not pass the stop centre (a finite object's straight-line seed, or a fallback solve).
-    const solved = newtonAim(model, [0, 0], chiefStart(model));
+    const solved = newtonAim(model, [0, 0], chiefStart(model), frame.meridional, true);
     if (solved.status !== "aimed" || !solved.stop) return model;
     model.chief = solved.launch;
     model.chiefStop = solved.stop;
@@ -655,7 +715,8 @@ function stopToLaunchFit(model: FieldModel, stopSemiDiameterMm: number): StopToL
   const offsetsA: number[] = [];
   const offsetsB: number[] = [];
   for (const [u, v] of AIMED_PUPIL_FIT_TARGETS) {
-    const solved = newtonAim(model, [u * stopSemiDiameterMm, v * stopSemiDiameterMm], chiefStart(model));
+    // References need only the tolerance; samples are polished from wherever the fit seeds them.
+    const solved = newtonAim(model, [u * stopSemiDiameterMm, v * stopSemiDiameterMm], chiefStart(model), false, false);
     if (solved.status !== "aimed") continue;
     rows.push(fitBasis(u, v));
     offsetsA.push(solved.launch[0] - model.chief[0]);
@@ -703,14 +764,17 @@ function chiefStart(model: FieldModel): SolveStart {
   return { launch: model.chief, stop: model.chiefStop!, jacobian: model.jacobian, iterations: 0 };
 }
 
-/** Start from the fit's launch for the target, traced, with the fit's own Jacobian; null when it cannot be traced. */
-function fittedStart(model: FieldModel, fit: StopToLaunchFit, target: Vec2): SolveStart | null {
+/**
+ * Start from the fit's launch for the target, traced, with the fit's own Jacobian; null when it cannot be traced.
+ * A pinned (meridional) start keeps a exactly at the chief's 0.
+ */
+function fittedStart(model: FieldModel, fit: StopToLaunchFit, target: Vec2, pinA: boolean): SolveStart | null {
   const u = target[0] / fit.stopSemiDiameterMm;
   const v = target[1] / fit.stopSemiDiameterMm;
   const basis = fitBasis(u, v);
   const dot = (coefficients: readonly number[], terms: readonly number[]) =>
     terms.reduce((sum, term, k) => sum + coefficients[k] * term, 0);
-  const launch: Vec2 = [model.chief[0] + dot(fit.a, basis), model.chief[1] + dot(fit.b, basis)];
+  const launch: Vec2 = [pinA ? model.chief[0] : model.chief[0] + dot(fit.a, basis), model.chief[1] + dot(fit.b, basis)];
   const stop = model.stopAt(launch);
   if (!stop) return null;
   // The fit's derivative is launch per stop; its inverse is the stop-per-launch Jacobian the corrections use.
@@ -738,7 +802,9 @@ function cachedFieldModel(
   channel: ChromaticChannel | undefined,
   build: () => FieldModel,
 ): FieldModel {
-  const key = [fieldGeometryKey(geometry), stopSemiDiameterMm, launchScale, channel ?? ""].join("|");
+  const key = [fieldGeometryKey(geometry), keyNumber(stopSemiDiameterMm), keyNumber(launchScale), channel ?? ""].join(
+    "|",
+  );
   let models = fieldModelsByState.get(state);
   if (!models) {
     models = new Map();
@@ -755,29 +821,34 @@ function cachedFieldModel(
   return model;
 }
 
-/** Every number a launch frame is built from; JavaScript number strings round-trip exactly. */
+/** A number's exact key: its round-tripping string, with −0 kept apart from 0, since a launch built on either differs. */
+function keyNumber(value: number): string {
+  return Object.is(value, -0) ? "-0" : String(value);
+}
+
+/** Every number a launch frame is built from. */
 function fieldGeometryKey(geometry: AimedPupilFieldGeometry): string {
+  const join = (tag: string, values: readonly (number | undefined)[]) =>
+    [tag, ...values.map((value) => (value === undefined ? "" : keyNumber(value)))].join(",");
   if ("kind" in geometry && geometry.kind === "vector") {
     const launch = geometry.vectorLaunch;
-    return [
-      "v",
+    return join("v", [
       ...launch.origin,
       ...launch.direction,
       ...launch.sagittalPupilAxis,
       ...launch.radialPupilAxis,
       launch.launchBoundT,
-    ].join(",");
+      launch.fieldAngleXDeg,
+    ]);
   }
   if ("kind" in geometry && geometry.kind === "launch-frame") {
     const { chiefRay, sagittalAxis, radialAxis, launchBoundT } = geometry;
-    return ["l", ...chiefRay.origin, ...chiefRay.direction, ...sagittalAxis, ...radialAxis, launchBoundT ?? ""].join(
-      ",",
-    );
+    return join("l", [...chiefRay.origin, ...chiefRay.direction, ...sagittalAxis, ...radialAxis, launchBoundT]);
   }
   if ("kind" in geometry && geometry.kind === "finite-object") {
-    return ["f", ...geometry.objectPoint, geometry.leadZ].join(",");
+    return join("f", [...geometry.objectPoint, geometry.leadZ]);
   }
-  return ["o", geometry.uField, geometry.yChief].join(",");
+  return join("o", [geometry.uField, geometry.yChief]);
 }
 
 /** The chief-ray solve's absolute stop-height tolerance at fields of one degree and more. */
@@ -825,87 +896,123 @@ function broydenUpdate(j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 {
   return next.every(Number.isFinite) ? next : j;
 }
 
-function aimSample(model: FieldModel, target: Vec2): SampleSolve {
+function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve {
   if (!model.chiefStop)
     return { status: "unaimed", reason: "trace-failed", launch: model.chief, stop: null, iterations: 0 };
   const start = chiefStart(model);
-  if (Math.hypot(target[0] - start.stop[0], target[1] - start.stop[1]) <= model.toleranceMm)
-    return newtonAim(model, target, start);
+  // The stop centre is the chief ray itself, accepted on the chief-ray solve's own terms and never re-solved.
+  if (target[0] === 0 && target[1] === 0 && Math.hypot(start.stop[0], start.stop[1]) <= model.chiefAcceptMm)
+    return { status: "aimed", reason: null, launch: start.launch, stop: start.stop, iterations: 0 };
   // A fitted seed the tracer cannot follow falls back to the chief's, which also finds where a blocked target's
   // reachable region ends.
-  const fitted = model.fit && fittedStart(model, model.fit, target);
-  if (fitted) return newtonAim(model, target, fitted);
-  const solve = newtonAim(model, target, start);
+  const fitted = model.fit && fittedStart(model, model.fit, target, pinA);
+  if (fitted) return newtonAim(model, target, fitted, pinA, true);
+  const solve = newtonAim(model, target, start, pinA, true);
   return model.fit ? { ...solve, iterations: solve.iterations + 1 } : solve;
 }
 
 /**
- * Newton's method from the chief with Broyden-updated Jacobian corrections.
+ * Newton's method with Broyden-updated Jacobian corrections, then polishing.
  *
  * A step whose ray cannot reach the stop is halved; a step that fails to reduce the residual updates the Jacobian
- * and is retried shorter. A solve that meets untraceable launches and then stops converging has reached the edge of
- * the stop region rays from this field can reach: the sample is `blocked` when the untraceable ray toward the target
- * already left a clear aperture, and otherwise unaimed as `stop-unreachable`, as is a folded (singular) map. When the
- * current ray is itself vignetted and the step beyond it is blocked, the solve stops there: the transmitted part of
- * an ordinary stop is convex enough that nothing further out toward the target gets through.
+ * and is retried shorter. Once the residual is within the tolerance, a polished solve keeps stepping until it reaches
+ * the polish tolerance or stops falling. A pinned solve (a meridional sample) moves b alone with a held exactly.
+ *
+ * An unconverged solve is classified by how it ended. It is `blocked` only when it ends on a block: its last step
+ * toward the target could not reach the stop because it left a clear aperture, and either the launch it left from is
+ * itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop is convex enough) or
+ * no shorter step reaches the stop either. A step that cannot be traced for any other reason, or a folded (singular)
+ * map, ends it as `stop-unreachable`, as does reaching the iteration cap while its steps cannot be traced and no rim
+ * is proven to stop them. The iteration cap otherwise, or a step that stops reducing the residual, ends it as
+ * `aim-not-converged`: a stall is never reported as a block.
  */
-function newtonAim(model: FieldModel, target: Vec2, start: SolveStart): SampleSolve {
-  const { stopAt, toleranceMm } = model;
+function newtonAim(model: FieldModel, target: Vec2, start: SolveStart, pinA: boolean, polish: boolean): SampleSolve {
+  const { stopAt, toleranceMm, polishToleranceMm } = model;
   let { launch, stop, jacobian, iterations } = start;
   let lambda = 1;
-  let unreachable = false;
-  let blocked: SampleSolve["blocked"];
+  let lastBlock: SampleSolve["blocked"];
+  // A step failed to trace since the last full step that reduced the residual: the solve is at a traceable edge.
+  let atEdge = false;
   const residual = (s: Vec2): number => Math.hypot(target[0] - s[0], target[1] - s[1]);
+  const stepFor = (j: Matrix2): Vec2 | null => {
+    if (!pinA) return solve2(j, [target[0] - stop[0], target[1] - stop[1]]);
+    return Math.abs(j[3]) > 0 && Number.isFinite(j[3]) ? [0, (target[1] - stop[1]) / j[3]] : null;
+  };
+  const update = (j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 => {
+    if (!pinA) return broydenUpdate(j, dp, ds);
+    const secant = ds[1] / dp[1];
+    return Number.isFinite(secant) && secant !== 0 ? [j[0], j[1], j[2], secant] : j;
+  };
   let current = residual(stop);
-  if (current <= toleranceMm) return { status: "aimed", reason: null, launch, stop, iterations };
-  if (!jacobian) return { status: "unaimed", reason: "trace-failed", launch, stop, iterations };
+  if (current > toleranceMm && !jacobian)
+    return { status: "unaimed", reason: "trace-failed", launch, stop, iterations };
 
-  while (iterations < AIMED_PUPIL_MAX_ITERATIONS) {
-    const step = solve2(jacobian, [target[0] - stop[0], target[1] - stop[1]]);
-    if (!step) {
-      unreachable = true;
-      break;
-    }
+  // Converge to the tolerance.
+  while (current > toleranceMm) {
+    // Pressed against the edge of the traceable region by steps no rim is proven to stop, the target is out of reach.
+    if (iterations >= AIMED_PUPIL_MAX_ITERATIONS)
+      return endUnconverged(atEdge && !lastBlock ? "stop-unreachable" : "aim-not-converged");
+    const step = stepFor(jacobian!);
+    if (!step) return endUnconverged("stop-unreachable");
     const trial: Vec2 = [launch[0] + lambda * step[0], launch[1] + lambda * step[1]];
     const trialStop = stopAt(trial);
     iterations++;
     if (!trialStop) {
-      unreachable = true;
+      atEdge = true;
       const surfaceIndex = model.blockedAt(trial);
-      if (surfaceIndex !== null) {
-        blocked = { launch: trial, surfaceIndex };
-        // Already vignetted on the way and blocked beyond: every ray left toward the target is lost too.
-        if (model.blockedAt(launch) !== null) break;
-      }
+      lastBlock = surfaceIndex === null ? undefined : { launch: trial, surfaceIndex };
+      // Already vignetted on the way and blocked beyond: every ray left toward the target is lost too.
+      if (lastBlock && model.blockedAt(launch) !== null) return endUnconverged("stop-unreachable", true);
       lambda /= 2;
-      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) break;
+      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) return endUnconverged("stop-unreachable", true);
       continue;
     }
-    jacobian = broydenUpdate(
-      jacobian,
+    jacobian = update(
+      jacobian!,
       [trial[0] - launch[0], trial[1] - launch[1]],
       [trialStop[0] - stop[0], trialStop[1] - stop[1]],
     );
     const trialResidual = residual(trialStop);
     if (trialResidual < current) {
-      const progress = (current - trialResidual) / current;
       launch = trial;
       stop = trialStop;
       current = trialResidual;
+      if (lambda === 1) atEdge = false;
       lambda = 1;
-      if (current <= toleranceMm) return { status: "aimed", reason: null, launch, stop, iterations };
-      if (unreachable && progress < AIMED_PUPIL_EDGE_PROGRESS) break;
+      lastBlock = undefined;
     } else {
       lambda /= 2;
-      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) break;
+      if (lambda < 2 ** -AIMED_PUPIL_MAX_STEP_HALVINGS) return endUnconverged("aim-not-converged");
     }
   }
-  if (unreachable && blocked) return { status: "blocked", reason: null, launch, stop, iterations, blocked };
-  return {
-    status: "unaimed",
-    reason: unreachable ? "stop-unreachable" : "aim-not-converged",
-    launch,
-    stop,
-    iterations,
-  };
+
+  // Polish: keep stepping while the residual still falls, down to the polish tolerance.
+  if (polish && jacobian) {
+    for (let polished = 0; polished < AIMED_PUPIL_MAX_POLISH_ITERATIONS && current > polishToleranceMm; polished++) {
+      const step = stepFor(jacobian);
+      if (!step) break;
+      const trial: Vec2 = [launch[0] + step[0], launch[1] + step[1]];
+      if (trial[0] === launch[0] && trial[1] === launch[1]) break;
+      const trialStop = stopAt(trial);
+      iterations++;
+      if (!trialStop) break;
+      const trialResidual = residual(trialStop);
+      if (!(trialResidual < current)) break;
+      jacobian = update(
+        jacobian,
+        [trial[0] - launch[0], trial[1] - launch[1]],
+        [trialStop[0] - stop[0], trialStop[1] - stop[1]],
+      );
+      launch = trial;
+      stop = trialStop;
+      current = trialResidual;
+    }
+  }
+  return { status: "aimed", reason: null, launch, stop, iterations };
+
+  function endUnconverged(reason: AimedPupilUnaimedReason, onBlock = false): SampleSolve {
+    // Only a solve that ends on a block is blocked: its last step was stopped by a clear aperture.
+    if (onBlock && lastBlock) return { status: "blocked", reason: null, launch, stop, iterations, blocked: lastBlock };
+    return { status: "unaimed", reason, launch, stop, iterations };
+  }
 }

@@ -27,6 +27,8 @@ export interface PerspectivePupilRaySample {
   sensorIntercept: Vec3 | null;
   transmission: number;
   trace: PerspectiveTraceResult;
+  /** An aimed sample whose ray a rim ahead of the stop blocks before it reaches its stop position (traced, clipped). */
+  blocked?: boolean;
 }
 
 /** A requested pupil coordinate no ray could be aimed at; it carries no trace and transmits nothing. */
@@ -254,7 +256,8 @@ function samplePupilBundle(
       unaimed.push({ pupilUv: { u: pupilUv.u, v: pupilUv.v }, weight: pupilUv.weight, reason: ray.reason });
       return;
     }
-    samples.push(traceSample(pupilUv, { origin: ray.origin, direction: ray.direction }, aimed.clipSemiDiameterMm));
+    const sample = traceSample(pupilUv, { origin: ray.origin, direction: ray.direction }, aimed.clipSemiDiameterMm);
+    samples.push(ray.status === "blocked" ? { ...sample, blocked: true } : sample);
   });
   return { kind, samples, unaimed };
 }

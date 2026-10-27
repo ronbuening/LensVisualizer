@@ -915,8 +915,11 @@ describe("computeMeridionalComa", () => {
     );
     expect(result).not.toBeNull();
     expect(result!.clippedSampleCount).toBeGreaterThan(0);
-    expect(result!.samples[0].clipped).toBe(true);
-    expect(result!.samples[result!.samples.length - 1].clipped).toBe(true);
+    // The fan ends trace no image point: vignetted, or (past a rim's edge the tracer cannot follow) not aimed.
+    for (const end of [result!.samples[0], result!.samples[result!.samples.length - 1]]) {
+      expect(end.imageHeight).toBeNull();
+      expect(end.clipped || end.unaimedReason !== null).toBe(true);
+    }
     expect(result!.lowerIntercept).toBeGreaterThanOrEqual(result!.minIntercept);
     expect(result!.upperIntercept).toBeLessThanOrEqual(result!.maxIntercept);
     expect(result!.signedOuterDeltaMm).toBeCloseTo(result!.upperRelativeIntercept - result!.lowerRelativeIntercept, 8);

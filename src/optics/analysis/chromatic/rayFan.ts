@@ -37,6 +37,8 @@ export interface ChromaticRayFanAnalysis {
   offAxisAttemptedRayCount: number;
   /** Attempted rays no launch could be aimed at the stop for, on either axis. */
   unaimedRayCount: number;
+  /** Attempted rays a rim ahead of the stop blocked before they reached their stop position, on either axis. */
+  blockedRayCount: number;
 }
 
 function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): ChromaticChannel[] {
@@ -78,19 +80,24 @@ interface FanRay {
   z?: number;
   clipped: boolean;
   unaimed: boolean;
+  blocked: boolean;
 }
 
 /** Each channel's fan is aimed at the same stop fractions at that channel's indices. */
 function aimedFanTracer(
   launches: ReadonlyMap<ChromaticChannel, { launch: AimedPupilLaunch; trace: AimedPupilTrace } | null>,
   fractions: readonly number[],
-  toFanRay: (trace: AimedPupilTrace, ray: Parameters<AimedPupilTrace["skew"]>[0]) => Omit<FanRay, "unaimed">,
+  toFanRay: (
+    trace: AimedPupilTrace,
+    ray: Parameters<AimedPupilTrace["skew"]>[0],
+  ) => Omit<FanRay, "unaimed" | "blocked">,
 ): (fraction: number, channel: ChromaticChannel) => FanRay {
   return (fraction, channel) => {
     const aimed = launches.get(channel);
     const ray = aimed?.launch.rays[fractions.indexOf(fraction)];
-    if (!aimed || !ray || ray.status === "unaimed") return { y: NaN, u: NaN, clipped: true, unaimed: true };
-    return { ...toFanRay(aimed.trace, ray), unaimed: false };
+    if (!aimed || !ray || ray.status === "unaimed")
+      return { y: NaN, u: NaN, clipped: true, unaimed: true, blocked: false };
+    return { ...toFanRay(aimed.trace, ray), unaimed: false, blocked: ray.status === "blocked" };
   };
 }
 
@@ -101,9 +108,15 @@ function computeSpreadFromFractions(
   lastSurfaceZ: number,
   axis: "onAxis" | "offAxis",
   trace: (fraction: number, channel: ChromaticChannel) => FanRay,
-): { spread: ChromaticRayFanSpread | null; attemptedRayCount: number; unaimedRayCount: number } {
+): {
+  spread: ChromaticRayFanSpread | null;
+  attemptedRayCount: number;
+  unaimedRayCount: number;
+  blockedRayCount: number;
+} {
   let attemptedRayCount = 0;
   let unaimedRayCount = 0;
+  let blockedRayCount = 0;
 
   for (const fraction of fractions) {
     const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
@@ -112,6 +125,7 @@ function computeSpreadFromFractions(
       attemptedRayCount++;
       const ray = trace(fraction, channel);
       if (ray.unaimed) unaimedRayCount++;
+      if (ray.blocked) blockedRayCount++;
       if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
         marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
       }
@@ -128,11 +142,12 @@ function computeSpreadFromFractions(
         },
         attemptedRayCount,
         unaimedRayCount,
+        blockedRayCount,
       };
     }
   }
 
-  return { spread: null, attemptedRayCount, unaimedRayCount };
+  return { spread: null, attemptedRayCount, unaimedRayCount, blockedRayCount };
 }
 
 /**
@@ -162,6 +177,7 @@ export function computeChromaticRayFanAnalysis(
     onAxisAttemptedRayCount: 0,
     offAxisAttemptedRayCount: 0,
     unaimedRayCount: 0,
+    blockedRayCount: 0,
   };
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return empty;
 
@@ -190,7 +206,7 @@ export function computeChromaticRayFanAnalysis(
   const offAxisSamples = offAxisFractions.map((yFraction) => ({ xFraction: 0, yFraction }));
   const offAxis =
     geometry === null
-      ? { spread: null, attemptedRayCount: 0, unaimedRayCount: 0 }
+      ? { spread: null, attemptedRayCount: 0, unaimedRayCount: 0, blockedRayCount: 0 }
       : computeSpreadFromFractions(
           offAxisFractions,
           channels,
@@ -220,5 +236,6 @@ export function computeChromaticRayFanAnalysis(
     onAxisAttemptedRayCount: onAxis.attemptedRayCount,
     offAxisAttemptedRayCount: offAxis.attemptedRayCount,
     unaimedRayCount: onAxis.unaimedRayCount + offAxis.unaimedRayCount,
+    blockedRayCount: onAxis.blockedRayCount + offAxis.blockedRayCount,
   };
 }

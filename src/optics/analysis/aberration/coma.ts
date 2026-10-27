@@ -71,6 +71,7 @@ interface MeridionalComaFieldFootprint {
   validSampleCount: number;
   clippedSampleCount: number;
   unaimedSampleCount: number;
+  blockedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -100,6 +101,7 @@ interface ComaPointCloudFieldFootprint {
   validSampleCount: number;
   clippedSampleCount: number;
   unaimedSampleCount: number;
+  blockedSampleCount: number;
   chiefIntercept: number;
   minRelativeTangentialImageHeight: number;
   maxRelativeTangentialImageHeight: number;
@@ -276,6 +278,7 @@ function buildMeridionalComaFieldFootprintFromBundle(
     validSampleCount: validSamples.length,
     clippedSampleCount: bundle.clippedSampleCount,
     unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     centerIntercept,
     minIntercept: Math.min(...intercepts),
     maxIntercept: Math.max(...intercepts),
@@ -340,6 +343,7 @@ function buildSagittalComaResultFromBundle(
     validSampleCount: validSamples.length,
     clippedSampleCount: bundle.clippedSampleCount,
     unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     centerIntercept,
     minIntercept: Math.min(...intercepts),
     maxIntercept: Math.max(...intercepts),
@@ -410,6 +414,7 @@ function buildComaPointCloudFieldFootprintFromBundle(
     validSampleCount: bundle.validSampleCount,
     clippedSampleCount: bundle.clippedSampleCount,
     unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     chiefIntercept: bundle.chiefRay.imagePoint.y,
     minRelativeTangentialImageHeight,
     maxRelativeTangentialImageHeight,
@@ -445,6 +450,7 @@ function emptyComaPreviewFieldResult(
     validSampleCount: 0,
     clippedSampleCount: sampleCount,
     unaimedSampleCount: 0,
+    blockedSampleCount: 0,
     chiefIntercept: 0,
     minRelativeIntercept: 0,
     maxRelativeIntercept: 0,
@@ -478,6 +484,7 @@ function comaPreviewFieldResultFromFootprint({
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
     unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     chiefIntercept: footprint.centerIntercept,
     minRelativeIntercept: footprint.minRelativeIntercept,
     maxRelativeIntercept: footprint.maxRelativeIntercept,
@@ -498,6 +505,7 @@ function emptyComaPointCloudPreviewFieldResult(
     validSampleCount: 0,
     clippedSampleCount: sampleCount,
     unaimedSampleCount: 0,
+    blockedSampleCount: 0,
     chiefIntercept: 0,
     minRelativeTangentialImageHeight: 0,
     maxRelativeTangentialImageHeight: 0,
@@ -538,6 +546,7 @@ function comaPointCloudPreviewFieldResultFromFootprint({
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
     unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     chiefIntercept: footprint.chiefIntercept,
     minRelativeTangentialImageHeight: footprint.minRelativeTangentialImageHeight,
     maxRelativeTangentialImageHeight: footprint.maxRelativeTangentialImageHeight,
@@ -720,6 +729,7 @@ export function computeMeridionalComa(request: AnalysisRequest): MeridionalComaR
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
     unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     centerIntercept: footprint.centerIntercept,
     minIntercept: footprint.minIntercept,
     maxIntercept: footprint.maxIntercept,
@@ -811,6 +821,7 @@ export function computeComaAnalysis(request: AnalysisRequest): ComaAnalysisResul
             validSampleCount: meridionalFootprint.validSampleCount,
             clippedSampleCount: meridionalFootprint.clippedSampleCount,
             unaimedSampleCount: meridionalFootprint.unaimedSampleCount,
+            blockedSampleCount: meridionalFootprint.blockedSampleCount,
             centerIntercept: meridionalFootprint.centerIntercept,
             minIntercept: meridionalFootprint.minIntercept,
             maxIntercept: meridionalFootprint.maxIntercept,

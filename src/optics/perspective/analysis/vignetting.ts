@@ -57,6 +57,8 @@ export interface PerspectiveVignettingRayContribution {
 export interface PerspectiveVignettingThroughput {
   sampleCount: number;
   usableCount: number;
+  /** Pupil samples no ray could be aimed at; left out of every share below, and a field with any is flagged. */
+  unaimedCount: number;
   totalWeight: number;
   usableWeight: number;
   /** Area-weighted aperture survival in [0, 1]. */
@@ -177,6 +179,7 @@ export function integratePerspectiveVignettingRays(
   return {
     sampleCount: rays.length,
     usableCount,
+    unaimedCount: 0,
     totalWeight,
     usableWeight,
     absoluteGeometricTransmission: usableWeight / totalWeight,
@@ -275,24 +278,12 @@ function throughputForField(
   exitPupilPlane: Plane3,
 ): PerspectiveVignettingThroughput | null {
   if (!field?.pupilBundle) return null;
-  // A sample no ray could be aimed at keeps its quadrature weight and transmits nothing.
-  const unaimed = field.pupilBundle.unaimed.map(
-    (sample): PerspectiveVignettingRayContribution => ({
-      weight: sample.weight,
-      transmitted: false,
-      transmission: 0,
-      exitPoint: null,
-      exitNormal: null,
-      sensorPoint: null,
-    }),
-  );
-  return integratePerspectiveVignettingRays(
-    [
-      ...field.pupilBundle.samples.map((sample) => perspectiveVignettingRayContribution(sample, exitPupilPlane)),
-      ...unaimed,
-    ],
+  // A sample no ray could be aimed at has no ray to integrate: it is left out, and the field carries the count.
+  const throughput = integratePerspectiveVignettingRays(
+    field.pupilBundle.samples.map((sample) => perspectiveVignettingRayContribution(sample, exitPupilPlane)),
     sensorNormal,
   );
+  return throughput && { ...throughput, unaimedCount: field.pupilBundle.unaimed.length };
 }
 
 /** Resolve one traced bundle member onto the common posed exit-pupil plane. */

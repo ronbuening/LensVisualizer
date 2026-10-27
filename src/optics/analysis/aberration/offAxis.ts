@@ -98,8 +98,10 @@ export interface OffAxisBundle {
   chiefRay: OffAxisChiefRaySample;
   sampleCount: number;
   validSampleCount: number;
-  /** Aimed samples an aperture blocked (vignetted). */
+  /** Aimed samples a rim behind the stop vignetted, or whose image point failed. */
   clippedSampleCount: number;
+  /** Samples whose target only rays already outside a clear aperture ahead of the stop could reach (vignetted there). */
+  blockedSampleCount: number;
   /** Samples with no aimed ray, which are neither traced nor counted as clipped. */
   unaimedSampleCount: number;
   unaimedSamples: OffAxisUnaimedSample[];
@@ -463,20 +465,35 @@ export function traceOffAxisBundleFromSamples(
 
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
-  const adapter = prepareOffAxisTrace(request, geometry, channel);
-  const chiefRay = traceOffAxisChiefRay(request, geometry, channel, adapter);
-  if (chiefRay === null) return null;
-
   const launch = prepareAimedPupilLaunch(request, samples, geometry, channel);
-  if (launch === null) return null;
+  if (launch === null || launch.chief.status !== "aimed") return null;
   const tracer = prepareAimedPupilTrace(request.preparedGeometry, launch, channel);
   const vector = isOffAxisVectorFieldGeometry(geometry);
+  // The reference chief is the launch's own (0, 0) ray, re-aimed through the stop centre at the channel's indices.
+  const chiefTrace = tracer.skew(launch.chief);
+  if (chiefTrace.clipped) return null;
+  const chiefImagePoint = skewImagePlaneIntercept(
+    chiefTrace.x,
+    chiefTrace.y,
+    chiefTrace.ux,
+    chiefTrace.uy,
+    geometry.lastSurfZ,
+    geometry.imagePlaneZ,
+  );
+  if (chiefImagePoint === null) return null;
+  const chiefRay: OffAxisChiefRaySample = { trace: chiefTrace, imagePoint: chiefImagePoint };
 
   const unaimedSamples: OffAxisUnaimedSample[] = [];
+  let blockedSampleCount = 0;
   const tracedSamples = samples.flatMap((sample, position) => {
     const ray = launch.rays[position];
     if (ray.status === "unaimed") {
       unaimedSamples.push({ sourceSampleIndex: sample.index, reason: ray.reason });
+      return [];
+    }
+    // A blocked ray is stopped by the rim it names before it reaches the stop: vignetted ahead of the stop.
+    if (ray.status === "blocked") {
+      blockedSampleCount++;
       return [];
     }
     const trace = tracer.skew(ray);
@@ -502,7 +519,8 @@ export function traceOffAxisBundleFromSamples(
     chiefRay,
     sampleCount: samples.length,
     validSampleCount: tracedSamples.length,
-    clippedSampleCount: samples.length - tracedSamples.length - unaimedSamples.length,
+    clippedSampleCount: samples.length - tracedSamples.length - unaimedSamples.length - blockedSampleCount,
+    blockedSampleCount,
     unaimedSampleCount: unaimedSamples.length,
     unaimedSamples,
     launch,

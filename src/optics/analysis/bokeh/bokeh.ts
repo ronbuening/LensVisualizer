@@ -118,6 +118,7 @@ function makeEmptyFieldResult(
     totalRays,
     passedRays: 0,
     unaimedRays: 0,
+    blockedRays: 0,
     points: [],
     centroidSagittal: 0,
     centroidTangential: 0,
@@ -208,7 +209,8 @@ function computeBokehFieldFootprintFromContext(
     pupilAzimuth: sample.azimuthRad ?? 0,
     weight: sample.weight ?? 1,
   }));
-  const pupilFootprint = buildPupilFootprint(acceptedPupilSamples, bundle.sampleCount);
+  // Transmission is over the rays that have a launch: unaimed ones are left out, and the field carries their count.
+  const pupilFootprint = buildPupilFootprint(acceptedPupilSamples, bundle.sampleCount - bundle.unaimedSampleCount);
 
   const points: BokehPoint[] = [];
   for (let i = 0; i < bundle.samples.length; i++) {
@@ -237,6 +239,7 @@ function computeBokehFieldFootprintFromContext(
     return {
       ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
       unaimedRays: bundle.unaimedSampleCount,
+      blockedRays: bundle.blockedSampleCount,
       pupilFootprint,
     };
   }
@@ -246,6 +249,7 @@ function computeBokehFieldFootprintFromContext(
     return {
       ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
       unaimedRays: bundle.unaimedSampleCount,
+      blockedRays: bundle.blockedSampleCount,
       pupilFootprint,
     };
   }
@@ -277,6 +281,7 @@ function computeBokehFieldFootprintFromContext(
     totalRays: bundle.sampleCount,
     passedRays: points.length,
     unaimedRays: bundle.unaimedSampleCount,
+    blockedRays: bundle.blockedSampleCount,
     points,
     centroidSagittal,
     centroidTangential,

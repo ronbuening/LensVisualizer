@@ -117,6 +117,9 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
     bestFocusShiftMm: bestFocusZ - imagePlaneZ,
     validSampleCount: hits.length,
     unaimedZoneCount: PROFILE_FRACS.filter((fraction) => zones.unaimed(fraction)).length,
+    blockedZoneCount: PROFILE_FRACS.filter(
+      (fraction) => zones.ray(fraction)?.status === "blocked" || zones.ray(-fraction)?.status === "blocked",
+    ).length,
   };
 }
 

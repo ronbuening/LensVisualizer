@@ -57,6 +57,8 @@ export interface SphericalAberrationResult {
   validSampleCount: number;
   /** Profile zones with no ray aimed at their stop fraction on either side. */
   unaimedZoneCount: number;
+  /** Profile zones whose ray a rim ahead of the stop blocks on either side (vignetted there). */
+  blockedZoneCount: number;
 }
 
 /** One dense pupil sample for the meridional coma view. */
@@ -82,6 +84,8 @@ export interface MeridionalComaResult {
   clippedSampleCount: number;
   /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
   unaimedSampleCount: number;
+  /** Clipped samples whose rays a rim ahead of the stop blocked before they could reach their stop position. */
+  blockedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -121,6 +125,8 @@ export interface SagittalComaResult {
   clippedSampleCount: number;
   /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
   unaimedSampleCount: number;
+  /** Clipped samples whose rays a rim ahead of the stop blocked before they could reach their stop position. */
+  blockedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -147,6 +153,8 @@ export interface ComaPreviewFieldResult {
   clippedSampleCount: number;
   /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
   unaimedSampleCount: number;
+  /** Clipped samples whose rays a rim ahead of the stop blocked before they could reach their stop position. */
+  blockedSampleCount: number;
   chiefIntercept: number;
   minRelativeIntercept: number;
   maxRelativeIntercept: number;
@@ -184,6 +192,8 @@ export interface ComaPointCloudPreviewFieldResult {
   clippedSampleCount: number;
   /** Samples no ray could be aimed at the stop for; neither traced nor clipped. */
   unaimedSampleCount: number;
+  /** Clipped samples whose rays a rim ahead of the stop blocked before they could reach their stop position. */
+  blockedSampleCount: number;
   chiefIntercept: number;
   minRelativeTangentialImageHeight: number;
   maxRelativeTangentialImageHeight: number;
@@ -379,8 +389,10 @@ export interface BokehFieldResult {
   fieldAngleDeg: number;
   totalRays: number;
   passedRays: number;
-  /** Rays no launch could be aimed at the stop for; neither traced nor vignetted. */
+  /** Rays no launch could be aimed at the stop for; left out of `transmission`, and a field with any is flagged. */
   unaimedRays: number;
+  /** Vignetted rays stopped by a rim ahead of the stop before reaching their stop position. */
+  blockedRays: number;
   points: BokehPoint[];
   centroidSagittal: number;
   centroidTangential: number;
