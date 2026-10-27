@@ -8,7 +8,7 @@
 
 import type { PreparedGeometry } from "../../types.js";
 
-import type { ChromaticChannel, ChromaticRayFanSpread } from "../../../types/optics.js";
+import type { ChromaticChannel, ChromaticChannelOmission, ChromaticRayFanSpread } from "../../../types/optics.js";
 import { computeOffAxisChannelFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import { prepareAxialZoneLaunch } from "../aberration/shared.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
@@ -45,7 +45,10 @@ export interface LongitudinalChromaticFocusSample {
 export interface LongitudinalChromaticFocusResult {
   channels: readonly ChromaticChannel[];
   referenceChannel: ChromaticChannel;
-  /** Stop fraction the marginal zone was aimed at: the first candidate at least two channels pass. */
+  /**
+   * Stop fraction the marginal zone was aimed at: the outermost candidate every requested channel passes, else (when
+   * none does) the first at least two pass, with the others listed in `omittedChannels`.
+   */
   marginalFraction: number;
   imagePlaneZ: number;
   lastSurfaceZ: number;
@@ -56,6 +59,8 @@ export interface LongitudinalChromaticFocusResult {
   spread: ChromaticRayFanSpread;
   samples: LongitudinalChromaticFocusSample[];
   validChannelCount: number;
+  /** Requested channels the zone leaves out, each with why; empty unless no candidate passes every channel. */
+  omittedChannels: ChromaticChannelOmission[];
 }
 
 export interface LateralColorChannelSample {
@@ -142,11 +147,12 @@ function currentImagePlaneZ(state: PreparedGeometry): number | null {
 }
 
 /**
- * Compute axial chromatic focus from the outermost usable on-axis marginal zone.
+ * Compute axial chromatic focus from the outermost on-axis marginal zone every requested channel passes.
  *
- * The result is a LoCA-style focus summary by spectral channel. Each channel's zone is aimed at the same fraction of
- * the stop radius at that channel's indices; the search moves inward through the fractions only while another
- * aperture vignettes a zone, and stops at a zone no ray could be aimed at.
+ * The result is a LoCA-style real-ray zonal focus summary by spectral channel. Each channel's zone is aimed at the
+ * same fraction of the stop radius at that channel's indices. The search moves inward through the fractions, given
+ * outermost first, only while another aperture vignettes a zone, and stops at a zone no ray could be aimed at. When
+ * no candidate passes every channel, the first that two pass is compared and the others are named with their reason.
  *
  * @param request - current geometry, controls and both aperture radii in mm
  * @param options - optional ordered channels and marginal stop fractions
@@ -181,13 +187,21 @@ export function computeLongitudinalChromaticFocus(
   const zoneRays = (marginalFraction: number) => {
     const marginalRays: Partial<Record<ChromaticChannel, MarginalRay>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
+    const omittedChannels: ChromaticChannelOmission[] = [];
     for (const channel of channels) {
       const zones = zonesByChannel.get(channel);
       const aimed = zones?.ray(marginalFraction);
-      if (!zones || !aimed || aimed.status === "unaimed") continue;
+      if (!zones || !aimed || aimed.status === "unaimed") {
+        omittedChannels.push({ channel, reason: "unaimed" });
+        continue;
+      }
       const ray = zones.trace.meridional(aimed);
       clippedByChannel[channel] = ray.clipped;
-      if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
+      if (ray.clipped) {
+        omittedChannels.push({ channel, reason: "vignetted" });
+      } else if (Math.abs(ray.u) <= 1e-15) {
+        omittedChannels.push({ channel, reason: "no-axis-crossing" });
+      } else {
         marginalRays[channel] = {
           y: ray.y,
           u: ray.u,
@@ -196,14 +210,27 @@ export function computeLongitudinalChromaticFocus(
         };
       }
     }
-    return { marginalFraction, marginalRays, clippedByChannel };
+    return { marginalFraction, marginalRays, clippedByChannel, omittedChannels };
   };
+  // Every wavelength crosses the stop at the same zone, but a rim behind it can vignette one colour before another:
+  // compare every requested channel at the outermost zone they all pass, and only failing that at the first two pass.
+  let chosen: ReturnType<typeof zoneRays> | undefined;
+  let firstTwoChannelZone: ReturnType<typeof zoneRays> | undefined;
   for (const fraction of fractions) {
     // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
     if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) break;
-    const { marginalFraction, marginalRays, clippedByChannel } = zoneRays(fraction);
+    const candidate = zoneRays(fraction);
+    if (candidate.omittedChannels.length === 0) {
+      chosen = candidate;
+      break;
+    }
+    if (!firstTwoChannelZone && channels.length - candidate.omittedChannels.length >= 2)
+      firstTwoChannelZone = candidate;
+  }
+  chosen ??= firstTwoChannelZone;
+  if (chosen) {
+    const { marginalFraction, marginalRays, clippedByChannel, omittedChannels } = chosen;
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
-    if (validChannels.length < 2) continue;
 
     const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ);
     const referenceChannel = referenceChannelFor(channels);
@@ -235,9 +262,10 @@ export function computeLongitudinalChromaticFocus(
       longitudinalSpreadUm: spread.axialInterceptSpreadMm * 1000,
       transverseSpreadMm: spread.imagePlaneHeightSpreadMm,
       transverseSpreadUm: spread.imagePlaneHeightSpreadMm * 1000,
-      spread: { ...spread, axis: "onAxis", fraction: marginalFraction, channels: validChannels },
+      spread: { ...spread, axis: "onAxis", fraction: marginalFraction, channels: validChannels, omittedChannels },
       samples,
       validChannelCount: validChannels.length,
+      omittedChannels,
     };
   }
 
