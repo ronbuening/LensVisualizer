@@ -4,6 +4,7 @@ import type {
   ChromaticChannelOmission,
   ChromaticChannelOmissionReason,
   ChromaticRayFanSpread,
+  ChromaticZoneSearchEnd,
   RefractiveIndexReferenceLine,
 } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -73,11 +74,24 @@ export function formatOmittedChannels(omitted: readonly ChromaticChannelOmission
  *   radius, for the diagram's display fans
  */
 export function formatChromaticZone(
-  spread: Pick<ChromaticRayFanSpread, "fraction" | "channels" | "omittedChannels">,
+  spread: Pick<ChromaticRayFanSpread, "fraction" | "channels" | "omittedChannels" | "searchEndedBy">,
   radius: "R" | "EP" = "R",
 ): string {
   const zone = spread.fraction === undefined ? "" : `${spread.fraction.toFixed(2)} ${radius}, `;
-  const compared = `${zone}${(spread.channels ?? []).join("–")}`;
+  const parts = [`${zone}${(spread.channels ?? []).join("–")}`];
   const omitted = formatOmittedChannels(spread.omittedChannels);
-  return omitted ? `${compared}; ${omitted}` : compared;
+  if (omitted) parts.push(omitted);
+  if (spread.searchEndedBy) parts.push(`search ended at ${formatZoneSearchEnd(spread.searchEndedBy, radius)}`);
+  return parts.join("; ");
+}
+
+const UNAIMED_REASON_LABEL: Record<ChromaticZoneSearchEnd["reason"], string> = {
+  "aim-not-converged": "aim did not converge",
+  "stop-unreachable": "stop unreachable",
+  "trace-failed": "trace failed",
+};
+
+/** State the unaimed ray that ended a zone search: "0.75 R: B unaimed (stop unreachable)". */
+export function formatZoneSearchEnd(end: ChromaticZoneSearchEnd, radius: "R" | "EP" = "R"): string {
+  return `${end.fraction.toFixed(2)} ${radius}: ${end.channel} unaimed (${UNAIMED_REASON_LABEL[end.reason]})`;
 }

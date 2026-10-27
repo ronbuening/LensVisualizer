@@ -684,6 +684,16 @@ export interface ChromaticChannelOmission {
   reason: ChromaticChannelOmissionReason;
 }
 
+/**
+ * The ray that ended a chromatic zone search: the first channel no ray could be aimed for, at the first such zone.
+ * `reason` is the aimed launch's unaimed reason.
+ */
+export interface ChromaticZoneSearchEnd {
+  fraction: number;
+  channel: ChromaticChannel;
+  reason: "aim-not-converged" | "stop-unreachable" | "trace-failed";
+}
+
 export interface ChromaticRayFanSpread {
   axialInterceptSpreadMm: number;
   imagePlaneHeightSpreadMm: number;
@@ -694,6 +704,8 @@ export interface ChromaticRayFanSpread {
   channels?: ChromaticChannel[];
   /** Selected channels left out of `channels`, each with why; empty when every one is compared. */
   omittedChannels?: ChromaticChannelOmission[];
+  /** Set when an unaimed ray ended the zone search before any zone passed every channel. */
+  searchEndedBy?: ChromaticZoneSearchEnd;
 }
 
 export interface ChromaticRayFanSpreadByAxis {

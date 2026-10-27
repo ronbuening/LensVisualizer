@@ -16,10 +16,19 @@ import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
 import LongitudinalChromaticFocusChart from "./LongitudinalChromaticFocusChart.js";
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
-import { formatChromaticZone, formatOmittedChannels, formatUmMagnitude } from "./chromaticChartUtils.js";
+import {
+  formatChromaticZone,
+  formatOmittedChannels,
+  formatUmMagnitude,
+  formatZoneSearchEnd,
+} from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
-import type { AnalysisComputationContext, LateralColorFieldSample } from "../../../optics/analysis.js";
+import type {
+  AnalysisComputationContext,
+  LateralColorCurveResult,
+  LateralColorFieldSample,
+} from "../../../optics/analysis.js";
 import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
@@ -69,11 +78,26 @@ const metricsStyle = {
   fontSize: 9.5,
 };
 
-/** A lateral-colour field's left-out channels, as "; R vignetted" ("; 100%: R vignetted" with its label), or "". */
-function lateralOmissionNote(field: LateralColorFieldSample | undefined, withLabel = false): string {
-  if (!field?.omittedChannels.length) return "";
-  return `; ${withLabel ? `${field.label}: ` : ""}${formatOmittedChannels(field.omittedChannels)}`;
+/** A lateral-colour field's left-out channels, as "; R vignetted", or "" when it compares them all. */
+function lateralOmissionNote(field: LateralColorFieldSample | undefined): string {
+  return field?.omittedChannels.length ? `; ${formatOmittedChannels(field.omittedChannels)}` : "";
 }
+
+/**
+ * The fields the lateral-colour maximum leaves out, each named with its partial spread so the edge stays visible:
+ * "; 100%: R vignetted (G–B–V 15.2 µm)".
+ */
+function partialLateralFieldsNote(lateral: LateralColorCurveResult): string {
+  return lateral.fields
+    .filter((field) => field.usable && field.omittedChannels.length > 0 && field.lateralSpreadUm !== null)
+    .map((field) => {
+      const compared = field.samples.filter((sample) => sample.usable).map((sample) => sample.channel);
+      const omitted = formatOmittedChannels(field.omittedChannels);
+      return `; ${field.label}: ${omitted} (${compared.join("–")} ${formatUmMagnitude(field.lateralSpreadUm ?? NaN)} µm)`;
+    })
+    .join("");
+}
+
 export default function ChromaticTab(props: ChromaticTabProps) {
   const { analysisContext, t } = props;
   const perspectiveRequest = analysisContext?.request;
@@ -221,7 +245,7 @@ function CenteredChromaticTab({
               suffix={finiteUmSuffix(lateral?.maxLateralSpreadUm)}
               note={
                 lateral
-                  ? `${lateral.usableFieldCount}/${lateral.fields.length} fields${lateralOmissionNote(maxLateralField, true)}`
+                  ? `${maxLateralField ? `at ${maxLateralField.label}` : "no field compares every channel"}${partialLateralFieldsNote(lateral)}`
                   : undefined
               }
               t={t}
@@ -259,7 +283,9 @@ function CenteredChromaticTab({
               note={
                 offAxisRaySpread
                   ? `${rayTraceAnalysis.offAxisFieldAngleDeg.toFixed(1)}° field, ${formatChromaticZone(offAxisRaySpread)}`
-                  : undefined
+                  : rayTraceAnalysis.searchEnds.offAxis
+                    ? `search ended at ${formatZoneSearchEnd(rayTraceAnalysis.searchEnds.offAxis)}`
+                    : undefined
               }
               t={t}
             />
@@ -316,8 +342,9 @@ function CenteredChromaticTab({
           <span style={sectionTitleStyle(t)}>Lateral Color (TCA)</span>
           <span style={sectionCopyStyle(t)}>
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
-            field, separate from axial focus shift. Where a rim clips one channel&apos;s chief ray, that field compares
-            the channels that reach the image and the readouts name the one left out.
+            field, separate from axial focus shift. The maximum compares every channel: a field where a rim clips one
+            channel&apos;s chief ray is left out of it and named beside it, with the spread of the channels that reach
+            the image.
           </span>
           <LateralColorChart result={lateral} t={t} channelReference={channelReference} />
           {lateral ? (
@@ -327,7 +354,9 @@ function CenteredChromaticTab({
                 value={formatFiniteUm(lateral.maxLateralSpreadUm)}
                 suffix={finiteUmSuffix(lateral.maxLateralSpreadUm)}
                 note={
-                  maxLateralField ? `at ${maxLateralField.label}${lateralOmissionNote(maxLateralField)}` : undefined
+                  maxLateralField
+                    ? `at ${maxLateralField.label}${partialLateralFieldsNote(lateral)}`
+                    : `no field compares every channel${partialLateralFieldsNote(lateral)}`
                 }
                 t={t}
               />

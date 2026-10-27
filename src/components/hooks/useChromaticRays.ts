@@ -13,7 +13,8 @@ import { stateWithZ } from "../../optics/optics.js";
 import { prepareRuntimeState } from "../../optics/optics.js";
 import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../../optics/analysis.js";
-import { chromaticSpreadFromRays } from "../../optics/chromatic.js";
+import { CHROMATIC_ZONE_CHANNELS, chromaticSpreadFromRays } from "../../optics/chromatic.js";
+import type { ChromaticFanRay } from "../../optics/chromatic.js";
 import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
 import { traceRayChromatic, traceRayVectorChromatic } from "../../optics/optics.js";
 import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
@@ -89,15 +90,14 @@ function longitudinalFractionsForDisplay(L: RuntimeLens, currentEPSD: number): n
 }
 
 function spreadForAxis(
-  chromaticRays: ChromaticRaySegment[],
+  zoneRays: readonly ChromaticFanRay[],
   axis: ChromaticRaySegment["axis"],
   channels: readonly ChromaticChannel[],
   IMG_MM: number,
   lastSurfaceZ: number,
 ): ChromaticRayFanSpread | null {
-  const axisRays = chromaticRays.filter((r) => r.axis === axis);
-  if (axisRays.length === 0) return null;
-  const spread = chromaticSpreadFromRays(axisRays, channels, IMG_MM, lastSurfaceZ);
+  if (zoneRays.length === 0) return null;
+  const spread = chromaticSpreadFromRays(zoneRays, channels, IMG_MM, lastSurfaceZ);
   return spread && { ...spread, axis };
 }
 
@@ -164,12 +164,19 @@ export default function useChromaticRays({
   /* Separate ref to surface a caught error from the chromatic useMemo to the
    * combined return value (useMemo cannot return a tuple with a separate
    * error field without restructuring, so we pair the error here). */
-  const chromaticResult = useMemo((): { segments: ChromaticRaySegment[]; error: unknown } => {
-    if (!L || !showChromatic) return { segments: [], error: null };
+  const chromaticResult = useMemo((): {
+    segments: ChromaticRaySegment[];
+    offAxisZoneRays: ChromaticFanRay[];
+    error: unknown;
+  } => {
+    if (!L || !showChromatic) return { segments: [], offAxisZoneRays: [], error: null };
     const channels = filterChannels(chromR, chromG, chromB, chromV);
-    if (channels.length === 0) return { segments: [], error: null };
+    if (channels.length === 0) return { segments: [], offAxisZoneRays: [], error: null };
     try {
       const out: ChromaticRaySegment[] = [];
+      // The off-axis fan's fraction is chosen from every zone channel, so hidden channels are traced but not drawn.
+      const offAxisZoneRays: ChromaticFanRay[] = [];
+      const shown = new Set(channels);
       if (showOnAxis) {
         const fractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD);
         if (perspectiveTraceContext?.pose.active) {
@@ -255,7 +262,7 @@ export default function useChromaticRays({
           if (perspectiveTraceContext?.pose.active) {
             const sceneDirectionCamera = cameraDirectionForDiagramField(geometry.fieldAngleDeg);
             const fans = new Map<ChromaticChannel, PerspectiveDiagramFan | null>(
-              channels.map((channel) => [
+              CHROMATIC_ZONE_CHANNELS.map((channel) => [
                 channel,
                 tracePerspectiveDiagramFan({
                   context: perspectiveTraceContext,
@@ -268,12 +275,20 @@ export default function useChromaticRays({
               ]),
             );
             for (let index = 0; index < fractions.length; index++) {
-              for (const channel of channels) {
+              for (const channel of CHROMATIC_ZONE_CHANNELS) {
                 const sample = fans.get(channel)?.samples[index];
                 if (sample) {
-                  out.push(
-                    compilePerspectiveChromaticSample(sample, channel, "offAxis", sx, sy, clampedRayEnd, IMG_MM),
+                  const segment = compilePerspectiveChromaticSample(
+                    sample,
+                    channel,
+                    "offAxis",
+                    sx,
+                    sy,
+                    clampedRayEnd,
+                    IMG_MM,
                   );
+                  offAxisZoneRays.push(segment);
+                  if (shown.has(channel)) out.push(segment);
                 }
               }
             }
@@ -281,7 +296,7 @@ export default function useChromaticRays({
             for (const f of fractions) {
               const h = f * currentEPSD;
               const uConverge = rayTracksF ? h * focusK : 0;
-              for (const ch of channels) {
+              for (const ch of CHROMATIC_ZONE_CHANNELS) {
                 const result =
                   geometry.kind === "vector"
                     ? traceRayVectorChromatic(
@@ -307,6 +322,16 @@ export default function useChromaticRays({
                         ch,
                         aberrationT,
                       );
+                const zoneRay = {
+                  channel: ch,
+                  fraction: f,
+                  y: result.y,
+                  u: result.u,
+                  z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
+                  clipped: result.clipped,
+                };
+                offAxisZoneRays.push(zoneRay);
+                if (!shown.has(ch)) continue;
                 const seg = compileRaySegment(
                   result.pts,
                   result.ghostPts,
@@ -319,25 +344,16 @@ export default function useChromaticRays({
                   geometry.useEdge ? geometry.edgeEnd : undefined,
                   result.reachedImagePlane,
                 );
-                out.push({
-                  ...seg,
-                  channel: ch,
-                  axis: "offAxis",
-                  fraction: f,
-                  y: result.y,
-                  u: result.u,
-                  z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
-                  clipped: result.clipped,
-                });
+                out.push({ ...seg, ...zoneRay, axis: "offAxis" });
               }
             }
           }
         }
       }
-      return { segments: out, error: null };
+      return { segments: out, offAxisZoneRays, error: null };
     } catch (e) {
       console.error(`[useChromaticRays] Chromatic ray trace failed for "${lensKey}":`, e);
-      return { segments: [], error: e };
+      return { segments: [], offAxisZoneRays: [], error: e };
     }
   }, [
     showChromatic,
@@ -409,8 +425,19 @@ export default function useChromaticRays({
     if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
-    return spreadForAxis(chromaticRays, "offAxis", channels, IMG_MM, zPos[L.N - 1]);
-  }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, chromaticResult.error, IMG_MM, zPos, L]);
+    return spreadForAxis(chromaticResult.offAxisZoneRays, "offAxis", channels, IMG_MM, zPos[L.N - 1]);
+  }, [
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    chromV,
+    chromaticResult.offAxisZoneRays,
+    chromaticResult.error,
+    IMG_MM,
+    zPos,
+    L,
+  ]);
 
   const chromaticRayFanSpreads = useMemo(
     (): ChromaticRayFanSpreadByAxis => ({ onAxis: onAxisChromSpread, offAxis: offAxisChromSpread }),
