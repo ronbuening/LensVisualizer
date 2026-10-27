@@ -236,6 +236,14 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },
+  "src/optics/state/apertureStop.ts#STOP_RULE_GEOMETRY_BY_LENS": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity, then exact clamped zoom control",
+    perOwner: "at most 128 frozen paraxial stop-rule records, evicting the oldest insertion",
+    capacity: 128,
+    limit: "STOP_RULE_CACHE_LIMIT",
+  },
   "src/optics/state/preparedGeometry.ts#PREPARED_STATE_BY_LENS": {
     kind: "bounded",
     owner: "module",

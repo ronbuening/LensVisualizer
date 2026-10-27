@@ -13,6 +13,7 @@ import {
   buildSimplePositiveElementLens,
 } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { stopSemiDiameterForFNumber } from "../../../../../src/optics/state/apertureStop.js";
 import { assessMtfSupport } from "../../../../../src/optics/analysis/mtf/mtfSupport.js";
 import { computeMtf } from "../../../../../src/optics/analysis/mtf/mtf.js";
 import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
@@ -390,11 +391,13 @@ describe("MTF export and aperture comparison", () => {
     );
     await screen.findByRole("figure", { name: /image height/ });
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
-    // The fixture's stopped-down iris is far from f/8, so the overlay label carries its traced aperture too.
-    expect(await screen.findByText(/^f\/8 \(traced f\/\d+(\.\d+)?\) \(thin lines\)$/)).toBeTruthy();
+    // The f/8 stop comes from the stop rule, not from the current stop, so it traces at f/8 with no note.
+    expect(await screen.findByText(/^f\/8 \(thin lines\)$/)).toBeTruthy();
     const stopped = calls.jobs.at(-1)!.options;
-    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
-    expect(stopped.stopSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
+    const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+    expect(stopped.stopSemiDiameterMm).toBe(f8Stop);
+    // The current request's pupil-to-stop ratio (1 : 1 here) carries over to the f/8 stop.
+    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(f8Stop, 12);
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();

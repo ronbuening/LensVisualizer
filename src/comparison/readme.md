@@ -79,7 +79,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (28), src/types (13), package:react (8), src/optics/optics.ts (6), src/utils/state (5), src/components/layout (3), src/optics/analysis.ts (3), src/utils/style (3), +9 more
+- Main outbound areas: same folder (28), src/types (14), package:react (8), src/optics/optics.ts (6), src/utils/state (5), src/components/layout (3), src/optics/analysis.ts (3), src/utils/style (3), +9 more
 - External consumers: src/components/layout, src/pages/ComparePage.tsx, src/types, src/utils/catalog, src/utils/state
 
 ## Files
@@ -96,7 +96,7 @@ flowchart LR
 | `SharedFStopQuickSelect.tsx` | React component module | package:react | same folder | default, SharedFStopQuickSelect |
 | `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls, src/optics/analysis.ts, src/optics/optics.ts, +2 more | same folder | default, SharedSlidersBar |
 | `SharedSliderSection.tsx` | React component module | package:react, src/types, src/utils/style | same folder | default, SharedSliderSection |
-| `useComparisonDisplayValues.ts` | React hook module | same folder (3), src/optics/optics.ts (2), package:react, src/optics/analysis.ts | same folder | default, useComparisonDisplayValues |
+| `useComparisonDisplayValues.ts` | React hook module | same folder (3), src/optics/optics.ts (2), package:react, src/optics/analysis.ts, src/types | same folder | default, useComparisonDisplayValues |
 | `useComparisonMode.ts` | React hook module | same folder (2), package:react, src/optics/buildLens.ts, src/types, src/utils/catalog | same folder (4), src/components/layout | ComparisonLensesOk, ComparisonLensesResult, isComparisonOk, default, useComparisonMode |
 | `useComparisonOrchestration.ts` | React hook module | same folder (6), package:react, package:react-router, src/types, src/utils/seo, +1 more | src/components/layout | isComparisonOk, ComparisonLensesResult, ComparisonOrchestration, default, useComparisonOrchestration |
 | `useStickySliders.ts` | React hook module | same folder (3), package:react, src/types | same folder | default, useStickySliders |

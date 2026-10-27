@@ -1,9 +1,10 @@
 /**
  * Aperture the axial beam actually traces at.
  *
- * The label f-number sizes the iris, but the traced beam can differ from it: an authored clear aperture may stop the
- * marginal ray before the iris does, and a stopped-down iris is scaled linearly from the wide-open radius. The rim of
- * the transmitted axial beam gives the pupil the curves were computed with, as an f-number comparable to the label.
+ * The label f-number sizes the iris (paraxial EPD = F/N), but the traced beam can differ from it: an authored clear
+ * aperture may stop the marginal ray before the iris does, and a physical wide-open stop (a published schedule, a
+ * fixed iris, a stop inside glass) gives its own pupil. The rim of the transmitted axial beam gives the pupil the
+ * curves were computed with, as an f-number comparable to the label.
  */
 import type { MtfAperture, MtfOptions, MtfSupport } from "../../../types/mtf.js";
 import type { PreparedGeometry } from "../../types.js";

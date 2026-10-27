@@ -24,7 +24,7 @@ interface AnalysisDrawerContentProps {
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
-  /** Selected working f-number, for analysis headers. */
+  /** Marked f-number of the aperture control, for analysis headers. */
   fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
   perspectiveTraceContext?: PerspectiveTraceContext | null;

@@ -14,7 +14,7 @@
 
 import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
-import { wideOpenStopAtZoom } from "../../optics/optics.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
 import { fNumberAtStopdown } from "../../optics/optics.js";
 import { buildLens } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
@@ -28,8 +28,8 @@ import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 import {
   anchorLayoutToCamera,
   doLayoutForRuntimeLens as doLayout,
-  effectiveFNumber,
   fopenAtZoomClamped as fopenAtZoom,
+  paraxialWorkingFNumberForRuntimeLens,
   thickOrZero as thick,
 } from "../../optics/optics.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
@@ -93,7 +93,8 @@ interface UseLensComputationResult {
   varReadouts: VarReadout[];
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
-  effectiveFNum: number;
+  /** Paraxial working f-number at the current object distance, or the marked one where it is undefined. */
+  paraxialWorkingFNum: number;
   filterId: string;
 }
 
@@ -279,20 +280,21 @@ export default function useLensComputation({
   const shapeError = shapesResult.error;
 
   /* ── Aperture ──
-   * Compute the current f-number and physical stop/entrance-pupil diameters
+   * Compute the current marked f-number and physical stop/entrance-pupil diameters
    * from the stopdown slider position. Uses a logarithmic mapping so
-   * equal slider increments produce equal f-stop steps. */
+   * equal slider increments produce equal f-stop steps. The stop follows the
+   * f-number rule (paraxial EPD = F/N at infinity focus of this zoom position). */
   const stopZ = L ? zPos[L.stopIdx] : 0;
   /* Zoom-aware wide-open f-number (varies for variable-aperture zooms) */
   const currentFOPEN = L ? fopenAtZoom(zoomT, L) : 1;
   const fNumber = L ? fNumberAtStopdown(stopdownT, zoomT, L) : 1;
-  // Stop-down is relative to this zoom state: its wide-open marking retains the full iris.
   const wideOpenStopSD = L ? wideOpenStopAtZoom(zoomT, L) : 0;
-  const currentPhysStopSD = L ? (wideOpenStopSD * currentFOPEN) / fNumber : 0;
-  /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
+  const currentPhysStopSD = L ? stopSemiDiameterForFNumber(fNumber, zoomT, L) : 0;
+  /* Paraxial entrance pupils of the current focus/zoom state, for pupil-dependent analyses. */
   const baseEPSD =
     L && fieldGeometry ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
-  const currentEPSD = L ? (baseEPSD * currentFOPEN) / fNumber : 0;
+  const currentEPSD =
+    L && fieldGeometry ? entrancePupilAtState(currentPhysStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
@@ -314,10 +316,11 @@ export default function useLensComputation({
   /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
   const dynamicEFL = useMemo(() => (firstOrderRequest ? computeFocusEFL(firstOrderRequest) : 0), [firstOrderRequest]);
 
-  /* ── Effective f-number (bellows factor correction at close focus) ── */
-  const effectiveFNum = useMemo(
-    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
-    [L, fNumber, focusT, zoomT, aberrationT],
+  /* ── Paraxial working f-number at the current object distance ── */
+  const paraxialWorkingFNum = useMemo(
+    () =>
+      (L ? paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT) : null) ?? fNumber,
+    [L, currentPhysStopSD, fNumber, focusT, zoomT, aberrationT],
   );
 
   const filterId = `gl-${panelId}`;
@@ -354,7 +357,7 @@ export default function useLensComputation({
     varReadouts,
     aberrationReadouts,
     dynamicEFL,
-    effectiveFNum,
+    paraxialWorkingFNum,
     filterId,
   };
 }

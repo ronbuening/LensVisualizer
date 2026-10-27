@@ -4,18 +4,20 @@
  * For every visible lens and zoom station at infinity focus, wide open, this script reports:
  *
  *   stated    `nominalFno` at the station
- *   traced    the stated value scaled by (stated entrance-pupil radius ÷ the largest on-axis ray height that clears
- *             the iris and every clear aperture)
+ *   traced    the iris's own image-space f-number (EFL / paraxial EPD, the stop rule's f-number) scaled by (height
+ *             of the on-axis ray that meets the iris rim ÷ the largest on-axis ray height that clears the iris and
+ *             every clear aperture)
  *   limiter   what stops the next ray: the iris, a rim, or a trace failure at the surface named
  *
  * Diagnoses (stations more than `--over` away from the stated value, 3 % by default):
  *
  *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
  *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
- *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`)
+ *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`); or the ray toward the
+ *             iris rim cannot be traced to the stop, so the beam is compared with the stated pupil instead
  *   iris      the iris itself is not the stated one: `zoomApertureModel: "fixed-iris"`, a published
- *             `zoomStopSemiDiameters` schedule, an embedded glass stop that keeps its authored radius, or a derived
- *             iris at its paraxial radius because the stated marginal ray cannot be real-traced to the stop
+ *             `zoomStopSemiDiameters` schedule, or an embedded glass stop that keeps its authored radius (a derived
+ *             iris gives the stated f-number by the stop rule)
  *   failed    no usable on-axis ray reaches the image plane; the limiter names where a near-axis ray stops
  *
  * A rim-limited row is not automatically a data error. Check whether the semi-diameter is printed in the source or
@@ -45,8 +47,7 @@ const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
 const { default: buildLens, ingestLens } = await load("src/optics/buildLens.ts");
-const { prepareRuntimeState } = await load("src/optics/optics.ts");
-const { traceEngineRay } = await load("src/optics/optics.ts");
+const { prepareRuntimeState, stopRuleGeometry, traceEngineRay } = await load("src/optics/optics.ts");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
@@ -113,6 +114,47 @@ function axialBeam(state, statedRadius) {
   return { radius: pass, limiter: firstClip(fail) };
 }
 
+/**
+ * Height of the on-axis ray that meets the iris rim, rims ignored: the beam the iris admits.
+ *
+ * @returns launch height in mm, or null when the ray toward the rim cannot be traced to the stop
+ */
+function irisBeamRadius(state, statedRadius) {
+  const stopIndex = state.lens.stop.surfaceIndex;
+  const iris = state.surfaces[stopIndex].sd;
+  const first = state.surfaces[0];
+  const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
+  const atStop = (height) => {
+    const trace = traceEngineRay(
+      state,
+      { origin: [0, height, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
+      { ghost: true },
+    );
+    const hits = trace.hits.slice(0, trace.hits.findIndex((hit) => hit.surfaceIndex === stopIndex) + 1);
+    const hit = hits.at(-1);
+    return hit?.surfaceIndex === stopIndex && !hits.some((h) => h.failureReason) ? hit.radius : NaN;
+  };
+  const ceiling = 2 * Math.max(statedRadius, first.sd ?? 0);
+  let inside = 0;
+  let outside = null;
+  for (let step = 1; step <= SCAN_STEPS && outside === null; step++) {
+    const height = (ceiling * step) / SCAN_STEPS;
+    const radius = atStop(height);
+    if (!Number.isFinite(radius)) return null;
+    if (radius > iris) outside = height;
+    else inside = height;
+  }
+  if (outside === null) return null;
+  for (let i = 0; i < BISECTIONS; i++) {
+    const middle = (inside + outside) / 2;
+    const radius = atStop(middle);
+    if (!Number.isFinite(radius)) return null;
+    if (radius > iris) outside = middle;
+    else inside = middle;
+  }
+  return inside;
+}
+
 const requested = args.filter((arg) => arg.endsWith(".data.ts")).map((arg) => resolve(arg));
 const files = requested.length
   ? requested
@@ -165,14 +207,21 @@ for (const path of files) {
     const zoomT = stations > 1 ? zi / (stations - 1) : 0;
     const state = prepareRuntimeState(L, 0, zoomT);
     const stated = data.aperture.nominalFNumber ?? data.zoom?.stations[zi].nominalFNumber;
-    const statedRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
+    const pupilRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
+    /* The beam the iris admits; a lens whose ray toward the iris rim cannot reach the stop is `trace`/`failed`. */
+    const irisRadius = irisBeamRadius(state, pupilRadius);
+    const statedRadius = irisRadius ?? pupilRadius;
+    /* The f-number the iris gives: F / paraxial EPD, F the stop rule's reference (a fisheye's projection focal length). */
+    const rule = stopRuleGeometry(state.lens, zoomT);
+    const irisFNumber =
+      (rule.referenceFocalLengthMm * Math.abs(rule.stopHeightRatio)) / (2 * state.surfaces[L.stopIdx].sd);
     if (RAISE) {
       const heights = statedRayHeights(state, statedRadius);
-      if (heights === null) untraceable = true;
+      if (heights === null || irisRadius === null) untraceable = true;
       else for (const [label, radius] of heights) needs.set(label, Math.max(needs.get(label) ?? 0, radius));
     }
     const beam = axialBeam(state, statedRadius);
-    const traced = beam.radius === null ? null : (stated * statedRadius) / beam.radius;
+    const traced = beam.radius === null ? null : (irisFNumber * statedRadius) / beam.radius;
     const limiter = beam.limiter;
     const diagnosis =
       traced === null
@@ -182,7 +231,9 @@ for (const path of files) {
           : limiter?.failed
             ? "trace"
             : limiter === null || limiter.index === L.stopIdx
-              ? "iris"
+              ? irisRadius === null
+                ? "trace"
+                : "iris"
               : "rim";
     rows.push({
       key: data.key,

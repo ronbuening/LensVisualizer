@@ -66,7 +66,7 @@ function renderControls(
         currentPhysStopSD={L.stopPhysSD}
         baseEPSD={L.EP.epSD}
         dynamicEFL={options.dynamicEFL ?? L.EFL}
-        effectiveFNum={L.FOPEN}
+        paraxialWorkingFNum={L.FOPEN}
         showEffectiveFocalLength={options.showEffectiveFocalLength ?? false}
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
         showEffectiveAperture={false}

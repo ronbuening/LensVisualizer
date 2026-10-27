@@ -39,14 +39,14 @@ export {
   formatRunFileName,
   serializeBenchmarkRecord,
 } from "./benchmarkReport.js";
-import { wideOpenStopAtZoom } from "../optics/optics.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../optics/optics.js";
 import { buildLens } from "../optics/buildLens.js";
 import { createAnalysisComputationContext } from "../optics/analysis.js";
 import { prepareRuntimeState } from "../optics/buildLens.js";
 import {
   anchorLayoutToCamera,
   doLayoutForRuntimeLens as doLayout,
-  effectiveFNumber,
+  paraxialWorkingFNumberForRuntimeLens,
   eflAtFocus,
   fopenAtZoomClamped as fopenAtZoom,
   traceRay,
@@ -885,13 +885,15 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const wideOpenStopSD = wideOpenStopAtZoom(zoomT, L);
-  const currentPhysStopSD = (wideOpenStopSD * currentFOPEN) / fNumber;
+  const currentPhysStopSD = stopSemiDiameterForFNumber(fNumber, zoomT, L);
   const baseEPSD = fieldGeometry
     ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
     : L.EP.epSD;
-  const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
+  const currentEPSD = fieldGeometry
+    ? entrancePupilAtState(currentPhysStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
+    : (baseEPSD * currentPhysStopSD) / wideOpenStopSD;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
-  effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
+  paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   computeCardinalElements(

@@ -1,11 +1,22 @@
 /** Public optics seam; implementations live in the focused engine subdirectories. */
-export { effectiveFNumber } from "./first-order/fNumber.js";
+export {
+  imageSpaceFNumber,
+  paraxialWorkingFNumber,
+  paraxialWorkingFNumberForRuntimeLens,
+} from "./first-order/fNumber.js";
 export { eflAtFocus } from "./first-order/focusBreathing.js";
 export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./first-order/format.js";
 export { paraxialTrace, realTraceToStop } from "./first-order/lensConstants.js";
 export { computeElementFocalLength } from "./first-order/thickLens.js";
 export type { ProjectionReferenceKind } from "./projection.js";
 export { fNumberAtStopdown } from "./state/aperture.js";
+export {
+  fNumberRuleStopSemiDiameter,
+  stopSemiDiameterForFNumber,
+  stopRuleGeometry,
+  wideOpenStopAtZoom,
+} from "./state/apertureStop.js";
+export type { StopRuleGeometry } from "./state/apertureStop.js";
 export { anchorLayoutToCamera } from "./state/cameraLayout.js";
 export type { CameraAnchoredLayout } from "./state/cameraLayout.js";
 export { FOCUS_INFINITY_CUTOFF, focusDistanceAt, remapFocusDistance } from "./state/focusDistance.js";
@@ -29,7 +40,6 @@ export {
   halfFieldAtZoom,
   interpolateStationTable,
   tracingHalfFieldAtZoom,
-  wideOpenStopAtZoom,
   xpAtZoom,
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,

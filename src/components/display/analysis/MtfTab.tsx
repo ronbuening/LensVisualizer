@@ -7,7 +7,7 @@ import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
-import { formatFNumber } from "../../../optics/optics.js";
+import { formatFNumber, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useMtfPreferences } from "../../hooks/useMtfPreferences.js";
@@ -24,7 +24,7 @@ interface MtfTabProps {
   analysisContext?: AnalysisComputationContext;
   currentEPSD: number;
   currentPhysStopSD: number;
-  /** Selected working f-number and current focal length, for the chart header. */
+  /** Marked f-number and current focal length, for the chart header. */
   fNumber?: number;
   focalLengthMm?: number;
   movementActive?: boolean;
@@ -109,19 +109,21 @@ export default function MtfTab({
     [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
   );
   const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
-  // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
+  // The f/8 stop comes from the stop rule, as the aperture control's does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {
-    if (!job || !compareF8Available || !preferences.compareF8 || !fNumber) return null;
-    const scale = fNumber / COMPARISON_F_NUMBER;
+    if (!job || !compareF8Available || !preferences.compareF8 || !(job.aperture.stopSemiDiameterMm > 0)) return null;
+    const stop = stopSemiDiameterForFNumber(COMPARISON_F_NUMBER, job.preparedGeometry.zoomT, L);
+    // At one state the paraxial entrance pupil is proportional to the stop.
+    const pupil = (job.aperture.entrancePupilSemiDiameterMm * stop) / job.aperture.stopSemiDiameterMm;
     return createAnalysisRequest({
       preparedState: job.preparedGeometry,
       dynamicEFL: job.dynamicEFL,
-      currentEPSD: job.aperture.entrancePupilSemiDiameterMm * scale,
-      currentPhysStopSD: job.aperture.stopSemiDiameterMm * scale,
+      currentEPSD: pupil,
+      currentPhysStopSD: stop,
       perspectiveTraceContext: job.perspectiveTraceContext,
     });
-  }, [job, compareF8Available, preferences.compareF8, fNumber]);
+  }, [job, compareF8Available, preferences.compareF8, L]);
   const comparison = useMtfComputation(L, comparisonJob, options);
   const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
   // A result kept from an earlier request, or one at a finite conjugate, says nothing about the label on screen.

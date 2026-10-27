@@ -59,7 +59,7 @@ interface DiagramControlsProps {
   currentPhysStopSD: number;
   baseEPSD: number;
   dynamicEFL: number;
-  effectiveFNum: number;
+  paraxialWorkingFNum: number;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
@@ -106,7 +106,7 @@ export default function DiagramControls({
   currentPhysStopSD,
   baseEPSD,
   dynamicEFL,
-  effectiveFNum,
+  paraxialWorkingFNum,
   showEffectiveFocalLength,
   onToggleEffectiveFocalLength,
   showEffectiveAperture,
@@ -239,7 +239,7 @@ export default function DiagramControls({
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
-  const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
+  const workingApertureDiffers = Math.abs(paraxialWorkingFNum - fNumber) > 0.05;
   const availableFStops = [
     currentFOPEN,
     ...L.fstopSeries.filter((value) => value > currentFOPEN + 0.001 && value <= L.maxFstop),
@@ -532,7 +532,7 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
+          displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && workingApertureDiffers ? ` (paraxial working f/${formatFNumber(paraxialWorkingFNum)})` : ""}`}
           displayNote={marketedApertureNote(L.source, fNumber, currentFOPEN)}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={patentPositions ? 0 : stopdownT}
@@ -623,7 +623,7 @@ export default function DiagramControls({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show paraxial working f-number
                 </span>
               </button>
             </>

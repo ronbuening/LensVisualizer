@@ -58,14 +58,14 @@ describe("useComparisonDisplayValues", () => {
       for (const request of [2, 8, 11]) {
         for (const focus of [0, 0.5]) {
           rerender({ zoom, request, focus });
-          expect(result.current.display.effectiveFNumA).toBeCloseTo(result.current.a.effectiveFNum, 10);
-          expect(result.current.display.effectiveFNumB).toBeCloseTo(result.current.b.effectiveFNum, 10);
+          expect(result.current.display.paraxialWorkingFNumA).toBeCloseTo(result.current.a.paraxialWorkingFNum, 10);
+          expect(result.current.display.paraxialWorkingFNumB).toBeCloseTo(result.current.b.paraxialWorkingFNum, 10);
         }
       }
     }
     rerender({ zoom: 1, request: 8, focus: 0 });
-    expect(result.current.display.effectiveFNumA).toBeCloseTo(8, 10);
-    expect(result.current.display.effectiveFNumB).toBeCloseTo(10, 10);
+    expect(result.current.display.paraxialWorkingFNumA).toBeCloseTo(8, 10);
+    expect(result.current.display.paraxialWorkingFNumB).toBeCloseTo(10, 10);
   });
 
   it("returns computed values for valid comparison lenses", () => {
@@ -83,8 +83,8 @@ describe("useComparisonDisplayValues", () => {
     expect(result.current.ok).toBe(true);
     expect(result.current.dynamicEflA).toBeGreaterThan(0);
     expect(result.current.dynamicEflB).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumA).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumB).toBeGreaterThan(0);
+    expect(result.current.paraxialWorkingFNumA).toBeGreaterThan(0);
+    expect(result.current.paraxialWorkingFNumB).toBeGreaterThan(0);
   });
 
   it("returns zeros for failed comparison lenses", () => {

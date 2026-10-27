@@ -64,8 +64,8 @@ function renderSharedSliders({
   showEffectiveAperture = false,
   dynamicEflA = 52,
   dynamicEflB = 50,
-  effectiveFNumA = 2.1,
-  effectiveFNumB = 2.2,
+  paraxialWorkingFNumA = 2.1,
+  paraxialWorkingFNumB = 2.2,
   onSharedFocusChange = vi.fn(),
   onSharedStopdownChange = vi.fn(),
   onSharedZoomChange = vi.fn(),
@@ -92,8 +92,8 @@ function renderSharedSliders({
   showEffectiveAperture?: boolean;
   dynamicEflA?: number;
   dynamicEflB?: number;
-  effectiveFNumA?: number;
-  effectiveFNumB?: number;
+  paraxialWorkingFNumA?: number;
+  paraxialWorkingFNumB?: number;
   onSharedFocusChange?: (value: number) => void;
   onSharedStopdownChange?: (value: number) => void;
   onSharedZoomChange?: (value: number) => void;
@@ -130,8 +130,8 @@ function renderSharedSliders({
         movementPair={movementPair}
         dynamicEflA={dynamicEflA}
         dynamicEflB={dynamicEflB}
-        effectiveFNumA={effectiveFNumA}
-        effectiveFNumB={effectiveFNumB}
+        paraxialWorkingFNumA={paraxialWorkingFNumA}
+        paraxialWorkingFNumB={paraxialWorkingFNumB}
         showEffectiveFocalLength={showEffectiveFocalLength}
         onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
         showEffectiveAperture={showEffectiveAperture}
@@ -212,8 +212,8 @@ describe("SharedSlidersBar", () => {
       currentAperturePair: computeAperturePair(sharedStopdownT, LA, LB, 1, 1),
       zoomPair: { zoomA: 1, zoomB: 1, showZoom: true },
       showEffectiveAperture: false,
-      effectiveFNumA: 8,
-      effectiveFNumB: 9.18,
+      paraxialWorkingFNumA: 8,
+      paraxialWorkingFNumB: 9.18,
     });
     expect(screen.getByText("Requested f/8.0")).toBeTruthy();
     expect(screen.getByText("A: f/8.0")).toBeTruthy();
@@ -229,8 +229,8 @@ describe("SharedSlidersBar", () => {
       LB,
       sharedStopdownT: 0,
       currentAperturePair: computeAperturePair(0, LA, LB),
-      effectiveFNumA: 2,
-      effectiveFNumB: 4,
+      paraxialWorkingFNumA: 2,
+      paraxialWorkingFNumB: 4,
       showEffectiveAperture: true,
     });
     expect(screen.getByText("B: f/4.0")).toBeTruthy();
@@ -415,19 +415,19 @@ describe("SharedSlidersBar", () => {
     expect(onSliderPointerUp).toHaveBeenCalledTimes(1);
   });
 
-  it("renders and toggles effective aperture readouts", () => {
+  it("renders and toggles paraxial working f-number readouts", () => {
     const onToggleEffectiveAperture = vi.fn();
     renderSharedSliders({
       showEffectiveAperture: true,
-      effectiveFNumA: 3.2,
-      effectiveFNumB: 3.6,
+      paraxialWorkingFNumA: 3.2,
+      paraxialWorkingFNumB: 3.6,
       onToggleEffectiveAperture,
     });
 
-    expect(screen.getByText("A eff. f/3.2")).toBeTruthy();
-    expect(screen.getByText("B eff. f/3.6")).toBeTruthy();
+    expect(screen.getByText("A paraxial working f/3.2")).toBeTruthy();
+    expect(screen.getByText("B paraxial working f/3.6")).toBeTruthy();
 
-    fireEvent.click(screen.getByText(/Show effective aperture/i));
+    fireEvent.click(screen.getByText(/Show paraxial working f-number/i));
     expect(onToggleEffectiveAperture).toHaveBeenCalledTimes(1);
   });
 
