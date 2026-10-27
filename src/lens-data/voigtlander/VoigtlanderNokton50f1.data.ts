@@ -155,6 +155,9 @@ const LENS_DATA = {
    * and L7 ~13 mm. Surface 15 uses 12.2 mm for cross-gap clearance.
    * Front apertures retain the existing ray-envelope allowance above drawn rims.
    * The stop radius is derived from the design f-number by runtime aperture sizing.
+   * Surface 8's concave rim reaches 3.69 mm ahead of its vertex at the 17 mm rim, past the printed stop 3.24 mm
+   * ahead. A flat rim cut at the stop plane (rimCutDepthMm 3.24) ends the cap at r = 15.97 mm, inside the
+   * 16.63 mm f/1 iris; an opaque land runs from there to the rim.
    */
   /* (moved from asph) ── Aspherical coefficients — Patent Table 2, Example 1 ──
    *  Keyed by surface label.  Sag equation:
@@ -185,7 +188,7 @@ const LENS_DATA = {
     { label: "5", R: 58.596, d: 1.65, sd: 19.0, medium: 3 },
     { label: "6", R: 19.835, d: 12.05, sd: 17.0 },
     { label: "STO", R: "flat", d: 3.24 },
-    { label: "8", R: -40.995, d: 1.55, sd: 17.0, medium: 4 },
+    { label: "8", R: -40.995, d: 1.55, sd: 17.0, rimCutDepthMm: 3.24, medium: 4 },
     { label: "9", R: 26.578, d: 10.8, sd: 17.0, medium: 5 },
     { label: "10", R: -90.702, d: 0.31, sd: 17.0 },
     { label: "11", R: 78.611, d: 5.05, sd: 18, medium: 6 },

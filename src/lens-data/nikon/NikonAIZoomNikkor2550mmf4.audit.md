@@ -48,3 +48,16 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 - Visually rechecked Example 4 in local `patents/US4189212.pdf`; L1 remains `1.77279 / 49.4`.
 - HOYA's discontinued M-TAF1 row (`1.77250 / 49.46`) is compatible with the rounded patent coordinate and supplies a vendor polynomial.
 - Relabeled L1 as an M-TAF1 catalog equivalent while leaving Nikon's production supplier unspecified. No geometry changed.
+
+## 2026-10-27 — Rim cut on r8 at the tele stop
+
+- At tele, d8 = 0.503 mm, and r8 (R = +106.702, concave to the rear) sags 0.62 mm at the 11.49 mm f/4 iris, behind
+  r9's vertex, so no stop plane between r8 and r9 sits behind r8's cap there. The audit reported
+  `STO (noBracket)`, f/4 traced as f/4.91.
+- r8 now carries `rimCutDepthMm: 0.45`: a flat, opaque land 0.45 mm behind its vertex, from the cut radius
+  r = 9.79 mm out to the unchanged 18.2 mm rim. The depth is the stop plane's tele distance from r8 rounded down.
+- The inferred stop moved from 0.1 mm to 0.05 mm ahead of r9 (gap 8: 35.362 / 15.292 / 0.453 mm; STO.d 0.05), so
+  that the land clears the wide station's field. With the stop at 0.1 mm a 0.40 mm cut would cut at r = 9.23 mm and
+  lower the 25.5 mm vignetting-limited half field from 37.0° to 35.2°; at 0.05 mm it stays 37.0°.
+- Derived stop radii 8.359 / 9.621 / 11.486 mm. Tele traces f/4.66, limited by the cut (`8 (rim cut)`); wide and mid
+  trace f/4.00. No patent figure value changed: the 18.2 mm rim and the drawn element outline to it are kept.
