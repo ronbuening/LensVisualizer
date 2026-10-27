@@ -22,6 +22,7 @@ flowchart LR
     n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts["indexResolver.ts"]
     n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts["materialResolver.ts"]
     n_src_optics_chromatic_src_optics_chromatic_spectralLines_ts["spectralLines.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts["zoneSelection.ts"]
   end
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_types["src/types"]
@@ -47,8 +48,10 @@ flowchart LR
   n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
   n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
+  n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts --> n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts
   n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts
@@ -63,9 +66,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 12
+- Direct source files: 13
 - Direct subfolders: 1
-- Main outbound areas: same folder (28), src/types (10), src/optics/types.ts (4), src/optics/prescription (2), src/optics/trace (2)
+- Main outbound areas: same folder (29), src/types (11), src/optics/types.ts (4), src/optics/prescription (2), src/optics/trace (2)
 - External consumers: src/optics/analysis, src/optics/chromatic, src/optics/chromatic.ts, src/optics/field, src/optics/glassCatalog.ts, src/optics/math, src/optics/perspective, src/optics/prescription, +2 more
 
 ## Subfolders
@@ -79,7 +82,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `channels.ts` | Channels helper module | same folder, src/types | src/optics/analysis (7), same folder (3), src/optics/perspective (2), src/optics/chromatic.ts, src/optics/field, +2 more | ChromaticChannelMetadata, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_WAVELENGTH_NM, E_LINE_CHANNEL_WAVELENGTH_NM, lensChromaticReference, chromaticChannelWavelengthLabel, chromaticChannelDescription, +2 more |
-| `chromaticTrace.ts` | Chromatic Trace helper module | src/optics/trace (2), same folder, src/types | src/optics/analysis (2), src/optics/chromatic.ts | computeChromaticRayFanSpread, traceRayChromatic, traceRayVectorChromatic, traceSkewRayChromatic, traceSkewRayVectorChromatic, VectorRayTraceInput, ChromaticChannel, ChromaticRayFanSpread, +2 more |
+| `chromaticTrace.ts` | Chromatic Trace helper module | src/optics/trace (2), same folder, src/types | src/optics/analysis (2), same folder, src/optics/chromatic.ts | computeChromaticRayFanSpread, traceRayChromatic, traceRayVectorChromatic, traceSkewRayChromatic, traceSkewRayVectorChromatic, VectorRayTraceInput, ChromaticChannel, ChromaticRayFanSpread, +2 more |
 | `dispersionAdapter.ts` | Dispersion Adapter helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/chromatic.ts | compileSurfaceDispersions, makeSurfaceDispersionForRuntimeSurface, dispersionTableFromRuntime |
 | `dispersionQuality.ts` | Dispersion Quality helper module | src/types (2), src/optics/types.ts | src/optics/chromatic.ts | summarizeDispersionQualityForLens, summarizeDispersionQualityForState, summarizeDispersionQuality |
 | `dispersionTable.ts` | Dispersion Table helper module | same folder, src/optics/types.ts, src/types | same folder, src/optics/chromatic.ts, src/optics/prescription | compileSurfaceDispersions, buildVdIndex, buildSpectralIndex, resolveMaterialTable, compiledDispersionTable |
@@ -90,3 +93,4 @@ flowchart LR
 | `indexResolver.ts` | Index Resolver helper module | same folder (5), src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis, src/optics/chromatic.ts, src/optics/perspective | CHROMATIC_CHANNELS, CHANNEL_WAVELENGTH_NM, SurfaceIndexResolver, wavelengthNd, indexAtPreparedSurface, indexAtRuntimeSurface, channelIndexResolverForState, anchoredIndexAtWavelength, +1 more |
 | `materialResolver.ts` | Material Resolver helper module | same folder (2), src/types (2) | same folder (3), src/optics/chromatic.ts | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, makeSurfaceDispersion |
 | `spectralLines.ts` | Spectral Lines helper module | none | same folder (3), src/optics/analysis (3), src/optics/chromatic.ts, src/optics/math | LINE_NM |
+| `zoneSelection.ts` | Zone Selection helper module | same folder, src/types | src/optics/analysis (2), src/optics/chromatic.ts | chromaticRayOmission, selectChromaticZone, ChromaticFanRay, chromaticSpreadFromRays |
