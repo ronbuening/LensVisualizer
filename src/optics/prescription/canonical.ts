@@ -67,6 +67,7 @@ export interface CanonicalSurface {
   sd?: number;
   innerSd?: number;
   rimCutDepthMm?: number;
+  rimCutDepthSource?: string;
   /** The medium after this surface; its index is the surface's index. */
   medium: CanonicalMediumRef;
   asphere?: CanonicalAsphere;

@@ -180,6 +180,87 @@ export function validateGeometry(
       );
     }
   }
+
+  validateRimCutClearances(data, labelToIdx, cuts, rimSag, isZoom, errors, gapSagFrac);
+}
+
+/** Samples across a land's radial band when checking it against the surface beyond its gap. */
+const LAND_SAMPLES = 32;
+
+/**
+ * Check each rim cut's land and cap against the surface across its rim-side gap, at every zoom station and focus
+ * keyframe.
+ *
+ * The land sits on the side the rim bends toward. When the surface across that gap is the stop, the land and the cap
+ * inside it must stay on their side of the stop plane. When it is glass, the land must clear that surface's outline
+ * over the land's radial band, within `gapSagFrac` of the gap. Gaps are read at every authored state, since a moving
+ * group can close a gap that the stations at infinity leave open.
+ */
+function validateRimCutClearances(
+  data: UntrustedLensData,
+  labelToIdx: Record<string, number>,
+  cuts: (RimCut | null)[],
+  rimSag: (i: number, h: number) => number,
+  isZoom: boolean,
+  errors: string[],
+  gapSagFrac: number,
+): void {
+  const S = data.surfaces;
+  const zoomCount = isZoom && Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
+  const rangeAt = (gapIndex: number): unknown => {
+    const label = S[gapIndex]?.label;
+    return typeof label === "string" && labelToIdx[label] === gapIndex ? data.var?.[label] : undefined;
+  };
+  /* Every authored (zoom, focus) thickness of one gap; a fixed gap has the one. */
+  const gapStates = (gapIndex: number): { gap: number; context: string }[] => {
+    const range = rangeAt(gapIndex);
+    const rows = Array.isArray(range) ? (isZoom ? (range as unknown[]) : [range]) : null;
+    if (!rows) return typeof S[gapIndex]?.d === "number" ? [{ gap: S[gapIndex].d, context: "" }] : [];
+    return rows.slice(0, zoomCount).flatMap((row, zi) =>
+      Array.isArray(row)
+        ? row.flatMap((gap, fi) =>
+            typeof gap === "number" && isFinite(gap)
+              ? [
+                  {
+                    gap,
+                    context: `${isZoom ? ` at zoom position ${zi} (${data.zoomPositions[zi]} mm),` : " at"} focus keyframe ${fi}`,
+                  },
+                ]
+              : [],
+          )
+        : [],
+    );
+  };
+
+  cuts.forEach((cut, i) => {
+    if (!cut) return;
+    const rear = cut.sag > 0;
+    const neighbor = rear ? i + 1 : i - 1;
+    const gapIndex = rear ? i : i - 1;
+    if (neighbor < 0 || neighbor >= S.length) return;
+    const isStop = S[neighbor].label === "STO";
+    const outer = isStop ? S[i].sd : Math.min(S[i].sd, typeof S[neighbor].sd === "number" ? S[neighbor].sd : 0);
+    if (!isStop && !(outer > cut.radius)) return;
+    /* Deepest reach of the land (and of the cap, which stays short of it inside the cut radius) toward the neighbor. */
+    let intrusion = isStop ? cut.depthMm : -Infinity;
+    if (!isStop) {
+      for (let k = 0; k <= LAND_SAMPLES; k++) {
+        const h = cut.radius + ((outer - cut.radius) * k) / LAND_SAMPLES;
+        intrusion = Math.max(intrusion, rear ? cut.sag - rimSag(neighbor, h) : rimSag(neighbor, h) - cut.sag);
+      }
+    }
+    for (const { gap, context } of gapStates(gapIndex)) {
+      if (isStop && intrusion > gap + 1e-9) {
+        errors.push(
+          `Surface "${S[i].label}": its rim cut (depth ${cut.depthMm} mm) reaches past the stop plane, ${gap.toFixed(3)} mm away${context}`,
+        );
+      } else if (!isStop && intrusion > gap * Math.min(gapSagFrac, 1)) {
+        errors.push(
+          `Surface "${S[i].label}": its rim cut's land intrudes ${intrusion.toFixed(3)} mm into the ${gap.toFixed(3)} mm gap to "${S[neighbor].label}" (allowed ${(gap * Math.min(gapSagFrac, 1)).toFixed(3)} mm)${context}`,
+        );
+      }
+    }
+  });
 }
 /**
  * Check cross-gap surface overlap.

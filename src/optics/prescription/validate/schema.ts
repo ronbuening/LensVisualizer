@@ -492,6 +492,18 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
           `surfaces[${i}] ("${s.label}"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface or one with an interaction`,
         );
       }
+      if (data.opticalPath !== undefined) {
+        errors.push(
+          `surfaces[${i}] ("${s.label}"): rimCutDepthMm is not allowed on a folded (opticalPath) lens, where a ray beyond the cut passes through the land`,
+        );
+      }
+    }
+    if (s.rimCutDepthSource !== undefined) {
+      if (typeof s.rimCutDepthSource !== "string" || s.rimCutDepthSource.trim() === "") {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimCutDepthSource must be a non-empty string when provided`);
+      } else if (s.rimCutDepthMm === undefined) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimCutDepthSource needs a rimCutDepthMm to source`);
+      }
     }
     if (s.interaction !== undefined) {
       if (!s.interaction || typeof s.interaction !== "object" || Array.isArray(s.interaction)) {

@@ -1149,6 +1149,11 @@ record rather than the depth: `evaluateAperture` clips at the cut radius, so seq
 traces agree; `runtimeRayResult.ts` draws a cut-clipped ray to the land while the engine hit stays on the uncut cap;
 `surfaceOutline.ts` draws the land and adds its corners to the outline samples; render diagnostics and the validator
 read the land's sag for gap, edge and slope checks. The cut is state-independent, since it belongs to the glass.
+The clear radius (`clearSemiDiameter`) also bounds the half-field estimates and the field-coverage and image-circle
+audits. The sequential search runs forward from the last hit, so a land on a stop plane leaves a ray above the cut
+radius failing with `noBracket` before `evaluateAperture` runs. `validateRimCutBeams` (`prescription/validate/`) traces
+a built lens: an inferred cut (no `rimCutDepthSource`) may not stop any ray of the wide-open beam at any field, zoom
+station or focus keyframe. It runs in the catalog sweep and `audit:surface`, not in compile-time validation.
 
 ## Mirror And Folded Optical Paths
 

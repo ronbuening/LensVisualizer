@@ -51,6 +51,7 @@ const { computeAnalysisFieldGeometryAtState, computeFieldGeometryAtState, solveC
   await load("src/optics/fieldGeometry.ts");
 const { isFisheyeProjection, rectilinearProjectionMaxTraceField } = await load("src/optics/projection.ts");
 const { traceEngineRay, prepareRuntimeState } = await load("src/optics/optics.ts");
+const { clearSemiDiameter } = await load("src/optics/geometry.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
 
 const OK_COVERAGE = 0.99;
@@ -76,16 +77,21 @@ function chiefRayTracer(L, state, zoomT, geometry) {
       direction: [0, uField / norm, 1 / norm],
     };
   };
-  /* Rims are compared on the unclipped physical path. The engine's aperture-checked ghost trace stops refracting
-   * after a clipped hit beyond a sphere's radius, so every clip it reports after that one would be spurious. */
+  /* Rims are compared on the unclipped physical path, at each surface's clear radius (a rim cut's radius inside its
+   * sd). The engine's aperture-checked ghost trace stops refracting after a clipped hit beyond a sphere's radius, so
+   * every clip it reports after that one would be spurious. */
+  const clearRadius = (index) => {
+    const surface = state.surfaces[index];
+    return typeof surface.sd === "number" ? clearSemiDiameter(surface.sd, surface.rimCut) : null;
+  };
   const clipsOf = (trace) =>
     trace.hits
-      .filter((hit) => typeof state.surfaces[hit.surfaceIndex].sd === "number")
-      .filter((hit) => hit.radius > state.surfaces[hit.surfaceIndex].sd + 1e-9)
+      .filter((hit) => clearRadius(hit.surfaceIndex) !== null)
+      .filter((hit) => hit.radius > clearRadius(hit.surfaceIndex) + 1e-9)
       .map((hit) => ({
         label: hit.surfaceLabel,
         height: hit.radius,
-        sd: state.surfaces[hit.surfaceIndex].sd,
+        sd: clearRadius(hit.surfaceIndex),
         synthetic: Boolean(L.S[hit.surfaceIndex]?.synthetic),
       }));
 

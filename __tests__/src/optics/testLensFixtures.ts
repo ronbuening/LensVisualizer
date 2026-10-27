@@ -293,7 +293,12 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
  * Positive meniscus whose concave rear (R = 20, sd = 12) sags 4 mm rearward at its rim. `rimCutDepthMm` cuts that
  * rim flat; at 2 mm the cap ends at r = √76 ≈ 8.718 mm.
  */
-export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens", rearSd = 12): RuntimeLens {
+export function buildRimCutLens(
+  rimCutDepthMm?: number,
+  key = "test-rim-cut-lens",
+  rearSd = 12,
+  rimCutDepthSource?: string,
+): RuntimeLens {
   return buildFixture({
     key,
     nominalFno: 8,
@@ -308,8 +313,31 @@ export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens
         d: 80,
         elemId: 0,
         ...(rimCutDepthMm === undefined ? {} : { rimCutDepthMm }),
+        ...(rimCutDepthSource === undefined ? {} : { rimCutDepthSource }),
       },
     ],
+  });
+}
+
+/**
+ * A stop `stopGap` mm ahead of a singlet whose concave front (R = −20, sd = 12) reaches forward toward it, cut
+ * `rimCutDepthMm` deep. A depth equal to `stopGap` puts the land on the stop plane. `A4` makes the front aspheric.
+ */
+export function buildFrontRimCutLens(
+  rimCutDepthMm: number,
+  stopGap: number,
+  A4 = 0,
+  key = "test-front-rim-cut",
+): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: stopGap, elemId: 0 },
+      { label: "1", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 1, rimCutDepthMm },
+      { label: "2", R: -40, nd: 1.0, sd: 12, d: 80, elemId: 0 },
+    ],
+    ...(A4 ? { asph: { "1": { K: 0, A4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } : {}),
   });
 }
 
