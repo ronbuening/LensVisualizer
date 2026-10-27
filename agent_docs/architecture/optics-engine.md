@@ -1141,6 +1141,15 @@ authored prescription. The model is geometric-ray only: it does not simulate bla
 interference, PSF/MTF, scatter, or characteristic PF flare, and it has no freeform, decentered, or user-selectable-order
 surfaces.
 
+## Rim Cuts
+
+`rimCutDepthMm` (`src/lens-data/LENS_DATA_SPEC.md`, Rim cuts) is resolved once, in `compileSurfaces`, into
+`CompiledSurface.rimCut` (`geometry/rimCut.ts`: the land's signed offset and the cut radius). Every consumer reads that
+record rather than the depth: `evaluateAperture` clips at the cut radius, so sequential, generalized, MTF and field
+traces agree; `runtimeRayResult.ts` draws a cut-clipped ray to the land while the engine hit stays on the uncut cap;
+`surfaceOutline.ts` draws the land and adds its corners to the outline samples; render diagnostics and the validator
+read the land's sag for gap, edge and slope checks. The cut is state-independent, since it belongs to the glass.
+
 ## Mirror And Folded Optical Paths
 
 Folded systems opt into the generalized exact tracer through lens data, not through a trace-mode flag:

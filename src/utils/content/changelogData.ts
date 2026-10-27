@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
+    type: "fix",
+    summary: "Fixed rays stopping short at the iris of the Nikon AI 25-50mm f/4 at 50mm by cutting its deep rim flat",
+  },
+  {
+    date: "2026-10-27",
     type: "feature",
     summary:
       "To mark the catalog reaching 999 lenses, released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",

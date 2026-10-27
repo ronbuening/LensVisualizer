@@ -22,19 +22,19 @@ flowchart LR
     n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts["schema.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts["teleconverter.ts"]
   end
-  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_geometry["src/optics/geometry"]
+  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_types["src/types"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_utils_catalog["src/utils/catalog"]
+  n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> |4| n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> |4| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts --> |2| n_external_src_optics_geometry
-  n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> |2| n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_paths_ts --> |2| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> |2| n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> |2| n_external_src_types
@@ -72,7 +72,7 @@ flowchart LR
 
 - Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/optics/prescription (40), src/types (8), src/optics/geometry (6), src/utils/catalog (2), src/optics/math, src/optics/state, src/optics/trace
+- Main outbound areas: src/optics/prescription (40), src/optics/geometry (8), src/types (8), src/utils/catalog (2), src/optics/math, src/optics/state, src/optics/trace
 - External consumers: src/optics/prescription, src/optics/validation.ts
 
 ## Files
@@ -84,7 +84,7 @@ flowchart LR
 | `controls.ts` | Controls helper module | src/optics/prescription (2) | src/optics/prescription | isStationIndexList, validatePublishedStations, validateStations, validateControls |
 | `diffractive.ts` | Diffractive helper module | none | src/optics/prescription | validateDiffractivePhase |
 | `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/state, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
-| `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
+| `geometry.ts` | Geometry helper module | src/optics/geometry (4), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
 | `index.ts` | Barrel/registry module | src/optics/prescription (12), src/types | src/optics/prescription (2), src/optics/validation.ts | default, validateLensData, validateCanonicalLens |
 | `patent.ts` | Patent helper module | src/optics/prescription, src/utils/catalog | src/optics/prescription | patentExampleId, validatePatentExample, validatePatentMetadata |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |
