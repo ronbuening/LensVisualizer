@@ -51,3 +51,37 @@ Patent: JP WO2020/105107 A1, Example 1
 - Reclassified L34 as a Hikari catalog equivalent while leaving the production supplier unspecified. No prescription,
   zoom, focus, or semi-diameter values changed.
 - The lens now has strict and trusted catalog dispersion on all 16 glass elements.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figures 1A (wide) and 1C (tele) (PDF p. 42, native 300 ppi raster, about 4.4 px/mm) were read element by element for
+flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Fig. 1A was read on its
+lower half (no leader lines); Fig. 1C has no leader lines and was read on both halves. The figure draws no land, so no
+cut was authored and the data file is unchanged.
+
+| Surface | Figure rim (cap end ÷ element edge) | Cut depth | Cut radius | sd | sag(sd) | Largest stated axial ray |
+|---|---|---|---|---|---|---|
+| 5 (L13 rear, R 450.0) | 1.00, no land | — | — | 21.5 | 0.51 mm | 18.02 mm |
+| 7 (L21 rear, R 44.56) | 1.00, no land | — | — | 9.8 | 1.09 mm | 7.86 mm |
+| 8 (L22 front, R −40.08) | 1.00, no land | — | — | 9.8 | −1.22 mm | 7.84 mm |
+| 18 (L34 rear, R 30.67) | 1.00, no land | — | — | 9.0 | 1.35 mm | 8.62 mm |
+| 22 (L36 rear, R 115.6) | 1.00, no land | — | — | 10.8 | 0.51 mm | 8.32 mm |
+| 25 (L42 rear, R 21.42) | 1.00, no land | — | — | 9.6 | 2.27 mm | 6.27 mm |
+| 26 (L51 front, R −51.00) | 1.00, no land | — | — | 12.0 | −1.43 mm | 3.27 mm |
+| 28 (L52 front, R −24.80) | 1.00, no land | — | — | 12.0 | −3.10 mm | 3.07 mm |
+
+- Each concave face follows its sphere to within 1 px out to the element's edge line in both panels. Surfaces 2 and 15
+  are near-flat (sag at sd 0.001 mm) and have nothing to cut.
+- The step at the rim of L13's rear face is the flange of the larger L12 (the cemented junction 4 continues past L13's
+  edge to L12's), not a land on surface 5.
+- Faces 7 and 8 are drawn as full spheres out to an edge of about 13 mm, where they cross each other inside the
+  2.60 mm gap (Fig. 1A at about 10 mm, Fig. 1C at about 9.5 mm from the axis), so the figure is schematic there. The
+  diagram draws L21's edge as a slope from the front face's 12.0 mm to the rear face's 9.8 mm. The figure draws no land
+  that would support raising 7 to 12.0 mm with a cut at 9.8 mm, and at 12.0 mm surface 7's rim would lie behind
+  surface 8's rim, so both rims stay.
+- The last 4–5 px of surface 28 (L52 front) run nearly parallel to the edge stroke, but within 1 px of the sphere:
+  below what the figure resolves, so it is not read as a land.
+- No cap reaches the stop plane: the stop's neighbours are the near-flat surface 15 (2.00 mm clearance at every zoom
+  and focus state) and the convex front face 17.
+- Aperture audit unchanged: all three stations trace within 3 % of the stated f/4.5, f/5.1 and f/6.3, with no rim,
+  trace, iris or failed rows. Side vignetting is unchanged because nothing was cut.

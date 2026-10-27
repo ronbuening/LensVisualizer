@@ -131,3 +131,34 @@ Traced at infinity on the d line, printed sign → corrected sign (EFL 102.8607 
 Rim of 27A at the stored 18.3 mm semi-diameter: slope 49.4° → 29.7°, no turnover. The analysis half-field at the
 21.65 mm format corner moves from 11.52° to 12.00°. Header note, inline comment, `sourceErrata` and the analysis
 asphere table are synchronized. No other value changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 55, native 300 ppi raster, axis vertical on the page) was rotated so the axis runs horizontally and
+read element by element on the half without leader lines, with the other half as a check, for flat lands square to
+the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Scale is about 0.071 mm/px (L11 edge 326 px,
+L46 edge 256.5 px).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 9 (L21 rear, R 48.3271) | 0.965 | 2.70 mm | 15.93 mm | 16.5 | 14.21 mm |
+| 27A (L46 front, R −26.4605) | 0.938 | 5.22 mm | 17.17 mm | 18.3 | 10.82 mm |
+
+- Surface 9: the cap ends where it meets L22's edge (223.5 of 231.5 px above the axis; 222.5 of 230.5 px below) and a
+  stroke square to the axis runs out to L21's edge. The stop-limited marginal ray from the finite object reaches 14.21
+  mm there at infinity, 13.00 mm at 1:2 and 12.96 mm at 1:1, so the cut radius clears every focus state by 1.7 mm or
+  more.
+- 27A: the cap ends at 0.938 of the edge (240.5 of 256.5 px above; 240 of 255.5 px below). At the full field
+  (ω 11.97°, Y 21.6 mm) the cut clips 54 % of the bundle's outer side at the surface, against 23 % at the 18.3 mm rim,
+  but the engine's vignetting curve is identical with and without it at infinity and 1:1, because surfaces 19–23
+  already clip that side at 56–59 %. The cut is judged on the whole lens's transmission, as on the Z 70-200 f/2.8 S.
+- Not a land: the vertical stroke at L22's rear, outside L23's edge, is the cemented junction 11, not an air face.
+- Concave faces with no land: 7, 12, 20 and 23 run to their element edges. 5, 8 and 26 (R 865.6, −243.0, 250.9) are
+  nearly plane at the rim, so no land is resolvable there.
+- No cap reaches the stop plane at any focus state: surface 12 clears it by 4.12 mm at 1:1 (D12 = 6.528 mm), and
+  G3's front face 14 is convex toward the stop.
+- The traced aperture stays f/2.89 with the stop as limiter, before and after; the surface audit passes. The
+  paraxial half-field estimate moves from 13.14° to 12.93° with the 27A cut, still above the 11.97° full field.
+  At the full field the cut on 9 raises side vignetting there from 39 % to
+  44 %; the pupil-grid trace passes the same rays as before at every field above, because surface 8 already clips
+  that side at 55 %.

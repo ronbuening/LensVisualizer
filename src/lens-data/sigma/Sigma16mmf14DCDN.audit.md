@@ -71,3 +71,40 @@ element. No figure measurement was used.
 
 The validator accepts the new values, the traced edge now reaches 14.17 mm at 42.1° with every rim clear, and the
 image-circle floor still reports nothing undersized. No aspheric surface changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 was read from its copy on PDF p. 1 (the selected drawing, native 803 × 449 px, 300 ppi JBIG2 raster); the
+p. 28 raster of Figure 1 has lost nearly every lens stroke. Axis row 268 px; 6.36 px/mm from the vertex spacing of
+surfaces 1–16, and L14's edge (94 px = 14.8 mm, its stored sd) confirms the vertical scale. Both halves were read for
+flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L12 rear, R 16.3986) | 0.72 (93 / 129 px) | 8.56 mm | 14.40 mm | 14.4 → 16.0 (surface 3) | 5.41 mm |
+| 7 (L14 front, R -30.5) | 0.93 (87–88 / 94 px) | 3.29 mm | 13.78 mm | 14.8 | 8.73 mm |
+| 15 (L18 rear, R 40.9323) | 0.92 (77 / 84 px) | 1.87 mm | 12.23 mm | 12.2 → 13.4 (surface 14) | 11.46 mm |
+| 27 (L41 rear, R 17.8877) | 0.91 (69 / 76 px) | 3.37 mm | 10.45 mm | 10.45 → 11.2 (surface 26) | 8.40 mm |
+
+- 7 and 15 carry a drawn 7 px stroke square to the axis, joining the cap's end to the edge line, on both halves. On
+  27 the rear face's last 7 px run straight, 2 px ahead of L42's front, where the sphere would bend 6 px further back
+  into L42. On 4 the stroke itself is missing from the raster, but on both halves the edge line ends at the plane of
+  the cap's end, 36 px above it, so only a land can close the outline.
+- 4, 15 and 27 had their sd near the figure's cap end; each is raised to its partner face's sd with the cut at the old
+  sd, so tracing is unchanged. The figure's land planes sit 8.6, 3.2, 1.7 and 3.5 mm from their vertices, against the
+  authored 8.56, 3.29, 1.87 and 3.37 mm.
+- 6A (L13 rear, asphere) shows the same shape as 4 (cap end 87 px of a 101 px edge, q 0.86, edge line ending at the
+  cap's plane, no stroke). The raise to its partner's sd 13.8 with a 6.42 mm cut is refused: gap 6A→7 intrusion
+  9.71 mm exceeds the 9.548 mm allowed (90 % of 10.609 mm), with or without the cut on 7. A raise that passes
+  (≤ 13.455 mm) gains nothing, so 6A keeps sd 13.45 and no cut.
+- No land on the other concave faces: 2 (L11 rear, R 404.5) is near-flat, so a land cannot be told from the face; 14
+  (L18 front) runs to its edge line; 16 (L19 front) ends against L18's land and L19's edge line is not in the raster;
+  25 (L31 rear) runs to the rim within 3 px of the sphere.
+- The raster also drops other strokes square to or along the axis (the L19, L31 and L41 edge lines, the top of L11's
+  rear face). The figure draws L11–L13 rims larger than the stored sds (L12 edge 20.3 mm); no other sd changed.
+- No cap reaches the stop plane: no candidate face borders the stop, and 17 and 19 bend away from it.
+- Still traces f/1.466 against the stated f/1.46, limited by surface 16, before and after; no `(rim cut)` limiter.
+  At the clearap full field (ω 40.86°, Y 14.2 with a 50 mm scan; the lower-rim ray cannot be traced before or after)
+  no cut surface's side vignetting changes: the full-field bundle at 7 reaches 8.98 mm against the 13.78 mm cut. The
+  engine's wide-open vignetting curve out to 42.05° is identical to four decimals. The engine half-field moves
+  38.950° → 38.958° because surface 4's cut radius (14.404 mm) sits 0.004 mm above the old sd.

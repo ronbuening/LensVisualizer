@@ -6,6 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * G2 moves imageward and G3 objectward; source half-life-size/life-size states.
  * Rims inferred from the original figure at 600 dpi and checked for clearance.
  * Numerical glass coordinates are source values; catalog names are inferred.
+ * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
+ * rear face 9 (L21), where it meets L22's edge, and the asphere 27A (L46
+ * front); rimCutDepthMm ends those caps at 15.93 and 17.17 mm, outside the
+ * stated on-axis beam.
  *
  * NOTE ON SURFACE 27 A10 (PATENT MISPRINT, SIGN CORRECTED):
  *   Table 1 prints A10 = -1.29299E-13; this file carries +1.29299E-13. With the printed sign the
@@ -290,7 +294,7 @@ const LENS_DATA = {
 
     // ── G2: L21 (singlet) ──
     { label: "8", R: -242.9579, d: 1.1, sd: 16.5, medium: 5 }, // L21 front
-    { label: "9", R: 48.3271, d: 1.613, sd: 16.5 }, // L21 rear → air
+    { label: "9", R: 48.3271, d: 1.613, sd: 16.5, rimCutDepthMm: 2.7 }, // L21 rear → air
     // ── G2: L22 + L23 (cemented doublet D2) ──
     { label: "10", R: 122.3852, d: 1.1, sd: 14.9, medium: 6 }, // L22 front
     { label: "11", R: 28.609, d: 2.66, sd: 16, medium: 7 }, // L22→L23 junction
@@ -324,6 +328,7 @@ const LENS_DATA = {
       R: -26.4605,
       d: 1.53,
       sd: 18.3,
+      rimCutDepthMm: 5.22,
       medium: 16,
       asphere: {
         K: 0,

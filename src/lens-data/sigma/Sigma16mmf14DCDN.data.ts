@@ -29,6 +29,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    cross-gap sag intrusion <= 90% of the air gap. Surfaces 1-3      ║
  * ║    were raised to pass the traced chief ray to the patent's         ║
  * ║    Y = 14.20 mm APS-C corner (2026-09-24 field-coverage audit).     ║
+ * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    Figure 1 draws lands on concave faces 4 (L12), 7 (L14), 15      ║
+ * ║    (L18) and 27 (L41): cut radii 14.40, 13.78, 12.23, 10.45 mm.    ║
+ * ║    4, 15, 27: cut at the old sd; sd raised to the partner face's.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -262,7 +267,7 @@ const LENS_DATA = {
     { label: "1", R: 125.246, d: 2.9671, sd: 21, medium: 1 },
     { label: "2", R: 404.5429, d: 0.5, sd: 20.5 },
     { label: "3", R: 34.369, d: 1.4, sd: 16, medium: 2 },
-    { label: "4", R: 16.3986, d: 5.0945, sd: 14.4 },
+    { label: "4", R: 16.3986, d: 5.0945, sd: 16, rimCutDepthMm: 8.56 },
     { label: "5", R: 26, d: 1.5, sd: 13.8, medium: 3 },
     {
       label: "6A",
@@ -280,7 +285,7 @@ const LENS_DATA = {
         A16: 2.69032e-19,
       },
     },
-    { label: "7", R: -30.5, d: 1.0319, sd: 14.8, medium: 4 },
+    { label: "7", R: -30.5, d: 1.0319, sd: 14.8, rimCutDepthMm: 3.29, medium: 4 },
     { label: "8", R: 170.0033, d: 2.9642, sd: 14.8, medium: 5 },
     { label: "9", R: -79.7237, d: 7.2064, sd: 14.8 },
     { label: "10", R: 60.8883, d: 3.0231, sd: 15.2, medium: 6 },
@@ -288,7 +293,7 @@ const LENS_DATA = {
     { label: "12", R: 85, d: 5.6577, sd: 14.8, medium: 7 },
     { label: "13", R: -31.8218, d: 1.0735, sd: 14.8 },
     { label: "14", R: -60.7984, d: 0.9, sd: 13.4, medium: 8 },
-    { label: "15", R: 40.9323, d: 5.7178, sd: 12.2 },
+    { label: "15", R: 40.9323, d: 5.7178, sd: 13.4, rimCutDepthMm: 1.87 },
     { label: "16", R: -20.3273, d: 0.9, sd: 11.42, medium: 9 },
     { label: "17", R: -39.4374, d: 1.4174, sd: 12.2 },
     { label: "STO", R: "flat", d: 0.9946 },
@@ -305,7 +310,7 @@ const LENS_DATA = {
     { label: "24", R: 25, d: 2.7637, sd: 14, medium: 13 },
     { label: "25", R: 47.3486, sd: 14 },
     { label: "26", R: 35.4444, d: 0.9, sd: 11.2, medium: 14 },
-    { label: "27", R: 17.8877, d: 3.7091, sd: 10.45 },
+    { label: "27", R: 17.8877, d: 3.7091, sd: 11.2, rimCutDepthMm: 3.37 },
     { label: "28", R: 660, d: 6.0973, sd: 10.45, medium: 15 },
     { label: "29", R: -17.1474, d: 0.9, sd: 10.8, medium: 16 },
     { label: "30", R: -26.4237, d: 15.5341, sd: 11 },
