@@ -29,7 +29,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    ~7 % of the figure and are retained.                             ║
  * ║                                                                     ║
  * ║  NOTE ON STOP AND FOCUS:                                           ║
- * ║    Fig. 1 draws no diaphragm; the iris at the centre of air gap a₂ ║
+ * ║    Fig. 1 draws no diaphragm; the iris 3.10 mm into air gap a₂,    ║
+ * ║    just behind r₅'s clear cap (sag 3.05 mm at its 13.5 mm rim),    ║
  * ║    is a model choice. The stop radius is derived from the design   ║
  * ║    f-number, f/2.8; its real marginal-ray height is about 12.9 mm. ║
  * ║    The 1 m close-focus gap (84.40 mm) is a calculated paraxial      ║
@@ -139,9 +140,9 @@ const LENS_DATA = {
     { label: "2", R: -241.146, d: 6.3, sd: 16.0 },
     { label: "3", R: -44.136, d: 4.86, sd: 15.0, medium: 2 },
     { label: "4", R: -24.039, d: 2.7, sd: 15.0, medium: 3 },
-    { label: "5", R: 31.383, d: 2.16, sd: 13.5 },
-    // STO is a model choice (Fig. 1 draws no diaphragm) — centred in air gap a₂ (4.32 mm total)
-    { label: "STO", R: "flat", d: 2.16 },
+    { label: "5", R: 31.383, d: 3.1, sd: 13.5 },
+    // STO is a model choice (Fig. 1 draws no diaphragm) — just behind r₅'s clear cap (sag 3.05 mm) in a₂ (4.32 mm)
+    { label: "STO", R: "flat", d: 1.22 },
     { label: "6", R: -1194.003, d: 2.7, sd: 13.5, medium: 4 },
     { label: "7", R: 26.244, d: 8.343, sd: 14.0, medium: 5 },
     { label: "8", R: -44.937, sd: 14.5 },

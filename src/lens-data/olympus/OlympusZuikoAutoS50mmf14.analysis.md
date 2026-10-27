@@ -97,15 +97,15 @@ The BFD of 37.16 mm is well within the 46 mm OM flange focal distance, leaving a
 
 ### 3.4. Stop position
 
-The patent figure (Fig. 1) shows the iris diaphragm positioned in the central air gap d₆ between L3 and L4. The patent does not specify the exact axial position of the stop. From the patent figure, the stop appears to be approximately 25% of the way through d₆ from r₆, yielding the following split for the data file:
+The iris sits in the central air gap d₆ between L3 and L4, but Fig. 1 draws no diaphragm and the patent gives no stop position, so its axial place is a model choice. L3's steep rear surface r₆ sags 7.72 mm at its 12.4 mm rim, so any plane closer to r₆ cuts through L3's glass inside the f/1.4 iris. The data file puts the stop just behind r₆'s clear cap (the sag rounded up to 0.1 mm):
 
 | Gap segment | Normalized | Scaled (mm) |
 |:--|--:|--:|
-| r₆ to STO (d₆ pre) | 0.0839 | 4.20 |
-| STO to r₇ (d₆ post) | 0.2518 | 12.59 |
+| r₆ to STO (d₆ pre) | 0.1560 | 7.80 |
+| STO to r₇ (d₆ post) | 0.1797 | 8.985 |
 | d₆ total | 0.3357 | 16.79 |
 
-This placement puts the stop close to the rear surface of L3 and relatively far from the front surface of L4, consistent with a design where the front group contributes a weakly converging beam that continues to narrow through most of the air gap before reaching the strongly curved r₇.
+Splitting the air gap changes no power or conjugate. The f/1.4 marginal ray crosses this plane at 11.64 mm, the iris radius the viewer uses.
 
 ---
 
@@ -295,7 +295,7 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₄ | 4 | 15.0 | Marginal ray + off-axis margin |
 | r₅ | 5 | 13.0 | Marginal ray + margin |
 | r₆ | 6 | 12.4 | R₆ slope limit (sd/|R| = 0.90) |
-| STO | STO | 10.3 | f/1.4 marginal ray at stop |
+| STO | STO | 11.6 | f/1.4 marginal ray at stop (derived) |
 | r₇ | 7 | 11.5 | Marginal ray + margin |
 | r₈ | 8 | 13.0 | Cemented junction (doublet) |
 | r₉ | 9 | 13.0 | L5 edge thickness / marginal ray |

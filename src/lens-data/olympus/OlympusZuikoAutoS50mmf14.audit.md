@@ -48,3 +48,16 @@ The validator accepts the new values (both surfaces spherical). The traced field
 of the corner (it was 21.53° / 19.44 mm, 90%), with every rim clear (surface 11 by 0.45 mm, L7 by 0.57 mm). The
 image-circle floor still reports nothing undersized. L7 is now the thinnest glass edge in the lens (0.20 mm; next is
 L1 at 0.78 mm).
+
+## 2026-10-27 — Inferred stop plane behind r₆'s clear cap
+
+Source scope: FIG. 1 (Sheet 1, PDF page 2) draws no diaphragm and the table gives no stop position, so the stop plane is a model choice. The earlier "25 % of d₆ from r₆" placement put it 4.196 mm behind r₆, inside r₆'s cap: r₆ (R 13.82 mm, rim 12.4 mm) sags 7.718 mm, so at that plane the glass of L3 filled everything beyond 9.92 mm, short of the 11.81 mm f/1.4 iris. The f/1.4 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/1.40 traces f/1.73, `STO (noBracket)`), and an aimed pupil could not reach the outer stop zone.
+
+| Field | Before | After | Basis |
+|---|---:|---:|---|
+| Surface 6 `d` | 4.196 mm | 7.8 mm | r₆ sag 7.718 mm at its 12.4 mm rim, rounded up to 0.1 mm |
+| `STO` `d` | 12.589 mm | 8.985 mm | Preserves d₆ = 16.785 mm |
+
+This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇'s cap (sag −5.414 mm at 11.5 mm) begins 11.37 mm behind r₆, 3.57 mm behind the new plane.
+
+Result: the iris the engine derives from the f/1.4 marginal ray is now 11.641 mm (was 11.814 mm), the trace failure is gone, and the analysis half field is unchanged (23.76°). The stated beam is now limited by rims that the stop plane had masked: f/1.4 traces f/1.55, limited at surface 9. `audit:aperture --raise` asks for surfaces 4, 5, 8, 9, 10 and 11 to rise by up to 13.1 % (8/9 square at 14.7 mm, 10/11 at 15.7 mm). LSA is ordinary (−0.10 mm at full pupil), so this is a rim estimate, not a misprint. The raise is queued in `agent_docs/sd-audit-queue.md` Section I for a figure read; no rim changed here.
