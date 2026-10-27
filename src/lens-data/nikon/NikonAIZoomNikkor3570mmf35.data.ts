@@ -24,9 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                          ║
  * ║ NOTE ON STOP PLACEMENT:                                                  ║
  * ║   The patent does not identify an aperture-stop surface. A synthetic     ║
- * ║   flat STO is inserted in the d15 air space between L8 and L9, splitting ║
- * ║   the 3.9 mm patent gap into 1.95 mm + 1.95 mm. This preserves the       ║
- * ║   prescription's optical power while providing a stable renderer pupil.  ║
+ * ║   flat STO is inserted in the d15 air space between L8 and L9, 3.4 mm    ║
+ * ║   behind r15, just behind its clear cap (sag 3.31 mm at the 13.2 mm      ║
+ * ║   rim), splitting the 3.9 mm patent gap into 3.4 mm + 0.5 mm. This      ║
+ * ║   preserves the prescription's optical power while providing a stable    ║
+ * ║   renderer pupil.                                                        ║
  * ║                                                                          ║
  * ║ NOTE ON SEMI-DIAMETERS:                                                  ║
  * ║   Semi-diameters are inferred from paraxial marginal/chief ray envelopes ║
@@ -206,8 +208,8 @@ const LENS_DATA = {
     { label: "12", R: 26.644, d: 4.9, sd: 14.5, medium: 7 },
     { label: "13", R: 246.0, d: 0.1, sd: 14.5 },
     { label: "14", R: 20.743, d: 4.5, sd: 13.8, medium: 8 },
-    { label: "15", R: 27.99, d: 1.95, sd: 13.2 },
-    { label: "STO", R: "flat", d: 1.95 },
+    { label: "15", R: 27.99, d: 3.4, sd: 13.2 }, // stop just behind this cap (sag 3.31 mm)
+    { label: "STO", R: "flat", d: 0.5 },
     { label: "16", R: -370.855, d: 1.5, sd: 11.2, medium: 9 },
     { label: "17", R: 18.7, d: 5.2, sd: 11.2 },
     { label: "18", R: 64.66, d: 3.8, sd: 12.0, medium: 10 },

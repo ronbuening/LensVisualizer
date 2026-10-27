@@ -85,3 +85,16 @@ is now selectable, and the rear gap reads 74.33 → 84.40 mm. Off-axis rays were
   1 m production facts come from production history, not the patent.
 - The r₁ example/claim discrepancy is resolved in favour of the claim by EFL and by the aberration trace. The example
   table's +44.65 is treated as a misprint.
+
+## 2026-10-27 — Stop plane behind r₅'s clear cap
+
+Fig. 1 draws no diaphragm, so the stop plane in a₂ is a model choice. Centred in a₂ it sat 2.16 mm behind r₅, inside r₅'s cap: r₅ (R 31.383 mm, rim 13.5 mm) sags 3.052 mm, so at that plane L3's glass filled everything beyond 11.44 mm, short of the 12.92 mm f/2.8 iris. The f/2.8 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/2.80 traces f/3.15, `STO (noBracket)`).
+
+| Field | Before | After | Basis |
+|---|---:|---:|---|
+| Surface 5 `d` | 2.16 mm | 3.1 mm | r₅ sag 3.052 mm at its 13.5 mm rim, rounded up to 0.1 mm |
+| `STO` `d` | 2.16 mm | 1.22 mm | Preserves a₂ = 4.32 mm |
+
+This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₆ (R −1194.003 mm) sags only 0.076 mm at 13.5 mm, so its cap stays 1.14 mm behind the plane.
+
+Result: f/2.8 now traces f/2.80, iris-limited (`audit:aperture`), with the derived iris at 13.053 mm (was 12.923 mm) and the analysis half field unchanged (13.48°). No rim changed.

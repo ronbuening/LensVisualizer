@@ -35,3 +35,16 @@ Catalog version: local working tree, 2026-06-25
 - Local live check and batch gates pending.
 - Local infinity, close, midpoint and f16 checked: BF24.18/27.34/25.76; stop diameter1.89 at f16; all three groups move objectward3.16mm, zoom disabled. Shared movement chart clips long labels (also seen on XF50); fix required before batch commit. No visible element overlap. Source assembly sum is30.1mm; earlier29.1 measurement note corrected (focus calculation already summed the correct prescription).
 - SK16 label removed after direct catalog check: N-SK16 has nd1.62041 versus patent1.6185; no exact historical identity established. L1 now unmatched crown medium. Tests authored; batch execution pending.
+
+## 2026-10-27 — Inferred stop plane behind r₆'s clear cap
+
+The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, inside r₆'s cap: r₆ (R 11.85 mm, rim 8.25 mm) sags 3.344 mm, so the plane cut L4's glass inside the f/2 iris. The f/2 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/2.00 traces f/2.08, `STO (noBracket)`).
+
+| Field | Before | After | Basis |
+|---|---:|---:|---|
+| Surface 6 `d` | 2.5 mm | 3.4 mm | r₆ sag 3.344 mm at its 8.25 mm rim, rounded up to 0.1 mm |
+| `STO` `d` | 5.0 mm | 4.1 mm | Preserves the sourced 7.5 mm gap |
+
+This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇ (R 100 mm) curves away from the stop, so its cap never comes forward of its vertex.
+
+Result: the trace failure is gone; the derived iris is 7.479 mm (was 7.572 mm) and the analysis half field 23.38° (was 23.45°). The stated beam is now limited by a rim the stop plane had masked: f/2.0 traces f/2.07, at the L3/L4 junction (surface 5). `audit:aperture --raise` asks for 9.5 → 10.0 mm (5.3 %); queued in `agent_docs/sd-audit-queue.md` Section I for a figure check. No rim changed here.

@@ -26,7 +26,7 @@ L2 contains six elements in five air-spaced groups, including one cemented doubl
 
 Zooming is accomplished by changing the air separation d8 between L1 and L2. In the patent's Second Embodiment, d8 changes from 33.45 mm at the wide end to 0.65 mm at the long end. The patent back focal distance changes from 43.7 mm to 66.3 mm. The prescription contains no aspherical surfaces.
 
-The patent does not identify the aperture stop in the numerical table, and Figure 3 does not draw an unambiguous iris. The companion data file therefore inserts a synthetic flat stop in the d15 air space between L8 and L9, splitting the 3.9 mm air gap into 1.95 mm + 1.95 mm. This stop placement is a rendering and tracing assumption only; it is not a patent-stated iris location.
+The patent does not identify the aperture stop in the numerical table, and Figure 3 does not draw an unambiguous iris. The companion data file therefore inserts a synthetic flat stop in the d15 air space between L8 and L9, 3.4 mm behind r₁₅, just behind that surface's clear cap (sag 3.31 mm at its 13.2 mm rim), splitting the 3.9 mm air gap into 3.4 mm + 0.5 mm. This stop placement is a rendering and tracing assumption only; it is not a patent-stated iris location.
 
 ## Element-by-Element Analysis
 

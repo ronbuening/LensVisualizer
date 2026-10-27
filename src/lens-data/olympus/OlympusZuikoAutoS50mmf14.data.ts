@@ -24,8 +24,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    target (2026-09-24 field-coverage audit).                      ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
- * ║    STO position inferred from Fig. 1 — approximately 25% of the  ║
- * ║    d₆ air gap from r₆, splitting the gap into 4.20 + 12.59 mm.  ║
+ * ║    Fig. 1 draws no diaphragm, so the stop plane is a model        ║
+ * ║    choice: 7.80 mm behind r₆, just behind r₆'s clear cap (sag     ║
+ * ║    7.72 mm at its 12.4 mm rim), splitting d₆ into 7.80 + 8.985.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:          ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -159,8 +160,8 @@ const LENS_DATA = {
     { label: "3", R: 23.69, d: 3.885, sd: 16.5, medium: 2 },
     { label: "4", R: 40.01, d: 2.34, sd: 15.0 },
     { label: "5", R: 53.085, d: 1.015, sd: 13.0, medium: 3 },
-    { label: "6", R: 13.82, d: 4.196, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
-    { label: "STO", R: "flat", d: 12.589 }, // STO position inferred from Fig. 1
+    { label: "6", R: 13.82, d: 7.8, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
+    { label: "STO", R: "flat", d: 8.985 }, // model choice: just behind r6's clear cap (sag 7.72 mm)
     { label: "7", R: -14.92, d: 0.965, sd: 11.5, medium: 4 },
     { label: "8", R: 792.345, d: 5.8, sd: 13.0, medium: 5 },
     { label: "9", R: -25.565, d: 0.095, sd: 13.0 },
