@@ -18,13 +18,20 @@ const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
 export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }: FieldCurvaturePlotProps) {
+  type Field = FieldCurvatureResult["fields"][number];
+  // A field whose fans lacked two-sided coverage has no real-ray focus; it is left out, not drawn at the parabasal one.
+  const measured = (field: Field) =>
+    variant !== "diagnostic" ||
+    (field.diagnosticTangentialShiftMm !== undefined && field.diagnosticSagittalShiftMm !== undefined);
   const markerFields = result.fields.filter((field) => field.usable);
   const curveFields = result.curveFields.filter((field) => field.usable);
-  const tangentialShift = (field: FieldCurvatureResult["fields"][number]) =>
-    variant === "diagnostic" ? (field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm) : field.tangentialShiftMm;
-  const sagittalShift = (field: FieldCurvatureResult["fields"][number]) =>
-    variant === "diagnostic" ? (field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm) : field.sagittalShiftMm;
+  const tangentialShift = (field: Field) =>
+    variant === "diagnostic" ? (field.diagnosticTangentialShiftMm ?? NaN) : field.tangentialShiftMm;
+  const sagittalShift = (field: Field) =>
+    variant === "diagnostic" ? (field.diagnosticSagittalShiftMm ?? NaN) : field.sagittalShiftMm;
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
+  const measuredPlotFields = plotFields.filter(measured);
+  const measuredMarkerFields = markerFields.filter(measured);
   const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm * 1.08);
   const tangentialColor = t.rayWarm ?? "#22c55e";
   const sagittalColor = t.rayChromB ?? "#38bdf8";
@@ -36,12 +43,12 @@ export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }
   const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
 
   const tangentialPoints = svgPoints(
-    plotFields,
+    measuredPlotFields,
     (field) => xScale(field.fieldFraction),
     (field) => yScale(tangentialShift(field)),
   );
   const sagittalPoints = svgPoints(
-    plotFields,
+    measuredPlotFields,
     (field) => xScale(field.fieldFraction),
     (field) => yScale(sagittalShift(field)),
   );
@@ -140,7 +147,7 @@ export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }
         />
       ) : null}
 
-      {markerFields.map((field) => (
+      {measuredMarkerFields.map((field) => (
         <g key={`field-${field.fieldFraction}`}>
           <circle cx={xScale(field.fieldFraction)} cy={yScale(tangentialShift(field))} r={2.5} fill={tangentialColor} />
           <rect

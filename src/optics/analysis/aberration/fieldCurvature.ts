@@ -22,7 +22,7 @@ import {
   traceOffAxisChiefRay,
   traceOffAxisBundleFromSamples,
 } from "./offAxis.js";
-import type { OffAxisFieldGeometry } from "./offAxis.js";
+import type { OffAxisBundle, OffAxisFieldGeometry } from "./offAxis.js";
 import { bestRelativeFocusPlane } from "./shared.js";
 import type { TransverseFocusHit } from "./shared.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
@@ -30,6 +30,9 @@ import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
+// A real-ray fan focus needs surviving rays out to this stop fraction on both sides of the chief. Defocus is odd in
+// the pupil and coma even, so a one-sided sliver of a vignetted fan fits coma as defocus.
+const FIELD_CURVATURE_MIN_FAN_HALF_SPAN = 0.25;
 const FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM = 0.01;
 const FIELD_CURVATURE_PARABASAL_FRACTION_MIN = 1e-4;
 const FIELD_CURVATURE_PARABASAL_FRACTION_MAX = 0.02;
@@ -251,6 +254,14 @@ function computeStandardizedFieldFocus(
   };
 }
 
+function coversBothSides(bundle: OffAxisBundle): boolean {
+  const fractions = bundle.samples.map((sample) => sample.pupilFraction ?? 0);
+  return (
+    Math.min(...fractions) <= -FIELD_CURVATURE_MIN_FAN_HALF_SPAN &&
+    Math.max(...fractions) >= FIELD_CURVATURE_MIN_FAN_HALF_SPAN
+  );
+}
+
 function computeDiagnosticFieldFocus(
   request: AnalysisRequest,
   geometry: OffAxisFieldGeometry,
@@ -270,6 +281,7 @@ function computeDiagnosticFieldFocus(
   );
   if (tangentialBundle === null || sagittalBundle === null) return null;
   if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
+  if (!coversBothSides(tangentialBundle) || !coversBothSides(sagittalBundle)) return null;
 
   const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
   const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
