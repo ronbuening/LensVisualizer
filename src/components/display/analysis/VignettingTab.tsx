@@ -174,6 +174,7 @@ const FIELD_UNAVAILABLE: Record<VignettingFieldUnavailableReason | RelativeIllum
   "too-many-unaimed": "more than 1% of the stop samples could not be aimed",
   "no-image-point": "relative illumination needs the chief ray's image point",
   "reference-sphere-missed": "a ray misses the reference sphere, so relative illumination is not computed",
+  "rays-not-localized": "rays stray too far from the image point for Rimmer's method to apply",
   "cosine-map-folds": "the beam folds in direction-cosine space, where Rimmer's method does not apply",
   "isolated-cell": "the beam is too thin to form the cell map",
   "axis-unavailable": "relative illumination needs the axis's figure",

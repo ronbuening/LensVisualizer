@@ -36,4 +36,4 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `vignetting.ts` | Vignetting helper module | src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/state (2), src/optics/prescription, +1 more | src/optics/analysis, src/optics/analysis.ts | BEAM_GRID_CELLS, MIN_BEAM_GRID_CELLS, VIGNETTING_MAX_UNAIMED_SHARE, RIMMER_MIN_CELL_AREA_RATIO, VignettingLatticeCell, VignettingFieldUnavailableReason, RelativeIlluminationUnavailableReason, VignettingCurveUnavailableReason, +8 more |
+| `vignetting.ts` | Vignetting helper module | src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/state (2), src/optics/prescription, +1 more | src/optics/analysis, src/optics/analysis.ts | BEAM_GRID_CELLS, MIN_BEAM_GRID_CELLS, VIGNETTING_MAX_UNAIMED_SHARE, RIMMER_MIN_CELL_AREA_RATIO, RIMMER_MAX_REFERRED_DEVIATION, VignettingLatticeCell, VignettingFieldUnavailableReason, RelativeIlluminationUnavailableReason, +9 more |

@@ -1649,9 +1649,13 @@ curve and the reason a state has none.
   borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one). The field's
   sum over its beam is divided by the axis's. Taking each ray's own exit direction instead reads a field that focuses
   off the image plane as brighter (a singlet with field curvature rises above 1); the referred cone is the exit pupil
-  as seen from the image point. The chief ray that names the image point is traced without aperture checks.
+  as seen from the image point. The chief ray that names the image point is traced without aperture checks. Where
+  the exit pupil lies beyond the image plane the pupil-side crossing comes after the image point; the referred
+  direction is oriented along the ray either way.
 - **No figure, with a reason.** A field whose cell map folds or collapses in cosine space (a transmitted cell's oriented
-  area reversed, or below `RIMMER_MIN_CELL_AREA_RATIO` of the median), whose transmitted ray misses the reference
+  area reversed, or below `RIMMER_MIN_CELL_AREA_RATIO` of the median), whose rays do not localize at the image point
+  (a transmitted ray more than `RIMMER_MAX_REFERRED_DEVIATION`, 5 %, from its referred direction: its transverse
+  aberration over the exit-pupil distance, OpticStudio's stated assumption), whose transmitted ray misses the reference
   sphere, or whose beam has a cell with no neighbour in its row and column has no relative illumination. States
   `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse and curves with a bounding-sphere field have no curve.
   Each carries its reason, and the chart breaks its curve at a field without a figure.

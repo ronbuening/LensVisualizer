@@ -24,9 +24,10 @@
  * and, for a cell with no transmitting neighbour along an axis (the tip of a cat's-eye beam), that derivative of the
  * nearest cell in its column or row that has one (the mean of two at equal distance).
  *
- * Rimmer's method assumes the cell map does not fold in cosine space: a field where a transmitted cell's oriented
- * area is reversed or collapses below `RIMMER_MIN_CELL_AREA_RATIO` of the field's median has no relative
- * illumination. A field with more unaimed samples than `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither
+ * Rimmer's method assumes the cell map does not fold in cosine space and that the rays localize at the image point: a
+ * field where a transmitted cell's oriented area is reversed or collapses below `RIMMER_MIN_CELL_AREA_RATIO` of the
+ * field's median, or where a transmitted ray strays from its referred direction by more than
+ * `RIMMER_MAX_REFERRED_DEVIATION`, has no relative illumination. A field with more unaimed samples than `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither
  * figure. States the MTF's beam model refuses (folded, mirror, diffractive or annular paths, fisheye projections, a
  * tilted image plane) and curves with a bounding-sphere field have no curve. Each of these carries its reason.
  *
@@ -68,6 +69,13 @@ export const VIGNETTING_MAX_UNAIMED_SHARE = 0.01;
  * orientation reversed, the cell map folds or collapses in cosine space and Rimmer's integral does not apply.
  */
 export const RIMMER_MIN_CELL_AREA_RATIO = 0.01;
+/**
+ * Largest angle (rad) between a transmitted ray and its direction referred to the image point: its transverse
+ * aberration over the reference-sphere radius. Rimmer's integral assumes the rays localize at the image point, as
+ * OpticStudio's analysis does; the reference-sphere correction is first order in that ratio, and at 5 % its neglected
+ * square stays below the lattice's own convergence band.
+ */
+export const RIMMER_MAX_REFERRED_DEVIATION = 0.05;
 
 /** One cell of the stop lattice: a stop sample at normalised (xFraction, yFraction), its centre in the unit disc. */
 export interface VignettingLatticeCell {
@@ -90,6 +98,7 @@ export type RelativeIlluminationUnavailableReason =
   | VignettingFieldUnavailableReason
   | "no-image-point"
   | "reference-sphere-missed"
+  | "rays-not-localized"
   | "cosine-map-folds"
   | "isolated-cell"
   | "axis-unavailable";
@@ -116,6 +125,8 @@ export interface VignettingCellResult {
    * Eq. 3), which Rimmer's integral uses; null when the ray does not cross the sphere or the field has no image point.
    */
   referredDirectionCosines: readonly [number, number] | null;
+  /** Angle (rad) between the ray and its referred direction, about its transverse aberration over the sphere radius. */
+  referredDeviation: number | null;
   /** Refractive index of the image space n′, or null. */
   imageIndex: number | null;
   /** Oriented cosine-space area det J · cell area of a transmitted cell, or null where no Jacobian forms. */
@@ -270,11 +281,14 @@ export function computeVignettingField(
     return { ...counts, ...noFigures("too-many-unaimed"), cells };
 
   const unvignettedFraction = transmittedCount / (lattice.length - unaimedCount);
+  const transmitted = cells.filter((cell) => cell.transmitted);
   const rimmer: ReturnType<typeof integrateCosineAreas> = !reference
     ? { sum: null, reason: "no-image-point" }
-    : cells.some((cell) => cell.transmitted && !cell.referredDirectionCosines)
+    : transmitted.some((cell) => !cell.referredDirectionCosines)
       ? { sum: null, reason: "reference-sphere-missed" }
-      : integrateCosineAreas(cells, n, base.cellArea, mirrored);
+      : transmitted.some((cell) => cell.referredDeviation! > RIMMER_MAX_REFERRED_DEVIATION)
+        ? { sum: null, reason: "rays-not-localized" }
+        : integrateCosineAreas(cells, n, base.cellArea, mirrored);
   return {
     ...counts,
     unvignettedFraction,
@@ -419,6 +433,7 @@ function traceLattice(
       bulkTransmission: 0,
       exitDirectionCosines: null,
       referredDirectionCosines: null,
+      referredDeviation: null,
       imageIndex: null,
       orientedCosineArea: null,
       cosineArea: null,
@@ -432,8 +447,7 @@ function traceLattice(
       transmitted: true,
       bulkTransmission: bulkTransmissionForTrace(state.lens, result.hits),
       exitDirectionCosines: [result.terminalDirection[0], result.terminalDirection[1]],
-      referredDirectionCosines:
-        reference && referredDirection(reference, result.terminalPoint, result.terminalDirection),
+      ...referred(reference, result.terminalPoint, result.terminalDirection),
       imageIndex: result.finalMedium,
     };
   };
@@ -611,25 +625,46 @@ function referenceSphere(
   return { center, radius, towardPupil: [offset[0] / radius, offset[1] / radius, offset[2] / radius] };
 }
 
+/** A transmitted ray's referred direction cosines and deviation, or nulls without them. */
+function referred(
+  sphere: ReferenceSphere | null,
+  point: Vec3,
+  direction: Vec3,
+): Pick<VignettingCellResult, "referredDirectionCosines" | "referredDeviation"> {
+  const unit = sphere && referredDirection(sphere, point, direction);
+  if (!unit) return { referredDirectionCosines: null, referredDeviation: null };
+  return {
+    referredDirectionCosines: [unit[0], unit[1]],
+    referredDeviation: Math.hypot(unit[0] - direction[0], unit[1] - direction[1], unit[2] - direction[2]),
+  };
+}
+
 /**
- * Direction cosines of a ray referred to the image point (Rimmer's Eq. 3): of the segment from the ray's pupil-side
- * crossing of the reference sphere to the sphere's centre. At infinite radius this is the ray's own direction.
+ * A ray's direction referred to the image point (Rimmer's Eq. 3): the unit vector of the segment between the ray's
+ * pupil-side crossing of the reference sphere and the sphere's centre, oriented along the ray. At infinite radius this
+ * is the ray's own direction. The pupil side can lie before the image point or, where the exit pupil is beyond the
+ * image plane, after it.
  *
- * @returns (L, M), or null when the ray misses the sphere's pupil side
+ * @returns the referred unit vector, or null when the ray misses the sphere's pupil side
  */
-function referredDirection(sphere: ReferenceSphere, point: Vec3, direction: Vec3): readonly [number, number] | null {
-  if (!isFinite(sphere.radius)) return [direction[0], direction[1]];
-  const { center, radius } = sphere;
+function referredDirection(sphere: ReferenceSphere, point: Vec3, direction: Vec3): Vec3 | null {
+  if (!isFinite(sphere.radius)) return direction;
+  const { center, radius, towardPupil } = sphere;
   const offset: Vec3 = [point[0] - center[0], point[1] - center[1], point[2] - center[2]];
   const b = offset[0] * direction[0] + offset[1] * direction[1] + offset[2] * direction[2];
   const discriminant = b * b - (offset[0] ** 2 + offset[1] ** 2 + offset[2] ** 2 - radius * radius);
   if (!(discriminant >= 0)) return null;
-  // The earlier crossing along the ray lies on the exit pupil's side of the image point.
-  const t = -b - Math.sqrt(discriminant);
-  const crossing: Vec3 = [offset[0] + direction[0] * t, offset[1] + direction[1] * t, offset[2] + direction[2] * t];
-  const towardPupil = sphere.towardPupil;
-  if (!(crossing[0] * towardPupil[0] + crossing[1] * towardPupil[1] + crossing[2] * towardPupil[2] > 0)) return null;
-  return [-crossing[0] / radius, -crossing[1] / radius];
+  // Of the two crossings, the one on the exit pupil's hemisphere of the sphere.
+  const crossings = [-b - Math.sqrt(discriminant), -b + Math.sqrt(discriminant)].map(
+    (t): Vec3 => [offset[0] + direction[0] * t, offset[1] + direction[1] * t, offset[2] + direction[2] * t],
+  );
+  const side = (crossing: Vec3) =>
+    crossing[0] * towardPupil[0] + crossing[1] * towardPupil[1] + crossing[2] * towardPupil[2];
+  const crossing = side(crossings[0]) >= side(crossings[1]) ? crossings[0] : crossings[1];
+  if (!(side(crossing) > 0)) return null;
+  // The segment's direction, oriented with the ray: toward the centre from a crossing before it, away after it.
+  const sign = crossing[0] * direction[0] + crossing[1] * direction[1] + crossing[2] * direction[2] > 0 ? 1 : -1;
+  return [(sign * crossing[0]) / radius, (sign * crossing[1]) / radius, (sign * crossing[2]) / radius];
 }
 
 /** Median of a non-empty list. */

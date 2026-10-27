@@ -143,9 +143,9 @@ describe("computeVignettingCurve", () => {
   });
 
   it("reports a field whose cell map folds in cosine space as unavailable, never a number", () => {
-    // The stop at the front focal plane makes image space telecentric, so each ray's own exit direction is its cosine.
-    // A strong negative A4 on the rear surface turns the exit slope back past about 0.6 of the beam: the lattice's map
-    // from stop to direction cosines folds there.
+    // The stop near the front focal plane puts the exit pupil about 7.5 m away, so each ray's cosine is close to its own
+    // exit direction. A4 = 2e-4 on the rear surface turns the exit slope back across the beam: cells there reverse
+    // orientation (−6 times the median area), where A4 = 0 keeps every cell within 0.3 % of the median.
     const L = lensWith(
       "test-vignetting-folded-cosines",
       [
@@ -161,6 +161,47 @@ describe("computeVignettingCurve", () => {
     expect(axis.relativeIlluminationReason).toBe("cosine-map-folds");
     expect(axis.relativeIllumination).toBeNull();
     expect(axis.unvignettedFraction).toBe(1);
+  });
+
+  it("refers each ray to the image point when the exit pupil lies beyond the image plane", () => {
+    // The stop 300 mm ahead of a 194 mm singlet images 354 mm past the image plane, so each ray's pupil-side crossing
+    // of the reference sphere comes after the image point. Taken there and oriented along the ray, the referred
+    // direction stays within the ray's tiny aberration of its own; the wrong crossing or orientation would point it
+    // back, about 2 away.
+    const L = lensWith("test-vignetting-pupil-beyond-image", [
+      { label: "STO", R: 1e15, nd: 1, sd: 3, d: 300, elemId: 0 },
+      { label: "1", R: 200, nd: 1.5168, sd: 40, d: 10, elemId: 1 },
+      { label: "2", R: -200, nd: 1, sd: 40, d: 190, elemId: 0 },
+    ]);
+    const request = analysisRequestAt(L, { currentEPSD: 0.25, currentPhysStopSD: 0.25 });
+    const curve = computeVignettingCurve(request);
+    for (const sample of curve.samples) {
+      expect(sample.relativeIlluminationReason).toBeNull();
+      const field = computeVignettingField(request, sample.fieldFraction);
+      expect(field.imagePoint![2] + field.referenceRadiusMm!).toBeLessThan(
+        request.preparedGeometry.z[L.N - 1] + L.xpZRelLastSurf + 1,
+      );
+      for (const cell of field.cells.filter((entry) => entry.transmitted))
+        expect(cell.referredDeviation!).toBeLessThan(1e-3);
+    }
+  });
+
+  it("gives no relative illumination where the rays do not localize at the image point", () => {
+    // An f/1.1 biconvex singlet with the stop at its front: spherical aberration sends the marginal rays more than 5 %
+    // of the exit-pupil distance from the paraxial image point, where Rimmer's referred directions no longer apply.
+    // Stopped to f/1.4 the same lens's rays stay within 3 %.
+    const L = lensWith("test-vignetting-unlocalized", [
+      { label: "STO", R: 1e15, nd: 1, sd: 30, d: 0.5, elemId: 0 },
+      { label: "1", R: 50, nd: 1.5168, sd: 30, d: 22, elemId: 1 },
+      { label: "2", R: -50, nd: 1, sd: 30, d: 35, elemId: 0 },
+    ]);
+    const axisAt = (stop: number) =>
+      computeVignettingCurve(analysisRequestAt(L, { currentEPSD: stop, currentPhysStopSD: stop })).samples[0];
+    const fast = axisAt(22);
+    expect(fast.relativeIlluminationReason).toBe("rays-not-localized");
+    expect(fast.relativeIllumination).toBeNull();
+    expect(fast.unvignettedFraction).not.toBeNull();
+    expect(axisAt(18).relativeIllumination).toBe(1);
   });
 
   it("reads 1 on the axis unless an aperture clips the axial beam, and names the clipping aperture", () => {
