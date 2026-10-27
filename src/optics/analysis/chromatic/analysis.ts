@@ -224,8 +224,8 @@ export function computeLongitudinalChromaticFocus(
       chosen = candidate;
       break;
     }
-    if (!firstTwoChannelZone && channels.length - candidate.omittedChannels.length >= 2)
-      firstTwoChannelZone = candidate;
+    const comparedCount = channels.length - candidate.omittedChannels.length;
+    if (comparedCount >= 2) firstTwoChannelZone ??= candidate;
   }
   chosen ??= firstTwoChannelZone;
   if (chosen) {
