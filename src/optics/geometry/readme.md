@@ -47,7 +47,7 @@ flowchart LR
 - Direct source files: 8
 - Direct subfolders: 0
 - Main outbound areas: same folder (8), src/optics/math (8), src/optics/types.ts (7), src/types (3)
-- External consumers: src/optics/analysis, src/optics/diagram, src/optics/first-order, src/optics/geometry.ts, src/optics/math, src/optics/perspective, src/optics/prescription, src/optics/trace, +1 more
+- External consumers: src/optics/analysis, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/geometry.ts, src/optics/math, src/optics/perspective, src/optics/prescription, +2 more
 
 ## Files
 
@@ -59,5 +59,5 @@ flowchart LR
 | `intersectPlane.ts` | Intersect Plane helper module | src/optics/math (2), same folder, src/optics/types.ts | src/optics/perspective (3), src/optics/trace | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |
 | `intersectTolerance.ts` | Intersect Tolerance helper module | src/optics/types.ts | same folder (2) | capCoordinateTolerance, sagResidualRoundoff, planeResidualRoundoff |
 | `intersectTypes.ts` | Intersect Types helper module | src/optics/types.ts | src/optics/trace (3), same folder (2) | SurfaceIntersectionFailureReason, ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionOptions, SurfaceIntersectionSuccess, SurfaceIntersectionFailure, SurfaceIntersectionResult, ParameterInterval |
-| `rimCut.ts` | Rim Cut helper module | src/optics/types.ts | src/optics/prescription (2), src/optics/diagram, src/optics/trace, src/optics/types.ts | RimCut, resolveRimCut, cutOutlineSag, rimCutReentryRadius, rimCutLandPoint |
+| `rimCut.ts` | Rim Cut helper module | src/optics/types.ts | src/optics/prescription (2), src/optics/trace (2), src/optics/diagram, src/optics/field, src/optics/first-order, +1 more | RimCut, resolveRimCut, clearSemiDiameter, cutOutlineSag, rimCutReentryRadius, rimCutLandPoint |
 | `surfaceProfile.ts` | Surface Profile helper module | src/types (3), src/optics/math (2), src/optics/types.ts | src/optics/prescription (7), same folder (2), src/optics/diagram (2), src/optics/first-order (2), src/optics/analysis, +3 more | FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, DEFAULT_MAX_RIM_ANGLE_DEG, MAX_TERM_POWER, sag, conicPolySag, sagSlopeRaw, normalFromSlope, +6 more |

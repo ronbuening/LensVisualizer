@@ -4,6 +4,7 @@
  * Shared by sequential and generalized tracers so clipping, holes, and inactive surfaces use the same radial rules.
  */
 
+import { clearSemiDiameter } from "../geometry/rimCut.js";
 import type { CompiledStateSurface } from "../types.js";
 import type { TraceGeometry } from "./types.js";
 
@@ -76,7 +77,7 @@ function activeSemiDiameter(
 ): number | null {
   if (surface.physicalIndex === geometry.stopSurfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
   if (typeof surface.sd !== "number" || !surface.clips) return null;
-  return surface.rimCut ? Math.min(surface.sd, surface.rimCut.radius) : surface.sd;
+  return clearSemiDiameter(surface.sd, surface.rimCut);
 }
 
 function exceedsAperture(radius: number, semiDiameter: number): boolean {

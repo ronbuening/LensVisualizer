@@ -11,6 +11,7 @@ import type { TraceGeometry, TraceOptions } from "../../../../src/optics/trace/t
 import { describe, expect, it, vi } from "vitest";
 import { fixtureGeometry, type GeometryFixture, traceFixtureSlope } from "../traceGeometryFixtures.js";
 import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
+import { computeFieldGeometry } from "../../../../src/optics/field/geometry.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 
 const flatSurfaces = [
@@ -297,6 +298,16 @@ describe("rim cut", () => {
     expect(cut.status).toBe("clipped");
     expect(cut.hits[2]).toMatchObject({ surfaceLabel: "2", clipped: true, clipReason: "semi-diameter" });
     expect(traceAt(2, 9.5).trace.status).toBe("ok");
+  });
+
+  it("limits the field at the cut radius, as a semi-diameter there would", () => {
+    /* A 0.5 mm cut ends the R 20 cap at sqrt(19.75) mm, inside the field-limiting rim. */
+    const cut = buildRimCutLens(0.5);
+    const atCutRadius = buildRimCutLens(undefined, "test-rim-cut-sd", Math.sqrt(19.75));
+    expect(buildRimCutLens().halfField).toBeGreaterThan(cut.halfField + 1);
+    expect(cut.halfField).toBeCloseTo(atCutRadius.halfField, 6);
+    const stateField = (lens: typeof cut) => computeFieldGeometry(prepareRuntimeState(lens, 0, 0)).halfFieldDeg;
+    expect(stateField(cut)).toBeCloseTo(stateField(atCutRadius), 6);
   });
 
   it("draws the clipped ray to the land, not the removed cap", () => {

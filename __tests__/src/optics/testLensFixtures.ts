@@ -283,7 +283,7 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
  * Positive meniscus whose concave rear (R = 20, sd = 12) sags 4 mm rearward at its rim. `rimCutDepthMm` cuts that
  * rim flat; at 2 mm the cap ends at r = √76 ≈ 8.718 mm.
  */
-export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens"): RuntimeLens {
+export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens", rearSd = 12): RuntimeLens {
   return buildFixture({
     key,
     nominalFno: 8,
@@ -294,7 +294,7 @@ export function buildRimCutLens(rimCutDepthMm?: number, key = "test-rim-cut-lens
         label: "2",
         R: 20,
         nd: 1.0,
-        sd: 12,
+        sd: rearSd,
         d: 80,
         elemId: 0,
         ...(rimCutDepthMm === undefined ? {} : { rimCutDepthMm }),

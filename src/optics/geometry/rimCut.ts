@@ -55,6 +55,17 @@ export function resolveRimCut(sag: (radius: number) => number, sd: number, depth
 }
 
 /**
+ * Radius a surface passes rays to: its `sd`, or the cut radius where a rim cut ends the cap inside it.
+ *
+ * @param sd - clear semi-diameter in mm
+ * @param cut - resolved cut, or null for an uncut surface
+ * @returns clear radius in mm
+ */
+export function clearSemiDiameter(sd: number, cut: RimCut | null): number {
+  return cut ? Math.min(sd, cut.radius) : sd;
+}
+
+/**
  * Sag of the cut outline: the cap inside the cut radius, the land beyond it.
  *
  * @param sag - signed sag of the uncut surface, in mm

@@ -40,6 +40,7 @@ flowchart LR
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> |2| n_src_optics_trace_src_optics_trace_capture_ts
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> |2| n_src_optics_trace_src_optics_trace_runtimeRayResult_ts
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_chromatic
+  n_src_optics_trace_src_optics_trace_aperture_ts --> n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_capture_ts --> n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_runtimeRayResult_ts --> n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> n_external_src_optics_geometry
@@ -69,7 +70,6 @@ flowchart LR
   n_src_optics_trace_src_optics_trace_interactions_ts --> n_external_src_types
   n_src_optics_trace_src_optics_trace_pathPlanner_ts --> n_external_src_types
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_types
-  n_src_optics_trace_src_optics_trace_runtimeRayResult_ts --> n_external_src_types
   n_src_optics_trace_truncated["additional relationships omitted"]
 ```
 
@@ -77,14 +77,14 @@ flowchart LR
 
 - Direct source files: 17
 - Direct subfolders: 0
-- Main outbound areas: same folder (40), src/types (13), src/optics/types.ts (12), src/optics/geometry (8), src/optics/math (6), src/optics/chromatic, src/optics/prescription, src/optics/state
+- Main outbound areas: same folder (40), src/types (13), src/optics/types.ts (12), src/optics/geometry (9), src/optics/math (6), src/optics/chromatic, src/optics/prescription, src/optics/state
 - External consumers: src/optics/analysis, src/optics/chromatic, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/optics.ts, src/optics/perspective, src/optics/prescription, +2 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `aperture.ts` | Aperture helper module | same folder, src/optics/types.ts | same folder (4), src/optics/analysis | ApertureState, ApertureEvaluation, evaluateAperture, isInsideActiveAperture |
+| `aperture.ts` | Aperture helper module | same folder, src/optics/geometry, src/optics/types.ts | same folder (4), src/optics/analysis | ApertureState, ApertureEvaluation, evaluateAperture, isInsideActiveAperture |
 | `bulkAbsorption.ts` | Bulk Absorption helper module | same folder, src/optics/types.ts | same folder (2), src/optics/analysis (2), src/optics/perspective | transmissionTraceCapture, bulkTransmissionForTrace |
 | `capture.ts` | Capture helper module | same folder (2), src/optics/geometry, src/optics/types.ts, src/types | same folder (3) | TraceRecorder, createTraceRecorder |
 | `chiefRelative.ts` | Chief Relative helper module | same folder (2), src/types | src/optics/analysis, src/optics/optics.ts | traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic |

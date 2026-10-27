@@ -4,6 +4,7 @@ import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from 
 import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../state/layout.js";
 import { zoomIndexToT } from "../state/stationTables.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
+import { clearSemiDiameter } from "../geometry/rimCut.js";
 import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
 import type { ParaxialTraceOptions as ParaxialSurfaceTraceOptions } from "../math/paraxial.js";
 import { createTraceGeometry } from "../trace/geometry.js";
@@ -648,8 +649,9 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
    *  Find the maximum chief-ray angle (field angle) before any surface
    *  clips the ray.  Uses two basis rays (marginal hA and chief hB) to
    *  build a linear model of ray height vs field angle at each surface.
-   *  The minimum sd/|coefficient| across all clipping surfaces gives the
-   *  vignetting-limited half-field angle (generated rear-plate rims never clip).
+   *  The minimum clear radius/|coefficient| across all clipping surfaces (a rim
+   *  cut's radius inside its sd) gives the vignetting-limited half-field angle
+   *  (generated rear-plate rims never clip).
    */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
@@ -661,7 +663,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     if (i === stopIdx || S[i].clips === false) continue;
     const c = Math.abs(hB[i] - r * hA[i]);
     if (c > 1e-8) {
-      const uMax = S[i].sd / c;
+      const uMax = clearSemiDiameter(S[i].sd, lens.surfaces[i].rimCut) / c;
       if (uMax < minU) minU = uMax;
     }
   }
@@ -899,7 +901,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
         if (j === stopIdx || tmpS[j].clips === false) continue;
         const coeff = Math.abs(zB2[j] - zr * zA[j]);
         if (coeff > 1e-8) {
-          const uMax = tmpS[j].sd / coeff;
+          const uMax = clearSemiDiameter(tmpS[j].sd, lens.surfaces[j].rimCut) / coeff;
           if (uMax < zMinU) zMinU = uMax;
         }
       }
