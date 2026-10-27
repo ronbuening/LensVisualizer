@@ -7,6 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * J-BK7A, like every element's vd) is modeled in `rearPlates` (traced, not
  * drawn), 29.62 mm behind surface 46 and 0.000 mm before the image plane.
  * SDs remain estimated optical rims, reviewed against both source figures.
+ * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
+ * rear faces 7 (L4) and 12 (L7); rimCutDepthMm puts each cap's end at the
+ * figure's land, 27.9 and 20.0 mm, outside the stated on-axis beam.
  */
 const LENS_DATA = {
   schema: 2,
@@ -352,13 +355,13 @@ const LENS_DATA = {
     // G2
     { label: "5", R: 63.221, d: 7.03, sd: 27.5, medium: 3 },
     { label: "6", R: -658.5, d: 1.0, sd: 29.5, medium: 4 },
-    { label: "7", R: 57.457, d: 1.53, sd: 29.0 },
+    { label: "7", R: 57.457, d: 1.53, sd: 29.0, rimCutDepthMm: 7.23 },
     { label: "8", R: 56.53, d: 7.42, sd: 26.5, medium: 5 },
     { label: "9", R: -447.44, sd: 26.5 },
     // G3
     { label: "10", R: 137.036, d: 6.11, sd: 23.0, medium: 6 },
     { label: "11", R: -67.293, d: 1.3, sd: 23.0, medium: 7 },
-    { label: "12", R: 47.996, d: 5.73, sd: 23.0 },
+    { label: "12", R: 47.996, d: 5.73, sd: 23.0, rimCutDepthMm: 4.37 },
     { label: "13", R: -84.272, d: 1.2, sd: 17.5, medium: 8 },
     { label: "14", R: 49.681, d: 3.41, sd: 18.5, medium: 9 },
     { label: "15", R: 447.567, d: 3.15, sd: 17.1 },

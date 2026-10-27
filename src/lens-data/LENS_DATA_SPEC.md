@@ -689,6 +689,10 @@ there out to `sd`.
   clears the cap. Set the depth to the plane's closest distance from the vertex over every zoom station and focus
   state, rounded down to 0.01 mm, so the land stays ahead of the plane everywhere. A surface that moves against the
   plane with focus may not fit one depth: a cut that clears the closest state can clip the beam at the others.
+- **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
+  short stroke square to the axis. Measure the cap end as a share of the edge radius on the figure, put the cut radius
+  at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. Keep the cut radius above the stated
+  on-axis ray; skip a land too short to measure.
 - **Effect:** a cut inside the stated beam slows the lens; `npm run audit:aperture` names it `<label> (rim cut)`.
   Check the wide stations' field too, and record the depth's reason in the file header and the audit log.
 - **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it

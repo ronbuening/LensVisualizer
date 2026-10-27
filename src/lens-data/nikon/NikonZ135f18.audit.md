@@ -61,3 +61,28 @@ Patent: WO 2024/147268 A1
 - Re-read Table 1 (PDF pp. 21–22, printed pp. 19–20) and Figure 1 (p. 66): surface 31 d = 11.4681, filter FL surfaces 32–33 t = 1.6000, nd = 1.51680, νd = 64.14, then 1.3712 mm to the image. The gap before the filter is not in the variable-gap table, so it is fixed through focus. 11.4681 + 1.6/1.5168 + 1.3712 reproduces the legacy 13.8941523 mm air-equivalent BFD exactly.
 - Surface 31 now stores the physical 11.4681 mm, and the filter is a single `rearPlates` entry labeled FL. The glass is N-BK7, which matches L6's label for the same 1.51680/64.14 coordinate; `resolveCompatibleGlass` accepts it, and J-BK7A also matches. `closeFocusM` already used the physical object-to-image distance, so it is unchanged.
 - The plate check passed: EFL and paraxial defocus are identical to the folded model at infinity and at close focus (worst |Δ| 7e-15). The physical track grows by 0.545148 mm, which equals 1.6 × (1 − 1/1.5168). The surface and image-circle audits are clean.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 66, native 300 ppi 1-bit raster, axis vertical) was read on both halves, element by element, for flat
+lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each land was located by
+fitting the drawn cap to the prescription sag and finding where the ink stops following it (15.40 px/mm from the
+133.01 mm vertex span); q is the cap end over the element edge, averaged over the two halves.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L2 rear, R 226.522) | 0.967 | 2.67 mm | 34.68 mm | 35.9 | 33.23 mm |
+| 9 (L5 rear, R 50.025) | 0.878 | 6.16 mm | 24.05 mm | 27.4 | 22.46 mm |
+| 14 (L7 rear, R 39.422) | 0.957 | 5.06 mm | 19.32 mm | 20.2 | 16.95 mm |
+| 23 (L12 rear, R 83.184) | 0.96 | 2.82 mm | 21.48 mm | 22.4 | 11.82 mm |
+
+- Surface 9's sd (27.4) is L5's own drawn edge, smaller than the L4/L5 junction's 28.9, so its cut uses 27.4. Its
+  cap came within 0.073 mm of the stop plane; the land now sits 2.08 mm ahead of it. No cap crosses the stop.
+- Concave faces with no resolvable land: 15, 17, 19, 25, 29 and 30 run to their element edges; 12 and 26 are too
+  shallow (sag at sd 0.28 and 0.41 mm) for a land to show. Surface 2 shows at most an 8 px flat (q ≈ 0.986), below
+  what the raster resolves. Surface 6 (q ≈ 0.975) leaves the cap by only 1.6 px at its 7° rim slope, and surface 27
+  shows a 12 px flat on one half but about 4 px on the other; both are at the resolution limit and are not cut.
+- The aperture audit is unchanged (f/1.85 within 3 %, no rim, trace or failed rows, no rim-cut limiter); the surface
+  and image-circle audits are clean. At the full-field corner (Y = 21.6 mm, infinity) the side vignetting at 4 goes
+  from 14 % to 17 % and at 23 from 17 % to 25 %; 14 adds 2 %, and 9's cut lies outside the full-field bundle
+  (23.19 mm). At close focus only 4 clips the corner bundle (11 % to 15 %).

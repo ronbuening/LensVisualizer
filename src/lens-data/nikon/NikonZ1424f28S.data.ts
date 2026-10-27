@@ -23,11 +23,17 @@
  * ║    Patent does not list SDs. G1 and G2 rims are measured from      ║
  * ║    Fig. 10 (wide state, 0.0784 mm/px from the 115.72 mm glass     ║
  * ║    span): L11 front 32.8 / rear curve end 21.4, L12 20.6 / 15.6,  ║
- * ║    L13–L14 16.9, G2 11.9–11.3 mm. Surface 4A is 0.35 mm above    ║
- * ║    the drawn 15.25 mm so the Y = 21.6 mm wide-end chief ray       ║
- * ║    (15.23 mm, exact trace) clears the rim. G3 rims are estimates  ║
- * ║    that agree with Fig. 10 within about 15 % and are retained.    ║
- * ║    Flat mounting annuli outside the curved surfaces are excluded. ║
+ * ║    L13–L14 16.9, G2 11.9–11.3 mm. Surface 4A's curve end stays at  ║
+ * ║    15.6 mm (Fig. 10 draws it near 16.8 mm), above the Y = 21.6 mm  ║
+ * ║    wide-end chief ray (15.23 mm, exact trace). G3 rims are         ║
+ * ║    estimates that agree with Fig. 10 within about 15 % and are     ║
+ * ║    retained.                                                       ║
+ * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    Fig. 10 ends the concave rear caps of L11 (2A) and L12 (4A) on  ║
+ * ║    flat lands square to the axis. Both faces take the element edge ║
+ * ║    as sd (32.8 / 20.6) with rimCutDepthMm at the traced curve end  ║
+ * ║    (cut radii 21.40 / 15.60 mm), so tracing is unchanged.          ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    Source FNO is 2.91 at both zoom ends while the stop rides in    ║
@@ -327,7 +333,8 @@ const LENS_DATA = {
       label: "2A",
       R: 16.04,
       d: 13.37,
-      sd: 21.4,
+      sd: 32.8,
+      rimCutDepthMm: 15.18,
       asphere: { K: -1, A4: 3.63e-6, A6: 7.91e-9, A8: 2.28e-11, A10: -1.36e-13, A12: 1.21e-16 },
     }, // L11 rear (asph) → air
     { label: "3", R: 88.74, d: 2.0, sd: 20.6, medium: 2 }, // L12 front
@@ -335,7 +342,8 @@ const LENS_DATA = {
       label: "4A",
       R: 27.44,
       d: 10.0,
-      sd: 15.6,
+      sd: 20.6,
+      rimCutDepthMm: 6.24,
       asphere: { K: -1, A4: 2.15e-5, A6: 2.23e-8, A8: 2.16e-11, A10: 1.77e-13, A12: -1.0e-16 },
     }, // L12 rear (asph) → air
     { label: "5", R: -74.77, d: 1.5, sd: 16.9, medium: 3 }, // L13 front (ED)

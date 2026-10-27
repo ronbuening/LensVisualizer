@@ -98,3 +98,19 @@ Added the explicitly inferred zoom iris schedule from source station f-numbers; 
 - Paraxial check against the previous data: EFL and defocus identical at wide/tele infinity and close focus (worst
   |Δ| 5e-15). Physical track grows by 0.545 mm (1.6 × (1 − 1/1.5168)) and now matches the 284.590 mm mechanical sum
   at tele; the rounded 0.98 m close-focus distance is unchanged.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1(a) (PDF p. 26, native 410 ppi raster) was read element by element for flat lands square to the axis at the
+rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 7 (L4 rear, R 57.457) | 0.963 | 7.23 mm | 27.90 mm | 29.0 | 22.86 mm |
+| 12 (L7 rear, R 47.996) | 0.87 | 4.37 mm | 20.01 mm | 23.0 | 14.72 mm |
+
+- Every other concave face (8, 13, 16, 24, 27, 30, 38, 41, 44) runs to its element edge in the figure; no cut.
+- No cap reaches the stop plane at any zoom or focus state (surface 25 clears it by 2.72 mm, surface 27 by 10.69 mm).
+- Both stations still trace the stated f/4.58 and f/5.76. At the wide-end full field the cut on 7 narrows the
+  passing bundle there (side vignetting 21 % → 27 %), as the figure's smaller cap implies; surface 12's cut lies
+  outside the full-field bundle (18.25 mm).
