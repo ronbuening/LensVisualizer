@@ -84,6 +84,75 @@ export function sequentialSurfaceMinT(
 }
 
 /**
+ * Compute how far behind its origin the sequential search for a surface may meet the ray's line.
+ *
+ * Where the next surface of the sequence lies behind the last hit, as a stop plane set inside the sag of the surface
+ * before it, or two neighbouring surfaces that cross, a sequential trace meets it by a step backwards along the line,
+ * as OpticStudio does with a negative thickness. The step goes back no further than one millimetre in front of the
+ * surface's rim-sag plane, the plane `sequentialSurfaceMinT` starts the first surface's search from. There is no step
+ * back to the first surface, whose launch lies in front of the lens; none for a ray that no longer travels toward +z,
+ * which is blocked at the next surface; and none on a folded path, whose generalized trace searches forward only.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @returns positive parametric length behind the origin, or 0 where the trace does not step back
+ */
+export function sequentialSurfaceBackT(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+): number {
+  if (surfaceIndex === 0 || !(direction[2] > 1e-12) || geometry.traversal.kind !== "sequential") return 0;
+  const surface = geometry.surfaces[surfaceIndex];
+  const backZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
+  return backZ < origin[2] ? (origin[2] - backZ) / direction[2] : 0;
+}
+
+/**
+ * Meet a ray's line with the next surface of a sequential trace, in either direction.
+ *
+ * The search runs forward from the origin, between `minT` and `maxT`, as it always has. Only where it finds no root
+ * (`noBracket`) is the line behind the origin searched, out to `sequentialSurfaceBackT`, nearest root first. Such a
+ * hit has negative `t`, `segmentLength` and `opticalPathLength`, so the optical path charges the step with its sign.
+ * A forward hit, and a forward failure of any other reason, is returned unchanged.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param options - forward search bounds and current refractive index
+ * @returns the forward hit; else the backward hit with signed lengths; else the forward failure
+ */
+export function intersectSequentialSurface(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+  options: { minT: number; maxT: number; refractiveIndex: number },
+): SurfaceIntersectionResult {
+  const forward = intersectStateSurface({ origin, direction }, geometry, surfaceIndex, options);
+  if (forward.ok || forward.failureReason !== "noBracket") return forward;
+  const backT = sequentialSurfaceBackT(geometry, surfaceIndex, origin, direction);
+  if (!(backT > 0)) return forward;
+  // The reversed ray's first root in ray order is the line's nearest crossing behind the origin.
+  const reversed: Vec3 = [-direction[0], -direction[1], -direction[2]];
+  const backward = intersectStateSurface({ origin, direction: reversed }, geometry, surfaceIndex, {
+    maxT: backT,
+    refractiveIndex: options.refractiveIndex,
+  });
+  if (!backward.ok) return forward;
+  return {
+    ...backward,
+    t: -backward.t,
+    segmentLength: -backward.segmentLength,
+    opticalPathLength: backward.opticalPathLength === null ? null : -backward.opticalPathLength,
+  };
+}
+
+/**
  * Compute a bounded search length for an explicitly targeted surface.
  *
  * Tilted planes and grazing vector launches cannot rely on z projection alone,
