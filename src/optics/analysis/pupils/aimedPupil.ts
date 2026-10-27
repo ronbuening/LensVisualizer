@@ -142,6 +142,7 @@ interface AimedPupilRayBase {
 export interface AimedPupilAimedRay extends AimedPupilRayBase {
   status: "aimed";
   reason: null;
+  achievedStopMm: readonly [number, number];
   /** Ray origin in optical coordinates; tabs trace exactly this ray. */
   origin: Vec3;
   /** Unit ray direction. */
@@ -156,6 +157,8 @@ export interface AimedPupilAimedRay extends AimedPupilRayBase {
 export interface AimedPupilBlockedRay extends AimedPupilRayBase {
   status: "blocked";
   reason: null;
+  /** Nothing reached the stop: the ray is blocked before it. */
+  achievedStopMm: null;
   origin: Vec3;
   direction: Vec3;
   /** Surface whose clear aperture blocks the ray. */
@@ -363,15 +366,23 @@ export function prepareAimedPupilLaunchForState(
       weight,
       launch: solve.launch,
     };
-    if (solve.status === "aimed") {
+    if (solve.status === "aimed" && solve.stop) {
       const ray = frame.ray(solve.launch[0], solve.launch[1]);
-      return { ...base, status: "aimed", reason: null, origin: ray.origin, direction: ray.direction };
+      return {
+        ...base,
+        achievedStopMm: solve.stop,
+        status: "aimed",
+        reason: null,
+        origin: ray.origin,
+        direction: ray.direction,
+      };
     }
     if (solve.status === "blocked" && solve.blocked) {
       const ray = frame.ray(solve.blocked.launch[0], solve.blocked.launch[1]);
       return {
         ...base,
         launch: solve.blocked.launch,
+        achievedStopMm: null,
         status: "blocked",
         reason: null,
         origin: ray.origin,

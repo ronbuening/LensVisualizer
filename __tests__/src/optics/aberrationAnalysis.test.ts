@@ -2115,6 +2115,36 @@ describe("computeFieldCurvature", () => {
     expect(offAxisField!.sagittalShiftMm).not.toBeCloseTo(offAxisField!.diagnosticSagittalShiftMm!, 5);
   });
 
+  it("leaves out a real-ray field focus whose surviving fan is one-sided", () => {
+    // 3 mm rims 20 mm ahead of the stop cut the full field's tangential fan to −1…0 of the stop radius. A fit to one
+    // side reads coma as defocus, so that field has no real-ray focus; at 0.75 the fan still reaches past 0.25.
+    const base = buildSimplePositiveElementLens();
+    const L = build({
+      ...constructionFixtureData(base),
+      key: "test-field-curve-one-sided-fan",
+      surfaces: [
+        { label: "1", R: 50, nd: 1.5168, sd: 3, d: 5, elemId: 1 },
+        { label: "2", R: 1e15, nd: 1, sd: 3, d: 20, elemId: 0 },
+        { label: "STO", R: 1e15, nd: 1, sd: 2, d: 40, elemId: 0 },
+      ],
+    });
+    const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const result = computeFieldCurvature(request)!;
+    const stateGeometry = computeAnalysisFieldGeometryAtState(0, 0, L, 0);
+    const tangentialReach = (fieldFraction: number) => {
+      const geometry = computeOffAxisFieldGeometryScalar(request.preparedGeometry, fieldFraction, stateGeometry)!;
+      const bundle = traceOrthogonalOffAxisBundle(request, "tangential", MERIDIONAL_COMA_SAMPLE_COUNT, geometry)!;
+      return Math.max(...bundle.samples.map((sample) => sample.pupilFraction ?? 0));
+    };
+    const at = (fieldFraction: number) => result.fields.find((field) => field.fieldFraction === fieldFraction)!;
+    expect(tangentialReach(1)).toBeLessThan(0.25);
+    expect(at(1).usable).toBe(true);
+    expect(at(1).diagnosticTangentialShiftMm).toBeUndefined();
+    expect(at(1).diagnosticSagittalShiftMm).toBeUndefined();
+    expect(tangentialReach(0.75)).toBeGreaterThanOrEqual(0.25);
+    expect(at(0.75).diagnosticTangentialShiftMm).toBeDefined();
+  });
+
   it("shows measurable astigmatic separation away from center", () => {
     const L = build(NikonAF28f14DRaw);
     const { z: zPos } = doLayout(0, 0, L);

@@ -4,6 +4,8 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ChromaticFieldCurvaturePlot from "../../../../../src/components/display/analysis/ChromaticFieldCurvaturePlot.js";
 import FieldCurvatureMeanPlot from "../../../../../src/components/display/analysis/FieldCurvatureMeanPlot.js";
+import FieldCurvaturePlot from "../../../../../src/components/display/analysis/FieldCurvaturePlot.js";
+import AstigmatismPlot from "../../../../../src/components/display/analysis/AstigmatismPlot.js";
 import VignettingChart from "../../../../../src/components/display/analysis/VignettingChart.js";
 import LocaInsetWidget from "../../../../../src/components/diagram/LocaInsetWidget.js";
 import ChromaticOverlayContent from "../../../../../src/components/diagram/ChromaticOverlayContent.js";
@@ -100,6 +102,29 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("Current image plane")).toBeTruthy();
     expect(container.querySelector("polyline")).toBeNull();
     expect(container.querySelector("polygon")).toBeNull();
+  });
+
+  it("leaves a field without a real-ray focus out of the real-ray plots", () => {
+    const measured = (sample: FieldCurvatureFieldResult): FieldCurvatureFieldResult => ({
+      ...sample,
+      diagnosticTangentialShiftMm: 0.01,
+      diagnosticSagittalShiftMm: -0.01,
+      diagnosticAstigmaticDifferenceMm: -0.02,
+    });
+    const all = fieldCurvatureResult([measured(field(0, 0, 0)), measured(field(0.5, 0, 5)), measured(field(1, 0, 10))]);
+    const partial = fieldCurvatureResult([measured(field(0, 0, 0)), measured(field(0.5, 0, 5)), field(1, 0, 10)]);
+    const circles = (element: React.ReactElement) => {
+      const { container } = render(element);
+      const count = container.querySelectorAll("circle").length;
+      cleanup();
+      return count;
+    };
+    expect(circles(<FieldCurvaturePlot result={partial} t={themes.dark} />)).toBe(
+      circles(<FieldCurvaturePlot result={all} t={themes.dark} />) - 1,
+    );
+    expect(circles(<AstigmatismPlot result={partial} t={themes.dark} mode="realRay" />)).toBe(
+      circles(<AstigmatismPlot result={all} t={themes.dark} mode="realRay" />) - 1,
+    );
   });
 
   it("renders violet values in chromatic field-curvature traces", () => {
