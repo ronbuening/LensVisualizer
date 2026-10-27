@@ -34,6 +34,7 @@ export {
   normalLinePgFPrime,
 } from "./chromatic/materialResolver.js";
 export { LINE_NM } from "./chromatic/spectralLines.js";
-export { chromaticRayOmission, selectChromaticZone } from "./chromatic/zoneSelection.js";
+export { chromaticRayOmission, chromaticSpreadFromRays, selectChromaticZone } from "./chromatic/zoneSelection.js";
+export type { ChromaticFanRay } from "./chromatic/zoneSelection.js";
 
 export type { DispersionQuality, SurfaceIndexFn, SurfaceDispersion } from "../types/dispersion.js";

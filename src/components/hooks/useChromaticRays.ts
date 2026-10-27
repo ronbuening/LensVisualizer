@@ -13,7 +13,7 @@ import { stateWithZ } from "../../optics/optics.js";
 import { prepareRuntimeState } from "../../optics/optics.js";
 import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../../optics/analysis.js";
-import { chromaticRayOmission, computeChromaticRayFanSpread, selectChromaticZone } from "../../optics/chromatic.js";
+import { chromaticSpreadFromRays } from "../../optics/chromatic.js";
 import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
 import { traceRayChromatic, traceRayVectorChromatic } from "../../optics/optics.js";
 import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
@@ -23,7 +23,6 @@ import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type {
   RuntimeLens,
   ChromaticChannel,
-  ChromaticChannelOmission,
   ChromaticRayFanSpread,
   ChromaticRayFanSpreadByAxis,
 } from "../../types/optics.js";
@@ -98,36 +97,8 @@ function spreadForAxis(
 ): ChromaticRayFanSpread | null {
   const axisRays = chromaticRays.filter((r) => r.axis === axis);
   if (axisRays.length === 0) return null;
-
-  const candidateFractions = Array.from(new Set(axisRays.map((r) => r.fraction))).sort((a, b) => {
-    const absDelta = Math.abs(b) - Math.abs(a);
-    return Math.abs(absDelta) > 1e-12 ? absDelta : b - a;
-  });
-
-  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
-  function* zones() {
-    for (const fraction of candidateFractions) {
-      const marginalRays: MarginalRays = {};
-      const omittedChannels: ChromaticChannelOmission[] = [];
-      for (const channel of channels) {
-        const r = axisRays.find((ray) => ray.channel === channel && Math.abs(ray.fraction - fraction) < 1e-12);
-        const omission = r ? chromaticRayOmission(r) : "untraced";
-        if (omission) omittedChannels.push({ channel, reason: omission });
-        else if (r) marginalRays[channel] = { y: r.y, u: r.u, z: r.z, clipped: false };
-      }
-      yield { fraction, marginalRays, omittedChannels };
-    }
-  }
-
-  const chosen = selectChromaticZone(zones(), channels.length);
-  if (!chosen) return null;
-  return {
-    ...computeChromaticRayFanSpread(chosen.marginalRays, IMG_MM, lastSurfaceZ),
-    axis,
-    fraction: chosen.fraction,
-    channels: Object.keys(chosen.marginalRays) as ChromaticChannel[],
-    omittedChannels: chosen.omittedChannels,
-  };
+  const spread = chromaticSpreadFromRays(axisRays, channels, IMG_MM, lastSurfaceZ);
+  return spread && { ...spread, axis };
 }
 
 function compilePerspectiveChromaticSample(
