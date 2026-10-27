@@ -20,3 +20,28 @@ as one element. No figure measurement was used (the PDF is image-only; Table 1 w
 The validator accepts the new values, every station now reaches 100% of the corner (53.46° / 39.61° / 27.34°) with
 every rim clear, and the image-circle floor still reports nothing undersized. The tightest remaining rim at the wide
 corner is surface 2 (chief ray 18.70 mm, sd 19.2). No aspheric surface changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 2, sheet 1 of 20, native 300 ppi raster, rotated so the axis runs left to right) was read element by
+element for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Both halves
+of the section agree.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L12 rear, R 13.299) | 0.70 | 6.62 mm | 11.50 mm | 11.5 → 13.2 | 2.32 mm |
+| 6 (L13 rear, R 13.2979) | 0.83 | 4.00 mm | 9.51 mm | 9.5 → 10.2 | 3.03 mm |
+
+- Both faces had a stored `sd` below their front partner's (15.2 and 10.2) while the figure draws each element's
+  edge, parallel to the axis, at the front face's height and a land from there down to the cap. Each `sd` rises to
+  the edge and the cut ends the cap at the old `sd` (depth = sag there, rounded up), so no traced ray changes.
+  Surface 4 stops at 13.2 because a sphere of |R| 13.299 cannot reach the 15.2 front rim.
+- The figure's lands are longer than the ones drawn now (cap end 0.70 and 0.83 of the edge, against 11.50 / 15.2 =
+  0.76 and 9.51 / 10.2 = 0.93); moving the caps inward to match would clip inside the stored rims and was not done.
+  Surface 4's land in the figure sits at the plane of L13's front face.
+- Every other concave face (2, 5, 8, 12, 13, 14, 19A, 21, 22, 23) runs to its element edge in the figure; no cut.
+- No cap reaches the stop plane at any zoom state (surface 14 clears it by 1.35 mm).
+- The aperture audit is unchanged: all three stations trace their stated f-number, with no rim, trace, iris or rim-cut
+  limiter. The clear-aperture probe's rows are unchanged at the middle and tele corners and at 49° at wide (its
+  tracer finds no wide corner ray beyond that); the engine's wide half-field moves 42.0551° → 42.0556°, from the
+  0.007 mm by which surface 6's cut radius exceeds its old rim.

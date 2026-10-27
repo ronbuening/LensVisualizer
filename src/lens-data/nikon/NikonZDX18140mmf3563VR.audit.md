@@ -38,3 +38,28 @@ Patent: WO 2022/264542 A1
   glass that only matched within tolerance. Both now use Hikari J-BK7A (1.51680 / 64.13), the nearest catalog row and
   the vendor this file already uses for L23, L36 and L51. The analysis glass entries and source list follow; the
   source list's duplicate item 4 was renumbered.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 56, drawing sheet 1/11, native 300 ppi raster; wide end, infinity focus) was read element by element
+on the half without leader lines and cross-checked on the other half, for flat lands square to the axis at the rims of
+concave faces, the shape `rimCutDepthMm` draws. The figure is to scale (about 17.9 px/mm along the axis).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 30 (L51 front, R −16.37) | 0.905 (160/177 px) | 3.38 mm | 9.96 mm | 11.0 | 2.82 mm |
+| 7 (L21 rear, R 13.538) — not cut | 0.77 (169/220 px) | (3.63 mm) | (9.23 mm) | 12.0 | 4.56 mm |
+
+- Face 7: the figure's L21 edge (220 px, about 12.2 mm) matches face 7's stored sd 12.0, so the cut was sized on it;
+  face 6's larger sd 14.0 is not a raise target (it also exceeds face 7's |R|). The cut was not authored: at the wide
+  end the full-field bundle reaches 9.97 mm on face 7 (chief 8.61 mm), and a 9.23 mm cut radius would raise side
+  vignetting there from 0 % to 55 %.
+- Every other concave face runs to its element edge: 5 (L13 rear), 8 and 9 (L22), 12 (L24 front, whose cap meets the
+  corner beside L23's rear rim), 29 (L42 rear) and 32 (L52 front, nearly flat). The short square stroke at L23's rear
+  corner sits on a convex face, whose rim bends into the glass, so it is not a rim-cut candidate.
+- No cap reaches the stop plane at any zoom or focus state: both stop neighbours (13 and 15A) curve away from it.
+- Aperture audit unchanged: the wide, middle and tele stations still trace f/3.77, f/5.21 and f/6.83 against the
+  stated f/3.5, f/5.0 and f/6.3, limited by 15A as before, with no rim-cut limiter. The cut on 30 lies outside the
+  full-field bundle at every station (at most 9.59 mm at the patent's ω = 39.178° / 15.279° / 5.740°), so vignetting
+  there stays 0 %. The engine's wide-end half-field estimate falls from 40.82° to 39.35°, still above the patent's
+  39.178°; the middle and tele estimates are unchanged.
