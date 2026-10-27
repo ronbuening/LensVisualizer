@@ -1,11 +1,12 @@
 /**
- * Chromatic ray fans — request-facing first-usable-fraction ray-trace summaries.
+ * Chromatic ray fans — request-facing ray-trace summaries at the outermost fraction every channel passes.
  */
 
 import type { PreparedGeometry } from "../../types.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import { chromaticRayOmission, selectChromaticZone } from "../../chromatic/zoneSelection.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import { computeOffAxisFieldGeometry } from "../aberration/offAxis.js";
 import { prepareAxialZoneLaunch } from "../aberration/shared.js";
@@ -14,7 +15,12 @@ import type { AimedPupilLaunch, AimedPupilTrace } from "../pupils/aimedPupil.js"
 import { thick } from "../../state/layout.js";
 import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { prepareState } from "../../state/preparedGeometry.js";
-import type { ChromaticChannel, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticChannelOmission,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+} from "../../../types/optics.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { AnalysisRequest } from "../request.js";
 
@@ -118,40 +124,43 @@ function computeSpreadFromFractions(
   let unaimedRayCount = 0;
   let blockedRayCount = 0;
 
-  for (const fraction of fractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
-
-    for (const channel of channels) {
-      attemptedRayCount++;
-      const ray = trace(fraction, channel);
-      if (ray.unaimed) unaimedRayCount++;
-      if (ray.blocked) blockedRayCount++;
-      if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
-        marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
+  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
+  function* zones() {
+    for (const fraction of fractions) {
+      const marginalRays: MarginalRays = {};
+      const omittedChannels: ChromaticChannelOmission[] = [];
+      for (const channel of channels) {
+        attemptedRayCount++;
+        const ray = trace(fraction, channel);
+        if (ray.unaimed) unaimedRayCount++;
+        if (ray.blocked) blockedRayCount++;
+        // Unlike LoCA's zones, an unaimed fan ray only leaves its channel out; the search goes on.
+        const omission = ray.unaimed ? "unaimed" : chromaticRayOmission(ray);
+        if (omission) omittedChannels.push({ channel, reason: omission });
+        else marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
       }
-    }
-
-    const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
-    if (validChannels.length >= 2) {
-      return {
-        spread: {
-          ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ),
-          axis,
-          fraction,
-          channels: validChannels,
-        },
-        attemptedRayCount,
-        unaimedRayCount,
-        blockedRayCount,
-      };
+      yield { fraction, marginalRays, omittedChannels };
     }
   }
 
-  return { spread: null, attemptedRayCount, unaimedRayCount, blockedRayCount };
+  const chosen = selectChromaticZone(zones(), channels.length);
+  const spread: ChromaticRayFanSpread | null = chosen
+    ? {
+        ...computeChromaticRayFanSpread(chosen.marginalRays, imagePlaneZ, lastSurfaceZ),
+        axis,
+        fraction: chosen.fraction,
+        channels: Object.keys(chosen.marginalRays) as ChromaticChannel[],
+        omittedChannels: chosen.omittedChannels,
+      }
+    : null;
+  return { spread, attemptedRayCount, unaimedRayCount, blockedRayCount };
 }
 
 /**
- * Trace axis-split chromatic fans at the first usable marginal fraction.
+ * Trace axis-split chromatic fans at the outermost fraction every requested channel passes.
+ *
+ * Fractions are searched by magnitude, positive side first. When no fraction passes every channel, a fan falls back
+ * to the first that two pass and lists the others in its spread's `omittedChannels`.
  *
  * @param request - current geometry, apertures and fan sampling; fieldGeometry is intentionally ignored
  * @param options - optional explicit channel, fraction and field-angle controls

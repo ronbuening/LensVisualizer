@@ -52,6 +52,7 @@ const OMISSION_REASON_LABEL: Record<ChromaticChannelOmissionReason, string> = {
   vignetted: "vignetted",
   "no-axis-crossing": "no axis crossing",
   unaimed: "unaimed",
+  untraced: "not traced",
 };
 
 /** Name the channels a spread leaves out, grouped by reason: "B, V vignetted"; empty when none is left out. */

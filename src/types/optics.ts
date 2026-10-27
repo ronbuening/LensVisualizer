@@ -672,8 +672,11 @@ export interface LayoutResult {
 
 export type ChromaticChannel = "R" | "G" | "B" | "V";
 
-/** Why a selected channel has no ray in a chromatic spread's zone. */
-export type ChromaticChannelOmissionReason = "vignetted" | "no-axis-crossing" | "unaimed";
+/**
+ * Why a selected channel has no ray in a chromatic spread's zone or field: an aperture clips it, it leaves parallel to
+ * the axis, no ray could be aimed at its stop target (or chief), or the display sampler traced none.
+ */
+export type ChromaticChannelOmissionReason = "vignetted" | "no-axis-crossing" | "unaimed" | "untraced";
 
 /** A selected channel a chromatic spread leaves out, with why. */
 export interface ChromaticChannelOmission {
@@ -689,7 +692,7 @@ export interface ChromaticRayFanSpread {
   axis?: "onAxis" | "offAxis";
   fraction?: number;
   channels?: ChromaticChannel[];
-  /** Selected channels left out of `channels`, each with why (set by LoCA; empty when every one is compared). */
+  /** Selected channels left out of `channels`, each with why; empty when every one is compared. */
   omittedChannels?: ChromaticChannelOmission[];
 }
 

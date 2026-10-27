@@ -13,7 +13,7 @@ import { stateWithZ } from "../../optics/optics.js";
 import { prepareRuntimeState } from "../../optics/optics.js";
 import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../../optics/analysis.js";
-import { computeChromaticRayFanSpread } from "../../optics/chromatic.js";
+import { chromaticRayOmission, computeChromaticRayFanSpread, selectChromaticZone } from "../../optics/chromatic.js";
 import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
 import { traceRayChromatic, traceRayVectorChromatic } from "../../optics/optics.js";
 import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
@@ -23,6 +23,7 @@ import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type {
   RuntimeLens,
   ChromaticChannel,
+  ChromaticChannelOmission,
   ChromaticRayFanSpread,
   ChromaticRayFanSpreadByAxis,
 } from "../../types/optics.js";
@@ -91,6 +92,7 @@ function longitudinalFractionsForDisplay(L: RuntimeLens, currentEPSD: number): n
 function spreadForAxis(
   chromaticRays: ChromaticRaySegment[],
   axis: ChromaticRaySegment["axis"],
+  channels: readonly ChromaticChannel[],
   IMG_MM: number,
   lastSurfaceZ: number,
 ): ChromaticRayFanSpread | null {
@@ -102,20 +104,30 @@ function spreadForAxis(
     return Math.abs(absDelta) > 1e-12 ? absDelta : b - a;
   });
 
-  for (const fraction of candidateFractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
-    for (const r of axisRays) {
-      if (Math.abs(r.fraction - fraction) < 1e-12 && !r.clipped && Math.abs(r.u) > 1e-15) {
-        marginalRays[r.channel] = { y: r.y, u: r.u, z: r.z, clipped: false };
+  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
+  function* zones() {
+    for (const fraction of candidateFractions) {
+      const marginalRays: MarginalRays = {};
+      const omittedChannels: ChromaticChannelOmission[] = [];
+      for (const channel of channels) {
+        const r = axisRays.find((ray) => ray.channel === channel && Math.abs(ray.fraction - fraction) < 1e-12);
+        const omission = r ? chromaticRayOmission(r) : "untraced";
+        if (omission) omittedChannels.push({ channel, reason: omission });
+        else if (r) marginalRays[channel] = { y: r.y, u: r.u, z: r.z, clipped: false };
       }
-    }
-    const channels = Object.keys(marginalRays) as ChromaticChannel[];
-    if (channels.length >= 2) {
-      return { ...computeChromaticRayFanSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
+      yield { fraction, marginalRays, omittedChannels };
     }
   }
 
-  return null;
+  const chosen = selectChromaticZone(zones(), channels.length);
+  if (!chosen) return null;
+  return {
+    ...computeChromaticRayFanSpread(chosen.marginalRays, IMG_MM, lastSurfaceZ),
+    axis,
+    fraction: chosen.fraction,
+    channels: Object.keys(chosen.marginalRays) as ChromaticChannel[],
+    omittedChannels: chosen.omittedChannels,
+  };
 }
 
 function compilePerspectiveChromaticSample(
@@ -426,7 +438,7 @@ export default function useChromaticRays({
     if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
-    return spreadForAxis(chromaticRays, "offAxis", IMG_MM, zPos[L.N - 1]);
+    return spreadForAxis(chromaticRays, "offAxis", channels, IMG_MM, zPos[L.N - 1]);
   }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, chromaticResult.error, IMG_MM, zPos, L]);
 
   const chromaticRayFanSpreads = useMemo(

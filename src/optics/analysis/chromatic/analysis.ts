@@ -15,6 +15,7 @@ import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.j
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
 import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import { chromaticRayOmission, selectChromaticZone } from "../../chromatic/zoneSelection.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
@@ -197,10 +198,9 @@ export function computeLongitudinalChromaticFocus(
       }
       const ray = zones.trace.meridional(aimed);
       clippedByChannel[channel] = ray.clipped;
-      if (ray.clipped) {
-        omittedChannels.push({ channel, reason: "vignetted" });
-      } else if (Math.abs(ray.u) <= 1e-15) {
-        omittedChannels.push({ channel, reason: "no-axis-crossing" });
+      const omission = chromaticRayOmission(ray);
+      if (omission) {
+        omittedChannels.push({ channel, reason: omission });
       } else {
         marginalRays[channel] = {
           y: ray.y,
@@ -212,22 +212,14 @@ export function computeLongitudinalChromaticFocus(
     }
     return { marginalFraction, marginalRays, clippedByChannel, omittedChannels };
   };
-  // Every wavelength crosses the stop at the same zone, but a rim behind it can vignette one colour before another:
-  // compare every requested channel at the outermost zone they all pass, and only failing that at the first two pass.
-  let chosen: ReturnType<typeof zoneRays> | undefined;
-  let firstTwoChannelZone: ReturnType<typeof zoneRays> | undefined;
-  for (const fraction of fractions) {
-    // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
-    if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) break;
-    const candidate = zoneRays(fraction);
-    if (candidate.omittedChannels.length === 0) {
-      chosen = candidate;
-      break;
+  function* candidates() {
+    for (const fraction of fractions) {
+      // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
+      if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) return;
+      yield zoneRays(fraction);
     }
-    const comparedCount = channels.length - candidate.omittedChannels.length;
-    if (comparedCount >= 2) firstTwoChannelZone ??= candidate;
   }
-  chosen ??= firstTwoChannelZone;
+  const chosen = selectChromaticZone(candidates(), channels.length);
   if (chosen) {
     const { marginalFraction, marginalRays, clippedByChannel, omittedChannels } = chosen;
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
