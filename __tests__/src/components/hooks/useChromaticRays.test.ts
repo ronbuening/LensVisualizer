@@ -24,7 +24,7 @@ const Sonnar = catalogLensData(SonnarRaw);
 const ApoLanthar = catalogLensData(ApoLantharRaw);
 const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
-function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
+function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar, fNumberOverride?: number) {
   const L = buildLens(data);
   const ref = doLayout(0, 0, L);
   const IMG_MM = ref.imgZ;
@@ -41,7 +41,7 @@ function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
     scaleRatio: null,
   });
   const currentFOPEN = fopenAtZoom(zoomT, L);
-  const fNumber = currentFOPEN;
+  const fNumber = fNumberOverride ?? currentFOPEN;
   const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
   const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
   const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
@@ -294,7 +294,14 @@ describe("useChromaticRays", () => {
   });
 
   it("computes chromaticRayFanSpread with 2+ channels", () => {
-    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
+    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
+      0,
+      0,
+      Sonnar,
+      2,
+    );
     const { result } = renderHook(() =>
       useChromaticRays({
         L,
@@ -391,7 +398,14 @@ describe("useChromaticRays", () => {
   });
 
   it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
-    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
+    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
+      0,
+      0,
+      Sonnar,
+      2,
+    );
     const getLoca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {
       const { result } = renderHook(() =>
         useChromaticRays({

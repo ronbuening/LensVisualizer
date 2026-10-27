@@ -7,12 +7,15 @@
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 
-import { prepareRayTrace } from "../../trace/rayAdapters.js";
-import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
+import type { AimedObjectPlaneField, AimedPupilLaunch, AimedPupilRay, AimedPupilTrace } from "../pupils/aimedPupil.js";
 
-/** Candidate fractions of the entrance pupil for the marginal ray sample. */
+/**
+ * Candidate stop fractions for the marginal ray sample. Each zone is aimed at that fraction of the stop radius, so the
+ * stop never clips it; a later candidate is tried only when another aperture vignettes the earlier one.
+ */
 export const MARGINAL_FRACS = MARGINAL_PUPIL_FRACTIONS;
 
 /** Unlike the orthogonal fan, SA profile zones are positive, rim-dense and omit both endpoints. */
@@ -153,34 +156,73 @@ export function generalizedImagePlaneIntercept(
   return imagePlaneCoordinate(y, u, referenceZ, L, L.imagePlane?.z ?? referenceZ);
 }
 
+/** The axial object at infinity: a collimated launch along the axis, whose chief is the axis itself. */
+const AXIAL_FIELD: AimedObjectPlaneField = { uField: 0, yChief: 0 };
+
+/** On-axis meridional zones aimed at the stop, one launch per channel. */
+export interface AxialZoneLaunch {
+  launch: AimedPupilLaunch;
+  trace: AimedPupilTrace;
+  /** Aimed ray of a signed stop fraction the launch was prepared with, or null. */
+  ray(signedFraction: number): AimedPupilRay | null;
+  /** True when no ray could be aimed at either side of a zone pair. */
+  unaimed(fraction: number): boolean;
+}
+
 /**
- * Trace one real on-axis ray and derive intercept/focus metrics.
+ * Aim on-axis zones at the stop: zone f is the meridional ray from the axial object that crosses the stop at f·R.
+ *
+ * On the axis this is a one-dimensional solve for the launch height; the sagittal launch coordinate stays zero.
+ *
+ * @param request - prepared geometry and current stop radius
+ * @param signedFractions - signed stop fractions, each in [-1, 1]
+ * @param channel - chromatic channel the zones are aimed and traced at
+ * @returns zone launch, or null when the request has no stop
+ */
+export function prepareAxialZoneLaunch(
+  request: AnalysisRequest,
+  signedFractions: readonly number[],
+  channel?: ChromaticChannel,
+): AxialZoneLaunch | null {
+  const samples = signedFractions.map((yFraction) => ({ xFraction: 0, yFraction }));
+  const launch = prepareAimedPupilLaunch(request, samples, AXIAL_FIELD, channel);
+  if (launch === null) return null;
+  const byFraction = new Map(signedFractions.map((fraction, index) => [fraction, launch.rays[index]]));
+  const ray = (signedFraction: number) => byFraction.get(signedFraction) ?? null;
+  return {
+    launch,
+    trace: prepareAimedPupilTrace(request.preparedGeometry, launch, channel),
+    ray,
+    unaimed: (fraction) => ray(fraction)?.status === "unaimed" || ray(-fraction)?.status === "unaimed",
+  };
+}
+
+/** Signed zone list for symmetric pairs: +f then −f for every fraction. */
+export function symmetricZoneFractions(fractions: readonly number[]): number[] {
+  return fractions.flatMap((fraction) => [fraction, -fraction]);
+}
+
+/**
+ * Trace one real on-axis zone aimed at the stop and derive intercept/focus metrics.
  *
  * @param request - prepared geometry and aperture snapshot
  * @param lastSurfZ - last surface vertex z coordinate in mm
  * @param imagePlaneZ - image-plane z coordinate in mm
- * @param signedFraction - signed entrance-pupil fraction
- * @returns real-ray hit metrics, or null when clipped/degenerate
+ * @param signedFraction - signed stop fraction the zone crosses the stop at
+ * @param zones - aimed zones including this fraction
+ * @returns real-ray hit metrics, or null when unaimed, vignetted or degenerate
  */
 export function computeRealRayHit(
   request: AnalysisRequest,
   lastSurfZ: number,
   imagePlaneZ: number,
   signedFraction: number,
-  prepared?: PreparedRayTrace,
+  zones: AxialZoneLaunch,
 ): RealRayHit | null {
   const L = runtimeView(request.preparedGeometry.lens);
-  const zPos = request.preparedGeometry.z as number[];
-  const focusT = request.preparedGeometry.focusT;
-  const zoomT = request.preparedGeometry.zoomT;
-  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
-  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
-  const aberrationT = request.preparedGeometry.aberrationT;
-
-  const h = signedFraction * currentEPSD;
-  const adapter =
-    prepared ?? prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
-  const ray = adapter.ray(h, 0);
+  const aimed = zones.ray(signedFraction);
+  if (aimed === null || aimed.status === "unaimed") return null;
+  const ray = zones.trace.meridional(aimed);
   if (ray.clipped) return null;
 
   const terminalPoint = ray.reachedImagePlane ? ray.pts[ray.pts.length - 1] : undefined;
@@ -205,7 +247,7 @@ export function computeRealRayHit(
 }
 
 /**
- * Trace symmetric plus/minus pupil rays and average their intercepts.
+ * Trace symmetric plus/minus zones and average their intercepts.
  *
  * Symmetric pairing prevents one-sided clipping or decentering from biasing the
  * on-axis spherical-aberration reference.
@@ -213,7 +255,8 @@ export function computeRealRayHit(
  * @param request - prepared geometry and aperture snapshot
  * @param lastSurfZ - last surface vertex z coordinate in mm
  * @param imagePlaneZ - image-plane z coordinate in mm
- * @param fraction - positive entrance-pupil fraction
+ * @param fraction - positive stop fraction
+ * @param zones - aimed zones including ±fraction
  * @returns averaged real-ray sample, or null when either side fails
  */
 // Unlike sampleOrthogonalPupilFan, trace only the requested +/- pair and average its axial/spherical readouts.
@@ -222,19 +265,10 @@ export function computeSymmetricRealSample(
   lastSurfZ: number,
   imagePlaneZ: number,
   fraction: number,
-  preparedInput: PreparedRayTrace | undefined = undefined,
+  zones: AxialZoneLaunch,
 ): SymmetricRealSample | null {
-  const L = runtimeView(request.preparedGeometry.lens);
-  const zPos = request.preparedGeometry.z as number[];
-  const focusT = request.preparedGeometry.focusT;
-  const zoomT = request.preparedGeometry.zoomT;
-  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
-  const aberrationT = request.preparedGeometry.aberrationT;
-  const prepared =
-    preparedInput ?? prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
-
-  const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
-  const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
+  const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, zones);
+  const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, zones);
   if (plusHit === null || minusHit === null) return null;
 
   return {

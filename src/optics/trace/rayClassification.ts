@@ -1,17 +1,17 @@
 /**
- * MTF ray classification — separates physical clipping from rays the tracer could not resolve.
+ * Ray classification — separates physical clipping from rays the tracer could not resolve.
  *
  * A pupil sample that misses a clear aperture carries no flux, but an unresolved intersection
  * inside the aperture silently removes real flux. The miss proofs here are independent of the
  * trace solver: analytic for flat and spherical caps, and a Lipschitz-bounded interval test
  * for conic/polynomial aspheres. Anything unproven stays "failed" so the caller can bound its
- * effect on the OTF.
+ * effect. The MTF and the aimed pupil launch share it.
  */
-import type { EngineTraceResult, TraceCapture } from "../../trace/types.js";
-import type { CompiledStateSurface, PreparedGeometry, Vec3 } from "../../types.js";
-import { evaluateAperture } from "../../trace/aperture.js";
+import type { EngineTraceResult, TraceCapture } from "./types.js";
+import type { CompiledStateSurface, PreparedGeometry, Vec3 } from "../types.js";
+import { evaluateAperture } from "./aperture.js";
 
-export type MtfRayClass = "valid" | "blocked" | "failed";
+export type TraceRayClass = "valid" | "blocked" | "failed";
 
 /** Radial samples used to bound an asphere's sag and slope over its clear aperture. */
 const PROFILE_SAMPLES = 256;
@@ -31,7 +31,7 @@ interface ProfileBounds {
 const boundsBySurface = new WeakMap<CompiledStateSurface, ProfileBounds>();
 
 /**
- * Classify one exact trace for MTF sampling.
+ * Classify one exact trace as a flux-carrying sample.
  *
  * Total internal reflection and proven aperture misses are physical blocking. Other failures
  * are reported as "failed": the ray may carry flux the estimate cannot see.
@@ -41,11 +41,11 @@ const boundsBySurface = new WeakMap<CompiledStateSurface, ProfileBounds>();
  * @param stopRadius - current physical stop radius in mm
  * @returns valid, blocked, or failed
  */
-export function mtfTraceClassification(
+export function traceRayClassification(
   trace: EngineTraceResult<TraceCapture>,
   state?: PreparedGeometry,
   stopRadius?: number,
-): MtfRayClass {
+): TraceRayClass {
   if (trace.status === "ok") return "valid";
   if (trace.failureReason === "totalInternalReflection" || (trace.status === "clipped" && !trace.failureReason))
     return "blocked";

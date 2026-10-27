@@ -7,7 +7,7 @@ import { toLensDataInput } from "../../../../src/optics/prescription/v1/toLensDa
 import { build, buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 import foldedFixture from "../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import { traceRayChromatic } from "../../../../src/optics/trace/rayAdapters.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
 import {
   computeChromaticAnalysis,
@@ -15,7 +15,6 @@ import {
   computeLongitudinalChromaticFocus,
 } from "../../../../src/optics/analysis/chromatic/analysis.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
-import { traceChiefRelativeSkewRayChromatic } from "../../../../src/optics/trace/chiefRelative.js";
 import {
   computeOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
@@ -41,14 +40,14 @@ describe("chromatic analysis helpers", () => {
     const z = [...state.z];
     expect(L.isFoldedOptics).toBe(true);
     expect(state.imgZ - L.imagePlane.z).toBeCloseTo(8.05, 12);
-    const result = computeChromaticRayFanAnalysis(
-      createAnalysisRequest({
-        preparedState: stateWithZ(prepareRuntimeState(L, 1, 0, 0), z),
-        dynamicEFL: L.EFL,
-        currentEPSD: L.EP.epSD,
-        currentPhysStopSD: L.stopPhysSD,
-      }),
-    );
+    // The stop is the first surface, so its radius is the entrance pupil's.
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 1, 0, 0), z),
+      dynamicEFL: L.EFL,
+      currentEPSD: L.EP.epSD,
+      currentPhysStopSD: L.EP.epSD,
+    });
+    const result = computeChromaticRayFanAnalysis(request);
     const offAxis = result.spreads.offAxis!;
     const onAxis = result.spreads.onAxis!;
     expect(offAxis).not.toBeNull();
@@ -59,24 +58,26 @@ describe("chromatic analysis helpers", () => {
     )!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
     if (isOffAxisVectorFieldGeometry(geometry)) return;
+    // Hold the reducer to traces of the exported aimed rays.
+    const aimedRay = (
+      fraction: number,
+      field: Parameters<typeof prepareAimedPupilLaunch>[2],
+      channel: "R" | "G" | "B" | "V",
+    ) => {
+      const launch = prepareAimedPupilLaunch(request, [{ xFraction: 0, yFraction: fraction }], field, channel)!;
+      const ray = launch.rays[0];
+      expect(ray.status).toBe("aimed");
+      if (ray.status === "unaimed") throw new Error("unaimed");
+      return { ray, trace: prepareAimedPupilTrace(request.preparedGeometry, launch, channel) };
+    };
     for (const channel of result.channels) {
-      const ray = traceChiefRelativeSkewRayChromatic(
-        0,
-        offAxis.fraction!,
-        geometry.yChief,
-        geometry.uField,
-        L.EP.epSD,
-        1,
-        0,
-        L.stopPhysSD,
-        true,
-        L,
-        channel,
-      );
+      const off = aimedRay(offAxis.fraction!, geometry, channel);
+      const ray = off.trace.skew(off.ray);
       expect(ray.clipped).toBe(false);
       expect(offAxis.imagePlaneHeights[channel]).toBeCloseTo(ray.y, 12);
       expect(offAxis.axialIntercepts[channel]).toBeCloseTo(state.imgZ - ray.y / ray.uy, 12);
-      const axialRay = traceRayChromatic(onAxis.fraction! * L.EP.epSD, 0, z, 1, 0, L.stopPhysSD, true, L, channel);
+      const axial = aimedRay(onAxis.fraction!, { uField: 0, yChief: 0 }, channel);
+      const axialRay = axial.trace.meridional(axial.ray);
       expect(axialRay.reachedImagePlane).toBe(true);
       expect(axialRay.pts.at(-1)![0]).toBeCloseTo(state.imgZ, 12);
       expect(onAxis.imagePlaneHeights[channel]).toBeCloseTo(axialRay.y, 12);
@@ -105,60 +106,46 @@ describe("chromatic analysis helpers", () => {
     expect(result.offAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
   });
 
-  it("rejects the first scalar off-axis fraction and reduces all surviving channels at the next", () => {
-    const { L, z } = chromaticFixture();
-    const ep = 2;
-    const stop = 1;
-    const result = computeChromaticRayFanAnalysis(
-      createAnalysisRequest({
-        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), z),
-        dynamicEFL: L.EFL,
-        currentEPSD: ep,
-        currentPhysStopSD: stop,
-      }),
-      {
-        offAxisFieldFraction: 0.01,
-        offAxisFractions: [1, 0.1],
-      },
-    );
+  it("rejects an off-axis fraction an element rim vignettes and reduces all surviving channels at the next", () => {
+    // Stop and element rims are both 2 mm; the field's rays fall, so the rim ray aimed at -R leaves the element rim.
+    const L = buildChromaticPositiveElementLens("test-chromatic-vignetting-element", { elementSd: 2 });
+    const { z } = doLayout(0, 0, L);
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), z),
+      dynamicEFL: L.EFL,
+      currentEPSD: 2,
+      currentPhysStopSD: 2,
+    });
+    const result = computeChromaticRayFanAnalysis(request, {
+      offAxisFieldFraction: 0.01,
+      offAxisFractions: [-1, 0.1],
+    });
     expect(result.offAxisFieldAngleDeg).toBeGreaterThan(0);
     expect(result.offAxisAttemptedRayCount).toBe(8);
+    expect(result.unaimedRayCount).toBe(0);
     expect(result.spreads.offAxis?.fraction).toBe(0.1);
     expect(result.spreads.offAxis?.channels).toEqual(["R", "G", "B", "V"]);
-    const geometry = computeOffAxisFieldGeometry(
-      analysisRequestAt(L, { zPos: z, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
-      0.01,
-    )!;
+    const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, 0.01)!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
-    if (isOffAxisVectorFieldGeometry(geometry)) return;
     for (const channel of ["R", "G", "B", "V"] as const) {
-      const clipped = traceChiefRelativeSkewRayChromatic(
-        0,
-        1,
-        geometry.yChief,
-        geometry.uField,
-        ep,
-        0,
-        0,
-        stop,
-        true,
-        L,
+      const launch = prepareAimedPupilLaunch(
+        request,
+        [
+          { xFraction: 0, yFraction: -1 },
+          { xFraction: 0, yFraction: 0.1 },
+        ],
+        geometry,
         channel,
-      );
-      const ray = traceChiefRelativeSkewRayChromatic(
-        0,
-        0.1,
-        geometry.yChief,
-        geometry.uField,
-        ep,
-        0,
-        0,
-        stop,
-        true,
-        L,
-        channel,
-      );
-      expect(clipped.clipped).toBe(true);
+      )!;
+      const trace = prepareAimedPupilTrace(request.preparedGeometry, launch, channel);
+      const [rim, zone] = launch.rays;
+      expect(rim.status).toBe("aimed");
+      expect(zone.status).toBe("aimed");
+      if (rim.status === "unaimed" || zone.status === "unaimed") return;
+      // The stop admits the rim ray (the rim rule); the element rim behind it blocks it.
+      expect(Math.hypot(...rim.achievedStopMm!)).toBeLessThanOrEqual(launch.clipSemiDiameterMm);
+      expect(trace.skew(rim).clipped).toBe(true);
+      const ray = trace.skew(zone);
       expect(ray.clipped).toBe(false);
       expect(result.spreads.offAxis?.imagePlaneHeights[channel]).toBeCloseTo(ray.y + ray.uy * L.S[L.N - 1].d, 12);
     }

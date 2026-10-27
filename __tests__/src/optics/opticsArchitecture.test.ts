@@ -122,13 +122,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
-  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
-    kind: "weak-owner",
-    owner: "CompiledStateSurface",
-    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
-    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
-  },
-  "src/optics/analysis/mtf/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
   "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
     kind: "weak-owner",
     owner: "PreparedGeometry",
@@ -136,6 +129,15 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     perOwner: "at most 64 immutable surface-index tables, evicting the oldest insertion",
     capacity: 64,
     limit: "MTF_INDEX_TABLE_CACHE_LIMIT",
+  },
+  "src/optics/analysis/pupils/aimedPupil.ts#fieldModelsByState": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then every exact field-launch, stop-radius, launch-scale and channel input",
+    perOwner:
+      "at most 64 aim field models (chief crossing, Jacobian, stop-to-launch fit), evicting the oldest insertion",
+    capacity: 64,
+    limit: "FIELD_MODEL_CACHE_LIMIT",
   },
   "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
     kind: "bounded",
@@ -275,6 +277,13 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 256,
     limit: "TRACE_OPTIONS_CACHE_LIMIT",
   },
+  "src/optics/trace/rayClassification.ts#boundsBySurface": {
+    kind: "weak-owner",
+    owner: "CompiledStateSurface",
+    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
+    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
+  },
+  "src/optics/trace/symmetry.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
 };
 
 /** All module-level containers are registered; no unbounded-cache exceptions remain. */
@@ -316,11 +325,6 @@ const ANALYSIS_NUMERIC_LEAVES: Readonly<Record<string, AnalysisNumericLeaf>> = {
     parameters:
       "L: RuntimeLens, context: BokehTraceContext, sensorZ: number, currentEPSD: number, currentPhysStopSD: number, label: string, sampling: AnalysisSamplingOptions = {}",
     reason: "Reduces footprints from the existing prepared context at an independent sensor plane and aperture.",
-  },
-  "src/optics/analysis/chromatic/rayFan.ts#traceOffAxisChromaticMarginal": {
-    parameters:
-      "geometry: ProjectionAwareOffAxisFieldGeometry, fraction: number, adapter: PreparedRayTrace, L: RuntimeLens, currentEPSD: number, imagePlaneZ: number",
-    reason: "Prepared adapter owns tracing state; pupil fraction, aperture and intercept plane are independent inputs.",
   },
 };
 

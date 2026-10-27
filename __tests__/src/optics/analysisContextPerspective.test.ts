@@ -151,11 +151,12 @@ describe("movement-aware analysis computation context", () => {
 
   it("retains failed pupil rays in their requested bundle order", () => {
     const perspectiveTraceContext = traceContext(1, 0.5);
+    // A stop three times the iris's is aimed past the element rims, which vignette its outer rays.
     const context = createAnalysisComputationContext({
       preparedState: STATE,
       dynamicEFL: L.EFL,
       currentEPSD: 100,
-      currentPhysStopSD: L.stopPhysSD,
+      currentPhysStopSD: L.stopPhysSD * 3,
       analysisQuality: "interactive",
       sampling: LIGHTWEIGHT_SAMPLING,
       perspectiveTraceContext,

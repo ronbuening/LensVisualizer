@@ -3,9 +3,8 @@
 import type { LayoutResult } from "../../../types/optics.js";
 import { doLayout } from "../../state/layout.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { AnalysisRequest } from "../request.js";
-import { computeRealRayHit, PROFILE_FRACS } from "./shared.js";
+import { computeRealRayHit, PROFILE_FRACS, prepareAxialZoneLaunch, symmetricZoneFractions } from "./shared.js";
 import type { RealRayHit } from "./shared.js";
 
 /** Least-squares focus, weighted by each ray's surviving optical intensity. */
@@ -32,23 +31,15 @@ export function computeImagePlaneZAtFocus(request: AnalysisRequest): number {
 
 /** Bokeh shares its already-computed layout so each preview keeps its own focus coordinates. */
 export function computeBestFocusZFromLayout(request: AnalysisRequest, layout: LayoutResult): number {
-  const { focusT, zoomT, aberrationT } = request.preparedGeometry;
   const L = runtimeView(request.preparedGeometry.lens);
-  const { stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
 
-  const prepared = prepareRayTrace(L, {
-    zPos: layout.z,
-    focusT,
-    zoomT,
-    stopSD: currentPhysStopSD,
-    ghost: true,
-    aberrationT,
-  });
+  const zones = prepareAxialZoneLaunch(request, symmetricZoneFractions(PROFILE_FRACS));
+  if (zones === null) return imagePlaneZ;
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
-    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, zones);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, zones);
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });
 

@@ -8,9 +8,9 @@
 
 import type { PreparedGeometry } from "../../types.js";
 
-import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { ChromaticChannel, ChromaticRayFanSpread } from "../../../types/optics.js";
 import { computeOffAxisChannelFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
+import { prepareAxialZoneLaunch } from "../aberration/shared.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
@@ -45,6 +45,7 @@ export interface LongitudinalChromaticFocusSample {
 export interface LongitudinalChromaticFocusResult {
   channels: readonly ChromaticChannel[];
   referenceChannel: ChromaticChannel;
+  /** Stop fraction the marginal zone was aimed at: the first candidate at least two channels pass. */
   marginalFraction: number;
   imagePlaneZ: number;
   lastSurfaceZ: number;
@@ -141,15 +142,15 @@ function currentImagePlaneZ(state: PreparedGeometry): number | null {
 }
 
 /**
- * Compute axial chromatic focus from the outermost usable on-axis marginal ray.
+ * Compute axial chromatic focus from the outermost usable on-axis marginal zone.
  *
- * The result is a LoCA-style focus summary by spectral channel. It searches
- * inward through marginal fractions so clipped wide-open rays do not make the
- * analysis unusable.
+ * The result is a LoCA-style focus summary by spectral channel. Each channel's zone is aimed at the same fraction of
+ * the stop radius at that channel's indices; the search moves inward through the fractions only while another
+ * aperture vignettes a zone, and stops at a zone no ray could be aimed at.
  *
  * @param request - current geometry, controls and both aperture radii in mm
- * @param options - optional ordered channels and marginal fractions
- * @returns first usable marginal focus summary, or null
+ * @param options - optional ordered channels and marginal stop fractions
+ * @returns marginal focus summary at the chosen zone, or null
  */
 export function computeLongitudinalChromaticFocus(
   request: AnalysisRequest,
@@ -159,10 +160,9 @@ export function computeLongitudinalChromaticFocus(
   },
 ): LongitudinalChromaticFocusResult | null {
   const { preparedGeometry: state } = request;
-  const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
   const zPos = state.z as number[];
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const { entrancePupilSemiDiameterMm: currentEPSD } = request.aperture;
   const channels = normalizeChannels(options.channels);
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return null;
 
@@ -173,26 +173,19 @@ export function computeLongitudinalChromaticFocus(
     allowZero: false,
   });
 
-  const adapters = new Map(
-    channels.map((channel) => [
-      channel,
-      prepareRayTrace(L, {
-        zPos,
-        focusT,
-        zoomT,
-        stopSD: currentPhysStopSD,
-        ghost: true,
-        channel,
-        aberrationT,
-      }),
-    ]),
+  // Each wavelength's zone is aimed at the same stop fraction at its own indices, as lens-design programs aim.
+  const zonesByChannel = new Map(
+    channels.map((channel) => [channel, prepareAxialZoneLaunch(request, fractions, channel)]),
   );
-  for (const marginalFraction of fractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
+  type MarginalRay = { y: number; u: number; z?: number; clipped: boolean };
+  const zoneRays = (marginalFraction: number) => {
+    const marginalRays: Partial<Record<ChromaticChannel, MarginalRay>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
-
     for (const channel of channels) {
-      const ray = adapters.get(channel)!.ray(marginalFraction * currentEPSD, 0);
+      const zones = zonesByChannel.get(channel);
+      const aimed = zones?.ray(marginalFraction);
+      if (!zones || !aimed || aimed.status === "unaimed") continue;
+      const ray = zones.trace.meridional(aimed);
       clippedByChannel[channel] = ray.clipped;
       if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
         marginalRays[channel] = {
@@ -203,7 +196,12 @@ export function computeLongitudinalChromaticFocus(
         };
       }
     }
-
+    return { marginalFraction, marginalRays, clippedByChannel };
+  };
+  for (const fraction of fractions) {
+    // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
+    if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) break;
+    const { marginalFraction, marginalRays, clippedByChannel } = zoneRays(fraction);
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
     if (validChannels.length < 2) continue;
 

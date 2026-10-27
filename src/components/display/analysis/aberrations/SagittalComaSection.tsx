@@ -30,7 +30,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
       <SectionHeader
         title="Sagittal Ray Fan"
         helpLabel="Sagittal ray fan help"
-        helpText="Sagittal ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image x versus sagittal pupil coordinate. Compare it with the tangential fan to see directional asymmetry."
+        helpText="Sagittal ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image x versus sagittal pupil coordinate. Compare it with the tangential fan to see directional asymmetry. Pupil coordinates are positions on the real aperture stop, sampled evenly, as in OpticStudio with ray aiming and in CODE V."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
