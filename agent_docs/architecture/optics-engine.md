@@ -1239,8 +1239,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   `trace/rayClassification.ts` proves misses the next clear cap). Lens-design programs aim through mathematically
   extended surfaces; this tracer cannot follow a ray where an element's surfaces cross outside its rim, so such a
   target is returned with the blocking ray and `achievedStopMm: null`, traces as clipped, and is counted
-  (`blockedCount`, `blockedSampleCount`) apart from rays a later rim vignettes. A stall or the iteration cap is never a
-  block. `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
+  (`blockedCount`, `blockedSampleCount`) apart from rays a later rim vignettes. A solve that reaches the 24-trace cap
+  with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
+  `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
   result and never traced or replaced by a paraxial launch. Total internal reflection is not an aperture, so a target
   only reflected rays could reach is `stop-unreachable`. Bokeh transmission and moved-lens vignetting leave unaimed
   samples out of their denominators and report how many there were.
@@ -1258,7 +1259,8 @@ Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back 
 zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA keeps the first zone at least two
 channels pass. A real-ray field focus needs surviving fan rays out to 0.25 R on both sides of the chief
 (`FIELD_CURVATURE_MIN_FAN_HALF_SPAN`): defocus is odd in the pupil and coma even, so a one-sided sliver of a vignetted
-fan would fit coma as defocus; the real-ray plots leave such a field out. Behind a front group, equal stop area is not
+fan would fit coma as defocus. Such a field carries `diagnosticUnavailableReason` (`one-sided-fan`, or `too-few-rays`
+/ `trace-failed`), and the real-ray plots leave it out. Behind a front group, equal stop area is not
 equal entrance-pupil area, so the bokeh brightness profile also carries the stop-to-pupil map: a fast lens can read
 edge-bright on both sides of focus where entrance-pupil sampling showed spherical aberration's flip. Fields beyond a
 fisheye's traceable chief have no aimed samples (`trace-failed`).
