@@ -224,3 +224,36 @@ The physical SG stack is already complete: 11.78 mm air + 2 mm glass
 (53.61 printed), but paraxial focus is 0.039278 mm behind the authored plane.
 No single transcription error was found. Retain the published plane; a
 finite-aperture best-focus interpretation is possible, not established.
+
+## Rimmer localization and clear apertures (2026-10-27)
+
+Example 1 Tables 1–3 (PDF p. 26, printed p. 7) were rechecked from rendered images. Every radius, thickness,
+index/Abbe pair, and all five sets of K/A4/A6/A8/A10 coefficients match the print, including every sign and exponent
+on surface 8. The printed sag equation uses `(1+κ)` and κ = 0, so the stored K = 0 is direct; the table uses physical
+millimetres, with no normalization or odd-power coefficients to restore.
+
+The estimated 13.5 mm rim of surface 8A extends beyond its approximately 11.98 mm slope turnover. However, the
+on-axis marginal ray for the printed f/1.86 needs a height of approximately 12.37 mm on 8A. Capping that rim at
+11.9 mm would reduce the traced aperture to f/1.92669, so the stated-beam exception prohibits that cap. Its
+coefficients and rim remain unchanged. Surface 10A's 16.5 mm authored rim is below its approximately 16.68 mm
+turnover and also remains unchanged. No rim departure quoted above changes.
+
+The rear element L32 had a separate field-clearance error. At the patent's 22.15° half-field, the chief ray reaches
+surface 13 at h ≈ 13.94 mm, exceeding its former inferred 13.5 mm rim. Both L32 faces (12 and 13) now use 14.5 mm,
+0.5 mm outside that floor, as Fig. 1 (PDF p. 2) draws L32 relative to the rest of the lens, and square as it draws it. The traced chief ray now
+reaches Y = 21.6312 mm there, consistent with Fig. 12's Y = 21.63 mm. This change restores field clearance; it does
+not repair outer-pupil localization or establish a published effective diameter.
+
+The source's Fig. 12 (PDF p. 8) has spherical/astigmatism scales of ±0.5 mm and distortion of ±5%. Traced LSA
+relative to paraxial focus is −0.015/−0.024/−0.017/−0.010 mm at pupil fractions 1/0.85/0.7/0.5, and the close-ray
+tangential/sagittal excursions remain approximately −0.026 to +0.070 mm at the retained image plane. Distortion
+peaks near +0.186% before reaching approximately −0.799% at the full-format corner. These are consistent with the
+small plotted curves at their readable scale; they do not isolate a source erratum or explain the full-pupil failure.
+Fig. 12 labels f/1.85, while Table 2 specifies f/1.86; the trace retains Table 2's value.
+
+At design focus and f/1.86, the vignetting sweep now reaches 22.17° instead of the rim-limited 21.46°. RI is available
+through the 11.08° sample (max referred deviation 0.0482), but remains refused as `rays-not-localized` at
+13.86°, 16.63°, 19.40°, and 22.17°. Some failing rays cross 8A beyond turnover; others fail without crossing any
+turnover. Consequently, the turnover observation is not a complete root-cause identification, and no coefficient
+correction is justified. The source's own on-axis, close-ray and summary checks do not establish an internal
+contradiction requiring a `source.errata` entry. The full-pupil issue remains unresolved.
