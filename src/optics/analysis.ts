@@ -148,6 +148,7 @@ export type {
 } from "./analysis/distortion/distortion.js";
 export {
   AIMED_PUPIL_MAX_ITERATIONS,
+  AIMED_PUPIL_POLISH_TOLERANCE,
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilLaunchForState,
