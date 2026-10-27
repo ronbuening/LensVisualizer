@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-26",
+    type: "fix",
+    summary:
+      "The Chromatic tab and colored rays now trace catalog-matched glasses at the patent's own refractive index, so their foci agree with the Aberrations tab",
+  },
+  {
+    date: "2026-10-26",
     type: "lens",
     summary:
       "Added the Fujifilm Fujinon XC 13-33mm f/3.5-6.3 OIS, Olympus M.Zuiko Digital ED 12-50mm f/3.5-6.3 EZ and ED 14-42mm f/3.5-5.6 (2009), Pentax SMC FA 20-35mm f/4 AL, Sigma 24-70mm f/3.5-5.6 Aspherical HF and Tamron 20-40mm f/2.8 Di III VXD, plus the Nikon AF-I TC-20E, Nikon AF-S TC-17E II and Olympus M.Zuiko MC-14 teleconverters",

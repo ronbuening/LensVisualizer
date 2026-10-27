@@ -78,9 +78,9 @@ describe("qualified spectral MTF", () => {
     });
     const state = prepareRuntimeState(L, 0, 0);
     expect(state.lens.dispersion[1].quality).toBe("sellmeier");
-    expect(state.lens.dispersion[1].indexAt("G")).not.toBeCloseTo(authored, 6);
-    expect(anchoredIndexAtWavelength(state, 1, LINE_NM.d)).toBeCloseTo(authored, 14);
     const glass = state.lens.dispersion[1].glassEntry!;
+    expect(evaluateSellmeier(glass, LINE_NM.d)).not.toBeCloseTo(authored, 6);
+    expect(anchoredIndexAtWavelength(state, 1, LINE_NM.d)).toBeCloseTo(authored, 14);
     expect(anchoredIndexAtWavelength(state, 1, LINE_NM.F) - authored).toBeCloseTo(
       evaluateSellmeier(glass, LINE_NM.F) - evaluateSellmeier(glass, LINE_NM.d),
       14,
