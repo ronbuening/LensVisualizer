@@ -15,8 +15,10 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - A prepared geometry does not include stop-down. Build a new analysis request when physical aperture or sampling
   changes; otherwise a lazy context may legitimately return the previous result (`architecture/optics-engine.md`,
   Analysis Requests, Context and Jobs).
-- `solveChiefRay` skips iteration below 1° field angle, yet retrofocus designs can show pupil aberration at 2–3°. Above
-  1° it uses safeguarded Illinois refinement with scan fallback and returns a typed status plus `vectorLaunch` when applicable.
+- `solveChiefRay` solves the real chief ray through the stop at every field but 0°, with safeguarded Illinois
+  refinement and scan fallback, and returns a typed status plus `vectorLaunch` when applicable. Near the axis a long
+  lens's pupil moves a long way for a tiny launch change, so a fixed stop-height tolerance accepts the paraxial seed
+  there (the Sony FE 400 mm at 0.01° and below); the tolerance shrinks with the field below 1° instead.
 - Centrally obstructed reflex lenses need annular stop/field reasoning through the shared `stopInnerBlockedSemiDiameter()`
   helper. Never treat the blocked central chief ray as a valid off-axis field solve; on the Nikon Reflex-Nikkor 1000mm
   f/11 that collapses field geometry to zero.

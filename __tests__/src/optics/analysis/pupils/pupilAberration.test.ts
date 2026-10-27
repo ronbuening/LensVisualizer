@@ -24,6 +24,7 @@ import ReferenceCassegrainBackFocusRaw from "../../../../../src/lens-data/refere
 import ReferenceGregorianSecondaryRaw from "../../../../../src/lens-data/reference/ReferenceGregorianSecondary.data.js";
 import ReferenceMaksutovCassegrainMeniscusRaw from "../../../../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.js";
 import ReferenceNewtonianSideFocusRaw from "../../../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
+import SonyFE400Raw from "../../../../../src/lens-data/sony/SonyFE400mmF28GMOSS.data.js";
 import { analysisRequestAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "../../testLensFixtures.js";
 
 type Lens = ReturnType<typeof sharedSonnar50f15>;
@@ -381,5 +382,38 @@ describe("computeBothPupilAberrationProfiles — folded fixtures", () => {
       expect(Number.isFinite(sample.fieldDeg)).toBe(true);
       expect(Number.isFinite(sample.xpShiftMm)).toBe(true);
     }
+  });
+});
+
+describe("computeBothPupilAberrationProfiles — below one degree", () => {
+  // Fields 0°, 0.01°, …, 1.01° on a 400 mm telephoto, whose real entrance pupil moves 1.3 mm by 1°.
+  const L = build(SonyFE400Raw);
+  const geometry = { ...computeAnalysisFieldGeometryAtState(0, 0, L), halfFieldDeg: 1.01 };
+  const { ep, xp } = computeBothPupilAberrationProfiles(
+    analysisRequestAt(L, { fieldGeometry: geometry, sampling: { pupilAberrationSampleCount: 102 } }),
+  );
+  const at = (deg: number) => Math.round(deg / 0.01);
+
+  it("solves a real chief ray at every field off the axis", () => {
+    for (const sample of ep.samples.slice(1, at(1))) {
+      expect(sample.chiefRayCorrection).not.toBe(1);
+      expect(sample.epShiftMm).not.toBe(0);
+    }
+  });
+
+  it("is continuous through one degree", () => {
+    // Pupil shifts grow as the square of the field near the axis.
+    const square = (0.99 / 1.01) ** 2;
+    expect(ep.samples[at(0.99)].epShiftMm / ep.samples[at(1.01)].epShiftMm).toBeCloseTo(square, 3);
+    expect(xp.samples[at(0.99)].xpShiftMm / xp.samples[at(1.01)].xpShiftMm).toBeCloseTo(square, 2);
+  });
+
+  it("tends to the paraxial pupils without noise as the field goes to zero", () => {
+    for (let i = 2; i < ep.samples.length; i++) {
+      expect(ep.samples[i].epShiftMm).toBeGreaterThan(ep.samples[i - 1].epShiftMm);
+      expect(Math.abs(xp.samples[i].xpShiftMm)).toBeGreaterThan(Math.abs(xp.samples[i - 1].xpShiftMm));
+    }
+    expect(Math.abs(ep.samples[1].epShiftMm)).toBeLessThan(1e-3);
+    expect(Math.abs(xp.samples[1].xpShiftMm)).toBeLessThan(1e-4);
   });
 });
