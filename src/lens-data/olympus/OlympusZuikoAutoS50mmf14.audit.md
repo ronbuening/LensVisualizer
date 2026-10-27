@@ -61,3 +61,20 @@ Source scope: FIG. 1 (Sheet 1, PDF page 2) draws no diaphragm and the table give
 This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇'s cap (sag −5.414 mm at 11.5 mm) begins 11.37 mm behind r₆, 3.57 mm behind the new plane.
 
 Result: the iris the engine derives from the f/1.4 marginal ray is now 11.641 mm (was 11.814 mm), the trace failure is gone, and the analysis half field is unchanged (23.76°). The stated beam is now limited by rims that the stop plane had masked: f/1.4 traces f/1.55, limited at surface 9. `audit:aperture --raise` asks for surfaces 4, 5, 8, 9, 10 and 11 to rise by up to 13.1 % (8/9 square at 14.7 mm, 10/11 at 15.7 mm). LSA is ordinary (−0.10 mm at full pupil), so this is a rim estimate, not a misprint. The raise is queued in `agent_docs/sd-audit-queue.md` Section I for a figure read; no rim changed here.
+
+## 2026-10-27 — Rims raised to the stated f/1.4 beam
+
+With the stop plane clear of r₆ (entry above), `audit:aperture` showed the f/1.4 on-axis beam clipped by inferred rims (f/1.40 traced f/1.55, surface 9). LSA is ordinary (−0.101 / −0.036 / −0.067 / −0.074 mm at pupil 1 / 0.85 / 0.7 / 0.5), so the rims, not the prescription, are short. Each clipping surface rises only to the stated ray's height (`audit:aperture --raise`), rounded up to 0.1 mm; elements whose faces carried one value and that FIG. 1 draws square keep one value at the higher height.
+
+| Surface | Before | After | Ray needs | Basis |
+|---|---:|---:|---:|---|
+| 4 (L2 rear) | 15.0 | 15.4 | 15.4 | stated ray; L2's faces already differ (16.5 / 15.0) |
+| 5 (L3 front) | 13.0 | 14.5 | 14.5 | stated ray; L3's rear r₆ stays at its 12.4 mm slope limit |
+| 8 (L4/L5 junction) | 13.0 | 14.7 | 14.3 | L5 square at the higher face, as FIG. 1 draws the flat-topped L4/L5 block |
+| 9 (L5 rear) | 13.0 | 14.7 | 14.7 | stated ray |
+| 10 (L6 front) | 14.0 | 15.7 | 15.5 | L6 square at the higher face; FIG. 1 draws both faces ending together |
+| 11 (L6 rear) | 14.0 | 15.7 | 15.7 | stated ray |
+
+Figure check (FIG. 1, PDF page 2, rendered at 200 dpi; 44.185 mm of glass over 540 px, 0.0818 mm/px, read by hand): L2 is drawn to about 16.7 mm, L3's front to 15.5, the L4/L5 block to 15.2 and L6 to 16.2 mm, so every raised rim stays inside the drawn element (L1 reads 18.8 against the stored 18.5, confirming the scale). Largest raise 13.1 % (surface 9), inside the procedure's ~15 % band. `audit:surface --sd` accepts the set; L6's edge is 0.77 mm at 15.7 mm and the L5–L6 and L6–L7 gaps open toward the rim.
+
+Result: f/1.4 traces f/1.40, iris-limited. `audit:image-circle` reports nothing undersized; `audit:field-coverage` still reaches the format corner. The rendered section was compared with FIG. 1: the doublet block and L6 now stand nearer their drawn heights, L5 stays square, and the stop sits just clear of L3's r₆ tips.

@@ -48,3 +48,15 @@ The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, in
 This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇ (R 100 mm) curves away from the stop, so its cap never comes forward of its vertex.
 
 Result: the trace failure is gone; the derived iris is 7.479 mm (was 7.572 mm) and the analysis half field 23.38° (was 23.45°). The stated beam is now limited by a rim the stop plane had masked: f/2.0 traces f/2.07, at the L3/L4 junction (surface 5). `audit:aperture --raise` asks for 9.5 → 10.0 mm (5.3 %); queued in `agent_docs/sd-audit-queue.md` Section I for a figure check. No rim changed here.
+
+## 2026-10-27 — Junction rim raised to the stated f/2 beam
+
+With the stop plane clear of r₆ (entry above), `audit:aperture` showed the f/2 on-axis beam clipped at the L3/L4 junction (f/2.00 traced f/2.07, surface 5). LSA is ordinary (+0.140 / −0.172 / −0.230 / −0.164 mm at pupil 1 / 0.85 / 0.7 / 0.5).
+
+| Surface | Before | After | Ray needs | Basis |
+|---|---:|---:|---:|---|
+| 5 (L3/L4 junction) | 9.5 | 10.0 | 10.0 | stated ray, 5.3 %; L4's faces already differ (junction / r₆ 8.25) |
+
+Figure check (Fig. 1 of US 1,998,704, PDF page 1, rendered at 200 dpi, read by hand; 30.10 mm of glass over about 308 px): L4's flat-topped junction rim is drawn at about 11.1 mm, below L2/L3's tips, so 10.0 mm stays inside the drawing. `audit:patent-figure` could not settle the crop (leader lines and labels pulled its axis), so the hand reading stands. `audit:surface --sd 5=10` accepts the value.
+
+Result: f/2 traces f/2.00, iris-limited. `audit:image-circle` reports nothing undersized; `audit:field-coverage` still reaches the format corner. The rendered section was compared with Fig. 1: L4's junction sits below the L2/L3 tips as drawn, and the stop clears L4's concave tips.
