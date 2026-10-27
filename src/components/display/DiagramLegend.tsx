@@ -12,11 +12,16 @@ import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import { formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
+import { formatChromaticZone, formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
+
+/** A spread's zone, stated in the legend only when a selected channel is left out of the comparison. */
+function zoneNote(spread: ChromaticRayFanSpread, radius: "R" | "EP"): string {
+  return spread.omittedChannels?.length ? ` (${formatChromaticZone(spread, radius)})` : "";
+}
 
 interface DiagramLegendProps {
   L: RuntimeLens;
@@ -228,11 +233,13 @@ export default function DiagramLegend({
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
               if (!missingDispersion && showOnAxis && axisSpreads.onAxis) {
-                summaryParts.push(`LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
+                summaryParts.push(
+                  `LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}${zoneNote(axisSpreads.onAxis, "R")}`,
+                );
               }
               if (!missingDispersion && showOffAxis !== "off" && axisSpreads.offAxis) {
                 summaryParts.push(
-                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
+                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}${zoneNote(axisSpreads.offAxis, "EP")}`,
                 );
               }
               const spreadSummary = missingDispersion
@@ -292,6 +299,9 @@ export default function DiagramLegend({
                         ? "unavailable"
                         : "need 2 channels"}
                   </span>
+                  {axisSpreads.onAxis?.omittedChannels?.length ? (
+                    <span style={{ fontSize: 10, color: t.muted }}>{formatChromaticZone(axisSpreads.onAxis)}</span>
+                  ) : null}
                 </>
               )}
               {showOffAxis !== "off" && (
@@ -313,6 +323,11 @@ export default function DiagramLegend({
                         ? "unavailable"
                         : "need 2 channels"}
                   </span>
+                  {axisSpreads.offAxis?.omittedChannels?.length ? (
+                    <span style={{ fontSize: 10, color: t.muted }}>
+                      {formatChromaticZone(axisSpreads.offAxis, "EP")}
+                    </span>
+                  ) : null}
                 </>
               )}
             </div>

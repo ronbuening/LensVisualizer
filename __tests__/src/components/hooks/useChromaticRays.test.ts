@@ -16,7 +16,8 @@ import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters
 import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
 import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
-import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
+import type { ChromaticChannel, LensData, RuntimeLens } from "../../../../src/types/optics.js";
+import { formatChromaticZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
@@ -24,7 +25,7 @@ const Sonnar = catalogLensData(SonnarRaw);
 const ApoLanthar = catalogLensData(ApoLantharRaw);
 const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
-function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar, fNumberOverride?: number) {
+function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
   const ref = doLayout(0, 0, L);
   const IMG_MM = ref.imgZ;
@@ -41,7 +42,7 @@ function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar, fNumbe
     scaleRatio: null,
   });
   const currentFOPEN = fopenAtZoom(zoomT, L);
-  const fNumber = fNumberOverride ?? currentFOPEN;
+  const fNumber = currentFOPEN;
   const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
   const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
   const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
@@ -294,14 +295,7 @@ describe("useChromaticRays", () => {
   });
 
   it("computes chromaticRayFanSpread with 2+ channels", () => {
-    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
-    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
-    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
-      0,
-      0,
-      Sonnar,
-      2,
-    );
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
       useChromaticRays({
         L,
@@ -398,14 +392,7 @@ describe("useChromaticRays", () => {
   });
 
   it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
-    // Channel handling, not wide-open colour: at f/1.5 a rim behind the stop vignettes blue's aimed 0.97 R zone
-    // (red and green pass), so the zone rule would compare a different channel set. At f/2 every channel passes.
-    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
-      0,
-      0,
-      Sonnar,
-      2,
-    );
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const getLoca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {
       const { result } = renderHook(() =>
         useChromaticRays({
@@ -443,6 +430,54 @@ describe("useChromaticRays", () => {
     expect(noRed).toBeLessThanOrEqual(allRgb + 1e-9);
     expect(noGreen).toBeLessThanOrEqual(allRgb + 1e-9);
     expect(noBlue).toBeLessThanOrEqual(allRgb + 1e-9);
+  });
+
+  it("chooses the LoCA zone from all four channels, whichever are requested, and compares each requested one there", () => {
+    const { L, zPos, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    const fractions = expectedDisplayLocaFractions(L);
+    const order: ChromaticChannel[] = ["R", "G", "B", "V"];
+    const subsets = Array.from({ length: 16 }, (_, mask) => order.filter((_, bit) => mask & (1 << bit))).filter(
+      (channels) => channels.length >= 2,
+    );
+
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed 0.97 R zone; all four pass 0.95 R. Red and
+    // green alone pass 0.97 R, but the zone does not move when the other channels are hidden.
+    const atOuter = computeLongitudinalChromaticFocus(request, { channels: order, longitudinalFractions: [0.97] })!;
+    expect(atOuter.omittedChannels.map((omission) => omission.channel)).toEqual(["B", "V"]);
+    for (const channels of subsets) {
+      const result = computeLongitudinalChromaticFocus(request, { channels, longitudinalFractions: fractions })!;
+      expect(result.marginalFraction).toBe(0.95);
+      expect(result.spread.channels).toEqual(channels);
+      expect(result.omittedChannels).toEqual([]);
+    }
+  });
+
+  it("states the zone, the channels compared and each missing channel's reason when no zone admits them all", () => {
+    const { L, zPos, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+
+    // Offered only the 0.97 R zone, where a rim behind the stop vignettes blue, LoCA compares red and green.
+    const result = computeLongitudinalChromaticFocus(request, {
+      channels: ["R", "G", "B"],
+      longitudinalFractions: [0.97],
+    })!;
+    expect(result.marginalFraction).toBe(0.97);
+    expect(result.spread.fraction).toBe(0.97);
+    expect(result.spread.channels).toEqual(["R", "G"]);
+    expect(result.omittedChannels).toEqual([{ channel: "B", reason: "vignetted" }]);
+    expect(result.spread.omittedChannels).toEqual(result.omittedChannels);
+    expect(formatChromaticZone(result.spread)).toBe("0.97 R, R–G; B vignetted");
   });
 
   it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {

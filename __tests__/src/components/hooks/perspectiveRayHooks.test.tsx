@@ -178,8 +178,9 @@ describe("perspective-control diagram ray hooks", () => {
       }),
     );
 
-    expect(mocks.traceFan).toHaveBeenCalledTimes(4);
-    expect(mocks.traceFan.mock.calls.map(([request]) => request.channel)).toEqual(["R", "B", "R", "B"]);
+    // Off axis, the hidden channels are traced too, for the fan's fraction; only the shown ones are drawn.
+    expect(mocks.traceFan).toHaveBeenCalledTimes(6);
+    expect(mocks.traceFan.mock.calls.map(([request]) => request.channel)).toEqual(["R", "B", "R", "G", "B", "V"]);
     expect(mocks.traceFan.mock.calls[0]?.[0].sceneDirectionCamera).toEqual([0, 0, 1]);
     expect(result.current.chromaticRays.filter((ray) => ray.axis === "onAxis")).toHaveLength(
       lens.rayFractions.length * 2,

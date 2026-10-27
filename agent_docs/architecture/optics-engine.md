@@ -1257,8 +1257,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   change moves it onto this launch.
 
 Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back only when another aperture vignettes a
-zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA keeps the first zone at least two
-channels pass. A real-ray field focus needs surviving fan rays out to 0.25 R on both sides of the chief
+zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA compares every selected channel at
+the outermost zone all four channels pass, as do the chromatic fans, and names any channel a fallback leaves out (see
+Chromatic Analysis). A real-ray field focus needs surviving fan rays out to 0.25 R on both sides of the chief
 (`FIELD_CURVATURE_MIN_FAN_HALF_SPAN`): defocus is odd in the pupil and coma even, so a one-sided sliver of a vignetted
 fan would fit coma as defocus. Such a field carries `diagnosticUnavailableReason` (`one-sided-fan`, or `too-few-rays`
 / `trace-failed`), and the real-ray plots leave it out. Behind a front group, equal stop area is not
@@ -1712,16 +1713,35 @@ rather than usable structures containing non-finite metrics.
 ## Chromatic Analysis
 
 `analysis/chromatic/analysis.ts` owns longitudinal chromatic focus (LoCA), lateral color and the combined summary;
-`analysis/chromatic/rayFan.ts` owns first-usable-fraction on/off-axis fans. All take `AnalysisRequest`, exposed through
+`analysis/chromatic/rayFan.ts` owns the on/off-axis fans. All take `AnalysisRequest`, exposed through
 `analysis.ts`. Channels normalize into R/G/B/V order, with G as reference when requested and the first channel otherwise.
 The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
 geometry. Lateral color traces each channel's own chief ray (`computeOffAxisChannelFieldGeometry`, solved through the
 stop's centre at that channel's indices) at the field angle the channels share; the reference channel's solve is the
 channel-less one to the bit. The off-axis fans start from the one channel-less chief ray of `computeOffAxisFieldGeometry`
 and aim each channel's samples at the same stop positions at that channel's indices; LoCA and the on-axis fan aim each
-channel's zones the same way. LoCA takes the outermost candidate zone every requested channel passes, else the first
-two pass; the fans keep the first fraction two channels pass and report `unaimedRayCount`. LoCA retains its authored
-folded image plane, while the fan uses the current folded focus plane.
+channel's zones the same way.
+
+One zone rule (`selectChromaticZone`, `chromatic/zoneSelection.ts`) serves LoCA, both analysis fans and the diagram's
+off-axis fan (`chromaticSpreadFromRays`). The zone is chosen from all four channels (`CHROMATIC_ZONE_CHANNELS`),
+whichever are requested: the outermost candidate all four pass, and only when none does the first that two pass. The
+requested channels' spread is read at that zone (`requestedZoneChannels`), so toggling channels never moves it and a
+subset's spread never exceeds a larger set's; hidden channels are traced for the choice (off axis, the diagram traces
+them without drawing them). Requested channels the zone leaves out are listed in the spread's `omittedChannels` (and
+LoCA's result) with a reason: `vignetted`, `no-axis-crossing`, `unaimed`, or `untraced` (the display sampler has no
+ray). In LoCA and both analysis fans, a fraction an unaimed ray falls on ends the search; the ray is recorded as
+`searchEndedBy` on the spread and, for the fans, `ChromaticRayFanAnalysis.searchEnds`, so a fan with no spread still
+says why. Fan fractions are searched by magnitude, positive side first. Every readout states a left-out channel and an
+unaimed end (`formatChromaticZone`: "0.90 R, R–G; B vignetted; search ended at 0.85 R: V unaimed (stop unreachable)",
+"EP" for the diagram fan, which samples the paraxial entrance pupil). Lateral color has no zone to choose: each field
+lists `omittedChannels` (`unaimed` with no chief solve, `vignetted` when the chief clips), the maximum
+(`maxLateralSpreadMm`, `maxLateralFieldFraction`, null when no field compares every channel) is over the fields that
+compare every channel, and the tab names each field it leaves out with its partial spread. A chromatic field-focus field
+needs every channel's finite focus. The moved-lens chromatic maxima name the channels missing at their field. A LoCA
+search that ends before any zone returns null without the reason. LoCA is a real-ray zonal figure: OpticStudio's single
+axial-colour figure is the paraxial Chromatic Focal Shift, and its real-ray counterpart is the longitudinal aberration
+curve across zones. The fans report `unaimedRayCount`. LoCA retains its authored folded image plane, while the fan uses
+the current folded focus plane.
 
 `ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by
 `analysis/aberration/fieldCurvature.ts`. The context's intrinsic LoCA also takes that request and caches null explicitly.
