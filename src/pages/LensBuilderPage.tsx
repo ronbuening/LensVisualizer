@@ -13,7 +13,7 @@ import { createTemplate, copyCatalogInput, validateDraft } from "../lensBuilder/
 import type { DraftValidation } from "../lensBuilder/draft.js";
 import { exportJson } from "../lensBuilder/serialize.js";
 import type { LensDataV2Input } from "../types/lensDataV2.js";
-import { authoredInputForKey } from "../utils/catalog/lensCatalog.js";
+import { publicAuthoredInputForKey } from "../utils/catalog/lensCatalog.js";
 import { setGlobalErrorTelemetryId } from "../utils/errorBeacon.js";
 import useLensState from "../utils/state/useLensState.js";
 import usePreferences from "../utils/state/usePreferences.js";
@@ -65,7 +65,7 @@ function LensBuilderEditor({
   const [initial] = useState(() => {
     const saved = skipRestore ? { notice: "", hasBackup: false } : restoreDraft(localStorage);
     const from = new URLSearchParams(search).get("from");
-    const input = !skipRestore && from ? authoredInputForKey(from) : undefined;
+    const input = !skipRestore && from ? publicAuthoredInputForKey(from) : undefined;
     let copied: LensDataV2Input | undefined;
     let notice = saved.notice;
     if (!saved.draft && !saved.hasBackup && input) {
@@ -129,7 +129,7 @@ function LensBuilderEditor({
     params.delete("from");
     const rest = params.toString();
     void navigate({ pathname, search: rest ? `?${rest}` : "", hash }, { replace: true });
-    const input = authoredInputForKey(key);
+    const input = publicAuthoredInputForKey(key);
     if (!input || (first && !initial.saved)) return;
     if (window.confirm("Replace the current draft with a copy of this catalog lens?")) {
       let next: LensDataV2Input;
@@ -160,16 +160,19 @@ function LensBuilderEditor({
     return () => clearTimeout(timer);
   }, [draft]);
 
+  // Save the built draft, not the typed one: this effect runs only after the diagram has rendered it, so a draft that
+  // hangs the render is never stored to hang the next visit. Invalid drafts still save; they render the last good lens.
+  const builtDraft = build.draft;
   useEffect(() => {
     // Reset clears storage until the next edit; never immediately recreate the removed autosave.
-    if (preserveOriginal || (skipRestore && draft === initial.draft)) return;
+    if (preserveOriginal || (skipRestore && builtDraft === initial.draft)) return;
     try {
-      localStorage.setItem(STORAGE_KEY, exportJson(draft));
+      localStorage.setItem(STORAGE_KEY, exportJson(builtDraft));
       setStorageMessage("");
     } catch {
       setStorageMessage("Autosave failed: browser storage is unavailable or full. Export JSON to keep your changes.");
     }
-  }, [draft, preserveOriginal, skipRestore, initial.draft]);
+  }, [builtDraft, preserveOriginal, skipRestore, initial.draft]);
 
   const replace = (next: LensDataV2Input) => {
     const parsed = parseUntrustedDraft(next);

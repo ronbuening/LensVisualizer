@@ -161,6 +161,17 @@ describe("builder untrusted input gate", () => {
     expect(issues(changed(path as string, value))).toBeTruthy();
   });
 
+  // Values that passed the gate but hung the diagram: a 1.5-billion-line grid and an endless mirror-cavity trace.
+  it.each([
+    ["layout.scFill", 1e-8],
+    ["layout.yScFill", 0],
+    ["layout.svgW", 1e18],
+    ["opticalPath", { maxInteractions: 1e18 }],
+    ["opticalPath", { maxInteractions: 2.5 }],
+  ])("bounds render-driving number %s", (path, value) => {
+    expect(issues(changed(path as string, value))).toMatch(/Expected (a number|an integer) from/);
+  });
+
   it("accepts unfinished references, legitimate Unicode and only LF in long free text", () => {
     const draft = changed("surfaces.1.label", "1");
     draft.focus.description = "Source note\nNext line μm 😀";

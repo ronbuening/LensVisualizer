@@ -271,10 +271,9 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 
 ## Lens Builder
 
-`LensBuilderPage` owns the client-only `/lens-builder/` experiment. `ENABLE_LENS_BUILDER` follows Vite's `DEV`
-boolean (on in dev and Vitest, off in production); plain-Node metadata readers default it to false. To ship, set it
-true; remove the flag and inline the route once released, or remove the builder when abandoned. It has no navigation
-or sitemap entry and declares noindex/nofollow.
+`LensBuilderPage` owns the client-only `/lens-builder/` route. `ENABLE_LENS_BUILDER` is on in every build and gates
+both the route and the homepage `QuickNavCards` card (badged "New"); remove the flag and inline both once the release
+settles. That card is its only navigation entry; it has no sitemap entry and declares noindex/nofollow.
 
 `SingleLensContent` accepts an optional side panel, a prebuilt `RuntimeLens`, `showPhotoSearch={false}` (threaded
 through `LensDiagramPanel` to `DiagramHeader`, which hides the Flickr link for drafts) and `highlightElementId`. The
@@ -283,8 +282,11 @@ static pages' `PageNavBar` breadcrumb ("Home / Lens builder") whose theme toggle
 `useLensState`. Those contexts keep sliders and the analysis drawer working without URL slider updates, and
 `usePreferences` persists theme and ray toggles as the viewer does. Builds debounce for 250 ms; invalid drafts retain
 the last successful runtime lens. Storage failures are ignored, autosave restores unfinished geometry, and replacing a
-modified draft from the toolbar requires confirmation. `?from=<catalog-key>` copies authored data, then is removed from
-the URL so a reload restores the autosave instead of asking again.
+modified draft from the toolbar requires confirmation. `?from=<catalog-key>` and the toolbar picker copy authored data
+for `PUBLIC_CATALOG_KEYS` only (hidden fixtures and withheld lenses stay out); the parameter is then removed from the
+URL so a reload restores the autosave instead of asking again. Autosave stores the built draft from an effect, so only
+a draft the diagram has rendered is kept, and `src/lensBuilder/untrusted.ts` bounds the numbers that drive per-render
+work (`layout` scale, `maxInteractions`).
 
 The editor pane is an optical train read from the object (top) to the image (bottom), built on the element model in
 `src/lensBuilder/elementModel.ts` (its doc comments are the contract). `BuilderEditor` derives the model from the draft

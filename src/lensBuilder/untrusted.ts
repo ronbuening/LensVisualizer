@@ -9,6 +9,9 @@ export const MAX_DRAFT_NUMBER = 1e18;
 const MAX_DRAFT_NODES = 300_000;
 const MAX_ZOOM_STATIONS = 512;
 const MAX_FOCUS_KEYFRAMES = 256;
+// Folded traces loop once per interaction, and a stable mirror cavity never repeats a ray state exactly; the catalog
+// tops out at 32, and the engine requires up to 251 (250 surfaces plus the image plane).
+const MAX_PATH_INTERACTIONS = 512;
 const DANGEROUS_KEYS = new Set(["__proto__", "constructor", "prototype"]);
 // Code points are checked numerically so the validator itself contains no invisible control characters.
 function unsafeCodePoint(cp: number, multiline: boolean): boolean {
@@ -93,6 +96,14 @@ const text = string(),
   label = string("label"),
   freeText = string("freeText"),
   surfaceLabel = string("surfaceLabel");
+const range =
+  (min: number, max: number, integer = false): Rule =>
+  (v, p) => {
+    number(v, p);
+    const value = v as number;
+    if (value < min || value > max || (integer && !Number.isInteger(value)))
+      refuse(p, `Expected ${integer ? "an integer" : "a number"} from ${min} to ${max}`);
+  };
 const literal =
   (...values: unknown[]): Rule =>
   (v, p) => {
@@ -370,7 +381,7 @@ const schema = object(
       mode: literal("sequential", "auto"),
       surfaceOrder: array(surfaceLabel, 250),
       imagePlane: object({ z: number, y: number, normal, label }, ["z"]),
-      maxInteractions: number,
+      maxInteractions: range(1, MAX_PATH_INTERACTIONS, true),
     }),
     perspectiveControl: object(
       {
@@ -404,7 +415,19 @@ const schema = object(
     ),
     groups: array(annotation, 250),
     doublets: array(annotation, 250),
-    layout: object(numericFields("svgW", "svgH", "scFill", "yScFill", "maxAspectRatio", "lensShiftFrac"), ["yScFill"]),
+    // Diagram scale drives per-render work (the grid draws 15 / scFill lines). The catalog spans scFill 0.35–0.92,
+    // yScFill 0.1–0.92, svgW 1120–1440, svgH 500–540, maxAspectRatio 1.2–4 and lensShiftFrac 0.04–0.08.
+    layout: object(
+      {
+        svgW: range(200, 4000),
+        svgH: range(100, 4000),
+        scFill: range(0.05, 2),
+        yScFill: range(0.05, 2),
+        maxAspectRatio: range(0, 100),
+        lensShiftFrac: range(-1, 1),
+      },
+      ["yScFill"],
+    ),
     rays: object({
       rayFractions: array(number, 64),
       offAxisFractions: array(number, 64),

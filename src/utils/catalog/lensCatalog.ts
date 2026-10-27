@@ -97,6 +97,9 @@ const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => AUTHORED[k].visibl
 /* Debug/reference lenses sorted alphabetically by display name. */
 const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
 
+/* Lenses the public site shows, with their optical configurations; hidden fixtures and withheld lenses stay out. */
+const PUBLIC_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((key) => !isDebugLensKey(key));
+
 const OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP = new Map<string, OpticalConfigurationOption[]>();
 for (const key of ALL_CATALOG_KEYS) {
   const config = AUTHORED[key].opticalConfiguration;
@@ -203,6 +206,7 @@ export {
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
   DEBUG_CATALOG_KEYS,
+  PUBLIC_CATALOG_KEYS,
   isDebugLensKey,
   opticalConfigurationOptionsForKey,
   resolveOpticalConfigurationKey,
@@ -215,4 +219,9 @@ export {
 /** Independent authored V2 input, without canonical defaults or runtime reconstruction. */
 export function authoredInputForKey(key: string): LensDataV2Input | undefined {
   return Object.hasOwn(INPUTS, key) ? structuredClone(INPUTS[key]) : undefined;
+}
+
+/** Authored input for a PUBLIC_CATALOG_KEYS lens; undefined for hidden fixtures, withheld lenses and unknown keys. */
+export function publicAuthoredInputForKey(key: string): LensDataV2Input | undefined {
+  return Object.hasOwn(INPUTS, key) && !isDebugLensKey(key) ? authoredInputForKey(key) : undefined;
 }

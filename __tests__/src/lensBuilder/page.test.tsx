@@ -8,7 +8,11 @@ import { clearBrowserState, installMatchMediaMock, installResizeObserverMock, re
 import { parseUntrustedDraft } from "../../../src/lensBuilder/untrusted.js";
 import { createTemplate } from "../../../src/lensBuilder/draft.js";
 import { exportDataTs, exportJson } from "../../../src/lensBuilder/serialize.js";
-import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
+import {
+  DEBUG_CATALOG_KEYS,
+  PUBLIC_CATALOG_KEYS,
+  authoredInputForKey,
+} from "../../../src/utils/catalog/lensCatalog.js";
 import { ENABLE_LENS_BUILDER } from "../../../src/utils/featureFlags.js";
 
 beforeEach(() => {
@@ -94,6 +98,8 @@ describe("lens builder page", () => {
     fireEvent.change(screen.getByLabelText("Advanced JSON"), { target: { value: exportJson(next) } });
     fireEvent.click(screen.getByRole("button", { name: "Apply JSON" }));
     expect((screen.getByLabelText("Name") as HTMLInputElement).value).toBe("Advanced edit");
+    // Autosave waits for the debounced build to render, so a draft that hangs the diagram is never stored.
+    expect(JSON.parse(localStorage.getItem("surface-stop-lens-builder-v2")!).name).toBe("My saved lens");
     await waitFor(() =>
       expect(JSON.parse(localStorage.getItem("surface-stop-lens-builder-v2")!).name).toBe("Advanced edit"),
     );
@@ -149,7 +155,7 @@ describe("lens builder page", () => {
   });
 
   it("starts from a catalog query and confirms before replacing an autosaved draft", async () => {
-    const key = ALL_CATALOG_KEYS.find((key) => parseUntrustedDraft(authoredInputForKey(key)).ok)!;
+    const key = PUBLIC_CATALOG_KEYS.find((key) => parseUntrustedDraft(authoredInputForKey(key)).ok)!;
     const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
     const view = renderPage(<LensBuilderPage />, { initialEntries: [`/lens-builder/?from=${key}`] });
     await screen.findByRole("heading", { name: "Build your own lens" });
@@ -162,6 +168,14 @@ describe("lens builder page", () => {
     expect(confirm).toHaveBeenCalledOnce();
     expect((screen.getByLabelText("Name") as HTMLInputElement).value).toBe(createTemplate().name);
     expect(authoredInputForKey(key)?.key).toBe(key);
+  });
+
+  it("ignores a catalog query for a hidden fixture or withheld lens", async () => {
+    const hidden = DEBUG_CATALOG_KEYS.find((key) => parseUntrustedDraft(authoredInputForKey(key)).ok)!;
+    renderPage(<LensBuilderPage />, { initialEntries: [`/lens-builder/?from=${hidden}`] });
+    await screen.findByRole("heading", { name: "Build your own lens" });
+    expect((screen.getByLabelText("Key") as HTMLInputElement).value).toBe(createTemplate().key);
+    expect(PUBLIC_CATALOG_KEYS).not.toContain(hidden);
   });
 
   it("restores an unfinished draft even when its surface labels fail ingest, falling back to Advanced JSON", async () => {
