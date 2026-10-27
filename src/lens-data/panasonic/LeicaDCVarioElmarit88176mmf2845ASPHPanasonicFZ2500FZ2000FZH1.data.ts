@@ -32,6 +32,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the three published zoom states, containing the full-field chief ray plus the viewer's default on/off-axis bundles;
  * representative intermediate zoom samples were also checked. Final SDs pass portable edge-thickness, actual rim-slope,
  * conic-domain, and shared-gap intrusion checks. Production render-trim diagnostics passed in the repository audit.
+ *
+ * 2026-10-27 asphere audit: all eight Table 2 blocks match the print; 14A's K = +0.836518 is the printed κ under
+ * the (1 + κ) equation. 25A turns over at 4.56 mm inside its 6.1 mm rim, but a cap there clips the wide-end chief
+ * ray at 5.42 mm, short of Table 3A's 6.81 mm image height, so the rim stays. Wide open at the wide end, lower-rim
+ * rays cross 14A's steep outer zone (60° slope at its rim) and blur by up to ~6 mm on the image plane, so the
+ * vignetting tab's relative illumination reads above 1 from about 15°: recorded as an unresolved model limit.
  */
 
 const LENS_DATA = {
