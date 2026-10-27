@@ -21,14 +21,14 @@ flowchart LR
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_types["src/types"]
-  n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> |6| n_external_src_optics_trace
+  n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> |8| n_external_src_optics_trace
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |5| n_external_src_optics_state
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |3| n_external_src_optics_trace
-  n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> |2| n_external_src_optics_analysis
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |2| n_external_src_optics_analysis
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |2| n_external_src_optics_field
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |2| n_external_src_optics_prescription
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_pupilAberration_ts --> |2| n_external_src_optics_types_ts
+  n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> n_external_src_optics_analysis
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> n_external_src_optics_field
   n_src_optics_analysis_pupils_src_optics_analysis_pupils_aimedPupil_ts --> n_external_src_optics_math
@@ -41,12 +41,12 @@ flowchart LR
 
 - Direct source files: 2
 - Direct subfolders: 0
-- Main outbound areas: src/optics/trace (9), src/optics/state (5), src/optics/analysis (4), src/optics/field (3), src/optics/types.ts (3), src/optics/math (2), src/optics/prescription (2), src/optics/chromatic, +1 more
+- Main outbound areas: src/optics/trace (11), src/optics/state (5), src/optics/analysis (3), src/optics/field (3), src/optics/types.ts (3), src/optics/math (2), src/optics/prescription (2), src/optics/chromatic, +1 more
 - External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/perspective
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `aimedPupil.ts` | Aimed Pupil helper module | src/optics/trace (6), src/optics/analysis (2), src/optics/chromatic, src/optics/field, src/optics/math, +2 more | src/optics/analysis (5), src/optics/analysis.ts, src/optics/perspective | AIMED_PUPIL_RESIDUAL_TOLERANCE, AIMED_PUPIL_MAX_ITERATIONS, AimedPupilUnaimedReason, AimedPupilLaunchSurface, AimedPupilSampleInput, AimedObjectPlaneField, AimedBoundingSphereField, AimedFiniteObjectField, +13 more |
+| `aimedPupil.ts` | Aimed Pupil helper module | src/optics/trace (8), src/optics/analysis, src/optics/chromatic, src/optics/field, src/optics/math, +2 more | src/optics/analysis (5), src/optics/analysis.ts, src/optics/perspective | AIMED_PUPIL_RESIDUAL_TOLERANCE, AIMED_PUPIL_MAX_ITERATIONS, AIMED_PUPIL_POLISH_TOLERANCE, AimedPupilUnaimedReason, AimedPupilLaunchSurface, AimedPupilSampleInput, AimedObjectPlaneField, AimedBoundingSphereField, +14 more |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/state (5), src/optics/trace (3), src/optics/analysis (2), src/optics/field (2), src/optics/prescription (2), +2 more | src/optics/analysis, src/optics/analysis.ts | PupilAberrationSample, PupilAberrationProfile, ExitPupilAberrationSample, ExitPupilAberrationProfile, PUPIL_ABERRATION_SAMPLE_COUNT, computePupilAberrationProfile, computeExitPupilAberrationProfile, BothPupilAberrationProfiles, +1 more |
