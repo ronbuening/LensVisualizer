@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
+    type: "fix",
+    summary: "Axial color (LoCA) now compares every selected channel and names any channel a rim vignettes",
+  },
+  {
+    date: "2026-10-27",
     type: "improvement",
     summary:
       "Coma spots, ray fans, bokeh, field curves, spherical aberration and color zones now sample the real aperture stop, as lens-design software does with ray aiming",

@@ -1,5 +1,11 @@
 import { chromaticChannelIndexLabel } from "../../../optics/chromatic.js";
-import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticChannelOmission,
+  ChromaticChannelOmissionReason,
+  ChromaticRayFanSpread,
+  RefractiveIndexReferenceLine,
+} from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
 export function chromaticChannelColor(t: Theme, channel: ChromaticChannel): string {
@@ -40,4 +46,32 @@ export function formatSpreadUmFromMm(mm: number): string {
   const um = Math.abs(mm * 1000);
   if (um === 0) return "< 0.1 µm";
   return um >= 1 ? `${um.toFixed(0)} µm` : `${um.toFixed(1)} µm`;
+}
+
+const OMISSION_REASON_LABEL: Record<ChromaticChannelOmissionReason, string> = {
+  vignetted: "vignetted",
+  "no-axis-crossing": "no axis crossing",
+  unaimed: "unaimed",
+};
+
+/** Name the channels a spread leaves out, grouped by reason: "B, V vignetted"; empty when none is left out. */
+export function formatOmittedChannels(omitted: readonly ChromaticChannelOmission[] | undefined): string {
+  const byReason = new Map<ChromaticChannelOmissionReason, ChromaticChannel[]>();
+  for (const { channel, reason } of omitted ?? []) byReason.set(reason, [...(byReason.get(reason) ?? []), channel]);
+  return Array.from(byReason, ([reason, channels]) => `${channels.join(", ")} ${OMISSION_REASON_LABEL[reason]}`).join(
+    "; ",
+  );
+}
+
+/**
+ * State a LoCA zone and the channels it compares, R being the stop radius: "0.97 R, R–G–B", or "0.90 R, R–G;
+ * B vignetted" when a selected channel is left out.
+ */
+export function formatLocaZone(
+  spread: Pick<ChromaticRayFanSpread, "fraction" | "channels" | "omittedChannels">,
+): string {
+  const zone = spread.fraction === undefined ? "" : `${spread.fraction.toFixed(2)} R, `;
+  const compared = `${zone}${(spread.channels ?? []).join("–")}`;
+  const omitted = formatOmittedChannels(spread.omittedChannels);
+  return omitted ? `${compared}; ${omitted}` : compared;
 }

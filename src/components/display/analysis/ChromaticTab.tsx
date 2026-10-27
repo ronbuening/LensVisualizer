@@ -16,7 +16,7 @@ import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
 import LongitudinalChromaticFocusChart from "./LongitudinalChromaticFocusChart.js";
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
-import { formatUmMagnitude } from "./chromaticChartUtils.js";
+import { formatLocaZone, formatOmittedChannels, formatUmMagnitude } from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
 import type { AnalysisComputationContext } from "../../../optics/analysis.js";
@@ -109,9 +109,7 @@ export default function ChromaticTab(props: ChromaticTabProps) {
                 value={formatFiniteUm(intrinsicLongitudinal?.longitudinalSpreadUm)}
                 suffix={finiteUmSuffix(intrinsicLongitudinal?.longitudinalSpreadUm)}
                 note={
-                  intrinsicLongitudinal
-                    ? `${(intrinsicLongitudinal.marginalFraction * 100).toFixed(0)}% pupil, lens-local`
-                    : "lens-local"
+                  intrinsicLongitudinal ? `${formatLocaZone(intrinsicLongitudinal.spread)}, lens-local` : "lens-local"
                 }
                 t={t}
               />
@@ -206,7 +204,7 @@ function CenteredChromaticTab({
               label="LoCA"
               value={formatFiniteUm(longitudinal?.longitudinalSpreadUm)}
               suffix={finiteUmSuffix(longitudinal?.longitudinalSpreadUm)}
-              note={longitudinal ? `${(longitudinal.marginalFraction * 100).toFixed(0)}% pupil` : undefined}
+              note={longitudinal ? formatLocaZone(longitudinal.spread) : undefined}
               t={t}
             />
             <AnalysisMetricRow
@@ -251,8 +249,12 @@ function CenteredChromaticTab({
         <section style={sectionStyle(t)}>
           <span style={sectionTitleStyle(t)}>Axial Color (LoCA)</span>
           <span style={sectionCopyStyle(t)}>
-            On-axis LoCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
-            reference line, so common defocus is not counted as chromatic focus separation.
+            Real-ray zonal axial color: each channel&apos;s on-axis ray is aimed at the same stop zone, the outermost
+            zone every selected channel passes. If none passes them all, the first zone two pass is used and the
+            channels left out are named. OpticStudio&apos;s single axial-color figure, its Chromatic Focal Shift plot,
+            is paraxial; its real-ray counterpart is the longitudinal aberration curve across zones, read here at one
+            zone. The chart is relative to the selected reference line, so common defocus is not counted as chromatic
+            focus separation.
           </span>
           <LongitudinalChromaticFocusChart result={longitudinal} t={t} channelReference={channelReference} />
           {longitudinal ? (
@@ -279,7 +281,11 @@ function CenteredChromaticTab({
               <AnalysisMetricRow
                 label="Channels"
                 value={longitudinal.channels.join("/")}
-                note={`${longitudinal.validChannelCount} usable`}
+                note={
+                  longitudinal.omittedChannels.length > 0
+                    ? `${longitudinal.validChannelCount} compared; ${formatOmittedChannels(longitudinal.omittedChannels)}`
+                    : "all compared"
+                }
                 t={t}
               />
             </div>

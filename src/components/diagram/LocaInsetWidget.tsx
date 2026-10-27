@@ -13,6 +13,7 @@ import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import { computeLocaBarOffsets } from "../../optics/analysis.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
+import { formatLocaZone, formatOmittedChannels } from "../display/analysis/chromaticChartUtils.js";
 
 function referenceIntercept(axialIntercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
   if (axialIntercepts.G !== undefined) return axialIntercepts.G;
@@ -72,6 +73,8 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
     effectiveSC,
   );
   const activeChans = CHROMATIC_CHANNEL_ORDER.filter((ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined);
+  // A selected channel the zone leaves out is named on the inset, never dropped silently.
+  const omitted = formatOmittedChannels(chromaticRayFanSpread.omittedChannels);
 
   let insetX: number;
   let insetY: number;
@@ -116,6 +119,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
       }
       style={onClick ? { cursor: "pointer" } : undefined}
     >
+      <title>{`LoCA at ${formatLocaZone(chromaticRayFanSpread)}`}</title>
       <rect
         x={insetX}
         y={insetY}
@@ -183,6 +187,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}
         {"\u00d7"}
+        {omitted ? ` \u00b7 ${omitted}` : null}
       </text>
       <ChromaticQualityBadge
         dispersionQuality={dispersionQuality}
