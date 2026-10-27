@@ -28,7 +28,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-27",
     type: "fix",
     summary:
-      "Moved the aperture stop clear of the adjacent glass in the Olympus 50mm f/1.4, Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Nikon 35-70mm f/3.5",
+      "The Olympus 50mm f/1.4, Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Nikon 35-70mm f/3.5 now pass their full rated aperture: stop moved clear of the glass, clipping rims widened",
   },
   {
     date: "2026-10-27",
