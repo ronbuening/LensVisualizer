@@ -13,7 +13,7 @@
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
  *     Eq. 3): (L, M) are the direction cosines of the segment from the ray's crossing of a sphere centred on the chief
- *     ray's image-plane point, through the paraxial exit pupil, to that point. Without aberration this is the ray's
+ *     ray's image-plane point, through the state's exit pupil, to that point. Without aberration this is the ray's
  *     own direction; with it, the cone is the exit pupil as seen from the image point, not from where each ray happens
  *     to focus. A cell's cosine-space area is |det J| times its stop area, J the Jacobian of the lattice's map from
  *     stop coordinates to (L, M), by finite differences between lit cells. The chief ray that names the image point is
@@ -43,7 +43,6 @@ import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.j
 import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
-import { xpZRelLastSurfAtZoom } from "../../state/stationTables.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
@@ -257,12 +256,12 @@ export function computeVignettingField(
   };
   const scalar = geometry && !isOffAxisVectorFieldGeometry(geometry) ? geometry : null;
   const launch = scalar && prepareAimedPupilLaunch(request, lattice, scalar);
-  if (!scalar || !launch) return unavailableField(base, "no-field-launch", lattice.length);
+  if (!scalar || !launch) return unavailableField(base, "no-field-launch");
 
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
   const mirrored = mirrorSymmetricAboutMeridian(state);
   const tracer = prepareAimedPupilTrace(state, launch);
-  const reference = referenceSphere(state, launch, scalar);
+  const reference = referenceSphere(state, launch, scalar, exitPupilZ(request, fields));
   const cells = traceLattice(state, lattice, launch, tracer.engine, n, mirrored, reference);
 
   const unaimedCount = launch.unaimedCount;
@@ -388,10 +387,10 @@ function noFigures(reason: VignettingFieldUnavailableReason) {
   };
 }
 
+/** A field with no launch: no sample was aimed, blocked or left unaimed, so every count is zero. */
 function unavailableField(
   base: Pick<VignettingFieldResult, "fieldFraction" | "fieldAngleDeg" | "cellsAcross" | "cellArea" | "sampleCount">,
   reason: VignettingFieldUnavailableReason,
-  sampleCount: number,
 ): VignettingFieldResult {
   return {
     ...base,
@@ -400,7 +399,7 @@ function unavailableField(
     referenceRadiusMm: null,
     transmittedCount: 0,
     blockedCount: 0,
-    unaimedCount: sampleCount,
+    unaimedCount: 0,
     ...noFigures(reason),
     cells: [],
   };
@@ -581,7 +580,7 @@ function integrateCosineAreas(
   return { sum, reason: null };
 }
 
-/** Rimmer's reference sphere: centred on the chief ray's image-plane point, through the paraxial exit pupil. */
+/** Rimmer's reference sphere: centred on the chief ray's image-plane point, through the state's exit pupil. */
 interface ReferenceSphere {
   center: Vec3;
   /** Radius in mm; Infinity where the exit pupil is at infinity (image-space telecentric). */
@@ -590,32 +589,60 @@ interface ReferenceSphere {
   towardPupil: Vec3;
 }
 
+/** Fraction of the half field whose real chief ray locates the current state's exit pupil. */
+const EXIT_PUPIL_PROBE_FRACTION = 0.01;
+
+/** Trace to the image plane with no aperture checks, for the chief rays that name points rather than carry light. */
+function uncheckedTrace(state: PreparedGeometry, launchBoundT: number | undefined) {
+  return prepareEngineTrace(state, {
+    checkSemiDiameter: false,
+    stopOnClip: false,
+    directionNormalized: true,
+    launchBoundT,
+    capture: "terminal",
+  });
+}
+
+/**
+ * The current state's exit pupil: where the real chief ray of a field near the axis crosses the axis in image space.
+ *
+ * It is traced at the state's own focus and zoom, so it follows focusing and passes through infinity between zoom
+ * positions as the pupil does, where an interpolated station table would cross the pole near the last surface.
+ *
+ * @returns the exit pupil's z in mm, Infinity for an image-space telecentric state, or null without a chief ray
+ */
+function exitPupilZ(request: AnalysisRequest, fields: FieldGeometryState): number | null {
+  const state = request.preparedGeometry;
+  const geometry = computeOffAxisFieldGeometry(state, EXIT_PUPIL_PROBE_FRACTION, fields);
+  if (!geometry || isOffAxisVectorFieldGeometry(geometry)) return null;
+  const launch = prepareAimedPupilLaunch(request, [], geometry);
+  if (!launch || launch.chief.status !== "aimed") return null;
+  const result = uncheckedTrace(state, launch.launchBoundT)(launch.chief);
+  const [p, d] = [result.terminalPoint, result.terminalDirection];
+  if (result.status === "failed" || !(d[2] > 0)) return null;
+  if (!(Math.abs(d[1]) > 0)) return Infinity;
+  return p[2] - (p[1] * d[2]) / d[1];
+}
+
 /**
  * The field's reference sphere, or null without a chief ray to the image plane.
  *
  * The chief ray is the launch's (0, 0) ray traced without aperture checks: it names the image point whether or not a
- * rim vignettes it. The sphere passes through the chief ray's crossing of the paraxial exit-pupil plane.
+ * rim vignettes it. The sphere passes through the chief ray's crossing of the exit-pupil plane.
  */
 function referenceSphere(
   state: PreparedGeometry,
   launch: AimedPupilLaunch,
   geometry: OffAxisFieldGeometry,
+  xpZ: number | null,
 ): ReferenceSphere | null {
   const chief = launch.chief;
-  if (chief.status !== "aimed") return null;
-  const trace = prepareEngineTrace(state, {
-    checkSemiDiameter: false,
-    stopOnClip: false,
-    directionNormalized: true,
-    launchBoundT: launch.launchBoundT,
-    capture: "terminal",
-  });
-  const result = trace(chief);
+  if (chief.status !== "aimed" || xpZ === null) return null;
+  const result = uncheckedTrace(state, launch.launchBoundT)(chief);
   const [p, d] = [result.terminalPoint, result.terminalDirection];
   if (result.status === "failed" || !(d[2] > 0)) return null;
   const toImage = (geometry.imagePlaneZ - p[2]) / d[2];
   const center: Vec3 = [p[0] + d[0] * toImage, p[1] + d[1] * toImage, geometry.imagePlaneZ];
-  const xpZ = geometry.lastSurfZ + xpZRelLastSurfAtZoom(state.zoomT, runtimeView(state.lens));
   if (!isFinite(xpZ)) return { center, radius: Infinity, towardPupil: [-d[0], -d[1], -d[2]] };
   const toPupil = (xpZ - p[2]) / d[2];
   const pupil: Vec3 = [p[0] + d[0] * toPupil, p[1] + d[1] * toPupil, xpZ];

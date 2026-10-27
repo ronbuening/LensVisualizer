@@ -1643,8 +1643,10 @@ curve and the reason a state has none.
   neither figure.
 - **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
   point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
-  crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the paraxial
-  exit-pupil plane, to that point. A cell contributes n′² · bulk transmission · |det J| · cell area, J the Jacobian of
+  crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil
+  plane, to that point. The exit pupil is the state's own: where the real chief ray of a field at 1 % of the half field
+  crosses the axis in image space, at the current focus and zoom (an interpolated station table crosses the pupil's pole
+  between zoom stations). A cell contributes n′² · bulk transmission · |det J| · cell area, J the Jacobian of
   (px, py) → (L, M) by finite differences between transmitted neighbours (central, one-sided at the beam's edge, and
   borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one). The field's
   sum over its beam is divided by the axis's. Taking each ray's own exit direction instead reads a field that focuses

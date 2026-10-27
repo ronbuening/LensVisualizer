@@ -21,6 +21,8 @@ import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf
 import CanonEF135Raw from "../../../../../src/lens-data/canon/CanonEF135mmf2LUSM.data.js";
 import FisheyeRaw from "../../../../../src/lens-data/olympus/OlympusMZuiko8mmf18FisheyePRO.data.js";
 import SonyFE20Raw from "../../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
+import SonnarRaw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 import {
   analysisRequestAt,
   apertureAt,
@@ -161,6 +163,16 @@ describe("computeVignettingCurve", () => {
     expect(axis.relativeIlluminationReason).toBe("cosine-map-folds");
     expect(axis.relativeIllumination).toBeNull();
     expect(axis.unvignettedFraction).toBe(1);
+    // The same system without the A4 term has a figure.
+    const plain = lensWith("test-vignetting-unfolded-cosines", [
+      { label: "STO", R: 1e15, nd: 1, sd: 4, d: 95, elemId: 0 },
+      { label: "1", R: 100, nd: 1.5168, sd: 8, d: 3, elemId: 1 },
+      { label: "2", R: -100, nd: 1, sd: 8, d: 95, elemId: 0 },
+    ]);
+    const plainAxis = computeVignettingCurve(analysisRequestAt(plain, { currentEPSD: 4, currentPhysStopSD: 4 }))
+      .samples[0];
+    expect(plainAxis.relativeIlluminationReason).toBeNull();
+    expect(plainAxis.relativeIllumination).toBe(1);
   });
 
   it("refers each ray to the image point when the exit pupil lies beyond the image plane", () => {
@@ -186,6 +198,23 @@ describe("computeVignettingCurve", () => {
     }
   });
 
+  it("takes the exit pupil from the state itself where a zoom's pupil passes through infinity", () => {
+    // Between the G9X's middle and long stations the exit pupil swings from metres behind the lens to metres in front:
+    // the station table's straight line through −186 and +204 mm puts it beside the last surface instead. Traced at the
+    // state, the reference sphere is metres across and the edge reads as the stations either side do.
+    const L = build(CATALOG_CONSTRUCTION_FIXTURES["canon-powershot-g9x"]);
+    const edgeAt = (zoomT: number) => {
+      const request = analysisRequestAt(L, { zoomT, ...apertureAt(L, zoomT, 0) });
+      const edge = computeVignettingCurve(request).samples.at(-1)!;
+      return { edge, field: computeVignettingField(request, edge.fieldFraction) };
+    };
+    const [before, pole, after] = [edgeAt(0.735), edgeAt(0.74), edgeAt(0.745)];
+    expect(pole.field.referenceRadiusMm!).toBeGreaterThan(1000);
+    expect(pole.edge.relativeIlluminationReason).toBeNull();
+    expect(Math.abs(pole.edge.relativeIllumination! - before.edge.relativeIllumination!)).toBeLessThan(0.01);
+    expect(Math.abs(pole.edge.relativeIllumination! - after.edge.relativeIllumination!)).toBeLessThan(0.01);
+  });
+
   it("gives no relative illumination where the rays do not localize at the image point", () => {
     // An f/1.1 biconvex singlet with the stop at its front: spherical aberration sends the marginal rays more than 5 %
     // of the exit-pupil distance from the paraxial image point, where Rimmer's referred directions no longer apply.
@@ -197,14 +226,20 @@ describe("computeVignettingCurve", () => {
     ]);
     const axisAt = (stop: number) =>
       computeVignettingCurve(analysisRequestAt(L, { currentEPSD: stop, currentPhysStopSD: stop })).samples[0];
-    const fast = axisAt(22);
+    const fastCurve = computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 22, currentPhysStopSD: 22 })).samples;
+    const fast = fastCurve[0];
     expect(fast.relativeIlluminationReason).toBe("rays-not-localized");
+    // Each off-axis field fails on its own, or for want of the axis's figure: none has a relative illumination.
+    for (const sample of fastCurve.slice(1)) {
+      expect(sample.relativeIllumination).toBeNull();
+      expect(["rays-not-localized", "axis-unavailable"]).toContain(sample.relativeIlluminationReason);
+    }
     expect(fast.relativeIllumination).toBeNull();
     expect(fast.unvignettedFraction).not.toBeNull();
     expect(axisAt(18).relativeIllumination).toBe(1);
   });
 
-  it("reads 1 on the axis unless an aperture clips the axial beam, and names the clipping aperture", () => {
+  it("reads 1 on the axis unless an aperture clips the axial beam, where it is that aperture's share", () => {
     // Clear: the Sony FE 20 mm wide open passes its whole axial beam.
     const sony = build(SonyFE20Raw);
     expect(computeVignettingCurve(analysisRequestAt(sony, apertureAt(sony, 0, 0))).samples[0].unvignettedFraction).toBe(
@@ -289,8 +324,12 @@ describe("computeVignettingCurve", () => {
       .map((fraction) => computeVignettingField(request, fraction))
       .reverse();
     expect(backward).toEqual(forward);
+    // A fresh state gives the same figures: nothing rides on a cache beyond the launch's.
+    const cold = computeVignettingCurve(analysisRequestAt(build(SonnarRaw), apertureAt(L, 0, 0)));
+    expect(cold.samples).toEqual(curve.samples);
     forward.forEach((field, i) => {
       expect(field.unvignettedFraction).toBe(curve.samples[i].unvignettedFraction);
+      expect(field.rimmerSum! / forward[0].rimmerSum!).toBe(curve.samples[i].relativeIllumination);
       // The launch a cross-checker makes from the exported lattice gives the same rays.
       const geometry = computeOffAxisFieldGeometry(
         request.preparedGeometry,
@@ -300,21 +339,29 @@ describe("computeVignettingCurve", () => {
       const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(field.cellsAcross), geometry)!;
       expect(field.cells.map((cell) => cell.ray)).toEqual(launch.rays);
     });
-    // Each −px cell is its +px partner's exact mirror image.
+    // Each −px cell is its +px partner's mirror image: traced on its own, its ray does what the mirror says it does.
     const edge = forward.at(-1)!;
     expect(edge.mirrored).toBe(true);
-    for (const cell of edge.cells) {
-      const partner = edge.cells.find(
-        (other) => other.cell.row === cell.cell.row && other.cell.column === edge.cellsAcross - 1 - cell.cell.column,
-      )!;
-      expect(cell.transmitted).toBe(partner.transmitted);
-      expect(cell.cosineArea).toBe(partner.cosineArea);
-      if (cell.referredDirectionCosines)
-        expect(cell.referredDirectionCosines[0] + 0).toBe(-partner.referredDirectionCosines![0] + 0);
+    const geometry = computeOffAxisFieldGeometry(
+      request.preparedGeometry,
+      edge.fieldFraction,
+      computeAnalysisFieldGeometryAtState(0, 0, L, 0),
+    )!;
+    const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
+    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
+    let mirroredCells = 0;
+    for (const cell of edge.cells.filter((entry) => entry.cell.xFraction < 0 && entry.ray.status === "aimed")) {
+      const result = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
+      expect(result.status === "ok").toBe(cell.transmitted);
+      if (!cell.transmitted) continue;
+      mirroredCells++;
+      expect(Math.abs(result.terminalDirection[0] - cell.exitDirectionCosines![0])).toBeLessThan(1e-12);
+      expect(Math.abs(result.terminalDirection[1] - cell.exitDirectionCosines![1])).toBeLessThan(1e-12);
     }
+    expect(mirroredCells).toBeGreaterThan(100);
   });
 
-  it("never exceeds 1, including where a retrofocus pupil grows off the axis", () => {
+  it("reads exactly 1 where a wholly transmitted retrofocus beam's old launch-area figure exceeded 1", () => {
     // At f/8 the Sony FE 20 mm's 47° beam is wholly transmitted; the old launch-area figure read 1.33 there.
     const L = build(SonyFE20Raw);
     const curve = computeVignettingCurve(
@@ -354,6 +401,8 @@ describe("computeVignettingCurve", () => {
     expect(fine).toHaveLength(coarse.length);
     coarse.forEach((sample, i) => {
       expect(fine[i].fieldAngleDeg).toBe(sample.fieldAngleDeg);
+      for (const value of [sample.unvignettedFraction, sample.relativeIllumination, fine[i].relativeIllumination])
+        expect(value).not.toBeNull();
       expect(Math.abs(fine[i].unvignettedFraction! - sample.unvignettedFraction!)).toBeLessThan(0.01);
       expect(Math.abs(fine[i].relativeIllumination! - sample.relativeIllumination!)).toBeLessThan(0.01);
     });

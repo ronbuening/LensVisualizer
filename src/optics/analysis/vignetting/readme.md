@@ -14,14 +14,14 @@ flowchart LR
   n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_field["src/optics/field"]
-  n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_prescription["src/optics/prescription"]
+  n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> |7| n_external_src_optics_analysis
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> |3| n_external_src_optics_trace
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> |2| n_external_src_optics_field
-  n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> |2| n_external_src_optics_state
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_prescription
+  n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_state
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_types_ts
 ```
 
@@ -29,11 +29,11 @@ flowchart LR
 
 - Direct source files: 1
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/state (2), src/optics/prescription, src/optics/types.ts
+- Main outbound areas: src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/prescription, src/optics/state, src/optics/types.ts
 - External consumers: src/optics/analysis, src/optics/analysis.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `vignetting.ts` | Vignetting helper module | src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/state (2), src/optics/prescription, +1 more | src/optics/analysis, src/optics/analysis.ts | BEAM_GRID_CELLS, MIN_BEAM_GRID_CELLS, VIGNETTING_MAX_UNAIMED_SHARE, RIMMER_MIN_CELL_AREA_RATIO, RIMMER_MAX_REFERRED_DEVIATION, VignettingLatticeCell, VignettingFieldUnavailableReason, RelativeIlluminationUnavailableReason, +9 more |
+| `vignetting.ts` | Vignetting helper module | src/optics/analysis (7), src/optics/trace (3), src/optics/field (2), src/optics/prescription, src/optics/state, +1 more | src/optics/analysis, src/optics/analysis.ts | BEAM_GRID_CELLS, MIN_BEAM_GRID_CELLS, VIGNETTING_MAX_UNAIMED_SHARE, RIMMER_MIN_CELL_AREA_RATIO, RIMMER_MAX_REFERRED_DEVIATION, VignettingLatticeCell, VignettingFieldUnavailableReason, RelativeIlluminationUnavailableReason, +9 more |
