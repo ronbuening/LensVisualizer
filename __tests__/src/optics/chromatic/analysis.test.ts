@@ -20,6 +20,7 @@ import { runtimeView } from "../../../../src/optics/prescription/runtimeView.js"
 import { prepareStateSurfacesReal } from "../../../../src/optics/field/geometry.js";
 import SonyFE20Raw from "../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
 import CanonEF2470IIRaw from "../../../../src/lens-data/canon/CanonEF2470mmf28LII.data.js";
+import PentaxFA31Raw from "../../../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.js";
 import type { ChromaticChannel } from "../../../../src/types/optics.js";
 import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
 import { chromaticSpreadFromRays } from "../../../../src/optics/chromatic/zoneSelection.js";
@@ -134,7 +135,7 @@ describe("chromatic analysis helpers", () => {
     expect(result!.channels).toEqual(["R", "G", "B"]);
     expect(result!.fields).toHaveLength(3);
     expect(result!.usableFieldCount).toBeGreaterThan(0);
-    expect(result!.maxLateralSpreadUm).toBeCloseTo(result!.maxLateralSpreadMm * 1000, 9);
+    expect(result!.maxLateralSpreadUm).toBeCloseTo(result!.maxLateralSpreadMm! * 1000, 9);
 
     const usableField = result!.fields.find((field) => field.usable);
     expect(usableField).toBeTruthy();
@@ -215,7 +216,7 @@ describe("chromatic analysis helpers", () => {
     expect(formatChromaticZone(fallback)).toBe("0.97 R, R–G; B, V vignetted");
   });
 
-  it("picks a traced fan's fraction by the same rule, and states a fallback's missing channels", () => {
+  it("picks a traced fan's fraction from all four channels, and states a fallback's missing channels", () => {
     const ray = (channel: ChromaticChannel, fraction: number, clipped = false) => ({
       channel,
       fraction,
@@ -223,13 +224,14 @@ describe("chromatic analysis helpers", () => {
       u: -0.1,
       clipped,
     });
-    const allAtInner = chromaticSpreadFromRays(
-      [ray("R", 0.75), ray("G", 0.75), ray("B", 0.75, true), ray("R", -0.75), ray("G", -0.75), ray("B", -0.75)],
-      ["R", "G", "B"],
-      60,
-      20,
-    );
+    const rays = (fraction: number, clipped: readonly ChromaticChannel[] = []) =>
+      (["R", "G", "B", "V"] as const).map((channel) => ray(channel, fraction, clipped.includes(channel)));
+    const allAtInner = chromaticSpreadFromRays([...rays(0.75, ["B"]), ...rays(-0.75)], ["R", "G", "B"], 60, 20);
     expect(allAtInner).toMatchObject({ fraction: -0.75, channels: ["R", "G", "B"], omittedChannels: [] });
+
+    // A hidden channel clipped at the outer fraction moves the fan inward too: the fraction never follows the toggles.
+    const hiddenClipped = chromaticSpreadFromRays([...rays(0.75, ["V"]), ...rays(-0.75)], ["R", "G", "B"], 60, 20);
+    expect(hiddenClipped).toMatchObject({ fraction: -0.75, channels: ["R", "G", "B"], omittedChannels: [] });
 
     // Blue is clipped at every fraction and violet was never traced: the first fraction two channels pass is used.
     const fallback = chromaticSpreadFromRays(
@@ -245,21 +247,51 @@ describe("chromatic analysis helpers", () => {
       { channel: "V", reason: "untraced" },
     ]);
     expect(formatChromaticZone(fallback, "EP")).toBe("0.75 EP, R–G; B vignetted; V not traced");
-    expect(chromaticSpreadFromRays([ray("R", 0.5), ray("G", 0.5, true)], ["R", "G"], 60, 20)).toBeNull();
+    // At the zone chosen, fewer than two requested channels pass: there is no spread.
+    expect(chromaticSpreadFromRays(rays(0.5, ["G", "B", "V"]), ["R", "G"], 60, 20)).toBeNull();
   });
 
-  it("names a lateral color field's channel whose chief ray a rim clips", () => {
+  it("never reports a subset's LoCA spread above a larger set's", () => {
+    const order: ChromaticChannel[] = ["R", "G", "B", "V"];
+    const subsets = Array.from({ length: 16 }, (_, mask) => order.filter((_, bit) => mask & (1 << bit))).filter(
+      (channels) => channels.length >= 2,
+    );
+    // The Pentax FA 31 Limited wide open is one where the requested channels choosing the zone read R–B (0.97 R)
+    // above R G B V (0.95 R).
+    for (const L of [sharedSonnar50f15(), build(PentaxFA31Raw)]) {
+      const request = analysisRequestForLens(L);
+      const spreads = new Map(
+        subsets.map((channels) => [
+          channels.join(""),
+          computeLongitudinalChromaticFocus(request, { channels })!.longitudinalSpreadMm,
+        ]),
+      );
+      for (const channels of subsets) {
+        for (const larger of subsets) {
+          if (larger.length <= channels.length || !channels.every((channel) => larger.includes(channel))) continue;
+          expect(spreads.get(channels.join(""))!).toBeLessThanOrEqual(spreads.get(larger.join(""))! + 1e-12);
+        }
+      }
+    }
+  });
+
+  it("leaves a lateral color field whose chief ray a rim clips out of the maximum, and names its channel", () => {
     // Wide open at 24 mm, a rim clips red's full-field chief ray while green, blue and violet reach the image.
     const result = computeLateralColorCurve(analysisRequestForLens(build(CanonEF2470IIRaw)), {
-      fieldFractions: [0, 1],
+      fieldFractions: [0, 0.5, 0.75, 1],
     })!;
     const edge = result.fields.find((field) => field.fieldFraction === 1)!;
     expect(edge.usable).toBe(true);
     expect(edge.omittedChannels).toEqual([{ channel: "R", reason: "vignetted" }]);
     expect(edge.validChannelCount).toBe(3);
+    expect(edge.lateralSpreadMm).not.toBeNull();
     expect(edge.samples.find((sample) => sample.channel === "R")).toMatchObject({ usable: false, clipped: true });
-    expect(result.fields.find((field) => field.fieldFraction === 0)!.omittedChannels).toEqual([]);
-    expect(result.maxLateralFieldFraction).toBe(1);
+
+    const complete = result.fields.filter((field) => field.usable && field.omittedChannels.length === 0);
+    expect(complete.map((field) => field.fieldFraction)).toEqual([0, 0.5, 0.75]);
+    const max = Math.max(...complete.map((field) => field.lateralSpreadMm!));
+    expect(result.maxLateralSpreadMm).toBe(max);
+    expect(result.maxLateralFieldFraction).toBe(complete.find((field) => field.lateralSpreadMm === max)!.fieldFraction);
   });
 
   it("returns combined chromatic analysis with nullable sections instead of throwing on insufficient channels", () => {

@@ -432,7 +432,7 @@ describe("useChromaticRays", () => {
     expect(noBlue).toBeLessThanOrEqual(allRgb + 1e-9);
   });
 
-  it("compares every requested channel whenever a candidate zone admits all of them", () => {
+  it("chooses the LoCA zone from all four channels, whichever are requested, and compares each requested one there", () => {
     const { L, zPos, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const request = createAnalysisRequest({
       preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
@@ -441,21 +441,18 @@ describe("useChromaticRays", () => {
       currentPhysStopSD,
     });
     const fractions = expectedDisplayLocaFractions(L);
-    const admitsAll = (channels: ChromaticChannel[], fraction: number) =>
-      computeLongitudinalChromaticFocus(request, { channels, longitudinalFractions: [fraction] })?.omittedChannels
-        .length === 0;
     const order: ChromaticChannel[] = ["R", "G", "B", "V"];
     const subsets = Array.from({ length: 16 }, (_, mask) => order.filter((_, bit) => mask & (1 << bit))).filter(
       (channels) => channels.length >= 2,
     );
 
-    // Wide open, a rim behind the stop vignettes blue's aimed 0.97 R zone, so the RGB search must pass it by.
-    expect(admitsAll(["R", "G", "B"], 0.97)).toBe(false);
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed 0.97 R zone; all four pass 0.95 R. Red and
+    // green alone pass 0.97 R, but the zone does not move when the other channels are hidden.
+    const atOuter = computeLongitudinalChromaticFocus(request, { channels: order, longitudinalFractions: [0.97] })!;
+    expect(atOuter.omittedChannels.map((omission) => omission.channel)).toEqual(["B", "V"]);
     for (const channels of subsets) {
-      const outermost = fractions.find((fraction) => admitsAll(channels, fraction));
-      expect(outermost).toBeDefined();
       const result = computeLongitudinalChromaticFocus(request, { channels, longitudinalFractions: fractions })!;
-      expect(result.marginalFraction).toBe(outermost);
+      expect(result.marginalFraction).toBe(0.95);
       expect(result.spread.channels).toEqual(channels);
       expect(result.omittedChannels).toEqual([]);
     }
