@@ -1560,15 +1560,25 @@ use perspective analysis.
 
 ## Vignetting
 
-`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes relative
-illumination using solved chief rays, adaptive field spacing, and dense meridional pupil sweeps whose per-field ray
-count halves for `isHeavyLensForRayWork` lenses.
-`computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
-fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and samples each field's
+transmitted beam in 2D with the MTF's machinery (`prepareMtfFieldLaunch`, `findMtfFieldFootprint`, `mtfLaunchGrid` at 64
+cells across the beam, mirrored half pupils when `mtfMirrorSymmetric`), at the authored indices and collimated at every
+focus. Field spacing is unchanged; `vignettingPupilSampleCount` overrides the cells across the beam.
 
-`geometricTransmission` remains the normalized fraction of rays that survive clipping. `relativeIllumination` sums the
-surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
+`geometricTransmission` is the lit lattice area on the launch plane over the axis's; it exceeds 1 where the stop's image
+grows off axis (its footprint on the axial launch plane grows as the image turns to face the field). `relativeIllumination`
+is conservation of energy: the transmission-weighted lit area times cos θ over the image area per unit object solid
+angle, normalized to the axis. That area is (dh/dθ)(h/sin θ) from lit chief rays 0.01° apart, or, where the chief ray is
+vignetted, the median sub-lattice ray tube's ∂P/∂ω with its stop crossing held (launch-point derivatives from
+neighbouring cells). Both hold the stop crossing: pivoting on the launch point, or taking each ray's own exit-direction
+cosine area, reads a field that focuses off the image plane as brighter (a singlet with field curvature rose above 1),
+and a mean over tubes lets rim-zone rays that turn sharply scatter the figure. Keeping the two figures separate is
 required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
+States `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse (fisheye, folded, mirror, diffractive, annular, tilted
+image plane), and curves with a bounding-sphere field, return no curve rather than mix in the old meridional sweep; a
+field with no solvable chief ray counts as dark. A prescription whose image height peaks before the format corner (the
+GF 80 mm f/1.7's data, which omits its patent's odd aspheric terms) puts the analysis edge on that fold, where
+dh/dθ → 0 and the edge reads very bright.
 
 The job table and lazy context accessor dispatch the request directly. `VignettingTab` reuses the deferred context request or memoizes one from the
 prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by

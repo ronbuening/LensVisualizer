@@ -121,7 +121,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
         t={t}
         items={[
           { label: "Geometric", color: t.chartSeries[0] },
-          { label: "Relative (cos⁴)", color: t.chartSeries[1], dasharray: "4,3" },
+          { label: "Relative", color: t.chartSeries[1], dasharray: "4,3" },
         ]}
       />
     </SvgChartFrame>

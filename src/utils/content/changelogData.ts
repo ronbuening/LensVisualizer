@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-26",
     type: "fix",
+    summary: "The Vignetting tab now measures each field's full beam and traced falloff instead of assuming cos⁴",
+  },
+  {
+    date: "2026-10-26",
+    type: "fix",
     summary: "Fixed Chromatic and Pupils tab results to use true chief rays and the patent's glass indices",
   },
   {
