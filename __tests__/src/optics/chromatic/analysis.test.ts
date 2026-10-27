@@ -9,9 +9,25 @@ import {
 } from "../../../../src/optics/analysis/chromatic/analysis.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
+  computeOffAxisChannelFieldGeometry,
+  computeOffAxisFieldGeometry,
+  traceOffAxisChiefRay,
+} from "../../../../src/optics/analysis/aberration/offAxis.js";
+import type { OffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../../../../src/optics/chromatic/channels.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { runtimeView } from "../../../../src/optics/prescription/runtimeView.js";
+import { prepareStateSurfacesReal } from "../../../../src/optics/field/geometry.js";
+import SonyFE20Raw from "../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
+import type { ChromaticChannel } from "../../../../src/types/optics.js";
+import { constructionFixtureData } from "../constructionFixtures.js";
+import {
+  analysisRequestForLens,
   apertureAt,
+  build,
   buildRearPlateAirEquivalentLens,
   buildRearPlateLens,
+  buildSimplePositiveElementLens,
   REAR_PLATE_FIXTURE,
   sharedApoLanthar50f2,
   sharedSonnar50f15,
@@ -123,6 +139,56 @@ describe("chromatic analysis helpers", () => {
       .filter((height): height is number => height !== null);
     expect(usableField!.lateralSpreadMm).toBeCloseTo(finiteSpan(imageHeights), 9);
     expect(usableField!.samples.find((sample) => sample.channel === "G")?.relativeHeightMm).toBeCloseTo(0, 9);
+  });
+
+  it("traces each channel's own chief ray through the stop for lateral color", () => {
+    // A wide-angle with strong pupil chromatism: at its 47° edge one shared launch misses the stop by 0.17 mm at F.
+    const request = analysisRequestForLens(build(SonyFE20Raw));
+    const state = request.preparedGeometry;
+    const curve = computeLateralColorCurve(request, { channels: ["R", "G", "B", "V"], fieldFractions: [1] })!;
+    const [field] = curve.fields;
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, runtimeView(state.lens));
+    const shared = computeOffAxisFieldGeometry(state, 1, fieldGeometry) as OffAxisFieldGeometry;
+    const height = (channel: ChromaticChannel) => field.samples.find((sample) => sample.channel === channel)!;
+    const sharedHeight = (channel: ChromaticChannel) => traceOffAxisChiefRay(request, shared, channel)!.imagePoint.y;
+
+    for (const channel of curve.channels) {
+      const own = computeOffAxisChannelFieldGeometry(state, 1, channel, fieldGeometry) as OffAxisFieldGeometry;
+      expect(own.fieldAngleDeg).toBe(field.fieldAngleDeg);
+      const traceStop = prepareStateSurfacesReal(state, {
+        stopAt: state.lens.stop.surfaceIndex,
+        indexAtSurface: (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd,
+        wavelengthNm: CHROMATIC_CHANNEL_WAVELENGTH_NM[channel],
+      });
+      expect(Math.abs(traceStop(own.yChief, own.uField).y)).toBeLessThan(1e-7);
+    }
+
+    // The reference channel's own chief ray is the shared one, to the bit.
+    expect((computeOffAxisChannelFieldGeometry(state, 1, "G", fieldGeometry) as OffAxisFieldGeometry).yChief).toBe(
+      shared.yChief,
+    );
+    expect(height("G").imageHeightMm).toBe(sharedHeight("G"));
+    for (const channel of ["R", "B"] as const) {
+      const single = sharedHeight(channel) - sharedHeight("G");
+      expect(Math.abs(height(channel).relativeHeightMm! - single)).toBeGreaterThan(1e-4);
+    }
+  });
+
+  it("keeps every lateral color channel equal through glass without dispersion", () => {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const L = build({ ...base, elements: base.elements.map(({ vd: _vd, ...element }) => element) });
+    const request = analysisRequestForLens(L);
+    const curve = computeLateralColorCurve(request, { channels: ["R", "G", "B", "V"], fieldFractions: [0.5, 1] })!;
+    const shared = computeOffAxisFieldGeometry(
+      request.preparedGeometry,
+      1,
+      computeAnalysisFieldGeometryAtState(0, 0, L),
+    )!;
+    for (const field of curve.fields) {
+      expect(field.lateralSpreadMm).toBe(0);
+      for (const sample of field.samples) expect(sample.relativeHeightMm).toBe(0);
+    }
+    expect(curve.fields[1].referenceImageHeightMm).toBe(traceOffAxisChiefRay(request, shared, "G")!.imagePoint.y);
   });
 
   it("returns combined chromatic analysis with nullable sections instead of throwing on insufficient channels", () => {

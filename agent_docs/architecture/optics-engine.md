@@ -307,15 +307,15 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - `chromatic/channels.ts` owns channel metadata and order for engine and UI, including native e-line text and
   wavelengths. The wavelength exports in `chromatic/indexResolver.ts` alias its d-line lookup;
   Cauchy interpolation nodes and full-channel traversals derive from the same metadata and order.
-- Channel lines are set per element by `indexReference`, and every tier must return them. A d-line element traces
-  R/G/B/V at C/d/F/g. A native e-line element traces C′/e/F′/g with G equal to its authored `ne`: its Sellmeier tier
+- Channel lines are set per element by `indexReference`, and every tier must return them, with G equal to the
+  authored index. A d-line element traces R/G/B/V at C/d/F/g; its Sellmeier tier is the authored `nd` plus the
+  catalog's index difference from the d line. A native e-line element traces C′/e/F′/g: its Sellmeier tier
   is the authored `ne` plus the catalog's index difference from the e line, and its Abbe tier reaches g from F′ with
   `normalLinePgFPrime`, because P_g,F′ runs about 0.06 below P_g,F. Catalog matches are accepted within 0.003 of the
   stored index, so catalog values at other lines beside Abbe-tier neighbors read that mismatch as color-focus error
   (1.8 mm on a 100 mm lens). `CHROMATIC_CHANNEL_METADATA` stays the d-line set the tracer's channel
   wavelengths are keyed to; the inspector, the channel tooltips, the chromatic overlay and the Chromatic tab print
-  C′/e/F′ through `lensChromaticReference` when every element of the lens is e-referenced. The d-line Sellmeier tier is not anchored: its G is the
-  catalog nd, which can differ from the authored nd by the match tolerance. An e-line element that authors `nC` /
+  C′/e/F′ through `lensChromaticReference` when every element of the lens is e-referenced. An e-line element that authors `nC` /
   `nF` / `ng` is read as written; none exists in the catalog.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
@@ -1560,15 +1560,25 @@ use perspective analysis.
 
 ## Vignetting
 
-`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes relative
-illumination using solved chief rays, adaptive field spacing, and dense meridional pupil sweeps whose per-field ray
-count halves for `isHeavyLensForRayWork` lenses.
-`computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
-fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and samples each field's
+transmitted beam in 2D with the MTF's machinery (`prepareMtfFieldLaunch`, `findMtfFieldFootprint`, `mtfLaunchGrid` at 64
+cells across the beam, mirrored half pupils when `mtfMirrorSymmetric`), at the authored indices and collimated at every
+focus. Field spacing is unchanged; `vignettingPupilSampleCount` overrides the cells across the beam.
 
-`geometricTransmission` remains the normalized fraction of rays that survive clipping. `relativeIllumination` sums the
-surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
+`geometricTransmission` is the lit lattice area on the launch plane over the axis's; it exceeds 1 where the stop's image
+grows off axis (its footprint on the axial launch plane grows as the image turns to face the field). `relativeIllumination`
+is conservation of energy: the transmission-weighted lit area times cos θ over the image area per unit object solid
+angle, normalized to the axis. That area is (dh/dθ)(h/sin θ) from lit chief rays 0.01° apart, or, where the chief ray is
+vignetted, the median sub-lattice ray tube's ∂P/∂ω with its stop crossing held (launch-point derivatives from
+neighbouring cells). Both hold the stop crossing: pivoting on the launch point, or taking each ray's own exit-direction
+cosine area, reads a field that focuses off the image plane as brighter (a singlet with field curvature rose above 1),
+and a mean over tubes lets rim-zone rays that turn sharply scatter the figure. Keeping the two figures separate is
 required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
+States `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse (fisheye, folded, mirror, diffractive, annular, tilted
+image plane), and curves with a bounding-sphere field, return no curve rather than mix in the old meridional sweep; a
+field with no solvable chief ray counts as dark. A prescription whose image height peaks before the format corner (the
+GF 80 mm f/1.7's data, which omits its patent's odd aspheric terms) puts the analysis edge on that fold, where
+dh/dθ → 0 and the edge reads very bright.
 
 The job table and lazy context accessor dispatch the request directly. `VignettingTab` reuses the deferred context request or memoizes one from the
 prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by
@@ -1622,7 +1632,10 @@ rather than usable structures containing non-finite metrics.
 `analysis/chromatic/rayFan.ts` owns first-usable-fraction on/off-axis fans. All take `AnalysisRequest`, exposed through
 `analysis.ts`. Channels normalize into R/G/B/V order, with G as reference when requested and the first channel otherwise.
 The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
-geometry. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
+geometry. Lateral color traces each channel's own chief ray (`computeOffAxisChannelFieldGeometry`, solved through the
+stop's centre at that channel's indices) at the field angle the channels share; the reference channel's solve is the
+channel-less one to the bit. The off-axis fans and every other off-axis caller keep the one channel-less chief ray of
+`computeOffAxisFieldGeometry`. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
 its authored folded image plane, while the fan uses the current folded focus plane.
 
 `ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by

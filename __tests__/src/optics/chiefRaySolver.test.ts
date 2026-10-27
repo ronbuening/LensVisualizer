@@ -34,6 +34,7 @@ import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/o
 const RECTILINEAR_FIXTURE = "nokton-50f1";
 const FISHEYE_FIXTURE = "nikon-fisheye-nikkor-6mm-f28";
 const HOLOGON_FIXTURE = "zeiss-hologon-15f8";
+const TELEPHOTO = "sony-fe-400mm-f28-gm-oss";
 
 describe("projectionLaunchSlopeForField", () => {
   it("returns -tan(theta) for rectilinear lenses at moderate fields", () => {
@@ -70,11 +71,59 @@ describe("solveChiefRay", () => {
     expect(second).toBe(first);
   });
 
-  it("returns paraxial fallback (iterations=0) for near-axis fields", () => {
-    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
-    const result = solveChiefRay(0.5, 0, 0, L);
+  it("solves the stop's chief ray below one degree on a long telephoto", () => {
+    // The paraxial entrance pupil of a 400 mm lens sits 1.3 mm from the real one at 1°; the paraxial launch misses.
+    const state = prepareStateUncached(
+      compiledLensFromRuntime(buildLens(CATALOG_CONSTRUCTION_FIXTURES[TELEPHOTO])),
+      0,
+      0,
+    );
+    const geometry = computePreparedFieldGeometry(state);
+    const traceStop = fieldGeometryModule.prepareStateSurfacesReal(state, { stopAt: state.lens.stop.surfaceIndex });
+    const fieldAngleDeg = 0.5;
+    const result = computeChiefRaySolve(state, { fieldAngleDeg, geometry });
     expect(result.status).toBe("converged");
-    expect(result.iterations).toBe(0);
+    expect(result.iterations).toBeGreaterThan(0);
+    // The residual tolerance shrinks with the field below 1°: 1e-7 mm × 0.5.
+    expect(Math.abs(traceStop(result.yLaunch, result.uField).y)).toBeLessThan(0.5e-7);
+    expect(Math.abs(traceStop(-geometry.epRatio * result.uField, result.uField).y)).toBeGreaterThan(1e-5);
+
+    const seeded = chiefSolves.solveChiefRayFromSeed(state, {
+      fieldAngleDeg,
+      seed: computeChiefRaySolve(state, { fieldAngleDeg: 0.6, geometry }),
+    });
+    expect(seeded).not.toBeNull();
+    expect(Math.abs(traceStop(seeded!.yLaunch, seeded!.uField).y)).toBeLessThan(0.5e-7);
+  });
+
+  it("keeps the axis exact on both launch surfaces", () => {
+    for (const key of [TELEPHOTO, FISHEYE_FIXTURE]) {
+      const state = prepareStateUncached(compiledLensFromRuntime(buildLens(CATALOG_CONSTRUCTION_FIXTURES[key])), 0, 0);
+      const result = computeChiefRaySolve(state, { fieldAngleDeg: 0, geometry: computePreparedFieldGeometry(state) });
+      expect(result.status).toBe("converged");
+      expect(result.iterations).toBe(0);
+      expect(Math.abs(result.yLaunch)).toBe(0);
+    }
+  });
+
+  it("solves fisheye bounding-sphere chief rays through the stop below one degree", () => {
+    // The vector launch stays well-conditioned near the axis, so it gets no paraxial shortcut either.
+    const state = prepareStateUncached(
+      compiledLensFromRuntime(buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE])),
+      0,
+      0,
+    );
+    const result = computeChiefRaySolve(state, { fieldAngleDeg: 0.5, geometry: computePreparedFieldGeometry(state) });
+    expect(result.launchSurface).toBe("bounding-sphere");
+    expect(result.status).toBe("converged");
+    const launch = result.vectorLaunch!;
+    const traceStop = rayAdapters.prepareEngineTrace(state, {
+      capture: "terminal",
+      stopAt: state.lens.stop.surfaceIndex,
+      launchBoundT: launch.launchBoundT,
+      checkSemiDiameter: true,
+    });
+    expect(Math.abs(traceStop({ origin: launch.origin, direction: launch.direction }).y!)).toBeLessThan(0.5e-7);
   });
 
   it("converges within the iteration cap for moderate fisheye fields", () => {

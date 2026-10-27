@@ -21,6 +21,8 @@ import {
   computeFieldGeometryAtState,
   solveChiefRayForRuntimeLens as solveChiefRay,
 } from "../../state/fieldAdapters.js";
+import { solveChiefRay as solvePreparedChiefRay } from "../../field/chiefRaySolve.js";
+import type { ChiefRaySolveResult } from "../../field/chiefRaySolve.js";
 import { offsetVectorFieldRay } from "../../field/launch.js";
 import type { FieldGeometryState, VectorFieldRayLaunch } from "../../field/launch.js";
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
@@ -255,6 +257,41 @@ export function computeOffAxisFieldGeometry(
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
 ): ProjectionAwareOffAxisFieldGeometry | null {
+  return offAxisFieldGeometry(state, fieldFraction, stateGeometry, (fieldAngleDeg, geometry) =>
+    solveChiefRay(fieldAngleDeg, state.focusT, state.zoomT, runtimeView(state.lens), geometry, state.aberrationT),
+  );
+}
+
+/**
+ * Off-axis field geometry whose chief ray passes through the stop's centre at one chromatic channel.
+ *
+ * Lateral colour compares each wavelength's own chief ray, so each channel solves its launch at that channel's indices
+ * and wavelength; the field angle stays the one every channel shares. Every other caller uses the channel-less
+ * `computeOffAxisFieldGeometry`.
+ *
+ * @param state - prepared geometry
+ * @param fieldFraction - fraction of half field in `[0, 1]`
+ * @param channel - chromatic channel the chief ray is solved at
+ * @param stateGeometry - optional precomputed field-geometry state
+ * @returns projection-aware off-axis launch geometry for that channel, or null when unsupported
+ */
+export function computeOffAxisChannelFieldGeometry(
+  state: PreparedGeometry,
+  fieldFraction: number,
+  channel: ChromaticChannel,
+  stateGeometry?: FieldGeometryState,
+): ProjectionAwareOffAxisFieldGeometry | null {
+  return offAxisFieldGeometry(state, fieldFraction, stateGeometry, (fieldAngleDeg, geometry) =>
+    solvePreparedChiefRay(state, { fieldAngleDeg, geometry, channel }),
+  );
+}
+
+function offAxisFieldGeometry(
+  state: PreparedGeometry,
+  fieldFraction: number,
+  stateGeometry: FieldGeometryState | undefined,
+  solveAt: (fieldAngleDeg: number, geometry: FieldGeometryState) => ChiefRaySolveResult,
+): ProjectionAwareOffAxisFieldGeometry | null {
   const L = runtimeView(state.lens);
   const zPos = state.z as number[];
   const focusT = state.focusT;
@@ -275,7 +312,7 @@ export function computeOffAxisFieldGeometry(
   if (!isFinite(imagePlaneZ)) return null;
 
   const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
-  const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  const solve = solveAt(fieldAngleDeg, geometry);
   if (
     solve.vectorLaunch &&
     (launch.status === "out-of-domain" || shouldUseVectorOffAxisGeometry(state, fieldAngleDeg))

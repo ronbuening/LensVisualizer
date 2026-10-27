@@ -67,8 +67,8 @@ export interface PupilAberrationSample {
    * > 1  → apparent EP has shifted away from the object (toward the lens).
    * < 1  → apparent EP has shifted toward the object.
    *
-   * Below 1° the solver returns the paraxial estimate, so samples in that range
-   * always report 1.0.
+   * Only the on-axis sample reports exactly 1.0; every other field is solved
+   * through the stop.
    */
   chiefRayCorrection: number;
   /**
