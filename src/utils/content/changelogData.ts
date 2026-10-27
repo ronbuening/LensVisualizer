@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-27",
     type: "feature",
     summary:
+      "Released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",
+  },
+  {
+    date: "2026-10-27",
+    type: "feature",
+    summary:
       "Added decade filters to the lens library, mount and format links to lens headers and a telephoto ratio to the Summary tab",
   },
   {

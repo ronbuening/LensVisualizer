@@ -271,10 +271,9 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 
 ## Lens Builder
 
-`LensBuilderPage` owns the client-only `/lens-builder/` experiment. `ENABLE_LENS_BUILDER` follows Vite's `DEV`
-boolean (on in dev and Vitest, off in production); plain-Node metadata readers default it to false. To ship, set it
-true; remove the flag and inline the route once released, or remove the builder when abandoned. It has no navigation
-or sitemap entry and declares noindex/nofollow.
+`LensBuilderPage` owns the client-only `/lens-builder/` route. `ENABLE_LENS_BUILDER` is on in every build and gates
+both the route and the homepage `QuickNavCards` card (badged "New"); remove the flag and inline both once the release
+settles. That card is its only navigation entry; it has no sitemap entry and declares noindex/nofollow.
 
 `SingleLensContent` accepts an optional side panel, a prebuilt `RuntimeLens`, `showPhotoSearch={false}` (threaded
 through `LensDiagramPanel` to `DiagramHeader`, which hides the Flickr link for drafts) and `highlightElementId`. The

@@ -1,8 +1,9 @@
 /**
  * QuickNavCards — navigation card grid for the homepage.
  *
- * Three cards linking to the lens library, makers index, and the
- * interactive viewer (first lens in the catalog).
+ * Cards linking to the lens library, makers index, the interactive viewer
+ * (most recently added lens) and the lens builder (badged as new), then a
+ * full-width Start Here card for readers new to lens design.
  */
 
 import { Link } from "react-router";
@@ -11,6 +12,7 @@ import { SUMMARY_KEYS, LENS_SUMMARIES, RECENT_LENS_KEYS } from "../../utils/cata
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { panelCard } from "../../utils/style/styles.js";
+import { ENABLE_LENS_BUILDER } from "../../utils/featureFlags.js";
 
 interface QuickNavCardsProps {
   theme: Theme;
@@ -24,7 +26,15 @@ interface CardDef {
   title: string;
   subtitle: string;
   to: string;
+  /** Badge the card as a newly released feature. */
+  isNew?: boolean;
 }
+
+const START_HERE: CardDef = {
+  title: "Start Here",
+  subtitle: "New to lens design? Begin with the basics",
+  to: "/articles/start-here",
+};
 
 export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
   const makerCount = countMakers();
@@ -38,16 +48,29 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       subtitle: viewerLens ? LENS_SUMMARIES[viewerLens].name : "Explore a lens",
       to: viewerLens ? `/lens/${viewerLens}` : "/lenses",
     },
-    { title: "Start Here", subtitle: "New to lens design? Begin with the basics", to: "/articles/start-here" },
+    ...(ENABLE_LENS_BUILDER
+      ? [
+          {
+            title: "Lens Builder",
+            subtitle: "Design your own lens and trace it live",
+            to: "/lens-builder",
+            isNew: true,
+          },
+        ]
+      : []),
   ];
 
-  const cardStyle = (): React.CSSProperties => ({
+  const cardStyle = (card: CardDef): React.CSSProperties => ({
     ...panelCard(t, { borderRadius: 8 }),
+    ...(card.isNew ? { borderColor: t.toggleActiveBorder } : {}),
     padding: "clamp(1rem, 2vw, 1.25rem) clamp(1.25rem, 2.5vw, 1.5rem)",
     textDecoration: "none",
     display: "block",
     transition: "border-color 0.2s, box-shadow 0.2s",
   });
+
+  const titleStyle: React.CSSProperties = { fontSize: "0.9rem", fontWeight: 600, color: t.descLinkColor };
+  const subtitleStyle: React.CSSProperties = { fontSize: "0.75rem", color: t.muted, lineHeight: 1.4 };
 
   return (
     <section
@@ -62,13 +85,48 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       }}
     >
       {cards.map((card) => (
-        <Link key={card.to} to={canonicalPagePath(card.to)} style={cardStyle()}>
-          <div style={{ fontSize: "0.9rem", fontWeight: 600, color: t.descLinkColor, marginBottom: "0.35rem" }}>
+        <Link key={card.to} to={canonicalPagePath(card.to)} style={cardStyle(card)}>
+          <div style={{ ...titleStyle, marginBottom: "0.35rem" }}>
             {card.title}
+            {card.isNew && (
+              <span
+                style={{
+                  marginLeft: "0.5rem",
+                  padding: "1px 6px",
+                  borderRadius: 3,
+                  background: t.toggleActiveBg,
+                  color: t.toggleActiveText,
+                  fontSize: "0.6rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  verticalAlign: "middle",
+                }}
+              >
+                New
+              </span>
+            )}
           </div>
-          <div style={{ fontSize: "0.75rem", color: t.muted, lineHeight: 1.4 }}>{card.subtitle}</div>
+          <div style={subtitleStyle}>{card.subtitle}</div>
         </Link>
       ))}
+      {/* Spans every column so the beginner path reads as one action beneath the grid. */}
+      <Link
+        to={canonicalPagePath(START_HERE.to)}
+        style={{
+          ...cardStyle(START_HERE),
+          gridColumn: "1 / -1",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "baseline",
+          justifyContent: "center",
+          gap: "0.25rem 0.75rem",
+          textAlign: "center",
+        }}
+      >
+        <span style={titleStyle}>{START_HERE.title}</span>
+        <span style={subtitleStyle}>{START_HERE.subtitle} →</span>
+      </Link>
     </section>
   );
 }
