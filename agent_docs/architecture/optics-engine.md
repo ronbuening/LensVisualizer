@@ -1225,7 +1225,7 @@ and its own target, with no cache, so an external cross-checker calling it gets 
   (1e-7 R, the chief solve's 1e-7 mm at a 1 mm stop) of its target, after about 2.5 stop traces on the benchmark
   lenses. The field model (chief crossing, Jacobian, fit) is memoized per prepared state by every input it depends on,
   so the fans, clouds and tiles of one field share it without changing a bit. Aimed analyses cost about twice the
-  paraxial launch's trace time cold (1.6–3.1× per lens); drag-quality bokeh stays near 20 ms on the slowest lenses.
+  paraxial launch's trace time cold (1.6–3× per lens); drag-quality bokeh stays under 25 ms on the slowest lens.
 - **Rim rule.** Callers trace every returned ray through all apertures with `prepareAimedPupilTrace`, which sets the
   stop to `clipSemiDiameterMm` = R plus that tolerance. A rim sample aimed at R is therefore admitted by the stop it was
   aimed at; any other clip is vignetting.
