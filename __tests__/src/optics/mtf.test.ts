@@ -29,7 +29,7 @@ import {
   traceMtfBundle,
   traceMtfFieldPupil,
 } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import { mtfTraceClassification } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
+import { traceRayClassification } from "../../../src/optics/trace/rayClassification.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
 import type { MtfGridOutcome } from "../../../src/optics/analysis/mtf/mtf.js";
@@ -46,7 +46,7 @@ import {
   mtfNearestImagePlaneZ,
 } from "../../../src/optics/analysis/mtf/mtfFocus.js";
 import { findMtfFootprint } from "../../../src/optics/analysis/mtf/mtfFootprint.js";
-import type { MtfRayClass } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
+import type { TraceRayClass } from "../../../src/optics/trace/rayClassification.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
@@ -142,10 +142,10 @@ describe("geometric MTF", () => {
     expect(geometricOtf([], frequencies, "x").real).toEqual([]);
   });
   it("does not treat failed intersections as physical vignetting", () => {
-    expect(mtfTraceClassification({ status: "failed", failureReason: "noBracket" } as EngineTraceResult)).toBe(
+    expect(traceRayClassification({ status: "failed", failureReason: "noBracket" } as EngineTraceResult)).toBe(
       "failed",
     );
-    expect(mtfTraceClassification({ status: "clipped", failureReason: null } as EngineTraceResult)).toBe("blocked");
+    expect(traceRayClassification({ status: "clipped", failureReason: null } as EngineTraceResult)).toBe("blocked");
   });
   it("proves spherical, flat and aspheric cap misses without hiding in-aperture failures", () => {
     const base = buildSimplePositiveElementLens();
@@ -167,10 +167,10 @@ describe("geometric MTF", () => {
       },
     );
     expect(miss.failureReason).toBe("noBracket");
-    expect(mtfTraceClassification(miss, state)).toBe("blocked");
-    expect(mtfTraceClassification({ ...miss, terminalPoint: [0, 0, -10] }, state)).toBe("failed");
+    expect(traceRayClassification(miss, state)).toBe("blocked");
+    expect(traceRayClassification({ ...miss, terminalPoint: [0, 0, -10] }, state)).toBe("failed");
     // The analytic cap test is independent of the solver's failure label.
-    expect(mtfTraceClassification({ ...miss, failureReason: "noConvergedIntersection" }, state)).toBe("blocked");
+    expect(traceRayClassification({ ...miss, failureReason: "noConvergedIntersection" }, state)).toBe("blocked");
     const aspheric = {
       ...state,
       surfaces: state.surfaces.map((s, i) =>
@@ -188,15 +188,15 @@ describe("geometric MTF", () => {
       isFoldedOptics: state.lens.flags.isFoldedOptics,
     });
     // Aspheric caps use the Lipschitz interval proof: outside the aperture cylinder is a miss, a real rim hit is not.
-    expect(mtfTraceClassification(miss, aspheric)).toBe("blocked");
-    expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
+    expect(traceRayClassification(miss, aspheric)).toBe("blocked");
+    expect(traceRayClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
     const apertureState = {
       ...aspheric,
       traceGeometry: { ...aspheric.traceGeometry, stopSurfaceIndex: 0 },
     };
     // Revisit the same surface after replacing its one bounds record with smaller caps.
     for (const aperture of [3, 1, 2, 3]) {
-      expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, apertureState, aperture)).toBe(
+      expect(traceRayClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, apertureState, aperture)).toBe(
         aperture < 2.5 ? "blocked" : "failed",
       );
     }
@@ -413,7 +413,7 @@ describe("MTF pupil footprint", () => {
       for (let column = -pad; column < grid.columns + pad; column++) {
         const ray = mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step);
         const trace = traceEngineRay(state, ray, traceOptions);
-        if (mtfTraceClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
+        if (traceRayClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
       }
     expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);
     expect(bundle.rays.length / reference).toBeGreaterThan(0.99);
@@ -421,7 +421,7 @@ describe("MTF pupil footprint", () => {
   });
   it("fits the footprint to a slit beam thinner than the coarse scan when the chief transmits", () => {
     // A 0.1 mm slit through the chief: the scan of a 10 mm pupil samples y every 1.25 mm and misses it.
-    const slit = (x: number, y: number): MtfRayClass =>
+    const slit = (x: number, y: number): TraceRayClass =>
       Math.abs(x) < 3 && Math.abs(y - 0.02) < 0.05 ? "valid" : "blocked";
     const footprint = findMtfFootprint(slit, 10, true)!;
     expect(footprint).not.toBeNull();
@@ -430,7 +430,7 @@ describe("MTF pupil footprint", () => {
     expect(footprint.x1).toBeGreaterThanOrEqual(3);
     expect(footprint.beamHeightMm).toBeLessThan(0.2);
     // Without a transmitted chief there is no seed: a missed beam stays unavailable rather than invented.
-    const offset = (_x: number, y: number): MtfRayClass => (Math.abs(y - 0.3) < 0.05 ? "valid" : "blocked");
+    const offset = (_x: number, y: number): TraceRayClass => (Math.abs(y - 0.3) < 0.05 ? "valid" : "blocked");
     expect(findMtfFootprint(offset, 10, true)).toBeNull();
   });
 });

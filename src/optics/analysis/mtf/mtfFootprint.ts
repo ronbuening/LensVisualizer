@@ -7,7 +7,7 @@
  * pass every aperture; the fine grid then covers only that region with uniform launch-plane cells,
  * which keeps equal flux per ray for collimated beams.
  */
-import type { MtfRayClass } from "./mtfRayClassification.js";
+import type { TraceRayClass } from "../../trace/rayClassification.js";
 
 /** Launch-plane box in mm, relative to the chief ray's launch point. */
 export interface MtfFootprint {
@@ -26,7 +26,7 @@ export interface MtfFootprint {
 }
 
 /** Classify the ray launched at a launch-plane offset from the chief. */
-export type MtfLaunchClassifier = (x: number, y: number) => MtfRayClass;
+export type MtfLaunchClassifier = (x: number, y: number) => TraceRayClass;
 
 const SCAN_CELLS = 20;
 const MAX_GROWTHS = 6;
@@ -101,7 +101,7 @@ function scanFootprint(
   const stepY = (2 * halfY) / SCAN_CELLS;
   const xAt = (column: number) => -halfX + (column + 0.5) * stepX;
   const yAt = (row: number) => centerY + (-halfY + (row + 0.5) * stepY);
-  const classes: MtfRayClass[] = new Array(SCAN_CELLS * SCAN_CELLS);
+  const classes: TraceRayClass[] = new Array(SCAN_CELLS * SCAN_CELLS);
   for (let row = 0; row < SCAN_CELLS; row++)
     for (let column = mirror ? SCAN_CELLS / 2 : 0; column < SCAN_CELLS; column++) {
       const value = classify(xAt(column), yAt(row));
@@ -233,7 +233,7 @@ function transmittedReach(
 }
 
 /** Transmitted cells, and unresolved cells beside them, can carry flux. */
-function countsTowardFootprint(classes: readonly MtfRayClass[], row: number, column: number): boolean {
+function countsTowardFootprint(classes: readonly TraceRayClass[], row: number, column: number): boolean {
   const own = classes[row * SCAN_CELLS + column];
   if (own === "valid") return true;
   if (own !== "failed") return false;

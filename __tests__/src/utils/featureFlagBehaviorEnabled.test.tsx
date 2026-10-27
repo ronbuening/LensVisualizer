@@ -53,6 +53,8 @@ function saResult(): SphericalAberrationResult {
     bestFocusZ: 104.2,
     bestFocusShiftMm: -0.8,
     validSampleCount: 10,
+    unaimedZoneCount: 0,
+    blockedZoneCount: 0,
   };
 }
 

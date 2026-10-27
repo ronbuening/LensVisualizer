@@ -34,6 +34,7 @@ import {
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
 import type { OffAxisBundle, ProjectionAwareOffAxisFieldGeometry } from "./offAxis.js";
 import type { AnalysisSamplingOptions } from "../analysisQuality.js";
+import type { AimedPupilRay } from "../pupils/aimedPupil.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
@@ -69,6 +70,8 @@ interface MeridionalComaFieldFootprint {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  unaimedSampleCount: number;
+  blockedSampleCount: number;
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
@@ -97,6 +100,8 @@ interface ComaPointCloudFieldFootprint {
   sampleCount: number;
   validSampleCount: number;
   clippedSampleCount: number;
+  unaimedSampleCount: number;
+  blockedSampleCount: number;
   chiefIntercept: number;
   minRelativeTangentialImageHeight: number;
   maxRelativeTangentialImageHeight: number;
@@ -219,6 +224,12 @@ function traceComaFieldBundle(
   return { geometry, bundle };
 }
 
+/** Launch coordinate of a ray that was not traced to the image: the bundle's own convention, NaN when unaimed. */
+function launchCoordinate(geometry: ProjectionAwareOffAxisFieldGeometry, ray: AimedPupilRay, axis: 0 | 1): number {
+  if (ray.status === "unaimed") return NaN;
+  return isOffAxisVectorFieldGeometry(geometry) ? ray.origin[axis] : ray.launch[axis];
+}
+
 function buildMeridionalComaFieldFootprintFromBundle(
   geometry: ProjectionAwareOffAxisFieldGeometry,
   bundle: OffAxisBundle,
@@ -226,20 +237,19 @@ function buildMeridionalComaFieldFootprintFromBundle(
   samples: readonly OrthogonalPupilSample[],
 ): MeridionalComaFieldFootprint | null {
   const centerIntercept = bundle.chiefRay.imagePoint.y;
-  const vectorGeometry = isOffAxisVectorFieldGeometry(geometry);
   const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
-  const resolvedSamples: MeridionalComaFieldSample[] = samples.map((sample) => {
+  const resolvedSamples: MeridionalComaFieldSample[] = samples.map((sample, position) => {
     const tracedSample = tracedSamplesByIndex.get(sample.index);
+    const ray = bundle.launch.rays[position];
     const imageHeight = tracedSample?.imagePoint.y ?? null;
     return {
       index: sample.index,
       pupilFraction: sample.pupilFraction,
-      launchHeight:
-        tracedSample?.launchY ??
-        (vectorGeometry ? sample.yFraction * currentEPSD : geometry.yChief + sample.yFraction * currentEPSD),
+      launchHeight: tracedSample?.launchY ?? launchCoordinate(geometry, ray, 1),
       imageHeight,
       relativeImageHeight: imageHeight === null ? null : imageHeight - centerIntercept,
-      clipped: tracedSample === undefined,
+      clipped: tracedSample === undefined && ray.status !== "unaimed",
+      unaimedReason: ray.status === "unaimed" ? ray.reason : null,
     };
   });
   const validSamples = resolvedSamples.filter(
@@ -267,6 +277,8 @@ function buildMeridionalComaFieldFootprintFromBundle(
     sampleCount: bundle.sampleCount,
     validSampleCount: validSamples.length,
     clippedSampleCount: bundle.clippedSampleCount,
+    unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     centerIntercept,
     minIntercept: Math.min(...intercepts),
     maxIntercept: Math.max(...intercepts),
@@ -292,16 +304,18 @@ function buildSagittalComaResultFromBundle(
 ): SagittalComaResult | null {
   const centerIntercept = bundle.chiefRay.imagePoint.x;
   const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
-  const resolvedSamples: SagittalComaSample[] = samples.map((sample) => {
+  const resolvedSamples: SagittalComaSample[] = samples.map((sample, position) => {
     const tracedSample = tracedSamplesByIndex.get(sample.index);
+    const ray = bundle.launch.rays[position];
     const imageX = tracedSample?.imagePoint.x ?? null;
     return {
       index: sample.index,
       pupilFraction: sample.pupilFraction,
-      launchX: tracedSample?.launchX ?? sample.xFraction * currentEPSD,
+      launchX: tracedSample?.launchX ?? launchCoordinate(geometry, ray, 0),
       imageX,
       relativeImageX: imageX === null ? null : imageX - centerIntercept,
-      clipped: tracedSample === undefined,
+      clipped: tracedSample === undefined && ray.status !== "unaimed",
+      unaimedReason: ray.status === "unaimed" ? ray.reason : null,
     };
   });
   const validSamples = resolvedSamples.filter(
@@ -328,6 +342,8 @@ function buildSagittalComaResultFromBundle(
     sampleCount: bundle.sampleCount,
     validSampleCount: validSamples.length,
     clippedSampleCount: bundle.clippedSampleCount,
+    unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     centerIntercept,
     minIntercept: Math.min(...intercepts),
     maxIntercept: Math.max(...intercepts),
@@ -397,6 +413,8 @@ function buildComaPointCloudFieldFootprintFromBundle(
     sampleCount: bundle.sampleCount,
     validSampleCount: bundle.validSampleCount,
     clippedSampleCount: bundle.clippedSampleCount,
+    unaimedSampleCount: bundle.unaimedSampleCount,
+    blockedSampleCount: bundle.blockedSampleCount,
     chiefIntercept: bundle.chiefRay.imagePoint.y,
     minRelativeTangentialImageHeight,
     maxRelativeTangentialImageHeight,
@@ -431,6 +449,8 @@ function emptyComaPreviewFieldResult(
     sampleCount,
     validSampleCount: 0,
     clippedSampleCount: sampleCount,
+    unaimedSampleCount: 0,
+    blockedSampleCount: 0,
     chiefIntercept: 0,
     minRelativeIntercept: 0,
     maxRelativeIntercept: 0,
@@ -441,6 +461,7 @@ function emptyComaPreviewFieldResult(
       imageHeight: null,
       relativeImageHeight: null,
       clipped: true,
+      unaimedReason: null,
     })),
     usable: false,
   };
@@ -462,6 +483,8 @@ function comaPreviewFieldResultFromFootprint({
     sampleCount: footprint.sampleCount,
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
+    unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     chiefIntercept: footprint.centerIntercept,
     minRelativeIntercept: footprint.minRelativeIntercept,
     maxRelativeIntercept: footprint.maxRelativeIntercept,
@@ -481,6 +504,8 @@ function emptyComaPointCloudPreviewFieldResult(
     sampleCount,
     validSampleCount: 0,
     clippedSampleCount: sampleCount,
+    unaimedSampleCount: 0,
+    blockedSampleCount: 0,
     chiefIntercept: 0,
     minRelativeTangentialImageHeight: 0,
     maxRelativeTangentialImageHeight: 0,
@@ -520,6 +545,8 @@ function comaPointCloudPreviewFieldResultFromFootprint({
     sampleCount: footprint.sampleCount,
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
+    unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     chiefIntercept: footprint.chiefIntercept,
     minRelativeTangentialImageHeight: footprint.minRelativeTangentialImageHeight,
     maxRelativeTangentialImageHeight: footprint.maxRelativeTangentialImageHeight,
@@ -701,6 +728,8 @@ export function computeMeridionalComa(request: AnalysisRequest): MeridionalComaR
     sampleCount: footprint.sampleCount,
     validSampleCount: footprint.validSampleCount,
     clippedSampleCount: footprint.clippedSampleCount,
+    unaimedSampleCount: footprint.unaimedSampleCount,
+    blockedSampleCount: footprint.blockedSampleCount,
     centerIntercept: footprint.centerIntercept,
     minIntercept: footprint.minIntercept,
     maxIntercept: footprint.maxIntercept,
@@ -791,6 +820,8 @@ export function computeComaAnalysis(request: AnalysisRequest): ComaAnalysisResul
             sampleCount: meridionalFootprint.sampleCount,
             validSampleCount: meridionalFootprint.validSampleCount,
             clippedSampleCount: meridionalFootprint.clippedSampleCount,
+            unaimedSampleCount: meridionalFootprint.unaimedSampleCount,
+            blockedSampleCount: meridionalFootprint.blockedSampleCount,
             centerIntercept: meridionalFootprint.centerIntercept,
             minIntercept: meridionalFootprint.minIntercept,
             maxIntercept: meridionalFootprint.maxIntercept,

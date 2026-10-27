@@ -141,7 +141,7 @@ pupil radius) at infinity, the paraxial working f-number at a finite conjugate),
 ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface that stops the next ray outward
 (null for the iris). Both are cached with the focus search.
 
-**Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
+**Ray failures** (`trace/rayClassification.ts`, shared with the aimed launch). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
 MTF error at 2ε; more makes the field unavailable. The reference chief is traced without aperture checks, so a
@@ -608,7 +608,7 @@ and is their only outside door.
   - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
     normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
-  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtf/mtfRayClassification.ts`,
+  - a second set of closed-form sphere roots, and the sampled slope bound, in `trace/rayClassification.ts`,
     which proves misses for the MTF sampler and does not call the kernel's.
 
 ## Prepared Geometry
@@ -739,7 +739,7 @@ channel, normalization and capture policy; the last-hit shortcut avoids construc
 64 zero-movement center references per state (`MAX_REFERENCE_CACHE_ENTRIES_PER_STATE`), keyed by zero context,
 aperture, pupil quadrature, spectral channel and chief sampling options. These maps evict the oldest insertion;
 eviction only recomputes pure results and does not invalidate records already held by a request.
-`analysis/mtf/mtfRayClassification.ts` instead holds one reusable bounds record per `CompiledStateSurface`, with the
+`trace/rayClassification.ts` instead holds one reusable bounds record per `CompiledStateSurface`, with the
 last evaluated aperture; changing aperture recomputes the same sampled bounds into that record without allocating
 another map or bounds record. The cache registry in `opticsArchitecture.test.ts` checks owners and named limits.
 
@@ -1201,6 +1201,70 @@ bokeh footprint sampling, vignetting, and pupil-aberration loops trace vector ra
 domain; the distortion field grid traces vector skew rays for fisheye angular cells beyond the slope cap.
 Scalar-only logic must still check `projectionLaunchSlopeForField(...).status` before using `uField`.
 
+## Pupil Convention
+
+Ray-based analyses sample one pupil: pupil coordinates are positions on the real aperture stop, as in OpticStudio with
+ray aiming on and in CODE V. A sample at normalised (px, py) is the ray from the field's object point that crosses the
+stop surface at (px·R, py·R) about the axis, R = `request.aperture.stopSemiDiameterMm` (the stopped-down radius). The
+ray is collimated at the field's direction for an infinite object and passes through the object point for a finite one.
+The chief (0, 0) is the field's chief-ray solve, kept within its own acceptance, max(1e-7 R, 1e-7 mm); bundles take
+their chief from `launch.chief`, per channel. Samples are uniform in those coordinates with equal weights (uniform
+apodization on the stop); each tab keeps the bulk transmission it applied before, and nothing multiplies in the
+stop-to-launch Jacobian. Paraxial quantities (EP, XP, f-number, focal length) stay paraxial and labelled so.
+
+`analysis/pupils/aimedPupil.ts` owns the launch, exported through `analysis.ts`. `prepareAimedPupilLaunch(request,
+samples, geometry, channel?)` is pure and deterministic: a sample's solve depends only on the request, field, channel
+and its own target, so an external cross-checker calling it gets the tabs' rays bit for bit.
+`prepareAimedPupilLaunchForState` takes a prepared state and radii instead (the perspective lens frame).
+
+- **Solve.** Newton on the two launch coordinates (first-vertex-plane x/y for object-plane fields, offsets along the
+  sagittal and radial pupil axes for bounding-sphere and perspective launches, a launch-plane point for a finite
+  object). Each field first aims 16 fixed reference targets (rings of eight at half and full radius) from the chief and
+  a central-difference Jacobian there, and fits a cubic stop-to-launch map to them; a sample starts from that fit and
+  its derivative (or from the chief when the fit's launch cannot be traced) and is corrected with Broyden updates. Aim
+  rays go to the stop without aperture checks. A sample converges within `AIMED_PUPIL_RESIDUAL_TOLERANCE` × R (1e-7 R,
+  the chief solve's 1e-7 mm at a 1 mm stop) of its target and is then polished: Newton continues until the residual
+  stops falling or reaches `AIMED_PUPIL_POLISH_TOLERANCE` × R (1e-12 R), so a ray depends on the optics and not on the
+  path its seed took. The field model (chief crossing, Jacobian, fit) is memoized per prepared state by every number it
+  is built from, with −0 kept apart from 0, so a cache hit returns the bits a fresh build would.
+- **Symmetry.** On optics mirror-symmetric about the meridian (`trace/symmetry.ts`), a meridional field pins the
+  sagittal launch coordinate to 0 for xFraction = 0 and solves each −px sample as the mirror of +px; vector launches in
+  the meridian have their x components cleared first. Axis zones are a one-dimensional solve, −f the exact negation of
+  +f. Mirror images therefore agree to the bit.
+- **Rim rule.** Callers trace every returned ray through all apertures with `prepareAimedPupilTrace`, which sets the
+  stop to `clipSemiDiameterMm` = R plus that tolerance. A rim sample aimed at R is therefore admitted by the stop it was
+  aimed at; any other clip is vignetting.
+- **Outcomes.** `aimed`: the ray crosses its target. `blocked`: the solve ended on a step it could not trace whose ray
+  already leaves a clear aperture before the stop (an aperture clip, or a failed intersection that
+  `trace/rayClassification.ts` proves misses the next clear cap). Lens-design programs aim through mathematically
+  extended surfaces; this tracer cannot follow a ray where an element's surfaces cross outside its rim, so such a
+  target is returned with the blocking ray and `achievedStopMm: null`, traces as clipped, and is counted
+  (`blockedCount`, `blockedSampleCount`) apart from rays a later rim vignettes. A solve that reaches the 24-trace cap
+  with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
+  `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
+  result and never traced or replaced by a paraxial launch. Total internal reflection is not an aperture, so a target
+  only reflected rays could reach is `stop-unreachable`. Bokeh transmission and moved-lens vignetting leave unaimed
+  samples out of their denominators and report how many there were.
+- **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
+  real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
+  (`prepareAxialZoneLaunch` in `aberration/shared.ts`); both chromatic ray fans, aimed per channel at that channel's
+  indices; and the perspective analysis bundles, aimed in the intrinsic lens frame.
+- **Not aimed.** Diagram rays (`useOnAxisRays`, `useOffAxisRays`, `useChromaticRays`' segments, folded display fans and
+  the moved-lens diagram fan, `launch: "paraxial-entrance"`) are rendering samplers and keep paraxial entrance-pupil
+  fractions. The field-curvature parabasal pair (`FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM`, 0.01 mm about the chief)
+  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting curve and the
+  MTF lattice keep their launch-plane sampling until their own changes move them onto this launch.
+
+Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back only when another aperture vignettes a
+zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA keeps the first zone at least two
+channels pass. A real-ray field focus needs surviving fan rays out to 0.25 R on both sides of the chief
+(`FIELD_CURVATURE_MIN_FAN_HALF_SPAN`): defocus is odd in the pupil and coma even, so a one-sided sliver of a vignetted
+fan would fit coma as defocus. Such a field carries `diagnosticUnavailableReason` (`one-sided-fan`, or `too-few-rays`
+/ `trace-failed`), and the real-ray plots leave it out. Behind a front group, equal stop area is not
+equal entrance-pupil area, so the bokeh brightness profile also carries the stop-to-pupil map: a fast lens can read
+edge-bright on both sides of focus where entrance-pupil sampling showed spherical aberration's flip. Fields beyond a
+fisheye's traceable chief have no aimed samples (`trace-failed`).
+
 ## Ray Sampling Policy
 
 Lens data owns the baseline ray fans through `rayFractions` and `offAxisFractions`. `raySampling.ts` preserves
@@ -1495,7 +1559,8 @@ replacement remain in the UI.
 
 Coma lives in `analysis/aberration/coma.ts`; its meridional, sagittal, compact-preview,
 point-cloud and aggregate entries take requests. The aggregate shares chief-relative field geometry
-and pupil samples across its diagnostics. The Coma tab reuses the context's request for default
+and pupil samples across its diagnostics. Pupil samples are aimed at the real stop (see [Pupil Convention](#pupil-convention));
+a sample's `clipped` means vignetted and `unaimedReason` names an unaimed one, which every result counts separately. The Coma tab reuses the context's request for default
 sampling. A custom detail field creates a distinct request using the supplied apertures and field,
 with the detail fraction retained in the memo dependencies. Standalone calls preserve supplied
 surface positions with `stateWithZ`. Every centered family consumes requests.
@@ -1604,7 +1669,8 @@ guards unchanged.
 
 ## Bokeh
 
-`analysis/bokeh/bokeh.ts` takes `AnalysisRequest` and traces circular pupil bundles at infinity and near focus.
+`analysis/bokeh/bokeh.ts` takes `AnalysisRequest` and traces circular pupil bundles, aimed at the real stop, at
+infinity and near focus.
 `computeBokehPreviewPair()` shares the single-preview kernel with `computeBokehPreview()`.
 `computeBokehFieldFootprint()` returns the per-field point cloud, surviving pupil footprint and radial blur profile;
 `buildBokehDensityGrid()` derives a grid from that cloud. Radial profiles and brightness classification are shared
@@ -1634,9 +1700,11 @@ rather than usable structures containing non-finite metrics.
 The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
 geometry. Lateral color traces each channel's own chief ray (`computeOffAxisChannelFieldGeometry`, solved through the
 stop's centre at that channel's indices) at the field angle the channels share; the reference channel's solve is the
-channel-less one to the bit. The off-axis fans and every other off-axis caller keep the one channel-less chief ray of
-`computeOffAxisFieldGeometry`. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
-its authored folded image plane, while the fan uses the current folded focus plane.
+channel-less one to the bit. The off-axis fans start from the one channel-less chief ray of `computeOffAxisFieldGeometry`
+and aim each channel's samples at the same stop positions at that channel's indices; LoCA and the on-axis fan aim each
+channel's zones the same way. LoCA takes the outermost candidate zone every requested channel passes, else the first
+two pass; the fans keep the first fraction two channels pass and report `unaimedRayCount`. LoCA retains its authored
+folded image plane, while the fan uses the current folded focus plane.
 
 `ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by
 `analysis/aberration/fieldCurvature.ts`. The context's intrinsic LoCA also takes that request and caches null explicitly.
@@ -1711,8 +1779,9 @@ Admission rules, exclusions and scanner limits live in [Testing Architecture](te
 | `diagnostics/chiefRay.ts` | 2,048 compiled owners; defensive status snapshots |
 | `trace/rayAdapters.ts` | Direction caches: `DIRECTION_CACHE_LIMIT` (4,096) each; trace options per prepared state: `TRACE_OPTIONS_CACHE_LIMIT` (256), keyed by stop radius, ghost, channel, normalization and capture |
 | `analysis/mtf/mtfTracing.ts` | Per prepared state, `MTF_INDEX_TABLE_CACHE_LIMIT` (64) wavelength index tables |
+| `analysis/pupils/aimedPupil.ts` | Per prepared state, `FIELD_MODEL_CACHE_LIMIT` (64) aim field models keyed by every launch input; a hit returns the bits a fresh build would |
 | `perspective/analysis/vignetting.ts` | Per state, `MAX_REFERENCE_CACHE_ENTRIES_PER_STATE` (64) zero-center references, keyed by context, aperture, pupil/channel and chief sampling |
-| `analysis/mtf/mtfRayClassification.ts` | One reusable bounds record per compiled surface; aperture changes recompute it |
+| `trace/rayClassification.ts` | One reusable bounds record per compiled surface; aperture changes recompute it |
 | `geometry/surfaceProfile.ts` | Frozen coefficients weakly own one Horner compilation and the last-radius profile |
 | `chromatic/indexResolver.ts`, `trace/bulkAbsorption.ts` | Weak descriptor/lens identities; one coefficient vector or fixed per-element table per owner |
 

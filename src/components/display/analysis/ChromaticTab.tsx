@@ -273,7 +273,7 @@ function CenteredChromaticTab({
               <AnalysisMetricRow
                 label="Ray height"
                 value={`${(longitudinal.marginalFraction * 100).toFixed(0)}%`}
-                note="of entrance pupil"
+                note="of stop radius"
                 t={t}
               />
               <AnalysisMetricRow

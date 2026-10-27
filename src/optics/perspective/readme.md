@@ -28,6 +28,7 @@ flowchart LR
   end
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_math["src/optics/math"]
+  n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_geometry["src/optics/geometry"]
@@ -42,6 +43,7 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_fieldSampling_ts --> |3| n_src_optics_perspective_src_optics_perspective_chiefRay_ts
   n_src_optics_perspective_src_optics_perspective_fieldSampling_ts --> |3| n_src_optics_perspective_src_optics_perspective_pupilBundle_ts
   n_src_optics_perspective_src_optics_perspective_fieldSampling_ts --> |3| n_src_optics_perspective_src_optics_perspective_sensorTarget_ts
+  n_src_optics_perspective_src_optics_perspective_pupilBundle_ts --> |2| n_external_src_optics_analysis
   n_src_optics_perspective_src_optics_perspective_trace_ts --> |2| n_external_src_optics_chromatic
   n_src_optics_perspective_src_optics_perspective_fieldGeometry_ts --> |2| n_external_src_optics_field
   n_src_optics_perspective_src_optics_perspective_trace_ts --> |2| n_external_src_optics_geometry
@@ -70,7 +72,6 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_fieldGeometry_ts --> n_external_src_optics_prescription
   n_src_optics_perspective_src_optics_perspective_trace_ts --> n_external_src_optics_state
   n_src_optics_perspective_src_optics_perspective_chiefRay_ts --> n_external_src_optics_types_ts
-  n_src_optics_perspective_src_optics_perspective_diagramFan_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_truncated["additional relationships omitted"]
 ```
 
@@ -78,7 +79,7 @@ flowchart LR
 
 - Direct source files: 15
 - Direct subfolders: 1
-- Main outbound areas: same folder (72), src/optics/math (13), src/optics/types.ts (12), src/types (8), src/optics/trace (4), src/optics/field (3), src/optics/geometry (3), src/optics/state (3), +4 more
+- Main outbound areas: same folder (72), src/optics/math (13), src/optics/types.ts (12), src/types (8), src/optics/trace (4), src/optics/field (3), src/optics/geometry (3), src/optics/state (3), +5 more
 - External consumers: src/optics/analysis, src/optics/perspective, src/optics/perspective.ts
 
 ## Subfolders
@@ -101,7 +102,7 @@ flowchart LR
 | `index.ts` | Barrel/registry module | same folder (9) | none | re-export * |
 | `lensMovement.ts` | Lens Movement helper module | same folder, src/types | same folder (3), src/optics/perspective.ts | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +5 more |
 | `pose.ts` | Pose helper module | same folder, src/optics/math, src/optics/types.ts, src/types | same folder (4), src/optics/analysis | CreatePerspectivePoseParams, PerspectivePose, PerspectivePoseError, createPerspectivePose |
-| `pupilBundle.ts` | Pupil Bundle helper module | same folder (7), src/optics/math, src/optics/types.ts, src/types | same folder (9) | PerspectivePupilRaySample, PerspectivePupilBundle, PerspectivePupilPoint, PerspectivePupilBundleRequest, sampleMeridionalPupilBundle, sampleCircularPupilBundle, pupilBundleForRequest |
+| `pupilBundle.ts` | Pupil Bundle helper module | same folder (7), src/optics/analysis (2), src/optics/math, src/optics/types.ts, src/types | same folder (9) | PerspectivePupilRaySample, PerspectiveUnaimedPupilSample, PerspectivePupilBundle, PerspectivePupilLaunch, PerspectivePupilPoint, PerspectivePupilBundleRequest, sampleMeridionalPupilBundle, sampleCircularPupilBundle, +1 more |
 | `sensorBasis.ts` | Sensor Basis helper module | src/optics/math, src/optics/types.ts | same folder (3) | SensorBasis, SensorBasisError, createSensorBasis |
 | `sensorTarget.ts` | Sensor Target helper module | same folder (5), src/optics/math (3), src/optics/types.ts | same folder (6) | PerspectiveSensorLockSolveResult, SensorChiefSolve, SENSOR_LOCK_FORMAT_TOLERANCE_MM, solveChiefToSensorPoint |
 | `trace.ts` | Trace helper module | same folder (7), src/optics/trace (4), src/optics/chromatic (2), src/optics/geometry (2), src/optics/math (2), +3 more | same folder (17), src/optics/analysis (2), src/optics/perspective.ts | CreatePerspectiveTraceContextParams, PerspectiveTraceOptions, PerspectiveTraceResult, PerspectiveTraceContext, PerspectiveTraceUnsupportedError, createPerspectiveTraceContext, tracePerspectiveRay, tracePerspectiveMeridional, +1 more |

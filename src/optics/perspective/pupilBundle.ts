@@ -1,6 +1,14 @@
-/** Ordered meridional and weighted circular pupil-bundle tracing. */
+/**
+ * Ordered meridional and weighted circular pupil-bundle tracing.
+ *
+ * Analysis bundles sample the real stop: each pupil coordinate is aimed in the lens frame through the shared
+ * `prepareAimedPupilLaunchForState`, as the centred analyses are. The diagram fan keeps the paraxial entrance-pupil
+ * launch, a rendering sampler like the unmoved diagram's rays.
+ */
 
 import type { ChromaticChannel } from "../../types/optics.js";
+import { prepareAimedPupilLaunchForState } from "../analysis/pupils/aimedPupil.js";
+import type { AimedPupilUnaimedReason } from "../analysis/pupils/aimedPupil.js";
 import { add, scale } from "../math/vector.js";
 import type { Ray3, Vec3 } from "../types.js";
 import { perspectiveTraceStatus } from "./chiefRay.js";
@@ -19,12 +27,30 @@ export interface PerspectivePupilRaySample {
   sensorIntercept: Vec3 | null;
   transmission: number;
   trace: PerspectiveTraceResult;
+  /** An aimed sample whose ray a rim ahead of the stop blocks before it reaches its stop position (traced, clipped). */
+  blocked?: boolean;
+}
+
+/** A requested pupil coordinate no ray could be aimed at; it carries no trace and transmits nothing. */
+export interface PerspectiveUnaimedPupilSample {
+  pupilUv: SensorUv;
+  weight: number;
+  reason: AimedPupilUnaimedReason;
 }
 
 export interface PerspectivePupilBundle {
   kind: "meridional" | "circular";
+  /** Traced samples in request order, unaimed ones omitted. */
   samples: readonly PerspectivePupilRaySample[];
+  /** Requested samples left out of `samples` because no ray could be aimed at them. */
+  unaimed: readonly PerspectiveUnaimedPupilSample[];
 }
+
+/**
+ * How pupil coordinates become rays: `aimed-stop` positions on the real stop (analyses), or `paraxial-entrance`
+ * offsets of the paraxial entrance-pupil radius about the chief launch (the diagram fan).
+ */
+export type PerspectivePupilLaunch = "aimed-stop" | "paraxial-entrance";
 
 /** Circular pupil coordinate with an explicit quadrature/area weight. */
 export interface PerspectivePupilPoint extends SensorUv {
@@ -38,6 +64,7 @@ export type PerspectivePupilBundleRequest =
       fractions: readonly number[];
       stopSemiDiameterMm?: number;
       channel?: ChromaticChannel;
+      launch?: PerspectivePupilLaunch;
     }
   | {
       kind: "circular";
@@ -45,6 +72,7 @@ export type PerspectivePupilBundleRequest =
       points: readonly PerspectivePupilPoint[];
       stopSemiDiameterMm?: number;
       channel?: ChromaticChannel;
+      launch?: PerspectivePupilLaunch;
     };
 
 interface WeightedPupilCoordinate extends SensorUv {
@@ -61,6 +89,7 @@ export function sampleMeridionalPupilBundle(
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
   domain: FieldSampleDomain = "scene-locked",
+  launch: PerspectivePupilLaunch = "aimed-stop",
 ): PerspectivePupilBundle | null {
   return samplePupilBundle(
     context,
@@ -71,6 +100,7 @@ export function sampleMeridionalPupilBundle(
     channel,
     stopSemiDiameterMm,
     domain,
+    launch,
   );
 }
 
@@ -83,6 +113,7 @@ export function sampleCircularPupilBundle(
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
   domain: FieldSampleDomain = "scene-locked",
+  launch: PerspectivePupilLaunch = "aimed-stop",
 ): PerspectivePupilBundle | null {
   return samplePupilBundle(
     context,
@@ -93,6 +124,7 @@ export function sampleCircularPupilBundle(
     channel,
     stopSemiDiameterMm,
     domain,
+    launch,
   );
 }
 
@@ -111,6 +143,7 @@ export function pupilBundleForRequest(
         request.channel,
         request.stopSemiDiameterMm,
         domain,
+        request.launch,
       )
     : sampleCircularPupilBundle(
         context,
@@ -120,6 +153,7 @@ export function pupilBundleForRequest(
         request.channel,
         request.stopSemiDiameterMm,
         domain,
+        request.launch,
       );
 }
 
@@ -132,6 +166,7 @@ function samplePupilBundle(
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
   domain: FieldSampleDomain = "scene-locked",
+  launch: PerspectivePupilLaunch = "aimed-stop",
 ): PerspectivePupilBundle | null {
   const activeStopSemiDiameterMm = stopSemiDiameterMm ?? context.state.lens.stop.physicalSemiDiameter;
   const sensorFrame = createFieldPlaneFrame(
@@ -155,20 +190,16 @@ function samplePupilBundle(
   }
 
   const toleranceMm = domain === "sensor-locked" ? SENSOR_LOCK_FORMAT_TOLERANCE_MM : undefined;
-  const samples = pupilUvs.map((pupilUv): PerspectivePupilRaySample => {
-    const offset = add(
-      scale(chief.pupilSagittalAxisLens!, pupilUv.u * pupilSemiDiameterMm),
-      scale(chief.pupilRadialAxisLens!, pupilUv.v * pupilSemiDiameterMm),
-    );
-    const launchRayLens: Ray3 = {
-      origin: add(chief.launchRayLens!.origin, offset),
-      direction: chief.launchRayLens!.direction,
-    };
+  const traceSample = (
+    pupilUv: WeightedPupilCoordinate,
+    launchRayLens: Ray3,
+    stopSemiDiameter: number,
+  ): PerspectivePupilRaySample => {
     const trace = context.traceRay(context.pose.lensToCameraRay(launchRayLens), {
       channel,
       projectToSensor: true,
       checkSemiDiameter: true,
-      stopSemiDiameter: activeStopSemiDiameterMm,
+      stopSemiDiameter,
       stopOnClip: true,
       directionNormalized: true,
     });
@@ -186,6 +217,47 @@ function samplePupilBundle(
       transmission: trace.transmission,
       trace,
     };
+  };
+
+  if (launch === "paraxial-entrance") {
+    const samples = pupilUvs.map((pupilUv) => {
+      const offset = add(
+        scale(chief.pupilSagittalAxisLens!, pupilUv.u * pupilSemiDiameterMm),
+        scale(chief.pupilRadialAxisLens!, pupilUv.v * pupilSemiDiameterMm),
+      );
+      const launchRayLens: Ray3 = {
+        origin: add(chief.launchRayLens!.origin, offset),
+        direction: chief.launchRayLens!.direction,
+      };
+      return traceSample(pupilUv, launchRayLens, activeStopSemiDiameterMm);
+    });
+    return { kind, samples, unaimed: [] };
+  }
+
+  // Aim in the intrinsic lens frame, which the pose leaves unchanged, then trace each ray through the moved lens.
+  const aimed = prepareAimedPupilLaunchForState(
+    context.state,
+    { stopSemiDiameterMm: activeStopSemiDiameterMm, launchScaleMm: pupilSemiDiameterMm },
+    pupilUvs.map(({ u, v, weight }) => ({ xFraction: u, yFraction: v, weight })),
+    {
+      kind: "launch-frame",
+      chiefRay: chief.launchRayLens,
+      sagittalAxis: chief.pupilSagittalAxisLens,
+      radialAxis: chief.pupilRadialAxisLens,
+    },
+    channel,
+  );
+  if (aimed === null) return null;
+  const samples: PerspectivePupilRaySample[] = [];
+  const unaimed: PerspectiveUnaimedPupilSample[] = [];
+  aimed.rays.forEach((ray, index) => {
+    const pupilUv = pupilUvs[index];
+    if (ray.status === "unaimed") {
+      unaimed.push({ pupilUv: { u: pupilUv.u, v: pupilUv.v }, weight: pupilUv.weight, reason: ray.reason });
+      return;
+    }
+    const sample = traceSample(pupilUv, { origin: ray.origin, direction: ray.direction }, aimed.clipSemiDiameterMm);
+    samples.push(ray.status === "blocked" ? { ...sample, blocked: true } : sample);
   });
-  return { kind, samples };
+  return { kind, samples, unaimed };
 }
