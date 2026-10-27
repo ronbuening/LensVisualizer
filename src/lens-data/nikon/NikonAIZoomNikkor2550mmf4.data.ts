@@ -7,17 +7,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // -219.5 gives 25.499 mm, matching the patent's 25.50 mm value.
 //
 // Patent d8 is the variable separation from r8 to r9. The data model inserts STO in this gap, just ahead of
-// the converging group, so surface 8 stores d8 - 0.05 mm and STO.d stores the remaining 0.05 mm. Nikon's
+// the converging group, so surface 8 stores d8 - 0.1 mm and STO.d stores the remaining 0.1 mm. Nikon's
 // design note describes a zoom-cammed aperture that moves with the second group and changes diameter to
 // preserve f/4. The stop radius is derived from the design f-number, the production constant f/4, at each
-// zoom station (8.359 / 9.621 / 11.486 mm).
-//
-// At tele, d8 = 0.503 mm, and r8's concave rim reaches 0.62 mm behind its vertex at the 11.49 mm iris, past
-// r9's vertex, so no stop plane fits behind r8's whole cap. r8 carries a flat rim cut 0.45 mm behind its vertex,
-// the stop plane's distance at tele (0.453 mm) rounded down: the cap ends at r = 9.79 mm and an opaque land runs
-// out to the 18.2 mm rim. The stop sits 0.05 mm ahead of r9 rather than 0.1 mm so that the cut clears the wide
-// station's field (a 0.40 mm cut would lower its vignetting-limited half field from 37.0° to 35.2°). The tele
-// beam is limited by the cut and traces about f/4.66.
+// zoom station (8.356 / 9.616 / 11.479 mm). At the tele station the beam is limited at the stop surface and
+// traces about f/4.91.
 //
 // Semi-diameters: the patent does not publish per-surface clear apertures. Values are visualization estimates
 // from marginal/chief ray envelopes, reduced where needed for positive edge thickness, sane adjacent-surface
@@ -188,8 +182,8 @@ const LENS_DATA = {
     { label: "5", R: -217.401, d: 3.3, sd: 21.5, medium: 3 },
     { label: "6", R: 38.907, d: 18.9, sd: 21.0 },
     { label: "7", R: 57.924, d: 3.6, sd: 19.0, medium: 4 },
-    { label: "8", R: 106.702, sd: 18.2, rimCutDepthMm: 0.45 },
-    { label: "STO", R: "flat", d: 0.05 },
+    { label: "8", R: 106.702, sd: 18.2 },
+    { label: "STO", R: "flat", d: 0.1 },
     { label: "9", R: 56.8, d: 2.9, sd: 11.8, medium: 5 },
     { label: "10", R: -86.7, d: 1.2, sd: 12.4, medium: 6 },
     { label: "11", R: -219.5, d: 0.1, sd: 12.4 },
@@ -217,9 +211,9 @@ const LENS_DATA = {
     "8": {
       label: "ZG",
       values: [
-        [35.362, 35.362],
-        [15.292, 15.292],
-        [0.453, 0.453],
+        [35.312, 35.312],
+        [15.242, 15.242],
+        [0.403, 0.403],
       ],
     },
     "21": {
