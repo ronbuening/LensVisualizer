@@ -1,20 +1,32 @@
 /**
- * Chromatic ray fans — request-facing first-usable-fraction ray-trace summaries.
+ * Chromatic ray fans — request-facing ray-trace summaries at the outermost fraction all four channels pass.
  */
 
 import type { PreparedGeometry } from "../../types.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import {
+  CHROMATIC_ZONE_CHANNELS,
+  chromaticRayOmission,
+  requestedZoneChannels,
+  selectChromaticZone,
+} from "../../chromatic/zoneSelection.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import { computeOffAxisFieldGeometry } from "../aberration/offAxis.js";
 import { prepareAxialZoneLaunch } from "../aberration/shared.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
-import type { AimedPupilLaunch, AimedPupilTrace } from "../pupils/aimedPupil.js";
+import type { AimedPupilLaunch, AimedPupilTrace, AimedPupilUnaimedReason } from "../pupils/aimedPupil.js";
 import { thick } from "../../state/layout.js";
 import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { prepareState } from "../../state/preparedGeometry.js";
-import type { ChromaticChannel, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticChannelOmission,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+  ChromaticZoneSearchEnd,
+} from "../../../types/optics.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { AnalysisRequest } from "../request.js";
 
@@ -32,6 +44,8 @@ export interface ChromaticRayFanAnalysisOptions {
 export interface ChromaticRayFanAnalysis {
   channels: readonly ChromaticChannel[];
   spreads: ChromaticRayFanSpreadByAxis;
+  /** The unaimed ray that ended each fan's search before any fraction passed every channel, or null. */
+  searchEnds: { onAxis: ChromaticZoneSearchEnd | null; offAxis: ChromaticZoneSearchEnd | null };
   offAxisFieldAngleDeg: number;
   onAxisAttemptedRayCount: number;
   offAxisAttemptedRayCount: number;
@@ -80,6 +94,8 @@ interface FanRay {
   z?: number;
   clipped: boolean;
   unaimed: boolean;
+  /** Why no ray could be aimed; null for an aimed ray, or when the channel has no launch at all. */
+  unaimedReason: AimedPupilUnaimedReason | null;
   blocked: boolean;
 }
 
@@ -90,14 +106,16 @@ function aimedFanTracer(
   toFanRay: (
     trace: AimedPupilTrace,
     ray: Parameters<AimedPupilTrace["skew"]>[0],
-  ) => Omit<FanRay, "unaimed" | "blocked">,
+  ) => Omit<FanRay, "unaimed" | "unaimedReason" | "blocked">,
 ): (fraction: number, channel: ChromaticChannel) => FanRay {
   return (fraction, channel) => {
     const aimed = launches.get(channel);
     const ray = aimed?.launch.rays[fractions.indexOf(fraction)];
-    if (!aimed || !ray || ray.status === "unaimed")
-      return { y: NaN, u: NaN, clipped: true, unaimed: true, blocked: false };
-    return { ...toFanRay(aimed.trace, ray), unaimed: false, blocked: ray.status === "blocked" };
+    if (!aimed || !ray || ray.status === "unaimed") {
+      const unaimedReason = ray?.status === "unaimed" ? ray.reason : null;
+      return { y: NaN, u: NaN, clipped: true, unaimed: true, unaimedReason, blocked: false };
+    }
+    return { ...toFanRay(aimed.trace, ray), unaimed: false, unaimedReason: null, blocked: ray.status === "blocked" };
   };
 }
 
@@ -110,6 +128,7 @@ function computeSpreadFromFractions(
   trace: (fraction: number, channel: ChromaticChannel) => FanRay,
 ): {
   spread: ChromaticRayFanSpread | null;
+  searchEndedBy: ChromaticZoneSearchEnd | null;
   attemptedRayCount: number;
   unaimedRayCount: number;
   blockedRayCount: number;
@@ -117,41 +136,56 @@ function computeSpreadFromFractions(
   let attemptedRayCount = 0;
   let unaimedRayCount = 0;
   let blockedRayCount = 0;
+  let searchEndedBy: ChromaticZoneSearchEnd | null = null;
 
-  for (const fraction of fractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
-
-    for (const channel of channels) {
-      attemptedRayCount++;
-      const ray = trace(fraction, channel);
-      if (ray.unaimed) unaimedRayCount++;
-      if (ray.blocked) blockedRayCount++;
-      if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
-        marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
+  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
+  function* zones() {
+    for (const fraction of fractions) {
+      const marginalRays: MarginalRays = {};
+      const omittedChannels: ChromaticChannelOmission[] = [];
+      // Every zone channel is traced, requested or not, so the fraction is the same whichever channels are shown.
+      for (const channel of CHROMATIC_ZONE_CHANNELS) {
+        attemptedRayCount++;
+        const ray = trace(fraction, channel);
+        if (ray.blocked) blockedRayCount++;
+        if (ray.unaimed) {
+          // As in LoCA, a fraction no ray could be aimed at ends the search; a channel with no launch has no fan.
+          unaimedRayCount++;
+          if (ray.unaimedReason) searchEndedBy = { fraction, channel, reason: ray.unaimedReason };
+          return;
+        }
+        const omission = chromaticRayOmission(ray);
+        if (omission) omittedChannels.push({ channel, reason: omission });
+        else marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
       }
-    }
-
-    const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
-    if (validChannels.length >= 2) {
-      return {
-        spread: {
-          ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ),
-          axis,
-          fraction,
-          channels: validChannels,
-        },
-        attemptedRayCount,
-        unaimedRayCount,
-        blockedRayCount,
-      };
+      yield { fraction, marginalRays, omittedChannels };
     }
   }
 
-  return { spread: null, attemptedRayCount, unaimedRayCount, blockedRayCount };
+  const chosen = selectChromaticZone(zones(), CHROMATIC_ZONE_CHANNELS.length);
+  const requested = chosen && requestedZoneChannels(chosen, channels);
+  const compared = requested ? (Object.keys(requested.marginalRays) as ChromaticChannel[]) : [];
+  const spread: ChromaticRayFanSpread | null =
+    chosen && requested && compared.length >= 2
+      ? {
+          ...computeChromaticRayFanSpread(requested.marginalRays, imagePlaneZ, lastSurfaceZ),
+          axis,
+          fraction: chosen.fraction,
+          channels: compared,
+          omittedChannels: requested.omittedChannels,
+          ...(searchEndedBy ? { searchEndedBy } : {}),
+        }
+      : null;
+  return { spread, searchEndedBy, attemptedRayCount, unaimedRayCount, blockedRayCount };
 }
 
 /**
- * Trace axis-split chromatic fans at the first usable marginal fraction.
+ * Trace axis-split chromatic fans at the outermost fraction all four traced channels pass.
+ *
+ * Fractions are searched by magnitude, positive side first, over R, G, B and V whichever are requested, and the
+ * requested channels' spread is read at the fraction chosen. A fraction an unaimed ray falls on ends the search
+ * (`searchEnds`). When no fraction passes all four, a fan falls back to the first that two pass and lists requested
+ * channels left out in its spread's `omittedChannels`.
  *
  * @param request - current geometry, apertures and fan sampling; fieldGeometry is intentionally ignored
  * @param options - optional explicit channel, fraction and field-angle controls
@@ -173,6 +207,7 @@ export function computeChromaticRayFanAnalysis(
   const empty = {
     channels,
     spreads: { onAxis: null, offAxis: null },
+    searchEnds: { onAxis: null, offAxis: null },
     offAxisFieldAngleDeg: 0,
     onAxisAttemptedRayCount: 0,
     offAxisAttemptedRayCount: 0,
@@ -186,7 +221,7 @@ export function computeChromaticRayFanAnalysis(
   const lastSurfaceZ = zPos[L.N - 1];
   const onAxisFractions = normalizeSignedFractions(options.onAxisFractions, DEFAULT_ON_AXIS_FRACTIONS);
   const onAxisZones = new Map(
-    channels.map((channel) => [channel, prepareAxialZoneLaunch(request, onAxisFractions, channel)]),
+    CHROMATIC_ZONE_CHANNELS.map((channel) => [channel, prepareAxialZoneLaunch(request, onAxisFractions, channel)]),
   );
   const onAxis = computeSpreadFromFractions(
     onAxisFractions,
@@ -206,7 +241,7 @@ export function computeChromaticRayFanAnalysis(
   const offAxisSamples = offAxisFractions.map((yFraction) => ({ xFraction: 0, yFraction }));
   const offAxis =
     geometry === null
-      ? { spread: null, attemptedRayCount: 0, unaimedRayCount: 0, blockedRayCount: 0 }
+      ? { spread: null, searchEndedBy: null, attemptedRayCount: 0, unaimedRayCount: 0, blockedRayCount: 0 }
       : computeSpreadFromFractions(
           offAxisFractions,
           channels,
@@ -215,7 +250,7 @@ export function computeChromaticRayFanAnalysis(
           "offAxis",
           aimedFanTracer(
             new Map(
-              channels.map((channel) => {
+              CHROMATIC_ZONE_CHANNELS.map((channel) => {
                 const launch = prepareAimedPupilLaunch(request, offAxisSamples, geometry, channel);
                 const trace = launch && prepareAimedPupilTrace(request.preparedGeometry, launch, channel);
                 return [channel, launch && trace ? { launch, trace } : null];
@@ -232,6 +267,7 @@ export function computeChromaticRayFanAnalysis(
   return {
     channels,
     spreads: { onAxis: onAxis.spread, offAxis: offAxis.spread },
+    searchEnds: { onAxis: onAxis.searchEndedBy, offAxis: offAxis.searchEndedBy },
     offAxisFieldAngleDeg: geometry?.fieldAngleDeg ?? 0,
     onAxisAttemptedRayCount: onAxis.attemptedRayCount,
     offAxisAttemptedRayCount: offAxis.attemptedRayCount,

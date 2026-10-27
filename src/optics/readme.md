@@ -27,7 +27,7 @@ flowchart LR
   n_external_src_types["src/types"]
   n_src_optics_TypeScript_modules --> |58| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |23| n_src_optics_src_optics_prescription
-  n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_chromatic
+  n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_perspective
   n_src_optics_TypeScript_modules --> |14| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_diagram
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (58), src/optics/prescription (23), src/optics/chromatic (16), src/optics/perspective (15), src/optics/state (14), src/optics/diagram (8), src/optics/trace (8), src/optics/field (7), +6 more
+- Main outbound areas: src/optics/analysis (58), src/optics/prescription (23), src/optics/chromatic (18), src/optics/perspective (15), src/optics/state (14), src/optics/diagram (8), src/optics/trace (8), src/optics/field (7), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -71,7 +71,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `analysis.ts` | Analysis helper module | src/optics/analysis (46), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +178 more |
 | `buildLens.ts` | Build Lens module with default export | src/optics/prescription (8), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/benchmarks, src/comparison, src/lensBuilder | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +6 more |
-| `chromatic.ts` | Chromatic helper module | src/optics/chromatic (9), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2), +2 more | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +25 more |
+| `chromatic.ts` | Chromatic helper module | src/optics/chromatic (11), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2), +2 more | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +31 more |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/diagram (8) | src/benchmarks, src/components/diagram, src/components/hooks, src/components/layout | createCoordinateTransforms, computeElementShapesForState, foldedHitOrderLabelsForDisplay, computeElementRenderDiagnosticsForState, computeElementRenderDiagnostics, computeElementShapes, computeStandaloneMirrorPaths, stateForRuntimeDiagram, +7 more |
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/field (5), src/optics/diagnostics (2), src/optics/state | src/components/display (9), src/components/hooks (5), src/components/layout (2), src/benchmarks | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayDiagnostics, ChiefRayStatus, ChiefRaySolveResult, EntrancePupilState, ImageHeightInversionResult, offsetVectorFieldRay, +20 more |
 | `geometry.ts` | Geometry helper module | src/optics/math (2), src/optics/geometry | src/components/display (2) | DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, conicPolySag, sag, sagSlopeRaw, INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, +4 more |

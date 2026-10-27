@@ -8,13 +8,24 @@
 
 import type { PreparedGeometry } from "../../types.js";
 
-import type { ChromaticChannel, ChromaticRayFanSpread } from "../../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticChannelOmission,
+  ChromaticRayFanSpread,
+  ChromaticZoneSearchEnd,
+} from "../../../types/optics.js";
 import { computeOffAxisChannelFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import { prepareAxialZoneLaunch } from "../aberration/shared.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
 import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import {
+  CHROMATIC_ZONE_CHANNELS,
+  chromaticRayOmission,
+  requestedZoneChannels,
+  selectChromaticZone,
+} from "../../chromatic/zoneSelection.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
@@ -45,7 +56,10 @@ export interface LongitudinalChromaticFocusSample {
 export interface LongitudinalChromaticFocusResult {
   channels: readonly ChromaticChannel[];
   referenceChannel: ChromaticChannel;
-  /** Stop fraction the marginal zone was aimed at: the first candidate at least two channels pass. */
+  /**
+   * Stop fraction the marginal zone was aimed at: the outermost candidate all four traced channels pass, requested or
+   * not, else (when none does) the first at least two pass. Requested channels it leaves out are in `omittedChannels`.
+   */
   marginalFraction: number;
   imagePlaneZ: number;
   lastSurfaceZ: number;
@@ -56,6 +70,8 @@ export interface LongitudinalChromaticFocusResult {
   spread: ChromaticRayFanSpread;
   samples: LongitudinalChromaticFocusSample[];
   validChannelCount: number;
+  /** Requested channels the zone leaves out, each with why; empty unless no candidate passes all four channels. */
+  omittedChannels: ChromaticChannelOmission[];
 }
 
 export interface LateralColorChannelSample {
@@ -76,6 +92,8 @@ export interface LateralColorFieldSample {
   lateralSpreadUm: number | null;
   samples: LateralColorChannelSample[];
   validChannelCount: number;
+  /** Requested channels with no chief-ray image height at this field, each with why. */
+  omittedChannels: ChromaticChannelOmission[];
   usable: boolean;
 }
 
@@ -85,8 +103,14 @@ export interface LateralColorCurveResult {
   fieldFractions: readonly number[];
   fields: LateralColorFieldSample[];
   usableFieldCount: number;
-  maxLateralSpreadMm: number;
-  maxLateralSpreadUm: number;
+  /**
+   * Largest spread over the fields that compare every requested channel, or null when none does. A field that loses a
+   * channel's chief ray is left out of the maximum; its partial spread stays on the field, with its `omittedChannels`.
+   */
+  maxLateralSpreadMm: number | null;
+  maxLateralSpreadUm: number | null;
+  /** Field fraction of that maximum, or null. */
+  maxLateralFieldFraction: number | null;
   imagePlaneZ: number;
   halfFieldDeg: number;
 }
@@ -142,11 +166,13 @@ function currentImagePlaneZ(state: PreparedGeometry): number | null {
 }
 
 /**
- * Compute axial chromatic focus from the outermost usable on-axis marginal zone.
+ * Compute axial chromatic focus from the outermost on-axis marginal zone all four traced channels pass.
  *
- * The result is a LoCA-style focus summary by spectral channel. Each channel's zone is aimed at the same fraction of
- * the stop radius at that channel's indices; the search moves inward through the fractions only while another
- * aperture vignettes a zone, and stops at a zone no ray could be aimed at.
+ * The result is a LoCA-style real-ray zonal focus summary for the requested channels. Each channel's zone is aimed at
+ * the same fraction of the stop radius at that channel's indices. The zone is chosen from R, G, B and V whichever are
+ * requested, so toggling channels never moves it. The search moves inward through the fractions, given outermost
+ * first, only while another aperture vignettes a zone, and stops at a zone no ray could be aimed at (`searchEndedBy`).
+ * When no candidate passes all four, the first that two pass is used and requested channels left out are named.
  *
  * @param request - current geometry, controls and both aperture radii in mm
  * @param options - optional ordered channels and marginal stop fractions
@@ -173,21 +199,29 @@ export function computeLongitudinalChromaticFocus(
     allowZero: false,
   });
 
-  // Each wavelength's zone is aimed at the same stop fraction at its own indices, as lens-design programs aim.
+  // Each wavelength's zone is aimed at the same stop fraction at its own indices, as lens-design programs aim. Every
+  // zone channel is traced, requested or not, so the zone is the same whichever channels are shown.
   const zonesByChannel = new Map(
-    channels.map((channel) => [channel, prepareAxialZoneLaunch(request, fractions, channel)]),
+    CHROMATIC_ZONE_CHANNELS.map((channel) => [channel, prepareAxialZoneLaunch(request, fractions, channel)]),
   );
   type MarginalRay = { y: number; u: number; z?: number; clipped: boolean };
   const zoneRays = (marginalFraction: number) => {
     const marginalRays: Partial<Record<ChromaticChannel, MarginalRay>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
-    for (const channel of channels) {
+    const omittedChannels: ChromaticChannelOmission[] = [];
+    for (const channel of CHROMATIC_ZONE_CHANNELS) {
       const zones = zonesByChannel.get(channel);
       const aimed = zones?.ray(marginalFraction);
-      if (!zones || !aimed || aimed.status === "unaimed") continue;
+      if (!zones || !aimed || aimed.status === "unaimed") {
+        omittedChannels.push({ channel, reason: "unaimed" });
+        continue;
+      }
       const ray = zones.trace.meridional(aimed);
       clippedByChannel[channel] = ray.clipped;
-      if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
+      const omission = chromaticRayOmission(ray);
+      if (omission) {
+        omittedChannels.push({ channel, reason: omission });
+      } else {
         marginalRays[channel] = {
           y: ray.y,
           u: ray.u,
@@ -196,14 +230,28 @@ export function computeLongitudinalChromaticFocus(
         };
       }
     }
-    return { marginalFraction, marginalRays, clippedByChannel };
+    return { marginalFraction, marginalRays, clippedByChannel, omittedChannels };
   };
-  for (const fraction of fractions) {
-    // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
-    if (channels.some((channel) => zonesByChannel.get(channel)?.ray(fraction)?.status === "unaimed")) break;
-    const { marginalFraction, marginalRays, clippedByChannel } = zoneRays(fraction);
+  let searchEndedBy: ChromaticZoneSearchEnd | undefined;
+  function* candidates() {
+    for (const fraction of fractions) {
+      // A later candidate stands in only for vignetting: a zone no ray could be aimed at ends the search.
+      for (const channel of CHROMATIC_ZONE_CHANNELS) {
+        const aimed = zonesByChannel.get(channel)?.ray(fraction);
+        if (aimed?.status === "unaimed") {
+          searchEndedBy = { fraction, channel, reason: aimed.reason };
+          return;
+        }
+      }
+      yield zoneRays(fraction);
+    }
+  }
+  const chosen = selectChromaticZone(candidates(), CHROMATIC_ZONE_CHANNELS.length);
+  const requested = chosen && requestedZoneChannels(chosen, channels);
+  if (chosen && requested && Object.keys(requested.marginalRays).length >= 2) {
+    const { marginalFraction, clippedByChannel } = chosen;
+    const { marginalRays, omittedChannels } = requested;
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
-    if (validChannels.length < 2) continue;
 
     const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ);
     const referenceChannel = referenceChannelFor(channels);
@@ -235,9 +283,17 @@ export function computeLongitudinalChromaticFocus(
       longitudinalSpreadUm: spread.axialInterceptSpreadMm * 1000,
       transverseSpreadMm: spread.imagePlaneHeightSpreadMm,
       transverseSpreadUm: spread.imagePlaneHeightSpreadMm * 1000,
-      spread: { ...spread, axis: "onAxis", fraction: marginalFraction, channels: validChannels },
+      spread: {
+        ...spread,
+        axis: "onAxis",
+        fraction: marginalFraction,
+        channels: validChannels,
+        omittedChannels,
+        ...(searchEndedBy ? { searchEndedBy } : {}),
+      },
       samples,
       validChannelCount: validChannels.length,
+      omittedChannels,
     };
   }
 
@@ -265,6 +321,7 @@ function emptyLateralField(
       clipped: true,
     })),
     validChannelCount: 0,
+    omittedChannels: channels.map((channel) => ({ channel, reason: "unaimed" })),
     usable: false,
   };
 }
@@ -283,9 +340,12 @@ function computeLateralColorField(
   const fieldGeometry = geometries.find((geometry) => geometry !== null);
   if (!fieldGeometry) return emptyLateralField(fieldFraction, referenceChannel, channels);
 
+  const omittedChannels: ChromaticChannelOmission[] = [];
   const rawSamples = channels.map((channel, index) => {
     const geometry = geometries[index];
     const chiefRay = geometry ? traceOffAxisChiefRay(request, geometry, channel) : null;
+    // No chief solve at this channel's indices is unaimed; a solved chief that does not reach the image is clipped.
+    if (chiefRay === null) omittedChannels.push({ channel, reason: geometry ? "vignetted" : "unaimed" });
     return {
       channel,
       imageHeightMm: chiefRay?.imagePoint.y ?? null,
@@ -318,6 +378,7 @@ function computeLateralColorField(
       clipped: sample.clipped,
     })),
     validChannelCount: validHeights.length,
+    omittedChannels,
     usable: lateralSpreadMm !== null,
   };
 }
@@ -362,7 +423,15 @@ export function computeLateralColorCurve(
   const usableFields = fields.filter((field) => field.usable && field.lateralSpreadMm !== null);
   if (usableFields.length === 0) return null;
 
-  const maxLateralSpreadMm = Math.max(...usableFields.map((field) => field.lateralSpreadMm ?? 0));
+  // The headline compares every channel: a field that loses a channel's chief ray is named beside it instead.
+  const completeFields = usableFields.filter((field) => field.omittedChannels.length === 0);
+  const maxField =
+    completeFields.length === 0
+      ? null
+      : completeFields.reduce((best, field) =>
+          (field.lateralSpreadMm ?? 0) > (best.lateralSpreadMm ?? 0) ? field : best,
+        );
+  const maxLateralSpreadMm = maxField?.lateralSpreadMm ?? null;
 
   return {
     channels,
@@ -371,7 +440,8 @@ export function computeLateralColorCurve(
     fields,
     usableFieldCount: usableFields.length,
     maxLateralSpreadMm,
-    maxLateralSpreadUm: maxLateralSpreadMm * 1000,
+    maxLateralSpreadUm: maxLateralSpreadMm === null ? null : maxLateralSpreadMm * 1000,
+    maxLateralFieldFraction: maxField?.fieldFraction ?? null,
     imagePlaneZ,
     halfFieldDeg: stateGeometry.halfFieldDeg,
   };
