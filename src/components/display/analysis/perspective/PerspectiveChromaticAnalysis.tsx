@@ -19,8 +19,8 @@ interface PerspectiveChromaticAnalysisProps {
 /** Movement-aware chromatic focus, TCA, and fan presentation. */
 export default function PerspectiveChromaticAnalysis({ result, t }: PerspectiveChromaticAnalysisProps) {
   const center = result.samples.find((sample) => Math.abs(sample.requestedSensorUv.v) <= 1e-9) ?? null;
-  const maxFocusSpread = maxFinite(result.samples.map((sample) => sample.focusSpreadMm));
-  const maxTransverse = maxFinite(result.samples.map((sample) => sample.maxTransverseSeparationMm));
+  const maxFocusField = argmaxFinite(result.samples, (sample) => sample.focusSpreadMm);
+  const maxTransverseField = argmaxFinite(result.samples, (sample) => sample.maxTransverseSeparationMm);
 
   return (
     <PerspectiveSection
@@ -41,9 +41,35 @@ export default function PerspectiveChromaticAnalysis({ result, t }: PerspectiveC
           note="2+ usable channels"
           t={t}
         />
-        <AnalysisMetricRow label="Center focus span" value={formatUnsignedUm(center?.focusSpreadMm)} t={t} />
-        <AnalysisMetricRow label="Max focus span" value={formatUnsignedUm(maxFocusSpread)} t={t} />
-        <AnalysisMetricRow label="Max transverse color" value={formatUnsignedUm(maxTransverse)} t={t} />
+        <AnalysisMetricRow
+          label="Center focus span"
+          value={formatUnsignedUm(center?.focusSpreadMm)}
+          note={center ? missingChannelsNote(center, (sample) => sample.sensorRelativeFocus !== null) : undefined}
+          t={t}
+        />
+        <AnalysisMetricRow
+          label="Max focus span"
+          value={formatUnsignedUm(maxFocusField?.focusSpreadMm)}
+          note={
+            maxFocusField
+              ? missingChannelsNote(maxFocusField, (sample) => sample.sensorRelativeFocus !== null)
+              : undefined
+          }
+          t={t}
+        />
+        <AnalysisMetricRow
+          label="Max transverse color"
+          value={formatUnsignedUm(maxTransverseField?.maxTransverseSeparationMm)}
+          note={
+            maxTransverseField
+              ? missingChannelsNote(
+                  maxTransverseField,
+                  (sample) => sample.status === "usable" && sample.actualSensorPoint !== null,
+                )
+              : undefined
+          }
+          t={t}
+        />
       </div>
 
       <PerspectiveChromaticCurves result={result} t={t} />
@@ -97,7 +123,30 @@ export default function PerspectiveChromaticAnalysis({ result, t }: PerspectiveC
   );
 }
 
-function maxFinite(values: readonly (number | null)[]): number | null {
-  const finite = values.filter((value): value is number => value !== null && Number.isFinite(value));
-  return finite.length > 0 ? Math.max(...finite) : null;
+function argmaxFinite<T>(items: readonly T[], value: (item: T) => number | null): T | null {
+  let best: T | null = null;
+  let bestValue = -Infinity;
+  for (const item of items) {
+    const candidate = value(item);
+    if (candidate !== null && Number.isFinite(candidate) && candidate > bestValue) {
+      best = item;
+      bestValue = candidate;
+    }
+  }
+  return best;
+}
+
+/** Name the channels a field's figure leaves out, with their status: "B: missed fixed sensor"; undefined when none. */
+function missingChannelsNote(
+  field: PerspectiveChromaticResult["samples"][number],
+  compared: (sample: PerspectiveChromaticResult["samples"][number]["channels"][number]) => boolean,
+): string | undefined {
+  const missing = field.channels.filter((sample) => !compared(sample));
+  if (missing.length === 0) return undefined;
+  return missing
+    .map((sample) => {
+      const status = sample.status === "usable" ? "no focus" : perspectiveStatusLabel(sample.status);
+      return `${sample.channel}: ${status}`;
+    })
+    .join("; ");
 }

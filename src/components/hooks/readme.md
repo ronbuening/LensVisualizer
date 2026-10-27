@@ -35,7 +35,7 @@ flowchart LR
   n_src_components_hooks_TypeScript_modules --> |6| n_external_src_optics_fieldGeometry_ts
   n_src_components_hooks_TypeScript_modules --> |5| n_external_src_utils_state
   n_src_components_hooks_TypeScript_modules --> |4| n_external_src_optics_buildLens_ts
-  n_src_components_hooks_TypeScript_modules --> |3| n_external_src_optics_chromatic_ts
+  n_src_components_hooks_TypeScript_modules --> |4| n_external_src_optics_chromatic_ts
   n_src_components_hooks_TypeScript_modules --> |2| n_external_src_optics_mtf_ts
   n_src_components_hooks_TypeScript_modules --> |2| n_external_src_utils_catalog
   n_src_components_hooks_TypeScript_modules --> |2| n_external_src_utils_featureFlags_ts
@@ -61,7 +61,7 @@ flowchart LR
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/analysis.ts, src/optics/fieldGeometry.ts, src/optics/optics.ts, src/optics/projection.ts, +1 more | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic.ts, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useBalancedColumns.ts` | React hook module | package:react | src/components/relationshipMap (3), src/pages/UniversalRelationshipMapPage.tsx | balancedColumns, WidthClass, widthClass, balancedRowStyle, balancedItemStyle, default, useBalancedColumns |
-| `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), src/optics/chromatic.ts (2), +3 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
+| `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/chromatic.ts (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), +3 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
