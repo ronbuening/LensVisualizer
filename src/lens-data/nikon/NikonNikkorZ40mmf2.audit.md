@@ -136,3 +136,14 @@ by element, for flat lands square to the axis at the rims of concave faces, the 
   stop tick runs from 8.83 to 10.45 mm.
 - The analysis's L11 paragraph now says L12's rear face ends on a 9.9 mm land instead of an 11.0 mm clear radius.
 - No land was skipped.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 5: the cut sat at the old 8.4 mm rim, and the beams reach 9.09 mm there, so the land stopped the rays that rim
+  stops. The sd returns to 8.4 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

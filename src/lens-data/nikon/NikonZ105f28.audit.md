@@ -162,3 +162,14 @@ L46 edge 256.5 px).
   At the full field the cut on 9 raises side vignetting there from 39 % to
   44 %; the pupil-grid trace passes the same rays as before at every field above, because surface 8 already clips
   that side at 55 %.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 27A: the beams reach 17.41 mm there, past the 17.17 mm cut. The depth goes from 5.22 to 5.37 mm, which puts
+  the cut radius at 17.43 mm, just outside the beams; the land is shorter than the figure's.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

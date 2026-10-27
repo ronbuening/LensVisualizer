@@ -181,3 +181,18 @@ its effective radius.
   trace or failed rows and no `(rim cut)` limiter. Full-field side vignetting at 21.6 mm image height is unchanged; the
   engine half-field estimate moves from 32.898° to 32.907° with surface 2's cut radius 5 µm outside the old 14.54.
 - The rendered section now draws the five lands where FIG. 4 does; every other outline is unchanged.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 5: the cut sat at the old 12.29 mm rim, and the beams reach 12.32 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 12.29 mm with no cut, and the face draws as it did before the figure review.
+- Surface 6: the cut sat at the old 11.84 mm rim, and the beams reach 12.14 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 11.84 mm with no cut, and the face draws as it did before the figure review.
+- Surface 20A: the cut sat at the old 13.93 mm rim, and the beams reach 13.98 mm there, so the land stopped the rays
+  that rim stops. The sd returns to 13.93 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

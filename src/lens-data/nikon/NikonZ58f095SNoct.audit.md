@@ -78,3 +78,18 @@ on both halves for flat lands square to the axis at the rims of concave faces, t
 - The aperture audit is unchanged (f/0.98 within 3 %, no rim, trace, iris or failed rows), and the engine half-field
   stays 25.17°. At the full field (Y = 21.6 mm) side vignetting at 3, 4, 13 and 22 is unchanged: 55, 44, 0 and 50 %
   at infinity, 41, 34, 0 and 34 % at 0.5 m. The full-field bundle at 13 (24.78 mm) stays inside the cut radius.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 3: the cut sat at the old 28.7 mm rim, and the beams reach 28.77 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 28.7 mm with no cut, and the face draws as it did before the figure review.
+- Surface 4: the cut sat at the old 28.7 mm rim, and the beams reach 28.83 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 28.7 mm with no cut, and the face draws as it did before the figure review.
+- Surface 22: the cut sat at the old 19.5 mm rim, and the beams reach 20.26 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 19.5 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

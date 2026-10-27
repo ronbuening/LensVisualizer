@@ -127,3 +127,16 @@ was also fitted against its own cap, so a land counts only where the drawn rim l
 - The aperture audit is unchanged: all three stations trace the stated f/2.92, with no rim, trace or rim-cut
   limiter. The cut on 9 lies outside the full-field bundle (12.25 mm) at every station. The cut on 22 raises
   full-field side vignetting at that surface from 62 % to 71 % (61 % to 69 % at close focus).
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 9: the beams reach 13.79 mm there, past the 13.21 mm cut. The depth goes from 1.48 to 1.62 mm, which puts the
+  cut radius at 13.81 mm, just outside the beams; the land is shorter than the figure's.
+- Surface 22: the beams reach 11.69 mm there, past the 11.58 mm cut. The depth goes from 2.99 to 3.07 mm, which puts the
+  cut radius at 11.72 mm, just outside the beams; the land is shorter than the figure's.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

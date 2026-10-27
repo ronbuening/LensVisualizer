@@ -108,3 +108,14 @@ compared with its prescription sag at 6.559 px/mm (S1 → S40 vertex span 1311 p
   those rays. With both cuts it is 0.543 / 0.410 / 0.376 and 0.541 / 0.441 / 0.435, all of the change from 34.
 - The engine's wide-end half-field estimate, which limits each face at its cut radius, moves from 19.89° to 19.68°
   with the cut on 7. That is still past the 16.85° that the 21.6 mm image height needs.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 34: the beams reach 13.89 mm there, within 0.1 mm of the 14 mm rim, so no land is left to draw. The cut is
+  removed.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

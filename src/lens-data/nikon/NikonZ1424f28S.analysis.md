@@ -82,7 +82,7 @@ G1 is the large, strongly negative front group that creates the retrofocus field
 **L12 — Negative Meniscus (rear surface aspherical)**
 - Glass: nd = 1.743104, νd = 49.4 → **S-LAM60** (OHARA; nd = 1.74320, νd = 49.34)
 - Focal length: −54.2 mm
-- Surface 4\* is aspherical with a paraboloidal base (K = −1) and positive higher-order terms. At 90% of the 15.6 mm traced rim (the data file's rim-cut radius; h = 14.0 mm) the departure from the vertex sphere is about +810 µm, rising to about +1,370 µm at the rim. Like L11, this element helps tame the oblique spherical aberration and coma of the extreme off-axis rays. The high refractive index (1.743) reduces the surface curvatures needed for a given power, which in turn reduces higher-order aberration contributions.
+- Surface 4\* is aspherical with a paraboloidal base (K = −1) and positive higher-order terms. At 90% of the 15.6 mm data-file rim (h = 14.0 mm) the departure from the vertex sphere is about +810 µm, rising to about +1,370 µm at the rim. Like L11, this element helps tame the oblique spherical aberration and coma of the extreme off-axis rays. The high refractive index (1.743) reduces the surface curvatures needed for a given power, which in turn reduces higher-order aberration contributions.
 
 **L13 — Biconcave Negative (ED-class fluorophosphate)**
 - Glass: nd = 1.49782, νd = 82.6 → **HIKARI J-FKH1 catalog equivalent** (catalog nd = 1.49782, νd = 82.57; S-FPL51-class ED fluorophosphate crown; vendor not named by the patent)
@@ -169,7 +169,7 @@ All three front-group aspherical surfaces carry very large departures from the b
 | 2\* | L11 rear | 16.04 | −1 (paraboloid) | * | Pupil spherical aberration |
 | 4\* | L12 rear | 27.44 | −1 (paraboloid) | +810 µm (h = 14.0 mm) | Coma, astigmatism |
 
-\* Surface 2\*'s figure-derived cap end (21.4 mm, its rim-cut radius) lies outside its 16.04 mm vertex radius, so a vertex-sphere departure is undefined there; the surface sag at the rim is 15.18 mm and the local slope is about 55°. Departures quoted for surfaces 1\* and 4\* are measured from the vertex sphere at the companion data file's traced rims (the 32.8 mm semi-diameter and the 15.6 mm rim-cut radius), which come from the patent's Fig. 10 rather than from a published clear-aperture table.
+\* Surface 2\*'s figure-derived cap end (21.4 mm, its rim-cut radius) lies outside its 16.04 mm vertex radius, so a vertex-sphere departure is undefined there; the surface sag at the rim is 15.18 mm and the local slope is about 55°. Departures quoted for surfaces 1\* and 4\* are measured from the vertex sphere at the companion data file's traced rims (the 32.8 mm semi-diameter and the 15.6 mm semi-diameter), which come from the patent's Fig. 10 rather than from a published clear-aperture table.
 
 Surfaces 2\* and 4\* use a paraboloidal base (K = −1), which is significantly flatter than a sphere at the rim. The paraboloid eliminates the h² sag contribution from the conic, pushing all power control into the higher-order polynomial coefficients. This is a common technique in high-departure aspheres where the designer needs fine control over the wavefront shape at large aperture heights without fighting the rapid sag growth of a spherical base curve.
 
@@ -318,14 +318,14 @@ All computed values match the patent to within rounding precision of the stated 
 
 The patent does not provide semi-diameters or iris diameters.
 
-**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. Fig. 10 ends L11's and L12's concave rear caps on flat lands square to the axis, with each element's edge at its front face's height. The data file gives those rear faces the edge as semi-diameter and a rim cut at the cap end, so rays are traced only inside the cap end and the diagram draws the land.
+**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. Fig. 10 ends L11's and L12's concave rear caps on flat lands square to the axis, with each element's edge at its front face's height. The data file gives L11's rear face the edge as semi-diameter and a rim cut at the cap end, so rays are traced only inside the cap end and the diagram draws the land. L12's rear keeps its 15.6 mm rim with no cut, since a land there would stop traced rays.
 
 | Surfaces | Element | Fig. 10 reading (mm) | Data file (mm) |
 |----------|---------|----------------------|----------------|
 | 1\* | L11 front | 32.8 | 32.8 |
 | 2\* | L11 rear (cap end / edge) | 21.4 / 32.8 | 21.4 (rim cut) / 32.8 |
 | 3 | L12 front | 20.6 | 20.6 |
-| 4\* | L12 rear (cap end / edge) | 16.8 / 20.6 | 15.6 (rim cut) / 20.6 |
+| 4\* | L12 rear (cap end / edge) | 16.8 / 20.6 | 15.6 |
 | 5–8 | L13, L14 | 16.9 | 16.9 |
 | 9–11 | L21, L22 | 11.8 / 11.3 | 11.9 / 11.6 / 11.3 |
 

@@ -174,3 +174,14 @@ faces, the shape `rimCutDepthMm` draws. Pixel pairs in the table are cap end / e
 - Live, wide end at infinity: L11 and L12 now end their caps in square lands with the edges at 29.2 and 19.3 mm, in
   place of the slanted joins from the cap end to the S1 / S3 rim, and L52 shows the short land at 26A, as in Fig. 1.
   No other element moved.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 4A: the cut sat at the old 14.5 mm rim, and the beams reach 14.55 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 14.5 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

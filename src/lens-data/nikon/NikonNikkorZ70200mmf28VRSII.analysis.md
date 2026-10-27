@@ -244,9 +244,9 @@ where X is the sag measured toward the image, R is the paraxial radius and κ is
 | 23A | L45 front | 52.6942 | −1.60023E-06 | 8.51352E-11 | −5.5987E-13 | — |
 | 34A | L71 front | −34.6941 | 5.46682E-06 | 2.52568E-10 | 4.7014E-12 | −4.3092E-15 |
 
-Departures from the base sphere, evaluated at each face's clear radius (the ray-modeled semi-diameter for 17A, 18A and 23A; for 34A the figure-derived radius where its cap meets the flat rim land; not published apertures), are:
+Departures from the base sphere, evaluated at the data file's semi-diameters (ray-modeled for 17A, 18A and 23A, figure-derived for 34A; not published apertures), are:
 
-| Surface | Clear radius (mm) | Departure (µm) | Geometric effect at the rim |
+| Surface | Modeled SD (mm) | Departure (µm) | Geometric effect at the rim |
 | --- | --- | --- | --- |
 | 17A | 20.30 | −196.2 | Convex front face flattened |
 | 18A | 19.70 | +201.5 | Convex rear face flattened |
@@ -357,7 +357,7 @@ The data file departs from a literal transcription in the following ways, each r
 - **Labels.** Patent surface numbers 1–35 are kept. Surface 19 is labeled `STO`. The aspherical surfaces carry an `A` suffix (17A, 18A, 23A and 34A).
 - **Filter plate.** FL is carried as a rear plate. The fixed spacing D37 = 0.174 mm, printed as variable but equal in all three states, follows it.
 - **Conic constant.** K = κ − 1 = 0 for every asphere. No scale factor was applied.
-- **Semi-diameters.** None are published. They are modeled as 1.04 times the largest real-ray height over 15 zoom/focus states, covering the full-aperture axial bundle, the full-field chief ray and 0.6-field ±0.5-pupil rays, rounded up to 0.05 mm. The cemented doublets are equalized. Six rims instead follow the wide-end panel of patent Fig. 1 (scaled at 0.0782 mm per pixel at 600 dpi from the tabulated vertex spacings), where the drawing is 12–22 % taller than the ray model: L21 (22.6 mm front, 20.7 mm rear), L61 (18.3 mm) and L71 (17.5 mm front, 18.7 mm rear). The other rims agree with the figure within about 7 % and are kept. Figure-derived values are drawing measurements, not published apertures. Fig. 1 also ends four concave faces short of their element's edge with a flat land square to the axis: L12's rear, L21's rear, L52's rear and L71's front. The data file draws these lands out to the element edge, and the clear radii of those faces stay at 33.1, 20.7, 11.6 and 17.5 mm.
+- **Semi-diameters.** None are published. They are modeled as 1.04 times the largest real-ray height over 15 zoom/focus states, covering the full-aperture axial bundle, the full-field chief ray and 0.6-field ±0.5-pupil rays, rounded up to 0.05 mm. The cemented doublets are equalized. Six rims instead follow the wide-end panel of patent Fig. 1 (scaled at 0.0782 mm per pixel at 600 dpi from the tabulated vertex spacings), where the drawing is 12–22 % taller than the ray model: L21 (22.6 mm front, 20.7 mm rear), L61 (18.3 mm) and L71 (17.5 mm front, 18.7 mm rear). The other rims agree with the figure within about 7 % and are kept. Figure-derived values are drawing measurements, not published apertures. Fig. 1 also ends four concave faces short of their element's edge with a flat land square to the axis: L12's rear, L21's rear, L52's rear and L71's front. The data file draws the first two lands out to the element edge, with clear radii of 33.2 and 20.7 mm; L52's and L71's stay at their 11.6 and 17.5 mm rims, since a land there would stop traced rays.
 - **Surfaces 12/13.** These are held below the general rule at 18.72 mm, a value that still passes the full-aperture axial bundle at every sampled state. Their sag intrusion into the 3.78 mm gap then reaches 95.4 %, so the data file sets a per-lens gap-intrusion allowance of 0.96. Every other gap stays within the default 0.90 at all sampled states.
 - **Stop.** The semi-diameter is a wide-end real-ray calibration, as described under Optical Architecture.
 - **Close focus.** The spacings are the constrained reconstruction described under Focus Mechanism. Intermediate zoom states are interpolated, not solved.

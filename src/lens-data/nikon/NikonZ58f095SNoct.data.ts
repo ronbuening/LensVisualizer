@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source surfaces/aspheres retained; filter FL rows29–30 are modeled in `rearPlates`
  * (traced, not drawn): S28 = 14.50 mm to FL, then 1.60 mm nd1.5168 and 1.00 mm to image.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces 3 (L12 rear),
- * 4 (L13 front), 13 (L24 rear) and 22 (L29 rear). Their sd rises to the drawn element edge (33, 33,
- * 29.5, 22.8) and rimCutDepthMm ends each cap at its former rim: 28.71, 28.72, 25.00 and 19.51 mm.
+ * 4 (L13 front), 13 (L24 rear) and 22 (L29 rear). 13's sd rises to the drawn 29.5 mm edge and
+ * rimCutDepthMm ends its cap at the former 25.00 mm rim. 3, 4 and 22 keep their 28.7 / 28.7 / 19.5 mm
+ * rims uncut: a land there would stop rays those rims stop.
  * Catalog names identify inferred coordinate counterparts, not production suppliers.
  */
 
@@ -290,8 +291,8 @@ const LENS_DATA = {
       },
     }, // L11 front [asph]
     { label: "2", R: -848.55, d: 2.8, sd: 33, medium: 2 }, // L11→L12 junction
-    { label: "3", R: 50.252, d: 18.12, sd: 33, rimCutDepthMm: 9.01 }, // L12 rear → air
-    { label: "4", R: -60.72, d: 2.8, sd: 33, rimCutDepthMm: 7.22, medium: 3 }, // L13 front
+    { label: "3", R: 50.252, d: 18.12, sd: 28.7 }, // L12 rear → air
+    { label: "4", R: -60.72, d: 2.8, sd: 28.7, medium: 3 }, // L13 front
     { label: "5", R: 2497.5, d: 9.15, sd: 33, medium: 4 }, // L13→L14 junction
     { label: "6", R: -77.239, d: 0.4, sd: 33 }, // L14 rear → air
     // ── G2 (master group, positive): L21, L22, Jc (L23+L24), [STO], Jd (L25+L26), L27, De (L28+L29) ──
@@ -323,7 +324,7 @@ const LENS_DATA = {
       },
     }, // L28 front [asph]
     { label: "21", R: -67.221, d: 1.8, sd: 22.8, medium: 13 }, // L28→L29 junction
-    { label: "22", R: 55.51, sd: 22.8, rimCutDepthMm: 3.54 }, // L29 rear → D22 [variable]
+    { label: "22", R: 55.51, sd: 19.5 }, // L29 rear → D22 [variable]
     // ── GR (rear corrector, weakly positive): doublet Df (L31+L32), doublet Dg (L33+L34) ──
     { label: "23", R: 71.413, d: 6.35, sd: 19.5, medium: 14 }, // L31 front
     { label: "24", R: -115.025, d: 1.81, sd: 19.5, medium: 15 }, // L31→L32 junction

@@ -54,10 +54,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    held through focus.                                             ║
  * ║                                                                    ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
- * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands    ║
- * ║    at the element edge. Their sd is raised to the partner face's   ║
- * ║    and rimCutDepthMm ends each cap at its old radius (14.54,       ║
- * ║    12.30, 11.84, 12.05, 13.92 mm), so tracing is unchanged.        ║
+ * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands at ║
+ * ║    the element edge. Faces 2 and 12A take the partner face's sd,   ║
+ * ║    and rimCutDepthMm ends each cap at its old radius (14.54 and    ║
+ * ║    12.05 mm), so tracing is unchanged. 5, 6 and 20A keep their old ║
+ * ║    rims uncut: a land there would stop rays those rims stop.       ║
  * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║
@@ -248,10 +249,10 @@ const LENS_DATA = {
     { label: "3", R: 87.9768, d: 5.5728, sd: 14.19, medium: 2 },
     { label: "4", R: -43.8264, d: 1.7928, sd: 13.82, medium: 3 },
     // d5: patent prints 0.108 (2.333 mm); derived 0.2595 from TL — see header note.
-    { label: "5", R: 69.8933, d: 5.6052, sd: 13.82, rimCutDepthMm: 1.09 },
+    { label: "5", R: 69.8933, d: 5.6052, sd: 12.29 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
-    { label: "6", R: -27.9612, d: 3.7152, sd: 13.63, rimCutDepthMm: 2.64, medium: 4 },
+    { label: "6", R: -27.9612, d: 3.7152, sd: 11.84, medium: 4 },
     { label: "7", R: 37.8367, d: 7.1064, sd: 13.63, medium: 5 },
     { label: "8", R: -37.8367, d: 0.3888, sd: 13.93 },
 
@@ -341,8 +342,7 @@ const LENS_DATA = {
       label: "20A",
       R: -40.9817,
       d: 1.7928,
-      sd: 15.21,
-      rimCutDepthMm: 3.1,
+      sd: 13.93,
       medium: 11,
       asphere: {
         K: -0.1889,

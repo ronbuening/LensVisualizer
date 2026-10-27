@@ -62,3 +62,16 @@ lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm`
   At the full field (image height 21.6 mm, ω 41.0°) side vignetting at surface 2 goes from 0 to 3 % and at 10A from
   0 to 13 %; surface 12's cut lies outside the full-field bundle (6.96 mm).
 - No land was skipped.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 2: the beams reach 4.92 mm there, past the 4.90 mm cut. The depth goes from 0.93 to 0.95 mm, which puts the
+  cut radius at 4.95 mm, just outside the beams; the land is shorter than the figure's.
+- Surface 12: the cut sat at the old 7.2 mm rim, and the beams reach 7.33 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 7.2 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

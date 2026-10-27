@@ -43,9 +43,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                      ║
  * ║    Fig. 1 draws flat lands square to the axis at the rims of 2A      ║
- * ║    (L11), 4A (L12) and 26A (L52). 2A and 4A now run out to the       ║
- * ║    29.2 / 19.3 mm edges of S1 / S3, with rimCutDepthMm ending each   ║
- * ║    cap at its old rim (22.4 / 14.5 mm); 26A is cut at 10.99 mm.      ║
+ * ║    (L11), 4A (L12) and 26A (L52). 2A now runs out to the 29.2 mm     ║
+ * ║    edge of S1, with rimCutDepthMm ending its cap at the old 22.4 mm  ║
+ * ║    rim; 26A is cut at 10.99 mm. 4A keeps its 14.5 mm rim uncut: a    ║
+ * ║    land there would stop rays the rim stops.                         ║
  * ║                                                                      ║
  * ║  NOTE ON CONIC CONVENTION:                                           ║
  * ║    Formula (a) (¶0078) prints √(1 − κ·y²/R²), which would make       ║
@@ -296,8 +297,7 @@ const LENS_DATA = {
       label: "4A",
       R: 22.702,
       d: 9.7,
-      sd: 19.3,
-      rimCutDepthMm: 7.32,
+      sd: 14.5,
       asphere: { K: -1.0, A4: 3.67009e-5, A6: 1.37031e-7, A8: -5.20756e-10, A10: 3.14884e-12, A12: -5.6153e-15 },
     },
     { label: "5", R: -71.0651, d: 1.9, sd: 14.4, medium: 3 },

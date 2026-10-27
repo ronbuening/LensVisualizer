@@ -87,3 +87,14 @@ from the 97.291 mm vertex span; every drawn element edge matches its stored `sd`
 - The cut on 16 keeps the stated f/1.85 at both focus ends; the aperture audit is unchanged (within 3 %, no rim, trace
   or iris rows, no `(rim cut)` limiter). Its side vignetting at 16 goes 25 % → 35 % at infinity and 0 % → 8 % at
   0.8 m; engine full-field transmission 0.577 → 0.546 (infinity) and 0.779 → 0.766 (0.8 m). Half-field unchanged.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 16: the beams reach 16.37 mm there, within 0.1 mm of the 16.4 mm rim, so no land is left to draw. The cut is
+  removed.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

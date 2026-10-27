@@ -29,9 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (intrusion ≈ 95.4%). The stop radius is derived from the design f-number, f/2.891 at wide, and held at every zoom
  * station; the same fixed iris reproduces the published f/2.904 and f/2.905 at mid and tele.
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 4 (L12), 8 (L21), 31 (L52) and 34A
- * (L71). Each sd is raised to its element edge (the partner face: 34.2 / 22.6 / 12.4 / 18.7) and rimCutDepthMm ends
- * the cap at the old rim, cut radii 33.14 / 20.70 / 11.59 / 17.48 mm, outside the stated on-axis beam (so the 8 and
- * 34A values above are now cut radii).
+ * (L71). Faces 4 and 8 take their element edge as sd (the partner face: 34.2 / 22.6) and rimCutDepthMm ends the cap
+ * at the old rim, cut radii 33.16 / 20.71 mm (so the 8 value above is now a cut radius). 31 and 34A keep their
+ * 11.6 / 17.5 mm rims uncut: a land there would stop rays those rims stop.
  *
  * FOCAL LENGTHS — catalog.focalLengthMm.design and the zoom station focal lengths are the patent's printed
  * f (71.402 / 134.997 / 195.996 mm). The
@@ -391,15 +391,14 @@ const LENS_DATA = {
     { label: "28", R: 286.532, d: 2.6, sd: 13.45, medium: 15 }, // G5: L51 front
     { label: "29", R: -166.6633, d: 1.1, sd: 13.05 }, // L51 rear → air
     { label: "30", R: -303.2044, d: 1.2, sd: 12.4, medium: 16 }, // L52 front
-    { label: "31", R: 33.0069, sd: 12.4, rimCutDepthMm: 2.11 }, // L52 rear → air [VAR zoom+focus D31]
+    { label: "31", R: 33.0069, sd: 11.6 }, // L52 rear → air [VAR zoom+focus D31]
     { label: "32", R: 133.0887, d: 5.4, sd: 18.3, medium: 17 }, // G6: L61 front
     { label: "33", R: -65.3298, sd: 18.3 }, // L61 rear → air [VAR zoom+focus D33]
     {
       label: "34A",
       R: -34.6941,
       d: 1.4,
-      sd: 18.7,
-      rimCutDepthMm: 4.19,
+      sd: 17.5,
       medium: 18,
       asphere: {
         K: 0,

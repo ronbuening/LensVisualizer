@@ -31,9 +31,10 @@
  * ║                                                                    ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    Fig. 10 ends the concave rear caps of L11 (2A) and L12 (4A) on  ║
- * ║    flat lands square to the axis. Both faces take the element edge ║
- * ║    as sd (32.8 / 20.6) with rimCutDepthMm at the traced curve end  ║
- * ║    (cut radii 21.40 / 15.60 mm), so tracing is unchanged.          ║
+ * ║    flat lands square to the axis. 2A takes the element edge as sd  ║
+ * ║    (32.8) with rimCutDepthMm at the traced curve end (cut radius   ║
+ * ║    21.40 mm), so tracing is unchanged. 4A keeps its 15.6 mm rim    ║
+ * ║    uncut: a land there would stop rays the rim stops.              ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    Source FNO is 2.91 at both zoom ends while the stop rides in    ║
@@ -342,8 +343,7 @@ const LENS_DATA = {
       label: "4A",
       R: 27.44,
       d: 10.0,
-      sd: 20.6,
-      rimCutDepthMm: 6.24,
+      sd: 15.6,
       asphere: { K: -1, A4: 2.15e-5, A6: 2.23e-8, A8: 2.16e-11, A10: 1.77e-13, A12: -1.0e-16 },
     }, // L12 rear (asph) → air
     { label: "5", R: -74.77, d: 1.5, sd: 16.9, medium: 3 }, // L13 front (ED)

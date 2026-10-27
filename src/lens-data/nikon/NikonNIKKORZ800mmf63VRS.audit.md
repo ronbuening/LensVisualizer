@@ -29,3 +29,14 @@ element by element on both halves for flat lands square to the axis at the rims 
 - The largest rim angle moves from 31.98° (surface 11 at sd) to 30.72° (surface 12), as the rim slope on 11 is now
   taken at its cut radius; minimum edge thickness (L16, 0.566 mm) and the largest gap intrusion (0.621, 25→26) are
   unchanged. `NikonNIKKORZ800mmf63VRS.analysis.md` was updated to match.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 37: the beams reach 15.48 mm there, past the 14.93 mm cut. The depth goes from 3.53 to 3.83 mm, which puts the
+  cut radius at 15.51 mm, just outside the beams; the land is shorter than the figure's.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

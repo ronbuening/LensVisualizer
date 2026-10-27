@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * BFD 32.5469 mm; total track about 232.433 mm (source TL summary conflicts).
  * Rims inferred from the original figure and checked across zoom/focus.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
- * rear faces 7 (L21) and 34 (L72); rimCutDepthMm puts each cap's end at the
- * figure's land, 21.6 and 13.29 mm, outside the stated on-axis beam.
+ * rear faces 7 (L21) and 34 (L72); rimCutDepthMm puts 7's cap end at the
+ * figure's land, 21.6 mm. 34 stays uncut: the traced beams reach 13.89 mm
+ * there, within 0.1 mm of its 14 mm rim.
  * Catalog names and APD counterparts do not establish production materials.
  */
 
@@ -367,7 +368,7 @@ const LENS_DATA = {
     { label: "31", R: -369.28597, d: 2.0, sd: 15, medium: 17 }, // L71 front
     { label: "32", R: -98.65201, d: 0.8, sd: 15 }, // L71 rear → air
     { label: "33", R: 1344.92022, d: 1.25, sd: 14, medium: 18 }, // L72 front
-    { label: "34", R: 37.13115, sd: 14, rimCutDepthMm: 2.46 }, // L72 rear → air [VAR zoom+focus]
+    { label: "34", R: 37.13115, sd: 14 }, // L72 rear → air [VAR zoom+focus]
 
     // ── G8: Focus group 2 (positive, f = +66.6 mm) — moves toward object ──
     { label: "35", R: 119.39985, d: 3.85, sd: 18, medium: 19 }, // L81 front

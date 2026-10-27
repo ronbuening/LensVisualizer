@@ -161,3 +161,14 @@ the shape `rimCutDepthMm` draws. Scale 0.0784 mm/px, as in the 2026-09-21 audit.
   `audit:surface` reports no validation errors. The vignetting and distortion tabs (field 57.5°) are unchanged.
 - The viewer's vignetting-limited half-field bounds each face by its clear radius, the cut radius on 2A and 4A, so
   it stays at 48.8 / 49.9 / 50.5 / 51.3° at the four stations; the 49° wide-end limit listed on 2026-09-21 stands.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 4A: the cut sat at the old 15.6 mm rim, and the beams reach 16.56 mm there, so the land stopped the rays that
+  rim stops. The sd returns to 15.6 mm with no cut, and the face draws as it did before the figure review.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

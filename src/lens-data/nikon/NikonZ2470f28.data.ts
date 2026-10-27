@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rims inferred from the original figure and checked across zoom/focus.
  * Physical iris schedule is explicitly inferred from source nominal f-numbers.
  * Rim cuts (2026-10-27): Figure 4 draws flat lands at the rims of the concave
- * faces 9 (L22 rear) and 22 (L51 front); rimCutDepthMm ends each cap at the
- * figure's land, 13.21 and 11.58 mm, outside the stated on-axis beam.
+ * faces 9 (L22 rear) and 22 (L51 front); rimCutDepthMm ends those caps at
+ * 13.81 and 11.72 mm, just past the traced beams and outside the figure's
+ * 13.21 / 11.58 mm lands, which would stop rays.
  */
 
 const LENS_DATA = {
@@ -303,7 +304,7 @@ const LENS_DATA = {
     }, // L21 front (aspherical)
     { label: "7", R: 18.6957, d: 9.658, sd: 16.3 }, // L21 rear → air
     { label: "8", R: -59.6856, d: 1.3, sd: 14.5, medium: 5 }, // L22 front
-    { label: "9", R: 59.6856, d: 0.442, sd: 14.5, rimCutDepthMm: 1.48 }, // L22 rear → air
+    { label: "9", R: 59.6856, d: 0.442, sd: 14.5, rimCutDepthMm: 1.62 }, // L22 rear → air
     { label: "10", R: 39.2099, d: 6.4, sd: 14.2, medium: 6 }, // L23 front
     { label: "11", R: -48.6731, d: 1.933, sd: 14.2 }, // L23 rear → air
     { label: "12", R: -26.4065, d: 1.3, sd: 13, medium: 7 }, // L24 front
@@ -337,7 +338,7 @@ const LENS_DATA = {
     { label: "21", R: -50.5609, sd: 13.7 }, // L42 rear → air (VARIABLE: zoom+focus D21)
 
     // ── Group 5 ──
-    { label: "22", R: -23.9237, d: 1.2, sd: 12.2, rimCutDepthMm: 2.99, medium: 12 }, // L51 front
+    { label: "22", R: -23.9237, d: 1.2, sd: 12.2, rimCutDepthMm: 3.07, medium: 12 }, // L51 front
     { label: "23", R: -56.2081, d: 0.2, sd: 12.2 }, // L51 rear → air
     { label: "24", R: 103.1749, d: 5.9, sd: 13.5, medium: 13 }, // L52 front
     { label: "25", R: -33.0197, sd: 13.5 }, // L52 rear → air (VARIABLE: zoom+focus D25)

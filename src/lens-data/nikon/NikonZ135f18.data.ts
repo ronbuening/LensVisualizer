@@ -8,9 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * `rearPlates` (traced, not drawn); surface 31 stores the physical 11.4681 mm gap.
  * Catalog names are dispersion proxies, not established production materials.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
- * rear faces 4 (L2), 9 (L5), 14 (L7) and 23 (L12); rimCutDepthMm puts each cap's
- * end at the figure's land, 34.7, 24.0, 19.3 and 21.5 mm, outside the stated
- * on-axis beam. Surface 9's cap now stops 2.08 mm ahead of the stop (was 0.07).
+ * rear faces 4 (L2), 9 (L5), 14 (L7) and 23 (L12); rimCutDepthMm ends those caps
+ * at 35.13, 24.05, 19.32 and 21.62 mm, outside every traced beam. 4 and 23 sit
+ * just past the beams, outside the figure's 34.7 / 21.5 mm lands, which would stop
+ * rays. Surface 9's cap now stops 2.08 mm ahead of the stop (was 0.07).
  */
 
 const LENS_DATA = {
@@ -265,7 +266,7 @@ const LENS_DATA = {
     { label: "1", R: 73.0739, d: 8.258, sd: 37.9, medium: 1 }, // L1 front (SR)
     { label: "2", R: 173.9425, d: 1.0, sd: 37.9 }, // L1 rear → air
     { label: "3", R: 75.0, d: 8.0959, sd: 35.9, medium: 2 }, // L2 front (ED)
-    { label: "4", R: 226.5221, d: 1.0, sd: 35.9, rimCutDepthMm: 2.67 }, // L2 rear → air
+    { label: "4", R: 226.5221, d: 1.0, sd: 35.9, rimCutDepthMm: 2.74 }, // L2 rear → air
     { label: "5", R: 94.0, d: 6.1837, sd: 33.4, medium: 3 }, // L3 front (ED)
     { label: "6", R: 255.73, d: 1.0, sd: 33.4 }, // L3 rear → air
     { label: "7", R: 55.0, d: 10.248, sd: 28.9, medium: 4 }, // L4 front (ED, cemented D1)
@@ -305,7 +306,7 @@ const LENS_DATA = {
     { label: "20", R: 64.0655, d: 9.2661, sd: 22.9, medium: 11 }, // L11 front (Pr)
     { label: "21", R: -101.7863, d: 0.1, sd: 22.9 }, // L11 rear → air
     { label: "22", R: 195.9905, d: 2.2, sd: 22.4, medium: 12 }, // L12 front
-    { label: "23", R: 83.1844, sd: 22.4, rimCutDepthMm: 2.82 }, // L12 rear → air (D23, variable)
+    { label: "23", R: 83.1844, sd: 22.4, rimCutDepthMm: 2.86 }, // L12 rear → air (D23, variable)
 
     /* ── G4: Focus group 2 — L13 ── */
     { label: "24", R: 85.105, d: 4.4549, sd: 21.8, medium: 13 }, // L13 front

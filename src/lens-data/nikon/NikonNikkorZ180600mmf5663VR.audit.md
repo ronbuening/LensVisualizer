@@ -76,3 +76,16 @@ element by element on both halves for flat lands square to the axis at the rims 
   10 % → 26 %); 10 and 21 are unchanged. A meridional fan traced through every rim passes 71.1, 77.1 and 72.6 % of the
   full-field pupil at wide, middle and tele before the cuts and 71.1, 77.1 and 71.3 % after, because L1 and the G5/G6
   rims already clip those rays first.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 5: the beams reach 38.65 mm there, past the 37.47 mm cut. The depth goes from 2.87 to 3.06 mm, which puts the
+  cut radius at 38.68 mm, just outside the beams; the land is shorter than the figure's.
+- Surface 35: the beams reach 11.49 mm there, past the 10.37 mm cut. The depth goes from 1.61 to 2 mm, which puts the
+  cut radius at 11.52 mm, just outside the beams; the land is shorter than the figure's.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.

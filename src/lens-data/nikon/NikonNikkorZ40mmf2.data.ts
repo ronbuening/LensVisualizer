@@ -31,7 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    chief ray; off-axis bundles vignette at full aperture.            ║
  * ║    Rim cuts (2026-10-27): Fig. 7 draws flat lands at the rims of     ║
  * ║    concave faces 3 (L12 rear) and 5 (L21 front); rimCutDepthMm ends  ║
- * ║    their caps at 9.90 and 8.40 mm (5's sd now the 11.0 mm edge).     ║
+ * ║    3's cap at 9.90 mm. Face 5 keeps its 8.4 mm rim uncut: a land     ║
+ * ║    there would stop rays the rim stops.                              ║
  * ║                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                ║
  * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, νd = 63.88,        ║
@@ -195,7 +196,7 @@ const LENS_DATA = {
     { label: "STO", R: "flat" },
 
     /* G2 — positive focus group: cemented assembly (L21 + L22 + L22r) + singlet L23 */
-    { label: "5", R: -16.5359, d: 0.9, sd: 11.0, medium: 3, rimCutDepthMm: 2.29 },
+    { label: "5", R: -16.5359, d: 0.9, sd: 8.4, medium: 3 },
     { label: "6", R: 105.5966, d: 4.55, sd: 11.0, medium: 4 },
     { label: "7", R: -33.838, d: 0.1, sd: 11.0, medium: 5 },
     {

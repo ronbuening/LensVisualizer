@@ -86,3 +86,16 @@ fitting the drawn cap to the prescription sag and finding where the ink stops fo
   and image-circle audits are clean. At the full-field corner (Y = 21.6 mm, infinity) the side vignetting at 4 goes
   from 14 % to 17 % and at 23 from 17 % to 25 %; 14 adds 2 %, and 9's cut lies outside the full-field bundle
   (23.19 mm). At close focus only 4 clips the corner bundle (11 % to 15 %).
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
+zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
+from the figure review above stopped rays and were changed:
+
+- Surface 4: the beams reach 35.09 mm there, past the 34.68 mm cut. The depth goes from 2.67 to 2.74 mm, which puts the
+  cut radius at 35.13 mm, just outside the beams; the land is shorter than the figure's.
+- Surface 23: the beams reach 21.57 mm there, past the 21.48 mm cut. The depth goes from 2.82 to 2.86 mm, which puts the
+  cut radius at 21.62 mm, just outside the beams; the land is shorter than the figure's.
+
+The other cuts stop no traced ray, and the surface audit and the beam rule pass.
