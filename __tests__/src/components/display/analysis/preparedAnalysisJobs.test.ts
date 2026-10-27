@@ -165,6 +165,7 @@ const chromaticAnalysis = {
       axis: "onAxis",
       fraction: 0.95,
       channels: ["R", "G", "B", "V"],
+      omittedChannels: [],
     },
     samples: [
       {
@@ -209,6 +210,7 @@ const chromaticAnalysis = {
       },
     ],
     validChannelCount: 4,
+    omittedChannels: [],
   },
   lateralColor: {
     channels: ["R", "G", "B", "V"],
@@ -230,6 +232,7 @@ const chromaticAnalysis = {
           { channel: "V", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
         ],
         validChannelCount: 4,
+        omittedChannels: [],
         usable: true,
       },
       {
@@ -247,12 +250,14 @@ const chromaticAnalysis = {
           { channel: "V", imageHeightMm: 10.012, relativeHeightMm: 0.012, usable: true, clipped: false },
         ],
         validChannelCount: 4,
+        omittedChannels: [],
         usable: true,
       },
     ],
     usableFieldCount: 2,
     maxLateralSpreadMm: 0.017,
     maxLateralSpreadUm: 17,
+    maxLateralFieldFraction: 1,
     imagePlaneZ: 60,
     halfFieldDeg: 12,
   },

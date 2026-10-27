@@ -26,6 +26,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-27",
+    type: "fix",
+    summary: "Chromatic readouts now compare every selected color channel, or name the one a rim vignettes",
+  },
+  {
+    date: "2026-10-27",
     type: "improvement",
     summary:
       "Coma spots, ray fans, bokeh, field curves, spherical aberration and color zones now sample the real aperture stop, as lens-design software does with ray aiming",
