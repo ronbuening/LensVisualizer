@@ -8,6 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source summaries FL 83.00 and TL 111.35 disagree with the numerical table, which traces to
  * EFL 82.222 and a 110.811 mm track. The cause is not isolated, so every printed value is kept and
  * the contradiction is an unresolved `sourceErrata` entry; see analysis.
+ * Rim cuts (2026-10-27): Figure 3 draws flat lands on concave faces 4, 7, 10, 16 and 20; only
+ * surface 16 (L42 rear) carries rimCutDepthMm, cap end at 15.38 mm. The other four lands would add
+ * 16–25 points of side vignetting at their surfaces, so they stay uncut (see audit log).
  */
 
 const LENS_DATA = {
@@ -248,7 +251,7 @@ const LENS_DATA = {
     // D3: L41+L42 cemented doublet
     { label: "14", R: "flat", d: 6.5, sd: 16.4, medium: 8 }, // L41 front (flat)
     { label: "15", R: -43.69, d: 2.02, sd: 16.4, medium: 9 }, // L41→L42 junction
-    { label: "16", R: 64.869, d: 4.9, sd: 16.4 }, // L42 rear → air
+    { label: "16", R: 64.869, d: 4.9, sd: 16.4, rimCutDepthMm: 1.85 }, // L42 rear → air
     // D4: L43+L44 cemented doublet
     { label: "17", R: 70.537, d: 8.2, sd: 17.9, medium: 10 }, // L43 front
     { label: "18", R: -411.688, d: 4.5, sd: 17.9, medium: 11 }, // L43→L44 junction

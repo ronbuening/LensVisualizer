@@ -35,6 +35,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  rim slope, and cross-gap intrusion. L16 is held at 33.8 mm for a  ║
  * ║  0.57 mm edge.                                                     ║
  * ║                                                                    ║
+ * ║  Rim cuts (2026-10-27): Figure 11 draws flat lands at the rims of  ║
+ * ║  the concave rear faces 11 (L15) and 37 (L311); rimCutDepthMm puts ║
+ * ║  each cap's end at the figure's land, 32.09 and 14.93 mm, outside  ║
+ * ║  the stated on-axis beam and the full-field bundle.               ║
+ * ║                                                                    ║
  * ║  Glass names below are coordinate-compatible catalog matches, not ║
  * ║  proof of Nikon's supplier or production melt. The PF media are    ║
  * ║  explicit Unmatched dispositions; L34 (patent 627592) traces on    ║
@@ -422,7 +427,7 @@ const LENS_DATA = {
     { label: "8", R: 154.1141, d: 5, sd: 38.3 },
     { label: "9", R: 94.801, d: 8.9096, sd: 34.8, medium: 6 },
     { label: "10", R: -2064.0654, d: 2.3, sd: 34.8, medium: 7 },
-    { label: "11", R: 65.716, d: 2.5, sd: 34.8 },
+    { label: "11", R: 65.716, d: 2.5, sd: 34.8, rimCutDepthMm: 8.37 },
     { label: "12", R: 66.174, d: 9.5854, sd: 33.8, medium: 8 },
     { label: "13", R: 2165.2785, d: 17.5002, sd: 33.8 },
     { label: "15", R: -277.4112, d: 2, sd: 27.1, medium: 9 },
@@ -448,7 +453,7 @@ const LENS_DATA = {
     { label: "34", R: -55.1763, d: 4.5, sd: 14.3 },
     { label: "35", R: 59.9212, d: 6.8358, sd: 16.4, medium: 21 },
     { label: "36", R: -36.3245, d: 1.8, sd: 16.4, medium: 22 },
-    { label: "37", R: 33.3333, d: 3, sd: 16.4 },
+    { label: "37", R: 33.3333, d: 3, sd: 16.4, rimCutDepthMm: 3.53 },
     { label: "38", R: 39.9579, d: 10.7333, sd: 17.1, medium: 23 },
     { label: "39", R: -35.6438, d: 1.8, sd: 17.1, medium: 24 },
     { label: "40", R: 166.95, d: 74.56937, sd: 17.1 },
