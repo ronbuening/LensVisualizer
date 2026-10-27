@@ -44,8 +44,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "double Gauss",
     efl: 49.994180757309714,
     epSD: 17.855064556182043,
-    // 2026-10-27: the inferred stop plane moved behind r₆'s clear cap (7.8 mm), where the f/1.4 marginal ray crosses.
-    stopPhysSD: 11.640632158189495,
+    stopPhysSD: 11.813952547091576,
     imgZ: 81.345,
     zLast: 44.185,
     marginal: { h: 12.5, y: 9.58533019704501, u: -0.25841395919948856 },

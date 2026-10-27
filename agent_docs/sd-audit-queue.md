@@ -277,19 +277,9 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, two lenses: no rim clips, but the next ray cannot be continued. The Nikon AI Zoom-Nikkor 25-50mm f/4 is
-  `STO (noBracket)` at tele (row below). The Fujinon XF 23mm f/1.4 R is totally reflected at surface 14A, inside its
-  rim (a prescription suspect). Four inferred stop planes that sat inside the preceding surface's cap, where the ray
-  leaves that surface past the stop plane, were moved just behind the cap: Olympus G.Zuiko Auto-S 50mm f/1.4, Leica
-  Elmarit 90mm f/2.8, Zeiss Jena Sonnar 50mm f/2 and Nikon AI-S Zoom-Nikkor 35-70mm f/3.5 (their audit logs give the
-  construction). That uncovered rim limits on two, now ordinary `rim` rows: the Olympus traces f/1.55 at surface 9
-  (`--raise` asks for six surfaces, up to 13.1 %; read the figure first) and the Sonnar f/2.07 at surface 5
-  (9.5 → 10.0 mm).
-- Stop planes that a neighbouring clear cap crosses inside the wide-open iris, at some station or focus end, which the
-  infinity on-axis audit does not reach. The Canon EF 24mm f/1.4L II's following cap reaches 1.83 mm ahead of its
-  printed stop at close focus over the inferred 2.423 mm close gap: decide whether the stop travels with the L2 focus
-  unit. The Voigtländer Nokton 50mm f/1's inferred surface-8 rim crosses the printed stop plane 0.28 mm inside the
-  f/1 iris. The Olympus Zuiko 24mm f/2 (0.03 mm, close focus) and Pentax DA 18-55mm (0.004 mm) are negligible.
+- `trace`, six lenses: no rim clips, but the next ray cannot be continued. Five are `STO (noBracket)`: beyond that
+  height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag. The Fujinon
+  XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
 - `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
   AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
 
@@ -322,7 +312,8 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | NIKON AF-S NIKKOR 300mm f/2.8 D IF-ED | `nikon/NikonAFSNikkor300mmf28DIFED.data.ts` | f/2.88 traces f/3.45 (+19.7%), rear L11 rim 21; with TC-20E III, f/5.70 traces f/6.83. Present on the host alone; converter rims clear. Review the host's exact source figure before raising its inferred rear rim. | todo |
 | NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.76 (+30.6%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
 | NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.48 (+12.7%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
-| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket). The stop rides 0.1 mm ahead of r9 with G2; at tele (d8 = 0.503 mm) r8's cap sags 0.62 mm at the 11.48 mm iris, and r9's vertex lies ahead of any plane behind that cap, so no sequential stop plane fits there. Needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
+| NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5 | `nikon/NikonAIZoomNikkor3570mmf35.data.ts` | 68.79 mm: f/3.5 traces f/3.62 (+3.4 %), trace failure at STO (noBracket) | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket) | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
 | OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
 | PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
