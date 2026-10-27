@@ -6,7 +6,20 @@ import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/s
 import { doLayoutForRuntimeLens as doLayout } from "../../../../../src/optics/state/runtimeAdapters.js";
 import type { FieldGeometryState } from "../../../../../src/optics/field/launch.js";
 import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
-import { analysisRequestAt, apertureAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "../../testLensFixtures.js";
+import CanonEF135Raw from "../../../../../src/lens-data/canon/CanonEF135mmf2LUSM.data.js";
+import FisheyeRaw from "../../../../../src/lens-data/olympus/OlympusMZuiko8mmf18FisheyePRO.data.js";
+import SonyFE20Raw from "../../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
+import { evenlySpacedSigned } from "../../../../../src/optics/analysis/sampling.js";
+import { prepareRayTrace } from "../../../../../src/optics/trace/rayAdapters.js";
+import { solveChiefRayForRuntimeLens } from "../../../../../src/optics/state/fieldAdapters.js";
+import {
+  analysisRequestAt,
+  apertureAt,
+  build,
+  buildSimplePositiveElementLens,
+  sharedNikkorZ70200,
+  sharedSonnar50f15,
+} from "../../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../../src/types/optics.js";
 
 /* ── Helpers ── */
@@ -72,10 +85,9 @@ describe("computeVignettingCurve", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
-    // Exact tracing on a fast Sonnar can clip a small fraction of the on-axis
-    // dense pupil sweep, leaving the off-axis normalized GT slightly above 1.0
-    // until the field angle introduces its own vignetting. A 5% tolerance
-    // accommodates that artifact while still catching gross overshoots.
+    // The Sonnar's stop image barely grows off axis, so its 2D beam stays within
+    // a few percent of the axis's until rim vignetting sets in. (A retrofocus
+    // wide-angle's does grow: see the Sony FE 20 mm case below.)
     const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     for (const s of samples) {
       expect(s.geometricTransmission).toBeLessThanOrEqual(1.05);
@@ -89,7 +101,7 @@ describe("computeVignettingCurve", () => {
 
     const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     for (let i = 1; i < samples.length; i++) {
-      /* cos⁴(θ) ≤ 1 for θ > 0, so RI ≤ GT */
+      /* Per unit of transmitted area the image is dimmer off axis: cos θ over a growing image area per solid angle */
       expect(samples[i].relativeIllumination).toBeLessThanOrEqual(samples[i].geometricTransmission + 1e-9);
     }
   });
@@ -229,14 +241,14 @@ describe("computeVignettingCurve", () => {
     expect(edgeSample.geometricTransmission).toBeGreaterThanOrEqual(0);
   });
 
-  it("edge relativeIllumination is less than geometricTransmission (cos⁴ falloff)", () => {
+  it("edge relativeIllumination is less than geometricTransmission (oblique falloff)", () => {
     const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
     const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     const edgeSample = samples[samples.length - 1];
-    /* At the field edge the cos⁴ factor must reduce RI below GT */
+    /* At the field edge obliquity must reduce RI below GT */
     expect(edgeSample.relativeIllumination).toBeLessThan(edgeSample.geometricTransmission + 1e-9);
   });
 
@@ -253,5 +265,80 @@ describe("computeVignettingCurve", () => {
     expect(samples.length).toBeGreaterThanOrEqual(7);
     expect(samples[0].geometricTransmission).toBeCloseTo(1.0, 5);
     expect(samples[0].relativeIllumination).toBeCloseTo(1.0, 5);
+  });
+
+  /* ── 2D beam and energy figure ── */
+
+  it("tends to cos⁴ for a thin lens with its stop at the lens and a small aperture", () => {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const L = build({
+      ...base,
+      key: "test-thin-lens-stop-at-lens",
+      surfaces: [
+        { label: "STO", R: 1e15, nd: 1.0, sd: 3, d: 0.01, elemId: 0 },
+        { label: "1", R: 100, nd: 1.5168, sd: 3, d: 0.3, elemId: 1 },
+        { label: "2", R: -100, nd: 1.0, sd: 3, d: 96.7, elemId: 0 },
+      ],
+    });
+    const samples = computeVignettingCurveBase(analysisRequestAt(L, { currentEPSD: 0.25, currentPhysStopSD: 0.25 }));
+    expect(samples.at(-1)!.fieldAngleDeg).toBeGreaterThan(10);
+    for (const sample of samples) {
+      expect(sample.geometricTransmission).toBeCloseTo(1, 3);
+      expect(sample.relativeIllumination).toBeCloseTo(Math.cos((sample.fieldAngleDeg * Math.PI) / 180) ** 4, 2);
+    }
+  });
+
+  it("measures a retrofocus beam that outgrows the axis's at the field edge", () => {
+    const L = build(SonyFE20Raw);
+    const samples = computeVignettingCurveBase(analysisRequestAt(L, { sampling: { vignettingFieldSampleCount: 3 } }));
+    // The stop's image grows off axis: at 47° the beam's area is 1.33× the axis's.
+    expect(samples.at(-1)!.geometricTransmission).toBeGreaterThan(1.2);
+    expect(samples[0]).toEqual({ fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 });
+  });
+
+  it("counts a vignetted beam's area below the old meridional chord", () => {
+    const L = build(CanonEF135Raw);
+    const request = analysisRequestAt(L, {});
+    const samples = computeVignettingCurveBase(request);
+    const edge = samples.at(-1)!;
+
+    // The chord the tab traced before: 192 rays across the axis's entrance pupil at the solved chief ray.
+    const { focusT, zoomT, aberrationT } = request.preparedGeometry;
+    const trace = prepareRayTrace(L, {
+      zPos: request.preparedGeometry.z as number[],
+      focusT,
+      zoomT,
+      stopSD: request.aperture.stopSemiDiameterMm,
+      ghost: true,
+      aberrationT,
+    });
+    const chord = (fieldAngleDeg: number) => {
+      const chief = solveChiefRayForRuntimeLens(fieldAngleDeg, focusT, zoomT, L, undefined, aberrationT);
+      return evenlySpacedSigned(192).filter(
+        (f) => !trace.ray(chief.yLaunch + f * request.aperture.entrancePupilSemiDiameterMm, chief.uField).clipped,
+      ).length;
+    };
+    // A chord through a lens-shaped beam is a larger share of the diameter than the area is of the disc.
+    expect(edge.geometricTransmission).toBeLessThan(chord(edge.fieldAngleDeg) / chord(0) - 0.05);
+    expect(edge.geometricTransmission).toBeGreaterThan(0.2);
+  });
+
+  it("moves no field by more than 0.01 when the beam lattice doubles", () => {
+    const L = build(CanonEF135Raw);
+    const at = (cells: number) =>
+      computeVignettingCurveBase(analysisRequestAt(L, { sampling: { vignettingPupilSampleCount: cells } }));
+    const [coarse, fine] = [at(64), at(128)];
+    expect(fine).toHaveLength(coarse.length);
+    coarse.forEach((sample, i) => {
+      expect(fine[i].fieldAngleDeg).toBe(sample.fieldAngleDeg);
+      expect(Math.abs(fine[i].geometricTransmission - sample.geometricTransmission)).toBeLessThan(0.01);
+      expect(Math.abs(fine[i].relativeIllumination - sample.relativeIllumination)).toBeLessThan(0.01);
+    });
+  });
+
+  it("returns no curve for a state outside the beam model instead of mixing methods", () => {
+    // A fisheye's fields launch on the bounding sphere, which the MTF's launch does not cover.
+    const L = build(FisheyeRaw);
+    expect(computeVignettingCurveBase(analysisRequestAt(L, {}))).toEqual([]);
   });
 });

@@ -26,15 +26,25 @@ import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalog
 import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/special.js";
 import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/sumita.js";
 import {
+  abbeLineIndices,
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePeC,
+  normalLinePgF,
   normalLinePgFPrime,
 } from "../../../src/optics/chromatic/materialResolver.js";
+import {
+  CHROMATIC_CHANNEL_ORDER,
+  E_LINE_CHANNEL_WAVELENGTH_NM as E_LINE_CHANNEL_NM,
+} from "../../../src/optics/chromatic/channels.js";
+import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
 import { summarizeDispersionQuality } from "../../../src/optics/chromatic/dispersionQuality.js";
 import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import type { ChromaticChannel, ElementData, SurfaceData } from "../../../src/types/optics.js";
+import { constructionFixtureData } from "./constructionFixtures.js";
 import {
+  build,
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
   sharedApoLanthar50f2,
@@ -787,13 +797,90 @@ describe("makeSurfaceDispersion preference cascade", () => {
       undefined,
     );
     const nbk7 = d.glassEntry!;
-    const fromE = (lineNm: number) => evaluateSellmeier(nbk7, lineNm) - evaluateSellmeier(nbk7, LINE_NM.e);
+    const anchor = ne - evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.G);
     expect(d.quality).toBe("sellmeier");
     expect(nbk7.name).toBe("N-BK7");
+    expect(E_LINE_CHANNEL_NM).toEqual({ R: LINE_NM.CPrime, G: LINE_NM.e, B: LINE_NM.FPrime, V: LINE_NM.g });
+    // Bit for bit: the d-line anchoring beside this tier must not move native e-line channels.
     expect(d.fn("G")).toBe(ne);
-    expect(d.fn("R")).toBeCloseTo(ne + fromE(LINE_NM.CPrime), 12);
-    expect(d.fn("B")).toBeCloseTo(ne + fromE(LINE_NM.FPrime), 12);
-    expect(d.fn("V")).toBeCloseTo(ne + fromE(LINE_NM.g), 12);
+    expect(d.fn("R")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.R) + anchor);
+    expect(d.fn("B")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.B) + anchor);
+    expect(d.fn("V")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.V) + anchor);
+  });
+
+  it.each([{ dPgF: undefined }, { dPgF: 0.01 }])(
+    "anchors a d-line catalog curve to the authored nd (dPgF $dPgF)",
+    ({ dPgF }) => {
+      // N-BK7 stays a compatible catalog proxy for an authored index 1e-3 above its catalog nd.
+      const authored = 1.5178;
+      const base = buildChromaticPositiveElementLens();
+      const data = constructionFixtureData(base);
+      const state = prepareRuntimeState(
+        build({
+          ...data,
+          elements: data.elements.map((element) => ({ ...element, nd: authored, dPgF })),
+          surfaces: data.surfaces.map((surface) => ({ ...surface, nd: surface.nd === 1 ? 1 : authored })),
+        }),
+        0,
+        0,
+      );
+      const glass = state.lens.dispersion[1];
+      expect(glass.quality).toBe("sellmeier");
+      expect(glass.glassEntry?.name).toBe("N-BK7");
+      // The catalog's own nd misses the authored one; G used to trace it.
+      expect(Math.abs(evaluateSellmeier(glass.glassEntry!, LINE_NM.d) - authored)).toBeGreaterThan(9e-4);
+
+      const anchored = (lineNm: number) => anchoredIndexAtWavelength(state, 1, lineNm);
+      // Anchoring adds once where the MTF helper subtracts once, so the two may differ in the last bit.
+      const sameIndex = 1e-15;
+      expect(glass.indexAt("G")).toBe(authored);
+      expect(Math.abs(glass.indexAt("R") - anchored(LINE_NM.C))).toBeLessThanOrEqual(sameIndex);
+      expect(Math.abs(glass.indexAt("B") - anchored(LINE_NM.F))).toBeLessThanOrEqual(sameIndex);
+      const violet =
+        dPgF === undefined
+          ? anchored(LINE_NM.g)
+          : anchored(LINE_NM.F) + normalLinePgF(64.17, dPgF) * (anchored(LINE_NM.F) - anchored(LINE_NM.C));
+      expect(Math.abs(glass.indexAt("V") - violet)).toBeLessThanOrEqual(sameIndex);
+    },
+  );
+
+  it("leaves tiers without a catalog match unchanged", () => {
+    const vd = 64.14;
+    const dPgF = 0.004;
+    const surface: SurfaceData = { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 };
+    const element = (glass: string): ElementData => ({
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Test",
+      nd,
+      vd,
+      dPgF,
+      glass,
+    });
+
+    // Abbe tier: an unresolved name, and a catalog name whose Abbe number disagrees.
+    for (const [glass, abbeVd] of [
+      ["Unmatched proprietary", vd],
+      ["N-BK7", 52],
+    ] as const) {
+      const abbe = makeSurfaceDispersion(surface, { ...element(glass), vd: abbeVd }, undefined);
+      const lines = abbeLineIndices(nd, abbeVd, dPgF);
+      expect(abbe.quality).toBe("abbe");
+      expect(CHROMATIC_CHANNEL_ORDER.map((channel) => abbe.fn(channel))).toEqual([lines.nC, nd, lines.nF, lines.ng]);
+    }
+
+    // Line-index tier from measured C and F; g extends them with the authored dPgF.
+    const nC = 1.51;
+    const nF = 1.52;
+    const measured = makeSurfaceDispersion(surface, element("Unmatched proprietary"), { nC, nF });
+    expect(measured.quality).toBe("lineIndices");
+    expect(CHROMATIC_CHANNEL_ORDER.map((channel) => measured.fn(channel))).toEqual([
+      nC,
+      nd,
+      nF,
+      nF + normalLinePgF(vd, dPgF) * (nF - nC),
+    ]);
   });
 
   it("traces a partly catalog-resolved e-line doublet at one set of lines", () => {

@@ -77,7 +77,7 @@ flowchart LR
 - Direct source files: 14
 - Direct subfolders: 0
 - Main outbound areas: src/optics/analysis (40), src/optics/types.ts (10), src/types (9), src/optics/trace (7), src/optics/prescription (4), src/optics/state (4), src/optics/chromatic (3), src/optics/field (2), +3 more
-- External consumers: src/optics/mtf.ts
+- External consumers: src/optics/analysis, src/optics/mtf.ts
 
 ## Files
 
@@ -90,10 +90,10 @@ flowchart LR
 | `mtfDataLimitations.ts` | Mtf Data Limitations helper module | src/optics/analysis, src/optics/types.ts, src/types | src/optics/mtf.ts | MtfDataLimitationInput, assessMtfDataLimitations |
 | `mtfFields.ts` | Mtf Fields helper module | src/optics/state (2), src/optics/analysis, src/optics/field, src/optics/math, src/optics/prescription, +4 more | src/optics/analysis | MtfFieldTarget, MtfChiefHeight, MtfBeyondChiefClip, mtfModeledHalfField, declaredFormatRadiusMm, resolveMtfFieldGeometry, resolveMtfFieldTargets, mtfChiefHeight, +2 more |
 | `mtfFocus.ts` | Mtf Focus helper module | src/optics/analysis (4), src/optics/chromatic, src/optics/first-order, src/optics/prescription, src/optics/state, +2 more | src/optics/analysis, src/optics/mtf.ts | MtfFocusBundle, MtfBestFocus, MtfImagePlaneOffset, mtfImagePlaneOffset, mtfNearestImagePlaneZ, findAxialBestFocus, landingPoints |
-| `mtfFootprint.ts` | Mtf Footprint helper module | src/optics/analysis | src/optics/analysis (3) | MtfFootprint, MtfLaunchClassifier, findMtfFootprint, expandMtfFootprint |
+| `mtfFootprint.ts` | Mtf Footprint helper module | src/optics/analysis | src/optics/analysis (4) | MtfFootprint, MtfLaunchClassifier, findMtfFootprint, expandMtfFootprint |
 | `mtfMath.ts` | Mtf Math helper module | none | src/optics/analysis (5), src/optics/mtf.ts | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, combineOtfs |
 | `mtfRayClassification.ts` | Mtf Ray Classification helper module | src/optics/trace (2), src/optics/types.ts | src/optics/analysis (3) | MtfRayClass, mtfTraceClassification, provesApertureMiss |
 | `mtfShearedOtf.ts` | Mtf Sheared Otf helper module | src/optics/analysis (2) | src/optics/analysis, src/optics/mtf.ts | MtfShearedOtf, shearedOtf, latticeCosineSlope |
-| `mtfSupport.ts` | Mtf Support helper module | src/optics/analysis (4), src/optics/chromatic, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MTF_SPECTRUM_LABELS, MtfScaleDifference, mtfPrescriptionScale, mtfScaleNeedsNote, +6 more |
-| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/analysis (6), src/optics/trace (3), src/optics/chromatic, src/optics/math, src/optics/prescription, +3 more | src/optics/analysis (6), src/optics/mtf.ts | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
+| `mtfSupport.ts` | Mtf Support helper module | src/optics/analysis (4), src/optics/chromatic, src/optics/types.ts, src/types | src/optics/analysis (3), src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MTF_SPECTRUM_LABELS, MtfScaleDifference, mtfPrescriptionScale, mtfScaleNeedsNote, +8 more |
+| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/analysis (6), src/optics/trace (3), src/optics/chromatic, src/optics/math, src/optics/prescription, +3 more | src/optics/analysis (7), src/optics/mtf.ts | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | src/optics/analysis (2), src/optics/types.ts | src/optics/mtf.ts | launchPhaseMm, rayOpticalPathToImageMm, MtfWaveLattice, mtfWaveLattice, waveLatticePhaseStep, waveLatticeOtf |

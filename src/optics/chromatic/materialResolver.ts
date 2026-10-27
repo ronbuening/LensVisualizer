@@ -21,8 +21,9 @@
  * Native e-line elements (`indexReference: "e"`) carry R = C′ (643.8 nm),
  * G = authored `ne` (546.1 nm), B = F′ (480.0 nm) and V = g on every tier, so
  * a lens whose glasses are only partly catalog-resolved still traces each
- * channel at one set of lines. Their Sellmeier tier is anchored: the authored
- * `ne` plus the catalog's index difference from the e line.
+ * channel at one set of lines. The Sellmeier tier is anchored on both lines:
+ * the authored `nd` (or `ne`) plus the catalog's index difference from that
+ * reference line, so G is always the authored index.
  *
  * Resolution happens once per lens load (`buildLens`) and is cached as a
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
@@ -189,13 +190,19 @@ export function makeSurfaceDispersion(
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
     if (entry) {
+      // Anchored to the authored nd like the e-line tier above and
+      // `anchoredIndexAtWavelength`: the tier borrows only the catalog's
+      // dispersion. The match accepts a catalog nd within a few 1e-3 of the
+      // authored one, and tracing G at the catalog's own nd moved the
+      // chromatic foci off the design the aberrations tab traces.
       // Evaluate all four channels once at build time (same lookup shape as
       // the lineIndices tier): re-running the Sellmeier series on every
       // refraction event contradicted this module's no-repeated-overhead
       // contract for the hot trace loop.
-      const nR = evaluateSellmeier(entry, CHANNEL_NM.R);
-      const nG = evaluateSellmeier(entry, CHANNEL_NM.G);
-      const nB = evaluateSellmeier(entry, CHANNEL_NM.B);
+      const nd = surface.nd;
+      const anchor = nd - evaluateSellmeier(entry, CHANNEL_NM.G);
+      const nR = evaluateSellmeier(entry, CHANNEL_NM.R) + anchor;
+      const nB = evaluateSellmeier(entry, CHANNEL_NM.B) + anchor;
       // Patent partial-dispersion evidence describes the authored glass melt
       // more directly than a catalog-equivalent curve. Preserve the catalog's
       // C/d/F shape, but reconstruct g from the authored dPgF whenever it is
@@ -204,8 +211,8 @@ export function makeSurfaceDispersion(
       const nV =
         element.vd !== undefined && element.dPgF !== undefined
           ? nB + normalLinePgF(element.vd, element.dPgF) * (nB - nR)
-          : evaluateSellmeier(entry, CHANNEL_NM.V);
-      const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nG);
+          : evaluateSellmeier(entry, CHANNEL_NM.V) + anchor;
+      const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nd);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
     // Catalog match disagrees with the authored optical coordinates, or an

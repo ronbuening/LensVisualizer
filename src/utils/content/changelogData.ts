@@ -38,6 +38,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-26",
+    type: "fix",
+    summary:
+      "Fixed Chromatic, Pupils and Vignetting tab results to use true chief rays, full beams and the patent's glass indices",
+  },
+  {
+    date: "2026-10-26",
     type: "lens",
     summary:
       "Added the Fujifilm XC 13-33mm, Olympus M.Zuiko 12-50mm EZ and 14-42mm (2009), Pentax FA 20-35mm, Sigma 24-70mm HF and Tamron 20-40mm f/2.8, plus the Nikon TC-20E and TC-17E II and Olympus MC-14 teleconverters",

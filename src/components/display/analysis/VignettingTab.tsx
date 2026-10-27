@@ -2,7 +2,7 @@
  * VignettingTab — Analysis drawer tab content for the vignetting /
  * relative illumination chart.
  *
- * Memoizes the dense-ray-sweep computation from current slider state and
+ * Memoizes the 2D beam computation from current slider state and
  * renders the VignettingChart SVG component plus edge illumination readouts.
  */
 
@@ -105,7 +105,8 @@ function CenteredVignettingContent({
   if (samples.length < 2) {
     return (
       <div style={{ color: t.muted, fontSize: 10, padding: "8px 0", transition: "color 0.3s" }}>
-        Unable to compute vignetting curve for this lens state.
+        Vignetting is computed for centered, sequential refractive lens states; this one is outside that model or
+        transmits no beam.
       </div>
     );
   }

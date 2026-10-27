@@ -171,6 +171,33 @@ export function resolveMtfOptions(request: AnalysisRequest, options: MtfRequestO
   };
 }
 
+/**
+ * Whether the MTF's pupil launch and footprint model the state's light path: centred, sequential and refractive, with
+ * no fisheye projection, diffractive or annular surface, or mirror.
+ *
+ * @param state - prepared optical state
+ * @returns true when `prepareMtfFieldLaunch` and `findMtfFieldFootprint` apply
+ */
+export function mtfSequentialRefractivePath(state: PreparedGeometry): boolean {
+  const { lens } = state;
+  return !(
+    lens.flags.isFoldedOptics ||
+    lens.source.projection?.kind?.startsWith("fisheye") ||
+    state.surfaces.some((s) => s.diffractive || (s.innerSd ?? 0) > 0 || s.interaction.type !== "refract")
+  );
+}
+
+/**
+ * Whether the image plane is perpendicular to the optical axis, as image-space direction cosines assume.
+ *
+ * @param state - prepared optical state
+ * @returns true for an axial image plane
+ */
+export function mtfAxialImagePlane(state: PreparedGeometry): boolean {
+  const [x, y, z] = state.imagePlane.normal;
+  return !(Math.abs(x) > 1e-10 || Math.abs(y) > 1e-10 || z <= 0);
+}
+
 export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestOptions): MtfSupport {
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
@@ -205,18 +232,10 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     reason,
     message,
   });
-  if (
-    lens.flags.isFoldedOptics ||
-    lens.source.projection?.kind?.startsWith("fisheye") ||
-    state.surfaces.some((s) => s.diffractive || (s.innerSd ?? 0) > 0 || s.interaction.type !== "refract")
-  )
+  if (!mtfSequentialRefractivePath(state))
     return reject("unsupported-path", "MTF currently supports centered, sequential refractive prescriptions.");
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
-  if (
-    Math.abs(state.imagePlane.normal[0]) > 1e-10 ||
-    Math.abs(state.imagePlane.normal[1]) > 1e-10 ||
-    state.imagePlane.normal[2] <= 0
-  )
+  if (!mtfAxialImagePlane(state))
     return reject("unsupported-path", "MTF requires an image plane perpendicular to the optical axis.");
   if (state.focusT !== 0) {
     const conjugate = mtfFiniteConjugate(state);

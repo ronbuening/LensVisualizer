@@ -21,6 +21,8 @@ import { computeFieldGeometry, prepareStateSurfacesReal } from "./geometry.js";
 const CHIEF_RAY_MAX_ITERATIONS = 30;
 const CHIEF_RAY_BRACKET_EPSILON = 1e-9;
 const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
+/** Field (deg) below which the stop-height tolerance shrinks in proportion to the field. */
+const CHIEF_RAY_RESIDUAL_FULL_FIELD_DEG = 1;
 const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 
@@ -50,6 +52,21 @@ interface ChiefRayBracket {
 }
 
 /**
+ * Stop-height residual a chief-ray solve accepts at one field.
+ *
+ * A launch error δy moves a pupil found from the solved ray by about δy / u, so a fixed tolerance lets that error grow
+ * as the field shrinks and accepts the paraxial seed outright near the axis. Below one degree the tolerance therefore
+ * shrinks with the field, keeping the accuracy the solve has at one degree all the way in. It scales with the field
+ * slope rather than the launch height, which is zero at every field when the stop sits on the launch plane.
+ *
+ * @param fieldAngleDeg - signed field angle in degrees
+ * @returns accepted |stop height| in mm
+ */
+function chiefRayResidualTolerance(fieldAngleDeg: number): number {
+  return CHIEF_RAY_RESIDUAL_TOLERANCE * Math.min(1, Math.abs(fieldAngleDeg) / CHIEF_RAY_RESIDUAL_FULL_FIELD_DEG);
+}
+
+/**
  * Refine the legacy bracket, retaining its first midpoint and selected half.
  * Illinois weighting prevents a secant endpoint from sticking. A failed secant
  * trace replays bisection from the original bracket to retain its fallback result.
@@ -58,6 +75,7 @@ function refineChiefRayBracket(
   heightAtStop: (launch: number) => number | null,
   bracket: ChiefRayBracket,
   paraxialLaunch: number,
+  residualTolerance: number,
 ): Pick<ChiefRaySolveResult, "yLaunch" | "status" | "iterations"> {
   const refine = (secant: boolean): Pick<ChiefRaySolveResult, "yLaunch" | "status" | "iterations"> => {
     let { lo, hi, yLo: fLo, yHi: fHi } = bracket;
@@ -70,7 +88,7 @@ function refineChiefRayBracket(
         if (secant && i > 0) return refine(false);
         return { yLaunch: paraxialLaunch, status: "paraxial-fallback", iterations: i + 1 };
       }
-      if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      if (Math.abs(yMid) < residualTolerance) {
         return { yLaunch: mid, status: "converged", iterations: i + 1 };
       }
       if (yMid < 0 === fLo < 0) {
@@ -191,7 +209,10 @@ export function solveChiefRayBoundingSphere(
   });
 
   const paraxialYEP = 0;
-  if (Math.abs(fieldAngleDeg) < 1) {
+  /* Only the axis itself is exact by symmetry. The launch stays well-conditioned
+   * as the field approaches it (direction and pupil-radial axis remain
+   * orthogonal), so every other field is solved through the stop. */
+  if (fieldAngleDeg === 0) {
     return {
       yLaunch: projectYLaunchToZ0(paraxialYEP),
       uField: uFieldEquivalent,
@@ -205,6 +226,7 @@ export function solveChiefRayBoundingSphere(
   /* The solve variable yEP moves the launch origin along the field-radial pupil
    * axis. A sign change in stop height brackets the true chief ray. */
   const bracketHalf = Math.max(0.5 * Math.abs(geom.epRatio * sinTheta), 0.5);
+  const residualTolerance = chiefRayResidualTolerance(fieldAngleDeg);
   let bracket: ChiefRayBracket | null = null;
   let nearestYEP = paraxialYEP;
   let nearestAbsHeight = Infinity;
@@ -228,7 +250,7 @@ export function solveChiefRayBoundingSphere(
         nearestAbsHeight = absHeight;
         nearestYEP = yEP;
       }
-      if (absHeight < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      if (absHeight < residualTolerance) {
         return {
           yLaunch: projectYLaunchToZ0(yEP),
           uField: uFieldEquivalent,
@@ -257,7 +279,7 @@ export function solveChiefRayBoundingSphere(
     };
   }
 
-  const solved = refineChiefRayBracket(heightAtStop, bracket, paraxialYEP);
+  const solved = refineChiefRayBracket(heightAtStop, bracket, paraxialYEP, residualTolerance);
   return {
     ...solved,
     yLaunch: projectYLaunchToZ0(solved.yLaunch),
@@ -289,8 +311,9 @@ export function computeChiefRaySolve(
   const geom = geometry ?? computeFieldGeometry(state);
   const uField = launch.uField;
   const paraxialYChief = -geom.epRatio * uField;
-  if (Math.abs(fieldAngleDeg) < 1) {
-    return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0, launchSurface };
+  // The axis is the chief ray by symmetry; every other field is solved through the stop.
+  if (fieldAngleDeg === 0) {
+    return { yLaunch: 0, uField, status: "converged", iterations: 0, launchSurface };
   }
 
   const stopIndex = state.lens.stop.surfaceIndex;
@@ -303,6 +326,7 @@ export function computeChiefRaySolve(
   /* Object-plane solves vary launch height until the exact stop trace crosses
    * y=0. The paraxial chief ray is only the seed, not the final answer. */
   const bracketHalf = Math.max(Math.abs(paraxialYChief) * 0.5, 0.5);
+  const residualTolerance = chiefRayResidualTolerance(fieldAngleDeg);
   let lo = paraxialYChief - bracketHalf;
   let hi = paraxialYChief + bracketHalf;
   const yLo = heightAtStop(lo);
@@ -333,7 +357,7 @@ export function computeChiefRaySolve(
           nearestAbsHeight = absHeight;
           nearestYLaunch = yLaunch;
         }
-        if (absHeight < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+        if (absHeight < residualTolerance) {
           return { yLaunch, uField, status: "converged", iterations: 0, launchSurface };
         }
         if (prev !== null && prev.height * height <= 0) {
@@ -353,7 +377,7 @@ export function computeChiefRaySolve(
   }
 
   return {
-    ...refineChiefRayBracket(heightAtStop, { lo, hi, yLo: fLo, yHi: fHi }, paraxialYChief),
+    ...refineChiefRayBracket(heightAtStop, { lo, hi, yLo: fLo, yHi: fHi }, paraxialYChief, residualTolerance),
     uField,
     launchSurface,
   };
@@ -376,10 +400,7 @@ export function solveChiefRayFromSeed(
   state: PreparedGeometry,
   { fieldAngleDeg, seed }: { fieldAngleDeg: number; seed: ChiefRaySolveResult },
 ): ChiefRaySolveResult | null {
-  if (
-    Math.abs(fieldAngleDeg) < 1 ||
-    launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config) !== "object-plane"
-  )
+  if (fieldAngleDeg === 0 || launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config) !== "object-plane")
     return null;
   const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, fieldAngleDeg);
   if (launch.status === "out-of-domain" || !(Math.abs(seed.uField) > 0)) return null;
@@ -398,6 +419,7 @@ export function solveChiefRayFromSeed(
     launchSurface: "object-plane",
   });
 
+  const residualTolerance = chiefRayResidualTolerance(fieldAngleDeg);
   const guess = (seed.yLaunch * uField) / seed.uField;
   let half = Math.max(Math.abs(guess - seed.yLaunch) * 0.25, 1e-3);
   for (let attempt = 0; attempt < SEEDED_CHIEF_RAY_BRACKET_ATTEMPTS; attempt++, half *= 4) {
@@ -406,15 +428,15 @@ export function solveChiefRayFromSeed(
     let fLo = heightAtStop(lo);
     let fHi = heightAtStop(hi);
     if (fLo === null || fHi === null) return null;
-    if (Math.abs(fLo) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(lo, 0);
-    if (Math.abs(fHi) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(hi, 0);
+    if (Math.abs(fLo) < residualTolerance) return converged(lo, 0);
+    if (Math.abs(fHi) < residualTolerance) return converged(hi, 0);
     if (fLo < 0 === fHi < 0) continue;
     let side = 0;
     for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
       const mid = hi - (fHi * (hi - lo)) / (fHi - fLo);
       const fMid = heightAtStop(mid);
       if (fMid === null) return null;
-      if (Math.abs(fMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(mid, i + 1);
+      if (Math.abs(fMid) < residualTolerance) return converged(mid, i + 1);
       if (fMid < 0 === fLo < 0) {
         lo = mid;
         fLo = fMid;

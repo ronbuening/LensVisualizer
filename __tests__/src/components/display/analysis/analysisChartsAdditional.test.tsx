@@ -134,11 +134,28 @@ describe("analysis chart coverage", () => {
 
     expect(container.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 420 260");
     expect(screen.getByText("Geometric")).toBeTruthy();
-    expect(screen.getByText("Relative (cos⁴)")).toBeTruthy();
+    expect(screen.getByText("Relative")).toBeTruthy();
     expect(screen.getByText("20°")).toBeTruthy();
     expect(screen.getByText("Field angle (°)")).toBeTruthy();
     expect(container.querySelectorAll("path")).toHaveLength(2);
     expect(container.querySelectorAll("circle")).toHaveLength(6);
+  });
+
+  it("extends the vignetting axis above 1 when a beam outgrows the axis's", () => {
+    const { container } = render(
+      <VignettingChart
+        samples={[
+          { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
+          { fieldAngleDeg: 40, geometricTransmission: 1.6, relativeIllumination: 0.5 },
+        ]}
+        t={themes.dark}
+      />,
+    );
+
+    expect(screen.getByText("1.50")).toBeTruthy();
+    const circles = [...container.querySelectorAll("circle")].map((circle) => Number(circle.getAttribute("cy")));
+    // Every dot stays inside the plot: the highest is the edge's transmission, below the frame's top margin.
+    expect(Math.min(...circles)).toBeGreaterThan(0);
   });
 
   it("renders LoCA inset channels, formatting, custom placement, and click handling", () => {
