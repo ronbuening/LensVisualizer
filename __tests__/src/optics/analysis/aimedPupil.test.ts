@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import { analysisRequestAt, apertureAt, build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES, constructionFixtureData } from "../constructionFixtures.js";
 import {
+  AIMED_PUPIL_MAX_ITERATIONS,
   AIMED_PUPIL_POLISH_TOLERANCE,
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
@@ -250,6 +251,18 @@ describe("prepareAimedPupilLaunch", () => {
     expect(bundle.blockedSampleCount).toBe(blocked.length);
     expect(bundle.clippedSampleCount).toBe(vignetted);
     expect(bundle.validSampleCount + bundle.clippedSampleCount + bundle.blockedSampleCount).toBe(TANGENTIAL.length);
+  });
+
+  it("reports a solve capped while its last failed step left a clear aperture as blocked", () => {
+    // At close focus the Touit 50 macro's outer zone creeps along the edge of what the tracer can follow until the
+    // iteration cap; its last failed step is a proven rim block, so the sample is vignetted there, not unaimed.
+    const L = build(CATALOG_CONSTRUCTION_FIXTURES["zeiss-touit-50mm-f28-macro"]);
+    const request = analysisRequestAt(L, { focusT: 1, ...apertureAt(L, 0, 0) });
+    const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, 0)!;
+    const launch = prepareAimedPupilLaunch(request, SAGITTAL, geometry)!;
+    const capped = launch.rays.filter((ray) => ray.iterations >= AIMED_PUPIL_MAX_ITERATIONS);
+    expect(capped.some((ray) => ray.status === "blocked")).toBe(true);
+    for (const ray of capped) expect(ray.reason).not.toBe("aim-not-converged");
   });
 
   it("aims a finite object from the object point", () => {

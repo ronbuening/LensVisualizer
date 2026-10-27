@@ -931,11 +931,12 @@ function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve 
  *
  * An unconverged solve is classified by how it ended. It is `blocked` only when it ends on a block: its last step
  * toward the target could not reach the stop because it left a clear aperture, and either the launch it left from is
- * itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop is convex enough) or
- * no shorter step reaches the stop either. A step that cannot be traced for any other reason, or a folded (singular)
- * map, ends it as `stop-unreachable`, as does reaching the iteration cap while its steps cannot be traced and no rim
- * is proven to stop them. The iteration cap otherwise, or a step that stops reducing the residual, ends it as
- * `aim-not-converged`: a stall is never reported as a block.
+ * itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop is convex enough), no
+ * shorter step reaches the stop either, or the iteration cap arrives with that block the last failed step since the
+ * solve last moved. A step that cannot be traced for any other reason, or a folded (singular) map, ends it as
+ * `stop-unreachable`, as does reaching the iteration cap while its steps cannot be traced and no rim is proven to stop
+ * them. The iteration cap otherwise, or a step that stops reducing the residual, ends it as `aim-not-converged`: a
+ * stall is never reported as a block.
  */
 function newtonAim(model: FieldModel, target: Vec2, start: SolveStart, pinA: boolean, polish: boolean): SampleSolve {
   const { stopAt, toleranceMm, polishToleranceMm } = model;
@@ -960,9 +961,10 @@ function newtonAim(model: FieldModel, target: Vec2, start: SolveStart, pinA: boo
 
   // Converge to the tolerance.
   while (current > toleranceMm) {
-    // Pressed against the edge of the traceable region by steps no rim is proven to stop, the target is out of reach.
+    // At the cap, creeping along the edge of the traceable region: blocked when the last failed step left a clear
+    // aperture, out of reach when no rim is proven to stop the steps.
     if (iterations >= AIMED_PUPIL_MAX_ITERATIONS)
-      return endUnconverged(atEdge && !lastBlock ? "stop-unreachable" : "aim-not-converged");
+      return endUnconverged(atEdge && !lastBlock ? "stop-unreachable" : "aim-not-converged", true);
     const step = stepFor(jacobian!);
     if (!step) return endUnconverged("stop-unreachable");
     const trial: Vec2 = [launch[0] + lambda * step[0], launch[1] + lambda * step[1]];
