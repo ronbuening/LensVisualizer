@@ -277,10 +277,9 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, five lenses: no rim clips, but the next ray cannot be continued. Four are `STO (noBracket)`: beyond that
-  height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag; move an
-  inferred stop behind the cap, or cut the rim where no stop plane fits (`rimCutDepthMm`, `LENS_DATA_SPEC.md` Rim
-  cuts). The Fujinon XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
+- `trace`, six lenses: no rim clips, but the next ray cannot be continued. Five are `STO (noBracket)`: beyond that
+  height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag. The Fujinon
+  XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
 - `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
   AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
 
@@ -294,7 +293,7 @@ squaring them means moving faces that do not clip:
   Tamron SP 70-200mm A009 (L15 and the L8+L9 doublet).
 
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
-first by a rim or, on the Nikon AI-S 35-70mm, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
+first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
 every station. The patent audit of the fixed-iris zooms confirmed the rim limit against the printed f-number on
 fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md)):
 
@@ -314,6 +313,7 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.76 (+30.6%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
 | NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.48 (+12.7%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
 | NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5 | `nikon/NikonAIZoomNikkor3570mmf35.data.ts` | 68.79 mm: f/3.5 traces f/3.62 (+3.4 %), trace failure at STO (noBracket) | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket): the search runs forward only, and r8's cap lies behind the last hit. Revisit once the trace steps back as OpticStudio does; no rim cut. | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
 | OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
 | PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |

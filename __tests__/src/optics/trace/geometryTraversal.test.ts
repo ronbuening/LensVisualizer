@@ -1,6 +1,6 @@
 import { constructionFixtureData } from "../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import { build, buildRimCutLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { build, buildFrontRimCutLens, buildRimCutLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { engineTraceToRuntimeRayResult } from "../../../../src/optics/trace/runtimeRayResult.js";
 import { traceRayClassification } from "../../../../src/optics/trace/rayClassification.js";
@@ -298,6 +298,45 @@ describe("rim cut", () => {
     expect(cut.status).toBe("clipped");
     expect(cut.hits[2]).toMatchObject({ surfaceLabel: "2", clipped: true, clipReason: "semi-diameter" });
     expect(traceAt(2, 9.5).trace.status).toBe("ok");
+  });
+
+  const traceFront = (L: ReturnType<typeof buildFrontRimCutLens>, y: number) =>
+    traceEngineRay(
+      prepareRuntimeState(L, 0, 0),
+      { origin: [0, y, -5], direction: [0, 0, 1] },
+      { checkSemiDiameter: true, stopOnClip: true, stopSemiDiameter: 20 },
+    );
+
+  it("clips a front-face cut at its radius when the land clears the stop plane", () => {
+    /* A 2 mm cut on the R = −20 front ends the cap at sqrt(76) mm; the stop sits 3 mm ahead of the vertex. */
+    const L = buildFrontRimCutLens(2, 3);
+    expect(traceFront(L, 8.5).status).toBe("ok");
+    const cut = traceFront(L, 10);
+    expect(cut.status).toBe("clipped");
+    expect(cut.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
+  });
+
+  it("fails a ray past the cut radius when the land sits on the stop plane", () => {
+    /* The search for the next surface runs forward from the stop hit, and the uncut cap beyond the cut radius lies
+     * behind it, so the ray fails before the cut is evaluated. Pinned until the trace can step back. */
+    const L = buildFrontRimCutLens(2, 2);
+    expect(traceFront(L, 8.5).status).toBe("ok");
+    const past = traceFront(L, 10);
+    expect({ status: past.status, failureReason: past.failureReason }).toEqual({
+      status: "failed",
+      failureReason: "noBracket",
+    });
+  });
+
+  it("clips an aspheric cut where the aspheric cap reaches the land", () => {
+    /* A4 flattens the cap, so it reaches the 2 mm land further out than the base sphere's sqrt(76) mm. */
+    const L = buildFrontRimCutLens(2, 3, 2e-5);
+    const surface = prepareRuntimeState(L, 0, 0).surfaces[1];
+    const radius = surface.rimCut!.radius;
+    expect(Math.abs(surface.profile.sag(radius))).toBeCloseTo(2, 9);
+    expect(radius).toBeGreaterThan(Math.sqrt(76) + 0.1);
+    expect(traceFront(L, radius - 0.2).status).toBe("ok");
+    expect(traceFront(L, radius + 0.2).status).toBe("clipped");
   });
 
   it("limits the field at the cut radius, as a semi-diameter there would", () => {

@@ -27,7 +27,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
     type: "fix",
-    summary: "Fixed rays stopping short at the iris of the Nikon AI 25-50mm f/4 at 50mm by cutting its deep rim flat",
+    summary:
+      "The Voigtländer Nokton 50mm f/1's deep surface-8 rim now ends on a flat land at its stop instead of reaching through the iris",
   },
   {
     date: "2026-10-27",

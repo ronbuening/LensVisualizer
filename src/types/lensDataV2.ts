@@ -59,6 +59,11 @@ export interface SurfaceV2Input {
    * surface. The cap ends where its sag reaches the land, which is the surface's clear radius for tracing.
    */
   rimCutDepthMm?: number;
+  /**
+   * Where the source states the cut's depth, or the plane that sets it. A cut without one is inferred and may not stop
+   * any traced ray of the wide-open beam.
+   */
+  rimCutDepthSource?: string;
   /** The medium after this surface: an element id, a `media` id, or left out for air. */
   medium?: number | string;
   /** Sparse aspheric terms; a term left out is zero. */

@@ -77,6 +77,7 @@ const ORDERS: Record<string, string[]> = {
     "sd",
     "innerSd",
     "rimCutDepthMm",
+    "rimCutDepthSource",
     "medium",
     "asphere",
     "diffractive",

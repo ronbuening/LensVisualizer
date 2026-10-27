@@ -510,7 +510,8 @@ header and the companion analysis.
   d: 3.46, // axial step to the next surface in mm; left out on a variable gap
   sd: 14.5, // clear semi-diameter in mm; left out on a stop whose radius is not authored
   innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
-  rimCutDepthMm: 0.45, // optional: flat cut of a deep rim, this far from the vertex (Rim cuts)
+  rimCutDepthMm: 3.24, // optional: flat cut of a deep rim, this far from the vertex (Rim cuts)
+  rimCutDepthSource: "…", // optional: where the source states that depth (Rim cuts)
   medium: 2, // the medium AFTER this surface: an element id, a media id, or left out for air
   asphere: { K: -0.62, A4: 1.2e-5 }, // optional: sparse aspheric terms
   interaction: { type: "reflect" }, // optional: folded-path behavior
@@ -532,6 +533,7 @@ header and the companion analysis.
 | `medium: "<media id>"` | That undrawn medium after the surface. |
 | `innerSd` | Inner inactive radius for annular surfaces; non-negative and smaller than `sd`. |
 | `rimCutDepthMm` | Depth from the vertex of a flat, opaque land that cuts a rim bending into air ([Rim cuts](#rim-cuts-rimcutdepthmm)). |
+| `rimCutDepthSource` | Where the source states the cut's depth; without it the cut is inferred ([Rim cuts](#rim-cuts-rimcutdepthmm)). |
 
 A surface on a variable gap leaves `d` out: the gap's first thickness supplies it, and writing both is refused even
 when they agree. Every other surface writes `d`.
@@ -678,27 +680,33 @@ at the given depth from the vertex. The cap ends where its sag reaches the cut (
 there out to `sd`.
 
 ```ts
-{ label: "8", R: 106.702, sd: 18.2, rimCutDepthMm: 0.45 }, // Nikon AI Zoom-Nikkor 25-50mm f/4: cut radius 9.79 mm
+{ label: "8", R: -40.995, sd: 17, rimCutDepthMm: 3.24 }, // Voigtländer Nokton 50mm f/1: on the printed stop plane, cut radius 15.97 mm
 ```
 
 - **Tracing:** the land is opaque. A ray that meets the surface beyond the cut radius is clipped, as at a rim, and is
   drawn ending on the land; inside the cut radius nothing changes. `sd` stays the drawn rim, and the diagram draws
-  the land out to it.
-- **When:** a plane the model must keep behind the cap, usually the stop, sits inside the cap's outer zone: a printed
-  stop, or a zoom gap too tight for any stop plane behind the whole cap. Move an inferred stop first if a position
-  clears the cap. Set the depth to the plane's closest distance from the vertex over every zoom station and focus
-  state, rounded down to 0.01 mm, so the land stays ahead of the plane everywhere. A surface that moves against the
-  plane with focus may not fit one depth: a cut that clears the closest state can clip the beam at the others.
+  the land out to it. The search for the next surface runs forward from the last hit only, so a ray that crosses a
+  stop plane the land sits on, above the cut radius, still fails (`noBracket`): the uncut cap there lies behind it.
+- **When:** the drawing must keep a cap clear of a plane beside it, usually the stop: the cap's rim would reach past
+  the printed stop plane. Set the depth to the plane's closest distance from the vertex over every zoom station and
+  focus state, rounded down to 0.01 mm. A cut does not cure a trace that fails because the next surface lies behind
+  the last hit; that waits for a trace that steps back (the Nikon AI 25-50mm f/4 row of `agent_docs/sd-audit-queue.md`).
 - **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
   short stroke square to the axis. Measure the cap end as a share of the edge radius on the figure, put the cut radius
-  at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. Keep the cut radius above the stated
-  on-axis ray; skip a land too short to measure.
-- **Effect:** a cut inside the stated beam slows the lens; `npm run audit:aperture` names it `<label> (rim cut)`.
-  Check the wide stations' field too, and record the depth's reason in the file header and the audit log.
+  at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. The cut is inferred, so it must clear
+  every traced beam (below): where the beams reach past the figure's cap end, move the cut out to them, and skip a
+  land too short to measure.
+- **Inferred or sourced:** a depth the source does not state is inferred, and such a cut may not stop any traced ray
+  of the wide-open beam, at any field from the axis to the half field, zoom station or focus keyframe
+  (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
+  `npm run audit:surface`). A depth the source states names it in `rimCutDepthSource`; that cut may cut into the
+  beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
 - **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it
-  out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular surface
-  or one with an `interaction`. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
-  cut radius.
+  out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular
+  surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond the cut
+  would pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
+  cut radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop
+  plane, and the land clears the surface across its gap within `checks.gapSagFrac`.
 
 ## Stop and Aperture
 
@@ -732,8 +740,9 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
 - **The source does not (common in older patents):** estimate from the patent figure. Split the air gap at the
   inferred iris location: the preceding surface's `d` is the distance to the stop, and the stop's `d` the rest of the
   gap. Document the estimate in a comment ("STO position inferred from Fig. 1 iris placement").
-- **A neighbouring cap reaches past the stop plane** inside the iris: move an inferred stop behind it, or cut the
-  rim ([Rim cuts](#rim-cuts-rimcutdepthmm)).
+- **A neighbouring cap reaches past the stop plane** inside the iris: the forward-only trace fails there
+  (`noBracket`). A rim cut keeps the drawn cap off the plane ([Rim cuts](#rim-cuts-rimcutdepthmm)) but does not cure
+  the trace; queue the lens until the trace can step back.
 - **The source puts the stop inside a glass element:** set `stopPlacement: "inside-element"` on `STO`, keep the stop
   flat, give it the containing element as its `medium` (the glass continues past the stop), give it its authored
   `sd` unless a published schedule decides the radius (row 2 above), and give the containing element
@@ -1506,7 +1515,7 @@ Code: `src/optics/prescription/validate/`.
 | `projection` kind, fields and field-angle bounds | `validateProjection` (`schema.ts`) |
 | `perspectiveControl` ranges, steps and pivot; `catalog.imageFormat` present; not with `opticalPath` | `validatePerspectiveControl` (`schema.ts`), `validateTopLevel` |
 | `rearPlates` field bounds; not with folded paths or `perspectiveControl` | `validateRearPlates` (`schema.ts`) |
-| Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular surface or one with an `interaction`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
+| Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
 | Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
@@ -1522,7 +1531,8 @@ Code: `src/optics/prescription/validate/`.
 | `opticalPath` mode, `surfaceOrder` labels, `imagePlane` fields and `maxInteractions` | `validateOpticalPath`, `validateImagePlane` (`folded.ts`) |
 | A tilted flat mirror's backing plane repeats its normal; a declared image plane is reached by a probe ray, on a path that is not `"auto"` and names no surface twice | `validateTiltedMirrorBackingNormals`, `validateFoldedImagePlaneReachability` (`folded.ts`) |
 | Diffractive kind, wavelength, order and terms | `validateDiffractivePhase` (`diffractive.ts`) |
-| A rim cut is reached inside `sd`, bounds the glass out to `sd`, and cuts glass whose rim bends into air; edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station; edge, slope and cross-gap sag read a rim cut's land | `validateGeometry`, `validateRimCuts` (`geometry.ts`) |
+| A rim cut is reached inside `sd`, bounds the glass out to `sd`, and cuts glass whose rim bends into air; edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station; edge, slope and cross-gap sag read a rim cut's land; a land stays behind an adjacent stop plane and clears the gap across it at every zoom × focus state | `validateGeometry`, `validateRimCuts`, `validateRimCutClearances` (`geometry.ts`) |
+| An inferred rim cut stops no traced ray of the wide-open beam at any field, zoom station or focus keyframe (on a built lens, outside `validateLensData`) | `validateRimCutBeams` (`rimCutBeams.ts`) |
 
 A patent declaration (a number or named parties) requires a non-empty, trimmed publication number and both party
 arrays. Empty arrays retain their source meaning above. A year alone or empty party lists without a patent number
