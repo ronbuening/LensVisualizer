@@ -13,7 +13,7 @@ import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import { computeLocaBarOffsets } from "../../optics/analysis.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
-import { formatLocaZone, formatOmittedChannels } from "../display/analysis/chromaticChartUtils.js";
+import { formatChromaticZone, formatOmittedChannels } from "../display/analysis/chromaticChartUtils.js";
 
 function referenceIntercept(axialIntercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
   if (axialIntercepts.G !== undefined) return axialIntercepts.G;
@@ -119,7 +119,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
       }
       style={onClick ? { cursor: "pointer" } : undefined}
     >
-      <title>{`LoCA at ${formatLocaZone(chromaticRayFanSpread)}`}</title>
+      <title>{`LoCA at ${formatChromaticZone(chromaticRayFanSpread)}`}</title>
       <rect
         x={insetX}
         y={insetY}

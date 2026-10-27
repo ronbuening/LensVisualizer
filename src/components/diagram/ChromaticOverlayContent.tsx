@@ -16,7 +16,7 @@ import type {
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import { chromaticChannelDescription, chromaticChannelWavelengthLabel } from "../../optics/chromatic.js";
-import { formatLocaZone, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
+import { formatChromaticZone, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 
@@ -124,7 +124,7 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
             </svg>
             <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
               This follows the displayed off-axis marginal fan and reports wavelength endpoint spread at the image
-              plane.
+              plane, at the outermost fan fraction (of the entrance-pupil radius, EP) every selected channel passes.
             </div>
           </div>
         )}
@@ -145,11 +145,14 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
           {chromaticRayFanSpreads?.onAxis && (
             <span>
               LoCA / AXIAL COLOR {formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)} ·{" "}
-              {formatLocaZone(chromaticRayFanSpreads.onAxis)}
+              {formatChromaticZone(chromaticRayFanSpreads.onAxis)}
             </span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
-            <span>OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+            <span>
+              OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)} ·{" "}
+              {formatChromaticZone(chromaticRayFanSpreads.offAxis, "EP")}
+            </span>
           )}
         </div>
       )}
@@ -167,10 +170,11 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
         R) every selected channel passes. If none passes them all, the first zone two pass is compared and the channels
         left out are named. OpticStudio&apos;s single axial-color figure, its Chromatic Focal Shift plot, is paraxial;
         its real-ray counterpart is the longitudinal aberration curve across zones. <strong>Off-axis fan</strong> shows
-        where the displayed off-axis marginal fan lands at the image plane. Both charts use the same selected spectral
-        channels: {channelName("R")}, {channelName("G")}, {channelName("B")}, and, when enabled, {channelName("V")}.
-        These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA remains a separate
-        chief-ray image-height metric in the chromatic analysis drawer.
+        where the displayed off-axis marginal fan lands at the image plane, by the same rule: the outermost fan fraction
+        every selected channel passes, else the first two pass, with the channels left out named. Both charts use the
+        same selected spectral channels: {channelName("R")}, {channelName("G")}, {channelName("B")}, and, when enabled,{" "}
+        {channelName("V")}. These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA
+        remains a separate chief-ray image-height metric in the chromatic analysis drawer.
       </p>
     </div>
   );

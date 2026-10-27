@@ -65,13 +65,18 @@ export function formatOmittedChannels(omitted: readonly ChromaticChannelOmission
 }
 
 /**
- * State a LoCA zone and the channels it compares, R being the stop radius: "0.97 R, R–G–B", or "0.90 R, R–G;
- * B vignetted" when a selected channel is left out.
+ * State a chromatic spread's zone and the channels it compares: "0.97 R, R–G–B", or "0.90 R, R–G; B vignetted" when
+ * a selected channel is left out.
+ *
+ * @param spread - the spread's signed fraction, compared channels and omissions
+ * @param radius - what the fraction is of: "R", the stop radius, for aimed zones; "EP", the paraxial entrance-pupil
+ *   radius, for the diagram's display fans
  */
-export function formatLocaZone(
+export function formatChromaticZone(
   spread: Pick<ChromaticRayFanSpread, "fraction" | "channels" | "omittedChannels">,
+  radius: "R" | "EP" = "R",
 ): string {
-  const zone = spread.fraction === undefined ? "" : `${spread.fraction.toFixed(2)} R, `;
+  const zone = spread.fraction === undefined ? "" : `${spread.fraction.toFixed(2)} ${radius}, `;
   const compared = `${zone}${(spread.channels ?? []).join("–")}`;
   const omitted = formatOmittedChannels(spread.omittedChannels);
   return omitted ? `${compared}; ${omitted}` : compared;

@@ -12,15 +12,15 @@ import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import { formatLocaZone, formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
+import { formatChromaticZone, formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
 
-/** The LoCA zone, stated in the legend only when a selected channel is left out of the comparison. */
-function locaZoneNote(spread: ChromaticRayFanSpread): string {
-  return spread.omittedChannels?.length ? ` (${formatLocaZone(spread)})` : "";
+/** A spread's zone, stated in the legend only when a selected channel is left out of the comparison. */
+function zoneNote(spread: ChromaticRayFanSpread, radius: "R" | "EP"): string {
+  return spread.omittedChannels?.length ? ` (${formatChromaticZone(spread, radius)})` : "";
 }
 
 interface DiagramLegendProps {
@@ -234,12 +234,12 @@ export default function DiagramLegend({
               const summaryParts: string[] = [];
               if (!missingDispersion && showOnAxis && axisSpreads.onAxis) {
                 summaryParts.push(
-                  `LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}${locaZoneNote(axisSpreads.onAxis)}`,
+                  `LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}${zoneNote(axisSpreads.onAxis, "R")}`,
                 );
               }
               if (!missingDispersion && showOffAxis !== "off" && axisSpreads.offAxis) {
                 summaryParts.push(
-                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
+                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}${zoneNote(axisSpreads.offAxis, "EP")}`,
                 );
               }
               const spreadSummary = missingDispersion
@@ -300,7 +300,7 @@ export default function DiagramLegend({
                         : "need 2 channels"}
                   </span>
                   {axisSpreads.onAxis?.omittedChannels?.length ? (
-                    <span style={{ fontSize: 10, color: t.muted }}>{formatLocaZone(axisSpreads.onAxis)}</span>
+                    <span style={{ fontSize: 10, color: t.muted }}>{formatChromaticZone(axisSpreads.onAxis)}</span>
                   ) : null}
                 </>
               )}
@@ -323,6 +323,11 @@ export default function DiagramLegend({
                         ? "unavailable"
                         : "need 2 channels"}
                   </span>
+                  {axisSpreads.offAxis?.omittedChannels?.length ? (
+                    <span style={{ fontSize: 10, color: t.muted }}>
+                      {formatChromaticZone(axisSpreads.offAxis, "EP")}
+                    </span>
+                  ) : null}
                 </>
               )}
             </div>

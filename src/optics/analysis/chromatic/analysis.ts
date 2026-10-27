@@ -82,6 +82,8 @@ export interface LateralColorFieldSample {
   lateralSpreadUm: number | null;
   samples: LateralColorChannelSample[];
   validChannelCount: number;
+  /** Requested channels with no chief-ray image height at this field, each with why. */
+  omittedChannels: ChromaticChannelOmission[];
   usable: boolean;
 }
 
@@ -93,6 +95,8 @@ export interface LateralColorCurveResult {
   usableFieldCount: number;
   maxLateralSpreadMm: number;
   maxLateralSpreadUm: number;
+  /** Field fraction whose spread is the maximum; its `omittedChannels` say whether it compares every channel. */
+  maxLateralFieldFraction: number;
   imagePlaneZ: number;
   halfFieldDeg: number;
 }
@@ -285,6 +289,7 @@ function emptyLateralField(
       clipped: true,
     })),
     validChannelCount: 0,
+    omittedChannels: channels.map((channel) => ({ channel, reason: "unaimed" })),
     usable: false,
   };
 }
@@ -303,9 +308,12 @@ function computeLateralColorField(
   const fieldGeometry = geometries.find((geometry) => geometry !== null);
   if (!fieldGeometry) return emptyLateralField(fieldFraction, referenceChannel, channels);
 
+  const omittedChannels: ChromaticChannelOmission[] = [];
   const rawSamples = channels.map((channel, index) => {
     const geometry = geometries[index];
     const chiefRay = geometry ? traceOffAxisChiefRay(request, geometry, channel) : null;
+    // No chief solve at this channel's indices is unaimed; a solved chief that does not reach the image is clipped.
+    if (chiefRay === null) omittedChannels.push({ channel, reason: geometry ? "vignetted" : "unaimed" });
     return {
       channel,
       imageHeightMm: chiefRay?.imagePoint.y ?? null,
@@ -338,6 +346,7 @@ function computeLateralColorField(
       clipped: sample.clipped,
     })),
     validChannelCount: validHeights.length,
+    omittedChannels,
     usable: lateralSpreadMm !== null,
   };
 }
@@ -382,7 +391,10 @@ export function computeLateralColorCurve(
   const usableFields = fields.filter((field) => field.usable && field.lateralSpreadMm !== null);
   if (usableFields.length === 0) return null;
 
-  const maxLateralSpreadMm = Math.max(...usableFields.map((field) => field.lateralSpreadMm ?? 0));
+  const maxField = usableFields.reduce((best, field) =>
+    (field.lateralSpreadMm ?? 0) > (best.lateralSpreadMm ?? 0) ? field : best,
+  );
+  const maxLateralSpreadMm = maxField.lateralSpreadMm ?? 0;
 
   return {
     channels,
@@ -392,6 +404,7 @@ export function computeLateralColorCurve(
     usableFieldCount: usableFields.length,
     maxLateralSpreadMm,
     maxLateralSpreadUm: maxLateralSpreadMm * 1000,
+    maxLateralFieldFraction: maxField.fieldFraction,
     imagePlaneZ,
     halfFieldDeg: stateGeometry.halfFieldDeg,
   };

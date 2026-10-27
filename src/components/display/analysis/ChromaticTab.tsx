@@ -16,10 +16,10 @@ import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
 import LongitudinalChromaticFocusChart from "./LongitudinalChromaticFocusChart.js";
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
-import { formatLocaZone, formatOmittedChannels, formatUmMagnitude } from "./chromaticChartUtils.js";
+import { formatChromaticZone, formatOmittedChannels, formatUmMagnitude } from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
-import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { AnalysisComputationContext, LateralColorFieldSample } from "../../../optics/analysis.js";
 import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
@@ -69,6 +69,11 @@ const metricsStyle = {
   fontSize: 9.5,
 };
 
+/** A lateral-colour field's left-out channels, as "; R vignetted" ("; 100%: R vignetted" with its label), or "". */
+function lateralOmissionNote(field: LateralColorFieldSample | undefined, withLabel = false): string {
+  if (!field?.omittedChannels.length) return "";
+  return `; ${withLabel ? `${field.label}: ` : ""}${formatOmittedChannels(field.omittedChannels)}`;
+}
 export default function ChromaticTab(props: ChromaticTabProps) {
   const { analysisContext, t } = props;
   const perspectiveRequest = analysisContext?.request;
@@ -109,7 +114,9 @@ export default function ChromaticTab(props: ChromaticTabProps) {
                 value={formatFiniteUm(intrinsicLongitudinal?.longitudinalSpreadUm)}
                 suffix={finiteUmSuffix(intrinsicLongitudinal?.longitudinalSpreadUm)}
                 note={
-                  intrinsicLongitudinal ? `${formatLocaZone(intrinsicLongitudinal.spread)}, lens-local` : "lens-local"
+                  intrinsicLongitudinal
+                    ? `${formatChromaticZone(intrinsicLongitudinal.spread)}, lens-local`
+                    : "lens-local"
                 }
                 t={t}
               />
@@ -180,6 +187,7 @@ function CenteredChromaticTab({
   const lateral = analysis.lateralColor;
   const offAxisRaySpread = rayTraceAnalysis.spreads.offAxis;
   const edgeLateral = lateral?.fields.filter((field) => field.usable && field.lateralSpreadUm !== null).at(-1);
+  const maxLateralField = lateral?.fields.find((field) => field.fieldFraction === lateral.maxLateralFieldFraction);
 
   if (!longitudinal && !lateral && !fieldFocus.summary && !offAxisRaySpread) {
     return <AnalysisEmptyState t={t}>Unable to compute chromatic diagnostics for this lens state.</AnalysisEmptyState>;
@@ -204,14 +212,18 @@ function CenteredChromaticTab({
               label="LoCA"
               value={formatFiniteUm(longitudinal?.longitudinalSpreadUm)}
               suffix={finiteUmSuffix(longitudinal?.longitudinalSpreadUm)}
-              note={longitudinal ? formatLocaZone(longitudinal.spread) : undefined}
+              note={longitudinal ? formatChromaticZone(longitudinal.spread) : undefined}
               t={t}
             />
             <AnalysisMetricRow
               label="Lateral color / TCA"
               value={formatFiniteUm(lateral?.maxLateralSpreadUm)}
               suffix={finiteUmSuffix(lateral?.maxLateralSpreadUm)}
-              note={lateral ? `${lateral.usableFieldCount}/${lateral.fields.length} fields` : undefined}
+              note={
+                lateral
+                  ? `${lateral.usableFieldCount}/${lateral.fields.length} fields${lateralOmissionNote(maxLateralField, true)}`
+                  : undefined
+              }
               t={t}
             />
             <AnalysisMetricRow
@@ -229,7 +241,11 @@ function CenteredChromaticTab({
               label="Axial image-plane fan spread"
               value={formatFiniteUm(longitudinal?.transverseSpreadUm)}
               suffix={finiteUmSuffix(longitudinal?.transverseSpreadUm)}
-              note="sensor-plane ray heights"
+              note={
+                longitudinal?.omittedChannels.length
+                  ? `sensor-plane ray heights; ${formatOmittedChannels(longitudinal.omittedChannels)}`
+                  : "sensor-plane ray heights"
+              }
               t={t}
             />
             <AnalysisMetricRow
@@ -240,7 +256,11 @@ function CenteredChromaticTab({
               suffix={finiteUmSuffix(
                 offAxisRaySpread === null ? null : offAxisRaySpread.imagePlaneHeightSpreadMm * 1000,
               )}
-              note={offAxisRaySpread ? `${rayTraceAnalysis.offAxisFieldAngleDeg.toFixed(1)}° field` : undefined}
+              note={
+                offAxisRaySpread
+                  ? `${rayTraceAnalysis.offAxisFieldAngleDeg.toFixed(1)}° field, ${formatChromaticZone(offAxisRaySpread)}`
+                  : undefined
+              }
               t={t}
             />
           </div>
@@ -296,7 +316,8 @@ function CenteredChromaticTab({
           <span style={sectionTitleStyle(t)}>Lateral Color (TCA)</span>
           <span style={sectionCopyStyle(t)}>
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
-            field, separate from axial focus shift.
+            field, separate from axial focus shift. Where a rim clips one channel&apos;s chief ray, that field compares
+            the channels that reach the image and the readouts name the one left out.
           </span>
           <LateralColorChart result={lateral} t={t} channelReference={channelReference} />
           {lateral ? (
@@ -305,6 +326,9 @@ function CenteredChromaticTab({
                 label="Max lateral color"
                 value={formatFiniteUm(lateral.maxLateralSpreadUm)}
                 suffix={finiteUmSuffix(lateral.maxLateralSpreadUm)}
+                note={
+                  maxLateralField ? `at ${maxLateralField.label}${lateralOmissionNote(maxLateralField)}` : undefined
+                }
                 t={t}
               />
               <AnalysisMetricRow
@@ -315,6 +339,7 @@ function CenteredChromaticTab({
                     : formatFiniteUm(edgeLateral.lateralSpreadUm)
                 }
                 suffix={finiteUmSuffix(edgeLateral?.lateralSpreadUm)}
+                note={edgeLateral ? `at ${edgeLateral.label}${lateralOmissionNote(edgeLateral)}` : undefined}
                 t={t}
               />
               <AnalysisMetricRow label="Fields" value={`${lateral.usableFieldCount}/${lateral.fields.length}`} t={t} />
