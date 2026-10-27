@@ -49,6 +49,18 @@ const AIMED_PUPIL_SINGULAR_DETERMINANT = 1e-12;
  * the solve is creeping along the edge of the reachable stop region rather than converging.
  */
 const AIMED_PUPIL_EDGE_PROGRESS = 0.01;
+/**
+ * Reference targets the field's stop-to-launch fit is aimed at, in normalised stop coordinates: rings of eight at half
+ * and full radius. Fixed per field, so the fit, and every seed taken from it, depend on nothing a caller asks for.
+ */
+const AIMED_PUPIL_FIT_TARGETS: readonly Vec2[] = [0.5, 1].flatMap((radius) =>
+  Array.from(
+    { length: 8 },
+    (_, k): Vec2 => [radius * Math.cos((k * Math.PI) / 4), radius * Math.sin((k * Math.PI) / 4)],
+  ),
+);
+/** Fewest aimed references the cubic fit accepts; vignetting can remove the rest. */
+const AIMED_PUPIL_FIT_MIN_POINTS = 12;
 
 /** Why a sample has no launch. Unaimed samples are never traced. */
 export type AimedPupilUnaimedReason = "aim-not-converged" | "stop-unreachable" | "trace-failed";
@@ -209,6 +221,23 @@ interface FieldModel {
   chief: Vec2;
   chiefStop: Vec2 | null;
   jacobian: Matrix2 | null;
+  /** Cubic stop-to-launch map fitted on the aimed reference targets, or null. */
+  fit: StopToLaunchFit | null;
+}
+
+/** Launch offset from the chief as a cubic without constant in the normalised target (u, v) = target / R. */
+interface StopToLaunchFit {
+  stopSemiDiameterMm: number;
+  a: readonly number[];
+  b: readonly number[];
+}
+
+/** Where a solve starts: a traced launch, its stop crossing, the Jacobian to correct with, traces already spent. */
+interface SolveStart {
+  launch: Vec2;
+  stop: Vec2;
+  jacobian: Matrix2 | null;
+  iterations: number;
 }
 
 interface SampleSolve {
@@ -229,7 +258,8 @@ interface SampleSolve {
  * stop traces. Aim rays are traced to the stop without aperture checks; the caller then traces every returned ray
  * through everything with apertures checked (`prepareAimedPupilTrace`), so a sample the stop admits but another
  * aperture blocks is vignetted, not unaimed. The solve depends only on the request, field, channel and the sample
- * itself: no state carries between samples or calls, and nothing is cached.
+ * itself: no state carries between samples, and the per-field model reused across calls is the one a fresh build
+ * returns, so a cache hit never changes a bit.
  *
  * @param request - prepared geometry and the current stop radius R
  * @param samples - pupil samples in normalised stop coordinates
@@ -274,13 +304,16 @@ export function prepareAimedPupilLaunchForState(
   const R = aperture.stopSemiDiameterMm;
   if (!(R > 0) || !Number.isFinite(R) || state.surfaces.length < 1) return null;
 
-  const frame = launchFrame(state, geometry);
   const toleranceMm = AIMED_PUPIL_RESIDUAL_TOLERANCE * R;
-  const stopAt = stopCrossingTracer(state, frame, channel);
-  const blockedAt = apertureBlockTracer(state, frame, R + toleranceMm, channel);
   const launchScale =
     aperture.launchScaleMm > 0 && Number.isFinite(aperture.launchScaleMm) ? aperture.launchScaleMm : R;
-  const model = fieldModel(frame, stopAt, blockedAt, toleranceMm, launchScale);
+  const model = cachedFieldModel(state, geometry, R, launchScale, channel, () => {
+    const frame = launchFrame(state, geometry);
+    const stopAt = stopCrossingTracer(state, frame, channel);
+    const blockedAt = apertureBlockTracer(state, frame, R + toleranceMm, channel);
+    return fieldModel(frame, stopAt, blockedAt, toleranceMm, launchScale, R);
+  });
+  const { frame } = model;
 
   const unaimedByReason: Record<AimedPupilUnaimedReason, number> = {
     "aim-not-converged": 0,
@@ -535,8 +568,10 @@ function stopCrossingTracer(
 /**
  * Trace a launch toward the stop with every clear aperture checked, and name the surface that physically stops it.
  *
- * The MTF's classifier decides: an aperture clip, total internal reflection, or a failed intersection proven to miss
- * the next surface's clear cap is blocking; any other failure is not, so an unresolved ray never poses as vignetting.
+ * The MTF's classifier decides: an aperture clip, or a failed intersection proven to miss the next surface's clear
+ * cap, is a rim's blocking. Total internal reflection is not an aperture, so a target only totally reflected rays
+ * could reach stays unreachable, as lens-design programs report a failed aim; an unresolved ray never poses as
+ * vignetting either.
  *
  * @returns the blocking surface before the stop, or null
  */
@@ -561,7 +596,8 @@ function apertureBlockTracer(
   });
   return (launch) => {
     const result = trace(frame.ray(launch[0], launch[1]));
-    if (result.status === "ok" || mtfTraceClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    if (result.status === "ok" || result.failureReason === "totalInternalReflection") return null;
+    if (mtfTraceClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
     const missed = result.failureReason === "noBracket" || result.failureReason === "noConvergedIntersection";
     const surfaceIndex = missed ? result.terminalSurfaceIndex + 1 : result.terminalSurfaceIndex;
     return surfaceIndex < stopIndex ? surfaceIndex : null;
@@ -580,6 +616,7 @@ function fieldModel(
   blockedAt: (launch: Vec2) => number | null,
   toleranceMm: number,
   launchScale: number,
+  stopSemiDiameterMm: number,
 ): FieldModel {
   const model: FieldModel = {
     frame,
@@ -589,19 +626,158 @@ function fieldModel(
     chief: frame.chief,
     chiefStop: stopAt(frame.chief),
     jacobian: null,
+    fit: null,
   };
   if (!model.chiefStop) return model;
   model.jacobian = jacobianAt(stopAt, frame.chief, launchScale);
   if (!model.jacobian) return model;
   const chiefAcceptMm = Math.max(toleranceMm, CHIEF_RAY_RESIDUAL_TOLERANCE_MM);
-  if (Math.hypot(model.chiefStop[0], model.chiefStop[1]) <= chiefAcceptMm) return model;
-  // The supplied chief does not pass the stop centre (a finite object's straight-line seed, or a fallback solve).
-  const solved = newtonAim(model, [0, 0]);
-  if (solved.status !== "aimed" || !solved.stop) return model;
-  model.chief = solved.launch;
-  model.chiefStop = solved.stop;
-  model.jacobian = jacobianAt(stopAt, solved.launch, launchScale) ?? model.jacobian;
+  if (Math.hypot(model.chiefStop[0], model.chiefStop[1]) > chiefAcceptMm) {
+    // The supplied chief does not pass the stop centre (a finite object's straight-line seed, or a fallback solve).
+    const solved = newtonAim(model, [0, 0], chiefStart(model));
+    if (solved.status !== "aimed" || !solved.stop) return model;
+    model.chief = solved.launch;
+    model.chiefStop = solved.stop;
+    model.jacobian = jacobianAt(stopAt, solved.launch, launchScale) ?? model.jacobian;
+  }
+  model.fit = stopToLaunchFit(model, stopSemiDiameterMm);
   return model;
+}
+
+/**
+ * Fit the field's stop-to-launch map on its aimed reference targets, each solved from the chief.
+ *
+ * Seeding from the fit and its derivative leaves a sample one or two corrections from its target, where the chief's
+ * Jacobian alone leaves it two or three: pupil aberration bends the map most toward the rim.
+ */
+function stopToLaunchFit(model: FieldModel, stopSemiDiameterMm: number): StopToLaunchFit | null {
+  const rows: number[][] = [];
+  const offsetsA: number[] = [];
+  const offsetsB: number[] = [];
+  for (const [u, v] of AIMED_PUPIL_FIT_TARGETS) {
+    const solved = newtonAim(model, [u * stopSemiDiameterMm, v * stopSemiDiameterMm], chiefStart(model));
+    if (solved.status !== "aimed") continue;
+    rows.push(fitBasis(u, v));
+    offsetsA.push(solved.launch[0] - model.chief[0]);
+    offsetsB.push(solved.launch[1] - model.chief[1]);
+  }
+  if (rows.length < AIMED_PUPIL_FIT_MIN_POINTS) return null;
+  const a = leastSquares(rows, offsetsA);
+  const b = leastSquares(rows, offsetsB);
+  return a && b ? { stopSemiDiameterMm, a, b } : null;
+}
+
+function fitBasis(u: number, v: number): number[] {
+  return [u, v, u * u, u * v, v * v, u * u * u, u * u * v, u * v * v, v * v * v];
+}
+
+function fitBasisDerivatives(u: number, v: number): { du: number[]; dv: number[] } {
+  return {
+    du: [1, 0, 2 * u, v, 0, 3 * u * u, 2 * u * v, v * v, 0],
+    dv: [0, 1, 0, u, 2 * v, 0, u * u, 2 * u * v, 3 * v * v],
+  };
+}
+
+/** Normal-equation least squares by Gaussian elimination with partial pivoting; null when rank-deficient. */
+function leastSquares(rows: readonly number[][], values: readonly number[]): number[] | null {
+  const n = rows[0].length;
+  const m = Array.from({ length: n }, (_, i) => [
+    ...Array.from({ length: n }, (_, j) => rows.reduce((sum, row) => sum + row[i] * row[j], 0)),
+    rows.reduce((sum, row, k) => sum + row[i] * values[k], 0),
+  ]);
+  for (let col = 0; col < n; col++) {
+    let pivot = col;
+    for (let row = col + 1; row < n; row++) if (Math.abs(m[row][col]) > Math.abs(m[pivot][col])) pivot = row;
+    if (!(Math.abs(m[pivot][col]) > 1e-12 * Math.abs(m[0][0]))) return null;
+    [m[col], m[pivot]] = [m[pivot], m[col]];
+    for (let row = 0; row < n; row++) {
+      if (row === col) continue;
+      const factor = m[row][col] / m[col][col];
+      for (let k = col; k <= n; k++) m[row][k] -= factor * m[col][k];
+    }
+  }
+  return m.map((row, i) => row[n] / row[i]);
+}
+
+function chiefStart(model: FieldModel): SolveStart {
+  return { launch: model.chief, stop: model.chiefStop!, jacobian: model.jacobian, iterations: 0 };
+}
+
+/** Start from the fit's launch for the target, traced, with the fit's own Jacobian; null when it cannot be traced. */
+function fittedStart(model: FieldModel, fit: StopToLaunchFit, target: Vec2): SolveStart | null {
+  const u = target[0] / fit.stopSemiDiameterMm;
+  const v = target[1] / fit.stopSemiDiameterMm;
+  const basis = fitBasis(u, v);
+  const dot = (coefficients: readonly number[], terms: readonly number[]) =>
+    terms.reduce((sum, term, k) => sum + coefficients[k] * term, 0);
+  const launch: Vec2 = [model.chief[0] + dot(fit.a, basis), model.chief[1] + dot(fit.b, basis)];
+  const stop = model.stopAt(launch);
+  if (!stop) return null;
+  // The fit's derivative is launch per stop; its inverse is the stop-per-launch Jacobian the corrections use.
+  const { du, dv } = fitBasisDerivatives(u, v);
+  const R = fit.stopSemiDiameterMm;
+  const launchPerStop: Matrix2 = [dot(fit.a, du) / R, dot(fit.a, dv) / R, dot(fit.b, du) / R, dot(fit.b, dv) / R];
+  const det = launchPerStop[0] * launchPerStop[3] - launchPerStop[1] * launchPerStop[2];
+  const jacobian: Matrix2 | null =
+    Math.abs(det) > 0 && Number.isFinite(det)
+      ? [launchPerStop[3] / det, -launchPerStop[1] / det, -launchPerStop[2] / det, launchPerStop[0] / det]
+      : model.jacobian;
+  return { launch, stop, jacobian, iterations: 1 };
+}
+
+// Field models per prepared geometry, keyed by every input they depend on. A model is a deterministic function of its
+// key, so a hit returns the bits a fresh build would: the fans, clouds and lattices of one field share its fit.
+const FIELD_MODEL_CACHE_LIMIT = 64;
+const fieldModelsByState = new WeakMap<PreparedGeometry, Map<string, FieldModel>>();
+
+function cachedFieldModel(
+  state: PreparedGeometry,
+  geometry: AimedPupilFieldGeometry,
+  stopSemiDiameterMm: number,
+  launchScale: number,
+  channel: ChromaticChannel | undefined,
+  build: () => FieldModel,
+): FieldModel {
+  const key = [fieldGeometryKey(geometry), stopSemiDiameterMm, launchScale, channel ?? ""].join("|");
+  let models = fieldModelsByState.get(state);
+  if (!models) {
+    models = new Map();
+    fieldModelsByState.set(state, models);
+  }
+  const cached = models.get(key);
+  if (cached) return cached;
+  const model = build();
+  if (models.size >= FIELD_MODEL_CACHE_LIMIT) {
+    const oldest = models.keys().next().value;
+    if (oldest !== undefined) models.delete(oldest);
+  }
+  models.set(key, model);
+  return model;
+}
+
+/** Every number a launch frame is built from; JavaScript number strings round-trip exactly. */
+function fieldGeometryKey(geometry: AimedPupilFieldGeometry): string {
+  if ("kind" in geometry && geometry.kind === "vector") {
+    const launch = geometry.vectorLaunch;
+    return [
+      "v",
+      ...launch.origin,
+      ...launch.direction,
+      ...launch.sagittalPupilAxis,
+      ...launch.radialPupilAxis,
+      launch.launchBoundT,
+    ].join(",");
+  }
+  if ("kind" in geometry && geometry.kind === "launch-frame") {
+    const { chiefRay, sagittalAxis, radialAxis, launchBoundT } = geometry;
+    return ["l", ...chiefRay.origin, ...chiefRay.direction, ...sagittalAxis, ...radialAxis, launchBoundT ?? ""].join(
+      ",",
+    );
+  }
+  if ("kind" in geometry && geometry.kind === "finite-object") {
+    return ["f", ...geometry.objectPoint, geometry.leadZ].join(",");
+  }
+  return ["o", geometry.uField, geometry.yChief].join(",");
 }
 
 /** The chief-ray solve's absolute stop-height tolerance at fields of one degree and more. */
@@ -652,7 +828,15 @@ function broydenUpdate(j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 {
 function aimSample(model: FieldModel, target: Vec2): SampleSolve {
   if (!model.chiefStop)
     return { status: "unaimed", reason: "trace-failed", launch: model.chief, stop: null, iterations: 0 };
-  return newtonAim(model, target);
+  const start = chiefStart(model);
+  if (Math.hypot(target[0] - start.stop[0], target[1] - start.stop[1]) <= model.toleranceMm)
+    return newtonAim(model, target, start);
+  // A fitted seed the tracer cannot follow falls back to the chief's, which also finds where a blocked target's
+  // reachable region ends.
+  const fitted = model.fit && fittedStart(model, model.fit, target);
+  if (fitted) return newtonAim(model, target, fitted);
+  const solve = newtonAim(model, target, start);
+  return model.fit ? { ...solve, iterations: solve.iterations + 1 } : solve;
 }
 
 /**
@@ -665,12 +849,9 @@ function aimSample(model: FieldModel, target: Vec2): SampleSolve {
  * current ray is itself vignetted and the step beyond it is blocked, the solve stops there: the transmitted part of
  * an ordinary stop is convex enough that nothing further out toward the target gets through.
  */
-function newtonAim(model: FieldModel, target: Vec2): SampleSolve {
+function newtonAim(model: FieldModel, target: Vec2, start: SolveStart): SampleSolve {
   const { stopAt, toleranceMm } = model;
-  let launch = model.chief;
-  let stop = model.chiefStop!;
-  let jacobian = model.jacobian;
-  let iterations = 0;
+  let { launch, stop, jacobian, iterations } = start;
   let lambda = 1;
   let unreachable = false;
   let blocked: SampleSolve["blocked"];

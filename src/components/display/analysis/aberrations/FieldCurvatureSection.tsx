@@ -28,7 +28,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Field Curves"
         helpLabel="Field curves help"
-        helpText="Parabasal and real-ray tangential/sagittal field curves with Petzval reference. Astigmatic split is in the section below."
+        helpText="Parabasal and real-ray tangential/sagittal field curves with Petzval reference. The real-ray curves trace fans aimed at positions on the real aperture stop, as in OpticStudio with ray aiming and in CODE V; the parabasal curves keep a 0.01 mm ray pair about the chief ray. Astigmatic split is in the section below."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
