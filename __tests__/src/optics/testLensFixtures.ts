@@ -112,23 +112,33 @@ function buildFixture(overrides: Partial<LensData>): RuntimeLens {
   return buildFixtureLens(data);
 }
 
-function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80): SurfaceData[] {
+function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80, elementSd = 15): SurfaceData[] {
   return [
     { label: "STO", R: 1e15, nd: 1.0, sd: 15, d: stopGap, elemId: 0 },
-    { label: "1", R: 50, nd: 1.5168, sd: 15, d: frontGap, elemId: 1 },
-    { label: "2", R: -50, nd: 1.0, sd: 15, d: imageGap, elemId: 0 },
+    { label: "1", R: 50, nd: 1.5168, sd: elementSd, d: frontGap, elemId: 1 },
+    { label: "2", R: -50, nd: 1.0, sd: elementSd, d: imageGap, elemId: 0 },
   ];
 }
 
-export function buildSimplePositiveElementLens(key = "test-simple-positive-element"): RuntimeLens {
-  return buildFixture({ key, surfaces: simplePositiveSurfaces() });
+/**
+ * A stop 1 mm ahead of a biconvex singlet. Its stop sits on the launch plane, so an aimed launch lands on its target.
+ * A smaller `elementSd` makes the element's rims vignette what the stop admits.
+ */
+export function buildSimplePositiveElementLens(
+  key = "test-simple-positive-element",
+  { elementSd = 15 }: { elementSd?: number } = {},
+): RuntimeLens {
+  return buildFixture({ key, surfaces: simplePositiveSurfaces(1, 5, 80, elementSd) });
 }
 
-export function buildChromaticPositiveElementLens(key = "test-chromatic-positive-element"): RuntimeLens {
+export function buildChromaticPositiveElementLens(
+  key = "test-chromatic-positive-element",
+  { elementSd = 15 }: { elementSd?: number } = {},
+): RuntimeLens {
   return buildFixture({
     key,
     elements: [{ ...BASE_ELEMENT, glass: "N-BK7" }],
-    surfaces: simplePositiveSurfaces(),
+    surfaces: simplePositiveSurfaces(1, 5, 80, elementSd),
   });
 }
 

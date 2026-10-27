@@ -254,7 +254,18 @@ describe("perspective field sampling", () => {
 
   it("preserves pupil order, active-stop clipping, circular weights, and transmission", () => {
     const camera = context(1, 1);
+    // The diagram fan's paraxial launch overfills a 0.05 mm active stop, which clips it.
     const meridional = sampleSceneLockedFields(camera, [[0, 0, 1]], {
+      pupilBundle: {
+        kind: "meridional",
+        pupilSemiDiameterMm: 1,
+        stopSemiDiameterMm: 0.05,
+        fractions: [-1, 0, 1],
+        launch: "paraxial-entrance",
+      },
+    })[0];
+    // Aimed at that active stop instead, the rim rays land on its rim and pass.
+    const aimed = sampleSceneLockedFields(camera, [[0, 0, 1]], {
       pupilBundle: {
         kind: "meridional",
         pupilSemiDiameterMm: 1,
@@ -278,6 +289,8 @@ describe("perspective field sampling", () => {
     expect(meridional.pupilBundle?.samples.map((sample) => sample.pupilUv.v)).toEqual([-1, 0, 1]);
     expect(meridional.pupilBundle?.samples[1].status).toBe("usable");
     expect(meridional.pupilBundle?.samples.some((sample) => sample.status === "clipped")).toBe(true);
+    expect(aimed.pupilBundle?.samples.map((sample) => sample.status)).toEqual(["usable", "usable", "usable"]);
+    expect(aimed.pupilBundle?.unaimed).toEqual([]);
     expect(circular.pupilBundle?.kind).toBe("circular");
     expect(circular.pupilBundle?.samples.map((sample) => sample.weight)).toEqual([0.5, 0.25, 0.25]);
     expect(circular.pupilBundle?.samples.every((sample) => Number.isFinite(sample.transmission))).toBe(true);

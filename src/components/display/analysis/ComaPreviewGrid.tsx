@@ -411,7 +411,7 @@ export default function ComaPreviewGrid({
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
         <title>
           {pointCloudStyle === "traced"
-            ? "Chief-ray-referenced real-ray spot footprint grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale."
+            ? "Chief-ray-referenced real-ray spot footprint grid. Each tile traces a fixed circular pattern of real-stop positions and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale."
             : "Schematic coma comparison grid. Each tile converts the traced spot extent into a normalized textbook-style coma sketch on the same shared square spot scale."}
         </title>
         {pointCloudResult.fields.map((field, index) =>
@@ -468,7 +468,7 @@ export default function ComaPreviewGrid({
         renderMeridionalTile(field, index, meridionalResult.sharedRelativeHalfRangeMm, t),
       )}
       <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-        Pupil fraction across the entrance pupil
+        Pupil coordinate across the real stop (−1 to +1)
       </text>
     </svg>
   );

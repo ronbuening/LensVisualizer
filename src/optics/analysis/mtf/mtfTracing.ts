@@ -13,9 +13,8 @@ import type { MtfSpot } from "./mtfMath.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import { findMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
-import { mtfTraceClassification } from "./mtfRayClassification.js";
-
-export { mtfTraceClassification } from "./mtfRayClassification.js";
+import { traceRayClassification } from "../../trace/rayClassification.js";
+import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -62,9 +61,6 @@ export interface MtfFieldLaunch {
   /** Chief-ray height on the launch plane in mm. */
   centerY: number;
 }
-
-/** Surface profiles whose sag depends on y or radius only, so a meridional field images symmetrically in x. */
-const X_SYMMETRIC_PROFILES = new Set(["flat", "spherical", "aspheric", "tilted-plane"]);
 
 /**
  * Intersect a trace's final segment with the axial image plane.
@@ -269,7 +265,7 @@ export function findMtfFieldFootprint(
   } as const;
   const traceRay = prepareEngineTrace(state, traceOptions);
   return findMtfFootprint(
-    (x, y) => mtfTraceClassification(traceRay(mtfLaunchRay(launch, x, y)), state, options.stopSemiDiameterMm),
+    (x, y) => traceRayClassification(traceRay(mtfLaunchRay(launch, x, y)), state, options.stopSemiDiameterMm),
     options.pupilSemiDiameterMm,
     mtfMirrorSymmetric(state),
     growths,
@@ -317,7 +313,7 @@ export function mtfLaunchGrid(footprint: MtfFootprint, gridSize: number): MtfLau
  * @returns whether mirrored half-pupil tracing is exact
  */
 export function mtfMirrorSymmetric(state: PreparedGeometry): boolean {
-  return state.surfaces.every((surface) => X_SYMMETRIC_PROFILES.has(surface.profile.kind));
+  return mirrorSymmetricAboutMeridian(state);
 }
 
 /**
@@ -355,7 +351,7 @@ export function traceMtfBundle(
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
   const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
-  const chiefClipped = mtfTraceClassification(traceRay(chiefRay), state, options.stopSemiDiameterMm) !== "valid";
+  const chiefClipped = traceRayClassification(traceRay(chiefRay), state, options.stopSemiDiameterMm) !== "valid";
   const grid = mtfLaunchGrid(footprint, gridSize);
   // A meridional field of an x-symmetric lens images each half pupil as the mirror of the other.
   const mirror = mtfMirrorSymmetric(state);
@@ -386,7 +382,7 @@ export function traceMtfBundle(
       const launchWeight = source
         ? (chiefDistance / Math.hypot(...trace.input.origin.map((v, i) => v - source[i]))) ** 3
         : 1;
-      const classification = mtfTraceClassification(trace, state, options.stopSemiDiameterMm);
+      const classification = traceRayClassification(trace, state, options.stopSemiDiameterMm);
       if (classification === "blocked") {
         bundle.blocked += samples;
         continue;

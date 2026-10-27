@@ -639,19 +639,13 @@ describe("computeBokehPreviewPair brightness character", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("flips the visible blur character across opposite sides of best focus", () => {
-    const bestFocus = computeBestFocusZ(
-      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
-    );
-    const frontDefocus = computeBokehPreview(
-      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
-      bestFocus - 0.35,
-      "Front",
-    );
-    const rearDefocus = computeBokehPreview(
-      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
-      bestFocus + 0.35,
-      "Rear",
-    );
+    // A stop-in-front singlet: its stop is its entrance pupil, so equal stop area is equal pupil flux and the radial
+    // profile shows the spherical aberration alone. Behind a front group, the stop-to-pupil map also shapes it.
+    const singlet = buildSimplePositiveElementLens("test-bokeh-spherical-singlet");
+    const request = () => analysisRequestAt(singlet, { focusT: 0, zoomT: 0, currentEPSD: 10, currentPhysStopSD: 10 });
+    const bestFocus = computeBestFocusZ(request());
+    const frontDefocus = computeBokehPreview(request(), bestFocus - 0.35, "Front");
+    const rearDefocus = computeBokehPreview(request(), bestFocus + 0.35, "Rear");
 
     expect(frontDefocus).not.toBeNull();
     expect(rearDefocus).not.toBeNull();
@@ -815,7 +809,8 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
 });
 
 it("keeps mechanical pupil weights separate from chief-relative bulk transmission", () => {
-  const base = buildSimplePositiveElementLens();
+  // The 0.8 mm element rims vignette part of what the 1 mm stop admits.
+  const base = buildSimplePositiveElementLens("test-bokeh-absorbing-singlet", { elementSd: 0.8 });
   const plateData = constructionFixtureData(base);
   const transparent = build(plateData);
   const alpha = 0.2;
@@ -826,7 +821,7 @@ it("keeps mechanical pupil weights separate from chief-relative bulk transmissio
   const trace = (L: RuntimeLens) => {
     const { imgZ } = doLayout(0, 0, L);
     return computeBokehFieldFootprint(
-      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: 2, currentPhysStopSD: 1 }),
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: 1, currentPhysStopSD: 1 }),
       0,
       imgZ + 10,
     )!;
@@ -841,7 +836,8 @@ it("keeps mechanical pupil weights separate from chief-relative bulk transmissio
   expect(attenuated.points.length).toBe(clear.passedRays);
   for (let i = 0; i < clear.points.length; i++) {
     const { z } = doLayout(0, 0, transparent);
-    const ray = traceRay(clear.points[i].pupilRadius * 2, 0, z, 0, 0, 1, true, transparent);
+    // The stop lies on the launch plane, so a ray aimed at pupil radius r launches at r × R.
+    const ray = traceRay(clear.points[i].pupilRadius * 1, 0, z, 0, 0, 1, true, transparent);
     const entry = ray.pts[2];
     const exit = ray.pts[3];
     const distance = Math.hypot(exit[0] - entry[0], exit[1] - entry[1]);

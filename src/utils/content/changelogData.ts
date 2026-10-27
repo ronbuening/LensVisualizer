@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "Coma spots, ray fans, bokeh, field curves, spherical aberration and color zones now sample the real aperture stop, as lens-design software does with ray aiming",
+  },
+  {
+    date: "2026-10-27",
     type: "feature",
     summary:
       "To mark the catalog reaching 999 lenses, released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",

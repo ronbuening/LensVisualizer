@@ -18,7 +18,9 @@ export default function BokehPreviewContent({ pair, t, title = "Bokeh Preview (B
       <p style={{ fontSize: 10, color: t.muted, margin: "0 0 12px", lineHeight: 1.5, fontFamily: "inherit" }}>
         Circularized blur disks show spherical-aberration brightness character at 0%, 25%, 50%, and 75% field height.
         The small inset in each tile shows the surviving pupil footprint, separating mechanical vignetting from the main
-        SA readout. Brighter rims indicate edge-bright blur; brighter centers indicate center-bright blur.
+        SA readout. Brighter rims indicate edge-bright blur; brighter centers indicate center-bright blur. Rays sample
+        positions on the real aperture stop evenly, as in OpticStudio with ray aiming and in CODE V, so behind a front
+        group the brightness also carries how the stop maps onto the entrance pupil.
       </p>
 
       {!hasInfinity && !hasNearFocus ? (

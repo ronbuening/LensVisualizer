@@ -13,6 +13,8 @@ function field(overrides: Partial<BokehPreviewResult["fields"][number]> = {}): B
     fieldAngleDeg: 0,
     totalRays: 1,
     passedRays: 1,
+    unaimedRays: 0,
+    blockedRays: 0,
     usable: true,
     points: [],
     centroidSagittal: 0,

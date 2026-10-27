@@ -47,6 +47,8 @@ export function tracePerspectiveDiagramFan({
       stopSemiDiameterMm,
       fractions,
       channel,
+      // A rendering sampler: the diagram keeps the paraxial entrance-pupil fan, like the unmoved diagram's rays.
+      launch: "paraxial-entrance",
     },
   })[0];
   if (!field?.pupilBundle || field.pupilBundle.kind !== "meridional") return null;

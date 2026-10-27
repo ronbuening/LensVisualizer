@@ -30,7 +30,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Tangential Ray Fan"
         helpLabel="Tangential ray fan help"
-        helpText="Tangential ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image y versus tangential pupil coordinate. It helps reveal coma-like asymmetry, but it is not a full 2D spot diagram or a pure Seidel coma coefficient."
+        helpText="Tangential ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image y versus tangential pupil coordinate. It helps reveal coma-like asymmetry, but it is not a full 2D spot diagram or a pure Seidel coma coefficient. Pupil coordinates are positions on the real aperture stop, sampled evenly, as in OpticStudio with ray aiming and in CODE V. Ticks along the bottom mark rays another aperture vignettes."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
