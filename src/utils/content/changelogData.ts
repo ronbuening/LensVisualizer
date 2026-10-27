@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
     type: "fix",
-    summary: "Axial color (LoCA) now compares every selected channel and names any channel a rim vignettes",
+    summary: "Chromatic readouts now compare every selected color channel, or name the one a rim vignettes",
   },
   {
     date: "2026-10-27",
