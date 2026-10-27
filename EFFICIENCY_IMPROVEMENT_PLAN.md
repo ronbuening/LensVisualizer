@@ -164,6 +164,27 @@ Image-height inversion keeps that replay so their fallback results remain bit-id
 - **Out of scope** — fewer targets, relaxed success tolerance or a changed physical model.
   **Rollback** — revert the implementation branch; discard temporary probes.
 
+### P12. Share the per-field aimed model between the vignetting and MTF tabs
+
+- [ ] Effort: medium · Risk: medium (determinism) · Expected impact: the slowest vignetting curves (2.7–2.8 s settled)
+
+The vignetting tab (#931) launches a 64-across stop lattice through `prepareAimedPupilLaunch` at each of its fields. It
+costs 1.1–3.1× the old launch-plane tab, 2.8 s settled on the Fujinon XC 13-33 and 2.7 s on the Canon RF 14/1.4. Once
+PR 3 moves the MTF lattice onto the same launch, both tabs build an aimed field model and aim a stop lattice per field.
+
+- **Files to touch** — **modified**: `src/optics/analysis/vignetting/vignetting.ts`,
+  `src/optics/analysis/pupils/aimedPupil.ts`, the MTF lattice's launch.
+- **Reference to mimic** — the per-state field-model cache in `aimedPupil.ts` (`fieldModelsByState`), keyed by every
+  number a launch frame is built from.
+- **Steps** — (1) after PR 3, list where the two tabs' fields and stop radii coincide; (2) share the field model, and
+  the aimed rays where the lattices coincide, without changing a ray's bits; (3) then look at the samples that run to
+  the 24-trace cap on vignetted wide-angle edges.
+- **Constraints** — keep the lattice at 64 cells across; no dependence on call order (a cache hit returns the bits a
+  fresh build would); no relaxed tolerances.
+- **Verification / done when** — the shared gate passes, both tabs' results are bit-identical before and after, and
+  the settled vignetting curve on the XC 13-33 and RF 14 is measured back to back against the current branch.
+- **Out of scope** — a coarser lattice, fewer fields, or a different pupil convention.
+
 ### P11. Interactive latency measurement
 
 - [ ] Add a browser drag/settle benchmark only if interactive feel regresses; Node timings do not cover that latency.
