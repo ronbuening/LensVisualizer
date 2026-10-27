@@ -96,3 +96,35 @@ below). The ratio-table rows labelled 6 (12.9) and 11 (96.4) could not be assign
   the d-line index of the L-BAL42 class, so it may be a d-line slip in the patent's table.
 - D/d_M-derived diameters inherit the ±0.005 rounding of the normalized thicknesses (±17 % for 0.03 rows); the G1
   value is corroborated independently by the L1 edge-thickness ratio, the G4 value by the L8 ratio.
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+Source: US 2022/0066176 A1, sole example. PDF p. 8 (printed p. 4), [0092]–[0096], surface and diameter-ratio tables; PDF p. 9 (printed p. 5), sag equation, [0097]–[0100], asphere and group-power tables and summary. FIG. 1 is PDF p. 2, FIG. 2 p. 3, and FIG. 3 p. 4. Prescription and coefficient digits/signs were read from rendered pages at 220 dpi, with the equation and coefficient table enlarged at 400 dpi.
+
+| Surface / field | Before | After | Source / reason |
+|---|---|---|---|
+| source.errata | absent | unresolved entry for sole-example coefficient / full-field conflict | Source supplies no independently supported replacement. |
+| Header note | "open source conflict" | unresolved source erratum, family text checked | Points to source.errata. |
+
+### Source reconciliation
+
+- All surface radii, internal thicknesses, stop location, native n_e/ν_e and 14 nonzero polynomial terms agree with the rendered tables after ×35 length scaling and coefficient rounding. The pre-existing final gap remains 14.62 mm (calculated paraxial BFD), versus printed d16 = 0.36 × 35 = 12.6 mm and summary S′O′/f = 0.43 → 15.05 mm; this audit does not reinterpret that gap.
+- [0093] explicitly states f′ = 1 mm. The printed equation is a2·h⁴ + a3·h⁶ + … + a6·h¹², with (1+k) under the radical. There is no extra h² coefficient or odd-power series. k = 0 is a spherical base; each a_n scales by 35^(1−2n). No term-mapping, conic-convention or normalization transcription error was found.
+- Fresh baseline LSA is −5.121 / −3.845 / −2.708 / −1.446 mm at pupil 1 / 0.85 / 0.7 / 0.5; spherical-only is −6.080 / −4.401 / −2.988 / −1.525 mm. At 5.82° the error grows smoothly with pupil height: image-plane relative ey −0.379 / −0.854 / −1.417 / −2.231 mm at pupil 0.5 / 0.7 / 0.85 / 1. Those rays cross neither L10 surface beyond turnover, so the early-field localization failure is not caused by the outer rim.
+- At the uncapped 29.10° field, T/S close-ray focus shifts are −12.70/−5.09 mm and distortion +11.16%. At the source's 31.1°, the ghost chief image height is 28.45 mm against summary YB = 35 × 1.85 / 3.08 = 21.02 mm. Paraxial EFL remains 34.987 mm.
+- There is no source spherical-aberration, astigmatism or distortion plot. FIG. 3 shows MTF at 20 lp/mm, approximately 95% on axis and at least 75% at the edge; [0104] describes it at infinity. This cannot isolate replacement coefficients.
+- The single-slip search covered 102 diagnostic variants: per-term sign/×10/÷10/zero, all individual column-pair swaps, block column-pair swaps, both one-column shifts, all cyclic row shifts, and alternative scaling/conic controls. No admissible variant corrected the axial design. 1A A6 ×10 changes marginal LSA to +4.537 mm but leaves −0.778 mm at pupil 0.5. No values were fitted.
+- Checked family text in [DE102018132472A1](https://patents.google.com/patent/DE102018132472A1/de) and [US12181644B2](https://patents.google.com/patent/US12181644B2/en) repeats the suspect block and otherwise matches the surface table. Family PDF coefficient images were not verified, so this is corroborative text only, not replacement-value evidence.
+
+### Rim decision
+
+No rim changed. The literal polynomial turns over at 8.33 mm on 15A and 5.66 mm on 16A, inside the 10.5 mm L10 rim
+that the patent's D/d_M ratio (p. 8, row 15) and FIG. 1's square L10 imply. Capping L10 below 5.66 mm would leave the
+f/2 axial beam (2.98/2.78 mm on 15A/16A) but put both faces under the full-frame image-circle floor (5.98/7.03 mm),
+and 16A's floor is itself past its turnover. The SD procedure's "When to stop" rule applies: a rim that can only reach
+its floor past a turnover is recorded, not changed. The early-field localization failure does not come from the L10
+rims anyway: at 5.82° the failing rays cross neither surface past its turnover; they carry the axial undercorrection.
+
+### Follow-ups
+
+Section G of sd-audit-queue.md carries the unresolved coefficient/full-field conflict. Obtain visually verified family coefficient tables or corrected design data before any prescription repair or full-frame claim. No coefficient replacement meets the two-kind evidence standard; no additional repo files were edited. The existing inferred close-focus spacings and final-gap discrepancy remain separate limitations.
