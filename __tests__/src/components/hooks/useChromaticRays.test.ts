@@ -17,7 +17,7 @@ import { createCoordinateTransforms } from "../../../../src/optics/diagram/coord
 import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import type { ChromaticChannel, LensData, RuntimeLens } from "../../../../src/types/optics.js";
-import { formatLocaZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
+import { formatChromaticZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
@@ -480,7 +480,7 @@ describe("useChromaticRays", () => {
     expect(result.spread.channels).toEqual(["R", "G"]);
     expect(result.omittedChannels).toEqual([{ channel: "B", reason: "vignetted" }]);
     expect(result.spread.omittedChannels).toEqual(result.omittedChannels);
-    expect(formatLocaZone(result.spread)).toBe("0.97 R, R–G; B vignetted");
+    expect(formatChromaticZone(result.spread)).toBe("0.97 R, R–G; B vignetted");
   });
 
   it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {

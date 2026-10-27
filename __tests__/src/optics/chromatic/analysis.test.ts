@@ -19,7 +19,11 @@ import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/stat
 import { runtimeView } from "../../../../src/optics/prescription/runtimeView.js";
 import { prepareStateSurfacesReal } from "../../../../src/optics/field/geometry.js";
 import SonyFE20Raw from "../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
+import CanonEF2470IIRaw from "../../../../src/lens-data/canon/CanonEF2470mmf28LII.data.js";
 import type { ChromaticChannel } from "../../../../src/types/optics.js";
+import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
+import { chromaticSpreadFromRays } from "../../../../src/optics/chromatic/zoneSelection.js";
+import { formatChromaticZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
 import { constructionFixtureData } from "../constructionFixtures.js";
 import {
   analysisRequestForLens,
@@ -189,6 +193,73 @@ describe("chromatic analysis helpers", () => {
       for (const sample of field.samples) expect(sample.relativeHeightMm).toBe(0);
     }
     expect(curve.fields[1].referenceImageHeightMm).toBe(traceOffAxisChiefRay(request, shared, "G")!.imagePoint.y);
+  });
+
+  it("compares every requested channel in a fan at the outermost fraction that admits them all", () => {
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed 0.97 R zone, so the fan passes it by.
+    const request = analysisRequestForLens(sharedSonnar50f15());
+    const fans = computeChromaticRayFanAnalysis(request, { channels: ["R", "G", "B", "V"] });
+    expect(fans.spreads.onAxis).toMatchObject({ fraction: 0.95, channels: ["R", "G", "B", "V"], omittedChannels: [] });
+
+    // Offered only 0.97 R, the fan falls back to the channels that pass and names the others.
+    const fallback = computeChromaticRayFanAnalysis(request, {
+      channels: ["R", "G", "B", "V"],
+      onAxisFractions: [0.97],
+    }).spreads.onAxis!;
+    expect(fallback.fraction).toBe(0.97);
+    expect(fallback.channels).toEqual(["R", "G"]);
+    expect(fallback.omittedChannels).toEqual([
+      { channel: "B", reason: "vignetted" },
+      { channel: "V", reason: "vignetted" },
+    ]);
+    expect(formatChromaticZone(fallback)).toBe("0.97 R, R–G; B, V vignetted");
+  });
+
+  it("picks a traced fan's fraction by the same rule, and states a fallback's missing channels", () => {
+    const ray = (channel: ChromaticChannel, fraction: number, clipped = false) => ({
+      channel,
+      fraction,
+      y: fraction - 0.01 * "RGBV".indexOf(channel),
+      u: -0.1,
+      clipped,
+    });
+    const allAtInner = chromaticSpreadFromRays(
+      [ray("R", 0.75), ray("G", 0.75), ray("B", 0.75, true), ray("R", -0.75), ray("G", -0.75), ray("B", -0.75)],
+      ["R", "G", "B"],
+      60,
+      20,
+    );
+    expect(allAtInner).toMatchObject({ fraction: -0.75, channels: ["R", "G", "B"], omittedChannels: [] });
+
+    // Blue is clipped at every fraction and violet was never traced: the first fraction two channels pass is used.
+    const fallback = chromaticSpreadFromRays(
+      [ray("R", 0.5), ray("G", 0.5), ray("B", 0.5, true), ray("R", 0.75), ray("G", 0.75), ray("B", 0.75, true)],
+      ["R", "G", "B", "V"],
+      60,
+      20,
+    )!;
+    expect(fallback.fraction).toBe(0.75);
+    expect(fallback.channels).toEqual(["R", "G"]);
+    expect(fallback.omittedChannels).toEqual([
+      { channel: "B", reason: "vignetted" },
+      { channel: "V", reason: "untraced" },
+    ]);
+    expect(formatChromaticZone(fallback, "EP")).toBe("0.75 EP, R–G; B vignetted; V not traced");
+    expect(chromaticSpreadFromRays([ray("R", 0.5), ray("G", 0.5, true)], ["R", "G"], 60, 20)).toBeNull();
+  });
+
+  it("names a lateral color field's channel whose chief ray a rim clips", () => {
+    // Wide open at 24 mm, a rim clips red's full-field chief ray while green, blue and violet reach the image.
+    const result = computeLateralColorCurve(analysisRequestForLens(build(CanonEF2470IIRaw)), {
+      fieldFractions: [0, 1],
+    })!;
+    const edge = result.fields.find((field) => field.fieldFraction === 1)!;
+    expect(edge.usable).toBe(true);
+    expect(edge.omittedChannels).toEqual([{ channel: "R", reason: "vignetted" }]);
+    expect(edge.validChannelCount).toBe(3);
+    expect(edge.samples.find((sample) => sample.channel === "R")).toMatchObject({ usable: false, clipped: true });
+    expect(result.fields.find((field) => field.fieldFraction === 0)!.omittedChannels).toEqual([]);
+    expect(result.maxLateralFieldFraction).toBe(1);
   });
 
   it("returns combined chromatic analysis with nullable sections instead of throwing on insufficient channels", () => {
