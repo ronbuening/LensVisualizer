@@ -22,7 +22,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-27",
     type: "feature",
     summary:
-      "Released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",
+      "To mark the catalog reaching 999 lenses, released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",
   },
   {
     date: "2026-10-27",
