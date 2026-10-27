@@ -165,6 +165,7 @@ const chromaticAnalysis = {
       axis: "onAxis",
       fraction: 0.95,
       channels: ["R", "G", "B", "V"],
+      omittedChannels: [],
     },
     samples: [
       {
@@ -209,6 +210,7 @@ const chromaticAnalysis = {
       },
     ],
     validChannelCount: 4,
+    omittedChannels: [],
   },
   lateralColor: {
     channels: ["R", "G", "B", "V"],
