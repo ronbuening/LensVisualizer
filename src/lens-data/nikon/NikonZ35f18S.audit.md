@@ -150,3 +150,34 @@ native; every Example 4 number was also confirmed on the rendered page image.
 - Second read against the rendered p. 18: formula, both printed figures and both recomputed values confirmed. One
   analysis fix: the L22 property table attributed θgF and the deviation both to Table 2; it now cites Table 2 for
   `0.5441` and Table 1 for the condition (6) value `+0.019` on the patent's own line.
+
+## 2026-10-27 — Rim-cut figure review
+
+FIG. 4 (PDF p. 19, bottom right; native 300 ppi raster, 1005 × 1205, axis horizontal at row 647.5) was read element
+by element on both halves for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm`
+draws. Five faces carry one. On each, the stored `sd` was the patent effective radius, clearly inside the partner
+face's, while the figure runs the element's edge line square at the partner's height; so the `sd` is raised to the
+partner's and the cut ends the cap at the old radius, leaving tracing as it was. The figure's land ratios sit a little
+below old `sd` ÷ partner `sd` (0.81, 0.89, 0.87, 0.95, 0.92) because FIG. 4 draws each element edge about 10 % outside
+its effective radius.
+
+| Surface | Figure land (cap end ÷ element edge, upper / lower) | Cut depth | Cut radius | sd (before → after) | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 18.973) | 0.77 / 0.78 | 6.79 mm | 14.55 mm | 14.54 → 17.97 | 9.05 mm |
+| 5 (L13 rear, R 69.893) | 0.80 / 0.81 | 1.09 mm | 12.30 mm | 12.29 → 13.82 | 10.94 mm |
+| 6 (L14 front, R −27.961) | 0.82 / 0.82 | 2.64 mm | 11.86 mm | 11.84 → 13.63 | 11.28 mm |
+| 12A (L17 rear, R 42.846) | 0.90 / 0.91 | 1.85 mm | 12.05 mm | 12.041 → 12.682 | 12.04 mm |
+| 20A (L31 front, R −40.982) | 0.83 / 0.84 | 3.10 mm | 13.94 mm | 13.93 → 15.21 | 5.46 mm |
+
+- Land seen, not cut: surface 14 (L21 front), 0.91 / 0.93 (5–7 px). Its `sd` 10.32 is within 4 % of the rear face's
+  10.69, and the stated close-focus axial ray there, 10.74 mm, already exceeds it, so no cut radius can sit at or
+  above the stated beam.
+- Surface 18A (L23 front, R −181.8) runs to its element edge in both halves (the stroke drifts evenly into the edge
+  line); no land, no cut.
+- No cap reaches the stop plane at either focus state: the 12A land clears it by 2.19 mm (fixed, Gr1) and surface 14's
+  cap by 3.46 mm at close focus.
+- Depths are |sag| at the old radius rounded up to 0.01 mm, so each cut radius sits at or just above the old `sd`
+  (by 0.02 mm at most). The aperture audit is unchanged: traced f/1.85 against the stated f/1.85, limiter STO, no rim,
+  trace or failed rows and no `(rim cut)` limiter. Full-field side vignetting at 21.6 mm image height is unchanged; the
+  engine half-field estimate moves from 32.898° to 32.907° with surface 2's cut radius 5 µm outside the old 14.54.
+- The rendered section now draws the five lands where FIG. 4 does; every other outline is unchanged.

@@ -206,8 +206,13 @@ support in the numerical example.
 
 The revised estimates retain stepped rims where required. The S4 exit is
 limited to 26.5 mm by the adjacent air-gap constraint. S31 is limited to
-17.75 mm and S32A to 18 mm near the final asphere. Larger trial rims caused
-cross-gap overlap and were rejected. Surface validation and rendered-element
+17.75 mm, and the clear aperture of S32A ends at 18 mm near the final
+asphere. Larger trial rims caused cross-gap overlap and were rejected.
+Figure 1 also draws flat lands square to the axis at several concave rims.
+Surfaces 2, 5, 7, 17 and 32A carry them as rim cuts: L11 and L44 now reach
+their front-face edges (31.5 and 19.5 mm) while their clear apertures stay
+at 28.5 and 18 mm, and the L19 rear cap ends at 21.7 mm, ahead of the stop
+plane. Surface validation and rendered-element
 checks pass at infinity, midpoint and close focus, without hidden trimming.
 These remain constrained figure estimates, not measured production apertures.
 

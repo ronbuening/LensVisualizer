@@ -70,3 +70,35 @@ Patent: WO 2021/241230 A1
   against the previous data: EFL identical and defocus unchanged at both focus keyframes (the old fold was exact).
 - Physical track grows by 0.545 mm to 163.306 mm, matching the patent's 163.307 mm total length to rounding.
   `closeFocusM` is now the physical close object-to-image distance, 0.630805 m (was the air-equivalent 0.6302599 m); it only labels focus distance.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 63, native 300 ppi raster, 9.241 px/mm from the S1–S33 vertex span) was read element by element for
+flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws: the infinity panel's
+lower half, cross-checked on the close-focus panel's upper half.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 46.022) | 0.905; sd raised 28.5 → 31.5 (S1's edge) | 9.89 mm | 28.50 mm | 31.5 | 20.65 mm |
+| 5 (L13 front, R −43.988) | 0.950 | 9.69 mm | 27.54 mm | 29 | 22.66 mm |
+| 7 (L14 front, R −82.014) | 0.973 | 5.37 mm | 29.19 mm | 30 | 25.87 mm |
+| 17 (L19 rear, R 40.041) | 0.850 | 6.37 mm | 21.67 mm | 25.5 | 20.80 mm |
+| 32A (L44 front, R −64.588) | 0.939; sd raised 18 → 19.5 (S33's edge) | 2.96 mm | 18.01 mm | 19.5 | 6.13 mm |
+
+- Faces 2 and 32A: the figure draws each element's edge at its front face's height (31.4 and 19.5 mm) with the land
+  at the old stored rim (figure cap ends 28.4 and 18.3 mm), so the cut sits at the old sd and tracing is unchanged.
+- Lands seen but not cut: face 4 (L12 rear, figure 0.970 of L12's 28.5 mm edge) and face 31 (L43 rear, figure 0.922
+  of a 19.8 mm edge, meeting L44's land at one plane). Raising either to its partner's sd with the cut at the old rim
+  is refused by the gap check: 4→5 combined sag 15.61 > 14.859 mm allowed, 31→32A 7.00 > 6.984 mm. Face 19 (L21
+  front, 0.958 in both panels) would put the cut at 18.20 mm, below the close-focus stated axial ray (19.25 mm, which
+  already exceeds sd 19); not authored.
+- Concave faces with no land: 12, 14, 28 and 33 (R 275–795 mm) run straight into their element edges; any land there
+  is below the raster's resolution.
+- Stop plane: face 17's cap reached 1.38 mm past the fixed stop plane (sag 9.17 mm at sd against the 7.79 mm gap); the
+  figure's land now clears it by 1.42 mm. Face 19's cap clears the stop by 6.20 mm at close focus.
+- The stated f/1.23 still traces (`audit:aperture` unchanged: no rim, trace or failed rows, no rim-cut limiter); the
+  image-circle audit passes. `clearap` finds no full-field rim rays for this lens (the stop-edge rays at 22.8° fail in
+  the front group or at 24A), so a meridional-fan probe with the cut radii as clear radii was used: the full-field fan passes
+  42.3 % at infinity and 56.0 % at close focus, unchanged, and is also unchanged at 10 and 15 mm image height. Cuts 5
+  and 7 only take rays that faces 4, 6 and 8 already block; 17's cut radius lies outside every field bundle. The
+  engine half-field moves 23.999° → 24.009° (32A's cut radius 18.009 mm against the old 18.0 mm rim).

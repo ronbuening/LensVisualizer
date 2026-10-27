@@ -53,6 +53,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    radius is derived from the design f-number at infinity and      ║
  * ║    held through focus.                                             ║
  * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands    ║
+ * ║    at the element edge. Their sd is raised to the partner face's   ║
+ * ║    and rimCutDepthMm ends each cap at its old radius (14.54,       ║
+ * ║    12.30, 11.84, 12.05, 13.92 mm), so tracing is unchanged.        ║
+ * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║
  * ║    (0.6438 − 0.001682·νd). The patent prints θgF only for L22     ║
@@ -236,16 +242,16 @@ const LENS_DATA = {
     // ── Gr1 (fixed) ────────────────────────────────────────────────
     // L11 — negative meniscus
     { label: "1", R: 99.8611, d: 2.2032, sd: 17.97, medium: 1 },
-    { label: "2", R: 18.9734, d: 7.6464, sd: 14.54 },
+    { label: "2", R: 18.9734, d: 7.6464, sd: 17.97, rimCutDepthMm: 6.79 },
 
     // D1: L12 (biconvex) + L13 (biconcave), cemented
     { label: "3", R: 87.9768, d: 5.5728, sd: 14.19, medium: 2 },
     { label: "4", R: -43.8264, d: 1.7928, sd: 13.82, medium: 3 },
     // d5: patent prints 0.108 (2.333 mm); derived 0.2595 from TL — see header note.
-    { label: "5", R: 69.8933, d: 5.6052, sd: 12.29 },
+    { label: "5", R: 69.8933, d: 5.6052, sd: 13.82, rimCutDepthMm: 1.09 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
-    { label: "6", R: -27.9612, d: 3.7152, sd: 11.84, medium: 4 },
+    { label: "6", R: -27.9612, d: 3.7152, sd: 13.63, rimCutDepthMm: 2.64, medium: 4 },
     { label: "7", R: 37.8367, d: 7.1064, sd: 13.63, medium: 5 },
     { label: "8", R: -37.8367, d: 0.3888, sd: 13.93 },
 
@@ -273,7 +279,8 @@ const LENS_DATA = {
       label: "12A",
       R: 42.8458,
       d: 4.0392,
-      sd: 12.041,
+      sd: 12.682,
+      rimCutDepthMm: 1.85,
       asphere: {
         K: -0.4693,
         A4: -8.2906e-6,
@@ -334,7 +341,8 @@ const LENS_DATA = {
       label: "20A",
       R: -40.9817,
       d: 1.7928,
-      sd: 13.93,
+      sd: 15.21,
+      rimCutDepthMm: 3.1,
       medium: 11,
       asphere: {
         K: -0.1889,
