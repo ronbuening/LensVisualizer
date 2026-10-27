@@ -6,9 +6,11 @@
  * focus keyframe. It runs on a built lens, since it traces; the catalog sweep and `npm run audit:surface` call it, not
  * the compile-time validator.
  *
- * Each object-plane field's beam is a grid of collimated rays over the wide-open stop, plus a meridional line across it, traced through
- * the unclipped (ghost) path. A ray belongs to the beam when it reaches the image past the stop and every other clear
- * aperture; the cut stops it when it then meets the cut surface between the cut radius and `sd`.
+ * Each object-plane field's beam is a grid of collimated rays over the wide-open stop, plus a meridional line across
+ * it, traced through the unclipped (ghost) path. A ray belongs to the beam when it reaches the image past the stop and
+ * every other clear aperture; the cut stops it when it then meets the cut surface between the cut radius and `sd`.
+ * Fields are sampled every few degrees, and each cut's reach is refined by golden-section search around its furthest
+ * sample, since a beam can reach furthest between samples.
  */
 
 import { prepareRuntimeState } from "../../state/runtimeAdapters.js";
@@ -19,14 +21,19 @@ import type { PreparedOpticalState } from "../../types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 
 /** Rays across the beam in each direction of the grid. */
-const GRID = 13;
+const GRID = 17;
 /** Rays along the beam's meridional span, where its extreme heights lie. */
-const LINE_STEPS = 80;
+const LINE_STEPS = 120;
 /** Steps of the coarse search for one ray inside the stop. */
 const SEED_STEPS = 80;
 const EDGE_BISECTIONS = 24;
 /** Field spacing in degrees: the half field and the axis are always sampled. */
-const FIELD_SPACING_DEG = 4;
+const FIELD_SPACING_DEG = 3;
+/** Golden-section steps that refine each cut's reach around its furthest sampled field. */
+const FIELD_REFINEMENTS = 8;
+const GOLDEN = (Math.sqrt(5) - 1) / 2;
+/** Share of the cut radius within which a sampled reach is refined. */
+const REFINE_WITHIN = 0.03;
 const CLIP_TOLERANCE = 1e-9;
 
 /** How far one inferred cut's beams reach at its surface, and the rays it stops. */
@@ -152,15 +159,22 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamReach[] {
         L.zoomTracingHalfFields?.[zoomIndex] ?? L.tracingHalfField,
       );
       const fieldCount =
-        Number.isFinite(halfField) && halfField > 0 ? Math.max(Math.ceil(halfField / FIELD_SPACING_DEG) + 1, 7) : 1;
-      for (let f = 0; f < fieldCount; f++) {
-        const fieldDeg = fieldCount > 1 ? (halfField * f) / (fieldCount - 1) : 0;
+        Number.isFinite(halfField) && halfField > 0 ? Math.max(Math.ceil(halfField / FIELD_SPACING_DEG) + 1, 9) : 1;
+      const fields = Array.from({ length: fieldCount }, (_, f) =>
+        fieldCount > 1 ? (halfField * f) / (fieldCount - 1) : 0,
+      );
+      /* Each cut's furthest reach at one field, counting the rays it stops there. */
+      const measure = (fieldDeg: number): { reach: number; stopped: number }[] => {
         /* Collimated launches cover the object-plane fields, as the vignetting analysis traces them. */
-        if (launchSurfaceForFieldDeg(fieldDeg, state.lens.projection.config) !== "object-plane") continue;
+        if (launchSurfaceForFieldDeg(fieldDeg, state.lens.projection.config) !== "object-plane") {
+          return result.map(() => ({ reach: 0, stopped: 0 }));
+        }
         const rays = beamRays(state, (fieldDeg * Math.PI) / 180);
-        for (const entry of result) {
+        return result.map((entry) => {
           const i = entry.surfaceIndex;
           const cutRadius = state.surfaces[i].rimCut!.radius;
+          let reach = 0;
+          let stopped = 0;
           for (const ray of rays) {
             const radius = ray.radii[i];
             if (!ray.passesRims || radius === null) continue;
@@ -171,14 +185,42 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamReach[] {
               return r !== null && r > state.surfaces[other.surfaceIndex].rimCut!.radius * (1 + CLIP_TOLERANCE);
             });
             if (otherCut) continue;
-            entry.reach = Math.max(entry.reach, radius);
-            if (radius > cutRadius * (1 + CLIP_TOLERANCE)) {
-              entry.stopped++;
-              entry.firstStop ??= { zoomIndex, focusIndex, fieldDeg };
-            }
+            reach = Math.max(reach, radius);
+            if (radius > cutRadius * (1 + CLIP_TOLERANCE)) stopped++;
           }
+          return { reach, stopped };
+        });
+      };
+      const record = (n: number, fieldDeg: number, m: { reach: number; stopped: number }) => {
+        const entry = result[n];
+        entry.reach = Math.max(entry.reach, m.reach);
+        if (m.stopped > 0) {
+          entry.stopped += m.stopped;
+          entry.firstStop ??= { zoomIndex, focusIndex, fieldDeg };
         }
-      }
+      };
+      const sampled = fields.map((fieldDeg) => measure(fieldDeg));
+      sampled.forEach((perCut, f) => perCut.forEach((m, n) => record(n, fields[f], m)));
+      /* A cut's reach can peak between samples: refine each around its furthest sample by golden-section search. */
+      result.forEach((entry, n) => {
+        if (fields.length < 2) return;
+        const best = sampled.reduce((k, perCut, f) => (perCut[n].reach > sampled[k][n].reach ? f : k), 0);
+        /* A peak between samples rises only a little above them; a reach well inside the cut needs no refining. */
+        const cutRadius = state.surfaces[entry.surfaceIndex].rimCut!.radius;
+        if (sampled[best][n].reach < cutRadius * (1 - REFINE_WITHIN)) return;
+        let low = fields[Math.max(best - 1, 0)];
+        let high = fields[Math.min(best + 1, fields.length - 1)];
+        for (let step = 0; step < FIELD_REFINEMENTS; step++) {
+          const a = high - GOLDEN * (high - low);
+          const b = low + GOLDEN * (high - low);
+          const ma = measure(a)[n];
+          const mb = measure(b)[n];
+          record(n, a, ma);
+          record(n, b, mb);
+          if (ma.reach >= mb.reach) high = b;
+          else low = a;
+        }
+      });
     });
   }
   return result;

@@ -18,17 +18,25 @@ describe("rim-cut beam rule", () => {
   });
 
   it("accepts an inferred cut outside every traced beam", () => {
-    /* The beams reach about 9.48 mm at the rear cap: a 2.5 mm cut (radius 9.68) clears them, a 2.2 mm one (9.12) does not. */
-    const [outside] = rimCutBeamReach(buildRimCutLens(2.5, "test-rim-cut-outside"));
+    /* The beams reach about 10.08 mm at the rear cap: a 2.8 mm cut (radius 10.21) clears them, a 2.5 mm one (9.68) does not. */
+    const [outside] = rimCutBeamReach(buildRimCutLens(2.8, "test-rim-cut-outside"));
     expect(outside.reach).toBeLessThan(outside.cutRadius);
-    expect(validateRimCutBeams(buildRimCutLens(2.5, "test-rim-cut-outside"))).toEqual([]);
-    expect(validateRimCutBeams(buildRimCutLens(2.2, "test-rim-cut-short"))).toHaveLength(1);
+    expect(validateRimCutBeams(buildRimCutLens(2.8, "test-rim-cut-outside"))).toEqual([]);
+    expect(validateRimCutBeams(buildRimCutLens(2.5, "test-rim-cut-short"))).toHaveLength(1);
   });
+});
 
-  it("every catalog lens keeps its inferred rim cuts outside its traced beams", () => {
-    const offenders = Object.entries(CATALOG_CONSTRUCTION_FIXTURES)
-      .filter(([, data]) => data.surfaces.some((surface) => surface.rimCutDepthMm !== undefined))
-      .flatMap(([key, data]) => validateRimCutBeams(buildFixtureLens(data)).map((error) => `${key}: ${error}`));
-    expect(offenders).toEqual([]);
-  });
+/* One case per lens: the rule traces every field, zoom station and focus keyframe, so a long zoom takes seconds. */
+const CUT_LENSES = Object.entries(CATALOG_CONSTRUCTION_FIXTURES).filter(([, data]) =>
+  data.surfaces.some((surface) => surface.rimCutDepthMm !== undefined),
+);
+
+describe("rim-cut beam rule — catalog", () => {
+  it.each(CUT_LENSES)(
+    "%s keeps its inferred rim cuts outside its traced beams",
+    (_, data) => {
+      expect(validateRimCutBeams(buildFixtureLens(data))).toEqual([]);
+    },
+    60_000,
+  );
 });
