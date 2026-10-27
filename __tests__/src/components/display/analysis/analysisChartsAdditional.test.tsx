@@ -68,10 +68,29 @@ function fieldCurvatureResult(fields: ReturnType<typeof field>[]): FieldCurvatur
   };
 }
 
+function vignettingSample(
+  fieldAngleDeg: number,
+  unvignettedFraction: number | null,
+  relativeIllumination: number | null,
+): VignettingSample {
+  return {
+    fieldAngleDeg,
+    fieldFraction: fieldAngleDeg / 20,
+    unvignettedFraction,
+    relativeIllumination,
+    sampleCount: 3216,
+    transmittedCount: 0,
+    blockedCount: 0,
+    unaimedCount: 0,
+    unavailableReason: unvignettedFraction === null ? "too-many-unaimed" : null,
+    relativeIlluminationReason: relativeIllumination === null ? "cosine-map-folds" : null,
+  };
+}
+
 const vignetteSamples: VignettingSample[] = [
-  { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
-  { fieldAngleDeg: 10, geometricTransmission: 0.82, relativeIllumination: 0.76 },
-  { fieldAngleDeg: 20, geometricTransmission: 0.55, relativeIllumination: 0.43 },
+  vignettingSample(0, 1, 1),
+  vignettingSample(10, 0.82, 0.76),
+  vignettingSample(20, 0.55, 0.43),
 ];
 
 describe("analysis chart coverage", () => {
@@ -158,7 +177,7 @@ describe("analysis chart coverage", () => {
     );
 
     expect(container.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 420 260");
-    expect(screen.getByText("Geometric")).toBeTruthy();
+    expect(screen.getByText("Unvignetted")).toBeTruthy();
     expect(screen.getByText("Relative")).toBeTruthy();
     expect(screen.getByText("20°")).toBeTruthy();
     expect(screen.getByText("Field angle (°)")).toBeTruthy();
@@ -166,21 +185,29 @@ describe("analysis chart coverage", () => {
     expect(container.querySelectorAll("circle")).toHaveLength(6);
   });
 
-  it("extends the vignetting axis above 1 when a beam outgrows the axis's", () => {
+  it("extends the axis above 1 when a field is brighter than the axis", () => {
     const { container } = render(
-      <VignettingChart
-        samples={[
-          { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
-          { fieldAngleDeg: 40, geometricTransmission: 1.6, relativeIllumination: 0.5 },
-        ]}
-        t={themes.dark}
-      />,
+      <VignettingChart samples={[vignettingSample(0, 0.9, 1), vignettingSample(40, 0.8, 1.6)]} t={themes.dark} />,
     );
 
     expect(screen.getByText("1.50")).toBeTruthy();
     const circles = [...container.querySelectorAll("circle")].map((circle) => Number(circle.getAttribute("cy")));
-    // Every dot stays inside the plot: the highest is the edge's transmission, below the frame's top margin.
+    // Every dot stays inside the plot: the highest is the edge's illumination, below the frame's top margin.
     expect(Math.min(...circles)).toBeGreaterThan(0);
+  });
+
+  it("breaks a curve at a field without a figure instead of drawing through it", () => {
+    const { container } = render(
+      <VignettingChart
+        samples={[vignettingSample(0, 1, 1), vignettingSample(10, 0.9, null), vignettingSample(20, 0.7, 0.5)]}
+        t={themes.dark}
+      />,
+    );
+
+    const [unvignetted, illumination] = [...container.querySelectorAll("path")].map((path) => path.getAttribute("d")!);
+    expect(unvignetted.match(/M/g)).toHaveLength(1);
+    expect(illumination.match(/M/g)).toHaveLength(2);
+    expect(container.querySelectorAll("circle")).toHaveLength(5);
   });
 
   it("renders LoCA inset channels, formatting, custom placement, and click handling", () => {

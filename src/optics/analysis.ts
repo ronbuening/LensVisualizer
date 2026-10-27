@@ -209,8 +209,26 @@ export {
 export type { GroupMovementPoint, GroupMovementProfile } from "./analysis/summary/groupMovement.js";
 export { computeOpticalSummary } from "./analysis/summary/summary.js";
 export type { OpticalSummaryMetrics } from "./analysis/summary/summary.js";
-export { computeVignettingCurve } from "./analysis/vignetting/vignetting.js";
-export type { VignettingSample } from "./analysis/vignetting/vignetting.js";
+export {
+  BEAM_GRID_CELLS,
+  MIN_BEAM_GRID_CELLS,
+  RIMMER_MIN_CELL_AREA_RATIO,
+  VIGNETTING_MAX_UNAIMED_SHARE,
+  computeVignettingCurve,
+  computeVignettingField,
+  vignettingCellsAcross,
+  vignettingStopLattice,
+} from "./analysis/vignetting/vignetting.js";
+export type {
+  RelativeIlluminationUnavailableReason,
+  VignettingCellResult,
+  VignettingCurve,
+  VignettingCurveUnavailableReason,
+  VignettingFieldResult,
+  VignettingFieldUnavailableReason,
+  VignettingLatticeCell,
+  VignettingSample,
+} from "./analysis/vignetting/vignetting.js";
 export { computeCardinalElementsFromState } from "./first-order/cardinals.js";
 export type { CardinalDistance, CardinalElements, CardinalPoint } from "./first-order/cardinals.js";
 

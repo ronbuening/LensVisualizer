@@ -1,17 +1,26 @@
-import { constructionFixtureData } from "../../constructionFixtures.js";
-import { registerRuntimeFixture } from "../../testLensFixtures.js";
+/**
+ * The vignetting tab as OpticStudio shows it: one lattice on the real stop per field, the share of its rays that reach
+ * the image, and Rimmer's relative illumination. Closed forms are derived in the tests themselves.
+ */
+
 import { describe, it, expect } from "vitest";
-import { computeVignettingCurve as computeVignettingCurveBase } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import { constructionFixtureData } from "../../constructionFixtures.js";
+import {
+  computeVignettingCurve,
+  computeVignettingField,
+  vignettingStopLattice,
+} from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import {
+  prepareAimedPupilLaunch,
+  prepareAimedPupilTrace,
+} from "../../../../../src/optics/analysis/pupils/aimedPupil.js";
+import { computeOffAxisFieldGeometry } from "../../../../../src/optics/analysis/aberration/offAxis.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../../src/optics/state/runtimeAdapters.js";
-import type { FieldGeometryState } from "../../../../../src/optics/field/launch.js";
 import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
 import CanonEF135Raw from "../../../../../src/lens-data/canon/CanonEF135mmf2LUSM.data.js";
 import FisheyeRaw from "../../../../../src/lens-data/olympus/OlympusMZuiko8mmf18FisheyePRO.data.js";
 import SonyFE20Raw from "../../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
-import { evenlySpacedSigned } from "../../../../../src/optics/analysis/sampling.js";
-import { prepareRayTrace } from "../../../../../src/optics/trace/rayAdapters.js";
-import { solveChiefRayForRuntimeLens } from "../../../../../src/optics/state/fieldAdapters.js";
 import {
   analysisRequestAt,
   apertureAt,
@@ -20,106 +29,262 @@ import {
   sharedNikkorZ70200,
   sharedSonnar50f15,
 } from "../../testLensFixtures.js";
-import type { RuntimeLens, LensData } from "../../../../../src/types/optics.js";
+import type { LensData, RuntimeLens, SurfaceData } from "../../../../../src/types/optics.js";
 
-/* ── Helpers ── */
+/* ── Fixtures ── */
 
-function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
-  return registerRuntimeFixture({
-    ...L,
-    data: {
-      ...constructionFixtureData(L),
-      imageFormat,
-    },
-  } as RuntimeLens);
+/** A fixture lens with the given surfaces, built on the simple singlet's catalog data. */
+function lensWith(key: string, surfaces: SurfaceData[], extra: Partial<LensData> = {}): RuntimeLens {
+  return build({ ...constructionFixtureData(buildSimplePositiveElementLens()), key, surfaces, ...extra });
 }
 
-function computeVignettingCurve(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-  aberrationT = 0,
-) {
-  return computeVignettingCurveBase(
-    analysisRequestAt(L, { zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT }),
-  );
+/** A plano-convex singlet with the stop 20 mm behind it and rims far outside its beams. */
+function stopBehindLens(): RuntimeLens {
+  return lensWith("test-vignetting-stop-behind", [
+    { label: "1", R: 50, nd: 1.5168, sd: 20, d: 5, elemId: 1 },
+    { label: "2", R: 1e15, nd: 1, sd: 20, d: 20, elemId: 0 },
+    { label: "STO", R: 1e15, nd: 1, sd: 5, d: 40, elemId: 0 },
+  ]);
 }
+
+const radians = (deg: number) => (deg * Math.PI) / 180;
+
+describe("vignettingStopLattice", () => {
+  it("keeps the cells whose centre lies in the unit disc, with exact mirror columns", () => {
+    for (const n of [4, 48, 64]) {
+      const lattice = vignettingStopLattice(n);
+      const all = Array.from({ length: n * n }, (_, i) => [
+        (2 * (i % n) + 1 - n) / n,
+        (2 * Math.floor(i / n) + 1 - n) / n,
+      ]);
+      expect(lattice).toHaveLength(all.filter(([x, y]) => x * x + y * y <= 1).length);
+      for (const cell of lattice) {
+        expect(cell.weight).toBe(1 / lattice.length);
+        const mirror = lattice.find((other) => other.row === cell.row && other.column === n - 1 - cell.column)!;
+        expect(mirror.xFraction).toBe(-cell.xFraction);
+        expect(mirror.yFraction).toBe(cell.yFraction);
+      }
+    }
+  });
+});
 
 describe("computeVignettingCurve", () => {
-  /* ── Basic curve shape ── */
-
-  it("returns at least 7 samples for Sonnar 50/1.5", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    /* Adaptive field sampling: ~3° spacing, minimum 7 samples */
-    expect(samples.length).toBeGreaterThanOrEqual(7);
-  });
-
-  it("on-axis geometricTransmission is 1.0", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(samples[0].geometricTransmission).toBeCloseTo(1.0, 5);
-  });
-
-  it("on-axis relativeIllumination is 1.0", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(samples[0].relativeIllumination).toBeCloseTo(1.0, 5);
-  });
-
-  it("geometricTransmission does not significantly exceed 1.0 at any sample", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    // The Sonnar's stop image barely grows off axis, so its 2D beam stays within
-    // a few percent of the axis's until rim vignetting sets in. (A retrofocus
-    // wide-angle's does grow: see the Sony FE 20 mm case below.)
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    for (const s of samples) {
-      expect(s.geometricTransmission).toBeLessThanOrEqual(1.05);
+  it("reads exactly 1 at every field no aperture vignettes", () => {
+    const L = stopBehindLens();
+    const curve = computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 }));
+    expect(curve.available).toBe(true);
+    expect(curve.samples.at(-1)!.fieldAngleDeg).toBeGreaterThan(5);
+    for (const sample of curve.samples) {
+      expect(sample.unvignettedFraction).toBe(1);
+      expect(sample.transmittedCount).toBe(sample.sampleCount);
     }
   });
 
-  it("relativeIllumination ≤ geometricTransmission at all non-axis samples", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    for (let i = 1; i < samples.length; i++) {
-      /* Per unit of transmitted area the image is dimmer off axis: cos θ over a growing image area per solid angle */
-      expect(samples[i].relativeIllumination).toBeLessThanOrEqual(samples[i].geometricTransmission + 1e-9);
+  it("follows cos⁴θ with the stop at a thin, slow element, within the lattice's and the element's bounds", () => {
+    // A 0.05 mm biconvex element of focal length D ≈ 97 mm, the stop 1 µm ahead of it at a = 0.25 mm: the exit pupil
+    // is the stop, so the image point at field θ sees it at cos⁴θ. Two terms bound the difference:
+    //   - the lattice: Rimmer's integrand varies across the pupil by about 2(a/D)tanθ, which the same symmetric cell
+    //     set at every field weighs unevenly only within a cell width h of its rim: h · 2(a/D)tanθ;
+    //   - the element: its thickness t moves the image-side chief by about t·tanθ/D, and cos⁴ moves with it by
+    //     4 sinθ cos³θ · t·tanθ/D.
+    const [a, t, D] = [0.25, 0.05, 96.7];
+    const L = lensWith("test-vignetting-thin-element", [
+      { label: "STO", R: 1e15, nd: 1, sd: 3, d: 0.001, elemId: 0 },
+      { label: "1", R: 100, nd: 1.5168, sd: 1, d: t, elemId: 1 },
+      { label: "2", R: -100, nd: 1, sd: 1, d: D, elemId: 0 },
+    ]);
+    const curve = computeVignettingCurve(analysisRequestAt(L, { currentEPSD: a, currentPhysStopSD: a }));
+    const h = 2 / curve.cellsAcross;
+    expect(curve.samples.at(-1)!.fieldAngleDeg).toBeGreaterThan(10);
+    for (const sample of curve.samples) {
+      const theta = radians(sample.fieldAngleDeg);
+      const bound =
+        h * 2 * (a / D) * Math.tan(theta) + 4 * Math.sin(theta) * Math.cos(theta) ** 3 * ((t * Math.tan(theta)) / D);
+      expect(sample.unvignettedFraction).toBe(1);
+      expect(Math.abs(sample.relativeIllumination! - Math.cos(theta) ** 4)).toBeLessThanOrEqual(bound + 1e-12);
     }
   });
 
-  it("all values are finite", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
+  it("counts a two-aperture beam as the overlap of two discs", () => {
+    // The stop (radius R) is the first surface and a second aperture of the same radius sits Δ behind it in air, so a
+    // collimated field's beam reaches it as the stop disc shifted by s = Δ·tanθ. The share that passes is the lattice
+    // cells inside both discs, exactly; the discs' overlap area, (2/π)(acos(σ/2) − (σ/2)√(1 − σ²/4)) at σ = s/R, is
+    // that count's limit, within the cells a band of one cell's diagonal around the overlap's edge can hold.
+    const [R, gap] = [2, 10];
+    const L = lensWith("test-vignetting-two-apertures", [
+      { label: "STO", R: 1e15, nd: 1, sd: R, d: gap, elemId: 0 },
+      { label: "A", R: 1e15, nd: 1, sd: R, d: 1, elemId: 0 },
+      { label: "1", R: 50, nd: 1.5168, sd: 12, d: 5, elemId: 1 },
+      { label: "2", R: -50, nd: 1, sd: 12, d: 45, elemId: 0 },
+    ]);
+    const request = analysisRequestAt(L, { currentEPSD: R, currentPhysStopSD: R });
+    const curve = computeVignettingCurve(request);
+    const lattice = vignettingStopLattice(curve.cellsAcross);
+    const h = 2 / curve.cellsAcross;
+    let partial = 0;
+    for (const sample of curve.samples) {
+      const field = computeVignettingField(request, sample.fieldFraction);
+      const direction = field.cells.find((cell) => cell.ray.status === "aimed")!.ray.direction!;
+      const sigma = (gap * (direction[1] / direction[2])) / R;
+      // Cells whose centre lies within 1e-9 of the second rim are the tracer's call; every other one is exact.
+      const inside = lattice.filter((cell) => Math.hypot(cell.xFraction, cell.yFraction + sigma) < 1 - 1e-9).length;
+      const edge = lattice.filter((cell) => Math.abs(Math.hypot(cell.xFraction, cell.yFraction + sigma) - 1) <= 1e-9);
+      expect(sample.transmittedCount).toBeGreaterThanOrEqual(inside);
+      expect(sample.transmittedCount).toBeLessThanOrEqual(inside + edge.length);
+      const half = Math.min(Math.abs(sigma) / 2, 1);
+      const overlap = (2 / Math.PI) * (Math.acos(half) - half * Math.sqrt(1 - half * half));
+      const perimeter = 4 * Math.acos(half);
+      expect(Math.abs(sample.unvignettedFraction! - overlap)).toBeLessThanOrEqual(
+        (Math.SQRT2 * h * perimeter) / Math.PI,
+      );
+      if (overlap > 0.05 && overlap < 0.95) partial++;
+    }
+    expect(partial).toBeGreaterThan(1);
+  });
 
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    for (const s of samples) {
-      expect(isFinite(s.fieldAngleDeg)).toBe(true);
-      expect(isFinite(s.geometricTransmission)).toBe(true);
-      expect(isFinite(s.relativeIllumination)).toBe(true);
+  it("reports a field whose cell map folds in cosine space as unavailable, never a number", () => {
+    // The stop at the front focal plane makes image space telecentric, so each ray's own exit direction is its cosine.
+    // A strong negative A4 on the rear surface turns the exit slope back past about 0.6 of the beam: the lattice's map
+    // from stop to direction cosines folds there.
+    const L = lensWith(
+      "test-vignetting-folded-cosines",
+      [
+        { label: "STO", R: 1e15, nd: 1, sd: 4, d: 95, elemId: 0 },
+        { label: "1", R: 100, nd: 1.5168, sd: 8, d: 3, elemId: 1 },
+        { label: "2A", R: -100, nd: 1, sd: 8, d: 95, elemId: 0 },
+      ],
+      { asph: { "2A": { K: 0, A4: 2e-4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } as Partial<LensData>,
+    );
+    const curve = computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 4, currentPhysStopSD: 4 }));
+    expect(curve.available).toBe(true);
+    const axis = curve.samples[0];
+    expect(axis.relativeIlluminationReason).toBe("cosine-map-folds");
+    expect(axis.relativeIllumination).toBeNull();
+    expect(axis.unvignettedFraction).toBe(1);
+  });
+
+  it("reads 1 on the axis unless an aperture clips the axial beam, and names the clipping aperture", () => {
+    // Clear: the Sony FE 20 mm wide open passes its whole axial beam.
+    const sony = build(SonyFE20Raw);
+    expect(computeVignettingCurve(analysisRequestAt(sony, apertureAt(sony, 0, 0))).samples[0].unvignettedFraction).toBe(
+      1,
+    );
+    // Clipped: a 5 mm stop 1 mm ahead of a singlet whose front rim is 3 mm. Collimated axial rays reach the front
+    // surface at their stop height, so only the cells within 3/5 of the stop pass, and the front rim (surface 1) is
+    // what stops the others.
+    const L = buildSimplePositiveElementLens("test-vignetting-axis-clipped", { elementSd: 3 });
+    const request = analysisRequestAt(L, { currentEPSD: 5, currentPhysStopSD: 5 });
+    const axis = computeVignettingField(request, 0);
+    const lattice = vignettingStopLattice(axis.cellsAcross);
+    expect(axis.transmittedCount).toBe(
+      lattice.filter((cell) => Math.hypot(cell.xFraction, cell.yFraction) <= 0.6).length,
+    );
+    expect(axis.unvignettedFraction).toBeLessThan(1);
+    const launch = prepareAimedPupilLaunch(
+      request,
+      lattice,
+      computeOffAxisFieldGeometry(request.preparedGeometry, 0)!,
+    )!;
+    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
+    for (const cell of axis.cells.filter((entry) => !entry.transmitted)) {
+      expect(
+        trace.engine(launch.rays[cell.cell.index] as Parameters<typeof trace.engine>[0]).terminalSurfaceIndex,
+      ).toBe(1);
     }
   });
 
-  it("applies the Minolta STF apodizer to relative illumination without changing geometric transmission", () => {
+  it("counts blocked samples as vignetted and leaves unaimed ones out of both counts", () => {
+    // Blocked: the biconvex element's spheres meet 8.7 mm out, past its 5 mm rims, and the 8 mm stop's rim needs
+    // about 10.8 mm there; the rays toward it leave the element's rim first.
+    const blockedLens = lensWith("test-vignetting-blocked", [
+      { label: "1", R: 20, nd: 1.5168, sd: 5, d: 4, elemId: 1 },
+      { label: "2", R: -20, nd: 1, sd: 5, d: 5, elemId: 0 },
+      { label: "STO", R: 1e15, nd: 1, sd: 8, d: 40, elemId: 0 },
+    ]);
+    const blocked = computeVignettingField(analysisRequestAt(blockedLens, { currentEPSD: 8, currentPhysStopSD: 8 }), 0);
+    expect(blocked.blockedCount).toBeGreaterThan(0);
+    for (const cell of blocked.cells.filter((entry) => entry.ray.status === "blocked"))
+      expect(cell.transmitted).toBe(false);
+    // Blocked samples stay in the denominator; the few unaimed ones at the rim leave it.
+    expect(blocked.unaimedCount).toBeLessThanOrEqual(0.01 * blocked.sampleCount);
+    expect(blocked.unvignettedFraction).toBe(blocked.transmittedCount / (blocked.sampleCount - blocked.unaimedCount));
+
+    // Unaimed: in n = 1.9 glass, rays above 4.2 mm meet the 8 mm rear sphere past the critical angle, so no ray
+    // reaches the stop's outer zone 2 mm behind it. A stop just past the reachable radius leaves a thin unaimed ring.
+    const tir = lensWith(
+      "test-vignetting-unaimed",
+      [
+        { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
+        { label: "2", R: -8, nd: 1, sd: 7, d: 2, elemId: 0 },
+        { label: "STO", R: 1e15, nd: 1, sd: 2, d: 40, elemId: 0 },
+      ],
+      { elements: [{ ...constructionFixtureData(buildSimplePositiveElementLens()).elements[0], nd: 1.9 }] },
+    );
+    const fieldAt = (stop: number) =>
+      computeVignettingField(analysisRequestAt(tir, { currentEPSD: stop, currentPhysStopSD: stop }), 0);
+    const reach = Math.max(
+      ...fieldAt(2)
+        .cells.filter((cell) => cell.ray.status === "aimed")
+        .map((cell) => Math.hypot(cell.cell.xFraction, cell.cell.yFraction) * 2),
+    );
+    const few = fieldAt(reach / 0.997);
+    expect(few.unaimedCount).toBeGreaterThan(0);
+    expect(few.unaimedCount).toBeLessThanOrEqual(0.01 * few.sampleCount);
+    expect(few.unvignettedFraction).toBe(few.transmittedCount / (few.sampleCount - few.unaimedCount));
+    const many = fieldAt(2);
+    expect(many.unaimedCount).toBeGreaterThan(0.01 * many.sampleCount);
+    expect(many.unvignettedFraction).toBeNull();
+    expect(many.unavailableReason).toBe("too-many-unaimed");
+  });
+
+  it("returns a field's rays and cells bit for bit, alone or in the curve, in any order", () => {
+    const L = sharedSonnar50f15();
+    const request = analysisRequestAt(L, apertureAt(L, 0, 0));
+    const curve = computeVignettingCurve(request);
+    const fractions = curve.samples.map((sample) => sample.fieldFraction);
+    const forward = fractions.map((fraction) => computeVignettingField(request, fraction));
+    const backward = [...fractions]
+      .reverse()
+      .map((fraction) => computeVignettingField(request, fraction))
+      .reverse();
+    expect(backward).toEqual(forward);
+    forward.forEach((field, i) => {
+      expect(field.unvignettedFraction).toBe(curve.samples[i].unvignettedFraction);
+      // The launch a cross-checker makes from the exported lattice gives the same rays.
+      const geometry = computeOffAxisFieldGeometry(
+        request.preparedGeometry,
+        field.fieldFraction,
+        computeAnalysisFieldGeometryAtState(0, 0, L, 0),
+      )!;
+      const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(field.cellsAcross), geometry)!;
+      expect(field.cells.map((cell) => cell.ray)).toEqual(launch.rays);
+    });
+    // Each −px cell is its +px partner's exact mirror image.
+    const edge = forward.at(-1)!;
+    expect(edge.mirrored).toBe(true);
+    for (const cell of edge.cells) {
+      const partner = edge.cells.find(
+        (other) => other.cell.row === cell.cell.row && other.cell.column === edge.cellsAcross - 1 - cell.cell.column,
+      )!;
+      expect(cell.transmitted).toBe(partner.transmitted);
+      expect(cell.cosineArea).toBe(partner.cosineArea);
+      if (cell.referredDirectionCosines)
+        expect(cell.referredDirectionCosines[0] + 0).toBe(-partner.referredDirectionCosines![0] + 0);
+    }
+  });
+
+  it("never exceeds 1, including where a retrofocus pupil grows off the axis", () => {
+    // At f/8 the Sony FE 20 mm's 47° beam is wholly transmitted; the old launch-area figure read 1.33 there.
+    const L = build(SonyFE20Raw);
+    const curve = computeVignettingCurve(
+      analysisRequestAt(L, { ...apertureAt(L, 0, 0.6), sampling: { vignettingFieldSampleCount: 3 } }),
+    );
+    expect(curve.samples.at(-1)!.fieldAngleDeg).toBeGreaterThan(45);
+    for (const sample of curve.samples) expect(sample.unvignettedFraction).toBeLessThanOrEqual(1);
+    expect(curve.samples.at(-1)!.unvignettedFraction).toBe(1);
+  });
+
+  it("applies the Minolta STF apodizer to relative illumination without changing the vignetting curve", () => {
     const stf = build(MinoltaSTFRaw);
     const transparent = build({
       ...MinoltaSTFRaw,
@@ -127,218 +292,60 @@ describe("computeVignettingCurve", () => {
         element.id === 5 ? { ...element, absorptionCoefficientPerMm: undefined } : element,
       ),
     });
-
-    const curveFor = (L: RuntimeLens) => {
-      const { z } = doLayout(0, 0, L);
-      const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-      return computeVignettingCurve(L, z, 0, 0, currentEPSD, currentPhysStopSD);
-    };
-    const absorbed = curveFor(stf);
-    const clear = curveFor(transparent);
-
+    const curveFor = (L: RuntimeLens) => computeVignettingCurve(analysisRequestAt(L, apertureAt(L, 0, 0))).samples;
+    const [absorbed, clear] = [curveFor(stf), curveFor(transparent)];
     expect(absorbed).toHaveLength(clear.length);
-    for (let i = 0; i < absorbed.length; i++) {
-      expect(absorbed[i].geometricTransmission).toBeCloseTo(clear[i].geometricTransmission, 12);
-    }
+    absorbed.forEach((sample, i) => expect(sample.unvignettedFraction).toBe(clear[i].unvignettedFraction));
     expect(
       Math.max(
         ...absorbed
           .slice(1)
-          .map((sample, index) => Math.abs(sample.relativeIllumination - clear[index + 1].relativeIllumination)),
+          .map((sample, i) => Math.abs(sample.relativeIllumination! - clear[i + 1].relativeIllumination!)),
       ),
     ).toBeGreaterThan(1e-3);
   });
 
-  it("returns finite non-negative samples in exact mode when Sonnar rays survive", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, undefined, 0);
-
-    for (const sample of samples) {
-      expect(isFinite(sample.fieldAngleDeg)).toBe(true);
-      expect(isFinite(sample.geometricTransmission)).toBe(true);
-      expect(isFinite(sample.relativeIllumination)).toBe(true);
-      expect(sample.geometricTransmission).toBeGreaterThanOrEqual(0);
-      expect(sample.relativeIllumination).toBeGreaterThanOrEqual(0);
-    }
-  });
-
-  it("first sample field angle is 0°", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(samples[0].fieldAngleDeg).toBe(0);
-  });
-
-  /* ── Edge cases ── */
-
-  it.each([
-    [
-      "computeVignettingCurve (currentEPSD zero or negative)",
-      () => {
-        const L = sharedSonnar50f15();
-        const { z: zPos } = doLayout(0, 0, L);
-        const { currentPhysStopSD } = apertureAt(L, 0, 0);
-        return [
-          computeVignettingCurve(L, zPos, 0, 0, 0, currentPhysStopSD),
-          computeVignettingCurve(L, zPos, 0, 0, -1, currentPhysStopSD),
-        ];
-      },
-    ],
-    [
-      "computeVignettingCurve (degenerate lens, L.N < 1)",
-      () => [computeVignettingCurve(registerRuntimeFixture({ ...sharedSonnar50f15(), N: 0 }), [], 0, 0, 1, 1)],
-    ],
-  ])("%s returns an empty array", (_name, run) => {
-    for (const samples of run()) {
-      expect(samples).toEqual([]);
-    }
-  });
-
-  it("stays aligned when using precomputed field geometry", () => {
-    const L = sharedSonnar50f15();
-    const focusT = 0.25;
-    const zoomT = 0;
-    const { z: zPos } = doLayout(focusT, zoomT, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.2);
-    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
-
-    const withGeometry = computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, geometry);
-    const withoutGeometry = computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
-
-    expect(withGeometry).toHaveLength(withoutGeometry.length);
-    expect(withGeometry.at(-1)?.fieldAngleDeg).toBeCloseTo(withoutGeometry.at(-1)?.fieldAngleDeg ?? 0, 1);
-  });
-
-  it("samples to the analysis-limited image-format edge", () => {
-    const L = withImageFormat(sharedSonnar50f15(), "aps-c");
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, geometry);
-
-    expect(samples.length).toBeGreaterThan(1);
-    expect(samples[samples.length - 1].fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg, 10);
-  });
-
-  /* ── Vignetting direction ── */
-
-  it("edge geometricTransmission remains finite at stopped-down Sonnar", () => {
-    const L = sharedSonnar50f15();
-    /* Stop down to f/8 to exaggerate vignetting asymmetry */
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0.8);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(samples.length).toBeGreaterThan(1);
-    const edgeSample = samples[samples.length - 1];
-    expect(isFinite(edgeSample.geometricTransmission)).toBe(true);
-    expect(edgeSample.geometricTransmission).toBeGreaterThanOrEqual(0);
-  });
-
-  it("edge relativeIllumination is less than geometricTransmission (oblique falloff)", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    const edgeSample = samples[samples.length - 1];
-    /* At the field edge obliquity must reduce RI below GT */
-    expect(edgeSample.relativeIllumination).toBeLessThan(edgeSample.geometricTransmission + 1e-9);
-  });
-
-  /* ── Zoom lens ── */
-
-  it("produces samples for a zoom lens at tele position", () => {
-    const L = sharedNikkorZ70200();
-    if (!L.isZoom) return; // skip if not a zoom lens
-    const { z: zPos } = doLayout(0, 1, L);
-    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 1, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
-    /* Adaptive field sampling: ~3° spacing, minimum 7 samples */
-    expect(samples.length).toBeGreaterThanOrEqual(7);
-    expect(samples[0].geometricTransmission).toBeCloseTo(1.0, 5);
-    expect(samples[0].relativeIllumination).toBeCloseTo(1.0, 5);
-  });
-
-  /* ── 2D beam and energy figure ── */
-
-  it("tends to cos⁴ for a thin lens with its stop at the lens and a small aperture", () => {
-    const base = constructionFixtureData(buildSimplePositiveElementLens());
-    const L = build({
-      ...base,
-      key: "test-thin-lens-stop-at-lens",
-      surfaces: [
-        { label: "STO", R: 1e15, nd: 1.0, sd: 3, d: 0.01, elemId: 0 },
-        { label: "1", R: 100, nd: 1.5168, sd: 3, d: 0.3, elemId: 1 },
-        { label: "2", R: -100, nd: 1.0, sd: 3, d: 96.7, elemId: 0 },
-      ],
-    });
-    const samples = computeVignettingCurveBase(analysisRequestAt(L, { currentEPSD: 0.25, currentPhysStopSD: 0.25 }));
-    expect(samples.at(-1)!.fieldAngleDeg).toBeGreaterThan(10);
-    for (const sample of samples) {
-      expect(sample.geometricTransmission).toBeCloseTo(1, 3);
-      expect(sample.relativeIllumination).toBeCloseTo(Math.cos((sample.fieldAngleDeg * Math.PI) / 180) ** 4, 2);
-    }
-  });
-
-  it("measures a retrofocus beam that outgrows the axis's at the field edge", () => {
-    const L = build(SonyFE20Raw);
-    const samples = computeVignettingCurveBase(analysisRequestAt(L, { sampling: { vignettingFieldSampleCount: 3 } }));
-    // The stop's image grows off axis: at 47° the beam's area is 1.33× the axis's.
-    expect(samples.at(-1)!.geometricTransmission).toBeGreaterThan(1.2);
-    expect(samples[0]).toEqual({ fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 });
-  });
-
-  it("counts a vignetted beam's area below the old meridional chord", () => {
-    const L = build(CanonEF135Raw);
-    const request = analysisRequestAt(L, {});
-    const samples = computeVignettingCurveBase(request);
-    const edge = samples.at(-1)!;
-
-    // The chord the tab traced before: 192 rays across the axis's entrance pupil at the solved chief ray.
-    const { focusT, zoomT, aberrationT } = request.preparedGeometry;
-    const trace = prepareRayTrace(L, {
-      zPos: request.preparedGeometry.z as number[],
-      focusT,
-      zoomT,
-      stopSD: request.aperture.stopSemiDiameterMm,
-      ghost: true,
-      aberrationT,
-    });
-    const chord = (fieldAngleDeg: number) => {
-      const chief = solveChiefRayForRuntimeLens(fieldAngleDeg, focusT, zoomT, L, undefined, aberrationT);
-      return evenlySpacedSigned(192).filter(
-        (f) => !trace.ray(chief.yLaunch + f * request.aperture.entrancePupilSemiDiameterMm, chief.uField).clipped,
-      ).length;
-    };
-    // A chord through a lens-shaped beam is a larger share of the diameter than the area is of the disc.
-    expect(edge.geometricTransmission).toBeLessThan(chord(edge.fieldAngleDeg) / chord(0) - 0.05);
-    expect(edge.geometricTransmission).toBeGreaterThan(0.2);
-  });
-
-  it("moves no field by more than 0.01 when the beam lattice doubles", () => {
+  it("moves no field by more than 0.01 when the lattice doubles", () => {
     const L = build(CanonEF135Raw);
     const at = (cells: number) =>
-      computeVignettingCurveBase(analysisRequestAt(L, { sampling: { vignettingPupilSampleCount: cells } }));
+      computeVignettingCurve(analysisRequestAt(L, { sampling: { vignettingPupilSampleCount: cells } })).samples;
     const [coarse, fine] = [at(64), at(128)];
     expect(fine).toHaveLength(coarse.length);
     coarse.forEach((sample, i) => {
       expect(fine[i].fieldAngleDeg).toBe(sample.fieldAngleDeg);
-      expect(Math.abs(fine[i].geometricTransmission - sample.geometricTransmission)).toBeLessThan(0.01);
-      expect(Math.abs(fine[i].relativeIllumination - sample.relativeIllumination)).toBeLessThan(0.01);
+      expect(Math.abs(fine[i].unvignettedFraction! - sample.unvignettedFraction!)).toBeLessThan(0.01);
+      expect(Math.abs(fine[i].relativeIllumination! - sample.relativeIllumination!)).toBeLessThan(0.01);
     });
   });
 
-  it("returns no curve for a state outside the beam model instead of mixing methods", () => {
-    // A fisheye's fields launch on the bounding sphere, which the MTF's launch does not cover.
-    const L = build(FisheyeRaw);
-    expect(computeVignettingCurveBase(analysisRequestAt(L, {}))).toEqual([]);
+  it("samples the tab's fields: at least seven, from 0° to the analysis-limited edge", () => {
+    const L = sharedSonnar50f15();
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const curve = computeVignettingCurve(analysisRequestAt(L, { ...apertureAt(L, 0, 0), fieldGeometry: geometry }));
+    expect(curve.samples.length).toBeGreaterThanOrEqual(7);
+    expect(curve.samples[0].fieldAngleDeg).toBe(0);
+    expect(curve.samples.at(-1)!.fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg, 10);
+    expect(curve.samples[0].relativeIllumination).toBe(1);
+  });
+
+  it("produces a curve for a zoom lens at its tele end", () => {
+    const L = sharedNikkorZ70200();
+    const { z } = doLayout(0, 1, L);
+    const curve = computeVignettingCurve(analysisRequestAt(L, { zPos: z, zoomT: 1, ...apertureAt(L, 1, 0) }));
+    expect(curve.samples.length).toBeGreaterThanOrEqual(7);
+    expect(curve.samples[0].relativeIllumination).toBe(1);
+  });
+
+  it("gives the reason a state has no curve", () => {
+    // A fisheye projection is outside the beam model.
+    expect(computeVignettingCurve(analysisRequestAt(build(FisheyeRaw), {}))).toMatchObject({
+      available: false,
+      reason: "unsupported-path",
+      samples: [],
+    });
+    const L = sharedSonnar50f15();
+    expect(computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 1, currentPhysStopSD: 0 })).reason).toBe(
+      "invalid-state",
+    );
   });
 });

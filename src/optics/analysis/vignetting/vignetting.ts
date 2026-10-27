@@ -1,397 +1,639 @@
 /**
- * Vignetting / relative illumination analysis — pure function for computing
- * illumination falloff across the field for the current lens state.
+ * Vignetting and relative illumination: OpticStudio's two field analyses, on one lattice on the stop per field.
  *
- * Each field's transmitted beam is found and sampled in two dimensions with the
- * MTF's own launch machinery: the chief-ray launch, the footprint scan over the
- * launch plane, and a square lattice of about 64 cells across the beam. Geometric
- * transmission is the lit cells' area on the launch plane. Relative illumination
- * follows from conservation of energy: the flux a field's beam carries per unit
- * of object solid angle, its lit area weighted by authored bulk transmission
- * times cos θ, over the image area that unit solid angle covers: (dh/dθ)(h/sin θ)
- * from lit chief rays 0.01° apart, or, where the chief ray is vignetted, the median
- * ray tube of the beam with its stop crossing held (`traceBeam`).
+ * Each field launches a regular lattice of stop samples through the aimed pupil launch (`pupils/aimedPupil.ts`):
+ * `BEAM_GRID_CELLS` cells across the stop's diameter, keeping the cells whose centre lies in the unit disc. Every
+ * returned ray is traced with every aperture checked.
  *
- * Assumptions / scope:
- *   - The beam is sampled over its full 2D footprint, so off-axis growth and shift
- *     of the stop's image (pupil aberration) and lens-shaped vignetted beams are
- *     measured. Geometric transmission may exceed 1 where the stop's image grows
- *     off axis.
- *   - Relative illumination assumes no law of the field angle: the beam's
- *     cross-section, the stop's image at each field and the object-to-image
- *     mapping (distortion, image-side obliquity) all come from traced rays. It is
- *     the mean irradiance on the image plane from a uniformly bright distant
- *     object, so it does not depend on where each field focuses. Fresnel
- *     reflection losses and coating transmission are out of scope.
- *   - Fields launch collimated along the solved chief ray at every focus, as the
- *     tab always has.
- *   - Both figures are normalized to the axis's own 2D figures, so any residual
- *     on-axis vignetting is measured, not folded in, and the axis is exactly 1.
- *   - States the MTF's beam model refuses (fisheye projections, folded, mirror,
- *     diffractive or annular paths, a tilted image plane) and curves with a
- *     bounding-sphere field return no curve: a curve is never assembled from two
- *     methods. A field whose chief ray cannot be solved through the stop
- *     transmits no beam the lattice can find and counts as dark.
+ *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
+ *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
+ *     samples count as vignetted; unaimed samples are left out of both counts, and each field reports how many there
+ *     were.
+ *   - Relative illumination follows Rimmer's method, as OpticStudio computes it: a transmitted cell contributes n′²
+ *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
+ *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
+ *     Eq. 3): (L, M) are the direction cosines of the segment from the ray's crossing of a sphere centred on the chief
+ *     ray's image-plane point, through the paraxial exit pupil, to that point. Without aberration this is the ray's
+ *     own direction; with it, the cone is the exit pupil as seen from the image point, not from where each ray happens
+ *     to focus. A cell's cosine-space area is |det J| times its stop area, J the Jacobian of the lattice's map from
+ *     stop coordinates to (L, M), by finite differences between lit cells. The chief ray that names the image point is
+ *     traced without aperture checks, so a field whose chief ray is vignetted keeps its image point.
  *
- * No React dependencies — fully testable in isolation.  Memoize from current
- * state in a React hook rather than embedding in a component.
+ * Edge cells: a transmitted cell counts its whole cell in both figures (the midpoint rule). Each derivative of its
+ * Jacobian is a central difference where both lattice neighbours along that axis transmit, one-sided where one does,
+ * and, for a cell with no transmitting neighbour along an axis (the tip of a cat's-eye beam), that derivative of the
+ * nearest cell in its column or row that has one (the mean of two at equal distance).
+ *
+ * Rimmer's method assumes the cell map does not fold in cosine space: a field where a transmitted cell's oriented
+ * area is reversed or collapses below `RIMMER_MIN_CELL_AREA_RATIO` of the field's median has no relative
+ * illumination. A field with more unaimed samples than `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither
+ * figure. States the MTF's beam model refuses (folded, mirror, diffractive or annular paths, fisheye projections, a
+ * tilted image plane) and curves with a bounding-sphere field have no curve. Each of these carries its reason.
+ *
+ * On a meridional field of a system mirror-symmetric about the meridian (`trace/symmetry.ts`), the +px half is traced
+ * and the −px half is its exact mirror image, as the launch itself mirrors.
+ *
+ * No React dependencies — fully testable in isolation.  Memoize from current state in a React hook rather than
+ * embedding in a component.
  */
 
 import { uniformFieldFraction } from "../sampling.js";
-
-import { prepareEngineTrace, traceEngineRay } from "../../trace/rayAdapters.js";
-import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import { launchSurfaceForFieldDeg } from "../../field/projection.js";
-import { LINE_NM } from "../../chromatic/spectralLines.js";
-import {
-  findMtfFieldFootprint,
-  mtfImagePoint,
-  mtfLaunchGrid,
-  mtfLaunchRay,
-  mtfMirrorSymmetric,
-  mtfTraceOptions,
-  prepareMtfFieldLaunch,
-} from "../mtf/mtfTracing.js";
-import type { MtfFieldLaunch } from "../mtf/mtfTracing.js";
-import { traceRayClassification } from "../../trace/rayClassification.js";
-import type { MtfFootprint } from "../mtf/mtfFootprint.js";
+import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
+import { prepareEngineTrace } from "../../trace/rayAdapters.js";
+import { xpZRelLastSurfAtZoom } from "../../state/stationTables.js";
+import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
-import type { MtfOptions, MtfSupport } from "../../../types/mtf.js";
-import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
-import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
+import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
+import type { AimedPupilLaunch, AimedPupilRay } from "../pupils/aimedPupil.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import type { OffAxisFieldGeometry } from "../aberration/offAxis.js";
+import type { PreparedGeometry, Vec3 } from "../../types.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 
-/** A single sample on the vignetting / relative-illumination curve. */
+/** Lattice cells across the stop's diameter. */
+export const BEAM_GRID_CELLS = 64;
+/** Fewest cells across the stop a sampling override may request. */
+export const MIN_BEAM_GRID_CELLS = 4;
+/**
+ * Largest share of a field's lattice that may be unaimed. Left out of both counts, unaimed samples could move the
+ * vignetting figure by up to their share, so a field with more has no figures.
+ */
+export const VIGNETTING_MAX_UNAIMED_SHARE = 0.01;
+/**
+ * Smallest oriented cosine-space area of a transmitted cell, as a share of the field's median. Below it, or with the
+ * orientation reversed, the cell map folds or collapses in cosine space and Rimmer's integral does not apply.
+ */
+export const RIMMER_MIN_CELL_AREA_RATIO = 0.01;
+
+/** One cell of the stop lattice: a stop sample at normalised (xFraction, yFraction), its centre in the unit disc. */
+export interface VignettingLatticeCell {
+  /** Position in the lattice list. */
+  index: number;
+  /** Lattice row, 0 at yFraction = −1. */
+  row: number;
+  /** Lattice column, 0 at xFraction = −1. */
+  column: number;
+  xFraction: number;
+  yFraction: number;
+  /** Equal weight, 1 / number of cells. */
+  weight: number;
+}
+
+/** Why a field has neither figure. */
+export type VignettingFieldUnavailableReason = "no-field-launch" | "too-many-unaimed";
+/** Why a field has a vignetting figure but no relative illumination. */
+export type RelativeIlluminationUnavailableReason =
+  | VignettingFieldUnavailableReason
+  | "no-image-point"
+  | "reference-sphere-missed"
+  | "cosine-map-folds"
+  | "isolated-cell"
+  | "axis-unavailable";
+/** Why a lens state has no vignetting curve. */
+export type VignettingCurveUnavailableReason =
+  | "invalid-state"
+  | "unsupported-path"
+  | "tilted-image-plane"
+  | "bounding-sphere-field";
+
+/** One lattice cell of one field. */
+export interface VignettingCellResult {
+  cell: VignettingLatticeCell;
+  /** The launch's ray for this cell, with its status (`aimed`, `blocked` or `unaimed`) and weight. */
+  ray: AimedPupilRay;
+  /** True when the aimed ray reaches the image with every aperture checked. */
+  transmitted: boolean;
+  /** Bulk transmission of a transmitted ray, else 0. */
+  bulkTransmission: number;
+  /** Image-space direction cosines (L, M) of a transmitted ray's own exit direction, else null. */
+  exitDirectionCosines: readonly [number, number] | null;
+  /**
+   * Direction cosines (L, M) of a transmitted ray referred to the image point through the reference sphere (Rimmer's
+   * Eq. 3), which Rimmer's integral uses; null when the ray does not cross the sphere or the field has no image point.
+   */
+  referredDirectionCosines: readonly [number, number] | null;
+  /** Refractive index of the image space n′, or null. */
+  imageIndex: number | null;
+  /** Oriented cosine-space area det J · cell area of a transmitted cell, or null where no Jacobian forms. */
+  orientedCosineArea: number | null;
+  /** Area of the cell in image-space direction-cosine space, |det J| · cell area, or null. */
+  cosineArea: number | null;
+}
+
+/** One field on its stop lattice. */
+export interface VignettingFieldResult {
+  fieldFraction: number;
+  fieldAngleDeg: number;
+  /** Lattice cells across the stop's diameter. */
+  cellsAcross: number;
+  /** Area of one cell in normalised stop units, (2 / cellsAcross)². */
+  cellArea: number;
+  /** True when the −px half is the mirror image of the traced +px half. */
+  mirrored: boolean;
+  /** Chief ray's image-plane point, the reference sphere's centre, or null. */
+  imagePoint: Vec3 | null;
+  /** Reference-sphere radius in mm (Infinity for an image-space telecentric state), or null. */
+  referenceRadiusMm: number | null;
+  sampleCount: number;
+  transmittedCount: number;
+  /** Samples a clear aperture blocks before the stop, counted as vignetted. */
+  blockedCount: number;
+  /** Samples no ray could be aimed at, left out of both counts. */
+  unaimedCount: number;
+  /** Share of the aimed and blocked samples that reach the image, or null. */
+  unvignettedFraction: number | null;
+  /** Σ n′² · bulk transmission · cosine area over the transmitted cells, or null. */
+  rimmerSum: number | null;
+  unavailableReason: VignettingFieldUnavailableReason | null;
+  relativeIlluminationReason: RelativeIlluminationUnavailableReason | null;
+  cells: VignettingCellResult[];
+}
+
+/** A single field on the vignetting / relative-illumination curve. */
 export interface VignettingSample {
   /** Field angle in degrees (0 = on-axis). */
   fieldAngleDeg: number;
-  /**
-   * Geometric transmission: area of the field's transmitted beam on the launch
-   * plane, normalized so on-axis = 1.0. May exceed 1 where the stop's image grows
-   * off axis.
-   */
-  geometricTransmission: number;
-  /**
-   * Relative illumination: mean image-plane irradiance from a uniformly bright
-   * distant object, with authored bulk absorption, normalized so on-axis = 1.0.
-   */
-  relativeIllumination: number;
+  fieldFraction: number;
+  /** Share of the field's stop samples that reach the image, geometric and absolute; null when unavailable. */
+  unvignettedFraction: number | null;
+  /** Rimmer's projected solid angle with transmission, relative to the axis; null when unavailable. */
+  relativeIllumination: number | null;
+  sampleCount: number;
+  transmittedCount: number;
+  blockedCount: number;
+  unaimedCount: number;
+  unavailableReason: VignettingFieldUnavailableReason | null;
+  relativeIlluminationReason: RelativeIlluminationUnavailableReason | null;
+}
+
+/** The tab's curve, or the reason the state has none. */
+export interface VignettingCurve {
+  available: boolean;
+  reason: VignettingCurveUnavailableReason | null;
+  cellsAcross: number;
+  samples: VignettingSample[];
 }
 
 /**
- * Lattice cells across each field's beam.
+ * The stop lattice: cells `cellsAcross` across the stop's diameter, those whose centre lies in the unit disc.
  *
- * Doubling to 128 moves no field by more than about 0.01 on the comparator's
- * benchmark; halving to 32 moves some by up to 0.02.
+ * Coordinates are (2k + 1 − n) / n, so a column and its mirror are exact negatives.
+ *
+ * @param cellsAcross - cells across the diameter; at least `MIN_BEAM_GRID_CELLS`
+ * @returns cells in row-major order, with equal weights
  */
-const BEAM_GRID_CELLS = 64;
-/** Fewest cells across the beam a sampling override may request. */
-const MIN_BEAM_GRID_CELLS = 4;
-/** Field step (deg) of the chief rays whose landings give the image mapping. */
-const MAPPING_STEP_DEG = 0.01;
-/** Tilt (rad) of the ray copies whose landings give each ray tube's image area per unit solid angle. */
-const MAPPING_TILT_RAD = 1e-4;
-/** Lit cells per side of the sub-lattice whose ray tubes sample the image mapping. */
-const MAPPING_SUBLATTICE_CELLS = 16;
-
-type Vec4 = [number, number, number, number];
-
-/** Transmitted beam of one field on the launch plane. */
-interface BeamFigures {
-  /** Lit area, mm². */
-  area: number;
-  /** Lit area weighted by bulk transmission, mm². */
-  flux: number;
-  /** Image area per unit object solid angle from the beam's median ray tube, or null when none can be traced. */
-  tubeMapping: () => number | null;
+export function vignettingStopLattice(cellsAcross: number): VignettingLatticeCell[] {
+  const n = latticeSize(cellsAcross);
+  const cells: Omit<VignettingLatticeCell, "index" | "weight">[] = [];
+  for (let row = 0; row < n; row++) {
+    const yFraction = (2 * row + 1 - n) / n;
+    for (let column = 0; column < n; column++) {
+      const xFraction = (2 * column + 1 - n) / n;
+      if (xFraction * xFraction + yFraction * yFraction <= 1) cells.push({ row, column, xFraction, yFraction });
+    }
+  }
+  const weight = 1 / cells.length;
+  return cells.map((cell, index) => ({ index, ...cell, weight }));
 }
 
 /**
- * Compute the vignetting / relative illumination curve for the current lens state.
+ * The tab's lattice size: the sampling override (at least `MIN_BEAM_GRID_CELLS`), else `BEAM_GRID_CELLS`.
  *
- * Samples the field from center (0°) to the current half-field edge at
- * adaptively spaced angles. At each angle the transmitted beam is located and
- * traced on a 2D lattice, and its area and the image area per unit object
- * solid angle are recorded.
- *
- * @param request - prepared geometry, entrance-pupil/stop radii in mm, field and sampling
- * @returns array of VignettingSample, or empty if invalid or outside the beam model
+ * @param request - analysis request
+ * @returns cells across the stop's diameter
  */
-export function computeVignettingCurve(request: AnalysisRequest): VignettingSample[] {
+export function vignettingCellsAcross(request: AnalysisRequest): number {
+  const override = request.sampling.vignettingPupilSampleCount;
+  return latticeSize(override !== undefined ? override : BEAM_GRID_CELLS);
+}
+
+function latticeSize(cellsAcross: number): number {
+  return Math.max(Math.round(cellsAcross), MIN_BEAM_GRID_CELLS);
+}
+
+/**
+ * Trace one field's stop lattice and integrate its two figures.
+ *
+ * @param request - prepared geometry, stop radius and sampling
+ * @param fieldFraction - fraction of the half field in [0, 1]
+ * @param cellsAcross - lattice cells across the stop's diameter
+ * @param stateGeometry - the state's field geometry, when already computed
+ * @returns the field's samples, cells and figures; relative illumination is the caller's ratio of `rimmerSum`s
+ */
+export function computeVignettingField(
+  request: AnalysisRequest,
+  fieldFraction: number,
+  cellsAcross: number = vignettingCellsAcross(request),
+  stateGeometry?: FieldGeometryState,
+): VignettingFieldResult {
+  const state = request.preparedGeometry;
+  const n = latticeSize(cellsAcross);
+  const lattice = vignettingStopLattice(n);
+  // The tab's own field geometry, so a fraction names the same field alone as in the curve.
+  const fields = stateGeometry ?? analysisFieldGeometry(request);
+  const geometry = computeOffAxisFieldGeometry(state, fieldFraction, fields);
+  const fieldAngleDeg = fieldFraction * fields.halfFieldDeg;
+  const base = {
+    fieldFraction,
+    fieldAngleDeg,
+    cellsAcross: n,
+    cellArea: (2 / n) ** 2,
+    sampleCount: lattice.length,
+  };
+  const scalar = geometry && !isOffAxisVectorFieldGeometry(geometry) ? geometry : null;
+  const launch = scalar && prepareAimedPupilLaunch(request, lattice, scalar);
+  if (!scalar || !launch) return unavailableField(base, "no-field-launch", lattice.length);
+
+  // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
+  const mirrored = mirrorSymmetricAboutMeridian(state);
+  const tracer = prepareAimedPupilTrace(state, launch);
+  const reference = referenceSphere(state, launch, scalar);
+  const cells = traceLattice(state, lattice, launch, tracer.engine, n, mirrored, reference);
+
+  const unaimedCount = launch.unaimedCount;
+  const blockedCount = launch.blockedCount;
+  const transmittedCount = cells.filter((cell) => cell.transmitted).length;
+  const counts = {
+    ...base,
+    mirrored,
+    imagePoint: reference?.center ?? null,
+    referenceRadiusMm: reference?.radius ?? null,
+    transmittedCount,
+    blockedCount,
+    unaimedCount,
+  };
+  if (unaimedCount > VIGNETTING_MAX_UNAIMED_SHARE * lattice.length)
+    return { ...counts, ...noFigures("too-many-unaimed"), cells };
+
+  const unvignettedFraction = transmittedCount / (lattice.length - unaimedCount);
+  const rimmer: ReturnType<typeof integrateCosineAreas> = !reference
+    ? { sum: null, reason: "no-image-point" }
+    : cells.some((cell) => cell.transmitted && !cell.referredDirectionCosines)
+      ? { sum: null, reason: "reference-sphere-missed" }
+      : integrateCosineAreas(cells, n, base.cellArea, mirrored);
+  return {
+    ...counts,
+    unvignettedFraction,
+    rimmerSum: rimmer.sum,
+    unavailableReason: null,
+    relativeIlluminationReason: rimmer.reason,
+    cells,
+  };
+}
+
+/**
+ * Compute the vignetting / relative-illumination curve for the current lens state.
+ *
+ * The fields run from the axis to the current half-field edge at the tab's spacing: about 3° apart and at least seven.
+ *
+ * @param request - prepared geometry, stop radius, field and sampling
+ * @returns the curve, or the reason the state has none
+ */
+export function computeVignettingCurve(request: AnalysisRequest): VignettingCurve {
   const { preparedGeometry: state, sampling } = request;
-  const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
-  const fieldGeometry = request.fieldGeometry ?? undefined;
-  if (currentEPSD <= 0 || L.N < 1) return [];
-  // One method per curve: a state the MTF's beam model refuses gets no curve rather than another method's.
-  if (!mtfSequentialRefractivePath(state) || !mtfAxialImagePlane(state)) return [];
+  const cellsAcross = vignettingCellsAcross(request);
+  const none = (reason: VignettingCurveUnavailableReason): VignettingCurve => ({
+    available: false,
+    reason,
+    cellsAcross,
+    samples: [],
+  });
+  if (!(request.aperture.stopSemiDiameterMm > 0) || L.N < 1) return none("invalid-state");
+  // One method per curve: a state the beam model refuses gets no curve rather than another method's.
+  if (!mtfSequentialRefractivePath(state)) return none("unsupported-path");
+  if (!mtfAxialImagePlane(state)) return none("tilted-image-plane");
 
-  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
-  const halfFieldDeg = geom.halfFieldDeg;
-  if (halfFieldDeg <= 0 || !isFinite(halfFieldDeg)) return [];
+  const geometry = analysisFieldGeometry(request);
+  const halfFieldDeg = geometry.halfFieldDeg;
+  if (!(halfFieldDeg > 0) || !isFinite(halfFieldDeg)) return none("invalid-state");
 
-  /* Adaptive field sampling: ~3° spacing, min 7 samples.  Ultra-wide lenses
-   * (>50° half-field) get denser sampling to capture rapid vignetting onset
-   * near the field edge. */
-  const fieldSamples =
+  /* Adaptive field sampling: ~3° spacing, min 7 samples.  Ultra-wide lenses (>50° half-field) get denser sampling
+   * to capture rapid vignetting onset near the field edge. */
+  const fieldCount =
     sampling.vignettingFieldSampleCount !== undefined
       ? Math.max(Math.round(sampling.vignettingFieldSampleCount), 3)
       : Math.max(Math.ceil(halfFieldDeg / 3) + 1, 7);
-  const gridSize = Math.max(
-    sampling.vignettingPupilSampleCount !== undefined
-      ? Math.round(sampling.vignettingPupilSampleCount)
-      : BEAM_GRID_CELLS,
-    MIN_BEAM_GRID_CELLS,
-  );
+  const fractions = Array.from({ length: fieldCount }, (_, i) => uniformFieldFraction(i, fieldCount));
+  // A bounding-sphere field has no object-plane launch: no curve instead of a mixed one.
+  if (
+    fractions.some(
+      (fraction) => launchSurfaceForFieldDeg(fraction * halfFieldDeg, state.lens.projection.config) !== "object-plane",
+    )
+  )
+    return none("bounding-sphere-field");
 
-  /* The MTF's launch and footprint, at the authored indices and the reference
-   * line, with no finite conjugate: the tab traces collimated fields. */
-  const options: MtfOptions = {
-    method: "geometric",
-    spectrum: "reference",
-    focus: "design",
-    pupilSemiDiameterMm: currentEPSD,
-    stopSemiDiameterMm: currentPhysStopSD,
-  };
-  const support: MtfSupport = {
-    available: true,
-    reason: null,
-    message: "",
-    referenceWavelengthNm: LINE_NM.d,
-    useResolvedReference: false,
-    spectralLines: [{ wavelengthNm: LINE_NM.d, weight: 1 }],
-    limitations: [],
-  };
-  const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
-  const traceRay = prepareEngineTrace(state, traceOptions);
-  // Tilted copies of lit rays stay within the lit zones, so they need no aperture checks.
-  const mappingOptions: TraceOptions = { ...traceOptions, checkSemiDiameter: false, stopOnClip: false };
-  const mirror = mtfMirrorSymmetric(state);
-  const launchAt = (fieldAngleDeg: number): MtfFieldLaunch | null =>
-    launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config) === "object-plane"
-      ? prepareMtfFieldLaunch(state, options, support, fieldAngleDeg)
-      : null;
-
-  const fieldAngles = Array.from(
-    { length: fieldSamples },
-    (_, i) => uniformFieldFraction(i, fieldSamples) * halfFieldDeg,
-  );
-  // A bounding-sphere field has no MTF launch and would need the old sweep: no curve instead of a mixed one.
-  if (fieldAngles.some((deg) => launchSurfaceForFieldDeg(deg, state.lens.projection.config) !== "object-plane"))
-    return [];
-
-  /** Landing height of a field's chief ray when it passes every aperture; a vignetted one would run past a rim. */
-  const litChiefHeight = (launch: MtfFieldLaunch | null): number | null => {
-    if (!launch) return null;
-    const trace = traceRay(mtfLaunchRay(launch, 0, 0));
-    return traceRayClassification(trace, state, currentPhysStopSD) === "valid"
-      ? (mtfImagePoint(state, trace)?.y ?? null)
-      : null;
-  };
-  /**
-   * Image area per unit object solid angle from lit chief rays re-solved 0.01° to either side, (dh/dθ)(h/sin θ): the
-   * chief ray holds the stop's centre, the pivot `traceBeam` holds for its tubes. One-sided where a neighbour clips.
-   */
-  const chiefMapping = (fieldAngleDeg: number, launch: MtfFieldLaunch): number | null => {
-    const height = litChiefHeight(launch);
-    if (height === null) return null;
-    const [low, high] = [fieldAngleDeg - MAPPING_STEP_DEG, fieldAngleDeg + MAPPING_STEP_DEG].map((deg) =>
-      litChiefHeight(launchAt(deg)),
-    );
-    const rise =
-      low !== null && high !== null
-        ? (high - low) / 2
-        : high !== null
-          ? high - height
-          : low !== null
-            ? height - low
-            : null;
-    if (rise === null) return null;
-    const slope = Math.abs(rise / ((MAPPING_STEP_DEG * Math.PI) / 180));
-    return slope * (fieldAngleDeg === 0 ? slope : Math.abs(height) / Math.sin((fieldAngleDeg * Math.PI) / 180));
-  };
-
-  const samples: { fieldAngleDeg: number; area: number; illumination: number }[] = [];
-  for (const fieldAngleDeg of fieldAngles) {
-    // A field with no chief ray through the stop, or no footprint, transmits no beam the lattice can find.
-    const launch = launchAt(fieldAngleDeg);
-    const footprint = launch && findMtfFieldFootprint(state, options, support, launch);
-    const beam =
-      launch &&
-      footprint &&
-      traceBeam(state, traceRay, mappingOptions, launch, footprint, gridSize, mirror, currentPhysStopSD);
-    if (!launch || !beam || !(beam.flux > 0)) {
-      samples.push({ fieldAngleDeg, area: beam?.area ?? 0, illumination: 0 });
-      continue;
+  const fields = fractions.map((fraction) => computeVignettingField(request, fraction, cellsAcross, geometry));
+  const axis = fields[0];
+  const axisSum = axis.relativeIlluminationReason === null ? axis.rimmerSum : null;
+  const samples = fields.map((field): VignettingSample => {
+    let relativeIllumination: number | null = null;
+    let relativeIlluminationReason = field.relativeIlluminationReason;
+    if (relativeIlluminationReason === null) {
+      if (axisSum !== null && axisSum > 0 && field.rimmerSum !== null) {
+        relativeIllumination = field.rimmerSum / axisSum;
+      } else {
+        relativeIlluminationReason = "axis-unavailable";
+      }
     }
-    // A lit chief ray passes the surfaces' central zones; the beam's median ray tube stands in for a vignetted one.
-    const imageArea = chiefMapping(fieldAngleDeg, launch) ?? beam.tubeMapping();
-    // A transmitted beam whose image mapping cannot be traced has no illumination figure.
-    if (!(imageArea !== null && imageArea > 0)) return [];
-    samples.push({ fieldAngleDeg, area: beam.area, illumination: (beam.flux * launch.direction[2]) / imageArea });
-  }
+    return {
+      fieldAngleDeg: field.fieldAngleDeg,
+      fieldFraction: field.fieldFraction,
+      unvignettedFraction: field.unvignettedFraction,
+      relativeIllumination,
+      sampleCount: field.sampleCount,
+      transmittedCount: field.transmittedCount,
+      blockedCount: field.blockedCount,
+      unaimedCount: field.unaimedCount,
+      unavailableReason: field.unavailableReason,
+      relativeIlluminationReason,
+    };
+  });
+  return { available: true, reason: null, cellsAcross, samples };
+}
 
-  /* ── Normalise to the axis's own 2D figures ── */
-  const axis = samples[0];
-  if (!(axis.area > 0) || !(axis.illumination > 0)) return [];
-  return samples.map(({ fieldAngleDeg, area, illumination }) => ({
-    fieldAngleDeg,
-    geometricTransmission: area / axis.area,
-    relativeIllumination: illumination / axis.illumination,
-  }));
+/** The request's analysis field geometry: the image-format-limited half field the tab samples. */
+function analysisFieldGeometry(request: AnalysisRequest): FieldGeometryState {
+  const state = request.preparedGeometry;
+  return (
+    request.fieldGeometry ??
+    computeAnalysisFieldGeometryAtState(state.focusT, state.zoomT, runtimeView(state.lens), state.aberrationT)
+  );
+}
+
+function noFigures(reason: VignettingFieldUnavailableReason) {
+  return {
+    unvignettedFraction: null,
+    rimmerSum: null,
+    unavailableReason: reason,
+    relativeIlluminationReason: reason,
+  };
+}
+
+function unavailableField(
+  base: Pick<VignettingFieldResult, "fieldFraction" | "fieldAngleDeg" | "cellsAcross" | "cellArea" | "sampleCount">,
+  reason: VignettingFieldUnavailableReason,
+  sampleCount: number,
+): VignettingFieldResult {
+  return {
+    ...base,
+    mirrored: false,
+    imagePoint: null,
+    referenceRadiusMm: null,
+    transmittedCount: 0,
+    blockedCount: 0,
+    unaimedCount: sampleCount,
+    ...noFigures(reason),
+    cells: [],
+  };
+}
+
+type EngineTrace = ReturnType<typeof prepareAimedPupilTrace>["engine"];
+
+/**
+ * Trace each aimed cell with every aperture checked; on a mirrored field, trace the +px half and mirror the rest.
+ *
+ * @returns one result per lattice cell, in lattice order, with no cosine areas yet
+ */
+function traceLattice(
+  state: AnalysisRequest["preparedGeometry"],
+  lattice: readonly VignettingLatticeCell[],
+  launch: AimedPupilLaunch,
+  trace: EngineTrace,
+  n: number,
+  mirrored: boolean,
+  reference: ReferenceSphere | null,
+): VignettingCellResult[] {
+  const indexAt = latticeIndex(lattice, n);
+  const results: VignettingCellResult[] = new Array(lattice.length);
+  const traceCell = (cell: VignettingLatticeCell): VignettingCellResult => {
+    const ray = launch.rays[cell.index];
+    const dark = {
+      cell,
+      ray,
+      transmitted: false,
+      bulkTransmission: 0,
+      exitDirectionCosines: null,
+      referredDirectionCosines: null,
+      imageIndex: null,
+      orientedCosineArea: null,
+      cosineArea: null,
+    };
+    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray.
+    if (ray.status !== "aimed") return dark;
+    const result = trace(ray);
+    if (result.status !== "ok" || !(result.terminalDirection[2] > 0)) return dark;
+    return {
+      ...dark,
+      transmitted: true,
+      bulkTransmission: bulkTransmissionForTrace(state.lens, result.hits),
+      exitDirectionCosines: [result.terminalDirection[0], result.terminalDirection[1]],
+      referredDirectionCosines:
+        reference && referredDirection(reference, result.terminalPoint, result.terminalDirection),
+      imageIndex: result.finalMedium,
+    };
+  };
+  for (const cell of lattice) {
+    if (mirrored && cell.xFraction < 0) continue;
+    results[cell.index] = traceCell(cell);
+  }
+  if (mirrored) {
+    for (const cell of lattice) {
+      if (cell.xFraction >= 0) continue;
+      const partner = results[indexAt(cell.row, n - 1 - cell.column)!];
+      const mirror = (cosines: readonly [number, number] | null) => cosines && ([-cosines[0], cosines[1]] as const);
+      results[cell.index] = {
+        ...partner,
+        cell,
+        ray: launch.rays[cell.index],
+        exitDirectionCosines: mirror(partner.exitDirectionCosines),
+        referredDirectionCosines: mirror(partner.referredDirectionCosines),
+      };
+    }
+  }
+  return results;
+}
+
+/** Lattice index at (row, column), or null outside the disc. */
+function latticeIndex(
+  lattice: readonly VignettingLatticeCell[],
+  n: number,
+): (row: number, column: number) => number | null {
+  const grid = new Int32Array(n * n).fill(-1);
+  for (const cell of lattice) grid[cell.row * n + cell.column] = cell.index;
+  return (row, column) => {
+    if (row < 0 || row >= n || column < 0 || column >= n) return null;
+    const index = grid[row * n + column];
+    return index < 0 ? null : index;
+  };
 }
 
 /**
- * Trace one field's beam on a square lattice over its footprint.
+ * Fill each transmitted cell's cosine-space area and sum Rimmer's integral.
  *
- * A uniformly bright distant object sends the field's flux, L cos θ Σ w dA over the lit cells of launch area dA and
- * weight w, onto an image area J per unit object solid angle. Where the chief ray is vignetted, `tubeMapping` gives J
- * as the determinant of each ray tube's ∂P/∂ω with its stop crossing s held, ∂P/∂ω − ∂P/∂x · (∂s/∂x)⁻¹ · ∂s/∂ω,
- * taken component by component as the median over a sub-lattice of the lit cells. Two tilted copies of a ray give the
- * direction derivatives of its landing P and stop crossing, and neighbouring lattice cells the launch-point ones.
- * Holding the stop crossing rather than the launch point keeps a field that focuses off the image plane from reading
- * as brighter or dimmer.
+ * The Jacobian of (px, py) → (L, M) comes from finite differences between transmitted cells, in normalised stop
+ * units of spacing 2 / n. On a mirrored field the +px half is integrated and the −px half copies its partner.
  *
- * @param state - prepared geometry
- * @param traceRay - aperture-checked trace at the authored indices
- * @param mappingOptions - unchecked trace options for the tilted ray copies
- * @param launch - field launch
- * @param footprint - launch-plane box of the transmitted beam
- * @param gridSize - cells across the beam's larger dimension
- * @param mirror - true to trace one half pupil and mirror it about the meridional plane
- * @param stopRadius - current physical stop radius in mm
- * @returns lit area, transmission-weighted area and the tube mapping
+ * @returns Σ n′² · T · area, or the reason the field has no relative illumination
  */
-function traceBeam(
-  state: PreparedGeometry,
-  traceRay: (ray: Ray3) => EngineTraceResult,
-  mappingOptions: TraceOptions,
-  launch: MtfFieldLaunch,
-  footprint: MtfFootprint,
-  gridSize: number,
-  mirror: boolean,
-  stopRadius: number,
-): BeamFigures {
-  const grid = mtfLaunchGrid(footprint, gridSize);
-  const { columns, rows } = grid;
-  const stopIndex = state.lens.stop.surfaceIndex;
-  /** Landing on the image plane and crossing of the stop, as [Px, Py, Sx, Sy]. */
-  const crossings = (trace: EngineTraceResult): Vec4 | null => {
-    const landing = mtfImagePoint(state, trace);
-    const stop = trace.hits.find((hit) => hit.surfaceIndex === stopIndex)?.point;
-    return landing && stop ? [landing.x, landing.y, stop[0], stop[1]] : null;
+function integrateCosineAreas(
+  cells: VignettingCellResult[],
+  n: number,
+  cellArea: number,
+  mirrored: boolean,
+): { sum: number | null; reason: RelativeIlluminationUnavailableReason | null } {
+  const lattice = cells.map((cell) => cell.cell);
+  const indexAt = latticeIndex(lattice, n);
+  const h = 2 / n;
+  const lit = (row: number, column: number): VignettingCellResult | null => {
+    const index = indexAt(row, column);
+    const cell = index === null ? null : cells[index];
+    return cell && cell.transmitted ? cell : null;
   };
-  const lit = new Uint8Array(columns * rows);
-  const at = new Float64Array(4 * columns * rows);
-  const weight = new Float64Array(columns * rows);
-  const traces: (EngineTraceResult | undefined)[] = new Array(columns * rows);
-  let cells = 0;
-  let transmitted = 0;
-  for (let row = 0; row < rows; row++) {
-    for (let column = mirror ? columns / 2 : 0; column < columns; column++) {
-      const trace = traceRay(
-        mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step),
-      );
-      if (traceRayClassification(trace, state, stopRadius) !== "valid") continue;
-      const w = bulkTransmissionForTrace(state.lens, trace.hits);
-      cells += mirror ? 2 : 1;
-      transmitted += mirror ? 2 * w : w;
-      // A ray with no landing or stop crossing still carries flux; it only drops out of the mapping.
-      const values = crossings(trace);
-      if (!values) continue;
-      const cell = row * columns + column;
-      lit[cell] = 1;
-      weight[cell] = w;
-      at.set(values, 4 * cell);
-      traces[cell] = trace;
-      if (!mirror) continue;
-      const image = row * columns + columns - 1 - column;
-      lit[image] = 1;
-      weight[image] = w;
-      at.set([-values[0], values[1], -values[2], values[3]], 4 * image);
+  /** Derivative of (L, M) along a lattice axis from transmitted neighbours, or null without one. */
+  const along = (row: number, column: number, dRow: number, dColumn: number): [number, number] | null => {
+    const here = lit(row, column)!.referredDirectionCosines!;
+    const before = lit(row - dRow, column - dColumn)?.referredDirectionCosines ?? null;
+    const after = lit(row + dRow, column + dColumn)?.referredDirectionCosines ?? null;
+    if (before && after) return [(after[0] - before[0]) / (2 * h), (after[1] - before[1]) / (2 * h)];
+    if (after) return [(after[0] - here[0]) / h, (after[1] - here[1]) / h];
+    if (before) return [(here[0] - before[0]) / h, (here[1] - before[1]) / h];
+    return null;
+  };
+  const dx = new Map<number, [number, number] | null>();
+  const dy = new Map<number, [number, number] | null>();
+  for (const cell of cells) {
+    if (!cell.transmitted) continue;
+    dx.set(cell.cell.index, along(cell.cell.row, cell.cell.column, 0, 1));
+    dy.set(cell.cell.index, along(cell.cell.row, cell.cell.column, 1, 0));
+  }
+  /** A missing derivative from the nearest cell along the other axis that has one; the mean of two at equal distance. */
+  const borrow = (
+    derivatives: Map<number, [number, number] | null>,
+    cell: VignettingLatticeCell,
+    dRow: number,
+    dColumn: number,
+  ): [number, number] | null => {
+    for (let step = 1; step < n; step++) {
+      const found = [-step, step]
+        .map((offset) => indexAt(cell.row + offset * dRow, cell.column + offset * dColumn))
+        .map((index) => (index === null ? null : (derivatives.get(index) ?? null)))
+        .filter((value): value is [number, number] => value !== null);
+      if (found.length === 2) return [(found[0][0] + found[1][0]) / 2, (found[0][1] + found[1][1]) / 2];
+      if (found.length === 1) return found[0];
+    }
+    return null;
+  };
+
+  let isolated = false;
+  for (const cell of cells) {
+    if (!cell.transmitted || (mirrored && cell.cell.xFraction < 0)) continue;
+    const derivativeX = dx.get(cell.cell.index) ?? borrow(dx, cell.cell, 1, 0);
+    const derivativeY = dy.get(cell.cell.index) ?? borrow(dy, cell.cell, 0, 1);
+    if (!derivativeX || !derivativeY) {
+      isolated = true;
+      continue;
+    }
+    const oriented = (derivativeX[0] * derivativeY[1] - derivativeX[1] * derivativeY[0]) * cellArea;
+    cell.orientedCosineArea = oriented;
+    cell.cosineArea = Math.abs(oriented);
+  }
+  if (mirrored) {
+    for (const cell of cells) {
+      if (!cell.transmitted || cell.cell.xFraction >= 0) continue;
+      const partner = cells[indexAt(cell.cell.row, n - 1 - cell.cell.column)!];
+      // The mirror reverses orientation: (−L, M) against (−px, py) keeps det J's sign.
+      cell.orientedCosineArea = partner.orientedCosineArea;
+      cell.cosineArea = partner.cosineArea;
     }
   }
-  if (cells === 0) return { area: 0, flux: 0, tubeMapping: () => null };
+  const transmitted = cells.filter((cell) => cell.transmitted);
+  if (transmitted.length === 0) return { sum: 0, reason: null };
+  if (isolated) return { sum: null, reason: "isolated-cell" };
 
-  /** Derivative of the four crossings along a lattice line, per mm of launch offset; null without a lit neighbour. */
-  const along = (cell: number, offset: number, hasBefore: boolean, hasAfter: boolean): Vec4 | null => {
-    const before = hasBefore && lit[cell - offset] === 1;
-    const after = hasAfter && lit[cell + offset] === 1;
-    if (!before && !after) return null;
-    const [from, to] = [before ? cell - offset : cell, after ? cell + offset : cell];
-    const span = ((to - from) / offset) * grid.step;
-    return [0, 1, 2, 3].map((k) => (at[4 * to + k] - at[4 * from + k]) / span) as Vec4;
-  };
-  const [, dy, dz] = launch.direction;
-  // Orthogonal tilts of the launch direction: in the meridional plane, and across it.
-  const tilts: Vec3[] = [
-    [0, dy + MAPPING_TILT_RAD * dz, dz - MAPPING_TILT_RAD * dy],
-    [MAPPING_TILT_RAD, dy, dz],
-  ];
-  /** ∂P/∂ω of one lit ray tube at a fixed stop crossing, as [∂x/∂ωm, ∂x/∂ωs, ∂y/∂ωm, ∂y/∂ωs]; null when untraceable. */
-  const tubeMapping = (cell: number): Vec4 | null => {
-    const trace = traces[cell]!;
-    const base = at.subarray(4 * cell, 4 * cell + 4);
-    const tilted = tilts.map((direction) => {
-      const length = Math.hypot(...direction);
-      const ray: Ray3 = {
-        origin: trace.input.origin,
-        direction: [direction[0] / length, direction[1] / length, direction[2] / length],
-      };
-      const values = crossings(traceEngineRay(state, ray, mappingOptions));
-      return values && ([0, 1, 2, 3].map((k) => (values[k] - base[k]) / MAPPING_TILT_RAD) as Vec4);
-    });
-    if (!tilted[0] || !tilted[1]) return null;
-    const [row, column] = [Math.floor(cell / columns), cell % columns];
-    const dx = along(cell, 1, column > 0, column < columns - 1);
-    const dyLaunch = along(cell, columns, row > 0, row < rows - 1);
-    // ∂P/∂ω, corrected to a fixed stop crossing where the lattice gives ∂s/∂x.
-    let [pa, pb, pc, pd] = [tilted[0][0], tilted[1][0], tilted[0][1], tilted[1][1]];
-    if (dx && dyLaunch) {
-      const [sa, sb, sc, sd] = [dx[2], dyLaunch[2], dx[3], dyLaunch[3]];
-      const determinant = sa * sd - sb * sc;
-      if (Math.abs(determinant) > 1e-12) {
-        // Launch offset per unit tilt that holds the stop crossing: −(∂s/∂x)⁻¹ ∂s/∂ω.
-        const shift = [tilted[0], tilted[1]].map(([, , su, sv]) => [
-          -(sd * su - sb * sv) / determinant,
-          -(-sc * su + sa * sv) / determinant,
-        ]);
-        pa += dx[0] * shift[0][0] + dyLaunch[0] * shift[0][1];
-        pb += dx[0] * shift[1][0] + dyLaunch[0] * shift[1][1];
-        pc += dx[1] * shift[0][0] + dyLaunch[1] * shift[0][1];
-        pd += dx[1] * shift[1][0] + dyLaunch[1] * shift[1][1];
-      }
-    }
-    return [pa, pb, pc, pd];
-  };
+  // Rimmer's integral needs a one-to-one map: every cell keeps the beam's orientation and a share of its median area.
+  const oriented = transmitted.map((cell) => cell.orientedCosineArea!);
+  const median = medianOf(oriented);
+  const orientation = Math.sign(median);
+  if (orientation === 0 || oriented.some((area) => area * orientation <= RIMMER_MIN_CELL_AREA_RATIO * Math.abs(median)))
+    return { sum: null, reason: "cosine-map-folds" };
 
-  const stride = Math.max(1, Math.floor(gridSize / MAPPING_SUBLATTICE_CELLS));
-  const tubeMappingArea = (): number | null => {
-    const tubes: Vec4[] = [];
-    const sample = (cell: number) => {
-      const tube = traces[cell] && tubeMapping(cell);
-      if (tube) tubes.push(tube);
-    };
-    for (let row = 0; row < rows; row += stride) {
-      for (let column = mirror ? columns / 2 : 0; column < columns; column += stride) sample(row * columns + column);
-    }
-    // A beam too small for the sub-lattice samples every lit cell instead.
-    if (tubes.length === 0) for (let cell = 0; cell < columns * rows; cell++) sample(cell);
-    if (tubes.length === 0) return null;
-    // The median tube's mapping: rays grazing a surface's rim zone can turn sharply with a tiny tilt, and a mean
-    // would let those few scatter the whole beam's figure.
-    const [pa, pb, pc, pd] = [0, 1, 2, 3].map((k) => median(tubes.map((tube) => tube[k])));
-    return Math.abs(pa * pd - pb * pc);
-  };
-  const cellArea = grid.step * grid.step;
-  return { area: cells * cellArea, flux: transmitted * cellArea, tubeMapping: tubeMappingArea };
+  let sum = 0;
+  for (const cell of transmitted) sum += cell.imageIndex! ** 2 * cell.bulkTransmission * cell.cosineArea!;
+  return { sum, reason: null };
+}
+
+/** Rimmer's reference sphere: centred on the chief ray's image-plane point, through the paraxial exit pupil. */
+interface ReferenceSphere {
+  center: Vec3;
+  /** Radius in mm; Infinity where the exit pupil is at infinity (image-space telecentric). */
+  radius: number;
+  /** Unit vector from the centre toward the exit pupil, which picks the sphere's pupil-side crossing. */
+  towardPupil: Vec3;
+}
+
+/**
+ * The field's reference sphere, or null without a chief ray to the image plane.
+ *
+ * The chief ray is the launch's (0, 0) ray traced without aperture checks: it names the image point whether or not a
+ * rim vignettes it. The sphere passes through the chief ray's crossing of the paraxial exit-pupil plane.
+ */
+function referenceSphere(
+  state: PreparedGeometry,
+  launch: AimedPupilLaunch,
+  geometry: OffAxisFieldGeometry,
+): ReferenceSphere | null {
+  const chief = launch.chief;
+  if (chief.status !== "aimed") return null;
+  const trace = prepareEngineTrace(state, {
+    checkSemiDiameter: false,
+    stopOnClip: false,
+    directionNormalized: true,
+    launchBoundT: launch.launchBoundT,
+    capture: "terminal",
+  });
+  const result = trace(chief);
+  const [p, d] = [result.terminalPoint, result.terminalDirection];
+  if (result.status === "failed" || !(d[2] > 0)) return null;
+  const toImage = (geometry.imagePlaneZ - p[2]) / d[2];
+  const center: Vec3 = [p[0] + d[0] * toImage, p[1] + d[1] * toImage, geometry.imagePlaneZ];
+  const xpZ = geometry.lastSurfZ + xpZRelLastSurfAtZoom(state.zoomT, runtimeView(state.lens));
+  if (!isFinite(xpZ)) return { center, radius: Infinity, towardPupil: [-d[0], -d[1], -d[2]] };
+  const toPupil = (xpZ - p[2]) / d[2];
+  const pupil: Vec3 = [p[0] + d[0] * toPupil, p[1] + d[1] * toPupil, xpZ];
+  const offset: Vec3 = [pupil[0] - center[0], pupil[1] - center[1], pupil[2] - center[2]];
+  const radius = Math.hypot(...offset);
+  if (!(radius > 0)) return null;
+  return { center, radius, towardPupil: [offset[0] / radius, offset[1] / radius, offset[2] / radius] };
+}
+
+/**
+ * Direction cosines of a ray referred to the image point (Rimmer's Eq. 3): of the segment from the ray's pupil-side
+ * crossing of the reference sphere to the sphere's centre. At infinite radius this is the ray's own direction.
+ *
+ * @returns (L, M), or null when the ray misses the sphere's pupil side
+ */
+function referredDirection(sphere: ReferenceSphere, point: Vec3, direction: Vec3): readonly [number, number] | null {
+  if (!isFinite(sphere.radius)) return [direction[0], direction[1]];
+  const { center, radius } = sphere;
+  const offset: Vec3 = [point[0] - center[0], point[1] - center[1], point[2] - center[2]];
+  const b = offset[0] * direction[0] + offset[1] * direction[1] + offset[2] * direction[2];
+  const discriminant = b * b - (offset[0] ** 2 + offset[1] ** 2 + offset[2] ** 2 - radius * radius);
+  if (!(discriminant >= 0)) return null;
+  // The earlier crossing along the ray lies on the exit pupil's side of the image point.
+  const t = -b - Math.sqrt(discriminant);
+  const crossing: Vec3 = [offset[0] + direction[0] * t, offset[1] + direction[1] * t, offset[2] + direction[2] * t];
+  const towardPupil = sphere.towardPupil;
+  if (!(crossing[0] * towardPupil[0] + crossing[1] * towardPupil[1] + crossing[2] * towardPupil[2] > 0)) return null;
+  return [-crossing[0] / radius, -crossing[1] / radius];
 }
 
 /** Median of a non-empty list. */
-function median(values: number[]): number {
+function medianOf(values: readonly number[]): number {
   const sorted = [...values].sort((a, b) => a - b);
   const middle = sorted.length >> 1;
   return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
