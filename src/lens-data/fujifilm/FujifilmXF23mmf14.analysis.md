@@ -181,9 +181,33 @@ where κ = 1 + K (standard conic constant) and C = 1/R. The patent tabulates κ 
 
 **Surface 14 (L21 rear):** R = −11.386 mm, κ = 0.10 (K = −0.90)
 
-The near-paraboloidal conic base (K = −0.90) provides a starting correction, with the polynomial terms producing further refinement. The surfaces show substantial aspherical departure from the base sphere — approximately 190 µm on the front and 210 µm on the rear at h = 5 mm.
+The conic base is a prolate ellipsoid close to a paraboloid. The data file carries the exact Table 8 coefficients on both surfaces, including all odd powers A3 through A19. These are powers of radial height h ≥ 0, so they preserve rotational symmetry; they do not imply a decentered surface or exclusively correct coma. The previous omission of odd terms created a different prescription and a false turnover on S14.
 
-**Odd-order polynomial terms.** The patent includes odd-order terms A3, A5, A7, A9, A11, A13, A15, A17, and A19, which is uncommon in consumer lens prescriptions. These terms break the even symmetry of the sag profile, enabling correction of odd-order wavefront aberrations — primarily coma. At the semi-diameter, the A3 and A5 terms contribute tens of micrometers of sag, comparable to the leading even-order terms. Because the renderer's sag equation supports only even powers, these odd-order terms are omitted from the data file, and the rendered surface shape will differ from the patent prescription at the rim. This is the most significant approximation in this data file.
+The following is the full Table 8 transcription (US 2014/0368926 A1, PDF p.18 / printed p.8), checked against a 350 dpi crop. The equation is on PDF p.15 / printed p.5, ¶0074; lengths are in mm (¶0076). No focal-length normalization or coefficient scaling is applied. The data file stores standard K = KA − 1 = −0.90.
+
+| Term | S13 / `13A` | S14 / `14A` |
+|---|---:|---:|
+| KA (table row K) | 1.0000000e-1 | 1.0000000e-1 |
+| A3 | 1.6085859e-4 | -3.8031887e-5 |
+| A4 | 3.1604165e-4 | 9.1351152e-4 |
+| A5 | 1.3528598e-4 | -6.7979931e-4 |
+| A6 | -1.9524496e-4 | 4.1157887e-4 |
+| A7 | 8.4990030e-5 | -1.4922693e-4 |
+| A8 | -5.8469037e-6 | 2.7143660e-5 |
+| A9 | -5.8141716e-6 | 1.5049108e-6 |
+| A10 | 1.2818564e-6 | -1.9425352e-6 |
+| A11 | 1.8591384e-7 | 3.5630785e-7 |
+| A12 | -8.3124906e-8 | 4.2682107e-9 |
+| A13 | 2.8662325e-10 | -1.0368272e-8 |
+| A14 | 2.7277112e-9 | 1.1746916e-9 |
+| A15 | -2.2027007e-10 | 5.4804383e-11 |
+| A16 | -4.1473274e-11 | -2.0635550e-11 |
+| A17 | 6.4318314e-12 | 1.1008282e-12 |
+| A18 | 6.6823865e-14 | 7.1694592e-14 |
+| A19 | -5.4568937e-14 | -9.6542271e-15 |
+| A20 | 2.5445767e-15 | 2.8985477e-16 |
+
+At the restored 6.5 mm semi-diameter on both L21 faces, departure from the same-radius sphere is **+973.4 µm on S13** and **+794.9 µm on S14**, with rim slopes −22.9° and −11.3°, respectively. S13's first sampled turnover is about 7.5 mm, outside the authored rim; S14 has no turnover within 6.5 mm. These departures include the conic-base difference from a sphere, not just the polynomial sum.
 
 **L22 + L23 + L24 (Elements 8–10) — Cemented Triplet**
 
@@ -291,11 +315,15 @@ Example 4 satisfies all five patent conditional expressions, including the stric
 
 ### Semi-Diameter Estimation
 
-Semi-diameters were estimated by combined marginal + chief ray paraxial trace at f/1.45 and ω = 30.85°, with ~8% mechanical clearance, then constrained by edge thickness limits, cross-gap sag intrusion (gapSagFrac = 0.90), and slope-based rim limits. The binding constraints were the thin air gaps at S9→S10 (0.25 mm) and S2→S3 (4.00 mm), which limited the SDs of L123/L124 and L111/L112 respectively.
+Most semi-diameters remain the original combined marginal/chief-ray estimates with geometric limits; the patent does not list effective diameters. After restoring the full aspheres, the stated infinity f/1.45 beam required S10 to rise from 7.9 to 8.2 mm and L21 to rise from 4.5/3.1 to 6.5/6.5 mm. The ray-height floors round upward to 8.2, 6.4, and 6.5 mm at S10, S13, and S14, respectively. Figure 4 (PDF p.5) draws L21 with a common square-cut rim, so both faces take 6.5 mm. A manual reading of its optical rim is about 7.1 mm; the authored value is within drawing uncertainty. Leader and ray ink contaminate automated figure-envelope readings, which were not used as aperture values.
 
-### Aspherical Surface Limitations
+At h = 8.2 mm, the printed S9/S10 radii and 0.25 mm axial gap give sag intrusion 0.2428703 mm and positive clearance 0.0071297 mm. The figure draws these faces nearly meeting at their rim. `checks.gapSagFrac = 0.972` is the minimum three-decimal fraction admitting that rounded on-axis floor. Other authored rims are retained.
 
-The patent prescribes aspherics using both even and odd-order polynomial terms (A3 through A20) in the extended sag formula. The data file includes only even-order terms (A4, A6, A8, A10, A12, A14, A16, A18, A20) because the renderer sag equation supports only even powers. The omitted odd-order terms contribute asymmetric sag corrections — primarily coma. The rendered surface shape will therefore differ from the patent prescription at the rim.
+### Exact Aspherical Prescription and Localization
+
+All Table 8 A3–A20 terms are traced and rendered. The prior even-only approximation is removed. At infinity, the restored prescription gives d-line on-axis LSA of −0.017 / −0.009 / −0.003 / −0.013 mm at entrance-pupil fractions 1.0 / 0.85 / 0.7 / 0.5, consistent with the narrow d-line curve in Figure 9A (PDF p.8, ±0.2 mm horizontal scale). Traced sagittal field curvature reaches roughly −0.076 mm and returns near zero at the edge; tangential shifts stay between approximately −0.023 and +0.033 mm. Distortion remains close to zero (−0.032% to +0.092%). Their scale and shape agree with Figure 9B/C; this is a visual comparison, not a digitized fit.
+
+At infinity and f/1.45, the vignetting analysis now localizes across its sampled 0–30.825° half-field: max referred deviation is at most 0.00138 rad. Relative illumination is available at every sampled field, reaching about 0.161 at the edge. This is a source-qualified model result dependent on inferred rims, not a measured production illumination curve. The former half-field limit near 15.18° was a consequence of the incomplete prescription, not the patent's coverage.
 
 ### Conic Constant Convention
 
@@ -316,7 +344,7 @@ The patent provides only infinity-focus data. Close-focus gaps were estimated vi
 The Fujinon XF 23mm F1.4 R, as represented by Example 4 of US 2014/0368926 A1, is a compact 11-element, 8-group design optimized for fast-aperture wide-angle imaging on the APS-C format. Its optical architecture is organized around three key principles:
 
 1. **A split front group** with a negative diverging subgroup (G11) ahead of a strong positive subgroup (G12), enabling wide-angle coverage and field flattening without the excessive length of a traditional retro-focus layout.
-2. **A single glass-molded aspherical element** (L21, S-LAH63Q) positioned immediately behind the aperture stop, carrying the bulk of the spherical aberration correction. The extended polynomial aspherics with odd-order terms enable simultaneous correction of spherical aberration and coma, though only even-order terms are representable in the current data format.
+2. **A single glass-molded aspherical element** (L21, S-LAH63Q) positioned immediately behind the aperture stop, carrying the bulk of the spherical aberration correction. The extended polynomial aspherics with odd-order terms enable simultaneous correction of spherical aberration and coma, and the data file now retains and traces all published radial powers through A20.
 3. **Inner focusing** using the rear positive subgroup (L21 + triplet) with a fixed negative field-flattener (L25), providing constant length, reduced breathing, and stable aberration performance across the focus range.
 
 The glass selection is heavily weighted toward high-index materials, with the HOYA TAFD40 ultra-high-index element (nd = 2.001) providing anomalous partial dispersion for secondary spectrum correction, and the OHARA S-LAH63Q moldable glass enabling cost-effective aspherical surface manufacturing.
