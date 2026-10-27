@@ -17,14 +17,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Ricoh lists the production lens as 10 elements / 7 groups and 0.25x. Ricoh also states that the      ║
  * ║  2015 HD revision introduced a newly designed glass-molded asphere.                                   ║
  * ║                                                                                                      ║
- * ║  NO SCALING: all radii, spacings, image coordinates, K values, and asphere coefficients are the raw   ║
- * ║  Embodiment 4 values. Marketing values remain separate from the computed design values.              ║
+ * ║  NO SCALING: radii, spacings and coefficient magnitudes retain the Embodiment 4 scale.             ║
+ * ║  SOURCE ERRATA: surface 5A K, A6, A8 and A10 have restored minus signs; the printed positive block   ║
+ * ║  contradicts Figures 14A/C/D and the 44.8° / y=34.85 mm field. See source.errata and the audit log.  ║
  * ║                                                                                                      ║
  * ║  SEMI-DIAMETERS: inferred rather than published. Figure 13 sets the strong front-to-rear taper; the   ║
- * ║  ray envelope and geometry limits set the minimum clear apertures. Surface 5A is capped below its     ║
- * ║  K>0 conic and rim-slope limits. The final SDs were validated for edge thickness, actual rim slope,  ║
- * ║  cross-gap intrusion, and the authored infinity/close ray states. The stop radius is derived from    ║
- * ║  the design f-number, published f/3.6.                                                               ║
+ * ║  ray envelope and geometry limits set the minimum clear apertures. Surface 5A is restored to the     ║
+ * ║  Figure 13 optical rim (17.0 mm); the obsolete K>0 cap clipped the corner chief ray. Edge thickness, ║
+ * ║  rim slope and cross-gap checks cover both authored focus endpoints. The stop radius is derived     ║
+ * ║  from the design f-number, published f/3.6.                                                          ║
  * ║                                                                                                      ║
  * ║  No cover glass, filter, inactive dummy/flare-cutter plane, blocker, or mechanical part is included. ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
@@ -62,6 +63,48 @@ const LENS_DATA = {
     patentYear: 2001,
     authors: ["Takayuki Sensui"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "5A",
+        field: "K",
+        printed: 1,
+        applied: -1,
+        evidence: ["aberration-figure", "source-summary"],
+        note:
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+      },
+      {
+        status: "corrected",
+        surface: "5A",
+        field: "A6",
+        printed: 2.868e-9,
+        applied: -2.868e-9,
+        evidence: ["aberration-figure", "source-summary"],
+        note:
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+      },
+      {
+        status: "corrected",
+        surface: "5A",
+        field: "A8",
+        printed: 1.268e-11,
+        applied: -1.268e-11,
+        evidence: ["aberration-figure", "source-summary"],
+        note:
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+      },
+      {
+        status: "corrected",
+        surface: "5A",
+        field: "A10",
+        printed: 4.817e-16,
+        applied: -4.817e-16,
+        evidence: ["aberration-figure", "source-summary"],
+        note:
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -217,8 +260,14 @@ const LENS_DATA = {
       label: "5A",
       R: 20.3,
       d: 12.107,
-      sd: 13.4,
-      asphere: { K: 1, A4: 3.06e-6, A6: 2.868e-9, A8: 1.268e-11, A10: 4.817e-16 },
+      sd: 17.0, // Figure 13 optical curve endpoint; excludes the outer flat mechanical rim.
+      asphere: {
+        K: -1, // Source erratum: printed +1; block isolated by Figures 14A/C/D and source field summary.
+        A4: 3.06e-6,
+        A6: -2.868e-9, // Source erratum: printed positive; same independently checked sign block.
+        A8: -1.268e-11, // Source erratum: printed positive; same independently checked sign block.
+        A10: -4.817e-16, // Source erratum: printed positive; edge T changes +0.086 to -0.218 mm.
+      },
     },
     { label: "6", R: 53.743, d: 5.485, sd: 18.8, medium: 4 },
     { label: "7", R: -1193.312, d: 2.137, sd: 18.8 },
