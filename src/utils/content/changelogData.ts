@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "26 Nikkor Z lenses and the Sigma 16mm f/1.4 DC DN now draw the flat rim lands their patent figures show on deeply curved elements",
+  },
+  {
+    date: "2026-10-27",
     type: "fix",
     summary: "Fixed rays stopping short at the iris of the Nikon AI 25-50mm f/4 at 50mm by cutting its deep rim flat",
   },
