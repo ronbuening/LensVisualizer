@@ -15,7 +15,8 @@
  *                     thickness, SD ratio, rim slope, conic height, cross-gap
  *                     sag intrusion) without touching the file.
  *
- * With no flags it validates the V2 file as stored through canonical ingest.
+ * With no flags it validates the V2 file as stored through canonical ingest. A file that validates is then
+ * traced for the rim-cut beam rule: an inferred cut may not stop any ray of the wide-open beam.
  * A file ingest refuses prints the refusal's issues as ERR lines and exits 1.
  *
  * Usage:
@@ -31,7 +32,9 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const { validateCanonicalLens } = await import(pathToFileURL(join(ROOT, "src/optics/validation.ts")).href);
+const { validateCanonicalLens, validateRimCutBeams } = await import(
+  pathToFileURL(join(ROOT, "src/optics/validation.ts")).href
+);
 const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 const { ASPHERIC_COEFFICIENT_SCHEMA } = await import(pathToFileURL(join(ROOT, "src/types/asphericSchema.ts")).href);
 
@@ -154,12 +157,13 @@ for (const label of overrides.keys()) {
 }
 
 const { view, errors: refused } = ingestView(candidate);
-const errors = view
-  ? validateCanonicalLens(
-      ingestLens(candidate, {
-        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
-      }),
-    )
-  : refused;
+const ingested = view
+  ? ingestLens(candidate, {
+      path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+    })
+  : null;
+const errors = ingested ? validateCanonicalLens(ingested) : refused;
+/* An inferred rim cut is traced against every wide-open beam once the file validates. */
+if (ingested && errors.length === 0) errors.push(...validateRimCutBeams(buildLens(ingested.prescription)));
 if (overrides.size) console.log(`validating with ${[...overrides].map(([l, v]) => `${l}=${v}`).join(" ")}`);
 report(errors);

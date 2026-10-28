@@ -3,6 +3,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES, buildFixtureLens as buildLens } from "..
 import { constructionFixtureData } from "../optics/constructionFixtures.js";
 import { build, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { cutOutlineSag } from "../../../src/optics/geometry/rimCut.js";
 import { fNumberAtStopdown } from "../../../src/optics/state/aperture.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
 import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
@@ -14,8 +15,8 @@ import type { RuntimeLens } from "../../../src/types/optics.js";
  * At every zoom station and focus keyframe, from the smallest radius the aperture control reaches (the stop rule at
  * `maxFstop`) out to the wide-open radius, the stop plane lies in air: the face before the stop, with glass in front of it, does not
  * reach past the plane, and the face after it, with glass behind it, does not reach in front of it. A face is its own
- * sag out to its own semi-diameter and its rim height beyond. The sequential trace steps back to a stop plane in such
- * glass, as OpticStudio does, but no iris can close there.
+ * sag out to its own semi-diameter and its rim height beyond, or its rim cut's land beyond the cut radius. The
+ * sequential trace steps back to a stop plane in such glass, as OpticStudio does, but no iris can close there.
  */
 
 /** Rounding allowance of a sag compared with a vertex position, in mm. */
@@ -29,7 +30,6 @@ const IRIS_STROKE_SAMPLES = 256;
  * equality, so a corrected file must leave this list and no file may join.
  */
 const IRIS_IN_GLASS: Readonly<Record<string, string>> = {
-  "nokton-50f1": "#928 cuts the rim at the stop",
   "canon-ef-24mm-f14-l-ii-usm": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "nikon-ai-zoom-nikkor-25-50mm-f4": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "zeiss-hologon-15f8": "agent_docs/sd-audit-queue.md Section I, `iris`: the design's embedded glass stop",
@@ -65,7 +65,7 @@ function irisInGlass(L: RuntimeLens): IrisInGlass[] {
       const faceZ = (index: number, r: number): number => {
         const face = surfaces[index];
         const limit = face.profile.finiteRadiusLimit();
-        return face.z + face.profile.sag(Math.min(r, face.sd, limit ?? Infinity));
+        return face.z + cutOutlineSag(face.profile.sag, face.rimCut, Math.min(r, face.sd, limit ?? Infinity));
       };
       const sides = [
         {

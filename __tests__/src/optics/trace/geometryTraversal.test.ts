@@ -1,6 +1,8 @@
 import { constructionFixtureData } from "../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { build, buildFrontRimCutLens, buildRimCutLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
+import { engineTraceToRuntimeRayResult } from "../../../../src/optics/trace/runtimeRayResult.js";
 import { provesApertureMiss, traceRayClassification } from "../../../../src/optics/trace/rayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
 import * as intersectKernel from "../../../../src/optics/geometry/intersect.js";
@@ -16,6 +18,7 @@ import {
   traceFixtureVector,
 } from "../traceGeometryFixtures.js";
 import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
+import { computeFieldGeometry } from "../../../../src/optics/field/geometry.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 import type { AsphericCoefficients } from "../../../../src/types/asphericSchema.js";
 
@@ -566,5 +569,89 @@ describe("trace capture policies", () => {
     } finally {
       diagnostics.mockRestore();
     }
+  });
+});
+
+describe("rim cut", () => {
+  /* The stop is opened wide so the cut, not the iris, decides which rays pass. */
+  const traceAt = (depth: number | undefined, y: number) => {
+    const state = prepareRuntimeState(buildRimCutLens(depth), 0, 0);
+    const trace = traceEngineRay(
+      state,
+      { origin: [0, y, -5], direction: [0, 0, 1] },
+      { checkSemiDiameter: true, stopOnClip: true, stopSemiDiameter: 20 },
+    );
+    return { state, trace };
+  };
+
+  it("clips at the cut radius, inside the semi-diameter", () => {
+    const { state } = traceAt(2, 0);
+    expect(state.surfaces[2].rimCut?.radius).toBeCloseTo(Math.sqrt(76), 9);
+
+    const uncut = traceAt(undefined, 10.5).trace;
+    expect(uncut.status).toBe("ok");
+    const rearRadius = uncut.hits[2].radius;
+    expect(rearRadius).toBeGreaterThan(Math.sqrt(76));
+    expect(rearRadius).toBeLessThan(12);
+
+    const cut = traceAt(2, 10.5).trace;
+    expect(cut.status).toBe("clipped");
+    expect(cut.hits[2]).toMatchObject({ surfaceLabel: "2", clipped: true, clipReason: "semi-diameter" });
+    expect(traceAt(2, 9.5).trace.status).toBe("ok");
+  });
+
+  const traceFront = (L: ReturnType<typeof buildFrontRimCutLens>, y: number) =>
+    traceEngineRay(
+      prepareRuntimeState(L, 0, 0),
+      { origin: [0, y, -5], direction: [0, 0, 1] },
+      { checkSemiDiameter: true, stopOnClip: true, stopSemiDiameter: 20 },
+    );
+
+  it("clips a front-face cut at its radius when the land clears the stop plane", () => {
+    /* A 2 mm cut on the R = −20 front ends the cap at sqrt(76) mm; the stop sits 3 mm ahead of the vertex. */
+    const L = buildFrontRimCutLens(2, 3);
+    expect(traceFront(L, 8.5).status).toBe("ok");
+    const cut = traceFront(L, 10);
+    expect(cut.status).toBe("clipped");
+    expect(cut.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
+  });
+
+  it("clips a ray past the cut radius on the land when the land sits on the stop plane", () => {
+    /* The cap beyond the cut radius lies behind the stop hit, so the trace steps back to the face and clips there. */
+    const L = buildFrontRimCutLens(2, 2);
+    expect(traceFront(L, 8.5).status).toBe("ok");
+    const past = traceFront(L, 10);
+    expect(past.status).toBe("clipped");
+    expect(past.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
+  });
+
+  it("clips an aspheric cut where the aspheric cap reaches the land", () => {
+    /* A4 flattens the cap, so it reaches the 2 mm land further out than the base sphere's sqrt(76) mm. */
+    const L = buildFrontRimCutLens(2, 3, 2e-5);
+    const surface = prepareRuntimeState(L, 0, 0).surfaces[1];
+    const radius = surface.rimCut!.radius;
+    expect(Math.abs(surface.profile.sag(radius))).toBeCloseTo(2, 9);
+    expect(radius).toBeGreaterThan(Math.sqrt(76) + 0.1);
+    expect(traceFront(L, radius - 0.2).status).toBe("ok");
+    expect(traceFront(L, radius + 0.2).status).toBe("clipped");
+  });
+
+  it("limits the field at the cut radius, as a semi-diameter there would", () => {
+    /* A 0.5 mm cut ends the R 20 cap at sqrt(19.75) mm, inside the field-limiting rim. */
+    const cut = buildRimCutLens(0.5);
+    const atCutRadius = buildRimCutLens(undefined, "test-rim-cut-sd", Math.sqrt(19.75));
+    expect(buildRimCutLens().halfField).toBeGreaterThan(cut.halfField + 1);
+    expect(cut.halfField).toBeCloseTo(atCutRadius.halfField, 6);
+    const stateField = (lens: typeof cut) => computeFieldGeometry(prepareRuntimeState(lens, 0, 0)).halfFieldDeg;
+    expect(stateField(cut)).toBeCloseTo(stateField(atCutRadius), 6);
+  });
+
+  it("draws the clipped ray to the land, not the removed cap", () => {
+    const { state, trace } = traceAt(2, 10.5);
+    const ray = engineTraceToRuntimeRayResult(trace, [-5, 10.5], true, state.lens);
+    const [z, y] = ray.ghostPts[0];
+    expect(z).toBeCloseTo(state.z[2] + 2, 9);
+    expect(trace.hits[2].point[2]).toBeGreaterThan(z);
+    expect(y).toBeGreaterThan(Math.sqrt(76));
   });
 });

@@ -66,6 +66,8 @@ export interface CanonicalSurface {
   /** Clear semi-diameter in mm. Absent only on a stop whose radius the engine derives or takes from a schedule. */
   sd?: number;
   innerSd?: number;
+  rimCutDepthMm?: number;
+  rimCutDepthSource?: string;
   /** The medium after this surface; its index is the surface's index. */
   medium: CanonicalMediumRef;
   asphere?: CanonicalAsphere;

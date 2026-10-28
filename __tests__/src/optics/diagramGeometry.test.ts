@@ -1,6 +1,6 @@
 import { runtimeFixtureView } from "./constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
-import { registerRuntimeFixture } from "./testLensFixtures.js";
+import { buildRimCutLens, registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import { createCoordinateTransforms } from "../../../src/optics/diagram/coordinateTransforms.js";
 import {
@@ -342,6 +342,18 @@ describe("computeElementShapes", () => {
 
     expect(shifted[0][0]).toBeCloseTo(unmoved[0][0]);
     expect(shifted[0][1]).toBeCloseTo(unmoved[0][1] + 5);
+  });
+
+  it("draws a rim cut as a flat land from the cut radius to the rim", () => {
+    const corner = Math.sqrt(76);
+    const coords = pathCoords(computeElementShapes(buildRimCutLens(2), [0, 1, 7], sx, sy)[0].d);
+    const rear = coords.slice(SVG_PATH_SUBDIVISIONS + 1);
+    expect(rear).toHaveLength(SVG_PATH_SUBDIVISIONS + 3);
+    expect(rear.filter(([, y]) => Math.abs(Math.abs(y) - corner) < 1e-9)).toHaveLength(2);
+    for (const [z, y] of rear) {
+      if (Math.abs(y) >= corner - 1e-9) expect(z).toBeCloseTo(9, 9);
+      else expect(z).toBeLessThan(9);
+    }
   });
 
   it("path contains expected number of line segments", () => {

@@ -14,3 +14,4 @@ export {
   VECTOR_EPSILON,
 } from "./math/constants.js";
 export { dot, subtract } from "./math/vector.js";
+export { clearSemiDiameter } from "./geometry/rimCut.js";

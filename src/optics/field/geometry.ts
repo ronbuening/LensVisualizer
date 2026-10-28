@@ -8,6 +8,7 @@ import { wideOpenStop } from "../state/apertureStop.js";
 import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 import type { ParaxialTraceResult } from "../../types/optics.js";
 import { traceParaxialSurfaces } from "../math/paraxial.js";
+import { clearSemiDiameter } from "../geometry/rimCut.js";
 import { obstructionAwareRayFractionsForDensity } from "../trace/raySampling.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import type { Plane3, PreparedGeometry, Ray3, Vec3 } from "../types.js";
@@ -65,7 +66,7 @@ export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryStat
     if (i === stopIndex || !state.surfaces[i].clips) continue;
     const coeff = Math.abs(hB[i] - r * hA[i]);
     if (coeff > 1e-8) {
-      const uMax = state.surfaces[i].sd / coeff;
+      const uMax = clearSemiDiameter(state.surfaces[i].sd, state.surfaces[i].rimCut) / coeff;
       if (uMax < minU) minU = uMax;
     }
   }

@@ -44,6 +44,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
     type: "fix",
+    summary:
+      "The Voigtländer Nokton 50mm f/1's deep surface-8 rim now ends on a flat land at its stop instead of reaching through the iris",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
     summary: "Chromatic readouts now compare every selected color channel, or name the one a rim vignettes",
   },
   {

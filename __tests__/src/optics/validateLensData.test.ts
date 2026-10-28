@@ -2202,6 +2202,141 @@ describe("validateLensData — conic h_max", () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════
+ *  Rim cuts
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe("validateLensData — rim cut", () => {
+  /* L1's concave rear (R = 20, sd = 12) sags 4 mm toward L2's front, 2 mm behind it. */
+  const rimCutLens = (cut: Record<string, unknown> = {}, frontR = 15) =>
+    makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 6 },
+        { label: "1", R: frontR, d: 6, nd: 1.5, elemId: 1, sd: 12 },
+        { label: "2", R: 20, d: 2, nd: 1.0, elemId: 0, sd: 12, ...cut },
+        { label: "3", R: 100, d: 4, nd: 1.5, elemId: 2, sd: 10 },
+        { label: "4", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+  const errorsFor = (data: Record<string, unknown>) => validateLensData(data);
+
+  it("measures cross-gap intrusion and edge thickness to the land", () => {
+    expect(errorsFor(rimCutLens()).some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }))).toEqual([]);
+    /* A deeper front cap leaves 3.2 mm of edge uncut, and less than none once the land removes 3.5 mm of it. */
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      false,
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 0.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      true,
+    );
+  });
+
+  it("refuses a depth the cap does not reach inside sd", () => {
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 4.5 }))).toContain(
+      'Surface "2": rimCutDepthMm 4.5 must be smaller than the cap\'s sag at sd=12 (4.000 mm)',
+    );
+  });
+
+  it("refuses a cut where the rim bends into glass", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    (data.surfaces as Record<string, unknown>[])[4].rimCutDepthMm = 0.2;
+    expect(
+      errorsFor(data).some((e) => e.startsWith('Surface "4": a rim cut trims glass where the rim bends into air')),
+    ).toBe(true);
+  });
+
+  it("refuses a cut on the stop, a diffractive surface or a non-positive depth", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    const surfaces = data.surfaces as Record<string, unknown>[];
+    surfaces[0].rimCutDepthMm = 0.1;
+    surfaces[3].rimCutDepthMm = -1;
+    surfaces[1].rimCutDepthMm = 0.5;
+    surfaces[1].diffractive = {
+      kind: "radial-polynomial",
+      referenceWavelengthNm: 587.6,
+      diffractionOrder: 1,
+      terms: [{ radialPower: 2, coefficient: -4.25304e-5 }],
+    };
+    const errors = errorsFor(data);
+    const refusal =
+      "rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface, a diffractive surface or one with an interaction";
+    expect(errors).toContain(`surfaces[0] ("STO"): ${refusal}`);
+    expect(errors).toContain(`surfaces[1] ("1"): ${refusal}`);
+    expect(errors).toContain('surfaces[3] ("3"): rimCutDepthMm must be a positive finite number when provided');
+  });
+
+  it("refuses a cut on a folded lens, and a depth source without a cut or text", () => {
+    const folded = rimCutLens({ rimCutDepthMm: 1.5 });
+    folded.opticalPath = { mode: "auto" };
+    expect(errorsFor(folded)).toContain(
+      'surfaces[2] ("2"): rimCutDepthMm is not allowed on a folded (opticalPath) lens, where a ray beyond the cut passes through the land',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthSource: "Fig. 1" }))).toContain(
+      'surfaces[2] ("2"): rimCutDepthSource needs a rimCutDepthMm to source',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5, rimCutDepthSource: " " }))).toContain(
+      'surfaces[2] ("2"): rimCutDepthSource must be a non-empty string when provided',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5, rimCutDepthSource: "Fig. 1 land" }))).toEqual([]);
+  });
+
+  /* L2's concave front (R = −20, sd = 12) sags 4 mm forward, into the 1.5 mm gap behind L1. */
+  const frontCutLens = (cut: Record<string, unknown> = {}, front: Record<string, unknown> = {}) =>
+    makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 6 },
+        { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 12 },
+        { label: "2", R: -50, d: 1.5, nd: 1.0, elemId: 0, sd: 12 },
+        { label: "3", R: -20, d: 6, nd: 1.5, elemId: 2, sd: 12, ...front, ...cut },
+        { label: "4", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 12 },
+      ],
+    });
+
+  it("cuts a concave front face where its rim bends forward into air", () => {
+    expect(errorsFor(frontCutLens()).some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+    expect(errorsFor(frontCutLens({ rimCutDepthMm: 0.5 }))).toEqual([]);
+  });
+
+  it("resolves a cut on the aspheric profile, not its base sphere", () => {
+    /* A4 flattens the R = −20 cap: it sags 3.585 mm at sd where the sphere sags 4. */
+    const aspheric = (depth: number) => {
+      const data = frontCutLens({ rimCutDepthMm: depth });
+      data.asph = { "3": { K: 0, A4: 2e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+      return data;
+    };
+    expect(errorsFor(aspheric(0.5))).toEqual([]);
+    expect(errorsFor(aspheric(3.8))).toContain(
+      'Surface "3": rimCutDepthMm 3.8 must be smaller than the cap\'s sag at sd=12 (3.585 mm)',
+    );
+  });
+
+  it("checks a land against the stop plane at every focus keyframe of a variable gap", () => {
+    /* The stop closes from 3 mm to 1.5 mm behind L1 at close focus; L1's concave rear is cut 2 mm deep. */
+    const moving = (depth: number) =>
+      makeValid({
+        surfaces: [
+          { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+          { label: "2", R: 20, d: 3, nd: 1.0, elemId: 0, sd: 10, rimCutDepthMm: depth },
+          { label: "STO", R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 6 },
+        ],
+        var: { "2": [3, 1.5] },
+      });
+    expect(errorsFor(moving(1.2))).toEqual([]);
+    expect(errorsFor(moving(2))).toContain(
+      'Surface "2": its rim cut (depth 2 mm) reaches past the stop plane, 1.500 mm away at focus keyframe 1',
+    );
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
  *  Slope-based rim check (replaces old sd/|R| ratio check)
  * ═══════════════════════════════════════════════════════════════════ */
 

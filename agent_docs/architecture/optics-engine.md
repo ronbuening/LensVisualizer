@@ -1186,6 +1186,30 @@ authored prescription. The model is geometric-ray only: it does not simulate bla
 interference, PSF/MTF, scatter, or characteristic PF flare, and it has no freeform, decentered, or user-selectable-order
 surfaces.
 
+## Rim Cuts
+
+`rimCutDepthMm` (`src/lens-data/LENS_DATA_SPEC.md`, Rim cuts) is resolved once, in `compileSurfaces`, into
+`CompiledSurface.rimCut` (`geometry/rimCut.ts`: the land's signed offset and the cut radius). Every consumer reads that
+record rather than the depth: `evaluateAperture` clips at the cut radius, so sequential, generalized, MTF and field
+traces agree; `runtimeRayResult.ts` draws a cut-clipped ray to the land while the engine hit stays on the uncut cap;
+`surfaceOutline.ts` draws the land and adds its corners to the outline samples; render diagnostics and the validator
+read the land's sag for gap, edge and slope checks. The cut is state-independent, since it belongs to the glass.
+The clear radius (`clearSemiDiameter`) also bounds the half-field estimates and the field-coverage and image-circle
+audits. A ray that crosses a stop plane a land sits on, above the cut radius, steps back to the cap behind the plane
+and is clipped there by `evaluateAperture`. `validateRimCutBeams` (`prescription/validate/`) applies
+the spec's beam rule to a built lens, in the catalog sweep and `audit:surface` rather than compile-time validation. It
+recompiles the lens with its inferred cuts removed, without the validator (a cut can hide a rim it would refuse), and
+traces that lens wide open at its own stop radius: a screen over zoom and focus in steps of 0.05 and fields at 3° or
+less, bisecting each beam's edge in twelve launch-plane directions from a seed ray (the chief estimate, else the ray
+nearest the middle of a polar grid aimed across the stop). The reach peaks sharply where a beam vanishes and where the
+aperture setting a meridional edge changes, so the field is bisected to each: a vanishing beam is followed by seeding
+each field from its meridional chord, extrapolated from the fields before. Each cut's highest peak is then measured
+with 360 samples aimed at the stop's rim (`prepareAimedPupilLaunchForState`), each bisected back to the vignetted edge
+and the furthest refined along the rim. A cut near its limit has its three highest peaks measured, with the fields
+either side scanned finely on a direction-refined screen and the best one refined on the full measurement.
+Finite-conjugate keyframes launch from `mtfFiniteObjectPoint`; a field launched any other way is reported, and refuses
+the cuts.
+
 ## Mirror And Folded Optical Paths
 
 Folded systems opt into the generalized exact tracer through lens data, not through a trace-mode flag:

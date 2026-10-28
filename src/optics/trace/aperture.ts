@@ -4,6 +4,7 @@
  * Shared by sequential and generalized tracers so clipping, holes, and inactive surfaces use the same radial rules.
  */
 
+import { clearSemiDiameter } from "../geometry/rimCut.js";
 import type { CompiledStateSurface } from "../types.js";
 import type { TraceGeometry } from "./types.js";
 
@@ -23,9 +24,10 @@ const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
 /**
  * Classify a ray/surface hit against the active radial aperture.
  *
- * Outer semi-diameters clip ordinary rays. `innerSd` creates an annular inactive
- * zone for secondary obstructions or mirror holes, so a hit can be geometrically
- * on the surface but optically pass through the center.
+ * Outer semi-diameters clip ordinary rays; a rim cut clips them at its radius,
+ * inside `sd`. `innerSd` creates an annular inactive zone for secondary
+ * obstructions or mirror holes, so a hit can be geometrically on the surface but
+ * optically pass through the center.
  *
  * @param geometry - indexed trace geometry; supplies the stop surface index
  * @param surface - prepared surface being hit
@@ -75,7 +77,7 @@ function activeSemiDiameter(
 ): number | null {
   if (surface.physicalIndex === geometry.stopSurfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
   if (typeof surface.sd !== "number" || !surface.clips) return null;
-  return surface.sd;
+  return clearSemiDiameter(surface.sd, surface.rimCut);
 }
 
 function exceedsAperture(radius: number, semiDiameter: number): boolean {

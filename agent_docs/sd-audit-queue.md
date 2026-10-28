@@ -271,7 +271,7 @@ npm run audit:aperture -- --markdown
 ```
 
 4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards, the asphere
-audit and the stop-plane moves). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
+audit, the stop-plane moves and the Nokton 50mm f/1 rim cut). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
 stations on 2 lenses (`trace`) and 16 on 3 lenses (`iris`). Work the largest `rim` differences first. For each row,
 read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
@@ -294,8 +294,8 @@ The other diagnoses are not rim problems:
 
 Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the
 wide-open one, lies in the glass of the face beside the stop. The trace steps back to the stop plane, but no iris can
-close there. Move the stop plane into the air the source draws, as #929 did, or cut a rim the figure shows, as #928
-does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the one #928 fixes and the Hologon, and
+close there. Move the stop plane into the air the source draws, as #929 did, or cut a rim the figure shows, as the
+Voigtländer Nokton 50mm f/1 does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the Hologon, and
 fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens | File | Station: face, glass from, wide-open iris | Status |

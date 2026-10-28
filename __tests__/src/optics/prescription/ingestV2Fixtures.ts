@@ -483,6 +483,26 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
     }),
   },
   {
+    family: "rim cut",
+    kind: "lens",
+    v1: v1Prime("fixture-rim-cut", {
+      nominalFno: 8,
+      surfaces: [
+        { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 15 },
+        { label: "1", R: 15, d: 6, nd: 1.5168, elemId: 1, sd: 12 },
+        { label: "2", R: 20, d: 80, nd: 1, elemId: 0, sd: 12, rimCutDepthMm: 2 },
+      ],
+    }),
+    v2: v2Prime("fixture-rim-cut", {
+      aperture: { nominalFNumber: 8, fStops: F_STOPS },
+      surfaces: [
+        { label: "STO", R: "flat", d: 1 },
+        { label: "1", R: 15, d: 6, sd: 12, medium: 1 },
+        { label: "2", R: 20, d: 80, sd: 12, rimCutDepthMm: 2 },
+      ],
+    }),
+  },
+  {
     family: "absorption",
     kind: "lens",
     v1: v1Prime("fixture-absorption", { elements: [{ ...ELEMENT, absorptionCoefficientPerMm: 0.01 }] }),

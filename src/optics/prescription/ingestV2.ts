@@ -214,6 +214,8 @@ const SURFACE_FIELDS: Fields<SurfaceV2Input> = {
   d: true,
   sd: true,
   innerSd: true,
+  rimCutDepthMm: true,
+  rimCutDepthSource: true,
   medium: true,
   asphere: true,
   diffractive: true,
@@ -404,7 +406,17 @@ const ELEMENT_READ_FIELDS = Object.keys(ELEMENT_FIELDS).filter(
 );
 
 /** Surface members read as written; `d` only where no gap supplies it, and the medium is a reference. */
-const SURFACE_READ_FIELDS = ["label", "R", "sd", "innerSd", "diffractive", "interaction", "stopPlacement"];
+const SURFACE_READ_FIELDS = [
+  "label",
+  "R",
+  "sd",
+  "innerSd",
+  "rimCutDepthMm",
+  "rimCutDepthSource",
+  "diffractive",
+  "interaction",
+  "stopPlacement",
+];
 
 function ingestElements(
   authored: readonly Untyped[],
@@ -545,6 +557,8 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
     }
     put(out, "sd", surface.sd);
     put(out, "innerSd", surface.innerSd);
+    put(out, "rimCutDepthMm", surface.rimCutDepthMm);
+    put(out, "rimCutDepthSource", surface.rimCutDepthSource);
 
     const medium = surface.medium;
     if (medium === undefined) {

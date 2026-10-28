@@ -33,6 +33,10 @@ export interface SurfaceData {
   nd: number;
   sd: number;
   innerSd?: number;
+  /** Depth of a flat rim cut from the vertex in mm; see `RimCut` in `optics/geometry/rimCut.ts`. */
+  rimCutDepthMm?: number;
+  /** Source of a rim cut's depth; absent on an inferred cut. */
+  rimCutDepthSource?: string;
   elemId: number;
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
