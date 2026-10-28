@@ -298,14 +298,15 @@ coefficients below are copied without transformation.
 | 16A | 0 | -2.35150E-05 | 1.19948E-07 | -3.24297E-09 | 1.40767E-11 | 2.15242E-13 | -2.59066E-15 |
 | 17A | 0 | -1.50992E-05 | -8.96894E-08 | -2.74366E-09 | 2.94693E-11 | -3.11976E-13 | 0 |
 
-The stored semi-diameters are inferred rather than patent-published, but they pass the current geometry and ray checks.
-At those verified radii, the full asphere departure from a spherical surface with the same vertex radius is:
+The stored semi-diameters are inferred rather than patent-published. The 2026-10-27 audit capped 10A and 11A
+at 9.9 mm, below 11A's 9.946327 mm slope reversal, preserving L5's square rim and the stated on-axis beam. The full asphere departure from a
+spherical surface with the same vertex radius at the currently stored rims is:
 
 | Surface | Stored semi-diameter | Departure from same-R sphere | Polynomial departure from conic base |
 | --- | ---: | ---: | ---: |
 | 5A | 14.2 mm | -5.431363 mm | -0.835512 mm |
-| 10A | 10.9 mm | +0.060761 mm | +0.060761 mm |
-| 11A | 10.2 mm | +0.341401 mm | +0.341401 mm |
+| 10A | 9.9 mm | -0.030648 mm | -0.030648 mm |
+| 11A | 9.9 mm | +0.276400 mm | +0.276400 mm |
 | 16A | 10.3 mm | -0.428047 mm | -0.428047 mm |
 | 17A | 10.3 mm | -0.673356 mm | -0.673356 mm |
 
@@ -316,9 +317,16 @@ modulating the peripheral departure. These descriptions concern the coefficient 
 a manufacturing process to L5 or L8.
 
 The patent publishes no clear-aperture heights. Consequently, the data's semi-diameters are inferred model quantities,
-and no asphere departure is presented as a departure at a published aperture. The inferred apertures were checked
-against edge thickness, actual aspherical rim slope, conic limits, cross-gap intrusion, off-axis containment, and render
-trim at all defined zoom/focus endpoints.
+and no asphere departure is presented as a departure at a published aperture. All five coefficient blocks, including
+signs, exponents and explicit zeros, match Table 2 on PDF page 17; the sag equation on page 16 uses standard `K`.
+Surface 5A's large same-radius-sphere departure follows the printed conic and polynomial and lies below its
+18.358933 mm slope reversal; it is not evidence of a transcription error.
+
+Surface 16A reverses slope at 6.27 mm, inside its 10.3 mm inferred rim, but the stated on-axis beam needs up to 7.9 mm
+there along the zoom range, so its rim (and 17A's) stays. Wide open at the wide end, the outermost rays at about 50° and
+53° cross 16A beyond that reversal and do not converge closely enough on the image point for the vignetting tab to
+compute relative illumination there (40-43° at the middle station), although both fields lie inside the patent's
+20 mm image height.
 
 ## Chromatic Correction Strategy
 
@@ -373,12 +381,12 @@ positions also reproduce the patent at source-precision tolerances. Surface-by-s
 `φ / (n n′)` gives a total of +0.002733711400 mm^-1 and a signed Petzval radius of -365.803062 mm under the project's
 `-1 / sum` convention.
 
-The patent publishes neither semi-diameters nor stop diameters. The model's inferred apertures pass all six
-published-anchor focus/zoom states and sampled states across all 32 interpolation intervals. The minimum element edge thickness is
-0.256418 mm, the maximum actual rim angle is 63.157°, and the minimum clearance to the 90% cross-gap intrusion limit is
-0.023337 mm. No conic-limit failure or geometry-implied render trim was found. The Stage 4 verifier executes 36 anchor
-rays and 108 representative interval-sampling rays using on-axis marginal rays, complete 0.6-field bundles, and
-full-field chief rays; none exceeds the stored semi-diameters.
+The patent publishes neither semi-diameters nor stop diameters. The inferred rims keep the stated on-axis f-number
+along the infinity-focus zoom path and cover the full-frame corner to about 99 %; the source prints a 20 mm wide-end
+image semi-height, smaller than the 21.65 mm corner. The printed prescription reproduces the patent's own aberration
+plots (Figure 2) within their resolution: on-axis spherical aberration stays within ±0.1 mm at every station, and the
+traced edge distortion (−10.8 % wide, −4.5 % middle, −2.4 % tele) and chief-ray heights (20.0 / 21.0 / 21.6 mm) match
+the figure and Table 3A.
 
 No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical part appears in Numerical Example
 1. None was therefore omitted from an otherwise active optical sequence, and no air-equivalent rear-spacing correction

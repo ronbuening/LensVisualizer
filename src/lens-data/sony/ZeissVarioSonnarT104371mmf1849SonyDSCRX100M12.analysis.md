@@ -209,6 +209,16 @@ Because the patent does not publish clear apertures, aspheric departure can only
 
 These departures describe the authored visualization/tracing model, not measured production rims.
 
+## Published Field and Outer-Field Limits
+
+Every coefficient, radius, spacing and glass in the stored prescription matches Example 3 (Tables 9–12). The patent's
+published half-fields are 32.98°, 21.63° and 12.53°; the site follows the chief ray further, to the corner of the 1-inch
+format (41.6° at the wide end), a field the camera reaches only with in-camera distortion correction. Wide open at the
+wide end, the upper-rim rays at about 30° and beyond do not converge closely enough on the image point for the vignetting
+tab to compute relative illumination, even inside the published field. No aspheric rim runs past a turnover, the
+patent's peripheral-ray mask on surface 13 is undimensioned, and its aberration plots do not isolate a misprint, so the
+data are kept as printed.
+
 ## Conditional Expressions
 
 The patent organizes the compact-zoom concept around four principal conditions. For Example 3, the final-model verifier evaluates the quantities as follows.

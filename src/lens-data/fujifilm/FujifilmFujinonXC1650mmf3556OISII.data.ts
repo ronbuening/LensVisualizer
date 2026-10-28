@@ -22,8 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * independent evidence of the manufactured diaphragm diameter.
  *
  * Semi-diameters are estimated from the exact patent section at 600 dpi, excluding
- * mechanical shoulders, leaders, rays, and motion arrows. Geometry limits cap the
- * steep rear front-group surface and focusing asphere where a literal figure fit fails.
+ * mechanical shoulders, leaders, rays, and motion arrows. Surface 5 retains its gap-clearance cap.
+ * The verbatim Table 3 polynomials reverse slope at h=9.12919 (7A), 5.90779 (12A),
+ * 5.75366 (16A), and 6.12390 mm (17A). Inferred rims stop short of these zones:
+ * L22 6A/7A=9.1, L31 11A/12A=5.9, L34 16A/17A=5.75 mm, preserving Fig. 1 square rims.
+ * All three stated on-axis f-number beams still pass; outer wide/intermediate fields vignette at these limits.
  * See the sibling audit log for per-surface changes and source locations.
  *
  * Aspheres: patent KA = 1 on surfaces 6, 7, 11, 12, 16, and 17; LensVisualizer uses K = KA - 1 = 0.
@@ -227,7 +230,7 @@ const LENS_DATA = {
       label: "6A",
       R: -74.2538,
       d: 1.05,
-      sd: 9.5,
+      sd: 9.1,
       medium: 4,
       asphere: {
         K: 0,
@@ -255,7 +258,7 @@ const LENS_DATA = {
       label: "7A",
       R: 24.3554,
       d: 0.1,
-      sd: 9.5,
+      sd: 9.1,
       asphere: {
         K: 0,
         A4: -0.00026404611,
@@ -313,7 +316,7 @@ const LENS_DATA = {
       label: "12A",
       R: -81.0221,
       d: 1.56,
-      sd: 6.15,
+      sd: 5.9,
       asphere: {
         K: 0,
         A4: 1.6565053e-05,
@@ -343,7 +346,7 @@ const LENS_DATA = {
       label: "16A",
       R: -49.8789,
       d: 1,
-      sd: 6.65,
+      sd: 5.75,
       medium: 9,
       asphere: {
         K: 0,
@@ -371,7 +374,7 @@ const LENS_DATA = {
       label: "17A",
       R: 38.0025,
       d: 5.2,
-      sd: 6.55,
+      sd: 5.75,
       asphere: {
         K: 0,
         A4: 8.8501534e-05,

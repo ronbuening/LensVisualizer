@@ -44,7 +44,8 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "double Gauss",
     efl: 49.994180757309714,
     epSD: 17.855064556182043,
-    stopPhysSD: 12.645689552811538,
+    // 2026-10-27: the inferred stop plane moved behind r₆'s clear cap (7.8 mm); the paraxial EPD = F/N rule sizes it there.
+    stopPhysSD: 12.234122392091002,
     imgZ: 81.345,
     zLast: 44.185,
     marginal: { h: 12.5, y: 9.58533019704501, u: -0.25841395919948856 },

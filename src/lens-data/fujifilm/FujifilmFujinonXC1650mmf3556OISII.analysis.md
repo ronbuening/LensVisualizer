@@ -342,14 +342,16 @@ The verified geometry model supplies **modeled** semi-diameters, so aspheric dep
 
 | Surface | Modeled semi-diameter | Departure from base conic | Rim angle |
 |---|---:|---:|---:|
-| 6A | 9.50 mm | -0.671495 mm | 27.50° |
-| 7A | 9.50 mm | -0.810280 mm | 28.13° |
+| 6A | 9.10 mm | -0.549423 mm | 20.21° |
+| 7A | 9.10 mm | -0.563228 mm | 1.28° |
 | 11A | 5.90 mm | -0.094293 mm | 16.91° |
-| 12A | 6.15 mm | +0.026659 mm | 8.72° |
-| 16A | 6.65 mm | +0.626293 mm | 60.58° |
-| 17A | 6.55 mm | -0.201075 mm | 54.11° |
+| 12A | 5.90 mm | -0.007885 mm | 0.17° |
+| 16A | 5.75 mm | +0.105198 mm | 0.04° |
+| 17A | 5.75 mm | +0.096384 mm | 11.06° |
 
-Surface 16A is the limiting high-slope asphere in the modeled geometry evaluation: at the modeled 6.65 mm semi-diameter its rim angle is 60.58°, while surface 17A reaches 54.11°. These values are used only to describe the verified modeled geometry; the patent does not publish clear apertures for Example 1.
+The 2026-10-27 audit re-read every A3–A20 term and KA in Table 3, and every R/d/nd/vd row in Table 1, from rendered PDF p. 64. No prescription mismatch was found. The first nonzero slope reversals occur at radial heights 9.12919 mm (7A), 5.90779 mm (12A), 5.75366 mm (16A), and 6.12390 mm (17A). The former inferred rims extended beyond those polynomial validity limits. The revised apertures stop short of them, with common rim heights on L22, L31, and L34 to preserve the square cuts in Fig. 1. Surface 6A follows the cap on its paired 7A face; 17A shares the stricter 16A limit. The table gives absolute rim angles; 12A and 16A still have negative slopes at their capped rims. These limits are inferred, not clear apertures published for Example 1.
+
+With these limits, the vignetting-tab probe supplies relative illumination at every sampled field at all three infinity zoom stations. At wide (half-field 44.78°), edge RI is 0.393 and the transmitted fraction is 0.469; at intermediate (27.40°), they are 0.809 and 0.909. Tele (16.12°) retains RI 0.896 and transmitted fraction 1.000. Maximum referred deviations over each sweep are approximately 0.0214, 0.0179, and 0.0015, respectively, below the 0.05 localization refusal threshold. These are modeled results dependent on inferred apertures and the retained image-plane inference; numerical availability does not establish production illumination.
 
 ## Chromatic Correction Strategy
 
@@ -411,7 +413,7 @@ The three source-state BFL values are 16.2520393, 16.2462829, and 16.2530038 mm.
 
 The patent publishes F No. 3.60, 4.54, and 5.59 but no physical diaphragm diameter. The modeled base stop semi-diameter, **4.7532831889 mm**, is calibrated from the wide-state F No. and the modeled entrance-pupil magnification. Independent per-state calibrations would be 4.7532832, 4.7309891, and 4.6758679 mm. Agreement with the target F-numbers is therefore a calibration property of the model and not independent evidence for the manufactured diaphragm size. If the single stored wide-calibrated stop radius is held fixed through zoom, the corresponding first-order F-numbers are approximately 3.600, 4.519, and 5.499; the `nominalFno` array therefore records the published/model target schedule rather than asserting those values for one fixed physical diaphragm radius.
 
-Every lens-surface semi-diameter is estimated because Example 1 has no clear-aperture table. The revised rims follow Fig. 1 at 600 dpi, excluding the OIS and focus arrows. Surface 5 is capped at 8.5 mm by gap clearance; the steep 16A/17A OIS asphere retains its smaller clear aperture. These limits take precedence over fitting the outer drawing ink.
+Every lens-surface semi-diameter is estimated because Example 1 has no clear-aperture table. The revised rims follow Fig. 1 at 600 dpi, excluding the OIS and focus arrows. Surface 5 is capped at 8.5 mm by gap clearance. L22 uses 9.1 mm on both faces, L31 uses 5.9 mm, and L34 uses 5.75 mm, each stopping short of the limiting aspheric turnover while retaining a square rim. The stated on-axis beams at F No. 3.60, 4.54, and 5.59 pass these rims. These limits take precedence over fitting the outer drawing ink.
 
 The manufacturer-marketed field endpoints, 83.2° wide and 31.7° long, were also tested for exact-ray **reachability** with the inferred apertures. At least one clear ray per field sign reaches the image plane at both endpoints. This does not establish unvignetted throughput, and it does not establish that the modeled semi-diameters transmit the patent’s wider 89.6° wide field without clipping.
 

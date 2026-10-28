@@ -16,7 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are estimated from the exact patent section at 600 dpi, excluding
  * mechanical shoulders, leaders, rays, and motion arrows. Geometry limits cap the
  * steep rear front-group surface and focusing asphere where a literal figure fit fails.
- * See the sibling audit log for per-surface changes and source locations.
+ * Surface 8 is raised from 4.8 to 5.6 mm to pass the stated on-axis W/M/T beams;
+ * Figure 3 draws L2a stepped, so surface 7 retains its 7.2 mm rim. All six aspheres
+ * retain the printed Table 12 coefficients and rims below their first turnovers.
+ * Outer-field Rimmer localization remains unresolved; see the sibling audit log.
  *
  * The patent does not publish a physical diaphragm diameter. The stop radius is derived from the
  * design f-number at each zoom station. The station nominalFNumber values carry the modeled W/M/T
@@ -266,7 +269,7 @@ const LENS_DATA = {
     { label: "5", R: 28.348, d: 2.42, sd: 11.5, medium: 3 },
     { label: "6", R: 77.488, sd: 11.5 },
     { label: "7", R: 14.05, d: 3.25, sd: 7.2, medium: 4 },
-    { label: "8", R: 220.173, d: 2.0, sd: 4.8 },
+    { label: "8", R: 220.173, d: 2.0, sd: 5.6 },
     // radius derived from the design f-number at each zoom station.
     { label: "STO", R: "flat", d: 1.41 },
     { label: "10", R: 16.454, d: 3.51, sd: 6, medium: 5 },
