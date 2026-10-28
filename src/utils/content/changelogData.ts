@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-28",
+    type: "improvement",
+    summary:
+      "The aperture stop now gives each marked f-number the paraxial entrance pupil lens-design software uses, at every aperture and zoom, and the Summary reports image-space, paraxial working and real working f-numbers under their standard names; the MTF header no longer shows a separate traced f-number and instead names a rim that vignettes the axial beam",
+  },
+  {
     date: "2026-10-27",
     type: "fix",
     summary:

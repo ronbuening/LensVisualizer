@@ -34,7 +34,8 @@ import {
   entrancePupilAtState,
   solveChiefRayForRuntimeLens,
 } from "../../state/fieldAdapters.js";
-import { tracingHalfFieldAtZoom, wideOpenStopAtZoom } from "../../state/stationTables.js";
+import { tracingHalfFieldAtZoom } from "../../state/stationTables.js";
+import { wideOpenStopAtZoom } from "../../state/apertureStop.js";
 import { launchSurfaceForFieldDeg, projectionLaunchSlopeForField } from "../../field/projection.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";

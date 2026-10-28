@@ -197,23 +197,28 @@ describe("chromatic analysis helpers", () => {
   });
 
   it("compares every requested channel in a fan at the outermost fraction that admits them all", () => {
-    // Wide open, a rim behind the stop vignettes blue's and violet's aimed 0.97 R zone, so the fan passes it by.
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed rays at 0.9829 R (0.9827–0.9831 R under the
+    // paraxial stop rule) while red and green pass, so the fan passes that zone by.
+    const rimZone = 0.9829;
     const request = analysisRequestForLens(sharedSonnar50f15());
-    const fans = computeChromaticRayFanAnalysis(request, { channels: ["R", "G", "B", "V"] });
-    expect(fans.spreads.onAxis).toMatchObject({ fraction: 0.95, channels: ["R", "G", "B", "V"], omittedChannels: [] });
+    const fans = computeChromaticRayFanAnalysis(request, {
+      channels: ["R", "G", "B", "V"],
+      onAxisFractions: [rimZone, 0.97],
+    });
+    expect(fans.spreads.onAxis).toMatchObject({ fraction: 0.97, channels: ["R", "G", "B", "V"], omittedChannels: [] });
 
-    // Offered only 0.97 R, the fan falls back to the channels that pass and names the others.
+    // Offered only the rim zone, the fan falls back to the channels that pass and names the others.
     const fallback = computeChromaticRayFanAnalysis(request, {
       channels: ["R", "G", "B", "V"],
-      onAxisFractions: [0.97],
+      onAxisFractions: [rimZone],
     }).spreads.onAxis!;
-    expect(fallback.fraction).toBe(0.97);
+    expect(fallback.fraction).toBe(rimZone);
     expect(fallback.channels).toEqual(["R", "G"]);
     expect(fallback.omittedChannels).toEqual([
       { channel: "B", reason: "vignetted" },
       { channel: "V", reason: "vignetted" },
     ]);
-    expect(formatChromaticZone(fallback)).toBe("0.97 R, R–G; B, V vignetted");
+    expect(formatChromaticZone(fallback)).toBe("0.98 R, R–G; B, V vignetted");
   });
 
   it("picks a traced fan's fraction from all four channels, and states a fallback's missing channels", () => {

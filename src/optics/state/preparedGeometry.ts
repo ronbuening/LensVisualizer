@@ -5,7 +5,7 @@
  * validating state-dependent thicknesses before tracing.
  */
 
-import { wideOpenStopAtZoom } from "./stationTables.js";
+import { wideOpenStop } from "./apertureStop.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, normalizeControlT } from "../math/numerics.js";
@@ -129,10 +129,8 @@ function buildPreparedState(
       Object.freeze({
         ...surface,
         base: surface,
-        sd:
-          index === lens.stop.surfaceIndex && lens.constants.zoomStopSDs
-            ? wideOpenStopAtZoom(zoomT, lens.constants)
-            : surface.sd,
+        // A zoom's iris follows the zoom and is held across focus: the stop rule reads infinity focus.
+        sd: index === lens.stop.surfaceIndex && lens.constants.zoomStopSDs ? wideOpenStop(lens, zoomT) : surface.sd,
         d: thicknesses[index],
         z: z[index],
       }),

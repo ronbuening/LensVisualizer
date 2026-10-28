@@ -1,6 +1,6 @@
 /** Pure MTF orchestration with explicit per-field convergence and unavailable results. */
 import type {
-  MtfAperture,
+  MtfAxialVignetting,
   MtfFieldGeometry,
   MtfFieldResult,
   MtfFocus,
@@ -35,7 +35,7 @@ import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
-import { resolveMtfAperture } from "./mtfAperture.js";
+import { computeWorkingFNumber } from "../summary/fNumbers.js";
 import {
   mtfBeamHeight,
   mtfChiefHeight,
@@ -48,15 +48,14 @@ import type { MtfFieldTarget } from "./mtfFields.js";
 
 /**
  * Results an identical earlier request may share: the field axis, the axial focus search, the
- * traced aperture and finished fields, keyed by fraction. Callers key a cache by everything in the
+ * axial marginal ray's vignetting and finished fields, keyed by fraction. Callers key a cache by everything in the
  * request except `fieldFractions`.
  */
 export interface MtfJobCache {
   /** Field axis; null when no chief ray reaches the image. */
   geometry?: MtfFieldGeometry | null;
   focus?: MtfFocus;
-  /** Stored with `focus`; both come from the axial beam. */
-  aperture?: MtfAperture | null;
+  axialVignetting?: MtfAxialVignetting | null;
   fields: Map<number, MtfFieldResult>;
 }
 
@@ -354,7 +353,7 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
 
 /* ── Focus ── */
 
-/** Axial launch and footprint, shared by the focus search and the traced aperture. */
+/** Axial launch and footprint for the focus search. */
 interface MtfAxialBeam {
   launch: MtfFieldLaunch;
   footprint: MtfFootprint;
@@ -457,7 +456,7 @@ export function* computeMtfSteps(
     fields: [],
     geometry: null,
     focus: null,
-    aperture: null,
+    axialVignetting: null,
   };
   if (!support.available) return result;
   const cap = options.maxGridSize ?? MTF_DEFAULT_GRID_CAP;
@@ -496,15 +495,16 @@ export function* computeMtfSteps(
   // Every field shares one image plane, so the axial focus search runs before any field.
   if (cache?.focus) {
     result.focus = cache.focus;
-    result.aperture = cache.aperture ?? null;
   } else {
-    const axial = resolveAxialBeam(context);
-    result.focus = resolveMtfFocus(context, axial);
-    result.aperture = axial ? resolveMtfAperture(state, options, support, axial.launch, axial.footprint) : null;
-    if (cache) {
-      cache.focus = result.focus;
-      cache.aperture = result.aperture;
-    }
+    result.focus = resolveMtfFocus(context, resolveAxialBeam(context));
+    if (cache) cache.focus = result.focus;
+  }
+  // The header names the surface that vignettes the axial marginal ray, as the Summary's working f-number does.
+  if (cache?.axialVignetting !== undefined) {
+    result.axialVignetting = cache.axialVignetting;
+  } else {
+    result.axialVignetting = axialVignetting(request);
+    if (cache) cache.axialVignetting = result.axialVignetting;
   }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
   yield result;
@@ -538,6 +538,14 @@ function copyField(field: MtfFieldResult): MtfFieldResult {
       tangential: [...field.diffractionLimit.tangential],
     },
   };
+}
+
+/** The surface that vignettes the axial marginal ray, from the Summary's working f-number; null when none does. */
+function axialVignetting(request: AnalysisRequest): MtfAxialVignetting | null {
+  const marginal = computeWorkingFNumber(request);
+  return marginal.status === "vignetted"
+    ? { surfaceLabel: marginal.surfaceLabel, beforeStop: marginal.beforeStop }
+    : null;
 }
 
 export function computeMtf(request: AnalysisRequest, options: MtfRequestOptions): MtfResult {

@@ -62,13 +62,13 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_fieldGeometry_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_fieldGeometry_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_optics_ts
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_optics_optics_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_perspective_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_optics_perspective_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_projection_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_types_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts
   n_src_components_layout_lensDiagram_truncated["additional relationships omitted"]
 ```
 
@@ -90,4 +90,4 @@ flowchart LR
 | `DiagramViewport.tsx` | React component module | src/components/layout (5), src/components/diagram (3), package:react (2), src/optics/chromatic.ts (2), src/types (2), +1 more | src/components/layout | default, DiagramViewport |
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
 | `LensDiagramLoadedState.tsx` | React component module | src/components/layout (4), src/components/display (2) | src/components/layout | default, LensDiagramLoadedState |
-| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/analysis.ts, src/optics/perspective.ts | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |
+| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/analysis.ts, src/optics/optics.ts, +1 more | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |

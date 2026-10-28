@@ -81,7 +81,7 @@ export default function ComparisonContent({
   showEffectiveFocalLength,
   showEffectiveAperture,
 }: ComparisonContentProps) {
-  const { dynamicEflA, dynamicEflB, effectiveFNumA, effectiveFNumB } = useComparisonDisplayValues({
+  const { dynamicEflA, dynamicEflB, paraxialWorkingFNumA, paraxialWorkingFNumB } = useComparisonDisplayValues({
     comparisonLenses,
     focusPair,
     aperturePair,
@@ -174,8 +174,8 @@ export default function ComparisonContent({
               onSliderPointerUp={onSliderPointerUp}
               dynamicEflA={dynamicEflA}
               dynamicEflB={dynamicEflB}
-              effectiveFNumA={effectiveFNumA}
-              effectiveFNumB={effectiveFNumB}
+              paraxialWorkingFNumA={paraxialWorkingFNumA}
+              paraxialWorkingFNumB={paraxialWorkingFNumB}
               showEffectiveFocalLength={showEffectiveFocalLength}
               onToggleEffectiveFocalLength={() =>
                 dispatch({

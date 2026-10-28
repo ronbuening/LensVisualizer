@@ -12,6 +12,13 @@ import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.d
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import { build, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import useLensComputation from "../../../src/components/hooks/useLensComputation.js";
+import type { ParaxialWorkingFNumberResult } from "../../../src/optics/optics.js";
+
+/** The computed paraxial working f-number; these refractive lenses always have one. */
+function value(result: ParaxialWorkingFNumberResult): number {
+  if (result.status !== "computed") throw new Error(`paraxial working f-number ${result.reason}`);
+  return result.value;
+}
 
 const Sonnar = catalogLensData(SonnarRaw);
 const ApoLanthar = catalogLensData(ApoLantharRaw);
@@ -58,14 +65,20 @@ describe("useComparisonDisplayValues", () => {
       for (const request of [2, 8, 11]) {
         for (const focus of [0, 0.5]) {
           rerender({ zoom, request, focus });
-          expect(result.current.display.effectiveFNumA).toBeCloseTo(result.current.a.effectiveFNum, 10);
-          expect(result.current.display.effectiveFNumB).toBeCloseTo(result.current.b.effectiveFNum, 10);
+          expect(value(result.current.display.paraxialWorkingFNumA)).toBeCloseTo(
+            value(result.current.a.paraxialWorkingFNum),
+            10,
+          );
+          expect(value(result.current.display.paraxialWorkingFNumB)).toBeCloseTo(
+            value(result.current.b.paraxialWorkingFNum),
+            10,
+          );
         }
       }
     }
     rerender({ zoom: 1, request: 8, focus: 0 });
-    expect(result.current.display.effectiveFNumA).toBeCloseTo(8, 10);
-    expect(result.current.display.effectiveFNumB).toBeCloseTo(10, 10);
+    expect(value(result.current.display.paraxialWorkingFNumA)).toBeCloseTo(8, 10);
+    expect(value(result.current.display.paraxialWorkingFNumB)).toBeCloseTo(10, 10);
   });
 
   it("returns computed values for valid comparison lenses", () => {
@@ -83,8 +96,8 @@ describe("useComparisonDisplayValues", () => {
     expect(result.current.ok).toBe(true);
     expect(result.current.dynamicEflA).toBeGreaterThan(0);
     expect(result.current.dynamicEflB).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumA).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumB).toBeGreaterThan(0);
+    expect(value(result.current.paraxialWorkingFNumA)).toBeGreaterThan(0);
+    expect(value(result.current.paraxialWorkingFNumB)).toBeGreaterThan(0);
   });
 
   it("returns zeros for failed comparison lenses", () => {

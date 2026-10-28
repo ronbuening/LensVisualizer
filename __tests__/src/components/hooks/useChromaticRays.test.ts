@@ -24,6 +24,11 @@ import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoL
 const Sonnar = catalogLensData(SonnarRaw);
 const ApoLanthar = catalogLensData(ApoLantharRaw);
 const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+/**
+ * The Sonnar 50/1.5's wide-open zone where a rim behind the stop vignettes blue's and violet's aimed rays while red
+ * and green pass: 0.9827–0.9831 R under the paraxial stop rule.
+ */
+const SONNAR_BLUE_RIM_ZONE = 0.9829;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
@@ -446,13 +451,19 @@ describe("useChromaticRays", () => {
       (channels) => channels.length >= 2,
     );
 
-    // Wide open, a rim behind the stop vignettes blue's and violet's aimed 0.97 R zone; all four pass 0.95 R. Red and
-    // green alone pass 0.97 R, but the zone does not move when the other channels are hidden.
-    const atOuter = computeLongitudinalChromaticFocus(request, { channels: order, longitudinalFractions: [0.97] })!;
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed rim zone; all four pass 0.97 R. Red and
+    // green alone pass the rim zone, but the zone does not move when the other channels are hidden.
+    const atOuter = computeLongitudinalChromaticFocus(request, {
+      channels: order,
+      longitudinalFractions: [SONNAR_BLUE_RIM_ZONE],
+    })!;
     expect(atOuter.omittedChannels.map((omission) => omission.channel)).toEqual(["B", "V"]);
     for (const channels of subsets) {
-      const result = computeLongitudinalChromaticFocus(request, { channels, longitudinalFractions: fractions })!;
-      expect(result.marginalFraction).toBe(0.95);
+      const result = computeLongitudinalChromaticFocus(request, {
+        channels,
+        longitudinalFractions: [SONNAR_BLUE_RIM_ZONE, ...fractions],
+      })!;
+      expect(result.marginalFraction).toBe(0.97);
       expect(result.spread.channels).toEqual(channels);
       expect(result.omittedChannels).toEqual([]);
     }
@@ -467,17 +478,17 @@ describe("useChromaticRays", () => {
       currentPhysStopSD,
     });
 
-    // Offered only the 0.97 R zone, where a rim behind the stop vignettes blue, LoCA compares red and green.
+    // Offered only the rim zone, where a rim behind the stop vignettes blue, LoCA compares red and green.
     const result = computeLongitudinalChromaticFocus(request, {
       channels: ["R", "G", "B"],
-      longitudinalFractions: [0.97],
+      longitudinalFractions: [SONNAR_BLUE_RIM_ZONE],
     })!;
-    expect(result.marginalFraction).toBe(0.97);
-    expect(result.spread.fraction).toBe(0.97);
+    expect(result.marginalFraction).toBe(SONNAR_BLUE_RIM_ZONE);
+    expect(result.spread.fraction).toBe(SONNAR_BLUE_RIM_ZONE);
     expect(result.spread.channels).toEqual(["R", "G"]);
     expect(result.omittedChannels).toEqual([{ channel: "B", reason: "vignetted" }]);
     expect(result.spread.omittedChannels).toEqual(result.omittedChannels);
-    expect(formatChromaticZone(result.spread)).toBe("0.97 R, R–G; B vignetted");
+    expect(formatChromaticZone(result.spread)).toBe("0.98 R, R–G; B vignetted");
   });
 
   it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {

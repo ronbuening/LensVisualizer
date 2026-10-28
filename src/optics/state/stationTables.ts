@@ -318,18 +318,3 @@ export function closeFocusAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom || !values || values.length < 2) return L.closeFocusM;
   return interpolateStationTable(clampStationControl(zoomT), values);
 }
-
-/**
- * Read the physical iris schedule under the historical zoom-control clamp.
- * @param zoomT - normalized zoom control
- * @param L - physical stop and optional zoom schedule
- * @returns wide-open stop semi-diameter in mm
- */
-export function wideOpenStopAtZoom(
-  zoomT: number,
-  L: Pick<RuntimeLens, "zoomStopSDs" | "isZoom" | "stopPhysSD">,
-): number {
-  const values = L.zoomStopSDs;
-  if (!L.isZoom || !values || values.length < 2) return L.stopPhysSD;
-  return interpolateStationTable(clampStationControl(zoomT), values);
-}

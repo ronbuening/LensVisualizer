@@ -9,10 +9,9 @@ import { compileConstruction } from "../../../src/optics/prescription/compileCon
 import { ingestLens } from "../../../src/optics/lensDataConversion.js";
 import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
 import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
-import {
-  epAtZoomClamped as epAtZoom,
-  fopenAtZoomClamped as fopenAtZoom,
-} from "../../../src/optics/state/runtimeAdapters.js";
+import { fopenAtZoomClamped as fopenAtZoom } from "../../../src/optics/state/runtimeAdapters.js";
+import { stopSemiDiameterForFNumber } from "../../../src/optics/state/apertureStop.js";
+import { entrancePupilAtState } from "../../../src/optics/state/fieldAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
@@ -61,10 +60,9 @@ export function apertureAt(
   const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
-  return {
-    currentPhysStopSD: (L.stopPhysSD * L.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, L) * L.FOPEN) / fNumber,
-  };
+  // As the aperture control sizes them: the stop rule's stop and its paraxial entrance pupil at infinity focus.
+  const currentPhysStopSD = stopSemiDiameterForFNumber(fNumber, zoomT, L);
+  return { currentPhysStopSD, currentEPSD: entrancePupilAtState(currentPhysStopSD, 0, zoomT, L).epSD };
 }
 
 /* ── Shared pre-built production lenses ──────────────────────────────────

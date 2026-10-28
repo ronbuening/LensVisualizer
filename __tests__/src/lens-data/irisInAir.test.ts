@@ -5,14 +5,15 @@ import { build, buildSimplePositiveElementLens } from "../optics/testLensFixture
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { cutOutlineSag } from "../../../src/optics/geometry/rimCut.js";
 import { fNumberAtStopdown } from "../../../src/optics/state/aperture.js";
-import { fopenAtZoom, wideOpenStopAtZoom, zoomIndexToT } from "../../../src/optics/state/stationTables.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
+import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 /**
  * Data contract: the iris is in air over its stroke.
  *
- * At every zoom station and focus keyframe, from the smallest radius the aperture control reaches (at `maxFstop`) out
- * to the wide-open radius, the stop plane lies in air: the face before the stop, with glass in front of it, does not
+ * At every zoom station and focus keyframe, from the smallest radius the aperture control reaches (the stop rule at
+ * `maxFstop`) out to the wide-open radius, the stop plane lies in air: the face before the stop, with glass in front of it, does not
  * reach past the plane, and the face after it, with glass behind it, does not reach in front of it. A face is its own
  * sag out to its own semi-diameter and its rim height beyond, or its rim cut's land beyond the cut radius. The
  * sequential trace steps back to a stop plane in such glass, as OpticStudio does, but no iris can close there.
@@ -31,12 +32,9 @@ const IRIS_STROKE_SAMPLES = 256;
 const IRIS_IN_GLASS: Readonly<Record<string, string>> = {
   "bertele-sonnar-50f2-scaled": "#929 moves the stop plane",
   "leica-elmarit-90f28": "#929 moves the stop plane",
-  "nikon-ai-s-zoom-nikkor-35-70mm-f35": "#929 moves the stop plane",
   "olympus-zuiko-auto-s-50f14": "#929 moves the stop plane",
   "canon-ef-24mm-f14-l-ii-usm": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "nikon-ai-zoom-nikkor-25-50mm-f4": "agent_docs/sd-audit-queue.md Section I, iris in glass",
-  "olympus-zuiko-24f2-j": "agent_docs/sd-audit-queue.md Section I, iris in glass",
-  "pentax-da-18-55mm-f35-56-al": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "zeiss-hologon-15f8": "agent_docs/sd-audit-queue.md Section I, `iris`: the design's embedded glass stop",
 };
 
@@ -58,7 +56,7 @@ function irisInGlass(L: RuntimeLens): IrisInGlass[] {
   for (let zoomIndex = 0; zoomIndex < zoomCount; zoomIndex++) {
     const zoomT = zoomIndexToT(zoomIndex, zoomCount);
     const irisMm = wideOpenStopAtZoom(zoomT, L);
-    const smallest = (irisMm * fopenAtZoom(zoomT, L)) / fNumberAtStopdown(1, zoomT, L);
+    const smallest = stopSemiDiameterForFNumber(fNumberAtStopdown(1, zoomT, L), zoomT, L);
     for (const focusT of L.focusPositions) {
       const surfaces = prepareRuntimeState(L, focusT, zoomT).traceGeometry.surfaces;
       const stopZ = surfaces[s].z;
@@ -121,7 +119,11 @@ describe("iris in air", () => {
   it("finds a stop inside a meniscus rim and passes a stop in air", () => {
     const inRim = meniscus(0.5);
     const iris = wideOpenStopAtZoom(0, inRim);
-    expect(iris / 4).toBeLessThan(Math.sqrt(400 - 19.5 ** 2));
+    // The stop is the first surface, so it is its own entrance pupil: the rule gives F/2N there, a quarter of the
+    // f/4 iris at f/16.
+    const smallest = stopSemiDiameterForFNumber(16, 0, inRim);
+    expect(smallest).toBeCloseTo(iris / 4, 12);
+    expect(smallest).toBeLessThan(Math.sqrt(400 - 19.5 ** 2));
     expect(iris).toBeGreaterThan(Math.sqrt(400 - 19.5 ** 2));
     expect(iris).toBeLessThan(Math.sqrt(400 - 18 ** 2));
 

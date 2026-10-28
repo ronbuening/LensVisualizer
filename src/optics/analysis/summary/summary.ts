@@ -7,6 +7,9 @@ import { focusDistanceAt } from "../../state/focusDistance.js";
 
 import { eflAtZoom } from "../../state/stationTables.js";
 import { computeCardinalElements } from "./cardinals.js";
+import { computeWorkingFNumber } from "./fNumbers.js";
+import type { WorkingFNumberResult } from "./fNumbers.js";
+import { imageSpaceFNumber, paraxialWorkingFNumber } from "../../first-order/fNumber.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -19,7 +22,12 @@ export interface OpticalSummaryMetrics {
   currentEFLMm: number | null;
   infinityEFLMm: number | null;
   breathingPercent: number | null;
-  effectiveFNumber: number | null;
+  /** OpticStudio's image-space F/#: EFL / EPD, paraxial, of the current state. */
+  imageSpaceFNumber: number | null;
+  /** 1 / (2 n′ |u′|) of the paraxial marginal ray at the current object distance; null on a folded path. */
+  paraxialWorkingFNumber: number | null;
+  /** 1 / (2 n′ sin θ′) of the real marginal ray through the stop rim, or the state that ray is in. */
+  workingFNumber: WorkingFNumberResult;
   entrancePupilDiameterMm: number | null;
   physicalStopDiameterMm: number | null;
   halfFieldDeg: number | null;
@@ -76,10 +84,12 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
       : null;
   const entrancePupilDiameterMm = currentEPSD > 0 ? finiteOrNull(currentEPSD * 2) : null;
   const physicalStopDiameterMm = currentPhysStopSD > 0 ? finiteOrNull(currentPhysStopSD * 2) : null;
-  const effectiveFNumber =
-    currentEFLMm !== null && entrancePupilDiameterMm !== null && entrancePupilDiameterMm > 1e-9
+  // A folded path's pupil divides the stop by the generalized tracer's near-axis ratio (`entrancePupil`).
+  const imageSpace = state.lens.flags.isFoldedOptics
+    ? currentEFLMm !== null && entrancePupilDiameterMm !== null && entrancePupilDiameterMm > 1e-9
       ? Math.abs(currentEFLMm) / entrancePupilDiameterMm
-      : null;
+      : null
+    : imageSpaceFNumber(state, currentPhysStopSD);
   const halfFieldDeg = finiteOrNull(fieldGeometry?.halfFieldDeg);
   const cardinals = computeCardinalElements(request);
 
@@ -87,7 +97,9 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
     currentEFLMm,
     infinityEFLMm,
     breathingPercent,
-    effectiveFNumber,
+    imageSpaceFNumber: imageSpace,
+    paraxialWorkingFNumber: paraxialWorkingFNumber(state, currentPhysStopSD),
+    workingFNumber: computeWorkingFNumber(request),
     entrancePupilDiameterMm,
     physicalStopDiameterMm,
     halfFieldDeg,

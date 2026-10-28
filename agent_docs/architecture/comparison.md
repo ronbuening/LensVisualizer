@@ -36,7 +36,9 @@ lens' actual focus, aperture, zoom, and optional perspective-control movement ra
 preserving each lens' real optical limits; lenses without `perspectiveControl` clamp shared shift/tilt to zero.
 
 The aperture request scale stays fixed across zoom so a selected f-number and saved URL keep their meaning.
-`fNumberAtStopdown` supplies the current-zoom aperture limit for both the diagrams and comparison readouts.
+`fNumberAtStopdown` supplies the current-zoom aperture limit for both the diagrams and comparison readouts; the
+optional readout under the shared aperture slider is each side's paraxial working f-number at the stop
+`stopSemiDiameterForFNumber` sets, or that it is unavailable and why (a folded path).
 When either lens cannot reach the request, the slider labels it "Requested" and shows both actual A/B apertures;
 the optional effective-aperture row adds only the close-focus correction. The common-point marker and sticky flash
 follow the current zoom limits, with no common-point marker when the aperture ranges do not overlap.
