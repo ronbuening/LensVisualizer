@@ -7,12 +7,15 @@
  *
  *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
  *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
- *     samples, and rays a rim, total internal reflection or a proven aperture miss stops after the stop
- *     (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays whose full trace fails for any other
- *     reason are left out of both counts, and each field reports how many of each there were. Total internal
- *     reflection ahead of the stop is not a block to the aimed launch: a sample only reflected rays could reach is
- *     unaimed (`stop-unreachable`), not vignetted. Reporting it as a block at that surface changes the shared aimed
- *     launch and every analysis on it, so it is deferred to PR 3 (the MTF on the stop lattice).
+ *     samples, and aimed rays whose full trace a rim on either side of the stop, total internal reflection after it
+ *     or a proven aperture miss stops (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays
+ *     whose full trace fails for any other reason are left out of both counts, and each field reports how many of
+ *     each there were. Total internal reflection ahead of the stop is not a block to the aimed launch: a sample only
+ *     reflected rays could reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search
+ *     stalls) and left out of both counts, though a solve whose last failed step at the iteration cap left a rim
+ *     ahead of the stop ends `blocked` at that rim and counts as vignetted. Reporting total internal reflection as a
+ *     block at its surface changes the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the
+ *     MTF on the stop lattice).
  *   - Relative illumination follows Rimmer's method, as OpticStudio computes it: a transmitted cell contributes n′²
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
@@ -33,10 +36,12 @@
  * field's median, or where a transmitted ray strays from its referred direction by more than
  * `RIMMER_MAX_REFERRED_DEVIATION`, has no relative illumination. Unaimed or failed samples beside the beam (the row
  * or column neighbour of a transmitted cell) have an unknown share of it and turn their neighbours' derivatives
- * one-sided: left out, they read the field low by about their share, so a field where they exceed
- * `RIMMER_MAX_UNRESOLVED_SHARE` of its transmitted cells has no relative illumination either. A field whose unaimed and failed samples together exceed `VIGNETTING_MAX_UNAIMED_SHARE` of its
- * lattice has neither figure. States the MTF's beam model refuses (folded, mirror, diffractive or annular paths, fisheye projections, a
- * tilted image plane) and curves with a bounding-sphere field have no curve. Each of these carries its reason.
+ * one-sided: left out, they can read the field low by up to about their share, so a field where they exceed
+ * `RIMMER_MAX_UNRESOLVED_SHARE` of its transmitted cells has no relative illumination either. The bound counts the
+ * samples next to the beam, not any further ones behind them. A field whose unaimed and failed samples together
+ * exceed `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither figure. States the MTF's beam model refuses
+ * (folded, mirror, diffractive or annular paths, fisheye projections, a tilted image plane) and curves with a
+ * bounding-sphere field have no curve. Each of these carries its reason.
  *
  * On a meridional field of a system mirror-symmetric about the meridian (`trace/symmetry.ts`), the +px half is traced
  * and the −px half is its exact mirror image, as the launch itself mirrors.
@@ -86,8 +91,9 @@ export const RIMMER_MAX_REFERRED_DEVIATION = 0.05;
 /**
  * Largest share of a field's transmitted cells that unaimed or failed samples beside its beam (the row or column
  * neighbour of a transmitted cell) may make up while relative illumination is still given. Left out of Rimmer's sum,
- * such samples read the field low by about their own share of the beam (the axis's read the ratio high by theirs).
- * Up to the lattice's own convergence band the figure stands; beyond it the field has none (`unresolved-in-beam`).
+ * such samples can read the field low by up to about their own share of the beam (the axis's can read the ratio
+ * high by theirs). Up to the lattice's own convergence band (doubling the lattice moves no benchmark field's RI by
+ * more than 0.0035) the figure stands; beyond it the field has none (`unresolved-in-beam`).
  */
 export const RIMMER_MAX_UNRESOLVED_SHARE = 0.0035;
 
@@ -491,12 +497,13 @@ function traceLattice(
       orientedCosineArea: null,
       cosineArea: null,
     };
-    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray (total internal
-    // reflection ahead of the stop leaves its sample unaimed, see the header).
+    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray (see the header for
+    // total internal reflection ahead of the stop).
     if (ray.status !== "aimed") return dark;
     const result = trace(ray);
-    // The aimed ray reaches the stop, so this trace fails after it: a rim, total internal reflection or a proven
-    // aperture miss vignettes the ray; any other failure is the tracer's.
+    // The aimed ray reached the stop without aperture checks, so total internal reflection or a numerical failure here
+    // is after the stop. A rim on either side of the stop, total internal reflection or a proven aperture miss
+    // vignettes the ray; any other failure is the tracer's.
     const outcome = traceRayClassification(result, state, launch.clipSemiDiameterMm);
     if (outcome === "blocked") return dark;
     if (outcome === "failed" || !(result.terminalDirection[2] > 0)) return { ...dark, failed: true };
@@ -546,8 +553,8 @@ function latticeIndex(
 
 /**
  * Count the unaimed or failed samples that are the row or column neighbour of a transmitted one. Each one's share of
- * the beam is unknown: left out, it reads Rimmer's sum low by about its own area, and its neighbours' derivatives turn
- * one-sided against a cell that may carry light.
+ * the beam is unknown: left out, it can read Rimmer's sum low by up to about its own area, and its neighbours'
+ * derivatives turn one-sided against a cell that may carry light.
  */
 function unresolvedBesideBeam(cells: readonly VignettingCellResult[], n: number): number {
   const indexAt = latticeIndex(

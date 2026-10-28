@@ -13,7 +13,11 @@ import {
   referredDirection,
   vignettingStopLattice,
 } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
-import type { ReferenceSphere } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import type {
+  ReferenceSphere,
+  VignettingFieldResult,
+  VignettingLatticeCell,
+} from "../../../../../src/optics/analysis/vignetting/vignetting.js";
 import { bulkTransmissionForTrace } from "../../../../../src/optics/trace/bulkAbsorption.js";
 import {
   prepareAimedPupilLaunch,
@@ -99,6 +103,42 @@ function stopBehindLens(): RuntimeLens {
 }
 
 const radians = (deg: number) => (deg * Math.PI) / 180;
+
+/** The 64-cell lattice's cell at (x/64, y/64), x and y odd. */
+function latticeCell(x: number, y: number): VignettingLatticeCell {
+  return vignettingStopLattice(64).find((cell) => cell.xFraction === x / 64 && cell.yFraction === y / 64)!;
+}
+
+/** The axis with the full traces of the named +px cells' rays failed; their mirror images fail with them. */
+function axisWithFailed(
+  request: ReturnType<typeof analysisRequestAt>,
+  cells: readonly VignettingLatticeCell[],
+): VignettingFieldResult {
+  const lattice = vignettingStopLattice(64);
+  const launch = prepareAimedPupilLaunch(request, lattice, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
+  classifier.failing = new Set(
+    cells.map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
+  );
+  try {
+    return computeVignettingField(request, 0);
+  } finally {
+    classifier.failing = new Set();
+  }
+}
+
+/** Unaimed or failed cells that are the row or column neighbour of a transmitted cell, counted from the field's cells. */
+function unresolvedBesideBeam(field: VignettingFieldResult): number {
+  const byPosition = new Map(field.cells.map((entry) => [`${entry.cell.row},${entry.cell.column}`, entry]));
+  const lit = (row: number, column: number) => byPosition.get(`${row},${column}`)?.transmitted === true;
+  return field.cells.filter(
+    ({ cell, ray, failed }) =>
+      (ray.status === "unaimed" || failed) &&
+      (lit(cell.row - 1, cell.column) ||
+        lit(cell.row + 1, cell.column) ||
+        lit(cell.row, cell.column - 1) ||
+        lit(cell.row, cell.column + 1)),
+  ).length;
+}
 
 /**
  * Trace each transmitted −px cell of the request's edge field on its own and expect every mirrored entry to match its
@@ -437,7 +477,7 @@ describe("computeVignettingCurve", () => {
     expect(few.unaimedCount).toBeLessThanOrEqual(0.01 * few.sampleCount);
     expect(few.unvignettedFraction).toBe(few.transmittedCount / (few.sampleCount - few.unaimedCount));
     // The ring borders the transmitted beam, more of it than the figure may lose: no relative illumination.
-    expect(few.unaimedCount / few.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(unresolvedBesideBeam(few) / few.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
     expect(few.relativeIlluminationReason).toBe("unresolved-in-beam");
     expect(few.rimmerSum).toBeNull();
     const many = fieldAt(2);
@@ -450,25 +490,10 @@ describe("computeVignettingCurve", () => {
     // Every ray of this beam reaches the image. Failing k of the traced +px rays fails their mirror images too.
     const L = stopBehindLens();
     const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
-    const lattice = vignettingStopLattice(64);
-    const launch = prepareAimedPupilLaunch(
-      request,
-      lattice,
-      computeOffAxisFieldGeometry(request.preparedGeometry, 0)!,
-    )!;
-    const inner = lattice.filter((cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) < 0.5);
-    const failWith = (count: number) => {
-      classifier.failing = new Set(
-        inner
-          .slice(0, count)
-          .map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
-      );
-      try {
-        return computeVignettingField(request, 0);
-      } finally {
-        classifier.failing = new Set();
-      }
-    };
+    const inner = vignettingStopLattice(64).filter(
+      (cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) < 0.5,
+    );
+    const failWith = (count: number) => axisWithFailed(request, inner.slice(0, count));
     const clean = computeVignettingField(request, 0);
     const few = failWith(10);
     expect(few.failedCount).toBe(20);
@@ -479,10 +504,26 @@ describe("computeVignettingCurve", () => {
     // Inside the beam each failed cell's share of Rimmer's sum is unknown. Twelve beside 3,216 transmitted cells are
     // more than the figure may lose; ten beside 3,218 are within it, and the sum reads low by about their share.
     expect(few.relativeIlluminationReason).toBe("unresolved-in-beam");
-    const over = failWith(6);
+    // Two columns of six, each cell beside the beam only through its row: column neighbours count as beside too.
+    const over = axisWithFailed(
+      request,
+      [1, 3, 5, 7, 9, 11].map((y) => latticeCell(21, y)),
+    );
+    expect(over.failedCount).toBe(12);
+    expect(unresolvedBesideBeam(over)).toBe(12);
     expect(over.failedCount / over.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
     expect(over.relativeIlluminationReason).toBe("unresolved-in-beam");
     expect(over.rimmerSum).toBeNull();
+    // A 4 × 3 block across the meridian: twelve failed, more than the figure may lose, but its two middle cells border
+    // only failed ones. The ten beside the beam are within the share, and the figure stands.
+    const block = axisWithFailed(
+      request,
+      [-1, 1, 3].flatMap((y) => [latticeCell(1, y), latticeCell(3, y)]),
+    );
+    expect(block.failedCount).toBe(12);
+    expect(block.failedCount / block.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(unresolvedBesideBeam(block)).toBe(10);
+    expect(block.relativeIlluminationReason).toBeNull();
     const within = failWith(5);
     const share = within.failedCount / within.transmittedCount;
     expect(within.failedCount).toBe(10);
@@ -496,6 +537,20 @@ describe("computeVignettingCurve", () => {
     expect(many.unavailableReason).toBe("too-many-failed");
     expect(many.unvignettedFraction).toBeNull();
     expect(computeVignettingField(request, 0).failedCount).toBe(0);
+  });
+
+  it("takes the unresolved share of the transmitted cells, not of the lattice", () => {
+    // The 3 mm front rim behind a 5 mm stop passes the cells within 3/5 of it, about 1,160 of 3,228. Six failed cells
+    // beside that beam are 0.52 % of it, more than the figure may lose, though only 0.19 % of the lattice.
+    const L = buildSimplePositiveElementLens("test-vignetting-share-of-beam", { elementSd: 3 });
+    const request = analysisRequestAt(L, { currentEPSD: 5, currentPhysStopSD: 5 });
+    const field = axisWithFailed(request, [latticeCell(1, 1), latticeCell(5, 1), latticeCell(9, 1)]);
+    expect(field.failedCount).toBe(6);
+    expect(field.unaimedCount).toBe(0);
+    expect(unresolvedBesideBeam(field)).toBe(6);
+    expect(6 / field.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(6 / field.sampleCount).toBeLessThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(field.relativeIlluminationReason).toBe("unresolved-in-beam");
   });
 
   it("counts total internal reflection after the stop as vignetting, not as a failure", () => {
@@ -564,10 +619,10 @@ describe("computeVignettingCurve", () => {
     }
   });
 
-  it("gives no image point, and so no relative illumination, where the chief ray is totally reflected after the stop", () => {
+  it("gives no image point, and so no relative illumination, where the chief ray is reflected after the stop", () => {
     // At 25° the ray through the stop's centre meets the R = 8 rear sphere of the n = 1.9 block past the critical
-    // angle, while rays through the stop's lower part leave it: the field transmits part of its beam, but its chief
-    // ray never reaches the image plane to name the image point.
+    // angle, while rays through the stop's upper (+y) part leave it: the field transmits part of its beam, but its
+    // chief ray never reaches the image plane to name the image point.
     const L = lensWith(
       "test-vignetting-reflected-chief",
       [
@@ -603,7 +658,7 @@ describe("computeVignettingCurve", () => {
 
   it("gives no relative illumination where a transmitted ray misses the reference sphere", () => {
     // The stop is the last surface and so its own exit pupil; with the image plane 1 mm behind it the reference
-    // sphere is about 1 mm across, and the rays through the stop's outer zone, slowly converging, pass outside it.
+    // sphere's radius is about 1 mm, and the rays through the stop's outer zone, slowly converging, pass outside it.
     const L = lensWith("test-vignetting-sphere-missed", [
       { label: "1", R: 50, nd: 1.5168, sd: 20, d: 5, elemId: 1 },
       { label: "2", R: 1e15, nd: 1, sd: 20, d: 20, elemId: 0 },

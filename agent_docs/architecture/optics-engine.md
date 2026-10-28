@@ -1245,9 +1245,10 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
   `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
   result and never traced or replaced by a paraxial launch. Total internal reflection ahead of the stop is not taken as
-  a block (`blockedAt` returns null for it), so a target only reflected rays could reach is `stop-unreachable`;
-  reporting it as a block at that surface is deferred to PR 3 (see Vignetting). Bokeh transmission and moved-lens vignetting leave unaimed
-  samples out of their denominators and report how many there were.
+  a block (`blockedAt` returns null for it), so a target only reflected rays could reach is mostly
+  `stop-unreachable` (`aim-not-converged` where the search stalls, `blocked` where the cap ends on a rim's proven
+  block); reporting it as a block at that surface is deferred to PR 3 (see Vignetting). Bokeh transmission and
+  moved-lens vignetting leave unaimed samples out of their denominators and report how many there were.
 - **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
   real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
   (`prepareAxialZoneLaunch` in `aberration/shared.ts`); both chromatic ray fans, aimed per channel at that channel's
@@ -1649,12 +1650,14 @@ cross-checker can restate Rimmer's sum from a field's cells.
   traces it calls failed, or that leave the last surface backward, are left out of both counts and counted
   (`unaimedCount`, `failedCount`); a field where together they exceed `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its
   lattice has neither figure (`too-many-unaimed`, or `too-many-failed` when failed samples are the larger share).
-- **Total internal reflection, by side of the stop.** An aimed ray reaches the stop, so total internal reflection in
-  its full trace is after the stop: the sample counts as vignetted. Ahead of the stop the aimed launch does not take
-  total internal reflection as a block, so a sample only reflected rays could reach is unaimed (`stop-unreachable`):
-  it is left out of both counts, counts toward `unresolved-in-beam` beside a transmitted cell, and above 1 % of the
-  lattice gives `too-many-unaimed`. Reporting it as a block at that surface would change the shared aimed launch and every
-  analysis on it, so it is deferred to PR 3 (the MTF on the stop lattice).
+- **Total internal reflection, by side of the stop.** An aimed ray reaches the stop (traced there without aperture
+  checks), so total internal reflection in its full trace is after the stop: the sample counts as vignetted. Ahead of
+  the stop the aimed launch does not take total internal reflection as a block, so a sample only reflected rays could
+  reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search stalls): it is left out of both
+  counts, counts toward `unresolved-in-beam` beside a transmitted cell, and above 1 % of the lattice gives
+  `too-many-unaimed`. A solve whose last failed step at the iteration cap left a rim ahead of the stop ends `blocked`
+  at that rim instead, and counts as vignetted. Reporting total internal reflection as a block at its surface would
+  change the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the MTF on the stop lattice).
 - **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
   point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
   crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil
@@ -1675,10 +1678,12 @@ cross-checker can restate Rimmer's sum from a field's cells.
   aberration over the exit-pupil distance, OpticStudio's stated assumption), whose transmitted ray misses the reference
   sphere, or whose beam has a cell with no neighbour in its row and column has no relative illumination. Nor has a
   field whose unaimed or failed samples beside its beam (the row or column neighbour of a transmitted cell) exceed
-  `RIMMER_MAX_UNRESOLVED_SHARE` (0.35 %, the lattice's convergence band) of its transmitted cells
-  (`unresolved-in-beam`). Each such sample's share of the sum is unknown; up to that share the figure stands and can
-  read low by about it (high by the axis's). Their missing area, estimated from their transmitted neighbours, is
-  0.96–1.12 × their count on the catalog's 14 fields where they occur. States
+  `RIMMER_MAX_UNRESOLVED_SHARE` (0.35 %, the lattice's convergence band: doubling the lattice moves no benchmark
+  field's RI by more than 0.0035) of its transmitted cells (`unresolved-in-beam`). Each such sample's share of the sum
+  is unknown; up to that share the figure stands and can read low by up to about it (high by the axis's). The bound
+  counts the samples next to the beam, not further ones behind them. Their missing area, estimated from their
+  transmitted neighbours, is 0.96–1.12 times their count share on the catalog's 14 fields where they occur (default
+  state, 64 cells, computed with the refusal off). States
   `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse and curves with a bounding-sphere field have no curve.
   Each carries its reason, and the chart breaks its curve at a field without a figure.
 
