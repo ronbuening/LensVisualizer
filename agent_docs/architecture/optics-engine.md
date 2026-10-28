@@ -369,15 +369,16 @@ EPD = F/N to a few ulp. Every other semi-diameter is a hard clip with no margin,
 iris admits makes the lens trace slower than its label; `npm run audit:aperture` lists those stations and what limits
 each. The data rules are in `src/lens-data/LENS_DATA_SPEC.md` (Stop and Aperture).
 
-**F-numbers.** The Summary reports OpticStudio's three, beside the marked f/N: image-space f/# = EFL / EPD, paraxial,
-of the current state (`imageSpaceFNumber`); paraxial working f/# = 1 / (2 n′ |u′|) of the paraxial marginal ray at the
+**F-numbers.** The Summary reports OpticStudio's three, beside the marked f/N: image-space f/# = EFL / EPD, paraxial, of
+the current state (`imageSpaceFNumber`); paraxial working f/# = 1 / (2 n′ |u′|) of the paraxial marginal ray at the
 current object distance (`paraxialWorkingFNumber`); and working f/# = 1 / (2 n′ sin θ′) of the real marginal ray from
-the axial object point through the stop rim, at the authored indices (the result names their d or e line), aimed with the axial zone of the aimed pupil
+the axial object point through the stop rim, at the authored indices (the result names their line by the chromatic tab's
+rule: e only when every element, rear plates left out, is e-referenced), aimed with the axial zone of the aimed pupil
 launch at f = 1 under its rim rule (`computeWorkingFNumber`). The current object distance is the paraxial object plane
 the image plane is conjugate to (`paraxialObjectVergence`), infinite at infinity focus. A marginal ray that is
-vignetted, unaimed or untraceable reports that state; the MTF header names the vignetting surface. Folded paths have
-no paraxial working f/#. The aperture control's optional readout and comparison mode show the paraxial working f/#,
-or that it is unavailable and why (`paraxialWorkingFNumberForRuntimeLens`), never the marked f-number in its place.
+vignetted, unaimed or untraceable reports that state; the MTF header names the vignetting surface. Folded paths have no
+paraxial working f/#. The aperture control's optional readout and comparison mode show the paraxial working f/#, or that
+it is unavailable and why (`paraxialWorkingFNumberForRuntimeLens`), never the marked f-number in its place.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 

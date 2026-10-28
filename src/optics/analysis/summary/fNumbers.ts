@@ -2,8 +2,8 @@
  * The working f-number of the current state, from the real marginal ray (OpticStudio's "Working F/#").
  *
  * Working f/# = 1 / (2 n′ sin θ′), θ′ the image-space angle of the real marginal ray from the axial object point
- * through the stop's rim, at the authored indices: the d or e line each glass is given at, which the result names. The ray is the aimed pupil launch's axial zone at f = 1
- * under its rim rule; the object is at the current object distance (`paraxialObjectVergence`), infinite at
+ * through the stop's rim, at the authored indices, whose line the result names as the chromatic tab does
+ * (`lensChromaticReference`). The ray is the aimed pupil launch's axial zone at f = 1 under its rim rule; the object is at the current object distance (`paraxialObjectVergence`), infinite at
  * infinity focus. A ray that is vignetted, unaimed or cannot be traced reports that state, never another figure.
  */
 
@@ -15,11 +15,12 @@ import type { RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { TraceFailureReason } from "../../trace/types.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
 import { paraxialObjectVergence } from "../../field/geometry.js";
+import { lensChromaticReference } from "../../chromatic/channels.js";
 
 /** Real working f-number, or why the marginal ray gives none. */
 export type WorkingFNumberResult =
-  /** `indexLine`: the line of the authored indices, or `mixed` when the glasses are given at different lines. */
-  | { status: "traced"; value: number; indexLine: RefractiveIndexReferenceLine | "mixed" }
+  /** `indexLine`: the line of the authored indices, "e" only when every element is given at it. */
+  | { status: "traced"; value: number; indexLine: RefractiveIndexReferenceLine }
   /** A clear aperture stops the marginal ray: before the stop (`blocked`, the aim's outcome) or after it. */
   | { status: "vignetted"; surfaceLabel: string; beforeStop: boolean }
   | { status: "unaimed"; reason: AimedPupilUnaimedReason }
@@ -65,19 +66,15 @@ export function computeWorkingFNumber(request: AnalysisRequest): WorkingFNumberR
 }
 
 /**
- * Line of the authored indices of the glasses in the path.
+ * Line of the authored indices, by the chromatic tab's rule: the lens's elements, synthetic rear plates left out.
  *
  * @param state - prepared geometry
- * @returns "d" or "e" when every glass is given at it, "mixed" otherwise; an all-air path reads "d"
+ * @returns "e" only when every element is given at the e line, "d" otherwise
  */
-function authoredIndexLine(state: PreparedGeometry): RefractiveIndexReferenceLine | "mixed" {
-  const lines = new Set(
-    state.lens.elements
-      .filter((element) => state.surfaces.some((surface) => surface.nd !== 1 && surface.elemId === element.id))
-      .map((element) => element.source.indexReference ?? "d"),
+function authoredIndexLine(state: PreparedGeometry): RefractiveIndexReferenceLine {
+  return lensChromaticReference(
+    state.lens.elements.filter((element) => !element.source.synthetic).map((element) => element.source),
   );
-  if (lines.size > 1) return "mixed";
-  return lines.has("e") ? "e" : "d";
 }
 
 /**

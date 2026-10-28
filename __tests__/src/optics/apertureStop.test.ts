@@ -20,11 +20,13 @@ import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { entrancePupilAtState } from "../../../src/optics/state/fieldAdapters.js";
 import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
 import { fisheyeProjectionFocalLengthAtZoom } from "../../../src/optics/field/projection.js";
+import { lensChromaticReference } from "../../../src/optics/chromatic/channels.js";
 import { buildFixtureLens } from "./constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import {
   buildSimplePositiveElementLens,
   buildVariableStopGapLens,
+  REAR_PLATE_FIXTURE,
   catalogLensData,
   sharedNikkorZ50f18,
   sharedNikkorZ70200,
@@ -253,24 +255,30 @@ describe("f-numbers", () => {
     expect(computeWorkingFNumber(request)).toEqual({ status: "unaimed", reason: "stop-unreachable" });
   });
 
-  it("names the line of the authored indices it traces at", () => {
+  it("names the line of the authored indices it traces at, as the chromatic tab does", () => {
     const d = computeWorkingFNumber(requestAt(stopAtLens(), 4));
     expect(d).toMatchObject({ status: "traced", indexLine: "d" });
-    const eLine = buildFixtureLens(
-      phaseLensData(
-        [
-          { label: "STO", R: 1e15, nd: 1.0, sd: 30, d: 1, elemId: 0 },
-          { label: "1", R: 1e15, nd: PLATE_INDEX, sd: 40, d: 2, elemId: 1 },
-          { label: "2", R: 1e15, nd: 1.0, sd: 40, d: 1 / PHASE_POWER, elemId: 0, diffractive: PHASE },
-        ],
-        {
-          elements: [
-            { id: 1, name: "Plate", label: "L1", type: "positive", nd: PLATE_INDEX, vd: 64.17, indexReference: "e" },
+    const eLine = (overrides: Partial<LensData> = {}) =>
+      buildFixtureLens(
+        phaseLensData(
+          [
+            { label: "STO", R: 1e15, nd: 1.0, sd: 30, d: 1, elemId: 0 },
+            { label: "1", R: 1e15, nd: PLATE_INDEX, sd: 40, d: 2, elemId: 1 },
+            { label: "2", R: 1e15, nd: 1.0, sd: 40, d: 1 / PHASE_POWER, elemId: 0, diffractive: PHASE },
           ],
-        },
-      ),
-    );
-    expect(computeWorkingFNumber(requestAt(eLine, 4))).toMatchObject({ status: "traced", indexLine: "e" });
+          {
+            elements: [
+              { id: 1, name: "Plate", label: "L1", type: "positive", nd: PLATE_INDEX, vd: 64.17, indexReference: "e" },
+            ],
+            ...overrides,
+          },
+        ),
+      );
+    expect(computeWorkingFNumber(requestAt(eLine(), 4))).toMatchObject({ status: "traced", indexLine: "e" });
+    // A d-line cover glass is a synthetic rear plate, which the chromatic tab's reference leaves out.
+    const withPlate = eLine({ rearPlates: [REAR_PLATE_FIXTURE] });
+    expect(lensChromaticReference(withPlate.elements)).toBe("e");
+    expect(computeWorkingFNumber(requestAt(withPlate, 4))).toMatchObject({ status: "traced", indexLine: "e" });
   });
 
   it("shows a vignetted marginal ray as its state, not a number", () => {

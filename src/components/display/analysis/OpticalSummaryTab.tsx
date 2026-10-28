@@ -248,7 +248,7 @@ function formatWorkingFNumber(working: WorkingFNumberResult): string {
 function workingFNumberNote(working: WorkingFNumberResult): string | undefined {
   switch (working.status) {
     case "traced":
-      return `real marginal ray, ${working.indexLine === "mixed" ? "authored d- and e-line indices" : `${working.indexLine} line`}`;
+      return `real marginal ray, ${working.indexLine} line`;
     case "vignetted":
       return `marginal ray clipped at ${working.surfaceLabel}${working.beforeStop ? ", before the stop" : ""}`;
     case "unaimed":

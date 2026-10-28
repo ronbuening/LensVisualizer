@@ -21,6 +21,7 @@ flowchart LR
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_types["src/types"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_summary_src_optics_analysis_summary_groupMovement_ts --> |4| n_external_src_optics_state
@@ -36,6 +37,7 @@ flowchart LR
   n_src_optics_analysis_summary_src_optics_analysis_summary_cardinals_ts --> n_external_src_optics_analysis
   n_src_optics_analysis_summary_src_optics_analysis_summary_groupMovement_ts --> n_external_src_optics_analysis
   n_src_optics_analysis_summary_src_optics_analysis_summary_summary_ts --> n_external_src_optics_analysis
+  n_src_optics_analysis_summary_src_optics_analysis_summary_fNumbers_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_summary_src_optics_analysis_summary_fNumbers_ts --> n_external_src_optics_field
   n_src_optics_analysis_summary_src_optics_analysis_summary_cardinals_ts --> n_external_src_optics_first_order
   n_src_optics_analysis_summary_src_optics_analysis_summary_summary_ts --> n_external_src_optics_first_order
@@ -50,7 +52,7 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (10), src/optics/state (8), src/optics/first-order (4), src/optics/prescription (4), src/types (3), src/optics/trace (2), src/optics/field, src/optics/types.ts
+- Main outbound areas: src/optics/analysis (10), src/optics/state (8), src/optics/first-order (4), src/optics/prescription (4), src/types (3), src/optics/trace (2), src/optics/chromatic, src/optics/field, +1 more
 - External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/state
 
 ## Files
@@ -59,6 +61,6 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `breathing.ts` | Breathing helper module | src/optics/first-order (2), src/optics/state (2), src/optics/analysis, src/optics/prescription | src/optics/analysis.ts | computeFocusEFL, BreathingSample, computeFocusBreathingSeries |
 | `cardinals.ts` | Cardinals helper module | src/optics/analysis, src/optics/first-order | src/optics/analysis, src/optics/analysis.ts | computeCardinalElements |
-| `fNumbers.ts` | F Numbers helper module | src/optics/analysis (3), src/optics/trace (2), src/optics/field, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/analysis.ts | WorkingFNumberResult, computeWorkingFNumber |
+| `fNumbers.ts` | F Numbers helper module | src/optics/analysis (3), src/optics/trace (2), src/optics/chromatic, src/optics/field, src/optics/types.ts, +1 more | src/optics/analysis (2), src/optics/analysis.ts | WorkingFNumberResult, computeWorkingFNumber |
 | `groupMovement.ts` | Group Movement helper module | src/optics/state (4), src/optics/prescription (2), src/types (2), src/optics/analysis | src/optics/analysis.ts, src/optics/state | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
 | `summary.ts` | Summary helper module | src/optics/analysis (4), src/optics/state (2), src/optics/first-order, src/optics/prescription | src/optics/analysis, src/optics/analysis.ts | OpticalSummaryMetrics, computeOpticalSummary |
