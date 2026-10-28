@@ -100,7 +100,9 @@ measurement. Traced against that rule, two cuts from the figure review above mov
 - Surface 23: the depth went from 2.82 to 2.91 mm when the beams on the earlier stop reached 21.72 mm past the
   figure's 21.48 mm cut, and then to 2.94 mm, past a dense probe of those beams (21.8277 mm) plus its margin. On the
   paraxial stop they reach 21.7988 mm (focusT 0.75, between infinity and close focus, 10.08°), still past the
-  figure's cut. The 21.9199 mm cut radius clears them; the land is shorter than the figure's.
+  figure's cut, so the fixed rule asks for a cut radius of at least 21.8643 mm (that reach plus its 0.0655 mm margin)
+  and refuses the 2.91 mm depth's 21.8097 mm. The 21.9199 mm cut radius clears it by 0.0556 mm; the land is shorter
+  than the figure's.
 
 All four cuts clear the beams by their margins:
 
