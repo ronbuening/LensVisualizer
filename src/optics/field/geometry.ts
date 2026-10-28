@@ -4,7 +4,7 @@
  * Consumes prepared geometry and shares exact stop tracing with the chief solver.
  */
 
-import { wideOpenStopAtZoom } from "../state/stationTables.js";
+import { wideOpenStop } from "../state/apertureStop.js";
 import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 import type { ParaxialTraceResult } from "../../types/optics.js";
 import { traceParaxialSurfaces } from "../math/paraxial.js";
@@ -125,6 +125,11 @@ export function traceParaxialRay(
 /**
  * Compute entrance-pupil diameter and ratios for the current state.
  *
+ * The pupil is paraxial: the stop radius over the paraxial marginal ray's height ratio at the stop, the convention
+ * the stop rule sizes the iris with, so at infinity focus a stop set for f/N gives EPD = F/N. A folded path, which
+ * the sequential paraxial kernel does not follow, divides by the field geometry's near-axis ratio instead.
+ * `yRatio`, `b` and `epRatio` are the field geometry's.
+ *
  * @param state - prepared geometry for the current controls
  * @param stopSD - current physical stop semi-diameter in mm
  * @param geometry - optional precomputed field geometry
@@ -135,7 +140,10 @@ export function entrancePupil(
   { stopSD, geometry }: { stopSD: number; geometry?: FieldGeometryState },
 ): EntrancePupilState {
   const geom = geometry ?? computeFieldGeometry(state);
-  const epSD = Math.abs(geom.yRatio) > 1e-9 ? Math.abs(stopSD / geom.yRatio) : 0;
+  const pupilRatio = state.lens.flags.isFoldedOptics
+    ? geom.yRatio
+    : traceParaxialSurfaces(state.surfaces, 1, 0, { stopAt: state.lens.stop.surfaceIndex }).y;
+  const epSD = Math.abs(pupilRatio) > 1e-9 ? Math.abs(stopSD / pupilRatio) : 0;
   return { epSD, yRatio: geom.yRatio, b: geom.b, epRatio: geom.epRatio };
 }
 
@@ -149,11 +157,11 @@ export function conjugateK(state: PreparedGeometry): number {
   if (state.focusT < FOCUS_INFINITY_CUTOFF) return 0;
   const du = 1e-5;
   const currentEP = entrancePupil(state, {
-    stopSD: wideOpenStopAtZoom(state.zoomT, state.lens.constants),
+    stopSD: wideOpenStop(state.lens, state.zoomT),
     geometry: undefined,
   }).epSD;
   const infinityEP = entrancePupil(prepareState(state.lens, 0, state.zoomT, 0), {
-    stopSD: wideOpenStopAtZoom(state.zoomT, state.lens.constants),
+    stopSD: wideOpenStop(state.lens, state.zoomT),
     geometry: undefined,
   }).epSD;
   const yRefCurrent = currentEP * conjugateReferencePupilFraction(state, { entrancePupilSemiDiameter: currentEP });

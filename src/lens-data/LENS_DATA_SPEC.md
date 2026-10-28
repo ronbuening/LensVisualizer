@@ -682,7 +682,7 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
 | 1 | Authored | A folded system: one with `opticalPath`, or with a surface that reflects or blocks. | `sd` on the `STO` surface |
 | 2 | Published schedule | A zoom whose source prints the stop diameter at each station. | `zoom.stations[i].stopSemiDiameter` on every station |
 | 3 | Authored | A stop inside an element (`stopPlacement: "inside-element"`). | `sd` on the `STO` surface |
-| 4 | Derived | Every other lens. The radius is the height at the stop of a real marginal ray launched at the entrance-pupil radius the design f-number implies, traced per zoom station. | `aperture.nominalFNumber`, or `zoom.stations[i].nominalFNumber` |
+| 4 | Derived | Every other lens. The stop rule: the paraxial entrance-pupil diameter is F/N (OpticStudio's "Image Space F/#" aperture), so the radius is (F / 2N) times the paraxial marginal ray's height ratio at the stop, at infinity focus of the zoom position. F is the EFL, or a fisheye's projection focal length. | `aperture.nominalFNumber`, or `zoom.stations[i].nominalFNumber` |
 
 - A stop whose radius is not authored leaves `sd` out; ingest refuses an `sd` there, because the engine would never
   read it. An authored stop requires one. A scheduled zoom's stop inside glass is therefore written without `sd`.
@@ -691,8 +691,11 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
   f-number is recorded in a comment. One that disagrees beyond rounding is a source-consistency question under the
   source-errata standard (`agent_docs/lens-patent-audit.md`), not settled by letting the diameter override the
   f-number.
-- The entrance pupil comes from the design f-number for every lens; the stop radius above is what the traced
-  geometry needs to give it.
+- The entrance pupil comes from the design f-number for every lens; the stop radius above is what the paraxial
+  geometry needs to give it. An authored or published radius (rows 1–3) and a fixed iris keep their physical size
+  wide open, and the f-number it gives is what the Summary's image-space f/# reports.
+- **Stopped down,** every lens follows the stop rule at the marked f-number, capped at its wide-open stop. Focus
+  never changes the stop. The rule lives in `src/optics/state/apertureStop.ts` (`stopSemiDiameterForFNumber`).
 
 **Stop position:**
 
@@ -726,13 +729,13 @@ does not fit through a rim, the lens traces slower than its label there; `npm ru
 
 ### Zoom apertures
 
-A zoom's wide-open iris follows the zoom. Under the default `zoom.apertureModel: "from-nominal-fno"`, at every zoom
-station the builder traces the entrance-pupil radius the station's design f-number names (the aperture's single value
-applies to every station) to the stop and keeps that radius, so each station traces at its stated f-number. Radii
-between stations are interpolated, and focus keeps the current zoom radius. These radii are calculated, not read from
-the source.
+A zoom's wide-open iris follows the zoom. Under the default `zoom.apertureModel: "from-nominal-fno"`, the stop rule
+sizes the iris at every zoom position from the station's design f-number (the aperture's single value applies to every
+station), so each station has a paraxial entrance pupil of F/N. Between stations the wide-open f-number is
+interpolated linearly in zoom and the rule is evaluated at the zoom position itself, not interpolated from station
+radii; focus keeps the current zoom radius. These radii are calculated, not read from the source.
 
-- **`zoom.apertureModel: "fixed-iris"`** keeps the first station's radius at every station. Declare it only when the
+- **`zoom.apertureModel: "fixed-iris"`** keeps the first station's radius, the rule's, at every station. Declare it only when the
   source states that the stop diameter does not change with zoom, or when the file's own stop model is one iris radius
   whose traced f-numbers are what the stations state. The station f-numbers then label the readout without sizing the
   iris, so they must be the ones that radius gives: a corpus sweep
@@ -796,7 +799,7 @@ Each station:
   distances at its zoom stations (for example states at about constant magnification). Distances between stations
   interpolate in the same zoom coordinate; labels at intermediate focus use inverse-distance interpolation and stay
   estimates. Source-derived endpoints are identified as calculated in the analysis. Single-lens labels, breathing,
-  the summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint.
+  the summary, the working f-numbers and comparison focus mapping use the current zoom endpoint.
 - **Station labels** are compiled into the runtime lens (`L.zoomLabels`). Nothing displays them today; the zoom
   slider shows the station focal lengths.
 - **Computed by `buildLens`**, per station: the EFL (`zoomEFLs`), entrance-pupil semi-diameter (`zoomEPs`),

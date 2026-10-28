@@ -3,7 +3,7 @@ import { constructionFixtureData } from "../optics/constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { mtfInputs } from "../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
 import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
