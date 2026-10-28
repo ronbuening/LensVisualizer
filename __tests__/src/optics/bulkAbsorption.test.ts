@@ -26,6 +26,23 @@ describe("bulkTransmissionForTrace", () => {
     expect(bulkTransmissionForTrace(L, hits)).toBeCloseTo(Math.exp(-1), 12);
   });
 
+  it("charges a sequential step backwards through an absorbing element with its sign", () => {
+    const L = {
+      flags: { isFoldedOptics: false },
+      elements: [{ id: 5, absorptionCoefficientPerMm: 0.5 }],
+      surfaces: [{ elemId: 5 }, { elemId: 5 }, { elemId: 0 }],
+    } as unknown as CompiledLens;
+    const along = [0, 0, 1] as const;
+    // 2.6 mm forward to a passive interface, then 0.1 mm back to the exit face: 2.5 mm of glass in all.
+    const hits = [
+      { surfaceIndex: 0, point: [0, 0, 1] as const, incidentDirection: along },
+      { surfaceIndex: 1, point: [0, 0, 3.6] as const, incidentDirection: along },
+      { surfaceIndex: 2, point: [0, 0, 3.5] as const, incidentDirection: along },
+    ];
+
+    expect(bulkTransmissionForTrace(L, hits)).toBeCloseTo(Math.exp(-1.25), 12);
+  });
+
   it("keeps transparent traces at unit transmission and defensively ignores unsupported folded absorption", () => {
     const transparent = {
       flags: { isFoldedOptics: false },

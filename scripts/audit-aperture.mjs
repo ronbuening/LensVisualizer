@@ -13,8 +13,9 @@
  *
  *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
  *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
- *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`); or the ray toward the
- *             iris rim cannot be traced to the stop, so the beam is compared with the stated pupil instead
+ *             named, or its line meets the next surface in neither direction (`noBracket`); a surface behind the
+ *             last hit is met by a step backwards, as in every sequential trace. Or the ray toward the iris rim
+ *             cannot be traced to the stop, so the beam is compared with the stated pupil instead
  *   iris      the iris itself is not the stated one: `zoomApertureModel: "fixed-iris"`, a published
  *             `zoomStopSemiDiameters` schedule, or an embedded glass stop that keeps its authored radius (a derived
  *             iris gives the stated f-number by the stop rule)
