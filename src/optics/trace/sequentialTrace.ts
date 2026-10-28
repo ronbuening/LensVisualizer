@@ -12,7 +12,7 @@ import { createTraceRecorder } from "./capture.js";
 import type { TraceRecorder } from "./capture.js";
 import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
-import { intersectStateSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
+import { intersectSequentialSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
 import type {
   TraceGeometry,
   EngineTraceResult,
@@ -33,7 +33,9 @@ import {
  * Trace a ray through ordinary sequential surface order.
  *
  * Each surface hit is solved against its exact sag profile, then refracted with
- * vector Snell's law. Folded systems use generalizedTrace instead.
+ * vector Snell's law. A surface that lies behind the last hit is met by a step
+ * backwards along the ray (`intersectSequentialSurface`). Folded systems use
+ * generalizedTrace instead.
  *
  * @param geometry - indexed trace geometry
  * @param input - ray origin and direction
@@ -85,7 +87,7 @@ export function traceSequential<C extends TraceCapture = "diagnostics">(
     const surface = geometry.surfaces[i];
     const minT = sequentialSurfaceMinT(geometry, i, origin, direction);
     const maxT = Math.max(minT, sequentialSurfaceMaxT(geometry, i, origin, direction, launchBoundT));
-    const hit = intersectStateSurface({ origin, direction }, geometry, i, { minT, maxT, refractiveIndex: n });
+    const hit = intersectSequentialSurface(geometry, i, origin, direction, { minT, maxT, refractiveIndex: n });
 
     if (!hit.ok) {
       // A miss is terminal even in ghost mode: prior hits still display, while
@@ -97,6 +99,7 @@ export function traceSequential<C extends TraceCapture = "diagnostics">(
     }
 
     const point = hit.point;
+    // A step backwards to a surface behind the last hit has a negative length, and is charged with its sign.
     if (options.recordOpticalPath) opticalPathLengthMm += hit.opticalPathLength ?? n * hit.segmentLength;
     const normal = hit.normal;
     const radius = hit.radius;

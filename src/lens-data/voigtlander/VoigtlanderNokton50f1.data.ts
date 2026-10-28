@@ -157,8 +157,8 @@ const LENS_DATA = {
    * The stop radius is derived from the design f-number by runtime aperture sizing.
    * Surface 8's concave rim reaches 3.69 mm ahead of its vertex at the 17 mm rim, past the printed stop 3.24 mm
    * ahead. A flat rim cut at the stop plane (rimCutDepthMm 3.24) ends the cap at r = 15.97 mm, inside the
-   * 16.63 mm f/1 iris; an opaque land runs from there to the rim. A ray past 15.97 mm at the stop plane still
-   * fails (noBracket): the forward search finds the cap behind the stop. No traced beam reaches it (15.35 mm).
+   * 16.63 mm f/1 iris; an opaque land runs from there to the rim. A ray past 15.97 mm at the stop plane steps
+   * back to the cap and is clipped on the land. No traced beam reaches it (15.35 mm).
    */
   /* (moved from asph) ── Aspherical coefficients — Patent Table 2, Example 1 ──
    *  Keyed by surface label.  Sag equation:

@@ -54,12 +54,11 @@ Patent: JP2023-063766 A, Example 1
 
 - Surface 8 (R = −40.995, concave to the object) sags 3.691 mm forward at its inferred 17 mm rim, past the printed
   stop plane 3.24 mm ahead of its vertex. The cap crossed that plane at r = 15.97 mm, inside the derived 16.628 mm
-  f/1 iris, so a ray passing the iris above that height met surface 8 behind it and could not be traced.
+  f/1 iris, so the outer part of the iris stroke lay in glass.
 - Surface 8 now carries `rimCutDepthMm: 3.24`: a flat, opaque land on the stop plane from r = 15.97 mm out to the
-  unchanged 17 mm rim. The cut changes the drawing, not the trace. A ray that crosses the stop plane above 15.97 mm
-  still fails (`noBracket`): the search for surface 8 runs forward from the stop hit, and the uncut cap beyond the
-  cut radius lies behind that plane, so the land is never reached. No traced ray of the wide-open beam gets there:
-  the beams reach 15.35 mm at surface 8 (at 1.2°, infinity focus), 0.62 mm inside the cut radius, so the inferred
-  cut clears the rim-cut beam rule's 0.05 mm margin.
+  unchanged 17 mm rim, and the iris lies in air over its stroke. A ray that crosses the stop plane above 15.97 mm
+  meets the uncut cap behind that plane; the trace steps back to it and clips the ray on the land. No traced ray of
+  the wide-open beam gets there: the beams reach 15.35 mm at surface 8 (at 1.2°, infinity focus), 0.62 mm inside the
+  cut radius, so the inferred cut clears the rim-cut beam rule's 0.05 mm margin.
 - The axial beam is unchanged (f/1 traces f/1.10, limited by rim 4), as are the 23.95°
   half field and the stop radius. No patent value changed; the drawn L4 front now ends in the land at the stop plane.

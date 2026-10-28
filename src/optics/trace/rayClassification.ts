@@ -10,6 +10,7 @@
 import type { EngineTraceResult, TraceCapture } from "./types.js";
 import type { CompiledStateSurface, PreparedGeometry, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
+import { sequentialSurfaceBackT } from "./pathPlanner.js";
 
 export type TraceRayClass = "valid" | "blocked" | "failed";
 
@@ -71,7 +72,8 @@ export function provesApertureMiss(
   state: PreparedGeometry,
   stopRadius?: number,
 ): boolean {
-  const surface = state.surfaces[trace.terminalSurfaceIndex + 1];
+  const surfaceIndex = trace.terminalSurfaceIndex + 1;
+  const surface = state.surfaces[surfaceIndex];
   if (!surface) return false;
   const aperture = evaluateAperture(state.traceGeometry, surface, 0, stopRadius).semiDiameter;
   if (aperture === null || !(aperture > 0)) return false;
@@ -80,27 +82,36 @@ export function provesApertureMiss(
   const length = Math.hypot(dx, dy, dz);
   if (!(length > 0)) return false;
   const direction: Vec3 = [dx / length, dy / length, dz / length];
+  /* Where the trace may step back to the surface, a miss is proven along the whole line, not just ahead of the last
+   * hit: a crossing behind it inside the cap is one the trace should have found. */
+  const wholeLine = sequentialSurfaceBackT(state.traceGeometry, surfaceIndex, origin, direction) > 0;
   switch (surface.profile.kind) {
     case "flat":
-      return flatMisses(origin, direction, surface.z, aperture);
+      return flatMisses(origin, direction, surface.z, aperture, wholeLine);
     case "spherical":
-      return sphereMisses(origin, direction, surface, aperture);
+      return sphereMisses(origin, direction, surface, aperture, wholeLine);
     case "aspheric":
-      return asphereMisses(origin, direction, surface, aperture);
+      return asphereMisses(origin, direction, surface, aperture, wholeLine);
     default:
       return false;
   }
 }
 
-function flatMisses(origin: Vec3, direction: Vec3, vertexZ: number, aperture: number): boolean {
+function flatMisses(origin: Vec3, direction: Vec3, vertexZ: number, aperture: number, wholeLine: boolean): boolean {
   if (Math.abs(direction[2]) < 1e-15) return Math.abs(origin[2] - vertexZ) > 1e-9;
   const t = (vertexZ - origin[2]) / direction[2];
-  if (t < -1e-9) return true;
+  if (!wholeLine && t < -1e-9) return true;
   return Math.hypot(origin[0] + t * direction[0], origin[1] + t * direction[1]) > aperture * (1 + 1e-9) + 1e-9;
 }
 
 /** Exact ray/sphere roots, restricted to the vertex-side cap within the clear aperture. */
-function sphereMisses(origin: Vec3, direction: Vec3, surface: CompiledStateSurface, aperture: number): boolean {
+function sphereMisses(
+  origin: Vec3,
+  direction: Vec3,
+  surface: CompiledStateSurface,
+  aperture: number,
+  wholeLine: boolean,
+): boolean {
   const R = surface.R;
   if (!Number.isFinite(R) || R === 0) return false;
   const centerZ = surface.z + R;
@@ -112,7 +123,7 @@ function sphereMisses(origin: Vec3, direction: Vec3, surface: CompiledStateSurfa
   const root = Math.sqrt(discriminant);
   const limit = Math.min(aperture, Math.abs(R)) * (1 + 1e-9) + 1e-9;
   for (const t of [-b - root, -b + root]) {
-    if (t < -1e-9) continue;
+    if (!wholeLine && t < -1e-9) continue;
     const z = origin[2] + t * direction[2];
     // The optical cap is the hemisphere containing the vertex, which lies at centerZ - R.
     if (Math.sign(z - centerZ) !== Math.sign(-R)) continue;
@@ -125,11 +136,18 @@ function sphereMisses(origin: Vec3, direction: Vec3, surface: CompiledStateSurfa
  * Exclude any root of g(t) = z(t) - (vertex + sag(r(t))) on the part of the ray inside the
  * aperture cylinder and the cap's axial slab, using |g'| ≤ |dz| + maxSlope·|d_xy|.
  */
-function asphereMisses(origin: Vec3, direction: Vec3, surface: CompiledStateSurface, aperture: number): boolean {
+function asphereMisses(
+  origin: Vec3,
+  direction: Vec3,
+  surface: CompiledStateSurface,
+  aperture: number,
+  wholeLine: boolean,
+): boolean {
   const bounds = profileBounds(surface, aperture);
   if (!bounds) return false;
   const radialSpeed2 = direction[0] ** 2 + direction[1] ** 2;
-  let tLo = 0;
+  // A whole-line proof is bounded by the cylinder and the slab below: a ray that steps back travels toward +z.
+  let tLo = wholeLine ? -Infinity : 0;
   let tHi = Infinity;
   const c = origin[0] ** 2 + origin[1] ** 2 - aperture * aperture;
   if (radialSpeed2 < 1e-24) {

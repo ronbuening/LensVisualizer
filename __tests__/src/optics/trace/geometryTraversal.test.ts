@@ -3,16 +3,24 @@ import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapter
 import { build, buildFrontRimCutLens, buildRimCutLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { engineTraceToRuntimeRayResult } from "../../../../src/optics/trace/runtimeRayResult.js";
-import { traceRayClassification } from "../../../../src/optics/trace/rayClassification.js";
+import { provesApertureMiss, traceRayClassification } from "../../../../src/optics/trace/rayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
+import * as intersectKernel from "../../../../src/optics/geometry/intersect.js";
+import { subtract as subtractVec } from "../../../../src/optics/math/vector.js";
 import * as foldedDiagnostics from "../../../../src/optics/trace/foldedDiagnostics.js";
-import type { Ray3 } from "../../../../src/optics/types.js";
-import type { TraceGeometry, TraceOptions } from "../../../../src/optics/trace/types.js";
+import type { Ray3, Vec3 } from "../../../../src/optics/types.js";
+import type { EngineTraceResult, TraceGeometry, TraceOptions } from "../../../../src/optics/trace/types.js";
 import { describe, expect, it, vi } from "vitest";
-import { fixtureGeometry, type GeometryFixture, traceFixtureSlope } from "../traceGeometryFixtures.js";
+import {
+  fixtureGeometry,
+  type GeometryFixture,
+  traceFixtureSlope,
+  traceFixtureVector,
+} from "../traceGeometryFixtures.js";
 import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { computeFieldGeometry } from "../../../../src/optics/field/geometry.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
+import type { AsphericCoefficients } from "../../../../src/types/asphericSchema.js";
 
 const flatSurfaces = [
   { label: "1", R: 1e15, nd: 1.0, d: 5, sd: 10, elemId: 0 },
@@ -99,6 +107,298 @@ describe("production sequential traversal", () => {
 
     expect(result.status).not.toBe("ok");
     expect(result.failureReason).not.toBeNull();
+  });
+});
+
+describe("sequential step backwards", () => {
+  /* A flat glass face, then a rear face of radius +20 whose rim bends toward the image: at y = 5 it sags 0.635 mm,
+   * past whatever lies 0.3 or 0.5 mm behind its vertex. A ray parallel to the axis at y = 5 meets the flat face
+   * square on, so everything after it has a closed form. */
+  const n = 1.5;
+  const h = 5;
+  const rearR = 20;
+  const rearSag = rearR - Math.sqrt(rearR * rearR - h * h);
+  const front = { label: "1", R: 1e15, nd: n, d: 5, sd: 10, elemId: 1 };
+  const rear = { label: "2", R: rearR, nd: 1, d: 0.5, sd: 10, elemId: 0 };
+  const stopInSag = {
+    S: [front, rear, { label: "STO", R: 1e15, nd: 1, d: 10, sd: 8, elemId: 0 }],
+    asphByIdx: {},
+  } satisfies GeometryFixture;
+  const ray: Ray3 = { origin: [0, h, -1], direction: [0, 0, 1] };
+  const rearHit: Vec3 = [0, h, 5 + rearSag];
+
+  /** Vector Snell from glass of index n into air at the rear face's hit, whose normal faces +z. */
+  function refractedAtRear(): Vec3 {
+    const normal: Vec3 = [0, -h / rearR, (rearR - rearSag) / rearR];
+    const cosI = normal[2];
+    const cosT = Math.sqrt(1 - n * n * (1 - cosI * cosI));
+    const k = cosT - n * cosI;
+    return [0, k * normal[1], n + k * normal[2]];
+  }
+
+  it("steps back to a stop plane inside the sag of the concave face before it", () => {
+    const trace = traceFixtureVector(stopInSag, ray);
+    const out = refractedAtRear();
+    const step = (5.5 - rearHit[2]) / out[2];
+
+    expect(step).toBeLessThan(0);
+    expect(trace.status).toBe("ok");
+    expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "STO"]);
+    expect(trace.hits[1].point[2]).toBeCloseTo(rearHit[2], 12);
+    expect(trace.hits[2].point[1]).toBeCloseTo(h + out[1] * step, 12);
+    expect(trace.hits[2].point[2]).toBeCloseTo(5.5, 12);
+  });
+
+  it("meets the second of two crossing spheres behind the first, on its own vertex-side branch", () => {
+    // The next face starts 0.3 mm behind the rear vertex and is flatter (R = +40), so the two cross below y = 5.
+    const nextR = 40;
+    const crossing = {
+      S: [
+        front,
+        { ...rear, d: 0.3 },
+        { label: "3", R: nextR, nd: 1.6, d: 4, sd: 10, elemId: 2 },
+        { label: "4", R: 1e15, nd: 1, d: 10, sd: 10, elemId: 0 },
+      ],
+      asphByIdx: {},
+    } satisfies GeometryFixture;
+    const nextVertex = 5.3;
+    expect(nextVertex + nextR - Math.sqrt(nextR * nextR - h * h)).toBeLessThan(rearHit[2]);
+
+    const out = refractedAtRear();
+    const center: Vec3 = [0, 0, nextVertex + nextR];
+    const offset: Vec3 = [0, rearHit[1] - center[1], rearHit[2] - center[2]];
+    const b = out[1] * offset[1] + out[2] * offset[2];
+    const c = offset[1] ** 2 + offset[2] ** 2 - nextR * nextR;
+    // The nearer root lies on the hemisphere about the vertex; the farther one is the sphere's far side.
+    const step = -b - Math.sqrt(b * b - c);
+    const expected: Vec3 = [0, rearHit[1] + out[1] * step, rearHit[2] + out[2] * step];
+
+    const trace = traceFixtureVector(crossing, ray);
+    expect(step).toBeLessThan(0);
+    expect(expected[2]).toBeLessThan(center[2]);
+    expect(trace.status).toBe("ok");
+    expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "3", "4"]);
+    expect(trace.hits[2].point[1]).toBeCloseTo(expected[1], 12);
+    expect(trace.hits[2].point[2]).toBeCloseTo(expected[2], 12);
+  });
+
+  it("charges a backward step to the optical path with its sign", () => {
+    // The rear face is a passive interface in one glass, so the ray runs straight and steps back 0.135 mm in it.
+    const passive = {
+      S: [front, { ...rear, nd: n, elemId: 1 }, { label: "3", R: 1e15, nd: 1, d: 10, sd: 10, elemId: 0 }],
+      asphByIdx: {},
+    } satisfies GeometryFixture;
+    const trace = traceFixtureVector(passive, ray, { recordOpticalPath: true });
+
+    expect(trace.hits[2].point[2]).toBeCloseTo(5.5, 12);
+    expect(5.5 - rearHit[2]).toBeLessThan(0);
+    // 1 mm of air, then 5 + 0.635 mm and −0.135 mm of glass: the straight path's 1 + 1.5 × 5.5.
+    expect(trace.opticalPathLengthMm).toBeCloseTo(1 + n * 5 + n * rearSag + n * (5.5 - rearHit[2]), 12);
+    expect(trace.opticalPathLengthMm).toBeCloseTo(1 + n * 5.5, 12);
+  });
+
+  it("blocks a ray that no longer travels toward +z at the next surface, whose line it crosses behind", () => {
+    // Two planes in air, so a ray launched toward −z keeps its direction past the first.
+    const planes = {
+      S: [
+        { label: "1", R: 1e15, nd: 1, d: 5, sd: 20, elemId: 0 },
+        { label: "2", R: 1e15, nd: 1, d: 10, sd: 20, elemId: 0 },
+      ],
+      asphByIdx: {},
+    } satisfies GeometryFixture;
+    const geometry = fixtureGeometry(planes);
+    const reversed: Vec3 = [0, 0.6, -0.8];
+    const trace = traceFixtureVector(planes, { origin: [0, 1, 1], direction: reversed }, { launchBoundT: 100 });
+
+    expect(trace.hits.map((hit) => hit.point)).toEqual([[0, 1.75, 0]]);
+    expect(trace.terminalDirection).toEqual(reversed);
+    expect(trace.failureReason).toBe("noBracket");
+    expect(trace.terminalSurfaceIndex).toBe(0);
+    // The line does cross the second plane, 6.25 mm behind the hit, and the trace does not step back to it.
+    const behind = pathPlanner.intersectStateSurface({ origin: [0, 1.75, 0], direction: [0, -0.6, 0.8] }, geometry, 1, {
+      maxT: 100,
+    });
+    expect(behind.ok && behind.t).toBeCloseTo(6.25, 12);
+    expect(pathPlanner.sequentialSurfaceBackT(geometry, 1, [0, 1.75, 0], reversed)).toBe(0);
+  });
+
+  it("never steps back to the first surface or on a folded path", () => {
+    const past: Vec3 = [0, h, 6];
+    const forward: Vec3 = [0, 0, 1];
+    const sequential = fixtureGeometry(stopInSag);
+    const folded = fixtureGeometry({ ...stopInSag, isFoldedOptics: true });
+
+    expect(pathPlanner.sequentialSurfaceBackT(sequential, 2, past, forward)).toBeCloseTo(6 - 4.5, 15);
+    expect(pathPlanner.sequentialSurfaceBackT(sequential, 0, past, forward)).toBe(0);
+    expect(folded.traversal.kind).toBe("generalized");
+    expect(pathPlanner.sequentialSurfaceBackT(folded, 2, past, forward)).toBe(0);
+  });
+
+  it("proves a miss along the whole line where the trace may step back", () => {
+    const state = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(buildSimplePositiveElementLens()),
+        surfaces: stopInSag.S.map((surface) => ({ ...surface, nd: surface.nd === 1 ? 1 : 1.5168 })),
+      }),
+      0,
+      0,
+    );
+    const rearZ = state.surfaces[1].z;
+    const missAt = (y: number) => {
+      const sag = rearR - Math.sqrt(rearR * rearR - y * y);
+      const trace = {
+        terminalSurfaceIndex: 1,
+        terminalPoint: [0, y, rearZ + sag],
+        terminalDirection: [0, 0.13, 0.99],
+      } as unknown as EngineTraceResult;
+      return pathPlanner.sequentialSurfaceBackT(state.traceGeometry, 2, trace.terminalPoint, [0, 0, 1]) > 0
+        ? provesApertureMiss(trace, state, 8)
+        : null;
+    };
+
+    // Behind the hit the line crosses the stop plane inside the 8 mm iris, so a failure there is no miss.
+    expect(missAt(5)).toBe(false);
+    // At y = 9.5 it crosses the plane outside the iris.
+    expect(missAt(9.5)).toBe(true);
+  });
+
+  it("takes the crossing nearer the vertex plane where the line crosses a sphere twice behind the hit", () => {
+    // A face of radius +20 with its vertex at z = 3; the origin is in front of it at y = 12, which it passes under.
+    const bowl = {
+      S: [
+        { label: "1", R: 1e15, nd: 1, d: 3, sd: 15, elemId: 0 },
+        { label: "2", R: 20, nd: 1.5, d: 10, sd: 15, elemId: 1 },
+        { label: "3", R: 1e15, nd: 1, d: 10, sd: 15, elemId: 0 },
+      ],
+      asphByIdx: {},
+    } satisfies GeometryFixture;
+    const geometry = fixtureGeometry(bowl);
+    const vertexZ = 3;
+    const origin: Vec3 = [0, 12, 6];
+    const norm = Math.hypot(1, 0.2);
+    const direction: Vec3 = [0, 1 / norm, 0.2 / norm];
+    expect(origin[2]).toBeLessThan(vertexZ + 20 - Math.sqrt(400 - 144));
+
+    // |origin + t direction − centre|² = R², with the centre at z = 23: both roots lie behind, on the vertex's hemisphere.
+    const offset = [0, origin[1], origin[2] - (vertexZ + 20)];
+    const b = direction[1] * offset[1] + direction[2] * offset[2];
+    const c = offset[1] ** 2 + offset[2] ** 2 - 400;
+    const roots = [-b - Math.sqrt(b * b - c), -b + Math.sqrt(b * b - c)];
+    const points = roots.map((t) => [0, origin[1] + direction[1] * t, origin[2] + direction[2] * t]);
+    expect(roots.every((t) => t < 0)).toBe(true);
+    expect(points.every((point) => point[2] < vertexZ + 20)).toBe(true);
+    // The far root, nearer the vertex plane, is the surface's; the one nearer the origin is not.
+    expect(Math.abs(points[0][2] - vertexZ)).toBeLessThan(Math.abs(points[1][2] - vertexZ));
+
+    const maxT = pathPlanner.sequentialSurfaceMaxT(geometry, 1, origin, direction);
+    const forward = pathPlanner.intersectStateSurface({ origin, direction }, geometry, 1, { minT: 0, maxT });
+    const hit = pathPlanner.intersectSequentialSurface(geometry, 1, origin, direction, {
+      minT: 0,
+      maxT,
+      refractiveIndex: 1.25,
+    });
+    expect(!forward.ok && forward.failureReason).toBe("noBracket");
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(hit.t).toBeCloseTo(roots[0], 12);
+    expect(hit.point[1]).toBeCloseTo(points[0][1], 12);
+    expect(hit.point[2]).toBeCloseTo(points[0][2], 12);
+    expect(hit.segmentLength).toBe(hit.t);
+    expect(hit.opticalPathLength).toBeCloseTo(1.25 * roots[0], 12);
+  });
+
+  describe("on a conic and a polynomial asphere", () => {
+    /* The flat front face refracts a tilted ray into glass; a passive face of radius +20 in the same glass keeps
+     * it straight, and the last face, a conic or an asphere of base radius +40 set 0.3 mm behind it, lies behind
+     * the passive face's hit there. Every point after the front face is on one line. */
+    const tilt = 0.04;
+    const conic = 1 / 40;
+    const lastVertexZ = 5.3;
+    const inGlass: Vec3 = [0, tilt / n, Math.sqrt(1 - (tilt / n) ** 2)];
+    const frontHit: Vec3 = [0, h + tilt / Math.sqrt(1 - tilt * tilt), 0];
+    const launch: Ray3 = { origin: [0, h, -1], direction: [0, tilt, Math.sqrt(1 - tilt * tilt)] };
+    const tracedTo = (asphere: AsphericCoefficients) =>
+      traceFixtureVector(
+        {
+          S: [front, { ...rear, nd: n, d: 0.3, elemId: 1 }, { label: "3", R: 40, nd: 1, d: 10, sd: 10, elemId: 0 }],
+          asphByIdx: { 2: asphere },
+        },
+        launch,
+        { recordOpticalPath: true },
+      );
+    const along = (t: number): Vec3 => [0, frontHit[1] + inGlass[1] * t, inGlass[2] * t];
+
+    /** The signed optical path: 1 mm of air, then the glass from the front face to the passive face and back. */
+    function expectSignedPath(trace: ReturnType<typeof tracedTo>, t: number) {
+      const step = subtractVec(trace.hits[2].point, trace.hits[1].point);
+      expect(step[1] * inGlass[1] + step[2] * inGlass[2]).toBeLessThan(0);
+      const forwardGlass = Math.hypot(...subtractVec(trace.hits[1].point, frontHit));
+      const backwardGlass = -Math.hypot(...step);
+      expect(trace.opticalPathLengthMm).toBeCloseTo(1 / launch.direction[2] + n * forwardGlass + n * backwardGlass, 12);
+      expect(trace.opticalPathLengthMm).toBeCloseTo(1 / launch.direction[2] + n * t, 12);
+    }
+
+    it("steps back to a conic (K = -0.6), at the root of its quadratic", () => {
+      const K = -0.6;
+      const kappa = 1 + K;
+      // c (x² + y² + κ z²) − 2 z = 0 in the vertex frame, along the line from the front face's hit.
+      const p: Vec3 = [0, frontHit[1], -lastVertexZ];
+      const A = conic * (inGlass[1] ** 2 + kappa * inGlass[2] ** 2);
+      const B = conic * (p[1] * inGlass[1] + kappa * p[2] * inGlass[2]) - inGlass[2];
+      const C = conic * (p[1] ** 2 + kappa * p[2] ** 2) - 2 * p[2];
+      // The root nearer the vertex plane; the other is on the far side of the ellipsoid.
+      const t = (-B - Math.sqrt(B * B - A * C)) / A;
+      const expected = along(t);
+      expect(1 - kappa * conic * (expected[2] - lastVertexZ)).toBeGreaterThan(0);
+
+      const trace = tracedTo({ K, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 });
+      expect(trace.status).toBe("ok");
+      expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "3"]);
+      expect(trace.hits[2].point[1]).toBeCloseTo(expected[1], 12);
+      expect(trace.hits[2].point[2]).toBeCloseTo(expected[2], 12);
+      expectSignedPath(trace, t);
+    });
+
+    it("steps back to a polynomial asphere, at the root found by bisection", () => {
+      const asphere = { K: 0, A4: 5e-6, A6: -1e-8, A8: 0, A10: 0, A12: 0, A14: 0 };
+      const sagAt = (r: number) =>
+        (conic * r * r) / (1 + Math.sqrt(1 - conic * conic * r * r)) + asphere.A4 * r ** 4 + asphere.A6 * r ** 6;
+      const residual = (t: number) => along(t)[2] - lastVertexZ - sagAt(Math.abs(along(t)[1]));
+      // In front of the asphere at the front face; past it at the passive face's hit, 5 + its sag at about y = 5.2.
+      let lo = 0;
+      let hi = 6;
+      expect(residual(lo)).toBeLessThan(0);
+      expect(residual(hi)).toBeGreaterThan(0);
+      for (let mid = (lo + hi) / 2; mid !== lo && mid !== hi; mid = (lo + hi) / 2) {
+        if (residual(mid) < 0) lo = mid;
+        else hi = mid;
+      }
+      const expected = along(lo);
+
+      const trace = tracedTo(asphere);
+      expect(trace.status).toBe("ok");
+      expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "3"]);
+      expect(trace.hits[2].point[1]).toBeCloseTo(expected[1], 12);
+      expect(trace.hits[2].point[2]).toBeCloseTo(expected[2], 12);
+      expectSignedPath(trace, lo);
+    });
+  });
+
+  it("reports the search behind's own failure, and the forward miss where it finds nothing either", () => {
+    const geometry = fixtureGeometry(stopInSag);
+    const origin: Vec3 = [0, h, 6];
+    const options = { minT: 0, maxT: 1, refractiveIndex: 1 };
+    const miss = { ok: false, failureReason: "noBracket", residual: null, iterations: 1 } as const;
+    const stalled = { ok: false, failureReason: "noConvergedIntersection", residual: 1e-6, iterations: 72 } as const;
+    const kernel = vi.spyOn(intersectKernel, "intersectSurfaceProfile");
+    try {
+      kernel.mockReturnValueOnce(miss).mockReturnValueOnce(stalled);
+      expect(pathPlanner.intersectSequentialSurface(geometry, 2, origin, [0, 0, 1], options)).toBe(stalled);
+      kernel.mockReturnValueOnce(miss).mockReturnValueOnce({ ...miss, iterations: 24 });
+      expect(pathPlanner.intersectSequentialSurface(geometry, 2, origin, [0, 0, 1], options)).toBe(miss);
+    } finally {
+      kernel.mockRestore();
+    }
   });
 });
 
@@ -232,7 +532,7 @@ describe("trace capture policies", () => {
     expect(traceRayClassification(physical.terminal, state)).toBe("blocked");
 
     // A solver refusal inside a clear cap is unresolved flux, never a proved physical miss.
-    const refusal = vi.spyOn(pathPlanner, "intersectStateSurface").mockReturnValue({
+    const refusal = vi.spyOn(pathPlanner, "intersectSequentialSurface").mockReturnValue({
       ok: false,
       failureReason: "noConvergedIntersection",
       residual: 1e-4,
@@ -316,16 +616,13 @@ describe("rim cut", () => {
     expect(cut.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
   });
 
-  it("fails a ray past the cut radius when the land sits on the stop plane", () => {
-    /* The search for the next surface runs forward from the stop hit, and the uncut cap beyond the cut radius lies
-     * behind it, so the ray fails before the cut is evaluated. Pinned until the trace can step back. */
+  it("clips a ray past the cut radius on the land when the land sits on the stop plane", () => {
+    /* The cap beyond the cut radius lies behind the stop hit, so the trace steps back to the face and clips there. */
     const L = buildFrontRimCutLens(2, 2);
     expect(traceFront(L, 8.5).status).toBe("ok");
     const past = traceFront(L, 10);
-    expect({ status: past.status, failureReason: past.failureReason }).toEqual({
-      status: "failed",
-      failureReason: "noBracket",
-    });
+    expect(past.status).toBe("clipped");
+    expect(past.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
   });
 
   it("clips an aspheric cut where the aspheric cap reaches the land", () => {

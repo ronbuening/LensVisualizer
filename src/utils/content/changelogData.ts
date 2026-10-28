@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-27",
     type: "fix",
     summary:
+      "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary:
       "The Voigtländer Nokton 50mm f/1's deep surface-8 rim now ends on a flat land at its stop instead of reaching through the iris",
   },
   {

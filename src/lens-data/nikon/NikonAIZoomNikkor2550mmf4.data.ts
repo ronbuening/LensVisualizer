@@ -10,8 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // the converging group, so surface 8 stores d8 - 0.1 mm and STO.d stores the remaining 0.1 mm. Nikon's
 // design note describes a zoom-cammed aperture that moves with the second group and changes diameter to
 // preserve f/4. The stop radius is derived from the design f-number, the production constant f/4, at each
-// zoom station (8.356 / 9.616 / 11.479 mm). At the tele station the beam is limited at the stop surface and
-// traces about f/4.91.
+// zoom station (8.356 / 9.616 / 11.479 mm). At the tele station r8's rim sags past the stop plane; the trace steps
+// back to the stop there, and the beam traces about f/4.08, limited by the rim of surface 17.
 //
 // Semi-diameters: the patent does not publish per-surface clear apertures. Values are visualization estimates
 // from marginal/chief ray envelopes, reduced where needed for positive edge thickness, sane adjacent-surface
