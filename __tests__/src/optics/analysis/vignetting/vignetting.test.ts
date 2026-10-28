@@ -20,6 +20,7 @@ import type {
 } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
 import { bulkTransmissionForTrace } from "../../../../../src/optics/trace/bulkAbsorption.js";
 import {
+  AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
 } from "../../../../../src/optics/analysis/pupils/aimedPupil.js";
@@ -69,10 +70,33 @@ vi.mock("../../../../../src/optics/trace/rayClassification.js", async (importOri
  * that reaches the image back, so the tab's guard is tested on rays named here.
  */
 const backward = vi.hoisted(() => ({ rays: new Set<string>() }));
+/*
+ * Lattice samples the launch returns unaimed, by lattice index: since total internal reflection ahead of the stop is a
+ * block, no fixture leaves a sample unaimed on demand, so the tab's handling of them is tested on samples named here.
+ */
+const unaimed = vi.hoisted(() => ({ indices: new Set<number>() }));
 vi.mock("../../../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {
   const original = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/aimedPupil.js")>();
   return {
     ...original,
+    prepareAimedPupilLaunch: (...args: Parameters<typeof original.prepareAimedPupilLaunch>) => {
+      const launch = original.prepareAimedPupilLaunch(...args);
+      if (!launch || unaimed.indices.size === 0 || args[1].length === 0) return launch;
+      const rays = launch.rays.map((ray): typeof ray =>
+        unaimed.indices.has(ray.index)
+          ? { ...ray, status: "unaimed", reason: "stop-unreachable", origin: null, direction: null }
+          : ray,
+      );
+      const count = (status: string) => rays.filter((ray) => ray.status === status).length;
+      return {
+        ...launch,
+        rays,
+        aimedCount: count("aimed"),
+        blockedCount: count("blocked"),
+        unaimedCount: count("unaimed"),
+        unaimedByReason: { ...launch.unaimedByReason, "stop-unreachable": count("unaimed") },
+      };
+    },
     prepareAimedPupilTrace: (...args: Parameters<typeof original.prepareAimedPupilTrace>) => {
       const tracer = original.prepareAimedPupilTrace(...args);
       const engine: typeof tracer.engine = (ray) => {
@@ -438,7 +462,7 @@ describe("computeVignettingCurve", () => {
     }
   });
 
-  it("counts blocked samples as vignetted and leaves unaimed ones out of both counts", () => {
+  it("counts blocked samples, at a rim or by total internal reflection, as vignetted", () => {
     // Blocked: the biconvex element's spheres meet 8.7 mm out, past its 5 mm rims, and the 8 mm stop's rim needs
     // about 10.8 mm there; the rays toward it leave the element's rim first.
     const blockedLens = lensWith("test-vignetting-blocked", [
@@ -454,10 +478,11 @@ describe("computeVignettingCurve", () => {
     expect(blocked.unaimedCount).toBeLessThanOrEqual(0.01 * blocked.sampleCount);
     expect(blocked.unvignettedFraction).toBe(blocked.transmittedCount / (blocked.sampleCount - blocked.unaimedCount));
 
-    // Unaimed: in n = 1.9 glass, rays above 4.2 mm meet the 8 mm rear sphere past the critical angle, so no ray
-    // reaches the stop's outer zone 2 mm behind it. A stop just past the reachable radius leaves a thin unaimed ring.
+    // Total internal reflection: in n = 1.9 glass, rays above 8 / 1.9 ≈ 4.2 mm meet the 8 mm rear sphere past the
+    // critical angle, so the solves toward the 2 mm stop's outer zone, 2 mm behind it, step into reflecting rays. Those
+    // samples are blocked at the sphere and count as vignetted, as total internal reflection after the stop does.
     const tir = lensWith(
-      "test-vignetting-unaimed",
+      "test-vignetting-tir",
       [
         { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
         { label: "2", R: -8, nd: 1, sd: 7, d: 2, elemId: 0 },
@@ -465,22 +490,53 @@ describe("computeVignettingCurve", () => {
       ],
       { elements: [{ ...constructionFixtureData(buildSimplePositiveElementLens()).elements[0], nd: 1.9 }] },
     );
-    const fieldAt = (stop: number) =>
-      computeVignettingField(analysisRequestAt(tir, { currentEPSD: stop, currentPhysStopSD: stop }), 0);
-    const reach = Math.max(
-      ...fieldAt(2)
-        .cells.filter((cell) => cell.ray.status === "aimed")
-        .map((cell) => Math.hypot(cell.cell.xFraction, cell.cell.yFraction) * 2),
+    const tirRequest = analysisRequestAt(tir, { currentEPSD: 2, currentPhysStopSD: 2 });
+    const reflected = computeVignettingField(tirRequest, 0);
+    const trace = prepareAimedPupilTrace(tirRequest.preparedGeometry, {
+      clipSemiDiameterMm: 2 * (1 + AIMED_PUPIL_RESIDUAL_TOLERANCE),
+    });
+    const atSphere = reflected.cells.filter(
+      (entry) => entry.ray.status === "blocked" && entry.ray.blockedAtSurfaceIndex === 1,
     );
-    const few = fieldAt(reach / 0.997);
-    expect(few.unaimedCount).toBeGreaterThan(0);
-    expect(few.unaimedCount).toBeLessThanOrEqual(0.01 * few.sampleCount);
+    expect(atSphere.length).toBeGreaterThan(0);
+    for (const entry of atSphere) {
+      expect(entry.transmitted).toBe(false);
+      expect(entry.failed).toBe(false);
+      expect(trace.engine(entry.ray as Parameters<typeof trace.engine>[0]).failureReason).toBe(
+        "totalInternalReflection",
+      );
+    }
+    expect(reflected.blockedCount).toBe(reflected.cells.filter((entry) => entry.ray.status === "blocked").length);
+  });
+
+  it("leaves unaimed samples out of both counts, and refuses figures they could move", () => {
+    // Every ray of this beam reaches the image; the named rim cells and their mirror images come back unaimed.
+    const L = stopBehindLens();
+    const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const lattice = vignettingStopLattice(64);
+    const rim = lattice
+      .filter((cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) > 0.97)
+      .flatMap((cell) => [cell, lattice.find((other) => other.row === cell.row && other.column === 63 - cell.column)!]);
+    const withUnaimed = (cells: readonly VignettingLatticeCell[]) => {
+      unaimed.indices = new Set(cells.map((cell) => cell.index));
+      try {
+        return computeVignettingField(request, 0);
+      } finally {
+        unaimed.indices = new Set();
+      }
+    };
+    // A ring thinner than 1 % of the lattice: left out of both counts, but more of the beam's border than RI may lose.
+    const few = withUnaimed(rim.slice(0, 16));
+    expect(few.unaimedCount).toBe(16);
     expect(few.unvignettedFraction).toBe(few.transmittedCount / (few.sampleCount - few.unaimedCount));
-    // The ring borders the transmitted beam, more of it than the figure may lose: no relative illumination.
-    expect(unresolvedBesideBeam(few) / few.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(few.unvignettedFraction).toBe(1);
+    expect(unresolvedBesideBeam(few)).toBe(16);
+    expect(16 / few.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
     expect(few.relativeIlluminationReason).toBe("unresolved-in-beam");
     expect(few.rimmerSum).toBeNull();
-    const many = fieldAt(2);
+    // More than 1 % of the lattice: neither figure.
+    const many = withUnaimed(rim);
+    expect(many.unaimedCount).toBe(rim.length);
     expect(many.unaimedCount).toBeGreaterThan(0.01 * many.sampleCount);
     expect(many.unvignettedFraction).toBeNull();
     expect(many.unavailableReason).toBe("too-many-unaimed");

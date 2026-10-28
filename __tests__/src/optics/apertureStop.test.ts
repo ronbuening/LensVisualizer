@@ -228,11 +228,12 @@ describe("f-numbers", () => {
     expect(imageSpaceFNumber(state, R)).toBeCloseTo(immersion / (2 * PHASE_POWER * R), 10);
   });
 
-  it("shows a marginal ray that cannot reach the stop rim as unaimed, not a number", () => {
+  it("shows a marginal ray that only totally reflected rays could carry to the stop rim as vignetted there", () => {
     // A plano-convex lens, flat face forward: a collimated ray at height h meets the rear sphere (radius r) at
     // incidence sin i = h / r and is totally reflected past h = r / n. The transmitted rays converge, so none reaches
     // the stop behind the vertex above r / n; a stop rim at 16 mm is out of reach while no clear aperture (17 mm)
-    // stops a ray, so the aim cannot place the marginal ray and no clear aperture is to blame.
+    // stops a ray. The rays toward it reflect totally at the rear sphere, which vignettes the marginal ray before the
+    // stop, as total internal reflection after the stop would.
     const n = 1.5;
     const r = 20;
     const L = buildFixtureLens(
@@ -252,7 +253,7 @@ describe("f-numbers", () => {
       currentEPSD: 16,
       currentPhysStopSD: 16,
     });
-    expect(computeWorkingFNumber(request)).toEqual({ status: "unaimed", reason: "stop-unreachable" });
+    expect(computeWorkingFNumber(request)).toEqual({ status: "vignetted", surfaceLabel: "2", beforeStop: true });
   });
 
   it("names the line of the authored indices it traces at, as the chromatic tab does", () => {

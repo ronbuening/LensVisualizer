@@ -9,7 +9,8 @@
  * Lens-design programs aim through mathematically extended surfaces. Here a ray far outside a clear aperture can
  * meet a surface beyond the next vertex, where the surfaces of an element cross, and the trace fails. A target only
  * such rays could reach is `blocked` when the ray toward it is already outside a clear aperture before it fails: its
- * light is vignetted there, and the returned blocking ray is traced as clipped.
+ * light is vignetted there, and the returned blocking ray is traced as clipped. Total internal reflection ahead of the
+ * stop blocks the same way, at the reflecting surface, as it does after the stop.
  */
 
 import type { ChromaticChannel, RayTraceResult } from "../../../types/optics.js";
@@ -150,9 +151,9 @@ export interface AimedPupilAimedRay extends AimedPupilRayBase {
 }
 
 /**
- * A sample whose target no traceable ray reaches because a clear aperture before the stop blocks the way: the ray
- * toward it leaves that aperture before the trace fails. Its light is vignetted; the returned ray is that blocking
- * ray, which the full trace clips.
+ * A sample whose target no traceable ray reaches because a clear aperture or total internal reflection before the stop
+ * blocks the way: the ray toward it leaves that aperture, or reflects there, before the trace fails. Its light is
+ * vignetted; the returned ray is that blocking ray, which the full trace clips or reflects.
  */
 export interface AimedPupilBlockedRay extends AimedPupilRayBase {
   status: "blocked";
@@ -161,7 +162,7 @@ export interface AimedPupilBlockedRay extends AimedPupilRayBase {
   achievedStopMm: null;
   origin: Vec3;
   direction: Vec3;
-  /** Surface whose clear aperture blocks the ray. */
+  /** Surface whose clear aperture blocks the ray, or where it reflects totally. */
   blockedAtSurfaceIndex: number;
 }
 
@@ -648,10 +649,9 @@ function stopCrossingTracer(
 /**
  * Trace a launch toward the stop with every clear aperture checked, and name the surface that physically stops it.
  *
- * The MTF's classifier decides: an aperture clip, or a failed intersection proven to miss the next surface's clear
- * cap, is a rim's blocking. Total internal reflection is not an aperture, so a target only totally reflected rays
- * could reach stays unreachable, as lens-design programs report a failed aim; an unresolved ray never poses as
- * vignetting either.
+ * The shared classifier decides, as it does after the stop: an aperture clip, total internal reflection, or a failed
+ * intersection proven to miss the next surface's clear cap blocks the ray at that surface. An unresolved ray never
+ * poses as vignetting.
  *
  * @returns the blocking surface before the stop, or null
  */
@@ -676,8 +676,8 @@ function apertureBlockTracer(
   });
   return (launch) => {
     const result = trace(frame.ray(launch[0], launch[1]));
-    if (result.status === "ok" || result.failureReason === "totalInternalReflection") return null;
-    if (traceRayClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    if (result.status === "ok" || traceRayClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    // A clip or total internal reflection ends the trace at its own surface; a proven miss is of the next one.
     const missed = result.failureReason === "noBracket" || result.failureReason === "noConvergedIntersection";
     const surfaceIndex = missed ? result.terminalSurfaceIndex + 1 : result.terminalSurfaceIndex;
     return surfaceIndex < stopIndex ? surfaceIndex : null;
@@ -941,10 +941,10 @@ function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve 
  * the polish tolerance or stops falling. A pinned solve (a meridional sample) moves b alone with a held exactly.
  *
  * An unconverged solve is classified by how it ended. It is `blocked` only when it ends on a block: its last step
- * toward the target could not reach the stop because it left a clear aperture, and either the launch it left from is
- * itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop is convex enough), no
- * shorter step reaches the stop either, or the iteration cap arrives with that block the last failed step since the
- * solve last moved. A step that cannot be traced for any other reason, or a folded (singular) map, ends it as
+ * toward the target could not reach the stop because it left a clear aperture or reflected totally, and either the
+ * launch it left from is itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop
+ * is convex enough), no shorter step reaches the stop either, or the iteration cap arrives with that block the last
+ * failed step since the solve last moved. A step that cannot be traced for any other reason, or a folded (singular) map, ends it as
  * `stop-unreachable`, as does reaching the iteration cap while its steps cannot be traced and no rim is proven to stop
  * them. The iteration cap otherwise, or a step that stops reducing the residual, ends it as `aim-not-converged`: a
  * stall is never reported as a block.

@@ -139,8 +139,8 @@ names that surface (and whether it is before the stop) and the header says so. N
 MTF beam. It is cached with the focus search.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
-clips are blocking; the aimed launch's search ahead of the stop is the one exception and does not take TIR as a block
-(see [Pupil Convention](#pupil-convention)). A failed intersection blocks only
+clips are blocking on both sides of the stop: the aimed launch's search ahead of the stop takes them as blocks at their
+surface (see [Pupil Convention](#pupil-convention)). A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
 MTF error at 2ε; more makes the field unavailable. The reference chief is traced without aperture checks, so a
@@ -1287,10 +1287,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   (`blockedCount`, `blockedSampleCount`) apart from rays a later rim vignettes. A solve that reaches the 24-trace cap
   with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
   `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
-  result and never traced or replaced by a paraxial launch. Total internal reflection ahead of the stop is not taken as
-  a block (`blockedAt` returns null for it), so a target only reflected rays could reach is mostly
-  `stop-unreachable` (`aim-not-converged` where the search stalls, `blocked` where the cap ends on a rim's proven
-  block); reporting it as a block at that surface is deferred to PR 3 (see Vignetting). Bokeh transmission and
+  result and never traced or replaced by a paraxial launch. Total internal reflection ahead of the stop is a block at
+  the reflecting surface, as it is after the stop (`blockedAt` uses `traceRayClassification`), so a target only
+  reflected rays could reach ends `blocked` there and is vignetting in every analysis. Bokeh transmission and
   moved-lens vignetting leave unaimed samples out of their denominators and report how many there were.
 - **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
   real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
@@ -1693,14 +1692,10 @@ cross-checker can restate Rimmer's sum from a field's cells.
   traces it calls failed, or that leave the last surface backward, are left out of both counts and counted
   (`unaimedCount`, `failedCount`); a field where together they exceed `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its
   lattice has neither figure (`too-many-unaimed`, or `too-many-failed` when failed samples are the larger share).
-- **Total internal reflection, by side of the stop.** An aimed ray reaches the stop (traced there without aperture
-  checks), so total internal reflection in its full trace is after the stop: the sample counts as vignetted. Ahead of
-  the stop the aimed launch does not take total internal reflection as a block, so a sample only reflected rays could
-  reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search stalls): it is left out of both
-  counts, counts toward `unresolved-in-beam` beside a transmitted cell, and above 1 % of the lattice gives
-  `too-many-unaimed`. A solve whose last failed step at the iteration cap left a rim ahead of the stop ends `blocked`
-  at that rim instead, and counts as vignetted. Reporting total internal reflection as a block at its surface would
-  change the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the MTF on the stop lattice).
+- **Total internal reflection.** It vignettes on both sides of the stop. An aimed ray reaches the stop (traced there
+  without aperture checks), so total internal reflection in its full trace is after the stop; ahead of the stop the
+  aimed launch takes it as a block at the reflecting surface, so a sample only reflected rays could reach is `blocked`
+  there. Either way the sample counts as vignetted.
 - **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
   point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
   crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil

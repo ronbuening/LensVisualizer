@@ -181,10 +181,11 @@ describe("prepareAimedPupilLaunch", () => {
     }
   });
 
-  it("reports a target the field cannot reach as unaimed with its reason", () => {
-    // Inside n = 1.9 glass, rays above 4.2 mm meet the 8 mm rear sphere past the critical angle, and those just inside
-    // it leave at a slope near −1.6, so 2 mm behind the vertex no transmitted ray strays much past 1 mm from the axis.
-    // The 2 mm stop's rim is out of reach; total internal reflection is no aperture, so the rim stays unaimed.
+  it("blocks a target only totally reflected rays could reach at the reflecting surface, not unaimed", () => {
+    // Inside n = 1.9 glass, an axial ray at height h meets the 8 mm rear sphere at incidence asin(h / 8), past the
+    // critical angle asin(1 / 1.9) above h = 8 / 1.9 ≈ 4.2 mm; those just inside it leave at a slope near −1.6, so 2 mm
+    // behind the vertex no transmitted ray strays much past 1 mm from the axis. The 2 mm stop's rim is out of reach, and
+    // the rays toward it reflect totally at surface 1: vignetting there, as total internal reflection after the stop is.
     const base = buildSimplePositiveElementLens();
     const L = build({
       ...constructionFixtureData(base),
@@ -199,11 +200,17 @@ describe("prepareAimedPupilLaunch", () => {
     const request = analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 });
     const launch = prepareAimedPupilLaunch(request, TANGENTIAL, { uField: 0, yChief: 0 })!;
     const rim = launch.rays.at(-1)!;
-    expect(rim.status).toBe("unaimed");
-    expect(rim.reason).toBe("stop-unreachable");
-    expect(rim.origin).toBeNull();
-    expect(launch.unaimedByReason["stop-unreachable"]).toBe(launch.unaimedCount);
-    expect(launch.unaimedCount).toBeGreaterThan(0);
+    expect(rim.status).toBe("blocked");
+    if (rim.status !== "blocked") return;
+    expect(rim.blockedAtSurfaceIndex).toBe(1);
+    expect(rim.achievedStopMm).toBeNull();
+    // The blocking ray enters the glass above the critical height and its full trace ends in that reflection.
+    expect(Math.abs(rim.origin[1])).toBeGreaterThan(8 / 1.9);
+    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch).engine(rim);
+    expect(trace.failureReason).toBe("totalInternalReflection");
+    expect(trace.terminalSurfaceIndex).toBe(1);
+    expect(launch.unaimedCount).toBe(0);
+    expect(launch.blockedCount).toBeGreaterThan(0);
     expect(launch.rays[(TANGENTIAL.length - 1) / 2].status).toBe("aimed");
   });
 

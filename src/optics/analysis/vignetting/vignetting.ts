@@ -7,15 +7,10 @@
  *
  *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
  *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
- *     samples, and aimed rays whose full trace a rim on either side of the stop, total internal reflection after it
- *     or a proven aperture miss stops (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays
- *     whose full trace fails for any other reason are left out of both counts, and each field reports how many of
- *     each there were. Total internal reflection ahead of the stop is not a block to the aimed launch: a sample only
- *     reflected rays could reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search
- *     stalls) and left out of both counts, though a solve whose last failed step at the iteration cap left a rim
- *     ahead of the stop ends `blocked` at that rim and counts as vignetted. Reporting total internal reflection as a
- *     block at its surface changes the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the
- *     MTF on the stop lattice).
+ *     samples (a rim or total internal reflection ahead of the stop), and aimed rays whose full trace a rim on either
+ *     side of the stop, total internal reflection after it or a proven aperture miss stops
+ *     (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays whose full trace fails for any
+ *     other reason are left out of both counts, and each field reports how many of each there were.
  *   - Relative illumination follows Rimmer's method, as OpticStudio computes it: a transmitted cell contributes n′²
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
@@ -497,8 +492,7 @@ function traceLattice(
       orientedCosineArea: null,
       cosineArea: null,
     };
-    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray (see the header for
-    // total internal reflection ahead of the stop).
+    // A blocked ray is stopped ahead of the stop by the rim or reflection it names; an unaimed sample has no ray.
     if (ray.status !== "aimed") return dark;
     const result = trace(ray);
     // The aimed ray reached the stop without aperture checks, so total internal reflection or a numerical failure here
