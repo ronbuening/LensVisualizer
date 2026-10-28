@@ -23,6 +23,7 @@ import {
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
+  prepareAimedStopLattice,
 } from "../../../../../src/optics/analysis/pupils/aimedPupil.js";
 import { computeOffAxisFieldGeometry } from "../../../../../src/optics/analysis/aberration/offAxis.js";
 import type { OffAxisFieldGeometry } from "../../../../../src/optics/analysis/aberration/offAxis.js";
@@ -79,9 +80,9 @@ vi.mock("../../../../../src/optics/analysis/pupils/aimedPupil.js", async (import
   const original = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/aimedPupil.js")>();
   return {
     ...original,
-    prepareAimedPupilLaunch: (...args: Parameters<typeof original.prepareAimedPupilLaunch>) => {
-      const launch = original.prepareAimedPupilLaunch(...args);
-      if (!launch || unaimed.indices.size === 0 || args[1].length === 0) return launch;
+    prepareAimedStopLattice: (...args: Parameters<typeof original.prepareAimedStopLattice>) => {
+      const launch = original.prepareAimedStopLattice(...args);
+      if (!launch || unaimed.indices.size === 0) return launch;
       const rays = launch.rays.map((ray): typeof ray =>
         unaimed.indices.has(ray.index)
           ? { ...ray, status: "unaimed", reason: "stop-unreachable", origin: null, direction: null }
@@ -138,8 +139,7 @@ function axisWithFailed(
   request: ReturnType<typeof analysisRequestAt>,
   cells: readonly VignettingLatticeCell[],
 ): VignettingFieldResult {
-  const lattice = vignettingStopLattice(64);
-  const launch = prepareAimedPupilLaunch(request, lattice, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
+  const launch = prepareAimedStopLattice(request, 64, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
   classifier.failing = new Set(
     cells.map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
   );
@@ -175,7 +175,7 @@ function expectMirrorsMatchOwnTraces(L: RuntimeLens, request: ReturnType<typeof 
   const edge = computeVignettingField(request, 1);
   expect(edge.mirrored).toBe(true);
   const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, edge.fieldFraction, fields)!;
-  const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
+  const launch = prepareAimedStopLattice(request, edge.cellsAcross, geometry)!;
   const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
   const sphere: ReferenceSphere = {
     center: edge.imagePoint!,
@@ -449,11 +449,7 @@ describe("computeVignettingCurve", () => {
       lattice.filter((cell) => Math.hypot(cell.xFraction, cell.yFraction) <= 0.6).length,
     );
     expect(axis.unvignettedFraction).toBeLessThan(1);
-    const launch = prepareAimedPupilLaunch(
-      request,
-      lattice,
-      computeOffAxisFieldGeometry(request.preparedGeometry, 0)!,
-    )!;
+    const launch = prepareAimedStopLattice(request, 64, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
     const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
     for (const cell of axis.cells.filter((entry) => !entry.transmitted)) {
       expect(
@@ -649,11 +645,7 @@ describe("computeVignettingCurve", () => {
     const L = stopBehindLens();
     const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
     const lattice = vignettingStopLattice(64);
-    const launch = prepareAimedPupilLaunch(
-      request,
-      lattice,
-      computeOffAxisFieldGeometry(request.preparedGeometry, 0)!,
-    )!;
+    const launch = prepareAimedStopLattice(request, 64, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
     const flipped = lattice.filter((cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) < 0.5);
     backward.rays = new Set(
       flipped.slice(0, 3).map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
@@ -756,7 +748,7 @@ describe("computeVignettingCurve", () => {
         field.fieldFraction,
         computeAnalysisFieldGeometryAtState(0, 0, L, 0),
       )!;
-      const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(field.cellsAcross), geometry)!;
+      const launch = prepareAimedStopLattice(request, field.cellsAcross, geometry)!;
       expect(field.cells.map((cell) => cell.ray)).toEqual(launch.rays);
     });
     // Each −px cell is its +px partner's mirror image: traced on its own, its ray does what the mirror says it does.
@@ -869,7 +861,7 @@ describe("Rimmer's reference sphere", () => {
     const L = stopBehindLens();
     const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
     const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, 0.5) as OffAxisFieldGeometry;
-    const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(4), geometry)!;
+    const launch = prepareAimedStopLattice(request, 4, geometry)!;
     expect(referenceSphere(request.preparedGeometry, launch, geometry, -100)).not.toBeNull();
     expect(referenceSphere(request.preparedGeometry, launch, geometry, null)).toBeNull();
     const unaimed = { ...launch, chief: { ...launch.chief, status: "unaimed" } } as unknown as typeof launch;

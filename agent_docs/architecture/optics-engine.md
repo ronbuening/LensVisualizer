@@ -1354,8 +1354,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
 - **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
   real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
   (`prepareAxialZoneLaunch` in `aberration/shared.ts`); both chromatic ray fans, aimed per channel at that channel's
-  indices; the perspective analysis bundles, aimed in the intrinsic lens frame; the vignetting tab's stop lattice; and
-  the MTF's stop lattices, one per spectral line (see Simulated MTF).
+  indices; the perspective analysis bundles, aimed in the intrinsic lens frame; and the stop lattices, through
+  `prepareAimedStopLattice`, of the vignetting tab and of the MTF (one per spectral line), so the two tabs trace the
+  same rays for one field.
 - **Not aimed.** Diagram rays (`useOnAxisRays`, `useOffAxisRays`, `useChromaticRays`' segments, folded display fans and
   the moved-lens diagram fan, `launch: "paraxial-entrance"`) are rendering samplers and keep paraxial entrance-pupil
   fractions. The field-curvature parabasal pair (`FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM`, 0.01 mm about the chief)
@@ -1738,7 +1739,7 @@ two field analyses on one lattice on the stop per field. `vignettingStopLattice(
 the MTF's) keeps the cells of an n × n grid
 (`BEAM_GRID_CELLS` = 64 across the stop's diameter; `vignettingPupilSampleCount` overrides it, at least 4) whose centre
 lies in the unit disc, at coordinates (2k + 1 − n)/n so mirror columns are exact negatives. Each field launches the
-lattice through `prepareAimedPupilLaunch` (see [Pupil Convention](#pupil-convention)) and traces every aimed ray with
+lattice through `prepareAimedStopLattice`, the MTF's own aimer (see [Pupil Convention](#pupil-convention)), and traces every aimed ray with
 every aperture checked; on a meridional field of a system `mirrorSymmetricAboutMeridian` accepts, the +px half is
 traced and the −px half mirrors it. Field spacing is unchanged. `computeVignettingField(request, fraction)` returns one
 field's rays, per-cell flags, direction cosines and cosine-space areas, with its exit pupil, image point and

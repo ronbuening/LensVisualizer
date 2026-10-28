@@ -1,9 +1,9 @@
 /**
  * Vignetting and relative illumination: OpticStudio's two field analyses, on one lattice on the stop per field.
  *
- * Each field launches a regular lattice of stop samples through the aimed pupil launch (`pupils/aimedPupil.ts`):
- * `BEAM_GRID_CELLS` cells across the stop's diameter, keeping the cells whose centre lies in the unit disc. Every
- * returned ray is traced with every aperture checked.
+ * Each field launches a regular lattice of stop samples through the aimed stop lattice (`prepareAimedStopLattice` in
+ * `pupils/aimedPupil.ts`, the MTF's own): `BEAM_GRID_CELLS` cells across the stop's diameter, keeping the cells whose
+ * centre lies in the unit disc. Every returned ray is traced with every aperture checked.
  *
  *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
  *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
@@ -54,7 +54,7 @@ import { traceRayClassification } from "../../trace/rayClassification.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
-import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace, prepareAimedStopLattice } from "../pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../pupils/aimedPupil.js";
 import { stopLattice } from "../pupils/stopLattice.js";
 import type { StopLatticeCell } from "../pupils/stopLattice.js";
@@ -278,7 +278,8 @@ function vignettingField(
     sampleCount: lattice.length,
   };
   const scalar = geometry && !isOffAxisVectorFieldGeometry(geometry) ? geometry : null;
-  const launch = scalar && prepareAimedPupilLaunch(request, lattice, scalar);
+  // The same aimed lattice the MTF traces: its rays are the lattice's cells, in lattice order.
+  const launch = scalar && prepareAimedStopLattice(request, n, scalar);
   if (!scalar || !launch) return unavailableField(base, "no-field-launch");
 
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
