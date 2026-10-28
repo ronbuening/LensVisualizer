@@ -341,7 +341,8 @@ function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null
  * Refine one field through the grid ladder.
  *
  * A converged level ends refinement. A finer level that fails never discards a coarser curve,
- * which stays unconverged; failures that ask for finer sampling continue down the ladder.
+ * which stays unconverged and names the failure that stopped refinement; failures that ask for
+ * finer sampling continue down the ladder.
  *
  * @param ladder - grid sizes, coarse to fine
  * @param evaluate - field at one grid size
@@ -357,8 +358,9 @@ export function* refineMtfField(
   for (const size of ladder) {
     const outcome = evaluate(size);
     if (outcome.kind === "unavailable") {
-      const best = previous ?? outcome.field;
-      yield best;
+      if (previous && !outcome.refine)
+        previous.notes.push(`Refinement stopped at the ${size}-cell grid: ${outcome.field.message}`);
+      yield previous ?? outcome.field;
       if (outcome.refine) continue;
       return;
     }

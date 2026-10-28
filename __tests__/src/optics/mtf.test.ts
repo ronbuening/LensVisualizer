@@ -1,7 +1,7 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   build,
   buildChromaticPositiveElementLens,
@@ -48,6 +48,35 @@ import type { TraceRayClass } from "../../../src/optics/trace/rayClassification.
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+
+/*
+ * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
+ * an ordinary beam unaimed, so the MTF's handling of one is tested on cells named here. Inactive while the list is empty.
+ */
+const unaimedCells = vi.hoisted(() => ({ at: [] as (readonly [number, number])[] }));
+vi.mock("../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {
+  const original = await importOriginal<typeof import("../../../src/optics/analysis/pupils/aimedPupil.js")>();
+  return {
+    ...original,
+    prepareAimedStopLatticeForState: (...args: Parameters<typeof original.prepareAimedStopLatticeForState>) => {
+      const lattice = original.prepareAimedStopLatticeForState(...args);
+      if (!lattice || unaimedCells.at.length === 0) return lattice;
+      const named = (x: number, y: number) => unaimedCells.at.some(([u, v]) => u === x && v === y);
+      const rays = lattice.rays.map((ray): typeof ray =>
+        named(ray.xFraction, ray.yFraction)
+          ? { ...ray, status: "unaimed", reason: "aim-not-converged", origin: null, direction: null }
+          : ray,
+      );
+      const unaimed = rays.filter((ray) => ray.status === "unaimed").length;
+      return {
+        ...lattice,
+        rays,
+        aimedCount: lattice.aimedCount - (unaimed - lattice.unaimedCount),
+        unaimedCount: unaimed,
+      };
+    },
+  };
+});
 
 const FINITE_CONJUGATE: FiniteConjugate = {
   focusT: 1,
@@ -451,6 +480,62 @@ describe("MTF pupil sampling", () => {
       return next ? [next[1] - byCell.get(`${ray.row},${ray.column}`)![1]] : [];
     });
     expect(Math.max(...pitches) / Math.min(...pitches)).toBeGreaterThan(1.1);
+  });
+  it("reports unaimed cells inside the beam, and returns no number where they could move it", () => {
+    // Every cell of this axial beam transmits. Name a +x cell and its mirror image on the 32-cell lattice, the ladder's
+    // last: the bundle counts both, beside lit neighbours, and neither estimator returns a curve without saying so.
+    // Three pairs carry more than 0.5 % of the flux: the 32-cell grid has no curve, and the 16-cell one stands, saying
+    // why refinement stopped. Named on both lattices, they leave the field no curve at all.
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const pair = (column: number, n: number) => {
+      const x = (2 * column + 1 - n) / n;
+      const y = 1 / n;
+      return [[x, y] as const, [-x, y] as const];
+    };
+    const at = (columns: readonly number[], sizes = [32]) =>
+      sizes.flatMap((n) => columns.flatMap((column) => pair(n / 2 + column, n)));
+    const fieldWith = (columns: readonly number[], method: MtfOptions["method"], sizes = [32]) => {
+      unaimedCells.at = at(columns, sizes);
+      try {
+        return computeMtf(...mtfInputs(state, { ...mtfTestOptions, method, maxGridSize: 32 })).fields[0];
+      } finally {
+        unaimedCells.at = [];
+      }
+    };
+    for (const method of ["geometric", "diffraction"] as const) {
+      const one = fieldWith([1], method);
+      expect(one.gridSize).toBe(32);
+      expect(one.unaimedRays).toBe(2);
+      expect(one.unresolvedInBeamRays).toBe(2);
+      // 2 of the 812 cells, each counted at full transmission.
+      expect(one.unknownFluxFraction).toBeCloseTo(2 / 812, 12);
+      expect(one.sagittal.length).toBeGreaterThan(0);
+      expect(
+        one.notes.some((note) => /2 pupil samples .* All of them lie inside the transmitted beam/.test(note)),
+      ).toBe(true);
+      const stopped = fieldWith([1, 2, 3], method);
+      expect(stopped.status).toBe("unconverged");
+      expect(stopped.gridSize).toBe(16);
+      expect([stopped.unaimedRays, stopped.unresolvedInBeamRays]).toEqual([0, 0]);
+      expect(stopped.notes.some((note) => /^Refinement stopped at the 32-cell grid: 6 pupil samples/.test(note))).toBe(
+        true,
+      );
+      const none = fieldWith([1, 2, 3], method, [16, 32]);
+      expect(none.status).toBe("unavailable");
+      expect(none.reason).toBe("trace-failed");
+      expect(none.sagittal).toEqual([]);
+      expect(none.message).toMatch(/6 of them inside the transmitted beam/);
+    }
+    // A bundle traced directly carries the same counts.
+    unaimedCells.at = at([1]);
+    try {
+      const support = assessMtfSupport(...mtfInputs(state, mtfTestOptions));
+      const bundle = traceMtfFieldPupil(state, mtfTestOptions, support, 0, 32)!;
+      expect([bundle.unaimed, bundle.failed, bundle.unresolvedInBeam, bundle.unresolvedWeight]).toEqual([2, 0, 2, 2]);
+      expect(bundle.rays).toHaveLength(810);
+    } finally {
+      unaimedCells.at = [];
+    }
   });
   it("fits the footprint to a slit beam thinner than the coarse scan when the chief transmits", () => {
     // A 0.1 mm slit through the chief: the scan of a 10 mm pupil samples y every 1.25 mm and misses it.
