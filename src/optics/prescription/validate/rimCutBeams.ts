@@ -63,6 +63,8 @@ const WARM_BRACKET = 0.03;
  */
 const CHANGE_BISECTIONS = 14;
 const CHANGE_TOLERANCE_MM = 0.05;
+/** Changes of aperture followed along one edge inside one interval between fields. */
+const MAX_CHANGES = 4;
 /** A cut is near its limit once its screened reach comes within its margin plus this window: mm, and a radius share. */
 const NEAR_WINDOW_MM = 0.5;
 const NEAR_WINDOW_FRACTION = 0.02;
@@ -247,15 +249,28 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamCheck {
         update(screened, fieldDeg);
       });
       /* Where another aperture takes over a meridional edge between two fields, the reach can peak sharply between
-         them: screen the field it takes over at. */
+         them: screen the fields either side of each change. */
       for (let k = 0; k + 1 < fields.length; k++) {
         const low = rows[k];
         const high = rows[k + 1];
         if (!low || !high) continue;
+        /* Apertures can take over one after another inside one interval: follow each change to the next. */
         for (const direction of meridionalDirections(bs)) {
-          if (low.limits[direction] === high.limits[direction]) continue;
-          const change = fieldOfChange(U, bs, fields[k], fields[k + 1], low, high, direction);
-          update(screen(bs, change, low.distances), change);
+          const edgeAt = (row: Screened): EdgeAt => ({
+            seed: row.seed,
+            distance: row.distances[direction],
+            limit: row.limits[direction],
+          });
+          const to = edgeAt(high);
+          let fromDeg = fields[k];
+          let from = edgeAt(low);
+          for (let c = 0; c < MAX_CHANGES && from.limit !== to.limit; c++) {
+            const change = fieldOfChange(U, bs, fromDeg, fields[k + 1], from, to, direction);
+            update(screen(bs, change.low, low.distances), change.low);
+            if (change.high >= fields[k + 1]) break;
+            fromDeg = change.high;
+            from = change.after;
+          }
         }
       }
     }),
@@ -464,38 +479,54 @@ function edgeAlong(
   return bisectEdge(at, inner, point(outer), traced, toleranceMm);
 }
 
+/** One meridional edge at one field: the seed ray's launch, the edge's distance from it, and the aperture setting it. */
+interface EdgeAt {
+  seed: Vec2;
+  distance: number;
+  limit: number;
+}
+
 /**
- * The field between `lowDeg` and `highDeg` at which another aperture takes over one meridional edge of the beam: the
- * last field, to 2⁻¹⁴ of the interval, whose edge is still set by the aperture that sets it at `lowDeg`.
+ * Where, between `fromDeg` and `toDeg`, another aperture takes over one meridional edge of the beam from the one that
+ * sets it at `fromDeg`: the last field still set by that aperture, and the first set by another, with its edge, 2⁻¹⁴
+ * of the interval apart.
  */
 function fieldOfChange(
   U: RuntimeLens,
   bs: BeamState,
-  lowDeg: number,
-  highDeg: number,
-  low: Screened,
-  high: Screened,
+  fromDeg: number,
+  toDeg: number,
+  from: EdgeAt,
+  to: EdgeAt,
   direction: number,
-): number {
+): { low: number; high: number; after: EdgeAt } {
   const deg = screenDirections(bs)[direction];
+  let low = fromDeg;
+  let high = toDeg;
+  let after = to;
   for (let i = 0; i < CHANGE_BISECTIONS; i++) {
-    const fieldDeg = (lowDeg + highDeg) / 2;
-    /* The chief estimate interpolated between the two fields: it need only lie inside the beam. */
-    const t = (fieldDeg - lowDeg) / (highDeg - lowDeg);
+    const fieldDeg = (low + high) / 2;
+    /* The chief estimate interpolated between the two screened fields: it need only lie inside the beam. */
+    const t = (fieldDeg - fromDeg) / (toDeg - fromDeg);
     const chief: Vec2 = [
-      low.seed[0] + t * (high.seed[0] - low.seed[0]),
-      low.seed[1] + t * (high.seed[1] - low.seed[1]),
+      from.seed[0] + t * (to.seed[0] - from.seed[0]),
+      from.seed[1] + t * (to.seed[1] - from.seed[1]),
     ];
     const launch = fieldLaunch(U, bs, fieldDeg, chief);
     if (typeof launch === "string") break;
     const at = (p: Vec2) => bs.trace(launch.ray(p[0], p[1]));
     const seed = findSeed(bs, launch, at);
     if (!seed) break;
-    const hint = low.distances[direction] + t * (high.distances[direction] - low.distances[direction]);
-    if (edgeAlong(bs, at, seed, deg, hint, CHANGE_TOLERANCE_MM).limit === low.limits[direction]) lowDeg = fieldDeg;
-    else highDeg = fieldDeg;
+    const hint = from.distance + t * (to.distance - from.distance);
+    const edge = edgeAlong(bs, at, seed, deg, hint, CHANGE_TOLERANCE_MM);
+    if (edge.limit === from.limit) low = fieldDeg;
+    else {
+      high = fieldDeg;
+      const distance = Math.hypot(edge.ray.launch[0] - seed.launch[0], edge.ray.launch[1] - seed.launch[1]);
+      after = { seed: seed.launch, distance, limit: edge.limit };
+    }
   }
-  return lowDeg;
+  return { low, high, after };
 }
 
 /**
