@@ -10,7 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * K = 0 in the patent's (1+K) conic form) are the printed values, and every sd is half the printed effective
  * diameter. L1's nd 1.58373 is kept as printed; the common moldable crown is 1.58313, but Canon's US 2010/0033848 A1
  * prints the same 1.58373, so a misprint is unconfirmed. The 0.10 mm and 0.15 mm resin layers of the two replica
- * aspheres are separate media, so 14 entries model the 12 glass elements.
+ * aspheres are separate media, so 14 entries model the 12 glass elements. Fig. 1(A) draws each element's edge
+ * 1.0–1.2 mm beyond the larger of its printed radii (a cemented group as one block): the mechanical edge, not the
+ * effective diameter, so the printed values are kept.
  *
  * Derived values: the patent prints focal length, BF and image height only for the system with the attachment fitted.
  * The bare focal lengths (17.49/23.99/25.78/38.83 mm) and the last gap D24 (image distance) are computed paraxially

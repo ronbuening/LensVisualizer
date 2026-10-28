@@ -21,13 +21,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D15 6.8 → 1.1 mm), moving L3–L8 5.7 mm toward the image.
  *
  * Semi-diameters are estimated from Fig. 3(a), including the stepped front-element rims; the patent prints no
- * clear apertures. S2 = 24.2 mm lies inside the r2 rim drawn in Fig. 3(a) (about 24.5–25 mm) and needs a 66.5° rim
- * slope (checks.maxRimAngleDeg 67); with it the chief ray reaches the 10.82 mm Four Thirds corner at every station
- * (the patent plots image heights of 10.59 mm at wide and 11.45 mm at middle and tele). The stop diameter is not
- * printed; it is set from F/4 at each station.
+ * clear apertures. Measured on both sides of the wide panel (8.89 px/mm, r1 vertex to image plane), every rim agrees
+ * with the drawing within about 6 % except S4: the figure draws r4 out to about 18.2 mm, with L3's front rim meeting
+ * it. S4 = 18.2 mm and S5 = 17.1 mm follow the drawing (the Olympus construction drawing also carries L2's rear
+ * face far out); the faces do not cross, and checks.gapSagFrac 0.99 is the smallest two-decimal value that admits
+ * the pair across the 11.6 mm S4→S5 gap.
+ * S2 = 24.2 mm lies inside the r2 rim drawn in Fig. 3(a) (about 24.5–25 mm) and needs a 66.5° rim slope
+ * (checks.maxRimAngleDeg 67); with it the chief ray reaches the 10.82 mm Four Thirds corner at every station (the
+ * patent plots image heights of 10.59 mm at wide and 11.45 mm at middle and tele). The stop diameter is not printed;
+ * it is set from F/4 at each station.
  *
- * Glass: no supplier is named. L4, L6, L14 and L16 (nd 1.497, νd 81.54) carry the printed θgF 0.54, stored as
- * dPgF +0.03335; L18 (nd 1.48749, νd 70.23) has no printed partial dispersion.
+ * Glass: the patent names no supplier. Fifteen elements carry the Ohara catalog glass whose nd/νd equal the printed
+ * pair (dispersion proxies, not production identity); L7, L9 and L10 have no catalog equivalent. L4, L6, L14 and L16 (nd 1.497, νd 81.54) carry the printed θgF 0.54, stored as
+ * dPgF +0.03335; L18 (nd 1.48749, νd 70.23, S-FSL5) has no printed partial dispersion.
  */
 
 const LENS_DATA = {
@@ -70,7 +76,7 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: -100.00812,
-      glass: "Unmatched (patent nd=1.78590, νd=44.20; supplier unconfirmed)",
+      glass: "S-LAH51 (catalog equivalent; supplier unconfirmed)",
       role: "Large front negative meniscus of the negative front group; fixed during focusing.",
     },
     {
@@ -81,7 +87,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.18,
       focalLengthMm: -28.910619,
-      glass: "Unmatched (patent nd=1.69350, νd=53.18; supplier unconfirmed)",
+      glass: "L-LAL13 (catalog equivalent; supplier unconfirmed)",
       role: "Large negative meniscus aspherical on both sides, correcting distortion and field curvature; fixed during focusing.",
     },
     {
@@ -92,7 +98,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.76,
       focalLengthMm: -44.023877,
-      glass: "Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed)",
+      glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
       role: "High-index negative meniscus at the front of the focusing unit (L3–L8).",
     },
     {
@@ -103,7 +109,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: -80.129551,
-      glass: "Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed)",
+      glass: "S-FPL51 (catalog equivalent; supplier unconfirmed)",
       role: "Low-dispersion negative meniscus, concave to the object, in the focusing unit.",
       dPgF: 0.03335,
       apd: "patent",
@@ -118,7 +124,7 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.79,
       focalLengthMm: 37.200601,
-      glass: "Unmatched (patent nd=1.54814, νd=45.79; supplier unconfirmed)",
+      glass: "S-TIL1 (catalog equivalent; supplier unconfirmed)",
       role: "Biconvex positive element of the focusing unit.",
     },
     {
@@ -129,7 +135,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: -70.457905,
-      glass: "Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed)",
+      glass: "S-FPL51 (catalog equivalent; supplier unconfirmed)",
       role: "Low-dispersion negative meniscus, convex to the object, in the focusing unit.",
       dPgF: 0.03335,
       apd: "patent",
@@ -144,7 +150,7 @@ const LENS_DATA = {
       nd: 1.55715,
       vd: 40.9,
       focalLengthMm: 23.270593,
-      glass: "Unmatched (patent nd=1.55715, νd=40.90; supplier unconfirmed)",
+      glass: "Unmatched (patent nd=1.55715, νd=40.90; no catalog equivalent)",
       role: "Biconvex front element of the D1 doublet, at the rear of the focusing unit.",
       cemented: "D1",
     },
@@ -156,7 +162,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.76,
       focalLengthMm: -34.394373,
-      glass: "Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed)",
+      glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
       role: "High-index negative meniscus rear element of the D1 doublet; last element of the focusing unit.",
       cemented: "D1",
     },
@@ -168,7 +174,7 @@ const LENS_DATA = {
       nd: 1.71628,
       vd: 54.33,
       focalLengthMm: -18.31022,
-      glass: "Unmatched (patent nd=1.71628, νd=54.33; supplier unconfirmed)",
+      glass: "Unmatched (patent nd=1.71628, νd=54.33; no catalog equivalent)",
       role: "Biconcave front element of the D2 doublet at the rear of the front group; fixed during focusing.",
       cemented: "D2",
     },
@@ -180,7 +186,7 @@ const LENS_DATA = {
       nd: 1.87753,
       vd: 35.66,
       focalLengthMm: 28.375003,
-      glass: "Unmatched (patent nd=1.87753, νd=35.66; supplier unconfirmed)",
+      glass: "Unmatched (patent nd=1.87753, νd=35.66; no catalog equivalent)",
       role: "Positive meniscus rear element of the D2 doublet, ahead of the variable gap to the stop.",
       cemented: "D2",
     },
@@ -192,7 +198,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.43,
       focalLengthMm: 33.884057,
-      glass: "Unmatched (patent nd=1.51742, νd=52.43; supplier unconfirmed)",
+      glass: "S-NSL36 (catalog equivalent; supplier unconfirmed)",
       role: "Positive meniscus front element of the T1 triplet, first element behind the stop.",
       cemented: "T1",
     },
@@ -204,7 +210,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.76,
       focalLengthMm: -13.555996,
-      glass: "Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed)",
+      glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
       role: "High-index negative meniscus center element of the T1 triplet.",
       cemented: "T1",
     },
@@ -216,7 +222,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.26,
       focalLengthMm: 15.826438,
-      glass: "Unmatched (patent nd=1.62004, νd=36.26; supplier unconfirmed)",
+      glass: "S-TIM2 (catalog equivalent; supplier unconfirmed)",
       role: "Biconvex rear element of the T1 triplet.",
       cemented: "T1",
     },
@@ -228,7 +234,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: 25.998818,
-      glass: "Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed)",
+      glass: "S-FPL51 (catalog equivalent; supplier unconfirmed)",
       role: "Low-dispersion biconvex front element of the D3 doublet.",
       cemented: "D3",
       dPgF: 0.03335,
@@ -244,7 +250,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.92,
       focalLengthMm: -24.566208,
-      glass: "Unmatched (patent nd=1.71700, νd=47.92; supplier unconfirmed)",
+      glass: "S-LAM3 (catalog equivalent; supplier unconfirmed)",
       role: "Biconcave rear element of the D3 doublet.",
       cemented: "D3",
     },
@@ -256,7 +262,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: 21.425314,
-      glass: "Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed)",
+      glass: "S-FPL51 (catalog equivalent; supplier unconfirmed)",
       role: "Low-dispersion biconvex singlet aspherical on both sides, reducing coma flare toward the field edge.",
       dPgF: 0.03335,
       apd: "patent",
@@ -271,7 +277,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.76,
       focalLengthMm: -12.705649,
-      glass: "Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed)",
+      glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
       role: "High-index biconcave front element of the D4 doublet.",
       cemented: "D4",
     },
@@ -283,7 +289,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.23,
       focalLengthMm: 19.062378,
-      glass: "Unmatched (patent nd=1.48749, νd=70.23; supplier unconfirmed)",
+      glass: "S-FSL5 (catalog equivalent; supplier unconfirmed)",
       role: "Biconvex rear element of the D4 doublet; last element of the lens.",
       cemented: "D4",
     },
@@ -320,7 +326,7 @@ const LENS_DATA = {
     {
       label: "4",
       R: 9.03,
-      sd: 16.2,
+      sd: 18.2,
       asphere: {
         K: -0.8703,
         A4: -5.31e-5,
@@ -334,7 +340,7 @@ const LENS_DATA = {
       label: "5",
       R: 58.69,
       d: 2.7,
-      sd: 17.2,
+      sd: 17.1,
       medium: 3,
     },
     {
@@ -963,6 +969,7 @@ const LENS_DATA = {
   },
   checks: {
     maxRimAngleDeg: 67,
+    gapSagFrac: 0.99,
   },
 } satisfies LensDataV2Input;
 

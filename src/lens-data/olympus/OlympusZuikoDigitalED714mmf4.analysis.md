@@ -28,115 +28,115 @@ The model has 33 equally spaced zoom stations; stations 0, 16 and 32 are the pri
 
 ### L1 — Negative Meniscus
 
-nd = 1.78590, νd = 44.20. Glass: Unmatched (patent nd=1.78590, νd=44.20; supplier unconfirmed). f = -100.008120 mm (thick-element focal length in air).
+nd = 1.78590, νd = 44.20. Glass: S-LAH51 (catalog equivalent; supplier unconfirmed). f = -100.008120 mm (thick-element focal length in air).
 
 Large negative front meniscus of the retrofocus front group; its stepped rear rim is estimated from Fig. 3(a), not a published diameter.
 
 ### L2 — Neg. Meniscus (2× Asph)
 
-nd = 1.69350, νd = 53.18. Glass: Unmatched (patent nd=1.69350, νd=53.18; supplier unconfirmed). f = -28.910619 mm (thick-element focal length in air).
+nd = 1.69350, νd = 53.18. Glass: L-LAL13 (catalog equivalent; supplier unconfirmed). f = -28.910619 mm (thick-element focal length in air).
 
 Negative meniscus carrying aspheric surfaces S3/S4, the large double-sided aspherical concave lens that Olympus credits with much of the distortion and field-curvature correction.
 
 ### L3 — Negative Meniscus
 
-nd = 1.88300, νd = 40.76. Glass: Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed). f = -44.023877 mm (thick-element focal length in air).
+nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -44.023877 mm (thick-element focal length in air).
 
 First element of the focusing unit (L3–L8), behind the D4 gap that opens for close focus.
 
 ### L4 — Negative Meniscus
 
-nd = 1.49700, νd = 81.54. Glass: Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed). f = -80.129551 mm (thick-element focal length in air).
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = -80.129551 mm (thick-element focal length in air).
 
 Low-dispersion negative element of the focusing unit with printed θgF 0.54; the Olympus drawing marks this position as Super ED (an inferred match).
 
 ### L5 — Biconvex Positive
 
-nd = 1.54814, νd = 45.79. Glass: Unmatched (patent nd=1.54814, νd=45.79; supplier unconfirmed). f = +37.200601 mm (thick-element focal length in air).
+nd = 1.54814, νd = 45.79. Glass: S-TIL1 (catalog equivalent; supplier unconfirmed). f = +37.200601 mm (thick-element focal length in air).
 
 Positive element of the focusing unit, between the two low-dispersion negative elements.
 
 ### L6 — Negative Meniscus
 
-nd = 1.49700, νd = 81.54. Glass: Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed). f = -70.457905 mm (thick-element focal length in air).
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = -70.457905 mm (thick-element focal length in air).
 
 Low-dispersion negative element of the focusing unit with printed θgF 0.54; the Olympus drawing marks this position as Super ED (an inferred match).
 
 ### L7 — Biconvex Positive
 
-nd = 1.55715, νd = 40.90. Glass: Unmatched (patent nd=1.55715, νd=40.90; supplier unconfirmed). f = +23.270593 mm (thick-element focal length in air).
+nd = 1.55715, νd = 40.90. Glass: Unmatched (patent nd=1.55715, νd=40.90; no catalog equivalent). f = +23.270593 mm (thick-element focal length in air).
 
 Front member of cemented D1; its nd/νd pair has no close public catalog match.
 
 ### L8 — Negative Meniscus
 
-nd = 1.88300, νd = 40.76. Glass: Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed). f = -34.394373 mm (thick-element focal length in air).
+nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -34.394373 mm (thick-element focal length in air).
 
 Rear member of cemented D1, high-index partner to L7, and the last element of the focusing unit.
 
 ### L9 — Biconcave Negative
 
-nd = 1.71628, νd = 54.33. Glass: Unmatched (patent nd=1.71628, νd=54.33; supplier unconfirmed). f = -18.310220 mm (thick-element focal length in air).
+nd = 1.71628, νd = 54.33. Glass: Unmatched (patent nd=1.71628, νd=54.33; no catalog equivalent). f = -18.310220 mm (thick-element focal length in air).
 
-Front member of cemented D2, fixed during focusing; no supplier is assigned.
+Front member of cemented D2, fixed during focusing; its nd/νd pair has no catalog equivalent.
 
 ### L10 — Positive Meniscus
 
-nd = 1.87753, νd = 35.66. Glass: Unmatched (patent nd=1.87753, νd=35.66; supplier unconfirmed). f = +28.375003 mm (thick-element focal length in air).
+nd = 1.87753, νd = 35.66. Glass: Unmatched (patent nd=1.87753, νd=35.66; no catalog equivalent). f = +28.375003 mm (thick-element focal length in air).
 
 Rear member of cemented D2, immediately preceding the long variable gap to the stop.
 
 ### L11 — Positive Meniscus
 
-nd = 1.51742, νd = 52.43. Glass: Unmatched (patent nd=1.51742, νd=52.43; supplier unconfirmed). f = +33.884057 mm (thick-element focal length in air).
+nd = 1.51742, νd = 52.43. Glass: S-NSL36 (catalog equivalent; supplier unconfirmed). f = +33.884057 mm (thick-element focal length in air).
 
 First element of cemented T1 in the rear positive group.
 
 ### L12 — Negative Meniscus
 
-nd = 1.88300, νd = 40.76. Glass: Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed). f = -13.555996 mm (thick-element focal length in air).
+nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -13.555996 mm (thick-element focal length in air).
 
 High-index middle element of T1; two cemented interfaces contribute to its combined power.
 
 ### L13 — Biconvex Positive
 
-nd = 1.62004, νd = 36.26. Glass: Unmatched (patent nd=1.62004, νd=36.26; supplier unconfirmed). f = +15.826438 mm (thick-element focal length in air).
+nd = 1.62004, νd = 36.26. Glass: S-TIM2 (catalog equivalent; supplier unconfirmed). f = +15.826438 mm (thick-element focal length in air).
 
 Rear element of T1; the cemented block counts as three elements in one group.
 
 ### L14 — Biconvex Positive
 
-nd = 1.49700, νd = 81.54. Glass: Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed). f = +25.998818 mm (thick-element focal length in air).
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = +25.998818 mm (thick-element focal length in air).
 
 Front low-dispersion element of D3 with printed θgF 0.54; the Olympus drawing marks this position as ED (an inferred match).
 
 ### L15 — Biconcave Negative
 
-nd = 1.71700, νd = 47.92. Glass: Unmatched (patent nd=1.71700, νd=47.92; supplier unconfirmed). f = -24.566208 mm (thick-element focal length in air).
+nd = 1.71700, νd = 47.92. Glass: S-LAM3 (catalog equivalent; supplier unconfirmed). f = -24.566208 mm (thick-element focal length in air).
 
 Rear element of D3, adjoining the separate double-sided aspheric element.
 
 ### L16 — Biconvex Positive (2× Asph)
 
-nd = 1.49700, νd = 81.54. Glass: Unmatched (patent nd=1.49700, νd=81.54; supplier unconfirmed). f = +21.425314 mm (thick-element focal length in air).
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = +21.425314 mm (thick-element focal length in air).
 
 Positive double-sided aspheric element S27/S28 in the same low-dispersion glass (printed θgF 0.54). The Olympus drawing marks this position as its ED glass-molded aspherical lens, which Olympus describes as the first double-sided aspherical ED lens and credits with removing coma flare at the field edge.
 
 ### L17 — Biconcave Negative
 
-nd = 1.88300, νd = 40.76. Glass: Unmatched (patent nd=1.88300, νd=40.76; supplier unconfirmed). f = -12.705649 mm (thick-element focal length in air).
+nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -12.705649 mm (thick-element focal length in air).
 
 Front high-index element of rear doublet D4.
 
 ### L18 — Biconvex Positive
 
-nd = 1.48749, νd = 70.23. Glass: Unmatched (patent nd=1.48749, νd=70.23; supplier unconfirmed). f = +19.062378 mm (thick-element focal length in air).
+nd = 1.48749, νd = 70.23. Glass: S-FSL5 (catalog equivalent; supplier unconfirmed). f = +19.062378 mm (thick-element focal length in air).
 
-Rear low-dispersion element of D4. Its νd 70.23 has no printed partial-dispersion value, so the viewer's colour MTF (C/d/F and photopic) falls back to the reference wavelength.
+Rear low-dispersion element of D4. Its νd 70.23 has no printed partial-dispersion value; its dispersion follows the S-FSL5 catalog curve.
 
 ## Glass Identification / Selection
 
-No supplier or production melt is assigned. The model uses the printed d-line indices and Abbe numbers. Several elements sit close to public catalog glasses, but no catalog name is assigned; L7, L9 and L10 have no close catalog match. Matching coordinates would support a dispersion proxy, not factory identity.
+The patent names no supplier. The model uses the printed d-line indices and Abbe numbers; fifteen elements carry the Ohara catalog glass whose nd/νd equal the printed pair (S-LAH51, L-LAL13, S-LAH58, S-FPL51, S-TIL1, S-NSL36, S-TIM2, S-LAM3, S-FSL5), which supplies their dispersion curves as proxies, not production identity. L7, L9 and L10 have no catalog equivalent.
 
 L4, L6, L14 and L16 each have nd 1.49700, νd 81.54 and printed θgF 0.54, stored as ΔPgF = θgF − (0.6438 − 0.001682 νd) = +0.03335. The Olympus drawing marks L4 and L6 as Super ED and L14 and L16 as ED; the patent prints one glass for all four, so the Super ED/ED distinction is not in the source. L18 (nd 1.48749, νd 70.23) has no printed partial dispersion, so colour MTF is shown only at the reference wavelength; a d-line MTF result is not broadband colour performance.
 
@@ -161,7 +161,7 @@ All coefficients above retain the printed sign and precision; no global length s
 
 ## Aperture, Field and Model Limits
 
-Semi-diameters are estimated from the wide-end section of Figure 3(a); the patent prints no clear apertures. The drawing shows stepped front-element rims. S2 is 24.2 mm, inside the r2 rim the figure draws at about 24.5–25 mm; the surface slope there is 66.5°, so the file raises the rim-slope limit to 67°. S4 and S6 are 16.2 and 14.7 mm. No printed radius, glass, thickness or coefficient was changed to fit the apertures. The stop diameter is not printed; the model sets it for F/4 at each station.
+Semi-diameters are estimated from the wide-end section of Figure 3(a); the patent prints no clear apertures. The drawing shows stepped front-element rims. S2 is 24.2 mm, inside the r2 rim the figure draws at about 24.5–25 mm; the surface slope there is 66.5°, so the file raises the rim-slope limit to 67°. S4 follows the drawing out to 18.2 mm, where L3's front rim (S5, 17.1 mm) meets it; the two faces come within about 0.2 mm without crossing, so the file allows the air gap between them to be 99 % filled. S6 is 14.7 mm. No printed radius, glass, thickness or coefficient was changed to fit the apertures. The stop diameter is not printed; the model sets it for F/4 at each station.
 
 The patent plots image heights of 10.59 mm at wide and 11.45 mm at middle and tele. With the S2 aperture above, the chief ray reaches the 10.82 mm Four Thirds corner at every zoom station, at a half-field of about 56.7° at wide. The model traces full fields of 112.2° at the 10.59 mm wide image height and 99.4° and 78.4° at 11.45 mm in the middle and at tele, against the printed 2ω of 114.7°, 97.9° and 78.2° and Olympus's 114°; the printed wide and middle values do not follow from the patent's own image heights and distortion plots, so they read as nominal.
 

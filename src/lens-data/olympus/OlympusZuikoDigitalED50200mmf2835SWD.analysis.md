@@ -220,10 +220,13 @@ focal length; the zoom readout itself shows the traced EFL.
 
 ## Clear Apertures and Physical Geometry
 
-No numerical clear apertures are published. Fig. 3A supplies approximate rim proportions, but at its drawn G3
-heights the printed surfaces r12/r13 and r15/r16 would cross, and L21/L22 meet above about 21 mm. The modeled
-radii therefore follow the figure where they can and are reduced toward the full-aperture tele beam in G3
-(r11–r17) and at r25–r28, and to 20.0 mm on G2.
+No numerical clear apertures are published. Fig. 3A, which draws the same rims as Fig. 3C, gives radii of about
+32 mm for G1, 22.6 mm for L21, 21 mm for L22, 13.2 mm for the L31–L33 block, 14.0 mm for L34, 15.6 mm for G4,
+L51 and L53, 14.7 mm for L52 and 13.2 mm for L54. G1, L21, G4, L51, L53 and L54 are modeled at those values.
+Where the drawing shows neighbours touching, the printed surfaces would cross below the drawn rims: r8/r9 at
+about 20.9 mm, r12/r13 at 12.0 mm, r15/r16 at 12.6 mm and r26/r27 at 14.3 mm. The figure draws flat contact
+rings out to the outline there, so L22 (20.0 mm), G3 (11.5–12.8 mm) and L52 (13.5 mm) stay below the drawn
+outlines and just above the full-aperture tele beam.
 
 At r12/r13 and r15/r16 the tele marginal ray alone needs rims whose sags fill 0.911 and 0.915 of the air gap, so
 the file allows up to 0.93 of a gap (the default is 0.90). No radius, thickness or index is altered, and no glass

@@ -67,6 +67,50 @@ Fields changed in this pass:
 In the analysis, the control-density studies, distance-label and MTF-availability checks and run counts were removed. The production-identification paragraphs were reworded, and the announcement date, maximum magnification and barrel-length correlation were added.
 
 Open:
-- The `focus.conjugates[].source` and `rearPlates[].source` strings still contain run-together words ("Example1 paragraph0127", "separate from12").
+- Closed: the `focus.conjugates[].source` and `rearPlates[].source` strings were reworded the same day ("US 2008/0062534 A1, Example 1, paragraph 0127 …").
 - `source.assignees` stays empty, following the A1 front page; citing the B2 instead would supply Olympus Imaging Corp.
 - The interpolation puts the G2 turning point exactly at ST, because G1 and G3 are piecewise linear with a slope break there.
+
+## 2026-10-28 — Semi-diameter pass against the patent figure
+
+Source: `patents/US20080062534A1.pdf`, PDF page 2 (Sheet 1 of 16), FIG. 1(a), the wide-end panel of Example 1 at infinity. The sheet is a 1-bit 2560 × 3300 raster, measured at its native resolution. The optical axis is vertical at x = 809.5 px, with the object at the bottom.
+
+Scale: the vertex crossings of r1 (y = 1892) and r22 (y = 1014) are 878 px apart. The WE prescription span r1→r22 is 75.36 mm, giving 11.65 px/mm (85.8 µm/px). Three sub-spans agree:
+- r1→STO: 448 px for 38.58 mm, 11.61 px/mm.
+- STO→r22: 430 px for 36.78 mm, 11.69 px/mm.
+- r4→r10: 136 px for 11.71 mm, 11.61 px/mm.
+
+How the rims were read: each reading is the outer-ink distance from the axis centre on the right-hand side, which has no leader lines, less half the ~4.5 px outline stroke. Panel (b)'s group brackets, beyond x = 1045, were excluded. Where the left side is free of leaders (G1, L3, D3, L12) the two sides were averaged; the left side reads 2–4 px wider than the right.
+
+Every element draws its curved faces out to the rim, with no flange step. The drawn rim corners agree with the prescription sags, for example r14 and r15 at 8.85 mm to within 1 px.
+
+The automatic screen (`audit:patent-figure`, `--rot90`) gives a median figure/data ratio of 1.02, with G2 at 1.08–1.11 because its outer-ink reading includes the stroke and the left-side leaders. The manual reading governs.
+
+| Surfaces | Element | Stored sd | FIG. 1(a) | Ratio | Disposition |
+| --- | --- | --- | --- | --- | --- |
+| r1, r2 | L1 | 18.4 | 18.4 (right 18.2, left 18.5) | 1.00 | kept |
+| r3 | L2 | 18.0 | 18.0 (right 17.9, left 18.1) | 1.00 | kept; the drawn step from L1 to L2 is reproduced |
+| r4, r5 | L3 | 8.9 | 8.9 | 1.00 | kept; square rim |
+| r6–r8 | L4–L5 | 7.4 | 7.7 | 1.04 | kept: inside noise; r8 and r9 cross at h ≈ 7.67 mm, which is where the figure draws them meeting |
+| r9, r10 | L6 | 7.6 | 7.95 | 1.05 | kept: inside noise |
+| r12, r13 | L7 | 9.8 | 9.8 | 1.00 | kept |
+| r14–r16 | L8–L9 | 9.0 | 8.95 | 0.99 | kept; square-cut doublet |
+| r17, r18 | L10 | 9.5 | 9.3 | 0.98 | kept |
+| r19, r20 | L11 | 8.3 | 8.2 | 0.99 | kept |
+| r21, r22 | L12 | 8.3 | 8.2 | 0.99 | kept; square rim |
+
+No value changed: every element is within 5 % of the drawing. The two G2 rows are the largest departures, and both sit at the edge of measurement noise. The L4–L5 rim cannot rise to the figure's 7.7 mm in any case, because r8 and r9 would intersect at about 7.67 mm. Even r8 at 7.6 mm would need a gap allowance of about 0.98. `checks.gapSagFrac` 0.93 is unchanged and needs no other value. The STO was not touched.
+
+Clearance, from the real-ray trace at the plotted 11.60 mm image height across all 65 zoom stations, at infinity and at OD = 900 mm:
+- No surface clips the axial beam and no chief ray is blocked.
+- The field angle that reaches 11.60 mm is 16.25° at WE and 4.47° at TE.
+- The tightest axial margins are at the telephoto end: r7 7.35 mm against 7.4, r8 7.33 against 7.4, r9 7.33 against 7.6, and r10 7.57 against 7.6.
+- The 11.60 mm bundle loses 57 % of one side at r1 at infinity, and 62 % at close focus. This is real vignetting: the figure draws L1 at 18.4 mm, so it stays.
+- Image-circle floor: 0 undersized. The traced corner chief ray reaches the 10.82 mm Four Thirds corner at all 65 stations. The repo validator reports no errors.
+- Engine values, unchanged since no rim moved: half-field 24.08° at WE and 8.63° at TE, f/4.08–5.811, stop radius 7.78 mm at WE.
+
+Live render: checked at 40.9, 77.5 and 146.7 mm at infinity, and at 40.9 and 146.7 mm at close focus. It matches FIG. 1(a)'s relative heights: L2 slightly under L1, L3 over the G2 doublet, L6 slightly over L4–L5, L7 over D3, and L10 over L11 and L12. No elements overlap.
+
+The 2010 Olympus catalogue section agrees on count and grouping: 12 elements in 9 groups, with the ED element at element 8, the front of the G3 doublet, and no aspheres. Its schematic draws G2 relatively larger than the patent does: L3 is about 0.63 of the front doublet's height against 0.48 in FIG. 1(a), and the G2 doublet about 0.52 against 0.42. It is not to scale and was not used for values.
+
+Open: the scratch engine-vignetting tool returned no samples for this lens. It does the same on other catalogue lenses, so before/after vignetting was compared by the real-ray trace instead.

@@ -86,3 +86,85 @@ Closed: the patent's condition (4) text and its table of right-hand terms for nd
 glass as anomalous-dispersion material, so L4/L6/L14/L16 carry `apd: "patent"`.
 
 Open: L18 (νd 70.23) has no printed partial dispersion, so colour MTF stays at the reference wavelength.
+
+## 2026-10-28 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+Figure: US 7,280,284 B2 sheet 3 (PDF page 4), Fig. 3(a), the wide-end infinity panel of Example 3, measured on the
+native 300 dpi scan. The US 2006/0050406 A1 sheet 3 is the same drawing; the JP 4632724 B2 figure is smaller. The
+lower half of the panel is free of leaders and labels; the upper half was used where it was clean, and the two sides
+were averaged (the upper side reads 2–3 px higher; the axis tilts about 4 px across the panel and was taken locally).
+
+Vertex crossings beside the axis: r1 at x = 628 px, r31 at 1691.5 px, image plane I at 1998.5 px. r1 to I is
+1370.5 px for 154.4 mm (8.88 px/mm) and r7 to r18 is 302 px for 33.9 mm (8.91 px/mm); 8.89 px/mm is used. The drawing
+is not uniform: the L1–L2 spacings are drawn about 5 % long and the rear group about 5 % short (r20 to r31 is 217.5 px
+for 25.9 mm, 8.40 px/mm), so rear-group readings are also given at 8.45 px/mm in brackets. Heights are line centres.
+The "floor" column is the larger of the F/4 axial marginal ray and the 10.82 mm corner chief ray, maximum over the 33
+stations at infinity. The chief ray was solved by the engine (the solve that the field-coverage audit uses) and
+traced surface by surface, because the scratch clear-aperture tracer cannot aim chief rays past about 45° here.
+
+### Rim table
+
+| Surface | Stored sd | Fig. 3(a) | Ratio | Floor | Decision |
+|---|---|---|---|---|---|
+| 1 | 33.5 | 33.5 | 1.00 | 31.54 | keep |
+| 2 | 24.2 | 25.0 (r2 meets L1's flat rear face) | 1.03 | 24.12 | keep; 66.5° rim slope, `maxRimAngleDeg` 67 |
+| 3 | 24.8 | 24.5 (r3 meets L2's edge) | 0.99 | 22.41 | keep |
+| 4 | 16.2 | 18.3 | 1.13 | 16.15 | figure value 18.2; held, see below |
+| 5 | 17.2 | 17.1 | 0.99 | 15.49 | keep |
+| 6 | 14.7 | 14.2 (lower side) | 0.97 | 13.37 | keep |
+| 7, 8 | 15.1 | 14.8 (lower side) | 0.98 | 12.82 | keep |
+| 9, 10 | 15.1 | 15.0 (lower side) | 0.99 | 12.78 | keep |
+| 11, 12 | 12.8 | 12.7 | 0.99 | 10.83 | keep |
+| 13 | 11.0 | 11.2 | 1.02 | 9.63 | keep |
+| 14, 15 | 11.0 | 10.5 | 0.95 | 8.42 | keep; the figure steps L8 about 0.6 mm under L7, inside the noise |
+| 16–18 | 8.6 | 8.5 | 0.99 | 6.69 | keep |
+| 20–23 | 7.5 | 7.2 [7.6] | 0.96 [1.01] | 7.33 | keep |
+| 24–26 | 7.5 | 6.9 [7.25] | 0.92 [0.97] | 6.89 | keep |
+| 27, 28 | 7.5 | 7.3 [7.7] | 0.97 [1.03] | 6.84 | keep |
+| 29, 30 | 7.8 | 7.5 [7.9] (lower side) | 0.96 [1.01] | 6.55 | keep |
+| 31 | 7.8 | 7.9 [8.3] (lower side) | 1.01 [1.06] | 6.74 | keep |
+
+The stop was not touched. No surface fails a floor: the closest are S2 (24.2 against 24.12), S4 (16.2 against 16.15)
+and S20 (7.5 against the 7.33 mm axial ray).
+
+### S4
+
+Both sides of Fig. 3(a) put the end of r4, where it meets L2's flat rear face, at 162–164 px (18.2–18.4 mm). The drawn
+sag at that rim, 144 px (16.2 mm) behind the r4 vertex, matches the prescription's sag of 15.8 mm at 18.3 mm, so the
+figure follows the printed asphere out there. The scan to 20 mm shows no turnover; the slope peaks at 57.2° near
+18 mm. The figure draws L3's front corner touching r4 and nested under L2's flange. Olympus's catalogue drawing also
+carries L2's rear face well out toward the front rim.
+
+The validator refuses any S4 above about 16.5 mm. Once S4 passes S5's 17.2 mm, the S4→S5 check runs at 17.2 mm and
+reports a combined sag of 11.53 mm against the 10.44 mm allowed of the 11.6 mm D4 (`gapSagFrac` 0.9). D4 is the same
+at every station at infinity. The faces do not cross: they are 0.07 mm apart at 17.2 mm. The smallest `gapSagFrac`
+that admits S4 = 18.2 mm is 1.00 with S5 at 17.2 mm, 0.99 with S5 at 17.1 mm (the figure mean) and 0.98 with S5 at
+17.0 mm. This pass does not change `checks`, so S4 stays at 16.2 mm and the choice is left open. With S4 = 18.2 mm,
+S5 = 17.1 mm and `gapSagFrac` 0.99 tried in memory, the lens builds without validation errors. L2's edge is 13.3 mm
+thick at 18.2 mm. The corner chief ray still clears every rim at all 33 infinity stations. The close-focus S4 rows
+below disappear.
+
+### Clearance and engine results
+
+These results are for the file as left. The surface validator reports no errors. The image-circle check reports 0
+undersized. Field coverage reaches the 10.82 mm corner at 33 of 33 stations (corner field 56.7° at wide, 48.1° at
+middle, 37.6° at tele). The engine gives EFL 7.127 mm, F/4 at every station and a 4.876 mm stop radius at wide, all
+unchanged. With the close-focus spacings, infinity-launched chief rays still miss the corner at stations 0–1. They
+cross S2 at 24.27 mm (station 2) and S4 at 16.43 mm (stations 2–3). This is not a finite-object test.
+
+### Live check and maker drawing
+
+Wide, middle and tele were rendered at infinity and at 250 mm. The section matches Fig. 3(a) in proportion, with one
+exception: L2's rear rim. The render ends r4 at 16.2 mm, ahead of and below L3's front corner. The figure carries r4 out
+to 18.3 mm, over that corner, to a flat rear face. No element overlaps in any state.
+
+The September 2010 Olympus drawing has 18 elements in 12 groups, like the figure. It marks L2 (aspherical, both
+sides), L4 and L6 (Super ED), L14 (ED) and L16 (ED glass-molded aspherical), the patent's S3/S4 and S27/S28 aspheres
+and its four nd 1.497 elements. Its rear group is drawn proportionally larger than the patent's; the patent figure
+governs.
+
+Closed the same day: S4 = 18.2 mm and S5 = 17.1 mm applied with `checks.gapSagFrac` 0.99, the smallest two-decimal value
+that admits the pair (faces about 0.19 mm apart at the rim at infinity, not crossing); both the patent figure and the
+Olympus drawing carry L2's rear face that far out.

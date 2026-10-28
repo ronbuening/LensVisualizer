@@ -19,10 +19,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop radius follows each station's f-number (printed at the three states, linear between).
  * G3 is stated fixed, but the printed D17 + D23 + D32 is 57.308 / 57.309 / 57.298 mm; kept as printed.
  * The camera low-pass filter (r33–r34, 4 mm, nd 1.51633) and the 1 mm air to the image are rearPlates.
- * Semi-diameters: no published clear apertures. Estimated from Fig. 3A, then G3 (r11–r17) and r25–r28
- * reduced toward the tele axial beam where the printed surfaces would cross at the drawn heights; no
- * render trim. gapSagFrac 0.93: at r12/r13 and r15/r16 the tele marginal ray alone needs 0.911 and 0.915
- * of the gap, and 0.93 is the smallest 0.01 step that passes.
+ * Semi-diameters: no published clear apertures. Estimated from Fig. 3A (Fig. 3C draws the same rims) at
+ * 6.42 px/mm and floor-checked by real-ray trace: G1, L21, G4, L51, L53 and L54 follow the drawn rims.
+ * Where facing surfaces r8/r9, r12/r13, r15/r16 and r26/r27 would cross at the drawn heights (the figure
+ * draws flat contact annuli there), L22, G3 (r11–r17) and L52 stay below the drawn outlines and just above
+ * the tele axial beam; no render trim. gapSagFrac 0.93: at r12/r13 and r15/r16 the tele marginal ray alone
+ * needs 0.911 and 0.915 of the gap, and 0.93 is the smallest 0.01 step that passes.
  */
 
 const LENS_DATA = {
@@ -332,14 +334,14 @@ const LENS_DATA = {
       label: "7",
       R: 54.408,
       d: 2.88,
-      sd: 20,
+      sd: 22.6,
       medium: 4,
     },
     {
       label: "8",
       R: 42.045,
       d: 0.441,
-      sd: 20,
+      sd: 22.6,
     },
     {
       label: "9",
@@ -445,14 +447,14 @@ const LENS_DATA = {
       label: "25",
       R: 34.94,
       d: 6.32,
-      sd: 14.0,
+      sd: 15.6,
       medium: 13,
     },
     {
       label: "26",
       R: -179.799,
       d: 0.928,
-      sd: 13.5,
+      sd: 15.6,
     },
     {
       label: "27",

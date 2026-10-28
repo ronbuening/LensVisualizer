@@ -100,3 +100,78 @@ Keeping Example 2's printed D18 = 6.72 instead of 6.71 gives G1 three direction 
 radii quoted are the model's paraxial values (the 8.325 mm figure is a real axial ray), Example 2 is described as
 printing the same radii, glasses and fixed spacings (its D2 is variable), and "ring USM", "keyframes", "PCHIP" and a
 field name were removed from public text.
+
+## 2026-10-28 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+Fig. 1(A) on p. 23 of the local JP 2020-190696 A PDF: the wide end at infinity, master zoom ZL followed by the
+attachment Lat. Only ZL (surfaces 1–24) was measured. The sheet is a 150 ppi raster, read from a 600 dpi render, so
+one native pixel is 0.36 mm and each rim reading carries about ±0.2 mm. The pass re-read the effective-diameter column
+on pp. 12–13: every stored sd is exactly half the printed value, and the stop prints 16.65.
+
+Scale from vertex crossings beside the axis at the wide state (D2 13.63, D7 26.47, D12 1.24, D18 11.88): surface 1 to
+surface 23 is 90.72 mm over 1011 px, surface 1 to 19 is 82.50 mm over 919 px and surface 1 to 12 is 61.73 mm over
+687 px. That gives 11.13–11.15 px/mm (89.7 µm/px, 0.4 % spread), and it predicts surface 24 within 1 px. The automatic
+figure screen derived 178.8 µm/px at 300 dpi, the same scale within 0.4 %. Rims were read as full top-to-bottom
+diameters where both edges are clean; the upper edge was used for L2 and the lower edge for G3 and G4, where rays and the
+SP label cross the other side.
+
+### Figure against the printed radii
+
+| Surface | sd (printed φ/2) | Fig. 1(A) | figure/data | Reading |
+|---|---:|---:|---:|---|
+| 1A | 26.04 | 27.3 | 1.05 | L1 outer edge |
+| 2 | 18.03 | 19.1 | 1.06 | end of the concave; a flat annulus runs from there to the outer edge |
+| 3A / 4 | 15.945 / 15.905 | 17.05 | 1.07 | L2 with its resin layer, square top |
+| 5 | 13.96 | about 14.9 | 1.06 | where the rear concave meets the top; low confidence |
+| 6 / 7 | 13.91 / 13.365 | 14.9 | 1.07 / 1.11 | L3 drawn square-cut |
+| 8 / 9 / 10 | 9.23 / 9.345 / 9.68 | 10.7 | 1.16 / 1.15 / 1.11 | L4–L5 drawn as one block |
+| 11 / 12 | 10.01 / 9.97 | 11.1 | 1.11 | L6 |
+| 14 / 15 | 8.155 / 8.195 | 9.15 | 1.12 | L7 |
+| 16 / 17 / 18 | 8.24 / 8.87 / 9.12 | 10.1 | 1.22 / 1.14 / 1.11 | L8–L9 drawn square-cut |
+| 19 / 20 | 10.81 / 11.13 | 12.2 | 1.13 / 1.09 | L10 |
+| 21A / 22 / 23 / 24 | 11.14 / 11.15 / 11.475 / 12.32 | 13.4 | 1.20 / 1.20 / 1.17 / 1.09 | L11–L12 drawn as one block |
+
+The median ratio is 1.11 and the spread follows one rule: the drawing puts each element's edge, or each cemented
+block's edge, a near-constant 1.0–1.2 mm beyond the largest printed radius of that element or block (L1 +1.24, L2
++1.10, L3 +0.99, L4–L5 +1.04, L6 +1.07, L7 +0.96, L8–L9 +0.97, L10 +1.03, L11–L12 +1.09 mm). The larger ratios belong
+to the smaller faces of blocks the figure draws square-cut (surfaces 16, 21A and 22). The figure therefore shows the
+mechanical outer edges and agrees with the printed proportions. The printed effective diameters stay as table truth,
+and no sd changed.
+
+Drawing difference with no sd remedy: Fig. 1(A) and the maker drawing show L1 as a flanged blank, a rear concave that
+ends near 19 mm and a flat annulus out to the 27 mm edge. The renderer joins the surface 2 rim (18.03 mm) to the
+surface 1 rim (26.04 mm) with a sloped edge. L3, L8–L9 and L11–L12 are drawn square-cut at the outer edge, while their
+printed radii step face to face, and the render follows the printed radii.
+
+### Clearance
+
+- The aperture audit holds all 65 stations within 3 % of F4.1, with no surface below the on-axis ray. The real F4.1
+  axial ray at tele matches the printed radius to within 0.01 mm at surfaces 8–12 and 14 (9.23, 9.35, 9.68, 10.01,
+  9.97 and 8.15 mm), so Canon's effective diameters there are set by the tele axial beam.
+- The real-ray probe at Y = 21.65 mm, at infinity and at 0.28 m, flags no axial clip and no blocked chief ray. The
+  largest chief-ray uses are surface 1A at 23.35 of 26.04 mm at infinity, and surfaces 3A at 15.20 of 15.945 mm and 7
+  at 12.72 of 13.365 mm at 0.28 m. Corner vignetting, the fraction of the full-field bundle cut on one side, is up to
+  61 % at surface 8 and 34–40 % in G4 at infinity, and 62–70 % at surfaces 5–7 at 0.28 m.
+- Field coverage reaches 100 % of 21.65 mm, clear, at all 65 stations. The image-circle check finds nothing undersized,
+  the surface validator reports no errors, and the asphere scans show no turnover out to 27.5 mm (1A), 17.0 mm (3A) and
+  13.5 mm (21A).
+- Engine values are unchanged, since no sd changed: half-field 43.24° at wide, F4.1, stop radius 6.049 mm.
+
+### Live check and maker drawing
+
+The local page was rendered at 17.49, 23.99, 25.78 and 38.83 mm at infinity, and at 17.49 and 38.83 mm at 0.28 m. The
+silhouette matches Fig. 1(A) element for element at about 0.9 of the drawn size. There is no overlap at the
+close-focus L1–L2 gap or the tele G3–G4 gap. The Canon Camera Museum drawing shows 12 elements in 9 groups, aspherical
+L1, L2 and L11 and Super UD L10, the same as the data file. Its height ratios to L1 (L2 about 0.63, L4–L6 about 0.41,
+L11–L12 about 0.49) agree with Fig. 1(A) (0.62, 0.39–0.41, 0.49) and the printed radii (0.61, 0.35–0.38, 0.47).
+
+### Open
+
+- The probe's chief-ray aimer does not converge above about 50° at stations 0–5 at infinity, nor at a few wide stations
+  at 0.28 m. Field coverage traces those corners clear.
+- The engine's paraxial half-field estimate (43.2° at wide, limited by surface 2) is below the traced 52.4° corner
+  field. This is an estimator limit; the printed radii are not short.
+- The engine vignetting probe returned no samples for this lens, and for an unrelated lens as well, so the vignetting
+  figures above come from the real-ray probe.

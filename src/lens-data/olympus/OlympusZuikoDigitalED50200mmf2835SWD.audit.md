@@ -138,3 +138,51 @@ parenthetical shortened to "(catalog equivalent; supplier unconfirmed)" with ide
 (T40 ≈ 0.043 at the wide end, f/2.8).
 
 Open: the middle-label erratum needs its Section G queue row (added by the coordinator).
+
+## 2026-10-28 — Semi-diameter pass against the patent figure
+
+Source: `patents/US20040042087.pdf` (scan, no text layer), PDF p. 4 (Sheet 3 of 4), Fig. 3A, the wide state of
+Numerical data 3 at infinity. Fig. 3C (tele, same sheet) draws the same rims and the same axial scale (G3 r11 to
+r17 is 114.5 px in 3A and 114 px in 3C), so the readings below hold for every zoom state. The page is a 1-bit
+2320 × 3408 raster measured at its native pixel size. The optical axis runs vertically, object at the bottom, and
+each rim was read as half the distance between the two rim lines, so the slight tilt of the axis (602 to 599 px
+down the panel) cancels.
+
+Scale: r1 to r32 is 1017.5 px for 158.808 mm (6.407 px/mm) and r1 to the filter front is 1222 px for 189.718 mm
+(6.441 px/mm); 6.42 px/mm is used. Single thicknesses are drawn loosely (L11 6.1, L12 5.8, L13 7.3 px/mm), but the
+radial scale matches the drawn arcs. The sag of r7 at three heights fits R = 54.408 to within 1 px at
+6.44 px/mm. The sags of r25 at 15.6 mm (23 px against 23.6 px) and r31 at 13.2 mm (20.5 px against 20.3 px) also
+agree, so the drawing is taken as isotropic.
+
+| Surface(s) | Before, mm | Fig. 3A rim (px → mm) | After, mm | Evidence |
+|---|---:|---:|---:|---|
+| r1–r6 (G1) | 32.2 | 205.8 → 32.0 | 32.2 | Square-cut rims agree within 1%; kept. |
+| r7 / r8 (L21) | 20.0 / 20.0 | 145.3 → 22.6 | 22.6 / 22.6 | Drawn 13% larger and square-cut; L22 nests in its concave back. |
+| r9 / r10 (L22) | 20.0 / 20.0 | 135.3 → 21.1 | 20.0 / 20.0 | r8/r9 cross at 20.9 mm and the drawing meets them at L22's rim; 20.3 is the 0.93 ceiling, within noise; kept. |
+| r11 / r12 (L31) | 12.2 / 11.5 | 84.8 → 13.2 block | 12.2 / 11.5 | r12/r13 cross at 12.0 mm; the figure closes the gap at about 10.5 mm and draws a flat contact ring to the block outline; kept. |
+| r13 / r14 (L32) | 11.5 / 12.2 | 13.2 block | 11.5 / 12.2 | As above; r14 is the cemented face; kept. |
+| r14 / r15 (L33) | 12.2 / 12.1 | 13.2 block | 12.2 / 12.1 | r15/r16 cross at 12.6 mm; r15/r16 at 12.2 fails the 0.93 allowance; kept. |
+| r16 / r17 (L34) | 12.1 / 12.8 | 90.3 → 14.0 | 12.1 / 12.8 | r16 meets the r15 plane at about 13.1 mm in the drawing, with a flat ring to 14.0; the r17 floor of 12.65 mm keeps the taper; kept. |
+| r18–r23 (G4) | 15.6 | 100.3 → 15.6 | 15.6 | Agrees; kept. |
+| r25 / r26 (L51) | 14.0 / 13.5 | 100.5 → 15.7 | 15.6 / 15.6 | Drawn at G4's rim, square-cut; r25 curve runs to the rim line. The r26/r27 check is at L52's 13.5 mm. |
+| r27 / r28 (L52) | 13.5 / 13.5 | 94.5 → 14.7 | 13.5 / 13.5 | r26/r27 cross at 14.3 mm; 13.7 is the 0.93 ceiling (13.8 fails), within noise of 13.5; kept. |
+| r29 / r30 (L53) | 15.6 | 100.3 → 15.6 | 15.6 | Agrees; kept. |
+| r31 / r32 (L54) | 13.2 | 84.5 → 13.2 | 13.2 | Agrees; kept. |
+
+Four surfaces changed (r7, r8, r25, r26); the stop, `checks` and every other field are untouched. Clearance after
+the edit: the image-circle floor reports no undersized surface; field coverage reaches the 10.82 mm corner at all
+33 stations. The surface validator passes, and the real-ray trace to Y = 11.15 mm (root nearest the paraxial
+pupil) shows no clipped axial beam and no blocked chief ray. Ray floors at the changed surfaces: axial 14.92 /
+14.23 mm and full bundle 19.43 / 18.24 mm at r7 / r8, axial 13.81 / 13.39 mm and full bundle 14.30 / 14.09 mm at
+r25 / r26. L51's former 2% and 4% side clips are gone; r27 / r28 still clip 4%.
+
+Engine values are unchanged: f/2.8 at the wide end, half-field 19.87°, stop radius 13.98 mm; only the drawn
+stop-housing radius follows L51 (14.0 to 15.6 mm). The engine's wide-open vignetting curve rises by at most 0.3
+points at any sampled field at the wide, middle and tele states (wide corner 87.1% to 87.2% at 11.8°). The
+thinnest glass edge (L53, 1.60 mm), the smallest air clearance (r8/r9, 0.046 mm) and the largest gap-sag fraction
+are unchanged. The new L21 edge is 4.56 mm and the new L51 edge 1.97 mm.
+
+Open limitations: L22 and L52 stay 5% and 8% under their drawn rims and the G3 faces 8–14% under the drawn
+block, because the printed radii cross where the drawing shows elements touching; the figure is not a scale
+drawing there. The analysis's half-field MTF figure was not recomputed. The L51 change alone moves wide-open
+transmission at 5.9° (wide) from 99.0% to 99.3%.
