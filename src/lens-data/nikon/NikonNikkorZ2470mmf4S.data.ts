@@ -32,8 +32,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                        ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                        ║
  * ║    Fig. 1A draws flat lands at the rims of the concave faces 5A (L21   ║
- * ║    rear) and 25 (L52 front). 5A now runs to the L21 edge (21.5 mm)    ║
- * ║    with its cut at the old 14.4 mm curve end; 25 is cut at 15.12 mm.  ║
+ * ║    rear) and 25 (L52 front). 25 is cut at 15.12 mm. 5A keeps its       ║
+ * ║    14.4 mm rim, the asphere's designed extent, uncut.                  ║
  * ║                                                                        ║
  * ║  NOTE ON APERTURE:                                                     ║
  * ║    FNo 4.00 at W/M/T with the stop riding in G3. The patent lists no   ║
@@ -284,8 +284,7 @@ const LENS_DATA = {
       label: "5A",
       R: 17.04241,
       d: 8.087,
-      sd: 21.5,
-      rimCutDepthMm: 7.47,
+      sd: 14.4,
       asphere: {
         K: -1, // patent κ = 0 → K = κ − 1 = −1 (paraboloid)
         A4: 2.11342e-5,
@@ -295,7 +294,7 @@ const LENS_DATA = {
         A12: 0,
         A14: 0,
       },
-    }, // L21 rear (asph) → air; cap ends at the Fig. 1A curve end (14.4 mm), flat land out to the L21 edge
+    }, // L21 rear (asph) → air; Fig. 1A curve end
     { label: "6", R: -181.13172, d: 1.35, sd: 13.8, medium: 4 },
     { label: "7", R: 49.98466, d: 2.108, sd: 13.5 },
     { label: "8", R: 37.80684, d: 3.693, sd: 14.5, medium: 5 },

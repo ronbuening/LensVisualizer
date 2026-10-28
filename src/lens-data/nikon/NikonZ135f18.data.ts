@@ -306,7 +306,7 @@ const LENS_DATA = {
     { label: "20", R: 64.0655, d: 9.2661, sd: 22.9, medium: 11 }, // L11 front (Pr)
     { label: "21", R: -101.7863, d: 0.1, sd: 22.9 }, // L11 rear → air
     { label: "22", R: 195.9905, d: 2.2, sd: 22.4, medium: 12 }, // L12 front
-    { label: "23", R: 83.1844, sd: 22.4, rimCutDepthMm: 2.91 }, // L12 rear → air (D23, variable)
+    { label: "23", R: 83.1844, sd: 22.4, rimCutDepthMm: 2.94 }, // L12 rear → air (D23, variable)
 
     /* ── G4: Focus group 2 — L13 ── */
     { label: "24", R: 85.105, d: 4.4549, sd: 21.8, medium: 13 }, // L13 front

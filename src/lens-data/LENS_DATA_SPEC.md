@@ -692,10 +692,12 @@ there out to `sd`.
   focus state, rounded down to 0.01 mm. The land then keeps the iris in air
   (`__tests__/src/lens-data/irisInAir.test.ts`).
 - **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
-  short stroke square to the axis. Measure the cap end as a share of the edge radius on the figure, put the cut radius
-  at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. The cut is inferred, so it must clear
-  every traced beam by its margin (below): where the beams reach past the figure's cap end less that margin, move the
-  cut out until it clears them, and leave out a land too short to measure.
+  short stroke square to the axis. Measure the cap end as a share q of the edge radius on the figure, put the cut
+  radius at q × `sd`, and set the depth to the cap's sag there, to 0.01 mm. Record with each measured q the figure's
+  scale in native px per lens mm (from a vertex span) and the range of q that one native pixel at the cap end and at
+  the edge gives, ±(1 + q) / (edge px). The cut is inferred, so it must clear every traced beam by its margin (below):
+  where the beams reach past the figure's cap end less that margin, move the cut out until it clears them. Every lens
+  leaves out a land shorter than 0.1 mm (`sd` minus the cut radius), and one whose q range reaches 1.
 - **Inferred or sourced:** a depth the source does not state is inferred, and such a cut's radius must clear the
   furthest traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of the radius, at every field, zoom
   and focus (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and

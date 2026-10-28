@@ -9,9 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rims are inferred from the exact figure; no production glass vendor or
  * motor mechanism is established by the numerical prescription.
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands on faces 2 (L11), 5 (L13), 7 (L14),
- * 17 (L19) and 32A (L44). Faces 2 and 32A take their partner's sd (31.5, 19.5) with the
- * cut at the old rim (28.5, 18.0); the cuts on 5, 7 and 17 end the caps at 27.54, 29.22
- * and 21.67 mm, so the L19 rear cap no longer reaches the stop plane.
+ * 17 (L19) and 32A (L44). Face 2 takes its partner's sd (31.5) with the cut at the old
+ * rim (28.5); the cuts on 5, 7 and 17 end the caps at 27.54, 29.22 and 21.67 mm, so the
+ * L19 rear cap no longer reaches the stop plane. 32A keeps its 18.0 mm rim, the asphere's
+ * designed extent, uncut.
  */
 
 const LENS_DATA = {
@@ -341,8 +342,7 @@ const LENS_DATA = {
       label: "32A",
       R: -64.58764,
       d: 1.8,
-      sd: 19.5,
-      rimCutDepthMm: 2.96,
+      sd: 18,
       medium: 17,
       asphere: {
         K: 8.4794,
