@@ -141,7 +141,9 @@ pupil radius) at infinity, the paraxial working f-number at a finite conjugate),
 ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface that stops the next ray outward
 (null for the iris). Both are cached with the focus search.
 
-**Ray failures** (`trace/rayClassification.ts`, shared with the aimed launch). TIR and aperture clips are blocking. A failed intersection blocks only
+**Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
+clips are blocking; the aimed launch's search ahead of the stop is the one exception and does not take TIR as a block
+(see [Pupil Convention](#pupil-convention)). A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
 MTF error at 2ε; more makes the field unavailable. The reference chief is traced without aperture checks, so a
@@ -770,6 +772,27 @@ radius (`finiteRadiusLimit()`): samples past it count as no surface rather than 
 step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets. The closed
 form described below applies the same rule through the sign of the conic root.
 
+The sequential trace meets the next surface of the sequence along the ray's line in either direction
+(`intersectSequentialSurface()` in `trace/pathPlanner.ts`), as OpticStudio and CODE V trace a negative thickness and as
+the Ray-Trace Comparator's contract defines a sequential trace. A stop plane set inside the sag of the surface before
+it, or two neighbouring surfaces that cross inside their clear apertures, lie behind the ray's last hit. The search
+runs forward from that hit as before; only where it finds no root (`noBracket`) is the line behind the hit searched,
+back to 1 mm in front of the surface's rim-sag plane (`sequentialSurfaceBackT()`). The hit is on the surface's own sag
+branch; where the line crosses it twice behind the hit, as across a concave face, the crossing nearer the vertex plane
+is the hit, as OpticStudio takes a surface's root from its vertex plane (the second search starts
+`BACKWARD_SECOND_CROSSING_GAP` = 1e-6 mm past the first crossing). Its `t`, `segmentLength` and `opticalPathLength` are
+negative, so the sequential OPL (`recordOpticalPath`) and bulk absorption charge the step with its sign. A search
+behind that fails for a reason other than `noBracket` reports that reason. A forward hit, and any forward failure other
+than `noBracket`, is unchanged, so every ray that passed before passes bit for bit. An iterative solve whose probe
+rays were lost this way (the chief-ray solve, stop sizing, image-height inversion) can take another path: inside a
+lens's field it lands within its tolerance, and elsewhere on the root a lost probe hid. There is no step back to the
+first surface (the launch lies in front of the lens), for a ray whose direction z is not above `1e-12` (it is blocked
+at the next surface, as the contract also says), or on a folded path (`traversal.kind === "generalized"`, its
+sequential partial traces included): the generalized tracer searches forward only, and the contract blocks a hit
+behind the ray there. Where the trace may step back, `provesApertureMiss()` proves a miss over the whole line, so a crossing behind
+the hit inside the cap is never counted as vignetting; MTF, vignetting and the aimed pupil launch all read it through
+`traceRayClassification()`.
+
 Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, with one
 implementation and one caller, the kernel's iterative path, using the surface's `sd`): the first root inside the
 radial cylinder `r <= sd`, in ray order, wins over any polynomial-continuation root outside it, while a ray with no
@@ -1242,9 +1265,11 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   (`blockedCount`, `blockedSampleCount`) apart from rays a later rim vignettes. A solve that reaches the 24-trace cap
   with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
   `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
-  result and never traced or replaced by a paraxial launch. Total internal reflection is not an aperture, so a target
-  only reflected rays could reach is `stop-unreachable`. Bokeh transmission and moved-lens vignetting leave unaimed
-  samples out of their denominators and report how many there were.
+  result and never traced or replaced by a paraxial launch. Total internal reflection ahead of the stop is not taken as
+  a block (`blockedAt` returns null for it), so a target only reflected rays could reach is mostly
+  `stop-unreachable` (`aim-not-converged` where the search stalls, `blocked` where the cap ends on a rim's proven
+  block); reporting it as a block at that surface is deferred to PR 3 (see Vignetting). Bokeh transmission and
+  moved-lens vignetting leave unaimed samples out of their denominators and report how many there were.
 - **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
   real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
   (`prepareAxialZoneLaunch` in `aberration/shared.ts`); both chromatic ray fans, aimed per channel at that channel's
@@ -1252,8 +1277,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
 - **Not aimed.** Diagram rays (`useOnAxisRays`, `useOffAxisRays`, `useChromaticRays`' segments, folded display fans and
   the moved-lens diagram fan, `launch: "paraxial-entrance"`) are rendering samplers and keep paraxial entrance-pupil
   fractions. The field-curvature parabasal pair (`FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM`, 0.01 mm about the chief)
-  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting curve and the
-  MTF lattice keep their launch-plane sampling until their own changes move them onto this launch.
+  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting tab launches
+  its stop lattice through this launch (see Vignetting); the MTF lattice keeps its launch-plane sampling until its own
+  change moves it onto this launch.
 
 Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back only when another aperture vignettes a
 zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA compares every selected channel at
@@ -1626,25 +1652,61 @@ use perspective analysis.
 
 ## Vignetting
 
-`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and samples each field's
-transmitted beam in 2D with the MTF's machinery (`prepareMtfFieldLaunch`, `findMtfFieldFootprint`, `mtfLaunchGrid` at 64
-cells across the beam, mirrored half pupils when `mtfMirrorSymmetric`), at the authored indices and collimated at every
-focus. Field spacing is unchanged; `vignettingPupilSampleCount` overrides the cells across the beam.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes OpticStudio's
+two field analyses on one lattice on the stop per field. `vignettingStopLattice(n)` keeps the cells of an n × n grid
+(`BEAM_GRID_CELLS` = 64 across the stop's diameter; `vignettingPupilSampleCount` overrides it, at least 4) whose centre
+lies in the unit disc, at coordinates (2k + 1 − n)/n so mirror columns are exact negatives. Each field launches the
+lattice through `prepareAimedPupilLaunch` (see [Pupil Convention](#pupil-convention)) and traces every aimed ray with
+every aperture checked; on a meridional field of a system `mirrorSymmetricAboutMeridian` accepts, the +px half is
+traced and the −px half mirrors it. Field spacing is unchanged. `computeVignettingField(request, fraction)` returns one
+field's rays, per-cell flags, direction cosines and cosine-space areas, with its exit pupil, image point and
+reference sphere; `computeVignettingCurve` returns the tab's curve and the reason a state has none, tracing the exit
+pupil once for all its fields. `exitPupilZ`, `referenceSphere` and `referredDirection` are exported pure functions, so a
+cross-checker can restate Rimmer's sum from a field's cells.
 
-`geometricTransmission` is the lit lattice area on the launch plane over the axis's; it exceeds 1 where the stop's image
-grows off axis (its footprint on the axial launch plane grows as the image turns to face the field). `relativeIllumination`
-is conservation of energy: the transmission-weighted lit area times cos θ over the image area per unit object solid
-angle, normalized to the axis. That area is (dh/dθ)(h/sin θ) from lit chief rays 0.01° apart, or, where the chief ray is
-vignetted, the median sub-lattice ray tube's ∂P/∂ω with its stop crossing held (launch-point derivatives from
-neighbouring cells). Both hold the stop crossing: pivoting on the launch point, or taking each ray's own exit-direction
-cosine area, reads a field that focuses off the image plane as brighter (a singlet with field curvature rose above 1),
-and a mean over tubes lets rim-zone rays that turn sharply scatter the figure. Keeping the two figures separate is
-required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
-States `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse (fisheye, folded, mirror, diffractive, annular, tilted
-image plane), and curves with a bounding-sphere field, return no curve rather than mix in the old meridional sweep; a
-field with no solvable chief ray counts as dark. A prescription whose image height peaks before the format corner (the
-GF 80 mm f/1.7's data, which omits its patent's odd aspheric terms) puts the analysis edge on that fold, where
-dh/dθ → 0 and the edge reads very bright.
+- **Vignetting** (`unvignettedFraction`): the share of the lattice's samples that reach the image, as OpticStudio's
+  Vignetting Diagram counts rays. Geometric (no absorption or coating loss), absolute and at most 1; the axis reads
+  below 1 only where an aperture clips the axial beam. Blocked samples, and full traces `traceRayClassification` calls
+  blocked (a rim, total internal reflection, a proven aperture miss), count as vignetted. Unaimed samples and full
+  traces it calls failed, or that leave the last surface backward, are left out of both counts and counted
+  (`unaimedCount`, `failedCount`); a field where together they exceed `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its
+  lattice has neither figure (`too-many-unaimed`, or `too-many-failed` when failed samples are the larger share).
+- **Total internal reflection, by side of the stop.** An aimed ray reaches the stop (traced there without aperture
+  checks), so total internal reflection in its full trace is after the stop: the sample counts as vignetted. Ahead of
+  the stop the aimed launch does not take total internal reflection as a block, so a sample only reflected rays could
+  reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search stalls): it is left out of both
+  counts, counts toward `unresolved-in-beam` beside a transmitted cell, and above 1 % of the lattice gives
+  `too-many-unaimed`. A solve whose last failed step at the iteration cap left a rim ahead of the stop ends `blocked`
+  at that rim instead, and counts as vignetted. Reporting total internal reflection as a block at its surface would
+  change the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the MTF on the stop lattice).
+- **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
+  point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
+  crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil
+  plane, to that point. The exit pupil is the state's own: where the real chief ray of a field at 1 % of the half field
+  crosses the axis in image space, at the current focus and zoom (an interpolated station table crosses the pupil's pole
+  between zoom stations). A cell contributes n′² · bulk transmission · |det J| · cell area, J the Jacobian of
+  (px, py) → (L, M) by finite differences between transmitted neighbours (central, one-sided at the beam's edge, and
+  borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one, never across
+  a cell that does not transmit). The field's
+  sum over its beam is divided by the axis's. Taking each ray's own exit direction instead reads a field that focuses
+  off the image plane as brighter (a singlet with field curvature rises above 1); the referred cone is the exit pupil
+  as seen from the image point. The chief ray that names the image point is traced without aperture checks. Where
+  the exit pupil lies beyond the image plane the pupil-side crossing comes after the image point; the referred
+  direction is oriented along the ray either way.
+- **No figure, with a reason.** A field whose cell map folds or collapses in cosine space (a transmitted cell's oriented
+  area reversed, or below `RIMMER_MIN_CELL_AREA_RATIO` of the median), whose rays do not localize at the image point
+  (a transmitted ray more than `RIMMER_MAX_REFERRED_DEVIATION`, 5 %, from its referred direction: its transverse
+  aberration over the exit-pupil distance, OpticStudio's stated assumption), whose transmitted ray misses the reference
+  sphere, or whose beam has a cell with no neighbour in its row and column has no relative illumination. Nor has a
+  field whose unaimed or failed samples beside its beam (the row or column neighbour of a transmitted cell) exceed
+  `RIMMER_MAX_UNRESOLVED_SHARE` (0.35 %, the lattice's convergence band: doubling the lattice moves no benchmark
+  field's RI by more than 0.0035) of its transmitted cells (`unresolved-in-beam`). Each such sample's share of the sum
+  is unknown; up to that share the figure stands and can read low by up to about it (high by the axis's). The bound
+  counts the samples next to the beam, not further ones behind them. Their missing area, estimated from their
+  transmitted neighbours, is 0.96–1.12 times their count share on the catalog's 14 fields where they occur (default
+  state, 64 cells, computed with the refusal off). States
+  `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse and curves with a bounding-sphere field have no curve.
+  Each carries its reason, and the chart breaks its curve at a field without a figure.
 
 The job table and lazy context accessor dispatch the request directly. `VignettingTab` reuses the deferred context request or memoizes one from the
 prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by

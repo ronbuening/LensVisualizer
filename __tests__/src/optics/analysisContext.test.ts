@@ -147,7 +147,7 @@ describe("analysis computation context", () => {
     });
     const context = createAnalysisComputationContext(request);
     const samples = context.computeVignettingCurve();
-    expect(samples).toHaveLength(5);
+    expect(samples.samples).toHaveLength(5);
     expect(samples).toEqual(analysisJobs.computeVignettingCurve(request));
     expect(context.computeVignettingCurve()).toBe(samples);
   });

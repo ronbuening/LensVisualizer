@@ -162,14 +162,13 @@ them is fixed by raising semi-diameters alone: each needs the source, decision o
 | OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5 | `olympus/OlympusZuiko16mmf35.data.ts` | — | 43% | No `projection`: the 180° diagonal fisheye (US 3,850,509 col. 1; FIGS. 2B–2D at 90°) is traced as rectilinear and the solver gives up past ~52°. Declare `fisheye-equisolid` (fullFieldDeg 180, maxTraceFieldDeg 90, imageCircleMm ≈43.0 from the traced 21.52 mm at 90°), then raise the front rims to the 90° chief ray (1 20.9, 3 10.7, 4 9.7, 5 9.0, 6 7.0, 7 5.9 mm; 2 needs 11.2 mm on R 11.79, past the default rim-slope cap). FIG. 1 draws L1 ≈3.8× L4 (data 1.45×). | todo |
 | NIKON GYOGYOTTO 20mm f/8 | `nikon/NikonGyogyotto20mmf8.data.ts` | — | 67% | No `projection` for a "so-called fisheye" (US 5,949,588 Table 8; 2ω 164°, FIG. 16A Y = 22.0 mm, distortion referenced to 2f·sin(θ/2)). Declare `fisheye-equisolid` (fullFieldDeg 164, imageCircleMm 44.0), then rims at the 78.46° corner: 1 ≥ 28.85, 2 ≥ 18.13 mm. | todo |
 | KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE | `kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts` | — | 85% | Its traced mapping is close to stereographic (US 3,037,426 Ex. 3; 197°, 8.7 mm circle), which no projection kind covers, so it is traced as rectilinear and no chief ray reaches the stop centre past ~81°. The rims are not the limit. | blocked (needs a stereographic projection kind) |
-| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | — | 74% | The inferred stop sits mid-gap, 2.898 mm behind r6; FIG. 2 (US 4,235,521) draws it ≈0.6 mm behind r6. With the data's stop no chief ray exists past ~26°: L1's rear and L2's front meet at h ≈ 5.93 mm. Move the stop per FIG. 2 (surface 7 d ≈ 0.60, STO d ≈ 5.20), then raise 10 ≥ 7.13 and 11 ≥ 7.79 mm (also closes its Section A row). | todo |
+| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | — | 74% | The inferred stop sits mid-gap, 2.898 mm behind r6; FIG. 2 (US 4,235,521) draws it ≈0.6 mm behind r6. With the data's stop the chief ray past ~26° crosses L1's rear and L2's front above h ≈ 5.93 mm, where they meet. Move the stop per FIG. 2 (surface 7 d ≈ 0.60, STO d ≈ 5.20), then raise 10 ≥ 7.13 and 11 ≥ 7.79 mm (also closes its Section A row). | todo |
 | NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5 | `nikon/NikonAutoZoomNikkor80200mmf45.data.ts` | 80 / 126.4 / 200 mm | 83 / 81 / 70% | US 3,615,125 prints no stop; the inferred stop mid-gap in D18 blocks every corner (at 200 mm the chief ray would cross L1 past its ≈30.3 mm knife edge; at 80 mm the 8/9 gap closes at ≈14.2 mm). A stop 1–3 mm behind r18 passes all three corners within the current rims. | todo (needs a measured diaphragm position) |
 | NIKON NIKKOR 800mm f/8 ED | `nikon/NikonNikkor800mmf8ED.data.ts` | — | 62% | Tagged `6x6` for the patent's 6° field (US 3,774,991 Ex. III). With the inferred focusing-unit stop, the 6×6 corner needs front-group chief-ray heights of 86–88 mm, past L1's ≈67 mm knife edge (ceiling ≈78%). On 24×36 the edge already clears the corner. | todo (format or stop decision) |
-| NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | Wide 36.2 mm | 82% | d9 = 1.0 as printed (US 4,699,475 Table 7) thins L5 to a knife edge at h ≈ 6.62 mm, and no chief ray exists past ≈30.3°. d9 ≈ 3.5 fits better: focal lengths 36.33 / 60.32 / 103.72 mm against the printed 36.2 / 60 / 103 (1.0 gives 37.39 / 62.15 / 106.58), FIG. 14 draws L5 as thick as the 3.5 mm L8, and Embodiments 4–6 use 3.5. With 3.5 the corner needs 9 ≥ 7.71 and 10 ≥ 7.05 mm. | todo (prescription decision) |
+| NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | Wide 36.2 mm | 82% | d9 = 1.0 as printed (US 4,699,475 Table 7) thins L5 to a knife edge at h ≈ 6.62 mm, which the chief ray passes above past ≈30.3°. d9 ≈ 3.5 fits better: focal lengths 36.33 / 60.32 / 103.72 mm against the printed 36.2 / 60 / 103 (1.0 gives 37.39 / 62.15 / 106.58), FIG. 14 draws L5 as thick as the 3.5 mm L8, and Embodiments 4–6 use 3.5. With 3.5 the corner needs 9 ≥ 7.71 and 10 ≥ 7.05 mm. | todo (prescription decision) |
 | PENTAX HD D FA645 35mm f/3.5 AL [IF] | `pentax/PentaxDFA64535mmf35AL.data.ts` | — | 70% | The declared 44.8° matches the patent's W, but its chief ray lands at 24.28 mm (−32% distortion; Fig. 14D shows −3% at y = 34.85). Table 4's surface-5A asphere (K +1.00, all coefficients positive; US 2001/0007512 A1 PDF p. 14) looks sign-damaged: K −1.00 with A6/A8/A10 negative traces to 34.82 mm. | blocked (confirm against JP Hei 11-354772) |
 | SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | — | 74% | 13A/14A are cut to 2.0 mm because the seven-decimal Table 4 coefficients diverge beyond it; with no apertures at all the image height peaks at 2.74 mm (patent Y 3.50 mm, US 2021/0149156 A1 FIG. 2). Restoring the published 2.720/2.880 radii cannot help. | blocked (needs higher-precision S13/S14 coefficients) |
-| VIVITAR SERIES 1 35-85mm f/2.8 VMC | `vivitar/VivitarSeries13585mmf28.data.ts` | Wide 36 mm | 75% | No chief ray exists past ~30° with any rims: it would cross L4 above its ≈16.07 mm zero-edge height, and S9 is capped by the L5/L6 contact at the tele gap. Table I computes to f 38.46–89.08 mm against the text's 36–83 mm (US 3,975,089), a possible Table I error. | blocked (needs a corrected Table I) |
-| OLYMPUS ZUIKO AUTO-W 18mm f/3.5 | `olympus/OlympusZuikoAutoW18mmf35.data.ts` | — | 73% | US 4,029,397 is not in `patents/`. With the inferred mid-d10 stop, surfaces 16 and 17 meet at h ≈ 5.66 mm and no chief ray exists past 42.3° (declared 50°). Check the FIG. 2 stop and r16/r17/d16 (and the documented r13 sign conflict) before touching rims. | blocked (patent PDF missing) |
+| VIVITAR SERIES 1 35-85mm f/2.8 VMC | `vivitar/VivitarSeries13585mmf28.data.ts` | Wide 36 mm | 75% | Past ~30° the chief ray crosses L4 above its ≈16.07 mm zero-edge height, so no rim can pass it, and S9 is capped by the L5/L6 contact at the tele gap. Table I computes to f 38.46–89.08 mm against the text's 36–83 mm (US 3,975,089), a possible Table I error. | blocked (needs a corrected Table I) |
 | SAMYANG AF 35-150mm f/2-2.8 FE / L | `samyang/SamyangAF35150mmf228.data.ts` | 35 mm | 81% | US 2025/0231383 A1 is not in `patents/`; its Google Patents text gives ω 30.9° at 35.989 mm (f·tanω 21.54 mm). Corner minimums: 6A ≥ 18.46, 7 ≥ 18.33, 8 ≥ 15.61, 40A ≥ 13.83, 41A ≥ 15.41 mm. | blocked (patent PDF missing) |
 | NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR | `nikon/NikonAFPDX1855mmf3556G.data.ts` | 18.5 mm | 86% | US 10,690,896 B2 is not in `patents/`; analysis.md gives Y 14.25 mm. Only surface 1 clips: 15.3 → ≥ 17.68 mm at the corner. | blocked (patent PDF missing) |
 | MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | Wide 36 mm | 90% (89.6) | US 4,560,253 is not in `patents/`; analysis.md's y' = 21.6 mm is unverified. Corner minimums: 3 ≥ 15.26, 4 ≥ 14.82, 4A ≥ 14.76 mm. | blocked (patent PDF missing) |
@@ -201,6 +200,7 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 | Vivitar Series 1 70-210mm f/3.5 | JP S51-63635 A Table 1 (PDF pp. 3–4; gazette pp. 265–266) and Figure 2(a,c) state endpoints 70/205 mm; the unscaled printed prescription traces to 71.979219/203.013778 mm. Recorded as `unresolved` in `source.errata`. | Isolate the cause with independent source evidence; retain the printed prescription and do not rescale to force the stated endpoints. |
 | Viltrox AF 23mm f/1.4 | CN 211826700 U Example 1, Table 2 (PDF pp. 7–8), moves only G3, yet D1 + D2 prints 5.43 mm at infinity and 5.64 mm at 0.3 m with G2 and G4 fixed. Recorded as `unresolved` in `source.errata`; the printed spacings are kept. Examples 2 and 3 conserve the sum. | Isolate which of the four printed spacings carries the 0.21 mm; check the close state against Table 9's conditional values. |
 | Viltrox AF 23mm f/1.4 (field curves) | CN 211826700 U Example 1 (PDF pp. 7–8, 17, 20): Fig. 3 keeps the tangential field within about 0.1 mm of the axial focus to 31.7°, but the printed table traces to −0.75 mm at the edge, and Fig. 6 shows the same at 0.3 m. Single changes to d4, d6, d7, R2, R20 or R21 each flatten it; none is isolated, and index shifts of 0.01 or less alone reproduce Fig. 3. Recorded as `unresolved`; printed values kept. | Read CN 111474691 A/B Tables 1–2 at d4, d6, d7, R2, R20 and R21. If L13 (1.85/36.59) and L14 (1.51/81.59) are identified, rerun the search at their true indices. |
+| Rimmer RI: rays far from the image point (one data task) | The vignetting tab's relative illumination needs the rays of each field to localize at its image point (each within 5 % of the exit-pupil distance, `RIMMER_MAX_REFERRED_DEVIATION`). Wide open at design focus, 21 lenses have fields that fail it: `apple-iphone-7-wide-camera-lens`, `fujifilm-fujinon-xc-15-45mm-f35-56-ois-pz`, `fujifilm-fujinon-xc-16-50mm-f35-56-ois-ii`, `fujifilm-fujinon-xf-27mm-f28`, `fujifilm-fujinon-xf-8-16mm-f28-r-lm-wr`, `fujifilm-fujinon-xf-8mm-f35-r-wr`, `fujifilm-gf80-f17`, `fujinon-xf-23mm-f14-r`, `laowa-15mm-f2-zero-d`, `leica-apo-summicron-m-35f2`, `minolta-af-35-105mm-f3-5-4-5-v2`, `nikon-nikkor-z-dx-12-28mm-f35-56-pz-vr`, `panasonic-leica-dg-15f17`, `panasonic-lumix-g-25mm-f17`, `panasonic-lumix-s-pro-16-35f4`, `pentax-hd-d-fa645-35f35-al-if`, `schneider-super-symmar-xl-110-f56`, `sony-sonnar-fe-55f18-za`, `voigtlander-nokton-50mm-f15-aspherical-l39`, `zeiss-sonnar-35f2-sony-rx1`, `zeiss-vario-sonnar-t-104-371mm-f18-49-rx100m1-2`. The Leica DC Vario-Elmarit FZ2500 (`panasonic/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts`) passes it but reads RI 1.17–1.52 at 15–38°, where conservation of energy gave 0.99 falling to 0.70: its rays blur about 0.6 mm against a 9 mm focal length. Rays leaving at more than twice the axis's cone angle point to aspheric terms evaluated past their valid zone or mistranscribed. | Audit the asphere data of all of them as one task: coefficients, sign and normalization (K, A4…), the authored semi-diameters against the patent's effective diameters, against the source's own aberration plots. Delete this row when each lens is corrected or recorded. |
 | Files with comment-only source corrections | Lens files whose headers describe an erratum or misprint in the source but carry no `sourceErrata` entry, from before the field existed (`grep -rli "erratum\|misprint" src/lens-data --include="*.data.ts"`). The MTF tab discloses nothing for them. | Record each as a `corrected` or `unresolved` entry under the standard, then delete this row. |
 
 ## Section H — stop opens wider than the source design f-number
@@ -264,7 +264,7 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,500 of 1,652 stations are within 3 %. Of the rest, a rim clips the beam at 144 stations on 111 lenses (`rim`);
+4,383 of 5,062 stations are within 3 %. Of the rest, a rim clips the beam at 677 stations on 120 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
@@ -277,21 +277,23 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, two lenses: no rim clips, but the next ray cannot be continued. The Nikon AI Zoom-Nikkor 25-50mm f/4 is
-  `STO (noBracket)` at tele (row below). The Fujinon XF 23mm f/1.4 R is totally reflected at surface 14A, inside its
-  rim (a prescription suspect). Four inferred stop planes that sat inside the preceding surface's cap, where the ray
-  leaves that surface past the stop plane, were moved just behind the cap: Olympus G.Zuiko Auto-S 50mm f/1.4, Leica
-  Elmarit 90mm f/2.8, Zeiss Jena Sonnar 50mm f/2 and Nikon AI-S Zoom-Nikkor 35-70mm f/3.5 (their audit logs give the
-  construction). That uncovered rim limits on the Olympus and the Sonnar, raised in the same pass against their
-  figures; all four now trace their stated f-numbers.
-- Stop planes that a neighbouring clear cap crosses inside the wide-open iris, at some station or focus end, which the
-  infinity on-axis audit does not reach. These and the 25-50mm row wait on a feature to trim the long rim "fingers"
-  of deeply concave surfaces where they pass the stop plane. The Canon EF 24mm f/1.4L II's following cap reaches 1.83 mm ahead of its
-  printed stop at close focus over the inferred 2.423 mm close gap: decide whether the stop travels with the L2 focus
-  unit. The Voigtländer Nokton 50mm f/1's inferred surface-8 rim crosses the printed stop plane 0.28 mm inside the
-  f/1 iris. The Olympus Zuiko 24mm f/2 (0.03 mm, close focus) and Pentax DA 18-55mm (0.004 mm) are negligible.
-- `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
-  AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
+- `trace`, one lens: no rim clips, but the next ray cannot be continued. The Fujinon XF 23mm f/1.4 R is totally
+  reflected at surface 14A, inside its rim (a prescription suspect). A stop plane inside the sag of the surface before
+  it is no trace failure: the sequential trace steps back to it.
+- `iris`, one lens: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8).
+
+Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the
+wide-open one, lies in the glass of the face beside the stop. The trace steps back to the stop plane, but no iris can
+close there. Move the stop plane into the air the source draws, as #929 did for four lenses, or cut a rim the figure
+shows, as #928 does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the one #928 fixes and the
+Hologon, and fails when a lens joins or leaves it, so delete the key there with the row here.
+
+| Lens | File | Station: face, glass from, wide-open iris | Status |
+|---|---|---|---|
+| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 12.08 mm (STO gap 2.42 mm, inferred). Decide whether the stop travels with the L2 focus unit. | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.27 mm, iris 11.48 mm. The stop rides 0.1 mm ahead of r9 with G2, and at tele (d8 = 0.503 mm) r9's vertex lies ahead of any plane behind r8's cap, so no stop plane in air fits there: needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
+| OLYMPUS J.ZUIKO AUTO-W 24mm f/2 | `olympus/OlympusZuiko24mmf2J.data.ts` | 0.25 m: face 12 in front of the stop from 8.45 mm, iris 8.81 mm (STO gap 0.34 mm) | todo |
+| PENTAX SMC DA 18-55mm f/3.5-5.6 AL | `pentax/PentaxDA1855mmF3556AL.data.ts` | 19.1 mm: face 14 in front of the stop from 5.54 mm, iris 5.57 mm | todo |
 
 Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
 squaring them means moving faces that do not clip:
@@ -303,7 +305,7 @@ squaring them means moving faces that do not clip:
   Tamron SP 70-200mm A009 (L15 and the L8+L9 doublet).
 
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
-first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
+first by a rim. The Sigma 10-18mm is rim-limited at
 every station. The patent audit of the fixed-iris zooms confirmed the rim limit against the printed f-number on
 fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md)):
 
@@ -322,7 +324,6 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | NIKON AF-S NIKKOR 300mm f/2.8 D IF-ED | `nikon/NikonAFSNikkor300mmf28DIFED.data.ts` | f/2.88 traces f/3.45 (+19.7%), rear L11 rim 21; with TC-20E III, f/5.70 traces f/6.83. Present on the host alone; converter rims clear. Review the host's exact source figure before raising its inferred rear rim. | todo |
 | NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.76 (+30.6%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
 | NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.48 (+12.7%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
-| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket). The stop rides 0.1 mm ahead of r9 with G2; at tele (d8 = 0.503 mm) r8's cap sags 0.62 mm at the 11.48 mm iris, and r9's vertex lies ahead of any plane behind that cap, so no sequential stop plane fits there. Needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
 | OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
 | PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
@@ -330,6 +331,7 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.09 (+5.9 %), rim 10; 13.5 mm: f/2.92 traces f/3.35 (+14.6 %), rim 10; 17.5 mm: f/2.92 traces f/3.70 (+26.7 %), rim 10 | todo |
 | SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.31 (+14.1 %), rim 17 | todo |
 | SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA | `sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts` | 78 mm: f/4.64 traces f/4.84 (+4.3 %), rim 22 | todo |
+| SIGMA 35mm f/1.4 DG HSM Art | `sigma/Sigma35mmf14DGHSMA.data.ts` | f/1.4: 164 of the vignetting tab's 3,216 axial stop samples (5.1 %) clip on the rim of surface 14 (sd 17.5 mm) just ahead of the stop. Run after the f-number PR lands, against the paraxial EFL/N beam. | todo |
 
 ## In-progress diagram sweep
 

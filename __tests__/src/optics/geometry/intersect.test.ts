@@ -9,7 +9,7 @@ import type { SeedRefusal, SurfaceIntersectionOptions } from "../../../../src/op
 import { capCoordinateTolerance } from "../../../../src/optics/geometry/intersectTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { ulpOf } from "../../../../src/optics/math/numerics.js";
-import { dot, normalize } from "../../../../src/optics/math/vector.js";
+import { dot, normalize, subtract } from "../../../../src/optics/math/vector.js";
 import { evaluateAperture } from "../../../../src/optics/trace/aperture.js";
 import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { INTERSECTION_FIXTURE_PATH, type IntersectionFixtureFile } from "../fixtures/generateIntersectionFixtures.js";
@@ -1473,19 +1473,23 @@ describe("a plane at zero gap behind a curved surface", () => {
     expect(plane.effectiveTolerance).toBe(1e-12);
   });
 
-  /* A boundary transition from the iterative path, held so changes are noticed. It needs a plane at zero gap behind a surface that is convex
-   * toward the ray, which overlaps it everywhere off the axis, and an oblique ray that meets them within 1e-4 mm
-   * of the axis; no catalog lens has this geometry. */
-  it("boundary transition: loses the plane where the iterative path had stopped on the vertex plane", () => {
+  /* A plane at zero gap behind a surface that is convex toward the ray overlaps it everywhere off the axis. An oblique
+   * ray that meets them within 1e-4 mm of the axis finds the closed-form hit past the plane by more than the plane's
+   * parametric slack; no catalog lens has this geometry. */
+  it("steps back to the plane where the closed-form hit lies past it, as the iterative path's seed reached it", () => {
     /* At this height the sag is 8.1e-13 mm, within the residual target but 1.01e-12 mm back along the ray. The
-     * closed-form hit is on the surface, so the plane is behind it by more than its parametric slack and the
-     * trace ends there. The iterative path accepted its vertex-plane seed for this ray, a point on the plane
-     * itself with the sag as its residual, and went on to all four surfaces. */
+     * closed-form hit is on the surface, so the forward search finds no plane and the trace steps back to it, on to
+     * all four surfaces. The iterative path accepted its vertex-plane seed for this ray, a point on the plane itself
+     * with the sag as its residual, and went on to all four surfaces too. */
     const { z, profile, ray, trace } = traceThrough(zeroGapState(5000), 9e-5);
-    expect(trace.hits).toHaveLength(1);
-    expect(trace.failureReason).toBe("noBracket");
-    expect(trace.hits[0].point[2] - z).toBeGreaterThan(8e-13);
-    expect(Math.abs(trace.hits[0].residual!)).toBeLessThan(1e-15);
+    expect(trace.hits).toHaveLength(4);
+    expect(trace.failureReason).toBeNull();
+    const [curved, plane] = trace.hits;
+    expect(curved.point[2] - z).toBeGreaterThan(8e-13);
+    expect(Math.abs(curved.residual)).toBeLessThan(1e-15);
+    expect(plane.point[2]).toBe(z);
+    // The step back along the ray is the overshoot over the ray's direction cosine.
+    expect(dot(subtract(plane.point, curved.point), oblique)).toBeLessThan(-1e-12);
 
     const seeded = intersectSurfaceProfile(ray, profile, z, {
       maxT: 5,
