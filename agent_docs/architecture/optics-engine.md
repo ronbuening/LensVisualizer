@@ -1634,14 +1634,18 @@ lies in the unit disc, at coordinates (2k + 1 − n)/n so mirror columns are exa
 lattice through `prepareAimedPupilLaunch` (see [Pupil Convention](#pupil-convention)) and traces every aimed ray with
 every aperture checked; on a meridional field of a system `mirrorSymmetricAboutMeridian` accepts, the +px half is
 traced and the −px half mirrors it. Field spacing is unchanged. `computeVignettingField(request, fraction)` returns one
-field's rays, per-cell flags, direction cosines and cosine-space areas; `computeVignettingCurve` returns the tab's
-curve and the reason a state has none.
+field's rays, per-cell flags, direction cosines and cosine-space areas, with its exit pupil, image point and
+reference sphere; `computeVignettingCurve` returns the tab's curve and the reason a state has none, tracing the exit
+pupil once for all its fields. `exitPupilZ`, `referenceSphere` and `referredDirection` are exported pure functions, so a
+cross-checker can restate Rimmer's sum from a field's cells.
 
 - **Vignetting** (`unvignettedFraction`): the share of the lattice's samples that reach the image, as OpticStudio's
   Vignetting Diagram counts rays. Geometric (no absorption or coating loss), absolute and at most 1; the axis reads
-  below 1 only where an aperture clips the axial beam. Blocked samples count as vignetted. Unaimed samples are left out
-  of both counts and counted; a field with more than `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its lattice unaimed has
-  neither figure.
+  below 1 only where an aperture clips the axial beam. Blocked samples, and full traces `traceRayClassification` calls
+  blocked (a rim, total internal reflection, a proven aperture miss), count as vignetted. Unaimed samples and full
+  traces it calls failed, or that leave the last surface backward, are left out of both counts and counted
+  (`unaimedCount`, `failedCount`); a field where together they exceed `VIGNETTING_MAX_UNAIMED_SHARE` (1 %) of its
+  lattice has neither figure (`too-many-unaimed`, or `too-many-failed` when failed samples are the larger share).
 - **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
   point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
   crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil
@@ -1649,7 +1653,8 @@ curve and the reason a state has none.
   crosses the axis in image space, at the current focus and zoom (an interpolated station table crosses the pupil's pole
   between zoom stations). A cell contributes n′² · bulk transmission · |det J| · cell area, J the Jacobian of
   (px, py) → (L, M) by finite differences between transmitted neighbours (central, one-sided at the beam's edge, and
-  borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one). The field's
+  borrowed from the nearest cell along the other axis where a cell has no transmitted neighbour along one, never across
+  a cell that does not transmit). The field's
   sum over its beam is divided by the axis's. Taking each ray's own exit direction instead reads a field that focuses
   off the image plane as brighter (a singlet with field curvature rises above 1); the referred cone is the exit pupil
   as seen from the image point. The chief ray that names the image point is traced without aperture checks. Where
@@ -1659,7 +1664,9 @@ curve and the reason a state has none.
   area reversed, or below `RIMMER_MIN_CELL_AREA_RATIO` of the median), whose rays do not localize at the image point
   (a transmitted ray more than `RIMMER_MAX_REFERRED_DEVIATION`, 5 %, from its referred direction: its transverse
   aberration over the exit-pupil distance, OpticStudio's stated assumption), whose transmitted ray misses the reference
-  sphere, or whose beam has a cell with no neighbour in its row and column has no relative illumination. States
+  sphere, whose beam has a cell with no neighbour in its row and column, or where an unaimed or failed sample is the row
+  or column neighbour of a transmitted one (`unresolved-in-beam`: its share of the sum is unknown) has no relative
+  illumination. States
   `mtfSequentialRefractivePath` / `mtfAxialImagePlane` refuse and curves with a bounding-sphere field have no curve.
   Each carries its reason, and the chart breaks its curve at a field without a figure.
 

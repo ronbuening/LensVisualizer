@@ -120,6 +120,7 @@ function CenteredVignettingContent({
   const edgeSample = samples[samples.length - 1];
   const percent = (value: number | null) => (value === null ? "—" : `${(value * 100).toFixed(1)}%`);
   const unaimed = samples.reduce((sum, sample) => sum + sample.unaimedCount, 0);
+  const failed = samples.reduce((sum, sample) => sum + sample.failedCount, 0);
   const gaps = samples.flatMap((sample) => {
     const reason = sample.unavailableReason ?? sample.relativeIlluminationReason;
     return reason ? [`${sample.fieldAngleDeg.toFixed(1)}°: ${FIELD_UNAVAILABLE[reason]}`] : [];
@@ -147,9 +148,10 @@ function CenteredVignettingContent({
         <AnalysisMetricRow label="Edge RI" value={percent(edgeSample.relativeIllumination)} t={t} />
         <AnalysisMetricRow label="Field" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
       </div>
-      {unaimed > 0 || gaps.length > 0 ? (
+      {unaimed > 0 || failed > 0 || gaps.length > 0 ? (
         <div style={{ color: t.muted, fontSize: 9, lineHeight: 1.4, marginTop: 6, transition: "color 0.3s" }}>
           {unaimed > 0 ? `${unaimed} stop samples could not be aimed and are left out of both figures. ` : ""}
+          {failed > 0 ? `${failed} rays failed to trace for a numerical reason and are left out of both figures. ` : ""}
           {gaps.length > 0 ? `No figure at ${gaps.join("; ")}.` : ""}
         </div>
       ) : null}
@@ -171,10 +173,12 @@ const CURVE_UNAVAILABLE: Record<VignettingCurveUnavailableReason, string> = {
 
 const FIELD_UNAVAILABLE: Record<VignettingFieldUnavailableReason | RelativeIlluminationUnavailableReason, string> = {
   "no-field-launch": "no chief ray to launch the field from",
-  "too-many-unaimed": "more than 1% of the stop samples could not be aimed",
+  "too-many-unaimed": "more than 1% of the stop samples could not be aimed or traced",
+  "too-many-failed": "more than 1% of the stop samples could not be aimed or traced",
   "no-image-point": "relative illumination needs the chief ray's image point",
   "reference-sphere-missed": "a ray misses the reference sphere, so relative illumination is not computed",
   "rays-not-localized": "rays stray too far from the image point for Rimmer's method to apply",
+  "unresolved-in-beam": "a stop sample inside the beam could not be aimed or traced",
   "cosine-map-folds": "the beam folds in direction-cosine space, where Rimmer's method does not apply",
   "isolated-cell": "the beam is too thin to form the cell map",
   "axis-unavailable": "relative illumination needs the axis's figure",

@@ -82,6 +82,7 @@ function vignettingSample(
     transmittedCount: 0,
     blockedCount: 0,
     unaimedCount: 0,
+    failedCount: 0,
     unavailableReason: unvignettedFraction === null ? "too-many-unaimed" : null,
     relativeIlluminationReason: relativeIllumination === null ? "cosine-map-folds" : null,
   };
