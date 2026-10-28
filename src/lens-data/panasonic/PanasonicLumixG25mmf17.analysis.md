@@ -162,12 +162,20 @@ At the data-file semi-diameters, the polynomial departures from the spherical ba
 
 | Surface | Data semi-diameter | Polynomial departure | Total sag | Rim slope |
 |---|---:|---:|---:|---:|
-| 11A | 10.2 mm | −0.3910 mm | −0.1855 mm | 49.3° |
-| 12A | 10.2 mm | +0.7703 mm | +3.2636 mm | 51.4° |
-| 13A | 11.8 mm | +1.1791 mm | +3.4839 mm | 53.2° |
-| 14A | 11.8 mm | +2.3103 mm | −1.4603 mm | 58.8° |
+| 11A | 9.1 mm | +0.0340 mm | +0.1975 mm | +0.4° |
+| 12A | 9.1 mm | +0.2333 mm | +2.1928 mm | +34.9° |
+| 13A | 10.6 mm | +0.4612 mm | +2.3071 mm | +35.0° |
+| 14A | 10.6 mm | +0.8352 mm | −2.1437 mm | −2.2° |
 
-These departures are not patent-published clear-aperture values; they are reported only for the estimated semi-diameters used in the LensVisualizer data file. Surface 14A carries the largest positive polynomial departure in the implemented model and is the most rim-slope-sensitive of the four aspheres.
+These departures are not patent-published clear-aperture values; they are reported only for the estimated semi-diameters used in the LensVisualizer data file. Surface 14A carries the largest positive polynomial departure in the implemented model. Signed rim slopes are shown above. The L6 rims are capped at 9.1 mm before the 11A slope reversal at 9.1331 mm, and the L7 rims at 10.6 mm before the 14A reversal at 10.6735 mm. Both faces of each element keep the square rim drawn in FIG. 7. Surfaces 12A and 13A are reduced only to preserve those shared rims; neither had exceeded its own turnover. The stated on-axis f/1.76012 beam still passes; these caps do not establish production clear apertures.
+
+## Rimmer Localization and Source-Plot Limitations
+
+The 2026-10-27 audit confirmed every K and A4–A16 term against rendered Table 24 (PDF p. 22), every R/d/nd/νd row against Table 22, and the variable gaps against Table 25. Equation 1 and ¶0113–0120 (PDF p. 18) use the standard 1+K conic convention, millimeter units and ordinary radial powers. No odd terms, normalization or coefficient correction is required by the printed tables.
+
+Before the turnover caps, transmitted outer-field rays sampled the reversed-slope continuation of 14A and the vignetting tab refused RI from 11.8° outward. With the caps, every sampled field has max referred deviation below 0.05 and the 20.7°/23.6° samples return RI 0.474/0.308. The 11.8°, 14.8° and 17.7° samples still refuse RI with `cosine-map-folds`. Further rim reductions would require independent source evidence; these results do not establish measured illumination or a complete repair of the Rimmer map.
+
+The source plots need a separate unresolved note. FIG. 8C (PDF p. 9) agrees with traced barrel distortion near −4.5% at H = 10.815 mm. FIG. 8A instead rises to approximately +0.35 mm marginal d-line SA on its −0.10/+0.10 mm ruler, while the stated entrance-pupil ray traces to −0.011 mm LSA; FIG. 8B suggests edge T/S shifts near +0.19/+0.05 mm while the close-ray trace gives −0.026/+0.004 mm. These figure readings are approximate, not digitized numerical prescriptions. The scalar summary still reproduces f = 25.8784 mm and total physical track 71.0046 mm. Single-slip coefficient diagnostics do not supply two independent kinds of source evidence for any replacement, so the printed coefficients remain verbatim and `source.errata` records the unresolved source-versus-model discrepancy. The rim caps leave these prescription-only comparisons unchanged.
 
 ## Chromatic Correction Strategy
 
@@ -223,7 +231,7 @@ Independent paraxial y–ν ray tracing reproduces the patent’s load-bearing v
 
 The Petzval value was computed surface by surface as Σφ/(n·n′), not by summing thin element powers. That distinction is material for this design because the L3–L4 cemented pair and the cover plate otherwise invite misleading thin-lens shortcuts.
 
-The semi-diameters in the data file are estimates. The largest constraints are L2 rear / L3 front cross-gap clearance, the L4 edge thickness, and the aspherical rim slopes on L6 and L7. The implemented aspherical rim slopes remain below 64.2°, the L3–L4 and L7–L8 air gaps pass the 90% gap-intrusion test, and all element front/rear semi-diameter ratios remain within 1.25.
+The semi-diameters in the data file are estimates. The largest constraints are L2 rear / L3 front cross-gap clearance, the L4 edge thickness, and the aspherical rim slopes on L6 and L7. The implemented aspherical rim-slope magnitudes now remain at or below 35.1°, the L3–L4 and L7–L8 air gaps pass the 90% gap-intrusion test, and all element front/rear semi-diameter ratios remain within 1.25.
 
 ## Sources
 

@@ -15,6 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Table 3 has no explicit aperture row. The stop is inferred from the figure and inserted 1.0 mm before r14;
  *   the corrected r13-to-r14 gap is therefore split as d13_to_stop + 1.0 mm.
  * - Semi-diameters are inferred clear apertures for rendering and validation, not patent-published values.
+ * - Rimmer audit (2026-10-27): r21 A10 is retained as printed, -0.11612e-9. A positive sign reproduces
+ *   Table 21's surface-departure summary and the scale of Figs. 27a-29a, but a second independent
+ *   evidence kind required by the source-errata policy remains unconfirmed; see source.errata and audit.
+ *   No rim cap is justified: 21A has no slope turnover within its authored 9.0 mm semi-diameter.
  */
 
 const LENS_DATA = {
@@ -46,6 +50,13 @@ const LENS_DATA = {
     patentYear: 1989,
     authors: ["Hisayuki Masumoto", "Akira Fukushima"],
     assignees: ["Minolta Camera Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note:
+          "Example 3 / claim 29 print r21 A10 = -0.11612e-9 (PDF pp. 48, 59). Full-pupil LSA is +1.656 / +3.261 / +10.734 mm, inconsistent with Figs. 27a-29a (p. 15, +/-0.5 mm axes). A10 = +0.11612e-9 gives -0.216 / +0.011 / -0.095 mm and reproduces Table 21's surface-shape parameter at h = 9 mm (-28.5344 against -28.5338; printed sign gives -68.8838). Surface-shape summary data are not a listed source-summary category in the audit policy; no second qualifying evidence kind was confirmed. Retain the printed sign pending family-publication evidence or a maintainer ruling on Table 21.",
+      },
+    ],
   },
 
   elements: [

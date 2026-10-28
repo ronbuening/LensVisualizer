@@ -27,6 +27,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
     type: "fix",
+    summary: "Corrected asphere data on the GF 80mm, XF 23mm f/1.4, RX1 Sonnar and Pentax 645 35mm",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
     summary:
       "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
   },

@@ -51,3 +51,78 @@ departure at the new rim is 1.08 mm. No figure measurement was used.
 The validator accepts the new value, the traced edge now reaches 21.65 mm at 53.4° with every rim clear (100%), and the
 image-circle floor still reports nothing undersized. The analysis quotes no semi-diameters, rim angles or rim
 departures, so it needs no change.
+
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+Source: local `patents/US20180149842A1.pdf`, Example 1, PDF p. 7 (printed p. 2, paragraph 0033,
+prescription rows 1–25 and aspheric rows 3/4/22/23), PDF p. 8 (printed p. 3, variable gaps and sag equation),
+FIG. 1 on PDF p. 2, and FIG. 2 on PDF p. 3. Tables and equation were read from 220 dpi page images;
+the aspheric table was additionally read from a 400 dpi crop. The text layer was used only for navigation.
+
+| Location / field | Before | After | Finding / evidence |
+|---|---|---|---|
+| Prescription R, d, nd, vd; all four K/A4–A12 blocks | Printed Example 1 values | Unchanged | No transcription mismatch; all table rows checked, including surface 22 K = +1.1397. |
+| `source.errata` | Absent | One `unresolved` entry | Literal source does not reproduce its own Fig. 2; no supported replacement isolated. |
+| Data header | No higher-order source warning | Unresolved localization/aberration warning | Distinguishes paraxial agreement from source-plot disagreement. |
+| Analysis, aspherical-elements discussion | Unqualified coefficient transcription | Adds source contradiction and rejected candidate | Numeric table remains the literal source; failed RI fields are qualified. |
+| All inferred semi-diameters | Existing values | Unchanged | No turnover crossed, stated on-axis beam passes, corner chief ray clears; schematic figure does not justify a repair to the aberrations. |
+
+### Prescription and convention
+
+All R/d/nd/vd rows agree with the rendered prescription, with the intentional equivalent reduction of coincident
+surfaces 10/11 into a single glass-to-glass interface. Surfaces 24/25 remain a physical 2.0 mm, nd 1.51680,
+vd 64.20 rear plate followed by 1.0 mm air. The variable gaps remain D12 = 3.4480/3.1500 and
+D23 = 15.6837/15.9816 mm (infinity/0.020x). The source prints radii and distances in mm at f = 15.5 mm;
+there is no normalization or rescaling. Its sag equation explicitly has `(1+K)` and powers 4/6/8/10/12;
+there are no omitted odd terms or even-order refits.
+
+### Localization and source-plot contradiction
+
+Fresh triage reproduces the baseline: no asphere is crossed beyond turnover. At 18.71 degrees, a meridional
+pupil progression -0.95/-0.90/-0.85 gives image error -6.036/-4.770/-3.815 mm and surface-22 incidence
+63/59/54 degrees: a smooth prescription error, not a slope reversal or isolated ray branch. These diagnostic
+rays are ghost traces; they do not all clear every authored rim. The actual transmitted-cell vignetting sweep
+first refuses RI at 11.9 degrees (`cosine-map-folds`), then at 17.8 degrees (`rays-not-localized`).
+
+At pupil fractions 1/0.85/0.7/0.5, d-line LSA is +5.089/+2.280/+1.105/+0.423 mm, incompatible with FIG. 2's
++/-0.3 mm spherical-aberration axis. A separate scalar sag/Newton-intersection/vector-Snell trace using the
+stored nd values and physical plate reproduces +5.089174/+2.279674/+1.105185/+0.422707 mm, independently
+of the application tracer. The close-ray tangential/sagittal focus shifts reach +156.426/+5.657 mm at 33.40
+degrees and -27.303/+113.038 mm at the 21.65 mm field edge, versus FIG. 2's +/-0.5 mm field-curvature axis.
+Baseline distortion ranges from about -1.415% to +3.579%, inside the plotted +/-5% axis but with a different
+trend from the mostly negative source curve. Paraxial EFL remains 15.5052 mm versus printed 15.5 mm;
+paraxial agreement does not settle the aspheric block.
+
+Read-only single-slip variants covered sign, x10, /10 and zero for every K/A4–A12 value, pairwise within-row
+column swaps, polynomial-order shifts, row swaps/cyclic shifts, all K sign combinations, and the alternative
+K-minus-one convention. Invalid variants were refused by the normal builder rather than forcing geometry.
+No replacement met the two-kind source-evidence standard.
+
+The strongest axial-only candidate, 22A K +1.1397 -> -1.1397, gives LSA
+-0.080/-0.156/-0.152/-0.088 mm with unchanged EFL, but at 55.04 degrees gives image height 16.513 mm,
+distortion -25.500%, and tangential/sagittal focus shifts -62.123/+8.909 mm. This contradicts the printed
+54.7-degree field, FIG. 2's 21.63 mm image-height limit, and its +/-5% distortion and +/-0.5 mm field-curvature
+axes. It was not applied. Merely improving RI through 49.2 degrees is not correction evidence.
+
+### Rims and retained result
+
+The source publishes no effective diameters. FIG. 1 is schematic and shows optical rims plus flat/stepped blank
+edges; those mechanical edges are not clear-aperture measurements. The existing front-to-waist-to-rear envelope
+was compared with the figure, but no reliable source-supported replacement was established. In particular, a
+literal drawing scale would require caution at the front asphere's conic domain; it cannot override the printed
+surface equation. The current rims pass the stated f/2.06 on-axis beam, and the 21.65 mm corner chief ray
+clears at 53.4 degrees. The image-circle check finds no undersized surface and the surface validator accepts
+the stored geometry. These checks establish clearance, not good localization.
+
+| Asphere | Retained sd (mm) | Rim departure (micrometres) | Rim slope angle | Turnover within rim |
+|---|---:|---:|---:|---|
+| 3A | 10.0 | -250.4 | +18.4 degrees | None |
+| 4A | 8.3 | -38.9 | +40.3 degrees | None |
+| 22A | 9.0 | -1073.0 | -62.9 degrees | None |
+| 23A | 10.1 | +1075.9 | -8.5 degrees | None |
+
+Verdict: **errata-unresolved**. No numeric prescription or rim value was changed. The post-recording sweep
+retains RI only at 0.0/3.0/5.9/8.9 degrees; later fields still have no RI. The coordinator should queue the lens
+in Section G of the SD audit queue for priority/family-publication or original-design evidence and retain the
+RI refusal. Queue files and shared code are outside this assignment's edit scope.

@@ -36,6 +36,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The asph entry uses the spherical baseline (K=0, all A=0).     ║
  * ║    The surface label carries the "A" suffix to document the       ║
  * ║    aspherical designation.                                         ║
+ * ║    2026-10-27: all four PDF pages checked, including both         ║
+ * ║    embodiments and Claims 1–3: no asphere definition or plots.     ║
+ * ║    This incomplete spherical model fails Rimmer localization      ║
+ * ║    from the sampled 18° field at f/5.6; numeric data retained.     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 

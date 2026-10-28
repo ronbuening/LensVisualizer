@@ -197,7 +197,20 @@ npm run audit:surface -- ./src/lens-data/<maker>/<Lens>.data.ts --sd <label>=<mm
 `--scan` prints sag, departure and rim slope against height for one surface. **Aspheric polynomials are only valid
 over the aperture the designer fitted them on and diverge outside it.** The scan marks where the slope changes sign
 (`<-- TURNS OVER`); the surface is not physical past that height, no matter what the drawing shows. Cap the `sd`
-short of it — losing a millimetre here is correct, not a compromise.
+short of it, rounded down at the file's precision — losing a millimetre here is correct, not a compromise.
+
+Every slope sign change is a turnover, including one on a nearly flat surface whose slope stays within a degree or
+two of zero on both sides: the scan cannot tell a shallow designed sag extremum from the start of divergence. Do not
+cap, and keep the authored rim, when the source itself uses the zone past the turnover:
+
+- the stated on-axis beam reaches the surface past it (`npm run audit:aperture -- <file> --raise` shows the height);
+- the chief ray to the source's printed image height crosses the surface past it, or the cap would fall under the
+  image-circle floor (Step 1); or
+- the figure draws the reversed zone as part of the element, a designed inflection such as the gull-wing rear
+  aspheres of phone lenses.
+
+Log the turnover height and the ray height or figure reading that overrules it. If rays crossing that zone fail to
+trace or to localize, record it in the audit log as a model limitation rather than capping the rim.
 
 `--sd` runs the real validator with your values substituted, without editing the file. Common rejections:
 
