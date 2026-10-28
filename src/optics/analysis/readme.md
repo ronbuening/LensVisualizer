@@ -83,7 +83,7 @@ flowchart LR
 | [mtf/](mtf/readme.md) | src/optics/analysis/mtf source folder |
 | [pupils/](pupils/readme.md) | src/optics/analysis/pupils source folder |
 | [summary/](summary/readme.md) | src/optics/analysis/summary source folder |
-| [vignetting/](vignetting/readme.md) | src/optics/analysis/vignetting source folder |
+| [vignetting/](vignetting/readme.md) | computes OpticStudio's vignetting (the share of a stop lattice's rays transmitted, geometric) and relative illumination (Rimmer's projected solid angle of the exit pupil in direction-cosine space, with transmission, relative to the axis) |
 
 ## Files
 

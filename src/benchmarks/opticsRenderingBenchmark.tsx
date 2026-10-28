@@ -1224,7 +1224,7 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   if (!L.isFoldedOptics) {
     output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve().samples).length;
     output.distortionGridLines = completed("distortionGrid", analysisContext.computeDistortionFieldGrid()).lines.length;
-    output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).length;
+    output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).samples.length;
   } else {
     output.foldedSequentialAnalysisSkipped = true;
   }
@@ -1407,7 +1407,7 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
 
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobs.computeVignettingCurve(
+  const curve = analysisJobs.computeVignettingCurve(
     createAnalysisRequest({
       preparedState: snapshot.preparedState,
       dynamicEFL: snapshot.dynamicEFL,
@@ -1417,8 +1417,8 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
       sampling: snapshot.analysisSampling,
     }),
   );
-  completed("vignetting", samples);
-  return { vignettingSamples: samples.length };
+  completed("vignetting", curve);
+  return { vignettingSamples: curve.samples.length };
 }
 
 /** Measures entrance/exit pupil aberration profile generation. */

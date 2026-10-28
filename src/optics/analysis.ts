@@ -211,8 +211,33 @@ export { computeOpticalSummary } from "./analysis/summary/summary.js";
 export type { OpticalSummaryMetrics } from "./analysis/summary/summary.js";
 export { computeWorkingFNumber } from "./analysis/summary/fNumbers.js";
 export type { WorkingFNumberResult } from "./analysis/summary/fNumbers.js";
-export { computeVignettingCurve } from "./analysis/vignetting/vignetting.js";
-export type { VignettingSample } from "./analysis/vignetting/vignetting.js";
+export {
+  BEAM_GRID_CELLS,
+  EXIT_PUPIL_PROBE_FRACTION,
+  MIN_BEAM_GRID_CELLS,
+  RIMMER_MAX_REFERRED_DEVIATION,
+  RIMMER_MAX_UNRESOLVED_SHARE,
+  RIMMER_MIN_CELL_AREA_RATIO,
+  VIGNETTING_MAX_UNAIMED_SHARE,
+  computeVignettingCurve,
+  computeVignettingField,
+  exitPupilZ,
+  referenceSphere,
+  referredDirection,
+  vignettingCellsAcross,
+  vignettingStopLattice,
+} from "./analysis/vignetting/vignetting.js";
+export type {
+  ReferenceSphere,
+  RelativeIlluminationUnavailableReason,
+  VignettingCellResult,
+  VignettingCurve,
+  VignettingCurveUnavailableReason,
+  VignettingFieldResult,
+  VignettingFieldUnavailableReason,
+  VignettingLatticeCell,
+  VignettingSample,
+} from "./analysis/vignetting/vignetting.js";
 export { computeCardinalElementsFromState } from "./first-order/cardinals.js";
 export type { CardinalDistance, CardinalElements, CardinalPoint } from "./first-order/cardinals.js";
 

@@ -71,9 +71,10 @@ vi.mock("../../../../../src/optics/analysis/distortion/distortion.js", async (im
   };
 });
 
-vi.mock("../../../../../src/optics/analysis/vignetting/vignetting.js", () => ({
-  computeVignettingCurve: mockComputeVignettingCurve,
-}));
+vi.mock("../../../../../src/optics/analysis/vignetting/vignetting.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/vignetting/vignetting.js")>();
+  return { ...actual, computeVignettingCurve: mockComputeVignettingCurve };
+});
 
 vi.mock("../../../../../src/optics/analysis/pupils/pupilAberration.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/pupilAberration.js")>();
@@ -141,10 +142,24 @@ const distortionFieldGrid = {
   referenceLabel: "Rectilinear",
 };
 
-const vignettingSamples = [
-  { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
-  { fieldAngleDeg: 12, geometricTransmission: 0.82, relativeIllumination: 0.75 },
-];
+const vignettingSample = (fieldAngleDeg: number, unvignettedFraction: number, relativeIllumination: number) => ({
+  fieldAngleDeg,
+  fieldFraction: fieldAngleDeg / 12,
+  unvignettedFraction,
+  relativeIllumination,
+  sampleCount: 3216,
+  transmittedCount: Math.round(unvignettedFraction * 3216),
+  blockedCount: 0,
+  unaimedCount: 0,
+  unavailableReason: null,
+  relativeIlluminationReason: null,
+});
+const vignettingSamples = {
+  available: true,
+  reason: null,
+  cellsAcross: 64,
+  samples: [vignettingSample(0, 1, 1), vignettingSample(12, 0.82, 0.75)],
+};
 
 const chromaticAnalysis = {
   longitudinalFocus: {
