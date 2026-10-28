@@ -454,6 +454,20 @@ describe("prepareAimedPupilLaunch", () => {
     expect(afterMinus).toEqual(alone);
   });
 
+  it("gives a mirror image the same ray whether or not its partner is solved in the same call", () => {
+    // Within one call a −px sample reuses its +px partner's canonical solve; the result is the solve it would make alone.
+    const L = build(CATALOG_CONSTRUCTION_FIXTURES["sony-fe-20mm-f18-g"]);
+    const request = analysisRequestAt(L, apertureAt(L, 0, 0));
+    const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, 0.7)!;
+    const [plus, minus] = [
+      { xFraction: 0.43, yFraction: -0.61 },
+      { xFraction: -0.43, yFraction: -0.61 },
+    ];
+    const alone = prepareAimedPupilLaunch(request, [minus], geometry)!.rays[0];
+    const paired = prepareAimedPupilLaunch(request, [plus, minus], geometry)!.rays[1];
+    expect(paired).toEqual({ ...alone, index: 1, weight: 0.5 });
+  });
+
   it("solves each sample independently of the others requested", () => {
     const L = build(CATALOG_CONSTRUCTION_FIXTURES["sony-fe-20mm-f18-g"]);
     const request = analysisRequestAt(L, apertureAt(L, 0, 0));

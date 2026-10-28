@@ -342,6 +342,17 @@ export function prepareAimedPupilLaunchForState(
     "trace-failed": 0,
   };
   const defaultWeight = samples.length > 0 ? 1 / samples.length : 1;
+  // A mirror image's canonical target is its partner's: solved once per call, the same bits as solving it again.
+  const solves = new Map<string, SampleSolve>();
+  const aimCanonical = (canonical: Vec2, pinA: boolean): SampleSolve => {
+    const key = `${keyNumber(canonical[0])},${keyNumber(canonical[1])},${pinA}`;
+    let solve = solves.get(key);
+    if (!solve) {
+      solve = aimSample(model, canonical, pinA);
+      solves.set(key, solve);
+    }
+    return solve;
+  };
   const toRay = (index: number, xFraction: number, yFraction: number, weight: number): AimedPupilRay => {
     const target = frame.stopTarget(xFraction, yFraction, R);
     // Symmetric fields solve one canonical sample and map it back exactly, so mirror images agree to the bit.
@@ -350,7 +361,7 @@ export function prepareAimedPupilLaunchForState(
     else if (frame.axial && xFraction === 0 && yFraction < 0) symmetry = "negate-y";
     const canonical: Vec2 =
       symmetry === "mirror-x" ? [-target[0], target[1]] : symmetry === "negate-y" ? [target[0], -target[1]] : target;
-    const solved = aimSample(model, canonical, frame.meridional && xFraction === 0);
+    const solved = aimCanonical(canonical, frame.meridional && xFraction === 0);
     const solve = mapSolve(solved, symmetry, model.chief);
     const base = {
       index,
