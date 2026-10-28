@@ -13,13 +13,19 @@
  * launched any other way cannot be traced here, and the cuts are refused rather than passed.
  *
  * The search screens, then measures. The screen steps zoom and focus by 0.05, through every station and keyframe, and
- * the field by 3° or less, bisecting each beam's edge to 0.005 mm in twelve directions from its chief ray. A beam's
- * reach peaks sharply where the aperture that sets its meridional edge changes, as vignetting sets in, so wherever that
- * aperture differs between neighbouring fields the field is bisected to the change and screened there too. At each
- * cut's highest peaks the beam is then measured in full: 360 samples aimed at the real stop's rim
- * (`prepareAimedPupilLaunchForState`), each bisected back to the beam's edge where another aperture vignettes it, the
- * furthest refined along the rim and bisected to 1e-6 mm. The furthest point of a beam lies on its edge, since a ray's
- * height at a surface varies smoothly and monotonically across the pupil.
+ * the field by 3° or less, bisecting each beam's edge to 0.005 mm in twelve directions from a ray inside it: the chief
+ * estimate, or else the ray nearest the middle of those aimed across a polar grid on the stop. A beam's reach peaks
+ * sharply where it vanishes, its last rays reaching furthest, and where the aperture that sets its meridional edge
+ * changes, as vignetting sets in. So between a field with a beam and one without, the field is bisected to where the
+ * beam vanishes, each field seeded from the beam's meridional chord extrapolated from the fields before; and wherever
+ * the aperture setting a meridional edge differs between neighbouring fields, the field is bisected to the change and
+ * screened there too. At each cut's highest peak the beam is then measured in full: 360 samples aimed at the real
+ * stop's rim (`prepareAimedPupilLaunchForState`), each bisected back to the beam's edge where another aperture
+ * vignettes it, the furthest refined along the rim and bisected to 1e-6 mm. Near its limit, a cut's three highest
+ * peaks are measured, and around each the fields either side are scanned at a thirtieth of the spacing on a screen
+ * whose furthest direction is refined, seeded field to field, with the best one refined on the full measurement. The
+ * furthest point of a beam lies on its edge, since a ray's height at a surface varies smoothly and monotonically
+ * across the pupil.
  */
 
 import { prepareRuntimeState } from "../../state/runtimeAdapters.js";
@@ -65,12 +71,17 @@ const CHANGE_BISECTIONS = 14;
 const CHANGE_TOLERANCE_MM = 0.05;
 /** Changes of aperture followed along one edge inside one interval between fields. */
 const MAX_CHANGES = 4;
+/** Bisections of the field between a field with a beam and one without, following the beam to where it vanishes. */
+const VANISH_BISECTIONS = 20;
 /** A cut is near its limit once its screened reach comes within its margin plus this window: mm, and a radius share. */
 const NEAR_WINDOW_MM = 0.5;
 const NEAR_WINDOW_FRACTION = 0.02;
 /** Peaks per cut measured in full when near its limit; a cut clear of it is measured at its highest peak only. */
 const PEAKS_PER_CUT = 3;
-/** Near its limit, golden-section steps refining a peak's field on the screen over half the field spacing each side. */
+/** Near its limit: fields scanned per field spacing either side of a peak, and screen steps refining its direction. */
+const FINE_FIELDS = 30;
+const DIRECTION_REFINEMENTS = 10;
+/** Near its limit: golden-section steps refining the best scanned field on the full measurement. */
 const FIELD_REFINEMENTS = 12;
 /** Full measurement: samples around the stop's rim (the half with x ≥ 0 on a mirror-symmetric lens). */
 const RIM_SAMPLES = 360;
@@ -79,8 +90,9 @@ const RIM_TOLERANCE_MM = 0.01;
 const EDGE_TOLERANCE_MM = 1e-6;
 /** Golden-section steps refining the furthest rim sample between its neighbours. */
 const RIM_REFINEMENTS = 16;
-/** Meridional steps of the search for a ray through the beam when the chief ray is vignetted. */
-const SEED_STEPS = 40;
+/** Seed search: shares of the stop radius and directions around it of the rays aimed across the stop. */
+const SEED_RADII = [0.25, 0.5, 0.75, 0.9, 1];
+const SEED_DIRECTIONS = 24;
 const MAX_BISECTIONS = 60;
 const GOLDEN = (Math.sqrt(5) - 1) / 2;
 const SAME_CONTROL = 1e-9;
@@ -162,10 +174,27 @@ interface Screened {
   limits: number[];
 }
 
-/** A cut's screened peak at one state: its furthest reach, the field it reaches it at, and the field spacing there. */
+/** A screened field: null where no beam reaches the image, undefined where the field cannot be launched. */
+type Row = Screened | null | undefined;
+
+/** A field with a beam, and its screen. */
+interface LitField {
+  deg: number;
+  row: Screened;
+}
+
+/** How to screen a field: a chief-ray estimate, edge distances to bracket first, and a cut to refine the screen for. */
+interface Search {
+  chief?: Vec2;
+  hints?: readonly number[];
+  refine?: number;
+}
+
+/** A cut's screened peak at one state: its furthest reach, the field and seed ray it reaches it at, the field spacing. */
 interface Peak {
   reach: number;
   fieldDeg: number;
+  seed: Vec2 | null;
   spacing: number;
 }
 
@@ -203,17 +232,50 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamCheck {
         cuts[n].at = { ...point };
       }
     });
-  /* Screen one field, recording every ray it finds; null where no beam reaches the image or the field cannot launch. */
-  const screen = (bs: BeamState, fieldDeg: number, hints?: readonly number[], chief?: Vec2): Screened | null => {
+  /* Screen one field, recording every ray it finds. */
+  const screen = (bs: BeamState, fieldDeg: number, search: Search = {}): Row => {
     const point = { zoomT: bs.zoomT, focusT: bs.focusT, fieldDeg };
-    const launch = fieldLaunch(U, bs, fieldDeg, chief);
+    const launch = fieldLaunch(U, bs, fieldDeg, search.chief);
     if (typeof launch === "string") {
       untraced.push({ ...point, reason: launch });
-      return null;
+      return undefined;
     }
-    const screened = screenBeam(bs, launch, hints);
+    const screened = screenBeam(bs, launch, search);
     if (screened) record(screened.reach, point);
     return screened;
+  };
+  /* Bisect the field from the trail's last lit field toward a field without a beam, to where the beam vanishes,
+     screening each lit field on the way; each is seeded from the beam's meridional chord at the fields before. */
+  const followVanish = (
+    bs: BeamState,
+    trail: LitField[],
+    darkDeg: number,
+    onLit: (lit: LitField) => void,
+    refine?: number,
+  ) => {
+    let dark = darkDeg;
+    for (let i = 0; i < VANISH_BISECTIONS; i++) {
+      const last = trail[trail.length - 1];
+      const deg = (last.deg + dark) / 2;
+      const row = screen(bs, deg, { chief: predictSeed(bs, trail, deg), hints: last.row.distances, refine });
+      if (row === undefined) return;
+      if (row === null) dark = deg;
+      else {
+        trail.push({ deg, row });
+        onLit({ deg, row });
+      }
+    }
+  };
+  /* Measure one field in full for cut `n`, seeded from guesses; returns the cut's reach there. */
+  const measure = (bs: BeamState, n: number, fieldDeg: number, guesses: readonly Vec2[]) => {
+    const launch = fieldLaunch(U, bs, fieldDeg);
+    if (typeof launch === "string") return 0;
+    let reach = 0;
+    for (const ray of measureBeam(bs, launch, n, guesses)) {
+      record(ray.radii, { zoomT: bs.zoomT, focusT: bs.focusT, fieldDeg });
+      reach = Math.max(reach, ray.radii[n]);
+    }
+    return reach;
   };
 
   const nearLimit = (n: number, reach: number) =>
@@ -227,27 +289,38 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamCheck {
   const focuses =
     keyframes.length > 1 ? controlValues(Math.min(...keyframes), Math.max(...keyframes), keyframes) : keyframes;
   const states = new Map<string, BeamState>();
-  const peaks: Peak[][][] = cuts.map(() => zooms.map(() => focuses.map(() => ({ reach: 0, fieldDeg: 0, spacing: 0 }))));
+  const peaks: Peak[][][] = cuts.map(() =>
+    zooms.map(() => focuses.map(() => ({ reach: 0, fieldDeg: 0, seed: null, spacing: 0 }))),
+  );
   zooms.forEach((zoomT, zi) =>
     focuses.forEach((focusT, fi) => {
       const bs = beamState(U, zoomT, focusT, inferred);
       states.set(`${zi}|${fi}`, bs);
       const fields = fieldSamples(bs.halfFieldDeg);
       const spacing = fields.length > 1 ? fields[1] : 0;
-      const update = (screened: Screened | null, fieldDeg: number) =>
-        screened?.reach.forEach((radius, n) => {
+      const update = ({ deg, row }: LitField) =>
+        row.reach.forEach((radius, n) => {
           const peak = peaks[n][zi][fi];
-          if (radius > peak.reach) Object.assign(peak, { reach: radius, fieldDeg, spacing });
+          if (radius > peak.reach) Object.assign(peak, { reach: radius, fieldDeg: deg, seed: row.seed, spacing });
         });
-      const rows: (Screened | null)[] = [];
+      const rows: Row[] = [];
       fields.forEach((fieldDeg, k) => {
         /* Fields are evenly spaced, so the chief launch extrapolates from the two before; it need only lie in the beam. */
         const [a, b] = [rows[k - 2]?.seed, rows[k - 1]?.seed];
         const chief: Vec2 | undefined = a && b ? [2 * b[0] - a[0], 2 * b[1] - a[1]] : undefined;
-        const screened = screen(bs, fieldDeg, rows[k - 1]?.distances, chief);
+        const screened = screen(bs, fieldDeg, { chief, hints: rows[k - 1]?.distances });
         rows.push(screened);
-        update(screened, fieldDeg);
+        if (screened) update({ deg: fieldDeg, row: screened });
       });
+      /* A beam's reach can peak where it vanishes between two fields: follow it from the lit field to that point. */
+      const litAt = (k: number): LitField[] => {
+        const row = rows[k];
+        return row ? [{ deg: fields[k], row }] : [];
+      };
+      for (let k = 0; k + 1 < fields.length; k++) {
+        if (rows[k] && rows[k + 1] === null) followVanish(bs, [...litAt(k - 1), ...litAt(k)], fields[k + 1], update);
+        if (rows[k] === null && rows[k + 1]) followVanish(bs, [...litAt(k + 2), ...litAt(k + 1)], fields[k], update);
+      }
       /* Where another aperture takes over a meridional edge between two fields, the reach can peak sharply between
          them: screen the fields either side of each change. */
       for (let k = 0; k + 1 < fields.length; k++) {
@@ -266,7 +339,16 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamCheck {
           let from = edgeAt(low);
           for (let c = 0; c < MAX_CHANGES && from.limit !== to.limit; c++) {
             const change = fieldOfChange(U, bs, fromDeg, fields[k + 1], from, to, direction);
-            update(screen(bs, change.low, low.distances), change.low);
+            const chief = predictSeed(
+              bs,
+              [
+                { deg: fields[k], row: low },
+                { deg: fields[k + 1], row: high },
+              ],
+              change.low,
+            );
+            const row = screen(bs, change.low, { chief, hints: low.distances });
+            if (row) update({ deg: change.low, row });
             if (change.high >= fields[k + 1]) break;
             fromDeg = change.high;
             from = change.after;
@@ -278,31 +360,56 @@ export function rimCutBeamReach(L: RuntimeLens): RimCutBeamCheck {
   /* Every field measured from here lies between fields the screen launched, so its untraced fields are the count. */
   const untracedOnGrid = untraced.length;
 
-  /* Measure each cut's highest peaks in full; near its limit, three of them, each also at its field refined on the
-     screen. The screen can read a vignetted beam short, so the refined field is measured besides the peak's own. */
+  /* Measure each cut's highest peaks in full. Near its limit, three of them, and around each the fields either side,
+     scanned on a screen refined for the cut and seeded field to field (a beam that vanishes is followed to where it
+     does), with the best scanned field refined on the full measurement. */
   cuts.forEach((_, n) => {
     const top = highestPeaks(peaks[n], PEAKS_PER_CUT);
     const near = top.length > 0 && nearLimit(n, peaks[n][top[0].zi][top[0].fi].reach);
     for (const { zi, fi } of near ? top : top.slice(0, 1)) {
       const peak = peaks[n][zi][fi];
       const bs = states.get(`${zi}|${fi}`)!;
-      const measure = (fieldDeg: number) => {
-        const launch = fieldLaunch(U, bs, fieldDeg);
-        if (typeof launch === "string") return;
-        for (const ray of measureBeam(bs, launch, n))
-          record(ray.radii, { zoomT: bs.zoomT, focusT: bs.focusT, fieldDeg });
-      };
-      measure(peak.fieldDeg);
+      measure(bs, n, peak.fieldDeg, peak.seed ? [peak.seed] : []);
       if (!near || peak.spacing === 0) continue;
-      const refined = goldenMax(
-        Math.max(0, peak.fieldDeg - peak.spacing / 2),
-        Math.min(bs.halfFieldDeg, peak.fieldDeg + peak.spacing / 2),
-        peak.fieldDeg,
-        peak.reach,
-        (field) => screen(bs, field)?.reach[n] ?? 0,
+      const start = screen(bs, peak.fieldDeg, { chief: peak.seed ?? undefined, refine: n });
+      if (!start) continue;
+      const step = peak.spacing / FINE_FIELDS;
+      const low = Math.max(0, peak.fieldDeg - peak.spacing);
+      const high = Math.min(bs.halfFieldDeg, peak.fieldDeg + peak.spacing);
+      const lit: LitField[] = [{ deg: peak.fieldDeg, row: start }];
+      for (const sign of [1, -1]) {
+        const trail: LitField[] = [lit[0]];
+        for (let k = 1; ; k++) {
+          const deg = peak.fieldDeg + sign * k * step;
+          if (deg < low - SAME_CONTROL || deg > high + SAME_CONTROL) break;
+          const last = trail[trail.length - 1];
+          const row = screen(bs, deg, { chief: predictSeed(bs, trail, deg), hints: last.row.distances, refine: n });
+          if (row === undefined) break;
+          if (row === null) {
+            followVanish(bs, trail, deg, (field) => lit.push(field), n);
+            break;
+          }
+          trail.push({ deg, row });
+          lit.push({ deg, row });
+        }
+      }
+      const best = lit.reduce((a, b) => (b.row.reach[n] > a.row.reach[n] ? b : a));
+      const guesses = (deg: number): Vec2[] => {
+        const nearest = [...lit]
+          .sort((a, b) => Math.abs(a.deg - deg) - Math.abs(b.deg - deg))
+          .slice(0, 2)
+          .reverse();
+        return [predictSeed(bs, nearest, deg), nearest[nearest.length - 1].row.seed];
+      };
+      const at = (deg: number) => measure(bs, n, deg, guesses(deg));
+      goldenMax(
+        Math.max(low, best.deg - step),
+        Math.min(high, best.deg + step),
+        best.deg,
+        at(best.deg),
+        at,
         FIELD_REFINEMENTS,
-      ).x;
-      if (refined !== peak.fieldDeg) measure(refined);
+      );
     }
   });
   return { cuts, untraced: untraced.slice(0, untracedOnGrid) };
@@ -433,22 +540,42 @@ function meridionalDirections(bs: BeamState): number[] {
   return screenDirections(bs).flatMap((deg, k) => (Math.abs(Math.sin((deg * Math.PI) / 180)) === 1 ? [k] : []));
 }
 
-/** Each cut's furthest radius over one field's beam, bisecting its edge in a few directions from the chief ray. */
-function screenBeam(bs: BeamState, launch: FieldLaunch, hints?: readonly number[]): Screened | null {
+/**
+ * Each cut's furthest radius over one field's beam, bisecting its edge in a few directions from a ray inside it; for a
+ * cut to refine, the direction of its furthest edge is then refined between its neighbours.
+ */
+function screenBeam(bs: BeamState, launch: FieldLaunch, search: Search = {}): Screened | null {
   const at = (p: Vec2) => bs.trace(launch.ray(p[0], p[1]));
   const seed = findSeed(bs, launch, at);
   if (!seed) return null;
   const reach = [...seed.radii];
-  const distances: number[] = [];
-  const limits: number[] = [];
-  screenDirections(bs).forEach((deg, k) => {
-    const edge = edgeAlong(bs, at, seed, deg, hints?.[k]);
-    edge.ray.radii.forEach((radius, n) => {
+  const take = (ray: BeamRay) =>
+    ray.radii.forEach((radius, n) => {
       reach[n] = Math.max(reach[n], radius);
     });
+  const directions = screenDirections(bs);
+  const distances: number[] = [];
+  const limits: number[] = [];
+  const radii: number[][] = [];
+  directions.forEach((deg, k) => {
+    const edge = edgeAlong(bs, at, seed, deg, search.hints?.[k]);
+    take(edge.ray);
     distances.push(Math.hypot(edge.ray.launch[0] - seed.launch[0], edge.ray.launch[1] - seed.launch[1]));
     limits.push(edge.limit);
+    radii.push(edge.ray.radii);
   });
+  const n = search.refine;
+  if (n !== undefined) {
+    const best = radii.reduce((k, ray, i) => (ray[n] > radii[k][n] ? i : k), 0);
+    const step = 360 / SCREEN_DIRECTIONS;
+    const radiusAt = (deg: number) => {
+      const edge = edgeAlong(bs, at, seed, deg, distances[best]);
+      take(edge.ray);
+      return edge.ray.radii[n];
+    };
+    const deg = directions[best];
+    goldenMax(deg - step, deg + step, deg, radii[best][n], radiusAt, DIRECTION_REFINEMENTS);
+  }
   return { reach, seed: seed.launch, distances, limits };
 }
 
@@ -533,9 +660,11 @@ function fieldOfChange(
  * Measure one field's beam in full: samples aimed at the stop's rim, each bisected back to the beam's edge where the
  * ray to it is stopped, and the cut `refine`'s furthest sample refined along the rim.
  *
+ * @param guesses - launches to try for a ray inside the beam after the aimed chief ray
+ *
  * @returns the edge rays found
  */
-function measureBeam(bs: BeamState, launch: FieldLaunch, refine: number): BeamRay[] {
+function measureBeam(bs: BeamState, launch: FieldLaunch, refine: number, guesses: readonly Vec2[] = []): BeamRay[] {
   const aperture = { stopSemiDiameterMm: bs.stopSd, launchScaleMm: bs.launchScale };
   const aim = (anglesDeg: readonly number[]) =>
     prepareAimedPupilLaunchForState(
@@ -555,10 +684,7 @@ function measureBeam(bs: BeamState, launch: FieldLaunch, refine: number): BeamRa
   const ring = aim(angles);
   if (!ring) return [];
   const at = (p: Vec2) => bs.trace(launch.ray(p[0], p[1]));
-  const chiefTraced = ring.chief.status === "aimed" ? at(ring.chief.launch) : -1;
-  const seed: BeamRay | null = Array.isArray(chiefTraced)
-    ? { launch: ring.chief.launch, radii: chiefTraced }
-    : findSeed(bs, launch, at);
+  const seed = findSeed(bs, launch, at, ring.chief.status === "aimed" ? [ring.chief.launch, ...guesses] : guesses);
   if (!seed) return [];
   const edge = (ray: AimedPupilRay, toleranceMm: number): BeamRay => {
     const traced = at(ray.launch);
@@ -582,18 +708,73 @@ function measureBeam(bs: BeamState, launch: FieldLaunch, refine: number): BeamRa
   return found;
 }
 
-/** A ray of the beam to search from: the chief estimate, or the middle of the beam's meridional span through it. */
-function findSeed(bs: BeamState, launch: FieldLaunch, at: (p: Vec2) => Traced): BeamRay | null {
-  const traced = at(launch.chief);
-  if (Array.isArray(traced)) return { launch: launch.chief, radii: traced };
-  const span = 4 * bs.launchScale;
-  const inside: BeamRay[] = [];
-  for (let k = 0; k <= SEED_STEPS; k++) {
-    const p: Vec2 = [launch.chief[0], launch.chief[1] - span / 2 + (span * k) / SEED_STEPS];
-    const radii = at(p);
-    if (Array.isArray(radii)) inside.push({ launch: p, radii });
+/**
+ * A ray of the beam to search from: the chief estimate or a guess when one reaches the image; else, of the rays aimed
+ * across a polar grid on the stop, the one nearest their middle, moved to the middle of the beam's meridional chord
+ * through it. A beam is always found where it covers a grid cell; a thinner one is followed from a field before it.
+ */
+function findSeed(
+  bs: BeamState,
+  launch: FieldLaunch,
+  at: (p: Vec2) => Traced,
+  guesses: readonly Vec2[] = [],
+): BeamRay | null {
+  for (const p of [launch.chief, ...guesses]) {
+    const traced = at(p);
+    if (Array.isArray(traced)) return { launch: p, radii: traced };
   }
-  return inside.length > 0 ? inside[Math.floor(inside.length / 2)] : null;
+  const step = 360 / SEED_DIRECTIONS;
+  const angles = bs.symmetric
+    ? Array.from({ length: SEED_DIRECTIONS / 2 + 1 }, (_, k) => -90 + k * step)
+    : Array.from({ length: SEED_DIRECTIONS }, (_, k) => k * step);
+  const samples = SEED_RADII.flatMap((share) =>
+    angles.map((deg) => ({
+      xFraction: share * Math.cos((deg * Math.PI) / 180),
+      yFraction: share * Math.sin((deg * Math.PI) / 180),
+    })),
+  );
+  const aimed = prepareAimedPupilLaunchForState(
+    bs.state,
+    { stopSemiDiameterMm: bs.stopSd, launchScaleMm: bs.launchScale },
+    samples,
+    launch.geometry,
+  );
+  const inside: BeamRay[] = [];
+  for (const ray of aimed?.rays ?? []) {
+    if (ray.status === "unaimed") continue;
+    const traced = at(ray.launch);
+    if (Array.isArray(traced)) inside.push({ launch: ray.launch, radii: traced });
+  }
+  if (inside.length === 0) return null;
+  const mean = inside.reduce<Vec2>(
+    (sum, ray) => [sum[0] + ray.launch[0] / inside.length, sum[1] + ray.launch[1] / inside.length],
+    [0, 0],
+  );
+  const distance = (ray: BeamRay) => Math.hypot(ray.launch[0] - mean[0], ray.launch[1] - mean[1]);
+  const nearest = inside.reduce((a, b) => (distance(b) < distance(a) ? b : a));
+  const down = edgeAlong(bs, at, nearest, -90, undefined).ray.launch[1];
+  const up = edgeAlong(bs, at, nearest, 90, undefined).ray.launch[1];
+  const middle: Vec2 = [nearest.launch[0], (down + up) / 2];
+  const traced = at(middle);
+  return Array.isArray(traced) ? { launch: middle, radii: traced } : nearest;
+}
+
+/** The beam's meridional chord at one field: its seed ray's x and the lowest and highest y along it. */
+function chordOf(bs: BeamState, row: Screened): { x: number; low: number; high: number } {
+  const directions = screenDirections(bs);
+  const up = directions.indexOf(90);
+  const down = directions.findIndex((deg) => deg === -90 || deg === 270);
+  return { x: row.seed[0], low: row.seed[1] - row.distances[down], high: row.seed[1] + row.distances[up] };
+}
+
+/** The middle of the beam's meridional chord at a field, extrapolated from the trail's last two lit fields. */
+function predictSeed(bs: BeamState, trail: readonly LitField[], deg: number): Vec2 {
+  const chords = trail.slice(-2).map((field) => ({ deg: field.deg, ...chordOf(bs, field.row) }));
+  const [a, b] = chords.length === 2 && chords[1].deg !== chords[0].deg ? chords : [chords[chords.length - 1]];
+  if (!b) return [a.x, (a.low + a.high) / 2];
+  const t = (deg - a.deg) / (b.deg - a.deg);
+  const lerp = (u: number, v: number) => u + t * (v - u);
+  return [lerp(a.x, b.x), (lerp(a.low, b.low) + lerp(a.high, b.high)) / 2];
 }
 
 /** The last ray of the beam on the segment from a ray inside it toward a stopped launch, to a tolerance in mm. */

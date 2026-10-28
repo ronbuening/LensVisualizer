@@ -696,7 +696,7 @@ there out to `sd`.
   and focus (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
   `npm run audit:surface`). The beams are traced through the lens with its inferred cuts removed and over that lens's
   field range, with zoom and focus stepped by 0.05 between stations and keyframes, collimated or from the source's
-  finite object point where a keyframe has a conjugate. A lens with a field that launches any other way (a fisheye, a
+  finite object point where a keyframe has a conjugate, and each beam is followed to the field where it vanishes. A lens with a field that launches any other way (a fisheye, a
   field past 89°) cannot carry an inferred cut. A depth the source states names it in `rimCutDepthSource`; that cut
   may cut into the beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
 - **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it
