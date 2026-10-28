@@ -264,8 +264,8 @@ function fieldAtGrid(
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
     sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
     unresolvedWeight += bundle.unresolvedInBeamWeight;
-    // No ray at all reaches the image at this grid; a finer one may still find a thin beam.
-    if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0)
+    // No ray at all reaches the image at this grid, at any wavelength so far; a finer one may still find a thin beam.
+    if (field.validRays === 0 && bundle.unaimed + bundle.failed === 0)
       return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
     // Too few rays means this grid is too coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may
     // resolve it.

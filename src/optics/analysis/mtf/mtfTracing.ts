@@ -448,7 +448,7 @@ export function traceMtfStopBundle(
  * @param state - prepared optical state
  * @param options - MTF request
  * @param support - support record
- * @param launch - field launch, supplying a finite object point
+ * @param launch - field launch, supplying a finite object point and the chief that stands in for an unaimed one
  * @param lattice - aimed stop lattice of this wavelength
  * @param line - traced spectral line
  * @param imagePlaneZ - axial image-plane position in mm
@@ -460,7 +460,7 @@ export function traceMtfLattice(
   state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
-  launch: Pick<MtfFieldLaunch, "objectPoint">,
+  launch: MtfFieldLaunch,
   lattice: AimedStopLattice,
   line: MtfSpectralLine,
   imagePlaneZ = state.imgZ,
@@ -473,14 +473,14 @@ export function traceMtfLattice(
   };
   const traceRay = prepareEngineTrace(state, traceOptions);
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even when an aperture clips
-  // it, and record the clipping separately.
-  const chief = lattice.chief.status === "aimed" ? lattice.chief : null;
-  const chiefTrace =
-    chief && traceEngineRay(state, chief, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
+  // it, and record the clipping separately. Where this wavelength's aim cannot reach the stop centre, the field's own
+  // chief ray, the one that places its image height, stands in.
+  const chief: Ray3 = lattice.chief.status === "aimed" ? lattice.chief : mtfLaunchRay(launch, 0, 0);
+  const chiefTrace = traceEngineRay(state, chief, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
-  const chiefPoint = (chiefTrace && mtfImagePoint(state, chiefTrace, imagePlaneZ)) ?? extras.reference;
+  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
-  const chiefClipped = !chief || traceRayClassification(traceRay(chief), state, lattice.clipSemiDiameterMm) !== "valid";
+  const chiefClipped = traceRayClassification(traceRay(chief), state, lattice.clipSemiDiameterMm) !== "valid";
   const n = lattice.cellsAcross;
   // A meridional field of an x-symmetric lens images each half pupil as the mirror of the other; an even lattice has no
   // cell on the meridian.
