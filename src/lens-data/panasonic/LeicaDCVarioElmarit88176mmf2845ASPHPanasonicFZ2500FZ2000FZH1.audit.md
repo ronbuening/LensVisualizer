@@ -142,8 +142,8 @@ The printed denominator is sqrt(1 - (1 + κ)(h/r)^2), and An multiplies h^n. Uni
 No rim changed. 25A's verbatim polynomial first turns over at 4.557307 mm, inside its 6.1 mm rim, and a cap at
 4.5 mm (with 24A square) was tried: it keeps every stated axial beam, but it stops the wide-end chief ray at 33.41°
 (about H = 5.42 mm), short of Table 3A's 41.1636° / H = 6.8100 mm, and the wide curve then withholds RI at
-16.7-30.6° as isolated cells. A rim that clips the source's own field cannot be applied (the SD procedure's "When
-to stop" rule), so 24A/25A keep 6.2/6.1 mm. 10A and 24A turn over only beyond their rims (about 13.13 and 7.03 mm);
+16.7-30.6° as isolated cells. A cap that clips the chief ray to the source's printed image height is not applied
+(SD procedure Step 6), so 24A/25A keep 6.2/6.1 mm. 10A and 24A turn over only beyond their rims (about 13.13 and 7.03 mm);
 9A, 14A, 15A, 26A and 30A have no turnover. At 14A's 9.9 mm rim the slope is 60.25°, below the 64.2° limit, and
 the conic domain ends near 10.40 mm.
 

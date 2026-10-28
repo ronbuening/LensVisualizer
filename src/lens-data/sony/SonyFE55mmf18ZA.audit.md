@@ -57,9 +57,9 @@ and Fig. 1 optical rims at 600 dpi. Digit decisions use these images, not OCR.
 
 | Element / surface | Field | Before | After | Justification |
 |---|---|---|---|---|
-| L32 / 12 | `sd` | 13.5 mm | 14.5 mm | Preserve Fig. 1's square rim with face 13. |
-| L32 / 13 | `sd` | 13.5 mm | 14.5 mm | Source-field chief ray at 22.15° needs h ≈ 13.94 mm; floor + 0.5 mm (SD procedure Step 1), consistent with Fig. 1's L32 at about 14.5 mm on the lens's figure scale. |
-| 8A | `sd` | 13.5 mm | 13.5 mm retained | Turnover ≈ 11.98 mm, but the printed f/1.86 beam needs h ≈ 12.37 mm here; the stated-beam exception forbids a cap. |
+| L32 / 12 | `sd` | 13.5 mm | 13.5 mm retained | Fig. 1 chamfers the front face at about 13.2 mm on the lens's own scale (stepped rim); within noise of 13.5 mm. |
+| L32 / 13 | `sd` | 13.5 mm | 17.6 mm | Source-field chief ray at 22.15° needs h ≈ 13.94 mm (floor); Fig. 1's rear face reads 17.6 mm on the lens's own scale (SD procedure Step 1 takes the figure value). |
+| 8A | `sd` | 13.5 mm | 13.5 mm retained | Turnover ≈ 11.98 mm, but the printed f/1.86 beam needs h ≈ 12.37 mm here; Step 6's stated-beam exception forbids a cap. |
 | 10A | `sd` | 16.5 mm | 16.5 mm retained | Authored rim remains below turnover ≈ 16.68 mm. |
 
 ### Source transcription and convention
@@ -90,9 +90,13 @@ source-supported replacement has been isolated. The 8A departure stays −285.4 
 
 The independent L32 correction removes the source-field chief-ray clip. At 22.15° the corrected model gives
 Y = 21.6312 mm, agreeing with Fig. 12's 21.63 mm, whereas the previous rim limited the modeled field to 21.46°
-and Y = 20.93 mm. Source Fig. 1 and a scratch rendering of the runtime surface profiles were compared: L32 keeps
-a square rim and negative-meniscus shape. Other inferred rims have no established figure discrepancy requiring
-an edit in this pass.
+and Y = 20.93 mm. Because face 13 is floor-proven, Step 1 of the SD procedure takes its value from the figure.
+`npm run audit:patent-figure` on Fig. 1 (PDF p. 2, crop `0.27,0.285,0.70,0.452`, 70.39 µm/px) reads L32 at
+16.40 mm (ENV and RIM agreeing); the median figure/data ratio is 0.933, so on the lens's own scale the rear face
+is 16.40 / 0.933 = 17.6 mm. Row and column scans of a 300 dpi render show a stepped L32: the rear face runs to the
+flat top at 231 px (16.3 mm), while the front face meets a 45° chamfer at about 175 px (12.3 mm; 13.2 mm on the
+lens's scale), within noise of its 13.5 mm rim. Face 13 therefore takes 17.6 mm and face 12 keeps 13.5 mm. Other
+inferred rims have no established figure discrepancy requiring an edit in this pass.
 
 ### Source-plot comparison and disposition
 
@@ -120,5 +124,6 @@ correction is complete. Repository gates and any queue edits remain with the coo
 Coordinator review: the failing outer-pupil rays break at 11A, not 8A. At 13.9° the lower-rim rays meet 11A at
 15.3-16.6 mm, where its A6, A8 and A10 terms each reach ±0.5-0.9 mm and largely cancel, and leave it steeply enough
 to strike surface 12 at 52-57°. 11A does not turn over inside its 16.5 mm rim, and FIG. 1 draws L31 about 10 % smaller
-than the data, inside the figure's noise, so no rim change is supported. 8A's slope sign change at 11.98 mm is on a
-nearly flat surface (−1° at its rim) and is not a turnover in the procedure's sense. Recorded as a model limitation.
+than the data, inside the figure's noise, so no rim change is supported. 8A's slope sign change at 11.98 mm is a
+turnover under Step 6 even though the surface is nearly flat (−1° at its rim), but the stated f/1.86 beam needs
+12.37 mm there, so Step 6's stated-beam exception keeps the 13.5 mm rim. Recorded as a model limitation.

@@ -19,7 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                                                      ║
  * ║  NO SCALING: radii, spacings and coefficient magnitudes retain the Embodiment 4 scale.             ║
  * ║  SOURCE ERRATA: surface 5A K, A6, A8 and A10 have restored minus signs; the printed positive block   ║
- * ║  contradicts Figures 14A/C/D and the 44.8° / y=34.85 mm field. See source.errata and the audit log.  ║
+ * ║  contradicts Figures 14A/C/D, the 44.8° / y=34.85 mm field and surface 5 of Embodiments 1 and 2.     ║
+ * ║  Corrected under the errata standard without the JP Hei 11-354772 print; see source.errata, audit.   ║
  * ║                                                                                                      ║
  * ║  SEMI-DIAMETERS: inferred rather than published. Figure 13 sets the strong front-to-rear taper; the   ║
  * ║  ray envelope and geometry limits set the minimum clear apertures. Surface 5A is restored to the     ║
@@ -70,9 +71,9 @@ const LENS_DATA = {
         field: "K",
         printed: 1,
         applied: -1,
-        evidence: ["aberration-figure", "source-summary"],
+        evidence: ["aberration-figure", "source-summary", "sibling-example"],
         note:
-          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm. Sibling examples: Embodiments 1 and 2 (PDF p.13, paragraphs 0069 and 0072) print the same surface 5 as K -1.00, A4 positive, A6 and A8 negative; Embodiment 2 also prints A10 negative (Embodiment 1 has no A10 term).",
       },
       {
         status: "corrected",
@@ -80,9 +81,9 @@ const LENS_DATA = {
         field: "A6",
         printed: 2.868e-9,
         applied: -2.868e-9,
-        evidence: ["aberration-figure", "source-summary"],
+        evidence: ["aberration-figure", "source-summary", "sibling-example"],
         note:
-          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm. Sibling examples: Embodiments 1 and 2 (PDF p.13, paragraphs 0069 and 0072) print the same surface 5 as K -1.00, A4 positive, A6 and A8 negative; Embodiment 2 also prints A10 negative (Embodiment 1 has no A10 term).",
       },
       {
         status: "corrected",
@@ -90,9 +91,9 @@ const LENS_DATA = {
         field: "A8",
         printed: 1.268e-11,
         applied: -1.268e-11,
-        evidence: ["aberration-figure", "source-summary"],
+        evidence: ["aberration-figure", "source-summary", "sibling-example"],
         note:
-          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm. Sibling examples: Embodiments 1 and 2 (PDF p.13, paragraphs 0069 and 0072) print the same surface 5 as K -1.00, A4 positive, A6 and A8 negative; Embodiment 2 also prints A10 negative (Embodiment 1 has no A10 term).",
       },
       {
         status: "corrected",
@@ -100,9 +101,9 @@ const LENS_DATA = {
         field: "A10",
         printed: 4.817e-16,
         applied: -4.817e-16,
-        evidence: ["aberration-figure", "source-summary"],
+        evidence: ["aberration-figure", "source-summary", "sibling-example"],
         note:
-          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm.",
+          "PDF p.14, paragraph 0078: signs restored as one surface-5 block. Among all 32 sign combinations, Figures 14A/C/D isolate K=-1, A4 positive, A6/A8/A10 negative (edge T/S=-0.218/-0.101 mm); the 44.8-degree field gives y=34.819 mm, consistent with the rounded 34.85 mm / 44.8-degree source field. Printed block gives y=24.280 mm and edge T=+960.6 mm. Sibling examples: Embodiments 1 and 2 (PDF p.13, paragraphs 0069 and 0072) print the same surface 5 as K -1.00, A4 positive, A6 and A8 negative; Embodiment 2 also prints A10 negative (Embodiment 1 has no A10 term).",
       },
     ],
   },

@@ -16,9 +16,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    and cross-gap sag intrusion (S2→S3 gap = 2.75 mm is binding).  ║
  * ║    S8 raised 16.0→17.1 mm for the stated f/1.75 axial beam;      ║
  * ║    S9 stays 16.0 mm (FIG. 2 shows a stepped L23 rim).            ║
- * ║    L34 S21/S22 raised 18.0→18.8 mm, square: the printed 19° /     ║
- * ║    Y = 27.35 mm chief ray crosses S22 at 18.29 mm (floor + 0.5;   ║
- * ║    FIG. 2 draws L34 about 6 % larger relative to the lens).      ║
+ * ║    L34 S21/S22 raised 18.0→19.2 mm, square: the printed 19° /     ║
+ * ║    Y = 27.35 mm chief ray crosses S22 at 18.29 mm, and FIG. 2     ║
+ * ║    draws L34 level with L31–L33, 19.2 mm on the lens's own scale. ║
+ * ║                                                                    ║
+ * ║  NOTE ON SOURCE ERRATA:                                            ║
+ * ║    Table 2 prints TL = 103.58 mm; Tables 1/3 give 122.24 mm (air- ║
+ * ║    equivalent). The 18.66 mm difference is DD4 + DD15, and Table  ║
+ * ║    17's condition (1) follows the short value. Unresolved; the    ║
+ * ║    printed prescription is kept (see source.errata).              ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
  * ║    Full Example 1 Table 4 terms A3–A20 are transcribed, including  ║
@@ -74,6 +80,12 @@ const LENS_DATA = {
     patentYear: 2021,
     authors: ["Masato Kondo"],
     assignees: ["Fujifilm Corporation"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Table 2 (PDF p. 18) prints TL = 103.58 mm, but Tables 1 and 3 give an air-equivalent TL of 122.24 mm under paragraph 0083 (physical track 123.33 mm). The 18.66 mm difference is exactly DD4 + DD15, the two variable gaps, and Table 17's condition (1) value 4.985 (PDF p. 21) follows the short TL; the full sum gives 6.943. The printed prescription reproduces EFL, Bf, the 19-degree image height and FIG. 3, so no printed value is changed.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -317,8 +329,8 @@ const LENS_DATA = {
     { label: "18", R: "flat", d: 2.33, sd: 19.5 }, // L32 rear → air
     { label: "19", R: -105.4941, d: 1.3, sd: 18.5, medium: 11 }, // L33 front
     { label: "20", R: "flat", d: 2.89, sd: 18.5 }, // L33 rear → air
-    { label: "21", R: -86.5553, d: 1.3, sd: 18.8, medium: 12 }, // L34 front
-    { label: "22", R: "flat", d: 20.1247, sd: 18.8 }, // L34 rear → PP (patent gap)
+    { label: "21", R: -86.5553, d: 1.3, sd: 19.2, medium: 12 }, // L34 front
+    { label: "22", R: "flat", d: 20.1247, sd: 19.2 }, // L34 rear → PP (patent gap)
   ],
 
   /* ── Focus configuration ── */

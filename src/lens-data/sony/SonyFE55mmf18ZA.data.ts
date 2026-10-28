@@ -16,8 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    + chief ray trace at the design f-number and 60% field          ║
  * ║    fraction, with ~10% mechanical clearance. Front elements        ║
  * ║    constrained by 49 mm filter thread diameter.                    ║
- * ║    L32 faces 12/13 use 14.5 mm to clear the source's Y=21.63 mm    ║
- * ║    chief ray, retaining the square rim drawn in Fig. 1.           ║
+ * ║    L32 face 13 uses 17.6 mm (Fig. 1 on the lens's own scale) to   ║
+ * ║    clear the source's Y=21.63 mm chief ray; face 12 keeps 13.5 mm,║
+ * ║    since Fig. 1 draws its front face chamfered (a stepped rim).   ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent publishes variable gaps at infinity and β = −0.033       ║
@@ -50,10 +51,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ray needs h≈12.37 mm there. Keep sd=13.5: a cap to 11.9 mm would clip
  * the stated beam. Outer-field localization remains unresolved; neither
  * a coefficient correction nor a smaller aspheric rim is source-supported.
- * L32's inferred square rim rises 13.5→14.5 mm because face 13 clipped
- * the source-field chief ray (h≈13.94 mm; floor + 0.5 mm, as Fig. 1
- * draws it); this fixes field clearance,
- * not the localization failure. No published prescription value changes.
+ * L32 face 13 rises 13.5→17.6 mm because it clipped the source-field
+ * chief ray (h≈13.94 mm); 17.6 mm is Fig. 1's rear-face height on the
+ * lens's own scale. Face 12 keeps 13.5 mm: Fig. 1 chamfers the front face
+ * at about 13.2 mm on that scale. This fixes field clearance, not the
+ * localization failure. No published prescription value changes.
  */
 
 const LENS_DATA = {
@@ -230,9 +232,9 @@ const LENS_DATA = {
     },
 
     // ── G3: Rear sub-group GR (L32) ──
-    { label: "12", R: -18.057, d: 1.2, sd: 14.5, medium: 7 },
+    { label: "12", R: -18.057, d: 1.2, sd: 13.5, medium: 7 },
     // Last surface: patent gap to the optical member SG
-    { label: "13", R: -39.016, d: 11.78, sd: 14.5 },
+    { label: "13", R: -39.016, d: 11.78, sd: 17.6 },
   ],
 
   /* ── Focus configuration ── */

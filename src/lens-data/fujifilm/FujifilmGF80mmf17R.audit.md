@@ -97,8 +97,8 @@ The coefficient digits/signs/exponents were read from 400 dpi table crops, with 
 | 14A | `A19` | Omitted (zero) | `-3.6580337e-24` | Table 4, PDF p. 19, Sn 14, A19 row. |
 | 15A | `A19` | Omitted (zero) | `5.0171611e-25` | Table 4, PDF p. 19, Sn 15, A19 row. |
 | 8 | `sd` (mm) | 16.0 | 17.1 | Table 2 f/1.75 axial-beam floor; FIG. 2 stepped L23 rim permits S9 to remain 16.0. |
-| 21 | `sd` (mm) | 18.0 | 18.8 | L34 square rim in FIG. 2; paired with S22. |
-| 22 | `sd` (mm) | 18.0 | 18.8 | Table 2 19° / Y = 27.35 mm chief ray reaches S22 at 18.2899 mm; floor + 0.5 mm (SD procedure Step 1). |
+| 21 | `sd` (mm) | 18.0 | 19.2 | L34 square rim in FIG. 2; paired with S22. |
+| 22 | `sd` (mm) | 18.0 | 19.2 | Table 2 19° / Y = 27.35 mm chief ray reaches S22 at 18.2899 mm (floor); FIG. 2 gives 19.2 mm on the lens's own scale (SD procedure Step 1 takes the figure value). |
 | focus.conjugates[0] | `source` wording | PP omitted; air-equivalent model | PP traced in rearPlates at physical thickness/gaps | Table 1 rows 23/24 and existing rearPlates; numeric object distance stays 576.6736 mm. |
 
 All printed non-zero A3–A20 terms are now encoded; the explicit A3 zeros document the source's starting order.
@@ -121,9 +121,13 @@ L23 view shows the image-side curve ending inside the front junction rim, so onl
 The proposed S8 value is below the figure's optical extent and passes the geometric validator.
 
 The exact 19° chief ray reaches image height 27.3495 mm, matching printed Y = 27.35 mm, but reaches S22 at
-18.2899 mm against the old 18.0 mm rim. S22 therefore rises to 18.8 mm, the floor plus 0.5 mm as Step 1 of the SD
-procedure sets a floor-proven rim (FIG. 2 draws L34 about 6 % larger than the data relative to the rest of the lens,
-within the figure's noise); S21 follows to preserve FIG. 2's square L34 rim. The candidate rims were checked by substitution before retention. S14/S15 and all other rims are retained.
+18.2899 mm against the old 18.0 mm rim, so the rim is floor-proven and Step 1 of the SD procedure takes its value
+from the figure. `npm run audit:patent-figure` on FIG. 2 (PDF p. 2, crop `0.195,0.665,0.715,0.895`, 77.01 µm/px) reads
+L34 at 23.18/23.33 mm (ENV/RIM, agreeing), level with L31–L33 (23.56–23.79 mm); a column scan of a 300 dpi render
+confirms the flat L34 top and bottom at 302 px from the axis. The figure draws the whole lens 1.210× the data's rims
+(median figure/data), so on the lens's own scale L34 is 23.26 / 1.210 = 19.2 mm. S22 takes 19.2 mm, above the floor;
+S21 follows to preserve FIG. 2's square L34 rim. The chief ray then reaches the full 27.39 mm format corner, and the
+vignetting tab reads RI at all eight fields, 0.058 at 19° (unvignetted fraction 0.081). The candidate rims were checked by substitution before retention. S14/S15 and all other rims are retained.
 The figure-measurement screen was contaminated by leader/bracket/flange ink on some G2 elements; its automatic
 L23/L25 estimates were not used. Manual inspection of the zoomed optical curves determines the stepped L23 and
 square L34 relationships.
@@ -141,8 +145,8 @@ Tables 1/3 give first-to-last-lens-vertex length 98.9517 mm, physical track 123.
 122.2361 mm under paragraph 0083. Table 2 instead prints TL = 103.58 mm; subtracting DD4 + DD15 = 18.6600 mm
 gives 103.5761 mm. Table 17 condition (1), PDF page 21, prints 4.985, consistent with that shorter summary TL;
 the complete spacing sum gives 6.943. No change to a printed prescription value is justified by this discrepancy.
-The coordinator kept it out of `source.errata` as outside this audit's scope; the analysis states it, and it is
-listed as a follow-up. No single-slip search is warranted: the full printed polynomial reproduces the aberration
+It is recorded as an `unresolved` `source.errata` entry with a header note and an `sd-audit-queue.md` Section G
+row. No single-slip search is warranted: the full printed polynomial reproduces the aberration
 figures, EFL, Bf and the 19° image height.
 
 ### Phase 4 — Analysis sync
@@ -156,6 +160,6 @@ rearPlates model. Replaced the blanket all-conditions-independently-verified cla
 
 The outer-field illumination remains sensitive to inferred rims and is not a production-lens measurement. The
 printed 27.35 mm image height is slightly smaller than the format's 27.39 mm corner; the latter crosses S22 at about
-18.32 mm, inside the 18.8 mm rim. Coordinator to review the TL summary discrepancy and the interactive lens page/aspheric overlay:
+18.32 mm, inside the 19.2 mm rim. Coordinator to review the interactive lens page/aspheric overlay:
 browser access was unavailable, and a scratch-only local server was denied by the sandbox (listen EPERM).
 The coordinator owns repository-wide gates and commits.

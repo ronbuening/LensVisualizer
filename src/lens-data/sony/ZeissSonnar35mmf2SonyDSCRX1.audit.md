@@ -34,7 +34,7 @@ p. 11, FIG. 13; p. 12, FIG. 14. Coefficient digits and exponents were inspected 
 | 8 `sd` | 12.8 mm | 11.7 mm | Retain G4's square rim shared with cemented surface 9; FIG. 13. |
 | 9 `sd` | 12.8 mm | 11.7 mm | G5's front face shares the square rim with 10A; FIG. 13. |
 | 10A `sd` | 12.8 mm | 11.7 mm | Printed prescription first slope zero at 11.7909106 mm; cap below it, rounded down to 0.1 mm. |
-| 14A `sd` | 18.3 mm | 18.3 mm (kept) | Slope zero at 14.3048929 mm on a nearly flat surface; the printed Y = 21.63 mm corner chief ray needs 17.68 mm, so the SD procedure's "When to stop" rule keeps the rim (coordinator review reverted a 14.3 mm cap that clipped coverage to 82%). |
+| 14A `sd` | 18.3 mm | 18.3 mm (kept) | Slope zero at 14.3048929 mm on a nearly flat surface; the printed Y = 21.63 mm corner chief ray needs 17.68 mm, so SD procedure Step 6 keeps the rim (coordinator review reverted a 14.3 mm cap that clipped coverage to 82%). |
 | Analysis 10A polynomial departure at rim | +0.49208 mm at 12.8 mm | +0.27535 mm at 11.7 mm | Same A4–A10; new radius. Sphere-relative departure is +0.63078 mm with printed K. |
 
 Every remaining Table 14 K/A/B/C/D cell agrees with the file, including zero conics and the signs of all
@@ -64,8 +64,8 @@ G7 is stepped in FIG. 13, so 13A has no supported turnover reduction and retains
 departure remains +0.39104 mm. The triage's approximately 10.34 mm sphere-relative number is not a usable
 departure: that height exceeds |R|=17.604 mm for the reference sphere. It does not establish a coefficient
 error. Inspected a separately plotted exact-sag silhouette against FIG. 13: the G4-G5 reduction keeps
-their common square rim, while the 14A cap visibly truncates the large rear G7 extent in the source.
-The latter is a conservative polynomial-domain bound, not a figure-derived production rim.
+their common square rim, while a 14A cap at its turnover would visibly truncate the large rear G7 extent
+the source draws.
 
 Runtime surface validation accepts the stored data. The on-axis aperture audit admits F/2.05, the image-circle
 floor reports no undersized surface, and exact chief-ray coverage reaches the full 21.65 mm corner with 14A at
@@ -75,8 +75,8 @@ After the edits, Rimmer RI is supplied through the 24.9° sample (0.725, maxDev 
 is unavailable with `cosine-map-folds` (maxDev 0.017 and 0.035), and at the 33.2° corner with
 `rays-not-localized` (maxDev 0.054). The K-only replay shows the same, so the remaining outer-field failure
 does not come from the rims. The source correction is settled;
-full-field RI is still unresolved. Queue separate review of polynomial-domain clipping versus the source's
-large rear extent, and of the cosine-map refusal. No further prescription change is supported by this pass.
+full-field RI is still unresolved and is tracked in `sd-audit-queue.md` Section G with the other outer-zone
+model limitations. No further prescription change is supported by this pass.
 
 The data header and analysis now describe the exponent correction, caps, recomputed departures and remaining
 field limitation. Used the kit's `vprobe.mjs`, `triage.mjs`, `rayinfo.mjs`, `aberr.mjs`, the LSA helper, and

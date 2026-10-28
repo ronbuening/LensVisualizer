@@ -121,8 +121,8 @@ Source: US 2022/0066176 A1, sole example. PDF p. 8 (printed p. 4), [0092]–[009
 No rim changed. The literal polynomial turns over at 8.33 mm on 15A and 5.66 mm on 16A, inside the 10.5 mm L10 rim
 that the patent's D/d_M ratio (p. 8, row 15) and FIG. 1's square L10 imply. Capping L10 below 5.66 mm would leave the
 f/2 axial beam (2.98/2.78 mm on 15A/16A) but put both faces under the full-frame image-circle floor (5.98/7.03 mm),
-and 16A's floor is itself past its turnover. The SD procedure's "When to stop" rule applies: a rim that can only reach
-its floor past a turnover is recorded, not changed. The early-field localization failure does not come from the L10
+and 16A's floor is itself past its turnover. Step 6 of the SD procedure keeps the rim: a turnover cap that would fall
+under the image-circle floor is recorded, not applied. The early-field localization failure does not come from the L10
 rims anyway: at 5.82° the failing rays cross neither surface past its turnover; they carry the axial undercorrection.
 
 ### Follow-ups

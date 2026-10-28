@@ -239,8 +239,9 @@ coefficients and rim remain unchanged. Surface 10A's 16.5 mm authored rim is bel
 turnover and also remains unchanged. No rim departure quoted above changes.
 
 The rear element L32 had a separate field-clearance error. At the patent's 22.15° half-field, the chief ray reaches
-surface 13 at h ≈ 13.94 mm, exceeding its former inferred 13.5 mm rim. Both L32 faces (12 and 13) now use 14.5 mm,
-0.5 mm outside that floor, as Fig. 1 (PDF p. 2) draws L32 relative to the rest of the lens, and square as it draws it. The traced chief ray now
+surface 13 at h ≈ 13.94 mm, exceeding its former inferred 13.5 mm rim. Face 13 now uses 17.6 mm, the height Fig. 1
+(PDF p. 2) draws L32's rear face at on the lens's own scale. Fig. 1 draws the front face chamfered short of that rim,
+at about 13.2 mm on the same scale, so face 12 keeps 13.5 mm and L32 is stepped, as drawn. The traced chief ray now
 reaches Y = 21.6312 mm there, consistent with Fig. 12's Y = 21.63 mm. This change restores field clearance; it does
 not repair outer-pupil localization or establish a published effective diameter.
 
