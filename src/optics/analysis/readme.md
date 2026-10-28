@@ -80,8 +80,8 @@ flowchart LR
 | [bokeh/](bokeh/readme.md) | request-based bokeh previews, field footprints and density reductions |
 | [chromatic/](chromatic/readme.md) | src/optics/analysis/chromatic source folder |
 | [distortion/](distortion/readme.md) | src/optics/analysis/distortion source folder |
-| [mtf/](mtf/readme.md) | src/optics/analysis/mtf source folder |
-| [pupils/](pupils/readme.md) | src/optics/analysis/pupils source folder |
+| [mtf/](mtf/readme.md) | computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so |
+| [pupils/](pupils/readme.md) | holds the shared aimed pupil launch, whose pupil coordinates are positions on the real stop, the stop lattice the vignetting tab and the MTF sample, and pupil aberration |
 | [summary/](summary/readme.md) | src/optics/analysis/summary source folder |
 | [vignetting/](vignetting/readme.md) | computes OpticStudio's vignetting (the share of a stop lattice's rays transmitted, geometric) and relative illumination (Rimmer's projected solid angle of the exit pupil in direction-cosine space, with transmission, relative to the axis) |
 

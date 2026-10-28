@@ -1,6 +1,6 @@
 # src/optics/analysis/mtf
 
-This folder src/optics/analysis/mtf source folder.
+This folder computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 

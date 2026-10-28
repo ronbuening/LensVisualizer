@@ -25,7 +25,7 @@ flowchart LR
     n_src_optics_TypeScript_modules["TypeScript modules (16)"]
   end
   n_external_src_types["src/types"]
-  n_src_optics_TypeScript_modules --> |60| n_src_optics_src_optics_analysis
+  n_src_optics_TypeScript_modules --> |62| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |23| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_state
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (60), src/optics/prescription (23), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
+- Main outbound areas: src/optics/analysis (62), src/optics/prescription (23), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -69,7 +69,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysis.ts` | Analysis helper module | src/optics/analysis (48), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +201 more |
+| `analysis.ts` | Analysis helper module | src/optics/analysis (50), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +211 more |
 | `buildLens.ts` | Build Lens module with default export | src/optics/prescription (8), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/benchmarks, src/comparison, src/lensBuilder | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +6 more |
 | `chromatic.ts` | Chromatic helper module | src/optics/chromatic (11), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2), +2 more | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +31 more |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/diagram (8) | src/benchmarks, src/components/diagram, src/components/hooks, src/components/layout | createCoordinateTransforms, computeElementShapesForState, foldedHitOrderLabelsForDisplay, computeElementRenderDiagnosticsForState, computeElementRenderDiagnostics, computeElementShapes, computeStandaloneMirrorPaths, stateForRuntimeDiagram, +7 more |

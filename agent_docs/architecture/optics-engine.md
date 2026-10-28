@@ -121,17 +121,27 @@ heights up to the chief's own clip (`chiefEdgeHeightMm`); past it its chief igno
 heights take the root solve too. Heights beyond the modeled edge are `outside-modeled-field` and are not traced.
 Fields run center, corner, then coarse to fine.
 
-**Pupil sampling** (`mtfFootprint.ts`, `mtfTracing.ts`). Each field scans a 20 × 20 launch-plane grid at the
-reference wavelength, doubling until no transmitted sample touches its border, then traces the whole transmitted
-beam; off-axis retrofocus beams can be much larger than the axial entrance pupil, as with ray aiming in lens-design
-software. Launch cells are square, `gridSize` across the beam's larger dimension, with an even column count so a
-meridional field of an x-symmetric lens traces one half and mirrors it. Transmitted rays in the footprint's guard
-band widen it and retrace. A grid with too few transmitted rays refines rather than failing, because the footprint
-scan has already found flux: near the modeled edge cat's-eye vignetting can leave a slit a few cells high. Collimated
-cells carry equal launch flux; finite sources use solid-angle weights. A beam thinner than one scan cell can fall
-between the samples; when the chief ray transmits, its reach along each launch axis sizes a box stretched to the
-beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
-the production lens lower off-axis curves.
+**Pupil sampling** (`mtfTracing.ts`, `pupils/stopLattice.ts`, `pupils/aimedPupil.ts`). Pupil coordinates are positions
+on the real aperture stop, sampled evenly, as in OpticStudio with ray aiming on and in CODE V (see
+[Pupil Convention](#pupil-convention)). Each wavelength of a field launches the stop lattice, `gridSize` cells across
+the stop's diameter and the cells whose centre lies in its disc, through `prepareAimedStopLattice` at that
+wavelength's own indices (`mtfAimSpectrum`: the anchored indices of a resolved run, the shared default launch on the
+authored ones); finite conjugates aim from the object point. Every aimed ray is traced with every aperture checked and
+the stop at the launch's clip radius. A lit cell weighs 1 times its bulk transmission (uniform amplitude on the
+stop): the geometric OTF sums its landing with that weight and the sheared-ray estimator reads √weight on the lattice.
+On a lens `mtfMirrorSymmetric` accepts, the +x half is traced and mirrored; the ladder's even sizes put no cell on the
+meridian. Each ladder level's lattice is seeded from the same wavelength's lattice half as fine (see Lattices under
+[Pupil Convention](#pupil-convention)), so a cell costs about one stop trace where a lone sample spends three to six. The grid ladder, refinement and convergence keep their meaning with
+`gridSize` counted across the stop instead of across the beam, so a vignetted beam fills fewer cells of the same grid
+than before. A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
+both refine, since a finer lattice can find a thin beam. No footprint scan or expansion runs where the stop defines the
+extent. What remains of launch-plane sampling: a field the aimed launch reaches only through the bounding sphere
+(`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
+(`traceMtfLaunchPlaneBundle`), and reports `pupilSampling: "launch-plane"` with a note. No field does today: MTF
+refuses fisheye projections and rectilinear fields stay below the 89° launch cap. The field axis also keeps one
+footprint scan, the lit-or-dark probe past the chief's own clip (`mtfBeamHeight`), which asks only whether any ray
+reaches the image. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less
+than the production lens lower off-axis curves.
 
 **Axial vignetting.** The chart is labelled with the marked f-number; the stop rule sizes the iris for it. When the
 Summary's working f-number (`computeWorkingFNumber`) finds the axial marginal ray vignetted, `MtfResult.axialVignetting`
@@ -142,9 +152,14 @@ MTF beam. It is cached with the focus search.
 clips are blocking on both sides of the stop: the aimed launch's search ahead of the stop takes them as blocks at their
 surface (see [Pupil Convention](#pupil-convention)). A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
-interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
-MTF error at 2ε; more makes the field unavailable. The reference chief is traced without aperture checks, so a
-clipped chief still fixes the common image reference.
+interval test for aspheres. Unaimed stop samples and aimed rays whose full trace fails otherwise are unresolved, never
+replaced: counted per field (`unaimedRays`, `failedRays`) and charged to the unresolved share at full transmission.
+Those beside the transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam`
+rule) are counted as `unresolvedInBeamRays` and named in the field's note or message, so neither estimator returns a
+number from a lattice with an unreported hole in the beam. Unresolved flux ε up to 0.5% is omitted with a note
+bounding the geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`), and a coarser curve the
+ladder keeps says why refinement stopped. The reference chief is traced without aperture checks, so a clipped chief
+still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
 method (`mtfShearedOtf.ts`, the tab's default, labelled "Diffraction-corrected") evaluates Hopkins' OTF from the same rays. At frequency ν the pupil
@@ -152,7 +167,7 @@ overlaps itself sheared by λν, and each overlapping pair carries the phase exp
 difference is the integral of the wavefront slope along the shear, which is what a ray's landing error measures
 (ε = −(λ/NA) ∂W/∂p), so five rays per pair (centre, ±s/2, ±s, Boole's rule) give the phase from landings alone.
 The rule integrates the slope exactly through sixth-order aberration along the shear; what remains is lattice
-sampling, which the grid ladder refines (at a 32-cell pupil two waves of balanced spherical read 0.011 low). The pupil is √flux on the regular launch lattice, with
+sampling, which the grid ladder refines (at a 32-cell pupil two waves of balanced spherical read 0.011 low). The pupil is √weight on the regular stop lattice, with
 amplitude and landing error interpolated linearly along each lattice line. The shear is fixed in direction cosine:
 each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
 wide-angle corner maps the lattice onto the exit pupil unevenly. That correction is first order and grid refinement
@@ -169,7 +184,7 @@ field bundles), and a field whose overlap is more than 1 % such pairs says so (`
 `mtfWavefront.ts` is the reference the estimator is held against, not a product path. With `recordOpticalPath` the
 sequential trace accumulates incident-medium optical length; `rayOpticalPathToImageMm` carries it to the foot of the
 perpendicular from the image point (a reference sphere at infinity, whose pupil coordinate is the ray's own direction
-cosine), and `waveLatticeOtf` autocorrelates the complex pupil on the launch lattice, pairing cells by direction
+cosine), and `waveLatticeOtf` autocorrelates the complex pupil on the bundle's lattice, pairing cells by direction
 cosine at each exact shear. It reads how
 far the rays travelled where the estimator reads where they land, so the two share only the trace. It is valid only
 while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`). The source-prescription
@@ -206,7 +221,8 @@ depths of focus, 2λN² at the d line and the open f-number, the plane is flagge
 `focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
 spherical-aberration focus shift of fast classic designs stays visible there. `scripts/audit-mtf.mjs --focus` lists the
 flagged lenses, and Section E of `agent_docs/sd-audit-queue.md` queues them. Finite rays share one isotropic object
-point and include spherical launch phase and launch-plane solid-angle weights. Only `finiteConjugates` stations are
+point, are aimed from it at the stop and include spherical launch phase; their weights are uniform on the stop like
+every field's. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
 **Data limitations** (`mtfDataLimitations.ts`). `MtfSupport.limitations` are the model's standing assumptions;
@@ -229,7 +245,9 @@ A lens with a converter is assessed as one system; no separate gap is raised for
 the reader chose has no glass gap. A paused proposal to narrow the `estimated-dispersion` blur and refit the
 estimate is in `agent_docs/dispersion-estimate-exploration.md`.
 
-**Validation.** `__tests__/src/optics/mtfDiffraction.test.ts` holds the analytic controls: a Hopkins quadrature on
+**Validation.** `__tests__/src/optics/mtfDiffraction.test.ts` holds the analytic controls: an aberration-free
+plano-hyperbolic singlet (conic −n², the Cartesian oval) that meets the circular pupil's diffraction-limited curve
+within the stop lattice's own bound, a Hopkins quadrature on
 synthetic aberrated pupils that the diffraction estimate meets within 0.004 at every shear (defocus, balanced
 spherical and coma with astigmatism on a 64-cell pupil, sixth-order spherical on 128), the lattice optical-path
 reference against the same quadrature, and the two routes against each other on a traced singlet. Outside those
@@ -1291,16 +1309,31 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   the reflecting surface, as it is after the stop (`blockedAt` uses `traceRayClassification`), so a target only
   reflected rays could reach ends `blocked` there and is vignetting in every analysis. Bokeh transmission and
   moved-lens vignetting leave unaimed samples out of their denominators and report how many there were.
+- **Spectra.** A launch is aimed at the authored reference indices, at a chromatic channel's, or at a spectral line's
+  supplied indices (`AimedPupilSpectralLine`, the MTF's anchored lines); the spectrum is part of the field-model key.
+- **Lattices.** `prepareAimedStopLattice(request, n, geometry, spectrum?, coarse?)` aims the stop lattice
+  (`pupils/stopLattice.ts`) for one field. Up to `AIMED_LATTICE_DIRECT_CELLS` (8) across it aims sample by sample.
+  Finer, each cell is seeded from the same field's lattice half as fine (supplied, or aimed first): tensor-product cubic
+  Lagrange interpolation over a 4 × 4 block of aimed coarse cells (centred, else shifted by up to two cells, which
+  extrapolates at the rim), else bilinear over the 2 × 2 around it, with that interpolation's Jacobian. At most
+  `AIMED_LATTICE_MAX_CORRECTIONS` (2) Broyden-updated Newton steps then reach the tolerance; most cells land within it
+  on the seed's own trace. A cell without a block, or whose seeded steps fail, runs the lone solve from the nearest
+  aimed coarse cell instead of the field's fit or chief, so a target in the blocked region ends in two or three traces.
+  Lattice rays are never polished: they lie within the tolerance of their targets and can differ from a lone sample's
+  by up to 1e-7 R at the stop. A seeded start can also reach a target the lone solve's search ended `blocked` on (12
+  of 12,892 cells at the corner of the Sigma 35/1.4 Art at 128 cells); that ray exists, and its full trace decides
+  whether it is vignetted. The result depends only on the field, spectrum, R and n, so supplying the coarse lattice
+  never changes a bit.
 - **Consumers.** The off-axis bundle (`traceOffAxisBundleFromSamples`: coma cloud and fans, bokeh tiles, field-curve
   real-ray fans, spherical blur character); the spherical-aberration, best-focus and axial-colour zones
   (`prepareAxialZoneLaunch` in `aberration/shared.ts`); both chromatic ray fans, aimed per channel at that channel's
-  indices; and the perspective analysis bundles, aimed in the intrinsic lens frame.
+  indices; the perspective analysis bundles, aimed in the intrinsic lens frame; the vignetting tab's stop lattice; and
+  the MTF's stop lattices, one per spectral line (see Simulated MTF).
 - **Not aimed.** Diagram rays (`useOnAxisRays`, `useOffAxisRays`, `useChromaticRays`' segments, folded display fans and
   the moved-lens diagram fan, `launch: "paraxial-entrance"`) are rendering samplers and keep paraxial entrance-pupil
   fractions. The field-curvature parabasal pair (`FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM`, 0.01 mm about the chief)
-  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. The vignetting tab launches
-  its stop lattice through this launch (see Vignetting); the MTF lattice keeps its launch-plane sampling until its own
-  change moves it onto this launch.
+  is a documented convention within 5.7e-6 mm of an infinitesimal pair and stays as it is. A bounding-sphere MTF field
+  keeps launch-plane sampling (see Simulated MTF).
 
 Consequences. A candidate zone list (`MARGINAL_PUPIL_FRACTIONS`) now falls back only when another aperture vignettes a
 zone: the stop never clips an aimed zone, and an unaimed zone ends the search. LoCA compares every selected channel at
@@ -1674,7 +1707,8 @@ use perspective analysis.
 ## Vignetting
 
 `analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes OpticStudio's
-two field analyses on one lattice on the stop per field. `vignettingStopLattice(n)` keeps the cells of an n × n grid
+two field analyses on one lattice on the stop per field. `vignettingStopLattice(n)` (the shared `stopLattice`, also
+the MTF's) keeps the cells of an n × n grid
 (`BEAM_GRID_CELLS` = 64 across the stop's diameter; `vignettingPupilSampleCount` overrides it, at least 4) whose centre
 lies in the unit disc, at coordinates (2k + 1 − n)/n so mirror columns are exact negatives. Each field launches the
 lattice through `prepareAimedPupilLaunch` (see [Pupil Convention](#pupil-convention)) and traces every aimed ray with

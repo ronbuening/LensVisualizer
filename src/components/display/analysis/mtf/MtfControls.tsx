@@ -61,7 +61,8 @@ const FOCUS_HELP = [
   "Design plane (always): the source's image plane as authored, even when it is out of focus.",
 ].join("\n");
 const SAMPLING_HELP = [
-  "Standard: pupil grids of up to 128 samples across, enough for most lenses.",
+  "Pupil samples are positions on the real aperture stop, evenly spaced, as in OpticStudio with ray aiming and in CODE V.",
+  "Standard: grids of up to 128 samples across the stop, enough for most lenses.",
   "Refine: up to 256, for fields that converge slowly, such as thin beams near the edge. Slower.",
 ].join("\n");
 /** Wider than the default tooltip so each option fits in a few lines. */

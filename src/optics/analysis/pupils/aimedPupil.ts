@@ -351,7 +351,7 @@ export function prepareAimedPupilLaunchForState(
  * Cells across the stop at and below which a stop lattice is aimed sample by sample; a finer lattice is seeded from the
  * lattice half as fine.
  */
-export const AIMED_LATTICE_DIRECT_CELLS = 16;
+export const AIMED_LATTICE_DIRECT_CELLS = 8;
 /** Newton corrections a cell seeded from the coarser lattice may take before it is solved as a lone sample. */
 export const AIMED_LATTICE_MAX_CORRECTIONS = 2;
 
@@ -399,14 +399,11 @@ export function prepareAimedStopLattice(
  *
  * A lattice of at most `AIMED_LATTICE_DIRECT_CELLS` across is aimed sample by sample, as `prepareAimedPupilLaunch`
  * aims any list. A finer one is seeded from the same field's lattice half as fine, the one supplied or else aimed
- * first: each cell starts from the bilinear interpolation of the four coarse cells around it, with the Jacobian of that
- * interpolation, and takes at most `AIMED_LATTICE_MAX_CORRECTIONS` Broyden-updated Newton steps to the residual
- * tolerance. That costs a cell two stop traces where a lone sample spends three to six, most of them polishing. A cell
- * whose four coarse neighbours are not all aimed, whose seed cannot be traced or that is still off target after the
- * corrections, and the stop centre, are solved as lone samples, outcome and polish included. Seeded cells are within
- * the residual tolerance of their targets but not polished, so their rays can differ from a lone solve's by up to the
- * tolerance at the stop. The lattice depends only on the field, spectrum, stop radius and size: the coarse lattice is
- * a deterministic function of the same inputs, so supplying it never changes a bit.
+ * first (`seededAim`), which costs a cell about one stop trace where a lone sample spends three to six, most of them
+ * polishing. Lattice cells are never polished: they lie within the residual tolerance of their targets, so their rays
+ * can differ from a lone solve's by up to the tolerance at the stop. The stop centre is the chief, as in any launch.
+ * The lattice depends only on the field, spectrum, stop radius and size: the coarse lattice is a deterministic function
+ * of the same inputs, so supplying it never changes a bit.
  *
  * @param state - prepared geometry the rays are traced through
  * @param aperture - stop radius R and launch scale in mm
@@ -429,7 +426,8 @@ export function prepareAimedStopLatticeForState(
   if (!field) return null;
   const { model, key } = field;
   const R = aperture.stopSemiDiameterMm;
-  let solve: CanonicalSolver = (target) => aimSample(model, target.stop, target.pinA);
+  // Lattice cells are aimed to the tolerance, never polished: one stop trace each is the point of the lattice.
+  let solve: CanonicalSolver = (target) => aimSample(model, target.stop, target.pinA, false);
   if (n > AIMED_LATTICE_DIRECT_CELLS) {
     const half = n >> 1;
     const seeds =
@@ -601,6 +599,10 @@ interface LatticeSeedMap {
   cellsAcross: number;
   /** Launch of each aimed coarse cell at row · cellsAcross + column; null where the cell is not aimed or not in the disc. */
   launches: (Vec2 | null)[];
+  /** Stop crossing of each aimed coarse cell, indexed alike. */
+  stops: (Vec2 | null)[];
+  /** For every coarse grid position, the index of an aimed coarse cell fewest king's moves away; −1 when none is aimed. */
+  nearestAimed: Int32Array;
   /** The frame's linear map from normalised stop coordinates to the stop crossing in mm, [∂x/∂u, ∂x/∂v, ∂y/∂u, ∂y/∂v]. */
   stopPerFraction: Matrix2;
 }
@@ -608,29 +610,65 @@ interface LatticeSeedMap {
 function latticeSeedMap(lattice: AimedStopLattice, frame: LaunchFrame, R: number): LatticeSeedMap {
   const m = lattice.cellsAcross;
   const launches: (Vec2 | null)[] = new Array(m * m).fill(null);
+  const stops: (Vec2 | null)[] = new Array(m * m).fill(null);
   lattice.cells.forEach((cell, i) => {
     const ray = lattice.rays[i];
-    if (ray.status === "aimed") launches[cell.row * m + cell.column] = ray.launch;
+    if (ray.status !== "aimed") return;
+    launches[cell.row * m + cell.column] = ray.launch;
+    stops[cell.row * m + cell.column] = ray.achievedStopMm;
   });
   const origin = frame.stopTarget(0, 0, R);
   const alongU = frame.stopTarget(1, 0, R);
   const alongV = frame.stopTarget(0, 1, R);
+  // Multi-source breadth-first sweep from the aimed cells: each grid position takes the first aimed cell to reach it.
+  const nearestAimed = new Int32Array(m * m).fill(-1);
+  let frontier: number[] = [];
+  launches.forEach((launch, index) => {
+    if (launch) {
+      nearestAimed[index] = index;
+      frontier.push(index);
+    }
+  });
+  while (frontier.length) {
+    const next: number[] = [];
+    for (const index of frontier) {
+      const row = Math.floor(index / m);
+      const column = index % m;
+      for (let dr = -1; dr <= 1; dr++)
+        for (let dc = -1; dc <= 1; dc++) {
+          const r = row + dr;
+          const c = column + dc;
+          if (r < 0 || c < 0 || r >= m || c >= m || nearestAimed[r * m + c] >= 0) continue;
+          nearestAimed[r * m + c] = nearestAimed[index];
+          next.push(r * m + c);
+        }
+    }
+    frontier = next;
+  }
   return {
     cellsAcross: m,
     launches,
+    stops,
+    nearestAimed,
     stopPerFraction: [alongU[0] - origin[0], alongV[0] - origin[0], alongU[1] - origin[1], alongV[1] - origin[1]],
   };
 }
 
 /**
- * Aim one lattice cell from the coarser lattice: the bilinear seed of the four coarse cells around it, corrected by
- * Newton steps whose Jacobian starts as that interpolation's and is Broyden-updated, at most
- * `AIMED_LATTICE_MAX_CORRECTIONS` of them. Anything else is solved as a lone sample, the traces spent here added to its
- * count.
+ * Aim one lattice cell from the coarser lattice. The seed interpolates the coarse cells by tensor-product cubic Lagrange
+ * interpolation over a 4 × 4 block of aimed coarse cells, the one centred on the cell where it is all aimed, else the
+ * nearest shifted block (extrapolating at the rim), else bilinearly over the 2 × 2 around it. Newton steps then correct
+ * it, with a Jacobian that starts as the interpolation's and is Broyden-updated, at most
+ * `AIMED_LATTICE_MAX_CORRECTIONS` of them. The cubic seed of a smooth stop-to-launch map usually lands within the
+ * tolerance at once, so the cell costs one stop trace. A cell with no such block, or whose seeded steps cannot be traced
+ * or stay off target, is solved as a lone sample would be (`newtonAim`, unpolished) but from the nearest aimed coarse
+ * cell rather than from the field's fit or chief: at the edge of what the tracer can reach, that start is already
+ * beside the target, and a blocked target ends in two or three traces. Without any aimed coarse cell it is solved as a
+ * lone sample. The traces spent are added to the cell's count either way.
  */
 function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarget): SampleSolve {
   const lone = (spent: number): SampleSolve => {
-    const solve = aimSample(model, target.stop, target.pinA);
+    const solve = aimSample(model, target.stop, target.pinA, false);
     return spent > 0 ? { ...solve, iterations: solve.iterations + spent } : solve;
   };
   const [u, v] = target.fractions;
@@ -639,41 +677,119 @@ function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarg
   const m = map.cellsAcross;
   const s = (u * m + m - 1) / 2;
   const t = (v * m + m - 1) / 2;
-  const column = Math.floor(s);
-  const row = Math.floor(t);
-  if (column < 0 || row < 0 || column + 1 >= m || row + 1 >= m) return lone(0);
-  const l00 = map.launches[row * m + column];
-  const l01 = map.launches[row * m + column + 1];
-  const l10 = map.launches[(row + 1) * m + column];
-  const l11 = map.launches[(row + 1) * m + column + 1];
-  if (!l00 || !l01 || !l10 || !l11) return lone(0);
-  const fs = s - column;
-  const ft = t - row;
-  const seed = (k: 0 | 1) => (1 - ft) * ((1 - fs) * l00[k] + fs * l01[k]) + ft * ((1 - fs) * l10[k] + fs * l11[k]);
-  // One coarse cell spans 2 / m of the normalised coordinate.
-  const perU = (k: 0 | 1) => ((1 - ft) * (l01[k] - l00[k]) + ft * (l11[k] - l10[k])) * (m / 2);
-  const perV = (k: 0 | 1) => ((1 - fs) * (l10[k] - l00[k]) + fs * (l11[k] - l01[k])) * (m / 2);
-  const fractionPerLaunch = invert2([perU(0), perV(0), perU(1), perV(1)]);
+  const fromNearest = (spent: number): SampleSolve => {
+    const near = nearestAimedCoarseCell(map, s, t);
+    if (!near || !model.jacobian) return lone(spent);
+    const start: SolveStart = { launch: near.launch, stop: near.stop, jacobian: model.jacobian, iterations: spent };
+    return newtonAim(model, target.stop, start, false, false);
+  };
+  const window = seedWindow(map, s, t);
+  if (!window) return fromNearest(0);
+  const stencilU = lagrangeStencil(s - window.column, window.nodes);
+  const stencilV = lagrangeStencil(t - window.row, window.nodes);
+  const seed: [number, number] = [0, 0];
+  // Launch per normalised coordinate: one coarse cell spans 2 / m of it.
+  const perU: [number, number] = [0, 0];
+  const perV: [number, number] = [0, 0];
+  for (let i = 0; i < window.nodes; i++)
+    for (let j = 0; j < window.nodes; j++) {
+      const node = map.launches[(window.row + i) * m + window.column + j]!;
+      for (const k of [0, 1] as const) {
+        seed[k] += stencilV.weights[i] * stencilU.weights[j] * node[k];
+        perU[k] += stencilV.weights[i] * stencilU.slopes[j] * node[k] * (m / 2);
+        perV[k] += stencilV.slopes[i] * stencilU.weights[j] * node[k] * (m / 2);
+      }
+    }
+  const fractionPerLaunch = invert2([perU[0], perV[0], perU[1], perV[1]]);
   if (!fractionPerLaunch) return lone(0);
   let jacobian = multiply2(map.stopPerFraction, fractionPerLaunch);
-  let launch: Vec2 = [seed(0), seed(1)];
+  let launch: Vec2 = seed;
   let stop = model.stopAt(launch);
   let iterations = 1;
-  if (!stop) return lone(iterations);
+  if (!stop) return fromNearest(iterations);
   for (let corrections = 0; ; corrections++) {
     if (Math.hypot(target.stop[0] - stop[0], target.stop[1] - stop[1]) <= model.toleranceMm)
       return { status: "aimed", reason: null, launch, stop, iterations };
-    if (corrections >= AIMED_LATTICE_MAX_CORRECTIONS) return lone(iterations);
+    if (corrections >= AIMED_LATTICE_MAX_CORRECTIONS) return fromNearest(iterations);
     const step = solve2(jacobian, [target.stop[0] - stop[0], target.stop[1] - stop[1]]);
-    if (!step) return lone(iterations);
+    if (!step) return fromNearest(iterations);
     const trial: Vec2 = [launch[0] + step[0], launch[1] + step[1]];
     const trialStop = model.stopAt(trial);
     iterations++;
-    if (!trialStop) return lone(iterations);
+    if (!trialStop) return fromNearest(iterations);
     jacobian = broydenUpdate(jacobian, step, [trialStop[0] - stop[0], trialStop[1] - stop[1]]);
     launch = trial;
     stop = trialStop;
   }
+}
+
+/** The aimed coarse cell nearest a position in coarse-cell units (`LatticeSeedMap.nearestAimed`), or null. */
+function nearestAimedCoarseCell(map: LatticeSeedMap, s: number, t: number): { launch: Vec2; stop: Vec2 } | null {
+  const m = map.cellsAcross;
+  const row = Math.min(m - 1, Math.max(0, Math.round(t)));
+  const column = Math.min(m - 1, Math.max(0, Math.round(s)));
+  const index = map.nearestAimed[row * m + column];
+  const launch = index >= 0 ? map.launches[index] : null;
+  const stop = index >= 0 ? map.stops[index] : null;
+  return launch && stop ? { launch, stop } : null;
+}
+
+/** Shifts of a 4-node window from centred, nearest first; a shift past the cell extrapolates. */
+const SEED_WINDOW_SHIFTS = [0, -1, 1, -2, 2] as const;
+
+/**
+ * The block of aimed coarse cells a seed interpolates: 4 × 4 starting one node below the cell, or shifted toward the
+ * aimed cells by up to two nodes per axis, nearest first; else the 2 × 2 around the cell.
+ *
+ * @returns first row and column of the block and its nodes per axis, or null without one
+ */
+function seedWindow(map: LatticeSeedMap, s: number, t: number): { row: number; column: number; nodes: 2 | 4 } | null {
+  const m = map.cellsAcross;
+  const aimed = (row: number, column: number, nodes: number) => {
+    if (row < 0 || column < 0 || row + nodes > m || column + nodes > m) return false;
+    for (let i = 0; i < nodes; i++)
+      for (let j = 0; j < nodes; j++) if (map.launches[(row + i) * m + column + j] === null) return false;
+    return true;
+  };
+  const row = Math.floor(t);
+  const column = Math.floor(s);
+  for (const dr of SEED_WINDOW_SHIFTS)
+    for (const dc of SEED_WINDOW_SHIFTS)
+      if (aimed(row - 1 + dr, column - 1 + dc, 4)) return { row: row - 1 + dr, column: column - 1 + dc, nodes: 4 };
+  return aimed(row, column, 2) ? { row, column, nodes: 2 } : null;
+}
+
+/** Lagrange weights of a window's nodes and their derivatives, at one position along an axis. */
+interface LagrangeStencil {
+  weights: readonly number[];
+  slopes: readonly number[];
+}
+
+/**
+ * One axis of the seed's interpolation: the Lagrange polynomials through nodes 0 … count − 1, and their slopes.
+ *
+ * @param x - position in node steps from the window's first node
+ * @param count - nodes in the window
+ * @returns each node's weight and the derivative of that weight in x
+ */
+function lagrangeStencil(x: number, count: number): LagrangeStencil {
+  const weights: number[] = [];
+  const slopes: number[] = [];
+  for (let i = 0; i < count; i++) {
+    let denominator = 1;
+    let weight = 1;
+    let slope = 0;
+    for (let j = 0; j < count; j++) {
+      if (j === i) continue;
+      denominator *= i - j;
+      // Product rule: the slope of Π (x − j) gains each factor's derivative times the rest.
+      slope = slope * (x - j) + weight;
+      weight *= x - j;
+    }
+    weights.push(weight / denominator);
+    slopes.push(slope / denominator);
+  }
+  return { weights, slopes };
 }
 
 /** Inverse of a 2×2 matrix; null when it is singular relative to its own scale. */
@@ -1192,7 +1308,7 @@ function broydenUpdate(j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 {
   return next.every(Number.isFinite) ? next : j;
 }
 
-function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve {
+function aimSample(model: FieldModel, target: Vec2, pinA: boolean, polish = true): SampleSolve {
   if (!model.chiefStop)
     return { status: "unaimed", reason: "trace-failed", launch: model.chief, stop: null, iterations: 0 };
   const start = chiefStart(model);
@@ -1202,8 +1318,8 @@ function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve 
   // A fitted seed the tracer cannot follow falls back to the chief's, which also finds where a blocked target's
   // reachable region ends.
   const fitted = model.fit && fittedStart(model, model.fit, target, pinA);
-  if (fitted) return newtonAim(model, target, fitted, pinA, true);
-  const solve = newtonAim(model, target, start, pinA, true);
+  if (fitted) return newtonAim(model, target, fitted, pinA, polish);
+  const solve = newtonAim(model, target, start, pinA, polish);
   return model.fit ? { ...solve, iterations: solve.iterations + 1 } : solve;
 }
 

@@ -1,11 +1,11 @@
 /**
- * Transmitted-beam footprint for MTF pupil sampling.
+ * Transmitted-beam footprint on the launch plane.
  *
- * The on-axis entrance pupil is not the beam that reaches an off-axis image point. In retrofocus
- * wide-angles the stop's image grows and shifts off axis, so a fixed entrance-pupil circle can miss
- * most of the real flux at the corner. A coarse scan of the launch plane finds the region whose rays
- * pass every aperture; the fine grid then covers only that region with uniform launch-plane cells,
- * which keeps equal flux per ray for collimated beams.
+ * MTF pupils are sampled on the real stop, whose disc bounds every transmitted beam. Two uses of the
+ * launch plane remain. A field the aimed launch reaches only through the bounding sphere keeps
+ * launch-plane sampling: a coarse scan finds the region whose rays pass every aperture, and the fine
+ * grid covers only that region with uniform launch-plane cells. And the field axis asks a scan
+ * whether any ray reaches the image at a height past the chief ray's own clip (`mtfBeamHeight`).
  */
 import type { TraceRayClass } from "../../trace/rayClassification.js";
 

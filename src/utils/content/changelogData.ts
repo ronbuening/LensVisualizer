@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-28",
     type: "improvement",
     summary:
+      "The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and rays a lens totally reflects before the stop count as vignetted in every analysis",
+  },
+  {
+    date: "2026-10-28",
+    type: "improvement",
+    summary:
       "The aperture stop now gives each marked f-number the paraxial entrance pupil lens-design software uses, at every aperture and zoom, and the Summary reports image-space, paraxial working and real working f-numbers under their standard names; the MTF header no longer shows a separate traced f-number and instead names a rim that vignettes the axial beam",
   },
   {

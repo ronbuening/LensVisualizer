@@ -1,6 +1,6 @@
 # src/optics/analysis/pupils
 
-This folder src/optics/analysis/pupils source folder.
+This folder holds the shared aimed pupil launch, whose pupil coordinates are positions on the real stop, the stop lattice the vignetting tab and the MTF sample, and pupil aberration.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 
@@ -52,4 +52,4 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `aimedPupil.ts` | Aimed Pupil helper module | src/optics/trace (8), src/optics/analysis (3), src/optics/chromatic, src/optics/field, src/optics/math, +2 more | src/optics/analysis (9), src/optics/analysis.ts, src/optics/perspective | AIMED_PUPIL_RESIDUAL_TOLERANCE, AIMED_PUPIL_MAX_ITERATIONS, AIMED_PUPIL_POLISH_TOLERANCE, AimedPupilUnaimedReason, AimedPupilLaunchSurface, AimedPupilSampleInput, AimedObjectPlaneField, AimedBoundingSphereField, +22 more |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/state (5), src/optics/trace (3), src/optics/analysis (2), src/optics/field (2), src/optics/prescription (2), +2 more | src/optics/analysis, src/optics/analysis.ts | PupilAberrationSample, PupilAberrationProfile, ExitPupilAberrationSample, ExitPupilAberrationProfile, PUPIL_ABERRATION_SAMPLE_COUNT, computePupilAberrationProfile, computeExitPupilAberrationProfile, BothPupilAberrationProfiles, +1 more |
-| `stopLattice.ts` | Stop Lattice helper module | none | src/optics/analysis (2) | StopLatticeCell, stopLattice |
+| `stopLattice.ts` | Stop Lattice helper module | none | src/optics/analysis (2), src/optics/analysis.ts | StopLatticeCell, stopLattice |
