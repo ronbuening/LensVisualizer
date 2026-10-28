@@ -128,3 +128,10 @@ The aberration tools show the same qualitative difference off axis: at the curre
 - If the candidate sign becomes authorized by source evidence, apply it with the four required errata records, then recheck SDs, aperture and RI across zoom; do not use a rim reduction to force RI availability.
 - Queue the surface-14 tele aperture restriction in Section I, accounting for the source-versus-marketing F-number endpoints and inferred stop. Shared queue files are outside this assignment's edit scope.
 - The coordinator owns full repository gates and any commits. No git commands, broad test suites, generators, lint, formatting or build were run in this assignment.
+
+## 2026-10-28 — stated-beam raise held for Section H
+
+After #933's paraxial stop rule, `npm run audit:aperture -- --raise` lists 14: 8.3 → 8.7 and 15: 8.4 → 8.6 mm, flagged
+"nominalFno faster than design". The stations carry the marketed f/3.5, f/4.2 and f/4.5 against the 3.6 design value,
+which is the `sd-audit-queue.md` Section H row. Section I raises wait for the source's design f-number at every
+station, so the rims are unchanged. Rerun the raise once that row is closed.

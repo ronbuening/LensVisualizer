@@ -242,7 +242,7 @@ spherical/astigmatism axes span ±500 µm and distortion axis spans ±3%.
 
 ### Estimated rims and illumination
 
-The patent publishes no effective-diameter column. S8's semi-diameter is 17.1 mm, the minimum at 0.1 mm precision
+The patent publishes no effective-diameter column. S8's semi-diameter is 17.4 mm, the minimum at 0.1 mm precision
 needed by the printed $f$/1.75 axial beam (previously 16.0 mm). FIG. 2 shows a stepped L23 rim, so S9 retains
 16.0 mm. L34 retains a square rim with S21/S22 at 19.2 mm (previously 18.0 mm): the printed 19° chief ray reaches
 $Y' = 27.3495$ mm and crosses S22 at 18.29 mm, and FIG. 2 draws L34 level with L31–L33, which puts it at 19.2 mm on

@@ -10,17 +10,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * aperture.
  * Lens semi-diameters are estimated from patent FIG. 3 (the Example 2 section, 0.066 mm/px at
  * 400 dpi) and floor-checked by real-ray trace; none is a published aperture. Surfaces 4, 6 and 8
- * carry the optical extent the figure draws inside flat annuli. Surface 5 stops at 14.0 mm, the
- * largest value the 4→5 cross-gap check admits; FIG. 3 seats L3 against the flat rear land of L2,
- * which its front curve reaches at about 14.1-14.3 mm, and draws a flat land above that to 15.3 mm
- * that the renderer cannot show. FIG. 3 draws the cemented pair as one square-cut block 15.0 mm
+ * carry the optical extent the figure draws inside flat annuli. Surface 5 is 14.2 mm: under the
+ * paraxial stop rule the f/1.53 axial ray meets it at 14.18 mm, and checks.gapSagFrac 0.93 is the
+ * smallest fraction at which the 4→5 cross-gap check admits it (combined sag 1.150 of 1.2378 mm).
+ * FIG. 3 seats L3 against the flat rear land of L2, which its front curve reaches at about
+ * 14.1-14.3 mm, and draws a flat land above that to 15.3 mm that the renderer cannot show. FIG. 3 draws the cemented pair as one square-cut block 15.0 mm
  * high, so surfaces 9 and 10 share one rim (15.5 mm, 3 % above the figure); L6 keeps 16 mm
  * (figure 15.2 mm). Surface 12A turns over at 12.95 mm, below the f/1.53 axial ray height of
- * 12.97 mm there, so its rim lies past the turnover; FIG. 3 draws that reversal.
- * Rimmer localization audit: the 23.19° field reaches max referred deviation 0.05529 in
- * skew rays crossing 12A at 15.46–15.52 mm, past the reversal and the drawn rim. These rays
- * also graze cemented interface 9 (about 78° incidence); the failure is not isolated to one
- * coefficient. No source-supported numerical correction or beam-preserving turnover cap.
+ * 13.30 mm there, so its rim lies past the turnover; FIG. 3 draws that reversal.
+ * Rimmer localization audit (2026-10-27): the 23.19° field reached max referred deviation
+ * 0.05529 in skew rays crossing 12A at 15.46–15.52 mm, past the reversal and the drawn rim.
+ * These rays also graze cemented interface 9 (about 78° incidence); the failure is not isolated
+ * to one coefficient. With the paraxial stop rule and the 14.2 mm surface 5 it is 0.0506, still
+ * past the 0.05 limit. No source-supported numerical correction or beam-preserving turnover cap.
  * source.errata discloses the previously recorded unresolved f5 summary/ratio discrepancy.
  * LABELS: the patent names five lens groups 21-25 (claim 1: positive, positive, negative, negative,
  * positive) with stop 27 between the third and fourth; `groups` G1-G5 follow that order.
@@ -148,7 +150,7 @@ const LENS_DATA = {
     { label: "2", R: 205.9071, d: 0.15, sd: 23 },
     { label: "3", R: 23.7302, d: 4.971, sd: 18, medium: 2 },
     { label: "4", R: 30.4651, d: 1.2378, sd: 14.3 },
-    { label: "5", R: 43.8618, d: 3.2, sd: 14, medium: 3 },
+    { label: "5", R: 43.8618, d: 3.2, sd: 14.2, medium: 3 },
     { label: "6", R: 16.757, d: 6.2699, sd: 12 },
     { label: "STO", R: "flat", d: 5.3407 },
     { label: "8", R: -20.6522, d: 1.5, sd: 11.8, medium: 4 },
@@ -188,6 +190,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "8", toSurface: "10" }],
 
+  checks: { gapSagFrac: 0.93 },
   layout: { yScFill: 0.3 },
 } satisfies LensDataV2Input;
 

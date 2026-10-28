@@ -96,7 +96,7 @@ The coefficient digits/signs/exponents were read from 400 dpi table crops, with 
 | 15A | `A17` | Omitted (zero) | `1.5944044e-22` | Table 4, PDF p. 19, Sn 15, A17 row. |
 | 14A | `A19` | Omitted (zero) | `-3.6580337e-24` | Table 4, PDF p. 19, Sn 14, A19 row. |
 | 15A | `A19` | Omitted (zero) | `5.0171611e-25` | Table 4, PDF p. 19, Sn 15, A19 row. |
-| 8 | `sd` (mm) | 16.0 | 17.1 | Table 2 f/1.75 axial-beam floor; FIG. 2 stepped L23 rim permits S9 to remain 16.0. |
+| 8 | `sd` (mm) | 16.0 | 17.4 | Table 2 f/1.75 axial-beam floor, 17.367 mm under the paraxial stop rule (stop 12.966 mm); FIG. 2 stepped L23 rim permits S9 to remain 16.0. |
 | 21 | `sd` (mm) | 18.0 | 19.2 | L34 square rim in FIG. 2; paired with S22. |
 | 22 | `sd` (mm) | 18.0 | 19.2 | Table 2 19° / Y = 27.35 mm chief ray reaches S22 at 18.2899 mm (floor); FIG. 2 gives 19.2 mm on the lens's own scale (SD procedure Step 1 takes the figure value). |
 | focus.conjugates[0] | `source` wording | PP omitted; air-equivalent model | PP traced in rearPlates at physical thickness/gaps | Table 1 rows 23/24 and existing rearPlates; numeric object distance stays 576.6736 mm. |
@@ -115,10 +115,10 @@ Base-sphere departures at the retained rims change from -2.2 to -133.3 µm at S1
 
 ### Rims and figure evidence
 
-The source has no printed effective-diameter column. The stated axial beam requires S8 = 17.1 mm at the file's
+The source has no printed effective-diameter column. The stated axial beam requires S8 = 17.4 mm at the file's
 0.1 mm precision; the old 16.0 mm rim limited the lens to about f/1.84 against printed f/1.75. FIG. 2's enlarged
 L23 view shows the image-side curve ending inside the front junction rim, so only S8 rises and S9 retains 16.0 mm.
-The proposed S8 value is below the figure's optical extent and passes the geometric validator.
+The S8 value is below the figure's optical extent and passes the geometric validator.
 
 The exact 19° chief ray reaches image height 27.3495 mm, matching printed Y = 27.35 mm, but reaches S22 at
 18.2899 mm against the old 18.0 mm rim, so the rim is floor-proven and Step 1 of the SD procedure takes its value
@@ -163,3 +163,12 @@ printed 27.35 mm image height is slightly smaller than the format's 27.39 mm cor
 18.32 mm, inside the 19.2 mm rim. Coordinator to review the interactive lens page/aspheric overlay:
 browser access was unavailable, and a scratch-only local server was denied by the sandbox (listen EPERM).
 The coordinator owns repository-wide gates and commits.
+
+## 2026-10-28 — S8 under the paraxial stop rule
+
+After #933's paraxial stop rule the stop radius is 12.966 mm (12.772 mm before), and the f/1.75 marginal ray crosses
+S8 at 17.367 mm, so `npm run audit:aperture -- --raise` lists S8 17.1 → 17.4 mm. S8 takes 17.4 mm. Its only flag is
+the unrelated Table 2 TL erratum. `audit:patent-figure` on FIG. 2 (same crop) cannot read L23 itself, because flange ink
+contaminates it (25.6 mm in figure units). The L22/L23 junction at 17.4 mm stays inside L22's drawn rim (19.87–20.79 mm
+in figure units, against 20.0 mm in the data). The validator reports no errors, and the axial beam traces at f/1.75
+with no rim clip. Wide open at design focus the vignetting tab reads RI at all eight fields, 0.06 at 19°.

@@ -232,3 +232,17 @@ All threshold-exceeding lattice rays cross 12A at 15.460–15.517 mm, beyond the
 Source-plot comparison: Figure 4A has a ±0.50 mm horizontal scale and a d-line spherical-aberration trough near -0.18 mm around the upper pupil; the traced LSA is -0.008/-0.180/-0.102/-0.052 mm at pupil fractions 1/0.85/0.7/0.5. Figure 4B also spans ±0.50 mm and shows the tangential curve bending to roughly -0.3 mm at intermediate outer heights before returning toward -0.18 mm near the corner, with the sagittal curve much closer to zero. The close-ray trace gives T=-0.305/S=-0.075 mm at 20.29° and T=-0.177/S=+0.023 mm at 23.19° (21.65 mm height). Figure 4C spans ±5% and shows barrel distortion approaching about -2% at the 22.10 mm source height; the trace gives -2.078% at the slightly smaller 21.65 mm format corner. These are visual agreement checks, not exact digitization or certification of extreme skew-pupil image quality. No new source contradiction identifies a suspect coefficient, so no single-slip search or coefficient erratum is warranted. The previously investigated f5/ratio discrepancy remains unresolved and is disclosed without reopening a numerical fit.
 
 Disposition: rim-past-turnover / model-limitation; no transcription or odd-term error found. Numerical optics and semi-diameters are unchanged. After the documentation/metadata edits, the complete vignetting curve is identical: RI remains available through 20.29° and withheld only at 23.19°. Surface geometry reports no validation errors, the axial aperture census remains iris-limited at f/1.530000, and image-circle checking reports no undersized surface. These geometry/chief-coverage checks do not resolve the Rimmer refusal. Queue the outer-zone/skew-field limitation for coordinator review; any tighter inferred rim or engine-level investigation needs its own evidence. No other repository files were edited.
+
+## 2026-10-28 — surface 5 under the paraxial stop rule
+
+After #933's paraxial stop rule the f/1.53 stop radius is 11.74 mm, against the authored 11.50 mm, and the axial
+marginal ray meets surface 5 at 14.18 mm, past its 14.0 mm rim. `npm run audit:aperture -- --raise` lists 5: 14 → 14.2
+mm. Its only flag is the unrelated f5/ratio erratum. This is the procedure's "clipped stated beam" case with facing
+surfaces that nearly meet. At 14.2 mm the 4→5 combined sag is 1.150 of 1.2378 mm (0.929), so the default 0.9 fraction
+refuses it. FIG. 3 seats L3 against L2's flat rear land, which L3's front curve reaches at 14.1 mm (14.3 mm one
+pixel later), so the elements meet there in the figure. `checks.gapSagFrac` is set to 0.93, the smallest two-place
+value that admits the raise, and surface 5 takes 14.2 mm. Surface 4 (14.3 mm) is not raised: the ray meets it at
+14.21 mm. The other axial heights are 11.83 / 12.0 mm at surface 6, 11.64 / 11.8 mm at surface 8, and 13.30 mm at 12A,
+still past its 12.949 mm turnover. After the change the validator reports no errors, the image-circle check lists no
+undersized surface, and traced corner coverage is 100 %. Wide open at design focus the vignetting tab reads RI through
+20.29° (0.61); the 23.19° corner is still refused at maximum referred deviation 0.0506, against 0.05529 before.

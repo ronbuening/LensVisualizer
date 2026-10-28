@@ -14,7 +14,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Estimated from marginal + chief ray (60% field) with 8%         ║
  * ║    clearance. Front elements constrained by 77 mm filter thread    ║
  * ║    and cross-gap sag intrusion (S2→S3 gap = 2.75 mm is binding).  ║
- * ║    S8 raised 16.0→17.1 mm for the stated f/1.75 axial beam;      ║
+ * ║    S8 raised 16.0→17.4 mm for the stated f/1.75 axial beam;      ║
+ * ║    under the paraxial stop rule (stop 12.966 mm) the marginal    ║
+ * ║    ray crosses S8 at 17.367 mm.                                   ║
  * ║    S9 stays 16.0 mm (FIG. 2 shows a stepped L23 rim).            ║
  * ║    L34 S21/S22 raised 18.0→19.2 mm, square: the printed 19° /     ║
  * ║    Y = 27.35 mm chief ray crosses S22 at 18.29 mm, and FIG. 2     ║
@@ -262,7 +264,7 @@ const LENS_DATA = {
     { label: "5", R: 41.3284, d: 7.02, sd: 23.5, medium: 3 },
     { label: "6", R: 285.6388, d: 0.2, sd: 23.5 },
     { label: "7", R: 28.5038, d: 8.21, sd: 20.0, medium: 4 }, // L22 front
-    { label: "8", R: 329.044, d: 1.63, sd: 17.1, medium: 5 }, // L22→L23 junction
+    { label: "8", R: 329.044, d: 1.63, sd: 17.4, medium: 5 }, // L22→L23 junction
     { label: "9", R: 17.9857, d: 9.8099, sd: 16.0 }, // L23 rear → air
     { label: "STO", R: "flat", d: 6.0118 }, // aperture stop
     { label: "11", R: -40.9786, d: 5.42, sd: 14.0, medium: 6 }, // L24 front
