@@ -1306,8 +1306,9 @@ and its own target, so an external cross-checker calling it gets the tabs' rays 
   with a proven block as its last failed step is blocked too; a stall, or the cap with no proven block, never is.
   `unaimed` (`aim-not-converged`, `stop-unreachable`, `trace-failed`): no ray; counted with the reason in every
   result and never traced or replaced by a paraxial launch. Total internal reflection ahead of the stop is a block at
-  the reflecting surface, as it is after the stop (`blockedAt` uses `traceRayClassification`), so a target only
-  reflected rays could reach ends `blocked` there and is vignetting in every analysis. Bokeh transmission and
+  the reflecting surface, as it is after the stop (`blockedAt` uses `traceRayClassification`): a solve whose failed
+  step reflects totally ends `blocked` there under the rules above and is vignetting in every analysis. A target past
+  the fold of the stop-to-launch map, beyond every transmitted ray's reach, can still end unaimed. Bokeh transmission and
   moved-lens vignetting leave unaimed samples out of their denominators and report how many there were.
 - **Spectra.** A launch is aimed at the authored reference indices, at a chromatic channel's, or at a spectral line's
   supplied indices (`AimedPupilSpectralLine`, the MTF's anchored lines); the spectrum is part of the field-model key.
@@ -1728,8 +1729,8 @@ cross-checker can restate Rimmer's sum from a field's cells.
   lattice has neither figure (`too-many-unaimed`, or `too-many-failed` when failed samples are the larger share).
 - **Total internal reflection.** It vignettes on both sides of the stop. An aimed ray reaches the stop (traced there
   without aperture checks), so total internal reflection in its full trace is after the stop; ahead of the stop the
-  aimed launch takes it as a block at the reflecting surface, so a sample only reflected rays could reach is `blocked`
-  there. Either way the sample counts as vignetted.
+  aimed launch takes it as a block at the reflecting surface, so a sample whose solve fails on a totally reflected step
+  is `blocked` there. Either way the sample counts as vignetted.
 - **Relative illumination**: Rimmer's method, as OpticStudio computes it. Each transmitted ray is referred to the image
   point through the reference sphere (Rimmer's Eq. 3): its (L, M) are the direction cosines of the segment from its
   crossing of a sphere centred on the chief ray's image-plane point, through the chief ray's crossing of the exit-pupil

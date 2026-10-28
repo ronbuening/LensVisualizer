@@ -131,20 +131,22 @@ export interface MtfUnresolvedFlux {
  *
  * @param unresolvedRays - unaimed and failed pupil samples
  * @param unknownFluxFraction - their share of the sampled flux, each counted at full transmission
- * @param inBeam - how many of them lie beside the transmitted beam
+ * @param inBeam - how many of them lie beside the transmitted beam; null when not counted, and the note says nothing of it
  * @returns whether the field may be reported, with its qualifying note
  */
 export function assessUnresolvedFlux(
   unresolvedRays: number,
   unknownFluxFraction: number,
-  inBeam = 0,
+  inBeam: number | null = null,
 ): MtfUnresolvedFlux {
   if (unknownFluxFraction > MTF_MAX_UNKNOWN_FLUX) return { acceptable: false, note: null };
   if (unresolvedRays === 0) return { acceptable: true, note: null };
   const where =
-    inBeam > 0
-      ? ` ${inBeam === unresolvedRays ? "All" : inBeam} of them lie inside the transmitted beam.`
-      : " None lies inside the transmitted beam.";
+    inBeam === null
+      ? ""
+      : inBeam > 0
+        ? ` ${inBeam === unresolvedRays ? "All" : inBeam} of them lie inside the transmitted beam.`
+        : " None lies inside the transmitted beam.";
   return {
     acceptable: true,
     note: `${unresolvedRays} pupil samples that could not be aimed or traced (${(unknownFluxFraction * 100).toFixed(2)}% of flux) are omitted; MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}.${where}`,

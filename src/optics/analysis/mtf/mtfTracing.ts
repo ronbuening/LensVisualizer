@@ -501,8 +501,6 @@ export function traceMtfLattice(
     lattice,
   };
   // Cell outcomes on the full lattice, for finding unresolved cells beside the beam.
-  const LIT = 1;
-  const UNRESOLVED = 2;
   const outcome = new Uint8Array(n * n);
   const mark = (row: number, column: number, value: number) => {
     outcome[row * n + column] = value;
@@ -519,7 +517,7 @@ export function traceMtfLattice(
     if (ray.status === "unaimed") {
       bundle.unaimed += samples;
       bundle.unresolvedWeight += samples;
-      mark(cell.row, cell.column, UNRESOLVED);
+      mark(cell.row, cell.column, CELL_UNRESOLVED);
       return;
     }
     const trace = traceRay(ray);
@@ -532,10 +530,10 @@ export function traceMtfLattice(
     if (!point) {
       bundle.failed += samples;
       bundle.unresolvedWeight += samples;
-      mark(cell.row, cell.column, UNRESOLVED);
+      mark(cell.row, cell.column, CELL_UNRESOLVED);
       return;
     }
-    mark(cell.row, cell.column, LIT);
+    mark(cell.row, cell.column, CELL_LIT);
     const record: MtfPupilRay["trace"] = {
       input: trace.input,
       terminalPoint: trace.terminalPoint,
@@ -547,16 +545,35 @@ export function traceMtfLattice(
     bundle.rays.push(ray0);
     if (mirror) bundle.rays.push(mirrorPupilRay(ray0, n));
   });
+  bundle.unresolvedInBeam = unresolvedBesideBeam(outcome, n, n);
+  return bundle;
+}
+
+/** A lattice cell's outcome, for finding unresolved cells beside the beam; 0 is a dark (blocked) cell. */
+const CELL_LIT = 1;
+const CELL_UNRESOLVED = 2;
+
+/**
+ * Count unresolved cells that are the row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam`
+ * rule.
+ *
+ * @param outcome - cell outcomes in row-major order
+ * @param columns - cells per row
+ * @param rows - rows
+ * @returns unresolved cells beside the transmitted beam
+ */
+function unresolvedBesideBeam(outcome: Uint8Array, columns: number, rows: number): number {
   const lit = (row: number, column: number) =>
-    row >= 0 && column >= 0 && row < n && column < n && outcome[row * n + column] === LIT;
-  for (let row = 0; row < n; row++)
-    for (let column = 0; column < n; column++)
+    row >= 0 && column >= 0 && row < rows && column < columns && outcome[row * columns + column] === CELL_LIT;
+  let count = 0;
+  for (let row = 0; row < rows; row++)
+    for (let column = 0; column < columns; column++)
       if (
-        outcome[row * n + column] === UNRESOLVED &&
+        outcome[row * columns + column] === CELL_UNRESOLVED &&
         (lit(row - 1, column) || lit(row + 1, column) || lit(row, column - 1) || lit(row, column + 1))
       )
-        bundle.unresolvedInBeam++;
-  return bundle;
+        count++;
+  return count;
 }
 
 /**
@@ -620,6 +637,11 @@ export function traceMtfLaunchPlaneBundle(
   const source = launch.objectPoint;
   const chiefDistance = source ? Math.hypot(...chiefTrace.input.origin.map((v, i) => v - source[i])) : 0;
   const firstColumn = mirror ? grid.columns / 2 : 0;
+  const outcome = new Uint8Array(grid.rows * grid.columns);
+  const mark = (row: number, column: number, value: number) => {
+    outcome[row * grid.columns + column] = value;
+    if (mirror) outcome[row * grid.columns + grid.columns - 1 - column] = value;
+  };
   for (let row = 0; row < grid.rows; row++) {
     for (let column = firstColumn; column < grid.columns; column++) {
       const x = grid.x0 + (column + 0.5) * grid.step;
@@ -639,8 +661,10 @@ export function traceMtfLaunchPlaneBundle(
       if (!point) {
         bundle.failed += samples;
         bundle.unresolvedWeight += samples * launchWeight;
+        mark(row, column, CELL_UNRESOLVED);
         continue;
       }
+      mark(row, column, CELL_LIT);
       point.weight *= launchWeight;
       if (Math.abs(x) > footprint.x1 - footprint.guardMm) bundle.openBorders.x = true;
       if (y < footprint.y0 + footprint.guardMm) bundle.openBorders.y0 = true;
@@ -656,6 +680,7 @@ export function traceMtfLaunchPlaneBundle(
       if (mirror) bundle.rays.push(mirrorPupilRay({ ...point, column, row, trace: record }, grid.columns));
     }
   }
+  bundle.unresolvedInBeam = unresolvedBesideBeam(outcome, grid.columns, grid.rows);
   return bundle;
 }
 

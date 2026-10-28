@@ -363,8 +363,9 @@ export interface AimedStopLattice extends AimedPupilLaunch {
   cells: readonly StopLatticeCell[];
 }
 
-// The field model each lattice was aimed with, so a coarser lattice seeds only lattices of its own field and spectrum.
-const latticeModelKeys = new WeakMap<AimedStopLattice, string>();
+// The prepared state and field-model key each lattice was aimed with, so a coarser lattice seeds only lattices of its own
+// state, field and spectrum.
+const latticeModelKeys = new WeakMap<AimedStopLattice, { state: PreparedGeometry; key: string }>();
 
 /**
  * Aim a regular stop lattice for one field of the request's current state (`stopLattice`, `cellsAcross` cells across
@@ -410,7 +411,7 @@ export function prepareAimedStopLattice(
  * @param cellsAcross - lattice cells across the stop's diameter, rounded to an integer
  * @param geometry - field launch
  * @param spectrum - chromatic channel or spectral line the rays are aimed at
- * @param coarse - the same field's lattice half as fine; ignored unless it was aimed for this field and spectrum
+ * @param coarse - the same field's lattice half as fine; ignored unless it was aimed for this state, field and spectrum
  * @returns aimed lattice, or null when there is no stop or surface
  */
 export function prepareAimedStopLatticeForState(
@@ -431,7 +432,7 @@ export function prepareAimedStopLatticeForState(
   if (n > AIMED_LATTICE_DIRECT_CELLS) {
     const half = n >> 1;
     const seeds =
-      coarse && coarse.cellsAcross === half && latticeModelKeys.get(coarse) === key
+      coarse && coarse.cellsAcross === half && sameField(latticeModelKeys.get(coarse), state, key)
         ? coarse
         : prepareAimedStopLatticeForState(state, aperture, half, geometry, spectrum);
     if (seeds) {
@@ -441,8 +442,13 @@ export function prepareAimedStopLatticeForState(
   }
   const cells = stopLattice(n);
   const lattice: AimedStopLattice = { ...aimedLaunch(state, model, R, cells, solve), cellsAcross: n, cells };
-  latticeModelKeys.set(lattice, key);
+  latticeModelKeys.set(lattice, { state, key });
   return lattice;
+}
+
+/** Whether a lattice was aimed for this prepared state and field model key. */
+function sameField(owner: { state: PreparedGeometry; key: string } | undefined, state: PreparedGeometry, key: string) {
+  return owner !== undefined && owner.state === state && owner.key === key;
 }
 
 /** A request's stop radius and launch scale. */

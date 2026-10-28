@@ -13,6 +13,7 @@ import {
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
+  prepareAimedStopLattice,
 } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import {
@@ -487,6 +488,31 @@ describe("prepareAimedPupilLaunch", () => {
     expect(amongOthers.origin).toEqual(alone.origin);
     expect(amongOthers.direction).toEqual(alone.direction);
     expect(amongOthers.iterations).toBe(alone.iterations);
+  });
+});
+
+describe("prepareAimedStopLattice", () => {
+  it("lands every cell within tolerance, and a supplied coarse lattice changes nothing unless it is the field's own", () => {
+    const request = analysisRequestAt(stopBehindLens(), { currentEPSD: 3, currentPhysStopSD: 2 });
+    const field = { uField: 0.2, yChief: -1 };
+    const fine = prepareAimedStopLattice(request, 32, field)!;
+    expect(fine.cells).toHaveLength(fine.rays.length);
+    for (const ray of fine.rays) expectOnTarget(fine, ray);
+    // The lattice half as fine, aimed first or supplied, seeds the same bits.
+    const coarse = prepareAimedStopLattice(request, 16, field)!;
+    expect(prepareAimedStopLattice(request, 32, field, undefined, coarse)!.rays).toEqual(fine.rays);
+    // A lattice of the same field key in another state (the stop a micrometre further back) is ignored.
+    const base = stopBehindLens();
+    const moved = build({
+      ...constructionFixtureData(base),
+      key: "test-aimed-stop-behind-lens-moved",
+      surfaces: constructionFixtureData(base).surfaces.map((surface, i) =>
+        i === 1 ? { ...surface, d: 20.001 } : surface,
+      ),
+    });
+    const other = analysisRequestAt(moved, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const foreign = prepareAimedStopLattice(other, 16, field)!;
+    expect(prepareAimedStopLattice(request, 32, field, undefined, foreign)!.rays).toEqual(fine.rays);
   });
 });
 

@@ -71,8 +71,8 @@ vi.mock("../../../../../src/optics/trace/rayClassification.js", async (importOri
  */
 const backward = vi.hoisted(() => ({ rays: new Set<string>() }));
 /*
- * Lattice samples the launch returns unaimed, by lattice index: since total internal reflection ahead of the stop is a
- * block, no fixture leaves a sample unaimed on demand, so the tab's handling of them is tested on samples named here.
+ * Lattice samples the launch returns unaimed, by lattice index: no simple fixture leaves a chosen sample unaimed, so the
+ * tab's handling of them is tested on samples named here.
  */
 const unaimed = vi.hoisted(() => ({ indices: new Set<number>() }));
 vi.mock("../../../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {

@@ -563,7 +563,7 @@ function renderReport(configurations: Configuration[]): string {
     "## Estimator Cross-Check",
     "",
     "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
-    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the launch lattice",
+    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the stop lattice",
     "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
     `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
     `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,
