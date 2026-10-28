@@ -94,7 +94,7 @@ flowchart LR
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2), src/components/relationshipMap | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | same folder (4), src/types (3), src/optics/optics.ts (2), package:react, src/components/hooks, +5 more | src/components/layout | default, DiagramControls |
 | `DiagramHeader.tsx` | React component module | same folder (5), src/types (3), src/components/content (2), package:react, src/optics/chromatic.ts, +5 more | src/components/layout | default |
-| `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (2) | default, HelpTooltipButton |
+| `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (3) | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | same folder, src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `LensTaxonomyBadges.tsx` | React component module | package:react, package:react-router, src/types, src/utils/catalog, src/utils/seo | same folder | default, LensTaxonomyBadges |
 | `patentStations.ts` | Patent Stations helper module | same folder, src/optics/optics.ts, src/optics/publishedStations.ts, src/types | same folder | zoomStationOptions, focusStationOptions, focusTAfterZoomStep, PatentStationNotes, patentStationNotes |
