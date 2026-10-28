@@ -133,7 +133,10 @@ On a lens `mtfMirrorSymmetric` accepts, the +x half is traced and mirrored; the 
 meridian. Each ladder level's lattice is seeded from the same wavelength's lattice half as fine (see Lattices under
 [Pupil Convention](#pupil-convention)), so a cell costs about one stop trace where a lone sample spends three to six. The grid ladder, refinement and convergence keep their meaning with
 `gridSize` counted across the stop instead of across the beam, so a vignetted beam fills fewer cells of the same grid
-than before. A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
+than before. That coarsening is systematic where the beam is cut: more outer fields end unconverged at the 128-cell cap
+(236 converged → unconverged against 98 over the catalog, 112 to 8 where fewer than 80 % of main's rays are lit). The
+cap stays, as OpticStudio samples a vignetted beam with fewer cells of the same pupil grid, and such fields are
+labelled unconverged (`agent_docs/decisions.md`). A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
 both refine, since a finer lattice can find a thin beam. No footprint scan or expansion runs where the stop defines the
 extent. What remains of launch-plane sampling: a field the aimed launch reaches only through the bounding sphere
 (`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
