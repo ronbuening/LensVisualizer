@@ -29,6 +29,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    stop tick at 8.8 mm; the stop radius is derived from the design   ║
  * ║    f-number. All clear the f/2.04 axial bundle and the ω = 27.7°     ║
  * ║    chief ray; off-axis bundles vignette at full aperture.            ║
+ * ║    Rim cuts (2026-10-27): Fig. 7 draws flat lands at the rims of     ║
+ * ║    concave faces 3 (L12 rear) and 5 (L21 front); rimCutDepthMm ends  ║
+ * ║    3's cap at 9.90 mm. Face 5 keeps its 8.4 mm rim uncut: a land     ║
+ * ║    there would stop rays the rim stops.                              ║
  * ║                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                ║
  * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, νd = 63.88,        ║
@@ -186,7 +190,7 @@ const LENS_DATA = {
     /* G1 — positive cemented doublet (L11 + L12), fixed during focus */
     { label: "1", R: 28.7073, d: 4.9, sd: 11.0, medium: 1 },
     { label: "2", R: -105.0698, d: 0.9, sd: 11.0, medium: 2 },
-    { label: "3", R: 45.4688, d: 2.45, sd: 10.9 },
+    { label: "3", R: 45.4688, d: 2.45, sd: 10.9, rimCutDepthMm: 1.09 },
 
     /* Aperture stop — between G1 and G2, fixed during focus */
     { label: "STO", R: "flat" },

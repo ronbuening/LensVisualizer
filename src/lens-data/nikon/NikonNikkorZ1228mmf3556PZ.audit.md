@@ -21,6 +21,61 @@ The validator accepts the new values, every station now reaches 100% of the corn
 every rim clear, and the image-circle floor still reports nothing undersized. The tightest remaining rim at the wide
 corner is surface 2 (chief ray 18.70 mm, sd 19.2). No aspheric surface changed.
 
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 2, sheet 1 of 20, native 300 ppi raster, rotated so the axis runs left to right) was read element by
+element for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Both halves
+of the section agree.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L12 rear, R 13.299) | 0.70 | 6.62 mm | 11.50 mm | 11.5 → 13.2 | 2.32 mm |
+| 6 (L13 rear, R 13.2979) | 0.83 | 4.00 mm | 9.51 mm | 9.5 → 10.2 | 3.03 mm |
+
+- Both faces had a stored `sd` below their front partner's (15.2 and 10.2) while the figure draws each element's
+  edge, parallel to the axis, at the front face's height and a land from there down to the cap. Each `sd` rises to
+  the edge and the cut ends the cap at the old `sd` (depth = sag there, rounded up): the clear radius goes from the
+  old 11.5 mm rim to the 11.5002 mm cut radius on 4 and from 9.5 to 9.507 mm on 6, and the beams reach 10.8963 and
+  8.7303 mm there. Surface 4 stops at 13.2 because a sphere of |R| 13.299 cannot reach the 15.2 front rim.
+- The figure's lands are longer than the ones drawn now (cap end 0.70 and 0.83 of the edge, against 11.50 / 15.2 =
+  0.76 and 9.51 / 10.2 = 0.93); moving the caps inward to match would clip inside the stored rims and was not done.
+  Surface 4's land in the figure sits at the plane of L13's front face.
+- Every other concave face (2, 5, 8, 12, 13, 14, 19A, 21, 22, 23) runs to its element edge in the figure; no cut.
+- No cap reaches the stop plane at any zoom state (surface 14 clears it by 1.35 mm).
+- The aperture audit is unchanged: all three stations trace their stated f-number, with no rim, trace, iris or rim-cut
+  limiter. The clear-aperture probe's rows are unchanged at the middle and tele corners and at 49° at wide (its
+  tracer finds no wide corner ray beyond that); the engine's wide half-field moves 42.0551° → 42.0556°, from the
+  0.007 mm by which surface 6's cut radius exceeds its old rim.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops (#933) at the corrected design f-numbers of the
+asphere data audit below (f/3.64, f/4.58, f/5.73), with the rule's current search, which follows each beam to the field
+where it vanishes and refines near a cut on the full measurement. Neither cut from the figure review above had to move:
+
+| Surface | Cut radius | Beams reach | Where (zoom, focus, field) | Clearance | Margin | Spare |
+|---|---|---|---|---|---|---|
+| 4 | 11.5002 mm | 10.8963 mm | 12.36 mm station, infinity, 50.63° | 0.6039 mm | 0.05 mm | 0.5539 mm |
+| 6 | 9.5070 mm | 8.7303 mm | 12.36 mm station, infinity, 50.63° | 0.7768 mm | 0.05 mm | 0.7268 mm |
+
+Both cuts clear the beams at every field, zoom and focus state
+and clip none of their rays; the surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 1 has 13.80 native px per lens mm: the S1–S24 vertex span at the wide station
+is 930.5 px over 67.438 mm, read on a column beside the axis, where the other resolved vertices fall within 2 px of
+the prescription at that scale. Each q range is ±(1 + q) / (sd × 13.80 px/mm). Both cuts sit at the old rim, above
+the figure's q:
+
+- 4: q 0.70 ± 0.0093 (0.691–0.709) on a 182 px edge; the cut is at 0.871 of sd (0.757 of the 15.2 mm element edge);
+  land 1.6998 mm.
+- 6: q 0.83 ± 0.0130 (0.817–0.843) on a 141 px edge; the cut is at 0.932 of sd; land 0.6930 mm.
+
+Both lands are longer than the 0.1 mm minimum, and neither q range reaches 1. The figure draws L12 and L13 wider than
+their sd at this scale (edges 229.5 and 148.5 px, 16.6 and 10.8 mm), and q is read against those drawn edges; the
+ranges above use sd × scale, the wider of the two.
+
 ## 2026-10-27 — Rimmer localization audit (asphere data)
 
 Source: US 2026/0056396 A1, Example 1, Table 1 (printed p. 8 / PDF p. 29), equation (A) and ¶0103/0107

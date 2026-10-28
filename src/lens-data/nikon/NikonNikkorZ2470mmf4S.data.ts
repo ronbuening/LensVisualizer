@@ -30,6 +30,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    corner bundle is partly vignetted, as the figure implies (the      ║
  * ║    production lens corrects shading in camera).                       ║
  * ║                                                                        ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                        ║
+ * ║    Fig. 1A draws flat lands at the rims of the concave faces 5A (L21   ║
+ * ║    rear) and 25 (L52 front). 25 is cut at 15.12 mm. 5A keeps its       ║
+ * ║    14.4 mm rim, the asphere's designed extent, uncut.                  ║
+ * ║                                                                        ║
  * ║  NOTE ON APERTURE:                                                     ║
  * ║    FNo 4.00 at W/M/T with the stop riding in G3. The patent lists no   ║
  * ║    iris diameters; the stop radius is derived from the design f-number ║
@@ -362,7 +367,7 @@ const LENS_DATA = {
         A14: 0,
       },
     }, // L51 rear (asph) → air
-    { label: "25", R: -24.36536, d: 1.5, sd: 18.0, medium: 14 },
+    { label: "25", R: -24.36536, d: 1.5, sd: 18.0, rimCutDepthMm: 5.26, medium: 14 }, // L52 front: Fig. 1A land
     { label: "26", R: 107.45414, sd: 17.5 }, // D26 var — gap to the FL plate
   ],
 

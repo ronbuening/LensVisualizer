@@ -41,6 +41,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    blocked the corner chief ray); 4A–8 are within 15 % and kept.     ║
  * ║    Every rim clears the f/4 axial beam at all stations.              ║
  * ║                                                                      ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                      ║
+ * ║    Fig. 1 draws flat lands square to the axis at the rims of 2A      ║
+ * ║    (L11), 4A (L12) and 26A (L52). 26A is cut at 11.03 mm. 2A keeps   ║
+ * ║    its 22.4 mm rim, the asphere's designed extent, uncut, and 4A its ║
+ * ║    14.5 mm rim: a land there would stop rays the rim stops.          ║
+ * ║                                                                      ║
  * ║  NOTE ON CONIC CONVENTION:                                           ║
  * ║    Formula (a) (¶0078) prints √(1 − κ·y²/R²), which would make       ║
  * ║    K = κ − 1. The table values do not follow it: with K = κ an       ║
@@ -340,6 +346,7 @@ const LENS_DATA = {
       R: -38.9341,
       d: 1.4,
       sd: 11.7,
+      rimCutDepthMm: 2.05,
       medium: 14,
       asphere: { K: -1.0, A4: -2.67902e-5, A6: -3.34364e-8, A8: -1.13765e-10, A10: -1.88017e-13 },
     },

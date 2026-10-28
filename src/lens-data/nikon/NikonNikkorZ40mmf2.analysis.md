@@ -77,7 +77,7 @@ The air gap between components 2 and 3 (0.15 mm between surfaces 8A and 9) is th
 
 L11 is a high-index lanthanum dense flint (835427; S-LAH55V is the exact OHARA catalog equivalent) with a strongly positive biconvex shape. It provides the dominant converging power in G1. The high refractive index (1.835) allows stronger surface curvatures at reduced ray bending per surface, which helps control spherical aberration. The 835427 type is one of the most widely used lanthanum glasses in photographic lenses, combining a high index with moderate dispersion (νd = 42.73). The sharply different curvature between the front and rear surfaces (R₁ = +28.7 vs. R₂ = −105.1) gives L11 a strongly asymmetric "bent" biconvex shape, with most of the optical power concentrated on the steeply curved front surface.
 
-The patent drawing (Fig. 7) shows L11 and L12 with a clear radius of about 11.0 mm. At that height L11 still has an edge thickness of about 2.1 mm, so the edge does not limit the rim. The f/2.04 axial beam needs 10.1 mm at surface 1, and a full-field beam without vignetting would need 12.4 mm. The drawn front rim therefore clips the outer part of the full-field beam at full aperture.
+The patent drawing (Fig. 7) shows L11 and L12 with an edge radius of about 11.0 mm; L12's concave rear face ends on a flat land at 9.9 mm, outside the 9.2 mm axial beam there. At the 11.0 mm height L11 still has an edge thickness of about 2.1 mm, so the edge does not limit the rim. The f/2.04 axial beam needs 10.1 mm at surface 1, and a full-field beam without vignetting would need 12.4 mm. The drawn front rim therefore clips the outer part of the full-field beam at full aperture.
 
 ### L12 — Rear Negative Flint (G1)
 

@@ -4,3 +4,5 @@ export { LENS_KEY_PATTERN, validateLensMounts, validateRearPlates } from "./pres
 export { default as validateTeleconverterData } from "./prescription/validate/teleconverter.js";
 export { rimCutBeamReach, validateRimCutBeams } from "./prescription/validate/rimCutBeams.js";
 export type { RimCutBeamCheck, RimCutBeamPoint, RimCutBeamReach } from "./prescription/validate/rimCutBeams.js";
+export { rimCutDenseProbe } from "./prescription/validate/rimCutProbe.js";
+export type { RimCutProbe, RimCutProbeCut, RimCutProbeOptions } from "./prescription/validate/rimCutProbe.js";

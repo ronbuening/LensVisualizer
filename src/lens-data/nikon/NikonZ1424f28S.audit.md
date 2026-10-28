@@ -129,3 +129,56 @@ The stop tick marks in Fig. 10 (22 mm) are a drawing symbol, not an iris radius.
   chief-ray heights on 2A/4A; rectilinear `projection` overrides are single-valued and unsuitable for a zoom.
 - Iris radii are inferred from the nominal f-number, not published. Sub-aperture stop Sa is not modeled.
 - G3 rims remain estimates; no published clear apertures exist.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 10 (PDF p. 82, sheet 10/23; native 2478 × 3507 raster, axis vertical on columns 1145–1146, object at the bottom)
+was read element by element on the label-free half for flat lands square to the axis at the rims of concave faces,
+the shape `rimCutDepthMm` draws. Scale 0.0784 mm/px, as in the 2026-09-21 audit.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2A (L11 rear, R 16.04, asph) | 0.655 (273 / 417 px) | 15.18 mm | 21.40 mm | 21.4 → 32.8 | 3.97 mm |
+| 4A (L12 rear, R 27.44, asph) | 0.82 (214 / 262 px) | 6.24 mm | 15.60 mm | 15.6 → 20.6 | 5.82 mm |
+
+- Both rear faces stopped at their cap ends (sd 21.4 and 15.6, flat annuli excluded), so the diagram drew a slanted
+  chamfer to the front rim. Fig. 10 draws each element's edge parallel to the axis at the front face's height
+  (417 px = 32.7 mm, 262 px = 20.5 mm) and a land joining it to the cap. This review gave each rear face its front
+  partner's sd, with the cut at the old sd (cut radii 21.403 and 15.604 mm, 0.003 and 0.004 mm outside the old rims).
+  Neither cut remains: the rule section below returns both faces to their old 21.4 and 15.6 mm rims, uncut.
+- 4A: Fig. 10 runs the cap out to 214 px (about 16.8 mm), where L12's land meets L13's front rim. The 15.25 mm read on
+  2026-09-21 is the inner end of the land stroke, where L13's front face 5 joins it. This review put the cut at the
+  stored 15.6 mm, which the rule section below drops. A figure-matched cut (radius 16.83 mm, depth 7.80 mm, 0.26 mm
+  ahead of L13's front rim) would open 4A's traced rim by 1.2 mm (side vignetting there 86 % → 40 %) and is left for
+  a separate decision.
+- 27A (L40 front, R −68.43, asph) also carries a land: cap end ÷ edge 0.90 on both halves (136 / 151 px), so cut
+  radius 10.81 mm at depth 1.31 mm, which matches the land's 17 px offset from the vertex. Not cut: at the wide-end
+  full field (Y = 21.6 mm) it adds 21 points of side vignetting at that surface (0 % → 21 %) and removes 17.5 % of the
+  meridional fan that passes every other rim at 14.42 mm (6.5 / 3.8 / 0.5 % at the other three stations).
+- No land on the other concave faces (5, 6, 11, 14, 16, 23, 26): each cap meets its element edge within the figure's
+  3 px line width. The steps at 10, 13, 22 and 25 are the larger element's annulus beside a cemented junction
+  (L21, L31, L36, L39), not lands.
+- No cap reaches the stop plane at any zoom or focus state (surface 14 clears it by 1.81 mm, surface 16 by 1.88 mm).
+- All four stations still trace the stated f/2.91, with no rim, trace, iris or failed rows before or after, and
+  `audit:surface` reports no validation errors. The vignetting and distortion tabs (field 57.5°) are unchanged.
+- The viewer's vignetting-limited half-field bounds each face by its clear radius, now the uncut 21.4 and 15.6 mm
+  rims on 2A and 4A; it is 48.8 / 49.9 / 50.5 / 51.3° at the four stations, and the 49° wide-end limit listed on
+  2026-09-21 stands.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. The lens now carries no cut; both faces from the figure review above keep their old rims:
+
+- Surface 2A: the review raised sd to L11's 32.8 mm edge and cut at the old 21.4 mm rim. Raising sd extended the
+  asphere past its designed 21.4 mm extent, so sd returns to 21.4 mm with no cut. The land Fig. 10 draws outside it
+  is not modelled.
+- Surface 4A: the cut sat at the old 15.6 mm rim (cut radius 15.6042 mm). With the review's 20.6 mm sd and cut put
+  back, the beams reach 16.5864 mm there (wide, focus keyframe 0.404, 57.46°), so the land stopped the rays that rim
+  stops. The sd returns to 15.6 mm with no cut.
+
+Both faces draw as they did before the figure review. With no cut left, no land is checked against the 0.1 mm minimum.
+The surface audit and the beam rule pass.

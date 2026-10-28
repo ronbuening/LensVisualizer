@@ -691,20 +691,28 @@ there out to `sd`.
   the printed stop plane. Set the depth to the plane's closest distance from the vertex over every zoom station and
   focus state, rounded down to 0.01 mm. The land then keeps the iris in air
   (`__tests__/src/lens-data/irisInAir.test.ts`).
+- **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
+  short stroke square to the axis. Measure the cap end as a share q of the edge radius on the figure, put the cut
+  radius at q × `sd`, and set the depth to the cap's sag there, to 0.01 mm. Record with each measured q the figure's
+  scale in native px per lens mm (from a vertex span) and the range of q that one native pixel at the cap end and at
+  the edge gives, ±(1 + q) / (edge px). The cut is inferred, so it must clear every traced beam by its margin (below):
+  where the beams reach past the figure's cap end less that margin, move the cut out until it clears them. Every lens
+  leaves out a land shorter than 0.1 mm (`sd` minus the cut radius), and one whose q range reaches 1.
 - **Inferred or sourced:** a depth the source does not state is inferred, and such a cut's radius must clear the
-  furthest traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of the radius, at every field, zoom
-  and focus (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
+  furthest traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of the radius, at every field, zoom and
+  focus (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
   `npm run audit:surface`). The beams are traced through the lens with its inferred cuts removed and over that lens's
   field range, with zoom and focus stepped by 0.05 between stations and keyframes, collimated or from the source's
-  finite object point where a keyframe has a conjugate, and each beam is followed to the field where it vanishes. A lens with a field that launches any other way (a fisheye, a
-  field past 89°) cannot carry an inferred cut. A depth the source states names it in `rimCutDepthSource`; that cut
-  may cut into the beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
-- **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it
-  out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular or
-  diffractive surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond
-  the cut would pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
-  cut radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop
-  plane, and the land clears the surface across its gap within `checks.gapSagFrac`.
+  finite object point where a keyframe has a conjugate, and each beam is followed to the field where it vanishes. A lens
+  with a field that launches any other way (a fisheye, a field past 89°) cannot carry an inferred cut. A depth the
+  source states names it in `rimCutDepthSource`; that cut may cut into the beam, and `npm run audit:aperture` names such
+  a limiter `<label> (rim cut)`.
+- **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it out to
+  `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular or diffractive
+  surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond the cut would
+  pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the cut
+  radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop plane,
+  and the land clears the surface across its gap within `checks.gapSagFrac`.
 
 ## Stop and Aperture
 

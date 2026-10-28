@@ -32,6 +32,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "25 Nikkor Z lenses and the Sigma 16mm f/1.4 DC DN now draw the flat rim lands their patent figures show on deeply curved elements",
+  },
+  {
+    date: "2026-10-27",
     type: "fix",
     summary: "Corrected asphere data on the GF 80mm, XF 23mm f/1.4, RX1 Sonnar and Pentax 645 35mm",
   },

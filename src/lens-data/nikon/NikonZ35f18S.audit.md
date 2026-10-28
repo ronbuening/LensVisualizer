@@ -150,3 +150,76 @@ native; every Example 4 number was also confirmed on the rendered page image.
 - Second read against the rendered p. 18: formula, both printed figures and both recomputed values confirmed. One
   analysis fix: the L22 property table attributed θgF and the deviation both to Table 2; it now cites Table 2 for
   `0.5441` and Table 1 for the condition (6) value `+0.019` on the patent's own line.
+
+## 2026-10-27 — Rim-cut figure review
+
+FIG. 4 (PDF p. 19, bottom right; native 300 ppi raster, 1005 × 1205, axis horizontal at row 647.5) was read element
+by element on both halves for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm`
+draws. Five faces carry one. On each, the stored `sd` was the patent effective radius, clearly inside the partner
+face's, while the figure runs the element's edge line square at the partner's height; so the `sd` is raised to the
+partner's and the cut ends the cap at the old radius, which moves each clear radius out by 0.02 mm at most (table).
+Only 12A keeps its cut after the beam rule below: its clear radius goes from the old 12.041 mm rim to the 12.1052 mm
+cut radius, and the beams reach 11.6598 mm there. The figure's land ratios sit a little below old `sd` ÷ partner `sd`
+(0.81, 0.89, 0.87, 0.95, 0.92) because FIG. 4 draws each element edge about 10 % outside its effective radius.
+
+| Surface | Figure land (cap end ÷ element edge, upper / lower) | Cut depth | Cut radius | sd (before → after) | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 18.973) | 0.77 / 0.78 | 6.79 mm | 14.55 mm | 14.54 → 17.97 | 9.05 mm |
+| 5 (L13 rear, R 69.893) | 0.80 / 0.81 | 1.09 mm | 12.30 mm | 12.29 → 13.82 | 10.94 mm |
+| 6 (L14 front, R −27.961) | 0.82 / 0.82 | 2.64 mm | 11.86 mm | 11.84 → 13.63 | 11.28 mm |
+| 12A (L17 rear, R 42.846) | 0.90 / 0.91 | 1.85 mm | 12.05 mm | 12.041 → 12.682 | 12.04 mm |
+| 20A (L31 front, R −40.982) | 0.83 / 0.84 | 3.10 mm | 13.94 mm | 13.93 → 15.21 | 5.46 mm |
+
+- Land seen, not cut: surface 14 (L21 front), 0.91 / 0.93 (5–7 px). Its `sd` 10.32 is within 4 % of the rear face's
+  10.69, and the stated close-focus axial ray there, 10.74 mm, already exceeds it, so no cut radius can sit at or
+  above the stated beam.
+- Surface 18A (L23 front, R −181.8) runs to its element edge in both halves (the stroke drifts evenly into the edge
+  line); no land, no cut.
+- No cap reaches the stop plane at either focus state: the 12A land clears it by 2.19 mm (fixed, Gr1) and surface 14's
+  cap by 3.46 mm at close focus.
+- Depths are |sag| at the old radius rounded up to 0.01 mm, so each cut radius sat at or just above the old `sd`
+  (by 0.02 mm at most). The aperture audit is unchanged: traced f/1.85 against the stated f/1.85, limiter STO, no rim,
+  trace or failed rows and no `(rim cut)` limiter. The cut on 12A clears every traced ray of the wide-open beams by
+  its margin and clips none of them (beam rule below); the cuts on 2, 5, 6 and 20A were dropped there. Surface 2's cut
+  radius, 5 µm outside the old 14.54 mm rim, had moved the engine half-field estimate from 32.898° to 32.907°; with
+  that cut dropped the estimate is 32.898° again.
+- The rendered section now draws the five lands where FIG. 4 does; every other outline is unchanged.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current
+search, which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, these cuts from the figure review above were changed. The reaches given for the
+four dropped cuts come from the same trace with each face raised to its figure-review `sd` and its cut restored.
+
+- Surface 5: the cut sat at 12.2955 mm, at the old 12.29 mm rim, and the beams reach 12.8812 mm there (focusT 0.7,
+  23.61°), so the land stopped the rays that rim stops. The sd returns to 12.29 mm with no cut, and the face draws as it
+  did before the figure review.
+- Surface 6: the cut sat at 11.8603 mm, at the old 11.84 mm rim, and the beams reach 12.6383 mm there (focusT 0.7,
+  23.61°), so the land stopped the rays that rim stops. The sd returns to 11.84 mm with no cut, and the face draws as it
+  did before the figure review.
+- Surface 20A: the cut sat at 13.9412 mm, at the old 13.93 mm rim, and the beams reach 14.2139 mm there (close focus,
+  32.09°), so the land stopped the rays that rim stops. The sd returns to 13.93 mm with no cut, and the face draws as
+  it did before the figure review.
+- Surface 2: the cut sat at 14.5449 mm, at the old 14.54 mm rim, and the beams reach 14.5445 mm there (focusT 0.15,
+  32.82°), less than 0.001 mm inside the cut, short of its 0.05 mm margin. The sd returns to 14.54 mm with no cut, and
+  the face draws as it did before the figure review.
+- Surface 12A: the cut sat at 12.05 mm, at the old 12.041 mm rim, and the beams traced on the stops of the time
+  reached 12.04 mm there, inside it but closer than the 0.05 mm margin. The depth went from 1.85 to 1.87 mm, which
+  puts the cut radius at 12.1052 mm. On the paraxial stops the beams reach 11.6598 mm there (focusT 0.55, 3.91°): a
+  clearance of 0.4454 mm against a 0.05 mm margin, 0.3954 mm spare. The clear radius goes from the old 12.041 mm rim
+  to the 12.1052 mm cut radius.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: FIG. 4 is drawn at 141.4 native px per patent unit, from the Gr2–image vertex span of the
+2026-09-21 audit; the S1–IM span on the native raster, 642 px for the 4.553 total track, gives 141.0. At the stored
+21.6× scale that is 6.546 native px per lens mm. One native pixel at the cap end and at the edge moves q by
+±(1 + q) / (edge px).
+
+- 12A: figure q 0.90 / 0.91 (upper / lower) at an 83.0 px edge (12.682 mm), range 0.877–0.933. The cut sits just
+  outside the old 12.041 mm rim, at 0.955 of `sd`, above that range: FIG. 4 draws the element edge about 10 % outside
+  the effective radius, so its q falls short of old `sd` ÷ partner `sd` (above). Land 0.5768 mm, over the 0.1 mm
+  minimum.

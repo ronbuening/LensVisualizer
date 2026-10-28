@@ -20,6 +20,7 @@ flowchart LR
     n_src_optics_prescription_validate_src_optics_prescription_validate_paths_ts["paths.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts["references.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts["rimCutBeams.ts"]
+    n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts["rimCutProbe.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts["schema.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts["teleconverter.ts"]
   end
@@ -36,17 +37,22 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> |4| n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> |4| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> |4| n_external_src_optics_state
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> |4| n_external_src_optics_state
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> |3| n_external_src_optics_analysis
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> |3| n_external_src_optics_prescription
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> |3| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> |3| n_external_src_optics_prescription
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> |2| n_external_src_optics_analysis
   n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts --> |2| n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_paths_ts --> |2| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> |2| n_external_src_optics_trace
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> |2| n_external_src_optics_trace
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> |2| n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> |2| n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> n_external_src_optics_field
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> n_external_src_optics_field
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> n_external_src_optics_geometry
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> n_external_src_optics_math
@@ -56,27 +62,22 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_optics_state
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_optics_trace
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> n_external_src_optics_types_ts
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutBeams_ts --> n_external_src_types
+  n_src_optics_prescription_validate_src_optics_prescription_validate_rimCutProbe_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_patent_ts --> n_external_src_utils_catalog
-  n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_external_src_utils_catalog
-  n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_controls_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 13
+- Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: src/optics/prescription (43), src/types (9), src/optics/geometry (8), src/optics/state (5), src/optics/analysis (3), src/optics/trace (3), src/utils/catalog (2), src/optics/field, +2 more
+- Main outbound areas: src/optics/prescription (47), src/types (10), src/optics/state (9), src/optics/geometry (8), src/optics/analysis (5), src/optics/trace (5), src/optics/field (2), src/optics/types.ts (2), +2 more
 - External consumers: src/optics/prescription, src/optics/validation.ts
 
 ## Files
@@ -93,6 +94,7 @@ flowchart LR
 | `patent.ts` | Patent helper module | src/optics/prescription, src/utils/catalog | src/optics/prescription | patentExampleId, validatePatentExample, validatePatentMetadata |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |
 | `references.ts` | References helper module | src/optics/prescription (3), src/types (2), src/optics/geometry | src/optics/prescription (2) | validateSourceErrata, validateAttachedTeleconverter, validateReferences, validateSpans, validateAnnotations |
-| `rimCutBeams.ts` | Rim Cut Beams helper module | src/optics/state (4), src/optics/analysis (3), src/optics/prescription (3), src/optics/trace (2), src/optics/field, +2 more | src/optics/validation.ts | RimCutBeamPoint, RimCutBeamReach, RimCutBeamCheck, rimCutBeamReach, validateRimCutBeams |
+| `rimCutBeams.ts` | Rim Cut Beams helper module | src/optics/state (4), src/optics/analysis (3), src/optics/prescription (3), src/optics/trace (2), src/optics/field, +2 more | src/optics/prescription, src/optics/validation.ts | RimCutBeamPoint, RimCutBeamReach, RimCutBeamCheck, rimCutBeamReach, validateRimCutBeams |
+| `rimCutProbe.ts` | Rim Cut Probe helper module | src/optics/prescription (4), src/optics/state (4), src/optics/analysis (2), src/optics/trace (2), src/optics/field, +2 more | src/optics/validation.ts | RimCutProbeOptions, RimCutProbeCut, RimCutProbe, rimCutDenseProbe |
 | `schema.ts` | Schema helper module | src/optics/prescription (7), src/types, src/utils/catalog | src/optics/prescription (2), src/optics/validation.ts | validateNumberRange, isEnabledMovementRange, validatePerspectiveControlTiltPivot, validatePerspectiveControl, validateOpticalConfiguration, validateProjection, validateRearPlates, validateLensMounts, +5 more |
 | `teleconverter.ts` | Teleconverter module with default export | src/optics/prescription (6), src/types (2), src/optics/math | src/optics/validation.ts | default, validateTeleconverterData |

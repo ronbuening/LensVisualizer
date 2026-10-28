@@ -253,7 +253,7 @@ The revised transcription was checked with an independent paraxial y-ν matrix t
 - The patent's physical front-vertex-to-image length is 109.00 mm including the plane-parallel plate, which the data file now reproduces; the air-equivalent (plate-folded) track is 108.318 mm.
 - The MFD endpoint in the data file is the solved β = -1/9.9 state: d23 = 1.6098 mm and d25 = 3.7863 mm. This keeps d23 + d25 constant and gives a sensor-to-object distance of about 250.97 mm physically (250.288 mm air-equivalent) in the same paraxial model.
 - Petzval sum = 4.2266 × 10⁻³ mm⁻¹, Petzval radius ≈ 236.6 mm, P · f = 0.0695.
-- The inferred semi-diameters pass the project constraints used for this data file: sd/|R| < 0.90, front/rear element SD ratio ≤ 1.25, edge thickness ≥ 0.5 mm at the checked rim, and cross-gap sag intrusion ≤ 90% of the relevant air gap.
+- The inferred semi-diameters pass the project constraints used for this data file: sd/|R| < 0.90 (on surface 4 at its rim cut's radius, 14.40 mm; the flat land beyond runs to sd 16.0), front/rear element SD ratio ≤ 1.25, edge thickness ≥ 0.5 mm at the checked rim, and cross-gap sag intrusion ≤ 90% of the relevant air gap.
 
 ## Sources
 

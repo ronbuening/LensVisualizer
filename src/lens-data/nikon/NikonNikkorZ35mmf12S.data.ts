@@ -25,10 +25,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON SEMI-DIAMETERS: the patent lists no effective diameters. S1, L15–L17 and every rear-group rim
  * (19–33) are measured from Fig. 1 (infinity half, lower clean side; 0.1429 mm/px at 400 dpi from the
  * 151.008 mm S1–S33 vertex span), minus flat mounting annuli. Exceptions: 25A is held at 17.2 mm, just inside
- * the asphere's slope turnover (≈17.25 mm; the figure draws L32 to ≈19.3 mm), and S31 is 18.0 mm so the
- * L43/L44 air gap keeps rendering clearance (the drawn 19.1 mm would intrude). S2–S8 and D1 (15–17) retain the
- * earlier estimates, which lie within ≈15 % of the figure. All rims pass the f/1.23 axial beam and the full-
+ * the asphere's slope turnover (≈17.25 mm; the figure draws L32 to ≈19.3 mm), and S31's cap ends at 18.0 mm
+ * (rim cut below), since the full cap would cross the L43/L44 air gap. S2–S8, S15–S16 and S17's cap end retain
+ * the earlier estimates, which lie within ≈15 % of the figure. All rims pass the f/1.23 axial beam and the full-
  * field chief ray at both focus states.
+ *
+ * RIM CUTS (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 7 (L14 front), 17 (L19 rear),
+ * 31 (L43 rear) and 32A (L44 front); rimCutDepthMm puts their cut radii at 24.05, 22.01, 18.00 and 17.73 mm.
+ * 17 and 31 take their partner face's rim (23.0 and 19.3 mm) with the cut at their old sd: the clear radius goes
+ * from 22.0 to 22.0073 mm on 17 and from 18.0 to 17.9988 mm on 31, where the beams reach 19.4168 and 16.8163 mm.
+ * L11's land (S2) is not modeled: R2 = 31.1 mm cannot reach the 31.2 mm edge.
  */
 
 const LENS_DATA = {
@@ -326,7 +332,7 @@ const LENS_DATA = {
     { label: "5", R: 73.4831, d: 5.4, sd: 27.0, medium: 3 },
     { label: "6", R: 357.5441, d: 12.73, sd: 27.0 },
     // ── L14 (Negative meniscus, Ln1) ──
-    { label: "7", R: -38.63142, d: 2.1, sd: 26.4, medium: 4 },
+    { label: "7", R: -38.63142, d: 2.1, sd: 26.4, medium: 4, rimCutDepthMm: 8.4 },
     { label: "8", R: -1220.6706, d: 0.82, sd: 26.0 },
     // ── L15 (Plano-convex, Lens H) ──
     { label: "9", R: "flat", d: 7.85, sd: 27.5, medium: 5 },
@@ -340,7 +346,7 @@ const LENS_DATA = {
     // ── L18 + L19 cemented doublet (D1) ──
     { label: "15", R: 116.72066, d: 10.25, sd: 24.0, medium: 8 },
     { label: "16", R: -55.03, d: 1.6, sd: 23.0, medium: 9 },
-    { label: "17", R: 56.1782, d: 5.63, sd: 22.0 },
+    { label: "17", R: 56.1782, d: 5.63, sd: 23.0, rimCutDepthMm: 4.49 },
     // ── Aperture Stop ──
     { label: "STO", R: "flat" },
     // ── L21 (Plano-concave negative, F1) ──
@@ -392,7 +398,7 @@ const LENS_DATA = {
     // ── L42 + L43 cemented doublet (D2) ──
     { label: "29", R: 90.05931, d: 4.05, sd: 19.6, medium: 15 },
     { label: "30", R: "flat", d: 1.4, sd: 19.3, medium: 16 },
-    { label: "31", R: 37.80163, d: 7.53, sd: 18.0 },
+    { label: "31", R: 37.80163, d: 7.53, sd: 19.3, rimCutDepthMm: 4.56 },
     // ── L44 (Biconcave negative, aspherical, R group) ──
     {
       label: "32A",
@@ -400,6 +406,7 @@ const LENS_DATA = {
       d: 2.0,
       sd: 19.0,
       medium: 17,
+      rimCutDepthMm: 1.96,
       asphere: {
         K: 0,
         A4: -6.15151e-6,

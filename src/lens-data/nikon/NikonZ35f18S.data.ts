@@ -53,6 +53,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    radius is derived from the design f-number at infinity and      ║
  * ║    held through focus.                                             ║
  * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands at ║
+ * ║    the element edge. Face 12A takes the partner face's sd, and     ║
+ * ║    rimCutDepthMm ends its cap at 12.1052 mm, just past its old     ║
+ * ║    12.041 mm rim; the traced beams reach 11.6598 mm there. 2, 5,   ║
+ * ║    6 and 20A keep their old rims uncut: a land there would stop    ║
+ * ║    rays those rims stop.                                           ║
+ * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║
  * ║    (0.6438 − 0.001682·νd). The patent prints θgF only for L22     ║
@@ -273,7 +281,8 @@ const LENS_DATA = {
       label: "12A",
       R: 42.8458,
       d: 4.0392,
-      sd: 12.041,
+      sd: 12.682,
+      rimCutDepthMm: 1.87,
       asphere: {
         K: -0.4693,
         A4: -8.2906e-6,

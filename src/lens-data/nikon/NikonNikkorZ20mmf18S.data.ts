@@ -15,6 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   derived from the design f-number, published FNO=1.850; it is an inferred aperture, not a source stop diameter.
  * - Glass names are catalog-coordinate matches or representatives for the patent's nd/vd values, not source-proven Nikon
  *   production melts. The 1.51380 / 52.97 resin layer remains explicitly unmatched.
+ * - Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces 2 (L11 rear), 15 (L33 front) and
+ *   26A (L51 front). Their sd rises to the partner face's (22, 11.5, 14.5) and rimCutDepthMm ends each cap at its old
+ *   sd to the 0.01 mm depth: cut radii 17.4988, 10.8958 and 13.4001 mm against the old 17.5, 10.9 and 13.4 mm rims.
+ *   The wide-open beams reach 16.9456, 10.2434 and 12.8616 mm there. The L12 figure land stays uncut (audit log).
  *
  * Published middle-focus row retained from the source:
  *   object distance from first surface = 583.6824 mm, beta = -0.0324,
@@ -294,7 +298,7 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 95.9736, d: 2.2, sd: 22, medium: 1 },
-    { label: "2", R: 22.7534, d: 8.128, sd: 17.5 },
+    { label: "2", R: 22.7534, d: 8.128, sd: 22, rimCutDepthMm: 8.21 },
     { label: "3", R: 44.6575, d: 1.55, sd: 15.5, medium: 2 },
     { label: "4", R: 23.5501, d: 0.05, sd: 14.5, medium: 3 },
     {
@@ -313,7 +317,7 @@ const LENS_DATA = {
     { label: "12", R: -31.1515, d: 1.1, sd: 12.2, medium: 8 },
     { label: "13", R: 109.4389, d: 7.476, sd: 11.8 },
     { label: "STO", R: "flat", d: 4.522 },
-    { label: "15", R: -21.9847, d: 1.1, sd: 10.9, medium: 9 },
+    { label: "15", R: -21.9847, d: 1.1, sd: 11.5, rimCutDepthMm: 2.89, medium: 9 },
     { label: "16", R: 180.9758, d: 0.2, sd: 11.5 },
     { label: "17", R: 28.8999, d: 6.5, sd: 12.2, medium: 10 },
     { label: "18", R: -32.6652, d: 0.2, sd: 12.3 },
@@ -354,7 +358,8 @@ const LENS_DATA = {
       label: "26A",
       R: -41.2363,
       d: 2,
-      sd: 13.4,
+      sd: 14.5,
+      rimCutDepthMm: 2.71,
       medium: 15,
       asphere: {
         K: 0,

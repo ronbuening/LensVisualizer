@@ -131,3 +131,66 @@ Traced at infinity on the d line, printed sign → corrected sign (EFL 102.8607 
 Rim of 27A at the stored 18.3 mm semi-diameter: slope 49.4° → 29.7°, no turnover. The analysis half-field at the
 21.65 mm format corner moves from 11.52° to 12.00°. Header note, inline comment, `sourceErrata` and the analysis
 asphere table are synchronized. No other value changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 55, native 300 ppi raster, axis vertical on the page) was rotated so the axis runs horizontally and
+read element by element on the half without leader lines, with the other half as a check, for flat lands square to
+the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Scale is about 0.071 mm/px (L11 edge 326 px,
+L46 edge 256.5 px).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 9 (L21 rear, R 48.3271) | 0.965 | 2.70 mm | 15.93 mm | 16.5 | 14.21 mm |
+| 27A (L46 front, R −26.4605) | 0.938 | 5.22 mm | 17.17 mm | 18.3 | 10.82 mm |
+
+- Surface 9: the cap ends where it meets L22's edge (223.5 of 231.5 px above the axis; 222.5 of 230.5 px below) and a
+  stroke square to the axis runs out to L21's edge. The stop-limited marginal ray from the finite object reaches 14.21
+  mm there at infinity, 13.00 mm at 1:2 and 12.96 mm at 1:1, so the cut radius clears the axial beam at every focus
+  state by 1.7 mm or more. The full wide-open beams reach 14.9541 mm there (rule section below).
+- 27A: the cap ends at 0.938 of the edge (240.5 of 256.5 px above; 240 of 255.5 px below). The beams reach past that
+  17.17 mm cap end, so a cut there would stop traced rays. The rule section below moves the cut out to 17.4865 mm,
+  where it clears every traced ray of the wide-open beams by its margin and clips none of them. This review had kept
+  the figure's cut because the whole lens's vignetting curve did not change; the beam rule replaced that test.
+- Not a land: the vertical stroke at L22's rear, outside L23's edge, is the cemented junction 11, not an air face.
+- Concave faces with no land: 7, 12, 20 and 23 run to their element edges. 5, 8 and 26 (R 865.6, −243.0, 250.9) are
+  nearly plane at the rim, so no land is resolvable there.
+- No cap reaches the stop plane at any focus state: surface 12 clears it by 4.12 mm at 1:1 (D12 = 6.528 mm), and
+  G3's front face 14 is convex toward the stop.
+- The traced aperture stays f/2.89 with the stop as limiter, before and after; the surface audit passes. The
+  paraxial half-field estimate is 13.14° with 27A's cut at 17.4865 mm, the same as without the cut, and above the
+  11.97° full field. The cut on 9 clears every traced ray of the wide-open beams by its margin (rule section below)
+  and clips none of them.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, one cut from the figure review above moved out:
+
+- Surface 27A: the depth went from 5.22 to 5.40 mm when the beams, traced on the earlier stop, reached 17.42 mm past
+  the figure's 17.17 mm cut. On the paraxial stop they reach 17.4216 mm (focusT 0.70, between infinity and the 1:2
+  keyframe, 10.50°), still past the figure's cut. The 17.4865 mm cut radius clears them; the land is shorter than
+  the figure's.
+
+Both cuts clear the beams by their margins:
+
+| Surface | Cut radius | Reach (focus, field) | Clearance | Margin | Spare |
+| --- | --- | --- | --- | --- | --- |
+| 9 | 15.9272 mm | 14.9541 mm (infinity, 9.55°) | 0.9732 mm | 0.0500 mm | 0.9232 mm |
+| 27A | 17.4865 mm | 17.4216 mm (focusT 0.70, 10.50°) | 0.0650 mm | 0.0525 mm | 0.0125 mm |
+
+**Figure scale and land length.** Measured on the native 300 ppi raster of Figure 1 (PDF p. 55): the vertices of
+surfaces 1 and 28 lie 1878.5 px apart on the axis, against 132.594 mm at infinity, so 14.17 native px per lens mm.
+The review's "about 0.071 mm/px" (14.1 px/mm) agrees. Edge px is sd × 14.17, and one native pixel at the cap end and
+at the edge gives q ± (1 + q) / (edge px).
+
+| Surface | Edge px | q | q range | Cut radius ÷ sd | Land |
+| --- | --- | --- | --- | --- | --- |
+| 9 | 233.8 | 0.965 | 0.957–0.973 | 0.9653 | 0.5728 mm |
+| 27A | 259.3 | 0.938 | 0.931–0.945 | 0.9555 | 0.8135 mm |
+
+9 sits at q × sd; 27A sits outside its q range, moved out by the beam rule. Both lands are longer than the 0.1 mm
+minimum, and no q range reaches 1. The surface audit and the beam rule pass.

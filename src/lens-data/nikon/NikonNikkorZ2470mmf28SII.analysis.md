@@ -305,11 +305,11 @@ The native stop position is preserved, and the inferred station iris is held thr
 Physical clear apertures are also unprinted.
 The model's SDs are estimates from Figure 3, checked against ray geometry, material thickness and gap clearance.
 They must not be read as primary-source effective diameters or measured vignetting.
-The rear surface of L1 (2A) is given 24.0 mm, the figure's optical extent before L1's flat mounting annulus; traced full-field rays reach at most 23.1 mm there.
+The rear surface of L1 (2A) is given 24.0 mm, the figure's optical extent before L1's flat mounting annulus; its asphere turns over past 27 mm, so it is not carried out to L1's 30 mm rim. Traced full-field rays reach at most 23.1 mm there.
 L1's front surface keeps the figure's 30 mm element rim.
 The entry SD at surface 3 is 23.1 mm against about 23.7 mm in the figure, which clears the wide/near full-field chief ray at 21.12 mm.
 Surfaces 19 and 21 are 12.9 mm, within the figure's 12.2–12.9 mm range for G5, which clears the tele/near on-axis marginal ray at 12.77 and 12.60 mm.
-The concave front surface of L14 (24) is given 16.0 mm, where Figure 3 ends its curve and continues a flat annulus to the 18 mm rim that surface 25A keeps; the highest ray the other modeled rims pass reaches 15.39 mm there.
+The concave front surface of L14 (24) ends its curve at 16.0 mm, where Figure 3 continues a flat annulus 5.72 mm ahead of its vertex to the 18 mm rim shared with surface 25A; the highest ray the other modeled rims pass reaches 15.39 mm there.
 The shared-junction SDs at surfaces 7 and 20, 18.0 and 13.0 mm, are ray-envelope refinements beyond the schematic figure estimate.
 With surfaces 3 and 4 both at 23.1 mm, outer tele full-field rays can meet their first aperture limit at the L2/L3 cemented junction.
 Entry and exit rims remain separate estimates; these refinements do not identify manufactured lens diameters.
@@ -336,9 +336,9 @@ The required but unlisted application A14 terms are zero.
 | 25 | 1.0000 | 0.0000 | -1.431E-05 | 2.423E-08 | -1.539E-10 | 5.368E-13 | -6.402E-16 |
 
 The complete conic-plus-polynomial profile governs shape; the sign of A4 alone does not describe an asphere's net correction.
-At the stored modeled SDs, departures from a sphere with the same vertex radius are:
+At the modeled cap edges (the stored SDs, and on 24 the end of the curved cap before its flat annulus), departures from a sphere with the same vertex radius are:
 
-| Surface | Modeled SD (mm) | Full sag (mm) | Departure from vertex-radius sphere (mm) |
+| Surface | Modeled cap edge (mm) | Full sag (mm) | Departure from vertex-radius sphere (mm) |
 |---|---:|---:|---:|
 | 1A | 30.0 | +5.146142 | -0.571651 |
 | 2A | 24.0 | +13.450576 | -4.742328 |

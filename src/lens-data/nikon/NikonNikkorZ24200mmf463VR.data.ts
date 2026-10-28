@@ -40,6 +40,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    28.0 mm estimates (figure ≈ 27.1 / 26.5 / 25.7 mm, 8–13 % less). ║
  * ║    Real-ray check: no axial clipping or chief-ray blocking at any   ║
  * ║    station; the wide full-field bundle is vignetted at G2/G4.       ║
+ * ║                                                                      ║
+ * ║  RIM CUTS (2026-10-27): Fig. 1 draws flat lands at the rims of       ║
+ * ║    S2 (L11 rear), S8 (L21 rear) and S32 (L61 front); rimCutDepthMm   ║
+ * ║    ends those caps at 30.06 / 11.60 / 13.31 mm. S8 and S32 sd were   ║
+ * ║    raised to the partner faces' square edges (13.0 / 14.6 mm).       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -331,7 +336,7 @@ const LENS_DATA = {
   surfaces: [
     /* ── G1: Front Positive (L11, L12, L13) ── */
     { label: "1", R: 185.7354, d: 2.0, sd: 31.0, medium: 1 },
-    { label: "2", R: 75.9813, d: 1.0263, sd: 31.0 },
+    { label: "2", R: 75.9813, d: 1.0263, sd: 31.0, rimCutDepthMm: 6.2 },
     { label: "3", R: 81.5981, d: 6.4204, sd: 29.4, medium: 2 },
     { label: "4", R: -494.4016, d: 0.1, sd: 29.4 },
     { label: "5", R: 59.132, d: 6.13, sd: 28.0, medium: 3 },
@@ -339,7 +344,7 @@ const LENS_DATA = {
 
     /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
     { label: "7", R: 236.0277, d: 1.25, sd: 13.0, medium: 4 },
-    { label: "8", R: 19.0394, d: 5.0675, sd: 11.6 },
+    { label: "8", R: 19.0394, d: 5.0675, sd: 13.0, rimCutDepthMm: 3.94 },
     { label: "9", R: -46.67, d: 1.1, sd: 10.7, medium: 5 },
     { label: "10", R: 68.1612, d: 0.4169, sd: 11.4 },
     { label: "11", R: 37.121, d: 3.384, sd: 9.6, medium: 6 },
@@ -397,7 +402,7 @@ const LENS_DATA = {
     }, // L52 rear (asph) → air, D5
 
     /* ── G6: Rear Field Corrector (L61, L62) ── */
-    { label: "32", R: -16.9998, d: 1.4, sd: 13.3, medium: 18 },
+    { label: "32", R: -16.9998, d: 1.4, sd: 14.6, rimCutDepthMm: 6.43, medium: 18 },
     {
       label: "33A",
       R: -22.5398,

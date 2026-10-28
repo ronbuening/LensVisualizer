@@ -425,3 +425,65 @@ Open limitations:
 - The chamfered rims of L1 and L14 and the unreproduced cemented steps remain as described in the previous section.
 - The ED positions were not re-read from Nikon's construction drawing in this review.
 - The near-state iris is a modelling assumption; a diaphragm that opened with focus would pass the display ray.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 3 (PDF p. 69, native 300 ppi 1-bit raster, 2478 × 3507 px, axis vertical at x = 1249.5 px with the object at
+the bottom, 13.46 px/mm) was read element by element on both halves for flat lands square to the axis at the rims of
+concave faces, the shape `rimCutDepthMm` draws. Pixel pairs are cap end / edge from the axis, right half then left.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2A (L1 rear, R 24.9268) | 0.797 (322/404.5 px; 322/403.5) | 13.45 mm | 24.00 mm | 30 (was 24.0) | 11.41 mm |
+| 24 (L14 front, R −25.2494) | 0.899 (216.5/240.5 px; 215/239.5) | 5.72 mm | 16.00 mm | 18 (was 16.0) | 5.32 mm |
+
+- Both faces stored their sd at the cap end, below the partner face (1A 30, 25A 18 mm), while the figure draws a
+  square edge at the partner's height (30.0 and 17.9 mm) and an 84 px and a 26 px land at constant axial position
+  down to the cap. Each sd was raised to the partner's with the cut at the old sd; 2A has since gone back to its
+  24.0 mm rim with no cut (next bullet). On 24 the clear radius goes from the old 16.0 mm rim to the 16.0042 mm cut
+  radius, where the beams reach 15.4701 mm (see the rule section below). The figure's own cap
+  ends, q × sd = 23.9 and 16.2 mm, lie within 0.2 mm of those radii, and its lands sit within 0.2 mm of the cut
+  depths; the rims were not refitted to them.
+- The 2A asphere's slope turns over past 27 mm (1.312 at 27 mm, 1.212 at 28.5 mm, 0.922 at 30 mm,
+  `audit:surface --scan 2A 30`), the inflection the 2026-10-06 pass recorded. Carried out to the 30 mm rim, its
+  polynomial runs past its designed extent, so 2A keeps its 24.0 mm rim uncut and L1's chamfered rim stays as the
+  2026-10-06 sections describe. L14's land closes the chamfered L14 rim: it sits 5.72 mm ahead of its vertex, as far
+  forward as the old 16 mm rim, so it still clears L13 at the tele end.
+- No land: 3, 5 and 10 are nearly flat (0.84, 1.66 and 0.69 mm of sag at sd), so a land could not be told from the
+  curve; 8, 15 and 16 run into their element edge corners; 22A flattens toward its rim with the asphere (10.6° from
+  square at 14 mm) and meets L13's edge within about 3 px, below what the raster resolves. The step between L2 and
+  L3 lies on the cemented junction 4, not on an air face.
+- No cap reaches the stop plane at any zoom or focus state: surface 15 clears it by 1.89 mm.
+- `audit:aperture` is unchanged: all three stations trace within 3 % of f/2.91, with no rim, trace, iris, failed or
+  `(rim cut)` rows. The surface validator reports no errors and the image-circle check no undersized surface.
+- Field: the cut on 24 clears every traced ray of the wide-open beams by its margin (see the rule section below), so
+  it clips none of those rays and changes no vignetting. The engine's half-field estimate (37.15°, 25.95° and 21.37°
+  at infinity) and the analysis field (42.72°, 22.62° and 17.01°) are unchanged.
+- Live, wide and tele ends at infinity: L14 now ends its cap in a square land with its edge parallel to the axis at
+  18 mm, in place of the slanted join, as in Figure 3. L1 keeps its slanted join at 24 mm. No other element moved.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced with the stop at its paraxial size from #933 (EPD = F/N) and with the
+rule's current search, which follows each beam to the field where it vanishes, seeds from the stop and refines near
+each cut. zoomT 0, 0.5 and 1 are the 24.7, 50.0 and 67.87 mm stations; focus runs from infinity (focusT 0) to the
+0.319 m keyframe (focusT 1). The cut on 24 passes as it stands; 2A no longer carries one:
+
+- Surface 2A: back to its 24.0 mm rim with no cut, since its asphere turns over past 27 mm (figure review above).
+  Before that, the 23.9995 mm cut there cleared the beams (23.4530 mm) by 0.5466 mm.
+- Surface 24: the cut radius is 16.0042 mm, at the old 16.0 mm rim. The beams reach 15.4701 mm there, at zoomT 0.25
+  (halfway from the wide to the middle station), focusT 0.5 and 33.87°, so the cut clears them by 0.5341 mm against a
+  0.05 mm margin, 0.4841 mm to spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 3 measures 13.46 native px per mm, as the 2026-10-06 semi-diameter pass gives
+it: 2079.5 px for the 154.461 mm first-vertex-to-image track at the wide end, infinity. Each q range is
+±(1 + q) / (sd × 13.46 px). The cut on 24 sits at the old rim rather than at q × sd.
+
+- 2A: q 0.797 (322 / 404.5 px and 322 / 403.5 px), edge 403.8 px at the 30 mm rim, range ±0.004 (0.793–0.801).
+  Not cut (above).
+- 24: q 0.899 (216.5 / 240.5 px and 215 / 239.5 px), edge 242.3 px, range ±0.008 (0.891–0.907). The cut sits at
+  q 0.889, at the old rim, 0.002 below that range. Land 1.9958 mm, above the 0.1 mm minimum.
