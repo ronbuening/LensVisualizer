@@ -77,6 +77,43 @@ function stopBehindLens(): RuntimeLens {
 
 const radians = (deg: number) => (deg * Math.PI) / 180;
 
+/**
+ * Trace each transmitted −px cell of the request's edge field on its own and expect every mirrored entry to match its
+ * own ray: flags, exit and referred cosines (the latter from the field's exported sphere), bulk transmission and n′.
+ *
+ * @returns the bulk transmissions of the mirrored transmitted cells
+ */
+function expectMirrorsMatchOwnTraces(L: RuntimeLens, request: ReturnType<typeof analysisRequestAt>): number[] {
+  const fields = computeAnalysisFieldGeometryAtState(0, 0, L, 0);
+  const edge = computeVignettingField(request, 1);
+  expect(edge.mirrored).toBe(true);
+  const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, edge.fieldFraction, fields)!;
+  const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
+  const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
+  const sphere: ReferenceSphere = {
+    center: edge.imagePoint!,
+    radius: edge.referenceRadiusMm!,
+    towardPupil: edge.towardPupil!,
+  };
+  const transmissions: number[] = [];
+  for (const cell of edge.cells.filter((entry) => entry.cell.xFraction < 0 && entry.ray.status === "aimed")) {
+    const result = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
+    expect(result.status === "ok").toBe(cell.transmitted);
+    expect(cell.failed).toBe(false);
+    if (!cell.transmitted) continue;
+    expect(Math.abs(result.terminalDirection[0] - cell.exitDirectionCosines![0])).toBeLessThan(1e-12);
+    expect(Math.abs(result.terminalDirection[1] - cell.exitDirectionCosines![1])).toBeLessThan(1e-12);
+    const own = referredDirection(sphere, result.terminalPoint, result.terminalDirection)!;
+    expect(Math.abs(own[0] - cell.referredDirectionCosines![0])).toBeLessThan(1e-12);
+    expect(Math.abs(own[1] - cell.referredDirectionCosines![1])).toBeLessThan(1e-12);
+    const bulk = bulkTransmissionForTrace(request.preparedGeometry.lens, result.hits);
+    expect(Math.abs(bulk - cell.bulkTransmission)).toBeLessThan(1e-12);
+    expect(result.finalMedium).toBe(cell.imageIndex);
+    transmissions.push(bulk);
+  }
+  return transmissions;
+}
+
 describe("vignettingStopLattice", () => {
   it("keeps the cells whose centre lies in the unit disc, with exact mirror columns", () => {
     for (const n of [4, 48, 64]) {
@@ -450,39 +487,7 @@ describe("computeVignettingCurve", () => {
       expect(field.cells.map((cell) => cell.ray)).toEqual(launch.rays);
     });
     // Each −px cell is its +px partner's mirror image: traced on its own, its ray does what the mirror says it does.
-    const edge = forward.at(-1)!;
-    expect(edge.mirrored).toBe(true);
-    const geometry = computeOffAxisFieldGeometry(
-      request.preparedGeometry,
-      edge.fieldFraction,
-      computeAnalysisFieldGeometryAtState(0, 0, L, 0),
-    )!;
-    const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
-    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
-    const sphere: ReferenceSphere = {
-      center: edge.imagePoint!,
-      radius: edge.referenceRadiusMm!,
-      towardPupil: edge.towardPupil!,
-    };
-    let mirroredCells = 0;
-    for (const cell of edge.cells.filter((entry) => entry.cell.xFraction < 0 && entry.ray.status === "aimed")) {
-      const result = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
-      expect(result.status === "ok").toBe(cell.transmitted);
-      expect(cell.failed).toBe(false);
-      if (!cell.transmitted) continue;
-      mirroredCells++;
-      expect(Math.abs(result.terminalDirection[0] - cell.exitDirectionCosines![0])).toBeLessThan(1e-12);
-      expect(Math.abs(result.terminalDirection[1] - cell.exitDirectionCosines![1])).toBeLessThan(1e-12);
-      // Its referred direction, from the field's exported sphere, and its own transmission and image index.
-      const own = referredDirection(sphere, result.terminalPoint, result.terminalDirection)!;
-      expect(Math.abs(own[0] - cell.referredDirectionCosines![0])).toBeLessThan(1e-12);
-      expect(Math.abs(own[1] - cell.referredDirectionCosines![1])).toBeLessThan(1e-12);
-      expect(
-        Math.abs(bulkTransmissionForTrace(request.preparedGeometry.lens, result.hits) - cell.bulkTransmission),
-      ).toBeLessThan(1e-12);
-      expect(result.finalMedium).toBe(cell.imageIndex);
-    }
-    expect(mirroredCells).toBeGreaterThan(100);
+    expect(expectMirrorsMatchOwnTraces(L, request).length).toBeGreaterThan(100);
   });
 
   it("reads exactly 1 where a wholly transmitted retrofocus beam's old launch-area figure exceeded 1", () => {
@@ -507,6 +512,9 @@ describe("computeVignettingCurve", () => {
     });
     const curveFor = (L: RuntimeLens) => computeVignettingCurve(analysisRequestAt(L, apertureAt(L, 0, 0))).samples;
     const [absorbed, clear] = [curveFor(stf), curveFor(transparent)];
+    // The apodizer's transmission varies across the beam, and each mirrored cell carries its own ray's.
+    const mirroredTransmission = expectMirrorsMatchOwnTraces(stf, analysisRequestAt(stf, apertureAt(stf, 0, 0)));
+    expect(Math.max(...mirroredTransmission) - Math.min(...mirroredTransmission)).toBeGreaterThan(0.1);
     expect(absorbed).toHaveLength(clear.length);
     absorbed.forEach((sample, i) => expect(sample.unvignettedFraction).toBe(clear[i].unvignettedFraction));
     expect(
