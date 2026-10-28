@@ -166,7 +166,10 @@ export interface MtfFieldResult {
   unaimedRays: number;
   /** Unaimed or failed samples beside the transmitted beam (the row or column neighbour of a transmitted cell). */
   unresolvedInBeamRays: number;
-  /** Share of the sampled flux carried by unaimed and failed samples; the geometric OTF error is at most twice this. */
+  /**
+   * Share of the beam's flux carried by the unaimed and failed samples beside it, which the field is judged by; the
+   * geometric OTF error is at most twice this. Samples that touch no transmitted cell are counted but not in it.
+   */
   unknownFluxFraction: number;
   /** Largest change between the last two grids at or below the convergence band. */
   maxDelta: number | null;

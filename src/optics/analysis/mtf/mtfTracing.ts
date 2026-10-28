@@ -59,6 +59,8 @@ export interface MtfBundle {
   unresolvedWeight: number;
   /** Unaimed or failed samples beside the transmitted beam: the row or column neighbour of a transmitted cell. */
   unresolvedInBeam: number;
+  /** Weight of the samples beside the beam, in the units of `unresolvedWeight`: the share a field is judged by. */
+  unresolvedInBeamWeight: number;
   chief: MtfSpot;
   /** True when the reference chief ray is itself stopped by an aperture. */
   chiefClipped: boolean;
@@ -418,7 +420,7 @@ export function aimMtfStopLattice(
  *   plane; `opticalPath`: record each ray's optical path; `coarse`: this wavelength's lattice half as fine
  * @returns traced bundle, or null for a bounding-sphere field or when no reference chief point exists
  */
-export function traceMtfBundle(
+export function traceMtfStopBundle(
   state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
@@ -438,7 +440,8 @@ export function traceMtfBundle(
  * Every lit cell carries the same weight times its bulk transmission: uniform amplitude on the stop. A blocked sample,
  * and an aimed ray whose full trace a rim, total internal reflection or a proven aperture miss stops, is vignetted. An
  * unaimed sample, and an aimed ray whose full trace fails otherwise or never reaches the image plane, is unresolved:
- * counted, never replaced, and charged to the unresolved weight at full transmission. The stop sits at the lattice's
+ * counted, never replaced, and charged to the unresolved weight at full transmission; those beside the transmitted
+ * beam are counted and weighed apart, since a field is judged by them. The stop sits at the lattice's
  * clip radius, so a rim cell aimed at R is admitted by the stop it was aimed at. On a lens mirror-symmetric about the
  * meridian the +x half is traced and the −x half mirrors it.
  *
@@ -490,6 +493,7 @@ export function traceMtfLattice(
     unaimed: 0,
     unresolvedWeight: 0,
     unresolvedInBeam: 0,
+    unresolvedInBeamWeight: 0,
     chief: chiefPoint,
     chiefClipped,
     columns: n,
@@ -506,6 +510,8 @@ export function traceMtfLattice(
     outcome[row * n + column] = value;
     if (mirror) outcome[row * n + n - 1 - column] = value;
   };
+  // Every stop cell carries the same weight, so each unresolved cell would carry 1.
+  const unresolvedWeights = new Float64Array(n * n).fill(1);
   lattice.cells.forEach((cell, i) => {
     if (mirror && cell.xFraction < 0) return;
     const samples = mirror ? 2 : 1;
@@ -545,7 +551,9 @@ export function traceMtfLattice(
     bundle.rays.push(ray0);
     if (mirror) bundle.rays.push(mirrorPupilRay(ray0, n));
   });
-  bundle.unresolvedInBeam = unresolvedBesideBeam(outcome, n, n);
+  const beside = unresolvedBesideBeam(outcome, unresolvedWeights, n, n);
+  bundle.unresolvedInBeam = beside.count;
+  bundle.unresolvedInBeamWeight = beside.weight;
   return bundle;
 }
 
@@ -554,26 +562,35 @@ const CELL_LIT = 1;
 const CELL_UNRESOLVED = 2;
 
 /**
- * Count unresolved cells that are the row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam`
- * rule.
+ * Count and weigh the unresolved cells that are the row or column neighbour of a lit cell, the vignetting tab's
+ * `unresolved-in-beam` rule.
  *
  * @param outcome - cell outcomes in row-major order
+ * @param weights - the weight each unresolved cell would carry, in the same order
  * @param columns - cells per row
  * @param rows - rows
- * @returns unresolved cells beside the transmitted beam
+ * @returns how many unresolved cells lie beside the transmitted beam, and their weight
  */
-function unresolvedBesideBeam(outcome: Uint8Array, columns: number, rows: number): number {
+function unresolvedBesideBeam(
+  outcome: Uint8Array,
+  weights: Float64Array,
+  columns: number,
+  rows: number,
+): { count: number; weight: number } {
   const lit = (row: number, column: number) =>
     row >= 0 && column >= 0 && row < rows && column < columns && outcome[row * columns + column] === CELL_LIT;
   let count = 0;
+  let weight = 0;
   for (let row = 0; row < rows; row++)
     for (let column = 0; column < columns; column++)
       if (
         outcome[row * columns + column] === CELL_UNRESOLVED &&
         (lit(row - 1, column) || lit(row + 1, column) || lit(row, column - 1) || lit(row, column + 1))
-      )
+      ) {
         count++;
-  return count;
+        weight += weights[row * columns + column];
+      }
+  return { count, weight };
 }
 
 /**
@@ -625,6 +642,7 @@ export function traceMtfLaunchPlaneBundle(
     unaimed: 0,
     unresolvedWeight: 0,
     unresolvedInBeam: 0,
+    unresolvedInBeamWeight: 0,
     chief: chiefPoint,
     chiefClipped,
     columns: grid.columns,
@@ -638,9 +656,12 @@ export function traceMtfLaunchPlaneBundle(
   const chiefDistance = source ? Math.hypot(...chiefTrace.input.origin.map((v, i) => v - source[i])) : 0;
   const firstColumn = mirror ? grid.columns / 2 : 0;
   const outcome = new Uint8Array(grid.rows * grid.columns);
-  const mark = (row: number, column: number, value: number) => {
-    outcome[row * grid.columns + column] = value;
-    if (mirror) outcome[row * grid.columns + grid.columns - 1 - column] = value;
+  const unresolvedWeights = new Float64Array(grid.rows * grid.columns);
+  const mark = (row: number, column: number, value: number, weight = 0) => {
+    for (const c of mirror ? [column, grid.columns - 1 - column] : [column]) {
+      outcome[row * grid.columns + c] = value;
+      unresolvedWeights[row * grid.columns + c] = weight;
+    }
   };
   for (let row = 0; row < grid.rows; row++) {
     for (let column = firstColumn; column < grid.columns; column++) {
@@ -661,7 +682,7 @@ export function traceMtfLaunchPlaneBundle(
       if (!point) {
         bundle.failed += samples;
         bundle.unresolvedWeight += samples * launchWeight;
-        mark(row, column, CELL_UNRESOLVED);
+        mark(row, column, CELL_UNRESOLVED, launchWeight);
         continue;
       }
       mark(row, column, CELL_LIT);
@@ -680,7 +701,9 @@ export function traceMtfLaunchPlaneBundle(
       if (mirror) bundle.rays.push(mirrorPupilRay({ ...point, column, row, trace: record }, grid.columns));
     }
   }
-  bundle.unresolvedInBeam = unresolvedBesideBeam(outcome, grid.columns, grid.rows);
+  const beside = unresolvedBesideBeam(outcome, unresolvedWeights, grid.columns, grid.rows);
+  bundle.unresolvedInBeam = beside.count;
+  bundle.unresolvedInBeamWeight = beside.weight;
   return bundle;
 }
 
@@ -728,7 +751,8 @@ export function traceMtfFieldPupil(
 ): MtfBundle | null {
   const launch = prepareMtfFieldLaunch(state, options, support, fieldAngleDeg);
   if (!launch) return null;
-  if (launch.aim) return traceMtfBundle(state, options, support, launch, gridSize, line, imagePlaneZ, { opticalPath });
+  if (launch.aim)
+    return traceMtfStopBundle(state, options, support, launch, gridSize, line, imagePlaneZ, { opticalPath });
   const footprint = findMtfFieldFootprint(state, options, support, launch);
   return footprint
     ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, gridSize, line, imagePlaneZ, {

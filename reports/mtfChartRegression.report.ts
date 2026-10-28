@@ -24,7 +24,7 @@ import { shearedOtf } from "../src/optics/mtf.js";
 import {
   findMtfFieldFootprint,
   prepareMtfFieldLaunch,
-  traceMtfBundle,
+  traceMtfStopBundle,
   traceMtfLaunchPlaneBundle,
 } from "../src/optics/mtf.js";
 import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
@@ -256,7 +256,7 @@ function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOption
       const extras = { reference: common, opticalPath: true };
       const bundle = footprint
         ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
-        : traceMtfBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
+        : traceMtfStopBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
       const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
       if (!bundle || !lattice || !common) {
         complete = false;

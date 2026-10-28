@@ -18,7 +18,7 @@ export {
   aimMtfStopLattice,
   findMtfFieldFootprint,
   prepareMtfFieldLaunch,
-  traceMtfBundle,
+  traceMtfStopBundle,
   traceMtfLattice,
   traceMtfLaunchPlaneBundle,
 } from "./analysis/mtf/mtfTracing.js";

@@ -153,12 +153,14 @@ clips are blocking on both sides of the stop: the aimed launch's search ahead of
 surface (see [Pupil Convention](#pupil-convention)). A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unaimed stop samples and aimed rays whose full trace fails otherwise are unresolved, never
-replaced: counted per field (`unaimedRays`, `failedRays`) and charged to the unresolved share at full transmission.
-Those beside the transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam`
-rule) are counted as `unresolvedInBeamRays` and named in the field's note or message, so neither estimator returns a
-number from a lattice with an unreported hole in the beam. Unresolved flux ε up to 0.5% is omitted with a note
-bounding the geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`), and a coarser curve the
-ladder keeps says why refinement stopped. The reference chief is traced without aperture checks, so a clipped chief
+replaced: counted per field (`unaimedRays`, `failedRays`) and named in the field's note or message, so neither
+estimator returns a number from a lattice with an unreported hole in the beam. A field is judged by those beside its
+transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam` rule:
+`unresolvedInBeamRays`), each charged at full transmission; samples that touch no transmitted cell are named but carry
+no weight (`agent_docs/decisions.md`). Unresolved flux ε up to 0.5% of the beam is omitted with a note bounding the
+geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`) and refinement goes on, since a finer
+lattice can resolve a beam edge a coarser one cannot. A coarser curve the ladder keeps because no finer grid gave one
+says why. The reference chief is traced without aperture checks, so a clipped chief
 still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
