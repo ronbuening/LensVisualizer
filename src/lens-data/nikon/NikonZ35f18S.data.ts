@@ -55,10 +55,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands at ║
- * ║    the element edge. Faces 2 and 12A take the partner face's sd,   ║
- * ║    and rimCutDepthMm ends each cap at its old radius (14.54 and    ║
- * ║    12.05 mm), so tracing is unchanged. 5, 6 and 20A keep their old ║
- * ║    rims uncut: a land there would stop rays those rims stop.       ║
+ * ║    the element edge. Face 12A takes the partner face's sd, and     ║
+ * ║    rimCutDepthMm ends its cap at 12.11 mm, just past its old       ║
+ * ║    12.041 mm radius, where no traced ray reaches. 2, 5, 6 and 20A  ║
+ * ║    keep their old rims uncut: a land there would stop rays those   ║
+ * ║    rims stop.                                                      ║
  * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║
@@ -243,7 +244,7 @@ const LENS_DATA = {
     // ── Gr1 (fixed) ────────────────────────────────────────────────
     // L11 — negative meniscus
     { label: "1", R: 99.8611, d: 2.2032, sd: 17.97, medium: 1 },
-    { label: "2", R: 18.9734, d: 7.6464, sd: 17.97, rimCutDepthMm: 6.79 },
+    { label: "2", R: 18.9734, d: 7.6464, sd: 14.54 },
 
     // D1: L12 (biconvex) + L13 (biconcave), cemented
     { label: "3", R: 87.9768, d: 5.5728, sd: 14.19, medium: 2 },
@@ -281,7 +282,7 @@ const LENS_DATA = {
       R: 42.8458,
       d: 4.0392,
       sd: 12.682,
-      rimCutDepthMm: 1.85,
+      rimCutDepthMm: 1.87,
       asphere: {
         K: -0.4693,
         A4: -8.2906e-6,

@@ -102,3 +102,15 @@ lower half, cross-checked on the close-focus panel's upper half.
   42.3 % at infinity and 56.0 % at close focus, unchanged, and is also unchanged at 10 and 15 mm image height. Cuts 5
   and 7 only take rays that faces 4, 6 and 8 already block; 17's cut radius lies outside every field bundle. The
   engine half-field moves 23.999° → 24.009° (32A's cut radius 18.009 mm against the old 18.0 mm rim).
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+
+- Surface 7: the beams reach 29.10 mm there (close focus, near 14.4°), inside the figure's 29.19 mm cut but closer
+  than its 0.088 mm margin. The depth goes from 5.37 to 5.38 mm, which puts the cut radius at 29.22 mm; the land is
+  shorter than the figure's.
+
+The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.

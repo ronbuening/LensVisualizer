@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Numerical glass coordinates are source values; catalog names are inferred.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
  * rear face 9 (L21), where it meets L22's edge, and the asphere 27A (L46
- * front); rimCutDepthMm ends those caps at 15.93 and 17.43 mm, outside every
+ * front); rimCutDepthMm ends those caps at 15.93 and 17.49 mm, clear of every
  * traced beam (27A's figure land, 17.17 mm, would stop rays at the 12.9° field).
  *
  * NOTE ON SURFACE 27 A10 (PATENT MISPRINT, SIGN CORRECTED):
@@ -328,7 +328,7 @@ const LENS_DATA = {
       R: -26.4605,
       d: 1.53,
       sd: 18.3,
-      rimCutDepthMm: 5.37,
+      rimCutDepthMm: 5.4,
       medium: 16,
       asphere: {
         K: 0,

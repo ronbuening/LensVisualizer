@@ -21,9 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * collector, G2/G3, front G4, and G6 outlines. Deliberate front-group vignetting follows the patent
  * silhouette.
  * Rim cuts (2026-10-27): Figure 5 draws flat lands at the rims of the concave rear faces 5 (L3), 10 (L6),
- * 21 (L12) and 35 (L20); rimCutDepthMm ends those caps at 38.7, 22.2, 18.2 and 11.5 mm. Faces 10 and 21 now
+ * 21 (L12) and 35 (L20); rimCutDepthMm ends those caps at 38.9, 22.2, 18.2 and 11.6 mm. Faces 10 and 21 now
  * run to their cemented partners' 25.3 / 20.1 mm edges, square as drawn, with the cut at the former 22.25 /
- * 18.25 mm rim, so their traced clear aperture is unchanged. Cuts 5 and 35 sit just past the traced beams,
+ * 18.25 mm rim, so their traced clear aperture is unchanged. Cuts 5 and 35 sit just clear of the traced beams,
  * outside the figure's 37.5 / 10.4 mm lands, which would stop rays.
  *
  * The physical L25 hybrid counts as one production/patent lens but is represented by two modeled media
@@ -375,7 +375,7 @@ const LENS_DATA = {
     { label: "2", R: -466.6312, d: 26.9019, sd: 47.0 },
     { label: "3", R: 187.3246, d: 9.2687, sd: 40.7, medium: 2 },
     { label: "4", R: -230.5965, d: 2.5000, sd: 40.7, medium: 3 },
-    { label: "5", R: 246.0023, d: 3.0000, sd: 40.7, rimCutDepthMm: 3.06 },
+    { label: "5", R: 246.0023, d: 3.0000, sd: 40.7, rimCutDepthMm: 3.09 },
     { label: "6", R: 190.2720, d: 6.2969, sd: 38.9, medium: 4 },
     { label: "7", R: -1072.1852, sd: 38.9 },
     { label: "8", R: 77.8587, d: 7.3231, sd: 25.3, medium: 5 },
@@ -405,7 +405,7 @@ const LENS_DATA = {
     { label: "32", R: 45.2983, d: 3.9688, sd: 14.2, medium: 19 },
     { label: "33", R: -174.4977, sd: 14.2 },
     { label: "34", R: 152.9104, d: 1.0000, sd: 11.8, medium: 20 },
-    { label: "35", R: 34.1887, sd: 11.8, rimCutDepthMm: 2 },
+    { label: "35", R: 34.1887, sd: 11.8, rimCutDepthMm: 2.03 },
     { label: "36", R: -37.7950, d: 1.1000, sd: 13.7, medium: 21 },
     { label: "37", R: 26.7942, d: 7.4286, sd: 13.7, medium: 22 },
     { label: "38", R: -28.1806, d: 0.7000, sd: 13.7 },

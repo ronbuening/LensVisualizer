@@ -43,7 +43,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║  RIM CUTS (2026-10-27): Fig. 1 draws flat lands at the rims of       ║
  * ║    S2 (L11 rear), S8 (L21 rear) and S32 (L61 front); rimCutDepthMm   ║
- * ║    ends those caps at 30.06 / 11.60 / 13.30 mm. S8 and S32 sd were   ║
+ * ║    ends those caps at 30.06 / 11.60 / 13.31 mm. S8 and S32 sd were   ║
  * ║    raised to the partner faces' square edges (13.0 / 14.6 mm).       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -402,7 +402,7 @@ const LENS_DATA = {
     }, // L52 rear (asph) → air, D5
 
     /* ── G6: Rear Field Corrector (L61, L62) ── */
-    { label: "32", R: -16.9998, d: 1.4, sd: 14.6, rimCutDepthMm: 6.41, medium: 18 },
+    { label: "32", R: -16.9998, d: 1.4, sd: 14.6, rimCutDepthMm: 6.43, medium: 18 },
     {
       label: "33A",
       R: -22.5398,

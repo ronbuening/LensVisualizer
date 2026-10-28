@@ -45,7 +45,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Fig. 1 draws flat lands square to the axis at the rims of 2A      ║
  * ║    (L11), 4A (L12) and 26A (L52). 2A now runs out to the 29.2 mm     ║
  * ║    edge of S1, with rimCutDepthMm ending its cap at the old 22.4 mm  ║
- * ║    rim; 26A is cut at 10.99 mm. 4A keeps its 14.5 mm rim uncut: a    ║
+ * ║    rim; 26A is cut at 11.03 mm. 4A keeps its 14.5 mm rim uncut: a    ║
  * ║    land there would stop rays the rim stops.                         ║
  * ║                                                                      ║
  * ║  NOTE ON CONIC CONVENTION:                                           ║
@@ -348,7 +348,7 @@ const LENS_DATA = {
       R: -38.9341,
       d: 1.4,
       sd: 11.7,
-      rimCutDepthMm: 2.03,
+      rimCutDepthMm: 2.05,
       medium: 14,
       asphere: { K: -1.0, A4: -2.67902e-5, A6: -3.34364e-8, A8: -1.13765e-10, A10: -1.88017e-13 },
     },

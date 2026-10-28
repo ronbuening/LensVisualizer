@@ -165,11 +165,11 @@ L46 edge 256.5 px).
 
 ## 2026-10-27 — Rim-cut beam rule
 
-An inferred rim cut may not stop any traced ray of the wide-open beam, at any field from the axis to the half field,
-zoom station or focus keyframe (`validateRimCutBeams`, added in the #928 review). Traced against that rule, these cuts
-from the figure review above stopped rays and were changed:
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
 
-- Surface 27A: the beams reach 17.41 mm there, past the 17.17 mm cut. The depth goes from 5.22 to 5.37 mm, which puts
-  the cut radius at 17.43 mm, just outside the beams; the land is shorter than the figure's.
+- Surface 27A: the beams reach 17.42 mm there (infinity, near 12.4°), past the figure's 17.17 mm cut. The depth goes from 5.22 to
+  5.40 mm, which puts the cut radius at 17.49 mm, 0.07 mm outside the beams; the land is shorter than the figure's.
 
-The other cuts stop no traced ray, and the surface audit and the beam rule pass.
+The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.

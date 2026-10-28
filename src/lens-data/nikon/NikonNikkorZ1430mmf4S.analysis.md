@@ -192,7 +192,7 @@ Departure at the 14.5 mm rim: approximately +2,084 µm. The departure is positiv
 Departure at the 8.6 mm rim: approximately +66 µm. This is a comparatively mild asphere located just behind the aperture stop. The spherical base (K = 0) means the entire departure comes from the polynomial terms alone — principally A4 (+1.76 × 10⁻⁵), with A10 (−4.41 × 10⁻¹²) providing a slight rolloff at the rim. This surface fine-tunes spherical aberration and coma in the converging beam.
 
 **S26 (L52 front, R = −38.93 mm, K = −1.0, paraboloid):**
-Departure at the 10.99 mm cap edge: approximately −447 µm; Fig. 1 ends the cap there with a short flat land out to the 11.7 mm element edge. This is a moderately strong asphere positioned very close to the image, where it primarily corrects astigmatism and field curvature at the corners of the frame. The polynomial terms, led by A4 = −2.679 × 10⁻⁵, drive the negative departure. The surface slope is 25.6° at the cap edge.
+Departure at the 11.03 mm cap edge: approximately −454 µm. Fig. 1 ends the cap at 10.99 mm with a short flat land out to the 11.7 mm element edge; the modelled land starts at 11.03 mm, just clear of the traced beams. This is a moderately strong asphere positioned very close to the image, where it primarily corrects astigmatism and field curvature at the corners of the frame. The polynomial terms, led by A4 = −2.679 × 10⁻⁵, drive the negative departure. The surface slope is 25.8° at the cap edge.
 
 ---
 

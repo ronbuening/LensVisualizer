@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Optical rims inferred from the original 600 dpi figure, constrained by clearance.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces
  * 2 (L1 rear), 10A (L6 front) and 12 (L7 front); rimCutDepthMm ends 2's cap at
- * 4.95 mm, just past the traced beams (the figure's land is at 4.90), and 10A's at
+ * 5.00 mm, just clear of the traced beams (the figure's land is at 4.90), and 10A's at
  * 6.45 mm. Surface 12 keeps its 7.2 mm rim uncut: a land there would stop rays
  * the rim stops.
  */
@@ -185,7 +185,7 @@ const LENS_DATA = {
         A8: -1.93e-8,
       },
     }, // L1 front (asph; source K=1 → standard K=0)
-    { label: "2", R: 13.3834, d: 1.62, sd: 5.5, rimCutDepthMm: 0.95 }, // L1 rear → air
+    { label: "2", R: 13.3834, d: 1.62, sd: 5.5, rimCutDepthMm: 0.97 }, // L1 rear → air
     { label: "STO", R: "flat", d: 1.59 }, // Aperture stop (patent surface 3)
     { label: "4", R: -37.934, d: 0.7, sd: 5, medium: 2 }, // L2 front (D1 neg.)
     { label: "5", R: 11.35394, d: 2.8, sd: 5, medium: 3 }, // L2→L3 junction (D1 pos.)

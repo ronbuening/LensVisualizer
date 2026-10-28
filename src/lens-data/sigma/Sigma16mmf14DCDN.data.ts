@@ -32,8 +32,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    Figure 1 draws lands on concave faces 4 (L12), 7 (L14), 15      ║
- * ║    (L18) and 27 (L41): cut radii 14.40, 13.78, 12.23, 10.45 mm.    ║
- * ║    4, 15, 27: cut at the old sd; sd raised to the partner face's.  ║
+ * ║    (L18) and 27 (L41). 4, 7 and 15 are cut at 14.40, 13.78 and     ║
+ * ║    12.23 mm; 4 and 15 at the old sd, with sd raised to the partner ║
+ * ║    face's. 27 keeps its 10.45 mm rim uncut: a land there would     ║
+ * ║    stop rays the rim stops.                                        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -310,7 +312,7 @@ const LENS_DATA = {
     { label: "24", R: 25, d: 2.7637, sd: 14, medium: 13 },
     { label: "25", R: 47.3486, sd: 14 },
     { label: "26", R: 35.4444, d: 0.9, sd: 11.2, medium: 14 },
-    { label: "27", R: 17.8877, d: 3.7091, sd: 11.2, rimCutDepthMm: 3.37 },
+    { label: "27", R: 17.8877, d: 3.7091, sd: 10.45 },
     { label: "28", R: 660, d: 6.0973, sd: 10.45, medium: 15 },
     { label: "29", R: -17.1474, d: 0.9, sd: 10.8, medium: 16 },
     { label: "30", R: -26.4237, d: 15.5341, sd: 11 },

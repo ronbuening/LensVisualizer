@@ -10,7 +10,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * motor mechanism is established by the numerical prescription.
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands on faces 2 (L11), 5 (L13), 7 (L14),
  * 17 (L19) and 32A (L44). Faces 2 and 32A take their partner's sd (31.5, 19.5) with the
- * cut at the old rim (28.5, 18.0); the cuts on 5, 7 and 17 end the caps at 27.54, 29.19
+ * cut at the old rim (28.5, 18.0); the cuts on 5, 7 and 17 end the caps at 27.54, 29.22
  * and 21.67 mm, so the L19 rear cap no longer reaches the stop plane.
  */
 
@@ -281,7 +281,7 @@ const LENS_DATA = {
     { label: "4", R: 62.23366, d: 16.51, sd: 26.5 }, // 4   L12 rear → air
     { label: "5", R: -43.98849, d: 3.2, sd: 29, rimCutDepthMm: 9.69, medium: 3 }, // 5   L13 front
     { label: "6", R: -158.30791, d: 4.05, sd: 29 }, // 6   L13 rear → air
-    { label: "7", R: -82.01412, d: 6.7, sd: 30, rimCutDepthMm: 5.37, medium: 4 }, // 7   L14 front
+    { label: "7", R: -82.01412, d: 6.7, sd: 30, rimCutDepthMm: 5.38, medium: 4 }, // 7   L14 front
     { label: "8", R: -52.72274, d: 0.1, sd: 30 }, // 8+9 L14 rear → air (collapsed: −3.000 + 3.100)
     { label: "9", R: 113.04472, d: 10.81, sd: 31.5, medium: 5 }, // 10  L15 front
     { label: "10", R: -113.04472, d: 0.2, sd: 31.5 }, // 11  L15 rear → air

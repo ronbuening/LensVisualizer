@@ -37,8 +37,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  Rim cuts (2026-10-27): Figure 11 draws flat lands at the rims of  ║
  * ║  the concave rear faces 11 (L15) and 37 (L311). rimCutDepthMm ends ║
- * ║  11's cap at the figure's land, 32.09 mm, and 37's at 15.51 mm,    ║
- * ║  just past the traced beams (the figure's 14.93 mm land would stop ║
+ * ║  11's cap at the figure's land, 32.09 mm, and 37's at 15.59 mm,    ║
+ * ║  clear of the traced beams (the figure's 14.93 mm land would stop  ║
  * ║  rays).                                                            ║
  * ║                                                                    ║
  * ║  Glass names below are coordinate-compatible catalog matches, not ║
@@ -454,7 +454,7 @@ const LENS_DATA = {
     { label: "34", R: -55.1763, d: 4.5, sd: 14.3 },
     { label: "35", R: 59.9212, d: 6.8358, sd: 16.4, medium: 21 },
     { label: "36", R: -36.3245, d: 1.8, sd: 16.4, medium: 22 },
-    { label: "37", R: 33.3333, d: 3, sd: 16.4, rimCutDepthMm: 3.83 },
+    { label: "37", R: 33.3333, d: 3, sd: 16.4, rimCutDepthMm: 3.87 },
     { label: "38", R: 39.9579, d: 10.7333, sd: 17.1, medium: 23 },
     { label: "39", R: -35.6438, d: 1.8, sd: 17.1, medium: 24 },
     { label: "40", R: 166.95, d: 74.56937, sd: 17.1 },
