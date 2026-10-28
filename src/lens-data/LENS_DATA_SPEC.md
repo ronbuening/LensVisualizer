@@ -705,9 +705,9 @@ there out to `sd`.
   field past 89°) cannot carry an inferred cut. A depth the source states names it in `rimCutDepthSource`; that cut
   may cut into the beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
 - **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it
-  out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular
-  surface, a diffractive surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond the cut
-  would pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
+  out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular or
+  diffractive surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond
+  the cut would pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
   cut radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop
   plane, and the land clears the surface across its gap within `checks.gapSagFrac`.
 
