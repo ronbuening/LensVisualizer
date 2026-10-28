@@ -4,8 +4,16 @@ export {
   paraxialWorkingFNumber,
   paraxialWorkingFNumberForRuntimeLens,
 } from "./first-order/fNumber.js";
+export type { ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason } from "./first-order/fNumber.js";
 export { eflAtFocus } from "./first-order/focusBreathing.js";
-export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./first-order/format.js";
+export {
+  formatDist,
+  formatFNumber,
+  formatParaxialWorkingFNumber,
+  formatPetzvalRadius,
+  marketedApertureNote,
+  showsParaxialWorkingFNumber,
+} from "./first-order/format.js";
 export { paraxialTrace, realTraceToStop } from "./first-order/lensConstants.js";
 export { computeElementFocalLength } from "./first-order/thickLens.js";
 export type { ProjectionReferenceKind } from "./projection.js";

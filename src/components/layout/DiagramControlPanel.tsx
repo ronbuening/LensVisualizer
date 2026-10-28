@@ -15,6 +15,7 @@ import type {
   ChromaticRayFanSpreadByAxis,
 } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { ParaxialWorkingFNumberResult } from "../../optics/optics.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
 
@@ -43,7 +44,7 @@ interface DiagramControlPanelProps {
   currentPhysStopSD: number;
   baseEPSD: number;
   dynamicEFL: number;
-  paraxialWorkingFNum: number;
+  paraxialWorkingFNum: ParaxialWorkingFNumberResult;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength: () => void;
   showEffectiveAperture: boolean;

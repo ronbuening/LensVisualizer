@@ -25,6 +25,7 @@ import { prepareRuntimeState } from "../../optics/optics.js";
 import { nearestPublishedStation } from "../../optics/publishedStations.js";
 import { computePerspectiveMovementViewportExtent, createPerspectiveTraceContext } from "../../optics/perspective.js";
 import type { PerspectiveTraceContext } from "../../optics/perspective.js";
+import type { ParaxialWorkingFNumberResult } from "../../optics/optics.js";
 import {
   anchorLayoutToCamera,
   doLayoutForRuntimeLens as doLayout,
@@ -93,8 +94,8 @@ interface UseLensComputationResult {
   varReadouts: VarReadout[];
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
-  /** Paraxial working f-number at the current object distance, or the marked one where it is undefined. */
-  paraxialWorkingFNum: number;
+  /** Paraxial working f-number at the current object distance, or why the state has none. */
+  paraxialWorkingFNum: ParaxialWorkingFNumberResult;
   filterId: string;
 }
 
@@ -317,10 +318,12 @@ export default function useLensComputation({
   const dynamicEFL = useMemo(() => (firstOrderRequest ? computeFocusEFL(firstOrderRequest) : 0), [firstOrderRequest]);
 
   /* ── Paraxial working f-number at the current object distance ── */
-  const paraxialWorkingFNum = useMemo(
+  const paraxialWorkingFNum = useMemo<ParaxialWorkingFNumberResult>(
     () =>
-      (L ? paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT) : null) ?? fNumber,
-    [L, currentPhysStopSD, fNumber, focusT, zoomT, aberrationT],
+      L
+        ? paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT)
+        : { status: "unavailable", reason: "no-stop" },
+    [L, currentPhysStopSD, focusT, zoomT, aberrationT],
   );
 
   const filterId = `gl-${panelId}`;

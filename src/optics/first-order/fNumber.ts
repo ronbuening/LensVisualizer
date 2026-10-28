@@ -18,6 +18,14 @@ import { paraxialObjectVergence } from "../field/geometry.js";
 import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { prepareState } from "../state/preparedGeometry.js";
 
+/** Why a state has no paraxial working f-number. */
+export type ParaxialWorkingFNumberUnavailableReason = "folded-path" | "no-stop" | "degenerate-trace";
+
+/** Paraxial working f-number of a state, or why it has none. */
+export type ParaxialWorkingFNumberResult =
+  | { status: "computed"; value: number }
+  | { status: "unavailable"; reason: ParaxialWorkingFNumberUnavailableReason };
+
 /**
  * Image-space f-number EFL / EPD of a sequential state, both paraxial.
  *
@@ -54,14 +62,14 @@ export function paraxialWorkingFNumber(state: PreparedGeometry, stopSemiDiameter
 }
 
 /**
- * Paraxial working f-number for a RuntimeLens state (`paraxialWorkingFNumber`).
+ * Paraxial working f-number for a RuntimeLens state (`paraxialWorkingFNumber`), with the reason where it is undefined.
  *
  * @param stopSemiDiameterMm - current stop radius in mm
  * @param focusT - normalized focus slider, 0=infinity and 1=close focus
  * @param zoomT - normalized zoom slider, 0=wide and 1=tele
  * @param L - runtime lens object
  * @param aberrationT - normalized aberration spacing slider
- * @returns paraxial working f-number, or null where it is undefined
+ * @returns the paraxial working f-number, or why the state has none
  */
 export function paraxialWorkingFNumberForRuntimeLens(
   stopSemiDiameterMm: number,
@@ -69,11 +77,14 @@ export function paraxialWorkingFNumberForRuntimeLens(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
-): number | null {
-  return paraxialWorkingFNumber(
+): ParaxialWorkingFNumberResult {
+  if (L.isFoldedOptics) return { status: "unavailable", reason: "folded-path" };
+  if (!(stopSemiDiameterMm > 0)) return { status: "unavailable", reason: "no-stop" };
+  const value = paraxialWorkingFNumber(
     prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT),
     stopSemiDiameterMm,
   );
+  return value === null ? { status: "unavailable", reason: "degenerate-trace" } : { status: "computed", value };
 }
 
 function finitePositive(value: number): number | null {

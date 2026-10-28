@@ -67,7 +67,6 @@ investigation and are replaced by regenerated ones as stages land.
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
 | K | 125 lenses trace more than 3 % from their label on axis: a rim on 116, a trace failure or the iris itself on the rest (`npm run audit:aperture`) | Traced aperture differs from the label | queue |
-| M | Stop-down scales the iris radius linearly with 1/N instead of re-tracing the marginal ray | Median 1.35 % too open at f/8 | deferred |
 | L | No external validation of a real lens | — | optional tool |
 
 ### Cannot be known — surface, never fit

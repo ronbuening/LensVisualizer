@@ -312,7 +312,7 @@ const opticalSummary = {
   breathingPercent: 2,
   imageSpaceFNumber: 2.55,
   paraxialWorkingFNumber: 2.6,
-  workingFNumber: { status: "traced", value: 2.62 },
+  workingFNumber: { status: "traced", value: 2.62, indexLine: "d" },
   entrancePupilDiameterMm: 20,
   physicalStopDiameterMm: 10,
   halfFieldDeg: 12,

@@ -44,12 +44,14 @@ const STOP_RULE_GEOMETRY_BY_LENS = new WeakMap<object, Map<number, StopRuleGeome
  * at aberration 0. A folded path is the one exception: the sequential kernel does not follow a fold, so it uses
  * the reference focal length and the generalized tracer's near-axis stop ratio (`EP.yRatio`) from its constants.
  *
- * @param lens - compiled lens, or a sequential prescription before its constants
+ * @param lens - runtime lens, compiled lens, or a sequential prescription before its constants
  * @param zoomT - normalized zoom control, clamped to [0, 1]
  * @returns reference focal length and stop height ratio
- * @throws Error when a folded lens has no constants yet
+ * @throws Error when a folded prescription has no constants yet
  */
-export function stopRuleGeometry(lens: StopRuleLens, zoomT: number): StopRuleGeometry {
+export function stopRuleGeometry(lens: StopRuleLens | RuntimeLens, zoomT: number): StopRuleGeometry {
+  // A RuntimeLens carries no compiled flags or surfaces; its compiled lens holds both.
+  if (!("flags" in lens)) return stopRuleGeometry(compiledLensFromRuntime(lens), zoomT);
   if (lens.flags.isFoldedOptics) {
     if (!lens.constants) throw new Error("A folded stop rule reads the lens constants");
     return {

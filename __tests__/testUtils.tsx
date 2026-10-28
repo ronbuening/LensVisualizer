@@ -247,7 +247,7 @@ export function makeLensComputationResult(overrides: Record<string, unknown> = {
     currentEPSD: 5,
     varReadouts: [],
     dynamicEFL: 50,
-    paraxialWorkingFNum: 2,
+    paraxialWorkingFNum: { status: "computed", value: 2 },
     filterId: "filter-test",
     ...overrides,
   };

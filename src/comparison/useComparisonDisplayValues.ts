@@ -8,6 +8,7 @@
 
 import { useMemo } from "react";
 import { paraxialWorkingFNumberForRuntimeLens, stopSemiDiameterForFNumber } from "../optics/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../optics/optics.js";
 import { createAnalysisRequest, computeFocusEFL } from "../optics/analysis.js";
 import { prepareRuntimeState } from "../optics/optics.js";
 import { sharedFNumber } from "./comparisonSliders.js";
@@ -94,10 +95,13 @@ export default function useComparisonDisplayValues({
   };
 }
 
-/** Paraxial working f-number at the stop the marked f-number sets, or the marked one where it is undefined. */
-function paraxialWorkingFNum(L: RuntimeLens | null, fNumber: number, focusT: number, zoomT: number): number {
-  if (!L) return fNumber;
-  return (
-    paraxialWorkingFNumberForRuntimeLens(stopSemiDiameterForFNumber(fNumber, zoomT, L), focusT, zoomT, L) ?? fNumber
-  );
+/** Paraxial working f-number at the stop the marked f-number sets, or why the state has none. */
+function paraxialWorkingFNum(
+  L: RuntimeLens | null,
+  fNumber: number,
+  focusT: number,
+  zoomT: number,
+): ParaxialWorkingFNumberResult {
+  if (!L) return { status: "unavailable", reason: "no-stop" };
+  return paraxialWorkingFNumberForRuntimeLens(stopSemiDiameterForFNumber(fNumber, zoomT, L), focusT, zoomT, L);
 }

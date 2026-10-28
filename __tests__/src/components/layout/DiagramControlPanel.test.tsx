@@ -48,7 +48,7 @@ function props(info: object | null = null) {
     currentPhysStopSD: 4,
     baseEPSD: 5,
     dynamicEFL: 50,
-    paraxialWorkingFNum: 2,
+    paraxialWorkingFNum: { status: "computed" as const, value: 2 },
     showEffectiveFocalLength: false,
     onToggleEffectiveFocalLength: vi.fn(),
     showEffectiveAperture: false,

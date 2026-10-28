@@ -123,6 +123,8 @@ describe("stop rule", () => {
     // y = 1, u = 0 leaves the thin lens with u′ = −φ and reaches the stop at 1 − φD; F is 1/φ.
     const ratio = 1 - PHASE_POWER * distance;
     expectFewUlp(stopRuleGeometry(compiledLensFromRuntime(L), 0).stopHeightRatio, ratio);
+    // The public barrel takes the RuntimeLens itself, as its sibling stop functions do.
+    expect(stopRuleGeometry(L, 0)).toEqual(stopRuleGeometry(compiledLensFromRuntime(L), 0));
     for (const N of [2, 5.6, 8, 11]) {
       expectFewUlp(stopSemiDiameterForFNumber(N, 0, L), (1 / PHASE_POWER / (2 * N)) * ratio);
     }
@@ -195,6 +197,80 @@ describe("f-numbers", () => {
     expect(paraxialWorkingFNumber(state, R)).toBeCloseTo(imageDistance / (2 * heightAtLens), 10);
     // The real ray agrees with the paraxial one only as the aperture closes; both exceed the image-space value.
     expect(paraxialWorkingFNumber(state, R)!).toBeGreaterThan(imageSpaceFNumber(state, R)!);
+  });
+
+  it("reads the paraxial working f/# as 1 / (2n′|u′|) in an immersed image space", () => {
+    // The phase surface exits into a medium of index n′ with the image plane at its focus n′/φ.
+    const immersion = 1.33;
+    const L = buildFixtureLens(
+      phaseLensData(
+        [
+          { label: "STO", R: 1e15, nd: 1.0, sd: 30, d: 1, elemId: 0 },
+          { label: "1", R: 1e15, nd: PLATE_INDEX, sd: 40, d: 2, elemId: 1 },
+          { label: "2", R: 1e15, nd: immersion, sd: 40, d: immersion / PHASE_POWER, elemId: 2, diffractive: PHASE },
+        ],
+        {
+          elements: [
+            { id: 1, name: "Plate", label: "L1", type: "positive", nd: PLATE_INDEX, vd: 64.17 },
+            { id: 2, name: "Immersion", label: "L2", type: "Immersion", nd: immersion, vd: 55 },
+          ],
+        },
+      ),
+    );
+    const state = prepareRuntimeState(L, 0, 0);
+    expect(state.surfaces.at(-1)!.nd).toBe(immersion);
+    // The phase gives n′u′ = −φh to a collimated ray of height h; the stop is at the lens, so h is its radius R.
+    const R = 10;
+    expect(paraxialWorkingFNumber(state, R)).toBeCloseTo(1 / (2 * PHASE_POWER * R), 10);
+    // EFL / EPD carries the image-space slope u′ = −φR / n′ itself: n′ times the paraxial working f-number.
+    expect(imageSpaceFNumber(state, R)).toBeCloseTo(immersion / (2 * PHASE_POWER * R), 10);
+  });
+
+  it("shows a marginal ray that cannot reach the stop rim as unaimed, not a number", () => {
+    // A plano-convex lens, flat face forward: a collimated ray at height h meets the rear sphere (radius r) at
+    // incidence sin i = h / r and is totally reflected past h = r / n. The transmitted rays converge, so none reaches
+    // the stop behind the vertex above r / n; a stop rim at 16 mm is out of reach while no clear aperture (17 mm)
+    // stops a ray, so the aim cannot place the marginal ray and no clear aperture is to blame.
+    const n = 1.5;
+    const r = 20;
+    const L = buildFixtureLens(
+      phaseLensData(
+        [
+          { label: "1", R: 1e15, nd: n, sd: 17, d: 14, elemId: 1 },
+          { label: "2", R: -r, nd: 1.0, sd: 17, d: 2, elemId: 0 },
+          { label: "STO", R: 1e15, nd: 1.0, sd: 18, d: r / (n - 1) - 2, elemId: 0 },
+        ],
+        { elements: [{ id: 1, name: "Plano-convex", label: "L1", type: "positive", nd: n, vd: 64.17 }] },
+      ),
+    );
+    expect(r / n).toBeLessThan(16);
+    const request = createAnalysisRequest({
+      preparedState: prepareRuntimeState(L, 0, 0),
+      dynamicEFL: L.EFL,
+      currentEPSD: 16,
+      currentPhysStopSD: 16,
+    });
+    expect(computeWorkingFNumber(request)).toEqual({ status: "unaimed", reason: "stop-unreachable" });
+  });
+
+  it("names the line of the authored indices it traces at", () => {
+    const d = computeWorkingFNumber(requestAt(stopAtLens(), 4));
+    expect(d).toMatchObject({ status: "traced", indexLine: "d" });
+    const eLine = buildFixtureLens(
+      phaseLensData(
+        [
+          { label: "STO", R: 1e15, nd: 1.0, sd: 30, d: 1, elemId: 0 },
+          { label: "1", R: 1e15, nd: PLATE_INDEX, sd: 40, d: 2, elemId: 1 },
+          { label: "2", R: 1e15, nd: 1.0, sd: 40, d: 1 / PHASE_POWER, elemId: 0, diffractive: PHASE },
+        ],
+        {
+          elements: [
+            { id: 1, name: "Plate", label: "L1", type: "positive", nd: PLATE_INDEX, vd: 64.17, indexReference: "e" },
+          ],
+        },
+      ),
+    );
+    expect(computeWorkingFNumber(requestAt(eLine, 4))).toMatchObject({ status: "traced", indexLine: "e" });
   });
 
   it("shows a vignetted marginal ray as its state, not a number", () => {
@@ -277,6 +353,10 @@ describe("stop rule exceptions", () => {
     const N = 2 * L.FOPEN;
     const rule = (L.apertureReferenceFocalLength / (2 * N)) * Math.abs(L.EP.yRatio);
     expect(fNumberRuleStopSemiDiameter(N, 0, L)).toBe(rule);
+    expect(stopRuleGeometry(L, 0)).toEqual({
+      referenceFocalLengthMm: L.apertureReferenceFocalLength,
+      stopHeightRatio: L.EP.yRatio,
+    });
     expect(stopSemiDiameterForFNumber(N, 0, L)).toBe(Math.min(L.stopPhysSD, rule));
     expect(paraxialWorkingFNumber(prepareRuntimeState(L, 0, 0), L.stopPhysSD)).toBeNull();
   });

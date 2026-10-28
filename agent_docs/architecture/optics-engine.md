@@ -133,13 +133,10 @@ between the samples; when the chief ray transmits, its reach along each launch a
 beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
 the production lens lower off-axis curves.
 
-**Traced aperture** (`mtfAperture.ts`). The label f-number sizes the iris (the stop rule), but an authored clear
-aperture can stop the axial marginal ray first, and a physical wide-open stop gives its own pupil. One meridional bisection between the
-chief ray and a blocked launch height finds the rim of the transmitted axial beam at the reference line:
-`MtfResult.aperture.tracedFNumber` is the rim height times the near-axis slope n′ sin U′ per launch height (f / (2 ×
-pupil radius) at infinity, the paraxial working f-number at a finite conjugate), so spherical aberration of the rim
-ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface that stops the next ray outward
-(null for the iris). Both are cached with the focus search.
+**Axial vignetting.** The chart is labelled with the marked f-number; the stop rule sizes the iris for it. When the
+Summary's working f-number (`computeWorkingFNumber`) finds the axial marginal ray vignetted, `MtfResult.axialVignetting`
+names that surface (and whether it is before the stop) and the header says so. No other f-number is derived from the
+MTF beam. It is cached with the focus search.
 
 **Ray failures** (`trace/rayClassification.ts`, shared with the aimed launch). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
@@ -373,11 +370,12 @@ each. The data rules are in `src/lens-data/LENS_DATA_SPEC.md` (Stop and Aperture
 **F-numbers.** The Summary reports OpticStudio's three, beside the marked f/N: image-space f/# = EFL / EPD, paraxial,
 of the current state (`imageSpaceFNumber`); paraxial working f/# = 1 / (2 n′ |u′|) of the paraxial marginal ray at the
 current object distance (`paraxialWorkingFNumber`); and working f/# = 1 / (2 n′ sin θ′) of the real marginal ray from
-the axial object point through the stop rim, at the design indices, aimed with the axial zone of the aimed pupil
+the axial object point through the stop rim, at the authored indices (the result names their d or e line), aimed with the axial zone of the aimed pupil
 launch at f = 1 under its rim rule (`computeWorkingFNumber`). The current object distance is the paraxial object plane
 the image plane is conjugate to (`paraxialObjectVergence`), infinite at infinity focus. A marginal ray that is
-vignetted, unaimed or untraceable reports that state. Folded paths have no paraxial working f/#. The aperture
-control's optional readout and comparison mode show the paraxial working f/#.
+vignetted, unaimed or untraceable reports that state; the MTF header names the vignetting surface. Folded paths have
+no paraxial working f/#. The aperture control's optional readout and comparison mode show the paraxial working f/#,
+or that it is unavailable and why (`paraxialWorkingFNumberForRuntimeLens`), never the marked f-number in its place.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 

@@ -212,7 +212,7 @@ for (const path of files) {
     const irisRadius = irisBeamRadius(state, pupilRadius);
     const statedRadius = irisRadius ?? pupilRadius;
     /* The f-number the iris gives: F / paraxial EPD, F the stop rule's reference (a fisheye's projection focal length). */
-    const rule = stopRuleGeometry(state.lens, zoomT);
+    const rule = stopRuleGeometry(L, zoomT);
     const irisFNumber =
       (rule.referenceFocalLengthMm * Math.abs(rule.stopHeightRatio)) / (2 * state.surfaces[L.stopIdx].sd);
     if (RAISE) {

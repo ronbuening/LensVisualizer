@@ -31,9 +31,9 @@ flowchart LR
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_perspective
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_diagram
+  n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_trace
   n_src_optics_TypeScript_modules --> |7| n_src_optics_src_optics_field
-  n_src_optics_TypeScript_modules --> |7| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |3| n_external_src_types
   n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_diagnostics
   n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_math
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (60), src/optics/prescription (23), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/trace (8), src/optics/field (7), +6 more
+- Main outbound areas: src/optics/analysis (60), src/optics/prescription (23), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -78,10 +78,10 @@ flowchart LR
 | `glassCatalog.ts` | Glass Catalog helper module | src/optics/chromatic (6) | src/components/lensBuilder (2), src/lensBuilder, src/types | GLASS_CATALOG_ND_TOLERANCE, GLASS_CATALOG_VD_TOLERANCE, GLASS_ND_TOLERANCE, GLASS_VD_TOLERANCE, UNRESOLVED_MARKER, allEntries, assertCatalogConsistent, assessCatalogGlassCompatibility, +21 more |
 | `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (8) | none | lensDataVersion, ingestLens, ingestTeleconverter, V1_FLAT_RADIUS, V1_GROUP_STARTS, V1_PRINT_ORDER, V1_ROW_LISTS, toLensData, +13 more |
 | `mtf.ts` | Mtf helper module | src/optics/analysis (12) | src/components/display, src/components/hooks | computeMtf, computeMtfSteps, resolveMtfGeometry, MtfJobCache, MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES, assessMtfDataLimitations, +17 more |
-| `optics.ts` | Optics helper module | src/optics/state (10), src/optics/trace (7), src/optics/first-order (5), src/optics/projection.ts | src/components/display (10), src/components/hooks (6), src/comparison (3), src/components/controls (3), src/components/diagram (3), +3 more | imageSpaceFNumber, paraxialWorkingFNumber, paraxialWorkingFNumberForRuntimeLens, eflAtFocus, formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote, +58 more |
+| `optics.ts` | Optics helper module | src/optics/state (10), src/optics/trace (7), src/optics/first-order (6), src/optics/projection.ts | src/components/display (10), src/components/hooks (6), src/components/layout (4), src/comparison (3), src/components/controls (3), +3 more | imageSpaceFNumber, paraxialWorkingFNumber, paraxialWorkingFNumberForRuntimeLens, ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason, eflAtFocus, formatDist, formatFNumber, +62 more |
 | `perspective.ts` | Perspective helper module | src/optics/perspective (15) | src/components/display (10), src/components/hooks (5), src/comparison (2), src/components/layout (2), src/benchmarks, +3 more | PerspectiveChromaticAnalysis, PerspectiveChromaticChannelSample, PerspectiveChromaticFieldSample, PerspectiveChromaticRayFanSample, PerspectiveDistortionAnalysis, PerspectiveDistortionSample, PerspectiveComaFieldSample, PerspectiveComaRaySample, +28 more |
 | `projection.ts` | Projection helper module | src/optics/field (2) | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/optics.ts | ProjectionReferenceKind, ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, +16 more |
 | `publishedStations.ts` | Published Stations helper module | src/optics/state (2) | src/components/controls (2), src/components/hooks | STATION_COORDINATE_TOLERANCE, isOnPublishedStation, nearestPublishedStation, nearestStationInGrid, publishedFocusStations, publishedStationAvailability, publishedStationGrid, publishedZoomStations, +8 more |
 | `teleconverter.ts` | Teleconverter helper module | src/optics/prescription (3) | src/components/diagram, src/utils/catalog | teleconverterCompatibility, TeleconverterAttachError, attachTeleconverter, teleconverterGroupLabel, teleconverterSurfaceLabel, MIN_TELECONVERTER_GAP_MM, TELECONVERTER_LABEL_PREFIX, teleconverterGeometry |
-| `types.ts` | Shared TypeScript types | src/types (2), src/optics/chromatic, src/optics/prescription, src/optics/state, src/optics/trace | src/optics/perspective (20), src/optics/analysis (17), src/components/display (14), src/optics/trace (14), src/optics/prescription (9), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +25 more |
+| `types.ts` | Shared TypeScript types | src/types (2), src/optics/chromatic, src/optics/prescription, src/optics/state, src/optics/trace | src/optics/perspective (20), src/optics/analysis (16), src/components/display (14), src/optics/trace (14), src/optics/prescription (9), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +25 more |
 | `validation.ts` | Validation helper module | src/optics/prescription (3) | src/components/lensBuilder, src/lensBuilder, src/utils/state | validateLensData, validateCanonicalLens, LENS_KEY_PATTERN, validateLensMounts, validateRearPlates, validateTeleconverterData |

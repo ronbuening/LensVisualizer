@@ -323,7 +323,7 @@ describe("useLensComputation", () => {
     expect(result.current.dynamicEFL).toBeGreaterThan(0);
   });
 
-  it("computes effective f-number", () => {
+  it("computes the paraxial working f-number", () => {
     const { result } = renderHook(() =>
       useLensComputation({
         lensKey: baseLensKey,
@@ -334,9 +334,10 @@ describe("useLensComputation", () => {
         panelId: "test",
       }),
     );
-    expect(result.current.paraxialWorkingFNum).toBeGreaterThan(0);
-    // At infinity focus, effective f-number ≈ geometric f-number
-    expect(result.current.paraxialWorkingFNum).toBeCloseTo(result.current.fNumber, 0);
+    const working = result.current.paraxialWorkingFNum;
+    if (working.status !== "computed") throw new Error(`paraxial working f-number ${working.reason}`);
+    // At infinity focus the paraxial working f-number is EFL / (2 n′ × pupil radius), the marked one in air.
+    expect(working.value).toBeCloseTo(result.current.fNumber, 0);
   });
 
   it("generates a filterId from panelId", () => {

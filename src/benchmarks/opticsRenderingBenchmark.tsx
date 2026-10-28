@@ -838,10 +838,11 @@ function measureMainScenario(
  * Builds the viewer-equivalent optical state for one scenario.
  *
  * The benchmark mirrors `LensViewer` conventions: layout is anchored to the reference
- * image plane, focus/zoom/aberration sliders are normalized, and stop-down scales both
- * physical stop semi-diameter and entrance-pupil semi-diameter from the open-aperture
- * values. Cardinal and effective f-number calls are included to keep layout work close
- * to the visible viewer path even when their return values are not serialized.
+ * image plane, focus/zoom/aberration sliders are normalized, the stop comes from the stop
+ * rule at the slider's f-number, and the entrance pupil is that stop's paraxial pupil in
+ * the current state. Cardinal and paraxial working f-number calls are included to keep
+ * layout work close to the visible viewer path even when their return values are not
+ * serialized.
  */
 function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): ScenarioSnapshot {
   const focusT = scenario.focusT;

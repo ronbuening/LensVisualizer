@@ -104,8 +104,8 @@ distortion and vignetting tabs consume deferred/frozen inputs through `analysisJ
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
 "Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
-qualifies the label f-number with the traced one ("f/1.4 (traced f/1.49, limited by surface 14)") when
-`MtfResult.aperture` differs from it by more than 2 %, except at finite conjugates. Each dropdown
+names the marked f-number and, when the Summary's working f-number finds the axial marginal ray vignetted
+(`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Each dropdown
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
