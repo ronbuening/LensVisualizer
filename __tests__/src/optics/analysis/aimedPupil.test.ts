@@ -514,6 +514,34 @@ describe("prepareAimedStopLattice", () => {
     const foreign = prepareAimedStopLattice(other, 16, field)!;
     expect(prepareAimedStopLattice(request, 32, field, undefined, foreign)!.rays).toEqual(fine.rays);
   });
+  it("leaves no cell unaimed that a lone sample aims or blocks, and refuses a size that is no whole number", () => {
+    // In n = 1.9 glass, rays above 8 / 1.9 mm reflect totally at the 8 mm rear sphere, and targets past the fold of the
+    // stop-to-launch map are out of every ray's reach: the 2 mm stop's outer zone mixes aimed, blocked and unaimed cells.
+    const base = buildSimplePositiveElementLens();
+    const L = build({
+      ...constructionFixtureData(base),
+      key: "test-aimed-lattice-lone-outcomes",
+      elements: [{ ...base.elements[0], nd: 1.9 }],
+      surfaces: [
+        { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
+        { label: "2", R: -8, nd: 1, sd: 7, d: 2, elemId: 0 },
+        { label: "STO", R: 1e15, nd: 1, sd: 2, d: 40, elemId: 0 },
+      ],
+    });
+    const request = analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 });
+    const field = { uField: 0, yChief: 0 };
+    for (const n of [32, 64]) {
+      const lattice = prepareAimedStopLattice(request, n, field)!;
+      const lone = prepareAimedPupilLaunch(request, lattice.cells, field)!;
+      expect(lone.unaimedCount).toBeGreaterThan(0);
+      expect(lone.blockedCount).toBeGreaterThan(0);
+      lattice.rays.forEach((ray, i) => {
+        if (lone.rays[i].status !== "unaimed") expect(ray.status).not.toBe("unaimed");
+      });
+    }
+    for (const size of [32.5, Number.NaN, 0, { columns: 32 } as unknown as number])
+      expect(() => prepareAimedStopLattice(request, size, field)).toThrow(RangeError);
+  });
 });
 
 describe("tabs trace the exported rays", () => {

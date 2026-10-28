@@ -419,6 +419,7 @@ export function aimMtfStopLattice(
  * @param extras - `reference`: image point that stands in when this wavelength's chief cannot be traced to the
  *   plane; `opticalPath`: record each ray's optical path; `coarse`: this wavelength's lattice half as fine
  * @returns traced bundle, or null for a bounding-sphere field or when no reference chief point exists
+ * @throws RangeError when `gridSize` is not a positive integer
  */
 export function traceMtfStopBundle(
   state: PreparedGeometry,

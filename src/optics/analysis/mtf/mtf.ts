@@ -228,6 +228,8 @@ function fieldAtGrid(
   // Flux the beam could carry: transmitted, plus the unresolved samples beside it, which the field is judged by.
   let sampledWeight = 0;
   let unresolvedWeight = 0;
+  /** Wavelengths no ray reaches at this grid. */
+  let darkLines = 0;
   for (const [index, line] of support.spectralLines.entries()) {
     let bundle: MtfBundle | null;
     if (sampling.kind === "stop") {
@@ -264,9 +266,11 @@ function fieldAtGrid(
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
     sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
     unresolvedWeight += bundle.unresolvedInBeamWeight;
-    // No ray at all reaches the image at this grid, at any wavelength so far; a finer one may still find a thin beam.
-    if (field.validRays === 0 && bundle.unaimed + bundle.failed === 0)
-      return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
+    // A wavelength no ray reaches, with every sample resolved: the grid is vignetted if every wavelength is.
+    if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0) {
+      darkLines++;
+      continue;
+    }
     // Too few rays means this grid is too coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may
     // resolve it.
     if (bundle.rays.length < MTF_MIN_RAYS || !(transmitted > 0))
@@ -291,6 +295,11 @@ function fieldAtGrid(
     sagittal.push({ otf: geometricOtf(points, context.frequencies, "x"), weight });
     tangential.push({ otf: geometricOtf(points, context.frequencies, "y"), weight });
   }
+  // No ray at all reaches the image at any wavelength: a finer grid may still find a thin beam. Light at some wavelengths
+  // and none at others is too little pupil for this grid.
+  if (darkLines === support.spectralLines.length)
+    return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
+  if (darkLines > 0) return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
   field.unknownFluxFraction = sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
   const unresolvedRays = field.failedRays + field.unaimedRays;
   const unresolved = assessUnresolvedFlux(unresolvedRays, field.unknownFluxFraction, field.unresolvedInBeamRays);

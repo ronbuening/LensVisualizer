@@ -408,11 +408,12 @@ export function prepareAimedStopLattice(
  *
  * @param state - prepared geometry the rays are traced through
  * @param aperture - stop radius R and launch scale in mm
- * @param cellsAcross - lattice cells across the stop's diameter, rounded to an integer
+ * @param cellsAcross - lattice cells across the stop's diameter, a positive integer
  * @param geometry - field launch
  * @param spectrum - chromatic channel or spectral line the rays are aimed at
  * @param coarse - the same field's lattice half as fine; ignored unless it was aimed for this state, field and spectrum
  * @returns aimed lattice, or null when there is no stop or surface
+ * @throws RangeError when `cellsAcross` is not a positive integer
  */
 export function prepareAimedStopLatticeForState(
   state: PreparedGeometry,
@@ -422,8 +423,11 @@ export function prepareAimedStopLatticeForState(
   spectrum?: AimedPupilSpectrum,
   coarse?: AimedStopLattice | null,
 ): AimedStopLattice | null {
-  const n = Math.round(cellsAcross);
-  const field = n >= 1 ? aimedFieldModel(state, aperture, geometry, spectrum) : null;
+  // A size that is no positive integer is a caller's error (an old argument order passes an object here), never a lattice.
+  if (!Number.isInteger(cellsAcross) || cellsAcross < 1)
+    throw new RangeError(`A stop lattice needs a positive whole number of cells across, not ${String(cellsAcross)}.`);
+  const n = cellsAcross;
+  const field = aimedFieldModel(state, aperture, geometry, spectrum);
   if (!field) return null;
   const { model, key } = field;
   const R = aperture.stopSemiDiameterMm;
@@ -669,8 +673,9 @@ function latticeSeedMap(lattice: AimedStopLattice, frame: LaunchFrame, R: number
  * tolerance at once, so the cell costs one stop trace. A cell with no such block, or whose seeded steps cannot be traced
  * or stay off target, is solved as a lone sample would be (`newtonAim`, unpolished) but from the nearest aimed coarse
  * cell rather than from the field's fit or chief: at the edge of what the tracer can reach, that start is already
- * beside the target, and a blocked target ends in two or three traces. Without any aimed coarse cell it is solved as a
- * lone sample. The traces spent are added to the cell's count either way.
+ * beside the target, and a blocked target ends in two or three traces. A cell that start leaves unaimed, or that has no
+ * aimed coarse cell at all, is solved as a lone sample, so a lattice cell is unaimed only where a lone sample is. The
+ * traces spent are added to the cell's count either way.
  */
 function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarget): SampleSolve {
   const lone = (spent: number): SampleSolve => {
@@ -687,7 +692,10 @@ function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarg
     const near = nearestAimedCoarseCell(map, s, t);
     if (!near || !model.jacobian) return lone(spent);
     const start: SolveStart = { launch: near.launch, stop: near.stop, jacobian: model.jacobian, iterations: spent };
-    return newtonAim(model, target.stop, start, false, false);
+    const solve = newtonAim(model, target.stop, start, false, false);
+    // A cell is unaimed only where the lone sample's own search is: retried from the field's fit, it keeps any aim or
+    // proven block that search finds, so the lattice proves at least the blocks a lone sample proves.
+    return solve.status === "unaimed" ? lone(solve.iterations) : solve;
   };
   const window = seedWindow(map, s, t);
   if (!window) return fromNearest(0);
