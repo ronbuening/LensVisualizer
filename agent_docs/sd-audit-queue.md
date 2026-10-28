@@ -270,8 +270,8 @@ EPD = F/N by the stop rule) is clipped by a rim or cannot be traced. The apertur
 npm run audit:aperture -- --markdown
 ```
 
-4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards and the asphere
-audit). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
+4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards, the asphere
+audit and the stop-plane moves). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
 stations on 2 lenses (`trace`) and 16 on 3 lenses (`iris`). Work the largest `rim` differences first. For each row,
 read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
@@ -294,14 +294,14 @@ The other diagnoses are not rim problems:
 
 Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the
 wide-open one, lies in the glass of the face beside the stop. The trace steps back to the stop plane, but no iris can
-close there. Move the stop plane into the air the source draws, as #929 does, or cut a rim the figure shows, as #928
-does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the four of #928 and #929 and the Hologon,
-and fails when a lens joins or leaves it, so delete the key there with the row here.
+close there. Move the stop plane into the air the source draws, as #929 did, or cut a rim the figure shows, as #928
+does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the one #928 fixes and the Hologon, and
+fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens | File | Station: face, glass from, wide-open iris | Status |
 |---|---|---|---|
-| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 11.85 mm (STO gap 2.42 mm) | todo |
-| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.26 mm, iris 11.21 mm | todo |
+| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 11.85 mm (STO gap 2.42 mm, inferred). Decide whether the stop travels with the L2 focus unit. | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.26 mm, iris 11.21 mm. The stop rides 0.1 mm ahead of r9 with G2, and at tele (d8 = 0.503 mm) r9's vertex lies ahead of any plane behind r8's cap, so no stop plane in air fits there: needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
 
 Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
 squaring them means moving faces that do not clip:
@@ -332,6 +332,7 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.03 (+3.7 %), rim 10; 13.5 mm: f/2.92 traces f/3.25 (+11.3 %), rim 10; 17.5 mm: f/2.92 traces f/3.55 (+21.6 %), rim 10 | todo |
 | SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.15 (+8.6 %), rim 17 | todo |
 | SIGMA 35mm f/1.4 DG HSM Art | `sigma/Sigma35mmf14DGHSMA.data.ts` | f/1.4: 164 of the vignetting tab's 3,216 axial stop samples (5.1 %) clip on the rim of surface 14 (sd 17.5 mm) just ahead of the stop. Run after the f-number PR lands, against the paraxial EFL/N beam. | todo |
+| OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4 | `olympus/OlympusZuikoAutoS50mmf14.data.ts` | f/1.40 traces f/1.48 (+5.9 %), rim 5. The F/N iris admits a real beam 6.8 % wider than the paraxial pupil (pupil spherical aberration). The rims it needs, with the stop plane anywhere in its d₆ 7.8–9.5 mm window, stand above FIG. 1's drawn elements (re-read at 400 dpi) and thin L1, L5 and L6 below 0.7 mm edges; the audit log has the numbers. | owner decision: accept the rim-limited f/1.48, or another source for the rims |
 
 ## In-progress diagram sweep
 
