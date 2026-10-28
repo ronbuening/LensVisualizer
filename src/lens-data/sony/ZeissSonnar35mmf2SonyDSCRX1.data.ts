@@ -20,12 +20,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * predicted F/2.1039 and F/2.1844 for the published intermediate and shortest states versus F/2.10/F/2.18.
  * Agreement at infinity is calibration, not independent evidence of a published stop diameter.
  *
- * SEMI-DIAMETER NOTE: lens SDs are modeled, not patent-published. They come from exact meridional spherical/
- * aspherical ray bundles spanning the published field and physical stop at all three published focus states,
- * plus representative focusT=0.25 and 0.75 states. A nominal 10% mechanical ray-envelope allowance was used where
- * geometry allowed; G3 is geometry-limited to 11.6 mm while retaining positive edge thickness. FIG. 13 was used as
- * a qualitative section-shape cross-check, not as a dimensional source. Production render-trim validation remains
- * an integration check because the LensVisualizer repository/runtime is not mounted here.
+ * ASPHERE TRANSCRIPTION NOTE (2026-10-27): Table 14, PDF p. 24, surface 10 prints K=-2.5312E+01, restored here
+ * as -25.312 from the former -0.25312. All other K/A/B/C/D cells and Table 13 R/d/nd/vd rows match the print.
+ * This is a catalog transcription correction, not a patent erratum; the standard (1+K) sag convention applies.
+ *
+ * SEMI-DIAMETER NOTE: lens SDs are inferred, not patent-published. The original focus-bundle estimates are
+ * superseded at surfaces 8/9/10A (12.8 -> 11.7 mm), just below 10A's slope turnover at 11.79091 mm with the
+ * printed coefficients; FIG. 13 supports a common square rim on G4-G5. 14A keeps 18.3 mm although its nearly flat
+ * profile reverses slope at 14.30 mm: the printed Y = 21.63 mm corner chief ray needs 17.68 mm there, so a cap would
+ * clip the source's own field. G7 has a stepped shoulder, so 13A remains 18.3 mm. The on-axis F/2.05 beam passes.
+ * Outer-field Rimmer RI remains unavailable from 27.7° (cosine-map-folds, then rays-not-localized at the corner).
+ * Other SDs retain their original focus-bundle estimates; G3 remains geometry-limited to 11.6 mm.
  *
  * FOCUS-POSITION NOTE: focusPositions[1]=0.4657219849 is a model coordinate, not a patent-published actuator
  * position. It is derived from closeFocusM=0.30 m and the verified 0.64416113 m paraxial object-to-image conjugate
@@ -202,14 +207,15 @@ const LENS_DATA = {
       asphere: { K: 0, A4: 1.1201e-5, A6: -1.2788e-8, A8: 4.7065e-10, A10: -4.6757e-12 },
     },
     { label: "STO", R: "flat" },
-    { label: "8", R: -18.224, d: 1.0, sd: 12.8, medium: 4 },
-    { label: "9", R: 34.516, d: 4.05, sd: 12.8, medium: 5 },
+    { label: "8", R: -18.224, d: 1.0, sd: 11.7, medium: 4 },
+    { label: "9", R: 34.516, d: 4.05, sd: 11.7, medium: 5 },
     {
       label: "10A",
       R: -46.808,
       d: 0.3,
-      sd: 12.8,
-      asphere: { K: -0.25312, A4: -5.1489e-6, A6: 1.8946e-7, A8: -5.4584e-10, A10: 1.6124e-12 },
+      sd: 11.7,
+      // Table 14, surface 10: -2.5312E+01 (catalog exponent transcription corrected).
+      asphere: { K: -25.312, A4: -5.1489e-6, A6: 1.8946e-7, A8: -5.4584e-10, A10: 1.6124e-12 },
     },
     { label: "11", R: 192.783, d: 5.65, sd: 15.2, medium: 6 },
     { label: "12", R: -26.475, sd: 15.2 },

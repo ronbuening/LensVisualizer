@@ -71,13 +71,13 @@ L23 is the negative pre-stop component of G2. It sits immediately before the ape
 
 ### STO - Aperture Stop
 
-The stop is within G2 between L23 and L24. In the patent example, the stop follows the same zoom trajectory as G2 (¶0114). Its paraxially derived physical semi-diameter is about 4.04 mm from the Table 1 FNO values, so the data file uses a 4.05 mm stop semi-diameter.
+The stop is within G2 between L23 and L24. In the patent example, the stop follows the same zoom trajectory as G2 (¶0114). The data file leaves the stop semi-diameter derived by the runtime from the design aperture, rather than authoring a 4.05 mm radius. The design station F-numbers are Table 1's 3.64 / 4.58 / 5.73; the runtime's wide-end stop semi-diameter is about 4.152 mm.
 
 ### L24 - Biconvex Positive ED Element (G2, cemented VR group)
 
 nd = 1.49782, νd = 82.5. Glass: ED fluorophosphate, FKH1/FCD1 class, inferred. f = +16.3 mm.
 
-L24 is the ED component in the cemented vibration-reduction group GVR. The patent gives the unusually high Abbe number directly, and Nikon's production specification calls for one ED element. Its role in the VR doublet is important: a laterally decentered stabilizer group must avoid adding excessive lateral color.
+L24 is the inferred ED component in the cemented vibration-reduction group GVR. The retained catalog proxy has an unusually high Abbe number, and Nikon's production specification calls for one ED element. Table 1 prints nd but no Abbe-number column, so νd = 82.5 is not independently verified from this patent. A laterally decentered stabilizer group must avoid adding excessive lateral color.
 
 ### L25 - Negative Meniscus, convex to image (G2, cemented VR group)
 
@@ -119,7 +119,7 @@ The prescription uses nine distinct nd/νd pairs, not five. Reuse is still signi
 | L31 | 1.80610 | 40.7 | Hoya NBFD13 | Single-element focusing group |
 | L41 | 1.85026 | 32.3 | Hikari J-LASF021 | Rear positive correction |
 
-The ED identification for L24 is strong because the patent's νd = 82.5 and Nikon's production specification both point to a single ED element. Partial-dispersion line indices are not published in the patent, so the data file does not encode unverified nC/nF/ng or ΔPgF values.
+Table 1 publishes nd but no νd column. The retained Abbe numbers and catalog assignments above are spectral proxies, not patent-transcribed glass identities or evidence of a production supplier. L24's ED attribution remains inferred from its proxy and the production one-ED specification. Partial-dispersion line indices are not published in the patent, so the data file does not encode unverified nC/nF/ng or ΔPgF values.
 
 ## Focus Mechanism
 
@@ -155,6 +155,16 @@ Therefore $K_{standard} = \kappa - 1$. The patent table lists $\kappa = 0.0000$ 
 | Surface | R | Patent κ | Stored standard K | A4 | A6 | A8 | A10 | A12 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | 19 | -31.4221 | 0.0000 | -1.0000 | -1.66060E-04 | +2.26257E-06 | -2.73958E-07 | +1.18829E-08 | -2.09340E-10 |
+
+The 2026-10-27 image-based recheck of ¶0103 (PDF p. 28) and Table 1 (PDF p. 29) confirms every coefficient, sign, exponent and power. There are no printed odd terms or normalization factors; ¶0107 specifies millimetres. At the stored 6.5 mm semi-diameter, surface 19A has sag −1.2620 mm, departure −0.5824 mm from the same-radius sphere, and slope angle −46.2°. Its slope does not turn over within that rim.
+
+FIG. 1 (PDF p. 2) suggests an L26 optical semi-diameter near 5.4 mm. The automated ENV/RIM readings both give 5.37 mm at 54.25 µm/pixel, and the enlarged optical edges give approximately the same value. This is about 17% below 6.5 mm, below the procedure's roughly 25% threshold for a figure-only change. The estimated 6.5 mm rims are retained; reducing them to remove aberrant rays would not establish the prescription's correctness.
+
+Table 1's ω is explicitly a half-angle (¶0101), with ω = 53.57° / 39.74° / 27.44° and Y = 14.25 mm. The tab's wide-end edge at 53.45° therefore lies inside the published design field. Its approximately −15% barrel distortion agrees with FIG. 2 and is not evidence that the tab extends beyond an unpublished, smaller optical field.
+
+An unresolved source/trace disagreement remains. At the patent f/3.64, meridional pupil-edge rays at 50.48° cross 19A near h = 6.05 mm and miss the chief-ray image by about 3.33 mm, far outside FIG. 2's ±0.300 mm coma scale. The close-ray tangential/sagittal shifts at the wide format corner are approximately −0.698 / −0.107 mm, and at tele −0.560 / −0.326 mm; the plotted curves in FIGS. 2-3 are not reproduced. On-axis d-line LSA remains on the source plots' ±0.500 mm scale, and focal lengths/back focus agree. Single-coefficient sign, decade and zero trials, coefficient swaps and row shifts did not establish a replacement with two independent kinds of source evidence. The printed conic and polynomial are retained and disclosed in `source.errata` as unresolved, pending independent tracing or a matching family publication.
+
+After using the patent F-numbers, wide-end RI is available through 41.6° but refused at 44.5° and 47.5° (`cosine-map-folds`) and 50.5° and 53.5° (`rays-not-localized`). All sampled middle and tele fields return RI. These are runtime results, not a source-certified illumination curve.
 
 ## Image Stabilization
 
@@ -205,7 +215,7 @@ The prescription was re-entered from Table 1 and re-run through an independent p
 
 The aspherical conic conversion does not affect paraxial focal length because conic and higher-order terms vanish at the optical axis. It does affect rendered surface shape and high-order ray behavior, so the data file stores the converted standard conic constant.
 
-The patent does not publish clear-aperture semi-diameters. The data-file semi-diameters are therefore conservative rendering values, not patent-transcribed apertures. In this final pass, the L26 aspherical front surface was tightened to a 6.8 mm semi-diameter so the high-order aspheric rim slope remains within the project renderer limit while preserving positive edge thickness and safe adjacent air gaps.
+The patent does not publish clear-aperture semi-diameters. The data-file semi-diameters are therefore rendering estimates, not patent-transcribed apertures. Both L26 faces retain a 6.5 mm semi-diameter; the earlier 6.8 mm statement was stale. Surface validation accepts this shape, the stated on-axis aperture beams pass, and the format-corner chief rays clear all three zoom stations. Those checks do not resolve the outer-field localization disagreement described above.
 
 ## Sources
 

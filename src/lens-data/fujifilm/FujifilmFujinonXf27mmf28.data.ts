@@ -23,6 +23,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  ASPHERE CONVENTION: the patent uses sqrt(1 - Kp*C^2*h^2).        ║
  * ║  LensVisualizer uses sqrt(1 - (1+K)*(h/R)^2), therefore            ║
  * ║  K = Kp - 1. The published Kp = 0 maps to K = -1 on S8/S9.       ║
+ * ║  Both complete A3-A20 blocks match Table 10 (PDF p. 19),         ║
+ * ║  rechecked against the print on 2026-10-27; no coefficient edit.   ║
  * ║                                                                    ║
  * ║  FOCUS: NO_INTERNAL_RECONSTRUCTION. Only the published infinity    ║
  * ║  prescription is modeled. closeFocusM = 0.34 m is manufacturer     ║
@@ -34,9 +36,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  calibration, not independent evidence of diaphragm diameter.      ║
  * ║  Surface SDs are modeled from exact d-line meridional ray          ║
  * ║  envelopes at infinity, with nominal mechanical clearance where    ║
- * ║  geometry permits. S8A uses reduced clearance because the current  ║
- * ║  actual-rim-slope policy becomes limiting above the authored       ║
- * ║  5.06 mm SD.                                                       ║
+ * ║  geometry permits. S8A is capped at 4.91 mm, rounded down just     ║
+ * ║  short of its 4.91678 mm polynomial turnover; the stated on-axis   ║
+ * ║  f/2.88 beam passes. S9A retains 5.91 mm. Near-turnover outer      ║
+ * ║  field rays still fail localization; RI remains unavailable       ║
+ * ║  from 19.3 degrees. These are inferred rims, not source apertures. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -181,7 +185,7 @@ const LENS_DATA = {
       label: "8A",
       R: -11.898,
       d: 2.8,
-      sd: 5.06,
+      sd: 4.91, // inferred rim: below the 4.91678 mm turnover of the verbatim Table 10 polynomial
       medium: 5,
       asphere: {
         K: -1,

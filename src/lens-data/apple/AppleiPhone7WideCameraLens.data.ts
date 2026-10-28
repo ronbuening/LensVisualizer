@@ -15,7 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ diameter.                                                                   ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS: no clear apertures are published. The modeled SDs were      ║
- * ║ ray-sized and independently checked for edge thickness, actual aspheric     ║
+ * ║ ray-sized; L2 faces 6A/7A are capped together at 1.04 mm, just below      ║
+ * ║ 7A's 1.0490 mm slope reversal, preserving the square rim in Fig. 10.      ║
+ * ║ The stated f/1.8 axial beam clears both faces. Other designed inflections ║
+ * ║ remain intact. Rims are checked for edge thickness, actual aspheric        ║
  * ║ rim slope, conic domain, cross-gap intrusion, on-axis/default off-axis      ║
  * ║ containment, and the 37° chief ray. They are model apertures, not claims   ║
  * ║ about production barrel dimensions.                                        ║
@@ -152,7 +155,7 @@ const LENS_DATA = {
       label: "6A",
       R: 7.984,
       d: 0.2494,
-      sd: 1.23,
+      sd: 1.04, // Inferred square L2 rim follows the 7A cap; related Fig. 10.
       medium: 2,
       asphere: { K: 0, A4: -0.112242, A6: 0.188446, A8: -0.172552, A10: 0.0602977, A12: 0.00460642, A14: -0.00414886 },
     },
@@ -160,7 +163,7 @@ const LENS_DATA = {
       label: "7A",
       R: 2.979,
       d: 0.5868,
-      sd: 1.2,
+      sd: 1.04, // Below the 1.0490 mm slope reversal; Table 11B coefficients remain verbatim.
       asphere: {
         K: -7.58419032,
         A4: -0.0626311,

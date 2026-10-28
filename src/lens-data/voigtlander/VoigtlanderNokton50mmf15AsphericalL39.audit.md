@@ -208,3 +208,41 @@ Checked and left alone:
 Open limitations: L6 stands 5 % taller than the figure and overdraws the 12A return; L3 renders 1.3 mm shorter than its drawn block and so below the doublet, which the figure draws 0.3 mm lower than L3; flat lands are rendered as chamfers; L5 has a 0.14 mm edge where the figure draws 1.1 mm.
 
 Coordinator follow-up, same day: the four six-digit glass codes are replaced by their coordinate-equal HOYA rows (TAF3 1.80420/46.50, E-FD10 1.72825/28.32, E-F2 1.62004/36.30, LAC13 1.69350/53.34). The codes had resolved to curves from three different vendors; one vendor's set is the more coherent proxy for a 1999 Cosina design, and no supplier is asserted. M-LAC130 (53.2) does not match the printed 53.3 for the aspheric element. The 12A rim stays at 16 mm although FIG. 3 supports about 15.2 mm: lowering 11A/12A reduces the engine half-field from 30.26° to 29.68°.
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+Source: `patents/JP2000330014A.pdf`, Example 2. Read the preceding consolidated record and October 9 rim reviews before the new trace. Independently inspected rendered PDF p4 (printed p3), paragraph 0018 equation; p5 (printed p4), paragraphs 0022–0025 and Table 3 rows 1–12/image plane; p6 (printed p5), Table 4 columns 11/12, rows K/A/B/C/D; p8 (printed p7), Figures 3–4. Whole relevant pages were rendered at 220 dpi, with the coefficient table and aberration plots additionally inspected at 400 dpi.
+
+| Location / field | Before | After | Evidence / disposition |
+|---|---|---|---|
+| 11A, `K/A4/A6/A8/A10` | 0 / 7.584e-6 / -1.473e-9 / 2.323e-10 / 6.597e-14 | unchanged | Table 4 column 11, all rows agree, including the negative A6. |
+| 12A, `K/A4/A6/A8/A10` | 0 / 1.656e-5 / 2.224e-8 / 8.509e-11 / 9.492e-13 | unchanged | Table 4 column 12, all rows agree. |
+| Rows 1–12, `R/d/nd/vd`; stop row 7 | stored Table 3 transcription | unchanged | Every printed cell agrees; air exits and glass-to-glass row 9 are retained. |
+| 11A / 12A `sd` | 16 / 16 mm | unchanged | Figure 3 draws about 15.2 mm; the known reversal remains. No beam-preserving cap below turnover is possible. |
+| `source.errata` | absent | unresolved f5/ratio note | Previously documented Table 3 versus paragraphs 0022–0023 discrepancy is now exposed in structured source metadata. No applied replacement. |
+| Header | turnover/rim note | adds skew-field localization limits and errata disclosure | Distinguishes measured paths from an unproved single-coefficient cause. |
+| Analysis aperture limits | no Rimmer result | adds 23.19° refusal, worst skew path, and unchanged-data disposition | Consistent with the fresh vignetting probe. |
+
+The equation prints the standard `1+K` conic and `A h^4 + B h^6 + C h^8 + D h^10`. Thus A/B/C/D map to A4/A6/A8/A10; there are no omitted odd terms, no KA-minus-one conversion, and no dimensional scaling. Source distances are mm, coefficients have units mm^(1-p), and the published focal length is 51.60 mm. The current model reproduces EFL 51.600113 mm and last-vertex BFD 36.427561 mm against row 12's 36.4275 mm. The summed vertex track is 43.2297 mm and the first-vertex image distance is 79.6572 mm; those totals are derived, not separately printed summary values. Figure 4 covers image height 22.10 mm; no numerical field angle or effective-diameter column is supplied for this example.
+
+The new baseline reproduces the coordinator's results: maximum referred deviation rises from 0.0008 on axis to 0.0492 at 20.29°, where RI is 0.620, then 0.055290 at 23.19°, where RI is withheld with `rays-not-localized`. The meridional-only triage reports no culprit because its transmitted meridional rays do not exceed 0.05. The full lattice's worst sample is `(x,y)=(±0.734375,-0.296875)`. It meets interface 9 at radius 15.361674 mm and incidence 78.0998°, surface 10 at 15.421218 mm, 11A at 15.984858 mm and 12A at 15.516928 mm; transverse image errors relative to the chief are |ex|=2.1817 mm and ey=2.9568 mm. Adjacent skew samples show rapidly increasing error toward the spherical-interface miss/rim boundary: at fixed x=-0.734375, y=-0.24 gives ey/ex=0.7679/0.5205 mm, y=-0.28 gives 1.9340/1.4098 mm, and y=-0.32 fails after reaching interface 9. This is not an isolated normal discontinuity at 12A.
+
+All threshold-exceeding lattice rays cross 12A at 15.460–15.517 mm, beyond the 12.948635 mm turnover and the approximately 15.2 mm drawn rim; 11A is also beyond the drawn rim. The old record therefore identifies the relevant outer-zone limitation, but the new skew trace adds near-grazing interface 9 and does not establish the turnover as the sole cause. The exact f/1.53 axial marginal ray reaches 12A at 12.969619 mm. Under the playbook's axial-beam exception, retain both 16 mm rims rather than cap below turnover. The figure's square L6 rim, all existing optical extents/annuli, and every inferred rim remain unchanged; no new rim proof requires an edit.
+
+Source-plot comparison: Figure 4A has a ±0.50 mm horizontal scale and a d-line spherical-aberration trough near -0.18 mm around the upper pupil; the traced LSA is -0.008/-0.180/-0.102/-0.052 mm at pupil fractions 1/0.85/0.7/0.5. Figure 4B also spans ±0.50 mm and shows the tangential curve bending to roughly -0.3 mm at intermediate outer heights before returning toward -0.18 mm near the corner, with the sagittal curve much closer to zero. The close-ray trace gives T=-0.305/S=-0.075 mm at 20.29° and T=-0.177/S=+0.023 mm at 23.19° (21.65 mm height). Figure 4C spans ±5% and shows barrel distortion approaching about -2% at the 22.10 mm source height; the trace gives -2.078% at the slightly smaller 21.65 mm format corner. These are visual agreement checks, not exact digitization or certification of extreme skew-pupil image quality. No new source contradiction identifies a suspect coefficient, so no single-slip search or coefficient erratum is warranted. The previously investigated f5/ratio discrepancy remains unresolved and is disclosed without reopening a numerical fit.
+
+Disposition: rim-past-turnover / model-limitation; no transcription or odd-term error found. Numerical optics and semi-diameters are unchanged. After the documentation/metadata edits, the complete vignetting curve is identical: RI remains available through 20.29° and withheld only at 23.19°. Surface geometry reports no validation errors, the axial aperture census remains iris-limited at f/1.530000, and image-circle checking reports no undersized surface. These geometry/chief-coverage checks do not resolve the Rimmer refusal. Queue the outer-zone/skew-field limitation for coordinator review; any tighter inferred rim or engine-level investigation needs its own evidence. No other repository files were edited.
+
+## 2026-10-28 — surface 5 under the paraxial stop rule
+
+After #933's paraxial stop rule the f/1.53 stop radius is 11.74 mm, against the authored 11.50 mm, and the axial
+marginal ray meets surface 5 at 14.18 mm, past its 14.0 mm rim. `npm run audit:aperture -- --raise` lists 5: 14 → 14.2
+mm. Its only flag is the unrelated f5/ratio erratum. This is the procedure's "clipped stated beam" case with facing
+surfaces that nearly meet. At 14.2 mm the 4→5 combined sag is 1.150 of 1.2378 mm (0.929), so the default 0.9 fraction
+refuses it. FIG. 3 seats L3 against L2's flat rear land, which L3's front curve reaches at 14.1 mm (14.3 mm one
+pixel later), so the elements meet there in the figure. `checks.gapSagFrac` is set to 0.93, the smallest two-place
+value that admits the raise, and surface 5 takes 14.2 mm. Surface 4 (14.3 mm) is not raised: the ray meets it at
+14.21 mm. The other axial heights are 11.83 / 12.0 mm at surface 6, 11.64 / 11.8 mm at surface 8, and 13.30 mm at 12A,
+still past its 12.949 mm turnover. After the change the validator reports no errors, the image-circle check lists no
+undersized surface, and traced corner coverage is 100 %. Wide open at design focus the vignetting tab reads RI through
+20.29° (0.61); the 23.19° corner is still refused at maximum referred deviation 0.0506, against 0.05529 before.
