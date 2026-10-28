@@ -9,7 +9,8 @@
  * Lens-design programs aim through mathematically extended surfaces. Here a ray far outside a clear aperture can
  * meet a surface beyond the next vertex, where the surfaces of an element cross, and the trace fails. A target only
  * such rays could reach is `blocked` when the ray toward it is already outside a clear aperture before it fails: its
- * light is vignetted there, and the returned blocking ray is traced as clipped.
+ * light is vignetted there, and the returned blocking ray is traced as clipped. Total internal reflection ahead of the
+ * stop blocks the same way, at the reflecting surface, as it does after the stop.
  */
 
 import type { ChromaticChannel, RayTraceResult } from "../../../types/optics.js";
@@ -25,6 +26,8 @@ import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
 import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
+import { stopLattice } from "./stopLattice.js";
+import type { StopLatticeCell } from "./stopLattice.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -150,9 +153,9 @@ export interface AimedPupilAimedRay extends AimedPupilRayBase {
 }
 
 /**
- * A sample whose target no traceable ray reaches because a clear aperture before the stop blocks the way: the ray
- * toward it leaves that aperture before the trace fails. Its light is vignetted; the returned ray is that blocking
- * ray, which the full trace clips.
+ * A sample whose target no traceable ray reaches because a clear aperture or total internal reflection before the stop
+ * blocks the way: the ray toward it leaves that aperture, or reflects there, before the trace fails. Its light is
+ * vignetted; the returned ray is that blocking ray, which the full trace clips or reflects.
  */
 export interface AimedPupilBlockedRay extends AimedPupilRayBase {
   status: "blocked";
@@ -161,7 +164,7 @@ export interface AimedPupilBlockedRay extends AimedPupilRayBase {
   achievedStopMm: null;
   origin: Vec3;
   direction: Vec3;
-  /** Surface whose clear aperture blocks the ray. */
+  /** Surface whose clear aperture blocks the ray, or where it reflects totally. */
   blockedAtSurfaceIndex: number;
 }
 
@@ -272,35 +275,49 @@ interface SampleSolve {
 type SampleSymmetry = "none" | "mirror-x" | "negate-y";
 
 /**
+ * A wavelength the rays are aimed and traced at with indices the caller supplies (the MTF's spectral lines), where a
+ * chromatic channel names one of the tabs' own lines.
+ */
+export interface AimedPupilSpectralLine {
+  readonly wavelengthNm: number;
+  /** Index of each surface's medium at this wavelength; the authored indices when absent. */
+  readonly indexAtSurface?: (surfaceIndex: number, nd: number) => number;
+  /** Names the index source in the field-model cache, so two sources at one wavelength never share a model. */
+  readonly indexKey: string;
+}
+
+/** What the rays are aimed at: a chromatic channel or a spectral line; the authored reference indices when absent. */
+export type AimedPupilSpectrum = ChromaticChannel | AimedPupilSpectralLine;
+
+/**
  * Aim pupil samples at the real stop for one field of the request's current state.
  *
  * Each sample's launch is solved by Newton's method on its two launch coordinates, seeded from the chief ray and the
  * field's launch-to-stop Jacobian and corrected with Broyden updates of that Jacobian, so a sample costs two or three
  * stop traces. Aim rays are traced to the stop without aperture checks; the caller then traces every returned ray
  * through everything with apertures checked (`prepareAimedPupilTrace`), so a sample the stop admits but another
- * aperture blocks is vignetted, not unaimed. The solve depends only on the request, field, channel and the sample
+ * aperture blocks is vignetted, not unaimed. The solve depends only on the request, field, spectrum and the sample
  * itself: no state carries between samples, and the per-field model reused across calls is the one a fresh build
  * returns, so a cache hit never changes a bit.
  *
  * @param request - prepared geometry and the current stop radius R
  * @param samples - pupil samples in normalised stop coordinates
  * @param geometry - field launch: scalar or vector off-axis geometry, a finite object point or a solved launch frame
- * @param channel - chromatic channel the rays are aimed at; the authored reference indices when absent
+ * @param spectrum - chromatic channel or spectral line the rays are aimed at; the authored reference indices when absent
  * @returns aimed launch, or null when the request has no stop or surfaces
  */
 export function prepareAimedPupilLaunch(
   request: AnalysisRequest,
   samples: readonly AimedPupilSampleInput[],
   geometry: AimedPupilFieldGeometry,
-  channel?: ChromaticChannel,
+  spectrum?: AimedPupilSpectrum,
 ): AimedPupilLaunch | null {
-  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
   return prepareAimedPupilLaunchForState(
     request.preparedGeometry,
-    { stopSemiDiameterMm, launchScaleMm: entrancePupilSemiDiameterMm },
+    requestAperture(request),
     samples,
     geometry,
-    channel,
+    spectrum,
   );
 }
 
@@ -312,7 +329,7 @@ export function prepareAimedPupilLaunch(
  * @param aperture - stop radius R and launch scale in mm
  * @param samples - pupil samples in normalised stop coordinates
  * @param geometry - field launch
- * @param channel - chromatic channel the rays are aimed at
+ * @param spectrum - chromatic channel or spectral line the rays are aimed at
  * @returns aimed launch, or null when there is no stop or surface
  */
 export function prepareAimedPupilLaunchForState(
@@ -320,22 +337,173 @@ export function prepareAimedPupilLaunchForState(
   aperture: AimedPupilAperture,
   samples: readonly AimedPupilSampleInput[],
   geometry: AimedPupilFieldGeometry,
-  channel?: ChromaticChannel,
+  spectrum?: AimedPupilSpectrum,
 ): AimedPupilLaunch | null {
+  const field = aimedFieldModel(state, aperture, geometry, spectrum);
+  if (!field) return null;
+  const { model } = field;
+  return aimedLaunch(state, model, aperture.stopSemiDiameterMm, samples, (target) =>
+    aimSample(model, target.stop, target.pinA),
+  );
+}
+
+/**
+ * Cells across the stop at and below which a stop lattice is aimed sample by sample; a finer lattice is seeded from the
+ * lattice half as fine.
+ */
+export const AIMED_LATTICE_DIRECT_CELLS = 8;
+/** Newton corrections a cell seeded from the coarser lattice may take before it is solved as a lone sample. */
+export const AIMED_LATTICE_MAX_CORRECTIONS = 2;
+
+/** A stop lattice aimed for one field: the launch's rays are the lattice's cells, in lattice order. */
+export interface AimedStopLattice extends AimedPupilLaunch {
+  /** Lattice cells across the stop's diameter. */
+  cellsAcross: number;
+  /** The lattice (`stopLattice`); `rays[i]` is the ray of `cells[i]`. */
+  cells: readonly StopLatticeCell[];
+}
+
+// The prepared state and field-model key each lattice was aimed with, so a coarser lattice seeds only lattices of its own
+// state, field and spectrum.
+const latticeModelKeys = new WeakMap<AimedStopLattice, { state: PreparedGeometry; key: string }>();
+
+/**
+ * Aim a regular stop lattice for one field of the request's current state (`stopLattice`, `cellsAcross` cells across
+ * the stop's diameter).
+ *
+ * @param request - prepared geometry and the current stop radius R
+ * @param cellsAcross - lattice cells across the stop's diameter
+ * @param geometry - field launch
+ * @param spectrum - chromatic channel or spectral line the rays are aimed at
+ * @param coarse - the same field's lattice half as fine, when the caller already holds it
+ * @returns aimed lattice, or null when the request has no stop or surfaces
+ */
+export function prepareAimedStopLattice(
+  request: AnalysisRequest,
+  cellsAcross: number,
+  geometry: AimedPupilFieldGeometry,
+  spectrum?: AimedPupilSpectrum,
+  coarse?: AimedStopLattice | null,
+): AimedStopLattice | null {
+  return prepareAimedStopLatticeForState(
+    request.preparedGeometry,
+    requestAperture(request),
+    cellsAcross,
+    geometry,
+    spectrum,
+    coarse,
+  );
+}
+
+/**
+ * State-level form of `prepareAimedStopLattice`.
+ *
+ * A lattice of at most `AIMED_LATTICE_DIRECT_CELLS` across is aimed sample by sample, as `prepareAimedPupilLaunch`
+ * aims any list. A finer one is seeded from the same field's lattice half as fine, the one supplied or else aimed
+ * first (`seededAim`), which costs a cell about one stop trace where a lone sample spends three to six, most of them
+ * polishing. Lattice cells are never polished: they lie within the residual tolerance of their targets, so their rays
+ * can differ from a lone solve's by up to the tolerance at the stop. The stop centre is the chief, as in any launch.
+ * The lattice depends only on the field, spectrum, stop radius and size: the coarse lattice is a deterministic function
+ * of the same inputs, so supplying it never changes a bit.
+ *
+ * @param state - prepared geometry the rays are traced through
+ * @param aperture - stop radius R and launch scale in mm
+ * @param cellsAcross - lattice cells across the stop's diameter, a positive integer
+ * @param geometry - field launch
+ * @param spectrum - chromatic channel or spectral line the rays are aimed at
+ * @param coarse - the same field's lattice half as fine; ignored unless it was aimed for this state, field and spectrum
+ * @returns aimed lattice, or null when there is no stop or surface
+ * @throws RangeError when `cellsAcross` is not a positive integer
+ */
+export function prepareAimedStopLatticeForState(
+  state: PreparedGeometry,
+  aperture: AimedPupilAperture,
+  cellsAcross: number,
+  geometry: AimedPupilFieldGeometry,
+  spectrum?: AimedPupilSpectrum,
+  coarse?: AimedStopLattice | null,
+): AimedStopLattice | null {
+  // A size that is no positive integer is a caller's error (an old argument order passes an object here), never a lattice.
+  if (!Number.isInteger(cellsAcross) || cellsAcross < 1)
+    throw new RangeError(`A stop lattice needs a positive whole number of cells across, not ${String(cellsAcross)}.`);
+  const n = cellsAcross;
+  const field = aimedFieldModel(state, aperture, geometry, spectrum);
+  if (!field) return null;
+  const { model, key } = field;
+  const R = aperture.stopSemiDiameterMm;
+  // Lattice cells are aimed to the tolerance, never polished: one stop trace each is the point of the lattice.
+  let solve: CanonicalSolver = (target) => aimSample(model, target.stop, target.pinA, false);
+  if (n > AIMED_LATTICE_DIRECT_CELLS) {
+    const half = n >> 1;
+    const seeds =
+      coarse && coarse.cellsAcross === half && sameField(latticeModelKeys.get(coarse), state, key)
+        ? coarse
+        : prepareAimedStopLatticeForState(state, aperture, half, geometry, spectrum);
+    if (seeds) {
+      const map = latticeSeedMap(seeds, model.frame, R);
+      solve = (target) => seededAim(model, map, target);
+    }
+  }
+  const cells = stopLattice(n);
+  const lattice: AimedStopLattice = { ...aimedLaunch(state, model, R, cells, solve), cellsAcross: n, cells };
+  latticeModelKeys.set(lattice, { state, key });
+  return lattice;
+}
+
+/** Whether a lattice was aimed for this prepared state and field model key. */
+function sameField(owner: { state: PreparedGeometry; key: string } | undefined, state: PreparedGeometry, key: string) {
+  return owner !== undefined && owner.state === state && owner.key === key;
+}
+
+/** A request's stop radius and launch scale. */
+function requestAperture(request: AnalysisRequest): AimedPupilAperture {
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
+  return { stopSemiDiameterMm, launchScaleMm: entrancePupilSemiDiameterMm };
+}
+
+/** The field's model and its cache key, or null without a usable stop radius or surface. */
+function aimedFieldModel(
+  state: PreparedGeometry,
+  aperture: AimedPupilAperture,
+  geometry: AimedPupilFieldGeometry,
+  spectrum: AimedPupilSpectrum | undefined,
+): { model: FieldModel; key: string } | null {
   const R = aperture.stopSemiDiameterMm;
   if (!(R > 0) || !Number.isFinite(R) || state.surfaces.length < 1) return null;
-
   const toleranceMm = AIMED_PUPIL_RESIDUAL_TOLERANCE * R;
   const launchScale =
     aperture.launchScaleMm > 0 && Number.isFinite(aperture.launchScaleMm) ? aperture.launchScaleMm : R;
-  const model = cachedFieldModel(state, geometry, R, launchScale, channel, () => {
+  return cachedFieldModel(state, geometry, R, launchScale, spectrum, () => {
     const frame = launchFrame(state, geometry);
-    const stopAt = stopCrossingTracer(state, frame, channel);
-    const blockedAt = apertureBlockTracer(state, frame, R + toleranceMm, channel);
+    const stopAt = stopCrossingTracer(state, frame, spectrum);
+    const blockedAt = apertureBlockTracer(state, frame, R + toleranceMm, spectrum);
     return fieldModel(frame, stopAt, blockedAt, toleranceMm, launchScale, R);
   });
-  const { frame } = model;
+}
 
+/** A sample's canonical target: its stop crossing in mm, its normalised stop coordinates, and whether a stays at 0. */
+interface CanonicalTarget {
+  stop: Vec2;
+  fractions: Vec2;
+  pinA: boolean;
+}
+
+/** Solves one canonical target. */
+type CanonicalSolver = (target: CanonicalTarget) => SampleSolve;
+
+/**
+ * Build a field's launch from per-sample solves: each canonical target is solved once per call, and a mirror image or
+ * an axial negation maps its partner's solve back exactly.
+ */
+function aimedLaunch(
+  state: PreparedGeometry,
+  model: FieldModel,
+  R: number,
+  samples: readonly AimedPupilSampleInput[],
+  solveCanonical: CanonicalSolver,
+): AimedPupilLaunch {
+  const { frame } = model;
+  const toleranceMm = model.toleranceMm;
   const unaimedByReason: Record<AimedPupilUnaimedReason, number> = {
     "aim-not-converged": 0,
     "stop-unreachable": 0,
@@ -344,11 +512,11 @@ export function prepareAimedPupilLaunchForState(
   const defaultWeight = samples.length > 0 ? 1 / samples.length : 1;
   // A mirror image's canonical target is its partner's: solved once per call, the same bits as solving it again.
   const solves = new Map<string, SampleSolve>();
-  const aimCanonical = (canonical: Vec2, pinA: boolean): SampleSolve => {
-    const key = `${keyNumber(canonical[0])},${keyNumber(canonical[1])},${pinA}`;
+  const aimCanonical = (canonical: CanonicalTarget): SampleSolve => {
+    const key = `${keyNumber(canonical.stop[0])},${keyNumber(canonical.stop[1])},${canonical.pinA}`;
     let solve = solves.get(key);
     if (!solve) {
-      solve = aimSample(model, canonical, pinA);
+      solve = solveCanonical(canonical);
       solves.set(key, solve);
     }
     return solve;
@@ -361,7 +529,13 @@ export function prepareAimedPupilLaunchForState(
     else if (frame.axial && xFraction === 0 && yFraction < 0) symmetry = "negate-y";
     const canonical: Vec2 =
       symmetry === "mirror-x" ? [-target[0], target[1]] : symmetry === "negate-y" ? [target[0], -target[1]] : target;
-    const solved = aimCanonical(canonical, frame.meridional && xFraction === 0);
+    const fractions: Vec2 =
+      symmetry === "mirror-x"
+        ? [-xFraction, yFraction]
+        : symmetry === "negate-y"
+          ? [xFraction, -yFraction]
+          : [xFraction, yFraction];
+    const solved = aimCanonical({ stop: canonical, fractions, pinA: frame.meridional && xFraction === 0 });
     const solve = mapSolve(solved, symmetry, model.chief);
     const base = {
       index,
@@ -429,6 +603,221 @@ export function prepareAimedPupilLaunchForState(
   };
 }
 
+/** A coarser lattice's aimed launches, indexed for bilinear seeding. */
+interface LatticeSeedMap {
+  /** Cells across the coarse lattice. */
+  cellsAcross: number;
+  /** Launch of each aimed coarse cell at row · cellsAcross + column; null where the cell is not aimed or not in the disc. */
+  launches: (Vec2 | null)[];
+  /** Stop crossing of each aimed coarse cell, indexed alike. */
+  stops: (Vec2 | null)[];
+  /** For every coarse grid position, the index of an aimed coarse cell fewest king's moves away; −1 when none is aimed. */
+  nearestAimed: Int32Array;
+  /** The frame's linear map from normalised stop coordinates to the stop crossing in mm, [∂x/∂u, ∂x/∂v, ∂y/∂u, ∂y/∂v]. */
+  stopPerFraction: Matrix2;
+}
+
+function latticeSeedMap(lattice: AimedStopLattice, frame: LaunchFrame, R: number): LatticeSeedMap {
+  const m = lattice.cellsAcross;
+  const launches: (Vec2 | null)[] = new Array(m * m).fill(null);
+  const stops: (Vec2 | null)[] = new Array(m * m).fill(null);
+  lattice.cells.forEach((cell, i) => {
+    const ray = lattice.rays[i];
+    if (ray.status !== "aimed") return;
+    launches[cell.row * m + cell.column] = ray.launch;
+    stops[cell.row * m + cell.column] = ray.achievedStopMm;
+  });
+  const origin = frame.stopTarget(0, 0, R);
+  const alongU = frame.stopTarget(1, 0, R);
+  const alongV = frame.stopTarget(0, 1, R);
+  // Multi-source breadth-first sweep from the aimed cells: each grid position takes the first aimed cell to reach it.
+  const nearestAimed = new Int32Array(m * m).fill(-1);
+  let frontier: number[] = [];
+  launches.forEach((launch, index) => {
+    if (launch) {
+      nearestAimed[index] = index;
+      frontier.push(index);
+    }
+  });
+  while (frontier.length) {
+    const next: number[] = [];
+    for (const index of frontier) {
+      const row = Math.floor(index / m);
+      const column = index % m;
+      for (let dr = -1; dr <= 1; dr++)
+        for (let dc = -1; dc <= 1; dc++) {
+          const r = row + dr;
+          const c = column + dc;
+          if (r < 0 || c < 0 || r >= m || c >= m || nearestAimed[r * m + c] >= 0) continue;
+          nearestAimed[r * m + c] = nearestAimed[index];
+          next.push(r * m + c);
+        }
+    }
+    frontier = next;
+  }
+  return {
+    cellsAcross: m,
+    launches,
+    stops,
+    nearestAimed,
+    stopPerFraction: [alongU[0] - origin[0], alongV[0] - origin[0], alongU[1] - origin[1], alongV[1] - origin[1]],
+  };
+}
+
+/**
+ * Aim one lattice cell from the coarser lattice. The seed interpolates the coarse cells by tensor-product cubic Lagrange
+ * interpolation over a 4 × 4 block of aimed coarse cells, the one centred on the cell where it is all aimed, else the
+ * nearest shifted block (extrapolating at the rim), else bilinearly over the 2 × 2 around it. Newton steps then correct
+ * it, with a Jacobian that starts as the interpolation's and is Broyden-updated, at most
+ * `AIMED_LATTICE_MAX_CORRECTIONS` of them. The cubic seed of a smooth stop-to-launch map usually lands within the
+ * tolerance at once, so the cell costs one stop trace. A cell with no such block, or whose seeded steps cannot be traced
+ * or stay off target, is solved as a lone sample would be (`newtonAim`, unpolished) but from the nearest aimed coarse
+ * cell rather than from the field's fit or chief: at the edge of what the tracer can reach, that start is already
+ * beside the target, and a blocked target ends in two or three traces. A cell that start leaves unaimed, or that has no
+ * aimed coarse cell at all, is solved as a lone sample, so a lattice cell is unaimed only where a lone sample is. The
+ * traces spent are added to the cell's count either way.
+ */
+function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarget): SampleSolve {
+  const lone = (spent: number): SampleSolve => {
+    const solve = aimSample(model, target.stop, target.pinA, false);
+    return spent > 0 ? { ...solve, iterations: solve.iterations + spent } : solve;
+  };
+  const [u, v] = target.fractions;
+  if (target.pinA || (u === 0 && v === 0)) return lone(0);
+  // Coarse cell centres sit at whole positions s, t = 0 … m − 1.
+  const m = map.cellsAcross;
+  const s = (u * m + m - 1) / 2;
+  const t = (v * m + m - 1) / 2;
+  const fromNearest = (spent: number): SampleSolve => {
+    const near = nearestAimedCoarseCell(map, s, t);
+    if (!near || !model.jacobian) return lone(spent);
+    const start: SolveStart = { launch: near.launch, stop: near.stop, jacobian: model.jacobian, iterations: spent };
+    const solve = newtonAim(model, target.stop, start, false, false);
+    // A cell is unaimed only where the lone sample's own search is: retried from the field's fit, it keeps any aim or
+    // proven block that search finds, so the lattice proves at least the blocks a lone sample proves.
+    return solve.status === "unaimed" ? lone(solve.iterations) : solve;
+  };
+  const window = seedWindow(map, s, t);
+  if (!window) return fromNearest(0);
+  const stencilU = lagrangeStencil(s - window.column, window.nodes);
+  const stencilV = lagrangeStencil(t - window.row, window.nodes);
+  const seed: [number, number] = [0, 0];
+  // Launch per normalised coordinate: one coarse cell spans 2 / m of it.
+  const perU: [number, number] = [0, 0];
+  const perV: [number, number] = [0, 0];
+  for (let i = 0; i < window.nodes; i++)
+    for (let j = 0; j < window.nodes; j++) {
+      const node = map.launches[(window.row + i) * m + window.column + j]!;
+      for (const k of [0, 1] as const) {
+        seed[k] += stencilV.weights[i] * stencilU.weights[j] * node[k];
+        perU[k] += stencilV.weights[i] * stencilU.slopes[j] * node[k] * (m / 2);
+        perV[k] += stencilV.slopes[i] * stencilU.weights[j] * node[k] * (m / 2);
+      }
+    }
+  const fractionPerLaunch = invert2([perU[0], perV[0], perU[1], perV[1]]);
+  if (!fractionPerLaunch) return lone(0);
+  let jacobian = multiply2(map.stopPerFraction, fractionPerLaunch);
+  let launch: Vec2 = seed;
+  let stop = model.stopAt(launch);
+  let iterations = 1;
+  if (!stop) return fromNearest(iterations);
+  for (let corrections = 0; ; corrections++) {
+    if (Math.hypot(target.stop[0] - stop[0], target.stop[1] - stop[1]) <= model.toleranceMm)
+      return { status: "aimed", reason: null, launch, stop, iterations };
+    if (corrections >= AIMED_LATTICE_MAX_CORRECTIONS) return fromNearest(iterations);
+    const step = solve2(jacobian, [target.stop[0] - stop[0], target.stop[1] - stop[1]]);
+    if (!step) return fromNearest(iterations);
+    const trial: Vec2 = [launch[0] + step[0], launch[1] + step[1]];
+    const trialStop = model.stopAt(trial);
+    iterations++;
+    if (!trialStop) return fromNearest(iterations);
+    jacobian = broydenUpdate(jacobian, step, [trialStop[0] - stop[0], trialStop[1] - stop[1]]);
+    launch = trial;
+    stop = trialStop;
+  }
+}
+
+/** The aimed coarse cell nearest a position in coarse-cell units (`LatticeSeedMap.nearestAimed`), or null. */
+function nearestAimedCoarseCell(map: LatticeSeedMap, s: number, t: number): { launch: Vec2; stop: Vec2 } | null {
+  const m = map.cellsAcross;
+  const row = Math.min(m - 1, Math.max(0, Math.round(t)));
+  const column = Math.min(m - 1, Math.max(0, Math.round(s)));
+  const index = map.nearestAimed[row * m + column];
+  const launch = index >= 0 ? map.launches[index] : null;
+  const stop = index >= 0 ? map.stops[index] : null;
+  return launch && stop ? { launch, stop } : null;
+}
+
+/** Shifts of a 4-node window from centred, nearest first; a shift past the cell extrapolates. */
+const SEED_WINDOW_SHIFTS = [0, -1, 1, -2, 2] as const;
+
+/**
+ * The block of aimed coarse cells a seed interpolates: 4 × 4 starting one node below the cell, or shifted toward the
+ * aimed cells by up to two nodes per axis, nearest first; else the 2 × 2 around the cell.
+ *
+ * @returns first row and column of the block and its nodes per axis, or null without one
+ */
+function seedWindow(map: LatticeSeedMap, s: number, t: number): { row: number; column: number; nodes: 2 | 4 } | null {
+  const m = map.cellsAcross;
+  const aimed = (row: number, column: number, nodes: number) => {
+    if (row < 0 || column < 0 || row + nodes > m || column + nodes > m) return false;
+    for (let i = 0; i < nodes; i++)
+      for (let j = 0; j < nodes; j++) if (map.launches[(row + i) * m + column + j] === null) return false;
+    return true;
+  };
+  const row = Math.floor(t);
+  const column = Math.floor(s);
+  for (const dr of SEED_WINDOW_SHIFTS)
+    for (const dc of SEED_WINDOW_SHIFTS)
+      if (aimed(row - 1 + dr, column - 1 + dc, 4)) return { row: row - 1 + dr, column: column - 1 + dc, nodes: 4 };
+  return aimed(row, column, 2) ? { row, column, nodes: 2 } : null;
+}
+
+/** Lagrange weights of a window's nodes and their derivatives, at one position along an axis. */
+interface LagrangeStencil {
+  weights: readonly number[];
+  slopes: readonly number[];
+}
+
+/**
+ * One axis of the seed's interpolation: the Lagrange polynomials through nodes 0 … count − 1, and their slopes.
+ *
+ * @param x - position in node steps from the window's first node
+ * @param count - nodes in the window
+ * @returns each node's weight and the derivative of that weight in x
+ */
+function lagrangeStencil(x: number, count: number): LagrangeStencil {
+  const weights: number[] = [];
+  const slopes: number[] = [];
+  for (let i = 0; i < count; i++) {
+    let denominator = 1;
+    let weight = 1;
+    let slope = 0;
+    for (let j = 0; j < count; j++) {
+      if (j === i) continue;
+      denominator *= i - j;
+      // Product rule: the slope of Π (x − j) gains each factor's derivative times the rest.
+      slope = slope * (x - j) + weight;
+      weight *= x - j;
+    }
+    weights.push(weight / denominator);
+    slopes.push(slope / denominator);
+  }
+  return { weights, slopes };
+}
+
+/** Inverse of a 2×2 matrix; null when it is singular relative to its own scale. */
+function invert2(j: Matrix2): Matrix2 | null {
+  const x = solve2(j, [1, 0]);
+  const y = solve2(j, [0, 1]);
+  return x && y ? [x[0], y[0], x[1], y[1]] : null;
+}
+
+/** Product a · b of two row-major 2×2 matrices. */
+function multiply2(a: Matrix2, b: Matrix2): Matrix2 {
+  return [a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3], a[2] * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]];
+}
+
 /** Full-system traces of returned rays with every aperture checked and the stop at the launch's clip radius. */
 export interface AimedPupilTrace {
   engine(ray: Ray3): EngineTraceResult<"terminal" | "hits">;
@@ -444,13 +833,13 @@ export interface AimedPupilTrace {
  *
  * @param state - prepared geometry the launch was aimed through
  * @param launch - aimed launch supplying the clip radius and launch bound
- * @param channel - chromatic channel the launch was aimed at
+ * @param spectrum - chromatic channel or spectral line the launch was aimed at
  * @returns engine, skew-result and meridional-result tracers
  */
 export function prepareAimedPupilTrace(
   state: PreparedGeometry,
   launch: Pick<AimedPupilLaunch, "clipSemiDiameterMm" | "launchBoundT">,
-  channel?: ChromaticChannel,
+  spectrum?: AimedPupilSpectrum,
 ): AimedPupilTrace {
   const shared = {
     checkSemiDiameter: true,
@@ -458,7 +847,7 @@ export function prepareAimedPupilTrace(
     stopOnClip: true,
     directionNormalized: true,
     launchBoundT: launch.launchBoundT,
-    ...channelTraceOptions(state, channel),
+    ...spectralTraceOptions(state, spectrum),
   };
   const traceSkew = prepareEngineTrace(state, { ...shared, capture: transmissionTraceCapture(state.lens) });
   const traceMeridional = prepareEngineTrace(state, shared);
@@ -470,6 +859,7 @@ export function prepareAimedPupilTrace(
   };
 }
 
+/**
 /**
  * The rays of a field's launch frame, by launch coordinates: the frame `launch` coordinates of returned samples are in.
  * For callers that step between returned launches, as the rim-cut beam rule bisects from the chief toward a rim sample.
@@ -485,16 +875,23 @@ export function aimedLaunchFrameRay(
   return launchFrame(state, geometry).ray;
 }
 
-function channelTraceOptions(
+/**
+ * Trace options of a spectrum: a channel's own indices and wavelength, a spectral line's supplied ones, or nothing for
+ * the authored reference indices.
+ */
+export function spectralTraceOptions(
   state: PreparedGeometry,
-  channel: ChromaticChannel | undefined,
+  spectrum: AimedPupilSpectrum | undefined,
 ): Pick<TraceOptions, "indexAtSurface" | "wavelengthNm"> {
-  return channel
-    ? {
-        indexAtSurface: (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd,
-        wavelengthNm: CHROMATIC_CHANNEL_WAVELENGTH_NM[channel],
-      }
-    : {};
+  if (spectrum === undefined) return {};
+  if (typeof spectrum === "string")
+    return {
+      indexAtSurface: (i, nd) => state.lens.dispersion[i]?.indexAt(spectrum) ?? nd,
+      wavelengthNm: CHROMATIC_CHANNEL_WAVELENGTH_NM[spectrum],
+    };
+  return spectrum.indexAtSurface
+    ? { indexAtSurface: spectrum.indexAtSurface, wavelengthNm: spectrum.wavelengthNm }
+    : { wavelengthNm: spectrum.wavelengthNm };
 }
 
 function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry): LaunchFrame {
@@ -633,10 +1030,10 @@ function offsetOrigin(origin: Vec3, axisA: Vec3, a: number, axisB: Vec3, b: numb
 function stopCrossingTracer(
   state: PreparedGeometry,
   frame: LaunchFrame,
-  channel: ChromaticChannel | undefined,
+  spectrum: AimedPupilSpectrum | undefined,
 ): (launch: Vec2) => Vec2 | null {
   const stopIndex = state.lens.stop.surfaceIndex;
-  const spectral = channelTraceOptions(state, channel);
+  const spectral = spectralTraceOptions(state, spectrum);
   const finite = (x: number, y: number): Vec2 | null => (Number.isFinite(x) && Number.isFinite(y) ? [x, y] : null);
   if (state.lens.flags.isFoldedOptics) {
     const options = { checkSemiDiameter: false, launchBoundT: frame.launchBoundT, ...spectral };
@@ -663,10 +1060,9 @@ function stopCrossingTracer(
 /**
  * Trace a launch toward the stop with every clear aperture checked, and name the surface that physically stops it.
  *
- * The MTF's classifier decides: an aperture clip, or a failed intersection proven to miss the next surface's clear
- * cap, is a rim's blocking. Total internal reflection is not an aperture, so a target only totally reflected rays
- * could reach stays unreachable, as lens-design programs report a failed aim; an unresolved ray never poses as
- * vignetting either.
+ * The shared classifier decides, as it does after the stop: an aperture clip, total internal reflection, or a failed
+ * intersection proven to miss the next surface's clear cap blocks the ray at that surface. An unresolved ray never
+ * poses as vignetting.
  *
  * @returns the blocking surface before the stop, or null
  */
@@ -674,7 +1070,7 @@ function apertureBlockTracer(
   state: PreparedGeometry,
   frame: LaunchFrame,
   clipSemiDiameterMm: number,
-  channel: ChromaticChannel | undefined,
+  spectrum: AimedPupilSpectrum | undefined,
 ): (launch: Vec2) => number | null {
   const stopIndex = state.lens.stop.surfaceIndex;
   // Generalized paths have no ordered surface to blame before the stop; their unreachable targets stay unaimed.
@@ -687,12 +1083,12 @@ function apertureBlockTracer(
     stopOnClip: true,
     directionNormalized: true,
     launchBoundT: frame.launchBoundT,
-    ...channelTraceOptions(state, channel),
+    ...spectralTraceOptions(state, spectrum),
   });
   return (launch) => {
     const result = trace(frame.ray(launch[0], launch[1]));
-    if (result.status === "ok" || result.failureReason === "totalInternalReflection") return null;
-    if (traceRayClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    if (result.status === "ok" || traceRayClassification(result, state, clipSemiDiameterMm) !== "blocked") return null;
+    // A clip or total internal reflection ends the trace at its own surface; a proven miss is of the next one.
     const missed = result.failureReason === "noBracket" || result.failureReason === "noConvergedIntersection";
     const surfaceIndex = missed ? result.terminalSurfaceIndex + 1 : result.terminalSurfaceIndex;
     return surfaceIndex < stopIndex ? surfaceIndex : null;
@@ -836,26 +1232,35 @@ function cachedFieldModel(
   geometry: AimedPupilFieldGeometry,
   stopSemiDiameterMm: number,
   launchScale: number,
-  channel: ChromaticChannel | undefined,
+  spectrum: AimedPupilSpectrum | undefined,
   build: () => FieldModel,
-): FieldModel {
-  const key = [fieldGeometryKey(geometry), keyNumber(stopSemiDiameterMm), keyNumber(launchScale), channel ?? ""].join(
-    "|",
-  );
+): { model: FieldModel; key: string } {
+  const key = [
+    fieldGeometryKey(geometry),
+    keyNumber(stopSemiDiameterMm),
+    keyNumber(launchScale),
+    spectrumKey(spectrum),
+  ].join("|");
   let models = fieldModelsByState.get(state);
   if (!models) {
     models = new Map();
     fieldModelsByState.set(state, models);
   }
   const cached = models.get(key);
-  if (cached) return cached;
+  if (cached) return { model: cached, key };
   const model = build();
   if (models.size >= FIELD_MODEL_CACHE_LIMIT) {
     const oldest = models.keys().next().value;
     if (oldest !== undefined) models.delete(oldest);
   }
   models.set(key, model);
-  return model;
+  return { model, key };
+}
+
+/** A spectrum's cache key: the channel, or a spectral line's wavelength and index source. */
+function spectrumKey(spectrum: AimedPupilSpectrum | undefined): string {
+  if (spectrum === undefined) return "";
+  return typeof spectrum === "string" ? spectrum : `${keyNumber(spectrum.wavelengthNm)}nm:${spectrum.indexKey}`;
 }
 
 /** A number's exact key: its round-tripping string, with −0 kept apart from 0, since a launch built on either differs. */
@@ -933,7 +1338,7 @@ function broydenUpdate(j: Matrix2, dp: Vec2, ds: Vec2): Matrix2 {
   return next.every(Number.isFinite) ? next : j;
 }
 
-function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve {
+function aimSample(model: FieldModel, target: Vec2, pinA: boolean, polish = true): SampleSolve {
   if (!model.chiefStop)
     return { status: "unaimed", reason: "trace-failed", launch: model.chief, stop: null, iterations: 0 };
   const start = chiefStart(model);
@@ -943,8 +1348,8 @@ function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve 
   // A fitted seed the tracer cannot follow falls back to the chief's, which also finds where a blocked target's
   // reachable region ends.
   const fitted = model.fit && fittedStart(model, model.fit, target, pinA);
-  if (fitted) return newtonAim(model, target, fitted, pinA, true);
-  const solve = newtonAim(model, target, start, pinA, true);
+  if (fitted) return newtonAim(model, target, fitted, pinA, polish);
+  const solve = newtonAim(model, target, start, pinA, polish);
   return model.fit ? { ...solve, iterations: solve.iterations + 1 } : solve;
 }
 
@@ -956,10 +1361,10 @@ function aimSample(model: FieldModel, target: Vec2, pinA: boolean): SampleSolve 
  * the polish tolerance or stops falling. A pinned solve (a meridional sample) moves b alone with a held exactly.
  *
  * An unconverged solve is classified by how it ended. It is `blocked` only when it ends on a block: its last step
- * toward the target could not reach the stop because it left a clear aperture, and either the launch it left from is
- * itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop is convex enough), no
- * shorter step reaches the stop either, or the iteration cap arrives with that block the last failed step since the
- * solve last moved. A step that cannot be traced for any other reason, or a folded (singular) map, ends it as
+ * toward the target could not reach the stop because it left a clear aperture or reflected totally, and either the
+ * launch it left from is itself vignetted (nothing further out gets through; the transmitted part of an ordinary stop
+ * is convex enough), no shorter step reaches the stop either, or the iteration cap arrives with that block the last
+ * failed step since the solve last moved. A step that cannot be traced for any other reason, or a folded (singular) map, ends it as
  * `stop-unreachable`, as does reaching the iteration cap while its steps cannot be traced and no rim is proven to stop
  * them. The iteration cap otherwise, or a step that stops reducing the residual, ends it as `aim-not-converged`: a
  * stall is never reported as a block.

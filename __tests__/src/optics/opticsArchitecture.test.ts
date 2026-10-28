@@ -133,11 +133,17 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/analysis/pupils/aimedPupil.ts#fieldModelsByState": {
     kind: "weak-owner",
     owner: "PreparedGeometry",
-    key: "owner identity, then every exact field-launch, stop-radius, launch-scale and channel input",
+    key: "owner identity, then every exact field-launch, stop-radius, launch-scale and spectrum input",
     perOwner:
       "at most 64 aim field models (chief crossing, Jacobian, stop-to-launch fit), evicting the oldest insertion",
     capacity: 64,
     limit: "FIELD_MODEL_CACHE_LIMIT",
+  },
+  "src/optics/analysis/pupils/aimedPupil.ts#latticeModelKeys": {
+    kind: "weak-owner",
+    owner: "AimedStopLattice",
+    key: "lattice identity",
+    perOwner: "one field-model key string, so a coarser lattice seeds only lattices of its own field and spectrum",
   },
   "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
     kind: "bounded",

@@ -1,21 +1,16 @@
 /**
  * Vignetting and relative illumination: OpticStudio's two field analyses, on one lattice on the stop per field.
  *
- * Each field launches a regular lattice of stop samples through the aimed pupil launch (`pupils/aimedPupil.ts`):
- * `BEAM_GRID_CELLS` cells across the stop's diameter, keeping the cells whose centre lies in the unit disc. Every
- * returned ray is traced with every aperture checked.
+ * Each field launches a regular lattice of stop samples through the aimed stop lattice (`prepareAimedStopLattice` in
+ * `pupils/aimedPupil.ts`, the MTF's own): `BEAM_GRID_CELLS` cells across the stop's diameter, keeping the cells whose
+ * centre lies in the unit disc. Every returned ray is traced with every aperture checked.
  *
  *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
  *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
- *     samples, and aimed rays whose full trace a rim on either side of the stop, total internal reflection after it
- *     or a proven aperture miss stops (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays
- *     whose full trace fails for any other reason are left out of both counts, and each field reports how many of
- *     each there were. Total internal reflection ahead of the stop is not a block to the aimed launch: a sample only
- *     reflected rays could reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search
- *     stalls) and left out of both counts, though a solve whose last failed step at the iteration cap left a rim
- *     ahead of the stop ends `blocked` at that rim and counts as vignetted. Reporting total internal reflection as a
- *     block at its surface changes the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the
- *     MTF on the stop lattice).
+ *     samples (a rim or total internal reflection ahead of the stop), and aimed rays whose full trace a rim on either
+ *     side of the stop, total internal reflection after it or a proven aperture miss stops
+ *     (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays whose full trace fails for any
+ *     other reason are left out of both counts, and each field reports how many of each there were.
  *   - Relative illumination follows Rimmer's method, as OpticStudio computes it: a transmitted cell contributes n′²
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
@@ -59,8 +54,10 @@ import { traceRayClassification } from "../../trace/rayClassification.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
-import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace, prepareAimedStopLattice } from "../pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../pupils/aimedPupil.js";
+import { stopLattice } from "../pupils/stopLattice.js";
+import type { StopLatticeCell } from "../pupils/stopLattice.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import type { OffAxisFieldGeometry } from "../aberration/offAxis.js";
 import type { PreparedGeometry, Vec3 } from "../../types.js";
@@ -97,19 +94,8 @@ export const RIMMER_MAX_REFERRED_DEVIATION = 0.05;
  */
 export const RIMMER_MAX_UNRESOLVED_SHARE = 0.0035;
 
-/** One cell of the stop lattice: a stop sample at normalised (xFraction, yFraction), its centre in the unit disc. */
-export interface VignettingLatticeCell {
-  /** Position in the lattice list. */
-  index: number;
-  /** Lattice row, 0 at yFraction = −1. */
-  row: number;
-  /** Lattice column, 0 at xFraction = −1. */
-  column: number;
-  xFraction: number;
-  yFraction: number;
-  /** Equal weight, 1 / number of cells. */
-  weight: number;
-}
+/** One cell of the stop lattice (`pupils/stopLattice.ts`). */
+export type VignettingLatticeCell = StopLatticeCell;
 
 /**
  * Why a field has neither figure: no launch, or more unaimed and failed samples than `VIGNETTING_MAX_UNAIMED_SHARE`
@@ -226,25 +212,14 @@ export interface VignettingCurve {
 }
 
 /**
- * The stop lattice: cells `cellsAcross` across the stop's diameter, those whose centre lies in the unit disc.
- *
- * Coordinates are (2k + 1 − n) / n, so a column and its mirror are exact negatives.
+ * The tab's stop lattice (`pupils/stopLattice.ts`): cells `cellsAcross` across the stop's diameter, those whose centre
+ * lies in the unit disc, at coordinates (2k + 1 − n) / n, so a column and its mirror are exact negatives.
  *
  * @param cellsAcross - cells across the diameter; at least `MIN_BEAM_GRID_CELLS`
  * @returns cells in row-major order, with equal weights
  */
 export function vignettingStopLattice(cellsAcross: number): VignettingLatticeCell[] {
-  const n = latticeSize(cellsAcross);
-  const cells: Omit<VignettingLatticeCell, "index" | "weight">[] = [];
-  for (let row = 0; row < n; row++) {
-    const yFraction = (2 * row + 1 - n) / n;
-    for (let column = 0; column < n; column++) {
-      const xFraction = (2 * column + 1 - n) / n;
-      if (xFraction * xFraction + yFraction * yFraction <= 1) cells.push({ row, column, xFraction, yFraction });
-    }
-  }
-  const weight = 1 / cells.length;
-  return cells.map((cell, index) => ({ index, ...cell, weight }));
+  return stopLattice(latticeSize(cellsAcross));
 }
 
 /**
@@ -303,7 +278,8 @@ function vignettingField(
     sampleCount: lattice.length,
   };
   const scalar = geometry && !isOffAxisVectorFieldGeometry(geometry) ? geometry : null;
-  const launch = scalar && prepareAimedPupilLaunch(request, lattice, scalar);
+  // The same aimed lattice the MTF traces: its rays are the lattice's cells, in lattice order.
+  const launch = scalar && prepareAimedStopLattice(request, n, scalar);
   if (!scalar || !launch) return unavailableField(base, "no-field-launch");
 
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
@@ -497,8 +473,7 @@ function traceLattice(
       orientedCosineArea: null,
       cosineArea: null,
     };
-    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray (see the header for
-    // total internal reflection ahead of the stop).
+    // A blocked ray is stopped ahead of the stop by the rim or reflection it names; an unaimed sample has no ray.
     if (ray.status !== "aimed") return dark;
     const result = trace(ray);
     // The aimed ray reached the stop without aperture checks, so total internal reflection or a numerical failure here

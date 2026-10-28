@@ -39,9 +39,15 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   view: "field",
   fieldStepPercent: 10,
   frequencies: Object.freeze([10, 30] as const),
-  maxGridSize: 128,
+  maxGridSize: 256,
   compareF8: false,
 });
+
+/**
+ * Stored with every save since 256 cells became the standard grid cap. Options saved before it carry 128 as the old
+ * standard, never as a choice, so they load the new default.
+ */
+const GRID_CAP_REVISION = 2;
 
 const oneOf =
   <T extends string | number>(values: readonly T[]) =>
@@ -76,7 +82,10 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
     view: isView(stored.view) ? stored.view : defaults.view,
     fieldStepPercent: isFieldStep(stored.fieldStepPercent) ? stored.fieldStepPercent : defaults.fieldStepPercent,
     frequencies: frequencies.length && frequencies.every(isFrequency) ? frequencies : defaults.frequencies,
-    maxGridSize: isGridCap(stored.maxGridSize) ? stored.maxGridSize : defaults.maxGridSize,
+    maxGridSize:
+      isGridCap(stored.maxGridSize) && (stored.maxGridSize !== 128 || stored.gridCapRevision === GRID_CAP_REVISION)
+        ? stored.maxGridSize
+        : defaults.maxGridSize,
     compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
   };
 }
@@ -93,7 +102,7 @@ export function loadMtfPreferences(): MtfPreferences {
 /** Save options when browser storage is available. */
 export function saveMtfPreferences(preferences: MtfPreferences): void {
   try {
-    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify(preferences));
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ ...preferences, gridCapRevision: GRID_CAP_REVISION }));
   } catch {
     /* private browsing or quota — keep the in-memory options */
   }
@@ -116,7 +125,8 @@ export function getMtfPreferences(): MtfPreferences {
  * @param patch - options to change
  */
 export function updateMtfPreferences(patch: Partial<MtfPreferences>): void {
-  snapshot = parseMtfPreferences({ ...getMtfPreferences(), ...patch });
+  // Options in memory are current, so their grid cap is a choice, not the old standard.
+  snapshot = parseMtfPreferences({ ...getMtfPreferences(), ...patch, gridCapRevision: GRID_CAP_REVISION });
   saveMtfPreferences(snapshot);
   listeners.forEach((listener) => listener());
 }

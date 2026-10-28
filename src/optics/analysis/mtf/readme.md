@@ -1,6 +1,6 @@
 # src/optics/analysis/mtf
 
-This folder src/optics/analysis/mtf source folder.
+This folder computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice. A vignetted beam spans fewer cells of that lattice than of the old launch-plane grid, so outer fields of fast lenses can need the default 256-cell cap to converge; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 
@@ -32,7 +32,8 @@ flowchart LR
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> |5| n_external_src_optics_trace
-  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtf_ts --> |2| n_external_src_optics_analysis
+  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtf_ts --> |3| n_external_src_optics_analysis
+  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> |2| n_external_src_optics_analysis
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFields_ts --> |2| n_external_src_optics_state
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtf_ts --> |2| n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfConstants_ts
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfSupport_ts --> |2| n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfConstants_ts
@@ -48,6 +49,7 @@ flowchart LR
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfConjugates_ts --> n_external_src_optics_field
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFields_ts --> n_external_src_optics_field
+  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> n_external_src_optics_field
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFocus_ts --> n_external_src_optics_first_order
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFields_ts --> n_external_src_optics_math
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> n_external_src_optics_math
@@ -65,8 +67,6 @@ flowchart LR
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFields_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfFocus_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfSupport_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfTracing_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_mtf_src_optics_analysis_mtf_mtfWavefront_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_mtf_truncated["additional relationships omitted"]
 ```
 
@@ -74,14 +74,14 @@ flowchart LR
 
 - Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (33), src/optics/types.ts (8), src/types (8), src/optics/trace (7), src/optics/prescription (4), src/optics/state (4), src/optics/chromatic (3), src/optics/field (2), +3 more
+- Main outbound areas: src/optics/analysis (36), src/optics/types.ts (8), src/types (8), src/optics/trace (7), src/optics/prescription (4), src/optics/state (4), src/optics/chromatic (3), src/optics/field (3), +3 more
 - External consumers: src/optics/analysis, src/optics/mtf.ts, src/optics/prescription
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `mtf.ts` | Mtf helper module | src/optics/analysis (15), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
+| `mtf.ts` | Mtf helper module | src/optics/analysis (16), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
 | `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/prescription (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
 | `mtfConstants.ts` | Mtf Constants helper module | src/types | src/optics/analysis (3), src/optics/mtf.ts | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_FOCUS_MODES, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, +12 more |
 | `mtfDataLimitations.ts` | Mtf Data Limitations helper module | src/optics/analysis, src/optics/types.ts, src/types | src/optics/mtf.ts | MtfDataLimitationInput, assessMtfDataLimitations |
@@ -91,5 +91,5 @@ flowchart LR
 | `mtfMath.ts` | Mtf Math helper module | none | src/optics/analysis (5), src/optics/mtf.ts | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, combineOtfs |
 | `mtfShearedOtf.ts` | Mtf Sheared Otf helper module | src/optics/analysis (2) | src/optics/analysis, src/optics/mtf.ts | MtfShearedOtf, shearedOtf, latticeCosineSlope |
 | `mtfSupport.ts` | Mtf Support helper module | src/optics/analysis (4), src/optics/chromatic, src/optics/types.ts, src/types | src/optics/analysis (3), src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MTF_SPECTRUM_LABELS, MtfScaleDifference, mtfPrescriptionScale, mtfScaleNeedsNote, +8 more |
-| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/trace (5), src/optics/analysis (4), src/optics/chromatic, src/optics/math, src/optics/prescription, +3 more | src/optics/analysis (5), src/optics/mtf.ts | MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, mtfLaunchRay, +7 more |
+| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/analysis (6), src/optics/trace (5), src/optics/chromatic, src/optics/field, src/optics/math, +4 more | src/optics/analysis (5), src/optics/mtf.ts | MtfPupilRay, MtfOpenBorders, MtfPupilSampling, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +12 more |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | src/optics/analysis (2), src/optics/types.ts | src/optics/mtf.ts | launchPhaseMm, rayOpticalPathToImageMm, MtfWaveLattice, mtfWaveLattice, waveLatticePhaseStep, waveLatticeOtf |

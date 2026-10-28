@@ -84,6 +84,14 @@ const folderRoleOverrides = new Map([
   ],
   ["src/optics/analysis/bokeh", "request-based bokeh previews, field footprints and density reductions"],
   [
+    "src/optics/analysis/mtf",
+    "computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice. A vignetted beam spans fewer cells of that lattice than of the old launch-plane grid, so outer fields of fast lenses can need the default 256-cell cap to converge; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so",
+  ],
+  [
+    "src/optics/analysis/pupils",
+    "holds the shared aimed pupil launch, whose pupil coordinates are positions on the real stop, the stop lattice the vignetting tab and the MTF sample, and pupil aberration",
+  ],
+  [
     "src/optics/analysis/vignetting",
     "computes OpticStudio's vignetting (the share of a stop lattice's rays transmitted, geometric) and relative illumination (Rimmer's projected solid angle of the exit pupil in direction-cosine space, with transmission, relative to the axis)",
   ],

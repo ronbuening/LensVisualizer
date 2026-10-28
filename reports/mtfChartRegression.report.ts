@@ -21,7 +21,12 @@ import { env } from "node:process";
 import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
 import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
 import { shearedOtf } from "../src/optics/mtf.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/mtf.js";
+import {
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfStopBundle,
+  traceMtfLaunchPlaneBundle,
+} from "../src/optics/mtf.js";
 import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
 import { wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
@@ -239,18 +244,19 @@ function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOption
   for (const field of charted) {
     if (field.fieldAngleDeg === null) continue;
     const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
-    const footprint = launch && findMtfFieldFootprint(state, options, support, launch);
-    if (!launch || !footprint) continue;
+    // A bounding-sphere field keeps launch-plane sampling over its footprint, as the product does.
+    const footprint = launch && !launch.aim ? findMtfFieldFootprint(state, options, support, launch) : null;
+    if (!launch || (!launch.aim && !footprint)) continue;
     const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     let common: MtfSpot | undefined;
     let step = 0;
     let complete = true;
     for (const line of support.spectralLines) {
-      const bundle = traceMtfBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, {
-        reference: common,
-        opticalPath: true,
-      });
+      const extras = { reference: common, opticalPath: true };
+      const bundle = footprint
+        ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
+        : traceMtfStopBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
       const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
       if (!bundle || !lattice || !common) {
         complete = false;
@@ -557,7 +563,7 @@ function renderReport(configurations: Configuration[]): string {
     "## Estimator Cross-Check",
     "",
     "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
-    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the launch lattice",
+    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the stop lattice",
     "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
     `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
     `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,

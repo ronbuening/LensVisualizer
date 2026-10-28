@@ -148,12 +148,17 @@ export type {
   DistortionSample,
 } from "./analysis/distortion/distortion.js";
 export {
+  AIMED_LATTICE_DIRECT_CELLS,
+  AIMED_LATTICE_MAX_CORRECTIONS,
   AIMED_PUPIL_MAX_ITERATIONS,
   AIMED_PUPIL_POLISH_TOLERANCE,
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilLaunchForState,
   prepareAimedPupilTrace,
+  prepareAimedStopLattice,
+  prepareAimedStopLatticeForState,
+  spectralTraceOptions,
 } from "./analysis/pupils/aimedPupil.js";
 export type {
   AimedBoundingSphereField,
@@ -168,11 +173,16 @@ export type {
   AimedPupilLaunchSurface,
   AimedPupilRay,
   AimedPupilSampleInput,
+  AimedPupilSpectralLine,
+  AimedPupilSpectrum,
   AimedPupilTrace,
   AimedPupilTracedRay,
   AimedPupilUnaimedRay,
   AimedPupilUnaimedReason,
+  AimedStopLattice,
 } from "./analysis/pupils/aimedPupil.js";
+export { stopLattice } from "./analysis/pupils/stopLattice.js";
+export type { StopLatticeCell } from "./analysis/pupils/stopLattice.js";
 export {
   PUPIL_ABERRATION_SAMPLE_COUNT,
   computeBothPupilAberrationProfiles,

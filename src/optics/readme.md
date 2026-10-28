@@ -25,7 +25,7 @@ flowchart LR
     n_src_optics_TypeScript_modules["TypeScript modules (16)"]
   end
   n_external_src_types["src/types"]
-  n_src_optics_TypeScript_modules --> |60| n_src_optics_src_optics_analysis
+  n_src_optics_TypeScript_modules --> |62| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |27| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_state
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (60), src/optics/prescription (27), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
+- Main outbound areas: src/optics/analysis (62), src/optics/prescription (27), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -69,7 +69,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysis.ts` | Analysis helper module | src/optics/analysis (48), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +201 more |
+| `analysis.ts` | Analysis helper module | src/optics/analysis (50), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +211 more |
 | `buildLens.ts` | Build Lens module with default export | src/optics/prescription (8), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/benchmarks, src/comparison, src/lensBuilder | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +6 more |
 | `chromatic.ts` | Chromatic helper module | src/optics/chromatic (11), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2), +2 more | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +31 more |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/diagram (8) | src/benchmarks, src/components/diagram, src/components/hooks, src/components/layout | createCoordinateTransforms, computeElementShapesForState, foldedHitOrderLabelsForDisplay, computeElementRenderDiagnosticsForState, computeElementRenderDiagnostics, computeElementShapes, computeStandaloneMirrorPaths, stateForRuntimeDiagram, +7 more |
@@ -77,7 +77,7 @@ flowchart LR
 | `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/math (2) | src/components/display (2) | DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, conicPolySag, sag, sagSlopeRaw, INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, +5 more |
 | `glassCatalog.ts` | Glass Catalog helper module | src/optics/chromatic (6) | src/components/lensBuilder (2), src/lensBuilder, src/types | GLASS_CATALOG_ND_TOLERANCE, GLASS_CATALOG_VD_TOLERANCE, GLASS_ND_TOLERANCE, GLASS_VD_TOLERANCE, UNRESOLVED_MARKER, allEntries, assertCatalogConsistent, assessCatalogGlassCompatibility, +21 more |
 | `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (8) | none | lensDataVersion, ingestLens, ingestTeleconverter, V1_FLAT_RADIUS, V1_GROUP_STARTS, V1_PRINT_ORDER, V1_ROW_LISTS, toLensData, +13 more |
-| `mtf.ts` | Mtf helper module | src/optics/analysis (12) | src/components/display, src/components/hooks | computeMtf, computeMtfSteps, resolveMtfGeometry, MtfJobCache, MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES, assessMtfDataLimitations, +17 more |
+| `mtf.ts` | Mtf helper module | src/optics/analysis (12) | src/components/display, src/components/hooks | computeMtf, computeMtfSteps, resolveMtfGeometry, MtfJobCache, MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES, assessMtfDataLimitations, +20 more |
 | `optics.ts` | Optics helper module | src/optics/state (10), src/optics/trace (7), src/optics/first-order (6), src/optics/projection.ts | src/components/display (10), src/components/hooks (6), src/components/layout (4), src/comparison (3), src/components/controls (3), +3 more | imageSpaceFNumber, paraxialWorkingFNumber, paraxialWorkingFNumberForRuntimeLens, ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason, eflAtFocus, formatDist, formatFNumber, +62 more |
 | `perspective.ts` | Perspective helper module | src/optics/perspective (15) | src/components/display (10), src/components/hooks (5), src/comparison (2), src/components/layout (2), src/benchmarks, +3 more | PerspectiveChromaticAnalysis, PerspectiveChromaticChannelSample, PerspectiveChromaticFieldSample, PerspectiveChromaticRayFanSample, PerspectiveDistortionAnalysis, PerspectiveDistortionSample, PerspectiveComaFieldSample, PerspectiveComaRaySample, +28 more |
 | `projection.ts` | Projection helper module | src/optics/field (2) | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/optics.ts | ProjectionReferenceKind, ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, +16 more |

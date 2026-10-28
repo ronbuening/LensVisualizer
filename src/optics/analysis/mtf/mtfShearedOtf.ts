@@ -10,12 +10,13 @@
  * along the shear: all primary and secondary aberrations at any shear. Three rays (Simpson) stop at
  * fourth order and read a vignetted corner 0.013 low at a sixth of the cutoff.
  *
- * The pupil is the traced beam on its regular launch lattice, so vignetting shape and throughput
- * carry in, cell edges stay sharp and nothing can fold. Amplitude √flux and landing error are
- * interpolated linearly along the lattice line, which integrates the overlap of each row exactly.
- * The shear is fixed in direction cosine, not in lattice cells: each pair opens by the cells that
- * λν spans at its own centre, because a wide-angle corner maps the lattice onto the exit pupil
- * unevenly (one lag for the whole pupil read a 43° corner 0.005 high). No optical path, reference
+ * The pupil is the traced beam on its regular lattice, evenly spaced positions on the real stop (on
+ * the launch plane for a bounding-sphere field), so vignetting shape and throughput carry in, cell
+ * edges stay sharp and nothing can fold. Amplitude √weight and landing error are interpolated
+ * linearly along the lattice line, which integrates the overlap of each row exactly. The shear is
+ * fixed in direction cosine, not in lattice cells: each pair opens by the cells that λν spans at its
+ * own centre, because the lattice maps onto the exit pupil unevenly at a wide-angle corner (one lag
+ * for the whole pupil read a 43° corner 0.005 high). No optical path, reference
  * sphere or validity gate is involved, and the estimate tends to the geometric OTF as ν → 0. What
  * limits it is sampling: the landing error must change slowly from one lattice cell to the next,
  * which grid refinement checks. The per-pair lag is a first-order correction: the five rays stay
@@ -70,7 +71,7 @@ interface ShearLattice {
 /**
  * Sheared-pair OTF of one wavelength's traced bundle.
  *
- * @param bundle - traced pupil samples on the launch lattice
+ * @param bundle - traced pupil samples on the stop (or launch-plane) lattice
  * @param reference - image point the OTF phase is measured from, shared by every wavelength of a field
  * @param wavelengthMm - wavelength in mm
  * @param frequencies - image-space frequencies in lp/mm
@@ -94,7 +95,7 @@ export function shearedOtf(
   // Image-space direction cosines, scaled by the image-space index, span the pupil in NA units.
   const slopeX = latticeCosineSlope(rays, "column", 0);
   const slopeY = latticeCosineSlope(rays, "row", 1);
-  // A beam one cell thin on an axis has no slope of its own there. Launch cells are square, so the other axis's
+  // A beam one cell thin on an axis has no slope of its own there. Lattice cells are square, so the other axis's
   // scale stands in: the pair then closes within one cell, as a slit that thin does, instead of never shearing.
   const stepX = slopeX > 0 ? slopeX : slopeY;
   const stepY = slopeY > 0 ? slopeY : slopeX;
