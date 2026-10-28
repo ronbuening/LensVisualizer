@@ -28,6 +28,7 @@ flowchart LR
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> |2| n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> |2| n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts
   n_src_optics_diagram_src_optics_diagram_runtimeSurface_ts --> n_external_src_optics_geometry
+  n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts --> n_external_src_optics_geometry
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_prescription
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_state
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> n_external_src_optics_types_ts
@@ -51,7 +52,7 @@ flowchart LR
 
 - Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: same folder (9), src/types (6), src/optics/types.ts (4), src/optics/geometry (3), src/optics/trace (2), src/optics/prescription, src/optics/state
+- Main outbound areas: same folder (9), src/types (6), src/optics/geometry (4), src/optics/types.ts (4), src/optics/trace (2), src/optics/prescription, src/optics/state
 - External consumers: src/optics/diagramGeometry.ts
 
 ## Files
@@ -64,4 +65,4 @@ flowchart LR
 | `renderDiagnostics.ts` | Render Diagnostics helper module | src/optics/geometry (2), same folder, src/optics/types.ts, src/types | same folder (2), src/optics/diagramGeometry.ts | computeElementRenderDiagnosticsForState |
 | `runtimeDiagramAdapter.ts` | Runtime Diagram Adapter helper module | same folder (5), src/optics/prescription, src/optics/state, src/optics/types.ts, src/types | src/optics/diagramGeometry.ts | createCoordinateTransforms, computeElementRenderDiagnostics, computeElementShapes, stateForRuntimeDiagram, computeStandaloneMirrorPaths |
 | `runtimeSurface.ts` | Runtime Surface helper module | src/optics/geometry, src/types | src/optics/diagramGeometry.ts | renderSag, sagSlope, gapTrimHeight, slopeTrimHeight |
-| `surfaceOutline.ts` | Surface Outline helper module | src/optics/types.ts | same folder (3), src/optics/diagramGeometry.ts | SVG_PATH_SUBDIVISIONS, DiagramPointTransform, surfaceSag, renderedSurfaceZ, surfacePathD, surfaceMaterialPathD |
+| `surfaceOutline.ts` | Surface Outline helper module | src/optics/geometry, src/optics/types.ts | same folder (3), src/optics/diagramGeometry.ts | SVG_PATH_SUBDIVISIONS, DiagramPointTransform, surfaceSag, outlineHeights, renderedSurfaceZ, surfacePathD, surfaceMaterialPathD |

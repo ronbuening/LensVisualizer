@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-28",
+    type: "fix",
+    summary:
+      "The iris of the Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Olympus 50mm f/1.4 now sits in air, so it can close at every f-number, and the Sonnar's junction rim was widened to pass its full f/2 beam",
+  },
+  {
+    date: "2026-10-28",
     type: "improvement",
     summary:
       "The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and rays a lens totally reflects before the stop count as vignetted in every analysis",
@@ -40,6 +46,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "fix",
     summary:
       "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary:
+      "The Voigtländer Nokton 50mm f/1's deep surface-8 rim now ends on a flat land at its stop instead of reaching through the iris",
   },
   {
     date: "2026-10-27",

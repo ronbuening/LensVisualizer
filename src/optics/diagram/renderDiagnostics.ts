@@ -46,9 +46,11 @@ function applyTrim(
 
 function slopeTrimHeightForState(surface: CompiledStateSurface, sd: number, maxSlopeTan: number): number {
   if (maxSlopeTan <= 0) return sd;
-  if (Math.abs(surface.profile.slope(sd)) <= maxSlopeTan) return sd;
+  /* A rim cut's land is flat: only the cap inside it is drawn with the surface's slope. */
+  const capEdge = surface.rimCut ? Math.min(sd, surface.rimCut.radius) : sd;
+  if (Math.abs(surface.profile.slope(capEdge)) <= maxSlopeTan) return sd;
   let lo = 0;
-  let hi = sd;
+  let hi = capEdge;
   for (let j = 0; j < BISECT_ITERATIONS; j++) {
     const mid = (lo + hi) / 2;
     if (Math.abs(surface.profile.slope(mid)) > maxSlopeTan) hi = mid;

@@ -220,6 +220,8 @@ const SURFACE_FIELDS: Readonly<Record<Exclude<keyof SurfaceData, "synthetic" | "
   nd: true,
   sd: true,
   innerSd: true,
+  rimCutDepthMm: true,
+  rimCutDepthSource: true,
   elemId: true,
   stopPlacement: true,
   interaction: true,
@@ -350,7 +352,18 @@ function ingestElement(element: Untyped, index: number, context: IngestContext):
 /* ── Surfaces, media and aspheres ── */
 
 /** Surface members read as written; the radius is read whether or not it is flat, and the medium is computed. */
-const SURFACE_READ_FIELDS = ["label", "R", "d", "sd", "innerSd", "stopPlacement", "interaction", "diffractive"];
+const SURFACE_READ_FIELDS = [
+  "label",
+  "R",
+  "d",
+  "sd",
+  "innerSd",
+  "rimCutDepthMm",
+  "rimCutDepthSource",
+  "stopPlacement",
+  "interaction",
+  "diffractive",
+];
 
 interface IngestedSurfaces {
   surfaces: CanonicalSurface[];
@@ -414,6 +427,8 @@ function ingestSurfaces(
       put(out, "sd", surface.sd);
     }
     put(out, "innerSd", surface.innerSd);
+    put(out, "rimCutDepthMm", surface.rimCutDepthMm);
+    put(out, "rimCutDepthSource", surface.rimCutDepthSource);
 
     /* V1 says what follows a surface twice, by `elemId` and by `nd`; the canonical medium says it once. */
     const elemId = surface.elemId;

@@ -49,3 +49,16 @@ Patent: JP2023-063766 A, Example 1
 - Surface and image-circle validators pass (0 undersized). Independent finite-conjugate, fixed-camera motion and hidden-trim regression tests pass (3). Full typecheck, format check, lint, 2,774 tests across 301 files, and build pass (1,267 prerendered routes). Glass reports regenerated; 15 report tests pass. Remaining gate: post-edit live visual check.
 
 - Live review resumed after manual unlock: localhost:5175 Nokton viewed at focus 0, 0.5 and 1; BF readouts 18.74, 22.44 and 26.13 mm. Motion chart shows both groups moving objectward with 7.39 mm maximum travel. Aperture endpoint f/16 displays a 2.08 mm stop diameter while correctly retaining the wide-open EP label. Revised rear optical profiles show no overlaps. Lens review complete; commit deferred to lenses 3–10 batch per revised user instruction.
+
+## 2026-10-27 — Rim cut on surface 8 at the printed stop
+
+- Surface 8 (R = −40.995, concave to the object) sags 3.691 mm forward at its inferred 17 mm rim, past the printed
+  stop plane 3.24 mm ahead of its vertex. The cap crossed that plane at r = 15.97 mm, inside the derived 16.628 mm
+  f/1 iris, so the outer part of the iris stroke lay in glass.
+- Surface 8 now carries `rimCutDepthMm: 3.24`: a flat, opaque land on the stop plane from r = 15.97 mm out to the
+  unchanged 17 mm rim, and the iris lies in air over its stroke. A ray that crosses the stop plane above 15.97 mm
+  meets the uncut cap behind that plane; the trace steps back to it and clips the ray on the land. No traced ray of
+  the wide-open beam gets there: the beams reach 15.35 mm at surface 8 (at 1.2°, infinity focus), 0.62 mm inside the
+  cut radius, so the inferred cut clears the rim-cut beam rule's 0.05 mm margin.
+- The axial beam is unchanged (f/1 traces f/1.10, limited by rim 4), as are the 23.95°
+  half field and the stop radius. No patent value changed; the drawn L4 front now ends in the land at the stop plane.

@@ -6,6 +6,7 @@
  */
 
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
+import { cutOutlineSag } from "../geometry/rimCut.js";
 
 /** Number of straight SVG segments used per rendered surface curve. */
 export const SVG_PATH_SUBDIVISIONS = 96;
@@ -24,10 +25,27 @@ export type DiagramPointTransform = (z: number, y: number) => [number, number];
  *
  * @param surface - current prepared surface
  * @param height - signed meridional height in mm
- * @returns sag in mm relative to the surface vertex
+ * @returns sag in mm relative to the surface vertex; a rim cut's land beyond its radius
  */
 export function surfaceSag(surface: CompiledStateSurface, height: number): number {
-  return surface.profile.sag(Math.abs(height));
+  return cutOutlineSag(surface.profile.sag, surface.rimCut, Math.abs(height));
+}
+
+/**
+ * Signed heights at which to sample one surface curve from `-trim` to `+trim`.
+ *
+ * `SVG_PATH_SUBDIVISIONS + 1` even steps, with the corners of a rim cut's land added so the cap meets it square.
+ *
+ * @param surface - current prepared surface
+ * @param trim - display semi-diameter in mm
+ * @returns ascending heights in mm
+ */
+export function outlineHeights(surface: CompiledStateSurface, trim: number): number[] {
+  const heights: number[] = [];
+  for (let i = 0; i <= SVG_PATH_SUBDIVISIONS; i++) heights.push(-trim + (2 * trim * i) / SVG_PATH_SUBDIVISIONS);
+  const corner = surface.rimCut?.radius;
+  if (corner === undefined || corner >= trim) return heights;
+  return [...heights, -corner, corner].sort((a, b) => a - b);
 }
 
 /**
@@ -35,12 +53,15 @@ export function surfaceSag(surface: CompiledStateSurface, height: number): numbe
  *
  * Tilted mirror planes and image-plane-like profiles can change z/y together, so
  * callers must ask the profile for a point instead of adding sag to `surface.z`.
+ * Beyond a rim cut's radius the point is on the cut's flat land.
  *
  * @param surface - current prepared surface
  * @param y - signed meridional height in mm
  * @returns optical z coordinate in mm
  */
 export function renderedSurfaceZ(surface: CompiledStateSurface, y: number): number {
+  const cut = surface.rimCut;
+  if (cut && Math.abs(y) > cut.radius) return surface.z + cut.sag;
   return surface.profile.pointAt(surface.z, 0, y)[2];
 }
 
@@ -75,8 +96,7 @@ export function surfacePathD(
   };
 
   let path = "";
-  for (let i = 0; i <= SVG_PATH_SUBDIVISIONS; i++) {
-    const y = -trim + (2 * trim * i) / SVG_PATH_SUBDIVISIONS;
+  for (const [i, y] of outlineHeights(surface, trim).entries()) {
     path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(surface, y), y)} `;
   }
   return path;

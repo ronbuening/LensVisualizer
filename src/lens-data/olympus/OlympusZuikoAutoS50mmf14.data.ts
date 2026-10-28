@@ -22,10 +22,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    to the full-frame corner (23.8°, just past the patent's        ║
  * ║    ω = 23°); L7's edge thins to 0.20 mm there, below the 0.7 mm   ║
  * ║    target (2026-09-24 field-coverage audit).                      ║
+ * ║    Surfaces 4, 5, 7-11 stand 1 % above the f/1.4 on-axis ray      ║
+ * ║    at the paraxial pupil, rounded up to 0.1 mm (L5 and L6 square, ║
+ * ║    as FIG. 1 draws them); each stays inside the drawn element.    ║
+ * ║    The paraxial F/N iris admits a beam 6.8 % wider (pupil         ║
+ * ║    spherical aberration), which no rim inside FIG. 1 passes:      ║
+ * ║    f/1.4 traces f/1.48, limited at r₅ (2026-10-28 audit).         ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
- * ║    STO position inferred from Fig. 1 — approximately 25% of the  ║
- * ║    d₆ air gap from r₆, splitting the gap into 4.20 + 12.59 mm.  ║
+ * ║    Fig. 1 draws no diaphragm, so the stop plane is a model        ║
+ * ║    choice: 7.80 mm behind r₆, just behind r₆'s clear cap (sag     ║
+ * ║    7.72 mm at its 12.4 mm rim), splitting d₆ into 7.80 + 8.985.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:          ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -157,15 +164,15 @@ const LENS_DATA = {
     { label: "1", R: 30.735, d: 5.79, sd: 18.5, medium: 1 },
     { label: "2", R: 145.26, d: 0.095, sd: 18.5 },
     { label: "3", R: 23.69, d: 3.885, sd: 16.5, medium: 2 },
-    { label: "4", R: 40.01, d: 2.34, sd: 15.0 },
-    { label: "5", R: 53.085, d: 1.015, sd: 13.0, medium: 3 },
-    { label: "6", R: 13.82, d: 4.196, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
-    { label: "STO", R: "flat", d: 12.589 }, // STO position inferred from Fig. 1
-    { label: "7", R: -14.92, d: 0.965, sd: 11.5, medium: 4 },
-    { label: "8", R: 792.345, d: 5.8, sd: 13.0, medium: 5 },
-    { label: "9", R: -25.565, d: 0.095, sd: 13.0 },
-    { label: "10", R: -53.085, d: 4.45, sd: 14.0, medium: 6 },
-    { label: "11", R: -23.38, d: 0.115, sd: 14.0 },
+    { label: "4", R: 40.01, d: 2.34, sd: 15.5 },
+    { label: "5", R: 53.085, d: 1.015, sd: 14.6, medium: 3 },
+    { label: "6", R: 13.82, d: 7.8, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
+    { label: "STO", R: "flat", d: 8.985 }, // model choice: just behind r6's clear cap (sag 7.72 mm)
+    { label: "7", R: -14.92, d: 0.965, sd: 11.6, medium: 4 },
+    { label: "8", R: 792.345, d: 5.8, sd: 14.9, medium: 5 },
+    { label: "9", R: -25.565, d: 0.095, sd: 14.9 },
+    { label: "10", R: -53.085, d: 4.45, sd: 15.8, medium: 6 },
+    { label: "11", R: -23.38, d: 0.115, sd: 15.8 },
     { label: "12", R: 93.92, d: 2.85, sd: 16.5, medium: 7 },
     { label: "13", R: -114.865, sd: 16.5 },
   ],

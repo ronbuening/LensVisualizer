@@ -39,8 +39,8 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 | `chromatic.ts` | Channel metadata, spectral lines, dispersion compilation/resolution/quality and chromatic ray tracing |
 | `glassCatalog.ts` | Glass entries, catalog resolution, tolerances and index evaluation |
 | `publishedStations.ts` | Published station grids, coordinates, labels and availability |
-| `validation.ts` | Named `validateLensData`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
-| `geometry.ts` | Positional sag functions, numerical geometry constants and shared vector helpers |
+| `validation.ts` | Named `validateLensData`, `validateCanonicalLens`, `validateTeleconverterData`, the rim-cut beam rule (`validateRimCutBeams`, `rimCutBeamReach`) and schema helpers |
+| `geometry.ts` | Positional sag functions, numerical geometry constants, shared vector helpers and a surface's clear radius under a rim cut (`clearSemiDiameter`) |
 | `types.ts` | Engine types and preparation errors |
 | `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers; loaded only by `scripts/lens-data-convert/load.mjs` outside focused tests |
 

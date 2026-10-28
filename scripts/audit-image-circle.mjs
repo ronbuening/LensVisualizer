@@ -39,7 +39,9 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 
 const { IMAGE_FORMAT_BY_ID } = await import(pathToFileURL(join(ROOT, "src/utils/catalog/lensTaxonomy.ts")).href);
-const { ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { clearSemiDiameter } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
+const { prepareRuntimeState } = await import(pathToFileURL(join(ROOT, "src/optics/optics.ts")).href);
 
 /** Collect every `*.data.ts` under src/lens-data. */
 function allLensFiles() {
@@ -103,9 +105,14 @@ async function auditLens(file) {
   const fieldSlope = Math.max(1, semiDiagonal / focalLength);
   const wide = semiDiagonal / focalLength > 0.9;
 
+  /* A rim cut's radius, not its sd, is the surface's clear radius. */
+  const compiled = lens.surfaces.some((surface) => surface.rimCutDepthMm !== undefined)
+    ? prepareRuntimeState(buildLens(lens), 0, 0).surfaces
+    : null;
   let z = 0;
-  const surfaces = lens.surfaces.map((surface) => {
-    const row = { ...surface, z };
+  const surfaces = lens.surfaces.map((surface, i) => {
+    const cut = compiled?.[i]?.rimCut ?? null;
+    const row = { ...surface, sd: surface.sd === undefined ? surface.sd : clearSemiDiameter(surface.sd, cut), z };
     z += surface.d;
     return row;
   });

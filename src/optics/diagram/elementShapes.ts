@@ -7,7 +7,13 @@
 
 import type { AsphPathData, ElementShape, ElementSpan, SurfaceAccentPathData } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import { renderedSurfaceZ, surfacePathD, surfaceMaterialPathD, SVG_PATH_SUBDIVISIONS } from "./surfaceOutline.js";
+import {
+  outlineHeights,
+  renderedSurfaceZ,
+  surfacePathD,
+  surfaceMaterialPathD,
+  SVG_PATH_SUBDIVISIONS,
+} from "./surfaceOutline.js";
 import type { DiagramPointTransform } from "./surfaceOutline.js";
 import { computeElementRenderDiagnosticsForState } from "./renderDiagnostics.js";
 
@@ -53,15 +59,12 @@ export function computeElementShapesForState(
     const surfacePath = (surfaceIndex: number, trim: number): string =>
       surfacePathD(state, surfaceIndex, trim, sx, sy, pointTransform);
 
+    const frontHeights = outlineHeights(front, trim1);
+    const rearHeights = outlineHeights(rear, trim2).reverse();
+
     let d = "";
-    for (let i = 0; i <= NN; i++) {
-      const y = -trim1 + (2 * trim1 * i) / NN;
-      d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(front, y), y)} `;
-    }
-    for (let i = NN; i >= 0; i--) {
-      const y = -trim2 + (2 * trim2 * i) / NN;
-      d += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
-    }
+    for (const [i, y] of frontHeights.entries()) d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(front, y), y)} `;
+    for (const y of rearHeights) d += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
 
     const inner = Math.min(Math.min(trim1, trim2), Math.max(front.innerSd ?? 0, rear.innerSd ?? 0));
     const fillRule = inner > 0 ? "evenodd" : undefined;
@@ -96,10 +99,7 @@ export function computeElementShapesForState(
     if (rear.asphere) {
       const p = surfacePath(s2, trim2);
       let hp = `M${pathPoint(midZ, -trim2)} L${pathPoint(midZ, trim2)} `;
-      for (let i = NN; i >= 0; i--) {
-        const y = -trim2 + (2 * trim2 * i) / NN;
-        hp += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
-      }
+      for (const y of rearHeights) hp += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
       hp += "Z";
       const [labelX, labelY] = screenPoint(renderedSurfaceZ(rear, -trim2), -trim2);
       asphPaths.push({

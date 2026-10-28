@@ -11,7 +11,8 @@
  *
  * Diagnoses (stations more than `--over` away from the stated value, 3 % by default):
  *
- *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
+ *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label; a limiter
+ *             marked "(rim cut)" is a surface's `rimCutDepthMm` land, inside its semi-diameter
  *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
  *             named, or its line meets the next surface in neither direction (`noBracket`); a surface behind the
  *             last hit is met by a step backwards, as in every sequential trace. Or the ray toward the iris rim
@@ -80,9 +81,12 @@ function axialBeam(state, statedRadius) {
       { ghost: true },
     );
     for (const hit of trace.hits) {
-      const sd = state.surfaces[hit.surfaceIndex].sd;
+      const { sd, rimCut } = state.surfaces[hit.surfaceIndex];
       if (typeof sd === "number" && hit.radius > sd * (1 + 1e-9)) {
         return { label: hit.surfaceLabel, index: hit.surfaceIndex };
+      }
+      if (rimCut && hit.radius > rimCut.radius * (1 + 1e-9)) {
+        return { label: `${hit.surfaceLabel} (rim cut)`, index: hit.surfaceIndex };
       }
       if (hit.failureReason) {
         return { label: `${hit.surfaceLabel} (${hit.failureReason})`, index: hit.surfaceIndex, failed: true };
@@ -203,6 +207,13 @@ for (const path of files) {
   const stations = L.isZoom ? data.zoom.stations.length : 1;
   const stopLabel = L.S[L.stopIdx].label;
   const needs = new Map();
+  /* A rim cut's radius is not a semi-diameter: raising sd does not move the land. */
+  const cutRadii = new Map(
+    L.S.flatMap((surface, i) => {
+      const cut = prepareRuntimeState(L, 0, 0).surfaces[i].rimCut;
+      return cut ? [[surface.label, cut.radius]] : [];
+    }),
+  );
   let untraceable = false;
   for (let zi = 0; zi < stations; zi++) {
     const zoomT = stations > 1 ? zi / (stations - 1) : 0;
@@ -258,7 +269,7 @@ for (const path of files) {
   }
   if (RAISE) {
     const changes = data.surfaces
-      .filter((surface) => surface.label !== "STO" && typeof surface.sd === "number")
+      .filter((surface) => surface.label !== "STO" && typeof surface.sd === "number" && !cutRadii.has(surface.label))
       .map((surface) => ({ label: surface.label, from: surface.sd, need: needs.get(surface.label) ?? 0 }))
       .filter((change) => change.need > change.from * (1 + 1e-9))
       .map((change) => ({ ...change, to: roundUpLike(change.from, change.need) }));
@@ -271,6 +282,9 @@ for (const path of files) {
         "nominalFno faster than design",
       data.source.errata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
       changes.some((change) => change.to / change.from - 1 > RAISE_REVIEW) && "raise over 15 %: read the figure",
+      ...[...cutRadii]
+        .filter(([label, radius]) => (needs.get(label) ?? 0) > radius * (1 + 1e-9))
+        .map(([label]) => `rim cut on ${label} clips the stated beam`),
     ].filter(Boolean);
     /* Per element whose two faces share one value now and would end apart: the height a square-cut rim would carry. */
     const after = new Map(data.surfaces.map((surface) => [surface.label, surface.sd]));
@@ -290,7 +304,7 @@ for (const path of files) {
         squares.push({ front: front.label, rear: rear.label, value: Math.max(a, b) });
       }
     }
-    if (changes.length > 0 || untraceable) {
+    if (changes.length > 0 || untraceable || flags.some((flag) => flag.startsWith("rim cut"))) {
       raises.push({ key: data.key, name: data.name, file: relative(LENS_DIR, path), changes, squares, flags });
     }
   }

@@ -287,6 +287,189 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
   });
 }
 
+/**
+ * Positive meniscus whose concave rear (R = 20, sd = 12) sags 4 mm rearward at its rim. `rimCutDepthMm` cuts that
+ * rim flat; at 2 mm the cap ends at r = √76 ≈ 8.718 mm.
+ */
+export function buildRimCutLens(
+  rimCutDepthMm?: number,
+  key = "test-rim-cut-lens",
+  rearSd = 12,
+  rimCutDepthSource?: string,
+  overrides: Partial<LensData> = {},
+): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    ...overrides,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      {
+        label: "2",
+        R: 20,
+        nd: 1.0,
+        sd: rearSd,
+        d: 80,
+        elemId: 0,
+        ...(rimCutDepthMm === undefined ? {} : { rimCutDepthMm }),
+        ...(rimCutDepthSource === undefined ? {} : { rimCutDepthSource }),
+      },
+    ],
+  });
+}
+
+/**
+ * A stop `stopGap` mm ahead of a singlet whose concave front (R = −20, sd = 12) reaches forward toward it, cut
+ * `rimCutDepthMm` deep. A depth equal to `stopGap` puts the land on the stop plane. `A4` makes the front aspheric.
+ */
+export function buildFrontRimCutLens(
+  rimCutDepthMm: number,
+  stopGap: number,
+  A4 = 0,
+  key = "test-front-rim-cut",
+): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: stopGap, elemId: 0 },
+      { label: "1", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 1, rimCutDepthMm },
+      { label: "2", R: -40, nd: 1.0, sd: 12, d: 80, elemId: 0 },
+    ],
+    ...(A4 ? { asph: { "1": { K: 0, A4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } : {}),
+  });
+}
+
+/**
+ * The rim-cut meniscus (concave rear R = 20, cut `rearDepthMm` deep) and, 10 mm behind it, a second meniscus whose
+ * concave front (R = −20, sd = 12) is cut `frontDepthMm` deep: two inferred cuts the outer rays of the beams cross.
+ */
+export function buildTwoRimCutLens(rearDepthMm: number, frontDepthMm: number, key = "test-two-rim-cuts"): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      { label: "2", R: 20, nd: 1.0, sd: 12, d: 10, elemId: 0, rimCutDepthMm: rearDepthMm },
+      { label: "3", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 2, rimCutDepthMm: frontDepthMm },
+      { label: "4", R: -15, nd: 1.0, sd: 12, d: 60, elemId: 0 },
+    ],
+  });
+}
+
+/**
+ * A two-station zoom on a 1-inch format: a stop, a biconvex singlet (R = ±80) and, 20 mm behind it at the short
+ * station and 70 mm at the long one, a meniscus whose concave front (R = −200, sd = 12) is cut `rimCutDepthMm` deep.
+ * The chief ray meets the meniscus at the gap times the field's slope, and the slope falls as the focal length grows,
+ * so the beams reach furthest there between the stations. `station` builds that station alone, as a prime; `focus`
+ * builds a prime that moves the meniscus from the long station's gap at infinity to the short one's close up.
+ */
+export function buildTwoStationRimCutLens(
+  rimCutDepthMm: number,
+  station?: 0 | 1,
+  key = "test-two-station-rim-cut",
+  focus = false,
+): RuntimeLens {
+  const gaps = [20, 70];
+  const stationSurfaces = (gap: number, backFocus = 0): SurfaceData[] => [
+    { label: "STO", R: 1e15, nd: 1.0, sd: 4, d: 1, elemId: 0 },
+    { label: "1", R: 80, nd: 1.5168, sd: 8, d: 5, elemId: 1 },
+    { label: "2", R: -80, nd: 1.0, sd: 8, d: gap, elemId: 0 },
+    { label: "3", R: -200, nd: 1.5168, sd: 12, d: 9, elemId: 2, rimCutDepthMm },
+    { label: "4", R: -16, nd: 1.0, sd: 12, d: backFocus, elemId: 0 },
+  ];
+  const backFoci = gaps.map((gap) => paraxialImageDistance(stationSurfaces(gap)));
+  const focalLengths = gaps.map((gap) => -1 / paraxialTrace(stationSurfaces(gap), 1, 0, { skipLastTransfer: true }).u);
+  const at = focus ? 1 : (station ?? 0);
+  const zoom = {
+    nominalFno: [8, 8],
+    zoomPositions: focalLengths.map((focalLength) => Math.round(focalLength * 100) / 100),
+    var: {
+      "2": gaps.map((gap): [number, number] => [gap, gap]),
+      "4": backFoci.map((gap): [number, number] => [gap, gap]),
+    },
+  };
+  const keyframes = {
+    nominalFno: 8,
+    var: { "2": [gaps[1], gaps[0]] as [number, number], "4": [backFoci[1], backFoci[0]] as [number, number] },
+  };
+  return buildFixture({
+    key,
+    imageFormat: "1-inch-type",
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: stationSurfaces(gaps[at], backFoci[at]),
+    fstopSeries: [8, 11, 16],
+    ...(focus ? keyframes : station === undefined ? zoom : { nominalFno: 8 }),
+  });
+}
+
+/** A plane window: its clear radius, the gap after it, and that gap at close focus when focus moves it. */
+interface FixtureWindow {
+  sd: number;
+  gap: number;
+  closeGap?: number;
+}
+
+/**
+ * The rim-cut meniscus of `buildRimCutLens()` (concave rear R = 20, cut `rimCutDepthMm` deep) `stopGap` mm behind its
+ * stop, on a full-frame format, with plane windows that vignette its off-axis beams. A `front` window ahead of the stop
+ * clips the bottom of the stop as the field grows, so the top survives until the beam vanishes and the reach at the
+ * cut peaks there; moved away by focus, it makes the beam vanish inside the field the lens traces at infinity. A
+ * `rear` window behind the meniscus clips the top of the beam, so the reach peaks where it takes over the top edge.
+ * The image stays 80 mm behind the meniscus.
+ */
+export function buildVignettedRimCutLens({
+  rimCutDepthMm,
+  stopGap = 1,
+  stopCloseGap,
+  front,
+  rear,
+  meniscus = { front: 15, rear: 20, sd: 12 },
+  nominalFno = 8,
+  key = "test-vignetted-rim-cut",
+}: {
+  rimCutDepthMm?: number;
+  stopGap?: number;
+  stopCloseGap?: number;
+  front?: FixtureWindow;
+  rear?: FixtureWindow;
+  meniscus?: { front: number; rear: number; sd: number };
+  nominalFno?: number;
+  key?: string;
+}): RuntimeLens {
+  const window = (id: number, at: FixtureWindow, label: string): SurfaceData[] => [
+    { label: `${label}1`, R: 1e15, nd: 1.5168, sd: at.sd, d: 2, elemId: id },
+    { label: `${label}2`, R: 1e15, nd: 1.0, sd: at.sd, d: at.gap, elemId: 0 },
+  ];
+  const cut = rimCutDepthMm === undefined ? {} : { rimCutDepthMm };
+  return buildFixture({
+    key,
+    nominalFno,
+    fstopSeries: [nominalFno, nominalFno * 2],
+    imageFormat: "135-full-frame",
+    elements: [1, ...(front ? [2] : []), ...(rear ? [3] : [])].map((id) => ({
+      ...BASE_ELEMENT,
+      id,
+      name: `Fixture element ${id}`,
+      label: `L${id}`,
+    })),
+    surfaces: [
+      ...(front ? window(2, front, "F") : []),
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: stopGap, elemId: 0 },
+      { label: "1", R: meniscus.front, nd: 1.5168, sd: meniscus.sd, d: 6, elemId: 1 },
+      { label: "2", R: meniscus.rear, nd: 1.0, sd: meniscus.sd, d: rear ? rear.gap : 80, elemId: 0, ...cut },
+      ...(rear ? window(3, { sd: rear.sd, gap: 78 - rear.gap }, "R") : []),
+    ],
+    var: {
+      ...(front?.closeGap === undefined ? {} : { F2: [front.gap, front.closeGap] }),
+      ...(stopCloseGap === undefined ? {} : { STO: [stopGap, stopCloseGap] }),
+    },
+  });
+}
+
 /** Source-style rear plate: 2 mm N-BK7 cover glass followed by 1 mm air to the image plane. */
 export const REAR_PLATE_FIXTURE: RearPlateData = Object.freeze({
   label: "CG",
