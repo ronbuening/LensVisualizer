@@ -93,6 +93,7 @@ export interface SurfaceIntersectionOptions {
 /** Successful ray/surface intersection with geometry at the hit point. */
 export interface SurfaceIntersectionSuccess {
   ok: true;
+  /** Ray parameter of the hit; negative only for a sequential step backwards (`intersectSequentialSurface`). */
   t: number;
   point: Vec3;
   radius: number;
@@ -101,7 +102,9 @@ export interface SurfaceIntersectionSuccess {
   /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
   effectiveTolerance: number;
   iterations: number;
+  /** Signed length from the origin to the hit, in mm: `t` along a normalized direction. */
   segmentLength: number;
+  /** Refractive index times `segmentLength`, with its sign; null when no index was given. */
   opticalPathLength: number | null;
   /**
    * How the closed form fared on this solve. `intersectSurfaceProfile` alone sets it: null when the closed form

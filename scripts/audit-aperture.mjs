@@ -12,7 +12,8 @@
  *
  *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
  *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
- *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`)
+ *             named, or its line meets the next surface in neither direction (`noBracket`); a surface behind the
+ *             last hit is met by a step backwards, as in every sequential trace
  *   iris      the iris itself is not the stated one: `zoomApertureModel: "fixed-iris"`, a published
  *             `zoomStopSemiDiameters` schedule, an embedded glass stop that keeps its authored radius, or a derived
  *             iris at its paraxial radius because the stated marginal ray cannot be real-traced to the stop
