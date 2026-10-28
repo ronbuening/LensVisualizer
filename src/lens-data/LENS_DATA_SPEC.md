@@ -694,16 +694,19 @@ there out to `sd`.
 - **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
   short stroke square to the axis. Measure the cap end as a share of the edge radius on the figure, put the cut radius
   at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. The cut is inferred, so it must clear
-  every traced beam (below): where the beams reach past the figure's cap end, move the cut out to them, and skip a
-  land too short to measure.
-- **Inferred or sourced:** a depth the source does not state is inferred, and such a cut may not stop any traced ray
-  of the wide-open beam, at any field from the axis to the half field, zoom station or focus keyframe
-  (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
-  `npm run audit:surface`). A depth the source states names it in `rimCutDepthSource`; that cut may cut into the
-  beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
+  every traced beam by its margin (below): where the beams reach past the figure's cap end less that margin, move the
+  cut out until it clears them, and leave out a land too short to measure.
+- **Inferred or sourced:** a depth the source does not state is inferred, and such a cut's radius must clear the
+  furthest traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of the radius, at every field, zoom
+  and focus (`validateRimCutBeams` in `src/optics/prescription/validate/rimCutBeams.ts`, run by the catalog sweep and
+  `npm run audit:surface`). The beams are traced through the lens with its inferred cuts removed and over that lens's
+  field range, with zoom and focus stepped by 0.05 between stations and keyframes, collimated or from the source's
+  finite object point where a keyframe has a conjugate. A lens with a field that launches any other way (a fisheye, a
+  field past 89°) cannot carry an inferred cut. A depth the source states names it in `rimCutDepthSource`; that cut
+  may cut into the beam, and `npm run audit:aperture` names such a limiter `<label> (rim cut)`.
 - **Validation:** the depth is positive and smaller than the cap's sag at `sd`, and the cap stays at or beyond it
   out to `sd`; the vertex side is glass and the side the rim bends toward is air; not on the stop, an annular
-  surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond the cut
+  surface, a diffractive surface, one with an `interaction`, or any surface of a folded (`opticalPath`) lens, where a ray beyond the cut
   would pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the
   cut radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop
   plane, and the land clears the surface across its gap within `checks.gapSagFrac`.
@@ -1515,7 +1518,7 @@ Code: `src/optics/prescription/validate/`.
 | `projection` kind, fields and field-angle bounds | `validateProjection` (`schema.ts`) |
 | `perspectiveControl` ranges, steps and pivot; `catalog.imageFormat` present; not with `opticalPath` | `validatePerspectiveControl` (`schema.ts`), `validateTopLevel` |
 | `rearPlates` field bounds; not with folded paths or `perspectiveControl` | `validateRearPlates` (`schema.ts`) |
-| Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
+| Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
 | Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
@@ -1532,7 +1535,7 @@ Code: `src/optics/prescription/validate/`.
 | A tilted flat mirror's backing plane repeats its normal; a declared image plane is reached by a probe ray, on a path that is not `"auto"` and names no surface twice | `validateTiltedMirrorBackingNormals`, `validateFoldedImagePlaneReachability` (`folded.ts`) |
 | Diffractive kind, wavelength, order and terms | `validateDiffractivePhase` (`diffractive.ts`) |
 | A rim cut is reached inside `sd`, bounds the glass out to `sd`, and cuts glass whose rim bends into air; edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station; edge, slope and cross-gap sag read a rim cut's land; a land stays behind an adjacent stop plane and clears the gap across it at every zoom × focus state | `validateGeometry`, `validateRimCuts`, `validateRimCutClearances` (`geometry.ts`) |
-| An inferred rim cut stops no traced ray of the wide-open beam at any field, zoom station or focus keyframe (on a built lens, outside `validateLensData`) | `validateRimCutBeams` (`rimCutBeams.ts`) |
+| An inferred rim cut clears every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its radius at every field, zoom and focus, traced without the inferred cuts; a field it cannot launch refuses the cuts (on a built lens, outside `validateLensData`) | `validateRimCutBeams` (`rimCutBeams.ts`) |
 
 A patent declaration (a number or named parties) requires a non-empty, trimmed publication number and both party
 arrays. Empty arrays retain their source meaning above. A year alone or empty party lists without a patent number

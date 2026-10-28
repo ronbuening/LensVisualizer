@@ -459,6 +459,21 @@ export function prepareAimedPupilTrace(
   };
 }
 
+/**
+ * The rays of a field's launch frame, by launch coordinates: the frame `launch` coordinates of returned samples are in.
+ * For callers that step between returned launches, as the rim-cut beam rule bisects from the chief toward a rim sample.
+ *
+ * @param state - prepared geometry the launch was aimed through
+ * @param geometry - the field launch the samples were aimed with
+ * @returns the ray at launch coordinates (a, b)
+ */
+export function aimedLaunchFrameRay(
+  state: PreparedGeometry,
+  geometry: AimedPupilFieldGeometry,
+): (a: number, b: number) => Ray3 {
+  return launchFrame(state, geometry).ray;
+}
+
 function channelTraceOptions(
   state: PreparedGeometry,
   channel: ChromaticChannel | undefined,

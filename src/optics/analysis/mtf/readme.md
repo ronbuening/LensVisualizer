@@ -76,7 +76,7 @@ flowchart LR
 - Direct source files: 13
 - Direct subfolders: 0
 - Main outbound areas: src/optics/analysis (36), src/optics/trace (9), src/optics/types.ts (9), src/types (9), src/optics/prescription (4), src/optics/state (4), src/optics/chromatic (3), src/optics/field (2), +3 more
-- External consumers: src/optics/analysis, src/optics/mtf.ts
+- External consumers: src/optics/analysis, src/optics/mtf.ts, src/optics/prescription
 
 ## Files
 
@@ -84,7 +84,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `mtf.ts` | Mtf helper module | src/optics/analysis (15), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
 | `mtfAperture.ts` | Mtf Aperture helper module | src/optics/analysis (3), src/optics/trace (2), src/optics/types.ts, src/types | src/optics/analysis | resolveMtfAperture |
-| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
+| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/prescription | mtfFiniteConjugate, mtfFiniteObjectPoint |
 | `mtfConstants.ts` | Mtf Constants helper module | src/types | src/optics/analysis (3), src/optics/mtf.ts | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_FOCUS_MODES, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, +12 more |
 | `mtfDataLimitations.ts` | Mtf Data Limitations helper module | src/optics/analysis, src/optics/types.ts, src/types | src/optics/mtf.ts | MtfDataLimitationInput, assessMtfDataLimitations |
 | `mtfFields.ts` | Mtf Fields helper module | src/optics/state (2), src/optics/analysis, src/optics/field, src/optics/math, src/optics/prescription, +4 more | src/optics/analysis | MtfFieldTarget, MtfChiefHeight, MtfBeyondChiefClip, mtfModeledHalfField, declaredFormatRadiusMm, resolveMtfFieldGeometry, resolveMtfFieldTargets, mtfChiefHeight, +2 more |

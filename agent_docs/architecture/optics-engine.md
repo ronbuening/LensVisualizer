@@ -1151,9 +1151,15 @@ traces agree; `runtimeRayResult.ts` draws a cut-clipped ray to the land while th
 read the land's sag for gap, edge and slope checks. The cut is state-independent, since it belongs to the glass.
 The clear radius (`clearSemiDiameter`) also bounds the half-field estimates and the field-coverage and image-circle
 audits. The sequential search runs forward from the last hit, so a land on a stop plane leaves a ray above the cut
-radius failing with `noBracket` before `evaluateAperture` runs. `validateRimCutBeams` (`prescription/validate/`) traces
-a built lens: an inferred cut (no `rimCutDepthSource`) may not stop any ray of the wide-open beam at any field, zoom
-station or focus keyframe. It runs in the catalog sweep and `audit:surface`, not in compile-time validation.
+radius failing with `noBracket` before `evaluateAperture` runs. `validateRimCutBeams` (`prescription/validate/`) applies
+the spec's beam rule to a built lens, in the catalog sweep and `audit:surface` rather than compile-time validation. It
+recompiles the lens with its inferred cuts removed, without the validator (a cut can hide a rim it would refuse), and
+traces that lens wide open at its own stop radius: a screen over zoom and focus in steps of 0.05 and fields at 3° or
+less, bisecting each beam's edge in twelve launch-plane directions; a field bisection wherever the aperture setting a
+meridional edge changes, where the reach peaks sharply; then, at each cut's highest peaks, 360 samples aimed at the
+stop's rim (`prepareAimedPupilLaunchForState`), each bisected back to the vignetted edge and the furthest refined along
+the rim. Finite-conjugate keyframes launch from `mtfFiniteObjectPoint`; a field launched any other way is reported, and
+refuses the cuts.
 
 ## Mirror And Folded Optical Paths
 
