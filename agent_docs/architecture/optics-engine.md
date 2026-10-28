@@ -133,10 +133,9 @@ On a lens `mtfMirrorSymmetric` accepts, the +x half is traced and mirrored; the 
 meridian. Each ladder level's lattice is seeded from the same wavelength's lattice half as fine (see Lattices under
 [Pupil Convention](#pupil-convention)), so a cell costs about one stop trace where a lone sample spends three to six. The grid ladder, refinement and convergence keep their meaning with
 `gridSize` counted across the stop instead of across the beam, so a vignetted beam fills fewer cells of the same grid
-than before. That coarsening is systematic where the beam is cut: more outer fields end unconverged at the 128-cell cap
-(236 converged → unconverged against 98 over the catalog, 112 to 8 where fewer than 80 % of main's rays are lit). The
-cap stays, as OpticStudio samples a vignetted beam with fewer cells of the same pupil grid, and such fields are
-labelled unconverged (`agent_docs/decisions.md`). A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
+than before. That coarsening is systematic where the beam is cut, so the outer fields of fast lenses can need 256
+cells to converge: the default cap (`MTF_DEFAULT_GRID_CAP`, the tab's Standard) is 256, and a field converged earlier
+never traces that level. The tab's Faster choice caps at 128 and labels the rest unconverged (`agent_docs/decisions.md`). A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
 both refine, since a finer lattice can find a thin beam. No footprint scan or expansion runs where the stop defines the
 extent. What remains of launch-plane sampling: a field the aimed launch reaches only through the bounding sphere
 (`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
@@ -211,7 +210,7 @@ keeps the design's focus at its reference line. Compatible catalog glass is expl
 spectral proxy. Complex OTFs combine, weighted by incident line weight × transmitted flux, before magnitude, which
 retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
 
-**Convergence and focus.** Grids refine 16 → 256 up to `maxGridSize`. Convergence is
+**Convergence and focus.** Grids refine 16 → 256 up to `maxGridSize` (256 by default). Convergence is
 judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
 noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at

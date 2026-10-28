@@ -1,6 +1,6 @@
 # src/optics/analysis/mtf
 
-This folder computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice. A vignetted beam spans fewer cells of that lattice than of the old launch-plane grid, so more outer fields end unconverged at the 128-cell cap, as in OpticStudio; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so.
+This folder computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice. A vignetted beam spans fewer cells of that lattice than of the old launch-plane grid, so outer fields of fast lenses can need the default 256-cell cap to converge; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 

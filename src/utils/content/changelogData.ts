@@ -28,7 +28,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-28",
     type: "improvement",
     summary:
-      "The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and rays a lens totally reflects before the stop count as vignetted in every analysis",
+      "The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and refines slow-converging fields to 256 samples by default; rays a lens totally reflects before the stop count as vignetted in every analysis",
   },
   {
     date: "2026-10-28",

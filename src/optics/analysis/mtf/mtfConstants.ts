@@ -12,7 +12,11 @@ export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);
 
 /** Grid sizes a request may cap refinement at. */
 export const MTF_GRID_CAPS: readonly MtfGridCap[] = Object.freeze([32, 64, 128, 256]);
-export const MTF_DEFAULT_GRID_CAP: MtfGridCap = 128;
+/**
+ * Cells across the stop a request refines to by default. A vignetted beam spans fewer cells of the stop lattice, so the
+ * outer fields of fast lenses can need 256 to converge; a field converged earlier never traces it.
+ */
+export const MTF_DEFAULT_GRID_CAP: MtfGridCap = 256;
 
 /** Image-plane policies a request may name; a request must name one. */
 export const MTF_FOCUS_MODES: readonly MtfFocusMode[] = Object.freeze(["auto", "design", "best-axial"]);
