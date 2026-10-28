@@ -7,8 +7,15 @@
  *
  *   - The vignetting curve is the share of the lattice's samples that reach the image, as OpticStudio's Vignetting
  *     Diagram counts rays. It is geometric (no bulk absorption or coating loss), absolute and at most 1. Blocked
- *     samples count as vignetted; unaimed samples are left out of both counts, and each field reports how many there
- *     were.
+ *     samples, and aimed rays whose full trace a rim on either side of the stop, total internal reflection after it
+ *     or a proven aperture miss stops (`trace/rayClassification.ts`), count as vignetted. Unaimed samples and rays
+ *     whose full trace fails for any other reason are left out of both counts, and each field reports how many of
+ *     each there were. Total internal reflection ahead of the stop is not a block to the aimed launch: a sample only
+ *     reflected rays could reach is mostly unaimed (`stop-unreachable`, or `aim-not-converged` where the search
+ *     stalls) and left out of both counts, though a solve whose last failed step at the iteration cap left a rim
+ *     ahead of the stop ends `blocked` at that rim and counts as vignetted. Reporting total internal reflection as a
+ *     block at its surface changes the shared aimed launch and every analysis on it, so it is deferred to PR 3 (the
+ *     MTF on the stop lattice).
  *   - Relative illumination follows Rimmer's method, as OpticStudio computes it: a transmitted cell contributes n′²
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
@@ -27,9 +34,14 @@
  * Rimmer's method assumes the cell map does not fold in cosine space and that the rays localize at the image point: a
  * field where a transmitted cell's oriented area is reversed or collapses below `RIMMER_MIN_CELL_AREA_RATIO` of the
  * field's median, or where a transmitted ray strays from its referred direction by more than
- * `RIMMER_MAX_REFERRED_DEVIATION`, has no relative illumination. A field with more unaimed samples than `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither
- * figure. States the MTF's beam model refuses (folded, mirror, diffractive or annular paths, fisheye projections, a
- * tilted image plane) and curves with a bounding-sphere field have no curve. Each of these carries its reason.
+ * `RIMMER_MAX_REFERRED_DEVIATION`, has no relative illumination. Unaimed or failed samples beside the beam (the row
+ * or column neighbour of a transmitted cell) have an unknown share of it and turn their neighbours' derivatives
+ * one-sided: left out, they can read the field low by up to about their share, so a field where they exceed
+ * `RIMMER_MAX_UNRESOLVED_SHARE` of its transmitted cells has no relative illumination either. The bound counts the
+ * samples next to the beam, not any further ones behind them. A field whose unaimed and failed samples together
+ * exceed `VIGNETTING_MAX_UNAIMED_SHARE` of its lattice has neither figure. States the MTF's beam model refuses
+ * (folded, mirror, diffractive or annular paths, fisheye projections, a tilted image plane) and curves with a
+ * bounding-sphere field have no curve. Each of these carries its reason.
  *
  * On a meridional field of a system mirror-symmetric about the meridian (`trace/symmetry.ts`), the +px half is traced
  * and the −px half is its exact mirror image, as the launch itself mirrors.
@@ -43,6 +55,7 @@ import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.j
 import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
+import { traceRayClassification } from "../../trace/rayClassification.js";
 import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
@@ -59,8 +72,8 @@ export const BEAM_GRID_CELLS = 64;
 /** Fewest cells across the stop a sampling override may request. */
 export const MIN_BEAM_GRID_CELLS = 4;
 /**
- * Largest share of a field's lattice that may be unaimed. Left out of both counts, unaimed samples could move the
- * vignetting figure by up to their share, so a field with more has no figures.
+ * Largest share of a field's lattice that may be unaimed or failed. Left out of both counts, those samples could move
+ * the vignetting figure by up to their share, so a field with more has no figures.
  */
 export const VIGNETTING_MAX_UNAIMED_SHARE = 0.01;
 /**
@@ -75,6 +88,14 @@ export const RIMMER_MIN_CELL_AREA_RATIO = 0.01;
  * square stays below the lattice's own convergence band.
  */
 export const RIMMER_MAX_REFERRED_DEVIATION = 0.05;
+/**
+ * Largest share of a field's transmitted cells that unaimed or failed samples beside its beam (the row or column
+ * neighbour of a transmitted cell) may make up while relative illumination is still given. Left out of Rimmer's sum,
+ * such samples can read the field low by up to about their own share of the beam (the axis's can read the ratio
+ * high by theirs). Up to the lattice's own convergence band (doubling the lattice moves no benchmark field's RI by
+ * more than 0.0035) the figure stands; beyond it the field has none (`unresolved-in-beam`).
+ */
+export const RIMMER_MAX_UNRESOLVED_SHARE = 0.0035;
 
 /** One cell of the stop lattice: a stop sample at normalised (xFraction, yFraction), its centre in the unit disc. */
 export interface VignettingLatticeCell {
@@ -90,14 +111,18 @@ export interface VignettingLatticeCell {
   weight: number;
 }
 
-/** Why a field has neither figure. */
-export type VignettingFieldUnavailableReason = "no-field-launch" | "too-many-unaimed";
+/**
+ * Why a field has neither figure: no launch, or more unaimed and failed samples than `VIGNETTING_MAX_UNAIMED_SHARE`
+ * (`too-many-unaimed` when the unaimed ones are at least as many, `too-many-failed` otherwise).
+ */
+export type VignettingFieldUnavailableReason = "no-field-launch" | "too-many-unaimed" | "too-many-failed";
 /** Why a field has a vignetting figure but no relative illumination. */
 export type RelativeIlluminationUnavailableReason =
   | VignettingFieldUnavailableReason
   | "no-image-point"
   | "reference-sphere-missed"
   | "rays-not-localized"
+  | "unresolved-in-beam"
   | "cosine-map-folds"
   | "isolated-cell"
   | "axis-unavailable";
@@ -115,6 +140,11 @@ export interface VignettingCellResult {
   ray: AimedPupilRay;
   /** True when the aimed ray reaches the image with every aperture checked. */
   transmitted: boolean;
+  /**
+   * True when the aimed ray's full trace fails after the stop for a reason other than a rim, total internal reflection
+   * or a proven aperture miss, or leaves the last surface backward: left out of both counts, like an unaimed sample.
+   */
+  failed: boolean;
   /** Bulk transmission of a transmitted ray, else 0. */
   bulkTransmission: number;
   /** Image-space direction cosines (L, M) of a transmitted ray's own exit direction, else null. */
@@ -148,13 +178,19 @@ export interface VignettingFieldResult {
   imagePoint: Vec3 | null;
   /** Reference-sphere radius in mm (Infinity for an image-space telecentric state), or null. */
   referenceRadiusMm: number | null;
+  /** The state's traced exit pupil z in mm (`exitPupilZ`): Infinity when telecentric, null without one. */
+  exitPupilZ: number | null;
+  /** Unit vector from the image point toward the exit pupil, which picks each ray's sphere crossing, or null. */
+  towardPupil: Vec3 | null;
   sampleCount: number;
   transmittedCount: number;
   /** Samples a clear aperture blocks before the stop, counted as vignetted. */
   blockedCount: number;
   /** Samples no ray could be aimed at, left out of both counts. */
   unaimedCount: number;
-  /** Share of the aimed and blocked samples that reach the image, or null. */
+  /** Aimed samples whose full trace failed (`VignettingCellResult.failed`), left out of both counts. */
+  failedCount: number;
+  /** Share of the samples neither unaimed nor failed that reach the image, or null. */
   unvignettedFraction: number | null;
   /** Σ n′² · bulk transmission · cosine area over the transmitted cells, or null. */
   rimmerSum: number | null;
@@ -176,6 +212,7 @@ export interface VignettingSample {
   transmittedCount: number;
   blockedCount: number;
   unaimedCount: number;
+  failedCount: number;
   unavailableReason: VignettingFieldUnavailableReason | null;
   relativeIlluminationReason: RelativeIlluminationUnavailableReason | null;
 }
@@ -240,11 +277,22 @@ export function computeVignettingField(
   cellsAcross: number = vignettingCellsAcross(request),
   stateGeometry?: FieldGeometryState,
 ): VignettingFieldResult {
+  // The tab's own field geometry, so a fraction names the same field alone as in the curve.
+  const fields = stateGeometry ?? analysisFieldGeometry(request);
+  return vignettingField(request, fieldFraction, cellsAcross, fields, exitPupilZ(request, fields));
+}
+
+/** One field, given the state's field geometry and exit pupil, which the curve computes once for all its fields. */
+function vignettingField(
+  request: AnalysisRequest,
+  fieldFraction: number,
+  cellsAcross: number,
+  fields: FieldGeometryState,
+  xpZ: number | null,
+): VignettingFieldResult {
   const state = request.preparedGeometry;
   const n = latticeSize(cellsAcross);
   const lattice = vignettingStopLattice(n);
-  // The tab's own field geometry, so a fraction names the same field alone as in the curve.
-  const fields = stateGeometry ?? analysisFieldGeometry(request);
   const geometry = computeOffAxisFieldGeometry(state, fieldFraction, fields);
   const fieldAngleDeg = fieldFraction * fields.halfFieldDeg;
   const base = {
@@ -261,33 +309,39 @@ export function computeVignettingField(
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
   const mirrored = mirrorSymmetricAboutMeridian(state);
   const tracer = prepareAimedPupilTrace(state, launch);
-  const reference = referenceSphere(state, launch, scalar, exitPupilZ(request, fields));
+  const reference = referenceSphere(state, launch, scalar, xpZ);
   const cells = traceLattice(state, lattice, launch, tracer.engine, n, mirrored, reference);
 
   const unaimedCount = launch.unaimedCount;
   const blockedCount = launch.blockedCount;
+  const failedCount = cells.filter((cell) => cell.failed).length;
   const transmittedCount = cells.filter((cell) => cell.transmitted).length;
   const counts = {
     ...base,
     mirrored,
     imagePoint: reference?.center ?? null,
     referenceRadiusMm: reference?.radius ?? null,
+    exitPupilZ: xpZ,
+    towardPupil: reference?.towardPupil ?? null,
     transmittedCount,
     blockedCount,
     unaimedCount,
+    failedCount,
   };
-  if (unaimedCount > VIGNETTING_MAX_UNAIMED_SHARE * lattice.length)
-    return { ...counts, ...noFigures("too-many-unaimed"), cells };
+  if (unaimedCount + failedCount > VIGNETTING_MAX_UNAIMED_SHARE * lattice.length)
+    return { ...counts, ...noFigures(unaimedCount >= failedCount ? "too-many-unaimed" : "too-many-failed"), cells };
 
-  const unvignettedFraction = transmittedCount / (lattice.length - unaimedCount);
+  const unvignettedFraction = transmittedCount / (lattice.length - unaimedCount - failedCount);
   const transmitted = cells.filter((cell) => cell.transmitted);
   const rimmer: ReturnType<typeof integrateCosineAreas> = !reference
     ? { sum: null, reason: "no-image-point" }
-    : transmitted.some((cell) => !cell.referredDirectionCosines)
-      ? { sum: null, reason: "reference-sphere-missed" }
-      : transmitted.some((cell) => cell.referredDeviation! > RIMMER_MAX_REFERRED_DEVIATION)
-        ? { sum: null, reason: "rays-not-localized" }
-        : integrateCosineAreas(cells, n, base.cellArea, mirrored);
+    : unresolvedBesideBeam(cells, n) > RIMMER_MAX_UNRESOLVED_SHARE * transmittedCount
+      ? { sum: null, reason: "unresolved-in-beam" }
+      : transmitted.some((cell) => !cell.referredDirectionCosines)
+        ? { sum: null, reason: "reference-sphere-missed" }
+        : transmitted.some((cell) => cell.referredDeviation! > RIMMER_MAX_REFERRED_DEVIATION)
+          ? { sum: null, reason: "rays-not-localized" }
+          : integrateCosineAreas(cells, n, base.cellArea, mirrored);
   return {
     ...counts,
     unvignettedFraction,
@@ -340,7 +394,8 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingCurv
   )
     return none("bounding-sphere-field");
 
-  const fields = fractions.map((fraction) => computeVignettingField(request, fraction, cellsAcross, geometry));
+  const xpZ = exitPupilZ(request, geometry);
+  const fields = fractions.map((fraction) => vignettingField(request, fraction, cellsAcross, geometry, xpZ));
   const axis = fields[0];
   const axisSum = axis.relativeIlluminationReason === null ? axis.rimmerSum : null;
   const samples = fields.map((field): VignettingSample => {
@@ -362,6 +417,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingCurv
       transmittedCount: field.transmittedCount,
       blockedCount: field.blockedCount,
       unaimedCount: field.unaimedCount,
+      failedCount: field.failedCount,
       unavailableReason: field.unavailableReason,
       relativeIlluminationReason,
     };
@@ -387,7 +443,7 @@ function noFigures(reason: VignettingFieldUnavailableReason) {
   };
 }
 
-/** A field with no launch: no sample was aimed, blocked or left unaimed, so every count is zero. */
+/** A field with no launch: no sample was aimed, blocked, left unaimed or failed, so every count is zero. */
 function unavailableField(
   base: Pick<VignettingFieldResult, "fieldFraction" | "fieldAngleDeg" | "cellsAcross" | "cellArea" | "sampleCount">,
   reason: VignettingFieldUnavailableReason,
@@ -397,9 +453,12 @@ function unavailableField(
     mirrored: false,
     imagePoint: null,
     referenceRadiusMm: null,
+    exitPupilZ: null,
+    towardPupil: null,
     transmittedCount: 0,
     blockedCount: 0,
     unaimedCount: 0,
+    failedCount: 0,
     ...noFigures(reason),
     cells: [],
   };
@@ -429,6 +488,7 @@ function traceLattice(
       cell,
       ray,
       transmitted: false,
+      failed: false,
       bulkTransmission: 0,
       exitDirectionCosines: null,
       referredDirectionCosines: null,
@@ -437,10 +497,16 @@ function traceLattice(
       orientedCosineArea: null,
       cosineArea: null,
     };
-    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray.
+    // A blocked ray is stopped ahead of the stop by the rim it names; an unaimed sample has no ray (see the header for
+    // total internal reflection ahead of the stop).
     if (ray.status !== "aimed") return dark;
     const result = trace(ray);
-    if (result.status !== "ok" || !(result.terminalDirection[2] > 0)) return dark;
+    // The aimed ray reached the stop without aperture checks, so total internal reflection or a numerical failure here
+    // is after the stop. A rim on either side of the stop, total internal reflection or a proven aperture miss
+    // vignettes the ray; any other failure is the tracer's.
+    const outcome = traceRayClassification(result, state, launch.clipSemiDiameterMm);
+    if (outcome === "blocked") return dark;
+    if (outcome === "failed" || !(result.terminalDirection[2] > 0)) return { ...dark, failed: true };
     return {
       ...dark,
       transmitted: true,
@@ -486,6 +552,30 @@ function latticeIndex(
 }
 
 /**
+ * Count the unaimed or failed samples that are the row or column neighbour of a transmitted one. Each one's share of
+ * the beam is unknown: left out, it can read Rimmer's sum low by up to about its own area, and its neighbours'
+ * derivatives turn one-sided against a cell that may carry light.
+ */
+function unresolvedBesideBeam(cells: readonly VignettingCellResult[], n: number): number {
+  const indexAt = latticeIndex(
+    cells.map((cell) => cell.cell),
+    n,
+  );
+  const transmittedAt = (row: number, column: number) => {
+    const index = indexAt(row, column);
+    return index !== null && cells[index].transmitted;
+  };
+  return cells.filter(
+    ({ cell, ray, failed }) =>
+      (ray.status === "unaimed" || failed) &&
+      (transmittedAt(cell.row - 1, cell.column) ||
+        transmittedAt(cell.row + 1, cell.column) ||
+        transmittedAt(cell.row, cell.column - 1) ||
+        transmittedAt(cell.row, cell.column + 1)),
+  ).length;
+}
+
+/**
  * Fill each transmitted cell's cosine-space area and sum Rimmer's integral.
  *
  * The Jacobian of (px, py) → (L, M) comes from finite differences between transmitted cells, in normalised stop
@@ -524,22 +614,31 @@ function integrateCosineAreas(
     dx.set(cell.cell.index, along(cell.cell.row, cell.cell.column, 0, 1));
     dy.set(cell.cell.index, along(cell.cell.row, cell.cell.column, 1, 0));
   }
-  /** A missing derivative from the nearest cell along the other axis that has one; the mean of two at equal distance. */
+  /**
+   * A missing derivative from the nearest cell along the other axis that has one, the mean of two at equal distance.
+   * Each way stops at the first cell that does not transmit, so a derivative is never borrowed across a gap in the beam.
+   */
   const borrow = (
     derivatives: Map<number, [number, number] | null>,
     cell: VignettingLatticeCell,
     dRow: number,
     dColumn: number,
   ): [number, number] | null => {
-    for (let step = 1; step < n; step++) {
-      const found = [-step, step]
-        .map((offset) => indexAt(cell.row + offset * dRow, cell.column + offset * dColumn))
-        .map((index) => (index === null ? null : (derivatives.get(index) ?? null)))
-        .filter((value): value is [number, number] => value !== null);
-      if (found.length === 2) return [(found[0][0] + found[1][0]) / 2, (found[0][1] + found[1][1]) / 2];
-      if (found.length === 1) return found[0];
-    }
-    return null;
+    const nearest = [-1, 1].map((sign) => {
+      for (let step = 1; step < n; step++) {
+        const index = indexAt(cell.row + sign * step * dRow, cell.column + sign * step * dColumn);
+        // Only transmitted cells have an entry, null where they lack a derivative of their own.
+        if (index === null || !derivatives.has(index)) return null;
+        const value = derivatives.get(index);
+        if (value) return { step, value };
+      }
+      return null;
+    });
+    const [before, after] = nearest;
+    if (before && after && before.step === after.step)
+      return [(before.value[0] + after.value[0]) / 2, (before.value[1] + after.value[1]) / 2];
+    if (before && (!after || before.step < after.step)) return before.value;
+    return after?.value ?? null;
   };
 
   let isolated = false;
@@ -581,7 +680,7 @@ function integrateCosineAreas(
 }
 
 /** Rimmer's reference sphere: centred on the chief ray's image-plane point, through the state's exit pupil. */
-interface ReferenceSphere {
+export interface ReferenceSphere {
   center: Vec3;
   /** Radius in mm; Infinity where the exit pupil is at infinity (image-space telecentric). */
   radius: number;
@@ -590,7 +689,7 @@ interface ReferenceSphere {
 }
 
 /** Fraction of the half field whose real chief ray locates the current state's exit pupil. */
-const EXIT_PUPIL_PROBE_FRACTION = 0.01;
+export const EXIT_PUPIL_PROBE_FRACTION = 0.01;
 
 /** Trace to the image plane with no aperture checks, for the chief rays that name points rather than carry light. */
 function uncheckedTrace(state: PreparedGeometry, launchBoundT: number | undefined) {
@@ -607,11 +706,15 @@ function uncheckedTrace(state: PreparedGeometry, launchBoundT: number | undefine
  * The current state's exit pupil: where the real chief ray of a field near the axis crosses the axis in image space.
  *
  * It is traced at the state's own focus and zoom, so it follows focusing and passes through infinity between zoom
- * positions as the pupil does, where an interpolated station table would cross the pole near the last surface.
+ * positions as the pupil does, where an interpolated station table would cross the pole near the last surface. The
+ * probe field is `EXIT_PUPIL_PROBE_FRACTION` of the half field, launched through the aimed pupil launch and traced
+ * without aperture checks.
  *
+ * @param request - prepared geometry and stop radius
+ * @param fields - the state's field geometry; the tab uses the analysis field geometry
  * @returns the exit pupil's z in mm, Infinity for an image-space telecentric state, or null without a chief ray
  */
-function exitPupilZ(request: AnalysisRequest, fields: FieldGeometryState): number | null {
+export function exitPupilZ(request: AnalysisRequest, fields: FieldGeometryState): number | null {
   const state = request.preparedGeometry;
   const geometry = computeOffAxisFieldGeometry(state, EXIT_PUPIL_PROBE_FRACTION, fields);
   if (!geometry || isOffAxisVectorFieldGeometry(geometry)) return null;
@@ -629,8 +732,14 @@ function exitPupilZ(request: AnalysisRequest, fields: FieldGeometryState): numbe
  *
  * The chief ray is the launch's (0, 0) ray traced without aperture checks: it names the image point whether or not a
  * rim vignettes it. The sphere passes through the chief ray's crossing of the exit-pupil plane.
+ *
+ * @param state - prepared geometry
+ * @param launch - the field's aimed pupil launch
+ * @param geometry - the field's scalar geometry, for the image plane
+ * @param xpZ - the state's exit pupil z (`exitPupilZ`)
+ * @returns the sphere, with radius Infinity for an image-space telecentric state, or null
  */
-function referenceSphere(
+export function referenceSphere(
   state: PreparedGeometry,
   launch: AimedPupilLaunch,
   geometry: OffAxisFieldGeometry,
@@ -672,9 +781,12 @@ function referred(
  * is the ray's own direction. The pupil side can lie before the image point or, where the exit pupil is beyond the
  * image plane, after it.
  *
+ * @param sphere - the field's reference sphere
+ * @param point - a point on the ray in image space
+ * @param direction - the ray's unit direction in image space
  * @returns the referred unit vector, or null when the ray misses the sphere's pupil side
  */
-function referredDirection(sphere: ReferenceSphere, point: Vec3, direction: Vec3): Vec3 | null {
+export function referredDirection(sphere: ReferenceSphere, point: Vec3, direction: Vec3): Vec3 | null {
   if (!isFinite(sphere.radius)) return direction;
   const { center, radius, towardPupil } = sphere;
   const offset: Vec3 = [point[0] - center[0], point[1] - center[1], point[2] - center[2]];

@@ -211,16 +211,22 @@ export { computeOpticalSummary } from "./analysis/summary/summary.js";
 export type { OpticalSummaryMetrics } from "./analysis/summary/summary.js";
 export {
   BEAM_GRID_CELLS,
+  EXIT_PUPIL_PROBE_FRACTION,
   MIN_BEAM_GRID_CELLS,
   RIMMER_MAX_REFERRED_DEVIATION,
+  RIMMER_MAX_UNRESOLVED_SHARE,
   RIMMER_MIN_CELL_AREA_RATIO,
   VIGNETTING_MAX_UNAIMED_SHARE,
   computeVignettingCurve,
   computeVignettingField,
+  exitPupilZ,
+  referenceSphere,
+  referredDirection,
   vignettingCellsAcross,
   vignettingStopLattice,
 } from "./analysis/vignetting/vignetting.js";
 export type {
+  ReferenceSphere,
   RelativeIlluminationUnavailableReason,
   VignettingCellResult,
   VignettingCurve,

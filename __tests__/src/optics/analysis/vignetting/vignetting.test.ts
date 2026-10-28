@@ -3,18 +3,28 @@
  * the image, and Rimmer's relative illumination. Closed forms are derived in the tests themselves.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { constructionFixtureData } from "../../constructionFixtures.js";
 import {
+  RIMMER_MAX_UNRESOLVED_SHARE,
   computeVignettingCurve,
   computeVignettingField,
+  referenceSphere,
+  referredDirection,
   vignettingStopLattice,
 } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import type {
+  ReferenceSphere,
+  VignettingFieldResult,
+  VignettingLatticeCell,
+} from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import { bulkTransmissionForTrace } from "../../../../../src/optics/trace/bulkAbsorption.js";
 import {
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
 } from "../../../../../src/optics/analysis/pupils/aimedPupil.js";
 import { computeOffAxisFieldGeometry } from "../../../../../src/optics/analysis/aberration/offAxis.js";
+import type { OffAxisFieldGeometry } from "../../../../../src/optics/analysis/aberration/offAxis.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../../src/optics/state/runtimeAdapters.js";
 import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
@@ -32,6 +42,49 @@ import {
   sharedSonnar50f15,
 } from "../../testLensFixtures.js";
 import type { LensData, RuntimeLens, SurfaceData } from "../../../../../src/types/optics.js";
+import type { Vec3 } from "../../../../../src/optics/types.js";
+
+/*
+ * Rays whose full trace the classifier reports as failed, keyed by origin and direction: the real tracer rarely fails
+ * after the stop on a refractive lens, so the count of failures is tested on rays named here. Only traces that reach
+ * the image are overridden, which the launch's blocking checks never classify.
+ */
+const classifier = vi.hoisted(() => ({
+  failing: new Set<string>(),
+  key: (ray: { origin: readonly number[]; direction: readonly number[] }) => [...ray.origin, ...ray.direction].join(),
+}));
+vi.mock("../../../../../src/optics/trace/rayClassification.js", async (importOriginal) => {
+  const original = await importOriginal<typeof import("../../../../../src/optics/trace/rayClassification.js")>();
+  return {
+    ...original,
+    traceRayClassification: (...args: Parameters<typeof original.traceRayClassification>) =>
+      args[0].status === "ok" && classifier.failing.has(classifier.key(args[0].input))
+        ? "failed"
+        : original.traceRayClassification(...args),
+  };
+});
+
+/*
+ * Rays whose full trace is returned leaving the last surface backward, keyed as above: no refractive lens sends a ray
+ * that reaches the image back, so the tab's guard is tested on rays named here.
+ */
+const backward = vi.hoisted(() => ({ rays: new Set<string>() }));
+vi.mock("../../../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {
+  const original = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/aimedPupil.js")>();
+  return {
+    ...original,
+    prepareAimedPupilTrace: (...args: Parameters<typeof original.prepareAimedPupilTrace>) => {
+      const tracer = original.prepareAimedPupilTrace(...args);
+      const engine: typeof tracer.engine = (ray) => {
+        const result = tracer.engine(ray);
+        if (!backward.rays.has(classifier.key(ray))) return result;
+        const [x, y, z] = result.terminalDirection;
+        return { ...result, terminalDirection: [x, y, -z] };
+      };
+      return { ...tracer, engine };
+    },
+  };
+});
 
 /* ── Fixtures ── */
 
@@ -50,6 +103,79 @@ function stopBehindLens(): RuntimeLens {
 }
 
 const radians = (deg: number) => (deg * Math.PI) / 180;
+
+/** The 64-cell lattice's cell at (x/64, y/64), x and y odd. */
+function latticeCell(x: number, y: number): VignettingLatticeCell {
+  return vignettingStopLattice(64).find((cell) => cell.xFraction === x / 64 && cell.yFraction === y / 64)!;
+}
+
+/** The axis with the full traces of the named +px cells' rays failed; their mirror images fail with them. */
+function axisWithFailed(
+  request: ReturnType<typeof analysisRequestAt>,
+  cells: readonly VignettingLatticeCell[],
+): VignettingFieldResult {
+  const lattice = vignettingStopLattice(64);
+  const launch = prepareAimedPupilLaunch(request, lattice, computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!;
+  classifier.failing = new Set(
+    cells.map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
+  );
+  try {
+    return computeVignettingField(request, 0);
+  } finally {
+    classifier.failing = new Set();
+  }
+}
+
+/** Unaimed or failed cells that are the row or column neighbour of a transmitted cell, counted from the field's cells. */
+function unresolvedBesideBeam(field: VignettingFieldResult): number {
+  const byPosition = new Map(field.cells.map((entry) => [`${entry.cell.row},${entry.cell.column}`, entry]));
+  const lit = (row: number, column: number) => byPosition.get(`${row},${column}`)?.transmitted === true;
+  return field.cells.filter(
+    ({ cell, ray, failed }) =>
+      (ray.status === "unaimed" || failed) &&
+      (lit(cell.row - 1, cell.column) ||
+        lit(cell.row + 1, cell.column) ||
+        lit(cell.row, cell.column - 1) ||
+        lit(cell.row, cell.column + 1)),
+  ).length;
+}
+
+/**
+ * Trace each transmitted −px cell of the request's edge field on its own and expect every mirrored entry to match its
+ * own ray: flags, exit and referred cosines (the latter from the field's exported sphere), bulk transmission and n′.
+ *
+ * @returns the bulk transmissions of the mirrored transmitted cells
+ */
+function expectMirrorsMatchOwnTraces(L: RuntimeLens, request: ReturnType<typeof analysisRequestAt>): number[] {
+  const fields = computeAnalysisFieldGeometryAtState(0, 0, L, 0);
+  const edge = computeVignettingField(request, 1);
+  expect(edge.mirrored).toBe(true);
+  const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, edge.fieldFraction, fields)!;
+  const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
+  const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
+  const sphere: ReferenceSphere = {
+    center: edge.imagePoint!,
+    radius: edge.referenceRadiusMm!,
+    towardPupil: edge.towardPupil!,
+  };
+  const transmissions: number[] = [];
+  for (const cell of edge.cells.filter((entry) => entry.cell.xFraction < 0 && entry.ray.status === "aimed")) {
+    const result = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
+    expect(result.status === "ok").toBe(cell.transmitted);
+    expect(cell.failed).toBe(false);
+    if (!cell.transmitted) continue;
+    expect(Math.abs(result.terminalDirection[0] - cell.exitDirectionCosines![0])).toBeLessThan(1e-12);
+    expect(Math.abs(result.terminalDirection[1] - cell.exitDirectionCosines![1])).toBeLessThan(1e-12);
+    const own = referredDirection(sphere, result.terminalPoint, result.terminalDirection)!;
+    expect(Math.abs(own[0] - cell.referredDirectionCosines![0])).toBeLessThan(1e-12);
+    expect(Math.abs(own[1] - cell.referredDirectionCosines![1])).toBeLessThan(1e-12);
+    const bulk = bulkTransmissionForTrace(request.preparedGeometry.lens, result.hits);
+    expect(Math.abs(bulk - cell.bulkTransmission)).toBeLessThan(1e-12);
+    expect(result.finalMedium).toBe(cell.imageIndex);
+    transmissions.push(bulk);
+  }
+  return transmissions;
+}
 
 describe("vignettingStopLattice", () => {
   it("keeps the cells whose centre lies in the unit disc, with exact mirror columns", () => {
@@ -173,6 +299,49 @@ describe("computeVignettingCurve", () => {
       .samples[0];
     expect(plainAxis.relativeIlluminationReason).toBeNull();
     expect(plainAxis.relativeIllumination).toBe(1);
+  });
+
+  it("reports a field whose cell map collapses in cosine space as unavailable, though no cell reverses", () => {
+    // Just short of the fold, at A4 = 1.115e-4, the smallest cell keeps the beam's orientation at about 0.5 % of the
+    // median area, under the 1 % floor.
+    const L = lensWith(
+      "test-vignetting-collapsed-cosines",
+      [
+        { label: "STO", R: 1e15, nd: 1, sd: 4, d: 95, elemId: 0 },
+        { label: "1", R: 100, nd: 1.5168, sd: 8, d: 3, elemId: 1 },
+        { label: "2A", R: -100, nd: 1, sd: 8, d: 95, elemId: 0 },
+      ],
+      { asph: { "2A": { K: 0, A4: 1.115e-4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } as Partial<LensData>,
+    );
+    const axis = computeVignettingField(analysisRequestAt(L, { currentEPSD: 4, currentPhysStopSD: 4 }), 0);
+    const areas = axis.cells.filter((cell) => cell.transmitted).map((cell) => cell.orientedCosineArea!);
+    const median = [...areas].sort((a, b) => a - b)[areas.length >> 1];
+    const smallest = Math.min(...areas.map((area) => area * Math.sign(median))) / Math.abs(median);
+    expect(smallest).toBeGreaterThan(0);
+    expect(smallest).toBeLessThan(0.01);
+    expect(axis.relativeIlluminationReason).toBe("cosine-map-folds");
+    expect(axis.rimmerSum).toBeNull();
+  });
+
+  it("reports a beam one lattice row deep as an isolated cell, with no borrowed derivative", () => {
+    // The two-aperture system at σ = 1.97: only the stop's outermost row lies inside both discs. Its cells have row
+    // neighbours but nothing in their column, and every cell in the row lacks the same derivative.
+    const [R, gap, sigma] = [2, 10, 1.97];
+    const L = lensWith("test-vignetting-one-row", [
+      { label: "STO", R: 1e15, nd: 1, sd: R, d: gap, elemId: 0 },
+      { label: "A", R: 1e15, nd: 1, sd: R, d: 1, elemId: 0 },
+      { label: "1", R: 50, nd: 1.5168, sd: 12, d: 5, elemId: 1 },
+      { label: "2", R: -50, nd: 1, sd: 12, d: 45, elemId: 0 },
+    ]);
+    const fields = { ...computeAnalysisFieldGeometryAtState(0, 0, L, 0) };
+    fields.halfFieldDeg = (Math.atan((sigma * R) / gap) * 180) / Math.PI;
+    const field = computeVignettingField(analysisRequestAt(L, { currentEPSD: R, currentPhysStopSD: R }), 1, 64, fields);
+    const lit = field.cells.filter((cell) => cell.transmitted);
+    expect(lit.length).toBeGreaterThan(2);
+    expect(new Set(lit.map((cell) => cell.cell.row)).size).toBe(1);
+    expect(field.unvignettedFraction).toBe(lit.length / field.sampleCount);
+    expect(field.relativeIlluminationReason).toBe("isolated-cell");
+    expect(field.rimmerSum).toBeNull();
   });
 
   it("refers each ray to the image point when the exit pupil lies beyond the image plane", () => {
@@ -307,10 +476,205 @@ describe("computeVignettingCurve", () => {
     expect(few.unaimedCount).toBeGreaterThan(0);
     expect(few.unaimedCount).toBeLessThanOrEqual(0.01 * few.sampleCount);
     expect(few.unvignettedFraction).toBe(few.transmittedCount / (few.sampleCount - few.unaimedCount));
+    // The ring borders the transmitted beam, more of it than the figure may lose: no relative illumination.
+    expect(unresolvedBesideBeam(few) / few.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(few.relativeIlluminationReason).toBe("unresolved-in-beam");
+    expect(few.rimmerSum).toBeNull();
     const many = fieldAt(2);
     expect(many.unaimedCount).toBeGreaterThan(0.01 * many.sampleCount);
     expect(many.unvignettedFraction).toBeNull();
     expect(many.unavailableReason).toBe("too-many-unaimed");
+  });
+
+  it("leaves rays whose full trace fails out of both counts, and reports them as failed, not vignetted", () => {
+    // Every ray of this beam reaches the image. Failing k of the traced +px rays fails their mirror images too.
+    const L = stopBehindLens();
+    const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const inner = vignettingStopLattice(64).filter(
+      (cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) < 0.5,
+    );
+    const failWith = (count: number) => axisWithFailed(request, inner.slice(0, count));
+    const clean = computeVignettingField(request, 0);
+    const few = failWith(10);
+    expect(few.failedCount).toBe(20);
+    expect(few.cells.filter((cell) => cell.failed)).toHaveLength(20);
+    for (const cell of few.cells.filter((entry) => entry.failed)) expect(cell.transmitted).toBe(false);
+    expect(few.transmittedCount).toBe(few.sampleCount - 20);
+    expect(few.unvignettedFraction).toBe(1);
+    // Inside the beam each failed cell's share of Rimmer's sum is unknown. Twelve beside 3,216 transmitted cells are
+    // more than the figure may lose; ten beside 3,218 are within it, and the sum reads low by about their share.
+    expect(few.relativeIlluminationReason).toBe("unresolved-in-beam");
+    // Two columns of six, each cell beside the beam only through its row: column neighbours count as beside too.
+    const over = axisWithFailed(
+      request,
+      [1, 3, 5, 7, 9, 11].map((y) => latticeCell(21, y)),
+    );
+    expect(over.failedCount).toBe(12);
+    expect(unresolvedBesideBeam(over)).toBe(12);
+    expect(over.failedCount / over.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(over.relativeIlluminationReason).toBe("unresolved-in-beam");
+    expect(over.rimmerSum).toBeNull();
+    // A 4 × 3 block across the meridian: twelve failed, more than the figure may lose, but its two middle cells border
+    // only failed ones. The ten beside the beam are within the share, and the figure stands.
+    const block = axisWithFailed(
+      request,
+      [-1, 1, 3].flatMap((y) => [latticeCell(1, y), latticeCell(3, y)]),
+    );
+    expect(block.failedCount).toBe(12);
+    expect(block.failedCount / block.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(unresolvedBesideBeam(block)).toBe(10);
+    expect(block.relativeIlluminationReason).toBeNull();
+    const within = failWith(5);
+    const share = within.failedCount / within.transmittedCount;
+    expect(within.failedCount).toBe(10);
+    expect(share).toBeLessThanOrEqual(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(within.relativeIlluminationReason).toBeNull();
+    const deficit = 1 - within.rimmerSum! / clean.rimmerSum!;
+    expect(deficit).toBeGreaterThan(0.9 * share);
+    expect(deficit).toBeLessThan(1.1 * share);
+    const many = failWith(20);
+    expect(many.failedCount).toBeGreaterThan(0.01 * many.sampleCount);
+    expect(many.unavailableReason).toBe("too-many-failed");
+    expect(many.unvignettedFraction).toBeNull();
+    expect(computeVignettingField(request, 0).failedCount).toBe(0);
+  });
+
+  it("takes the unresolved share of the transmitted cells, not of the lattice", () => {
+    // The 3 mm front rim behind a 5 mm stop passes the cells within 3/5 of it, about 1,160 of 3,228. Six failed cells
+    // beside that beam are 0.52 % of it, more than the figure may lose, though only 0.19 % of the lattice.
+    const L = buildSimplePositiveElementLens("test-vignetting-share-of-beam", { elementSd: 3 });
+    const request = analysisRequestAt(L, { currentEPSD: 5, currentPhysStopSD: 5 });
+    const field = axisWithFailed(request, [latticeCell(1, 1), latticeCell(5, 1), latticeCell(9, 1)]);
+    expect(field.failedCount).toBe(6);
+    expect(field.unaimedCount).toBe(0);
+    expect(unresolvedBesideBeam(field)).toBe(6);
+    expect(6 / field.transmittedCount).toBeGreaterThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(6 / field.sampleCount).toBeLessThan(RIMMER_MAX_UNRESOLVED_SHARE);
+    expect(field.relativeIlluminationReason).toBe("unresolved-in-beam");
+  });
+
+  it("counts total internal reflection after the stop as vignetting, not as a failure", () => {
+    // Behind the 6 mm stop, axial rays in n = 1.9 glass meet the R = 8 rear sphere past the critical angle above
+    // 8 / 1.9 mm: those samples are aimed, then stopped after the stop, and count as vignetted.
+    const L = lensWith(
+      "test-vignetting-tir-after-stop",
+      [
+        { label: "STO", R: 1e15, nd: 1, sd: 6, d: 1, elemId: 0 },
+        { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
+        { label: "2", R: -8, nd: 1, sd: 7, d: 40, elemId: 0 },
+      ],
+      { elements: [{ ...constructionFixtureData(buildSimplePositiveElementLens()).elements[0], nd: 1.9 }] },
+    );
+    const request = analysisRequestAt(L, { currentEPSD: 6, currentPhysStopSD: 6 });
+    const field = computeVignettingField(request, 0);
+    const critical = 8 / 1.9 / 6;
+    expect(field.unaimedCount).toBe(0);
+    expect(field.blockedCount).toBe(0);
+    expect(field.failedCount).toBe(0);
+    const inside = vignettingStopLattice(64).filter((cell) => Math.hypot(cell.xFraction, cell.yFraction) < critical);
+    expect(field.transmittedCount).toBe(inside.length);
+    expect(field.unvignettedFraction).toBe(inside.length / field.sampleCount);
+    const trace = prepareAimedPupilTrace(
+      request.preparedGeometry,
+      prepareAimedPupilLaunch(request, [], computeOffAxisFieldGeometry(request.preparedGeometry, 0)!)!,
+    );
+    const dark = field.cells.filter((cell) => !cell.transmitted);
+    expect(dark.length).toBeGreaterThan(0);
+    for (const cell of dark) {
+      expect(cell.ray.status).toBe("aimed");
+      expect(cell.failed).toBe(false);
+      expect(trace.engine(cell.ray as Parameters<typeof trace.engine>[0]).failureReason).toBe(
+        "totalInternalReflection",
+      );
+    }
+  });
+
+  it("leaves a ray that leaves the last surface backward out of both counts, as failed", () => {
+    const L = stopBehindLens();
+    const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const lattice = vignettingStopLattice(64);
+    const launch = prepareAimedPupilLaunch(
+      request,
+      lattice,
+      computeOffAxisFieldGeometry(request.preparedGeometry, 0)!,
+    )!;
+    const flipped = lattice.filter((cell) => cell.xFraction > 0 && Math.hypot(cell.xFraction, cell.yFraction) < 0.5);
+    backward.rays = new Set(
+      flipped.slice(0, 3).map((cell) => classifier.key(launch.rays[cell.index] as { origin: Vec3; direction: Vec3 })),
+    );
+    try {
+      const field = computeVignettingField(request, 0);
+      // Three traced +px rays and their mirror images.
+      expect(field.failedCount).toBe(6);
+      for (const cell of field.cells.filter((entry) => entry.failed)) {
+        expect(cell.transmitted).toBe(false);
+        expect(cell.exitDirectionCosines).toBeNull();
+      }
+      expect(field.transmittedCount).toBe(field.sampleCount - 6);
+      expect(field.unvignettedFraction).toBe(1);
+      // Six beside the beam are within the share the figure may lose.
+      expect(field.relativeIlluminationReason).toBeNull();
+    } finally {
+      backward.rays = new Set();
+    }
+  });
+
+  it("gives no image point, and so no relative illumination, where the chief ray is reflected after the stop", () => {
+    // At 25° the ray through the stop's centre meets the R = 8 rear sphere of the n = 1.9 block past the critical
+    // angle, while rays through the stop's upper (+y) part leave it: the field transmits part of its beam, but its
+    // chief ray never reaches the image plane to name the image point.
+    const L = lensWith(
+      "test-vignetting-reflected-chief",
+      [
+        { label: "STO", R: 1e15, nd: 1, sd: 2, d: 10, elemId: 0 },
+        { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
+        { label: "2", R: -8, nd: 1, sd: 7, d: 40, elemId: 0 },
+      ],
+      { elements: [{ ...constructionFixtureData(buildSimplePositiveElementLens()).elements[0], nd: 1.9 }] },
+    );
+    const fields = { ...computeAnalysisFieldGeometryAtState(0, 0, L, 0) };
+    fields.halfFieldDeg = 25;
+    const request = analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 });
+    const launch = prepareAimedPupilLaunch(
+      request,
+      [],
+      computeOffAxisFieldGeometry(request.preparedGeometry, 1, fields) as OffAxisFieldGeometry,
+    )!;
+    const chief = prepareAimedPupilTrace(request.preparedGeometry, launch).engine(
+      launch.chief as Parameters<ReturnType<typeof prepareAimedPupilTrace>["engine"]>[0],
+    );
+    expect(chief.failureReason).toBe("totalInternalReflection");
+    const field = computeVignettingField(request, 1, 64, fields);
+    expect(field.exitPupilZ).not.toBeNull();
+    expect([field.unaimedCount, field.blockedCount, field.failedCount]).toEqual([0, 0, 0]);
+    expect(field.unvignettedFraction).toBeGreaterThan(0.2);
+    expect(field.unvignettedFraction).toBeLessThan(0.5);
+    expect(field.imagePoint).toBeNull();
+    expect(field.referenceRadiusMm).toBeNull();
+    expect(field.towardPupil).toBeNull();
+    expect(field.relativeIlluminationReason).toBe("no-image-point");
+    expect(field.rimmerSum).toBeNull();
+  });
+
+  it("gives no relative illumination where a transmitted ray misses the reference sphere", () => {
+    // The stop is the last surface and so its own exit pupil; with the image plane 1 mm behind it the reference
+    // sphere's radius is about 1 mm, and the rays through the stop's outer zone, slowly converging, pass outside it.
+    const L = lensWith("test-vignetting-sphere-missed", [
+      { label: "1", R: 50, nd: 1.5168, sd: 20, d: 5, elemId: 1 },
+      { label: "2", R: 1e15, nd: 1, sd: 20, d: 20, elemId: 0 },
+      { label: "STO", R: 1e15, nd: 1, sd: 2, d: 1, elemId: 0 },
+    ]);
+    const field = computeVignettingField(analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 }), 0);
+    expect(field.referenceRadiusMm!).toBeGreaterThan(0.9);
+    expect(field.referenceRadiusMm!).toBeLessThan(1.1);
+    expect(field.unvignettedFraction).toBe(1);
+    for (const cell of field.cells) {
+      const height = 2 * Math.hypot(cell.cell.xFraction, cell.cell.yFraction);
+      if (height < 0.8) expect(cell.referredDirectionCosines).not.toBeNull();
+      if (height > 1.2) expect(cell.referredDirectionCosines).toBeNull();
+    }
+    expect(field.relativeIlluminationReason).toBe("reference-sphere-missed");
+    expect(field.rimmerSum).toBeNull();
   });
 
   it("returns a field's rays and cells bit for bit, alone or in the curve, in any order", () => {
@@ -340,29 +704,12 @@ describe("computeVignettingCurve", () => {
       expect(field.cells.map((cell) => cell.ray)).toEqual(launch.rays);
     });
     // Each −px cell is its +px partner's mirror image: traced on its own, its ray does what the mirror says it does.
-    const edge = forward.at(-1)!;
-    expect(edge.mirrored).toBe(true);
-    const geometry = computeOffAxisFieldGeometry(
-      request.preparedGeometry,
-      edge.fieldFraction,
-      computeAnalysisFieldGeometryAtState(0, 0, L, 0),
-    )!;
-    const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(edge.cellsAcross), geometry)!;
-    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch);
-    let mirroredCells = 0;
-    for (const cell of edge.cells.filter((entry) => entry.cell.xFraction < 0 && entry.ray.status === "aimed")) {
-      const result = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
-      expect(result.status === "ok").toBe(cell.transmitted);
-      if (!cell.transmitted) continue;
-      mirroredCells++;
-      expect(Math.abs(result.terminalDirection[0] - cell.exitDirectionCosines![0])).toBeLessThan(1e-12);
-      expect(Math.abs(result.terminalDirection[1] - cell.exitDirectionCosines![1])).toBeLessThan(1e-12);
-    }
-    expect(mirroredCells).toBeGreaterThan(100);
+    expect(expectMirrorsMatchOwnTraces(L, request).length).toBeGreaterThan(100);
   });
 
   it("reads exactly 1 where a wholly transmitted retrofocus beam's old launch-area figure exceeded 1", () => {
-    // At f/8 the Sony FE 20 mm's 47° beam is wholly transmitted; the old launch-area figure read 1.33 there.
+    // At f/8 (stopdownT 0.6 is f/8.17) the Sony FE 20 mm's 47° beam is wholly transmitted; the old launch-area figure
+    // read 1.80 there, and 1.32 wide open.
     const L = build(SonyFE20Raw);
     const curve = computeVignettingCurve(
       analysisRequestAt(L, { ...apertureAt(L, 0, 0.6), sampling: { vignettingFieldSampleCount: 3 } }),
@@ -382,6 +729,9 @@ describe("computeVignettingCurve", () => {
     });
     const curveFor = (L: RuntimeLens) => computeVignettingCurve(analysisRequestAt(L, apertureAt(L, 0, 0))).samples;
     const [absorbed, clear] = [curveFor(stf), curveFor(transparent)];
+    // The apodizer's transmission varies across the beam, and each mirrored cell carries its own ray's.
+    const mirroredTransmission = expectMirrorsMatchOwnTraces(stf, analysisRequestAt(stf, apertureAt(stf, 0, 0)));
+    expect(Math.max(...mirroredTransmission) - Math.min(...mirroredTransmission)).toBeGreaterThan(0.1);
     expect(absorbed).toHaveLength(clear.length);
     absorbed.forEach((sample, i) => expect(sample.unvignettedFraction).toBe(clear[i].unvignettedFraction));
     expect(
@@ -437,5 +787,36 @@ describe("computeVignettingCurve", () => {
     expect(computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 1, currentPhysStopSD: 0 })).reason).toBe(
       "invalid-state",
     );
+  });
+});
+
+describe("Rimmer's reference sphere", () => {
+  // A sphere of radius 10 about the origin, its pupil side toward −z.
+  const sphere: ReferenceSphere = { center: [0, 0, 0], radius: 10, towardPupil: [0, 0, -1] };
+
+  it("refers a ray to the image point from its pupil-side crossing, oriented along the ray", () => {
+    const referred = referredDirection(sphere, [0, 1, -20], [0, 0, 1])!;
+    expect(Math.hypot(...referred)).toBeCloseTo(1, 14);
+    // From (0, 1, −√99) on the sphere to its centre.
+    expect(referred[1]).toBeCloseTo(-0.1, 14);
+    expect(referred[2]).toBeCloseTo(Math.sqrt(99) / 10, 14);
+    // At infinite radius, the ray's own direction.
+    expect(referredDirection({ ...sphere, radius: Infinity }, [0, 1, -20], [0, 0.6, 0.8])).toEqual([0, 0.6, 0.8]);
+  });
+
+  it("returns null for a ray that misses the sphere or crosses only its far side", () => {
+    expect(referredDirection(sphere, [20, 0, -20], [0, 0, 1])).toBeNull();
+    expect(referredDirection(sphere, [-20, 0, 5], [1, 0, 0])).toBeNull();
+  });
+
+  it("has no sphere without an exit pupil or an aimed chief ray", () => {
+    const L = stopBehindLens();
+    const request = analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, 0.5) as OffAxisFieldGeometry;
+    const launch = prepareAimedPupilLaunch(request, vignettingStopLattice(4), geometry)!;
+    expect(referenceSphere(request.preparedGeometry, launch, geometry, -100)).not.toBeNull();
+    expect(referenceSphere(request.preparedGeometry, launch, geometry, null)).toBeNull();
+    const unaimed = { ...launch, chief: { ...launch.chief, status: "unaimed" } } as unknown as typeof launch;
+    expect(referenceSphere(request.preparedGeometry, unaimed, geometry, -100)).toBeNull();
   });
 });
