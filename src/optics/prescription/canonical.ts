@@ -208,7 +208,7 @@ export interface CanonicalAberrationControl {
  * Where the engine takes the wide-open stop radius from:
  * - `"authored"`: the stop surface's own `sd` (folded systems and stops inside an element);
  * - `"schedule"`: each zoom station's `stopSemiDiameter`;
- * - `"derived"`: the marginal-ray height at the stop for the design f-number.
+ * - `"derived"`: the stop rule's radius for the design f-number (paraxial EPD = F/N, `state/apertureStop.ts`).
  */
 export type StopRadiusAuthority = "authored" | "schedule" | "derived";
 

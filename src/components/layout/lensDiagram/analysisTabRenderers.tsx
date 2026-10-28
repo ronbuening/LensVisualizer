@@ -23,7 +23,7 @@ export interface AnalysisDrawerInputs {
   currentEPSD: number;
   currentPhysStopSD: number;
   dynamicEFL: number;
-  /** Selected working f-number, when the host knows it. */
+  /** Marked f-number of the aperture control, when the host knows it. */
   fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
 }
@@ -65,6 +65,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       dynamicEFL={inputs.dynamicEFL}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
+      fNumber={inputs.fNumber}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
       analysisContext={analysisContext}

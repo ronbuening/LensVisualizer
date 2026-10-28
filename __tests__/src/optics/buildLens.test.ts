@@ -11,7 +11,7 @@ import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js"
 import { canonicalInput } from "../../../src/optics/prescription/canonicalInput.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import validateLensData from "../../../src/optics/prescription/validate/index.js";
-import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";

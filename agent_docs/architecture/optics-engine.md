@@ -133,13 +133,10 @@ between the samples; when the chief ray transmits, its reach along each launch a
 beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
 the production lens lower off-axis curves.
 
-**Traced aperture** (`mtfAperture.ts`). The label f-number sizes the iris, but an authored clear aperture can stop the
-axial marginal ray first, and stop-down scales the wide-open iris linearly. One meridional bisection between the
-chief ray and a blocked launch height finds the rim of the transmitted axial beam at the reference line:
-`MtfResult.aperture.tracedFNumber` is the rim height times the near-axis slope n′ sin U′ per launch height (f / (2 ×
-pupil radius) at infinity, the paraxial working f-number at a finite conjugate), so spherical aberration of the rim
-ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface that stops the next ray outward
-(null for the iris). Both are cached with the focus search.
+**Axial vignetting.** The chart is labelled with the marked f-number; the stop rule sizes the iris for it. When the
+Summary's working f-number (`computeWorkingFNumber`) finds the axial marginal ray vignetted, `MtfResult.axialVignetting`
+names that surface (and whether it is before the stop) and the header says so. No other f-number is derived from the
+MTF beam. It is cached with the focus search.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
 clips are blocking; the aimed launch's search ahead of the stop is the one exception and does not take TIR as a block
@@ -349,14 +346,39 @@ projections (fisheye, rectilinear `fullFieldDeg`/`maxTraceFieldDeg`) and folded 
 the format. `npm run audit:field-coverage` reports each lens's modeled edge against its corner and names the stopping
 rim.
 
-**Wide-open iris.** `aperture.nominalFNumber` or station `nominalFNumber` sizes the iris: the builder real-traces the marginal ray at the entrance-pupil radius
-that f-number names and takes its height at the stop. A zoom does this at every source station (`zoomStopSDs`, read
-through `wideOpenStopAtZoom()` in `src/optics/optics.ts`), so each station traces at its stated f-number;
-station `stopSemiDiameter` substitutes a published schedule and `zoom.apertureModel: "fixed-iris"` keeps the first
-station's radius. A stop that is a surface of drawn glass keeps its authored radius. Every other semi-diameter is a
-hard clip with no margin, so a rim smaller than the stated beam makes the lens trace slower than its label;
-`npm run audit:aperture` lists those stations and what limits each. The data rules are in
-`src/lens-data/LENS_DATA_SPEC.md` (zoom aperture).
+**Stop rule.** One rule turns an f-number into a stop at every N (`src/optics/state/apertureStop.ts`, exported
+through `src/optics/optics.ts`): the paraxial entrance-pupil diameter is F/N, OpticStudio's "Image Space F/#" system
+aperture. F is the aperture reference focal length (the EFL, or a fisheye's projection focal length), and the stop
+radius is (F / 2N) × the paraxial marginal ray's height ratio at the stop (`stopRuleGeometry`), evaluated at infinity
+focus and aberration 0 of the current zoom position; focus never moves the iris. `aperture.nominalFNumber` or station
+`nominalFNumber` is the marked wide-open N. `LensConstants.stopRule` names what sizes the wide-open stop:
+
+- `"f-number"`: the rule at the marked wide-open N. Between zoom stations that N is interpolated linearly in zoom and
+  the rule is evaluated at the zoom position itself (`zoomStopSDs` holds the station values).
+- `"schedule"`: station `stopSemiDiameter`, interpolated between stations.
+- `"fixed-iris"`: `zoom.apertureModel: "fixed-iris"`, one iris, the rule's radius at the first station.
+- `"authored"`: a stop inside drawn glass and a folded system keep the authored `sd`. A folded path's rule uses
+  `EP.yRatio`, the generalized tracer's near-axis stop ratio, since the sequential paraxial kernel does not follow a
+  fold.
+
+Stopped down, `stopSemiDiameterForFNumber(N, zoomT, L)` applies the rule on every lens, capped at the wide-open stop
+(`wideOpenStopAtZoom`). The aperture control, the MTF tab's f/8 comparison, comparison mode and the benchmark harness
+all call it; no caller scales a stop linearly. The paraxial entrance pupil of a state (`entrancePupil` in
+`field/geometry.ts`) divides the stop by the same paraxial ratio, so at infinity focus a stop set for f/N gives
+EPD = F/N to a few ulp. Every other semi-diameter is a hard clip with no margin, so a rim smaller than the beam the
+iris admits makes the lens trace slower than its label; `npm run audit:aperture` lists those stations and what limits
+each. The data rules are in `src/lens-data/LENS_DATA_SPEC.md` (Stop and Aperture).
+
+**F-numbers.** The Summary reports OpticStudio's three, beside the marked f/N: image-space f/# = EFL / EPD, paraxial, of
+the current state (`imageSpaceFNumber`); paraxial working f/# = 1 / (2 n′ |u′|) of the paraxial marginal ray at the
+current object distance (`paraxialWorkingFNumber`); and working f/# = 1 / (2 n′ sin θ′) of the real marginal ray from
+the axial object point through the stop rim, at the authored indices (the result names their line by the chromatic tab's
+rule: e only when every element, rear plates left out, is e-referenced), aimed with the axial zone of the aimed pupil
+launch at f = 1 under its rim rule (`computeWorkingFNumber`). The current object distance is the paraxial object plane
+the image plane is conjugate to (`paraxialObjectVergence`), infinite at infinity focus. A marginal ray that is
+vignetted, unaimed or untraceable reports that state; the MTF header names the vignetting surface. Folded paths have no
+paraxial working f/#. The aperture control's optional readout and comparison mode show the paraxial working f/#, or that
+it is unavailable and why (`paraxialWorkingFNumberForRuntimeLens`), never the marked f-number in its place.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
@@ -1556,7 +1578,7 @@ Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardin
 z and image-plane overrides, including the folded reflective path. The breathing series preserves its 21 regular
 samples plus endpoints/current-focus insertion and intentionally uses zero aberration, matching the original chart.
 Current EFL retains the cached infinity value and zoom-station interpolation. `eflAtFocus` remains as the compatibility
-entry for the working f-number, perspective field geometry and public layout/optics consumers; these lower-level
+entry for perspective field geometry and public layout/optics consumers; these lower-level
 owners must not depend on requests. Group availability/inference still accept runtime lenses for diagram controls,
 comparison sliders and published-station eligibility; only profile computation takes a request.
 

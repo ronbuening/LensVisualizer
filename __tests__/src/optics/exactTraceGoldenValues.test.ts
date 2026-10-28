@@ -44,8 +44,8 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "double Gauss",
     efl: 49.994180757309714,
     epSD: 17.855064556182043,
-    // 2026-10-27: the inferred stop plane moved behind r₆'s clear cap (7.8 mm), where the f/1.4 marginal ray crosses.
-    stopPhysSD: 11.640632158189495,
+    // 2026-10-27: the inferred stop plane moved behind r₆'s clear cap (7.8 mm); the paraxial EPD = F/N rule sizes it there.
+    stopPhysSD: 12.234122392091002,
     imgZ: 81.345,
     zLast: 44.185,
     marginal: { h: 12.5, y: 9.58533019704501, u: -0.25841395919948856 },
@@ -63,7 +63,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "telephoto",
     efl: 299.5288015298516,
     epSD: 37.44110019123145,
-    stopPhysSD: 16.852815472696278,
+    stopPhysSD: 16.548876822265246,
     imgZ: 242.48854,
     zLast: 126.21,
     marginal: { h: 26, y: 10.134889384645048, u: -0.08720040235172787 },
@@ -81,7 +81,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "diffractive (Phase Fresnel telephoto)",
     efl: 489.7123536778453,
     epSD: 42.58227586200154,
-    stopPhysSD: 11.784660898973346,
+    stopPhysSD: 11.60991711313998,
     imgZ: 279.32417999999996,
     zLast: 214.92760999999996,
     marginal: { h: 29.8076, y: 3.9277260192817036, u: -0.060974169984543934 },
@@ -99,7 +99,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "odd-order asphere (A3/A5/A7 terms)",
     efl: 51.50581892028711,
     epSD: 8.941982451438735,
-    stopPhysSD: 8.887545707713688,
+    stopPhysSD: 8.725054483804726,
     /* Rear plate PP (1.22 mm, nd 1.5168) is modeled in rearPlates: imgZ grows by t(1 − 1/n) and the last
      * vertex is the plate's rear face; EFL, pupil and exit slopes are unchanged. */
     imgZ: 95.37,
@@ -119,7 +119,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "fisheye (equidistant projection)",
     efl: 37.41323793170968,
     epSD: 1.125,
-    stopPhysSD: 5.395191357117423,
+    stopPhysSD: 5.364652292954149,
     imgZ: 205.24259111597053,
     zLast: 167.58559111597054,
     marginal: { h: 0.75, y: 5.512901727374504, u: -0.017546482708249093 },

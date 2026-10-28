@@ -4,9 +4,9 @@ import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
-import { wideOpenStopAtZoom } from "../../../../src/optics/state/stationTables.js";
+import { fNumberRuleStopSemiDiameter, wideOpenStopAtZoom } from "../../../../src/optics/state/apertureStop.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
+import { imageSpaceFNumber } from "../../../../src/optics/first-order/fNumber.js";
 import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
@@ -241,12 +241,18 @@ describe("useLensComputation", () => {
         const stopdownT = Math.log(8 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN);
         rerender({ zoomT, stopdownT });
         expect(result.current.fNumber).toBeCloseTo(8, 10);
-        expect(result.current.currentPhysStopSD).toBeCloseTo((iris * result.current.currentFOPEN) / 8, 10);
+        // Stopped down, every lens follows the rule: the paraxial entrance pupil is F/N.
+        const fNumber = result.current.fNumber;
+        expect(result.current.currentPhysStopSD).toBe(fNumberRuleStopSemiDiameter(fNumber, zoomT, L));
+        expect(imageSpaceFNumber(prepareRuntimeState(L, 0, zoomT), result.current.currentPhysStopSD)).toBeCloseTo(
+          fNumber,
+          12,
+        );
       }
     },
   );
 
-  it("reconstructs the 24–70 source aperture at every authored station", () => {
+  it("sizes the 24–70 stop for its stated f-number at every authored station", () => {
     const { result, rerender } = renderHook(
       ({ zoomT, stopdownT }) =>
         useLensComputation({
@@ -265,17 +271,13 @@ describe("useLensComputation", () => {
       const r = result.current;
       radii.push(r.currentPhysStopSD);
       expect(r.fNumber).toBeCloseTo(2.92, 8);
+      // The paraxial entrance pupil is EFL / 2.92: the stop the drawn iris and every analysis use.
       const state = prepareRuntimeState(r.L!, 0, zoomT);
-      const ray = traceEngineRay(
-        state,
-        { origin: [0, r.dynamicEFL / (2 * 2.92), -10], direction: [0, 0, 1] },
-        { checkSemiDiameter: true },
-      );
-      expect(ray.status).toBe("ok");
-      expect(ray.hits.find((hit) => hit.surfaceIndex === r.L!.stopIdx)?.radius).toBeCloseTo(r.currentPhysStopSD, 8);
+      expect(state.surfaces[r.L!.stopIdx].sd).toBe(r.currentPhysStopSD);
+      expect(imageSpaceFNumber(state, r.currentPhysStopSD)).toBeCloseTo(r.fNumber, 12);
       const L = r.L!;
       rerender({ zoomT, stopdownT: Math.log(16 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN) });
-      expect(result.current.currentPhysStopSD).toBeCloseTo((r.currentPhysStopSD * 2.92) / 16, 8);
+      expect(imageSpaceFNumber(state, result.current.currentPhysStopSD)).toBeCloseTo(16, 12);
     }
     expect(radii[1]).toBeGreaterThan(radii[0]);
     expect(radii[2]).toBeGreaterThan(radii[1]);
@@ -321,7 +323,7 @@ describe("useLensComputation", () => {
     expect(result.current.dynamicEFL).toBeGreaterThan(0);
   });
 
-  it("computes effective f-number", () => {
+  it("computes the paraxial working f-number", () => {
     const { result } = renderHook(() =>
       useLensComputation({
         lensKey: baseLensKey,
@@ -332,9 +334,10 @@ describe("useLensComputation", () => {
         panelId: "test",
       }),
     );
-    expect(result.current.effectiveFNum).toBeGreaterThan(0);
-    // At infinity focus, effective f-number ≈ geometric f-number
-    expect(result.current.effectiveFNum).toBeCloseTo(result.current.fNumber, 0);
+    const working = result.current.paraxialWorkingFNum;
+    if (working.status !== "computed") throw new Error(`paraxial working f-number ${working.reason}`);
+    // At infinity focus the paraxial working f-number is EFL / (2 n′ × pupil radius), the marked one in air.
+    expect(working.value).toBeCloseTo(result.current.fNumber, 0);
   });
 
   it("generates a filterId from panelId", () => {

@@ -247,9 +247,9 @@ export function mergeTeleconverterPrescription(
  * Rear plates are expanded first, exactly as `buildLens()` does: a plate ahead of the converter sets how far the
  * converter sits behind the host, so tracing the authored surfaces alone would misplace it.
  *
- * The first entry uses the surfaces as authored rather than the resolved `var` table, because that is the trace
- * `buildLens()` sizes the physical stop from. Validation lets an authored `d` differ from its `var` infinity value
- * by up to 1e-6 mm, and resolving the table here would move the stop by that much.
+ * Every entry resolves the `var` table at infinity focus, as the stop rule does when it sizes the physical stop.
+ * Validation lets an authored `d` differ from its `var` infinity value by up to 1e-6 mm, and tracing the authored
+ * surfaces instead would move the composed stop by that much.
  */
 function infinityFocalLengths(input: IngestedPrescription<CanonicalLens>): number[] {
   const data = canonicalConstructionData(expandCanonicalRearPlates(input.prescription, input.attachedTeleconverter));
@@ -258,19 +258,16 @@ function infinityFocalLengths(input: IngestedPrescription<CanonicalLens>): numbe
   const varByIdx = buildVarIndex(data.var, buildLabelIndex(data.surfaces));
   const focalLengths: number[] = [];
   for (let station = 0; station < stationCount; station++) {
-    const surfaces =
-      station === 0
-        ? data.surfaces
-        : buildStateSurfaces(
-            data.surfaces,
-            varByIdx,
-            isZoom,
-            0,
-            zoomIndexToT(station, stationCount),
-            {},
-            0,
-            data.focusPositions,
-          );
+    const surfaces = buildStateSurfaces(
+      data.surfaces,
+      varByIdx,
+      isZoom,
+      0,
+      isZoom ? zoomIndexToT(station, stationCount) : 0,
+      {},
+      0,
+      data.focusPositions,
+    );
     focalLengths.push(-1 / traceSurfacesParaxial(surfaces, 1, 0, { skipLastTransfer: true }).u);
   }
   return focalLengths;
@@ -336,7 +333,7 @@ function composedSpecs(
  * `buildLens()` derives the physical stop from `nominalFno` and the whole-system focal length, so appending a
  * converter would resize the host's iris. To keep the iris fixed, `nominalFno` is rescaled at every zoom station by
  * the exact paraxial ratio r = EFL(composed) / EFL(host): the entrance pupil EFL / (2·Fno) is then unchanged, and the
- * real trace to the stop — which only touches surfaces ahead of it — lands on the same radius.
+ * stop rule's paraxial height ratio — which only reads surfaces ahead of the stop — gives the same radius.
  *
  * @param host - authored V2 host or canonical lens
  * @param tc - authored V2 converter or canonical converter

@@ -231,7 +231,7 @@ export default function LensDiagramPanel({
     varReadouts,
     aberrationReadouts,
     dynamicEFL,
-    effectiveFNum,
+    paraxialWorkingFNum,
     filterId,
   } = useLensComputation({
     lensKey,
@@ -420,7 +420,7 @@ export default function LensDiagramPanel({
             varReadouts,
             aberrationReadouts,
             dynamicEFL,
-            effectiveFNum,
+            paraxialWorkingFNum,
             info: info ?? null,
             act,
             sel,

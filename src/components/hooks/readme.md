@@ -29,7 +29,7 @@ flowchart LR
   n_external_src_utils_svgCoordinates_ts["src/utils/svgCoordinates.ts"]
   n_src_components_hooks_TypeScript_modules --> |23| n_external_pkg_react
   n_src_components_hooks_TypeScript_modules --> |22| n_external_src_types
-  n_src_components_hooks_TypeScript_modules --> |14| n_external_src_optics_optics_ts
+  n_src_components_hooks_TypeScript_modules --> |15| n_external_src_optics_optics_ts
   n_src_components_hooks_TypeScript_modules --> |12| n_external_src_optics_perspective_ts
   n_src_components_hooks_TypeScript_modules --> |7| n_external_src_optics_analysis_ts
   n_src_components_hooks_TypeScript_modules --> |6| n_external_src_optics_fieldGeometry_ts
@@ -49,7 +49,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 0
-- Main outbound areas: package:react (23), src/types (22), same folder (15), src/optics/optics.ts (14), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +9 more
+- Main outbound areas: package:react (23), src/types (22), same folder (15), src/optics/optics.ts (15), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +9 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -68,7 +68,7 @@ flowchart LR
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |
 | `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
-| `useLensComputation.ts` | React hook module | src/optics/optics.ts (4), src/optics/perspective.ts (4), src/optics/analysis.ts (2), src/optics/fieldGeometry.ts (2), package:react, +5 more | src/components/layout | default, useLensComputation |
+| `useLensComputation.ts` | React hook module | src/optics/optics.ts (5), src/optics/perspective.ts (4), src/optics/analysis.ts (2), src/optics/fieldGeometry.ts (2), package:react, +5 more | src/components/layout | default, useLensComputation |
 | `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
 | `useMtfComputation.ts` | React hook module | src/types (2), package:react, same folder, src/optics/analysis.ts | src/components/display | MtfComputation, useMtfComputation |
 | `useMtfDataWarning.ts` | React hook module | package:react, src/types, src/utils/state | src/components/display | useMtfDataWarning |

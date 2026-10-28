@@ -522,12 +522,13 @@ function renderReport(configurations: Configuration[]): string {
   lines.push(
     "## Per Configuration",
     "",
-    "`Label f/` is the aperture printed on the chart; `Traced f/` is the working f-number of the simulated axial",
-    "beam, and `Limited by` the surface that bounds it. Focus shift is the best axial focus plane relative to the",
-    "authored image plane, in mm. Each comparison lists mean signed and mean absolute delta.",
+    "`Label f/` is the aperture printed on the chart, which the stop rule sizes the iris for; `Vignetted by` names the",
+    "surface that clips the axial marginal ray, as the Summary's working f-number reports it. Focus shift is the best",
+    "axial focus plane relative to the authored image plane, in mm. Each comparison lists mean signed and mean",
+    "absolute delta.",
     "",
-    "| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
-    "|---|---:|---|---|---:|---:|---|---:|---:|---:|---:|---:|",
+    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
+    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|",
   );
   for (const { key, zoomT, maker, convention, result, samples: own } of configurations)
     lines.push(
@@ -537,8 +538,9 @@ function renderReport(configurations: Configuration[]): string {
         maker,
         `${convention.method} (${convention.basis})`,
         fixed(own[0].anchor.apertureLabel, 2),
-        result.aperture ? fixed(result.aperture.tracedFNumber, 2) : "n/a",
-        result.aperture ? (result.aperture.limitingSurfaceLabel ?? "iris") : "n/a",
+        result.axialVignetting
+          ? `${result.axialVignetting.surfaceLabel}${result.axialVignetting.beforeStop ? " (before stop)" : ""}`
+          : "—",
         result.focus ? signed(result.focus.appliedShiftMm) : "n/a",
         ...deltaCells(own, DIFFRACTION).slice(0, 2),
         ...deltaCells(own, MAKER_CONVENTION).slice(0, 2),

@@ -8,8 +8,8 @@ import {
   interpolateStationTable,
   clampStationControl,
   closeFocusAtZoom,
-  wideOpenStopAtZoom,
 } from "../../../../src/optics/state/stationTables.js";
+import { wideOpenStopAtZoom } from "../../../../src/optics/state/apertureStop.js";
 import { buildVariableStopGapLens } from "../testLensFixtures.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
