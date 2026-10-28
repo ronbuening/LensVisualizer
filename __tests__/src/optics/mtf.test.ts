@@ -1,7 +1,7 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   build,
   buildChromaticPositiveElementLens,
@@ -13,7 +13,7 @@ import {
 } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
-import type { MtfOptions } from "../../../src/types/mtf.js";
+import type { MtfGridCap, MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate, RuntimeLens } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
@@ -22,13 +22,11 @@ import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
-  mtfLaunchGrid,
-  mtfLaunchRay,
-  mtfTraceOptions,
   prepareMtfFieldLaunch,
-  traceMtfBundle,
   traceMtfFieldPupil,
+  traceMtfLaunchPlaneBundle,
 } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { traceRayClassification } from "../../../src/optics/trace/rayClassification.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
@@ -50,6 +48,50 @@ import type { TraceRayClass } from "../../../src/optics/trace/rayClassification.
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+
+/*
+ * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
+ * an ordinary beam unaimed, so the MTF's handling of one is tested on cells named here. Inactive while the list is empty.
+ */
+const unaimedCells = vi.hoisted(() => ({
+  at: [] as (readonly [number, number])[],
+  where: null as ((x: number, y: number, cellsAcross: number) => boolean) | null,
+}));
+vi.mock("../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {
+  const original = await importOriginal<typeof import("../../../src/optics/analysis/pupils/aimedPupil.js")>();
+  return {
+    ...original,
+    prepareAimedStopLatticeForState: (...args: Parameters<typeof original.prepareAimedStopLatticeForState>) => {
+      const lattice = original.prepareAimedStopLatticeForState(...args);
+      if (!lattice || (unaimedCells.at.length === 0 && !unaimedCells.where)) return lattice;
+      const named = (x: number, y: number) =>
+        unaimedCells.at.some(([u, v]) => u === x && v === y) ||
+        (unaimedCells.where?.(x, y, lattice.cellsAcross) ?? false);
+      const rays = lattice.rays.map((ray): typeof ray =>
+        named(ray.xFraction, ray.yFraction)
+          ? { ...ray, status: "unaimed", reason: "aim-not-converged", origin: null, direction: null }
+          : ray,
+      );
+      const unaimed = rays.filter((ray) => ray.status === "unaimed").length;
+      return {
+        ...lattice,
+        rays,
+        aimedCount: lattice.aimedCount - (unaimed - lattice.unaimedCount),
+        unaimedCount: unaimed,
+      };
+    },
+  };
+});
+
+/** Lattice positions of the cells `column` places right of the centre and their mirror images, in the row above it. */
+function namedPairs(columns: readonly number[], sizes: readonly number[]): (readonly [number, number])[] {
+  return sizes.flatMap((n) =>
+    columns.flatMap((offset) => {
+      const x = (2 * (n / 2 + offset) + 1 - n) / n;
+      return [[x, 1 / n] as const, [-x, 1 / n] as const];
+    }),
+  );
+}
 
 const FINITE_CONJUGATE: FiniteConjugate = {
   focusT: 1,
@@ -381,43 +423,172 @@ function buildRetrofocusLens() {
   });
 }
 
-describe("MTF pupil footprint", () => {
-  it("reproduces the entrance-pupil lattice for a stop-at-lens beam on axis", () => {
+describe("MTF pupil sampling", () => {
+  it("reproduces the launch-plane lattice on the axis of a lens without pupil aberration", () => {
+    // The stop is the first surface and the axial beam is collimated, so a ray crosses the stop where it was launched:
+    // the stop lattice and the launch-plane lattice over the same beam are the same cells, and so are their OTFs.
     const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
-    const bundle = traceMtfFieldPupil(
-      state,
-      mtfTestOptions,
-      assessMtfSupport(...mtfInputs(state, mtfTestOptions)),
-      0,
-      32,
-    )!;
-    // A 32-cell entrance-pupil grid keeps 812 cell centers inside its circle.
-    expect(bundle.rays).toHaveLength(812);
-    expect(bundle.launchStepMm).toBeCloseTo(2 / 32, 12);
+    const support = assessMtfSupport(...mtfInputs(state, mtfTestOptions));
+    const line = support.spectralLines[0];
+    const stop = traceMtfFieldPupil(state, mtfTestOptions, support, 0, 32)!;
+    expect(stop.sampling).toBe("stop");
+    // A 32-cell lattice keeps 812 cell centres inside the stop's circle, 2 R / 32 apart.
+    expect(stop.rays).toHaveLength(812);
+    expect(stop.stepMm).toBeCloseTo(2 / 32, 12);
+    const launch = prepareMtfFieldLaunch(state, mtfTestOptions, support, 0)!;
+    const footprint = findMtfFieldFootprint(state, mtfTestOptions, support, launch)!;
+    const plane = traceMtfLaunchPlaneBundle(state, mtfTestOptions, support, launch, footprint, 32, line)!;
+    expect(plane.sampling).toBe("launch-plane");
+    expect(plane.rays).toHaveLength(812);
+    expect(plane.stepMm).toBeCloseTo(2 / 32, 12);
+    const frequencies = [10, 20, 40, 80];
+    const wavelengthMm = line.wavelengthNm * 1e-6;
+    for (const axis of ["x", "y"] as const) {
+      const fromStop = otfMagnitude(geometricOtf(stop.rays, frequencies, axis));
+      const fromPlane = otfMagnitude(geometricOtf(plane.rays, frequencies, axis));
+      fromStop.forEach((value, i) => expect(value).toBeCloseTo(fromPlane[i], 9));
+    }
+    const shearedStop = shearedOtf(stop, stop.chief, wavelengthMm, frequencies);
+    const shearedPlane = shearedOtf(plane, plane.chief, wavelengthMm, frequencies);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      const a = otfMagnitude(shearedStop[cut]);
+      const b = otfMagnitude(shearedPlane[cut]);
+      a.forEach((value, i) => expect(value).toBeCloseTo(b[i], 9));
+    }
   });
-  it("samples the whole transmitted beam where it outgrows the axial entrance pupil", () => {
+  it("samples an off-axis field of a wide angle evenly on the stop, with equal weights", () => {
+    // At 50° the retrofocus front group images the stop large and off axis. Every cell's ray, traced on its own to the
+    // stop without apertures, crosses it at the cell's lattice position ((2k + 1 − n) / n) R within the aim's
+    // tolerance; equal launch-plane cells over the same beam land on the stop unevenly.
     const state = prepareRuntimeState(buildRetrofocusLens(), 0, 0);
     const options = { ...mtfTestOptions, pupilSemiDiameterMm: 2.2, stopSemiDiameterMm: 3 };
     const support = assessMtfSupport(...mtfInputs(state, options));
-    const area = (bundle: MtfBundle) => bundle.rays.length * bundle.launchStepMm ** 2;
-    const axial = area(traceMtfFieldPupil(state, options, support, 0, 32)!);
+    const line = support.spectralLines[0];
+    const n = 32;
+    const R = options.stopSemiDiameterMm;
+    const bundle = traceMtfFieldPupil(state, options, support, 50, n)!;
+    expect(bundle.sampling).toBe("stop");
+    expect([bundle.unaimed, bundle.failed]).toEqual([0, 0]);
+    const toStop = (ray: { origin: readonly number[]; direction: readonly number[] }) => {
+      const trace = traceEngineRay(state, ray as never, {
+        capture: "terminal",
+        stopAt: state.lens.stop.surfaceIndex + 1,
+        checkSemiDiameter: false,
+        directionNormalized: true,
+      });
+      return [trace.terminalPoint[0], trace.terminalPoint[1]];
+    };
+    for (const ray of bundle.rays) {
+      const [x, y] = toStop(ray.trace.input);
+      expect(Math.abs(x - ((2 * ray.column + 1 - n) / n) * R)).toBeLessThanOrEqual(1e-7 * R + 1e-12);
+      expect(Math.abs(y - ((2 * ray.row + 1 - n) / n) * R)).toBeLessThanOrEqual(1e-7 * R + 1e-12);
+      // The fixture's glasses carry no absorption data: every lit cell carries the same weight.
+      expect(ray.weight).toBe(1);
+    }
+    // The launch-plane lattice over the same beam: its neighbouring cells cross the stop up to tens of percent apart.
     const launch = prepareMtfFieldLaunch(state, options, support, 50)!;
     const footprint = findMtfFieldFootprint(state, options, support, launch)!;
-    const bundle = traceMtfBundle(state, options, support, launch, footprint, 32, support.spectralLines[0])!;
-    // Dense reference on the same lattice, extended three entrance-pupil radii beyond the footprint.
-    const grid = mtfLaunchGrid(footprint, 32);
-    const pad = Math.ceil((3 * options.pupilSemiDiameterMm) / grid.step);
-    const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
-    let reference = 0;
-    for (let row = -pad; row < grid.rows + pad; row++)
-      for (let column = -pad; column < grid.columns + pad; column++) {
-        const ray = mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step);
-        const trace = traceEngineRay(state, ray, traceOptions);
-        if (traceRayClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
+    const plane = traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, n, line)!;
+    const byCell = new Map(plane.rays.map((ray) => [`${ray.row},${ray.column}`, toStop(ray.trace.input)]));
+    const pitches = plane.rays.flatMap((ray) => {
+      const next = byCell.get(`${ray.row + 1},${ray.column}`);
+      return next ? [next[1] - byCell.get(`${ray.row},${ray.column}`)![1]] : [];
+    });
+    expect(Math.max(...pitches) / Math.min(...pitches)).toBeGreaterThan(1.1);
+  });
+  it("reports unaimed cells inside the beam, and returns no number where they could move it", () => {
+    // Every cell of this axial beam transmits. Name a +x cell and its mirror image on the 32-cell lattice, the ladder's
+    // last: the bundle counts both, beside lit neighbours, and neither estimator returns a curve without saying so.
+    // Three pairs carry more than 0.5 % of the flux: the 32-cell grid has no curve, and the 16-cell one stands, saying
+    // why no finer grid gave one. Named on both lattices, they leave the field no curve at all.
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const fieldWith = (
+      columns: readonly number[],
+      method: MtfOptions["method"],
+      sizes = [32],
+      maxGridSize: MtfGridCap = 32,
+    ) => {
+      unaimedCells.at = namedPairs(columns, sizes);
+      try {
+        return computeMtf(...mtfInputs(state, { ...mtfTestOptions, method, maxGridSize })).fields[0];
+      } finally {
+        unaimedCells.at = [];
       }
-    expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);
-    expect(bundle.rays.length / reference).toBeGreaterThan(0.99);
-    expect(bundle.openBorders).toEqual({ x: false, y0: false, y1: false });
+    };
+    for (const method of ["geometric", "diffraction"] as const) {
+      const one = fieldWith([1], method);
+      expect(one.gridSize).toBe(32);
+      expect(one.unaimedRays).toBe(2);
+      expect(one.unresolvedInBeamRays).toBe(2);
+      // 2 of the 812 cells, each counted at full transmission.
+      expect(one.unknownFluxFraction).toBeCloseTo(2 / 812, 12);
+      expect(one.sagittal.length).toBeGreaterThan(0);
+      expect(one.notes).toContain(
+        "2 pupil samples could not be aimed or traced: 2 beside the transmitted beam carry 0.25% of flux and are omitted; MTF error ≤ 0.005.",
+      );
+      const stopped = fieldWith([1, 2, 3], method);
+      expect(stopped.status).toBe("unconverged");
+      expect(stopped.gridSize).toBe(16);
+      expect([stopped.unaimedRays, stopped.unresolvedInBeamRays]).toEqual([0, 0]);
+      expect(
+        stopped.notes.some((note) =>
+          /^No grid finer than 16 cells gave a curve; at 32 cells: 6 pupil samples beside the transmitted beam/.test(
+            note,
+          ),
+        ),
+      ).toBe(true);
+      const none = fieldWith([1, 2, 3], method, [16, 32]);
+      expect(none.status).toBe("unavailable");
+      expect(none.reason).toBe("trace-failed");
+      expect(none.sagittal).toEqual([]);
+      expect(none.message).toMatch(/^6 pupil samples beside the transmitted beam could not be aimed or traced/);
+      // Failing the share on the coarsest grid only, the field refines past it and converges (at 128 cells, as it does
+      // with no unaimed cell at all).
+      const refined = fieldWith([1, 2, 3], method, [16], 128);
+      expect(refined.status).toBe("converged");
+      expect(refined.gridSize).toBe(128);
+      expect([refined.unaimedRays, refined.unresolvedInBeamRays]).toEqual([0, 0]);
+      expect(refined.notes).toEqual([]);
+    }
+    // A bundle traced directly carries the same counts.
+    unaimedCells.at = namedPairs([1], [32]);
+    try {
+      const support = assessMtfSupport(...mtfInputs(state, mtfTestOptions));
+      const bundle = traceMtfFieldPupil(state, mtfTestOptions, support, 0, 32)!;
+      expect([bundle.unaimed, bundle.failed, bundle.unresolvedInBeam, bundle.unresolvedWeight]).toEqual([2, 0, 2, 2]);
+      expect(bundle.unresolvedInBeamWeight).toBe(2);
+      expect(bundle.rays).toHaveLength(810);
+    } finally {
+      unaimedCells.at = [];
+    }
+  });
+  it("counts unaimed samples away from the beam and names them, but keeps the curve", () => {
+    // The 3 mm element rims 1 mm behind a 5 mm stop transmit only the stop's inner zone; the cells past 0.9 R are dark
+    // and none of them is a row or column neighbour of a lit cell. Returned unaimed, they are counted and named but
+    // withhold nothing, however many: about a fifth of the lattice here.
+    const state = prepareRuntimeState(
+      buildSimplePositiveElementLens("test-mtf-away-from-beam", { elementSd: 3 }),
+      0,
+      0,
+    );
+    const options = { ...mtfTestOptions, pupilSemiDiameterMm: 5, stopSemiDiameterMm: 5 };
+    const clean = computeMtf(...mtfInputs(state, options)).fields[0];
+    unaimedCells.where = (x, y) => Math.hypot(x, y) > 0.9;
+    try {
+      for (const method of ["geometric", "diffraction"] as const) {
+        const field = computeMtf(...mtfInputs(state, { ...options, method })).fields[0];
+        expect(field.status).not.toBe("unavailable");
+        expect(field.gridSize).toBe(clean.gridSize);
+        expect(field.unaimedRays).toBeGreaterThan(0.1 * field.validRays);
+        expect([field.unresolvedInBeamRays, field.unknownFluxFraction]).toEqual([0, 0]);
+        expect(field.notes).toContain(
+          `${field.unaimedRays} pupil samples could not be aimed or traced: ${field.unaimedRays} touch no transmitted cell and are not counted.`,
+        );
+        if (method === "geometric") expect(field.sagittal).toEqual(clean.sagittal);
+      }
+    } finally {
+      unaimedCells.where = null;
+    }
   });
   it("fits the footprint to a slit beam thinner than the coarse scan when the chief transmits", () => {
     // A 0.1 mm slit through the chief: the scan of a 10 mm pupil samples y every 1.25 mm and misses it.

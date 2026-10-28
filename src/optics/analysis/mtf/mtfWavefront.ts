@@ -1,5 +1,5 @@
 /**
- * Wave-optics OTF of a traced beam from optical path, on the launch lattice. Lengths are mm,
+ * Wave-optics OTF of a traced beam from optical path, on the bundle's lattice. Lengths are mm,
  * phases are not wrapped.
  *
  * This is the reference the tests and the chart report hold the sheared-ray estimator against,
@@ -48,7 +48,7 @@ export function rayOpticalPathToImageMm(ray: MtfPupilRay["trace"], image: Vec3, 
   return launchPhaseMm(ray, objectPoint) + ray.opticalPathLengthMm! + ray.finalMedium * along;
 }
 
-/** Complex pupil of one traced bundle on its launch lattice. */
+/** Complex pupil of one traced bundle on its lattice. */
 export interface MtfWaveLattice {
   columns: number;
   rows: number;
@@ -62,7 +62,7 @@ export interface MtfWaveLattice {
 }
 
 /**
- * Sample a traced bundle's wavefront on its launch lattice.
+ * Sample a traced bundle's wavefront on its lattice.
  *
  * @param bundle - bundle traced with optical paths recorded
  * @param reference - image point the wavefront is measured from, shared by every wavelength of a field

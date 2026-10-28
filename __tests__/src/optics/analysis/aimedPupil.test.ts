@@ -13,6 +13,7 @@ import {
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
+  prepareAimedStopLattice,
 } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import {
@@ -181,10 +182,11 @@ describe("prepareAimedPupilLaunch", () => {
     }
   });
 
-  it("reports a target the field cannot reach as unaimed with its reason", () => {
-    // Inside n = 1.9 glass, rays above 4.2 mm meet the 8 mm rear sphere past the critical angle, and those just inside
-    // it leave at a slope near −1.6, so 2 mm behind the vertex no transmitted ray strays much past 1 mm from the axis.
-    // The 2 mm stop's rim is out of reach; total internal reflection is no aperture, so the rim stays unaimed.
+  it("blocks a target only totally reflected rays could reach at the reflecting surface, not unaimed", () => {
+    // Inside n = 1.9 glass, an axial ray at height h meets the 8 mm rear sphere at incidence asin(h / 8), past the
+    // critical angle asin(1 / 1.9) above h = 8 / 1.9 ≈ 4.2 mm; those just inside it leave at a slope near −1.6, so 2 mm
+    // behind the vertex no transmitted ray strays much past 1 mm from the axis. The 2 mm stop's rim is out of reach, and
+    // the rays toward it reflect totally at surface 1: vignetting there, as total internal reflection after the stop is.
     const base = buildSimplePositiveElementLens();
     const L = build({
       ...constructionFixtureData(base),
@@ -199,11 +201,17 @@ describe("prepareAimedPupilLaunch", () => {
     const request = analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 });
     const launch = prepareAimedPupilLaunch(request, TANGENTIAL, { uField: 0, yChief: 0 })!;
     const rim = launch.rays.at(-1)!;
-    expect(rim.status).toBe("unaimed");
-    expect(rim.reason).toBe("stop-unreachable");
-    expect(rim.origin).toBeNull();
-    expect(launch.unaimedByReason["stop-unreachable"]).toBe(launch.unaimedCount);
-    expect(launch.unaimedCount).toBeGreaterThan(0);
+    expect(rim.status).toBe("blocked");
+    if (rim.status !== "blocked") return;
+    expect(rim.blockedAtSurfaceIndex).toBe(1);
+    expect(rim.achievedStopMm).toBeNull();
+    // The blocking ray enters the glass above the critical height and its full trace ends in that reflection.
+    expect(Math.abs(rim.origin[1])).toBeGreaterThan(8 / 1.9);
+    const trace = prepareAimedPupilTrace(request.preparedGeometry, launch).engine(rim);
+    expect(trace.failureReason).toBe("totalInternalReflection");
+    expect(trace.terminalSurfaceIndex).toBe(1);
+    expect(launch.unaimedCount).toBe(0);
+    expect(launch.blockedCount).toBeGreaterThan(0);
     expect(launch.rays[(TANGENTIAL.length - 1) / 2].status).toBe("aimed");
   });
 
@@ -480,6 +488,59 @@ describe("prepareAimedPupilLaunch", () => {
     expect(amongOthers.origin).toEqual(alone.origin);
     expect(amongOthers.direction).toEqual(alone.direction);
     expect(amongOthers.iterations).toBe(alone.iterations);
+  });
+});
+
+describe("prepareAimedStopLattice", () => {
+  it("lands every cell within tolerance, and a supplied coarse lattice changes nothing unless it is the field's own", () => {
+    const request = analysisRequestAt(stopBehindLens(), { currentEPSD: 3, currentPhysStopSD: 2 });
+    const field = { uField: 0.2, yChief: -1 };
+    const fine = prepareAimedStopLattice(request, 32, field)!;
+    expect(fine.cells).toHaveLength(fine.rays.length);
+    for (const ray of fine.rays) expectOnTarget(fine, ray);
+    // The lattice half as fine, aimed first or supplied, seeds the same bits.
+    const coarse = prepareAimedStopLattice(request, 16, field)!;
+    expect(prepareAimedStopLattice(request, 32, field, undefined, coarse)!.rays).toEqual(fine.rays);
+    // A lattice of the same field key in another state (the stop a micrometre further back) is ignored.
+    const base = stopBehindLens();
+    const moved = build({
+      ...constructionFixtureData(base),
+      key: "test-aimed-stop-behind-lens-moved",
+      surfaces: constructionFixtureData(base).surfaces.map((surface, i) =>
+        i === 1 ? { ...surface, d: 20.001 } : surface,
+      ),
+    });
+    const other = analysisRequestAt(moved, { currentEPSD: 3, currentPhysStopSD: 2 });
+    const foreign = prepareAimedStopLattice(other, 16, field)!;
+    expect(prepareAimedStopLattice(request, 32, field, undefined, foreign)!.rays).toEqual(fine.rays);
+  });
+  it("leaves no cell unaimed that a lone sample aims or blocks, and refuses a size that is no whole number", () => {
+    // In n = 1.9 glass, rays above 8 / 1.9 mm reflect totally at the 8 mm rear sphere, and targets past the fold of the
+    // stop-to-launch map are out of every ray's reach: the 2 mm stop's outer zone mixes aimed, blocked and unaimed cells.
+    const base = buildSimplePositiveElementLens();
+    const L = build({
+      ...constructionFixtureData(base),
+      key: "test-aimed-lattice-lone-outcomes",
+      elements: [{ ...base.elements[0], nd: 1.9 }],
+      surfaces: [
+        { label: "1", R: 1e15, nd: 1.9, sd: 7, d: 8, elemId: 1 },
+        { label: "2", R: -8, nd: 1, sd: 7, d: 2, elemId: 0 },
+        { label: "STO", R: 1e15, nd: 1, sd: 2, d: 40, elemId: 0 },
+      ],
+    });
+    const request = analysisRequestAt(L, { currentEPSD: 2, currentPhysStopSD: 2 });
+    const field = { uField: 0, yChief: 0 };
+    for (const n of [32, 64]) {
+      const lattice = prepareAimedStopLattice(request, n, field)!;
+      const lone = prepareAimedPupilLaunch(request, lattice.cells, field)!;
+      expect(lone.unaimedCount).toBeGreaterThan(0);
+      expect(lone.blockedCount).toBeGreaterThan(0);
+      lattice.rays.forEach((ray, i) => {
+        if (lone.rays[i].status !== "unaimed") expect(ray.status).not.toBe("unaimed");
+      });
+    }
+    for (const size of [32.5, Number.NaN, 0, { columns: 32 } as unknown as number])
+      expect(() => prepareAimedStopLattice(request, size, field)).toThrow(RangeError);
   });
 });
 

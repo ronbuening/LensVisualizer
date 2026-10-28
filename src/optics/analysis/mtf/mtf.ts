@@ -29,8 +29,14 @@ import {
 } from "./mtfConstants.js";
 import { combineOtfs, geometricOtf, otfMagnitude } from "./mtfMath.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "./mtfTracing.js";
-import type { MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
+import {
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfStopBundle,
+  traceMtfLaunchPlaneBundle,
+} from "./mtfTracing.js";
+import type { MtfBundle, MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
+import type { AimedStopLattice } from "../pupils/aimedPupil.js";
 import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
@@ -89,10 +95,13 @@ export function emptyMtfField(fraction: number, target?: MtfFieldTarget): MtfFie
     reason: null,
     message: "Waiting to be traced.",
     notes: [],
+    pupilSampling: "stop",
     gridSize: 0,
     validRays: 0,
     blockedRays: 0,
     failedRays: 0,
+    unaimedRays: 0,
+    unresolvedInBeamRays: 0,
     unknownFluxFraction: 0,
     maxDelta: null,
     convergedThroughLpMm: null,
@@ -116,19 +125,37 @@ export interface MtfUnresolvedFlux {
 
 /**
  * Omitting flux ε changes a normalized geometric OTF by at most 2ε: small unresolved shares are
- * reported with that bound, larger ones make the field unavailable.
+ * reported with that bound, larger ones make the grid unavailable. Unresolved samples are the
+ * unaimed and failed ones. A field is judged by those beside its transmitted beam (a row or column
+ * neighbour of a transmitted cell): one that touches no transmitted cell is counted and named in the
+ * note but withholds nothing (`agent_docs/decisions.md`).
  *
- * @param failedRays - unresolved pupil samples
- * @param unknownFluxFraction - their share of launched flux
+ * @param unresolvedRays - unaimed and failed pupil samples
+ * @param unknownFluxFraction - the judged share of the flux: that of the samples beside the beam when `inBeam` is
+ *   given, of every unresolved sample otherwise, each counted at full transmission
+ * @param inBeam - how many of the samples lie beside the transmitted beam; null when not counted
  * @returns whether the field may be reported, with its qualifying note
  */
-export function assessUnresolvedFlux(failedRays: number, unknownFluxFraction: number): MtfUnresolvedFlux {
+export function assessUnresolvedFlux(
+  unresolvedRays: number,
+  unknownFluxFraction: number,
+  inBeam: number | null = null,
+): MtfUnresolvedFlux {
   if (unknownFluxFraction > MTF_MAX_UNKNOWN_FLUX) return { acceptable: false, note: null };
-  if (failedRays === 0) return { acceptable: true, note: null };
-  return {
-    acceptable: true,
-    note: `${failedRays} unresolved edge rays (${(unknownFluxFraction * 100).toFixed(2)}% of flux) are omitted; MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}.`,
-  };
+  if (unresolvedRays === 0) return { acceptable: true, note: null };
+  const share = `${(unknownFluxFraction * 100).toFixed(2)}% of flux`;
+  const bound = `MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}`;
+  if (inBeam === null)
+    return {
+      acceptable: true,
+      note: `${unresolvedRays} pupil samples that could not be aimed or traced (${share}) are omitted; ${bound}.`,
+    };
+  const away = unresolvedRays - inBeam;
+  const parts = [
+    ...(inBeam > 0 ? [`${inBeam} beside the transmitted beam carry ${share} and are omitted; ${bound}.`] : []),
+    ...(away > 0 ? [`${away} touch no transmitted cell and are not counted.`] : []),
+  ];
+  return { acceptable: true, note: `${unresolvedRays} pupil samples could not be aimed or traced: ${parts.join(" ")}` };
 }
 
 /* ── One field at one grid size ── */
@@ -161,16 +188,29 @@ function combineLimits(limits: readonly WeightedLimit[]): { sagittal: number[]; 
   return { sagittal: mean("sagittal"), tangential: mean("tangential") };
 }
 
+/** How one field samples its pupil across the grid ladder. */
+type MtfFieldSampling =
+  /** On the real stop; each wavelength's latest lattice seeds its next, finer one. */
+  | { kind: "stop"; lattices: Map<number, AimedStopLattice> }
+  /** On the launch plane over a footprint, for a field launched from the bounding sphere. */
+  | { kind: "launch-plane"; footprint: MtfFootprint };
+
+/** Field note for a field sampled on the launch plane. */
+const MTF_LAUNCH_PLANE_NOTE =
+  "This field launches from the bounding sphere, which the stop lattice does not cover: its pupil is sampled in equal cells of the launch plane, not evenly on the stop.";
+
 function fieldAtGrid(
   context: MtfJobContext,
   target: MtfFieldTarget,
   launch: MtfFieldLaunch,
-  footprint: MtfFootprint,
+  sampling: MtfFieldSampling,
   size: number,
 ): MtfGridOutcome {
   const { state, options, support } = context;
   const field = emptyMtfField(target.fraction, target);
   field.gridSize = size;
+  field.pupilSampling = sampling.kind;
+  if (sampling.kind === "launch-plane") field.notes.push(MTF_LAUNCH_PLANE_NOTE);
   const unavailable = (reason: MtfUnavailableReason, message: string, refine = false): MtfGridOutcome => ({
     kind: "unavailable",
     field: markUnavailable(field, reason, message),
@@ -185,12 +225,32 @@ function fieldAtGrid(
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
   let chiefClipped: boolean | undefined;
-  let launchedWeight = 0;
-  let failedWeight = 0;
-  for (const line of support.spectralLines) {
-    const bundle = traceMtfBundle(state, options, support, launch, footprint, size, line, context.imagePlaneZ, {
-      reference: commonReference,
-    });
+  // Flux the beam could carry: transmitted, plus the unresolved samples beside it, which the field is judged by.
+  let sampledWeight = 0;
+  let unresolvedWeight = 0;
+  /** Wavelengths no ray reaches at this grid. */
+  let darkLines = 0;
+  for (const [index, line] of support.spectralLines.entries()) {
+    let bundle: MtfBundle | null;
+    if (sampling.kind === "stop") {
+      bundle = traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
+        reference: commonReference,
+        coarse: sampling.lattices.get(index),
+      });
+      if (bundle?.lattice) sampling.lattices.set(index, bundle.lattice);
+    } else {
+      bundle = traceMtfLaunchPlaneBundle(
+        state,
+        options,
+        support,
+        launch,
+        sampling.footprint,
+        size,
+        line,
+        context.imagePlaneZ,
+        { reference: commonReference },
+      );
+    }
     if (!bundle) return unavailable("chief-ray-failed", "No valid chief ray reaches the image plane.");
     chiefClipped ??= bundle.chiefClipped;
     commonReference ??= bundle.chief;
@@ -198,14 +258,21 @@ function fieldAtGrid(
     field.validRays += bundle.rays.length;
     field.blockedRays += bundle.blocked;
     field.failedRays += bundle.failed;
+    field.unaimedRays += bundle.unaimed;
+    field.unresolvedInBeamRays += bundle.unresolvedInBeam;
     openBorders.x ||= bundle.openBorders.x;
     openBorders.y0 ||= bundle.openBorders.y0;
     openBorders.y1 ||= bundle.openBorders.y1;
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-    launchedWeight += transmitted + bundle.failedWeight;
-    failedWeight += bundle.failedWeight;
-    // The footprint scan already found transmitted flux, so too few rays means this grid is too
-    // coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may resolve it.
+    sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
+    unresolvedWeight += bundle.unresolvedInBeamWeight;
+    // A wavelength no ray reaches, with every sample resolved: the grid is vignetted if every wavelength is.
+    if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0) {
+      darkLines++;
+      continue;
+    }
+    // Too few rays means this grid is too coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may
+    // resolve it.
     if (bundle.rays.length < MTF_MIN_RAYS || !(transmitted > 0))
       return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
     // Incident line weight times transmitted flux: clipping and bulk absorption shape each line's share.
@@ -228,9 +295,23 @@ function fieldAtGrid(
     sagittal.push({ otf: geometricOtf(points, context.frequencies, "x"), weight });
     tangential.push({ otf: geometricOtf(points, context.frequencies, "y"), weight });
   }
-  field.unknownFluxFraction = launchedWeight > 0 ? failedWeight / launchedWeight : 0;
-  const unresolved = assessUnresolvedFlux(field.failedRays, field.unknownFluxFraction);
-  if (!unresolved.acceptable) return unavailable("trace-failed", "Numerical ray failures prevent an MTF estimate.");
+  // No ray at all reaches the image at any wavelength: a finer grid may still find a thin beam. Light at some wavelengths
+  // and none at others is too little pupil for this grid.
+  if (darkLines === support.spectralLines.length)
+    return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
+  if (darkLines > 0) return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
+  field.unknownFluxFraction = sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
+  const unresolvedRays = field.failedRays + field.unaimedRays;
+  const unresolved = assessUnresolvedFlux(unresolvedRays, field.unknownFluxFraction, field.unresolvedInBeamRays);
+  // A finer grid can resolve a beam edge this one cannot, so the ladder goes on.
+  if (!unresolved.acceptable) {
+    const away = unresolvedRays - field.unresolvedInBeamRays;
+    return unavailable(
+      "trace-failed",
+      `${field.unresolvedInBeamRays} pupil samples beside the transmitted beam could not be aimed or traced and carry ${(field.unknownFluxFraction * 100).toFixed(1)}% of its flux, too much for an MTF estimate.${away > 0 ? ` ${away} more touch no transmitted cell.` : ""}`,
+      true,
+    );
+  }
   if (unresolved.note) field.notes.push(unresolved.note);
   if (chiefClipped) field.notes.push(MTF_CLIPPED_CHIEF_NOTE);
   if (straddling > MTF_STRADDLING_NOTE_SHARE)
@@ -280,8 +361,9 @@ function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null
 /**
  * Refine one field through the grid ladder.
  *
- * A converged level ends refinement. A finer level that fails never discards a coarser curve,
- * which stays unconverged; failures that ask for finer sampling continue down the ladder.
+ * A converged level ends refinement. A level that fails asking for finer sampling (a thin beam, or unresolved samples a
+ * finer lattice may resolve) passes to the next; one that cannot be helped by it (no chief ray) ends refinement. A
+ * failure never discards a coarser curve, which stays unconverged; when no finer level gave a curve, it says why.
  *
  * @param ladder - grid sizes, coarse to fine
  * @param evaluate - field at one grid size
@@ -294,22 +376,43 @@ export function* refineMtfField(
   frequencies: readonly number[],
 ): Generator<MtfFieldResult, void> {
   let previous: MtfFieldResult | null = null;
+  /** The last failed level since the last curve. */
+  let failed: { size: number; message: string } | null = null;
+  const explain = (field: MtfFieldResult) => {
+    if (failed)
+      field.notes.push(
+        `No grid finer than ${field.gridSize} cells gave a curve; at ${failed.size} cells: ${failed.message}`,
+      );
+  };
   for (const size of ladder) {
     const outcome = evaluate(size);
     if (outcome.kind === "unavailable") {
-      const best = previous ?? outcome.field;
-      yield best;
-      if (outcome.refine) continue;
-      return;
+      failed = { size, message: outcome.field.message };
+      if (!outcome.refine) {
+        if (previous) explain(previous);
+        yield previous ?? outcome.field;
+        return;
+      }
+      yield previous ?? outcome.field;
+      continue;
     }
+    failed = null;
     applyConvergence(outcome.field, previous, frequencies);
     yield outcome.field;
     if (outcome.field.status === "converged") return;
     previous = outcome.field;
   }
+  if (previous && failed) {
+    explain(previous);
+    yield previous;
+  }
 }
 
-/** Trace one field through launch, footprint and refinement, yielding its best result so far. */
+/**
+ * Trace one field through launch and refinement, yielding its best result so far. A field on the real stop refines its
+ * stop lattice; a bounding-sphere field scans a launch-plane footprint first and widens it when its guard band carries
+ * flux.
+ */
 function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<MtfFieldResult, void> {
   const { state, options, support } = context;
   const launch =
@@ -322,19 +425,26 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
     );
     return;
   }
+  if (launch.aim) {
+    const sampling: MtfFieldSampling = { kind: "stop", lattices: new Map() };
+    yield* refineMtfField(
+      context.ladder,
+      (size) => fieldAtGrid(context, target, launch, sampling, size),
+      context.frequencies,
+    );
+    return;
+  }
   let footprint = findMtfFieldFootprint(state, options, support, launch);
   if (!footprint) {
-    yield markUnavailable(
-      emptyMtfField(target.fraction, target),
-      "vignetted",
-      "No rays reach this image height through the model's clear apertures.",
-    );
+    const field = emptyMtfField(target.fraction, target);
+    field.pupilSampling = "launch-plane";
+    yield markUnavailable(field, "vignetted", "No rays reach this image height through the model's clear apertures.");
     return;
   }
   let expansions = 0;
   const evaluate = (size: number): MtfGridOutcome => {
     for (;;) {
-      const outcome = fieldAtGrid(context, target, launch, footprint!, size);
+      const outcome = fieldAtGrid(context, target, launch, { kind: "launch-plane", footprint: footprint! }, size);
       const open = outcome.kind === "curves" ? outcome.openBorders : undefined;
       if (!open || !(open.x || open.y0 || open.y1)) return outcome;
       if (expansions >= MTF_MAX_FOOTPRINT_EXPANSIONS) {
@@ -353,17 +463,19 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
 
 /* ── Focus ── */
 
-/** Axial launch and footprint for the focus search. */
+/** Axial launch for the focus search, with a launch-plane footprint only where the field cannot be aimed. */
 interface MtfAxialBeam {
   launch: MtfFieldLaunch;
-  footprint: MtfFootprint;
+  footprint: MtfFootprint | null;
 }
 
 function resolveAxialBeam(context: MtfJobContext): MtfAxialBeam | null {
   const { state, options, support } = context;
   const launch = prepareMtfFieldLaunch(state, options, support, 0);
-  const footprint = launch ? findMtfFieldFootprint(state, options, support, launch) : null;
-  return launch && footprint ? { launch, footprint } : null;
+  if (!launch) return null;
+  if (launch.aim) return { launch, footprint: null };
+  const footprint = findMtfFieldFootprint(state, options, support, launch);
+  return footprint ? { launch, footprint } : null;
 }
 
 /**
@@ -390,7 +502,9 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
   for (const line of support.spectralLines) {
-    const bundle = traceMtfBundle(state, options, support, launch, footprint, size, line, state.imgZ);
+    const bundle = footprint
+      ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, size, line, state.imgZ)
+      : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ);
     if (!bundle) return focus;
     bundles.push({ bundle, weight: line.weight });
   }
