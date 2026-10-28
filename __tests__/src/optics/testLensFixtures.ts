@@ -298,10 +298,12 @@ export function buildRimCutLens(
   key = "test-rim-cut-lens",
   rearSd = 12,
   rimCutDepthSource?: string,
+  overrides: Partial<LensData> = {},
 ): RuntimeLens {
   return buildFixture({
     key,
     nominalFno: 8,
+    ...overrides,
     surfaces: [
       { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
       { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
@@ -338,6 +340,66 @@ export function buildFrontRimCutLens(
       { label: "2", R: -40, nd: 1.0, sd: 12, d: 80, elemId: 0 },
     ],
     ...(A4 ? { asph: { "1": { K: 0, A4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } : {}),
+  });
+}
+
+/**
+ * The rim-cut meniscus (concave rear R = 20, cut `rearDepthMm` deep) and, 10 mm behind it, a second meniscus whose
+ * concave front (R = −20, sd = 12) is cut `frontDepthMm` deep: two inferred cuts the outer rays of the beams cross.
+ */
+export function buildTwoRimCutLens(rearDepthMm: number, frontDepthMm: number, key = "test-two-rim-cuts"): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      { label: "2", R: 20, nd: 1.0, sd: 12, d: 10, elemId: 0, rimCutDepthMm: rearDepthMm },
+      { label: "3", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 2, rimCutDepthMm: frontDepthMm },
+      { label: "4", R: -15, nd: 1.0, sd: 12, d: 60, elemId: 0 },
+    ],
+  });
+}
+
+/**
+ * A two-station zoom on a 1-inch format: a stop, a biconvex singlet (R = ±80) and, 20 mm behind it at the short
+ * station and 70 mm at the long one, a meniscus whose concave front (R = −200, sd = 12) is cut `rimCutDepthMm` deep.
+ * The chief ray meets the meniscus at the gap times the field's slope, and the slope falls as the focal length grows,
+ * so the beams reach furthest there between the stations. `station` builds that station alone, as a prime.
+ */
+export function buildTwoStationRimCutLens(
+  rimCutDepthMm: number,
+  station?: 0 | 1,
+  key = "test-two-station-rim-cut",
+): RuntimeLens {
+  const gaps = [20, 70];
+  const stationSurfaces = (gap: number, backFocus = 0): SurfaceData[] => [
+    { label: "STO", R: 1e15, nd: 1.0, sd: 4, d: 1, elemId: 0 },
+    { label: "1", R: 80, nd: 1.5168, sd: 8, d: 5, elemId: 1 },
+    { label: "2", R: -80, nd: 1.0, sd: 8, d: gap, elemId: 0 },
+    { label: "3", R: -200, nd: 1.5168, sd: 12, d: 9, elemId: 2, rimCutDepthMm },
+    { label: "4", R: -16, nd: 1.0, sd: 12, d: backFocus, elemId: 0 },
+  ];
+  const backFoci = gaps.map((gap) => paraxialImageDistance(stationSurfaces(gap)));
+  const focalLengths = gaps.map((gap) => -1 / paraxialTrace(stationSurfaces(gap), 1, 0, { skipLastTransfer: true }).u);
+  const at = station ?? 0;
+  return buildFixture({
+    key,
+    imageFormat: "1-inch-type",
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: stationSurfaces(gaps[at], backFoci[at]),
+    fstopSeries: [8, 11, 16],
+    ...(station === undefined
+      ? {
+          nominalFno: [8, 8],
+          zoomPositions: focalLengths.map((focalLength) => Math.round(focalLength * 100) / 100),
+          var: {
+            "2": gaps.map((gap): [number, number] => [gap, gap]),
+            "4": backFoci.map((gap): [number, number] => [gap, gap]),
+          },
+        }
+      : { nominalFno: 8 }),
   });
 }
 

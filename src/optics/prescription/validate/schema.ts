@@ -487,9 +487,9 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
       if (typeof s.rimCutDepthMm !== "number" || !isFinite(s.rimCutDepthMm) || s.rimCutDepthMm <= 0) {
         errors.push(`surfaces[${i}] ("${s.label}"): rimCutDepthMm must be a positive finite number when provided`);
       }
-      if (s.label === "STO" || s.innerSd !== undefined || s.interaction !== undefined) {
+      if (s.label === "STO" || s.innerSd !== undefined || s.interaction !== undefined || s.diffractive !== undefined) {
         errors.push(
-          `surfaces[${i}] ("${s.label}"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface or one with an interaction`,
+          `surfaces[${i}] ("${s.label}"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface, a diffractive surface or one with an interaction`,
         );
       }
       if (data.opticalPath !== undefined) {

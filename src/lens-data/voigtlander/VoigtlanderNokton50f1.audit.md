@@ -59,6 +59,7 @@ Patent: JP2023-063766 A, Example 1
   unchanged 17 mm rim. The cut changes the drawing, not the trace. A ray that crosses the stop plane above 15.97 mm
   still fails (`noBracket`): the search for surface 8 runs forward from the stop hit, and the uncut cap beyond the
   cut radius lies behind that plane, so the land is never reached. No traced ray of the wide-open beam gets there:
-  the beams reach 14.98 mm at surface 8, at every field, so the inferred cut passes the rim-cut beam rule.
+  the beams reach 15.35 mm at surface 8 (at 1.2°, infinity focus), 0.62 mm inside the cut radius, so the inferred
+  cut clears the rim-cut beam rule's 0.05 mm margin.
 - The axial beam is unchanged (f/1 traces f/1.10, limited by rim 4), as are the 23.95°
   half field and the stop radius. No patent value changed; the drawn L4 front now ends in the land at the stop plane.

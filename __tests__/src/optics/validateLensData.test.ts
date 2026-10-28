@@ -2249,15 +2249,23 @@ describe("validateLensData — rim cut", () => {
     ).toBe(true);
   });
 
-  it("refuses a cut on the stop, an annular surface or a non-positive depth", () => {
+  it("refuses a cut on the stop, a diffractive surface or a non-positive depth", () => {
     const data = rimCutLens({ rimCutDepthMm: 1.5 });
     const surfaces = data.surfaces as Record<string, unknown>[];
     surfaces[0].rimCutDepthMm = 0.1;
     surfaces[3].rimCutDepthMm = -1;
+    surfaces[1].rimCutDepthMm = 0.5;
+    surfaces[1].diffractive = {
+      kind: "radial-polynomial",
+      referenceWavelengthNm: 587.6,
+      diffractionOrder: 1,
+      terms: [{ radialPower: 2, coefficient: -4.25304e-5 }],
+    };
     const errors = errorsFor(data);
-    expect(errors).toContain(
-      'surfaces[0] ("STO"): rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface or one with an interaction',
-    );
+    const refusal =
+      "rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface, a diffractive surface or one with an interaction";
+    expect(errors).toContain(`surfaces[0] ("STO"): ${refusal}`);
+    expect(errors).toContain(`surfaces[1] ("1"): ${refusal}`);
     expect(errors).toContain('surfaces[3] ("3"): rimCutDepthMm must be a positive finite number when provided');
   });
 
