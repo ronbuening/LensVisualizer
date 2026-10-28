@@ -105,7 +105,7 @@ The iris sits in the central air gap d₆ between L3 and L4, but Fig. 1 draws no
 | STO to r₇ (d₆ post) | 0.1797 | 8.985 |
 | d₆ total | 0.3357 | 16.79 |
 
-Splitting the air gap changes no power or conjugate. The f/1.4 marginal ray crosses this plane at 11.64 mm, the iris radius the viewer uses.
+Splitting the air gap changes no power or conjugate. The paraxial f/1.4 marginal ray crosses this plane at 12.23 mm, the iris radius the viewer uses (the entrance pupil is sized paraxially, EPD = F/N). The real marginal ray at the paraxial pupil height crosses it at 11.64 mm: the front group's spherical aberration of the pupil means the iris admits real rays up to about 19.1 mm at the front, 6.8 % above the 17.86 mm paraxial pupil. No rim inside the elements Fig. 1 draws passes that beam, so the model's rims clip it first at r₅ and the lens traces f/1.48 wide open (see the audit log).
 
 ---
 
@@ -295,7 +295,7 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₄ | 4 | 15.5 | f/1.4 marginal ray (15.30 mm) + 1 % |
 | r₅ | 5 | 14.6 | f/1.4 marginal ray (14.45 mm) + 1 % |
 | r₆ | 6 | 12.4 | R₆ slope limit (sd/|R| = 0.90) |
-| STO | STO | 11.6 | f/1.4 marginal ray at stop (derived) |
+| STO | STO | 12.2 | paraxial f/1.4 marginal ray at the stop (EPD = F/N, derived) |
 | r₇ | 7 | 11.6 | f/1.4 marginal ray (11.47 mm) + 1 % |
 | r₈ | 8 | 14.9 | Cemented junction; L5 square with r₉ |
 | r₉ | 9 | 14.9 | f/1.4 marginal ray (14.69 mm) + 1 % |

@@ -38,7 +38,7 @@ Catalog version: local working tree, 2026-06-25
 
 ## 2026-10-27 — Inferred stop plane behind r₆'s clear cap
 
-The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, inside r₆'s cap: r₆ (R 11.85 mm, rim 8.25 mm) sags 3.344 mm, so the plane cut L4's glass inside the f/2 iris. The f/2 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/2.00 traces f/2.08, `STO (noBracket)`).
+The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, inside r₆'s cap: r₆ (R 11.85 mm, rim 8.25 mm) sags 3.344 mm, so L4's glass filled that plane beyond 7.28 mm, inside the 7.41 mm f/2 iris that F/N sizes there (`__tests__/src/lens-data/irisInAir.test.ts` flagged it). The sequential trace steps back to such a plane, but no iris can close there.
 
 | Field | Before | After | Basis |
 |---|---:|---:|---|
@@ -47,28 +47,20 @@ The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, in
 
 This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇ (R 100 mm) curves away from the stop, so its cap never comes forward of its vertex.
 
-Result: the trace failure is gone; the derived iris is 7.479 mm (was 7.572 mm) and the analysis half field 23.38° (was 23.45°). The stated beam is now limited by a rim the stop plane had masked: f/2.0 traces f/2.07, at the L3/L4 junction (surface 5). `audit:aperture --raise` asks for 9.5 → 10.0 mm (5.3 %); queued in `agent_docs/sd-audit-queue.md` Section I for a figure check. No rim changed here.
+Result: the iris is in air over its whole stroke, at least 0.88 mm clear of r₆'s cap and 4.10 mm of r₇. The derived iris is 7.305 mm (7.405 mm at the old plane: F/N fixes the paraxial entrance pupil, and the paraxial marginal ray is lower 0.9 mm further into the converging beam), and the analysis half field is 23.38° (was 23.45°). The beam the iris admits is then clipped at the L3/L4 junction (surface 5): the on-axis ray to the iris rim, launched at 12.226 mm, meets it at 9.662 mm, above its 9.5 mm rim (`audit:aperture --raise`).
 
-## 2026-10-27 — Junction rim raised to the stated f/2 beam
+## 2026-10-27 — Junction rim raised to the beam the f/2 iris admits
 
-With the stop plane clear of r₆ (entry above), `audit:aperture` showed the f/2 on-axis beam clipped at the L3/L4 junction (f/2.00 traced f/2.07, surface 5). LSA is ordinary (+0.140 / −0.172 / −0.230 / −0.164 mm at pupil 1 / 0.85 / 0.7 / 0.5).
+LSA is ordinary (+0.140 / −0.172 / −0.230 / −0.164 mm at pupil 1 / 0.85 / 0.7 / 0.5), so the rim, not the prescription, is short. It rises to the ray's height plus 1 %, rounded up to 0.1 mm, so a small change of the stated beam cannot clip it.
 
-| Surface | Before | After | Ray needs | Basis |
-|---|---:|---:|---:|---|
-| 5 (L3/L4 junction) | 9.5 | 10.0 | 10.0 | stated ray, 5.3 %; L4's faces already differ (junction / r₆ 8.25) |
+| Surface | Before | After | Ray | Margin | Basis |
+|---|---:|---:|---:|---:|---|
+| 5 (L3/L4 junction) | 9.5 | 9.8 | 9.662 | 1.4 % | ray to the f/2 iris rim; L4's faces already differ (junction / r₆ 8.25) |
 
-Figure check (Fig. 1 of US 1,998,704, PDF page 1, rendered at 200 dpi, read by hand; 30.10 mm of glass over about 308 px): L4's flat-topped junction rim is drawn at about 11.1 mm, below L2/L3's tips, so 10.0 mm stays inside the drawing. `audit:patent-figure` could not settle the crop (leader lines and labels pulled its axis), so the hand reading stands. `audit:surface --sd 5=10` accepts the value.
+No other rim is within 11 % of the ray (r₆, 8.25 against 7.387 mm, 11.7 %). The raise over the original estimate is 3.2 %.
 
-Result: f/2 traces f/2.00, iris-limited. `audit:image-circle` reports nothing undersized; `audit:field-coverage` still reaches the format corner. The rendered section was compared with Fig. 1: L4's junction sits below the L2/L3 tips as drawn, and the stop clears L4's concave tips.
+Figure check (Fig. 1 of US 1,998,704, PDF page 1, rendered at 200 dpi, read by hand; 30.10 mm of glass over about 308 px): L4's flat-topped junction rim is drawn at about 11.1 mm, below L2/L3's tips, so 9.8 mm stays inside the drawing. `audit:patent-figure` could not settle the crop (leader lines and labels pulled its axis), so the hand reading stands.
 
-## 2026-10-27 — Junction rim given a stated margin
+Result: f/2 traces f/2.00, iris-limited (`audit:aperture`). `audit:image-circle` reports nothing undersized; `audit:field-coverage` reaches the format corner at 23.38°. The rendered section was compared with Fig. 1: L4's junction sits below the L2/L3 tips as drawn, and the stop clears L4's concave tips.
 
-The L3/L4 junction stood exactly at the f/2 ray's height rounded up to 0.1 mm, where rounding decides pass or block. It now stands at least 1 % above it, rounded up to 0.1 mm, so a change of the stated beam of up to about 0.3 % (the f-number work's expected size) cannot clip it.
-
-| Surface | Before | After | f/2 ray | Margin |
-|---|---:|---:|---:|---:|
-| 5 (L3/L4 junction) | 10.0 | 10.1 | 9.945 | 1.6 % |
-
-No other rim is within 1 % of the ray. 10.1 mm stays inside Fig. 1's junction, drawn at about 11.1 mm. The total raise over the original estimate is 6.3 % (9.5 to 10.1 mm).
-
-Why the inferred rim was short. It was estimated while the stop plane sat inside r₆'s cap, where the traced f/2 marginal ray could not reach the stop above the f/2.08 beam. The junction was sized against that smaller beam, and no audit traced the stated f/2 beam past the stop until the plane moved. The rim is re-derived after the f-number work lands.
+Why the inferred rim was short. It was estimated while the stop plane sat inside r₆'s cap, where the traced f/2 marginal ray could not reach the stop above the f/2.08 beam. The junction was sized against that smaller beam, and no audit traced the stated beam past the stop until the plane moved. It is derived here on the stops sized by paraxial EPD = F/N (#933), against the ray to the iris rim.

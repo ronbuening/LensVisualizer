@@ -51,16 +51,16 @@ L1 at 0.78 mm).
 
 ## 2026-10-27 — Inferred stop plane behind r₆'s clear cap
 
-Source scope: FIG. 1 (Sheet 1, PDF page 2) draws no diaphragm and the table gives no stop position, so the stop plane is a model choice. The earlier "25 % of d₆ from r₆" placement put it 4.196 mm behind r₆, inside r₆'s cap: r₆ (R 13.82 mm, rim 12.4 mm) sags 7.718 mm, so at that plane the glass of L3 filled everything beyond 9.92 mm, short of the 11.81 mm f/1.4 iris. The f/1.4 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/1.40 traces f/1.73, `STO (noBracket)`), and an aimed pupil could not reach the outer stop zone.
+Source scope: FIG. 1 (Sheet 1, PDF page 2) draws no diaphragm and the table gives no stop position, so the stop plane is a model choice. The earlier "25 % of d₆ from r₆" placement put it 4.196 mm behind r₆, inside r₆'s cap: r₆ (R 13.82 mm, rim 12.4 mm) sags 7.718 mm, so at that plane the glass of L3 filled everything beyond 9.92 mm, inside the 12.65 mm f/1.4 iris that F/N sizes there (`__tests__/src/lens-data/irisInAir.test.ts` flagged it). The sequential trace steps back to such a plane, but no iris can close there.
 
 | Field | Before | After | Basis |
 |---|---:|---:|---|
 | Surface 6 `d` | 4.196 mm | 7.8 mm | r₆ sag 7.718 mm at its 12.4 mm rim, rounded up to 0.1 mm |
 | `STO` `d` | 12.589 mm | 8.985 mm | Preserves d₆ = 16.785 mm |
 
-This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇'s cap (sag −5.414 mm at 11.5 mm) begins 11.37 mm behind r₆, 3.57 mm behind the new plane.
+This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇'s cap (sag −5.537 mm at its 11.6 mm rim) begins 11.25 mm behind r₆, 3.45 mm behind the new plane.
 
-Result: the iris the engine derives from the f/1.4 marginal ray is now 11.641 mm (was 11.814 mm), the trace failure is gone, and the analysis half field is unchanged (23.76°). The stated beam is now limited by rims that the stop plane had masked: f/1.4 traces f/1.55, limited at surface 9. `audit:aperture --raise` asks for surfaces 4, 5, 8, 9, 10 and 11 to rise by up to 13.1 % (8/9 square at 14.7 mm, 10/11 at 15.7 mm). LSA is ordinary (−0.10 mm at full pupil), so this is a rim estimate, not a misprint. The raise is queued in `agent_docs/sd-audit-queue.md` Section I for a figure read; no rim changed here.
+Result: the iris is in air over its whole stroke, at least 0.41 mm clear of r₆'s cap and 3.45 mm of r₇'s. The derived iris is 12.234 mm (12.646 mm at the old plane: F/N fixes the paraxial entrance pupil, and the paraxial marginal ray is lower 3.6 mm further into the converging beam), and the analysis half field is 23.76° (was 23.77°). Under the earlier stop rule, which took the iris from the real f/1.4 marginal ray (11.641 mm here), the stated beam was then limited by rims that the stop plane had masked: f/1.4 traced f/1.55, limited at surface 9. `audit:aperture --raise` asks for surfaces 4, 5, 8, 9, 10 and 11 to rise by up to 13.1 % (8/9 square at 14.7 mm, 10/11 at 15.7 mm). LSA is ordinary (−0.10 mm at full pupil), so this is a rim estimate, not a misprint. The raise is queued in `agent_docs/sd-audit-queue.md` Section I for a figure read; no rim changed here.
 
 ## 2026-10-27 — Rims raised to the stated f/1.4 beam
 
@@ -95,4 +95,22 @@ The rims raised above stood exactly at the stated ray's height, rounded up to 0.
 
 Surface 7 was not raised before, but stood only 0.3 % above the ray. Each value stays inside FIG. 1's drawn element: L2 to about 16.7 mm, L3's front to 15.5, the L4/L5 block to 15.2 and L6 to 16.2. The largest total raise over the original estimates is 14.6 % (surface 9, 13.0 to 14.9), inside the procedure's ~15 % band. L6's edge is 0.71 mm, above this file's 0.7 mm rule.
 
-Why the inferred rims were short. The original estimates came from a combined marginal and chief-ray trace "at f/1.4" with about 8 % clearance. But the stop plane then sat inside r₆'s cap, so the traced marginal ray could not reach the stop above the beam that passes at f/1.73. The rims behind the stop were sized against that smaller beam, and no audit traced the stated f/1.4 beam past the stop until the plane moved. The rims are re-derived after the f-number work lands.
+Why the inferred rims were short. The original estimates came from a combined marginal and chief-ray trace "at f/1.4" with about 8 % clearance. But the stop plane then sat inside r₆'s cap, so the traced marginal ray could not reach the stop above the beam that passes at f/1.73. The rims behind the stop were sized against that smaller beam, and no audit traced the stated f/1.4 beam past the stop until the plane moved. The two entries above sized the rims against the f/1.4 ray at the paraxial pupil; the next entry checks them against the beam the iris admits on the f-number work's stops.
+
+## 2026-10-28 — Rims checked against the beam the f/1.4 iris admits: kept, f/1.4 traces f/1.48
+
+On the stops sized by paraxial EPD = F/N (#933), the f/1.4 iris at this plane is 12.234 mm, and the on-axis ray to its rim enters at 19.077 mm, 6.8 % above the 17.855 mm paraxial pupil: the front group's spherical aberration of the pupil. That ray cannot be traced through the lens even with every rim ignored (`noBracket` behind the stop). With the plane at the far end of its window in air (d₆ 9.5 mm, r₇'s cap 1.75 mm behind it), the ray enters at 18.780 mm, and the rims it needs with a 1 % margin are:
+
+| Surface | Now | Needed | FIG. 1 element (line centre) |
+|---|---:|---:|---|
+| 1 / 2 (L1) | 18.5 / 18.5 | 19.0 / 18.9 | 18.6 |
+| 3 / 4 (L2) | 16.5 / 15.5 | 16.7 / 16.4 | 16.5 |
+| 5 (L3 front) | 14.6 | 15.5 | 15.5 |
+| 6 (L3 rear) | 12.4 | 12.3 | r₆ arc ends at 12.0 |
+| 7 (L4 front) | 11.6 | 12.2 | r₇ arc ends at 12.6 |
+| 8 / 9 (L4/L5 block) | 14.9 / 14.9 | 15.6 / 15.8 | 15.1 |
+| 10 / 11 (L6) | 15.8 / 15.8 | 16.7 / 16.8 | 16.0 |
+
+FIG. 1 was re-read at 400 dpi by two independent readings and a reconciling third, which agree within 0.04 mm: heights to the centre of the drawn rim line, scaled by the 44.185 mm vertex-to-vertex length (0.04065 mm/px, fitted axis). The earlier 200 dpi reading (L1 18.8, L2 16.7, L4/L5 15.2, L6 16.2 mm) took the outer edge of the line, about 0.15–0.2 mm high. Eight of the eleven needed rims (1, 2, 3, 6, 8, 9, 10, 11) stand above the drawn element, and the edges would thin past this file's 0.7 mm rule: L1 to 0.45 mm, L5 to 0.18 mm, L6 to 0.03 mm. The d₆ 7.8 mm plane needs more (s1 19.3 mm). So no rim inside the drawing passes the beam the f/1.4 iris admits, and the rims and the 7.8 mm plane stay as they are: each rim is inside its drawn element, except L7's 16.5 mm, which already stood above its drawn 15.5 mm for field coverage (2026-09-24).
+
+Result: f/1.4 traces f/1.48, limited at surface 5 (`audit:aperture`; F/N's iris with the beam the rims let through). `audit:image-circle` reports nothing undersized; `audit:field-coverage` reaches the format corner at 23.76°. Queued in `agent_docs/sd-audit-queue.md` Section I for the owner: accept the rim-limited model, or find another source for the rims.

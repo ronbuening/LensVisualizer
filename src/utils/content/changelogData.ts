@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-28",
+    type: "fix",
+    summary:
+      "The iris of the Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Olympus 50mm f/1.4 now sits in air, so it can close at every f-number, and the Sonnar's junction rim was widened to pass its full f/2 beam",
+  },
+  {
+    date: "2026-10-28",
     type: "improvement",
     summary:
       "The aperture stop now gives each marked f-number the paraxial entrance pupil lens-design software uses, at every aperture and zoom, and the Summary reports image-space, paraxial working and real working f-numbers under their standard names; the MTF header no longer shows a separate traced f-number and instead names a rim that vignettes the axial beam",
@@ -29,12 +35,6 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "fix",
     summary:
       "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
-  },
-  {
-    date: "2026-10-27",
-    type: "fix",
-    summary:
-      "The Olympus 50mm f/1.4, Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Nikon 35-70mm f/3.5 now pass their full rated aperture: stop moved clear of the glass, clipping rims widened",
   },
   {
     date: "2026-10-27",

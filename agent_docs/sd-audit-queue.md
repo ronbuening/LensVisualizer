@@ -326,6 +326,7 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.03 (+3.7 %), rim 10; 13.5 mm: f/2.92 traces f/3.25 (+11.3 %), rim 10; 17.5 mm: f/2.92 traces f/3.55 (+21.6 %), rim 10 | todo |
 | SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.15 (+8.6 %), rim 17 | todo |
 | SIGMA 35mm f/1.4 DG HSM Art | `sigma/Sigma35mmf14DGHSMA.data.ts` | f/1.4: 164 of the vignetting tab's 3,216 axial stop samples (5.1 %) clip on the rim of surface 14 (sd 17.5 mm) just ahead of the stop. Run after the f-number PR lands, against the paraxial EFL/N beam. | todo |
+| OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4 | `olympus/OlympusZuikoAutoS50mmf14.data.ts` | f/1.40 traces f/1.48 (+5.9 %), rim 5. The F/N iris admits a real beam 6.8 % wider than the paraxial pupil (pupil spherical aberration). The rims it needs, with the stop plane anywhere in its d₆ 7.8–9.5 mm window, stand above FIG. 1's drawn elements (re-read at 400 dpi) and thin L1, L5 and L6 below 0.7 mm edges; the audit log has the numbers. | owner decision: accept the rim-limited f/1.48, or another source for the rims |
 
 ## In-progress diagram sweep
 

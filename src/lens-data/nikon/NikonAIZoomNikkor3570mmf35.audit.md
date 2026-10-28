@@ -38,15 +38,22 @@ Patent: US 4,266,860, Second Embodiment / Claim 8
 - SUMITA FF5 is within the runtime catalog-equivalent window (`Δnd = -0.002367`, `Δνd = -0.15`).
 - Relabeled element 4 as an FF5 optical equivalent while leaving the production supplier unspecified. No prescription or zoom geometry changed.
 
-## 2026-10-27 — Synthetic stop plane behind r₁₅'s clear cap
+## 2026-10-28 — Stop plane checked on the paraxial stop rule: it stays centred
 
-The patent identifies no stop surface, so the flat stop in the fixed d₁₅ gap (3.9 mm, constant through zoom and focus) is synthetic. Centred, it sat 1.95 mm behind r₁₅, inside r₁₅'s cap: r₁₅ (R 27.99 mm, rim 13.2 mm) sags 3.308 mm. At the tele station the 10.7 mm f/3.5 iris reached past where the cap crosses that plane, and the stated beam could not reach the stop (`audit:aperture`: `trace`, 68.79 mm: f/3.50 traces f/3.62, `STO (noBracket)`).
+The patent identifies no stop surface, so the flat stop centred in the fixed d₁₅ gap (3.9 mm, constant through zoom and focus) is synthetic. r₁₅ (R 27.99 mm, rim 13.2 mm) sags 3.308 mm at its rim, so its cap crosses that plane. Under the earlier stop rule the derived tele iris (10.705 mm) reached past that crossing, and the stated beam could not reach the stop (`STO (noBracket)`). Moving the plane behind r₁₅'s cap was considered and not kept, because on the stops sized by paraxial EPD = F/N (#933) the iris stays in air there.
 
-| Field | Before | After | Basis |
-|---|---:|---:|---|
-| Surface 15 `d` | 1.95 mm | 3.4 mm | r₁₅ sag 3.308 mm at its 13.2 mm rim, rounded up to 0.1 mm |
-| `STO` `d` | 1.95 mm | 0.5 mm | Preserves d₁₅ = 3.9 mm |
+| Station | Wide-open iris | Smallest iris | Clearance to r₁₅'s cap | Clearance to r₁₆ |
+|---|---:|---:|---:|---:|
+| 36.02 mm | 6.912 mm | 1.100 mm | 1.08 mm | 1.89 mm |
+| 68.79 mm | 9.675 mm | 1.539 mm | 0.22 mm | 1.82 mm |
 
-This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₁₆ (R −370.855 mm) sags 0.169 mm at 11.2 mm, so its cap stays 0.33 mm behind the plane.
+The clearances are the least over the iris stroke, from the smallest radius the aperture control reaches to the wide-open one, so `__tests__/src/lens-data/irisInAir.test.ts` passes this file. `audit:aperture` traces f/3.50 at both stations, iris-limited. Moving the plane behind the cap (surface 15 `d` 3.4 mm, `STO` `d` 0.5 mm) would shrink the derived irises to 6.539 and 9.250 mm: F/N fixes the paraxial entrance pupil, and the paraxial marginal ray is lower 1.45 mm further into the converging beam. It would also cut the wide station's analysis half field from 30.81° to 30.14°.
 
-Result: both stations now trace f/3.50, iris-limited (`audit:aperture`). Derived irises are 6.810 mm at 36.02 mm (was 7.212) and 10.171 mm at 68.79 mm (was 10.705); half fields are 30.14° and 17.36° (were 30.81° and 17.36°). No rim changed.
+Rim margins against the on-axis ray to the iris rim (`audit:aperture --raise`), the least at each station:
+
+| Station | Ray to the iris rim, launch height | Least margin | All rims |
+|---|---:|---|---|
+| 36.02 mm | 4.948 mm | 61.4 % (surface 11, 14.5 against 8.99 mm) | 61–368 % |
+| 68.79 mm | 9.050 mm | 22.7 % (surface 12, 14.5 against 11.82 mm) | 23–155 % |
+
+`audit:image-circle` reports nothing undersized. `audit:field-coverage`: at 36.02 mm the analysis half field is 30.81°, reaching 97.9 % of the 21.65 mm corner, where surface 1's rim (sd 22.5 mm) clips the chief ray; at 68.79 mm it is 17.36°, reaching the corner. No value in this file changed.

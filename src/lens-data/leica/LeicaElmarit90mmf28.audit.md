@@ -88,7 +88,7 @@ is now selectable, and the rear gap reads 74.33 → 84.40 mm. Off-axis rays were
 
 ## 2026-10-27 — Stop plane behind r₅'s clear cap
 
-Fig. 1 draws no diaphragm, so the stop plane in a₂ is a model choice. Centred in a₂ it sat 2.16 mm behind r₅, inside r₅'s cap: r₅ (R 31.383 mm, rim 13.5 mm) sags 3.052 mm, so at that plane L3's glass filled everything beyond 11.44 mm, short of the 12.92 mm f/2.8 iris. The f/2.8 marginal ray could not reach the stop (`audit:aperture`: `trace`, f/2.80 traces f/3.15, `STO (noBracket)`).
+Fig. 1 draws no diaphragm, so the stop plane in a₂ is a model choice. Centred in a₂ it sat 2.16 mm behind r₅, inside r₅'s cap: r₅ (R 31.383 mm, rim 13.5 mm) sags 3.052 mm, so at that plane L3's glass filled everything beyond 11.44 mm, inside the 12.71 mm f/2.8 iris that F/N sizes there (`__tests__/src/lens-data/irisInAir.test.ts` flagged it). The sequential trace steps back to such a plane, but no iris can close there.
 
 | Field | Before | After | Basis |
 |---|---:|---:|---|
@@ -97,10 +97,23 @@ Fig. 1 draws no diaphragm, so the stop plane in a₂ is a model choice. Centred 
 
 This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₆ (R −1194.003 mm) sags only 0.076 mm at 13.5 mm, so its cap stays 1.14 mm behind the plane.
 
-Result: f/2.8 now traces f/2.80, iris-limited (`audit:aperture`), with the derived iris at 13.053 mm (was 12.923 mm) and the analysis half field unchanged (13.48°). No rim changed.
+Result: the iris is in air over its whole stroke, at least 0.37 mm clear of r₅'s cap and 1.15 mm of r₆. f/2.8 traces f/2.80, iris-limited (`audit:aperture`). The derived iris is 12.797 mm (12.709 mm at the old plane: F/N fixes the paraxial entrance pupil, and the paraxial marginal ray is higher 0.94 mm further into the diverging beam behind L3), and the analysis half field is unchanged (13.48°). No rim changed.
 
 ## 2026-10-27 — Source for the stop position
 
-US 2,995,980 gives no stop position. Fig. 1 (sheet 1) labels the five elements, r₁–r₈, d₁–d₅ and the air spaces a₁ and a₂, and draws no diaphragm. The text describes only the table, the correction curves and the aperture, which it fixes by entrance height alone (col. 1, ll. 60–66): "a height of incidence of 17.9 would be the equivalent of an aperture ratio of 1:2.8 of a focal length of 100 millimeters", and Fig. 2's ordinate runs to 17.5. The stop plane is therefore a model choice. It stays in a₂, between the negative and rear components where this file has always placed it, at the construction in the entry below. At this file's ×0.9 scale the patent's f/2.8 height is 16.11 mm; the engine's stated beam is 16.09 mm (EFL 90.11 mm), and the f/2.8 iris it derives is 13.053 mm.
+US 2,995,980 gives no stop position. Fig. 1 (sheet 1) labels the five elements, r₁–r₈, d₁–d₅ and the air spaces a₁ and a₂, and draws no diaphragm. The text describes only the table, the correction curves and the aperture, which it fixes by entrance height alone (col. 1, ll. 60–66): "a height of incidence of 17.9 would be the equivalent of an aperture ratio of 1:2.8 of a focal length of 100 millimeters", and Fig. 2's ordinate runs to 17.5. The stop plane is therefore a model choice. It stays in a₂, between the negative and rear components where this file has always placed it, at the construction in the entry below. At this file's ×0.9 scale the patent's f/2.8 height is 16.11 mm; the engine's stated beam is 16.09 mm (EFL 90.11 mm), and the f/2.8 iris it derives is 12.797 mm.
 
-No rim of this lens was raised. Every rim already stands at least 1 % above the f/2.8 on-axis ray; the closest is r₇, 14.0 against 13.81 mm (1.4 %).
+No rim of this lens was raised. Every rim stands at least 1 % above the on-axis ray to the f/2.8 iris rim, launched at 15.785 mm (`audit:aperture --raise`):
+
+| Surface | Rim | Ray | Margin |
+|---|---:|---:|---:|
+| 1 | 17.0 | 15.785 | 7.7 % |
+| 2 | 16.0 | 15.393 | 3.9 % |
+| 3 | 15.0 | 13.757 | 9.0 % |
+| 4 | 15.0 | 13.647 | 9.9 % |
+| 5 | 13.5 | 12.744 | 5.9 % |
+| 6 | 13.5 | 12.950 | 4.2 % |
+| 7 | 14.0 | 13.510 | 3.6 % |
+| 8 | 14.5 | 13.604 | 6.6 % |
+
+`audit:image-circle` reports nothing undersized, and `audit:field-coverage` reaches the 21.65 mm format corner at the 13.48° analysis half field.

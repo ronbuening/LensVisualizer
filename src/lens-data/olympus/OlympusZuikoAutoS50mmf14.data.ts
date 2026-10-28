@@ -22,9 +22,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    to the full-frame corner (23.8°, just past the patent's        ║
  * ║    ω = 23°); L7's edge thins to 0.20 mm there, below the 0.7 mm   ║
  * ║    target (2026-09-24 field-coverage audit).                      ║
- * ║    Surfaces 4, 5, 7-11 stand 1 % above the f/1.4 on-axis ray,     ║
- * ║    rounded up to 0.1 mm (L5 and L6 square, as FIG. 1 draws them); ║
- * ║    each stays inside the drawn element (2026-10-27 audit).        ║
+ * ║    Surfaces 4, 5, 7-11 stand 1 % above the f/1.4 on-axis ray      ║
+ * ║    at the paraxial pupil, rounded up to 0.1 mm (L5 and L6 square, ║
+ * ║    as FIG. 1 draws them); each stays inside the drawn element.    ║
+ * ║    The paraxial F/N iris admits a beam 6.8 % wider (pupil         ║
+ * ║    spherical aberration), which no rim inside FIG. 1 passes:      ║
+ * ║    f/1.4 traces f/1.48, limited at r₅ (2026-10-28 audit).         ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
  * ║    Fig. 1 draws no diaphragm, so the stop plane is a model        ║
