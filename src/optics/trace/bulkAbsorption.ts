@@ -14,6 +14,8 @@ interface AbsorptionTraceHit {
   /** Runtime exact-tracer spelling retained by the compatibility facade. */
   surfaceIdx?: number;
   point: Vec3;
+  /** Direction the ray met this hit along; a step backwards points it away from the previous hit. */
+  incidentDirection?: Vec3;
 }
 
 const ABSORPTION_BY_ELEMENT_ID = new WeakMap<CompiledLens, ReadonlyMap<number, number>>();
@@ -40,7 +42,8 @@ export function transmissionTraceCapture(L: CompiledLens): Exclude<TraceCapture,
  * Compute bulk-material intensity transmission along an exact trace.
  *
  * The medium after a sequential surface is identified by that surface's `elemId`; therefore the
- * distance to the next hit is the path length through that element. Validation rejects authored
+ * distance to the next hit is the path length through that element. A sequential step backwards to a
+ * surface behind the last hit runs through that medium with a negative length, as in the optical path. Validation rejects authored
  * absorption on folded/generalized prescriptions until encounter-side medium accounting exists;
  * the folded guard below is a defensive fallback for manually constructed runtime fixtures.
  *
@@ -63,9 +66,12 @@ export function bulkTransmissionForTrace(L: CompiledLens, hits: readonly Absorpt
 
     const from = hits[i].point;
     const to = hits[i + 1].point;
-    const distance = Math.hypot(to[0] - from[0], to[1] - from[1], to[2] - from[2]);
+    const step: Vec3 = [to[0] - from[0], to[1] - from[1], to[2] - from[2]];
+    const distance = Math.hypot(step[0], step[1], step[2]);
     if (!Number.isFinite(distance) || distance <= 0) continue;
-    transmission *= Math.exp(-coefficient * distance);
+    const along = hits[i + 1].incidentDirection;
+    const backwards = along !== undefined && step[0] * along[0] + step[1] * along[1] + step[2] * along[2] < 0;
+    transmission *= Math.exp(-coefficient * (backwards ? -distance : distance));
   }
 
   return Number.isFinite(transmission) ? Math.min(1, Math.max(0, transmission)) : 0;

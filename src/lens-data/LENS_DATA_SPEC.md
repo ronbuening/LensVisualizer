@@ -685,12 +685,12 @@ there out to `sd`.
 
 - **Tracing:** the land is opaque. A ray that meets the surface beyond the cut radius is clipped, as at a rim, and is
   drawn ending on the land; inside the cut radius nothing changes. `sd` stays the drawn rim, and the diagram draws
-  the land out to it. The search for the next surface runs forward from the last hit only, so a ray that crosses a
-  stop plane the land sits on, above the cut radius, still fails (`noBracket`): the uncut cap there lies behind it.
+  the land out to it. A ray that crosses a stop plane the land sits on, above the cut radius, meets the cap behind
+  the plane; the trace steps back to it, as OpticStudio does, and clips the ray on the land.
 - **When:** the drawing must keep a cap clear of a plane beside it, usually the stop: the cap's rim would reach past
   the printed stop plane. Set the depth to the plane's closest distance from the vertex over every zoom station and
-  focus state, rounded down to 0.01 mm. A cut does not cure a trace that fails because the next surface lies behind
-  the last hit; that waits for a trace that steps back (the Nikon AI 25-50mm f/4 row of `agent_docs/sd-audit-queue.md`).
+  focus state, rounded down to 0.01 mm. The land then keeps the iris in air
+  (`__tests__/src/lens-data/irisInAir.test.ts`).
 - **When the figure draws a land:** the source cross-section ends a concave cap short of its element's edge with a
   short stroke square to the axis. Measure the cap end as a share of the edge radius on the figure, put the cut radius
   at that share of `sd`, and set the depth to the cap's sag there, to 0.01 mm. The cut is inferred, so it must clear
@@ -743,9 +743,10 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
 - **The source does not (common in older patents):** estimate from the patent figure. Split the air gap at the
   inferred iris location: the preceding surface's `d` is the distance to the stop, and the stop's `d` the rest of the
   gap. Document the estimate in a comment ("STO position inferred from Fig. 1 iris placement").
-- **A neighbouring cap reaches past the stop plane** inside the iris: the forward-only trace fails there
-  (`noBracket`). A rim cut keeps the drawn cap off the plane ([Rim cuts](#rim-cuts-rimcutdepthmm)) but does not cure
-  the trace; queue the lens until the trace can step back.
+- **A neighbouring cap reaches past the stop plane** inside the iris: the trace steps back to the cap, but no iris
+  can close in glass, and `__tests__/src/lens-data/irisInAir.test.ts` refuses it. Move the stop plane into the air
+  the source draws, or cut a rim the figure shows ([Rim cuts](#rim-cuts-rimcutdepthmm)); otherwise queue the lens
+  under Iris in glass in `agent_docs/sd-audit-queue.md`.
 - **The source puts the stop inside a glass element:** set `stopPlacement: "inside-element"` on `STO`, keep the stop
   flat, give it the containing element as its `medium` (the glass continues past the stop), give it its authored
   `sd` unless a published schedule decides the radius (row 2 above), and give the containing element
