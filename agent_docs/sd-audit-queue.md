@@ -270,8 +270,8 @@ EPD = F/N by the stop rule) is clipped by a rim or cannot be traced. The apertur
 npm run audit:aperture -- --markdown
 ```
 
-4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards and the asphere
-audit). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
+4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards, the asphere
+audit and the stop-plane moves). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
 stations on 2 lenses (`trace`) and 16 on 3 lenses (`iris`). Work the largest `rim` differences first. For each row,
 read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
