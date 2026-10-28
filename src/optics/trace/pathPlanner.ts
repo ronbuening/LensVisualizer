@@ -84,6 +84,94 @@ export function sequentialSurfaceMinT(
 }
 
 /**
+ * Compute how far behind its origin the sequential search for a surface may meet the ray's line.
+ *
+ * Where the next surface of the sequence lies behind the last hit, as a stop plane set inside the sag of the surface
+ * before it, or two neighbouring surfaces that cross, a sequential trace meets it by a step backwards along the line,
+ * as OpticStudio does with a negative thickness. The step goes back no further than one millimetre in front of the
+ * surface's rim-sag plane, the plane `sequentialSurfaceMinT` starts the first surface's search from. There is no step
+ * back to the first surface, whose launch lies in front of the lens; none for a ray that no longer travels toward +z,
+ * which is blocked at the next surface; and none on a folded path, whose generalized trace searches forward only.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @returns positive parametric length behind the origin, or 0 where the trace does not step back
+ */
+export function sequentialSurfaceBackT(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+): number {
+  if (surfaceIndex === 0 || !(direction[2] > 1e-12) || geometry.traversal.kind !== "sequential") return 0;
+  const surface = geometry.surfaces[surfaceIndex];
+  const backZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
+  return backZ < origin[2] ? (origin[2] - backZ) / direction[2] : 0;
+}
+
+/**
+ * How far past the crossing nearest the origin, in mm along the line, `intersectSequentialSurface` starts its search
+ * for a second crossing behind the origin: far above the rounding of a hit, so that search does not meet the first
+ * crossing again, and far below any distance between two crossings that are not one grazing touch.
+ */
+export const BACKWARD_SECOND_CROSSING_GAP = 1e-6;
+
+/**
+ * Meet a ray's line with the next surface of a sequential trace, in either direction.
+ *
+ * The search runs forward from the origin, between `minT` and `maxT`, as it always has. Only where it finds no root
+ * (`noBracket`) is the line behind the origin searched, out to `sequentialSurfaceBackT`. Of the first two crossings
+ * there, the one nearer the surface's vertex plane is the hit, as OpticStudio takes a surface's root from its vertex
+ * plane: a line can cross a concave face twice behind the origin. Such a hit has negative `t`, `segmentLength` and
+ * `opticalPathLength`, so the optical path charges the step with its sign. A forward hit, and a forward failure of
+ * any other reason, is returned unchanged; so is a search behind that fails for a reason of its own.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param options - forward search bounds and current refractive index
+ * @returns the forward hit; else the backward hit with signed lengths; else the backward failure when it is not
+ *   `noBracket`; else the forward failure
+ */
+export function intersectSequentialSurface(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+  options: { minT: number; maxT: number; refractiveIndex: number },
+): SurfaceIntersectionResult {
+  const forward = intersectStateSurface({ origin, direction }, geometry, surfaceIndex, options);
+  if (forward.ok || forward.failureReason !== "noBracket") return forward;
+  const backT = sequentialSurfaceBackT(geometry, surfaceIndex, origin, direction);
+  if (!(backT > 0)) return forward;
+  // Along the reversed ray the crossings behind the origin come in ray order, nearest first.
+  const reversed: Vec3 = [-direction[0], -direction[1], -direction[2]];
+  const behind = (minT: number): SurfaceIntersectionResult =>
+    intersectStateSurface({ origin, direction: reversed }, geometry, surfaceIndex, {
+      minT,
+      maxT: backT,
+      refractiveIndex: options.refractiveIndex,
+    });
+  const nearest = behind(0);
+  if (!nearest.ok) return nearest.failureReason === "noBracket" ? forward : nearest;
+  // A second search that finds nothing, or fails, leaves the nearest crossing.
+  const vertexZ = geometry.surfaces[surfaceIndex].z;
+  const secondMinT = nearest.t + BACKWARD_SECOND_CROSSING_GAP;
+  const second = secondMinT < backT ? behind(secondMinT) : null;
+  const hit =
+    second?.ok && Math.abs(second.point[2] - vertexZ) < Math.abs(nearest.point[2] - vertexZ) ? second : nearest;
+  return {
+    ...hit,
+    t: -hit.t,
+    segmentLength: -hit.segmentLength,
+    opticalPathLength: hit.opticalPathLength === null ? null : -hit.opticalPathLength,
+  };
+}
+
+/**
  * Compute a bounded search length for an explicitly targeted surface.
  *
  * Tilted planes and grazing vector launches cannot rely on z projection alone,

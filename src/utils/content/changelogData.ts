@@ -26,6 +26,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
     type: "fix",
+    summary:
+      "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
     summary: "Chromatic readouts now compare every selected color channel, or name the one a rim vignettes",
   },
   {
