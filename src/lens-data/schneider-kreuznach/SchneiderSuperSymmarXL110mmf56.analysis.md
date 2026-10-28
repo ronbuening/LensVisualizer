@@ -143,13 +143,13 @@ The patent designates $r_9 = -31.197$ mm — the rear glass/air surface of L4b �
 
 ### Aspherical coefficients
 
-The patent **does not publish** the aspherical equation, conic constant, or polynomial coefficients for the aspherical surface. This omission is significant: it protects the proprietary correction profile while still disclosing the lens architecture for patent purposes. The radius value $r_9 = -31.197$ mm represents the base (vertex) radius of curvature of the aspherical surface. The companion data file includes the aspherical surface designation (label suffix "A") with a spherical baseline (K = 0, all polynomial coefficients zero) to document the patent's aspherical intent without fabricating departure data.
+The patent **does not publish** a sag equation, conic constant, polynomial coefficients or departure profile. Both embodiment tables, and their copies in Claims 2 and 3, mark only $r_9$ with an aspherical-face footnote, and the text names an aspherical glass/air face of L4 without defining its shape. The patent gives no reason for the omission and has no aberration plots. The companion data file keeps the vertex radius and the "9A" label with a spherical placeholder (K = 0, no polynomial terms); these zeros are a modeling default, not published coefficients.
+
+The spherical rows match Example 2 and Claim 3. Without its asphere the model is far from the production lens: at f/5.6 it leaves about −27 mm of longitudinal spherical aberration at the full pupil and large off-axis errors, so its traced rays, and the vignetting tab's relative illumination beyond about 15°, do not represent the real lens.
 
 ### Position and function
 
-Surface $r_9$ sits immediately behind the aperture stop, at the exit face of the positive cemented doublet L4. This is a strategically critical location for an aspherical corrector. Off-axis ray bundles diverge substantially at this point — the 105° field means chief rays at the field edge pass through the rear group at steep angles. A spherical surface at this position would introduce significant oblique spherical aberration and coma that increase rapidly with field angle. The aspherical departure reshapes the wavefront to compensate for these off-axis errors, enabling the lens to maintain image quality out to the full 288 mm image circle.
-
-The aspherical surface also helps control distortion, which is a critical specification for architectural photography (the primary application of this lens). The patent claims "very low" distortion.
+Surface $r_9$ is the exit face of the positive cemented doublet L4, just behind the aperture stop: a natural place for a higher-order corrector, where the off-axis bundles of a 105° field cross the rear group steeply. Its unpublished profile means the model cannot reproduce that correction. The patent claims "very low" distortion but gives no plot or figure for it.
 
 ### Manufacturing method
 

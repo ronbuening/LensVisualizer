@@ -11,21 +11,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║         G1 and L25 remain fixed.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated from combined marginal + chief ray paraxial trace     ║
- * ║    at f/1.45 and ω = 30.85°, with ~8% mechanical clearance,       ║
- * ║    then constrained by edge thickness, cross-gap sag intrusion,    ║
- * ║    and slope-based rim limits.  Not patent-listed.                 ║
+ * ║    Estimated, not patent-listed. After restoring Table 8's full    ║
+ * ║    aspheres, the Table 11 f/1.45 beam requires S10 sd 8.2 mm and   ║
+ * ║    L21 sd 6.5 mm on both faces (Figure 4's square-cut rim).        ║
+ * ║    These replace limits imposed on the incomplete even terms.    ║
+ * ║    S9/S10 retain 0.00713 mm clearance at h=8.2; gapSagFrac 0.972  ║
+ * ║    admits their source-drawn near-contact without crossing.       ║
+ * ║    Other inferred rims remain as authored.                         ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL SURFACES:                                      ║
- * ║    The patent prescribes aspherics using BOTH even and odd-order   ║
- * ║    polynomial terms (A3 through A20).  This data file includes    ║
- * ║    ONLY the even-order terms (A4, A6, … A20) because the current  ║
- * ║    renderer sag equation supports only even powers.  The omitted  ║
- * ║    odd-order terms (A3, A5, A7, A9, A11, A13, A15, A17, A19)     ║
- * ║    contribute asymmetric sag corrections — primarily coma.  The   ║
- * ║    rendered surface shape will therefore differ from the patent    ║
- * ║    prescription at the rim.  The L21 SDs are trimmed to the stable ║
- * ║    even-order model aperture to avoid rim-slope and gap artifacts. ║
+ * ║    US 2014/0368926 A1 Table 8, PDF p.18: exact A3 through A20    ║
+ * ║    on S13/S14, with every printed odd and even radial power.      ║
+ * ║    Restored A3, A5, ... A19 on 2026-10-27; no refit or scaling.   ║
+ * ║    Odd powers of radial height preserve rotational symmetry.     ║
  * ║                                                                    ║
  * ║  NOTE ON CONIC CONSTANT:                                           ║
  * ║    The patent's sag formula uses the κ (kappa) convention:         ║
@@ -219,13 +217,9 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  /* (moved from asph) ── Aspherical coefficients ──
-   *  Patent uses κ convention: tabulated K = κ = 1 + K_standard.
-   *  Values below are converted to standard K (κ − 1).
-   *
-   *  Patent also uses odd-order terms (A3, A5, … A19) which are omitted here
-   *  because the renderer sag equation supports only even powers (A4, A6, …).
-   *  The omitted odd terms affect primarily coma correction.
+  /* Table 8 (PDF p.18): all A3–A20 terms, in mm; no normalization.
+   * The sag equation (PDF p.15, ¶0074) uses KA directly in the
+   * discriminant, so Table 8 K = KA = 0.10 becomes standard K = -0.90.
    */
   surfaces: [
     // ── G11: Negative wide-angle corrector ──
@@ -240,7 +234,7 @@ const LENS_DATA = {
     { label: "7", R: 22.894, d: 5.15, sd: 12.5, medium: 4 }, // L122 front (cemented D1)
     { label: "8", R: -76.171, d: 3.5, sd: 10.5, medium: 5 }, // L122/L123 junction → L123 glass
     { label: "9", R: 13.753, d: 0.25, sd: 9.0 }, // L123 rear → air
-    { label: "10", R: 14.851, d: 2.06, sd: 7.9, medium: 6 }, // L124 front
+    { label: "10", R: 14.851, d: 2.06, sd: 8.2, medium: 6 }, // L124 front
     { label: "11", R: 23.69, d: 2.65, sd: 8.5 }, // L124 rear → air
 
     // ── Aperture stop ──
@@ -251,18 +245,27 @@ const LENS_DATA = {
       label: "13A",
       R: -8.922,
       d: 1.27,
-      sd: 4.5,
+      sd: 6.5,
       medium: 7,
       asphere: {
         K: -0.9,
+        A3: 1.6085859e-4,
         A4: 3.1604165e-4,
+        A5: 1.3528598e-4,
         A6: -1.9524496e-4,
+        A7: 8.4990030e-5,
         A8: -5.8469037e-6,
+        A9: -5.8141716e-6,
         A10: 1.2818564e-6,
+        A11: 1.8591384e-7,
         A12: -8.3124906e-8,
+        A13: 2.8662325e-10,
         A14: 2.7277112e-9,
+        A15: -2.2027007e-10,
         A16: -4.1473274e-11,
+        A17: 6.4318314e-12,
         A18: 6.6823865e-14,
+        A19: -5.4568937e-14,
         A20: 2.5445767e-15,
       },
     }, // L21 front (aspherical)
@@ -270,17 +273,26 @@ const LENS_DATA = {
       label: "14A",
       R: -11.386,
       d: 0.15,
-      sd: 3.1,
+      sd: 6.5,
       asphere: {
         K: -0.9,
+        A3: -3.8031887e-5,
         A4: 9.1351152e-4,
+        A5: -6.7979931e-4,
         A6: 4.1157887e-4,
+        A7: -1.4922693e-4,
         A8: 2.714366e-5,
+        A9: 1.5049108e-6,
         A10: -1.9425352e-6,
+        A11: 3.5630785e-7,
         A12: 4.2682107e-9,
+        A13: -1.0368272e-8,
         A14: 1.1746916e-9,
+        A15: 5.4804383e-11,
         A16: -2.063555e-11,
+        A17: 1.1008282e-12,
         A18: 7.1694592e-14,
+        A19: -9.6542271e-15,
         A20: 2.8985477e-16,
       },
     }, // L21 rear (aspherical) → air
@@ -335,6 +347,9 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "7", toSurface: "9" },
     { text: "T1", fromSurface: "15", toSurface: "18" },
   ],
+
+  // S9/S10: 0.2428703 mm sag intrusion in the printed 0.25 mm gap at h=8.2.
+  checks: { gapSagFrac: 0.972 },
 
   /* ── Layout tuning ── */
   layout: { scFill: 0.5, yScFill: 0.3 },

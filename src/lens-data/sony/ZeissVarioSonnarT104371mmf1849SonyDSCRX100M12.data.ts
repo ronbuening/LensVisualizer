@@ -35,6 +35,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and ±0.60 of each state's published half-field, with additional geometric margin and a
  * visual sanity check against patent Fig. 9. They are not production clear-aperture claims.
  *
+ * Rimmer localization audit (2026-10-27):
+ * Tables 9/10/12 were checked against the rendered print; no prescription or rim changes.
+ * Table 11 half-fields are 32.979 / 21.631 / 12.525 degrees. The format-corner analysis
+ * reaches 41.63 / 22.76 / 12.77 degrees, beyond those published fields. A diagnostic
+ * wide-field cap still refuses RI inside the design field; the in-field cause is unresolved.
+ * Paragraph 0102's surface-13 mask is undimensioned and omitted. A circular opening small
+ * enough to reject the sampled failing upper ray would also clip the stated on-axis beam;
+ * neither a guessed mask nor a reduced rim is justified. See the audit and analysis notes.
+ *
  * Source discrepancies retained in the dossier:
  * - Table 13 d23_max=2.952 mm does not equal the direct D10+D11 maximum of 4.542 mm.
  * - Paragraph 0103 states 3.4x, while Table 11 endpoints give about 3.2185x.

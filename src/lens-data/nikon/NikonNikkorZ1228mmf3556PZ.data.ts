@@ -28,6 +28,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The patent uses κ in sqrt(1 - κ y²/R²). LensVisualizer stores the  ║
  * ║  standard conic constant K in sqrt(1 - (1+K)y²/R²), so K = κ - 1.   ║
  * ║  Patent κ = 0.0000 is therefore stored here as K = -1.              ║
+ * ║  Rechecked against ¶0103 and Table 1 (PDF pp. 28-29): all terms    ║
+ * ║  are verbatim. The 6.5 mm rim has no slope turnover; FIG. 1        ║
+ * ║  suggests ~5.4 mm, below the threshold for a figure-only change.    ║
+ * ║  Outer-field localization still disagrees with FIGS. 2-3; the     ║
+ * ║  cause is unresolved, so no coefficient or rim was fitted.         ║
+ * ║  Tracing uses Table 1 FNO 3.64 / 4.58 / 5.73, not market values.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -51,6 +57,7 @@ const LENS_DATA = {
     elementCount: 12,
     groupCount: 11,
     focalLengthMm: { marketing: [12, 28], design: [12.36, 27.16] },
+    fNumber: { marketing: 3.5, design: 3.64 },
   },
 
   source: {
@@ -59,6 +66,13 @@ const LENS_DATA = {
     patentYear: 2026,
     authors: ["Takeru Uehara"],
     assignees: ["Nikon Corporation"],
+    errata: [
+      {
+        status: "unresolved",
+        note:
+          "Example 1, Table 1 (PDF p. 29) and the conic convention in ¶0103 (PDF p. 28) are transcribed verbatim. The trace reproduces focal lengths and approximately -15% wide-end distortion, but outer-field marginal rays near surface 19A miss the chief-ray image by millimetres, unlike the ±0.300 mm coma plots in FIGS. 2-3 (PDF pp. 3-4); close-ray astigmatism also disagrees. Single-coefficient sign/decade/zero trials and coefficient swaps/shifts did not establish a source-supported replacement. Retain the printed prescription pending independent tracing or family-publication evidence.",
+      },
+    ],
   },
 
   elements: [
@@ -240,9 +254,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 12.36, nominalFNumber: 3.5, label: "12 mm" },
-      { focalLengthMm: 18, nominalFNumber: 4.5 },
-      { focalLengthMm: 27.16, nominalFNumber: 5.6, label: "28 mm" },
+      { focalLengthMm: 12.36, nominalFNumber: 3.64, label: "12 mm" },
+      { focalLengthMm: 18, nominalFNumber: 4.58 },
+      { focalLengthMm: 27.16, nominalFNumber: 5.73, label: "28 mm" },
     ],
     step: 0.004,
   },
@@ -288,7 +302,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 25 },
+  aperture: { fStops: [3.64, 4, 5.6, 8, 11, 16, 22], maxFNumber: 25 },
 
   groups: [
     { text: "G1(-)", fromSurface: "1", toSurface: "8" },

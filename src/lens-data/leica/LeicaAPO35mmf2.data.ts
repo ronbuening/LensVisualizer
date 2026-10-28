@@ -24,15 +24,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    that round-trip at C′/e/F′. Paraxial EFL 34.99 mm at e-line    ║
  * ║    (patent f = 1.00 × 35).                                         ║
  * ║                                                                    ║
- * ║  NOTE ON ASPHERES (open source conflict):                          ║
- * ║    Coefficients are the literal patent table (k = 0, a2…a6 at     ║
- * ║    f = 1) scaled by the rule above. Read literally they leave      ║
- * ║    ≈ −5 mm of undercorrected spherical aberration at f/2 and       ║
- * ║    make surfaces 15/16 turn over at h ≈ 8.4 mm, so the drawn       ║
- * ║    f/2 marginal rays and the outer-field rays are not              ║
- * ║    representative of the production lens. No alternative reading   ║
- * ║    of the printed table gives a consistent design, so the values   ║
- * ║    are kept as printed (see the audit log).                        ║
+ * ║  NOTE ON ASPHERES (unresolved source erratum):                     ║
+ * ║    Coefficients are the literal patent table (k = 0, a2·h⁴ …      ║
+ * ║    a6·h¹² at f′ = 1, as p. 9 prints them) scaled by the rule      ║
+ * ║    above. Read literally they leave −5.1 mm of undercorrected      ║
+ * ║    spherical aberration at f/2 and turn 15A/16A over at 8.33/5.66  ║
+ * ║    mm, inside the 10.5 mm L10 rim, so the drawn f/2 marginal rays  ║
+ * ║    and the outer-field rays are not representative of the         ║
+ * ║    production lens, and the vignetting tab refuses RI off the     ║
+ * ║    axis. A 102-variant slip search found no repair; the DE and    ║
+ * ║    US12181644B2 family texts repeat the table. Kept as printed;   ║
+ * ║    source.errata records it. The rim stays at 10.5 mm: a cap      ║
+ * ║    below 5.66 mm would fall under the image-circle floor.         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    No clear-aperture table, but the patent's D/d_M and d_M/d_r     ║
@@ -84,6 +87,12 @@ const LENS_DATA = {
     patentYear: 2022,
     authors: ["Stefan Roth", "Kathrin Keller"],
     assignees: ["Leica Camera AG"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The sole example prints k = 0 and a2·h⁴ … a6·h¹² at f′ = 1 mm (PDF pp. 8-9). Scaled ×35, the table leaves LSA −5.12 / −3.85 / −2.71 / −1.45 mm at pupil 1 / 0.85 / 0.7 / 0.5 and lands the 31.1° chief ray at 28.5 mm where the summary implies 21.0 mm. The patent has no aberration plots (FIG. 3 is MTF), no single slip among 102 tried repairs it, and DE 10 2018 132 472 A1 and US 12,181,644 B2 repeat the table. Printed values retained.",
+      },
+    ],
   },
 
   /* ── Elements ──

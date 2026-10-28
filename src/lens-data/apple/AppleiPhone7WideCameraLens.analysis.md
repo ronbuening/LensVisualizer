@@ -179,8 +179,22 @@ blank source term rather than a newly fitted value.
 | 14A | 0 | -5.81719e-2 | +1.67041e-2 | -1.88551e-3 | +6.12528e-5 | 0 | 0 | — |
 | 15A | +3.0802964e-1 | -9.77084e-2 | +2.15146e-2 | -2.29345e-3 | +9.18160e-5 | -9.45631e-7 | 0 | — |
 
-Because Example 11 publishes no semi-diameters, the data uses modeled clear apertures. The verifier evaluates each asphere
-at those modeled rims and checks edge thickness, actual aspheric rim slope, conic domain, shared-gap intrusion, default
+Because Example 11 publishes no semi-diameters or effective diameters, the data uses modeled clear apertures.
+The Rimmer localization audit caps L2 surfaces 6A and 7A at a common 1.04 mm semi-diameter. Surface 7A's first
+slope reversal is at 1.049014600 mm; its previous inferred 1.20 mm rim admitted off-axis rays through an extrapolated
+outer zone. Surface 6A follows the same height to preserve the square-cut L2 rim shown by the related Fig. 10
+(PDF p.11). Example 11 is described only as similar to that figure (¶¶0209–0210, PDF p.71), so this is a model-domain
+cap, not a measurement of a published Example 11 aperture. The f/1.8 axial marginal ray reaches 6A at 1.015756636 mm
+and 7A at 0.933289729 mm, clearing both capped faces. The rear-surface inflections at 9A, 10A, 12A, 13A and 15A are
+retained; they agree qualitatively with the smartphone-family section and must not be clipped merely for changing
+slope sign.
+
+At the new 1.04 mm L2 rims, the polynomial departures from the conic bases are −0.039566414 mm at 6A and
+−0.042515673 mm at 7A. Their departures from the corresponding paraxial spheres, as reported by the surface probe,
+are −0.039566414 mm and −0.074959023 mm respectively; the distinction matters because 7A has a nonzero conic.
+The rim-slope angles are +1.836587° and +0.852456° respectively.
+
+The verifier evaluates each asphere at those modeled rims and checks edge thickness, actual aspheric rim slope, conic domain, shared-gap intrusion, default
 on-axis and off-axis bundles, and the 37° chief ray. The most restrictive modeled rim slope is 62.4487° at 13A against the
 64.2° chat-preflight limit. Surface 15A, the only positive-K surface, remains inside its mathematical conic domain at the
 modeled 2.75 mm semi-diameter.
@@ -190,6 +204,18 @@ aperture specification and not an assignment of individual aberration correction
 at 4A, −0.33980 mm at 8A, +0.37522 mm at 11A, −1.67066 mm at 12A, −1.38120 mm at 13A, and −1.69009 mm at 15A. The large
 rear-surface departures are therefore properties of the implemented model at inferred apertures, not measurements of the
 production lens edges.
+
+The capped model yields finite Rimmer relative illumination at every sampled field at infinity, with maximum referred
+deviation below 0.002 throughout the sweep. At the sampled 37.46° edge, the transmitted pupil fraction is 0.495663 and
+relative illumination is 0.154299; these depend on inferred apertures and are not source-published illumination values.
+The runtime edge extends beyond the patent's stated 37.0° half field. All Table 11A prescription values and Table 11B
+conic/even-polynomial coefficients through A16 remain unchanged. The d-line LSA relative to the near-axis crossing is
++0.003 / −0.006 / −0.005 / −0.003 mm at pupil fractions 1 / 0.85 / 0.7 / 0.5. Figure 26 (PDF p.27) uses ±0.050 mm focus
+axes and ±1% distortion axes; the modeled small LSA and sub-percent distortion have the same general scale and
+non-monotonic distortion shape. At the stated 37.0° half field, the close-ray d-line tangential/sagittal focus shifts
+are −0.035 / −0.033 mm and distortion is +0.053%; the astigmatic curves do not reproduce Fig. 26 quantitatively.
+The source plots are polychromatic (470–650 nm), and its 37.0° field and wavelength
+conventions differ from this runtime sweep, so no exact plot reproduction or source erratum is asserted.
 
 ## Sources / References
 

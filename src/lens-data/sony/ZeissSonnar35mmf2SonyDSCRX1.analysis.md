@@ -207,13 +207,18 @@ Table 14.]
 |---|---|---:|---:|---:|---:|---:|
 | 5A | G3 | +3.1491E-01 | −2.2869E-06 | −2.3122E-09 | +5.0257E-10 | −4.1528E-12 |
 | 6A | G3 | 0.0000E+00 | +1.1201E-05 | −1.2788E-08 | +4.7065E-10 | −4.6757E-12 |
-| 10A | G5 | −2.5312E-01 | −5.1489E-06 | +1.8946E-07 | −5.4584E-10 | +1.6124E-12 |
+| 10A | G5 | −2.5312E+01 | −5.1489E-06 | +1.8946E-07 | −5.4584E-10 | +1.6124E-12 |
 | 13A | G7 | −1.1868E+00 | +2.5789E-05 | −2.4014E-07 | +7.2212E-10 | −6.0888E-13 |
 | 14A | G7 | 0.0000E+00 | +2.0510E-05 | −1.2562E-07 | +2.2322E-10 | −1.1277E-13 |
 
-Departures are quoted only at the final verified modeled semi-diameters. Relative to the patent conic base, the polynomial
-contributions are −0.06548 mm at 5A (`sd = 11.6 mm`), +0.11969 mm at 6A (`11.6 mm`), +0.49208 mm at 10A (`12.8 mm`),
-+0.39104 mm at 13A (`18.3 mm`), and −0.08523 mm at 14A (`18.3 mm`). A sphere-relative departure is intentionally not
+The 2026-10-27 source audit restored surface 10's printed `K = −2.5312E+01` (−25.312), replacing the catalog's
+−0.25312 exponent transcription. Rendered Table 14, PDF p. 24 (printed p. 10), confirms the value; all remaining
+conic and polynomial cells match. This corrects the catalog rather than the patent, so no source erratum is asserted.
+
+Departures are quoted at the current modeled semi-diameters. Relative to the patent conic base, the polynomial
+contributions are −0.06548 mm at 5A (`sd = 11.6 mm`), +0.11969 mm at 6A (`11.6 mm`), +0.27535 mm at 10A (`11.7 mm`),
++0.39104 mm at 13A (`18.3 mm`), and −0.08523 mm at 14A (`18.3 mm`). At 10A the sphere-relative departure is
++0.63078 mm; it differs from the polynomial contribution because `K` is nonzero. A sphere-relative departure is intentionally not
 quoted for 13A because an 18.3 mm rim lies outside the real radial domain of the corresponding reference sphere.
 
 The patent does not identify a molding, polishing, or hybrid manufacturing process for these specific surfaces. No such
@@ -247,17 +252,30 @@ intermediate state it gives 32.71662 mm versus 32.68 mm; at the shortest state i
 residuals are consistent with the source's rounded radii, thicknesses, indices, and summary values and remain visible in
 the verification record.
 
-The patent publishes no clear lens semi-diameters. The authored semi-diameters are therefore modeling inferences, not source
-facts. They were sized from exact meridional spherical/aspherical ray envelopes through the physical stop and checked at
-all three published focus states plus representative `focusT = 0.25` and `0.75` states. The verification sampled 549 exact
-rays. The minimum non-stop ray-envelope allowance is about 6.07% at surface 5A; the smallest positive element edge thickness
-is 0.08518 mm at G3; the largest actual rim slope is 44.62° at surface 8. The current conic-domain and shared-band cross-gap
-checks also pass.
+The patent publishes no clear lens semi-diameters. The original focus-bundle estimates are modeling inferences, not
+source facts. The 2026-10-27 audit supersedes those estimates at surfaces 8/9/10A (12.8 to 11.7 mm): with the printed coefficients
+10A's slope first reverses at 11.79091 mm, and the project's polynomial-domain rule caps a rim below that, rounded down to
+0.1 mm. FIG. 13 (PDF p. 11) shows common square rims on the cemented G4-G5 pair, so all three bounding faces take 11.7 mm.
+The nearly flat 14A also reverses slope, at 14.30 mm, but keeps 18.3 mm: the chief ray to the patent's own 21.63 mm image
+height crosses it at 17.68 mm, so a cap there would clip the source's field. G7 has a stepped shoulder, so 13A retains
+18.3 mm.
 
-These portable checks do not substitute for the production LensVisualizer renderer. Real project type checking,
-`buildLens()` / `validateLensData()`, runtime glass resolution, Prettier, and production render-trim diagnostics were not
-run because the repository/toolchain is not present in this authoring environment. Those items remain integration-pending;
-no production-render pass is claimed here.
+Project runtime probes now give on-axis LSA of +0.055 / +0.067 / +0.063 / +0.044 mm at entrance-pupil fractions
+1 / 0.85 / 0.7 / 0.5, replacing −2.342 / −1.680 / −1.138 / −0.580 mm. The small positive curve agrees with
+FIG. 14's spherical-aberration plot (PDF p. 12, ±0.4 mm horizontal scale). Before capping, the corrected full-field
+close-ray focus shifts are T +0.055 mm and S −0.112 mm, versus −6.876 and −2.938 mm before correction; corner
+distortion improves from −8.540% to −2.839%, consistent with the plot's scale and trend. These are qualitative
+source-plot comparisons, not a fit to extracted chart coordinates.
+
+The stored geometry passes the surface validator and on-axis aperture check, the image-circle floor, and exact
+chief-ray coverage to the full 21.65 mm format semi-diagonal. At infinity, the vignetting curve supplies RI through
+24.9° (RI 0.725, max referred deviation 0.0101). At 27.7° and 30.4° the cosine map folds (deviation 0.017-0.035),
+and at the 33.2° corner the rays exceed the localization limit (0.054), so the outer field has no illumination figure.
+
+The source correction is established, while full-field Rimmer availability remains unresolved. The prescribed caps
+remove zones used by the source design; accepting different treatment of those zones requires a separate review of
+the turnover policy and the cosine-map calculation. No additional coefficient or prescription change is supported.
+The coordinator retains responsibility for the repository-wide gates and production UI review; no such pass is claimed here.
 
 The model also normalizes source flat radii `R = 0` to the application's flat-surface representation where required and
 renames the five source aspheres with the `A` suffix. Raw patent values remain preserved in the dossier. The rear optical

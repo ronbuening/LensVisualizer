@@ -28,6 +28,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * edge thickness, actual rim slope, conic domain, shared-band air-gap intrusion, and sampled off-axis containment.
  * They remain modeling values, not source-published clear apertures.
  *
+ * Rimmer audit (2026-10-27): Table 19 rows 1–24 and Table 21 KA/A3–A16 were rechecked against page images;
+ * all R/d/nd/vd and asphere terms match, with K = KA - 1 and no scaling. All modeled asphere rims remain
+ * below their first slope turnover. The tab reaches 62.17°, within the printed 62.2° half-field, but RI remains
+ * unavailable at its last two samples (cosine-map-folds / rays-not-localized). Outer-pupil rays encounter the
+ * rapidly flattening zone of 19A before the rear plate. Unpublished effective apertures leave that zone's usable
+ * extent unresolved; neither prescription changes nor smaller rims are justified by the RI failure alone.
+ *
  * Glass: labels remain class/code based because the patent does not name suppliers. The patent publishes theta_gF
  * and its own Delta-theta-gF metric, but LensVisualizer dPgF is the Schott-normal-line deviation; dPgF is therefore
  * recomputed from the patent theta_gF and vd as theta_gF - (0.6438 - 0.001682*vd), not copied from Delta-theta-gF.

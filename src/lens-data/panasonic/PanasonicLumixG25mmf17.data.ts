@@ -28,10 +28,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The patent does not publish clear semi-diameters. Values below    ║
  * ║    were estimated from paraxial marginal/chief-ray envelopes, Fig. 7 ║
  * ║    proportions, the 46 mm filter thread, and renderer constraints.   ║
- * ║    L2/L3 and L7/L8 are deliberately rim-limited by curvature,        ║
- * ║    aspheric-slope, edge-thickness, and cross-gap checks; the data    ║
- * ║    therefore models the physical lens rather than an unvignetted     ║
- * ║    mathematical full-field pupil.                                    ║
+ * ║    L2/L3 remain limited by curvature, thickness and cross-gap checks. ║
+ * ║    L6 rims are capped at 9.1 mm before 11A turns at 9.133 mm; L7     ║
+ * ║    rims at 10.6 mm before 14A turns at 10.674 mm. Both faces retain  ║
+ * ║    the square rims drawn in Fig. 7. The stated axial f/1.76012 beam ║
+ * ║    passes; outer fields vignette. These are inferred optical rims,   ║
+ * ║    not published clear apertures or production dimensions.            ║
+ * ║                                                                    ║
+ * ║  NOTE ON ASPHERES:                                                  ║
+ * ║    Table 24 (PDF p. 22) was checked term by term against the print:  ║
+ * ║    K = 0 and A4–A16 are verbatim. Equation 1 (PDF p. 18) uses 1+K;  ║
+ * ║    no conic conversion, odd-term restoration or scaling is needed.    ║
+ * ║    Fig. 8A/B SA and edge astigmatism remain unreproduced; see the     ║
+ * ║    unresolved source note. No coefficient replacement meets the      ║
+ * ║    two-kind source-evidence standard. Fig. 8C distortion agrees.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -65,6 +75,12 @@ const LENS_DATA = {
     patentYear: 2017,
     authors: ["Shunichiro Yoshinaga"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Tables 22/24 reproduce Table 25 infinity f = 25.8784 mm and track = 71.0046 mm, but the exact trace gives marginal d-line LSA -0.011 mm against about +0.35 mm in Fig. 8A, and edge T/S shifts -0.026/+0.004 mm against about +0.19/+0.05 mm in Fig. 8B. Fig. 8C distortion agrees at about -4.5%. Printed coefficients are retained: single-slip diagnostics do not establish a replacement with two independent kinds of source evidence; source-versus-model cause remains unresolved.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -226,7 +242,7 @@ const LENS_DATA = {
       label: "11A",
       R: 253.2104,
       d: 2.5,
-      sd: 10.2,
+      sd: 9.1,
       medium: 6,
       asphere: {
         K: 0,
@@ -242,7 +258,7 @@ const LENS_DATA = {
     {
       label: "12A",
       R: 22.1105,
-      sd: 10.2,
+      sd: 9.1,
       asphere: {
         K: 0,
         A4: 1.81047e-5,
@@ -258,7 +274,7 @@ const LENS_DATA = {
       label: "13A",
       R: 31.3591,
       d: 6.5,
-      sd: 11.8,
+      sd: 10.6,
       medium: 7,
       asphere: {
         K: 0,
@@ -275,7 +291,7 @@ const LENS_DATA = {
       label: "14A",
       R: -20.3491,
       d: 3.5472,
-      sd: 11.8,
+      sd: 10.6,
       asphere: {
         K: 0,
         A4: 4.8716e-5,
