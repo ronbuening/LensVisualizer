@@ -3,6 +3,7 @@
 import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from "../types.js";
 import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../state/layout.js";
 import { zoomIndexToT } from "../state/stationTables.js";
+import { fNumberRuleStop } from "../state/apertureStop.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import { clearSemiDiameter } from "../geometry/rimCut.js";
 import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
@@ -29,6 +30,7 @@ import type {
   ResolvedImagePlane,
   ResolvedOpticalPath,
   ParaxialTraceResult,
+  ApertureStopRule,
 } from "../../types/optics.js";
 import { ENABLE_UNIFORM_SCALING } from "../../utils/featureFlags.js";
 import { diffractivePetzvalContribution } from "../math/diffractivePhase.js";
@@ -477,6 +479,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
       imagePlane,
       isFoldedOptics: true,
       stopPhysSD,
+      stopRule: "authored",
       EFL: referenceFocalLength,
       apertureReferenceFocalLength: referenceFocalLength,
       EP,
@@ -541,34 +544,32 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     }) as LensConstants;
   }
 
-  /* ── Derive stop SD and entrance pupil from nominal f-number ──
-   *  nominalFno is a required field (validated).  We back-compute:
+  /* ── Wide-open stop from the marked f-number ──
+   *  nominalFno is a required field (validated).  The stop rule
+   *  (state/apertureStop.ts) sizes the stop so the paraxial entrance pupil is
    *    epSD = aperture-reference focal length / (2·Fno)
-   *  where the reference is Gaussian EFL for rectilinear lenses and an
-   *  explicit projection focal length for non-rectilinear fisheyes.
-   *  then trace a real (Snell's law) ray at that height to the stop to get
-   *  the physical stop SD.  This accounts for aspherics and higher-order
-   *  aberrations that the paraxial model ignores — without it, real rays
-   *  overshoot the stop on lenses with strong aspherics (e.g. Nikon 60mm).
-   *  Embedded glass stops preserve their authored SD because that surface is
-   *  also part of the drawn physical element geometry.
-   *  Falls back to the paraxial yRatio if the real trace hits TIR. */
-  const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
+   *  at infinity focus of the zoom position, where the reference is Gaussian
+   *  EFL for rectilinear lenses and an explicit projection focal length for
+   *  non-rectilinear fisheyes.  Exceptions keep a physical stop: a published
+   *  station schedule, an authored stop inside drawn glass, and a fixed iris,
+   *  which is the rule's radius at the first station. */
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
   assertRectilinearFocalReference(data, projection, nomEFL);
   const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
-  let geometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath);
-  const nomRealY = realTraceStopHeight(geometry, nominalEPSD, 0, stopIdx);
-  if (data.zoomStopSemiDiameters) {
-    S[stopIdx].sd = data.zoomStopSemiDiameters[0];
-  } else if (!preserveAuthoredStopSD) {
-    S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
-  }
+  const stopRule: ApertureStopRule = data.zoomStopSemiDiameters
+    ? "schedule"
+    : preserveAuthoredStopSD
+      ? "authored"
+      : isZoom && data.zoomApertureModel === "fixed-iris"
+        ? "fixed-iris"
+        : "f-number";
+  if (stopRule === "schedule") S[stopIdx].sd = data.zoomStopSemiDiameters![0];
+  else if (stopRule !== "authored") S[stopIdx].sd = fNumberRuleStop(lens, baseNomFno, 0);
 
-  geometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath);
+  const geometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath);
 
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
@@ -588,9 +589,9 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
   const EP: EntrancePupil = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
 
-  /* Override EP with the nominal value.  The paraxial EP.epSD (= stopSD /
-   * paraxialYRatio) is inconsistent because the stop SD was set via real trace
-   * while yRatio is paraxial.  The correct EP is nominalEPSD = EFL / (2·Fno). */
+  /* EP is the marked f-number's entrance pupil, EFL / (2·Fno): the stop rule's
+   * target, so FOPEN is the marked value.  An exception's physical stop can give
+   * another pupil; the Summary's image-space f-number reports the traced one. */
   EP.epSD = nominalEPSD;
 
   /* B = chief ray height at stop (for vignetting computation below) */
@@ -806,10 +807,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
    */
   /* A zoom's wide-open iris follows its station f-numbers unless the file publishes a schedule, declares one fixed
    * iris, or the stop is a surface of drawn glass. */
-  const zoomStopSDs: number[] | null =
-    isZoom && (data.zoomStopSemiDiameters || (data.zoomApertureModel !== "fixed-iris" && !preserveAuthoredStopSD))
-      ? []
-      : null;
+  const zoomStopSDs: number[] | null = isZoom && (stopRule === "schedule" || stopRule === "f-number") ? [] : null;
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
     zoomHalfFields: number[] | null = null,
@@ -837,21 +835,21 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
       zoomEFLs.push(-1.0 / zMargLast.u);
 
-      /* Entrance pupil and yRatio — use real trace for EP, same as baseline */
+      /* Entrance pupil and yRatio; the station's wide-open stop by the lens's stop rule */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
       const zEfl = -1.0 / zMargLast.u;
       const zNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno!;
       const zZoomT = zoomIndexToT(zi, nz);
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
-      let stationGeometry = buildGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
-      const zRealY = realTraceStopHeight(stationGeometry, zNomEP, 0, stopIdx);
       const stationStopSD =
-        data.zoomStopSemiDiameters?.[zi] ??
-        Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y);
-      if (data.zoomStopSemiDiameters) tmpS[stopIdx].sd = stationStopSD;
-      else if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
-      stationGeometry = buildGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
+        stopRule === "schedule"
+          ? data.zoomStopSemiDiameters![zi]
+          : stopRule === "f-number"
+            ? fNumberRuleStop(lens, zNomFno, zZoomT)
+            : S[stopIdx].sd;
+      tmpS[stopIdx].sd = stationStopSD;
+      const stationGeometry = buildGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
       zoomStopSDs?.push(stationStopSD);
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
@@ -1017,6 +1015,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     zoomXpSDs,
     zoomFOPENs,
     zoomStopSDs,
+    stopRule,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
   }) as LensConstants;

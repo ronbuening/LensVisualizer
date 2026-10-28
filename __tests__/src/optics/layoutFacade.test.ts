@@ -3,7 +3,6 @@ import { doLayout } from "../../../src/optics/state/layout.js";
 import { eflAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../../src/optics/state/stationTables.js";
 import { renderSag, sagSlope, slopeTrimHeight } from "../../../src/optics/diagram/runtimeSurface.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { effectiveFNumber } from "../../../src/optics/first-order/fNumber.js";
 import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
 import { doLayoutForRuntimeLens as preparedLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { buildSimplePositiveElementLens, buildFoldedTirLens, registerRuntimeFixture } from "./testLensFixtures.js";
@@ -65,31 +64,6 @@ describe("layout facade edge cases", () => {
     });
 
     expect(eflAtFocus(0.5, 0, L)).toBe(75);
-  });
-
-  it("returns the marked f-number when the close-focus denominator collapses", () => {
-    const base = buildSimplePositiveElementLens("test-layout-collapsed-denominator");
-    const L = registerRuntimeFixture({
-      ...base,
-      EFL: 500,
-      closeFocusM: 0.5,
-      S: base.S.map((surface) => ({ ...surface, R: 1e15, nd: 1 })),
-    });
-
-    expect(effectiveFNumber(2.8, 1, 0, L)).toBe(2.8);
-  });
-
-  it("keeps effective f-number finite when pupil magnification inputs are degenerate", () => {
-    const base = buildSimplePositiveElementLens("test-layout-degenerate-pupils");
-    const L = registerRuntimeFixture({
-      ...base,
-      EP: { ...base.EP, epSD: 0 },
-      xpSD: 0,
-    });
-
-    const value = effectiveFNumber(2, 1, 0, L);
-    expect(Number.isFinite(value)).toBe(true);
-    expect(value).toBeGreaterThan(2);
   });
 
   it("computes spherical and aspheric sag through the render helpers", () => {

@@ -209,6 +209,8 @@ export {
 export type { GroupMovementPoint, GroupMovementProfile } from "./analysis/summary/groupMovement.js";
 export { computeOpticalSummary } from "./analysis/summary/summary.js";
 export type { OpticalSummaryMetrics } from "./analysis/summary/summary.js";
+export { computeWorkingFNumber } from "./analysis/summary/fNumbers.js";
+export type { WorkingFNumberResult } from "./analysis/summary/fNumbers.js";
 export {
   BEAM_GRID_CELLS,
   EXIT_PUPIL_PROBE_FRACTION,

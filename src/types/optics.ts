@@ -529,6 +529,16 @@ export interface EntrancePupil {
   yRatio: number;
 }
 
+/**
+ * What sizes a lens's wide-open stop (`src/optics/state/apertureStop.ts`).
+ * - `"f-number"`: the rule, paraxial EPD = F/N at the marked wide-open N of the current zoom position;
+ * - `"schedule"`: the published station radii (`zoomStopSemiDiameters`), interpolated between stations;
+ * - `"fixed-iris"`: one iris, the rule's radius at the first zoom station, kept at every zoom;
+ * - `"authored"`: the stop surface's own `sd` (folded systems and stops inside an element).
+ * Stopped-down f-numbers follow the rule on every lens, never opening past the wide-open stop.
+ */
+export type ApertureStopRule = "f-number" | "schedule" | "fixed-iris" | "authored";
+
 /** Element span: [elementId, frontSurfaceIndex, rearSurfaceIndex] */
 export type ElementSpan = [number, number, number];
 
@@ -641,7 +651,10 @@ export interface RuntimeLens {
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
   readonly zoomFOPENs: number[] | null;
+  /** Wide-open stop radius at each zoom station: the f-number rule's radius, or the published schedule. */
   readonly zoomStopSDs?: readonly number[] | null;
+  /** What sizes the wide-open stop; see `ApertureStopRule`. */
+  readonly stopRule: ApertureStopRule;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;

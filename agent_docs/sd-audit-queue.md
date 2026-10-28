@@ -250,23 +250,23 @@ station f-numbers in their own header or note; replace each array from the sourc
 `olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
 `sony/SonyFE2870mmf3556`.
 
-`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the three fixed-iris files whose stated station f-numbers
-are not the ones their iris gives; delete a key there when its file is corrected. `nikon/NikonAFSDX55200mmf456G` is
-in the list above and its patent is not held locally (Section C); the two Vivitar Series 1 zooms are rim-limited at
-tele (Section I).
+`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the one fixed-iris file whose stated station f-numbers
+are not the ones its iris gives; delete the key there when the file is corrected. `nikon/NikonAFSDX55200mmf456G` is
+in the list above and its patent is not held locally (Section C).
 
 ## Section I — stated axial beam does not pass
 
-Stations whose traced on-axis f-number is more than 3 % from the stated one; the aperture semantics are in
-`src/lens-data/LENS_DATA_SPEC.md` (zoom aperture). Regenerate the list at any time (a few seconds):
+Stations whose traced on-axis f-number is more than 3 % from the stated one: the beam the iris admits (paraxial
+EPD = F/N by the stop rule) is clipped by a rim or cannot be traced. The aperture semantics are in `src/lens-data/LENS_DATA_SPEC.md`
+(Stop and Aperture). Regenerate the list at any time (a few seconds):
 
 ```bash
 npm run audit:aperture -- --markdown
 ```
 
-4,383 of 5,062 stations are within 3 %. Of the rest, a rim clips the beam at 677 stations on 120 lenses (`rim`);
-work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
-was inferred from a drawing, then follow
+4,672 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule and the step backwards). Of the
+rest, a rim clips the beam at 371 stations on 85 lenses (`rim`); work the largest differences first. For each row,
+read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
 rim rises only to the height the stated on-axis ray needs, on the surfaces that clip, and an element the figure draws
@@ -277,24 +277,26 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, one lens: no rim clips, but the next ray cannot be continued. The Fujinon XF 23mm f/1.4 R is totally
+- `trace`, three lenses: no rim clips, but the next ray cannot be continued. The Fujinon XF 23mm f/1.4 R is totally
   reflected at surface 14A, inside its rim (a prescription suspect). A stop plane inside the sag of the surface before
-  it is no trace failure: the sequential trace steps back to it.
-- `iris`, one lens: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8).
+  it is no trace failure: the sequential trace steps back to it. On the Kinoptik Tegea 5.7mm f/1.8 and the AF-S Nikkor
+  14-24mm f/2.8 at 23.8 mm the ray toward the iris rim cannot be traced to the stop, so the audit compares the beam
+  with the stated pupil instead.
+- `iris`, three lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
+  (Zeiss Hologon 15mm f/8), the fixed iris of the Nikon AF-S DX 55-200mm (Section H), and the published schedule of
+  the Sigma 24-70mm f/2.8 DG OS HSM Art, which opens to f/2.80–2.84 against the stated f/2.93 from 39 to 68 mm.
 
 Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the
 wide-open one, lies in the glass of the face beside the stop. The trace steps back to the stop plane, but no iris can
 close there. Move the stop plane into the air the source draws, as #929 does, or cut a rim the figure shows, as the
-Voigtländer Nokton 50mm f/1 does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the four of #929
+Voigtländer Nokton 50mm f/1 does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the three of #929
 and the Hologon,
 and fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens | File | Station: face, glass from, wide-open iris | Status |
 |---|---|---|---|
-| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 12.08 mm (STO gap 2.42 mm) | todo |
-| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.27 mm, iris 11.48 mm | todo |
-| OLYMPUS J.ZUIKO AUTO-W 24mm f/2 | `olympus/OlympusZuiko24mmf2J.data.ts` | 0.25 m: face 12 in front of the stop from 8.45 mm, iris 8.81 mm (STO gap 0.34 mm) | todo |
-| PENTAX SMC DA 18-55mm f/3.5-5.6 AL | `pentax/PentaxDA1855mmF3556AL.data.ts` | 19.1 mm: face 14 in front of the stop from 5.54 mm, iris 5.57 mm | todo |
+| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 11.85 mm (STO gap 2.42 mm) | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.26 mm, iris 11.21 mm | todo |
 
 Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
 squaring them means moving faces that do not clip:
@@ -312,26 +314,18 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 
 | Lens | File | Station: stated, traced, limiter | Status |
 |---|---|---|---|
-| CANON EF 24-70mm f/2.8 L II USM | `canon/CanonEF2470mmf28LII.data.ts` | 67.88 mm: f/2.91 traces f/3.22 (+10.7 %), rim 18 | todo |
-| CANON EF 24-70mm f/2.8 L USM | `canon/CanonEF2470mmf28L.data.ts` | 68.14 mm: f/2.92 traces f/3.06 (+4.7 %), rim 19 | todo |
-| CANON EF 28-105mm f/4-5.6 | `canon/CanonEF28105mmf456.data.ts` | 101.35 mm: f/5.6 traces f/5.89 (+5.2 %), rim 14 | todo |
-| CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | 67.89 mm: f/4.5 traces f/4.85 (+7.8 %), rim 8 | todo |
-| FUJIFILM FUJINON GF 32-64mm f/4 R LM WR | `fujifilm/FujifilmGF3264mmf4.data.ts` | 62.24 mm: f/4.12 traces f/4.27 (+3.6 %), rim 13 | todo |
-| KONICA ZOOM-HEXANON AR 35-70mm f/3.5 | `konica/KonicaZoomHexanonAR3570mmf35.data.ts` | 50.16 mm: f/3.5 traces f/3.64 (+4.0 %), rim 11; 69.14 mm: f/3.5 traces f/4.35 (+24.3 %), rim 11 | todo |
-| MINOLTA AF 28-75mm f/2.8 (D) | `minolta/MinoltaAF2875mmf28D.data.ts` | 72.65 mm: f/2.91 traces f/3.11 (+7.0 %), rim 18 | todo |
-| MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | 68.2 mm: f/4.1 traces f/4.33 (+5.6 %), rim 8 | todo |
-| NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED | `nikon/NikonAFZoomMicro70180mmf4556D.data.ts` | 194 mm: f/5.6 traces f/5.95 (+6.2 %), rim 20 | todo |
-| NIKON AF-S NIKKOR 24-70mm f/2.8 G ED | `nikon/NikonAFS2470mmf28G.data.ts` | 67.7 mm: f/2.91 traces f/3.00 (+3.2 %), rim 17 | todo |
-| NIKON AF-S NIKKOR 300mm f/2.8 D IF-ED | `nikon/NikonAFSNikkor300mmf28DIFED.data.ts` | f/2.88 traces f/3.45 (+19.7%), rear L11 rim 21; with TC-20E III, f/5.70 traces f/6.83. Present on the host alone; converter rims clear. Review the host's exact source figure before raising its inferred rear rim. | todo |
-| NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.76 (+30.6%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
-| NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.48 (+12.7%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
-| NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
-| OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
-| PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
-| PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR | `pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts` | 30 mm: f/2.9 traces f/3.06 (+5.6 %), rim 16 | todo |
-| SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.09 (+5.9 %), rim 10; 13.5 mm: f/2.92 traces f/3.35 (+14.6 %), rim 10; 17.5 mm: f/2.92 traces f/3.70 (+26.7 %), rim 10 | todo |
-| SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.31 (+14.1 %), rim 17 | todo |
-| SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA | `sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts` | 78 mm: f/4.64 traces f/4.84 (+4.3 %), rim 22 | todo |
+| CANON EF 24-70mm f/2.8 L II USM | `canon/CanonEF2470mmf28LII.data.ts` | 67.88 mm: f/2.91 traces f/3.10 (+6.6 %), rim 18 | todo |
+| CANON EF 28-105mm f/4-5.6 | `canon/CanonEF28105mmf456.data.ts` | 101.35 mm: f/5.6 traces f/5.85 (+4.5 %), rim 14 | todo |
+| CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | 67.89 mm: f/4.5 traces f/4.64 (+3.1 %), rim 8 | todo |
+| KONICA ZOOM-HEXANON AR 35-70mm f/3.5 | `konica/KonicaZoomHexanonAR3570mmf35.data.ts` | 69.14 mm: f/3.5 traces f/3.94 (+12.5 %), rim 11 | todo |
+| NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED | `nikon/NikonAFZoomMicro70180mmf4556D.data.ts` | 194 mm: f/5.6 traces f/5.89 (+5.3 %), rim 20 | todo |
+| NIKON AF-S NIKKOR 300mm f/2.8 D IF-ED | `nikon/NikonAFSNikkor300mmf28DIFED.data.ts` | f/2.88 traces f/3.45 (+19.8%), rear L11 rim 21; with TC-20E III, f/5.70 traces f/6.83. Present on the host alone; converter rims clear. Review the host's exact source figure before raising its inferred rear rim. | todo |
+| NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.72 (+29.3%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
+| NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.39 (+11.1%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
+| NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.15 (+9.2 %), rim 10 | todo |
+| OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.11 (+3.5 %), rim 30; 34.28 mm: f/2.04 traces f/2.28 (+11.7 %), rim 30 | todo |
+| SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.03 (+3.7 %), rim 10; 13.5 mm: f/2.92 traces f/3.25 (+11.3 %), rim 10; 17.5 mm: f/2.92 traces f/3.55 (+21.6 %), rim 10 | todo |
+| SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.15 (+8.6 %), rim 17 | todo |
 | SIGMA 35mm f/1.4 DG HSM Art | `sigma/Sigma35mmf14DGHSMA.data.ts` | f/1.4: 164 of the vignetting tab's 3,216 axial stop samples (5.1 %) clip on the rim of surface 14 (sd 17.5 mm) just ahead of the stop. Run after the f-number PR lands, against the paraxial EFL/N beam. | todo |
 
 ## In-progress diagram sweep

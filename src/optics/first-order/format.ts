@@ -8,6 +8,7 @@ import { focusDistanceAt } from "../state/focusDistance.js";
 import type { CanonicalLens } from "../prescription/canonical.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
+import type { ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason } from "./fNumber.js";
 
 /**
  * Format an f-number as the aperture control shows it: hundredth-stop patent apertures keep their
@@ -20,6 +21,39 @@ export function formatFNumber(f: number): string {
   const rounded = Math.round(f * 100) / 100;
   if (Number.isInteger(rounded)) return rounded < 10 ? rounded.toFixed(1) : String(rounded);
   return rounded.toFixed(2).replace(/0$/, "");
+}
+
+/** Difference from the marked f-number past which a readout names the paraxial working one. */
+const PARAXIAL_WORKING_NOTE_DIFFERENCE = 0.05;
+
+const PARAXIAL_WORKING_UNAVAILABLE_TEXT: Record<ParaxialWorkingFNumberUnavailableReason, string> = {
+  "folded-path": "not defined on a folded path",
+  "no-stop": "no stop",
+  "degenerate-trace": "degenerate paraxial trace",
+};
+
+/**
+ * Format a paraxial working f-number, or say why the state has none.
+ *
+ * @param result - paraxial working f-number result
+ * @returns e.g. "f/3.2", or "f/# unavailable (not defined on a folded path)"
+ */
+export function formatParaxialWorkingFNumber(result: ParaxialWorkingFNumberResult): string {
+  return result.status === "computed"
+    ? `f/${formatFNumber(result.value)}`
+    : `f/# unavailable (${PARAXIAL_WORKING_UNAVAILABLE_TEXT[result.reason]})`;
+}
+
+/**
+ * Whether a readout should name the paraxial working f-number beside the marked one: it differs from it, or the
+ * state has none, which is shown as such rather than as the marked f-number.
+ *
+ * @param result - paraxial working f-number result
+ * @param fNumber - marked f-number
+ * @returns true when the readout names it
+ */
+export function showsParaxialWorkingFNumber(result: ParaxialWorkingFNumberResult, fNumber: number): boolean {
+  return result.status === "unavailable" || Math.abs(result.value - fNumber) > PARAXIAL_WORKING_NOTE_DIFFERENCE;
 }
 
 /** Share by which the design f-number may differ from the marketed one before the readout names both. */

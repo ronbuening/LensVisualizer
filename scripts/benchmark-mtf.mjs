@@ -54,11 +54,15 @@ function integerAtLeast(value, label, min) {
 /** Load current public barrels through the Node TypeScript specifier hook. */
 async function loadEngine() {
   const { buildLens, prepareRuntimeState } = await import("../src/optics/buildLens.ts");
+  const { stopSemiDiameterForFNumber } = await import("../src/optics/optics.ts");
+  const { entrancePupilAtState } = await import("../src/optics/fieldGeometry.ts");
   const { computeMtf } = await import("../src/optics/mtf.ts");
   const { createAnalysisRequest } = await import("../src/optics/analysis.ts");
   return {
     buildLens,
     prepareRuntimeState,
+    stopSemiDiameterForFNumber,
+    entrancePupilAtState,
     computeMtf: (state, options) =>
       computeMtf(
         createAnalysisRequest({
@@ -109,6 +113,10 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
   const data = (await import(pathToFileURL(join(ROOT, "src", "lens-data", file)).href)).default;
   const L = engine.buildLens(data, { path: `src/lens-data/${file}` });
   const state = engine.prepareRuntimeState(L, focusT, 0);
+  // `--stopped-down` traces at four times the wide-open f-number, the stop the rule gives it; the pupil is the
+  // paraxial entrance pupil of that stop in this state.
+  const stopSemiDiameterMm = engine.stopSemiDiameterForFNumber(L.FOPEN / apertureScale, 0, L);
+  const pupilSemiDiameterMm = engine.entrancePupilAtState(stopSemiDiameterMm, focusT, 0, L).epSD;
   for (const maxGridSize of MTF_BENCHMARK_GRIDS) {
     const samplesMs = [];
     let result;
@@ -122,8 +130,8 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
           focus: "design",
           maxGridSize,
           fieldFractions,
-          pupilSemiDiameterMm: L.EP.epSD * apertureScale,
-          stopSemiDiameterMm: L.stopPhysSD * apertureScale,
+          pupilSemiDiameterMm,
+          stopSemiDiameterMm,
         });
         const elapsed = performance.now() - start;
         if (index >= warmups) samplesMs.push(elapsed);

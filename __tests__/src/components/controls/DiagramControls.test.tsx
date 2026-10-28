@@ -8,6 +8,8 @@ import DiagramControls from "../../../../src/components/controls/DiagramControls
 import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
+import { formatFNumber } from "../../../../src/optics/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
@@ -24,6 +26,8 @@ function renderControls(
     tiltDeg?: number;
     zoomT?: number;
     patentPositions?: boolean;
+    showEffectiveAperture?: boolean;
+    paraxialWorkingFNum?: ParaxialWorkingFNumberResult;
   } = {},
 ) {
   const callbacks = {
@@ -66,10 +70,10 @@ function renderControls(
         currentPhysStopSD={L.stopPhysSD}
         baseEPSD={L.EP.epSD}
         dynamicEFL={options.dynamicEFL ?? L.EFL}
-        effectiveFNum={L.FOPEN}
+        paraxialWorkingFNum={options.paraxialWorkingFNum ?? { status: "computed", value: L.FOPEN }}
         showEffectiveFocalLength={options.showEffectiveFocalLength ?? false}
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
-        showEffectiveAperture={false}
+        showEffectiveAperture={options.showEffectiveAperture ?? false}
         onToggleEffectiveAperture={vi.fn()}
         apertureExpanded={options.apertureExpanded ?? false}
         onApertureExpandedChange={vi.fn()}
@@ -124,6 +128,21 @@ describe("DiagramControls", () => {
     expect(screen.queryByText(/marketed/)).toBeNull();
   });
 
+  it("names the paraxial working f-number where it differs, and says why where there is none", () => {
+    const L = buildSimplePositiveElementLens();
+    renderControls(L, { showEffectiveAperture: true, paraxialWorkingFNum: { status: "computed", value: L.FOPEN + 1 } });
+    expect(
+      screen.getByText(`f/${formatFNumber(L.FOPEN)} (paraxial working f/${formatFNumber(L.FOPEN + 1)})`),
+    ).toBeTruthy();
+    cleanup();
+    renderControls(L, {
+      showEffectiveAperture: true,
+      paraxialWorkingFNum: { status: "unavailable", reason: "folded-path" },
+    });
+    expect(
+      screen.getByText(`f/${formatFNumber(L.FOPEN)} (paraxial working f/# unavailable (not defined on a folded path))`),
+    ).toBeTruthy();
+  });
   it("offers the actual wide-open aperture without a faster, unreachable shortcut", () => {
     const L = buildLens(LENS_CATALOG["fujifilm-xf50-f1"]);
     const { callbacks } = renderControls(L, { apertureExpanded: true });

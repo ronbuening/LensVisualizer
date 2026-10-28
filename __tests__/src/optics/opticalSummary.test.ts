@@ -13,6 +13,7 @@ import { computeOpticalSummary } from "../../../src/optics/analysis/summary/summ
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
+import { imageSpaceFNumber, paraxialWorkingFNumber } from "../../../src/optics/first-order/fNumber.js";
 import { apertureAt, build, buildRearPlateLens, REAR_PLATE_FIXTURE, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("computeOpticalSummary", () => {
@@ -34,7 +35,11 @@ describe("computeOpticalSummary", () => {
     expect(summary.currentEFLMm).toBeCloseTo(dynamicEFL, 6);
     expect(summary.infinityEFLMm).toBeCloseTo(L.EFL, 6);
     expect(summary.breathingPercent).not.toBeNull();
-    expect(summary.effectiveFNumber).toBeCloseTo(Math.abs(dynamicEFL) / (currentEPSD * 2), 6);
+    expect(summary.imageSpaceFNumber).toBe(imageSpaceFNumber(state, currentPhysStopSD));
+    expect(summary.paraxialWorkingFNumber).toBe(paraxialWorkingFNumber(state, currentPhysStopSD));
+    // At a finite conjugate the working f-numbers exceed the image-space one.
+    expect(summary.paraxialWorkingFNumber!).toBeGreaterThan(summary.imageSpaceFNumber!);
+    expect(summary.workingFNumber.status).toMatch(/traced|vignetted/);
     expect(summary.halfFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg, 6);
     expect(summary.fullFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg * 2, 6);
     expect(summary.focusDistanceM).toBeCloseTo(L.closeFocusM / focusT, 6);

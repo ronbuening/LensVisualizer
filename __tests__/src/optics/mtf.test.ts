@@ -14,7 +14,7 @@ import {
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
-import type { FiniteConjugate } from "../../../src/types/optics.js";
+import type { FiniteConjugate, RuntimeLens } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
@@ -39,7 +39,7 @@ import {
   mtfFieldProcessingOrder,
   resolveMtfFieldGeometry,
 } from "../../../src/optics/analysis/mtf/mtfFields.js";
-import { resolveMtfAperture } from "../../../src/optics/analysis/mtf/mtfAperture.js";
+import { computeWorkingFNumber } from "../../../src/optics/analysis/summary/fNumbers.js";
 import {
   findAxialBestFocus,
   mtfImagePlaneOffset,
@@ -604,42 +604,39 @@ describe("MTF refinement and focus", () => {
   });
 });
 
-describe("MTF traced aperture", () => {
+describe("MTF axial vignetting", () => {
   const base = buildSimplePositiveElementLens();
-  const tracedAperture = (lens = base, stopSemiDiameterMm = 1) => {
-    const state = prepareRuntimeState(lens, 0, 0);
-    const options = { ...mtfTestOptions, stopSemiDiameterMm };
-    const support = assessMtfSupport(...mtfInputs(state, options));
-    const launch = prepareMtfFieldLaunch(state, options, support, 0)!;
-    return resolveMtfAperture(state, options, support, launch, findMtfFieldFootprint(state, options, support, launch)!);
-  };
-  it("reports the working f-number of the axial rim ray when the iris limits the beam", () => {
-    // The fixture's stop is its entrance pupil, so a slow beam traces at f / (2 × stop radius).
-    const aperture = tracedAperture()!;
-    expect(aperture.limitingSurfaceLabel).toBeNull();
-    expect(Math.abs(aperture.tracedFNumber / (base.EFL / 2) - 1)).toBeLessThan(0.005);
-    expect(computeMtf(...mtfInputs(prepareRuntimeState(base, 0, 0), mtfTestOptions)).aperture).toEqual(aperture);
+  // The fixture's stop is its first surface, so the entrance pupil is the stop.
+  const inputs = (lens: RuntimeLens, radius: number, extra = {}) =>
+    mtfInputs(prepareRuntimeState(lens, 0, 0), {
+      ...mtfTestOptions,
+      pupilSemiDiameterMm: radius,
+      stopSemiDiameterMm: radius,
+      ...extra,
+    });
+  const mtfAt = (lens: RuntimeLens, radius: number, extra = {}) => computeMtf(...inputs(lens, radius, extra));
+  it("is null when the iris limits the axial beam", () => {
+    expect(mtfAt(base, 8).axialVignetting).toBeNull();
   });
-  it("names the clear aperture that stops the axial beam before the iris does", () => {
-    // The element rims (6 mm) are smaller than the iris (8 mm), so the first rim sets the beam, not the label.
+  it("names the clear aperture that clips the axial marginal ray, as the Summary's working f-number does", () => {
+    // The element rims (6 mm) are smaller than the iris (8 mm) in front of them, so the first rim clips the rim ray.
     const rimmed = build({
       ...constructionFixtureData(base),
       surfaces: constructionFixtureData(base).surfaces.map((surface) =>
         surface.label === "STO" ? surface : { ...surface, sd: 6 },
       ),
     });
-    const aperture = tracedAperture(rimmed, 8)!;
-    expect(aperture.limitingSurfaceLabel).toBe("1");
-    expect(Math.abs(aperture.tracedFNumber / (rimmed.EFL / 12) - 1)).toBeLessThan(0.05);
-    expect(tracedAperture(base, 8)!.limitingSurfaceLabel).toBeNull();
+    const result = mtfAt(rimmed, 8);
+    expect(result.axialVignetting).toEqual({ surfaceLabel: "1", beforeStop: false });
+    expect(computeWorkingFNumber(inputs(rimmed, 8)[0])).toEqual({
+      status: "vignetted",
+      surfaceLabel: "1",
+      beforeStop: false,
+    });
+    expect(JSON.parse(JSON.stringify(result.axialVignetting))).toEqual(result.axialVignetting);
   });
-  it("is absent when no ray can be traced and survives a JSON round trip otherwise", () => {
-    const unsupported = computeMtf(
-      ...mtfInputs(prepareRuntimeState(base, 0, 0), { ...mtfTestOptions, movementActive: true }),
-    );
-    expect(unsupported.aperture).toBeNull();
-    const aperture = tracedAperture()!;
-    expect(JSON.parse(JSON.stringify(aperture))).toEqual(aperture);
+  it("is null when the request is unsupported", () => {
+    expect(mtfAt(base, 1, { movementActive: true }).axialVignetting).toBeNull();
   });
 });
 
