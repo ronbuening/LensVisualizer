@@ -60,6 +60,9 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
   "scripts/audit-surface-probe.mjs": {
     "resolve(dataFile)": { pattern: "src/lens-data/**/*.data.ts", reason: "required CLI data path" },
   },
+  "scripts/audit-rim-cut-probe.mjs": {
+    "resolve(dataFile)": { pattern: "src/lens-data/**/*.data.ts", reason: "required CLI data path" },
+  },
   "scripts/audit-mtf.mjs": {
     'resolve("src/lens-data", file)': { pattern: "src/lens-data/**/*.data.ts", reason: "catalog walk" },
   },

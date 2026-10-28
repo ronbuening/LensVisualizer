@@ -55,6 +55,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    are earlier ray-trace estimates that lie within about 15 % of the     ║
  * ║    figure. Exact trace at ω = 43.38° / 9.97°: no surface clips the f/4  ║
  * ║    axial beam or blocks the full-field chief ray at either station.     ║
+ * ║                                                                          ║
+ * ║  RIM CUT (2026-10-27): Fig. 9 draws a flat land square to the axis at   ║
+ * ║    the rim of L3's concave rear (S5). S5 now runs to the 20.1 mm edge   ║
+ * ║    with rimCutDepthMm 7.37, which ends the cap at 16.1984 mm, just      ║
+ * ║    inside the former 16.2 mm S5 sd; the beams reach 14.4375 mm there.   ║
  * ╚══════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -327,7 +332,7 @@ const LENS_DATA = {
         A14: 1.46e-19,
       },
     },
-    { label: "5", R: 21.486, d: 7.77, sd: 16.2 },
+    { label: "5", R: 21.486, d: 7.77, sd: 20.1, rimCutDepthMm: 7.37 },
     { label: "6", R: -67.187, d: 1.5, sd: 14.0, medium: 4 },
     { label: "7", R: 139.906, d: 0.23, sd: 14.2 },
     { label: "8", R: 60.17, d: 4.73, sd: 13.8, medium: 5 },

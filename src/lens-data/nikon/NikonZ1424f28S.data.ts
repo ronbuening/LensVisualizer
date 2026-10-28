@@ -23,11 +23,17 @@
  * ║    Patent does not list SDs. G1 and G2 rims are measured from      ║
  * ║    Fig. 10 (wide state, 0.0784 mm/px from the 115.72 mm glass     ║
  * ║    span): L11 front 32.8 / rear curve end 21.4, L12 20.6 / 15.6,  ║
- * ║    L13–L14 16.9, G2 11.9–11.3 mm. Surface 4A is 0.35 mm above    ║
- * ║    the drawn 15.25 mm so the Y = 21.6 mm wide-end chief ray       ║
- * ║    (15.23 mm, exact trace) clears the rim. G3 rims are estimates  ║
- * ║    that agree with Fig. 10 within about 15 % and are retained.    ║
- * ║    Flat mounting annuli outside the curved surfaces are excluded. ║
+ * ║    L13–L14 16.9, G2 11.9–11.3 mm. Surface 4A's curve end stays at  ║
+ * ║    15.6 mm (Fig. 10 draws it near 16.8 mm), above the Y = 21.6 mm  ║
+ * ║    wide-end chief ray (15.23 mm, exact trace). G3 rims are         ║
+ * ║    estimates that agree with Fig. 10 within about 15 % and are     ║
+ * ║    retained.                                                       ║
+ * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    Fig. 10 ends the concave rear caps of L11 (2A) and L12 (4A) on  ║
+ * ║    flat lands square to the axis. Both keep their rims uncut: 2A's ║
+ * ║    21.4 mm is the asphere's designed extent, and a land on 4A would║
+ * ║    stop rays its 15.6 mm rim stops.                                ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    Source FNO is 2.91 at both zoom ends while the stop rides in    ║

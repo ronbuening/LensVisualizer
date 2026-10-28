@@ -76,9 +76,9 @@ Paragraph81 on original PDF p.20 explicitly uses1−(1+κ)(h/r)², so the three 
 
 Figure1 on original PDF p.46 was rendered at600dpi and rotated. The approximately143.65mm first-to-last-lens vertex span calibrates optical rims, excluding FL, leaders, brackets and mechanical shoulders. This differs by0.01mm from the rounded summary TL−BF, so no false precision is assigned to the drawing measurements.
 
-The adopted surface radii including the stop are33.5,33,28.7,28.7,33,33,35.3,35.3,32.3,32.3,29.5,29.5,25,24.8,24.8,24.8,24.8,25.5,25.5,23.3,22.8,19.5,19.5,19.5,19.5,19.2,19.2,19.2mm. These replace ray-envelope estimates, particularly undersized rear-doublet outlines.
+The adopted surface radii including the stop are33.5,33,28.7,28.7,33,33,35.3,35.3,32.3,32.3,29.5,29.5,29.5,24.8,24.8,24.8,24.8,25.5,25.5,23.3,22.8,19.5,19.5,19.5,19.5,19.2,19.2,19.2mm. These replace ray-envelope estimates, particularly undersized rear-doublet outlines.
 
-A figure-oriented29.2mm trial on facing S3/S4 exceeded the validator's air-gap intrusion limit:16.84mm versus16.308mm allowance within18.12mm. Both retain constrained28.7mm optical radii; the larger drawn mechanical shoulders are not refracting apertures. This source/geometry limitation remains a follow-up. Adopted rims pass surface/image-circle checks and cause no hidden renderer trimming at infinity, midpoint or near.
+A figure-oriented29.2mm trial on facing S3/S4 exceeded the validator's air-gap intrusion limit:16.84mm versus16.308mm allowance within18.12mm. Both retain constrained28.7mm optical radii; the larger drawn mechanical shoulders are not refracting apertures. This source/geometry limitation remains a follow-up. Figure 1 also ends S13's cap (L24 rear) on a flat land square to the axis: S13 runs to the drawn 29.5mm edge, and `rimCutDepthMm` ends its cap near the former 25.00mm optical radius: the clear radius goes from 25.00mm to the 25.0046mm cut radius, and the traced beams reach 22.84mm there. The lands Figure 1 draws on S3, S4 and S22 stay uncut, since a land there would stop traced rays. Adopted rims pass surface/image-circle checks and cause no hidden renderer trimming at infinity, midpoint or near.
 
 ## Filter Plate and Model Limitations
 

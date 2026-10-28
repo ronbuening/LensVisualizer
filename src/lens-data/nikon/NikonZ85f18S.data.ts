@@ -8,6 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source summaries FL 83.00 and TL 111.35 disagree with the numerical table, which traces to
  * EFL 82.222 and a 110.811 mm track. The cause is not isolated, so every printed value is kept and
  * the contradiction is an unresolved `sourceErrata` entry; see analysis.
+ * Rim cuts (2026-10-27): Figure 3 draws flat lands on concave faces 4, 7, 10, 16 and 20. None is
+ * cut: each would stop traced rays, and on 16 (L42 rear) the wide-open beams reach its 16.4 mm rim
+ * (see audit log).
  */
 
 const LENS_DATA = {

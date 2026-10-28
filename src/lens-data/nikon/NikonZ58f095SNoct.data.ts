@@ -3,7 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** WO2019229849A1 Example 1; original table pp.21–23, equation p.20, Figure1 p.46.
  * Source surfaces/aspheres retained; filter FL rows29–30 are modeled in `rearPlates`
  * (traced, not drawn): S28 = 14.50 mm to FL, then 1.60 mm nd1.5168 and 1.00 mm to image.
- * Figure rims exclude mechanical shoulders, with constrained facing S3/S4 optical radii.
+ * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces 3 (L12 rear),
+ * 4 (L13 front), 13 (L24 rear) and 22 (L29 rear). 13's sd rises to the drawn 29.5 mm edge and
+ * rimCutDepthMm ends its cap at the former 25.00 mm rim. 3, 4 and 22 keep their 28.7 / 28.7 / 19.5 mm
+ * rims uncut: a land there would stop rays those rims stop.
  * Catalog names identify inferred coordinate counterparts, not production suppliers.
  */
 
@@ -299,7 +302,7 @@ const LENS_DATA = {
     { label: "10", R: -1968.5, d: 0.2, sd: 32.3 }, // L22 rear → air
     { label: "11", R: 289.687, d: 8.0, sd: 29.5, medium: 7 }, // L23 front
     { label: "12", R: -97.087, d: 2.8, sd: 29.5, medium: 8 }, // L23→L24 junction
-    { label: "13", R: 47.074, d: 8.7, sd: 25 }, // L24 rear → air
+    { label: "13", R: 47.074, d: 8.7, sd: 29.5, rimCutDepthMm: 7.19 }, // L24 rear → air
     { label: "STO", R: "flat", d: 5.29 }, // Aperture stop (patent surface 14)
     { label: "15", R: -95.23, d: 2.2, sd: 24.8, medium: 9 }, // L25 front
     { label: "16", R: 41.204, d: 11.55, sd: 24.8, medium: 10 }, // L25→L26 junction

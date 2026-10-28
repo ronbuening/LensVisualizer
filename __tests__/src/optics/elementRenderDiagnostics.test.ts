@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
 import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
-import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
-import { renderSag } from "../../../src/optics/diagram/runtimeSurface.js";
+import { doLayoutForRuntimeLens as doLayout, prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { surfaceSag } from "../../../src/optics/diagram/surfaceOutline.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
@@ -39,6 +39,8 @@ describe("element render diagnostics", () => {
         [diagnostic.rear.surfaceIndex, diagnostic.rear],
       ]),
     );
+    /* The drawn outline: a rim cut's land replaces the cap beyond its radius. */
+    const surfaces = prepareRuntimeState(L, 0, 0).surfaces;
     let maxOverlap = 0;
 
     for (let i = 0; i < L.N - 1; i++) {
@@ -55,7 +57,7 @@ describe("element render diagnostics", () => {
       );
       if (!sharedBand) continue;
 
-      const intrusion = renderSag(sharedBand.outer, i, L) - renderSag(sharedBand.outer, i + 1, L);
+      const intrusion = surfaceSag(surfaces[i], sharedBand.outer) - surfaceSag(surfaces[i + 1], sharedBand.outer);
       maxOverlap = Math.max(maxOverlap, intrusion - curr.d);
     }
 

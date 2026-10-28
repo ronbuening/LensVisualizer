@@ -169,7 +169,7 @@ All three front-group aspherical surfaces carry very large departures from the b
 | 2\* | L11 rear | 16.04 | −1 (paraboloid) | * | Pupil spherical aberration |
 | 4\* | L12 rear | 27.44 | −1 (paraboloid) | +810 µm (h = 14.0 mm) | Coma, astigmatism |
 
-\* Surface 2\*'s figure-derived rim (21.4 mm) lies outside its 16.04 mm vertex radius, so a vertex-sphere departure is undefined there; the surface sag at the rim is 15.18 mm and the local slope is about 55°. Departures quoted for surfaces 1\* and 4\* are measured from the vertex sphere at the companion data file's semi-diameters (32.8 mm and 15.6 mm), which come from the patent's Fig. 10 rather than from a published clear-aperture table.
+\* Surface 2\*'s figure-derived rim (21.4 mm, the cap end Fig. 10 draws) lies outside its 16.04 mm vertex radius, so a vertex-sphere departure is undefined there; the surface sag at the rim is 15.18 mm and the local slope is about 55°. Departures quoted for surfaces 1\* and 4\* are measured from the vertex sphere at the companion data file's traced rims (the 32.8 mm semi-diameter and the 15.6 mm semi-diameter), which come from the patent's Fig. 10 rather than from a published clear-aperture table.
 
 Surfaces 2\* and 4\* use a paraboloidal base (K = −1), which is significantly flatter than a sphere at the rim. The paraboloid eliminates the h² sag contribution from the conic, pushing all power control into the higher-order polynomial coefficients. This is a common technique in high-departure aspheres where the designer needs fine control over the wavefront shape at large aperture heights without fighting the rapid sag growth of a spherical base curve.
 
@@ -318,18 +318,18 @@ All computed values match the patent to within rounding precision of the stated 
 
 The patent does not provide semi-diameters or iris diameters.
 
-**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. The optical extent of each curved surface is used; the flat mounting annuli drawn outside L11's and L12's concave rear surfaces are excluded.
+**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. Fig. 10 ends L11's and L12's concave rear caps on flat lands square to the axis, with each element's edge at its front face's height. The data file keeps both rear faces at their rims with no cut and does not draw the lands. L11's rear stays at its 21.4 mm cap end, the asphere's designed extent; a semi-diameter at the 32.8 mm edge would extend the asphere past it. L12's rear keeps its 15.6 mm rim, since a land there would stop traced rays.
 
 | Surfaces | Element | Fig. 10 reading (mm) | Data file (mm) |
 |----------|---------|----------------------|----------------|
 | 1\* | L11 front | 32.8 | 32.8 |
-| 2\* | L11 rear (curve end) | 21.4 | 21.4 |
+| 2\* | L11 rear (cap end / edge) | 21.4 / 32.8 | 21.4 |
 | 3 | L12 front | 20.6 | 20.6 |
-| 4\* | L12 rear (curve end) | 15.25 | 15.6 |
+| 4\* | L12 rear (cap end / edge) | 16.8 / 20.6 | 15.6 |
 | 5–8 | L13, L14 | 16.9 | 16.9 |
 | 9–11 | L21, L22 | 11.8 / 11.3 | 11.9 / 11.6 / 11.3 |
 
-An exact meridional ray trace puts the wide-end chief ray for Y = 21.6 mm (ω = 57.45°, against the patent's 57.6°) at 30.5 mm on surface 1\*, 20.0 mm on 2\*, 18.3 mm on 3 and 15.23 mm on 4\*. Surface 4\* is therefore set 0.35 mm above its drawn curve end so the corner chief ray clears it; every other figure reading already sits between the chief-ray height and the unvignetted f/2.91 bundle height. The drawn rims imply roughly half of the corner bundle is clipped by G1 at the wide end, which is ordinary mechanical vignetting for this lens class. G3 rims (10–12.5 mm) are estimates that agree with Fig. 10 to within about 15% and cover the f/2.91 axial beam at every zoom station.
+An exact meridional ray trace puts the wide-end chief ray for Y = 21.6 mm (ω = 57.45°, against the patent's 57.6°) at 30.5 mm on surface 1\*, 20.0 mm on 2\*, 18.3 mm on 3 and 15.23 mm on 4\*. Surface 4\*'s traced cap end stays at 15.6 mm, inside the drawn 16.8 mm but above the corner chief ray; every other figure reading already sits between the chief-ray height and the unvignetted f/2.91 bundle height. The drawn rims imply roughly half of the corner bundle is clipped by G1 at the wide end, which is ordinary mechanical vignetting for this lens class. G3 rims (10–12.5 mm) are estimates that agree with Fig. 10 to within about 15% and cover the f/2.91 axial beam at every zoom station.
 
 **Inferred iris schedule.** The source gives FNO = 2.91 at both zoom ends while the aperture stop travels with G3, so the physical iris cannot be a fixed opening. The data file opts into an iris schedule inferred from f/2.91: an exact axial ray launched at EFL / (2 × 2.91) reaches the stop at about 7.97, 9.00, 9.58 and 10.58 mm at the four zoom stations. These radii are calculated from the nominal f-number; the patent publishes no iris diameters.
 

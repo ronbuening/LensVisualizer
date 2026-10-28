@@ -82,7 +82,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `mtf.ts` | Mtf helper module | src/optics/analysis (16), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
-| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/prescription | mtfFiniteConjugate, mtfFiniteObjectPoint |
+| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/prescription (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
 | `mtfConstants.ts` | Mtf Constants helper module | src/types | src/optics/analysis (3), src/optics/mtf.ts | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_FOCUS_MODES, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, +12 more |
 | `mtfDataLimitations.ts` | Mtf Data Limitations helper module | src/optics/analysis, src/optics/types.ts, src/types | src/optics/mtf.ts | MtfDataLimitationInput, assessMtfDataLimitations |
 | `mtfFields.ts` | Mtf Fields helper module | src/optics/state (2), src/optics/analysis, src/optics/field, src/optics/math, src/optics/prescription, +4 more | src/optics/analysis | MtfFieldTarget, MtfChiefHeight, MtfBeyondChiefClip, mtfModeledHalfField, declaredFormatRadiusMm, resolveMtfFieldGeometry, resolveMtfFieldTargets, mtfChiefHeight, +2 more |

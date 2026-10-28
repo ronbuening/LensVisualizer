@@ -8,6 +8,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * y^2/r^2 directly in equation (a), so stored standard K = kappa - 1.
  * Rims are inferred from the exact figure; no production glass vendor or
  * motor mechanism is established by the numerical prescription.
+ * Rim cuts (2026-10-27): Fig. 1 draws flat lands on faces 2 (L11), 5 (L13), 7 (L14),
+ * 17 (L19) and 32A (L44). Face 2 takes its partner's sd (31.5) with the cut at the old
+ * rim: the clear radius goes from 28.5 mm to the 28.5044 mm cut radius, and the wide-open
+ * beams reach 27.3534 mm there. The cuts on 5, 7 and 17 end the caps at 27.54, 29.22 and
+ * 21.67 mm, so the L19 rear cap no longer reaches the stop plane. 32A keeps its 18.0 mm
+ * rim, the asphere's designed extent, uncut.
  */
 
 const LENS_DATA = {
@@ -272,12 +278,12 @@ const LENS_DATA = {
     //                                                                          Patent
     // label    R              d        nd         elemId  sd      // surf   Description
     { label: "1", R: 280.6827, d: 2.65, sd: 31.5, medium: 1 }, // 1   L11 front
-    { label: "2", R: 46.02198, d: 3.54, sd: 28.5 }, // 2   L11 rear → air
+    { label: "2", R: 46.02198, d: 3.54, sd: 31.5, rimCutDepthMm: 9.89 }, // 2   L11 rear → air
     { label: "3", R: 50.87481, d: 4.19, sd: 28.5, medium: 2 }, // 3   L12 front
     { label: "4", R: 62.23366, d: 16.51, sd: 26.5 }, // 4   L12 rear → air
-    { label: "5", R: -43.98849, d: 3.2, sd: 29, medium: 3 }, // 5   L13 front
+    { label: "5", R: -43.98849, d: 3.2, sd: 29, rimCutDepthMm: 9.69, medium: 3 }, // 5   L13 front
     { label: "6", R: -158.30791, d: 4.05, sd: 29 }, // 6   L13 rear → air
-    { label: "7", R: -82.01412, d: 6.7, sd: 30, medium: 4 }, // 7   L14 front
+    { label: "7", R: -82.01412, d: 6.7, sd: 30, rimCutDepthMm: 5.38, medium: 4 }, // 7   L14 front
     { label: "8", R: -52.72274, d: 0.1, sd: 30 }, // 8+9 L14 rear → air (collapsed: −3.000 + 3.100)
     { label: "9", R: 113.04472, d: 10.81, sd: 31.5, medium: 5 }, // 10  L15 front
     { label: "10", R: -113.04472, d: 0.2, sd: 31.5 }, // 11  L15 rear → air
@@ -287,7 +293,7 @@ const LENS_DATA = {
     { label: "14", R: 571.46325, d: 0.68, sd: 28.5 }, // 15  L17 rear → air
     { label: "15", R: 290.13527, d: 6.04, sd: 26.5, medium: 8 }, // 16  L18 front
     { label: "16", R: -109.11, d: 2.16, sd: 26.5, medium: 9 }, // 17  L18→L19 cemented junction
-    { label: "17", R: 40.04126, d: 7.79, sd: 25.5 }, // 18  L19 rear → air
+    { label: "17", R: 40.04126, d: 7.79, sd: 25.5, rimCutDepthMm: 6.37 }, // 18  L19 rear → air
     { label: "STO", R: "flat" }, // 19  Aperture stop (variable d)
     { label: "19", R: -37.07012, d: 1.7, sd: 19, medium: 10 }, // 20  L21 front
     { label: "20", R: -95.03209, d: 0.2, sd: 19 }, // 21  L21 rear → air

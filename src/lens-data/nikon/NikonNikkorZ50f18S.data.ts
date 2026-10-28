@@ -6,6 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 //  Filed: 2018-05-18 | Published: 2019-11-21
 //  Production association supported by: 12E/9G count, 2 asph + 2 ED match,
 //  and computed MFD = 400.0 mm = Nikon published 0.4 m.
+//  Rim cuts (2026-10-27): Fig. 17 draws flat lands at the rims of the concave
+//  faces 11 (L16 rear), 14 (L21 front) and 23 (L33 front). 11 and 14 now reach
+//  their partner faces' edges, 13.5 and 12.3 mm, with each cut at the old rim
+//  (12.00 and 11.50 mm); 23 cuts at 17.12 mm. All clear the stated axial ray.
 // =============================================================================
 
 const LENS_DATA = {
@@ -240,7 +244,10 @@ const LENS_DATA = {
   //  the object and the STO→G2 gap shrinks from 13.02 mm to 5.109 mm, so the
   //  strongly-curved rear surface of L16 (R = 21 mm) physically encroaches on
   //  L21's front surface.  The reduced SDs prevent glass interpenetration and
-  //  visible diagram overlap at close-focus distances (issue #290).
+  //  visible diagram overlap at close-focus distances (issue #290). Surfaces 11
+  //  and 14 now draw the full element edges; their rim cuts end the caps at
+  //  12.0023 and 11.5032 mm, just outside the reduced 12.0 and 11.5 mm radii,
+  //  where the traced beams reach 11.4807 and 11.37 mm.
   // (moved from asph) §4 — Aspherical coefficients
   //  Patent aspheric equation (¶0061):
   //    X(y) = (y²/R) / [1 + √(1 − κ·y²/R²)] + A4·y⁴ + A6·y⁶ + A8·y⁸ + A10·y¹⁰
@@ -272,13 +279,13 @@ const LENS_DATA = {
     { label: "8", R: 217.9278, d: 0.2, sd: 18.5 }, // L14 rear → air
     { label: "9", R: 28.49361, d: 7.332, sd: 16.0, medium: 5 }, // L15 front (ED)
     { label: "10", R: -161.37986, d: 1.5, sd: 13.5, medium: 6 }, // L16 front (junction)
-    { label: "11", R: 20.99038, d: 5.164, sd: 12.0 }, // L16 rear → air
+    { label: "11", R: 20.99038, d: 5.164, sd: 13.5, rimCutDepthMm: 3.77 }, // L16 rear → air
 
     // ── Aperture stop ─────────────────────────────────────────────
     { label: "STO", R: "flat" }, // stop (D12, variable)
 
     // ── G2 (focusing group) ───────────────────────────────────────
-    { label: "14", R: -23.41799, d: 1.1, sd: 11.5, medium: 7 }, // L21 front
+    { label: "14", R: -23.41799, d: 1.1, sd: 12.3, rimCutDepthMm: 3.02, medium: 7 }, // L21 front
     { label: "15", R: 998.77224, d: 0.2, sd: 12.3 }, // L21 rear → air
     {
       label: "16A",
@@ -314,7 +321,7 @@ const LENS_DATA = {
     { label: "20", R: -177.7544, d: 2.927, sd: 18.0, medium: 10 }, // L31 front
     { label: "21", R: -63.69645, d: 1.9, sd: 18.0, medium: 11 }, // L32 front (junction)
     { label: "22", R: -482.01125, d: 2.887, sd: 16.7 }, // L32 rear → air
-    { label: "23", R: -50.20764, d: 1.9, sd: 18.0, medium: 12 }, // L33 front
+    { label: "23", R: -50.20764, d: 1.9, sd: 18.0, rimCutDepthMm: 3.01, medium: 12 }, // L33 front
     { label: "24", R: "flat", d: 10.5, sd: 18.0 }, // L33 rear → air (gap to FL)
   ],
 

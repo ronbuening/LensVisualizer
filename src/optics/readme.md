@@ -26,7 +26,7 @@ flowchart LR
   end
   n_external_src_types["src/types"]
   n_src_optics_TypeScript_modules --> |62| n_src_optics_src_optics_analysis
-  n_src_optics_TypeScript_modules --> |25| n_src_optics_src_optics_prescription
+  n_src_optics_TypeScript_modules --> |27| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_perspective
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (62), src/optics/prescription (25), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
+- Main outbound areas: src/optics/analysis (62), src/optics/prescription (27), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (8), src/optics/first-order (8), src/optics/trace (8), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -83,5 +83,5 @@ flowchart LR
 | `projection.ts` | Projection helper module | src/optics/field (2) | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/optics.ts | ProjectionReferenceKind, ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, +16 more |
 | `publishedStations.ts` | Published Stations helper module | src/optics/state (2) | src/components/controls (2), src/components/hooks | STATION_COORDINATE_TOLERANCE, isOnPublishedStation, nearestPublishedStation, nearestStationInGrid, publishedFocusStations, publishedStationAvailability, publishedStationGrid, publishedZoomStations, +8 more |
 | `teleconverter.ts` | Teleconverter helper module | src/optics/prescription (3) | src/components/diagram, src/utils/catalog | teleconverterCompatibility, TeleconverterAttachError, attachTeleconverter, teleconverterGroupLabel, teleconverterSurfaceLabel, MIN_TELECONVERTER_GAP_MM, TELECONVERTER_LABEL_PREFIX, teleconverterGeometry |
-| `types.ts` | Shared TypeScript types | src/types (2), src/optics/chromatic, src/optics/geometry, src/optics/prescription, src/optics/state, +1 more | src/optics/perspective (20), src/optics/analysis (16), src/components/display (14), src/optics/trace (14), src/optics/prescription (10), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +25 more |
-| `validation.ts` | Validation helper module | src/optics/prescription (5) | src/components/lensBuilder, src/lensBuilder, src/utils/state | validateLensData, validateCanonicalLens, LENS_KEY_PATTERN, validateLensMounts, validateRearPlates, validateTeleconverterData, rimCutBeamReach, validateRimCutBeams, +3 more |
+| `types.ts` | Shared TypeScript types | src/types (2), src/optics/chromatic, src/optics/geometry, src/optics/prescription, src/optics/state, +1 more | src/optics/perspective (20), src/optics/analysis (16), src/components/display (14), src/optics/trace (14), src/optics/prescription (11), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +25 more |
+| `validation.ts` | Validation helper module | src/optics/prescription (7) | src/components/lensBuilder, src/lensBuilder, src/utils/state | validateLensData, validateCanonicalLens, LENS_KEY_PATTERN, validateLensMounts, validateRearPlates, validateTeleconverterData, rimCutBeamReach, validateRimCutBeams, +7 more |

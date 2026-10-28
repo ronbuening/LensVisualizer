@@ -156,3 +156,67 @@ the figure within about 10 %: L21 13.4 mm, L22 11.1 mm, L23 9.6 mm, L31 8.4 mm a
 - Example 1 versus Example 2 as the production design is unresolved from public data.
 - L44's dPgF 0.028 is a family value; the patent lists no θgF.
 - The engine's paraxial wide half-field (37.3°) underestimates the patent's 42.59°.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 56, 300 ppi native raster, axis turned horizontal, 7.78 px/mm) was read element by element on the
+label-free half for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each
+land found was checked on the other half.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 75.981) | 0.97 (both halves 0.967–0.976) | 6.20 mm | 30.06 mm | 31.0 | 14.81 mm |
+| 8 (L21 rear, R 19.039) | 0.83 | 3.94 mm | 11.60 mm | 13.0 (was 11.6) | 5.87 mm |
+| 32 (L61 front, R −17.000) | 0.91 | 6.41 mm | 13.30 mm | 14.6 (was 13.3) | 3.04 mm |
+
+- On 8 and 32 the stored sd sat at the cap end, below the partner face (S7 13.0 mm, S33A 14.6 mm), while the figure
+  draws a square edge at the partner's height with the land below it. Each sd was raised to the partner's value and the
+  cut put at the old sd: on 8 the clear radius goes from the old 11.6 mm rim to the 11.5977 mm cut radius, and the
+  beams reach 10.3629 mm there; on 32 the cut later moved out to 13.3144 mm against the old 13.3 mm rim, and the beams
+  reach 13.2587 mm there (see the beam rule). On 32 the figure's 0.91 equals 13.3 / 14.6. On 8 the figure ends the cap
+  lower, at 0.83 (10.7 mm on a 13.0 mm edge); a cut there would raise the full-field side vignetting at that surface
+  from 12 % to 75 %, so the cap keeps its 11.6 mm end and the drawn land is narrower than the figure's.
+- Concave faces with no land: 9, 10, 13, 21 and 31A run to their element edges (13 merges with L23's rear rim in the
+  drawing; 21 shows at most a 1 px step). The shallow 6 (R 390) and 14 (R 417) sag less than 1 px over their outer
+  3 mm, so no land can be resolved there.
+- No cap reaches the stop plane at any zoom or focus state (surface 14 clears it by 0.99 mm).
+- All four stations still trace the stated f/4.12 / 5.59 / 6.40 / 6.50 with the stop as limiter; the surface validator
+  and the image-circle audit stay clean.
+- The cuts on 2, 8 and 32 clear the traced wide-open beams by their margins at every zoom, focus and field and clip
+  none of their rays (see the beam rule).
+- The engine's half-field estimate limits each face at its clear radius, so S32 bounds it at its cut radius: the
+  station half-fields were 37.28 / 23.90 / 13.36 / 7.79° with the cut at 13.2985 mm and are 37.31 / 23.92 / 13.38 /
+  7.79° with it at 13.3144 mm (beam rule below).
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops (#933) with the rule's current search, which
+follows each beam to the field where it vanishes and refines near a cut on the full measurement. Traced against that
+rule, these cuts from the figure review above were changed:
+
+- Surface 32: the cut sat at 13.2985 mm, the old 13.3 mm rim less the rounding of its 6.41 mm depth, and the beams
+  reach 13.2587 mm there, inside it but closer than the 0.05 mm margin. The depth goes from 6.41 to 6.43 mm, which
+  puts the cut radius at 13.3144 mm: the clear radius goes from the old 13.3 mm rim to 13.3144 mm.
+
+Every cut now clears the beams by its margin, and the surface audit and the beam rule pass:
+
+| Surface | Cut radius | Beams reach | Where (zoom, focus, field) | Clearance | Margin | Spare |
+|---|---|---|---|---|---|---|
+| 2 | 30.0621 mm | 29.4899 mm | zoomT 0.40, focusT 0.65, 21.38° | 0.5722 mm | 0.0902 mm | 0.4820 mm |
+| 8 | 11.5977 mm | 10.3629 mm | 24.72 mm station, close focus, 44.41° | 1.2349 mm | 0.05 mm | 1.1849 mm |
+| 32 | 13.3144 mm | 13.2587 mm | 194 mm station, infinity, 7.18° | 0.0557 mm | 0.05 mm | 0.0057 mm |
+
+zoomT 0.40 lies between the 50 and 105.05 mm stations.
+
+Figure scale and land length. The figure review's 7.78 native px per lens mm comes from the vertex spacings. Each q
+range is ±(1 + q) / (sd × 7.78 px/mm):
+
+- 2: q 0.97 ± 0.0082 (0.962–0.978) on a 241 px edge; the cut is at 0.970 of sd; land 0.9379 mm.
+- 8: q 0.83 ± 0.0181 (0.812–0.848) on a 101 px edge; the cut sits at the old rim, 0.892 of sd, above that range; land
+  1.4023 mm.
+- 32: q 0.91 ± 0.0168 (0.893–0.927) on a 114 px edge; the cut, moved out by the beam rule, is at 0.912 of sd; land
+  1.2856 mm.
+
+Every land is longer than the 0.1 mm minimum, and no q range reaches 1.

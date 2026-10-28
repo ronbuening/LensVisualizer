@@ -82,3 +82,27 @@ element and the old L11 front (10.0 mm) about 0.76×. The L11 rear (≈11.1 mm d
 The validator accepts the new values, every station now reaches 100% of the corner (42.91° / 21.24° / 15.88°) with
 every rim clear, and the image-circle floor still reports nothing undersized. The tightest remaining rims are at the
 wide corner: 3A (chief ray 9.37 mm, sd 9.5) and 2 (9.45 mm, sd 9.8). No aspheric surface changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+FIG. 15 (PDF p. 41, first raster: 1004 × 1334 px, 300 ppi, wide end at infinity; rotated so the object is on the left,
+12.64 px/mm) was read element by element, on both halves, for flat lands square to the axis at the rims of concave
+faces, the shape `rimCutDepthMm` draws. No cut was authored; the data file is unchanged.
+
+| Surface | Figure rim | q (cap end ÷ edge) | sd | Largest stated axial ray | Disposition |
+|---|---|---|---|---|---|
+| 3A (L11 resin rear, R 11.576 asph) | The L11 glass body ends its concave rear (junction 2) at 10.7–10.8 mm in a flange land square to the axis out to the 13.16 mm body edge; the resin rear runs past that land plane to its own edge at 11.3 mm, with no land of its own | 0.81–0.82 (junction cap ÷ body edge) | 9.5 | 3.84 mm | Not authored: the drawn land belongs to cemented junction 2, which opens into the resin, not air, so it cannot carry a cut; 3A itself shows no land, and drawing the flange would need surfaces 2 and 3A raised toward 13.2 mm, at or past junction 2's \|R\| = 13.201 |
+| 5 (L12 rear) | Follows the R 34.90 arc to the edge; the last rows sit ≤ 1.5 px off at the corner | — | 9.5 | 5.23 mm | No land |
+| 8 (L22 rear) | Near-straight to the edge (0.32 mm drawn sag, as prescribed) | — | 5.2 | 5.33 mm | No land |
+| 14 (L25 rear) | Follows the arc to the edge | — | 4.9 | 3.72 mm | No land |
+| 15A (L31 front) | Top half follows the aspheric profile to the edge within 0.5 px; the bottom corner's last five rows sit 1.5 px off, one staircase step of a slope-0.2 curve | — | 5.5 | 2.14 mm | No resolvable land |
+| 16A (L31 rear) | Follows the profile to the edge | — | 5.6 | 2.06 mm | No land |
+| 17 (L41 front) | Near-flat R −345 face runs to the edge | — | 14.5 | 1.68 mm | No land |
+
+- The steps between L21/L22 and L23/L24 at their rims are cemented-junction edge steps, not lands.
+- No cap reaches the stop plane at any zoom or focus state: surface 8 clears it by 1.34 mm, and surface 10 behind the
+  stop is convex to the object, so its rim bends away from the stop.
+- Aperture and vignetting are unchanged: all three stations still trace within 3 % of the stated f-number with no
+  `rim`, `trace`, `iris` or `failed` rows.
+- The diagram draws the L11 body's rim as a slant from the 13.2 mm front edge to junction 2's 9.8 mm rim; the figure's
+  square flange would need a land on a cemented face, which `rimCutDepthMm` does not cover.

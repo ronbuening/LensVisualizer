@@ -51,3 +51,64 @@ UnresolvedL31 material remains follow-up. Batch21–30 fullgates/commit pending.
   focus). Glass `J-BK7` (Hikari, exact 1.51680 / 63.88 coordinate).
 - Paraxial check against the previous data: EFL identical and paraxial defocus unchanged at infinity and near focus,
   because the old fold was stored unrounded. Physical track grows by 0.545 mm to the source TL 54.610 mm.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 3 (PDF p. 47, native 300 ppi 1-bit raster, rotated object-left) was read on its label-free half, element by
+element, for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Pixel pairs
+are cap end / element edge from the axis; L11 reads the same on the other half (205 / 221.5 px). Every land starts at
+the old `sd`, which an earlier audit put at the cap end, and the element edge matches the partner face's `sd`. So each
+face now takes its partner's `sd` and the cut sits at the old one, to the rounded depth: the land is drawn, and the
+clear radius goes from the old rim to the cut radius, 6.2 → 6.2088 mm on 2, 6.9 → 6.8993 mm on 9, 12.3 → 12.3153 mm
+on 14A and 14.6 → 14.6106 mm on 18. The beams reach 6.1322, 6.7592, 12.1158 and 14.3628 mm there (rule section below).
+
+| Surface | Figure land (px, q) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 18.072) | 204 / 220.5, 0.925 | 1.10 mm | 6.21 mm | 6.2 → 6.7 | 5.00 mm |
+| 9 (L23 front, R −11.081) | 225.5 / 266.5, 0.846 | 2.41 mm | 6.90 mm | 6.9 → 8.2 | 4.31 mm |
+| 14A (L31 front, asph) | 403.5 / 431.5, 0.935 | 2.35 mm | 12.32 mm | 12.3 → 13.1 | 4.44 mm |
+| 18 (L41 front, R −34.466) | 480.5 / 530.5, 0.906 | 3.25 mm | 14.61 mm | 14.6 → 16.1 | 2.43 mm |
+
+- q × the partner `sd` gives 6.20 / 6.94 / 12.25 / 14.58 mm, each within 0.05 mm of the old `sd`.
+- The other concave faces run to their element edges in the figure: 1 (L11 front, 0.33 mm sag), 8 (L22 rear) and 19
+  (L41 rear); no cut. The short square step on L22's front outside L21's rim is the cemented junction (7), not a land.
+- No cap can reach the stop plane: STO sits between flat surface 4 and convex surface 6.
+- The aperture audit is unchanged (one station within 3 % of f/2.909; no rim, trace or failed rows, no rim-cut
+  limiter); the surface audit passes and the image-circle audit finds nothing undersized. Each cut clears every traced
+  ray of the wide-open beams by its margin (rule section below) and clips none of them.
+- The rendered section now draws L11, L23, L31 and L41 with square edges and flat lands like Figure 3, where the old
+  unequal rims drew slanted edges.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. All four cuts from the figure review above clear the beams by their margins, and none moved:
+
+| Surface | Old rim → cut radius | Reach (focus, field) | Clearance | Margin | Spare |
+| --- | --- | --- | --- | --- | --- |
+| 2 | 6.2 → 6.2088 mm | 6.1322 mm (infinity, 26.18°) | 0.0766 mm | 0.0500 mm | 0.0266 mm |
+| 9 | 6.9 → 6.8993 mm | 6.7592 mm (close focus, 39.61°) | 0.1401 mm | 0.0500 mm | 0.0901 mm |
+| 14A | 12.3 → 12.3153 mm | 12.1158 mm (infinity, 37.96°) | 0.1994 mm | 0.0500 mm | 0.1494 mm |
+| 18 | 14.6 → 14.6106 mm | 14.3628 mm (infinity, 37.96°) | 0.2478 mm | 0.0500 mm | 0.1978 mm |
+
+**Figure scale and land length.** Measured on the native 300 ppi raster of Figure 3 (PDF p. 47): the vertices of
+surfaces 1 and 19 lie 1346 px apart on the axis, against the 40.927 mm vertex span, so 32.89 native px per lens mm.
+The review's edge pixels over the partner `sd` agree (32.9 px/mm; 32.5 on L23). Edge px is sd × 32.89, and one native
+pixel at the cap end and at the edge gives q ± (1 + q) / (edge px). The cuts sit at the old rims rather than at q × sd.
+
+| Surface | Edge px | q | q range | Cut radius ÷ sd | Land |
+| --- | --- | --- | --- | --- | --- |
+| 2 | 220.4 | 0.925 | 0.916–0.934 | 0.9267 | 0.4912 mm |
+| 9 | 269.7 | 0.846 | 0.839–0.853 | 0.8414 | 1.3007 mm |
+| 14A | 430.9 | 0.935 | 0.931–0.940 | 0.9401 | 0.7847 mm |
+| 18 | 529.5 | 0.906 | 0.902–0.909 | 0.9075 | 1.4894 mm |
+
+Each cut radius ÷ sd lies inside its q range except 14A's, 0.9401 against a top of 0.9396. Every land is longer than
+the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.
+
+14A is the one asphere whose `sd` this review raised (12.3 to 13.1 mm). Its slope keeps its sign out to the new rim
+and only levels off (−0.309 at 11.79 mm, −0.312 at 12.45 mm, −0.311 at 13.10 mm; `audit:surface --scan 14A 13.1`), so
+the polynomial does not turn over inside the land, which is all it shapes past the 12.3153 mm cut radius.

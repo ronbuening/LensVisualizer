@@ -35,6 +35,7 @@
     "audit:image-circle": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs",
     "audit:patent-figure": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-patent-figure.mjs",
     "audit:surface": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-surface-probe.mjs",
+    "audit:rim-cut-probe": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-rim-cut-probe.mjs",
     "benchmark:optics-rendering": "node scripts/benchmark-optics-rendering.mjs",
     "pretypecheck": "node scripts/generate-build-metadata.mjs",
     "typecheck": "tsc --noEmit",

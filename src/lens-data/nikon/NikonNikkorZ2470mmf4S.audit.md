@@ -126,3 +126,55 @@ pp. 13–14; Fig. 1A–1C p. 38 (300 dpi raster, axis horizontal); Fig. 3 close-
 - Paraxial check against the previous data: EFL identical; defocus changes by at most 0.0009 mm (tele), the rounding in
   the patent's printed air-equivalent BF (35.599 against 34.444 + 1.600/1.5168 + 0.101 = 35.5999). Physical track grows
   by 0.545 mm and now matches the patent's 121.58–151.03 mm total length.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1A (PDF p. 38, native 300 ppi raster, axis horizontal, 0.2423 mm/px) was read element by element on both halves
+of the section for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. The
+L52 land was also measured on Figure 1C.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 5A (L21 rear, R 17.042 asph) | 0.715 (59.2 / 82.2 px upper, 58.8 / 82.8 px lower) | 7.47 mm | 14.40 mm | 21.5 (was 14.4) | 5.73 mm |
+| 25 (L52 front, R −24.365) | 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower; Fig. 1C 0.84) | 5.26 mm | 15.12 mm | 18.0 | 4.67 mm |
+
+- 5A: Figure 1A draws L21 as a rectangle; the rear cap stops at the curve end the 2026-09-23 audit measured for `sd`
+  (14.4 mm), and a vertical land runs from there to the element's top and bottom edges, level with the front face's
+  rim. `sd` was raised to the front face's 21.5 mm with the cut at the old 14.4 mm rim (depth = sag there): the clear
+  radius went from the old 14.4 mm rim to the 14.4008 mm cut radius. The land sat 7.47 mm behind the 5A vertex and
+  L22's front rim 7.56 mm, a 0.09 mm gap the validator accepts; the figure draws the two about 3 px (0.7 mm) apart.
+  5A has since gone back to its 14.4 mm rim with no cut (below), so it carries no land.
+- 25: the L52 front cap ends short of the element edge with a vertical land at both rims; the cut radius is
+  0.84 × the stored 18.0 mm `sd`.
+- Every other concave face (6, 7, 9 in G2, 16 L34 front, 19 L41 front, 23 L51 front, 26 L52 rear) runs to its
+  element's corner in the figure; no cut. Surface 3 (L12 rear, R 417) bends only 0.84 mm (3.5 px) over its height and
+  its stroke reaches the corner; any land there is below what the figure resolves.
+- No cap reaches the stop plane at any zoom or focus state (surface 9 clears it by 2.48 mm).
+- The aperture audit is unchanged: all three stations trace the stated f/4 within 3 %, with no rim, trace, iris or
+  rim-cut limiter. Surface validator: no errors; image-circle floor: 0 undersized. The cut on 25 clears every traced
+  ray of the wide-open beams by its margin and clips none of them (beam rule below); 5A carries no cut. The engine's
+  field estimate reads the cut radius, and the wide-end half-field estimate is unchanged.
+- The rendered wide-end section now shows the L52 front land; nothing else moved. L21 keeps its earlier outline,
+  without the rear land the figure draws.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement.
+
+- Surface 25: cut radius 15.1214 mm. The beams reach 13.4433 mm there (wide, 24.72 mm, at infinity, 43.27°), a
+  clearance of 1.6781 mm against a 0.05 mm margin, 1.6281 mm spare. The cut clips none of their rays.
+- Surface 5A: back to its designed 14.4 mm rim with no cut. Raising its `sd` to 21.5 mm had extended the asphere past
+  its designed extent, so the land Figure 1A draws at 14.4 mm is not modelled. The cut did not fail the beam rule: with
+  the face raised and cut, the beams reach 14.0098 mm there, 0.3910 mm inside the 14.4008 mm cut radius.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 1A's 0.2423 mm/px, from the 437.5 px / 106.026 mm S1–S26 vertex span of the
+2026-09-23 audit, is 4.126 native px per lens mm. One native pixel at the cap end and at the edge moves q by
+±(1 + q) / (edge px).
+
+- 25: figure q 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower) at a 74.3 px edge (18.0 mm), range 0.815–0.865;
+  the figure draws that edge at 69.3–69.7 px (16.8 mm). The cut sits at 0.840 of `sd`. Land 2.8786 mm, over the
+  0.1 mm minimum.

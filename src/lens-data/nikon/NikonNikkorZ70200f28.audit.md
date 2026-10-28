@@ -76,3 +76,62 @@ Titlep1; definitionspp18–19; Example1pp20–21; Table1pp22–25; Fig1p64.
   partialiris despite sourcef2.8637. Three-lens hook regression covers full
   iris at allstations and stablef8. Shortcut text/ARIA usefmtF without
   rounding numeric targets.39affected tests pass; fullgates pending11–20.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 64, native 300 ppi raster; Wide, Middle and Tele panels) was read element by element for flat lands
+square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each face's drawn profile was
+compared with its prescription sag at 6.559 px/mm (S1 → S40 vertex span 1311 px = 199.886 mm).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 7 (L21 rear, R 31.877) | 0.90 | 8.43 mm | 21.60 mm | 24 | 18.53 mm |
+| 34 (L72 rear, R 37.131) | 0.95 | 2.46 mm | 13.29 mm | 14 | 12.11 mm |
+
+- Surface 7: the face follows its sphere within 0.5 px out to 21.4 mm, then a 15 px land joins it to the edge line
+  (q 0.904 / 0.904 on the Wide panel's upper / lower half, 0.898 / 0.904 on the Middle panel).
+- Surface 34: the face follows its sphere within 0.5 px to about 13.2 mm, then runs straight for 4–5 px to the edge, in
+  all three panels and on both halves (q 0.94–0.956). The run ends 1–1.5 px inside the sphere's continuation at the
+  edge row in every view; the control faces 25 and 39 follow their spheres into the corner.
+- No land on 8, 9, 13, 15, 19, 21, 25 or 39 (each follows its sphere into the corner within about 1 px). The joined
+  stroke where L23 meets L24 is the two spheres of 11 and 12 crossing near 19.1 mm, not a land, so 12 keeps the
+  18.1 mm rim of the 2026-09-08 audit. 5, 30, 31 and 37A are too shallow to separate a land from the cap: under 2 px
+  of sag over any land the figure could draw.
+- No cap reaches the stop plane at any zoom or focus state (surface 19 clears it by 2.69 mm, surface 21 by 1.78 mm).
+- The aperture audit is unchanged: Wide and Middle trace their stated f/2.88 and f/2.86 at the iris, and Tele stays at
+  f/2.93 behind surface 12's rim (+1.8 %, inside 3 %), as before. No rim-cut limiter. The surface validator and
+  the image-circle audit stay clean.
+- The cut on 7 clears every traced ray of the wide-open beams by its margin and clips none of them (beam rule below).
+  The cut on 34 was removed there. At the 21.6 mm full field, a cut on 34 at 13.29 mm, taken alone as a clip, would
+  raise side vignetting there from 39 % to 45 % (42 % → 48 % at close focus). In the engine's 2D vignetting trace,
+  the corner's geometric transmission does not change with the cut on 7, at any station or either focus end
+  (0.558 / 0.434 / 0.389 at infinity, 0.567 / 0.470 / 0.463 close): L21's front face 6 and the rims at 8 and 12
+  already clip those rays. With a cut on 34 added it is 0.543 / 0.410 / 0.376 and 0.541 / 0.441 / 0.435, all of the
+  change from 34.
+- The engine's wide-end half-field estimate, which limits each face at its cut radius, moves from 19.89° to 19.68°
+  with the cut on 7. That is still past the 16.85° that the 21.6 mm image height needs.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current
+search, which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, these cuts from the figure review above were changed:
+
+- Surface 34: with the 13.2904 mm cut restored, the beams reach 13.962 mm there (zoomT 0.7, close focus, 9.61°),
+  0.038 mm inside the 14 mm rim. A cut that cleared them by its 0.05 mm margin would sit past the rim, so no land is
+  left to draw. The cut is removed.
+
+The other cut clears the beams by its margin at its figure-review position:
+
+- Surface 7: cut radius 21.596 mm. The beams reach 21.206 mm there (wide, 71.5 mm, focusT 0.4, 19.34°), a clearance
+  of 0.3901 mm against a 0.0648 mm margin, 0.3253 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 1 is 6.559 native px per lens mm, from the S1 → S40 vertex span in the figure
+review (1311 px for 199.886 mm). One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: figure q 0.90 (0.904 / 0.904 on the Wide panel, 0.898 / 0.904 on the Middle panel) at a 157.4 px edge (24 mm),
+  range 0.888–0.912. The cut sits at 0.900 of `sd`. Land 2.404 mm, over the 0.1 mm minimum.

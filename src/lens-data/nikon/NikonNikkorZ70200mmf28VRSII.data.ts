@@ -28,6 +28,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * their rims would touch at 19.16 mm (the figure draws L32/L33 in edge contact). That band needs gapSagFrac = 0.96
  * (intrusion ≈ 95.4%). The stop radius is derived from the design f-number, f/2.891 at wide, and held at every zoom
  * station; the same fixed iris reproduces the published f/2.904 and f/2.905 at mid and tele.
+ * Rim cuts (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 4 (L12), 8 (L21), 31 (L52) and 34A
+ * (L71). Faces 4 and 8 take their element edge as sd (the partner face: 34.2 / 22.6) and rimCutDepthMm ends the cap
+ * just outside the old 33.15 / 20.7 mm rims, at cut radii 33.1581 / 20.7130 mm (so the 8 value above is now a cut
+ * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A keep their 11.6 / 17.5 mm rims uncut: a land
+ * there would stop rays those rims stop.
  *
  * FOCAL LENGTHS — catalog.focalLengthMm.design and the zoom station focal lengths are the patent's printed
  * f (71.402 / 134.997 / 195.996 mm). The
@@ -320,11 +325,11 @@ const LENS_DATA = {
     { label: "1", R: 148.0643, d: 5.2, sd: 35.1, medium: 1 }, // G1: L11 front
     { label: "2", R: 1994.3176, d: 0.2, sd: 35 }, // L11 rear → air
     { label: "3", R: 80.0925, d: 1.75, sd: 34.2, medium: 2 }, // L12 front
-    { label: "4", R: 58.6156, d: 0.15, sd: 33.15 }, // L12 rear → air
+    { label: "4", R: 58.6156, d: 0.15, sd: 34.2, rimCutDepthMm: 10.28 }, // L12 rear → air
     { label: "5", R: 58.8499, d: 12.3, sd: 33.15, medium: 3 }, // L13 front (fluorite)
     { label: "6", R: "flat", sd: 32.65 }, // L13 rear (plane) → air [VAR zoom D6]
     { label: "7", R: 175.6186, d: 1.2, sd: 22.6, medium: 4 }, // G2: L21 front
-    { label: "8", R: 36.2521, sd: 20.7 }, // L21 rear → air [VAR zoom D8]
+    { label: "8", R: 36.2521, sd: 22.6, rimCutDepthMm: 6.5 }, // L21 rear → air [VAR zoom D8]
     { label: "9", R: -87.8742, d: 1.2, sd: 18.7, medium: 5 }, // G3: L31 front
     { label: "10", R: 85.9441, d: 0.92, sd: 19.05 }, // L31 rear → air
     { label: "11", R: 61.6974, d: 3.35, sd: 19.55, medium: 6 }, // L32 front

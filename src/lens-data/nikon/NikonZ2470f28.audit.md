@@ -99,3 +99,62 @@ Table 1 pp. 34–37, Figure 4 p. 83 (600 dpi).
 
 Final focused checks:85tests/5files pass; prior validator-inclusive159tests pass.
 Full typecheck/format/lint/test/build and generated reports are due at lens20.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 4 (PDF p. 83, the single wide-end panel; native 300 ppi raster, 11.49 px/mm from surface 1 to the image
+plane) was read element by element for flat lands square to the axis at the rims of concave faces. Each candidate rim
+was also fitted against its own cap, so a land counts only where the drawn rim leaves the cap's curve.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 9 (L22 rear, R 59.686) | 0.91 | 1.48 mm | 13.21 mm | 14.5 | 9.90 mm |
+| 22 (L51 front, R −23.924) | 0.95 | 2.99 mm | 11.58 mm | 12.2 | 9.61 mm |
+
+- Faces 5, 8, 12, 16, 28, 30A and 31 follow their caps to the element edge within about 1 px; face 3 is too flat
+  to show a land. No cut.
+- Surface 7 (L21 rear) has a clear square shoulder: the cap ends at 16.2 mm of a 21.45 mm edge (0.755). Its stored
+  sd of 16.3 already sits at the cap end, and raising it to L21's 21.5 mm edge for a cut is impossible because
+  R = 18.70 mm ends the sphere first. Left as is; the diagram keeps a diagonal edge where the figure draws the
+  shoulder.
+- Surface 26 (L61 front) ends in a short straight run that stays within 1 px of the cap, below what the figure
+  resolves. A cut at its visible kink (0.92, 13.28 mm) would also raise full-field side vignetting there from 67 %
+  to 87 %. Not cut.
+- Surface 32 (L73 front) ends its cap near 15.2 mm (0.91) and then runs a slanted bevel to the edge, not a land
+  square to the axis; a cut there would add 59 points of side vignetting. Not cut.
+- The L11 flange beyond L12 (surface 2) and the L41 flange beyond L42 (surface 20) are cemented faces, not lands.
+- No cap reaches the stop plane: STO's neighbours 13 and 15A both curve away from it.
+- The aperture audit is unchanged: all three stations trace the stated f/2.92, with no rim, trace or rim-cut
+  limiter. The cuts on 9 and 22 clear the traced wide-open beams by their margins (see the rule section) and clip
+  none of their rays.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (entrance-pupil diameter F/N, f/2.92 at
+every station) with the rule's current search, which follows each beam to the field where it vanishes, seeds from the
+stop and refines near each cut on the full measurement. Traced against that rule, both cuts from the figure review
+above moved out:
+
+- Surface 9: the beams reach 13.7937 mm there, at the wide end (24.8 mm, zoomT 0), focusT 0.45 (between the infinity
+  and close-focus keyframes) and 41.29°, past the figure's 13.21 mm cut. The depth goes from 1.48 to 1.63 mm, which
+  puts the cut radius at 13.8535 mm: 0.0597 mm clear of the beams against a 0.05 mm margin, 0.0097 mm to spare. The
+  land is shorter than the figure's.
+- Surface 22: the beams reach 11.7073 mm there, at the tele end (67.9 mm, zoomT 1), close focus (focusT 1) and 5.58°,
+  past the figure's 11.58 mm cut. The depth goes from 2.99 to 3.11 mm, which puts the cut radius at 11.7955 mm:
+  0.0882 mm clear of the beams against a 0.05 mm margin, 0.0382 mm to spare. The land is shorter than the figure's.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 4 is drawn at 11.49 native px per lens mm, the figure review's span from
+surface 1 to the image plane: on the 2478 × 3507 px page raster, surface 1's vertex lies at row 2231 and the image
+plane at row 629.5, 1601.5 px over the wide end's 139.356 mm. The q range is ±(1 + q) / (edge px), with edge px =
+sd × 11.49. Both cuts sit past their q range because the beam rule moved them out.
+
+| Surface | Figure q | Edge px | q range | Cut radius ÷ sd | Land (sd − cut radius) |
+|---|---|---|---|---|---|
+| 9 | 0.91 | 166.6 | 0.899–0.921 | 0.955 | 0.6465 mm |
+| 22 | 0.95 | 140.2 | 0.936–0.964 | 0.967 | 0.4045 mm |
+
+Both lands are longer than the 0.1 mm minimum, and neither q range reaches 1.

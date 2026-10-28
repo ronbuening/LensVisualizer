@@ -53,8 +53,8 @@ Patent: JP2023-063766 A, Example 1
 ## 2026-10-27 — Rim cut on surface 8 at the printed stop
 
 - Surface 8 (R = −40.995, concave to the object) sags 3.691 mm forward at its inferred 17 mm rim, past the printed
-  stop plane 3.24 mm ahead of its vertex. The cap crossed that plane at r = 15.97 mm, inside the derived 16.628 mm
-  f/1 iris, so the outer part of the iris stroke lay in glass.
+  stop plane 3.24 mm ahead of its vertex. The cap crossed that plane at r = 15.97 mm, inside the 16.138 mm f/1 iris
+  (the paraxial stop rule's wide-open radius), so the outer part of the iris stroke lay in glass.
 - Surface 8 now carries `rimCutDepthMm: 3.24`: a flat, opaque land on the stop plane from r = 15.97 mm out to the
   unchanged 17 mm rim, and the iris lies in air over its stroke. A ray that crosses the stop plane above 15.97 mm
   meets the uncut cap behind that plane; the trace steps back to it and clips the ray on the land. No traced ray of

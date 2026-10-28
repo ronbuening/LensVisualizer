@@ -61,3 +61,68 @@ Patent: WO 2024/147268 A1
 - Re-read Table 1 (PDF pp. 21–22, printed pp. 19–20) and Figure 1 (p. 66): surface 31 d = 11.4681, filter FL surfaces 32–33 t = 1.6000, nd = 1.51680, νd = 64.14, then 1.3712 mm to the image. The gap before the filter is not in the variable-gap table, so it is fixed through focus. 11.4681 + 1.6/1.5168 + 1.3712 reproduces the legacy 13.8941523 mm air-equivalent BFD exactly.
 - Surface 31 now stores the physical 11.4681 mm, and the filter is a single `rearPlates` entry labeled FL. The glass is N-BK7, which matches L6's label for the same 1.51680/64.14 coordinate; `resolveCompatibleGlass` accepts it, and J-BK7A also matches. `closeFocusM` already used the physical object-to-image distance, so it is unchanged.
 - The plate check passed: EFL and paraxial defocus are identical to the folded model at infinity and at close focus (worst |Δ| 7e-15). The physical track grows by 0.545148 mm, which equals 1.6 × (1 − 1/1.5168). The surface and image-circle audits are clean.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 66, native 300 ppi 1-bit raster, axis vertical) was read on both halves, element by element, for flat
+lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each land was located by
+fitting the drawn cap to the prescription sag and finding where the ink stops following it (15.40 px/mm from the
+133.01 mm vertex span); q is the cap end over the element edge, averaged over the two halves.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L2 rear, R 226.522) | 0.967 | 2.67 mm | 34.68 mm | 35.9 | 33.23 mm |
+| 9 (L5 rear, R 50.025) | 0.878 | 6.16 mm | 24.05 mm | 27.4 | 22.46 mm |
+| 14 (L7 rear, R 39.422) | 0.957 | 5.06 mm | 19.32 mm | 20.2 | 16.95 mm |
+| 23 (L12 rear, R 83.184) | 0.96 | 2.82 mm | 21.48 mm | 22.4 | 11.82 mm |
+
+- Surface 9's sd (27.4) is L5's own drawn edge, smaller than the L4/L5 junction's 28.9, so its cut uses 27.4. Its
+  cap came within 0.073 mm of the stop plane; the land now sits 2.08 mm ahead of it. No cap crosses the stop.
+- Concave faces with no resolvable land: 15, 17, 19, 25, 29 and 30 run to their element edges; 12 and 26 are too
+  shallow (sag at sd 0.28 and 0.41 mm) for a land to show. Surface 2 shows at most an 8 px flat (q ≈ 0.986), below
+  what the raster resolves. Surface 6 (q ≈ 0.975) leaves the cap by only 1.6 px at its 7° rim slope, and surface 27
+  shows a 12 px flat on one half but about 4 px on the other; both are at the resolution limit and are not cut.
+- The aperture audit is unchanged (f/1.85 within 3 %, no rim, trace or failed rows, no rim-cut limiter); the surface
+  and image-circle audits are clean. Each of the four cuts, as it now stands (rule section below), clears every
+  traced ray of the wide-open beams by its margin and clips none of them, so none changes the vignetting.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, two cuts from the figure review above moved out:
+
+- Surface 4: the depth went from 2.67 to 2.76 mm when the beams, traced on the earlier stop, reached 35.09 mm past
+  the figure's 34.68 mm cut. On the paraxial stop they reach 34.8388 mm (infinity, 4.48°), still past the figure's
+  cut. The 35.2531 mm cut radius clears them; the land is shorter than the figure's.
+- Surface 23: the depth went from 2.82 to 2.91 mm when the beams on the earlier stop reached 21.72 mm past the
+  figure's 21.48 mm cut, and then to 2.94 mm, past a dense probe of those beams (21.8277 mm) plus its margin. On the
+  paraxial stop they reach 21.7988 mm (focusT 0.75, between infinity and close focus, 10.08°), still past the
+  figure's cut, so the fixed rule asks for a cut radius of at least 21.8643 mm (that reach plus its 0.0655 mm margin)
+  and refuses the 2.91 mm depth's 21.8097 mm. The 21.9199 mm cut radius clears it by 0.0556 mm; the land is shorter
+  than the figure's.
+
+All four cuts clear the beams by their margins:
+
+| Surface | Cut radius | Reach (focus, field) | Clearance | Margin | Spare |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 35.2531 mm | 34.8388 mm (infinity, 4.48°) | 0.4143 mm | 0.1058 mm | 0.3086 mm |
+| 9 | 24.0492 mm | 21.9254 mm (infinity, 4.48°) | 2.1237 mm | 0.0721 mm | 2.0516 mm |
+| 14 | 19.3223 mm | 18.4538 mm (infinity, 7.51°) | 0.8685 mm | 0.0580 mm | 0.8105 mm |
+| 23 | 21.9199 mm | 21.7988 mm (focusT 0.75, 10.08°) | 0.1210 mm | 0.0658 mm | 0.0553 mm |
+
+**Figure scale and land length.** The review's scale is 15.40 native px per lens mm, from the 133.01 mm vertex span
+on the 300 ppi raster. Edge px is sd × 15.40, and one native pixel at the cap end and at the edge gives
+q ± (1 + q) / (edge px). The q values are averages over the two halves.
+
+| Surface | Edge px | q | q range | Cut radius ÷ sd | Land |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 552.9 | 0.967 | 0.963–0.971 | 0.9820 | 0.6469 mm |
+| 9 | 422.0 | 0.878 | 0.874–0.882 | 0.8777 | 3.3508 mm |
+| 14 | 311.1 | 0.957 | 0.951–0.963 | 0.9565 | 0.8777 mm |
+| 23 | 345.0 | 0.96 | 0.954–0.966 | 0.9786 | 0.4801 mm |
+
+9 and 14 sit at q × sd; 4 and 23 sit outside their q ranges, moved out by the beam rule. Every land is longer than
+the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.

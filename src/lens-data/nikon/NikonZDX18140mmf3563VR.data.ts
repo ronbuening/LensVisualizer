@@ -34,6 +34,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Front group constrained by 62 mm filter thread.                 ║
  * ║    All validated: sd/|R| < 0.90, element SD ratio ≤ 1.25,         ║
  * ║    edge thickness ≥ 0.3 mm, cross-gap sag intrusion ≤ 90% gap.   ║
+ * ║                                                                    ║
+ * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
+ * ║    Fig. 1 draws flat lands at the rims of concave faces 7 (L21)    ║
+ * ║    and 30 (L51). Face 30 carries rimCutDepthMm 3.38 (cut radius    ║
+ * ║    9.96 mm); face 7 stays uncut: it would vignette the wide end.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -387,7 +392,7 @@ const LENS_DATA = {
     { label: "29", R: 23.384, sd: 9.0 },
 
     /* ── G5 ── */
-    { label: "30", R: -16.37, d: 1.1, sd: 11.0, medium: 18 },
+    { label: "30", R: -16.37, d: 1.1, sd: 11.0, rimCutDepthMm: 3.38, medium: 18 },
     { label: "31", R: -32.544, d: 0.1, sd: 11.5 },
     { label: "32", R: -502.457, d: 2.08, sd: 11.5, medium: 19 },
     { label: "33", R: -52.88, sd: 12.0 }, // D33 var — gap to the PP plate

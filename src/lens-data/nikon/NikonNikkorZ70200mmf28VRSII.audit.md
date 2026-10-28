@@ -842,3 +842,72 @@ The patent publishes infinity spacings only (D0 = ∞, β blank), so the close c
 **Checks on the result.** The surface validator reports no errors; engine EFL 71.404 mm, f/2.891 and stop radius 17.96 mm are unchanged; the image-circle floor passes; traced field coverage is 100 % of 21.65 mm at all three stations; the meridional real-ray check shows no axial clipping and no blocked chief ray at infinity or closest focus; all 18 glasses resolve.
 
 **Open limitations.** Close-focus spacings remain a reconstruction (the 135 mm state by a declared travel-ratio rule). Semi-diameters are modeled or figure-measured, not published. The sibling first-generation file does not set `acceptsTeleconverters`, although Nikon lists the same converters for it; that file was outside this review.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1, wide-end panel (広角端), drawing sheet 1/27 (PDF p. 83), was read from the native 2478 × 3507 CCITT raster
+(319 ppi, about 6.8 px/mm at the drawing scale, axis at row 911.5) element by element, on both halves, for flat lands
+square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge, lower / upper) | Cut depth | Cut radius | sd (was → now) | Largest stated axial ray |
+| --- | --- | --- | --- | --- | --- |
+| 4 (L12 rear, R 58.6156) | 0.961 / 0.966 | 10.28 mm | 33.16 mm | 33.15 → 34.2 | 31.85 mm |
+| 8 (L21 rear, R 36.2521) | 0.911 / 0.905 | 6.50 mm | 20.71 mm | 20.7 → 22.6 | 17.91 mm |
+| 31 (L52 rear, R 33.0069) | 0.880 / 0.881 | 2.11 mm | 11.61 mm | 11.6 → 12.4 | 11.12 mm |
+| 34A (L71 front, R −34.6941) | 0.927 / 0.920 | 4.19 mm | 17.51 mm | 17.5 → 18.7 | 5.62 mm |
+
+- All four faces had their `sd` at the cap end (the 2026-10-05 figure pass put 8 and 34A there), while the figure draws
+  each element's square edge at the partner face's height (3: 34.2, 7: 22.6, 30: 12.4, 35: 18.7). Each `sd` was raised
+  to that value and the cut placed at the old rim (depth = |sag(old sd)|, rounded up), so the clear radius moves out
+  slightly: on 4 from the old 33.15 mm rim to the 33.1581 mm cut radius, on 8 from 20.7 to 20.7130 mm. The beams reach
+  32.9081 and 20.3918 mm there; the rule section below drops the cuts on 31 and 34A. The figure's own ratios put the
+  cap ends at 32.9, 20.5, 10.9 and 17.2 mm, within a pixel or two of the old rims, except on 31, where 10.9 mm would
+  fall inside the stated axial beam; the old rim is kept there.
+- On L12 the land runs from L13's rim (surface 5, sd 33.15) out to L12's edge, as the figure draws it; the land sits
+  0.10 mm ahead of L13's rim corner.
+- Every other concave face (2, 9, 10, 12, 13, 14, 16, 22, 27, 30) runs to its element edge in the figure; no cut. 12
+  and 13 are drawn in edge contact. The step at the L43/L44 junction (21) is a cemented-junction step, not a land.
+- No cap reaches the stop plane: its neighbours 18A (convex rear) and 20 (convex front) bend away from it, and G4 is
+  fixed, so the vertex clearances of 3.46 and 6.57 mm hold at every zoom and focus state.
+- The surface validator reports no errors. The aperture audit is unchanged: all three stations trace within 3 % of
+  f/2.891 / 2.904 / 2.905, with no rim, trace or failed rows and no rim-cut limiter.
+- The cuts on 4 and 8 clear every traced ray of the wide-open beams by their margins (rule section below) and clip
+  none of them, so they change no vignetting; 31 and 34A carry no cut. The engine half-field is 19.677° / 10.459° /
+  7.103° at the three stations, the same with or without the two cuts.
+- The wide-end render draws the lands on 4 and 8 as flat steps square to the axis, matching the figure; 31 and 34A
+  draw as they did before this review.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, two cuts from the figure review above were dropped. Their reaches below come
+from the same trace with the review's `sd` and cuts on 31 and 34A put back:
+
+- Surface 31: the cut sat at the old 11.6 mm rim (cut radius 11.6119 mm), and the beams reach 12.3577 mm there (zoomT
+  0.35, between wide and middle, close focus, 13.47°), so the land stopped the rays that rim stops. The sd returns to
+  11.6 mm with no cut, and the face draws as it did before the figure review.
+- Surface 34A: the cut sat at the old 17.5 mm rim (cut radius 17.5061 mm), and the beams reach 18.1148 mm there (tele,
+  infinity, 6.48°), so the land stopped the rays that rim stops. The sd returns to 17.5 mm with no cut, and the face
+  draws as it did before the figure review.
+
+The two remaining cuts clear the beams by their margins:
+
+| Surface | Old rim → cut radius | Reach (zoom, focus, field) | Clearance | Margin | Spare |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 33.15 → 33.1581 mm | 32.9081 mm (tele, focusT 0.05, 0.82°) | 0.2500 mm | 0.0995 mm | 0.1505 mm |
+| 8 | 20.7 → 20.7130 mm | 20.3918 mm (wide, close focus, 14.89°) | 0.3212 mm | 0.0621 mm | 0.2591 mm |
+
+**Figure scale and land length.** Figure 1's native raster is 319 ppi. The data header's 0.0782 mm/px at 600 dpi
+(from 34 vertex spacings) is 0.0782 × 600 / 319 = 0.1471 mm per native px, so 6.80 native px per lens mm. Edge px is
+sd × 6.80, and one native pixel at the cap end and at the edge gives q ± (1 + q) / (edge px). Both cuts sit at the old
+rims rather than at q × sd; their cut radius ÷ sd falls inside or at the top of the figure's ranges.
+
+| Surface | Edge px | q (lower / upper half) | q range (lower / upper) | Cut radius ÷ sd | Land |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 232.5 | 0.961 / 0.966 | 0.953–0.969 / 0.958–0.974 | 0.9695 | 1.0419 mm |
+| 8 | 153.7 | 0.911 / 0.905 | 0.899–0.923 / 0.893–0.917 | 0.9165 | 1.8870 mm |
+
+Both lands are longer than the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.
