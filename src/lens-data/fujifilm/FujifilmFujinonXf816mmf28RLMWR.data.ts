@@ -27,6 +27,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Fujifilm asphere convention: native KA=1 maps to LensVisualizer K=KA-1=0. A3 is zero on all eight
  * aspheres and is omitted; all nonzero published A4-A20 terms, including odd radial powers, are retained.
+ * Rimmer audit (2026-10-27): Tables 1-3 match the print. At Wide infinity the outer 56.8-62.8 degree
+ * samples remain non-localized, within the patent's 62.9 degree half-field. No authored rim is past turnover.
+ * Errors grow in L41's outer zones (27A/28A); numerical clear apertures are not published, so their role remains
+ * unresolved. Keep the printed prescription and inferred rims; outer-field relative illumination is unavailable.
  *
  * Glass labels name supplier-neutral catalog spectral proxies, not production melts.
  * Catalog-derived nC/nF/ng are resolved at runtime rather than authored as measured data.

@@ -30,9 +30,6 @@ const IRIS_STROKE_SAMPLES = 256;
  * equality, so a corrected file must leave this list and no file may join.
  */
 const IRIS_IN_GLASS: Readonly<Record<string, string>> = {
-  "bertele-sonnar-50f2-scaled": "#929 moves the stop plane",
-  "leica-elmarit-90f28": "#929 moves the stop plane",
-  "olympus-zuiko-auto-s-50f14": "#929 moves the stop plane",
   "canon-ef-24mm-f14-l-ii-usm": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "nikon-ai-zoom-nikkor-25-50mm-f4": "agent_docs/sd-audit-queue.md Section I, iris in glass",
   "zeiss-hologon-15f8": "agent_docs/sd-audit-queue.md Section I, `iris`: the design's embedded glass stop",

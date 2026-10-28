@@ -9,6 +9,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D(25) = 1.0 mm air gap to the image are modeled in `rearPlates` (traced, not drawn). Surface 23A stores the
  * patent's physical D(23) gap to the plate: 15.6837 mm at infinity, 15.9816 mm at the 0.020x state.
  *
+ * 2026-10-27 localization audit: all R/d/nd/vd rows and all four asphere blocks match the printed Example 1
+ * (PDF pp. 7-8), including the standard (1+K) convention. The verbatim prescription does not reproduce Fig. 2's
+ * spherical/field-curvature plots. No source-supported single-slip correction was isolated; source.errata records
+ * the unresolved contradiction. Retain the printed coefficients and inferred rims; do not use the failed RI fields
+ * as a production illumination prediction.
+ *
  * Focus model: the patent publishes only the infinity state and a 0.020x comparison state. The variable gaps below
  * therefore model the published patent focus interval only, not the full production 0.15 m / 0.25x macro travel.
  *
@@ -51,6 +57,13 @@ const LENS_DATA = {
     patentYear: 2018,
     authors: ["Xiaohua Zhang"],
     assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note:
+          "Example 1 R/d/nd/vd and asphere coefficients match US 2018/0149842 A1 PDF pp. 7-8, but the printed prescription gives d-line LSA +5.089/+2.280/+1.105/+0.423 mm at pupil 1/0.85/0.7/0.5, outside Fig. 2's +/-0.3 mm spherical-aberration axis (PDF p. 3), and large field-curvature errors outside its +/-0.5 mm axis. Changing only surface 22 K from +1.1397 to -1.1397 reduces LSA but gives -25.5% distortion and only 16.51 mm image height near 55 degrees, contradicting Fig. 2's 21.63 mm field and +/-5% distortion axis. No replacement meets the two-kind source-evidence standard; printed values are retained.",
+      },
+    ],
   },
 
   elements: [

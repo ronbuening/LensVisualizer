@@ -276,7 +276,7 @@ At infinity the calculated back focal lengths from the last powered vertex are 1
 
 The source PP plate is traced through `rearPlates` and omitted only from the drawing and element count. Tables 9 and 11 give 7.33 mm of air, 2.85 mm of glass (nd=1.51633, vd=64.14), then 2.41 mm of air. The physical image-plane position includes that plate; the paraxial equivalent remains 11.6195380953 mm.
 
-The patent publishes neither lens semi-diameters nor a physical stop diameter. Figure 3 supports larger lens rims than the initial sampled-ray envelope; the revised estimates exclude rays and leader lines. The front-group rear rim and focusing asphere are capped by gap clearance and slope constraints. The stop remains calibrated to the published f-number, not independently measured.
+The patent publishes neither lens semi-diameters nor a physical stop diameter. Figure 3 supports larger lens rims than the initial sampled-ray envelope; the revised estimates exclude rays and leader lines. The front-group rear rim and focusing asphere are capped by gap clearance and slope constraints. The stop remains calibrated to the published f-number, not independently measured. Surface 8 now has an inferred 5.6 mm semi-diameter, raised from 4.8 mm to admit the stated axial beam at every published infinity zoom station (required radii 4.9773 / 5.5341 / 5.4756 mm). Figure 3 draws L2a with a stepped rim, so its front surface 7 retains 7.2 mm.
 
 ## Sources and References
 
@@ -299,3 +299,12 @@ The patent publishes neither lens semi-diameters nor a physical stop diameter. F
 - OHARA, S-LAH glass types: https://oharacorp.com/glass-type/optical-glass/s-lah/
 - CDGM, F13 optical-glass database entry: https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=15&url=database
 - CDGM H-FK61 vendor catalog curve, mirrored at https://refractiveindex.info/database/data/specs/cdgm/optical/H-FK61.yml
+
+
+## Rimmer Localization Limitation
+
+The 2026-10-27 audit re-read Example 3 Tables 9–12 from the patent images. Every stored R/d/nd/vd value and every nonzero A4–A20 coefficient agrees with the print; KA=1 maps to K=0, and all odd radial powers are present. All authored aspheric rims remain below their first slope turnovers. Surface 14A has sd=4.7 mm and its first turnover is about 4.74498 mm, so the turnover rule does not authorize shrinking it further.
+
+The surface-8 axial-beam correction does not repair the outer-field localization. At wide infinity, the 29.35° field still has a transmitted lattice ray crossing 13A/14A at radial heights 4.69654/4.69577 mm and missing the chief-ray image point by about 3.61 mm. Its referred deviation is about 0.092 rad, above the Rimmer limit of 0.05. The prescribed wide sweep therefore has no RI figure from 29.4° through its 44.0° endpoint. Tracing with the current UI's zoom-aware stop also refuses RI from 14.4° at mid and 11.5° at tele. These are model diagnostic failures, not measured production-lens illumination.
+
+The kit's unchecked meridional diagnostics can continue through 13A/14A beyond their stored rims; the tab's checked trace blocks those rays. They do not demonstrate an aperture-clipping bug. A transmitted ray just inside 14A's rim still shows the localization problem. The source does not publish effective diameters or the fitted radial domain of the polynomials. The small on-axis LSA and close-ray astigmatism/distortion trends broadly follow Figure 10, and single-slip coefficient trials do not identify a source-supported replacement. The remaining cause is unresolved; no coefficient change or additional rim cap is justified by the selected source.

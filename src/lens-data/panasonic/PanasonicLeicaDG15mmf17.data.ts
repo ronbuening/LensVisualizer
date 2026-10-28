@@ -16,6 +16,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Validated against edge thickness, sd/|R|, and cross-gap sag     ║
  * ║    intrusion constraints.                                          ║
  * ║                                                                    ║
+ * ║  ASPHERE AUDIT (2026-10-27): Table 7 rechecked from print;          ║
+ * ║    all five coefficient blocks and conic convention retained.     ║
+ * ║    No turnover within stored rims; FIG. 3 does not justify a cap. ║
+ * ║    Outer-field wide-open localization remains unresolved; see     ║
+ * ║    the analysis and audit. No numerical prescription change.      ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║

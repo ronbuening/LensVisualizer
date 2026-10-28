@@ -194,19 +194,23 @@ $$
 Z(h)=\frac{C h^2}{1+\sqrt{1-(1+K)C^2h^2}}+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10},\qquad C=1/R.
 $$
 
-No conic conversion is required. No dimensional scaling was applied, so the radii and polynomial coefficients remain the
-raw Embodiment 4 values.
+No conic conversion or dimensional scaling is required. The printed Embodiment 4 surface-5 block contains a sign
+erratum: K, A6, A8 and A10 are applied negative, with all printed magnitudes retained. Figures 14A/C/D isolate this
+block among all 32 sign combinations; the source field summary independently rejects the printed block and accepts
+the corrected field mapping. This is a disclosed source correction, not a transcription or convention conversion.
 
 | Surface | Physical location | `K` | `A4` (mm⁻³) | `A6` (mm⁻⁵) | `A8` (mm⁻⁷) | `A10` (mm⁻⁹) |
 |---|---|---:|---:|---:|---:|---:|
-| 5A | Rear surface of the bonded resin layer on L2 | +1.00 | +3.060×10⁻⁶ | +2.868×10⁻⁹ | +1.268×10⁻¹¹ | +4.817×10⁻¹⁶ |
+| 5A | Rear surface of the bonded resin layer on L2 | −1.00 | +3.060×10⁻⁶ | −2.868×10⁻⁹ | −1.268×10⁻¹¹ | −4.817×10⁻¹⁶ |
 | 19A | Image-side surface of L10 | 0.00 | +7.658×10⁻⁶ | +9.964×10⁻⁹ | +2.314×10⁻¹¹ | 0 |
 
 The patent publishes no clear semi-diameters and no physical stop diameter. The data file therefore uses
 Figure-13-proportioned semi-diameters constrained by exact meridional ray containment and geometry checks, and a stop
-semi-diameter of 10.119123 mm inferred from the infinity f/3.6 state. At the validated semi-diameters, the aspheric
-departure from the same-radius spherical base is 1.588445 mm at 5A (`h = 13.4 mm`) and 0.109855 mm at 19A
-(`h = 10.5 mm`). Surface 5A also remains inside its `K = +1` real-sag domain and the current rim-slope limit.
+semi-diameter derived from the infinity f/3.6 state. At the authored semi-diameters, the signed aspheric departure
+from the same-radius spherical base is −1.9903 mm at 5A (`h = 17.0 mm`) and +0.109855 mm at 19A
+(`h = 10.5 mm`). The K = −1 base has no finite conic-domain limit; 5A remains before its polynomial turnover and
+within the rim-slope limit. Figure 13 supports the restored 17.0 mm optical extent, excluding the outer flat rim.
+The former 13.4 mm cap clipped the 44.8° chief at 15.33 mm after the sign correction.
 
 ## Conditional Expressions
 
@@ -233,8 +237,10 @@ The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.001580563851 mm�
 `TL/EFL = 4.41659` verify a retrofocus system and exclude a telephoto classification under the `TL/EFL < 1` criterion.
 
 The inferred semi-diameters pass the applicable geometry checks in every authored focus state. The Figure 13 revision
-restores the pronounced large-front-group taper while retaining the existing rendered-ray reach; surface 5A is capped
-by its conic-domain and rim-slope limits rather than extended to the full adjacent substrate height. The repository
+restores the pronounced large-front-group taper. The 2026-10-27 correction restores the surface-5 signs and its
+Figure 13 optical rim; the prior K > 0 cap is obsolete. At infinity, wide-open Rimmer illumination is now available
+at every sampled field through 44.8°. The inferred rims still vignette off-axis bundles; those illumination values
+are model results, not published patent measurements. The repository
 validator and render diagnostics report no edge-thickness, cross-gap, conic, or hidden-trim failures. These are
 model-validation results, not patent dimensions.
 

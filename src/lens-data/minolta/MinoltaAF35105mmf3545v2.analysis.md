@@ -202,13 +202,19 @@ The patent writes the aspheric sag as a spherical base plus even-order polynomia
 |---|---:|---:|---:|---:|---:|---:|---:|
 | r21 / 21A | -25.806 mm | 0 | -6.6020e-5 | -5.2200e-8 | -6.4384e-9 | -1.1612e-10 | -8.4797e-13 |
 
-The negative coefficients on this rear-unit surface increase the departure in the direction that weakens the peripheral effect of the spherical base under the project's sign convention. Functionally, the surface controls high-order spherical aberration and sagittal flare while also helping the rear unit manage field curvature and coma.
+The negative printed coefficients make the surface more concave than its spherical base and strengthen its negative refractive power. The patent assigns this rear-unit asphere a role in correcting spherical aberration and sagittal flare; the verbatim coefficient block does not reproduce the published aberration curves.
+
+The 2026-10-27 Rimmer localization audit confirmed the equation visually on PDF pages 43 and 47: a spherical base plus `A4 Y^4 + A6 Y^6 + ...`; the prescription is already in millimetres and needs no scale conversion. Every coefficient above matches Table 3 (PDF page 48, column 20) and claim 29 (PDF page 59, column 42). At the authored **9.0 mm** semi-diameter, the stored surface has **-1382.4 µm** departure and **-58.0°** rim slope, with no slope turnover inside the rim. There is therefore no turnover-based reason to cap this aperture.
+
+**Unresolved source contradiction:** changing only the sign of A10 to **+1.1612e-10** on a scratch copy changes full-pupil d-line LSA from **+1.656 / +3.261 / +10.734 mm** to **-0.216 / +0.011 / -0.095 mm** at wide/mid/tele. This agrees with the scale of the patent's Figs. 27a-29a (PDF page 15, horizontal axes ±0.5 mm). Independently, Table 21 (PDF page 55, column 34) reports the normalized surface-departure parameter `(abs(X) - abs(X0)) / (Co (N' - N))` as **-28.5338** at height 9 mm. The printed coefficients give **-68.8838**; positive A10 gives **-28.5344**. Rows at heights 6-8 mm similarly favor the positive sign. This is a strong candidate sign erratum, not a transcription error or a fitted coefficient.
+
+The positive sign is **not applied**. The audit policy's defined `source-summary` category lists focal length, F-number, field angle/image height, back focus and total length; it does not explicitly include a surface-shape summary such as Table 21. Only `aberration-figure` is currently established as a listed evidence kind, and no corroborating family print was obtained. `source.errata` therefore exposes the contradiction as unresolved pending family-publication evidence or a maintainer ruling on the Table 21 evidence. With the printed sign retained, the wide-open RI calculation remains unavailable from 14.4° at the wide zoom station; the earlier paraxial focal-length agreement does not validate off-axis localization.
 
 The patent does not state whether the asphere was molded glass, polished glass, or a hybrid/composite layer. The extremely small 0.035 mm medium thickness and separate refractive index make the hybrid/bonded-layer interpretation the most plausible data-model representation, but it remains an inference from the prescription pattern rather than a manufacturing claim.
 
 ## Verification Summary
 
-The corrected prescription was re-traced independently with a paraxial ABCD / y-nu ray trace. The following values were obtained:
+The existing d13-corrected prescription was re-traced independently with a paraxial ABCD / y-nu ray trace. These first-order results remain valid with either sign of A10 and do not establish agreement with the source aberration plots or valid Rimmer relative illumination. The following values were obtained:
 
 | Zoom position | Patent f | Computed EFL | Computed BFL from r23 |
 |---|---:|---:|---:|
