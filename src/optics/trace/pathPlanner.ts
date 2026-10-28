@@ -112,19 +112,29 @@ export function sequentialSurfaceBackT(
 }
 
 /**
+ * How far past the crossing nearest the origin, in mm along the line, `intersectSequentialSurface` starts its search
+ * for a second crossing behind the origin: far above the rounding of a hit, so that search does not meet the first
+ * crossing again, and far below any distance between two crossings that are not one grazing touch.
+ */
+export const BACKWARD_SECOND_CROSSING_GAP = 1e-6;
+
+/**
  * Meet a ray's line with the next surface of a sequential trace, in either direction.
  *
  * The search runs forward from the origin, between `minT` and `maxT`, as it always has. Only where it finds no root
- * (`noBracket`) is the line behind the origin searched, out to `sequentialSurfaceBackT`, nearest root first. Such a
- * hit has negative `t`, `segmentLength` and `opticalPathLength`, so the optical path charges the step with its sign.
- * A forward hit, and a forward failure of any other reason, is returned unchanged.
+ * (`noBracket`) is the line behind the origin searched, out to `sequentialSurfaceBackT`. Of the first two crossings
+ * there, the one nearer the surface's vertex plane is the hit, as OpticStudio takes a surface's root from its vertex
+ * plane: a line can cross a concave face twice behind the origin. Such a hit has negative `t`, `segmentLength` and
+ * `opticalPathLength`, so the optical path charges the step with its sign. A forward hit, and a forward failure of
+ * any other reason, is returned unchanged; so is a search behind that fails for a reason of its own.
  *
  * @param geometry - indexed trace geometry
  * @param surfaceIndex - surface being targeted
  * @param origin - current ray origin
  * @param direction - normalized ray direction
  * @param options - forward search bounds and current refractive index
- * @returns the forward hit; else the backward hit with signed lengths; else the forward failure
+ * @returns the forward hit; else the backward hit with signed lengths; else the backward failure when it is not
+ *   `noBracket`; else the forward failure
  */
 export function intersectSequentialSurface(
   geometry: TraceGeometry,
@@ -137,18 +147,27 @@ export function intersectSequentialSurface(
   if (forward.ok || forward.failureReason !== "noBracket") return forward;
   const backT = sequentialSurfaceBackT(geometry, surfaceIndex, origin, direction);
   if (!(backT > 0)) return forward;
-  // The reversed ray's first root in ray order is the line's nearest crossing behind the origin.
+  // Along the reversed ray the crossings behind the origin come in ray order, nearest first.
   const reversed: Vec3 = [-direction[0], -direction[1], -direction[2]];
-  const backward = intersectStateSurface({ origin, direction: reversed }, geometry, surfaceIndex, {
-    maxT: backT,
-    refractiveIndex: options.refractiveIndex,
-  });
-  if (!backward.ok) return forward;
+  const behind = (minT: number): SurfaceIntersectionResult =>
+    intersectStateSurface({ origin, direction: reversed }, geometry, surfaceIndex, {
+      minT,
+      maxT: backT,
+      refractiveIndex: options.refractiveIndex,
+    });
+  const nearest = behind(0);
+  if (!nearest.ok) return nearest.failureReason === "noBracket" ? forward : nearest;
+  // A second search that finds nothing, or fails, leaves the nearest crossing.
+  const vertexZ = geometry.surfaces[surfaceIndex].z;
+  const secondMinT = nearest.t + BACKWARD_SECOND_CROSSING_GAP;
+  const second = secondMinT < backT ? behind(secondMinT) : null;
+  const hit =
+    second?.ok && Math.abs(second.point[2] - vertexZ) < Math.abs(nearest.point[2] - vertexZ) ? second : nearest;
   return {
-    ...backward,
-    t: -backward.t,
-    segmentLength: -backward.segmentLength,
-    opticalPathLength: backward.opticalPathLength === null ? null : -backward.opticalPathLength,
+    ...hit,
+    t: -hit.t,
+    segmentLength: -hit.segmentLength,
+    opticalPathLength: hit.opticalPathLength === null ? null : -hit.opticalPathLength,
   };
 }
 

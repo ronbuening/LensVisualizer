@@ -775,9 +775,12 @@ The sequential trace meets the next surface of the sequence along the ray's line
 the Ray-Trace Comparator's contract defines a sequential trace. A stop plane set inside the sag of the surface before
 it, or two neighbouring surfaces that cross inside their clear apertures, lie behind the ray's last hit. The search
 runs forward from that hit as before; only where it finds no root (`noBracket`) is the line behind the hit searched,
-nearest root first, back to 1 mm in front of the surface's rim-sag plane (`sequentialSurfaceBackT()`). The hit is on
-the surface's own sag branch, and its `t`, `segmentLength` and `opticalPathLength` are negative, so the sequential OPL
-(`recordOpticalPath`) and bulk absorption charge the step with its sign. A forward hit, and any forward failure other
+back to 1 mm in front of the surface's rim-sag plane (`sequentialSurfaceBackT()`). The hit is on the surface's own sag
+branch; where the line crosses it twice behind the hit, as across a concave face, the crossing nearer the vertex plane
+is the hit, as OpticStudio takes a surface's root from its vertex plane (the second search starts
+`BACKWARD_SECOND_CROSSING_GAP` = 1e-6 mm past the first crossing). Its `t`, `segmentLength` and `opticalPathLength` are
+negative, so the sequential OPL (`recordOpticalPath`) and bulk absorption charge the step with its sign. A search
+behind that fails for a reason other than `noBracket` reports that reason. A forward hit, and any forward failure other
 than `noBracket`, is unchanged, so every ray that passed before passes bit for bit. An iterative solve whose probe
 rays were lost this way (the chief-ray solve, stop sizing, image-height inversion) can take another path: inside a
 lens's field it lands within its tolerance, and elsewhere on the root a lost probe hid. There is no step back to the

@@ -3,6 +3,8 @@ import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapter
 import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { provesApertureMiss, traceRayClassification } from "../../../../src/optics/trace/rayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
+import * as intersectKernel from "../../../../src/optics/geometry/intersect.js";
+import { subtract as subtractVec } from "../../../../src/optics/math/vector.js";
 import * as foldedDiagnostics from "../../../../src/optics/trace/foldedDiagnostics.js";
 import type { Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { EngineTraceResult, TraceGeometry, TraceOptions } from "../../../../src/optics/trace/types.js";
@@ -15,6 +17,7 @@ import {
 } from "../traceGeometryFixtures.js";
 import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
+import type { AsphericCoefficients } from "../../../../src/types/asphericSchema.js";
 
 const flatSurfaces = [
   { label: "1", R: 1e15, nd: 1.0, d: 5, sd: 10, elemId: 0 },
@@ -254,6 +257,145 @@ describe("sequential step backwards", () => {
     expect(missAt(5)).toBe(false);
     // At y = 9.5 it crosses the plane outside the iris.
     expect(missAt(9.5)).toBe(true);
+  });
+
+  it("takes the crossing nearer the vertex plane where the line crosses a sphere twice behind the hit", () => {
+    // A face of radius +20 with its vertex at z = 3; the origin is in front of it at y = 12, which it passes under.
+    const bowl = {
+      S: [
+        { label: "1", R: 1e15, nd: 1, d: 3, sd: 15, elemId: 0 },
+        { label: "2", R: 20, nd: 1.5, d: 10, sd: 15, elemId: 1 },
+        { label: "3", R: 1e15, nd: 1, d: 10, sd: 15, elemId: 0 },
+      ],
+      asphByIdx: {},
+    } satisfies GeometryFixture;
+    const geometry = fixtureGeometry(bowl);
+    const vertexZ = 3;
+    const origin: Vec3 = [0, 12, 6];
+    const norm = Math.hypot(1, 0.2);
+    const direction: Vec3 = [0, 1 / norm, 0.2 / norm];
+    expect(origin[2]).toBeLessThan(vertexZ + 20 - Math.sqrt(400 - 144));
+
+    // |origin + t direction − centre|² = R², with the centre at z = 23: both roots lie behind, on the vertex's hemisphere.
+    const offset = [0, origin[1], origin[2] - (vertexZ + 20)];
+    const b = direction[1] * offset[1] + direction[2] * offset[2];
+    const c = offset[1] ** 2 + offset[2] ** 2 - 400;
+    const roots = [-b - Math.sqrt(b * b - c), -b + Math.sqrt(b * b - c)];
+    const points = roots.map((t) => [0, origin[1] + direction[1] * t, origin[2] + direction[2] * t]);
+    expect(roots.every((t) => t < 0)).toBe(true);
+    expect(points.every((point) => point[2] < vertexZ + 20)).toBe(true);
+    // The far root, nearer the vertex plane, is the surface's; the one nearer the origin is not.
+    expect(Math.abs(points[0][2] - vertexZ)).toBeLessThan(Math.abs(points[1][2] - vertexZ));
+
+    const maxT = pathPlanner.sequentialSurfaceMaxT(geometry, 1, origin, direction);
+    const forward = pathPlanner.intersectStateSurface({ origin, direction }, geometry, 1, { minT: 0, maxT });
+    const hit = pathPlanner.intersectSequentialSurface(geometry, 1, origin, direction, {
+      minT: 0,
+      maxT,
+      refractiveIndex: 1.25,
+    });
+    expect(!forward.ok && forward.failureReason).toBe("noBracket");
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(hit.t).toBeCloseTo(roots[0], 12);
+    expect(hit.point[1]).toBeCloseTo(points[0][1], 12);
+    expect(hit.point[2]).toBeCloseTo(points[0][2], 12);
+    expect(hit.segmentLength).toBe(hit.t);
+    expect(hit.opticalPathLength).toBeCloseTo(1.25 * roots[0], 12);
+  });
+
+  describe("on a conic and a polynomial asphere", () => {
+    /* The flat front face refracts a tilted ray into glass; a passive face of radius +20 in the same glass keeps
+     * it straight, and the last face, a conic or an asphere of base radius +40 set 0.3 mm behind it, lies behind
+     * the passive face's hit there. Every point after the front face is on one line. */
+    const tilt = 0.04;
+    const conic = 1 / 40;
+    const lastVertexZ = 5.3;
+    const inGlass: Vec3 = [0, tilt / n, Math.sqrt(1 - (tilt / n) ** 2)];
+    const frontHit: Vec3 = [0, h + tilt / Math.sqrt(1 - tilt * tilt), 0];
+    const launch: Ray3 = { origin: [0, h, -1], direction: [0, tilt, Math.sqrt(1 - tilt * tilt)] };
+    const tracedTo = (asphere: AsphericCoefficients) =>
+      traceFixtureVector(
+        {
+          S: [front, { ...rear, nd: n, d: 0.3, elemId: 1 }, { label: "3", R: 40, nd: 1, d: 10, sd: 10, elemId: 0 }],
+          asphByIdx: { 2: asphere },
+        },
+        launch,
+        { recordOpticalPath: true },
+      );
+    const along = (t: number): Vec3 => [0, frontHit[1] + inGlass[1] * t, inGlass[2] * t];
+
+    /** The signed optical path: 1 mm of air, then the glass from the front face to the passive face and back. */
+    function expectSignedPath(trace: ReturnType<typeof tracedTo>, t: number) {
+      const step = subtractVec(trace.hits[2].point, trace.hits[1].point);
+      expect(step[1] * inGlass[1] + step[2] * inGlass[2]).toBeLessThan(0);
+      const forwardGlass = Math.hypot(...subtractVec(trace.hits[1].point, frontHit));
+      const backwardGlass = -Math.hypot(...step);
+      expect(trace.opticalPathLengthMm).toBeCloseTo(1 / launch.direction[2] + n * forwardGlass + n * backwardGlass, 12);
+      expect(trace.opticalPathLengthMm).toBeCloseTo(1 / launch.direction[2] + n * t, 12);
+    }
+
+    it("steps back to a conic (K = -0.6), at the root of its quadratic", () => {
+      const K = -0.6;
+      const kappa = 1 + K;
+      // c (x² + y² + κ z²) − 2 z = 0 in the vertex frame, along the line from the front face's hit.
+      const p: Vec3 = [0, frontHit[1], -lastVertexZ];
+      const A = conic * (inGlass[1] ** 2 + kappa * inGlass[2] ** 2);
+      const B = conic * (p[1] * inGlass[1] + kappa * p[2] * inGlass[2]) - inGlass[2];
+      const C = conic * (p[1] ** 2 + kappa * p[2] ** 2) - 2 * p[2];
+      // The root nearer the vertex plane; the other is on the far side of the ellipsoid.
+      const t = (-B - Math.sqrt(B * B - A * C)) / A;
+      const expected = along(t);
+      expect(1 - kappa * conic * (expected[2] - lastVertexZ)).toBeGreaterThan(0);
+
+      const trace = tracedTo({ K, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 });
+      expect(trace.status).toBe("ok");
+      expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "3"]);
+      expect(trace.hits[2].point[1]).toBeCloseTo(expected[1], 12);
+      expect(trace.hits[2].point[2]).toBeCloseTo(expected[2], 12);
+      expectSignedPath(trace, t);
+    });
+
+    it("steps back to a polynomial asphere, at the root found by bisection", () => {
+      const asphere = { K: 0, A4: 5e-6, A6: -1e-8, A8: 0, A10: 0, A12: 0, A14: 0 };
+      const sagAt = (r: number) =>
+        (conic * r * r) / (1 + Math.sqrt(1 - conic * conic * r * r)) + asphere.A4 * r ** 4 + asphere.A6 * r ** 6;
+      const residual = (t: number) => along(t)[2] - lastVertexZ - sagAt(Math.abs(along(t)[1]));
+      // In front of the asphere at the front face; past it at the passive face's hit, 5 + its sag at about y = 5.2.
+      let lo = 0;
+      let hi = 6;
+      expect(residual(lo)).toBeLessThan(0);
+      expect(residual(hi)).toBeGreaterThan(0);
+      for (let mid = (lo + hi) / 2; mid !== lo && mid !== hi; mid = (lo + hi) / 2) {
+        if (residual(mid) < 0) lo = mid;
+        else hi = mid;
+      }
+      const expected = along(lo);
+
+      const trace = tracedTo(asphere);
+      expect(trace.status).toBe("ok");
+      expect(trace.hits.map((hit) => hit.surfaceLabel)).toEqual(["1", "2", "3"]);
+      expect(trace.hits[2].point[1]).toBeCloseTo(expected[1], 12);
+      expect(trace.hits[2].point[2]).toBeCloseTo(expected[2], 12);
+      expectSignedPath(trace, lo);
+    });
+  });
+
+  it("reports the search behind's own failure, and the forward miss where it finds nothing either", () => {
+    const geometry = fixtureGeometry(stopInSag);
+    const origin: Vec3 = [0, h, 6];
+    const options = { minT: 0, maxT: 1, refractiveIndex: 1 };
+    const miss = { ok: false, failureReason: "noBracket", residual: null, iterations: 1 } as const;
+    const stalled = { ok: false, failureReason: "noConvergedIntersection", residual: 1e-6, iterations: 72 } as const;
+    const kernel = vi.spyOn(intersectKernel, "intersectSurfaceProfile");
+    try {
+      kernel.mockReturnValueOnce(miss).mockReturnValueOnce(stalled);
+      expect(pathPlanner.intersectSequentialSurface(geometry, 2, origin, [0, 0, 1], options)).toBe(stalled);
+      kernel.mockReturnValueOnce(miss).mockReturnValueOnce({ ...miss, iterations: 24 });
+      expect(pathPlanner.intersectSequentialSurface(geometry, 2, origin, [0, 0, 1], options)).toBe(miss);
+    } finally {
+      kernel.mockRestore();
+    }
   });
 });
 
