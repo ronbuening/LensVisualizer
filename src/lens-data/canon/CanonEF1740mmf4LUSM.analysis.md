@@ -22,24 +22,26 @@ The patent prints the inventor as 滝 慶行. A separate Canon patent family giv
 
 ## Optical Architecture
 
-The bare master is a four-group retrofocus zoom of power **negative–positive–negative–positive**. The stop is surface 13, immediately before the negative third group. ¶0034 describes the zoom motion from wide to tele: G1 moves on a locus convex toward the image, G2 and G4 move objectward on the same locus, and G3 moves objectward on a different locus. The printed spacings satisfy D12 + D18 = 13.12 mm, and the model keeps that sum at every zoom position.
+The bare master is a four-group retrofocus zoom of power **negative–positive–negative–positive**. The stop is surface 13, immediately before the negative third group. ¶0034 describes the zoom motion from wide to tele: L1 moves on a locus convex toward the image, L2 and L4 move objectward on the same locus, and L3 moves objectward on a different locus. The printed spacings satisfy D12 + D18 = 13.12 mm, and the model keeps that sum at every zoom position.
 
 | Group | Source surfaces | Published group focal length | Role                                                                          |
 | ----- | --------------- | ---------------------------- | ----------------------------------------------------------------------------- |
-| G1    | 1–7             | −21.03 mm                    | Front negative retrofocus group: front element L1 and the inner-focus subgroup |
-| G2    | 8–12            | +28.82 mm                    | Positive relay: cemented pair and positive singlet                            |
-| G3    | 13–18           | −46.91 mm                    | Stop and negative corrective group                                            |
-| G4    | 19–24           | +47.74 mm                    | Positive rear group: Super UD singlet and replica-aspherical cemented doublet |
+| L1    | 1–7             | −21.03 mm                    | Front negative retrofocus group: front element E1 and the inner-focus subgroup |
+| L2    | 8–12            | +28.82 mm                    | Positive relay: cemented pair and positive singlet                            |
+| L3    | 13–18           | −46.91 mm                    | Stop and negative corrective group                                            |
+| L4    | 19–24           | +47.74 mm                    | Positive rear group: Super UD singlet and replica-aspherical cemented doublet |
 
 The patent calls group 5 (surfaces 25–30) the attachment lens. Its three lenses are left out of the model. The bare image distance is computed paraxially from surfaces 1–24; it is not obtained by subtracting the attachment or by keeping the attachment's 26.31 mm last air gap.
 
 The two thin bonded resin layers are separate entries because they have their own refractive index and interfaces. The model therefore has 14 refracting entries, while the element count stays at Canon's 12 glass elements. The 0.10 mm front and 0.15 mm rear layers are taken to be the replica resin of Canon's two replica aspheres, from their geometry; their chemistry is not published.
 
+¶0034 and Fig. 1 name the four groups L1–L4 (第1–第4レンズ群) and the focusing subgroup Lf. This page uses those group names, so the glass elements are called E1–E12 and the resin layers R1 and R2. H1 is the hybrid of E2 and R1; C1, C2 and C3 are the cemented pairs E4–E5, E8–E9 and E11–E12, and R2 is bonded to the front of C3. The patent's single-lens table numbers the 14 entries 1–14, counting each resin layer as a lens.
+
 ## Element-by-Element Analysis
 
 The focal lengths below are the patent's tabulated single-lens values, in air, not in-situ powers of cemented components; the patent lists the thin layers separately. Role descriptions are optical interpretations unless tied to a cited paragraph.
 
-### L1 — Negative Meniscus (1x Asph)
+### E1 — Negative Meniscus (1× Asph)
 
 **nd = 1.58373, νd = 59.4. Glass: Unmatched (1.58373/59.4 glass-moldable crown; S-BAL42/L-BAL42 class). f = −38.77 mm.**
 
@@ -49,79 +51,79 @@ This strongly negative front meniscus is the retrofocus entrance element. Its al
 
 **nd = 1.52421, νd = 51.4. Glass: Unmatched (replica resin, 1.52421/51.4). f = +910.93 mm.**
 
-This 0.10 mm bonded layer carries the first-group replica asphere on surface 3. It is a separate medium on the front of L2; Canon describes a replica construction but not the resin chemistry.
+This 0.10 mm bonded layer carries the first-group replica asphere on surface 3. It is a separate medium on the front of E2; Canon describes a replica construction but not the resin chemistry.
 
-### L2 — Biconcave Negative
+### E2 — Biconcave Negative
 
 **nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA), catalog equivalent. f = −27.33 mm.**
 
-The high-index negative substrate carries R1. With the following positive meniscus it forms the objectward-moving focusing subgroup Lf within G1; their internal spacing stays fixed during focus.
+The high-index negative substrate carries R1. With the following positive meniscus it forms the objectward-moving focusing subgroup Lf within group L1; their internal spacing stays fixed during focus.
 
-### L3 — Positive Meniscus
+### E3 — Positive Meniscus
 
 **nd = 1.84666, νd = 23.9. Glass: S-NPH53 (OHARA), catalog equivalent. f = +52.95 mm.**
 
 The positive dense-flint meniscus balances the front negative elements and completes Lf. Its large dispersion contrast with the negative elements provides chromatic leverage; no secondary-spectrum claim follows from nd/νd alone.
 
-### L4 — Negative Meniscus
+### E4 — Negative Meniscus
 
 **nd = 1.72825, νd = 28.5. Glass: S-TIH10 (OHARA), catalog equivalent. f = −44.49 mm.**
 
-The negative member of the G2 cemented doublet is the dispersive partner for L5; the two are cemented at surface 9.
+The negative member of cemented doublet C1 in group L2 is the dispersive partner for E5; the two are cemented at surface 9.
 
-### L5 — Biconvex Positive
+### E5 — Biconvex Positive
 
 **nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA), catalog equivalent. f = +32.10 mm.**
 
-The positive crown member completes the G2 cemented pair. Its substantially higher Abbe number than L4 supports ordinary achromatic balancing.
+The positive crown member completes C1. Its substantially higher Abbe number than E4 supports ordinary achromatic balancing.
 
-### L6 — Biconvex Positive
+### E6 — Biconvex Positive
 
 **nd = 1.67790, νd = 55.3. Glass: S-LAL12 (OHARA), catalog equivalent. f = +37.04 mm.**
 
-This positive biconvex singlet completes G2, just ahead of the stop. G2 and G4 move together during zoom (¶0034).
+This positive biconvex singlet completes group L2, just ahead of the stop. Groups L2 and L4 move together during zoom (¶0034).
 
-### L7 — Biconcave Negative
+### E7 — Biconcave Negative
 
 **nd = 1.71999, νd = 50.2. Glass: S-LAL10 (OHARA), catalog equivalent. f = −50.88 mm.**
 
-The negative singlet immediately behind the stop begins G3. Its high-index crown class supplies negative power without the low Abbe number of a dense flint.
+The negative singlet immediately behind the stop begins group L3. Its high-index crown class supplies negative power without the low Abbe number of a dense flint.
 
-### L8 — Biconcave Negative
+### E8 — Biconcave Negative
 
 **nd = 1.62230, νd = 53.2. Glass: S-BSM22 (OHARA), catalog equivalent. f = −37.80 mm.**
 
-The negative first member of the G3 doublet supplies additional negative power. It is cemented to L9 at surface 17.
+The negative first member of doublet C2 in group L3 supplies additional negative power. It is cemented to E9 at surface 17.
 
-### L9 — Positive Meniscus
+### E9 — Positive Meniscus
 
 **nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA), catalog equivalent. f = +40.50 mm.**
 
 This positive dense-flint meniscus completes the negative third group; its high dispersion complements the preceding crown.
 
-### L10 — Biconvex Positive
+### E10 — Biconvex Positive
 
 **nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA), catalog equivalent. f = +35.33 mm.**
 
-The biconvex positive singlet begins G4. Its νd 95.0 is consistent with a fluorophosphate Super UD glass, and Canon's construction diagram places its Super UD element here. S-FPL53 is a close catalog equivalent, not evidence of the original supplier.
+The biconvex positive singlet begins group L4. Its νd 95.0 is consistent with a fluorophosphate Super UD glass, and Canon's construction diagram places its Super UD element here. S-FPL53 is a close catalog equivalent, not evidence of the original supplier.
 
 ### R2 — Aspherical Resin Layer
 
 **nd = 1.52421, νd = 51.4. Glass: Unmatched (replica resin, 1.52421/51.4). f = +309.06 mm.**
 
-This 0.15 mm bonded layer carries the rear replica asphere on surface 21, on the front of L11. No catalog dispersion curve exists for the resin.
+This 0.15 mm bonded layer carries the rear replica asphere on surface 21, on the front of E11. No catalog dispersion curve exists for the resin.
 
-### L11 — Biconcave Negative
+### E11 — Biconcave Negative
 
 **nd = 1.83400, νd = 37.2. Glass: S-LAH60 (OHARA), catalog equivalent. f = −21.53 mm.**
 
-The negative high-index substrate carries R2 and is cemented to L12 at surface 23, so the rear assembly is a cemented doublet with a replica aspherical front.
+The negative high-index substrate carries R2 and is cemented to E12 at surface 23, so the rear assembly, C3, is a cemented doublet with a replica aspherical front.
 
-### L12 — Biconvex Positive
+### E12 — Biconvex Positive
 
 **nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA), catalog equivalent. f = +29.31 mm.**
 
-The final positive low-dispersion element completes G4 and its cemented doublet. The bare image plane follows surface 24 at the paraxially computed back focus.
+The final positive low-dispersion element completes group L4 and doublet C3. The bare image plane follows surface 24 at the paraxially computed back focus.
 
 ## Glass Identification and Spectral Qualification
 
@@ -129,26 +131,26 @@ The patent publishes only nd and νd, and every element keeps the printed values
 
 | Entry | Source nd | Source νd | Catalog equivalent |
 | ----- | --------- | --------- | ------------------ |
-| L1    | 1.58373   | 59.4      | Unmatched                  |
+| E1    | 1.58373   | 59.4      | Unmatched                  |
 | R1    | 1.52421   | 51.4      | Unmatched                  |
-| L2    | 1.77250   | 49.6      | S-LAH66                    |
-| L3    | 1.84666   | 23.9      | S-NPH53                    |
-| L4    | 1.72825   | 28.5      | S-TIH10                    |
-| L5    | 1.51633   | 64.1      | S-BSL7                     |
-| L6    | 1.67790   | 55.3      | S-LAL12                    |
-| L7    | 1.71999   | 50.2      | S-LAL10                    |
-| L8    | 1.62230   | 53.2      | S-BSM22                    |
-| L9    | 1.80518   | 25.4      | S-TIH6                     |
-| L10   | 1.43875   | 95.0      | S-FPL53                    |
+| E2    | 1.77250   | 49.6      | S-LAH66                    |
+| E3    | 1.84666   | 23.9      | S-NPH53                    |
+| E4    | 1.72825   | 28.5      | S-TIH10                    |
+| E5    | 1.51633   | 64.1      | S-BSL7                     |
+| E6    | 1.67790   | 55.3      | S-LAL12                    |
+| E7    | 1.71999   | 50.2      | S-LAL10                    |
+| E8    | 1.62230   | 53.2      | S-BSM22                    |
+| E9    | 1.80518   | 25.4      | S-TIH6                     |
+| E10   | 1.43875   | 95.0      | S-FPL53                    |
 | R2    | 1.52421   | 51.4      | Unmatched                  |
-| L11   | 1.83400   | 37.2      | S-LAH60                    |
-| L12   | 1.48749   | 70.2      | S-FSL5                     |
+| E11   | 1.83400   | 37.2      | S-LAH60                    |
+| E12   | 1.48749   | 70.2      | S-FSL5                     |
 
-L1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use matching OHARA catalog curves, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. L1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
+E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use matching OHARA catalog curves, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. E1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
 
 ## Focus Mechanism and Zoom Motion
 
-Fig. 1 and ¶0034 place the objectward-moving focusing subgroup Lf at surfaces 3–7 (R1, L2 and L3). For near focus D2 decreases and D7 increases by equal amounts; L1 stays fixed within G1. There is no stabilization group.
+Fig. 1 and ¶0034 place the objectward-moving focusing subgroup Lf at surfaces 3–7 (R1, E2 and E3). For near focus D2 decreases and D7 increases by equal amounts; E1 stays fixed within group L1. There is no stabilization group.
 
 The patent prints no close-focus spacings. The focus states are solved paraxially for Canon's 0.28 m minimum focus distance, taken as object-to-image distance, with the image plane fixed; intermediate focus positions sit at 0.28/t m. Lf travels 4.07 mm at 17.49 mm, 3.95 mm at 23.99 and 25.78 mm and 4.07 mm at 38.83 mm. Close-focus magnifications are −0.108/−0.144/−0.154/−0.240 at the four printed zoom states; the tele value matches Canon's 0.24×, but none of these states is published focus data, so finite-distance MTF stays unavailable. Distance labels between them are interpolated and approximate.
 
@@ -161,9 +163,9 @@ The patent prints no close-focus spacings. The focus states are solved paraxiall
 | D18     | 11.88    | 7.76     | 6.71     | 0.49     |
 | D24 (BF, computed) | 39.848 | 45.838 | 47.539 | 60.593 |
 
-Four zoom states are published. Example 1 prints wide, middle and tele; Example 2 prints a second middle state of the same master zoom, at a bare focal length of 25.78 mm. Its D7 of 13.87 mm is Example 2's d4 + d9 (12.22 + 15.28) less the infinity D2 of 13.63 mm, because Example 2 is focused through a dome port. Example 2 prints D18 = 6.72, which makes D12 + D18 = 13.13; the model uses 6.71 to keep the 13.12 mm sum of every other printed row and the common G2/G4 locus of ¶0034. The bare back focus at each state is computed from surfaces 1–24; it is not the attachment's 26.31 mm final air gap.
+Four zoom states are published. Example 1 prints wide, middle and tele; Example 2 prints a second middle state of the same master zoom, at a bare focal length of 25.78 mm. Its D7 of 13.87 mm is Example 2's d4 + d9 (12.22 + 15.28) less the infinity D2 of 13.63 mm, because Example 2 is focused through a dome port. Example 2 prints D18 = 6.72, which makes D12 + D18 = 13.13; the model uses 6.71 to keep the 13.12 mm sum of every other printed row and the common L2/L4 locus of ¶0034. The bare back focus at each state is computed from surfaces 1–24; it is not the attachment's 26.31 mm final air gap.
 
-Between the published states the zoom path is interpolated over 65 stations spaced geometrically in focal length. D12 follows a smooth monotonic curve in focal length through the four printed values, D18 = 13.12 − D12, D7 is solved for the station focal length and D24 is the paraxial back focus. D7, D12, D18 and D24 each change in one direction only. G2, G3 and G4 move steadily objectward, and G1's distance from the image falls from 139.28 mm to a minimum of 134.37 mm at 25.78 mm and returns to 139.30 mm, the image-convex locus of ¶0034. Linear interpolation between stations leaves at most 0.002 mm of paraxial defocus. This is an inferred cam, not Canon's mechanical one.
+Between the published states the zoom path is interpolated over 65 stations spaced geometrically in focal length. D12 follows a smooth monotonic curve in focal length through the four printed values, D18 = 13.12 − D12, D7 is solved for the station focal length and D24 is the paraxial back focus. D7, D12, D18 and D24 each change in one direction only. L2, L3 and L4 move steadily objectward, and L1's distance from the image falls from 139.28 mm to a minimum of 134.37 mm at 25.78 mm and returns to 139.30 mm, the image-convex locus of ¶0034. Linear interpolation between stations leaves at most 0.002 mm of paraxial defocus. This is an inferred cam, not Canon's mechanical one.
 
 ## Aspherical Surfaces
 

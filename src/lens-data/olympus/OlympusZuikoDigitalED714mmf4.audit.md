@@ -168,3 +168,90 @@ governs.
 Closed the same day: S4 = 18.2 mm and S5 = 17.1 mm applied with `checks.gapSagFrac` 0.99, the smallest two-decimal value
 that admits the pair (faces about 0.19 mm apart at the rim at infinity, not crossing); both the patent figure and the
 Olympus drawing carry L2's rear face that far out.
+
+## 2026-10-28 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page was shot at the wide, middle and tele stations, at infinity and at the 250 mm state, with both movement
+overlays (zoom, also at tele; focus at both ends) and the inspector open on L2, L4, L7, L14, L16 and L18. It was set
+beside Fig. 3(a) (US B2 sheet 3, PDF page 4, native 300 dpi; axis at row 985) and the Olympus catalogue drawing. The
+example text (US B2 cols. 7–8), claims 5–8 and the Example 3 table (p.16) were re-read for labels and movement.
+
+### Silhouette
+
+Re-measured on the lower half of Fig. 3(a) (outer ink, 8.89 px/mm; rear group also at its own 8.45 px/mm in
+brackets): L1 33.2, L2 edge 24.4, L3 17.0, L4 14.6, L5 14.9, L6 12.6, L7 11.0, L8 10.5, L9/L10 8.6, triplet 7.2–7.3
+[7.6], L14/L15 7.0 [7.3], L16 7.3 [7.7], L17/L18 7.5–8.1 [7.9–8.5] mm. All stored rims agree within about 5 %, so no
+`sd` changed. The visible differences are of shape, not height:
+
+- L1, L2 and L3 are drawn with flat rear lands: L1's from about 23.7 to 33.2 mm, L2's from r4's end at 18.1 mm to
+  its 24.4 mm edge (behind L3), and L3's from r6's end at 13.6–14.1 mm to 17.0 mm. The site joins the unequal
+  front/rear rims of these three with slanted bevels. Raising the rear `sd` to the edge would carry the curved face
+  past the drawn land (r6 would wrap over L4's front corner; r4 turns over at about 21.8 mm; r2's R = 26.39 mm is
+  below L1's 33.5 mm edge), so the curve-end values stay.
+- The figure steps L8 about 0.5 mm under L7, and L14/L15 about 0.3 mm under the triplet and L16; both are inside
+  measurement noise and are left equal.
+
+A rim cut would draw the L2 and L3 lands without changing any traced ray. `rimCutDepthMm` is outside this pass's
+edit list, so it was tried on a scratch copy only:
+
+| Surface | `sd` now → trial | `rimCutDepthMm` | Cut radius | Beam reach |
+|---|---|---|---|---|
+| 4A | 18.2 → 24.0 | 15.65 | 18.21 (old `sd`) | 16.62 at 52.9°, close focus |
+| 6 | 14.7 → 17.1 (= S5) | 5.35 | 14.70 (old `sd`) | 13.87 at 54.8°, infinity |
+
+On that copy the surface validator, including its beam-clearance check, reports no errors. The aperture audit gives the
+same 33/33 rows within 3 % of F/4, field coverage reaches the corner at 33 of 33 stations, and the vignetting
+curve is identical (98.9 / 94.7 / 46.2 % at 50.7° / 53.7° / 56.7° at wide). The cap of S4 stays deeper than the cut
+out to 24.0 mm (sag 15.76 mm), so 24.0 mm is the largest 0.1 mm step that passes. No cut is proposed for S2. The
+Olympus drawing also carries L2's rear face out to its edge.
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Aspheric surface labels | 3, 4, 27, 28 | 3A, 4A, 27A, 28A (gap key "4" → "4A"; gap label stays D4) | p.16 marks r3, r4, r27, r28 "(Aspheric)" and lists those four coefficient sets |
+| `doublets` and element `cemented` | D1, D2, T1, D3, D4 | C1, C2, C3 (triplet), C4, C5 | the bracket "D4" read as the D4 air gap shown beside the focus slider |
+| `groups` | FG (-) S1–S18, RG (+) | FG1 (-) S1–S4A, FG2 FOCUS S5–S15, FG3 (-) S16–S18, RG (+) | claims 5–6 split the negative group into first, second (focusing) and third lens units; the example text moves L3–L8 for focus. With one FG bracket the focus overlay showed 0.00 mm of travel; it now shows FG2 moving 5.70 mm toward the image and the other three fixed |
+| L7–L18 `role` | D1/D2/T1/D3/D4 wording | C1–C5 wording | follows the renamed brackets |
+
+The analysis file follows: C1–C5 in the element notes and the focus section, the 3A/4A/27A/28A asphere table, and one
+paragraph in the architecture section on the brackets. The unit powers are FG1 −20.9 mm, FG2 +671 mm and
+FG3 −51.4 mm; the claims allow either sign for FG2.
+
+### Checked and found correct
+
+- Element types agree with the signs of R for all 18 elements, and with the patent's own descriptions (L4 meniscus
+  concave to the object, L8 convex to the image, L10 convex to the object, L13 biconvex with r23 = −813.03). L2 and
+  L16 are the only aspheric elements, as the specs line states.
+- The stop is r19, between L10 and L11. At the wide end Fig. 3(a) draws S about 3.9 mm ahead of r20, against
+  D19 = 3.2 mm.
+- `apd: "patent"` on L4, L6, L14 and L16. The patent tabulates the right-hand term of its anomalous-dispersion
+  condition (4) for the nd 1.497 / νd 81.54 glass (0.52 against the printed θgF 0.54, cols. 13–14), and p.16
+  prints that glass at these four positions. L18 (νd 70.23) carries no tag and no printed θgF. The Olympus drawing
+  colours the same four as Super ED (L4, L6), ED (L14) and ED aspherical (L16), and L2 as aspherical.
+- The inspector shows the type, glass, focal length, aspheric terms, tag note and role for each element opened. No
+  element is missing `focalLengthMm`, and no cement layer is an element.
+- Zoom: the 33 stations ascend from 7.1 to 13.7 mm, and the printed rows sit at stations 0, 16 and 32. D18 falls
+  linearly 16.7 → 8.6 → 1.1 mm and D19 3.2 → 1.6 → 0.6 mm, while BF rises 33.6 → 40.4 → 51.8 mm. None of them
+  reverses inside a segment. The front group (first vertex to image: 154.40 → 151.47 at station 18 → 154.40 mm) has
+  one reversal and ends where it started, which is the concave locus that the Example 3 text describes. The stop and RG
+  move monotonically toward the object, RG by 18.2 mm, while the stop-to-RG gap narrows, as the text states. The zoom
+  overlay at tele shows the same.
+- Focus: index 0 is infinity and index 1 is the printed 250 mm IO state. D4 goes 11.6 → 17.3 mm and D15 6.8 → 1.1 mm,
+  so L3–L8 moves 5.7 mm toward the image at every station. The slider reads ∞ to 25 cm.
+- Glass: L7 (1.55715/40.9), L9 (1.71628/54.33) and L10 (1.87753/35.66) stay Unmatched. Like the JP B2, the table on
+  p.16 prints only nd and νd for them, with θgF for the 81.54 glass alone, so the source gives nothing further.
+
+Engine results are unchanged by this pass: EFL 7.127 mm, F/4 at every station, a 4.876 mm stop radius and a
+35.43° engine half-field at wide (44.70° at tele). The surface validator reports no errors, the image-circle check
+reports 0 undersized, field coverage reaches the 10.82 mm corner at 33 of 33 stations, and the clear-aperture trace
+flags no axial or chief-ray clip.
+
+Open: the L2 and L3 land cuts tabled above wait on the coordinator.
+
+Coordinator follow-up, same day: L3's rear land is applied as an inferred rim cut (S6 `sd` 14.7 → 17.1,
+`rimCutDepthMm` 5.35, land at the former 14.7 mm rim; beams reach 13.87 mm there). The proposed S4A land (sd 24.0,
+cut 15.65) is declined: `audit:surface --scan 4A` shows the asphere turning over near 22 mm, and an asphere's `sd`
+must not go past its turnover. The surface validator, including its rim-cut beam check, reports no errors.

@@ -144,9 +144,9 @@ The printed prescription carries small paraxial image-plane offsets: +0.025 / +0
 
 ## Clear Apertures and Physical Geometry
 
-Clear semi-diameters are inferred, because the source has no effective-diameter column. They were scaled from the optical outlines in Figure 1(a), using the 75.36 mm span from the first to the last powered surface as the scale; the mechanical rim rectangles were not counted as clear glass. The uncaptioned Olympus section confirms the layout and relative proportions, but not millimetre apertures.
+Clear semi-diameters are inferred, because the source has no effective-diameter column. They were scaled from the optical outlines in Figure 1(a), using the 75.36 mm span from the first to the last powered surface as the scale. The figure draws no separate mounting flanges: L2, L3, the cemented L4–L5, L6, the L8–L9 doublet, L11 and L12 are drawn with squared rims, and the model gives each of them one rim height across its faces, except that L2 shares its cemented front surface with the slightly taller L1. The uncaptioned Olympus section confirms the layout and relative proportions, but not millimetre apertures.
 
-In G2 the telephoto axial beam sets the rims. An unclipped marginal ray needs 7.33 mm at r8 and r9 and 7.57 mm at r10, so L4–L5 use 7.4 mm and L6 uses 7.6 mm. That is consistent with the roughly 8 mm optical extent in the patent drawing.
+In G2 the drawing gives about 7.8 mm for the cemented L4–L5 and 8.0 mm for L6, but r8 and r9 meet at about 7.67 mm. L4–L5 therefore use 7.4 mm and L6 7.6 mm, just above the telephoto axial beam, which needs 7.33 mm at r8 and r9 and 7.57 mm at r10.
 
 The 1.27 mm air gap between r8 and r9 is the tightest in the design. With these rims the two surfaces' sags take up about 93 % of it, leaving 0.089 mm of air at the rim. Across all zoom and focus positions the thinnest glass is 0.94 mm and nothing is hidden or trimmed in the drawing.
 

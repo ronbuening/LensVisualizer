@@ -114,3 +114,50 @@ Live render: checked at 40.9, 77.5 and 146.7 mm at infinity, and at 40.9 and 146
 The 2010 Olympus catalogue section agrees on count and grouping: 12 elements in 9 groups, with the ED element at element 8, the front of the G3 doublet, and no aspheres. Its schematic draws G2 relatively larger than the patent does: L3 is about 0.63 of the front doublet's height against 0.48 in FIG. 1(a), and the G2 doublet about 0.52 against 0.42. It is not to scale and was not used for values.
 
 Open: the scratch engine-vignetting tool returned no samples for this lens. It does the same on other catalogue lenses, so before/after vignetting was compared by the real-ray trace instead.
+
+## 2026-10-28 — Second review: diagram, labels and movement
+
+Compared: the live page at 40.9, 77.5 and 146.7 mm, at infinity and at closest focus, with both movement overlays and the element inspector for L1, L3, L8 and L9. These were set beside FIG. 1(a)–(c) (`patents/US20080062534A1.pdf`, PDF p. 2, native 2560 × 3300 raster, 11.65 px/mm on the r1→r22 span), the Example 1 text ¶¶0104–0106 (PDF p. 22), the Example 1 table (PDF p. 23) and the Olympus catalogue section.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `zoom.stations[].label` | 65 labels: WE, Inferred1–Inferred31, ST, Inferred33–Inferred63, TE | WE on the first station and TE on the last, none between | The schema allows labels on every station or on the first and last alone. The "Inferred" numbers carried nothing the `published: false` flag does not, and skipped 32. ST stays identified by `published: true` and by `focus.conjugates` station 32. |
+| `doublets` text, element `cemented` | D1 (r1–r3), D2 (r6–r8), D3 (r14–r16) | C1, C2, C3, same ranges | The L8–L9 bracket "D3" and the inspector's "DOUBLET D3" collided with the gap label D3 beside the slider, which is the patent's d3 (G1–G2 spacing). The patent names no cemented components. Earlier sections of this log call them D1–D3. |
+| Header comment | — | Notes on the station labels and the C1–C3 names | — |
+| Analysis, Clear Apertures | "the mechanical rim rectangles were not counted"; "the telephoto axial beam sets the rims" | The figure draws squared rims, not flanges; in G2 the r8–r9 crossing at about 7.67 mm, not the beam, holds the rims below the drawn 7.8 / 8.0 mm | Figure reading below; no value changed |
+
+Silhouette. Rims re-read on the clean right-hand side, centre 809.5 px, less half the 4.5 px stroke; the left side was read where it is free of leaders and runs about 2 px wider. The two sides averaged give:
+- L1 18.35 and L2 17.97 mm (stored 18.4 / 18.0).
+- L3 8.88 (8.9).
+- L4–L5 7.8 (7.4) and L6 8.0 (7.6).
+- L7 9.8 (9.8), the L8–L9 doublet 8.9–9.05 (9.0), L10 9.3–9.5 (9.5), and L11 and L12 8.1–8.3 (8.3).
+
+The page reproduces the drawn shapes and the height order. L1 has a short pointed rim above the squared L2, and L3 is squared and taller than G2. The squared C2 and L6 blocks abut, with L6 slightly taller. L7 is rounded and taller than the square-cut C3 block, and the rounded L10 stands above the squared L11 and L12. No rim was changed. Two small differences remain:
+- L2's top edge slopes 0.4 mm because the cemented r2 carries one height, 18.4 mm, for both L1 and L2. The figure draws a step there instead. Setting r2 to 18.0 mm would square L2 and move the slope onto L1's 1.5 mm edge. It passes the validator, but it lowers edge transmission from 70.5 to 69.5 % at 7.9° at mid zoom, and from 85.3 to 84.5 % at 4.2° at TE. It was therefore not made.
+- G2 is about 5 % under the drawing, which is within reading noise. L4–L5 cannot rise, because r8 and r9 meet at about 7.67 mm. The trial r6–r8 at 7.55 mm with r9–r10 at 7.8 mm fails the 0.93 gap allowance: the combined sag is 1.23 mm against 1.181 mm allowed. Raising L6 alone to 7.9 mm passes, but it would turn the drawn 0.26 mm step over L4–L5 into 0.5 mm, so it was not made.
+
+Checked and found correct:
+- Element names: the patent names no individual elements. FIG. 1 labels only r1–r25, G1, G2, S, G3, F and I, so sequential L1–L12 is used, and it clashes with nothing. `diagramLabel` equals `name`, and the inspector title reads "Element n" followed by Ln, the same name the diagram draws.
+- Element types agree with the signs of R and with ¶0105. The exception is L9: ¶0105 calls it "concave on the image side", but r15 −24.185 and r16 −482.892 make it concave to the object. That is the same sign pattern the paragraph calls "convex on the image side" for L6, so the table governs. "Negative Meniscus" is true either way.
+- There are no aspheres in the table and no `A` labels in the file. STO is r11, drawn between L6 and L7.
+- Group brackets G1 (r1–r3), G2 (r4–r10) and G3 (STO–r22) match FIG. 1. The figure brackets S on its own, but ¶0104 moves S with G3.
+- Tags: L8 keeps `apd: "inferred"`. ¶0068 sets Abbe-number limits for the two positive lenses near the stop (L7 70.2, L8 81.5) but names no special glass, while the maker colours L8.
+- The gap labels D3, D10 and D22 are the patent's d3, d10 and d22. Every glass label resolves within 0.05 in νd.
+
+Movement, as positions from the image plane at infinity, WE → ST → TE:
+- G1 moves objectward without reversing: 110.92 → 144.92 → 167.69 mm, a total of +56.77 mm.
+- G2 (r4) moves 101.52 → 100.17 → 112.25 mm. It goes 1.35 mm imageward to ST, then objectward, and ends 10.73 mm objectward of WE. It has one reversal, at station 32.
+- G3 with the stop moves objectward without reversing: 72.34 → 77.72 → 98.44 mm, +26.10 mm.
+- Across all 65 stations D3 rises, D10 falls and D22 rises without reversing, as ¶0104 describes: G1 objectward, G2 on a locus concave toward the object that ends nearer the object, and S with G3 objectward as the S–G2 spacing decreases.
+- Stations ascend from 40.9 to 146.7 mm. Focus keyframe 0 is infinity and keyframe 17 is OD = 900 mm.
+- G2 focuses objectward by 1.30 / 3.33 / 4.97 mm. G3 stays fixed. G1 drifts 0.01 mm at WE and TE, which is in the printed rows. D10 never decreases over focus at any station.
+- The overlays show the same: 56.77 mm maximum zoom travel and 4.97 mm focus travel at TE. The focus slider reads ∞ to 90 cm.
+
+After the edits:
+- The surface validator reports no errors. The image-circle check finds 0 undersized, and the field-coverage check puts 65 of 65 stations at 99 % or more.
+- The real-ray trace at the plotted 11.60 mm image height, at infinity and at OD = 900 mm, shows no axial clip and no blocked chief ray.
+- Engine values are unchanged: half-field 24.08° at WE and 8.63° at TE, f/4.08–5.811, stop radius 7.78 mm at WE.
+- The engine vignetting tool now returns samples for this lens. Transmission, the same before and after, is 100 % to 10.1°, 94.4 % at 12.6° and 83.0 % at 15.2° at WE; at TE it is 99.7 % at 2.8°, 94.3 % at 3.5° and 85.3 % at 4.2°.
+- The re-shot page shows the C1–C3 brackets and "DOUBLET C3" in the L8 inspector, with D3 / D10 / D22 beside the slider and no overlaps at any zoom or focus state.
+
+Open: the G2 turning point is placed exactly at ST by the interpolation. The patent prints only WE, ST and TE and draws no movement arrows.

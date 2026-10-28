@@ -31,7 +31,7 @@ Example 1 is a four-unit **positive–negative–positive–negative** telephoto
 | B4a  | 24–26           | L14–L15  | −33.93 mm              | Negative focus doublet                                              |
 | B4b  | 27–29           | L16–L17  | −4057.03 mm            | Nearly afocal rear cemented correction pair                         |
 
-At infinity, B1–B4 move objectward toward the telephoto end, and B4a and B4b follow the same path (¶¶0027–0028). The three printed infinity rows keep D26 = 12.62 mm. The aperture stop is surface 16, between the front positive part of B3 and its aspheric element (¶0023). B3b, surfaces 19–21, is the IS doublet (¶0026).
+At infinity, B1–B4 move objectward toward the telephoto end, and B4a and B4b follow the same path (¶¶0027–0028). The three printed infinity rows keep D26 = 12.62 mm. The aperture stop is surface 16, between the front positive part of B3 and its aspheric element (¶0023). B3b, surfaces 19–21, is the IS doublet (¶0026). The diagram labels the six cemented pairs C1–C6, so that the variable air gaps keep the patent's D labels; C4 is the B3b IS doublet. Figure 1 also brackets B3a (L7–L10, with the stop) and B3c (L13) inside B3.
 
 The final surfaces 30–31 are a camera-side optical block: 1.50 mm, nd 1.54400, νd 60.0, followed by 1.73 mm of air. The model keeps it as a rear plate, not counted among the 17 lenses. The printed BF and total length are air-equivalent (¶0042, ¶0066), so the physical track is about 0.5285 mm longer than the air-equivalent value. Neither is a barrel-length measurement.
 
@@ -49,31 +49,31 @@ The front positive singlet collects the beam ahead of the first cemented pair. I
 
 **nd = 1.80610, νd = 40.9. Glass: P-LASF47 (catalog equivalent; supplier unconfirmed). f = -72.440755 mm.**
 
-The negative member of D1 balances the following positive crown within B1.
+The negative member of C1 balances the following positive crown within B1.
 
 ### L3 — Biconvex Positive
 
 **nd = 1.48749, νd = 70.2. Glass: S-FSL5 (catalog equivalent; supplier unconfirmed). f = +59.067087 mm.**
 
-The positive member of D1 supplies much of the B1 power, in the same low-dispersion crown as L1.
+The positive member of C1 supplies much of the B1 power, in the same low-dispersion crown as L1.
 
 ### L4 — Biconcave Negative
 
 **nd = 1.72000, νd = 50.2. Glass: S-LAL10 (catalog equivalent; supplier unconfirmed). f = -20.252895 mm.**
 
-The negative member of D2 begins the moving variator B2.
+The negative member of C2 begins the moving variator B2.
 
 ### L5 — Meniscus Positive
 
 **nd = 1.84666, νd = 23.9. Glass: S-NPH53 (catalog equivalent; supplier unconfirmed). f = +31.877344 mm.**
 
-The positive dense-flint member of D2 moderates B2 color and power. The pair remains net negative.
+The positive dense-flint member of C2 moderates B2 color and power. The pair remains net negative.
 
 ### L6 — Biconcave Negative
 
 **nd = 1.77250, νd = 49.6. Glass: E-LASF016 (catalog equivalent; supplier unconfirmed). f = -39.613733 mm.**
 
-The negative singlet completes B2. Its estimated semi-diameter is 8.20 mm, slightly under the drawn rim, so that its front face does not meet L5's rear face across the 2.01 mm air gap.
+The negative singlet completes B2. Figure 1 draws it square-cut, slightly taller than L5's rear face and nearly touching it across the 2.01 mm air gap; the model gives both faces an estimated 8.50 mm semi-diameter.
 
 ### L7 — Biconvex Positive
 
@@ -91,7 +91,7 @@ This low-dispersion positive element sits where Canon's diagram marks the UD ele
 
 **nd = 1.84666, νd = 23.9. Glass: S-NPH53 (catalog equivalent; supplier unconfirmed). f = -25.391226 mm.**
 
-The negative member of D3 pairs the high-Abbe L8 with a dispersive flint. The patent gives no partial-dispersion data.
+The negative member of C3 pairs the high-Abbe L8 with a dispersive flint. The patent gives no partial-dispersion data.
 
 ### L10 — Meniscus Positive (2× Asph)
 
@@ -103,13 +103,13 @@ Both surfaces of this positive element are aspheric. Its proximity to the stop h
 
 **nd = 1.80610, νd = 33.3. Glass: J-LASFH6 (catalog equivalent; supplier unconfirmed). f = +30.286392 mm.**
 
-The first member of D4 forms the negative B3b stabilization assembly with L12. The model shows it centered.
+The first member of C4 forms the negative B3b stabilization assembly with L12. The model shows it centered.
 
 ### L12 — Biconcave Negative
 
 **nd = 1.69350, νd = 53.2. Glass: M-LAC130 (catalog equivalent; supplier unconfirmed). f = -15.239188 mm.**
 
-The second member of D4 completes the IS doublet and gives it its net negative power.
+The second member of C4 completes the IS doublet and gives it its net negative power.
 
 ### L13 — Biconvex Positive
 
@@ -121,25 +121,25 @@ The positive singlet following the IS doublet completes B3c and the positive thi
 
 **nd = 1.69680, νd = 55.5. Glass: J-LAK14 (catalog equivalent; supplier unconfirmed). f = -16.966371 mm.**
 
-The first member of D5 begins B4a. Its cemented pair translates rigidly imageward for near focus.
+The first member of C5 begins B4a. Its cemented pair translates rigidly imageward for near focus.
 
 ### L15 — Meniscus Positive
 
 **nd = 1.54072, νd = 47.2. Glass: S-TIL2 (catalog equivalent; supplier unconfirmed). f = +32.383421 mm.**
 
-The second member of D5 completes the negative focusing pair. The patent prints no near-focus position for it.
+The second member of C5 completes the negative focusing pair. The patent prints no near-focus position for it.
 
 ### L16 — Meniscus Positive
 
 **nd = 1.76200, νd = 40.1. Glass: S-LAM55 (catalog equivalent; supplier unconfirmed). f = +31.199105 mm.**
 
-The first member of D6 begins the rear B4b correction pair. It follows B4a during infinity zoom but not its near-focus translation.
+The first member of C6 begins the rear B4b correction pair. It follows B4a during infinity zoom but not its near-focus translation.
 
 ### L17 — Meniscus Negative
 
 **nd = 1.51633, νd = 64.1. Glass: S-BSL7 (catalog equivalent; supplier unconfirmed). f = -32.661116 mm.**
 
-The second member of D6 completes a nearly afocal negative rear pair. The camera-side plate follows the variable final air gap.
+The second member of C6 completes a nearly afocal negative rear pair. The camera-side plate follows the variable final air gap.
 
 ## Glass Identification
 
@@ -194,9 +194,9 @@ The patent describes transverse B3b motion for stabilization (¶0026), and Figur
 
 ## Semi-Diameters and Model Limitations
 
-The patent supplies no clear semi-diameters. The values are measured from the optical rims in Figure 1, not the barrel or camera block. The parent's Figure 1 is the cleaner scan; it was read first and checked against Figure 1 of the divisional JP 2017-161933 A, which draws the same lens. The 85.68 mm first-to-last-lens vertex span sets the scale, and every drawn vertex falls within about 0.12 mm of the wide-angle infinity spacing. Both drawings show steps at the cemented joints. L5's rear face, L9's rear face and L16's front face sit 0.5–0.8 mm inside their partners. S8, S15 and S27 therefore carry 8.4, 7.7 and 8.7 mm. The other rims are within about 5 % of both drawings and keep their estimates.
+The patent supplies no clear semi-diameters. The values are measured from the optical rims in Figure 1, not the barrel or camera block. The parent's Figure 1 is the cleaner scan; it was read first and checked against Figure 1 of the divisional JP 2017-161933 A, which draws the same lens. The 85.68 mm first-to-last-lens vertex span sets the scale, and every drawn vertex falls within about 0.12 mm of the wide-angle infinity spacing. Both drawings show steps at the cemented joints. L5's rear face, L9's rear face and L16's front face sit 0.5–0.8 mm inside their partners. S15 and S27 therefore carry 7.7 and 8.7 mm. The other rims are within about 5 % of both drawings and keep their estimates.
 
-L6 stays at 8.20 mm, about 4 % under the drawn 8.55 mm. A larger L6 would meet L5's rear face across their 2.01 mm air gap. The axial ray at the model's iris rim needs at most 8.18 mm there, at S10 at 195 mm and infinity focus. An exact ray launched at the full paraxial entrance-pupil height would need 8.23/8.44 mm at S9/S10. That ray crosses the stop about 3.5 % above the paraxial iris because of the front groups' spherical aberration. It is not a clip of the stated paraxial f-number. This is an inferred aperture, not an altered published number. The cemented-step reductions leave the geometric vignetting unchanged at every sampled field.
+L6 is drawn square at 8.55 mm, just taller than L5's rear face (8.39 mm), the two nearly touching across their 2.01 mm air gap. The model draws L6 square at 8.50 mm and L5's rear face at its drawn 8.4 mm, which keeps that order; the two curved faces then close 94 % of the gap without crossing, so the file allows that fill. The axial ray at the model's iris rim needs at most 7.98 mm at S8 and 8.18 mm at S10, at 195 mm and infinity focus. An exact ray launched at the full paraxial entrance-pupil height would need 8.23 mm at S8. That ray crosses the stop about 3.5 % above the paraxial iris because of the front groups' spherical aberration, so it is not a clip of the stated paraxial f-number. These are inferred apertures, not altered published numbers. The rim changes leave the geometric vignetting unchanged within 0.1 percentage point at every sampled field.
 
 The full 13.66 mm image height is reached at every zoom station, with the ordinary mechanical vignetting of a compact telephoto zoom at the frame corner. Edge contrast at the calculated intermediate zoom positions near a quarter of the range is lower than at the printed stations; axial refocusing does not recover it, and the zoom path was not tuned to improve it. The model is a reconstruction from the patent, not a measured production lens: the clear apertures, the intermediate zoom stations, every near-focus position and the glass dispersions are inferred.
 

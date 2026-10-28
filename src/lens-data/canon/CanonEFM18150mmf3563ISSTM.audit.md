@@ -170,3 +170,91 @@ Open:
   printed rows was not re-measured after this pass.
 - L16 (nd 1.53160, νd 55.8) matches no catalog material; its dispersion is estimated.
 - The IS decenter of B4 is not modeled.
+
+## 2026-10-28 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page (wide and tele at infinity, 21.77 mm, 48.87 mm and tele at closest focus, the zoom and focus movement
+overlays, and the element inspector for L2, L8, L10, L14 and L16) against Fig. 3(A) and (B) rendered at the sheet's
+300 dpi, the text of ¶0071–0074 and ¶0083, the variable-spacing table of Numerical Value Data 2 and the Canon Camera
+Museum construction diagram.
+
+### Silhouette
+
+- Fresh readings of Fig. 3(A) on both sides (axis row 1610 px, 9.133 px/mm): D1 21.1 mm as one flat edge from front
+  face to rear face, L3 19.2, L4 flange 12.45, L5 and L6 9.7, L7 9.2, L8 7.55, L9 6.84, B4 6.29, B5 6.68, B6 6.73,
+  L16 rear 10.2 and L17 14.3 mm. Against the stored values the ratio runs from 1.04 (D1) to 1.20 (L9 rear). The
+  ordering of heights between neighbours is the figure's everywhere: L3 below D1, L4 above L5–L7, L8 above L9, L9
+  about equal to B5 and B6, B4 the lowest, L17 above L16.
+- Visible differences: Fig. 3 draws D1 as one square-cut block, where the site bevels L1 from 20.39 to 19.00 mm and
+  steps L2 to 18.885 mm; it draws L4 with a flat flange beyond the end of its concave rear, where the site bevels L4
+  from 11.67 to 9.255 mm; and it draws L9, B4, B5 and B6 square-cut, where the site shows the small steps between the
+  printed face diameters. Squaring them would lift faces above their printed effective diameters, which are kept as
+  table values. Canon's diagram draws D1 stepped (L2 shorter than L1) and the B5 pair with L13 taller than L12, as
+  the table does. No `sd` changed.
+
+### Labels and tags, found correct
+
+- Group brackets B1 (1–5), B2 (6–13), B3 (stop–18), B4 (19–21), B5 (22–24), B6 (25–27), B7 (28A–29A) and B8 (30–31)
+  are the patent's units and bracket the elements Fig. 3 brackets; its B3 bracket starts at SP, which moves with L8
+  (fixed 0.70 mm). "B6 (focus)" matches the figure's "(FL) B6". Doublet brackets D1–D4 cover the four cemented pairs
+  and repeat none of the air-gap labels (D5, D13, D18, D21, D24, D27, D29).
+- The patent designates only PL and NL (B6, Fig. 3 and ¶0074); the L14 and L15 roles quote them, and the elements keep
+  sequential L1–L17. Every element type agrees with its radius signs, and the two "2× Asph" types sit on L8 and L16.
+  The aspheric labels 15A, 16A, 28A and 29A are exactly the starred surfaces. The stop is surface 14, between L7 and
+  L8. Every element has a focal length; no cement layer is listed.
+- `apd: "inferred"` on L2 only: Canon's diagram colours L2 as its UD element, and L8 and L16 in the aspherical
+  shade. L14 and L15 carry Table 1's θgF as `dPgF` without an `apd` tag; the patent states partial-dispersion
+  conditions but does not call either glass anomalous. Canon's red frame marks the cemented L10–L11 as the IS unit,
+  which the L10/L11 roles and the header name and the model keeps centered (¶0083).
+
+### Movement, found correct
+
+- Stations ascend from 18.56 to 145.41 mm, and every gap has 65 rows of nine focus keyframes. The printed rows are
+  unchanged: D5 0.60/15.03/39.50, D13 24.58/9.87/1.94, D18 2.75/2.30/2.95, D21 1.54/1.99/1.34, D24 1.40/3.27/1.40,
+  D27 12.39/10.52/12.39 and D29 0.80/16.44/26.62 mm.
+- Unit travel from wide to tele, measured from the fixed image plane and positive toward the object: B1 +42.08 mm,
+  B2 +3.18 mm, B3, B5 and B7 +25.82 mm together, B4 +25.62 mm, B6 +25.82 mm and B8 0. Every moving unit except B2
+  moves monotonically objectward, as ¶0072 states. B2 first moves 0.14 mm toward the image, to 20.48 mm, then objectward:
+  the locus convex to the image of ¶0072 and the curved B2 arrow of Fig. 3.
+- Direction changes per gap: D5 0, D13 0, D18 1 (at 48.87 mm), D21 1 (48.87 mm), D24 1 (70.25 mm), D27 1 (70.25 mm)
+  and D29 0, which is ¶0073 gap by gap.
+- Focus: keyframe 0 is infinity at every station; D24 rises and D27 falls monotonically through the keyframes at all
+  65 stations with their sum at 13.79 mm, and no other gap changes. B6 travel is 0.806, 2.935 and 7.143 mm at the
+  printed rows. The zoom overlay shows every unit moving objectward and B8 fixed (largest travel 42.08 mm); the focus
+  overlay shows only B6 moving, imageward. The slider ends read ∞ to 25 cm at wide and middle, 38 cm at 92 mm and
+  45 cm at tele.
+
+### Far-focus labels
+
+A paraxial solve against the stored 10.65 mm image plane puts infinity focus at 27.0 m at the wide row, 67.8 m at the
+middle row and 410 m at the tele row (back-focus residuals 0.013, 0.035 and 0.052 mm); every calculated station
+focuses at infinity. The slider's 32.1 m setting (focus 0.0078) focuses at 14.92 m at wide and 21.66 m at the middle
+row; its 62.5 m setting focuses at 19.06 m at wide. The 2.00 m and 0.25 m keyframes at wide and the 3.60 m and
+0.45 m keyframes at tele land on their labels. The focus text named only the wide row, so it was extended.
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Header comment, zoom solve | B6 solved at every station | B6 solved except at 19.20–30.87 mm, where D24 follows a smooth curve and B2 is solved | D5 departs from its linear path by up to 0.266 mm at stations 1–17 and by 0 from 31.81 mm on |
+| `focus.description`, last sentence | Wide row focused at about 27 m | Wide and middle rows at about 27 m and 68 m; 32 m at wide focuses at about 15 m | Paraxial solve above |
+| Analysis, Focus Mechanism | Wide-row residual only | Residuals at all three printed rows and the 32 m results at wide and middle | Paraxial solve above |
+| Analysis, zoom reconstruction | B2 up to 0.27 mm imageward of its linear path | Adds the 0.14 mm imageward reversal to 20.5 mm and the Fig. 3 arrow | Station positions above |
+
+### Clearances (no rim changed)
+
+The surface validator reports no errors, the image-circle floor finds no undersized surface, field coverage is 100 %
+of 13.66 mm at all 65 stations, and the real-ray check shows no clipped axial beam and no blocked chief ray at infinity
+or closest focus. The engine at wide is unchanged: EFL 18.5519 mm, F3.6, half-field 33.36°, stop 6.514 mm. The scratch
+vignetting tool passes the wide stop radius at every zoom position, which reads 89–96 % on axis away from wide; with
+each station's own wide-open stop the axis is 100 % at every zoom position tried (0, 0.25, 0.5, 0.6, 0.75, 0.9, 1),
+and the edge of field transmits 42.0 % at 37.8° (wide), 80.4 % at 15.3° (middle) and 44.9 % at 5.3° (tele).
+
+### Open limitations
+
+- The square-cut edges of Fig. 3 (D1, the L4 flange, L9, B4–B6) stay stepped or bevelled on the site while the
+  printed diameters are kept.
+- The engine's half-field estimate at wide, 33.36°, is set by surface 7 and sits below the printed 36.35°; the traced
+  chief ray still reaches the full 13.66 mm at 37.8°.

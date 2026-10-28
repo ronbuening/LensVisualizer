@@ -186,3 +186,82 @@ Open limitations: L22 and L52 stay 5% and 8% under their drawn rims and the G3 f
 block, because the printed radii cross where the drawing shows elements touching; the figure is not a scale
 drawing there. The analysis's half-field MTF figure was not recomputed. The L51 change alone moves wide-open
 transmission at 5.9° (wide) from 99.0% to 99.3%.
+
+## 2026-10-28 — Second review: diagram, labels and movement
+
+Compared: the local page at 52.47, 70.5, 101.2, 148.5 and 202.2 mm (infinity and `focus=1`, which draw the same
+infinity-only state), the zoom-motion overlay at both ends and the inspector for L12, L32, L43, L51 and L52, against
+Fig. 3A and Fig. 3C (A1 PDF p. 4, the native 2320 × 3408 raster at 72 dpi), ¶0025, ¶0045, ¶0075–0078, ¶0088–0092,
+the Numerical data 3 zoom table (A1 p. 11), Table 1, and the Olympus catalogue drawing.
+
+Scale, re-measured from vertex crossings 6 px either side of the axis: r1 at page row 1676 and r32 at row 658 give
+1018 px for 158.808 mm (6.41 px/mm); r18 to r29 gives 348 px for 54.172 mm (6.42 px/mm). Rims are half the
+distance between the two rim lines.
+
+| Element | Fig. 3A half-height, px → mm | Model sd, mm | Model ÷ figure | Finding |
+|---|---:|---:|---:|---|
+| G1 | 207 → 32.3 | 32.2 | 1.00 | Agrees; square-cut as drawn. |
+| L21 | 145.5 → 22.7 | 22.6 | 1.00 | Agrees; square-cut as drawn. |
+| L22 | 136 → 21.2 | 20.0 | 0.94 | Held by the r8/r9 gap: 20.3 passes the 0.93 allowance, 20.4 fails. |
+| L31–L33 block | 86 → 13.4 | 11.5–12.2 | 0.86–0.91 | Crossing faces and tele beam floor; see below. |
+| L34 | 91.5 → 14.3 | 12.1 / 12.8 | 0.85 / 0.90 | Crossing faces and tele beam floor; see below. |
+| G4 | 101.5 → 15.8 | 15.6 | 0.99 | Agrees. |
+| L51 | 101.5 → 15.8 | 15.6 | 0.99 | Agrees; square-cut as drawn. |
+| L52 | 95.8 → 14.9 | 13.5 | 0.90 | Held by the r26/r27 gap: 13.7 passes, 13.8 fails. |
+| L53 | 101.5 → 15.8 | 15.6 | 0.99 | Agrees. |
+| L54 | 86 → 13.4 | 13.2 | 0.99 | Agrees. |
+
+The visible differences are in G3, L22 and L52. The figure draws L31–L33 as one flat block and L34 as a square
+element taller than it; the site shows a waist at r12/r13 and slanted tops on L31, L32 and L34, and L22 and L52
+stand lower beside L21 and L51 than drawn. All follow from the printed radii: r8/r9 cross at 20.9 mm, r12/r13 at
+12.0 mm, r15/r16 at 12.6 mm and r26/r27 at 14.3 mm, while the tele beam needs 11.97 mm at r11, 12.06 mm at r14 and
+12.65 mm at r17. Squaring L31 would need r11 at or below about 11.55 mm, L32 r14 likewise, and L34 r16 at or above
+12.65 mm, so no face can be squared by `sd` alone. Raising L22 to 20.3 mm or L52 to 13.7 mm would gain 1.5%, inside
+measurement noise. The drawn height order of neighbours is preserved everywhere. No `sd` was changed.
+
+Fig. 3A draws two flat lands square to the axis: on L21's rear, where the r8 cap ends at 133 of 145.5 px (q = 0.914
+left side, 0.917 right side), and on L34's front, where the r16 cap ends on r15's plane at q = 0.917 / 0.923. It
+draws r12 and r13 meeting at the block outline and the r27 cap running to L52's edge, with no land. A scratch copy
+with r8 `rimCutDepthMm` 5.44 (cut radius 20.68 mm, axial beam 14.23 mm there) and r16 at sd 12.8 with
+`rimCutDepthMm` 2.14 (cut radius 12.155 mm; 2.12 at the old 12.1 mm is refused because the tele beam reaches
+12.096 mm and the cut needs a 0.05 mm margin) passes the surface validator, leaves the aperture census and the
+vignetting curves at the wide, middle and tele states identical, and keeps the half-field at 19.87°. That would draw
+L21's land and square L34 at 12.8 mm. Rim cuts are outside this review's edit list and are not applied.
+
+Labels checked and found correct: element names and diagram labels L11–L54 are the figure's L1₁–L5₄ and agree in the
+inspector and on the diagram; brackets G1 (r1–r6), G2 (r7–r10), G3 (r11–r17), G4 (r18–r23) and G5 (stop to r32)
+match the figure, whose G5 bracket starts at S (¶0077: the stop moves with G5); the L32–L33 doublet (r13–r15) is the
+only cemented component; every `type` agrees with the radius signs; all 16 elements carry focal lengths; there are
+no aspheres and no `A` labels; the stop sits between L43 and L51, 1.290 mm before r25. The gap labels D6, D10, D17,
+D23 and D32 are the patent's and no bracket text collides with them.
+
+Tags: ¶0025 (A1 p. 7) uses anomalous-dispersion glass in the first unit, and ¶0045 (A1 p. 8) in the fourth and fifth
+units, placed before and behind the stop between them. L12 is G1's only νd 81.54 element; L43 and L51 are the
+elements immediately before and after the stop and their units' only νd 81.54 elements; the Olympus drawing colours
+exactly these three. The `apd: "patent"` tags stand. Every glass label resolves to a catalogue equivalent within
+0.00001 in nd; the patent prints only nd and νd (¶0080), with no glass names, other line indices or partial
+dispersions.
+
+Movement, as group distance from the image plane (mm, wide → middle → tele, from the printed and reconstructed gaps):
+G1 194.718 → 241.348 → 261.504, objectward 66.79 and monotone; G2 163.197 → 166.157 → 167.393, objectward 4.20,
+monotone and less than G1 as ¶0075 states; G3 151.213 → 151.214 → 151.203, fixed within the printed 0.011 mm drift;
+G4 108.737 → 117.492 → 133.125 and G5 with the stop 93.834 → 97.657 → 118.222, each objectward 24.39 and monotone, so
+D23 widens from 1.000 to 5.932 mm and narrows back to 1.000 mm as ¶0075 describes. The stations ascend from 52.468 to
+202.201 mm and every gap array follows that order; each gap is monotone within each reconstructed segment. The
+overlay draws the same travel, maximum 66.79 mm. Focus: every gap pair is identical, the focus slider is disabled
+with "Not modeled", and the focus text matches ¶0078 / ¶0091 and Table 1 (Δd/ft 0.102, MG −0.255).
+
+Fields changed: the header's semi-diameter note and the analysis's clear-aperture paragraph said L22 sits just above
+the tele axial beam; the beam reaches 14.21 mm at r9 against L22's 20.0 mm, so both now say L22 is held by the r8/r9
+gap and name the figure's two lands. The analysis's L34 sentence now gives the reason for its 12.1 / 12.8 mm rims.
+
+Engine values are unchanged: f/2.8 at the wide end, half-field 19.87°, stop radius 13.98 mm; the wide-open
+vignetting curves are the same (wide corner 87.2% at 11.8°; on-axis 97.4% at the tele end, as in the first pass's
+baseline). The surface validator, image-circle floor (no undersized surface), field coverage (10.82 mm corner at all
+33 stations) and real-ray trace to Y = 11.15 mm (ω 12.20° to 3.12°, no clipped axial beam or blocked chief ray) all
+pass. Open: the rim cuts above, and the G3, L22 and L52 shortfalls, which the printed radii force.
+
+Coordinator follow-up, same day: the two figure lands the second review proposed are applied as inferred rim cuts —
+r8 `rimCutDepthMm` 5.44 (land 20.68 mm) and r16 `sd` 12.1 → 12.8 with `rimCutDepthMm` 2.14 (land 12.155 mm, outside
+the 12.096 mm tele beam by more than the 0.05 mm margin). The surface validator, including its rim-cut beam check,
+reports no errors.

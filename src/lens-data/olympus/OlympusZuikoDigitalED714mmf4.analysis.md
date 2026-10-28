@@ -18,7 +18,7 @@ The association rests on the 18/12 construction; two double-sided aspheric eleme
 
 ## Optical Architecture
 
-The source has 31 optical surfaces including the aperture stop at S19, with 18 glass elements in 12 air-separated components. The negative front group contains L1–L10; the positive rear group contains L11–L18. Six cemented interfaces form four doublets and one triplet. There is no camera-side plate in this example. The group labels describe optical power blocks, not twelve independent zoom-moving groups.
+The source has 31 optical surfaces including the aperture stop at S19, with 18 glass elements in 12 air-separated components. The negative front group contains L1–L10; the positive rear group contains L11–L18. Six cemented interfaces form four doublets and one triplet. There is no camera-side plate in this example. The figure brackets only FG, S and RG; the patent's text and claims 5–6 divide the negative group into a first, second and third lens unit, with the second moving for focus, so the diagram brackets FG as FG1 (L1–L2), FG2 (L3–L8, the focusing unit, f ≈ +671 mm) and FG3 (L9–L10). The cemented components are labelled C1–C5 from front to rear (C3 is the triplet), so they do not read as the D4/D15/D18/D19 air gaps.
 
 At infinity the source varies D18 = 16.7/8.6/1.1 mm, D19 = 3.2/1.6/0.6 mm and D31 = 33.6/40.4/51.8 mm. All other internal dimensions keep their printed values. Relative to the fixed image plane, the front group moves on a concave path and returns to its wide-end position at tele, while the rear group advances toward the object. The stop-to-rear-group gap narrows.
 
@@ -66,55 +66,55 @@ Low-dispersion negative element of the focusing unit with printed θgF 0.54; the
 
 nd = 1.55715, νd = 40.90. Glass: Unmatched (patent nd=1.55715, νd=40.90; no catalog equivalent). f = +23.270593 mm (thick-element focal length in air).
 
-Front member of cemented D1; its nd/νd pair has no close public catalog match.
+Front member of cemented C1; its nd/νd pair has no close public catalog match.
 
 ### L8 — Negative Meniscus
 
 nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -34.394373 mm (thick-element focal length in air).
 
-Rear member of cemented D1, high-index partner to L7, and the last element of the focusing unit.
+Rear member of cemented C1, high-index partner to L7, and the last element of the focusing unit.
 
 ### L9 — Biconcave Negative
 
 nd = 1.71628, νd = 54.33. Glass: Unmatched (patent nd=1.71628, νd=54.33; no catalog equivalent). f = -18.310220 mm (thick-element focal length in air).
 
-Front member of cemented D2, fixed during focusing; its nd/νd pair has no catalog equivalent.
+Front member of cemented C2, fixed during focusing; its nd/νd pair has no catalog equivalent.
 
 ### L10 — Positive Meniscus
 
 nd = 1.87753, νd = 35.66. Glass: Unmatched (patent nd=1.87753, νd=35.66; no catalog equivalent). f = +28.375003 mm (thick-element focal length in air).
 
-Rear member of cemented D2, immediately preceding the long variable gap to the stop.
+Rear member of cemented C2, immediately preceding the long variable gap to the stop.
 
 ### L11 — Positive Meniscus
 
 nd = 1.51742, νd = 52.43. Glass: S-NSL36 (catalog equivalent; supplier unconfirmed). f = +33.884057 mm (thick-element focal length in air).
 
-First element of cemented T1 in the rear positive group.
+First element of cemented triplet C3 in the rear positive group.
 
 ### L12 — Negative Meniscus
 
 nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -13.555996 mm (thick-element focal length in air).
 
-High-index middle element of T1; two cemented interfaces contribute to its combined power.
+High-index middle element of C3; two cemented interfaces contribute to its combined power.
 
 ### L13 — Biconvex Positive
 
 nd = 1.62004, νd = 36.26. Glass: S-TIM2 (catalog equivalent; supplier unconfirmed). f = +15.826438 mm (thick-element focal length in air).
 
-Rear element of T1; the cemented block counts as three elements in one group.
+Rear element of C3; the cemented block counts as three elements in one group.
 
 ### L14 — Biconvex Positive
 
 nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = +25.998818 mm (thick-element focal length in air).
 
-Front low-dispersion element of D3 with printed θgF 0.54; the Olympus drawing marks this position as ED (an inferred match).
+Front low-dispersion element of C4 with printed θgF 0.54; the Olympus drawing marks this position as ED (an inferred match).
 
 ### L15 — Biconcave Negative
 
 nd = 1.71700, νd = 47.92. Glass: S-LAM3 (catalog equivalent; supplier unconfirmed). f = -24.566208 mm (thick-element focal length in air).
 
-Rear element of D3, adjoining the separate double-sided aspheric element.
+Rear element of C4, adjoining the separate double-sided aspheric element.
 
 ### L16 — Biconvex Positive (2× Asph)
 
@@ -126,13 +126,13 @@ Positive double-sided aspheric element S27/S28 in the same low-dispersion glass 
 
 nd = 1.88300, νd = 40.76. Glass: S-LAH58 (catalog equivalent; supplier unconfirmed). f = -12.705649 mm (thick-element focal length in air).
 
-Front high-index element of rear doublet D4.
+Front high-index element of rear doublet C5.
 
 ### L18 — Biconvex Positive
 
 nd = 1.48749, νd = 70.23. Glass: S-FSL5 (catalog equivalent; supplier unconfirmed). f = +19.062378 mm (thick-element focal length in air).
 
-Rear low-dispersion element of D4. Its νd 70.23 has no printed partial-dispersion value; its dispersion follows the S-FSL5 catalog curve.
+Rear low-dispersion element of C5. Its νd 70.23 has no printed partial-dispersion value; its dispersion follows the S-FSL5 catalog curve.
 
 ## Glass Identification / Selection
 
@@ -142,7 +142,7 @@ L4, L6, L14 and L16 each have nd 1.49700, νd 81.54 and printed θgF 0.54, store
 
 ## Focus Mechanism
 
-The patent prints a close-focus state at an object-to-image distance (IO) of 250 mm at all three zoom stations: D4 opens from 11.6 to 17.3 mm and D15 closes from 6.8 to 1.1 mm, so the L3–L8 block (L3–L6 and doublet D1) moves 5.7 mm toward the image while L1/L2, doublet D2 and the rear group stay fixed, as the patent's description of Example 3 states. The focus spacings are the same at every zoom position, so the model applies them at all 33 stations; the wide, middle and tele states are marked as published and carry the patent's 250 mm IO for finite-distance MTF. Olympus describes inner focus with a floating mechanism; Example 3 moves a single unit, so the production focusing may differ in detail.
+The patent prints a close-focus state at an object-to-image distance (IO) of 250 mm at all three zoom stations: D4 opens from 11.6 to 17.3 mm and D15 closes from 6.8 to 1.1 mm, so the L3–L8 block (L3–L6 and doublet C1, bracketed FG2) moves 5.7 mm toward the image while L1/L2 (FG1), doublet C2 (FG3) and the rear group stay fixed, as the patent's description of Example 3 states. The focus spacings are the same at every zoom position, so the model applies them at all 33 stations; the wide, middle and tele states are marked as published and carry the patent's 250 mm IO for finite-distance MTF. Olympus describes inner focus with a floating mechanism; Example 3 moves a single unit, so the production focusing may differ in detail.
 
 The printed image planes lie +0.069 / +0.057 / −0.054 mm from the paraxial focus at wide / middle / tele and are kept as printed. With the image plane held at that infinity-focus offset, the printed close spacings focus at about 249.5 / 246.6 / 249.6 mm object-to-image, within the rounding of the patent's IO row, at magnifications of about −0.055 / −0.074 / −0.107 against Olympus's 0.11× maximum. The 250 mm IO equals the production 0.25 m minimum focus distance, which is measured from the image plane; Olympus's 10 cm working distance is measured from the front of the lens.
 
@@ -152,10 +152,10 @@ The printed equation uses the standard conic term with (1+K), so K is the conic 
 
 | Surface |                  K |                 A4 |                 A6 |                 A8 |                A10 |                A12 |
 | ------- | -----------------: | -----------------: | -----------------: | -----------------: | -----------------: | -----------------: |
-| 3       | -3.8916000000 e+00 |  9.7700000000 e-06 | -4.3700000000 e-08 |  1.1700000000 e-10 | -1.2700000000 e-13 |  5.5400000000 e-17 |
-| 4       | -8.7030000000 e-01 | -5.3100000000 e-05 | -3.1900000000 e-08 | -4.6000000000 e-11 |  9.5900000000 e-13 | -1.8000000000 e-15 |
-| 27      |  0.0000000000 e+00 | -2.7400000000 e-05 |  2.8900000000 e-07 | -6.4000000000 e-09 |  4.8600000000 e-11 |  0.0000000000 e+00 |
-| 28      |  0.0000000000 e+00 |  5.4900000000 e-05 |  1.6900000000 e-07 | -7.7800000000 e-09 |  5.3100000000 e-11 |  0.0000000000 e+00 |
+| 3A      | -3.8916000000 e+00 |  9.7700000000 e-06 | -4.3700000000 e-08 |  1.1700000000 e-10 | -1.2700000000 e-13 |  5.5400000000 e-17 |
+| 4A      | -8.7030000000 e-01 | -5.3100000000 e-05 | -3.1900000000 e-08 | -4.6000000000 e-11 |  9.5900000000 e-13 | -1.8000000000 e-15 |
+| 27A     |  0.0000000000 e+00 | -2.7400000000 e-05 |  2.8900000000 e-07 | -6.4000000000 e-09 |  4.8600000000 e-11 |  0.0000000000 e+00 |
+| 28A     |  0.0000000000 e+00 |  5.4900000000 e-05 |  1.6900000000 e-07 | -7.7800000000 e-09 |  5.3100000000 e-11 |  0.0000000000 e+00 |
 
 All coefficients above retain the printed sign and precision; no global length scaling is applied. At the front negative meniscus and rear positive element the paired aspheres redistribute higher-order spherical aberration and field behavior. Olympus describes both as glass-molded aspherical elements, the rear one in ED glass.
 

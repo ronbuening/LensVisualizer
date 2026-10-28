@@ -120,7 +120,7 @@ The high-dispersion positive member closes the cemented doublet at r15. There is
 
 nd = 1.77250, νd = 49.60. Glass: S-LAH66 (catalog equivalent; supplier unconfirmed). f = -47.873 mm.
 
-The final negative meniscus completes G3. In the model its rear clear radius is larger than its front one so the full-aperture tele beam clears the tight gap ahead of it.
+The final negative meniscus completes G3. In the model its rear clear radius (12.8 mm) is larger than its front one (12.1 mm): the full-aperture tele beam needs about 12.65 mm at the rear face, while the concave front face must stay short of L33's rear across the 2.005 mm gap.
 
 ### L41 — Biconvex Positive
 
@@ -224,9 +224,12 @@ No numerical clear apertures are published. Fig. 3A, which draws the same rims a
 32 mm for G1, 22.6 mm for L21, 21 mm for L22, 13.2 mm for the L31–L33 block, 14.0 mm for L34, 15.6 mm for G4,
 L51 and L53, 14.7 mm for L52 and 13.2 mm for L54. G1, L21, G4, L51, L53 and L54 are modeled at those values.
 Where the drawing shows neighbours touching, the printed surfaces would cross below the drawn rims: r8/r9 at
-about 20.9 mm, r12/r13 at 12.0 mm, r15/r16 at 12.6 mm and r26/r27 at 14.3 mm. The figure draws flat contact
-rings out to the outline there, so L22 (20.0 mm), G3 (11.5–12.8 mm) and L52 (13.5 mm) stay below the drawn
-outlines and just above the full-aperture tele beam.
+about 20.9 mm, r12/r13 at 12.0 mm, r15/r16 at 12.6 mm and r26/r27 at 14.3 mm. The figure draws those faces
+touching, with flat lands on L21's rear and L34's front, so L22 (20.0 mm), G3 (11.5–12.8 mm) and L52 (13.5 mm)
+stay below the drawn outlines. L22 is held by the r8/r9 gap (20.3 mm is the most it admits); G3 and L52 sit
+just above the full-aperture tele beam. The two drawn lands are modeled as flat rim cuts: L21's rear face is cut
+5.44 mm behind its vertex (land at 20.7 mm), and L34's front face runs to 12.8 mm with a cut 2.14 mm deep (land at
+12.2 mm, just outside the tele beam), so L34 renders square as drawn.
 
 At r12/r13 and r15/r16 the tele marginal ray alone needs rims whose sags fill 0.911 and 0.915 of the air gap, so
 the file allows up to 0.93 of a gap (the default is 0.90). No radius, thickness or index is altered, and no glass

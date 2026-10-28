@@ -7,7 +7,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, nd/νd, aspheres and the three printed infinity rows (wide/middle/tele) are unchanged.
  * Asphere form ¶0065 uses (1 + K); K = 0 on both surfaces.
  * Semi-diameters are estimated from the Fig. 1 optical rims of both publications; none is printed.
- * S8, S15 and S27 follow the drawn cemented steps; L6 at 8.2 mm clears the iris-rim axial ray (S10 needs 8.18 mm).
+ * S15 and S27 follow the drawn cemented steps. L6 is square at 8.5 mm (drawn 8.55), taller than L5's rear face as
+ * drawn; S8 is 8.4 mm (drawn 8.39), admitted across the 2.01 mm S8–S9 gap by checks.gapSagFrac 0.94, the smallest
+ * two-decimal value that passes (the faces do not cross).
+ * Cemented pairs are C1–C6 (the gaps carry the patent's D labels); C4 is the B3b IS unit. Fig. 1 also brackets B3a
+ * (L7–L10, with SP) and B3c (L13); B3 stays one bracket because the sub-labels collide at diagram scale.
  * The printed S30–S31 camera-side plate is in rearPlates; the printed TL and BF are air-equivalent.
  * The 30 intermediate zoom stations and every finite-focus B4a position are calculated, not printed.
  * ¶0028: B4a moves imageward for near focus with D23 + D26 constant; B4a and B4b share one infinity zoom path.
@@ -73,7 +77,7 @@ const LENS_DATA = {
       focalLengthMm: -72.440755,
       glass: "P-LASF47 (catalog equivalent; supplier unconfirmed)",
       role: "Negative front member of the first-group cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -85,7 +89,7 @@ const LENS_DATA = {
       focalLengthMm: 59.067087,
       glass: "S-FSL5 (catalog equivalent; supplier unconfirmed)",
       role: "Positive rear member of the first-group cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -97,7 +101,7 @@ const LENS_DATA = {
       focalLengthMm: -20.252895,
       glass: "S-LAL10 (catalog equivalent; supplier unconfirmed)",
       role: "Negative front member of the second-group (B2) cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 5,
@@ -109,7 +113,7 @@ const LENS_DATA = {
       focalLengthMm: 31.877344,
       glass: "S-NPH53 (catalog equivalent; supplier unconfirmed)",
       role: "Positive dense-flint member of the second-group cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -146,7 +150,7 @@ const LENS_DATA = {
       apdNote:
         "Canon marks one UD element at this position; nd 1.49700 / νd 81.5 fits a UD-class fluorophosphate crown, but the patent names no glass.",
       role: "Positive low-dispersion member of the B3a cemented doublet",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 9,
@@ -158,7 +162,7 @@ const LENS_DATA = {
       focalLengthMm: -25.391226,
       glass: "S-NPH53 (catalog equivalent; supplier unconfirmed)",
       role: "Negative flint member of the B3a cemented doublet, ahead of the stop",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 10,
@@ -181,7 +185,7 @@ const LENS_DATA = {
       focalLengthMm: 30.286392,
       glass: "J-LASFH6 (catalog equivalent; supplier unconfirmed)",
       role: "Positive member of the B3b image-stabilization doublet (shown centered)",
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 12,
@@ -193,7 +197,7 @@ const LENS_DATA = {
       focalLengthMm: -15.239188,
       glass: "M-LAC130 (catalog equivalent; supplier unconfirmed)",
       role: "Negative member of the B3b image-stabilization doublet (shown centered)",
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 13,
@@ -216,7 +220,7 @@ const LENS_DATA = {
       focalLengthMm: -16.966371,
       glass: "J-LAK14 (catalog equivalent; supplier unconfirmed)",
       role: "Negative front member of the B4a focusing doublet",
-      cemented: "D5",
+      cemented: "C5",
     },
     {
       id: 15,
@@ -228,7 +232,7 @@ const LENS_DATA = {
       focalLengthMm: 32.383421,
       glass: "S-TIL2 (catalog equivalent; supplier unconfirmed)",
       role: "Positive rear member of the B4a focusing doublet",
-      cemented: "D5",
+      cemented: "C5",
     },
     {
       id: 16,
@@ -240,7 +244,7 @@ const LENS_DATA = {
       focalLengthMm: 31.199105,
       glass: "S-LAM55 (catalog equivalent; supplier unconfirmed)",
       role: "Positive front member of the rear B4b cemented doublet",
-      cemented: "D6",
+      cemented: "C6",
     },
     {
       id: 17,
@@ -252,7 +256,7 @@ const LENS_DATA = {
       focalLengthMm: -32.661116,
       glass: "S-BSL7 (catalog equivalent; supplier unconfirmed)",
       role: "Negative rear member of the nearly afocal B4b doublet",
-      cemented: "D6",
+      cemented: "C6",
     },
   ],
   surfaces: [
@@ -312,13 +316,13 @@ const LENS_DATA = {
       label: "9",
       R: -34.559,
       medium: 6,
-      sd: 8.2,
+      sd: 8.5,
       d: 0.9,
     },
     {
       label: "10",
       R: 270.27,
-      sd: 8.2,
+      sd: 8.5,
     },
     {
       label: "11",
@@ -1204,32 +1208,32 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "13",
       toSurface: "15",
     },
     {
-      text: "D4",
+      text: "C4 IS",
       fromSurface: "19",
       toSurface: "21",
     },
     {
-      text: "D5",
+      text: "C5",
       fromSurface: "24",
       toSurface: "26",
     },
     {
-      text: "D6",
+      text: "C6",
       fromSurface: "27",
       toSurface: "29",
     },
@@ -1238,6 +1242,9 @@ const LENS_DATA = {
     yScFill: 0.4,
     scFill: 0.48,
     maxAspectRatio: 1.6,
+  },
+  checks: {
+    gapSagFrac: 0.94,
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;

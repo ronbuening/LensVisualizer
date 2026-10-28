@@ -18,14 +18,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * −0.054 mm from the paraxial focus at wide / middle / tele and are kept as printed.
  *
  * Focus: the patent prints a 250 mm object-to-image state at all three stations (D4 11.6 → 17.3 mm,
- * D15 6.8 → 1.1 mm), moving L3–L8 5.7 mm toward the image.
+ * D15 6.8 → 1.1 mm), moving L3–L8 5.7 mm toward the image. The figure brackets only FG and RG; FG is bracketed here
+ * as the first, second (focusing) and third lens units of the patent's text and claims 5–6 (FG1 L1–L2, FG2 L3–L8,
+ * FG3 L9–L10) so the movement view shows the focusing unit. Cemented components are C1–C5, clear of the D-gap labels.
  *
  * Semi-diameters are estimated from Fig. 3(a), including the stepped front-element rims; the patent prints no
  * clear apertures. Measured on both sides of the wide panel (8.89 px/mm, r1 vertex to image plane), every rim agrees
  * with the drawing within about 6 % except S4: the figure draws r4 out to about 18.2 mm, with L3's front rim meeting
  * it. S4 = 18.2 mm and S5 = 17.1 mm follow the drawing (the Olympus construction drawing also carries L2's rear
  * face far out); the faces do not cross, and checks.gapSagFrac 0.99 is the smallest two-decimal value that admits
- * the pair across the 11.6 mm S4→S5 gap.
+ * the pair across the 11.6 mm S4→S5 gap. L3's flat rear land is a rim cut: S6 runs to 17.1 mm with a cut 5.35 mm
+ * from its vertex (land at the former 14.7 mm rim). L2's rear land is not cut: S4A turns over near 22 mm, so its sd
+ * cannot reach the 24 mm a land at 18.2 mm would need.
  * S2 = 24.2 mm lies inside the r2 rim drawn in Fig. 3(a) (about 24.5–25 mm) and needs a 66.5° rim slope
  * (checks.maxRimAngleDeg 67); with it the chief ray reaches the 10.82 mm Four Thirds corner at every station (the
  * patent plots image heights of 10.59 mm at wide and 11.45 mm at middle and tele). The stop diameter is not printed;
@@ -151,8 +155,8 @@ const LENS_DATA = {
       vd: 40.9,
       focalLengthMm: 23.270593,
       glass: "Unmatched (patent nd=1.55715, νd=40.90; no catalog equivalent)",
-      role: "Biconvex front element of the D1 doublet, at the rear of the focusing unit.",
-      cemented: "D1",
+      role: "Biconvex front element of the C1 doublet, at the rear of the focusing unit.",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -163,8 +167,8 @@ const LENS_DATA = {
       vd: 40.76,
       focalLengthMm: -34.394373,
       glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
-      role: "High-index negative meniscus rear element of the D1 doublet; last element of the focusing unit.",
-      cemented: "D1",
+      role: "High-index negative meniscus rear element of the C1 doublet; last element of the focusing unit.",
+      cemented: "C1",
     },
     {
       id: 9,
@@ -175,8 +179,8 @@ const LENS_DATA = {
       vd: 54.33,
       focalLengthMm: -18.31022,
       glass: "Unmatched (patent nd=1.71628, νd=54.33; no catalog equivalent)",
-      role: "Biconcave front element of the D2 doublet at the rear of the front group; fixed during focusing.",
-      cemented: "D2",
+      role: "Biconcave front element of the C2 doublet at the rear of the front group; fixed during focusing.",
+      cemented: "C2",
     },
     {
       id: 10,
@@ -187,8 +191,8 @@ const LENS_DATA = {
       vd: 35.66,
       focalLengthMm: 28.375003,
       glass: "Unmatched (patent nd=1.87753, νd=35.66; no catalog equivalent)",
-      role: "Positive meniscus rear element of the D2 doublet, ahead of the variable gap to the stop.",
-      cemented: "D2",
+      role: "Positive meniscus rear element of the C2 doublet, ahead of the variable gap to the stop.",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -199,8 +203,8 @@ const LENS_DATA = {
       vd: 52.43,
       focalLengthMm: 33.884057,
       glass: "S-NSL36 (catalog equivalent; supplier unconfirmed)",
-      role: "Positive meniscus front element of the T1 triplet, first element behind the stop.",
-      cemented: "T1",
+      role: "Positive meniscus front element of the C3 triplet, first element behind the stop.",
+      cemented: "C3",
     },
     {
       id: 12,
@@ -211,8 +215,8 @@ const LENS_DATA = {
       vd: 40.76,
       focalLengthMm: -13.555996,
       glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
-      role: "High-index negative meniscus center element of the T1 triplet.",
-      cemented: "T1",
+      role: "High-index negative meniscus center element of the C3 triplet.",
+      cemented: "C3",
     },
     {
       id: 13,
@@ -223,8 +227,8 @@ const LENS_DATA = {
       vd: 36.26,
       focalLengthMm: 15.826438,
       glass: "S-TIM2 (catalog equivalent; supplier unconfirmed)",
-      role: "Biconvex rear element of the T1 triplet.",
-      cemented: "T1",
+      role: "Biconvex rear element of the C3 triplet.",
+      cemented: "C3",
     },
     {
       id: 14,
@@ -235,8 +239,8 @@ const LENS_DATA = {
       vd: 81.54,
       focalLengthMm: 25.998818,
       glass: "S-FPL51 (catalog equivalent; supplier unconfirmed)",
-      role: "Low-dispersion biconvex front element of the D3 doublet.",
-      cemented: "D3",
+      role: "Low-dispersion biconvex front element of the C4 doublet.",
+      cemented: "C4",
       dPgF: 0.03335,
       apd: "patent",
       apdNote:
@@ -251,8 +255,8 @@ const LENS_DATA = {
       vd: 47.92,
       focalLengthMm: -24.566208,
       glass: "S-LAM3 (catalog equivalent; supplier unconfirmed)",
-      role: "Biconcave rear element of the D3 doublet.",
-      cemented: "D3",
+      role: "Biconcave rear element of the C4 doublet.",
+      cemented: "C4",
     },
     {
       id: 16,
@@ -278,8 +282,8 @@ const LENS_DATA = {
       vd: 40.76,
       focalLengthMm: -12.705649,
       glass: "S-LAH58 (catalog equivalent; supplier unconfirmed)",
-      role: "High-index biconcave front element of the D4 doublet.",
-      cemented: "D4",
+      role: "High-index biconcave front element of the C5 doublet.",
+      cemented: "C5",
     },
     {
       id: 18,
@@ -290,8 +294,8 @@ const LENS_DATA = {
       vd: 70.23,
       focalLengthMm: 19.062378,
       glass: "S-FSL5 (catalog equivalent; supplier unconfirmed)",
-      role: "Biconvex rear element of the D4 doublet; last element of the lens.",
-      cemented: "D4",
+      role: "Biconvex rear element of the C5 doublet; last element of the lens.",
+      cemented: "C5",
     },
   ],
   surfaces: [
@@ -309,7 +313,7 @@ const LENS_DATA = {
       sd: 24.2,
     },
     {
-      label: "3",
+      label: "3A",
       R: 19.41,
       d: 4,
       sd: 24.8,
@@ -324,7 +328,7 @@ const LENS_DATA = {
       },
     },
     {
-      label: "4",
+      label: "4A",
       R: 9.03,
       sd: 18.2,
       asphere: {
@@ -347,7 +351,8 @@ const LENS_DATA = {
       label: "6",
       R: 22.88,
       d: 10.5,
-      sd: 14.7,
+      sd: 17.1,
+      rimCutDepthMm: 5.35,
     },
     {
       label: "7",
@@ -478,7 +483,7 @@ const LENS_DATA = {
       sd: 7.5,
     },
     {
-      label: "27",
+      label: "27A",
       R: 21.38,
       d: 4.9,
       sd: 7.5,
@@ -493,7 +498,7 @@ const LENS_DATA = {
       },
     },
     {
-      label: "28",
+      label: "28A",
       R: -19.6,
       d: 0.2,
       sd: 7.5,
@@ -727,7 +732,7 @@ const LENS_DATA = {
     ],
   },
   gaps: {
-    "4": {
+    "4A": {
       label: "D4",
       values: [
         [11.6, 17.3],
@@ -926,8 +931,18 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "FG (-)",
+      text: "FG1 (-)",
       fromSurface: "1",
+      toSurface: "4A",
+    },
+    {
+      text: "FG2 FOCUS",
+      fromSurface: "5",
+      toSurface: "15",
+    },
+    {
+      text: "FG3 (-)",
+      fromSurface: "16",
       toSurface: "18",
     },
     {
@@ -938,27 +953,27 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "13",
       toSurface: "15",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "16",
       toSurface: "18",
     },
     {
-      text: "T1",
+      text: "C3",
       fromSurface: "20",
       toSurface: "23",
     },
     {
-      text: "D3",
+      text: "C4",
       fromSurface: "24",
       toSurface: "26",
     },
     {
-      text: "D4",
+      text: "C5",
       fromSurface: "29",
       toSurface: "31",
     },

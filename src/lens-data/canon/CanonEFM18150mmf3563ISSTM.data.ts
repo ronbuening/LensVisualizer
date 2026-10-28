@@ -7,7 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * diameter is a single value, not a zoom schedule: the engine sizes the iris from each station's f-number.
  * The other 62 stations are calculated. D5, D13, D18, D21 and D29 follow the printed rows linearly, except that B2
  * (D5/D13) departs by up to 0.27 mm near wide, on a locus convex to the image (¶0072), so that D24 widens once and
- * then narrows (¶0073). B6 (D24/D27) is solved at every station for zero paraxial defocus.
+ * then narrows (¶0073). Every calculated station has zero paraxial defocus: B6 (D24/D27) is the solved unit, except
+ * at 19.20–30.87 mm, where D24 follows a smooth widening curve and B2 is solved instead.
  * Station f-numbers are linear from wide to middle; from middle to tele they follow a smooth curve slow enough for
  * the axial beam to pass the printed B4 diameters (surfaces 19–21).
  * Focus: B6 (L14/L15) moves imageward (¶0074) with D24 + D27 = 13.79 mm; B3/B5/B7 zoom together and B8 is fixed
@@ -1013,7 +1014,7 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     keyframes: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
     description:
-      "B6, the cemented L14/L15 pair, moves toward the image to focus closer (¶0074); D24 + D27 stays 13.79 mm and no other unit moves. The patent prints no finite-focus spacings for this example. The travel is calculated for Canon's closest distances, 0.25 m at 18–50 mm and 0.45 m at 150 mm (object to image), interpolated between the middle and tele rows: 0.81 mm at wide, 2.93 mm at the middle row and 7.14 mm at tele, where it gives 0.31×, Canon's stated maximum. Distance labels are estimates; at the printed wide row the rounded infinity spacings leave the lens focused at about 27 m.",
+      "B6, the cemented L14/L15 pair, moves toward the image to focus closer (¶0074); D24 + D27 stays 13.79 mm and no other unit moves. The patent prints no finite-focus spacings for this example. The travel is calculated for Canon's closest distances, 0.25 m at 18–50 mm and 0.45 m at 150 mm (object to image), interpolated between the middle and tele rows: 0.81 mm at wide, 2.93 mm at the middle row and 7.14 mm at tele, where it gives 0.31×, Canon's stated maximum. Distance labels are estimates: the rounded infinity spacings of the printed wide and middle rows leave the lens focused at about 27 m and 68 m, so far-distance labels there read long (32 m at wide focuses at about 15 m).",
   },
   gaps: {
     "5": {

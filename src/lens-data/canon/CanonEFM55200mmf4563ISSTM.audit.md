@@ -153,3 +153,86 @@ Open:
 - `aperture.fStops` lists the printed station f-numbers 5.7 and 6.45 as click stops; f-number fields were outside this
   pass.
 - L6 stays at 8.20 mm; a full-pupil real ray would need 8.44 mm at S10 (see the semi-diameter section).
+
+## 2026-10-28 — Second review: diagram, labels and movement
+
+This independent review compared the local lens page with parent JP 2014-219616 A Figure 1 (page 21, wide angle,
+infinity), its text (¶0013–0028, ¶0058–0068) and Canon's construction diagram. The figure was re-measured with the
+silhouette profiler at 400 dpi on both sides of the axis (axis row 878, 0.0830 mm/px). Every rim agrees with the first
+pass to 0.02 mm: L1 15.27, L2 14.94, L3 rear 14.44, L4 8.88, L5 rear 8.39, L6 8.55, L7 9.21, L8 8.38, L9 rear 7.72,
+L10 6.23, L11/L12 5.39, L13 5.73, L14/L15 5.56, L16 front 8.72 and L17 9.38 mm.
+
+Silhouette differences seen on the page before this review:
+
+- L6 rendered 0.2 mm shorter than L5's rear rim, the reverse of the figure, where the square-cut L6 stands 0.16 mm
+  taller than L5's rear face. It also stood 0.8 mm below L4 against 0.33 mm drawn. Canon's diagram draws L6 as tall as
+  L4.
+- The cemented steps of C2, C3 and C6 render as bevels, since the renderer joins a member's two rims with a straight
+  edge. That is the nearest it can come to the drawn steps; no change.
+- C1 renders square at 15.25 mm, while the figure steps L3's rear face 0.5 mm in. At 5 % this is within the
+  measurement noise, and the first pass kept it; no change.
+
+| Surface | Before | After | Figure | Evidence |
+|---|---|---|---|---|
+| 8 (L5 rear) | 8.4 | **8.2** | 8.39 | −2 % from the drawing, still under L6 as drawn |
+| 9, 10 (L6) | 8.2 / 8.2 | **8.5 / 8.5** | 8.55 | square at the drawn height; drawn order L4 > L6 > L5 rear restored |
+
+With L6 at 8.5 mm, S8 at the drawn 8.4 mm closes 1.89 mm of the 2.01 mm S8–S9 gap, or 0.939 of it, and the surface
+validator refuses it at the default 0.90. S8 = 8.2 mm is the largest value it admits (0.894); 8.25 mm fails. The faces
+do not cross at 8.4 mm: 0.12 mm of air remains. The exact drawn set, S8 8.4 and S9/S10 8.5, passes the validator with
+`checks.gapSagFrac` 0.94 and then leaves no full-pupil clearance flag. That setting is outside this review's edit list
+and was not applied.
+
+Clearance after the edit:
+
+- Engine axial ray through the iris rim, maximum over 33 stations: 7.98 mm at S8 and 8.18 mm at S10, both at 195 mm
+  and infinity focus; 7.67 and 7.88 mm at the 1 m close focus.
+- The full-pupil real-ray tool now flags only S8, needing 8.23 mm against 8.2 mm. Before, it flagged S9 and S10 at
+  8.23 and 8.44 mm against 8.2 mm. Its launch ray crosses the stop 3.7 % above the engine iris (6.64 against 6.40 mm at
+  56.6 mm), as the semi-diameter section explains. No chief ray is blocked.
+- The surface validator passes; the image-circle floor reports no undersized surface; field coverage reaches 13.66 mm
+  at all 33 stations.
+- The engine build is identical before and after: half-field 14.51°, f/4.5 at 56.6 mm, stop radius 6.405 mm.
+- Wide-open transmission at infinity, before and after: 73.6 % and 73.7 % at 11.5° (56.6 mm), and 94.2 % and 94.3 % at
+  2.9° (134 mm). Every other sampled field is unchanged: 56.0 % at 13.8°, 52.1 % at 5.7° and 47.9 % at 3.9°.
+
+Labels:
+
+- Cemented brackets and the `cemented` names change from D1–D6 to C1–C6. The bracket "D5" over the B4a focusing pair
+  read the same as the variable gap D5 (B1–B2) shown beside the zoom slider. C4 now reads "C4 IS", which marks the
+  B3b stabilizing doublet on the diagram. The inspector now shows "DOUBLET C1" to "DOUBLET C6".
+- Group brackets stay B1, B2, B3, "B4a Focus" and B4b. The figure also brackets B3a, B3b and B3c inside B3 and B4
+  above B4a/B4b. A trial split of B3 into B3a, B3b and B3c ran the B3b and B3c labels together and pushed
+  "B4a Focus" to a second row at 56.6 mm, so B3 stays one bracket and C4 carries the IS label.
+- Element names L1–L17 are sequential; the patent names only the groups (B1–B4, B3a–B3c, B4a/B4b, LR, SP, GB). Every
+  `type` matches the signs of its radii. L10 is the only aspheric element, with S17A and S18A as printed (17*, 18*).
+  The stop sits between S15 and S17A, as SP does in the figure. Every element has a focal length. No cement layer is
+  tagged.
+- L8 keeps `apd: "inferred"`. The patent text names no glass type, and Canon's diagram colours L8 as its one UD
+  element.
+- The inspector for L6, L8, L10, L11 and L14 shows the expected type, glass, focal length and role; L10 shows both
+  aspheric surfaces.
+
+Movement, from the printed rows and ¶0027–0028 (all distances from the image plane, wide → tele):
+
+- Zoom: B1 103.91 → 130.64 → 145.28 mm, B2 92.61 → 94.65 → 101.24 mm, B3 70.75 → 83.97 → 93.93 mm and B4a
+  37.75 → 48.43 → 60.83 mm. B4b moves 22.53 → 33.21 → 45.61 mm. Every group moves objectward, monotonically through
+  all 33 stations, as ¶0027 and ¶0058 describe and as the figure's arrows show.
+- D5 rises 1.40 → 34.14 mm and D10 falls 15.35 → 0.80 mm, D29 rises 15.00 → 38.08 mm, and D26 holds 12.62 mm at
+  infinity, so B4a and B4b share one path (¶0028, loci 4a1 = 4b). D23 rises 2.00 → 4.54 mm to the printed middle
+  station and falls to 2.10 mm, with no other reversal.
+- Focus: keyframe 0 is infinity and keyframe 8 is the 1 m minimum. Only B4a moves, imageward (arrow 4c, ¶0028), by
+  1.18 mm at 56.6 mm and 7.29 mm at 195 mm; D23 + D26 stays constant. At close focus B4a still moves objectward with
+  zoom, as the dotted locus 4a2 shows. Both movement overlays show this, and the focus slider ends at 1.00 m.
+
+Live page after the edits, at 56.6, 134 and 195 mm, at infinity and 1 m, and at all 33 stations at 1 m: L6 stands
+above L5's rear rim and below L4, as drawn, and no elements overlap. At some close-focus states between about 140
+and 170 mm, "B4a Focus" and "B4b" sit on one row with almost no space between them. The label packer's margin
+causes this; the labels do not overlap.
+
+Open: `checks.gapSagFrac` 0.94 with S8 back at 8.4 mm would reproduce the drawn L5/L6 rims exactly. This review
+supersedes the open L6 item of the wording pass above.
+
+Coordinator follow-up, same day: S8 is restored to its drawn 8.4 mm with `checks.gapSagFrac` 0.94, the smallest
+two-decimal value that admits it beside L6's 8.5 mm (0.9385 of the 2.01 mm gap; the faces do not cross). The
+surface validator reports no errors.

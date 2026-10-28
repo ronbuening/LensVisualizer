@@ -8,9 +8,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * zoom, and its rows 3–26 print the same radii, glasses and fixed spacings as surfaces 1–24 (its D2 is variable
  * and its stop diameter reads 16.66). R, d, nd, νd and the three aspheres (surfaces 1, 3 and 21;
  * K = 0 in the patent's (1+K) conic form) are the printed values, and every sd is half the printed effective
- * diameter. L1's nd 1.58373 is kept as printed; the common moldable crown is 1.58313, but Canon's US 2010/0033848 A1
+ * diameter. E1's nd 1.58373 is kept as printed; the common moldable crown is 1.58313, but Canon's US 2010/0033848 A1
  * prints the same 1.58373, so a misprint is unconfirmed. The 0.10 mm and 0.15 mm resin layers of the two replica
- * aspheres are separate media, so 14 entries model the 12 glass elements. Fig. 1(A) draws each element's edge
+ * aspheres are separate media, so 14 entries model the 12 glass elements.
+ *
+ * Names: ¶0034 and Fig. 1 call the groups L1–L4 and the focusing subgroup Lf, so the brackets use those names and the
+ * glass elements are E1–E12, with R1 and R2 for the resin layers. H1 is the hybrid E2 + R1; C1, C2 and C3 are the
+ * cemented pairs E4–E5, E8–E9 and E11–E12. R2 carries no cemented tag, so that C3 reads as Canon's two-element
+ * doublet rather than a triplet; the C3 bracket still spans R2. Fig. 1(A) draws each element's edge
  * 1.0–1.2 mm beyond the larger of its printed radii (a cemented group as one block): the mechanical edge, not the
  * effective diameter, so the printed values are kept.
  *
@@ -19,14 +24,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * from surfaces 1–24. Fig. 6 (bare master) gives F4.1 and ω = 51°/40°/29.1°; with tan ω = Y/f these correspond to a
  * 21.6 mm image height at 17.49, 25.78 and 38.83 mm.
  *
- * Zoom (¶0034): G1 moves on a locus convex toward the image; G2 and G4 move objectward together (D12 + D18 = 13.12);
- * G3 moves objectward on its own locus. Published stations are Example 1's wide, middle and tele states and Example 2's
+ * Zoom (¶0034): L1 moves on a locus convex toward the image; L2 and L4 move objectward together (D12 + D18 = 13.12);
+ * L3 moves objectward on its own locus. Published stations are Example 1's wide, middle and tele states and Example 2's
  * middle state (D7 = 13.87 from its d4 + d9 with the infinity D2 of 13.63, D12 = 6.41, D18 = 6.71 to keep the 13.12
  * sum; the patent prints 6.72). The other 61 stations are interpolated: D12 follows a monotonic (PCHIP) curve in focal
  * length through the four printed values, D18 = 13.12 − D12, D7 is solved for the station focal length and D24 is the
  * paraxial back focus. D7, D12, D18 and D24 each move in one direction only.
  *
- * Focus: Lf (surfaces 3–7: L2 with its resin layer, and L3) moves objectward; D2 shrinks and D7 grows by the same
+ * Focus: Lf (surfaces 3–7: E2 with its resin layer, and E3) moves objectward; D2 shrinks and D7 grows by the same
  * amount. The patent prints no close-focus data. The focus columns are solved for Canon's 0.28 m object-to-image
  * minimum focus distance (keyframe t at 0.28/t m) with the image plane fixed.
  *
@@ -73,14 +78,15 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
-      type: "Negative Meniscus (1x Asph)",
+      type: "Negative Meniscus (1× Asph)",
       nd: 1.58373,
       vd: 59.4,
       focalLengthMm: -38.77,
       glass: "Unmatched (1.58373/59.4 glass-moldable crown; S-BAL42/L-BAL42 class)",
-      role: "Front negative element of G1, with the glass-molded aspherical front surface",
+      role: "Front negative element of group L1, with the glass-molded aspherical front surface",
+      diagramLabel: "E1",
     },
     {
       id: 2,
@@ -91,24 +97,26 @@ const LENS_DATA = {
       vd: 51.4,
       focalLengthMm: 910.93,
       glass: "Unmatched (replica resin, 1.52421/51.4)",
-      role: "Replica aspherical layer on the front of L2",
+      role: "Replica aspherical layer on the front of E2",
+      diagramLabel: "R1",
       cemented: "H1",
     },
     {
       id: 3,
-      name: "L2",
+      name: "E2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -27.33,
       glass: "S-LAH66 (OHARA)",
-      role: "Negative element of the Lf focusing subgroup",
+      role: "Negative element of the Lf focusing subgroup, carrying replica layer R1",
+      diagramLabel: "E2",
       cemented: "H1",
     },
     {
       id: 4,
-      name: "L3",
+      name: "E3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -116,80 +124,87 @@ const LENS_DATA = {
       focalLengthMm: 52.95,
       glass: "S-NPH53 (OHARA)",
       role: "Positive meniscus closing the Lf focusing subgroup",
+      diagramLabel: "E3",
     },
     {
       id: 5,
-      name: "L4",
+      name: "E4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: -44.49,
       glass: "S-TIH10 (OHARA)",
-      role: "Negative element of the G2 cemented doublet",
-      cemented: "D1",
+      role: "Negative element of cemented doublet C1 in group L2",
+      diagramLabel: "E4",
+      cemented: "C1",
     },
     {
       id: 6,
-      name: "L5",
+      name: "E5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 32.1,
       glass: "S-BSL7 (OHARA)",
-      role: "Positive element of the G2 cemented doublet",
-      cemented: "D1",
+      role: "Positive element of cemented doublet C1 in group L2",
+      diagramLabel: "E5",
+      cemented: "C1",
     },
     {
       id: 7,
-      name: "L6",
+      name: "E6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.6779,
       vd: 55.3,
       focalLengthMm: 37.04,
       glass: "S-LAL12 (OHARA)",
-      role: "Positive rear singlet of G2, just ahead of the stop",
+      role: "Positive rear singlet of group L2, just ahead of the stop",
+      diagramLabel: "E6",
     },
     {
       id: 8,
-      name: "L7",
+      name: "E7",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.71999,
       vd: 50.2,
       focalLengthMm: -50.88,
       glass: "S-LAL10 (OHARA)",
-      role: "Negative singlet behind the stop, first element of G3",
+      role: "Negative singlet behind the stop, first element of group L3",
+      diagramLabel: "E7",
     },
     {
       id: 9,
-      name: "L8",
+      name: "E8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.6223,
       vd: 53.2,
       focalLengthMm: -37.8,
       glass: "S-BSM22 (OHARA)",
-      role: "Negative element of the G3 cemented doublet",
-      cemented: "D2",
+      role: "Negative element of cemented doublet C2 in group L3",
+      diagramLabel: "E8",
+      cemented: "C2",
     },
     {
       id: 10,
-      name: "L9",
+      name: "E9",
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 40.5,
       glass: "S-TIH6 (OHARA)",
-      role: "Positive flint meniscus of the G3 cemented doublet",
-      cemented: "D2",
+      role: "Positive flint meniscus of cemented doublet C2 in group L3",
+      diagramLabel: "E9",
+      cemented: "C2",
     },
     {
       id: 11,
-      name: "L10",
+      name: "E10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.43875,
@@ -198,7 +213,8 @@ const LENS_DATA = {
       glass: "S-FPL53 (OHARA)",
       apd: "inferred",
       apdNote: "nd/νd match the S-FPL53 fluorophosphate class; Canon's diagram places its Super UD element here.",
-      role: "Positive front element of G4 (Super UD)",
+      role: "Positive front element of group L4 (Super UD)",
+      diagramLabel: "E10",
     },
     {
       id: 12,
@@ -209,32 +225,34 @@ const LENS_DATA = {
       vd: 51.4,
       focalLengthMm: 309.06,
       glass: "Unmatched (replica resin, 1.52421/51.4)",
-      role: "Replica aspherical layer on the front of L11",
-      cemented: "H2-D3",
+      role: "Replica aspherical layer on the front of E11, inside cemented doublet C3",
+      diagramLabel: "R2",
     },
     {
       id: 13,
-      name: "L11",
+      name: "E11",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -21.53,
       glass: "S-LAH60 (OHARA)",
-      role: "Negative element of the G4 cemented doublet",
-      cemented: "H2-D3",
+      role: "Negative element of cemented doublet C3 in group L4, carrying replica layer R2",
+      diagramLabel: "E11",
+      cemented: "C3",
     },
     {
       id: 14,
-      name: "L12",
+      name: "E12",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 29.31,
       glass: "S-FSL5 (OHARA)",
-      role: "Positive rear element of the G4 cemented doublet",
-      cemented: "H2-D3",
+      role: "Positive rear element of cemented doublet C3 in group L4",
+      diagramLabel: "E12",
+      cemented: "C3",
     },
   ],
   surfaces: [
@@ -486,7 +504,7 @@ const LENS_DATA = {
     closeFocusM: 0.28,
     keyframes: [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
     description:
-      "Inner focus (¶0034, Fig. 1): the Lf subgroup (L2 with its replica layer, and L3) moves objectward inside G1 while L1 stays fixed; D2 shrinks and D7 grows by the same amount. The patent prints no close-focus data, so the focus states are solved for Canon's 0.28 m minimum focus distance (object to image) with the image plane fixed. Lf travels 4.07 mm at 17.49 mm, 3.95 mm at 23.99 and 25.78 mm and 4.07 mm at 38.83 mm, giving about 0.24× at the tele end.",
+      "Inner focus (¶0034, Fig. 1): the Lf subgroup (E2 with its replica layer, and E3) moves objectward inside group L1 while E1 stays fixed; D2 shrinks and D7 grows by the same amount. The patent prints no close-focus data, so the focus states are solved for Canon's 0.28 m minimum focus distance (object to image) with the image plane fixed. Lf travels 4.07 mm at 17.49 mm, 3.95 mm at 23.99 and 25.78 mm and 4.07 mm at 38.83 mm, giving about 0.24× at the tele end.",
   },
   gaps: {
     "2": {
@@ -847,27 +865,27 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 (L1)",
+      text: "L1 (E1)",
       fromSurface: "1A",
       toSurface: "2",
     },
     {
-      text: "G1 (Lf focus)",
+      text: "Lf (focus)",
       fromSurface: "3A",
       toSurface: "7",
     },
     {
-      text: "G2",
+      text: "L2",
       fromSurface: "8",
       toSurface: "12",
     },
     {
-      text: "G3",
+      text: "L3",
       fromSurface: "STO",
       toSurface: "18",
     },
     {
-      text: "G4",
+      text: "L4",
       fromSurface: "19",
       toSurface: "24",
     },
@@ -879,17 +897,17 @@ const LENS_DATA = {
       toSurface: "5",
     },
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "8",
       toSurface: "10",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "16",
       toSurface: "18",
     },
     {
-      text: "H2-D3",
+      text: "C3",
       fromSurface: "21A",
       toSurface: "24",
     },

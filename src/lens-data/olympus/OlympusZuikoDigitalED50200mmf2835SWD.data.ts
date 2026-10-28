@@ -22,8 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters: no published clear apertures. Estimated from Fig. 3A (Fig. 3C draws the same rims) at
  * 6.42 px/mm and floor-checked by real-ray trace: G1, L21, G4, L51, L53 and L54 follow the drawn rims.
  * Where facing surfaces r8/r9, r12/r13, r15/r16 and r26/r27 would cross at the drawn heights (the figure
- * draws flat contact annuli there), L22, G3 (r11–r17) and L52 stay below the drawn outlines and just above
- * the tele axial beam; no render trim. gapSagFrac 0.93: at r12/r13 and r15/r16 the tele marginal ray alone
+ * draws them touching, with flat lands on L21's rear and L34's front), L22, G3 (r11–r17) and L52 stay below
+ * the drawn outlines: L22 within 0.3 mm of the most the r8/r9 gap admits, G3 and L52 just above the tele
+ * axial beam; no render trim. The two drawn lands are rim cuts: r8 (L21 rear) is cut 5.44 mm from its vertex
+ * (land at 20.68 mm), and r16 (L34 front) runs to 12.8 mm with a cut 2.14 mm deep (land at 12.16 mm, just outside
+ * the 12.10 mm tele beam), which squares L34 as drawn. gapSagFrac 0.93: at r12/r13 and r15/r16 the tele marginal ray alone
  * needs 0.911 and 0.915 of the gap, and 0.93 is the smallest 0.01 step that passes.
  */
 
@@ -342,6 +345,7 @@ const LENS_DATA = {
       R: 42.045,
       d: 0.441,
       sd: 22.6,
+      rimCutDepthMm: 5.44,
     },
     {
       label: "9",
@@ -392,7 +396,8 @@ const LENS_DATA = {
       label: "16",
       R: -35.593,
       d: 2.0,
-      sd: 12.1,
+      sd: 12.8,
+      rimCutDepthMm: 2.14,
       medium: 9,
     },
     {
