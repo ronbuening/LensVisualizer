@@ -67,29 +67,45 @@ on both halves for flat lands square to the axis at the rims of concave faces, t
 
 - The figure draws each of these elements' edge at its partner face's height (L12 33.0 mm, L13 32.8, L24 29.5, L29
   22.7; partners S2, S5, S12, S21) and ends the cap at 29.0, 29.2, 24.9 and 19.6 mm. The 2026-09-08 audit had put
-  these four sds at the cap ends as "mechanical shoulders". Each sd now rises to its partner's and the cut sits at
-  the former sd (depth rounded up), so the traced aperture is unchanged.
-- This settles the S3/S4 follow-up from 2026-09-08: the drawn 33 mm edges now carry lands that sit
-  18.12 − 9.01 − 7.22 = 1.89 mm apart (the figure shows about 1 mm), with no air-gap intrusion.
+  these four sds at the cap ends as "mechanical shoulders". Each sd rose to its partner's and the cut sat at the
+  former sd (depth rounded up). Only 13 keeps its cut (beam rule below): its clear radius goes from the old 25.0 mm
+  rim to the 25.0046 mm cut radius, where the beams reach 22.8430 mm. 3, 4 and 22 are back at their old rims, uncut.
+- The S3/S4 cuts would have settled the follow-up from 2026-09-08, with lands on the drawn 33 mm edges
+  18.12 − 9.01 − 7.22 = 1.89 mm apart (the figure shows about 1 mm) and no air-gap intrusion. The beam rule dropped
+  both cuts, so that follow-up stays open.
 - Surface 15 (L25 front) ends at its 24.8 mm edge with at most a 2 px sag step (q ≈ 0.98), below what the figure
   resolves; no cut. Surfaces 25 (L32 rear) and 28A (L34 rear) run to their element edges; no cut.
 - No cap crosses the stop plane: the land on 13 sits 1.51 mm ahead of it and the cap of 15 clears it by 2.00 mm at
   both focus ends (GF and the stop move together).
 - The aperture audit is unchanged (f/0.98 within 3 %, no rim, trace, iris or failed rows), and the engine half-field
-  stays 25.17°. At the full field (Y = 21.6 mm) side vignetting at 3, 4, 13 and 22 is unchanged: 55, 44, 0 and 50 %
-  at infinity, 41, 34, 0 and 34 % at 0.5 m. The full-field bundle at 13 (24.78 mm) stays inside the cut radius.
+  stays 25.17°. The cut on 13 clears every traced ray of the wide-open beams by its margin and clips none of them;
+  the cuts on 3, 4 and 22 stood inside the beams and were dropped (beam rule below).
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, with all four faces at their figure-review `sd` and depth, these cuts from the
+figure review above were changed:
 
-- Surface 3: the cut sat at the old 28.7 mm rim, and the beams reach 28.77 mm there, so the land stopped the rays that
-  rim stops. The sd returns to 28.7 mm with no cut, and the face draws as it did before the figure review.
-- Surface 4: the cut sat at the old 28.7 mm rim, and the beams reach 28.83 mm there, so the land stopped the rays that
-  rim stops. The sd returns to 28.7 mm with no cut, and the face draws as it did before the figure review.
-- Surface 22: the cut sat at the old 19.5 mm rim, and the beams reach 20.26 mm there, so the land stopped the rays that
-  rim stops. The sd returns to 19.5 mm with no cut, and the face draws as it did before the figure review.
+- Surface 3: the cut sat at the old 28.7 mm rim (cut radius 28.7117 mm), and the beams reach 30.0197 mm there
+  (focusT 0.05, 5.97°), so the land stopped the rays that rim stops. The sd returns to 28.7 mm with no cut, and the
+  face draws as it did before the figure review.
+- Surface 4: the cut sat at the old 28.7 mm rim (cut radius 28.7170 mm), and the beams reach 30.0304 mm there
+  (focusT 0.05, 5.97°), so the land stopped the rays that rim stops. The sd returns to 28.7 mm with no cut, and the
+  face draws as it did before the figure review.
+- Surface 22: the cut sat at the old 19.5 mm rim (cut radius 19.5059 mm), and the beams reach 20.7868 mm there (at
+  the 0.5 m close focus, 13.90°), so the land stopped the rays that rim stops. The sd returns to 19.5 mm with no cut,
+  and the face draws as it did before the figure review.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+Surface 13 keeps its cut. Its cut radius is 25.0046 mm, and the beams of the lens as it now stands reach 22.8430 mm
+there (at infinity, 2.49°), a clearance of 2.1616 mm against a 0.0750 mm margin, 2.0866 mm spare. The surface audit
+and the beam rule pass.
+
+Figure scale and land length: the figure review's 13.12 native px per lens mm comes from the 143.65 mm S1–S28A vertex
+span. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 13: figure q 0.844 (cap end 24.9 mm, edge 29.5 mm) at a 387.0 px edge, range 0.839–0.849. The cut sits at the old
+  25.0 mm rim, 0.848 of `sd`. Land 4.4954 mm, over the 0.1 mm minimum.

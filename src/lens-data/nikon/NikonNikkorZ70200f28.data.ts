@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rims inferred from the original figure and checked across zoom/focus.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
  * rear faces 7 (L21) and 34 (L72); rimCutDepthMm puts 7's cap end at the
- * figure's land, 21.6 mm. 34 stays uncut: the traced beams reach 13.89 mm
- * there, within 0.1 mm of its 14 mm rim.
+ * figure's land, 21.6 mm. 34 stays uncut: the traced beams reach 13.962 mm
+ * there, 0.038 mm inside its 14 mm rim.
  * Catalog names and APD counterparts do not establish production materials.
  */
 

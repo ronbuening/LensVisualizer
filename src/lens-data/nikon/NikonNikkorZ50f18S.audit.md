@@ -109,20 +109,48 @@ to L23 rear vertex, 48.767 mm over 1074 px).
 | 23 (L33 front, R −50.208) | 0.952 (391.5/411 px; 393.5/413.5) | 3.01 mm | 17.12 mm | 18.0 | 3.85 mm |
 
 - 11 and 14: earlier passes (issue #290; the 2026-09-08 rim review) had put each `sd` at the cap end, below the
-  partner face (S10 13.5, S15 12.3 mm), while the figure draws L16 and L21 with a square edge at constant height (14.4 and 12.2 mm on the
-  figure) and a land at constant axial position down to the cap. Each `sd` now equals the partner's and the cut sits
-  at the old `sd`; rounding the depth down moves the cut radii in by 0.012 and 0.015 mm. The figure's own cap ends,
-  q × sd = 11.54 and 10.92 mm, would clip the stated axial ray on 11 and clear it by only 0.08 mm on 14, so the caps
-  keep their old ends and the drawn lands are narrower than the figure's. The lands hold the close-focus spacing the
-  reduced rims protected: 1.40 mm ahead of and 2.10 mm behind the stop plane.
+  partner face (S10 13.5, S15 12.3 mm), while the figure draws L16 and L21 with a square edge at constant height
+  (14.4 and 12.2 mm on the figure) and a land at constant axial position down to the cap. Each `sd` now equals the
+  partner's and the cut sits at the old `sd`; the depths are rounded up, so the clear radius of 11 goes from the old
+  12.0 mm rim to the 12.0023 mm cut radius, where the beams reach 11.4807 mm, and that of 14 from 11.5 to 11.5032 mm,
+  where they reach 11.37 mm. The figure's own cap ends, q × sd = 11.54 and 10.92 mm, would clip the stated axial ray
+  on 11 and clear it by only 0.08 mm on 14, so the caps keep their old ends and the drawn lands are narrower than the
+  figure's. The lands hold the close-focus spacing the reduced rims protected: 1.40 mm ahead of and 2.10 mm behind
+  the stop plane.
 - 23: `sd` is the element edge (plano rear 24 also 18.0), so the cut is q × sd. The figure ends the cap level with
   L32's drawn edge, and the land runs from there to L33's edge.
 - Concave faces with no land: 1, 3, 4, 8, 15, 18 and 20 meet their element edges in a sharp corner. The steps at the
   cemented junctions 2 (L11 above L12), 10 (L15 above L16) and 21 (L32 above L31) are junction steps, not lands.
 - No cap reaches the stop plane at either focus end (closest: the 11 land 1.40 mm, the 14 land 2.10 mm).
 - The aperture audit is unchanged: f/1.85 stated, f/1.88 traced, limiter 10, with no rim, trace or rim-cut limiter.
-  Full-field (Y 21.6 mm) side vignetting is unchanged at 11 (3 %) and 14 (5 % at close focus; at infinity the upper
-  rim ray misses the surface-19 sphere, so the probe bounds only the lower side). The full-field bundle at 23 stays
-  inside the 17.12 mm cut: 16.20 mm at close focus, 16.72 mm for the passing meridional fan at infinity.
+  The cuts on 11, 14 and 23 clear every traced ray of the wide-open beams by their margins and clip none of them
+  (beam rule below).
 - The cut on 23 becomes the engine's half-field limiter: the estimate drops from 25.03° to 24.63° (off-axis display
   fan 15.02° → 14.78°), still above the stated 22.9°. The cuts on 11 and 14 alone leave it unchanged.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. All three cuts pass at their figure-review positions:
+
+- Surface 11: cut radius 12.0023 mm. The beams reach 11.4807 mm there (at infinity, 0.09°), a clearance of
+  0.5216 mm against a 0.05 mm margin, 0.4716 mm spare.
+- Surface 14: cut radius 11.5032 mm. The beams reach 11.37 mm there (focusT 0.05, 10.50°), a clearance of 0.1332 mm
+  against a 0.05 mm margin, 0.0832 mm spare.
+- Surface 23: cut radius 17.1228 mm. The beams reach 16.7591 mm there (focusT 0.15, 25.03°), a clearance of
+  0.3636 mm against a 0.0514 mm margin, 0.3123 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 17's 0.0454 mm/px, from the L13 rear to L23 rear vertex span above (1074 px for
+48.767 mm), is 22.023 native px per lens mm. One native pixel at the cap end and at the edge moves q by
+±(1 + q) / (edge px).
+
+- 11: figure q 0.855 at a 297.3 px edge (13.5 mm), range 0.849–0.861; the figure draws the edge at 318–320.5 px
+  (14.4 mm). The cut sits at the old 12.0 mm rim, 0.889 of `sd`, outside the cap end the figure draws (above). Land
+  1.4977 mm, over the 0.1 mm minimum.
+- 14: figure q 0.888 at a 270.9 px edge (12.3 mm), range 0.881–0.895. The cut sits at the old 11.5 mm rim, 0.935 of
+  `sd`, outside the cap end the figure draws (above). Land 0.7968 mm, over the minimum.
+- 23: figure q 0.952 at a 396.4 px edge (18.0 mm), range 0.947–0.957; the figure draws the edge at 411–413.5 px
+  (18.7 mm). The cut sits at 0.951 of `sd`. Land 0.8772 mm, over the minimum.

@@ -90,9 +90,11 @@ flat lands square to the axis at the rims of concave faces, the shape `rimCutDep
   27 the rear face's last 7 px run straight, 2 px ahead of L42's front, where the sphere would bend 6 px further back
   into L42. On 4 the stroke itself is missing from the raster, but on both halves the edge line ends at the plane of
   the cap's end, 36 px above it, so only a land can close the outline.
-- 4, 15 and 27 had their sd near the figure's cap end; each is raised to its partner face's sd with the cut at the old
-  sd, so tracing is unchanged. The figure's land planes sit 8.6, 3.2, 1.7 and 3.5 mm from their vertices, against the
-  authored 8.56, 3.29, 1.87 and 3.37 mm.
+- 4, 15 and 27 had their sd near the figure's cap end; each was raised to its partner face's sd with the cut at the
+  old sd. On 4 the clear radius goes from the old 14.4 mm rim to the 14.4038 mm cut radius, and the beams reach
+  13.3504 mm there; on 15 it goes from the old 12.2 mm rim to the 12.2307 mm cut radius, and the beams reach
+  11.5305 mm there. 27 later lost its cut (see the rule section). The figure's land planes sit 8.6, 3.2, 1.7 and
+  3.5 mm from their vertices, against the authored 8.56, 3.29, 1.87 and 3.37 mm.
 - 6A (L13 rear, asphere) shows the same shape as 4 (cap end 87 px of a 101 px edge, q 0.86, edge line ending at the
   cap's plane, no stroke). The raise to its partner's sd 13.8 with a 6.42 mm cut is refused: gap 6A→7 intrusion
   9.71 mm exceeds the 9.548 mm allowed (90 % of 10.609 mm), with or without the cut on 7. A raise that passes
@@ -104,18 +106,49 @@ flat lands square to the axis at the rims of concave faces, the shape `rimCutDep
   rear face). The figure draws L11–L13 rims larger than the stored sds (L12 edge 20.3 mm); no other sd changed.
 - No cap reaches the stop plane: no candidate face borders the stop, and 17 and 19 bend away from it.
 - Still traces f/1.466 against the stated f/1.46, limited by surface 16, before and after; no `(rim cut)` limiter.
-  At the clearap full field (ω 40.86°, Y 14.2 with a 50 mm scan; the lower-rim ray cannot be traced before or after)
-  no cut surface's side vignetting changes: the full-field bundle at 7 reaches 8.98 mm against the 13.78 mm cut. The
-  engine's wide-open vignetting curve out to 42.05° is identical to four decimals. The engine half-field moves
-  38.950° → 38.958° because surface 4's cut radius (14.404 mm) sits 0.004 mm above the old sd.
+  The cuts on 4, 7 and 15 clear the traced wide-open beams by their margins (see the rule section) and clip none of
+  their rays. The engine half-field moves 38.950° → 38.958° because surface 4's cut radius (14.4038 mm) sits
+  0.0038 mm above the old sd.
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stop of #933 (entrance-pupil diameter F/N at the stated
+f/1.46) with the rule's current search, which follows each beam to the field where it vanishes, seeds from the stop
+and refines near each cut on the full measurement. Traced against that rule, one cut from the figure review above was
+dropped:
 
-- Surface 27: the cut sat at the old 10.45 mm rim, and the beams reach 10.451 mm there, so the land stopped the rays
-  that rim stops. The sd returns to 10.45 mm with no cut, and the face draws as it did before the figure review.
+- Surface 27: the cut sat at the old 10.45 mm rim (cut radius 10.4502 mm), and the beams reach 10.4514 mm there
+  (focusT 0.9, toward the 0.25 m close-focus end, 32.01°), so the land stopped the rays that rim stops. The sd returns
+  to 10.45 mm with no cut, and the face draws as it did before the figure review.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The other three cuts clear the beams by their margins:
+
+- Surface 4: the beams reach 13.3504 mm there, at infinity (focusT 0) and 31.25°. The cut radius, 14.4038 mm (depth
+  8.56 mm), clears them by 1.0534 mm against a 0.05 mm margin, 1.0034 mm to spare.
+- Surface 7: the beams reach 12.8034 mm there, at infinity and 31.25°. The cut radius, 13.7792 mm (depth 3.29 mm),
+  clears them by 0.9758 mm against a 0.05 mm margin, 0.9258 mm to spare.
+- Surface 15: the beams reach 11.5305 mm there, at focusT 0.5 (between the 1:40 keyframe and the 0.25 m end) and
+  29.26°. The cut radius, 12.2307 mm (depth 1.87 mm), clears them by 0.7002 mm against a 0.05 mm margin, 0.6502 mm
+  to spare.
+
+On this stop the aperture audit traces the stated f/1.46, limited by the iris, with no `(rim cut)` limiter. The
+surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 1 is drawn at 6.36 native px per lens mm, the figure review's vertex spacing of
+surfaces 1–16. The vertex ticks on axis row 268 match it: surface 1 at column 92, surface 16 at 413 (321 px over
+50.503 mm) and the image plane at 785 (693 px over 109.000 mm). The q range is ±(1 + q) / (edge px), with edge px =
+sd × 6.36.
+
+| Surface | Figure q (cap end / edge px) | Edge px | q range | Cut radius ÷ sd | Land (sd − cut radius) |
+|---|---|---|---|---|---|
+| 4 | 0.721 (93 / 129) | 101.8 | 0.704–0.738 | 0.900 | 1.5962 mm |
+| 7 | 0.931 (87.5 / 94) | 94.1 | 0.910–0.951 | 0.931 | 1.0208 mm |
+| 15 | 0.917 (77 / 84) | 85.2 | 0.894–0.939 | 0.913 | 1.1693 mm |
+
+- 4 sits at the old 14.4 mm rim, not at q × sd. The figure draws L12 larger than its 16.0 mm sd (edge 129 px,
+  20.3 mm), and its cap end, 93 px or 14.62 mm (0.16 mm a pixel), lies within 1.4 px of the old rim. On the drawn
+  129 px edge the q range is 0.708–0.734.
+- 15 sits at the old 12.2 mm rim, inside its q range.
+- Every land is longer than the 0.1 mm minimum, and no q range reaches 1.

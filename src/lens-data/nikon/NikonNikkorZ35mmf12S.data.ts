@@ -32,8 +32,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * RIM CUTS (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 7 (L14 front), 17 (L19 rear),
  * 31 (L43 rear) and 32A (L44 front); rimCutDepthMm puts their cut radii at 24.05, 22.01, 18.00 and 17.73 mm.
- * 17 and 31 take their partner face's rim (23.0 and 19.3 mm) with the cut at their old sd, so tracing there is
- * unchanged. L11's land (S2) is not modeled: R2 = 31.1 mm cannot reach the 31.2 mm edge.
+ * 17 and 31 take their partner face's rim (23.0 and 19.3 mm) with the cut at their old sd: the clear radius goes
+ * from 22.0 to 22.0073 mm on 17 and from 18.0 to 17.9988 mm on 31, where the beams reach 19.4168 and 16.8163 mm.
+ * L11's land (S2) is not modeled: R2 = 31.1 mm cannot reach the 31.2 mm edge.
  */
 
 const LENS_DATA = {

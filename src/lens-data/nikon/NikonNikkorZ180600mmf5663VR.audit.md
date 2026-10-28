@@ -61,8 +61,10 @@ element by element on both halves for flat lands square to the axis at the rims 
 
 - Faces 10 and 21 had stopped short of their cemented partners (25.3 and 20.1 mm), so the section drew a slanted
   edge. Figure 5 draws both cemented pairs with one square edge at the partner's height and the land on the rear
-  face, so each face's `sd` now equals its partner's and the cut sits at the former rim, leaving the traced clear
-  aperture as it was. The figure's own ratio would put these two cuts lower (21.0 and 16.9 mm); they were not moved.
+  face, so each face's `sd` now equals its partner's and the cut sits at the former rim. The clear radius of 10 goes
+  from the old 22.25 mm rim to the 22.2396 mm cut radius, where the beams reach 20.7411 mm; that of 21 goes from
+  18.25 to 18.2358 mm, where the beams reach 16.1904 mm. The figure's own ratio would put these two cuts lower (21.0
+  and 16.9 mm); they were not moved.
 - Lands seen but not cut: 12 (L7 rear, ratio 0.92, cut radius 18.82 mm) lies inside the 19.66 mm on-axis beam;
   36 (L21 front, 0.785, 10.75 mm) would raise full-field side vignetting there from 3 % to 62 %, and 42A (L25 resin
   front, 0.90, 13.05 mm) from 39 % to 76 %.
@@ -72,20 +74,42 @@ element by element on both halves for flat lands square to the axis at the rims 
   cap reaches the stop plane at any zoom or focus state.
 - The aperture audit is unchanged: all three stations remain stop-limited at f/5.80, f/6.16 and f/6.53, with no rim,
   trace or rim-cut limiter. The surface validator and the image-circle audit stay clean.
-- At the 21.6 mm full field the cuts on 5 and 35 widen the side vignetting at those surfaces (24 % → 36 % and
-  10 % → 26 %); 10 and 21 are unchanged. A meridional fan traced through every rim passes 71.1, 77.1 and 72.6 % of the
-  full-field pupil at wide, middle and tele before the cuts and 71.1, 77.1 and 71.3 % after, because L1 and the G5/G6
-  rims already clip those rays first.
+- At the figure's own radii the cuts on 5 and 35 stood inside the traced beams, and the beam rule moved both out
+  (below). At their present radii all four cuts clear every traced ray of the wide-open beams by their margins and
+  clip none of them, so they change no vignetting.
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current
+search, which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, these cuts from the figure review above were changed:
 
-- Surface 5: the beams reach 38.70 mm there (600 mm, near 0.6°), past the figure's 37.47 mm cut. The depth goes from 2.87 to
-  3.09 mm, which puts the cut radius at 38.87 mm, 0.17 mm outside the beams; the land is shorter than the figure's.
-- Surface 35: the beams reach 11.55 mm there (zoom 0.6 at close focus, near 3.6°), past the figure's 10.37 mm cut. The depth goes from 1.61 to
-  2.03 mm, which puts the cut radius at 11.61 mm, 0.06 mm outside the beams; the land is shorter than the figure's.
+- Surface 5: the beams reach 38.5756 mm there (tele, 582.16 mm, at infinity, 0.68°), past the figure's 37.47 mm cut.
+  The depth goes from 2.87 to 3.09 mm, which puts the cut radius at 38.8683 mm: a clearance of 0.2927 mm against a
+  0.1166 mm margin, 0.1761 mm spare. The land is shorter than the figure's.
+- Surface 35: the beams reach 11.5466 mm there (zoomT 0.75, focusT 0.9, 3.24°), past the figure's 10.37 mm cut. The
+  depth goes from 1.61 to 2.03 mm, which puts the cut radius at 11.6054 mm: a clearance of 0.0588 mm against a
+  0.0500 mm margin, 0.0088 mm spare. The land is shorter than the figure's.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The other two cuts clear the beams by their margins at their figure-review positions:
+
+- Surface 10: cut radius 22.2396 mm. The beams reach 20.7411 mm there (wide, 185.01 mm, focusT 0.4, 7.44°), a
+  clearance of 1.4985 mm against a 0.0667 mm margin, 1.4318 mm spare.
+- Surface 21: cut radius 18.2358 mm. The beams reach 16.1904 mm there (zoomT 0.8, at infinity, 1.47°), a clearance of
+  2.0453 mm against a 0.0547 mm margin, 1.9906 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 5's 0.1387 mm per native pixel, from the vertex spacings in the figure review,
+is 7.210 native px per lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 5: figure q 0.92 at a 293.4 px edge (40.7 mm), range 0.913–0.927. The beam rule put the cut at 0.955 of `sd`.
+  Land 1.8317 mm, over the 0.1 mm minimum.
+- 10: figure q 0.83 at a 182.4 px edge (25.3 mm), range 0.820–0.840. The cut sits at the old 22.25 mm rim, 0.879 of
+  `sd`. Land 3.0604 mm, over the minimum.
+- 21: figure q 0.84 at a 144.9 px edge (20.1 mm), range 0.827–0.853. The cut sits at the old 18.25 mm rim, 0.907 of
+  `sd`. Land 1.8642 mm, over the minimum.
+- 35: figure q 0.88 at an 85.1 px edge (11.8 mm), range 0.858–0.902. The beam rule put the cut at 0.984 of `sd`.
+  Land 0.1946 mm (1.4 native px), over the minimum.

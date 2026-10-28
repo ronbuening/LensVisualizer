@@ -32,10 +32,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    Figure 1 draws lands on concave faces 4 (L12), 7 (L14), 15      ║
- * ║    (L18) and 27 (L41). 4, 7 and 15 are cut at 14.40, 13.78 and     ║
- * ║    12.23 mm; 4 and 15 at the old sd, with sd raised to the partner ║
- * ║    face's. 27 keeps its 10.45 mm rim uncut: a land there would     ║
- * ║    stop rays the rim stops.                                        ║
+ * ║    (L18) and 27 (L41). 4, 7 and 15 are cut at 14.4038, 13.7792     ║
+ * ║    and 12.2307 mm. The clear radius of 4 and 15 grows from the old ║
+ * ║    14.4 and 12.2 mm sd to the cut, with sd raised to the partner   ║
+ * ║    face's; the beams reach 13.3504 and 11.5305 mm there. 27 keeps  ║
+ * ║    its 10.45 mm rim uncut: a land there would stop rays the rim    ║
+ * ║    stops.                                                          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 

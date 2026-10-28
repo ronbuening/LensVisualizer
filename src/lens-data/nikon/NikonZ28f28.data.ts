@@ -8,7 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Optical rims are inferred from Figure3 at600dpi, excluding shoulders and callouts.
  * Rim cuts (2026-10-27): Figure 3 draws flat lands at the rims of the concave faces 2 (L11),
  * 9 (L23), 14A (L31) and 18 (L41), so each takes its partner face's sd (6.7 / 8.2 / 13.1 / 16.1 mm)
- * with rimCutDepthMm ending its cap at the former rim, 6.21 / 6.90 / 12.32 / 14.61 mm: tracing is unchanged.
+ * with rimCutDepthMm ending its cap at about the former rim (6.2 / 6.9 / 12.3 / 14.6 mm): cut radii
+ * 6.2088 / 6.8993 / 12.3153 / 14.6106 mm; the traced beams reach 6.1322 / 6.7592 / 12.1158 / 14.3628 mm there.
  */
 
 const LENS_DATA = {

@@ -23,8 +23,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rim cuts (2026-10-27): Figure 5 draws flat lands at the rims of the concave rear faces 5 (L3), 10 (L6),
  * 21 (L12) and 35 (L20); rimCutDepthMm ends those caps at 38.9, 22.2, 18.2 and 11.6 mm. Faces 10 and 21 now
  * run to their cemented partners' 25.3 / 20.1 mm edges, square as drawn, with the cut at the former 22.25 /
- * 18.25 mm rim, so their traced clear aperture is unchanged. Cuts 5 and 35 sit just clear of the traced beams,
- * outside the figure's 37.5 / 10.4 mm lands, which would stop rays.
+ * 18.25 mm rim: their clear radius goes to the 22.2396 / 18.2358 mm cut radius, where the beams reach 20.7411 /
+ * 16.1904 mm. Cuts 5 and 35 sit just clear of the traced beams, outside the figure's 37.5 / 10.4 mm lands, which
+ * would stop rays.
  *
  * The physical L25 hybrid counts as one production/patent lens but is represented by two modeled media
  * records (L25r resin and L25g glass), as required for the bonded aspherical layer. Example 2 publishes

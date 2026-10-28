@@ -17,7 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   production melts. The 1.51380 / 52.97 resin layer remains explicitly unmatched.
  * - Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces 2 (L11 rear), 15 (L33 front) and
  *   26A (L51 front). Their sd rises to the partner face's (22, 11.5, 14.5) and rimCutDepthMm ends each cap at its old
- *   sd, 17.50, 10.90 and 13.40 mm, so tracing is unchanged. The L12 figure land stays uncut; see the audit log.
+ *   sd to the 0.01 mm depth: cut radii 17.4988, 10.8958 and 13.4001 mm against the old 17.5, 10.9 and 13.4 mm rims.
+ *   The wide-open beams reach 16.9456, 10.2434 and 12.8616 mm there. The L12 figure land stays uncut (audit log).
  *
  * Published middle-focus row retained from the source:
  *   object distance from first surface = 583.6824 mm, beta = -0.0324,

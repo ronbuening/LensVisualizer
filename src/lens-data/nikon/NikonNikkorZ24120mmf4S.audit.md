@@ -152,8 +152,8 @@ candidate's last drawn step was compared with the face's computed sag at the dra
 
 - Surface 5: the 2026-09-23 pass put `sd` at the cap end (16.2 mm) while L3's front and the figure's edge run to
   20.1 mm. The drawn land sits within 1 px (0.07 mm) of the S5 sag at 16.2 mm, so `sd` was raised to the surface 4A
-  value and the cut placed at the old `sd`. Tracing is unchanged (cut radius 16.198 mm); the full-field bundle at
-  surface 5 reaches 15.15 mm, inside the cut.
+  value and the cut placed at the old `sd`. The clear radius goes from the old 16.2 mm rim to the 16.1984 mm cut
+  radius; the beams reach 14.4375 mm there (beam rule below).
 - Surface 22 (L12 front, R −28.1) also draws a short land on both halves: the cap's last drawn step sits about 6 px
   (0.4 mm) short of its sag at the drawn edge, q ≈ 0.94 (0.92–0.96 within the drawing step). A cut at q × sd =
   12.34 mm (depth 2.85 mm) clears the stated axial ray (9.36 mm) but raises the full-field side vignetting at
@@ -167,3 +167,17 @@ candidate's last drawn step was compared with the face's computed sag at the dra
 - `audit:aperture` is unchanged: both stations trace within 3 % of f/4.00 and f/4.12, with no rim, trace or failed
   rows. The surface validator and the image-circle check pass. The wide-end render now ends L3's rear cap in a flat
   land and a square edge, as Fig. 9 draws it; no other element moved.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Surface 5's cut radius is 16.1984 mm. The beams reach 14.4375 mm there (wide, 24.7 mm, at the 0.35 m
+close focus, 43.84°), a clearance of 1.7609 mm against a 0.0500 mm margin, 1.7109 mm spare. The cut clips none of
+their rays.
+
+Figure scale and land length: Fig. 9's 0.06743 mm/px, from the 117.40 mm S1–S30 vertex span, is 14.830 native px per
+lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 5: figure q 0.796 (236 / 296.5 px) at a 298.1 px edge (20.1 mm), range 0.790–0.802. The cut sits at the old 16.2 mm
+  rim, 0.806 of `sd`, within one pixel of the drawn land. Land 3.9016 mm, over the 0.1 mm minimum.

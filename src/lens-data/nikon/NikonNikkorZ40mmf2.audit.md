@@ -118,8 +118,9 @@ by element, for flat lands square to the axis at the rims of concave faces, the 
   cut radius is the figure share of it; depth rounded down.
 - Surface 5: the 2026-09-23 audit had put its `sd` at the cap end (8.4 mm) inside the flat annulus, below cemented
   face 6 (11.0 mm), so the section drew a slanted edge. Fig. 7 draws L21 square at 11.0 mm with a long land down to
-  the cap; q × 11.0 = 8.40 mm is the old `sd`. The face now takes 6's 11.0 mm (inside its 16.54 mm radius) and the
-  cut sits at the old rim (8.396 mm), so tracing is unchanged.
+  the cap; q × 11.0 = 8.40 mm is the old `sd`. The face took 6's 11.0 mm (inside its 16.54 mm radius) with the cut
+  at the old rim: the clear radius went from the old 8.4 mm rim to the 8.3959 mm cut radius. The beam rule below
+  dropped this cut.
 - Concave faces with no land: 9 (L23 front, sag 0.23 mm at `sd`) runs straight to its 13.5 mm edge; 13 (sag 0.14 mm)
   is too shallow to show one; 11A (L31 resin front) runs to the resin's own edge, closed by a 2–3 px stroke parallel
   to the axis (its edge thickness).
@@ -128,9 +129,9 @@ by element, for flat lands square to the axis at the rims of concave faces, the 
 - No cap reaches the stop plane: surface 3's land now clears it by 1.36 mm (was 1.12 mm at `sd`), surface 5's by
   7.75 mm at the near state.
 - The aperture audit is unchanged (f/2.04 within 3 %; no rim, trace, iris or failed rows, no rim-cut limiter); the
-  surface audit passes and the image-circle audit finds nothing undersized. At the full field (Y = 21.6 mm, ω 27.69°
-  at infinity, 28.06° at the near state) side vignetting at surface 3 goes from 0 to 3 % at both focus states;
-  surface 5 is unchanged (60 % / 52 %). The engine half-field stays 29.44°.
+  surface audit passes and the image-circle audit finds nothing undersized. The cut on surface 3 clears every traced
+  ray of the wide-open beams by its margin and clips none of them (beam rule below); surface 5's cut was dropped
+  there. The engine half-field stays 29.44°.
 - The rendered section now draws L12 and L21 with square edges and flat lands like Fig. 7. The stop marker's housing
   stroke, the smaller of its neighbours' `sd`s, now reaches 10.9 mm instead of stopping at the 8.97 mm iris; Fig. 7's
   stop tick runs from 8.83 to 10.45 mm.
@@ -141,9 +142,23 @@ by element, for flat lands square to the axis at the rims of concave faces, the 
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current
+search, which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, these cuts from the figure review above were changed:
 
-- Surface 5: the cut sat at the old 8.4 mm rim, and the beams reach 9.09 mm there, so the land stopped the rays that rim
-  stops. The sd returns to 8.4 mm with no cut, and the face draws as it did before the figure review.
+- Surface 5: the cut sat at 8.3959 mm, at the old 8.4 mm rim. With the face at 11.0 mm and the cut restored, the
+  beams reach 9.1411 mm there (at infinity, 11.22°), so the land stopped the rays that rim stops. The sd returns to
+  8.4 mm with no cut, and the face draws as it did before the figure review.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The other cut clears the beams by its margin at its figure-review position:
+
+- Surface 3: cut radius 9.8962 mm. The beams reach 9.4431 mm there (focusT 0.25, 13.83°), a clearance of 0.4531 mm
+  against a 0.05 mm margin, 0.4031 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Fig. 7 is 12.34 native px per lens mm, from the S1–S13 vertex span (582 px for
+47.150 mm, 2026-09-23 audit). One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 3: figure q 0.91 (0.90–0.92 on both halves) at a 134.5 px edge (10.9 mm), range 0.896–0.924; the figure draws L12's
+  edge at 134 px. The cut sits at 0.908 of `sd`. Land 1.0038 mm, over the 0.1 mm minimum.

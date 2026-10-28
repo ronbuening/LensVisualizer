@@ -21,11 +21,10 @@ element by element on both halves for flat lands square to the axis at the rims 
 - Every other concave face (4, 13, 15, 19, 21, 24, 25, 26, 28, 31, 32, 40) runs to its element edge in the figure;
   13 and 31 are near-plane, so their straight strokes are the faces themselves. No cut.
 - No cap reaches the stop plane at either focus state (surface 19 clears it by 36.01 mm, surface 21 by 6.54 mm).
-- The stated f/6.42 still traces with no rim, trace or rim-cut limiter, and the engine half-field stays 2.38°. With the
-  PF phase included, the full-field (21.6 mm image height) meridional bundle passes 67.6 % at infinity and 62.8 % at
-  5 m before and after the cuts; its passing rays reach 27.37 / 28.25 mm at surface 11 and 14.02 / 8.90 mm at
-  surface 37, inside both cut radii, so side vignetting there is unchanged. The scratch clear-aperture probe omits the
-  PF phase (EFL 859 mm instead of 780 mm) and overstates the G1 beam, so it was not used for this lens.
+- The stated f/6.42 still traces with no rim, trace or rim-cut limiter, and the engine half-field stays 2.38°. Both
+  cuts, 37 at its moved radius, clear every traced ray of the wide-open beams by their margins (see the rule section
+  below), so they clip none of those rays and change no vignetting. The scratch clear-aperture probe omits the PF phase
+  (EFL 859 mm instead of 780 mm) and overstates the G1 beam, so it was not used for this lens.
 - The largest rim angle moves from 31.98° (surface 11 at sd) to 30.72° (surface 12), as the rim slope on 11 is now
   taken at its cut radius; minimum edge thickness (L16, 0.566 mm) and the largest gap intrusion (0.621, 25→26) are
   unchanged. `NikonNIKKORZ800mmf63VRS.analysis.md` was updated to match.
@@ -34,9 +33,23 @@ element by element on both halves for flat lands square to the axis at the rims 
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced with the stop at its paraxial size from #933 (EPD = F/N) and with the
+rule's current search, which follows each beam to the field where it vanishes, seeds from the stop and refines near
+each cut. Focus runs from infinity (focusT 0) to the 5 m keyframe (focusT 1).
 
-- Surface 37: the beams reach 15.52 mm there (near 2.0° at focus 0.1), past the figure's 14.93 mm cut. The depth goes from 3.53 to
-  3.87 mm, which puts the cut radius at 15.59 mm, 0.07 mm outside the beams; the land is shorter than the figure's.
+- Surface 11: the cut radius is 32.0941 mm, at the figure's land. The beams reach 31.3444 mm there, at the 5 m keyframe
+  (focusT 1) and 0.65°, so the cut clears them by 0.7496 mm against a 0.0963 mm margin, 0.6534 mm to spare.
+- Surface 37: the beams reach 15.5227 mm there, at focusT 0.9 (G2 at 90 % of its travel to 5 m) and 2.06°, past the
+  figure's 14.93 mm cut. The depth goes from 3.53 to 3.87 mm, which puts the cut radius at 15.5892 mm. That clears
+  the beams by 0.0664 mm against a 0.05 mm margin, 0.0164 mm to spare; the land is shorter than the figure's.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The surface audit and the beam rule pass.
+
+Figure scale and land length. The audit had no scale for Figure 11's native raster, so it was measured there: the
+S1 vertex is at 2439.0 px and the S40 vertex at 573.7 px, 1865.3 px for the 318.885 mm S1 → S40 span, so 5.85 native
+px per mm (S1 → S37 gives 5.85, S1 → S5 5.84). Each q range is ±(1 + q) / (sd × 5.85 px).
+
+- 11: q 0.924 (182 / 197 px), edge 203.6 px, range ±0.009 (0.914–0.933). The cut sits at q 0.922. Land 2.7059 mm,
+  above the 0.1 mm minimum.
+- 37: q 0.910 (85.5 / 94 px), edge 95.9 px, range ±0.020 (0.890–0.929). The cut sits at q 0.951, outside that range,
+  because it moved out to clear the beams. Land 0.8108 mm, above the 0.1 mm minimum.

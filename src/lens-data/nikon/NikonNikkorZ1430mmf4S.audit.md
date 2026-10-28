@@ -153,10 +153,10 @@ faces, the shape `rimCutDepthMm` draws. Pixel pairs in the table are cap end / e
 | 26A (L52 front, R −38.9341) | 0.94 (110.5/117.5 px; 111/118) | 2.03 mm | 10.99 mm | 11.7 | 4.71 mm |
 
 - 2A and 4A: the 2026-09-23 audit had put each `sd` at the cap end, below the partner face (S1 29.2, S3 19.3 mm),
-  while the figure draws a square edge at the partner's height with a long land in between. Each `sd` now takes the
-  partner's value and the cut ends the cap at the old rim, so tracing is unchanged. The figure's own cap ends,
-  q × sd = 22.3 and 15.0 mm, sit 0.1 and 0.5 mm from those rims. Both aspheres keep rising out to the new rims (sag
-  13.49 mm at 29.2 and 17.93 mm at 19.3), so the land is valid.
+  while the figure draws a square edge at the partner's height with a long land in between. The review raised each
+  `sd` to the partner's value and put the cut at the old rim. The figure's own cap ends, q × sd = 22.3 and 15.0 mm,
+  sit 0.1 and 0.5 mm from those rims. Neither cut remains: both faces are back at their old 22.4 and 14.5 mm rims with
+  no cut (see the rule section below), so the figure's lands on 2A and 4A are not modelled.
 - 26A: a short land, 6–7 px on each half, joins the cap to L52's edge. The cut radius is q × 11.7 mm; the cap's
   departure there is −447 µm and its slope 25.6°.
 - No land: 5 (L13 front) and 23 (L41 rear) run into the edge corner on both halves; 6 (L13 rear) and 17A (L32 rear)
@@ -165,27 +165,38 @@ faces, the shape `rimCutDepthMm` draws. Pixel pairs in the table are cap end / e
 - No cap reaches the stop plane at any zoom or focus state: surface 13 clears it by 2.38 mm.
 - `audit:aperture`: all three stations trace the stated f/4.00 before and after, limited by the stop, with no `rim`,
   `trace`, `failed` or `(rim cut)` rows. The surface validator and the image-circle check pass.
-- Field: with the cut radii standing in for the rims, a meridional clear-aperture probe (Y = 21.6 mm) shows no
-  change at 2A and 4A, whose full-field bundles stay inside 21.43 and 14.07 mm. At 26A the unvignetted full-field
-  bundle reaches 11.25 mm, so the cut takes 15 % of that side there. In the engine, though, the relay rims already
-  stop those rays: a meridional fan at the full field (59.62° / 46.72° / 35.16°), at 50° / 40° / 30° and on axis
-  passes the same launch span before and after (3.73 / 7.57 / 8.18 mm at full field), and no ray ends on the 26A
-  land.
-- Live, wide end at infinity: L11 and L12 now end their caps in square lands with the edges at 29.2 and 19.3 mm, in
-  place of the slanted joins from the cap end to the S1 / S3 rim, and L52 shows the short land at 26A, as in Fig. 1.
-  No other element moved.
+- Field: the one cut that remains, on 26A at its moved radius, clears every traced ray of the wide-open beams by its
+  margin (see the rule section below), so it clips none of those rays and changes no vignetting. 2A and 4A carry no
+  cut.
+- Live, wide end at infinity: L52 shows the short land at 26A, as in Fig. 1. L11 and L12 keep the slanted joins from
+  their 22.4 and 14.5 mm rims to the S1 / S3 rims, since 2A and 4A carry no cut. No other element moved.
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced with the stop at its paraxial size from #933 (EPD = F/N) and with the
+rule's current search, which follows each beam to the field where it vanishes, seeds from the stop and refines near
+each cut. zoomT 0 is the 14.42 mm wide station and zoomT 1 the 29.10 mm tele station; focus runs from infinity
+(focusT 0) to the 0.28 m keyframe (focusT 1). Against that rule and the review that followed, these cuts from the
+figure review above changed:
 
-- Surface 4A: the cut sat at the old 14.5 mm rim, and the beams reach 14.55 mm there, so the land stopped the rays that
-  rim stops. The sd returns to 14.5 mm with no cut, and the face draws as it did before the figure review.
+- Surface 2A: the review raised its `sd` from 22.4 to S1's 29.2 mm and cut the cap at the old 22.4 mm rim. Raising the
+  `sd` extended the asphere past its designed extent, the 22.4 mm where Fig. 1 ends its curve, out to a sag of
+  13.49 mm at 29.2 mm. The face returns to its 22.4 mm rim with no cut and draws as it did before the figure review;
+  the land Fig. 1 draws from there out to L11's 29.2 mm edge is not modelled.
+- Surface 4A: the cut sat at the old 14.5 mm rim (cut radius 14.5015 mm with `sd` 19.3). Traced without it, the beams
+  reach 14.5608 mm there (zoomT 0, focusT 0.85, 59.00°), so the land would stop rays that the old rim stops. The `sd`
+  returns to 14.5 mm with no cut, and the face draws as it did before the figure review.
+- Surface 26A: the beams reach 10.9687 mm there, at the tele station (zoomT 1) at infinity and 40.51°, inside the
+  figure's 10.99 mm cut but closer than its 0.05 mm margin. The depth goes from 2.03 to 2.05 mm, which puts the cut
+  radius at 11.0319 mm. That clears the beams by 0.0632 mm against a 0.05 mm margin, 0.0132 mm to spare; the land is
+  shorter than the figure's.
 
-- Surface 26A: the beams reach 10.97 mm there (30 mm, near 40.5°), inside the figure's 10.99 mm cut but closer than
-  its 0.05 mm margin. The depth goes from 2.03 to 2.05 mm, which puts the cut radius at 11.03 mm; the land is shorter
-  than the figure's.
+26A is the lens's only cut. The surface audit and the beam rule pass.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+Figure scale and land length. Fig. 1 measures 9.96 native px per mm: the 2026-09-23 audit gives 0.1004 mm/px, from
+the 105.104 mm S1 → S27 span at the wide end over 1047 px. Each q range is ±(1 + q) / (sd × 9.96 px).
+
+- 26A: q 0.940 (110.5 / 117.5 px and 111 / 118 px), edge 116.6 px, range ±0.017 (0.923–0.957). The cut sits at
+  q 0.943. Land 0.6681 mm, above the 0.1 mm minimum.

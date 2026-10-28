@@ -101,11 +101,13 @@ compared with its prescription sag at 6.559 px/mm (S1 → S40 vertex span 1311 p
 - The aperture audit is unchanged: Wide and Middle trace their stated f/2.88 and f/2.86 at the iris, and Tele stays at
   f/2.93 behind surface 12's rim (+1.8 %, inside 3 %), as before. No rim-cut limiter. The surface validator and
   the image-circle audit stay clean.
-- At the 21.6 mm full field, with the cut radius as a clip, side vignetting at 7 alone goes from 1 % to 32 % (2 % → 34 %
-  at close focus), and at 34 it goes from 39 % to 45 % (42 % → 48 %). In the engine's 2D vignetting trace, the
-  corner's geometric transmission does not change with the cut on 7, at any station or either focus end (0.558 /
-  0.434 / 0.389 at infinity, 0.567 / 0.470 / 0.463 close): L21's front face 6 and the rims at 8 and 12 already clip
-  those rays. With both cuts it is 0.543 / 0.410 / 0.376 and 0.541 / 0.441 / 0.435, all of the change from 34.
+- The cut on 7 clears every traced ray of the wide-open beams by its margin and clips none of them (beam rule below).
+  The cut on 34 was removed there. At the 21.6 mm full field, a cut on 34 at 13.29 mm, taken alone as a clip, would
+  raise side vignetting there from 39 % to 45 % (42 % → 48 % at close focus). In the engine's 2D vignetting trace,
+  the corner's geometric transmission does not change with the cut on 7, at any station or either focus end
+  (0.558 / 0.434 / 0.389 at infinity, 0.567 / 0.470 / 0.463 close): L21's front face 6 and the rims at 8 and 12
+  already clip those rays. With a cut on 34 added it is 0.543 / 0.410 / 0.376 and 0.541 / 0.441 / 0.435, all of the
+  change from 34.
 - The engine's wide-end half-field estimate, which limits each face at its cut radius, moves from 19.89° to 19.68°
   with the cut on 7. That is still past the 16.85° that the 21.6 mm image height needs.
 
@@ -113,9 +115,23 @@ compared with its prescription sag at 6.559 px/mm (S1 → S40 vertex span 1311 p
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current
+search, which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, these cuts from the figure review above were changed:
 
-- Surface 34: the beams reach 13.89 mm there, within 0.1 mm of the 14 mm rim, so no land is left to draw. The cut is
-  removed.
+- Surface 34: with the 13.2904 mm cut restored, the beams reach 13.962 mm there (zoomT 0.7, close focus, 9.61°),
+  0.038 mm inside the 14 mm rim. A cut that cleared them by its 0.05 mm margin would sit past the rim, so no land is
+  left to draw. The cut is removed.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The other cut clears the beams by its margin at its figure-review position:
+
+- Surface 7: cut radius 21.596 mm. The beams reach 21.206 mm there (wide, 71.5 mm, focusT 0.4, 19.34°), a clearance
+  of 0.3901 mm against a 0.0648 mm margin, 0.3253 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 1 is 6.559 native px per lens mm, from the S1 → S40 vertex span in the figure
+review (1311 px for 199.886 mm). One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: figure q 0.90 (0.904 / 0.904 on the Wide panel, 0.898 / 0.904 on the Middle panel) at a 157.4 px edge (24 mm),
+  range 0.888–0.912. The cut sits at 0.900 of `sd`. Land 2.404 mm, over the 0.1 mm minimum.

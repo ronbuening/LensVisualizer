@@ -30,8 +30,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * station; the same fixed iris reproduces the published f/2.904 and f/2.905 at mid and tele.
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 4 (L12), 8 (L21), 31 (L52) and 34A
  * (L71). Faces 4 and 8 take their element edge as sd (the partner face: 34.2 / 22.6) and rimCutDepthMm ends the cap
- * at the old rim, cut radii 33.16 / 20.71 mm (so the 8 value above is now a cut radius). 31 and 34A keep their
- * 11.6 / 17.5 mm rims uncut: a land there would stop rays those rims stop.
+ * just outside the old 33.15 / 20.7 mm rims, at cut radii 33.1581 / 20.7130 mm (so the 8 value above is now a cut
+ * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A keep their 11.6 / 17.5 mm rims uncut: a land
+ * there would stop rays those rims stop.
  *
  * FOCAL LENGTHS — catalog.focalLengthMm.design and the zoom station focal lengths are the patent's printed
  * f (71.402 / 134.997 / 195.996 mm). The

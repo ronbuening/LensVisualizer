@@ -111,6 +111,22 @@ rims of concave faces, the shape `rimCutDepthMm` draws.
 
 - Every other concave face (8, 13, 16, 24, 27, 30, 38, 41, 44) runs to its element edge in the figure; no cut.
 - No cap reaches the stop plane at any zoom or focus state (surface 25 clears it by 2.72 mm, surface 27 by 10.69 mm).
-- Both stations still trace the stated f/4.58 and f/5.76. At the wide-end full field the cut on 7 narrows the
-  passing bundle there (side vignetting 21 % → 27 %), as the figure's smaller cap implies; surface 12's cut lies
-  outside the full-field bundle (18.25 mm).
+- Both stations still trace the stated f/4.58 and f/5.76. Each cut clears every traced ray of the wide-open beams by
+  its margin and clips none of them (beam rule below).
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Both cuts pass at their figure positions:
+
+- Surface 7: cut radius 27.9026 mm. The beams reach 25.1755 mm there (zoomT 0.15, focusT 0.6, 9.73°), a clearance
+  of 2.7271 mm against a 0.0837 mm margin, 2.6434 mm spare.
+- Surface 12: cut radius 20.0097 mm. The beams reach 17.7714 mm there (103.09 mm, focusT 0.75, 13.94°), a clearance
+  of 2.2383 mm against a 0.0600 mm margin, 2.1783 mm spare.
+
+Figure scale and land length: Figure 1(a) draws the wide end at infinity. Its S1–S46 vertex span is 1113 native px
+for 203.369 mm, 5.473 px per lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: q 0.963 at a 158.7 px edge (29.0 mm), range 0.951–0.975. Land 1.0974 mm, over the 0.1 mm minimum.
+- 12: q 0.87 at a 125.9 px edge (23.0 mm), range 0.855–0.885. Land 2.9903 mm, over the 0.1 mm minimum.

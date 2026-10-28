@@ -58,8 +58,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                          ║
  * ║  RIM CUT (2026-10-27): Fig. 9 draws a flat land square to the axis at   ║
  * ║    the rim of L3's concave rear (S5). S5 now runs to the 20.1 mm edge   ║
- * ║    with rimCutDepthMm 7.37, which ends the cap at 16.20 mm, the former  ║
- * ║    S5 sd, so tracing is unchanged.                                      ║
+ * ║    with rimCutDepthMm 7.37, which ends the cap at 16.1984 mm, just      ║
+ * ║    inside the former 16.2 mm S5 sd; the beams reach 14.4375 mm there.   ║
  * ╚══════════════════════════════════════════════════════════════════════════╝
  */
 

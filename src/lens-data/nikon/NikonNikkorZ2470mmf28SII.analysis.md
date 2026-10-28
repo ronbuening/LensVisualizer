@@ -305,7 +305,7 @@ The native stop position is preserved, and the inferred station iris is held thr
 Physical clear apertures are also unprinted.
 The model's SDs are estimates from Figure 3, checked against ray geometry, material thickness and gap clearance.
 They must not be read as primary-source effective diameters or measured vignetting.
-The curved rear surface of L1 (2A) ends at 24.0 mm, the figure's optical extent; a flat annulus 13.45 mm behind its vertex carries it out to L1's 30 mm rim, as Figure 3 draws it, and traced full-field rays reach at most 23.1 mm there.
+The rear surface of L1 (2A) is given 24.0 mm, the figure's optical extent before L1's flat mounting annulus; its asphere turns over past 27 mm, so it is not carried out to L1's 30 mm rim. Traced full-field rays reach at most 23.1 mm there.
 L1's front surface keeps the figure's 30 mm element rim.
 The entry SD at surface 3 is 23.1 mm against about 23.7 mm in the figure, which clears the wide/near full-field chief ray at 21.12 mm.
 Surfaces 19 and 21 are 12.9 mm, within the figure's 12.2–12.9 mm range for G5, which clears the tele/near on-axis marginal ray at 12.77 and 12.60 mm.
@@ -336,7 +336,7 @@ The required but unlisted application A14 terms are zero.
 | 25 | 1.0000 | 0.0000 | -1.431E-05 | 2.423E-08 | -1.539E-10 | 5.368E-13 | -6.402E-16 |
 
 The complete conic-plus-polynomial profile governs shape; the sign of A4 alone does not describe an asphere's net correction.
-At the modeled cap edges (the stored SDs, and on 2A the end of the curved cap before its flat annulus), departures from a sphere with the same vertex radius are:
+At the modeled cap edges (the stored SDs, and on 24 the end of the curved cap before its flat annulus), departures from a sphere with the same vertex radius are:
 
 | Surface | Modeled cap edge (mm) | Full sag (mm) | Departure from vertex-radius sphere (mm) |
 |---|---:|---:|---:|

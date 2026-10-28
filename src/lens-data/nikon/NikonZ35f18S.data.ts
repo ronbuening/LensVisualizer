@@ -56,10 +56,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    FIG. 4 ends concave faces 2, 5, 6, 12A and 20A in flat lands at ║
  * ║    the element edge. Face 12A takes the partner face's sd, and     ║
- * ║    rimCutDepthMm ends its cap at 12.11 mm, just past its old       ║
- * ║    12.041 mm radius, where no traced ray reaches. 2, 5, 6 and 20A  ║
- * ║    keep their old rims uncut: a land there would stop rays those   ║
- * ║    rims stop.                                                      ║
+ * ║    rimCutDepthMm ends its cap at 12.1052 mm, just past its old     ║
+ * ║    12.041 mm rim; the traced beams reach 11.6598 mm there. 2, 5,   ║
+ * ║    6 and 20A keep their old rims uncut: a land there would stop    ║
+ * ║    rays those rims stop.                                           ║
  * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║

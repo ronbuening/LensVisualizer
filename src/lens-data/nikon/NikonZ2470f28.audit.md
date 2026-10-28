@@ -125,18 +125,36 @@ was also fitted against its own cap, so a land counts only where the drawn rim l
 - The L11 flange beyond L12 (surface 2) and the L41 flange beyond L42 (surface 20) are cemented faces, not lands.
 - No cap reaches the stop plane: STO's neighbours 13 and 15A both curve away from it.
 - The aperture audit is unchanged: all three stations trace the stated f/2.92, with no rim, trace or rim-cut
-  limiter. The cut on 9 lies outside the full-field bundle (12.25 mm) at every station. The cut on 22 raises
-  full-field side vignetting at that surface from 62 % to 71 % (61 % to 69 % at close focus).
+  limiter. The cuts on 9 and 22 clear the traced wide-open beams by their margins (see the rule section) and clip
+  none of their rays.
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stops of #933 (entrance-pupil diameter F/N, f/2.92 at
+every station) with the rule's current search, which follows each beam to the field where it vanishes, seeds from the
+stop and refines near each cut on the full measurement. Traced against that rule, both cuts from the figure review
+above moved out:
 
-- Surface 9: the beams reach 13.79 mm there (24 mm, near 41°), past the figure's 13.21 mm cut. The depth goes from 1.48 to
-  1.63 mm, which puts the cut radius at 13.85 mm, 0.06 mm outside the beams; the land is shorter than the figure's.
-- Surface 22: the beams reach 11.72 mm there (near 70 mm and close focus, near 5.1°), past the figure's 11.58 mm cut. The depth goes from 2.99 to
-  3.11 mm, which puts the cut radius at 11.80 mm, 0.07 mm outside the beams; the land is shorter than the figure's.
+- Surface 9: the beams reach 13.7937 mm there, at the wide end (24.8 mm, zoomT 0), focusT 0.45 (between the infinity
+  and close-focus keyframes) and 41.29°, past the figure's 13.21 mm cut. The depth goes from 1.48 to 1.63 mm, which
+  puts the cut radius at 13.8535 mm: 0.0597 mm clear of the beams against a 0.05 mm margin, 0.0097 mm to spare. The
+  land is shorter than the figure's.
+- Surface 22: the beams reach 11.7073 mm there, at the tele end (67.9 mm, zoomT 1), close focus (focusT 1) and 5.58°,
+  past the figure's 11.58 mm cut. The depth goes from 2.99 to 3.11 mm, which puts the cut radius at 11.7955 mm:
+  0.0882 mm clear of the beams against a 0.05 mm margin, 0.0382 mm to spare. The land is shorter than the figure's.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 4 is drawn at 11.49 native px per lens mm, the figure review's span from
+surface 1 to the image plane: on the 2478 × 3507 px page raster, surface 1's vertex lies at row 2231 and the image
+plane at row 629.5, 1601.5 px over the wide end's 139.356 mm. The q range is ±(1 + q) / (edge px), with edge px =
+sd × 11.49. Both cuts sit past their q range because the beam rule moved them out.
+
+| Surface | Figure q | Edge px | q range | Cut radius ÷ sd | Land (sd − cut radius) |
+|---|---|---|---|---|---|
+| 9 | 0.91 | 166.6 | 0.899–0.921 | 0.955 | 0.6465 mm |
+| 22 | 0.95 | 140.2 | 0.936–0.964 | 0.967 | 0.4045 mm |
+
+Both lands are longer than the 0.1 mm minimum, and neither q range reaches 1.

@@ -69,7 +69,7 @@ from the 97.291 mm vertex span; every drawn element edge matches its stored `sd`
 
 | Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
 |---|---|---|---|---|---|
-| 16 (L42 rear, R 64.869) | 0.937 (0.939 / 0.935) | 1.85 mm | 15.38 mm | 16.4 | 9.91 mm |
+| 16 (L42 rear, R 64.869) | 0.937 (0.939 / 0.935); dropped (see the beam rule) | 1.85 mm | 15.38 mm | 16.4 | 9.91 mm |
 
 - Lands seen but not cut, because each adds more than 15 points of full-field side vignetting at its own surface
   (clearap, Y = 21.6 mm, infinity):
@@ -84,9 +84,9 @@ from the 97.291 mm vertex span; every drawn element edge matches its stored `sd`
 - Surface 19 (L44 rear, R 130.583) runs to its edge: its rim is nearly square to the axis, and no land departs from the
   curve by a resolvable pixel.
 - No cap reaches the stop plane: surface 10 clears it by 3.53 mm at the closest state (0.8 m focus, D10 9.445).
-- The cut on 16 keeps the stated f/1.85 at both focus ends; the aperture audit is unchanged (within 3 %, no rim, trace
-  or iris rows, no `(rim cut)` limiter). Its side vignetting at 16 goes 25 % → 35 % at infinity and 0 % → 8 % at
-  0.8 m; engine full-field transmission 0.577 → 0.546 (infinity) and 0.779 → 0.766 (0.8 m). Half-field unchanged.
+- The cut on 16 was dropped under the beam rule below: the wide-open beams reach its 16.4 mm rim, so no land is left
+  to draw. Surface 16 runs uncut to 16.4 mm, and the side vignetting (25 % → 35 % at infinity, 0 % → 8 % at 0.8 m)
+  and the engine transmission drop (0.577 → 0.546, 0.779 → 0.766) measured here for the cut no longer apply.
 
 ## 2026-10-27 — Rim-cut beam rule
 
@@ -94,7 +94,8 @@ An inferred rim cut must clear every traced ray of the wide-open beams by the la
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
 set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
 
-- Surface 16: the beams reach 16.37 mm there, within 0.1 mm of the 16.4 mm rim, so no land is left to draw. The cut is
-  removed.
+- Surface 16: the beams reached 16.37 mm there, within 0.1 mm of the 16.4 mm rim, so no land was left to draw, and the
+  cut was removed. On the paraxial stop (#933), with the rule's current search, which follows each beam to the field
+  where it vanishes, they reach the 16.4 mm rim itself (focusT 0.80, 15.33°).
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+The lens carries no cut, and the surface audit and the beam rule pass.

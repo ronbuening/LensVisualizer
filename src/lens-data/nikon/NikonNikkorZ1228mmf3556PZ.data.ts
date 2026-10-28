@@ -25,8 +25,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  also clears the tele corner (2026-09-24 field-coverage audit).     ║
  * ║  Rim cuts (2026-10-27): Figure 1 draws flat lands on the concave    ║
  * ║  rear faces 4 (L12) and 6 (L13). Their sds rise to the drawn edge   ║
- * ║  (13.2, held below |R|, and 10.2) and rimCutDepthMm ends each cap at║
- * ║  its old rim, 11.50 and 9.51 mm, so tracing is unchanged.           ║
+ * ║  (13.2, held below |R|, and 10.2) and rimCutDepthMm ends each cap   ║
+ * ║  near its old rim: cut radii 11.5002 and 9.5070 mm against the old  ║
+ * ║  11.5 and 9.5 mm rims; the wide-open beams reach 10.8944 and        ║
+ * ║  8.7266 mm there.                                                   ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERIC CONIC:                                           ║
  * ║  The patent uses κ in sqrt(1 - κ y²/R²). LensVisualizer stores the  ║

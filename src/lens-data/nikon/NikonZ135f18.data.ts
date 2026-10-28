@@ -9,9 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Catalog names are dispersion proxies, not established production materials.
  * Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave
  * rear faces 4 (L2), 9 (L5), 14 (L7) and 23 (L12); rimCutDepthMm ends those caps
- * at 35.25, 24.05, 19.32 and 21.81 mm, clear of every traced beam. 4 and 23 sit
- * just past the beams, outside the figure's 34.7 / 21.5 mm lands, which would stop
- * rays. Surface 9's cap now stops 2.08 mm ahead of the stop (was 0.07).
+ * at 35.25, 24.05, 19.32 and 21.92 mm, clear of every traced beam by the rule's
+ * margin. 4 and 23 sit outside the figure's 34.7 / 21.5 mm cap ends, which would
+ * stop rays: the beams reach 34.84 / 21.80 mm there. Surface 9's cap now stops
+ * 2.08 mm ahead of the stop (was 0.07).
  */
 
 const LENS_DATA = {

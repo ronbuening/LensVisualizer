@@ -168,17 +168,17 @@ Fig. 1 (PDF p. 41, the same image as the front-page abstract figure; native 2677
 
 - 7 and 32A: the face's `sd` is the element edge, so the cut radius is the figure share of `sd`.
 - 17 and 31: the stored `sd` sat inside the drawn square edge (31 was held at 18.0 for the L43/L44 gap). Each now
-  takes its partner face's rim (16 at 23.0, 30 at 19.3 mm), and the cut sits at the old `sd`, so tracing is
-  unchanged there. On 17 the figure share (cut radius 20.24 mm) would sit only 0.06 mm above the close-focus axial
-  ray, so the land drawn is shorter than the figure's (22.01 of 23.0 mm).
+  takes its partner face's rim (16 at 23.0, 30 at 19.3 mm), and the cut sits at the old `sd`. The clear radius of 17
+  goes from the old 22.0 mm rim to the 22.0073 mm cut radius, where the beams reach 19.4168 mm; that of 31 goes from
+  18.0 to 17.9988 mm, where the beams reach 16.8163 mm. On 17 the figure share (cut radius 20.24 mm) would sit only
+  0.06 mm above the close-focus axial ray, so the land drawn is shorter than the figure's (22.01 of 23.0 mm).
 - Concave faces 4A (L12 rear), 6 (L13 rear), 14 (L17 rear), 26 (L32 rear), 28 (L41 rear) and 33 (L44 rear) run
   to their element edge in the figure; no cut.
 - No cap reaches the stop plane: surface 17's land clears it by 1.14 mm (fixed gap), surface 19 by 8.68 mm.
 - Surface audit clean; aperture audit unchanged (stated f/1.23 traced; no rim, trace, iris or failed rows, no
   rim-cut limiter); image-circle check passes. At Y = 21.6 mm (ω = 32.62°) the stop-edge rim rays fail on the
-  lens's own geometry, so a meridional fan scan replaced the clear-aperture probe: the transmitted share of the
-  axial pupil stays 38.0 % at full field (S8 and 25A limit it) and is unchanged at 10–30°, with all four cut radii
-  applied. Chief rays meet the cut faces at 11.28, 2.62, 15.32 and 15.91 mm, inside every cut.
+  lens's own geometry, so the cuts were first checked with a meridional fan scan. The beam rule (below) now covers
+  them: each of the four cuts clears every traced ray of the wide-open beams by its margin and clips none of them.
 
 Lands seen but not cut:
 
@@ -187,3 +187,28 @@ Lands seen but not cut:
   keeps its sloped edge from 26.3 to 31.2 mm.
 - 19 (L21 front, R −38.223): short land at 0.963 (18.2 / 18.9 mm). The cut radius would be 18.30 mm, inside the
   18.31 mm close-focus axial ray, so it would slow the lens.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field and focus state, traced through the lens without its
+inferred cuts. The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search, which
+follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full measurement.
+All four cuts pass at their figure-review positions:
+
+- Surface 7: cut radius 24.0509 mm. The beams reach 23.8438 mm there (focusT 0.2, 34.09°), a clearance of 0.2072 mm
+  against a 0.0722 mm margin, 0.1350 mm spare.
+- Surface 17: cut radius 22.0073 mm. The beams reach 19.4168 mm there (focusT 0.65, 8.34°), a clearance of 2.5905 mm
+  against a 0.0660 mm margin, 2.5245 mm spare.
+- Surface 31: cut radius 17.9988 mm. The beams reach 16.8163 mm there (focusT 0.9, 34.09°), a clearance of 1.1825 mm
+  against a 0.0540 mm margin, 1.1285 mm spare.
+- Surface 32A: cut radius 17.7264 mm. The beams reach 17.0970 mm there (focusT 0.65, 34.09°), a clearance of
+  0.6294 mm against a 0.0532 mm margin, 0.5762 mm spare.
+
+Figure scale and land length: Fig. 1's 2144 px S1–S33 vertex span over 151.008 mm is 14.198 native px per lens mm.
+One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: q 0.911 at a 374.8 px edge (26.4 mm), range 0.906–0.916. Land 2.3491 mm, over the 0.1 mm minimum.
+- 17: q 0.88 at a 326.6 px edge (23.0 mm), range 0.874–0.886. The cut sits at the old 22.0 mm rim, 0.957 of `sd`.
+  Land 0.9927 mm, over the minimum.
+- 31: q 0.955 at a 274.0 px edge (19.3 mm), range 0.948–0.962. The cut sits at the old 18.0 mm rim, 0.933 of `sd`.
+  Land 1.3012 mm, over the minimum.
+- 32A: q 0.933 at a 269.8 px edge (19.0 mm), range 0.926–0.940. Land 1.2736 mm, over the minimum.

@@ -245,8 +245,9 @@ const LENS_DATA = {
   //  strongly-curved rear surface of L16 (R = 21 mm) physically encroaches on
   //  L21's front surface.  The reduced SDs prevent glass interpenetration and
   //  visible diagram overlap at close-focus distances (issue #290). Surfaces 11
-  //  and 14 now draw the full element edges; their rim cuts keep the reduced
-  //  radii as the cap ends.
+  //  and 14 now draw the full element edges; their rim cuts end the caps at
+  //  12.0023 and 11.5032 mm, just outside the reduced 12.0 and 11.5 mm radii,
+  //  where the traced beams reach 11.4807 and 11.37 mm.
   // (moved from asph) §4 — Aspherical coefficients
   //  Patent aspheric equation (¶0061):
   //    X(y) = (y²/R) / [1 + √(1 − κ·y²/R²)] + A4·y⁴ + A6·y⁶ + A8·y⁸ + A10·y¹⁰

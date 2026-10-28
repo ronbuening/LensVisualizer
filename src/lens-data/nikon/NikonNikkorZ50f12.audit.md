@@ -83,10 +83,12 @@ lower half, cross-checked on the close-focus panel's upper half.
 | 5 (L13 front, R −43.988) | 0.950 | 9.69 mm | 27.54 mm | 29 | 22.66 mm |
 | 7 (L14 front, R −82.014) | 0.973 | 5.37 mm | 29.19 mm | 30 | 25.87 mm |
 | 17 (L19 rear, R 40.041) | 0.850 | 6.37 mm | 21.67 mm | 25.5 | 20.80 mm |
-| 32A (L44 front, R −64.588) | 0.939; sd raised 18 → 19.5 (S33's edge) | 2.96 mm | 18.01 mm | 19.5 | 6.13 mm |
+| 32A (L44 front, R −64.588) | 0.939; not cut (see the beam rule) | — (was 2.96 mm) | — (was 18.01 mm) | 18 | 6.13 mm |
 
-- Faces 2 and 32A: the figure draws each element's edge at its front face's height (31.4 and 19.5 mm) with the land
-  at the old stored rim (figure cap ends 28.4 and 18.3 mm), so the cut sits at the old sd and tracing is unchanged.
+- Face 2: the figure draws L11's edge at its front face's height (31.4 mm) with the land at the old stored rim (figure
+  cap end 28.4 mm), so the cut sits at the old sd: the clear radius goes from the old 28.5 mm rim to the 28.5044 mm
+  cut radius, and the beams reach 27.3534 mm there. Face 32A: the figure draws L44's edge at 19.5 mm with the land at
+  18.3 mm, but 32A keeps its 18.0 mm rim, the asphere's designed extent, with no cut (see the beam rule).
 - Lands seen but not cut: face 4 (L12 rear, figure 0.970 of L12's 28.5 mm edge) and face 31 (L43 rear, figure 0.922
   of a 19.8 mm edge, meeting L44's land at one plane). Raising either to its partner's sd with the cut at the old rim
   is refused by the gap check: 4→5 combined sag 15.61 > 14.859 mm allowed, 31→32A 7.00 > 6.984 mm. Face 19 (L21
@@ -99,18 +101,41 @@ lower half, cross-checked on the close-focus panel's upper half.
 - The stated f/1.23 still traces (`audit:aperture` unchanged: no rim, trace or failed rows, no rim-cut limiter); the
   image-circle audit passes. `clearap` finds no full-field rim rays for this lens (the stop-edge rays at 22.8° fail in
   the front group or at 24A), so a meridional-fan probe with the cut radii as clear radii was used: the full-field fan passes
-  42.3 % at infinity and 56.0 % at close focus, unchanged, and is also unchanged at 10 and 15 mm image height. Cuts 5
-  and 7 only take rays that faces 4, 6 and 8 already block; 17's cut radius lies outside every field bundle. The
-  engine half-field moves 23.999° → 24.009° (32A's cut radius 18.009 mm against the old 18.0 mm rim).
+  42.3 % at infinity and 56.0 % at close focus, unchanged, and is also unchanged at 10 and 15 mm image height. The cuts
+  on 2, 5, 7 and 17 clear the traced wide-open beams by their margins and clip none of their rays (see the beam rule).
+  With 32A back at its 18.0 mm rim and uncut, the engine half-field is 23.999°, as before the review.
 
 ## 2026-10-27 — Rim-cut beam rule
 
 An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
 radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
-set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+set in the #928 review). The beams are traced on the paraxial stop (#933) with the rule's current search, which
+follows each beam to the field where it vanishes and refines near a cut on the full measurement. Traced against that
+rule and the designed rims, these cuts from the figure review above were changed:
 
-- Surface 7: the beams reach 29.10 mm there (close focus, near 14.4°), inside the figure's 29.19 mm cut but closer
-  than its 0.088 mm margin. The depth goes from 5.37 to 5.38 mm, which puts the cut radius at 29.22 mm; the land is
-  shorter than the figure's.
+- Surface 7: the beams reach 29.1046 mm there (focusT 0.10, 14.40°), past the figure's 29.19 mm cut less its
+  0.0876 mm margin. The depth goes from 5.37 to 5.38 mm, which puts the cut radius at 29.2152 mm; the land is shorter
+  than the figure's.
+- Surface 32A: back to its designed 18.0 mm rim with no cut (it was sd 19.5 with the cut at 18.0). Raising sd
+  extended the asphere past its designed extent; the land the figure draws at 18.3 mm is not modelled. This agrees
+  with the 2026-09-08 audit, which rejected larger rear rims and kept S32A at 18.
 
-The other cuts clear the beams by their margins, and the surface audit and the beam rule pass.
+Every remaining cut clears the beams by its margin, and the surface audit and the beam rule pass:
+
+| Surface | Cut radius | Beams reach | Where (focus, field) | Clearance | Margin | Spare |
+|---|---|---|---|---|---|---|
+| 2 | 28.5044 mm | 27.3534 mm | infinity, 24.00° | 1.1510 mm | 0.0855 mm | 1.0655 mm |
+| 5 | 27.5427 mm | 26.4654 mm | focusT 0.10, 14.40° | 1.0773 mm | 0.0826 mm | 0.9947 mm |
+| 7 | 29.2152 mm | 29.1046 mm | focusT 0.10, 14.40° | 0.1106 mm | 0.0876 mm | 0.0230 mm |
+| 17 | 21.6691 mm | 20.2864 mm | focusT 0.90, 4.00° | 1.3827 mm | 0.0650 mm | 1.3177 mm |
+
+Figure scale and land length. The figure review's 9.241 native px per lens mm comes from the S1–S33 vertex span. Each
+q range is ±(1 + q) / (sd × 9.241 px/mm):
+
+- 2: q 0.905 ± 0.0065 (0.898–0.912) on a 291 px edge; the cut sits at the old rim, 0.905 of sd; land 2.9956 mm.
+- 5: q 0.950 ± 0.0073 (0.943–0.957) on a 268 px edge; the cut is at q × sd; land 1.4573 mm.
+- 7: q 0.973 ± 0.0071 (0.966–0.980) on a 277 px edge; the cut, moved out by the beam rule, is at 0.974 of sd, inside
+  the range; land 0.7848 mm.
+- 17: q 0.850 ± 0.0079 (0.842–0.858) on a 236 px edge; the cut is at q × sd; land 3.8309 mm.
+
+Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
