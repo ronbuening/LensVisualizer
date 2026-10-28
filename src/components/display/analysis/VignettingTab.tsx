@@ -152,6 +152,9 @@ function CenteredVignettingContent({
         <div style={{ color: t.muted, fontSize: 9, lineHeight: 1.4, marginTop: 6, transition: "color 0.3s" }}>
           {unaimed > 0 ? `${unaimed} stop samples could not be aimed and are left out of both figures. ` : ""}
           {failed > 0 ? `${failed} rays failed to trace for a numerical reason and are left out of both figures. ` : ""}
+          {unaimed > 0 || failed > 0
+            ? "Beside the beam they can move relative illumination by up to 0.35%; more and the field has none. "
+            : ""}
           {gaps.length > 0 ? `No figure at ${gaps.join("; ")}.` : ""}
         </div>
       ) : null}
@@ -178,7 +181,7 @@ const FIELD_UNAVAILABLE: Record<VignettingFieldUnavailableReason | RelativeIllum
   "no-image-point": "relative illumination needs the chief ray's image point",
   "reference-sphere-missed": "a ray misses the reference sphere, so relative illumination is not computed",
   "rays-not-localized": "rays stray too far from the image point for Rimmer's method to apply",
-  "unresolved-in-beam": "a stop sample inside the beam could not be aimed or traced",
+  "unresolved-in-beam": "more than 0.35% of the beam's samples beside it could not be aimed or traced",
   "cosine-map-folds": "the beam folds in direction-cosine space, where Rimmer's method does not apply",
   "isolated-cell": "the beam is too thin to form the cell map",
   "axis-unavailable": "relative illumination needs the axis's figure",
