@@ -22,13 +22,11 @@ import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
-  mtfLaunchGrid,
-  mtfLaunchRay,
-  mtfTraceOptions,
   prepareMtfFieldLaunch,
-  traceMtfBundle,
   traceMtfFieldPupil,
+  traceMtfLaunchPlaneBundle,
 } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { traceRayClassification } from "../../../src/optics/trace/rayClassification.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
@@ -381,43 +379,78 @@ function buildRetrofocusLens() {
   });
 }
 
-describe("MTF pupil footprint", () => {
-  it("reproduces the entrance-pupil lattice for a stop-at-lens beam on axis", () => {
+describe("MTF pupil sampling", () => {
+  it("reproduces the launch-plane lattice on the axis of a lens without pupil aberration", () => {
+    // The stop is the first surface and the axial beam is collimated, so a ray crosses the stop where it was launched:
+    // the stop lattice and the launch-plane lattice over the same beam are the same cells, and so are their OTFs.
     const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
-    const bundle = traceMtfFieldPupil(
-      state,
-      mtfTestOptions,
-      assessMtfSupport(...mtfInputs(state, mtfTestOptions)),
-      0,
-      32,
-    )!;
-    // A 32-cell entrance-pupil grid keeps 812 cell centers inside its circle.
-    expect(bundle.rays).toHaveLength(812);
-    expect(bundle.launchStepMm).toBeCloseTo(2 / 32, 12);
+    const support = assessMtfSupport(...mtfInputs(state, mtfTestOptions));
+    const line = support.spectralLines[0];
+    const stop = traceMtfFieldPupil(state, mtfTestOptions, support, 0, 32)!;
+    expect(stop.sampling).toBe("stop");
+    // A 32-cell lattice keeps 812 cell centres inside the stop's circle, 2 R / 32 apart.
+    expect(stop.rays).toHaveLength(812);
+    expect(stop.stepMm).toBeCloseTo(2 / 32, 12);
+    const launch = prepareMtfFieldLaunch(state, mtfTestOptions, support, 0)!;
+    const footprint = findMtfFieldFootprint(state, mtfTestOptions, support, launch)!;
+    const plane = traceMtfLaunchPlaneBundle(state, mtfTestOptions, support, launch, footprint, 32, line)!;
+    expect(plane.sampling).toBe("launch-plane");
+    expect(plane.rays).toHaveLength(812);
+    expect(plane.stepMm).toBeCloseTo(2 / 32, 12);
+    const frequencies = [10, 20, 40, 80];
+    const wavelengthMm = line.wavelengthNm * 1e-6;
+    for (const axis of ["x", "y"] as const) {
+      const fromStop = otfMagnitude(geometricOtf(stop.rays, frequencies, axis));
+      const fromPlane = otfMagnitude(geometricOtf(plane.rays, frequencies, axis));
+      fromStop.forEach((value, i) => expect(value).toBeCloseTo(fromPlane[i], 9));
+    }
+    const shearedStop = shearedOtf(stop, stop.chief, wavelengthMm, frequencies);
+    const shearedPlane = shearedOtf(plane, plane.chief, wavelengthMm, frequencies);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      const a = otfMagnitude(shearedStop[cut]);
+      const b = otfMagnitude(shearedPlane[cut]);
+      a.forEach((value, i) => expect(value).toBeCloseTo(b[i], 9));
+    }
   });
-  it("samples the whole transmitted beam where it outgrows the axial entrance pupil", () => {
+  it("samples an off-axis field of a wide angle evenly on the stop, with equal weights", () => {
+    // At 50° the retrofocus front group images the stop large and off axis. Every cell's ray, traced on its own to the
+    // stop without apertures, crosses it at the cell's lattice position ((2k + 1 − n) / n) R within the aim's
+    // tolerance; equal launch-plane cells over the same beam land on the stop unevenly.
     const state = prepareRuntimeState(buildRetrofocusLens(), 0, 0);
     const options = { ...mtfTestOptions, pupilSemiDiameterMm: 2.2, stopSemiDiameterMm: 3 };
     const support = assessMtfSupport(...mtfInputs(state, options));
-    const area = (bundle: MtfBundle) => bundle.rays.length * bundle.launchStepMm ** 2;
-    const axial = area(traceMtfFieldPupil(state, options, support, 0, 32)!);
+    const line = support.spectralLines[0];
+    const n = 32;
+    const R = options.stopSemiDiameterMm;
+    const bundle = traceMtfFieldPupil(state, options, support, 50, n)!;
+    expect(bundle.sampling).toBe("stop");
+    expect([bundle.unaimed, bundle.failed]).toEqual([0, 0]);
+    const toStop = (ray: { origin: readonly number[]; direction: readonly number[] }) => {
+      const trace = traceEngineRay(state, ray as never, {
+        capture: "terminal",
+        stopAt: state.lens.stop.surfaceIndex + 1,
+        checkSemiDiameter: false,
+        directionNormalized: true,
+      });
+      return [trace.terminalPoint[0], trace.terminalPoint[1]];
+    };
+    for (const ray of bundle.rays) {
+      const [x, y] = toStop(ray.trace.input);
+      expect(Math.abs(x - ((2 * ray.column + 1 - n) / n) * R)).toBeLessThanOrEqual(1e-7 * R + 1e-12);
+      expect(Math.abs(y - ((2 * ray.row + 1 - n) / n) * R)).toBeLessThanOrEqual(1e-7 * R + 1e-12);
+      // The fixture's glasses carry no absorption data: every lit cell carries the same weight.
+      expect(ray.weight).toBe(1);
+    }
+    // The launch-plane lattice over the same beam: its neighbouring cells cross the stop up to tens of percent apart.
     const launch = prepareMtfFieldLaunch(state, options, support, 50)!;
     const footprint = findMtfFieldFootprint(state, options, support, launch)!;
-    const bundle = traceMtfBundle(state, options, support, launch, footprint, 32, support.spectralLines[0])!;
-    // Dense reference on the same lattice, extended three entrance-pupil radii beyond the footprint.
-    const grid = mtfLaunchGrid(footprint, 32);
-    const pad = Math.ceil((3 * options.pupilSemiDiameterMm) / grid.step);
-    const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
-    let reference = 0;
-    for (let row = -pad; row < grid.rows + pad; row++)
-      for (let column = -pad; column < grid.columns + pad; column++) {
-        const ray = mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step);
-        const trace = traceEngineRay(state, ray, traceOptions);
-        if (traceRayClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
-      }
-    expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);
-    expect(bundle.rays.length / reference).toBeGreaterThan(0.99);
-    expect(bundle.openBorders).toEqual({ x: false, y0: false, y1: false });
+    const plane = traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, n, line)!;
+    const byCell = new Map(plane.rays.map((ray) => [`${ray.row},${ray.column}`, toStop(ray.trace.input)]));
+    const pitches = plane.rays.flatMap((ray) => {
+      const next = byCell.get(`${ray.row + 1},${ray.column}`);
+      return next ? [next[1] - byCell.get(`${ray.row},${ray.column}`)![1]] : [];
+    });
+    expect(Math.max(...pitches) / Math.min(...pitches)).toBeGreaterThan(1.1);
   });
   it("fits the footprint to a slit beam thinner than the coarse scan when the chief transmits", () => {
     // A 0.1 mm slit through the chief: the scan of a 10 mm pupil samples y every 1.25 mm and misses it.

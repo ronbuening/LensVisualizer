@@ -149,14 +149,24 @@ export interface MtfFieldResult {
   status: MtfFieldStatus;
   reason: MtfUnavailableReason | null;
   message: string;
-  /** Qualifications that keep a result usable, e.g. edge rays the tracer could not resolve. */
+  /** Qualifications that keep a result usable, e.g. pupil samples that could not be aimed or traced. */
   notes: string[];
-  /** Launch cells across the transmitted beam's larger dimension. */
+  /**
+   * Where the pupil is sampled: `stop`, positions evenly spaced on the real aperture stop (OpticStudio with ray aiming,
+   * CODE V); `launch-plane`, equal cells on the launch plane, kept for a field launched from the bounding sphere.
+   */
+  pupilSampling: "stop" | "launch-plane";
+  /** Cells across the stop's diameter (across the beam's larger dimension on the launch plane). */
   gridSize: number;
   validRays: number;
   blockedRays: number;
+  /** Aimed samples whose full trace failed or never reached the image plane. */
   failedRays: number;
-  /** Share of launch flux carried by unresolved rays; the geometric OTF error is at most twice this. */
+  /** Stop samples no ray could be aimed at. */
+  unaimedRays: number;
+  /** Unaimed or failed samples beside the transmitted beam (the row or column neighbour of a transmitted cell). */
+  unresolvedInBeamRays: number;
+  /** Share of the sampled flux carried by unaimed and failed samples; the geometric OTF error is at most twice this. */
   unknownFluxFraction: number;
   /** Largest change between the last two grids at or below the convergence band. */
   maxDelta: number | null;

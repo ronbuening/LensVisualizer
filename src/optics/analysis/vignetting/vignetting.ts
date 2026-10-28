@@ -56,6 +56,8 @@ import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSuppo
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../pupils/aimedPupil.js";
+import { stopLattice } from "../pupils/stopLattice.js";
+import type { StopLatticeCell } from "../pupils/stopLattice.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import type { OffAxisFieldGeometry } from "../aberration/offAxis.js";
 import type { PreparedGeometry, Vec3 } from "../../types.js";
@@ -92,19 +94,8 @@ export const RIMMER_MAX_REFERRED_DEVIATION = 0.05;
  */
 export const RIMMER_MAX_UNRESOLVED_SHARE = 0.0035;
 
-/** One cell of the stop lattice: a stop sample at normalised (xFraction, yFraction), its centre in the unit disc. */
-export interface VignettingLatticeCell {
-  /** Position in the lattice list. */
-  index: number;
-  /** Lattice row, 0 at yFraction = −1. */
-  row: number;
-  /** Lattice column, 0 at xFraction = −1. */
-  column: number;
-  xFraction: number;
-  yFraction: number;
-  /** Equal weight, 1 / number of cells. */
-  weight: number;
-}
+/** One cell of the stop lattice (`pupils/stopLattice.ts`). */
+export type VignettingLatticeCell = StopLatticeCell;
 
 /**
  * Why a field has neither figure: no launch, or more unaimed and failed samples than `VIGNETTING_MAX_UNAIMED_SHARE`
@@ -221,25 +212,14 @@ export interface VignettingCurve {
 }
 
 /**
- * The stop lattice: cells `cellsAcross` across the stop's diameter, those whose centre lies in the unit disc.
- *
- * Coordinates are (2k + 1 − n) / n, so a column and its mirror are exact negatives.
+ * The tab's stop lattice (`pupils/stopLattice.ts`): cells `cellsAcross` across the stop's diameter, those whose centre
+ * lies in the unit disc, at coordinates (2k + 1 − n) / n, so a column and its mirror are exact negatives.
  *
  * @param cellsAcross - cells across the diameter; at least `MIN_BEAM_GRID_CELLS`
  * @returns cells in row-major order, with equal weights
  */
 export function vignettingStopLattice(cellsAcross: number): VignettingLatticeCell[] {
-  const n = latticeSize(cellsAcross);
-  const cells: Omit<VignettingLatticeCell, "index" | "weight">[] = [];
-  for (let row = 0; row < n; row++) {
-    const yFraction = (2 * row + 1 - n) / n;
-    for (let column = 0; column < n; column++) {
-      const xFraction = (2 * column + 1 - n) / n;
-      if (xFraction * xFraction + yFraction * yFraction <= 1) cells.push({ row, column, xFraction, yFraction });
-    }
-  }
-  const weight = 1 / cells.length;
-  return cells.map((cell, index) => ({ index, ...cell, weight }));
+  return stopLattice(latticeSize(cellsAcross));
 }
 
 /**

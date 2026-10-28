@@ -21,7 +21,12 @@ import { env } from "node:process";
 import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
 import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
 import { shearedOtf } from "../src/optics/mtf.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/mtf.js";
+import {
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfBundle,
+  traceMtfLaunchPlaneBundle,
+} from "../src/optics/mtf.js";
 import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
 import { wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
@@ -239,18 +244,19 @@ function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOption
   for (const field of charted) {
     if (field.fieldAngleDeg === null) continue;
     const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
-    const footprint = launch && findMtfFieldFootprint(state, options, support, launch);
-    if (!launch || !footprint) continue;
+    // A bounding-sphere field keeps launch-plane sampling over its footprint, as the product does.
+    const footprint = launch && !launch.aim ? findMtfFieldFootprint(state, options, support, launch) : null;
+    if (!launch || (!launch.aim && !footprint)) continue;
     const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     let common: MtfSpot | undefined;
     let step = 0;
     let complete = true;
     for (const line of support.spectralLines) {
-      const bundle = traceMtfBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, {
-        reference: common,
-        opticalPath: true,
-      });
+      const extras = { reference: common, opticalPath: true };
+      const bundle = footprint
+        ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
+        : traceMtfBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
       const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
       if (!bundle || !lattice || !common) {
         complete = false;

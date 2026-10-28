@@ -14,5 +14,12 @@ export {
   assessMtfSupport,
   resolveMtfSpectrum,
 } from "./analysis/mtf/mtfSupport.js";
-export { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "./analysis/mtf/mtfTracing.js";
+export {
+  aimMtfStopLattice,
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfBundle,
+  traceMtfLattice,
+  traceMtfLaunchPlaneBundle,
+} from "./analysis/mtf/mtfTracing.js";
 export { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "./analysis/mtf/mtfWavefront.js";
