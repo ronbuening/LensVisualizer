@@ -281,6 +281,19 @@ The other diagnoses are not rim problems:
   it is no trace failure: the sequential trace steps back to it.
 - `iris`, one lens: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8).
 
+Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the
+wide-open one, lies in the glass of the face beside the stop. The trace steps back to the stop plane, but no iris can
+close there. Move the stop plane into the air the source draws, as #929 does, or cut a rim the figure shows, as #928
+does. `__tests__/src/lens-data/irisInAir.test.ts` lists these files with the five of #928 and #929 and the Hologon,
+and fails when a lens joins or leaves it, so delete the key there with the row here.
+
+| Lens | File | Station: face, glass from, wide-open iris | Status |
+|---|---|---|---|
+| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 12.08 mm (STO gap 2.42 mm) | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.27 mm, iris 11.48 mm | todo |
+| OLYMPUS J.ZUIKO AUTO-W 24mm f/2 | `olympus/OlympusZuiko24mmf2J.data.ts` | 0.25 m: face 12 in front of the stop from 8.45 mm, iris 8.81 mm (STO gap 0.34 mm) | todo |
+| PENTAX SMC DA 18-55mm f/3.5-5.6 AL | `pentax/PentaxDA1855mmF3556AL.data.ts` | 19.1 mm: face 14 in front of the stop from 5.54 mm, iris 5.57 mm | todo |
+
 Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
 squaring them means moving faces that do not clip:
 
