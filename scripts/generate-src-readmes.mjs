@@ -83,6 +83,10 @@ const folderRoleOverrides = new Map([
     "pure optical engine, runtime-lens construction, tracing, analysis, projection, glass, mount rendering, and diagram geometry",
   ],
   ["src/optics/analysis/bokeh", "request-based bokeh previews, field footprints and density reductions"],
+  [
+    "src/optics/analysis/vignetting",
+    "computes OpticStudio's vignetting (the share of a stop lattice's rays transmitted, geometric) and relative illumination (Rimmer's projected solid angle of the exit pupil in direction-cosine space, with transmission, relative to the axis)",
+  ],
   ["src/optics/analysis/aberration", "request-based spherical and best-focus analysis with shared aberration leaves"],
   ["src/optics/analysis", "prepared-state analysis adapters and grouped analysis facades"],
   ["src/optics/chromatic", "chromatic channel, trace, dispersion, and quality helpers"],
