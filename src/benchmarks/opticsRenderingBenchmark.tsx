@@ -39,14 +39,14 @@ export {
   formatRunFileName,
   serializeBenchmarkRecord,
 } from "./benchmarkReport.js";
-import { wideOpenStopAtZoom } from "../optics/optics.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../optics/optics.js";
 import { buildLens } from "../optics/buildLens.js";
 import { createAnalysisComputationContext } from "../optics/analysis.js";
 import { prepareRuntimeState } from "../optics/buildLens.js";
 import {
   anchorLayoutToCamera,
   doLayoutForRuntimeLens as doLayout,
-  effectiveFNumber,
+  paraxialWorkingFNumberForRuntimeLens,
   eflAtFocus,
   fopenAtZoomClamped as fopenAtZoom,
   traceRay,
@@ -838,10 +838,11 @@ function measureMainScenario(
  * Builds the viewer-equivalent optical state for one scenario.
  *
  * The benchmark mirrors `LensViewer` conventions: layout is anchored to the reference
- * image plane, focus/zoom/aberration sliders are normalized, and stop-down scales both
- * physical stop semi-diameter and entrance-pupil semi-diameter from the open-aperture
- * values. Cardinal and effective f-number calls are included to keep layout work close
- * to the visible viewer path even when their return values are not serialized.
+ * image plane, focus/zoom/aberration sliders are normalized, the stop comes from the stop
+ * rule at the slider's f-number, and the entrance pupil is that stop's paraxial pupil in
+ * the current state. Cardinal and paraxial working f-number calls are included to keep
+ * layout work close to the visible viewer path even when their return values are not
+ * serialized.
  */
 function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): ScenarioSnapshot {
   const focusT = scenario.focusT;
@@ -885,13 +886,15 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const wideOpenStopSD = wideOpenStopAtZoom(zoomT, L);
-  const currentPhysStopSD = (wideOpenStopSD * currentFOPEN) / fNumber;
+  const currentPhysStopSD = stopSemiDiameterForFNumber(fNumber, zoomT, L);
   const baseEPSD = fieldGeometry
     ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
     : L.EP.epSD;
-  const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
+  const currentEPSD = fieldGeometry
+    ? entrancePupilAtState(currentPhysStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
+    : (baseEPSD * currentPhysStopSD) / wideOpenStopSD;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
-  effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
+  paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   computeCardinalElements(

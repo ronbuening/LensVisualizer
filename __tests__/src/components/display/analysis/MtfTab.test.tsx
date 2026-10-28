@@ -13,6 +13,7 @@ import {
   buildSimplePositiveElementLens,
 } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { stopSemiDiameterForFNumber } from "../../../../../src/optics/state/apertureStop.js";
 import { assessMtfSupport } from "../../../../../src/optics/analysis/mtf/mtfSupport.js";
 import { computeMtf } from "../../../../../src/optics/analysis/mtf/mtf.js";
 import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
@@ -141,33 +142,41 @@ describe("MTF tab", () => {
       />,
     );
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
-    // The fixture opens its iris to 1 mm, far from the f/2.8 label, so the header reports the traced aperture.
-    const header = screen.getByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\) · 49\.2 mm · Diffraction-corrected · /);
+    // The iris limits the axial beam, so the marked f-number stands alone, however far the 1 mm iris is from f/2.8.
+    const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected · /);
     expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Best axial focus (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
   });
-  it("drops the traced-aperture note while the result belongs to an earlier request", async () => {
-    stubWorker({ target: focusedState });
+  it("names the surface that vignettes the axial beam, but not while the result belongs to an earlier request", async () => {
+    // Element rims of 6 mm behind an iris of 8 mm or more clip the axial marginal ray at surface 1.
+    const rimmedL = build({
+      ...constructionFixtureData(focusedL),
+      surfaces: constructionFixtureData(focusedL).surfaces.map((surface) =>
+        surface.label === "STO" ? surface : { ...surface, sd: 6 },
+      ),
+    });
+    const rimmedState = prepareRuntimeState(rimmedL, 0, 0);
+    stubWorker({ target: rimmedState });
     const tab = (fNumber: number, stop: number) => (
       <MtfTab
-        L={focusedL}
+        L={rimmedL}
         t={mockTheme}
-        preparedState={focusedState}
+        preparedState={rimmedState}
         currentEPSD={stop}
         currentPhysStopSD={stop}
         fNumber={fNumber}
         focalLengthMm={49.2}
       />
     );
-    const { rerender } = render(tab(2.8, 1));
-    await screen.findByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\)/);
-    // The new label must not be compared with the previous request's beam.
-    rerender(tab(4, 0.7));
-    expect(screen.getByText(/^f\/4\.0 · 49\.2 mm/)).toBeTruthy();
-    expect(await screen.findByText(/^f\/4\.0 \(traced f\/3[45]\.\d+\)/)).toBeTruthy();
+    const { rerender } = render(tab(2.8, 8));
+    await screen.findByText(/^f\/2\.8 \(axial beam vignetted at surface 1\) · 49\.2 mm/);
+    // The new label must not carry the previous request's state.
+    rerender(tab(2.5, 9));
+    expect(screen.getByText(/^f\/2\.5 · 49\.2 mm/)).toBeTruthy();
+    expect(await screen.findByText(/^f\/2\.5 \(axial beam vignetted at surface 1\) · 49\.2 mm/)).toBeTruthy();
   });
   it("explains each dropdown's options in a tooltip", async () => {
     stubWorker({ target: focusedState });
@@ -390,11 +399,13 @@ describe("MTF export and aperture comparison", () => {
     );
     await screen.findByRole("figure", { name: /image height/ });
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
-    // The fixture's stopped-down iris is far from f/8, so the overlay label carries its traced aperture too.
-    expect(await screen.findByText(/^f\/8 \(traced f\/\d+(\.\d+)?\) \(thin lines\)$/)).toBeTruthy();
+    // The f/8 stop comes from the stop rule, not from the current stop, and the iris limits its beam: no note.
+    expect(await screen.findByText(/^f\/8 \(thin lines\)$/)).toBeTruthy();
     const stopped = calls.jobs.at(-1)!.options;
-    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
-    expect(stopped.stopSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
+    const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+    expect(stopped.stopSemiDiameterMm).toBe(f8Stop);
+    // The current request's pupil-to-stop ratio (1 : 1 here) carries over to the f/8 stop.
+    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(f8Stop, 12);
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();

@@ -1,13 +1,13 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
 import { useMemo } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
-import type { MtfAperture, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
+import type { MtfAxialVignetting, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import { createAnalysisRequest } from "../../../optics/analysis.js";
 import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
-import { formatFNumber } from "../../../optics/optics.js";
+import { formatFNumber, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useMtfPreferences } from "../../hooks/useMtfPreferences.js";
@@ -24,7 +24,7 @@ interface MtfTabProps {
   analysisContext?: AnalysisComputationContext;
   currentEPSD: number;
   currentPhysStopSD: number;
-  /** Selected working f-number and current focal length, for the chart header. */
+  /** Marked f-number and current focal length, for the chart header. */
   fNumber?: number;
   focalLengthMm?: number;
   movementActive?: boolean;
@@ -32,8 +32,6 @@ interface MtfTabProps {
 
 /** Comparison aperture of manufacturer charts. */
 const COMPARISON_F_NUMBER = 8;
-/** Share by which the traced working f-number may differ from the label before the header says so. */
-const TRACED_APERTURE_NOTE_FRACTION = 0.02;
 
 const METHOD_LABELS: Record<MtfMethod, string> = {
   diffraction: "Diffraction-corrected",
@@ -109,31 +107,33 @@ export default function MtfTab({
     [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
   );
   const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
-  // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
+  // The f/8 stop comes from the stop rule, as the aperture control's does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {
-    if (!job || !compareF8Available || !preferences.compareF8 || !fNumber) return null;
-    const scale = fNumber / COMPARISON_F_NUMBER;
+    if (!job || !compareF8Available || !preferences.compareF8 || !(job.aperture.stopSemiDiameterMm > 0)) return null;
+    const stop = stopSemiDiameterForFNumber(COMPARISON_F_NUMBER, job.preparedGeometry.zoomT, L);
+    // At one state the paraxial entrance pupil is proportional to the stop.
+    const pupil = (job.aperture.entrancePupilSemiDiameterMm * stop) / job.aperture.stopSemiDiameterMm;
     return createAnalysisRequest({
       preparedState: job.preparedGeometry,
       dynamicEFL: job.dynamicEFL,
-      currentEPSD: job.aperture.entrancePupilSemiDiameterMm * scale,
-      currentPhysStopSD: job.aperture.stopSemiDiameterMm * scale,
+      currentEPSD: pupil,
+      currentPhysStopSD: stop,
       perspectiveTraceContext: job.perspectiveTraceContext,
     });
-  }, [job, compareF8Available, preferences.compareF8, fNumber]);
+  }, [job, compareF8Available, preferences.compareF8, L]);
   const comparison = useMtfComputation(L, comparisonJob, options);
   const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
-  // A result kept from an earlier request, or one at a finite conjugate, says nothing about the label on screen.
-  const apertureOf = (result: MtfResult | null, superseded: boolean) =>
-    superseded || support.conjugate ? null : (result?.aperture ?? null);
-  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${tracedApertureNote(COMPARISON_F_NUMBER, apertureOf(comparisonShown, false))}`;
+  // A result kept from an earlier request says nothing about the label on screen.
+  const vignettingOf = (result: MtfResult | null, superseded: boolean) =>
+    superseded ? null : (result?.axialVignetting ?? null);
+  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${axialVignettingNote(vignettingOf(comparisonShown, false))}`;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 4px", fontSize: 14 }}>Simulated MTF</h3>
       <p style={muted}>
-        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, apertureOf(shown, stale))}
+        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, vignettingOf(shown, stale))}
       </p>
       {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
       <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
@@ -218,10 +218,10 @@ function headerLine(
   fNumber: number | undefined,
   focalLengthMm: number | undefined,
   result: MtfResult | null,
-  aperture: MtfAperture | null,
+  vignetting: MtfAxialVignetting | null,
 ): string {
   const parts: string[] = [];
-  if (fNumber) parts.push(`f/${formatFNumber(fNumber)}${tracedApertureNote(fNumber, aperture)}`);
+  if (fNumber) parts.push(`f/${formatFNumber(fNumber)}${axialVignettingNote(vignetting)}`);
   if (focalLengthMm) parts.push(`${focalLengthMm.toFixed(1)} mm`);
   parts.push(METHOD_LABELS[options.method]);
   parts.push(
@@ -240,14 +240,12 @@ function headerLine(
 }
 
 /**
- * Qualify a label f-number when the axial beam traces at a different aperture: a clear aperture can stop the
- * marginal ray before the iris, and stop-down scales the wide-open iris linearly. Callers pass no aperture for a
- * superseded result or a finite conjugate, where the working f-number differs from the label by design.
+ * Qualify a marked f-number when a clear aperture vignettes the axial marginal ray, the Summary working f-number's
+ * `vignetted` state. Callers pass null for a superseded result.
  */
-function tracedApertureNote(fNumber: number, aperture: MtfAperture | null): string {
-  if (!aperture || Math.abs(aperture.tracedFNumber / fNumber - 1) <= TRACED_APERTURE_NOTE_FRACTION) return "";
-  const limit = aperture.limitingSurfaceLabel ? `, limited by surface ${aperture.limitingSurfaceLabel}` : "";
-  return ` (traced f/${formatFNumber(aperture.tracedFNumber)}${limit})`;
+function axialVignettingNote(vignetting: MtfAxialVignetting | null): string {
+  if (!vignetting) return "";
+  return ` (axial beam vignetted at surface ${vignetting.surfaceLabel}${vignetting.beforeStop ? ", before the stop" : ""})`;
 }
 
 function progressText(result: MtfResult): string {

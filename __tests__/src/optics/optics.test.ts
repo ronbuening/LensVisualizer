@@ -16,7 +16,6 @@ import { traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapte
 import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
 import { FOCUS_INFINITY_CUTOFF } from "../../../src/optics/state/focusDistance.js";
 import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
-import { effectiveFNumber } from "../../../src/optics/first-order/fNumber.js";
 import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import type { RuntimeLens, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/state/stationTables.js";
@@ -714,37 +713,6 @@ describe("eflAtFocus", () => {
     const efl = eflAtFocus(1, 0, L);
     expect(isFinite(efl)).toBe(true);
     expect(efl).toBeGreaterThan(0);
-  });
-});
-
-describe("effectiveFNumber", () => {
-  it("returns nominal f-number at infinity focus", () => {
-    const L = buildLens(catalogLensData(ApoLantharRaw));
-    expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);
-    expect(effectiveFNumber(2.0, 0.001, 0, L)).toBe(2.0); // below threshold
-  });
-
-  it("returns higher effective f-number at close focus", () => {
-    const L = buildLens(catalogLensData(ApoLantharRaw));
-    const nominalF = 2.0;
-    const effF = effectiveFNumber(nominalF, 1, 0, L);
-    expect(effF).toBeGreaterThan(nominalF);
-  });
-
-  it("increases monotonically as focus gets closer", () => {
-    const L = buildLens(catalogLensData(ApoLantharRaw));
-    const f1 = effectiveFNumber(2.0, 0.3, 0, L);
-    const f2 = effectiveFNumber(2.0, 0.6, 0, L);
-    const f3 = effectiveFNumber(2.0, 1.0, 0, L);
-    expect(f2).toBeGreaterThan(f1);
-    expect(f3).toBeGreaterThan(f2);
-  });
-
-  it("works with zoom lenses", () => {
-    const L = buildLens(catalogLensData(NikkorZ70200Raw));
-    const effF = effectiveFNumber(2.8, 1, 0, L);
-    expect(effF).toBeGreaterThan(2.8);
-    expect(isFinite(effF)).toBe(true);
   });
 });
 

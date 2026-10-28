@@ -1,6 +1,7 @@
 import type { PointerEvent, ReactNode, RefObject, TouchEvent, WheelEvent } from "react";
 import type { CardinalElements } from "../../../optics/analysis.js";
 import type { LensMovementTransform } from "../../../optics/perspective.js";
+import type { ParaxialWorkingFNumberResult } from "../../../optics/optics.js";
 import type { GroupMovementMode } from "../../../types/groupMovement.js";
 import type {
   ChromaticRayFanSpread,
@@ -54,7 +55,7 @@ export interface PanelComputedModel {
   varReadouts: VarReadout[];
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
-  effectiveFNum: number;
+  paraxialWorkingFNum: ParaxialWorkingFNumberResult;
   info: ElementData | null;
   act: number | null;
   sel: number | null;

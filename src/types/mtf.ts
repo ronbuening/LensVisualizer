@@ -106,17 +106,14 @@ export interface MtfFocus {
 }
 
 /**
- * Aperture the axial beam actually traces at, as opposed to the f-number on the label. Authored clear apertures can
- * limit the axial beam before the iris does, and a stopped-down iris is scaled from the wide-open one.
+ * The clear aperture that vignettes the axial marginal ray, the Summary working f-number's `vignetted` state
+ * (`computeWorkingFNumber`). The chart header names it beside the marked f-number.
  */
-export interface MtfAperture {
-  /**
-   * F-number of the transmitted axial beam: its rim height times the near-axis slope n′ sin U′ per launch height.
-   * At infinity this is f / (2 × pupil radius); at a finite conjugate it is the paraxial working f-number.
-   */
-  tracedFNumber: number;
-  /** Label of the surface that stops the next ray outward; null when that surface is the iris. */
-  limitingSurfaceLabel: string | null;
+export interface MtfAxialVignetting {
+  /** Label of the surface that stops the marginal ray. */
+  surfaceLabel: string;
+  /** True when the ray is stopped before it reaches the stop. */
+  beforeStop: boolean;
 }
 
 /** What a lens's data lacks for the chart on screen; see `assessMtfDataLimitations`. */
@@ -180,6 +177,6 @@ export interface MtfResult {
   fields: MtfFieldResult[];
   geometry: MtfFieldGeometry | null;
   focus: MtfFocus | null;
-  /** Traced axial aperture; null when the request is unsupported or no axial rim ray can be found. */
-  aperture: MtfAperture | null;
+  /** Where the axial marginal ray is vignetted; null when it is not, or when the request is unsupported. */
+  axialVignetting: MtfAxialVignetting | null;
 }

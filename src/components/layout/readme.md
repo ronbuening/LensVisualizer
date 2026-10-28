@@ -101,7 +101,7 @@ flowchart LR
 | `BreadcrumbBar.tsx` | React component module | src/utils/catalog (4), src/pages/lensIndex (3), src/utils/state (2), package:react-router, same folder, +5 more | same folder | default, BreadcrumbBar |
 | `ControlsBar.tsx` | React component module | src/types (3), package:react, src/components/controls, src/optics/chromatic.ts, src/utils/featureFlags.ts, +2 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |
-| `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
+| `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls, src/optics/optics.ts | same folder | default, DiagramControlPanel |
 | `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | src/components/controls, src/components/lensBuilder, src/components/relationshipMap | DropdownPanelPos, default |
 | `LensDiagramPanel.tsx` | React component module | src/components/hooks (8), same folder (3), src/types (2), src/utils/state (2), package:react, +9 more | same folder, src/comparison | default, LensDiagramPanel |
 | `LensViewer.tsx` | React component module | src/utils/state (5), same folder (3), src/components/hooks (2), src/utils/catalog (2), src/utils/theme (2), +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |

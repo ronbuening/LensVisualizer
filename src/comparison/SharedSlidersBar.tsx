@@ -30,7 +30,15 @@
 
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
-import { formatDist, formatFNumber, eflAtZoomClamped as eflAtZoom, FOCUS_INFINITY_CUTOFF } from "../optics/optics.js";
+import {
+  formatDist,
+  formatFNumber,
+  formatParaxialWorkingFNumber,
+  eflAtZoomClamped as eflAtZoom,
+  FOCUS_INFINITY_CUTOFF,
+  showsParaxialWorkingFNumber,
+} from "../optics/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/analysis.js";
 import { isMovementAxisEnabled } from "../optics/perspective.js";
 import { snapToZeroStop } from "../utils/style/sliderStops.js";
@@ -63,8 +71,8 @@ interface SharedSlidersBarProps {
   movementPair: MovementPairResult | null;
   dynamicEflA: number;
   dynamicEflB: number;
-  effectiveFNumA: number;
-  effectiveFNumB: number;
+  paraxialWorkingFNumA: ParaxialWorkingFNumberResult;
+  paraxialWorkingFNumB: ParaxialWorkingFNumberResult;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
@@ -96,8 +104,8 @@ export default function SharedSlidersBar({
   movementPair,
   dynamicEflA,
   dynamicEflB,
-  effectiveFNumA,
-  effectiveFNumB,
+  paraxialWorkingFNumA,
+  paraxialWorkingFNumB,
   showEffectiveFocalLength,
   onToggleEffectiveFocalLength,
   showEffectiveAperture,
@@ -405,10 +413,11 @@ export default function SharedSlidersBar({
           footer={
             <>
               {showEffectiveAperture &&
-                (Math.abs(effectiveFNumA - fNumberA) > 0.05 || Math.abs(effectiveFNumB - fNumberB) > 0.05) && (
+                (showsParaxialWorkingFNumber(paraxialWorkingFNumA, fNumberA) ||
+                  showsParaxialWorkingFNumber(paraxialWorkingFNumB, fNumberB)) && (
                   <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal }}>
-                    <span>A eff. f/{formatFNumber(effectiveFNumA)}</span>
-                    <span>B eff. f/{formatFNumber(effectiveFNumB)}</span>
+                    <span>A paraxial working {formatParaxialWorkingFNumber(paraxialWorkingFNumA)}</span>
+                    <span>B paraxial working {formatParaxialWorkingFNumber(paraxialWorkingFNumB)}</span>
                   </div>
                 )}
               <button
@@ -429,7 +438,7 @@ export default function SharedSlidersBar({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show paraxial working f-number
                 </span>
               </button>
             </>
