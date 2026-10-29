@@ -26,6 +26,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-28",
+    type: "article",
+    summary: "Added new Canon, Sony, Fujifilm and Panasonic articles to the manufacturer lens story index",
+  },
+  {
+    date: "2026-10-28",
+    type: "improvement",
+    summary: "Linked more Sony, Leica, Canon, Tamron and SIGMA manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-10-28",
     type: "lens",
     summary:
       "Added the Four Thirds Olympus Zuiko Digital ED 7-14mm f/4.0, 40-150mm f/4.0-5.6 and 50-200mm f/2.8-3.5 SWD, the Canon EF 17-40mm f/4L USM, and the Canon EF-M 18-150mm f/3.5-6.3 IS STM and 55-200mm f/4.5-6.3 IS STM",

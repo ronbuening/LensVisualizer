@@ -17,15 +17,15 @@ This guide gathers those first-party articles in one place. Each company page li
 ## Browse by Company
 
 - **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 99 tales in Nikon's current English index plus Research Report papers, the Frontiers of Vision series, and corporate lens technology and design features.
-- **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, and a GFX100RF fixed-lens development chapter.
+- **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, the GFX100RF fixed-lens development story, and other FUJINON lens features.
 - **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — Ohsone's ten product tales and the eight-part GROUND BREAKING history series.
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
 - **[Pentax — Lens Development Stories](/articles/pentax-lens-development-stories-index)** — Star-series and Limited-lens developer interviews plus the official PENTAX STORY lens features.
-- **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — RF Lens World interviews plus development features for the RF5.2mm Dual Fisheye and RF100–500mm.
+- **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — RF Lens World interviews, Canon Japan developer interviews, the lens history timeline and L-lens chapters, and Canon Global quality and technology stories.
 - **[Leica — Centennial Lens Stories](/articles/leica-centennial-lens-stories-index)** — lens milestones from Leica's official 2025 centennial timeline, from the Summicron to the APO-Telyt-R.
 - **[Tamron — Lens Development Histories](/articles/tamron-lens-development-histories-index)** — the company's lens timeline plus its updated 90mm Macro and all-in-one zoom histories.
 - **[ZEISS — Camera Lens Technical Articles](/articles/zeiss-technical-articles-index)** — the Lenspire technical papers by Hubert Nasse and Vladan Blahnik, including the naming series on Planar, Tessar, Distagon, Biogon and Hologon.
-- **[Sony — G Master Design Philosophy](/articles/sony-g-master-design-philosophy-index)** — twelve developer interviews on α Universe, one per G Master lens.
+- **[Sony — G Master Design Philosophy](/articles/sony-g-master-design-philosophy-index)** — twelve numbered developer interviews on α Universe, one per G Master lens, plus further G Master developer features.
 - **[Angénieux — The Angénieux Stories](/articles/angenieux-history-stories-index)** — six history features on the Retrofocus, the zoom lineage, and the company's cine and space optics.
 
 ## What Qualifies

@@ -119,6 +119,7 @@ describe("extractTOCHeadings", () => {
       "The History of FUJINON",
       "FUJINON Speed Lenses: Rebirth of the Legend",
       "GFX100RF Fixed-Lens Development",
+      "Other FUJINON Lens Features",
     ]);
     expect(markdown).toContain("[GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4)");
   });
