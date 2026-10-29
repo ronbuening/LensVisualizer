@@ -33,11 +33,13 @@ The following models in that timeline have exact catalog matches. Years follow T
 | 2009 | SP AF 60mm F2 Di II LD [IF] MACRO 1:1 (G005) | [G005](/lens/tamron-sp-af-60mm-f2-di-ii-macro) |
 | 2008 | SP AF 70–200mm F2.8 Di LD [IF] MACRO (A001) | [A001](/lens/tamron-a001-70-200mm-f28) |
 | 2008 | AF 18–270mm F3.5–6.3 Di II VC LD Aspherical [IF] MACRO (B003) | [B003](/lens/tamron-b003-18-270mm-f35-63-di-ii-vc) |
+| 2006 | SP AF 17–50mm F2.8 XR Di II LD Aspherical [IF] (A16) | [A16](/lens/tamron-sp-af-17-50mm-f28-a16) |
 | 2004 | SP AF 200–500mm F5–6.3 Di LD [IF] (A08) | [A08](/lens/tamron-a08-200500mm-f563) |
 | 2004 | AF 28–300mm F3.5–6.3 XR Di LD Aspherical [IF] MACRO (A061) | [A061](/lens/tamron-a061-28-300-f35-63) |
 | 2003 | SP AF 28–75mm F2.8 XR Di LD Aspherical [IF] MACRO (A09) | [A09](/lens/tamron-sp-af-28-75-f28-xr-di-a09) |
 | 2003 | SP AF 180mm F3.5 Di LD [IF] MACRO 1:1 (B01) | [B01](/lens/tamron-sp-af-180mm-f35-di) |
 | 2001 | AF 28–200mm SUPER XR F3.8–5.6 Aspherical [IF] MACRO (A03) | [A03](/lens/tamron-a03-28-200mm-f3p8-5p6) |
+| 1980 | SP 70–150mm F2.8 SOFT, Adaptall-2 (51A) | [51A](/lens/tamron-sp-70-150mm-f28-soft-51a) |
 
 Because this is a broad catalog rather than a single-lens article, the two lineage features below provide the more detailed development narratives.
 
@@ -66,7 +68,7 @@ _The History of Tamron's All-In-One Zoom_ was updated through the 2025 25–200m
 | 6 — 2014–2015 | 16–300mm B016; 28–300mm A010; 14–150mm C001; 18–200mm B018 | [Maturity of Functionality and Performance](https://www.tamron.com/global/consumer/sp/all_in_one/) | [28–300mm (A010)](/lens/tamron-a010-28-300-f35-63); [14–150mm (C001)](/lens/tamron-c001-14-150mm-f3p5-5p8) |
 | 5 — 2010–2011 | 18–270mm B008; 18–200mm B011 | [New Actuator Introduction and VC Downsizing](https://www.tamron.com/global/consumer/sp/all_in_one/) | [18–200mm (B011)](/lens/tamron-b011-18-200mm-f35-63-di-iii-vc) |
 | 4 — 2007–2008 | 18–250mm A18; 28–300mm A20; 18–270mm B003 | [VC Introduction Period](https://www.tamron.com/global/consumer/sp/all_in_one/) | [18–270mm (B003)](/lens/tamron-b003-18-270mm-f35-63-di-ii-vc) |
-| 3 — 2004–2006 | 18–200mm A14; 28–200mm A031 | [Digital Compatibility Period](https://www.tamron.com/global/consumer/sp/all_in_one/) | — |
+| 3 — 2004–2006 | 28–300mm A061; 18–200mm A14; 28–200mm A031 | [Digital Technology Introduction Period](https://www.tamron.com/global/consumer/sp/all_in_one/) | [28–300mm (A061)](/lens/tamron-a061-28-300-f35-63) |
 | 2 — 2001–2002 | 28–200mm A03; 28–300mm A06 | [Downsizing Period](https://www.tamron.com/global/consumer/sp/all_in_one/) | [28–200mm (A03)](/lens/tamron-a03-28-200mm-f3p8-5p6) |
 | 1 — 1992–2000 | 28–200mm 71D/171D/371D; 28–300mm 185D | [Introduction Period](https://www.tamron.com/global/consumer/sp/all_in_one/) | — |
 

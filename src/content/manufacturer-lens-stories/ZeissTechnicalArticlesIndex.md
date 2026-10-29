@@ -10,7 +10,7 @@ toc: true
 
 # ZEISS: Camera Lens Technical Articles
 
-ZEISS publishes a set of long-form technical papers on camera-lens optics through its Lenspire platform, gathered on an [overview page](https://lenspire.zeiss.com/photo/en/article/overview-of-zeiss-camera-lenses-technical-articles/). They are written by ZEISS optical staff — principally Dr. Hubert Nasse, with later papers by Dr. Vladan Blahnik and colleagues — and distributed as PDFs in English and German.
+ZEISS publishes a set of long-form technical papers on camera-lens optics through its Lenspire platform, gathered on an [overview page](https://lenspire.zeiss.com/photo/en/article/overview-of-zeiss-camera-lenses-technical-articles/). They are written by ZEISS optical staff — principally Dr. Hubert Nasse, with later papers by Dr. Vladan Blahnik and colleagues — and distributed as PDFs, nearly all in both English and German.
 
 These are the most technical documents in this whole index. Rather than telling the story of one product, they explain how lenses are measured and why particular design families behave as they do, with MTF plots, cross-sections and prescription-level discussion. Three of them form an explicit series on the ZEISS lens names, and those map directly onto the design families in the Surface & Stop catalog.
 
@@ -29,7 +29,7 @@ These are the most technical documents in this whole index. Rather than telling 
 | Optical design of camera optics for mobile phones | Thomas Steinich, Vladan Blahnik | [Read at ZEISS](https://lenspire.zeiss.com/photo/app/uploads/2022/02/technical-article-optical-design-of-camera-optics-for-mobile-phones.pdf) |
 | T\*-coating and reduction of reflections in lenses | Vladan Blahnik, Benjamin Voelker | [Read at ZEISS](https://lenspire.zeiss.com/photo/app/uploads/2022/02/technical-article-about-the-reduction-of-reflections-for-camera-lenses.pdf) |
 
-Each paper is also published in German from the same overview page. The first four and the last three are general optical theory rather than accounts of particular lenses, so they carry no catalog column.
+Every paper except _Optical design of camera optics for mobile phones_, which is English-only, is also published in German from the same overview page. The first four and the last three are general optical theory rather than accounts of particular lenses, so they carry no catalog column.
 
 ## Lens Families in the Naming Papers
 
