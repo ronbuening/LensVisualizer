@@ -12,6 +12,7 @@ import type {
   SurfaceRenderDiagnostics,
 } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
+import { outlineSemiDiameter } from "../geometry/rimCut.js";
 import { sharedMaterialBand } from "../geometry/apertureBands.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 import { surfaceSag } from "./surfaceOutline.js";
@@ -46,8 +47,8 @@ function applyTrim(
 
 function slopeTrimHeightForState(surface: CompiledStateSurface, sd: number, maxSlopeTan: number): number {
   if (maxSlopeTan <= 0) return sd;
-  /* A rim cut's land is flat: only the cap inside it is drawn with the surface's slope. */
-  const capEdge = surface.rimCut ? Math.min(sd, surface.rimCut.radius) : sd;
+  /* A rim land is flat: only the cap inside it is drawn with the surface's slope. */
+  const capEdge = surface.rimLand ? Math.min(sd, surface.rimLand.radius) : sd;
   if (Math.abs(surface.profile.slope(capEdge)) <= maxSlopeTan) return sd;
   let lo = 0;
   let hi = capEdge;
@@ -72,7 +73,12 @@ function initialRenderSD(
   /* Conic-domain limit for positive K: keep sampled SVG paths inside the real-valued square root. */
   const hMax = K > 0 && absR < FLAT_R_THRESHOLD ? (absR / Math.sqrt(1 + K)) * 0.98 : Infinity;
 
-  [renderSD, trimCause] = applyTrim(renderSD, trimCause, hMax, "conic-limit");
+  [renderSD, trimCause] = applyTrim(
+    renderSD,
+    trimCause,
+    surface.rimLand && surface.rimLand.radius <= hMax ? declaredSD : hMax,
+    "conic-limit",
+  );
   [renderSD, trimCause] = applyTrim(
     renderSD,
     trimCause,
@@ -148,8 +154,8 @@ export function computeElementRenderDiagnosticsForState(state: PreparedOpticalSt
   return spans.map(([eid, s1, s2]: ElementSpan) => {
     const front = state.surfaces[s1];
     const rear = state.surfaces[s2];
-    const sd1 = front.sd;
-    const sd2 = rear.sd;
+    const sd1 = outlineSemiDiameter(front);
+    const sd2 = outlineSemiDiameter(rear);
     let [renderSD1, cause1] = initialRenderSD(state, s1, sd1);
     let [renderSD, cause2] = initialRenderSD(state, s2, sd2);
 
@@ -161,7 +167,7 @@ export function computeElementRenderDiagnosticsForState(state: PreparedOpticalSt
         Math.max(gapBefore, 0) * Math.min(state.lens.display.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);
       if (prevES) {
         const ps2 = prevES[2];
-        const [prevSD] = initialRenderSD(state, ps2, state.surfaces[ps2].sd);
+        const [prevSD] = initialRenderSD(state, ps2, outlineSemiDiameter(state.surfaces[ps2]));
         const sharedBand = sharedMaterialBand(
           { sd: prevSD, innerSd: state.surfaces[ps2].innerSd },
           { sd: renderSD1, innerSd: front.innerSd },
@@ -188,7 +194,7 @@ export function computeElementRenderDiagnosticsForState(state: PreparedOpticalSt
         Math.max(gapAfter, 0) * Math.min(state.lens.display.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);
       if (nextES) {
         const ns1 = nextES[1];
-        const [nextSD] = initialRenderSD(state, ns1, state.surfaces[ns1].sd);
+        const [nextSD] = initialRenderSD(state, ns1, outlineSemiDiameter(state.surfaces[ns1]));
         const sharedBand = sharedMaterialBand(
           { sd: renderSD, innerSd: rear.innerSd },
           { sd: nextSD, innerSd: state.surfaces[ns1].innerSd },

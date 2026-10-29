@@ -3,7 +3,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES, buildFixtureLens as buildLens } from "..
 import { constructionFixtureData } from "../optics/constructionFixtures.js";
 import { build, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
-import { cutOutlineSag } from "../../../src/optics/geometry/rimCut.js";
+import { rimOutlineSag, outlineSemiDiameter } from "../../../src/optics/geometry/rimCut.js";
 import { fNumberAtStopdown } from "../../../src/optics/state/aperture.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
 import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
@@ -15,7 +15,7 @@ import type { RuntimeLens } from "../../../src/types/optics.js";
  * At every zoom station and focus keyframe, from the smallest radius the aperture control reaches (the stop rule at
  * `maxFstop`) out to the wide-open radius, the stop plane lies in air: the face before the stop, with glass in front of it, does not
  * reach past the plane, and the face after it, with glass behind it, does not reach in front of it. A face is its own
- * sag out to its own semi-diameter and its rim height beyond, or its rim cut's land beyond the cut radius. The
+ * sag out to its cap edge and its rim height beyond, following a cut or extension's land where present. The
  * sequential trace steps back to a stop plane in such glass, as OpticStudio does, but no iris can close there.
  */
 
@@ -65,7 +65,9 @@ function irisInGlass(L: RuntimeLens): IrisInGlass[] {
       const faceZ = (index: number, r: number): number => {
         const face = surfaces[index];
         const limit = face.profile.finiteRadiusLimit();
-        return face.z + cutOutlineSag(face.profile.sag, face.rimCut, Math.min(r, face.sd, limit ?? Infinity));
+        const height = Math.min(r, outlineSemiDiameter(face));
+        const withinCap = face.rimLand && height > face.rimLand.radius ? height : Math.min(height, limit ?? Infinity);
+        return face.z + rimOutlineSag(face.profile.sag, face.rimLand, withinCap);
       };
       const sides = [
         {

@@ -53,6 +53,8 @@ converter file is converted like a lens file: `npm run convert:lens-data -- --in
 | `incompatibleLensKeys` | `string[]` | Host lens keys excluded for reasons vertex geometry cannot express (rim contact, mechanical interference). |
 | `media` | `MediumV2Input[]` | Undrawn media, as on a lens. |
 | `surfaces[].asphere` | | Sparse aspheric terms on the surface, as on a lens. |
+| `surfaces[].rimCutDepthMm`, `surfaces[].rimCutDepthSource` | `number`, `string` | Flat rim cuts and their depth provenance; see [Rim cuts](LENS_DATA_SPEC.md#rim-cuts-rimcutdepthmm). |
+| `surfaces[].rimExtensionSd` | `number` | Final drawn semi-diameter in mm of a vertical rim extension, greater than `sd`; use instead of a rim cut on that face. See [Rim extensions](LENS_DATA_SPEC.md#rim-extensions-rimextensionsd). |
 | `rearPlates` | `RearPlateData[]` | Plates the source lists behind the converter, with their physical gaps. |
 | `groups`, `doublets` | | By the converter's own surface labels. Composition keeps the converter's doublets; it ignores its groups, and adds one group for the whole converter when the host authors groups. |
 
@@ -110,6 +112,24 @@ A zoom host that clears the converter only over part of its range is excluded en
 Converter semi-diameters are physical and are shared by every host. Size them for the fastest and widest host the
 converter is meant for, and set `minHostFNumber` when a faster host's axial beam would be clipped: the engine keeps the
 host's stop, so a clipped beam would otherwise report an f-number the system cannot deliver.
+
+### Rim cuts and vertical rim extensions
+
+Converter surfaces use the same [rim cuts](LENS_DATA_SPEC.md#rim-cuts-rimcutdepthmm) and
+[rim extensions](LENS_DATA_SPEC.md#rim-extensions-rimextensionsd) as lens surfaces; those sections own their geometry
+and validation rules. When a figure draws a shorter curved face followed by a vertical land, use this pattern with
+the source's dimensions:
+
+```ts
+surfaces: [
+  { label: "1", R: 50, d: 5, sd: 8, rimExtensionSd: 12, medium: 1 },
+  { label: "2", R: -50, d: 40, sd: 12 },
+],
+```
+
+Here the first cap and its clear aperture end at ±8 mm, and the opaque land extends vertically to ±12 mm at the
+cap's edge sag. `rimExtensionSd` is the final drawn semi-diameter, not an added height. Composition preserves the
+extension, and the composed system checks its land's clearance along with the host's geometry.
 
 ## Validation
 

@@ -37,6 +37,8 @@ export interface SurfaceData {
   rimCutDepthMm?: number;
   /** Source of a rim cut's depth; absent on an inferred cut. */
   rimCutDepthSource?: string;
+  /** Outer drawn semi-diameter of a vertical rim extension in mm; `sd` remains the clear aperture. */
+  rimExtensionSd?: number;
   elemId: number;
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;

@@ -173,6 +173,7 @@ describe("computeElementShapes", () => {
         nd: surface.nd,
         sd: surface.sd,
         innerSd: surface.innerSd,
+        rimExtensionSd: surface.rimExtensionSd,
         elemId: surface.elemId ?? span?.[0] ?? 0,
         stopPlacement: surface.stopPlacement,
         interaction: surface.interaction,
@@ -354,6 +355,50 @@ describe("computeElementShapes", () => {
       if (Math.abs(y) >= corner - 1e-9) expect(z).toBeCloseTo(9, 9);
       else expect(z).toBeLessThan(9);
     }
+  });
+
+  it.each([50, -50, 1e15])("extends a shorter face vertically from its existing cap edge (R=%s)", (R) => {
+    const L = hydrateDiagramLens({
+      S: [
+        { label: "1", R, d: 5, nd: 1.5, sd: 8, rimExtensionSd: 12 },
+        { label: "2", R: -50, d: 50, nd: 1, sd: 12 },
+      ],
+      ES: [[1, 0, 1]],
+    });
+    const coords = pathCoords(computeElementShapes(L, [0, 5], sx, sy)[0].d);
+    const front = coords.slice(0, SVG_PATH_SUBDIVISIONS + 3);
+    const edgeSag = R > 1e10 ? 0 : R - Math.sign(R) * Math.sqrt(R * R - 8 * 8);
+    expect(front[0][1]).toBe(-12);
+    expect(front.at(-1)![1]).toBe(12);
+    expect(new Set(front.filter(([, y]) => Math.abs(y) === 8).map(([, y]) => y))).toEqual(new Set([-8, 8]));
+    for (const [z] of front.filter(([, y]) => Math.abs(y) >= 8)) expect(z).toBeCloseTo(edgeSag, 10);
+    expect(computeElementRenderDiagnostics(L, [0, 5])[0].front).toMatchObject({
+      declaredSD: 12,
+      renderSD: 12,
+      trimAmount: 0,
+      trimCause: "none",
+    });
+  });
+
+  it("keeps a vertical extension beyond the asphere's conic domain without extending the cap", () => {
+    const L = hydrateDiagramLens({
+      S: [
+        { label: "1", R: 20, d: 10, nd: 1.5, sd: 7, rimExtensionSd: 14 },
+        { label: "2", R: -50, d: 50, nd: 1, sd: 14 },
+      ],
+      ES: [[1, 0, 1]],
+      asphByIdx: { 0: { K: 3, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    });
+    const shape = computeElementShapes(L, [0, 10], sx, sy)[0];
+    const front = pathCoords(shape.d).slice(0, SVG_PATH_SUBDIVISIONS + 3);
+    const land = front.filter(([, y]) => Math.abs(y) >= 7);
+    expect(front[0][1]).toBe(-14);
+    expect(front.at(-1)![1]).toBe(14);
+    expect(land.every(([z]) => Math.abs(z - land[0][0]) < 1e-10)).toBe(true);
+    expect(land[0][0]).toBeCloseTo(49 / (20 + Math.sqrt(400 - 4 * 49)) + 1e-5 * 7 ** 4, 10);
+    expect(shape.asphPaths[0].pathD).not.toMatch(/NaN|Infinity/);
+    const moved = pathCoords(computeElementShapes(L, [0, 10], sx, sy, (z, y) => [z + 2, y - 3])[0].d);
+    expect(moved).toEqual(pathCoords(shape.d).map(([z, y]) => [z + 2, y - 3]));
   });
 
   it("path contains expected number of line segments", () => {

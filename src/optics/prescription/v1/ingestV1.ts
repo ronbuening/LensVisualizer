@@ -222,6 +222,7 @@ const SURFACE_FIELDS: Readonly<Record<Exclude<keyof SurfaceData, "synthetic" | "
   innerSd: true,
   rimCutDepthMm: true,
   rimCutDepthSource: true,
+  rimExtensionSd: true,
   elemId: true,
   stopPlacement: true,
   interaction: true,
@@ -360,6 +361,7 @@ const SURFACE_READ_FIELDS = [
   "innerSd",
   "rimCutDepthMm",
   "rimCutDepthSource",
+  "rimExtensionSd",
   "stopPlacement",
   "interaction",
   "diffractive",
@@ -429,6 +431,7 @@ function ingestSurfaces(
     put(out, "innerSd", surface.innerSd);
     put(out, "rimCutDepthMm", surface.rimCutDepthMm);
     put(out, "rimCutDepthSource", surface.rimCutDepthSource);
+    put(out, "rimExtensionSd", surface.rimExtensionSd);
 
     /* V1 says what follows a surface twice, by `elemId` and by `nd`; the canonical medium says it once. */
     const elemId = surface.elemId;

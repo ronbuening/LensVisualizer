@@ -75,10 +75,18 @@ const TELECONVERTER_DATA = {
 
   /* ── Surfaces ── refracting only, front to rear. No "STO": the host's stop is the system stop. Same medium and
    *  asphere rules as a lens (LENS_DATA_SPEC.md § Surfaces). The last surface's d is the back focus to the image
-   *  plane, or the physical gap to the first rear plate. */
+   *  plane, or the physical gap to the first rear plate.
+   *  Optional rim fields: rimCutDepthMm / rimCutDepthSource (§ Rim cuts), or rimExtensionSd (§ Rim extensions);
+   *  the field definitions and validation rules live in LENS_DATA_SPEC.md. */
   surfaces: [
     { label: "1", R: 0.0, d: 0.0, sd: 0.0, medium: 1 },
     { label: "2", R: 0.0, d: 0.0, sd: 0.0 },
+    // Optional vertical rim extension — replace the corresponding rows with this pattern, using source values:
+    // { label: "1", R: 50, d: 5, sd: 8, rimExtensionSd: 12, medium: 1 },
+    // { label: "2", R: -50, d: 40, sd: 12 },
+    // Face 1's cap and clear aperture end at ±8 mm; flat opaque lands extend vertically to ±12 mm at sag(8).
+    // rimExtensionSd is the TOTAL drawn semi-diameter in mm, not an amount to add. It must exceed sd.
+    // Use on an ordinary glass/air boundary, without rimCutDepthMm on that face; see LENS_DATA_SPEC.md § Rim extensions.
   ],
 
   /* ── Rear plates ── optional; only plates the source lists behind the converter */

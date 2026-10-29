@@ -4,8 +4,8 @@ import type { AsphericCoefficients } from "../../../types/optics.js";
 import { buildAsphereIndex } from "../compileAspheres.js";
 import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "../../geometry/surfaceProfile.js";
 import { sharedMaterialBand } from "../../geometry/apertureBands.js";
-import { cutOutlineSag, resolveRimCut, rimCutReentryRadius } from "../../geometry/rimCut.js";
-import type { RimCut } from "../../geometry/rimCut.js";
+import { rimOutlineSag, resolveRimCut, resolveRimExtension, rimCutReentryRadius } from "../../geometry/rimCut.js";
+import type { RimCut, RimLand } from "../../geometry/rimCut.js";
 
 export function validateGeometry(
   data: UntrustedLensData,
@@ -24,8 +24,19 @@ export function validateGeometry(
    */
   const asphByIdx = buildAsphereIndex(data.asph as Record<string, AsphericCoefficients> | undefined, labelToIdx);
   const cuts = validateRimCuts(S, asphByIdx, errors);
-  /* Sag of the drawn outline: the cap, or a rim cut's land beyond its radius. */
-  const rimSag = (i: number, h: number) => cutOutlineSag((r) => conicPolySag(r, S[i].R, asphByIdx[i]), cuts[i], h);
+  const lands = S.map((s: UntrustedLensData, i: number): RimLand | null => {
+    if (s.rimExtensionSd === undefined || cuts[i]) return cuts[i];
+    const glass = (index: number) => index >= 0 && typeof S[index].elemId === "number" && S[index].elemId !== 0;
+    const air = (index: number) => index < 0 || (S[index].elemId === 0 && S[index].nd === 1);
+    if (!((glass(i - 1) && air(i)) || (air(i - 1) && glass(i)))) {
+      errors.push(`Surface "${s.label}": a rim extension needs a glass/air boundary`);
+      return null;
+    }
+    return resolveRimExtension((r) => conicPolySag(r, s.R, asphByIdx[i]), s.sd, s.rimExtensionSd);
+  });
+  const rimSd = (i: number): number => lands[i]?.outerRadius ?? S[i].sd;
+  /* Cuts and extensions share the same land, but only a cut changes the cap's clear radius. */
+  const rimSag = (i: number, h: number) => rimOutlineSag((r) => conicPolySag(r, S[i].R, asphByIdx[i]), lands[i], h);
 
   for (const elem of data.elements) {
     const explicitSpan = explicitSpans.get(elem.id);
@@ -46,14 +57,20 @@ export function validateGeometry(
     if (typeof front.sd !== "number" || typeof rear.sd !== "number") continue;
     if (typeof front.R !== "number" || typeof rear.R !== "number") continue;
 
-    const sd = Math.min(front.sd, rear.sd);
+    const sd = Math.min(rimSd(s1), rimSd(s2));
 
     /* Edge thickness check (uses aspherical sag when available) */
     const sagFront = rimSag(s1, sd);
     const sagRear = rimSag(s2, sd);
     let centerThickness = 0;
     for (let i = s1; i < s2; i++) centerThickness += typeof S[i].d === "number" ? S[i].d : 0;
-    const edgeThickness = centerThickness + sagRear - sagFront;
+    let edgeThickness = centerThickness + sagRear - sagFront;
+    /* A taller land can meet the other face before the final rim. Include both corners and the intervening band. */
+    if (front.rimExtensionSd !== undefined || rear.rimExtensionSd !== undefined) {
+      const heights = [Math.min(lands[s1]?.radius ?? front.sd, sd), Math.min(lands[s2]?.radius ?? rear.sd, sd)];
+      for (let k = 0; k <= LAND_SAMPLES; k++) heights.push((sd * k) / LAND_SAMPLES);
+      for (const h of heights) edgeThickness = Math.min(edgeThickness, centerThickness + rimSag(s2, h) - rimSag(s1, h));
+    }
     if (edgeThickness <= 0)
       errors.push(
         `Element ${elem.id} ("${elem.name}"): negative edge thickness (${edgeThickness.toFixed(3)} mm) at sd=${sd} — surfaces "${front.label}" / "${rear.label}" cross at the rim`,
@@ -65,13 +82,13 @@ export function validateGeometry(
      * entry errors, but allow ratios up to 3.0 so that deep meniscus
      * elements in retrofocus designs (e.g. Canon RF 15-35 L1, ratio 1.45)
      * can use patent-accurate SDs. */
-    const sdMax = Math.max(front.sd, rear.sd);
-    const sdMin = Math.min(front.sd, rear.sd);
+    const sdMax = Math.max(rimSd(s1), rimSd(s2));
+    const sdMin = Math.min(rimSd(s1), rimSd(s2));
     const maxSdRatio =
       typeof elem.maxSdRatio === "number" && isFinite(elem.maxSdRatio) && elem.maxSdRatio >= 1 ? elem.maxSdRatio : 3;
     if (sdMin > 0 && sdMax / sdMin > maxSdRatio)
       errors.push(
-        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds ${maxSdRatio.toFixed(1)} — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may indicate a data entry error`,
+        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds ${maxSdRatio.toFixed(1)} — surfaces "${front.label}" (sd=${rimSd(s1)}) / "${rear.label}" (sd=${rimSd(s2)}) may indicate a data entry error`,
       );
   }
 
@@ -153,7 +170,7 @@ export function validateGeometry(
     return gapOverrides;
   };
 
-  _checkCrossGapOverlap(S, rimSag, junctionIdx >= 0 ? withJunctionSpan({}) : null, errors, "", gapSagFrac);
+  _checkCrossGapOverlap(S, rimSag, rimSd, junctionIdx >= 0 ? withJunctionSpan({}) : null, errors, "", gapSagFrac);
 
   /* For zoom lenses, also check at each zoom position's variable thickness.
    * Air gaps can change dramatically across zoom positions. */
@@ -173,6 +190,7 @@ export function validateGeometry(
       _checkCrossGapOverlap(
         S,
         rimSag,
+        rimSd,
         withJunctionSpan(gapOverrides),
         errors,
         ` at zoom position ${zi} (${data.zoomPositions[zi]} mm)`,
@@ -181,26 +199,27 @@ export function validateGeometry(
     }
   }
 
-  validateRimCutClearances(data, labelToIdx, cuts, rimSag, isZoom, errors, gapSagFrac);
+  validateRimLandClearances(data, labelToIdx, lands, rimSag, rimSd, isZoom, errors, gapSagFrac);
 }
 
 /** Samples across a land's radial band when checking it against the surface beyond its gap. */
 const LAND_SAMPLES = 32;
 
 /**
- * Check each rim cut's land and cap against the surface across its rim-side gap, at every zoom station and focus
+ * Check each rim land and cap against the surface across its air-side gap, at every zoom station and focus
  * keyframe.
  *
- * The land sits on the side the rim bends toward. When the surface across that gap is the stop, the land and the cap
+ * When the surface across that gap is the stop, the land and the cap
  * inside it must stay on their side of the stop plane. When it is glass, the land must clear that surface's outline
  * over the land's radial band, within `gapSagFrac` of the gap. Gaps are read at every authored state, since a moving
  * group can close a gap that the stations at infinity leave open.
  */
-function validateRimCutClearances(
+function validateRimLandClearances(
   data: UntrustedLensData,
   labelToIdx: Record<string, number>,
-  cuts: (RimCut | null)[],
+  lands: (RimLand | null)[],
   rimSag: (i: number, h: number) => number,
+  rimSd: (i: number) => number,
   isZoom: boolean,
   errors: string[],
   gapSagFrac: number,
@@ -232,31 +251,31 @@ function validateRimCutClearances(
     );
   };
 
-  cuts.forEach((cut, i) => {
-    if (!cut) return;
-    const rear = cut.sag > 0;
+  lands.forEach((land, i) => {
+    if (!land) return;
+    const rear = S[i].elemId === 0 && S[i].nd === 1;
+    const kind = S[i].rimExtensionSd === undefined ? "rim cut" : "rim extension";
     const neighbor = rear ? i + 1 : i - 1;
     const gapIndex = rear ? i : i - 1;
     if (neighbor < 0 || neighbor >= S.length) return;
     const isStop = S[neighbor].label === "STO";
-    const outer = isStop ? S[i].sd : Math.min(S[i].sd, typeof S[neighbor].sd === "number" ? S[neighbor].sd : 0);
-    if (!isStop && !(outer > cut.radius)) return;
-    /* Deepest reach of the land (and of the cap, which stays short of it inside the cut radius) toward the neighbor. */
-    let intrusion = isStop ? cut.depthMm : -Infinity;
-    if (!isStop) {
-      for (let k = 0; k <= LAND_SAMPLES; k++) {
-        const h = cut.radius + ((outer - cut.radius) * k) / LAND_SAMPLES;
-        intrusion = Math.max(intrusion, rear ? cut.sag - rimSag(neighbor, h) : rimSag(neighbor, h) - cut.sag);
-      }
+    const outer = isStop ? rimSd(i) : Math.min(rimSd(i), typeof S[neighbor].sd === "number" ? rimSd(neighbor) : 0);
+    if (!isStop && !(outer > land.radius)) return;
+    let intrusion = -Infinity;
+    /* A cut's cap stays short of its land; an extension's asphere can turn inside its cap, so check that too. */
+    for (let k = 0; k <= LAND_SAMPLES; k++) {
+      const h = isStop ? (outer * k) / LAND_SAMPLES : land.radius + ((outer - land.radius) * k) / LAND_SAMPLES;
+      const sag = isStop ? rimSag(i, h) : land.sag - rimSag(neighbor, h);
+      intrusion = Math.max(intrusion, rear ? sag : -sag);
     }
     for (const { gap, context } of gapStates(gapIndex)) {
       if (isStop && intrusion > gap + 1e-9) {
         errors.push(
-          `Surface "${S[i].label}": its rim cut (depth ${cut.depthMm} mm) reaches past the stop plane, ${gap.toFixed(3)} mm away${context}`,
+          `Surface "${S[i].label}": its ${kind} (depth ${Math.abs(land.sag)} mm) reaches past the stop plane, ${gap.toFixed(3)} mm away${context}`,
         );
       } else if (!isStop && intrusion > gap * Math.min(gapSagFrac, 1)) {
         errors.push(
-          `Surface "${S[i].label}": its rim cut's land intrudes ${intrusion.toFixed(3)} mm into the ${gap.toFixed(3)} mm gap to "${S[neighbor].label}" (allowed ${(gap * Math.min(gapSagFrac, 1)).toFixed(3)} mm)${context}`,
+          `Surface "${S[i].label}": its ${kind}'s land intrudes ${intrusion.toFixed(3)} mm into the ${gap.toFixed(3)} mm gap to "${S[neighbor].label}" (allowed ${(gap * Math.min(gapSagFrac, 1)).toFixed(3)} mm)${context}`,
         );
       }
     }
@@ -271,6 +290,7 @@ function validateRimCutClearances(
  *
  * @param S             — surface array
  * @param rimSag        — drawn-outline sag of surface i at height h
+ * @param rimSd         — drawn outer semi-diameter of surface i
  * @param gapOverrides  — { surfIdx: overrideD } for variable gaps, or null
  * @param errors        — error accumulator (mutated)
  * @param context       — suffix for error messages (e.g. " at zoom position 0")
@@ -279,6 +299,7 @@ function validateRimCutClearances(
 function _checkCrossGapOverlap(
   S: UntrustedLensData[],
   rimSag: (i: number, h: number) => number,
+  rimSd: (i: number) => number,
   gapOverrides: Record<number, number> | null,
   errors: string[],
   context: string,
@@ -293,7 +314,10 @@ function _checkCrossGapOverlap(
     if (typeof gapD !== "number" || gapD <= 0) continue;
     if (typeof next.elemId !== "number" || next.elemId === 0) continue;
     if (i === 0 || S[i - 1].elemId === 0) continue;
-    const sharedBand = sharedMaterialBand(curr, next);
+    const sharedBand = sharedMaterialBand(
+      { sd: rimSd(i), innerSd: curr.innerSd },
+      { sd: rimSd(i + 1), innerSd: next.innerSd },
+    );
     if (!sharedBand) continue;
     /* Annular systems compare sag only where both neighboring surfaces contain
      * material. A central corrector inside a mirror hole has no shared band with

@@ -77,6 +77,8 @@ describe("builder untrusted input gate", () => {
     ["source", { authors: ["x".repeat(1001)] }],
     ["publishedAt", "2026-10-26"],
     ["surfaces.0.sd", Infinity],
+    ["surfaces.0.rimExtensionSd", Infinity],
+    ["surfaces.0.rimExtensionSd", "12"],
     ["surfaces.0.R", NaN],
     ["elements.0.vd", -1e19],
     ["aperture.fStops", [1e19]],
