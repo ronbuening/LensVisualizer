@@ -37,7 +37,7 @@ The prescription is a four-group **positive–negative–positive–negative** t
 | G3R      | 17–22                    |        3 |          +45.787 mm |
 | G4       | 23–26                    |        2 |          −39.835 mm |
 
-G3F and G3R are parts of one rigid zoom assembly, separated by the diaphragm and fixed internal spacings. Only the gaps after surfaces 5, 10 and 22, and the physical back focus after surface 26, change across the three printed infinity stations. G4 also provides rear focus. Figs. 1 and 4 show the same optical assembly at the wide and tele limits; Fig. 67 provides motion context.
+G3F and G3R are parts of one rigid zoom assembly, separated by the diaphragm and fixed internal spacings. Only the gaps after surfaces 5, 10 and 22, and the physical back focus after surface 26, change across the three printed infinity stations. G4 also provides rear focus. Figs. 1 and 4 show the same optical assembly at the wide and tele limits; Fig. 67 provides motion context. Paragraph 0108 describes that path for Embodiments 1–4: from wide to tele, G1 advances toward the object, G2 moves toward the image and then back toward the object (a U-turn), and G3 and G4 first move slightly toward the image and then toward the object, past their wide-angle positions.
 
 The diaphragm is source surface 16, 2.700 mm after surface 15 and 15.026 mm before surface 17. Its modeled radius follows each printed design F-number; the patent supplies no physical iris-radius schedule. The nine-blade count comes from the manufacturer, not the patent’s numerical table.
 
@@ -190,7 +190,7 @@ The three source infinity rows are retained literally:
 
 All lengths are millimeters. The source image semi-height is 14.24 mm at every station, represented by a 28.48 mm image circle. The printed tele total length is 233.845 mm, whereas the printed component sum is 233.846 mm; the model retains this 0.001 mm rounding difference.
 
-Straight interpolation of the three native gap rows produces millimeter-scale intermediate defocus. The continuous model includes 38 **unpublished** zoom control points. G1/G2/G3 motions and total track are piecewise interpolated; G4’s intermediate position follows the paraxial infinity image condition, preserving the sum of its adjacent gaps. The maximum added G4 offset from the simple interpolation is about 0.563 mm.
+Straight interpolation of the three native gap rows produces millimeter-scale intermediate defocus. The continuous model includes 38 **unpublished** zoom control points. G1/G2/G3 motions and total track are piecewise interpolated; G4’s intermediate position follows the paraxial infinity image condition, preserving the sum of its adjacent gaps. The maximum added G4 offset from the simple interpolation is about 0.563 mm. The modeled directions agree with paragraph 0108 at the printed stations: G1, G3 and G4 end farther from the image at every printed step, and G2 reverses at 132.085 mm. The early imageward hook that paragraph 0108 gives G3 and G4 falls between the printed 56.5 and 132.085 mm rows. Those rows cannot place it, so the interpolated cam moves both groups toward the object from the start.
 
 The resulting 41 controls approximate zoom motion, without establishing the production cam. Only indices 0, 20 and 40 are published source states; intermediate positions are interpolated.
 
@@ -198,7 +198,7 @@ The resulting 41 controls approximate zoom motion, without establishing the prod
 
 Paragraph 0188 explicitly states that none of the eleven numerical embodiments uses an aspherical lens. This model has no aspheric coefficients, conic corrections or diffractive surfaces.
 
-The source prints no clear semi-diameters. The modeled optical rims follow Fig. 1, measured as full element widths at the drawn wide state. Figure scale follows the drawn vertex spacings of the axial prescription, not the 58 mm filter thread, and the drawn rim positions reproduce the prescription’s surface sags, so the drawing holds one scale in both directions. Every modeled rim agrees with the drawing within 1.5 %; these are drawing-derived values, not precision manufacturing dimensions.
+The source prints no clear semi-diameters. The modeled optical rims follow Fig. 1, measured as full element widths at the drawn wide state. Figure scale follows the drawn vertex spacings of the axial prescription, not the 58 mm filter thread, and the drawn rim positions reproduce the prescription’s surface sags, so the drawing holds one scale in both directions. Every modeled rim agrees with the drawing within 1.5 %, and the small steps between neighbours follow it: L31F stands above the L32F/L33F pair, and L31R below L32R. These are drawing-derived values, not precision manufacturing dimensions.
 
 Measuring full widths cancels the drawing’s slightly tilted optical axis. Source radii and gaps remain unchanged. The model allows surface sag to occupy up to 90% of an air gap.
 

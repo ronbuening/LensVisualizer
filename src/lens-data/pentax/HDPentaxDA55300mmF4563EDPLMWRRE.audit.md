@@ -105,3 +105,51 @@ The source package carried no audit log; this file starts at deployment validati
   Fig. 1 governs.
 - Open: L23 (9.86 mm) and L31R (9.89 mm) read about 0.1 mm under their stored 10.0 mm, inside measurement noise and
   invisible at render scale; left unchanged.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+- Compared: the local page at 56.5, 132.085 and 291.188 mm, at infinity and 0.95 m, and the `mv=zoom` / `mv=focus`
+  overlays, against Fig. 1 (sheet 1, PDF p. 2, native 2560 × 3300 scan), Fig. 4 (tele layout, p. 4), Fig. 67 (zoom
+  path, sheet 45, p. 46), ¶0105–0114 (pp. 52–53), ¶0177–0181 (p. 57) and ¶0188–0199 with Tables 1–3 (pp. 58–59).
+- Silhouette: the model outline (wide, infinity) was drawn over Fig. 1 at 17.033 px/mm with S1 on its drawn vertex.
+  Every vertex and rim lands on the drawn ink, every element is squared as drawn (both faces and cemented partners
+  share one value), and nothing overlaps. Independent full-width readings (left + right px) agree with the earlier
+  pass to within 0.5 px: L11 390 + 381.5, L12/L13 380 + 371, L21/L22 174 + 171, L23 170 + 166, L31F 184 + 178,
+  L32F/L33F 182 + 176, L31R 171 + 166, L32R 173.5 + 168, L33R 177.5 + 175, L41 155 + 152, L42 146 + 143.
+- The one step the render lacked: Fig. 1 draws L31R 0.13 mm shorter than L32R (9.89 against 10.02 mm; on the clean
+  side 171 against 173.5 px, read to about 1 px), while both rendered at 10.0 mm.
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| S17 / S18 `sd` (L31R) | 10.0 | 9.9 | Fig. 1 full width 337.5 px → 9.89 mm; restores the drawn step below L32R. Validator OK; the close-focus axial ray reaches 9.34 mm at 291 mm, the infinity axial ray 8.89 mm |
+| `doublets` text | D1 / D2 / D3 | C1 / C2 / C3 | the D prefix read as the D5 / D10 / D22 spacing labels shown on the same page; surface ranges 3–5, 6–8, 13–15 unchanged |
+| element `cemented` | D1 / D2 / D3 | C1 / C2 / C3 | kept equal to the bracket text (the inspector shows "Doublet C1") |
+| element `diagramLabel` | none (diagram drew 1–14) | L11 … L42, L31F … L33R | the patent's reference numerals in Fig. 1 and ¶0191–0195, matching each `name` |
+| L12 `apdNote` | "… No anomalous-dispersion tag." | cites condition (11), ¶0178, and both normal lines | ¶0178–0179 make L12's θgF a secondary-spectrum condition; the patent names no special glass, so no `apd` tag |
+
+- Clearances after the change: the surface validator reports no errors, the image-circle floor flags nothing, field
+  coverage reaches 100 % of the 14.24 mm image height at all 41 stations, and the clearance trace flags no axial clip
+  or chief-ray block at infinity or close focus. Only S17 / S18 change in that trace (side clipping of the unvignetted
+  bundle 10 % → 11 %). The engine keeps half-field 18.15°, F/4.60 and stop 9.463 mm at wide; its wide-open
+  curves are identical at 56.5, 132.085 and 291.188 mm (corner 64.1 / 55.3 / 55.1 %), because S19 / S20 at 10.0 mm
+  clip the same meridional rays first. The drawn stop housing shortens from 10.0 to 9.9 mm.
+- Checked and correct: groups G1 (1–5), G2 (6–10), G3F (11–15), G3R (17–22) and G4 (23–26) bracket the right
+  elements in the patent's notation, with no parent G3 bracket. The stop sits 2.700 mm behind S15, as Fig. 1 and
+  Table 1 place S. Every element `type` agrees with the R signs and with ¶0191–0195. No surface carries an asphere or
+  an `A` suffix (¶0188). L32F `apd: "inferred"` matches Ricoh's construction diagram, which colours only the eighth
+  element ED; that diagram also shows 14 elements in 11 groups with three cemented pairs, as modelled. All 14 glass
+  labels resolve; none is Unmatched. The focus slider ends at 95 cm.
+- Zoom, wide → tele, distance from the image at the printed stations: G1 163.50 → 201.85 → 233.85 mm (toward the
+  object); G2 (S6) 145.05 → 132.42 → 138.69 mm (U-turn); G3 (S11) 98.64 → 106.86 → 128.28 mm; G4 (S23) 57.55 →
+  63.05 → 86.89 mm. Stations ascend 56.5 → 291.188 mm and every gap array follows that order. This matches ¶0108 and
+  Fig. 67 (Embodiments 1–4): G1 advances, G2 U-turns, G3F and G3R move as one, and G3 and G4 finish objectward of
+  their wide positions. The page's zoom overlay draws the same.
+- Focus: index 0 is infinity and index 8 is 0.95 m at every station. Only G4 moves, toward the image (¶0114): d22
+  3.010 → 3.915, 5.736 → 9.773 and 3.310 → 15.128 mm with BF falling by the same amount. The focus overlay at 291 mm
+  shows G4 alone travelling about 12 mm imageward.
+- Open: ¶0108 gives G3 and G4 an initial imageward hook before they move objectward (Fig. 67 draws the hooked
+  paths). It falls between the printed 56.5 and 132.085 mm rows, which cannot place it, and the interpolated cam
+  moves both groups objectward from the start. The gap tables were not changed; the analysis now says so.
+- Open: the diagram's element-label rows sit inside G1's lower rim at every zoom position, so "L12" overlaps the
+  bottom corners of L11 and L12, as the bare "2" did before. This comes from the renderer's label-row placement
+  under a 22.7 mm front group, not from the data.

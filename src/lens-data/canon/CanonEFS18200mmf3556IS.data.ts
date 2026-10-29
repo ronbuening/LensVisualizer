@@ -8,11 +8,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Gisr −42.371, Gpr 28.750 mm) are reproduced.
  * Image gap: not printed. At the three printed stations it is the paraxial back focus, 38.194 / 53.777 / 68.550 mm.
  * Zoom: D5, D13, D19 and D24 are printed at three focal lengths only. The 34 stations between them are derived:
- * Gpf and Gpr move as one (D19 + D24 = 8.63 mm, ¶0039); the G1 position, D19 and the image gap follow monotone
+ * Gpf and Gpr move as one (D19 + D24 = 8.63 mm, ¶0039); the L1 position, D19 and the image gap follow monotone
  * cubic curves through the printed values; the D5/D13 split (L2) is solved for paraxial infinity focus. Every gap
  * and every group except L2 moves one way from wide to tele; L2 first moves about 0.26 mm toward the image near
- * 22 mm and then toward the object, in line with Fig. 1's curved L2 arrow. Between stations the infinity focus
- * error stays within 0.018 mm. This is not Canon's factory cam.
+ * 22 mm and then toward the object. That dip comes from the derived cam, not the patent: Fig. 1's curved L2 arrow
+ * bows toward the object and ends turned toward the image, while its three panels and the printed spacings put
+ * S6 123.9 / 127.9 / 132.1 mm ahead of the image. Between stations the infinity focus error stays within 0.018 mm.
+ * This is not Canon's factory cam.
  * F-number: interior stations use an iris radius interpolated between the radii the printed F-numbers need
  * (7.048 / 7.223 / 7.336 mm), rounded to 0.01.
  * Focus: the patent prints infinity states only and prefers moving L2 toward the object (¶0082). The finite
@@ -20,11 +22,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0.45 m / keyframe, ending at Canon's 0.45 m minimum focus: 0.918 / 2.070 / 8.898 mm of travel and 0.054 / 0.126 /
  * 0.244× at the printed stations (Canon: 0.24×). These spacings are derived, not printed.
  * Semi-diameters are not printed; they are estimated from Fig. 1 (optical rims, not mount outlines), scaled by its
- * wide-state vertex spacing, and floor-checked by real-ray trace. Fig. 1 draws L7 (S12–S13) square-cut at 10.1 mm.
- * Stabilization: Gis (L11, L12) is the patent's shifting doublet; the model is centred only.
+ * wide-state vertex spacing, and floor-checked by real-ray trace. Fig. 1 draws E7 (S12–S13) square-cut at 10.1 mm.
+ * It also draws E4 square-cut at 13.2 mm, S7's cap ending near 9.3 mm at a flat land square to the axis; S7 has a
+ * 13.25 mm rim and an inferred flat cut 4.09 mm behind its vertex (cut radius 9.62 mm, the drawn cap end moved out to
+ * clear the traced beams), so E4 draws square-cut as in Fig. 1.
+ * Element names are E1–E16 because the patent names its first two lens groups L1 and L2. The patent's own element
+ * designations are NGpf / PGpf (E9 / E10), NGis / PGis (E11 / E12) and PGpr1 (E14).
+ * Stabilization: Gis (E11, E12) is the patent's shifting doublet; the model is centred only.
  * Production correlation is inferred, not proven: Canon lists 16 elements / 12 groups with two UD and two
- * glass-moulded aspherical elements, and Example 1 has that layout with high-Abbe glass at L2 and L14 and aspheres
- * on L8 and L15, the positions Canon's construction diagram marks.
+ * glass-moulded aspherical elements, and Example 1 has that layout with high-Abbe glass at E2 and E14 and aspheres
+ * on E8 and E15, the positions Canon's construction diagram marks.
  * Glass names are catalog equivalents of the printed nd/νd; the patent gives no partial dispersion or supplier.
  */
 const LENS_DATA = {
@@ -67,19 +74,19 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
       type: "Meniscus Negative",
       nd: 1.8061,
       vd: 33.3,
       focalLengthMm: -114.400347074,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Negative front meniscus of the positive first group, cemented to L2",
+      role: "Negative front meniscus of the positive first group L1, cemented to E2",
       cemented: "C1",
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.496999,
@@ -94,7 +101,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       label: "Element 3",
       type: "Meniscus Positive",
       nd: 1.603112,
@@ -105,7 +112,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       label: "Element 4",
       type: "Meniscus Negative",
       nd: 1.834807,
@@ -116,7 +123,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.772499,
@@ -127,7 +134,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.805181,
@@ -138,7 +145,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.772499,
@@ -149,110 +156,110 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "E8",
       label: "Element 8",
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
       vd: 59.4,
       focalLengthMm: 40.300899979,
-      glass: "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive element just behind the stop, front of Gpf; aspherical rear face S16",
     },
     {
       id: 9,
-      name: "L9",
+      name: "E9",
       label: "Element 9",
       type: "Meniscus Negative",
       nd: 1.805181,
       vd: 25.4,
       focalLengthMm: -44.801243408,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "High-dispersion negative meniscus of the Gpf cemented doublet",
+      role: "High-dispersion negative meniscus of the Gpf cemented doublet; the patent's NGpf (¶0061; NLf in Fig. 1)",
       cemented: "C2",
     },
     {
       id: 10,
-      name: "L10",
+      name: "E10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 22.803261665,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Low-index positive element of the Gpf cemented doublet",
+      role: "Low-index positive element of the Gpf cemented doublet; the patent's PGpf (¶0061; PLf in Fig. 1)",
       cemented: "C2",
     },
     {
       id: 11,
-      name: "L11",
+      name: "E11",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.712995,
       vd: 53.9,
       focalLengthMm: -16.233209394,
       glass: "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Negative front element of the image-stabilizing doublet Gis",
+      role: "Negative front element of the image-stabilizing doublet Gis; the patent's NGis (¶0045; NL in Fig. 1)",
       cemented: "C3",
     },
     {
       id: 12,
-      name: "L12",
+      name: "E12",
       label: "Element 12",
       type: "Meniscus Positive",
       nd: 1.8061,
       vd: 33.3,
       focalLengthMm: 26.317339416,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Positive rear meniscus of the image-stabilizing doublet Gis",
+      role: "Positive rear meniscus of the image-stabilizing doublet Gis; the patent's PGis (¶0045; PL in Fig. 1)",
       cemented: "C3",
     },
     {
       id: 13,
-      name: "L13",
+      name: "E13",
       label: "Element 13",
       type: "Meniscus Negative",
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -42.369776636,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Negative meniscus Gisr behind the stabilizing doublet, fixed to it",
+      role: "Negative meniscus Gisr; zooms with the stabilizing doublet at a fixed spacing (¶0069) but does not shift with it",
     },
     {
       id: 14,
-      name: "L14",
+      name: "E14",
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 30.246111788,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Low-dispersion positive element at the front of the rear group Gpr",
+      role: "Low-dispersion positive element Gpr1 at the front of the rear group Gpr; the patent's PGpr1 (¶0056)",
       apd: "inferred",
       apdNote:
         "Canon's construction diagram marks this position UD; the patent prints nd/νd only, so partial dispersion comes from the catalog glass.",
     },
     {
       id: 15,
-      name: "L15",
+      name: "E15",
       label: "Element 15",
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
       vd: 59.4,
       focalLengthMm: 22.812188715,
-      glass: "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Positive element of the rear cemented doublet; aspherical front face S27",
+      glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the rear cemented doublet Gpr2; aspherical front face S27",
       cemented: "C4",
     },
     {
       id: 16,
-      name: "L16",
+      name: "E16",
       label: "Element 16",
       type: "Meniscus Negative",
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -24.195520107,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Last element: negative meniscus cemented behind L15",
+      role: "Last element: negative meniscus cemented behind E15 in Gpr2",
       cemented: "C4",
     },
   ],
@@ -299,7 +306,8 @@ const LENS_DATA = {
     {
       label: "7",
       R: 13.369,
-      sd: 9.4,
+      sd: 13.25,
+      rimCutDepthMm: 4.09,
       d: 5.98,
     },
     {
@@ -501,7 +509,7 @@ const LENS_DATA = {
     closeFocusM: 0.45,
     keyframes: [0.0, 0.001, 0.008, 0.027, 0.064, 0.125, 0.216, 0.343, 0.512, 0.729, 1.0],
     description:
-      "Inner focus. The patent prints infinity spacings only and prefers focusing by moving the negative group L2 (L4–L7) toward the object (¶0082). Here L2 moves that way, D5 shorter and D13 longer by the same amount, with the image plane fixed; the travel to Canon's 0.45 m minimum focus is 0.92 mm at 18.6 mm, 2.07 mm at 49.94 mm and 8.90 mm at 193.23 mm. These finite spacings are derived, not printed. The zoom positions between the three printed focal lengths follow a derived cam (Gpf and Gpr move together, as ¶0039 describes), not Canon's factory cam.",
+      "Inner focus. The patent prints infinity spacings only and prefers focusing by moving the negative group L2 (E4–E7) toward the object (¶0082). Here L2 moves that way, D5 shorter and D13 longer by the same amount, with the image plane fixed; the travel to Canon's 0.45 m minimum focus is 0.92 mm at 18.6 mm, 2.07 mm at 49.94 mm and 8.90 mm at 193.23 mm. These finite spacings are derived, not printed. The zoom positions between the three printed focal lengths follow a derived cam (Gpf and Gpr move together, as ¶0039 describes), not Canon's factory cam.",
   },
   gaps: {
     "5": {

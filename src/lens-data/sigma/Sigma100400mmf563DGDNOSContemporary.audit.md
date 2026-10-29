@@ -131,3 +131,69 @@ The source package carried no audit log; this file starts at deployment validati
   13.9). It also draws L15's rear rim below L14's front.
 - Open: surface 10's cut sits 0.5–1.7 mm outside the drawn cap end, because the beams need it. L16/L17 stay 0.6 mm
   under the drawing unless the coordinator raises gapSagFrac for the 27/28 pair.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+- Compared: the local page at 103 / 200.08 / 387.4 mm, at infinity and at close focus, with both movement overlays,
+  against Fig. 1 (PDF p. 30, wide, infinity) and Sigma's construction diagram. The figure was re-measured on its
+  native 804 × 414 raster. Surface 1's vertex sits at column 90.5 and the image plane at 790.5 on axis row 179, so
+  the scale is 3.2996 px/mm. A second span, surfaces 16 to 37, gives 3.294 px/mm, and all 37 vertex crossings fall
+  within 1 px of the prescription.
+- Isotropy: surfaces 13, 24, 35, 38 and 39 were traced against their spherical profiles out to the rim and stay
+  within 0.8 px of them. A 10% vertical stretch would put surface 38 2 px off at its rim, so the figure is isotropic.
+- Rims at the line centre (mm): C1 33.0–33.2, L3 31.7, L4 20.2, L5/L6 14.7, L7 12.6, L8/L9 13.0, L10 13.8, L11/L12
+  13.8, L13 13.5, L14/L15 13.0, L16/L17 11.8, L18 12.1, L19 11.8, L20/L21 13.0, L22 16.1. Except for the two faces
+  below, every model rim is within 3.5% of these.
+- The site differed from the figure in G3 and G7. Fig. 1 draws the L8/L9 and L20/L21 doublets as square blocks, with
+  the concave front faces of L8 (surface 13) and L20 (35) running on their spheres to the block edge. Surface 13 holds
+  its sphere to 12.4 mm and surface 35 to 12.7 mm, and both then meet the 13.0 mm edge. The smaller L7 and L19 end
+  against those faces. Sigma's diagram draws both junctions the same way.
+- On the site, both fronts stopped at the gap-limited height of the face ahead of them. L8 and L20 were drawn as
+  bevels rising to 13.2 mm, leaving a V-notch at each junction.
+- The cross-gap check reads each pair at its smaller rim, so raising the larger front face leaves that check
+  unchanged.
+
+| Surface | Face                 | Before | Fig. 1 | After | Evidence |
+| ------- | -------------------- | -----: | -----: | ----: | -------- |
+| 13      | L8 front (concave)   |   11.5 |   13.0 |  13.2 | Figure and Sigma diagram; squares C3 at its 13.2 junction and rear |
+| 35      | L20 front (concave)  |   11.0 |   13.0 |  13.2 | Figure and Sigma diagram; squares C6 at its 13.2 junction and rear |
+
+- Kept:
+  - Surface 12 (L7 rear) stays at 11.5. The 90% gap-sag limit allows 11.6, but at 11.6 the surface-10 cut would have
+    to move out to 14.004 mm to keep clear of the beams. The faces cross at 12.22 mm in any case.
+  - Surface 34 (L19 rear) stays at 11.0, with a limit of 11.03; the faces cross at 11.63 mm.
+  - L7 and L19 keep their fronts at the drawn 12.8 and 12.0 mm, so they taper toward the rear. A square cut would sit
+    8–9% under the figure.
+  - L16/L17 stay at 11.4. The rim cuts on surfaces 10 and 25 match the lands drawn in Fig. 1 and are unchanged.
+- Clearance: the surface validator, including the rim-cut beam rule, reports no errors. The image-circle floor finds
+  0 undersized surfaces, and field coverage is 65 of 65 stations at 100%. The real-ray trace at Y 21.63 mm flags
+  nothing, at infinity or at close focus. The engine half-field is unchanged at 13.20° wide and 3.78° tele, as are
+  F 5.15 / 6.50 and the 10.39 mm stop radius.
+- Vignetting (meridional engine curve, wide open, infinity): surface 13 changes nothing. Surface 35 had clipped rays
+  that already pass L19's 11.0 mm rear rim. The edge field goes 60.7 → 60.9% at zoom 0, 68.2 → 68.5% at 0.25,
+  62.8 → 63.0% at 0.5, 47.0 → 47.3% at 0.75 and 41.9 → 42.8% at 1; inner fields are unchanged. The clip at surface 34
+  stays.
+- Labels:
+  - Group brackets G1–G8 match ¶0056 in power (+ − − + + + − −) and surface range, with the OS label on G3 (¶0061)
+    and the focus label on G6 (¶0057).
+  - ¶0058 also names the parent groups GF (G2+G3), GM (G4–G6) and GR (G7+G8); only the subgroups are bracketed.
+  - Cemented brackets C1–C6 cover L1/L2, L5/L6, L8/L9, L11/L12, L14/L15 and L20/L21.
+  - Element names L1–L22 and every element type match ¶0059–0066.
+  - The stop sits between L17 and L18, as Fig. 1's S does. Every surface is spherical and none carries an A suffix.
+  - Gap labels D5 / D10 / D15 / D20 / D30 / D32 / D37 are the patent's.
+- Tags: the patent has no anomalous-dispersion language. The five inferred tags match the maker's colours: blue SLD at
+  L2, L15, L17 and L20, and yellow FLD at L3. The inspector for L2, L3, L7, L15, L17, L18, L20 and L22 shows the
+  expected type, catalog glass, focal length, role and tag. All 22 glass labels resolve.
+- Movement, wide → tele, from the authored gaps:
+  - G1 moves 77.000 mm objectward. G2 is fixed within 0.002 mm, the printed rounding. G3 moves 4.942 mm imageward.
+  - G4 moves 18.590 mm, G5 and the stop 34.909 mm, G6 8.938 mm and G7 23.936 mm, all objectward. G8 is fixed.
+  - Every moving group steps one way at all 64 steps, matching ¶0057 and Fig. 1's arrows. Stations ascend
+    103 → 387.4 mm.
+  - Focus moves only G6, objectward, by 2.905 mm at 103 mm and 18.416 mm at 387.4 mm. Keyframe 0 is infinity, and the
+    slider ends at 1.12 m wide and 1.60 m tele.
+  - Both overlays show the same.
+- Live check after the edit: at every printed state and focus end, C3 and C6 draw as square blocks, with L7 and L19
+  tucked under the concave fronts as in Fig. 1. No element overlaps a neighbour.
+- Open:
+  - At the wide end the group labels "G2 (−)" / "G3 OS (−)" and "G5 (+)" / "G6 Focus (+)" touch without a space. The
+    label packer's width estimate is short for this font; this is a renderer matter, not a data one.

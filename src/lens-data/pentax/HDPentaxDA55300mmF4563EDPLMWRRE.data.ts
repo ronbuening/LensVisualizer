@@ -4,11 +4,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * R, d, nd and νd are transcribed unscaled. The three printed infinity rows (56.500 / 132.085 / 291.188 mm)
  * are kept exactly as printed, not re-solved. The patent prints no clear apertures; semi-diameters are measured
  * from Fig. 1 (wide state, full element widths, axial scale from the drawn vertices; every element within 1.5 %)
- * and floor-checked by real-ray trace; L31F is drawn slightly taller than the L32F/L33F doublet. The stop radius
- * at each zoom position follows its nominal F-number (printed 4.60 / 5.14 / 6.48, linear in between and rounded
- * to 0.01).
+ * and floor-checked by real-ray trace; L31F is drawn slightly taller than the L32F/L33F doublet and L31R slightly
+ * shorter than L32R. The stop radius at each zoom position follows its nominal F-number (printed 4.60 / 5.14 /
+ * 6.48, linear in between and rounded to 0.01).
+ * Element diagram labels are the patent's reference numerals (11 … 42, 31F … 33R) with an L prefix; the cemented
+ * pairs are bracketed C1–C3 so they do not read as the D5 / D10 / D22 spacings.
  * Zoom: the 38 intermediate positions interpolate d5, d10 and the total length linearly between printed rows and
- * place G4 for paraxial infinity focus.
+ * place G4 for paraxial infinity focus. ¶0108 says G3 and G4 first move imageward, then objectward past their wide
+ * positions; the printed rows cannot place that early hook, so the interpolated cam moves them objectward throughout.
  * Focus: G4 alone moves toward the image (patent text), so d22 + back focus stays constant. The patent tabulates
  * infinity only; the close spacings are paraxial solves for Ricoh's 0.95 m minimum object-to-image distance.
  * All surfaces are spherical (¶0188); no cover glass, filter plate or IS motion is modelled.
@@ -59,6 +62,7 @@ const LENS_DATA = {
       id: 1,
       name: "L11",
       label: "Element 1",
+      diagramLabel: "L11",
       type: "Positive Meniscus",
       nd: 1.51633,
       vd: 64.14,
@@ -70,57 +74,62 @@ const LENS_DATA = {
       id: 2,
       name: "L12",
       label: "Element 2",
+      diagramLabel: "L12",
       type: "Negative Meniscus",
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: -82.8486,
       glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front member of the G1 cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
       dPgF: -0.0063556,
       apdNote:
-        "¶0197 prints θgF = 0.5631; dPgF is its deviation from the normal line 0.6438 − 0.001682·νd. No anomalous-dispersion tag.",
+        "¶0197 prints θgF = 0.5631. Condition (11) (¶0178) keeps this G1 negative meniscus below the patent's line 0.6440 − 0.001682·νd to cut secondary spectrum at the long end; the patent names no special glass. dPgF is the deviation from the engine's line 0.6438 − 0.001682·νd.",
     },
     {
       id: 3,
       name: "L13",
       label: "Element 3",
+      diagramLabel: "L13",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.24,
       focalLengthMm: 92.795,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive rear member of the G1 cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L21",
       label: "Element 4",
+      diagramLabel: "L21",
       type: "Biconcave Negative",
       nd: 1.79952,
       vd: 42.22,
       focalLengthMm: -23.249,
       glass: "S-LAH52 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front member of the G2 cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L22",
       label: "Element 5",
+      diagramLabel: "L22",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 32.254,
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "High-dispersion positive member of the G2 cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L23",
       label: "Element 6",
+      diagramLabel: "L23",
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.58,
@@ -132,6 +141,7 @@ const LENS_DATA = {
       id: 7,
       name: "L31F",
       label: "Element 7",
+      diagramLabel: "L31F",
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.68,
@@ -143,6 +153,7 @@ const LENS_DATA = {
       id: 8,
       name: "L32F",
       label: "Element 8",
+      diagramLabel: "L32F",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.55,
@@ -152,24 +163,26 @@ const LENS_DATA = {
       apdNote:
         "Ricoh's construction diagram marks this position as the lens's single ED element; the patent names no material.",
       role: "ED positive member of the G3F cemented doublet",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 9,
       name: "L33F",
       label: "Element 9",
+      diagramLabel: "L33F",
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.27,
       focalLengthMm: -45.2828,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative member of the G3F cemented doublet, just ahead of the stop",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 10,
       name: "L31R",
       label: "Element 10",
+      diagramLabel: "L31R",
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 33.27,
@@ -181,6 +194,7 @@ const LENS_DATA = {
       id: 11,
       name: "L32R",
       label: "Element 11",
+      diagramLabel: "L32R",
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.13,
@@ -192,6 +206,7 @@ const LENS_DATA = {
       id: 12,
       name: "L33R",
       label: "Element 12",
+      diagramLabel: "L33R",
       type: "Positive Meniscus",
       nd: 1.58313,
       vd: 59.37,
@@ -203,6 +218,7 @@ const LENS_DATA = {
       id: 13,
       name: "L41",
       label: "Element 13",
+      diagramLabel: "L41",
       type: "Positive Meniscus",
       nd: 1.78472,
       vd: 25.68,
@@ -214,6 +230,7 @@ const LENS_DATA = {
       id: 14,
       name: "L42",
       label: "Element 14",
+      diagramLabel: "L42",
       type: "Biconcave Negative",
       nd: 1.6968,
       vd: 55.53,
@@ -329,13 +346,13 @@ const LENS_DATA = {
       label: "17",
       R: 78.451,
       medium: 10,
-      sd: 10,
+      sd: 9.9,
       d: 1.1,
     },
     {
       label: "18",
       R: 30.401,
-      sd: 10,
+      sd: 9.9,
       d: 1.242,
     },
     {
@@ -1107,17 +1124,17 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "13",
       toSurface: "15",
     },

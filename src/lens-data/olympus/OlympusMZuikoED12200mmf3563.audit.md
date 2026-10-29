@@ -154,3 +154,88 @@ the cut it was drawn with a sloped edge from 13 to 9.5 mm.
 **Open.**
 
 - The engine's paraxial half-field at W (34.9°, set by the S7 cut radius) stays below the traced 42.8°.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+**What was compared.** The local page at the five printed stations (12.36, 25.56, 46.76, 93.32 and 196.04 mm, at 2–3×
+device scale), the zoom movement overlay, the focus control and the element inspector for L2, L3, L4, L5, L9, L11 and
+L15 were set beside JP 2020-154139 A Fig. 1 (PDF p. 33, panels a/b/c), the Example 1 text (¶0093–0100) and the OM
+SYSTEM construction diagram.
+
+**Silhouette, re-measured.** Fig. 1 was re-read at its native 300 ppi, independently of the first pass. Vertex
+crossings give 0.2729 mm/px at T (S1–S28 = 610 px) and 0.2725 mm/px at Int.2 (480.5 px). Each rim is the mean of the
+outer ink above and below the axis, less 0.5 px for the stroke.
+
+| Element | Model sd | Fig. 1 (b), mm | Fig. 1 (c), mm | Verdict |
+|---|---|---|---|---|
+| L1 | 25 / 25 | 25.75 | 24.97 | agrees with (c); (b) is drawn about 3% larger throughout G1 |
+| L2 rear (S3) | 23.8 | 24.4 | 23.6 | agrees; step under L1 is 1.36 mm drawn, 1.2 mm modelled |
+| L3 | 23 / 23 | 23.3–23.6 | 22.8 | agrees |
+| L4 | 13 / 12.8, cut at 9.96 | 13.2 | 12.96; land from the edge to the cap end at about 36 px (9.8 mm) | agrees, rim cut confirmed |
+| L5 | 9.5 / 9.5 | 9.8 | 9.7 | within noise (+2–3%) |
+| L6 | 9 / 9 | 9.3 | 9.1 | within noise |
+| L7–L8 | 8.5 | 8.7 | 8.6–8.7 | within noise |
+| L9 | 7.5 / 7.5 | 7.7 | 7.5 | agrees; tallest in G3 as drawn |
+| L10 / L11 | 7.0 | 7.1 / 7.2 | 6.96 / 7.23 | agrees; level with L12 and below L9 as drawn |
+| L12 | 7.0 | 7.2 | 7.2 | within noise |
+| L13–L14 | 6.5 | 6.8 | 6.7 | within noise; 0.4–0.5 mm under L12 drawn, 0.5 mm modelled |
+| L15 / L16 | 12 / 12 / 12 | 11.85 / 12.1 | 11.6 / 12.0 | within noise |
+
+Every element is drawn square-cut on the site except L2, which runs straight from the shared S2 rim (25 mm) down to its
+S3 rim (23.8 mm). Fig. 1 draws L2 square at about 23.6 mm with L1 standing 1.36 mm above it. One cemented S2 radius
+cannot draw that step. Lowering S2 to 23.8 mm would square L2, but it would bevel L1 instead and cut the corner chief
+ray, which already passes S2 above S3 at the wide end, so the first-pass choice stays. Fig. 1 also draws L16 one px
+(0.3–0.4 mm) taller than L15, and the maker diagram agrees. Showing that step would put a bevel on one element of the
+doublet, so it was not modelled. No `sd` changed, and the first pass's figures and rim cut are confirmed.
+
+**Labels and tags, changed.**
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Cemented brackets and `cemented` names | D1–D5 | C1–C5 | The D5 bracket (L15–L16) shared its name with the D5 gap label (d5 after S5) in the slider panel and the inspector badge; C-numbering is the corpus convention where gap labels use D |
+| G3 bracket | STO–22 | 16A–22 | ¶0093 places S between G2 and G3, ¶0096 lists G3 as L9–L12, and Fig. 1 brackets S apart from G3; ¶0099's "moves with G3" is unchanged |
+
+The analysis G3 line now reads S16–22 with the iris between G2 and G3, and the G2 line no longer counts L7 twice.
+
+**Labels and tags, found correct.** L1–L16 are the patent's own element designations (Fig. 1 panel c leaders). Element
+types agree with ¶0094–0098 and with the radius signs, and the aspheric markers (8A, 16A, 17A, 26A) match ¶0100 with no
+extras. The stop sits at S15 between L8 and L9, as Fig. 1 draws it. The patent text has no anomalous-dispersion
+language and only nd / νd columns, so L2, L3 and L11 rightly carry `apd: "inferred"` at the maker's Super ED / ED / Super
+ED positions. L12 stays untagged: the maker colours it ED, but Example 1 prints 1.51633 / 64.14. The maker diagram
+matches Example 1 in count (16 / 11), grouping, the L1 > L2 > L3 steps, L4's flanged rear land, L9 above the L10–L11
+doublet, and the Super HR (L1), HR (L8, L10) and aspherical (L5, L9, L15) positions.
+
+**Movement.** The stations ascend from 12.36 to 196.04 mm, and the model's EFL rises monotonically through all 42.
+Group positions from the printed gaps, measured from the fixed S26 (negative = toward the object):
+
+- G1: −88.71, −98.24, −120.22, −141.24, −155.80 mm; it moves objectward throughout, 67.09 mm in total.
+- G2: −73.72, −71.66, −74.65, −77.61, −75.32 mm; net 1.60 mm objectward, reversing at Int.1 and Int.3. The turning-point
+  scan finds no other reversal.
+- G3 (with S): −26.58, −38.64, −46.92, −54.74, −56.51 mm, monotonic objectward.
+- G4: −6.23, −14.44, −20.18, −24.86, −26.20 mm, monotonic objectward.
+- G5 fixed.
+
+This matches ¶0099 (G1–G4 objectward, G5 fixed, S with G3) and the Fig. 1 arrows (G1–G4 down-left in both steps, G5
+straight down). The zoom overlay draws the same ranges and a 67.09 mm maximum travel. Focus: both keyframes are
+identical, the slider reads ∞ / "Not modeled" even with `focus=1` in the URL, and the focus overlay offers zoom only.
+That fits the infinity-only model and the focus description.
+
+**Clearance after the edits.** These were label-only edits, and the engine output is unchanged:
+
+- Engine: half-field 34.87°, f/3.6 and stop radius 6.177 mm at W; the vignetting curve is unchanged (96.8% at 39.9°,
+  48.8% at 42.8°).
+- Validators: the surface validator reports no errors, and no surface falls under the image-circle floor.
+- Coverage: 39 of 42 stations reach the corner; 12.36 / 13.39 / 14.44 mm reach 96 / 97 / 99%.
+- Real-ray trace at 10.06 mm: ω = 41.96° at W, with no axial clip and no blocked chief ray.
+
+**Open.**
+
+- No element carries `focalLengthMm`, so the inspector shows "FL = —". The analysis lists the isolated thick-lens
+  values.
+- The L1 / L2 and L15 / L16 cemented steps can only be approximated (above).
+
+## 2026-10-29 — Coordinator follow-ups after the second review
+
+- Added `focalLengthMm` to L1–L16 (isolated in-air thick-lens values from the engine probe: −267.406, 129.007,
+  172.312, −20.370, −26.962, 21.908, −18.282, 66.197, 18.763, −15.550, 18.023, 61.282, −14.881, 54.568, −44.808,
+  24.791 mm), so the inspector no longer shows "FL = —". They match the analysis's element sections.

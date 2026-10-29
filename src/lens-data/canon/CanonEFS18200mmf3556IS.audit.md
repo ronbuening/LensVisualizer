@@ -114,3 +114,75 @@ The source package carried no audit log; this file starts at deployment validati
   It supports the L7 rise; for L5 and L6 it reads higher than Fig. 1, which governs.
 - Open: Gis (S20–S22) stays 6.5 mm, 5 % under Fig. 1's 6.86 mm; the axial beam peaks at 6.28 mm there. L4's rear
   face S7 and L5 stay 5 % under the drawing.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+Element names below are the new E1–E16; the two sections above use the old L1–L16 element names.
+
+- Compared: the local page (wide, 49.94 mm, tele, closest focus at wide and tele, both motion overlays, and the
+  inspector of E2, E8, E9, E14 and E15) against Fig. 1(a)–(c) on PDF p. 18, re-measured independently from a 400 dpi
+  render (0.1103 mm/px, S1 at x 1117, S6 at x 1297, axes at y 767 / 1444 / 2118) and 800 dpi crops, the patent text
+  (¶0033–0039, ¶0045, ¶0051–0069, ¶0082, ¶0097, ¶0102) and Canon's construction diagram.
+- Silhouette, Fig. 1 vs stored (half top-to-bottom, isotropic): C1 box 29.4 vs 29.0; E3 24.7 vs 24.75; E4 13.15 vs
+  13.25, drawn square-cut with a flat top and a flat rear land square to the axis at z ≈ 5.7 mm from S6; S7/S8 curves
+  meet the land at 9.27 mm; E5 box 9.93 vs 9.4; E6 apex 9.62 vs 8.9; E7 box 10.17 vs 10.1; stop mark lower end 7.72 vs
+  the 7.05 mm iris; E8 8.48 vs 8.5; C2 8.65 vs 8.5; Gis 6.95 vs 6.5; E13 7.72 vs 7.5; E14 11.58 vs 11.5; C4 12.19 vs
+  12.0. Every element keeps its drawn height order. Edge shapes: C1, E3, E7, Gis, E13 and C4 agree with the drawing.
+- One visible silhouette difference: E4 is drawn as a square block, while the site draws a taper from the 13.25 mm front
+  rim to the 9.4 mm rear rim. S7 (R 13.369) cannot reach 13.25 mm as a sphere, and the coordinator owns
+  `rimCutDepthMm`, so nothing was changed. A trial copy with S7 sd 13.25 and `rimCutDepthMm` 4.09 (cut radius 9.62 mm,
+  land 5.29 mm behind S6) passes the surface validator with the default `gapSagFrac`; depth 4.08 fails the
+  inferred-cut beam rule (beams reach 9.565 mm at wide, closest focus, 40.26°). With it the engine half-field goes
+  33.04° → 33.66° and the wide-end vignetting curve at 38.8° goes 39.2 → 44.2 %; it is unchanged at 35.8° and below,
+  inside the printed 36.29°, and at 0.33 and tele. Field coverage 37 / 37, image-circle floor 0 undersized.
+- E5 retained at 9.4 mm (5.3 % under its drawn 9.93 mm, the same height order as the figure). Raising S8 / S9 to 9.9 mm
+  passes the validator alone and leaves the meridional vignetting curve unchanged at every zoom position, but a
+  later S7 rim cut combined with E5 at 9.9 mm would need `gapSagFrac` 0.96 (0.29 mm of air at E5's corner).
+- Rear group: Gis reads 7 % tall, like the stop mark (9.5 %), so 6.5 mm stays; the rest agree within 3 %.
+- Labels changed: element `name` L1–L16 → E1–E16, because the patent's groups are L1 and L2 and the inspector showed
+  "Element 2 L2" while the "L2 (focus)" bracket sat over E4–E7. Roles now give the patent's element designations:
+  E9 NGpf and E10 PGpf (¶0061; NLf and PLf in Fig. 1), E11 NGis and E12 PGis (¶0045; NL and PL), E14 PGpr1 (¶0056),
+  with E15–E16 marked as Gpr2 (¶0051). The E13 role no longer says it is "fixed to" Gis: it keeps its spacing to Gis
+  during zoom (¶0069) and does not shift for stabilization. Cross-references in the E1 and E16 roles, the focus text
+  "(E4–E7)", the data header and the analysis follow the new names.
+- Checked and correct: element types against the signs of R (16 of 16); aspheric markers only on S16A and S27A, the
+  two starred surfaces; the stop between S13 and S15 with 0.57 mm to S15; group brackets L1 S1–5, L2 S6–13, Gpf
+  S15–19, Gis S20–22, Gisr S23–24, Gpr S25–29; cemented brackets C1 S1–3, C2 S17–19, C3 S20–22, C4 S27A–29, with
+  matching `cemented` values and no cement layer tagged; `focalLengthMm` on all 16; gap labels D5 / D13 / D19 / D24 /
+  BF; station labels Wide / Tele; focus slider far end 45 cm. `apd: "inferred"` on E2 and E14 is right: Canon marks
+  both UD, while the patent only bounds νPGpr1 (72–97) and names no special glass, so `"patent"` would not be.
+  Canon's diagram: 16 / 12, UD at E2 and E14, aspheres at E8 and E15, IS box on E11–E12, the same layout.
+- Zoom direction and order: stations ascend 18.6 → 193.23 mm and every gap array follows that order. Printed values
+  are reproduced at nodes 0 / 12 / 36: D5 2.16 / 27.19 / 54.51 (grows, ¶0036), D13 24.99 / 13.41 / 2.85 (shrinks),
+  D19 2.63 / 5.84 / 7.99 (grows, ¶0038), D24 6.00 / 2.79 / 0.64 (shrinks), D19 + D24 = 8.63. All are monotone. Front
+  vertices from the image, wide → tele: L1 143.77 → 204.34, Gpf 83.86 → 114.22, Gn 71.61 → 96.61, Gpr 58.56 → 88.92,
+  all toward the object. Gpf and Gpr both travel 30.36 mm, matching Fig. 1's straight arrows. L2 goes 123.91 →
+  132.13 mm; the 400 dpi panels read 123.6 / 127.7 / 132.0 mm.
+- Fig. 1's L2 arrow, traced at 400 dpi, starts at x 1355, bows 9 px toward the object (x 1346 at mid-height) and ends
+  at x 1378 with its head pointing toward the image. It reads as a locus convex toward the object. The model instead
+  dips 0.255 mm toward the image near 21.8 mm and then moves toward the object, still accelerating at tele (+0.18 mm
+  over the last interval). The data header and analysis said the dip was "in line with" the arrow; both now say the
+  dip comes from the derived cam. The gap values were not changed.
+- Focus: index 0 is infinity and index 10 is the 0.45 m state. Only D5 and D13 change, by equal and opposite
+  amounts (wide 2.16 → 1.24 / 24.99 → 25.91; tele 54.51 → 45.61 / 2.85 → 11.75), so L2 moves toward the object as
+  ¶0082 prefers. The focus overlay at tele shows L2 alone moving 8.9 mm toward the object.
+- Unchanged by this review: `sd`, engine EFL 18.597 mm, F/3.6, stop radius 7.048 mm, half-field 33.04°.
+  Surface validator OK, 0 undersized, field coverage 37 / 37. At Y 12.88 mm the clearance trace gives ω 36.28° at
+  wide with no clip or block.
+- Pre-existing: at the app's 14.175 mm APS-C corner and closest focus at wide (ω 40.26°, beyond the printed 36.29°)
+  the clearance trace reports S4 / S5 (E3, 24.75 mm) blocking the chief ray; at 13.41 mm it does not.
+- Live page after the edits: the inspector reads "Element 14 E14", "Element 9 E9" with the NGpf role, and so on. The
+  focus text shows "(E4–E7)". The diagram is unchanged: 18.6 / 49.94 / 193.23 mm and closest focus show no overlaps.
+  The STO label overlaps the S16A "A" marker at every zoom position, which is renderer layout.
+
+## 2026-10-29 — Coordinator follow-ups after the second review
+
+- E4 (S7): `sd` 9.4 → 13.25 mm with an inferred `rimCutDepthMm: 4.09` (cut radius 9.6245 mm), so E4 draws square-cut
+  with the flat rear land Fig. 1 shows. The drawn cap end (about 9.3 mm) sits inside the traced beams, so the land
+  moved out to the beam reach (9.5626 mm at 18.6 mm, 0.95 focus, 40.17°) plus the 0.05 mm margin. The surface
+  validator passes, the rim-cut probe clips no ray and finds none within the margin, and the engine half-field rises
+  from 33.04° to 33.66° at 18.6 mm; EFL, F/3.6 and the 7.048 mm stop are unchanged.
+- E8 and E15 relabelled from S-BAL42 to L-BAL42 (OHARA's moulding version of the same glass; |Δνd| 0.014 against
+  0.025), matching Canon's glass-moulded aspherical elements. Both resolve with n(d) exact.
+- Open: the second review traced Fig. 1's L2 arrow as bowing toward the object, while the derived cam dips 0.255 mm
+  toward the image near 21.8 mm. The cam was left unchanged; its printed stations are exact and monotone.

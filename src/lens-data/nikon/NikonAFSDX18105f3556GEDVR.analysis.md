@@ -32,7 +32,7 @@ The lens is a five-group positive–negative–positive–negative–positive zo
 | G4 | 2 | 21–23 | −36.549 mm | Vibration-reduction doublet |
 | G5 | 3 | 24–28 | +45.130 mm | Rear positive group |
 
-From wide to tele, d1 (G1–G2) and d3 (G3–G4) increase, while d2 (G2–G3) and d4 (G4–G5) decrease (¶0060). All five groups move, and the stop moves with G3. Over the zoom range G1 travels 45.0 mm toward the object and G4 20.4 mm. G3 and G5 travel 27.2 mm together, because d3 + d4 is 15.846 mm at all three printed states. G2 first moves about 2.8 mm toward the image and then 8.3 mm back toward the object; Figure 17 draws its path as a curve.
+From wide to tele, d1 (G1–G2) and d3 (G3–G4) increase, while d2 (G2–G3) and d4 (G4–G5) decrease (¶0060). All five groups move, and the stop moves with G3. Over the zoom range G1 travels 45.0 mm toward the object and G4 20.4 mm. G3 and G5 travel 27.2 mm together, because d3 + d4 is 15.846 mm at all three printed states. G2 first moves about 2.8 mm toward the image and then 8.3 mm back toward the object; Figure 17 draws its path as a curve. Figure 17 draws G4's path as the same kind of arch, but its arrows are schematic: the straight arrows of G1, G3 and G5 drop by about the same amount although G1 travels 45.0 mm and G3 and G5 27.2 mm, and both arches end about level with their start. The printed states move G4 14.7 mm toward the object from W to M and 5.7 mm more to T. The calculated cam moves G4 toward the object all the way, so the model does not show an arch for G4.
 
 The printed conditional values for Example 5 can be checked against the table. f4/f2 = 2.55, f5/(−f4) = 1.24, f1/(−f2) = 6.41, and the G4 doublet has Np − Nn = 0.121103 and νn − νp = 22.31.
 
@@ -102,7 +102,7 @@ nd 1.85026, νd 32.35, J-LASF021 (HIKARI) equivalent, f = −26.3 mm. Cemented t
 
 ## Glass Identification and Dispersion
 
-Six glasses match a catalog row exactly at the patent's printed precision: L11, L13, L23, L31, L42/L53 and L52. Six more lie within 0.02 in νd of the nearest row: L12, L21/L22/L24, L32, L33, L41 and L51. The patent prints no θgF or line indices, so dispersion follows the matched catalog curves. The resin layer has no catalog equivalent and uses an Abbe-number approximation. L32 carries an inferred anomalous-dispersion tag because Nikon identifies one ED element and L32 is the only glass in the ED range.
+Six glasses match a catalog row exactly at the patent's printed precision: L11, L13, L23, L31, L42/L53 and L52. Five more lie within 0.02 in νd of the nearest row: L12, L21/L22/L24, L32, L41 and L51. L33 is 0.05 from S-PHM52. The patent prints no θgF or line indices, so dispersion follows the matched catalog curves. The resin layer has no catalog equivalent and uses an Abbe-number approximation. L32 carries an inferred anomalous-dispersion tag because Nikon identifies one ED element and L32 is the only glass in the ED range.
 
 ## Focus and Zoom Mechanisms
 

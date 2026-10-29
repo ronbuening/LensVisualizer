@@ -96,3 +96,58 @@ The source package carried no audit log; this file starts at deployment validati
 - Analysis edits: the clear-aperture paragraph gives the new rims and how they were set; the cross-gap fraction now
   reads 0.491137.
 - Open: Fig. 1 is a small hand drawing, and its radial scale is known to about ±3 %.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+- Compared: the local page at infinity and at 0.15 m, the focus-movement overlay and the element inspector (L1, L2, L4,
+  L7) against Fig. 1 on PDF p. 3, the element text on p. 2 and Sigma's construction diagram. Fig. 1 was re-measured
+  independently from 347 dpi ink runs, taking line centres on both sides of the axis. Axial scale: surface 1 to 14 is
+  525 px for 56.27 mm, 9.33 px/mm. Radial scale: the surface 2 arc (R 15.56 mm) fits 8.85–9.04 px/mm at 60–120 px
+  height, so 8.9 px/mm is used for heights. Sigma's diagram was re-read at 7.98 px/mm.
+- Silhouette differences seen on the page: L2 is drawn with a slanted edge from its 10.5 mm front rim to its 8.5 mm
+  rear rim, where Fig. 1 draws a square block with a notch (Sigma draws a chamfer); L7 rises from 8.6 to 9.1 mm along
+  its top edge, where Fig. 1 draws a flat top with a small chamfer at the front corner. Every other element matches the
+  figure's shape: L1's large front rim and slanted flange, L3 and L4 level, L4 and L5 square-cut, L5 and L7 taller than
+  L6.
+
+| Surface | Stored sd | Fig. 1 height (px) | Fig. 1 (mm) | Height ÷ L4, figure / site | Sigma (mm) | Decision |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 29.0 | 256.5 | 28.8 | 3.53 / 3.58 | 29.0 | keep |
+| 2 | 15.0 | 137 | 15.4 | 1.88 / 1.85 | 15.0 | keep; 90° chief needs 14.91, rim-angle cap 15.03 |
+| 3 | 10.5 | 102 | 11.5 | 1.40 / 1.30 | 10.6 | keep (below) |
+| 4 | 8.5 | 79.5 at the notch | 8.9 | 1.09 / 1.05 | 8.6 | keep, inside noise |
+| 5, 6 | 8.1 | 74.5 | 8.4 | 1.02 / 1.00 | 7.9 | keep |
+| 7, 8 | 8.1 | 72.75 | 8.2 | 1 | 8.0 | keep |
+| 10, 11 | 8.8 | 77.5 | 8.7 | 1.07 / 1.09 | 8.05 | keep |
+| 12 | 8.6 | 74 | 8.3 | 1.02 / 1.06 | 8.45 | keep |
+| 13 | 8.6 | 76 at the cement end | 8.5 | 1.04 / 1.06 | — | keep (below) |
+| 14 | 9.1 | 80.5 | 9.0 | 1.11 / 1.12 | 8.75 | keep |
+
+- No `sd` changed. L2 front: Fig. 1 is 6–10 % larger than 10.5 mm depending on the reference (L1 rear, L4, the arc
+  scale or L1 front). That is under the 10 % bar, and Sigma's diagram agrees with 10.5 mm. Raising only the front rim
+  would also steepen the slanted edge the renderer draws in place of Fig. 1's square notch. The rear face cannot be
+  squared to the front: at 10.5 mm the R 12.2 mm concave reaches 8.5 mm behind the L2 front vertex, past L3's front
+  rim. L6–L7: setting surface 13 to 9.1 mm would square L7's top, but it would draw L6's rear above its front and
+  remove the step Fig. 1 draws between the cement end and L7's outer rim. The current 8.6 / 8.6 / 9.1 keeps that
+  ordering.
+- Rays are unchanged: the 90° chief at the 21.69 mm image height reaches 26.90, 14.91, 9.29 and 7.28 mm at surfaces
+  1–4 against rims of 29.0, 15.0, 10.5 and 8.5 mm. Surface validator OK; image-circle audit 0 undersized; the
+  field-coverage audit and the engine vignetting curve skip fisheye projections. Engine values: EFL 15.3007 mm,
+  F/2.800 at the 6.782 mm stop, half-field 90°, tracing half-field 41.08°.
+- Labels found correct: element names and diagram labels L1–L7 follow the patent text (第1レンズ (L1) to 第7レンズ
+  (L7), p. 2) and Fig. 1. Each `type` matches the radius signs: L1 and L2 negative menisci convex to the object, L3
+  biconvex, L4 a negative meniscus concave to the object, L5 and L6 biconvex, L7 a negative meniscus. The roles and the
+  patent conditions they quote are correct, and every element shows a focal length in the inspector. The six group
+  brackets (L1, L2, L3, L4, L5, L6–L7) bracket the six air-spaced components in the patent's own lens notation. They
+  repeat the element-label row, which is redundant but not wrong. The single doublet bracket D1 spans surfaces 12–14
+  and does not collide with the only gap label, BF. There are no aspheres or `A` suffixes, which matches the
+  all-spherical table. The stop sits at row 9 between L4 and L5, as in Fig. 1.
+- Tags and glass: no `apd` tags. The patent prints only n and ν (no glass names, extra lines or partial dispersion),
+  and Sigma's diagram marks no special glass. All seven glass labels resolve to their printed n/ν (J-LAK14, NBFD11,
+  FD140, NBFD15, FK5 twice, FD60).
+- Movement: this is a prime with inferred unit focus. Keyframe 0 is infinity, with an image gap of 38.956 mm. The gap
+  grows monotonically to 42.689 mm at keyframe 8, where the object-to-image distance is 150 mm and the magnification
+  1:4.10. The focus overlay shows all six components moving together 3.73 mm toward the object. The slider's far end
+  reads 15 cm and the BF readout 42.69 at close focus. The order and direction are correct; there is no zoom.
+- Open: the renderer joins unequal rims with a straight edge, so L2's notch and L7's front-corner chamfer are drawn as
+  slants. Production close focus remains the inferred unit-focus model (1:4.1 against Sigma's 1:3.8).

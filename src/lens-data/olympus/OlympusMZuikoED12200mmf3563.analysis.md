@@ -27,8 +27,8 @@ None of these statements says that Example 1 is the as-manufactured prescription
 The five groups have power sequence **positive–negative–positive–negative–positive**. Independent d-line group focal lengths are +105.055736, −10.963828, +17.747552, −19.224134 and +50.534992 mm. Their element counts are 3/5/4/2/2.
 
 - **G1, S1–5:** front positive collector comprising L1–L2 cemented doublet and L3. Its low-dispersion positive members distribute chromatic power across the large front section.
-- **G2, S6–14:** negative variator with three negative elements, a positive singlet and a cemented correcting pair. Its strong negative power and large change in separation from G1 support the wide zoom ratio.
-- **G3, S15–22:** iris followed by a strongly converging double-aspheric singlet, an ED-bearing doublet and a positive meniscus. The iris at S15 is an actual stop, not glass.
+- **G2, S6–14:** negative variator with two negative singlets (L4, L5), a positive singlet (L6) and the cemented L7–L8 correcting pair. Its strong negative power and large change in separation from G1 support the wide zoom ratio.
+- **G3, S16–22:** a strongly converging double-aspheric singlet, an ED-bearing doublet and a positive meniscus. The iris (S15) sits between G2 and G3 and moves with G3 (¶0093, ¶0099); Fig. 1 brackets it separately from G3.
 - **G4, S23–25:** negative cemented doublet. The patent identifies it as the focus group; the model authors no focus travel for it.
 - **G5, S26–28:** fixed positive rear doublet containing an aspheric negative front element.
 

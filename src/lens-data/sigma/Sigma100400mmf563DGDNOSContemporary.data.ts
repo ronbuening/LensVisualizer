@@ -18,7 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * of the element edge with a flat land; both keep sd at the drawn edge and carry inferred rim cuts. Surface 10's cut
  * radius is 13.95 of 15.0 mm, moved out from the drawn ~12.9 mm to clear the wide-open beams. Surface 25's is 11.42 of
  * 13.2 mm, within the drawn 10.6–11.5 mm. Faces that nearly meet across an air gap (12/13, 27/28,
- * 34/35) stay below the 90% gap-sag limit; L16 and L17 keep one height on both faces. The stop radius follows the
+ * 34/35) stay below the 90% gap-sag limit; L16 and L17 keep one height on both faces. The concave fronts of L8
+ * (surface 13) and L20 (35) run to their doublets' 13.2 mm edge, as Fig. 1 and Sigma's diagram draw both cemented
+ * blocks square; only the smaller L7 and L19 rear faces (12, 34) stay gap-limited. The stop radius follows the
  * printed F-numbers.
  * Stabilization: G3 (L7–L9) is the patent's shifting group (¶0061); the model is centred only.
  * Production correlation is inferred, not proven: Sigma lists 22 elements / 16 groups with one FLD and four SLD
@@ -418,7 +420,7 @@ const LENS_DATA = {
       R: -47.3445,
       d: 0.9,
       medium: 8,
-      sd: 11.5,
+      sd: 13.2,
     },
     {
       label: "14",
@@ -558,7 +560,7 @@ const LENS_DATA = {
       R: -50.0947,
       d: 0.9,
       medium: 20,
-      sd: 11.0,
+      sd: 13.2,
     },
     {
       label: "36",

@@ -103,3 +103,67 @@ Open: Nikon has not published the production prescription, so the correlation is
 **Maker diagram.** Nikon's diagram agrees with Fig. 17: 15 elements in 11 groups, the same grouping, and the same relative element heights within the diagram's resolution. The ED element is L32 (element 9) and the aspherical element is L21 (element 4).
 
 Open: the rims of surfaces 8, 12 and 13 are set by the validator gap limit, not by the drawing.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+**What was compared.** The local page was shot headless at 2×–6× at 18.4, 30, 57.4 and 102 mm, at infinity and at 0.45 m, with the zoom and focus movement overlays at W and T and the inspector open on elements 1, 4, 5 and 9. It was set beside US 7,839,577 B2 Fig. 17 (page 18), read again at native resolution, and beside Nikon's construction diagram. The scale was re-derived from all 28 vertex crossings: surface 1 at y = 2285 px, surface 28 at 1102 px, so 1183 px for 95.263 mm, or 0.0805 mm/px. Every intermediate crossing falls within 1 px of the prescription.
+
+**Silhouette differences found.** Half-heights were measured again from the figure edges, averaged over both sides.
+
+- L11 is drawn as a square block: a cylindrical edge at 27.3 mm, then a flat rear land stepping in to the cemented face at 25.5 mm. The site drew it as a 4.7 mm-long bevel from the 26.8 mm front rim down to the 25.5 mm junction.
+- L21 is drawn as a square block 15.0 mm high. Its concave rear face ends at 11.2 mm, 5.5 mm behind the surface 8 vertex, and a flat land runs out to the edge. The site draws a chamfer from 14.8 mm (surface 7) to 10.5 mm (surface 8). Nikon's diagram draws this element with a short cylindrical edge and a chamfer, closer to the site.
+- L23 is drawn with a knife edge at 11.3 mm and L24 square-cut at about 11.3 mm. The site has 11.3 / 9.6 mm and 9.6 / 11.1 mm. The real surfaces 12 and 13 cross at 10.16 mm, and at 0.45 m the Y = 14 mm bundle reaches 10.23 mm there. An inferred rim cut on 13 therefore cannot clear the beam before the faces cross, and these rims stay.
+- G3–G5 agree within noise: L31/L32 7.7 (site 7.5), L33 7.7 (7.7), L41/L42 7.4 (7.1), L51 11.2 (11.1), L52/L53 11.4 (11.3). The drawn order of heights is kept: G4 is shorter than L33, and L51 is shorter than the rear doublet.
+
+**Changes.**
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 2 `sd` (L11/L12 junction) | 25.5 | 26.8 | L11 is now square at 26.8 mm (Fig. 17: 27.3). The step to L12's 25.5 mm rear rim falls at L12's edge, 0.4 mm long axially, where Fig. 17 draws L11's land. L12's rear stays at 25.5 mm, so L12 stays shorter than L11. The cemented line now runs to 26.8 mm instead of ending at 25.5 mm. audit:surface reports no errors at 26.8. Rays that pass surface 2 between 25.5 and 26.8 mm meet surface 3's unchanged 25.5 mm rim 0.4–1.1 mm behind it. The engine half-field and every zoom station's half-field are unchanged. The meridional vignetting curves at zoom fractions 0, 0.12, 0.2, 0.3, 0.5 and 1 are identical. clearap's own stop fraction at surface 2 drops from 57 % to 26 %, but surfaces 1 and 3 still stop the same bundle. |
+| `doublets` text and element `cemented` | D1, D2, D3, D4 | C1, C2, C3, C4 (same ranges) | The cemented brackets read like the gap labels d1–d4 beside the slider and on the diagram. The patent names no cemented components. Earlier sections of this log call them D1–D4. H1 is kept. |
+| G2 bracket text | G2 (−) focus | G2 (−) | At 18.4 mm the bracket text ran into G1's as "G1 (+)G2 (−) focus". At 102 mm and 0.45 m, a longer variant ran into G3's. "G2 (−)" is Fig. 17's notation and leaves a clear gap at every state shot. The focus panel still names G2 as the focusing group. |
+| L21r `role` | Resin layer carrying the aspherical object-side surface of L21 | adds "part of L21, not a separate lens" | The inspector shows the resin layer and the glass body as "DOUBLET H1". This follows the hybrid rule in LENS_DATA_SPEC.md and the other Nikon hybrids (AF-S DX 18-70 H1, AF-S DX 18-200 VR H21, AF-S DX 16-80 H21, AF-S 24-70 f/2.8G H1). No other element shares H1, so the inspector never reads a triplet. |
+| `.analysis.md` glass sentence | six within 0.02 in νd | five within 0.02; L33 is 0.05 from S-PHM52 | catalog νd 63.33 against the printed 63.38 |
+| `.analysis.md` zoom paragraph | — | Fig. 17's G4 arch noted as schematic | see Movement |
+
+**Proposed, not applied (policy fields).** Following Fig. 17, L21's rear can carry an inferred land: surface 8 `sd` 10.5 → 14.0, `rimCutDepthMm: 4.98` (cut radius 10.75 mm), and `checks.gapSagFrac: 0.96`. Surface 8 cannot exceed R8 = 14.0958 mm. The figure's cap end, 11.2 mm, is past the 10.97 mm crossing with surface 9.
+- Beam clearance: the validator's wide-open beams reach 10.648 mm on surface 8 (W, infinity, 40.3°), and clearap's 0.45 m bundle at Y = 14 reaches 10.69 mm.
+- With that set, a scratch copy passes audit:surface, image-circle, field-coverage (26/26) and aperture (26 within 3 %). clearap at infinity and 0.45 m reports no axial clip and no blocked chief ray.
+- The land then sits 0.24 mm ahead of L22's front rim. At 0.95, the land's 5.807 mm intrusion exceeds the 5.747 mm allowance.
+- The engine half-field at W rises from 35.80° to 36.44°, because surface 8 is no longer the field limiter. The meridional transmission at 39° rises from 66.7 % to 67.2 %. The other stations are unchanged.
+- The drawing would become the square block of Fig. 17, with the 14.8 mm front rim joining the 14.0 mm land end over 5.4 mm.
+
+**Checked and found correct.**
+- Element types against the signs of R: all 16 entries match ¶0109. L21r has the only aspheric surface (Table 17 `*6`). It carries the A suffix, and the inspector shows ASPH on L21r alone.
+- The stop sits at surface 15, 0.400 mm ahead of L31, between L24 and L31.
+- Group brackets cover G1 1–5, G2 6A–14, G3 STO–20, G4 21–23 and G5 24–28, as ¶0109 and Fig. 17 group them. Gap labels d1–d4 and Bf are Table 19's.
+- Tags: the patent text names no special glass, so no tag can be "patent". L32 carries `apd: "inferred"` at the element Nikon colours as ED, and the inspector shows APD (INFERRED) with the note. Nikon's diagram also agrees on count (15/11) and colours L21 as the aspherical element.
+- Glass labels resolve for all media except the L21 resin. For the resin, Table 17 gives only nd 1.55389 / νd 38.09, with no name, line index or θgF.
+
+**Movement.**
+- Zoom: the 26 stations ascend from 18.401 to 102.002 mm. Stations 0, 18 and 25 carry Table 19 exactly (d1 1.925 / 27.504 / 41.483; d2 24.941 / 7.881 / 3.243; d3 2.033 / 7.048 / 8.771; d4 13.813 / 8.798 / 7.075; Bf 38.310 / 58.032 / 65.481), and every gap moves in ¶0060's direction.
+- Each group's first surface, measured from the image plane at W/M/T:
+  - G1: 133.57 / 161.81 / 178.60 mm.
+  - G2: 118.70 / 121.36 / 124.17 mm. The calculated cam takes it to 115.90 mm at 30.6 mm.
+  - G3 (the stop): 77.76 / 97.48 / 104.93 mm.
+  - G4: 67.12 / 81.83 / 87.56 mm.
+  - G5: 50.11 / 69.83 / 77.28 mm.
+- Every group moves toward the object over the range. Only G2 turns back, as turns.mjs reports.
+- Fig. 17's arrows are schematic. G1, G3 and G5 drop about 95 px each for travels of 45.0 and 27.2 mm. The G2 and G4 arches both rise about 47 px and end within 4 px of their start.
+- The model's G4 does not arch. Its path between the printed states is not published, so the cam was left alone.
+- The zoom overlay shows every group's wide end to the image side of its tele end.
+- Focus: keyframe 0 is infinity and keyframe 9 is 0.45 m. Only d1 and d2 change, with their sum held, so G2 moves toward the object: 1.07 mm at W and 4.55 mm at T (d1 1.925 → 0.850 and 41.483 → 36.931). d3, d4 and Bf stay fixed. The focus overlays show the same, and the slider's far end reads 45 cm.
+
+**Results after the edits.** audit:surface reports no errors. audit:image-circle reports 0 undersized. audit:field-coverage passes 26/26 stations at ≥ 99 %, and audit:aperture puts all 26 within 3 %. clearap at Y = 14 mm, at infinity and at 0.45 m, shows no axial clip and no blocked chief ray. built.mjs gives half-field 35.80°, F/3.6 and stop radius 6.802 mm, the same as before. The re-shot page shows no overlaps at any state, with brackets C1, H1, C2, C3 and C4. At 18.4 mm the labels read "G1 (+)" and "G2 (−)" with a clear gap. At 102 mm the G3/G4 and G4/G5 labels sit one space apart, as before this pass.
+
+Open: surfaces 8, 12 and 13 stay below the figure, 8 pending the proposed land and 12/13 for want of room before the faces cross. The G4 arch in Fig. 17 is not modelled.
+
+## 2026-10-29 — Coordinator follow-ups after the second review
+
+- L21 resin layer: `dPgF: 0.0130674` added (θgF 0.5928 against the engine normal line 0.6438 − 0.001682 νd). The value
+  is printed for this resin (nd 1.55389, νd 38.09) in WO 2021/039812 A1 Table 8 (printed p. 52), a later reprint of
+  this design, and independently in US 2021/0026133 A1 Table 5 (printed p. 12) and JPWO 2019/116563 A1 p. 19. JP
+  2009-156890 A itself prints only nd and νd. The resin still has no catalog row, so it counts as Abbe-modelled in the
+  coverage report; the g-line now follows the printed partial dispersion.
+- Declined: the review's optional inferred land on L21's rear (S8 `sd` 14.0, `rimCutDepthMm` 4.98) would need
+  `gapSagFrac` 0.96, and Nikon's construction diagram draws L21 with a chamfer, which the current render already shows.

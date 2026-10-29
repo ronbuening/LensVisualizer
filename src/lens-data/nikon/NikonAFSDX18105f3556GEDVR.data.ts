@@ -16,6 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * they are estimated from US 7,839,577 B2 Fig. 17 (wide, infinity; 0.0805 mm/px on both axes)
  * and floor-checked by real-ray trace. Surfaces 8, 12 and 13 stay below the figure at the
  * validator gap limit: the facing pairs 8/9 and 12/13 cross at about 11.0 and 10.1 mm.
+ * Surface 2 (the L11/L12 junction) takes L11's 26.8 mm rim, so L11 draws as the square block of
+ * Fig. 17 and the step down to L12's 25.5 mm rear rim falls at the L12 edge; no ray changes.
  * Printed W/M/T: f = 18.4 / 57.4 / 102.0 mm, Bf = 38.310 / 58.032 / 65.481 mm, Y = 14.0 mm.
  * Traced EFL 18.401 / 57.434 / 102.002 mm; group focal lengths match the printed table.
  * Zoom: the three printed states are kept exactly. The 23 stations between them are derived:
@@ -74,7 +76,7 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front meniscus of the first-group cemented doublet",
       diagramLabel: "L11",
-      cemented: "D1",
+      cemented: "C1",
       focalLengthMm: -139.132,
     },
     {
@@ -87,7 +89,7 @@ const LENS_DATA = {
       glass: "J-SK14 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus completing the first-group cemented doublet",
       diagramLabel: "L12",
-      cemented: "D1",
+      cemented: "C1",
       focalLengthMm: 101.58,
     },
     {
@@ -110,9 +112,12 @@ const LENS_DATA = {
       nd: 1.55389,
       vd: 38.09,
       glass: "UV-cure resin",
-      role: "Resin layer carrying the aspherical object-side surface of L21",
+      role: "Thin bonded resin layer carrying the aspherical object-side surface of L21; part of L21, not a separate lens",
       diagramLabel: "L21r",
       cemented: "H1",
+      dPgF: 0.0130674,
+      apdNote:
+        "θgF 0.5928 is printed for this resin (nd 1.55389, νd 38.09) in WO 2021/039812 A1 Table 8, a later reprint of this design, and in US 2021/0026133 A1 Table 5; dPgF is taken against the engine's normal line.",
       focalLengthMm: -1524.577,
     },
     {
@@ -174,7 +179,7 @@ const LENS_DATA = {
       glass: "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus of the cemented doublet behind the aperture stop",
       diagramLabel: "L31",
-      cemented: "D2",
+      cemented: "C2",
       focalLengthMm: -44.739,
     },
     {
@@ -190,7 +195,7 @@ const LENS_DATA = {
         "Nikon's construction diagram marks this post-stop element as the lens's single ED element, and its nd 1.49782 / νd 82.56 fits an ED fluor-crown glass.",
       role: "Low-dispersion biconvex lens of the third-group cemented doublet",
       diagramLabel: "L32",
-      cemented: "D2",
+      cemented: "C2",
       focalLengthMm: 25.106,
     },
     {
@@ -215,7 +220,7 @@ const LENS_DATA = {
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Biconcave negative lens of the vibration-reduction doublet",
       diagramLabel: "L41",
-      cemented: "D3",
+      cemented: "C3",
       focalLengthMm: -14.52,
     },
     {
@@ -228,7 +233,7 @@ const LENS_DATA = {
       glass: "J-LASF021 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus of the vibration-reduction doublet",
       diagramLabel: "L42",
-      cemented: "D3",
+      cemented: "C3",
       focalLengthMm: 23.049,
     },
     {
@@ -253,7 +258,7 @@ const LENS_DATA = {
       glass: "FC5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive lens of the rear cemented doublet",
       diagramLabel: "L52",
-      cemented: "D4",
+      cemented: "C4",
       focalLengthMm: 26.805,
     },
     {
@@ -266,7 +271,7 @@ const LENS_DATA = {
       glass: "J-LASF021 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus completing the rear cemented doublet",
       diagramLabel: "L53",
-      cemented: "D4",
+      cemented: "C4",
       focalLengthMm: -26.289,
     },
   ],
@@ -282,7 +287,7 @@ const LENS_DATA = {
       label: "2",
       R: 58.263,
       d: 6.65,
-      sd: 25.5,
+      sd: 26.8,
       medium: 2,
     },
     {
@@ -662,7 +667,7 @@ const LENS_DATA = {
       toSurface: "5",
     },
     {
-      text: "G2 (−) focus",
+      text: "G2 (−)",
       fromSurface: "6A",
       toSurface: "14",
     },
@@ -684,7 +689,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
@@ -694,17 +699,17 @@ const LENS_DATA = {
       toSurface: "8",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "16",
       toSurface: "18",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "21",
       toSurface: "23",
     },
     {
-      text: "D4",
+      text: "C4",
       fromSurface: "26",
       toSurface: "28",
     },
