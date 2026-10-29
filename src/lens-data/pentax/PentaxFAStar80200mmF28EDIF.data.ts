@@ -13,8 +13,9 @@
  * radius is derived from the f/2.8 design f-number, not an authored diameter.
  * Semi-diameters are not printed. They are estimated from Fig. 1, raised by the smallest tenth-millimetre step
  * where the f/2.8 beam needed it, keeping square rims square. The G2 cemented doublet S11–S13 is
- * held at 18.2 mm, leaving 0.73 mm of air at the rim of the 7.01 mm S10–S11 space; a rim above about 19.17 mm
- * would close that space at the edge (19.58 mm would overlap S10 by 0.32 mm).
+ * square at 18.9 mm, as Fig. 1 draws it (18.7–18.9 mm in two measurements; the maker drawing also shows the G2
+ * block at one height). That leaves 0.21 mm of air at the rim of the 7.01 mm S10–S11 space, so checks.gapSagFrac
+ * is 0.97; a rim above about 19.17 mm would close that space at the edge.
  * Zoom: D8 / D15 / D20 are printed at the three focal lengths only. The 30 intermediate stations are inferred so
  * that the rear group stays fixed (D8 + D15 + D20 = 43.04 mm) and the paraxial focus offset follows the printed
  * states (added error at most 0.0153 mm between stations); they are not the factory cam.
@@ -241,7 +242,7 @@ const LENS_DATA = {
       name: "L13",
       label: "Element 13",
       diagramLabel: "L13",
-      role: "Low-index crown meniscus at the front of the G4 cemented doublet, just ahead of the iris.",
+      role: "Low-index crown meniscus at the front of the G4 cemented doublet that sits just ahead of the iris.",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
@@ -361,21 +362,21 @@ const LENS_DATA = {
     {
       label: "11",
       R: -109.148,
-      sd: 18.2,
+      sd: 18.9,
       medium: 6,
       d: 1.5,
     },
     {
       label: "12",
       R: 39.495,
-      sd: 18.2,
+      sd: 18.9,
       medium: 7,
       d: 6.39,
     },
     {
       label: "13",
       R: 1453.456,
-      sd: 18.2,
+      sd: 18.9,
       d: 3.4,
     },
     {
@@ -797,6 +798,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.7,
   },
+  checks: { gapSagFrac: 0.97 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

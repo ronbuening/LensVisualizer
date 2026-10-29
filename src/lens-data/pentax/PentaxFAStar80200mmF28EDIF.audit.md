@@ -108,3 +108,74 @@ The source package carried no audit log; this file starts at deployment validati
   isolated L16. Blue-marked ED elements are 1, 3, 4 and 12, with no aspherical marking. Relative to L1, its G2,
   L15 and L16 heights are about 0.56, 0.36 and 0.49, against 0.52–0.59, 0.40 and 0.52 in the model.
 - Open: whether the G2 doublet should take the figure's 18.9 mm with `gapSagFrac` 0.97 is left to the coordinator.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+- Compared: the local page at 81.63, 135 and 196 mm, at the focus=1 keyframe, both ends of the zoom movement overlay,
+  the focus overlay, and the element inspector for L1, L3, L6, L12, L13 and L14, against Fig. 1 of
+  `patents/US5572276.pdf` (PDF p. 2, wide state, native 72 ppi scan), the Table 1 page image (PDF p. 19), columns 4–5
+  of the text (PDF pp. 18–19) and a local copy of the maker's construction drawing (`tz-faz80-200f28.jpg`, tele state).
+- Silhouette: G1, G3 and G4 follow Fig. 1 (relative heights within about 3 % after the whole-lens scale; L12 to the
+  L13/L14 doublet step 1.8 mm on the site against 1.9 mm drawn; L15 and L16 within 0.3 mm). Every element is drawn
+  and rendered square-rimmed with equal front and rear heights, so the site shows no slanted bevels. The one visible
+  difference is G2: Fig. 1 draws L5, the L6/L7 doublet and L8 as a near-rectangular block, the doublet only slightly
+  lower and its S11 and S13 rims meeting the S10 and S14 rims; the site recesses the doublet 2.7 mm below L5 and
+  2.1 mm below L8. The maker drawing also shows the G2 block at even height.
+- Fresh G2 measurement (line-centre full height / 2, so the 0.47° scan tilt cancels; edges 4–5 px thick): L5 124.0 px,
+  doublet 117.5 px, L8 124.0 px. Scale from 25 vertex crossings: 0.1612 mm/px over all points, 0.1589 mm/px with a
+  common slope inside the four groups. So L5 and L8 are drawn 19.7–20.0 mm, the doublet 18.7–18.9 mm, and the drawn
+  step is 1.03–1.05 mm. The whole-lens median figure/stored ratio is 0.975; on that basis the doublet would scale to
+  about 19.3 mm, beyond the 19.17 mm height at which S10 and S11 meet.
+- Decision on the doublet (recommended, not applied here because it needs a policy field outside this pass's edit
+  list): S11, S12 and S13 from 18.2 to 18.9 mm, square, with `checks.gapSagFrac` 0.97. At the default 0.90 the
+  validator already refuses 18.5 mm (S10→S11 combined sag 6.50 of 7.01 mm). On a scratch copy with 0.97 the validator
+  passes 18.9 mm (S10→S11 sag 6.80 of 7.01 mm, 0.21 mm air at the rim; S13→S14 3.11 of 3.40 mm); 18.8 mm needs 0.96.
+  The real f/2.8 axial ray traced from a 14.58–35.00 mm entrance pupil reaches 19.17 / 19.57 / 19.58 mm there, which
+  no rim can pass because S10 and S11 meet at 19.17 mm, so the real-ray check flags those three surfaces before and
+  after; the beam the engine's 14.866 mm paraxial stop passes needs 17.80 / 18.12 / 18.14 mm, so the margin grows from
+  0.06 to 0.76 mm. Engine half-field 18.836°, f/2.8 at all 33 stations and stop radius 14.866 mm are unchanged.
+  Geometric transmission: 81.63 mm 83.5 → 85.2 % at 12.6° and 54.8 → 55.5 % at 15.2°; 135 mm 98.4 → 98.5 % at 4.5°;
+  196 mm 95.7 → 97.7 % at 1.0° and 87.7 → 88.2 % at 2.1°; on axis 100 % throughout. The rendered steps would become
+  2.0 mm (L5) and 1.4 mm (L8) against about 1.05 mm drawn. If applied, the data header's semi-diameter note and the
+  analysis paragraph on clear apertures (18.2 mm, 0.73 mm of air) change with it.
+- L5 stays at 20.9 mm although Fig. 1 draws it 19.7–20.0 mm: S9 sits on the f/2.8 axial ray (20.82 mm). Its S10 rim
+  therefore reaches about 1.1 mm behind the doublet's front rim plane, where Fig. 1 ends the L5 land at the doublet.
+- Labels: the group brackets G1-1 (S1–4), G1-2 (focus) (S5–8), G2 (−) (S9–15), G3 (+) (S16–20) and G4 (+) (S21–29)
+  follow Fig. 1's FIRST GROUP 1-1 / 1-2, SECOND, THIRD and FOURTH GROUP and column 5's negative variator, positive
+  compensator and positive relay; the labels do not overlap at 81.63 or 196 mm. Cemented brackets C1 (S11–13),
+  C2 (S18–20) and C3 (S23–25) match the three cemented interfaces. The patent names no elements, so L1–L16 are
+  sequential. All 16 `type` strings agree with the signs of R and the element powers; there are no aspheric surfaces
+  or markers. The stop is drawn between S25 and S26; the Fig. 1 iris marks sit 28 px behind the S25 crossing
+  (4.3–4.5 mm), against 4.40 mm in the model.
+- Tags: `apd: "inferred"` on L1, L3, L4 and L12 matches the four blue ED elements of the maker drawing. The patent
+  text asks only for Abbe numbers above 75 (column 4, lines 29–39 for the second sub group and 58–60 for the positive
+  lens of the first sub group) and names no anomalous-dispersion glass, so `"inferred"` is correct. All 16 glass
+  labels resolve to the named catalog glass.
+- Movement: Table 1 prints D8 2.81–23.70–32.73, D15 32.51–18.04–2.25 and D20 7.72–1.30–8.06, matching stations 0,
+  16 and 32; the stations ascend 81.63 → 196 mm and each gap lists them in that order. D8 rises and D15 falls at
+  every station, so G2 moves 29.92 mm toward the image without reversing, as the straight second-group arrow of
+  Fig. 1 shows. D20 falls to 1.01 mm at 121.66 mm and rises to 8.06 mm, so G3 moves up to 6.71 mm toward the image
+  and returns to 0.34 mm ahead of its wide position, as the curved third-group arrow shows. D8 + D15 + D20 is
+  43.04 mm at every station, so G1 and G4 stay fixed. The zoom overlay shows the same (maximum travel 29.92 mm).
+  Focus: Fig. 1's arrow takes G1-2 from ∞ toward the object at closest focus; the model prints no close-focus state,
+  both keyframes repeat the infinity spacings, the focus overlay is disabled and the slider's far end reads "Not
+  modeled".
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L13 `role` | "… at the front of the G4 cemented doublet, just ahead of the iris." | "… at the front of the G4 cemented doublet that sits just ahead of the iris." | L14 lies between L13 and the iris |
+| Analysis, L13 | "in the third cemented pair, just ahead of the iris" | "at the front of the third cemented pair, which sits just ahead of the iris" | same |
+| Analysis, zoom motion | G3 "first moves 6.42 mm toward the image, then returns 6.76 mm" | the 6.42 / 6.76 mm figures tied to the printed focal lengths, plus the 6.71 mm interpolated peak near 122 mm | D20 minimum 1.0136 mm at station 12 |
+
+- After the edits the validator reports no errors, the image-circle check reports nothing undersized, the traced
+  corner chief ray reaches 21.65 mm at all 33 stations, and the engine values are unchanged. The page renders at
+  every checked state and the L13 inspector shows the new role.
+- Open: the G2 doublet recommendation above awaits the coordinator. Cosmetic, renderer-side: at 81.63 mm the
+  staggered "L2" label touches the bottom rim corner of L1.
+
+Coordinator follow-up (same day): the G2 cemented doublet S11–S13 is now square at 18.9 mm (was 18.2), as both
+the first-pass and second-review measurements of Fig. 1 read it (18.7–18.9 mm) and the maker drawing shows the G2
+block at one height. The S10→S11 air gap then needs `checks.gapSagFrac` 0.97 (6.80 mm combined sag of 7.01 mm,
+0.21 mm of air at the rim). The rendered step from L5 shrinks from 2.7 to 2.0 mm and from L8 from 2.1 to 1.4 mm.
+Off-axis transmission rises slightly (83.5 → 85.2 % at 12.6° wide; 95.7 → 97.7 % at 1° tele); on-axis stays 100 %,
+f/2.8 at all 33 stations, and the engine half-field and stop radius are unchanged.

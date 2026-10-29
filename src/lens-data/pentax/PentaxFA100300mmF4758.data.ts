@@ -20,7 +20,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * clear apertures. Re-measured on the scan, every element is within 2% of the figure except L6, which Fig. 1 draws
  * square at about 12.45 mm with r9 and r10 meeting at the rim. In the prescription S9 and S10 meet at 12.13 mm, so
  * S10 is 12.0 mm, the least rim that passes the 290 mm f/6.0 axial beam by the repo's aperture audit; it leaves the
- * faces apart but needs checks.gapSagFrac 0.98. About 97% of the tele axial entrance area passes.
+ * faces apart but needs checks.gapSagFrac 0.98. About 97% of the tele axial entrance area passes. S11 needs 12.26 mm
+ * for that beam, so L6 cannot be square as drawn; S11 is 12.3 mm, the least 0.1 mm step above it.
  * Focus: infinity only; both focus positions repeat the infinity spacings. ¶0058 describes focusing by G1. closeFocusM
  * 1.5 is the published minimum focus distance; moving G1 about 19 mm forward at 290 mm reaches it at 0.26×.
  * Product: Pentax lists the SMC P-FA 100-300mm f/4.7-5.8 (product no. 27610) with 11 elements / 9 groups and no power

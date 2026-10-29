@@ -125,3 +125,89 @@ Coordinator follow-up (same day): S19 raised from 11.1 to 11.3 mm so L11 is squa
 and 21 draw it. The S18→S19 air gap then needs `checks.gapSagFrac` 0.91 (0.90 is refused: 2.72 mm combined sag
 against 2.700 mm allowed of 3.00 mm; the faces stay 0.28 mm apart). All 65 stations are within 3% of f/2.8; the
 surface, image-circle and field-coverage audits pass. The S2/S3A rim stays 24 mm (see the section above).
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+Compared: the local lens page at 29, 50 and 68 mm, at `focus=1`, both movement overlays (`mv=zoom` at wide and tele,
+`mv=focus`) and the inspector for L1, the resin, L4, L12 and L13, against `US5568323.pdf` Fig. 17 (PDF p. 10,
+Example 5, the proxy drawing), Fig. 1 (p. 2), the text of columns 1–7 and 9 (pp. 16–20), Table 3 (p. 20) and the maker's
+construction diagram (`sz-faz28-70f28.jpg`, viewed locally).
+
+Fig. 17 was re-measured independently on the native 72 dpi raster. S1's vertex crosses the axis at x ≈ 525 px and S26's
+at x ≈ 1561 px; Example 3's wide S1–S26 span of 129.25 mm gives 0.1248 mm/px. The axis tilts about 0.9° and the elements
+sit above it, so each rim is half the element's full top-to-bottom ink height.
+
+| Element | Fig. 17 full height, px | Fig. 17 rim, mm | Stored, mm |
+| ------- | ----------------------: | --------------: | ---------: |
+| L1 front (S1) | 414 | 25.8 | 26 |
+| L1 rear curve end (S2/S3A) | 342 | 21.3 | 24 |
+| L2 | 348 | 21.7 | 21.5 |
+| L3 | 349 | 21.8 | 22 |
+| L4/L5 | 268 | 16.7 | 17.5 |
+| L6/L7 | 282 | 17.6 | 17.5 |
+| L8 | 278 | 17.3 | 17.5 |
+| L9/L10 | 196 | 12.2 | 12.5 |
+| L11 | 184 | 11.5 | 11.3 |
+| L12 | 197 | 12.3 | 12.5 |
+| L13 | 207 | 12.9 | 12.8 |
+| L14 | 223 | 13.9 | 14 |
+
+Visible silhouette differences, and why no rim changed:
+
+- L1. The figure draws a level outer edge at about 25.8 mm and a flat flange that ends just in front of L2. The site
+  slopes the edge from 26 to 24 mm, and L1's rear rim tip sits 1.46 mm behind L2's front rim (S3A sag 11.65 mm at
+  24 mm against L2's front rim 10.19 mm behind S3) and 2.5 mm above it. Squaring L1 is impossible: S2/S3A at 25.8 mm
+  gives the resin a −0.161 mm edge. The 24 mm rim stays for the engine half-field reason recorded above.
+- L3 renders 0.5 mm taller than L2; the figure draws them equal at 21.7–21.8 mm. Within measurement noise; unchanged.
+- L4/L5 renders level with L6/L7 and L8; the figure draws it 4–5 % lower (16.7 mm). Within noise, and the strict
+  tele axial check needs 17.14 mm at S10; unchanged.
+- Every other element agrees within 4 %, in the drawn order of heights (G2 above G3; L12 < L13 < L14 in G4; L9/L10 above
+  L11). All other elements are square, as drawn.
+
+| Field | Before | After | Evidence |
+| ----- | ------ | ----- | -------- |
+| `cemented` names | H1, D2, D3, D4 | H1, C1, C2, C3 | D2–D4 read like the D7/D15/D20 gap labels and skipped D1; H marks the hybrid as in the data spec |
+| `doublets` | none | H1 S1–S3A, C1 S8–S10, C2 S11–S13, C3 S16–S18 | Table 3's four cemented components; none were drawn |
+| `diagramLabel` | none, so the diagram showed ids 1–15 (L2 drawn as "3", L14 as "15") | L1, L1r, L2–L14 | now matches the element names and the analysis |
+| L12, L13 `apdNote` | νd 68.3 "where Pentax describes" anomalous glass | cites the maker diagram's marking of elements 12 and 13 | the diagram colours them as anomalous low-dispersion glass |
+| Header and analysis | no label notes | label scheme; patent designations 11-1, 11-2, 11-3 and 11-1a; H1/C1–C3; maker markings for L1 and L12/L13; L1 flange difference | col. 5 and col. 7 text, maker diagram |
+
+The analysis also said "no gap-sag override is used" beside the 0.91 S18–S19 allowance, and quoted the stored rear rims as
+11.1–14 mm; both now read correctly.
+
+Checked and found correct:
+
+- Groups G1 S1–S7, G2 S8–S15, G3 S16–S20 and G4 S21–S26 bracket the patent's first lens group 11 and second to fourth
+  lens groups 22, 23 and 24 (Fig. 1, Fig. 17, column 7). The G1–G4 text follows the patent's "first … fourth lens group"
+  wording; 11, 22, 23 and 24 are only figure reference numerals. The patent gives element designations only in G1, so
+  sequential L-numbers are kept.
+- All 15 element types agree with the radius signs (for example L2 −894 / +50.854 biconcave, L9 −762 / −35.114 positive
+  meniscus, L13 +57.346 / −101.4 biconvex). Table 3 stars only surface 3; only 3A carries `A` and an asphere. The stop
+  sits after d15 and 1.68 mm before S16, as in Table 3, and between groups 22 and 23 in the figures.
+- APD: the patent designates no special glass. The maker diagram marks elements 12 and 13 (the two νd 68.3 G4 elements,
+  L12 and L13) as anomalous low-dispersion glass and L1 as high-index low-dispersion glass, so the two `inferred` tags
+  stand and L7 (νd 70.2) stays untagged. The inspector shows them as "APD (INFERRED)", L1 and the resin as "DOUBLET H1"
+  and L4 as "DOUBLET C1".
+- Zoom order: 65 stations ascend from 29 to 68 mm, labelled only "Wide" and "Tele". Stations 0, 32 and 64 carry Table 3's
+  d7 44.65 / 13.61 / 2.97, d15 1.87 / 12.75 / 21.91 and d20 15.58 / 7.91 / 1.90 mm, with BF 39.87 / 47.54 / 53.55 mm.
+- Zoom direction, measured from the image plane at wide / middle / tele: G1's front vertex 169.12 / 148.96 / 147.48 mm
+  (21.64 mm toward the image; the interpolated path dips to 147.30 mm near 62.9 mm and returns 0.18 mm, so the overlay
+  reports 21.82 mm maximum travel); G2's front 104.19 / 115.07 / 124.23 mm (20.04 mm toward the object); G3's front
+  78.51 mm and the stop 80.19 mm at every station; G4's front 53.05 / 60.72 / 66.73 mm (13.68 mm toward the object).
+  Figs. 1 and 17 draw G1 on a curved path toward the image that ends almost vertical, straight arrows toward the
+  object for G2 and G4, and a vertical arrow for G3; column 7 states that G3 is integral with the stop and does not move.
+  The G2–G3 space opens and the G3–G4 space closes, as the patent requires.
+- Focus: infinity only. Both keyframes repeat the infinity spacings, the slider's far end reads "Not modeled", the
+  movement overlay greys out its focus option and opens on zoom, and the focus description says so accurately.
+
+After the edits the engine values are unchanged: EFL 29.0007 mm, f/2.80, half-field 38.36° at wide and 29.56° at tele,
+geometric transmission 41.9 % at 37.8° (wide) and 73.4 % at 17.3° (tele). The surface validator reports no errors, the
+image-circle check finds nothing undersized, field coverage passes at all 65 stations, and the strict real-ray check
+flags the same five S11, S14, S16, S19 and S20 axial heights described above. On the page the labels read L1r / L1,
+L2, L3, L4–L8, L9–L11 and L12–L14 without overlap at all three zoom positions, and H1, C1, C2 and C3 stand over their
+pairs.
+
+Open: the L1 rear / resin rim (24 mm against the figure's 21.3 mm) and the sloped L1 edge stay until the engine's paraxial
+field limit no longer depends on S2/S3A. The resin's `Unmatched` label cannot be improved from the patent: Table 3 gives
+only nd 1.52010 and νd 50.8, and columns 2 and 7 call it a resin layer cemented to a glass lens, with no name, no
+other line indices and no partial dispersion.

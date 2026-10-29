@@ -26,7 +26,7 @@ The 16 glass elements form 13 air-separated groups, with cemented interfaces at 
 - **G3** (L9–L11; S16–20; f = +79.68 mm) is the positive compensator.
 - **G4** (L12–L16; S21–29; f = +150.72 mm) is the fixed positive relay, with the iris between L14 and L15.
 
-From wide to tele, G2 moves 29.92 mm toward the image (D8 2.81 → 32.73 mm). G3 first moves 6.42 mm toward the image, then returns 6.76 mm, ending 0.34 mm ahead of its wide position. D8 + D15 + D20 stays 43.04 mm, so G1, G4 and the 233.52 mm front-vertex-to-image length do not change. The patent prints spacings at the three focal lengths only; the 30 intermediate zoom positions in the model are interpolated to keep G4 fixed and paraxial focus 0.015–0.019 mm behind the printed image plane at every station, and are not the factory cam.
+From wide to tele, G2 moves 29.92 mm toward the image (D8 2.81 → 32.73 mm). At the printed focal lengths G3 moves 6.42 mm toward the image by 135 mm, then 6.76 mm back, ending 0.34 mm ahead of its wide position; in the interpolated stations its rearmost point, 6.71 mm behind the wide position, falls near 122 mm. D8 + D15 + D20 stays 43.04 mm, so G1, G4 and the 233.52 mm front-vertex-to-image length do not change. The patent prints spacings at the three focal lengths only; the 30 intermediate zoom positions in the model are interpolated to keep G4 fixed and paraxial focus 0.015–0.019 mm behind the printed image plane at every station, and are not the factory cam.
 
 Table 6 gives f₁/f₁₋₁ = −0.123, inside the patent's condition −0.3 < f₁/f₁₋₁ < 0, and the two G1-2 lenses have a mean νd of 88.3, above the condition ν₁₋₂ > 75.
 
@@ -110,7 +110,7 @@ Positive high-Abbe element beginning the fixed G4 relay.
 
 nd = 1.48749, νd = 70.2. Glass: S-FSL5 (catalog equivalent; supplier unconfirmed). f = +125.324 mm.
 
-Positive low-index crown in the third cemented pair, just ahead of the iris.
+Positive low-index crown at the front of the third cemented pair, which sits just ahead of the iris.
 
 ### L14 — Negative Meniscus
 
@@ -154,7 +154,7 @@ Inner focus. The patent moves G1-2 (S5–8; L3 and L4) toward the object for clo
 
 Figure 1 places the iris between S25 and S26, where the patent prints only the 7.88 mm air space. Measured from the figure, the iris sits about 4.3–4.5 mm behind S25; the model uses 4.40 mm before it and 3.48 mm after it (**inferred**, not a factory dimension). The maker's construction drawing also puts the iris directly behind the L13/L14 doublet. The iris radius, about 14.87 mm, is derived from the f/2.8 design f-number rather than a published diameter; G4 does not move, so it holds f/2.8 at every focal length.
 
-Clear radii are estimated from Figure 1; the patent prints none. Where an estimated rim was smaller than the f/2.8 beam, it was raised by the smallest tenth-millimetre step, keeping square rims square. The G2 cemented doublet (S11–S13) is held at 18.2 mm, which leaves 0.73 mm of air at the rim of the 7.01 mm S10–S11 space; above about 19.17 mm that space would close at the edge. No radius, thickness or index was changed to fit the rims. Off-axis bundles are partly vignetted by the estimated rims.
+Clear radii are estimated from Figure 1; the patent prints none. Where an estimated rim was smaller than the f/2.8 beam, it was raised by the smallest tenth-millimetre step, keeping square rims square. The G2 cemented doublet (S11–S13) is square at 18.9 mm, as Figure 1 draws it, which leaves 0.21 mm of air at the rim of the 7.01 mm S10–S11 space; above about 19.17 mm that space would close at the edge. No radius, thickness or index was changed to fit the rims. Off-axis bundles are partly vignetted by the estimated rims.
 
 ## Image Plane and Model Scope
 

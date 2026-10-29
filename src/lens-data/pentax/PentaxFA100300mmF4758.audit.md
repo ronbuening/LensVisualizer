@@ -108,3 +108,55 @@ for at 290 mm; Fig. 1 draws L6 square at about 12.45 mm, which the prescription 
 at 12.13 mm. The S9→S10 air gap then needs `checks.gapSagFrac` 0.98 (0.97 is refused: 2.63 mm combined sag against
 2.603 mm allowed of 2.684 mm). Tele on-axis transmission rises from 89.1% to 97.4%; all 65 stations are within 3% of
 the printed f-number. Engine half-field, f-numbers and stop radius are unchanged.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+Compared: the local page (103, 160 and 290.04 mm; 290.04 mm at focus 1; the zoom and focus movement overlays; the
+element inspector for L4, L6 and L11) against Fig. 1 (PDF p. 2, Embodiment 1, wide state), Table 1 (PDF p. 19),
+¶0058 and ¶0067 (PDF p. 18) and Fig. 13 (PDF p. 14). No Pentax construction diagram exists (see the deployment
+validation above), so none was compared.
+
+Silhouette: the only visible difference from Fig. 1 is L6. Re-measured on the native scan as full rim width halved,
+Fig. 1 draws L6 square at 213.75 px half-width against 222.75 px for the L4/L5 block, a ratio of 0.960, or about
+12.47 mm beside the block's 13.0 mm; the flat rim runs the whole 3.5 mm edge length and meets the block, so r9 and r10
+touch at the rim. L7 (223 px) and the L8/L9 block (222.5 px) are drawn level with the L4/L5 block, as stored. The
+page renders L6 tapered from 12.0 mm (S10) to 12.3 mm (S11) and about 0.2 to 0.5 mm below the drawn height. A
+square L6 is not possible in this prescription: S9 and S10 meet at 12.13 mm, while the real-ray trace needs 12.26 mm
+on S11 for the f/6.0 axial beam at 290 mm. S11 at 12.3 mm is the least 0.1 mm step above that need. The only closer
+picture is S10 at 12.1 mm, which leaves a 0.2 mm taper and clears the traced tele axial beam (on-axis transmission
+99.0% against 97.4%), but needs `checks.gapSagFrac` 1.00; at 0.98 the surface validator refuses it (2.67 mm combined
+sag against 2.630 mm allowed of 2.684 mm). The 0.1 mm step is about one screen pixel at the page's scale, so the
+coordinator's S10 12.0 mm with 0.98 is kept. All other rims keep the drawn order: L1 > L2 > L3, the L4/L5 block above
+L6, L7 level with the L8/L9 block, L10 below L11.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Data header, semi-diameter note | S10 12.0 mm reason only | adds that S11 needs 12.26 mm, so L6 cannot be square; S11 is the least 0.1 mm step above | real-ray trace at 290 mm, f/6.0 |
+| Analysis, Clear Apertures | "roughly 12.4 mm"; S10 "just enough to pass" the f/6.0 beam | "about 12.45 mm with a square edge"; S11's 12.26 mm need stated; no claim that S10 passes the whole beam | Fig. 1 measurement above; the next paragraph already gives 97% |
+
+No `sd`, label, tag or movement value changed. The page renders pixel-identical to the pre-review shots at 103 and
+160 mm.
+
+Checked and correct:
+- Groups: G1 S1–S6 (L1–L3), G2 S7–S11 (L4–L6), G3 S12–S20 (L7–L11) match the brackets 10, 20 and 30 in Fig. 1; the
+  diaphragm S sits between r11 and r12 outside bracket 30, as the G3 bracket starts at S12. Cemented brackets C1
+  (S7–S9, L4+L5) and C2 (S14–S16, L8+L9) match ¶0067's two cemented pairs.
+- Element names: Fig. 1 labels only groups and surfaces, so L1–L11 stand. Every `type` agrees with the signs of R
+  (L1, L7, L8, L10 biconvex; L6, L9 biconcave; L2, L3, L4, L5 meniscus convex to the object; L11 meniscus concave to
+  the object) and with ¶0058 and ¶0067. Roles are true; L4 (−25.11 mm) is the strongest negative element.
+- No aspheres, no `apd` tags: Table 1 is all spherical and the text names no glass or special dispersion; ¶0065 gives
+  only d-line index and Abbe number. All eleven glass labels resolve.
+- Zoom: stations ascend 103.00 → 290.04 mm and every gap row follows that order. D6 rises 14.662 → 37.585 → 58.142 mm,
+  D11 falls 21.956 → 14.585 → 1.900 mm and BF rises 49.71 → 57.08 → 69.77 mm, each monotonic over all 65 positions, as
+  Table 1 prints. G1 moves 43.48 mm toward the object (front vertex 172.02 → 215.50 mm from the image), G3 and the
+  diaphragm 20.06 mm toward the object, and G2 stays at 143.148–143.153 mm, as ¶0067 and the Fig. 13 arrows show. The
+  zoom overlay draws the same three tracks. The slider labels only its ends, 103 mm and 290.04 mm.
+- Focus: both keyframes repeat the infinity spacings, the focus control is shown as not modeled, and the focus overlay
+  stays on zoom. A paraxial check moving G1 forward 19.15 mm at 290 mm focuses at 1.500 m object to image, matching
+  the description's "about 19 mm".
+- Engine half-field 13.33°/9.05°/5.70°, f/4.8/5.3/6.0 and stop radius 12.618 mm are unchanged; the surface validator,
+  image-circle floor and field coverage (all 65 positions at least 99%) pass. Wide-open transmission at the printed
+  half-angles stays 55.8%, 52.2% and 47.0%.
+
+Open: the real-ray trace still flags S10 by 0.04 mm at 290 mm (axial need 12.04 mm, on-axis 97.4%); S10 12.1 mm with
+`checks.gapSagFrac` 1.00 would clear it.

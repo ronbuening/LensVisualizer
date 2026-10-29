@@ -55,3 +55,40 @@ the tele f/6.2 axial beam by the repo's aperture audit and within 0.3% of the 11
 air gap then needs `checks.gapSagFrac` 0.96 (0.95 is refused: 2.66 mm combined sag against 2.631 mm allowed of
 2.770 mm; the faces do not cross). Tele on-axis transmission rises from 92.7% to 98.8% (about f/6.24); all 65
 stations are now within 3% of the printed f-number. Engine half-field, wide f-number and stop radius are unchanged.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+What was compared. The local page at wide, middle (200.01 mm), tele (289.96 mm) and closest focus, shot at three times device scale, against Fig. 9 of the local `patents/US20030223122A1.pdf` (PDF p. 6) read at the scan's native 2320 px width. The review also used Fig. 17 (PDF p. 10), ¶0051–0057 (PDF pp. 12–13), ¶0123–0125 and Table 3 (PDF pp. 15–16), the element inspector for L6, L8 and L10, both movement overlays, and the local copy of Ricoh's construction drawing.
+
+Silhouette, re-measured independently. The S1 and S22 axis crossings are 1158.5 px apart. The wide prescription puts them 100.44 mm apart, including the 0.6 mm stop spacing, which gives 0.0867 mm/px. S1 to S12 gives 0.0868 mm/px. The first pass used 99.84 mm, leaving out the stop spacing; its scale was 0.6% low, which changes none of its conclusions. Heights were taken as half the distance between the top and bottom outer rim ink, or from the axis centre where leader lines cover the top side (L1–L3, L10), less half a line width.
+
+| Element | Stored sd mm | Fig. 9 mm | Figure / data | Drawn neighbour ratio | Model ratio |
+|---|---:|---:|---:|---|---|
+| L1 | 25.3 | 25.10 | 0.992 | L1 > L2 > L3 | same order |
+| L2 | 24.7 | 24.41 | 0.988 | | |
+| L3 | 23.7 | 23.63 | 0.997 | | |
+| C1 (L4/L5) | 12.63 | 12.57 | 0.995 | | |
+| L6 | 11.99 | 12.01 | 1.002 | L6/C1 0.955 | 0.949 |
+| L7 | 12.88 | 12.83 | 0.996 | L7/C1 1.02 | 1.02 |
+| C2 (L8/L9) | 12.8 | 12.61 | 0.985 | | |
+| L10 | 11.8 | 11.62 | 0.985 | L10/C2 0.92 | 0.92 |
+| L11 | 9.2 | 9.02 | 0.980 | | |
+| L12 | 9.1 | 8.89 | 0.977 | | |
+
+Every element lies within 2.3% of the drawing, and every drawn height ordering between neighbours is kept. Every element is square on the site, as Fig. 9 draws it: both faces, and the cemented partners, share one height, so no bevels show. The page shows no overlaps or wrapping at any zoom station. No rim was changed; the coordinator's L6 at 11.99 mm with `checks.gapSagFrac` 0.96 matches the 12.01 mm read here. The stop line in Fig. 9 is centred 7.5 px (0.65 mm) before the S12 vertex, with a 4 px (0.35 mm) clear gap between the two inked lines. The model's 0.6 mm lies inside the range of the three readings (0.49, 0.58, 0.65 mm).
+
+Maker drawing. It shows 12 elements in 10 groups with the plastic tenth element highlighted, the same G1/G2/G3 split, and no other special element. It draws L6 at the full C1 height and L10 taller than C2. Fig. 9 draws L6 at 0.955 of C1 and L10 at 0.92 of C2; the patent figure governs, so the model keeps the drawn proportions.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L10 `type` | Positive Meniscus | Positive Meniscus (1× Asph) | S18 is the only surface marked `*` in Table 3 (PDF p. 16). The type now carries the aspheric-surface count, following the repo convention. |
+| Header comment | — | Note on the patent's group numerals 10/20/30 and 31/32 | Fig. 9; Table 3 prints a single d18 of 20.50 mm |
+| Analysis | L10 heading; no numeral mapping | L10 heading matches the type; Optical Architecture maps 10/20/30/31/32 and f3b to G1–G3, G3a and G3b | ¶0051, ¶0055, ¶0014 |
+
+Checked and found correct. Group brackets G1 (+) S1–S6, G2 (−) S7–S11 and G3 (+) S12–S22 match Fig. 9's groups 10, 20 and 30. Sub-lens groups 31 (S12–S18) and 32 (S19–S22) get no bracket of their own. Brackets mark moving groups, and Table 3's fixed d18 means the two subgroups move as one. Cemented brackets C1 (S7–S9) and C2 (S14–S16) are the only cemented interfaces, S8 and S15. The patent names no individual elements, since Fig. 9 labels only r, d, S and the group numerals, so L1–L12 clashes with nothing. All twelve `type` strings agree with the signs of R. L3 has R6 = +14468 mm, so it is a meniscus that is nearly plano-convex. S18A is the only `A` label and the only asphere, and the inspector shows it on L10 with K = 0, A4 = 7.09e−6 and A6 = −1.86e−9. The stop sits between L6 and L7. The file has no `apd` tags. The patent names no special glass, and Ricoh marks only the plastic asphere. S-FSL5 (L8) is an ordinary low-dispersion crown. The roles hold, including L6's: at 11.99 mm it still trims about 1.2% of the tele axial beam.
+
+Movement. `zoom.stations` ascend from 77.25 to 289.96 mm, and every gap array runs wide to tele in that order. Front-vertex positions from the image plane across all 65 stations show three motions. G1 goes from −159.41 to −194.10 to −205.99 mm: objectward and monotonic (64 of 64 steps), 46.58 mm in all, which the movement overlay reports as maximum travel. G2 goes from −142.20 to −137.95 to −143.64 mm: 4.25 mm imageward to station 32, then 5.69 mm objectward, a net 1.44 mm objectward. G3 goes from −102.80 to −117.02 to −131.39 mm: objectward and monotonic. This matches Fig. 17, where G1 and G3 travel in straight lines toward the object and G2 bows toward the image before ending on the object side of its wide position. It also matches ¶0052–0054: every group is closest to the object at tele, D6 grows and D11 shrinks. The reversal falls exactly at the printed middle row, because only three rows are printed. Focus: both keyframes repeat the infinity prescription. ¶0057 moves G1 toward the object, and `focus.description` says so. The focus slider's far end reads "Not modeled", and the focus overlay is unavailable, so `?mv=focus` opens the zoom overlay. The station labels are absent, which the schema allows; stations 0, 32 and 64 carry `published: true`.
+
+Clearance and engine numbers. Before and after are identical, since no rim or prescription value changed. Engine half-field is 21.462°, wide-open f/4.6, stop radius 12.348 mm and EFL 77.244 mm. Wide-open transmission at wide is 100 / 93.3 / 78.6 / 50.6% at 0 / 5.3 / 10.7 / 16.0°. At tele it is 98.8 / 89.0 / 70.3 / 50.2% at 0 / 1.4 / 2.8 / 4.2°. The surface validator reports OK. The image-circle floor reports no undersized surface, and field coverage is at least 99% at all 65 stations. The real-ray trace at 21.63 mm image height still flags S11 as CLIPS-AXIAL at tele: it needs 12.07 mm against the 11.99 mm stored. This is the known 1.2% tele residual from the coordinator's decision, and nothing else is flagged.
+
+Open. The gap label D11 shows the S11-to-stop spacing, which is 0.6 mm less than the patent's d11 (29.05 / 10.58 / 1.90 against the printed 29.65 / 11.18 / 2.50 mm); the header and analysis explain the difference. L10's polymer is unidentified: Table 3 gives only nd 1.52538 and νd 56.3, and ¶0123–0124 call it a plastic lens element without naming a material or giving other line indices.

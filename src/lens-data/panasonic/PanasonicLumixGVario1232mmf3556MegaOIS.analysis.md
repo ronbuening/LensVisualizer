@@ -41,7 +41,7 @@ G4 is fixed (¶0090), and the three printed BF values, 14.19915, 14.19920 and 14
 
 nd = 1.90366, νd = 31.3. Glass: TAFD25 equivalent (Hoya catalog); supplier not stated. f = −16.8095 mm.
 
-The front meniscus carries the largest share of G1's negative power ahead of the stop. Fig. 3 draws a stepped rim; the model uses inferred semi-diameters of 10 mm at the front and 8 mm at the rear, and does not extend the mechanical flange onto the rear optical surface.
+The front meniscus carries the largest share of G1's negative power ahead of the stop. Fig. 3 draws a stepped rim; the model uses an inferred 10 mm front rim and ends the deep rear surface at an 8.0 mm cut radius, with a flat land out to 9.3 mm as drawn, so the optical rear aperture is unchanged.
 
 ### L2 — Biconcave Negative Asphere
 

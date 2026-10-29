@@ -157,3 +157,95 @@ slanted rim edge where the figure draws a rectangular flange step. No maker cons
 pass; the comparison with Panasonic's drawing is the one recorded in the deployment-validation section above.
 
 Changed: the data-file header's semi-diameter note only. Open: none.
+
+## 2026-10-29 — Second review: diagram, labels and movement
+
+Compared: the local page at 12.48, 19.53, 24.6 and 30.72 mm (infinity, and the focus-slider end), the group-movement
+overlay at the wide and tele ends, the focus overlay, and the element inspector for L1, L2, L4, L6 and L7, against
+US 2015/0097989 A1 Fig. 3 (PDF p. 4, panels (a)–(c)), Tables 4–6 (PDF p. 16) and ¶0073–¶0074, ¶0085–¶0091 and
+¶0099–¶0102. No maker image was viewed; the deployment-validation section above records Panasonic's drawing as
+8 elements in 7 groups with aspheres on L2, L4 and L7 and the ED element L6 cemented to L5, which is Fig. 3's layout.
+
+Silhouette, re-measured independently. Panel (b) was profiled on both sides of the axis (row 2096 px at 300 dpi) and
+panel (c) on its lower side (row 2538 px); neither carries leader lines. Scale from panel (b): S1 vertex at x = 751 px,
+image line at x = 1921 px, 1170 px for the 63.3359 mm middle-position overall length, 18.47 px/mm.
+
+| Element | Stored sd (mm) | Fig. 3 rim, px | Fig. 3 rim (mm) | Figure / stored |
+|---|---|---|---|---|
+| L1 front | 10 | 180–183 | 9.8–9.9 | 0.99 |
+| L1 rear (foot of the flange step) | 8 | 146–148 | 7.9–8.0 | 0.99 |
+| L2 | 8 | 143–145 | 7.7–7.9 | 0.97 |
+| L3 | 8 | 141–142 | 7.6–7.7 | 0.96 |
+| L4 | 5 | 94 | 5.1 | 1.02 |
+| L5 + L6 | 4.6 | 83–86 | 4.5–4.7 | 0.99 |
+| L7 | 6 | 110–113 | 6.0–6.1 | 1.01 |
+| L8 | 10.2 | 186–189 | 10.1–10.2 | 0.99 |
+
+Every rim is within 4 % of the stored value and the drawn order of heights holds (L8 ≥ L1 front > L1 rear ≈ L2 ≈ L3
+> L7 > L4 > L5 + L6). L2 is drawn 1–2 px taller than L3 while both store 8 mm; that is inside the noise and was not
+changed. L2, L4, L5 + L6 and L7 render as flat-topped blocks with equal face heights, as drawn. No `sd` changed.
+
+The one visible difference is L1. Fig. 3 draws its front face to 9.9 mm, a flat edge back to the plane of the rear
+rim, and a step square to the axis down to 7.9–8.0 mm, where the R 9.322 rear face begins (in panel (b) the step is
+the vertical run at x = 850 px from 147 to 183 px; in panel (c) 146 to 182 px). The site joins the 10 mm front rim to
+the 8 mm rear rim with one slanted edge. A semi-diameter alone cannot draw the step: S2 cannot exceed |R| =
+9.322 mm, a bare S2 rim above 8 mm carries the cap toward L2 (its sag is 8.68 mm at 9.3 mm, against the 5.15 mm
+gap), and squaring L1 by lowering S1 would take the front at least 0.6 mm below the drawn 9.9 mm. The step is a
+rim-cut land (LENS_DATA_SPEC.md, Rim cuts), which this review may not author. A trial on a scratch copy with S2 at
+`sd: 9.3` and `rimCutDepthMm: 4.54` (the rear face's sag at 8.000 mm is 4.5366 mm, rounded up, so the cut radius is
+8.002 mm and the traced rim is unchanged) gave: surface validator OK, including the inferred-cut beam check; the
+aperture audit unchanged at 33 of 33 stations within 3 % with no rim, trace or iris rows; image circle and traced
+corner coverage unchanged; engine half-field 38.397° → 38.404° at the wide end; wide-open transmission identical
+(74.2 % at 44.9°). It would draw the land from 8.0 to 9.3 mm and leave only a 0.7 mm slope along the edge from the
+10 mm front rim. It was handed to the coordinator and is not applied here.
+
+Labels, markers and tags.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L2 `type` | Biconcave Negative | Biconcave Negative (2× Asph) | both faces aspherical (¶0085; Table 5 surfaces 3 and 4) |
+| L4 `type` | Positive Meniscus | Positive Meniscus (2× Asph) | both faces aspherical (¶0086; surfaces 8 and 9) |
+| L7 `type` | Biconcave Negative | Biconcave Negative (2× Asph) | both faces aspherical (¶0088; surfaces 14 and 15) |
+
+Found correct. Element names L1–L8 are Fig. 3's. Every type agrees with the signs of R and with ¶0085–¶0089
+(negative meniscus convex to the object, biconcave, positive meniscus convex to the object; positive meniscus convex
+to the object, negative meniscus convex to the object, biconvex; biconcave; biconvex). The `A` suffix and an
+`asphere` entry sit on surfaces 3, 4, 8, 9, 14 and 15 only, the faces Fig. 3 marks with asterisks. The stop sits
+between S6 and S8, 1.000 mm ahead of L4 as Table 4's diaphragm S7, and is drawn there. Group brackets G1 (S1–S6), G2
+(STO–S13), G3 (S14–S15) and G4 (S16–S17) match Fig. 3's G1(−) to G4(+); Fig. 3's G2 bracket starts at the diaphragm.
+The cemented bracket L5+L6 spans S10–S13, so it covers both elements and the undrawn 0.010 mm adhesive S11. L6's
+inferred ED tag is right: the patent names no anomalous-dispersion or special glass (condition (6) uses νd only), and
+Panasonic marks L6 as its ED element. The role texts agree with ¶0087, ¶0090, ¶0091, ¶0100 and ¶0101. The gap labels
+d6, d13, d15 and BF are Table 6's. The inspector shows the new type strings for L2, L4 and L7.
+
+Zoom movement, from the 33 stations (group vertex distances from the image, mm; G4 fixed at 18.069):
+
+| Group | Wide 12.48 | Middle 19.53 | Tele 30.72 | Model path | Patent |
+|---|---|---|---|---|---|
+| G1 (S1) | 65.366 | 63.336 | 63.608 | toward the image to 63.168 at 23.24 mm, then back 0.44 mm | convex to the image (¶0090); Fig. 3 arrow right, then nearly vertical |
+| G2 (STO) | 37.793 | 45.093 | 52.534 | toward the object at every station, 14.74 mm | toward the object |
+| G3 (S14) | 23.495 | 27.145 | 27.195 | toward the object to 27.784 at 24.6 mm, then back 0.59 mm | convex to the object; Fig. 3 arrow left, then nearly vertical |
+
+The three printed rows reproduce Table 6. `zoomPositions` ascend from 12.48 to 30.72 mm and every gap array lists
+its stations in the same order (published at indices 0, 16 and 32); the slider ends read 12.48 and 30.72 mm. The
+movement overlay shows G1 moving about 1.8 mm toward the image, G2 14.7 mm and G3 3.7 mm toward the object, and G4
+still, matching the arrows in Fig. 3 (G1 about 18 px, G2 130 px and G3 33 px at 150 dpi). Focus: Fig. 3's arrow under
+G3 points to the image, as ¶0091 states. No close-focus spacings are printed, both entries of every gap pair repeat
+the infinity value, the focus overlay offers no focus travel, and the focus slider reads "Not modeled". The focus
+description says so.
+
+Engine readouts before and after are identical: half-field 38.40° at the wide end, F/3.62286, stop radius 4.3139 mm.
+The exact trace at the printed 10.815 mm image height over all 33 stations clips no axial marginal ray and blocks no
+chief ray, the image-circle check finds no undersized surface, and the traced corner reaches 10.82 mm at every
+station.
+
+Open: the L1 land above (coordinator). G3's 0.59 mm return between 24.6 mm and the tele end comes from the
+interpolation; Fig. 3 joins its three positions with straight lines (¶0073) and cannot confirm or rule it out. The
+patent identifies no glass for L2, L4 or L7: Table 4 prints only nd and νd, and ¶0102 calls G3 resin only in
+Embodiments 1 and 3.
+
+Coordinator follow-up (same day): S2 now carries the land Fig. 3 draws behind L1's rear face: `sd` 9.3 mm with
+`rimCutDepthMm` 4.54, which puts the cut radius at 8.002 mm, the old 8 mm optical rim, so tracing is unchanged
+(engine half-field 38.397° → 38.404°, F/3.62286, vignetting identical). The figure draws the cap ending near
+7.9–8.0 mm on a 9.9 mm edge (panel (b), 18.47 px/mm), q ≈ 0.80–0.81; the land is 1.3 mm. The surface validator,
+including the inferred-cut beam check, and the aperture, image-circle and field-coverage audits pass.

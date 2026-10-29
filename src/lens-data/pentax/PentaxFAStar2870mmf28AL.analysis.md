@@ -48,31 +48,31 @@ Focal lengths below are each element's own thick-lens value in air, **not its co
 
 nd = 1.77250, νd = 49.6. Glass: S-LAH66 (catalog equivalent; supplier unconfirmed). f = −55.719 mm.
 
-Negative front member of G1; its image-side interface carries the bonded resin layer.
+Negative front member of G1, the patent's lens 11-1; its image-side interface carries the bonded resin layer, and the two form the hybrid pair H1 on the diagram. Pentax's construction diagram marks this element as high-index low-dispersion glass.
 
 ### Resin — Bonded Aspheric Resin Layer
 
 nd = 1.52010, νd = 50.8. Glass: Unmatched (aspheric resin layer). f = −641.995 mm.
 
-Thin bonded resin on L1, not an additional counted glass piece. Its rear face S3 is the single tabulated asphere.
+Thin bonded resin on L1 (labelled L1r on the diagram), not an additional counted glass piece. Its rear face S3 is the single tabulated asphere, the surface the patent calls 11-1a.
 
 ### L2 — Biconcave Negative
 
 nd = 1.72916, νd = 54.7. Glass: S-LAL18 (catalog equivalent; supplier unconfirmed). f = −65.931 mm.
 
-Second negative G1 member, ahead of the positive compensating L3.
+Second negative G1 member (the patent's 11-2), ahead of the positive compensating L3.
 
 ### L3 — Positive Meniscus
 
 nd = 1.84666, νd = 23.9. Glass: SFLDN3 (catalog equivalent; supplier unconfirmed). f = +72.690 mm.
 
-Positive rear member of the net-negative first unit.
+Positive rear member of the net-negative first unit (the patent's 11-3).
 
 ### L4 — Biconvex Positive
 
 nd = 1.77250, νd = 49.6. Glass: S-LAH66 (catalog equivalent; supplier unconfirmed). f = +48.453 mm.
 
-Positive member of the first cemented pair in G2.
+Positive member of the first cemented pair in G2 (C1 on the diagram).
 
 ### L5 — Negative Meniscus
 
@@ -84,7 +84,7 @@ Negative member sharing the first G2 cemented interface.
 
 nd = 1.80518, νd = 25.4. Glass: S-TIH6 (catalog equivalent; supplier unconfirmed). f = −90.545 mm.
 
-Negative front member of the second G2 cemented pair.
+Negative front member of the second G2 cemented pair (C2).
 
 ### L7 — Positive Meniscus
 
@@ -102,7 +102,7 @@ Positive rear singlet completing the net-positive G2.
 
 nd = 1.84666, νd = 23.9. Glass: SFLDN3 (catalog equivalent; supplier unconfirmed). f = +43.379 mm.
 
-Positive member of the G3 cemented pair.
+Positive member of the G3 cemented pair (C3).
 
 ### L10 — Biconcave Negative
 
@@ -120,7 +120,7 @@ Negative rear singlet of the fixed G3. Its front face sits only 3.00 mm behind L
 
 nd = 1.59240, νd = 68.3. Glass: K-GFK68 (catalog equivalent; supplier unconfirmed) — inferred anomalous dispersion. f = +58.411 mm.
 
-High-Abbe positive member of G4. Its νd 68.3 fits the anomalous low-dispersion glass Pentax describes, so it is tagged as inferred; the patent gives no partial-dispersion data.
+High-Abbe positive member of G4. Pentax's construction diagram marks elements 12 and 13 as anomalous low-dispersion glass, and their νd 68.3 fits that description, so both are tagged as inferred; the patent names no glass and gives no partial-dispersion data.
 
 ### L13 — Biconvex Positive
 
@@ -150,7 +150,7 @@ Negative rear member of the net-positive G4, nearest the image plane.
 | L12, L13          | 1.59240 | 68.3 | K-GFK68 (inferred anomalous)   |
 | L14               | 1.75520 | 27.5 | S-TIH4                         |
 
-The patent supplies d-line nd and νd only, with no glass names or C/F/g indices. Each glass is matched to a catalog type with the same nd/νd, whose dispersion the model uses; suppliers and production melts are not known. The resin layer has no catalog match. L12 and L13 are tagged as inferred anomalous-dispersion elements, consistent with the anomalous low-dispersion glass Pentax describes; their partial dispersion, and that of L7 (νd 70.2), is not published, so the model's secondary spectrum follows the catalog equivalents.
+The patent supplies d-line nd and νd only, with no glass names or C/F/g indices. Each glass is matched to a catalog type with the same nd/νd, whose dispersion the model uses; suppliers and production melts are not known. The resin layer has no catalog match. L12 and L13 are tagged as inferred anomalous-dispersion elements because Pentax's construction diagram marks elements 12 and 13 as anomalous low-dispersion glass; their partial dispersion, and that of L7 (νd 70.2), is not published, so the model's secondary spectrum follows the catalog equivalents.
 
 ## Focus Mechanism
 
@@ -177,7 +177,7 @@ The certificate changes the printed K = −0.1000 to −0.1000E01 (−1.0) and n
 
 The patent does not give semi-diameters, and the figure linked to Example 3 shows another design. The **rims are estimated from Example 5's Figure 17, used as a proxy**: it draws the same 14-element / 11-group layout, and Figure 21 (Example 6, the same hybrid construction as Example 3) agrees with it within about 1 %. The drawing was scaled by Example 3's own wide vertex positions, so it sets the proportions of the section, not Example 3's actual apertures. The maker's small construction diagram shows the same proportions but was compared only by eye. These rims are estimates, not Example 3 or production clear apertures.
 
-Measured this way, every element agrees with the stored rims within about 6 %: S1 25.5 mm against 26 mm, L2 and L3 21.4–21.5 mm against 21.5 and 22 mm, the three G2 components 16.5–17.3 mm against 17.5 mm, and the rear groups 11.2–13.6 mm against 11.1–14 mm. The one clear difference is the rear of the front element: both figures end its concave curve at about 21.4 mm, inside a wide mounting flange, where the model keeps 24 mm. That rim stays because S2 and S3A set the app's wide-angle field limit; at 21.4 mm the limit would fall from 38.4° to 35.2°, below the patent's 37.8°. The resin keeps a positive edge at 24 mm, and L2 (21.5 mm) and L13 (12.8 mm) stay within the air-gap edge limit. No rim is trimmed for drawing and no gap-sag override is used.
+Measured this way, every element agrees with the stored rims within about 6 %: S1 25.5 mm against 26 mm, L2 and L3 21.4–21.5 mm against 21.5 and 22 mm, the three G2 components 16.5–17.3 mm against 17.5 mm, and the rear groups 11.2–13.6 mm against 11.3–14 mm. The one clear difference is the rear of the front element: both figures end its concave curve at about 21.4 mm, inside a wide mounting flange, where the model keeps 24 mm. That rim stays because S2 and S3A set the app's wide-angle field limit; at 21.4 mm the limit would fall from 38.4° to 35.2°, below the patent's 37.8°. As a result the diagram draws L1's rear rim about 1.5 mm behind the front edge of L2 and above it, where the figures show a flat flange ending just in front of L2, and L1's outer edge slopes from 26 to 24 mm instead of running level. The resin keeps a positive edge at 24 mm, and L2 (21.5 mm) and L13 (12.8 mm) stay within the air-gap edge limit. No rim is trimmed for drawing; the only gap-sag allowance is the S18–S19 one described below.
 
 The chief ray at the patent's half-field angles clears every rim. L11 is square at 11.3 mm, as both figures draw it, so that the f/2.8 axial beam the app sets at tele passes S20; at that height S19 comes within 0.28 mm of L10 across the narrow 3.00 mm S18–S19 air space, so the model allows 0.91 of that gap for rim sag instead of the default 0.90. A stricter check, a real ray launched at the full f/2.8 entrance radius (12.14 mm at tele), meets the stop at 12.88 mm rather than the app's 12.16 mm iris; that beam would still be slightly clipped at S11, S14, S16, S19 and S20, most at S20 (11.99 mm needed). Some full-aperture off-axis rays also meet S19's sphere outside its rim and are stopped there. These are kept as limitations rather than hidden by enlarging rims.
 

@@ -22,7 +22,7 @@ These facts fit Embodiments 3 and 4 equally well. Embodiment 3 is used because E
 
 ## Optical Architecture
 
-The design is a positive–negative–positive telephoto zoom. Twelve elements form ten air-separated groups; cemented interfaces S8 and S15 join L4/L5 and L8/L9. The third zoom group contains a positive forward subgroup and a negative rear subgroup separated by 20.50 mm. The maker's ten groups are these air-separated components, not the three zoom groups.
+The design is a positive–negative–positive telephoto zoom. Twelve elements form ten air-separated groups; cemented interfaces S8 and S15 join L4/L5 and L8/L9. The third zoom group contains a positive forward subgroup and a negative rear subgroup separated by 20.50 mm. The maker's ten groups are these air-separated components, not the three zoom groups. The patent numbers the zoom groups 10, 20 and 30 and the subgroups 31 and 32, and writes the rear subgroup's focal length as f3b; this page calls them G1, G2, G3, G3a and G3b. The diagram brackets only G1–G3: Table 3 prints one d18 of 20.50 mm for all three positions, so in this embodiment the subgroups do not move apart (the patent allows either case, ¶0016 and ¶0056).
 
 | Group | Surfaces | Elements/components | Role and calculated isolated-group focal length |
 |---|---|---|---|
@@ -98,7 +98,7 @@ nd = 1.80518, νd = 25.4. Glass: S-TIH6 (catalog equivalent; supplier unconfirme
 
 Negative dense-flint partner in G3a. The pair precedes the free-standing plastic aspherical element; no resin layer is bonded to it.
 
-### L10 — Positive Meniscus
+### L10 — Positive Meniscus (1× Asph)
 
 nd = 1.52538, νd = 56.3. Glass: Unmatched (optical plastic; nd 1.52538, νd 56.3). f = +666.670 mm (isolated thick element in air).
 

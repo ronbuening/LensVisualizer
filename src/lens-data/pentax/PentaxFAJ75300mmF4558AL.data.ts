@@ -24,6 +24,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No camera-side plates are listed. Glass names are catalog equivalents; the patent names no supplier.
  * G2 moves imageward to the middle position and then objectward; every group is closest to the object at tele,
  * but the motion is not monotonic.
+ * Fig. 9 numbers the zoom groups 10/20/30 and G3's subgroups 31/32. The brackets read G1–G3 only: Table 3 prints
+ * one d18 (20.50 mm) at every position, so 31 and 32 do not move apart and are not separate moving groups.
  * L6 is square at 11.99 mm, the least rim that passes the tele f/6.2 axial beam by the repo's aperture audit
  * (Fig. 9 draws it at 11.96 mm). Its S10 rim then sits close to L5's rear face across the 2.77 mm air gap without
  * crossing it, so checks.gapSagFrac is 0.96. About 98.8% of the tele axial entrance area passes (about f/6.24).
@@ -205,7 +207,7 @@ const LENS_DATA = {
       "label": "Element 10",
       "diagramLabel": "L10",
       "role": "Weak positive plastic element carrying the aspheric surface S18; ends the forward G3 subgroup",
-      "type": "Positive Meniscus",
+      "type": "Positive Meniscus (1× Asph)",
       "nd": 1.52538,
       "vd": 56.3,
       "indexReference": "d",

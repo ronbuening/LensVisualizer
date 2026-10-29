@@ -26,8 +26,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stabilization: G2 shifts across the axis (¶0087); the model keeps it centered.
  * Stop: no diameter is printed; the engine sizes S7 from the F-number at each station (printed at the three
  * positions, interpolated linearly between them).
- * Semi-diameters are inferred from Fig. 3, not published. L1 is 10 mm at the front and 8 mm at the rear: the rear
- * rim excludes the mechanical flange drawn around L1 (a 10 mm rim on the R 9.322 rear surface is not real). The
+ * Semi-diameters are inferred from Fig. 3, not published. L1 is 10 mm at the front. Fig. 3 ends the deep R 9.322
+ * rear face at about 8 mm and draws a flat step out to the edge, so S2 is 9.3 mm with rimCutDepthMm 4.54: the cap
+ * ends at an 8.00 mm cut radius (traced aperture unchanged) and a flat land runs out to 9.3 mm. The
  * other rims, 4.6–10.2 mm, follow the drawing. All three Fig. 3 panels (54.2 µm/px) measure every rim within 4 % of
  * the stored value, and a real-ray trace at the printed 10.815 mm image height clips no axial or chief ray.
  */
@@ -86,7 +87,7 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Biconcave Negative",
+      type: "Biconcave Negative (2× Asph)",
       nd: 1.80755,
       vd: 40.9,
       indexReference: "d",
@@ -110,7 +111,7 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Positive Meniscus",
+      type: "Positive Meniscus (2× Asph)",
       nd: 1.80755,
       vd: 40.9,
       indexReference: "d",
@@ -150,7 +151,7 @@ const LENS_DATA = {
       id: 7,
       name: "L7",
       label: "Element 7",
-      type: "Biconcave Negative",
+      type: "Biconcave Negative (2× Asph)",
       nd: 1.5436,
       vd: 56,
       indexReference: "d",
@@ -190,7 +191,8 @@ const LENS_DATA = {
       label: "2",
       R: 9.322,
       d: 5.15,
-      sd: 8,
+      sd: 9.3,
+      rimCutDepthMm: 4.54,
     },
     {
       label: "3A",
