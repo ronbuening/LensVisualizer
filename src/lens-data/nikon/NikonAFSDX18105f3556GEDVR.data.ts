@@ -1,14 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JP 2009-156890 A (Nikon; filed 2007-12-25, published 2009-07-16), Example 5 (第5実施例):
- * Tables 17–19, unscaled. The US family member US 7,839,577 B2 prints the same prescription as
- * its fifth example (Tables 17–19, Fig. 17); every value here agrees with both.
+ * US 7,839,577 B2 (Nikon; filed 2008-12-23, granted 2010-11-23), Fifth Example: col. 25,
+ * l. 33 – col. 27, Tables 17–19, Fig. 17, unscaled. Its Japanese priority application
+ * JP 2007-331480 (filed 2007-12-25) was published as JP 2009-156890 A, whose Example 5 prints
+ * the same prescription; every value here agrees with both.
  * WO 2021/039812 A1 Example 8 (2019 priority) later republishes this design with L13 changed
  * to nd 1.66106 / νd 56.09 and R4 = 59.8952, κ = 82.273 and an added flare-cut plane; it is
  * not used.
- * Asphere (surface 6, the resin face of L21): S(y) = (y²/r)/[1 + √(1 − κy²/r²)] + A4y⁴ … A14y¹⁴,
- * so K = κ − 1 = 86.2734; A12 = A14 = 0.
+ * Asphere (surface 6, the resin face of L21; equation (a), col. 13, l. 60 – col. 14, l. 9):
+ * S(y) = (y²/r)/[1 + √(1 − κy²/r²)] + A4y⁴ … A14y¹⁴, so K = κ − 1 = 86.2734; A12 = A14 = 0.
  * 15 elements / 11 groups. L21 is a hybrid asphere; its resin layer (6A–7) and glass body (7–8)
  * are separate element entries, so the model lists 16 media.
  * Aperture stop: surface 15 (STO), 0.400 mm ahead of surface 16, moving with G3. Its radius
@@ -24,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * from W to M the four air gaps change linearly and Bf is solved for focus; from M to T d1,
  * d3 and d4 change linearly, the G2 vertex moves linearly and d2 and Bf are solved. All five
  * groups move; the image plane is fixed. G2 reverses once, near 30 mm, as Fig. 17 draws.
- * Focus: G2 moves objectward (¶0109). The patent is infinity-only; the close states are solved
+ * Focus: G2 moves objectward (col. 25, ll. 65–67). The patent is infinity-only; the close states are solved
  * paraxially for Nikon's 0.45 m object-to-image distance with d1 + d2 held constant.
  * Glass: catalog equivalents by nd/νd; the source names no supplier and prints no θgF.
  */
@@ -33,7 +34,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-18-105-f35-56g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR",
-  subtitle: "JP 2009-156890 A, Example 5 — strong production correlation",
+  subtitle: "US 7,839,577 B2, Example 5 — strong production correlation",
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "aps-c",
@@ -56,13 +57,13 @@ const LENS_DATA = {
     },
   },
   source: {
-    patentNumber: "JP 2009-156890 A",
+    patentNumber: "US 7,839,577 B2",
     example: {
       label: "Example 5",
       id: "5",
     },
-    patentYear: 2009,
-    authors: ["Tomoki Ito", "Atsushi Shibayama", "Hiroshi Yamamoto", "Satoshi Yamaguchi"],
+    patentYear: 2010,
+    authors: ["Hiroshi Yamamoto", "Tomoki Ito", "Satoshi Yamaguchi", "Atsushi Shibayama"],
     assignees: ["Nikon Corporation"],
   },
   elements: [
@@ -495,7 +496,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "G2 moves toward the object for close focus (JP 2009-156890 A ¶0109). The patent tabulates infinity focus only, so every finite state here is derived: at each zoom station G2 is moved, with d1 + d2 held constant, until a paraxial object at Nikon's 0.45 m minimum focus distance (object to image plane) is sharp. That takes 1.07 mm of travel at 18.4 mm and 4.55 mm at 102 mm. Intermediate keyframes are solved for 0.45 m divided by the focus coordinate.",
+      "G2 moves toward the object for close focus (US 7,839,577 B2, col. 25, ll. 65–67). The patent tabulates infinity focus only, so every finite state here is derived: at each zoom station G2 is moved, with d1 + d2 held constant, until a paraxial object at Nikon's 0.45 m minimum focus distance (object to image plane) is sharp. That takes 1.07 mm of travel at 18.4 mm and 4.55 mm at 102 mm. Intermediate keyframes are solved for 0.45 m divided by the focus coordinate.",
     keyframes: [0, 0.0689, 0.1475, 0.2345, 0.3308, 0.4381, 0.5587, 0.6966, 0.8598, 1],
   },
   gaps: {

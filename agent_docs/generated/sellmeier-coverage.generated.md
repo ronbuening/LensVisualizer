@@ -1515,7 +1515,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 20 | Element 12 | abbe | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | Explicit unmatched/proprietary annotation |
 
-### [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) - 93.8% trusted (15/16); 93.8% Sellmeier (15/16) - JP 2009-156890 A
+### [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) - 93.8% trusted (15/16); 93.8% Sellmeier (15/16) - US 7,839,577 B2
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

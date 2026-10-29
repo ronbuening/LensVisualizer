@@ -185,4 +185,41 @@ Element names below are the new E1–E16; the two sections above use the old L1�
 - E8 and E15 relabelled from S-BAL42 to L-BAL42 (OHARA's moulding version of the same glass; |Δνd| 0.014 against
   0.025), matching Canon's glass-moulded aspherical elements. Both resolve with n(d) exact.
 - Open: the second review traced Fig. 1's L2 arrow as bowing toward the object, while the derived cam dips 0.255 mm
-  toward the image near 21.8 mm. The cam was left unchanged; its printed stations are exact and monotone.
+  toward the image near 21.8 mm. The cam was left unchanged; its printed stations are exact and monotone. (Closed:
+  cam rebuilt to follow the arrow, next section.)
+
+## 2026-10-29 — L2 cam rebuilt to follow Fig. 1
+
+- Arrow reading (`patents/JP2009175324A.pdf` p. 18, 200 and 400 dpi): Fig. 1 draws movement arrows only between
+  panels (a) and (b); there are none between (b) and (c). The L1 arrow and the three rear arrows (Gpf, Gn, Gpr) are
+  straight and point down-left, toward the object. The L2 arrow starts under L2 in (a), bows left (toward the object)
+  to its leftmost point a little before half its length, and ends with its head pointing down-right, toward the image;
+  its end lies right of its start, so it is a shape sketch, not a scaled displacement (the printed spacings move L2
+  8.2 mm toward the object from wide to tele). Read as the wide-to-tele locus, it shows L2 moving toward the object,
+  passing beyond its tele position and returning toward the image before the tele end. The previous cam had the
+  opposite shape (a 0.255 mm dip toward the image near 21.8 mm, then steadily toward the object).
+- Rebuild: same method (G1 position, D19 and image gap on monotone cubic Hermite curves through the printed values,
+  D24 = 8.63 − D19, D5/D13 split solved for paraxial infinity focus), with the image-gap slope at the wide end ×2.4
+  and the D19 slope at the wide end ×0.62 of their PCHIP values; every other slope, including all of the 49.94–193.23
+  mm segment, is plain PCHIP. These were the smallest changes (least log-deviation from PCHIP) that remove the wide
+  dip while keeping L2's slope toward the object at least 2 mm per unit zoom coordinate until its turn.
+- New L2 track (S6 ahead of the image): 123.914 at 18.6 mm, 125.344 at 26.69, 127.917 at 49.94, 132.201 at 88.81,
+  133.425 at 133.08 (the turn), 133.224 at 156.32, 132.790 at 174.40, 132.130 at 193.23 mm. One reversal, an
+  objectward overshoot of 1.295 mm placed in the middle–tele segment. The size is not tuned: with the other curves
+  left unbiased between 49.94 and 193.23 mm, infinity focus requires it (plain PCHIP everywhere gives 1.296 mm plus
+  the wide dip). The patent prints no intermediate position, so the size is a model result.
+- Turn counts from wide to tele, printed vs model: D5, D13, D19, D24, image gap, G1, Gpf, Gn, Gpr 0 / 0; L2 0 / 1
+  (`turns.mjs`: group from S6 turns at node 26, extreme 133.425). `protcmp.mjs` against HEAD: no protected field
+  changed, printed stations identical, 37 zoom and 11 focus nodes as before.
+- Nodes: 37 zoom nodes kept (12 wide–middle, 24 middle–tele); node placement weights the interpolation-error density
+  more (exponent 0.75 instead of 0.5) because the tele-end return is steep. Infinity defocus at most 0.0004 mm at
+  nodes and 0.0165 mm between them; EFL rises monotonically along the slider (18.597 → 193.084 mm at infinity,
+  17.860 → 87.562 mm at close focus). Close focus re-solved at every node: travel 0.918 / 2.070 / 8.898 mm and
+  magnification 0.054 / 0.126 / 0.244 at the printed stations, distance-label error at most 4.8 % between keyframes.
+  Interior F-numbers recomputed with the same iris-radius law (3.60 → 4.70 → 5.88, monotone, 0.01 steps).
+- Checks: `audit:surface` OK; `audit:rim-cut-probe` (53 × 30 states) finds the E4 cut at 9.6245 mm clear, reach
+  9.5626 mm at 18.6 mm, 0.95 focus, 40.17°, no ray clipped or within the 0.05 mm margin, so the cut is unchanged;
+  `clearap.mjs` at Y 13.41 and 14.175 reports no axial clip and no blocked chief ray (axial beam at S20 at most
+  6.39 mm against 6.5); `audit:image-circle` 0 undersized; `audit:field-coverage` 37 / 37 stations at 100 %;
+  `built.mjs` EFL 18.5966, F/3.6, stop 7.048 mm, half-field 33.66°, unchanged from HEAD. Header and analysis cam text
+  rewritten to describe the new L2 track.

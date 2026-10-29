@@ -167,3 +167,28 @@ Open: surfaces 8, 12 and 13 stay below the figure, 8 pending the proposed land a
   coverage report; the g-line now follows the printed partial dispersion.
 - Declined: the review's optional inferred land on L21's rear (S8 `sd` 14.0, `rimCutDepthMm` 4.98) would need
   `gapSagFrac` 0.96, and Nikon's construction diagram draws L21 with a chamfer, which the current render already shows.
+
+## 2026-10-29 — Attribution switched to US 7,839,577 B2
+
+- Why: at the owner's request the lens now cites the US family member. US 7,839,577 B2 (application 12/342,315,
+  published as US 2009/0161227 A1; filed 2008-12-23, granted 2010-11-23) claims priority from JP 2007-331480 and
+  JP 2007-331481. The first was published as JP 2009-156890 A, and its Example 5 is the US Fifth Example (col. 25,
+  l. 33 – col. 27; Tables 17–20; Fig. 17).
+- The tables are identical. The US Tables 17–19 were read earlier today from the page images (patents/US7839577B2.pdf,
+  PDF pp. 37–38): all 28 rows (r, d, ν, n), the stop at surface 15, κ 87.2734 and A4–A14, d1–d4 at W/IFL/T, and
+  f/F.NO/ω/IH/TLL/Bf. Every value matches the JP text. Equation (a) (col. 13, l. 60 – col. 14, l. 9) uses
+  (1 − κy²/r²)^½, so K = 86.2734 stands. US Table 20 numbers its conditions (1)–(9) differently from JP Table 20
+  but prints the same values.
+- Changed:
+  - `source`: patentNumber JP 2009-156890 A → US 7,839,577 B2; patentYear 2009 → 2010. Authors are now in US
+    front-page order: Hiroshi Yamamoto, Tomoki Ito, Satoshi Yamaguchi, Atsushi Shibayama.
+  - Wording: the subtitle, header comment and `focus.description`.
+  - Analysis: the metadata block and every citation. JP ¶0060, ¶0061–0063 and ¶0109 became US col. 13, ll. 50–59;
+    col. 13, l. 60 – col. 14, l. 9; col. 25, ll. 34–67; col. 26, ll. 1–16; and claim 1.
+  - JP 2009-156890 A is now named as the Japanese priority publication, and WO 2021/039812 A1 Example 8 as the later
+    re-glassed reprint.
+  - The analysis's resin-dispersion sentence now matches the `dPgF` added in the previous section.
+- Unchanged: R, d, nd, νd, the asphere, gaps, sd, glass, dPgF, key, name, mounts and format. `source.example` stays
+  Example 5 / "5".
+- Checked afterwards: built.mjs gives the same EFL 18.4013, FOPEN 3.6 and stop radius 6.8025. audit:surface is OK, and
+  the vitest `-t "patent"` subset passes (275 tests).
