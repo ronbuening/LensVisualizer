@@ -23,6 +23,7 @@ export type MtfUnavailableReason =
   | "spectral-data-unavailable"
   | "method-unavailable"
   | "chief-ray-failed"
+  | "aim-failed"
   | "trace-failed"
   | "empty-pupil"
   | "vignetted"

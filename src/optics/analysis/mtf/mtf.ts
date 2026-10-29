@@ -116,6 +116,22 @@ function markUnavailable(field: MtfFieldResult, reason: MtfUnavailableReason, me
   return field;
 }
 
+/** True when a stop lattice's aim found no ray at all: no cell aimed and none proven blocked. */
+function aimedNothing(lattice: AimedStopLattice): boolean {
+  return lattice.aimedCount === 0 && lattice.blockedCount === 0 && lattice.unaimedCount > 0;
+}
+
+/** Why a lattice aimed nothing, in the aimer's own reason codes. */
+function aimFailedMessage(lattice: AimedStopLattice, wavelengthNm: number): string {
+  const reasons = Object.entries(lattice.unaimedByReason)
+    .filter(([, count]) => count > 0)
+    .map(([reason, count]) => `${count} ${reason}`)
+    .join(", ");
+  const chief =
+    lattice.chief.status === "unaimed" ? ` The stop-centre chief is unaimed too (${lattice.chief.reason}).` : "";
+  return `No sample of the ${lattice.cellsAcross}-cell stop lattice could be aimed at ${wavelengthNm.toFixed(1)} nm (${reasons}).${chief}`;
+}
+
 /* ── Unknown flux ── */
 
 export interface MtfUnresolvedFlux {
@@ -263,6 +279,9 @@ function fieldAtGrid(
     openBorders.x ||= bundle.openBorders.x;
     openBorders.y0 ||= bundle.openBorders.y0;
     openBorders.y1 ||= bundle.openBorders.y1;
+    // A finer lattice solves its cells as this one does, so a lattice that aims nothing ends the ladder.
+    if (bundle.lattice && aimedNothing(bundle.lattice))
+      return unavailable("aim-failed", aimFailedMessage(bundle.lattice, line.wavelengthNm));
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
     sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
     unresolvedWeight += bundle.unresolvedInBeamWeight;

@@ -102,6 +102,12 @@ export interface AimedFiniteObjectField {
   readonly objectPoint: Vec3;
   /** Axial position of the launch plane in mm, between the object and the first surface. */
   readonly leadZ: number;
+  /**
+   * Solved chief-ray launch point (x, y) on the launch plane in mm, as `yChief` is for a collimated field. Without it the
+   * chief is seeded on the straight line from the object point to the stop centre, which misses the front surfaces of a
+   * lens whose entrance pupil lies far ahead of its stop at close focus.
+   */
+  readonly chiefLaunch?: readonly [number, number];
 }
 
 /**
@@ -939,10 +945,10 @@ function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry)
     };
   }
   if ("kind" in geometry && geometry.kind === "finite-object") {
-    const { objectPoint, leadZ } = geometry;
+    const { objectPoint, leadZ, chiefLaunch } = geometry;
     const meridional = symmetric && objectPoint[0] === 0;
     const axial = meridional && objectPoint[1] === 0;
-    // Seed the chief on the straight line from the object point to the stop centre.
+    // Seed the chief at the caller's solved chief, else on the straight line from the object point to the stop centre.
     const stopZ = state.z[state.lens.stop.surfaceIndex] ?? 0;
     const seedFraction = (stopZ - leadZ) / (stopZ - objectPoint[2]);
     return {
@@ -956,7 +962,7 @@ function launchFrame(state: PreparedGeometry, geometry: AimedPupilFieldGeometry)
         return { origin, direction: [dx / length, dy / length, dz / length] };
       },
       stopTarget: axisAlignedTarget,
-      chief: axial ? [0, 0] : [objectPoint[0] * seedFraction, objectPoint[1] * seedFraction],
+      chief: axial ? [0, 0] : (chiefLaunch ?? [objectPoint[0] * seedFraction, objectPoint[1] * seedFraction]),
       meridional,
       axial,
     };
@@ -1288,7 +1294,7 @@ function fieldGeometryKey(geometry: AimedPupilFieldGeometry): string {
     return join("l", [...chiefRay.origin, ...chiefRay.direction, ...sagittalAxis, ...radialAxis, launchBoundT]);
   }
   if ("kind" in geometry && geometry.kind === "finite-object") {
-    return join("f", [...geometry.objectPoint, geometry.leadZ]);
+    return join("f", [...geometry.objectPoint, geometry.leadZ, ...(geometry.chiefLaunch ?? [])]);
   }
   return join("o", [geometry.uField, geometry.yChief]);
 }

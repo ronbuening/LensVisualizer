@@ -278,7 +278,12 @@ export function prepareMtfFieldLaunch(
     },
   );
   if (aim.status !== "converged" || aim.root === null) return null;
-  return { ...launch, centerY: aim.root };
+  // The lattice's chief starts from this solve, as a collimated field's starts from `yChief`.
+  return {
+    ...launch,
+    centerY: aim.root,
+    aim: { kind: "finite-object", objectPoint, leadZ, chiefLaunch: [0, aim.root] },
+  };
 }
 
 /**
