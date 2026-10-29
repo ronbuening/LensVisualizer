@@ -16,8 +16,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * others are interpolated and carry calculated focal lengths; this is not the production cam. D11 and BF interpolate
  * the printed values; D6 is solved so the paraxial image keeps the interpolated offset of the printed states. The
  * printed image planes sit +0.000367/+0.002762/-0.006871 mm from paraxial focus and are left as printed.
- * Semi-diameters are estimated from Fig. 1 proportions; the patent prints no clear apertures. S9 and S10 meet at
- * 12.13 mm height, so S10 is held to 11.5 mm; that rim limits the 290 mm axial beam to about f/6.28.
+ * Semi-diameters are estimated from Fig. 1 (wide state) and floor-checked by real-ray trace; the patent prints no
+ * clear apertures. Re-measured on the scan, every element is within 2% of the figure except L6, which Fig. 1 draws
+ * square at about 12.45 mm with r9 and r10 meeting at the rim. In the prescription S9 and S10 meet at 12.13 mm, so
+ * S10 is 12.0 mm, the least rim that passes the 290 mm f/6.0 axial beam by the repo's aperture audit; it leaves the
+ * faces apart but needs checks.gapSagFrac 0.98. About 97% of the tele axial entrance area passes.
  * Focus: infinity only; both focus positions repeat the infinity spacings. ¶0058 describes focusing by G1. closeFocusM
  * 1.5 is the published minimum focus distance; moving G1 about 19 mm forward at 290 mm reaches it at 0.26×.
  * Product: Pentax lists the SMC P-FA 100-300mm f/4.7-5.8 (product no. 27610) with 11 elements / 9 groups and no power
@@ -283,7 +286,7 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -53.299,
-      "sd": 11.5,
+      "sd": 12.0,
       "medium": 6,
       "d": 1.3
     },
@@ -1533,6 +1536,9 @@ const LENS_DATA = {
   ],
   "layout": {
     "yScFill": 0.72
+  },
+  "checks": {
+    "gapSagFrac": 0.98
   }
 } satisfies LensDataV2Input;
 

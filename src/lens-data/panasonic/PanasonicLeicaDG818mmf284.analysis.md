@@ -8,7 +8,7 @@
 **Title:** Imaging optical system, imaging device, and camera system
 **Example details:** Tables 1, 2 and 3A–3D, ¶0127–0128, pp. 15–18; Figures 1 and 2, p. 25. Values are unscaled.
 
-Numerical Example 1 is a qualified production correlation for the Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4 ASPH. (H-E08018). The model covers infinity focus only, with intermediate zoom positions interpolated between the three printed stations. Panasonic does not state which example the lens follows; the association rests on convergent evidence:
+Numerical Example 1 is a qualified production correlation for the Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4.0 ASPH. (H-E08018). The model covers infinity focus only, with intermediate zoom positions interpolated between the three printed stations. Panasonic does not state which example the lens follows; the association rests on convergent evidence:
 
 1. Panasonic's specification lists 15 elements in 10 groups, matching Example 1. Example 2 has 11 groups (L3 and L4 are not cemented), Example 3 has 14 elements and Example 4 has 16.
 2. Panasonic lists one aspherical ED element, three other aspherical elements, two ED elements and one UHR element. Example 1 has four elements aspheric on both faces, of which L12 (nd 1.49700, νd 81.5) is the low-dispersion one; L3 (νd 75.5) and L9 (νd 81.6) are the other low-dispersion elements, and L7 (nd 2.00100) is the very-high-index element. Panasonic's construction diagram highlights the same positions. Example 2 has no low-dispersion asphere.
@@ -202,11 +202,11 @@ K is the conic constant, not 1+K. Radii, coefficients, thicknesses and gaps are 
 | 25      | -4.9555600e+00 | A4=3.5043200e-05, A6=1.1463900e-07, A8=-7.5968500e-10, A10=-4.7854200e-12, A12=-2.8918700e-25, A14=-1.2790400e-27 |
 | 26      |  9.4663600e+00 | A4=4.3440600e-05, A6=1.1165500e-07, A8=-4.8986600e-10, A10=-8.0605000e-12, A12=3.7355400e-24, A14=-1.8099000e-27  |
 
-Positive and negative A4 terms bend the radial departure in opposite directions relative to the conic base, but the net shape includes all orders; a single coefficient sign is not an isolated aberration attribution. Surface 8 has K = 10, which limits its conic sag to a radius of about 6.953 mm; its 6.4 mm semi-diameter lies inside that limit.
+Positive and negative A4 terms bend the radial departure in opposite directions relative to the conic base, but the net shape includes all orders; a single coefficient sign is not an isolated aberration attribution. Surface 8 has K = 10, which limits its conic sag to a radius of about 6.953 mm; its 5.7 mm semi-diameter lies inside that limit.
 
 ## Clear Apertures and Field Coverage
 
-No clear apertures are published. Every semi-diameter is inferred from the proportions of Figure 1, and none is enlarged beyond what the figure supports; the rear singlet's is 10.0 mm. The inferred rims vignette oblique beams near the field edge, and the model keeps that vignetting.
+No clear apertures are published. Every semi-diameter is estimated from the wide panel of Figure 1, scaled from the drawn vertex spacing, and checked against real rays: none falls below the axial beam of the printed F-number at any zoom position or blocks the chief ray to the printed image height. The front element is 18.0 mm; the rear singlet is kept at 10.0 mm, slightly under the drawn 10.7 mm. The rims vignette oblique beams near the field edge, and the model keeps that vignetting.
 
 The 21.63 mm image-circle diameter is twice the tele image height of 10.815 mm. The patent's wide and middle image heights are smaller, 10.0 and 10.3 mm; the MTF table below uses edge heights interpolated between the printed values.
 

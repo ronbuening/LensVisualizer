@@ -5,7 +5,9 @@
  * stations; G3 is then shifted (d16 + d19 kept at its interpolated sum) to hold focus, because plain linear
  * interpolation defocuses intermediate zooms by up to 0.66 mm. Intermediate focal lengths are calculated.
  * The stop is surface 10 (aperture A) in air between L5 and L6; its radius at each station follows the F-number.
- * No clear apertures are published: every sd is inferred from Figure 1 and ray/clearance checks.
+ * No clear apertures are published. Every sd is estimated from the wide panel of Figure 1 (scaled from the drawn vertex
+ * spacing, about 0.47 mm per scan pixel) and floor-checked by real-ray trace: the axial F-number beam at every zoom
+ * position and the chief ray to the printed image heights. L15 is kept at 10.0 mm, a little under the drawn 10.7 mm.
  * Infinity only: the patent gives no close-focus data; 0.23 m is Panasonic's minimum focus distance.
  * Source inconsistencies, kept as printed (see source.errata): Figure 1 draws the focus arrow under G3 while ¶0029
  * names G4; ¶0028 gives equal iris diameters at wide and middle, but the printed F-numbers need different ones;
@@ -17,7 +19,7 @@ const LENS_DATA = {
   schema: 2,
   key: "panasonic-leica-dg-vario-elmarit-8-18mm-f28-4",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4 ASPH.",
+  name: "PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.",
   subtitle: "JP 2018-180348 A, Numerical Example 1 — qualified production correlation",
   catalog: {
     lensMounts: ["micro-four-thirds"],
@@ -237,7 +239,7 @@ const LENS_DATA = {
       label: "1",
       R: 47.2871,
       d: 1.5,
-      sd: 20,
+      sd: 18,
       medium: 1,
     },
     {
@@ -300,7 +302,7 @@ const LENS_DATA = {
       label: "8A",
       R: -23.061,
       d: 2.85,
-      sd: 6.4,
+      sd: 5.7,
       asphere: {
         K: 10,
         A4: -0.0000726578,
@@ -316,7 +318,7 @@ const LENS_DATA = {
       label: "9A",
       R: -14.426,
       d: 3.1066,
-      sd: 6.4,
+      sd: 5.7,
       asphere: {
         K: 0.386971,
         A4: -0.0000238905,
@@ -350,14 +352,14 @@ const LENS_DATA = {
       label: "13",
       R: 15.3236,
       d: 4.15,
-      sd: 7,
+      sd: 6.4,
       medium: 8,
     },
     {
       label: "14",
       R: -20.5805,
       d: 0.3,
-      sd: 7,
+      sd: 6.4,
     },
     {
       label: "15",
@@ -375,26 +377,26 @@ const LENS_DATA = {
       label: "17",
       R: 459.5196,
       d: 2.312,
-      sd: 6,
+      sd: 7.1,
       medium: 10,
     },
     {
       label: "18",
       R: -18.5608,
       d: 0.5,
-      sd: 6,
+      sd: 7.1,
       medium: 11,
     },
     {
       label: "19",
       R: 22.9565,
-      sd: 6,
+      sd: 7.1,
     },
     {
       label: "20A",
       R: 18.695,
       d: 6.23,
-      sd: 7,
+      sd: 8.3,
       asphere: {
         K: -0.00959638,
         A4: -0.0000107465,
@@ -410,7 +412,7 @@ const LENS_DATA = {
       label: "21A",
       R: -15.919,
       d: 0.4995,
-      sd: 7,
+      sd: 8.3,
       asphere: {
         K: -0.344812,
         A4: 0.0000732993,
@@ -425,20 +427,20 @@ const LENS_DATA = {
       label: "22",
       R: -23.7695,
       d: 0.7,
-      sd: 7,
+      sd: 7.8,
       medium: 13,
     },
     {
       label: "23",
       R: 11.8685,
       d: 2.91,
-      sd: 7,
+      sd: 7.8,
       medium: 14,
     },
     {
       label: "24",
       R: 27.7836,
-      sd: 7,
+      sd: 7.8,
     },
     {
       label: "25A",

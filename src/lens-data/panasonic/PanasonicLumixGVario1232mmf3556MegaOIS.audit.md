@@ -95,3 +95,65 @@ Model Limitations" section; process detail (sample counts, guard counts, review 
 EFL, F-number, half field, stop radius, back focus and focus keyframes from the engine are identical before and after.
 
 Open: none.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+Source: US 2015/0097989 A1, PDF page 4 (Sheet 3 of 7), Fig. 3, which ¶0065 names as the infinity-focus arrangement
+of Embodiment 2 (Numerical Example 2); panel (a) is the wide end, (b) the middle, (c) the tele end. Fig. 1 (Example 1)
+was not used. The page is a 300 dpi bitonal scan and was measured at 300 dpi.
+
+Scale. In panel (a) the vertex crossings fall at x = 712 px (S1), 1655.5 px (S17) and 1917.5 px (image plane S).
+S1 to the image plane is 1205.5 px for the printed 65.3658 mm overall length, 18.44 px/mm (54.2 µm/px); S1 to S17
+gives 943.5 px for 51.167 mm (18.44 px/mm) and S3 to S16 763 px for 41.347 mm (18.45 px/mm). Every other vertex
+crossing lands within 1–2 px of its prescription position. Panels (b) and (c) are drawn at the same scale (S1 to
+image 1169 px for 63.3359 mm and 1173 px for 63.6079 mm, 18.46 and 18.44 px/mm). Rims do not change with zoom, and
+panels (b) and (c) carry no label or asterisk leader lines, so rims were read on both sides of the axis in those two
+panels and cross-checked on the top side of (a). The automatic figure screen on panel (a) found 54.14 µm/px, a median
+figure/data ratio of 1.018 and shape ratios of 0.96–1.01 (its L2 envelope reads high on the asterisk leaders; its rim
+reading is 7.85 mm).
+
+| Surfaces | Element | Stored sd (mm) | Fig. 3 rim, px from axis | Fig. 3 rim (mm) | Figure / stored | Decision |
+|---|---|---|---|---|---|---|
+| 1 | L1 front | 10 | 182–183 | 9.9 | 0.99 | kept |
+| 2 | L1 rear | 8 | 146–147 (foot of the flange step) | 7.9–8.0 | 0.99 | kept |
+| 3A, 4A | L2 | 8 | 143–145 | 7.8 | 0.97 | kept |
+| 5, 6 | L3 | 8 | 141–143 | 7.7 | 0.96 | kept |
+| 8A, 9A | L4 | 5 | 93–95 | 5.1 | 1.02 | kept |
+| 10, 11, 12, 13 | L5 + L6 | 4.6 | 82–86 | 4.5–4.7 | 0.98 | kept |
+| 14A, 15A | L7 | 6 | 110–113 | 6.0–6.1 | 1.01 | kept |
+| 16, 17 | L8 | 10.2 | 186–190 | 10.1–10.3 | 1.00 | kept |
+
+L1 is drawn with a rectangular flange: the flat top runs at 182–183 px from the front rim back to x ≈ 850 px, where a
+vertical step drops to 146–147 px and meets the R 9.322 rear surface. The rear optical rim is the foot of that step,
+7.9–8.0 mm, which confirms the authored 8 mm. L2 and L7 are drawn flat-topped from the front-surface rim to the
+rear-surface rim, so both faces keep one value; the cemented L5 + L6 is drawn as one flat top at 82–86 px. Every
+rim is within 4 % of the stored value, inside measurement noise, so no `sd` was changed. The STO is engine-sized and
+was not touched; the short stop bars Fig. 3 draws at about 5.5 mm are the diaphragm marker, not an opening.
+
+Clearance, unchanged by this pass. The image-circle check reports no undersized surface and the surface validator
+reports no error. The traced corner chief ray reaches 10.82 mm at all 33 zoom stations (44.9° at wide, 19.2° at
+tele). The exact meridional trace at the printed 10.815 mm image height, over all 33 stations, finds no clipped axial
+marginal and no blocked chief ray; the largest axial marginal heights against the rim are 4.54 mm at 8A (rim 5) and
+3.92 mm at S10 (rim 4.6), and the largest chief-ray heights are 9.19 mm at S17 (rim 10.2), 8.79 mm at S1 (rim 10)
+and 7.14 mm at S2 (rim 8). Full-field bundle vignetting at the worst station is 7 % at 8A/9A, 20–22 % at L5 + L6,
+25 % at 15A, 21 % at S16 and 31 % at S17; it is kept, because those rims match the drawing. The engine's wide-open
+transmission at the wide end is 100 % to 21°, 93 % at 38.9° and 74 % at 44.9°.
+
+Aspheric turnover. The scan of 3A shows a slope sign change between about 6.0 and 6.8 mm where the slope stays
+within 0.1° of zero (sag −0.0625 mm): a shallow sag extremum, not divergence. The full-field chief ray to the printed
+image height crosses 3A at 6.60–6.63 mm and the full-field bundle reaches 7.06 mm, and Fig. 3 draws L2 out to
+7.8 mm, so the 8 mm rim stays. 4A, 8A, 9A, 14A and 15A show no slope sign change within their rims. No aspheric rim
+changed, so the analysis prose needed no recomputed departures.
+
+Engine readouts are identical before and after: half-field 38.40° at the wide end, F/3.62286, stop radius 4.3139 mm.
+That half-field is the engine's paraxial estimate, limited by S2; the real chief ray at the printed 44.92° crosses S2
+at 7.12 mm, inside the 8 mm rim, and the traced field reaches the corner, so the estimate is no reason to widen S2
+past the drawing.
+
+The local page was viewed at 12.48 mm (infinity, and at the focus-slider end, which is the same infinity-only
+geometry), 19.53 mm, 24.6 mm and 30.72 mm. The proportions match panels (a)–(c): L1 and L8 the largest, L2 and L3
+about 0.78 of L1, L4 and L5 + L6 the smallest, L7 about 0.6 of L1. The renderer draws L1's 10 mm to 8 mm change as a
+slanted rim edge where the figure draws a rectangular flange step. No maker construction image was viewed in this
+pass; the comparison with Panasonic's drawing is the one recorded in the deployment-validation section above.
+
+Changed: the data-file header's semi-diameter note only. Open: none.

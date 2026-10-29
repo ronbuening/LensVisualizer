@@ -88,3 +88,40 @@ Data changes are limited to the header comment, subtitle, the five catalog speci
 Built summary and all 130 probe lines (65 zoom positions × two focus keyframes) are identical before and after: EFL 29.000701219314394 mm, FOPEN 2.7999999999999994, half-field 38.357855609939016°, stop radius 10.454890503804634 mm, BFD 39.8701 / 47.5441 / 53.5487 mm at the three printed positions. The surface audit reports “OK — no validation errors”. The rendered lens page reads cleanly.
 
 Open: production identity beyond the qualified correlation, the factory zoom cam, the focusing method and travel, production melts and suppliers, and the cause of the small paraxial offsets remain unknown. The resin layer keeps an `Unmatched` glass label. The tele MTF figure in the analysis (edge sagittal 0.0675 at 40 lp/mm, f/8) is carried from the original package and was not re-run in this pass. lens-db dates the announcement to March 1993, before the November 1993 Japanese priority; that date is unconfirmed and not used. The maker's table pairs a 67 mm filter with hood PH-RBC77; not resolved.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+Source: local `US5568323.pdf`. Example 3 has no drawing of its own (Figs. 9/10, PDF p. 6, show a three-group r1–r20 lens at W = 31.1°), so the measured sheet is **Fig. 17 (PDF p. 10, Sheet 9 of 14, Example 5, wide angle), used as a proxy**: it draws the same 14-element / 11-group layout. Fig. 21 (PDF p. 12, Sheet 11, Example 6, the hybrid construction of Example 3) was measured as a cross-check and agrees with Fig. 17 within about 1 % on every element after scaling. Fig. 1 (PDF p. 2, Example 1) was viewed but not measured: its first G2 component has a convex front, against Table 3's nearly plane S8. The scan is the native 1 px/pt CCITT raster; it is rotated about 0.9°, and the drawn elements sit 7–12 px above the axis line, so each rim is half the element's full top-to-bottom ink extent.
+
+Scale: the vertex crossings of Fig. 17 line up with Example 3's wide spacings. S1 to the last vertex is 1036 px for Example 3's 129.25 mm, giving 0.1248 mm/px (Example 5's own 130.29 mm would give 0.1258). Check spans: L4 front to L11 rear, 284.5 px for 35.56 mm (0.1250); S1 to L4 front, 532 px for 64.93 mm (0.1220); G4, 103.5 px for 13.18 mm (0.1273). Fig. 21 gives 0.1207 mm/px on the same S1–S26 span (1071 px).
+
+| Surfaces | Element | Fig. 17 half-height, px | Fig. 17, mm | Fig. 21, mm | Before, mm | After, mm | Evidence |
+| -------- | ------- | ----------------------: | ----------: | ----------: | ---------: | --------: | -------- |
+| 1 | L1 front | 205 | 25.6 | 25.5 | 26 | 26 | agrees within 2 % |
+| 2, 3A | L1 rear / resin | 171 | 21.3 | 21.4–21.6 | 24 | 24 | curve ends inside a wide flange; kept for the half-field floor (below) |
+| 4, 5 | L2 | 172 | 21.5 | 21.4 | 21.5 | 21.5 | agrees |
+| 6, 7 | L3 | 172 | 21.5 | 21.5 | 22 | 22 | agrees within 2 % |
+| 8–10 | L4/L5 | 132.5 | 16.5 | 16.5 | 17.5 | 17.5 | 6 %, inside the noise band |
+| 11–13 | L6/L7 | 138.5 | 17.3 | 17.3 | 17.5 | 17.5 | agrees |
+| 14, 15 | L8 | 137 | 17.1 | 17.0 | 17.5 | 17.5 | agrees within 3 % |
+| 16–18 | L9/L10 | 97 | 12.1 | 12.0 | 12.5 | 12.5 | agrees within 4 % |
+| 19 | L11 front | 90 | 11.3 | 11.2 | 11.1 | 11.1 | square rim in both figures; held by the S18–S19 cross-gap limit |
+| 20 | L11 rear | 90 | 11.3 | 11.2 | 11.1 | 11.3 | stated f/2.8 beam at tele (engine iris) |
+| 21, 22 | L12 | 96.5 | 12.0 | 12.0 | 12.5 | 12.5 | agrees within 4 % |
+| 23, 24 | L13 | 102 | 12.7 | 12.7 | 12.8 | 12.8 | agrees |
+| 25, 26 | L14 | 109 | 13.6 | 13.6 | 14 | 14 | agrees within 3 % |
+
+One surface changed. S20 rises from 11.1 to 11.3 mm, the height the aperture census reports for the engine's f/2.8 beam; before the change S20 limited the tele end to f/2.84 (+1.5 %) over the four longest positions, and afterwards all 65 positions are within 1 % of f/2.8. Both figures draw L11 square-cut at 11.2–11.3 mm, so S19 should match, but at 11.3 mm the S18–S19 combined sag is 2.72 mm (S18 0.970, S19 1.755) of the 3.00 mm gap, above the default 2.70 mm limit. The faces do not cross (0.28 mm of air remains at that height). The smallest admitting cross-gap fraction is 0.91; with it, S19 = 11.3 mm builds and gives the same tele half-field and vignetting. It is not applied here.
+
+The L1 rear / resin rim is the one clear departure: 24 mm against about 21.4 mm in both figures (and roughly the same proportion in the maker's sketch). It is kept because S2 and S3A are the surfaces that limit the engine's paraxial half-field at the wide end. Trial values give 38.36° at 24 mm, 37.89° at 23.6, 36.57° at 22.5, 35.96° at 22.0 and 35.21° at 21.4, so any reduction shrinks the traced field and the drawn value falls below the patent's 37.8°. The real chief ray at 37.8° crosses S2 at 19.17 mm, so the drawn value would not stop the real corner ray, only the engine's paraxial field estimate.
+
+Clearance after the change: the surface validator reports no errors; the image-circle check finds nothing undersized; field coverage reaches 21.65 mm at all 65 positions; EFL 29.0007 mm, f/2.80 and the wide half-field 38.36° are unchanged, as is the tele half-field 29.56°. Wide vignetting is unchanged (41.9 % at 37.8°); at tele it improves from 82.8 to 83.5 % at 14.4° and from 72.8 to 73.4 % at 17.3°. The stricter real-ray check, which launches the full f/2.8 entrance radius (12.14 mm at tele) and reaches the stop at 12.88 mm against the engine's paraxial 12.16 mm iris, still reports marginal heights above the rims at S11 (18.13 mm against 17.5), S14 (17.59), S16 (12.55 against 12.5), S19 (11.75 against 11.1) and S20 (11.99 against 11.3). Meeting it would put L11 at about 11.8 mm, where L10 and L11 almost touch, and the figures draw all of these elements smaller, so it stays a limitation.
+
+The maker's construction diagram, a 315 × 220 px image, was viewed for proportions only. It shows 14 elements in 11 groups at a tele-like setting: L1 marked as high-index low-dispersion glass with an aspherical crescent bonded to its rear (element 1, the hybrid layer), and elements 12 and 13 marked as anomalous low-dispersion glass. Its front-element rear face and its G2 and G4 diameters stand in about the same ratios to the front rim as in Figs. 17 and 21.
+
+Open: the rims stay estimates from another example's drawing. The S19 square-rim raise waits on the cross-gap fraction; the L1 rear reduction waits on a decision about the engine's paraxial field limit.
+
+Coordinator follow-up (same day): S19 raised from 11.1 to 11.3 mm so L11 is square at the S20 height, as Figs. 17
+and 21 draw it. The S18→S19 air gap then needs `checks.gapSagFrac` 0.91 (0.90 is refused: 2.72 mm combined sag
+against 2.700 mm allowed of 3.00 mm; the faces stay 0.28 mm apart). All 65 stations are within 3% of f/2.8; the
+surface, image-circle and field-coverage audits pass. The S2/S3A rim stays 24 mm (see the section above).

@@ -78,7 +78,7 @@ Positive dense-flint member of the G2 pair. Its high dispersion contrasts with L
 
 nd = 1.80610, νd = 40.9. Glass: S-LAH53 (catalog equivalent; supplier unconfirmed). f = −52.140 mm (isolated thick element in air).
 
-Negative G2 singlet. Its 11.61 mm rim, inferred from Fig. 9, clips the axial beam at the tele end, so the model's tele aperture is about f/6.44 rather than the printed f/6.2 (see Model Scope and Limitations).
+Negative G2 singlet. Its rim is square at 11.99 mm, close to the 11.96 mm that Fig. 9 draws and just enough to pass the printed f/6.2 axial beam at the tele end (see Model Scope and Limitations).
 
 ### L7 — Biconvex Positive
 
@@ -165,7 +165,7 @@ The model has 65 zoom positions, of which positions 0, 32 and 64 are the printed
 
 The diaphragm S in Fig. 9 is unnumbered and lies in D11 just before S12. The model places it 0.6 mm before S12; two independent readings of the figure give about 0.5 and 0.58 mm, and the drawn line's thickness allows roughly 0.2–1.0 mm. The stop is assumed to move with G3, since the patent gives no separate stop spacing, and the 0.6 mm is taken out of D11 so the printed track is unchanged. The iris radius follows the printed f-number.
 
-The patent prints no clear apertures. The rims are inferred from Fig. 9 proportions and checked against the axial and field beams; the 58 mm filter and 69 mm barrel bound the front rims. L6 is square at 11.61 mm, about 3% below a rough 12 mm reading of the drawing. At the tele end its two faces would need 11.87 and 12.07 mm to pass the full f/6.2 axial beam, so the model's tele aperture is about f/6.44, with 92.7% of the nominal entrance-pupil area; wide and middle reach f/4.6 and f/5.4. A larger L6 rim would leave less edge clearance to L5 than the model allows by default and is not used. No radius, thickness, index, f-number or image plane was changed.
+The patent prints no clear apertures. The rims are inferred from Fig. 9 proportions and checked against the axial and field beams; the 58 mm filter and 69 mm barrel bound the front rims. L6 is square at 11.99 mm, against the 11.96 mm that Fig. 9 draws; that is the least rim that passes the printed f/6.2 axial beam at the tele end, where about 98.8% of the axial entrance area reaches the image. Wide and middle reach f/4.6 and f/5.4. At that height L6's front face comes close to L5's rear face across their 2.77 mm air gap without touching it, so the model allows 0.96 of the gap for rim sag instead of the default 0.90. No radius, thickness, index, f-number or image plane was changed.
 
 ## Model Scope and Limitations
 

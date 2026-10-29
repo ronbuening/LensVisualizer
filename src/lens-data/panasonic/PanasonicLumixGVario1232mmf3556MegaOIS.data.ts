@@ -28,7 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * positions, interpolated linearly between them).
  * Semi-diameters are inferred from Fig. 3, not published. L1 is 10 mm at the front and 8 mm at the rear: the rear
  * rim excludes the mechanical flange drawn around L1 (a 10 mm rim on the R 9.322 rear surface is not real). The
- * other rims, 4.6–10.2 mm, follow the drawing.
+ * other rims, 4.6–10.2 mm, follow the drawing. All three Fig. 3 panels (54.2 µm/px) measure every rim within 4 % of
+ * the stored value, and a real-ray trace at the printed 10.815 mm image height clips no axial or chief ray.
  */
 
 const LENS_DATA = {
@@ -36,7 +37,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-g-vario-12-32mm-f35-56-mega-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.",
-  subtitle: "US 2015/0097989 A1, Example 2 — qualified production correlation",
+  subtitle: "US 2015/0097989 A1, Numerical Example 2 — qualified production correlation",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",

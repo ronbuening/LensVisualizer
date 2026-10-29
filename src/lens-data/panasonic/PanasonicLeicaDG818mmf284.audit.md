@@ -1,4 +1,4 @@
-# Audit Log — Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4 ASPH.
+# Audit Log — Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4.0 ASPH.
 
 Patent: JP 2018-180348 A, Numerical Example 1
 
@@ -85,3 +85,54 @@ planes); that text was removed from the notes. No entry was deleted.
 - Open: the 40 lp/mm MTF table and the best-axial refocus figures in the analysis were carried over from the package
   and not recomputed in this pass.
 - Open: the production focusing group (G3 by Figure 1, G4 by ¶0029) and close-focus behavior remain unmodeled.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+- Figure 1(a), the wide position at infinity, on p. 25 of the local JP 2018-180348 A PDF. The drawing is a 150 ppi
+  JPEG (461 × 556 px); it was rendered at 300 dpi and read with the optical axis horizontal.
+- Scale from vertex crossings near the axis: L1 front vertex to L15 rear vertex is 390 px for 91.3708 mm, and L1 front
+  vertex to the image plane S is 450.5 px for 105.5316 mm, both 0.2343 mm/px; L1 front to L5 front gives 0.2349 mm/px.
+  One native scan pixel is about 0.47 mm, so a single rim reading carries roughly ±0.3 mm.
+- Leader lines touch every upper rim and the asphere markers (circles and asterisks) sit on the lower rims, so the
+  automatic profile was not usable. Each rim was read by hand on both sides from per-row ink runs, at the centre of the
+  drawn outline, and the drawn corner positions were checked against each face's sag at that height.
+
+### Before and after
+
+| Surface(s) | Element | Before (mm) | Figure upper / lower (mm) | After (mm) | Evidence |
+| ---------- | ------- | ----------: | ------------------------: | ---------: | -------- |
+| 1 | L1 front | 20.0 | 18.0 / 17.9 | 18.0 | Outer rim, −10 %, both sides agree. |
+| 2 | L1 rear | 14.4 | 13.7 / obscured | 14.4 | Retained (−5 %); the rear curve meets the flange step. |
+| 3A | L2 front | 13.0 | 13.6 / 13.5 | 13.0 | Retained (+4 %). |
+| 4A | L2 rear | 11.0 | 11.8 / obscured | 11.0 | Retained (+7 %); the rear curve meets a flange step. |
+| 5, 6, 7 | L3 + L4 | 11.0 | 11.2 / 11.0 | 11.0 | Retained. |
+| 8A, 9A | L5 | 6.4 | 5.7 / 5.6 | 5.7 | Figure, −11 %. |
+| 11, 12 | L6, L7 | 6.4 | 6.2 / 6.2 | 6.4 | Retained (+3 %). |
+| 13, 14 | L8 | 7.0 | 6.2 / 6.2 | 6.4 | The triplet is drawn square at one height; surface 14 needs 6.17 mm for the axial beam, so L8 takes L6/L7's 6.4. |
+| 15, 16 | L9 | 7.0 | 7.15 / 7.15 | 7.0 | Retained (+2 %). |
+| 17, 18, 19 | L10 + L11 | 6.0 | 7.15 / 7.15 | 7.1 | Figure, +19 %; drawn level with L9. |
+| 20A, 21A | L12 | 7.0 | 8.3 / 8.3 | 8.3 | Figure, +19 %; neither face's slope changes sign out to 10 mm. |
+| 22, 23, 24 | L13 + L14 | 7.0 | 7.85 / 7.7 | 7.8 | Figure, +11 %. |
+| 25A, 26A | L15 | 10.0 | 10.7 / 10.7 | 10.0 | Retained (+7 %, inside the scan noise). |
+
+### Clearance and engine results
+
+- Real-ray trace at the printed stations and image heights (10.0, 10.3 and 10.815 mm; 53.20°, 42.72° and 32.00°)
+  after the edit: no rim clips the axial beam of the printed F-number and none blocks the chief ray. Closest margins:
+  surface 14 at 6.4 mm against an axial beam of 6.17 mm, surface 9A at 5.7 mm against 5.24 mm, and surface 1 at 18.0
+  mm against a wide-corner chief ray of 16.09 mm. A trace of all 33 zoom positions at 10.0 mm gives the same maxima.
+- The stock trace scripts found no chief ray past about 51° at wide (their surface intersection fails on these steep
+  rays); a scratch copy that falls back to marching along the ray found the chief at 53.20°, landing at 10.000 mm.
+- Engine before and after: half-field 46.30° and F/2.905 at wide, unchanged; corner coverage reaches 10.81 mm at all
+  33 zoom positions both times (55.9° at wide). Wide-open vignetting at wide rises from 76.1 % to 80.2 % transmission
+  at 50.0° and from 25.6 % to 44.7 % at 55.9°; middle 44.3° goes from 74.3 % to 77.1 %; tele 32.0° drops from 70.3 % to
+  67.9 %, and the smaller L5 trims tele transmission near the axis to 99.1 % at 2.9° and 98.1 % at 5.8° (was 100 % and
+  99.2 %). On-axis transmission stays 100 % at every position. The surface validator and image-circle check pass.
+
+### Limitations
+
+- The scan resolution limits each reading to about ±0.3 mm, so L2, L3 + L4, L6, L7, L9 and L15 were left alone.
+- The lower rims of L1's rear face and L2's rear face are hidden under the asphere markers; the upper readings stand.
+- Panasonic's construction diagram was not viewed in this pass; the deployment-validation comparison above stands.

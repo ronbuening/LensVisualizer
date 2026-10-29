@@ -16,16 +16,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * solved to keep the image on the plane; intermediate focal lengths are calculated EFLs, not factory cam data.
  * Infinity only: both focus columns repeat the infinity prescription. ¶0057 focuses by moving G1 toward the object,
  * but no near spacing is printed; the maker's 1.3 m minimum focus is not modeled.
- * Semi-diameters are inferred from Fig. 9 proportions; the patent prints none.
+ * Semi-diameters are inferred from Fig. 9 proportions; the patent prints none. Measured on Fig. 9 (wide position,
+ * 0.0862 mm/px from the S1–S22 vertex span), every rim is within 3% of the drawing; Fig. 9 draws L6 at 11.96 mm.
  * The stop (unnumbered S in Fig. 9) is placed 0.6 mm before S12 and moves with G3; the 0.6 mm is taken out of D11,
  * so the printed track is unchanged. The iris radius follows the printed f-number; no stop sd is authored.
  * The printed field is W = 16.0/6.0/4.2° (about 21.6 mm image height); no image height is printed.
  * No camera-side plates are listed. Glass names are catalog equivalents; the patent names no supplier.
  * G2 moves imageward to the middle position and then objectward; every group is closest to the object at tele,
  * but the motion is not monotonic.
- * L6 is square at 11.61 mm with the default gapSagFrac 0.90. At tele its S10/S11 rims (axial beam needs
- * 11.87/12.07 mm) limit the aperture to about f/6.44 instead of f/6.2 (92.7% of the axial entrance area).
- * A larger L6 rim would leave less edge clearance to L5 than the default allows and is not used.
+ * L6 is square at 11.99 mm, the least rim that passes the tele f/6.2 axial beam by the repo's aperture audit
+ * (Fig. 9 draws it at 11.96 mm). Its S10 rim then sits close to L5's rear face across the 2.77 mm air gap without
+ * crossing it, so checks.gapSagFrac is 0.96. About 98.8% of the tele axial entrance area passes (about f/6.24).
  */
 const LENS_DATA = {
   "schema": 2,
@@ -300,14 +301,14 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -53.066,
-      "sd": 11.61,
+      "sd": 11.99,
       "medium": 6,
       "d": 1.0
     },
     {
       "label": "11",
       "R": 203.804,
-      "sd": 11.61
+      "sd": 11.99
     },
     {
       "label": "STO",
@@ -1570,6 +1571,9 @@ const LENS_DATA = {
   ],
   "layout": {
     "yScFill": 0.72
+  },
+  "checks": {
+    "gapSagFrac": 0.96
   }
 } satisfies LensDataV2Input;
 

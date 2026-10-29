@@ -129,9 +129,9 @@ These small offsets are left as printed. They are not the same as best axial foc
 
 ## Clear Apertures
 
-All clear radii are estimated from Fig. 1 proportions; the patent prints none. Scaled from Fig. 1, the rear G2 element reaches roughly 12.4 mm, but at that height its front surface S10 would cross S9: the 2.684 mm air gap narrows to about 0.06 mm at 12 mm height and closes at 12.13 mm. The model therefore holds S10 to 11.5 mm and S11 to 12.3 mm, a tapered edge that is an estimate, not the manufactured shape. Other radii follow the figure.
+All clear radii are estimated from Fig. 1 proportions; the patent prints none. Scaled from Fig. 1, the rear G2 element reaches roughly 12.4 mm, but at that height its front surface S10 would cross S9: the 2.684 mm air gap narrows to about 0.06 mm at 12 mm height and closes at 12.13 mm. The model therefore sets S10 to 12.0 mm, just enough to pass the printed f/6.0 axial beam at 290 mm, and S11 to 12.3 mm; the slightly tapered edge is an estimate, not the manufactured shape, and the two faces stay apart. Other radii follow the figure.
 
-The stop is sized for the printed f/4.8, 5.3 and 6.0. At 103 and 160 mm the full axial beam passes, but at 290 mm the S10 rim trims it to about f/6.28 (91.3% of the nominal f/6.0 pupil area). This is a limitation of the drawn rims; the printed f-number is kept. Clearing the full f/6.0 beam would need S9 and S10 rims that nearly touch.
+The stop is sized for the printed f/4.8, 5.3 and 6.0. At 103 and 160 mm the full axial beam passes; at 290 mm the S10 rim trims the edge of the beam slightly, passing about 97% of the nominal f/6.0 pupil area. The printed f-number is kept.
 
 ## Model Scope and Limitations
 

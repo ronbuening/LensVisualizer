@@ -24,14 +24,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * would give 29.00); no radius is repaired.
  * 14 glass elements plus a separate 0.13 mm bonded resin layer. Source d15 ends at the stop,
  * followed by a separate 1.68 mm to S16. nd/vd are d-line; the patent names no glasses.
- * Semi-diameters were carried over from approximate measurements of Example 5's Fig. 17
- * (same layout), then reduced where Table 3's geometry required: shared L1/resin rim 24 mm
- * for a positive resin edge, L2 21.5 mm and L13 12.8 mm for the air-gap edge limit. They are
- * not measured Example 3 or maker values; the maker's construction diagram supports the
- * layout only.
- * No rim trim or gap-sag override. A full f/2.8 axial beam at tele (entrance radius 12.14 mm)
- * is slightly clipped at S11, S14, S16, S19 and S20, most at S20 (0.89 mm in ray height);
- * L11's 11.1 mm rim is held down by the narrow 3.00 mm S18-S19 air gap. Kept as a limitation.
+ * Semi-diameters are estimated from Fig. 17, Example 5's drawing, used as a proxy: it has the
+ * same 14-element / 11-group layout, and Fig. 21 (Example 6) agrees within about 1 %. The
+ * drawing is scaled by Example 3's wide vertex span S1-S26 (0.125 mm/px); these are not
+ * measured Example 3 or maker values. Every element agrees with it within 6 % except the
+ * shared L1/resin rim (S2/S3A): both figures end that curve near 21.4 mm, but 24 mm is kept
+ * because S2/S3A set the engine's wide half-field (38.4 deg; 21.4 mm gives 35.2 deg, under
+ * the patent's 37.8 deg). L2 21.5 mm and L13 12.8 mm stay inside the air-gap edge limit.
+ * L11 is square at 11.3 mm, as both figures draw it, so the engine's tele f/2.8 axial beam
+ * clears S20; at that height S19 comes within 0.28 mm of L10's rear face across the 3.00 mm
+ * S18-S19 air gap, so checks.gapSagFrac is 0.91. No rim is trimmed.
+ * A real ray launched at the full f/2.8 entrance radius (12.14 mm at tele) meets the stop at
+ * 12.88 mm, above the engine's paraxial iris (12.16 mm); that beam would still clip S11, S14,
+ * S16, S19 and S20 slightly (most S20, 11.99 mm). Kept as a limitation.
  * Infinity only: no focus travel is modeled.
  */
 const LENS_DATA = {
@@ -383,14 +388,14 @@ const LENS_DATA = {
     {
       label: "19",
       R: -37.256,
-      sd: 11.1,
+      sd: 11.3,
       medium: 12,
       d: 1.79,
     },
     {
       label: "20",
       R: -62.13,
-      sd: 11.1,
+      sd: 11.3,
     },
     {
       label: "21",
@@ -733,6 +738,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.72,
   },
+  checks: { gapSagFrac: 0.91 },
   gaps: {
     "7": {
       label: "D7",
