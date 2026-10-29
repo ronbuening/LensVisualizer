@@ -198,9 +198,9 @@ The resulting 41 controls approximate zoom motion, without establishing the prod
 
 Paragraph 0188 explicitly states that none of the eleven numerical embodiments uses an aspherical lens. This model has no aspheric coefficients, conic corrections or diffractive surfaces.
 
-The source prints no clear semi-diameters. The modeled optical rims approximate Fig. 1. Figure scale follows the axial prescription, not the 58 mm filter thread. Minor differences at the few-percent level are consistent with a scanned drawing and are not treated as precision manufacturing dimensions.
+The source prints no clear semi-diameters. The modeled optical rims follow Fig. 1, measured as full element widths at the drawn wide state. Figure scale follows the drawn vertex spacings of the axial prescription, not the 58 mm filter thread, and the drawn rim positions reproduce the prescription’s surface sags, so the drawing holds one scale in both directions. Every modeled rim agrees with the drawing within 1.5 %; these are drawing-derived values, not precision manufacturing dimensions.
 
-The drawing’s slightly tilted, heavy optical axis limits optical-rim precision. Source radii and gaps remain unchanged. The model allows surface sag to occupy up to 90% of an air gap.
+Measuring full widths cancels the drawing’s slightly tilted optical axis. Source radii and gaps remain unchanged. The model allows surface sag to occupy up to 90% of an air gap.
 
 ## Model Scope and Limitations
 

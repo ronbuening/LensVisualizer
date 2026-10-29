@@ -19,7 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * keyframes move L2 that way (D5 shorter, D13 longer by the same amount) to image object-to-image distances of
  * 0.45 m / keyframe, ending at Canon's 0.45 m minimum focus: 0.918 / 2.070 / 8.898 mm of travel and 0.054 / 0.126 /
  * 0.244× at the printed stations (Canon: 0.24×). These spacings are derived, not printed.
- * Semi-diameters are not printed; they are estimated from Fig. 1 (optical rims, not mount outlines).
+ * Semi-diameters are not printed; they are estimated from Fig. 1 (optical rims, not mount outlines), scaled by its
+ * wide-state vertex spacing, and floor-checked by real-ray trace. Fig. 1 draws L7 (S12–S13) square-cut at 10.1 mm.
  * Stabilization: Gis (L11, L12) is the patent's shifting doublet; the model is centred only.
  * Production correlation is inferred, not proven: Canon lists 16 elements / 12 groups with two UD and two
  * glass-moulded aspherical elements, and Example 1 has that layout with high-Abbe glass at L2 and L14 and aspheres
@@ -331,13 +332,13 @@ const LENS_DATA = {
       label: "12",
       R: -22.0,
       medium: 7,
-      sd: 8.9,
+      sd: 10.1,
       d: 0.85,
     },
     {
       label: "13",
       R: 91.549,
-      sd: 8.9,
+      sd: 10.1,
     },
     {
       label: "STO",

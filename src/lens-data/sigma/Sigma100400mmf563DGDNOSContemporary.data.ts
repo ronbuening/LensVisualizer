@@ -13,7 +13,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: the patent prints infinity states only; G6 (L18) moves toward the object (¶0057). The close-focus spacings
  * move G6 that way (D30 shorter, D32 longer by the same amount) to Sigma's 1.12 m (wide) and 1.60 m (tele) minimum
  * focus distances, with 1.36 m assumed at the middle station. These spacings are derived, not printed.
- * Semi-diameters are not printed; they are estimated from Fig. 1. The stop radius follows the printed F-numbers.
+ * Semi-diameters are not printed; they are estimated from Fig. 1 (wide, drawn isotropic at 0.1515 mm per 600-dpi
+ * pixel) and floor-checked by real-ray trace. Fig. 1 ends the concave rear faces of L6 (surface 10) and L15 (25) short
+ * of the element edge with a flat land; both keep sd at the drawn edge and carry inferred rim cuts. Surface 10's cut
+ * radius is 13.95 of 15.0 mm, moved out from the drawn ~12.9 mm to clear the wide-open beams. Surface 25's is 11.42 of
+ * 13.2 mm, within the drawn 10.6–11.5 mm. Faces that nearly meet across an air gap (12/13, 27/28,
+ * 34/35) stay below the 90% gap-sag limit; L16 and L17 keep one height on both faces. The stop radius follows the
+ * printed F-numbers.
  * Stabilization: G3 (L7–L9) is the patent's shifting group (¶0061); the model is centred only.
  * Production correlation is inferred, not proven: Sigma lists 22 elements / 16 groups with one FLD and four SLD
  * elements, and its construction diagram matches Example 1's layout, with FLD at L3 and SLD at L2, L15, L17, L20.
@@ -23,10 +29,10 @@ const LENS_DATA = {
   schema: 2,
   key: "sigma-100-400-f5-63-dg-dn-os-c",
   maker: "Sigma",
-  name: "SIGMA 100-400mm f/5-6.3 DG DN OS Contemporary",
+  name: "SIGMA 100-400mm f/5-6.3 DG DN OS | Contemporary",
   subtitle: "JP 2021-92636 A, Numerical Example 1 — production correlation",
   catalog: {
-    lensMounts: ["l-mount", "sony-fe"],
+    lensMounts: ["l-mount", "sony-fe", "fujifilm-x"],
     imageFormat: "135-full-frame",
     imageCircleMm: 43.26,
     elementCount: 22,
@@ -392,13 +398,14 @@ const LENS_DATA = {
       label: "10",
       R: 55.8686,
       sd: 15.0,
+      rimCutDepthMm: 1.77,
     },
     {
       label: "11",
       R: 999.7824,
       d: 0.9,
       medium: 7,
-      sd: 14.0,
+      sd: 12.8,
     },
     {
       label: "12",
@@ -418,12 +425,12 @@ const LENS_DATA = {
       R: 70.3633,
       d: 3.5,
       medium: 9,
-      sd: 14.0,
+      sd: 13.2,
     },
     {
       label: "15",
       R: -536.3692,
-      sd: 14.0,
+      sd: 13.2,
     },
     {
       label: "16",
@@ -475,27 +482,28 @@ const LENS_DATA = {
       R: 45.228,
       d: 0.9,
       medium: 14,
-      sd: 13.5,
+      sd: 13.2,
     },
     {
       label: "24",
       R: 21.3401,
       d: 3.6409,
       medium: 15,
-      sd: 13.5,
+      sd: 13.2,
     },
     {
       label: "25",
       R: 44.8198,
       d: 1.4528,
-      sd: 13.5,
+      sd: 13.2,
+      rimCutDepthMm: 1.48,
     },
     {
       label: "26",
       R: 65.3065,
       d: 0.9,
       medium: 16,
-      sd: 13.5,
+      sd: 11.4,
     },
     {
       label: "27",
@@ -514,7 +522,7 @@ const LENS_DATA = {
       label: "29",
       R: -61.7873,
       d: 2.375,
-      sd: 13.5,
+      sd: 11.4,
     },
     {
       label: "STO",
@@ -537,7 +545,7 @@ const LENS_DATA = {
       R: 142.6963,
       d: 0.9,
       medium: 19,
-      sd: 13.5,
+      sd: 12.0,
     },
     {
       label: "34",
@@ -557,12 +565,12 @@ const LENS_DATA = {
       R: 44.1698,
       d: 5.1303,
       medium: 21,
-      sd: 13.5,
+      sd: 13.2,
     },
     {
       label: "37",
       R: -57.9789,
-      sd: 13.5,
+      sd: 13.2,
     },
     {
       label: "38",

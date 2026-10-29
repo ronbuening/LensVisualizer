@@ -10,7 +10,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and 5.27 mm do not). The production EX DG prescription itself is not published.
  * No back focus is printed: the infinity image gap is the paraxial back focus.
  * No clear apertures or close-focus spacings are printed. Semi-diameters are estimated from Fig. 1
- * and Sigma's diagram; close focus is modelled as unit focus (see focus.description).
+ * (axial scale from the vertices; the radial scale from the L1 arcs is about 3 % larger) and
+ * checked against Sigma's diagram, which agrees within about 0.4 mm except L5. L2 keeps a 10.5 mm
+ * front and an 8.5 mm rear rim, as both drawings show. L3 and L4 are 8.1 mm; L5 to L7 are larger
+ * (8.8, 8.6 and 9.1 mm), as Fig. 1 draws them. Sigma's diagram draws L6 and L7 larger too but L5
+ * level with L4. Every rim clears the F/2.8 axial beam and the 90° chief ray.
+ * Close focus is modelled as unit focus (see focus.description).
  * The stop diameter is not printed; the engine derives it from F/2.8.
  * L1 has unequal rims: the rear rim follows the near-hemispherical concave surface in Fig. 1,
  * not the flat mounting lands outside it. At 15.0 mm on R 15.56 mm the rim slope is 74.6°
@@ -177,33 +182,33 @@ const LENS_DATA = {
       label: "4",
       R: 12.2,
       d: 3.01,
-      sd: 10.5,
+      sd: 8.5,
     },
     {
       label: "5",
       R: 21.32,
       d: 3.61,
-      sd: 8.7,
+      sd: 8.1,
       medium: 3,
     },
     {
       label: "6",
       R: -49.73,
       d: 1.05,
-      sd: 8.7,
+      sd: 8.1,
     },
     {
       label: "7",
       R: -35.01,
       d: 12.41,
-      sd: 8.5,
+      sd: 8.1,
       medium: 4,
     },
     {
       label: "8",
       R: -249.96,
       d: 1.5,
-      sd: 8.5,
+      sd: 8.1,
     },
     {
       label: "STO",
@@ -214,33 +219,33 @@ const LENS_DATA = {
       label: "10",
       R: 558.53,
       d: 5.2,
-      sd: 8.3,
+      sd: 8.8,
       medium: 5,
     },
     {
       label: "11",
       R: -16.12,
       d: 0.1,
-      sd: 8.3,
+      sd: 8.8,
     },
     {
       label: "12",
       R: 74.59,
       d: 5.04,
-      sd: 8.3,
+      sd: 8.6,
       medium: 6,
     },
     {
       label: "13",
       R: -13.33,
       d: 0.98,
-      sd: 8.3,
+      sd: 8.6,
       medium: 7,
     },
     {
       label: "14",
       R: -28.06,
-      sd: 8.3,
+      sd: 9.1,
     },
   ],
   focus: {

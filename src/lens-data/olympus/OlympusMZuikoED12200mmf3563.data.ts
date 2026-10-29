@@ -8,8 +8,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Intermediate zoom stations are inferred: W→Int.3 moves G1–G3 linearly and solves G4 for infinity focus; Int.3→T
  * moves G1, G3 and G4 linearly and solves G2. Every gap and group is monotonic within each printed segment except G2,
  * whose printed positions reverse at Int.1 and Int.3. Nominal f-numbers are interpolated linearly between states.
- * Semi-diameters are estimated from Fig. 1 (no effective-diameter table is printed); the S15 iris is sized from the
- * printed f-numbers. S29–S30 is the camera cover glass (4.11 mm, ¶0091), modelled as a rear plate.
+ * Semi-diameters are estimated from Fig. 1 (no effective-diameter table is printed): all three panels, drawn at one
+ * isotropic scale (0.273 mm per 300-dpi px), set the rim heights and steps (L2 1.2 mm under L1; the L10–L11 doublet
+ * level with L12, below L9), floor-checked by real-ray trace. L4's rear (S7) carries an inferred rim cut: Fig. 1 and
+ * the maker diagram end its cap at a flat land square to the axis out to the element edge. sd 12.8 mm (below |R|),
+ * depth 4.71 mm, cut radius 9.96 mm: the figure's ~9.7 mm cap end moved out to clear the wide-open beams (9.90 mm at
+ * W, 41.5°) by 0.05 mm. The S15 iris is sized from the printed f-numbers.
+ * S29–S30 is the camera cover glass (4.11 mm, ¶0091), modelled as a rear plate.
  * The patent prints infinity states only. G4 is the focus group (¶0081) but no focus travel is authored; closeFocusM
  * is the maker's 0.22 m wide-end minimum focus distance, kept as metadata.
  * The printed LTL equals the S1–S28 length, not the BF-inclusive length ¶0159 defines; see source.errata.
@@ -263,7 +268,7 @@ const LENS_DATA = {
     {
       label: "3",
       R: 1433.506,
-      sd: 25,
+      sd: 23.8,
       d: 0.15,
     },
     {
@@ -288,7 +293,8 @@ const LENS_DATA = {
     {
       label: "7",
       R: 12.884,
-      sd: 9.5,
+      sd: 12.8,
+      rimCutDepthMm: 4.71,
       d: 6.95,
     },
     {
@@ -377,20 +383,20 @@ const LENS_DATA = {
       label: "18",
       R: 100.582,
       medium: 10,
-      sd: 7.5,
+      sd: 7,
       d: 1.0,
     },
     {
       label: "19",
       R: 12.356,
       medium: 11,
-      sd: 7.5,
+      sd: 7,
       d: 6.28,
     },
     {
       label: "20",
       R: -18.56,
-      sd: 7.5,
+      sd: 7,
       d: 0.1,
     },
     {

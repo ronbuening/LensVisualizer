@@ -19,7 +19,7 @@ This **patent-derived design** is associated with the DG DN OS Contemporary gene
 4. The patent describes G3 lateral stabilization and G6 single-element inner focusing. The product uses optical stabilization and a stepping focus motor.
 5. The 2019 filing predates the product’s 2020 edition. A paraxial reconstruction at the manufacturer’s 1.60 m telephoto MFD gives 0.2412×, close to the listed 1:4.1 (0.2439×); this is a consistency check, not source-published focus data.
 
-This mirrorless DG DN generation differs from the earlier DG OS HSM lens. The model lists **L-Mount and Sony E** with the same optics; Sigma also sells a Fujifilm X version. The patent table itself is not mount-specific. Sigma’s [original 2020 announcement](https://press.sigmaphoto.com/product/06/new-product-announcement-sigma-100-400mm-f5-6-3-dg-dn-os-contemporary/) and [official compatibility table](https://www.sigma-global.com/en/support/download/SIGMA-TELE-CONVERTER-TC1411_TC2011_EN_240823.pdf.pdf) confirm TC-1411/TC-2011 support for the L-Mount C020 product. Teleconverter configurations are not supported by this model.
+This mirrorless DG DN generation differs from the earlier DG OS HSM lens. The model lists **L-Mount, Sony E and Fujifilm X**, which Sigma sells with the same optics. The patent table itself is not mount-specific. Sigma’s [original 2020 announcement](https://press.sigmaphoto.com/product/06/new-product-announcement-sigma-100-400mm-f5-6-3-dg-dn-os-contemporary/) and [official compatibility table](https://www.sigma-global.com/en/support/download/SIGMA-TELE-CONVERTER-TC1411_TC2011_EN_240823.pdf.pdf) confirm TC-1411/TC-2011 support for the L-Mount C020 product. Teleconverter configurations are not supported by this model.
 
 ## Optical Architecture
 
@@ -136,7 +136,7 @@ Positive member of the G5 doublet. Its higher Abbe number supplies dispersion co
 
 nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA equivalent). f = -72.313 mm.
 
-High-index negative meniscus behind the G5 doublet. The estimated optical rim on its rear face is smaller than the drawn blank envelope to avoid actual cross-gap overlap.
+High-index negative meniscus behind the G5 doublet. Figure 1 draws it and L17 at about 12.0 mm, with its rear face meeting L17's flat front at the rim; the model keeps both faces at 11.4 mm, just inside the point where that 2.17 mm air gap closes.
 
 ### L17 — Biconvex Positive
 
@@ -247,9 +247,11 @@ G3 translates perpendicular to the optical axis for vibration reduction (¶0061)
 
 ## Semi-Diameters and Modeling Limits
 
-No effective-diameter column is printed. Clear semi-diameters are estimates based on Figure 1 and constrained by the exact geometry, the stated axial beam, and the source 21.63 mm field. At approximately 151 µm/pixel at 600 dpi, annotations obscure the L16/L17 envelope and rim (spurious 2.39× ratios). L18’s clean rim ratio is 1.009 despite its obscured envelope; L11’s rim/envelope discrepancy also prevents a precise diameter claim. Unobscured figure-to-model ratios are approximately 0.94–1.00. These comparisons do not establish exact clear apertures.
+No effective-diameter column is printed. Clear semi-diameters are estimates based on Figure 1 and constrained by the exact geometry, the stated axial beam, and the source 21.63 mm field. Figure 1 shows the wide state and is drawn to the same scale on both axes, about 151 µm per 600-dpi pixel. Every vertex falls within 1.5 pixels of the prescription, and the curvature of L3 and L22 matches the printed radii at their drawn heights. Read at the drawn line centres, the element rims agree with the model to within about 2.5%. The exceptions are L16 and L17, modelled at 0.95 of their drawn 12.0 mm, and the curved faces described below.
 
-The drawing’s blank envelopes exceed the clear geometry at facing surface pairs 12/13, 27/28 and 34/35. The model’s optical radii there are 11.5, 11.4 and 11.0 mm respectively, with the surrounding face estimates retained. These are inferred optical extents, distinct from mounting-blank envelopes. The model retains a 90% gap-sag limit. Figure estimates are not exact production apertures.
+Two concave rear faces end before their element's outer edge, with a flat land drawn out to the edge. On L6 (surface 10) the curve ends at about 12.2–13.5 mm against a 15 mm element. On L15 (surface 25) it ends at about 10.6–11.5 mm against 13.2 mm. Both keep `sd` at the drawn edge and carry inferred rim cuts (`rimCutDepthMm`). The patent states no depth, so each cut radius must clear the wide-open beams by 0.05 mm at every field, zoom and focus. Surface 25's cut sits at 11.42 mm, inside the drawn range. Surface 10's cut moves out to 13.95 mm, because the beams reach 13.88 mm there at 200 mm and 4.4°. The axial beam at the f-number reaches 12.73 mm at surface 10 and 10.99 mm at surface 25.
+
+At facing surface pairs 12/13, 27/28 and 34/35, the drawing extends the faces until they meet or cross, at about 12.2, 12.0 and 11.5 mm. The model's optical radii there are 11.5, 11.4 and 11.0 mm, under the 90% gap-sag limit. Raising the 27/28 pair to the figure's 12.0 mm would need that limit at 0.98, because the gap closes at 12.15 mm. L16 and L17 keep one height on both faces, as the figure draws them square. L19's front face follows the figure at 12.0 mm, but its rear face cannot, since it would cross L20's front. These are inferred optical extents, distinct from mounting-blank envelopes. Figure estimates are not exact production apertures.
 
 Reference-wavelength MTF is simulated, not manufacturer MTF; finite-focus MTF remains unavailable because no source-published conjugates are supplied.
 

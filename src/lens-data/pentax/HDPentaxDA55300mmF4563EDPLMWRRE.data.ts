@@ -2,9 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2017/0329112 A1 (Ricoh Imaging, Tomoya Koga), Numerical Embodiment 1: Tables 1–3, Figs. 1 and 4.
  * R, d, nd and νd are transcribed unscaled. The three printed infinity rows (56.500 / 132.085 / 291.188 mm)
- * are kept exactly as printed, not re-solved. The patent prints no clear apertures; semi-diameters are read
- * from Fig. 1. The stop radius at each zoom position follows its nominal F-number (printed 4.60 / 5.14 / 6.48,
- * linear in between and rounded to 0.01).
+ * are kept exactly as printed, not re-solved. The patent prints no clear apertures; semi-diameters are measured
+ * from Fig. 1 (wide state, full element widths, axial scale from the drawn vertices; every element within 1.5 %)
+ * and floor-checked by real-ray trace; L31F is drawn slightly taller than the L32F/L33F doublet. The stop radius
+ * at each zoom position follows its nominal F-number (printed 4.60 / 5.14 / 6.48, linear in between and rounded
+ * to 0.01).
  * Zoom: the 38 intermediate positions interpolate d5, d10 and the total length linearly between printed rows and
  * place G4 for paraxial infinity focus.
  * Focus: G4 alone moves toward the image (patent text), so d22 + back focus stays constant. The patent tabulates
@@ -21,6 +23,7 @@ const LENS_DATA = {
   subtitle: "US 2017/0329112 A1, Numerical Embodiment 1 — production correlation",
   catalog: {
     lensMounts: ["pentax-k"],
+    acceptsTeleconverters: true, // Ricoh lists the HD PENTAX-DA AF REAR CONVERTER 1.4X AW as compatible
     imageFormat: "aps-c",
     imageCircleMm: 28.48,
     elementCount: 14,
@@ -288,13 +291,13 @@ const LENS_DATA = {
       label: "11",
       R: 74.271,
       medium: 7,
-      sd: 10.5,
+      sd: 10.6,
       d: 3.22,
     },
     {
       label: "12",
       R: -101.46,
-      sd: 10.5,
+      sd: 10.6,
       d: 0.2,
     },
     {

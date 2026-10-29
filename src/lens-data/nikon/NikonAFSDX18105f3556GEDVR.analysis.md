@@ -140,7 +140,7 @@ G4, the cemented L41/L42 doublet, shifts perpendicular to the axis (¶0060). The
 ## Model Scope and Limitations
 
 - The patent's image height is 14.0 mm. The D90-era DX sensor (23.6 × 15.8 mm) has a 14.2 mm half-diagonal. At Y = 14.0 mm the traced half-fields are 38.66°, 13.25° and 7.59°, against the printed 38.8°, 13.2° and 7.6°.
-- No clear diameters are published. The semi-diameters are estimated from the patent cross-sections and checked for edge thickness and gap clearance.
+- No clear diameters are published. The semi-diameters are estimated from the wide-angle cross-section in US 7,839,577 B2 (Fig. 17) and checked against the real-ray trace, edge thickness and gap clearance. The figure draws L21 touching L22, and L23 touching L24, at the rim. In the prescription those facing surfaces cross at about 11.0 and 10.1 mm, so the model keeps those rims a little smaller than drawn.
 - The stop radius follows the printed f-number at each station. Intermediate stations interpolate it.
 - The intermediate zoom stations and every finite focus state are calculated, not published. They are paraxially in focus to within 0.02 mm across the zoom and focus range.
 

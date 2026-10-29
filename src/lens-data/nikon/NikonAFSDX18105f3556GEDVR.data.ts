@@ -13,7 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * are separate element entries, so the model lists 16 media.
  * Aperture stop: surface 15 (STO), 0.400 mm ahead of surface 16, moving with G3. Its radius
  * follows the printed F/3.6, 5.2 and 5.8 at W/M/T. Clear semi-diameters are not published;
- * they are estimated from the patent cross-sections.
+ * they are estimated from US 7,839,577 B2 Fig. 17 (wide, infinity; 0.0805 mm/px on both axes)
+ * and floor-checked by real-ray trace. Surfaces 8, 12 and 13 stay below the figure at the
+ * validator gap limit: the facing pairs 8/9 and 12/13 cross at about 11.0 and 10.1 mm.
  * Printed W/M/T: f = 18.4 / 57.4 / 102.0 mm, Bf = 38.310 / 58.032 / 65.481 mm, Y = 14.0 mm.
  * Traced EFL 18.401 / 57.434 / 102.002 mm; group focal lengths match the printed table.
  * Zoom: the three printed states are kept exactly. The 23 stations between them are derived:
@@ -280,14 +282,14 @@ const LENS_DATA = {
       label: "2",
       R: 58.263,
       d: 6.65,
-      sd: 26.8,
+      sd: 25.5,
       medium: 2,
     },
     {
       label: "3",
       R: 1138.2722,
       d: 0.1,
-      sd: 25.4,
+      sd: 25.5,
     },
     {
       label: "4",
@@ -332,7 +334,7 @@ const LENS_DATA = {
       label: "9",
       R: -74.9323,
       d: 1,
-      sd: 10.5,
+      sd: 11.1,
       medium: 6,
     },
     {
@@ -651,6 +653,7 @@ const LENS_DATA = {
   aperture: {
     fStops: [3.6, 4, 5.6, 8, 11, 16, 22, 32, 38],
     maxFNumber: 38,
+    blades: 7,
   },
   groups: [
     {

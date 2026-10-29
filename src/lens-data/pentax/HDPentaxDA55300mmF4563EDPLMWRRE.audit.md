@@ -53,3 +53,55 @@ The source package carried no audit log; this file starts at deployment validati
   Prettier reports the data and audit files formatted.
 - Open: production identity rests on construction, specification and timing matches; Embodiment 2 remains a plausible
   alternative. Open: the intermediate zoom cam and all close-focus spacings are derived, not Ricoh's.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+- Source: Fig. 1 on sheet 1 (PDF p. 2), Numerical Embodiment 1 at the short focal-length extremity, infinity focus.
+  The sheet is a 2560 × 3300 px bilevel scan, measured at native resolution. The optical axis runs vertically, object
+  at the bottom, and is tilted by about 0.15° (5 px over 2300 px).
+- Scale: ink crossings beside the axis fall on every vertex of the wide prescription, including d22 = 3.01 mm at the
+  drawn G4 position. S1 to S26 is 111.028 mm over 1891 px, 0.05871 mm/px; S1 to S11 gives 0.05870 (64.862 mm / 1105
+  px) and S11 to S26 0.05873 (46.166 mm / 786 px). The radial scale is the same: the drawn rim ends of S1, S4 and
+  S17–S26 sit where the prescription sags put them at the measured heights (S4: 6.25 mm sag at 22.0 mm, 106 px
+  predicted and drawn; S26: 1.24 mm at 8.5 mm, 21 px predicted, 20 drawn), so the drawing is not anamorphic.
+- Method: `figprofile.mjs` on both sides of the axis with windows kept inside the group brackets (left) and short of
+  the leader ticks (right); each rim is half the full width, which cancels the axis tilt. `audit:patent-figure` was
+  run on two crops and read the G3 and G2 brackets (rows 1.3–1.8× high), so it was not used.
+
+| Surfaces   | Element   | Before | Fig. 1, left + right px → mm | After | Evidence                                                    |
+| ---------- | --------- | -----: | ---------------------------- | ----: | ----------------------------------------------------------- |
+| 1, 2       | L11       |   22.7 | 388 + 384 → 22.66            |  22.7 | retained; both faces reach the square-cut rim               |
+| 3, 4, 5    | L12/L13   |   22.0 | 377.5 + 373 → 22.03          |  22.0 | retained                                                    |
+| 6, 7, 8    | L21/L22   |   10.2 | 173 + 173 → 10.16            |  10.2 | retained                                                    |
+| 9, 10      | L23       |   10.0 | 168 + 168 → 9.86             |  10.0 | retained (1.4 %); the render already steps it below L21/L22 |
+| 11, 12     | L31F      |   10.5 | 181 + 181 → 10.63            |  10.6 | step-order fix, see below                                   |
+| 13, 14, 15 | L32F/L33F |   10.5 | 179 + 179 → 10.51            |  10.5 | retained                                                    |
+| 17, 18     | L31R      |   10.0 | 168 + 169 → 9.89             |  10.0 | retained (1.1 %)                                            |
+| 19, 20     | L32R      |   10.0 | 170.5 + 171.5 → 10.04        |  10.0 | retained                                                    |
+| 21, 22     | L33R      |   10.3 | 175.5 + 177 → 10.35          |  10.3 | retained                                                    |
+| 23, 24     | L41       |    9.0 | 153 + 154 → 9.01             |   9.0 | retained                                                    |
+| 25, 26     | L42       |    8.5 | 144 + 145 → 8.48             |   8.5 | retained                                                    |
+
+- Change: S11 / S12 10.5 → 10.6 mm. Fig. 1 draws L31F 0.12 mm taller than the L32F/L33F doublet behind it, a step
+  read to about ±0.06 mm, where the render had them equal. The same value clears the real-ray marginal of a f/6.48
+  iris at 291 mm (10.58 / 10.60 mm), which `clearap.mjs` had flagged at 10.5. Every other element is within 1.5 % of
+  the figure and keeps its value. The stop keeps its engine radius; the drawn stop marks are 327 px apart, a 9.60 mm
+  half-opening between the engine's paraxial 9.463 mm and the real-ray 9.689 mm at wide.
+- Clearances after the change: the surface validator reports no errors, the image-circle floor flags nothing, and
+  field coverage reaches 100 % of the 14.24 mm image height at all 41 stations. `clearap.mjs` at Y 14.24 flags nothing
+  at infinity or close focus. A finite-object trace at 0.95 m with the engine's stop radius clears every rim; the
+  smallest margins are about 0.3 mm, at S11 / S12 / S13 (10.30 / 10.33 / 10.20 mm at wide).
+- Engine: half-field 18.15°, F/4.60 and stop 9.463 mm at wide are unchanged. Wide-open vignetting at wide (2.4° to
+  14.5°) goes from 99.8 / 98.5 / 96.9 / 94.7 / 82.1 / 64.0 % to 100 / 98.9 / 98.1 / 95.7 / 82.5 / 64.1 %; at 132 mm it
+  improves by at most 0.8 %, and at 291 mm it is unchanged (55.1 % at the corner). At 291 mm the f/6.48 axial beam
+  reaches 22.47 mm at S1 against the drawn 22.7 mm, so off-axis bundles clip at G1 from the first degree; kept as drawn.
+- Rendered check at 56.5, 132.085 and 291.188 mm, infinity and 0.95 m: the proportions match Fig. 1 (G1 about 2.2×
+  the inner groups, G4 the smallest, L33R the tallest of G3R). At 291 mm and 0.95 m the app draws its outermost
+  on-axis ray faded at the L21 rim; that ray meets S1 at about 18.6 mm, above the 15.6 mm at which the stop-rim ray
+  from the 0.95 m object meets it, so it lies outside the stop-limited beam and S6 was left at the drawn 10.2 mm.
+- Ricoh's construction diagram shows 14 elements in 11 groups grouped as in Fig. 1, marks only the eighth element
+  (L32F) as ED and marks no asphere. It is drawn in the retracted state (G1–G2 and G2–G3F both closed up) and with
+  mechanical flanges on L12, L21, L33F and L42, so its inner groups read 5–15 % larger against G1 than Fig. 1 does;
+  Fig. 1 governs.
+- Open: L23 (9.86 mm) and L31R (9.89 mm) read about 0.1 mm under their stored 10.0 mm, inside measurement noise and
+  invisible at render scale; left unchanged.

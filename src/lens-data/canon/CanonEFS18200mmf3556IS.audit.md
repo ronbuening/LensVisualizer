@@ -71,3 +71,46 @@ The source package carried no audit log; this file starts at deployment validati
 - Open: production identity rests on construction matching only. Open: the intermediate cam and all close-focus
   spacings are derived, not Canon's. Open: off-axis MTF at intermediate zoom positions was not re-measured after the
   cam change.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+- Source: JP 2009-175324 A, Fig. 1(a) (wide end, 広角端) on PDF p. 18, the drawing of Numerical Example 1. The page
+  carries a 200 ppi raster; it was measured from a 400 dpi render. Heights are half the top-to-bottom distance between
+  line centres, so the 2–3 px offset between the drawn axis and the element centres in the front group drops out.
+- Axial scale: vertex crossings beside the axis put S1 at x 1118 and S29 at x 2075.5, 957.5 px for the 105.58 mm
+  wide-state vertex span, 0.1103 mm/px; S1→S16 (63.58 mm, 578 px) gives 0.1100 and S5→S28 (85.87 mm, 778 px) 0.1104.
+  Every other vertex and the stop mark land within 2 px of the prescription.
+- Radial scale: the front group is drawn isotropic. S7 (R 13.369) is drawn with sags of 13.5 / 22 / 30 / 38.5 px at
+  54.5 / 70.5 / 78.5 / 86.5 px height against 12.9 / 22.6 / 28.8 / 36.3 px predicted at 0.110 mm/px; S7 meets L5's
+  corner at an 89.3 px half-height, where the prescription puts the S7/S8 intersection at 9.90 mm (0.111 mm/px); the
+  L5 and L7 top corners land within 1 px of the isotropic S8 and S12 sags. In the rear the S26 and S28 curves fit about
+  0.103 mm/px, and the stop mark (68 px) reads 7.5 mm isotropic against the 7.05 mm F/3.6 iris, so the rear may be
+  drawn up to about 7 % tall. The authored rims of L1, L3, L4, L8, Gpf, L13, L14 and Gpr2 agree with the isotropic
+  reading within 3 %, so 0.110 mm/px was used throughout; no retained value hinges on the rear-scale ambiguity.
+- Readings (stored → Fig. 1, ratio): S1–S3 29.0 → 29.4 outer box, curves ending at 27.4–28.2 under a drawn flange,
+  kept; S4–S5 24.75 → 24.7, kept; S6 13.25 → 13.1, kept; S7 9.4 → 9.9 (1.05), kept as noise; S8–S9 (L5) 9.4 → 9.9
+  (1.05), kept as noise; S10–S11 (L6) 8.9 → 9.6 apex (1.08), kept, see below; S12–S13 (L7) 8.9 → 10.14 (1.14),
+  changed; S15–S16A (L8) 8.5 → 8.5; S17–S19 (Gpf) 8.5 → 8.65; S20–S22 (Gis) 6.5 → 6.86 (1.055), kept as noise;
+  S23–S24 (L13) 7.5 → 7.6; S25–S26 (L14) 11.5 → 11.5; S27A–S29 (Gpr2) 12 → 12.2.
+- Change: S12 and S13 8.9 → 10.1 mm. Fig. 1 draws L7 as a square-cut box (flat top from x 1403 to 1438, top 672.5,
+  bottom 857, 92.25 px), slightly taller than L5 and L6; at 8.9 mm the render showed it shorter than L5. Canon's
+  construction diagram also draws L5, L6 and L7 at one height. Edge thickness at the new rim is 3.84 mm; the S11→S12
+  cross-gap check reads the shared band up to L6's 8.9 mm rim and is unchanged.
+- L6 retained: its rear face S11 and L7's front face S12 meet at 9.5 mm across the 0.38 mm gap, and the 0.9 cross-gap
+  rule admits at most 9.1 mm, so the drawn 9.6 mm apex cannot be modelled; 9.4 mm would need `gapSagFrac` 0.97 and
+  leave 12 µm of air, which the ray trace does not require.
+- Clearance after the change: real-ray trace at image heights 13.41 and 14.175 mm, all 37 zoom stations, at infinity
+  and at focus keyframes 5 and 10: no axial clip and no blocked chief ray. At S12 / S13 the axial beam peaks at 6.66 /
+  6.84 mm and the unvignetted wide-corner bundle at 9.78 / 9.41 mm (9.93 / 9.55 mm at close focus), now inside the
+  rim; before, those faces trimmed 30 % / 17 % of the corner bundle's side. Validator clean, image-circle floor
+  0 undersized, field coverage 37 of 37 stations at 100 %. Engine EFL 18.597 mm, F/3.6, stop radius 7.048 mm and
+  half-field 33.04° (limited by S7) are unchanged, as is the wide-open wide-end vignetting curve (86.2 % at 29.8°,
+  39.2 % at 38.8°).
+- Live check: the local page at 18.6 / 49.94 / 193.23 mm and at infinity and closest focus shows L7 as the tallest
+  member of L2, as Fig. 1 draws it, with no overlap against L6 or the stop.
+- Maker diagram (Canon Camera Museum construction drawing): 16 elements in 12 groups with the same grouping; UD at
+  L2 and L14, glass-moulded aspheres at L8 and L15, the IS box around L11–L12. Scaled to the front doublet it draws
+  L3, L4, L8, L14 and Gpr2 within 2 % of the stored values, L5–L7 near 10.5 mm, Gis near 6.7 mm and L13 near 7.9 mm.
+  It supports the L7 rise; for L5 and L6 it reads higher than Fig. 1, which governs.
+- Open: Gis (S20–S22) stays 6.5 mm, 5 % under Fig. 1's 6.86 mm; the axial beam peaks at 6.28 mm there. L4's rear
+  face S7 and L5 stay 5 % under the drawing.

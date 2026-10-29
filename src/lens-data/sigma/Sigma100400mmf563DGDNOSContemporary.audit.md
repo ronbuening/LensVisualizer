@@ -48,5 +48,86 @@ The source package carried no audit log; this file starts at deployment validati
 - Open: production identity rests on construction and glass matching only. Open: the intermediate cam and all
   close-focus spacings are derived, not Sigma's; the 1.36 m middle-station distance is an assumption. Open: the
   source package recorded weak full-field MTF at the derived quarter-zoom station; it was not re-measured. Open: Sigma's
-  TC-1411 / TC-2011 converters (L-Mount version only) are not modelled, and the 2023 FUJIFILM X Mount version is not
-  listed, following the other full-frame Sigma DG DN files.
+  TC-1411 / TC-2011 converters (L-Mount version only) are not modelled. Later the same day (first pass),
+  `fujifilm-x` was added to `lensMounts`: Sigma sells the same optics in FUJIFILM X Mount, and the corpus lists X
+  Mount on other full-frame lenses (Samyang 135mm f/2, Laowa 180mm f/4.5) while keeping `135-full-frame`.
+
+## 2026-10-29 — Semi-diameter pass against the patent figure
+
+- Source: `patents/JP2021092636A.pdf`, Fig. 1 on PDF p. 30, which is Example 1 at the wide end, focused at infinity.
+  The figure is an embedded 300-ppi raster of 804 × 414 px, measured on a 600-dpi render.
+- Scale: the element tops and bottoms are symmetric about row 985. Surface 1's vertex is at x 652.5 and the image plane
+  at x 2052.5, giving 1400 px for 212.148 mm, or 6.599 px/mm (0.1515 mm/px). A second span, surfaces 16 to 37,
+  gives 6.593 px/mm. All 33 detected vertex crossings fall within 1.5 px of the prescription.
+- Radial check: at this same scale, the drawn L1 front rim position and the curvature traces of the L3 front
+  (R 103.67) and L22 rear (R −59.13) match the printed radii within about 2–3%. Fig. 1 is therefore drawn isotropic,
+  not anamorphic.
+- Method: each element's half-height is the mean of its top and bottom ink, read at the line centre. This is 1 px
+  under the outer edge. Each curved face was also traced against its predicted spherical profile, to find where the
+  ink stops following the curve and continues as a flat land (a straight edge perpendicular to the axis). Where it
+  does, the model keeps sd at the element edge and authors the land as a rim cut. Overlays of the model outline on
+  the figure confirmed each call.
+
+| Surface | Element face       | Before | Fig. 1                                              | After | Evidence |
+| ------- | ------------------ | -----: | --------------------------------------------------- | ----: | -------- |
+| 10      | L6 rear            |   15.0 | curve ends at 12.2–13.5, flat land out to 14.85     |  15.0 | Kept at the drawn edge, with a rim cut of depth 1.77 at cut radius 13.95 (see the rim-cut bullet) |
+| 11      | L7 front           |   14.0 | 12.7                                                |  12.8 | Figure rim |
+| 14      | L8/L9 junction     |   14.0 | 13.2                                                |  13.2 | Figure rim. G3 sits under G4 (13.9) and above L7 |
+| 15      | L9 rear            |   14.0 | 13.2                                                |  13.2 | Figure rim |
+| 23      | L14 front          |   13.5 | 13.2                                                |  13.2 | Step order: Fig. 1 has L13 (13.6) 3 px above L14/L15 |
+| 24      | L14/L15 junction   |   13.5 | runs into the 13.2 rim                              |  13.2 | Follows surface 23 |
+| 25      | L15 rear           |   13.5 | curve ends at 10.6–11.5, flat land out to 13.2      |  13.2 | Drawn edge, with a rim cut of depth 1.48 at cut radius 11.42 (see the rim-cut bullet) |
+| 26      | L16 front          |   13.5 | 12.0                                                |  11.4 | Kept square with surface 27, which the gap limits |
+| 29      | L17 rear           |   13.5 | 12.0                                                |  11.4 | Kept square with surface 28 |
+| 33      | L19 front          |   13.5 | 12.0                                                |  12.0 | Figure rim |
+| 36      | L20/L21 junction   |   13.5 | 13.2                                                |  13.2 | Fig. 1 draws L20/L21 level with L14/L15, below L13 |
+| 37      | L21 rear           |   13.5 | 13.2                                                |  13.2 | Figure rim |
+
+- Rim cuts (inferred; the patent states no depth, so there is no `rimCutDepthSource`):
+  - Measured on the native raster at 3.30 px/mm, with the axis at native row 179.
+  - Surface 10: the edge is at 49 px and the cap ends at 40–44 px, so q = 0.86 ± 0.04 and the drawn cut radius is
+    about 12.9 mm (12.2–13.5) of sd 15.0.
+  - Surface 25: the edge is at 43.5 px and the cap ends at 35–38 px, so q = 0.84 ± 0.04 and the drawn cut radius is
+    about 11.1 mm (10.6–11.5) of sd 13.2.
+  - The wide-open beams, traced without the cuts, reach 13.883 mm at surface 10 (200.08 mm, focus 0.5, 4.39°). At
+    surface 25 they reach 11.357 mm (184.91 mm, infinity, 2.71°).
+  - Each land moved out to reach plus its 0.05 mm margin, plus 0.005 mm, with the depth rounded up. Surface 10 gets
+    depth 1.77 mm, cut radius 13.951 (q 0.93), a 1.05 mm land and 0.069 mm clearance. Surface 25 gets depth 1.48 mm,
+    cut radius 11.423 (q 0.87), a 1.78 mm land and 0.066 mm clearance.
+  - The beam rule in the surface validator passes. The dense probe (81 zoom × 21 focus states, 11.6 M rays) refines
+    the reach to 13.870 and 11.354 mm and finds 0 clipped rays and 0 rays within either margin.
+  - Both cut radii sit above the axial beam, at 12.73 and 10.99 mm.
+- Retained, all within about 2.5% of Fig. 1:
+  - Surfaces 1–3 at 33.0 (figure 33.2) and 4–5 at 32.0 (31.8).
+  - Surfaces 6–7 at 20.5 (20.3). Surface 7 is almost flat, so a possible annulus above 16–17 mm cannot be told
+    apart from the curve.
+  - Surfaces 8–9 at 15.0 (14.85), 16–20 at 14.0 (13.9) and 21–22 at 13.5 (13.6).
+  - Surfaces 31–32 at 12.0 (12.3). Surfaces 38–39 at 16.3 (16.1), where the front curve ends at about 15.6 into a short
+    flat.
+- Retained, below Fig. 1 because the faces nearly meet across an air gap:
+  - Surfaces 12/13 at 11.5. The figure runs both faces until they meet at about 12.2. The 90% gap-sag limit allows
+    11.6, and the axial beam reaches 11.31 / 11.32.
+  - Surfaces 27/28 at 11.4. The figure draws them meeting at the 12.0 rim, and the gap closes only at 12.15. Raising
+    the pair needs a gapSagFrac of 0.91 at 11.6, 0.95 at 11.8 and 0.98 at 12.0. It was not applied, and L16 and L17
+    were kept square at 11.4 instead, 0.95 of the drawing.
+  - Surfaces 34/35 at 11.0. Here the figure draws faces that would physically cross at 11.55. L19's front face follows
+    the figure at 12.0, so the element steps down to 11.0 at its rear.
+  - The STO is unchanged.
+- Clearance:
+  - The surface validator reports no errors. The image-circle floor finds 0 undersized surfaces. Field coverage is
+    65 of 65 stations at 100% of 21.63 mm.
+  - The real-ray trace at Y 21.63 mm shows no axial clip and no blocked chief ray, at infinity or at close focus.
+    The tightest new rim, surface 26 at 11.4, sits above the axial beam's 10.87.
+  - The engine half-field is unchanged at all 65 stations (13.20° wide, 3.78° tele), as are the F-numbers (5.15 to
+    6.50) and the stop radius (10.39 mm wide). The aperture audit finds 65 of 65 stations within 3%, with no rim,
+    trace or failed rows.
+  - Wide-open engine vignetting at infinity is unchanged at zoom 0, 0.25, 0.5, 0.75 and 1.
+- Live check: the local app was viewed at 103 / 200.08 / 387.4 mm at infinity, and at 103 and 387.4 mm at close focus.
+  G3 now sits below G4, and L16/L17 below L14/L15. L6 and L15 draw a flat land at the rear rim, as Fig. 1 does. No
+  element overlaps a neighbour at any state.
+- Maker diagram: Sigma's construction diagram agrees on 22 elements in 16 groups and the same grouping, and it is drawn
+  at the wide state. Measured at its own isotropic scale, about 0.158 mm/px from L1, its heights agree with Fig. 1
+  within about 5%. The exceptions are L16/L17 and L19 (about 12.7 mm against Fig. 1's 12.0) and L11/L12 (14.9 against
+  13.9). It also draws L15's rear rim below L14's front.
+- Open: surface 10's cut sits 0.5–1.7 mm outside the drawn cap end, because the beams need it. L16/L17 stay 0.6 mm
+  under the drawing unless the coordinator raises gapSagFrac for the 27/28 pair.

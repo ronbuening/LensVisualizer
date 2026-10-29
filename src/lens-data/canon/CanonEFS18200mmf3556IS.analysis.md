@@ -90,7 +90,7 @@ The positive high-dispersion member opposes the negative elements around it. It 
 
 nd = 1.772499, νd = 49.6. Glass: S-LAH66 (OHARA) catalog equivalent. f = -22.887 mm.
 
-The final negative element completes L2. Its steep front face and the thin preceding air space limit its usable rim, so the estimated clear radius is smaller than the drawn outline.
+The final negative element completes L2. Fig. 1 draws it square-cut, slightly taller than L6; its steep front face sits only 0.38 mm behind L6, so the two faces would meet near 9.5 mm and L6's estimated rim stays below its drawn outline.
 
 ### L8 — Biconvex Positive (Asph)
 
@@ -197,7 +197,7 @@ The patent's negative Gis doublet comprises L11/L12, surfaces S20–22. The mode
 
 The patent does not print semi-diameters. They were estimated from Fig. 1, scaled by its 105.58 mm wide-state first-to-last-vertex span, and checked against aspheric sag and the neighbouring air spaces. Figure scale, line thickness and drawn mount outlines leave real uncertainty.
 
-The largest front radius is 29 mm. Smaller clear radii in the strongly curved L2 unit keep glass edges positive and avoid cutting into neighbouring air spaces: L4 tapers from 13.25 mm at the front to 9.4 mm at the rear, L5 uses 9.4 mm and L6/L7 8.9 mm. These are estimates, not published diameters.
+The largest front radius is 29 mm. Smaller clear radii in the strongly curved L2 unit keep glass edges positive and avoid cutting into neighbouring air spaces: L4 tapers from 13.25 mm at the front to 9.4 mm at the rear, L5 uses 9.4 mm and L6 8.9 mm. L7 takes the 10.1 mm square-cut height Fig. 1 draws. These are estimates, not published diameters.
 
 The patent's aberration figures label half-angles of 36.29°, 15.30° and 4.04° at the three printed settings but give no image height. Traced at those angles, the chief ray lands at 12.88, 14.22 and 13.97 mm; at the wide end the gap to f·tan ω (13.66 mm) is barrel distortion. Canon's [EOS 50D record](https://global.canon/en/c-museum/product/dslr799.html) lists the lens as a companion to that body, whose 22.3 × 14.9 mm sensor has a 13.41 mm corner radius. The app's generic APS-C format uses a 14.175 mm semi-diagonal. At both heights the chief ray clears every estimated rim at all zoom positions, and the axial beam at each station's F-number clears every rim; corner bundles are partly vignetted, most strongly at the front group.
 

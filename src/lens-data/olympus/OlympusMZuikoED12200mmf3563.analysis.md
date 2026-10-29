@@ -62,7 +62,7 @@ The separate positive meniscus completes G1. Its lower dispersion than ordinary 
 
 nd = 1.88300, νd = 40.76. Glass: S-LAH58 (OHARA catalog equivalent; production supplier unspecified). f = -20.370 mm.
 
-The first strong negative meniscus of G2 expands the ray bundle. Fig. 1 draws a stepped optical extent, so the estimated front/rear semi-diameters (13.0/9.5 mm) are unequal.
+The first strong negative meniscus of G2 expands the ray bundle. Fig. 1 draws its rear face as a cap that ends near 10 mm and then a flat land out to the edge; the model gives the faces 13.0 and 12.8 mm semi-diameters and cuts the rear rim flat 4.71 mm behind its vertex (cut radius about 9.96 mm).
 
 ### L5 — Biconcave Negative (Aspherical)
 
@@ -193,13 +193,13 @@ The LTL row is internally inconsistent with ¶0159: its 99.37–166.44 mm values
 
 ## Clear Apertures, Iris and Field Coverage
 
-No effective-diameter table is published. Rims are estimated from Fig. 1 and checked against the geometry and the printed aperture: about 25 mm semi-diameter for the front doublet and 23 mm for L3, a stepped 13.0/9.5 mm for L4, and 6.5–12 mm for the later elements. Measured on Fig. 1, the tele panel gives a front radius of about 25 mm against its 166.45 mm lens length, and the Int.2 panel agrees. The 72 mm filter thread is only an outer envelope. These are estimates, not manufacturer clear apertures.
+No effective-diameter table is published. Rims are estimated from Fig. 1 and checked against the geometry and the printed aperture: about 25 mm semi-diameter for L1, 23.8 mm at the rear of L2 (drawn about 1.3 mm lower than L1), 23 mm for L3, 13.0 mm for L4, whose concave rear cap ends at 9.96 mm on a flat land square to the axis as Fig. 1 draws it (an inferred rim cut, placed just outside the wide-open beams), and 6.5–12 mm for the later elements, with the L10–L11 doublet level with L12 and below L9. All three panels of Fig. 1 share one scale with no vertical stretch, and the wide, Int.2 and tele panels agree on these heights to within about 3%. The 72 mm filter thread is only an outer envelope. These are estimates, not manufacturer clear apertures.
 
 The iris follows the printed f-number schedule (3.60/4.66/5.45/6.08/6.47), not the marketed f/3.5–6.3, and the estimated rims pass the full on-axis beam at every station. Seven blades and a minimum aperture of f/22 are maker data.
 
 The wide-angle row prints 2ω = 83.93° and image height 10.06 mm; the chief ray at 41.96° reaches 10.06 mm without clipping. Fig. 9, however, labels ω = 44.64° (89.28° full angle), a discrepancy within the source; the table value is used, and the model does not assume digital distortion correction explains the difference.
 
-The Four Thirds half-diagonal is 10.82 mm. At 12.36 mm the chief ray to that corner (43.9°) is clipped at S1 (26.8 mm against 25 mm) and S7, so the modelled field reaches 10.22 mm (94% of the corner radius); the 13.39 mm and 14.44 mm stations reach 97% and 99%, and from 15.51 mm onward the full corner is reached. This is chief-ray loss, not ordinary marginal vignetting. Because the patent's own wide-angle image height is smaller than the corner, the rims are not enlarged to cover it.
+The Four Thirds half-diagonal is 10.82 mm. At 12.36 mm the chief ray to that corner (43.9°) is clipped at S1 (26.8 mm against 25 mm), so the modelled field reaches 10.36 mm (96% of the corner radius); the 13.39 mm and 14.44 mm stations reach 97% and 99%, and from 15.51 mm onward the full corner is reached. This is chief-ray loss, not ordinary marginal vignetting. Because the patent's own wide-angle image height is smaller than the corner, the rims are not enlarged to cover it.
 
 ## Model Scope and Limitations
 
