@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-29",
+    type: "lens",
+    summary:
+      "Added the Pentax HD DA 55-300mm f/4.5-6.3 ED PLM WR RE, Sigma 100-400mm f/5-6.3 DG DN OS | Contemporary and 15mm f/2.8 EX DG Diagonal Fisheye, Canon EF-S 18-200mm f/3.5-5.6 IS, Nikon AF-S DX Nikkor 18-105mm f/3.5-5.6G ED VR and Olympus M.Zuiko Digital ED 12-200mm f/3.5-6.3",
+  },
+  {
+    date: "2026-10-29",
     type: "fix",
     summary: "Fixed blank off-axis MTF curves for wide lenses focused close",
   },
