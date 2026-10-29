@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-29",
+    type: "lens",
+    summary:
+      "Added the Pentax SMC FA* 28-70mm f/2.8 AL, FA* 80-200mm f/2.8 ED [IF], FA 100-300mm f/4.7-5.8 and FA J 75-300mm f/4.5-5.8 AL, and the Micro Four Thirds Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4.0 ASPH. and Lumix G Vario 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.",
+  },
+  {
     date: "2026-10-28",
     type: "article",
     summary: "Added new Canon, Sony, Fujifilm and Panasonic articles to the manufacturer lens story index",
