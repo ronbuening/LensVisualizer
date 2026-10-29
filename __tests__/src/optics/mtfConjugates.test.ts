@@ -1,12 +1,20 @@
-import { constructionFixtureData } from "./constructionFixtures.js";
-import { mtfInputs } from "./testLensFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES, constructionFixtureData } from "./constructionFixtures.js";
+import { analysisRequestAt, apertureAt, mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
-import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
+import { assessMtfSupport, resolveMtfOptions } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { mtfFiniteObjectPoint } from "../../../src/optics/analysis/mtf/mtfConjugates.js";
-import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import {
+  aimMtfStopLattice,
+  mtfAimSpectrum,
+  prepareMtfFieldLaunch,
+  traceMtfFieldPupil,
+} from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { spectralTraceOptions } from "../../../src/optics/analysis/pupils/aimedPupil.js";
+import { publishedFocusStations, publishedZoomStations } from "../../../src/optics/state/publishedStations.js";
+import { prepareEngineTrace } from "../../../src/optics/trace/rayAdapters.js";
 import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import {
@@ -188,4 +196,58 @@ describe("documented finite MTF", () => {
     };
     expect(rayOpticalPathToImageMm(moved, image, bundle.objectPoint)).toBeCloseTo(before, 10);
   });
+});
+
+describe("finite MTF at close focus", () => {
+  // A wide lens focused close keeps its entrance pupil far ahead of its stop, where the straight line from an off-axis
+  // object point to the stop centre misses its front surfaces. No synthetic fixture has such a pupil, so these catalog
+  // stations, whose off-axis fields once had every stop cell unaimed, guard the aim from the MTF's solved chief.
+  const STATIONS = [
+    ["panasonic-lumix-g-vario-12-60mm-f35-56", 0, 1],
+    ["samyang-af-14mm-f28-ef", 0, 1],
+    ["sigma-12mm-f14-dc-contemporary", 0, 1],
+    ["hasselblad-xcd-25mm-f25-v", 0, 1],
+  ] as const;
+  it.each(STATIONS)(
+    "aims every default field on the real stop: %s, zoom %i, focus %i",
+    (key, zoomIndex, focusIndex) => {
+      const L = build(CATALOG_CONSTRUCTION_FIXTURES[key]);
+      const zoomT = publishedZoomStations(L).find((station) => station.index === zoomIndex)!.zoomT;
+      const focusT = publishedFocusStations(L, zoomIndex).find((station) => station.index === focusIndex)!.focusT;
+      const request = analysisRequestAt(L, { focusT, zoomT, ...apertureAt(L, zoomT) });
+      const settings = { method: "diffraction", spectrum: "reference", focus: "design", maxGridSize: 32 } as const;
+      const result = computeMtf(request, settings);
+      expect(result.support.conjugate).toBeDefined();
+      expect(result.fields).toHaveLength(5);
+      for (const field of result.fields) {
+        expect(field.pupilSampling).toBe("stop");
+        expect(field.validRays).toBeGreaterThan(0);
+        expect(field.unaimedRays).toBe(0);
+        expect(field.sagittal.length).toBeGreaterThan(0);
+      }
+      // Each aimed ray, traced to the stop on its own, crosses within the aim's tolerance of its target.
+      const state = request.preparedGeometry;
+      const options = resolveMtfOptions(request, settings);
+      const line = result.support.spectralLines[0];
+      const toStop = prepareEngineTrace(state, {
+        capture: "terminal",
+        stopAt: state.lens.stop.surfaceIndex + 1,
+        checkSemiDiameter: false,
+        directionNormalized: true,
+        ...spectralTraceOptions(state, mtfAimSpectrum(state, result.support, line)),
+      });
+      for (const field of result.fields.slice(1)) {
+        const launch = prepareMtfFieldLaunch(state, options, result.support, field.fieldAngleDeg!)!;
+        const lattice = aimMtfStopLattice(state, options, result.support, launch, 16, line)!;
+        expect(lattice.unaimedCount).toBe(0);
+        expect(lattice.aimedCount).toBeGreaterThan(0);
+        for (const ray of [lattice.chief, ...lattice.rays]) {
+          if (ray.status !== "aimed") continue;
+          const crossing = toStop(ray).terminalPoint;
+          const miss = Math.hypot(crossing[0] - ray.targetStopMm[0], crossing[1] - ray.targetStopMm[1]);
+          expect(miss).toBeLessThanOrEqual(lattice.residualToleranceMm);
+        }
+      }
+    },
+  );
 });

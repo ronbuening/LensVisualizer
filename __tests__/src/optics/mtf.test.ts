@@ -76,8 +76,13 @@ vi.mock("../../../src/optics/analysis/pupils/aimedPupil.js", async (importOrigin
       return {
         ...lattice,
         rays,
-        aimedCount: lattice.aimedCount - (unaimed - lattice.unaimedCount),
+        aimedCount: rays.filter((ray) => ray.status === "aimed").length,
+        blockedCount: rays.filter((ray) => ray.status === "blocked").length,
         unaimedCount: unaimed,
+        unaimedByReason: {
+          ...lattice.unaimedByReason,
+          "aim-not-converged": lattice.unaimedByReason["aim-not-converged"] + unaimed - lattice.unaimedCount,
+        },
       };
     },
   };
@@ -585,6 +590,30 @@ describe("MTF pupil sampling", () => {
           `${field.unaimedRays} pupil samples could not be aimed or traced: ${field.unaimedRays} touch no transmitted cell and are not counted.`,
         );
         if (method === "geometric") expect(field.sagittal).toEqual(clean.sagittal);
+      }
+    } finally {
+      unaimedCells.where = null;
+    }
+  });
+  it("says why when the aim finds no ray on the stop, and stops refining", () => {
+    // Every cell unaimed: a finer lattice solves its cells alike, so the coarsest grid ends the ladder with the aimer's
+    // reasons instead of passing for a thin beam.
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    unaimedCells.where = () => true;
+    try {
+      for (const method of ["geometric", "diffraction"] as const) {
+        const field = computeMtf(...mtfInputs(state, { ...mtfTestOptions, method })).fields[0];
+        expect([field.status, field.reason, field.gridSize, field.validRays]).toEqual([
+          "unavailable",
+          "aim-failed",
+          16,
+          0,
+        ]);
+        expect(field.unaimedRays).toBeGreaterThan(0);
+        expect(field.sagittal).toEqual([]);
+        expect(field.message).toBe(
+          `No sample of the 16-cell stop lattice could be aimed at 587.6 nm (${field.unaimedRays} aim-not-converged).`,
+        );
       }
     } finally {
       unaimedCells.where = null;

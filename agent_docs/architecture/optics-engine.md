@@ -136,8 +136,10 @@ meridian. Each ladder level's lattice is seeded from the same wavelength's latti
 than before. That coarsening is systematic where the beam is cut, so the outer fields of fast lenses can need 256
 cells to converge: the default cap (`MTF_DEFAULT_GRID_CAP`, the tab's Standard) is 256, and a field converged earlier
 never traces that level. The tab's Faster choice caps at 128 and labels the rest unconverged (`agent_docs/decisions.md`). A grid on which no ray transmits is `vignetted` and one with fewer than `MTF_MIN_RAYS` is `empty-pupil`;
-both refine, since a finer lattice can find a thin beam. No footprint scan or expansion runs where the stop defines the
-extent. What remains of launch-plane sampling: a field the aimed launch reaches only through the bounding sphere
+both refine, since a finer lattice can find a thin beam. A lattice that aims no cell at all, none of them proven
+blocked, is `aim-failed`, its message counting the aimer's reasons; it ends the ladder, since a finer lattice solves its
+cells alike. No footprint scan or expansion runs where the stop defines the extent. What remains of launch-plane
+sampling: a field the aimed launch reaches only through the bounding sphere
 (`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
 (`traceMtfLaunchPlaneBundle`), and reports `pupilSampling: "launch-plane"` with a note. No field does today: MTF
 refuses fisheye projections and rectilinear fields stay below the 89° launch cap. The field axis also keeps one
@@ -1299,9 +1301,12 @@ ray aiming on and in CODE V. A sample at normalised (px, py) is the ray from the
 stop surface at (px·R, py·R) about the axis, R = `request.aperture.stopSemiDiameterMm` (the stopped-down radius). The
 ray is collimated at the field's direction for an infinite object and passes through the object point for a finite one.
 The chief (0, 0) is the field's chief-ray solve, kept within its own acceptance, max(1e-7 R, 1e-7 mm); bundles take
-their chief from `launch.chief`, per channel. Samples are uniform in those coordinates with equal weights (uniform
-apodization on the stop); each tab keeps the bulk transmission it applied before, and nothing multiplies in the
-stop-to-launch Jacobian. Paraxial quantities (EP, XP, f-number, focal length) stay paraxial and labelled so.
+their chief from `launch.chief`, per channel. A finite object's chief starts from the caller's solved launch point
+(`AimedFiniteObjectField.chiefLaunch`; the MTF passes its stop-centre root), else from the straight line to the stop
+centre, which misses the front surfaces of a lens whose entrance pupil lies far ahead of its stop at close focus.
+Samples are uniform in those coordinates with equal weights (uniform apodization on the stop); each tab keeps the bulk
+transmission it applied before, and nothing multiplies in the stop-to-launch Jacobian. Paraxial quantities (EP, XP,
+f-number, focal length) stay paraxial and labelled so.
 
 `analysis/pupils/aimedPupil.ts` owns the launch, exported through `analysis.ts`. `prepareAimedPupilLaunch(request,
 samples, geometry, channel?)` is pure and deterministic: a sample's solve depends only on the request, field, channel
