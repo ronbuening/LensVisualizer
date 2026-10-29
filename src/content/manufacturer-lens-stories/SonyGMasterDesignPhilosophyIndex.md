@@ -1,7 +1,7 @@
 ---
 slug: sony-g-master-design-philosophy-index
 title: "Sony: G Master Design Philosophy"
-summary: An index of Sony's twelve G Master developer interviews on α Universe, each covering one lens, with exact Surface & Stop catalog matches.
+summary: An index of Sony's twelve numbered G Master developer interviews on α Universe plus its other G Master developer features, with exact Surface & Stop catalog matches.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 10
@@ -22,27 +22,30 @@ Installments are numbered 001 through 012 and are listed here newest first. Sony
 | --- | --- | --- | --- |
 | 012 | FE 24–70mm F2.8 GM II | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/012/) | [FE 24–70mm F2.8 GM II](/lens/sony-fe-24-70mm-f28-gm-ii) |
 | 011 | FE 12–24mm F2.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/011/) | [FE 12–24mm F2.8 GM](/lens/sony-fe-1224f28-gm) |
-| 010 | FE 600mm F4 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/010/) | — |
+| 010 | FE 600mm F4 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/010/) | [FE 600mm F4 GM OSS](/lens/sony-fe-600mm-f4-gm-oss) |
 | 009 | FE 135mm F1.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/009/) | [FE 135mm F1.8 GM](/lens/sony-fe-135-f18-gm) |
 | 008 | FE 24mm F1.4 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/008/) | [FE 24mm F1.4 GM](/lens/sony-fe-24mm-f14-gm) |
 | 007 | FE 400mm F2.8 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/007/) | [FE 400mm F2.8 GM OSS](/lens/sony-fe-400mm-f28-gm-oss) |
-| 006 | FE 16–35mm F2.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/006/) | — |
+| 006 | FE 16–35mm F2.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/006/) | [FE 16–35mm F2.8 GM](/lens/sony-fe-16-35mm-f28-gm) |
 | 005 | FE 100mm F2.8 STF GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/005/) | — |
 | 004 | FE 100–400mm F4.5–5.6 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/004/) | — |
 | 003 | FE 70–200mm F2.8 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/003/) | [FE 70–200mm F2.8 GM OSS](/lens/sony-fe-70-200-f28-gm-oss) |
 | 002 | FE 85mm F1.4 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/002/) | [FE 85mm F1.4 GM](/lens/sony-fe-85mm-f14-gm) |
 | 001 | FE 24–70mm F2.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/001/) | — |
 
-Installments 001 and 006 cover the first-generation FE 24–70mm F2.8 GM and FE 16–35mm F2.8 GM. The catalog holds the Mark II versions of those two lenses, which are separate optical designs, so those rows are deliberately left unlinked. Installment 002 links to the original FE 85mm F1.4 GM now held in the catalog.
+Installments 001 and 006 cover the first-generation FE 24–70mm F2.8 GM and FE 16–35mm F2.8 GM. Installment 006 links to the original FE 16–35mm F2.8 GM now held in the catalog. For the 24–70mm the catalog holds only the Mark II, a separate optical design, so row 001 is deliberately left unlinked. Installment 002 links to the original FE 85mm F1.4 GM.
 
 Sony's own [interview sub-index](https://www.sony.jp/ichigan/a-universe/g-master/interview/) is out of date: it lists ten installments and still marks the FE 12–24mm F2.8 GM as forthcoming. The [G Master landing page](https://www.sony.jp/ichigan/a-universe/g-master/) is the reliable entry point.
 
 ## Additional Sony Lens Design Material
 
-One G Master optical-design interview exists in English, outside the numbered Japanese series.
+Sony has also published G Master developer interviews outside the numbered series. The three Japanese features below are linked from the G Master landing page; the FE 50mm F1.2 GM interview also has an English edition on Alpha Universe. They are listed newest lens first.
 
-| Lens | Official article | Surface & Stop |
-| --- | --- | --- |
-| FE 50mm F1.2 GM | [What Goes Into Building The Best 50mm Lens](https://alphauniverse.com/stories/what-goes-into-building-the-best-50mm-lens-sony-designers-tell-the-inside-story-/) | [FE 50mm F1.2 GM](/lens/sony-fe-50mm-f12-gm) |
+| Lens | Published | Official article | Surface & Stop |
+| --- | --- | --- | --- |
+| FE 28–70mm F2 GM | 2025-07-02 | [FE 28-70mm F2 GM 開発者インタビュー](https://www.sony.jp/ichigan/a-universe/news/952/) | [FE 28–70mm F2 GM](/lens/sony-fe-28-70mm-f2-gm) |
+| FE 85mm F1.4 GM II | Not shown | [Developer roundtable (Japanese)](https://www.sony.jp/feature/products/camera/241008/) | [FE 85mm F1.4 GM II](/lens/sony-fe-85-f14-gm-ii) |
+| FE 50mm F1.2 GM | 2021-03-17 | [「G Master」の設計思想や魅力を開発陣が解説 FE 50mm F1.2 GM編](https://www.sony.jp/ichigan/a-universe/news/547/) | [FE 50mm F1.2 GM](/lens/sony-fe-50mm-f12-gm) |
+| FE 50mm F1.2 GM | 2021-04-20 | [What Goes Into Building The Best 50mm Lens](https://alphauniverse.com/stories/what-goes-into-building-the-best-50mm-lens-sony-designers-tell-the-inside-story-/) (English) | [FE 50mm F1.2 GM](/lens/sony-fe-50mm-f12-gm) |
 
 Sony's regional sites also carry pages titled "Engineer Interviews | G Master Lenses," but they did not serve content to automated checks and are not linked here until their contents can be confirmed.
