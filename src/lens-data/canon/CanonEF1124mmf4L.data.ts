@@ -23,6 +23,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  sag intrusion is 94.55% of the 7.54 mm axial gap; gapSagFrac = 0.96   ║
  * ║  preserves the patent aperture with 0.411 mm signed edge clearance.     ║
  * ║                                                                          ║
+ * ║  Original-PDF review 2026-10-30: Fig. 1, PDF page 2, and Numerical   ║
+ * ║  Example 1, PDF pages 12-13. Rear-face shoulders on S2/S4/S6/S8 use   ║
+ * ║  rimExtensionSd; all published optical caps remain unchanged. Native  ║
+ * ║  figure scale is about 8.6 px/mm; no outer land is added at a bond.  ║
+ * ║  Catalog-derived per-lens spectral copies are removed: existing     ║
+ * ║  compatible curves remain qualified proxies for unnamed materials.  ║
+ * ║                                                                          ║
  * ║  IMPORTANT: This file describes only the optical prescription:          ║
  * ║    ✓ Glass elements, refracting surfaces, stops, and zoom air gaps      ║
  * ║    ✗ No sensor cover glass, filters, diaphragm mechanics, or barrel     ║
@@ -71,10 +78,6 @@ const LENS_DATA = {
       focalLengthMm: -64.308486,
       glass: "S-LAH66 (OHARA special-order catalog; coordinate match, production melt not disclosed)",
       role: "Large front negative meniscus; establishes the negative lead and carries the polished front asphere.",
-      dPgF: -0.0092,
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 2,
@@ -108,10 +111,6 @@ const LENS_DATA = {
       focalLengthMm: -44.025018,
       glass: "S-FPM2 (OHARA; coordinate match, production melt not disclosed)",
       role: "Lower-dispersion negative member that extends the front unit without being one of Canon's two designated UD positions.",
-      dPgF: 0.0123,
-      nC: 1.59255,
-      nF: 1.60134,
-      ng: 1.60612,
     },
     {
       id: 5,
@@ -123,12 +122,8 @@ const LENS_DATA = {
       focalLengthMm: -79.442153,
       glass: "S-FPL53 (OHARA; Super UD-class position inferred from Canon's construction diagram)",
       apd: "inferred",
-      apdNote: "OHARA coordinate match; dPgF = +0.0461. Canon does not disclose the production melt by element number.",
-      role: "Extreme low-dispersion negative front-unit element; supplies strong secondary-spectrum leverage against E6.",
-      dPgF: 0.0461,
-      nC: 1.43733,
-      nF: 1.44195,
-      ng: 1.44442,
+      apdNote: "Compatible S-FPL53 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
+      role: "Extreme low-dispersion negative front-unit element; provides low-dispersion contrast with E6.",
     },
     {
       id: 6,
@@ -139,11 +134,7 @@ const LENS_DATA = {
       vd: 34.7,
       focalLengthMm: 42.103264,
       glass: "S-NBH8 (OHARA; coordinate match, production melt not disclosed)",
-      role: "Positive anomalous-flint member closing L1; partially offsets front-unit power and pairs dispersively with E5.",
-      dPgF: -0.0019,
-      nC: 1.71437,
-      nF: 1.73512,
-      ng: 1.74723,
+      role: "Positive high-dispersion flint-class member closing L1; partially offsets front-unit power and pairs dispersively with E5.",
     },
     {
       id: 7,
@@ -156,10 +147,6 @@ const LENS_DATA = {
       glass: "S-LAH99 (OHARA; coordinate match, production melt not disclosed)",
       role: "Very-high-index negative front component of the positive L2 focusing doublet.",
       cemented: "D1",
-      dPgF: 0.0054,
-      nC: 1.99105,
-      nF: 2.0254,
-      ng: 2.046,
     },
     {
       id: 8,
@@ -172,10 +159,6 @@ const LENS_DATA = {
       glass: "S-TIL27 (OHARA; coordinate match, production melt not disclosed)",
       role: "Strong positive rear component; the E7-E8 cemented doublet has a verified +27.927 mm net focal length.",
       cemented: "D1",
-      dPgF: 0.0024,
-      nC: 1.5709,
-      nF: 1.58476,
-      ng: 1.59275,
     },
     {
       id: 9,
@@ -188,10 +171,6 @@ const LENS_DATA = {
       glass: "TAFD35 (HOYA; exact coordinate match, production melt not disclosed)",
       role: "High-index negative front component of L2's second cemented doublet.",
       cemented: "D2",
-      dPgF: -0.0027,
-      nC: 1.90323,
-      nF: 1.92907,
-      ng: 1.94412,
     },
     {
       id: 10,
@@ -204,10 +183,6 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA; coordinate match, production melt not disclosed)",
       role: "Positive dense-flint rear component; the E9-E10 cemented pair remains net negative at -37.795 mm.",
       cemented: "D2",
-      dPgF: 0.0158,
-      nC: 1.79611,
-      nF: 1.82777,
-      ng: 1.84729,
     },
     {
       id: 11,
@@ -220,10 +195,6 @@ const LENS_DATA = {
       glass: "S-LAH58 (OHARA; coordinate match, production melt not disclosed)",
       role: "Negative front component of the L3 cemented triplet.",
       cemented: "T1",
-      dPgF: -0.0088,
-      nC: 1.87656,
-      nF: 1.89822,
-      ng: 1.9105,
     },
     {
       id: 12,
@@ -236,10 +207,6 @@ const LENS_DATA = {
       glass: "S-NSL36 (OHARA; coordinate match, production melt not disclosed)",
       role: "Positive crown middle component of the L3 triplet.",
       cemented: "T1",
-      dPgF: -0.0002,
-      nC: 1.51444,
-      nF: 1.52431,
-      ng: 1.5298,
     },
     {
       id: 13,
@@ -252,10 +219,6 @@ const LENS_DATA = {
       glass: "S-LAH55V (OHARA; coordinate match, production melt not disclosed)",
       role: "Negative rear component; the complete E11-E13 triplet is weakly negative in isolation.",
       cemented: "T1",
-      dPgF: -0.0075,
-      nC: 1.82898,
-      nF: 1.84852,
-      ng: 1.85956,
     },
     {
       id: 14,
@@ -267,12 +230,8 @@ const LENS_DATA = {
       focalLengthMm: 26.015283,
       glass: "S-FPL51 (OHARA; UD-class position inferred from Canon's construction diagram)",
       apd: "inferred",
-      apdNote: "OHARA coordinate match; dPgF = +0.0280. Canon does not disclose the production melt by element number.",
+      apdNote: "Compatible S-FPL51 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
       role: "Strong positive low-dispersion singlet and the principal positive standalone power in L3.",
-      dPgF: 0.028,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 15,
@@ -285,10 +244,6 @@ const LENS_DATA = {
       glass: "S-LAH58 (OHARA; coordinate match, production melt not disclosed)",
       role: "Strong negative front component of the final cemented doublet.",
       cemented: "D3",
-      dPgF: -0.0088,
-      nC: 1.87656,
-      nF: 1.89822,
-      ng: 1.9105,
     },
     {
       id: 16,
@@ -301,10 +256,6 @@ const LENS_DATA = {
       glass: "S-BAL42 (OHARA; coordinate match, production melt not disclosed)",
       role: "Positive crown rear component carrying the final image-side asphere.",
       cemented: "D3",
-      dPgF: -0.002,
-      nC: 1.58014,
-      nF: 1.58996,
-      ng: 1.5953,
     },
   ],
 
@@ -325,13 +276,14 @@ const LENS_DATA = {
         A14: 1.41029e-22,
       },
     },
-    { label: "2", R: 32.787, d: 10.7, sd: 31.05 },
+    { label: "2", R: 32.787, d: 10.7, sd: 31.05, rimExtensionSd: 41.995 },
     { label: "3", R: 42.207, d: 3.2, sd: 29.835, medium: 2 },
     {
       label: "4A",
       R: 20.133,
       d: 10.96,
       sd: 24.805,
+      rimExtensionSd: 29.835,
       asphere: { K: -3.08703, A4: 3.79875e-5, A6: -6.27286e-8, A8: 1.2997e-11, A10: 1.49707e-14, A12: 0, A14: 0 },
     },
     { label: "5", R: 100.037, d: 2.6, sd: 23.045, medium: 3 },
@@ -340,10 +292,11 @@ const LENS_DATA = {
       R: 47.753,
       d: 5.77,
       sd: 18.19,
+      rimExtensionSd: 23.045,
       asphere: { K: 0, A4: 1.15171e-5, A6: -2.29358e-9, A8: 2.08815e-10, A10: -7.57344e-13, A12: 1.20672e-15, A14: 0 },
     },
     { label: "7", R: 313.541, d: 1.3, sd: 17.92, medium: 4 },
-    { label: "8", R: 24.146, d: 7.54, sd: 15.475 },
+    { label: "8", R: 24.146, d: 7.54, sd: 15.475, rimExtensionSd: 17.92 },
     { label: "9", R: -76.811, d: 1.15, sd: 15.42, medium: 5 },
     { label: "10", R: 64.103, d: 0.89, sd: 15.23 },
     { label: "11", R: 39.327, d: 6.4, sd: 15.335, medium: 6 },

@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11838** glass elements examined
-- **2942** elements have multiple coordinate-compatible candidates
-- **525** lens files are affected
+- **2933** elements have multiple coordinate-compatible candidates
+- **523** lens files are affected
 - **309** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **154** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1700 |
+| Smallest reference-index residual | 1691 |
 | Evidence-source priority | 935 |
 | Vendor context | 293 |
 | Stable canonical-name order | 12 |
@@ -70,20 +70,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `729547 lanthanum-crown class (vendor unresolved)` | 1.72916 / 54.70 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 2 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E17 |
 | `883408 high-index lanthanum-flint class (vendor unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E18 |
 | `805254/805255 dense-flint class (vendor unresolved)` | 1.80518 / 25.40 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>N-SF6 (Schott, code, alternate code row)<br>S-TIH6 (Ohara, code, preferred code row)<br>FD60 (Hoya, code, alternate code row)<br>SF6 (Schott, code, alternate code row) | 1 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E19 |
-| `603607 — d-line coordinate class (historical vendor unresolved)` | 1.60311 / 60.70 (d) | J-SK14 — smallest d-line \|Δn\| (1.1e-8 vs 8.2e-7) | BACD14 (Hoya, code, alternate code row)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) L1 |
-| `805254 — d-line coordinate class (historical vendor unresolved)` | 1.80518 / 25.40 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, code, preferred code row)<br>SF6 (Schott, code, alternate code row) | 2 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) L4 |
-| `699301 — d-line coordinate class (historical vendor unresolved)` | 1.69895 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 1 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) L5 |
-| `806409 — d-line coordinate class (historical vendor unresolved)` | 1.80610 / 40.90 (d) | P-LASF47 — smallest d-line \|Δn\| (1.2e-7 vs 2.2e-6) | S-LAH53 (Ohara, code, preferred code row)<br>L-LAH53 (Ohara, code, alternate code row) | 1 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) L6 |
-| `516641 — d-line coordinate class (historical vendor unresolved)` | 1.51633 / 64.10 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) L10 |
 | `497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.49700 / 81.50 (d) | K-PFK80 — smallest d-line \|Δn\| (1.4e-6 vs 1.0e-4) | MC-FCD1-M20 (Hoya, code, preferred code row) | 2 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L2 |
 | `834372 class (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 2 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L3 |
 | `717295 class (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 1 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L5 |
 | `847239 class (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L6 |
 | `741278 class (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.74077 / 27.80 (d) | E-FD13 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH13 (Ohara, code, preferred code row) | 1 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L8 |
 | `773496 class (catalog-equivalent coefficient proxy; production supplier unspecified)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) L9 |
-| `805254 class (catalog vendor unresolved)` | 1.80518 / 25.40 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, code, preferred code row)<br>SF6 (Schott, code, alternate code row) | 1 | [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) L3 |
-| `583594 class (catalog vendor unresolved)` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) L4 |
-| `755275 class (catalog vendor unresolved)` | 1.75520 / 27.50 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 3.8e-7) | H-ZF6 (CDGM, code, alternate code row) | 1 | [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) L5 |
 | `497816 — low-dispersion / UD crown class (supplier unresolved)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 3 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) L2 |
 | `805254 — dense-flint class (supplier unresolved)` | 1.80518 / 25.40 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, code, preferred code row)<br>SF6 (Schott, code, alternate code row) | 1 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) L5 |
 | `883408 — high-index lanthanum class (supplier unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) L7 |

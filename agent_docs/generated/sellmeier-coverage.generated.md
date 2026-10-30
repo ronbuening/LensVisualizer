@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **689** lenses fully covered by trusted chromatic data
-- **686** visible lenses fully covered by trusted chromatic data
-- **681** lenses fully covered by strict Sellmeier data
-- **678** visible lenses fully covered by strict Sellmeier data
+- **687** lenses fully covered by trusted chromatic data
+- **684** visible lenses fully covered by trusted chromatic data
+- **679** lenses fully covered by strict Sellmeier data
+- **676** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10951 / 11844** non-air surfaces use strict catalog Sellmeier data
-- **92.5%** strict Sellmeier surface coverage overall
-- **10965 / 11844** non-air surfaces use trusted chromatic data
-- **92.6%** trusted chromatic coverage overall
+- **10934 / 11844** non-air surfaces use strict catalog Sellmeier data
+- **92.3%** strict Sellmeier surface coverage overall
+- **10948 / 11844** non-air surfaces use trusted chromatic data
+- **92.4%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -656,7 +656,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [YASHICA AUTO YASHINON-DS 20mm f/3.3](../../src/lens-data/yashica/YashicaAutoYashinonDS20mmf33.data.ts) | 11/11 | 11 | 11/11 |
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | 11/11 | 11 | 11/11 |
 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) | 11/11 | 11 | 11/11 |
-| [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) | 10/10 | 10 | 10/10 |
@@ -805,7 +804,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [YASHICA YASHINON-DX 21mm f/3.3](../../src/lens-data/yashica/YashicaYashinonDX21mmf33.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON 50mm f/0.95](../../src/lens-data/canon/Canon50mmf095Canon7.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON 50mm f/1.2](../../src/lens-data/canon/Canon50mmf12.data.ts) | 7/7 | 7 | 7/7 |
-| [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON NEW FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | 7/7 | 7 | 7/7 |
@@ -1354,18 +1352,20 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 322 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 323 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
 | 324 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 325 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
-| 326 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 327 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 328 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 329 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 330 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 331 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 332 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 333 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
-| 334 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 335 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 336 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 325 | [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 326 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
+| 327 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 328 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 329 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 330 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 331 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 332 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 333 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 334 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 335 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 336 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 337 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 338 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 
 ## Missing Surface Details
 
@@ -3693,6 +3693,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `575391 — supplier unresolved` | No catalog match |
 | 10 | Element 6 | abbe | `704408 — supplier unresolved` | No catalog match |
 
+### [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - US 4,826,301
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (623582 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (SK16 class comparison (patent 623607; production supplier unspecified); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (805254 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 7A | Element 4 | abbe | `Unmatched (583594 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 5 | abbe | `Unmatched (755275 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (541472 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (487702 class (catalog vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+
 ### [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7)
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3766,6 +3778,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 7 | abbe | `Unmatched (native nd=1.65000, vd=33.89; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 14 | Element 8 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
+
+### [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - JP 1991-141313 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source spectral line unspecified; former 603607 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 5 | abbe | `Unmatched (source spectral line unspecified; former 699301 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (source spectral line unspecified; former 806409 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 8 | abbe | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 2 more missing surfaces |
 
 ### [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - US 2025/0271647 A1
 

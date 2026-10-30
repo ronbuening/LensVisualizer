@@ -6,9 +6,9 @@
 **Filed:** October 14, 2014  
 **Published:** May 28, 2015  
 **Inventor:** Takahiro Hatada  
-**Applicant:** Canon Kabushiki Kaisha  
+**Applicant:** Canon Inc. (Canon Kabushiki Kaisha in the publication)
 **Title:** _Optical System and Image Pickup Apparatus Including the Same_  
-**Example details:** Example 1 (FIGS. 1, 2A, and 2B; ¶¶0023, 0027–0028, 0062)
+**Example details:** Numerical Example 1, ¶0062, PDF pages 12–13 (printed pages 5–6); Fig. 1 on PDF page 2 (drawing sheet 1)
 
 Numerical Example 1 is the patent embodiment corresponding to the production Canon EF 11-24mm f/4L USM. The identification is supported by several independent correspondences:
 
@@ -84,7 +84,7 @@ This lower-dispersion negative meniscus extends L1. Although its Abbe number is 
 
 nd = 1.43875, νd = 94.9. Glass: S-FPL53 coordinate match (OHARA; element-grade assignment inferred). f = −79.442 mm.
 
-E5 has the extreme 439/949 glass coordinate and an OHARA catalog ΔPg,F of +0.0461. Canon marks this position as low dispersion. Its S-FPL53 coordinates make it the more plausible Super-UD-class member of the two marked positions, but this remains an inference rather than a disclosed Canon melt assignment.
+E5 has the extreme 439/949 glass coordinate and uses a compatible S-FPL53 spectral proxy. Canon marks this position as low dispersion. Its S-FPL53 coordinates make it the more plausible Super-UD-class member of the two marked positions, but this remains an inference rather than a disclosed Canon melt assignment.
 
 ### E6 — Biconvex Positive (surfaces 11–12)
 
@@ -94,9 +94,9 @@ E6 closes L1 and partially offsets the five preceding negative elements. Its hig
 
 ### E7 — Negative Meniscus, cemented doublet D1 (surfaces 15–16)
 
-nd = 2.00100, νd = 29.1. Glass: TAFD55 exact coordinate match (HOYA; production melt not disclosed). f = −68.420 mm.
+nd = 2.00100, νd = 29.1. Glass: S-LAH99 compatible spectral proxy (OHARA; production melt not disclosed). f = −68.420 mm.
 
-HOYA TAFD55 reproduces the patent coordinate and predates the patent's 2013 priority filing. E7 is a very-high-index negative component. In isolation it is negative, but cementing it to E8 produces a strongly positive +27.927 mm doublet. Its high index permits substantial interface power without a correspondingly extreme external curvature.
+The data uses a compatible OHARA S-LAH99 catalog curve as a spectral proxy for the patent coordinate; this does not identify a production glass or supplier. E7 is a very-high-index negative component. In isolation it is negative, but cementing it to E8 produces a strongly positive +27.927 mm doublet. Its high index permits substantial interface power without a correspondingly extreme external curvature.
 
 ### E8 — Biconvex Positive, cemented doublet D1 (surfaces 16–17)
 
@@ -138,7 +138,7 @@ E13 closes the triplet. The complete E11–E13 cemented assembly is weakly negat
 
 nd = 1.49700, νd = 81.5. Glass: S-FPL51 coordinate match (OHARA; element-grade assignment inferred). f = +26.015 mm.
 
-E14 is the strongest positive standalone element in L3. Canon marks this position as low dispersion. Its S-FPL51 coordinates and ΔPg,F = +0.0280 make it the more plausible ordinary UD-class member, but the grade assignment remains inferred.
+E14 is the strongest positive standalone element in L3. Canon marks this position as low dispersion. Its S-FPL51-compatible coordinates make it the more plausible ordinary UD-class member, but the grade assignment remains inferred.
 
 ### E15 — Biconcave Negative, cemented doublet D3 (surfaces 28–29)
 
@@ -167,25 +167,26 @@ These values describe each cemented assembly in air. They are not interchangeabl
 
 The patent publishes only d-line refractive index and Abbe number. Catalog names below are coordinate matches used to provide a defensible dispersion model; they are not disclosures of Canon's production melts. Exact coordinate matching is therefore distinguished from production-glass identification.
 
-|  Element | Patent nd / νd | Catalog annotation                 | Match status                                       | Catalog ΔPg,F |
-| -------: | -------------: | ---------------------------------- | -------------------------------------------------- | ------------: |
-|       E1 | 1.77250 / 49.6 | OHARA S-LAH66                      | Exact coordinate; special-order catalog            |       −0.0092 |
-|       E2 | 1.58443 / 59.4 | OHARA S-BAL42                      | Catalog equivalent; Δnd = −0.00130                 |       −0.0020 |
-|       E3 | 1.85000 / 40.3 | HOYA M-TAFD305                     | Catalog equivalent; Δnd = +0.00135 / Δνd = −0.20  |       −0.0067 |
-|       E4 | 1.59522 / 67.7 | OHARA S-FPM2                       | Exact coordinate                                   |       +0.0123 |
-|       E5 | 1.43875 / 94.9 | OHARA S-FPL53                      | Exact coordinate; probable Super-UD-class position |       +0.0461 |
-|       E6 | 1.72047 / 34.7 | OHARA S-NBH8                       | Exact coordinate                                   |       −0.0019 |
-|       E7 | 2.00100 / 29.1 | HOYA TAFD55                        | Exact coordinate; cataloged before patent priority |             — |
-|       E8 | 1.57501 / 41.5 | OHARA S-TIL27                      | Exact coordinate                                   |       +0.0024 |
-|       E9 | 1.91082 / 35.3 | HOYA TAFD35                        | Exact coordinate                                   |       −0.0027 |
-|      E10 | 1.80518 / 25.4 | OHARA S-TIH6                       | Exact coordinate                                   |       +0.0158 |
-| E11, E15 | 1.88300 / 40.8 | OHARA S-LAH58                      | Exact coordinate                                   |       −0.0088 |
-|      E12 | 1.51742 / 52.4 | OHARA S-NSL36                      | Exact coordinate                                   |       −0.0002 |
-|      E13 | 1.83481 / 42.7 | OHARA S-LAH55V                     | Exact coordinate                                   |       −0.0075 |
-|      E14 | 1.49700 / 81.5 | OHARA S-FPL51                      | Exact coordinate; probable UD-class position       |       +0.0280 |
-|      E16 | 1.58313 / 59.4 | OHARA S-BAL42                      | Exact coordinate                                   |       −0.0020 |
+| Element | Patent nd / νd | Catalog curve | Qualification |
+|---|---|---|---|
+| E1 | 1.77250 / 49.6 | S-LAH66 | Compatible catalog spectral proxy |
+| E2 | 1.58443 / 59.4 | S-BAL42 | Compatible proxy; Δnd ≈ −0.00130 |
+| E3 | 1.85000 / 40.3 | M-TAFD305 | Compatible proxy; Δnd ≈ +0.00135, Δνd ≈ −0.20 |
+| E4 | 1.59522 / 67.7 | S-FPM2 | Compatible catalog spectral proxy |
+| E5 | 1.43875 / 94.9 | S-FPL53 | Compatible catalog spectral proxy |
+| E6 | 1.72047 / 34.7 | S-NBH8 | Compatible catalog spectral proxy |
+| E7 | 2.00100 / 29.1 | S-LAH99 | Compatible catalog spectral proxy |
+| E8 | 1.57501 / 41.5 | S-TIL27 | Compatible catalog spectral proxy |
+| E9 | 1.91082 / 35.3 | TAFD35 | Compatible catalog spectral proxy |
+| E10 | 1.80518 / 25.4 | S-TIH6 | Compatible catalog spectral proxy |
+| E11 | 1.88300 / 40.8 | S-LAH58 | Compatible catalog spectral proxy |
+| E12 | 1.51742 / 52.4 | S-NSL36 | Compatible catalog spectral proxy |
+| E13 | 1.83481 / 42.7 | S-LAH55V | Compatible catalog spectral proxy |
+| E14 | 1.49700 / 81.5 | S-FPL51 | Compatible catalog spectral proxy |
+| E15 | 1.88300 / 40.8 | S-LAH58 | Compatible catalog spectral proxy |
+| E16 | 1.58313 / 59.4 | S-BAL42 | Compatible catalog spectral proxy |
 
-The data file includes explicit catalog nC, nF, ng, and ΔPg,F values where those values were independently matched to the stored prescription. E7 instead resolves through the project's authoritative HOYA TAFD55 catalog entry, avoiding duplicate spectral constants. E2 and E3 now resolve through coefficient-backed S-BAL42 and M-TAFD305 catalog equivalents. Their residuals are stated explicitly because the patent discloses only d-line coordinates, not production glass names.
+All 16 modeled media resolve compatible catalog curves. The source publishes none of the per-element C/F/g line indices or partial-dispersion values formerly copied into the lens data. Those catalog-derived overrides are removed so the shared coefficient curves supply the qualified spectral model. Patent nd/νd values and the explicit E2/E3 coordinate residuals remain authoritative. Curve coverage does not identify historical suppliers, melts, chemistry or the production prescription.
 
 The repeated use of high-index lanthanum and dense-flint coordinates permits strong compact powers in L2 and L3. The two extreme low-dispersion positions are widely separated: E5 is negative in the front unit, while E14 is positive in L3. This is not a conventional cemented ED achromat; the design distributes axial and lateral chromatic correction across the zoom.
 
@@ -230,14 +231,16 @@ Surface 4 has $h=24.805$ mm while $|R|=20.133$ mm. A same-radius sphere is not r
 
 The data file preserves the patent effective semi-diameters. Surface 2, although spherical rather than aspherical, has a verified 71.27° rim slope at its listed clear radius. The per-lens renderer limit is consequently set to 72° rather than silently trimming the patent aperture. The closest signed cross-gap clearance occurs between surfaces 8 and 9: sag intrusion is 7.1287 mm across a 7.54 mm vertex gap, leaving 0.4113 mm at the shared clear radius. `gapSagFrac` is set to 0.96 to preserve that nonoverlapping patent geometry.
 
+The native 300-dpi Fig. 1 section resolves vertical shoulders behind the first four optical caps. Surface 2 keeps its published 31.05 mm clear radius and gains a drawn outer radius of 41.995 mm; surfaces 4, 6 and 8 keep 24.805, 18.19 and 15.475 mm clear radii and extend to 29.835, 23.045 and 17.92 mm. These outer radii follow the opposite faces’ published heights and the figure’s connected shoulders. They are inferred blank outlines, not additional optical aperture. The source radii, aspheres, effective diameters and zoom/focus controls remain unchanged.
+
 Canon states that the production lens uses one 87 mm ground-and-polished aspherical element. The patent's E1 effective diameter is 83.99 mm, making E1 the probable corresponding position, but Canon does not identify it by element number in the cited specification.
 
 ## Chromatic Correction Strategy
 
 Canon's construction diagram marks E5 and E14 as low-dispersion elements, while the product specification states that the lens contains one Super UD and one UD element. The diagram does not distinguish the grades. The patent coordinates add the relevant evidence:
 
-- E5 matches S-FPL53 at nd = 1.43875, νd = 94.9, with catalog ΔPg,F = +0.0461.
-- E14 matches S-FPL51 at nd = 1.49700, νd = 81.5, with catalog ΔPg,F = +0.0280.
+- E5 has S-FPL53-compatible coordinates at nd = 1.43875, νd = 94.9.
+- E14 has S-FPL51-compatible coordinates at nd = 1.49700, νd = 81.5.
 
 E5 is therefore the probable Super-UD-class position and E14 the probable UD-class position. The assignment is recorded as inferred, not as a Canon disclosure.
 
@@ -313,6 +316,8 @@ P=\sum\frac{n'-n}{Rnn'}=\sum\frac{\phi}{nn'},
 $$
 
 the complete d-line Petzval sum is +0.004166121 mm⁻¹. Its reciprocal magnitude is 240.031 mm. Every refracting interface, including cemented interfaces, is included; stops contribute zero.
+
+Fresh SVG outlines at the three zoom stations and repeated infinity-focus control states retain 16 finite, connected element paths and zero hidden renderer trimming. The source shoulder geometry is checked separately from sampled ray clearance and production correlation.
 
 No finite-focus EFL, focus travel, or close-focus magnification is reported because the patent provides no finite-focus prescription. Substituting a thin-lens estimate based on the manufacturer's MFD would mix reference-plane conventions and would not constitute an exact reconstruction.
 

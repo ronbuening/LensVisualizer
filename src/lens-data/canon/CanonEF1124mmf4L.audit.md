@@ -22,3 +22,86 @@ Both annotations leave the production supplier unspecified. No prescription, asp
 ### Analysis sync
 
 - Updated the E2/E3 element descriptions, glass table, and chromatic-data qualification.
+
+## 2026-10-30 — Original-PDF shoulders, concave ends and source-qualified glass
+
+### Exact source and native resolution
+
+Fresh inspection used the exact original 'patents/US20150146085A1.pdf', the May 28, 2015 A1 publication by Takahiro
+Hatada for Canon. Numerical Example 1 is ¶0062 on PDF page 12 (printed page 5): all surface radii, thicknesses,
+effective diameters, glass pairs and four asphere tables. Its zoom/BF table continues on PDF page 13 (printed page 6).
+Paragraph 0060 defines nd/νd on the d line and the standard conic equation. Fig. 1 is PDF page 2, drawing sheet 1,
+showing the wide section and movement arrows. No other publication or numerical example is substituted.
+
+The original sheets are 2560 × 3300-pixel 300-dpi scans. Fig. 1's front and rear native crops and the complete surface
+and asphere table were inspected at 300 dpi; larger renders would only upsample that source. The R1–R30 axial span
+is approximately 1135 native pixels for 131.51 mm (171.39 summed track minus 39.88 BF), about 8.6 px/mm. Two native
+pixels represent roughly ±0.23 mm before drawing/scale uncertainty. Effective diameters are printed dimensions and
+remain the optical authority. g1/g2 leaders, unit brackets, motion arrows, FP1/FP2/SP marks and IP are not glass edges.
+
+### Supported outer shoulders, with published optical caps retained
+
+| Surface | Before: clear sd / drawn outer (mm) | After: clear sd / drawn outer (mm) | Native figure cap/edge reading and disposition |
+|---|---|---|---|
+| S2 | 31.05 / 31.05 | 31.05 / 41.995 | About 271/374 px, q = 0.725 ±0.005; resolved long rear shoulder. |
+| S4A | 24.805 / 24.805 | 24.805 / 29.835 | About 203/263 px, q = 0.772 ±0.007; resolved rear shoulder. |
+| S6A | 18.19 / 18.19 | 18.19 / 23.045 | About 160/203 px, q = 0.788 ±0.009; resolved rear shoulder. |
+| S8 | 15.475 / 15.475 | 15.475 / 17.92 | About 139/160 px, q = 0.869 ±0.012; resolved rear shoulder. |
+
+The uncertainties above use one native pixel at the cap end and outer edge, ±(1+q)/edge-pixels. These are schematic
+ratios: especially S4 does not justify replacing the explicitly published cap by a pixel-derived one. Each adopted
+outer height follows its opposite face's published clear radius, consistent with the source's connected blank edge.
+All four use 'rimExtensionSd', preserving the cap, clear aperture and asphere validity domain. S2's 31.05 mm spherical
+cap retains its steep source-supported slope; its 41.995 mm shoulder does not extend the sphere past |R| = 32.787 mm.
+
+A larger spherical cap or a cut that shrank the published clear aperture was rejected. No 'rimCutDepthMm' is added;
+there is no source depth to assert with 'rimCutDepthSource'. All other concave ends were inspected, including the rear
+triplet and doublets. Their small rim differences do not resolve extra lands, and no opaque feature is added at a
+cemented interface or to an imaginary resin layer. The four source aspheres, all R/d values, published effective
+diameters, stop, flare stops and zoom/focus controls are retained. Existing 72° rim-angle and 0.96 cross-gap policies
+are unchanged; no tolerance is relaxed for this review.
+
+### Every modeled medium
+
+| Element / source faces | Retained clear sd front / rear (mm) | Confirmed source nd / νd | Qualified catalog annotation |
+|---|---|---|---|
+| E1, S1A–S2 | 41.995 / 31.05 | 1.77250 / 49.6 | S-LAH66 |
+| E2, S3–S4A | 29.835 / 24.805 | 1.58443 / 59.4 | S-BAL42 |
+| E3, S5–S6A | 23.045 / 18.19 | 1.85000 / 40.3 | M-TAFD305 |
+| E4, S7–S8 | 17.92 / 15.475 | 1.59522 / 67.7 | S-FPM2 |
+| E5, S9–S10 | 15.42 / 15.23 | 1.43875 / 94.9 | S-FPL53 |
+| E6, S11–S12 | 15.335 / 14.985 | 1.72047 / 34.7 | S-NBH8 |
+| E7, S15–S16 | 10.055 / 9.69 | 2.00100 / 29.1 | S-LAH99 |
+| E8, S16–S17 | 9.69 / 9.565 | 1.57501 / 41.5 | S-TIL27 |
+| E9, S18–S19 | 9.12 / 9.285 | 1.91082 / 35.3 | TAFD35 |
+| E10, S19–S20 | 9.285 / 9.36 | 1.80518 / 25.4 | S-TIH6 |
+| E11, S22–S23 | 9.535 / 9.15 | 1.88300 / 40.8 | S-LAH58 |
+| E12, S23–S24 | 9.15 / 9.2 | 1.51742 / 52.4 | S-NSL36 |
+| E13, S24–S25 | 9.2 / 9.26 | 1.83481 / 42.7 | S-LAH55V |
+| E14, S26–S27 | 9.53 / 9.82 | 1.49700 / 81.5 | S-FPL51 |
+| E15, S28–S29 | 9.795 / 9.86 | 1.88300 / 40.8 | S-LAH58 |
+| E16, S29–S30A | 9.86 / 10.445 | 1.58313 / 59.4 | S-BAL42 |
+
+All 16 source pairs and all four aspheric coefficient blocks match the original rows. There is no source-indexed
+hybrid/adhesive layer, filter or rear plate in this selected prescription. The published reference is d-line (587.6 nm);
+no per-element C/F/g indices, partial-dispersion measurements or selected-glass APD numbers are provided. Existing
+compatible catalog curves resolve all 16 elements and remain proxies rather than historical glass identifications.
+The two low-dispersion classifications remain inferred; neither the patent nor this review identifies supplier, melt,
+chemistry or production procurement.
+
+Removed 56 unsupported per-lens catalog copies: nC, nF, ng and dPgF on E1 and E4–E16. The removed values, in C/F/g
+order followed by dPgF, were E1: 1.7678/1.78337/1.79197; -0.0092; E4: 1.59255/1.60134/1.60612; 0.0123; E5: 1.43733/1.44195/1.44442; 0.0461; E6: 1.71437/1.73512/1.74723; -0.0019; E7: 1.99105/2.0254/2.046; 0.0054; E8: 1.5709/1.58476/1.59275; 0.0024; E9: 1.90323/1.92907/1.94412; -0.0027; E10: 1.79611/1.82777/1.84729; 0.0158; E11: 1.87656/1.89822/1.9105; -0.0088; E12: 1.51444/1.52431/1.5298; -0.0002; E13: 1.82898/1.84852/1.85956; -0.0075; E14: 1.49514/1.50123/1.50451; 0.028; E15: 1.87656/1.89822/1.9105; -0.0088; E16: 1.58014/1.58996/1.5953; -0.002. These were catalog-derived copies, not published selected-example measurements;
+no genuine source spectral value is removed. The shared coefficient curves now supply the qualified spectral model.
+The E5/E14 APD notes and roles no longer present those copied values as selected-material evidence. The public table
+and E7 description are synchronized to the data's S-LAH99 proxy, replacing stale TAFD55 wording.
+
+### Geometry and retained limitations
+
+Fresh actual SVGs at wide/middle/tele match the four source shoulders and retain connected cemented outlines. All
+441 zoom/focus combinations on a 0.05 control grid have 16 finite closed element paths and zero hidden renderer trim;
+focus states repeat infinity because the source gives no finite-focus trajectory. Source clear caps still pass the
+stated axial beams and full-frame corner chief rays at all three published zoom stations, including the ultra-wide
+field through the existing prepared vector-launch path. There is no inferred cut for the full cut-beam guard to
+exempt or skip. The existing source-precision track and conditional-expression rounding differences are retained.
+The outline review and sampled runtime clearance do not establish full skew-ray clearance, a production prescription
+or a historical material identity.

@@ -8,7 +8,7 @@
 **Priority:** November 11, 1985; November 25, 1985; March 6, 1986
 **Granted:** May 2, 1989
 **Inventor:** Keiji Ikemori
-**Assignee:** Canon Kabushiki Kaisha
+**Assignee:** Canon Inc. (named Canon Kabushiki Kaisha in the original)
 **Title:** Photographic System Having Soft Focus Function
 
 The prescription is the fixed Numerical Example 4 of US 4,826,301. The data model identifies it with the production CANON EF 135mm f/2.8 Soft Focus. The patent itself does not state that Example 4 became that commercial lens, so the correlation rests on convergent structural and functional evidence rather than an explicit manufacturer patent-to-product statement.
@@ -41,25 +41,25 @@ The patent calls the design a telephoto type. Under the project's strict geometr
 
 ### L1 — Biconvex Positive
 
-nd = 1.62299, νd = 58.2. Glass: 623582 class (catalog vendor unresolved). f = +79.823006 mm.
+n (source) = 1.62299, ν (source) = 58.2. Glass: Unmatched; conditional class comparison: 623582 class (catalog vendor unresolved). f = +79.823006 mm.
 
 L1 is the first positive collector in component I. Its relatively strong positive power establishes much of the front assembly's convergence before the beam reaches the soft-focus meniscus. The data file treats the six-digit glass designation only as a coordinate class; no manufacturer melt is asserted.
 
 ### L2 — Biconvex Positive
 
-nd = 1.62299, νd = 60.7. Glass: SK16-class coefficient proxy (patent 623607; production supplier unspecified). f = +119.679934 mm.
+n (source) = 1.62299, ν (source) = 60.7. Glass: Unmatched; conditional class comparison: SK16 class (patent 623607; production supplier unspecified). f = +119.679934 mm.
 
-L2 adds positive power while retaining a comparatively high Abbe number. Its printed index/Abbe pair is preserved exactly from the patent. Existing SK16-family catalog curves fall within the resolver's coordinate guard and provide a qualified coefficient proxy, but no exact public glass reproduces both printed coordinates and no production vendor is assigned.
+L2 adds positive power while retaining a comparatively high Abbe number. Its printed index/Abbe pair is preserved exactly from the patent. SK16-family curves are coordinate-compatible if the d-line convention is assumed, but the source does not explicitly identify the reference line for N/ν. The runtime therefore leaves the material unresolved; the class comparison selects no spectral curve and assigns no production vendor.
 
 ### L3 — Biconcave Negative
 
-nd = 1.80518, νd = 25.4. Glass: 805254 class (catalog vendor unresolved). f = -98.021477 mm.
+n (source) = 1.80518, ν (source) = 25.4. Glass: Unmatched; conditional class comparison: 805254 class (catalog vendor unresolved). f = -98.021477 mm.
 
 L3 is the negative member that completes component I. Its high index and low Abbe number contrast with L1 and L2, allowing the front component to retain positive net power without assigning all correction to the rear groups. No exact vendor identity or partial-dispersion behavior is claimed from the six-digit class alone.
 
 ### L4 — Negative Meniscus, One Aspherical Surface
 
-nd = 1.58313, νd = 59.4. Glass: 583594 class (catalog vendor unresolved). f = -421.002617 mm.
+n (source) = 1.58313, ν (source) = 59.4. Glass: Unmatched; conditional class comparison: 583594 class (catalog vendor unresolved). f = -421.002617 mm.
 
 L4 is component II and the defining control element of the design. It is a forward-convex negative meniscus located in a converging beam immediately ahead of the aperture stop. The patent states that rearward movement of a negative component II introduces under-corrected spherical aberration while attempting to limit changes in other aberrations. Example 4 uses exactly that arrangement (US 4,826,301, cols. 7–10).
 
@@ -67,37 +67,37 @@ The front surface 7A is aspherical. Canon's production record independently desc
 
 ### L5 — Positive Meniscus, Cemented Member of III-1
 
-nd = 1.75520, νd = 27.5. Glass: 755275 class (catalog vendor unresolved). f = +99.250341 mm.
+n (source) = 1.75520, ν (source) = 27.5. Glass: Unmatched; conditional class comparison: 755275 class (catalog vendor unresolved). f = +99.250341 mm.
 
 L5 is the positive member of the cemented III-1 focusing doublet. Its isolated positive power must not be confused with the power of the cemented assembly: combined with L6 at their shared interface, III-1 is net negative.
 
 ### L6 — Biconcave Negative, Cemented Member of III-1
 
-nd = 1.54072, νd = 47.2. Glass: 541472 class (catalog vendor unresolved). f = -36.882007 mm.
+n (source) = 1.54072, ν (source) = 47.2. Glass: Unmatched; conditional class comparison: 541472 class (catalog vendor unresolved). f = -36.882007 mm.
 
 L6 supplies the dominant negative isolated power in III-1. Together L5 and L6 form the patent's negative front sub-component of component III. The cemented pair has a computed focal length of -57.976146 mm and translates as a unit for ordinary rear focusing.
 
 ### L7 — Biconvex Positive
 
-nd = 1.48749, νd = 70.2. Glass: 487702 class (catalog vendor unresolved). f = +81.899684 mm.
+n (source) = 1.48749, ν (source) = 70.2. Glass: Unmatched; conditional class comparison: 487702 class (catalog vendor unresolved). f = +81.899684 mm.
 
 L7 is the stationary positive III-2 sub-component. It follows the moving negative III-1 group and completes the rear architecture without participating in either the modeled ordinary focus motion or the patent-published soft-focus compensation motion.
 
 ## Glass Identification / Selection
 
-The patent publishes d-line refractive index and Abbe number but does not identify suppliers or glass trade names. The data therefore uses supplier-neutral coordinate classes and qualified catalog-equivalent coefficient proxies. These improve chromatic tracing without establishing what Canon purchased or melted for production.
+The original defines refractive index N and Abbe number ν without explicitly linking those prescription coordinates to a spectral line (column 9). The d/C/g aberration curves in Figures 12/13 provide spectral context and support the retained d-line tracing convention as an approximation; they do not supply individual line indices or independently define the table's reference. All seven media retain their numeric pairs, explicit source-reference notes and `Unmatched` status. Conditional class comparisons select no catalog spectral curve and do not identify historical supplier, melt or chemistry.
 
-| Element | Data-file glass annotation | nd | νd | Status |
+| Element | Conditional class comparison | n (source) | ν (source) | Status |
 |---|---|---:|---:|---|
-| L1 | 623582 class | 1.62299 | 58.2 | Coordinate class; vendor unresolved |
-| L2 | SK16-class coefficient proxy | 1.62299 | 60.7 | Source pair preserved; compatible curve, supplier unspecified |
-| L3 | 805254 class | 1.80518 | 25.4 | Coordinate class; vendor unresolved |
-| L4 | 583594 class | 1.58313 | 59.4 | Coordinate class; vendor unresolved |
-| L5 | 755275 class | 1.75520 | 27.5 | Coordinate class; vendor unresolved |
-| L6 | 541472 class | 1.54072 | 47.2 | Coordinate class; vendor unresolved |
-| L7 | 487702 class | 1.48749 | 70.2 | Coordinate class; vendor unresolved |
+| L1 | 623582 class | 1.62299 | 58.2 | Unmatched; source reference and supplier unresolved |
+| L2 | SK16 conditional class comparison | 1.62299 | 60.7 | Unmatched; source pair preserved and reference unspecified |
+| L3 | 805254 class | 1.80518 | 25.4 | Unmatched; source reference and supplier unresolved |
+| L4 | 583594 class | 1.58313 | 59.4 | Unmatched; source reference and supplier unresolved |
+| L5 | 755275 class | 1.75520 | 27.5 | Unmatched; source reference and supplier unresolved |
+| L6 | 541472 class | 1.54072 | 47.2 | Unmatched; source reference and supplier unresolved |
+| L7 | 487702 class | 1.48749 | 70.2 | Unmatched; source reference and supplier unresolved |
 
-No element carries authored nC, nF, ng, or dPgF data because Numerical Example 4 does not publish those quantities and no exact vendor melt is established. Catalog-equivalent curves do not change that limitation. Consequently, the analysis makes no apochromatic or anomalous-partial-dispersion claim. The patent's chromatic aberration plots show system behavior, but they do not supply the element-level spectral data needed to infer a particular anomalous-dispersion strategy.
+No element carries authored nC, nF, ng, or dPgF data because Numerical Example 4 does not publish those quantities and no exact vendor melt is established. The previously active catalog-equivalent curves are disabled while the source reference remains unverified; chromatic tracing uses the retained index/Abbe approximation. Consequently, the analysis makes no apochromatic or anomalous-partial-dispersion claim. The patent's chromatic aberration plots show system behavior, but they do not supply the element-level spectral data needed to infer a particular anomalous-dispersion strategy.
 
 ## Focus Mechanism
 
@@ -146,7 +146,7 @@ The patent further makes Example 4's effective full-open aperture state-dependen
 
 The data expresses that mechanism without inventing a moving diaphragm. `nominalFno = 2.8` defines the full-open pupil reference; the L4 clear radii are inferred from the soft-state f/2.8 axial bundle. Exact tracing then gives an effective sharp-state f-number of 3.341365 and a soft-state value of 2.800000. The sharp result is therefore a model computation consistent with the patent's rounded f/3.4, not a separately published stop diameter.
 
-The patent publishes no clear semi-diameters. Surface 7A and surface 8 are assigned inferred soft-state clear radii of 15.675574 mm and 14.574842 mm, and the remaining semi-diameters are conservative ray-envelope values constrained against the patent's Figure 10 silhouette and the current geometry rules. The axial station of the aperture stop itself is not inferred: it is the patent's R9 stop row. Its authored 14.114355 mm semi-diameter is computed from the full-open f/2.8 pupil semantics.
+The patent publishes no clear semi-diameters. Surface 7A and surface 8 are assigned inferred soft-state clear radii of 15.675574 mm and 14.574842 mm, and the remaining semi-diameters are conservative ray-envelope values constrained against the patent's Figure 10 silhouette and the current geometry rules. The axial station of the aperture stop itself is not inferred: it is the patent's R9 stop row. Its derived 14.114355 mm baseline semi-diameter follows the full-open f/2.8 pupil semantics; no stop radius is authored as a source dimension.
 
 Moving L4 alone shifts the computed Gaussian image plane by -4.921971 mm. Adding the patent-published III-1 compensation reduces the paraxial residual to -0.330226 mm, removing approximately 93.3% of that Gaussian shift. The remaining paraxial residual is not treated as a source error: the patent discusses compensation of the best-focus plane while deliberately introducing large spherical aberration, and best focus in that condition need not coincide with the Gaussian paraxial plane.
 
@@ -170,15 +170,23 @@ The selected Example 4 prescription therefore satisfies both the general and the
 
 The prescription is transcribed without dimensional scaling. No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical component is included. Numerical Example 4 ends at optical surface R14 and does not publish the final image-plane spacing; the data therefore uses the independently computed sharp-infinity paraxial BFD of 59.576973 mm as surface 14's rear spacing to the fixed image plane.
 
-No patent radius, thickness, refractive index, or Abbe value is replaced by a catalog approximation. In particular, L2 retains the printed 1.62299/60.7 pair. The semi-diameters and stop radius are modeling inferences because the patent publishes no clear-aperture table. Those inferred dimensions are not presented as source facts.
+No patent radius, thickness, refractive index, or Abbe value is replaced by a catalog approximation. In particular, L2 retains the printed 1.62299/60.7 pair. The semi-diameters and derived stop radius are modeling inferences because the patent publishes no clear-aperture table. Those inferred dimensions are not presented as source facts.
 
 The normal/soft control endpoints are patent-published. The 1.3 m ordinary-focus endpoint is not; it remains explicitly identified as a constrained reconstruction. The production lens's marketed 135 mm and f/2.8 values remain separate from the design's computed 135.043150 mm EFL and Example 4's state-dependent f/3.4-to-f/2.8 aperture behavior.
+
+## Original-figure shape and glass boundary
+
+The supplied original is a 300 ppi raster scan (2320 × 3408 pixels per page). Numerical Example 4, the exact normal/soft gap table and the asphere equation occupy PDF page 21, column 9; the example's coefficients continue at the top of column 10 on that same page. Figures 10A/10B are on PDF page 10, sheet 9 of 15. Native details were inspected directly; ray bundles, arrows, group brackets and stop strokes were excluded from the glass outlines.
+
+The Figure 10A front-to-rear optical-vertex span is approximately 500 native pixels for the 74.72 mm normal-state lens track, giving about 6.7 px/mm. Stroke picks alone are about ±1–2 native pixels; the figure's approximate proportions and ray overlays make practical semi-height comparisons uncertain by approximately ±1 mm. The existing seven element heights and all concave ends are retained: no separate vertical shoulder or truncated concave cap is resolved strongly enough to justify a new land or cut. The cemented L5/L6 interface remains continuous and carries no opaque land; the moving L4 is one glass element, without an invented resin layer.
+
+The normal/soft clear-cap difference is intentional source behavior. Enlarging L4 merely to pass a nominal f/2.8 axial beam in NORMAL would erase the original's stated f/3.4-to-f/2.8 mechanism. Shape resemblance, sampled centered ray clearance and production correlation remain separate conclusions. Ordinary close focus remains the previously qualified reconstruction, and the soft-control residual focus shift is preserved.
 
 ## Verification Summary
 
 Independent computation from the final TypeScript arrays gives a sharp-infinity EFL of 135.043150 mm, only 0.043150 mm above the patent's rounded 135 mm value. A sequential height/reduced-angle trace and an independent ABCD matrix product agree to the reported numerical precision.
 
-The final geometry was checked over a 5×5 focus-by-soft-control grid. The smallest modeled element edge thickness is 1.495695 mm, the largest actual rim angle is 33.755871°, and the tightest shared-gap geometry retains 0.973363 mm margin under the current 0.90-gap intrusion rule. The verified chief ray at the published field edge (ω = 9.1°, corresponding to the 18.2° full field) reaches the image side in all tested states. These values are model validation results, not patent specifications.
+The current geometry was sampled over 21 focus positions and 21 independent SOFT-control positions, including both source endpoints. All seven rendered element outlines remain connected and finite, with no hidden renderer trimming. The modeled corner chief ray reaches approximately 21.65 mm image height, and the chief ray at the published 9.1° field edge converges and traces through all sampled centered states. A separate infinity aperture sweep over the SOFT control reproduces a smooth change from about f/3.341365 in NORMAL to f/2.800000 in SOFT. The default aperture census flags the normal-state shortfall relative to the global f/2.8 reference; that is the source-supported limiting action of L4 and is retained. These are sampled model results, not production specifications or a full skew-ray clearance certificate.
 
 The prescription's surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is +0.001742724487 mm⁻¹. With the stated convention `RP = -1/ΣP`, the corresponding signed Petzval radius is -573.814167 mm.
 
