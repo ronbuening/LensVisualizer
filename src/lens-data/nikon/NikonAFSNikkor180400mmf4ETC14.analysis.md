@@ -305,7 +305,7 @@ conditions the beam entering G4D.
 The patent supplies d-line refractive indices and Abbe numbers but does not name glass vendors. The data files therefore
 use vendor-class labels only where an authoritative catalog reproduces the coordinate pair, and retain six-digit class
 labels where no defensible public match was found. A catalog-class match does not establish the glass actually procured
-for the patent prototype or production lens.
+for the patent prototype or production lens. The fresh resolver review finds compatible coefficient curves for 19 of the 27 powered TC-out elements and 26 of the 35 powered TC-in elements. FL1 and FL2 each resolve separately to the qualified J-BK7 proxy. The eight unresolved shared coordinates are L23, L43, L44, L45, L47, L48, L49, and L410; TC-in additionally leaves Lx2 unresolved. These retain source coordinates without forced catalog identities.
 
 | Glass or class | nd | νd | Elements in complete TC-in model |
 | --- | ---: | ---: | --- |
