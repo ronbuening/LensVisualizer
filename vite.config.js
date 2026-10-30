@@ -11,6 +11,10 @@ export const TOOLING_TESTS = [
   "__tests__/scripts/convertLensDataCorpus.test.ts",
 ];
 
+const RIM_CUT_TEST = "__tests__/src/optics/rimCutBeams.test.ts";
+const RIM_CUT_PROJECT_COUNT = 16;
+const TEST_EXCLUDES = [...configDefaults.exclude, "**/.claude/**", "tmp/**", ...TOOLING_TESTS];
+
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
@@ -55,7 +59,20 @@ export default defineConfig(({ isSsrBuild }) => ({
     /* Report generators live in reports/*.report.ts, outside the default *.test.* pattern;
      * `npm run generate:reports` (vitest.reports.config.js) runs them. */
     // Local patent-audit scratch files are not part of the maintained test suite.
-    exclude: [...configDefaults.exclude, "**/.claude/**", "tmp/**", ...TOOLING_TESTS],
+    exclude: TEST_EXCLUDES,
+    /* Vitest schedules files, not synchronous cases. These projects partition the one shared corpus suite so its
+     * lenses can use separate workers without changing the beam search or adding per-batch test files. */
+    projects: [
+      { extends: true, test: { name: "unit", exclude: [...TEST_EXCLUDES, RIM_CUT_TEST] } },
+      ...Array.from({ length: RIM_CUT_PROJECT_COUNT }, (_, index) => ({
+        extends: true,
+        test: {
+          name: `rim-${index}`,
+          include: [RIM_CUT_TEST],
+          provide: { rimCutCorpusShard: { index, count: RIM_CUT_PROJECT_COUNT } },
+        },
+      })),
+    ],
     coverage: {
       provider: "v8",
       /* Source files only: a bare `**` also pulled in each folder's readme.md, which the

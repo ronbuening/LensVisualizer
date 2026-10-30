@@ -29,11 +29,8 @@
  */
 
 import { prepareRuntimeState } from "../../state/runtimeAdapters.js";
-import {
-  computeAnalysisFieldGeometryAtState,
-  entrancePupilAtState,
-  solveChiefRayForRuntimeLens,
-} from "../../state/fieldAdapters.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../state/fieldAdapters.js";
+import { computeChiefRaySolve } from "../../field/chiefRaySolve.js";
 import { tracingHalfFieldAtZoom } from "../../state/stationTables.js";
 import { wideOpenStopAtZoom } from "../../state/apertureStop.js";
 import { launchSurfaceForFieldDeg, projectionLaunchSlopeForField } from "../../field/projection.js";
@@ -522,7 +519,8 @@ function fieldLaunch(U: RuntimeLens, bs: BeamState, fieldDeg: number, chief?: Ve
     return "launches from the bounding sphere, not the object plane";
   const slope = projectionLaunchSlopeForField(U, fieldDeg);
   if (slope.status === "out-of-domain") return "lies outside the projection's launch domain";
-  const yLaunch = chief ? chief[1] : solveChiefRayForRuntimeLens(fieldDeg, bs.focusT, bs.zoomT, U).yLaunch;
+  // This is only a seed: findSeed independently searches the pupil if it fails. Do not publish it as an analysis solve.
+  const yLaunch = chief ? chief[1] : computeChiefRaySolve(state, { fieldAngleDeg: fieldDeg }).yLaunch;
   const yChief = Number.isFinite(yLaunch) ? yLaunch : 0;
   const geometry: AimedPupilFieldGeometry = { uField: slope.uField, yChief };
   return { geometry, ray: aimedLaunchFrameRay(state, geometry), chief: [0, yChief] };

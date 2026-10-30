@@ -7,6 +7,10 @@ on:
   push:
     branches: [main, engine-next, lens-v2-migration, optics-rewrite/stage-8]
 
+concurrency:
+  group: quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-format:
     runs-on: ubuntu-latest
@@ -37,7 +41,7 @@ jobs:
       - run: npm run generate:metadata
       - run: npm run typecheck
 
-  test:
+  test-unit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,10 +52,78 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm run test
-      # The tooling suite, run through Vitest directly: `npm run test:tooling` would first regenerate the
-      # metadata that `npm run test` generated in the step above.
-      - run: npx vitest run --config vitest.tooling.config.js
+      - run: npm run test -- --project unit
+
+  test-rims:
+    name: test-rims (${{ matrix.group }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: 1
+            first: rim-0
+            second: rim-1
+          - group: 2
+            first: rim-2
+            second: rim-3
+          - group: 3
+            first: rim-4
+            second: rim-5
+          - group: 4
+            first: rim-6
+            second: rim-7
+          - group: 5
+            first: rim-8
+            second: rim-9
+          - group: 6
+            first: rim-10
+            second: rim-11
+          - group: 7
+            first: rim-12
+            second: rim-13
+          - group: 8
+            first: rim-14
+            second: rim-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: npm
+      - run: npm ci
+      - run: npm run test -- --project "${{ matrix.first }}" --project "${{ matrix.second }}"
+
+  test-tooling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: npm
+      - run: npm ci
+      - run: npm run test:tooling
+
+  # Keep the existing required check name; every partition must pass before the build can start.
+  test:
+    if: always()
+    needs: [test-unit, test-rims, test-tooling]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every test group to pass
+        env:
+          UNIT_RESULT: ${{ needs.test-unit.result }}
+          RIM_RESULT: ${{ needs.test-rims.result }}
+          TOOLING_RESULT: ${{ needs.test-tooling.result }}
+        run: |
+          test "$UNIT_RESULT" = success
+          test "$RIM_RESULT" = success
+          test "$TOOLING_RESULT" = success
 
   audit:
     runs-on: ubuntu-latest
