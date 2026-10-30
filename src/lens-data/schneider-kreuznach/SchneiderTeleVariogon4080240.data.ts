@@ -27,6 +27,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ SEMI-DIAMETERS: modeled from verified ray envelopes, sectional geometry,    ║
  * ║ and current edge/rim/gap constraints. Surfaces 7–10 use 15.0 mm SD so the ║
  * ║ reconstructed d8′ minimum near 200 mm retains shared-band clearance.       ║
+ * ║ Front S1/S2 are 35.5 mm and S3–S5 33 mm after a fresh Figure 2 review.    ║
+ * ║ These improve, but do not establish, full-frame coverage.                   ║
  * ║ These are modeled dimensions, not patent-published clear apertures.        ║
  * ║                                                                            ║
  * ║ GLASS: the patent publishes nd/νd coordinates only. Catalog-like labels    ║
@@ -268,11 +270,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 143.44, d: 8.4, sd: 31, medium: 1 },
-    { label: "2", R: -333.8, d: 0.15, sd: 31 },
-    { label: "3", R: 77.55, d: 9.73, sd: 29, medium: 2 },
-    { label: "4", R: 1288, d: 2.87, sd: 29, medium: 3 },
-    { label: "5", R: 134.64, sd: 29 },
+    { label: "1", R: 143.44, d: 8.4, sd: 35.5, medium: 1 },
+    { label: "2", R: -333.8, d: 0.15, sd: 35.5 },
+    { label: "3", R: 77.55, d: 9.73, sd: 33, medium: 2 },
+    { label: "4", R: 1288, d: 2.87, sd: 33, medium: 3 },
+    { label: "5", R: 134.64, sd: 33 },
     { label: "6", R: -210, d: 3, sd: 18.0, medium: 4 },
     { label: "7", R: -80.2, d: 1.5, sd: 17.0, medium: 5 },
     { label: "8", R: 46.39, sd: 17.0 },
