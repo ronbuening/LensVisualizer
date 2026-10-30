@@ -227,7 +227,7 @@ Because the conic term contains `1 + ε` under the square root, the LensVisualiz
 | 32A | -6.2476 | +2.39974e-5 | -2.88771e-8 | -1.11697e-10 | -1.02647e-12 |
 | 35A | -12.8865 | +2.35429e-5 | -4.67954e-8 | -1.19880e-10 | -1.40158e-13 |
 
-No asphere clear-aperture height is published by the patent. Departures can therefore be quoted only at the **authored model semi-diameters**, not as source apertures. At those verified model radii, the polynomial departure from the conic base is +0.180875 mm at 7A (`sd = 10.7 mm`), -0.487197 mm at 20A (`sd = 14.5 mm`), +0.299800 mm at 32A (`sd = 12.0 mm`), and +0.329425 mm at 35A (`sd = 13.0 mm`). The sign here indicates whether the polynomial terms add to or subtract from the conic-base sag at the modeled rim; it is not an assertion about a single aberration term.
+No asphere clear-aperture height is published by the patent. Departures can therefore be quoted only at the **authored model semi-diameters**, not as source apertures. At those verified model radii, the polynomial departure from the conic base is +0.395001 mm at 7A (`sd = 14.0 mm`), -0.487197 mm at 20A (`sd = 14.5 mm`), +0.299800 mm at 32A (`sd = 12.0 mm`), and +0.329425 mm at 35A (`sd = 13.0 mm`). The sign here indicates whether the polynomial terms add to or subtract from the conic-base sag at the modeled rim; it is not an assertion about a single aberration term.
 
 No scaling is applied. With `s = 1.0`, the general scaling law `A_p,scaled = A_p,patent / s^(p-1)` leaves every coefficient unchanged, and `K` is unchanged by definition.
 
@@ -237,7 +237,7 @@ The design alternates high- and low-Abbe coordinates within the negative G2 grou
 
 The patent's prose specifically calls for low-dispersion lenses in the third and fourth groups. In the data, the recurring `497816` and `487702` classes are the highest-Abbe ordinary media and occupy positive elements in those groups. The interpretation supported by the source is therefore that chromatic correction is distributed across several groups rather than confined to one cemented achromat.
 
-The available data do not support a stronger spectral claim. Because the prescription has neither verified catalog Sellmeier assignments nor published `nC`, `nF`, `ng`, or `dPgF`, the LensVisualizer model should not be described as APO, superachromatic, or as using a proven anomalous-partial-dispersion strategy. Any wavelength-dependent simulation beyond ordinary Abbe approximation would require additional source data.
+The available data do not support a stronger spectral claim. The source publishes no `nC`, `nF`, `ng`, or `dPgF`. Sixteen compatible catalog coefficient curves provide qualified spectral proxies, while four thin layers remain unresolved. This does not establish APO performance or a patent-measured anomalous-partial-dispersion strategy.
 
 ## Conditional Expressions
 
@@ -288,3 +288,11 @@ The inferred geometry also remains within the current project limits in all six 
 7. HIKARI GLASS CO., LTD., **Optical Glass Catalog Download**, official HIKARI catalog data used for coordinate cross-checking. `https://www.hikari-g.co.jp/optical_glass/catalog/`
 8. CDGM, **Colourless Optical Glass**, official product/catalog material used in the Stage-1 coordinate audit. `https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods`
 9. SUMITA OPTICAL GLASS, Inc., **Optical Glass Data Book / Downloads**, official catalog data used for coordinate cross-checking. `https://www.sumita-opt.co.jp/en/download/`
+
+## Fresh original-patent shape and glass review
+
+The original US7075731B1 Fig.1 was checked again, with the sole exemplary table and d-line587.6nm definition on PDF9. Four0.2mm source layers remain unresolved; sixteen ordinary positions have compatible catalog curves. Existing printed Abbe errata146.6/141.2→46.6/41.2 remain disclosed. Layer labels qualify modeled resin rather than identifying chemistry.
+
+H1's source-drawn shoulder now has a constrained14mm connected layer/substrate body, with S9 clear10.6mm. S14 retains11.5mm clear and reaches12.8mm, with its shared S15 kept continuous. The full schematic H1 body is larger; these adopted dimensions are bounded inferences, not patent dimensions. Independent full numeric-cut equivalents reach10.5022/10.5185mm and retain the required0.05mm clearance. No source-depth exemption or opaque cemented land is used. Current nine-state SVGs have zero hidden trim; centered chiefs and stated apertures pass. Stop-lattice counts retain8414/lose0/gain380, not flux.
+
+All current named classes are compatible spectral proxies; none identifies a historical supplier, melt, resin chemistry or cure. Source index/Abbe values remain separate from coefficient models.

@@ -19,7 +19,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   • S34 νd: 141.2 -> 41.2 (same nd=1.53610 hybrid medium as S7/S20/S31).                           ║
  * ║                                                                                                    ║
  * ║ HYBRID MODELING: the four published 0.2 mm nd=1.53610 / νd=41.2 media are modeled explicitly      ║
- * ║ as aspheric resin-like laminate entries. `elements` therefore has 20 modeled material entries,     ║
+ * ║ as aspheric thin layers (resin chemistry is unconfirmed). `elements` therefore has 20 modeled material entries,     ║
  * ║ while elementCount remains the physical/marketed 16-element count and groupCount remains 14.       ║
  * ║ No generic synthetic cement layers are added.                                                       ║
  * ║                                                                                                    ║
@@ -115,8 +115,8 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4r",
-      label: "Element 4 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 4 thin layer (modeled resin)",
+      type: "Hybrid Layer (1× Asph; modeled resin)",
       nd: 1.5361,
       vd: 41.2,
       focalLengthMm: -337.683376,
@@ -203,8 +203,8 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L10r",
-      label: "Element 10 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 10 thin layer (modeled resin)",
+      type: "Hybrid Layer (1× Asph; modeled resin)",
       nd: 1.5361,
       vd: 41.2,
       focalLengthMm: 476.356235,
@@ -292,8 +292,8 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L15r",
-      label: "Element 15 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 15 thin layer (modeled resin)",
+      type: "Hybrid Layer (1× Asph; modeled resin)",
       nd: 1.5361,
       vd: 41.2,
       focalLengthMm: 615.414913,
@@ -318,8 +318,8 @@ const LENS_DATA = {
     {
       id: 20,
       name: "L16r",
-      label: "Element 16 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 16 thin layer (modeled resin)",
+      type: "Hybrid Layer (1× Asph; modeled resin)",
       nd: 1.5361,
       vd: 41.2,
       focalLengthMm: 401.524526,
@@ -343,18 +343,18 @@ const LENS_DATA = {
       label: "7A",
       R: 91.4948,
       d: 0.2,
-      sd: 10.7,
+      sd: 14.0,
       medium: 4,
       asphere: { K: -1.7698, A4: 1.51609e-5, A6: -2.40934e-9, A8: -3.815e-11, A10: -3.90581e-13, A12: 0, A14: 0 },
     },
-    { label: "8", R: 60.7311, d: 1.0, sd: 10.7, medium: 5 },
-    { label: "9", R: 15.3347, d: 5.7, sd: 10.2 },
+    { label: "8", R: 60.7311, d: 1.0, sd: 14.0, medium: 5 },
+    { label: "9", R: 15.3347, d: 5.7, sd: 10.6, rimExtensionSd: 14.0 },
     { label: "10", R: -49.6859, d: 0.8, sd: 10.2, medium: 6 },
     { label: "11", R: 56.8731, d: 0.1, sd: 10.2 },
     { label: "12", R: 34.3769, d: 5.0582, sd: 11.6, medium: 7 },
     { label: "13", R: -70.7589, d: 3.8077, sd: 11.5 },
-    { label: "14", R: -17.7484, d: 1.0, sd: 11.5, medium: 8 },
-    { label: "15", R: 88.895, d: 2.4, sd: 12.2, medium: 9 },
+    { label: "14", R: -17.7484, d: 1.0, sd: 11.5, rimExtensionSd: 12.8, medium: 8 },
+    { label: "15", R: 88.895, d: 2.4, sd: 12.8, medium: 9 },
     { label: "16", R: -400.8377, sd: 12.8 },
     { label: "STO", R: "flat", d: 0.8 },
     { label: "18", R: 32.9501, d: 4.5533, sd: 13.8, medium: 10 },

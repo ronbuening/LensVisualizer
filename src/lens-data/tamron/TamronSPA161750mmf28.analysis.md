@@ -362,7 +362,7 @@ that distinction.[4–7]
 The viewer resolves each six-digit class code to one coordinate-compatible catalog glass for
 its dispersion. That choice is a modeling convenience, not supplier information. The bonded
 layers remain unresolved. No source nC, nF, ng or ΔPgF value exists for any element; the
-ΔPgF ≈ +0.031 noted for L2423 is the S-FPL51-class catalog value, not a melt value. Abbe-only data and proxy catalog choices do not establish
+APD note on L2423 describes an inferred compatible catalog class, not a measured partial or melt value. Abbe-only data and proxy catalog choices do not establish
 APO correction, anomalous-dispersion performance or a measured secondary spectrum.
 
 ## Focus Mechanism and Zoom Motion
@@ -512,3 +512,11 @@ performance, stabilization system or apochromatic performance is inferred.
    accessed 2 October 2026. H-FK61 comparison row.
 
 10. SUMITA, [K-FK5 manufacturer datasheet, catalog version 13.00.00](https://www.sumita-opt.co.jp/abbe/pdf/k-fk5.pdf?1633830818=), accessed 2 October 2026. Coordinate comparison only.
+
+## Fresh original-patent shape and glass review
+
+Original Example2 tables/definitions on PDF18–20 and Fig.5/PDF22 were checked again. All18 d-line index/Abbe pairs stay unchanged;16 compatible curves and2 unresolved bonded layers remain. The source's plastic-molding prose does not identify the actual bulk/layer chemistry or cure.
+
+S8 now uses a9.42mm clear cap and12.8mm outer shoulder, with its shared S7 connected continuously at12.8mm. S12 is squared at8.7mm. An independent domain-valid numeric-cut equivalent passes the full guard with reach9.29995mm plus0.05mm required clearance; the12.8mm outer land does not extrapolate the R12.2621 sphere. The proposed S13 shoulder was rejected because clearing its full beam would violate the existing .96 neighboring-gap policy. Its constrained front cap remains8.05mm; the source's wider block is not fully represented. S20/S21 limits remain. Current nine-state SVGs have zero hidden trim; source apertures/centered chiefs pass, with retained peripheral vignetting. Sampled counts8646/0/6 are not flux.
+
+All current named classes are compatible spectral proxies; none identifies a historical supplier, melt, resin chemistry or cure. Source index/Abbe values remain separate from coefficient models.
