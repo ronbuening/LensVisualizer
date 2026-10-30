@@ -151,3 +151,11 @@ publishes no image-circle figure, and the corpus uses the ideal value for patent
 as the Canon EF 15 mm; the traced circle is 12.39 mm.
 
 Open: none.
+
+## 2026-10-30 — Fresh F-mount source, rim and glass review
+
+- Reopened exact `patents/JP2009058817A.pdf` (SHA-256 `1f615a2273e45ed33c7176865df586d3a037057044f6d2fe2645dbdabe1cbcee`): Example3 PDFp.9 all13 medium pairs, p.10 Table1 actual PgFp, p.15 Figure7 native/600dpi. Native reference is d587.6nm (¶0031,p.5). All13 compatible coefficient curves remain qualified spectral proxies; no production supplier/melt is established and no C/F/g indices are printed.
+- Table1 prints LP=L12 Vdp81.61,PgFp0.5387 to four decimals. ¶0023 separately specifies low-dispersion/high-partial-ratio glass in LP, supporting existing `apd: patent` beyond the ratio alone. Add engine dPgF=0.5387−(0.6438−0.001682×81.61)=0.03216802; this algebra preserves the rounded source ratio and adds no source precision. Other elements receive no source partial override.
+- Figure7's broad front concave shoulder is clear: retain S2 optical cap12.5mm and add exposed land to21.5mm, the existing S1 body. No internal interface land or numeric cut is added. Existing71° slope allowance and source BF40.8599 remain unchanged; no finite-focus geometry exists.
+- Canonical/full inferred-cut checks pass;9 actual SVG views inspected,finite paths,zero hidden trim. Native axial aperture differs by only~1.2% fromF2.9 with iris limiting. Ordinary corner-field audit skips the circular fisheye appropriately. Public bounding-sphere vector chiefs/full traces transmit at0/30/60/80/89.9°; precisely90° solves a finite chief vector but full trace returns noBracket. This current source-edge runtime limitation supersedes earlier blanket90° transmission wording; no engine change or full-domain claim is made.
+- Matched stop-lattice samples retain3,744,lost0,gained0 (not flux). R/d/media/aspheres(none)/stop/controls/tolerances invariant. Equisolid source projection,source full180° field and circular image interpretation are preserved; no APS-C-diagonal containment claim.

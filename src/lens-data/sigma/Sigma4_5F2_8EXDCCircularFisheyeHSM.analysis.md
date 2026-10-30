@@ -36,7 +36,7 @@ The image distance is the printed back focus, 40.8599 mm, giving the printed tot
 | L12 | Biconvex Positive | 1.497 | 81.61 | FCD1 (Hoya equivalent) |
 | L13 | Biconvex Positive | 1.4875 | 70.44 | H-QK3L (CDGM equivalent) |
 
-The printed nd/νd values govern the model. Catalog names are equivalent glasses, not identified supplier types. Sigma's section drawing marks one SLD element, the positive member of the rear cemented pair. That is L12, element LP of claim 2: conditions (3) and (4) require νd > 62.5 and θgF above 0.6675 − 0.002νd, and Table 1 gives θgF = 0.5387 for Example 3. Its nd/νd match HOYA FCD1.
+The printed nd/νd values govern the model. Catalog names are equivalent glasses, not identified supplier types. Sigma's section drawing marks one SLD element, the positive member of the rear cemented pair. That is L12, element LP of claim 2: conditions (3) and (4) require νd > 62.5 and θgF above 0.6675 − 0.002νd, and Table 1 gives θgF = 0.5387 for Example 3. Its nd/νd fit the qualified HOYA FCD1 spectral proxy. The printed θgF=0.5387 is retained through engine dPgF=0.03216802 after conversion with0.6438−0.001682×81.61; the derived decimals do not increase the source's four-decimal precision. Paragraph0023 separately describes LP as low-dispersion,high-partial-ratio glass, supporting its source APD flag. Supplier and production melt remain unidentified.
 
 ## Focus Scope
 
@@ -54,9 +54,11 @@ At 12.5 mm, surface 2 has a 70.0° rim slope, beyond the default limit of about 
 
 ## Model Scope and Limitations
 
-At infinity, chief rays from 0° to 90° all reach the image. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.77 at 60°, 0.56 at 81° and 0.47 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
+Fresh exact-vector checks at infinity transmit chief rays through89.9°. At exactly90° the public chief solver converges but the complete trace returns noBracket; the exact edge is a runtime limit and is not currently certified. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.77 at 60°, 0.56 at 81° and 0.47 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
 
 ## Sources
 
 - [JP2009058817A](https://patents.google.com/patent/JP2009058817A/en), Japanese publication and PAJ abstract; Example 3 and Figure 7.
 - [Sigma product specifications](https://www.sigma-global.com/en/lenses/45_28/), specifications and [lens construction diagram](https://www.sigma-global.com/lenses/45_28_specification_01.jpg).
+
+Figure7 draws the front concave arc ending on a broad flat shoulder. The model retains the12.5mm cap and extends its visible land to the existing21.5mm front body, without changing ray admission or the literal spherical prescription.
