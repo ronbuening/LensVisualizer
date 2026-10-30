@@ -95,6 +95,8 @@ A separate catalog audit found coordinate-compatible candidates from multiple ma
 
 No `nC`, `nF`, `ng`, partial-dispersion ratio, or `dPgF` value is published for Example 1, and none is authored in the data. The analysis consequently makes no APO, anomalous-partial-dispersion, or secondary-spectrum claim that would require line-index or validated Sellmeier evidence.
 
+The 2026-10-30 original-table reinspection retained all 6 media and the d-line convention. Every current resolver curve is available and qualified; source line indices and partial-dispersion data remain unavailable.
+
 ## Focus Mechanism
 
 The focus status is **PUBLISHED**. Example 1 gives both infinity and close-focus values for the central GF-to-GR spacing and the final back-focus spacing. L4-L6 translate 12.6617 mm toward the object as one rigid rear group, while L1-L3 and the image plane remain fixed.[1]
@@ -140,7 +142,7 @@ Independent sequential y–ν tracing and a separately assembled ABCD matrix agr
 
 The inferred stop model produces an entrance-pupil semi-diameter of 23.574776 mm and a modeled wide-open f-number of 1.800000; `nominalFno` therefore remains 1.8. The stop coordinate and semi-diameter are modeling inferences and are not presented as patent or production mechanical dimensions.
 
-The surface semi-diameters are also inferred because the patent gives none. They were checked at both defined focus states for positive element edge thickness, actual spherical rim slope, shared-gap intrusion, stop clearance, and exact meridional ray containment. The minimum tested glass-surface ray clearance is 0.273 mm, the minimum element edge thickness is 2.365 mm, the maximum rim angle is 43.934°, and the close-focus stop-to-L4 edge clearance is 1.377 mm. These checks validate the visualization geometry; they do not convert the modeled semi-diameters into Nikon manufacturing specifications.[4]
+The surface semi-diameters are inferred because the patent gives none. Figure 1 resolves a rear flat land on L3: its concave clear cap remains 14.8 mm, while the land extends to the existing 18.1-mm body rim. L2’s weak rear curve continues to its body edge and is retained without an invented land. Current canonical geometry, full-format chief-ray coverage, and the f/1.8 aperture checks pass; all 25 sampled axial stop-pupil rays pass at the closest source spacing. Nine actual SVG states have finite paths and zero automatic render trim. These validate the visualization geometry rather than establish Nikon manufacturing dimensions.
 
 The Petzval sum computed surface by surface as `φ/(n·n′)` is +0.001709793 mm⁻¹, corresponding to a Petzval-radius magnitude of approximately 584.866 mm under the adopted sign convention. No cemented junctions, aspherical surfaces, folded paths, diffractive surfaces, or independent aberration-control motions are present.
 

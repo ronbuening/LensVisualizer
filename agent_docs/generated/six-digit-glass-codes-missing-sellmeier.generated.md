@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1026** lenses scanned
-- **1856** total code-only elements found
-- **296** elements in this report
-- **125** distinct lens files affected
+- **1847** total code-only elements found
+- **291** elements in this report
+- **124** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **164** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **159** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -51,9 +51,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 486815 | 9 | 4 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US_4786152_A.pdf | All rows have review records |
 | 847238 | 5 | 3 | patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
+| 486815 | 4 | 3 | patents/US3774991.pdf | All rows have review records |
 | 531559 | 4 | 3 | patents/US20200142167A1.pdf<br>patents/US20230213739A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
@@ -806,16 +806,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
-
-### [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) - US 3,743,384
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Front ED-type singlet) | 1 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
-| L2 (Front triplet positive) | 3 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
-| L7 (Hyperchromatic doublet negative) | 11 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
-| L12 (Compensator second doublet positive) | 19 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
-| L15 (Relay triplet positive) | 24 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
 
 ### [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 

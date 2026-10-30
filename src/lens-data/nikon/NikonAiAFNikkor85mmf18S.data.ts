@@ -28,6 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ SCALING: None. Patent millimeters are retained. No aspheres are present.    ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table reinspection; see the audit
+ * sidecar for inferred exposed lands, retained source values, and beam checks.
  */
 
 const LENS_DATA = {
@@ -67,7 +70,7 @@ const LENS_DATA = {
       vd: 46.76,
       indexReference: "d",
       focalLengthMm: 66.765692,
-      glass: "767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front positive meniscus of the fixed forward group GF.",
       diagramLabel: "L1",
@@ -81,7 +84,7 @@ const LENS_DATA = {
       vd: 50.28,
       indexReference: "d",
       focalLengthMm: 86.903878,
-      glass: "720503 — J-LAK10 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LAK10 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Second positive meniscus of the fixed forward group GF.",
       diagramLabel: "L2",
@@ -95,7 +98,7 @@ const LENS_DATA = {
       vd: 26.07,
       indexReference: "d",
       focalLengthMm: -34.077315,
-      glass: "785261 — SF56A (SCHOTT) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "SF56A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Strong negative meniscus completing the fixed forward group GF.",
       diagramLabel: "L3",
@@ -109,7 +112,7 @@ const LENS_DATA = {
       vd: 35.64,
       indexReference: "d",
       focalLengthMm: -52.500981,
-      glass: "626356 — F1 (SUMITA) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "F1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front negative meniscus of the translating rear group GR.",
       diagramLabel: "L4",
@@ -123,7 +126,7 @@ const LENS_DATA = {
       vd: 53.76,
       indexReference: "d",
       focalLengthMm: 74.568347,
-      glass: "694538 — H-LaK6A (CDGM) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "H-LaK6A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive meniscus of the translating rear group GR; pairs with L4 across the negative air lens.",
       diagramLabel: "L5",
@@ -137,7 +140,7 @@ const LENS_DATA = {
       vd: 46.76,
       indexReference: "d",
       focalLengthMm: 67.721001,
-      glass: "767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Rear biconvex positive element completing the translating rear group GR.",
       diagramLabel: "L6",
@@ -151,7 +154,7 @@ const LENS_DATA = {
     { label: "3", R: 32.583, d: 7.8, sd: 20.8, medium: 2 },
     { label: "4", R: 61.173, d: 1.6, sd: 18.4 },
     { label: "5", R: 112.4, d: 3.2, sd: 18.1, medium: 3 },
-    { label: "6", R: 21.331, d: 9.4, sd: 14.8 },
+    { label: "6", R: 21.331, d: 9.4, sd: 14.8, rimExtensionSd: 18.1 },
     // STO position inferred from Figure 1; approximately 9.4 mm after surface 6 within patent d6.
     { label: "STO", R: "flat" },
     { label: "7", R: -24.8, d: 2.4, sd: 13.8, medium: 4 },

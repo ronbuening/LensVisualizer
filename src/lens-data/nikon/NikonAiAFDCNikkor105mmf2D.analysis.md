@@ -36,7 +36,7 @@ Although the patent describes the invention as a great-relative-aperture long-fo
 
 The patent places stop `S` between G2 and GR in Figure 3 but gives no numerical stop coordinate or diameter. Metric extraction from Figure 3 places the stop at approximately `z = 36.000 mm` from surface 1, 8.000 mm behind surface 6 in the corrected infinity state. The model inserts one explicit `STO` plane at that axial station and keeps it fixed while G2 and GR execute the patent-published DC motions; Figure 3 brackets `S` separately from G2, and the patent's movement description names G2 and GR—not the stop—as the DC movers. The inferred stop semi-diameter is 15.696454 mm, selected so the verified entrance pupil reproduces the modeled f/2 aperture. Position and diameter remain modeling inferences rather than tabulated patent values.
 
-The clear semi-diameters are also modeling quantities because the patent does not tabulate them. They were derived from the Figure 3 section and checked against ray envelopes and current geometry rules. The principal deliberate departure from the drawing estimate is L3: Figure 3 implies approximately 19.98–20.0 mm, while the model uses 19.5 mm so surfaces 4 and 5 retain positive rim clearance across their 2.5 mm air gap under the current cross-gap policy.
+The clear semi-diameters are also modeling quantities because the patent does not tabulate them. They were derived from the Figure 3 section and checked against ray envelopes and current geometry rules. L3 retains a 19.5-mm outer rim, slightly below the approximate 20-mm drawing height to clear the preceding 2.5-mm gap. Its rear concave curve ends at a 16.549616-mm cap and continues as a flat land to that outer rim, as Figure 3 resolves.
 
 Nikon's production manual separately lists a protective glass lens covering. It is not part of the six-element Example 1 prescription and is excluded from this patent model. [Nikon lens manual][nikon-manual]
 
@@ -64,11 +64,11 @@ The internal L2–L3 geometry remains fixed in all four patent states. Defocus c
 
 L3 is the strong negative member that makes the combined G2 group negative despite L2's positive standalone power. Its position after L2 and before the stop gives the moving G2 assembly the leverage required by the patent's spherical-aberration and coma control scheme.
 
-The modeled L3 clear semi-diameter is 19.5 mm. This is not a patent prescription value: the Figure 3 drawing implies a value near 20 mm, but that full drawing-derived radius would leave insufficient modeled rim clearance across the preceding 2.5 mm air gap. The smaller clear aperture preserves the source silhouette closely while satisfying the current geometric validation policy.
+The modeled L3 front clear semi-diameter and outer rim remain 19.5 mm. The rear concave cap ends at 16.549616 mm and continues as a flat land to the outer rim. Its inferred 5.90-mm cap-end sag follows Figure 3; a 41-setting DC sweep retains at least 0.354273 mm of sampled beam clearance. The approximately 20-mm drawing height is not forced into the preceding 2.5-mm air gap.
 
 ### L4 — Negative Meniscus
 
-`nd = 1.717360, νd = 29.46. Glass: 717295 — supplier-neutral optical glass code. f = −62.157172 mm.`
+`nd = 1.717360, νd = 29.46. Glass: 717295 — SF1 catalog-compatible spectral proxy; production supplier unresolved. f = −62.157172 mm.`
 
 L4 is the negative front member of GR. The rearward group nevertheless has positive net power because the following L5 and L6 are both positive. The negative-positive-positive sequence produces a verified isolated GR focal length of +86.574880 mm.
 
@@ -84,7 +84,7 @@ Because the patent assigns focusing and image-plane compensation to GR as a whol
 
 ### L6 — Biconvex Positive
 
-`nd = 1.796681, νd = 45.37. Glass: 797454 — J-LASF017 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved. f = +83.162594 mm.`
+`nd = 1.796681, νd = 45.37. Glass: 797454 — J-LASF017 (HIKARI) near-coordinate spectral proxy; production supplier unresolved. f = +83.162594 mm.`
 
 L6 is the final positive element and the second positive member of GR. Its biconvex form closes the six-element prescription immediately ahead of the published back focal spacing.
 
@@ -99,11 +99,13 @@ The patent publishes only d-line refractive index and Abbe number. It does not i
 | L1 | 670575 — J-LAK02 spectral proxy; supplier unresolved | 1.670249 | 57.53 | +79.449492 | G1 |
 | L2 | 694537 — H-LaK6A spectral proxy; supplier unresolved | 1.693500 | 53.72 | +120.613524 | G2, positive member |
 | L3 | 689311 — S-TIM28 spectral proxy; supplier unresolved | 1.688930 | 31.08 | −42.522864 | G2, negative member |
-| L4 | 717295 — supplier-neutral optical glass code | 1.717360 | 29.46 | −62.157172 | GR, negative member |
+| L4 | 717295 — SF1 catalog-compatible spectral proxy; production supplier unresolved | 1.717360 | 29.46 | −62.157172 | GR, negative member |
 | L5 | 767468 — J-LASFH2 spectral proxy; supplier unresolved | 1.766840 | 46.80 | +87.173975 | GR, positive member |
-| L6 | 797454 — J-LASF017 spectral proxy; supplier unresolved | 1.796681 | 45.37 | +83.162594 | GR, positive member |
+| L6 | 797454 — J-LASF017 near proxy; supplier unresolved | 1.796681 | 45.37 | +83.162594 | GR, positive member |
 
 The dispersion spread is visible in the published `nd`/`νd` pairs, but Abbe data alone is not sufficient to establish anomalous partial dispersion, apochromatic correction, or exact secondary-spectrum behavior. No APO or anomalous-dispersion claim is therefore made for this prescription.
+
+The 2026-10-30 original-table reinspection retained all 6 media and the d-line convention. Every current resolver curve is available and qualified; source line indices and partial-dispersion data remain unavailable. J-LASF017 is a near proxy with catalog 1.79500/45.31 versus source 1.796681/45.37 (Δnd=−0.001681, Δνd=−0.06); the spectral curve is anchored to the source index, without identifying the production glass.
 
 ## Focus Mechanism
 
@@ -157,11 +159,11 @@ The inferred stop model gives an entrance-pupil diameter of 52.472010 mm and a m
 
 The finite corrected, under-corrected, and over-corrected states reproduce the patent's published `d2`, total `d6`, and `Bf` values exactly, and the corrected stop model keeps the inferred `STO` plane at `z = 36.000 mm` in all three DC states. Their independently traced magnifications are −0.0333425, −0.0334099, and −0.0333086 respectively, consistent with the patent's rounded `−0.0333` value.
 
-The Figure-3-derived clear apertures also pass the local geometric checks used for this model. All element edge thicknesses remain positive, with the smallest at 2.253 mm; the largest spherical rim-slope angle is 48.192°, below the current 64.2° limit; and every endpoint focus/DC state satisfies the cross-gap clearance checks. A fresh exact spherical Snell trace of the representative 6.9° off-axis bundle remains inside all glass clear apertures in each of the four exact published states, with the highest checked surface-fill ratio approximately 0.994 at corrected infinity focus.
+The Figure-3-derived apertures and exposed land pass current canonical geometry and inferred-cut validation. An additional full beam search at 41 DC settings (−1 to +1 in 0.05 steps) finds no untraced samples and at least 0.354273 mm of S6 cap clearance. All nine sampled focus×DC SVG states have finite paths and zero automatic render trim. At the published finite conjugate, 25/25 sampled axial stop-pupil rays pass at each endpoint and neutral DC setting. These are model-validation checks, not production mechanical measurements.
 
 The independently summed Petzval contribution, using `φ/(n·n′)` surface by surface, is `+0.001347915 mm⁻¹`, corresponding to a signed Petzval radius of approximately +741.886 mm under the adopted convention. This is a computed diagnostic rather than a patent-tabulated quantity.
 
-No source values were silently corrected, no uniform scale was applied, and no continuous production minimum-focus prescription was reconstructed. The model's departures from direct source transcription are limited to the Figure-3-derived fixed stop position and inferred stop diameter, inferred clear semi-diameters, the L3 clear-aperture reduction required for geometric clearance, and the interface-driven interpolation/layering of published movement endpoints.
+No source values were silently corrected, no uniform scale was applied, and no continuous production minimum-focus prescription was reconstructed. The model's departures from direct source transcription are limited to the Figure-3-derived fixed stop position and inferred stop diameter, inferred clear semi-diameters, the L3 front aperture required for geometric clearance and Figure-3-derived rear land, and the interface-driven interpolation/layering of published movement endpoints.
 
 ## Sources and References
 

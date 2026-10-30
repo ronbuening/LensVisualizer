@@ -2810,11 +2810,11 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Front ED-type singlet | abbe | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | Explicit unmatched/proprietary annotation |
-| 3 | Front triplet positive | abbe | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | Explicit unmatched/proprietary annotation |
-| 11 | Hyperchromatic doublet negative | abbe | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | Explicit unmatched/proprietary annotation |
-| 19 | Compensator second doublet positive | abbe | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | Explicit unmatched/proprietary annotation |
-| 24 | Relay triplet positive | abbe | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | Explicit unmatched/proprietary annotation |
+| 1 | Front ED-type singlet | abbe | `Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)` | No catalog match |
+| 3 | Front triplet positive | abbe | `Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)` | No catalog match |
+| 11 | Hyperchromatic doublet negative | abbe | `Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)` | No catalog match |
+| 19 | Compensator second doublet positive | abbe | `Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)` | No catalog match |
+| 24 | Relay triplet positive | abbe | `Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)` | No catalog match |
 
 ### [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) - 72.7% trusted (8/11); 72.7% Sellmeier (8/11) - US 3,771,853 A
 

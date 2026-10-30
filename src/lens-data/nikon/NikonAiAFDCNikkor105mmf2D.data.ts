@@ -48,6 +48,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - https://www.nikonusa.com/p/af-dc-nikkor-105mm-f2d/1932/overview
  * - https://download.nikonimglib.com/archive2/MDXKK00KX4kn0262kin065ixa945/AFDC105_2D_%2827_DL%2902.pdf
  * - https://imaging.nikon.com/imaging/information/story/0059/index.html
+ *
+ * 2026-10-30: Fresh original figure/media-table reinspection; see the audit
+ * sidecar for inferred exposed lands, retained source values, and beam checks.
  */
 
 const LENS_DATA = {
@@ -95,7 +98,7 @@ const LENS_DATA = {
       vd: 57.53,
       indexReference: "d",
       focalLengthMm: 79.449492,
-      glass: "670575 — J-LAK02 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LAK02 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive first group G1; front collector and principal positive-power element.",
       diagramLabel: "L1",
@@ -109,7 +112,7 @@ const LENS_DATA = {
       vd: 53.72,
       indexReference: "d",
       focalLengthMm: 120.613524,
-      glass: "694537 — H-LaK6A (CDGM) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "H-LaK6A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive member of G2 preceding the negative DC-control element.",
       diagramLabel: "L2",
@@ -123,7 +126,7 @@ const LENS_DATA = {
       vd: 31.08,
       indexReference: "d",
       focalLengthMm: -42.522864,
-      glass: "689311 — S-TIM28 (OHARA) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "S-TIM28 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative member completing G2; G1-to-G2 spacing controls spherical aberration and coma.",
       diagramLabel: "L3",
@@ -137,7 +140,7 @@ const LENS_DATA = {
       vd: 29.46,
       indexReference: "d",
       focalLengthMm: -62.157172,
-      glass: "717295 — supplier-neutral optical glass code",
+      glass: "SF1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front negative member of the moving rear-focus group GR.",
       diagramLabel: "L4",
@@ -151,7 +154,7 @@ const LENS_DATA = {
       vd: 46.8,
       indexReference: "d",
       focalLengthMm: 87.173975,
-      glass: "767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive middle member of rear-focus group GR.",
       diagramLabel: "L5",
@@ -165,7 +168,7 @@ const LENS_DATA = {
       vd: 45.37,
       indexReference: "d",
       focalLengthMm: 83.162594,
-      glass: "797454 — J-LASF017 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LASF017 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive final member of rear-focus group GR.",
       diagramLabel: "L6",
@@ -184,7 +187,7 @@ const LENS_DATA = {
     { label: "3", R: 38.635, d: 7.5, sd: 22.6, medium: 2 },
     { label: "4", R: 66.09, d: 2.5, sd: 22.6 },
     { label: "5", R: 255.958, d: 3.0, sd: 19.5, medium: 3 },
-    { label: "6", R: 26.161, d: 8.0, sd: 19.5 },
+    { label: "6", R: 26.161, d: 8.0, sd: 19.5, rimCutDepthMm: 5.90 },
     { label: "STO", R: "flat" },
     { label: "7", R: -31.507, d: 3.0, sd: 16.8, medium: 4 },
     { label: "8", R: -111.66, d: 4.0, sd: 16.8 },
