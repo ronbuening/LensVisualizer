@@ -73,7 +73,7 @@ const LENS_DATA = {
       nd: 1.5138,
       vd: 53.0,
       focalLengthMm: -368.9,
-      glass: "UV-curing resin (composite)",
+      glass: "Resin layer (compound asphere; formulation and curing unspecified)",
       apd: false,
       role: "Source 0.05mm resin layer forms the aspheric exit of compound L12. Resin supplier and formulation are unspecified.",
       cemented: "L12c",
@@ -252,7 +252,7 @@ const LENS_DATA = {
   surfaces: [
     // ── Gr1: Front group (fixed) ──
     { label: "1", R: 70.017, d: 2.5, sd: 30.5, medium: 1 }, // L11 front
-    { label: "2", R: 29.64, d: 10.58, sd: 24.2 }, // L11 rear → air (sd<0.9×R to avoid TIR)
+    { label: "2", R: 29.64, d: 10.58, sd: 24.2, rimExtensionSd: 30.5 }, // L11 rear → air (sd<0.9×R to avoid TIR)
     { label: "3", R: 94.105, d: 2.4, sd: 25, medium: 2 }, // L12 glass front
     { label: "4", R: 31.773, d: 0.05, sd: 23, medium: 3 }, // L12 glass→resin junction
     {

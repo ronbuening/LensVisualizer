@@ -79,7 +79,7 @@ L3 is a weak positive dense-flint corrector at the rear of G1. It partly achroma
 
 #### L4 — Hybrid biconvex positive asphere: resin shell plus glass body
 
-Resin shell: nd = 1.553890, νd = 38.09. Glass: `553381` unmatched UV-cure resin. f ≈ +2488 mm.
+Resin shell: nd = 1.553890, νd = 38.09. Glass: `553381` unmatched resin-layer model; formulation and curing unspecified. f ≈ +2488 mm.
 Glass body: nd = 1.772499, νd = 49.60. Glass: S-LAH66 (OHARA). f = +74.87 mm.
 Composite f = +72.73 mm.
 
@@ -149,23 +149,23 @@ G5 is a weak positive cemented group and remains fixed during zooming. Its posit
 
 ## Glass Identification and Selection
 
-Glass names were matched by nd/νd code against manufacturer data sheets. The patent itself gives nd and νd but does not name glass vendors. OHARA matches are exact or within rounding for most non-ED elements. The ED crown is matched to HIKARI J-FKH1, which agrees with the prescription code and is consistent with Nikon's access to Hikari Glass.
+The named coefficient curves are compatible spectral proxies for the patent’s d-line nd/νd pairs. The patent names no production supplier, melt, resin formulation or curing process. Current catalog coverage is 15 of 16 media; the separate 0.10 mm replicated-layer model remains unresolved. Catalog coordinate agreement supports modeled spectral dispersion without identifying the production material.
 
 | Elements | nd | νd | Identification | Status |
 |---|---:|---:|---|---|
 | L1 | 1.744429 | 49.52 | M-NBF1 equivalent; patent code `744495` | Coefficient-backed curve; supplier unspecified |
-| L2 | 1.618000 | 63.33 | S-PHM52 (OHARA) | Exact |
-| L3, L8 | 1.846660 | 23.78 | S-TIH53 (OHARA) | Exact |
-| L4 resin | 1.553890 | 38.09 | `553381` unmatched UV-cure resin | Not catalog glass |
-| L4 glass body | 1.772499 | 49.60 | S-LAH66 (OHARA) | Exact |
-| L5 | 1.761821 | 26.52 | S-TIH14 (OHARA) | Exact |
-| L6, L12, L14 | 1.497820 | 82.56 | J-FKH1 (HIKARI) | Exact within rounding |
-| L7 | 1.882997 | 40.76 | S-LAH58 (OHARA) | Exact |
-| L9, L10 | 1.729157 | 54.68 | S-LAL18 (OHARA) | Exact |
-| L11, L15 | 1.805181 | 25.42 | S-TIH6 (OHARA) | Exact |
-| L13 | 1.516330 | 64.14 | S-BSL7 (OHARA) | Exact |
+| L2 | 1.618000 | 63.33 | S-PHM52 (OHARA) | Compatible spectral proxy |
+| L3, L8 | 1.846660 | 23.78 | S-TIH53 (OHARA) | Compatible spectral proxy |
+| L4 resin | 1.553890 | 38.09 | `553381` unmatched resin-layer model; formulation and curing unspecified | Not catalog glass |
+| L4 glass body | 1.772499 | 49.60 | S-LAH66 (OHARA) | Compatible spectral proxy |
+| L5 | 1.761821 | 26.52 | S-TIH14 (OHARA) | Compatible spectral proxy |
+| L6, L12, L14 | 1.497820 | 82.56 | J-FKH1 (HIKARI) | Compatible spectral proxy |
+| L7 | 1.882997 | 40.76 | S-LAH58 (OHARA) | Compatible spectral proxy |
+| L9, L10 | 1.729157 | 54.68 | S-LAL18 (OHARA) | Compatible spectral proxy |
+| L11, L15 | 1.805181 | 25.42 | S-TIH6 (OHARA) | Compatible spectral proxy |
+| L13 | 1.516330 | 64.14 | S-BSL7 (OHARA) | Compatible spectral proxy |
 
-The chromatic design is a distributed ED/flint strategy rather than an apochromat claim. Each ED element is cemented to or positioned with a dense-flint partner in a converging group: L6 with S-TIH14 in G2a, L12 with S-TIH6 in G4, and L14 with S-TIH6 in G5. The patent's condition (4) applies specifically to the high-Abbe positive lens in G2; in Example 2 that lens is L6. The data file now carries HIKARI J-FKH1 catalog spectral fields for these ED elements (nC = 1.495980, nF = 1.502009, ng = 1.505256, ΔPgF = +0.0327). Those spectral fields come from the glass catalog after the J-FKH1 identification; they are not published in the patent itself.
+The chromatic design is a distributed ED/flint strategy rather than an apochromat claim. Each ED element is cemented to or positioned with a dense-flint partner in a converging group: L6 with S-TIH14 in G2a, L12 with S-TIH6 in G4, and L14 with S-TIH6 in G5. The patent's condition (4) applies specifically to the high-Abbe positive lens in G2; in Example 2 that lens is L6. The three ED-class rows retain qualified inferred APD annotations and resolve to the current J-FKH1 coefficient curve. No catalog nC/nF/ng or partial-dispersion values are duplicated as lens-specific overrides: the patent publishes no such spectral table. The modeled APD behavior comes from that qualified curve rather than a source measurement.
 
 ## Focus Mechanism
 
@@ -250,3 +250,5 @@ The defining design answer is not merely the use of ED or aspherical elements. I
 - OHARA product data sheets for S-PHM52, S-TIH53, S-LAH66, S-TIH14, S-LAH58, S-LAL18, S-TIH6, and S-BSL7.
 - HIKARI GLASS product data sheet for J-FKH1, including nC, nF, ng, and ΔPgF values used for the ED elements in the data file.
 - Independent paraxial y-nu ray trace and surface-by-surface Petzval calculation from the Example 2 prescription.
+
+Figure 3’s L1 rear aspheric seat is now explicit as an opaque land from the retained 29.8 mm optical cap to the existing 36.0 mm outer rim. The other concave faces have no resolved short cap-end stroke supporting a new cut. Optical caps and asphere coefficients remain unchanged.

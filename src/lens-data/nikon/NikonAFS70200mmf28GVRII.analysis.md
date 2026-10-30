@@ -40,7 +40,7 @@ Standalone focal lengths below are thick-lens values in air. They were computed 
 
 ### G1: Fixed front collector
 
-**L11 — Negative Meniscus, convex to object.** nd = 1.79504, νd = 28.69. Glass: J-LAFH3 class, HIKARI; normalized code 795287, without public coefficients in the local catalog. f = -186.4 mm.
+**L11 — Negative Meniscus, convex to object.** nd = 1.79504, νd = 28.69. Glass: J-LAFH3 compatible HIKARI spectral proxy; source coordinates 1.795041/28.69; production supplier unspecified. f = -186.4 mm.
 L11 is the high-index, high-dispersion front half of the leading cemented doublet. It supplies the dispersive partner for the ED positive element behind it and keeps the first group from becoming a simple stack of low-dispersion positive lenses.
 
 **L12 — Biconvex Positive.** nd = 1.49782, νd = 82.52. Glass: J-FKH1 class, HIKARI ED fluorocrown. f = +196.1 mm.
@@ -113,12 +113,12 @@ L58 is the rear high-index negative meniscus. It reduces the residual positive f
 
 ## Glass Identification and Selection
 
-The glass names are catalog-class identifications, not proof of a purchase order. The matching criterion is the patent's nd/νd pair compared against published manufacturer catalogs and cross-reference tables. Where several vendors publish equivalent glasses, the analysis uses the most plausible catalog class and leaves the uncertainty visible.
+The named coefficient curves are compatible spectral proxies for all21 source nd/νd pairs. Source d-line coordinates remain authoritative; the patent establishes no production supplier, melt or chemistry. The current catalog includes a J-LAFH3 coefficient curve, so the earlier claim that L11 lacks coefficients is obsolete.
 
 | Patent nd / νd | Catalog identification | Elements | Function |
 |---|---|---|---|
 | 1.49782 / 82.52 | J-FKH1, HIKARI ED fluorocrown; catalog nd = 1.497820, νd = 82.57 | L12, L13, L14, L51, L52, L56, L57 | Low-dispersion positive elements; secondary-spectrum reduction |
-| 1.79504 / 28.69 | J-LAFH3, HIKARI; normalized code 795287, coefficients unavailable | L11 | High-dispersion front doublet partner |
+| 1.79504 / 28.69 | J-LAFH3, HIKARI compatible coefficient-backed spectral proxy; supplier unspecified | L11 | High-dispersion front doublet partner |
 | 1.81600 / 46.62 | S-LAH59, OHARA class | L21, L25 | High-index negative variator elements |
 | 1.48749 / 70.41 | N-FK5 / J-FK5 fluor-crown class | L22 | Low-dispersion negative doublet member |
 | 1.84666 / 23.78 | S-TIH53, OHARA class | L23, L32, L41 | Dense-flint correction elements |
@@ -130,7 +130,7 @@ The glass names are catalog-class identifications, not proof of a purchase order
 | 1.80440 / 39.57 | S-LAH63, OHARA class | L55 | Negative VR singlet |
 | 1.85026 / 32.35 | J-LASF021 / S-LAH71 class | L58 | Rear high-index negative meniscus |
 
-The J-FKH1 identification is the most important glass match in the file. HIKARI's J-FKH1 datasheet gives nd = 1.497820 and νd = 82.57, with θgF = 0.5386 and ΔPgF = +0.0327. The patent rounds the same index and prints νd = 82.52, close enough for a catalog-class match. The seven ED rows are marked `apd: "inferred"` in the data file, while catalog-backed J-FKH1 coefficients let runtime chromatic modeling go beyond Abbe-only dispersion.
+The J-FKH1 identification is the most important glass match in the file. HIKARI's J-FKH1 datasheet gives nd = 1.497820 and νd = 82.57, with θgF = 0.5386. Under the engine’s normal line0.6438−0.001682νd, that ratio is a departure of about+0.03360 at the source νd82.52; vendor departures using another baseline are not copied as overrides. The patent rounds the same index and prints νd = 82.52, close enough for a catalog-class match. The seven ED rows are marked `apd: "inferred"` in the data file, while catalog-backed J-FKH1 coefficients let runtime chromatic modeling go beyond Abbe-only dispersion.
 
 The design is ED-rich but should not be described as apochromatic in the manufacturer's naming sense. Nikon published seven ED elements, and Table 6 confirms seven J-FKH1-class low-dispersion positive elements. That supports strong secondary-spectrum reduction, not a formal APO designation.
 
@@ -176,7 +176,7 @@ Small residual differences come from recomputing the ratios from the rounded pre
 
 The Table 6 prescription was re-entered and checked with an independent reduced-angle paraxial ray trace. The computed effective focal lengths are 71.399 mm, 134.999 mm, and 195.997 mm for the wide, middle, and telephoto states. The computed back focal distances are 53.786 mm, 53.787 mm, and 53.787 mm. These reproduce the patent values f = 71.40 / 135.00 / 196.00 mm and Bf = 53.787 mm.
 
-The aperture stop semi-diameter used in the data file is 16.59 mm. It was derived from the f/2.89 patent aperture and the stop conjugate at the three zoom settings; the three independent calculations agree to within 0.001 mm.
+The source specifies the stop’s axial placement and FNO2.89, but no physical iris radius. The current runtime derives one fixed wide-open iris radius of about17.3607mm from the wide station and holds it through zoom; no literal16.59mm STO radius is authored.
 
 The Petzval sum was recomputed surface-by-surface as Σ φ/(n·n′), not by a thin-element approximation. The resulting Petzval sum is +0.001415 mm^-1, corresponding to a Petzval radius of approximately 706.5 mm. This is a weak net positive field-curvature contribution after cancellation among the positive crowns, dense flints, and the rear negative meniscus.
 
@@ -184,7 +184,7 @@ The patent does not tabulate clear apertures. The semi-diameters in the data fil
 
 In the variator, surfaces 12 and 14 carry the height the f/2.89 on-axis ray reaches at 196 mm and infinity focus, 18.796 mm and 19.048 mm, rounded up to 18.8 mm and 19.1 mm. Figure 26 draws L24 with a square-cut rim, so its front surface 13 carries the same 19.1 mm as surface 14, which leaves L24 an edge thickness of 1.80 mm. The rear of L23 (surface 12) and the front of L24 (surface 13) face each other across a 4.2 mm air gap and use 95.4 % of it at the 18.8 mm rim, leaving 0.19 mm of clearance; the two surfaces would touch at 19.24 mm. Figure 26 draws the two elements meeting at the rim, and the data file sets `gapSagFrac: 0.96` so that this pair is admitted. Wide open at infinity focus, the 71.4 mm, 135 mm, and 196 mm stations all trace f/2.89 with the iris as the limiting aperture.
 
-All surfaces in Example 6 are spherical. The patent includes general language allowing aspherical surfaces in the broader invention, but Table 6 supplies no aspherical coefficients for this embodiment. The data file therefore correctly uses `asph: {}`.
+All surfaces in Example 6 are spherical. The patent includes general language allowing aspherical surfaces in the broader invention, but Table 6 supplies no aspherical coefficients for this embodiment. No asphere object is authored on its surfaces.
 
 ## Sources
 
@@ -195,3 +195,5 @@ All surfaces in Example 6 are spherical. The patent includes general language al
 - HIKARI GLASS CO., LTD., J-LAFH3 optical-glass datasheet, 2022-7-1 revision.
 - OHARA optical-glass datasheets and catalog entries for S-LAH59, S-TIH53, S-TIH6, S-LAM2, S-PHM53, S-TIH10, S-LAH63, and S-LAH71-class matches.
 - SCHOTT, HOYA, and CDGM cross-reference catalogs for equivalent fluor-crown, dense-flint, lanthanum, and barium-light-flint classes.
+
+Figure26’s small L21 rear seat was tested as an inferred S9 cut. Its full sampled beam envelope reaches the existing20.4mm cap, so no smaller cut can preserve the required clearance margin; the cut is rejected. A land extending to the oversized modeled25mm S8 height would overstate the source’s approximately20mm outer rim, so none is invented. All other concave faces meet their rims without a distinct supported cap-end seat. The cemented step on L25 remains a renderer limitation; all optical caps and the existing12/13gap tolerance stay unchanged.
