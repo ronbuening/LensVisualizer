@@ -422,7 +422,8 @@ const LENS_DATA = {
       },
     },
     { label: "8", R: 55.55, d: 0.8, sd: 12.5, medium: 5 },
-    { label: "9", R: 14.26, d: 5.8, sd: 12.5 },
+    // Figure 1 air-facing land; cut held outward at 10.0 mm by the full beam guard.
+    { label: "9", R: 14.26, d: 5.8, sd: 12.5, rimCutDepthMm: 4.093997835923897 },
     { label: "10", R: -35.32, d: 0.9, sd: 9.6, medium: 6 },
     { label: "11", R: 58.73, d: 0.1, sd: 9.6 },
     { label: "12", R: 30.04, d: 3.8, sd: 10.7, medium: 7 },
