@@ -317,24 +317,27 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription: final normalized infinity state ── */
+  // Fig. 1 (PDF p. 12): resolved concave rear lands on S5/S10/S12/S17.
+  // Source q≈0.84/0.917/0.897/0.924 at 6.98 native px/mm; S5 is moved outward
+  // to clear the full wide-open beam. These inferred cuts do not resolve the source errata.
   surfaces: [
     { label: "1", R: 75.060409728, d: 7.243489292, sd: 29.2, medium: 1 },
     { label: "2", R: 694.302340301, d: 0.297677642, sd: 29.2 },
     { label: "3", R: 53.667309845, d: 7.372482937, sd: 26.6, medium: 2 },
     { label: "4", R: 664.134695786, d: 1.488388211, sd: 26.6, medium: 3 },
-    { label: "5", R: 46.164841004, d: 2.232582316, sd: 26.6 },
+    { label: "5", R: 46.164841004, d: 2.232582316, sd: 26.6, rimCutDepthMm: 6.08 },
     { label: "6", R: 35.329374830, d: 11.480434399, sd: 22.3, medium: 4 },
     { label: "7", R: -82.608522474, d: 1.190710569, sd: 22.3, medium: 5 },
     { label: "8", R: 71.006040242, d: 0.148838821, sd: 22.3 },
     { label: "9", R: 38.054117514, d: 5.060519917, sd: 19.7, medium: 6 },
-    { label: "10", R: 36.289881355, d: 2.867627953, sd: 19.7 },
+    { label: "10", R: 36.289881355, d: 2.867627953, sd: 19.7, rimCutDepthMm: 4.81 },
     { label: "11", R: 66.684753136, d: 1.289936449, sd: 18.1, medium: 7 },
-    { label: "12", R: 24.897757990, d: 5.129978033, sd: 18.1 },
+    { label: "12", R: 24.897757990, d: 5.129978033, sd: 18.1, rimCutDepthMm: 6.03 },
     { label: "13", R: 45.886016279, d: 5.179590973, sd: 16.2, medium: 8 },
     { label: "14", R: "flat", d: 1.984517614, sd: 16.2 },
     { label: "STO", R: "flat" },
     { label: "16", R: 604.304466489, d: 0.793807046, sd: 13.8, medium: 9 },
-    { label: "17", R: 28.290290851, sd: 13.8 },
+    { label: "17", R: 28.290290851, sd: 13.8, rimCutDepthMm: 3.04 },
     { label: "18", R: 52.833812447, d: 4.693384158, sd: 11.4, medium: 10 },
     { label: "19", R: -41.124166264, d: 0.992258807, sd: 11.4, medium: 11 },
     { label: "20", R: 52.546057393, d: 1.319704214, sd: 11 },

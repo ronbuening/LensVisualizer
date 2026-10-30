@@ -131,7 +131,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd 1.51, νd 81.59; coarse patent coordinates)",
       apd: "patent",
       apdNote:
-        "The patent (¶0028) specifies ultra-low-dispersion material for the fourth and fifth lenses of G1; Viltrox lists two ED elements. νd 81.59 fits a fluorophosphate ED glass; partial dispersion is unpublished.",
+        "The patent (¶0028) specifies ultra-low-dispersion material for the fourth and fifth lenses of G1; Viltrox lists two ED elements. νd 81.59 supports low primary dispersion; chemistry, supplier and partial dispersion are unpublished.",
       role: "Weak low-dispersion positive meniscus that offsets the first group's longitudinal color.",
     },
     {
@@ -231,9 +231,12 @@ const LENS_DATA = {
     },
   ],
 
+  // CN211826700U Fig. 1 (PDF p. 16): S2 cap q≈0.887 at 9.21 native px/mm,
+  // moved to radius 14.148 mm for full-beam clearance; S10/S12 retain their optical caps
+  // and gain square lands to the source element rims. See the fresh audit for uncertainty.
   surfaces: [
     { label: "1", R: 105.5, d: 1, sd: 15.7, medium: 1 },
-    { label: "2", R: 22.41, d: 15.36, sd: 15.7 },
+    { label: "2", R: 22.41, d: 15.36, sd: 15.7, rimCutDepthMm: 5.03 },
     { label: "3", R: 68.64, d: 4.06, sd: 14.4, medium: 2 },
     { label: "4", R: -60.07, d: 0.1, sd: 14.4 },
     { label: "5", R: 23.25, d: 2.98, sd: 13.95, medium: 3 },
@@ -241,9 +244,9 @@ const LENS_DATA = {
     { label: "7", R: -126.69, d: 2.31, sd: 13.2, medium: 4 },
     { label: "8", R: -49.51, d: 0.11, sd: 13 },
     { label: "9", R: 21.54, d: 1, sd: 10.4, medium: 5 },
-    { label: "10", R: 12.93, d: 5.74, sd: 10.1 },
+    { label: "10", R: 12.93, d: 5.74, sd: 10.1, rimExtensionSd: 10.4 },
     { label: "STO", R: "flat", d: 4.99 },
-    { label: "12", R: -13.17, d: 1, sd: 8.9, medium: 6 },
+    { label: "12", R: -13.17, d: 1, sd: 8.9, medium: 6, rimExtensionSd: 10.7 },
     { label: "13", R: 30.84, d: 6.55, sd: 10.7, medium: 7 },
     { label: "14", R: -17.84, d: 0.1, sd: 10.7 },
     { label: "15", R: 51.8, d: 3.58, sd: 11.3, medium: 8 },

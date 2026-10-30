@@ -262,6 +262,8 @@ const LENS_DATA = {
       diagramLabel: "L15",
     },
   ],
+  // Fig. 1 (PDF p. 24): L07 rear has a resolved square land at the shared L06/L07 rim.
+  // Preserve its fitted optical cap; extend only the drawn edge (12.67 native px/mm).
   surfaces: [
     {
       label: "1",
@@ -341,6 +343,7 @@ const LENS_DATA = {
       R: 22.28379081518061,
       d: 7.362004235505394,
       sd: 15.167098104306644,
+      rimExtensionSd: 19.567856802105705,
     },
     {
       label: "STO",

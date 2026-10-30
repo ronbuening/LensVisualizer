@@ -77,7 +77,7 @@ strongly converging front group moderate.
 nd = 1.51000, νd = 81.59. Glass: Unmatched (nd 1.51, νd 81.59; coarse patent coordinates). f = +157.76 mm.
 
 L14 has weak positive power and is one of the two low-dispersion front elements identified by ¶0028 and ¶0065;
-its νd fits a fluorophosphate ED glass, and it is tagged as an inferred ED position. Its printed index differs
+its νd supports low primary dispersion, and the patent supports the low-dispersion badge without identifying chemistry or supplier. Its printed index differs
 from common catalog glasses with a closely similar Abbe number (the 1.497/81.6 class); the printed value is kept.
 
 ### L15 — Negative Meniscus
@@ -201,8 +201,7 @@ The remaining small differences from Table 9 are consistent with the two-decimal
 The patent publishes no clear apertures. Element semi-diameters follow Fig. 1, which is drawn to scale, and are
 checked against real rays at infinity and 0.3 m; the stop radius is derived from the design f/1.4. Neither is a
 measurement of the production lens. Fig. 1 draws several elements, including L11, L15 and L21, with a flat
-mounting land outside a smaller curved face. The model cannot draw that step: it carries L11's concave face out to
-the full rim, and joins the two face rims of L15 and L21 with a straight edge. The model is all-spherical, as the
+mounting land outside a smaller curved face. The model now draws a beam-safe inferred concave cut on S2 and opaque lands on S10/S12 extended to the element rims, preserving those two optical caps. The model is all-spherical, as the
 patent is, and traces at the d-line with Abbe-number dispersion because no vendor glass is identified. At full
 aperture the off-axis bundles vignette at the front elements, which is expected for a compact f/1.4 design but is
 set here by figure-measured rather than published apertures.

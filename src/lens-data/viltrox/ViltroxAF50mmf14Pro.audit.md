@@ -188,3 +188,13 @@ and for L05 in Example 2. νd 17.942 is H-ZF88's catalog value (17.94196), so 1.
 1.946 carried into Example 3. 1.7292/56.685 is printed for L12 in Examples 1 and 3 (Example 2: 1.8707/40.729); the
 nearest catalog glasses have nd 1.72916 and νd 54.1–54.7, so it stays unmatched. The patent gives no glass names,
 partial dispersions or other line indices.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/CN120871380A.pdf`, Example 1 Figure 1 (PDF p.24, 600 dpi crop), Table 1 (pp.13–15). All fifteen front/rear faces and cement boundaries were reviewed. Figure scale is approximately 12.67 native px/mm; clear apertures are unpublished.
+
+S12/L07 has a long square land at the L06/L07 block's outer edge. Added `rimExtensionSd: 19.567856802105705` while retaining its fitted 15.167098104306644 mm optical cap. No additional concave cut is justified on the remaining exposed faces; the cement boundaries stay continuous. This improves the outline of the qualified fitted reconstruction without claiming that its fitted R/d/aspheres reproduce the inconsistent printed table literally.
+
+All fifteen nd/νd rows and GL match the source. Thirteen lens media resolve to the already qualified catalog curves; L04 (1.949/17.942), L12 (1.7292/56.685) and GL remain Abbe fallbacks. L04's proposed printing error remains explicitly unconfirmed. Source prose gives Abbe bounds for L06/L08/L11, not measured partial dispersion; inferred badges and supplier uncertainty are retained. No source line indices or dPgF were supplied or invented.
+
+`audit:surface` and `audit:image-circle` passed. Nine SVG control probes were generated and rasterized: fifteen finite element paths and zero renderer trim each. This infinity-only prime has no independent focus or zoom schedule, so these are repeated static geometry checks. Shared dispersion/resolver/partial-dispersion checks passed (3 files/94 tests).
