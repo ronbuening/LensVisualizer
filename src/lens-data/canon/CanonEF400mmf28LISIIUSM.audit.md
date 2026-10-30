@@ -49,3 +49,74 @@ Patent: US 2011/0090576 A1, Example 2
 - Before/after check: EFL, stop radius, paraxial focus and the vignetting curve are unchanged. The plate now clips the
   chief ray at 5.65° (the half-field was 6.19°, set by another rim); the format corner is 3.16°, so coverage is
   unaffected, and the diagram's off-axis field narrows from 3.72° to 3.39°.
+
+## 2026-10-30 — Scoped reopening for G and the current configuration
+
+### Prior coverage reused and source identification
+
+- Reuse the unchanged active-15 shape/glass review dated **2026-08-19**. Preserve that date and its rejected wholesale
+  rear-enlargement trial; this is not a new inspection claim for those old conclusions. G was added **2026-10-04**,
+  and that note explicitly left its shape unreviewed. The current 16-medium configuration and reproducibly stale
+  “G omitted” analysis justify this scoped reopening. This is one reviewed lens entry, with no extra reused-entry count.
+- Original `patents/US20110090576A1.pdf`: first page confirms US 2011/0090576 A1, April 21, 2011, Shigenobu Sugita,
+  Canon. Second Numerical Embodiment / normalized Numerical Embodiment 2: prescription and all 16 material rows in
+  ¶0059, PDF page 10 / printed page 5; Figure 3 and matching infinity aberration Figure 4 on PDF page 3 / sheet 2.
+  Definitions ¶0021–0022 are PDF pages 6–7; prescription d-reference ¶0057 is PDF page 9; conditional Table 1 is PDF page 11.
+- Native embedded pages are 2560 × 3300 one-bit at 300 ppi. The earlier 600 dpi image is an upsample, not native
+  resolution. Current native Figure 3 calibration is about 1152 px / 300.53 mm = 3.83 px/mm, using active first vertex
+  to Re. Practical height reading uncertainty is ±0.8 mm; undimensioned schematic scale adds an independent limitation.
+
+### G shape and source hierarchy
+
+- The original column header is **Effective diameter**, not radius. Both G rows 28–29 print **36.00 mm**, giving a
+  source optical half-diameter of **18.00 mm**. Restore both clear `sd` values from 21.5 to 18.0 mm. The former radius
+  was a runtime bundle estimate; its larger transmitted bundle does not override the original aperture column.
+- Preserve the printed flat faces, 2.2 mm glass thickness and 15.00 mm leading air gap. The final 54.269129 mm air gap
+  remains the existing derived value `70.72 − 15.00 − 2.2/1.51633`; row 29 does not print that distance. Paragraph 0021
+  defines 70.72 mm BF with G absent. Current physical G-included track is 371.999129 mm versus source Lt 372.00 mm.
+- Native G blank measures about ±119 px, or outer half-height ~31 mm at the active-system scale. It is a plain flat
+  rectangle without a resolved optical-cap/opaque-land junction. Reject using ~31 mm as a clear aperture and reject
+  a fabricated flat-face opaque extension. Its taller outline remains an explicit SVG/source drawing limitation.
+- The restored cap passes surface/image-circle checks and all 21 focus corner chiefs. In the 193-sample infinity
+  corner pupil, 136 pass versus 141 at 21.5 mm; five now clip row 28. Close remains 134/193 in both. Source clipping
+  is retained, rather than enlarging the clear cap to fit the model's inferred upstream apertures.
+- No new rim extensions or cuts; no inferred-cut beam exemption, interface land or disconnected wing. Reuse active
+  element/cemented-interface constraints and the prior rejection of wholesale rear inflation. No R/d, asphere, stop,
+  focus, aperture, stabilization or grouping controls change.
+
+### Glass and genuine source partials
+
+- Directly verify G row 28: nd 1.51633, νd 64.14, θgF 0.5352, printed X −0.0007. G remains vendor unresolved;
+  S-BSL7 is only a compatible spectral proxy. No APD claim follows from that ordinary partial value.
+- The active-15 reused source qualification remains valid: all 16 `dPgF` values correspond to **printed X cells** in
+  the original table. Retain them all. No catalog-derived per-lens absolute C/F/g override or unsupported partial
+  is present or removed. Source partials by row: 1/9 +0.0043; 3/7 +0.0534; 5/21 −0.0083; 11 +0.0150; 12 −0.0083;
+  15 +0.0117; 16 +0.0021; 18 +0.0167; 19 −0.0048; 23 +0.0069; 25 −0.0033; 26 +0.0251; 28 −0.0007.
+- Table footnote: `X = θgF − (0.6438 − 0.001682νd)`. Paragraph 0022 explicitly defines d 587.6 nm, F 486.1 nm,
+  C 656.3 nm and g 435.8 nm, `νd = (Nd − 1)/(NF − NC)`, `θgF = (Ng − NF)/(NF − NC)`. Paragraph 0057 explicitly
+  ties prescription nd/νd to d. No unknown-reference suppression is warranted for this publication.
+- All 16 compatible curves and all source numeric glass values remain. Retain the four patent APD designations
+  on Gp1/Gp2/Gn1 and qualified CaF2 production correlation. Catalog compatibility is not proof of supplier, melt,
+  chemistry, cement, coating or manufacturing history. Unidentified historical materials remain unresolved.
+
+### Runtime, actual SVG and retained reconstruction limits
+
+- Surface check passes; image-circle check finds zero undersized; infinity aperture census passes at 2.900000;
+  format-corner field coverage passes. Existing derived iris radius is 23.251414 mm. The source's one 48.31 mm stop
+  effective-diameter cell does not establish a physical iris schedule, so no aperture/control correction is made.
+- Real aimed iris-rim working f-number at infinity is 3.006744, +3.680818% versus 2.90, a different criterion from
+  the paraxial-iris/beam-clearance aperture census. Do not describe both as a three-percent pass.
+- Actual 21-focus × eight-preset working census: 156 traced / 12 vignetted in both configurations; at wide open,
+  S8 clips focus 0.45 and S7 clips 0.50–1.00. The 193-ray pupil grid over 63 focus/field states has valid aimed
+  chiefs throughout; axial endpoints 193/193 and 145/193. G adds only the disclosed corner losses above.
+- Current first-order check includes physical G. Infinity BF after G is 54.327581 mm versus retained air54.269129 mm
+  (residual +0.058452 mm). Close 2.7 m finite-conjugate residual is −0.0000244 mm and magnification magnitude0.165704×.
+  At focus0.5/display5.4 m, the retained linearly interpolated L16 position gives −3.822759 mm conjugate defocus.
+  Finite spacing and intermediate focus are illustrative reconstruction, not a published or focus-preserving cam.
+- Compare actual SVG with native Figure 3, including changed G rectangle and all cemented elements. At 21 focus
+  positions, 336 finite connected closed paths have zero hidden renderer trimming. No source silhouette is claimed
+  for the unmodeled taller G blank; no slope/cap/clearance guard is relaxed.
+- Correct stale public analysis claiming G is omitted and a 0.75 mm normalized runtime plane shift. Current G is
+  physical and drawn. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
+- No full finite-focus or transverse-IS source schedule is published. No claimed production illumination or continuous
+  focus calibration follows from these samples. Full repository gates are coordinated with the three-review batch.

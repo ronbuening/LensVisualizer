@@ -7,8 +7,8 @@
 **Published:** April 21, 2011\
 **Inventor:** Shigenobu Sugita\
 **Assignee:** Canon Inc.\
-**Title:** *Optical System and Optical Apparatus Having the Same*\
-**Example details:** Example 2 / Fig. 3
+**Title:** _Optical System and Optical Apparatus Having the Same_\
+**Example details:** Second Numerical Embodiment / normalized Numerical Embodiment 2; PDF page 10, Figures 3–4 on PDF page 3
 
 The prescription is the patent's Second Numerical Embodiment, treated as the selected production correlation for the
 CANON EF 400mm f/2.8 L IS II USM. The patent does not identify a commercial lens by product name, so the correlation is
@@ -59,16 +59,31 @@ is important when interpreting the pair: its patent significance is primarily ch
 than large net paraxial power.
 
 The patent's row-14 aperture stop is retained at the published axial station. Its source table gives an "effective
-diameter" of 48.31 mm, but that value does not reproduce the patent f/2.90 when treated as the physical iris. The data
-therefore uses an inferred physical stop semi-diameter of 23.251414 mm, calibrated from the final prescription so that
-the modeled entrance pupil reproduces f/2.90.
+diameter" of 48.31 mm. That single column does not independently establish a physical iris radius. The existing
+derived/paraxial stop semi-diameter of 23.251414 mm remains, reproducing the paraxial f/2.90 convention. The real
+aimed iris-rim working f-number at infinity is 3.006744, 3.680818% above 2.90; this is a different criterion from the
+beam-clearance aperture census, which passes at 2.900000. Neither convention alone proves a physical iris correction.
 
-The separate rear glass block `G` is drawn as a plane-parallel plate from patent rows 28–29: 2.2 mm thick, nd 1.51633,
-νd 64.14, 15.00 mm behind surface 27. Its semi-diameter is a ray-trace estimate, because the patent's 36.00 mm effective
-diameter is a ray envelope that would limit this model's corner bundle. The patent explicitly defines back
-focus as the distance from the final active lens surface `Re` to the image plane with `G` absent (70.72 mm), so
-70.72 − 15.00 − 2.2/1.51633 = 54.269129 mm of air follows the plate and the authored track equals the patent's
-`Lt = 372.00 mm`. No sensor cover or synthetic replacement layer is added.
+The separate rear glass block `G` is drawn as a plane-parallel plate from Second Numerical Embodiment rows 28–29
+(PDF page 10 / printed page 5): 2.2 mm thick, nd 1.51633, νd 64.14, 15.00 mm behind surface 27. Both rows print
+**36.00 mm under “Effective diameter”**, so the current clear semi-diameter is its 18.00 mm half-diameter. The prior
+21.5 mm construction estimate is retired. Five additional rays in the 193-sample infinity corner pupil now clip at
+G's front face: 136 samples pass versus 141 with the old cap. The source cap, existing off-axis vignetting and retained
+near-focus reconstruction limitations remain visible; the cap is not enlarged to restore the earlier transmission.
+
+Paragraph 0021 (PDF pages 6–7) describes G as an optical-filter/faceplate glass block outside rear unit LR and defines
+back focus from final active surface `Re` to IP **with G absent**. The retained 54.269129 mm air gap after G is derived
+from `70.72 − 15.00 − 2.2/1.51633`; it is not a printed row-29 distance. G's physical 2.2 mm thickness is traced as
+written. The complete authored track is 371.999129 mm, approximately the source `Lt = 372.00 mm`, rather than a
+plate-omitted model. The drawn lens-filter configuration and its association with the marketed count are qualified
+production correlation. No additional camera stack is invented.
+
+Native Figure 3 draws the plain rectangular G blank at approximately 31 mm outer half-height when calibrated by the
+300.53 mm first-vertex-to-Re track (about 3.83 px/mm, practical reading uncertainty ±0.8 mm). It publishes no separate
+clear-cap/opaque-land junction on either flat face. That un-dimensioned outer blank is not promoted to optical clear
+aperture, and no speculative flat-face `rimExtensionSd` is authored. Its taller outline remains a disclosed drawing
+limitation. The unchanged active-15 geometry/glass review is reused from **2026-08-19**; the G addition is dated
+**2026-10-04**. Only the scoped source/G/current-configuration checks described here are dated **2026-10-30**.
 
 ## Element-by-Element Analysis
 
@@ -196,35 +211,54 @@ off-axis principal-ray height is large, specifically to improve lateral chromati
 and astigmatism correction (¶0027, ¶0033–¶0037). The nearly equal and opposite standalone powers of Gp2 and Gn1 leave
 the cemented L25 pair only weakly positive in paraxial power.
 
+### G — Plane-Parallel Filter / Faceplate Block
+
+**nd = 1.51633, νd = 64.14. Glass: 516641 class, vendor unresolved; S-BSL7 is a qualified spectral proxy.**
+
+The original row 28 directly prints θgF 0.5352 and X −0.0007. Both flat faces, the 2.2 mm physical thickness,
+15.00 mm leading air gap and 36.00 mm effective diameter are source values. The index/Abbe pair and partial-dispersion
+value are retained. No source supplier, melt, cement, coating or historical chemistry is established. G has no
+source APD designation; publishing a partial-dispersion value alone does not make it an anomalous material.
+
 ## Glass Identification and Selection
 
-The numerical example publishes `nd`, `νd`, `θgF`, and the deviation `X = θgF - (0.6438 - 0.001682νd)`. The final data
+The numerical example publishes `nd`, `νd`, `θgF`, and the deviation `X = θgF - (0.6438 - 0.001682νd)` for all
+16 modeled media, including G. Paragraph 0057 (PDF page 9 / printed page 4) explicitly assigns prescription nd/νd
+to the d-line. Paragraph 0022 (PDF page 7 / printed page 2) defines wavelengths g 435.8 nm, F 486.1 nm, d 587.6 nm
+and C 656.3 nm, with `νd = (Nd − 1)/(NF − NC)` and `θgF = (Ng − NF)/(NF − NC)`. The final data
 stores the patent's tabulated `X` directly as `dPgF`. The patent does not publish absolute `nC`, `nF`, or `ng` for these
 glasses, and the numerical coordinates alone do not establish a unique glass vendor. The data therefore omits absolute
 line indices rather than synthesizing them from an unproven catalog identity.
 
-| Elements | nd | νd | dPgF | Data-file glass identification |
-|---|---:|---:|---:|---|
-| L11, L15 | 1.48749 | 70.2 | +0.0043 | 487702 class (vendor unresolved; multiple catalog equivalents) |
-| L12, L14 | 1.43387 | 95.1 | +0.0534 | CaF2 fluorite — Canon production-correlation inference |
-| L13, L23 | 1.83481 | 42.7 | -0.0083 | 835427 class (vendor unresolved; multiple catalog equivalents) |
-| L16 positive | 1.80518 | 25.4 | +0.0150 | 805254 class (vendor unresolved; multiple catalog equivalents) |
-| L16 negative | 1.80400 | 46.6 | -0.0083 | 804466 class (vendor unresolved; multiple catalog equivalents) |
-| L21 negative | 1.72825 | 28.5 | +0.0117 | 728285 class (vendor unresolved; multiple catalog equivalents) |
-| L21 positive | 1.70154 | 41.2 | +0.0021 | 702412 class (vendor unresolved; multiple catalog equivalents) |
-| L22 positive | 1.84666 | 23.8 | +0.0167 | 847238 class (vendor unresolved; multiple catalog equivalents) |
-| L22 negative | 1.80610 | 40.9 | -0.0048 | 806409 class (vendor unresolved; multiple catalog equivalents) |
-| L24 | 1.64769 | 33.8 | +0.0069 | 648338 class (vendor unresolved; multiple catalog equivalents) |
-| L25 positive / Gp2 | 1.65412 | 39.7 | -0.0033 | 654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents) |
-| L25 negative / Gn1 | 1.80810 | 22.8 | +0.0251 | 808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents) |
+| Elements           |      nd |    νd |    dPgF | Data-file glass identification                                                           |
+| ------------------ | ------: | ----: | ------: | ---------------------------------------------------------------------------------------- |
+| L11, L15           | 1.48749 |  70.2 | +0.0043 | 487702 class (vendor unresolved; multiple catalog equivalents)                           |
+| L12, L14           | 1.43387 |  95.1 | +0.0534 | CaF2 fluorite — Canon production-correlation inference                                   |
+| L13, L23           | 1.83481 |  42.7 | -0.0083 | 835427 class (vendor unresolved; multiple catalog equivalents)                           |
+| L16 positive       | 1.80518 |  25.4 | +0.0150 | 805254 class (vendor unresolved; multiple catalog equivalents)                           |
+| L16 negative       | 1.80400 |  46.6 | -0.0083 | 804466 class (vendor unresolved; multiple catalog equivalents)                           |
+| L21 negative       | 1.72825 |  28.5 | +0.0117 | 728285 class (vendor unresolved; multiple catalog equivalents)                           |
+| L21 positive       | 1.70154 |  41.2 | +0.0021 | 702412 class (vendor unresolved; multiple catalog equivalents)                           |
+| L22 positive       | 1.84666 |  23.8 | +0.0167 | 847238 class (vendor unresolved; multiple catalog equivalents)                           |
+| L22 negative       | 1.80610 |  40.9 | -0.0048 | 806409 class (vendor unresolved; multiple catalog equivalents)                           |
+| L24                | 1.64769 |  33.8 | +0.0069 | 648338 class (vendor unresolved; multiple catalog equivalents)                           |
+| L25 positive / Gp2 | 1.65412 |  39.7 | -0.0033 | 654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents)      |
+| L25 negative / Gn1 | 1.80810 |  22.8 | +0.0251 | 808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents) |
+| G                  | 1.51633 | 64.14 | −0.0007 | 516641 class (vendor unresolved; qualified catalog proxy)                                |
 
-Fresh screening of current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog material finds exact or near-exact
-coordinate equivalents for the ordinary patent materials, often from several manufacturers. The final data therefore
-uses the neutral six-digit coordinate class derived from the patent `nd/νd` pair instead of naming a supplier. A
-coordinate match establishes an optical-glass class; it does not establish which supplier or melt Canon used. The
-inspector's chromatic detail still exposes the resolver-selected catalog curve, and the authored patent `dPgF` remains
-authoritative for the violet channel so ambiguity cannot replace the source's partial-dispersion evidence.
+The active-15 classification review dated 2026-08-19 is reused. The scoped 2026-10-30 source check confirms that
+all 16 authored `dPgF` entries are **genuinely printed X cells** in the original table, rather than catalog-derived
+per-lens overrides. All 16 are retained, including G's −0.0007; no unsupported absolute C/F/g indices are present.
+The source’s printed X values remain authoritative over compatible catalog violet-channel extrapolation. Four
+existing patent APD designations remain: L12/L14 Gp1, L25 positive Gp2 and L25 negative Gn1; ordinary tabulated
+partials do not establish APD or ordinary production chemistry.
 
+The current resolver still supplies 16 compatible curves: S-FSL5 (L11/L15), CaF2 (L12/L14), J-LASF05 (L13/L23),
+N-SF6 (L16 positive), H-ZLaF50D (L16 negative), S-TIH10 (L21 negative), BAFD7 (L21 positive), J-SF03 (L22 positive),
+P-LASF47 (L22 negative), E-FD2 (L24), N-KZFS5 (Gp2), S-NPH1 (Gn1), and S-BSL7 (G). These are qualified spectral
+proxies. Coordinate compatibility does not identify Canon's historical supplier, melt, chemistry or manufacturing
+process; every such historical identity remains unresolved. The neutral class labels and production-correlation
+qualification are retained.
 L12 and L14 are the one deliberate exception to the otherwise vendor-neutral treatment. Their `nd/νd` coordinates are
 consistent with fluorite, and Canon independently documents two fluorite elements in the production lens at the
 corresponding front-group positions. The CaF2 identification is therefore explicitly labeled as production-correlation
@@ -242,23 +276,26 @@ published close-focus prescription.
 The reconstruction preserves the patent's one-degree-of-freedom mechanism by keeping the sum of the two air gaps around
 L16 constant:
 
-| State | D10 before L16 | D13 after L16 | L16 shift from infinity |
-|---|---:|---:|---:|
-| Infinity | 16.220000 mm | 43.730000 mm | 0 mm |
-| 2.7 m reconstructed close state | 45.149494 mm | 14.800506 mm | +28.929494 mm imageward |
+| State                           | D10 before L16 | D13 after L16 | L16 shift from infinity |
+| ------------------------------- | -------------: | ------------: | ----------------------: |
+| Infinity                        |   16.220000 mm |  43.730000 mm |                    0 mm |
+| 2.7 m reconstructed close state |   45.149494 mm |  14.800506 mm | +28.929494 mm imageward |
 
-In both states, `D10 + D13 = 59.95 mm`. The reconstruction treats Canon's published 2.7 m closest focusing
-distance in the normal photographic sense as referenced to the physical image plane, then normalizes that reference to
-the no-`G` model. The patent gives physical entire length `Lt = 372.00 mm`, while the authored first-surface-to-image
-track is 371.25 mm after omitting `G` and using the patent's no-`G` back focus. The physical image plane is therefore
-0.75 mm imageward of the modeled plane at the source precision. The corresponding object distance from surface 1 is
-2328.00 mm, or 2699.25 mm from the object to the normalized model image plane.
+In both states, `D10 + D13 = 59.95 mm`. The reconstruction uses Canon's published 2.7 m closest focusing distance
+as a physical image-plane reference and the source `Lt = 372.00 mm`, giving 2328.00 mm from the object to surface 1.
+The current **G-included** authored track is 371.999129 mm; its 0.000871 mm difference from source Lt is retained
+rounding. There is no longer a plate-omitted 371.25 mm runtime plane or a 0.75 mm runtime reference shift.
 
-Solving the one-degree-of-freedom L16 translation at that normalized conjugate gives `D10 = 45.149494 mm`,
-`D13 = 14.800506 mm`, and an imageward shift of +28.929494 mm. The paraxial imaging matrix has
-`B = 1.71 × 10^-13 mm`, effectively zero at calculation precision. The reconstructed magnification magnitude is
-0.165704×, close to Canon's marketed 0.17×. This agreement validates the constrained model but does not turn the
-reconstructed air gaps into patent-published data.
+The retained close gaps give L16 an imageward shift of +28.929494 mm and a computed magnification magnitude of
+0.165704×, close to the marketed 0.17×. With the current physical track, the finite-conjugate residual at 2.7 m is
+−0.0000244 mm. This supports the endpoint reconstruction without turning it into patent-published data.
+
+The 21-position actual-geometry census also evaluates the existing reciprocal focus-distance display convention.
+At focus 0.5 (displayed distance 5.4 m), linear L16 interpolation has a finite-conjugate image-plane residual of
+−3.822759 mm. Its motion therefore illustrates the mechanism and does not preserve focus at every displayed
+intermediate distance. The source publishes only infinity and a focus direction, so no finite cam trajectory is
+invented to eliminate this residual. Near-focus illumination is separately limited: the wide-open working-ray
+probe is vignetted at S8 at focus 0.45 and S7 at 0.50–1.00, unchanged by the G-cap restoration.
 
 ## Chromatic Correction Strategy
 
@@ -281,14 +318,14 @@ patent-backed APD metadata, not an inferred production-glass claim.
 
 Example 2 satisfies all six material conditions used by the patent for Gp1, Gn1, and Gp2:
 
-| Patent condition | Example-2 value | Required interval | Result |
-|---|---:|---:|---|
-| (1) Gp1 `νd` | 95.1 | `75 < νd < 99` | Pass |
-| (2) Gp1 `dPgF` | +0.0534 | `0.020 < X < 0.100` | Pass |
-| (3) Gn1 `nd` | 1.80810 | `1.75 < nd < 2.10` | Pass |
-| (4) Gn1 `dPgF` | +0.0251 | `0.020 < X < 0.100` | Pass |
-| (5) Gp2 `nd + 0.0125νd` | 2.15037 | `1.90 < value < 2.24` | Pass |
-| (6) Gp2 `dPgF` | -0.0033 | `-0.010 < X < 0.003` | Pass |
+| Patent condition        | Example-2 value |     Required interval | Result |
+| ----------------------- | --------------: | --------------------: | ------ |
+| (1) Gp1 `νd`            |            95.1 |        `75 < νd < 99` | Pass   |
+| (2) Gp1 `dPgF`          |         +0.0534 |   `0.020 < X < 0.100` | Pass   |
+| (3) Gn1 `nd`            |         1.80810 |    `1.75 < nd < 2.10` | Pass   |
+| (4) Gn1 `dPgF`          |         +0.0251 |   `0.020 < X < 0.100` | Pass   |
+| (5) Gp2 `nd + 0.0125νd` |         2.15037 | `1.90 < value < 2.24` | Pass   |
+| (6) Gp2 `dPgF`          |         -0.0033 |  `-0.010 < X < 0.003` | Pass   |
 
 The patent's Table 1 contains a direct label contradiction for the Example-2 positions of Gp2 and Gn1. It prints the
 "negative lens Gn1" at 0.813L and the "positive lens Gp2" at 0.973L. Reconstruction from the actual prescription gives
@@ -314,20 +351,20 @@ The final TypeScript arrays were recomputed independently with sequential height
 matrix cross-check. The two methods reproduce the same matrix columns to double-precision residual zero. Selected
 results are:
 
-| Quantity | Computed from final data | Patent / source comparison |
-|---|---:|---:|
-| EFL | 392.260742 mm | 392.15 mm patent focal length |
-| EFL residual | +0.110742 mm | +0.02824% |
-| BFL from final active surface, `G` absent | 70.778452 mm | 70.72 mm patent back focus |
-| Active vertex track, surface 1 → Re | 300.530000 mm | direct sum of Example-2 spacings |
-| Model track, surface 1 → IP, with `G` | 371.999129 mm | 372.00 mm patent `Lt` |
-| Front principal plane H1 | -337.499626 mm from surface 1 | independent ABCD result |
-| Rear principal plane H2 | -20.952290 mm from surface 1 | 321.482290 mm objectward of Re |
-| Modeled infinity f-number | 2.900000 | 2.90 patent design value |
-| Entrance-pupil semi-diameter | 67.631162 mm | from calibrated physical stop |
-| Exit-pupil semi-diameter | 19.666414 mm | paraxial image of the stop, 43.286750 mm objectward of Re |
-| Petzval sum `Σ φ/(n n′)` | +1.50108264 × 10^-4 mm^-1 | reciprocal 6661.86 mm |
-| Close reconstructed magnification | 0.165704× | 0.17× Canon marketed value |
+| Quantity                                  |      Computed from final data |                                Patent / source comparison |
+| ----------------------------------------- | ----------------------------: | --------------------------------------------------------: |
+| EFL                                       |                 392.260742 mm |                             392.15 mm patent focal length |
+| EFL residual                              |                  +0.110742 mm |                                                 +0.02824% |
+| BFL from final active surface, `G` absent |                  70.778452 mm |                                70.72 mm patent back focus |
+| Active vertex track, surface 1 → Re       |                 300.530000 mm |                          direct sum of Example-2 spacings |
+| Model track, surface 1 → IP, with `G`     |                 371.999129 mm |                                     372.00 mm patent `Lt` |
+| Front principal plane H1                  | -337.499626 mm from surface 1 |                                   independent ABCD result |
+| Rear principal plane H2                   |  -20.952290 mm from surface 1 |                            321.482290 mm objectward of Re |
+| Modeled infinity f-number                 |                      2.900000 |                                  2.90 patent design value |
+| Entrance-pupil semi-diameter              |                  67.631162 mm |                             from calibrated physical stop |
+| Exit-pupil semi-diameter                  |                  19.666414 mm | paraxial image of the stop, 43.286750 mm objectward of Re |
+| Petzval sum `Σ φ/(n n′)`                  |     +1.50108264 × 10^-4 mm^-1 |                                     reciprocal 6661.86 mm |
+| Close reconstructed magnification         |                     0.165704× |                                0.17× Canon marketed value |
 
 The authored semi-diameters are modeling inferences rather than simple halves of the patent's effective-diameter column.
 They were chosen to preserve the patent section while satisfying edge-thickness, actual spherical rim-slope,
@@ -336,17 +373,28 @@ boundary is surfaces 20–21,
 where both are authored at 15.75 mm semi-diameter; under the 0.90 shared-gap-sag policy the remaining margin is
 0.045789 mm. The minimum element edge thickness is 1.254695 mm and the maximum spherical rim angle is 53.8566°.
 
-There are no aspherical surfaces, so no conic convention or asphere-coefficient transformation applies. There is also
-no uniform scaling: `s = 1.0`. The rear plate `G` is the only omitted optical plate. Its effect is accounted for by
-using the patent's explicitly normalized no-`G` back focus at the final active surface; this places the modeled image
-plane 0.75 mm objectward of the
-patent's physical `Lt` image plane at the published precision, a reference-plane shift also used in the close-focus
-reconstruction.
+There are no aspherical surfaces, conic transformations, hybrid layers or uniform scaling. G is explicitly drawn
+and traced; none of its physical thickness is omitted. The stale no-G analysis was corrected during the scoped
+2026-10-30 reopening. Source R/d, all 15 active clear caps, derived stop, focus gaps, aperture presets and group controls
+remain unchanged.
+
+The original embeds 2560 × 3300 one-bit pages at **native 300 ppi**. The older 2026-08-19 audit's 600 dpi render was
+upsampling, not new source resolution. Current comparison uses the native Figure 3 crop and actual generated SVGs at
+infinity, mid and close focus. All 16 elements are connected; 21 focus renders produce 336 finite closed paths with
+one subpath each and zero hidden renderer trimming. No distinct added shoulder, inferred cut or opaque bonded land is
+claimed. The larger undimensioned G blank remains qualified as described above.
+
+Surface and image-circle checks pass. Infinity field coverage reaches the 21.65 mm format corner; all 63 sampled
+focus/field chiefs converge and clear. The 21-focus × eight-preset working-ray census has 156 traced and 12 vignetted
+calls in both old and restored configurations. In the 193-sample pupil census over 21 focus positions and three fields,
+infinity axial transmission is 193/193 and close axial transmission is 145/193; corner endpoints are 136/193 and
+134/193 after G restoration (previously 141/193 and 134/193). This sampled runtime clearance is distinct from source
+fidelity and does not certify production illumination. Transverse IS travel remains unmodeled because no source
+millimetre decenter schedule is provided.
 
 ## Sources / References
 
-- Shigenobu Sugita, *Optical System and Optical Apparatus Having the Same*, US 2011/0090576 A1, published April 21,
-  2011. Example 2 / Second Numerical Embodiment, especially Fig. 3, ¶0021–¶0057, the Second Numerical Embodiment table,
+- Shigenobu Sugita, _Optical System and Optical Apparatus Having the Same_, US 2011/0090576 A1, published April 21, 2011. Example 2 / Second Numerical Embodiment, especially Fig. 3, ¶0021–¶0057, the Second Numerical Embodiment table,
   and Table 1. https://patents.google.com/patent/US20110090576A1/en
 - Canon Camera Museum, **EF400mm f/2.8L IS II USM**. Production specifications include August 2011 market timing,
   16 elements in 12 groups, nine diaphragm blades, 2.7 m closest focusing distance, 0.17× maximum magnification, and
