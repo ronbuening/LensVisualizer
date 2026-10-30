@@ -328,7 +328,7 @@ The substrate supplies the remaining glass span of physical L20. Its front bound
 
 Together the substrate and resin form the source's hybrid asphere. The combined hybrid power is different from either isolated material value. The cover glass after it belongs to the camera-side model.
 
-The rear face is modeled to 17.0 mm, the outer rim Figure 1 draws for L20. The diagram joins that rim to the 15.0 mm front rim with a straight edge where the figure shows a flat mounting seat.
+The rear face is modeled to 17.0 mm, the outer rim Figure 1 draws for L20. The air-facing resin cap stays at 15.0 mm, with an explicit opaque land extending its drawn rim to 17.0 mm. The cemented resin/substrate boundary stays at 15.0 mm; no cemented-junction extension is inferred.
 
 [1, ¶0116, Table 1]
 
@@ -605,3 +605,5 @@ interpreting calculations beyond the d-line first-order checks presented here.
 4. HOYA, [Optical Glass Catalog, including obsolete types](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf),
    revision 20260707. Coordinate comparisons only; relevant rows and signed residuals
    are retained in the dossier. Catalog candidates do not establish source-melt identity.
+
+The 2026-10-29 source reinspection adds the resolved concave mounting lands recorded in the accompanying audit: extensions at 9, 14, 35A and a beam-adjusted rear-face cut at 11. The source hybrid layer remains explicitly separate from the glass substrate. Optical SDs and the source prescription are retained. Every source glass pair and current resolver label was checked again; compatible curves remain spectral proxies.

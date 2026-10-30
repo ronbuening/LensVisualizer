@@ -464,3 +464,43 @@ aspheric coefficient, variable gap, `STO` value, `gapSagFrac` or exception rim (
   authorised rims and `gapSagFrac` are as approved.
 - The 4,851-ray on-axis physical-iris grid of Stage 2 was not re-run. The changed rims cannot affect it: surface 10
   grew, and the axial bundle stays below 4 mm on 35A, 36 and 37.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/JP2025033505A.pdf`, Numerical Example 1: Figure 1 PDF page 34; prescription and rear-plate Table 1 pp 19–20; construction/line convention p 19. Page images were rendered and inspected anew; earlier audit records provided locators only.
+
+Every convex/concave face and cemented boundary was inspected in the new 600 dpi Figure 1 crop. Native raster 318 dpi; S1–S37 spans 2096 px /151.2196 mm =13.861 native px/mm (26.153 px/mm at 600 dpi). Added extensions 9→17.4, 14→15.8 and 35A→17.0 mm, retaining caps 14.95, 14.21 and 15.0 mm. Surface 35A is the air-facing hybrid-resin face; cemented 36 remains unchanged. These restore L5/L8/L20 outer seats without continuing the concave optical curves.
+
+Surface 11 has a resolved rear seat on L6. In the 600 dpi crop its cap/edge radial spans are approximately 370/399 px, q≈0.927±0.009 at native resolution (edge≈211 px). That source ratio implies≈14.37 mm at the stored 15.5 mm rim. The inferred beam reaches 14.492974 mm, so the cut is moved outward according to the beam rule: depth 1.99 mm gives cap 14.555978 mm and a 0.944022 mm land. The prior 1.98 mm step gives cap 14.520041 mm, below reach+0.05 mm. The adopted cap is a beam-adjusted inference.
+
+Other faces show no separately resolved air-face land warranting additional clipping; the tiny nearly flat/cemented transitions remain as prescribed. All source indices, optical SDs, source curvatures and gap values, the five historically authorized narrow-margin rims and the gap allowance stay unchanged.
+
+Every source medium nd/νd pair was checked directly and retained, with d-line convention confirmed. No source numerical θgF/partial-dispersion or spectral-line indices are published for these media, so no dispersion override is introduced. Existing catalog-inferred APD classification remains inferred.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L1     | 1.80610 / 33.27 | NBFD15                           |
+| L2     | 1.49700 / 81.61 | FCD1                             |
+| L3     | 1.43700 / 95.1  | FCD100                           |
+| L4     | 1.85883 / 30    | NBFD30                           |
+| L5     | 1.75500 / 52.32 | TAC6L                            |
+| L6     | 1.72916 / 54.67 | TAC8                             |
+| L7     | 1.84666 / 23.78 | FDS90                            |
+| L8     | 2.00069 / 25.46 | TAFD40L-W                        |
+| L9     | 1.74330 / 49.22 | NBF1                             |
+| L10    | 2.00069 / 25.46 | TAFD40L-W                        |
+| L11    | 1.59282 / 68.62 | FCD515                           |
+| L12    | 1.61266 / 44.46 | J-KZFH1                          |
+| L13    | 1.85451 / 25.15 | NBFD25                           |
+| L14    | 1.59282 / 68.62 | FCD515                           |
+| L15    | 1.87070 / 40.73 | TAFD32                           |
+| L16    | 1.85108 / 40.12 | Q-LASFH58S                       |
+| L17    | 1.92286 / 20.88 | E-FDS1                           |
+| L18    | 1.72916 / 54.67 | TAC8                             |
+| L19    | 1.58313 / 59.46 | M-BACD12                         |
+| L20r   | 1.53610 / 41.21 | unresolved; Abbe approximation   |
+| L20    | 1.90366 / 31.31 | TAFD25L                          |
+
+Coverage: 20/21 modeled media, representing 20 physical lens elements. L20r is an additional explicitly sourced bonded resin layer and remains unresolved; no supplier, resin chemistry or cure process is guessed. Rear plate(s) checked separately: 1.51680/64.2. Catalog-compatible spectra are qualified proxies, not production supplier/melt identifications. No catalog tolerance is relaxed.
+
+Verification: focused surface/inferred-beam and image-circle audits, aperture census after added cuts, actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label glass resolver/coordinate compatibility and the shared dispersion/partial-dispersion consistency suites. Full repository gates are recorded by the coordinator at commit time.
