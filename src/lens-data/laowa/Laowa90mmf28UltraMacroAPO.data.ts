@@ -10,8 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * diagram about 14.2, 13.2 and 10.8/9.9). A second reading of the same figure set the L4/L5 doublet to one height,
  * 11.5 (figure 11.35 for both the L4 block and the L5 tip), and L8 to 9.5 (figure 9.39; axial ray 9.38), so the
  * G2 taper steps as drawn; a 3-D trace shows these two rims pass every ray the other rims pass. The remaining rims
- * agree with the figure within about 4 % and keep their first-authored values. Flat lands the figure draws on
- * concave faces (L4, L6, L10, L12) are not modeled.
+ * agree with the figure within about 4 % and keep their first-authored values. Air-facing lands on surfaces 9,
+ * 18 and 21 are modeled by inferred rim cuts; the cemented junction lands on surfaces 8 and 11 remain
+ * unsupported by the air-boundary schema.
  * No aspheres or source cover plate. Published 1.0x/2.0x labels are retained literally.
  * Derived paraxial magnifications, finite conjugates and BFD residuals are separate.
  * D24 is nonmonotonic; source total-track changes are retained, not corrected.
@@ -228,7 +229,7 @@ const LENS_DATA = {
     { label: "6", R: 88.1944, d: 5.5038, sd: 13 },
     { label: "7", R: -53.6707, d: 1.2, sd: 11.5, medium: 4 },
     { label: "8", R: 15.2125, d: 3.2, sd: 11.5, medium: 5 },
-    { label: "9", R: 19.7161, d: 0.2, sd: 11.5 },
+    { label: "9", R: 19.7161, d: 0.2, sd: 11.5, rimCutDepthMm: 2.91 },
     { label: "10", R: 18.935, d: 2.4, sd: 10.5, medium: 6 },
     { label: "11", R: 15.1428, d: 5.0, sd: 10.5, medium: 7 },
     { label: "12", R: -239.5922, d: 0.15, sd: 10.5 },
@@ -237,10 +238,10 @@ const LENS_DATA = {
     { label: "STO", R: "flat" },
     { label: "16", R: 95.3144, d: 0.8, sd: 8.1, medium: 9 },
     { label: "17", R: 23.4253, d: 2.6819, sd: 8.1 },
-    { label: "18", R: -34.5223, d: 2.0, sd: 12, medium: 10 },
+    { label: "18", R: -34.5223, d: 2.0, sd: 12, medium: 10, rimCutDepthMm: 1.02 },
     { label: "19", R: 24.8202, d: 5.0, sd: 12, medium: 11 },
     { label: "20", R: -41.5781, d: 13.2713, sd: 12 },
-    { label: "21", R: -21.6591, d: 1.2, sd: 14, medium: 12 },
+    { label: "21", R: -21.6591, d: 1.2, sd: 14, medium: 12, rimCutDepthMm: 4.05 },
     { label: "22", R: -84.0437, d: 0.15, sd: 14 },
     { label: "23", R: 59.6957, d: 6.5, sd: 17, medium: 13 },
     { label: "24", R: -59.6957, sd: 17 },

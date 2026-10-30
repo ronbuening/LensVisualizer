@@ -191,3 +191,39 @@ The page shows D2 / D15 / D24 of 43.82 / 1.20 / 19.68 at the infinity end, 18.62
 Maker diagram (measured again: 7.16 px/mm from first to last vertex, heights good to about ±0.4 mm). Thirteen elements in ten groups with cemented pairs L4+L5, L6+L7 and L10+L11; extra-low dispersion on L2, L3 and L7; ultra-high refraction on L5, L8 and L11; no aspherical element. Heights read L2 14.3, L3 13.2, L4 11.8, L5 11.0, L6 10.8, L7 10.0, L8 10.0, L9 8.6, L10/L11 10.3, L12 14.0, L13 16.5 mm. It differs from Figure 1 in four places, and the patent figure is kept in each: it steps each cemented pair down toward the rear (L4 to L5 and L6 to L7 by about 0.8 mm) where the figure draws them level; it draws L8 level with L7 at 10.0 mm where the figure draws 9.39 mm; and it draws L10/L11 lower than L4 where the figure draws it higher.
 
 Open limitations. Flat lands on concave faces are still not modeled (item 3 above). At 1.0× the outermost on-axis ray the diagram draws ends at the L2 rim, as the first pass recorded; it is outside the stop-limited beam. The ray tallies quoted in the analysis from the authoring stage were not re-run.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/CN116520542A.pdf`, Example 1: Figure 1, PDF page 10; prescription tables, PDF pages 5–6. Source page images were rendered and inspected anew; prior records supplied locators only.
+
+Every face, including both cemented boundaries, was inspected in a fresh 600 dpi crop. Figure scale: 2682 px / 109.1713 mm = 24.567 px/mm at 600 dpi, or 6.142 native px/mm (150 dpi raster). The following concave air-face lands are resolved; q is cap-end radius / outer radius. One-native-pixel uncertainty is ±(1+q)/(native edge px).
+
+| Face | Figure cap / edge mm | q ± one-pixel range | Retained cut depth / cap mm | Furthest beam / required margin mm |
+| ---- | -------------------- | ------------------- | --------------------------- | ---------------------------------- |
+| 9    | 10.1 / 11.35         | 0.890 ± 0.027       | 2.91 / 10.3092              | 9.8667 / 0.05                      |
+| 18   | 8.0 / 11.79          | 0.679 ± 0.023       | 1.02 / 8.3298               | 8.2098 / 0.05                      |
+| 21   | 12.3 / 13.7          | 0.898 ± 0.023       | 4.05 / 12.6110              | 12.4119 / 0.05                     |
+
+The implemented q values (0.8965, 0.6941, 0.9008) stay inside those source ranges. The initial surface-18 trial at 8.2082 mm failed beam clearance; the retained cut moves outward within the measured raster uncertainty. The lands on cemented interfaces 8 and 11 cannot be represented by this air-face-only feature and are left unchanged. All optical SDs, source prescription values and remaining faces are retained.
+
+All 13 authored glass media were checked against every source nd/νd row. Source uses d-line values and publishes no numerical θgF/partial-dispersion or other spectral-line indices for this embodiment. No source glass value changed.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L1     | 1.88403 / 43    | unresolved; Abbe approximation   |
+| L2     | 1.49700 / 81.61 | H-FK61                           |
+| L3     | 1.49700 / 81.61 | H-FK61                           |
+| L4     | 1.71736 / 29.5  | SF1                              |
+| L5     | 1.92286 / 20.88 | N-SF66                           |
+| L6     | 1.88300 / 43    | unresolved; Abbe approximation   |
+| L7     | 1.49700 / 81.61 | H-FK61                           |
+| L8     | 1.90366 / 31.31 | J-LASFH13                        |
+| L9     | 1.88177 / 40.87 | unresolved; Abbe approximation   |
+| L10    | 1.62004 / 36.3  | E-F2                             |
+| L11    | 1.89786 / 29.88 | unresolved; Abbe approximation   |
+| L12    | 1.83967 / 43.3  | unresolved; Abbe approximation   |
+| L13    | 1.51680 / 64.2  | H-K9L                            |
+
+Current resolver coverage: 8/13 modeled media; 13 physical lens elements. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
+
+Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.
