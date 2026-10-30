@@ -126,3 +126,20 @@ maximum paraxial interpolation defocus is −2.247634 mm at z = 0.28125. The inf
 range 288.224–390 mm between discrete source zoom stations. No source value or image plane is tuned to hide either
 interpolation limit. Source half-angle traces separately reach 95.2%/99.9%/100.4% of format height; runtime corner
 solves are a distinct conclusion. These are approximate-reference authored-model results, not production validation.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actual state iris. Peripheral counts in the table remain partial transmission rather than a full-beam guarantee.
+
+| Zoom z | Focus state    | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------- | -------------------------------------------- |
+| 0      | Infinity       | 49 / 49 / 35                                 |
+| 0      | Inferred close | 49 / 49 / 26                                 |
+| 0.5    | Infinity       | 49 / 49 / 43                                 |
+| 0.5    | Inferred close | 49 / 49 / 43                                 |
+| 1      | Infinity       | 49 / 48 / 29                                 |
+| 1      | Inferred close | 49 / 48 / 27                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

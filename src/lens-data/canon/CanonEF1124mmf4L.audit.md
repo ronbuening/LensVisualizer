@@ -12,10 +12,10 @@ Patent: US 2015/0146085 A1, Numerical Example 1
 
 ### Glass corrections
 
-| Element / surface | Before | After | Justification |
-|---|---|---|---|
-| E2 / S3 | `Unmatched 584/594 crown` | `S-BAL42 (OHARA catalog equivalent)` | S-BAL42 is within the d-line safety window at Δnd = -0.00130 and Δνd = -0.03. |
-| E3 / S5 | `Unmatched 850/403 high-index flint` | `M-TAFD305 (HOYA catalog equivalent)` | M-TAFD305 is within the d-line safety window at Δnd = +0.00135 and Δνd = -0.20. |
+| Element / surface | Before                               | After                                 | Justification                                                                   |
+| ----------------- | ------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------- |
+| E2 / S3           | `Unmatched 584/594 crown`            | `S-BAL42 (OHARA catalog equivalent)`  | S-BAL42 is within the d-line safety window at Δnd = -0.00130 and Δνd = -0.03.   |
+| E3 / S5           | `Unmatched 850/403 high-index flint` | `M-TAFD305 (HOYA catalog equivalent)` | M-TAFD305 is within the d-line safety window at Δnd = +0.00135 and Δνd = -0.20. |
 
 Both annotations leave the production supplier unspecified. No prescription, asphere, zoom, or semi-diameter values changed.
 
@@ -41,12 +41,12 @@ remain the optical authority. g1/g2 leaders, unit brackets, motion arrows, FP1/F
 
 ### Supported outer shoulders, with published optical caps retained
 
-| Surface | Before: clear sd / drawn outer (mm) | After: clear sd / drawn outer (mm) | Native figure cap/edge reading and disposition |
-|---|---|---|---|
-| S2 | 31.05 / 31.05 | 31.05 / 41.995 | About 271/374 px, q = 0.725 ±0.005; resolved long rear shoulder. |
-| S4A | 24.805 / 24.805 | 24.805 / 29.835 | About 203/263 px, q = 0.772 ±0.007; resolved rear shoulder. |
-| S6A | 18.19 / 18.19 | 18.19 / 23.045 | About 160/203 px, q = 0.788 ±0.009; resolved rear shoulder. |
-| S8 | 15.475 / 15.475 | 15.475 / 17.92 | About 139/160 px, q = 0.869 ±0.012; resolved rear shoulder. |
+| Surface | Before: clear sd / drawn outer (mm) | After: clear sd / drawn outer (mm) | Native figure cap/edge reading and disposition                   |
+| ------- | ----------------------------------- | ---------------------------------- | ---------------------------------------------------------------- |
+| S2      | 31.05 / 31.05                       | 31.05 / 41.995                     | About 271/374 px, q = 0.725 ±0.005; resolved long rear shoulder. |
+| S4A     | 24.805 / 24.805                     | 24.805 / 29.835                    | About 203/263 px, q = 0.772 ±0.007; resolved rear shoulder.      |
+| S6A     | 18.19 / 18.19                       | 18.19 / 23.045                     | About 160/203 px, q = 0.788 ±0.009; resolved rear shoulder.      |
+| S8      | 15.475 / 15.475                     | 15.475 / 17.92                     | About 139/160 px, q = 0.869 ±0.012; resolved rear shoulder.      |
 
 The uncertainties above use one native pixel at the cap end and outer edge, ±(1+q)/edge-pixels. These are schematic
 ratios: especially S4 does not justify replacing the explicitly published cap by a pixel-derived one. Each adopted
@@ -64,23 +64,23 @@ are unchanged; no tolerance is relaxed for this review.
 ### Every modeled medium
 
 | Element / source faces | Retained clear sd front / rear (mm) | Confirmed source nd / νd | Qualified catalog annotation |
-|---|---|---|---|
-| E1, S1A–S2 | 41.995 / 31.05 | 1.77250 / 49.6 | S-LAH66 |
-| E2, S3–S4A | 29.835 / 24.805 | 1.58443 / 59.4 | S-BAL42 |
-| E3, S5–S6A | 23.045 / 18.19 | 1.85000 / 40.3 | M-TAFD305 |
-| E4, S7–S8 | 17.92 / 15.475 | 1.59522 / 67.7 | S-FPM2 |
-| E5, S9–S10 | 15.42 / 15.23 | 1.43875 / 94.9 | S-FPL53 |
-| E6, S11–S12 | 15.335 / 14.985 | 1.72047 / 34.7 | S-NBH8 |
-| E7, S15–S16 | 10.055 / 9.69 | 2.00100 / 29.1 | S-LAH99 |
-| E8, S16–S17 | 9.69 / 9.565 | 1.57501 / 41.5 | S-TIL27 |
-| E9, S18–S19 | 9.12 / 9.285 | 1.91082 / 35.3 | TAFD35 |
-| E10, S19–S20 | 9.285 / 9.36 | 1.80518 / 25.4 | S-TIH6 |
-| E11, S22–S23 | 9.535 / 9.15 | 1.88300 / 40.8 | S-LAH58 |
-| E12, S23–S24 | 9.15 / 9.2 | 1.51742 / 52.4 | S-NSL36 |
-| E13, S24–S25 | 9.2 / 9.26 | 1.83481 / 42.7 | S-LAH55V |
-| E14, S26–S27 | 9.53 / 9.82 | 1.49700 / 81.5 | S-FPL51 |
-| E15, S28–S29 | 9.795 / 9.86 | 1.88300 / 40.8 | S-LAH58 |
-| E16, S29–S30A | 9.86 / 10.445 | 1.58313 / 59.4 | S-BAL42 |
+| ---------------------- | ----------------------------------- | ------------------------ | ---------------------------- |
+| E1, S1A–S2             | 41.995 / 31.05                      | 1.77250 / 49.6           | S-LAH66                      |
+| E2, S3–S4A             | 29.835 / 24.805                     | 1.58443 / 59.4           | S-BAL42                      |
+| E3, S5–S6A             | 23.045 / 18.19                      | 1.85000 / 40.3           | M-TAFD305                    |
+| E4, S7–S8              | 17.92 / 15.475                      | 1.59522 / 67.7           | S-FPM2                       |
+| E5, S9–S10             | 15.42 / 15.23                       | 1.43875 / 94.9           | S-FPL53                      |
+| E6, S11–S12            | 15.335 / 14.985                     | 1.72047 / 34.7           | S-NBH8                       |
+| E7, S15–S16            | 10.055 / 9.69                       | 2.00100 / 29.1           | S-LAH99                      |
+| E8, S16–S17            | 9.69 / 9.565                        | 1.57501 / 41.5           | S-TIL27                      |
+| E9, S18–S19            | 9.12 / 9.285                        | 1.91082 / 35.3           | TAFD35                       |
+| E10, S19–S20           | 9.285 / 9.36                        | 1.80518 / 25.4           | S-TIH6                       |
+| E11, S22–S23           | 9.535 / 9.15                        | 1.88300 / 40.8           | S-LAH58                      |
+| E12, S23–S24           | 9.15 / 9.2                          | 1.51742 / 52.4           | S-NSL36                      |
+| E13, S24–S25           | 9.2 / 9.26                          | 1.83481 / 42.7           | S-LAH55V                     |
+| E14, S26–S27           | 9.53 / 9.82                         | 1.49700 / 81.5           | S-FPL51                      |
+| E15, S28–S29           | 9.795 / 9.86                        | 1.88300 / 40.8           | S-LAH58                      |
+| E16, S29–S30A          | 9.86 / 10.445                       | 1.58313 / 59.4           | S-BAL42                      |
 
 All 16 source pairs and all four aspheric coefficient blocks match the original rows. There is no source-indexed
 hybrid/adhesive layer, filter or rear plate in this selected prescription. The published reference is d-line (587.6 nm);
@@ -122,11 +122,25 @@ optical surface is tuned to remove an illustrative interval's mismatch.
 
 | Published station z | Axial aperture difference | Paraxial defocus (mm) |
 | ------------------- | ------------------------: | --------------------: |
-| 0                   |                0.000000% |             -0.011941 |
-| 0.5                 |                0.000000% |              0.002756 |
-| 1                   |                0.000000% |              0.000925 |
+| 0                   |                 0.000000% |             -0.011941 |
+| 0.5                 |                 0.000000% |              0.002756 |
+| 1                   |                 0.000000% |              0.000925 |
 
 All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
 format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
 geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
 positions or production performance. The original discrete stations remain the source-supported quantitative states.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actual state iris. Peripheral counts in the table remain partial transmission rather than a full-beam guarantee. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 49 / 17                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 46 / 31                                 |
+| 1      | Infinity / unchanged focus | 49 / 38 / 31                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

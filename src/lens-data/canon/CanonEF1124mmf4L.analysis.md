@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 2015/0146085 A1  
-**Application Number:** US 14/513,363  
-**Priority:** Japanese Patent Application 2013-241734, November 22, 2013  
-**Filed:** October 14, 2014  
-**Published:** May 28, 2015  
-**Inventor:** Takahiro Hatada  
+**Patent:** US 2015/0146085 A1\
+**Application Number:** US 14/513,363\
+**Priority:** Japanese Patent Application 2013-241734, November 22, 2013\
+**Filed:** October 14, 2014\
+**Published:** May 28, 2015\
+**Inventor:** Takahiro Hatada\
 **Applicant:** Canon Inc. (Canon Kabushiki Kaisha in the publication)
-**Title:** _Optical System and Image Pickup Apparatus Including the Same_  
+**Title:** _Optical System and Image Pickup Apparatus Including the Same_\
 **Example details:** Numerical Example 1, ¶0062, PDF pages 12–13 (printed pages 5–6); Fig. 1 on PDF page 2 (drawing sheet 1)
 
 Numerical Example 1 is the patent embodiment corresponding to the production Canon EF 11-24mm f/4L USM. The identification is supported by several independent correspondences:
@@ -167,24 +167,24 @@ These values describe each cemented assembly in air. They are not interchangeabl
 
 The patent publishes only d-line refractive index and Abbe number. Catalog names below are coordinate matches used to provide a defensible dispersion model; they are not disclosures of Canon's production melts. Exact coordinate matching is therefore distinguished from production-glass identification.
 
-| Element | Patent nd / νd | Catalog curve | Qualification |
-|---|---|---|---|
-| E1 | 1.77250 / 49.6 | S-LAH66 | Compatible catalog spectral proxy |
-| E2 | 1.58443 / 59.4 | S-BAL42 | Compatible proxy; Δnd ≈ −0.00130 |
-| E3 | 1.85000 / 40.3 | M-TAFD305 | Compatible proxy; Δnd ≈ +0.00135, Δνd ≈ −0.20 |
-| E4 | 1.59522 / 67.7 | S-FPM2 | Compatible catalog spectral proxy |
-| E5 | 1.43875 / 94.9 | S-FPL53 | Compatible catalog spectral proxy |
-| E6 | 1.72047 / 34.7 | S-NBH8 | Compatible catalog spectral proxy |
-| E7 | 2.00100 / 29.1 | S-LAH99 | Compatible catalog spectral proxy |
-| E8 | 1.57501 / 41.5 | S-TIL27 | Compatible catalog spectral proxy |
-| E9 | 1.91082 / 35.3 | TAFD35 | Compatible catalog spectral proxy |
-| E10 | 1.80518 / 25.4 | S-TIH6 | Compatible catalog spectral proxy |
-| E11 | 1.88300 / 40.8 | S-LAH58 | Compatible catalog spectral proxy |
-| E12 | 1.51742 / 52.4 | S-NSL36 | Compatible catalog spectral proxy |
-| E13 | 1.83481 / 42.7 | S-LAH55V | Compatible catalog spectral proxy |
-| E14 | 1.49700 / 81.5 | S-FPL51 | Compatible catalog spectral proxy |
-| E15 | 1.88300 / 40.8 | S-LAH58 | Compatible catalog spectral proxy |
-| E16 | 1.58313 / 59.4 | S-BAL42 | Compatible catalog spectral proxy |
+| Element | Patent nd / νd | Catalog curve | Qualification                                 |
+| ------- | -------------- | ------------- | --------------------------------------------- |
+| E1      | 1.77250 / 49.6 | S-LAH66       | Compatible catalog spectral proxy             |
+| E2      | 1.58443 / 59.4 | S-BAL42       | Compatible proxy; Δnd ≈ −0.00130              |
+| E3      | 1.85000 / 40.3 | M-TAFD305     | Compatible proxy; Δnd ≈ +0.00135, Δνd ≈ −0.20 |
+| E4      | 1.59522 / 67.7 | S-FPM2        | Compatible catalog spectral proxy             |
+| E5      | 1.43875 / 94.9 | S-FPL53       | Compatible catalog spectral proxy             |
+| E6      | 1.72047 / 34.7 | S-NBH8        | Compatible catalog spectral proxy             |
+| E7      | 2.00100 / 29.1 | S-LAH99       | Compatible catalog spectral proxy             |
+| E8      | 1.57501 / 41.5 | S-TIL27       | Compatible catalog spectral proxy             |
+| E9      | 1.91082 / 35.3 | TAFD35        | Compatible catalog spectral proxy             |
+| E10     | 1.80518 / 25.4 | S-TIH6        | Compatible catalog spectral proxy             |
+| E11     | 1.88300 / 40.8 | S-LAH58       | Compatible catalog spectral proxy             |
+| E12     | 1.51742 / 52.4 | S-NSL36       | Compatible catalog spectral proxy             |
+| E13     | 1.83481 / 42.7 | S-LAH55V      | Compatible catalog spectral proxy             |
+| E14     | 1.49700 / 81.5 | S-FPL51       | Compatible catalog spectral proxy             |
+| E15     | 1.88300 / 40.8 | S-LAH58       | Compatible catalog spectral proxy             |
+| E16     | 1.58313 / 59.4 | S-BAL42       | Compatible catalog spectral proxy             |
 
 All 16 modeled media resolve compatible catalog curves. The source publishes none of the per-element C/F/g line indices or partial-dispersion values formerly copied into the lens data. Those catalog-derived overrides are removed so the shared coefficient curves supply the qualified spectral model. Patent nd/νd values and the explicit E2/E3 coordinate residuals remain authoritative. Curve coverage does not identify historical suppliers, melts, chemistry or the production prescription.
 
@@ -338,3 +338,17 @@ runtime follow-up finds a maximum sampled aperture difference of 0.0000% at z = 
 and maximum absolute paraxial defocus of -1.354518 mm at z = 0.28125. Intermediate slider
 positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
 all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actual state iris. Peripheral counts in the table remain partial transmission rather than a full-beam guarantee. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 49 / 17                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 46 / 31                                 |
+| 1      | Infinity / unchanged focus | 49 / 38 / 31                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

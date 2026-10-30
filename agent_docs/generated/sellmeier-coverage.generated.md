@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **672** lenses fully covered by trusted chromatic data
-- **669** visible lenses fully covered by trusted chromatic data
-- **664** lenses fully covered by strict Sellmeier data
-- **661** visible lenses fully covered by strict Sellmeier data
+- **671** lenses fully covered by trusted chromatic data
+- **668** visible lenses fully covered by trusted chromatic data
+- **663** lenses fully covered by strict Sellmeier data
+- **660** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10725 / 11846** non-air surfaces use strict catalog Sellmeier data
-- **90.5%** strict Sellmeier surface coverage overall
-- **10739 / 11846** non-air surfaces use trusted chromatic data
-- **90.7%** trusted chromatic coverage overall
+- **10709 / 11847** non-air surfaces use strict catalog Sellmeier data
+- **90.4%** strict Sellmeier surface coverage overall
+- **10723 / 11847** non-air surfaces use trusted chromatic data
+- **90.5%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -430,7 +430,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | 16/16 | 16 | 16/16 |
-| [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 70-200mm f/4 L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF-S 18-135mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS18135mmf3556ISSTM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF-S 18-200mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS18200mmf3556IS.data.ts) | 16/16 | 16 | 16/16 |
@@ -1366,6 +1365,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 351 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 | 352 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 | 353 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 354 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 
 ## Missing Surface Details
 
@@ -4096,5 +4096,19 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | L1c negative meniscus | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 13 | L2 positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 14 | L2 negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 9 more missing surfaces |
+
+### [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) - 0.0% trusted (0/17); 0.0% Sellmeier (0/17) - US 6,115,188 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Front source plate HG | abbe | `Unmatched (source reference unspecified; historical HG medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 3 | L1a front positive | abbe | `Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 5 | L1b positive | abbe | `Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 7 | L1b negative | abbe | `Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 9 | L1c positive (fluorite correlation) | abbe | `Unmatched (source reference unspecified; prior Fluorite comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 11 | L1c negative meniscus | abbe | `Unmatched (source reference unspecified; prior 516641 crown comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 13 | L2 positive | abbe | `Unmatched (source reference unspecified; prior 805254 dense-flint comparison is conditional only)` | Explicit unmatched/proprietary annotation |
+| 14 | L2 negative | abbe | `Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 9 more missing surfaces |
 

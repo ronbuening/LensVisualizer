@@ -2,15 +2,15 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2004/0223070 A1  
-**Application Number:** 10/832,558  
-**Priority:** May 6, 2003 (JP 2003-128264)  
-**Filed:** April 26, 2004  
-**Published:** November 11, 2004  
-**Inventor:** Takashi Shirasuna  
+**Patent:** US 2004/0223070 A1\
+**Application Number:** 10/832,558\
+**Priority:** May 6, 2003 (JP 2003-128264)\
+**Filed:** April 26, 2004\
+**Published:** November 11, 2004\
+**Inventor:** Takashi Shirasuna\
 **Assignee:** Canon Inc. (assigned to Canon Kabushiki Kaisha on the filing date)\
-**Title:** _Zoom Lens System_  
-**Example details:** Embodiment 4 (Figure 10; ¶0085)  
+**Title:** _Zoom Lens System_\
+**Example details:** Embodiment 4 (Figure 10; ¶0085)\
 **Production correlation:** Canon EF 28–105mm f/4–5.6 and EF 28–105mm f/4–5.6 USM; their official block diagrams match Example 4 at published resolution, but literal production-prescription identity is not proved
 
 Numerical Example 4 is the strongest documented production correlate for the Canon EF 28–105mm f/4–5.6 family. The evidence is convergent, but the document does not claim that every published radius, spacing, or glass is the factory prescription:
@@ -133,15 +133,15 @@ The patent gives two plane surfaces and 1.00 mm center thickness. The plate has 
 
 The patent publishes only $n_d$ and $ν_d$; paragraph 0079 explicitly identifies the d-line reference. It publishes no per-element C/F/g indices, partial-dispersion value or APD evidence. The 24 former catalog-derived C/F/g copies on eight glasses are removed; no printed spectral value is discarded. Nine of the ten media have compatible catalog curves used as qualified spectral proxies, while the rear 1.583060/30.2 medium remains unresolved. The source does not identify historical suppliers or chemistry. The labels below are therefore catalog equivalents selected by numerical matching, with OHARA favored because one coherent OHARA palette reproduces the printed pairs. They must not be read as vendor identities proved by the patent.
 
-| Patent pair     | Catalog equivalent used                     | Used at      | Identification status                                | Optical role                          |
-| --------------- | ------------------------------------------- | ------------ | ---------------------------------------------------- | ------------------------------------- |
-| 1.696797 / 55.5 | S-LAL14 (OHARA)                             | E1, E6       | Printed pair coincides with catalog                  | Positive lanthanum crown in L1 and L3 |
-| 1.846660 / 23.9 | PBH53/PBH53W (OHARA historical)             | E2, E5, E7   | Printed pair coincides with historical 847-239 entry | Dense-flint chromatic partner         |
-| 1.743198 / 49.3 | S-LAM60 (OHARA)                             | E3           | Printed pair coincides with catalog                  | High-index negative L2 member         |
-| 1.712995 / 53.9 | S-LAL8 (OHARA)                              | E4           | Printed pair coincides with catalog                  | Negative L2 member                    |
-| 1.487490 / 70.2 | S-FSL5 (OHARA)                              | E8           | Printed pair coincides with catalog                  | Low-dispersion positive L4 member     |
+| Patent pair     | Catalog equivalent used                         | Used at      | Identification status                                | Optical role                          |
+| --------------- | ----------------------------------------------- | ------------ | ---------------------------------------------------- | ------------------------------------- |
+| 1.696797 / 55.5 | S-LAL14 (OHARA)                                 | E1, E6       | Printed pair coincides with catalog                  | Positive lanthanum crown in L1 and L3 |
+| 1.846660 / 23.9 | PBH53/PBH53W (OHARA historical)                 | E2, E5, E7   | Printed pair coincides with historical 847-239 entry | Dense-flint chromatic partner         |
+| 1.743198 / 49.3 | S-LAM60 (OHARA)                                 | E3           | Printed pair coincides with catalog                  | High-index negative L2 member         |
+| 1.712995 / 53.9 | S-LAL8 (OHARA)                                  | E4           | Printed pair coincides with catalog                  | Negative L2 member                    |
+| 1.487490 / 70.2 | S-FSL5 (OHARA)                                  | E8           | Printed pair coincides with catalog                  | Low-dispersion positive L4 member     |
 | 1.583060 / 30.2 | Unmatched medium; polycarbonate hypothesis only | E9           | No public optical-glass match                        | Moldable aspherical element           |
-| 1.516330 / 64.1 | BK7 class; S-BSL7 is one equivalent         | Physical E10 | Common non-unique pair; vendor indeterminate         | Neutral protective plate              |
+| 1.516330 / 64.1 | BK7 class; S-BSL7 is one equivalent             | Physical E10 | Common non-unique pair; vendor indeterminate         | Neutral protective plate              |
 
 The principal chromatic pairings are repeated S-LAL14/PBH53-equivalent combinations in L1 and L3, a mixed two-negative/one-positive palette in L2, and an S-FSL5-equivalent crown opposed by the low-Abbe resin element in L4. Compatible catalog curves supply qualified spectral proxies beyond the patent’s nd/νd pairs; no catalog C/F/g copies are authored as per-lens source values. The evidence does not support an apochromatic claim.
 
@@ -307,10 +307,10 @@ modeled at the physical D18 = 0.83 / 13.15 / 25.24 mm positions, with 1.00 mm th
 The gap after R20 is derived from the printed prescription’s Gaussian back focus, not represented as a published row:
 
 | Zoom z | Physical D18 (mm) | Derived gap after R20 (mm) | Inferred L2 close shift (mm) |
-|---|---:|---:|---:|
-| 0 | 0.83 | 38.386495160 | 2.329433150 |
-| 0.5 | 13.15 | 38.392789514 | 3.116868704 |
-| 1 | 25.24 | 38.373018403 | 6.424461448 |
+| ------ | ----------------: | -------------------------: | ---------------------------: |
+| 0      |              0.83 |               38.386495160 |                  2.329433150 |
+| 0.5    |             13.15 |               38.392789514 |                  3.116868704 |
+| 1      |             25.24 |               38.373018403 |                  6.424461448 |
 
 Restoring the physical plate lengthens the geometric first-surface-to-image distance by 0.340513 mm relative to the
 former air-equivalent fold while preserving the paraxial reduced translation. Each discrete close endpoint is re-solved
@@ -338,8 +338,8 @@ qualified beam-clear estimate, not a printed mechanical dimension.
 
 All 1365 zoom/focus states have ten connected finite closed element paths and zero hidden renderer trim. All samples
 are aimed, all sampled chiefs clear and all 49 axial pupil rays pass at each state. At source zoom stations, the
-49-point axial / 0.6-field / corner survivors are 49/39/19, 49/48/35 and 49/48/33 at infinity; the inferred close
-states give 49/39/19, 49/46/40 and 49/48/26. Peripheral vignetting remains explicit, including occasional bonded-interface
+49-point axial / 0.6-field / corner survivors are 49/39/19, 49/48/35 and 49/46/29 at infinity; the inferred close
+states give 49/39/19, 49/46/40 and 49/46/24 (current-state iris follow-up below). Peripheral vignetting remains explicit, including occasional bonded-interface
 clips. This sampled clearance is not a complete peripheral transmission proof. No inferred cut is present.
 
 A 65-position infinity aperture/first-order census stays within numerical tolerance of the stated iris schedule, but
@@ -357,3 +357,20 @@ Source fidelity, sampled runtime clearance and post-launch production correlatio
 3. Canon Camera Museum, [EF28-105mm f/4-5.6 USM](https://global.canon/en/c-museum/product/ef369.html): official Micro USM II variant and matching optical block diagram.
 4. OHARA Corporation, [Optical Glass Pocket Catalog](https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf): current S-LAL14, S-LAM60, S-LAL8, S-FSL5, and S-BSL7 d-line and spectral data.
 5. OHARA Corporation, [_Optical Glass_ catalog 02-06](https://wp.optics.arizona.edu/optomech/wp-content/uploads/sites/53/2016/10/Ohara_Glass_Catalog.pdf), archival catalog mirror: historical PBH53/PBH53W 847-239 d-line and spectral data.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actual state iris. Peripheral counts in the table remain partial transmission rather than a full-beam guarantee. The current-iris useful-bundle plate envelope reaches 13.478941 mm, below the retained inferred 14.5 mm plate SD; no source plate dimension is newly claimed.
+
+| Zoom z | Focus state    | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------- | -------------------------------------------- |
+| 0      | Infinity       | 49 / 39 / 19                                 |
+| 0      | Inferred close | 49 / 39 / 19                                 |
+| 0.5    | Infinity       | 49 / 48 / 35                                 |
+| 0.5    | Inferred close | 49 / 46 / 40                                 |
+| 1      | Infinity       | 49 / 46 / 29                                 |
+| 1      | Inferred close | 49 / 46 / 24                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

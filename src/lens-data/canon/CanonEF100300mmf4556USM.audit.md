@@ -20,22 +20,22 @@ excluded from the glass span. The drawing supplies inferred proportions, not pub
 
 ### Element heights and concave ends
 
-| Element / source faces | Retained clear semi-diameters (mm) | Figure disposition |
-|---|---|---|
-| E1, R1–R2 | 26.7 / 26.4 | Front negative meniscus; source front assembly is approximately 25–26 mm high. |
-| ITO, R2–R3 | 26.4 / 26.4 | Continuous bonded layer between the two substrates; no air-facing land. |
-| E2, R3–R4 | 26.4 / 25.8 | Front cemented assembly retained; no distinct shoulder resolved. |
-| E3, R5–R6 | 25.8 / 24.7 | Adjacent positive meniscus retains the source's similar front-unit height. |
-| E4, R7–R8 | 12.4 / 12.3 | Biconcave cap reaches the drawn edge; no shortened concave end resolved. |
-| E5, R9–R10 | 13.0 / 12.9 | Source L2 height is approximately 13–14 mm; retained within inference uncertainty. |
-| E6, R12–R13 | 12.9 / 13.0 | Concave ends have no separate square land in the native scan. |
-| E7, R14–R15 | 13.5 / 13.8 | L3 positive member and its edge remain distinct. |
-| E8, R16–R17 | 13.5 / 12.9 | Retained cemented interface to E9, with no opaque interface feature. |
-| E9, R17–R18 | 12.9 / 12.9 | L4 cemented pair remains connected. |
-| E10, R19–R20 | 12.9 / 12.4 | Retained source L4 relative height and adjacent air gap. |
-| E11, R21–R22 | 8.8 / 8.7 | Rear-unit scan suggests roughly 9.5–10.5 mm; no >25% resolved discrepancy. |
-| E12, R23–R24 | 8.7 / 8.7 | Retained rear cemented assembly; no exposed shoulder on its bonded interface. |
-| E13, R24–R25 | 8.7 / 8.8 | Retained small rear meniscus and source curvature. |
+| Element / source faces | Retained clear semi-diameters (mm) | Figure disposition                                                                 |
+| ---------------------- | ---------------------------------- | ---------------------------------------------------------------------------------- |
+| E1, R1–R2              | 26.7 / 26.4                        | Front negative meniscus; source front assembly is approximately 25–26 mm high.     |
+| ITO, R2–R3             | 26.4 / 26.4                        | Continuous bonded layer between the two substrates; no air-facing land.            |
+| E2, R3–R4              | 26.4 / 25.8                        | Front cemented assembly retained; no distinct shoulder resolved.                   |
+| E3, R5–R6              | 25.8 / 24.7                        | Adjacent positive meniscus retains the source's similar front-unit height.         |
+| E4, R7–R8              | 12.4 / 12.3                        | Biconcave cap reaches the drawn edge; no shortened concave end resolved.           |
+| E5, R9–R10             | 13.0 / 12.9                        | Source L2 height is approximately 13–14 mm; retained within inference uncertainty. |
+| E6, R12–R13            | 12.9 / 13.0                        | Concave ends have no separate square land in the native scan.                      |
+| E7, R14–R15            | 13.5 / 13.8                        | L3 positive member and its edge remain distinct.                                   |
+| E8, R16–R17            | 13.5 / 12.9                        | Retained cemented interface to E9, with no opaque interface feature.               |
+| E9, R17–R18            | 12.9 / 12.9                        | L4 cemented pair remains connected.                                                |
+| E10, R19–R20           | 12.9 / 12.4                        | Retained source L4 relative height and adjacent air gap.                           |
+| E11, R21–R22           | 8.8 / 8.7                          | Rear-unit scan suggests roughly 9.5–10.5 mm; no >25% resolved discrepancy.         |
+| E12, R23–R24           | 8.7 / 8.7                          | Retained rear cemented assembly; no exposed shoulder on its bonded interface.      |
+| E13, R24–R25           | 8.7 / 8.8                          | Retained small rear meniscus and source curvature.                                 |
 
 All 13 ordinary elements, the ITO layer, every concave end and all three cemented assemblies were inspected in all
 three source panels and compared with fresh actual SVG outlines at zoom 0, 0.5 and 1. The current apertures retain the
@@ -48,18 +48,18 @@ closed element paths and zero renderer trim; the focus combinations repeat the s
 
 ### Glass and bonded-layer check
 
-| Source material | Source nd / νd | Disposition |
-|---|---|---|
-| N1 / E1 | 1.805181 / 25.4 | Retained; compatible S-TIH6 curve is a qualified proxy. |
-| NITO / bonded layer | 1.721040 / 12.55 | Retained unresolved 15% ITO/polyvinylcarbazole material. |
-| N2 / E2 | 1.516330 / 64.2 | Retained; compatible H-K9L proxy. |
-| N3 / E3 and N8 / E8 | 1.487490 / 70.2 | Retained; compatible S-FSL5 proxy. |
-| N4 / E4, N11 / E11, N12 / E12 | 1.834807 / 42.7 | Retained; compatible TAFD5G proxy. |
-| N5 / E5 and N6 / E6 | 1.846658 / 23.9 | Retained; compatible S-TIH53W proxy. |
-| N7 / E7 | 1.603112 / 60.7 | Retained; compatible N-SK14 proxy. |
-| N9 / E9 | 1.834000 / 37.2 | Retained; compatible J-LASF010 proxy. |
-| N10 / E10 | 1.607289 / 49.2 | Retained; compatible BAF5 proxy. |
-| N13 / E13 | 1.784718 / 25.7 | Retained; compatible H-ZF13 proxy. |
+| Source material               | Source nd / νd   | Disposition                                              |
+| ----------------------------- | ---------------- | -------------------------------------------------------- |
+| N1 / E1                       | 1.805181 / 25.4  | Retained; compatible S-TIH6 curve is a qualified proxy.  |
+| NITO / bonded layer           | 1.721040 / 12.55 | Retained unresolved 15% ITO/polyvinylcarbazole material. |
+| N2 / E2                       | 1.516330 / 64.2  | Retained; compatible H-K9L proxy.                        |
+| N3 / E3 and N8 / E8           | 1.487490 / 70.2  | Retained; compatible S-FSL5 proxy.                       |
+| N4 / E4, N11 / E11, N12 / E12 | 1.834807 / 42.7  | Retained; compatible TAFD5G proxy.                       |
+| N5 / E5 and N6 / E6           | 1.846658 / 23.9  | Retained; compatible S-TIH53W proxy.                     |
+| N7 / E7                       | 1.603112 / 60.7  | Retained; compatible N-SK14 proxy.                       |
+| N9 / E9                       | 1.834000 / 37.2  | Retained; compatible J-LASF010 proxy.                    |
+| N10 / E10                     | 1.607289 / 49.2  | Retained; compatible BAF5 proxy.                         |
+| N13 / E13                     | 1.784718 / 25.7  | Retained; compatible H-ZF13 proxy.                       |
 
 Every modeled index/Abbe pair agrees with the original numerical rows. R16's printed `ν10 = 70.2` subscript remains
 recognized as the source typo for N8/E8. No source filter, rear plate or extra unmodeled adhesive is present in this
@@ -98,11 +98,25 @@ optical surface is tuned to remove an illustrative interval's mismatch.
 
 | Published station z | Axial aperture difference | Paraxial defocus (mm) |
 | ------------------- | ------------------------: | --------------------: |
-| 0                   |                0.000000% |             -0.000000 |
-| 0.5                 |                0.000000% |              0.000000 |
-| 1                   |                0.000000% |             -0.000000 |
+| 0                   |                 0.000000% |             -0.000000 |
+| 0.5                 |                 0.000000% |              0.000000 |
+| 1                   |                 0.000000% |             -0.000000 |
 
 All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
 format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
 geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
 positions or production performance. The original discrete stations remain the source-supported quantitative states.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+The three printed infinity stations retain 49/49 axial passage. Illustrative intervals reach 45/49: 47 of 65 zoom positions have four axial boundary clips, at source optical surfaces S7, S8, S9, S10, S12, S13. Total axial passage is 62,937/66,885. These intervals already retain the separately documented aperture/first-order limitations; a passing source station is not proof of full-iris clearance throughout interpolation. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 45 / 22                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 47 / 29                                 |
+| 1      | Infinity / unchanged focus | 49 / 41 / 22                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

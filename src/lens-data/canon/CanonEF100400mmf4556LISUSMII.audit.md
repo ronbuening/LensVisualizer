@@ -26,28 +26,28 @@ against the rendered numerical table, including leading digits lost by its OCR t
 coordinate-compatible spectral proxy, not a source glass name, supplier identification or chemistry measurement.
 
 | Element / source faces | Retained sd front / rear (mm) | Confirmed source nd / νd | Compatible curve |
-|---|---|---|---|
-| E01, R1–R2 | 34.72 / 34.37 | 1.62299 / 58.2 | S-BSM15 |
-| E02, R3–R4 | 33.825 / 32.31 | 1.65412 / 39.7 | N-KZFS5 |
-| E03, R5–R6 | 32.31 / 31.915 | 1.43875 / 94.9 | S-FPL53 |
-| E04, R7–R8 | 16.92 / 16.62 | 1.59551 / 39.2 | E-F8 |
-| E05, R8–R9 | 16.62 / 16.12 | 1.77250 / 49.6 | J-LASF016 |
-| E06, R10–R11 | 15.86 / 15.525 | 1.77250 / 49.6 | J-LASF016 |
-| E07, R12–R13 | 15.52 / 15.97 | 1.60311 / 60.6 | J-SK14 |
-| E08, R13–R14 | 15.97 / 16.05 | 1.84666 / 23.8 | J-SF03 |
-| E09, R15–R16 | 16.315 / 16.405 | 1.43387 / 95.1 | CaF2 |
-| E10, R17–R18 | 16.17 / 15.975 | 1.51742 / 52.4 | S-NSL36 |
-| E11, R18–R19 | 15.975 / 15.88 | 1.90366 / 31.3 | J-LASFH13 |
-| E12, R21–R22 | 13.52 / 13.85 | 1.59270 / 35.3 | S-FTM16 |
-| E13, R22–R23 | 13.85 / 13.89 | 1.78472 / 25.7 | H-ZF13 |
-| E14, R24–R25 | 13.87 / 13.91 | 1.76200 / 40.1 | S-LAM55 |
-| E15, R26–R27 | 13.36 / 12.97 | 1.48749 / 70.2 | S-FSL5 |
-| E16, R27–R28 | 12.97 / 12.705 | 1.84666 / 23.8 | J-SF03 |
-| E17, R29–R30 | 12.665 / 12.515 | 1.72916 / 54.7 | TAC8 |
-| E18, R31–R32 | 11.67 / 11.14 | 1.88300 / 40.8 | S-LAH58 |
-| E19, R33–R34 | 11.17 / 11.37 | 1.80518 / 25.4 | J-SF6 |
-| E20, R35–R36 | 11.315 / 11.9 | 1.72916 / 54.7 | TAC8 |
-| E21, R37–R38 | 13.87 / 14.025 | 1.65412 / 39.7 | N-KZFS5 |
+| ---------------------- | ----------------------------- | ------------------------ | ---------------- |
+| E01, R1–R2             | 34.72 / 34.37                 | 1.62299 / 58.2           | S-BSM15          |
+| E02, R3–R4             | 33.825 / 32.31                | 1.65412 / 39.7           | N-KZFS5          |
+| E03, R5–R6             | 32.31 / 31.915                | 1.43875 / 94.9           | S-FPL53          |
+| E04, R7–R8             | 16.92 / 16.62                 | 1.59551 / 39.2           | E-F8             |
+| E05, R8–R9             | 16.62 / 16.12                 | 1.77250 / 49.6           | J-LASF016        |
+| E06, R10–R11           | 15.86 / 15.525                | 1.77250 / 49.6           | J-LASF016        |
+| E07, R12–R13           | 15.52 / 15.97                 | 1.60311 / 60.6           | J-SK14           |
+| E08, R13–R14           | 15.97 / 16.05                 | 1.84666 / 23.8           | J-SF03           |
+| E09, R15–R16           | 16.315 / 16.405               | 1.43387 / 95.1           | CaF2             |
+| E10, R17–R18           | 16.17 / 15.975                | 1.51742 / 52.4           | S-NSL36          |
+| E11, R18–R19           | 15.975 / 15.88                | 1.90366 / 31.3           | J-LASFH13        |
+| E12, R21–R22           | 13.52 / 13.85                 | 1.59270 / 35.3           | S-FTM16          |
+| E13, R22–R23           | 13.85 / 13.89                 | 1.78472 / 25.7           | H-ZF13           |
+| E14, R24–R25           | 13.87 / 13.91                 | 1.76200 / 40.1           | S-LAM55          |
+| E15, R26–R27           | 13.36 / 12.97                 | 1.48749 / 70.2           | S-FSL5           |
+| E16, R27–R28           | 12.97 / 12.705                | 1.84666 / 23.8           | J-SF03           |
+| E17, R29–R30           | 12.665 / 12.515               | 1.72916 / 54.7           | TAC8             |
+| E18, R31–R32           | 11.67 / 11.14                 | 1.88300 / 40.8           | S-LAH58          |
+| E19, R33–R34           | 11.17 / 11.37                 | 1.80518 / 25.4           | J-SF6            |
+| E20, R35–R36           | 11.315 / 11.9                 | 1.72916 / 54.7           | TAC8             |
+| E21, R37–R38           | 13.87 / 14.025                | 1.65412 / 39.7           | N-KZFS5          |
 
 All concave ends and all five bonded interfaces (R8, R13, R18, R22, R27) were inspected. The source has no hybrid
 resin layer, separately indexed cement, filter or rear plate in this example. Table truth governs the unequal effective
@@ -92,11 +92,25 @@ optical surface is tuned to remove an illustrative interval's mismatch.
 
 | Published station z | Axial aperture difference | Paraxial defocus (mm) |
 | ------------------- | ------------------------: | --------------------: |
-| 0                   |                0.000000% |             -0.029781 |
-| 0.5                 |                0.000000% |              0.031713 |
-| 1                   |                0.000000% |             -0.036844 |
+| 0                   |                 0.000000% |             -0.029781 |
+| 0.5                 |                 0.000000% |              0.031713 |
+| 1                   |                 0.000000% |             -0.036844 |
 
 All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
 format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
 geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
 positions or production performance. The original discrete stations remain the source-supported quantitative states.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+The three printed infinity stations retain 49/49 axial passage. Illustrative intervals reach 45/49: 33 of 65 zoom positions have four axial boundary clips, at source optical surfaces S15, S16, S21, S22. Total axial passage is 64,113/66,885. These intervals already retain the separately documented aperture/first-order limitations; a passing source station is not proof of full-iris clearance throughout interpolation. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 39 / 29                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 45 / 25                                 |
+| 1      | Infinity / unchanged focus | 49 / 39 / 22                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

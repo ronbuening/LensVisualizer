@@ -57,13 +57,13 @@ count ordinary glass elements, not the adhesive, as the physical lens count.
 
 Independent air-bounded unit matrices give the following fixed powers for the five functional zoom units:
 
-| Unit | Composition | Net unit EFL (mm) | Power sign |
-|---|---|---:|---|
-| L1 | C1 (E1 + ITO + E2) + E3 | +112.244179 | Positive |
-| L2 | E4 + E5 | -73.236060 | Negative |
-| L3 | E6 + E7 | +109.653805 | Positive |
-| L4 | C2 (E8 + E9) + E10 | +73.069889 | Positive |
-| L5 | E11 + C3 (E12 + E13) | -36.049535 | Negative |
+| Unit | Composition             | Net unit EFL (mm) | Power sign |
+| ---- | ----------------------- | ----------------: | ---------- |
+| L1   | C1 (E1 + ITO + E2) + E3 |       +112.244179 | Positive   |
+| L2   | E4 + E5                 |        -73.236060 | Negative   |
+| L3   | E6 + E7                 |       +109.653805 | Positive   |
+| L4   | C2 (E8 + E9) + E10      |        +73.069889 | Positive   |
+| L5   | E11 + C3 (E12 + E13)    |        -36.049535 | Negative   |
 
 These unit powers are not additive surrogates for the focal length of the assembled lens. Their contribution to the
 whole system depends on the changing axial separations. In the published infinity states, the full prescription traces to
@@ -209,18 +209,18 @@ final data therefore uses supplier-neutral coordinate classes and qualified cata
 than asserting production identities. The patent coordinates remain authoritative, and the proxies do not establish
 historical melts or patent partial-dispersion behavior.
 
-| Stored glass annotation | nd / νd | Elements | Data status |
-|---|---|---|---|
-| 805254 dense-flint class; supplier unspecified | 1.805181 / 25.4 | E1 | Catalog-equivalent coefficient proxy |
-| Unmatched patent-defined 15% ITO/polyvinylcarbazole adhesive composite | 1.721040 / 12.55 | ITO | Patent-defined non-glass medium |
-| 517642 crown class; supplier unspecified | 1.516330 / 64.2 | E2 | Catalog-equivalent coefficient proxy |
-| 487702 low-index crown class; supplier unspecified | 1.487490 / 70.2 | E3, E8 | Catalog-equivalent coefficient proxy |
-| 835427 lanthanum high-index class (vendor unspecified) | 1.834807 / 42.7 | E4, E11, E12 | Compatible catalog coefficient proxy |
-| 847238/239 high-index flint class (vendor unspecified) | 1.846658 / 23.9 | E5, E6 | Compatible catalog coefficient proxy |
-| 603607 dense-crown/SK14 class (vendor unspecified) | 1.603112 / 60.7 | E7 | Compatible catalog coefficient proxy |
-| 834372/373 lanthanum high-index class (vendor unspecified) | 1.834000 / 37.2 | E9 | Compatible catalog coefficient proxy |
-| BAF5-class coefficient proxy; supplier unspecified | 1.607289 / 49.2 | E10 | Compatible catalog curve for patent 607492 |
-| 785257 dense-flint class (vendor unspecified) | 1.784718 / 25.7 | E13 | Compatible catalog coefficient proxy |
+| Stored glass annotation                                                | nd / νd          | Elements     | Data status                                |
+| ---------------------------------------------------------------------- | ---------------- | ------------ | ------------------------------------------ |
+| 805254 dense-flint class; supplier unspecified                         | 1.805181 / 25.4  | E1           | Catalog-equivalent coefficient proxy       |
+| Unmatched patent-defined 15% ITO/polyvinylcarbazole adhesive composite | 1.721040 / 12.55 | ITO          | Patent-defined non-glass medium            |
+| 517642 crown class; supplier unspecified                               | 1.516330 / 64.2  | E2           | Catalog-equivalent coefficient proxy       |
+| 487702 low-index crown class; supplier unspecified                     | 1.487490 / 70.2  | E3, E8       | Catalog-equivalent coefficient proxy       |
+| 835427 lanthanum high-index class (vendor unspecified)                 | 1.834807 / 42.7  | E4, E11, E12 | Compatible catalog coefficient proxy       |
+| 847238/239 high-index flint class (vendor unspecified)                 | 1.846658 / 23.9  | E5, E6       | Compatible catalog coefficient proxy       |
+| 603607 dense-crown/SK14 class (vendor unspecified)                     | 1.603112 / 60.7  | E7           | Compatible catalog coefficient proxy       |
+| 834372/373 lanthanum high-index class (vendor unspecified)             | 1.834000 / 37.2  | E9           | Compatible catalog coefficient proxy       |
+| BAF5-class coefficient proxy; supplier unspecified                     | 1.607289 / 49.2  | E10          | Compatible catalog curve for patent 607492 |
+| 785257 dense-flint class (vendor unspecified)                          | 1.784718 / 25.7  | E13          | Compatible catalog coefficient proxy       |
 
 The ordinary palette alternates lower-dispersion crown-type coordinates with denser and generally higher-index flint or
 lanthanum classes across the zoom units. That pattern is consistent with conventional primary chromatic balancing, but
@@ -286,13 +286,13 @@ The patent sets bounds on the adhesive material and on the relation between the 
 lens. The US grant contains several textual inconsistencies; the Japanese family member JP 4,612,810 B2 provides the
 self-consistent form used for the power-ratio check.
 
-| Condition | Source form relevant to the audit | Example-3 result | Status |
-|---|---|---:|---|
-| (1) | `10 < νIT < 27` in the abstract/claims and Japanese family; one US body rendering prints a lower bound of 8 | `νIT = 12.55` | Passes either rendering |
-| (1a) | `10 < νIT < 16` | `νIT = 12.55` | Passes |
-| (2) | `0.3 < θIT < 0.7` | No reliable selected-row `θIT` | Not independently evaluable |
-| (2a) | `0.4 < θIT < 0.6` | No reliable selected-row `θIT` | Not independently evaluable |
-| (3) | `0.04 < Fs / |Fit| < 1` in JP 4,612,810 B2 | `0.222654288` | Passes |
+| Condition | Source form relevant to the audit                                                                           |               Example-3 result | Status                      |
+| --------- | ----------------------------------------------------------------------------------------------------------- | -----------------------------: | --------------------------- | ------------- | ------ |
+| (1)       | `10 < νIT < 27` in the abstract/claims and Japanese family; one US body rendering prints a lower bound of 8 |                  `νIT = 12.55` | Passes either rendering     |
+| (1a)      | `10 < νIT < 16`                                                                                             |                  `νIT = 12.55` | Passes                      |
+| (2)       | `0.3 < θIT < 0.7`                                                                                           | No reliable selected-row `θIT` | Not independently evaluable |
+| (2a)      | `0.4 < θIT < 0.6`                                                                                           | No reliable selected-row `θIT` | Not independently evaluable |
+| (3)       | `0.04 < Fs /                                                                                                |                            Fit | < 1` in JP 4,612,810 B2     | `0.222654288` | Passes |
 
 The direct Example-3 row gives `νITO = 12.55`, but US Table 1 lists 11.51 for Example 3 under condition (1) and 0.484
 under condition (2). Because the table's condition-(1) number already conflicts with the selected numerical row, the
@@ -315,11 +315,11 @@ The final data file was recomputed as a sequential d-line system using height/re
 independent ABCD basis-ray check. The two matrix constructions agree to floating-point precision at all three zoom
 control points.
 
-| State | Patent focal length (mm) | Computed EFL (mm) | Derived BFD from R25 (mm) | Optical track R1 to image (mm) |
-|---|---:|---:|---:|---:|
-| Wide | 103.35 | 103.355237 | 44.507909 | 158.327909 |
-| Middle | 173.68 | 173.693088 | 53.963875 | 184.223875 |
-| Tele | 291.85 | 291.836243 | 69.498780 | 206.828780 |
+| State  | Patent focal length (mm) | Computed EFL (mm) | Derived BFD from R25 (mm) | Optical track R1 to image (mm) |
+| ------ | -----------------------: | ----------------: | ------------------------: | -----------------------------: |
+| Wide   |                   103.35 |        103.355237 |                 44.507909 |                     158.327909 |
+| Middle |                   173.68 |        173.693088 |                 53.963875 |                     184.223875 |
+| Tele   |                   291.85 |        291.836243 |                 69.498780 |                     206.828780 |
 
 The largest focal-length residual is 0.013757 mm. The authored D25 values are not patent spacings; they are the Gaussian
 BFDs required to place the image plane at focus. Recalculation from the final TypeScript arrays reproduces those D25
@@ -367,7 +367,7 @@ single provenance assertion.
 
 ## Sources and References
 
-1. Akihiro Nishio, **US 7,158,320 B2**, *Optical System and Image Pickup Apparatus Including the Same*, Canon Kabushiki
+1. Akihiro Nishio, **US 7,158,320 B2**, _Optical System and Image Pickup Apparatus Including the Same_, Canon Kabushiki
    Kaisha, granted January 2, 2007. Numerical Embodiment 3, Fig. 5, Fig. 6A-C, and pp. 7-10 supply the prescription and
    selected-example optical values.
 2. Canon Camera Museum, **EF100-300mm f/4.5-5.6 USM** (English), manufacturer product record:
@@ -384,3 +384,17 @@ runtime follow-up finds a maximum sampled aperture difference of 5.5166% at z = 
 and maximum absolute paraxial defocus of 9.960095 mm at z = 0.78125. Intermediate slider
 positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
 all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+The three printed infinity stations retain 49/49 axial passage. Illustrative intervals reach 45/49: 47 of 65 zoom positions have four axial boundary clips, at source optical surfaces S7, S8, S9, S10, S12, S13. Total axial passage is 62,937/66,885. These intervals already retain the separately documented aperture/first-order limitations; a passing source station is not proof of full-iris clearance throughout interpolation. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 45 / 22                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 47 / 29                                 |
+| 1      | Infinity / unchanged focus | 49 / 41 / 22                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.

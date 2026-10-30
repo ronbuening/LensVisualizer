@@ -37,11 +37,11 @@ source asphere and all infinity zoom gaps are retained. No polynomial is tuned t
 Restoring L5 adds 0.340513 mm to the geometric track relative to the fold. The earlier inferred 480 mm finite
 conjugates are therefore re-solved for that physical track, preserving rigid L2 translation and D3 + D9:
 
-| Zoom z | Old folded close D3 / D9 (mm) | Physical close D3 / D9 (mm) | Physical L2 shift (mm) |
-|---|---|---|---:|
-| 0 | 1.062392316796 / 21.557607683204 | 1.060566850258 / 21.559433149742 | 2.329433150 |
-| 0.5 | 10.305434876154 / 13.354565123846 | 10.303131295911 / 13.356868704089 | 3.116868704 |
-| 1 | 26.939257379094 / 9.040742620906 | 26.935538551786 / 9.044461448214 | 6.424461448 |
+| Zoom z | Old folded close D3 / D9 (mm)     | Physical close D3 / D9 (mm)       | Physical L2 shift (mm) |
+| ------ | --------------------------------- | --------------------------------- | ---------------------: |
+| 0      | 1.062392316796 / 21.557607683204  | 1.060566850258 / 21.559433149742  |            2.329433150 |
+| 0.5    | 10.305434876154 / 13.354565123846 | 10.303131295911 / 13.356868704089 |            3.116868704 |
+| 1      | 26.939257379094 / 9.040742620906  | 26.935538551786 / 9.044461448214  |            6.424461448 |
 
 Only those three inferred close endpoints target 480 mm. No finite source cam exists; interpolated close-setting
 conjugates range from 362.313 to 480 mm across the 65 zoom positions. This reconstruction remains qualified.
@@ -49,17 +49,17 @@ conjugates range from 362.313 to 480 mm across the 65 zoom positions. This recon
 ### Every element and adopted outline
 
 | Element / source faces | Adopted clear front / rear radius (mm) | Drawn front / rear radius (mm) | Confirmed source nd / νd |
-|---|---|---|---|
-| L11, 1–2 | 21.5 / 21.5 | 21.5 / 21.5 | 1.696797 / 55.5 |
-| L12, 2–3 | 21.5 / 21.5 | 21.5 / 21.5 | 1.846660 / 23.9 |
-| L21, 4–5 | 13.6 / 10.8 | 13.6 / 13.6 | 1.743198 / 49.3 |
-| L22, 6–7 | 10.1 / 10.1 | 10.1 / 10.1 | 1.712995 / 53.9 |
-| L23, 8–9 | 10 / 10 | 10 / 10 | 1.846660 / 23.9 |
-| L31, 11–12 | 7.05 / 7.05 | 7.05 / 7.05 | 1.696797 / 55.5 |
-| L32, 13–14 | 7.07 / 7.07 | 7.07 / 7.07 | 1.846660 / 23.9 |
-| L41, 15–16 | 7.7 / 7.7 | 7.7 / 7.7 | 1.487490 / 70.2 |
-| L42, 17–18A | 9 / 9 | 9 / 9 | 1.583060 / 30.2 |
-| L51, 19–20 | 14.5 / 14.5 | 14.5 / 14.5 | 1.516330 / 64.1 |
+| ---------------------- | -------------------------------------- | ------------------------------ | ------------------------ |
+| L11, 1–2               | 21.5 / 21.5                            | 21.5 / 21.5                    | 1.696797 / 55.5          |
+| L12, 2–3               | 21.5 / 21.5                            | 21.5 / 21.5                    | 1.846660 / 23.9          |
+| L21, 4–5               | 13.6 / 10.8                            | 13.6 / 13.6                    | 1.743198 / 49.3          |
+| L22, 6–7               | 10.1 / 10.1                            | 10.1 / 10.1                    | 1.712995 / 53.9          |
+| L23, 8–9               | 10 / 10                                | 10 / 10                        | 1.846660 / 23.9          |
+| L31, 11–12             | 7.05 / 7.05                            | 7.05 / 7.05                    | 1.696797 / 55.5          |
+| L32, 13–14             | 7.07 / 7.07                            | 7.07 / 7.07                    | 1.846660 / 23.9          |
+| L41, 15–16             | 7.7 / 7.7                              | 7.7 / 7.7                      | 1.487490 / 70.2          |
+| L42, 17–18A            | 9 / 9                                  | 9 / 9                          | 1.583060 / 30.2          |
+| L51, 19–20             | 14.5 / 14.5                            | 14.5 / 14.5                    | 1.516330 / 64.1          |
 
 All elements, every concave end, the S2 bonded interface and the bulk aspherical medium were inspected. The first
 unit’s three 21.5 mm clear heights follow resolved common native endpoints (roughly 259 px); this is source-supported
@@ -112,3 +112,20 @@ not a continuous source cam. All sampled runtime corner chiefs reach the format.
 half-angles 36.8° wide / 12.05° tele produce exact image heights 20.485465 / 22.509448 mm (94.7% / 104.0% of the
 format half-diagonal), distinguished from paraxial source-field arithmetic. There is no inferred cut requiring a full
 beam exemption. Source fidelity, sampled clearance and the qualified post-launch production correlation remain separate.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actual state iris. Peripheral counts in the table remain partial transmission rather than a full-beam guarantee. The current-iris useful-bundle plate envelope reaches 13.478941 mm, below the retained inferred 14.5 mm plate SD; no source plate dimension is newly claimed.
+
+| Zoom z | Focus state    | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------- | -------------------------------------------- |
+| 0      | Infinity       | 49 / 39 / 19                                 |
+| 0      | Inferred close | 49 / 39 / 19                                 |
+| 0.5    | Infinity       | 49 / 48 / 35                                 |
+| 0.5    | Inferred close | 49 / 46 / 40                                 |
+| 1      | Infinity       | 49 / 46 / 29                                 |
+| 1      | Inferred close | 49 / 46 / 24                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.
