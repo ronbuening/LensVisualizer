@@ -194,3 +194,12 @@ at the edge gives q ± (1 + q) / (edge px).
 
 9 sits at q × sd; 27A sits outside its q range, moved out by the beam rule. Both lands are longer than the 0.1 mm
 minimum, and no q range reaches 1. The surface audit and the beam rule pass.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2022097401A1.pdf`, PDF p. 55, Figure 1 / Example 1, including a 600 dpi crop of the complete section. Native scale remains 14.17 px/mm from the 1878.5 px / 132.594 mm S1–S28 vertex span. Every concave air face was checked.
+
+No data change is supported. Resolved concave lands on 9 and 27A already carry safe cuts. Surface 27A keeps its beam-constrained 17.4865 mm cap end rather than the shorter 17.17 mm figure estimate. The other concave air faces meet their corners or are too shallow for a resolved land. The shoulder at junction 11 is cemented and is not an air-side extension. Existing optical apertures and the corrected 27A asphere are retained.
+
+Validation: `audit:surface`, `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1. Parent records full gates with the three-lens commit.

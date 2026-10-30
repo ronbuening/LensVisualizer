@@ -911,3 +911,17 @@ rims rather than at q × sd; their cut radius ÷ sd falls inside or at the top o
 | 8 | 153.7 | 0.911 / 0.905 | 0.899–0.923 / 0.893–0.917 | 0.9165 | 1.8870 mm |
 
 Both lands are longer than the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO_2026172598_A1.pdf`, PDF p. 83, Figure 1 / Example 1, including a 600 dpi crop of the complete wide-end section and checks on the middle and tele panels. Native figure scale: 6.80 px/mm, from the vertex-spacing calibration above. Every concave air face was checked.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 31, L52 rear | 11.6 → 11.6 mm | absent → 12.4 mm | Square outer rim at partner 30's height, cap/edge q 0.880 / 0.881; native one-pixel range about 0.858–0.903. |
+| 34A, L71 front | 17.5 → 17.5 mm | absent → 18.7 mm | Square outer rim at partner 35's height, cap/edge q 0.927 / 0.920; native one-pixel range about 0.905–0.942. |
+
+These extensions preserve the original optical caps and their ray clipping; they restore the outer material that the earlier inferred-cut trials could not safely model. The L71 asphere is not continued beyond 17.5 mm. Existing cuts on 4 and 8 are retained. No additional concave land is resolved; junction 21 remains a cemented step. Curvatures, gaps, media and stop schedules are unchanged.
+
+Validation: `audit:surface` (including retained-cut beam rules), `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1 (nine states, zero hidden trim). Parent records full gates with the three-lens commit.

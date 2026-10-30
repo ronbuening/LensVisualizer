@@ -135,3 +135,12 @@ review (1311 px for 199.886 mm). One native pixel at the cap end and at the edge
 
 - 7: figure q 0.90 (0.904 / 0.904 on the Wide panel, 0.898 / 0.904 on the Middle panel) at a 157.4 px edge (24 mm),
   range 0.888–0.912. The cut sits at 0.900 of `sd`. Land 2.404 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO_2020105104_A1.pdf`, PDF p. 64, Figure 1 / Example 1, including a 600 dpi crop of the complete wide-end section and the middle/tele panels. Native scale remains 6.559 px/mm from the 1311 px / 199.886 mm S1–S40 vertex span. Every concave air face was checked.
+
+No data change is supported. The resolved land on surface 7 is already represented by its safe cut. The small land on 34 remains unauthored: the existing 14 mm rim lies only 0.038 mm outside the prior traced beam reach, less than the 0.05 mm cut margin. An extension cannot restore a land inside the current optical cap without reducing that aperture, and the figure shows no taller outer rim there. All other air faces reach their corners or have no resolved land. Surface 12's existing 18.1 mm gap-constrained rim is retained.
+
+Validation: `audit:surface`, `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1. Parent records full gates with the three-lens commit.
