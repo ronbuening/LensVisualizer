@@ -104,3 +104,10 @@ Left open:
 - The `STO` row still carries sd 4.846, the paraxial radius for the middle station's f/5.233. The engine replaces it
   with the 4.890 mm radius traced from `nominalFno`, so it has no effect on the trace; aligning the authored value is a
   semi-diameter edit and was left for a separate decision.
+
+## 2026-10-29 — Fresh shape and glass reinspection
+
+- Directly inspected local `patents/WO2021039813A1.pdf`: Example 2 Figure 3 on PDF page 94 at 600 dpi; Table 2 pages31–32; spectral definitions page 23. Rechecked all 16 media nd/νd/θgF rows. Added all 16 source ratios as dPgF=θgF−(0.6438−0.001682νd); runtime C/F/g evaluation reproduces each printed ratio to <1e-10. Twelve compatible catalog C/d/F curves remain; two resin formulations and glasses 683548/531559 remain unresolved with Abbe C/F estimates and source g/F ratios. No invented line indices or supplier identities. Removed L13's unsupported anomalous-material flag; its near-normal conditional ratio remains documented.
+- Inspected every face and cemented boundary. Exposed concave S6 keeps clear SD 11.6 mm and now has rimExtensionSd 12.6 mm. Native source 300 dpi, vertex-span scale≈17.5 native px/mm, edge ≈241 native px, measured q≈0.868±0.008; the adopted cap lies farther out at q=0.921 to preserve the existing clear aperture. The land remains >0.1 mm.
+- Figure 3's larger L11 land crosses the compound glass/resin junction. An S3A-only extension validated numerically but left a tapered glass substrate and a narrow wing in the actual SVG. Rejected it because cemented-interface lands are unsupported; retained original S1/S2/S3A caps and heights, with the source-silhouette limitation disclosed. No other exposed cap-end land is independently resolved.
+- Surface/image-circle checks pass; nine actual SVG focus/zoom states have 16 finite paths and zero trim diagnostics, inspected after rejecting the hybrid trial. All infinity stations remain iris-limited (f/4.625/5.218/5.795, baseline parity, maximum 0.56% from the printed fixed-iris nominal values). No inferred axial-rim raise is required. Source coordinates, all 16 partial ratios, and catalog consistency pass.

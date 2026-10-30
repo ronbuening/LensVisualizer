@@ -20,10 +20,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  Aperture: nominalFNumber holds the Table 1 FNO row,               ║
  * ║  4.49 / 4.86 / 5.88 at W / M / T, and fNumber.design the wide      ║
- * ║  value. The stop is one fixed opening (fixed-iris): the radius a   ║
- * ║  real marginal ray needs for FNO 4.49 at the wide station,         ║
- * ║  11.6075 mm, is kept at every station and traces f/4.49, f/4.87    ║
- * ║  and f/5.89, limited by the iris at all three. The patent prints   ║
+ * ║  value. The stop is one fixed opening (fixed-iris): the radius the ║
+ * ║  runtime stop model derives for FNO 4.49 at the wide station,         ║
+ * ║  11.1940 mm, is kept at every station and traces f/4.49, f/4.86    ║
+ * ║  and f/5.87, limited by the iris at all three. The patent prints   ║
  * ║  no stop diameter.                                                 ║
  * ║                                                                    ║
  * ║  Semi-diameters are inferred. The patent omits clear apertures, so ║
@@ -32,6 +32,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  then reduced where necessary to satisfy renderer edge-thickness   ║
  * ║  and cross-gap sag-clearance checks. These SDs are rendering       ║
  * ║  apertures, not patent-published mechanical diameters.             ║
+ * ║  Fig. 1 S7 cap end: inferred 6.50 mm cut, outer rim 20 mm.         ║
+ * ║  S11/S12 figure-sized lands fail the literal 4.30 mm gap.          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -76,7 +78,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 224.6,
-      glass: "J-FK5 (Hikari)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Weak positive front collector in low-dispersion FK crown glass.",
     },
@@ -88,7 +90,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.4,
       focalLengthMm: -160.4,
-      glass: "F2 (Schott) / J-F2 class (Hikari)",
+      glass: "J-F2 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Flint member of the front cemented achromat.",
       cemented: "D1",
@@ -101,7 +103,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 114.3,
-      glass: "J-FK01A (Hikari, ED fluorophosphate candidate)",
+      glass: "J-FK01A (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED candidate from patent nd/vd and Nikon's one-ED production spec; patent gives no partial-dispersion table.",
@@ -116,7 +118,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: -55.0,
-      glass: "S-LAL14 (OHARA) / J-LAK14 class (Hikari)",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index negative meniscus at the entrance of the principal variator group.",
     },
@@ -128,7 +130,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.64,
       focalLengthMm: 33.7,
-      glass: "SF11 (Schott) / J-SF11 class (Hikari; patent vd=25.64)",
+      glass: "J-SF11 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Dense-flint positive compensator inside the net-negative G2 variator.",
     },
@@ -140,7 +142,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -41.0,
-      glass: "N-LAF34 (Schott) / S-LAH66 / J-LASF016 class",
+      glass: "N-LAF34 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Strong negative dense lanthanum-flint element in G2.",
     },
@@ -152,7 +154,7 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.35,
       focalLengthMm: -46.7,
-      glass: "J-LASF021 (Hikari)",
+      glass: "J-LASF021 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index negative meniscus completing the G2 variator.",
     },
@@ -164,7 +166,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.92,
       focalLengthMm: -66.9,
-      glass: "J-LAF016 (Hikari)",
+      glass: "J-LAF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Negative member of the positive cemented vibration-reduction group.",
       cemented: "D2",
@@ -177,7 +179,7 @@ const LENS_DATA = {
       nd: 1.64,
       vd: 60.2,
       focalLengthMm: 33.8,
-      glass: "S-BSM81 (OHARA) / J-LAK01 class (patent vd=60.20)",
+      glass: "S-BSM81 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive crown member of the vibration-reduction cemented group.",
       cemented: "D2",
@@ -190,7 +192,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 39.9,
-      glass: "J-FK5 (Hikari)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Low-dispersion positive member of the pre-stop cemented pair.",
       cemented: "D3",
@@ -203,7 +205,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.97,
       focalLengthMm: -47.7,
-      glass: "H-ZLAF52A (CDGM) / J-LASF03 class",
+      glass: "H-ZLaF52A (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Dense lanthanum-flint negative partner to L33.",
       cemented: "D3",
@@ -216,7 +218,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.18,
       focalLengthMm: -39.6,
-      glass: "S-LAH60 (OHARA) / J-LASF010 class",
+      glass: "S-LAH60 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index negative member of the weak post-stop negative cemented pair.",
       cemented: "D4",
@@ -229,7 +231,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       focalLengthMm: 44.9,
-      glass: "J-BK7A / BK7-family class (Hikari)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Borosilicate-crown positive partner in the post-stop achromat.",
       cemented: "D4",
@@ -242,7 +244,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.92,
       focalLengthMm: 55.5,
-      glass: "J-LAF016 (Hikari)",
+      glass: "J-LAF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index positive rear element of the M2/G3 group.",
     },
@@ -254,7 +256,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.45,
       focalLengthMm: 102.6,
-      glass: "H-ZF7LA (CDGM) / S-TIH6 / J-SF6 class",
+      glass: "H-ZF7LA (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive dense-flint member of the moving rear-focus group.",
     },
@@ -266,7 +268,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -30.9,
-      glass: "N-LAF34 (Schott) / S-LAH66 / J-LASF016 class",
+      glass: "N-LAF34 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Dominant negative member of the moving rear-focus group.",
     },
@@ -278,7 +280,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.4,
       focalLengthMm: -100.9,
-      glass: "F2 (Schott) / J-F2 class (Hikari)",
+      glass: "J-F2 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Fixed negative meniscus immediately behind the moving focus group.",
     },
@@ -290,7 +292,7 @@ const LENS_DATA = {
       nd: 1.67003,
       vd: 47.14,
       focalLengthMm: 79.7,
-      glass: "N-BAF10 (Schott) / J-BAF10 class",
+      glass: "N-BAF10 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Final positive relay and field-shaping element.",
     },
@@ -303,7 +305,7 @@ const LENS_DATA = {
     { label: "4", R: 49.8109, d: 7.2, sd: 26.3, medium: 3 },
     { label: "5", R: 385.8166, sd: 26.3 },
     { label: "6", R: 176.0187, d: 1.7, sd: 20.0, medium: 4 },
-    { label: "7", R: 31.368, d: 5.15, sd: 16.2 },
+    { label: "7", R: 31.368, d: 5.15, sd: 20.0, rimCutDepthMm: 6.5 },
     { label: "8", R: 32.6087, d: 5.5, sd: 15.8, medium: 5 },
     { label: "9", R: -129.7634, d: 1.447, sd: 15.8 },
     { label: "10", R: -415.4105, d: 1.3, sd: 13.5, medium: 6 },

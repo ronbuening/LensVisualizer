@@ -24,6 +24,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  telephoto d19 gap, and the edge thickness of L21, L41, L51, and L62.    ║
  * ║                                                                            ║
  * ║  Sensor cover glass is not included.                                      ║
+ * ║  Table 1 design FNO: 3.64 / 4.62 / 5.88; marketing stays 3.5-5.6.          ║
+ * ║  Figure 1 hybrid land crosses S2: retained taper is a renderer limitation.         ║
+ * ║  S1 SD17.8 mm clears source Y14.25 at39.223 degrees (need17.769 mm).      ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -49,6 +52,7 @@ const LENS_DATA = {
     elementCount: 12,
     groupCount: 9,
     focalLengthMm: { marketing: [18, 55], design: [18.5, 53.4] },
+    fNumber: { marketing: 3.5, design: 3.64 },
   },
 
   source: {
@@ -69,7 +73,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.22,
       focalLengthMm: -42.34,
-      glass: "J-SK5 (HIKARI); S-BAL35 / P-SK58A class, 589/612",
+      glass: "J-SK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front negative field-collecting meniscus; glass substrate for the bonded resin asphere.",
       cemented: "H1",
@@ -82,7 +86,7 @@ const LENS_DATA = {
       nd: 1.56093,
       vd: 36.64,
       focalLengthMm: -324.42,
-      glass: "UV-curable resin (patent material, no catalog match)",
+      glass: "Resin layer (patent nd/vd; formulation unresolved)",
       apd: false,
       role: "Thin bonded resin layer carrying the image-side aspherical profile of L11.",
       cemented: "H1",
@@ -95,7 +99,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.12,
       focalLengthMm: -30.61,
-      glass: "J-SK15 (HIKARI); N-SK15 / BACD15 / S-BSM15 class, 623/581",
+      glass: "S-BSM15 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Negative member of the G1 rear cemented doublet; lateral-color and field correction.",
       cemented: "D1",
@@ -108,7 +112,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 39.18,
-      glass: "J-SF03 (HIKARI); S-TIH53 / dense flint class, 847/238",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive high-dispersion partner in the G1 cemented doublet.",
       cemented: "D1",
@@ -121,7 +125,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 76.67,
-      glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Single positive G2 element; linked zoom member and vibration-reduction group.",
     },
@@ -133,7 +137,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -60.9,
-      glass: "J-LASF016 (HIKARI); S-LAH66 / N-LAF34 / TAF1 class, 773/496",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Single negative inner-focus group, moved toward the object side at close focus.",
     },
@@ -145,7 +149,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 39.35,
-      glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front positive singlet of G4; primary relay convergence before the stop.",
     },
@@ -157,7 +161,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 26.88,
-      glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Strong positive member of the G4 achromatized cemented doublet.",
       cemented: "D2",
@@ -170,7 +174,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -52.43,
-      glass: "J-SF03 (HIKARI); S-TIH53 / dense flint class, 847/238",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-dispersion negative partner in the G4 cemented doublet.",
       cemented: "D2",
@@ -183,7 +187,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.57,
       focalLengthMm: 26.09,
-      glass: "J-SF4 (HIKARI); S-TIH4 / N-SF4 / E-FD4 class, 755/276",
+      glass: "E-FD4 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive high-dispersion member of the negative G5 cemented group.",
       cemented: "D3",
@@ -196,7 +200,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.02,
       focalLengthMm: -14.51,
-      glass: "J-BASF7 (HIKARI); S-BAH27 / BAFD7 class, 702/410",
+      glass: "BAFD7 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Strong negative rear member of G5; completes the negative correcting doublet.",
       cemented: "D3",
@@ -209,7 +213,7 @@ const LENS_DATA = {
       nd: 1.52444,
       vd: 56.21,
       focalLengthMm: 1411.95,
-      glass: "Optical plastic (patent material, no catalog match)",
+      glass: "Optical plastic (patent nd/vd; polymer identity unresolved)",
       apd: false,
       role: "Weak positive plastic aspherical element in G6; field-dependent coma and astigmatism correction.",
     },
@@ -221,7 +225,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       focalLengthMm: 48.14,
-      glass: "J-BK7A (HIKARI); S-BSL7 / N-BK7 class, 517/641",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Rear positive glass element of G6 and durable image-side terminal element.",
     },
@@ -232,7 +236,7 @@ const LENS_DATA = {
   // The patent tabulates conic coefficient κ in x=(h²/r)/(1+sqrt(1-κ(h/r)²))+... .
   // LensVisualizer uses the standard K convention x=(h²/R)/(1+sqrt(1-(1+K)(h/R)²))+... ; therefore K = κ - 1.
   surfaces: [
-    { label: "1", R: 80.72, d: 2.0, sd: 15.3, medium: 1 },
+    { label: "1", R: 80.72, d: 2.0, sd: 17.8, medium: 1 },
     { label: "2", R: 18.88, d: 0.17, sd: 14.9, medium: 2 },
     {
       label: "3A",
@@ -273,9 +277,9 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Zoom and focus variables ── */
     /* (moved from nominalFno) ── Aperture configuration ── */
     stations: [
-      { focalLengthMm: 18.5, nominalFNumber: 3.5, label: "18.5 mm" },
-      { focalLengthMm: 35.0, nominalFNumber: 4.5, label: "35 mm" },
-      { focalLengthMm: 53.4, nominalFNumber: 5.6, label: "53.4 mm" },
+      { focalLengthMm: 18.5, nominalFNumber: 3.64, label: "18.5 mm" },
+      { focalLengthMm: 35.0, nominalFNumber: 4.62, label: "35 mm" },
+      { focalLengthMm: 53.4, nominalFNumber: 5.88, label: "53.4 mm" },
     ],
     step: 0.004,
   },

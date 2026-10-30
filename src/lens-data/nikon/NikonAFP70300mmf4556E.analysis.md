@@ -70,7 +70,7 @@ The cemented interface between L12 and L13 has R = 49.8109 mm. That strong cemen
 
 #### L13 — Positive meniscus, very-low-dispersion member of the front doublet
 
-nd = 1.49700, νd = 81.61. Glass: J-FK01A (Hikari, ED fluorophosphate candidate) — probable ED counterpart. f = +114.3 mm.
+nd = 1.49700, νd = 81.61. Glass: J-FK01A (qualified catalog spectral proxy; supplier unspecified) — probable ED counterpart. f = +114.3 mm.
 
 L13 is the strongest match to Nikon's one-ED-element production statement. Its νd = 81.61 is the most extreme low-dispersion value in Example 1, and it is placed in the front achromat where low dispersion has high leverage over longitudinal color before the beam enters the negative variator.
 
@@ -160,7 +160,7 @@ Its function is not large negative power. It fine-tunes spherical aberration, co
 
 #### L36 — Positive biconvex crown in the post-stop pair
 
-nd = 1.51680, νd = 63.88. Glass: J-BK7A / BK7-family class (Hikari). f = +44.9 mm.
+nd = 1.51680, νd = 63.88. Glass: J-BK7A (Hikari). f = +44.9 mm.
 
 L36 is a positive borosilicate-crown partner cemented to L35. The BK7-family class gives a moderate-index, high-Abbe positive member against a dense-flint negative member.
 
@@ -212,24 +212,24 @@ This final element restores image-side convergence, contributes to field and Pet
 
 ## Glass Identification and Selection
 
-The patent gives nd and νd but does not name proprietary glass types. The names below are coefficient-backed public catalog matches or class surrogates used for dispersion modeling. They should be read as catalog identifications for data annotation, not as proof of the exact production melts; the patent `nd`/`νd` values remain the authoritative prescription values in the data file.
+The patent gives nd and νd but does not name proprietary glass types. The names below are the coordinate-compatible catalog curves selected by the current resolver, with supplier and melt identity unproven; the patent `nd`/`νd` values remain the authoritative prescription values in the data file.
 
 | Catalog label | nd | νd | Elements | Optical use |
 |---|---:|---:|---|---|
 | J-FK5 | 1.48749 | 70.31 | L11, L33 | Low-dispersion FK crown used as a weak collector and pre-stop achromat partner. |
-| F2 / J-F2 class | 1.62004 | 36.40 | L12, L51 | Flint used for front achromat and rear relay negative power. |
+| J-F2 | 1.62004 | 36.40 | L12, L51 | Flint used for front achromat and rear relay negative power. |
 | J-FK01A | 1.49700 | 81.61 | L13 | Very-low-dispersion FK-class glass; probable counterpart to Nikon's one ED element, marked APD inferred. |
-| S-LAL14 / J-LAK14 class | 1.69680 | 55.52 | L21 | High-index lanthanum crown at the variator entrance. |
-| SF11 / J-SF11 class | 1.78472 | 25.64 | L22 | Very high-dispersion dense flint positive element inside G2. |
-| N-LAF34 / S-LAH66 / J-LASF016 class | 1.77250 | 49.62 | L23, L42 | Dense lanthanum flint; νd below 50, so treated as flint. |
+| J-LAK14 | 1.69680 | 55.52 | L21 | High-index lanthanum crown at the variator entrance. |
+| J-SF11 | 1.78472 | 25.64 | L22 | Very high-dispersion dense flint positive element inside G2. |
+| N-LAF34 | 1.77250 | 49.62 | L23, L42 | Dense lanthanum flint; νd below 50, so treated as flint. |
 | J-LASF021 | 1.85026 | 32.35 | L24 | High-index, high-dispersion negative variator element. |
 | J-LAF016 | 1.80100 | 34.92 | L31, L37 | Lanthanum flint in the VR doublet and rear of G3. |
-| S-BSM81 / J-LAK01 class | 1.64000 | 60.20 | L32 | Lanthanum crown; positive VR-doublet partner. |
-| H-ZLAF52A / J-LASF03 class | 1.80610 | 40.97 | L34 | Dense lanthanum flint in the pre-stop cemented pair. |
-| S-LAH60 / J-LASF010 class | 1.83400 | 37.18 | L35 | High-index lanthanum flint in the post-stop cemented pair. |
-| J-BK7A / BK7-family class | 1.51680 | 63.88 | L36 | Borosilicate crown partner in the post-stop achromat. |
-| H-ZF7LA / S-TIH6 / J-SF6 class | 1.80518 | 25.45 | L41 | Dense flint positive meniscus in the moving focus group. |
-| N-BAF10 / J-BAF10 class | 1.67003 | 47.14 | L52 | Barium flint final relay element. |
+| S-BSM81 | 1.64000 | 60.20 | L32 | Lanthanum crown; positive VR-doublet partner. |
+| H-ZLaF52A | 1.80610 | 40.97 | L34 | Dense lanthanum flint in the pre-stop cemented pair. |
+| S-LAH60 | 1.83400 | 37.18 | L35 | High-index lanthanum flint in the post-stop cemented pair. |
+| J-BK7A | 1.51680 | 63.88 | L36 | Borosilicate crown partner in the post-stop achromat. |
+| H-ZF7LA | 1.80518 | 25.45 | L41 | Dense flint positive meniscus in the moving focus group. |
+| N-BAF10 | 1.67003 | 47.14 | L52 | Barium flint final relay element. |
 
 The chromatic strategy is not based on a large number of ED elements. Nikon publishes one ED element for the production lens, and the patent's most plausible counterpart is L13. The rest of the correction is distributed across crown/flint pairings: L12/L13 in the front group, L31/L32 in the VR group, L33/L34 and L35/L36 around the stop, and L51/L52 behind the focus group.
 
@@ -281,13 +281,13 @@ Conditions (1)-(3) govern the positive cemented VR group. Condition (6) governs 
 
 ## Data-File Transcription Notes
 
-The `.data.ts` prescription transcribes Table 1 at the patent scale without focal-length scaling. The zoom positions are the patent design focal lengths **72.1, 100.0, and 292.0 mm** rather than rounded production markings. The marketed focal-length range is stored separately as 70-300 mm.
+The `.data.ts` prescription transcribes Table 1 at the patent scale without focal-length scaling. Figure 1 also resolves a small flat end at the concave S7 rim: its inferred cut is 6.50 mm deep at a 20 mm outer semi-diameter. The cut radius is approximately 19.120 mm. The two opposed S11/S12 caps show short end strokes, but matching their figure endpoints would put 5.03 mm of combined land depth into the printed 4.30 mm air gap; the 3.87 mm intrusion policy rejects that trial, so their existing clear caps and tapered rims are retained. The zoom positions are the patent design focal lengths **72.1, 100.0, and 292.0 mm** rather than rounded production markings. The marketed focal-length range is stored separately as 70-300 mm.
 
 The patent lists d5, d13, d25, and d29 in the variable-spacing table. The data file also treats surface 33 / BF as a zoom-only variable because Table 1 gives BF = 39.12, 46.45, and 67.12 mm at the W/M/T infinity states. The short-distance focus table does not list separate BF values, so each short-distance state uses the same BF as its corresponding infinity zoom state while d25 and d29 exchange focus travel.
 
 The patent omits clear-aperture semi-diameters. The data file therefore uses inferred SDs. A fully unvignetted paraxial chief-plus-marginal field envelope would exceed the production 67 mm filter class at some zoom states. The stored SDs instead reflect a practical rendered mechanical aperture set: front SDs are constrained by the filter class, and several internal SDs are reduced to satisfy edge-thickness and signed cross-gap sag-intrusion checks. These SDs are not patent-published mechanical dimensions.
 
-The patent prints no stop diameter: Table 1 row 20 gives only the stop's position, 2.700 mm behind L34 and 14.110 mm ahead of L35. The `nominalFno` field stores the Table 1 FNO row, f/4.49, f/4.86, and f/5.88 for the wide, middle, and telephoto states, and `apertureDesign` records the wide value; Nikon's marketed f/4.5-5.6 is carried in the lens name and specification strings. The data file declares `zoomApertureModel: "fixed-iris"`, so the stop is a single opening. Its radius, 11.6075 mm, is the height at the stop of the real marginal ray for FNO 4.49 at the wide station, and the same radius is kept at the middle and telephoto stations. Traced through that opening, the on-axis beam is f/4.49 at 72.1 mm, f/4.87 at 100.0 mm, and f/5.89 at 292.0 mm, each within about 0.1 % of the Table 1 value and limited by the iris rather than by an element rim. Sized one at a time, the three printed FNOs call for real-ray stop radii of 11.6075, 11.6209, and 11.6202 mm, a spread of 0.12 %, so a fixed opening in G3 behind the variator accounts for the whole rise in f-number from wide to telephoto. The 11.2 mm semi-diameter on the STO surface row is a paraxial estimate of the same opening (the paraxial radii for the three FNOs are 11.19, 11.20, and 11.17 mm); it is not a patent value and it does not size the wide-open iris.
+The patent prints no stop diameter: Table 1 row 20 gives only its position, 2.700 mm behind L34 and 14.110 mm ahead of L35. The design nominal values are f/4.49, f/4.86 and f/5.88; the marketed f/4.5-5.6 remains in the name. The current `fixed-iris` runtime derives a single physical radius of **11.193963 mm** from the wide nominal and retains it across zoom. The aperture audit reports f/4.490, f/4.863 and f/5.868, all iris-limited and within 0.21% of the source nominals. The authored STO semi-diameter of 11.2 mm is an estimate and does not size that runtime iris. None of these inferred stop dimensions is patent-published.
 
 ## Verification Summary
 
