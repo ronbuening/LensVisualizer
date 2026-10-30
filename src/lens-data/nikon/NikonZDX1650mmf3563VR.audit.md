@@ -112,3 +112,26 @@ faces, the shape `rimCutDepthMm` draws. No cut was authored; the data file is un
 Reopened `patents/JPWO2020012638A1.pdf`, Numerical Example 8, Figure 15 (PDF p. 41, upper-left panel), and inspected every element at 600 dpi. The source S1-to-image span gives 12.64 native px/mm. No air-side cap shows a resolved flat land. The long front-element square flange belongs to cemented resin junction 2: the air-side resin face 3A continues past that plane to its own curved edge. Neither `rimExtensionSd` nor a concave rim cut applies to that junction. The remaining small steps belong to cemented interfaces, and the other curves run continuously to their rims.
 
 No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The existing optical apertures and the front composite-element limitation are retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/JPWO2020012638A1.pdf`, Numerical Example 8, Table 8 on PDF pp. 34–35 and the line definitions on p. 14 (¶0077). All ten modeled media (nine physical elements) match the source nd/νd coordinates except L25's rounded nd, restored from 1.79526 to the printed 1.795256. The patent explicitly defines nd/νd on d = 587.6 nm and ng on g = 435.8 nm.
+
+The previously omitted source ng column is now preserved for every medium:
+
+| Medium | Source ng |
+| --- | --- |
+| L11b | 1.859557 |
+| L11r | 1.580890 |
+| L12 | 1.982810 |
+| L21 | 1.863100 |
+| L22 | 1.779953 |
+| L23 | 1.992059 |
+| L24 | 1.504510 |
+| L25 | 1.817888 |
+| L31 | 1.823570 |
+| L41 | 1.992059 |
+
+The nine glass-media proxies all resolve compatibly: S-LAH55, PBH21, M-NBFD10, J-LASKH2, S-LAH98 (twice), FCD1, Q-LASFPH3S and M-TAF31. L31's annotation/analysis now identify its already-available M-TAF31 proxy rather than describing it as unresolved. The resin remains without a catalog curve; the source specifies a resin layer, not UV curing, composition or supplier. Removed that unsupported curing claim. L24's APD remains inferred from its catalog counterpart, not a patent-listed PgF value.
+
+Runtime limitation: `buildSpectralIndex` preserves ng without synthesizing C/F, and `makeSurfaceDispersion` does not use ng alone to override its catalog or Abbe curve. The source indices are therefore preserved data, not a claim that the current traced g channel uses them. No unsourced C/F values were added; the analysis states this limit. `assertCatalogConsistent()`, the scoped resolver review and the three shared glass suites pass (94 tests); `audit:surface` passes. No surface geometry changed.

@@ -20,8 +20,8 @@ Patent WO 2022/264542 A1, "Variable-Magnification Optical System, Optical Appara
 The analysis that follows is based on Example 1 (第1実施例, Table 1), which corresponds to the production Nikon NIKKOR Z DX 18-140mm f/3.5-6.3 VR (Nikon product code 20104). The identification is supported by convergent evidence across multiple specifications:
 
 1. **Element and group count.** Example 1 has 17 elements in 13 air-separated groups (5 zoom groups, with G3 subdivided into 4 sub-groups), matching Nikon's published specification of 17 elements / 13 groups.
-2. **ED element count.** Two elements use FPL51-class ED fluorophosphate glass (nd = 1.49782, νd = 82.57), matching the published "2 ED glass elements."
-3. **Aspherical element count.** Two hybrid composite aspherical elements (L31 and L35, each consisting of a UV-curable resin layer on a glass substrate), matching "2 aspherical elements."
+2. **ED element count.** Two elements have high-Abbe coordinates (nd = 1.49782, νd = 82.57), consistent with the product's published "2 ED glass elements." Their J-FKH1 catalog proxy does not establish the production glass formulation.
+3. **Aspherical element count.** Two hybrid composite aspherical elements (L31 and L35, each consisting of an optical resin layer on a glass substrate), matching "2 aspherical elements."
 4. **Focal length range.** Design EFLs of 18.54–135.85 mm, consistent with the marketed 18–140 mm range (Japanese lens marketing rounds focal lengths liberally).
 5. **Maximum aperture.** F/3.60 at wide to F/6.49 at tele, matching f/3.5-6.3 after rounding.
 6. **Image circle.** Y = 14.2 mm at mid and tele corresponds to a DX-format (APS-C) half-diagonal of 14.2 mm.
@@ -61,9 +61,9 @@ L11 is the frontmost element of the system and forms the object-side half of a c
 
 #### L12 — Biconvex Positive (ED)
 
-nd = 1.49782, νd = 82.57. Glass: FPL51-class (OHARA) — fluorophosphate extra-low dispersion crown, ΔPgF ≈ +0.038. f = +99.2 mm (standalone thick-lens).
+nd = 1.49782, νd = 82.57. Glass: J-FKH1 catalog spectral proxy (HIKARI); production supplier and composition unspecified. f = +99.2 mm (standalone thick-lens).
 
-L12 is the first of two ED elements in the system. Cemented to L11, it provides the positive power of the front doublet while correcting axial chromatic aberration introduced by L11. The L11+L12 cemented pair has a combined focal length of approximately +214 mm — a weak positive achromatic collector. The FPL51-class glass has anomalous partial dispersion (positive ΔPgF), which enables secondary spectrum suppression that would not be possible with ordinary crown glass. The extremely weak curvature of S3 (R = −1387.4 mm, nearly flat) indicates that most of L12's refractive power comes from its S2 surface, which is shared with L11 in the cemented interface.
+L12 is the first of two ED elements in the system. Cemented to L11, it provides the positive power of the front doublet while correcting axial chromatic aberration introduced by L11. The L11+L12 cemented pair has a combined focal length of approximately +214 mm — a weak positive achromatic collector. The catalog proxy supplies inferred anomalous partial dispersion for the spectral model; the patent does not publish that element's measured partial dispersion. The extremely weak curvature of S3 (R = −1387.4 mm, nearly flat) indicates that most of L12's refractive power comes from its S2 surface, which is shared with L11 in the cemented interface.
 
 #### L13 — Positive Meniscus, Convex to Object
 
@@ -107,7 +107,7 @@ The aperture stop is a flat surface (R = ∞) positioned 1.500 mm in front of L3
 
 #### L31 — Biconvex Positive, Hybrid Composite Aspherical
 
-This element is a glass-molded hybrid: a UV-curable resin layer is bonded to the object-side face of a glass substrate (¶0112).
+This element is a hybrid: an optical resin layer is bonded to the object-side face of a glass substrate (¶0112). The source does not identify its chemistry or curing method.
 
 **Resin layer (L31r):** nd = 1.56093, νd = 36.64. The object-side surface S15 is aspherical. Center thickness 0.150 mm.
 
@@ -125,9 +125,9 @@ L32 is a weakly positive biconvex element (R₁₈ = 54.519, R₁₉ = −1162.9
 
 #### L33 + L34 — Cemented Doublet (ED Achromat)
 
-**L33:** nd = 2.00100, νd = 29.12. Glass: S-LAH79 (OHARA) — ultra-high-index lanthanum dense flint. f = −15.8 mm (standalone thick-lens).
+**L33:** nd = 2.00100, νd = 29.12. Glass: S-LAH99 (OHARA) — ultra-high-index lanthanum dense flint. f = −15.8 mm (standalone thick-lens).
 
-**L34:** nd = 1.49782, νd = 82.57. Glass: FPL51-class (OHARA) — ED fluorophosphate crown (same glass as L12). f = +21.3 mm (standalone thick-lens).
+**L34:** nd = 1.49782, νd = 82.57. Glass: J-FKH1 catalog spectral proxy (HIKARI), matching the same source coordinate as L12. f = +21.3 mm (standalone thick-lens).
 
 Combined cemented pair f ≈ −72.5 mm (paraxial, in-air).
 
@@ -139,7 +139,7 @@ This two-element sub-group is positioned at the image-side end of G3 and constit
 
 **L35 — Biconvex Positive, Hybrid Composite Aspherical:**
 
-Resin layer (L35r): nd = 1.56093, νd = 36.64. S23 is aspherical. Center thickness 0.150 mm. The resin is the same UV-curable material as L31r.
+Resin layer (L35r): nd = 1.56093, νd = 36.64. S23 is aspherical. Center thickness 0.150 mm. The source gives the same nd/νd pair as L31r; that does not establish an identical production formulation.
 
 Glass body (L35g): nd = 1.51680, νd = 64.14. Glass: J-BK7A (Hikari) — borosilicate crown, equivalent to Schott N-BK7. Center thickness 4.560 mm.
 
@@ -155,7 +155,7 @@ L36 is cemented to L35's glass substrate, forming a weakly negative meniscus tha
 
 #### L41 + L42 — Cemented Doublet (Focus Group)
 
-**L41:** nd = 2.00100, νd = 29.12. Glass: S-LAH79 (OHARA) — ultra-high-index lanthanum dense flint (same glass as L33). f = +30.7 mm (standalone thick-lens).
+**L41:** nd = 2.00100, νd = 29.12. Glass: S-LAH99 (OHARA) — ultra-high-index lanthanum dense flint (same glass as L33). f = +30.7 mm (standalone thick-lens).
 
 **L42:** nd = 1.80400, νd = 46.60. Glass: S-LAH65V (OHARA) — dense lanthanum flint (νd < 50; technically a flint despite the "LAH" family designation). f = −17.8 mm (standalone thick-lens).
 
@@ -163,7 +163,7 @@ Combined cemented pair f = −44.0 mm (paraxial, in-air), matching the patent's 
 
 G4 is the sole focusing group (GF) of the system (¶0115). It consists of a single cemented doublet that moves image-ward along the optical axis when focusing from infinity to close distance. At close focus, the G3-to-G4 gap (D26) increases while the G4-to-G5 gap (D29) decreases by approximately the same amount, confirming rigid-body translation of G4 within a fixed-length housing section. The focus travel varies with zoom position: at 18 mm wide, G4 moves approximately 1.56 mm image-ward for close focus, while at 140 mm tele it moves approximately 8.77 mm.
 
-L41 uses the same ultra-high-index glass (S-LAH79, nd = 2.001) as L33, providing strong positive curvature at the junction S28 (R = −37.498) while keeping the doublet's overall diameter small — essential for a compact inner-focus group driven by a stepping motor (STM). L42's dense lanthanum flint glass (S-LAH65V) provides the dominant negative power and contributes chromatic correction at the junction. The net negative power of the doublet means that moving it image-ward increases the total system focal length slightly at close focus, partially compensating for the focus-induced shortening of back focal distance.
+L41 uses the same ultra-high-index glass (S-LAH99, nd = 2.001) as L33, providing strong positive curvature at the junction S28 (R = −37.498) while keeping the doublet's overall diameter small — essential for a compact inner-focus group driven by a stepping motor (STM). L42's dense lanthanum flint glass (S-LAH65V) provides the dominant negative power and contributes chromatic correction at the junction. The net negative power of the doublet means that moving it image-ward increases the total system focal length slightly at close focus, partially compensating for the focus-induced shortening of back focal distance.
 
 The light weight and compact size of this two-element cemented focus group (¶0092 notes that two elements are preferred for suppressing chromatic variation during focus) are key to the production lens's fast, quiet STM autofocus performance.
 
@@ -177,9 +177,9 @@ L51 is a negative meniscus concave to the object (R₁ = −16.370, R₂ = −32
 
 #### L52 — Positive Meniscus, Concave to Object
 
-nd = 1.84666, νd = 23.80. Glass: SF57 (Schott) — dense flint with very high dispersion (catalog nd = 1.84666, νd = 23.83, Δνd = 0.03). f = +69.7 mm (standalone thick-lens).
+nd = 1.84666, νd = 23.80. Glass: S-TIH53 catalog spectral proxy (OHARA) — dense flint with very high dispersion (catalog nd = 1.84666, νd ≈ 23.78). f = +69.7 mm (standalone thick-lens).
 
-L52 is a positive meniscus concave to the object (R₁ = −502.457, R₂ = −52.880) that partially cancels L51's negative power while providing strong chromatic correction at the rear of the system. The very high dispersion (νd = 23.80) makes L52 an effective color corrector despite its moderate positive power. The use of a Schott glass rather than OHARA in this position is notable; SF57 provides an exact nd match (1.84666) that no current OHARA catalog entry replicates at this dispersion level. The L51–L52 pair together form G5 with a combined focal length of −89.4 mm — the weakest negative group in the system. G5 does not participate in focusing; its variable gap D33 changes only with zoom.
+L52 is a positive meniscus concave to the object (R₁ = −502.457, R₂ = −52.880). Its high dispersion (νd = 23.80) contributes chromatic correction in the rear group. OHARA S-TIH53 is a compatible catalog spectral proxy for the source 1.84666/23.80 coordinate. The patent does not identify a Schott or OHARA production supplier. The L51–L52 pair forms G5, which does not move during focusing; D33 varies with zoom.
 
 Behind G5, a parallel plate cover glass PP (nd = 1.51680, νd = 64.14, J-BK7A class, thickness 1.600 mm) represents the sensor protective glass. The data file models it in `rearPlates`: every analysis traces it, but the diagram does not draw it. D33 stores the patent's physical gap to the plate (8.272 / 18.869 / 33.216 mm), followed by the plate and 1.000 mm of air to the image plane. The air-equivalent back focus, D33 + 1.600/1.51680 + 1.000, reproduces the patent's printed Bf of 10.327 / 20.923 / 35.271 mm.
 
@@ -187,34 +187,34 @@ Behind G5, a parallel plate cover glass PP (nd = 1.51680, νd = 64.14, J-BK7A cl
 
 ## Glass Identification and Selection
 
-The glass palette comprises 15 distinct glass types plus one UV-curable resin, drawn predominantly from the OHARA catalog — consistent with Nikon's longstanding supply relationship — with one element (L52) identified as Schott SF57.
+The prescription contains 15 distinct glass index/Abbe pairs plus one resin coordinate. Catalog names identify spectral proxies. The patent does not establish Nikon's production suppliers, a commercial formulation or a molding/curing process.
 
 | Element(s) | nd | νd | Probable Glass | Type | Role |
 |---|---|---|---|---|---|
 | L11 | 1.80518 | 25.45 | S-TIH6 (OHARA) | Dense flint | Achromatizing flint in G1 doublet |
-| L12, L34 | 1.49782 | 82.57 | FPL51-class (OHARA) | ED fluorophosphate crown | Primary chromatic correction (2 ED elements) |
+| L12, L34 | 1.49782 | 82.57 | J-FKH1 catalog spectral proxy (HIKARI) | ED fluorophosphate crown | Primary chromatic correction (2 ED elements) |
 | L13 | 1.48749 | 70.31 | S-FSL5 (OHARA) | Fluorocrown | Low-dispersion positive power in G1 |
 | L21 | 1.83481 | 42.73 | S-LAH55V (OHARA) | Dense lanthanum flint | Strong negative in variator |
 | L22 | 1.74400 | 44.81 | S-LAM2 (OHARA) | Lanthanum flint | Negative power in variator |
 | L23 | 1.80809 | 22.74 | J-SFH1 (Hikari) | Dense flint | Achromatizing positive in variator |
 | L24 | 1.77250 | 49.62 | S-LAH66 (OHARA) | Dense lanthanum flint | Negative field corrector in variator |
-| L31r, L35r | 1.56093 | 36.64 | UV-curable resin | Composite asph layer | Carries aspherical departure |
+| L31r, L35r | 1.56093 | 36.64 | optical resin | Composite asph layer | Carries aspherical departure |
 | L31g | 1.51742 | 52.20 | S-NSL36 (OHARA; patent coordinate match) | Normal crown | Substrate for hybrid asphere |
 | L32 | 1.60342 | 38.03 | S-TIM5 (OHARA) | Titanium flint | Weak positive in G3 |
-| L33, L41 | 2.00100 | 29.12 | S-LAH79 (OHARA) | Ultra-high-index LaF | High-index flint for cemented doublets |
+| L33, L41 | 2.00100 | 29.12 | S-LAH99 (OHARA) | Ultra-high-index LaF | High-index flint for cemented doublets |
 | L35g, PP | 1.51680 | 64.14 | J-BK7A (Hikari) | Borosilicate crown | Substrate for VR asphere; cover glass |
 | L36 | 1.66755 | 41.87 | J-BASF6 (Hikari) | Barium short flint | Chromatic partner in VR group |
 | L42 | 1.80400 | 46.60 | S-LAH65V (OHARA) | Dense lanthanum flint | Negative power in focus doublet |
 | L51 | 1.90265 | 35.77 | J-LASFH9 (Hikari) | Dense lanthanum flint | Field flattener in rear group |
-| L52 | 1.84666 | 23.80 | SF57 (Schott) | Dense flint | Chromatic corrector in rear group |
+| L52 | 1.84666 | 23.80 | S-TIH53 spectral proxy (OHARA) | Dense flint | Chromatic corrector in rear group |
 
-The chromatic correction strategy relies on two FPL51-class ED elements (L12 in G1, L34 in G3), each cemented to a high-dispersion flint partner. The patent's nd/νd values for these elements (1.49782/82.57) do not exactly match the current OHARA S-FPL51 catalog specification (nd = 1.49700, νd = 81.54), but are consistent with the original pre-S-prefix FPL51 formulation or a specific production melt; the identification as an ED fluorophosphate crown is secure from the glass-map position. The anomalous partial dispersion of FPL51-class glass (ΔPgF ≈ +0.038) enables secondary spectrum correction that is critical at the tele end, where axial chromatic aberration would otherwise dominate image quality at f/6.5. The patent's conditional expression (7) requires νd ≥ 75.00 for at least one element in G3 (¶0034); the actual value of 82.57 exceeds this bound by a comfortable margin.
+The two high-Abbe elements L12 and L34 share the source coordinate 1.49782/82.57. HIKARI J-FKH1 reproduces that coordinate more closely than the former S-FPL51 proxy. Their anomalous partial dispersion is inferred from the catalog curve, not a patent-listed measurement; no numerical ΔPgF is published for either element. The source's νd ≥ 75 condition supports a high-Abbe classification without identifying a supplier, resin or melt.
 
-Two elements use the ultra-high-index S-LAH79 (nd = 2.001): L33 in the G3 ED doublet and L41 in the G4 focus doublet. This glass allows strong curvature at cemented junctions without excessive surface sag, enabling compact doublet assemblies with short axial lengths.
+Two elements use the ultra-high-index S-LAH99 (nd = 2.001): L33 in the G3 ED doublet and L41 in the G4 focus doublet. This glass allows strong curvature at cemented junctions without excessive surface sag, enabling compact doublet assemblies with short axial lengths.
 
 The L36 identification is now J-BASF6 (Hikari): the public Hikari catalog gives nd = 1.66755 and νd = 41.87 with power-series coefficients, matching the patent row exactly.
 
-The L52 identification as SF57 (Schott) corrects a prior erroneous attribution to "S-TIH53W." OHARA's S-TIH53 has nd = 1.80809, far from the patent value of 1.84666; no OHARA glass with a "W" suffix matches this nd. Schott SF57 (nd = 1.84666, νd = 23.83) provides an exact nd match with Δνd = 0.03. The use of a Schott glass in an otherwise OHARA-dominated design is unusual but not unprecedented in Nikon zoom lenses; it may reflect supply-chain optimization or a specific dispersion characteristic required at this position in the rear group.
+L52 uses the OHARA S-TIH53 catalog proxy at 1.84666/23.80. The previous claim that S-TIH53 had nd = 1.80809 was incorrect; that value belongs to another glass family. Neither the compatible S-TIH53 curve nor the formerly used SF57 name identifies the production supplier.
 
 ---
 
@@ -257,7 +257,7 @@ The negative A₄ coefficient dominates. At h = 5 mm, the total polynomial depar
 
 Also negative-dominated. At h = 5 mm the departure is −0.012 mm; at h = 6 mm it is −0.026 mm — roughly half the magnitude of S15. S23's correction is gentler because L35 sits further from the stop and sees a smaller on-axis beam, but its aspherical profile is critical for maintaining image quality during VR decentering. When L35–L36 translate perpendicular to the axis during image stabilization, the aspherical surface ensures that off-axis coma and astigmatism induced by decentering remain well-controlled.
 
-Both aspherical surfaces are manufactured as composite-type (hybrid) aspheres — a thin UV-curable resin layer (nd = 1.56093, νd = 36.64, approximately 0.15 mm thick) is applied to the object-side face of a glass substrate and molded to the aspherical form. This is a cost-effective manufacturing approach that avoids the expense of precision glass-molded aspheres while still achieving the required surface accuracy. The resin layer itself contributes negligible optical power (standalone focal lengths of approximately +631 mm and −1581 mm for L31r and L35r respectively).
+The patent describes both aspheres as hybrid elements with a thin resin layer on a glass substrate (¶0112). The listed resin coordinate is nd = 1.56093, νd = 36.64 and the layer thickness is 0.15 mm. It does not specify UV curing, a resin formulation, the supplier or a manufacturing cost advantage.
 
 ---
 
@@ -312,7 +312,7 @@ The patent defines 21 conditional expressions governing the relationships betwee
 | (19) | TLt/ft | 0.01 – 2.00 | 1.112 |
 | (21) | ν1L (Abbe of G1 element) | ≥ 75.00 | 82.57 |
 
-Conditions (7) and (21) mandate that G3 and G1 each contain at least one element with νd ≥ 75.00, which is satisfied by the two FPL51-class ED elements (L12 in G1 and L34 in G3, both νd = 82.57). Condition (19) — the telephoto ratio TLt/ft = 1.112 (patent-stated value) — confirms that the system is not a true telephoto design at the tele end (TL/EFL > 1), which is typical for high-ratio superzooms where compactness at the tele end is traded for a wider zoom range.
+Conditions (7) and (21) mandate that G3 and G1 each contain at least one element with νd ≥ 75.00, which is satisfied by the two high-Abbe elements (L12 in G1 and L34 in G3, both νd = 82.57). Condition (19) — the telephoto ratio TLt/ft = 1.112 (patent-stated value) — confirms that the system is not a true telephoto design at the tele end (TL/EFL > 1), which is typical for high-ratio superzooms where compactness at the tele end is traded for a wider zoom range.
 
 ---
 
@@ -340,6 +340,6 @@ All values agree to within rounding precision of the three-decimal-place patent 
 
 1. WO 2022/264542 A1 (WIPO), "Variable-Magnification Optical System, Optical Apparatus, and Method for Manufacturing Variable-Magnification Optical System," Nikon Corporation, published 22 December 2022. Example 1, Table 1.
 2. Nikon USA product page, NIKKOR Z DX 18-140mm f/3.5-6.3 VR (product code 20104). Accessed May 2026. https://www.nikonusa.com/p/nikkor-z-dx-18-140mm-f35-63-vr/20104/overview
-3. OHARA optical glass catalog (current online edition). Glass designations S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL36, S-TIM5, S-LAH79, S-LAH65V.
-4. Hikari optical glass catalog 2023. Glass designations J-SFH1, J-BASF6, J-LASFH9, J-BK7A.
+3. OHARA optical glass catalog (current online edition). Glass designations S-TIH53, S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL36, S-TIM5, S-LAH99, S-LAH65V.
+4. Hikari optical glass catalog 2023. Glass designations J-SFH1, J-FKH1, J-BASF6, J-LASFH9, J-BK7A.
 5. Schott optical glass catalog (current online edition). Glass designation SF57.

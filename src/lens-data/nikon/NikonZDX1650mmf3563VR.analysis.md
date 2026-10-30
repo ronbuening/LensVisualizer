@@ -41,7 +41,7 @@ The total element count is 9 elements in 7 air-separated groups: two elements in
 
 ### L11 — Negative Meniscus, Hybrid Composite Asphere (G1)
 
-nd = 1.83481 (glass body), νd = 42.73; nd = 1.56093 (resin layer), νd = 36.64. Glass body: OHARA S-LAH55 / Hikari J-LASF05 code 835427. Resin: UV-curable optical resin. Combined f = −15.6 mm.
+nd = 1.83481 (glass body), νd = 42.73; nd = 1.56093 (resin layer), νd = 36.64. Glass body: OHARA S-LAH55 / Hikari J-LASF05 code 835427. Resin: source-listed optical resin; its chemistry, curing method and supplier are unspecified. Combined f = −15.6 mm.
 
 L11 is a negative meniscus with its convex surface facing the object, formed as a hybrid composite: a glass body (surfaces 1–2, center thickness 1.20 mm) with a thin aspherical resin layer (surfaces 2–3, center thickness 0.12 mm) bonded to the image-side glass surface. The outer resin surface (surface 3) carries the aspherical profile.
 
@@ -49,7 +49,7 @@ This element is the primary wide-angle diverger. Its strong negative power (f = 
 
 The paraboloidal interpretation (K = −1) is confirmed by edge-thickness analysis. Under the alternative interpretation (κ used directly as K, giving K = 0, a spherical base), the outer surface sag at h = 10 mm would be 6.13 mm versus the junction surface sag of 4.58 mm, producing a physically impossible edge thickness of −1.43 mm (surface crossing). With K = −1 the resin outer surface sag is 4.71 mm, yielding an edge thickness approaching zero — physically marginal but consistent with the thin resin layer pinching off near the element's rim, which is typical of hybrid composite construction.
 
-The hybrid composite construction is a cost-effective manufacturing approach common in consumer zoom lenses: the glass body is conventionally polished (or molded), and the aspherical correction is applied entirely by the thin resin layer, avoiding the expense of precision glass molding or diamond turning for the high-index glass substrate.
+The source establishes a resin layer on a glass body. It does not specify the resin chemistry, curing process, production supplier or manufacturing cost advantage.
 
 ### L12 — Positive Meniscus (G1)
 
@@ -101,7 +101,7 @@ G2c also plays a role in compensating the decentering aberrations of G2b during 
 
 ### L31 — Biconcave Negative, Dual-Aspherical (G3 — Focus Group)
 
-nd = 1.80139, νd = 45.46, ng = 1.82357. Glass: dense lanthanum flint code 801455, still unresolved after catalog search. f = −24.1 mm.
+nd = 1.80139, νd = 45.46, ng = 1.82357. Glass: code 801455, resolved to HOYA M-TAF31 as a catalog spectral proxy; production supplier unspecified. f = −24.1 mm.
 
 L31 is a biconcave negative element and the sole component of G3, the focusing group. Both surfaces are aspherical: surface 15 (front, R = −29.6878) and surface 16 (rear, R = +56.3004), each with K = 0 in the standard convention. This is the most aspherically active element in the system.
 
@@ -125,7 +125,7 @@ The element's generous center thickness of 4.20 mm and relatively large radii ra
 
 ## Glass Selection
 
-The glass palette for this 9-element design uses 6 distinct glass types plus one optical resin:
+The prescription has eight distinct glass index/Abbe pairs plus one optical resin. The commercial names below identify catalog spectral proxies, not production suppliers:
 
 | Element | nd | νd | Six-digit code | Catalog match | Role |
 |---------|------|-------|------|------|------|
@@ -136,13 +136,13 @@ The glass palette for this 9-element design uses 6 distinct glass types plus one
 | L22 | 1.75500 | 52.34 | 755523 | J-LASKH2 (Hikari) | Crown partner in G2a achromat |
 | L23 | 1.95375 | 32.33 | 954/323 | S-LAH98 (OHARA) | High-index flint in G2b achromat + VR |
 | L24 | 1.49700 | 81.61 | 497/816 | S-FPL51 / FCD1 | ED crown in G2b achromat |
-| L25 | 1.79526 | 45.25 | 795453 | Q-LASFPH3S (Hikari) | G2c VR compensator |
-| L31 | 1.80139 | 45.46 | 801455 | Unresolved dense LaF class | Focus group (dual asphere) |
+| L25 | 1.795256 | 45.25 | 795453 | Q-LASFPH3S (Hikari) | G2c VR compensator |
+| L31 | 1.80139 | 45.46 | 801455 | M-TAF31 spectral proxy | Focus group (dual asphere) |
 | L41 | 1.95375 | 32.33 | 954/323 | S-LAH98 (OHARA) | Field flattener |
 
 The chromatic strategy centers on the G2b doublet (L23 + L24). The Abbe number contrast of Δνd ≈ 49.3 is the largest in the system, and the ED glass (L24) provides anomalous partial dispersion for secondary spectrum reduction. The G2a doublet (L21 + L22) provides a secondary achromatic correction site with a more modest Δνd ≈ 15.1. Together, these two cemented pairs — both positioned near the aperture stop where axial ray bundles are tallest — control longitudinal chromatic aberration across the full zoom range.
 
-The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, HOYA M-NBFD10 as an exact-coordinate equivalent for L21, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA PBH21 for L12, and OHARA S-LAH98 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L31 (801455) remains a code-labeled dense lanthanum flint until a public coefficient-backed source is found.
+The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, HOYA M-NBFD10 as an exact-coordinate equivalent for L21, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA PBH21 for L12, and OHARA S-LAH98 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, while neither catalog match establishes the production formulation or identical spectral behavior. L31 (801455) now resolves to the M-TAF31 catalog curve at 1.80139/45.46. The patent's Table 8 also supplies a g-line index for every medium, including the resin; all ten are now stored verbatim. These are partial source dispersion data, not a complete measured dispersion curve. The current runtime does not use a lone ng value to override its catalog or Abbe curve: complete nC/nF/ng values, or a measured C/F pair without a catalog match, are needed for the measured-line path. No unsourced C/F indices are synthesized to activate that path.
 
 ## Focus Mechanism
 
