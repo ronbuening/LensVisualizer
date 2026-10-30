@@ -1405,7 +1405,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 26 | G4 molded resin layer | abbe | `UV-cure optical resin (patent-listed)` | No catalog match |
+| 26 | G4 inferred hybrid layer | abbe | `Hybrid-layer medium (resin interpretation; chemistry and cure unspecified)` | No catalog match |
 
 ### [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) - 95.0% trusted (19/20); 95.0% Sellmeier (19/20) - JP 2013-254160 A
 
@@ -1429,7 +1429,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6 | Element 3r | abbe | `UV-cure resin` | No catalog match |
+| 6 | Element 3r | abbe | `UV-cure resin layer (inferred; patent nd=1.55389, vd=38.09; material identity unspecified)` | No catalog match |
 
 ### [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) - 94.4% trusted (17/18); 94.4% Sellmeier (17/18) - JP 2017-161685 A
 

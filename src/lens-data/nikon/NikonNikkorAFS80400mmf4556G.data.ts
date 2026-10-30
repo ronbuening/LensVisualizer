@@ -23,6 +23,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    8% clearance) across all three zoom positions, then refined     ║
  * ║    against the manufacturer section drawing for mechanical form.   ║
  * ║    Front group capped at 37 mm (77 mm filter thread constraint).   ║
+ * 2026-10-30 Fig. 1: S7 grows continuously to27; S8 retains cap22.4
+ * with a drawn land to27. Full shared-interface growth elsewhere fails
+ * edge thickness and is retained as a schematic/profile limitation.
+ * All20 curves are qualified proxies. L31/L33 catalog-only spectral
+ * copies are removed; Table1 supplies nd/vd only.
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -71,7 +76,7 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.7,
       focalLengthMm: -210.5,
-      glass: "J-LASFH9 (Hikari, 903357 high-index lanthanum flint)",
+      glass: "J-LASFH9 (Hikari, 903357 high-index lanthanum flint); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "High-index flint of front achromatic doublet",
       cemented: "D1",
@@ -84,9 +89,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 165.1,
-      glass: "J-FKH1 (Hikari, 498826 ED fluorophosphate)",
+      glass: "J-FKH1 (Hikari, 498826 ED fluorophosphate); spectral proxy, supplier unconfirmed",
       apd: "inferred",
-      apdNote: "HIKARI J-FKH1 ED fluorophosphate; inferred as one of Nikon's four ED elements.",
+      apdNote: "ED position inferred from source coordinates and production count; J-FKH1 is a catalog proxy, with no source chemistry or partial-dispersion measurement.",
       role: "ED crown of front doublet; primary axial color corrector",
       cemented: "D1",
     },
@@ -98,9 +103,9 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.0,
       focalLengthMm: 202.2,
-      glass: "FCD100 (HOYA) — Super ED",
+      glass: "FCD100 (HOYA) — Super ED; spectral proxy, supplier unconfirmed",
       apd: "inferred",
-      apdNote: "Super ED (νd=95.0); secondary spectrum corrector",
+      apdNote: "Super ED position inferred from the 1.437 / 95.0 source pair and production specification; FCD100 is a spectral proxy, not a proven supplier or melt.",
       role: "Super ED singlet; attacks residual chromatic at 400 mm",
     },
     // G2 — Negative variator (f = −32.53 mm), fixed during zoom
@@ -112,7 +117,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.9,
       focalLengthMm: 74.0,
-      glass: "J-LAF016 (Hikari; exact Nikon patent coordinate match)",
+      glass: "J-LAF016 (Hikari; source 1.801 / 34.9, catalog 1.801 / 34.92); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Positive flint of G2 achromatic doublet",
       cemented: "D2",
@@ -125,9 +130,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: -80.4,
-      glass: "J-FKH1 (Hikari, 498826 ED fluorophosphate)",
+      glass: "J-FKH1 (Hikari, 498826 ED fluorophosphate); spectral proxy, supplier unconfirmed",
       apd: "inferred",
-      apdNote: "HIKARI J-FKH1 ED fluorophosphate; inferred as one of Nikon's four ED elements.",
+      apdNote: "ED position inferred from source coordinates and production count; J-FKH1 is a catalog proxy, with no source chemistry or partial-dispersion measurement.",
       role: "ED crown; lateral chromatic correction",
       cemented: "D2",
     },
@@ -139,7 +144,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.6,
       focalLengthMm: -33.7,
-      glass: "S-LAH59 (OHARA)",
+      glass: "S-LAH59 (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "VR sub-group front; strong negative power",
       cemented: "VR",
@@ -152,7 +157,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       focalLengthMm: 55.5,
-      glass: "SF6 (Schott)",
+      glass: "SF6 (Schott); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "VR sub-group rear; partial compensation of L23",
       cemented: "VR",
@@ -165,7 +170,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -49.6,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Rear diverging singlet; coma control at wide angle",
     },
@@ -178,14 +183,10 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 67.9,
       focalLengthMm: 78.7,
-      glass: "J-PSKH1 (Hikari, 593679 ED phosphate crown)",
+      glass: "J-PSKH1 (Hikari, 593679 ED phosphate crown); spectral proxy, supplier unconfirmed",
       apd: "inferred",
-      apdNote: "HIKARI J-PSKH1 lists ΔPgF = +0.0135; inferred as one of Nikon's four ED elements.",
+      apdNote: "ED position inferred from the source coordinates and production ED count; J-PSKH1 supplies a qualified catalog curve, not patent-measured partial dispersion.",
       role: "Front positive singlet of focus group",
-      dPgF: 0.0135,
-      nC: 1.59054,
-      nF: 1.599276,
-      ng: 1.604028,
     },
     {
       id: 10,
@@ -195,7 +196,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: -85.0,
-      glass: "S-LAH95 (OHARA)",
+      glass: "S-LAH95 (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "High-dispersion flint of focus doublet",
       cemented: "D3",
@@ -208,15 +209,11 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 67.9,
       focalLengthMm: 52.5,
-      glass: "J-PSKH1 (Hikari, 593679 ED phosphate crown)",
+      glass: "J-PSKH1 (Hikari, 593679 ED phosphate crown); spectral proxy, supplier unconfirmed",
       apd: "inferred",
-      apdNote: "HIKARI J-PSKH1 lists ΔPgF = +0.0135; inferred as one of Nikon's four ED elements.",
+      apdNote: "ED position inferred from the source coordinates and production ED count; J-PSKH1 supplies a qualified catalog curve, not patent-measured partial dispersion.",
       role: "ED positive element of focus doublet",
       cemented: "D3",
-      dPgF: 0.0135,
-      nC: 1.59054,
-      nF: 1.599276,
-      ng: 1.604028,
     },
     // G4 — Negative compensator (f = −70.03 mm), fixed during zoom
     {
@@ -227,7 +224,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.6,
       focalLengthMm: -31.9,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Strong negative; Petzval flattener",
       cemented: "D4",
@@ -240,7 +237,7 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.7,
       focalLengthMm: 57.9,
-      glass: "J-LASFH9 (Hikari, 903357 high-index lanthanum flint)",
+      glass: "J-LASFH9 (Hikari, 903357 high-index lanthanum flint); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Partial compensator; chromatic tuning",
       cemented: "D4",
@@ -254,7 +251,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.8,
       focalLengthMm: 83.9,
-      glass: "S-LAM2 (OHARA)",
+      glass: "S-LAM2 (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Front positive singlet; collects beam after aperture stop",
     },
@@ -266,7 +263,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.3,
       focalLengthMm: 54.6,
-      glass: "S-FSL5 (OHARA) / N-FK5 (Schott)",
+      glass: "N-FK5 (Schott; spectral proxy, source vd 70.3 versus catalog 70.41; supplier unconfirmed)",
       apd: false,
       role: "Front element of cemented triplet",
       cemented: "T1",
@@ -279,7 +276,7 @@ const LENS_DATA = {
       nd: 1.95,
       vd: 29.4,
       focalLengthMm: -27.8,
-      glass: "J-LASFH15 (Hikari, 950294) / TAFD45 class",
+      glass: "J-LASFH15 (Hikari, 950294) / TAFD45 class; spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Ultra-high-index center negative; Petzval flattener",
       cemented: "T1",
@@ -292,7 +289,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.2,
       focalLengthMm: 51.1,
-      glass: "S-NSL36 (OHARA) / K10 (Schott)",
+      glass: "S-NSL36 (OHARA) / K10 (Schott); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Rear element of triplet; field corrector",
       cemented: "T1",
@@ -305,7 +302,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.7,
       focalLengthMm: 27.7,
-      glass: "S-TIM22 (OHARA) / S-TIF6 class (patent vd=33.7)",
+      glass: "S-TIM22 (OHARA) / S-TIF6 class (patent vd=33.7); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Strong positive near image; field flattening",
       cemented: "D5",
@@ -318,7 +315,7 @@ const LENS_DATA = {
       nd: 1.603,
       vd: 65.4,
       focalLengthMm: -32.7,
-      glass: "S-PHM53 (OHARA) / phosphate crown class",
+      glass: "S-PHM53 (OHARA) / phosphate crown class; spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Field flattener; low-dispersion crown partner assists lateral color",
       cemented: "D5",
@@ -331,7 +328,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -82.2,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA); spectral proxy, supplier unconfirmed",
       apd: false,
       role: "Final element; exit pupil / telecentricity control",
     },
@@ -349,8 +346,8 @@ const LENS_DATA = {
     { label: "5", R: 1420.361, sd: 35.5 }, // L13 rear → D1 (variable, zoom only)
     // G2 — L21+L22 cemented doublet
     { label: "6", R: 117.082, d: 6.4, sd: 27.0, medium: 4 }, // L21 front
-    { label: "7", R: -117.044, d: 2.2, sd: 26.0, medium: 5 }, // L21→L22 junction
-    { label: "8", R: 61.183, d: 5.81, sd: 22.4 }, // L22 rear → air
+    { label: "7", R: -117.044, d: 2.2, sd: 27, medium: 5 }, // L21→L22 junction
+    { label: "8", R: 61.183, d: 5.81, sd: 22.4, rimExtensionSd: 27 }, // L22 rear → air
     // G2 — L23+L24 cemented doublet (VR sub-group)
     { label: "9", R: -265.081, d: 2.0, sd: 22.4, medium: 6 }, // L23 front
     { label: "10", R: 30.785, d: 4.6, sd: 18.9, medium: 7 }, // L23→L24 junction

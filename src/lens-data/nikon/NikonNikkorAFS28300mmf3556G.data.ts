@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Data source: US 2010/0220400 A1, Example 2, Table 2.              ║
  * ║ Five moving zoom groups: G1+/G2-/G3+/G4-/G5+.                     ║
  * ║ Production specification: 19 glass elements / 14 groups.           ║
- * ║ Prescription includes a thin UV-cure resin layer on L43; it is     ║
+ * ║ Prescription includes a thin inferred hybrid layer on L43; it is     ║
  * ║ modeled as its own optical medium but not counted as a glass       ║
  * ║ element in the production element count.                           ║
  * ║                                                                    ║
@@ -26,9 +26,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ apertures for tightly curved, thin-gapped lens pairs, not patent   ║
  * ║ numerical apertures. Surfaces 6A, 7, 10-13A and 34 were raised to  ║
  * ║ pass the traced chief ray at the patent's wide-end ω = 38.26°      ║
- * ║ (2ω = 76.52°); a thickness misprint in Table 2 keeps the full      ║
- * ║ 21.6 mm corner out of reach (2026-09-24 field-coverage audit).     ║
+ * ║ (2ω = 76.52°); Table 2 has unresolved prescription/summary      ║
+ * ║ differences; S16 .100 was verified on 2026-09-25 (see audit).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30 Fig. 4: S7 land to15.8 preserves cap12.4; S11/12/13A
+ * grow to11.1, hybrid26/27A/28 now share9.5, rear33/34/35A share12.8.
+ * Source-scale front reduction fails the full beam margin; old front
+ * caps remain. Curves are qualified proxies; hybrid cure unspecified.
  *
  * Image-plane audit: Table 2 S16 prints .100 mm, corrected from 1.000.
  * Other R/d/nd/vd and aspheres match. At wide infinity the source now
@@ -75,7 +80,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.27,
       focalLengthMm: -167.5,
-      glass: "J-LASFH13 (HIKARI)",
+      glass: "J-LASFH13 (HIKARI); spectral proxy, supplier unconfirmed",
       role: "High-index negative member of the front achromat; balances the ED crown L12 and moderates G1 power.",
       cemented: "D1",
     },
@@ -87,7 +92,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.56,
       focalLengthMm: 131.2,
-      glass: "J-FKH1 (HIKARI, ED fluorophosphate)",
+      glass: "J-FKH1 (HIKARI, ED fluorophosphate); spectral proxy, supplier unconfirmed",
       role: "Front-group ED crown used for telephoto-end axial color correction.",
       cemented: "D1",
     },
@@ -99,7 +104,7 @@ const LENS_DATA = {
       nd: 1.603,
       vd: 65.47,
       focalLengthMm: 130.7,
-      glass: "J-PSK03 (HIKARI)",
+      glass: "J-PSK03 (HIKARI); spectral proxy, supplier unconfirmed",
       role: "Additional positive collector in G1 with high Abbe number to limit added chromatic error.",
     },
     {
@@ -122,7 +127,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       focalLengthMm: -54.5,
-      glass: "J-LASF015 (HIKARI) / S-LAH65V class",
+      glass: "J-LASF015 (HIKARI) / S-LAH65V class; spectral proxy, supplier unconfirmed",
       role: "Negative lens immediately before the strongest G2 positive element; its bending is governed by patent condition (1).",
     },
     {
@@ -133,7 +138,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 25.0,
-      glass: "J-SF03 (HIKARI) / S-TIH53 class",
+      glass: "J-SF03 (HIKARI) / S-TIH53 class; spectral proxy, supplier unconfirmed",
       role: "Strongest positive element in G2; balances the variator chromatic power and supports the zoom magnification change.",
     },
     {
@@ -144,7 +149,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       focalLengthMm: -28.2,
-      glass: "J-LASF015 (HIKARI) / S-LAH65V class",
+      glass: "J-LASF015 (HIKARI) / S-LAH65V class; spectral proxy, supplier unconfirmed",
       role: "Rear variator negative element; image-side asphere corrects telephoto-end spherical aberration.",
     },
     {
@@ -155,7 +160,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.66,
       focalLengthMm: 46.8,
-      glass: "J-LAK18 (HIKARI) / S-LAL18 class",
+      glass: "J-LAK18 (HIKARI) / S-LAL18 class; spectral proxy, supplier unconfirmed",
       role: "Positive relay element immediately after the aperture stop.",
     },
     {
@@ -166,7 +171,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.56,
       focalLengthMm: 41.6,
-      glass: "J-FKH1 (HIKARI, ED fluorophosphate)",
+      glass: "J-FKH1 (HIKARI, ED fluorophosphate); spectral proxy, supplier unconfirmed",
       role: "Rear-system ED crown; paired with L33 to control longitudinal and lateral color.",
       cemented: "D2",
     },
@@ -178,7 +183,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -55.5,
-      glass: "J-SF03 (HIKARI) / S-TIH53 class",
+      glass: "J-SF03 (HIKARI) / S-TIH53 class; spectral proxy, supplier unconfirmed",
       role: "High-dispersion partner for the ED L32 element in the first G3 achromat.",
       cemented: "D2",
     },
@@ -190,7 +195,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.63,
       focalLengthMm: -37.4,
-      glass: "J-LASF09A (HIKARI)",
+      glass: "J-LASF09A (HIKARI); spectral proxy, supplier unconfirmed",
       role: "Negative front member of the second G3 cemented pair; contributes chromatic and field correction.",
       cemented: "D3",
     },
@@ -202,7 +207,7 @@ const LENS_DATA = {
       nd: 1.51823,
       vd: 58.89,
       focalLengthMm: 25.0,
-      glass: "J-K3 (HIKARI) / S-NSL3 class",
+      glass: "J-K3 (HIKARI) / S-NSL3 class; spectral proxy, supplier unconfirmed",
       role: "Strong positive member closing G3 and sending the beam toward the VR group.",
       cemented: "D3",
     },
@@ -214,7 +219,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -17.0,
-      glass: "J-LASF016 (HIKARI) / S-LAH66 class",
+      glass: "J-LASF016 (HIKARI) / S-LAH66 class; spectral proxy, supplier unconfirmed",
       role: "Primary negative-power member of the decentering VR doublet.",
       cemented: "D4",
     },
@@ -226,20 +231,20 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.34,
       focalLengthMm: 25.9,
-      glass: "J-LASF021 (HIKARI) / S-LAH71 class",
+      glass: "J-LASF021 (HIKARI) / S-LAH71 class; spectral proxy, supplier unconfirmed",
       role: "High-index positive partner that achromatizes the VR doublet and reduces its net negative power.",
       cemented: "D4",
     },
     {
       id: 15,
       name: "L43r",
-      label: "G4 molded resin layer",
+      label: "G4 inferred hybrid layer",
       type: "Hybrid Resin Layer",
       nd: 1.55389,
       vd: 38.09,
       focalLengthMm: 14603.3,
-      glass: "UV-cure optical resin (patent-listed)",
-      role: "Thin molded layer of a hybrid composite asphere; nearly neutral as a standalone layer.",
+      glass: "Hybrid-layer medium (resin interpretation; chemistry and cure unspecified)",
+      role: "Thin medium in the hybrid-asphere interpretation; resin chemistry and cure method are not established by the source.",
       cemented: "H1",
     },
     {
@@ -250,7 +255,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.66,
       focalLengthMm: -64.6,
-      glass: "J-LAK18 (HIKARI) / S-LAL18 class",
+      glass: "J-LAK18 (HIKARI) / S-LAL18 class; spectral proxy, supplier unconfirmed",
       role: "Glass substrate behind the molded resin layer; provides weak negative field-correction power.",
       cemented: "H1",
     },
@@ -262,7 +267,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.69,
       focalLengthMm: 36.3,
-      glass: "J-SK11 (HIKARI)",
+      glass: "J-SK11 (HIKARI); spectral proxy, supplier unconfirmed",
       role: "Primary positive element of G5; contributes rear convergence and exit-pupil placement.",
     },
     {
@@ -273,7 +278,7 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.79,
       focalLengthMm: 29.4,
-      glass: "S-TIL1 (OHARA)",
+      glass: "S-TIL1 (OHARA); spectral proxy, supplier unconfirmed",
       role: "Moderate-dispersion positive member of the rear cemented pair.",
       cemented: "D5",
     },
@@ -285,7 +290,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.27,
       focalLengthMm: -46.9,
-      glass: "J-LASFH13 (HIKARI)",
+      glass: "J-LASFH13 (HIKARI); spectral proxy, supplier unconfirmed",
       role: "High-index negative partner of L52 for rear lateral-color correction.",
       cemented: "D5",
     },
@@ -297,7 +302,7 @@ const LENS_DATA = {
       nd: 1.8208,
       vd: 42.64,
       focalLengthMm: -45.1,
-      glass: "M-TAFD51 (HOYA catalog-equivalent; patent supplier unspecified)",
+      glass: "M-TAFD51 (HOYA catalog-equivalent; patent supplier unspecified); spectral proxy, supplier unconfirmed",
       role: "Final negative field-flattener; rear asphere corrects residual field curvature and astigmatism.",
     },
   ],
@@ -323,16 +328,16 @@ const LENS_DATA = {
         A10: 1.9354e-13,
       },
     },
-    { label: "7", R: 18.5437, d: 7.0, sd: 12.4 },
+    { label: "7", R: 18.5437, d: 7.0, sd: 12.4, rimExtensionSd: 15.8 },
     { label: "8", R: -38.3401, d: 1.0, sd: 11.8, medium: 5 },
     { label: "9", R: -310.1534, d: 0.1, sd: 11.8 },
     { label: "10", R: 38.1237, d: 4.85, sd: 11.1, medium: 6 },
-    { label: "11", R: -44.8791, d: 0.95, sd: 10.5 },
-    { label: "12", R: -29.434, d: 1.0, sd: 10.0, medium: 7 },
+    { label: "11", R: -44.8791, d: 0.95, sd: 11.1 },
+    { label: "12", R: -29.434, d: 1.0, sd: 11.1, medium: 7 },
     {
       label: "13A",
       R: 99.9238,
-      sd: 9.4,
+      sd: 11.1,
       asphere: {
         K: 0,
         A4: 1.0045e-6,
@@ -354,7 +359,7 @@ const LENS_DATA = {
     { label: "23", R: -79.1792, d: 1.0, sd: 10.6, medium: 13 },
     { label: "24", R: 15.8779, d: 3.0, sd: 8.5, medium: 14 },
     { label: "25", R: 51.8482, d: 2.586, sd: 8.5 },
-    { label: "26", R: -23.4054, d: 0.19, sd: 8.5, medium: 15 },
+    { label: "26", R: -23.4054, d: 0.19, sd: 9.5, medium: 15 },
     {
       label: "27A",
       R: -23.4054,
@@ -374,12 +379,12 @@ const LENS_DATA = {
     { label: "30", R: -26.428, d: 0.3, sd: 13.5 },
     { label: "31", R: 59.3963, d: 6.9, sd: 12.8, medium: 18 },
     { label: "32", R: -21.2296, d: 1.1, sd: 12.8, medium: 19 },
-    { label: "33", R: -43.5914, d: 1.6, sd: 11.2 },
-    { label: "34", R: -28.9812, d: 1.3, sd: 11.1, medium: 20 },
+    { label: "33", R: -43.5914, d: 1.6, sd: 12.8 },
+    { label: "34", R: -28.9812, d: 1.3, sd: 12.8, medium: 20 },
     {
       label: "35A",
       R: -136.6351,
-      sd: 11.2,
+      sd: 12.8,
       asphere: {
         K: 0,
         A4: -8.5226e-6,

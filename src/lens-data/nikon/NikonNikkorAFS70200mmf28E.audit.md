@@ -1,4 +1,4 @@
-# Audit Log - Nikon AF-S NIKKOR 70-200mm f/2.8E FL ED VR
+# Audit Log - Nikon AF-S NIKKOR 70-200 mm f/2.8E FL ED VR
 
 Patent: WO 2019/097669 A1, Example 1 (Ito / Nikon)
 Catalog version: 952b877
@@ -161,3 +161,11 @@ drawing sheet 2/38 is PDF p. 75). The FIG. 2 labels were read from 900 dpi crops
 - No single radius lands inside all three two-decimal FIG. 2 rounding intervals: the values taken one at a time need
   19.4826 / 19.4342 / 19.3972 mm (real ray), a spread of 0.44 %, and the intervals miss each other by 0.09 %. The
   tele station therefore reads f/2.86 stated against f/2.847 traced.
+
+## 2026-10-30 — Fresh original-figure and glass reinspection
+
+- Directly viewed `patents/WO2019097669A1.pdf`: Example 1 Fig. 1 PDF 74, 600 dpi; all 22 nd/νd pairs, Table 1 PDF 19–21; definitions PDF 18; group/focus/VR prose PDF 16–17; Table 1 conditions PDF 22 and paired Fig. 2 plots PDF 75. These original WO pages are image-only; no wrapper substitution or OCR-only confirmation. The definitions label both quantities d-line, printing587.6 nm forνd and 587.7 nm for nd; the current d-line interpretation is retained with that source wavelength inconsistency. No per-medium θgF or C/F/g anchors are printed. Fig. 2 tele FNO2.86 was independently enlarged, alongside2.85/2.90; retain the existing table-vs-plot FNO discrepancy.
+- Reviewed every curved/flat/cemented face. Added optical-cap-preserving concave lands S7 cap 21→outer 24, S25 cap 20→outer 20.4, S32 cap 17→outer 17.5. Approximate native Fig. 1 scale9.7 px/mm (192.013 mm first/last vertex span); source q≈.91±.009 (S7, edge≈213px), .93±.010 (S25,≈188px), .92±.012 (S32,≈157px). Adopted q=.875/.98039/.97143 use existing working partner heights and caps, rather than claiming exact source endpoints. The source-scale outer rims/caps differ slightly from these retained working apertures. No optical aperture is reduced and no numeric cut is added.
+- S27 grows continuously18.5→18.8 to matchS26, and S41 17→17.5 to matchS40. Full-cap trials atS11/S20 fail actual neighboring-gap bounds (3.97>3.443 mm;2.21>1.982 mm). Preserving their old caps but adding full lands still fails (3.826>3.443;2.107>1.982). FullL43 cap 18.5 gives−.246 mm edge thickness. S35 fullcap16.4 hits the next flat (3.16>2.506 mm); an exaggerated long land from old13.7 to 16.4 would not reproduce the short source endpoint, so it too is omitted. These are explicit retained outline limitations, not tolerance exceptions.
+- All 22 source pairs, seven qualified ED/FL APD inferences and current curves are retained; all 22 media have coefficient coverage. CaF2 remains nonidentical (source 1.433852/95.25, native 1.43385/95.1). No supplier, melt or material chemistry is established by coordinate agreement. Public glass inventory now reports actual native curve coordinates without exact-production claims.
+- Focused surface/image-circle/aperture/field checks pass:3/3 aperture stations and 3/3≥99% field. Nine actual SVG states have zero trim. Resolver/catalog consistency passes. Source R/d, all nd/νd pairs and all source zoom/focus/aperture controls remain unchanged; no clearance tolerance was altered.

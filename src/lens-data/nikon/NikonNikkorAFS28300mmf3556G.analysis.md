@@ -1,4 +1,4 @@
-# Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR — Optical Analysis
+# Nikon AF-S NIKKOR 28-300 mm f/3.5-5.6G ED VR — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** Zoom Lens, Optical Apparatus Equipped Therewith and Method for Manufacturing the Zoom Lens  
 **Example details:** Table 2, FIG. 4
 
-Example 2 is the numerical embodiment that most closely corresponds to the production AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR. The patent table gives $f = 28.79$, $100.00$, and $292.00$ mm, with $FNO = 3.57$, $5.34$, and $5.96$, and image height $IH = 21.6$ mm. That image height corresponds to a 43.2 mm image diagonal, i.e. the 135 full-frame / FX format. The official Nikon announcement gives the production lens as a 28-300 mm FX-compatible 10.7× zoom with f/3.5-5.6 maximum aperture, 19 elements in 14 groups, two ED elements, three aspherical lens elements, internal focusing, SWM, VR II, 0.5 m minimum focus distance, 0.32× maximum reproduction ratio, 77 mm filters, and a 9-blade rounded diaphragm.
+Example 2 is the numerical embodiment that most closely corresponds to the production AF-S NIKKOR 28-300 mm f/3.5-5.6G ED VR. The patent table gives $f = 28.79$, $100.00$, and $292.00$ mm, with $FNO = 3.57$, $5.34$, and $5.96$, and image height $IH = 21.6$ mm. That image height corresponds to a 43.2 mm image diagonal, i.e. the 135 full-frame / FX format. The official Nikon announcement gives the production lens as a 28-300 mm FX-compatible 10.7× zoom with f/3.5-5.6 maximum aperture, 19 elements in 14 groups, two ED elements, three aspherical lens elements, internal focusing, SWM, VR II, 0.5 m minimum focus distance, 0.32× maximum reproduction ratio, 77 mm filters, and a 9-blade rounded diaphragm.
 
 The patent timing also fits the product. The Japanese priority date is January 30, 2009, the US publication date is September 2, 2010, and Nikon announced the production lens on August 19, 2010. The patent is therefore contemporaneous with the product rather than a later retrospective filing.
 
@@ -44,7 +44,7 @@ A re-run paraxial trace using the corrected Table 2 prescription gives the follo
 
 The resulting wide-infinity image-plane offset is +0.822078 mm. Tabulated spacings plus Bf sum to 157.586 / 202.890 / 230.349 mm rather than the printed TL values 159.888 / 205.193 / 232.653 mm. Both sets of source numbers remain disclosed.
 
-The stop semi-diameter implied by the patent focal lengths and f-numbers is roughly constant: 10.02 mm at the wide end, 9.95 mm at the middle position, and 10.40 mm at the telephoto end after tracing the entrance-pupil magnification back to the aperture stop. The data file therefore uses a 10.5 mm stop semi-diameter.
+The stop semi-diameter implied by the patent focal lengths and f-numbers is roughly constant: 10.02 mm at the wide end, 9.95 mm at the middle position, and 10.40 mm at the telephoto end after tracing the entrance-pupil magnification back to the aperture stop. The current runtime derives the wide-open stop from each design station’s focal length and f-number; 10.5 mm is not an authored fixed iris.
 
 ## Element-by-Element Analysis
 
@@ -54,19 +54,19 @@ G1 consists of a cemented achromat L11-L12 followed by a separate positive menis
 
 #### L11 — Negative meniscus, cemented front member
 
-nd = 1.90366, νd = 31.27. Glass: J-LASFH13 (HIKARI). f = −167.5 mm.
+nd = 1.90366, νd = 31.27. Catalog proxy: J-LASFH13 (HIKARI). f = −167.5 mm.
 
 L11 is a high-index, high-dispersion negative meniscus with both radii positive. Its role is not to make G1 negative; the L11-L12 pair is weakly positive as a cemented group. Its real value is chromatic. It supplies the short-flint side of the front achromat and allows the ED positive L12 to correct axial color without requiring excessive curvature.
 
 #### L12 — Biconvex positive ED element, cemented rear member
 
-nd = 1.49782, νd = 82.56. Glass: J-FKH1 (HIKARI), ED fluorophosphate. f = +131.2 mm.
+nd = 1.49782, νd = 82.56. Catalog proxy: J-FKH1 (HIKARI), ED-class coordinate proxy. f = +131.2 mm.
 
-L12 is the first of the two ED-class elements in the prescription. The HIKARI J-FKH1 match is effectively exact to the patent values and is closer than a generic S-FPL51 attribution. In the front group it reduces the telephoto-end longitudinal chromatic error that would otherwise be amplified by the large front positive group.
+L12 is the first of the two ED-class elements in the prescription. The J-FKH1 catalog curve is coordinate compatible (native νd 82.57 against source 82.56), supporting a qualified spectral proxy rather than a production identity. In the front group it reduces the telephoto-end longitudinal chromatic error that would otherwise be amplified by the large front positive group.
 
 #### L13 — Positive meniscus
 
-nd = 1.60300, νd = 65.47. Glass: J-PSK03 (HIKARI). f = +130.7 mm.
+nd = 1.60300, νd = 65.47. Catalog proxy: J-PSK03 (HIKARI). f = +130.7 mm.
 
 L13 supplies additional positive G1 power without the strong chromatic burden of a lower-Abbe crown. Its positive meniscus shape keeps the group compact while directing a converging beam toward G2.
 
@@ -76,25 +76,25 @@ G2 is the strongest negative group in the lens. It is also the internal-focusing
 
 #### L21 — Negative meniscus with object-side asphere
 
-nd = 1.76546, νd = 46.73. Glass: Q-LASFPH2S (HIKARI moulding glass, catalog 1.76544 / 46.75; coordinate equivalent, supplier unconfirmed). f = −25.0 mm.
+nd = 1.76546, νd = 46.73. Catalog proxy: Q-LASFPH2S (HIKARI moulding glass, catalog 1.76544 / 46.75; coordinate equivalent, supplier unconfirmed). f = −25.0 mm.
 
 L21 is the first and strongest negative element of G2. Surface 6 is aspherical and is the most object-side surface of G2. The patent states that an asphere in this position helps correct wide-angle field curvature and distortion. Because L21 receives the broadest off-axis bundles entering the variator, even a moderate departure has high leverage over distortion and sagittal/meridional field balance.
 
 #### L22 — Negative meniscus adjacent to L23
 
-nd = 1.80400, νd = 46.58. Glass: J-LASF015 (HIKARI) / S-LAH65V class. f = −54.5 mm.
+nd = 1.80400, νd = 46.58. Catalog proxy: J-LASF015 (HIKARI) / S-LAH65V class. f = −54.5 mm.
 
 L22 is the negative lens immediately object-side of the strongest positive lens in G2. This is the lens controlled by conditional expression (1), $(r_2+r_1)/(r_2-r_1)$. The earlier S-LAH63 attribution is not supported: OHARA S-LAH63 is a substantially different 1.80440 / 39.59 glass. The patent value instead matches the 804/466 class, represented by HIKARI J-LASF015 and OHARA S-LAH65V.
 
 #### L23 — Biconvex positive element
 
-nd = 1.84666, νd = 23.78. Glass: J-SF03 (HIKARI) / S-TIH53 class. f = +25.0 mm.
+nd = 1.84666, νd = 23.78. Catalog proxy: J-SF03 (HIKARI) / S-TIH53 class. f = +25.0 mm.
 
 L23 is the strongest positive element in G2. Its high dispersion is deliberate: inside an overall negative group, a strong positive high-dispersion element helps balance the chromatic effect of the surrounding negative elements while retaining the large power swing needed for a 10× class zoom.
 
 #### L24 — Biconcave negative element with image-side asphere
 
-nd = 1.80400, νd = 46.58. Glass: J-LASF015 (HIKARI) / S-LAH65V class. f = −28.2 mm.
+nd = 1.80400, νd = 46.58. Catalog proxy: J-LASF015 (HIKARI) / S-LAH65V class. f = −28.2 mm.
 
 L24 closes G2 and carries the second G2 asphere on surface 13. The patent identifies the most image-side surface of G2 as useful for correcting telephoto-end spherical aberration. This location is effective because the beam leaving G2 changes strongly in vergence from wide to telephoto.
 
@@ -104,31 +104,31 @@ G3 is the main positive relay behind the variator. The aperture stop is placed i
 
 #### L31 — Biconvex positive relay element
 
-nd = 1.72916, νd = 54.66. Glass: J-LAK18 (HIKARI) / S-LAL18 class. f = +46.8 mm.
+nd = 1.72916, νd = 54.66. Catalog proxy: J-LAK18 (HIKARI) / S-LAL18 class. f = +46.8 mm.
 
 L31 sits just behind the aperture stop and begins the rear relay function. Its high index reduces curvature demand for a given positive power.
 
 #### L32 — Biconvex positive ED element
 
-nd = 1.49782, νd = 82.56. Glass: J-FKH1 (HIKARI), ED fluorophosphate. f = +41.6 mm.
+nd = 1.49782, νd = 82.56. Catalog proxy: J-FKH1 (HIKARI), ED-class coordinate proxy. f = +41.6 mm.
 
 L32 is the second ED element. Unlike L12, which works in the front collector, L32 is placed in the rear relay where it can correct both axial and lateral color after the variator has set the magnification state.
 
 #### L33 — Negative meniscus cemented to L32
 
-nd = 1.84666, νd = 23.78. Glass: J-SF03 (HIKARI) / S-TIH53 class. f = −55.5 mm.
+nd = 1.84666, νd = 23.78. Catalog proxy: J-SF03 (HIKARI) / S-TIH53 class. f = −55.5 mm.
 
 L33 is the high-dispersion partner for the ED L32 element. This is the ED-plus-high-dispersion pairing in the design; it is not correct to describe L11 as an S-TIH53 partner. L11 is instead a dense lanthanum short flint of the J-LASFH13 type.
 
 #### L34 — Negative meniscus, front member of second G3 cemented pair
 
-nd = 1.81600, νd = 46.63. Glass: J-LASF09A (HIKARI). f = −37.4 mm.
+nd = 1.81600, νd = 46.63. Catalog proxy: J-LASF09A (HIKARI). f = −37.4 mm.
 
 L34 is a high-index negative component whose two positive radii produce net negative power because the rear surface is much more strongly curved. It works with L35 to control the field and the chromatic state of the beam before it enters the VR group.
 
 #### L35 — Biconvex positive rear member
 
-nd = 1.51823, νd = 58.89. Glass: J-K3 (HIKARI) / S-NSL3 class. f = +25.0 mm.
+nd = 1.51823, νd = 58.89. Catalog proxy: J-K3 (HIKARI) / S-NSL3 class. f = +25.0 mm.
 
 L35 supplies strong positive relay power and closes G3. Its moderate index and higher Abbe number counterbalance the preceding dense flint member.
 
@@ -138,22 +138,22 @@ G4 is a negative group containing the stabilizing cemented doublet L41-L42 and a
 
 #### L41 — Biconcave negative VR member
 
-nd = 1.77250, νd = 49.61. Glass: J-LASF016 (HIKARI) / S-LAH66 class. f = −17.0 mm.
+nd = 1.77250, νd = 49.61. Catalog proxy: J-LASF016 (HIKARI) / S-LAH66 class. f = −17.0 mm.
 
 L41 supplies most of the negative power of the decentering VR doublet. The prior S-LAH52 assignment is not supported by the patent values; the 1.77250 / 49.61 data match the 773/496 glass family represented by HIKARI J-LASF016 and OHARA S-LAH66.
 
 #### L42 — Positive meniscus VR partner
 
-nd = 1.85026, νd = 32.34. Glass: J-LASF021 (HIKARI) / S-LAH71 class. f = +25.9 mm.
+nd = 1.85026, νd = 32.34. Catalog proxy: J-LASF021 (HIKARI) / S-LAH71 class. f = +25.9 mm.
 
 L42 reduces the net negative power of the VR doublet and controls chromatic image shift during stabilization. The L41-L42 pair remains negative overall, which allows decentering to generate the corrective angular deviation needed for image stabilization.
 
 #### L43r / L43g — Hybrid composite negative meniscus with internal asphere
 
-L43r: nd = 1.55389, νd = 38.09. Glass: patent-listed UV-cure resin. f ≈ +14603 mm as a standalone layer.  
-L43g: nd = 1.72916, νd = 54.66. Glass: J-LAK18 (HIKARI) / S-LAL18 class. f = −64.6 mm.
+L43r: nd = 1.55389, νd = 38.09. Catalog proxy: hybrid-layer medium; resin interpretation, chemistry and cure unspecified. f ≈ +14603 mm as a standalone layer.
+L43g: nd = 1.72916, νd = 54.66. Catalog proxy: J-LAK18 (HIKARI) / S-LAL18 class. f = −64.6 mm.
 
-The prescription lists a 0.190 mm resin layer followed by a 1.200 mm glass substrate. Surface 26 and surface 27 share the same base radius, but surface 27 is aspherical. That pattern is characteristic of a hybrid molded asphere: a thin resin layer bonded to a glass substrate, with the optical departure carried at the molded junction. The patent prose describes L43 as having an aspherical surface facing the object side; the numerical table shows that the aspherical prescription is surface 27, the resin-to-glass junction.
+The prescription lists a 0.190 mm medium (1.55389 / 38.09) followed by a 1.200 mm glass substrate. A resin layer is the working hybrid interpretation; the table does not identify its chemistry or cure. Surface 26 and surface 27 share the same base radius, but surface 27 is aspherical. That pattern supports a hybrid-asphere interpretation, with the optical departure at the internal junction. Paragraph 0105 permits resin-on-glass manufacture in general but does not specify UV curing or prove the production process for L43. The patent prose describes L43 as having an aspherical surface facing the object side; the numerical table shows that the aspherical prescription is surface 27, the resin-to-glass junction.
 
 ### Group 5 — Rear Positive Imaging Group
 
@@ -161,49 +161,54 @@ G5 is a positive rear group consisting of L51, cemented pair L52-L53, and final 
 
 #### L51 — Biconvex positive element
 
-nd = 1.56384, νd = 60.69. Glass: J-SK11 (HIKARI). f = +36.3 mm.
+nd = 1.56384, νd = 60.69. Catalog proxy: J-SK11 (HIKARI). f = +36.3 mm.
 
-L51 is the main positive element of G5. The earlier S-BAM4 attribution is not credible because OHARA S-BAM4 is a different 1.60562 / 43.70 glass. HIKARI J-SK11 matches the patent index exactly and the Abbe number to catalog tolerance.
+L51 is the main positive element of G5. The earlier S-BAM4 attribution is not credible because OHARA S-BAM4 is a different 1.60562 / 43.70 glass. J-SK11 supplies a qualified curve (native 1.563840 / 60.706839 versus source 1.56384 / 60.69); the source pair remains unchanged.
 
 #### L52 — Biconvex positive cemented front member
 
-nd = 1.54814, νd = 45.79. Glass: S-TIL1 (OHARA). f = +29.4 mm.
+nd = 1.54814, νd = 45.79. Catalog proxy: S-TIL1 (OHARA). f = +29.4 mm.
 
-L52 is a positive lens made from a relatively dispersive light-flint / titanium-flint type glass. OHARA S-TIL1 is an exact public-catalog match. Its use as a positive element is a chromatic tuning choice rather than a simple crown-power choice.
+L52 is a positive lens made from a relatively dispersive light-flint / titanium-flint type glass. S-TIL1 is the qualified current curve (native 1.548141 / 45.784277 versus source 1.54814 / 45.79), without a supplier identification. Its use as a positive element is a chromatic tuning choice rather than a simple crown-power choice.
 
 #### L53 — Negative meniscus cemented rear member
 
-nd = 1.90366, νd = 31.27. Glass: J-LASFH13 (HIKARI). f = −46.9 mm.
+nd = 1.90366, νd = 31.27. Catalog proxy: J-LASFH13 (HIKARI). f = −46.9 mm.
 
 L53 is the dense flint partner of L52. This rear cemented pair corrects lateral color and helps control the exit cone near the edge of the full-frame image circle.
 
 #### L54 — Rear negative meniscus with image-side asphere
 
-nd = 1.82080, νd = 42.64. Glass: M-TAFD51 (HOYA catalog-equivalent; patent supplier unspecified). f = −45.1 mm.
+nd = 1.82080, νd = 42.64. Catalog proxy: M-TAFD51 (HOYA catalog-equivalent; patent supplier unspecified). f = −45.1 mm.
 
 L54 is the final optical element before the image plane. Surface 35 is the aspherical surface in the numerical table, even though the prose says the asphere faces the object side. The prescription table is controlling. Its negative power and rear-surface asphere provide final field-curvature and astigmatism correction.
 
 ## Glass Selection and Identification
 
-The glass palette is strongly Nikon / HIKARI-compatible. Several earlier third-party assignments were corrected because the public catalog values do not match the patent. The strongest corrections are L22/L24, L41, L51, and L52.
+Table 2 publishes only d-line index and Abbe number for all 20 modeled media: 19 physical glass elements and the thin hybrid-layer medium. The 19 resolved curves below are qualified spectral proxies; their native coordinates need not equal every source digit, and no supplier, melt, molding process or resin cure is established. Source-published partial-dispersion or spectral-line anchors are absent. L43r remains unresolved.
 
-| Element(s) | Patent nd / νd | Corrected identification | Notes |
+| Element | Source nd / νd | Current catalog curve (native nd / νd) | Status |
 |---|---:|---|---|
-| L11, L53 | 1.90366 / 31.27 | J-LASFH13 (HIKARI) | Exact HIKARI match; dense lanthanum short flint |
-| L12, L32 | 1.49782 / 82.56 | J-FKH1 (HIKARI) | ED fluorophosphate; closer than generic S-FPL51 |
-| L13 | 1.60300 / 65.47 | J-PSK03 (HIKARI) | Phosphate crown |
-| L21 | 1.76546 / 46.73 | Q-LASFPH2S (HIKARI) | Moulding glass for the aspherical element; catalog 1.76544 / 46.75, within 0.00002 and 0.02 of the patent pair |
-| L22, L24 | 1.80400 / 46.58 | J-LASF015 (HIKARI) / S-LAH65V class | Not S-LAH63; S-LAH63 has νd ≈ 39.6 |
-| L23, L33 | 1.84666 / 23.78 | J-SF03 (HIKARI) / S-TIH53 class | High-dispersion flint |
-| L31, L43g | 1.72916 / 54.66 | J-LAK18 (HIKARI) / S-LAL18 class | High-index lanthanum crown |
-| L34 | 1.81600 / 46.63 | J-LASF09A (HIKARI) | Dense lanthanum flint |
-| L35 | 1.51823 / 58.89 | J-K3 (HIKARI) / S-NSL3 class | Crown partner in second G3 doublet |
-| L41 | 1.77250 / 49.61 | J-LASF016 (HIKARI) / S-LAH66 class | Not S-LAH52 |
-| L42 | 1.85026 / 32.34 | J-LASF021 (HIKARI) / S-LAH71 class | High-index VR doublet partner |
-| L43r | 1.55389 / 38.09 | UV-cure optical resin | Hybrid aspherical layer |
-| L51 | 1.56384 / 60.69 | J-SK11 (HIKARI) | Not S-BAM4 |
-| L52 | 1.54814 / 45.79 | S-TIL1 (OHARA) | Exact OHARA match |
-| L54 | 1.82080 / 42.64 | M-TAFD51 | HOYA catalog-equivalent; patent supplier unspecified |
+| L11 | 1.903660 / 31.27 | J-LASFH13 (Hikari; 1.903660 / 31.274235) | Qualified spectral proxy |
+| L12 | 1.497820 / 82.56 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L13 | 1.603000 / 65.47 | J-PSK03 (Hikari; 1.603000 / 65.441311) | Qualified spectral proxy |
+| L21 | 1.765460 / 46.73 | Q-LASFPH2S (Hikari; 1.765437 / 46.750000) | Qualified spectral proxy |
+| L22 | 1.804000 / 46.58 | J-LASF015 (Hikari; 1.804000 / 46.600000) | Qualified spectral proxy |
+| L23 | 1.846660 / 23.78 | J-SF03 (Hikari; 1.846660 / 23.800000) | Qualified spectral proxy |
+| L24 | 1.804000 / 46.58 | J-LASF015 (Hikari; 1.804000 / 46.600000) | Qualified spectral proxy |
+| L31 | 1.729160 / 54.66 | J-LAK18 (Hikari; 1.729160 / 54.610000) | Qualified spectral proxy |
+| L32 | 1.497820 / 82.56 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L33 | 1.846660 / 23.78 | J-SF03 (Hikari; 1.846660 / 23.800000) | Qualified spectral proxy |
+| L34 | 1.816000 / 46.63 | J-LASF09A (Hikari; 1.816000 / 46.590000) | Qualified spectral proxy |
+| L35 | 1.518230 / 58.89 | J-K3 (Hikari; 1.518230 / 58.820000) | Qualified spectral proxy |
+| L41 | 1.772500 / 49.61 | J-LASF016 (Hikari; 1.772500 / 49.620000) | Qualified spectral proxy |
+| L42 | 1.850260 / 32.34 | J-LASF021 (Hikari; 1.850260 / 32.350000) | Qualified spectral proxy |
+| L43r | 1.553890 / 38.09 | Unresolved hybrid-layer medium | Abbe estimate; chemistry unestablished |
+| L43g | 1.729160 / 54.66 | J-LAK18 (Hikari; 1.729160 / 54.610000) | Qualified spectral proxy |
+| L51 | 1.563840 / 60.69 | J-SK11 (Hikari; 1.563840 / 60.706839) | Qualified spectral proxy |
+| L52 | 1.548140 / 45.79 | S-TIL1 (Ohara; 1.548141 / 45.784277) | Qualified spectral proxy |
+| L53 | 1.903660 / 31.27 | J-LASFH13 (Hikari; 1.903660 / 31.274235) | Qualified spectral proxy |
+| L54 | 1.820800 / 42.64 | M-TAFD51 (Hoya; 1.820800 / 42.710000) | Qualified spectral proxy |
 
 The chromatic correction strategy places one ED achromat in the front collector and one in the rear relay. L12 corrects color generated before the variator; L32-L33 corrects color after the zoom magnification state has been established. The G2 variator itself uses a high-dispersion positive L23 between negative flint-class elements so that the variator's chromatic contribution is internally balanced rather than pushed entirely onto the front and rear groups.
 
@@ -271,7 +276,13 @@ The computed surface-by-surface Petzval sum is approximately +0.002141 mm⁻¹, 
 ## Sources
 
 1. US Patent Application Publication US 2010/0220400 A1, Yamamoto et al., “Zoom Lens, Optical Apparatus Equipped Therewith and Method for Manufacturing the Zoom Lens,” published September 2, 2010.
-2. Nikon Corporation, “AF-S NIKKOR 85mm f/1.4G, AF-S NIKKOR 24-120mm f/4G ED VR and AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR,” August 19, 2010, official launch announcement and specification table. https://www.nikon.com/company/news/2010/0819_af-s_85_24-120_28-300-03.html
+2. Nikon Corporation, “AF-S NIKKOR 85 mm f/1.4G, AF-S NIKKOR 24-120 mm f/4G ED VR and AF-S NIKKOR 28-300 mm f/3.5-5.6G ED VR,” August 19, 2010, official launch announcement and specification table. https://www.nikon.com/company/news/2010/0819_af-s_85_24-120_28-300-03.html
 3. Nikon / HIKARI Optical Glass J-series catalog pages for FK, LASF, PSK, SF, LAK, SK, and K glasses. https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/
 4. OHARA optical glass catalog pages, especially S-LAH65V, S-LAH63, S-LAH66, and S-TIL1, used to reject or confirm candidate cross-vendor glass identifications. https://oharacorp.com/glass/
 5. LensVisualizer project specifications: `LENS_DATA_SPEC.md`, `LENS_ANALYSIS_SPEC.md`, and `LENS_MOUNT_FORMAT_OPTIONS.md`.
+
+## Surface-outline reinspection (2026-10-30)
+
+The fresh Fig. 4 review adds a concave rear land on S7: the optical cap stays12.4 mm and the drawn rim becomes15.8 mm, matching its working front height. Continuous source outlines open S11/12/13A to 11.1 mm, the hybrid frontS26 to 9.5 mm, and S33/34/35A to 12.8 mm. All three hybrid faces now span9.5 mm with a connected compound outline. Final asphere departures from the paraxial spheres are+.363739 mm atS6A15.8, −.008853 mm atS13A11.1, +.145192 mm atS27A9.5 and−.197388 mm atS35A12.8.
+
+The source figure suggests a smaller front rim (about29.5 mm). That reduction would cut the existing full beam: the independent full-range screen/refinement reaches33.419896 mm atS1 before its clearance margin. The existing38/31/31 mm front caps therefore remain a disclosed working-aperture departure from the drawing. No additional inward clipping or unsupported cement-interface land is introduced. The published prescription/summary discrepancies remain; changed outlines do not fit radii, spacings or image focus to the printed summary.

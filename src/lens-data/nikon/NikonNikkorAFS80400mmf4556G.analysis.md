@@ -1,4 +1,4 @@
-# Nikon AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR — Patent Optical Analysis
+# Nikon AF-S NIKKOR 80-400 mm f/4.5-5.6G ED VR — Patent Optical Analysis
 
 ## US 2020/0049962 A1 · Example 1 (ZL1) · Inventor: Tomoki Ito · Nikon Corporation
 
@@ -16,7 +16,7 @@
 
 US Patent Application Publication US 2020/0049962 A1 was published on February 13, 2020, as a divisional of application No. 14/809,242 (filed July 26, 2015, now US Patent 10,459,207), itself a continuation of PCT/JP2014/000396 (filed January 27, 2014). The patent claims priority from seven Japanese applications all filed January 28, 2013 (JP 2013-012752 through JP 2013-012758).
 
-The production lens — the **AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR** — was announced by Nikon on March 5, 2013, placing the patent priority dates less than six weeks before the commercial announcement. The patent's Example 1 (designated ZL1 in the figures) is the numerical embodiment that most closely matches the production lens specification:
+The production lens — the **AF-S NIKKOR 80-400 mm f/4.5-5.6G ED VR** — was announced by Nikon on March 5, 2013, placing the patent priority dates less than six weeks before the commercial announcement. The patent's Example 1 (designated ZL1 in the figures) is the numerical embodiment that most closely matches the production lens specification:
 
 | Parameter | Patent Example 1 | Production Lens (Nikon) |
 |-----------|-------------------|------------------------|
@@ -102,50 +102,38 @@ This is corroborated by three independent lines of evidence: no aspherical coeff
 
 Nikon states the lens incorporates **four ED (Extra-low Dispersion) glass elements** and **one Super ED glass element** — five special-dispersion elements in total. ED glass has anomalous partial dispersion characteristics enabling superior chromatic aberration correction, while Super ED glass provides even more extreme anomalous dispersion for secondary spectrum correction.
 
-### 4.2 Identification from Patent Data
+### 4.2 Qualified Glass Review
 
-#### Super ED Glass (1 element)
+Table 1 publishes d-line nd/νd only. The four ED positions (L12/L22 and L31/L33) and Super ED position (L13) remain inferences from these coordinates and Nikon’s production count, rather than source-measured partial dispersion or named materials. J-FKH1, J-PSKH1 and FCD100 are qualified catalog spectral proxies. FCD100’s native νd is 95.1 against the source’s 95.0; this is not an exact material identification.
 
-**L13** (nd = 1.43700, νd = 95.0): Extraordinarily low refractive index and extremely high Abbe number, placing it in the fluorite-class dispersion range. Matches Hoya FCD100 exactly (nd = 1.43700, νd = 95.10, Δνd = −0.10). Nikon's "Super ED" designation for this element reflects their use of synthetic fluorite-equivalent glasses offering the extreme anomalous partial dispersion of fluorite without its sensitivity to thermal shock. This positive meniscus element sits in G1, contributing strong positive power with minimal chromatic contribution.
-
-#### ED Glass (4 elements)
-
-**L12** (nd = 1.49782, νd = 82.6): Classic low-dispersion fluorophosphate crown, matching Hikari J-FKH1. This is the archetype of Nikon's "ED glass." Cemented with the high-index flint L11, forming the primary axial color-correcting achromatic doublet.
-
-**L22** (nd = 1.49782, νd = 82.6): Identical Hikari J-FKH1 glass to L12, placed in G2. Contributes to lateral chromatic aberration correction in the negative diverging group.
-
-**L31** (nd = 1.59319, νd = 67.9): Medium-index phosphate crown with anomalous partial dispersion. Falls above the "normal line" on the partial dispersion diagram (Pg,F vs. νd). The front positive singlet of G3 — the focusing group.
-
-**L33** (nd = 1.59319, νd = 67.9): Identical glass to L31. The rear positive element of the cemented doublet in G3.
+The former L31/L33 C/F/g indices and ΔPgF = +0.0135 were catalog-derived copies, not patent observations. They have been removed, so these elements now use their resolved J-PSKH1 curve without duplicated overrides. The patent supplies no θgF value to convert against the engine’s 0.6438 − 0.001682νd baseline. A false APD flag on other elements means no sourced anomaly designation, not a measurement of zero anomaly.
 
 ### 4.3 Full Glass Inventory
 
-| Element | nd | νd | Six-Digit Code | Probable Glass | APD |
-|---------|------|------|---------|---------------|------|
-| L11 | 1.90265 | 35.7 | 903357 | J-LASFH9 (Hikari) | Normal |
-| **L12** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
-| **L13** | **1.43700** | **95.0** | **1437/950** | **FCD100 (HOYA)** | **Super ED** |
-| L21 | 1.80100 | 34.9 | 801349 | J-LAF016 (Hikari), exact | Normal |
-| **L22** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
-| L23 | 1.81600 | 46.6 | 1816/466 | S-LAH59 (OHARA), exact | Normal |
-| L24 | 1.80518 | 25.5 | 1805/255 | SF6 (Schott), exact | Normal |
-| L25 | 1.83481 | 42.7 | 1835/427 | S-LAH55V (OHARA), exact | Normal |
-| **L31** | **1.59319** | **67.9** | **593679** | **J-PSKH1 (Hikari)** | **ED** |
-| L32 | 1.90366 | 31.3 | 1904/313 | S-LAH65V (OHARA), near-exact | Normal |
-| **L33** | **1.59319** | **67.9** | **593679** | **J-PSKH1 (Hikari)** | **ED** |
-| L41 | 1.72916 | 54.6 | 1729/546 | S-LAL18 (OHARA), exact | Normal |
-| L42 | 1.90265 | 35.7 | 903357 | Same as L11, J-LASFH9 | Normal |
-| L51 | 1.74400 | 44.8 | 1744/448 | S-LAM2 (OHARA), exact | Normal |
-| L52 | 1.48749 | 70.3 | 1487/703 | S-FSL5 (OHARA) / N-FK5 (Schott) | Normal |
-| L53 | 1.95000 | 29.4 | 950294 | J-LASFH15 (Hikari) / TAFD45 class | Normal |
-| L54 | 1.51742 | 52.2 | 1517/522 | S-NSL36 (OHARA) / K10 (Schott) | Normal |
-| L55 | 1.64769 | 33.7 | 648338 | S-TIM22 (OHARA) / S-TIF6 class | Normal |
-| L56 | 1.60300 | 65.4 | 603654 | S-PHM53 (OHARA) / phosphate crown class | Normal |
-| L57 | 1.83481 | 42.7 | 1835/427 | S-LAH55V (OHARA), same as L25 | Normal |
+| Element | Source nd / νd | Current catalog curve (native nd / νd) | Status |
+|---|---:|---|---|
+| L11 | 1.902650 / 35.7 | J-LASFH9 (Hikari; 1.902650 / 35.725382) | Qualified spectral proxy |
+| L12 | 1.497820 / 82.6 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L13 | 1.437000 / 95 | FCD100 (Hoya; 1.437000 / 95.100000) | Qualified spectral proxy |
+| L21 | 1.801000 / 34.9 | J-LAF016 (Hikari; 1.801000 / 34.920000) | Qualified spectral proxy |
+| L22 | 1.497820 / 82.6 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L23 | 1.816000 / 46.6 | S-LAH59 (Ohara; 1.816000 / 46.620600) | Qualified spectral proxy |
+| L24 | 1.805180 / 25.5 | SF6 (Schott; 1.805180 / 25.430000) | Qualified spectral proxy |
+| L25 | 1.834810 / 42.7 | S-LAH55V (Ohara; 1.834807 / 42.725300) | Qualified spectral proxy |
+| L31 | 1.593190 / 67.9 | J-PSKH1 (Hikari; 1.593190 / 67.900555) | Qualified spectral proxy |
+| L32 | 1.903660 / 31.3 | S-LAH95 (Ohara; 1.903659 / 31.343100) | Qualified spectral proxy |
+| L33 | 1.593190 / 67.9 | J-PSKH1 (Hikari; 1.593190 / 67.900555) | Qualified spectral proxy |
+| L41 | 1.729160 / 54.6 | S-LAL18 (Ohara; 1.729157 / 54.680000) | Qualified spectral proxy |
+| L42 | 1.902650 / 35.7 | J-LASFH9 (Hikari; 1.902650 / 35.725382) | Qualified spectral proxy |
+| L51 | 1.744000 / 44.8 | S-LAM2 (Ohara; 1.743997 / 44.790000) | Qualified spectral proxy |
+| L52 | 1.487490 / 70.3 | N-FK5 (Schott; 1.487490 / 70.410000) | Qualified spectral proxy |
+| L53 | 1.950000 / 29.4 | J-LASFH15 (Hikari; 1.950000 / 29.370000) | Qualified spectral proxy |
+| L54 | 1.517420 / 52.2 | S-NSL36 (Ohara; 1.517417 / 52.430903) | Qualified spectral proxy |
+| L55 | 1.647690 / 33.7 | S-TIM22 (Ohara; 1.647689 / 33.792803) | Qualified spectral proxy |
+| L56 | 1.603000 / 65.4 | S-PHM53 (Ohara; 1.603001 / 65.443600) | Qualified spectral proxy |
+| L57 | 1.834810 / 42.7 | S-LAH55V (Ohara; 1.834807 / 42.725300) | Qualified spectral proxy |
 
-### 4.4 Glass Strategy
-
-The design employs an aggressive glass strategy: four ultra-high-index glasses (nd > 1.90) appear in L11, L32, L42 (all nd ≈ 1.903) and L53 (nd = 1.950, the highest-index glass in the system). Three distinct glass families provide chromatic correction at three levels: FCD100-class Super ED L13 (νd = 95) for secondary spectrum, J-FKH1 ED L12/L22 (νd = 82.6) for primary color, and J-PSKH1 medium-dispersion ED L31/L33 (νd = 67.9) for residual color in the focusing group. Extensive glass reuse (L11=L42, L12=L22, L25=L57, L31=L33) simplifies procurement and quality control.
+All 20 media resolve to coefficient curves. S-NSL36 is a deliberately nonidentical proxy for L54 (native νd 52.430903 versus source 52.2); the other small native-coordinate differences remain explicit above. None establishes a supplier or melt. Repeated source coordinate pairs support repeated optical dispersion classes, without proving production procurement or chemistry.
 
 ---
 
@@ -158,7 +146,7 @@ G1 is the front objective group, collecting light and beginning convergence. Its
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
 | L11 | Neg. meniscus (convex to object) | −210.5 | J-LASFH9 high-index lanthanum flint (nd=1.903, νd=35.7) | High-index flint of cemented achromatic doublet |
-| L12 | Biconvex | +165.1 | **J-FKH1 ED glass** (nd=1.498, νd=82.6) | Positive ED element; primary axial color corrector |
+| L12 | Biconvex | +165.1 | **J-FKH1 proxy (inferred ED)** (nd=1.498, νd=82.6) | Positive ED element; primary axial color corrector |
 | L13 | Pos. meniscus (convex to object) | +202.2 | **Super ED / FCD100** (nd=1.437, νd=95.0) | Secondary spectrum corrector; ultra-low dispersion |
 
 The L11+L12 cemented doublet is a classic negative-lead achromat. L13, separated by 0.1 mm, is the single most optically valuable element in the system: without it, the 400 mm telephoto end would show pronounced secondary chromatic fringing.
@@ -170,7 +158,7 @@ G2 is the primary zoom variator. Despite being stationary during zooming, its st
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
 | L21 | Biconvex | +74.0 | J-LAF016 lanthanum flint (nd=1.801) | Front positive element of achromatic doublet |
-| L22 | Biconcave | −80.4 | **J-FKH1 ED glass** (nd=1.498, νd=82.6) | Negative ED element; lateral color correction |
+| L22 | Biconcave | −80.4 | **J-FKH1 proxy (inferred ED)** (nd=1.498, νd=82.6) | Negative ED element; lateral color correction |
 | L23 | Biconcave | −33.7 | Lanthanum dense flint (nd=1.816, νd=46.6) | **VR sub-group front** |
 | L24 | Pos. meniscus (convex to object) | +55.5 | Dense flint (nd=1.805, νd=25.5) | **VR sub-group rear** |
 | L25 | Biconcave | −49.6 | Lanthanum dense flint (nd=1.835, νd=42.7) | Rear diverging singlet; wide-angle coma control |
@@ -189,11 +177,11 @@ G3 is the **focusing group**. The patent states at paragraph [0105] that G3 is m
 
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
-| L31 | Biconvex | +78.7 | **J-PSKH1 ED phosphate crown** (nd=1.593, νd=67.9) | Front positive singlet |
+| L31 | Biconvex | +78.7 | **J-PSKH1 proxy (inferred ED)** (nd=1.593, νd=67.9) | Front positive singlet |
 | L32 | Neg. meniscus (convex to object) | −85.0 | Dense LaH flint (nd=1.904, νd=31.3) | Negative element of achromatic doublet |
-| L33 | Biconvex | +52.5 | **J-PSKH1 ED phosphate crown** (nd=1.593, νd=67.9) | Positive ED element of doublet |
+| L33 | Biconvex | +52.5 | **J-PSKH1 proxy (inferred ED)** (nd=1.593, νd=67.9) | Positive ED element of doublet |
 
-Both positive elements use the same ED glass, ensuring chromatic correction is maintained as G3 translates during focusing.
+Both positive elements have the same source coordinates and use the same qualified curve; their ED designation remains a production correlation.
 
 **Focus travel:** During focus from infinity to close focus (1.75 m), G3 moves toward the image. This causes D2 (the gap between fixed G2 and moving G3) to **increase** and D3 (the gap between moving G3 and fixed G4) to **decrease**, with D2 + D3 remaining constant at each zoom position. Close-focus variable gaps were computed by paraxial ray trace:
 
@@ -227,7 +215,7 @@ G5 is the rear relay group forming the final image on the sensor. It is the most
 | L53 | Plano-concave (concave to image) | −27.8 | J-LASFH15 / TAFD45-class ultra-high-index LaH flint (nd=1.950, νd=29.4) | Central negative of triplet; highest-index glass |
 | L54 | Plano-convex (convex to object) | +51.1 | Light crown (nd=1.517, νd=52.2) | Rear element of triplet |
 | L55 | Biconvex | +27.7 | S-TIM22 / S-TIF6-class short flint (nd=1.648, νd=33.7) | Front of rear doublet; strong positive near image |
-| L56 | Plano-concave (concave to object) | −32.7 | S-PHM53 phosphate crown (nd=1.603, νd=65.4) | Rear of rear doublet; field flattener |
+| L56 | Plano-concave (concave to object) | −32.7 | S-PHM53 catalog proxy (source nd=1.603, νd=65.4) | Rear of rear doublet; field flattener |
 | L57 | Neg. meniscus (concave to object) | −82.2 | Lanthanum dense flint (nd=1.835, νd=42.7) | Final element; telecentricity and Petzval control |
 
 **The cemented triplet (L52+L53+L54)** has two flat internal junctions and concentrates optical power at the two curved surfaces: the convex L52 front (R = 26.615 mm) and the L53→L54 junction (R = 26.437 mm). The ultra-high-index L53 (nd = 1.950) creates strong negative power at the curved junction (the large index step from 1.950 to 1.517 at R = 26.437). This triplet functions as a compact field corrector and is the primary mechanism for controlling field curvature and lateral color.
@@ -314,4 +302,8 @@ All 27 conditional expressions evaluated in Table 3 of the patent were independe
 
 1. US Patent Application Publication US 2020/0049962 A1, "Zooming optical system, optical apparatus, and manufacturing method for the zooming optical system," Tomoki Ito, Nikon Corporation, published February 13, 2020.
 2. US Patent 10,459,207 B2 (parent patent).
-3. Nikon Corporation, "AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR — Specifications," Nikon Imaging, https://imaging.nikon.com/imaging/lineup/lens/f-mount/zoom/telephotozoom/af-s_80-400mmf_45-56g_ed_vr/
+3. Nikon Corporation, "AF-S NIKKOR 80-400 mm f/4.5-5.6G ED VR — Specifications," Nikon Imaging, https://imaging.nikon.com/imaging/lineup/lens/f-mount/zoom/telephotozoom/af-s_80-400mmf_45-56g_ed_vr/
+
+## Surface-outline reinspection (2026-10-30)
+
+The fresh Fig. 1 review opens the continuous S7 junction cap to 27 mm and adds the concave S8 land out to 27 mm while preserving its22.4 mm optical cap. Other apparent common outlines encounter real edge-thickness limits: full-height trials fail in the VR doublet, focusing doublet, G5 triplet and rear doublet. Their existing caps are retained rather than adding unsupported shared-interface features. All source radii, spacings and control schedules remain unchanged, including the qualified estimated near-focus gaps.
