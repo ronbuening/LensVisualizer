@@ -10,11 +10,11 @@ Patent: US 10,545,321 B2, Example 4, Figure 13
 - L18-L20 were materially smaller than the clearly drawn final group. Their envelopes were enlarged from 10.2 / 10.7 / 11.0-11.2 mm to 14.0 / 14.5 / 15.0 mm.
 - The revised profile passes the full edge-thickness, rim-slope, sag-intrusion, SD-ratio, and image-circle checks.
 
-| Element | Surfaces | Before | After | Evidence |
-|---|---|---:|---:|---|
-| L18 | 37-38 | 10.2 mm | 14.0 mm | Figure 13 final-group profile |
-| L19 | 39 | 10.7 mm | 14.5 mm | Figure 13 final-group profile |
-| L20 | 40, 42 | 11.0 / 11.2 mm | 15.0 mm | Figure 13 final-group profile |
+| Element | Surfaces |         Before |   After | Evidence                      |
+| ------- | -------- | -------------: | ------: | ----------------------------- |
+| L18     | 37-38    |        10.2 mm | 14.0 mm | Figure 13 final-group profile |
+| L19     | 39       |        10.7 mm | 14.5 mm | Figure 13 final-group profile |
+| L20     | 40, 42   | 11.0 / 11.2 mm | 15.0 mm | Figure 13 final-group profile |
 
 ### Display name and glass
 
@@ -38,3 +38,11 @@ Patent: US 10,545,321 B2, Example 4, Figure 13
 - Paraxial check against the previous data: EFL and defocus identical at all six states (worst difference 3e-14 mm).
   Physical track grows by 0.681435 mm to 300.7199 / 347.9843 / 379.1601 mm, matching the raw patent track; the
   existing `closeFocusM: 2.7` is unchanged.
+
+## 2026-10-30 — Fresh original-source shape and glass review
+
+- Exact original US10545321B2 Example4 Fig13/PDF15 native300dpi and600dpi, Table10all44rows/20physicalglass+seveninterlayers+rearplate, Tables11–12zoom/finite PDF31, d587.6nm definitionPDF27 freshly viewed. Everyface/cementboundary reviewed. Source all20pairs and plate1.51680/64.20 exact;20glasscurves+platecurve compatible proxies. Seven1.56732/42.84 thininterlayers remain collapsed only by preexisting normalizedmodel, not asserted absent or chemicallyidentified. Source prints no extraindices/θ; three inferredLDtags remain qualified.
+- New S38rearconcave trim depth3.36 on retainedouter14mm givescap12.747062/q.91050/land1.252938. Native Fig13firstlast≈3990px600dpi/246.7199mm=16.17px/mm,native8.09px/mm. AtL18 endpoint nativecap/edge≈90/99pixels,q≈.90909,one-pixelrange±.01928. Retainedouter14 is conservative existingmodel height versusdrawn≈12.2; adopted qretains source endpoint proportion, not a claim of sourceclearaperture dimensions. Otherweakfewpixel ends/cementinterfaces are not extra land evidence; no speculative cuts there.
+- Full collimated guard0errors/untraced, reach11.778249+.05margin<12.747062. Supplemental exact sourceTable12firstsurface d02399.28/2352.02/2320.84 atkey1 also0errors; rejected diagnosticdeeper2.55/cap11.197 fails reach11.7837+.05 and is notadopted. Allpublishedfocusgapshandling retained with normalizedmedia limitations; no new certificate/flag/tolerance.
+  -144405same collimated samples:125353retained,0lost,0gained,19052bothblocked; countsnotflux. SourcefocusisPUBLISHED; interlayer normalization EFL/FNOresiduals remain explicit, notretuned.
+- Four focused audits pass:0 surface errors/undersized apertures,9/9 stations≥99% field corner and within3% FNO, no rim/iris/trace failures.27 actual SVG zoom/focus states viewed with0trim and connected compounds.94 shared dispersion/resolver/partial-line tests pass. Source R/d/asphere coefficients/nd/vd/stop/zoom/focus/normalization/tolerances invariant. No live/shared engine/catalog/report/test changes.

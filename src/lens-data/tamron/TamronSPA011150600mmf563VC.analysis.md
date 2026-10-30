@@ -6,7 +6,7 @@
 **Granted:** January 28, 2020  
 **Inventors:** Yoshito Iwasawa; Jun Takahashi  
 **Assignee:** Tamron Co., Ltd.  
-**Title:** *Zoom Lens and Camera Device*  
+**Title:** _Zoom Lens and Camera Device_
 
 The prescription modeled here is Example 4 of US 10,545,321 B2, using the lens arrangement in Fig. 13 and the numerical data in Tables 10–12 and 16. The patent describes a five-group zoom with a positive first group, negative second group, positive third group, positive fourth group, and negative fifth group. The aperture stop is published between the third and fourth groups, and the fourth group is the focusing group. A cemented pair within the third group is identified as the transversely movable anti-vibration block.
 
@@ -32,13 +32,13 @@ Example 4 publishes no semi-diameter table. All surface semi-diameters in the da
 
 The design is a five-functional-group supertelephoto zoom with the first-order power sequence **positive – negative – positive – positive – negative**. In the normalized model the isolated functional-group focal lengths are approximately +246.062 mm for G1, −50.264 mm for G2, +79.355 mm for G3, +54.890 mm for G4, and −49.412 mm for G5. These are isolated group powers calculated from the normalized internal geometry; they are not substitutes for the in-situ powers and conjugates of the assembled zoom.
 
-| Functional group | Elements | Isolated focal length | Principal function in the modeled system |
-|---|---|---:|---|
-| G1 (+) | L1–L3 | +246.062 mm | Large-diameter front collector; moves strongly with zoom |
-| G2 (−) | L4–L8 | −50.264 mm | Fixed negative variator/reference group |
-| G3 (+) | L9–L14 | +79.355 mm | Positive compensating group containing the VC block |
-| G4 (+) | L15–L17 | +54.890 mm | Positive zoom group and published inner-focus group |
-| G5 (−) | L18–L20 | −49.412 mm | Negative rear relay group |
+| Functional group | Elements | Isolated focal length | Principal function in the modeled system                 |
+| ---------------- | -------- | --------------------: | -------------------------------------------------------- |
+| G1 (+)           | L1–L3    |           +246.062 mm | Large-diameter front collector; moves strongly with zoom |
+| G2 (−)           | L4–L8    |            −50.264 mm | Fixed negative variator/reference group                  |
+| G3 (+)           | L9–L14   |            +79.355 mm | Positive compensating group containing the VC block      |
+| G4 (+)           | L15–L17  |            +54.890 mm | Positive zoom group and published inner-focus group      |
+| G5 (−)           | L18–L20  |            −49.412 mm | Negative rear relay group                                |
 
 With G2 used as an axial reference, the first surface of G1 moves from −86.47 mm relative to G2 at wide angle to −164.91 mm at telephoto, corresponding to 78.44 mm of objectward extension. G3, G4, and G5 also change position, while G2 remains fixed. The source D29 spacing is non-monotonic across the three zoom control points, 27.7980 → 17.1857 → 24.0639 mm, so the rear-group choreography cannot be represented by a simple monotonic extension.
 
@@ -169,25 +169,25 @@ The L20 coordinate lies extremely close to current Schott N-KZFS8 and OHARA S-NB
 
 Example 4 publishes only d-line refractive index and Abbe number. It does not publish glass-maker names, melt codes, C/F/g line indices, Sellmeier coefficients, or `dPgF`. The final data file therefore uses neutral six-digit coordinate classes rather than vendor-specific identities.
 
-| Neutral class | `nd` | `νd` | Elements | First-order use in the design |
-|---|---:|---:|---|---|
-| 834373 | 1.83400 | 37.34 | L1 | Dense negative front meniscus |
-| 497816 | 1.49700 | 81.61 | L2, L3, L9 | High-Abbe positive members in G1 and G3 |
-| 805255 | 1.80518 | 25.46 | L4, L7 | High-index, low-Abbe positive members in G2 |
-| 729547 | 1.72916 | 54.67 | L5 | Negative partner in D2 |
-| 805396 | 1.80450 | 39.64 | L6 | Negative member of D3 |
-| 904313 | 1.90366 | 31.31 | L8, L12, L17 | Dense negative singlet/pair members |
-| 487704 | 1.48749 | 70.44 | L10, L11, L19 | High-Abbe members in G3 and G5 |
-| 744448 | 1.74400 | 44.79 | L13 | Negative VC element |
-| 806333 | 1.80610 | 33.27 | L14 | Positive VC partner |
-| 517522 | 1.51742 | 52.15 | L15 | Positive focusing-group singlet |
-| 518590 | 1.51823 | 58.96 | L16 | Positive member of D6 |
-| 835427 | 1.83481 | 42.72 | L18 | Negative rear-group singlet |
-| 720347 | 1.72047 | 34.71 | L20 | Positive rear cemented member |
+| Neutral class |    `nd` |  `νd` | Elements      | First-order use in the design               |
+| ------------- | ------: | ----: | ------------- | ------------------------------------------- |
+| 834373        | 1.83400 | 37.34 | L1            | Dense negative front meniscus               |
+| 497816        | 1.49700 | 81.61 | L2, L3, L9    | High-Abbe positive members in G1 and G3     |
+| 805255        | 1.80518 | 25.46 | L4, L7        | High-index, low-Abbe positive members in G2 |
+| 729547        | 1.72916 | 54.67 | L5            | Negative partner in D2                      |
+| 805396        | 1.80450 | 39.64 | L6            | Negative member of D3                       |
+| 904313        | 1.90366 | 31.31 | L8, L12, L17  | Dense negative singlet/pair members         |
+| 487704        | 1.48749 | 70.44 | L10, L11, L19 | High-Abbe members in G3 and G5              |
+| 744448        | 1.74400 | 44.79 | L13           | Negative VC element                         |
+| 806333        | 1.80610 | 33.27 | L14           | Positive VC partner                         |
+| 517522        | 1.51742 | 52.15 | L15           | Positive focusing-group singlet             |
+| 518590        | 1.51823 | 58.96 | L16           | Positive member of D6                       |
+| 835427        | 1.83481 | 42.72 | L18           | Negative rear-group singlet                 |
+| 720347        | 1.72047 | 34.71 | L20           | Positive rear cemented member               |
 
 A fresh comparison against current authoritative optical-glass catalogs shows why vendor-neutral labels are appropriate. For example, the 1.49700/81.61 coordinate is reproduced at patent precision by multiple current catalogs, including HOYA FCD1, Schott N-PK52A, and CDGM H-FK61, while OHARA S-FPL51 is effectively coincident. Likewise, the 1.80518/25.46 coordinate has exact or near-exact equivalents from several vendors. A coordinate match alone therefore cannot establish which production glass Tamron used.
 
-The 1.72047/34.71 coordinate of L20 is unusually close to Schott N-KZFS8 and OHARA S-NBH8. Those catalog families are associated with distinctive partial-dispersion behavior, but that property is not transferred into this model because neither the patent nor a unique production-glass identification supplies the necessary line data. Accordingly, the data carry no `nC`, `nF`, `ng`, or `dPgF` fields and the analysis does not characterize the lens as apochromatic.
+The 1.72047/34.71 coordinate of L20 is unusually close to Schott N-KZFS8 and OHARA S-NBH8. Those catalog families are associated with distinctive partial-dispersion behavior, and the current resolver may supply a compatible catalog curve with that behavior as a qualified spectral proxy; the patent itself supplies no measured partial ratio or production identity. Accordingly, the data carry no `nC`, `nF`, `ng`, or `dPgF` fields and the analysis does not characterize the lens as apochromatic.
 
 The strongest chromatic pattern visible directly from the prescription is the repeated use of high-Abbe positive material at 1.49700/81.61 and 1.48749/70.44 against denser, lower-Abbe negative partners such as 1.90366/31.31. This is sufficient to describe first-order chromatic power balancing, but not secondary-spectrum performance.
 
@@ -197,11 +197,11 @@ The focus model is **PUBLISHED** rather than reconstructed. Table 12 specifies c
 
 G4, containing L15–L17, moves toward the object for closer focus. The two adjacent gaps change by equal and opposite amounts, so their sum is conserved at each zoom position:
 
-| Zoom state | D29 infinity | D29 near | D36 infinity | D36 near | G4 objectward travel |
-|---|---:|---:|---:|---:|---:|
-| 152.1633 mm | 27.7980 mm | 26.1916 mm | 13.6386 mm | 15.2450 mm | 1.6064 mm |
-| 297.4851 mm | 17.1857 mm | 13.2535 mm | 8.2816 mm | 12.2138 mm | 3.9322 mm |
-| 582.5200 mm | 24.0639 mm | 12.8804 mm | 2.5000 mm | 13.6835 mm | 11.1835 mm |
+| Zoom state  | D29 infinity |   D29 near | D36 infinity |   D36 near | G4 objectward travel |
+| ----------- | -----------: | ---------: | -----------: | ---------: | -------------------: |
+| 152.1633 mm |   27.7980 mm | 26.1916 mm |   13.6386 mm | 15.2450 mm |            1.6064 mm |
+| 297.4851 mm |   17.1857 mm | 13.2535 mm |    8.2816 mm | 12.2138 mm |            3.9322 mm |
+| 582.5200 mm |   24.0639 mm | 12.8804 mm |    2.5000 mm | 13.6835 mm |           11.1835 mm |
 
 This is a conventional inner-focus action in the sense that a positive internal group translates while the front group does not execute an additional focus motion. The focus travel grows substantially toward the telephoto end because the same final object distance requires a larger internal conjugate change at the long focal-length state.
 
@@ -231,13 +231,13 @@ Tamron's product specification lists VC for the Canon EF and Nikon F versions. T
 
 US 10,545,321 B2 defines several normalized conditions intended to constrain zoom travel, group powers, stabilization sensitivity, and telephoto compactness. The raw Example 4 prescription independently reproduces the Table 16 values to the published precision:
 
-| Condition | General patent range | Independent Example 4 value | Table 16 |
-|---|---:|---:|---:|
-| `X1 / fT` | 0.11 to 0.28 | 0.134656 | 0.1347 |
-| `f1 / sqrt(fw·fT)` | 0.5 to 1.3 | 0.826490 | 0.8265 |
-| `f3 / sqrt(fw·fT)` | 0.20 to 0.45 | 0.266533 | 0.2665 |
-| `(1 − βa)·βb` | −2.8 to −1.0 | −1.478045 | −1.4781 |
-| `Lt / fT` | 0.60 to 0.75 | 0.650896 | 0.6509 |
+| Condition          | General patent range | Independent Example 4 value | Table 16 |
+| ------------------ | -------------------: | --------------------------: | -------: |
+| `X1 / fT`          |         0.11 to 0.28 |                    0.134656 |   0.1347 |
+| `f1 / sqrt(fw·fT)` |           0.5 to 1.3 |                    0.826490 |   0.8265 |
+| `f3 / sqrt(fw·fT)` |         0.20 to 0.45 |                    0.266533 |   0.2665 |
+| `(1 − βa)·βb`      |         −2.8 to −1.0 |                   −1.478045 |  −1.4781 |
+| `Lt / fT`          |         0.60 to 0.75 |                    0.650896 |   0.6509 |
 
 For condition (1), `X1 = 78.44 mm` is the first-group displacement between the wide and telephoto ends. Condition (5) uses the raw patent's physical track, including the rear plate segment, because that is the geometry from which Table 16 was generated. The LensVisualizer model now carries the same physical rear-plate segment in `rearPlates`, so its physical track reproduces that value; an air-equivalent back focus should not be substituted into the condition.
 
@@ -257,9 +257,15 @@ The physical first-surface-to-image tracks, including the 2.000 mm rear plate an
 
 ## Sources and References
 
-1. **US 10,545,321 B2**, Yoshito Iwasawa and Jun Takahashi, *Zoom Lens and Camera Device*, granted January 28, 2020. Example 4: Fig. 13; Tables 10–12 and 16. The supplied patent PDF is the numerical authority for the prescription, zoom/focus states, stabilization block, and conditional expressions.
+1. **US 10,545,321 B2**, Yoshito Iwasawa and Jun Takahashi, _Zoom Lens and Camera Device_, granted January 28, 2020. Example 4: Fig. 13; Tables 10–12 and 16. The supplied patent PDF is the numerical authority for the prescription, zoom/focus states, stabilization block, and conditional expressions.
 2. **Tamron Co., Ltd., SP 150-600mm F/5-6.3 Di VC USD (Model A011), Specifications.** Official product specification: https://www.tamron.com/global/consumer/lenses/a011/spec.html . Used for the marketed 150–600 mm identity, 20-element/13-group construction, 2.7 m minimum object distance, 1:5 maximum magnification, 95 mm filter, 105.6 mm maximum diameter, nine-blade diaphragm, production mounts, and release dates.
 3. **Tamron Co., Ltd., SP 150-600mm F/5-6.3 Di VC USD (Model A011), product page.** https://www.tamron.com/global/consumer/lenses/a011/ . Used for Tamron's statement that the production lens employs three LD elements and for product-level VC/USD identification.
 4. **Tamron Co., Ltd., Discontinued Product List.** https://www.tamron.com/global/consumer/lenses/discontinued/ . Used as a current manufacturer record of the Canon EF, Nikon F, and Sony A A011 variants and discontinuation status.
 5. **Current optical-glass catalogs and data portals:** OHARA (https://www.ohara-inc.co.jp/en/product/catalog/), HOYA (https://www.hoya-opticalworld.com/english/datadownload/index.html), SCHOTT (https://www.schott.com/en-us/products/optical-glass-p1000267/downloads), HIKARI (https://www.hikari-g.co.jp/optical_glass/), CDGM (https://www.cdgmgd.com/), and Sumita (https://www.sumita-opt.co.jp/en/download/). These are used only to test the patent `nd`/`νd` coordinates against current catalog families; the data retain vendor-unresolved classes where a unique production-glass identity is not defensible.
 6. **Companion verification artifacts:** `TamronSPA011150600mmf563VC.stage4.verify.py` and `TamronSPA011150600mmf563VC.stage4.calculations.json`. These provide the fresh independent y–ν/ABCD, EFL, principal-plane, pupil, Petzval, focus, element/group-power, condition, glass-residual, and geometry checks cited above.
+
+## Fresh source shape and glass reinspection — 2026-10-30
+
+Original Fig.13 (PDF15, native300dpi and600dpi) and every Example4 Table10media row, Table11zoom and Table12finite point (PDF31) were freshly read. The d587.6nm convention is on PDF27. All20physical glass pairs and the2mm rearplate1.51680/64.20 remain exact. The seven source interlayers1.56732/42.84 and inactive36 remain omitted only by the explicitly disclosed preexisting normalization. All20glass curves plus the plate curve resolve as compatible spectral proxies; three inferred LD/APD-position tags remain qualified, with no source C/F/g/partial ratio, supplier, melt or glue identity invented.
+
+The L18 rear concave S38 has a source endpoint land. Inferred depth3.36mm keeps outer14mm and ends the cap at12.747062mm (q=.9105 versus source≈.91±.0193). The full uncut-beam guard, including temporary exact Table12first-surface distances2399.28/2352.02/2320.84mm, reaches at most11.7837mm plus.05mm required margin and clears it. Other weak near-planar ends and cemented interfaces remain continuous; no extra land or cut is inferred there. The retained outer envelopes are conservative model heights, not exact source clear-aperture measurements. Source R/d/normalized interlayer handling/stop/finite controls and tolerances remain unchanged. Actual nine-state SVGs are connected with zero trim; focused surface, circle, field and aperture checks pass.

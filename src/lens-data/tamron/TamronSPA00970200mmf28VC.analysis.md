@@ -9,7 +9,7 @@
 **Granted:** October 21, 2014  
 **Inventor:** Hisayuki Yamanaka  
 **Assignee:** Tamron Co., Ltd.  
-**Title:** *Inner Focusing Telephotographing Zoom Lens*  
+**Title:** _Inner Focusing Telephotographing Zoom Lens_
 **Example details:** Embodiment 1
 
 The modeled prescription is the user-selected correlation between Example 1 of US 8,867,144 B2 and the
@@ -43,16 +43,16 @@ its group annotations.
 
 Computed in isolation from the final surface arrays, the functional group focal lengths are:
 
-| Group | Surfaces | Isolated focal length | Function in the published architecture |
-|---|---:|---:|---|
-| LG1 | 1–7 | +115.555123 mm | Fixed front positive group |
-| LG2 | 8–10 | -83.661394 mm | Negative zoom group |
-| LG3 | 11–17 | -53.152775 mm | Negative zoom variator and sole axial focus group |
-| LG4 | 18–22 | +76.841662 mm | Positive zoom compensating group |
-| LG5 | 24–41 | +88.202286 mm | Fixed rear positive group |
-| 5A | 24–30 | +57.079526 mm | Positive front subset of LG5 |
-| 5B | 31–35 | -36.276807 mm | Negative transverse vibration-compensation subset |
-| 5C | 36–41 | +57.684494 mm | Positive rear subset of LG5 |
+| Group | Surfaces | Isolated focal length | Function in the published architecture            |
+| ----- | -------: | --------------------: | ------------------------------------------------- |
+| LG1   |      1–7 |        +115.555123 mm | Fixed front positive group                        |
+| LG2   |     8–10 |         -83.661394 mm | Negative zoom group                               |
+| LG3   |    11–17 |         -53.152775 mm | Negative zoom variator and sole axial focus group |
+| LG4   |    18–22 |         +76.841662 mm | Positive zoom compensating group                  |
+| LG5   |    24–41 |         +88.202286 mm | Fixed rear positive group                         |
+| 5A    |    24–30 |         +57.079526 mm | Positive front subset of LG5                      |
+| 5B    |    31–35 |         -36.276807 mm | Negative transverse vibration-compensation subset |
+| 5C    |    36–41 |         +57.684494 mm | Positive rear subset of LG5                       |
 
 These are isolated paraxial group powers, not substitutes for the in-situ behavior of the complete zoom. In the actual
 system the group separations change with zoom, so the complete focal length emerges from the coupled five-group
@@ -84,8 +84,8 @@ air**. When a cemented pair is discussed, a separate net focal length is given f
 confused with the element's in-situ contribution inside the complete zoom.
 
 All HOYA names in this section are catalog-coordinate equivalents selected by the data file. They are useful for
-spectral modeling because the file also carries HOYA line indices and $dP_{gF}$, but they are not claims about the
-actual production melts.
+spectral modeling through compatible current catalog curves, but they do not identify the
+actual production supplier or melts.
 
 ### D1 — L1 + L2: weak positive front cemented pair in LG1
 
@@ -102,11 +102,7 @@ The first group in the patent is expressly arranged around a negative element fo
 The patent associates that choice with control of residual spherical aberration over the zoom range.[1] Example 1
 implements that pattern with L1 negative and L2, L3, and L4 positive.
 
-L2's FCD100-equivalent annotation has $\nu_d=95.10$ and a HOYA catalog deviation $\Delta P_{gF}=+0.0564$ on HOYA's
-own normal line; the data file stores $dP_{gF}=+0.048767$ against the engine's line. Tamron marks one XLD element in
-the production construction drawing; under the selected correlation, L2 is the position and coordinate pair that
-correspond to that count. This is correlation evidence rather than an assertion that the production element is HOYA
-FCD100.
+L2's FCD100-equivalent annotation retains sourceνd95.10. Tamron marks one XLD position in the production construction drawing; L2's coordinates and position support that correlation. Its current catalog curve has qualified anomalous dispersion, but the patent prints no measured partial ratio and the source does not identify HOYA FCD100 as the production glass.
 
 ### L3 — positive meniscus in LG1
 
@@ -294,56 +290,13 @@ $\nu_d=23.78$ is the lowest Abbe number among the positive elements in 5C and di
 that at least one positive 5C element have $\nu_d\le 30$.[1]
 
 The patent links that low-Abbe positive member to correction of chromatic aberration of magnification and off-axis coma
-across the zoom range.[1] In the data model L23 is annotated as FDS90 (HOYA equivalent), with explicit catalog line
-indices and a stored $dP_{gF}=+0.015299$ against the engine's normal line (HOYA catalog $\Delta P_{gF}=+0.0137$ on
-HOYA's own line); the production melt remains unidentified.
+across the zoom range.[1] L23 retains a compatible FDS90 reference curve; no patent partial-dispersion measurement or production supplier is inferred.
 
 ## Glass Identification and Selection
 
-The patent gives only d-line refractive index and Abbe number. The final data file therefore treats every trade name as a
-**catalog-coordinate equivalent**, not as a source-published melt. A six-vendor Stage-1 comparison found that all 14
-distinct patent coordinate pairs coincide especially closely with the HOYA catalog family. Stage 2 consequently chose
-HOYA labels consistently and then transcribed `nC`, `nF`, and `ng` from HOYA's official 2026-06-01 optical-glass
-workbook.[5] The stored `dPgF` is not the workbook's deviation, which HOYA takes against its own normal line (the
-workbook figures fit $0.64833 - 0.00180\,\nu_d$): it is $P_{gF} = (n_g - n_F)/(n_F - n_C)$ of the transcribed line
-indices minus the engine's normal line $0.6438 - 0.001682\,\nu_d$. TAFD5G and E-F5 keep their four-decimal workbook
-figures, which already lie within 0.0003 of that value. The patent itself prints no partial dispersion and defines no
-deviation.
+The original Example1 tables on PDF34–35 publish all23 nd/νd pairs and define the d-line convention. PDF31–33 material conditions use Abbe number, including the rear-positiveνd≤30 condition; no actual C/F/g indices, θgF ratio or patent normal-line deviation is printed. The fresh2026-10-30 review removes92catalog-only C/F/g/dPgF copies. The23source pairs and named reference labels remain; all23 resolve compatible current catalog curves. Their dispersion now comes from those curves rather than duplicate rounded spectral overrides.
 
-The stored patent $n_d/\nu_d$ values and the selected HOYA rows agree with maximum $|\Delta n_d|=0.00000$ and maximum
-$|\Delta\nu_d|=0.01$. That coordinate agreement is strong evidence for a compatible glass family, but it does not
-establish that Tamron purchased the named HOYA melts for production.
-
-| HOYA-equivalent annotation | $n_d$ | $\nu_d$ | HOYA catalog $\Delta P_{gF}$ (HOYA's line) | Stored `dPgF` (engine's line) | Elements |
-|---|---:|---:|---:|---:|---|
-| NBFD15-W | 1.80610 | 33.27 | +0.0000 | +0.000930 | L1, L16 |
-| FCD100 | 1.43700 | 95.10 | +0.0564 | +0.048767 | L2 |
-| FCD1 | 1.49700 | 81.61 | +0.0374 | +0.032056 | L3, L4, L15, L17 |
-| TAFD25 | 1.90366 | 31.31 | +0.0028 | +0.003458 | L5, L22 |
-| LAC14 | 1.69680 | 55.46 | -0.0060 | -0.007523 | L6, L21 |
-| PCD4 | 1.61800 | 63.39 | +0.0059 | +0.002309 | L7 |
-| FC5 | 1.48749 | 70.44 | +0.0090 | +0.005027 | L8, L12 |
-| FD60 | 1.80518 | 25.46 | +0.0132 | +0.014579 | L9, L18 |
-| TAFD5G | 1.83481 | 42.72 | -0.0067 | -0.0067 | L10, L13 |
-| TAF1 | 1.77250 | 49.62 | -0.0086 | -0.009568 | L11 |
-| TAC8 | 1.72916 | 54.67 | -0.0046 | -0.006868 | L14 |
-| BAC4 | 1.56883 | 56.04 | +0.0010 | -0.000772 | L19 |
-| E-F5 | 1.60342 | 38.01 | +0.0029 | +0.0029 | L20 |
-| FDS90 | 1.84666 | 23.78 | +0.0137 | +0.015299 | L23 |
-
-Two numerical clusters are especially important to the production correlation. L2's very high-Abbe coordinate pair is
-the sole $1.43700/95.10$ element, while L3, L4, L15, and L17 form a four-element $1.49700/81.61$ cluster. Tamron's
-construction diagram marks one XLD and four LD elements in corresponding portions of the optical train.[3][4] The
-matching counts and positions support the selected patent/product correlation without proving trade-name identity.
-
-The diagram metadata marks those exact five positions as `apd: "inferred"`: L2 for the single XLD position and L3,
-L4, L15, and L17 for the four LD positions. The classification is backed by both the official construction mapping and
-the selected catalog-equivalent line data; it is not a claim that Tamron used the named HOYA melts.
-
-The stored line data also permits the modeled chromatic behavior to use more than an Abbe-only approximation. That does
-not justify calling the production lens apochromatic, nor does it convert the equivalent-glass assignment into source
-fact. It simply means the LensVisualizer model has explicit C-, F-, and g-line indices and partial-dispersion deviation
-for the selected catalog equivalents.
+Every trade name is a qualified spectral proxy, not evidence that Tamron purchased a particular supplier's glass or melt. Current compatible alternatives may differ from the authored reference grade. The five existing inferred APD tags retain their production-position qualification: L2 for one XLD position, L3/L4/L15/L17 for four LD positions. Catalog behavior and matching construction positions support those inferences without establishing source-measured anomalous dispersion or an APO designation. The former HOYA versus engine normal-line conversion history is superseded because no catalog-only `dPgF` field remains.
 
 ## Focus Mechanism
 
@@ -353,11 +306,11 @@ spacing tables at all three zoom positions, and the final `var` arrays transcrib
 LG3 alone moves axially for focusing. From infinity to the published close state, its surface-11 station shifts toward
 the object by the following amounts:
 
-| Zoom state | LG3 shift, close minus infinity | $\Delta d10$ | $\Delta d17$ |
-|---|---:|---:|---:|
-| Wide | -2.2674 mm | -2.2674 mm | +2.2674 mm |
-| Intermediate | -5.2959 mm | -5.2959 mm | +5.2959 mm |
-| Telephoto | -12.0000 mm | -12.0000 mm | +12.0000 mm |
+| Zoom state   | LG3 shift, close minus infinity | $\Delta d10$ | $\Delta d17$ |
+| ------------ | ------------------------------: | -----------: | -----------: |
+| Wide         |                      -2.2674 mm |   -2.2674 mm |   +2.2674 mm |
+| Intermediate |                      -5.2959 mm |   -5.2959 mm |   +5.2959 mm |
+| Telephoto    |                     -12.0000 mm |  -12.0000 mm |  +12.0000 mm |
 
 At every zoom position, the decrease in `d10` is exactly balanced by the increase in `d17`, so the sum of the two
 adjacent air gaps is conserved. LG4 remains fixed during the focus operation. This is the direct kinematic signature of
@@ -391,9 +344,7 @@ Third, the rear master group uses the remaining FCD1-equivalent elements in 5A a
 low-Abbe positive L23 required by patent condition (4). The patent specifically ties that positive 5C low-Abbe member to
 chromatic aberration of magnification and coma control.[1]
 
-Because the data file carries catalog $n_C$, $n_F$, and $n_g$ values and the $dP_{gF}$ they imply, LensVisualizer can
-evaluate the selected equivalent-glass model beyond a simple $n_d/\nu_d$ approximation. No claim is made that these line
-indices were measured from the A009 production lens, and no APO designation is inferred.
+Compatible catalog curves provide the model's qualified wavelength behavior beyond the printed d-line/Abbe coordinates. No line indices are claimed measured from the A009 production lens, and no APO designation is inferred.
 
 ## Image Stabilization
 
@@ -415,13 +366,13 @@ prescription.
 Example 1 supplies reference values for five patent conditions. Independent computation from the final TypeScript arrays
 reproduces the rounded values and keeps each within the claimed interval:
 
-| Patent condition | Computed from final data | Example-1 value | Required range | Result |
-|---|---:|---:|---|---|
-| $f_2/f_t$ | -0.430136 | -0.43 | $-0.6 \le f_2/f_t \le -0.2$ | Pass |
-| $f_3/f_t$ | -0.273279 | -0.27 | $-0.5 \le f_3/f_t \le -0.1$ | Pass |
-| $f_{5B}/f_5$ | -0.411291 | -0.41 | $-0.7 \le f_{5B}/f_5 \le -0.2$ | Pass |
-| Positive 5C element $\nu_d$ | 23.78 | 23.78 | $\nu_d \le 30$ | Pass |
-| Wide full field $2\omega$ | 33.71° | 33.71° | $20° \le 2\omega \le 50°$ | Pass |
+| Patent condition            | Computed from final data | Example-1 value | Required range                 | Result |
+| --------------------------- | -----------------------: | --------------: | ------------------------------ | ------ |
+| $f_2/f_t$                   |                -0.430136 |           -0.43 | $-0.6 \le f_2/f_t \le -0.2$    | Pass   |
+| $f_3/f_t$                   |                -0.273279 |           -0.27 | $-0.5 \le f_3/f_t \le -0.1$    | Pass   |
+| $f_{5B}/f_5$                |                -0.411291 |           -0.41 | $-0.7 \le f_{5B}/f_5 \le -0.2$ | Pass   |
+| Positive 5C element $\nu_d$ |                    23.78 |           23.78 | $\nu_d \le 30$                 | Pass   |
+| Wide full field $2\omega$   |                   33.71° |          33.71° | $20° \le 2\omega \le 50°$      | Pass   |
 
 The first three ratios are group-level quantities. They therefore describe LG2, LG3, and the complete 5B subset relative
 to the complete lens or LG5; they should not be substituted with the standalone focal length of a single element. The
@@ -432,11 +383,11 @@ fourth condition is satisfied specifically by positive L23 in the final data fil
 Independent reduced-angle tracing of the final TypeScript surface and `var` arrays reproduces the patent's three
 infinity design focal lengths to within 0.0017 mm:
 
-| Infinity zoom state | Patent focal length | Computed EFL | Error |
-|---|---:|---:|---:|
-| Wide | 71.8000 mm | 71.799857836 mm | -0.000142 mm |
-| Intermediate | 118.0000 mm | 117.999660757 mm | -0.000339 mm |
-| Telephoto | 194.5000 mm | 194.498327255 mm | -0.001673 mm |
+| Infinity zoom state | Patent focal length |     Computed EFL |        Error |
+| ------------------- | ------------------: | ---------------: | -----------: |
+| Wide                |          71.8000 mm |  71.799857836 mm | -0.000142 mm |
+| Intermediate        |         118.0000 mm | 117.999660757 mm | -0.000339 mm |
+| Telephoto           |         194.5000 mm | 194.498327255 mm | -0.001673 mm |
 
 The three published close-focus states likewise compute as 67.895681369, 101.544711966, and 135.463201469 mm against
 source values of 67.8957, 101.5451, and 135.4638 mm. The finite-conjugate image solutions differ from the patent's
@@ -468,13 +419,17 @@ concealed by enlarging the inferred clear aperture.
 
 ## Sources and References
 
-1. **US 8,867,144 B2**, Hisayuki Yamanaka, *Inner Focusing Telephotographing Zoom Lens*, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are in patent columns 10–11; architecture and conditional-expression discussion are in columns 3–8.
-2. **Tamron, A009 specifications**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — production construction count, 1.3 m MOD, 1:8 maximum magnification, nine rounded blades, mount variants, and release dates. [Tamron specification page][tamron-spec]
-3. **Tamron, A009 product overview**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — VC/USD description and one-XLD/four-LD statement. [Tamron product page][tamron-product]
+1. **US 8,867,144 B2**, Hisayuki Yamanaka, _Inner Focusing Telephotographing Zoom Lens_, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are in patent columns 10–11; architecture and conditional-expression discussion are in columns 3–8.
+2. **Tamron, A009 specifications**, _SP 70-200mm F/2.8 Di VC USD (Model A009)_ — production construction count, 1.3 m MOD, 1:8 maximum magnification, nine rounded blades, mount variants, and release dates. [Tamron specification page][tamron-spec]
+3. **Tamron, A009 product overview**, _SP 70-200mm F/2.8 Di VC USD (Model A009)_ — VC/USD description and one-XLD/four-LD statement. [Tamron product page][tamron-product]
 4. **Tamron, A009 optical-construction drawing** — relative element layout and XLD/LD markings. [Manufacturer SVG][tamron-construction]
-5. **HOYA GROUP Optics Division, Optical Glass Data Download** — `HOYA20260601.xlsx`, updated June 1, 2026, used for the catalog-equivalent `nC`, `nF`, and `ng` fields, from which `dPgF` is computed (TAFD5G and E-F5 keep the workbook's four-decimal deviation). [HOYA data-download page][hoya-data]
+5. **HOYA GROUP Optics Division, Optical Glass Data Download** — reference catalog coordinates and curves, not retained patent line-index overrides. [HOYA data-download page][hoya-data]
 
 [tamron-spec]: https://www.tamron.com/global/consumer/lenses/a009/spec.html
 [tamron-product]: https://www.tamron.com/global/consumer/lenses/a009/
 [tamron-construction]: https://www.tamron.com/product/pc_file/file/a009_lens-construction_en.svg
 [hoya-data]: https://www.hoya-opticalworld.com/english/datadownload/index.html
+
+## Fresh rim reinspection — 2026-10-30
+
+Original Fig.1 on PDF2 was viewed at native300dpi and600dpi for every convex/concave and cemented face. S8grows continuously23.9→24mm; S10's concave cap grows20.8→21.2mm and has an independent land to24mm, with existing common S9interface24mm. Source q≈.88 at native edge≈121px (one-pixel uncertainty±.0155) supports adopted.8833. The source scale is10.446px/mm at600dpi/native5.223px/mm. Full S15/S27/S33 lands are rejected: respectively3.544>3.160mm,2.049>1.809mm and2.123>1.831mm gap intrusion. No unsupported adjacent trim or tolerance change is used. The old D3/L15 and L9-edge/L10-corner outline limitations above remain; source R/d/stop/published focus states stay unchanged. Actual nine-state SVG has zero renderer trim; focused geometry/circle/field/aperture checks pass.

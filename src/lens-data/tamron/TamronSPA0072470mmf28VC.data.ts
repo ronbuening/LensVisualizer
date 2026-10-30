@@ -33,12 +33,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * slope, and cross-gap clearance. The stop radius is derived from the design f-number at each zoom
  * station.
  *
- * Glass names are catalog-derived HOYA coordinate matches where the prescription and the
- * A007 specialty-element map support a coherent assignment. The patent itself publishes
+ * Glass names are qualified spectral proxies from compatible current catalog coordinates; the
+ * A007 specialty-element map supports that correlation. The patent itself publishes
  * only nd/vd and does not name a supplier. The hybrid layer remains explicitly Unmatched;
  * nC, nF, ng, and dPgF are not authored because Example 4 does not publish them.
  */
 
+// 2026-10-30 original Fig22/PDF23: connected hybrid outer18.8 (S6A/S7 caps; S8cap15.5+land).
+// S15A/S16A continuous caps14.5; all source coefficients/indices/controls unchanged.
+// Sourceglass PDF35:17physicalglass+resin, no extra spectral anchors; curves are qualified proxies.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -312,12 +315,20 @@ const LENS_DATA = {
       label: "6A",
       R: 314.9264,
       d: 0.3,
-      sd: 18.5,
+      sd: 18.8,
       medium: 4,
-      asphere: { K: 0, A4: 1.43821e-5, A6: -2.52546e-8, A8: 7.46124e-11, A10: -1.61976e-13, A12: 0, A14: 0 },
+      asphere: {
+        K: 0,
+        A4: 1.43821e-5,
+        A6: -2.52546e-8,
+        A8: 7.46124e-11,
+        A10: -1.61976e-13,
+        A12: 0,
+        A14: 0,
+      },
     },
-    { label: "7", R: 105.8749, d: 1.2, sd: 18.0, medium: 5 },
-    { label: "8", R: 17.3128, d: 8.687, sd: 15.5 },
+    { label: "7", R: 105.8749, d: 1.2, sd: 18.8, medium: 5 },
+    { label: "8", R: 17.3128, d: 8.687, sd: 15.5, rimExtensionSd: 18.8 },
     { label: "9", R: -34.9525, d: 1.0, sd: 12.4, medium: 6 },
     { label: "10", R: 23.127, d: 6.65, sd: 13.5, medium: 7 },
     { label: "11", R: -55.8238, d: 4.2654, sd: 13.5 },
@@ -328,16 +339,32 @@ const LENS_DATA = {
       label: "15A",
       R: 45.6293,
       d: 6.75,
-      sd: 13.0,
+      sd: 14.5,
       medium: 9,
-      asphere: { K: -0.9117, A4: 1.63947e-6, A6: 2.74286e-8, A8: -1.09388e-10, A10: 6.10564e-13, A12: 0, A14: 0 },
+      asphere: {
+        K: -0.9117,
+        A4: 1.63947e-6,
+        A6: 2.74286e-8,
+        A8: -1.09388e-10,
+        A10: 6.10564e-13,
+        A12: 0,
+        A14: 0,
+      },
     },
     {
       label: "16A",
       R: -83.5479,
       d: 0.15,
-      sd: 14.0,
-      asphere: { K: 0, A4: 5.27374e-6, A6: 4.71512e-9, A8: 1.56698e-10, A10: -8.27035e-13, A12: 0, A14: 0 },
+      sd: 14.5,
+      asphere: {
+        K: 0,
+        A4: 5.27374e-6,
+        A6: 4.71512e-9,
+        A8: 1.56698e-10,
+        A10: -8.27035e-13,
+        A12: 0,
+        A14: 0,
+      },
     },
     { label: "17", R: 95.4151, d: 7.5, sd: 14.5, medium: 10 },
     { label: "18", R: -23.9796, d: 0.8, sd: 14.5, medium: 11 },
@@ -348,7 +375,15 @@ const LENS_DATA = {
       d: 1.3,
       sd: 15.0,
       medium: 12,
-      asphere: { K: 0, A4: 4.43544e-6, A6: -5.49207e-10, A8: 1.55881e-11, A10: -1.14261e-13, A12: 0, A14: 0 },
+      asphere: {
+        K: 0,
+        A4: 4.43544e-6,
+        A6: -5.49207e-10,
+        A8: 1.55881e-11,
+        A10: -1.14261e-13,
+        A12: 0,
+        A14: 0,
+      },
     },
     { label: "21", R: 36.6179, d: 3.0, sd: 15.5, medium: 13 },
     { label: "22", R: 111.2047, sd: 15.5 },
@@ -363,14 +398,30 @@ const LENS_DATA = {
       d: 1.5,
       sd: 15.0,
       medium: 17,
-      asphere: { K: 0, A4: 5.26332e-6, A6: -5.66812e-9, A8: -6.55846e-12, A10: -1.35552e-13, A12: 0, A14: 0 },
+      asphere: {
+        K: 0,
+        A4: 5.26332e-6,
+        A6: -5.66812e-9,
+        A8: -6.55846e-12,
+        A10: -1.35552e-13,
+        A12: 0,
+        A14: 0,
+      },
     },
     {
       label: "29A",
       R: 487.5778,
       d: 2.4845,
       sd: 14.5,
-      asphere: { K: 0, A4: 2.25411e-5, A6: 1.29573e-8, A8: 3.31551e-11, A10: -6.66568e-14, A12: 0, A14: 0 },
+      asphere: {
+        K: 0,
+        A4: 2.25411e-5,
+        A6: 1.29573e-8,
+        A8: 3.31551e-11,
+        A10: -6.66568e-14,
+        A12: 0,
+        A14: 0,
+      },
     },
     { label: "30", R: -102.2081, d: 2.3423, sd: 13.8, medium: 18 },
     { label: "31", R: -60.0, sd: 14.0 },
@@ -435,7 +486,12 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
+  aperture: {
+    nominalFNumber: 2.9,
+    fStops: [2.9, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 9,
+  },
 
   groups: [
     { text: "LG1", fromSurface: "1", toSurface: "5" },
