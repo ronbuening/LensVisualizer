@@ -70,23 +70,23 @@ These are in-situ group powers calculated with the patent-defined internal spaci
 
 #### L11 — Negative Meniscus, Convex to Object
 
-**nd = 1.72916, νd = 54.61. Glass: J-LAK18 (HIKARI). Standalone f = −34.335301 mm.**
+**nd = 1.72916, νd = 54.61. Glass: J-LAK18 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −34.335301 mm.**
 
-L11 is the large-diameter front field-compressing element. Its strong negative meniscus form begins the retrofocus transformation while presenting a convex outer surface to the object field. Its authored semi-diameter is 18.9 mm, the largest in the design, but this value is a modeled clear aperture rather than a patent-published manufacturing diameter.
+L11 is the large-diameter front field-compressing element. Its strong negative meniscus form begins the retrofocus transformation while presenting a convex outer surface to the object field. Its authored front semi-diameter is 30.6 mm, the largest in the design, but this value is a modeled clear aperture rather than a patent-published manufacturing diameter.
 
 The glass assignment is a catalog-coordinate match, not a glass name supplied by the patent. The moderately high index with crown-like dispersion permits substantial negative bending without using the very low Abbe material that appears later in G1.
 
 #### L12 — Aspherical Negative Meniscus, Convex to Object
 
-**nd = 1.59201, νd = 67.05. Glass: 592670 low-dispersion crown class; closest M-PCD51 (HOYA), vendor unproven. Standalone f = −50.379098 mm.**
+**nd = 1.59201, νd = 67.05. Glass: M-PCD51 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −50.379098 mm.**
 
 L12 carries the sole aspherical surface, 3A, on its object side. In modeling terms, the asphere supplements the negative front-group power while controlling the strong peripheral departure associated with the extreme fisheye field. The patent describes L12 as a negative meniscus with an aspherical object-side surface (¶0076).
 
-The six-digit class label is retained because the patent gives only `nd` and `νd`; it does not identify a supplier. The closest public coordinate match is insufficient to establish a vendor-specific production glass.
+The runtime selects M-PCD51 as a coordinate-compatible spectral proxy. The patent gives only `nd` and `νd`, so that curve does not establish a production supplier or glass identity.
 
 #### L13 — Biconcave Negative
 
-**nd = 1.59319, νd = 67.90. Glass: J-PSKH1 (HIKARI). Standalone f = −30.321059 mm.**
+**nd = 1.59319, νd = 67.90. Glass: J-PSKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −30.321059 mm.**
 
 L13 supplies strong negative power near the center of G1. Its biconcave form reinforces the front group’s negative power after the aspherical meniscus. The high Abbe value keeps this added negative power from depending on a strongly dispersive flint.
 
@@ -94,7 +94,7 @@ This element is air-spaced from both L12 and L14; its standalone power therefore
 
 #### L14 — Positive Meniscus, Convex to Object
 
-**nd = 1.80518, νd = 25.45. Glass: J-SF6 (HIKARI). Standalone f = +30.005674 mm.**
+**nd = 1.80518, νd = 25.45. Glass: J-SF6 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +30.005674 mm.**
 
 L14 is the only positive element in G1. Its high index and low Abbe number contrast sharply with the adjacent low-dispersion negative elements. The positive meniscus reduces the net negative power of the front group while supplying a strong chromatic and monochromatic balancing term inside G1.
 
@@ -102,7 +102,7 @@ This statement describes the power and glass opposition visible in the prescript
 
 #### L15 — Rear Biconcave Negative
 
-**nd = 1.59319, νd = 67.90. Glass: J-PSKH1 (HIKARI). Standalone f = −53.785155 mm.**
+**nd = 1.59319, νd = 67.90. Glass: J-PSKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −53.785155 mm.**
 
 L15 closes G1 immediately before the variable D1 gap. It adds relatively weak negative power in air and shapes the beam delivered to the moving positive rear system. Because D1 changes from 18.71674 mm to 1.45774 mm across the zoom, L15’s interaction with L21 changes substantially even though the element itself is fixed within G1.
 
@@ -112,13 +112,13 @@ G2A contains two singlets followed by one cemented doublet. The whole subgroup m
 
 #### L21 — Positive Meniscus, Convex to Object
 
-**nd = 1.74400, νd = 44.81. Glass: J-LAF2 (HIKARI). Standalone f = +61.260606 mm.**
+**nd = 1.74400, νd = 44.81. Glass: J-LAF2 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +61.260606 mm.**
 
 L21 begins the positive focus subgroup. Its weak positive standalone power receives the converging/diverging bundle emerging from G1 and begins the rear-system power build-up. The very weak rear curvature makes it optically closer to a positive meniscus than to a symmetric positive lens.
 
 #### L22 — Negative Meniscus, Concave to Object
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −153.699390 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −153.699390 mm.**
 
 L22 is a weak negative singlet within the translating positive subgroup. Its high-index glass permits a small negative correction with relatively gentle net standalone power. Because it travels with G2A, its role is to moderate the focus subgroup’s aberration changes rather than to establish a separate focusing motion.
 
@@ -130,13 +130,13 @@ The `J-LASF08A class` wording records a close coordinate match with a small Abbe
 
 ##### L23 — Biconcave Negative
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −13.270741 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −13.270741 mm.**
 
 L23 is the strongly negative front member of the L23/L24 pair. Its standalone focal length is not the power of the finished doublet; the following positive element and the cemented interface substantially change the component result.
 
 ##### L24 — Biconvex Positive
 
-**nd = 1.67003, νd = 47.14. Glass: J-BAF10 (HIKARI). Standalone f = +11.728183 mm.**
+**nd = 1.67003, νd = 47.14. Glass: J-BAF10 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +11.728183 mm.**
 
 L24 is the strong positive rear member of the L23/L24 pair and the last element of G2A. Its opposing power and higher Abbe number yield a moderately positive cemented net. Surface 17 then opens into the variable D2 gap leading to the fixed stop.
 
@@ -150,13 +150,13 @@ G2B begins after the stop and contains four cemented doublets followed by one si
 
 ##### L25 — Negative Meniscus, Concave to Object
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −20.754214 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −20.754214 mm.**
 
 L25 is the first glass element after the stop and the negative front member of the L25/L26 pair. Its position near the aperture gives it substantial leverage over axial and pupil-dependent aberrations, although the patent does not assign a unique aberration to this element.
 
 ##### L26 — Positive Meniscus, Concave to Object
 
-**nd = 1.51823, νd = 58.82. Glass: J-K3 (HIKARI). Standalone f = +34.245571 mm.**
+**nd = 1.51823, νd = 58.82. Glass: J-K3 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +34.245571 mm.**
 
 L26 provides the lower-index, higher-Abbe positive partner. The cemented pair remains net negative because the negative member and interface geometry dominate the component power.
 
@@ -166,13 +166,13 @@ L26 provides the lower-index, higher-Abbe positive partner. The cemented pair re
 
 ##### L27 — Biconvex Positive
 
-**nd = 1.60342, νd = 38.03. Glass: J-F5 (HIKARI). Standalone f = +15.137405 mm.**
+**nd = 1.60342, νd = 38.03. Glass: J-F5 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +15.137405 mm.**
 
 L27 supplies strong positive power in the middle of G2B. Its edge thickness is the smallest verified element edge thickness in the modeled geometry, 0.147975 mm, so its authored semi-diameter is constrained by both ray containment and physical edge clearance.
 
 ##### L28 — Negative Meniscus, Concave to Object
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −45.226735 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −45.226735 mm.**
 
 L28 moderates L27’s positive power and forms the cemented rear portion of the pair. The two elements have relatively close Abbe numbers, so this component should not be described as an isolated high-order chromatic corrector from `νd` alone.
 
@@ -182,13 +182,13 @@ L28 moderates L27’s positive power and forms the cemented rear portion of the 
 
 ##### L29 — Biconcave Negative
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −15.336887 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −15.336887 mm.**
 
 L29 supplies the negative portion of the pair. Its high index concentrates negative surface power in a thin 0.7000 mm element.
 
 ##### L210 — Positive Meniscus, Convex to Object
 
-**nd = 1.49782, νd = 82.57. Glass: J-FKH1 (HIKARI). Standalone f = +36.340381 mm.**
+**nd = 1.49782, νd = 82.57. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +36.340381 mm.**
 
 L210 is the first of two J-FKH1-coordinate elements. Its unusually high Abbe number provides low-dispersion positive power against the dense negative partner. This supports an achromatizing interpretation, but the data contain no `nC`, `nF`, `ng`, or `dPgF`; the element is therefore not used to claim apochromatic or anomalous-partial-dispersion behavior.
 
@@ -198,43 +198,50 @@ L210 is the first of two J-FKH1-coordinate elements. Its unusually high Abbe num
 
 ##### L211 — Negative Meniscus, Convex to Object
 
-**nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −39.928495 mm.**
+**nd = 1.88300, νd = 40.66. Glass: J-LASF08A (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −39.928495 mm.**
 
 L211 is the negative front member of the fourth rear doublet. Its meniscus orientation differs from L25 and L28, changing the distribution of bending while retaining the repeated high-index negative glass family.
 
 ##### L212 — Biconvex Positive
 
-**nd = 1.49782, νd = 82.57. Glass: J-FKH1 (HIKARI). Standalone f = +26.968738 mm.**
+**nd = 1.49782, νd = 82.57. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +26.968738 mm.**
 
 L212 is the second J-FKH1-coordinate positive element. It yields the positive net sign of L211/L212 and continues the low-dispersion positive/high-index negative pairing used in L29/L210.
 
 #### L213 — Final Biconvex Positive
 
-**nd = 1.48749, νd = 70.45. Glass: 487704 fluor-crown class; closest FC5 (HOYA), vendor unproven. Standalone f = +121.283297 mm.**
+**nd = 1.48749, νd = 70.45. Glass: FC5 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +121.283297 mm.**
 
 L213 is a weak final positive singlet preceding the corrected back-focus spacing. It has the lowest index in the prescription and a high Abbe number. Its modest power and rear position are consistent with final image-side correction and relay duties, but no manufacturer or patent text assigns a single named aberration to it.
 
-The six-digit class is retained because the nearest public HOYA coordinate does not establish that Nikon used FC5 or any specific production glass.
+The runtime selects FC5 as a coordinate-compatible spectral proxy. Its nearby public coordinates do not establish that Nikon used FC5 or any specific production glass.
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive indices and Abbe numbers. It does not name glass vendors. The companion data file therefore distinguishes exact catalog-coordinate matches from class-level or nearest-coordinate assignments.
+The original prescription supplies d-line indices and Abbe numbers, with no supplier, melt, measured line-index set, or partial-dispersion table. Every source `nd`/`νd` pair is retained. The following names identify the current resolver's catalog-compatible spectral curves; they do not identify Nikon's production glass.
 
-| Authored glass label | nd | νd | Elements | Basis and limitation |
-| --- | ---: | ---: | --- | --- |
-| J-LAK18 (HIKARI) | 1.72916 | 54.61 | L11 | Exact HIKARI coordinate match |
-| 592670 low-dispersion crown class | 1.59201 | 67.05 | L12 | Closest public coordinate M-PCD51; vendor unproven |
-| J-PSKH1 (HIKARI) | 1.59319 | 67.90 | L13, L15 | Exact HIKARI coordinate match |
-| J-SF6 (HIKARI) | 1.80518 | 25.45 | L14 | Exact HIKARI coordinate match |
-| J-LAF2 (HIKARI) | 1.74400 | 44.81 | L21 | Exact HIKARI coordinate match |
-| J-LASF08A class (HIKARI) | 1.88300 | 40.66 | L22, L23, L25, L28, L29, L211 | `nd` exact; small `νd` residual retained as class-level wording |
-| J-BAF10 (HIKARI) | 1.67003 | 47.14 | L24 | Exact HIKARI coordinate match |
-| J-K3 (HIKARI) | 1.51823 | 58.82 | L26 | Exact HIKARI coordinate match |
-| J-F5 (HIKARI) | 1.60342 | 38.03 | L27 | Exact HIKARI coordinate match; also coordinate-compatible with Schott F5 |
-| J-FKH1 (HIKARI) | 1.49782 | 82.57 | L210, L212 | Exact HIKARI coordinate match; low-dispersion/ED-class coordinates |
-| 487704 fluor-crown class | 1.48749 | 70.45 | L213 | Closest public coordinate FC5; vendor unproven |
+| Medium | Source nd | Source νd | Selected spectral proxy |
+|---|---:|---:|---|
+| L11 | 1.72916 | 54.61 | J-LAK18 |
+| L12 | 1.59201 | 67.05 | M-PCD51 |
+| L13 | 1.59319 | 67.90 | J-PSKH1 |
+| L14 | 1.80518 | 25.45 | J-SF6 |
+| L15 | 1.59319 | 67.90 | J-PSKH1 |
+| L21 | 1.74400 | 44.81 | J-LAF2 |
+| L22 | 1.88300 | 40.66 | J-LASF08A |
+| L23 | 1.88300 | 40.66 | J-LASF08A |
+| L24 | 1.67003 | 47.14 | J-BAF10 |
+| L25 | 1.88300 | 40.66 | J-LASF08A |
+| L26 | 1.51823 | 58.82 | J-K3 |
+| L27 | 1.60342 | 38.03 | J-F5 |
+| L28 | 1.88300 | 40.66 | J-LASF08A |
+| L29 | 1.88300 | 40.66 | J-LASF08A |
+| L210 | 1.49782 | 82.57 | J-FKH1 |
+| L211 | 1.88300 | 40.66 | J-LASF08A |
+| L212 | 1.49782 | 82.57 | J-FKH1 |
+| L213 | 1.48749 | 70.45 | FC5 |
 
-The palette uses repeated high-index negative glass at six positions and reserves the highest-Abbe material for positive members L210 and L212. This is a clear first-order chromatic balancing pattern. It is not sufficient evidence for APO correction or anomalous partial dispersion. The data file intentionally stores no `nC`, `nF`, `ng`, or `dPgF` because neither the selected patent example nor the verified catalog assignment supplies those values at the required certainty.
+No source `nC`, `nF`, `ng`, or `dPgF` values are invented. Catalog Sellmeier curves supply qualified modeled chromatic behavior where available; unresolved resin uses the Abbe model. The source does not establish anomalous partial dispersion; all APD flags remain false.
 
 ## Focus Mechanism
 
@@ -270,7 +277,7 @@ Patent `Kpat = 1.0000` becomes project `K = 0.0000`, a spherical conic base. No 
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | 3A | 59.7861 mm | 0.0000 | 2.04342×10⁻6 mm⁻³ | −1.19834×10⁻8 mm⁻⁵ | −1.95003×10⁻11 mm⁻⁷ | 0 |
 
-At the accepted modeled semi-diameter of 10.7 mm, the polynomial departure from the conic base is **+5.450701 µm**. This value is computed at the authored clear aperture; it is not a patent-published departure or a manufacturing-zone specification. The patent does not identify the surface as molded, polished, or hybrid, so no manufacturing process is assigned.
+At the accepted modeled semi-diameter of 17.3 mm, the polynomial departure from the conic base is **−294.684128 µm** (actual sag 2.263033462 mm; conic-base sag 2.557717590 mm). This value is computed at the authored clear aperture; it is not a patent-published departure or a manufacturing-zone specification. The patent does not identify the surface as molded, polished, or hybrid, so no manufacturing process is assigned.
 
 ## Chromatic Correction Strategy
 
@@ -278,7 +285,7 @@ The first-order chromatic structure alternates glass power and dispersion rather
 
 The two J-FKH1-coordinate elements have `νd = 82.57` and are defensibly described as low-dispersion or ED-class coordinates. The production lens is marketed with three ED elements, but Example 1 contains only two such obvious coordinate matches. That difference is another reason the patent example is treated as an approximate correlation rather than the production formula.
 
-No line-index or partial-dispersion data are authored. Consequently, the model supports discussion of ordinary longitudinal and lateral chromatic balancing only at the Abbe level. It does not support an APO designation, a secondary-spectrum magnitude, or a claim that either J-FKH1-coordinate element has anomalous partial dispersion.
+No source line-index or partial-dispersion data are authored. The runtime uses qualified catalog curves for modeled chromatic behavior, while the source supports only the stated index/Abbe coordinates. Those proxies do not establish an APO designation, a measured secondary spectrum, or anomalous partial dispersion for either J-FKH1-coordinate element.
 
 ## Conditional Expressions
 
@@ -316,7 +323,29 @@ The surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is **−0.000944
 
 Because the patent provides no clear-aperture table, every semi-diameter in the data file is a modeling inference. The accepted apertures contain the configured W/M/T on-axis marginal rays, the published near-state rays, and the vignetting-limited 0.60-field off-axis samples used by the renderer; they are not asserted to pass an unvignetted full stop pupil at the extreme fisheye field. The most restrictive region is the 1.0000 mm air space between surfaces 12 and 13: both are authored at 5.5882 mm, leaving 0.000151 mm axial clearance at the shared rim. The model therefore uses `gapSagFrac = 1.0` for this source-limited geometry instead of the shared 0.9 default. Layout controls are not used to conceal invalid overlap.
 
-The minimum modeled element edge thickness is 0.147975 mm at L27, and the maximum actual rim-slope angle is 51.2241° at surface 2. The values are model-validation results, not manufacturing tolerances.
+The minimum modeled element edge thickness is 0.147975 mm at L27, and the maximum actual rim-slope angle is 63.9038° at surface 2. The values are model-validation results, not manufacturing tolerances.
+
+## Fresh Source Reinspection
+
+The 2026-10-29 review directly inspected local `JP2017068114A.pdf`, Figure 1 on PDF page 40 at 600 dpi and in its original 300 dpi embedded raster, Table 1 on pages 16–17, and the d-line definitions on page 15. All eighteen media match the source. The native first/last vertex span gives about 8.56 px/mm, and S1/S2's 2.5992 mm center thickness independently gives about 8.46 px/mm; spherical curvature supports that scale. This evidence supersedes the earlier audit's anisotropic-scaling rationale for retaining the smaller front bodies. The figure remains a schematic, with a few-percent scale scatter; inferred heights are not published manufacturing diameters.
+
+| Surface | Previous clear SD | Adopted clear SD | Drawn outer SD |
+|---|---:|---:|---:|
+| 1 | 18.90 | 30.60 | 30.60 |
+| 2 | 14.15 | 16.30 | 30.60 |
+| 3A | 10.70 | 17.30 | 17.30 |
+| 4 | 9.55 | 13.80 | 17.30 |
+| 5 | 8.35 | 13.60 | 13.60 |
+| 6 | 7.90 | 12.50 | 13.60 |
+| 7 | 7.90 | 12.30 | 12.30 |
+| 8 | 7.15 | 12.30 | 12.30 |
+| 9 | 6.50 | 10.60 | 11.40 |
+| 10 | 6.30 | 11.40 | 11.40 |
+| 19 | 5.65 | 5.65 | 6.45 |
+
+The exposed concave ends of S2, S4, S6, S9, and S19 now end in vertical lands. Native endpoint ratios q≈0.57±0.006, 0.80±0.012, 0.90±0.017, 0.93±0.020, and 0.85±0.034 become adopted ratios 0.533, 0.798, 0.919, 0.930, and 0.876. S2 cannot reach the measured q≈0.57 at a 30.6 mm outer rim: that would require a roughly 17.4 mm spherical cap, above the unchanged sd/|R|=0.9 limit of 16.33527 mm. The selected 16.3 mm cap has a 63.9038° rim slope and leaves 5.72066 mm of outer glass thickness. The remaining lands preserve or conservatively extend continuous source caps; cemented interfaces receive no lands. No inferred axial cut, source-depth flag, optical coefficient, focus control, or new tolerance is used.
+
+In the fresh vector-launch comparison, all 380 previously passing samples remain passing and 144 more pass among 825 rays per model. All 75 finite-object axial samples at the three published near distances pass before and after. Extreme fisheye chief-ray bracketing and pupil clipping still limit the outer field; this is not a full-field unvignetted model. Nine actual SVG states show finite, untrimmed element paths and the source-like front bodies without detached wings.
 
 ## Sources
 

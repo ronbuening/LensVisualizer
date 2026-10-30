@@ -43,9 +43,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ thread as a mechanical ceiling. The 0.28 mm L41-L42 air gap is the        ║
  * ║ binding vignetting boundary; no cemented junction is used as a clip.       ║
  * ║                                                                            ║
+ * ║ S8 clear SD8.5 retains its cap, with a vertical land to outer SD11.5.     ║
  * ║ Spectral discipline: the patent publishes nd/vd only. nC, nF, ng, and    ║
- * ║ dPgF are therefore not invented, and vendor-specific glass names are not  ║
- * ║ asserted where only coordinate classes are defensible.                     ║
+ * ║ dPgF are not invented. Selected catalog curves are qualified spectral  ║
+ * ║ proxies; production suppliers and the resin trade name are unspecified.                     ║
  * ║                                                                            ║
  * ║ Excluded: sensor cover glass, filters, dummy/flare-cutter planes, and      ║
  * ║ mechanical parts. No folded path or inactive optical plane is present.     ║
@@ -93,7 +94,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -144.34894525379718,
-      glass: "847238 class",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front negative member of the G1 cemented pair.",
       cemented: "D1",
     },
@@ -105,7 +106,7 @@ const LENS_DATA = {
       nd: 1.64,
       vd: 60.1,
       focalLengthMm: 97.8789564488297,
-      glass: "S-BSM81 catalog equivalent (patent 640601; production supplier unspecified)",
+      glass: "S-BSM81 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive rear member of the G1 cemented pair.",
       cemented: "D1",
     },
@@ -117,7 +118,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 104.24075703783411,
-      glass: "713539 class",
+      glass: "LAC8 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear positive meniscus of G1.",
     },
     {
@@ -140,7 +141,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -18.02281601523935,
-      glass: "804466 class",
+      glass: "H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front negative member of focusing group G2; carries the hybrid resin layer.",
       cemented: "H1",
     },
@@ -152,7 +153,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -19.291515941527567,
-      glass: "804466 class",
+      glass: "H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Second negative element of G2.",
     },
     {
@@ -163,7 +164,7 @@ const LENS_DATA = {
       nd: 1.79504,
       vd: 28.5,
       focalLengthMm: 16.676447850215375,
-      glass: "J-LAFH3 catalog equivalent (patent 795285; production supplier unspecified)",
+      glass: "J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive element within negative-power G2.",
     },
     {
@@ -174,7 +175,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -44.57612578304723,
-      glass: "804466 class",
+      glass: "H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative meniscus of G2.",
     },
     {
@@ -185,7 +186,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       focalLengthMm: -27.22787734325821,
-      glass: "804396 class",
+      glass: "J-LASF013 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative front member of the G3 cemented pair.",
       cemented: "D2",
     },
@@ -197,7 +198,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 26.169623708705405,
-      glass: "J-FKH1 catalog equivalent (patent 498826; production supplier unspecified)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "This very-high-Abbe position is one of three that correlate with Nikon's three-ED production specification; the patent does not identify a melt.",
@@ -212,7 +213,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       focalLengthMm: 28.1495173435361,
-      glass: "487704 class",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear positive element of G3.",
     },
     {
@@ -223,7 +224,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 34.418311737648395,
-      glass: "847238 class",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front positive meniscus of fixed negative-power G4.",
     },
     {
@@ -234,7 +235,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -18.612047291442515,
-      glass: "835427 class",
+      glass: "J-LASF05 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative element of fixed G4.",
     },
     {
@@ -245,7 +246,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.5,
       focalLengthMm: 39.01650401721401,
-      glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "This very-high-Abbe position is one of three that correlate with Nikon's three-ED production specification; the patent does not identify a melt.",
@@ -259,7 +260,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.5,
       focalLengthMm: 41.336350895607346,
-      glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "This very-high-Abbe position is one of three that correlate with Nikon's three-ED production specification; the patent does not identify a melt.",
@@ -273,7 +274,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -43.289002799360134,
-      glass: "805254 class",
+      glass: "N-SF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative meniscus of G5.",
     },
   ],
@@ -294,7 +295,7 @@ const LENS_DATA = {
       asphere: { K: 15.4398, A4: 2.5511e-5, A6: -7.9835e-9, A8: -2.6853e-10, A10: 2.206e-13 },
     },
     { label: "7", R: 55.0277, d: 1.2, sd: 11.5, medium: 5 },
-    { label: "8", R: 11.3585, d: 5.9, sd: 8.5 },
+    { label: "8", R: 11.3585, d: 5.9, sd: 8.5, rimExtensionSd: 11.5 },
     { label: "9", R: -23.6967, d: 0.9, sd: 8.4, medium: 6 },
     { label: "10", R: 45.6574, d: 0.3, sd: 8.5 },
     { label: "11", R: 29.9481, d: 4.1, sd: 8.0, medium: 7 },
