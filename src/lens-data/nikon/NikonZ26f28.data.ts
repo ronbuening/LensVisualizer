@@ -10,7 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 2 (L1 rear), 10A (L6 front) and 12 (L7 front); rimCutDepthMm ends 2's cap at
  * 5.00 mm, just clear of the traced beams (the figure's land is at 4.90), and 10A's at
  * 6.45 mm. Surface 12 keeps its 7.2 mm rim uncut: a land there would stop rays
- * the rim stops.
+ * the rim stops. Rim extension (2026-10-29): its existing cap now carries an
+ * opaque land to the 9.7 mm L7 edge in Figure 1 (50.5 native px/mm from the
+ * 27.39 mm first-to-last-vertex span), without changing its clear aperture.
  */
 
 const LENS_DATA = {
@@ -226,7 +228,7 @@ const LENS_DATA = {
         A12: 3.78e-11,
       },
     }, // L6 rear → air (asph, K=1.0)
-    { label: "12", R: -9.36192, d: 1.0, sd: 7.2, medium: 7 }, // L7 front
+    { label: "12", R: -9.36192, d: 1.0, sd: 7.2, rimExtensionSd: 9.7, medium: 7 }, // L7 front
     { label: "13", R: -25.39515, d: 0.71, sd: 9.7 }, // L7 rear → air
     {
       label: "14A",

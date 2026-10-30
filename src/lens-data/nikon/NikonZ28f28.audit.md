@@ -112,3 +112,9 @@ the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rul
 14A is the one asphere whose `sd` this review raised (12.3 to 13.1 mm). Its slope keeps its sign out to the new rim
 and only levels off (−0.309 at 11.79 mm, −0.312 at 12.45 mm, −0.311 at 13.10 mm; `audit:surface --scan 14A 13.1`), so
 the polynomial does not turn over inside the land, which is all it shapes past the 12.3153 mm cut radius.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/WO2022071249A1.pdf`, Example 2, Figure 3 (PDF p. 47), and inspected every element on a 600 dpi crop. The 1346 native-pixel first-to-last-vertex span / 40.927 mm gives 32.89 native px/mm. The existing cuts on 2, 9, 14A and 18 already draw the four resolved square lands at their measured element-edge heights, with the beam margins documented above. No additional air-side land or taller outside edge is resolved. The L22 step belongs to a cemented junction; the nearly flat or continuously curved faces do not justify extensions or another cut.
+
+No geometry changed. `audit:surface` passes, including the inferred-cut beam rule; `audit:image-circle` reports 0 undersized and 0 skipped. Existing cuts and source optical apertures were retained.

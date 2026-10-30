@@ -99,3 +99,9 @@ set in the #928 review). Traced against that rule, these cuts from the figure re
   where it vanishes, they reach the 16.4 mm rim itself (focusT 0.80, 15.33°).
 
 The lens carries no cut, and the surface audit and the beam rule pass.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JP2020173366A.pdf`, Example 3, Figure 3 (PDF p. 20, lower-left EX3 panel), and inspected every element at 600 dpi. The 97.291 mm first-to-last-vertex span gives about 6.97 native px/mm. The figure's element edges continue to agree with the stored rims; its short concave lands on 4, 7, 10, 16 and 20 would reduce existing clear apertures. No separate taller air-side edge can be added while preserving those caps. The earlier full-beam checks remain the reason those inferred cuts are excluded, especially 16 where the beam reaches the 16.4 mm rim. The almost-flat face 19 does not resolve a land.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The source-summary contradiction and the existing optical apertures remain explicitly qualified; no speculative prescription correction or clipping change was made.

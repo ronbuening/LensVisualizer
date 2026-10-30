@@ -91,3 +91,15 @@ of the two halves.
   range, because it moved out to clear the beams. Land 0.4977 mm, above the 0.1 mm minimum.
 - 10A: q 0.884 (0.880 / 0.889), edge 368.7 px, range ±0.005 (0.879–0.890). The cut sits at q 0.883. Land 0.8516 mm,
   above the 0.1 mm minimum.
+
+## 2026-10-29 — L7 rim extension from the original figure
+
+Reopened `patents/WO2023190222A1.pdf`, Example 1, Figure 1 (PDF p. 63), and inspected all eight elements on a 600 dpi crop. The 27.39 mm first-to-last-vertex span gives 50.5 native px/mm. L7's front cap visibly ends on a long square land on both halves, while its outside edge agrees with rear face 13's 9.7 mm radius.
+
+| Surface | Optical cap `sd` (retained) | New drawn `rimExtensionSd` | Evidence |
+| --- | --- | --- | --- |
+| 12 | 7.2 mm | 9.7 mm | Flat opaque land continues from the existing concave cap to L7's outer edge. |
+
+This draws the shoulder that a former raised-`sd` cut could not retain under the beam rule, and avoids evaluating the R = -9.36192 mm sphere at the 9.7 mm drawn edge. The existing clear aperture and beam clipping stay fixed. Cuts 2 and 10A retain their beam-clearing depths; no additional concave land is resolved. The L8 resin/glass flange and L4/L5 step remain cemented-junction geometry. The public analysis now distinguishes L7's air-side opaque land from those excluded junction flanges.
+
+`audit:surface` passes, including existing inferred-cut beam checks; `audit:image-circle` reports 0 undersized and 0 skipped. No optical aperture or prescription parameter changed.
