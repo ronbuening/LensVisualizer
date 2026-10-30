@@ -219,8 +219,9 @@ const LENS_DATA = {
       focalLengthMm: 17.7,
       glass: "J-PSKH1 (Hikari)",
       apd: "inferred",
-      apdNote: "νd = 67.9, low-Tg lanthanum crown — Nikon's second designated ED element",
-      role: "G3 field-correcting doublet rear — ED glass for secondary spectrum correction",
+      apdNote:
+        "Inferred from the compatible J-PSKH1 catalog curve; the patent gives no partial dispersion for L35. Its production ED-element association remains unconfirmed.",
+      role: "G3 field-correcting doublet rear — low-dispersion positive glass; APD behavior is a catalog-based inference",
       cemented: "D3b",
     },
     {

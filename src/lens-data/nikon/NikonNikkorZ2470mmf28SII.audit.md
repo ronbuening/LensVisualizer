@@ -500,3 +500,31 @@ Directly re-read `patents/WO2024214585A1.pdf`, PDF p. 69, Figure 3, including a 
 The cap remains inside the aspheric turnover. The existing cut on 24 is retained; the other air faces run into their corners or have no resolved land. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
 
 Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2024214585A1.pdf`, Example 2 / Table 2, PDF pp. 34–35, and the conditional-value table p. 55. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L1 | 1.69343 / 53.3 | Q-LAK53S | retained coordinate-compatible curve |
+| L2 | 1.59349 / 67 | J-PSKH4 | retained coordinate-compatible curve |
+| L3 | 1.85451 / 25.15 | NBFD25 | retained coordinate-compatible curve |
+| L4 | 1.80610 / 40.97 | J-LASF03 | retained coordinate-compatible curve |
+| L5 | 1.84666 / 23.8 | J-SF03 | retained coordinate-compatible curve |
+| L6 | 1.59349 / 67 | J-PSKH4 | retained coordinate-compatible curve |
+| L7 | 1.85451 / 25.15 | NBFD25 | retained coordinate-compatible curve |
+| L8 | 1.49782 / 82.57 | J-FKH1 | retained coordinate-compatible curve |
+| L9 | 1.85883 / 30 | NBFD30 | retained coordinate-compatible curve |
+| L10 | 1.92286 / 20.88 | E-FDS1 | retained coordinate-compatible curve |
+| L11 | 1.59349 / 67 | J-PSKH4 | retained coordinate-compatible curve |
+| L12 | 1.77047 / 29.74 | NBFD29 | retained coordinate-compatible curve |
+| L13 | 1.62291 / 58.3 | Q-SK15S | retained coordinate-compatible curve |
+| L14 | 1.51680 / 64.13 | J-BK7A | retained coordinate-compatible curve |
+
+Coverage: 14 physical lens elements, 14 authored media, 14 modeled media resolving to dispersion curves. Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All fourteen lens-media pairs and their labels are retained. L10's source condition PgF − 0.64435 + 0.00168νd = 0.030 implies PgF 0.6392716 and engine dPgF 0.03059176; retain it with its three-decimal-source uncertainty. L10 stays untagged (`apd: false`); the source spectral condition does not establish an anomalous material identity. L8 and L11 retain qualified APD inferences. No other authored spectral override was found.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

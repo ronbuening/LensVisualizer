@@ -191,3 +191,31 @@ Directly re-read `patents/JPWO2019049372A1.pdf`, PDF p. 38, Figure 1A, including
 The asphere is evaluated only to its original cap end; its taller land clears L22. The existing cut on 25 is retained. No further concave face has a resolved land. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
 
 Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/JPWO2019049372A1.pdf` (local JP republication of WO 2019/049372 A1), Example 1 / Table 1, PDF pp. 13–14, and ¶0031 / condition (6), p. 9. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.84666 / 23.8 | S-TIH53 | retained coordinate-compatible curve |
+| L12 | 1.75500 / 52.3 | J-LASKH2 | retained coordinate-compatible curve |
+| L21 | 1.74353 / 49.5 | M-NBF1 | retained coordinate-compatible curve |
+| L22 | 1.75500 / 52.3 | J-LASKH2 | retained coordinate-compatible curve |
+| L23 | 2.00069 / 25.5 | TAFD40 | retained coordinate-compatible curve |
+| L31 | 1.55332 / 71.7 | M-FCD500 | retained coordinate-compatible curve |
+| L32 | 1.83481 / 42.7 | S-LAH55V | retained coordinate-compatible curve |
+| L33 | 1.61800 / 63.3 | S-PHM52 | retained coordinate-compatible curve |
+| L34 | 1.81600 / 46.6 | S-LAH59 | retained coordinate-compatible curve |
+| L35 | 1.59319 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L41 | 1.80100 / 34.9 | J-LAF016 | retained coordinate-compatible curve |
+| L42 | 1.59201 / 67 | M-PCD51 | retained coordinate-compatible curve |
+| L51 | 1.58913 / 61.2 | S-BAL35 | retained coordinate-compatible curve |
+| L52 | 1.61800 / 63.3 | S-PHM52 | retained coordinate-compatible curve |
+
+Coverage: 14 physical lens elements, 14 authored media, 14 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.1, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All fourteen nd/νd pairs and compatible curves are retained. L21's M-NBF1 is a qualified non-identical proxy (Δnd −0.000230, Δνd about −0.17); source values remain 1.74353/49.5. L31's patent APD status is supported by ¶0031 and the Example 1 condition-(6) value 71.6835. L35 has no source θgF: its APD remains a catalog inference, and wording claiming a low-Tg lanthanum chemistry or a confirmed production ED position was removed. No per-lens spectral overrides were added.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
