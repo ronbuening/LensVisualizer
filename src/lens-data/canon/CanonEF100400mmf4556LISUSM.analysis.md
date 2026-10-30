@@ -140,24 +140,24 @@ Paragraph 0047 on p. 5 calls the numerical columns nᵢ and νᵢ without naming
 
 All 17 modeled media therefore retain their exact source index/Abbe pairs with `Unmatched` labels and `indexReferenceNote` qualifications. The engine retains an approximate d-line convention for tracing those numbers; it is not a statement that the source published d-line measurements. Catalog curves are disabled for all 17 media. No source numerical cement, hybrid layer, filter or rear plate is omitted from this prescription.
 
-| Elements | Source n | Source ν | Source medium disposition |
-|---|---:|---:|---|
-| E1, E11 | 1.48749 | 70.2 | Unmatched; reference line unspecified |
-| E2 | 1.74950 | 35.0 | Unmatched; reference line unspecified |
-| E3 | 1.43387 | 95.1 | Unmatched; fluorite assignment unconfirmed |
-| E4 | 1.71300 | 53.9 | Unmatched; reference line unspecified |
-| E5 | 1.62299 | 58.2 | Unmatched; reference line unspecified |
-| E6 | 1.84666 | 23.8 | Unmatched; reference line unspecified |
-| E7 | 1.43875 | 95.0 | Unmatched; Super UD assignment unconfirmed |
-| E8 | 1.70154 | 41.2 | Unmatched; reference line unspecified |
-| E9 | 1.62012 | 49.5 | Unmatched; former K-SSK9 curve disabled |
-| E10 | 1.60311 | 60.6 | Unmatched; reference line unspecified |
-| E12 | 1.80518 | 25.4 | Unmatched; reference line unspecified |
-| E13 | 1.51633 | 64.1 | Unmatched; reference line unspecified |
-| E14 | 1.66672 | 48.3 | Unmatched; reference line unspecified |
-| E15 | 1.83481 | 42.7 | Unmatched; reference line unspecified |
-| E16 | 1.72825 | 28.5 | Unmatched; reference line unspecified |
-| E17 | 1.77250 | 49.6 | Unmatched; reference line unspecified |
+| Elements | Source n | Source ν | Source medium disposition                  |
+| -------- | -------: | -------: | ------------------------------------------ |
+| E1, E11  |  1.48749 |     70.2 | Unmatched; reference line unspecified      |
+| E2       |  1.74950 |     35.0 | Unmatched; reference line unspecified      |
+| E3       |  1.43387 |     95.1 | Unmatched; fluorite assignment unconfirmed |
+| E4       |  1.71300 |     53.9 | Unmatched; reference line unspecified      |
+| E5       |  1.62299 |     58.2 | Unmatched; reference line unspecified      |
+| E6       |  1.84666 |     23.8 | Unmatched; reference line unspecified      |
+| E7       |  1.43875 |     95.0 | Unmatched; Super UD assignment unconfirmed |
+| E8       |  1.70154 |     41.2 | Unmatched; reference line unspecified      |
+| E9       |  1.62012 |     49.5 | Unmatched; former K-SSK9 curve disabled    |
+| E10      |  1.60311 |     60.6 | Unmatched; reference line unspecified      |
+| E12      |  1.80518 |     25.4 | Unmatched; reference line unspecified      |
+| E13      |  1.51633 |     64.1 | Unmatched; reference line unspecified      |
+| E14      |  1.66672 |     48.3 | Unmatched; reference line unspecified      |
+| E15      |  1.83481 |     42.7 | Unmatched; reference line unspecified      |
+| E16      |  1.72825 |     28.5 | Unmatched; reference line unspecified      |
+| E17      |  1.77250 |     49.6 | Unmatched; reference line unspecified      |
 
 Canon's production fluorite/Super UD descriptions remain independent product context. They do not establish which patent element used either material, or the historical supplier, melt, chemistry or wavelength reference of the numerical prescription. The source publishes no per-element C/F/g indices, PgF/dPgF or numerical APD evidence. Approximate Abbe-based chromatic output cannot establish APO performance or source-accurate secondary-spectrum behavior.
 
@@ -169,11 +169,11 @@ The patent supplies 4 m focus examples at the wide and tele endpoints. At those 
 
 The final data file extends this mechanism to the production lens's published 1.8 m minimum-focus specification by **constrained reconstruction**. The close-focus rows are not patent-published. Canon's 1.8 m minimum focusing distance and 0.2x maximum magnification are rounded product specifications, so they are used only as reconstruction targets: the model solves the tele state to those targets, holds the same-distance G4 travel constant across the three zoom positions, and solves G6 for the 1.8 m image-plane conjugate at each state. The resulting precise internal travels are one mechanism-compatible paraxial solution and are not measurements of the production lens.
 
-| Zoom state | G4 shift | G6 shift | Reconstructed object-to-image distance | Paraxial magnification |
-|---|---:|---:|---:|---:|
-| 102.68 mm | -3.962866 mm | +1.719139 mm | 1800.000 mm | -0.060665x |
-| 161.53 mm | -3.962866 mm | +3.410179 mm | 1800.000 mm | -0.092847x |
-| 389.19 mm | -3.962866 mm | +12.603072 mm | 1800.000 mm | -0.200000x |
+| Zoom state |     G4 shift |      G6 shift | Reconstructed object-to-image distance | Paraxial magnification |
+| ---------- | -----------: | ------------: | -------------------------------------: | ---------------------: |
+| 102.68 mm  | -3.962866 mm |  +1.719139 mm |                            1800.000 mm |             -0.060665x |
+| 161.53 mm  | -3.962866 mm |  +3.410179 mm |                            1800.000 mm |             -0.092847x |
+| 389.19 mm  | -3.962866 mm | +12.603072 mm |                            1800.000 mm |             -0.200000x |
 
 The reconstructed motion is encoded only in the four affected air spaces: the stop-to-G4 gap decreases as G4 moves objectward, the G4-to-G5 gap increases by the same amount, the G5-to-G6 gap increases as G6 moves imageward, and back focus decreases correspondingly. The two front variable gaps remain zoom-only. No additional internal focus state is invented beyond this mechanism-constrained model.
 
@@ -187,21 +187,21 @@ The chromatic interpretation must remain limited by the available data. Under th
 
 JP 2000-47107 A places explicit constraints on the five principal inter-group separations, zoom-group powers, first-group travel, fourth-group power over the broader-range embodiment, and sixth-group focus magnification (¶0017, ¶0029-¶0039). The final data reproduces the Example 2 condition values when the inactive source surface 7 is folded into the first inter-group air space.
 
-| Condition | Computed from final data | Patent interval | Result |
-|---|---:|---:|---|
-| D1W < D1T | 9.74 < 93.13 mm | inequality | Pass |
-| D2W > D2T | 20.89 > 6.44 mm | inequality | Pass |
-| D3W < D3T | 14.91 < 23.25 mm | inequality | Pass |
-| D4W > D4T | 26.80 > 10.38 mm | inequality | Pass |
-| D5W > D5T | 22.57 > 1.94 mm | inequality | Pass |
-| m1 / fT | -0.214266 | -0.23 to -0.19 | Pass |
-| f1 / fT | 0.465709 | 0.44 to 0.52 | Pass |
-| abs(f2) / fT | 0.118451 | 0.11 to 0.15 | Pass |
-| f3 / fT | 0.182174 | 0.16 to 0.25 | Pass |
-| f5 / fT | 0.136415 | 0.12 to 0.16 | Pass |
-| abs(f4) / fT | 0.347848 | 0.28 to 0.40 | Pass |
-| β6W | 2.159893 | 2.0 to 2.4 | Pass |
-| β6T | 2.835174 | 2.6 to 3.0 | Pass |
+| Condition    | Computed from final data | Patent interval | Result |
+| ------------ | -----------------------: | --------------: | ------ |
+| D1W < D1T    |          9.74 < 93.13 mm |      inequality | Pass   |
+| D2W > D2T    |          20.89 > 6.44 mm |      inequality | Pass   |
+| D3W < D3T    |         14.91 < 23.25 mm |      inequality | Pass   |
+| D4W > D4T    |         26.80 > 10.38 mm |      inequality | Pass   |
+| D5W > D5T    |          22.57 > 1.94 mm |      inequality | Pass   |
+| m1 / fT      |                -0.214266 |  -0.23 to -0.19 | Pass   |
+| f1 / fT      |                 0.465709 |    0.44 to 0.52 | Pass   |
+| abs(f2) / fT |                 0.118451 |    0.11 to 0.15 | Pass   |
+| f3 / fT      |                 0.182174 |    0.16 to 0.25 | Pass   |
+| f5 / fT      |                 0.136415 |    0.12 to 0.16 | Pass   |
+| abs(f4) / fT |                 0.347848 |    0.28 to 0.40 | Pass   |
+| β6W          |                 2.159893 |      2.0 to 2.4 | Pass   |
+| β6T          |                 2.835174 |      2.6 to 3.0 | Pass   |
 
 For β6, the calculation uses the complete thick G6 matrix and the rear conjugate, not a thin-group approximation. The condition table therefore distinguishes functional-group behavior from the standalone powers listed for individual elements.
 
@@ -227,9 +227,13 @@ A 65-position diagnostic copy exactly reproduces the existing runtime geometry a
 
 The source supplies three zoom stations rather than a continuous mechanical cam. At normalized zoom 0.8125, current interpolation gives back focus 127.324891 mm against image gap 105.8325 mm, a 21.492391 mm displacement; actual paraxial EFL is 309.426408 mm versus the displayed 303.8175 mm. The three source-anchor back-focus residuals are +0.006001/+0.010195/−0.013073 mm. Quantitative source comparison therefore belongs to those three anchors; intermediate controls are illustrative and do not maintain infinity focus. No source spacing, cap or focus control is fitted to invent the missing cam. All these first-order and clearance numbers retain the model's approximate d-line interpretation of the source's unspecified numerical index reference; agreement with source coordinates does not identify that wavelength or a production prescription.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 102.68 / 389.19 mm endpoints from PDF p. 7 (Numerical Example 2, focal-length row above variable spacings). The coarser heading 102.7–389.2 is consistent rounding; the tabulated two-decimal station labels are used. Computed 102.687377 / 389.165258 mm EFLs remain approximate d-reference tracing diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources and References
 
-1. **JP 2000-47107 A**, *Zoom Lens*, Canon Inc., inventor Hiroshi Endo, filed 1998-07-30, published 2000-02-18. Numerical Example 2 is the prescription source; relevant architecture and mechanism discussion appears at ¶0014-¶0017, ¶0023-¶0028, ¶0029-¶0046. The Example 2 prescription and variable-spacing table are on patent p. 7; the associated optical section begins with Fig. 6.
+1. **JP 2000-47107 A**, _Zoom Lens_, Canon Inc., inventor Hiroshi Endo, filed 1998-07-30, published 2000-02-18. Numerical Example 2 is the prescription source; relevant architecture and mechanism discussion appears at ¶0014-¶0017, ¶0023-¶0028, ¶0029-¶0046. The Example 2 prescription and variable-spacing table are on patent p. 7; the associated optical section begins with Fig. 6.
 2. **Canon Camera Museum — EF100-400mm f/4.5-5.6L IS USM.** Canon product specification and historical description: <https://global.canon/en/c-museum/product/ef345.html> and the fuller Japanese product description at <https://global.canon/ja/c-museum/product/ef345.html>.
 3. **Canon EF100-400mm f/4.5-5.6L IS USM Instruction Manual.** Canon support/manual source: <https://gdlp01.c-wss.com/gds/4/0300010644/01/EF_100-400_F4.5-5.6L_IS_USM_Instruction_Manual_EN.pdf>.
 4. **Canon Camera Museum — Fluorite lenses.** Canon historical list identifying the 1998 EF100-400mm f/4.5-5.6L IS USM among EF lenses using fluorite: <https://global.canon/en/c-museum/special/exhibition2.html>.

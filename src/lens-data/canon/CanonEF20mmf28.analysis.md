@@ -2,13 +2,13 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP H08-110467 A (特開平8-110467)  
-**Application Number:** JP H06-271695  
-**Filed:** 11 October 1994  
-**Published:** 30 April 1996  
+**Patent:** JP H08-110467 A (特開平8-110467)\
+**Application Number:** JP H06-271695\
+**Filed:** 11 October 1994\
+**Published:** 30 April 1996\
 **Inventor:** Hiroshi Endo (遠藤 宏志)\
-**Applicant:** Canon Inc.  
-**Title:** Rear-focus retrofocus photographic lens (リヤーフォーカス式の逆望遠型撮影レンズ)  
+**Applicant:** Canon Inc.\
+**Title:** Rear-focus retrofocus photographic lens (リヤーフォーカス式の逆望遠型撮影レンズ)\
 **Example details:** Numerical Example 2 (数値実施例2), PDF pages 4–5 (printed columns 5–8); corresponding Fig. 2 on PDF page 5.
 
 Numerical Example 2 is a close patent match to the Canon EF 20mm f/2.8 USM, but it is not presented as a proven factory prescription. Canon has not published the production radii and spacings, and the patent application was filed more than two years after the lens's June 1992 market introduction. The correspondence is therefore convergent rather than documentary.
@@ -22,7 +22,7 @@ Numerical Example 2 is a close patent match to the Canon EF 20mm f/2.8 USM, but 
 7. **Finite-focus consistency.** The patent publishes only infinity $D_6=3.97\ \mathrm{mm}$ and aberration plots at an object-distance label of 2500; it supplies no finite spacing table. A 0.25 m paraxial reconstruction at the printed patent scale gives a magnification magnitude of $0.136334\times$, which rounds to Canon's published $0.14\times$.
 8. **Diaphragm metadata.** Canon's English and Japanese Camera Museum records both list six diaphragm blades. The data file records six.
 
-The patent dimensions are retained without focal-length scaling. The marketed 20 mm value is nominal; `focalLengthDesign` records the independently computed $20.498624\ \mathrm{mm}$ EFL.
+The patent dimensions are retained without focal-length scaling. The marketed 20 mm value is nominal; `catalog.focalLengthMm.design` records the printed 20.49 mm source target. The independently computed model EFL remains $20.498624\ \mathrm{mm}$.
 
 ## Optical Architecture
 
@@ -308,3 +308,9 @@ Numerical Example 1 was also re-entered as an independent transcription check. I
 4. [Canon Camera Museum (Japanese) — EF20mm F2.8 USM](https://global.canon/ja/c-museum/product/ef312.html): six blades, USM, full-time manual focus, and fixed-length/nonrotating-filter operation.
 5. [OHARA — Optical Glass Catalog Downloads](https://www.ohara-inc.co.jp/en/product/catalog/): current six-decimal catalog coordinates and the 1 July 2026 all-products Zemax data, including discontinued TIM11 and PBH53 rows.
 6. OHARA, **Optical Glass Catalog 2001**, direct entries for S-BSL7, PBH6, TIM11, PBH53, and related coordinate equivalents.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 20.49 mm, taken directly from Numerical Example2, PDF pp4–5 / printed columns5–8: selected example header f=20.49mm, FNO1:2.9. The prior computed model EFL value 20.498624 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

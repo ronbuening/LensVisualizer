@@ -12,7 +12,7 @@
 The source is the **master lens of a later Canon attachment-lens patent**, not an original 2003 patent for the EF 17–40mm f/4L USM. The patent describes a rear attachment lens (group 5) for an existing zoom and prints one combined table per example. Surfaces 1–24 of Example 1 are that master zoom, and only they are modeled. ¶0040 states that Example 2 uses the same master zoom, and its rows repeat surfaces 1–24 unchanged. No original 2001–03 Canon patent for this lens was found. Canon does not name the product, so the association below rests on construction and specification.
 
 1. Canon's Camera Museum dates the product to May 2003 and gives 12 elements in 9 groups, with one glass-molded aspherical lens and two replica aspherical lenses. The master zoom has 12 glass elements plus two thin replica resin layers, in 9 air-separated groups, with three aspherical surfaces. The maker's drawing shows the same topology.
-2. The four master groups are negative–positive–negative–positive. Their printed prescription gives bare focal lengths of 17.49/23.99/38.83 mm at Example 1's three states and 25.78 mm at Example 2's middle state, matching a marketed 17–40mm zoom.
+2. The four master groups are negative–positive–negative–positive. Tracing their printed prescription gives calculated bare focal lengths of 17.49/23.99/38.83 mm at Example 1's three states and 25.78 mm at Example 2's middle state, matching a marketed 17–40mm zoom.
 3. Fig. 6 shows the bare master at F4.1 with ω = 51°/40°/29.1°. With tan ω = Y/f, these correspond to a 21.6 mm image height at 17.49, 25.78 and 38.83 mm, so Fig. 6(B) shows Example 2's middle state, not Example 1's 23.99 mm state. The system with the attachment fitted has 17.33/23.76/38.46 mm and ω = 51.31°/42.32°/29.36°; it is a different optical system.
 4. Canon identifies one Super UD element. The master has a low-index, very-high-Abbe positive element at surfaces 19–20 (nd 1.43875, νd 95.0), consistent with that class; the actual melt and supplier are not published.
 5. ¶0034 and Fig. 1 describe inner focus by an objectward-moving subgroup Lf within the first group. Canon gives USM autofocus, 0.28 m closest focus throughout the zoom range and 0.24× maximum magnification. The modeled close-focus state reproduces the last value; it is not published focus data.
@@ -24,12 +24,12 @@ The patent prints the inventor as 滝 慶行. A separate Canon patent family giv
 
 The bare master is a four-group retrofocus zoom of power **negative–positive–negative–positive**. The stop is surface 13, immediately before the negative third group. ¶0034 describes the zoom motion from wide to tele: L1 moves on a locus convex toward the image, L2 and L4 move objectward on the same locus, and L3 moves objectward on a different locus. The printed spacings satisfy D12 + D18 = 13.12 mm, and the model keeps that sum at every zoom position.
 
-| Group | Source surfaces | Published group focal length | Role                                                                          |
-| ----- | --------------- | ---------------------------- | ----------------------------------------------------------------------------- |
+| Group | Source surfaces | Published group focal length | Role                                                                           |
+| ----- | --------------- | ---------------------------- | ------------------------------------------------------------------------------ |
 | L1    | 1–7             | −21.03 mm                    | Front negative retrofocus group: front element E1 and the inner-focus subgroup |
-| L2    | 8–12            | +28.82 mm                    | Positive relay: cemented pair and positive singlet                            |
-| L3    | 13–18           | −46.91 mm                    | Stop and negative corrective group                                            |
-| L4    | 19–24           | +47.74 mm                    | Positive rear group: Super UD singlet and replica-aspherical cemented doublet |
+| L2    | 8–12            | +28.82 mm                    | Positive relay: cemented pair and positive singlet                             |
+| L3    | 13–18           | −46.91 mm                    | Stop and negative corrective group                                             |
+| L4    | 19–24           | +47.74 mm                    | Positive rear group: Super UD singlet and replica-aspherical cemented doublet  |
 
 The patent calls group 5 (surfaces 25–30) the attachment lens. Its three lenses are left out of the model. The bare image distance is computed paraxially from surfaces 1–24; it is not obtained by subtracting the attachment or by keeping the attachment's 26.31 mm last air gap.
 
@@ -131,20 +131,20 @@ The patent publishes nd and νd for every medium and explicitly defines the d re
 
 | Entry | Source nd | Source νd | Catalog equivalent |
 | ----- | --------- | --------- | ------------------ |
-| E1    | 1.58373   | 59.4      | Unmatched                  |
-| R1    | 1.52421   | 51.4      | Unmatched                  |
-| E2    | 1.77250   | 49.6      | S-LAH66                    |
-| E3    | 1.84666   | 23.9      | S-NPH53                    |
-| E4    | 1.72825   | 28.5      | S-TIH10                    |
-| E5    | 1.51633   | 64.1      | S-BSL7                     |
-| E6    | 1.67790   | 55.3      | S-LAL12                    |
-| E7    | 1.71999   | 50.2      | S-LAL10                    |
-| E8    | 1.62230   | 53.2      | S-BSM22                    |
-| E9    | 1.80518   | 25.4      | S-TIH6                     |
-| E10   | 1.43875   | 95.0      | S-FPL53                    |
-| R2    | 1.52421   | 51.4      | Unmatched                  |
-| E11   | 1.83400   | 37.2      | S-LAH60                    |
-| E12   | 1.48749   | 70.2      | S-FSL5                     |
+| E1    | 1.58373   | 59.4      | Unmatched          |
+| R1    | 1.52421   | 51.4      | Unmatched          |
+| E2    | 1.77250   | 49.6      | S-LAH66            |
+| E3    | 1.84666   | 23.9      | S-NPH53            |
+| E4    | 1.72825   | 28.5      | S-TIH10            |
+| E5    | 1.51633   | 64.1      | S-BSL7             |
+| E6    | 1.67790   | 55.3      | S-LAL12            |
+| E7    | 1.71999   | 50.2      | S-LAL10            |
+| E8    | 1.62230   | 53.2      | S-BSM22            |
+| E9    | 1.80518   | 25.4      | S-TIH6             |
+| E10   | 1.43875   | 95.0      | S-FPL53            |
+| R2    | 1.52421   | 51.4      | Unmatched          |
+| E11   | 1.83400   | 37.2      | S-LAH60            |
+| E12   | 1.48749   | 70.2      | S-FSL5             |
 
 E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use compatible OHARA catalog curves as qualified proxies, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. E1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
 
@@ -152,16 +152,16 @@ E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Nei
 
 Fig. 1 and ¶0034 place the objectward-moving focusing subgroup Lf at surfaces 3–7 (R1, E2 and E3). For near focus D2 decreases and D7 increases by equal amounts; E1 stays fixed within group L1. There is no stabilization group.
 
-The patent prints no close-focus spacings. The focus states are solved paraxially for Canon's 0.28 m minimum focus distance, taken as object-to-image distance, with the image plane fixed; intermediate focus positions sit at 0.28/t m. Lf travels 4.07 mm at 17.49 mm, 3.95 mm at 23.99 and 25.78 mm and 4.07 mm at 38.83 mm. Close-focus magnifications are −0.108/−0.144/−0.154/−0.240 at the four printed zoom states; the tele value matches Canon's 0.24×, but none of these states is published focus data, so finite-distance MTF stays unavailable. Distance labels between them are interpolated and approximate.
+The patent prints no close-focus spacings. The focus states are solved paraxially for Canon's 0.28 m minimum focus distance, taken as object-to-image distance, with the image plane fixed; intermediate focus positions sit at 0.28/t m. Lf travels 4.07 mm at 17.49 mm, 3.95 mm at 23.99 and 25.78 mm and 4.07 mm at 38.83 mm. Close-focus magnifications are −0.108/−0.144/−0.154/−0.240 at the four source-gap states; the tele value matches Canon's 0.24×, but none of these states is published focus data, so finite-distance MTF stays unavailable. Distance labels between them are interpolated and approximate.
 
-| Spacing | 17.49 mm | 23.99 mm | 25.78 mm | 38.83 mm |
-| ------- | -------- | -------- | -------- | -------- |
-| D2 (∞)  | 13.63    | 13.63    | 13.63    | 13.63    |
-| D2 (0.28 m) | 9.556 | 9.678   | 9.683    | 9.555    |
-| D7 (∞)  | 26.47    | 15.79    | 13.87    | 5.75     |
-| D12     | 1.24     | 5.36     | 6.41     | 12.63    |
-| D18     | 11.88    | 7.76     | 6.71     | 0.49     |
-| D24 (BF, computed) | 39.848 | 45.838 | 47.539 | 60.593 |
+| Spacing            | 17.49 mm | 23.99 mm | 25.78 mm | 38.83 mm |
+| ------------------ | -------- | -------- | -------- | -------- |
+| D2 (∞)             | 13.63    | 13.63    | 13.63    | 13.63    |
+| D2 (0.28 m)        | 9.556    | 9.678    | 9.683    | 9.555    |
+| D7 (∞)             | 26.47    | 15.79    | 13.87    | 5.75     |
+| D12                | 1.24     | 5.36     | 6.41     | 12.63    |
+| D18                | 11.88    | 7.76     | 6.71     | 0.49     |
+| D24 (BF, computed) | 39.848   | 45.838   | 47.539   | 60.593   |
 
 Four zoom states are published. Example 1 prints wide, middle and tele; Example 2 prints a second middle state of the same master zoom, at a bare focal length of 25.78 mm. Its D7 of 13.87 mm is Example 2's d4 + d9 (12.22 + 15.28) less the infinity D2 of 13.63 mm, because Example 2 is focused through a dome port. Example 2 prints D18 = 6.72, which makes D12 + D18 = 13.13; the model uses 6.71 to keep the 13.12 mm sum of every other printed row and the common L2/L4 locus of ¶0034. The bare back focus at each state is computed from surfaces 1–24; it is not the attachment's 26.31 mm final air gap.
 
@@ -183,11 +183,15 @@ The nearly planar front base has a positive leading polynomial departure; the tw
 
 The patent prints effective **diameters**; every clear radius except the stop is half the printed value, including the different front and rear values on the bonded layers. No clear-aperture reduction or override is used. Fig. 1(A) resolves a broad rear annulus on E1 and a smaller rear shoulder on E2: outer radii 26.04 mm at surface 2 and 15.905 mm at surface 5 preserve clear caps 18.03 and 13.96 mm. The native 150 ppi figure gives about 0.36 mm per pixel, with roughly ±0.8 mm outer-rim uncertainty; enlarged readings add no resolution. E3's small cap difference and the bonded blocks remain constrained by that raster, the published interfaces and the two resin layers. No opaque interface lands, disconnected resin wings or unsupported uniform blocks are added. The stop radius follows F4.1 at each zoom position: 6.049/6.513/6.666/8.062 mm at the four printed states. A real axial ray at F4.1 meets the stop at 8.325 mm at tele, half the printed 16.65 mm stop diameter, which is consistent with the printed F4.1 under that real-ray convention. It does not identify a physical iris schedule; the existing paraxial rule is retained.
 
-Fig. 6 plots the bare master at ω = 51°/40°/29.1° for 17.49/25.78/38.83 mm, which corresponds to the patent's 21.64 mm image height under tan ω = Y/f. The model uses the full-frame image-circle radius of 21.65 mm. Real chief rays reach it at 52.4° (17.49 mm), 42.2° (23.99 mm), 40.0° (25.78 mm) and 28.7° (38.83 mm), clear of every rim, at all 65 zoom stations.
+Fig. 6 plots the bare master at ω = 51°/40°/29.1°; the corresponding calculated bare focal lengths are 17.49/25.78/38.83 mm, which corresponds to the patent's 21.64 mm image height under tan ω = Y/f. The model uses the full-frame image-circle radius of 21.65 mm. Real chief rays reach it at 52.4° (17.49 mm), 42.2° (23.99 mm), 40.0° (25.78 mm) and 28.7° (38.83 mm), clear of every rim, at all 65 zoom stations.
 
 The reconstructed 0.28 m states pass sampled axial pupils and retain clear finite-field chief rays. Ordinary off-axis vignetting remains; two tele/full-field marginal samples encounter an unresolved numerical intersection limit. These samples do not certify continuous clearance or the finite conjugate.
 
 At the wide end the full-frame corner of the bare master has weak edge contrast. Fig. 6 and ¶0035 show the bare master's field curvature, which the patent's attachment is designed to correct; the bare model reproduces that behavior rather than fitting radii, materials or spacings to improve it. No finite conjugate is certified, so finite-distance MTF is unavailable, and no production glass, tolerance or measured contrast is implied.
+
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The selected bare-master configuration has no separately printed endpoint focal lengths in PDF pp. 13, 14. The selected model contains only master surfaces 1–24. Its 17.491619 / 38.831255 mm endpoints are computed, while the printed 17.33 / 38.46 mm endpoints include the separate attachment. The computed bare-master endpoints are therefore omitted from source-stated catalog design metadata; neither optical geometry nor the existing computed zoom/focus controls change. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
 
 ## Sources
 

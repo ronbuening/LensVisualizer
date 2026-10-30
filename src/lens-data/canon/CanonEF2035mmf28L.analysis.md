@@ -127,18 +127,18 @@ The final cemented pair has net positive power of about +165.2 mm. Its strong ce
 
 The numerical-example introduction explicitly defines Ni as the refractive index for the spectral d-line and νi as the Abbe number (PDF p. 61, printed col. 7). All 15 literal source pairs are retained. Fifteen compatible catalog curves remain qualified spectral proxies, with the same curve selections after label qualification. The patent supplies no individual C/F/g indices, partial-dispersion values or APD evidence; no catalog-derived per-lens spectral overrides are authored. The modern class names below do not establish historical chemistry, supplier or melt.
 
-| Patent code | Representative catalog-equivalent glass | Used at | Function |
-|---|---|---|---|
-| 1.77250 / 49.6 | S-LAH66-class lanthanum flint | L1 | High-index negative front asphere carrier |
-| 1.61293 / 37.0 | F3 / E-F3 flint class | L2 | Weak positive partner in 11A |
-| 1.88300 / 40.8 | S-LAH58 / TAFD30 dense lanthanum class | L3 | Strong negative focus element |
-| 1.84666 / 23.9 | SF57 / S-TIH53 dense flint class | L4, L5, L15 | High-dispersion achromatizing partner |
-| 1.65160 / 58.5 | N-LAK7 / S-LAL7 lanthanum-crown class | L6, L7, L14 | Positive low-dispersion crown power |
-| 1.81600 / 46.6 | S-LAH59 / TAF5 lanthanum-flint class | L8 | Negative compensator power |
-| 1.69680 / 55.5 | S-LAL14 / N-LAK14 lanthanum-crown class | L9, L13 | Rear correction and low-Petzval positive power |
-| 1.80518 / 25.4 | SF6 / S-TIH6 dense flint class | L10 | Stop-adjacent color-corrector partner |
-| 1.51633 / 64.1 | S-BSL7 / BK7-class borosilicate crown | L11 | Weak rear relay positive |
-| 1.76182 / 26.5 | N-SF14 / S-TIH14 dense flint class | L12 | Rear negative color/astigmatism corrector |
+| Patent code    | Representative catalog-equivalent glass | Used at     | Function                                       |
+| -------------- | --------------------------------------- | ----------- | ---------------------------------------------- |
+| 1.77250 / 49.6 | S-LAH66-class lanthanum flint           | L1          | High-index negative front asphere carrier      |
+| 1.61293 / 37.0 | F3 / E-F3 flint class                   | L2          | Weak positive partner in 11A                   |
+| 1.88300 / 40.8 | S-LAH58 / TAFD30 dense lanthanum class  | L3          | Strong negative focus element                  |
+| 1.84666 / 23.9 | SF57 / S-TIH53 dense flint class        | L4, L5, L15 | High-dispersion achromatizing partner          |
+| 1.65160 / 58.5 | N-LAK7 / S-LAL7 lanthanum-crown class   | L6, L7, L14 | Positive low-dispersion crown power            |
+| 1.81600 / 46.6 | S-LAH59 / TAF5 lanthanum-flint class    | L8          | Negative compensator power                     |
+| 1.69680 / 55.5 | S-LAL14 / N-LAK14 lanthanum-crown class | L9, L13     | Rear correction and low-Petzval positive power |
+| 1.80518 / 25.4 | SF6 / S-TIH6 dense flint class          | L10         | Stop-adjacent color-corrector partner          |
+| 1.51633 / 64.1 | S-BSL7 / BK7-class borosilicate crown   | L11         | Weak rear relay positive                       |
+| 1.76182 / 26.5 | N-SF14 / S-TIH14 dense flint class      | L12         | Rear negative color/astigmatism corrector      |
 
 The source pairs support ordinary high-index/low-Abbe and crown-like dispersion contrasts. They establish no fluorite, ED or anomalous-partial-dispersion identity, so no such source material claim or APD annotation is added. Compatible curves describe a spectral estimate; they do not resolve the historical media.
 
@@ -149,10 +149,10 @@ The lens focuses by moving sub-group 11B, consisting of L3 and L4, toward the ob
 The patent gives aberration diagrams for infinity and 1 m object distance but does not publish a focus-spacing table. The data file therefore uses a paraxial finite-conjugate solve. For the official 0.5 m minimum focus distance measured from the image plane, the required forward displacement of sub-group 11B is about 2.70 mm at the wide end, 2.66 mm at the middle position, and 2.65 mm at the long end.
 
 | Zoom position | D4 infinity | D4 at 0.5 m | D8 infinity | D8 at 0.5 m | BF infinity / close |
-|---:|---:|---:|---:|---:|---:|
-| 20.6 mm | 3.600 | 0.905 | 17.415 | 20.110 | 39.280 |
-| 27.2 mm | 3.600 | 0.941 | 7.016 | 9.675 | 44.432 |
-| 34.0 mm | 3.600 | 0.947 | 1.012 | 3.665 | 49.585 |
+| ------------: | ----------: | ----------: | ----------: | ----------: | ------------------: |
+|       20.6 mm |       3.600 |       0.905 |      17.415 |      20.110 |              39.280 |
+|       27.2 mm |       3.600 |       0.941 |       7.016 |       9.675 |              44.432 |
+|       34.0 mm |       3.600 |       0.947 |       1.012 |       3.665 |              49.585 |
 
 If the finite object distance is instead referenced to the front vertex, the same solve gives about 1.02 mm of travel for 1 m and about 2.01 mm for 0.5 m. The data file uses the image-plane-referenced interpretation because Canon's closest focusing distance is a camera specification, not a front-vertex working distance.
 
@@ -166,9 +166,9 @@ $$
 
 This corresponds to the standard conic convention with K = 0 and coefficients A4 = B, A6 = C, A8 = D, and A10 = E.
 
-| Surface | K | A4 | A6 | A8 | A10 |
-|---|---:|---:|---:|---:|---:|
-| 1A | 0 | +5.8920e-6 | -4.9470e-10 | +3.7880e-13 | +3.3853e-15 |
+| Surface |   K |         A4 |          A6 |          A8 |         A10 |
+| ------- | --: | ---------: | ----------: | ----------: | ----------: |
+| 1A      |   0 | +5.8920e-6 | -4.9470e-10 | +3.7880e-13 | +3.3853e-15 |
 
 Because the asphere is at the front of a strongly negative retrofocus group and far from the stop, its first-order use is distortion and field-angle mapping control, not primarily axial spherical correction.
 
@@ -176,15 +176,15 @@ Because the asphere is at the front of a strongly negative retrofocus group and 
 
 The patent gives seven design conditions. Conditions 1-3 govern the first-group split and focus sub-group; conditions 4-7 govern the four-group zoom power distribution.
 
-| Condition | Patent bound | Example 1 value | Result |
-|---|---:|---:|---|
-| (1) abs(fA/fB) | 0.3-11 | 0.790 | Satisfied |
-| (2) fB/F1 | 1-4 | 2.568 | Satisfied |
-| (3) r/r' | 0.7-1.2 | 0.915 | Satisfied |
-| (4) abs(f1/Ft) | 0.6-1.2 | 0.824 | Satisfied |
-| (5) f2/Ft | 0.6-1.1 | 0.801 | Satisfied |
-| (6) abs(f3/Ft) | 0.8-1.4 | 1.059 | Satisfied |
-| (7) f4/Ft | 0.95-1.6 | 1.160 | Satisfied |
+| Condition      | Patent bound | Example 1 value | Result    |
+| -------------- | -----------: | --------------: | --------- |
+| (1) abs(fA/fB) |       0.3-11 |           0.790 | Satisfied |
+| (2) fB/F1      |          1-4 |           2.568 | Satisfied |
+| (3) r/r'       |      0.7-1.2 |           0.915 | Satisfied |
+| (4) abs(f1/Ft) |      0.6-1.2 |           0.824 | Satisfied |
+| (5) f2/Ft      |      0.6-1.1 |           0.801 | Satisfied |
+| (6) abs(f3/Ft) |      0.8-1.4 |           1.059 | Satisfied |
+| (7) f4/Ft      |     0.95-1.6 |           1.160 | Satisfied |
 
 For condition (3), the text defines r as the rear surface of the negative component of sub-group 11B and r' as the front surface of the positive component. In Example 1 those are R6 = +53.109 and R7 = +58.070, giving 0.915. The patent's factor table prints R5/R6 = 0.998; that is the biconcave element's own radius ratio, not the air-gap ratio described by condition (3). Both values fall within the stated bound, but the data file follows the condition as written.
 
@@ -192,18 +192,18 @@ For condition (3), the text defines r as the rear surface of the negative compon
 
 The prescription was re-entered from Numerical Example 1 and checked by an independent paraxial y-nu ray trace.
 
-| Quantity | Computed value | Patent / source comparison |
-|---|---:|---|
-| EFL, wide | 20.6006 mm | 20.6 mm |
-| EFL, middle | 27.2275 mm | 27.2 mm |
-| EFL, tele | 33.9741 mm | 34.0 mm in variable-spacing table; patent heading prints 34.2 |
-| BFD, wide | 39.2801 mm | derived |
-| BFD, middle | 44.4325 mm | derived |
-| BFD, tele | 49.5852 mm | derived |
-| F1 | -27.998 mm | -28.0 mm |
-| fA | -56.818 mm | -56.82 mm |
-| fB | -71.911 mm | -71.92 mm |
-| Petzval sum | +0.005823 mm^-1 | surface-by-surface sum Σφ/(n n') |
+| Quantity    |  Computed value | Patent / source comparison                                    |
+| ----------- | --------------: | ------------------------------------------------------------- |
+| EFL, wide   |      20.6006 mm | 20.6 mm                                                       |
+| EFL, middle |      27.2275 mm | 27.2 mm                                                       |
+| EFL, tele   |      33.9741 mm | 34.0 mm in variable-spacing table; patent heading prints 34.2 |
+| BFD, wide   |      39.2801 mm | derived                                                       |
+| BFD, middle |      44.4325 mm | derived                                                       |
+| BFD, tele   |      49.5852 mm | derived                                                       |
+| F1          |      -27.998 mm | -28.0 mm                                                      |
+| fA          |      -56.818 mm | -56.82 mm                                                     |
+| fB          |      -71.911 mm | -71.92 mm                                                     |
+| Petzval sum | +0.005823 mm^-1 | surface-by-surface sum Σφ/(n n')                              |
 
 The patent lists no effective diameters. The inferred clear caps now follow the optical outlines in native Fig. 1, rather than the older default ray-envelope estimates. The original 2320 × 3408 raster is 300 ppi; long optical-vertex baselines give about 13.9–14.0 pixels/mm, with practical rim uncertainty about ±0.4 mm. Twenty-one caps are revised, and L1's rear annulus is drawn to 23 mm with `rimExtensionSd`, preserving its 17 mm clear cap. This is a flat shoulder, not a spherical extension beyond the optical radius domain.
 
@@ -213,8 +213,12 @@ At the three published zoom states the aperture and full-frame chief checks clea
 
 A 21 × 21 zoom/focus diagnostic traces the reconstructed finite conjugates and the infinity field, with 97 sampled pupil rays at center, half and full nominal field. Every axial sample and solved chief clears, with ordinary off-axis vignetting. Eight full-field infinity inversion failures require the shared analysis-field bound before chief aiming. Eighty-four marginal samples still return `noBracket` before the front asphere; the same probe on the previous caps returns 617. These unresolved marginal-entry limits prevent a continuous-pupil clearance claim. The source's 1 m aberration plots do not certify the reconstructed 0.5 m focus spacings or production finite-field performance.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 20.6 / 34 mm endpoints from PDF p. 61 (Numerical Example 1 variable-spacing table, printed column 8). The same example heading prints 20.6–34.2 mm. That source contradiction remains unresolved; the catalog endpoints identify the explicitly labeled spacing-table states, not the computed 20.6006 / 33.9741 mm EFLs. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
-- US 5,000,550, *Wide-Angle Type Zoom Lens Having Inner-Focus Lens*, Canon Kabushiki Kaisha, granted March 19, 1991.
+- US 5,000,550, _Wide-Angle Type Zoom Lens Having Inner-Focus Lens_, Canon Kabushiki Kaisha, granted March 19, 1991.
 - Canon Camera Museum, "EF20-35mm f/2.8L," official product specification page: https://global.canon/en/c-museum/product/ef286.html
 - Public optical-glass catalogs from OHARA, Hoya, and Schott for representative nd/νd glass-code matching.

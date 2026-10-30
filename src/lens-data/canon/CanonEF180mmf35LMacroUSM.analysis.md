@@ -8,9 +8,8 @@
 **Published:** 1997-08-15
 **Inventor:** Hideki Ogawa
 **Applicant:** Canon Inc.
-**Title:** *Macro Lens* (マクロレンズ)
+**Title:** _Macro Lens_ (マクロレンズ)
 **Example details:** Numerical Example 1, ¶0057 on PDF page 6 (printed columns 9–10); Fig. 1 on PDF page 17 (columns 31–32)
-
 
 The prescription is Numerical Example 1 of JP 1997-211319 A. The job card fixes that example as the production correlation for the CANON EF 180mm f/3.5 L Macro USM; the patent itself does not identify the commercial lens by model name. The correlation rests on several convergent features rather than on a manufacturer statement that Example 1 became the production prescription.
 
@@ -33,14 +32,14 @@ Numerical Example 1 is all-spherical. It contains no aspheric surfaces, no diffr
 
 Independent first-order calculation from the final TypeScript arrays gives the following functional-group focal lengths:
 
-| Functional group | Computed EFL (mm) | Sign |
-|---|---:|---|
-| L1a | 85.623329 | Positive |
-| L1b | 514.654104 | Positive |
-| L1a + L1b | 75.268567 | Positive |
-| L2 | -50.108430 | Negative |
-| L3 | 205.195680 | Positive |
-| L4 | 184.157663 | Positive |
+| Functional group | Computed EFL (mm) | Sign     |
+| ---------------- | ----------------: | -------- |
+| L1a              |         85.623329 | Positive |
+| L1b              |        514.654104 | Positive |
+| L1a + L1b        |         75.268567 | Positive |
+| L2               |        -50.108430 | Negative |
+| L3               |        205.195680 | Positive |
+| L4               |        184.157663 | Positive |
 
 The patent permits L4 to be positive or negative in the general invention (¶0016); Example 1 is positive by independent trace. The dominant focusing action is assigned to the compact negative L2 group, with L3 moving oppositely as a floating correction group. L1a, L1b, L4, the stop plane, and the image plane remain fixed in this embodiment.
 
@@ -146,17 +145,17 @@ Element 14 is the final positive lens and completes L4. The pair of Elements 13 
 
 Example 1 uses nine distinct n/ν coordinates. The patent does not name glass suppliers, and several public catalogs contain identical or near-identical six-digit coordinates. The data therefore uses explicit Unmatched labels with derived coordinate-class hints, while the source reference, material identity and detailed partial dispersion remain unresolved.
 
-| Derived coordinate-class hint | Source n | Source ν | Elements | Source status |
-|---|---:|---:|---|---|
-| 487702 — crown class (supplier unresolved) | 1.48749 | 70.2 | 1, 6, 8, 14 | Unmatched; source reference unspecified |
-| 497816 — low-dispersion / UD crown class (supplier unresolved) | 1.49700 | 81.6 | 2, 4, 11 | Unmatched; UD classification inferred from production positions |
-| 801350 — high-index class (supplier unresolved) | 1.80100 | 35.0 | 3 | Unmatched; source reference unspecified |
-| 805254 — dense-flint class (supplier unresolved) | 1.80518 | 25.4 | 5 | Unmatched; source reference unspecified |
-| 883408 — high-index lanthanum class (supplier unresolved) | 1.88300 | 40.8 | 7 | Unmatched; source reference unspecified |
-| 847239 — dense-flint class (supplier unresolved) | 1.84666 | 23.9 | 9 | Unmatched; source reference unspecified |
-| 762401 — lanthanum class (supplier unresolved) | 1.76200 | 40.1 | 10 | Unmatched; source reference unspecified |
-| 593353 — flint class (supplier unresolved) | 1.59270 | 35.3 | 12 | Unmatched; source reference unspecified |
-| 834372 — high-index lanthanum class (supplier unresolved) | 1.83400 | 37.2 | 13 | Unmatched; source reference unspecified |
+| Derived coordinate-class hint                                  | Source n | Source ν | Elements    | Source status                                                   |
+| -------------------------------------------------------------- | -------: | -------: | ----------- | --------------------------------------------------------------- |
+| 487702 — crown class (supplier unresolved)                     |  1.48749 |     70.2 | 1, 6, 8, 14 | Unmatched; source reference unspecified                         |
+| 497816 — low-dispersion / UD crown class (supplier unresolved) |  1.49700 |     81.6 | 2, 4, 11    | Unmatched; UD classification inferred from production positions |
+| 801350 — high-index class (supplier unresolved)                |  1.80100 |     35.0 | 3           | Unmatched; source reference unspecified                         |
+| 805254 — dense-flint class (supplier unresolved)               |  1.80518 |     25.4 | 5           | Unmatched; source reference unspecified                         |
+| 883408 — high-index lanthanum class (supplier unresolved)      |  1.88300 |     40.8 | 7           | Unmatched; source reference unspecified                         |
+| 847239 — dense-flint class (supplier unresolved)               |  1.84666 |     23.9 | 9           | Unmatched; source reference unspecified                         |
+| 762401 — lanthanum class (supplier unresolved)                 |  1.76200 |     40.1 | 10          | Unmatched; source reference unspecified                         |
+| 593353 — flint class (supplier unresolved)                     |  1.59270 |     35.3 | 12          | Unmatched; source reference unspecified                         |
+| 834372 — high-index lanthanum class (supplier unresolved)      |  1.83400 |     37.2 | 13          | Unmatched; source reference unspecified                         |
 
 Paragraph 0054 labels the numerical quantities only as refractive index and Abbe number; it does not state a d/e reference. The d/g aberration legend identifies plotted rays and does not explicitly define those table columns. All 14 modeled media therefore carry an Unmatched label and an index-reference note: the default d-line trace is an approximation. The source numeric pairs are retained without an e-line conversion. Six-digit labels remain derived coordinate-class hints, not a source reference or supplier identification. No media are counted as resolved catalog-curve coverage while that source reference remains unspecified.
 
@@ -166,11 +165,11 @@ No element in the data file carries `nC`, `nF`, `ng`, or `dPgF`. Consequently, t
 
 Example 1 publishes four focus states: infinity, 0.1×, 0.5×, and 1.0×. The patent's moving gaps are:
 
-| Gap | ∞ | 0.1× | 0.5× | 1.0× |
-|---|---:|---:|---:|---:|
-| d12 | 2.20 | 5.19 | 17.03 | 31.58 |
-| d17 | 32.31 | 29.32 | 17.48 | 2.93 |
-| d18 | 17.54 | 15.39 | 7.93 | 1.10 |
+| Gap |     ∞ |  0.1× |  0.5× |  1.0× |
+| --- | ----: | ----: | ----: | ----: |
+| d12 |  2.20 |  5.19 | 17.03 | 31.58 |
+| d17 | 32.31 | 29.32 | 17.48 |  2.93 |
+| d18 | 17.54 | 15.39 |  7.93 |  1.10 |
 | d23 | 28.15 | 30.30 | 37.76 | 44.59 |
 | d27 | 67.54 | 67.54 | 67.54 | 67.54 |
 
@@ -194,14 +193,14 @@ Those statements are source-level design intent, not a license to infer detailed
 
 The patent gives six principal numerical conditions relevant to Example 1. Recalculation from the final TypeScript prescription gives:
 
-| Condition | Computed value | Patent requirement | Result |
-|---|---:|---|---|
-| (1) `|φ| f1` | 1.949332414 | 1.4 < value < 2.6; preferred 1.8 < value < 2.1 | Pass; preferred range also passed |
-| (2) `f1b / f1` | 6.837570116 | 2 < value < 15 | Pass |
-| (3) `f1a / f1` | 1.137570869 | 1.05 < value < 1.74; preferred 1.10 < value < 1.45 | Pass; preferred range also passed |
-| (4) L2n glass | N2n = 1.48749, ν2n = 70.2 | N2n < 1.55 and ν2n > 55 | Pass |
-| (5) `|f2| / f` | 0.278365593 | 0.15 < value < 0.45 | Pass |
-| (6) L3p glass | N3p = 1.49700, ν3p = 81.6 | N3p < 1.55 and ν3p > 55 | Pass |
+| Condition      |            Computed value | Patent requirement                                 | Result                            |
+| -------------- | ------------------------: | -------------------------------------------------- | --------------------------------- | ---------------------------------------------- | --------------------------------- |
+| (1) `          |                         φ | f1`                                                | 1.949332414                       | 1.4 < value < 2.6; preferred 1.8 < value < 2.1 | Pass; preferred range also passed |
+| (2) `f1b / f1` |               6.837570116 | 2 < value < 15                                     | Pass                              |
+| (3) `f1a / f1` |               1.137570869 | 1.05 < value < 1.74; preferred 1.10 < value < 1.45 | Pass; preferred range also passed |
+| (4) L2n glass  | N2n = 1.48749, ν2n = 70.2 | N2n < 1.55 and ν2n > 55                            | Pass                              |
+| (5) `          |                        f2 | / f`                                               | 0.278365593                       | 0.15 < value < 0.45                            | Pass                              |
+| (6) L3p glass  | N3p = 1.49700, ν3p = 81.6 | N3p < 1.55 and ν3p > 55                            | Pass                              |
 
 The computed group focal lengths differ slightly from the rounded values in patent Table 1 because the prescription itself is printed to finite radius and index precision. The largest of the checked group-level differences is L1b: 514.654104 mm computed from the printed prescription versus 514.975 mm in the patent's Table 1. This is retained as source precision, not “corrected” by altering the prescription.
 
@@ -217,7 +216,13 @@ The inferred clear-aperture model is geometrically conservative rather than a cl
 
 ## Sources / References
 
-- JP 1997-211319 A (特開平9-211319), *Macro Lens*, Hideki Ogawa / Canon Inc.; especially ¶0016–¶0017, ¶0022–¶0027, ¶0035–¶0055, Numerical Example 1 on p. 6, Table 1, and Figs. 1, 12–15, 56.
+- JP 1997-211319 A (特開平9-211319), _Macro Lens_, Hideki Ogawa / Canon Inc.; especially ¶0016–¶0017, ¶0022–¶0027, ¶0035–¶0055, Numerical Example 1 on p. 6, Table 1, and Figs. 1, 12–15, 56.
 - Canon Camera Museum, “EF180mm f/3.5L Macro USM”: https://global.canon/en/c-museum/product/ef334.html
 - Canon Camera Museum (Japanese), “EF180mm F3.5L マクロ USM”: https://global.canon/ja/c-museum/product/ef334.html
-- Canon, *EF180mm f/3.5L MACRO USM 使用説明書*: https://cweb.canon.jp/manual/ef/macro/ef180f35lmacrousm-ja.pdf
+- Canon, _EF180mm f/3.5L MACRO USM 使用説明書_: https://cweb.canon.jp/manual/ef/macro/ef180f35lmacrousm-ja.pdf
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 180.0 mm, taken directly from Numerical Example1, paragraph0057, PDF p6 / printed columns9–10: source f=180mm, fno3.6. The prior computed model EFL value 180.009424 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

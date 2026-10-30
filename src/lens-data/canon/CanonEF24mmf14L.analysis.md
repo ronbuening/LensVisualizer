@@ -2,15 +2,15 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1999-030743 A (特開平11-30743)  
-**Application Number:** JP H09-202367  
-**Filed:** 11 July 1997  
-**Published:** 2 February 1999  
-**Inventor:** Makoto Misaka (三坂 誠)  
-**Applicant:** Canon Inc.  
-**Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)  
+**Patent:** JP 1999-030743 A (特開平11-30743)\
+**Application Number:** JP H09-202367\
+**Filed:** 11 July 1997\
+**Published:** 2 February 1999\
+**Inventor:** Makoto Misaka (三坂 誠)\
+**Applicant:** Canon Inc.\
+**Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)\
 **Example details:** Numerical Example 6, Table 6 (PDF page 10; caption on page 9), Figure 7 (PDF page 13)\
-**Worked examples:** 7  
+**Worked examples:** 7\
 **Claims:** 3
 
 Numerical Example 6 is the strongest prescription match to the first-generation Canon EF 24mm f/1.4 L USM. The
@@ -197,18 +197,18 @@ values are genuine selected-example measurements and are retained. Glass labels 
 **spectral proxies or classes**, not assertions about Canon's historical supplier, production melts or chemistry. Identifications were checked against official
 OHARA, HOYA, SCHOTT, and HIKARI catalog data without seeding the search with a desired product name.
 
-| Element | Patent or corrected optical position | Preferred catalog class | Qualification                                         |
-| ------- | -----------------------------------: | ----------------------- | ----------------------------------------------------- |
-| L1, L2  |                              697/555 | S-LAL14 class           | Exact six-digit position; vendor not disclosed        |
-| L3      |                              713/538 | N-LAK8 class            | Full spectral match                                   |
-| L4      |                              847/238 | S-TIH53 / N-SF57 class  | Dense flint; multiple vendor equivalents              |
-| L5      |                              497/816 | FCD1 / S-FPL51 class    | FCD1 exactly matches $\nu_d$; vendor remains inferred |
-| L6      |                              804/466 | S-LAH65V class          | Dense lanthanum flint                                 |
-| L7 | Printed 1.728250 / 28.64 | S-TIH10 approximate proxy | Published C/F/g imply ν = 28.4606065; source inconsistency unresolved |
-| L8      |                              805/254 | S-TIH6 / SF6 class      | Dense flint                                           |
-| L9      |                              835/427 | S-LAH55V class          | Dense lanthanum flint                                 |
-| L10     |                    corrected 603/607 | S-BSM14 / J-SK14 class  | Printed $n_d=1.613112$ is impossible                  |
-| L11     |                              773/496 | S-LAH66 class           | Full spectral match; not the later S-LAH66N variant   |
+| Element | Patent or corrected optical position | Preferred catalog class   | Qualification                                                         |
+| ------- | -----------------------------------: | ------------------------- | --------------------------------------------------------------------- |
+| L1, L2  |                              697/555 | S-LAL14 class             | Exact six-digit position; vendor not disclosed                        |
+| L3      |                              713/538 | N-LAK8 class              | Full spectral match                                                   |
+| L4      |                              847/238 | S-TIH53 / N-SF57 class    | Dense flint; multiple vendor equivalents                              |
+| L5      |                              497/816 | FCD1 / S-FPL51 class      | FCD1 exactly matches $\nu_d$; vendor remains inferred                 |
+| L6      |                              804/466 | S-LAH65V class            | Dense lanthanum flint                                                 |
+| L7      |             Printed 1.728250 / 28.64 | S-TIH10 approximate proxy | Published C/F/g imply ν = 28.4606065; source inconsistency unresolved |
+| L8      |                              805/254 | S-TIH6 / SF6 class        | Dense flint                                                           |
+| L9      |                              835/427 | S-LAH55V class            | Dense lanthanum flint                                                 |
+| L10     |                    corrected 603/607 | S-BSM14 / J-SK14 class    | Printed $n_d=1.613112$ is impossible                                  |
+| L11     |                              773/496 | S-LAH66 class             | Full spectral match; not the later S-LAH66N variant                   |
 
 The strongest chromatic design choice is L5. From its patent line indices,
 
@@ -396,3 +396,9 @@ and schematic uncertainty. A shoulder identifies an outer blank outline, not add
    <https://media.schott.com/api/public/content/efc13fa680cf4cca84b8ed29b87d8744?v=fb43de21>
 7. HIKARI, J-SK14 optical-glass data: independent verification of the corrected 603/607 L10 position.
    <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/SK/J_SK14.pdf>
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 24.6 mm, taken directly from Numerical Example6, Table6, PDF p10 (captionp9): header f=24.6mm, F/1.45. The prior computed model EFL value 24.5994023367 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

@@ -286,3 +286,9 @@ The full union of65 uniform zoom positions and all 21 authored knots has81 zoom 
 The independent65-position infinity aperture/chief/first-order census has no aperture difference above 3%; maximum Gaussian defocus against the retained 38.63 mm image gap is+0.121533 mm at z=0.96875. These interpolated positions remain approximations to the printed high-order cams. No source radius, asphere, phase term, stop schedule, focus cam or guard is fitted to remove residuals. Centered IS only, bulk reference unresolved, and patent17/14 versus production18/12 correlation remain separate limitations. No cuts are present.
 
 The directly printed endpoint half-fields 16.7°/4.25° have clear chiefs at 21.652893/22.322699 mm, 100.09%/103.19% of the format semi-diagonal; these source-angle heights remain distinct from the runtime format-corner solve.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 72.16–290.26 mm, taken directly from Numerical Example1, PDF p15 / printed15: source station row72.16/139.54/290.26mm. The p14 heading rounds the overall range72.2–290.3; the more precise station row is retained. The prior computed model EFL range 72.099975–290.06786 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

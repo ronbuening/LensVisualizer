@@ -25,11 +25,11 @@ The production facts above come from Canon Camera Museum. Exact optical quantiti
 
 Numerical Example 1 is an all-spherical, modified Gauss-type macro design. The patent itself identifies the general Gauss system as the starting point and then redistributes power within its front positive and negative components to reduce focus-dependent spherical-aberration variation. The final prescription is arranged as three functional groups around a single diaphragm:
 
-| Functional group | Data elements | Patent power sign | Isolated subsystem EFL | Focus behavior |
-|---|---|---:|---:|---|
-| I | L1–L4 | Positive | +151.217 mm | Moves toward object |
-| II | L5–L7 | Positive | +69.783 mm | Moves with Group I |
-| III | L8–L10 | Negative | −179.617 mm | Fixed |
+| Functional group | Data elements | Patent power sign | Isolated subsystem EFL | Focus behavior      |
+| ---------------- | ------------- | ----------------: | ---------------------: | ------------------- |
+| I                | L1–L4         |          Positive |            +151.217 mm | Moves toward object |
+| II               | L5–L7         |          Positive |             +69.783 mm | Moves with Group I  |
+| III              | L8–L10        |          Negative |            −179.617 mm | Fixed               |
 
 The subsystem focal lengths are computed from each group's surfaces and internal spacings with air on both sides. They describe group power, not additive contributions to the complete lens. Groups I and II together form a +68.010 mm moving front assembly; the complete system, with the negative rear group at its published infinity separation, has a 100.0352 mm effective focal length.
 
@@ -119,15 +119,15 @@ The numerical definition on PDF p. 4 names the index and Abbe columns Nᵢ and �
 
 Every medium therefore remains `Unmatched` with an `indexReferenceNote`. The stored numbers are preserved, the engine's d-line use is explicitly approximate, and all catalog curves are disabled. These are unresolved source media, not identified historical suppliers or melts. The single cemented pair is a direct glass/glass interface; the numerical source does not supply an additional cement, resin layer, filter or rear plate.
 
-| Elements | Source N | Source ν | Disposition |
-|---|---:|---:|---|
-| L1 | 1.60311 | 60.7 | Unmatched; source line unspecified |
-| L2, L3, L7 | 1.78590 | 44.2 | Unmatched; source line unspecified |
-| L4, L8 | 1.80518 | 25.4 | Unmatched; source line unspecified |
-| L5 | 1.69895 | 30.1 | Unmatched; source line unspecified |
-| L6 | 1.80610 | 40.9 | Unmatched; source line unspecified |
-| L9 | 1.76200 | 40.1 | Unmatched; source line unspecified |
-| L10 | 1.51633 | 64.1 | Unmatched; source line unspecified |
+| Elements   | Source N | Source ν | Disposition                        |
+| ---------- | -------: | -------: | ---------------------------------- |
+| L1         |  1.60311 |     60.7 | Unmatched; source line unspecified |
+| L2, L3, L7 |  1.78590 |     44.2 | Unmatched; source line unspecified |
+| L4, L8     |  1.80518 |     25.4 | Unmatched; source line unspecified |
+| L5         |  1.69895 |     30.1 | Unmatched; source line unspecified |
+| L6         |  1.80610 |     40.9 | Unmatched; source line unspecified |
+| L9         |  1.76200 |     40.1 | Unmatched; source line unspecified |
+| L10        |  1.51633 |     64.1 | Unmatched; source line unspecified |
 
 Approximate Abbe-based chromatic output does not establish source-accurate secondary spectrum, anomalous partial dispersion, APO performance or production chemistry. The former modern-coordinate comparisons are retained only as historical audit context.
 
@@ -135,11 +135,11 @@ Approximate Abbe-based chromatic output does not establish source-accurate secon
 
 The focus status is **PUBLISHED**. No internal reconstruction is used. The patent states that Group III is fixed while Group I, the diaphragm, and Group II translate integrally toward the object. In a coordinate system normalized to surface 1, that physical motion appears as an increase in the single air interval D14 between Groups II and III; all other prescription spacings remain constant.
 
-| Published state | D14 | Front-assembly travel from infinity | Recomputed magnification | Subject-to-image distance |
-|---|---:|---:|---:|---:|
-| Infinity | 2.50 mm | 0.00 mm | 0 | ∞ |
-| 0.5× | 25.62 mm | 23.12 mm | −0.500027 | 0.383781 m |
-| 1.0× | 48.74 mm | 46.24 mm | −1.000055 | 0.306871 m |
+| Published state |      D14 | Front-assembly travel from infinity | Recomputed magnification | Subject-to-image distance |
+| --------------- | -------: | ----------------------------------: | -----------------------: | ------------------------: |
+| Infinity        |  2.50 mm |                             0.00 mm |                        0 |                         ∞ |
+| 0.5×            | 25.62 mm |                            23.12 mm |                −0.500027 |                0.383781 m |
+| 1.0×            | 48.74 mm |                            46.24 mm |                −1.000055 |                0.306871 m |
 
 The 0.5× spacing is exactly halfway between the infinity and 1.0× D14 values in mechanical travel, but its inverse-distance slider coordinate is `focusT = 0.7995997649601272`. It is therefore stored as an explicit focus keyframe so both its spacing and displayed conjugate are exact. The computed 1.0× subject-to-image distance of 0.306871 m is consistent with Canon's rounded 0.31 m marketed closest-focus specification.
 
@@ -159,15 +159,15 @@ Example 1 contains no aspherical surfaces. Its aberration strategy is therefore 
 
 The patent defines seven inequalities. Conditions (1) and (2) control the combined power of the moving front assembly and the negative power of the stationary rear group. Conditions (3)–(7) constrain selected **surface powers** in Group I; they are not element focal powers. Recalculation from the final data arrays reproduces the patent's Table-1 Example-1 values at the published precision.
 
-| Expression | Computed | Patent Table 1 | Required interval | Result |
-|---|---:|---:|---|---|
-| `F12/F` | 0.680101 | 0.68 | `0.6 < x < 0.75` | Pass |
-| `abs(F3/F)` | 1.796171 | 1.80 | `1 < x < 2.1` | Pass |
-| `φ1,1·F` | 0.728130 | 0.73 | `0.2 < x < 0.8` | Pass |
-| `φ1,3·F` | 1.258850 | 1.26 | `0.8 < x < 2.2` | Pass |
-| `φ1,5·F` | 2.032325 | 2.03 | `1.6 < x < 2.9` | Pass |
-| `abs(φ1,4)·F` | 0.491648 | 0.49 | `0.2 < x < 1` | Pass |
-| `abs(φ1,6)·F` | 1.330455 | 1.33 | `1 < x < 2.1` | Pass |
+| Expression    | Computed | Patent Table 1 | Required interval | Result |
+| ------------- | -------: | -------------: | ----------------- | ------ |
+| `F12/F`       | 0.680101 |           0.68 | `0.6 < x < 0.75`  | Pass   |
+| `abs(F3/F)`   | 1.796171 |           1.80 | `1 < x < 2.1`     | Pass   |
+| `φ1,1·F`      | 0.728130 |           0.73 | `0.2 < x < 0.8`   | Pass   |
+| `φ1,3·F`      | 1.258850 |           1.26 | `0.8 < x < 2.2`   | Pass   |
+| `φ1,5·F`      | 2.032325 |           2.03 | `1.6 < x < 2.9`   | Pass   |
+| `abs(φ1,4)·F` | 0.491648 |           0.49 | `0.2 < x < 1`     | Pass   |
+| `abs(φ1,6)·F` | 1.330455 |           1.33 | `1 < x < 2.1`     | Pass   |
 
 All seven expressions satisfy their stated intervals and round to the values printed in patent Table 1 (JP 1991-141313 A, PDF p. 7 / patent p. 79). This agreement also provides a sensitive check on radius signs and Example-1 table selection.
 
@@ -183,9 +183,13 @@ No patent numerical correction is required, and no uniform scaling is applied (`
 
 The revised inferred semi-diameters satisfy edge-thickness, rim-slope and shared-band geometry at the published focus keyframes and sampled intermediate controls. The infinity field chief reaches the format corner; finite-object chiefs reach the published 21.6 mm image field at 0.5× and 1×, with ordinary off-axis pupil clipping retained.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 100 mm from PDF p. 5 (Numerical Example 1 heading). The computed 100.035239 mm EFL remains an approximate d-reference tracing result. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources and References
 
-- Japan Patent Office, **JP 1991-141313 A**, *撮影レンズ* (Photographic lens), Hideki Ogawa / Canon Inc., Numerical Example 1. Filed 1989-10-27; published 1991-06-17. Primary source for prescription, group arrangement, focus motion, conditions, and aberration rationale.
+- Japan Patent Office, **JP 1991-141313 A**, _撮影レンズ_ (Photographic lens), Hideki Ogawa / Canon Inc., Numerical Example 1. Filed 1989-10-27; published 1991-06-17. Primary source for prescription, group arrangement, focus motion, conditions, and aberration rationale.
 - Canon Camera Museum, **EF100mm f/2.8 Macro**: https://global.canon/en/c-museum/product/ef289.html — official source for April 1990 introduction, 10-element/9-group construction, 0.31 m closest focusing distance, 1.0× maximum magnification, 8 diaphragm blades, and f/32 minimum aperture.
 - OHARA, optical-glass product/catalog information: https://www.ohara-inc.co.jp/en/product/01000/ — current-coordinate comparisons only; not evidence of historical Canon glass identity.
 - HIKARI optical-glass catalog: https://www.hikari-g.co.jp/optical_glass/catalog/

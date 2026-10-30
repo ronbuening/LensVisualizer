@@ -173,16 +173,16 @@ No data value moved; these edits make the header and the note describe the trace
 
 This scoped reopening addresses missing explicit source-reference qualifications, computed-versus-printed catalog metadata, and reproducibly stale stop/clearance wording after the shared aperture-rule change. The unchanged R/d, retained cap measurements and source-gap investigation and rejected geometric alternatives retain their actual **2026-10-08** audit date. They are reused, rather than attributed to a new numerical correction. The original was inspected again for the present scope: JP 2000-284174 A cover p.1; explicit d-line definition ¶0056 p.5; Numerical Example 1 and all 30 rows/16 media plus zoom gaps p.6; Fig.1 p.8 and matching Figs.2–4 pp.8–9.
 
-Native images are 1656×2339 at 200 ppi. The optical section is approximately 3.8 native pixels/mm; stroke width, scan tilt and schematic scaling give practical ±0.8 mm height uncertainty. A 600 dpi rendering contains no additional native detail. Leaders, group brackets, focus arrows, SP and IP marks are excluded. Every element and concave end was compared with the actual SVG. The native first meniscus has a shared approximately27mm blank: adopting27mm on R1/R2 replaces26/25.6mm. The resulting E1:E2:E4 outer-height ratio1:0.956:0.896 agrees with the native1:0.96:0.90 within reading uncertainty. This is an inferred source-outline correction, not a new opaque block. No new resolved shoulder, inferred cut, bonded-interface land or resin wing is justified. The existing near-contact notches remain a source-outline limitation; they are not hidden renderer trimming.
+Native images are 1656×2339 at 200 ppi. The optical section is approximately 3.8 native pixels/mm; stroke width, scan tilt and schematic scaling give practical ±0.8 mm height uncertainty. A 600 dpi rendering contains no additional native detail. Leaders, group brackets, focus arrows, SP and IP marks are excluded. Every element and concave end was compared with the actual SVG. The native first meniscus has a shared approximately 27 mm blank: adopting 27 mm on R1/R2 replaces 26/25.6 mm. The resulting E1:E2:E4 outer-height ratio 1:0.956:0.896 agrees with the native 1:0.96:0.90 within reading uncertainty. This is an inferred source-outline correction, not a new opaque block. No new resolved shoulder, inferred cut, bonded-interface land or resin wing is justified. The existing near-contact notches remain a source-outline limitation; they are not hidden renderer trimming.
 
-All 16 source index/Abbe pairs match the model. Paragraph 0056 explicitly assigns the refractive index to the d line, independently of the d/g aberration legend. The source gives no individual C/F/g indices or relative partial-dispersion measurements. There is no catalog-derived per-lens spectral override to remove. All 16 compatible curves remain qualified proxies, including CaF2, S-FPL51 and the modern S-TIH53WN curve; source supplier, melt, historical chemistry and manufacturing process are unestablished. Three production-correlated APD tags remain inferred, without a patent APD designation. No extra cement, hybrid, filter or rear plate is prescribed. Canon's current museum page confirms the separate retail 16/13 count, September 1999 release, 1.2 m close limit and one fluorite/two UD claim; it does not prove a production-prescription or element-allocation match.
+All 16 source index/Abbe pairs match the model. Paragraph 0056 explicitly assigns the refractive index to the d line, independently of the d/g aberration legend. The source gives no individual C/F/g indices or relative partial-dispersion measurements. There is no catalog-derived per-lens spectral override to remove. All 16 compatible curves remain qualified proxies, including CaF 2, S-FPL 51 and the modern S-TIH 53WN curve; source supplier, melt, historical chemistry and manufacturing process are unestablished. Three production-correlated APD tags remain inferred, without a patent APD designation. No extra cement, hybrid, filter or rear plate is prescribed. Canon's current museum page confirms the separate retail 16/13 count, September 1999 release, 1.2 m close limit and one fluorite/two UD claim; it does not prove a production-prescription or element-allocation match.
 
-Only R1/R2 inferred clear caps change to27mm; every R/d, material coordinate, stop and optical control remains unchanged. Catalog focal design metadata now quotes the printed 71.92/194.57 mm instead of recomputed 71.901018/194.540481 mm. The following runtime results use the current iris at each prepared state, and supersede earlier blanket beam-clearance or 14.375 mm iris wording:
+Only R1/R2 inferred clear caps change to27 mm; every R/d, material coordinate, stop and optical control remains unchanged. Catalog focal design metadata now quotes the printed 71.92/194.57 mm instead of recomputed 71.901018/194.540481 mm. The following runtime results use the current iris at each prepared state, and supersede earlier blanket beam-clearance or 14.375 mm iris wording:
 
 - 65 zoom × 21 focus controls produce 1,365 states and 21,840 finite, connected, closed element paths with zero renderer trim.
-- The 49-point pupil at axial, 0.6-field and format corner yields 200,655 launches per version. All 4,095 chiefs are valid; 142,191 rays transmit and 58,464 are classified as physical blocking, with no unclassified failure. The new source-supported first blank recovers200 peripheral samples across80 field states; all chief and axial counts are unchanged. Axial transmission is 62,517/66,885 overall and can fall to 17/49 at tele/close.
+- The 49-point pupil at axial, 0.6-field and format corner yields 200,655 launches per version. All 4,095 chiefs are valid; 142,191 rays transmit and 58,464 are classified as physical blocking, with no unclassified failure. The new source-supported first blank recovers 200 peripheral samples across 80 field states; all chief and axial counts are unchanged. Axial transmission is 62,517/66,885 overall and can fall to 17/49 at tele/close.
 - At source infinity zoom 0/0.5/1 the axial/0.6-field/corner survivors are 49/41/32, 49/41/23 and 33/32/19. At reconstructed close focus they are 49/43/23, 49/35/15 and 17/22/13. These are sampled pupil results, rather than guaranteed illumination.
-- The1,365 preset calls retain the baseline totals:1,339 trace and26 vignette. After the front-blank correction, retained vignettes are limited atS4; the earlierS2 limiter is superseded. Narrow aperture census is 2/3 within 3%; surface and image-circle checks pass. Default format-corner checks pass, while the source wide 16.7°/16.75° rays reach only 20.9609/21.0236 mm (96.8%/97.1% of the diagnostic 21.65 mm half-diagonal). Source middle 10.4° reaches 21.9567 mm; tele 6.3°/6.35° reaches 22.0781/22.2656 mm. Do not conflate the source field statement with the runtime format diagnostic.
+- The 1,365 preset calls retain the baseline totals:1,339 trace and 26 vignette. After the front-blank correction, retained vignettes are limited atS 4; the earlierS 2 limiter is superseded. Narrow aperture census is 2/3 within 3%; surface and image-circle checks pass. Default format-corner checks pass, while the source wide 16.7°/16.75° rays reach only 20.9609/21.0236 mm (96.8%/97.1% of the diagnostic 21.65 mm half-diagonal). Source middle 10.4° reaches 21.9567 mm; tele 6.3°/6.35° reaches 22.0781/22.2656 mm. Do not conflate the source field statement with the runtime format diagnostic.
 - Source infinity BFLs are 53.134605/53.131905/53.126058 mm, against the retained inferred common 53.130856 mm image gap. Linear zoom interpolation reaches +3.970376 mm paraxial defocus at zoom 0.78125. The reconstructed 1.2 m finite endpoint at that interpolated zoom retains +3.971377 mm defocus. The three source-station close solutions are endpoint reconstructions, not a source finite-focus table or a production cam.
 
 The R4/R5 0.10 mm gap and R13/R14 1.00 mm gap retain the default 0.90 guard. Repeated 22.3 mm full-stated-ray, 22.1 mm edge-contact and 25.8 mm full-blank trials at R4/R5 fail the unchanged guard; the first/full-blank cases also exceed physical contact. Raising R13/R14 to 14 mm fails with 1.07 mm sag versus a 0.90 mm allowance. No gap, radius, aperture target or tolerance is adjusted. A flat opaque extension would not be a measured source shoulder. The exact full f/4.1 tele ray and possible one-decimal source-label interpretation remain qualified in source.errata and the generic audit queue.
@@ -191,30 +191,30 @@ Source fidelity, sampled runtime behavior and production correlation are separat
 
 ### Every modeled medium
 
-| Element | Literal source d-index / Abbe | Spectral disposition        |
-| ------- | ----------------------------- | --------------------------- |
-| 1       | 1.487490 / 70.2               | S-FSL5 — qualified proxy    |
-| 2       | 1.721507 / 29.2               | S-TIH18 — qualified proxy   |
-| 3       | 1.433870 / 95.1               | CaF2 — qualified proxy      |
-| 4       | 1.496999 / 81.5               | S-FPL51 — qualified proxy   |
-| 5       | 1.804000 / 46.6               | J-LASF015 — qualified proxy |
-| 6       | 1.516330 / 64.1               | S-BSL7 — qualified proxy    |
-| 7       | 1.846658 / 23.9               | S-TIH53WN — qualified proxy |
-| 8       | 1.749500 / 35                 | LAFN7 — qualified proxy     |
-| 9       | 1.622992 / 58.2               | S-BSM15 — qualified proxy   |
-| 10      | 1.762001 / 40.1               | S-LAM55 — qualified proxy   |
-| 11      | 1.603112 / 60.6               | S-BSM14 — qualified proxy   |
-| 12      | 1.496999 / 81.5               | S-FPL51 — qualified proxy   |
-| 13      | 1.804398 / 39.6               | J-LASF013 — qualified proxy |
-| 14      | 1.603112 / 60.6               | S-BSM14 — qualified proxy   |
-| 15      | 1.696797 / 55.5               | S-LAL14 — qualified proxy   |
-| 16      | 1.592701 / 35.3               | S-FTM16 — qualified proxy   |
+| Element | Literal source d-index / Abbe | Spectral disposition         |
+| ------- | ----------------------------- | ---------------------------- |
+| 1       | 1.487490 / 70.2               | S-FSL 5 — qualified proxy    |
+| 2       | 1.721507 / 29.2               | S-TIH 18 — qualified proxy   |
+| 3       | 1.433870 / 95.1               | CaF 2 — qualified proxy      |
+| 4       | 1.496999 / 81.5               | S-FPL 51 — qualified proxy   |
+| 5       | 1.804000 / 46.6               | J-LASF 015 — qualified proxy |
+| 6       | 1.516330 / 64.1               | S-BSL 7 — qualified proxy    |
+| 7       | 1.846658 / 23.9               | S-TIH 53WN — qualified proxy |
+| 8       | 1.749500 / 35                 | LAFN 7 — qualified proxy     |
+| 9       | 1.622992 / 58.2               | S-BSM 15 — qualified proxy   |
+| 10      | 1.762001 / 40.1               | S-LAM 55 — qualified proxy   |
+| 11      | 1.603112 / 60.6               | S-BSM 14 — qualified proxy   |
+| 12      | 1.496999 / 81.5               | S-FPL 51 — qualified proxy   |
+| 13      | 1.804398 / 39.6               | J-LASF 013 — qualified proxy |
+| 14      | 1.603112 / 60.6               | S-BSM 14 — qualified proxy   |
+| 15      | 1.696797 / 55.5               | S-LAL 14 — qualified proxy   |
+| 16      | 1.592701 / 35.3               | S-FTM 16 — qualified proxy   |
 
 ### Retained element-height decisions
 
 | Source elements / faces | Retained clear caps (mm) | Constraint / disposition                                                                                                            |
 | ----------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| E1 R1/R2                | 27 / 27 (was26/25.6)     | Native shared front blank≈27mm and1:0.96:0.90 relative heights support this correction; no new outer land.                          |
+| E1 R1/R2                | 27 / 27 (was 26/25.6)    | Native shared front blank≈27 mm and 1:0.96:0.90 relative heights support this correction; no new outer land.                        |
 | E2 R3/R4 and E3 R5/R6   | 25.8 / 21; 21 / 25.8     | Source full-height pair is unresolved at its sub-stroke overlap; default 0.10 mm gap guard prevents full cap or edge-contact trial. |
 | E4 R7/R8                | 24.2 / 24.2              | Continuous positive blank; no independent land.                                                                                     |
 | E5 R9/R10               | 14 / 13.8                | Tiny end difference is below native height uncertainty; no guessed shoulder.                                                        |

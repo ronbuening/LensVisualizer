@@ -23,17 +23,15 @@ const MISS = 0.0012;
 const LINE_NM = { C: 656.2725, F: 486.1327, g: 435.8343 };
 
 /**
- * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Seven were read
- * against the patent: it prints PgF for the melt, the stored value is that PgF minus the engine's line, and the
- * catalog glass differs from the melt by about the gap between the lines (the Canon EF 8-15mm patent prints its
- * deviation against the engine's own line). Open rows are in agent_docs/glass-relabel-followup.md: the Fujifilm X10,
+ * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Source-checked
+ * entries print PgF for the melt: the stored value is that PgF minus the engine's line, and the catalog glass differs
+ * from the melt by about the gap between the lines. Open rows are in agent_docs/glass-relabel-followup.md: the Fujifilm X10,
  * whose patent is not held locally, and one element of the Leica DC Vario-Elmarit, whose patent prints a deviation
  * without stating its line. The sweep compares for equality, so a corrected file must leave this list and no file may
  * join without its source being read.
  */
 const SOURCE_LINE_FIT_BY_COINCIDENCE: readonly string[] = [
   "canon-ef-600f4l-is-ii-usm",
-  "canon-ef-8-15mm-f4l-fisheye-usm",
   "canon-rf-16-28mm-f28-is-stm",
   "fujifilm-fujinon-gf-500mm-f56-r-lm-ois-wr",
   "fujifilm-fujinon-xf-18-120mm-f4-lm-pz-wr",

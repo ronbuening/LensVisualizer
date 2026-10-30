@@ -19,7 +19,7 @@ The production correlation is strong but remains an identification inference rat
 4. Example 1 contains a net-negative Gm subgroup in the fixed relay and explicitly assigns it the image-stabilization function. Canon identifies the production lens as an IS model. [JP2008070450A, ¶¶0017–0020](https://patents.google.com/patent/JP2008070450A/en)
 5. The application was filed on 2006-09-12, shortly before Canon's November 2006 market date for the lens. Timing alone does not prove identity, but it is consistent with the other optical correspondences. [JP2008070450A](https://patents.google.com/patent/JP2008070450A/en) [Canon Camera Museum](https://global.canon/en/c-museum/product/ef391.html)
 
-The structured data therefore keeps the production and design quantities separate: marketed 70–200 mm f/4 versus computed design endpoints 72.107560–194.283716 mm and patent Fno. 4.1. The prescription is not scaled to the marketed focal-length labels.
+The structured catalog design range quotes the spacing-table endpoints 72.11–194.28 mm (PDF page 6, table 数1), preserving the separate 194.29 mm heading discrepancy. Independent paraxial calculation gives 72.107560–194.283716 mm. Both source and computed quantities remain separate from the marketed 70–200 mm f/4 designation; patent Fno. 4.1 and every optical control are unchanged. The prescription is not scaled to the marketed focal-length labels.
 
 ## Optical Architecture
 

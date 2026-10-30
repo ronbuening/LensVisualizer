@@ -47,7 +47,7 @@ const LENS_DATA = {
     specs: ["10 ELEMENTS / 9 GROUPS", "100mm f/2.8 (marketed)", "F/2.89 DESIGN", "1.0× MACRO", "0.31 m MFD (marketed)"],
     elementCount: 10,
     groupCount: 9,
-    focalLengthMm: { marketing: 100, design: 100.035238895 },
+    focalLengthMm: { marketing: 100, design: 100 },
     fNumber: { marketing: 2.8, design: 2.89 },
   },
 

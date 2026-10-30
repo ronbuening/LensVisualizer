@@ -140,19 +140,19 @@ The two negative radii and negative calculated power establish an image-convex n
 
 The 2026-10-30 original-PDF review checked all 15 medium pairs directly against Numerical Example 1, PDF p. 8 (printed p. 8, ¶0059), and the reference definition in ¶0058 on PDF p. 7. That paragraph explicitly identifies the d-line for ni/νi, although it gives no numeric wavelength. Every published pair is retained. The source supplies no individual C/F/g indices, partial dispersion, numerical cement or APD evidence; there is no source filter or rear plate. All 15 existing compatible shared catalog curves remain qualified spectral proxies, with no per-lens spectral overrides. Historical supplier, melt and chemistry remain unspecified. The catalog residual table below is retained from the earlier analysis as a coordinate comparison, not a new catalog-source inspection or proof of production identity.
 
-| Patent $n_d/ν_d$ | Current catalog equivalent         | Catalog code | Residual $(Δn_d,Δν_d)$ | Used at       |
-| ---------------: | ---------------------------------- | -----------: | ---------------------: | ------------- |
-|  1.846660 / 23.8 | S-TIH53                            |       847238 |       0.000000 / −0.02 | L1a           |
-|  1.622992 / 58.2 | S-BSM15                            |       623582 |      −0.000002 / −0.04 | L1b, L3b      |
-|  1.712995 / 53.9 | S-LAL8                             |       713539 |      +0.000005 / −0.03 | L1c, L4b      |
-|  1.834000 / 37.2 | S-LAH60V                           |       834372 |       0.000000 / +0.01 | L2a           |
-|  1.804000 / 46.6 | S-LAH65V                           |       804466 |       0.000000 / −0.02 | L2b           |
-|  1.846660 / 23.9 | PBH53 / PBH53W                    |       847239 |       0.000000 / −0.02 | L2c, L3a, L5c |
-|  1.772499 / 49.6 | S-LAH66                            |       773496 |       +0.000001 / 0.00 | L2d           |
-|  1.603112 / 60.6 | S-BSM14                            |       603607 |      −0.000002 / +0.04 | L3c           |
-|  1.698947 / 30.1 | S-TIM35                            |       699301 |      +0.000003 / +0.03 | L4a           |
-|  1.487490 / 70.2 | S-FSL5                             |       487702 |       0.000000 / +0.03 | L5a           |
-|  1.589130 / 61.1 | S-BAL35                            |       589612 |       0.000000 / +0.04 | L5b           |
+| Patent $n_d/ν_d$ | Current catalog equivalent | Catalog code | Residual $(Δn_d,Δν_d)$ | Used at       |
+| ---------------: | -------------------------- | -----------: | ---------------------: | ------------- |
+|  1.846660 / 23.8 | S-TIH53                    |       847238 |       0.000000 / −0.02 | L1a           |
+|  1.622992 / 58.2 | S-BSM15                    |       623582 |      −0.000002 / −0.04 | L1b, L3b      |
+|  1.712995 / 53.9 | S-LAL8                     |       713539 |      +0.000005 / −0.03 | L1c, L4b      |
+|  1.834000 / 37.2 | S-LAH60V                   |       834372 |       0.000000 / +0.01 | L2a           |
+|  1.804000 / 46.6 | S-LAH65V                   |       804466 |       0.000000 / −0.02 | L2b           |
+|  1.846660 / 23.9 | PBH53 / PBH53W             |       847239 |       0.000000 / −0.02 | L2c, L3a, L5c |
+|  1.772499 / 49.6 | S-LAH66                    |       773496 |       +0.000001 / 0.00 | L2d           |
+|  1.603112 / 60.6 | S-BSM14                    |       603607 |      −0.000002 / +0.04 | L3c           |
+|  1.698947 / 30.1 | S-TIM35                    |       699301 |      +0.000003 / +0.03 | L4a           |
+|  1.487490 / 70.2 | S-FSL5                     |       487702 |       0.000000 / +0.03 | L5a           |
+|  1.589130 / 61.1 | S-BAL35                    |       589612 |       0.000000 / +0.04 | L5b           |
 
 The design distributes ordinary achromatization across the cemented L1, L3, and L4 pairs and the low-dispersion positive members in L5. The patent provides no line indices or partial-dispersion data. The appropriate characterization is therefore a multi-group achromatic zoom, not an apochromatic design.
 
@@ -291,6 +291,10 @@ A geometry-identical 65-position diagnostic reproduces the authored runtime surf
 The linear interpolation remains illustrative. At zoom t = 0.828125 its infinity BF is 50.541377 mm against the current image gap 49.537541 mm, a +1.003836 mm displacement; computed EFL is 79.296226 mm. The three source infinity stations remain quantitative anchors. The inferred close-focus anchors reproduce a 500 mm object-to-image distance, but the patent supplies no finite-focus table or intermediate cam. An actual-conjugate trial at seven intermediate zooms (0.60–0.90) and focus 0.05 even yields virtual object conjugates, so it cannot validate a positive-object focus law there. No source-unsupported cam was fitted to remove this limitation.
 
 A separate physical-rim probe samples 441 control combinations, three fields and 97 pupil points (128,331 rays), using positive object-to-image distances 500/focus mm at finite focus and the shared field/chief solver at infinity. It has no seed failures, no unaimed samples, clear chief rays and 97/97 clear axial bundles throughout. At the full field, 2,355 marginal `noBracket` entries occur before the first surface. An independent ray/sphere intersection places every one outside the adopted 25 mm first cap; none is an unexplained inside-cap failure. They are bounded first-aperture misses, alongside ordinary off-axis clipping, rather than grounds to inflate a source-sized rim. The finite-field probe tests rim passage; intermediate focus accuracy and production illumination remain unverified. Source geometry, sampled clearance and the production association are separate conclusions. See the [audit sidecar](./CanonEF28105mmf3545II.audit.md) for retained constraints.
+
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 28.9 / 101.37 mm endpoints from PDF p. 8 (Numerical Example 1 heading and variable-spacing focal-length row). Computed 28.902522 / 101.333334 mm EFLs remain independent runtime diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
 
 ## Sources
 

@@ -16,7 +16,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **11841** glass elements examined
 - **2748** elements have multiple coordinate-compatible candidates
 - **499** lens files are affected
-- **294** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **291** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **124** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
@@ -120,9 +120,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents)` | 1.80810 / 22.80 (d) | S-NPH1 — smallest d-line \|Δn\| (5.3e-6 vs 1.1e-5) | FD225 (Hoya, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) L25b |
 | `516641 class (vendor unresolved; multiple catalog equivalents)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) G |
 | `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.93 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 70-200mm f/4 L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) L2-3 |
-| `FCD505 / FCD515 class (HOYA)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L2 |
-| `S-LAH58 (OHARA) / TAFD33 class` | 1.88300 / 40.80 (d) | S-LAH58 — Annotation vendor context matches Ohara. | TAFD33 (Hoya, name, vendor ✗) | 3 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L6 |
-| `S-FPL51 (OHARA) / FCD1 class` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L13 |
+| `FCD505 / FCD515 class (HOYA) spectral proxy (historical material, supplier and melt unspecified)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L2 |
+| `S-LAH58 (OHARA) / TAFD33 class spectral proxy (historical material, supplier and melt unspecified)` | 1.88300 / 40.80 (d) | S-LAH58 — Annotation vendor context matches Ohara. | TAFD33 (Hoya, name, vendor ✗) | 3 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L6 |
+| `S-FPL51 (OHARA) / FCD1 class spectral proxy (historical material, supplier and melt unspecified)` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L13 |
 | `583594 crown class (vendor unresolved)` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L1 |
 | `773496 lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L2 |
 | `911353 high-index lanthanum-flint class (vendor unresolved)` | 1.91082 / 35.30 (d) | H-ZLaF4LA — smallest d-line \|Δn\| (4.2e-8 vs 2.4e-6) | TAFD35 (Hoya, code, preferred code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L3 |

@@ -53,14 +53,14 @@ const LENS_DATA = {
     specs: [
       "10 ELEMENTS / 8 GROUPS",
       "135 mm f/2 (marketing)",
-      "f = 133.495 mm / F2.0598 (design)",
+      "MODELED EFL 133.495 mm / F2.0598",
       "2ω ≈ 18.42°",
       "PUBLISHED REAR/INTERNAL FOCUS",
     ],
     elementCount: 10,
     groupCount: 8,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 135, design: 133.495358106 },
+    focalLengthMm: { marketing: 135, design: 133.5 },
     fNumber: { marketing: 2, design: 2.059788166 },
   },
 

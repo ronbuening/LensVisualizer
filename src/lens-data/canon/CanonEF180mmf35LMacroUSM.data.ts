@@ -63,14 +63,14 @@ const LENS_DATA = {
     specs: [
       "14 ELEMENTS / 12 GROUPS",
       "180mm f/3.5 MARKETED",
-      "f = 180.009 mm / f/3.6 DESIGN",
+      "PATENT f = 180.0 mm / f/3.6",
       "1.0× / 0.48 m MFD",
       "ALL-SPHERICAL",
     ],
     elementCount: 14,
     groupCount: 12,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 180, design: 180.009424 },
+    focalLengthMm: { marketing: 180, design: 180.0 },
     fNumber: { marketing: 3.5, design: 3.6 },
   },
 

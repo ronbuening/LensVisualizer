@@ -31,7 +31,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "PATENT EXAMPLE: 21 ELEMENTS / 19 GROUPS",
-      "DESIGN 72.50-194.98 mm",
+      "DESIGN 72.50-194.99 mm",
       "DESIGN f/2.9",
       "ALL-SPHERICAL",
       "TRANSVERSE IS UNIT g5B",
@@ -39,7 +39,7 @@ const LENS_DATA = {
     elementCount: 21,
     groupCount: 19,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: [70, 200], design: [72.4976753358023, 194.97993964127204] },
+    focalLengthMm: { marketing: [70, 200], design: [72.5, 194.99] },
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 

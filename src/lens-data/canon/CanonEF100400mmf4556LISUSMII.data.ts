@@ -73,7 +73,7 @@ const LENS_DATA = {
     elementCount: 21,
     groupCount: 16,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: [100, 400], design: [102.75785763652577, 388.9390594335833] },
+    focalLengthMm: { marketing: [100, 400], design: [102.79, 389.03] },
     fNumber: { marketing: 4.5, design: 4.63 },
   },
 

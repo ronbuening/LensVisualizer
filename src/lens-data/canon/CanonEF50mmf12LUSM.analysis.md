@@ -251,3 +251,9 @@ JP2007333790A Example 1 (PDF pp.10–11). EFL 51.695042 agrees with
 51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm.
 No source plate or supported correction explains the -0.546209 mm
 offset. Retain the published image distance; best-focus intent is unproven.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 51.7 mm, taken directly from Numerical Example1, paragraph0097, PDF p10 / printed10: source f=51.70mm. The prior computed model EFL value 51.695042 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

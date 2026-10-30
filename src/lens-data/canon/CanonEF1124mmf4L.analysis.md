@@ -352,3 +352,9 @@ All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actu
 | 1      | Infinity / unchanged focus | 49 / 38 / 31                                 |
 
 The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 11.33–23.28 mm, taken directly from Numerical Example1, PDF p13 / printed6: Various data focal-length row11.33/17.32/23.28. The prior computed model EFL range 11.328513–23.281475 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

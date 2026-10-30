@@ -63,7 +63,7 @@ const LENS_DATA = {
     elementCount: 17,
     groupCount: 13,
     acceptsTeleconverters: true, // Canon lists this host with Extender EF2x I/II/III.
-    focalLengthMm: { marketing: 600, design: 585.327789123 },
+    focalLengthMm: { marketing: 600, design: 585.2 },
     fNumber: { marketing: 4, design: 4.12 },
   },
 

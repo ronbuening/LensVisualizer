@@ -237,3 +237,7 @@ The data contain ten qualified compatible catalog curves, but no published indiv
 - HIKARI optical-glass catalog: <https://www.hikari-g.co.jp/optical_glass/catalog/>.
 - CDGM optical-glass database: <https://www.cdgmgd.com/database/toWebDatabase.htm?url=database>.
 - SUMITA optical-glass downloads: <https://sumita-opt.co.jp/en/download/>.
+
+## Source-stated focal metadata — 2026-10-30
+
+Original US2015/0205081A1, First Numerical Embodiment / paragraph0060, PDF p.19 / printed5, Various Data states focal length34.49mm. Retained computed EFL34.5015mm is a model result. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.

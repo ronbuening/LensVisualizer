@@ -48,14 +48,14 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "14 ELEMENTS / 11 GROUPS",
-      "35.4218 mm DESIGN EFL",
-      "F/1.45 MODELED",
-      "62.843° DESIGN FIELD",
+      "PATENT f = 35.42 mm; MODELED EFL 35.4218 mm",
+      "PATENT F/1.45",
+      "PATENT 2ω = 62.84°",
       "2 ASPHERICAL SURFACES",
     ],
     elementCount: 14,
     groupCount: 11,
-    focalLengthMm: { marketing: 35, design: 35.421785862382364 },
+    focalLengthMm: { marketing: 35, design: 35.42 },
     fNumber: { marketing: 1.4, design: 1.45 },
   },
 

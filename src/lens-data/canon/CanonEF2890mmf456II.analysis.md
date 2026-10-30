@@ -47,12 +47,12 @@ The ten elements form eight air-spaced construction groups because E5-E6 and E7-
 
 **Computed result.** Isolated functional-group powers from the final TypeScript sequence are:
 
-| Functional group | Elements | EFL (mm) | Optical function established by patent or placement |
-|---|---|---:|---|
-| G1 | E1-E3 | −36.699831010 | Negative front group; zoom compensator and focusing group |
-| G2 | E4-E6 | +26.974178559 | Principal positive variator and largest positive-power contribution |
-| G3 | E7-E8 | −50.138684298 | Stop-coupled negative moving group |
-| G4 | E9-E10 | +86.484587178 | Rear positive group with the sole asphere |
+| Functional group | Elements |      EFL (mm) | Optical function established by patent or placement                 |
+| ---------------- | -------- | ------------: | ------------------------------------------------------------------- |
+| G1               | E1-E3    | −36.699831010 | Negative front group; zoom compensator and focusing group           |
+| G2               | E4-E6    | +26.974178559 | Principal positive variator and largest positive-power contribution |
+| G3               | E7-E8    | −50.138684298 | Stop-coupled negative moving group                                  |
+| G4               | E9-E10   | +86.484587178 | Rear positive group with the sole asphere                           |
 
 The patent identifies G2 as the principal variator and as the group carrying the largest positive-power burden across the zoom range (¶0023). G1 supplies the negative-lead entrance geometry. G3 is a compact cemented negative group immediately behind the stop. G4 is a weak positive rear relay containing the single aspherical corrector.
 
@@ -60,13 +60,13 @@ The patent identifies G2 as the principal variator and as the group carrying the
 
 All four functional groups move during zooming. Coordinates in the verification model are referenced to the fixed flare-cutter plane, with the object side negative.
 
-| Group or plane | Wide position (mm) | Intermediate position (mm) | Tele position (mm) | Wide-to-tele behavior |
-|---|---:|---:|---:|---|
-| G1 front, surface 1 | −83.65 | −75.03 | −87.15 | Moves imageward, then reverses objectward; net −3.50 mm |
-| G2 front, surface 7 | −33.51 | −46.56 | −70.30 | Monotonic objectward; total 36.79 mm |
-| Stop | −23.15 | −31.33 | −49.48 | Moves objectward with G3 |
-| G3 front, surface 13 | −21.35 | −29.53 | −47.68 | Monotonic objectward; total 26.33 mm |
-| G4 front, surface 16 | −3.82 | −16.88 | −40.62 | Monotonic objectward; total 36.80 mm |
+| Group or plane       | Wide position (mm) | Intermediate position (mm) | Tele position (mm) | Wide-to-tele behavior                                   |
+| -------------------- | -----------------: | -------------------------: | -----------------: | ------------------------------------------------------- |
+| G1 front, surface 1  |             −83.65 |                     −75.03 |             −87.15 | Moves imageward, then reverses objectward; net −3.50 mm |
+| G2 front, surface 7  |             −33.51 |                     −46.56 |             −70.30 | Monotonic objectward; total 36.79 mm                    |
+| Stop                 |             −23.15 |                     −31.33 |             −49.48 | Moves objectward with G3                                |
+| G3 front, surface 13 |             −21.35 |                     −29.53 |             −47.68 | Monotonic objectward; total 26.33 mm                    |
+| G4 front, surface 16 |              −3.82 |                     −16.88 |             −40.62 | Monotonic objectward; total 36.80 mm                    |
 
 G2 and G4 maintain a front-vertex separation of approximately 29.68–29.69 mm, confirming their common motion within the 0.01 mm precision of the patent table, as anticipated by claim 2 and ¶0027. The stop-to-G3 front spacing remains exactly 1.80 mm. G1's reversal is preserved by the three published zoom positions and would be lost in a two-endpoint model.
 
@@ -74,11 +74,11 @@ G2 and G4 maintain a front-vertex separation of approximately 29.68–29.69 mm, 
 
 The patent's D19 values terminate at an inactive flare cutter rather than at the image plane. The data file omits that dummy plane and stores the computed image-plane back focal distance after surface 19.
 
-| Zoom position | EFL (mm) | BFD from surface 19 (mm) | Surface 1 to image plane (mm) | H1 from surface 1 (mm) | H2 from surface 19 (mm) |
-|---|---:|---:|---:|---:|---:|
-| 28.90 mm | 28.904387667 | 38.719113072 | 122.369113072 | 43.267560894 | 9.814725406 |
-| 50.02 mm | 50.014500526 | 51.794644886 | 113.764644886 | 39.507213118 | 1.780144360 |
-| 86.89 mm | 86.899293947 | 75.537349273 | 125.887349273 | 27.147278970 | −11.361944674 |
+| Zoom position |     EFL (mm) | BFD from surface 19 (mm) | Surface 1 to image plane (mm) | H1 from surface 1 (mm) | H2 from surface 19 (mm) |
+| ------------- | -----------: | -----------------------: | ----------------------------: | ---------------------: | ----------------------: |
+| 28.90 mm      | 28.904387667 |             38.719113072 |                 122.369113072 |           43.267560894 |             9.814725406 |
+| 50.02 mm      | 50.014500526 |             51.794644886 |                 113.764644886 |           39.507213118 |             1.780144360 |
+| 86.89 mm      | 86.899293947 |             75.537349273 |                 125.887349273 |           27.147278970 |           −11.361944674 |
 
 The principal-plane migration is substantial: the rear principal plane moves from 9.815 mm imageward of the last surface at wide angle to 11.362 mm objectward of it at tele. That migration, rather than a simple physical extension, is central to the focal-length change.
 
@@ -145,7 +145,7 @@ E6 is the positive crown member of J2. The complete E5-E6 cemented assembly has 
 **Source fact and computed result.** The patent requires a substantial Abbe-number separation in this doublet. The literal source values give
 
 \[
-\nu_{2p}-\nu_{2n}=60.6-23.8=36.8,
+\nu*{2p}-\nu*{2n}=60.6-23.8=36.8,
 \]
 
 The source condition table prints 36.860, whose extra precision cannot be recovered from the rounded material rows. The broad claimed separation remains satisfied. The patent associates this separation with tele-end axial-color correction (¶0030–0031). “Achromatizing doublet” is therefore justified; no apochromatic claim is made.
@@ -167,13 +167,13 @@ E8 is the positive partner of J3. Despite its positive standalone power, the com
 The patent constrains both the index and Abbe-number differences across this interface. The literal source values give
 
 \[
-\nu_{3n}-\nu_{3p}=31.1-23.8=7.3,
+\nu*{3n}-\nu*{3p}=31.1-23.8=7.3,
 \]
 
 and
 
 \[
-N_{3p}-N_{3n}=1.846660-1.688931=0.157729.
+N*{3p}-N*{3n}=1.846660-1.688931=0.157729.
 \]
 
 The patent links these ranges to control of axial color, spherical aberration, and coma across zooming (¶0031–0033). The claim concerns the cemented pair and interface, not E8 acting independently.
@@ -200,18 +200,18 @@ The 2026-10-30 original-PDF review checked all ten modeled media against Numeric
 
 Nine Abbe entries are restored from catalog precision to the literal source: E1/E2 58.16→58.2; E3/E5/E8 23.78→23.8; E4 41.24→41.2; E6 60.64→60.6; E7 31.07→31.1; E10 64.14→64.1. E9 stays 30.2. Every refractive index is unchanged. All 36 per-lens nC/nF/ng/dPgF values were copied from catalog rows and are removed; the original prints no individual line indices, partial dispersion or APD evidence. Prior coordinate candidates do not verify reference wavelength, supplier, melt or chemistry. There is no bonded layer, source filter, rear plate or numerical cement medium.
 
-| Medium | Source n | Source ν | Disposition |
-|---|---:|---:|---|
-| E1 | 1.622992 | 58.2 | Unmatched; source line unspecified |
-| E2 | 1.622992 | 58.2 | Unmatched; source line unspecified |
-| E3 | 1.846660 | 23.8 | Unmatched; source line unspecified |
-| E4 | 1.701536 | 41.2 | Unmatched; source line unspecified |
-| E5 | 1.846660 | 23.8 | Unmatched; source line unspecified |
-| E6 | 1.603112 | 60.6 | Unmatched; source line unspecified |
-| E7 | 1.688931 | 31.1 | Unmatched; source line unspecified |
-| E8 | 1.846660 | 23.8 | Unmatched; source line unspecified |
-| E9 | 1.583060 | 30.2 | Unmatched; source line unspecified |
-| E10 | 1.516330 | 64.1 | Unmatched; source line unspecified |
+| Medium | Source n | Source ν | Disposition                        |
+| ------ | -------: | -------: | ---------------------------------- |
+| E1     | 1.622992 |     58.2 | Unmatched; source line unspecified |
+| E2     | 1.622992 |     58.2 | Unmatched; source line unspecified |
+| E3     | 1.846660 |     23.8 | Unmatched; source line unspecified |
+| E4     | 1.701536 |     41.2 | Unmatched; source line unspecified |
+| E5     | 1.846660 |     23.8 | Unmatched; source line unspecified |
+| E6     | 1.603112 |     60.6 | Unmatched; source line unspecified |
+| E7     | 1.688931 |     31.1 | Unmatched; source line unspecified |
+| E8     | 1.846660 |     23.8 | Unmatched; source line unspecified |
+| E9     | 1.583060 |     30.2 | Unmatched; source line unspecified |
+| E10    | 1.516330 |     64.1 | Unmatched; source line unspecified |
 
 Table 1 on PDF p. 17 prints ν2p−ν2n = 36.860 and ν3n−ν3p = 7.290. Literal Example 6 rows yield 36.8 and 7.3. The precision basis is not printed and is recorded as unresolved in `source.errata`; rounding is a possible explanation, not an established cause. Catalog decimals are not substituted to force agreement. The claimed broad ranges remain satisfied. E9 is unresolved; the source's plastic-asphere option does not identify a proprietary polymer formulation or historical manufacturing process.
 
@@ -224,10 +224,10 @@ Table 1 on PDF p. 17 prints ν2p−ν2n = 36.860 and ν3n−ν3p = 7.290. Litera
 The patent supplies no finite-focus spacing table. The data model treats Canon's rounded 0.38 m closest-focus specification as an image-plane-referenced object distance. At each zoom state, G1 moves objectward, increasing D6, while Groups 2–4 and the image plane remain fixed. The full object-to-image paraxial matrix is solved for zero B term.
 
 | Zoom position | D6 at infinity (mm) | D6 at modeled close focus (mm) | G1 objectward travel (mm) |
-|---|---:|---:|---:|
-| 28.90 mm | 34.380000000 | 38.935758879 | 4.555758879 |
-| 50.02 mm | 12.710000000 | 17.135015168 | 4.425015168 |
-| 86.89 mm | 1.090000000 | 5.701506721 | 4.611506721 |
+| ------------- | ------------------: | -----------------------------: | ------------------------: |
+| 28.90 mm      |        34.380000000 |                   38.935758879 |               4.555758879 |
+| 50.02 mm      |        12.710000000 |                   17.135015168 |               4.425015168 |
+| 86.89 mm      |         1.090000000 |                    5.701506721 |               4.611506721 |
 
 At the tele position the reconstruction gives 0.297530139×, 0.823% below Canon's rounded 0.30× specification. This agreement supports the mechanism model but does not turn the reconstructed spacings into patent-published values.
 
@@ -245,15 +245,15 @@ X(Y)=\frac{(1/R)Y^2}{1+\sqrt{1-(Y/R)^2}}+BY^4+CY^6+DY^8+EY^{10}.
 
 The square-root term is the standard conic expression with \(1+K=1\), so the stored standard conic constant is **K = 0**. No Japanese κ-to-K offset is required for this patent.
 
-| Stored coefficient | Value | Units |
-|---|---:|---|
-| K | 0 | dimensionless |
-| A4 | +1.91256×10⁻5 | mm⁻3 |
-| A6 | +4.84357×10⁻8 | mm⁻5 |
-| A8 | −2.85693×10⁻10 | mm⁻7 |
-| A10 | +1.98932×10⁻12 | mm⁻9 |
-| A12 | 0 | mm⁻11 |
-| A14 | 0 | mm⁻13 |
+| Stored coefficient |          Value | Units         |
+| ------------------ | -------------: | ------------- |
+| K                  |              0 | dimensionless |
+| A4                 |  +1.91256×10⁻5 | mm⁻3          |
+| A6                 |  +4.84357×10⁻8 | mm⁻5          |
+| A8                 | −2.85693×10⁻10 | mm⁻7          |
+| A10                | +1.98932×10⁻12 | mm⁻9          |
+| A12                |              0 | mm⁻11         |
+| A14                |              0 | mm⁻13         |
 
 No scale factor was applied, so these coefficients are the normalized patent values without an \(A_p/s^{p-1}\) transformation; K is unchanged.
 
@@ -265,30 +265,30 @@ No scale factor was applied, so these coefficients are the normalized patent val
 
 The power and index conditions remain consistent with Example 6. Two Abbe-difference cells cannot be reproduced to the table's extra precision from its own rounded material rows; they remain explicitly unresolved. All seven broad claimed intervals remain satisfied.
 
-| Condition | Computed value | Patent table | Residual | Result |
-|---|---:|---:|---:|---|
-| \(|f_1/f_w|\) | 1.269890346 | 1.270 | −0.000109654 | Pass |
-| \(f_2/f_w\) | 0.933362580 | 0.933 | +0.000362580 | Pass |
-| \(|f_3/f_w|\) | 1.734902571 | 1.735 | −0.000097429 | Pass |
-| \(f_4/f_w\) | 2.992546269 | 2.992 | +0.000546269 | Pass |
-| \(\nu_{2p}-\nu_{2n}\) | 36.800000000 | 36.860 | −0.060000000 | Source precision unresolved |
-| \(\nu_{3n}-\nu_{3p}\) | 7.300000000 | 7.290 | +0.010000000 | Source precision unresolved |
-| \(N_{3p}-N_{3n}\) | 0.157729000 | 0.158 | −0.000271000 | Pass |
+| Condition             | Computed value | Patent table |     Residual | Result                      |
+| --------------------- | -------------: | -----------: | -----------: | --------------------------- | ------------ | ---- |
+| \(                    |        f_1/f_w |           \) |  1.269890346 | 1.270                       | −0.000109654 | Pass |
+| \(f_2/f_w\)           |    0.933362580 |        0.933 | +0.000362580 | Pass                        |
+| \(                    |        f_3/f_w |           \) |  1.734902571 | 1.735                       | −0.000097429 | Pass |
+| \(f_4/f_w\)           |    2.992546269 |        2.992 | +0.000546269 | Pass                        |
+| \(\nu*{2p}-\nu*{2n}\) |   36.800000000 |       36.860 | −0.060000000 | Source precision unresolved |
+| \(\nu*{3n}-\nu*{3p}\) |    7.300000000 |        7.290 | +0.010000000 | Source precision unresolved |
+| \(N*{3p}-N*{3n}\)     |    0.157729000 |        0.158 | −0.000271000 | Pass                        |
 
 The first four expressions regulate group power relative to the wide-state focal length. The last three regulate the two cemented doublets. The first four group-power ratios also distinguish Example 6 from sibling configurations. The two Abbe discrepancies are not hidden by substituting catalog precision.
 
 ## Verification Summary
 
-| Quantity | 28.90 mm state | 50.02 mm state | 86.89 mm state |
-|---|---:|---:|---:|
-| Computed infinity EFL (mm) | 28.904387667 | 50.014500526 | 86.899293947 |
-| Patent focal length (mm) | 28.90 | 50.02 | 86.89 |
-| EFL residual (mm) | +0.004387667 | −0.005499474 | +0.009293947 |
-| Project paraxial target f-number | 3.83 | 4.45 | 5.88 |
-| BFD from surface 19 (mm) | 38.719113072 | 51.794644886 | 75.537349273 |
-| Surface 1 to image plane (mm) | 122.369113072 | 113.764644886 | 125.887349273 |
-| TL/EFL | 4.233583 | 2.274633 | 1.448658 |
-| BFD/EFL | 1.339558 | 1.035593 | 0.869252 |
+| Quantity                         | 28.90 mm state | 50.02 mm state | 86.89 mm state |
+| -------------------------------- | -------------: | -------------: | -------------: |
+| Computed infinity EFL (mm)       |   28.904387667 |   50.014500526 |   86.899293947 |
+| Patent focal length (mm)         |          28.90 |          50.02 |          86.89 |
+| EFL residual (mm)                |   +0.004387667 |   −0.005499474 |   +0.009293947 |
+| Project paraxial target f-number |           3.83 |           4.45 |           5.88 |
+| BFD from surface 19 (mm)         |   38.719113072 |   51.794644886 |   75.537349273 |
+| Surface 1 to image plane (mm)    |  122.369113072 |  113.764644886 |  125.887349273 |
+| TL/EFL                           |       4.233583 |       2.274633 |       1.448658 |
+| BFD/EFL                          |       1.339558 |       1.035593 |       0.869252 |
 
 The surface-by-surface Petzval sum is **0.00157689886866 mm⁻¹**, corresponding to a reciprocal radius of **634.156076763 mm**. Air-gap changes do not alter this first-order sum.
 
@@ -306,9 +306,13 @@ The first concave cap remains gap constrained. Restoring S2 clear to 15.3 mm giv
 
 The source's inactive surface-20 flare cutter remains omitted. Raw D19 = 0/13.06/36.80 mm ends at that plane; the existing independently solved BF values imply an approximately 38.72–38.74 mm FC-to-image distance. That small variation is retained as reconstruction uncertainty rather than claimed as a printed fixed camera-side gap. Source fidelity, sampled runtime clearance and the retail association are separate conclusions. See the [audit sidecar](./CanonEF2890mmf456II.audit.md).
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 28.9 / 86.89 mm endpoints from PDF p. 15 (Numerical Example 6 heading and variable-spacing focal-length row). Computed 28.904387667 / 86.899293947 mm EFLs remain approximate d-reference model diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources and References
 
-- JP 2009-282554 A, *Zoom Lens*, Canon Inc., Numerical Example 6, especially ¶0019–0034, ¶0044, Table 1, and Figures 21–24.
+- JP 2009-282554 A, _Zoom Lens_, Canon Inc., Numerical Example 6, especially ¶0019–0034, ¶0044, Table 1, and Figures 21–24.
 - [Canon Camera Museum: EF28-90mm f/4-5.6 II USM](https://global.canon/en/c-museum/product/ef370.html).
 - [OHARA Optical Glass Pocket Catalog](https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf).
 - [Companion audit](./CanonEF2890mmf456II.audit.md).

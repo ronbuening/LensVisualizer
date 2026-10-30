@@ -48,7 +48,7 @@ const LENS_DATA = {
     ],
     elementCount: 13,
     groupCount: 10,
-    focalLengthMm: { marketing: 24, design: 24.53861 },
+    focalLengthMm: { marketing: 24, design: 24.54 },
     fNumber: { marketing: 1.4, design: 1.45 },
   },
 
@@ -155,7 +155,8 @@ const LENS_DATA = {
       focalLengthMm: -58.423,
       glass: "BPH5 (qualified historical catalog spectral proxy; source supplier and melt unspecified)",
       apd: "patent",
-      apdNote: "Patent Table 1: rounded θgF = 0.57 and derived ΔPgF = −0.0070246. BPH5 is a compatible catalog proxy, not proof of historical supplier or melt.",
+      apdNote:
+        "Patent Table 1: rounded θgF = 0.57 and derived ΔPgF = −0.0070246. BPH5 is a compatible catalog proxy, not proof of historical supplier or melt.",
       role: "Negative anomalous-dispersion element near the stop.",
       dPgF: -0.0070246,
     },

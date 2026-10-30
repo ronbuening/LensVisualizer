@@ -31,3 +31,7 @@ The source defines Ni and νi only as glass index and Abbe number (p. 3), withou
 - Actual rendered SVG paths were compared with native Figure 1. The sole optical state has five finite, connected, closed paths and zero hidden renderer trimming. Repeated normalized control probes leave the static geometry unchanged; they do not establish a finite-focus design. No inferred cut requires a beam exemption.
 
 Source fidelity, sampled runtime clearance and production correlation remain separate conclusions. The shoulder improves the source outline; it does not resolve the thin-gap beam restriction, unspecified spectral reference, rounded vertex contact or unprovided production focus prescription.
+
+## Source-stated focal metadata — 2026-10-30
+
+Original JP S62-078520 A, PDF p.3 / printed113, Numerical Example1 states F=1; retained uniform scale28 gives source design28mm. Computed EFL28.219375888mm remains separately labeled. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.

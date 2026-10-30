@@ -8,7 +8,7 @@
 **Published:** 20 April 1989
 **Inventors:** Hideki Ogawa (小川秀樹); Sadatoshi Takahashi (高橋貞利)
 **Applicant:** Canon Inc.
-**Title:** 大口径比望遠レンズ (*Large-Aperture-Ratio Telephoto Lens*)
+**Title:** 大口径比望遠レンズ (_Large-Aperture-Ratio Telephoto Lens_)
 **Example details:** 数値実施例1, Numerical Example 1 on PDF page 5 (printed page 75); Fig. 1 and correspondence table on PDF page 7 (printed page 77)
 
 Numerical Example 1 is the strongest match to the powered optical core of the Canon EF 200mm f/1.8 L USM. The identification rests on several independent correspondences:
@@ -112,15 +112,15 @@ The 34 former per-lens C/F/g and dPgF fields were catalog-derived copies, not so
 No source spectral value is discarded. The names below are coordinate candidates, not resolved source materials;
 coefficient-curve coverage is 0/10 while the source reference remains unspecified.
 
-| Source n / ν | Elements | Qualified d-line coordinate candidate | Published partial evidence |
-|---|---|---|---|
-| 1.49700 / 81.6 | L1, L2, L4 | S-FPL51 | No selected APD number; production UD correlation remains inferred. |
-| 1.65412 / 39.7 | L3, L8 | BPH5 | L8: θ3a = 1.271845. |
-| 1.69680 / 55.5 | L5 | S-LAL14 / LAL14 | None. |
-| 1.84666 / 23.9 | L6 | PBH53 | None. |
-| 1.61340 / 43.8 | L7 | BPM4 | None. |
-| 1.65160 / 58.6 | L9 | S-LAL7 | θ3b = 1.238095. |
-| 1.61800 / 63.4 | L10 | S-PHM52 / PHM52 | None. |
+| Source n / ν   | Elements   | Qualified d-line coordinate candidate | Published partial evidence                                          |
+| -------------- | ---------- | ------------------------------------- | ------------------------------------------------------------------- |
+| 1.49700 / 81.6 | L1, L2, L4 | S-FPL51                               | No selected APD number; production UD correlation remains inferred. |
+| 1.65412 / 39.7 | L3, L8     | BPH5                                  | L8: θ3a = 1.271845.                                                 |
+| 1.69680 / 55.5 | L5         | S-LAL14 / LAL14                       | None.                                                               |
+| 1.84666 / 23.9 | L6         | PBH53                                 | None.                                                               |
+| 1.61340 / 43.8 | L7         | BPM4                                  | None.                                                               |
+| 1.65160 / 58.6 | L9         | S-LAL7                                | θ3b = 1.238095.                                                     |
+| 1.61800 / 63.4 | L10        | S-PHM52 / PHM52                       | None.                                                               |
 
 The three 497816-class elements form the principal low-dispersion positive set in G1. L3 and L5 provide negative power at materially different dispersion levels. The rear cemented pairs serve different purposes: L6/L7 creates a compact net-negative moving group, while L8/L9 satisfies the patent's explicit secondary-spectrum condition.
 
@@ -128,13 +128,13 @@ The three 497816-class elements form the principal low-dispersion positive set i
 
 The design uses single-group rear focus. G1 and G3 remain fixed; cemented negative group G2 moves 14.49 mm toward the image.
 
-| Spacing | Infinity | 2.5 m | Change |
-|---|---:|---:|---:|
-| D10, R10 to R11 | 21.00 mm | 35.49 mm | +14.49 mm |
+| Spacing               | Infinity |    2.5 m |    Change |
+| --------------------- | -------: | -------: | --------: |
+| D10, R10 to R11       | 21.00 mm | 35.49 mm | +14.49 mm |
 | D13 total, R13 to R14 | 32.20 mm | 17.71 mm | −14.49 mm |
-| D10 + D13 | 53.20 mm | 53.20 mm | 0.00 mm |
-| Estimated R13 to STO | 24.20 mm | 9.71 mm | −14.49 mm |
-| Estimated STO to R14 | 8.00 mm | 8.00 mm | 0.00 mm |
+| D10 + D13             | 53.20 mm | 53.20 mm |   0.00 mm |
+| Estimated R13 to STO  | 24.20 mm |  9.71 mm | −14.49 mm |
+| Estimated STO to R14  |  8.00 mm |  8.00 mm |   0.00 mm |
 
 The equal and opposite gap changes conserve the R1–R18 vertex length at 162.410000 mm. With the image plane fixed at the infinity-state back focal distance of 72.089219 mm, the close-focus prescription images an object 2265.077093 mm in front of R1. Adding the invariant first-surface-to-image track gives 2499.576311 mm from object to image plane. The transverse magnification is $-0.090896$, matching the magnitude of Canon's 0.09× specification.
 
@@ -168,12 +168,12 @@ $$
 
 Here $f_1$ and $f_2$ are the first- and second-group focal lengths; $\phi_{3a}$ is the power of the object-side surface of G3; and the fourth condition uses the partial-dispersion ratios and Abbe numbers of the negative and positive components of G3's first cemented pair.
 
-| Condition | Patent Example 1 | Independently recomputed | Limit | Result |
-|---|---:|---:|---:|---|
-| $f_1/f$ | 0.8033003 | 0.803314927 | 0.7–0.85 | Satisfies |
-| $|f_2|/f$ | 0.5364219 | 0.536424610 | 0.45–0.60 | Satisfies |
-| $|\phi_{3a}|f$ | 3.7234400 | 3.723466629 | 2.5–4.5 | Satisfies |
-| $|(\theta_{3a}-\theta_{3b})/(\nu_{3a}-\nu_{3b})|$ | 0.0017857 | 0.001785714 | <0.002 | Satisfies |
+| Condition |                              Patent Example 1 | Independently recomputed |     Limit | Result      |
+| --------- | --------------------------------------------: | -----------------------: | --------: | ----------- | --------- | --------- |
+| $f_1/f$   |                                     0.8033003 |              0.803314927 |  0.7–0.85 | Satisfies   |
+| $         |                                           f_2 |                      /f$ | 0.5364219 | 0.536424610 | 0.45–0.60 | Satisfies |
+| $         |                                    \phi\_{3a} |                       f$ | 3.7234400 | 3.723466629 | 2.5–4.5   | Satisfies |
+| $         | (\theta*{3a}-\theta*{3b})/(\nu*{3a}-\nu*{3b}) |                        $ | 0.0017857 | 0.001785714 | <0.002    | Satisfies |
 
 The first three recomputations use the patent's nominal $f=200.0$ mm, matching the convention in its correspondence table. The fourth uses the patent-published $\theta_{3a}=1.271845$ and $\theta_{3b}=1.238095$ because rounded $n/\nu$ values alone cannot reproduce those ratios exactly.
 
@@ -181,23 +181,23 @@ The first three recomputations use the patent's nominal $f=200.0$ mm, matching t
 
 All load-bearing first-order quantities were recomputed from a fresh transcription of Numerical Example 1. The paraxial trace used $[y,\nu]$ coordinates, where $\nu=nu$, with surface power $\phi=(n'-n)/R$ and translation $d/n$. Petzval curvature was recomputed independently with the required surface term $\phi/(nn')$.
 
-| Quantity | Patent or manufacturer value | Independently computed | Assessment |
-|---|---:|---:|---|
-| System EFL, infinity | 200.000000 mm | 200.016526 mm | +0.00826%; consistent with rounded prescription data |
-| System EFL, close-spacing layout | not tabulated | 199.119051 mm | Collimated-input diagnostic |
-| G1 focal length | 160.660060 mm | 160.662985 mm | +0.002925 mm |
-| G2 focal length | −107.284380 mm | −107.284922 mm | −0.000542 mm |
-| G3 focal length | not tabulated | +109.492850 mm | Verified |
-| L6+L7 cemented net | not separately tabulated | −107.284922 mm | Equals G2 |
-| L8+L9 cemented net | not tabulated | −951.465248 mm | Weakly negative in situ |
-| R1–R18 vertex length | not tabulated | 162.410000 mm | Invariant with focus |
-| Infinity BFD from R18 | not tabulated | 72.089219 mm | Fixed image-plane gap used in close-focus trace |
-| R1-to-image total track | not tabulated | 234.499219 mm | $\mathrm{TL}/\mathrm{EFL}=1.172399$ |
-| Close object-to-image distance | 2.5 m state | 2499.576311 mm | −0.423689 mm from nominal |
-| Close magnification magnitude | 0.09× | 0.090896× | Agreement |
-| Petzval sum | not tabulated | +0.000627214 mm⁻¹ | Surface-by-surface |
-| Petzval radius | not tabulated | −1594.351510 mm | Image-space sign convention |
-| Image circle from $2\omega=12.3^\circ$ | 35 mm coverage | 43.100754 mm | Consistent with 36 × 24 mm diagonal |
+| Quantity                               | Patent or manufacturer value | Independently computed | Assessment                                           |
+| -------------------------------------- | ---------------------------: | ---------------------: | ---------------------------------------------------- |
+| System EFL, infinity                   |                200.000000 mm |          200.016526 mm | +0.00826%; consistent with rounded prescription data |
+| System EFL, close-spacing layout       |                not tabulated |          199.119051 mm | Collimated-input diagnostic                          |
+| G1 focal length                        |                160.660060 mm |          160.662985 mm | +0.002925 mm                                         |
+| G2 focal length                        |               −107.284380 mm |         −107.284922 mm | −0.000542 mm                                         |
+| G3 focal length                        |                not tabulated |         +109.492850 mm | Verified                                             |
+| L6+L7 cemented net                     |     not separately tabulated |         −107.284922 mm | Equals G2                                            |
+| L8+L9 cemented net                     |                not tabulated |         −951.465248 mm | Weakly negative in situ                              |
+| R1–R18 vertex length                   |                not tabulated |          162.410000 mm | Invariant with focus                                 |
+| Infinity BFD from R18                  |                not tabulated |           72.089219 mm | Fixed image-plane gap used in close-focus trace      |
+| R1-to-image total track                |                not tabulated |          234.499219 mm | $\mathrm{TL}/\mathrm{EFL}=1.172399$                  |
+| Close object-to-image distance         |                  2.5 m state |         2499.576311 mm | −0.423689 mm from nominal                            |
+| Close magnification magnitude          |                        0.09× |              0.090896× | Agreement                                            |
+| Petzval sum                            |                not tabulated |      +0.000627214 mm⁻¹ | Surface-by-surface                                   |
+| Petzval radius                         |                not tabulated |        −1594.351510 mm | Image-space sign convention                          |
+| Image circle from $2\omega=12.3^\circ$ |               35 mm coverage |           43.100754 mm | Consistent with 36 × 24 mm diagonal                  |
 
 The 0.016526 mm EFL residual is small relative to the patent's three-decimal radii and two-decimal thicknesses. It supports the transcription rather than indicating a radius-sign or refractive-index error.
 
@@ -220,7 +220,13 @@ The ordinary infinity aperture check is within its 3% f/1.86 gate, but its stric
 
 ## Sources
 
-1. Canon Inc., **JP H01-102413 A**, *大口径比望遠レンズ*, especially claims on printed pp. 71–72, design discussion on pp. 73–74, Numerical Example 1 on p. 75, and correspondence table and figures on p. 77.
+1. Canon Inc., **JP H01-102413 A**, _大口径比望遠レンズ_, especially claims on printed pp. 71–72, design discussion on pp. 73–74, Numerical Example 1 on p. 75, and correspondence table and figures on p. 77.
 2. Canon Camera Museum, **EF200mm f/1.8L USM**, official construction, focusing, aperture, dimensions, UD count, and optical block diagram: <https://global.canon/en/c-museum/product/ef279.html>.
 3. OHARA Inc., **Optical Glass Catalog**, 1 July 2026 all-products Zemax dataset, including discontinued BPH5, PBH53, BPM4, and S-LAL7 records: <https://www.ohara-inc.co.jp/en/product/catalog/>.
 4. HIKARI GLASS CO., LTD., **J-LAK7 optical-data sheet**, used as a cross-vendor comparison for the L9 identification: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/LAK/J_LAK7.pdf>.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 200.0 mm, taken directly from Numerical Example1, PDF p5 / printed75: source f=200.00000mm, FNO1:1.86. The prior computed model EFL value 200.016526 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

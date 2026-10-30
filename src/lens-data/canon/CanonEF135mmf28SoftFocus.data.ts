@@ -68,7 +68,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "7 ELEMENTS / 6 GROUPS",
-      "135.043 mm DESIGN EFL",
+      "135.043 mm COMPUTED EFL",
       "f/3.341 SHARP / f/2.8 SOFT",
       "18.2° FULL FIELD",
       "1 GLASS-MOLDED ASPHERE",
@@ -76,7 +76,7 @@ const LENS_DATA = {
     ],
     elementCount: 7,
     groupCount: 6,
-    focalLengthMm: { marketing: 135, design: 135.04315036977448 },
+    focalLengthMm: { marketing: 135, design: 135 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -111,7 +111,8 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 60.7,
       focalLengthMm: 119.67993390924296,
-      glass: "Unmatched (SK16 class comparison (patent 623607; production supplier unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (SK16 class comparison (patent 623607; production supplier unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
       role: "Second positive element in component I; the printed patent index/Abbe pair is preserved.",

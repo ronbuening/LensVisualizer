@@ -34,7 +34,7 @@ const LENS_DATA = {
     ],
     elementCount: 5,
     groupCount: 5,
-    focalLengthMm: { marketing: 28, design: 28.219375888477686 },
+    focalLengthMm: { marketing: 28, design: 28 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -56,7 +56,8 @@ const LENS_DATA = {
       vd: 60.7,
       focalLengthMm: -40.133858724,
       glass: "Unmatched (source 1.60311/60.7; spectral reference and historical medium unidentified)",
-      indexReferenceNote: "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      indexReferenceNote:
+        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
       role: "Front negative meniscus; its rear asphere supplies the principal wide-angle correction.",
     },
     {
@@ -68,7 +69,8 @@ const LENS_DATA = {
       vd: 44.2,
       focalLengthMm: 33.841845873,
       glass: "Unmatched (source 1.78590/44.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote: "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      indexReferenceNote:
+        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
       role: "Front positive element that restores power after L1 and precedes the aperture stop.",
     },
     {
@@ -80,7 +82,8 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: -17.659709222,
       glass: "Unmatched (source 1.84666/23.9; spectral reference and historical medium unidentified)",
-      indexReferenceNote: "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      indexReferenceNote:
+        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
       role: "High-index, high-dispersion negative element behind the stop; balances the positive rear pair.",
     },
     {
@@ -92,7 +95,8 @@ const LENS_DATA = {
       vd: 42.2,
       focalLengthMm: 25.168233868,
       glass: "Unmatched (source 1.79952/42.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote: "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      indexReferenceNote:
+        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
       role: "Strong rear positive element with a nearly flat front surface and strongly powered rear surface.",
     },
     {
@@ -104,7 +108,8 @@ const LENS_DATA = {
       vd: 44.2,
       focalLengthMm: 42.862940291,
       glass: "Unmatched (source 1.78590/44.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote: "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      indexReferenceNote:
+        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
       role: "Final positive element that completes the rear relay and establishes the long back focus.",
     },
   ],

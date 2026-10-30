@@ -36,14 +36,14 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 12 GROUPS",
-      "PATENT EFL 28.903-101.333 mm",
+      "PATENT f = 28.90-101.37 mm / MODELED EFL 28.903-101.333 mm",
       "PATENT f/3.63-4.67",
       "ALL-SPHERICAL",
       "INNER FOCUS",
     ],
     elementCount: 15,
     groupCount: 12,
-    focalLengthMm: { marketing: [28, 105], design: [28.902522, 101.333334] },
+    focalLengthMm: { marketing: [28, 105], design: [28.9, 101.37] },
     fNumber: { marketing: 3.5, design: 3.63 },
   },
 

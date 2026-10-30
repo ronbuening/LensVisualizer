@@ -23,8 +23,7 @@ const LENS_DATA = {
   key: "canon-ef-28mm-f28-is-usm",
   maker: "Canon",
   name: "CANON EF 28mm f/2.8 IS USM",
-  subtitle:
-    "JP 2013-054269 A — Numerical Example 1; production correlation inferred",
+  subtitle: "JP 2013-054269 A — Numerical Example 1; production correlation inferred",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -39,7 +38,7 @@ const LENS_DATA = {
     ],
     elementCount: 9,
     groupCount: 7,
-    focalLengthMm: { marketing: 28, design: 28.59752870757978 },
+    focalLengthMm: { marketing: 28, design: 28.6 },
     fNumber: { marketing: 2.8, design: 2.86 },
   },
 
@@ -60,8 +59,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: -79.06770868196946,
-      glass:
-        "J-SK14 (Hikari; compatible spectral proxy; historical glass unresolved)",
+      glass: "J-SK14 (Hikari; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Fixed front-group negative meniscus providing the principal retrofocus expansion.",
     },
@@ -73,8 +71,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 131.07705183894166,
-      glass:
-        "J-LASF016 (Hikari; compatible spectral proxy; historical glass unresolved)",
+      glass: "J-LASF016 (Hikari; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Fixed front-group biconvex positive element moderating the front pair's net negative power.",
     },
@@ -86,8 +83,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -55.24882941282274,
-      glass:
-        "S-FSL5 (Ohara; compatible spectral proxy; historical glass unresolved)",
+      glass: "S-FSL5 (Ohara; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Front element of the rigid moving focus unit and pre-stop aberration corrector.",
     },
@@ -99,8 +95,7 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       focalLengthMm: 16.55194183225374,
-      glass:
-        "H-ZLaF4LA (CDGM; compatible spectral proxy; historical glass unresolved)",
+      glass: "H-ZLaF4LA (CDGM; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Strong positive component of the pre-stop cemented doublet.",
       cemented: "D1",
@@ -113,8 +108,7 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.3,
       focalLengthMm: -23.405599839130957,
-      glass:
-        "J-KZFH9 (Hikari; compatible spectral proxy; historical glass unresolved)",
+      glass: "J-KZFH9 (Hikari; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Negative component of the pre-stop cemented doublet.",
       cemented: "D1",
@@ -127,8 +121,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 72.82236010257928,
-      glass:
-        "TAC8 (Hoya; compatible spectral proxy; historical glass unresolved)",
+      glass: "TAC8 (Hoya; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Single positive stabilization element translated laterally for image-shift correction.",
     },
@@ -140,8 +133,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.3,
       focalLengthMm: -19.67300605089382,
-      glass:
-        "S-TIH3 (Ohara; compatible spectral proxy; historical glass unresolved)",
+      glass: "S-TIH3 (Ohara; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Negative component of the rear cemented doublet.",
       cemented: "D2",
@@ -154,8 +146,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: 28.319493241638853,
-      glass:
-        "J-LAK14 (Hikari; compatible spectral proxy; historical glass unresolved)",
+      glass: "J-LAK14 (Hikari; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Positive component of the rear cemented doublet.",
       cemented: "D2",
@@ -168,8 +159,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 47.61292970706964,
-      glass:
-        "J-SK12 (Hikari; compatible spectral proxy; historical glass unresolved)",
+      glass: "J-SK12 (Hikari; compatible spectral proxy; historical glass unresolved)",
       apd: false,
       role: "Final positive meniscus; its object-side asphere controls peripheral aberrations.",
     },

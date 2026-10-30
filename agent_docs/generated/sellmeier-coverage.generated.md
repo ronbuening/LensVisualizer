@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **669** lenses fully covered by trusted chromatic data
-- **666** visible lenses fully covered by trusted chromatic data
-- **661** lenses fully covered by strict Sellmeier data
-- **658** visible lenses fully covered by strict Sellmeier data
+- **668** lenses fully covered by trusted chromatic data
+- **665** visible lenses fully covered by trusted chromatic data
+- **660** lenses fully covered by strict Sellmeier data
+- **657** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10671 / 11847** non-air surfaces use strict catalog Sellmeier data
-- **90.1%** strict Sellmeier surface coverage overall
-- **10685 / 11847** non-air surfaces use trusted chromatic data
-- **90.2%** trusted chromatic coverage overall
+- **10662 / 11847** non-air surfaces use strict catalog Sellmeier data
+- **90.0%** strict Sellmeier surface coverage overall
+- **10676 / 11847** non-air surfaces use trusted chromatic data
+- **90.1%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -684,7 +684,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 28mm f/2.8 IS USM](../../src/lens-data/canon/CanonEF28mmf28ISUSM.data.ts) | 9/9 | 9 | 9/9 |
-| [CANON EF 85mm f/1.8 USM](../../src/lens-data/canon/CanonEF85mmf18USM.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 9/9 | 9 | 9/9 |
@@ -1341,31 +1340,32 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 329 | [CANON EF 15mm f/2.8 Fisheye](../../src/lens-data/canon/CanonEF15mmf28.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 330 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 331 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 332 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 333 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 334 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 335 | [CANON EF 28-80mm f/3.5-5.6 II](../../src/lens-data/canon/CanonEF2880mmf3556II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 336 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 337 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 338 | [CANON EF 20mm f/2.8 USM](../../src/lens-data/canon/CanonEF20mmf28.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 339 | [CANON EF 35mm f/1.4 L USM](../../src/lens-data/canon/CanonEF35mmf14LUSM.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 340 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 341 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 342 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
-| 343 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 344 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 345 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 346 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 347 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 348 | [CANON EF 300mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF300mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 349 | [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 350 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 351 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 352 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 353 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 354 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 355 | [CANON EF 70-300mm f/4.5-5.6 DO IS USM](../../src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 356 | [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/21 | 0/21 | 21 | abbe: 21 |
+| 332 | [CANON EF 85mm f/1.8 USM](../../src/lens-data/canon/CanonEF85mmf18USM.data.ts) | 0.0% | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
+| 333 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 334 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 335 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 336 | [CANON EF 28-80mm f/3.5-5.6 II](../../src/lens-data/canon/CanonEF2880mmf3556II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 337 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 338 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 339 | [CANON EF 20mm f/2.8 USM](../../src/lens-data/canon/CanonEF20mmf28.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 340 | [CANON EF 35mm f/1.4 L USM](../../src/lens-data/canon/CanonEF35mmf14LUSM.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 341 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 342 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 343 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 344 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 345 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 346 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 347 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 348 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 349 | [CANON EF 300mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF300mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 350 | [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 351 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 352 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 353 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 354 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 355 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 356 | [CANON EF 70-300mm f/4.5-5.6 DO IS USM](../../src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 357 | [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/21 | 0/21 | 21 | abbe: 21 |
 
 ## Missing Surface Details
 
@@ -3789,6 +3789,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 7 | abbe | `Unmatched (native nd=1.65000, vd=33.89; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 14 | Element 8 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
+
+### [CANON EF 85mm f/1.8 USM](../../src/lens-data/canon/CanonEF85mmf18USM.data.ts) - 0.0% trusted (0/9); 0.0% Sellmeier (0/9) - JP H05-157964 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAL7)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAH66)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAL8)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH1)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 5 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH6)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate BSL7)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH6)` | Explicit unmatched/proprietary annotation |
+| 14 | Element 8 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAH53)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 1 more missing surface |
 
 ### [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - JP 1991-141313 A
 

@@ -68,14 +68,14 @@ const LENS_DATA = {
     specs: [
       "US 2002/0015231 A1 — Example 1",
       "15 powered elements / 11 active groups + rear plate",
-      "Design f = 392.025 mm, F/4.12",
+      "PATENT f = 392.00 mm, F/4.12",
       "2ω = 6.32°",
       "r2 radial-polynomial DO phase",
     ],
     elementCount: 15,
     groupCount: 11,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 400, design: 392.0252037706986 },
+    focalLengthMm: { marketing: 400, design: 392.0 },
     fNumber: { marketing: 4, design: 4.12 },
   },
 

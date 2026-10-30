@@ -43,7 +43,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "17 elements / 12 groups incl. drop-in filter",
-      "f = 194.991 mm design; 200 mm marketed",
+      "f = 194.99 mm patent; computed EFL 194.991 mm; 200 mm marketed",
       "F/2.05 design; f/2.0 marketed",
       "All-spherical; CaF2-compatible + 2 UD-class coordinates",
       "Inner focus + L32 optical image stabilization",
@@ -51,7 +51,7 @@ const LENS_DATA = {
     elementCount: 17,
     groupCount: 12,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x II / EF2x II compatibility
-    focalLengthMm: { marketing: 200, design: 194.991 },
+    focalLengthMm: { marketing: 200, design: 194.99 },
     fNumber: { marketing: 2.0, design: 2.05 },
   },
 
@@ -99,7 +99,8 @@ const LENS_DATA = {
       focalLengthMm: 147.3,
       glass: "S-FPL51 (OHARA) (qualified spectral proxy; historical supplier and melt unspecified)",
       apd: "inferred",
-      apdNote: "Catalog-inferred APD of the compatible S-FPL51 proxy; no per-medium partial dispersion or line indices are published.",
+      apdNote:
+        "Catalog-inferred APD of the compatible S-FPL51 proxy; no per-medium partial dispersion or line indices are published.",
       role: "First UD-class positive element in L1; works with fluorite to suppress axial color.",
     },
     {
@@ -135,7 +136,8 @@ const LENS_DATA = {
       focalLengthMm: 98.8,
       glass: "S-FPL51 (OHARA) (qualified spectral proxy; historical supplier and melt unspecified)",
       apd: "inferred",
-      apdNote: "Catalog-inferred APD of the compatible S-FPL51 proxy; no per-medium partial dispersion or line indices are published.",
+      apdNote:
+        "Catalog-inferred APD of the compatible S-FPL51 proxy; no per-medium partial dispersion or line indices are published.",
       role: "Second UD-class element; rear half of the nearly afocal L1 chromatic-correction doublet.",
       cemented: "D1",
     },

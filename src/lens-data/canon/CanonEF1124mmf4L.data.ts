@@ -55,7 +55,7 @@ const LENS_DATA = {
     ],
     elementCount: 16,
     groupCount: 11,
-    focalLengthMm: { marketing: [11, 24], design: [11.328513, 23.281475] },
+    focalLengthMm: { marketing: [11, 24], design: [11.33, 23.28] },
     fNumber: { marketing: 4, design: 4.12 },
   },
 
@@ -122,7 +122,8 @@ const LENS_DATA = {
       focalLengthMm: -79.442153,
       glass: "S-FPL53 (OHARA; Super UD-class position inferred from Canon's construction diagram)",
       apd: "inferred",
-      apdNote: "Compatible S-FPL53 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
+      apdNote:
+        "Compatible S-FPL53 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
       role: "Extreme low-dispersion negative front-unit element; provides low-dispersion contrast with E6.",
     },
     {
@@ -230,7 +231,8 @@ const LENS_DATA = {
       focalLengthMm: 26.015283,
       glass: "S-FPL51 (OHARA; UD-class position inferred from Canon's construction diagram)",
       apd: "inferred",
-      apdNote: "Compatible S-FPL51 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
+      apdNote:
+        "Compatible S-FPL51 spectral proxy; low-dispersion classification inferred. Canon does not disclose the production melt.",
       role: "Strong positive low-dispersion singlet and the principal positive standalone power in L3.",
     },
     {

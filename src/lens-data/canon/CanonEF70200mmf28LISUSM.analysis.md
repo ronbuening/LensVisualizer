@@ -76,3 +76,9 @@ Source fidelity, sampled runtime clearance and commercial correlation remain sep
 - **JP2002162564A**, the selected local original: Numerical Example 1, notation ¶0044 page 5, prescription/Table 1 page 6, Figures 1/2 pages 10/11; source focus/IS discussion ¶0021–0027 page 4.
 - **US6646804B2**, an older family translation reference. Its original is absent locally and contributes no fresh source-verification claim.
 - **Canon Camera Museum** and earlier catalog comparisons: retained historical product-correlation context. They do not identify the exact patent prescription or historical materials.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 72.5–194.99 mm, taken directly from Numerical Example1, Table1, PDF p6 / printed6: complete station range72.50/99.50/194.99mm. The same page wide-only header prints72.49805; Table1 is retained for a consistently printed full range. The prior computed model EFL range 72.4976753358023–194.97993964127204 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

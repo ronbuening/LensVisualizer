@@ -433,3 +433,9 @@ Example 2 does not provide a lateral displacement table.
    618634 proxy families. <https://www.hoya-opticalworld.com/english/products/crossreference.html>
 5. **SCHOTT**, TIE-29, _Refractive Index and Dispersion_, used for the normal-line definition applied to `dPgF`.
    <https://media.schott.com/api/public/content/aaa572afd854434fb7b3faa4bc46103f>
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 392.0 mm, taken directly from Numerical Data2, PDF p13 / printed6, bottom-right scalar Focal length392.00mm; continueddata p14/printed7. The prior computed model EFL value 391.9381342837631 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

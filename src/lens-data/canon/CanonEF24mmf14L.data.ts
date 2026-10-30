@@ -51,7 +51,7 @@ const LENS_DATA = {
     ],
     elementCount: 11,
     groupCount: 9,
-    focalLengthMm: { marketing: 24, design: 24.5994023367 },
+    focalLengthMm: { marketing: 24, design: 24.6 },
     fNumber: { marketing: 1.4, design: 1.45 },
   },
 
@@ -189,7 +189,8 @@ const LENS_DATA = {
       vd: 28.64,
       focalLengthMm: -48.914494,
       indexReference: "d",
-      glass: "S-TIH10 (approximate spectral proxy to printed 1.728250/28.64; published C/F/g retained; supplier unconfirmed)",
+      glass:
+        "S-TIH10 (approximate spectral proxy to printed 1.728250/28.64; published C/F/g retained; supplier unconfirmed)",
       role: "Negative element completing B2a immediately ahead of the stop gap.",
       nC: 1.720865,
       nF: 1.746453,

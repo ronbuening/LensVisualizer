@@ -80,7 +80,7 @@ const LENS_DATA = {
     elementCount: 17,
     groupCount: 14,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: [100, 400], design: [102.687376759194, 389.165258375804] },
+    focalLengthMm: { marketing: [100, 400], design: [102.68, 389.19] },
     fNumber: {
       marketing: 4.5, // wide-end marketing value; tele-end f/5.6 is carried by the product name
       design: 4.6, // wide-end design value; full 4.6/5.1/5.8 sequence is nominalFno

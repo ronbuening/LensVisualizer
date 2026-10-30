@@ -22,7 +22,7 @@ review. The r19 sign difference was not disclosed in those older notes. Structur
 identify all three pairs. No new fit or radius change is made; this is a qualified nonliteral reconstruction, not a
 freshly source-proven corrected prescription. The family links below are historical leads only. [1][2][3]
 
-No prescription scaling is applied. The production marketing focal length remains 400 mm, while the verified design EFL stored in the data is 392.025203770699 mm. Likewise, the production aperture designation is f/4, while the modeled design F-number and `nominalFno` are 4.12.
+No prescription scaling is applied. The production marketing focal length remains 400 mm, while the printed catalog design target is 392.00 mm and the independently computed model EFL is 392.025203770699 mm. Likewise, the production aperture designation is f/4, while the modeled design F-number and `nominalFno` are 4.12.
 
 The patent ends Numerical Example 1 with a 2.20 mm plane-parallel `nd = 1.51633` plate. Canon specifies a 52 mm drop-in filter for the production lens, but the patent does not identify its terminal plate as that filter. The model therefore treats the plate as an image-side plate rather than asserting a product-part identity. It is drawn in the data file as a plane-parallel plate element (2.20 mm, `nd = 1.51633`, `νd = 64.1`), so every analysis traces it; its semi-diameter is a ray-trace estimate because the patent lists none. Surface 27 keeps the printed `d27 = 0.72 mm` to the plate. The table ends at `r29 = ∞` without a d29 or back focus, so the 63.3369041 mm plate-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 65.507775640 mm air-equivalent spacing from surface 27 to the image plane.
 
@@ -283,3 +283,9 @@ explicit limitations rather than unsupported claims of full physical fidelity.
 6. HOYA, **Optical Glass Cross Reference**, used for six-vendor coordinate comparison. https://www.hoya-opticalworld.com/english/products/crossreference.html
 7. OHARA, **Optical Glass Pocket Catalog**, used for coordinate-compatible class checks. https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf
 8. Hellma Materials, **Calcium Fluoride (CaF2)** optical-material data, used to check the fluorite-class coordinate. https://www.hellma-materials.com/en/optical-materials/crystals-for-optics/calcium-fluoride/
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 392.0 mm, taken directly from Numerical Example1, paragraph0104, PDF p17 / printed7: source focal length392.00mm. The prior computed model EFL value 392.0252037706986 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

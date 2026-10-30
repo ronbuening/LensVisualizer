@@ -53,7 +53,6 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: {
       marketing: [17, 40],
-      design: [17.491619, 38.831255],
     },
     fNumber: {
       marketing: 4,
@@ -61,7 +60,7 @@ const LENS_DATA = {
     },
     specs: [
       "12 ELEMENTS / 9 GROUPS",
-      "DESIGN f = 17.49–38.83 mm",
+      "BARE-MASTER MODELED f = 17.49–38.83 mm",
       "DESIGN F/4.1",
       "3 ASPHERICAL SURFACES / 3 ELEMENTS",
     ],

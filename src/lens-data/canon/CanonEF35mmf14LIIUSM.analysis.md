@@ -419,3 +419,9 @@ US 2015/0098138 A1, Fig. 3, PDF p4 (600 dpi; crop 0.27,0.48,0.655,0.65). Retaine
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.
 
 Direct local-SVG comparison confirms the retained optical rims and element/group labels. L2a and L2b move objectward from infinity toward near focus while L1 remains fixed. E5/E9 (S-FPL51) and E13 (S-FPM2) now carry inferred APD tags from the compatible catalog curves; no patent partial-dispersion measurement or production supplier is asserted.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 35.42 mm, taken directly from Numerical Example2, paragraph0069, PDF p16 / printed6: scalar Focal length35.42mm. The prior computed model EFL value 35.421785862382364 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

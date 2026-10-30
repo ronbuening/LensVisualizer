@@ -57,7 +57,7 @@ const LENS_DATA = {
     ],
     elementCount: 8,
     groupCount: 7,
-    focalLengthMm: { marketing: 15, design: 15.286506817 },
+    focalLengthMm: { marketing: 15, design: 15.3 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -79,7 +79,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -33.615501,
-      glass: "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Large front negative meniscus accepting the extreme field and beginning the retrofocus conversion.",
@@ -92,7 +93,8 @@ const LENS_DATA = {
       nd: 1.617,
       vd: 62.8,
       focalLengthMm: -59.765845,
-      glass: "Unmatched (S-PHM51 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-PHM51 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Second negative meniscus; continues field-angle compression with relatively weak standalone power.",
@@ -105,7 +107,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -45.777815,
-      glass: "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Final front negative meniscus; its rear radius participates in claim condition (1).",
@@ -118,7 +121,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 32.842152,
-      glass: "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Strong positive element before the stop; starts the positive relay after the negative front converter.",
@@ -131,7 +135,8 @@ const LENS_DATA = {
       nd: 1.51112,
       vd: 60.5,
       focalLengthMm: 63.06703,
-      glass: "Unmatched (NSL7 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (NSL7 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Weak positive post-stop meniscus with much stronger image-side refracting surface.",
@@ -144,7 +149,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -26.480431,
-      glass: "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Negative component of the nearly afocal cemented doublet.",
@@ -158,7 +164,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 29.029791,
-      glass: "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Positive low-dispersion component of the nearly afocal cemented doublet.",
@@ -172,7 +179,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 45.834475,
-      glass: "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
       role: "Symmetric final positive element; a principal discriminator of Numerical Example 3.",

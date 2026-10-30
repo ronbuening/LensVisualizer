@@ -278,6 +278,10 @@ All 15 powered elements, four cemented interfaces, concave ends and source filte
 
 The pre-existing `gapSagFrac: 0.96` remains unchanged. At S4–S5 the modeled physical residual gap is 0.170987 mm; at the opposed S20–S21 shoulders it is 0.246289 mm. Raising S5 to 42.5 gives 4.05 mm combined sag against 3.907 mm allowed across D4 = 4.07. Restoring full S20/S21 caps to 17 gives 6.10 against 5.299 allowed across D20 = 5.52 and even exceeds the physical gap. The smaller caps remain, and the finite-focus S5 clipping is disclosed. The 0.96 allowance predates this review; it is not increased or presented as a source-published margin. Source R/d, stops and focus controls are preserved, with source fidelity, sampled clearance and production correlation kept separate. See the [audit sidecar](./CanonEF300mmf28LISUSM.audit.md).
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 293.58 mm from PDF p. 68 (Numerical Example 1 heading, printed column 12). The computed 293.599593947 mm EFL remains an approximate d-reference model result; it is not the printed nominal focal length. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
 1. **U.S. Patent 6,115,188**, Akihiro Nishio, Hideki Ogawa, and Makoto Misaka, _Optical System and Optical Apparatus Having the Same_, granted 5 September 2000. Relevant material: Fig. 1; first-embodiment description; Numerical Example 1; Table 1; Certificate of Correction dated 29 May 2001.

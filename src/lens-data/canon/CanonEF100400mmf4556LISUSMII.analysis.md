@@ -452,3 +452,9 @@ The three printed infinity stations retain 49/49 axial passage. Illustrative int
 | 1      | Infinity / unchanged focus | 49 / 39 / 22                                 |
 
 The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 102.79–389.03 mm, taken directly from Numerical Example2, paragraph0092, PDF p22 / printed8: Various data focal-length row102.79/199.97/389.03. The prior computed model EFL range 102.75785763652577–388.9390594335833 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

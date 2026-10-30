@@ -44,7 +44,7 @@ const LENS_DATA = {
     specs: [
       "17 elements / 13 groups including required G filter",
       "600mm f/4 MARKETED",
-      "f ≈ 587.93 mm / F4.12 DESIGN",
+      "MODELED EFL ≈ 587.93 mm / F4.12",
       "2ω ≈ 4.22°",
       "2 FLUORITE + 1 SUPER UD",
       "ALL-SPHERICAL",
@@ -52,7 +52,7 @@ const LENS_DATA = {
     ],
     elementCount: 17,
     groupCount: 13,
-    focalLengthMm: { marketing: 600, design: 587.932441008 },
+    focalLengthMm: { marketing: 600, design: 588 },
     fNumber: { marketing: 4, design: 4.12 },
   },
 

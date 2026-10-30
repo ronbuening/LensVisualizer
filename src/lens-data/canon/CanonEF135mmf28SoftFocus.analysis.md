@@ -21,7 +21,7 @@ The prescription is the fixed Numerical Example 4 of US 4,826,301. The data mode
 
 One source/product difference is material. Canon markets the production lens as f/2.8, whereas Example 4 explicitly gives `FNO = 3.4–2.8`: f/3.4 in the normal position and f/2.8 in the soft-focus position. The model preserves that patent behavior through the clear aperture of moving L4 rather than replacing the Example 4 aperture behavior with the marketed scalar specification. The correlation is therefore structural and functional; it is not evidence that every production clear-aperture dimension is identical to the worked example.
 
-The modeled design EFL is 135.043150 mm, while the production focal-length designation remains 135 mm. No dimensional scaling is applied.
+The patent prints `F = 135` mm for Numerical Example 4 (PDF page 21, column 9), which supplies the catalog design focal length. The sharp infinity prescription computes to 135.043150 mm; that calculation remains separate from the printed value and the marketed 135 mm designation. No dimensional scaling is applied.
 
 ## Optical Architecture
 
@@ -87,15 +87,15 @@ L7 is the stationary positive III-2 sub-component. It follows the moving negativ
 
 The original defines refractive index N and Abbe number ν without explicitly linking those prescription coordinates to a spectral line (column 9). The d/C/g aberration curves in Figures 12/13 provide spectral context and support the retained d-line tracing convention as an approximation; they do not supply individual line indices or independently define the table's reference. All seven media retain their numeric pairs, explicit source-reference notes and `Unmatched` status. Conditional class comparisons select no catalog spectral curve and do not identify historical supplier, melt or chemistry.
 
-| Element | Conditional class comparison | n (source) | ν (source) | Status |
-|---|---|---:|---:|---|
-| L1 | 623582 class | 1.62299 | 58.2 | Unmatched; source reference and supplier unresolved |
-| L2 | SK16 conditional class comparison | 1.62299 | 60.7 | Unmatched; source pair preserved and reference unspecified |
-| L3 | 805254 class | 1.80518 | 25.4 | Unmatched; source reference and supplier unresolved |
-| L4 | 583594 class | 1.58313 | 59.4 | Unmatched; source reference and supplier unresolved |
-| L5 | 755275 class | 1.75520 | 27.5 | Unmatched; source reference and supplier unresolved |
-| L6 | 541472 class | 1.54072 | 47.2 | Unmatched; source reference and supplier unresolved |
-| L7 | 487702 class | 1.48749 | 70.2 | Unmatched; source reference and supplier unresolved |
+| Element | Conditional class comparison      | n (source) | ν (source) | Status                                                     |
+| ------- | --------------------------------- | ---------: | ---------: | ---------------------------------------------------------- |
+| L1      | 623582 class                      |    1.62299 |       58.2 | Unmatched; source reference and supplier unresolved        |
+| L2      | SK16 conditional class comparison |    1.62299 |       60.7 | Unmatched; source pair preserved and reference unspecified |
+| L3      | 805254 class                      |    1.80518 |       25.4 | Unmatched; source reference and supplier unresolved        |
+| L4      | 583594 class                      |    1.58313 |       59.4 | Unmatched; source reference and supplier unresolved        |
+| L5      | 755275 class                      |    1.75520 |       27.5 | Unmatched; source reference and supplier unresolved        |
+| L6      | 541472 class                      |    1.54072 |       47.2 | Unmatched; source reference and supplier unresolved        |
+| L7      | 487702 class                      |    1.48749 |       70.2 | Unmatched; source reference and supplier unresolved        |
 
 No element carries authored nC, nF, ng, or dPgF data because Numerical Example 4 does not publish those quantities and no exact vendor melt is established. The previously active catalog-equivalent curves are disabled while the source reference remains unverified; chromatic tracing uses the retained index/Abbe approximation. Consequently, the analysis makes no apochromatic or anomalous-partial-dispersion claim. The patent's chromatic aberration plots show system behavior, but they do not supply the element-level spectral data needed to infer a particular anomalous-dispersion strategy.
 
@@ -105,10 +105,10 @@ The patent describes rear focusing. III-1, the cemented L5+L6 negative doublet, 
 
 Numerical Example 4 does not publish an ordinary-focus spacing table. The data therefore uses a `CONSTRAINED_RECONSTRUCTION` rather than presenting close focus as a source-published state. The reconstruction keeps component I, L4, the aperture-stop station, L7, and the image plane fixed; only III-1 translates. The adjacent gaps D9 and D12 conserve their 25.80 mm sum.
 
-| Focus state | D9 (mm) | D12 (mm) | III-1 position |
-|---|---:|---:|---|
-| Infinity, sharp | 6.000000 | 19.800000 | Patent base position |
-| 1.3 m, sharp | 15.007511 | 10.792489 | Reconstructed 9.007511 mm rearward travel |
+| Focus state     |   D9 (mm) |  D12 (mm) | III-1 position                            |
+| --------------- | --------: | --------: | ----------------------------------------- |
+| Infinity, sharp |  6.000000 | 19.800000 | Patent base position                      |
+| 1.3 m, sharp    | 15.007511 | 10.792489 | Reconstructed 9.007511 mm rearward travel |
 
 The close endpoint is solved to Canon's marketed 1.3 m minimum focusing distance, measured from the focal plane. Independent conjugate tracing gives paraxial magnification -0.124136 at that endpoint. Canon lists maximum magnification as 0.12×; the small difference is consistent with the manufacturer values being rounded rather than with a second unconstrained focus model.
 
@@ -122,15 +122,15 @@ Surface 7A, the front surface of L4, is the only asphere. The patent writes the 
 
 This equation uses the ordinary sphere as the base term. Accordingly, the LensVisualizer conic constant is `K = 0`. The patent's quadratic coefficient A is zero, so the remaining coefficients map directly to the LensVisualizer even-order polynomial:
 
-| LensVisualizer term | Value |
-|---|---:|
-| K | 0 |
-| A4 | -5.880 × 10⁻⁷ mm⁻³ |
-| A6 | -1.588 × 10⁻¹⁰ mm⁻⁵ |
-| A8 | -2.038 × 10⁻¹² mm⁻⁷ |
-| A10 | +2.540 × 10⁻¹⁶ mm⁻⁹ |
-| A12 | 0 |
-| A14 | 0 |
+| LensVisualizer term |               Value |
+| ------------------- | ------------------: |
+| K                   |                   0 |
+| A4                  |  -5.880 × 10⁻⁷ mm⁻³ |
+| A6                  | -1.588 × 10⁻¹⁰ mm⁻⁵ |
+| A8                  | -2.038 × 10⁻¹² mm⁻⁷ |
+| A10                 | +2.540 × 10⁻¹⁶ mm⁻⁹ |
+| A12                 |                   0 |
+| A14                 |                   0 |
 
 The dominant negative polynomial terms reduce the marginal sag relative to the reference sphere. At the verified 15.675574 mm semi-diameter of 7A, independent computation gives a polynomial departure of -45.062089 µm and an actual rim angle of 30.418836°. That radius is a model-verified clear semi-diameter, not a patent-published aperture height.
 

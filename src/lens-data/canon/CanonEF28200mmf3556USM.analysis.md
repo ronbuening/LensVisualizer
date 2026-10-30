@@ -7,7 +7,7 @@
 **Published:** December 21, 2001  
 **Inventor:** Makoto Mitsusaka  
 **Applicant:** Canon Inc.  
-**Title:** Zoom lens and optical device using the same  
+**Title:** Zoom lens and optical device using the same
 
 The prescription is Numerical Example 1 of JP 2001-350095 A (¶0054; PDF p. 6). The selected production correlation is the Canon EF
 28-200mm f/3.5-5.6 USM. This identification is fixed for the present analysis, but it is not represented as an explicit
@@ -44,13 +44,13 @@ The lens is a five-group zoom with the power sequence positive-negative-positive
 located between the second and third groups at source surface 16. The patent's numerical example therefore has the
 following functional arrangement:
 
-| Group | Surfaces | Computed group focal length | Principal function |
-|---|---:|---:|---|
-| G1 | 1-5 | +90.817140 mm | Positive front collector and wide-angle entrance group |
-| G2 | 6A-15 | -14.471292 mm | Strong negative variator and inner-focus group |
-| G3 | 17-21 | +24.601852 mm | Positive post-stop relay group |
-| G4 | 22-24 | -41.255033 mm | Negative compensating group |
-| G5 | 25-30 | +48.870271 mm | Positive rear relay and image-forming group |
+| Group | Surfaces | Computed group focal length | Principal function                                     |
+| ----- | -------: | --------------------------: | ------------------------------------------------------ |
+| G1    |      1-5 |               +90.817140 mm | Positive front collector and wide-angle entrance group |
+| G2    |    6A-15 |               -14.471292 mm | Strong negative variator and inner-focus group         |
+| G3    |    17-21 |               +24.601852 mm | Positive post-stop relay group                         |
+| G4    |    22-24 |               -41.255033 mm | Negative compensating group                            |
+| G5    |    25-30 |               +48.870271 mm | Positive rear relay and image-forming group            |
 
 These are focal lengths of the complete functional-group matrices. They are not sums of the standalone element powers
 listed later, and they do not describe the contribution of an element while embedded in the complete zoom.
@@ -237,25 +237,25 @@ The 2026-10-30 original-PDF review checked all 17 modeled media directly against
 
 All 17 literal pairs are retained. Every medium now carries `indexReferenceNote` and an explicit `Unmatched` label. Approximate d-line tracing remains the numerical convention; no historical line identity is asserted. The 16 previously active catalog curves are disabled. All 64 catalog-derived per-lens nC/nF/ng/dPgF fields are removed because the original publishes none of them. Coordinate proximity cannot verify the missing reference line. Source chemistry, supplier and melt remain unresolved; the thin-layer manufacturing process is also inferred. No APD evidence, source filter, rear plate or numerical cement is supplied.
 
-| Modeled medium | Source n | Source ν | Disposition |
-|---|---:|---:|---|
-| L1 | 1.846660 | 23.9 | Unresolved source reference; no active curve |
-| L2 | 1.622992 | 58.2 | Unresolved source reference; no active curve |
-| L3 | 1.622992 | 58.2 | Unresolved source reference; no active curve |
-| L4r | 1.514210 | 51.4 | Unresolved source reference; no active curve |
-| L4 | 1.834000 | 37.2 | Unresolved source reference; no active curve |
-| L5 | 1.834807 | 42.7 | Unresolved source reference; no active curve |
-| L6 | 1.846660 | 23.9 | Unresolved source reference; no active curve |
-| L7 | 1.804000 | 46.6 | Unresolved source reference; no active curve |
-| L8 | 1.846660 | 23.9 | Unresolved source reference; no active curve |
-| L9 | 1.518229 | 58.9 | Unresolved source reference; no active curve |
-| L10 | 1.517417 | 52.4 | Unresolved source reference; no active curve |
-| L11 | 1.846660 | 23.9 | Unresolved source reference; no active curve |
-| L12 | 1.728250 | 28.5 | Unresolved source reference; no active curve |
-| L13 | 1.882997 | 40.8 | Unresolved source reference; no active curve |
-| L14 | 1.583126 | 59.4 | Unresolved source reference; no active curve |
-| L15 | 1.518229 | 58.9 | Unresolved source reference; no active curve |
-| L16 | 1.806098 | 40.9 | Unresolved source reference; no active curve |
+| Modeled medium | Source n | Source ν | Disposition                                  |
+| -------------- | -------: | -------: | -------------------------------------------- |
+| L1             | 1.846660 |     23.9 | Unresolved source reference; no active curve |
+| L2             | 1.622992 |     58.2 | Unresolved source reference; no active curve |
+| L3             | 1.622992 |     58.2 | Unresolved source reference; no active curve |
+| L4r            | 1.514210 |     51.4 | Unresolved source reference; no active curve |
+| L4             | 1.834000 |     37.2 | Unresolved source reference; no active curve |
+| L5             | 1.834807 |     42.7 | Unresolved source reference; no active curve |
+| L6             | 1.846660 |     23.9 | Unresolved source reference; no active curve |
+| L7             | 1.804000 |     46.6 | Unresolved source reference; no active curve |
+| L8             | 1.846660 |     23.9 | Unresolved source reference; no active curve |
+| L9             | 1.518229 |     58.9 | Unresolved source reference; no active curve |
+| L10            | 1.517417 |     52.4 | Unresolved source reference; no active curve |
+| L11            | 1.846660 |     23.9 | Unresolved source reference; no active curve |
+| L12            | 1.728250 |     28.5 | Unresolved source reference; no active curve |
+| L13            | 1.882997 |     40.8 | Unresolved source reference; no active curve |
+| L14            | 1.583126 |     59.4 | Unresolved source reference; no active curve |
+| L15            | 1.518229 |     58.9 | Unresolved source reference; no active curve |
+| L16            | 1.806098 |     40.9 | Unresolved source reference; no active curve |
 
 Previously named OHARA rows remain historical coordinate candidates only; neither their dispersion curves nor catalog partials are evidence of production glass or the source wavelength. The earlier catalog inspection is not counted as a fresh original-PDF spectral measurement.
 
@@ -274,11 +274,11 @@ states. The reconstruction applies four constraints:
 3. D5 + D15 is conserved at each zoom station, as required by rigid translation of G2 between its adjacent groups.
 4. The paraxial imaging condition is solved for an object-to-image distance of 450 mm.
 
-| State | G2 motion toward object | D5 infinity → close | D15 infinity → close | Conserved D5 + D15 | Computed magnification magnitude |
-|---|---:|---:|---:|---:|---:|
-| Wide | 1.215715 mm | 2.340000 → 1.124285 mm | 18.540000 → 19.755715 mm | 20.880000 mm | 0.079332 |
-| Middle | 3.061103 mm | 28.590000 → 25.528897 mm | 9.120000 → 12.181103 mm | 37.710000 mm | 0.183108 |
-| Tele | 8.315696 mm | 47.130000 → 38.814304 mm | 1.750000 → 10.065696 mm | 48.880000 mm | 0.275305 |
+| State  | G2 motion toward object |      D5 infinity → close |     D15 infinity → close | Conserved D5 + D15 | Computed magnification magnitude |
+| ------ | ----------------------: | -----------------------: | -----------------------: | -----------------: | -------------------------------: |
+| Wide   |             1.215715 mm |   2.340000 → 1.124285 mm | 18.540000 → 19.755715 mm |       20.880000 mm |                         0.079332 |
+| Middle |             3.061103 mm | 28.590000 → 25.528897 mm |  9.120000 → 12.181103 mm |       37.710000 mm |                         0.183108 |
+| Tele   |             8.315696 mm | 47.130000 → 38.814304 mm |  1.750000 → 10.065696 mm |       48.880000 mm |                         0.275305 |
 
 The tele-state reconstruction gives |m| = 0.275305, consistent with Canon's rounded 0.28× specification. Magnification
 was not used as a free tuning target; it follows from the fixed-distance imaging solution. No alternative multi-group
@@ -297,10 +297,10 @@ X = (Y²/r) / (1 + sqrt(1 - (Y/r)²))
 The conic base is spherical. In the LensVisualizer convention this is K = 0. The patent prints A = 0; its B, C, D, and E
 map directly to A4, A6, A8, and A10. No nonzero Y¹² coefficient is supplied.
 
-| Surface | K | A4 (mm⁻³) | A6 (mm⁻⁵) | A8 (mm⁻⁷) | A10 (mm⁻⁹) |
-|---|---:|---:|---:|---:|---:|
-| 6A | 0 | +4.38644e-6 | +2.81127e-8 | -2.86365e-10 | +1.27865e-12 |
-| 26A | 0 | +1.07579e-5 | +1.68849e-8 | +7.49501e-12 | -1.82624e-13 |
+| Surface |   K |   A4 (mm⁻³) |   A6 (mm⁻⁵) |    A8 (mm⁻⁷) |   A10 (mm⁻⁹) |
+| ------- | --: | ----------: | ----------: | -----------: | -----------: |
+| 6A      |   0 | +4.38644e-6 | +2.81127e-8 | -2.86365e-10 | +1.27865e-12 |
+| 26A     |   0 | +1.07579e-5 | +1.68849e-8 | +7.49501e-12 | -1.82624e-13 |
 
 No dimensional scaling was applied, so the coefficients are stored without a scale transformation. Had a uniform scale
 factor s been required, each coefficient A_p would have been divided by s^(p-1) while K remained unchanged; that
@@ -334,16 +334,16 @@ The patent provides material and group-power conditions for the five-group archi
 ¶0033-¶0042). Numerical Example 1 satisfies
 both the broad claim intervals and the narrower preferred intervals.
 
-| Condition | Example 1 | Main interval | Preferred interval | Result |
-|---|---:|---|---|---|
-| ν2dn - ν2dp | 22.640 | > 15.0 | > 20.0 | Passes both |
-| ν3bp - ν3bn | 28.500 | > 20.0 | > 25.0 | Passes both |
-| ν2a | 37.160 | 35.0 < x < 45.0 | 35.0 < x < 40.0 | Passes both |
-| f1/ft | +0.470 | 0.38 < x < 0.58 | 0.42 < x < 0.53 | Passes both |
-| f2/ft | -0.075 | -0.09 < x < -0.06 | -0.085 < x < -0.065 | Passes both |
-| f3/ft | +0.127 | 0.10 < x < 0.15 | 0.11 < x < 0.14 | Passes both |
-| f4/ft | -0.214 | -0.26 < x < -0.15 | -0.23 < x < -0.17 | Passes both |
-| f5/ft | +0.253 | 0.18 < x < 0.30 | 0.21 < x < 0.28 | Passes both |
+| Condition   | Example 1 | Main interval     | Preferred interval  | Result      |
+| ----------- | --------: | ----------------- | ------------------- | ----------- |
+| ν2dn - ν2dp |    22.640 | > 15.0            | > 20.0              | Passes both |
+| ν3bp - ν3bn |    28.500 | > 20.0            | > 25.0              | Passes both |
+| ν2a         |    37.160 | 35.0 < x < 45.0   | 35.0 < x < 40.0     | Passes both |
+| f1/ft       |    +0.470 | 0.38 < x < 0.58   | 0.42 < x < 0.53     | Passes both |
+| f2/ft       |    -0.075 | -0.09 < x < -0.06 | -0.085 < x < -0.065 | Passes both |
+| f3/ft       |    +0.127 | 0.10 < x < 0.15   | 0.11 < x < 0.14     | Passes both |
+| f4/ft       |    -0.214 | -0.26 < x < -0.15 | -0.23 < x < -0.17   | Passes both |
+| f5/ft       |    +0.253 | 0.18 < x < 0.30   | 0.21 < x < 0.28     | Passes both |
 
 The independently computed group ratios differ from Patent Table 1 by no more than 0.000398. This agreement is one of
 the checks supporting the four restored and three retained negative radius signs and the positive-negative-positive-negative-positive power
@@ -355,11 +355,11 @@ Sequential paraxial tracing in height/reduced-angle coordinates was checked agai
 formulation. The maximum matrix-element difference was 4.26326e-14, and the system determinant remained unity within
 floating-point precision.
 
-| Zoom state | Patent f | Computed EFL | Residual | Modeled f-number | Computed BFD | Patent f·tan ω image height |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 28.92 mm | 28.896161 mm | -0.023839 mm | f/3.63 | 38.245833 mm | 21.634924 mm |
-| Middle | 80.00 mm | 79.937822 mm | -0.062178 mm | f/5.06 | 52.547644 mm | 21.630600 mm |
-| Tele | 193.14 mm | 192.911008 mm | -0.228992 mm | f/5.88 | 60.202808 mm | 21.629989 mm |
+| Zoom state |  Patent f |  Computed EFL |     Residual | Modeled f-number | Computed BFD | Patent f·tan ω image height |
+| ---------- | --------: | ------------: | -----------: | ---------------: | -----------: | --------------------------: |
+| Wide       |  28.92 mm |  28.896161 mm | -0.023839 mm |           f/3.63 | 38.245833 mm |                21.634924 mm |
+| Middle     |  80.00 mm |  79.937822 mm | -0.062178 mm |           f/5.06 | 52.547644 mm |                21.630600 mm |
+| Tele       | 193.14 mm | 192.911008 mm | -0.228992 mm |           f/5.88 | 60.202808 mm |                21.629989 mm |
 
 The nearly constant 21.63 mm image height follows independently from the published focal lengths and half-fields and is
 consistent with the diagonal semi-field of the 135 format. The modeled f-number array uses the exact patent states,
@@ -401,9 +401,13 @@ The finite-focus rows are a constrained reconstruction and must not be cited as 
 G2-only movement because this is both permitted by the patent and consistent with Canon's production description. The
 solution is disclosed in the data header, focus description, and this analysis.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 28.92 / 193.14 mm endpoints from PDF p. 6 (Numerical Example 1 heading and variable-spacing focal-length row). Computed 28.896161 / 192.911008 mm EFLs remain approximate d-reference model diagnostics under the retained source-erratum qualification. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
-1. JP 2001-350095 A, *Zoom lens and optical apparatus using the same*, Canon Inc., Numerical Example 1. The attached
+1. JP 2001-350095 A, _Zoom lens and optical apparatus using the same_, Canon Inc., Numerical Example 1. The attached
    patent PDF is the numerical and architectural authority; the prescription appears on PDF page 6, the example table and
    condition summary on PDF page 9, and the zoom sections and aberration plots on PDF pages 10-16.
 2. Canon Camera Museum, “EF28-200mm f/3.5-5.6 USM,” official product identity and marketed specifications:

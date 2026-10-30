@@ -53,7 +53,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "10 POWERED ELEMENTS / 8 GROUPS (PATENT CORE)",
-      "f ≈ 200.017 mm",
+      "MODELED EFL ≈ 200.017 mm",
       "f/1.86 PATENT DESIGN",
       "2ω = 12.3°",
       "3 UD-CLASS ELEMENTS",
@@ -61,7 +61,7 @@ const LENS_DATA = {
     ],
     elementCount: 10,
     groupCount: 8,
-    focalLengthMm: { marketing: 200, design: 200.016526 },
+    focalLengthMm: { marketing: 200, design: 200.0 },
     fNumber: { marketing: 1.8, design: 1.86 },
   },
 
@@ -86,7 +86,8 @@ const LENS_DATA = {
       glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
       indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
       apd: "inferred",
-      apdNote: "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote:
+        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
       role: "First low-dispersion positive collector in G1; one of the three production UD-correlated positions.",
     },
     {
@@ -100,7 +101,8 @@ const LENS_DATA = {
       glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
       indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
       apd: "inferred",
-      apdNote: "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote:
+        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
       role: "Second low-dispersion positive collector in G1; distributes positive power across the front group.",
     },
     {
@@ -126,7 +128,8 @@ const LENS_DATA = {
       glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
       indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
       apd: "inferred",
-      apdNote: "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote:
+        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
       role: "Third low-dispersion positive in G1; corresponds to the third UD-highlighted production position.",
     },
     {
@@ -178,7 +181,8 @@ const LENS_DATA = {
       glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPH5)",
       indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
       role: "Strongly object-concave negative at the front of G3; forms the chromatically constrained rear doublet.",
-      apdNote: "Patent Example 1 correspondence table: theta_3a = 1.271845; partial-dispersion wavelength convention unspecified.",
+      apdNote:
+        "Patent Example 1 correspondence table: theta_3a = 1.271845; partial-dispersion wavelength convention unspecified.",
       cemented: "D2",
     },
     {
@@ -191,7 +195,8 @@ const LENS_DATA = {
       focalLengthMm: 71.057526,
       glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-LAL7)",
       indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
-      apdNote: "Patent Example 1 correspondence table: theta_3b = 1.238095; partial-dispersion wavelength convention unspecified.",
+      apdNote:
+        "Patent Example 1 correspondence table: theta_3b = 1.238095; partial-dispersion wavelength convention unspecified.",
       role: "Positive partner in D2; its published theta_3b participates in the patent's secondary-spectrum condition.",
       cemented: "D2",
     },

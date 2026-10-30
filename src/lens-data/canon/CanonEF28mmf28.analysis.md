@@ -7,7 +7,7 @@
 **Inventor:** Takashi Matsushita
 **Applicant:** Canon Inc.
 **Original-PDF review:** 2026-10-30; Numerical Example 1, PDF pp. 3–4 / printed 113–114; Figure 1, PDF p. 5 / printed 115.
-**Title:** *Wide-angle lens having an aspherical surface* (`非球面を有した広角レンズ`)
+**Title:** _Wide-angle lens having an aspherical surface_ (`非球面を有した広角レンズ`)
 
 The prescription is correlated here with the **CANON EF 28mm f/2.8**. The patent does not name the commercial lens, so the identification rests on convergent evidence rather than an express manufacturer statement:
 
@@ -78,13 +78,13 @@ The rear L3–L5 section has a computed standalone section focal length of `+55.
 
 The original defines Ni and νi as glass index and Abbe number on PDF p. 3, without specifying a reference wavelength or d/e-line convention. Its complete numerical tables and figures provide no individual C/F/g indices, partial-dispersion data, APD evidence, glass trade names, supplier or melt. The five source pairs are retained exactly; all five media now remain explicitly unidentified.
 
-| Element | Source N / ν | Spectral disposition |
-|---|---|---|
-| L1 | 1.60311 / 60.7 | Reference unspecified; Unmatched |
-| L2 | 1.78590 / 44.2 | Reference unspecified; Unmatched |
-| L3 | 1.84666 / 23.9 | Reference unspecified; Unmatched |
-| L4 | 1.79952 / 42.2 | Reference unspecified; Unmatched |
-| L5 | 1.78590 / 44.2 | Reference unspecified; Unmatched |
+| Element | Source N / ν   | Spectral disposition             |
+| ------- | -------------- | -------------------------------- |
+| L1      | 1.60311 / 60.7 | Reference unspecified; Unmatched |
+| L2      | 1.78590 / 44.2 | Reference unspecified; Unmatched |
+| L3      | 1.84666 / 23.9 | Reference unspecified; Unmatched |
+| L4      | 1.79952 / 42.2 | Reference unspecified; Unmatched |
+| L5      | 1.78590 / 44.2 | Reference unspecified; Unmatched |
 
 The twenty previously authored nC/nF/ng/dPgF fields were current-catalog copies, not published per-medium source data, and are removed. The five former catalog curves are disabled because a coordinate match under an assumed line cannot establish compatibility with the unidentified source reference. Current default d-line/Abbe calculations remain an explicit approximation. This does not establish zero chromatic error or identify an historical supplier, formulation, anneal, cement or production process. The numerical palette still separates the high-index, high-dispersion L3 from the other positive members; chemical class and procurement remain unresolved.
 
@@ -122,15 +122,15 @@ $$
 
 while `K` remains unchanged. The stored surface is therefore:
 
-| Stored term | Value |
-|---|---:|
-| R | 15.9326277455 mm |
-| K | −1 |
-| A4 | 2.6020408163 × 10⁻⁵ mm⁻³ |
-| A6 | 2.9598437407 × 10⁻⁸ mm⁻⁵ |
-| A8 | 6.4589388377 × 10⁻¹¹ mm⁻⁷ |
-| A10 | 2.1212925685 × 10⁻¹³ mm⁻⁹ |
-| A12, A14 | 0 |
+| Stored term |                     Value |
+| ----------- | ------------------------: |
+| R           |          15.9326277455 mm |
+| K           |                        −1 |
+| A4          |  2.6020408163 × 10⁻⁵ mm⁻³ |
+| A6          |  2.9598437407 × 10⁻⁸ mm⁻⁵ |
+| A8          | 6.4589388377 × 10⁻¹¹ mm⁻⁷ |
+| A10         | 2.1212925685 × 10⁻¹³ mm⁻⁹ |
+| A12, A14    |                         0 |
 
 At the adopted `14.5 mm` clear semi-diameter, the mapped surface departs from the original plane by `8.236787 mm` (approximately `6.598096 mm` quadratic and `1.638691 mm` higher-order departure). The unchanged algebraic mapping represents the original polynomial exactly; the outer shoulder is a separate flat extension, not an extrapolated optical asphere. Canon separately describes the production first element as a molded-glass asphere; that manufacturing statement belongs to the product record, not to the numerical prescription itself.
 
@@ -164,13 +164,13 @@ $$
 
 and the patent's native `F = 1` normalization, Numerical Example 1 gives:
 
-| Condition | Computed value | Required interval | Result |
-|---|---:|---:|---|
-| $f^4\phi/R5$ | 0.749998 | 0.7 to 2.2 | Satisfied |
-| $R4/f$ | −4.882000 | −6.0 to −4.5 | Satisfied |
-| $f1/f$ | −1.433352 | −1.49 to −1.35 | Satisfied |
-| $l1/f$ | 1.190000 | 1.0 to 1.2 | Satisfied |
-| $l2/l1$ | 0.268908 | 0.16 to 0.28 | Satisfied |
+| Condition    | Computed value | Required interval | Result    |
+| ------------ | -------------: | ----------------: | --------- |
+| $f^4\phi/R5$ |       0.749998 |        0.7 to 2.2 | Satisfied |
+| $R4/f$       |      −4.882000 |      −6.0 to −4.5 | Satisfied |
+| $f1/f$       |      −1.433352 |    −1.49 to −1.35 | Satisfied |
+| $l1/f$       |       1.190000 |        1.0 to 1.2 | Satisfied |
+| $l2/l1$      |       0.268908 |      0.16 to 0.28 | Satisfied |
 
 Here `f1` is the standalone focal length of L1, `l1` is the axial distance from the L1 asphere to the stop, and `l2` is the distance from the rear of L2 to the stop. These conditions describe the patent's design domain; they are not production tolerances.
 
@@ -186,15 +186,15 @@ The patent's aberration plots for Numerical Example 1 show the intended assessme
 
 The final data arrays reproduce the following independently checked quantities:
 
-| Quantity | Computed result |
-|---|---:|
-| Effective focal length | 28.2193758885 mm |
-| Derived paraxial iris target | 2.8000000000 |
-| Back focal distance from surface 11 | 37.1463355411 mm |
-| First-surface-to-last-vertex track | 47.8800000000 mm |
-| First-surface-to-image track | 85.0263355411 mm |
-| BFD/EFL | 1.3163414984 |
-| Signed Petzval radius | −171.1057131987 mm |
+| Quantity                            |    Computed result |
+| ----------------------------------- | -----------------: |
+| Effective focal length              |   28.2193758885 mm |
+| Derived paraxial iris target        |       2.8000000000 |
+| Back focal distance from surface 11 |   37.1463355411 mm |
+| First-surface-to-last-vertex track  |   47.8800000000 mm |
+| First-surface-to-image track        |   85.0263355411 mm |
+| BFD/EFL                             |       1.3163414984 |
+| Signed Petzval radius               | −171.1057131987 mm |
 
 The paraxial matrix determinant is unity to numerical precision, and a collimated paraxial ray closes on the assigned image plane with a residual of approximately `4.4 × 10⁻16`. The inferred apertures pass the edge-thickness, actual rim-slope, conic-domain, shared-gap, and analytic render-trim checks. Exact meridional rays reach the image plane at the patent's `37°` half-field for the verified central pupil zones; outer zones vignette at physical apertures rather than traversing invalid geometry.
 
@@ -206,7 +206,11 @@ Actual rendered SVGs were compared with native Figure 1: five connected, finite,
 
 ## Sources and References
 
-1. **JP S62-078520 A**, *Wide-angle lens having an aspherical surface*, Canon Inc., published 10 April 1987. Numerical Example 1 is on printed pages 113–114; Figure 1 and the corresponding aberration plots are on printed page 115.
+1. **JP S62-078520 A**, _Wide-angle lens having an aspherical surface_, Canon Inc., published 10 April 1987. Numerical Example 1 is on printed pages 113–114; Figure 1 and the corresponding aberration plots are on printed page 115.
 2. **Canon Camera Museum**, [EF28mm f/2.8](https://global.canon/en/c-museum/product/ef264.html). Source for product identity, April 1987 introduction, five-element/five-group construction, five diaphragm blades, 0.3 m closest focus, 0.13× maximum magnification, and the molded-glass first-element asphere.
 3. **Original-patent audit:** [CanonEF28mmf28.audit.md](CanonEF28mmf28.audit.md), reviewed 2026-10-30. Source line identity and historical glass remain unresolved; former catalog candidates are not active spectral evidence.
 4. **Companion model:** `CanonEF28mmf28.data.ts`. This is the authority for labels, stored indices, glass annotations, element focal lengths, asphere coefficients, semi-diameters, and focus-state representation.
+
+## Source-stated focal metadata — 2026-10-30
+
+Original JP S62-078520 A, PDF p.3 / printed113, Numerical Example1 states F=1; retained uniform scale28 gives source design28mm. Computed EFL28.219375888mm remains separately labeled. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.

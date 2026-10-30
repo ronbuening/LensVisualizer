@@ -189,24 +189,24 @@ L27 is the final glass element before the published 46.02 mm image-space distanc
 
 The Numerical Example 1 surface table on pp. 12–13 supplies d-line `nd` and `νd` for every one of the 27 modeled elements, including all five cemented pairs; ¶0073 defines these columns. It publishes no C/F/g line indices, partial-dispersion ratios or numerical APD deviations for this example, and no separately specified cement, hybrid-resin layer, filter or camera-side plate. The generic camera filter block discussed in ¶0071 does not supply an additional Numerical Example 1 medium. The patent supplies no vendor glass names. The model uses named supplier-neutral spectral proxies for the source coordinate classes. The catalog names below are coordinate anchors used to audit those classes; they are not claims that Canon purchased those specific glasses. Spectral curves resolve through the shared catalog; copied catalog C/F/g values have been removed so they cannot masquerade as measured patent indices or bypass coordinate validation. No element carries `dPgF`.
 
-| Model class | nd | νd | Elements | Coordinate-compatible catalog anchor |
-|---|---:|---:|---|---|
-| 773496 class | 1.77250 | 49.6 | L1, L2, L10 | OHARA S-LAH66 |
-| 959175 class | 1.95906 | 17.5 | L3 | OHARA S-NPH3 |
-| 603607 class | 1.60311 | 60.6 | L4, L17 | OHARA S-BSM14 |
-| 497816 class | 1.49700 | 81.5 | L5 | OHARA S-FPL51 |
-| 847238 class | 1.84666 | 23.8 | L6, L7, L27 | OHARA S-TIH53 |
-| 439950 class | 1.43875 | 94.9 | L8 | OHARA S-FPL53 |
-| CaF2 class | 1.43387 | 95.1 | L9 | calcium fluoride material coordinate |
-| 001291 class | 2.00100 | 29.1 | L11 | OHARA S-LAH99 |
-| 729547 class | 1.72916 | 54.7 | L12, L15 | OHARA S-LAL18 |
-| 785257 class | 1.78472 | 25.7 | L13 | OHARA S-TIH11 |
-| 835427 class | 1.83481 | 42.7 | L14 | OHARA S-LAH55V |
-| 923189 class | 1.92286 | 18.9 | L16, L22 | OHARA S-NPH2 |
-| 487702 class | 1.48749 | 70.2 | L18, L24, L25, L26 | OHARA S-FSL5 |
-| 001255 class | 2.00069 | 25.5 | L19, L23 | HIKARI J-LASFH17 |
-| 589612 class | 1.58913 | 61.1 | L20 | OHARA S-BAL35 |
-| 883408 class | 1.88300 | 40.8 | L21 | OHARA S-LAH58 |
+| Model class  |      nd |   νd | Elements           | Coordinate-compatible catalog anchor |
+| ------------ | ------: | ---: | ------------------ | ------------------------------------ |
+| 773496 class | 1.77250 | 49.6 | L1, L2, L10        | OHARA S-LAH66                        |
+| 959175 class | 1.95906 | 17.5 | L3                 | OHARA S-NPH3                         |
+| 603607 class | 1.60311 | 60.6 | L4, L17            | OHARA S-BSM14                        |
+| 497816 class | 1.49700 | 81.5 | L5                 | OHARA S-FPL51                        |
+| 847238 class | 1.84666 | 23.8 | L6, L7, L27        | OHARA S-TIH53                        |
+| 439950 class | 1.43875 | 94.9 | L8                 | OHARA S-FPL53                        |
+| CaF2 class   | 1.43387 | 95.1 | L9                 | calcium fluoride material coordinate |
+| 001291 class | 2.00100 | 29.1 | L11                | OHARA S-LAH99                        |
+| 729547 class | 1.72916 | 54.7 | L12, L15           | OHARA S-LAL18                        |
+| 785257 class | 1.78472 | 25.7 | L13                | OHARA S-TIH11                        |
+| 835427 class | 1.83481 | 42.7 | L14                | OHARA S-LAH55V                       |
+| 923189 class | 1.92286 | 18.9 | L16, L22           | OHARA S-NPH2                         |
+| 487702 class | 1.48749 | 70.2 | L18, L24, L25, L26 | OHARA S-FSL5                         |
+| 001255 class | 2.00069 | 25.5 | L19, L23           | HIKARI J-LASFH17                     |
+| 589612 class | 1.58913 | 61.1 | L20                | OHARA S-BAL35                        |
+| 883408 class | 1.88300 | 40.8 | L21                | OHARA S-LAH58                        |
 
 The strongest source-backed chromatic statement concerns U11 and U13 rather than individual commercial glass names. For U11, the patent constrains the ratio of average Abbe numbers of the negative and positive lenses; for U13, it constrains the reciprocal sign-family relationship. The prescription satisfies both conditions. This supports a deliberate dispersion split inside the fixed front unit, but `nd/νd` and catalog spectral proxies alone are not sufficient to characterize the complete lens as apochromatic or to confirm anomalous partial dispersion in a production element.
 
@@ -266,15 +266,15 @@ The shared catalog curves allow more useful spectral replay than an Abbe-only mo
 
 Numerical Example 1 satisfies the patent's principal conditions when recomputed from the prescription and independently traced first-order model.
 
-| Condition | Computed | Table 1 | Patent range |
-|---|---:|---:|---:|
-| (1) `f1/fw` | 3.23885 | 3.24 | 2.6-4.5 |
-| (2) `|f11/f1|` | 0.81730 | 0.82 | 0.6-0.9 |
-| (3) `|βr|` | 1.46948 | 1.47 | 0.0-1.5 |
-| (4) `ν13pa/ν13na` | 3.37290 | 3.38 | 2.0-5.8 |
-| (5) `ν11na/ν11pa` | 2.83429 | 2.84 | 2.0-3.6 |
-| (6) `fw/IS`, using Table-1 `IS = 28.20 mm` | 0.60357 | 0.60 | 0.4-1.2 |
-| (6), using the patent definition `IS = 2 × 14.80 mm` | 0.57502 | — | 0.4-1.2 |
+| Condition                                            | Computed | Table 1 | Patent range |
+| ---------------------------------------------------- | -------: | ------: | -----------: | ---- | ------- |
+| (1) `f1/fw`                                          |  3.23885 |    3.24 |      2.6-4.5 |
+| (2) `                                                |   f11/f1 |       ` |      0.81730 | 0.82 | 0.6-0.9 |
+| (3) `                                                |       βr |       ` |      1.46948 | 1.47 | 0.0-1.5 |
+| (4) `ν13pa/ν13na`                                    |  3.37290 |    3.38 |      2.0-5.8 |
+| (5) `ν11na/ν11pa`                                    |  2.83429 |    2.84 |      2.0-3.6 |
+| (6) `fw/IS`, using Table-1 `IS = 28.20 mm`           |  0.60357 |    0.60 |      0.4-1.2 |
+| (6), using the patent definition `IS = 2 × 14.80 mm` |  0.57502 |       — |      0.4-1.2 |
 
 Table 1 also contains a separate labeling inconsistency: it prints the `ν13pa/ν13na = 3.38` row as condition (5) and the `ν11na/ν11pa = 2.84` row as condition (4), opposite the equation numbering defined in ¶0035 and ¶0040 and in claims 1-2. The table above follows the patent-defined semantic numbering while preserving the printed Table-1 swap as a source discrepancy; the numerical values themselves are not altered.
 
@@ -296,12 +296,16 @@ The three published numerical stations remain the quantitative source anchors. A
 
 The interpolated cam also fails to hold a fixed infinity image plane. At normalized zoom 0.796875, the computed back focus is 54.021817 mm against the retained 46.02 mm image gap, an 8.001817 mm displacement; actual paraxial EFL is 85.348990 mm versus the displayed 91.375 mm. At the three source stations the back-focus residual is only −0.015236/−0.026103/−0.008968 mm. The source provides no intermediate cam that would resolve this difference, and no close-focus motion is reconstructed. Intermediate positions remain illustrative rather than focus-preserving production states. Source fidelity, these sampled runtime limits and production correlation remain separate conclusions.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 17 / 119 mm endpoints from PDF p. 13 (Numerical Example 1, Various data / focal-length row). The computed 17.020590 / 118.942934 mm endpoint EFLs remain model diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources and References
 
-1. Japan Patent Office, **JP 2015-94867 A**, *Zoom lens and image pickup apparatus*, published 18 May 2015. Numerical Example 1: pp. 12-13; Embodiment 1 architecture: ¶¶0048-0052 and Fig. 1; asphere equation: ¶0075; conditional values: Table 1, p. 19. The supplied JP publication is the transcription authority.
+1. Japan Patent Office, **JP 2015-94867 A**, _Zoom lens and image pickup apparatus_, published 18 May 2015. Numerical Example 1: pp. 12-13; Embodiment 1 architecture: ¶¶0048-0052 and Fig. 1; asphere equation: ¶0075; conditional values: Table 1, p. 19. The supplied JP publication is the transcription authority.
 2. Canon Inc., **Canon Camera Museum — CN7×17 KAS S/E1 / CN7×17 KAS S/P1**: https://global.canon/en/c-museum/product/cesl449.html — production focal range, T-number, mount variants, image-circle coverage, MOD, iris-blade count, weight, and August 2014 marketing date.
 3. Canon Inc., **CN7x17 / CN10x25 Operation Manual**: https://global.canon/ja/c-museum/wp-content/uploads/2021/07/cesl491_en.pdf — production-system/mechanical context.
-4. US family reference, **US 9,310,592 B2**, *Zoom lens and image pickup apparatus including the same*: https://patents.google.com/patent/US9310592B2/en — family cross-check; not used to replace the selected JP numerical source.
+4. US family reference, **US 9,310,592 B2**, _Zoom lens and image pickup apparatus including the same_: https://patents.google.com/patent/US9310592B2/en — family cross-check; not used to replace the selected JP numerical source.
 5. US family inventor normalization: https://patents.justia.com/patent/9310592 — Latin-script forms cross-checked against inventor order on the JP publication's final page.
 6. OHARA Inc., optical-glass catalog: https://www.ohara-inc.co.jp/en/product/01000/ — coordinate-class audit for the applicable six-digit classes.
 7. HOYA Corporation, Optics Division data downloads: https://www.hoya-opticalworld.com/english/datadownload/index.html — coordinate-class audit including 001255 / TAFD40-W.

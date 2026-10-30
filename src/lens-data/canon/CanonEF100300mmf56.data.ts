@@ -74,7 +74,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 9,
-    focalLengthMm: { marketing: [100, 300], design: [69.2066329268, 289.0656689639] },
+    focalLengthMm: { marketing: [100, 300], design: [69, 290] },
     fNumber: { marketing: 5.6, design: 5.6 },
   },
 
@@ -92,8 +92,7 @@ const LENS_DATA = {
         printed: 1.43749,
         applied: 1.48749,
         evidence: ["source-summary", "aberration-figure"],
-        note:
-          "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data or resolving the source's unnamed spectral reference.",
+        note: "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data or resolving the source's unnamed spectral reference.",
       },
     ],
   },
@@ -109,7 +108,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -248.416159,
-      glass: "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -124,7 +124,8 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 138.813057,
-      glass: "Unmatched (516641 — BSL7-class crown; OHARA S/L family unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (516641 — BSL7-class crown; OHARA S/L family unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -139,7 +140,8 @@ const LENS_DATA = {
       vd: 70.1,
       indexReference: "d",
       focalLengthMm: 222.685764,
-      glass: "Unmatched (48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate; source spectral reference unspecified)",
+      glass:
+        "Unmatched (48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -153,7 +155,8 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: -61.707648,
-      glass: "Unmatched (713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -167,7 +170,8 @@ const LENS_DATA = {
       vd: 55.5,
       indexReference: "d",
       focalLengthMm: -36.767097,
-      glass: "Unmatched (697555 — LAK14-class lanthanum crown; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (697555 — LAK14-class lanthanum crown; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -182,7 +186,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 54.950334,
-      glass: "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -197,7 +202,8 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "d",
       focalLengthMm: 46.504837,
-      glass: "Unmatched (N-KF9 coefficient proxy (patent 523508; production supplier unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (N-KF9 coefficient proxy (patent 523508; production supplier unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -212,7 +218,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -88.058696,
-      glass: "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -242,7 +249,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -76.534281,
-      glass: "Unmatched (773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -257,7 +265,8 @@ const LENS_DATA = {
       vd: 37.2,
       indexReference: "d",
       focalLengthMm: -31.16078,
-      glass: "Unmatched (834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -272,7 +281,8 @@ const LENS_DATA = {
       vd: 49.2,
       indexReference: "d",
       focalLengthMm: 33.587441,
-      glass: "Unmatched (BAF5-class coefficient proxy (patent 607492; production supplier unspecified); source spectral reference unspecified)",
+      glass:
+        "Unmatched (BAF5-class coefficient proxy (patent 607492; production supplier unspecified); source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -287,7 +297,8 @@ const LENS_DATA = {
       vd: 41.5,
       indexReference: "d",
       focalLengthMm: 82.724608,
-      glass: "Unmatched (575415 — LF7/TIL27-class light flint; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (575415 — LF7/TIL27-class light flint; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,
@@ -301,7 +312,8 @@ const LENS_DATA = {
       vd: 46.6,
       indexReference: "d",
       focalLengthMm: -14.613437,
-      glass: "Unmatched (804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved; source spectral reference unspecified)",
+      glass:
+        "Unmatched (804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved; source spectral reference unspecified)",
       indexReferenceNote:
         "The patent defines N and Abbe number without naming a spectral line; the retained d-line tracing reference is an approximation, and catalog identity is unresolved.",
       apd: false,

@@ -55,10 +55,16 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
-    specs: ["8 ELEMENTS / 6 GROUPS", "DESIGN EFL ≈ 51.695 mm", "DESIGN F/1.25", "2ω = 45.4°", "1 ASPHERICAL SURFACE"],
+    specs: [
+      "8 ELEMENTS / 6 GROUPS",
+      "PATENT f = 51.70 mm; MODELED EFL ≈ 51.695 mm",
+      "DESIGN F/1.25",
+      "2ω = 45.4°",
+      "1 ASPHERICAL SURFACE",
+    ],
     elementCount: 8,
     groupCount: 6,
-    focalLengthMm: { marketing: 50, design: 51.695042 },
+    focalLengthMm: { marketing: 50, design: 51.7 },
     fNumber: { marketing: 1.2, design: 1.25 },
   },
 

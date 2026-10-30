@@ -429,3 +429,9 @@ and production correlation remain distinct conclusions. The actual August/Octobe
     paraxial pupil imaging from real-ray stop filling when pupil aberration is material:
     https://optics.ansys.com/hc/en-us/articles/42661778056083-How-to-use-Ray-Aiming
     https://optics.ansys.com/hc/en-us/articles/42661958583571-Paraxial-vs-Real-pupils-in-optical-system
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 584.89 mm, taken directly from Third Numerical Embodiment, paragraph0060, PDF p10 / printed5: various kinds of data f=584.89mm. The prior computed model EFL value 584.816932668 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

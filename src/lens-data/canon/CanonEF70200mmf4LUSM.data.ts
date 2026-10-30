@@ -3,29 +3,29 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * JP 2000-284174 A, Numerical Example 1: numerical rows/zoom gaps PDF p.6;
  * Fig.1 wide section p.8 and corresponding Figs.2–4 pp.8–9. No scaling.
- * Source shape/glass review2026-10-30; unchanged source geometry/constraints reuse
- * the actual2026-10-08 audit. Original images are1656×2339 at200ppi;
- * older600dpi views were upsampling. Native section scale≈3.8px/mm, ±0.8mm rim uncertainty.
+ * Source shape/glass review 2026-10-30; unchanged source geometry/constraints reuse
+ * the actual 2026-10-08 audit. Original images are 1656×2339 at200 ppi;
+ * older 600 dpi views were upsampling. Native section scale≈3.8 px/mm, ±0.8 mm rim uncertainty.
  *
- * All16 literal d-line pairs are confirmed by explicit paragraph0056/p.5 and retained.
+ * All 16 literal d-line pairs are confirmed by explicit paragraph 0056/p.5 and retained.
  * Compatible catalog curves are qualified spectral proxies; they do not establish historical
  * supplier, melt, chemistry or the production fluorite/UD allocation. No printed C/F/g,
  * relative partial or source APD values exist. Three production-correlated tags remain inferred.
  * No source hybrid, filter, rear plate, asphere or diffractive layer is prescribed.
  *
- * R1/R2 clear caps26/25.6→27/27 follow the native first blank and relative heights. All
- * other clear caps, R/d, stop position, fixed-iris rule, focus/zoom cams and default0.90
+ * R1/R2 clear caps 26/25.6→27/27 follow the native first blank and relative heights. All
+ * other clear caps, R/d, stop position, fixed-iris rule, focus/zoom cams and default 0.90
  * gap guard are unchanged. No resolved new shoulder/cut is supported. Near-contact R4/R5
  * and R13/R14 prevent full-height block trials; no opaque interface or flat land is invented.
- * Catalog design focal endpoints now quote printed71.92/194.57mm, separately from
- * literal computed71.901018/194.540481mm; this metadata correction changes no optical control.
+ * Catalog design focal endpoints now quote printed 71.92/194.57 mm, separately from
+ * literal computed 71.901018/194.540481 mm; this metadata correction changes no optical control.
  *
- * The shared paraxial stop rule now gives fixed iris14.258975720mm; older14.375mm
+ * The shared paraxial stop rule now gives fixed iris 14.258975720 mm; older 14.375 mm
  * real-ray calibration prose is historical. Current aperture census is f/4.1000,4.0999,4.3240.
  * The tele exact f/4.1 ray exceeds the literal R4/R5 contact radius; source.errata remains
  * unresolved, including the possible one-decimal aperture interpretation. No prescription tuning.
  * Reconstructed finite focus and linear zoom are not continuously focus preserving.
- * 1365 states have21840 connected finite closed SVG contours and zero hidden trim;
+ * 1365 states have 21840 connected finite closed SVG contours and zero hidden trim;
  * source fidelity, sampled clearance and production correlation remain separate conclusions.
  */
 
@@ -34,8 +34,7 @@ const LENS_DATA = {
   key: "canon-ef-70-200mm-f4-l-usm",
   maker: "Canon",
   name: "CANON EF 70-200mm f/4 L USM",
-  subtitle:
-    "JP2000284174A Example 1 — constrained L1b close-focus reconstruction",
+  subtitle: "JP2000284174A Example 1 — constrained L1b close-focus reconstruction",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",

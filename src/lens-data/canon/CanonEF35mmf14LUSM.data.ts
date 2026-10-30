@@ -27,15 +27,14 @@ const LENS_DATA = {
   key: "canon-ef-35mm-f14l-usm",
   maker: "Canon",
   name: "CANON EF 35mm f/1.4 L USM",
-  subtitle:
-    "JP H11-211978 A Example 1 — corrected r11 sign; production correlation inferred",
+  subtitle: "JP H11-211978 A Example 1 — corrected r11 sign; production correlation inferred",
 
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     specs: [
       "11 ELEMENTS / 9 GROUPS",
-      "35 mm MARKETED / 34.2948 mm DESIGN",
+      "35 mm MARKETED / 34.3 mm PATENT / 34.2948 mm COMPUTED",
       "f/1.4 MARKETED / f/1.45 DESIGN",
       "2ω = 64°",
       "1 ASPHERICAL SURFACE",
@@ -43,7 +42,7 @@ const LENS_DATA = {
     ],
     elementCount: 11,
     groupCount: 9,
-    focalLengthMm: { marketing: 35, design: 34.294831855424036 },
+    focalLengthMm: { marketing: 35, design: 34.3 },
     fNumber: { marketing: 1.4, design: 1.45 },
   },
 
@@ -76,8 +75,7 @@ const LENS_DATA = {
       vd: 59.4,
       indexReference: "d",
       focalLengthMm: -77.59314088315068,
-      glass:
-        "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -90,8 +88,7 @@ const LENS_DATA = {
       vd: 59.4,
       indexReference: "d",
       focalLengthMm: -94.17073259813091,
-      glass:
-        "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -104,8 +101,7 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: 65.85967540206435,
-      glass:
-        "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -118,8 +114,7 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: 60.95488850902199,
-      glass:
-        "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -132,8 +127,7 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       focalLengthMm: -314.293452650426,
-      glass:
-        "Unmatched (516641/642 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (516641/642 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -146,8 +140,7 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: 50.16186656500432,
-      glass:
-        "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L2b",
@@ -176,8 +169,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -22.95419584350211,
-      glass:
-        "Unmatched (805254/255 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (805254/255 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L3a",
@@ -191,8 +183,7 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: 72.20755433769958,
-      glass:
-        "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L3a",
@@ -206,8 +197,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: 46.7590649936805,
-      glass:
-        "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
@@ -220,8 +210,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: 51.38854165207472,
-      glass:
-        "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
+      glass: "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
       indexReferenceNote:
         "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },

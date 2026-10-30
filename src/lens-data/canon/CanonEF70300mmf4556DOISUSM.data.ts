@@ -33,7 +33,7 @@ const LENS_DATA = {
     specs: [
       "17 ELEMENTS / 14 AIR-SPACED ASSEMBLIES",
       "7 FUNCTIONAL ZOOM GROUPS",
-      "DESIGN 72.10-290.07 mm",
+      "DESIGN 72.16-290.26 mm",
       "NOMINAL f/4.6-5.8",
       "PRODUCT 3-LAYER DO / MODEL +1 PHASE",
       "1 ASPHERE",
@@ -41,7 +41,7 @@ const LENS_DATA = {
     ],
     elementCount: 17,
     groupCount: 14,
-    focalLengthMm: { marketing: [70, 300], design: [72.099975, 290.06786] },
+    focalLengthMm: { marketing: [70, 300], design: [72.16, 290.26] },
     fNumber: { marketing: 4.5, design: 4.6 },
   },
 

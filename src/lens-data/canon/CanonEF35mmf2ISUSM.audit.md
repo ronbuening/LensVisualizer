@@ -76,3 +76,7 @@ The 193-point circular pupil at axial/half/corner fields over 21 focus states gi
 The printed 32.10° infinity angle gives 21.2356 mm real chief height, while the modeled 21.65 mm format corner is reached near 32.6°. Source nominal image height, sampled real field coverage and production correlation remain distinct. The static centered geometry does not certify IS decenter clearance.
 
 Independent finite-conjugate sampling also identifies an existing interpolation limitation: largest sampled image-plane residual −1.073096 mm at focus 0.55; at focus 0.5/display 0.48 m it is −1.052140 mm. The 0.24 m endpoint remains solved to numerical precision and infinity differs by +0.000742 mm under rounded source rows. Source gaps, trajectory and image plane are retained. The source-outline improvements and qualified glass review do not establish a production focus cam or complete full-field pupil transmission.
+
+## Source-stated focal metadata — 2026-10-30
+
+Original US2015/0205081A1, First Numerical Embodiment / paragraph0060, PDF p.19 / printed5, Various Data states focal length34.49mm. Retained computed EFL34.5015mm is a model result. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.

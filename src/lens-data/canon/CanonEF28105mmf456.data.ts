@@ -17,7 +17,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "10 ELEMENTS / 9 GROUPS",
-      "PATENT 28.91-101.32mm",
+      "PATENT 28.90-101.35mm",
       "MARKETED 28-105mm f/4-5.6",
       "1 ASPHERICAL SURFACE",
       "L2 INNER FOCUS",
@@ -26,7 +26,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: {
       marketing: [28, 105],
-      design: [28.906826, 101.323296],
+      design: [28.9, 101.35],
     },
     fNumber: {
       marketing: 4,

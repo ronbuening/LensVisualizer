@@ -312,6 +312,10 @@ Source condition (5)/(12) and unit-L3 focal-power contradictions are formalized 
 published geometry remains unchanged. Source fidelity, sampled runtime behavior and production
 correlation are separate findings.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 588 mm from PDF p. 14 (Numerical Data 4, Various data / focal length, printed page 7). The computed 587.932441008 mm EFL remains an independent runtime result. The source group-power contradictions and all original geometry/controls remain unchanged. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
 1. Shinichiro Saito and Makoto Nakahara, **US 2019/0041605 A1, “Optical System and Image Pickup Apparatus,”** published February 7, 2019. Primary prescription source: Figure 4A; ¶0024–0027; ¶0030–0067; Numerical Data 4; Table 1; claims 13–15.
