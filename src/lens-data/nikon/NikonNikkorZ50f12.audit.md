@@ -139,3 +139,18 @@ q range is ±(1 + q) / (sd × 9.241 px/mm):
 - 17: q 0.850 ± 0.0079 (0.842–0.858) on a 236 px edge; the cut is at q × sd; land 3.8309 mm.
 
 Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2021241230A1.pdf`, PDF p. 63, Figure 1 / Example 1, including a 600 dpi crop of the complete infinity section and the close-focus panel. Every concave air face and square outer edge was compared. The native scale remains 9.241 px/mm from the S1–S33 vertex span.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 32A, L44 front | 18 → 18 mm | absent → 19.5 mm | Flat land to L44's rear-face rim; q about 0.939, native one-pixel range 0.928–0.950. |
+
+The extension preserves the designed 18 mm aspheric cap. The asphere is not evaluated out to the taller rim. Existing cuts on 2, 5, 7 and 17 are retained, including surface 7's beam-clearance adjustment.
+
+Two other lands remain limited by the existing gap policy. Trials keeping their original caps but extending 4 to 28.5 mm and 31 to 20 mm fail the gap checks: 4→5 intrusion 15.614 mm against 14.859 mm allowed, and 31→32A 7.009 mm against 6.984 mm allowed. Those trials were reverted; no tolerance was relaxed. Surface 19's figure cut would enter the close-focus beam and remains unauthored. Other concave faces run into their corners.
+
+Validation: `audit:surface` and `audit:image-circle` on the accepted 32A extension; parent records full gates with the three-lens commit.

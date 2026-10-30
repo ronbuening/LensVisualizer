@@ -14,6 +14,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * beams reach 27.3534 mm there. The cuts on 5, 7 and 17 end the caps at 27.54, 29.22 and
  * 21.67 mm, so the L19 rear cap no longer reaches the stop plane. 32A keeps its 18.0 mm
  * rim, the asphere's designed extent, uncut.
+ * Rim extension (2026-10-29): Fig. 1, p. 63, 9.241 native px/mm, draws L44's
+ * land to its 19.5 mm outer edge. rimExtensionSd adds that land while preserving
+ * the 18 mm aspheric cap. Lands on 4 and 31 remain constrained by the gap checks.
  */
 
 const LENS_DATA = {
@@ -344,6 +347,7 @@ const LENS_DATA = {
       R: -64.58764,
       d: 1.8,
       sd: 18,
+      rimExtensionSd: 19.5,
       medium: 17,
       asphere: {
         K: 8.4794,

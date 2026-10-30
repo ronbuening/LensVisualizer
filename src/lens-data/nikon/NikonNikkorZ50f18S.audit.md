@@ -154,3 +154,12 @@ Figure scale and land length: Figure 17's 0.0454 mm/px, from the L13 rear to L23
   `sd`, outside the cap end the figure draws (above). Land 0.7968 mm, over the minimum.
 - 23: figure q 0.952 at a 396.4 px edge (18.0 mm), range 0.947–0.957; the figure draws the edge at 411–413.5 px
   (18.7 mm). The cut sits at 0.951 of `sd`. Land 0.8772 mm, over the minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2019220618A1.pdf`, PDF p. 154, Figure 17 / Example 9, including a 600 dpi crop of the complete section. Native scale remains 22.023 px/mm from the 1074 px L13-rear to L23-rear vertex span / 48.767 mm.
+
+No data change is supported. All three resolved concave lands, surfaces 11, 14 and 23, already carry cuts that pass the inferred-beam rule; they keep the cap ends and drawn rims recorded above. The other concave air faces reach their corners. The visible steps at 2, 10 and 21 are cemented junctions, where an air-face rim extension is not valid. No additional resolved flat land needs `rimExtensionSd`, and no new clear-aperture clipping was added.
+
+Validation: `audit:surface` and `audit:image-circle` pass on the retained data. Parent records full gates with the three-lens commit.

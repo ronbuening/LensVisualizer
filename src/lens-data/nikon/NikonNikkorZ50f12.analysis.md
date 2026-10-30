@@ -212,9 +212,9 @@ Figure 1 also draws flat lands square to the axis at several concave rims.
 Surfaces 2, 5, 7 and 17 carry them as rim cuts. L11 now reaches its
 front-face edge (31.5 mm), and its clear radius goes from the old 28.5 mm
 rim to the 28.5044 mm cut radius; the wide-open beams reach 27.3534 mm
-there. The L19 rear cap ends at 21.7 mm, ahead of the stop plane. The land
-the figure draws on L44 is not modelled: S32A keeps its 18 mm designed
-extent, uncut. Surface validation and rendered-element
+there. The L19 rear cap ends at 21.7 mm, ahead of the stop plane. L44 now draws its flat land to the 19.5 mm rim with `rimExtensionSd`,
+while S32A keeps its 18 mm designed optical extent, uncut. Lands on S4
+and S31 remain omitted because their drawn material fails the existing air-gap checks. Surface validation and rendered-element
 checks pass at infinity, midpoint and close focus, without hidden trimming.
 These remain constrained figure estimates, not measured production apertures.
 
