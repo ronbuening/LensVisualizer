@@ -72,9 +72,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 89.695704,
       glass: "FCD1 (HOYA, coordinate equivalent)",
-      apd: "patent",
+      apd: "inferred",
       apdNote:
-        "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
+        "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. APD is a fluor-crown class inference; the patent identifies low dispersion but supplies neither an anomalous-partial-dispersion identification nor partial-dispersion data.",
       role: "Low-dispersion positive singlet in MF group G2a.",
     },
     {
@@ -87,9 +87,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 74.376594,
       glass: "FCD1 (HOYA, coordinate equivalent)",
-      apd: "patent",
+      apd: "inferred",
       apdNote:
-        "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
+        "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. APD is a fluor-crown class inference; the patent identifies low dispersion but supplies neither an anomalous-partial-dispersion identification nor partial-dispersion data.",
       role: "Second low-dispersion positive singlet in G2a; no unsupported source asphere terms invented.",
     },
     {
@@ -208,6 +208,7 @@ const LENS_DATA = {
     },
   ],
 
+  // Figure 1 (PDF p14): concave cap-end lands rechecked 2026-10-29; cuts clear full inferred-cut beams.
   surfaces: [
     { label: "1", R: 101.7202, d: 4.149, sd: 20.5, medium: 1 },
     { label: "2", R: 250.1294, sd: 20.5 },
@@ -217,7 +218,7 @@ const LENS_DATA = {
     { label: "6", R: 662.7343, d: 0.9382, sd: 16.5 },
     { label: "7", R: -139.4136, d: 1.5, sd: 14.1, medium: 4 },
     { label: "8", R: 18.0, d: 6.3085, sd: 15.5, medium: 5 },
-    { label: "9", R: 38.4994, d: 7.8658, sd: 15.5 },
+    { label: "9", R: 38.4994, d: 7.8658, sd: 15.5, rimCutDepthMm: 2.60 },
     { label: "10", R: 49.6617, d: 1.0, sd: 12, medium: 6 },
     { label: "11", R: 20.8162, d: 6.0, sd: 12, medium: 7 },
     { label: "12", R: -73.174, d: 0.7888, sd: 12 },
@@ -227,7 +228,7 @@ const LENS_DATA = {
     { label: "16", R: 95.3817, d: 3.0, sd: 9.5, medium: 9 },
     { label: "17", R: -73.7281, d: 1.0, sd: 9.5, medium: 10 },
     { label: "18", R: 42.3714, sd: 9.5 },
-    { label: "19", R: -42.1014, d: 0.8, sd: 14, medium: 11 },
+    { label: "19", R: -42.1014, d: 0.8, sd: 14, rimCutDepthMm: 2.14, medium: 11 },
     { label: "20", R: -162.5994, d: 0.15, sd: 14 },
     { label: "21", R: 54.7442, d: 4.0, sd: 15, medium: 12 },
     { label: "22", R: -500.0, d: 1.0, sd: 15 },

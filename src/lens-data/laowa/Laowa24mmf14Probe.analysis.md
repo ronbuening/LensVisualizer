@@ -323,3 +323,5 @@ The production lens has spawned two further generations — the Laowa 24mm T14 P
 - Newsshooter review (2018-10-15): confirms three-section architecture (Objective + Relay + Macro) and 27 elements / 19 groups.
 - Nature TTL review (2018-09-05): confirms 27 elements / 19 groups, 2 ED + 1 ERI elements.
 - CDGM optical glass catalog and public H-ZLaF75B datasheet. Used to confirm all 10 glass families, including H-ZLaF75B at nd = 1.90366 / νd = 31.42 and H-ZF2 at 1.67270 / 32.17.
+
+A fresh inspection of CN210573001U Example 1 (PDF pp. 6–8) confirms all 27 modeled media coordinates, including the continuous P1 rod and unfolded P2/P3 plates. The source defines d-line Nd and supplies no measured spectral line indices or partial dispersion. Every named catalog curve is a compatible modeling proxy; the patent does not identify its production vendor or melt. Both ED/APD flags remain class inferences. Figure 1 (PDF p. 15) supplies no separately resolved vertical cap-end strokes sufficient to justify further concave trimming; all clear caps and outer rims are retained.

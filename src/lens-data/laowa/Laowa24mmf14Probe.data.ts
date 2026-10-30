@@ -13,6 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Focus: inner focus — single positive element (L23) translates.   ║
  * ║  All-spherical design. f/14 (slow), 2ω ≈ 84.1° (135 format).     ║
  * ║                                                                    ║
+ * Glass labels below are coordinate-compatible spectral proxies, not source-named suppliers.
+ * Original Example 1 tables (PDF pp6–8) supply d-line nd/vd only; ED/APD flags are inferred.
+ * 2026-10-29 Figure 1 reinspection: no additional resolved cap-end land supports a cut/extension.
  * ║  NOTE ON P1 ROD LENS:                                              ║
  * ║    Patent surfaces 3–6 describe a thick rod lens with internal     ║
  * ║    flat surfaces (prism fold planes in straight-through mode).     ║
