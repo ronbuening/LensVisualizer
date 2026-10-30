@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1026** lenses scanned (**1011** visible)
-- **10896 / 11753** non-air surfaces use strict catalog Sellmeier data (92.7%)
-- **10910 / 11753** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
+- **1032** lenses scanned (**1017** visible)
+- **10983 / 11844** non-air surfaces use strict catalog Sellmeier data (92.7%)
+- **10997 / 11844** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **291** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **159** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -153,6 +153,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | US 2020/0379223 A1 | [PDF](../../patents/US20200379223A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 19A [resin] (L34 - resin OIS positive asphere: `Unmatched optical resin (W3bp = 1.228; OKP-class high-dispersion polymer)`) | abbe: 1 |
 | [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) | JP 2016-114800 A | [PDF](../../patents/JP2016114800A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [resin] (L21 synthetic-resin aspheric layer: `Unmatched (synthetic resin; patent nd=1.52972, vd=42.7)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | US 7,508,592 B2 | [PDF](../../patents/US7508592.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 7A [resin] (Element 4 resin layer: `Unmatched (replicated resin-layer model; source nd=1.55389, νd=38.09; formulation and curing unspecified)`) | abbe: 1 |
+| [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | US 7,839,577 B2 | [PDF](../../patents/US7839577B2.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (Element 4 resin layer: `Unmatched bonded aspheric resin (chemistry and cure unspecified)`) | abbe: 1 |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | US 2005/0068636 A1 | [PDF](../../patents/US20050068636A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (L21 Hybrid Resin Layer: `Unmatched (hybrid aspheric resin; patent nd=1.55389, vd=38.1)`) | abbe: 1 |
 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) | US 2004/0218274 A1 | [PDF](../../patents/US20040218274A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (L21 bonded aspheric layer: `Unmatched (thin bonded aspheric resin/composite layer; nd=1.553890, vd=38.09)`) | abbe: 1 |
 | [NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF](../../src/lens-data/nikon/NikonAIAFZoomNikkor2485mmf284DIF.data.ts) | JP 2000-321497 A | [PDF](../../patents/JP2000321497A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (Element 4 — L21 aspherical resin layer: `Unmatched (source nd=1.495210, νd=56.34; commercial identity unverified)`) | abbe: 1 |

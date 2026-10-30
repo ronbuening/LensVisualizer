@@ -1,12 +1,12 @@
-# Reviewed Nikon Z- and F-mount lens catalog
+# Lens Patent Review Log: Element Heights, Concave Trimming, and Glass Content
 
 This is the canonical coverage index for the original-patent shape and glass review. Check it before scheduling another whole-lens pass. All listed records have had their element heights, concave ends and glass content reviewed; source-supported changes are in the data and public notes. Read the linked per-lens audit before changing a retained or constrained value.
 
-The catalog scope on 2026-10-30 is all 55 Z-mount entries (29 Nikon and 26 third-party) and all 218 F-mount entries (153 Nikon and 65 third-party). Four entries appear on both mounts, giving **269 unique catalog records**. Mount labels below identify the reviewed Z/F scope, rather than every mount supported by the lens. Review dates follow the actual sidecars.
+Through 2026-10-30, this log records 55 Z-mount entries (29 Nikon and 26 third-party) and 220 F-mount entries (154 Nikon and 66 third-party). Four entries appear on both mounts, giving **271 unique catalog records**. Mount labels below identify the reviewed scope, rather than every mount supported by the lens. Review dates follow the actual sidecars.
 
 “Adjusted” means the rim or glass fields differ from the start of that mount’s review. “Retained” means the source check supported the existing fields or documented a constraint; it does not mean the category was skipped. Counts of lands and cuts describe the current model, including retained features. Curve counts include modeled layers and authored rear plates. Glass curves are compatible catalog spectral models, not verified production suppliers or melts; unresolved media remain unresolved.
 
-For the four Z/F overlap entries, dispositions compare the latest F review with its starting data; the earlier Z reviews remain in their audits.
+Where a lens has been reviewed for multiple mounts, dispositions compare the latest review with its starting data; earlier reviews remain in its audit.
 
 ## How to use this index
 
@@ -61,6 +61,7 @@ For the four Z/F overlap entries, dispositions compare the latest F review with 
 | [NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR](../src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts) | F | US 2009/0190220 A1 · Example 1 | 2026-10-29 | Retained; 0 lands / 0 cuts | Adjusted; 14/14 curves | [Audit](../src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.audit.md) |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | F | US 8,169,718 B2 · Embodiment 4 | 2026-10-29 | Adjusted; 1 lands / 0 cuts | Adjusted; 14/16 curves | [Audit](../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.audit.md) |
 | [NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR](../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.data.ts) | F | US 2018/0252903 A1 · Example 1 | 2026-10-29 | Adjusted; 1 lands / 0 cuts | Retained; 16/18 curves | [Audit](../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.audit.md) |
+| [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | F | US 7,839,577 B2 · Example 5 | 2026-10-30 | Adjusted; 0 lands / 0 cuts | Adjusted; 15/16 curves | [Audit](../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.audit.md) |
 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | F | WO 2015/141574 A1 · Example 2 | 2026-10-29 | Retained; 0 lands / 0 cuts | Adjusted; 13/13 curves | [Audit](../src/lens-data/nikon/NikonAFSDX55200mmf456G.audit.md) |
 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | F | US 2011/0102905 A1 · Example 1 | 2026-10-29 | Retained; 0 lands / 0 cuts | Adjusted; 17/17 curves | [Audit](../src/lens-data/nikon/NikonAFSDX55300mmf4556G.audit.md) |
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED](../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | F | US 2006/0072213 A1 · Example 2 | 2026-10-29 | Adjusted; 1 lands / 0 cuts | Retained; 16/18 curves | [Audit](../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.audit.md) |
@@ -223,6 +224,7 @@ For the four Z/F overlap entries, dispositions compare the latest F review with 
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | F | US 3,482,900 · Sole example | 2026-10-30 | Retained; 0 lands / 0 cuts | Retained; 13/14 curves | [Audit](../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.audit.md) |
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | F | JP 2019-144477 A · Numerical Example 1 | 2026-10-30 | Adjusted; 0 lands / 3 cuts | Retained; 18/18 curves | [Audit](../src/lens-data/sigma/Sigma105mmf14DGHSMArt.audit.md) |
 | [SIGMA 14-24mm f/2.8 DG HSM \| Art](../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | F | JP 2018-189733 A · Numerical Example 1 | 2026-10-30 | Adjusted; 3 lands / 2 cuts | Adjusted; 17/17 curves | [Audit](../src/lens-data/sigma/Sigma1424mmf28DGHSM.audit.md) |
+| [SIGMA 15mm f/2.8 EX DG DIAGONAL FISHEYE](../src/lens-data/sigma/Sigma15mmf28EXDGDiagonalFisheye.data.ts) | F | JP H02-248910 A · Numerical Example 1 | 2026-10-30 | Adjusted; 1 lands / 0 cuts | Retained; 7/7 curves | [Audit](../src/lens-data/sigma/Sigma15mmf28EXDGDiagonalFisheye.audit.md) |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | Z | JP 2018-205527 A · Numerical Example 1 | 2026-10-29 | Adjusted; 1 lands / 3 cuts | Retained; 17/17 curves | [Audit](../src/lens-data/sigma/Sigma16mmf14DCDN.audit.md) |
 | [SIGMA 18-35mm f/1.8 DC HSM \| Art](../src/lens-data/sigma/Sigma1835mmf18DCHSMArt.data.ts) | F | JP 2014-89365 A · Numerical Example 1 | 2026-10-30 | Adjusted; 3 lands / 0 cuts | Retained; 17/17 curves | [Audit](../src/lens-data/sigma/Sigma1835mmf18DCHSMArt.audit.md) |
 | [SIGMA 20mm f/1.4 DG HSM \| Art](../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | F | JP 2019-117419 A · Numerical Example 1 | 2026-10-30 | Adjusted; 2 lands / 0 cuts | Adjusted; 16/16 curves | [Audit](../src/lens-data/sigma/Sigma20mmf14DGHSMArt.audit.md) |

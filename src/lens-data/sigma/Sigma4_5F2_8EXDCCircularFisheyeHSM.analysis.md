@@ -54,7 +54,7 @@ At 12.5 mm, surface 2 has a 70.0° rim slope, beyond the default limit of about 
 
 ## Model Scope and Limitations
 
-Fresh exact-vector checks at infinity transmit chief rays through89.9°. At exactly90° the public chief solver converges but the complete trace returns noBracket; the exact edge is a runtime limit and is not currently certified. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.77 at 60°, 0.56 at 81° and 0.47 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
+Fresh exact-vector checks at infinity transmit chief rays at 0°, 30°, 60°, 80°, 89.9° and exactly 90° when the solved vector and its launch bound are passed through the public bounding-sphere trace path. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.77 at 60°, 0.56 at 81° and 0.47 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
 
 ## Sources
 
