@@ -157,7 +157,7 @@ L17 is the final element and carries aspherical surfaces 28 and 29. The patent f
 
 ## Glass Identification and Selection
 
-The patent tabulates nd, νd, and θgF but does not name vendors. The table below separates exact catalog matches from class-level identifications. Where a vendor is not fixed by the patent, the six-digit code and glass family are retained rather than asserting a false catalog name.
+The patent tabulates nd, νd, and θgF but does not name vendors. The table below compares catalog coordinates and class-level spectral proxies. Its confidence labels describe modeling compatibility, not a production vendor, melt or manufacturing identity. All printed nd/νd/θgF values remain independent source constraints; no C/F/g index set is supplied.
 
 | Element | nd | νd | θgF | Δθ | Identification | Confidence | Sigma grade |
 |---|---:|---:|---:|---:|---|---|---|
@@ -183,7 +183,7 @@ The patent tabulates nd, νd, and θgF but does not name vendors. The table belo
 
 The three FLD elements are L5, L12, and L14. All three share nd = 1.43700, νd = 95.10, θgF = 0.5334, matching the FCD100/S-FPL53 fluorophosphate class. The most defensible SLD candidates are L4, L16, and L17, because they are the remaining high-Abbe low-dispersion glasses after the FLD trio. Sigma's public material confirms the count but does not assign the marketing grades to individual elements.
 
-**Display-key note.** The patent publishes θgF for every glass row, so the data file retains `dPgF` on all 17 elements for chromatic tracing. The `apd` display flag is intentionally narrower: the diagram visually keys L5, L12, and L14 as FLD; L4, L16, and L17 as SLD candidates; and L7 as the strong positive-APD high-index flint in the first G2 achromat. The remaining high-index, moldable, and achromat-partner glasses keep their measured partial-dispersion data but are not colored as APD elements.
+**Display-key note.** The patent publishes θgF for every glass row, so the data file retains `dPgF` on all 17 elements for chromatic tracing. The `apd` display flag is intentionally narrower: the diagram visually keys L5, L12, and L14 as FLD; L4, L16, and L17 as SLD candidates; and L7 as an inferred positive-APD high-index flint class in the first G2 achromat. L7 retains its printed θgF = 0.6388, but it lies outside the anomaly-condition groups (G1 negatives and post-stop positives); the patent does not individually identify its material as anomalous. The remaining high-index, moldable, and achromat-partner glasses keep their measured partial-dispersion data but are not colored as APD elements.
 
 ## Focus Mechanism
 
@@ -269,7 +269,9 @@ The prescription was rechecked with an independent paraxial y-ν ray trace. The 
 
 The Petzval value is a surface-by-surface sum, Σφ/(n n′), not an element-level thin-lens approximation. The positive sum corresponds to a Petzval radius of about 218 mm in magnitude.
 
-Semi-diameters were also checked for element edge thickness, front/rear SD ratios, rim slope, and cross-gap sag intrusion. The tightest retained margins are L8 edge thickness at about 0.53 mm and the surface 27-28A air gap intrusion at about 2.65 mm against a 2.71 mm 90%-gap limit; surfaces 2 and 4 sit just under the 64.2° rim-slope limit (64.07° and 63.89°). No cemented group clips the representative paraxial ray envelopes used for the renderer aperture.
+Figure 1 shows flat rear lands on the first three menisci. S2, S4 and S6A preserve their 27.8, 21.3 and 18.7 mm clear caps and extend opaquely to 37.3, 27.2 and 21.0 mm. S17 and S27 use inferred, beam-adjusted cuts of 0.80 and 1.67 mm (clear radii 12.016 and 11.548 mm). The last cemented pair now spans the same 12.5 mm outer height at S25–S27, including the continuous S26 interface, rather than drawing an unsupported taper. The smaller literal figure-share cuts are moved outward to clear all modeled wide-open beams and their margins. Clear apertures and these cut depths are inferred, not patent measurements.
+
+Semi-diameters were also checked for element edge thickness, front/rear SD ratios, rim slope, and cross-gap sag intrusion. The tightest retained margins are L8 edge thickness at about 0.53 mm and the surface 27-28A air gap intrusion at about 2.635 mm against a 2.715 mm 90%-gap limit; surfaces 2 and 4 sit just under the 64.2° rim-slope limit (64.07° and 63.89°). No cemented group clips the representative paraxial ray envelopes used for the renderer aperture.
 
 ## Sources and References
 

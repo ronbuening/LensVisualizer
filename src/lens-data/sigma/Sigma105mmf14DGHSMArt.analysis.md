@@ -47,7 +47,7 @@ The kinematics are simple at the group level: **G2 translates as a rigid body** 
 
 ## Element-by-Element Analysis
 
-Elements are numbered L1–L17 from object to image. Shapes are derived from the signs of both bounding radii. In-air thick-lens focal lengths are computed for each element as an isolated singlet (a standalone descriptor, independent of in-context conjugates). Glass identities are inferred from the stored $(n_d, \nu_d)$ matched against vendor catalogs — **the patent itself names no glasses** — and are discussed in detail in the following section; the most likely vendor is consistent throughout with a Japanese (Hoya/Ohara) palette.
+Elements are numbered L1–L17 from object to image. Shapes are derived from the signs of both bounding radii. In-air thick-lens focal lengths are computed for each element as an isolated singlet (a standalone descriptor, independent of in-context conjugates). Glass identities are inferred from the stored $(n_d, \nu_d)$ matched against vendor catalogs — **the patent itself names no glasses** — and are discussed in detail in the following section. Catalog names identify compatible spectral proxies; the patent does not establish production supplier, melt or manufacturing process.
 
 ### Group G1a — collector (surfaces 1–8)
 
@@ -129,19 +129,19 @@ Cemented to the rear of L15. The L15+L16 pair is a net negative doublet ($f \app
 
 **L17 — Biconvex positive (2× aspherical).**
 $n_d = 1.84915,\ \nu_d = 40.00$. Glass: M-TAFD305 (Hoya)-class — moldable lanthanum (soft match, $\Delta n_d = +0.0022$; see below). $f = +47.1\ \text{mm}$.
-The rearmost element, carrying both aspherical surfaces, and the single largest positive contribution to the rear group. The patent places this aspherical lens on the image side of the stop deliberately (§0064): ahead of the stop the axial ray height is large, so an object-side asphere would have to be large in diameter and costly to fabricate, whereas an image-side asphere can be made small. Its two aspheres carry the lens's principal spherical-aberration correction (§0062); by absorbing that correction they reduce the negative power the rear group must otherwise supply, which lets the most object-side concave surface of the G2b doublets be made gentler and thereby suppresses sagittal coma flare (§0063) — the mechanism behind the production lens's clean rendering of point sources such as stars. The matched glass (Hoya M-TAFD305 class) is a moldable lanthanum, consistent with a glass-molded asphere.
+The rearmost element, carrying both aspherical surfaces, and the single largest positive contribution to the rear group. The patent places this aspherical lens on the image side of the stop deliberately (§0064): ahead of the stop the axial ray height is large, so an object-side asphere would have to be large in diameter and costly to fabricate, whereas an image-side asphere can be made small. Its two aspheres carry the lens's principal spherical-aberration correction (§0062); by absorbing that correction they reduce the negative power the rear group must otherwise supply, which lets the most object-side concave surface of the G2b doublets be made gentler and thereby suppresses sagittal coma flare (§0063) — the mechanism behind the production lens's clean rendering of point sources such as stars. The compatible M-TAFD305 catalog proxy is a moldable lanthanum; it does not establish the production glass or asphere fabrication process.
 
 ---
 
 ## Glass Identification and Selection
 
-The patent publishes refractive index, Abbe number, and partial dispersion ratio $P_{g,F}$ for every surface but **names no glass**. The identifications below were obtained by matching each stored $(n_d, \nu_d)$, and where possible the published $P_{g,F}$, against vendor catalogs (Hoya, Ohara, Schott, with CDGM/Sumita/Hikari cross-checks), independently of the patent values. The patent (§0020) defines its dispersion quantities at the wavelengths g = 435.84 nm, F = 486.13 nm, d = 587.56 nm, C = 656.27 nm, with
+The patent publishes refractive index, Abbe number, and partial dispersion ratio $P_{g,F}$ for every surface but **names no glass**. The catalog proxies below were obtained by comparing each stored $(n_d, \nu_d)$, and where possible the published $P_{g,F}$, against vendor catalogs (Hoya, Ohara, Schott, with CDGM/Sumita/Hikari cross-checks), independently of the patent values. The patent (§0020) defines its dispersion quantities at the wavelengths g = 435.84 nm, F = 486.13 nm, d = 587.56 nm, C = 656.27 nm, with
 
 $$\nu_d = \frac{N_d - 1}{N_F - N_C}, \qquad P_{g,F} = \frac{N_g - N_F}{N_F - N_C}, \qquad \Delta P_{g,F} = P_{g,F} - 0.64833 + 0.00180\,\nu_d.$$
 
 This $\Delta P_{g,F}$ definition reproduces the patent's tabulated Example-1 anomalous-dispersion figures exactly and is used throughout this document. (Note the sign on the $\nu_d$ term: the patent writes $+0.00180\,\nu_d$, so glasses *above* the normal line carry positive $\Delta P_{g,F}$.) The companion data file stores `dPgF` in the project engine's Schott-normal-line convention, so those structured values differ slightly from the patent-condition figures in this analysis.
 
-Confidence is **high** for twelve of the thirteen distinct glasses (catalog $n_d$ reproduced to $\le 5\times10^{-4}$ with small $\Delta P_{g,F}$ residuals). The exception is the aspherical element L17, which is a **soft** match.
+Twelve of the thirteen distinct lens-glass coordinates have close catalog models; L17 uses a looser compatible proxy. Coordinate and partial-dispersion agreement do not identify a production glass. The source ratios remain independent constraints rather than being replaced by catalog spectra.
 
 | Glass (vendor) | $n_d$ | $\nu_d$ | $\Delta P_{g,F}$ | Elements | Role / class |
 |---|---|---|---|---|---|
@@ -160,9 +160,9 @@ Confidence is **high** for twelve of the thirteen distinct glasses (catalog $n_d
 | E-FD2 (Hoya) ≈ N-SF2 (Schott) | 1.64769 | 33.84 | $+0.005$ | L16 | Flint; rear achromatizer |
 | M-TAFD305 (Hoya), *soft* | 1.84915 | 40.00 | $-0.007$ | L17 | Moldable lanthanum; aspherical singlet |
 
-**Uncertainty note on L17.** The project catalog now contains Hoya's moldable lanthanum **M-TAFD305** ($n_d = 1.85135$, $\nu_d = 40.10$), but it does not reproduce L17's stored $n_d = 1.84915$ to transcription tolerance. The residual is $\Delta n_d = +0.0022$ — outside the $5\times10^{-4}$ threshold used for the confident identifications but well within the spread expected for a molded melt, and the **M-** designation independently supports a moldable (hence aspherically formable) glass. The identification should be read as *probable class* (moldable lanthanum), not as a confirmed catalog part.
+**Uncertainty note on L17.** The HOYA **M-TAFD305** catalog model ($n_d = 1.85135$, $\nu_d = 40.10$) is a loose spectral proxy for source $1.84915/40.00$, with $\Delta n_d = +0.0022$. It passes the resolver's compatibility screen but does not match source precision. Neither molding-related melt variation nor an actual M-TAFD305 production identity is established. The source $n_d$, $\nu_d$ and $P_{g,F}=0.5694$ remain unchanged; the catalog model supplies qualified spectral curvature.
 
-**The FLD / SLD / aspherical census is an inference, and a well-supported one.** The patent names no glasses, but the optical constants force the assignment: exactly three elements (L2, L3, L5) carry the $\nu_d = 95.10$ fluorite-class index that defines Sigma's FLD grade; exactly two further positive elements (L10, L11) carry special-low-dispersion indices in the $\nu_d \approx 64$–69 band that defines SLD; and exactly one element (L17) is aspherical. This reproduces Sigma's published "three FLD, two SLD, one aspherical" construction with no ambiguity in the count.
+**The FLD / SLD / aspherical census is a production-correlation inference.** Three source elements (L2, L3, L5) share the 1.43700/95.10 fluorite-class coordinates, while L10/L11 are additional low-dispersion positive candidates and L17 carries the two aspheres. This agrees with Sigma's published three-FLD/two-SLD/one-aspherical construction; it does not identify branded production materials or suppliers.
 
 **Display-key note.** The patent publishes $P_{g,F}$ for every glass row, so the data file retains `dPgF` on all 17 elements for chromatic tracing. The `apd` display flag is intentionally narrower: the diagram visually keys the three FLD elements (L2, L3, L5), the two SLD elements (L10, L11), and the high-index positive APD flint L9 singled out by conditions 8–9. The ordinary crown, lanthanum, and flint partners retain their measured partial-dispersion data but are not colored as APD elements.
 
@@ -208,7 +208,7 @@ The aspherical departures from the spherical base, evaluated radially, are sizea
 | 15 mm | $-65.8\ \mu\text{m}$ | $+105.9\ \mu\text{m}$ |
 | 20 mm | $-211.2\ \mu\text{m}$ | $+366.9\ \mu\text{m}$ |
 
-On the object-side convex surface 29, the negative $A_4$ produces a negative departure that grows toward the rim, weakening the surface's positive power off-axis. This is one of the two profile types the patent prescribes for the correcting asphere (§0065): a surface that *weakens positive power away from the axis*, or equivalently one that *strengthens negative power away from the axis*. On the image-side surface 30 the departure is positive and larger still. Acting together, the two aspheres remove the spherical aberration of the rearmost positive element so that the strongly curved concave surfaces of the G2b cemented doublets can be made gentler than full aberration balance would otherwise require — the patent's stated route to suppressing sagittal coma flare (§0063), which underlies the lens's clean rendering of point sources. The matched glass (Hoya M-TAFD305 class) is a moldable lanthanum, consistent with a glass-molded asphere.
+On the object-side convex surface 29, the negative $A_4$ produces a negative departure that grows toward the rim, weakening the surface's positive power off-axis. This is one of the two profile types the patent prescribes for the correcting asphere (§0065): a surface that *weakens positive power away from the axis*, or equivalently one that *strengthens negative power away from the axis*. On the image-side surface 30 the departure is positive and larger still. Acting together, the two aspheres remove the spherical aberration of the rearmost positive element so that the strongly curved concave surfaces of the G2b cemented doublets can be made gentler than full aberration balance would otherwise require — the patent's stated route to suppressing sagittal coma flare (§0063), which underlies the lens's clean rendering of point sources. The compatible M-TAFD305 catalog proxy is a moldable lanthanum; it does not establish the production glass or asphere fabrication process.
 
 ---
 
@@ -245,6 +245,10 @@ $$P = \sum_k \frac{n'_k - n_k}{R_k\, n_k\, n'_k},$$
 evaluates to $P = 1.243\times10^{-3}\ \text{mm}^{-1}$, a Petzval radius of $1/P \approx 804\ \text{mm}$, and a normalized $P\cdot f \approx 0.127$. For a 105 mm f/1.4 design this is well controlled: field curvature is held flat without the use of a dedicated field-flattener group. The mechanism is the heavy reliance on high-index positive elements, including dense lanthanum / dense-flint glasses (L7 at $n_d=1.835$, L9 at $1.923$, L14 at $1.871$, L15 at $1.911$, L17 at $1.849$), which contribute positive power with reduced Petzval cost, offset against the moderate-index negatives. The fast aperture is thus achieved without trading away field flatness.
 
 ---
+
+## Modeled rim limits
+
+Figure 1 ends the concave rear caps of S8, S14 and S21 before their square outer rims. Their inferred cut depths are 13.14, 6.11 and 6.00 mm, giving clear radii 33.595, 28.019 and 17.467 mm within the retained 40, 31 and 22.5 mm outer radii. The S14 cap is moved outward from the drawing share to clear the full modeled wide-open beams and their margin. The other air faces and cemented curves retain their original caps. These cuts are drawing inferences, not patent-listed machining dimensions; the shared full-beam guard and ordinary geometry checks apply. The source physical cover plate, optical coefficients, focus motion and f/1.46 calibration are unchanged.
 
 ## Verification Summary
 

@@ -10,15 +10,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON SEMI-DIAMETERS: estimated from supporting grant JP5952167B2 FIG. 1 (PDF p26, wide end, infinity)
  * plus traced clearance; none is a published clear aperture. The drawing is axially true to the prescription
  * (7.056 px/mm at 600 dpi) but about 1.093x taller, so heights use a curvature-calibrated vertical scale.
- * Figure-fitted 2026-10-06: 1A 26.3, 3A 21.1, 5-7 19.7, 9/10 18.3, G2 rims (11-13, 15-17) 20.0, 19 13.3,
- * 21-23 14.1, 24/25 14.9, 26/27 15.1, 29A/30A 15.3. The renderer joins unequal rims with a straight edge, so a
- * curve is carried to the element rim where the figure draws a square block and nothing forbids it (21, 29A).
- * Held below the drawn rim: 2 (19.7), 4 (18), 20 (12.3) and 28 (13.9) by the cross-gap rule (28 and 29A meet at
- * 14.26 mm); 8 (17.0; the figure ends that curve near 15.4 at a flat annulus) because a larger front lets the
- * default off-axis fan clip first at cemented surface 9; 14A (18.6) by its slope reversal at 18.6445 mm, so the
- * f/1.86 tele axial marginal ray (18.70 mm there) loses its outer 0.10 mm. Those six faces draw as chamfers;
- * the figure has flat annuli on five of them and carries 14A to the rim. A-publication supplies every
- * prescription number.
+ * The A-file's PAJ wrapper figure (PDF p1) was freshly inspected at 600 dpi for the F-mount review,
+ * alongside its degraded Japanese Figure1 (p28) and the same-example supporting grant figure.
+ * Source-backed opaque lands now join S2 cap 19.7 to outer 26.3, S8 cap 17 to 18.3 and S28 cap 13.9 to 15.1.
+ * S4/S20 extensions are rejected by unchanged air-gap limits; their shorter caps and tapered outlines stay.
+ * S14A stays at 18.6 below its slope reversal 18.6445; the drawing's continuous curve does not justify a land.
+ * The f/1.86 tele axial marginal ray still reaches 18.70 mm there, leaving the disclosed 0.10 mm restriction.
+ * All other caps, literal A-prescription numbers, five aspheres and runtime controls are unchanged.
  * NOTE ON STOP: position is published surface18; radius is derived from the design f-number f/1.86 (actual runtime
  * uses an exact marginal ray). f-number agreement is not independent iris-size evidence.
  * Glass classes indicate coordinate-compatible catalogs, not actual suppliers/melts.
@@ -281,7 +279,7 @@ const LENS_DATA = {
       medium: 1,
       asphere: { K: 0, A4: 1.03451e-05, A6: -1.27202e-08, A8: 2.05215e-11, A10: -1.96261e-14, A12: 1.10511e-17, A14: 0 },
     },
-    { label: "2", R: 25.1654, d: 6.6841, sd: 19.7 },
+    { label: "2", R: 25.1654, d: 6.6841, sd: 19.7, rimExtensionSd: 26.3 },
     {
       label: "3A",
       R: 46.087,
@@ -294,7 +292,7 @@ const LENS_DATA = {
     { label: "5", R: -120.863, d: 1.3, sd: 19.7, medium: 3 },
     { label: "6", R: 49.6643, d: 6.2827, sd: 19.7, medium: 4 },
     { label: "7", R: -231.8638, sd: 19.7 },
-    { label: "8", R: -41.6754, d: 1.0, sd: 17, medium: 5 },
+    { label: "8", R: -41.6754, d: 1.0, sd: 17, medium: 5, rimExtensionSd: 18.3 },
     { label: "9", R: 61.9382, d: 3.9456, sd: 18.3, medium: 6 },
     { label: "10", R: 533.7643, sd: 18.3 },
     { label: "11", R: 83.3333, d: 5.8519, sd: 20, medium: 7 },
@@ -320,7 +318,7 @@ const LENS_DATA = {
     { label: "25", R: -55.5556, d: 0.7186, sd: 14.9 },
     { label: "26", R: 96.7931, d: 5.0907, sd: 15.1, medium: 15 },
     { label: "27", R: -50.229, d: 1.0, sd: 15.1, medium: 16 },
-    { label: "28", R: 47.1616, d: 0.539, sd: 13.9 },
+    { label: "28", R: 47.1616, d: 0.539, sd: 13.9, rimExtensionSd: 15.1 },
     {
       label: "29A",
       R: 51.4166,

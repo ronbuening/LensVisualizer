@@ -14,6 +14,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  (traced, not drawn); surface 30A keeps the patent d30 to the    ║
  * ║  plate: 37.5626 mm at infinity, 50.4932 mm at close focus.      ║
  * ║                                                                  ║
+ * Fresh F-mount source review 2026-10-30: Figure 1 cap-end lands on S8/14/21
+ * use inferred, full-beam-qualified cuts; all printed glass/partial ratios stay.
+ * Catalog names denote compatible spectral proxies, never production supplier or melt.
  * ║  Semi-diameters are conservative estimates from axial ray        ║
  * ║  heights, patent Fig. 1 proportions, the 105 mm filter size,     ║
  * ║  and edge/cross-gap validation. The patent does not list SDs.    ║
@@ -299,20 +302,20 @@ const LENS_DATA = {
     { label: "5", R: 63.431, d: 12.3856, sd: 41.0, medium: 3 },
     { label: "6", R: 249.4535, d: 2.9002, sd: 41.0 },
     { label: "7", R: 216.1665, d: 2.2, sd: 40.0, medium: 4 },
-    { label: "8", R: 49.5173, d: 15.8891, sd: 40.0 },
+    { label: "8", R: 49.5173, d: 15.8891, sd: 40.0, rimCutDepthMm: 13.14 },
     { label: "9", R: -248.4001, d: 4.613, sd: 32.5, medium: 5 },
     { label: "10", R: -95.8446, d: 1.8, sd: 32.5, medium: 6 },
     { label: "11", R: -500.0, d: 1.0, sd: 32.5 },
     { label: "12", R: 67.9843, d: 10.4346, sd: 31.0, medium: 7 },
     { label: "13", R: -211.9683, d: 1.8, sd: 31.0, medium: 8 },
-    { label: "14", R: 67.2983, sd: 31.0 },
+    { label: "14", R: 67.2983, sd: 31.0, rimCutDepthMm: 6.11 },
     { label: "15", R: 53.7906, d: 4.5962, sd: 29.3, medium: 9 },
     { label: "16", R: 94.6373, d: 0.3, sd: 29.3 },
     { label: "17", R: 46.5373, d: 4.1734, sd: 29.0, medium: 10 },
     { label: "18", R: 66.7867, d: 0.3, sd: 28.5 },
     { label: "19", R: 40.7185, d: 6.9541, sd: 23.2, medium: 11 },
     { label: "20", R: 275.0, d: 1.3, sd: 23.0, medium: 12 },
-    { label: "21", R: 28.4253, d: 7.5444, sd: 22.5 },
+    { label: "21", R: 28.4253, d: 7.5444, sd: 22.5, rimCutDepthMm: 6.00 },
     { label: "STO", R: "flat", d: 5.4041 },
     { label: "23", R: -50.8188, d: 0.9, sd: 18.0, medium: 13 },
     { label: "24", R: 29.516, d: 7.5115, sd: 18.0, medium: 14 },
