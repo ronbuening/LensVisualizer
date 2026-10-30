@@ -17,20 +17,20 @@ cross-check only. Surface 2, the steep rear of the L1 meniscus, needs 23.88 mm, 
 takes its floor + ~0.5 mm, 24.4 mm, a 69.8° rim that Fig. 4's ≈ 25 mm drawing supports. The chief ray now solves at the
 declared 56.72° and clears every rim there and at the 57.4° corner.
 
-| Surface | Before | After | Justification |
-|---|---|---|---|
-| 1 | 22.0 | 31.9 | chief ray 31.32 mm at 56.72° + clearance (Fig. 4 ≈ 33) |
-| 2 | 20.5 | 24.4 | chief ray 23.88 mm + clearance; 69.8° rim under the lens-level 72° limit (Fig. 4 ≈ 25) |
-| 3A | 16.0 | 22.5 | chief ray 21.92 mm + clearance; the asphere's slope rises monotonically to 27 mm (45.1° at the rim) |
-| 4 | 15.0 | 21.1 | L2 scaled with surface 3A (chief ray 19.39 mm) |
-| 5 | 13.8 | 18.4 | chief ray 17.86 mm + clearance |
-| 6 | 12.5 | 14.6 | chief ray 14.06 mm + clearance; strong meniscus, not scaled |
-| 7 | 11.0 | 13.6 | chief ray 13.01 mm + clearance |
-| 8 | 10.2 | 12.0 | chief ray 11.43 mm + clearance; strong meniscus, not scaled |
-| 9 | 9.2 | 9.8 | chief ray 9.21 mm + clearance; cemented junction 10 (chief ray 8.24 mm, sd 8.8) unchanged |
-| 23 | 7.5 | 8.4 | chief ray 7.83 mm + clearance; cemented junction 22 unchanged |
-| 24 | 8.0 | 9.9 | L14 scaled with surface 25 (chief ray 9.01 mm) |
-| 25 | 8.2 | 10.1 | chief ray 9.55 mm + clearance |
+| Surface | Before | After | Justification                                                                                       |
+| ------- | ------ | ----- | --------------------------------------------------------------------------------------------------- |
+| 1       | 22.0   | 31.9  | chief ray 31.32 mm at 56.72° + clearance (Fig. 4 ≈ 33)                                              |
+| 2       | 20.5   | 24.4  | chief ray 23.88 mm + clearance; 69.8° rim under the lens-level 72° limit (Fig. 4 ≈ 25)              |
+| 3A      | 16.0   | 22.5  | chief ray 21.92 mm + clearance; the asphere's slope rises monotonically to 27 mm (45.1° at the rim) |
+| 4       | 15.0   | 21.1  | L2 scaled with surface 3A (chief ray 19.39 mm)                                                      |
+| 5       | 13.8   | 18.4  | chief ray 17.86 mm + clearance                                                                      |
+| 6       | 12.5   | 14.6  | chief ray 14.06 mm + clearance; strong meniscus, not scaled                                         |
+| 7       | 11.0   | 13.6  | chief ray 13.01 mm + clearance                                                                      |
+| 8       | 10.2   | 12.0  | chief ray 11.43 mm + clearance; strong meniscus, not scaled                                         |
+| 9       | 9.2    | 9.8   | chief ray 9.21 mm + clearance; cemented junction 10 (chief ray 8.24 mm, sd 8.8) unchanged           |
+| 23      | 7.5    | 8.4   | chief ray 7.83 mm + clearance; cemented junction 22 unchanged                                       |
+| 24      | 8.0    | 9.9   | L14 scaled with surface 25 (chief ray 9.01 mm)                                                      |
+| 25      | 8.2    | 10.1  | chief ray 9.55 mm + clearance                                                                       |
 
 The validator accepts the new values and the image-circle floor still reports nothing undersized. The field-coverage
 audit reads 97%: the declared 56.72° field ends at 21.08 mm, and barrel distortion puts the corner at 57.4°. The
@@ -55,12 +55,12 @@ uncertainty. Brackets I/II, axis strokes, stop and image-plane marks are exclude
 
 ### Element heights, outer shoulders and concave ends
 
-| Surface | Before clear / drawn radius (mm) | After clear / drawn radius (mm) | Evidence and adopted constraint |
-|---|---|---|---|
-| S2 | 24.4 / 24.4 | 24.4 / 31.9 | Native rear shoulder; cap/outer ratio about 0.76 ±0.02. |
-| S4 | 21.1 / 21.1 | 21.1 / 22.5 | Native short rear shoulder; ratio about 0.88 ±0.03. |
-| S6 | 14.6 / 14.6 | 14.6 / 18.4 | Native rear shoulder; ratio about 0.77 ±0.03. |
-| S8 | 12.0 / 12.0 | 12.0 / 13.6 | Native short rear shoulder; ratio about 0.86 ±0.04. |
+| Surface | Before clear / drawn radius (mm) | After clear / drawn radius (mm) | Evidence and adopted constraint                         |
+| ------- | -------------------------------- | ------------------------------- | ------------------------------------------------------- |
+| S2      | 24.4 / 24.4                      | 24.4 / 31.9                     | Native rear shoulder; cap/outer ratio about 0.76 ±0.02. |
+| S4      | 21.1 / 21.1                      | 21.1 / 22.5                     | Native short rear shoulder; ratio about 0.88 ±0.03.     |
+| S6      | 14.6 / 14.6                      | 14.6 / 18.4                     | Native rear shoulder; ratio about 0.77 ±0.03.           |
+| S8      | 12.0 / 12.0                      | 12.0 / 13.6                     | Native short rear shoulder; ratio about 0.86 ±0.04.     |
 
 The ratio ranges include two-pixel endpoint ambiguity and schematic stroke/shape uncertainty. The adopted outer
 heights follow each element's opposite retained face, rather than moving a working optical cap to fit the drawing.
@@ -78,21 +78,21 @@ normal edge/stop/cross-gap checks; source-plane and sampled runtime clearance re
 ### Every modeled medium and its source reference
 
 | Element / source faces | Retained clear front / rear sd (mm) | Confirmed source n / ν | D-line coordinate candidate only |
-|---|---|---|---|
-| L1, S1–S2 | 31.9 / 24.4 | 1.69680 / 55.5 | S-LAL14 |
-| L2, S3A–S4 | 22.5 / 21.1 | 1.60311 / 60.7 | S-BSM14 |
-| L3, S5–S6 | 18.4 / 14.6 | 1.69680 / 55.5 | S-LAL14 |
-| L4, S7–S8 | 13.6 / 12 | 1.77250 / 49.6 | S-LAH66 |
-| L5, S9–S10 | 9.8 / 8.8 | 1.69680 / 55.5 | S-LAL14 |
-| L6, S10–S11 | 8.8 / 8 | 1.59551 / 39.2 | S-TIM8 |
-| L7, S12–S13 | 7 / 6.4 | 1.56732 / 42.8 | S-TIL26 |
-| L8, S13–S14 | 6.4 / 6.4 | 1.77250 / 49.6 | S-LAH66 |
-| L9, S15–S16 | 6.3 / 6.3 | 1.77250 / 49.6 | S-LAH66 |
-| L10, S18–S19 | 6.5 / 6.7 | 1.60311 / 60.7 | S-BSM14 |
-| L11, S19–S20 | 6.7 / 6.8 | 1.74320 / 49.3 | S-LAM60 |
-| L12, S21–S22 | 6.8 / 6.9 | 1.92286 / 21.3 | PBH71 |
-| L13, S22–S23 | 6.9 / 8.4 | 1.48749 / 70.2 | S-FSL5 |
-| L14, S24–S25 | 9.9 / 10.1 | 1.80400 / 46.6 | S-LAH65V |
+| ---------------------- | ----------------------------------- | ---------------------- | -------------------------------- |
+| L1, S1–S2              | 31.9 / 24.4                         | 1.69680 / 55.5         | S-LAL14                          |
+| L2, S3A–S4             | 22.5 / 21.1                         | 1.60311 / 60.7         | S-BSM14                          |
+| L3, S5–S6              | 18.4 / 14.6                         | 1.69680 / 55.5         | S-LAL14                          |
+| L4, S7–S8              | 13.6 / 12                           | 1.77250 / 49.6         | S-LAH66                          |
+| L5, S9–S10             | 9.8 / 8.8                           | 1.69680 / 55.5         | S-LAL14                          |
+| L6, S10–S11            | 8.8 / 8                             | 1.59551 / 39.2         | S-TIM8                           |
+| L7, S12–S13            | 7 / 6.4                             | 1.56732 / 42.8         | S-TIL26                          |
+| L8, S13–S14            | 6.4 / 6.4                           | 1.77250 / 49.6         | S-LAH66                          |
+| L9, S15–S16            | 6.3 / 6.3                           | 1.77250 / 49.6         | S-LAH66                          |
+| L10, S18–S19           | 6.5 / 6.7                           | 1.60311 / 60.7         | S-BSM14                          |
+| L11, S19–S20           | 6.7 / 6.8                           | 1.74320 / 49.3         | S-LAM60                          |
+| L12, S21–S22           | 6.8 / 6.9                           | 1.92286 / 21.3         | PBH71                            |
+| L13, S22–S23           | 6.9 / 8.4                           | 1.48749 / 70.2         | S-FSL5                           |
+| L14, S24–S25           | 9.9 / 10.1                          | 1.80400 / 46.6         | S-LAH65V                         |
 
 Every numeric index/Abbe pair agrees with the original table. No indexed hybrid layer, source filter or rear plate
 is present. The source does not print C/F/g line indices, per-material partial dispersion or APD measurements.
@@ -106,21 +106,21 @@ materials. No media are counted as coefficient-curve coverage (0/14) while the s
 The source does not print six-digit glass codes; the former “patent code” heading is corrected to derived coordinate
 code. Historical PBH71 remains a candidate under the assumed reference, not proof of source identity or supplier.
 
-| Element | Previous nC / nF / ng | Disposition |
-|---|---|---|
-| L1 | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
-| L2 | 1.60008 / 1.61002 / 1.61541 | Removed catalog copies; not printed in the original. |
-| L3 | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
-| L4 | 1.7678 / 1.78337 / 1.79197 | Removed catalog copies; not printed in the original. |
-| L5 | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
-| L6 | 1.59103 / 1.60621 / 1.61501 | Removed catalog copies; not printed in the original. |
-| L7 | 1.56339 / 1.57664 / 1.58423 | Removed catalog copies; not printed in the original. |
-| L8 | 1.7678 / 1.78337 / 1.79197 | Removed catalog copies; not printed in the original. |
-| L9 | 1.7678 / 1.78337 / 1.79197 | Removed catalog copies; not printed in the original. |
-| L10 | 1.60008 / 1.61002 / 1.61541 | Removed catalog copies; not printed in the original. |
-| L11 | 1.73865 / 1.75372 / 1.76205 | Removed catalog copies; not printed in the original. |
-| L13 | 1.48534 / 1.49228 / 1.49596 | Removed catalog copies; not printed in the original. |
-| L14 | 1.79882 / 1.81608 / 1.82569 | Removed catalog copies; not printed in the original. |
+| Element | Previous nC / nF / ng       | Disposition                                          |
+| ------- | --------------------------- | ---------------------------------------------------- |
+| L1      | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
+| L2      | 1.60008 / 1.61002 / 1.61541 | Removed catalog copies; not printed in the original. |
+| L3      | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
+| L4      | 1.7678 / 1.78337 / 1.79197  | Removed catalog copies; not printed in the original. |
+| L5      | 1.69297 / 1.70552 / 1.71234 | Removed catalog copies; not printed in the original. |
+| L6      | 1.59103 / 1.60621 / 1.61501 | Removed catalog copies; not printed in the original. |
+| L7      | 1.56339 / 1.57664 / 1.58423 | Removed catalog copies; not printed in the original. |
+| L8      | 1.7678 / 1.78337 / 1.79197  | Removed catalog copies; not printed in the original. |
+| L9      | 1.7678 / 1.78337 / 1.79197  | Removed catalog copies; not printed in the original. |
+| L10     | 1.60008 / 1.61002 / 1.61541 | Removed catalog copies; not printed in the original. |
+| L11     | 1.73865 / 1.75372 / 1.76205 | Removed catalog copies; not printed in the original. |
+| L13     | 1.48534 / 1.49228 / 1.49596 | Removed catalog copies; not printed in the original. |
+| L14     | 1.79882 / 1.81608 / 1.82569 | Removed catalog copies; not printed in the original. |
 
 These 39 values were catalog-derived copies; none is a published selected-example measurement. Removing them
 allows the unresolved source-pair approximation to remain honest. The analysis now uses n/ν for source values,
@@ -142,3 +142,39 @@ retains its declared 56.72° limit: 21.08 mm image height, about 97% of the 21.6
 solved 57.4° corner remains clear. Rims and source field are not enlarged to disguise that declared-field distinction.
 The strong design-family correlation does not identify an exact production embodiment, factory blank dimensions,
 supplier, melt or material chemistry.
+
+## 2026-10-30 — Runtime-only finite-object supplement
+
+The original source-review date and optical data remain unchanged. The earlier 21-state pupil/grid result explicitly
+used collimated launches in focus-adjusted geometry; its passing result was a control-geometry census, not physical
+finite-object clearance. Existing first-order/source-plane focus checks are retained.
+
+A separate actual finite-object Gaussian-conjugate supplement now covers 21 focus positions at their own unchanged
+iris, axial and .6/1 paraxial object-field fractions and 49 disk-pupil samples. The H6 focus cam remains an authored reconstruction,
+not source-published finite spacings. Its half/near inferred object-to-image distances are 382.992912/250.000000 mm,
+with modeled magnifications −.051619/−.100294. No source object-plane or physical MFD accuracy is inferred beyond
+those first-order qualifications, and no cap, iris, gap or cam is tuned to the supplement.
+
+All 1029/1029 axial and 63/63 chief samples clear over 3087 aimed rays, zero unaimed. Infinity/half/near pupil survivors
+are 49/38/5,49/29/5,49/29/10; peripheral vignetting remains. All 14 actual SVG paths finite/closed/connected, zero
+hidden trim. Existing source-field 97% limit, four native shoulders, unknown index reference and source/runtime/
+production distinctions remain. No original-PDF reinspection or additional source-review count is claimed.
+
+### Runtime field-coordinate qualification (2026-10-30)
+
+The collimated census uses 0/.6/1 fractions of the modeled maximum object angle. The finite-object supplement uses
+0/.6/1 fractions of a **paraxial object-field reference**, yObject=(21.65 mm×fraction)/A, where A is that state's
+first-order transverse matrix term. Those explicit finite-object points establish the launch plane, but distortion
+means their chief rays need not land at the sensor corner. They are paraxial object-field probes, not inverse-solved
+finite sensor-edge rays. The following actual terminal image heights are measured at the authored physical image plane.
+The infinity row uses the separate modeled-angle launch; nonzero rows use Gaussian finite-object geometry.
+
+| Focus control | Probe .6 actual image height | Probe 1.0 actual image height |
+| ------------- | ---------------------------: | ----------------------------: |
+| 0.000000000   |                  9.399566 mm |                  21.077338 mm |
+| 0.500000000   |                 12.575711 mm |                  20.716351 mm |
+| 1.000000000   |                 12.524921 mm |                  20.442175 mm |
+
+These results do not claim true finite-corner reach. Separate infinity source-field, inverse-image-height/vector
+checks remain as previously recorded. Source object-plane uncertainty, field limitations and off-axis vignetting
+remain explicit; no cap, cam or iris is fitted to make paraxial field fractions land at a desired image height.

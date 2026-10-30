@@ -489,3 +489,15 @@ low-dispersion-glass count agree with the production RF10-20mm F4 L IS STM, whic
    2026); Schott optical glass overview (2025); CDGM (September 2024); HIKARI general catalog; Sumita (version
    14.01.03).
 8. Welford, W. T. _Aberrations of Optical Systems._ Bristol: Adam Hilger, 1986.
+
+### 2026-10-30 — Finite-field target clarification
+
+The explicit finite-object pupil grids above place rays on actual object planes,
+but scale off-axis object height using current paraxial magnification. Their nominal
+full-format field is therefore an object-field scaling, not an inverse solve that
+forces the distorted chief image to the sensor corner. Axial and converged-chief
+clearance remains valid for those sampled object points. It does not certify actual
+image-height edge reach at every finite conjugate. The six unbracketed wide-end
+finite targets refer to that stated object-field scaling. Infinity inverse-image-
+height checks and bounding-sphere angular probes are separate scopes. This dated
+clarification changes no source-review count, R/d, caps, aspheres, glass or controls.

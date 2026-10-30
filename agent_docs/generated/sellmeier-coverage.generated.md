@@ -1429,7 +1429,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 20 | Element 11 | abbe | `Unmatched (Canon BR optical resin)` | Explicit unmatched/proprietary annotation |
+| 20 | Element 11 | abbe | `Unmatched (published high-partial-dispersion medium; BR-resin production correlation only, chemistry and cure unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) - 94.4% trusted (17/18); 94.4% Sellmeier (17/18) - US 2010/0238560 A1
 

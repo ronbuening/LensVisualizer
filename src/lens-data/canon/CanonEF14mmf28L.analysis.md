@@ -484,3 +484,39 @@ not replace those plots.
 This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 14.2 mm, taken directly from Numerical Example2, PDF p6 / printed columns9–10: header f=14.2, fno1:2.892. The prior computed model EFL value 14.201254 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
 
 All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.
+
+## 2026-10-30 — Runtime-only finite-object supplement
+
+The original source-review date and optical data remain unchanged. The earlier 21-state pupil/grid result explicitly
+used collimated launches in focus-adjusted geometry; its passing result was a control-geometry census, not physical
+finite-object clearance. Existing first-order/source-plane focus checks are retained.
+
+A separate actual finite-object Gaussian-conjugate supplement now covers 21 focus positions at their own unchanged
+iris, axial and .6/1 paraxial object-field fractions and 49 disk-pupil samples. The H6 focus cam remains an authored reconstruction,
+not source-published finite spacings. Its half/near inferred object-to-image distances are 382.992912/250.000000 mm,
+with modeled magnifications −.051619/−.100294. No source object-plane or physical MFD accuracy is inferred beyond
+those first-order qualifications, and no cap, iris, gap or cam is tuned to the supplement.
+
+All 1029/1029 axial and 63/63 chief samples clear over 3087 aimed rays, zero unaimed. Infinity/half/near pupil survivors
+are 49/38/5,49/29/5,49/29/10; peripheral vignetting remains. All 14 actual SVG paths finite/closed/connected, zero
+hidden trim. Existing source-field 97% limit, four native shoulders, unknown index reference and source/runtime/
+production distinctions remain. No original-PDF reinspection or additional source-review count is claimed.
+
+### Runtime field-coordinate qualification (2026-10-30)
+
+The collimated census uses 0/.6/1 fractions of the modeled maximum object angle. The finite-object supplement uses
+0/.6/1 fractions of a **paraxial object-field reference**, yObject=(21.65 mm×fraction)/A, where A is that state's
+first-order transverse matrix term. Those explicit finite-object points establish the launch plane, but distortion
+means their chief rays need not land at the sensor corner. They are paraxial object-field probes, not inverse-solved
+finite sensor-edge rays. The following actual terminal image heights are measured at the authored physical image plane.
+The infinity row uses the separate modeled-angle launch; nonzero rows use Gaussian finite-object geometry.
+
+| Focus control | Probe .6 actual image height | Probe 1.0 actual image height |
+| ------------- | ---------------------------: | ----------------------------: |
+| 0.000000000   |                  9.399566 mm |                  21.077338 mm |
+| 0.500000000   |                 12.575711 mm |                  20.716351 mm |
+| 1.000000000   |                 12.524921 mm |                  20.442175 mm |
+
+These results do not claim true finite-corner reach. Separate infinity source-field, inverse-image-height/vector
+checks remain as previously recorded. Source object-plane uncertainty, field limitations and off-axis vignetting
+remain explicit; no cap, cam or iris is fitted to make paraxial field fractions land at a desired image height.
