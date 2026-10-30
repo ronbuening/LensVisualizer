@@ -106,7 +106,7 @@ The variator is the engine of any zoom lens — its axial position relative to G
 - Element focal length: −24.0 mm (thick lens)
 - Aspherical surface: K = −1 (paraboloid base conic, patent κ = 0)
 
-L21 is the most powerful single element in the entire lens. Its nearly flat front surface (R = 400 mm) combined with the strongly curved aspherical rear (R = 17 mm) creates extreme negative meniscus geometry. The paraboloidal base conic (K = −1) on the rear surface significantly flattens the sag profile at the rim compared to a sphere, allowing the beam to pass through at steep angles without exceeding slope limits. The polynomial aspheric coefficients provide additional correction for off-axis coma and astigmatism.
+L21 is the most powerful single element in the entire lens. Its nearly flat front surface (R = 400 mm) combined with the strongly curved aspherical rear (R = 17 mm) creates extreme negative meniscus geometry. The paraboloidal base conic (K = −1) on the rear surface significantly flattens the sag profile at the rim compared to a sphere, allowing the beam to pass through at steep angles without exceeding slope limits. The polynomial aspheric coefficients provide additional correction for off-axis coma and astigmatism. Figure 1A's rear-face land extends from the unchanged 14.4 mm clear cap to the 21.5 mm outer rim; `rimExtensionSd` draws that opaque material without continuing the asphere.
 
 **L22 — Biconcave negative**
 - Radii: R₁ = −181.132, R₂ = +49.985

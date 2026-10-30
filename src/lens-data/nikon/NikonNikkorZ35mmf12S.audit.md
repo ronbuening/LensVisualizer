@@ -212,3 +212,16 @@ One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px)
 - 31: q 0.955 at a 274.0 px edge (19.3 mm), range 0.948–0.962. The cut sits at the old 18.0 mm rim, 0.933 of `sd`.
   Land 1.3012 mm, over the minimum.
 - 32A: q 0.933 at a 269.8 px edge (19.0 mm), range 0.926–0.940. Land 1.2736 mm, over the minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/JP2025052870A.pdf`, PDF p. 41, Figure 1 (upper/infinity), including a 600 dpi crop of the complete cross-section. The source embodiment and every air face were checked against the stored section. The native figure scale is 14.198 px/mm, from the vertex span recorded above; upsampling does not improve the native measurement.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 2 | 26.3 → 26.3 mm | absent → 31.2 mm | Curve ends inside a square outer rim; cap/edge q 0.826, range 0.822–0.830. |
+
+The sphere stops at its original cap end, inside |R| = 31.10505 mm. Cuts on 7, 17, 31 and 32A are retained. Surface 19 cannot take the figure cut without entering its traced beam, so it stays uncut. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
+
+Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.

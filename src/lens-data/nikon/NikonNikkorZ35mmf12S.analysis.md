@@ -110,7 +110,7 @@ Glass code 738323. **Hikari J-KZFH9** — same glass type as L14 (KZFS-class sho
 
 Surface 18 is the aperture stop (STO), positioned in the air gap between the front group A and rear group B. At infinity focus, the STO-to-F1 distance is 19.09 mm, providing substantial working space for the focusing mechanism. The patent does not tabulate the iris diameter; an exact trace gives a 19.86 mm stop radius for FNo 1.23 (calculated), which matches the stop tick marks in Fig. 1 (about 19.5–20.1 mm). The viewer opens to the patent's f/1.23. The production lens uses 11 rounded aperture blades.
 
-The patent lists no clear apertures. The front element, L15–L17 and the whole rear group take their rims from Fig. 1; the rear group in particular is drawn at about 19–19.6 mm, far larger than the earlier estimates. Every rim passes the f/1.23 axial beam and the full-field chief ray at both published focus states.
+The patent lists no clear apertures. The front element, L15–L17 and the whole rear group take their rims from Fig. 1; the rear group in particular is drawn at about 19–19.6 mm, far larger than the earlier estimates. Every rim passes the f/1.23 axial beam and the full-field chief ray at both published focus states. L11's rear surface keeps its 26.3 mm clear cap and uses `rimExtensionSd` to draw Figure 1's flat land to the 31.2 mm outer edge; the spherical profile does not continue beyond its valid domain.
 
 ### 3.4 Rear Group B — Focus Group F1 (Negative, f = −219.4 mm)
 

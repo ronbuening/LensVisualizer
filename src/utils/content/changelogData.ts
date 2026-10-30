@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-29",
+    type: "improvement",
+    summary: "Refined Nikkor Z element heights and rim lands against their patent diagrams",
+  },
+  {
+    date: "2026-10-29",
     type: "fix",
     summary: "Fixed blank off-axis MTF curves for wide lenses focused close",
   },

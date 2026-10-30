@@ -178,3 +178,16 @@ Figure scale and land length: Figure 1A's 0.2423 mm/px, from the 437.5 px / 106.
 - 25: figure q 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower) at a 74.3 px edge (18.0 mm), range 0.815–0.865;
   the figure draws that edge at 69.3–69.7 px (16.8 mm). The cut sits at 0.840 of `sd`. Land 2.8786 mm, over the
   0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/JPWO2019049372A1.pdf`, PDF p. 38, Figure 1A, including a 600 dpi crop of the complete cross-section. The source embodiment and every air face were checked against the stored section. The native figure scale is 4.126 px/mm, from the vertex span recorded above; upsampling does not improve the native measurement.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 5A | 14.4 → 14.4 mm | absent → 21.5 mm | Curve ends inside a square outer rim; cap/edge q 0.715, range 0.694–0.736. |
+
+The asphere is evaluated only to its original cap end; its taller land clears L22. The existing cut on 25 is retained. No further concave face has a resolved land. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
+
+Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.

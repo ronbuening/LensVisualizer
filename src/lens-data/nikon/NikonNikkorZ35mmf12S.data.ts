@@ -34,7 +34,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 31 (L43 rear) and 32A (L44 front); rimCutDepthMm puts their cut radii at 24.05, 22.01, 18.00 and 17.73 mm.
  * 17 and 31 take their partner face's rim (23.0 and 19.3 mm) with the cut at their old sd: the clear radius goes
  * from 22.0 to 22.0073 mm on 17 and from 18.0 to 17.9988 mm on 31, where the beams reach 19.4168 and 16.8163 mm.
- * L11's land (S2) is not modeled: R2 = 31.1 mm cannot reach the 31.2 mm edge.
+ * Rim extension (2026-10-29): Fig. 1, p. 41, 14.198 native px/mm, shows L11's
+ * rear cap ending short of its 31.2 mm rim (q about 0.826). S2 keeps its 26.3 mm
+ * clear radius and adds rimExtensionSd 31.2, so its sphere never runs beyond R2.
  */
 
 const LENS_DATA = {
@@ -296,7 +298,7 @@ const LENS_DATA = {
   surfaces: [
     // ── L11 (Negative meniscus) ──
     { label: "1", R: 163.28336, d: 2.5, sd: 31.2, medium: 1 },
-    { label: "2", R: 31.10505, d: 13.39, sd: 26.3 },
+    { label: "2", R: 31.10505, d: 13.39, sd: 26.3, rimExtensionSd: 31.2 },
     // ── L12 (Aspherical negative meniscus) ──
     {
       label: "3A",

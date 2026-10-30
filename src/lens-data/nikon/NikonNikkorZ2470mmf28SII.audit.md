@@ -487,3 +487,16 @@ it: 2079.5 px for the 154.461 mm first-vertex-to-image track at the wide end, in
   Not cut (above).
 - 24: q 0.899 (216.5 / 240.5 px and 215 / 239.5 px), edge 242.3 px, range ±0.008 (0.891–0.907). The cut sits at
   q 0.889, at the old rim, 0.002 below that range. Land 1.9958 mm, above the 0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2024214585A1.pdf`, PDF p. 69, Figure 3, including a 600 dpi crop of the complete cross-section. The source embodiment and every air face were checked against the stored section. The native figure scale is 13.46 px/mm, from the vertex span recorded above; upsampling does not improve the native measurement.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 2A | 24.0 → 24.0 mm | absent → 30.0 mm | Curve ends inside a square outer rim; cap/edge q 0.797, range 0.793–0.801. |
+
+The cap remains inside the aspheric turnover. The existing cut on 24 is retained; the other air faces run into their corners or have no resolved land. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
+
+Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.
