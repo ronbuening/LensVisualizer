@@ -9,6 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source BF=41.050 mm is already air-equivalent; no cover/filter is added.
  */
 
+// Fresh Figure 1: rear concave lands S4/S6 retain clear caps 25/22 with working outer rims 30/23.
+// The pre-existing absolute figure/aperture discrepancy remains; no optical cap or source glass value changes.
+
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -168,9 +171,9 @@ const LENS_DATA = {
     { label: "1", R: 54.231, d: 9.43, sd: 32.0, medium: 1 }, // L11 front
     { label: "2", R: 281.169, d: 0.3, sd: 30.0 }, // L11 rear → air
     { label: "3", R: 39.221, d: 9.64, sd: 30.0, medium: 2 }, // L12 front
-    { label: "4", R: 54.944, d: 3.708, sd: 25.0 }, // L12 rear → air
+    { label: "4", R: 54.944, d: 3.708, sd: 25.0, rimExtensionSd: 30 }, // L12 rear → air
     { label: "5", R: 72.063, d: 2.09, sd: 23.0, medium: 3 }, // L13 front
-    { label: "6", R: 26.207, sd: 22.0 }, // L13 rear → air (variable: Gr1–Gr2 gap)
+    { label: "6", R: 26.207, sd: 22.0, rimExtensionSd: 23 }, // L13 rear → air (variable: Gr1–Gr2 gap)
 
     // ── Group 2: Focusing group + aperture stop (f = +61.9 mm) ──
     { label: "7", R: 55.974, d: 2.31, sd: 20.0, medium: 4 }, // L21 front

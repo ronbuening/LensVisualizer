@@ -47,7 +47,7 @@ The data preserves the patent d-line coordinate rather than assigning a modern s
 
 ### L2 — Biconcave Negative
 
-**nd = 1.61266, νd = 44.3. Glass: J-KZFH1 (HIKARI) — patent antimony flint 613443. f = -278.337 mm.**
+**nd = 1.61266, νd = 44.3. Glass: J-KZFH1 nonidentical spectral proxy (HIKARI; source antimony flint 1.61266/44.3, supplier unspecified). f = -278.337 mm.**
 
 L2 is the divergent component between the two positive forward elements. The patent explicitly identifies it as antimony flint glass. Its substantially stronger negative standalone power balances part of the positive power of L1 and L3 while providing the negative-dispersion partner required by the patent's achromatization concept.
 
@@ -55,7 +55,7 @@ Modern HIKARI, OHARA, and SCHOTT catalogs contain close coordinate-equivalent sh
 
 ### L3 — Biconvex Positive
 
-**nd = 1.56953, νd = 49.5. Glass: 570495 — barium flint class (supplier unresolved). f = +436.601 mm.**
+**nd = 1.56953, νd = 49.5. Glass: H-BaF2 nonidentical spectral proxy (CDGM; source barium flint 1.56953/49.5, supplier unspecified). f = +436.601 mm.**
 
 L3 is the second positive component in the forward group. The patent names its material as barium flint glass. In the patent's chromatic construction, this additional positive component is chosen to work with the low-dispersion positive glass and the negative antimony-flint component so that secondary spectrum can be reduced while the two-wavelength achromatization is retained. (US 3,774,991, printed pp. 2–3.)
 
@@ -71,7 +71,7 @@ Because L4 is cemented directly to L5, its standalone focal length does not desc
 
 ### L5 — Plano-Convex Positive, Cemented to L4
 
-**nd = 1.62399, νd = 47.0. Glass: 624470 — BaF8-class / barium-flint coordinate (supplier unresolved). f = +373.836 mm.**
+**nd = 1.62399, νd = 47.0. Glass: E-BAF8 nonidentical spectral proxy (HOYA; source 1.62399/47.0, supplier unspecified). f = +373.836 mm.**
 
 L5 is the positive member of the cemented rear pair. Its front surface is the plane cemented interface shared with L4; its rear surface returns the ray bundle to air. The six-digit coordinate is consistent with historical BaF8-class catalog families, including a matching rounded HIKARI code, but that correspondence does not establish supplier identity.
 
@@ -85,7 +85,7 @@ Taken together, L4 and L5 form the weak negative rear group used in the complete
 | L2 | nd 1.61266 / νd 44.3 | J-KZFH1 (HIKARI), antimony-flint (KZF) class | Patent class named; exact nd, νd +0.16 |
 | L3 | nd 1.56953 / νd 49.5 | 570495 — barium flint class | Patent class named; code resolves to CDGM H-BaF2 (Δnd +1.7e-4) |
 | L4 | nd 1.51885 / νd 59.0 | J-K3 (HIKARI) nearest curve | Patent gives coordinate only; Δnd −6.2e-4, νd −0.18 |
-| L5 | nd 1.62399 / νd 47.0 | 624470 — BaF8-class / barium-flint coordinate | Patent gives coordinate only; code resolves to Hikari E-BAF8 (Δnd −2.5e-4) |
+| L5 | nd 1.62399 / νd 47.0 | 624470 — BaF8-class / barium-flint coordinate | Patent gives coordinate only; code resolves to HOYA E-BAF8 (Δnd −2.5e-4) |
 
 The patent's forward-group glass selection is central to the invention. It calls for a positive phosphate/fluophosphate crown component, a negative lanthanum or antimony-flint component, and another positive barium-flint component. The patent explains this as a way to reduce secondary spectrum without relying on crystalline quartzite, using the relative dispersion behavior of three different glass types. (US 3,774,991, printed pp. 1–3.)
 
@@ -115,7 +115,7 @@ The back focal distance from r9 is 241.888190 mm. The first-surface-to-image tra
 
 The patent gives F/8 but no stop geometry. The modeled stop is 16.7 mm behind r9 with a semi-diameter of 14.074262 mm. Its paraxial entrance pupil diameter is 100.011824 mm, giving f/8.000000 by construction. An exact meridional axial cross-check gives approximately f/8.011. The close match to F/8 is a calibration check, not independent confirmation of the production diaphragm size or position.
 
-The patent publishes no semi-diameters. The modeled values follow the transverse proportions of Fig. 3A: L2 and L3 are drawn at about 0.94 and 0.93 of L1, and the cemented rear pair at about 0.35 of L1. The figure's axial dimensions are schematic (the 435 mm d6 space is drawn broken), so only these ratios are used. L1 is anchored at 56 mm, just outside the 50.0 mm F/8 axial bundle, giving L2 = 52.7 mm, L3 = 52.2 mm, and a 20.0 mm rear pair that still clears the 15.3 mm axial bundle. The modeled semi-diameters pass the edge-thickness, actual rim-slope, and shared-gap intrusion checks. The smallest modeled element edge thickness is 3.339 mm (L4), and the largest rim-slope angle is 10.757° (r1), below the current 64.2° limit. These are geometry checks on the authored model, not manufacturer clear-aperture measurements or production render-diagnostic results.
+The patent publishes no semi-diameters. The modeled values follow the transverse proportions of Fig. 3A: L2 and L3 are drawn at about 0.94 and 0.93 of L1, and the cemented rear pair at about 0.35 of L1. The figure's axial dimensions are schematic (the 435 mm d6 space is drawn broken), so only these ratios are used. L1 is anchored at 56 mm, just outside the 50.0 mm F/8 axial bundle, giving L2 = 52.7 mm, L3 = 52.2 mm, and a 20.0 mm rear pair that still clears the 15.3 mm axial bundle. The modeled semi-diameters pass the edge-thickness, actual rim-slope, and shared-gap intrusion checks. The smallest modeled element edge thickness is 3.339 mm (L4), and the largest rim-slope angle is 10.757° (r1), below the current 64.2° limit. A fresh 600 dpi review of every face in Figure 3A resolves no additional concave end land to add. All existing optical caps remain; no speculative clipping is introduced. Nine actual SVG grid states were inspected with connected compound outlines and no automatic rim trimming. These checks do not establish manufacturer clear apertures.
 
 The 6° patent field corresponds paraxially to an 83.862 mm image diameter at the computed focal length. Because the modeled stop sits behind the lens head, the entrance pupil lies far behind the front group; at the patent's 3° half-field the chief ray would cross r1 near 85 mm, outside the 56 mm front semi-diameter. The model therefore vignettes the outer patent field heavily, and the viewer's traced field is limited by the front group to about 1.76°. This describes the modeled stop and semi-diameter configuration only; it is not a production vignetting measurement.
 

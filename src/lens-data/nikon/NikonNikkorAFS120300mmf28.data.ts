@@ -31,6 +31,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Fresh Figure 1 / Table 1: connected continuous cap growth only; rejected gap-limited trials are in the audit.
+// All 25 source pairs remain (including already-correct L55 64.14 and L58 70.31); no optical transcription delta.
+// Actual source theta_gF 0.583/0.629 is retained at its three-decimal precision, distinct from catalog inference.
+
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -103,7 +107,7 @@ const LENS_DATA = {
       nd: 1.433843,
       vd: 95.27,
       focalLengthMm: 312.1,
-      glass: "CaF2 Fluorite",
+      glass: "CaF2 spectral proxy (coordinate inferred; source 1.433843/95.27, supplier unspecified)",
       apd: "inferred",
       apdNote: "nd = 1.433843 / νd = 95.27 is the calcium-fluoride coordinate; the patent lists the index pair only.",
       role: "Fluorite singlet; main positive power of G1 with negligible chromatic contribution.",
@@ -117,7 +121,7 @@ const LENS_DATA = {
       nd: 1.720467,
       vd: 34.71,
       focalLengthMm: 183.9,
-      glass: "N-KZFS8 (Schott; exact patent coordinate and APD-family match)",
+      glass: "N-KZFS8 compatible spectral proxy (SCHOTT; source theta_gF retained)",
       apd: "inferred",
       apdNote:
         "Patent θgF = 0.583 (dPgF ≈ −0.0024 derived vs the normal line); KZFS short flint. Patent condition (5) constrains this glass.",
@@ -171,7 +175,7 @@ const LENS_DATA = {
       nd: 1.75575,
       vd: 24.71,
       focalLengthMm: 213.2,
-      glass: "J-SFH5 (Hikari) — anomalous-dispersion niobium flint (756247)",
+      glass: "J-SFH5 compatible spectral proxy (HIKARI; source APD condition 8, composition unspecified)",
       apd: "patent",
       apdNote:
         "Patent θgF = 0.629 (dPgF ≈ +0.027 derived vs the normal line). Condition (8) is stated by the patent to define this glass's anomalous dispersion for secondary-spectrum correction.",
@@ -212,7 +216,7 @@ const LENS_DATA = {
       nd: 1.433843,
       vd: 95.27,
       focalLengthMm: 155.4,
-      glass: "CaF2 Fluorite",
+      glass: "CaF2 spectral proxy (coordinate inferred; source 1.433843/95.27, supplier unspecified)",
       apd: "inferred",
       apdNote: "νd = 95.27 calcium-fluoride coordinate; second fluorite element (patent lists nd/νd only).",
       role: "Fluorite relay element; strong positive power with ultra-low dispersion in fixed group.",
@@ -404,10 +408,10 @@ const LENS_DATA = {
     { label: "2", R: 151.607, d: 13.4, sd: 54.0, medium: 2 }, // L11–L12 junction
     { label: "3", R: -748.4933, d: 0.1, sd: 54.0 }, // L12 rear → air
     { label: "4", R: 135.4106, d: 13.2, sd: 53.5, medium: 3 }, // L13 front
-    { label: "5", R: "flat", sd: 51.5 }, // L13 rear → air (D1)
+    { label: "5", R: "flat", sd: 53.5 }, // L13 rear → air (D1)
     // G2 — Variator (negative, moves for zoom)
     { label: "6", R: 124.3594, d: 7.6, sd: 37.0, medium: 4 }, // L21 front
-    { label: "7", R: 1981.8668, d: 12.972, sd: 35.0 }, // L21 rear → air
+    { label: "7", R: 1981.8668, d: 12.972, sd: 37 }, // L21 rear → air
     { label: "8", R: 275.6157, d: 4.7, sd: 30.0, medium: 5 }, // L22 front
     { label: "9", R: -275.46, d: 2.85, sd: 29.0, medium: 6 }, // L22–L23 junction
     { label: "10", R: 109.0902, d: 3.124, sd: 24.8 }, // L23 rear → air
@@ -429,25 +433,25 @@ const LENS_DATA = {
     { label: "24", R: "flat", d: 4.0, sd: 24.0, medium: 14 }, // L41 front (flat)
     { label: "25", R: -118.3357, d: 0.1, sd: 24.0 }, // L41 rear → air
     { label: "26", R: 63.0226, d: 6.8, sd: 24.0, medium: 15 }, // L42 front
-    { label: "27", R: -199.138, d: 1.8, sd: 22.0, medium: 16 }, // L42–L43 junction
-    { label: "28", R: 199.011, sd: 21.5 }, // L43 rear → air (D4)
+    { label: "27", R: -199.138, d: 1.8, sd: 24, medium: 16 }, // L42–L43 junction
+    { label: "28", R: 199.011, sd: 24 }, // L43 rear → air (D4)
     // G5 — Rear group (negative, fixed, contains aperture stop)
     { label: "29", R: -145.6141, d: 1.9, sd: 18.5, medium: 17 }, // L51 front
-    { label: "30", R: 91.0903, d: 5.002, sd: 18.0 }, // L51 rear → air
+    { label: "30", R: 91.0903, d: 5.002, sd: 18.5 }, // L51 rear → air
     { label: "STO", R: "flat", d: 8.0 }, // aperture stop
     { label: "32", R: 375.1468, d: 5.0, sd: 18.0, medium: 18 }, // L52 front
     { label: "33", R: -83.7956, d: 3.919, sd: 18.0 }, // L52 rear → air
     { label: "34", R: 368.0922, d: 2.0, sd: 17.0, medium: 19 }, // L53 front
-    { label: "35", R: 93.4714, d: 2.746, sd: 16.5 }, // L53 rear → air
+    { label: "35", R: 93.4714, d: 2.746, sd: 17 }, // L53 rear → air
     { label: "36", R: -148.9288, d: 3.6, sd: 16.5, medium: 20 }, // L54 front
     { label: "37", R: -54.337, d: 1.9, sd: 16.5, medium: 21 }, // L54–L55 junction
     { label: "38", R: 107.7701, d: 5.617, sd: 16.5 }, // L55 rear → air
     { label: "39", R: "flat", d: 8.829, sd: 16.0 }, // air gap
     { label: "40", R: 79.609, d: 4.4, sd: 20.5, medium: 22 }, // L56 front
     { label: "41", R: -1873.4336, d: 0.782, sd: 20.5 }, // L56 rear → air
-    { label: "42", R: 64.0354, d: 3.0, sd: 20.0, medium: 23 }, // L57 front
-    { label: "43", R: 33.609, d: 10.0, sd: 19.8, medium: 24 }, // L57–L58 junction
-    { label: "44", R: -77.3539, d: 6.728, sd: 19.8 }, // L58 rear → air
+    { label: "42", R: 64.0354, d: 3.0, sd: 20.5, medium: 23 }, // L57 front
+    { label: "43", R: 33.609, d: 10.0, sd: 20.5, medium: 24 }, // L57–L58 junction
+    { label: "44", R: -77.3539, d: 6.728, sd: 20.5 }, // L58 rear → air
     { label: "45", R: -70.8535, d: 2.0, sd: 18.4, medium: 25 }, // L59 front
     { label: "46", R: 224.495, d: 54.819, sd: 18.4 }, // L59 rear → BF
   ],

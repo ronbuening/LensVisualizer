@@ -14,7 +14,7 @@
 
 JP 2020-177057 A describes a five-group zoom optical system of the form **G1(+) G2(−) G3(+) G4(+) G5**, covering 120–300 mm at a constant f/2.8 maximum aperture. Example 1 contains 25 elements in 19 air-separated sub-groups — matching the production lens's published specification of **25 elements / 19 groups** exactly. All optical surfaces in Example 1 are spherical or planar; the patent explicitly notes (claim 18) that every lens surface in the design may be spherical or flat, and Nikon's published specifications list no aspherical surfaces.
 
-The production lens's published specifications confirm: 1 ED element, 2 fluorite (FL) elements, and 1 SR (Short-wavelength Refractive) element. The following analysis identifies each of these within the patent prescription and describes the role of every element.
+The production lens's published specifications confirm: 1 ED element, 2 fluorite (FL) elements, and 1 SR (Short-wavelength Refractive) element. The following analysis compares candidate positions with the patent prescription and describes each optical role; production special-material identities remain inferential.
 
 ### Key specifications (patent Example 1 vs. production)
 
@@ -114,15 +114,15 @@ Where Δx2 = 61.357 mm is the image-side movement of G2 from wide to tele; Da21 
 
 ### 4.2 Fluorite elements (L13 and L32)
 
-Both fluorite elements share identical optical properties: nd = 1.433843, νd = 95.27. This matches calcium fluoride (CaF₂) to within measurement tolerance. The patent lists only the index pair and does not use the word fluorite, so the CaF₂ identity is inferred from the coordinate and Nikon's two-FL-element specification. Fluorite has the highest Abbe number of any practical optical material, giving it extremely low chromatic dispersion. It is also significantly lighter than optical glass of equivalent volume — a critical advantage in a 3.25 kg lens.
+Both fluorite elements share identical optical properties: nd = 1.433843, νd = 95.27. The available CaF₂ curve is a compatible spectral proxy at catalog 1.43385/95.1, rather than an exact source measurement. The patent lists only the pair and does not name fluorite, so the composition is inferred from the coordinate and the correlated production two-FL-element specification. The source establishes high Abbe number, but does not identify material chemistry or a production supplier.
 
-**L13** is the rear element of G1, a plano-convex lens (convex front toward the object, flat rear; f = +312 mm). Positioned in the front group where ray heights are large, it provides powerful positive refractive power with minimal chromatic contribution. Its rear surface is flat (R = ∞), which simplifies the manufacture and testing of this expensive fluorite crystal.
+**L13** is the rear element of G1, a plano-convex lens (convex front toward the object, flat rear; f = +312 mm). Positioned in the front group where ray heights are large, it provides powerful positive refractive power with minimal chromatic contribution. Its rear surface is flat (R = ∞), which simplifies the surface geometry independently of the unproven crystal identity.
 
 **L32** is the second element of G3, a biconvex positive lens (f = +155 mm). Located in the fixed relay group G3, it handles a converging beam at moderate height and contributes strong positive power with negligible dispersion, helping to maintain colour correction across the entire zoom range.
 
 ### 4.3 ED element (L12)
 
-L12 (nd = 1.49782, νd = 82.57) is a biconvex positive lens in G1, cemented to the negative meniscus L11 to form a weakly positive achromatic doublet (f ≈ +1226 mm). The glass matches Hikari J-FKH1 (code 497826) to full quoted precision; it is not the 497816 S-FPL51 coordinate. J-FKH1 is a fluor-crown ED glass with very low dispersion (νd ≈ 82.6) and positive anomalous partial dispersion.
+L12 (nd = 1.49782, νd = 82.57) is a biconvex positive lens in G1, cemented to the negative meniscus L11 to form a weakly positive achromatic doublet (f ≈ +1226 mm). The source pair matches Hikari J-FKH1's catalog coordinate; this supplies a qualified curve, not a production formulation. The production ED position and its APD badge are inferred from the correlation and low source dispersion; no θgF is published for L12.
 
 Together, the L11+L12 cemented doublet at the front of G1 serves as a large-diameter achromatic corrector. L11 uses a 1.90265 / 35.77 high-index lanthanum flint that matches Hikari J-LASFH9 (the previously cited OHARA S-LAH93 is 1.90525 / 35.04 and does not match). The strong negative meniscus L11 paired with the low-dispersion positive L12 provides first-order achromatisation for the entire front group, while the high refractive index of L11 keeps the front element diameter manageable despite the large entrance pupil required for f/2.8 at 300 mm.
 
@@ -132,48 +132,51 @@ Nikon describes SR glass as "a high- and specialized-dispersion glass lens featu
 
 Three elements in Example 1 have glasses with notable partial-dispersion behaviour, so each has been discussed as an SR candidate:
 
-**Candidate 1 — L21 (G2, positive meniscus):** nd = 1.720467, νd = 34.71, patent θgF = 0.583. This is the exact Schott N-KZFS8 coordinate. Against the normal line P<sub>g,F</sub> ≈ 0.6438 − 0.001682·νd the published θgF sits about 0.002 *below* normal, and condition (5) holds L21 slightly below a line of its own. L21 therefore refracts short wavelengths slightly *less* than a normal glass of its Abbe number — the opposite of Nikon's SR description.
+**Candidate 1 — L21 (G2, positive meniscus):** nd = 1.720467, νd = 34.71, patent θgF = 0.583. This is close to the compatible Schott N-KZFS8 catalog coordinate, which does not identify the source glass. Against the normal line P<sub>g,F</sub> ≈ 0.6438 − 0.001682·νd the published θgF sits about 0.002 *below* normal, and condition (5) holds L21 slightly below a line of its own. L21 therefore refracts short wavelengths slightly *less* than a normal glass of its Abbe number — the opposite of Nikon's SR description.
 
 **Candidate 2 — L25 (G2, positive meniscus):** nd = 1.755750, νd = 24.71, patent θgF = 0.629, about +0.027 above the normal line (derived). The six-digit code 756247 resolves to Hikari J-SFH5, a coefficient-backed anomalous-dispersion dense flint whose published nd, νd, and P<sub>g,F</sub> match the patent row. The patent names L25 as its "second lens" and says condition (8) defines this glass's anomalous dispersion so that the secondary spectrum is corrected along with first-order colour (paragraph 0032).
 
 **Candidate 3 — L33 (G3, biconcave negative):** nd = 1.654130, νd = 39.72, no θgF published. This matches Schott N-KZFS5 (OHARA S-NBH5 has the same coordinate). Like N-KZFS8, N-KZFS5 is a short flint whose catalog partial dispersion lies slightly *below* the normal line.
 
-**Assessment:** The patent does not use the term "SR" and does not mark any glass as newly developed, so any identification is inference. Nikon describes SR glass as refracting light shorter than blue more strongly, i.e. a high-dispersion glass with partial dispersion *above* the normal line. Of the three, only L25 has that property, and it is the one element whose anomalous dispersion the patent singles out. **L25 is therefore the most consistent SR candidate.** Earlier versions of this analysis favoured L33 on the grounds that KZFS glasses show enhanced blue-violet refraction; that has the sign backwards, since KZFS short flints lie below the normal line. The production SR element may be a proprietary Nikon melt that the patent approximates with a catalog-equivalent coordinate.
+**Assessment:** The patent does not use the term "SR" and does not mark any glass as newly developed, so any identification is inference. Nikon describes SR glass as refracting light shorter than blue more strongly, i.e. a high-dispersion glass with partial dispersion *above* the normal line. Of the three, only L25 has that property, and it is the one element whose anomalous dispersion the patent singles out. **L25 is therefore the most consistent SR candidate.** Earlier versions of this analysis favoured L33 on the grounds that KZFS glasses show enhanced blue-violet refraction; that has the sign backwards, since KZFS short flints lie below the normal line. The source does not establish a production melt, formulation or catalog supplier for the SR candidate.
 
 ### 4.5 Complete glass identification table
 
-| Element | nd | νd | θgF | Glass match | Residual | Confidence |
-|---------|----|----|-----|------------|----------|------------|
-| L11 | 1.902650 | 35.77 | — | Hikari J-LASFH9 | Δνd = 0.04 | High |
-| L12 | 1.497820 | 82.57 | — | Hikari J-FKH1 (**ED**) | exact | High |
-| L13 | 1.433843 | 95.27 | — | CaF₂ (**fluorite**) | Δnd < 0.00001 | High |
-| L21 | 1.720467 | 34.71 | 0.583 | Schott N-KZFS8 | exact | High |
-| L22 | 1.717360 | 29.53 | — | OHARA S-TIH1 | exact | High |
-| L23 | 1.696800 | 55.52 | — | Hikari J-LAK14 | exact | High |
-| L24 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
-| L25 | 1.755750 | 24.71 | 0.629 | Hikari J-SFH5 (756247) | catalog-backed | High (patent + Hikari catalog) |
-| L26 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
-| L31 | 1.755000 | 52.34 | — | J-LASKH2 (Hikari) | exact | High |
-| L32 | 1.433843 | 95.27 | — | CaF₂ (**fluorite**) | Δnd < 0.00001 | High |
-| L33 | 1.654130 | 39.72 | — | Schott N-KZFS5 (OHARA S-NBH5 same coordinate) | Δnd ≈ 0.00001 | High |
-| L34 | 1.910820 | 35.25 | — | TAFD35 (HOYA) | exact | High |
-| L41 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
-| L42 | 1.593490 | 67.00 | — | Hikari J-PSKH4 | exact | High |
-| L43 | 1.846660 | 23.82 | — | Hikari J-SF03 | Δνd = 0.02 | High |
-| L51 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
-| L52 | 1.729160 | 54.61 | — | Hikari J-LAK18 | exact | High |
-| L53 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
-| L54 | 1.805180 | 25.41 | — | OHARA S-TIH6 | Δνd = 0.02 | High |
-| L55 | 1.516800 | 64.14 | — | Hikari J-BK7A | Δνd = 0.01 | High |
-| L56 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
-| L57 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
-| L58 | 1.487490 | 70.31 | — | Hikari J-FK5 | Δνd = 0.01 | High |
-| L59 | 1.900430 | 37.38 | — | HOYA TAFD37A catalog-equivalent (patent vendor unspecified) | exact coordinate | High |
+All 25 source nd/νd pairs are retained and resolve to compatible coefficient curves. The names below identify the curves used by the model; they do not establish production suppliers or material identities.
 
-The patent names no glass vendor. Labels are catalog equivalents that reproduce each patent nd/νd pair; where Hikari (Nikon's usual supplier) lists the exact coordinate, the Hikari name is used.
+| Element | Source nd / νd | Source θgF | Current spectral proxy | Native catalog nd / νd |
+|---|---|---|---|---|
+| L11 | 1.902650 / 35.77 | — | J-LASFH9 (Hikari) | 1.902650 / 35.725382 |
+| L12 | 1.497820 / 82.57 | — | J-FKH1 (Hikari) | 1.497820 / 82.570000 |
+| L13 | 1.433843 / 95.27 | — | CaF2 (Special) | 1.433850 / 95.100000 |
+| L21 | 1.720467 / 34.71 | 0.583 | N-KZFS8 (Schott) | 1.720470 / 34.700000 |
+| L22 | 1.717360 / 29.53 | — | S-TIH1 (Ohara) | 1.717362 / 29.518091 |
+| L23 | 1.696800 / 55.52 | — | J-LAK14 (Hikari) | 1.696800 / 55.520000 |
+| L24 | 1.804000 / 46.60 | — | J-LASF015 (Hikari) | 1.804000 / 46.600000 |
+| L25 | 1.755750 / 24.71 | 0.629 | J-SFH5 (Hikari) | 1.755750 / 24.710000 |
+| L26 | 1.870705 / 40.73 | — | TAFD32 (Hoya) | 1.870700 / 40.730000 |
+| L31 | 1.755000 / 52.34 | — | J-LASKH2 (Hikari) | 1.755000 / 52.340000 |
+| L32 | 1.433843 / 95.27 | — | CaF2 (Special) | 1.433850 / 95.100000 |
+| L33 | 1.654130 / 39.72 | — | N-KZFS5 (Schott) | 1.654120 / 39.700000 |
+| L34 | 1.910820 / 35.25 | — | TAFD35 (Hoya) | 1.910820 / 35.250000 |
+| L41 | 1.804000 / 46.60 | — | J-LASF015 (Hikari) | 1.804000 / 46.600000 |
+| L42 | 1.593490 / 67.00 | — | J-PSKH4 (Hikari) | 1.593490 / 67.001281 |
+| L43 | 1.846660 / 23.82 | — | J-SF03 (Hikari) | 1.846660 / 23.800000 |
+| L51 | 2.001000 / 29.12 | — | S-LAH99 (Ohara) | 2.001000 / 29.140000 |
+| L52 | 1.729160 / 54.61 | — | J-LAK18 (Hikari) | 1.729160 / 54.610000 |
+| L53 | 1.870705 / 40.73 | — | TAFD32 (Hoya) | 1.870700 / 40.730000 |
+| L54 | 1.805180 / 25.41 | — | S-TIH6 (Ohara) | 1.805181 / 25.425400 |
+| L55 | 1.516800 / 64.14 | — | J-BK7A (Hikari) | 1.516800 / 64.140000 |
+| L56 | 2.001000 / 29.12 | — | S-LAH99 (Ohara) | 2.001000 / 29.140000 |
+| L57 | 1.804000 / 46.60 | — | J-LASF015 (Hikari) | 1.804000 / 46.600000 |
+| L58 | 1.487490 / 70.31 | — | J-FK5 (Hikari) | 1.487490 / 70.310000 |
+| L59 | 1.900430 / 37.38 | — | TAFD37A (Hoya) | 1.900430 / 37.370000 |
 
-L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This pair round-trips to HOYA TAFD32, code 871/407, in the project catalog. The earlier M-TAFD305 wording belonged to a different 851/401 HOYA moldable glass and is not the correct catalog identity for these Nikon rows.
+L21 and L25 preserve their actual three-decimal θgF values with source rounding uncertainty ±0.0005. Under the engine normal line 0.6438 − 0.001682·νd, their central deviations are −0.00241778 and +0.02676222. Existing stored −0.0024 and +0.027 recover the source ratios within that precision. Source condition (5) uses its own line, 0.6558 − 0.001982·νd, giving −0.00400478 for L21; that condition is not the engine dPgF baseline. L25 condition (8) gives θgF + 0.00316·νd = 0.7070836, consistent with the printed 0.71. No θgF is invented for the other media.
 
+The fresh source check confirms L55 at 64.14 and L58 at 70.31; both were already correctly authored. Their selected curves and R/G/B/V runtime indices remain unchanged. Catalog-only C/F/g anchors or dispersion overrides are not added.
+
+L26/L53 retain the qualified TAFD32 proxy. All current catalog residuals remain explicit in the table; even an identical coordinate does not identify a historical supplier, melt or chemical formulation.
 ---
 
 ## 5. Element-by-Element Optical Role Analysis
@@ -210,7 +213,7 @@ G3 is a fixed positive relay group (f = +109 mm) that reconverges the diverging 
 
 **L32 (biconvex positive, fluorite, f = +155 mm):** The second fluorite element in the design. Its ultra-low dispersion provides strong positive power with negligible chromatic contribution — essential for maintaining achromatism through the relay.
 
-**L33 (biconcave negative, N-KZFS5 type, f = −76 mm):** A short-flint negative element positioned between two strong positive elements (the fluorite L32 and the high-index L34). The resulting positive–negative–positive arrangement lets G3 balance spherical aberration, Petzval curvature and colour in a group that does not move during zoom. KZFS short flints have partial dispersion slightly below the normal line, which complements the above-normal partial dispersion of the fluorite L32 in secondary-spectrum correction. Earlier versions of this analysis named L33 as the leading SR candidate; see §4.4 for why L25 fits Nikon's SR description better.
+**L33 (biconcave negative, N-KZFS5 type, f = −76 mm):** A short-flint negative element positioned between two strong positive elements (the fluorite L32 and the high-index L34). The resulting positive–negative–positive arrangement lets G3 balance spherical aberration, Petzval curvature and colour in a group that does not move during zoom. Under the borrowed catalog curves, the short-flint proxy and inferred CaF₂ proxy offer complementary partial-dispersion behavior. The patent does not publish θgF for either of these two numerical media, so their specific anomalies are not source measurements. Earlier versions of this analysis named L33 as the leading SR candidate; see §4.4 for why L25 fits Nikon's SR description better.
 
 **L34 (biconvex positive, TAFD35, f = +105 mm):** A high-index, moderate-dispersion positive element (nd = 1.911, νd = 35.25) that completes the relay group. Its high refractive index keeps curvatures moderate despite the strong power, reducing higher-order spherical aberration.
 
@@ -250,11 +253,11 @@ G5 is the largest group (9 elements, 7 sub-groups) and contains the aperture sto
 
 The 120–300 mm f/2.8 zoom faces an extreme chromatic correction challenge: at 300 mm and f/2.8, the entrance pupil diameter exceeds 100 mm, and secondary spectrum scales with focal length. The patent's approach deploys four distinct strategies, distributed across the fixed groups to maintain correction stability during zoom:
 
-1. **Primary achromatisation in G1** via the ED element (L12) paired with high-index flint (L11), supplemented by the fluorite singlet L13. The ED glass's high Abbe number and moderate anomalous dispersion provide first-order and partial second-order correction.
+1. **Primary achromatisation in G1** via the ED element (L12) paired with high-index flint (L11), supplemented by the fluorite singlet L13. The source high Abbe number supports primary chromatic power control; its particular partial-dispersion behavior remains a proxy-based inference.
 
 2. **Secondary spectrum correction in G2** via two specially selected glasses: L21 (N-KZFS8, θgF = 0.583) and L25 (Hikari J-SFH5 / 756247, θgF = 0.629). The patent's conditional expressions (5)–(8) specifically constrain these glasses' partial dispersion to control secondary spectrum across the zoom range. Because G2 moves during zoom, having two such correctors at different positions within the group ensures that the correction remains balanced as the group translates.
 
-3. **Fixed secondary-spectrum correction in G3** via the fluorite–KZFS–high-index arrangement (L32–L33–L34). Fluorite has partial dispersion above the normal line and the KZFS-type L33 slightly below it; pairing the two in a group that does not move keeps this part of the colour correction invariant across the zoom range. Nikon notes that the production SR element reduces spherochromatism — the variation of chromatic aberration with aperture zone — which is a significant concern at f/2.8 with a 100 mm entrance pupil; on the evidence of §4.4 that element is most plausibly L25 in G2 rather than a G3 element.
+3. **Fixed secondary-spectrum correction in G3** via the fluorite–KZFS–high-index arrangement (L32–L33–L34). The inferred CaF₂ and KZFS catalog curves have complementary partial-dispersion behavior in the model, but those two media have no source-published θgF. Their fixed positions keep their modeled contribution stationary through zoom. Nikon notes that the production SR element reduces spherochromatism — the variation of chromatic aberration with aperture zone — which is a significant concern at f/2.8 with a 100 mm entrance pupil; on the evidence of §4.4 that element is most plausibly L25 in G2 rather than a G3 element.
 
 4. **Residual correction in G5** via the high-index S-LAH99 / TAFD55 elements (L51, L56) and the low-dispersion L58, providing final chromatic fine-tuning in the fixed rear group.
 
@@ -349,13 +352,15 @@ The patent publishes no effective diameters, so every semi-diameter is an estima
 
 | Region | Data-file SD (mm) | FIG. 1 reading (mm) | Basis |
 |---|---|---|---|
-| G1 (L11–L13) | 54.0–51.5 | ≈ 50–52 | Retained; front bundle needs 50.0 mm on axis at tele |
-| L21 | 37.0 / 35.0 | ≈ 36 | Retained |
+| G1 (L11–L13) | 54.0–53.5 | ≈ 50–52 | Retained; front bundle needs 50.0 mm on axis at tele |
+| L21 | 37.0 / 37.0 | ≈ 36 | Common continuous source outline |
 | L22–L26 | 30.0–23.2 | ≈ 25–28.5 | Just above the f/2.91 axial marginal ray (tele governs) |
 | G3 (L31–L34) | 24.6–24.3 | ≈ 26 | Just above the 24.0–24.3 mm axial marginal ray |
-| G4 (L41–L43) | 24.0–21.5 | ≈ 22–24 | Retained |
+| G4 (L41–L43) | 24.0 throughout | ≈ 22–24 | Connected compound restored to its existing 24.0 mm front rim |
 | L51–L55 | 18.5–16.5 | ≈ 17.8–19.3 | Retained |
 | L56–L59 | 20.5–18.4 | ≈ 18.4–20.5 | From FIG. 1 |
+
+Fresh Figure 1 review restores continuous S5 to 53.5 mm, S7 to 37.0 mm, S27/S28 to 24.0 mm, S30 to 18.5 mm and S35 to 17.0 mm. L57/L58's three faces now share the 20.5 mm source outer rim; the resulting L58 edge thickness is approximately 0.258 mm, inside the existing canonical limit, with no automatic rim trimming in nine actual SVG focus/zoom views. No extra concave end land is resolved in the native figure. A full 29 mm L23 rear cap and a land to the 25 mm L25 outer rim were tested and rejected on the unchanged neighboring air gaps; the former caps remain and no arbitrary short land or tolerance change substitutes for those failures.
 
 G2 and G3 contain three very thin air gaps between strongly curved surfaces: L23 → L24 (3.124 mm), L32 → L33 (1.626 mm) and L33 → L34 (1.061 mm). At the f/2.91 clear aperture the facing rims come within about 0.1 mm of each other. FIG. 1 draws these pairs rim-to-rim, and the data file sets `gapSagFrac: 0.97` so that the renderer accepts the traced clearance without changing any patent spacing. An earlier version of this file shrank L33 and L34 to 13–16 mm to satisfy the default 0.90 gap rule. Those values clipped the on-axis f/2.91 beam by as much as 11 mm of radius, and FIG. 1 does not support them: it draws all four G3 elements at about the same diameter.
 
