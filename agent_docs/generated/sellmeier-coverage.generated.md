@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **671** lenses fully covered by trusted chromatic data
-- **668** visible lenses fully covered by trusted chromatic data
-- **663** lenses fully covered by strict Sellmeier data
-- **660** visible lenses fully covered by strict Sellmeier data
+- **670** lenses fully covered by trusted chromatic data
+- **667** visible lenses fully covered by trusted chromatic data
+- **662** lenses fully covered by strict Sellmeier data
+- **659** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10709 / 11847** non-air surfaces use strict catalog Sellmeier data
-- **90.4%** strict Sellmeier surface coverage overall
-- **10723 / 11847** non-air surfaces use trusted chromatic data
-- **90.5%** trusted chromatic coverage overall
+- **10688 / 11847** non-air surfaces use strict catalog Sellmeier data
+- **90.2%** strict Sellmeier surface coverage overall
+- **10702 / 11847** non-air surfaces use trusted chromatic data
+- **90.3%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -332,7 +332,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM](../../src/lens-data/sigma/SigmaAPO50500mmf4563DGOSHSM.data.ts) | 22/22 | 22 | 22/22 |
 | [SONY FE 400mm f/2.8 GM OSS](../../src/lens-data/sony/SonyFE400mmF28GMOSS.data.ts) | 22/22 | 22 | 22/22 |
 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) | 21/21 | 21 | 21/21 |
-| [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) | 21/21 | 21 | 21/21 |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | 21/21 | 21 | 21/21 |
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | 21/21 | 21 | 21/21 |
 | [FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf100400mmf4556RLMOISWR.data.ts) | 21/21 | 21 | 21/21 |
@@ -1366,6 +1365,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 352 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 | 353 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 | 354 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 355 | [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/21 | 0/21 | 21 | abbe: 21 |
 
 ## Missing Surface Details
 
@@ -4111,4 +4111,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 13 | L2 positive | abbe | `Unmatched (source reference unspecified; prior 805254 dense-flint comparison is conditional only)` | Explicit unmatched/proprietary annotation |
 | 14 | L2 negative | abbe | `Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 9 more missing surfaces |
+
+### [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) - 0.0% trusted (0/21); 0.0% Sellmeier (0/21) - JP 2002-162564 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAM7)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH53)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)` | Explicit unmatched/proprietary annotation |
+| 14 | Element 8 | abbe | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 13 more missing surfaces |
 

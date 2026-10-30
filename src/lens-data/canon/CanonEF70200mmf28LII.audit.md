@@ -20,90 +20,126 @@ Patent: US 2009/0296231 A1, Numerical Embodiment 2
 - Retained existing `apd: "patent"` metadata on the PR/N2 fluorophosphate elements and the fluorite/UD elements already identified in the file.
 - No new dPgF values were added because S-FPL51 elements already carry line-index data and the patent provides only the conditional theta_gF inequality for the PR/N2 material family.
 
-## 2026-10-12 - Semi-diameter pass for the stated axial beam
+## 2026-10-12 — Stated axial-beam SD pass (historical)
 
-Rule: "A clipped stated beam" in `agent_docs/patent-figure-sd-audit-procedure.md` and the 2026-10-08 entry on clipped inferred rims in `agent_docs/decisions.md`. Only `sd` values and `gapSagFrac` changed. `R`, `d`, `nd`, `vd`, glass labels, `nominalFno` and the `STO` row are as before, and no semi-diameter was lowered. The prescription was checked first: its on-axis longitudinal spherical aberration at the full f/2.9 pupil is -0.094 / +0.144 / -0.018 mm at 72.14 / 135 / 193.97 mm (largest zonal value -0.148 mm), so the clipped beam is a rim matter and not a misprint.
+- Original Numerical Embodiment 2 and Fig. 4 were checked at the three published infinity stations.
+  The historical convention traced f/2.991 at wide/mid (S28) and f/3.008 at tele (S16).
+- Nine caps were raised: S12/S13 15.5→15.7; S15/S16 15.7→16.3; S21 16.85→17.35;
+  S22 16.85→17.34; S23 17.5→17.7; S28/S29 15.9→16.5. Source R/d, pairs, stop and target stayed fixed.
+- On that date the guard changed from default 0.90 to 0.97, the smallest two-decimal setting admitting
+  the then-raised close pairs. Their physical residuals were about 0.471/0.113/0.004/0.064 mm across
+  12–13/15–16/21–22/28–29. This review retains, rather than repeats or expands, that guard change.
+- Native Fig. 4 was 2560 × 3300 at 300 ppi and about 9.05 px/mm. Source D1/D2 blanks measured
+  about 16.7/16.8 mm, while stored junction heights 18/16 mm remained open under the then-used raise-only rule.
+- Historical source-state surface/aperture/corner checks and actual renders passed without trimming.
+  A composed 2× extender was checked then. Historical vignetting/stop results are not new guarantees.
+- The source had no finite spacing table. Oversized front/compound rims and inconsistent analysis prose
+  were left open then; the complete original review below supersedes current shape/glass conclusions
+  while preserving this actual historical date and its retained source/guard decisions.
 
-### Starting point
+## 2026-10-30 — Original shape and glass review
 
-The stated ray is the f/2.9 on-axis marginal ray (the patent table prints F-number 2.9 at 72.14, 135.00 and 193.97 mm). Before this pass the file traced f/2.991 at 72.14 mm and f/2.991 at 135 mm, both stopped by surface 28, and f/3.008 at 193.97 mm, stopped by surface 16. An exact meridional real-ray trace per station found nine surfaces below the ray and no others; the repo's proposal listing names the same nine with the same values, a largest raise of 3.8 %, no flag and an empty square-rim column. Every one of the nine needs most at 193.97 mm. Behind the variator the ray height barely changes with zoom (the iris radius for f/2.9 is 17.656 / 17.652 / 17.658 mm), which is why surfaces 21-29 clipped at all three stations.
+Exact original: `patents/US20090296231A1.pdf`. Numerical Embodiment 2 is on PDF p. 20 (printed p. 6),
+unit-data continuation PDF p. 21, with corresponding wide-end Fig. 4 on PDF p. 5 (sheet 4). Figs. 5A/5B
+and 6A/6B on PDF pp. 6–7 supply wide/tele infinity and 1.5 m aberration plots; there is no tele section
+or finite spacing table for this configuration. Other numerical embodiments are excluded.
 
-| Surface | Face | Before | Ray at 72.14 / 135 / 193.97 mm | After | Raise | FIG. 4 draws |
-| --- | --- | ---: | --- | ---: | ---: | --- |
-| 12 | L6 rear | 15.5 | 9.632 / 12.870 / 15.676 | 15.7 | +1.3 % | curve runs out to the L7 rim, about 16.7; L6 outer rim 17.8 |
-| 13 | L7 front (D1) | 15.5 | 9.989 / 13.020 / 15.697 | 15.7 | +1.3 % | D1 block 16.7 |
-| 15 | L8 rear (D1) | 15.7 | 10.460 / 13.517 / 16.276 | 16.3 | +3.8 % | D1 block 16.7 |
-| 16 | L9 front | 15.7 | 10.590 / 13.555 / 16.276 | 16.3 | +3.8 % | curve runs out to the L8 rim, about 16.7; L9 outer rim 17.4 |
-| 21 | L11 rear | 16.85 | 17.320 / 17.338 / 17.341 | 17.35 | +3.0 % | L11/L12 block 18.1 |
-| 22 | L12 front | 16.85 | 17.320 / 17.337 / 17.340 | 17.34 | +2.9 % | L11/L12 block 18.1 |
-| 23 | L12 rear | 17.5 | 17.617 / 17.635 / 17.638 | 17.7 | +1.1 % | L11/L12 block 18.1 |
-| 28 | L14 rear | 15.9 | 16.435 / 16.434 / 16.437 | 16.5 | +3.8 % | curve meets the flat L15 face at the rim, between the L15 rim (16.8) and the L14 rim (17.3) |
-| 29 | L15 front (D2) | 15.9 | 16.411 / 16.410 / 16.414 | 16.5 | +3.8 % | D2 block 16.8 |
+The native embedded raster is 2560 × 3300 px at 300 ppi. The 2300 × 950 rotated optical crop is
+unresampled; 1672 px from first to last vertex over 184.76 mm gives about 9.05 px/mm, or 0.1105 mm/px.
+The scan axis leans about 0.3°; rim heights use half the separation of opposing optical edges, not a
+fixed row against brackets or arrows. Practical rim uncertainty is ±0.4 mm and up to ±0.5 mm at near-contact
+cap/shoulder junctions. Magnified reading crops add no native resolution.
 
-Values are rounded up at the precision each surface was stored at: 0.01 mm for 21 and 22, 0.1 mm for the rest. The new rims stand 0.024 / 0.0035 / 0.024 / 0.024 / 0.009 / 0.0002 / 0.062 / 0.063 / 0.086 mm above the ray at 193.97 mm, in the table's order. The other 33 glass surfaces keep their values; the closest of them to the ray are 20 (0.054 mm clear), 26 (0.061), 8 (0.118), 9 (0.138) and 31 (0.145).
+| Surfaces     | Adopted clear sd (mm) | Resolved outer sd (mm) |
+| ------------ | --------------------- | ---------------------- |
+| 1 / 2        | 37 / 35.1             | S2: 37                 |
+| 3 / 4        | 35.1 / 36             | S3: 36                 |
+| 5–6          | 34                    | —                      |
+| 7 / 8        | 27.3 / 25.1           | S8: 27.3               |
+| 9 / 10       | 25.1 / 25.6           | S9: 25.6               |
+| 11 / 12      | 18 / 15.7             | S12: 18                |
+| 13 / 14 / 15 | 15.7 / 16.7 / 16.3    | S13/S15: 16.7          |
+| 16 / 17      | 16.3 / 17.4           | S16: 17.4              |
+| 18–19        | 18.3                  | —                      |
+| 20 / 21      | 18.1 / 17.35          | S21: 18.1              |
+| 22 / 23      | 17.34 / 18.1          | S22: 18.1              |
+| 25–26        | 18.4                  | —                      |
+| 27 / 28      | 17.3 / 16.5           | S28: 17.3              |
+| 29 / 30 / 31 | 16.5 / 16.8 / 16.8    | S29: 16.8              |
+| 32 / 33 / 34 | 15.4 / 15.4 / 14.0    | S34: 15.4              |
+| 35 / 36      | 13.3 / 15.4           | S35: 15.4              |
+| 37–38        | 16.8                  | —                      |
+| 39–41        | 18.2                  | —                      |
+| 42–43        | 20                    | —                      |
 
-### Which rule set each value
+Thirty cap changes and 14 resolved `rimExtensionSd` shoulders replace oversized front caps and
+undersized rear blanks. All 23 elements, concave ends and four cemented interfaces were inspected.
+No shoulder is authored at a cemented interface. Junctions 14/30/33/40 follow the respective source
+blank heights; the other fields preserve clear apertures below visible outer shoulders. No resin
+wing, opaque interface, inferred cut or unsupported full optical block is introduced.
 
-No element with a raised face carried one value on both faces, so the square-rim rule (one value kept on both faces) had nothing to act on and every element was raised face by face. The equal values in the old table sat across air spaces, not across elements.
+The actual generated SVG was compared with native Fig. 4 at approximately the same scale. Source
+R/d, all 23 pairs, the stop, aperture and four zoom-gap schedules are unchanged. The existing 0.97
+sag guard remains unchanged. A full blank-height spherical-cap trial fails all seven close pairs:
+2–3, 8–9, 12–13, 15–16, 21–22, 28–29 and 34–35; several exceed the physical air gap. Initial clear
+35.2 mm caps at 2/3 and 25.2 mm at 8/9 also exceed the unchanged allowance when their shoulders are
+included. The retained 35.1/25.1 mm caps stay within the reading uncertainty and preserve the source
+geometry without increasing a tolerance.
 
-- L6 (11 / 12), 18.5 / 15.5 before: FIG. 4 draws the rear face narrower than the outer rim, with the rear corner cut back to the L7 rim. Face by face: 12 rises to 15.7; 11 clears the ray (16.741 mm) and stays.
-- L7 (13 / 14) and L8 (14 / 15), cemented D1, 15.5 / 18.0 / 15.7 before: 13 rises to 15.7 and 15 to 16.3, each to its own ray height. The shared junction 14 clears the ray (16.317 mm) and keeps 18.0 for both partners.
-- L9 (16 / 17), 15.7 / 17.8 before: 16 rises to 16.3; 17 clears (16.730 mm) and stays.
-- L11 (20 / 21), 17.4 / 16.85 before: 21 rises to 17.35; 20 clears by 0.054 mm (ray 17.346 mm) and stays.
-- L12 (22 / 23), 16.85 / 17.5 before: both faces clipped and each rises to its own ray height, 17.34 and 17.7.
-- L14 (27 / 28), 17.4 / 15.9 before: 28 rises to 16.5; 27 clears (17.025 mm) and stays.
-- L15 (29 / 30) and L16 (30 / 31), cemented D2, 15.9 / 16.0 / 15.3 before: 29 rises to 16.5. The shared junction 30 clears the ray (15.559 mm) and keeps 16.0 for both partners; 31 clears (15.155 mm) and stays.
+| Pair  | Minimum idealized physical residual (mm) |
+| ----- | ---------------------------------------: |
+| 2–3   |                                 0.031109 |
+| 8–9   |                                 0.048070 |
+| 12–13 |                                 0.471275 |
+| 15–16 |                                 0.112785 |
+| 21–22 |                            about 0.00429 |
+| 28–29 |                                 0.064379 |
+| 34–35 |                                 0.533442 |
 
-### How FIG. 4 draws the rims
+The 0.09 mm source air gap at 21–22 remains air. Its roughly 4 µm idealized residual is a retained
+geometric constraint, not a production clearance certification; the source’s printed precision and
+the drawing cannot establish that manufacturing margin. No R/d, stop, focus cam or cut is tuned to
+fit the figure. Source fidelity, sampled runtime behavior and production correlation are separate.
 
-FIG. 4 (Sheet 4 of 13, PDF p. 5 of `patents/US20090296231A1.pdf`) is the wide-angle-end section of Numerical Embodiment 2. It is a single panel; the patent draws no telephoto panel for this embodiment. The page image is 2560 x 3300 px at 300 dpi. The axis runs up the page with the object at the bottom and leans 0.3 degrees (x = 1387 px at y = 620, 1375 px at y = 2850), so each half-height is half the distance between the left and right rim lines.
+## Current Runtime Scope — 2026-10-30
 
-Scale: the surface-1 vertex is at y = 2770.5 px and the surface-43 vertex at y = 1098.5 px, 1672 px for 184.76 mm, 0.1105 mm/px. Two spans check it: surfaces 1 to 17, 563 px for 61.89 mm (0.1099 mm/px), and surfaces 25 to 43, 556.5 px for 62.34 mm (0.1120 mm/px). The inner ends of the stop bars are 315 px apart, a 17.4 mm half-opening against the 17.66 mm the f/2.9 iris needs, an agreement of 1.5 %. Readings are rim-line centres (outermost ink less 2 px for half of the 4 px line) and are good to about 0.3 mm.
+The three source stations pass surface, image-circle, project 3% aperture and ≥99% corner-field
+checks. A geometry-identical 65-station diagnostic preserves source positions and current iris to
+within 3.56 × 10⁻15 mm. All 65 stations pass the aperture/field criteria. The unchanged derived iris
+radii are 17.309763 / 17.311475 / 17.311312 mm at wide/mid/tele, giving the project paraxial f/2.9.
+Independent real input-diameter solves give f/2.955389 / 2.954660 / 2.955672. The source publishes no
+physical iris diameter; these are distinct stop-convention diagnostics, and the rule remains unchanged.
 
-| Element | Rim as drawn | Half-height | Stored now (front to rear) |
-| --- | --- | ---: | --- |
-| L6 (11-12) | square outer rim, rear corner cut back to the L7 rim | 160.75 px, 17.8 mm | 18.5 / 15.7 |
-| L7 + L8 (13-15) | one square-cut block | 151.5 px, 16.7 mm | 15.7 / 18.0 / 16.3 |
-| L9 (16-17) | square-cut; front curve meets the L8 rear face at the L8 rim | 157.5 px, 17.4 mm | 16.3 / 17.8 |
-| L10 (18-19) | square-cut | 164.5 px, 18.2 mm | 18.3 / 18.2 |
-| L11 + L12 (20-23) | one square-cut block; the 0.09 mm air space is a single line | 164 px, 18.1 mm | 17.4 / 17.35 / 17.34 / 17.7 |
-| L13 (25-26) | square-cut | 166.25 px, 18.4 mm | 18.0 / 17.5 |
-| L14 (27-28) | square-cut; rim rests on the flat front of L15 | 156.75 px, 17.3 mm | 17.4 / 16.5 |
-| L15 + L16 (29-31) | one square-cut block | 151.75 px, 16.8 mm | 16.5 / 16.0 / 15.3 |
+A 65-zoom × three-field × 97-pupil census uses each state’s current wide-open stop. All 18,915 rays
+are aimed without seed/aim failures; all axial bundles and chiefs clear. The 1,012 off-axis
+`noBracket` entries before the first surface independently intersect its unrestricted sphere outside
+the clear cap; no inside-cap or interior-surface miss is unexplained. A 65-zoom × 21-focus-control
+render sweep gives 1,365 states with 23 finite closed connected contours and zero hidden trimming.
+The focus endpoints are geometry-identical and do not represent a finite focus model.
 
-The drawing shows every raised element at or above its new height, so it does not contradict any raise, and no value was widened to a figure reading.
+Only the published wide/mid/tele infinity states have numerical source support. Linear interpolation
+of their gaps is illustrative and does not preserve focus: the 65-state first-order census has a
+worst image-plane displacement of +3.094639 mm at zoom 0.28125 (EFL 103.130310 mm; BF 57.194639 mm
+versus the fixed 54.1 mm image gap). The source cam values are retained. The 1.2 m product metadata,
+source 1.5 m plots, moved IS, attached teleconverters and continuous production cam behavior are not
+certified by sampled clearance.
 
-### Cross-gap limit
+### Original glass and source qualifications
 
-The eight pair faces had been held at 89 % of their air gaps by the default cross-gap limit, which is what put them under the ray. The validator refused the raised values on all four pairs at the default 0.90, and on 15/16 and 28/29 at 0.96. `gapSagFrac` is therefore 0.97, the smallest two-decimal value that admits the set. No pair crosses at the new rims, and FIG. 4 draws all four meeting at the rim.
-
-| Air pair | Axial gap | Before: rim, share of gap | After: rim, share of gap | Air left at the rim | Faces would touch at |
-| --- | ---: | --- | --- | ---: | ---: |
-| 12 / 13 (L6 rear, L7 front) | 5.79 mm | 15.5 mm, 89.4 % | 15.7 mm, 91.9 % | 0.471 mm | 16.35 mm |
-| 15 / 16 (L8 rear, L9 front) | 2.84 mm | 15.7 mm, 89.0 % | 16.3 mm, 96.0 % | 0.113 mm | 16.63 mm |
-| 21 / 22 (L11 rear, L12 front) | 0.09 mm | 16.85 mm, 89.3 % | 17.34 mm, 95.2 % | 0.004 mm | 17.72 mm |
-| 28 / 29 (L14 rear, L15 front) | 1.70 mm | 15.9 mm, 89.3 % | 16.5 mm, 96.2 % | 0.064 mm | 16.82 mm |
-
-What else 0.97 loosens: nothing at the stored values. The other air gaps stand at 89.3 % (2/3), 88.9 % (8/9), 82.7 % (34/35) or lower and pass at 0.90 as before; the higher limit only means a later edit to them would be accepted up to 97 %. The drawing uses the same limit and hides no part of any rim (largest render trim 0.000 mm at the three stations). With the Extender EF 2x mounted the composed prescription inherits 0.97; no converter gap is above 85 %, and the converter is still validated on its own at the default.
-
-### Result
-
-| Station | Traced f-number before | Limited by | Traced f-number after | Limited by |
-| --- | ---: | --- | ---: | --- |
-| 72.14 mm | f/2.991 | surface 28 | f/2.900 | iris |
-| 135 mm | f/2.991 | surface 28 | f/2.900 | iris |
-| 193.97 mm | f/3.008 | surface 16 | f/2.900 | iris |
-
-- The surface validator reports no errors, the image-circle floor lists nothing, and the traced corner chief ray reaches 100 % of 21.65 mm at all three stations, as before.
-- Engine EFL 72.138 / 134.981 / 193.973 mm, f/2.9 and the iris radius are unchanged. The engine half-field is 17.50 / 9.17 / 6.49 degrees before and after.
-- Vignetting curve at 72.14 mm, wide open, as a share of the on-axis beam at 0 / 2.9 / 5.7 / 8.6 / 11.4 / 14.3 / 17.2 degrees: 100 / 96.7 / 92.4 / 82.6 / 68.5 / 46.7 / 23.9 % before, 100 / 96.9 / 90.6 / 79.2 / 67.7 / 45.8 / 22.9 % after. The curve is normalized to the axis, and the on-axis beam grew 6.3 % in area (f/2.991 to f/2.900), so the lower mid-field shares reflect the larger reference and not new clipping. The full-field bundle of the patent's half angles (16.7 / 9.1 / 6.35 degrees) is still cut by most rims, most at surfaces 2-3 (77 % of one side), 12-13 (54-56 %) and 39-43 (54-92 %); on the nine raised surfaces the cut eased by 1 to 7 points and was otherwise left alone. No chief ray is blocked.
-- Canon Extender EF 2x on this host: composes before and after with no axial clip at the wide, middle and tele settings, corner coverage 100 % bare and mounted, composed f/5.800 / 5.802 / 5.801 both times.
-- Local page viewed at 72.14, 135 and 193.97 mm: no elements overlap, the four air pairs close toward the rim without touching, L3 and L13 are the tallest elements behind the variator and the rear elements step down as in FIG. 4, and the drawn on-axis fan passes every rim.
-
-Open:
-
-- The "Data-File Semi-Diameters" paragraph of the analysis note still says the diameters at the d21 air space and other tight gaps were reduced for the cross-gap policy. Four of those pairs now stand at the f/2.9 ray height under `gapSagFrac` 0.97; the paragraph was not edited in this pass.
-- The D1 junction (surface 14) is stored at 18.0 mm, above the 16.7 mm block FIG. 4 draws. It was not lowered: nothing is lowered in this pass, and the difference is inside the 15 % band the procedure treats as noise.
-- L15 now runs 16.5 mm at its front face to 16.0 mm at the junction, where FIG. 4 draws D2 as one square block near 16.8 mm. Squaring it would move junction 30, which does not clip.
-- Surface 22 clears the stated ray by 0.0002 mm and surface 13 by 0.0035 mm; they are exact to the stored precision, with no allowance.
-- The patent tabulates no close-focus spacings for this embodiment, so the pass covers infinity focus only.
+- Exact prescription: PDF p. 20 / printed p. 6, paragraph 0114; unit-data continuation PDF p. 21;
+  corresponding wide Fig. 4 PDF p. 5 and wide/tele infinity/1.5 m plots PDF pp. 6–7. Every one of
+  the 43 source R/d rows, 23 d-reference pairs, four cemented interfaces and four zoom-gap rows is checked.
+- Paragraphs 0078/0111 (PDF pp. 18–19) explicitly define the d-reference and g/F/d/C symbols. No
+  individual nC/nF/ng table exists; all 66 copied catalog indices are removed. All 23 compatible curves
+  stay qualified spectral proxies, without a historical supplier/melt/chemistry claim.
+- Paragraph 0070 maps extraordinary PR/N2 to lenses 5/7, and 0073 explicitly names their extraordinary
+  dispersion. Table 1 (PDF p. 22) gives Embodiment 2 θgF = 0.539 with νd = 81.5; only those two
+  receive source-derived dPgF +0.032283 and source APD tags. L2/L3/L11/L16 become inferred APD associations.
+- The source discusses fluorite generically without identifying L11 as fluorite. Its old “patent-listed”
+  label is replaced by qualified CaF2-proxy/product correlation. Same coordinates alone do not extend
+  the PR/N2 partial to the other high-Abbe positions. Source/reference certainty and product history
+  remain separate. No source filter, rear plate, hybrid/resin or separate cement medium is invented.
+- Three type labels follow the literal radius signs: L5 is a positive meniscus with finite weak rear
+  curvature, L18 biconcave and L21 biconvex. No numeric radius is changed to obtain these classifications.
+- Historical 2026-06-25 and 2026-10-12 reviews remain above; prior broader source APD/line-index
+  qualifications are superseded by the exact current source mapping. No inferred cut is present.

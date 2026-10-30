@@ -36,10 +36,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * containment, representative off-axis containment, and source-section plausibility. No layout control is used to
  * conceal invalid geometry.
  *
+ * Original-PDF shape/glass review: 2026-10-30. Numerical Example 1 is on PDF p.6 (paragraph 0032, table 数1);
+ * paragraph 0030 on p.5 explicitly defines nd/vd at the d line. Figures 1-3 are on p.10. The embedded scan is
+ * native 200 ppi, not the earlier 600 dpi upsample. The section is about 2.10 native px/mm; practical rim
+ * uncertainty is about +/-0.8 mm. Existing clear SDs remain unchanged. Resolved air-facing shoulders are
+ * S4 outer 24.5 / clear 22.8, S27 outer 12.8 / clear 11.1 and S28 outer 12.5 / clear 11.1 mm. No bonded
+ * interface land or inferred cut is added. The smaller Gm clear caps preserve the source D27 gap.
+ * A geometry-identical 65-position interpolation check finds 54 aperture stations within 3%; the worst
+ * fixed-iris departure is +3.4325%, and intermediate Gaussian defocus reaches +3.9073 mm. Only the three
+ * source zoom stations are quantitative source states; no continuous compensator cam or finite-focus state
+ * is supplied. The existing fixed iris, source R/d and all controls are preserved.
+ *
  * Glass: patent nd / vd values are retained. Catalog names are equivalence matches, not patent-stated vendors.
- * E7 remains a vendor-unresolved six-digit class; E11 is catalog-matched to OHARA S-LAH55V (code 835427), with
- * nd exact to the patent's six decimals and a +0.01 vd residual. E3 is fluorite (CaF2) by production/prescription
- * correlation. These are catalog/inference labels, not patent-stated vendor or material identities.
+ * E7 remains a vendor-unresolved six-digit class with a qualified S-NPH53 spectral proxy; E11 is catalog-matched to OHARA S-LAH55V (code 835427), with
+ * nd exact to the patent's six decimals and a +0.01 vd residual. E3 has a CaF2-compatible coordinate and an inferred production fluorite tag. Its historical chemistry is
+ * unresolved. These are catalog/inference labels, not patent-stated vendor or material identities.
  * The patent publishes no per-material nC, nF, ng, or dPgF. Those fields are intentionally not synthesized; confident
  * names and coordinate classes resolve through the project's Sellmeier catalog at the
  * qualified catalog tier without establishing production supplier identities.
@@ -322,7 +333,7 @@ const LENS_DATA = {
     { label: "1", R: 154.341, d: 3.1, sd: 27.0, medium: 1 },
     { label: "2", R: 705.558, d: 12.82, sd: 26.8 },
     { label: "3", R: 105.33, d: 2.1, sd: 24.5, medium: 2 },
-    { label: "4", R: 59.688, d: 0.08, sd: 22.8 },
+    { label: "4", R: 59.688, d: 0.08, sd: 22.8, rimExtensionSd: 24.5 },
     { label: "5", R: 60.522, d: 5.53, sd: 22.8, medium: 3 },
     { label: "6", R: 345.333, d: 0.15, sd: 22.6 },
     { label: "7", R: 74.914, d: 5.03, sd: 22.5, medium: 4 },
@@ -345,8 +356,8 @@ const LENS_DATA = {
     { label: "24", R: 136.753, d: 10.83, sd: 12.8 },
     { label: "25", R: 93.769, d: 4.5, sd: 12.8, medium: 14 },
     { label: "26", R: -33.991, d: 1.2, sd: 12.8, medium: 15 },
-    { label: "27", R: 66.042, d: 1.98, sd: 11.1 },
-    { label: "28", R: -75.562, d: 1.3, sd: 11.1, medium: 16 },
+    { label: "27", R: 66.042, d: 1.98, sd: 11.1, rimExtensionSd: 12.8 },
+    { label: "28", R: -75.562, d: 1.3, sd: 11.1, rimExtensionSd: 12.5, medium: 16 },
     { label: "29", R: 42.78, d: 3.56, sd: 12.5 },
     { label: "30", R: 207.397, d: 2.55, sd: 13.4, medium: 17 },
     { label: "31", R: -93.288, d: 1.13, sd: 13.4 },

@@ -30,7 +30,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 804466 | 29 | 17 | patents/US20110090576A1.pdf<br>patents/US20020015231A1.pdf<br>patents/US6115188.pdf<br>patents/JP2016118658A.pdf | 5/29 rows have review records |
 | 516641 | 26 | 21 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP_H11211978_A.pdf<br>patents/US20110090576A1.pdf | 5/26 rows have review records |
 | 729547 | 26 | 21 | patents/US20150146044A1.pdf<br>patents/US20200073096A1.pdf<br>patents/US10168507.pdf<br>patents/JP2023001878A.pdf | 2/26 rows have review records |
-| 847239 | 26 | 13 | patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf<br>patents/JP_2008070450_A.pdf | 6/26 rows have review records |
+| 847239 | 26 | 13 | patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf<br>patents/JP_2008070450_A.pdf | 7/26 rows have review records |
 | 699301 | 22 | 20 | patents/JP2016161889A.pdf<br>patents/JP2016148731A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/US20100208366A1.pdf | 2/22 rows have review records |
 | 806333 | 22 | 17 | patents/US20130308041A1.pdf<br>patents/JP2017227799A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20130222925A1.pdf | 2/22 rows have review records |
 | 911353 | 22 | 16 | patents/JP2016148731A.pdf<br>patents/US20140098253A1.pdf<br>patents/US20220171174A1.pdf<br>patents/US20210003831A1.pdf | No review-record hit |
@@ -731,7 +731,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2-3 (Element 7) | 12 | `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.93 | S-NPH53 (trusted Sellmeier) | sellmeier | patents/JP_2008070450_A.pdf | No review-record hit |
+| L2-3 (Element 7) | 12 | `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.93 | S-NPH53 (trusted Sellmeier) | sellmeier | patents/JP_2008070450_A.pdf | Audit-log hit |
 
 ### [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) - JP 2007-003600 A
 
