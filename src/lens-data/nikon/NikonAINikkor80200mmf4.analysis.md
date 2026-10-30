@@ -64,9 +64,9 @@ identified as such.
 
 ### L11 — Cemented front component of G1
 
-- **L11a:** `nd = 1.80518`, `νd = 25.4`. Glass: 805254 — dense flint class (catalog unresolved).
+- **L11a:** `nd = 1.80518`, `νd = 25.4`. Glass: 805254 — dense flint class (catalog-compatible spectral proxy; supplier unspecified).
   `f = -185.794 mm` standalone in air.
-- **L11b:** `nd = 1.62041`, `νd = 60.3`. Glass: 620603 — crown class (catalog unresolved).
+- **L11b:** `nd = 1.62041`, `νd = 60.3`. Glass: 620603 — crown class (catalog-compatible spectral proxy; supplier unspecified).
   `f = +93.228 mm` standalone in air.
 
 L11a is a negative meniscus cemented to the biconvex positive L11b. Although the two standalone powers have opposite
@@ -80,7 +80,7 @@ component considered only by simple focal-length comparison.
 
 ### L12 — Rear positive meniscus of G1
 
-**`nd = 1.51680`, `νd = 64.1`. Glass: 517641 — crown class (catalog unresolved). `f = +332.452 mm`.**
+**`nd = 1.51680`, `νd = 64.1`. Glass: 517641 — crown class (catalog-compatible spectral proxy; supplier unspecified). `f = +332.452 mm`.**
 
 L12 is a weak positive meniscus separated from L11 by a 0.1 mm air gap. It completes the convergent focusing group.
 The full G1 focal length is `+121.605 mm`, which is an in-situ group result rather than the arithmetic combination of
@@ -91,10 +91,10 @@ During production-lens focusing as modeled here, L11 and L12 translate together.
 ### L21 — Cemented negative-positive-negative triplet of G2
 
 - **L2a:** `nd = 1.78797`, `νd = 47.5`. Glass: 788475 — dense lanthanum glass class
-  (catalog unresolved). `f = -58.912 mm` standalone in air.
-- **L2b:** `nd = 1.75520`, `νd = 27.6`. Glass: 755276 — dense flint class (catalog unresolved).
+  (catalog-compatible spectral proxy; supplier unspecified). `f = -58.912 mm` standalone in air.
+- **L2b:** `nd = 1.75520`, `νd = 27.6`. Glass: 755276 — dense flint class (catalog-compatible spectral proxy; supplier unspecified).
   `f = +31.536 mm` standalone in air.
-- **L2c:** `nd = 1.58144`, `νd = 40.8`. Glass: 581408 — light flint class (catalog unresolved).
+- **L2c:** `nd = 1.58144`, `νd = 40.8`. Glass: 581408 — light flint class (catalog-compatible spectral proxy; supplier unspecified).
   `f = -40.091 mm` standalone in air.
 
 L21 is the defining component of the variator. The complete cemented triplet has a net focal length of
@@ -112,7 +112,7 @@ for these elements.
 
 ### L22 — Rear negative singlet of G2
 
-**`nd = 1.58913`, `νd = 61.2`. Glass: 589612 — crown class (catalog unresolved). `f = -60.143 mm`.**
+**`nd = 1.58913`, `νd = 61.2`. Glass: 589612 — crown class (catalog-compatible spectral proxy; supplier unspecified). `f = -60.143 mm`.**
 
 L22 is a biconcave negative singlet separated from L21 by 4.1 mm of air. It completes the divergent variator. The full
 G2 focal length is `-37.384 mm`, whereas L21 alone is `-107.875 mm` and L22 alone is `-60.143 mm`. The difference
@@ -125,9 +125,9 @@ focus model.
 
 ### L3 — Cemented positive-negative compensator
 
-- **L3a:** `nd = 1.62041`, `νd = 60.3`. Glass: 620603 — crown class (catalog unresolved).
+- **L3a:** `nd = 1.62041`, `νd = 60.3`. Glass: 620603 — crown class (catalog-compatible spectral proxy; supplier unspecified).
   `f = +43.007 mm` standalone in air.
-- **L3b:** `nd = 1.75520`, `νd = 27.6`. Glass: 755276 — dense flint class (catalog unresolved).
+- **L3b:** `nd = 1.75520`, `νd = 27.6`. Glass: 755276 — dense flint class (catalog-compatible spectral proxy; supplier unspecified).
   `f = -78.971 mm` standalone in air.
 
 The biconvex positive L3a and negative-meniscus L3b form the entire G3 compensator. Their cemented net focal length is
@@ -148,7 +148,7 @@ that placement is an inference discussed in the verification section.
 
 ### L42 — Front negative singlet of G4
 
-**`nd = 1.79504`, `νd = 28.6`. Glass: J-LAFH3 (HIKARI; 795287 match to patent 795286 class).
+**`nd = 1.79504`, `νd = 28.6`. Glass: J-LAFH3 catalog proxy (HIKARI; 795287 versus patent 795286).
 `f = -262.882 mm`.**
 
 L42 is a weak biconcave negative singlet following L41 across a 2.0 mm air gap. Its standalone power is much weaker than
@@ -159,7 +159,7 @@ negative-positive pair and materially affects the principal-plane locations and 
 
 ### L43 — Rear negative meniscus of G4
 
-**`nd = 1.79668`, `νd = 45.5`. Glass: 797455 — dense lanthanum glass class (catalog unresolved).
+**`nd = 1.79668`, `νd = 45.5`. Glass: J-LASF017 catalog proxy (HIKARI, 795/453; source 1.79668/45.5, nonidentical).
 `f = -89.677 mm`.**
 
 L43 is a strongly curved negative meniscus near the rear of the relay. It begins the final air-spaced negative-positive
@@ -171,7 +171,7 @@ than as an isolated corrector.
 
 ### L44 — Final positive singlet of G4
 
-**`nd = 1.58267`, `νd = 46.5`. Glass: 583465 — barium flint class (catalog unresolved).
+**`nd = 1.58267`, `νd = 46.5`. Glass: 583465 — barium flint class (catalog-compatible spectral proxy; supplier unspecified).
 `f = +102.154 mm`.**
 
 L44 is the final biconvex positive element, separated from L43 by only 0.2 mm of air. Its positive standalone power is
@@ -184,10 +184,8 @@ plane is present in the selected patent prescription, and no air-equivalent plat
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and Abbe number. It gives no manufacturer glass names, melt records,
-Sellmeier coefficients, C-, F-, or g-line indices, `PgF`, or `dPgF`. The model therefore uses conservative six-digit
-`nd`-`νd` class labels except where a coefficient-backed historical catalog equivalent reproduces the published
-optical constants.
+The patent publishes refractive index and Abbe number; its table definitions do not explicitly print a reference wavelength, so the stored d-line reading follows the coordinate families. It gives no manufacturer glass names, melt records,
+Sellmeier coefficients, C-, F-, or g-line indices, `PgF`, or `dPgF`. The model uses qualified six-digit classes and compatible coefficient curves, without identifying historical suppliers or melts.
 
 | Data annotation | `nd` | `νd` | Elements |
 |---|---:|---:|---|
@@ -199,16 +197,15 @@ optical constants.
 | 581408 — light flint class | 1.58144 | 40.8 | L2c |
 | 589612 — crown class | 1.58913 | 61.2 | L22 |
 | S-LAL52 (OHARA catalog equivalent for patent 670576) | 1.67025 | 57.6 | L41 |
-| J-LAFH3 (HIKARI; 795287 match to patent 795286 class) | 1.79504 | 28.6 | L42 |
-| 797455 — dense lanthanum glass class | 1.79668 | 45.5 | L43 |
+| J-LAFH3 catalog proxy (HIKARI; 795287 versus patent 795286) | 1.79504 | 28.6 | L42 |
+| J-LASF017 nonidentical catalog proxy | 1.79668 | 45.5 | L43 |
 | 583465 — barium flint class | 1.58267 | 46.5 | L44 |
 
 The cemented groups use deliberate index-and-dispersion contrasts rather than a single repeated glass recipe. L11 and
 L3 pair lower-dispersion positive members with higher-dispersion negative members, while L21 uses the more complex
 negative-positive-negative distribution described by the patent. This is sufficient to describe an achromatizing
 strategy at the d-line/Abbe level, but not to claim anomalous partial dispersion, ED behavior, or apochromatic
-correction. The J-LAFH3 assignment upgrades L42 to strict Sellmeier dispersion; L41 and L43 remain conservatively
-unresolved, so those elements continue to use Abbe-based dispersion.
+correction. Current compatible coefficient curves cover all 13 elements, including S-LAL52 at L41 and J-LASF017 at L43. The former is nonidentical at catalog about 1.67000/57.33 versus source 1.67025/57.6; the latter is 1.79500/45.31 versus 1.79668/45.5. J-LAFH3’s ν28.69 is also not an ordinary rounding of the printed 28.6. These qualified proxies improve spectral coverage without replacing source coordinates or identifying production melts.
 
 ## Focus Mechanism
 
@@ -276,41 +273,11 @@ convention. This is a paraxial curvature quantity, not a direct measurement of t
 
 ### Modeling inferences
 
-The patent gives no aperture-stop surface. The model inserts exactly one neutral `STO` at the entrance to G4,
-immediately before surface 15. Its inferred semi-diameter is `14.065342 mm`, the paraxial f/4 radius; this reproduces
-f/4 at both zoom endpoints in the paraxial model and places the wide-end first-surface chief-ray height within
-approximately 0.12 mm of the patent's `h∞` datum.
+The patent gives no aperture-stop surface. The model inserts one neutral `STO` at the entrance to G4, immediately before surface 15. Its current physical semi-diameter is derived as 14.065342 mm from the source f/4 design aperture. Its position remains an inference; no numerical stop radius or new offset is claimed as source data.
 
-The patent also omits clear-aperture data. Surface semi-diameters are inferred from the f/4 axial bundle, the 21.6 mm
-image-height field, the patent's Fig. 3 section, and the production lens's 62 mm attachment and 73 mm barrel envelope.
-Every first-group surface passes the f/4 on-axis ray at 195.2 mm and infinity focus. Surfaces 1, 3 and 4 carry the
-height that ray reaches, rounded up to 0.1 mm. Fig. 3 cuts the rims of L11a and L12 square, so surfaces 2 and 5 carry
-the semi-diameter of the front face of their element:
+The patent also omits clear apertures. Fresh Figure 3 review restores its larger continuous front outlines: S1/S2/S3 are 28.1/28.1/27.2 mm and S4/S5 are 26.2/26.2 mm. S2 remains the ordinary continuous cemented interface; no flat air land is invented there. The former smaller beam-floor caps and their associated near-tele rim restriction are superseded by this source-scaled full outline. Other mechanical vignetting remains in the traced system.
 
-| Surface | Element | f/4 on-axis ray height at 195.2 mm | Semi-diameter | Rim |
-|---|---|---:|---:|---|
-| 1 | L11a front | 24.400 mm | 24.5 mm | Ray height, rounded up |
-| 2 | L11 cemented interface | 24.021 mm | 24.5 mm | Square with surface 1 |
-| 3 | L11b rear | 23.826 mm | 23.9 mm | Ray height, rounded up; 0.6 mm inside the L11a rim |
-| 4 | L12 front | 23.491 mm | 23.5 mm | Ray height, rounded up |
-| 5 | L12 rear | 23.145 mm | 23.5 mm | Square with surface 4 |
-
-At 80 mm the same ray reaches no more than 10.000 mm on these five surfaces. Traced wide open at infinity focus, the
-80 mm station is f/4.00 with the iris as the limiter, and the 195.2 mm station is f/4.00 with the surface-4 rim
-0.009 mm outside the ray; the rims of surfaces 1, 2, 3 and 5 stand 0.100, 0.479, 0.074 and 0.355 mm outside it, and
-the traced iris radius is 14.1233 mm at both stations. Behind the first group the f/4 ray at 195.2 mm clears surfaces
-6-18 by 2.7-6.9 % and surfaces 19-22 by more than a factor of three, and the ray that fills the iris from 1.2 m clears
-surfaces 6-22 as well. At 1.2 m and 195.2 mm the surface-4 rim bounds the on-axis beam and the iris is filled to 87 %
-of its radius; the ray that would fill it reaches 27.83 mm on surface 1 and 26.91 mm on surface 4.
-
-Fig. 3 draws the 80 mm infinity state. Scaled by its axial vertex spacings, it shows L11 at a half-height of about
-28.1 mm and L12 at about 26.2 mm, so the modeled first group is 10-13 % smaller than the drawing while keeping the
-drawn order: L11 the tallest element, L12 slightly shorter, and both taller than every element of G2-G4. The figure
-ends both faces of L11a at one height and both faces of L12 at one height, and it ends the rear face of L11b about
-0.9 mm inside the L11a rim; the model has the same two square rims and steps L11b in by 0.6 mm. Line d of the patent's
-Fig. 2, which the text ties to the first-group aperture needed for the lens brightness, sits at about 1.78 `h∞`, or
-29.0 mm. The prescription passes the surface-clearance and image-circle validators; off-axis mechanical vignetting is
-retained rather than hidden by layout controls.
+The rear L43 concave front face has a separately resolved short vertical end. Its inferred S19 cut has outer radius18.2 mm, depth7.00 mm, and clear cap16.667813 mm; it clears the complete field/zoom/focus beam search. The current 0.96 cross-gap sag allowance at the r9–r10 air lens is retained without change. All source R/d, endpoint zoom gaps, inferred stop position, and qualified production-focus reconstruction remain unchanged.
 
 ### Source corrections and exclusions
 
