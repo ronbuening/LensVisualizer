@@ -172,10 +172,20 @@ Nikon's historical account states that the 35mm f/1.4 went on sale in 1971 with 
 
 The strongest supported historical statement is that the basic construction remained in later variants, while Nikon changed glass material and lens curvature at the NEW-Nikkor transition.
 
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US3576360.pdf`: Embodiment 1 Figure 1 on PDF page 2 at 600 dpi/native 300 dpi; its nine-media table (beginning at bottom left and continuing at top right) on page6; and the helium d-line definition on page7. The r1–r15 vertex span gives approximately 13.9 native pixels per scaled lens mm. Every exposed convex/concave face and both cemented boundaries were inspected. S2 and S4 now use the front partners' existing 22.0/17.3 mm outer rims and inferred concave-end cuts at depths 7.30/5.84 mm (caps17.609293/16.299684). Native q≈0.78 ±0.006 at S2 (edge≈302 pixels) and 0.88 ±0.008 at S4 (≈250 pixels), compared with adopted0.800/0.942. The endpoints move outward from the figure to clear modeled beams: source-ratio S2 cap17.200 fails against 17.4512 mm reach plus0.052 mm margin (minimum 17.5028); source-ratio S4 cap15.111 fails against 16.2313 mm reach plus0.050 mm (minimum 16.2813). Both adopted cuts pass the full existing guard without a source-depth bypass.
+
+S7 retains its 15.5 mm clear cap and gains an exposed land to 16.7 mm, with the cemented S6 height restored from 16.4 to the common16.7 mm body rim. Native q≈0.92 ±0.008 at an approximately 235-pixel edge agrees with adopted0.928. No cemented land or additional speculative cut is added. Source radii/spacings, ×0.35 scale, inferred stop, and the approximate focus controls are unchanged; this early patent remains distinct from a confirmed AI-S production prescription.
+
+All nine source nd/νd pairs are exact and preserved, including printed L4=1.50137/56.5. All nine selected curves are available and explicitly qualified as spectral proxies. The source supplies no C/F/g indices, partial-dispersion table, APD classification, or supplier identity. The present K10 curve is available; the historical unresolved note is superseded by the qualified current resolver result.
+
+Surface/circle checks and complete inferred-cut beam checks pass; the format corner reaches 100% and the aperture is iris-limited at f/1.4. Nine actual SVG states have nine finite, untrimmed paths. At the approximate close conjugate D0=190.2497 mm the full 12.625666 mm iris passes 25/25 aimed axial samples. Source/catalog checks and shared glass suites pass (94 tests).
+
 ## Sources
 
 - US 3,576,360, "Wide Angle Photographic Objective of Large Aperture Ratio," Yoshiyuki Shimizu, Nippon Kogaku K.K., granted April 27, 1971; Embodiment 1 / FIG. 1 / Claim 2.
-- Nikon Imaging, ["NIKKOR - The Thousand and One Nights No.27: Ai Nikkor 35mm F1.4S"](https://imaging.nikon.com/imaging/information/story/0027/).
-- Nikon USA, [Nikkor lens brochure, Nikkor 35mm f/1.4 specifications](https://www.nikonusa.com/fileuploads/pdfs/Nikkor%20lens%20Broch_061017.pdf).
+- Nikon Imaging, ["NIKKOR - The Thousand and One Nights No.27: Ai Nikkor 35 mm F1.4S"](https://imaging.nikon.com/imaging/information/story/0027/).
+- Nikon USA, [Nikkor lens brochure, Nikkor 35 mm f/1.4 specifications](https://www.nikonusa.com/fileuploads/pdfs/Nikkor%20lens%20Broch_061017.pdf).
 - OHARA Corporation datasheets: [S-BAL14](https://oharacorp.com/glass/s-bal14/), [S-TIL1](https://oharacorp.com/glass/s-til1/), [S-LAH65V](https://oharacorp.com/glass/s-lah65v/), [S-LAH66](https://oharacorp.com/glass/s-lah66/), [S-LAL8](https://oharacorp.com/glass/s-lal8/).
 - SCHOTT datasheets: [K10](https://media.schott.com/api/public/content/54e8399a2f2e4922a6137cc456562948?v=295af8a2), [SF56A](https://media.schott.com/api/public/content/7428154cd0e04bd5a0cff3defb79443c?v=d460f7da).

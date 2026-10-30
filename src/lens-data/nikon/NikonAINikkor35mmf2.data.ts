@@ -21,6 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  front-diameter note (~1.3f), the 52 mm attachment standard, and    ║
  * ║  renderer edge/sag constraints.                                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Fresh Figure1: S4 retains clear14.8 with an exposed land to outer18.45.
+ * Six catalog curves are qualified spectral proxies; L6/L7 remain unresolved source coordinates.
  */
 
 const LENS_DATA = {
@@ -57,7 +60,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 157.657,
-      glass: "S-LAL8 / N-LAK8 class (713/539 lanthanum crown)",
+      glass: "N-LAK8 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front positive distortion-correction element in the negative retrofocus front group.",
     },
@@ -69,7 +72,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -50.482,
-      glass: "N-BK7 class (517/642 borosilicate crown)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Primary negative meniscus of the front retrofocus group.",
     },
@@ -81,7 +84,7 @@ const LENS_DATA = {
       nd: 1.66755,
       vd: 41.9,
       focalLengthMm: 30.737,
-      glass: "J-BASF6 / BaSF6 class (668/419 dense barium flint)",
+      glass: "J-BASF6 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive high-index member of the pre-stop coma-correcting cemented doublet.",
       cemented: "D1",
@@ -94,7 +97,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.62,
       focalLengthMm: -38.17,
-      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
+      glass: "KF3 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative member of the pre-stop cemented doublet; r6 is the patent's outer-coma correction surface.",
       cemented: "D1",
@@ -107,7 +110,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       focalLengthMm: -17.051,
-      glass: "SF56A class (785/261 dense flint)",
+      glass: "SF56A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Strong negative dense-flint member of the post-stop field and coma doublet.",
       cemented: "D2",
@@ -145,7 +148,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 64.566,
-      glass: "LAF2 / N-LAF2 class (744/449 lanthanum flint)",
+      glass: "LAF2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Final positive element completing real-image formation at the film plane.",
     },
@@ -155,7 +158,7 @@ const LENS_DATA = {
     { label: "1", R: 112.409, d: 3.79155, sd: 22.6, medium: 1 },
     { label: "2", R: "flat", d: 0.0973, sd: 22.0 },
     { label: "3", R: 48.6115, d: 2.13885, sd: 18.45, medium: 2 },
-    { label: "4", R: 16.723, d: 10.88885, sd: 14.8 },
+    { label: "4", R: 16.723, d: 10.88885, sd: 14.8, rimExtensionSd: 18.45 },
     { label: "5", R: 31.3075, d: 7.9723, sd: 16.0, medium: 3 },
     { label: "6", R: -53.473, d: 10.20845, sd: 16.0, medium: 4 },
     { label: "7", R: 33.054, d: 2.57635, sd: 13.0 },

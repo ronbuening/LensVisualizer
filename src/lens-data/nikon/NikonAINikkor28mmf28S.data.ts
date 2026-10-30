@@ -22,6 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * paraxial/meridional ray heights, element-ratio sanity, sd/|R| < 0.90, edge
  * thickness, and signed cross-gap sag clearance. They should not be read as
  * measured Nikon mechanical clear apertures.
+ *
+ * Fresh source audit: common front rim20.6; S3 clear17.3, S4 clear12.6/outer17.3 land;
+ * S6 inferred cut depth5.31 (cap11.5102/outer13.2), passing full inferred-beam guard.
+ * All eight published ng values are retained; ng-only is not currently used by the traced g channel.
  */
 
 const LENS_DATA = {
@@ -58,7 +62,7 @@ const LENS_DATA = {
       nd: 1.67003,
       vd: 47.07,
       focalLengthMm: 180.42,
-      glass: "N-BAF10 (SCHOTT; J-BAF10 class)",
+      glass: "N-BAF10 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Weak positive front meniscus; front-group distortion and field corrector.",
       ng: 1.68806,
     },
@@ -70,7 +74,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: -52.39,
-      glass: "N-BK7 (SCHOTT; J-BK7A class)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "First strong negative retrofocus meniscus in GF.",
       ng: 1.52669,
     },
@@ -82,7 +86,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: -65.74,
-      glass: "N-BK7 (SCHOTT; J-BK7A class)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Second negative retrofocus meniscus in GF.",
       ng: 1.52669,
     },
@@ -94,7 +98,7 @@ const LENS_DATA = {
       nd: 1.66755,
       vd: 41.96,
       focalLengthMm: 42.84,
-      glass: "J-BASF6 (HIKARI)",
+      glass: "J-BASF6 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "First rear-group positive element; begins reconvergence after GF.",
       ng: 1.68787,
     },
@@ -106,7 +110,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.14,
       focalLengthMm: 54.75,
-      glass: "S-BSM16 (OHARA; J-SK16 class)",
+      glass: "S-BSM16 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Positive element before the aperture stop; CRC partner interval follows L4 in production.",
       ng: 1.63314,
     },
@@ -118,7 +122,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.61,
       focalLengthMm: -19.51,
-      glass: "SF4 (SCHOTT; J-SF4 class)",
+      glass: "SF4 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Strong post-stop dense flint negative element for Petzval and chromatic balancing.",
       ng: 1.79112,
     },
@@ -130,7 +134,7 @@ const LENS_DATA = {
       nd: 1.67025,
       vd: 57.53,
       focalLengthMm: 41.86,
-      glass: "J-LAK02 (HIKARI catalog equivalent; patent coordinate)",
+      glass: "J-LAK02 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Front element of the patent GLP image-stabilizing subgroup.",
       ng: 1.68466,
     },
@@ -142,19 +146,19 @@ const LENS_DATA = {
       nd: 1.67025,
       vd: 57.53,
       focalLengthMm: 39.75,
-      glass: "J-LAK02 (HIKARI catalog equivalent; patent coordinate)",
+      glass: "J-LAK02 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Rear element of GLP and final converging element before the image plane.",
       ng: 1.68466,
     },
   ],
 
   surfaces: [
-    { label: "1", R: 60.5, d: 3.5, sd: 24.5, medium: 1 },
-    { label: "2", R: 118.3, d: 0.1, sd: 24.5 },
-    { label: "3", R: 36.9, d: 1.5, sd: 13.5, medium: 2 },
-    { label: "4", R: 15.4, d: 4.0, sd: 12.6 },
+    { label: "1", R: 60.5, d: 3.5, sd: 20.6, medium: 1 },
+    { label: "2", R: 118.3, d: 0.1, sd: 20.6 },
+    { label: "3", R: 36.9, d: 1.5, sd: 17.3, medium: 2 },
+    { label: "4", R: 15.4, d: 4.0, sd: 12.6, rimExtensionSd: 17.3 },
     { label: "5", R: 28.2, d: 1.5, sd: 13.2, medium: 3 },
-    { label: "6", R: 15.13, d: 14.4, sd: 13.2 },
+    { label: "6", R: 15.13, d: 14.4, sd: 13.2, rimCutDepthMm: 5.31 },
     { label: "7", R: 28.6, d: 4.4, sd: 12.0, medium: 4 },
     { label: "8", R: "flat", d: 1.35, sd: 12.0 },
     { label: "9", R: "flat", d: 4.0, sd: 10.8, medium: 5 },

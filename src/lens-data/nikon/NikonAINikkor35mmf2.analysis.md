@@ -172,10 +172,18 @@ The prescription was re-transcribed from the patent table and checked with an in
 
 The corrected analysis removes unsupported precision around exact glass vendor names where the patent gives only nd/νd and current catalogs do not provide a clean exact match. It also corrects the earlier wording that described “all eight surfaces” as spherical; the correct statement is that all eight elements and all fourteen refracting surfaces are spherical.
 
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US3507558.pdf`: sole-example Figure 1 on PDF page1 at 600 dpi/native 300 dpi, and the prescription plus repeated Claim2 table on page3. The r1–r14 vertex span gives approximately 12.3 native pixels per scaled lens mm. All exposed faces and both cemented interfaces were checked. S4 retains its 14.8 mm curved cap and gains an exposed land to the existing 18.45 mm L2 front rim. Native q≈0.78 ±0.008 at a≈240-pixel edge agrees with the slightly larger adopted cap q=0.802. The source's taper behind the first cemented doublet is retained: its body edge is sloped to the continuous cap end, without an independently resolved flat land. No additional cut or cemented land is justified. The ×35 scale, source prescription, inferred stop and calculated unit-extension controls remain unchanged.
+
+All eight source nd/νd pairs are exact and preserved. Six current curves (N-LAK8, N-BK7, J-BASF6, KF3, SF56A and LAF2) are available and explicitly qualified as spectral proxies. L6=1.74443/49.4 and L7=1.76684/46.2 remain unresolved legacy coordinates with Abbe-based spectral fallback; no near glass is forced onto them. The source supplies no C/F/g indices, partial-dispersion values or APD evidence, and no production supplier or melt is established.
+
+Surface/circle checks pass; the format corner reaches 100% and the aperture is iris-limited at f/2.0. Nine actual SVG states have eight finite paths and zero trim. At the calculated close conjugate D0=200.8300 mm the full 8.427124 mm iris passes 25/25 aimed axial samples. Source/catalog checks and shared glass suites pass (94 tests).
+
 ## Sources
 
 - US Patent 3,507,558, “Camera Lens of a Large Aperture Ratio Having Long Back Focus,” Yoshiyuki Shimizu / Nippon Kogaku K.K., filed October 20, 1966, granted April 21, 1970.
-- Nikon, “NIKKOR — The Thousand and One Nights, No. 84: AI Nikkor 35mm f/2S,” for production-lineage, element/group count, Shimizu attribution, 52 mm attachment rationale, and the absence of a close-range correction mechanism.
+- Nikon, “NIKKOR — The Thousand and One Nights, No. 84: AI Nikkor 35 mm f/2S,” for production-lineage, element/group count, Shimizu attribution, 52 mm attachment rationale, and the absence of a close-range correction mechanism.
 - OHARA S-LAL8 and SCHOTT N-LAK8 catalog data for the L1 713/539 lanthanum-crown class.
 - SCHOTT N-BK7 catalog data for the L2 517/642 crown class.
 - Hikari J-BASF6 catalog data for the L3 668/419 dense-barium-flint class.
