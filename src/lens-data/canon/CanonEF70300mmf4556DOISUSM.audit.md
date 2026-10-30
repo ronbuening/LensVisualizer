@@ -1,4 +1,4 @@
-# Audit Log - CANON EF 70-300mm f/4.5-5.6 DO IS USM
+# Audit Log - CANON EF 70-300 mm f/4.5-5.6 DO IS USM
 
 Patent: JP 2004-317867 A, Numerical Example 1
 
@@ -34,4 +34,36 @@ Patent: JP 2004-317867 A, Numerical Example 1
 
 ### Identity and metadata
 
-- Verified the display name against Canon's product identity and the repository's spacing policy. `CANON EF 70-300mm f/4.5-5.6 DO IS USM` remains correct.
+- Verified the display name against Canon's product identity and the repository's spacing policy. `CANON EF 70-300 mm f/4.5-5.6 DO IS USM` remains correct.
+
+## 2026-10-30 — Original native shape, glass and control review
+
+### Exact source and native images
+
+Selected original `patents/JP2004317867A.pdf`, JP2004-317867A, Numerical Example 1. Front page confirms filed 2003-04-17, published 2004-11-11, Hiroshi Endo / Canon Inc. Bare bulk notation ¶0052 pp12–13; source equation images ¶0053/0054 p13; all 33 stations/17 media and asphere/DO terms pp14–15; motion cams pp15–16; focus cam p17. Table 2's rotated grid is on p10, Table 3's condition grid on p24. Figure 1 p25 is the wide section; Figure 2 is a power/motion diagram, not a tele section. Native Figure 1 is1162 × 651 at≈400 dpi; tables≈200 dpi. Old 600 dpi viewing is upsampling. Native crops and actual rendered SVG were inspected. Reading uncertainty±0.3–0.6 mm at inferred scale plus schematic error; no source SD column exists.
+
+### All elements and constrained shape changes
+
+E1 and bonded E2/E3 were checked against the full source optical rim. Restore S4/S5 SD23.8/23.6→27.0 mm, matching the native continuous pair height without an interface land. A27.2 mm common-height trial crosses E3 at the rim with−0.052 mm edge thickness; rejected. The adopted27 mm remains positive, finite and untrimmed under literal R/d.
+
+E4–E6 negative IS bodies retain S7/S8 clear caps10.6 mm and connected S9 cement; no full-height12 mm negative block. E7/E8 retain the sole aspheric face, literal coefficients and constrained meniscus ends. E9 retains its inferred12 mm single negative body, excluding the SP leader from measurement. E10–E13 rear cluster is source-connected: S21/S22 clear caps10.5→11.0 mm remove finite wide-state boundary clipping (sampled maxima10.512559/10.521551 mm) within the native envelope and unchanged gap guard. E14–E16 retain the normalized zero-distance equal-radius29/30 material interface; no invented air/cement/resin layer. E17 retains its19 mm terminal meniscus. No remaining resolved shoulder justifies an outer extension; no disconnected wing, opaque bonded land or inferred concave-end cut is authored. Existing gapSagFrac0.97, R/d, stop, phase/asphere and cams are unchanged.
+
+### Every medium, phase and source-equation limitations
+
+All 17 literal N/ν pairs match original pp14–15. Bulk reference wavelength is unreported in ¶0052; only DOEλ0 is explicitly d-line in ¶0054. Mark all 17 Unmatched with approximate coordinate candidates and reference notes, zero active catalog curves. No genuine C/F/g, partial dispersion or APD evidence is printed, and no per-lens override existed. Historical catalogs do not prove production supplier, melt or chemistry. No microscopic resin thickness/material prescription or three-layer DO geometry is provided.
+
+The raw c2/c4/c6 values−7.27275e-5/−3.95105e-9/−3.14725e-12 and d-line DOEreference stay unchanged. Actual ¶0054 prints2πλ0 and C1·a²; the retained OPD/+1 interpretation is explicitly an adopted model supported by source focal/back-focus scale, not literal reproduction of that defective equation. Native asphere denominator has undefined H; existing standard spherical-base K=0 is retained as interpretation, with literal b/c/d. Table 3 prints DXT/MF bound 0.05–0.08 against example values0.56/0.67. These are separate structured unresolved source.errata notes; no exact correction, radius fit or phase scaling is invented.
+
+### Source cams and all-state runtime
+
+Fresh coefficient evaluation gives tele shifts−65.184060/−10.812550/+7.722790/−14.310666 mm for L1/L3/L4/L6. The 21 retained knots agree with the rounded source motion data within 0.008824 mm; source spacing columns stay literal, and L4 turning point0.0748997827 is included. Focus-cam shifts agree within 1e-9 mm, W/M/T0.713980/2.399338/7.934380 mm, consistent with Table 2 rounded endpoint 0.71/7.93 mm. D25+D31 remains conserved.
+
+Actual-state iris checks across 81 distinct zoom coordinates (65 uniform plus all 21 knots) × 21 focus positions give1,701 states,250,047 aimed pupil rays,83,349 clear axial rays and5,103 clear chiefs. All 17 paths finite/closed/connected, zero renderer trimming. Source W/M/T infinity counts49/44/31,49/48/28,49/37/27; close counts49/44/31,49/46/26,49/40/22. Peripheral vignetting remains. Narrow guards pass without new allowances; no cuts require a beam exemption.
+
+Separate65-position infinity aperture/first-order census stays within 3% of the iris schedule; max Gaussian defocus+0.121533 mm at z=.96875. Source-cam endpoint diagnostic conjugates≈1485.547/1504.948/1505.883 mm do not establish an exact source distance-reference plane. Interpolated cam/focus states, centered IS only, unresolved bulk reference, ideal phase optics and17/14-versus18/12 production correlation remain qualified.
+
+### Historical-date preservation
+
+The 2026-08-19 entry above is preserved as its actual historical review. Its17-active-curves, explicit bulk d-line, fixed STO.sd and600 dpi detail claims are superseded by this fresh original/reference and current-schema review; they are not reissued as fresh evidence. No auxiliary publication or production page was silently substituted.
+
+The directly printed endpoint half-fields 16.7°/4.25° have clear chiefs at 21.652893/22.322699 mm, 100.09%/103.19% of the format semi-diagonal; these source-angle heights remain distinct from the runtime format-corner solve.

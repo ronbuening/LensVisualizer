@@ -10,7 +10,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1777** total code-only elements found
+- **1773** total code-only elements found
 - **364** elements in this report
 - **131** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition

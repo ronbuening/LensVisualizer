@@ -21,7 +21,7 @@ The fixed production correlation is the CANON EF 70-200mm f/4 L USM. It is a cor
 5. Canon specifies inner focusing. The patent explicitly focuses by translating L1b toward the object (¶0025, ¶0029).
 6. Canon specifies a 1.2 m closest focusing distance and 0.21× maximum magnification. The constrained focus model at the tele control point gives 0.2150×, consistent with the rounded production figure without treating it as a patent-published close-focus row.
 
-Marketing and design values are kept separate throughout. The production specification is 70–200 mm f/4; the numerical model uses the patent zoom controls 71.92, 118.29, and 194.57 mm and the patent/model f-number 4.1. The data file's independently computed design endpoints are 71.901018 and 194.540481 mm.
+Marketing and design values are kept separate throughout. The production specification is 70–200 mm f/4; the numerical model uses the patent zoom controls 71.92, 118.29, and 194.57 mm and the patent/model f-number 4.1. Catalog design endpoints quote the printed 71.92 and 194.57 mm. The independently computed EFLs are 71.901018 and 194.540481 mm; these are separate results, with no uniform scaling or numerical prescription correction.
 
 No uniform scaling is applied. No sensor cover glass, filter, dummy surface, flare-cutter plane, or other inactive optical plate appears in the selected numerical prescription, so there is no omitted-plate correction or air-equivalent spacing adjustment. No patent radius, spacing, refractive index, or Abbe value is numerically corrected in the model.
 
@@ -39,7 +39,7 @@ A point requiring care is the E6+E7 cemented pair. Patent ¶0051 describes a pre
 
 L3 is the positive compensator and consists of the cemented E9+E10 pair. Its net focal length is +107.114 mm. The patent says L3 follows an object-side-convex compensation trajectory to correct image-plane displacement during zooming (¶0027). The three published states reproduce that behavior: the L3 start position moves from 71.78 to 87.00 mm and then reverses slightly to 86.67 mm. The final 0.33 mm objectward reversal is why D18 changes non-monotonically from 19.00 to 3.78 to 4.11 mm.
 
-The physical stop lies between L3 and L4, exactly where the patent places SP. The stop location is source-published; its diameter is not. The model traces one fixed iris of 14.3750 mm radius, the height at the stop of the real f/4.1 marginal ray at 71.92 mm, held through the zoom. The 14.258451 mm semi-diameter on the `STO` row is the inferred paraxial radius that reproduces f/4.1 across the three published zoom states; it does not size the traced beam.
+The physical stop lies between L3 and L4 at the published position; its diameter is not printed. The current shared paraxial rule derives a fixed wide-open radius of 14.258975720 mm from the wide source f/4.1 target. This inferred radius is held through zoom. The earlier 14.3750 mm real-ray calibration predates the shared stop rule and no longer describes the runtime iris. Neither value is a measured production stop.
 
 L4 is fixed during zoom and contains six elements in five air-separated groups: E11, the cemented E12+E13 pair, E14, E15, and E16. Its group focal length is +87.234 mm. Patent ¶0048 describes L4 as imaging the approximately afocal beam emerging from L3 onto the image plane. The E12+E13 cemented pair is net negative at -133.803 mm, while the surrounding positive singlets give the complete relay positive power.
 
@@ -51,7 +51,7 @@ The selected prescription has no image-stabilization group or decentered optical
 
 ### E1 — Positive Meniscus, Fixed L1a
 
-`nd = 1.487490, νd = 70.2. Glass: S-FSL5 (OHARA) class. Standalone f = +504.979 mm.`
+`nd = 1.487490, νd = 70.2. Glass: S-FSL5 qualified spectral proxy. Standalone f = +504.979 mm.`
 
 E1 is the single positive element of L1a and remains fixed during both zooming and the modeled focus movement. Its standalone power is weak relative to the complete L1 group; independent computation gives L1a the same +504.979 mm focal length because E1 alone forms that subgroup.
 
@@ -59,7 +59,7 @@ The patent's first-group power conditions deliberately avoid concentrating too m
 
 ### E2 — Negative Meniscus, Front of L1b
 
-`nd = 1.721507, νd = 29.2. Glass: S-TIH18 (OHARA) class. Standalone f = -232.775 mm.`
+`nd = 1.721507, νd = 29.2. Glass: S-TIH18 qualified spectral proxy. Standalone f = -232.775 mm.`
 
 E2 is the first element of the translating L1b subgroup. Its negative meniscus power opposes the two following positive elements while L1b remains positive as a whole. The patent's preferred L1b construction begins with an object-side-convex negative meniscus followed by two positive elements (¶0038), which is the sequence represented by E2–E4.
 
@@ -75,7 +75,7 @@ The spectral model resolves the shared CaF2 catalog curve (Daimon and Masumura r
 
 ### E4 — Biconvex Positive, Low-Dispersion L1b Element
 
-`nd = 1.496999, νd = 81.5. Glass: S-FPL51 (OHARA) / FCD1-class UD glass. Standalone f = +151.553 mm.`
+`nd = 1.496999, νd = 81.5. Glass: S-FPL51 qualified spectral proxy. Standalone f = +151.553 mm.`
 
 E4 completes L1b and is the stronger of its two positive elements in standalone focal-length terms. Its stored d-line pair is essentially coincident with the modern S-FPL51/FCD1 family. Canon states that the production lens uses two UD elements; assigning E4 to one of those positions is an inference from the numerical material coordinates and production block-diagram correlation.
 
@@ -91,8 +91,8 @@ The data file uses J-LASF015 only as the current spectral surrogate for the 8044
 
 ### D1 — E6 + E7, Cemented Pair in L2
 
-**E6:** `nd = 1.516330, νd = 64.1. Glass: S-BSL7 (OHARA) / N-BK7 class. Standalone f = -48.772 mm.`\
-**E7:** `nd = 1.846658, νd = 23.9. Glass: S-TIH53WN (OHARA) class; current spectral surrogate. Standalone f = +44.068 mm.`
+**E6:** `nd = 1.516330, νd = 64.1. Glass: S-BSL7 qualified spectral proxy. Standalone f = -48.772 mm.`\
+**E7:** `nd = 1.846658, νd = 23.9. Glass: S-TIH53WN qualified spectral proxy. Standalone f = +44.068 mm.`
 
 E6 is biconcave and negative; E7 is biconvex and positive. They share the R12 cemented interface, which belongs to downstream element E7 in the data model. The individual powers are nearly balanced, and the actual cemented pair is only weakly positive: +417.738 mm net focal length. This cemented net power is distinct from either standalone element focal length and from the complete L2 group power of -31.387 mm.
 
@@ -125,7 +125,7 @@ The 603607 annotation is class-level because the patent supplies only the d-line
 
 ### D3 — E12 + E13, Negative Cemented Relay Pair
 
-**E12:** `nd = 1.496999, νd = 81.5. Glass: S-FPL51 (OHARA) / FCD1-class UD glass. Standalone f = +62.260 mm.`\
+**E12:** `nd = 1.496999, νd = 81.5. Glass: S-FPL51 qualified spectral proxy. Standalone f = +62.260 mm.`\
 **E13:** `nd = 1.804398, νd = 39.6. Glass: 804396 LASF class (HIKARI J-LASF013 spectral surrogate). Standalone f = -40.069 mm.`
 
 E12 and E13 share the R23 cemented interface, assigned to downstream E13. Their combined focal length is -133.803 mm, so the pair is negative in isolation even though E12 itself is strongly positive.
@@ -160,22 +160,22 @@ Example 1 does not publish a D30 back-focus distance. The air space after E16 is
 
 JP2000284174A defines `Ni` and `νi` as d-line refractive index and Abbe number (¶0056) but does not name glass manufacturers or publish per-element C-, F-, or g-line indices. The exact `nd/νd` pairs below are patent data; the named glasses and dispersion curves are current catalog matches or surrogates used by the data model. They should not be read as proof of the 1999 production melts.
 
-| Elements | Patent `nd / νd` | Data-file glass annotation | Spectral/model status |
-|---|---|---|---|
-| E1 | 1.487490 / 70.2 | S-FSL5 (OHARA) class | Current OHARA catalog-curve surrogate |
-| E2 | 1.721507 / 29.2 | S-TIH18 (OHARA) class | Current OHARA catalog-curve surrogate |
-| E3 | 1.433870 / 95.1 | Synthetic fluorite (CaF2; catalog spectral surrogate) | Strong CaF2 coordinate match; production correlation inference |
-| E4, E12 | 1.496999 / 81.5 | S-FPL51 (OHARA) / FCD1-class UD glass | Current low-dispersion catalog-curve surrogate; vendor unresolved |
-| E5 | 1.804000 / 46.6 | 804466 LASF class | HIKARI J-LASF015 spectral surrogate |
-| E6 | 1.516330 / 64.1 | S-BSL7 (OHARA) / N-BK7 class | Current crown catalog-curve surrogate |
-| E7 | 1.846658 / 23.9 | S-TIH53WN (OHARA) class | Current spectral surrogate only; `WN` dispersion dates from 2025 |
-| E8 | 1.749500 / 35.0 | 750350 LAFN7/LAF7 class | SCHOTT LAFN7 spectral surrogate; vendor unresolved |
-| E9 | 1.622992 / 58.2 | S-BSM15 (OHARA) class | Current OHARA catalog-curve surrogate |
-| E10 | 1.762001 / 40.1 | 762401 lanthanum-flint class | OHARA S-LAM55 spectral surrogate |
-| E11, E14 | 1.603112 / 60.6 | 603607 barium-crown class | OHARA S-BSM14 spectral surrogate |
-| E13 | 1.804398 / 39.6 | 804396 LASF class | HIKARI J-LASF013 spectral surrogate |
-| E15 | 1.696797 / 55.5 | 697555 lanthanum-crown class | OHARA S-LAL14 spectral surrogate |
-| E16 | 1.592701 / 35.3 | 593353 flint class | OHARA S-FTM16 spectral surrogate |
+| Elements | Patent `nd / νd` | Data-file glass annotation                            | Spectral/model status                                             |
+| -------- | ---------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
+| E1       | 1.487490 / 70.2  | S-FSL5 qualified spectral proxy                       | Current OHARA catalog-curve surrogate                             |
+| E2       | 1.721507 / 29.2  | S-TIH18 qualified spectral proxy                      | Current OHARA catalog-curve surrogate                             |
+| E3       | 1.433870 / 95.1  | Synthetic fluorite (CaF2; catalog spectral surrogate) | Strong CaF2 coordinate match; production correlation inference    |
+| E4, E12  | 1.496999 / 81.5  | S-FPL51 qualified spectral proxy                      | Current low-dispersion catalog-curve surrogate; vendor unresolved |
+| E5       | 1.804000 / 46.6  | 804466 LASF class                                     | HIKARI J-LASF015 spectral surrogate                               |
+| E6       | 1.516330 / 64.1  | S-BSL7 qualified spectral proxy                       | Current crown catalog-curve surrogate                             |
+| E7       | 1.846658 / 23.9  | S-TIH53WN (OHARA) class                               | Current spectral surrogate only; `WN` dispersion dates from 2025  |
+| E8       | 1.749500 / 35.0  | 750350 LAFN7/LAF7 class                               | SCHOTT LAFN7 spectral surrogate; vendor unresolved                |
+| E9       | 1.622992 / 58.2  | S-BSM15 (OHARA) class                                 | Current OHARA catalog-curve surrogate                             |
+| E10      | 1.762001 / 40.1  | 762401 lanthanum-flint class                          | OHARA S-LAM55 spectral surrogate                                  |
+| E11, E14 | 1.603112 / 60.6  | 603607 barium-crown class                             | OHARA S-BSM14 spectral surrogate                                  |
+| E13      | 1.804398 / 39.6  | 804396 LASF class                                     | HIKARI J-LASF013 spectral surrogate                               |
+| E15      | 1.696797 / 55.5  | 697555 lanthanum-crown class                          | OHARA S-LAL14 spectral surrogate                                  |
+| E16      | 1.592701 / 35.3  | 593353 flint class                                    | OHARA S-FTM16 spectral surrogate                                  |
 
 The low-dispersion correlation is particularly significant. Canon states that the production EF70-200mm f/4L USM uses one synthetic crystalline fluorite element and two UD elements to suppress secondary spectrum. The patent example supplies exactly one very-low-index/high-Abbe element at E3 and two identical high-Abbe glass elements at E4 and E12. The numerical correspondence supports the production match, but the patent does not label these materials as “fluorite” or “UD.”
 
@@ -189,11 +189,11 @@ The patent's focus mechanism is explicit even though its close-focus spacings ar
 
 The focus state is therefore `CONSTRAINED_RECONSTRUCTION`, not a published close-focus table. Canon's 1.2 m production minimum focusing distance is used as the external constraint, normalized from the fixed modeled image plane. The corresponding object-to-R1 distance is 987.169144 mm. Solving the paraxial conjugate condition at each of the three zoom control points gives:
 
-| Zoom control | L1b objectward shift | D2 infinity → close | D8 infinity → close | Computed `|m|` at close |
-|---:|---:|---:|---:|---:|
-| 71.92 mm | 13.542577 mm | 14.820000 → 1.277423 mm | 1.900000 → 15.442577 mm | 0.079485× |
-| 118.29 mm | 13.534711 mm | 14.820000 → 1.285289 mm | 25.600000 → 39.134711 mm | 0.130729× |
-| 194.57 mm | 13.532270 mm | 14.820000 → 1.287730 mm | 41.250000 → 54.782270 mm | 0.215047× |
+| Zoom control | L1b objectward shift |     D2 infinity → close |      D8 infinity → close | Computed ` | m   | ` at close |
+| -----------: | -------------------: | ----------------------: | -----------------------: | ---------: | --- | ---------- |
+|     71.92 mm |         13.542577 mm | 14.820000 → 1.277423 mm |  1.900000 → 15.442577 mm |  0.079485× |
+|    118.29 mm |         13.534711 mm | 14.820000 → 1.285289 mm | 25.600000 → 39.134711 mm |  0.130729× |
+|    194.57 mm |         13.532270 mm | 14.820000 → 1.287730 mm | 41.250000 → 54.782270 mm |  0.215047× |
 
 The nearly constant ~13.53–13.54 mm travel follows directly from the rigid-subgroup constraint and the fixed 1.2 m object-to-image normalization. The tele result of 0.2150× is close to Canon's rounded 0.21× specification. That agreement is a cross-check of the reconstruction, not evidence that the patent published these exact close-focus spacings.
 
@@ -213,33 +213,33 @@ Canon's statement that the production fluorite and UD elements suppress secondar
 
 The patent defines `Fm = sqrt(Fw × Ft)` and gives five conditions governing the power balance of the first group, its focus subdivision, the variator, the compensator, and the relay (¶0031–¶0049). Independent computation from the final data gives `Fm = 118.294017 mm` and reproduces the printed Example 1 values to the patent's three-decimal precision.
 
-| Condition | Patent range | Computed | Patent Table 1 | Residual |
-|---|---:|---:|---:|---:|
-| `F1 / Fm` | `0.6 < ... < 1.2` | 0.923662 | 0.924 | -0.000338 |
-| `F1b / F1a` | `0.16 < ... < 0.4` | 0.264605 | 0.265 | -0.000395 |
-| `|F2 / Fm|` | `0.18 < ... < 0.35` | 0.265330 | 0.265 | +0.000330 |
-| `F3 / Fm` | `0.6 < ... < 1.2` | 0.905488 | 0.906 | -0.000512 |
-| `F4 / Fm` | `0.45 < ... < 1` | 0.737433 | 0.738 | -0.000567 |
+| Condition   |       Patent range | Computed |      Patent Table 1 |  Residual |
+| ----------- | -----------------: | -------: | ------------------: | --------: | ----- | --------- |
+| `F1 / Fm`   |  `0.6 < ... < 1.2` | 0.923662 |               0.924 | -0.000338 |
+| `F1b / F1a` | `0.16 < ... < 0.4` | 0.264605 |               0.265 | -0.000395 |
+| `           |            F2 / Fm |        ` | `0.18 < ... < 0.35` |  0.265330 | 0.265 | +0.000330 |
+| `F3 / Fm`   |  `0.6 < ... < 1.2` | 0.905488 |               0.906 | -0.000512 |
+| `F4 / Fm`   |   `0.45 < ... < 1` | 0.737433 |               0.738 | -0.000567 |
 
 All five conditions lie inside their stated bounds. The results also explain the design's motion allocation: L2 has enough negative power to provide zoom action without excessive travel, L3 has enough positive power to compensate image-plane motion without excessive compensator travel, and L4 retains enough positive power to form the final image without an excessively long back-focus requirement.
 
 ## Verification Summary
 
-The final data was independently recomputed with sequential height/reduced-angle tracing and a separately composed ABCD matrix. The two methods agree to within 2×10⁻¹² in the matrix coefficients, and the ABCD determinants remain unity to the same tolerance.
+The earlier independent sequential height/reduced-angle and ABCD results are reused for the unchanged source R/d and media. The two methods agree to within 2×10⁻¹² in the matrix coefficients, and the ABCD determinants remain unity to the same tolerance.
 
-| Patent zoom control | Computed EFL | EFL residual | Best paraxial BFD from R30 | Paraxial f-number, `STO`-row radius |
-|---:|---:|---:|---:|---:|
-| 71.92 mm | 71.901018 mm | -0.018982 mm | 53.134605 mm | 4.100151 |
-| 118.29 mm | 118.264443 mm | -0.025557 mm | 53.131905 mm | 4.100042 |
-| 194.57 mm | 194.540481 mm | -0.029519 mm | 53.126058 mm | 4.099807 |
+| Patent zoom control |  Computed EFL | EFL residual | Best paraxial BFD from R30 | Current aperture census |
+| ------------------: | ------------: | -----------: | -------------------------: | ----------------------: |
+|            71.92 mm |  71.901018 mm | -0.018982 mm |               53.134605 mm |                4.100000 |
+|           118.29 mm | 118.264443 mm | -0.025557 mm |               53.131905 mm |                4.099891 |
+|           194.57 mm | 194.540481 mm | -0.029519 mm |               53.126058 mm |                4.324004 |
 
-Example 1 does not publish D30/BFD. The three computed infinity BFDs span only 0.008547 mm, so the model uses their mean, 53.130855839 mm from R30, as one fixed image plane. This is a modeling inference intended to absorb source rounding, not a published image-space distance or a moving image plane.
+Example 1 does not publish D30/BFD. The three computed infinity BFDs span only 0.008547 mm, so the model uses their mean, 53.130855839 mm from R30, as one fixed image plane. This is an authored mean image plane, not a printed source distance or a moving image plane. The cause of the small station spread is not independently established.
 
-The aperture-stop position is published, but its diameter is not. In the paraxial model the 14.258451 mm semi-diameter on the `STO` row reproduces the patent's f/4.1 at the three zoom states to within 0.0003 in f-number, with paraxial entrance-pupil semi-diameters of 8.768094, 14.422345, and 23.725566 mm at the authored infinity states. The traced wide-open iris is one fixed radius of 14.3750 mm, set by the real f/4.1 marginal ray at 71.92 mm. Through it the on-axis beam at infinity focus traces f/4.10 at 71.92 mm and f/4.10 at 118.29 mm, both limited by the iris, and f/4.36 at 194.57 mm, where the 21 mm rim of r5 stops the beam at an entrance height of 22.309 mm before it reaches the iris radius.
+The source prints f/4.1 and the stop position, without a diameter. The current fixed inferred iris is 14.258975720 mm. The aperture census gives f/4.100000, f/4.099891 and f/4.324004 at the three infinity stations; the last is 5.46% slower than stated and is limited by S5. This census differs from the actual iris-rim working probe: wide/middle return f/4.130604 and f/4.138843, while the tele probe is vignetted at S4. The prescription, stop location, target and rule are retained; no number is fitted to eliminate the restriction.
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)` at each refracting surface, is +0.001149444422 mm⁻¹, corresponding to a reciprocal magnitude of 869.986 mm. This is a computed first-order quantity, not a patent-published field-curvature radius.
 
-Semi-diameters are not published in Numerical Example 1. The data values are inferred from marginal/chief-ray envelopes, the patent and Canon optical sections, and geometry constraints. Figure 1 on local PDF page 8, read at 600 dpi, draws the optical rims of the final three elements at approximately 15.3, 15.9, and 16.4 mm; the data gives them common rims of 15.3, 15.8, and 16.4 mm respectively. In L1b, r3/r6 = 25.8 mm, r4/r5 = 21 mm, and r7/r8 = 24.2 mm. Surface and image-circle checks pass with the default 0.90-gap policy. The r4/r5 shared rim is constrained by its 0.1 mm air gap: the default policy allows at most 21.13 mm there, and extending the rim to the outer silhouette would violate cross-gap geometry. That rim is what holds the 194.57 mm on-axis beam to f/4.36. The f/4.1 on-axis ray reaches r4 at 22.30 mm at 194.57 mm, while the printed R4 = 58.007, R5 = 59.256, and D4 = 0.10 bring the two faces into contact at 22.15 mm, so no rim value passes that ray; the largest on-axis beam the printed table passes at that station is f/4.13. Figure 1 draws the r4/r5 interface as a single stroke out to the full height of E2 and E3, about 26 mm. These inferred values are not production mechanical dimensions. All 16 elements resolve to qualified catalog Sellmeier curves without identifying historical suppliers.
+Semi-diameters are not published in Numerical Example 1. The data values are inferred from marginal/chief-ray envelopes, the patent and Canon optical sections, and geometry constraints. Figure 1 on local PDF page 8, natively encoded at 200 ppi (the earlier 600 dpi view was an enlargement), draws the optical rims of the final three elements at approximately 15.3, 15.9, and 16.4 mm; the data gives them common rims of 15.3, 15.8, and 16.4 mm respectively. In L1b, r3/r6 = 25.8 mm, r4/r5 = 21 mm, and r7/r8 = 24.2 mm. Surface and image-circle checks pass with the default 0.90-gap policy. The r4/r5 shared rim is constrained by its 0.1 mm air gap: the default policy allows at most 21.13 mm there, and extending the rim to the outer silhouette would violate cross-gap geometry. Under the current stop rule, that rim holds the 194.57 mm aperture census to f/4.324; the older f/4.36 result belongs to the earlier iris calibration. The f/4.1 on-axis ray reaches r4 at 22.30 mm at 194.57 mm, while the printed R4 = 58.007, R5 = 59.256, and D4 = 0.10 bring the two faces into contact at 22.15 mm, so no rim value passes that ray; the largest on-axis beam the printed table passes at that station is f/4.13. Figure 1 draws the r4/r5 interface as a single stroke out to the full height of E2 and E3, about 26 mm. These inferred values are not production mechanical dimensions. All 16 elements resolve to qualified catalog Sellmeier curves without identifying historical suppliers.
 
 The selected example contains no conic or polynomial asphere, so no asphere convention or coefficient transformation applies. No scaling is applied, and there is no sensor-cover or filter plate whose optical effect needs to be folded into the rear spacing.
 
@@ -254,3 +254,23 @@ The selected example contains no conic or polynomial asphere, so no asphere conv
 - HIKARI, J-LASF catalog, used for current 804466/J-LASF015 and 804396/J-LASF013 class surrogates: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-lasf/>
 - SCHOTT, LAFN7 optical-glass datasheet, used for the E8 current catalog-curve surrogate: <https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea>
 - Canon Optron, “Fluorite CaF2,” optical-crystal reference supporting the CaF2 material correlation: <https://optron.canon/ja/img/fluorite/pamphlet_caf2_en.pdf>
+
+## 2026-10-30 — Original-source review and current runtime qualifications
+
+This scoped reopening addresses missing explicit source-reference qualifications, computed-versus-printed catalog metadata, and reproducibly stale stop/clearance wording after the shared aperture-rule change. The unchanged R/d, retained cap measurements and source-gap investigation and rejected geometric alternatives retain their actual **2026-10-08** audit date. They are reused, rather than attributed to a new numerical correction. The original was inspected again for the present scope: JP 2000-284174 A cover p.1; explicit d-line definition ¶0056 p.5; Numerical Example 1 and all 30 rows/16 media plus zoom gaps p.6; Fig.1 p.8 and matching Figs.2–4 pp.8–9.
+
+Native images are 1656×2339 at 200 ppi. The optical section is approximately 3.8 native pixels/mm; stroke width, scan tilt and schematic scaling give practical ±0.8 mm height uncertainty. A 600 dpi rendering contains no additional native detail. Leaders, group brackets, focus arrows, SP and IP marks are excluded. Every element and concave end was compared with the actual SVG. The native first meniscus has a shared approximately27mm blank: adopting27mm on R1/R2 replaces26/25.6mm. The resulting E1:E2:E4 outer-height ratio1:0.956:0.896 agrees with the native1:0.96:0.90 within reading uncertainty. This is an inferred source-outline correction, not a new opaque block. No new resolved shoulder, inferred cut, bonded-interface land or resin wing is justified. The existing near-contact notches remain a source-outline limitation; they are not hidden renderer trimming.
+
+All 16 source index/Abbe pairs match the model. Paragraph 0056 explicitly assigns the refractive index to the d line, independently of the d/g aberration legend. The source gives no individual C/F/g indices or relative partial-dispersion measurements. There is no catalog-derived per-lens spectral override to remove. All 16 compatible curves remain qualified proxies, including CaF2, S-FPL51 and the modern S-TIH53WN curve; source supplier, melt, historical chemistry and manufacturing process are unestablished. Three production-correlated APD tags remain inferred, without a patent APD designation. No extra cement, hybrid, filter or rear plate is prescribed. Canon's current museum page confirms the separate retail 16/13 count, September 1999 release, 1.2 m close limit and one fluorite/two UD claim; it does not prove a production-prescription or element-allocation match.
+
+Only R1/R2 inferred clear caps change to27mm; every R/d, material coordinate, stop and optical control remains unchanged. Catalog focal design metadata now quotes the printed 71.92/194.57 mm instead of recomputed 71.901018/194.540481 mm. The following runtime results use the current iris at each prepared state, and supersede earlier blanket beam-clearance or 14.375 mm iris wording:
+
+- 65 zoom × 21 focus controls produce 1,365 states and 21,840 finite, connected, closed element paths with zero renderer trim.
+- The 49-point pupil at axial, 0.6-field and format corner yields 200,655 launches per version. All 4,095 chiefs are valid; 142,191 rays transmit and 58,464 are classified as physical blocking, with no unclassified failure. The new source-supported first blank recovers200 peripheral samples across80 field states; all chief and axial counts are unchanged. Axial transmission is 62,517/66,885 overall and can fall to 17/49 at tele/close.
+- At source infinity zoom 0/0.5/1 the axial/0.6-field/corner survivors are 49/41/32, 49/41/23 and 33/32/19. At reconstructed close focus they are 49/43/23, 49/35/15 and 17/22/13. These are sampled pupil results, rather than guaranteed illumination.
+- The1,365 preset calls retain the baseline totals:1,339 trace and26 vignette. After the front-blank correction, retained vignettes are limited atS4; the earlierS2 limiter is superseded. Narrow aperture census is 2/3 within 3%; surface and image-circle checks pass. Default format-corner checks pass, while the source wide 16.7°/16.75° rays reach only 20.9609/21.0236 mm (96.8%/97.1% of the diagnostic 21.65 mm half-diagonal). Source middle 10.4° reaches 21.9567 mm; tele 6.3°/6.35° reaches 22.0781/22.2656 mm. Do not conflate the source field statement with the runtime format diagnostic.
+- Source infinity BFLs are 53.134605/53.131905/53.126058 mm, against the retained inferred common 53.130856 mm image gap. Linear zoom interpolation reaches +3.970376 mm paraxial defocus at zoom 0.78125. The reconstructed 1.2 m finite endpoint at that interpolated zoom retains +3.971377 mm defocus. The three source-station close solutions are endpoint reconstructions, not a source finite-focus table or a production cam.
+
+The R4/R5 0.10 mm gap and R13/R14 1.00 mm gap retain the default 0.90 guard. Repeated 22.3 mm full-stated-ray, 22.1 mm edge-contact and 25.8 mm full-blank trials at R4/R5 fail the unchanged guard; the first/full-blank cases also exceed physical contact. Raising R13/R14 to 14 mm fails with 1.07 mm sag versus a 0.90 mm allowance. No gap, radius, aperture target or tolerance is adjusted. A flat opaque extension would not be a measured source shoulder. The exact full f/4.1 tele ray and possible one-decimal source-label interpretation remain qualified in source.errata and the generic audit queue.
+
+Source fidelity, sampled runtime behavior and production correlation are separate conclusions. There is no modeled transverse IS, finite floating cam, attached-converter clearance or production-performance certification.

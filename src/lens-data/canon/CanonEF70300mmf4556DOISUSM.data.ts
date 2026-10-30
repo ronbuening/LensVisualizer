@@ -1,51 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Canon EF 70-300mm f/4.5-5.6 DO IS USM — JP 2004-317867 A, Numerical Example 1.
- *
- * Numerical authority: the fixed local patent. The rendered Example 1 table prints r4=49.800 and r10=-759.945; both
- * literal values are used here. Canon's phase equation
- * is Phi=(2*pi/lambda0)*sum(Cp*h^p), while LensVisualizer stores the optical-path polynomial W=sum(Cp*h^p), so the raw
- * patent coefficients are stored directly. These choices reproduce the published focal lengths and back focus without
- * fitted radii or coefficient scaling. The Example 1 formula is strongly correlated with the marketed lens by focal
- * range, aperture range, DO placement, rear focus, IS group, and publication timing, but Canon does not identify it as
- * the production prescription. The patent model has 17 elements in 14 air-separated assemblies and seven functional
- * zoom groups; Canon marketed 18 elements / 12 groups and a three-layer DO element. elementCount and groupCount
- * describe this authored patent model.
- *
- * Diffractive normalization: source surface 4 is the E2-to-E3 bonded interface and carries Canon's radial phase
- * polynomial. The patent prints raw C2/C4/C6 values of -7.27275e-5, -3.95105e-9, and -3.14725e-12. Its rendered formula
- * is OCR-prone, but Canon's Phi=(2*pi/lambda0)*sum(Cp*h^p) convention makes those Cp values optical-path coefficients.
- * LensVisualizer uses that same W=sum(Cp*h^p) representation, so no additional 2*pi/lambda0 factor is applied. The
- * current tracer follows the ideal +1 design order; it does not model Canon's multi-layer diffraction efficiency,
- * unwanted orders, scatter, or flare.
- *
- * Focus status: PATENT_CAM_SAMPLED. The patent mechanism moves L6 only, with D25 increasing and D31 decreasing by the
- * same amount. The authored 1.5 m shifts are 0.713980 mm wide, 2.399338 mm middle, and 7.934380 mm tele, evaluated from
- * the printed focus-cam polynomial at the reconstructed W/M/T zoom coordinates. Table 2 independently rounds the
- * endpoints to 0.71 and 7.93 mm. The marketed 1.4 m MFD does not override the patent model.
- *
- * Zoom: the patent publishes three infinity states plus 12-term motion cams for L1, L3, L4, and L6; L2 (IS), L5, and
- * L7 remain fixed. A least-squares fit to all six printed variable gaps places the middle station at cam parameter
- * z=0.50540029. The 21-point schedule samples those source cams, includes L4's turning point at z=0.0748997827, and
- * retains the three printed W/M/T gaps exactly. Intermediate zoomPositions are computed d-line EFL labels.
- *
- * Semi-diameters are inferred because Example 1 publishes no clear apertures. The draft values combine the 600 dpi
- * Figure 1 optical outlines with the current edge/slope/cross-gap/render constraints and targeted ray containment at
- * all 21 zoom knots, at infinity and 1.5 m focus. They are modeling apertures, not patent dimensions. The patent
- * gives only rounded endpoint f-numbers and no stop radius; nominalFno therefore uses the published 4.6/5.8
- * endpoints plus a disclosed 5.2 middle interpolation. The stop radius is derived from the design f-number at each
- * zoom station; the largest exact marginal-ray opening is 10.408 mm, at tele. Surface SDs 4/5 and 7/8 contain that
- * tele marginal ray and remain consistent with the 600 dpi Figure 1 outline.
- *
- * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct E15-to-E16 interface
- * labeled 29, with source d30=0.95 mm retained. This leaves the paraxial, exact-refractive, and Petzval behavior
- * unchanged. No cover glass, filter, dummy/flare-cutter plane, folded path, or mechanical component is included.
- *
- * Patent glass identities are unresolved. A coherent whole-prescription coordinate fingerprint supports qualified
- * OHARA catalog surrogates for 13 elements. The four non-unique rows (E2, E6, E14, and E16) retain vendor-neutral
- * six-digit classes while using coordinate-compatible catalog curves. No catalog-derived nC/nF/ng is presented as
- * measured patent data, and dPgF is omitted because the source publishes neither line indices nor partial dispersion.
+ * JP2004317867A Numerical Example 1, original shape/glass inspection 2026-10-30.
+ * Native Figure 1 is 1162x651 at about400dpi; numerical tables about200dpi.
+ * 17 elements /14 air-spaced assemblies /7 functional zoom units; the marketed
+ * 18/12 three-layer DO construction is a qualified correlation, not this formula.
+ * All literal R/d, asphere/phase coefficients, stop and authored cams are retained.
+ * Source r4=49.800 and r10=-759.945 are directly legible. The zero-distance
+ * equal-radius 29/30 split stays normalized to one E15/E16 material interface.
+ * Raw DOE coefficients remain the existing +1 OPD interpretation. The original
+ * phase prefactor and aspheric denominator are defective/undefined as printed;
+ * no claim of exact printed-equation reproduction or physical micro-layer model.
+ * Bulk ni/vi reference is unspecified; only the DOE wavelength is explicitly d.
+ * Every bulk medium stays unresolved with approximate coordinate candidates.
+ * No catalog-derived per-lens spectral values or published partials are present.
+ * S4/S5 restored to27mm optical height under the source connected outline;
+ * S21/S22 inferred caps11mm remove finite-state boundary clips. These are model
+ * apertures, not printed dimensions. No interface lands or inferred cuts.
+ * 21 source-cam sample knots include L4's turning point; intermediate interpolation
+ * and linear focus slider remain approximations, with actual-state iris audited.
  */
 const LENS_DATA = {
   schema: 2,
@@ -78,6 +51,20 @@ const LENS_DATA = {
     patentYear: 2004,
     authors: ["Hiroshi Endo"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Original paragraph0054/page13 prints Phi=2pi*lambda0*(C1*a^2+C2*h^4+C3*h^6+...), while the retained model interprets the tabulated c2/c4/c6 as an OPD polynomial with phase2pi/lambda0. Source focal/back-focus evidence supports that existing interpretation, but the literal prefactor/radial-symbol defect is not silently corrected or claimed to describe physical three-layer geometry.",
+      },
+      {
+        status: "unresolved",
+        note: "The native aspheric equation in paragraph0053/page13 shows an undefined H multiplying the square root in the denominator. The existing standard spherical-base K=0 interpretation and all printed b/c/d coefficients are retained; K is not independently printed and no exact replacement equation is proved here.",
+      },
+      {
+        status: "unresolved",
+        note: "Table3/page24 prints 0.05<abs(DXT/MF)<0.08 but Example1=0.56 and Example2=0.67. The inconsistent bound remains a source defect; no optical or control value is changed to satisfy it.",
+      },
+    ],
   },
 
   elements: [
@@ -89,7 +76,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 227.345987,
-      glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Front positive collector in patent group L1.",
     },
     {
@@ -100,7 +89,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -126.309451,
-      glass: "834372 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Negative front member of the bonded pair whose interface carries the effective Canon DO phase.",
       cemented: "DO1",
     },
@@ -112,7 +103,9 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 91.815361,
-      glass: "S-BSL7 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSL7)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Positive rear member of the bonded DO pair and main positive component of patent group L1.",
       cemented: "DO1",
     },
@@ -124,7 +117,9 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: -60.00451,
-      glass: "S-LAL8 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAL8)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Front negative member of fixed patent group L2, which the source identifies as the lateral IS group.",
     },
     {
@@ -135,7 +130,9 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: -32.872491,
-      glass: "S-BSM15 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM15)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Negative member of the cemented rear pair in the IS group.",
       cemented: "D2",
     },
@@ -147,7 +144,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 51.477738,
-      glass: "847239 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-NPH53)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "High-dispersion positive partner completing the net-negative IS group.",
       cemented: "D2",
     },
@@ -159,7 +158,9 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 31.188373,
-      glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Strong positive aspheric member of patent group L3 ahead of the aperture stop.",
     },
     {
@@ -170,7 +171,9 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -124.344478,
-      glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Weak negative partner completing patent group L3.",
     },
     {
@@ -181,7 +184,9 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.3,
       focalLengthMm: -39.18805,
-      glass: "S-LAH97 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH97)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Single negative moving patent group L4 immediately behind the stop.",
     },
     {
@@ -192,7 +197,9 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       focalLengthMm: 61.309616,
-      glass: "S-NSL36 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-NSL36)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Front positive element of fixed patent group L5.",
     },
     {
@@ -203,7 +210,9 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -67.676777,
-      glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Negative element balancing the positive members of fixed patent group L5.",
     },
     {
@@ -214,7 +223,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 53.201389,
-      glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Low-dispersion positive element in fixed patent group L5.",
     },
     {
@@ -225,7 +236,9 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 59.091672,
-      glass: "S-BSM14 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM14)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Rear positive element completing fixed patent group L5.",
     },
     {
@@ -236,7 +249,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -37.415378,
-      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH55)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Front negative element of moving rear-focus patent group L6.",
     },
     {
@@ -247,7 +262,9 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: 25.46681,
-      glass: "S-TIH10 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH10)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Positive member of the collapsed zero-air-gap E15/E16 assembly in moving patent group L6.",
       cemented: "D3",
     },
@@ -259,7 +276,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -19.707635,
-      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH55)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Negative partner in the normalized E15/E16 assembly completing moving patent group L6.",
       cemented: "D3",
     },
@@ -271,7 +290,9 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 151.175826,
-      glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
+      indexReferenceNote:
+        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
       role: "Fixed final positive field-relay patent group L7 ahead of the 38.63 mm image spacing.",
     },
   ],
@@ -284,7 +305,7 @@ const LENS_DATA = {
       label: "4",
       R: 49.8,
       d: 8.43,
-      sd: 23.8,
+      sd: 27.0,
       medium: 3,
       diffractive: {
         kind: "radial-polynomial",
@@ -297,7 +318,7 @@ const LENS_DATA = {
         ],
       },
     },
-    { label: "5", R: -929.716, sd: 23.6 },
+    { label: "5", R: -929.716, sd: 27.0 },
     { label: "6", R: -301.558, d: 0.98, sd: 12.0, medium: 4 },
     { label: "7", R: 49.924, d: 2.8, sd: 10.6 },
     { label: "8", R: -37.115, d: 0.98, sd: 10.6, medium: 5 },
@@ -320,8 +341,8 @@ const LENS_DATA = {
     { label: "18", R: -429.477, d: 3.12, sd: 12.0, medium: 10 },
     { label: "19", R: -29.614, d: 0.11, sd: 12.0 },
     { label: "20", R: 140.485, d: 1.12, sd: 11.0, medium: 11 },
-    { label: "21", R: 39.123, d: 0.38, sd: 10.5 },
-    { label: "22", R: 49.613, d: 4.1, sd: 10.5, medium: 12 },
+    { label: "21", R: 39.123, d: 0.38, sd: 11.0 },
+    { label: "22", R: 49.613, d: 4.1, sd: 11.0, medium: 12 },
     { label: "23", R: -52.871, d: 0.11, sd: 11.0 },
     { label: "24", R: 30.552, d: 3.44, sd: 13.0, medium: 13 },
     { label: "25", R: 204.985, sd: 13.0 },

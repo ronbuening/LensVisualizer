@@ -17,23 +17,23 @@ The patent prints Fno 4.1 at all three stations (Example 1 header, PDF p. 6: Fno
 pp. 8-9) and prints no semi-diameters. The stated ray is the axis-parallel ray at each station's entrance-pupil radius
 (computed focal length / 8.2), followed through the engine's unclipped trace at infinity focus.
 
-| Station | Computed focal length | Entrance height | Outcome |
-|---:|---:|---:|---|
-| 71.92 mm | 71.9010 mm | 8.7684 mm | Reaches the image plane. Stop plane at 14.3750 mm (iris 14.3750 mm). No surface below the ray. |
-| 118.29 mm | 118.2644 mm | 14.4225 mm | Reaches the image plane. Stop plane at 14.3736 mm. No surface below the ray. |
-| 194.57 mm | 194.5405 mm | 23.7244 mm | Ends after surface 4: no intersection with surface 5 (`noBracket`). |
+|   Station | Computed focal length | Entrance height | Outcome                                                                                        |
+| --------: | --------------------: | --------------: | ---------------------------------------------------------------------------------------------- |
+|  71.92 mm |            71.9010 mm |       8.7684 mm | Reaches the image plane. Stop plane at 14.3750 mm (iris 14.3750 mm). No surface below the ray. |
+| 118.29 mm |           118.2644 mm |      14.4225 mm | Reaches the image plane. Stop plane at 14.3736 mm. No surface below the ray.                   |
+| 194.57 mm |           194.5405 mm |      23.7244 mm | Ends after surface 4: no intersection with surface 5 (`noBracket`).                            |
 
 At 71.92 and 118.29 mm the surface nearest the ray is 20 (ray 14.523 mm, `sd` 15), so no rim clips there.
 
 The 194.57 mm ray, as far as it can be followed:
 
-| Surface | Ray height | `sd` | Sphere limit \|R\| | Outcome |
-|---|---:|---:|---:|---|
-| 1 | 23.7244 mm | 26 | 175.317 | Passes, 2.276 mm inside the rim |
-| 2 | 23.6106 mm | 25.6 | 604.892 | Passes, 1.989 mm inside the rim |
-| 3 | 22.7908 mm | 25.8 | 89.957 | Passes, 3.009 mm inside the rim |
-| 4 | 22.2972 mm | 21 | 58.007 | 1.2972 mm (6.2 %) above the rim; 38 % of \|R\|, so the sphere itself is met |
-| 5 | none | 21 | 59.256 | No forward intersection |
+| Surface | Ray height | `sd` | Sphere limit \|R\| | Outcome                                                                     |
+| ------- | ---------: | ---: | -----------------: | --------------------------------------------------------------------------- |
+| 1       | 23.7244 mm |   26 |            175.317 | Passes, 2.276 mm inside the rim                                             |
+| 2       | 23.6106 mm | 25.6 |            604.892 | Passes, 1.989 mm inside the rim                                             |
+| 3       | 22.7908 mm | 25.8 |             89.957 | Passes, 3.009 mm inside the rim                                             |
+| 4       | 22.2972 mm |   21 |             58.007 | 1.2972 mm (6.2 %) above the rim; 38 % of \|R\|, so the sphere itself is met |
+| 5       |       none |   21 |             59.256 | No forward intersection                                                     |
 
 ### Why surface 5 is never met
 
@@ -41,13 +41,13 @@ Surfaces 4 and 5 are the two faces of the air space between E2 and E3: R4 = 58.0
 read again at 400 dpi). Both are convex to the object and R5 is the flatter, so the air space is widest on axis and
 closes toward the rim.
 
-| Height | Air space between surfaces 4 and 5 |
-|---:|---:|
-| 0 mm | 0.1000 mm |
-| 21 mm (the file's shared rim) | 0.0112 mm |
-| 22.036 mm (f/4.15 ray) | 0.0012 mm |
-| 22.1518 mm | 0 (the two spheres meet) |
-| 22.2972 mm (stated f/4.1 ray) | -0.0015 mm |
+|                        Height | Air space between surfaces 4 and 5 |
+| ----------------------------: | ---------------------------------: |
+|                          0 mm |                          0.1000 mm |
+| 21 mm (the file's shared rim) |                          0.0112 mm |
+|        22.036 mm (f/4.15 ray) |                          0.0012 mm |
+|                    22.1518 mm |           0 (the two spheres meet) |
+| 22.2972 mm (stated f/4.1 ray) |                         -0.0015 mm |
 
 The stated ray leaves surface 4 at z = 25.0766 mm from the front vertex. Surface 5 at that height lies at
 z = 25.0751 mm, 0.0015 mm behind the point the ray starts from, so the ray is already inside the sphere of surface 5
@@ -90,12 +90,12 @@ plane (x = 3746 px), 212.831 mm over 2429.5 px: 11.415 px/mm; 11.37 to 11.45 px/
 16 and 30. Half-heights are to the outer edge of the stroke, mean of both sides; the strokes are about 8 px (0.7 mm)
 wide.
 
-| Drawn body | Half-height | File `sd` |
-|---|---:|---|
-| E1 | 313 px = 27.4 mm | 26 (surface 1), 25.6 (surface 2) |
-| E2 and E3, one shared height | 301 px = 26.4 mm | 25.8 (surfaces 3 and 6), 21 (surfaces 4 and 5) |
-| E4 | 283 px = 24.8 mm | 24.2 (surfaces 7 and 8) |
-| E14 / E15 / E16 | 175.5 / 181.5 / 189 px = 15.4 / 15.9 / 16.6 mm | 15.3 / 15.8 / 16.4 |
+| Drawn body                   |                                    Half-height | File `sd`                                      |
+| ---------------------------- | ---------------------------------------------: | ---------------------------------------------- |
+| E1                           |                               313 px = 27.4 mm | 26 (surface 1), 25.6 (surface 2)               |
+| E2 and E3, one shared height |                               301 px = 26.4 mm | 25.8 (surfaces 3 and 6), 21 (surfaces 4 and 5) |
+| E4                           |                               283 px = 24.8 mm | 24.2 (surfaces 7 and 8)                        |
+| E14 / E15 / E16              | 175.5 / 181.5 / 189 px = 15.4 / 15.9 / 16.6 mm | 15.3 / 15.8 / 16.4                             |
 
 - E2 is drawn with a flat edge at full height, from surface 3 to the surface 4/5 stroke: 46 px (4.0 mm) between
   stroke centres, 54 px (4.7 mm) over the strokes. The printed radii give E2 an edge 4.5 mm thick at 26.3 mm. E3
@@ -122,11 +122,11 @@ notch between the two at the rim.
 
 ### Values as they stand
 
-| Station | Stated | Traced | Limiter |
-|---:|---:|---:|---|
-| 71.92 mm | f/4.1 | f/4.10 | iris (`STO`) |
-| 118.29 mm | f/4.1 | f/4.10 | iris (`STO`) |
-| 194.57 mm | f/4.1 | f/4.36 (+6.3 %) | rim of surface 5 (`sd` 21) |
+|   Station | Stated |          Traced | Limiter                    |
+| --------: | -----: | --------------: | -------------------------- |
+|  71.92 mm |  f/4.1 |          f/4.10 | iris (`STO`)               |
+| 118.29 mm |  f/4.1 |          f/4.10 | iris (`STO`)               |
+| 194.57 mm |  f/4.1 | f/4.36 (+6.3 %) | rim of surface 5 (`sd` 21) |
 
 - Every `sd`, the `STO` row (14.25845124506584), every radius, thickness and index, the `var` gaps, `nominalFno` 4.1
   and `zoomApertureModel` are as they were. The fixed wide-open iris is 14.3750 mm.
@@ -168,3 +168,63 @@ No data value moved; these edits make the header and the note describe the trace
 - The header and note sentences listed under "Prose" above quote f/4.36, the 21 mm shared rim and the 21.13 mm cross-gap
   ceiling. They need the new values if the ruling on the first item changes surfaces 4, 5, 13 or 14 or sets
   `gapSagFrac`.
+
+## 2026-10-30 — Scoped original-PDF shape, glass and runtime review
+
+This scoped reopening addresses missing explicit source-reference qualifications, computed-versus-printed catalog metadata, and reproducibly stale stop/clearance wording after the shared aperture-rule change. The unchanged R/d, retained cap measurements and source-gap investigation and rejected geometric alternatives retain their actual **2026-10-08** audit date. They are reused, rather than attributed to a new numerical correction. The original was inspected again for the present scope: JP 2000-284174 A cover p.1; explicit d-line definition ¶0056 p.5; Numerical Example 1 and all 30 rows/16 media plus zoom gaps p.6; Fig.1 p.8 and matching Figs.2–4 pp.8–9.
+
+Native images are 1656×2339 at 200 ppi. The optical section is approximately 3.8 native pixels/mm; stroke width, scan tilt and schematic scaling give practical ±0.8 mm height uncertainty. A 600 dpi rendering contains no additional native detail. Leaders, group brackets, focus arrows, SP and IP marks are excluded. Every element and concave end was compared with the actual SVG. The native first meniscus has a shared approximately27mm blank: adopting27mm on R1/R2 replaces26/25.6mm. The resulting E1:E2:E4 outer-height ratio1:0.956:0.896 agrees with the native1:0.96:0.90 within reading uncertainty. This is an inferred source-outline correction, not a new opaque block. No new resolved shoulder, inferred cut, bonded-interface land or resin wing is justified. The existing near-contact notches remain a source-outline limitation; they are not hidden renderer trimming.
+
+All 16 source index/Abbe pairs match the model. Paragraph 0056 explicitly assigns the refractive index to the d line, independently of the d/g aberration legend. The source gives no individual C/F/g indices or relative partial-dispersion measurements. There is no catalog-derived per-lens spectral override to remove. All 16 compatible curves remain qualified proxies, including CaF2, S-FPL51 and the modern S-TIH53WN curve; source supplier, melt, historical chemistry and manufacturing process are unestablished. Three production-correlated APD tags remain inferred, without a patent APD designation. No extra cement, hybrid, filter or rear plate is prescribed. Canon's current museum page confirms the separate retail 16/13 count, September 1999 release, 1.2 m close limit and one fluorite/two UD claim; it does not prove a production-prescription or element-allocation match.
+
+Only R1/R2 inferred clear caps change to27mm; every R/d, material coordinate, stop and optical control remains unchanged. Catalog focal design metadata now quotes the printed 71.92/194.57 mm instead of recomputed 71.901018/194.540481 mm. The following runtime results use the current iris at each prepared state, and supersede earlier blanket beam-clearance or 14.375 mm iris wording:
+
+- 65 zoom × 21 focus controls produce 1,365 states and 21,840 finite, connected, closed element paths with zero renderer trim.
+- The 49-point pupil at axial, 0.6-field and format corner yields 200,655 launches per version. All 4,095 chiefs are valid; 142,191 rays transmit and 58,464 are classified as physical blocking, with no unclassified failure. The new source-supported first blank recovers200 peripheral samples across80 field states; all chief and axial counts are unchanged. Axial transmission is 62,517/66,885 overall and can fall to 17/49 at tele/close.
+- At source infinity zoom 0/0.5/1 the axial/0.6-field/corner survivors are 49/41/32, 49/41/23 and 33/32/19. At reconstructed close focus they are 49/43/23, 49/35/15 and 17/22/13. These are sampled pupil results, rather than guaranteed illumination.
+- The1,365 preset calls retain the baseline totals:1,339 trace and26 vignette. After the front-blank correction, retained vignettes are limited atS4; the earlierS2 limiter is superseded. Narrow aperture census is 2/3 within 3%; surface and image-circle checks pass. Default format-corner checks pass, while the source wide 16.7°/16.75° rays reach only 20.9609/21.0236 mm (96.8%/97.1% of the diagnostic 21.65 mm half-diagonal). Source middle 10.4° reaches 21.9567 mm; tele 6.3°/6.35° reaches 22.0781/22.2656 mm. Do not conflate the source field statement with the runtime format diagnostic.
+- Source infinity BFLs are 53.134605/53.131905/53.126058 mm, against the retained inferred common 53.130856 mm image gap. Linear zoom interpolation reaches +3.970376 mm paraxial defocus at zoom 0.78125. The reconstructed 1.2 m finite endpoint at that interpolated zoom retains +3.971377 mm defocus. The three source-station close solutions are endpoint reconstructions, not a source finite-focus table or a production cam.
+
+The R4/R5 0.10 mm gap and R13/R14 1.00 mm gap retain the default 0.90 guard. Repeated 22.3 mm full-stated-ray, 22.1 mm edge-contact and 25.8 mm full-blank trials at R4/R5 fail the unchanged guard; the first/full-blank cases also exceed physical contact. Raising R13/R14 to 14 mm fails with 1.07 mm sag versus a 0.90 mm allowance. No gap, radius, aperture target or tolerance is adjusted. A flat opaque extension would not be a measured source shoulder. The exact full f/4.1 tele ray and possible one-decimal source-label interpretation remain qualified in source.errata and the generic audit queue.
+
+Source fidelity, sampled runtime behavior and production correlation are separate conclusions. There is no modeled transverse IS, finite floating cam, attached-converter clearance or production-performance certification.
+
+### Every modeled medium
+
+| Element | Literal source d-index / Abbe | Spectral disposition        |
+| ------- | ----------------------------- | --------------------------- |
+| 1       | 1.487490 / 70.2               | S-FSL5 — qualified proxy    |
+| 2       | 1.721507 / 29.2               | S-TIH18 — qualified proxy   |
+| 3       | 1.433870 / 95.1               | CaF2 — qualified proxy      |
+| 4       | 1.496999 / 81.5               | S-FPL51 — qualified proxy   |
+| 5       | 1.804000 / 46.6               | J-LASF015 — qualified proxy |
+| 6       | 1.516330 / 64.1               | S-BSL7 — qualified proxy    |
+| 7       | 1.846658 / 23.9               | S-TIH53WN — qualified proxy |
+| 8       | 1.749500 / 35                 | LAFN7 — qualified proxy     |
+| 9       | 1.622992 / 58.2               | S-BSM15 — qualified proxy   |
+| 10      | 1.762001 / 40.1               | S-LAM55 — qualified proxy   |
+| 11      | 1.603112 / 60.6               | S-BSM14 — qualified proxy   |
+| 12      | 1.496999 / 81.5               | S-FPL51 — qualified proxy   |
+| 13      | 1.804398 / 39.6               | J-LASF013 — qualified proxy |
+| 14      | 1.603112 / 60.6               | S-BSM14 — qualified proxy   |
+| 15      | 1.696797 / 55.5               | S-LAL14 — qualified proxy   |
+| 16      | 1.592701 / 35.3               | S-FTM16 — qualified proxy   |
+
+### Retained element-height decisions
+
+| Source elements / faces | Retained clear caps (mm) | Constraint / disposition                                                                                                            |
+| ----------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| E1 R1/R2                | 27 / 27 (was26/25.6)     | Native shared front blank≈27mm and1:0.96:0.90 relative heights support this correction; no new outer land.                          |
+| E2 R3/R4 and E3 R5/R6   | 25.8 / 21; 21 / 25.8     | Source full-height pair is unresolved at its sub-stroke overlap; default 0.10 mm gap guard prevents full cap or edge-contact trial. |
+| E4 R7/R8                | 24.2 / 24.2              | Continuous positive blank; no independent land.                                                                                     |
+| E5 R9/R10               | 14 / 13.8                | Tiny end difference is below native height uncertainty; no guessed shoulder.                                                        |
+| E6/E7 R11/R12/R13       | 13.2 / 13.2 / 12.8       | Connected cemented pair; no opaque interface land.                                                                                  |
+| E8 R14/R15              | 12.8 / 14                | R13/R14 gap constrains front; taller full-cap trial rejected without relaxing guard.                                                |
+| E9/E10 R16/R17/R18      | 15 / 15 / 15             | Source connected doublet; no added interface feature.                                                                               |
+| E11 R20/R21             | 15 / 15                  | Near-flat rear and native stroke do not resolve a separate shoulder.                                                                |
+| E12/E13 R22/R23/R24     | 14.8 / 14 / 13.5         | Continuous shared interface retained; neither a flat land nor a larger blocked compound silhouette is inferred.                     |
+| E14 R25/R26             | 15.3 / 15.3              | Source separate rear positive blank retained.                                                                                       |
+| E15 R27/R28             | 15.8 / 15.8              | Both concave ends checked; source outline does not resolve a separate optical-cap step.                                             |
+| E16 R29/R30             | 16.4 / 16.4              | Final positive blank retained; no source plate behind it.                                                                           |
+
+No per-lens test file was added. Coordinator-owned full validation and batch delivery are separate from these source and current-runtime checks. Historical material suppliers, source-gap precision and production camera/stop trajectories remain unresolved.
