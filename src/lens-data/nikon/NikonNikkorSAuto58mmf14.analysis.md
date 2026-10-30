@@ -52,7 +52,7 @@ surfaces. They describe standalone power, not the element's in-situ contribution
 
 ### L1 — Positive Meniscus, Convex to Object
 
-**nd = 1.5750, νd = 41.3. Glass: 575415 — LF7 / S-TIL27 / H-QF3 class. Isolated f = +199.175 mm.**
+**nd = 1.5750, νd = 41.3. Catalog proxy: S-TIL27 (Ohara); source 1.5750 / 41.3 versus native 1.575006 / 41.505207, a deliberately nonidentical curve. Isolated f = +199.175 mm.**
 
 L1 is the added front positive collector that distinguishes the design from a regular six-element Gauss arrangement.
 Its weak positive power shares the converging work before the central Gauss-derived core. Nikon's historical account
@@ -104,21 +104,17 @@ focal distance of 37.005824101 mm.
 
 ## Glass Identification and Selection
 
-The patent supplies only rounded d-line indices and Abbe numbers. It names no glass manufacturer and provides no C-, F-,
-or g-line indices, Sellmeier coefficients, partial-dispersion ratio, or $dP_{gF}$. The glass strings in the data file are
-therefore supplier-neutral six-digit or catalog-class identifications rather than claims about the original melts.
+The original source gives d-line nd and Abbe number only. No numeric C/F/g anchors, θgF, supplier, melt or production composition is published. All seven elements currently resolve to coefficient-backed catalog curves, which supply qualified wavelength estimates rather than a measured production spectrum. No partial-dispersion override is invented, and false APD flags are not measurements of zero anomaly.
 
-| Elements | Authored class | nd | νd | Optical use |
-|---|---|---:|---:|---|
-| L1 | 575415 — LF7 / S-TIL27 / H-QF3 class | 1.5750 | 41.3 | Weak front positive collector |
-| L2 | 607595 — SK7 / BACD7 class | 1.6073 | 59.5 | Higher-Abbe front positive meniscus |
-| L3, L7 | 720503 — LAK10 / LAC10 / H-LaK8 class | 1.7200 | 50.3 | Strong positive elements |
-| L4, L5 | 673322 — SF5 / FD5 / H-ZF2 class | 1.6727 | 32.2 | High-dispersion negative elements |
-| L6 | 744449 — LAF2 / H-LaF3B class | 1.7440 | 44.9 | Dense positive cemented partner |
-
-The alternating moderate- and high-Abbe positive glasses with the 32.2-Abbe negative glass provide ordinary first-order
-chromatic balancing. No claim of apochromatic correction, anomalous partial dispersion, or specific Sellmeier behavior is
-supported by the published data.
+| Element | Source nd / νd | Current curve (native nd / νd) | Qualification |
+|---|---:|---|---|
+| L1 | 1.575000 / 41.3 | S-TIL27 (Ohara; 1.575006 / 41.505207) | Spectral proxy; supplier/melt unconfirmed |
+| L2 | 1.607300 / 59.5 | K-SK7 (Sumita; 1.607290 / 59.500000) | Spectral proxy; supplier/melt unconfirmed |
+| L3 | 1.720000 / 50.3 | LAC10 (Hoya; 1.720000 / 50.350000) | Spectral proxy; supplier/melt unconfirmed |
+| L4 | 1.672700 / 32.2 | H-ZF2 (CDGM; 1.672700 / 32.170000) | Spectral proxy; supplier/melt unconfirmed |
+| L5 | 1.672700 / 32.2 | H-ZF2 (CDGM; 1.672700 / 32.170000) | Spectral proxy; supplier/melt unconfirmed |
+| L6 | 1.744000 / 44.9 | H-LaF3B (CDGM; 1.744000 / 44.900027) | Spectral proxy; supplier/melt unconfirmed |
+| L7 | 1.720000 / 50.3 | LAC10 (Hoya; 1.720000 / 50.350000) | Spectral proxy; supplier/melt unconfirmed |
 
 ## Focus Mechanism
 
@@ -144,9 +140,7 @@ diameter. The modeled stop is placed 52% of the way from r8 to r9, splitting the
 6.70944 mm. Its semi-diameter, 13.129979372 mm, was solved paraxially to produce the modeled f-number of 1.4. Both the
 station and diameter are modeling inferences rather than patent dimensions.
 
-The patent likewise gives no clear-aperture diameters. The authored semi-diameters were measured from the Figure 1
-section, rounded to 0.1 mm, and checked against the f/1.4 marginal ray, the published 41° field, the 135-format image
-diagonal, and the current geometry rules. No plate, filter, or dummy surface was omitted, and no air-equivalent
+The patent likewise gives no clear-aperture diameters. The final semi-diameters combine Figure 1’s relative outlines with source-f/1.4 beam floors and the inferred-cut guard, as detailed below. They are working apertures rather than exact source dimensions. No plate, filter, or dummy surface was omitted, and no air-equivalent
 rear-spacing correction was required.
 
 ## Conditional Expressions
@@ -198,7 +192,7 @@ cardinal quantities, and geometry were therefore verified independently rather t
 Nikon identifies the NIKKOR-S Auto 5.8cm f/1.4 as the first f/1.4 lens for the Nikon F series and attributes its design
 to Saburo Murakami. Nikon's account explains the 58 mm focal length as a compromise adopted to preserve SLR back focus
 while remaining within the standard-lens range. The production lens was released in March 1960 and replaced by the
-NIKKOR-S Auto 50mm f/1.4 in March 1962.
+NIKKOR-S Auto 50 mm f/1.4 in March 1962.
 
 The selected patent embodiment preserves the same defining architecture: a regular Gauss-derived core, an added front
 positive meniscus, a genuine minute air separation between L3 and L4, and a long back focus exceeding $0.6f$. The later
@@ -218,3 +212,9 @@ published numbers are the exact production prescription.
 - CDGM, official colorless optical-glass database, https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods
 - Sumita Optical Glass, *Optical Glass Data Book*, version 14.01.00,
   https://www.sumita-opt.co.jp/download_files/ja/data/glassdatabook_ver14.01.00.pdf
+
+## Source aperture and concave ends (2026-10-30)
+
+The earlier S8 cap 12.5 mm restricted the modeled f/1.4 aperture to aboutf/1.50. Small continuous rim increases now clear the source-f/1.4 beam: S1/2=21.2, S3/4=20.5, S5/6/7=19, S9/10/11=15.8 and S12/13=15.4 mm. The largest increase is3.4% relative to the former figure estimates. These are beam-adjusted working caps, not exact source diameters.
+
+Figure 1’s shortened concave ends are represented by inferred cuts. S8 has outer 19 mm, depth 6.52 mm and cap 13.297458 mm; S9 has outer 15.8 mm, depth 4.27 mm and cap 12.865878 mm. Their measured figure fractions≈.680/.780 become adopted.699866/.814296 because the source-like inward endpoints would clip traced beams. Both cuts clear every final wide-open beam by more than.05 mm, and the next.01 mm inward depth fails. The stop station, internal spacings and focus law remain unchanged. The old claim that the smaller caps passed the full f/1.4 marginal ray is superseded by these actual checks.

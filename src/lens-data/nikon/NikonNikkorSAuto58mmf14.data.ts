@@ -30,6 +30,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Glass strings are six-digit/catalog classes only. The patent provides     ║
  * ║  nd and νd but no supplier, line indices, Sellmeier coefficients, or dPgF. ║
  * ║  No vendor-specific melt or anomalous-dispersion behavior is claimed.      ║
+ * 2026-10-30 Figure1: source-f/1.4 beam floors raise continuous rims
+ * by at most3.4%; S8/S9 cuts depth6.52/4.27 move outward from measured
+ * q to clear every final beam. Both guards pass; next inward.01 fails.
+ * No R/d/stop/source-pair change. All seven curves remain qualified.
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -67,7 +71,7 @@ const LENS_DATA = {
       nd: 1.575,
       vd: 41.3,
       focalLengthMm: 199.174913375,
-      glass: "575415 — LF7 / S-TIL27 / H-QF3 class",
+      glass: "S-TIL27 (Ohara; qualified spectral proxy, source 1.575 / 41.3, native 1.57501 / 41.5052; supplier unconfirmed)",
       apd: false,
       role: "Added front positive collector used to preserve the long SLR back focus while sharing positive power.",
     },
@@ -79,7 +83,7 @@ const LENS_DATA = {
       nd: 1.6073,
       vd: 59.5,
       focalLengthMm: 179.3575973,
-      glass: "607595 — SK7 / BACD7 class",
+      glass: "K-SK7 (Sumita; qualified spectral proxy, source 1.6073 / 59.5, native 1.60729 / 59.5; supplier unconfirmed)",
       apd: false,
       role: "Low-dispersion front positive meniscus preceding the central Gauss-derived pair.",
     },
@@ -91,7 +95,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       focalLengthMm: 46.153063344,
-      glass: "720503 — LAK10 / LAC10 / H-LaK8 class",
+      glass: "LAC10 (Hoya; qualified spectral proxy, source 1.72 / 50.3, native 1.72 / 50.35; supplier unconfirmed)",
       apd: false,
       role: "Strong positive member of the minute-air-spaced central pair.",
     },
@@ -103,7 +107,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.2,
       focalLengthMm: -28.935031863,
-      glass: "673322 — SF5 / FD5 / H-ZF2 class",
+      glass: "H-ZF2 (CDGM; qualified spectral proxy, source 1.6727 / 32.2, native 1.6727 / 32.17; supplier unconfirmed)",
       apd: false,
       role: "High-dispersion negative meniscus; together with L3 it forms a net-negative separated pair.",
     },
@@ -115,7 +119,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.2,
       focalLengthMm: -30.274279877,
-      glass: "673322 — SF5 / FD5 / H-ZF2 class",
+      glass: "H-ZF2 (CDGM; qualified spectral proxy, source 1.6727 / 32.2, native 1.6727 / 32.17; supplier unconfirmed)",
       apd: false,
       role: "Negative member of the rear cemented pair.",
       cemented: "D1",
@@ -128,7 +132,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 39.560971581,
-      glass: "744449 — LAF2 / H-LaF3B class",
+      glass: "H-LaF3B (CDGM; qualified spectral proxy, source 1.744 / 44.9, native 1.744 / 44.9; supplier unconfirmed)",
       apd: false,
       role: "Dense positive member of the weak-net-negative rear cemented pair.",
       cemented: "D1",
@@ -141,30 +145,30 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       focalLengthMm: 55.426012618,
-      glass: "720503 — LAK10 / LAC10 / H-LaK8 class",
+      glass: "LAC10 (Hoya; qualified spectral proxy, source 1.72 / 50.3, native 1.72 / 50.35; supplier unconfirmed)",
       apd: false,
       role: "Strong rear positive element that completes the image-side power and field correction.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 85.492, d: 4.524, sd: 20.5, medium: 1 },
-    { label: "2", R: 330.716, d: 0.29, sd: 20.5 },
-    { label: "3", R: 45.994, d: 3.422, sd: 19.9, medium: 2 },
-    { label: "4", R: 77.372, d: 0.116, sd: 19.9 },
-    { label: "5", R: 27.492, d: 9.976, sd: 18.4, medium: 3 },
-    { label: "6", R: 135.024, d: 0.116, sd: 18.4 },
-    { label: "7", R: 129.978, d: 2.088, sd: 18.4, medium: 4 },
-    { label: "8", R: 16.82, d: 7.26856, sd: 12.5 },
+    { label: "1", R: 85.492, d: 4.524, sd: 21.2, medium: 1 },
+    { label: "2", R: 330.716, d: 0.29, sd: 21.2 },
+    { label: "3", R: 45.994, d: 3.422, sd: 20.5, medium: 2 },
+    { label: "4", R: 77.372, d: 0.116, sd: 20.5 },
+    { label: "5", R: 27.492, d: 9.976, sd: 19.0, medium: 3 },
+    { label: "6", R: 135.024, d: 0.116, sd: 19.0 },
+    { label: "7", R: 129.978, d: 2.088, sd: 19.0, medium: 4 },
+    { label: "8", R: 16.82, d: 7.26856, sd: 19.0, rimCutDepthMm: 6.52 },
     // STO station inferred inside patent spacing d8: 0.12532 f after r8, leaving 0.11568 f before r9.
     { label: "STO", R: "flat", d: 6.70944 },
-    { label: "9", R: -21.518, d: 2.784, sd: 15.5, medium: 5 },
+    { label: "9", R: -21.518, d: 2.784, sd: 15.8, rimCutDepthMm: 4.27, medium: 5 },
     // Cemented L5→L6 interface: downstream element L6 owns the junction.
-    { label: "10", R: 400.026, d: 11.6, sd: 15.5, medium: 6 },
-    { label: "11", R: -31.378, d: 0.29, sd: 15.5 },
-    { label: "12", R: 90.016, d: 5.22, sd: 15.2, medium: 7 },
+    { label: "10", R: 400.026, d: 11.6, sd: 15.8, medium: 6 },
+    { label: "11", R: -31.378, d: 0.29, sd: 15.8 },
+    { label: "12", R: 90.016, d: 5.22, sd: 15.4, medium: 7 },
     // Computed paraxial infinity BFL from r13; the patent prints 0.638 f.
-    { label: "13", R: -69.948, sd: 15.2 },
+    { label: "13", R: -69.948, sd: 15.4 },
   ],
 
   focus: {

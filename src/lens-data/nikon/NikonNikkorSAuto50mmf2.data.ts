@@ -28,6 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ SPECTRAL DATA: The patent publishes only nd and νd. No nC, nF, ng, or    ║
  * ║ dPgF values are invented. Glass names are class-level catalog matches,   ║
  * ║ not claims about Nikon's production melt supplier.                       ║
+ * 2026-10-30 Figure1: continuous S2/S4 caps12.4; iris-side inferred
+ * cuts S7 depth3.50, S8 depth3.16/outer10.1. Measured q is adjusted
+ * outward for full-beam clearance; no stop/R/d/source-pair change.
+ * All seven curves are qualified proxies, including nonidentical SF2.
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
  * Manufacturer identity and release source:
@@ -70,7 +74,7 @@ const LENS_DATA = {
       nd: 1.6127,
       vd: 58.6,
       focalLengthMm: -5607.536,
-      glass: "613586 — SK4 class (catalog equivalent; vendor unconfirmed)",
+      glass: "BACD4 (Hoya; qualified spectral proxy, source 1.6127 / 58.6, native 1.61272 / 58.58; supplier unconfirmed)",
       apd: false,
       role: "Extremely weak negative front meniscus that extends back focus with little net system power.",
     },
@@ -82,7 +86,7 @@ const LENS_DATA = {
       nd: 1.6141,
       vd: 55.1,
       focalLengthMm: 66.909,
-      glass: "614551 — SK9 / S-BSM9 / H-ZK8 class (catalog equivalent; vendor unconfirmed)",
+      glass: "SK9 (Hikari; qualified spectral proxy, source 1.6141 / 55.1, native 1.61405 / 55.0612; supplier unconfirmed)",
       apd: false,
       role: "Positive collector preceding the front cemented pair.",
     },
@@ -94,7 +98,7 @@ const LENS_DATA = {
       nd: 1.6141,
       vd: 55.1,
       focalLengthMm: 65.57,
-      glass: "614551 — SK9 / S-BSM9 / H-ZK8 class (catalog equivalent; vendor unconfirmed)",
+      glass: "SK9 (Hikari; qualified spectral proxy, source 1.6141 / 55.1, native 1.61405 / 55.0612; supplier unconfirmed)",
       apd: false,
       role: "Positive crown member of the front cemented pair.",
       cemented: "D1",
@@ -107,7 +111,7 @@ const LENS_DATA = {
       nd: 1.6483,
       vd: 33.8,
       focalLengthMm: -37.651,
-      glass: "648338 — SF2 class (catalog equivalent; vendor unconfirmed)",
+      glass: "SF2 (Schott; qualified spectral proxy, source 1.6483 / 33.8, native 1.64769 / 33.85; supplier unconfirmed)",
       apd: false,
       role: "Negative flint member facing the stop; the D1 cemented group is weakly negative in situ.",
       cemented: "D1",
@@ -120,7 +124,7 @@ const LENS_DATA = {
       nd: 1.7408,
       vd: 27.7,
       focalLengthMm: -25.51,
-      glass: "741278 — SF13 / S-TIH13 class (catalog equivalent; vendor unconfirmed)",
+      glass: "S-TIH13 (Ohara; qualified spectral proxy, source 1.7408 / 27.7, native 1.74077 / 27.7894; supplier unconfirmed)",
       apd: false,
       role: "High-index flint member immediately behind the stop.",
       cemented: "D2",
@@ -133,7 +137,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 32.41,
-      glass: "744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)",
+      glass: "LAF2 (Hoya; qualified spectral proxy, source 1.744 / 44.9, native 1.744 / 44.9; supplier unconfirmed)",
       apd: false,
       role: "Positive lanthanum-crown-class member of the rear cemented pair.",
       cemented: "D2",
@@ -146,7 +150,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 57.691,
-      glass: "744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)",
+      glass: "LAF2 (Hoya; qualified spectral proxy, source 1.744 / 44.9, native 1.744 / 44.9; supplier unconfirmed)",
       apd: false,
       role: "Rear positive element that completes the Gaussian core and supplies final convergence.",
     },
@@ -155,15 +159,15 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     { label: "1", R: 328.5, d: 2.4, sd: 12.4, medium: 1 },
-    { label: "2", R: 299, d: 0.3, sd: 12.2 },
+    { label: "2", R: 299, d: 0.3, sd: 12.4 },
     { label: "3", R: 31.3, d: 3.4, sd: 12.4, medium: 2 },
-    { label: "4", R: 125.95, d: 0.4, sd: 11.2 },
+    { label: "4", R: 125.95, d: 0.4, sd: 12.4 },
     { label: "5", R: 18.36, d: 3.5, sd: 11.5, medium: 3 },
     { label: "6", R: 31.3, d: 3.1, sd: 11.5, medium: 4 },
-    { label: "7", R: 13.18, d: 4.5, sd: 11.5 },
+    { label: "7", R: 13.18, d: 4.5, sd: 11.5, rimCutDepthMm: 3.5 },
     // STO position inferred at the midpoint of patent gap d7; radius derived from the design f-number, modeled f/2.
     { label: "STO", R: "flat", d: 4.5 },
-    { label: "8", R: -13.35, d: 2.8, sd: 9.5, medium: 5 },
+    { label: "8", R: -13.35, d: 2.8, sd: 10.1, rimCutDepthMm: 3.16, medium: 5 },
     { label: "9", R: -49.535, d: 3.2, sd: 10.1, medium: 6 },
     { label: "10", R: -16.665, d: 0.05, sd: 10.1 },
     { label: "11", R: 274.25, d: 2.35, sd: 10.5, medium: 7 },
