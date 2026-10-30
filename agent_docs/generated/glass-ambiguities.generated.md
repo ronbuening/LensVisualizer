@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2758** elements have multiple coordinate-compatible candidates
-- **500** lens files are affected
+- **2748** elements have multiple coordinate-compatible candidates
+- **499** lens files are affected
 - **294** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **124** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1603 |
+| Smallest reference-index residual | 1593 |
 | Evidence-source priority | 861 |
 | Vendor context | 280 |
 | Stable canonical-name order | 12 |
@@ -120,14 +120,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents)` | 1.80810 / 22.80 (d) | S-NPH1 — smallest d-line \|Δn\| (5.3e-6 vs 1.1e-5) | FD225 (Hoya, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) L25b |
 | `516641 class (vendor unresolved; multiple catalog equivalents)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) G |
 | `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.93 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 70-200mm f/4 L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) L2-3 |
-| `750353 — high-index flint class (vendor unresolved)` | 1.74950 / 35.30 (d) | J-LAF7 — smallest d-line \|Δn\| (2.2e-8 vs 2.8e-6) | S-LAM7 (Ohara, code, preferred code row) | 1 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E1 |
-| `516641 — borosilicate crown class (vendor unresolved)` | 1.51633 / 64.10 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 2 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E3 |
-| `713539 — lanthanum crown class (vendor unresolved)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 2 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E4 +1 files |
-| `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E6 |
-| `497815 — low-dispersion fluorophosphate / ED class (vendor unresolved)` | 1.49700 / 81.50 (d) | K-PFK80 — smallest d-line \|Δn\| (1.4e-6 vs 1.0e-4) | MC-FCD1-M20 (Hoya, code, preferred code row) | 1 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E7 |
-| `834372 — lanthanum flint class (vendor unresolved)` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 1 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E9 |
-| `805254 — dense flint class (vendor unresolved)` | 1.80518 / 25.40 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, code, preferred code row)<br>SF6 (Schott, code, alternate code row) | 2 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E12 |
-| `773496 — high-index lanthanum class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) E14 |
 | `FCD505 / FCD515 class (HOYA)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L2 |
 | `S-LAH58 (OHARA) / TAFD33 class` | 1.88300 / 40.80 (d) | S-LAH58 — Annotation vendor context matches Ohara. | TAFD33 (Hoya, name, vendor ✗) | 3 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L6 |
 | `S-FPL51 (OHARA) / FCD1 class` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L13 |
@@ -1293,6 +1285,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `497816 ED fluorophosphate-crown class (vendor-indeterminate)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) L7 |
 | `847238 dense-flint class (vendor-indeterminate)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) L9 |
 | `773496 — lanthanum crown class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L3 |
+| `713539 — lanthanum crown class (vendor unresolved)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L4 |
 | `847238 — dense flint class (vendor unresolved)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 3 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L6 |
 | `487704 — fluor crown class (vendor unresolved)` | 1.48749 / 70.40 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L7 |
 | `497816 — ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 5 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L9 +1 files |

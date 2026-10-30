@@ -1627,7 +1627,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Element 2 | abbe | `PMo optical plastic (cyclo-olefin polymer)` | No catalog match |
+| 3 | Element 2 | abbe | `Unmatched (d-line 1.52996/55.8; production PMo correlation only; polymer identity unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) - 92.9% trusted (13/14); 92.9% Sellmeier (13/14) - US 2020/0012073 A1
 
