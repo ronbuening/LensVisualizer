@@ -36,3 +36,98 @@ sd 47.445 mm; surface 11, 23.675 mm with clear sd 21.5 mm; surface 14, 20.32 mm 
 two stop at existing bonded-cap heights; no new opaque interface land is added. Every clear sd, source R/d,
 material and control is retained. Shared-prefix parity is restored; the complete 56-surface inserted configuration,
 its additional media and its renderer/state constraints remain pending the separate complete review.
+
+## 2026-10-30 — Complete inserted-configuration shape and glass review
+
+### Source, reused coverage and native resolution
+
+Read the original local `patents/US20130308041A1.pdf` anew. Numerical Example 1's non-inserted table is on PDF
+p. 17 (printed p. 5, ¶0061); the inserted table on PDF p. 18 (printed p. 6) explicitly reuses surfaces 1–40 and
+prints replacement rows 41–56. The inserted cross-section is Fig. 3 on PDF p. 4 (sheet 3); ¶0028 identifies its
+corresponding Fig. 4A/B plots as the wide/tele infinity states. The inserted table's second column says Intermediate,
+but its 545.98 mm endpoint uses the shared tele gaps; that label ambiguity does not justify another configuration.
+
+The unchanged prefix's completed [EXT OUT shape/glass review](./CanonEF200400mmf4LISUSMExtender14x.audit.md) is
+reused with its actual 2026-10-30 date. This pass independently confirms the shared table and Fig. 3 prefix, then
+reviews all inserted/rear rows and media in their distinct configuration. The earlier partial-prefix note above was
+only the synchronization checkpoint, not a completed IN review at that time.
+
+Fig. 3 is a native 2560 × 3300 raster at 300 ppi. Native crops were inspected without substituting an enlarged
+render for evidence. The optical cross-section is about 3.8 px/mm; one native pixel represents about 0.26 mm.
+Ink, schematic blank margins and vertex ambiguity warrant roughly ±0.8 mm for outer-rim readings. The adopted
+shoulders are anchored to existing caps rather than claiming precise blank dimensions. Leaders, rays, IS/EXT unit
+brackets, the image-plane stroke and movement arrows are excluded from optical-rim measurements.
+
+### Shape, source constraints and rejected changes
+
+All 56 radii, 55 refracting clear caps, the source variable-gap pairs and all fixed spacings were compared with the
+native prescription pages. Surface 38 is visibly +174.462 mm; the OCR reading +74.462 is rejected. There are no
+aspheres or hybrid resin layers in this configuration. Every concave end and every cemented junction, including the
+inserted EXTa pair, EXTb triplet and pair, and L44 rear doublet, was inspected against Fig. 3 and the actual SVG.
+
+The three shared shoulders remain: 4 outer 48.875 with clear sd 47.445 mm, 11 outer 23.675 with clear sd 21.5 mm,
+and 14 outer 20.32 with clear sd 19.955 mm. No additional land or inferred cut is added. The 11/14 outer radii stop at
+their existing bonded-cap heights; completing the full schematic blocks to 24.05/21.32 mm would require unsupported
+notch or interface geometry. Those larger blank trials are rejected, as the OUT review records.
+
+The inserted optics' 42/43, 44/45/46, 47/48/49/50, 51/52/53 and 54/55/56 caps remain literal. Their drawing strokes
+do not support changing the published optical caps or filling the unequal bonded boundaries with opaque lands.
+The smaller rear differences approach one or two native pixels. No unsupported equal-height block, extrapolated
+optical sphere or disconnected bonded extension is introduced. The same constraint retains the other shared
+singlets and bonded outlines beyond the three resolved shoulders.
+
+No new numeric R/d, stop, source glass coordinate, focus/zoom control or image gap is changed. The prior d56
+correction now has the required structured record and two independent source evidence kinds. The native row on
+PDF p. 18 prints 68.46 mm, but its BF summary gives 68.49 and total track 389.84 mm. Literal d56 gives rounded track
+389.82 mm; the existing 68.49 gives 389.85 mm, matching the rounded OUT track. Both corrected configurations
+retain the existing 0.01 mm row-rounding residual against the stated 389.84 mm total. Claim 1 on PDF p. 23 (printed p. 11), read
+from a native rendered crop, independently requires total lens length constant before/after extender insertion.
+This `source-summary` plus `claims` evidence supports the existing correction, now recorded in `source.errata`.
+It resolves the missing-errata issue left open on 2026-10-07. Source endpoints still retain about 0.08–0.09 mm
+paraxial focus residual; no image-gap fit is made to remove it. The source has no rear-filter/cover-plate row. A production rear filter lacks a supplied
+prescription and is not invented or described as a source-listed plate removed from the model.
+
+### Glass and spectral qualification
+
+All 32 modeled media, including every inserted cemented member, match the original nd/νd pairs. The actual table
+headers identify the d-line reference by notation; no separate numeric wavelength definition, individual nC/nF/ng,
+partial-dispersion table or APD evidence is printed. The d-line interpretation permits the existing compatible
+catalog curves; it does not identify historical glass chemistry, supplier or melt. No per-lens spectral override is
+authored. No APD annotation is added from Canon's fluorite/UD production counts.
+
+All 32 existing curve selections remain compatible after label qualification. The shared 22-media coverage is reused
+from the OUT review; the ten rear media were checked directly here. They resolve to S-TIL2, J-F5, J-LASFH13,
+S-LAH58, N-KZFS8, S-LAH58, S-NBM51, FCD515, J-LF7 and S-LAH58 in order. These are qualified spectral proxies,
+not ten identified production melts. The class labels now state that historical supplier and melt are unspecified.
+The CaF2 label likewise identifies a spectral proxy: Canon's one-fluorite product specification is a separate
+correlation and does not prove the patent element's historical chemistry. The public common analysis carries these
+same qualifications, coordinated with the OUT review rather than edited concurrently here.
+
+### Iris convention, runtime samples and limitations
+
+The existing fixed-iris rule gives a live radius of 19.3653973144 mm at both endpoints. This supersedes the stale
+19.872 mm runtime statement in the historical 2026-10-07 note. Current paraxial f-numbers are 5.765010/5.764594;
+EFL divided by the real transmitted collimated-beam diameter gives 5.907995/5.908677. A diagnostic iris at half the
+printed effective diameter, 19.875 mm, gives real-beam 5.765213/5.764806 (limited at 22/15) but paraxial
+5.617193/5.616787. That convention-dependent correspondence does not prove a physical iris schedule. The existing
+rule and nominal values remain unchanged.
+
+Published endpoints pass the surface, image-circle and aperture checks, and full-frame chief coverage is clear.
+The final actual SVG was compared directly with native Fig. 3 at wide, with middle/tele and both focus-control ends
+also rendered. Across 65 sampled zoom positions and three focus-control values, each state has 32 finite, closed,
+connected outlines with zero hidden renderer trimming. Focus does not move any optic: the source publishes no
+finite-distance spacing schedule. The transverse IS motion is also outside this axial reconstruction.
+
+A dense diagnostic copy exactly reproduces the current runtime geometry at all 65 sampled zoom positions, with
+zero geometry difference, while leaving the two authored source endpoints unchanged. Every full-frame chief clears,
+but only 5/65 aperture states fall within 3% of the nominal f-number: 42 intermediate states are rim-limited at 46,
+and 18 are iris-limited. At t = 0.578125 the aperture check gives f/7.465879 versus nominal f/5.764769 (+29.51%).
+Its actual paraxial EFL is 504.698 mm versus the displayed linear 436.723 mm; computed BF is 100.0205 mm versus
+image gap 68.49 mm, a 31.5305 mm defocus. The source supplies only two zoom states and describes a compensator
+locus that their linear gap interpolation cannot recover. These interpolated states remain illustrative, not
+focus-preserving or certified quantitative optical states. No source cap or R/d is tuned, and no unpublished cam is
+invented to obtain an intermediate pass.
+
+There are no inferred cuts to require a cut-beam exemption or probe. The shape/material source review is complete
+for this configuration, with no missing-original blocker. Source fidelity, sampled endpoint clearance, intermediate
+runtime limitations and production correlation remain separate conclusions.

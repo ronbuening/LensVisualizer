@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **684** lenses fully covered by trusted chromatic data
-- **681** visible lenses fully covered by trusted chromatic data
-- **676** lenses fully covered by strict Sellmeier data
-- **673** visible lenses fully covered by strict Sellmeier data
+- **683** lenses fully covered by trusted chromatic data
+- **680** visible lenses fully covered by trusted chromatic data
+- **675** lenses fully covered by strict Sellmeier data
+- **672** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10898 / 11844** non-air surfaces use strict catalog Sellmeier data
-- **92.0%** strict Sellmeier surface coverage overall
-- **10912 / 11844** non-air surfaces use trusted chromatic data
-- **92.1%** trusted chromatic coverage overall
+- **10888 / 11844** non-air surfaces use strict catalog Sellmeier data
+- **91.9%** strict Sellmeier surface coverage overall
+- **10902 / 11844** non-air surfaces use trusted chromatic data
+- **92.0%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -655,7 +655,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | 11/11 | 11 | 11/11 |
 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) | 10/10 | 10 | 10/10 |
-| [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 28-80mm f/3.5-5.6 II](../../src/lens-data/canon/CanonEF2880mmf3556II.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 35mm f/2 IS USM](../../src/lens-data/canon/CanonEF35mmf2ISUSM.data.ts) | 10/10 | 10 | 10/10 |
@@ -1358,14 +1357,15 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 331 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 332 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 333 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 334 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 335 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 336 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
-| 337 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 338 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 339 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 340 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 341 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 334 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 335 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 336 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 337 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 338 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 339 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 340 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 341 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 342 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 
 ## Missing Surface Details
 
@@ -3804,6 +3804,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | Element 6 | abbe | `Unmatched (source spectral line unspecified; former 806409 coordinate class)` | Explicit unmatched/proprietary annotation |
 | 13 | Element 7 | abbe | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | Explicit unmatched/proprietary annotation |
 | 15 | Element 8 | abbe | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 2 more missing surfaces |
+
+### [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - JP H01-102413 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPH5)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-LAL14)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate PBH53)` | Explicit unmatched/proprietary annotation |
+| 12 | Element 7 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPM4)` | Explicit unmatched/proprietary annotation |
+| 14 | Element 8 | abbe | `Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPH5)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 2 more missing surfaces |
 
 ### [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - US 2025/0271647 A1

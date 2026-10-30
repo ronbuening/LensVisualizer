@@ -637,36 +637,36 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| E1 (L1 — E1) | 1 | `487702 crown class (vendor unspecified)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E2 (L1 — E2) | 3 | `806333 dense-flint/lanthanum class (vendor unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E4 (L1 — E4) | 7 | `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E5 (L2 — E5) | 9 | `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E6 (L2 — E6) | 10 | `697555 lanthanum-crown class (vendor unspecified)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E7 (L2 — E7) | 12 | `697555 lanthanum-crown class (vendor unspecified)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E8 (L2 — E8) | 13 | `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E9 (L2 — E9) | 15 | `835427 high-index lanthanum class (vendor unspecified)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E10 (L2 — E10) | 17 | `835427 high-index lanthanum class (vendor unspecified)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E11 (L3 — E11) | 19 | `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E12 (L3 — E12) | 21 | `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E13 (L3 — E13) | 23 | `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E14 (L3 — E14) | 24 | `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E15 (L41 — E15) | 26 | `762265 dense-flint class (vendor unspecified)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E16 (L41 — E16) | 28 | `593686 low-dispersion class (vendor unspecified)` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E17 (L42 / IS — E17) | 31 | `806333 dense-flint/lanthanum class (vendor unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E19 (L42 / IS — E19) | 34 | `652585 lanthanum-crown class (vendor unspecified)` | 1.65160 / 58.50 | N-LAK7 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E20 (L43 — E20) | 36 | `623582 crown class (vendor unspecified)` | 1.62299 / 58.20 | S-BSM15 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E21 (L43 — E21) | 38 | `623582 crown class (vendor unspecified)` | 1.62299 / 58.20 | S-BSM15 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E22 (L43 — E22) | 40 | `806333 dense-flint/lanthanum class (vendor unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E23 (EXTa — E23) | 42 | `541472 light-flint class (vendor unspecified)` | 1.54072 / 47.20 | S-TIL2 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E24 (EXTa — E24) | 44 | `603380 flint class (vendor unspecified)` | 1.60342 / 38.00 | J-F5 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E25 (EXTa — E25) | 45 | `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E26 (EXTb — E26) | 47 | `883408 high-index lanthanum class (vendor unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E27 (EXTb — E27) | 48 | `720347 KZFS/NBH-coordinate class (vendor unspecified)` | 1.72047 / 34.70 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E28 (EXTb — E28) | 49 | `883408 high-index lanthanum class (vendor unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E29 (EXTb — E29) | 51 | `613443/445 KZFS/NBM-coordinate class (vendor unspecified)` | 1.61340 / 44.30 | S-NBM51 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E30 (EXTb — E30) | 52 | `593686 low-dispersion class (vendor unspecified)` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E31 (L44 — E31) | 54 | `575415 light-flint class (vendor unspecified)` | 1.57501 / 41.50 | J-LF7 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
-| E32 (L44 — E32) | 55 | `883408 high-index lanthanum class (vendor unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E1 (L1 — E1) | 1 | `487702 crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E2 (L1 — E2) | 3 | `806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E4 (L1 — E4) | 7 | `497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E5 (L2 — E5) | 9 | `904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E6 (L2 — E6) | 10 | `697555 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E7 (L2 — E7) | 12 | `697555 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E8 (L2 — E8) | 13 | `904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E9 (L2 — E9) | 15 | `835427 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E10 (L2 — E10) | 17 | `835427 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E11 (L3 — E11) | 19 | `497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E12 (L3 — E12) | 21 | `497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E13 (L3 — E13) | 23 | `904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E14 (L3 — E14) | 24 | `497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E15 (L41 — E15) | 26 | `762265 dense-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E16 (L41 — E16) | 28 | `593686 low-dispersion class (qualified spectral proxy; source supplier and melt unspecified)` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E17 (L42 / IS — E17) | 31 | `806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E19 (L42 / IS — E19) | 34 | `652585 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.65160 / 58.50 | N-LAK7 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E20 (L43 — E20) | 36 | `623582 crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.62299 / 58.20 | S-BSM15 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E21 (L43 — E21) | 38 | `623582 crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.62299 / 58.20 | S-BSM15 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E22 (L43 — E22) | 40 | `806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E23 (EXTa — E23) | 42 | `541472 light-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.54072 / 47.20 | S-TIL2 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E24 (EXTa — E24) | 44 | `603380 flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.60342 / 38.00 | J-F5 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E25 (EXTa — E25) | 45 | `904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E26 (EXTb — E26) | 47 | `883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E27 (EXTb — E27) | 48 | `720347 KZFS/NBH-coordinate class (qualified spectral proxy; source supplier and melt unspecified)` | 1.72047 / 34.70 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E28 (EXTb — E28) | 49 | `883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E29 (EXTb — E29) | 51 | `613443/445 KZFS/NBM-coordinate class (qualified spectral proxy; source supplier and melt unspecified)` | 1.61340 / 44.30 | S-NBM51 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E30 (EXTb — E30) | 52 | `593686 low-dispersion class (qualified spectral proxy; source supplier and melt unspecified)` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E31 (L44 — E31) | 54 | `575415 light-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.57501 / 41.50 | J-LF7 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
+| E32 (L44 — E32) | 55 | `883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20130308041A1.pdf | No review-record hit |
 
 ### [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) - JP H01-189622 A
 

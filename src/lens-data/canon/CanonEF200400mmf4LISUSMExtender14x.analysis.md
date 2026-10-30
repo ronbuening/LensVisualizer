@@ -24,7 +24,7 @@ The selected production correlation is supported by several independent correspo
 
 The data model therefore preserves the patent dimensions without scaling. Marketing values remain separate from design values: 200–400 mm f/4 and 280–560 mm f/5.6 are product specifications, while 205.00–389.99 mm f/4.12 and 287.00–545.98 mm f/5.77 are patent design values. The visible catalog entry supplies the canonical page and complete `EXT OUT` prescription. Its hidden supplemental member supplies the patent's complete `EXT IN` prescription, and their shared optical-configuration metadata exposes both states through one deterministic viewer switcher without creating a duplicate catalog lens.
 
-Two source issues require explicit normalization. First, rendered inspection of PDF page 17 (printed page 5) shows surface 38 as `R = +174.462 mm`; parsed text can lose the leading `1` and read `+74.462`. Second, the inserted table prints `d56 = 68.46 mm`, while the same page gives `BF = 68.49 mm` and ¶0059 defines BF as the final lens surface to image plane. Calculations of the patent's inserted state use 68.49 mm; the raw 68.46 mm value remains a documented source discrepancy. No aspherical surfaces are present, so no conic conversion or asphere scaling is applicable.
+Two source issues require explicit normalization. First, rendered inspection of PDF page 17 (printed page 5) shows surface 38 as `R = +174.462 mm`; parsed text can lose the leading `1` and read `+74.462`. Second, the inserted table prints `d56 = 68.46 mm`, while the same page gives `BF = 68.49 mm` and ¶0059 defines BF as the final lens surface to image plane. Claim 1 (PDF p. 23, printed p. 11) independently requires total lens length constant before and after insertion. The literal last gap gives a rounded-row track of 389.82 mm; the existing 68.49 mm correction gives 389.85 mm, matching EXT OUT and retaining the same 0.01 mm rounding residual against the stated 389.84 mm total. These independent source-summary and claim constraints support the retained correction, now recorded in the inserted member's source errata; the image gap is not fitted to remove its remaining paraxial focus residual. No aspherical surfaces are present, so no conic conversion or asphere scaling is applicable.
 
 The production rear filter is not present or dimensioned in the selected numerical source tables, so no filter geometry is invented and no source plate is removed. No sensor cover glass, inactive dummy surface, flare-cutter plane, or mechanical component is added. The source refracting effective diameters remain the clear semi-diameter halves; its generic stop-diameter entry is recorded separately from the runtime stop authority. The stop is patent surface 30. Its generic effective-diameter entry is 39.75 mm; the source does not separately tabulate physical iris radii at the two zoom stations. The current OUT runtime instead retains its existing derived/fixed iris, radius 19.365397 mm, under the project's paraxial f-number convention. The printed diameter and real-ray envelope comparison are recorded separately below; fixed axial placement of SP does not by itself specify a physical iris schedule.
 
@@ -204,13 +204,13 @@ This is E24 with EXT out and E32 with EXT in. Its negative standalone power redu
 
 ### EXTa — E23 — Positive Meniscus, EXT-IN only
 
-`nd = 1.54072, νd = 47.2.` Glass: `541472 light-flint class (vendor unspecified)`. Standalone `f = +52.687 mm`.
+`nd = 1.54072, νd = 47.2.` Glass: `541472 light-flint class (qualified spectral proxy; source supplier and melt unspecified)`. Standalone `f = +52.687 mm`.
 
 E23 is the first inserted extender element and is air-spaced from the following cemented pair. Although the next cemented assembly is net negative, E23 and the internal separation make EXTa as a complete isolated subunit positive at +264.836 mm.
 
 ### EXTa — E24 — Biconvex Positive, cemented group EXT-C1
 
-`nd = 1.60342, νd = 38.0.` Glass: `603380 flint class (vendor unspecified)`. Standalone `f = +44.362 mm`.
+`nd = 1.60342, νd = 38.0.` Glass: `603380 flint class (qualified spectral proxy; source supplier and melt unspecified)`. Standalone `f = +44.362 mm`.
 
 E24 is cemented directly to strongly negative E25. The EXT-C1 pair is therefore net negative when isolated.
 
@@ -228,7 +228,7 @@ E26 begins the rear extender subunit across the widest internal extender air gap
 
 ### EXTb — E27 — Biconvex Positive, cemented group EXT-C2
 
-`nd = 1.72047, νd = 34.7.` Glass: `720347 KZFS/NBH-coordinate class (vendor unspecified)`. Standalone `f = +17.959 mm`.
+`nd = 1.72047, νd = 34.7.` Glass: `720347 KZFS/NBH-coordinate class (qualified spectral proxy; source supplier and melt unspecified)`. Standalone `f = +17.959 mm`.
 
 E27 is the positive middle member of EXT-C2. The coordinate lies in KZFS/NBH catalog families, but no anomalous-partial-dispersion behavior is asserted because the selected patent publishes no line indices or `dPgF` for this element and no unique vendor melt is established.
 
@@ -240,7 +240,7 @@ E28 completes the negative-positive-negative triplet. The isolated EXT-C2 EFL is
 
 ### EXTb — E29 — Biconvex Positive, cemented group EXT-C3
 
-`nd = 1.61340, νd = 44.3.` Glass: `613443/445 KZFS/NBM-coordinate class (vendor unspecified)`. Standalone `f = +25.500 mm`.
+`nd = 1.61340, νd = 44.3.` Glass: `613443/445 KZFS/NBM-coordinate class (qualified spectral proxy; source supplier and melt unspecified)`. Standalone `f = +25.500 mm`.
 
 E29 is the positive member of the final cemented extender pair. As with E27, the class label records a coordinate family rather than a proven anomalous-dispersion melt.
 
@@ -277,6 +277,8 @@ The original table explicitly labels its source coordinates `nd` and `νd` (PDF 
 
 The CaF2 curve is compatible with the patent's `1.43387 / 95.1` coordinate, while Canon's production specification calls for one fluorite element. This supports a spectral proxy and a production-correlation inference, not proof of historical chemistry or a particular supplied material. The four 497816 elements likewise align numerically and by count with Canon's four-UD production specification. Those correspondences support the production correlation and a low-dispersion strategy but do not identify an individual glass supplier.
 
+The complete inserted configuration retains all 32 source index/Abbe pairs and 32 compatible spectral curves. Its ten rear media resolve to S-TIL2, J-F5, J-LASFH13, S-LAH58, N-KZFS8, S-LAH58, S-NBM51, FCD515, J-LF7 and S-LAH58 in order; those curve names qualify the spectral estimate rather than identify ten historical production melts.
+
 No `nC`, `nF`, `ng`, or `dPgF` values are authored because Numerical Example 1 does not publish them. Consequently, no apochromatic or anomalous-partial-dispersion performance claim is made from the bare `nd/νd` values. In particular, the KZFS/NBH-coordinate labels on E27 and E29 describe catalog neighborhoods only.
 
 ## Focus Mechanism
@@ -305,7 +307,7 @@ The EXT OUT source figure is Figure 1 on PDF page 2 (sheet 1 of 11); the full Nu
 
 The source resolves outer shoulders at S4, S11 and S14. Their clear caps remain 47.445, 21.500 and 19.955 mm, while the drawn semi-diameters extend to 48.875, 23.675 and 20.320 mm. The last two adopt existing bonded-cap heights conservatively; the full source blank outline is taller, but the model does not inflate published bonded clear apertures or add opaque interface lands to fill it. Smaller cap/outer-height differences elsewhere approach the native stroke uncertainty and remain unchanged. All 24 elements, five cemented interfaces and both source zoom endpoints were inspected.
 
-The source R/d, all printed index/Abbe pairs and clear diameters, the derived/fixed-iris authority, and the focus/zoom controls are retained. No asphere, hybrid layer, extra cement medium, source filter or rear plate occurs in this selected table. There is no inferred concave cut. The same leading shoulders belong to both configurations' identical source prefix; their shared-component correction does not by itself complete the separate EXT IN configuration review.
+The source R/d, all printed index/Abbe pairs and clear diameters, the derived/fixed-iris authority, and the focus/zoom controls are retained. No asphere, hybrid layer, extra cement medium, source filter or rear plate occurs in this selected table. There is no inferred concave cut. The same leading shoulders belong to both configurations' identical source prefix. The separate inserted-state review checks all 56 radii, 55 refracting clear caps and 32 media against PDF pp. 17–18 and Fig. 3 on PDF p. 4 (sheet 3). Its native 300 ppi image gives roughly 3.8 px/mm; practical outer-rim uncertainty is about ±0.8 mm. The inserted bonded blocks retain their unequal published caps, with no additional land or inferred cut. Shared-prefix evidence is reused from the 2026-10-30 OUT review, while the additional rear prescription is checked in its distinct configuration.
 
 Only the centered source geometry is modeled. Ordinary finite focus remains `NO_INTERNAL_RECONSTRUCTION`, and the patent's transverse IS motion has no published numerical decenter range. Intermediate zoom positions interpolate the three variable gaps between the two published endpoints; the patent supplies no intermediate compensator cam. A 65-position diagnostic clone reproduces the current OUT runtime geometry exactly. Both source endpoints satisfy the project aperture check, but only 16 of the 65 positions remain within 3% of their interpolated nominal f-number. The other 49 positions are iris-limited, with the worst sampled value f/4.43407 versus f/4.11999 (+7.62%) near the interpolated 311.95 mm label. No clear rim or trace failure limits those OUT samples. All 65 full-frame corner chiefs converge and clear the prescription.
 
