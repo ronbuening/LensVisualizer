@@ -75,3 +75,28 @@ trajectory. Existing close spacing members therefore repeat infinity; production
 actual SVGs at zoom 0/0.5/1 and focus 0/0.5/1 contain 21 finite closed paths with zero hidden trim and connected
 cemented outlines. All three published zoom stations retain full-frame corner chief coverage and the stated axial
 wide-open beams. Source shape fidelity, sampled clearance and the production correlation remain separate conclusions.
+
+## 2026-10-30 — Runtime interpolation completeness follow-up
+
+Runtime-only follow-up on 2026-10-30 sampled 65 equally spaced zoom positions (step 1/64), including the three
+published stations at z = 0, 0.5 and 1. Source-review dates, all source R/d/materials and every control remain unchanged.
+The 62 intermediate positions interpolate the drawing; the patent supplies no continuous zoom cam or guarantee of
+focus/aperture preservation there. Focus endpoints have identical geometry at every sampled zoom position.
+
+The greatest sampled aperture difference is 3.2209% at z = 0.828125
+(limiter 19); 5/65 positions exceed the ordinary 3% aperture gate. The greatest absolute
+paraxial defocus is 10.107651 mm at z = 0.796875, measured from the current printed/
+previously reconstructed image plane. The largest difference between actual first-order EFL and the interpolated
+station EFL is -4.1162% at z = 0.1875. No source spacing, aperture, image plane or
+optical surface is tuned to remove an illustrative interval's mismatch.
+
+| Published station z | Axial aperture difference | Paraxial defocus (mm) |
+| ------------------- | ------------------------: | --------------------: |
+| 0                   |                0.000000% |             -0.029781 |
+| 0.5                 |                0.000000% |              0.031713 |
+| 1                   |                0.000000% |             -0.036844 |
+
+All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
+format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
+geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
+positions or production performance. The original discrete stations remain the source-supported quantitative states.

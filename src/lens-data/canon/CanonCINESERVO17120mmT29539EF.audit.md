@@ -63,3 +63,22 @@ Every material was checked directly against the pp.12–13 source table, includi
 | 1.88300 / 40.8 | L21 | S-LAH58 |
 
 The inferred APD tags on L5/L8/L9 still describe their catalog proxies; they do not convert the source's index/Abbe coordinates into a chemical, supplier, melt or production-material identification. Analysis element labels now name the same qualified proxies as the data; the production correlation remains inferential and separate from the source and runtime conclusions.
+
+
+## 2026-10-30 — Runtime interpolation follow-up; source coverage reused
+
+This is new runtime evidence using the completed 2026-10-30 source/shape/glass review above, not a second fresh
+original-PDF inspection. R/d, clear caps, the outer shoulder, all materials and controls remain unchanged. A 65-position
+diagnostic copy exactly reproduces runtime positions and stop diameters at infinity, middle and close focus controls
+(maximum difference zero); the focus control still has no reconstructed motion.
+
+All 65 declared-circle chiefs converge and clear. Forty-three aperture positions stay within 3% of nominal; 22
+interpolated positions are limited at surface 38. Worst: f/2.933561569 versus 2.8 (+4.770056%), near the displayed
+39.31 mm label. The three source stations are separately identified and retained. The bonded surface-38 constraint
+is not changed to repair an unpublished interpolated state.
+
+Worst infinity defocus is 8.001816831 mm at t = 0.796875: computed BF 54.021816831 versus image gap 46.02 mm,
+actual EFL 85.348989573 versus displayed 91.375 mm. At the three source stations BF residuals are
+−0.015235583/−0.026102621/−0.008967804 mm. The piecewise-linear cam is illustrative, not focus-preserving; no
+source R/d or control is tuned to remove this limitation. The analysis now states that quantitative source comparison
+rests on the three published stations. This follow-up adds no fresh source-review count.

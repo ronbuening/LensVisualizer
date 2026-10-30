@@ -183,6 +183,8 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 
 | Lens | Finding | Fix |
 |---|---|---|
+| [Canon EF 24mm f/1.4 L](../src/lens-data/canon/CanonEF24mmf14L.audit.md) | JP 1999-030743 A, Table 6: printed L7 νd = 28.64 conflicts with its genuine d/C/F indices, which imply 28.4606065; printed values are retained. After the independently supported L10 index correction, Gaussian BFL is 38.133626 mm versus the printed final gap 36.467 mm. Native Figure 7, the table continuation and shared definitions prescribe no rear plate to restore. Both discrepancies are `unresolved`; the extra F asphere coefficient’s A12 interpretation remains qualified. | Establish independent source evidence for the Abbe, image-plane or asphere-order contradictions. Do not invent a plate or move the image plane to make the model focus. |
+| [Canon EF 24–70mm f/2.8 L II](../src/lens-data/canon/CanonEF2470mmf28LII.audit.md) | US 8,736,971 B2, Numerical Example 3: Table 1 condition (1) prints 6.49, while the printed unit powers 105.87/−16.39 imply approximately 6.46. Recorded as `unresolved`; R/d, aperture and controls are unchanged, and the earlier unproven rounding explanation is removed. | Find independent source evidence before resolving the inconsistent condition value; retain the literal prescription and identify the discrepancy in the analysis. |
 | [Canon EF 20–35mm f/2.8 L](../src/lens-data/canon/CanonEF2035mmf28L.audit.md) | US 5,000,550, Numerical Example 1 (PDF p. 61, printed cols. 7–8), states 20.6–34.2 mm in its heading but 20.6/27.2/34.0 mm in its variable-gap table. The literal rows trace to 33.9741 mm at tele. Recorded as `unresolved` in `source.errata`; source R/d and the existing 34.0 mm control are retained. | Establish a second independent kind of source evidence before correcting either stated range; keep the literal prescription and the explicit source qualification meanwhile. |
 | Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
 | Vivitar Series 1 35-85mm f/2.8 | Every row of Table I of US 3,975,089 and its three claim copies matches the file, yet the table computes 38.46 / 89.08 mm and a back focus of 45.82 mm where the text states 36-83 mm and 40.06 mm, and Group IV computes a power of 0.0319 against Table III's .0333. No single Group IV value repairs all three, and the patent has no aberration plots. Recorded as `unresolved`. | A second printing of the prescription (a foreign counterpart of application 462,366). |
@@ -297,7 +299,7 @@ fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens | File | Station: face, glass from, wide-open iris | Status |
 |---|---|---|---|
-| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | 0.25 m: face 18 in front of the stop from 9.17 mm, iris 11.85 mm (STO gap 2.42 mm, inferred). Decide whether the stop travels with the L2 focus unit. | todo |
+| CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | The original-patent shape/glass review retains the inferred 0.25 m focus model: face 18 reaches the fixed stop above radius 9.1747 mm while its cap is 11.825 mm. The source supplies no finite-focus cam or stop-motion schedule; see the [audit](../src/lens-data/canon/CanonEF24mmf14LII.audit.md). | partial — infinity source reviewed; finite stop ordering needs independent evidence |
 | NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.26 mm, iris 11.21 mm. The stop rides 0.1 mm ahead of r9 with G2, and at tele (d8 = 0.503 mm) r9's vertex lies ahead of any plane behind r8's cap, so no stop plane in air fits there: needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
 
 Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
@@ -316,7 +318,6 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 
 | Lens | File | Station: stated, traced, limiter | Status |
 |---|---|---|---|
-| CANON EF 24-70mm f/2.8 L II USM | `canon/CanonEF2470mmf28LII.data.ts` | 67.88 mm: f/2.91 traces f/3.10 (+6.6 %), rim 18 | todo |
 | CANON EF 28-105mm f/4-5.6 | `canon/CanonEF28105mmf456.data.ts` | 101.35 mm: f/5.6 traces f/5.85 (+4.5 %), rim 14 | todo |
 | CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | 67.89 mm: f/4.5 traces f/4.64 (+3.1 %), rim 8 | todo |
 | KONICA ZOOM-HEXANON AR 35-70mm f/3.5 | `konica/KonicaZoomHexanonAR3570mmf35.data.ts` | 69.14 mm: f/3.5 traces f/3.94 (+12.5 %), rim 11 | todo |

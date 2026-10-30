@@ -2981,10 +2981,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Element 2 | abbe | `Unmatched (1.58373/59.0 glass-moldable crown; S-BAL42/L-BAL42 class)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 (GNF) | abbe | `Unmatched (1.49700/81.5 anomalous low-dispersion crown; S-FPL51 class)` | Explicit unmatched/proprietary annotation |
-| 15 | Element 9 (GP) | abbe | `Unmatched (1.49700/81.5 anomalous low-dispersion crown; S-FPL51 class)` | Explicit unmatched/proprietary annotation |
-| 23A | Element 13 | abbe | `Unmatched (1.85100/40.4 glass-moldable dense lanthanum flint; S-LAH89/L-LAH85V class)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source 1.58373/59.0; chemistry and supplier unresolved)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 (GNF) | abbe | `Unmatched (source 1.49700/81.5 anomalous glass; chemistry and supplier unresolved)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 9 (GP) | abbe | `Unmatched (source 1.49700/81.5 anomalous glass; chemistry and supplier unresolved)` | Explicit unmatched/proprietary annotation |
+| 23A | Element 13 | abbe | `Unmatched (source 1.85100/40.4; chemistry and supplier unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [MINOLTA MD ZOOM 24-50mm f/4](../../src/lens-data/minolta/Minolta2450mmf4MDZoom.data.ts) - 69.2% trusted (9/13); 69.2% Sellmeier (9/13) - US 4,147,410
 

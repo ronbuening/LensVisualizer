@@ -47,3 +47,22 @@ Every indexed medium was checked against the original numerical table, including
 | E17 | 1.77250 / 49.6 | 773496 |J-LASF016 |
 
 All 17 media are unresolved in this review (0/17 active catalog curves). Their numerical index/Abbe pairs are unchanged; each indexReferenceNote states that the source spectral line is unspecified and the d-line convention is approximate. The discarded coordinate-derived curves above are historical audit evidence, not current material assignments. K-SSK9's catalog Abbe 49.8 cannot establish the source's 49.5 reference, and production fluorite/Super UD descriptions cannot identify the source medium or wavelength. Analysis element labels, glass table, roles and source qualifications agree with the Unmatched data. No new supplier, melt, chemistry or APD claim is made.
+
+
+## 2026-10-30 — Runtime interpolation follow-up; source coverage reused
+
+This follow-up reuses the completed original-PDF shape/glass coverage and its actual 2026-10-30 date; no new original
+inspection or fresh-review count is claimed. R/d, caps, the surface-4 inferred cut, unmatched media and controls remain
+unchanged. A 65-position diagnostic copy matches runtime positions and stop diameters at focus controls 0/0.5/1
+exactly, with maximum geometry difference zero.
+
+All 65 full-frame chiefs converge and clear. Forty-eight aperture samples stay within 3% of their nominal value;
+14 interpolated positions are limited at surface 17 and three at 12. Worst: f/5.949586497 versus 5.5375 (+7.441743%),
+near displayed 303.82 mm. These limits are independent of the previously cleared surface-4 cut.
+
+Worst infinity defocus is 21.492391071 mm at t = 0.8125: BF 127.324891071 versus image gap 105.8325 mm,
+actual EFL 309.426408480 versus displayed 303.8175 mm. The three source-anchor BF residuals are
++0.006000803/+0.010194756/−0.013072788 mm. The source does not supply a continuous cam, so interpolated controls
+remain illustrative rather than focus-preserving. The approximate d-line tracing convention for the unknown source
+index reference remains explicit; these numerical matches do not resolve it. The analysis now separates quantitative
+source anchors, sampled runtime limits and production correlation. No prescription or tolerance is changed.

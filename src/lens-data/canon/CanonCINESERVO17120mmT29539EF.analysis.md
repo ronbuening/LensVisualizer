@@ -290,6 +290,12 @@ The authored geometry has positive element edge thickness at every element; the 
 
 No sensor cover glass, rear filter plate, dummy optical plane, or dimensional scale transformation is present in Numerical Example 1. The published 46.02 mm rear distance after surface 50 is therefore retained as image-space air rather than converted through an omitted plate.
 
+## Interpolated Zoom Limits
+
+The three published numerical stations remain the quantitative source anchors. A 65-position diagnostic copy reproduces the current runtime geometry exactly, including the existing stop rule and clear caps. Every declared-circle chief is clear. The aperture check is within 3% of the nominal value at 43 of 65 positions; 22 interpolated positions are limited at surface 38. The worst sample gives f/2.933562 against f/2.8 (+4.7701%) near the displayed 39.31 mm label. The retained surface-38 cap follows its bonded-interface constraint; this result does not justify enlarging it or changing source R/d.
+
+The interpolated cam also fails to hold a fixed infinity image plane. At normalized zoom 0.796875, the computed back focus is 54.021817 mm against the retained 46.02 mm image gap, an 8.001817 mm displacement; actual paraxial EFL is 85.348990 mm versus the displayed 91.375 mm. At the three source stations the back-focus residual is only −0.015236/−0.026103/−0.008968 mm. The source provides no intermediate cam that would resolve this difference, and no close-focus motion is reconstructed. Intermediate positions remain illustrative rather than focus-preserving production states. Source fidelity, these sampled runtime limits and production correlation remain separate conclusions.
+
 ## Sources and References
 
 1. Japan Patent Office, **JP 2015-94867 A**, *Zoom lens and image pickup apparatus*, published 18 May 2015. Numerical Example 1: pp. 12-13; Embodiment 1 architecture: ¶¶0048-0052 and Fig. 1; asphere equation: ¶0075; conditional values: Table 1, p. 19. The supplied JP publication is the transcription authority.

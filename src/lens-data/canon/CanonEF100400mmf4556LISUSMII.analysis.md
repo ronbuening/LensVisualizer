@@ -430,3 +430,11 @@ invented focus rows are present in this prescription.
 7. HIKARI optical-glass catalog: https://www.hikari-g.co.jp/optical_glass/catalog/
 8. SUMITA optical-glass data: https://www.sumita-opt.co.jp/en/download/
 9. CDGM optical-glass data: https://www.cdgmgd.com/
+
+## Runtime interpolation limits — 2026-10-30
+
+The three published zoom stations remain the source-supported quantitative states. A geometry-identical 65-position
+runtime follow-up finds a maximum sampled aperture difference of 3.2209% at z = 0.828125
+and maximum absolute paraxial defocus of 10.107651 mm at z = 0.796875. Intermediate slider
+positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
+all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.

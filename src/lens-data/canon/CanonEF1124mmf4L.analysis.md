@@ -330,3 +330,11 @@ No finite-focus EFL, focus travel, or close-focus magnification is reported beca
 5. Canon Camera Museum, official lens-construction diagram: https://global.canon/ja/c-museum/wp-content/uploads/2015/06/ef438-lens-construction.png
 6. OHARA, official optical-glass catalog, special-order catalog, and glass data sheets, updated May 29, 2026: https://www.ohara-inc.co.jp/en/product/catalog/
 7. HOYA, official optical-glass catalog and data downloads, updated June 1, 2026: https://www.hoya-opticalworld.com/english/datadownload/index.html
+
+## Runtime interpolation limits — 2026-10-30
+
+The three published zoom stations remain the source-supported quantitative states. A geometry-identical 65-position
+runtime follow-up finds a maximum sampled aperture difference of 0.0000% at z = 0.03125
+and maximum absolute paraxial defocus of -1.354518 mm at z = 0.28125. Intermediate slider
+positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
+all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.

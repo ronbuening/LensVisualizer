@@ -105,3 +105,28 @@ field through the existing prepared vector-launch path. There is no inferred cut
 exempt or skip. The existing source-precision track and conditional-expression rounding differences are retained.
 The outline review and sampled runtime clearance do not establish full skew-ray clearance, a production prescription
 or a historical material identity.
+
+## 2026-10-30 — Runtime interpolation completeness follow-up
+
+Runtime-only follow-up on 2026-10-30 sampled 65 equally spaced zoom positions (step 1/64), including the three
+published stations at z = 0, 0.5 and 1. Source-review dates, all source R/d/materials and every control remain unchanged.
+The 62 intermediate positions interpolate the drawing; the patent supplies no continuous zoom cam or guarantee of
+focus/aperture preservation there. Focus endpoints have identical geometry at every sampled zoom position.
+
+The greatest sampled aperture difference is 0.0000% at z = 0.03125
+(limiter STO); 0/65 positions exceed the ordinary 3% aperture gate. The greatest absolute
+paraxial defocus is -1.354518 mm at z = 0.28125, measured from the current printed/
+previously reconstructed image plane. The largest difference between actual first-order EFL and the interpolated
+station EFL is -4.3537% at z = 0.25. No source spacing, aperture, image plane or
+optical surface is tuned to remove an illustrative interval's mismatch.
+
+| Published station z | Axial aperture difference | Paraxial defocus (mm) |
+| ------------------- | ------------------------: | --------------------: |
+| 0                   |                0.000000% |             -0.011941 |
+| 0.5                 |                0.000000% |              0.002756 |
+| 1                   |                0.000000% |              0.000925 |
+
+All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
+format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
+geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
+positions or production performance. The original discrete stations remain the source-supported quantitative states.

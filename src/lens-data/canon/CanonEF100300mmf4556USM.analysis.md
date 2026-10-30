@@ -376,3 +376,11 @@ single provenance assertion.
    fourth-group rear focusing: <https://global.canon/ja/c-museum/product/ef290.html>.
 4. **JP 4,612,810 B2**, Japanese family member of the selected US patent; used only to resolve the internally impossible
    US rendering of condition (3): <https://patents.google.com/patent/JP4612810B2/ja>.
+
+## Runtime interpolation limits — 2026-10-30
+
+The three published zoom stations remain the source-supported quantitative states. A geometry-identical 65-position
+runtime follow-up finds a maximum sampled aperture difference of 5.5166% at z = 0.796875
+and maximum absolute paraxial defocus of 9.960095 mm at z = 0.78125. Intermediate slider
+positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
+all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.

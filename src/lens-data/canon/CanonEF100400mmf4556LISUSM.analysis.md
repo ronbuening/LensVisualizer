@@ -221,6 +221,12 @@ The reconstructed 1.8 m focus states trace to the selected reconstruction target
 
 No aspherical surfaces are present in Numerical Example 2, so there are no conic conventions, polynomial coefficients, asphere departures, or scale-transformed aspheric terms to report.
 
+## Interpolated Zoom Limits
+
+A 65-position diagnostic copy exactly reproduces the existing runtime geometry and stop diameters. Every full-frame chief is clear, but 48 of 65 aperture positions lie within 3% of their interpolated nominal f-number. Fourteen intermediate samples are limited at surface 17 and three at surface 12. The worst sample gives f/5.949586 against f/5.5375 (+7.4417%) near the displayed 303.82 mm label. The previously checked surface-4 inferred cut remains unchanged; these aperture limits occur elsewhere.
+
+The source supplies three zoom stations rather than a continuous mechanical cam. At normalized zoom 0.8125, current interpolation gives back focus 127.324891 mm against image gap 105.8325 mm, a 21.492391 mm displacement; actual paraxial EFL is 309.426408 mm versus the displayed 303.8175 mm. The three source-anchor back-focus residuals are +0.006001/+0.010195/−0.013073 mm. Quantitative source comparison therefore belongs to those three anchors; intermediate controls are illustrative and do not maintain infinity focus. No source spacing, cap or focus control is fitted to invent the missing cam. All these first-order and clearance numbers retain the model's approximate d-line interpretation of the source's unspecified numerical index reference; agreement with source coordinates does not identify that wavelength or a production prescription.
+
 ## Sources and References
 
 1. **JP 2000-47107 A**, *Zoom Lens*, Canon Inc., inventor Hiroshi Endo, filed 1998-07-30, published 2000-02-18. Numerical Example 2 is the prescription source; relevant architecture and mechanism discussion appears at ¶0014-¶0017, ¶0023-¶0028, ¶0029-¶0046. The Example 2 prescription and variable-spacing table are on patent p. 7; the associated optical section begins with Fig. 6.

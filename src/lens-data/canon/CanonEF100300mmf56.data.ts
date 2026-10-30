@@ -20,8 +20,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the numerical design state; 300 is not used as a scaling target.          ║
  * ║                                                                              ║
  * ║ SOURCE CORRECTION: the scan prints N3 = 1.43749, νd = 70.1. Independent    ║
- * ║ reduced-angle and ABCD checks show that this contradicts the patent's own   ║
- * ║ focal-length table. The model therefore uses N3 = 1.48749 explicitly as a  ║
+ * ║ source focal summaries and original Figure 5 spherical-aberration plot   ║
+ * ║ independently reject it. The model retains N3 = 1.48749 explicitly as a   ║
  * ║ source correction; the raw 1.43749 value is not an OCR correction.         ║
  * ║                                                                              ║
  * ║ Zoom-only variable gaps: D5, D10, D13 and the modeled rear BF (surface 25). ║
@@ -84,6 +84,18 @@ const LENS_DATA = {
     patentYear: 1986,
     authors: ["Keiji Ikemori", "Sadatoshi Takahashi", "Takashi Matsushita", "Tsunefumi Tanaka", "Nozomi Kitagishi"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "4",
+        field: "nd",
+        printed: 1.43749,
+        applied: 1.48749,
+        evidence: ["source-summary", "aberration-figure"],
+        note:
+          "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data or resolving the source's unnamed spectral reference.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -123,7 +135,7 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
-      nd: 1.48749,
+      nd: 1.48749, // Source N3=1.43749; retained correction has source-summary + aberration-figure evidence above.
       vd: 70.1,
       indexReference: "d",
       focalLengthMm: 222.685764,

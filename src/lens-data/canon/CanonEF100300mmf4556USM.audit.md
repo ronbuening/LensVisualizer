@@ -81,3 +81,28 @@ BFDs, not printed source spacings. The selected source supplies infinity zoom da
 trajectory is reconstructed from the production 1.5 m MFD. The later 2004-priority patent remains a design correlation
 for a 1990 production product, not proof that the production lens used ITO adhesive. Figure fidelity, sampled runtime
 clearance and production provenance remain separate conclusions.
+
+## 2026-10-30 — Runtime interpolation completeness follow-up
+
+Runtime-only follow-up on 2026-10-30 sampled 65 equally spaced zoom positions (step 1/64), including the three
+published stations at z = 0, 0.5 and 1. Source-review dates, all source R/d/materials and every control remain unchanged.
+The 62 intermediate positions interpolate the drawing; the patent supplies no continuous zoom cam or guarantee of
+focus/aperture preservation there. Focus endpoints have identical geometry at every sampled zoom position.
+
+The greatest sampled aperture difference is 5.5166% at z = 0.796875
+(limiter 10); 18/65 positions exceed the ordinary 3% aperture gate. The greatest absolute
+paraxial defocus is 9.960095 mm at z = 0.78125, measured from the current printed/
+previously reconstructed image plane. The largest difference between actual first-order EFL and the interpolated
+station EFL is 5.7893% at z = 0.796875. No source spacing, aperture, image plane or
+optical surface is tuned to remove an illustrative interval's mismatch.
+
+| Published station z | Axial aperture difference | Paraxial defocus (mm) |
+| ------------------- | ------------------------: | --------------------: |
+| 0                   |                0.000000% |             -0.000000 |
+| 0.5                 |                0.000000% |              0.000000 |
+| 1                   |                0.000000% |             -0.000000 |
+
+All 65 sampled modeled corner chiefs clear, with minimum reached height 100.077% of the
+format half-diagonal. Every generated element path is finite and closed with zero hidden renderer trim. These
+geometry and sampled-field results do not certify focus, complete pupil transmission, continuous unsampled cam
+positions or production performance. The original discrete stations remain the source-supported quantitative states.
