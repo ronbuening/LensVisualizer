@@ -58,8 +58,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    the element edge. Face 12A takes the partner face's sd, and     ║
  * ║    rimCutDepthMm ends its cap at 12.1052 mm, just past its old     ║
  * ║    12.041 mm rim; the traced beams reach 11.6598 mm there. 2, 5,   ║
- * ║    6 and 20A keep their old rims uncut: a land there would stop    ║
- * ║    rays those rims stop.                                           ║
+ * ║    6 and 20A keep their old clear radii. The 2026-10-29 review     ║
+ * ║    restores their FIG. 4 lands with rimExtensionSd (also face 14), ║
+ * ║    preserving optical apertures; scale 6.546 native px/lens mm.    ║
  * ║                                                                    ║
  * ║  NOTE ON PARTIAL DISPERSION:                                       ║
  * ║    `dPgF` is PgF minus the engine's normal line                   ║
@@ -244,16 +245,16 @@ const LENS_DATA = {
     // ── Gr1 (fixed) ────────────────────────────────────────────────
     // L11 — negative meniscus
     { label: "1", R: 99.8611, d: 2.2032, sd: 17.97, medium: 1 },
-    { label: "2", R: 18.9734, d: 7.6464, sd: 14.54 },
+    { label: "2", R: 18.9734, d: 7.6464, sd: 14.54, rimExtensionSd: 17.97 },
 
     // D1: L12 (biconvex) + L13 (biconcave), cemented
     { label: "3", R: 87.9768, d: 5.5728, sd: 14.19, medium: 2 },
     { label: "4", R: -43.8264, d: 1.7928, sd: 13.82, medium: 3 },
     // d5: patent prints 0.108 (2.333 mm); derived 0.2595 from TL — see header note.
-    { label: "5", R: 69.8933, d: 5.6052, sd: 12.29 },
+    { label: "5", R: 69.8933, d: 5.6052, sd: 12.29, rimExtensionSd: 13.82 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
-    { label: "6", R: -27.9612, d: 3.7152, sd: 11.84, medium: 4 },
+    { label: "6", R: -27.9612, d: 3.7152, sd: 11.84, rimExtensionSd: 13.63, medium: 4 },
     { label: "7", R: 37.8367, d: 7.1064, sd: 13.63, medium: 5 },
     { label: "8", R: -37.8367, d: 0.3888, sd: 13.93 },
 
@@ -300,7 +301,7 @@ const LENS_DATA = {
 
     // ── Gr2 (positive, moves toward object during close focus) ─────
     // L21 — negative meniscus, concave object side
-    { label: "14", R: -21.4207, d: 1.3392, sd: 10.32, medium: 8 },
+    { label: "14", R: -21.4207, d: 1.3392, sd: 10.32, rimExtensionSd: 10.69, medium: 8 },
     { label: "15", R: -124.8264, d: 0.2592, sd: 10.69 },
 
     // L22 — biconvex positive, ED #2 (fluorophosphate crown)
@@ -344,6 +345,7 @@ const LENS_DATA = {
       R: -40.9817,
       d: 1.7928,
       sd: 13.93,
+      rimExtensionSd: 15.21,
       medium: 11,
       asphere: {
         K: -0.1889,
