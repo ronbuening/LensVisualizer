@@ -46,7 +46,7 @@ No current public catalog match establishes the historical supplier or exact mel
 
 ### L2 — Biconcave Negative
 
-`nd = 1.74400`, `νd = 44.9`. Glass: `744449 — lanthanum glass coordinate class (vendor unresolved)`. Standalone paraxial `f = −216.390 mm`.
+`nd = 1.74400`, `νd = 44.9`. Glass: `744449 source lanthanum class (H-LaF3B qualified spectral proxy; production supplier unspecified)`. Standalone paraxial `f = −216.390 mm`.
 
 L2 is the divergent member of the three-element forward group. The patent explicitly identifies it as lanthanum glass. In the patent's chromatic argument, the negative component is paired with low-dispersion positive glass and an additional positive barium-flint component so that the combined dispersion behavior reduces secondary spectrum while retaining the required net power. [1]
 
@@ -54,7 +54,7 @@ Current catalogs contain close or exact members of the 744449 coordinate family,
 
 ### L3 — Positive Meniscus
 
-`nd = 1.56965`, `νd = 49.5`. Glass: `570495 — barium flint glass coordinate class (vendor unresolved)`. Standalone paraxial `f = +415.401 mm`.
+`nd = 1.56965`, `νd = 49.5`. Glass: `570495 source barium-flint class (H-BaF2 qualified spectral proxy; production supplier unspecified)`. Standalone paraxial `f = +415.401 mm`.
 
 L3 is the second positive component in the forward group and is identified by the patent as barium flint glass. In the patent's stated concept, this additional positive member is used with L1 and L2 to alter the combined partial-dispersion behavior of the forward group rather than merely adding positive power. [1]
 
@@ -62,7 +62,7 @@ The data file retains the patent's d-line coordinate directly. A close modern ca
 
 ### L4 — Biconcave Negative, Front Member of D1
 
-`nd = 1.52682`, `νd = 51.1`. Glass: `527511 — crown-flint coordinate (CF2 dispersion proxy; supplier unresolved)`. Standalone paraxial `f = −116.174 mm`.
+`nd = 1.52682`, `νd = 51.1`. Glass: `527511 source coordinate (CF2 approximate spectral proxy, catalog nd −0.000524; production supplier unspecified)`. Standalone paraxial `f = −116.174 mm`.
 
 L4 begins the cemented rear doublet. The patent provides its d-line index and Abbe number but does not assign a material class in the Example-II table. The integration audit uses CF2 as a closely compatible dispersion proxy; this neither identifies the historical melt nor establishes a patent-published material class.
 
@@ -70,7 +70,7 @@ At the shared L4→L5 cemented interface, the data model assigns the interface t
 
 ### L5 — Biconvex Positive, Rear Member of D1
 
-`nd = 1.62374`, `νd = 47.0`. Glass: `624470 — barium flint glass coordinate class (vendor unresolved)`. Standalone paraxial `f = +131.581 mm`.
+`nd = 1.62374`, `νd = 47.0`. Glass: `624470 source coordinate (E-BAF8 qualified spectral proxy; production supplier unspecified)`. Standalone paraxial `f = +131.581 mm`.
 
 L5 completes the cemented rear doublet. Its positive standalone power is stronger than the doublet's combined power because the biconcave L4 and their shared cemented interface substantially alter the net result. The verified air-embedded L4+L5 combination has EFL −1201.333 mm, so the pair is weakly negative as a unit despite L5's positive standalone power.
 
@@ -83,10 +83,10 @@ The patent's chromatic concept is unusually explicit for an early-1970s telephot
 | Element | Patent d-line coordinate | Source/material treatment | Data-file glass label |
 |---|---:|---|---|
 | L1 | 1.48606 / 81.5 | Fluophosphoric-acid glass | `Unmatched (486815 — fluophosphate crown; vendor unresolved)` |
-| L2 | 1.74400 / 44.9 | Lanthanum glass | `744449 — lanthanum glass coordinate class (vendor unresolved)` |
-| L3 | 1.56965 / 49.5 | Barium flint glass | `570495 — barium flint glass coordinate class (vendor unresolved)` |
-| L4 | 1.52682 / 51.1 | No class stated in Example II | `527511 — crown-flint coordinate (CF2 dispersion proxy; supplier unresolved)` |
-| L5 | 1.62374 / 47.0 | No class stated in Example II | `624470 — barium flint glass coordinate class (vendor unresolved)` |
+| L2 | 1.74400 / 44.9 | Lanthanum glass | `744449 source lanthanum class (H-LaF3B qualified spectral proxy; production supplier unspecified)` |
+| L3 | 1.56965 / 49.5 | Barium flint glass | `570495 source barium-flint class (H-BaF2 qualified spectral proxy; production supplier unspecified)` |
+| L4 | 1.52682 / 51.1 | No class stated in Example II | `527511 source coordinate (CF2 approximate spectral proxy, catalog nd −0.000524; production supplier unspecified)` |
+| L5 | 1.62374 / 47.0 | No class stated in Example II | `624470 source coordinate (E-BAF8 qualified spectral proxy; production supplier unspecified)` |
 
 The glass audit checked current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita catalog families. Those comparisons are useful for class and coordinate context, but they do not establish the actual historical melts used by Nippon Kogaku. The data therefore does not store vendor-derived `nC`, `nF`, `ng`, or `dPgF` values on these elements.
 
@@ -117,6 +117,12 @@ The patent provides no clear-aperture semi-diameters. The data therefore uses mo
 The exact-ray sampling includes on-axis full-pupil rays, a 60%-of-marketed-field bundle, both edges of the marketed 4°10′ full field (±2°05′), and surviving samples at the patent's ±4° design-field edges. Additional outer-pupil probes can fail to reach the inferred stop at the edge field. The model therefore does not claim that the full f/5.6 pupil is unvignetted across the entire 8° patent field. The 8° patent design field and the 4°10′ marketed 35 mm angle of view remain separate quantities.
 
 The semi-diameters and stop are model geometry, not measured production apertures. The integration review adds LensVisualizer surface and production render validation.
+
+## Patent rim and glass review
+
+The October 30, 2026 review inspected every optical face in US 3,774,991 Fig. 2A (PDF page 3, rendered at 600 dpi from the native 300 ppi scan). The long broken air gap cannot calibrate a whole-span drawing scale. The front and rear optical outlines support retaining the current clear caps; the weak R6 arc is not an independently exposed flat land. Cemented interfaces, line leaders and the broken axis do not establish a concave-end cut. No additional geometry change is supported. The official R5 correction to +224.820 mm was also verified directly in the Certificate of Correction (PDF page 13) and remains unchanged.
+
+All five d-line index/Abbe pairs were checked afresh in Example II (PDF page 11, column 5). Four resolve to compatible catalog spectral curves: H-LaF3B, H-BaF2, CF2 and E-BAF8. CF2 is explicitly a nonidentical proxy (coefficient index −0.000524, Abbe number −0.0540 relative to the source); H-BaF2 differs by +0.000050 and −0.0474. L1's 1.48606/81.5 fluophosphate coordinate remains unresolved. These qualifications preserve the current source anchors and wavelength behavior; the patent's glass-class and secondary-spectrum discussion does not provide numeric per-glass partial dispersion, C/F/g indices or a historical melt identity.
 
 ## Sources and References
 

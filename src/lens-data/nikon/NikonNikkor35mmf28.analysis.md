@@ -151,7 +151,7 @@ The patent gives no iris diameter. The stored stop semi-diameter, 7.278 mm, is t
 The application solves the same 7.278 mm wide-open iris from the nominal f-number. The aperture scale runs to f/22, the production minimum aperture given by collector references.
 
 Element semi-diameters are not published either. They follow the optical rims drawn in Figure 1 where the prescription allows:
-14.0 mm at the front surface (the patent's 0.8 f bound), 11.4 mm at the rear of L1, 11.2 mm for L2, 9.9 mm for L3 and 9.3 mm for L6.
+14.0 mm at the front surface (the patent's 0.8 f bound), 11.6 mm at the rear of L1, with its rim land drawn to 14.0 mm, 11.2 mm for L2, 9.9 mm for L3 and 9.3 mm for L6.
 L4 and L5 are drawn about 8.3 mm tall, but the model uses 7.6 mm on their outer surfaces and 7.3 mm on the facing surfaces because of the closing air gap described above.
 These are modeled clear apertures, not production mechanical dimensions.
 
@@ -159,6 +159,12 @@ With these apertures the axial f/2.8 beam passes every surface unclipped; its la
 The chief ray reaches the patent's 62° field edge (image height 21.0 mm at 31.1°) and the 135-format corner (21.65 mm at 31.8°) without clipping.
 The full-aperture oblique beam at the corner is not passed whole: it is cut on one side by the rear group, by roughly a fifth of its height at the L4–L5 gap, a quarter at the rear of L5 and about a fifth to a quarter at L6.
 That is ordinary wide-open vignetting for a compact retrofocus lens, and its exact amount depends on the estimated rims rather than on patent data.
+
+## Patent rim and glass review
+
+The October 30, 2026 review directly inspected Fig. 1 and the raster-only Example I table in US 3,874,770 A (PDF pages 2 and 7). The rear of L1 has a distinct straight rim land beyond its concave cap. The model now draws that land to the retained 14.0 mm outer height and opens the clear cap slightly from 11.4 to 11.6 mm. The measured normalized cap/outer ratio is about 0.80, with a one-native-pixel band of about ±0.007; the adopted 11.6/14.0 ratio is moved outward for beam clearance. An equivalent inferred-cut proof found a maximum wide-open reach of 11.4648 mm near 29.94°: the old cap did not provide the required 0.05 mm margin, while 11.6 mm does. The equivalent cut depth is 5.652436 mm; the authored representation uses a clear cap plus a rim extension. The smaller L4/L5 geometry remains bounded by its existing physical gap; their continuous arcs and label strokes do not prove another flat cap end.
+
+All six d-line index/Abbe pairs exactly match the source table, including L5's 1.74443/49.4. All six have compatible catalog spectral curves. L5 uses the approximate NBF1 proxy: its coefficient-derived index differs by −0.001131 and its Abbe number by −0.1784, while the source anchors remain intact. The source supplies no partial-dispersion coordinate or individual C/F/g indices. No new spectral measurement, APD attribution, historical melt or supplier is inferred.
 
 ## Sources
 
