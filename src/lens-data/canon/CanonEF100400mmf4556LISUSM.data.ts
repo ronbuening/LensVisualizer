@@ -37,12 +37,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ station; station nominalFNumber values carry the three published design    ║
  * ║ values.                                                                    ║
  * ║                                                                            ║
- * ║ Glass: the patent supplies nd/nu_d pairs but not vendor identities or      ║
- * ║ nC/nF/ng/dPgF line data. Vendor-neutral six-digit/class labels are used;   ║
- * ║ E3 fluorite and E7 Super-UD-class labels are production correlations. E9   ║
- * ║ uses K-SSK9 only as a qualified coefficient proxy. No APO/APD behavior is  ║
- * ║ asserted.                                                                   ║
- * ║                                                                            ║
+ * ║ Glass: source n/nu pairs have no explicit spectral-line anchor in paragraph
+ * ║ 0047. All 17 media remain Unmatched with an indexReferenceNote; approximate
+ * ║ d-line tracing retains the numbers while catalog curves stay disabled.
+ * ║ No nC/nF/ng/dPgF is published. Production fluorite/Super UD statements
+ * ║ do not identify these modeled media or their reference wavelength.
+ * ║
  * ║ Semi-diameters: the patent does not tabulate clear apertures. SDs were     ║
  * ║ derived from coded marginal/chief-ray envelopes at all three zoom states  ║
  * ║ and at infinity/MFD, then constrained by Fig. 6 proportions, the 77 mm     ║
@@ -53,6 +53,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ conservative intrusion allowance. This is a geometry policy override, not ║
  * ║ a layout workaround.                                                       ║
  * ║                                                                            ║
+ * ║ Fig.6 (p.13) resolves the E2 concave-rear shoulder: surface 4 is inferred
+ * ║ trimmed at 9.48 mm depth (34.4945 mm cap radius inside sd36). Full wide-open
+ * ║ zoom/focus beams clear its land; source R/d and the existing gap policy stay.
  * ║ The centered sequential model does not model IS-group decenter states.     ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
@@ -102,7 +105,9 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 312.26206,
-      glass: "487702 class (vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 487702 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Front positive collector in functional zoom group G1.",
     },
     {
@@ -114,7 +119,9 @@ const LENS_DATA = {
       vd: 35.0,
       indexReference: "d",
       focalLengthMm: -248.870426,
-      glass: "750350 class (lanthanum flint coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 750350 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative component of the front positive zoom group G1.",
     },
     {
@@ -126,8 +133,10 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 155.615754,
-      glass: "Fluorite (CaF2; production correlation)",
-      role: "Low-dispersion positive component of G1; fluorite identification is production-correlated.",
+      glass: "Unmatched (source spectral line unspecified; unconfirmed fluorite assignment)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      role: "Positive component of G1; source spectral line and production fluorite assignment remain unconfirmed.",
     },
     {
       id: 4,
@@ -138,7 +147,9 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: -71.239377,
-      glass: "713539 class (vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 713539 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Front negative component of functional zoom group G2.",
     },
     {
@@ -150,7 +161,9 @@ const LENS_DATA = {
       vd: 58.2,
       indexReference: "d",
       focalLengthMm: -48.620801,
-      glass: "623582 class (S-BSM15/BACD15 coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 623582 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -163,7 +176,9 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 76.233815,
-      glass: "847238 class (dense flint coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 847238 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Positive high-dispersion member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -176,7 +191,9 @@ const LENS_DATA = {
       vd: 95.0,
       indexReference: "d",
       focalLengthMm: 71.394018,
-      glass: "439950 class (S-FPL53 coordinate; Canon Super UD correlation; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 439950 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Low-dispersion positive component at the front of functional group G3.",
     },
     {
@@ -188,7 +205,9 @@ const LENS_DATA = {
       vd: 41.2,
       indexReference: "d",
       focalLengthMm: -167.187167,
-      glass: "702412 class (vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 702412 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative middle component of G3.",
     },
     {
@@ -200,8 +219,10 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       focalLengthMm: 161.249705,
-      glass: "K-SSK9 coefficient proxy (patent nd=1.62012, nu_d=49.5; production supplier unspecified)",
-      role: "Positive rear component of G3; K-SSK9 supplies a qualified spectral proxy, not a production identity.",
+      glass: "Unmatched (source spectral line unspecified; inactive former K-SSK9 proxy)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      role: "Positive rear component of G3; source reference line is unspecified, so the former K-SSK9 curve is disabled.",
     },
     {
       id: 10,
@@ -212,7 +233,9 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: -135.379089,
-      glass: "603606 class (SK14 coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 603606 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Single negative floating group G4; moves objectward during close focusing.",
     },
     {
@@ -224,7 +247,9 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 109.887227,
-      glass: "487702 class (vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 487702 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Front positive component of relay group G5.",
     },
     {
@@ -236,7 +261,9 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -68.025992,
-      glass: "805254 class (high-index flint coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 805254 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative component of relay group G5.",
     },
     {
@@ -248,7 +275,9 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 107.219815,
-      glass: "516641 class (S-BSL7 coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 516641 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Positive component of relay group G5.",
     },
     {
@@ -260,7 +289,9 @@ const LENS_DATA = {
       vd: 48.3,
       indexReference: "d",
       focalLengthMm: 66.41833,
-      glass: "667483 class (BAF11 coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 667483 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Rear positive component of relay group G5.",
     },
     {
@@ -272,7 +303,9 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: -48.104335,
-      glass: "835427 class (S-LAH55V coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 835427 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative front member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -285,7 +318,9 @@ const LENS_DATA = {
       vd: 28.5,
       indexReference: "d",
       focalLengthMm: 44.640957,
-      glass: "728285 class (dense flint coordinate family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 728285 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Positive middle member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -298,7 +333,9 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -57.598621,
-      glass: "773496 class (high-index lanthanum family; vendor not established)",
+      glass: "Unmatched (source spectral line unspecified; former 773496 coordinate class)",
+      indexReferenceNote:
+        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
       role: "Negative rear member of G6; the complete triplet moves imageward during close focusing.",
       cemented: "T1",
     },
@@ -308,7 +345,7 @@ const LENS_DATA = {
     { label: "1", R: 117.449, d: 5.2, sd: 36.0, medium: 1 },
     { label: "2", R: 506.654, d: 0.15, sd: 36.0 },
     { label: "3", R: 108.121, d: 3.5, sd: 36.0, medium: 2 },
-    { label: "4", R: 67.497, d: 0.12, sd: 36.0 },
+    { label: "4", R: 67.497, d: 0.12, sd: 36.0, rimCutDepthMm: 9.48 },
     { label: "5", R: 68.071, d: 10.4, sd: 34.5, medium: 3 },
     { label: "6", R: -7912.525, sd: 34.5 },
     { label: "8", R: -371.134, d: 1.4, sd: 13.85, medium: 4 },

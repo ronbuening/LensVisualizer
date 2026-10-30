@@ -8,6 +8,7 @@
 **Inventor:** Hiroshi Endo  
 **Applicant:** Canon Inc.  
 **Title:** Zoom Lens  
+**Example details:** Numerical Example 2, prescription pp. 6–7; Fig. 6 on p. 13; 4 m focus motions in Table 2 on p. 9
 
 The prescription analyzed here is Numerical Example 2 of JP 2000-47107 A. The patent defines a six-functional-group zoom lens with positive, negative, positive, negative, positive, and negative refractive-power groups from object to image side, respectively (¶0017). The Example 2 numerical table gives three zoom states at 102.68, 161.53, and 389.19 mm, with published f-numbers of 4.6, 5.1, and 5.8. The prescription is used at its published scale; it is not rescaled to the marketed 100-400 mm range.
 
@@ -18,7 +19,7 @@ The project treats the selected production correlation with the original CANON E
 3. The patent design range of 102.68-389.19 mm at f/4.6-5.8 closely corresponds to the marketed 100-400 mm f/4.5-5.6 range while remaining distinct from those rounded product labels.
 4. The patent identifies the sixth group as the principal focusing group and the fourth group as a floating compensator (¶0042). Canon describes the production lens as using rear-focus floating focusing and specifies a 1.8 m minimum focusing distance and 0.2x maximum magnification.
 5. The patent permits image stabilization by moving the second group perpendicular to the optical axis (¶0043). Canon identifies the production lens as an Image Stabilizer model.
-6. Canon documents fluorite and Super UD use in the production lens. The prescription contains two unusually low-dispersion positive elements, E3 at nd = 1.43387, νd = 95.1 and E7 at nd = 1.43875, νd = 95.0. Their production-material labels in the data file are explicitly correlations, not patent-supplied vendor identities.
+6. Canon documents fluorite and Super UD use in the production lens. The prescription contains two unusually low-dispersion positive elements, E3 at n (source) = 1.43387, ν (source) = 95.1 and E7 at n (source) = 1.43875, ν (source) = 95.0. Earlier fluorite/Super UD assignments remain unconfirmed production correlations; the data now keeps these media Unmatched because the numerical reference line is unspecified.
 
 The structured metadata therefore follows the selected patent and product correlation: Canon EF mount, 135 full-frame format, JP 2000-47107 A, Hiroshi Endo, Canon Inc., and publication year 2000.
 
@@ -34,92 +35,100 @@ The data file preserves the patent radii, refractive indices, and ordinary spaci
 
 The patent publishes the stop location and the three f-number values but not a physical stop diameter. Accordingly, the authored stop semi-diameter is a modeling inference based on the wide-state entrance-pupil solution; the variable-aperture model is governed by the published design sequence f/4.6, f/5.1, and f/5.8. The patent also does not tabulate clear semi-diameters. The surface semi-diameters in the data file are modeled values derived from verified ray envelopes and constrained by the patent's Fig. 6 optical proportions and Canon's 77 mm production filter diameter. These dimensions are not presented as patent-published apertures.
 
+### Element Heights and Concave Rims
+
+The original Fig. 6 is a native 200 ppi page scan, inspected without treating an enlarged render as added detail. The first-to-last glass vertex span is approximately 926 native px for 158.28 mm at wide/infinity, about 5.85 px/mm. Relative group heights support retaining the existing inferred apertures; the outer group brackets and zoom arrows are excluded from the glass outlines.
+
+The rear concave face of E2 ends in a short square shoulder. At its upper endpoint, the cap reaches approximately 185 px from the axis and the outer edge approximately 193 px, giving q≈0.959±0.010 for one-pixel endpoint uncertainty. The model retains the 36.0 mm drawn rim and uses an inferred 9.48 mm cut depth on surface 4, leaving a 34.4945 mm clear cap and a 1.5055 mm outer land. The source does not dimension that cut. No land is added at the E5/E6 doublet or inside the E15/E16/E17 triplet, and no other concave end resolves a separate cut at this scan resolution.
+
+The inferred land clears the sampled wide-open beams across the authored zoom/focus range. An independent dense check reaches 33.8161 mm against a cap radius of 34.4945 mm and a required margin of 0.1035 mm. Additional finite-point checks use the existing 1.8 m constrained reconstruction and the source's wide/tele 4 m focus motions; these checks do not certify reconstructed travel as source-published states. The existing `gapSagFrac: 0.96` constraint, source radii/spacings and focus/zoom trajectories are retained. Actual SVGs at wide/middle/tele and infinity/intermediate/close controls have finite, connected element outlines and no hidden material trimming. Stabilizer decentering and complete three-dimensional clearance remain outside this centered sampled review.
+
 ## Element-by-Element Analysis
 
 ### E1 — Positive Meniscus, G1
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 class (vendor not established). Standalone f in air = +312.262060 mm.**
+**n (source) = 1.48749, ν (source) = 70.2. Glass: Unmatched (source spectral line unspecified; former 487702 coordinate class). Standalone f in air = +312.262060 mm.**
 
 E1 is the front positive collector of G1. Its standalone focal length is the value obtained when the physical element is isolated in air; it is not the in-situ focal length of G1. In the assembled zoom, its function is inseparable from E2 and E3 and from the motion of the complete first group.
 
 ### E2 — Negative Meniscus, G1
 
-**nd = 1.74950, νd = 35.0. Glass: 750350 class (lanthanum flint coordinate family; vendor not established). Standalone f in air = -248.870426 mm.**
+**n (source) = 1.74950, ν (source) = 35.0. Glass: Unmatched (source spectral line unspecified; former 750350 coordinate class). Standalone f in air = -248.870426 mm.**
 
 E2 supplies negative power inside the otherwise positive first functional group. The relatively high index and low Abbe number distinguish it from the two positive neighbors. The resulting G1 is a compound positive group rather than a simple front positive lens.
 
 ### E3 — Biconvex Positive, G1
 
-**nd = 1.43387, νd = 95.1. Glass: Fluorite (CaF2; production correlation). Standalone f in air = +155.615754 mm.**
+**n (source) = 1.43387, ν (source) = 95.1. Glass: Unmatched (source spectral line unspecified; unconfirmed fluorite assignment). Standalone f in air = +155.615754 mm.**
 
-E3 is the strongest positive element of G1 by standalone power. Its very low index and very high Abbe number are fluorite-like. Canon independently documents one fluorite element in the production lens, so the data file correlates E3 with that material; the patent itself supplies only the optical coordinates and does not name CaF2 or a supplier.
+E3 is the strongest positive element of G1 by standalone power. Canon independently documents one fluorite element in the production lens, which motivated an earlier E3 assignment. The source does not establish the spectral reference of its numerical pair or name CaF2 for this element. E3 therefore remains Unmatched; the production-material assignment is unconfirmed and no CaF2 catalog curve is active.
 
 ### E4 — Biconcave Negative, G2
 
-**nd = 1.71300, νd = 53.9. Glass: 713539 class (vendor not established). Standalone f in air = -71.239377 mm.**
+**n (source) = 1.71300, ν (source) = 53.9. Glass: Unmatched (source spectral line unspecified; former 713539 coordinate class). Standalone f in air = -71.239377 mm.**
 
 E4 begins the fixed negative second functional group. The patent makes G2 stationary during zooming (¶0027) and treats its negative power as a central part of the compact zoom-power distribution. The patent's discussion of condition (8) limits the magnitude of G2 power so that compactness does not force excessive zoom travel or aberration growth (¶0032-¶0033).
 
 ### E5-E6 — Cemented Pair D1, G2
 
-**E5: nd = 1.62299, νd = 58.2. Glass: 623582 class (S-BSM15/BACD15 coordinate family; vendor not established). Standalone f in air = -48.620801 mm.**  
-**E6: nd = 1.84666, νd = 23.8. Glass: 847238 class (dense flint coordinate family; vendor not established). Standalone f in air = +76.233815 mm.**
+**E5: n (source) = 1.62299, ν (source) = 58.2. Glass: Unmatched (source spectral line unspecified; former 623582 coordinate class). Standalone f in air = -48.620801 mm.**\
+**E6: n (source) = 1.84666, ν (source) = 23.8. Glass: Unmatched (source spectral line unspecified; former 847238 coordinate class). Standalone f in air = +76.233815 mm.**
 
 E5 and E6 share the source surface-11 cemented interface. The interface therefore changes directly from E5 glass to E6 glass, with no synthetic cement layer in the model. Their opposite standalone powers and strongly separated dispersion coordinates form a compact compound component within negative G2. The individual standalone focal lengths must not be confused with the net power of the cemented pair or the in-situ power of G2.
 
 ### E7 — Biconvex Positive, G3
 
-**nd = 1.43875, νd = 95.0. Glass: 439950 class (S-FPL53 coordinate; Canon Super UD correlation; vendor not established). Standalone f in air = +71.394018 mm.**
+**n (source) = 1.43875, ν (source) = 95.0. Glass: Unmatched (source spectral line unspecified; former 439950 coordinate class). Standalone f in air = +71.394018 mm.**
 
-E7 is the strong positive front element of G3. Its coordinates coincide closely with the S-FPL53 family, but the patent does not establish an OHARA production supplier. Canon independently states that the production lens uses Super UD glass, so the data file identifies E7 only as a Super-UD-correlated coordinate class.
+E7 is the strong positive front element of G3. Canon independently states that the production lens uses Super UD glass, which motivated an earlier E7 assignment. A numerical resemblance to the S-FPL53 d-line pair does not establish the source reference wavelength or a production material. E7 remains Unmatched and no S-FPL53 curve is active.
 
 ### E8 — Negative Meniscus, G3
 
-**nd = 1.70154, νd = 41.2. Glass: 702412 class (vendor not established). Standalone f in air = -167.187167 mm.**
+**n (source) = 1.70154, ν (source) = 41.2. Glass: Unmatched (source spectral line unspecified; former 702412 coordinate class). Standalone f in air = -167.187167 mm.**
 
 E8 is the negative middle component of the positive third functional group. This is the negative meniscus specifically called out in the patent's G3 arrangement (¶0028). Between positive E7 and E9, it contributes the alternating power pattern that the patent associates with reduced aberration change during zooming.
 
 ### E9 — Positive Meniscus, G3
 
-**nd = 1.62012, νd = 49.5. Glass: K-SSK9 coefficient proxy (patent nd=1.62012, nu_d=49.5; production supplier unspecified). Standalone f in air = +161.249705 mm.**
+**n (source) = 1.62012, ν (source) = 49.5. Glass: Unmatched (source spectral line unspecified; inactive former K-SSK9 proxy). Standalone f in air = +161.249705 mm.**
 
-E9 closes G3 with positive power. SUMITA K-SSK9 has the same catalog refractive index and νd = 49.8, only 0.3 above the patent coordinate. Its catalog polynomial is therefore used as a qualified spectral proxy so the element can participate in chromatic rendering. The label does not assert that SUMITA supplied the production glass.
+E9 closes G3 with positive power. The former SUMITA K-SSK9 proxy was selected from a d-line coordinate resemblance. The source does not specify its numerical pair's spectral anchor, so that resemblance cannot justify the curve. E9 remains Unmatched, its original 1.62012 / 49.5 pair is preserved, and the K-SSK9 catalog polynomial is disabled.
 
 ### E10 — Negative Meniscus, Floating G4
 
-**nd = 1.60311, νd = 60.6. Glass: 603606 class (SK14 coordinate family; vendor not established). Standalone f in air = -135.379089 mm.**
+**n (source) = 1.60311, ν (source) = 60.6. Glass: Unmatched (source spectral line unspecified; former 603606 coordinate class). Standalone f in air = -135.379089 mm.**
 
 E10 is the complete fourth functional group. The patent describes G4 as a negative meniscus and permits its focal length to satisfy condition (11) over a broader zoom range (¶0038, ¶0040). More importantly, G4 is the floating focus-compensation group: during close focusing it moves objectward while G6 moves imageward. The patent states that G4 compensates focus-induced aberration variation, particularly wide-end image-surface behavior, and that its travel for a given object distance can be kept approximately independent of focal length (¶0041-¶0042).
 
 ### E11 — Biconvex Positive, G5
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 class (vendor not established). Standalone f in air = +109.887227 mm.**
+**n (source) = 1.48749, ν (source) = 70.2. Glass: Unmatched (source spectral line unspecified; former 487702 coordinate class). Standalone f in air = +109.887227 mm.**
 
 E11 begins the positive fifth group. G5 is a four-element relay group placed between the floating negative G4 and the rear-focus triplet G6. The patent's condition (10) constrains the fifth-group power relative to telephoto focal length so that shortening the system does not produce excessive aberration, particularly at the wide end (¶0035).
 
 ### E12 — Negative Meniscus, G5
 
-**nd = 1.80518, νd = 25.4. Glass: 805254 class (high-index flint coordinate family; vendor not established). Standalone f in air = -68.025992 mm.**
+**n (source) = 1.80518, ν (source) = 25.4. Glass: Unmatched (source spectral line unspecified; former 805254 coordinate class). Standalone f in air = -68.025992 mm.**
 
 E12 is the negative member of G5 and has the lowest Abbe number in that group. The patent describes the fifth group as positive, negative, positive, positive from object to image side (¶0046), matching E11-E14 in the final data.
 
 ### E13 — Biconvex Positive, G5
 
-**nd = 1.51633, νd = 64.1. Glass: 516641 class (S-BSL7 coordinate family; vendor not established). Standalone f in air = +107.219815 mm.**
+**n (source) = 1.51633, ν (source) = 64.1. Glass: Unmatched (source spectral line unspecified; former 516641 coordinate class). Standalone f in air = +107.219815 mm.**
 
 E13 restores positive power after E12 and uses a conventional crown-like coordinate. Its role is therefore best understood as part of the compound G5 relay rather than as an isolated positive lens. The patent attributes the four-element G5 arrangement to correction of focus-dependent tele-end spherical-aberration variation and sagittal image-surface variation while retaining compactness (¶0046).
 
 ### E14 — Positive Meniscus, G5
 
-**nd = 1.66672, νd = 48.3. Glass: 667483 class (BAF11 coordinate family; vendor not established). Standalone f in air = +66.418330 mm.**
+**n (source) = 1.66672, ν (source) = 48.3. Glass: Unmatched (source spectral line unspecified; former 667483 coordinate class). Standalone f in air = +66.418330 mm.**
 
 E14 is the strongest positive member of G5 by standalone focal length and completes the positive-negative-positive-positive sequence stated in the patent. It also forms the final powered element before the large zoom-dependent air space to G6.
 
 ### E15-E17 — Cemented Rear-Focus Triplet T1, G6
 
-**E15: nd = 1.83481, νd = 42.7. Glass: 835427 class (S-LAH55V coordinate family; vendor not established). Standalone f in air = -48.104335 mm.**  
-**E16: nd = 1.72825, νd = 28.5. Glass: 728285 class (dense flint coordinate family; vendor not established). Standalone f in air = +44.640957 mm.**  
-**E17: nd = 1.77250, νd = 49.6. Glass: 773496 class (high-index lanthanum family; vendor not established). Standalone f in air = -57.598621 mm.**
+**E15: n (source) = 1.83481, ν (source) = 42.7. Glass: Unmatched (source spectral line unspecified; former 835427 coordinate class). Standalone f in air = -48.104335 mm.**\
+**E16: n (source) = 1.72825, ν (source) = 28.5. Glass: Unmatched (source spectral line unspecified; former 728285 coordinate class). Standalone f in air = +44.640957 mm.**\
+**E17: n (source) = 1.77250, ν (source) = 49.6. Glass: Unmatched (source spectral line unspecified; former 773496 coordinate class). Standalone f in air = -57.598621 mm.**
 
 The three elements are cemented directly at source surfaces 31 and 32 and together constitute negative G6. The patent identifies G6 as the principal focusing group (¶0042) and specifies that the three lenses are cemented (¶0045). The negative-positive-negative internal power sequence is therefore distinct from the net negative power of the complete triplet.
 
@@ -127,30 +136,30 @@ The patent also notes a practical advantage of cementing G6 in Numerical Example
 
 ## Glass Identification and Selection
 
-The patent tabulates refractive-index and Abbe-number pairs but does not name glass vendors. The data file therefore uses vendor-neutral six-digit classes or explicitly qualified coordinate families unless the production correlation supplies a defensible material-class interpretation. The d-line interpretation itself is catalog-supported: many of the source coordinates coincide with established six-digit nd/νd families. The E13 coordinate (nd = 1.51633, νd = 64.1) matches the S-BSL7 coordinate family to the patent's stated precision; it is not a BK7 coordinate.
+Paragraph 0047 on p. 5 calls the numerical columns nᵢ and νᵢ without naming a reference wavelength. Page 10 identifies d/g aberration-curve labels, but it does not explicitly assign a reference line to the nᵢ/νᵢ table. Coordinate resemblance to modern d-line glasses cannot establish that missing source anchor.
 
-| Element(s) | Authored identification | nd | νd | Status |
-|---|---|---:|---:|---|
-| E1, E11 | 487702 class | 1.48749 | 70.2 | Vendor not established |
-| E2 | 750350 lanthanum-flint class | 1.74950 | 35.0 | Vendor not established |
-| E3 | Fluorite (CaF2) | 1.43387 | 95.1 | Production correlation |
-| E4 | 713539 class | 1.71300 | 53.9 | Vendor not established |
-| E5 | 623582 S-BSM15/BACD15 coordinate class | 1.62299 | 58.2 | Vendor not established |
-| E6 | 847238 dense-flint class | 1.84666 | 23.8 | Vendor not established |
-| E7 | 439950 / S-FPL53-coordinate class | 1.43875 | 95.0 | Canon Super UD correlation; vendor not established |
-| E8 | 702412 class | 1.70154 | 41.2 | Vendor not established |
-| E9 | K-SSK9 coefficient proxy | 1.62012 | 49.5 | Catalog νd = 49.8; production supplier unspecified |
-| E10 | 603606 / SK14-coordinate class | 1.60311 | 60.6 | Vendor not established |
-| E12 | 805254 high-index flint class | 1.80518 | 25.4 | Vendor not established |
-| E13 | 516641 / S-BSL7-coordinate class | 1.51633 | 64.1 | Vendor not established |
-| E14 | 667483 / BAF11-coordinate class | 1.66672 | 48.3 | Vendor not established |
-| E15 | 835427 / S-LAH55V-coordinate class | 1.83481 | 42.7 | Vendor not established |
-| E16 | 728285 dense-flint class | 1.72825 | 28.5 | Vendor not established |
-| E17 | 773496 high-index lanthanum class | 1.77250 | 49.6 | Vendor not established |
+All 17 modeled media therefore retain their exact source index/Abbe pairs with `Unmatched` labels and `indexReferenceNote` qualifications. The engine retains an approximate d-line convention for tracing those numbers; it is not a statement that the source published d-line measurements. Catalog curves are disabled for all 17 media. No source numerical cement, hybrid layer, filter or rear plate is omitted from this prescription.
 
-E3 and E7 are the two conspicuously high-Abbe positive elements. Their locations in separate positive functional groups provide a plausible chromatic-correction distribution across the zoom, and Canon independently documents fluorite and Super UD use in the production lens. The exact assignment of E3 to fluorite and E7 to the Super-UD-correlated class remains a production-correlation inference rather than a patent material statement.
+| Elements | Source n | Source ν | Source medium disposition |
+|---|---:|---:|---|
+| E1, E11 | 1.48749 | 70.2 | Unmatched; reference line unspecified |
+| E2 | 1.74950 | 35.0 | Unmatched; reference line unspecified |
+| E3 | 1.43387 | 95.1 | Unmatched; fluorite assignment unconfirmed |
+| E4 | 1.71300 | 53.9 | Unmatched; reference line unspecified |
+| E5 | 1.62299 | 58.2 | Unmatched; reference line unspecified |
+| E6 | 1.84666 | 23.8 | Unmatched; reference line unspecified |
+| E7 | 1.43875 | 95.0 | Unmatched; Super UD assignment unconfirmed |
+| E8 | 1.70154 | 41.2 | Unmatched; reference line unspecified |
+| E9 | 1.62012 | 49.5 | Unmatched; former K-SSK9 curve disabled |
+| E10 | 1.60311 | 60.6 | Unmatched; reference line unspecified |
+| E12 | 1.80518 | 25.4 | Unmatched; reference line unspecified |
+| E13 | 1.51633 | 64.1 | Unmatched; reference line unspecified |
+| E14 | 1.66672 | 48.3 | Unmatched; reference line unspecified |
+| E15 | 1.83481 | 42.7 | Unmatched; reference line unspecified |
+| E16 | 1.72825 | 28.5 | Unmatched; reference line unspecified |
+| E17 | 1.77250 | 49.6 | Unmatched; reference line unspecified |
 
-No element in the patent carries published `nC`, `nF`, `ng`, `PgF`, or `dPgF` data, and no production glass supplier is established by the selected source. Consequently, the analysis does not claim apochromatic correction or anomalous-partial-dispersion behavior from the authored `nd`/`νd` pairs alone.
+Canon's production fluorite/Super UD descriptions remain independent product context. They do not establish which patent element used either material, or the historical supplier, melt, chemistry or wavelength reference of the numerical prescription. The source publishes no per-element C/F/g indices, PgF/dPgF or numerical APD evidence. Approximate Abbe-based chromatic output cannot establish APO performance or source-accurate secondary-spectrum behavior.
 
 ## Focus Mechanism
 
@@ -170,9 +179,9 @@ The reconstructed motion is encoded only in the four affected air spaces: the st
 
 ## Chromatic Correction Strategy
 
-The source prescription distributes very low-dispersion positive material between G1 and G3 rather than concentrating it in one rear group. E3 has νd = 95.1 and E7 has νd = 95.0; both are positive elements embedded in compound positive functional groups. This arrangement is consistent with the production lens's documented use of fluorite and Super UD material, but the patent itself gives only optical coordinates.
+The source prescription distributes very low-dispersion positive material between G1 and G3 rather than concentrating it in one rear group. E3 has ν (source) = 95.1 and E7 has ν (source) = 95.0; both are positive elements embedded in compound positive functional groups. This arrangement is consistent with the production lens's documented use of fluorite and Super UD material, but the patent itself gives only optical coordinates.
 
-The chromatic interpretation must remain limited by the available data. The two high-Abbe elements clearly reduce primary dispersion relative to ordinary crown/flint choices, and the surrounding negative elements provide strongly different dispersion coordinates. However, secondary-spectrum or apochromatic performance cannot be established from Abbe numbers alone. No such claim is made here because the selected patent does not publish line indices or anomalous-partial-dispersion data for the elements.
+The chromatic interpretation must remain limited by the available data. Under the model's approximate tracing convention, the two high-Abbe elements reduce primary dispersion relative to lower-Abbe choices, and the surrounding negative elements provide strongly different dispersion coordinates. However, secondary-spectrum or apochromatic performance cannot be established from Abbe numbers alone. No such claim is made here because the selected patent does not establish the numerical reference line or publish per-element line indices or anomalous-partial-dispersion data.
 
 ## Conditional Expressions
 
@@ -221,4 +230,4 @@ No aspherical surfaces are present in Numerical Example 2, so there are no conic
 5. **OHARA Optical Glass Pocket Catalog.** Manufacturer catalog used only for coordinate-family checks, including S-FSL5, S-BSL7, S-BSM15, S-LAL8, S-BAH27, S-FPL53, and S-LAH55V: <https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf>.
 6. **SCHOTT Optical Glass data.** Manufacturer catalog/download collection used only for coordinate-family and international-code checks, including N-SK14, SF57-class, and N-LAF34 coordinates: <https://www.schott.com/en-us/products/optical-glass-p1000267/downloads>.
 7. **HIKARI J-BAF11 data sheet.** Manufacturer coordinate reference for the 667483 family used by E14: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BAF/J_BAF11.pdf>.
-8. **SUMITA Optical Glass Data.** Manufacturer catalog source for the K-SSK9 coefficient proxy used by E9; the patent coordinate remains authoritative and no production supplier is inferred: <https://www.sumita-opt.co.jp/en/download/>.
+8. **SUMITA Optical Glass Data.** Manufacturer catalog source for the former K-SSK9 proxy; that curve is now disabled because the patent numerical reference line is unspecified: <https://www.sumita-opt.co.jp/en/download/>.

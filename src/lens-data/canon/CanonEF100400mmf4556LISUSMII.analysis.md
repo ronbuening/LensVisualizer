@@ -11,7 +11,7 @@
 **Applicant:** Canon Inc. (Canon Kabushiki Kaisha)
 **Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
 
-**Example details:** Numerical Example 2
+**Example details:** Numerical Example 2, ¶0092, PDF page 22 (printed page 8); Fig. 4 on PDF page 5 (drawing sheet 4)
 
 The prescription is the unscaled Numerical Example 2 of US 2015/0146044 A1. The patent describes Example 2 as a
 six-unit zoom with a positive-negative-positive-negative-positive-negative power sequence, a zoom ratio of 3.78, and
@@ -299,6 +299,11 @@ with a design in which chromatic correction is distributed across several zoom u
 cemented achromat. The data supports this first-order statement through nd and νd only. It does not support an APO label,
 nor does it support claims about anomalous partial dispersion or secondary-spectrum correction for any particular glass.
 
+All 21 modeled media currently resolve coordinate-compatible catalog curves. That coverage includes the qualified
+CaF2 proxy and both inferred low-dispersion classifications; it does not identify Canon’s historical suppliers,
+melts or material chemistry. No source line-index or partial-dispersion values are replaced by catalog-derived
+per-element overrides.
+
 The production lens is a separate source fact: Canon identifies one fluorite element and one Super UD element. The patent
 coordinate pattern is consistent with those two special low-dispersion elements at E03 and E09. The data encodes these
 as inferred diagram classifications and uses a catalog CaF2 curve for E09, while retaining the caveat that the selected
@@ -400,6 +405,13 @@ The model contains exactly one `STO`, five cemented interfaces, 21 glass element
 cemented-group net EFLs are D1 -638.420 mm, D2 -128.982 mm, D3 +391.679 mm, D4 -202.633 mm, and D5 +385.102 mm. These
 values are distinct from both the individual standalone element focal lengths and the six complete functional-unit
 powers.
+
+The 2026-10-30 original-PDF review retained every published effective diameter and its corresponding half-diameter
+clear aperture. Native 300-dpi Fig. 4 does not separate a clear cap endpoint from an outer shoulder or resolve an
+additional concave-end land. No rim extension or inferred cut is added merely to square the figure’s schematic
+end strokes. Fresh actual SVG outlines at the three zoom stations contain 21 finite element paths, connected
+cemented groups and zero hidden renderer trimming. Focus states repeat the published infinity prescription;
+finite-focus floating trajectories remain unmodeled.
 
 No scaled dimensions, asphere-coefficient transformations, omitted plate corrections, inferred semi-diameters, or
 invented focus rows are present in this prescription.

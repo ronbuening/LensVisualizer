@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **690** lenses fully covered by trusted chromatic data
-- **687** visible lenses fully covered by trusted chromatic data
-- **682** lenses fully covered by strict Sellmeier data
-- **679** visible lenses fully covered by strict Sellmeier data
+- **689** lenses fully covered by trusted chromatic data
+- **686** visible lenses fully covered by trusted chromatic data
+- **681** lenses fully covered by strict Sellmeier data
+- **678** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10968 / 11844** non-air surfaces use strict catalog Sellmeier data
-- **92.6%** strict Sellmeier surface coverage overall
-- **10982 / 11844** non-air surfaces use trusted chromatic data
-- **92.7%** trusted chromatic coverage overall
+- **10951 / 11844** non-air surfaces use strict catalog Sellmeier data
+- **92.5%** strict Sellmeier surface coverage overall
+- **10965 / 11844** non-air surfaces use trusted chromatic data
+- **92.6%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -389,7 +389,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | 18/18 | 18 | 18/18 |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | 18/18 | 18 | 18/18 |
 | [TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO](../../src/lens-data/tamron/TamronA00170200mmf28.data.ts) | 18/18 | 18 | 18/18 |
-| [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON EF 400mm f/2.8 L IS III USM](../../src/lens-data/canon/CanonEF400mmf28LISIIIUSM.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 17/17 | 17 | 17/17 |
@@ -1366,6 +1365,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 333 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
 | 334 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
 | 335 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 336 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 
 ## Missing Surface Details
 
@@ -3836,4 +3836,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | Element 7 | abbe | `Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
 | 13 | Element 8 | abbe | `Unmatched (source wavelength unspecified; S-FSL5 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 7 more missing surfaces |
+
+### [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) - 0.0% trusted (0/17); 0.0% Sellmeier (0/17) - JP 2000-47107 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source spectral line unspecified; former 487702 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source spectral line unspecified; former 750350 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (source spectral line unspecified; unconfirmed fluorite assignment)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 4 | abbe | `Unmatched (source spectral line unspecified; former 713539 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 5 | abbe | `Unmatched (source spectral line unspecified; former 623582 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (source spectral line unspecified; former 847238 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (source spectral line unspecified; former 439950 coordinate class)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 8 | abbe | `Unmatched (source spectral line unspecified; former 702412 coordinate class)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 9 more missing surfaces |
 

@@ -12,6 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters: the patent table gives effective diameters, not semidiameters; stored sd values are
  * diameter/2. Surfaces 5 and 10 are reduced very slightly from the literal half-diameter values to keep
  * adjacent thin-air-gap sag intrusion within the renderer's 90% guardrail; optical prescription values are unchanged.
+ * Shape review: Fig. 1A/B on original PDF page 2 resolves outer shoulders on S6 and S11;
+ * rimExtensionSd=18.15/12.96 preserves the existing optical caps (15.875/12.355).
+ * S10 shoulder and literal S5/S10 half-diameter restoration remain constrained by existing gap guards.
+ * Source indices/Abbe numbers explicitly use the d-line (587.6 nm), column 8. Catalog names
+ * are compatible spectral proxies, not identified supplier/melt/chemistry; no source partials are published.
  * Surface 14 is the patent sub-aperture stop SP2. Surface 15 is the main aperture stop and is labeled STO.
  */
 const LENS_DATA = {
@@ -55,7 +60,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 89.0,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (OHARA spectral proxy; source supplier unspecified)",
       role: "Front positive collector in the stationary L1 group.",
     },
     {
@@ -66,7 +71,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 70.33,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (OHARA spectral proxy; source supplier unspecified)",
       role: "Strong positive meniscus in L1, convex to the object side.",
     },
     {
@@ -77,7 +82,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 35.0,
       focalLengthMm: -41.45,
-      glass: "S-LAM66 (OHARA)",
+      glass: "S-LAM66 (OHARA spectral proxy; source supplier unspecified)",
       role: "High-index flint corrector preceding the UD positive element in L1.",
     },
     {
@@ -88,10 +93,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 61.28,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA spectral proxy; source supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "Catalog anomalous-dispersion fluorophosphate glass; Canon identifies one UD element in the production lens.",
+        "Inferred only from the compatible S-FPL51 catalog proxy. The patent publishes no partial-dispersion or per-line indices and does not identify production chemistry, supplier or melt.",
       role: "UD/ED positive element closing the stationary L1 group.",
     },
     {
@@ -102,7 +107,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       focalLengthMm: -34.21,
-      glass: "S-NBH8 (OHARA)",
+      glass: "S-NBH8 (OHARA spectral proxy; source supplier unspecified)",
       role: "Primary negative component of the imageward-moving L2 focus group.",
     },
     {
@@ -113,7 +118,7 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.8,
       focalLengthMm: -39.99,
-      glass: "S-TIL6 (OHARA)",
+      glass: "S-TIL6 (OHARA spectral proxy; source supplier unspecified)",
       role: "Negative component of the weakly positive L2 cemented doublet.",
       cemented: "D1",
     },
@@ -125,7 +130,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 35.81,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (OHARA spectral proxy; source supplier unspecified)",
       role: "High-index positive component of the L2 cemented doublet.",
       cemented: "D1",
     },
@@ -137,7 +142,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 35.0,
       focalLengthMm: 252.7,
-      glass: "S-LAM66 (OHARA)",
+      glass: "S-LAM66 (OHARA spectral proxy; source supplier unspecified)",
       role: "Weak positive field lens in L3, immediately behind SP2 and the main aperture stop.",
     },
     {
@@ -148,7 +153,7 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       focalLengthMm: 72.98,
-      glass: "S-PHM52 (OHARA)",
+      glass: "S-PHM52 (OHARA spectral proxy; source supplier unspecified)",
       role: "Low-dispersion positive element opening the objectward-moving L4 focus group.",
     },
     {
@@ -159,7 +164,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 42.09,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (OHARA spectral proxy; source supplier unspecified)",
       role: "Positive component of the L4 achromatizing doublet.",
       cemented: "D2",
     },
@@ -171,7 +176,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -51.64,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (OHARA spectral proxy; source supplier unspecified)",
       role: "High-dispersion negative component of the L4 cemented doublet.",
       cemented: "D2",
     },
@@ -183,7 +188,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 110.57,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (OHARA spectral proxy; source supplier unspecified)",
       role: "Positive component of the decentered L5a image-stabilization doublet.",
       cemented: "D3",
     },
@@ -195,7 +200,7 @@ const LENS_DATA = {
       nd: 1.71999,
       vd: 50.2,
       focalLengthMm: -35.53,
-      glass: "S-LAL10 (OHARA)",
+      glass: "S-LAL10 (OHARA spectral proxy; source supplier unspecified)",
       role: "Dominant negative component of the L5a image-stabilization doublet.",
       cemented: "D3",
     },
@@ -207,7 +212,7 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.3,
       focalLengthMm: -147.23,
-      glass: "S-NBM51 (OHARA)",
+      glass: "S-NBM51 (OHARA spectral proxy; source supplier unspecified)",
       role: "Weak negative meniscus in the stationary L5b rear corrector.",
     },
     {
@@ -218,7 +223,7 @@ const LENS_DATA = {
       nd: 1.7432,
       vd: 49.3,
       focalLengthMm: 67.77,
-      glass: "S-LAM60 (OHARA)",
+      glass: "S-LAM60 (OHARA spectral proxy; source supplier unspecified)",
       role: "Final positive rear-field and BFD-setting element.",
     },
   ],
@@ -229,12 +234,12 @@ const LENS_DATA = {
     { label: "3", R: 44.495, d: 5.2, sd: 19.095, medium: 2 },
     { label: "4", R: 319.495, d: 1.58, sd: 18.345 },
     { label: "5", R: -182.557, d: 1.8, sd: 18.15, medium: 3 },
-    { label: "6", R: 40.762, d: 0.78, sd: 15.875 },
+    { label: "6", R: 40.762, d: 0.78, sd: 15.875, rimExtensionSd: 18.15 },
     { label: "7", R: 38.343, d: 5.78, sd: 15.565, medium: 4 },
     { label: "8", R: -140.691, sd: 14.91 },
     { label: "9", R: -248.519, d: 1.4, sd: 13.595, medium: 5 },
     { label: "10", R: 27.422, d: 4.3, sd: 12.2 },
-    { label: "11", R: -74.738, d: 1.31, sd: 12.355, medium: 6 },
+    { label: "11", R: -74.738, d: 1.31, sd: 12.355, rimExtensionSd: 12.96, medium: 6 },
     { label: "12", R: 29.897, d: 4.4, sd: 12.945, medium: 7 },
     { label: "13", R: 1984.002, sd: 12.96 },
     { label: "14", R: "flat", d: 2.14, sd: 13.415 },
