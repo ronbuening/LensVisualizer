@@ -26,7 +26,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    filter constraint, minimum edge thickness, sd/|R|, and signed   ║
  * ║    cross-gap sag clearance.                                        ║
  * ║                                                                    ║
- * Current coefficient curves cover 8/10 physical glasses; L31/L33 remain unresolved.
+ * Current coefficient curves cover 10/10 physical glasses; L31/L33 use loose FF5 spectral proxies.
  * Source Table 1 supplies only n/ν, with no printed wavelength or spectral anchors.
  * Catalog names are qualified proxies, not production supplier or melt identities.
  * Fig. 1 PDF p.2 at600dpi supports inferred concave lands S6/S7; see audit for q/beam checks.
@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.59507,
       vd: 35.5,
       focalLengthMm: 130.32,
-      glass: "Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)",
+      glass: "FF5 loose spectral proxy (HOYA; catalog 1.59270/35.45 versus source 1.59507/35.5; supplier unspecified)",
       role: "Positive entry element of the divergent rear group.",
     },
     {
@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.59507,
       vd: 35.5,
       focalLengthMm: 61.57,
-      glass: "Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)",
+      glass: "FF5 loose spectral proxy (HOYA; catalog 1.59270/35.45 versus source 1.59507/35.5; supplier unspecified)",
       role: "Positive element that balances the L32 divergence and assists field correction.",
     },
     {

@@ -77,11 +77,11 @@ The lanthanum-crown-class dispersion balances the preceding cemented doublet. As
 
 ### L31 — Positive Meniscus, convex to image
 
-$n_d = 1.59507$, $\nu_d = 35.5$. Glass: unmatched vintage flint, code 595/355; nearest current cross-reference is FF5 / S-FTM16 class at lower index. $f = +130.32$ mm.
+$n_d = 1.59507$, $\nu_d = 35.5$. Glass: loose HOYA FF5 spectral proxy; source code 595/355 retained, with production supplier unknown. $f = +130.32$ mm.
 
 L31 begins the divergent rear group with a positive meniscus. Although its individual power is positive, it participates in a group whose net focal length is negative. Its convex side faces the image, which moderates off-axis ray bending as the beam enters G3.
 
-The patent glass does not match a current catalog entry closely enough for a firm vendor assignment. It should be treated as a Nikon-era or supplier-specific flint-region glass rather than forced into a modern catalog name.
+The patent glass has no strict current-catalog coordinate match. FF5 is accepted only as a loose spectral proxy: catalog about1.59270/35.45 versus source1.59507/35.5, inside the runtime compatibility guard. The reference index remains the patent value; the borrowed curve is not a firm vendor or melt assignment.
 
 ### L32 — Biconcave Negative
 
@@ -93,11 +93,11 @@ This element is central to the rear group's magnifying function. Without it, the
 
 ### L33 — Biconvex Positive
 
-$n_d = 1.59507$, $\nu_d = 35.5$. Glass: unmatched vintage flint, same code 595/355 as L31. $f = +61.57$ mm.
+$n_d = 1.59507$, $\nu_d = 35.5$. Glass: loose FF5 spectral proxy, same source code 595/355 as L31. $f = +61.57$ mm.
 
 L33 reconverges part of the beam diverged by L32. The alternating positive-negative-positive-negative sequence in G3 spreads the negative group function over several powered surfaces rather than forcing it into a single strongly negative lens.
 
-Using the same unmatched 595/355 glass as L31 suggests a deliberate chromatic balance within G3, but the available patent data does not justify assigning a precise modern catalog glass.
+Using the same source595/355 pair as L31 suggests deliberate chromatic balance within G3. The shared loose FF5 curve supports wavelength tracing without identifying a precise historical material.
 
 ### L34 — Negative Meniscus, concave to object
 
@@ -119,11 +119,11 @@ The patent publishes refractive index and Abbe number only. It does not name gla
 | L21a | 1.68893 | 31.1 | E-FD8 / S-TIM28, 689/311–313 | Close class match | Cemented flint member |
 | L21b | 1.73350 | 51.1 | TAC4, 734/511 | Close class match | Cemented crown member |
 | L22 | 1.69350 | 53.8 | LAC13 class, 694/533 | Soft class match | G2 positive singlet |
-| L31, L33 | 1.59507 | 35.5 | Near FF5 / S-FTM16, but index is higher | Unmatched | Rear-group positive members |
+| L31, L33 | 1.59507 | 35.5 | FF5 loose spectral proxy; index is lower | Compatible, nonidentical | Rear-group positive members |
 | L32 | 1.79668 | 45.5 | Near TAF2 / J-LASF017, 795/454 | Soft class match | Main G3 diverger |
 | L34 | 1.80454 | 39.6 | NBFD3 / S-LAH63, 805/396 | Close class match | Final rear negative meniscus |
 
-Current coefficient curves cover 8 of the 10 physical elements, including the now available TAC4 polynomial proxy. TAC4’s catalog index 1.73400 differs from source 1.73350; TAF1’s 1.77250/49.63 differs from 1.77279/49.4, LAC13’s ν 53.34 differs from 53.8, and J-LASF017’s 1.79500/45.31 differs from L32’s 1.79668/45.5. These are compatible spectral proxies, with the patent coordinates retained. L31/L33 remain unresolved at 1.59507/35.5; a full current-catalog coordinate check supplies no strict match. No catalog-only spectral indices or partial-dispersion overrides are added. The table defines n and ν without printing a reference wavelength; the stored d-line interpretation follows the coordinate families rather than an explicit wavelength statement.
+Current coefficient curves cover all 10 physical elements, including the now available TAC4 polynomial proxy. TAC4’s catalog index 1.73400 differs from source 1.73350; TAF1’s 1.77250/49.63 differs from 1.77279/49.4, LAC13’s ν 53.34 differs from 53.8, and J-LASF017’s 1.79500/45.31 differs from L32’s 1.79668/45.5. These are compatible spectral proxies, with the patent coordinates retained. L31/L33 use loose FF5 curves at source1.59507/35.5 versus catalog1.59270/35.45; there remains no strict current-catalog coordinate match. Their d-line indices stay source-exact, while C/F/g wavelength behavior now borrows the qualified FF5 curve rather than the former Abbe fallback. No catalog-only spectral indices or partial-dispersion overrides are added. The table defines n and ν without printing a reference wavelength; the stored d-line interpretation follows the coordinate families rather than an explicit wavelength statement.
 
 The palette is conventional rather than apochromatic. It uses high-index lanthanum and dense-flint classes to keep curvatures manageable, then balances chromatic power through positive/negative pairing within each group. No ED, fluorite, anomalous partial dispersion, or secondary-spectrum claim is supported by the patent data.
 
