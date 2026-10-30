@@ -6,8 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Aperture and rims are inferred; no supplier/melt identity or spectral certification.
  * NOTE ON SEMI-DIAMETERS: no effective diameters are published. Values are estimated from CN118244463A
  * Figure 1 (to scale, 0.108 mm/px at 150 dpi) and floor-checked by real-ray trace at f/1.45 in both focus
- * states. Surfaces 5 and 9 follow the drawn optical extent (flat annuli outside it); 8A stays at 10.95 mm,
- * the largest value the default cross-gap limit admits in the 1.79 mm gap 8A-9 (the figure draws 11.0).
+ * states. Surfaces 5 and 9 follow the drawn optical extent, with opaque lands to their established outer rims;
+ * 8A stays at 10.95 mm, the largest value the default cross-gap limit admits in the 1.79 mm gap 8A-9
+ * (the figure draws 11.0).
  * The L5/L6 doublet (surfaces 10, 11) shares 12.6 mm with L7 because the figure draws the two level.
  * Source summary residuals and rounded optics are preserved without optimization.
  * CN118244463A controls; B grant changes summaries but not surfaces. D0 is first-surface distance.
@@ -61,9 +62,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 47.32078246523686,
       glass: "Unmatched (native nd=1.50000, vd=81.60; no tight six-vendor coordinate match)",
-      apd: "patent",
       apdNote:
-        "CN118244463A claim 9 and paragraphs 0068-0069 name L2 (νd = 81.6) the target lens and state that it is made of ultra-low-dispersion glass; Thypoch marks the same position ED. The patent prints nd to two decimals and no partial-dispersion data, so no catalog glass is assigned.",
+        "CN118244463A claim 9 and paragraphs 0068-0069 name L2 (νd = 81.6) the target lens and state that it is made of ultra-low-dispersion glass; Thypoch marks the same position ED. The patent prints nd to two decimals and no partial-dispersion data; anomalous partial dispersion is unestablished. No catalog glass or spectral override is assigned.",
       diagramLabel: "L2",
       cemented: "D1",
     },
@@ -149,7 +149,7 @@ const LENS_DATA = {
     { label: "2", R: 107.94, d: 0.58, sd: 18 },
     { label: "3", R: 21.12, d: 7.22, sd: 15.4, medium: 2 },
     { label: "4", R: 174.29, d: 2.51, sd: 15.4, medium: 3 },
-    { label: "5", R: 16.21, d: 5.86, sd: 11.3 },
+    { label: "5", R: 16.21, d: 5.86, sd: 11.3, rimExtensionSd: 15.4 },
     { label: "STO", R: "flat", d: 2.46 },
     {
       label: "7A",
@@ -166,7 +166,7 @@ const LENS_DATA = {
       sd: 10.95,
       asphere: { K: 0, A4: -3.42e-08, A6: -7.62e-09, A8: 3.35e-10, A10: 4.39e-13, A12: -1.24e-14, A14: 0, A16: 0 },
     },
-    { label: "9", R: -23.38, d: 1.19, sd: 11, medium: 5 },
+    { label: "9", R: -23.38, d: 1.19, sd: 11, medium: 5, rimExtensionSd: 12.6 },
     { label: "10", R: 33.54, d: 6.12, sd: 12.6, medium: 6 },
     { label: "11", R: -30.73, sd: 12.6 },
     { label: "12", R: -140.3, d: 1.19, sd: 12.6, medium: 7 },

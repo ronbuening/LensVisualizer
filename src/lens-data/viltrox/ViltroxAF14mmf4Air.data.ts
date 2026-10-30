@@ -28,7 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ analysis rather than being represented as a valid physical stop.     ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: Not published. Optical rims measured from Fig. 1 at 600 dpi.
- * ║ The 54.73 mm glass span gives 14.75 µm/px; flanges and labels are excluded.
+ * ║ The 54.73 mm glass span gives 14.75 µm/px; labels are excluded.
+ * ║ L1/L2 rear seats now extend the drawn rims beyond unchanged optical caps.
  * ║ L11 retains 7.2/7.7 mm: S20 turns over near 7.8 mm before the drawn rim.
  * ║ Enlarged remaining rims preserve clearance for the    ║
  * ║ exact meridional ray envelopes at infinity and constrained close focus,  ║
@@ -247,7 +248,7 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     { label: "1", R: 19.932, d: 1.19, sd: 12.7, medium: 1 },
-    { label: "2", R: 10.988, d: 2.51, sd: 9.8 },
+    { label: "2", R: 10.988, d: 2.51, sd: 9.8, rimExtensionSd: 12.7 },
     {
       label: "3A",
       R: 13.683,
@@ -269,6 +270,7 @@ const LENS_DATA = {
       R: 6.942,
       d: 5.58,
       sd: 7.6,
+      rimExtensionSd: 9.7,
       asphere: {
         K: -3.407936,
         A4: 1.418814e-3,

@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * which is the L3 knife edge: the surfaces cross at 16.02 mm, the validator rejects 16.1, and 15.8 keeps
  * 0.22 mm of edge), D2 13.7 (drawn 14.15, where s15 touches s16; s15→s16 gap policy) and L10 15.0 (drawn 14.8;
  * the close-focus axial marginal ray needs 14.946). L9 is the drawn 14.5. The drawing ends the concave faces
- * s4/s11/s22/s25/s26 in flat annuli (curves stop near 13.7/13.7/11.3/14.0/14.4 mm); those faces are carried
- * to the element rim because the renderer joins front and rear rims with a straight edge, so the rear corners
- * of L2/L6/L12 run 2.3/0.5/0.75 mm and the front/rear corners of L14 1.0/0.3 mm past the drawn annuli.
+ * s4/s11/s22/s25/s26 in flat annuli (curves stop near 13.7/13.7/11.3/14.0/14.4 mm). Inferred cuts now
+ * model s4/s11/s25/s26, with caps moved outward from the figure endpoints to clear every sampled beam.
+ * Surface 22 remains at the outer rim because no 0.1 mm land can clear the inferred-beam margin.
  * See audit for sampled coverage.
  * Lens-specific gapSagFrac 0.95: s15→s16 retains 0.11950043 mm actual air at SD 13.7.
  * Common rims; no widened cement seam. Significant corner vignetting remains.
@@ -265,14 +265,14 @@ const LENS_DATA = {
     { label: "1", R: 100.135, d: 4.3798, sd: 18.5, medium: 1 },
     { label: "2", R: -98.6318, d: 1.7173, sd: 18.5 },
     { label: "3", R: -75.3119, d: 1.1, sd: 17.3, medium: 2 },
-    { label: "4", R: 26.9027, d: 5.3372, sd: 17.3 },
+    { label: "4", R: 26.9027, d: 5.3372, sd: 17.3, rimCutDepthMm: 4.97 },
     { label: "5", R: 60.8824, d: 7.3949, sd: 15.8, medium: 3 },
     { label: "6", R: -27.0778, d: 1.0, sd: 15.8, medium: 4 },
     { label: "7", R: -108.4941, d: 0.2, sd: 15.8 },
     { label: "8", R: 48.092, d: 6.0449, sd: 16.5, medium: 5 },
     { label: "9", R: -53.7047, sd: 16.5 },
     { label: "10", R: -124.3739, d: 0.9, sd: 15.2, medium: 6 },
-    { label: "11", R: 41.8731, sd: 15.2 },
+    { label: "11", R: 41.8731, sd: 15.2, rimCutDepthMm: 2.36 },
     { label: "STO", R: "flat", d: 2.0 },
     { label: "13", R: -4147.1302, d: 3.3, sd: 13.7, medium: 7 },
     { label: "14", R: -42.1546, d: 0.8, sd: 13.7, medium: 8 },
@@ -286,8 +286,8 @@ const LENS_DATA = {
     { label: "22", R: 35.9595, sd: 13.5 },
     { label: "23", R: 42.787, d: 6.0298, sd: 15, medium: 13 },
     { label: "24", R: -42.787, d: 15.1674, sd: 15 },
-    { label: "25", R: -30.1667, d: 1.0, sd: 15.7, medium: 14 },
-    { label: "26", R: 58.2877, d: 0.8918, sd: 15.7 },
+    { label: "25", R: -30.1667, d: 1.0, sd: 15.7, medium: 14, rimCutDepthMm: 3.57 },
+    { label: "26", R: 58.2877, d: 0.8918, sd: 15.7, rimCutDepthMm: 2.09 },
     { label: "27", R: 35.8576, d: 4.8483, sd: 17.7, medium: 15 },
     { label: "28", R: 284.4302, d: 19.4558, sd: 17.7 },
   ],

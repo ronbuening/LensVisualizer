@@ -218,7 +218,7 @@ For condition (7), the evaluation uses the source physical S1-to-image track of 
 
 The final data file's load-bearing first-order values were recomputed directly from its TypeScript surface and focus arrays using sequential height/reduced-angle tracing and an independent ABCD construction. The two methods agree to machine precision. At infinity, the model gives EFL 14.192130 mm, air-equivalent Gaussian BFD 14.292563 mm (physical BFD 15.267563 mm through the filter), and a Petzval sum of +0.009564851 mm⁻¹ when each refracting surface is accumulated as `φ/(n·n′)`.
 
-The authored semi-diameters are inferred optical rims measured from Figure 1 at 600 dpi, with the unchanged f/4 stop. The 54.73 mm glass span yields 14.75 µm/px. Mechanical steps at the rear of L1 and L2 are excluded. L11 retains the original 7.2/7.7 mm radii because surface 20A turns over near 7.8 mm, before the drawn rim. Other apertures are enlarged from the original ray-envelope estimates. Surface validation, aspheric slope scans, image-circle checks, and production render diagnostics pass.
+The authored semi-diameters are inferred optical rims measured from Figure 1 at 600 dpi, with the unchanged f/4 stop. The 54.73 mm glass span yields 14.75 µm/px. The optical caps exclude the opaque rear seats of L1 and L2; explicit rim extensions now draw those seats without enlarging either optical aperture. L11 retains the original 7.2/7.7 mm radii because surface 20A turns over near 7.8 mm, before the drawn rim. Other apertures are enlarged from the original ray-envelope estimates. Surface validation, aspheric slope scans, image-circle checks, and production render diagnostics pass.
 
 These results describe the final LensVisualizer model, not metrology of a production sample. The 14 mm focal length, f/4 maximum aperture, 112.6° full field, 0.13 m minimum focus, 12/9 construction, internal focus, STM drive, and seven-blade diaphragm are manufacturer specifications; the exact prescription values and first-order computations come from the selected patent example and its normalized model.
 
@@ -248,3 +248,6 @@ Figure 1 is on PDF p.20. Manual optical-rim measurements supersede the automatic
 At the new SDs, the polynomial departures from the conic bases are +1066.44 µm on 3A and +2178.61 µm on 4A. Both slope scans remain monotonic through their audited rims. The unchanged rear asphere pair remains below the 20A turnover. These are modeled surface departures, not measured production errors.
 
 The original L2 and L10 six-digit labels resolved to S-FPL51 and S-TIH11 outside the optical-coordinate guard. L2 now uses the qualified J-FKH1 proxy and L10 remains unmatched. [Hikari optical glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf), PDF p.33, confirms the J-FKH1 coordinates. Guard tolerances are unchanged.
+
+
+The 2026-10-29 reinspection records the current outline and glass verdicts in the accompanying audit. L1 and L2 rear concave seats now have drawn rim extensions. The constrained L11 asphere silhouette and unresolved media remain qualified limitations.
