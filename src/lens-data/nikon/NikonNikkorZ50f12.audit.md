@@ -154,3 +154,34 @@ The extension preserves the designed 18 mm aspheric cap. The asphere is not eval
 Two other lands remain limited by the existing gap policy. Trials keeping their original caps but extending 4 to 28.5 mm and 31 to 20 mm fail the gap checks: 4→5 intrusion 15.614 mm against 14.859 mm allowed, and 31→32A 7.009 mm against 6.984 mm allowed. Those trials were reverted; no tolerance was relaxed. Surface 19's figure cut would enter the close-focus beam and remains unauthored. Other concave faces run into their corners.
 
 Validation: `audit:surface` and `audit:image-circle` on the accepted 32A extension; parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2021241230A1.pdf`, Example 1 / Table 1, PDF pp. 28–30. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.64000 / 60.1 | S-BSM81 | source pair retained; compatible proxy |
+| L12 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L13 | 1.55298 / 55.1 | J-KZFH4 | source pair retained; compatible proxy |
+| L14 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L15 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L16 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L17 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L18 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L19 | 1.73800 / 32.3 | S-NBH53V | source pair retained; compatible proxy |
+| L21 | 1.72047 / 34.7 | S-NBH8 | source pair retained; compatible proxy |
+| L22 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L31 | 1.59306 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L32 | 1.76450 / 49.1 | S-LAH96 | source pair retained; compatible proxy |
+| L41 | 1.61800 / 63.3 | S-PHM52 | source pair retained; compatible proxy |
+| L42 | 1.90265 / 35.8 | J-LASFH9 | source pair retained; compatible proxy |
+| L43 | 1.61266 / 44.5 | N-KZFS4 | source pair retained; compatible proxy |
+| L44 | 1.51680 / 64 | J-BK7 | source pair retained; compatible proxy |
+
+Coverage: 17 physical lens elements, 17 authored media, 17 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/63.9, J-BK7). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All seventeen lens-glass pairs and labels are retained. J-PSKH4 for L31, S-LAH96 for L32 and N-KZFS4 for L43 are non-identical compatible proxies, not exact identities (Δnd about +0.00043, −0.00065 and +0.00070 respectively). Source partial dispersion is not published for any element of this example; the existing L18/L22 APD designations remain catalog inferences. No authored dPgF or per-lens line-index override was found. The rear FL plate (1.51680/63.9) remains separately source-matched. No optical data or geometry changed.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

@@ -163,3 +163,30 @@ Directly re-read `patents/WO2019220618A1.pdf`, PDF p. 154, Figure 17 / Example 9
 No data change is supported. All three resolved concave lands, surfaces 11, 14 and 23, already carry cuts that pass the inferred-beam rule; they keep the cap ends and drawn rims recorded above. The other concave air faces reach their corners. The visible steps at 2, 10 and 21 are cemented junctions, where an air-face rim extension is not valid. No additional resolved flat land needs `rimExtensionSd`, and no new clear-aperture clipping was added.
 
 Validation: `audit:surface` and `audit:image-circle` pass on the retained data. Parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2019220618A1.pdf`, Example 9 / Table 9, PDF pp. 51–52. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.67270 / 32.2 | S-TIM25 | source pair retained; compatible proxy |
+| L12 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L13 | 1.72916 / 54.6 | S-LAL18 | source pair retained; compatible proxy |
+| L14a | 1.56093 / 36.6 | none | unresolved; Abbe approximation |
+| L14 | 1.80400 / 46.6 | S-LAH65V | source pair retained; compatible proxy |
+| L15 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L16 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L21 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L22 | 1.77377 / 47.2 | M-TAF401 | source pair retained; compatible proxy |
+| L23 | 1.49782 / 82.6 | J-FKH1 | source pair retained; compatible proxy |
+| L31 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L32 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L33 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+
+Coverage: 12 physical lens elements, 13 authored media, 12 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.1, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All twelve physical lens-glass pairs and the additional 0.1 mm bonded medium match the source. Two broad proxy labels were improved using already available coordinate-matched curves: L15 S-FPM2/FCD505 → J-PSKH1 (1.59319/67.9), and L23 S-FPL51/FCD1 → J-FKH1 (1.49782/82.6). These improve spectral-coordinate agreement without identifying production suppliers or chemistry. L15/L23 APD tags remain inferred; this source table publishes no θgF. L22 already resolves to M-TAF401 and its stale public unresolved wording was corrected. Twelve of thirteen modeled media resolve to curves; only the source-listed bonded medium 1.56093/36.6 stays unresolved and uses Abbe approximation. No per-lens spectral overrides were added, and geometry remains unchanged.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

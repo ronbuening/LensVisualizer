@@ -125,10 +125,10 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 67.9,
       focalLengthMm: 41.42,
-      glass: "S-FPM2 / FCD505 class (ED fluorophosphate; patent nd=1.59319, νd=67.9)",
+      glass: "J-PSKH1 (HIKARI coordinate-matched spectral proxy; production material unspecified)",
       apd: "inferred",
-      apdNote: "νd = 67.9; anomalous partial dispersion inferred from glass type (fluorophosphate ED class)",
-      role: "First ED element. Anomalous partial dispersion corrects both primary and secondary chromatic aberration. Forms cemented doublet with L16 immediately before the aperture stop.",
+      apdNote: "APD inferred from the compatible J-PSKH1 catalog curve; the patent gives nd/vd but no partial dispersion for L15.",
+      role: "Low-dispersion positive element and inferred ED candidate. Forms the chromatic-correcting doublet with L16 immediately before the aperture stop; APD behavior comes from the catalog proxy.",
       cemented: "L15–L16",
     },
 
@@ -181,10 +181,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 65.37,
-      glass: "S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)",
+      glass: "J-FKH1 (HIKARI coordinate-matched spectral proxy; production material unspecified)",
       apd: "inferred",
-      apdNote: "νd = 82.6; ED fluorophosphate class near S-FPL51/FCD1, not S-FPL53/FCD100",
-      role: "Second ED element — very-low-dispersion fluorophosphate. Placement within the focusing group provides chromatic correction that tracks with focus, preventing LoCA degradation at close distances. Thickest element in G2 (6.4 mm).",
+      apdNote: "APD inferred from the compatible J-FKH1 catalog curve; the patent gives nd/vd but no partial dispersion for L23.",
+      role: "Very-low-dispersion positive element and inferred ED candidate within the focusing group. Its source coordinate matches the J-FKH1 spectral proxy; production glass identity is unspecified. Thickest element in G2 (6.4 mm).",
     },
 
     // ── G3: Rear group (negative, fixed) ─────────────────────────
@@ -314,7 +314,7 @@ const LENS_DATA = {
         A10: -6.9321e-13,
       },
     }, // L22 rear (asph) → air
-    { label: "18", R: -73.80381, d: 6.4, sd: 17.0, medium: 9 }, // L23 front (super ED)
+    { label: "18", R: -73.80381, d: 6.4, sd: 17.0, medium: 9 }, // L23 front (inferred ED)
     { label: "19", R: -23.23519, sd: 17.0 }, // L23 rear → air (D19, var)
 
     // ── G3 ────────────────────────────────────────────────────────

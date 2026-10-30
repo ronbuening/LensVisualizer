@@ -77,10 +77,10 @@ G1 consists of six elements arranged from the object side:
    The negative A4 coefficient indicates that the surface becomes less curved (flatter) toward the periphery compared to its base sphere, which is the classic correction profile for reducing positive spherical aberration in a converging beam.
 
 4. **L15 + L16 — Cemented Doublet** (Surfaces 9–11)
-   - L15: Biconvex positive (nd = 1.59319, νd = 67.9) — **ED glass**
+   - L15: Biconvex positive (nd = 1.59319, νd = 67.9) — **low-dispersion glass, inferred ED candidate**
    - L16: Biconcave negative (nd = 1.64769, νd = 33.7)
 
-   This is the inner cemented doublet positioned immediately before the aperture stop, playing a critical role in **axial chromatic aberration correction**. L15 uses an ED (Extra-low Dispersion) fluorophosphate glass in the S-FPM2 / FCD505 class. When paired with L16's S-TIM22-class dense flint glass (high dispersion, νd = 33.7), the doublet achieves chromatic correction superior to what normal crown-flint pairs can provide. The anomalous partial dispersion of the ED glass means it corrects not just primary chromatic aberration (at two wavelengths) but also secondary spectrum, reducing the residual color fringing that limits resolution in conventional designs.
+   This is the inner cemented doublet positioned immediately before the aperture stop, playing a critical role in **axial chromatic aberration correction**. L15 has the low-dispersion 1.59319 / 67.9 coordinate, now modeled by the closer Hikari J-PSKH1 catalog curve; the patent does not identify its supplier or chemistry. When paired with L16's S-TIM22-class dense flint glass (high dispersion, νd = 33.7), the doublet achieves chromatic correction superior to what normal crown-flint pairs can provide. The J-PSKH1 proxy supplies an inferred anomalous-dispersion model; the patent does not publish partial dispersion for this element.
 
 **Aperture Stop (S)** — Located at Surface 12, between G1 and G2. The patent (paragraph 0026) notes that placing the stop on the image side of G1 enables good correction of coma and astigmatism at close focus distances.
 
@@ -118,9 +118,9 @@ G2 consists of three elements:
    The image-side surface (17) carries significantly larger aspherical departure than the object side (A4 is roughly 75× larger), meaning it does the heavy lifting of the aspherical correction. This element, sitting within the focusing group, primarily corrects **spherical aberration, coma, and their variation during focusing**. Placing the asphere in the moving group is a deliberate design choice: as the group shifts, the aspherical correction tracks with the changing ray geometry, maintaining image quality across the focus range. The high-index lanthanum glass (nd = 1.77377) enables strong optical power in a thin element, reducing the group's mass and thereby the load on the stepping motor (STM) autofocus actuator.
 
 7. **L23 — Positive Meniscus, Concave Toward Object** (Surfaces 18–19)
-   - nd = 1.49782, νd = 82.6 — **ED fluorophosphate glass**
+   - nd = 1.49782, νd = 82.6 — **very-low-dispersion glass, inferred ED candidate**
 
-   This is the second ED element and uses an anomalous-partial-dispersion fluorophosphate glass in the S-FPL51 / FCD1 class. With νd = 82.6, it is a very-low-dispersion glass, but the audit value does not match Ohara S-FPL53 or Hoya FCD100. Its placement within the focusing group means it provides **in-situ chromatic correction that tracks with focus position**, preventing longitudinal chromatic aberration (LoCA) from degrading as the lens focuses closer. This is a 6.400 mm thick element — the thickest in G2 — which provides substantial positive power to maintain the group's overall converging function while keeping dispersion minimal.
+   This low-dispersion element is an inferred ED candidate, modeled with the source-coordinate-matched Hikari J-FKH1 dispersion curve. Its supplier and chemistry are not identified by the patent. With νd = 82.6, it is a very-low-dispersion glass, but the audit value does not match Ohara S-FPL53 or Hoya FCD100. Its placement within the focusing group means it provides **in-situ chromatic correction that tracks with focus position**, preventing longitudinal chromatic aberration (LoCA) from degrading as the lens focuses closer. This is a 6.400 mm thick element — the thickest in G2 — which provides substantial positive power to maintain the group's overall converging function while keeping dispersion minimal.
 
    Together, the three G2 elements form a modified triplet: negative-positive-positive. The negative leading element controls field curvature; the double-aspherical middle element handles monochromatic aberrations; and the trailing ED element suppresses chromatic errors. This combination allows the focusing group to maintain high optical performance from infinity to close focus while remaining compact and lightweight enough for responsive autofocus.
 
@@ -186,9 +186,9 @@ The design employs 8 distinct glass types across 12 elements (several types are 
 
 The two ED elements work in concert despite being in different groups:
 
-- **L15** (G1, nd = 1.59319, νd = 67.9): A moderate-ED glass with anomalous partial dispersion in the Ohara S-FPM2 / Hoya FCD505 family. Located in G1's inner cemented doublet before the stop, it corrects axial chromatic aberration for the primary convergence of the entrance pupil.
+- **L15** (G1, nd = 1.59319, νd = 67.9): A low-dispersion glass modeled with the coordinate-matched J-PSKH1 spectral proxy; its APD designation is inferred. Located in G1's inner cemented doublet before the stop, it corrects axial chromatic aberration for the primary convergence of the entrance pupil.
 
-- **L23** (G2, nd = 1.49782, νd = 82.6): A very-low-dispersion ED fluorophosphate glass in the Ohara S-FPL51 / Hoya FCD1 class. The patent value is not an S-FPL53/FCD100 match. Its position within the focusing group means it provides chromatic correction that tracks with focus, preventing LoCA from degrading at close distances.
+- **L23** (G2, nd = 1.49782, νd = 82.6): A very-low-dispersion glass modeled with the coordinate-matched J-FKH1 spectral proxy; its APD designation is inferred. The patent value is not an S-FPL53/FCD100 match. Its position within the focusing group means it provides chromatic correction that tracks with focus, preventing LoCA from degrading at close distances.
 
 ### Ultra-High-Index Elements (nd = 1.94595)
 
@@ -196,7 +196,7 @@ Two elements use this extreme refractive index (L12 in G1 and L31 in G3). The pa
 
 ### Dense Flint Group (nd = 1.64769, νd = 33.7)
 
-This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-high dispersion makes it useful as the negative-power partner in achromatic combinations. The repeated use of a single glass type also simplifies procurement and reduces manufacturing cost.
+This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-high dispersion makes it useful as the negative-power partner in achromatic combinations. The repeated coordinate does not identify procurement arrangements or production glass suppliers.
 
 ### Complete Glass Map
 
@@ -207,11 +207,11 @@ This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-h
 | L13 | 1.72916 | 54.6 | Lanthanum crown (S-LAL18 class) | Positive convergence |
 | L14 layer | 1.56093 | 36.6 | Thin-layer medium; composition unspecified | Aspherical layer on glass substrate |
 | L14 glass | 1.80400 | 46.6 | Lanthanum dense flint (S-LAH65V class) | Aspherical convergence element |
-| L15 | 1.59319 | 67.9 | ED glass (S-FPM2 / FCD505 class) | Primary chromatic correction |
+| L15 | 1.59319 | 67.9 | J-PSKH1 spectral proxy (inferred ED) | Primary chromatic correction |
 | L16 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Achromatizing partner to L15 |
 | L21 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field curvature control in focus group |
-| L22 | 1.77377 | 47.2 | 774472 lanthanum dense flint, unresolved | Double-aspherical corrector |
-| L23 | 1.49782 | 82.6 | ED glass (S-FPL51 / FCD1 class) | Focus-tracking chromatic correction |
+| L22 | 1.77377 | 47.2 | M-TAF401 spectral proxy (774472 coordinate) | Double-aspherical corrector |
+| L23 | 1.49782 | 82.6 | J-FKH1 spectral proxy (inferred ED) | Focus-tracking chromatic correction |
 | L31 | 1.94595 | 18.0 | FDS18 / 946180 ultra-high-index short flint | Rear chromatic balance |
 | L32 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Lateral color correction |
 | L33 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field flattener |
@@ -253,7 +253,7 @@ The NIKKOR Z 50mm f/1.8 S represents a fundamental departure from the double-Gau
 
 The positive-positive-negative (G1-G2-G3) group structure with inner focusing through G2 is an architecture well-suited to mirrorless systems. The fixed negative rear group acts as a permanent field flattener sitting close to the sensor — a position that was physically impossible in SLR designs due to the mirror box. This architectural freedom is the primary reason mirrorless 50mm lenses have achieved performance levels that were previously the exclusive domain of exotic designs like the Zeiss Otus.
 
-The inner-focus design also means the lens maintains a constant physical length and the front element does not rotate, facilitating the weather-sealed construction that earned the lens its S-Line designation. The lightweight focusing group (three elements, one made of low-density ED glass) is readily driven by the stepping motor for quiet, fast autofocus suited to both stills and video.
+The inner-focus design also means the lens maintains a constant physical length and the front element does not rotate, facilitating the weather-sealed construction that earned the lens its S-Line designation. The three-element focusing group includes a very-low-dispersion positive element; its production glass density is not supplied by the patent. A stepping motor drives the group for autofocus.
 
 ---
 

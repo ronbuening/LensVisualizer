@@ -98,14 +98,14 @@ L12 is cemented to L11 to form the G1 achromatic doublet. The 717296 dense flint
 | Property | Value |
 |----------|-------|
 | Type | Biconcave negative |
-| Glass | **755276 dense-flint class; catalog identity unresolved** |
+| Glass | **755276 dense-flint class; SF4 spectral proxy, production identity unspecified** |
 | nd / νd | 1.7552 / 27.57 |
 | Surfaces | R₅ = −16.536, R₆ = +105.597 |
 | Center thickness | 0.90 mm |
 | Focal length | −18.9 mm (thick-lens) |
 | Cemented to | L22 |
 
-L21 is a high-dispersion flint glass positioned at the front of G2's cemented assembly. Its strongly curved concave front surface (R₅ = −16.5 mm) gives it substantial negative power (f = −18.9 mm), making it the most powerfully diverging element in the system. This strong negative element, placed just behind the stop, is critical for correcting the spherical aberration and coma introduced by the preceding positive G1 doublet. The patent supplies the `1.75520 / 27.57` coordinate, but that coordinate does not match current OHARA PBM18Y (`1.595509 / 38.767`). Several catalog SF4-type flints come within 0.06 in νd (Schott SF4 1.75520 / 27.58, HOYA E-FD4 and OHARA S-TIH4 at 27.53 / 27.51), but none is an exact match and none is a Hikari glass. The label therefore stays as the unresolved 755276 class instead of naming a supplier.
+L21 is a high-dispersion flint glass positioned at the front of G2's cemented assembly. Its strongly curved concave front surface (R₅ = −16.5 mm) gives it substantial negative power (f = −18.9 mm), making it the most powerfully diverging element in the system. This strong negative element, placed just behind the stop, is critical for correcting the spherical aberration and coma introduced by the preceding positive G1 doublet. The patent supplies the `1.75520 / 27.57` coordinate, but that coordinate does not match current OHARA PBM18Y (`1.595509 / 38.767`). Several catalog SF4-type flints come within 0.06 in νd (Schott SF4 1.75520 / 27.58, HOYA E-FD4 and OHARA S-TIH4 at 27.53 / 27.51), but none is an exact match and none is a Hikari glass. The model uses the compatible Schott SF4 curve as a spectral proxy. This does not identify the patent material or its production supplier.
 
 ### L22 — Positive Crown with Hybrid Asphere (G2, cemented doublet rear)
 
@@ -113,14 +113,14 @@ L21 is a high-dispersion flint glass positioned at the front of G2's cemented as
 |----------|-------|
 | Type | Biconvex positive (glass body) with cemented resin aspherical layer |
 | Glass body | J-LASF015 (HIKARI) catalog equivalent, code 804466 |
-| Resin layer | UV-curable photopolymer, nd = 1.56093, νd = 36.64 |
+| Resin layer | Source resin layer, nd = 1.56093, νd = 36.64; chemistry and supplier unspecified |
 | Surfaces | R₆ = +105.597 (cemented to L21), R₇ = −33.838 (glass/resin junction), R₈* = −31.063 (resin rear, aspherical) |
 | Glass center thickness | 4.55 mm |
 | Resin center thickness | 0.10 mm |
 | Glass body focal length | +32.3 mm (thick-lens) |
 | Resin layer focal length | +666.5 mm (negligible power) |
 
-L22 is the most structurally complex element in the lens. The glass body (804466 lanthanum flint, exactly matched by Hikari J-LASF015) provides strong positive power to balance L21's divergence, while the thin UV-curable resin layer bonded to its image-side surface carries the system's primary aspherical correction (surface 8A). This hybrid composite construction — where the aspherical shape is molded in low-melting-point resin rather than ground into the glass — is a classic Nikon cost-reduction technique that avoids the expense of glass-molded or polished aspherics. The resin layer itself has negligible optical power (f ≈ +667 mm); its sole purpose is to introduce the aspherical departure.
+L22 is the most structurally complex element in the lens. The glass body (804466 lanthanum flint, exactly matched by Hikari J-LASF015) provides strong positive power to balance L21's divergence, while the thin resin layer bonded to its image-side surface carries the system's primary aspherical correction (surface 8A). The patent identifies a hybrid resin-on-glass construction. It does not specify resin chemistry, curing method, supplier or manufacturing cost. The resin layer itself has negligible optical power (f ≈ +667 mm); its sole purpose is to introduce the aspherical departure.
 
 The cemented glass doublet L21 + L22 (glass body only, exiting into air) has a combined focal length of −55.0 mm from the thick-lens ABCD computation, acting as an achromatizing diverger that corrects both spherical and chromatic aberrations simultaneously.
 
@@ -144,7 +144,7 @@ L23 is the element referenced by the patent's Condition (13), which requires tha
 | Property | Value |
 |----------|-------|
 | Type | Biconcave negative (glass body) with cemented resin aspherical layer on object side |
-| Resin layer | UV-curable photopolymer, nd = 1.56093, νd = 36.64 |
+| Resin layer | Source resin layer, nd = 1.56093, νd = 36.64; chemistry and supplier unspecified |
 | Glass body | E-CF6 (HOYA) catalog equivalent, code 517522 |
 | Surfaces | R₁₁* = −29.55 (resin front, aspherical), R₁₂ = −36.30 (resin/glass junction), R₁₃ = +1084.406 (glass rear, nearly flat) |
 | Resin center thickness | 0.10 mm |
@@ -236,7 +236,7 @@ With no ED glass and no anomalous partial dispersion materials anywhere in the s
 
 **G1 doublet (L11 + L12):** 835427 lanthanum glass (νd = 42.73) cemented with 717296 dense flint (νd = 29.57). The Abbe number difference of 13.16 provides moderate chromatic leverage. This pair corrects primary longitudinal chromatic aberration for the front converging group.
 
-**G2 cemented pair (L21 + L22):** The unresolved 755276-class flint (νd = 27.57) is cemented with the 804466 lanthanum glass (νd = 46.60). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, lower-dispersion positive L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
+**G2 cemented pair (L21 + L22):** The 755276-class flint (νd = 27.57, modeled with an SF4 spectral proxy) is cemented with the 804466 lanthanum glass (νd = 46.60). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, lower-dispersion positive L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
 
 The absence of ED glass means that secondary spectrum (the residual chromatic aberration after primary achromatization) is not explicitly controlled. This is a deliberate trade-off consistent with the lens's budget positioning — secondary spectrum becomes increasingly visible at long focal lengths and very fast apertures, but at 40 mm f/2 its effect on image quality is modest, particularly when combined with Nikon's in-camera chromatic aberration correction algorithms.
 
@@ -250,19 +250,13 @@ The negative G3 group is the key contributor to field flattening. Without G3, th
 
 ---
 
-## 8. Glass Selection and Cost Philosophy
+## 8. Glass and Bonded-Layer Evidence
 
-The glass bill for this lens reflects Nikon's deliberate cost optimization. A few observations:
+The patent supplies d-line refractive indices and Abbe numbers for six glass bodies and two thin resin layers. L11 and L23 share the 1.83481 / 42.73 coordinate. The other glass bodies use 1.71736 / 29.57, 1.75520 / 27.57, 1.80400 / 46.60 and 1.51742 / 52.20. Their compatible catalog curves are spectral proxies; the source does not name the production glass suppliers.
 
-**Repeated glass types reduce inventory cost.** Two of the six glass elements (L11 and L23) use the same 835427 glass. This halves the number of distinct glass blanks that must be stocked for this element position.
+The two bonded layers are explicitly resin in the patent, with nd = 1.56093 and νd = 36.64. Their precise chemistry, curing process and supplier are unspecified. They remain unresolved in the glass catalog and use the source-index/Abbe dispersion approximation. No measured partial-dispersion values or source anomalous-dispersion designation are provided for these media.
 
-**No exotic or specialty glasses.** The five glass types are ordinary catalog types, and the patent names no anomalous-dispersion glass. Three have exact catalog equivalents: 835427 (OHARA S-LAH55V), 717296 (Hikari J-SF1) and 804466 (Hikari J-LASF015). L31's 517522 is within 0.05 in νd of HOYA E-CF6. L21's 755276 is within 0.06 of several SF4-type flints but has no exact match.
-
-**Hybrid composite aspherics instead of glass-molded.** The two aspherical surfaces are formed in UV-curable resin (nd = 1.56093, νd = 36.64 — a standard Nikon photopolymer), bonded to conventionally polished glass substrates. This is substantially cheaper than precision-molded glass aspherics (as used in S-line lenses) or ground-and-polished aspherics, at the cost of slightly reduced environmental durability and coating flexibility.
-
-**Maximum refractive index constrained below 1.85.** Condition (13) of the patent explicitly limits the highest nd in the system to below 1.8500. This excludes expensive ultra-high-index glasses (such as S-LAH79, nd = 2.003) and keeps the glass bill within commodity pricing. The actual maximum of 1.83481 (L11 and L23) is well below this ceiling.
-
-These choices collectively enable the lens's remarkably low retail price of approximately $300 USD — less than half the cost of the S-line NIKKOR Z 50mm f/1.8 S, which uses 12 elements including 2 ED and 2 aspherical elements.
+Condition (13) constrains the maximum refractive index below 1.85; the example's maximum is 1.83481. The prescription establishes these optical coordinates and the hybrid construction, without establishing material prices or comparative durability.
 
 ---
 
