@@ -35,6 +35,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
+// Fresh exact Figure3 PDF3 restores continuous S1/S2/S3 caps26.4/26.4/23.4.
+// Source-visible S4/S6 concave cuts are inferred and pass complete final-beam margins.
+// All10 source d-line n/ν pairs remain; labels are qualified compatible spectral proxies.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-s-zoom-nikkor-35-70mm-f35",
@@ -111,7 +115,7 @@ const LENS_DATA = {
       nd: 1.59507,
       vd: 35.6,
       focalLengthMm: 95.31,
-      glass: "FF5 catalog equivalent (patent 595356; production supplier unspecified)",
+      glass: "FF5 loose spectral proxy (source 1.59507/35.6; catalog 1.59270/35.45, supplier unspecified)",
       apd: false,
       role: "Convergent L12 element; the close-distance correction element within L1.",
     },
@@ -161,7 +165,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: 127.95,
-      glass: "N-BK7 / BK7-type borosilicate crown; current OHARA S-BSL7 is not exact",
+      glass: "N-BK7 catalog proxy (SCHOTT; source 1.51680/64.2, supplier unspecified)",
       apd: false,
       role: "Moderate positive relay meniscus behind L7.",
     },
@@ -185,19 +189,19 @@ const LENS_DATA = {
       nd: 1.64831,
       vd: 33.8,
       focalLengthMm: 38.17,
-      glass: "648/338 dense flint; SF12 / FD12 class, exact current catalog identity unresolved",
+      glass: "648/338 dense flint; H-ZF1 compatible spectral proxy (source 1.64831/33.8; supplier unspecified)",
       apd: false,
       role: "Rear positive element controlling final convergence, field curvature, and distortion balance.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 61.849, d: 8.2, sd: 22.5, medium: 1 },
-    { label: "2", R: -1037.164, d: 0.7, sd: 22.0 },
-    { label: "3", R: 1000.0, d: 1.5, sd: 20.5, medium: 2 },
-    { label: "4", R: 23.9, d: 6.8, sd: 20.0 },
+    { label: "1", R: 61.849, d: 8.2, sd: 26.4, medium: 1 },
+    { label: "2", R: -1037.164, d: 0.7, sd: 26.4 },
+    { label: "3", R: 1000.0, d: 1.5, sd: 23.4, medium: 2 },
+    { label: "4", R: 23.9, d: 6.8, sd: 23.4, rimCutDepthMm: 7.15 },
     { label: "5", R: 178.734, d: 1.5, sd: 16.8, medium: 3 },
-    { label: "6", R: 42.672, sd: 16.8 },
+    { label: "6", R: 42.672, sd: 16.8, rimCutDepthMm: 3.30 },
     { label: "7", R: 34.11, d: 3.9, sd: 18.0, medium: 4 },
     { label: "8", R: 81.925, sd: 17.8 },
     { label: "9", R: 72.84, d: 3.5, sd: 14.5, medium: 5 },

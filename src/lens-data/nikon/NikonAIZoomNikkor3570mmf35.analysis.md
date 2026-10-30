@@ -40,7 +40,7 @@ The glass identification is retained as a barium-flint class match rather than t
 
 ### L2 — Negative Meniscus, second element of L11
 
-nd = 1.67790, νd = 55.5. Glass: S-LAL12 (OHARA), lanthanum crown. f = -36.14 mm.
+nd = 1.67790, νd = 55.5. Glass: S-LAL12 compatible spectral proxy (OHARA), lanthanum crown. f = -36.14 mm.
 
 L2 is a negative meniscus with both centers of curvature to the image side. Its sharply curved rear surface makes it the strongest single negative element in L11. The high-index lanthanum crown glass permits strong negative power without a still steeper rear radius.
 
@@ -54,7 +54,7 @@ L3 is the second negative meniscus in the divergent portion. Its power is weaker
 
 ### L4 — Positive Meniscus, L12 close-correction element
 
-nd = 1.59507, νd = 35.6. Glass: HOYA FF5 catalog equivalent to patent 595356; production supplier unspecified. f = +95.31 mm.
+nd = 1.59507, νd = 35.6. Glass: HOYA FF5 loose spectral proxy; source 1.59507/35.6 versus catalog 1.59270/35.45; production supplier unspecified. f = +95.31 mm.
 
 L4 is the entire convergent rearward portion L12 of the first group. It offsets part of the L11 negative power, yielding the patent's f(L1) = -59.942 mm rather than the much stronger f(L11) = -34.602 mm. Because L4 is a positive element made of relatively high-dispersion flint glass, it also contributes to the system's chromatic balance.
 
@@ -80,9 +80,9 @@ L7 is a positive relay meniscus placed immediately behind the L5/L6 doublet. SUM
 
 ### L8 — Positive Meniscus in L2
 
-nd = 1.51680, νd = 64.2. Glass: BK7-type borosilicate crown, matching Schott N-BK7 class; current OHARA S-BSL7 is not an exact nd match. f = +127.95 mm.
+nd = 1.51680, νd = 64.2. Glass: SCHOTT N-BK7 compatible spectral proxy; production supplier unspecified. f = +127.95 mm.
 
-L8 is a modest positive meniscus behind L7. Its prescription values match the classic BK7 family closely. Schott N-BK7 is listed at nd = 1.51680 and νd = 64.17, which matches the patent's nd = 1.51680 and rounds to the patent's νd = 64.2. Current OHARA S-BSL7 is commonly listed around nd = 1.51633 and νd = 64.14, so the data file labels this as BK7-type rather than exact S-BSL7.
+L8 is a modest positive meniscus behind L7. Its prescription values match the classic BK7 family closely. Schott N-BK7 is listed at nd = 1.51680 and νd = 64.17, which matches the patent's nd = 1.51680 and rounds to the patent's νd = 64.2. The explicit N-BK7 annotation now selects that curve. The former annotation mentioned another vendor in a negative comparison, which nevertheless biased the resolver toward its less closely matching curve; the source nd/νd values are unchanged.
 
 ### L9 — Biconcave Negative in L2
 
@@ -92,24 +92,26 @@ L9 is the strongest negative element in the prescription. It is a biconcave dens
 
 ### L10 — Biconvex Positive rear element
 
-nd = 1.64831, νd = 33.8. Glass: 648/338 dense flint; exact current catalog identity unresolved. f = +38.17 mm.
+nd = 1.64831, νd = 33.8. Glass: H-ZF1 compatible spectral proxy; source 1.64831/33.8 versus catalog 1.64769/33.84; production supplier unspecified. f = +38.17 mm.
 
-L10 is the rear positive element and completes the final convergence to the image plane. The patent value is a 648/338 dense flint. Because the exact current vendor identity was not resolved from an authoritative catalog, the data file uses a class label and preserves the patent nd/νd values as authoritative.
+L10 is the rear positive element and completes the final convergence to the image plane. The patent value is a 648/338 dense flint. The available H-ZF1 coefficient curve is a nonidentical spectral proxy. The source nd/νd values remain authoritative and the catalog match does not identify the historical production supplier.
 
 ## Glass Identification and Selection
 
 | Element | nd | νd | Identification | Role |
 |---|---:|---:|---|---|
 | L1 | 1.60323 | 42.5 | 603/425 barium flint; Sumita K-BaSF5-equivalent | Front collector in L11 |
-| L2 | 1.67790 | 55.5 | S-LAL12 (OHARA) | Primary negative meniscus |
+| L2 | 1.67790 | 55.5 | S-LAL12 spectral proxy; catalog νd 55.34 | Primary negative meniscus |
 | L3 | 1.71300 | 53.9 | S-LAL8 (OHARA) | Secondary negative meniscus |
-| L4 | 1.59507 | 35.6 | FF5 equivalent; patent 595356 | L12 close-correction element |
+| L4 | 1.59507 | 35.6 | FF5 loose spectral proxy; catalog 1.59270/35.45 | L12 close-correction element |
 | L5 | 1.62041 | 60.3 | S-BSM16 / SK16 class | Cemented doublet crown |
 | L6 | 1.80518 | 25.5 | S-TIH6 / SF6 class | Cemented doublet flint |
 | L7 | 1.51118 | 50.9 | SUMITA KF8 catalog equivalent, code 511509 | Positive relay meniscus |
-| L8 | 1.51680 | 64.2 | BK7-type borosilicate crown; not exact current OHARA S-BSL7 | Positive relay meniscus |
+| L8 | 1.51680 | 64.2 | SCHOTT N-BK7 spectral proxy | Positive relay meniscus |
 | L9 | 1.80518 | 25.5 | S-TIH6 / SF6 class | Field flattener / chromatic corrector |
-| L10 | 1.64831 | 33.8 | 648/338 dense flint, unresolved catalog identity | Rear converging element |
+| L10 | 1.64831 | 33.8 | H-ZF1 nonidentical spectral proxy | Rear converging element |
+
+All ten source d-line nd/νd pairs remain unchanged and resolve to compatible coefficient curves. Those curves are spectral proxies; FF5 and H-ZF1 are nonidentical, and S-LAL12's catalog νd 55.34 does not round to source 55.5. The source supplies no numerical partial-dispersion ratios or additional line indices; no such override is inferred from the catalog.
 
 The chromatic strategy is distributed rather than concentrated in a single doublet. L5/L6 provides the primary crown/flint achromatic pair, but the dense-flint L9 and the positive flint-class L10 also participate materially. L4 is another positive element with flint-range dispersion, which helps distribute longitudinal chromatic correction across the lens rather than forcing it into the L2 cemented doublet alone.
 
@@ -151,7 +153,9 @@ The prescription was re-entered directly from the Second Embodiment table and ch
 | f(L1) | -59.942 mm | -59.94226 mm | -0.00026 mm |
 | f(L12) | +95.312 mm | +95.31206 mm | +0.00006 mm |
 
-The agreement is within transcription and rounding tolerance, supporting the sign convention, refractive-index entries, and variable d8 values. The data file's inferred semi-diameters were also checked for edge thickness and cross-gap sag intrusion. The tightest cross-gap constraint is the d4 gap between L2 and L3; this is why the L3 semi-diameter is intentionally conservative.
+The agreement supports the sign convention, refractive-index entries, and variable d8 values. Fresh inspection of Figure 3 restores the continuous front caps to 26.4 mm at surfaces 1–2 and 23.4 mm at surface 3. Surface 4 has a 7.15 mm axial concave-end cut to a 17.04839 mm clear cap within its 23.4 mm outer rim. Surface 6 has a 3.30 mm cut to a 16.45434 mm cap within its retained 16.8 mm rim; its cut is moved outward from the drawing endpoint to clear all traced beams and the required margin.
+
+The full drawn L3 height was tested but rejected: clearing its enlarged beam would require an outward surface-4 cap that violates the unchanged d4 air space. L3 therefore retains its prior outer height. The adopted outline passes canonical geometry, the complete inferred-cut beam guards, both stated aperture endpoints and the field audit; nine rendered zoom/focus states have no automatic rim trimming.
 
 ## Design Heritage and Context
 
@@ -166,4 +170,4 @@ The design is entirely spherical. The aberration plots for the Second Embodiment
 - SUMITA optical-glass data for K-BaSF5 / BASF5-class 603/425 glass consulted for L1.
 - OHARA manufacturer catalog/datasheet entries consulted for S-LAL12, S-LAL8, S-BSM16, and S-TIH6 class matches.
 - SCHOTT N-BK7 manufacturer datasheet consulted for L8.
-- L4 uses FF5 as a coordinate-compatible spectral equivalent; L7 and L10 retain class-level labels where no sufficiently supported catalog identity was established.
+- Existing HOYA FF5, SUMITA KF8 and CDGM H-ZF1 catalog curves supply qualified spectral proxies for L4, L7 and L10; they do not establish production identities.

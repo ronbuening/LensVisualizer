@@ -49,13 +49,13 @@ The first group has four elements in three air-spaced components. It combines a 
 
 #### L1 — Biconvex Positive
 
-nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = +517.1 mm.
+nd = 1.48606, νd = 81.5. Glass: unresolved special low-dispersion medium (1.48606/81.5; composition and spectral anomaly unestablished). f = +517.1 mm.
 
 L1 supplies much of the front group's positive collection power. Its biconvex form is also part of the patent's aberration-balancing strategy for close focus and spherical aberration stability, although the patent does not publish the close-focus prescription.
 
 #### L2 — Biconvex Positive
 
-nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = +395.9 mm.
+nd = 1.48606, νd = 81.5. Glass: unresolved special low-dispersion medium (1.48606/81.5; composition and spectral anomaly unestablished). f = +395.9 mm.
 
 L2 is the front positive member of the chromatic-correction subassembly. It is separated from L3 by a 1.0 mm air gap in Example I, consistent with the patent's allowance that the large-diameter triplet members may be separated by air rather than fully cemented.
 
@@ -87,7 +87,7 @@ The cemented interface is concave toward the object, as required by the patent. 
 
 #### L7-L8 — Cemented Doublet, Negative; hyperchromatic component
 
-L7: nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = -142.1 mm.
+L7: nd = 1.48606, νd = 81.5. Glass: unresolved special low-dispersion medium (1.48606/81.5; composition and spectral anomaly unestablished). f = -142.1 mm.
 L8: nd = 1.58875, νd = 51.2. Glass: 589512 — discontinued OHARA BAL7 catalog equivalent; production supplier unspecified. f = +394.7 mm.
 Net: f = -220.9 mm.
 
@@ -113,7 +113,7 @@ The component is a positive meniscus system concave toward the object. The paten
 
 #### L12-L13 — Cemented Doublet, Positive
 
-L12: nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = +217.3 mm.
+L12: nd = 1.48606, νd = 81.5. Glass: unresolved special low-dispersion medium (1.48606/81.5; composition and spectral anomaly unestablished). f = +217.3 mm.
 L13: nd = 1.75520, νd = 27.5. Glass: SF4 / N-SF4. f = -457.7 mm.
 Net: f = +415.8 mm.
 
@@ -131,7 +131,7 @@ L14 is the relay entrance singlet. It contributes moderate positive power ahead 
 
 #### L15-L16-L17 — Cemented Triplet, near-afocal
 
-L15: nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = +167.4 mm.
+L15: nd = 1.48606, νd = 81.5. Glass: unresolved special low-dispersion medium (1.48606/81.5; composition and spectral anomaly unestablished). f = +167.4 mm.
 L16: nd = 1.74400, νd = 44.9. Glass: LaF2 / N-LAF2 class. f = -101.8 mm.
 L17: nd = 1.63930, νd = 45.0. Glass: SUMITA BAF12 catalog equivalent, code 639450; production supplier unspecified. f = +290.1 mm.
 Net: f ≈ -37,500 mm.
@@ -158,7 +158,7 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 
 | Glass / class | nd | νd | Elements | Identification status |
 |---|---:|---:|---|---|
-| Special low-dispersion 486/815 | 1.48606 | 81.5 | L1, L2, L7, L12, L15 | Unmatched; patent describes quartzite or other special partial-dispersion glass |
+| Special low-dispersion 486/815 | 1.48606 | 81.5 | L1, L2, L7, L12, L15 | Unresolved; source discusses special partial dispersion but does not identify these numerical media |
 | LaF2 / N-LAF2 class | 1.74400 | 44.9 | L3, L16 | Catalog class match by code |
 | N-SK5 / S-BAL35 class | 1.58913 | 61.2 | L4, L6 | Code fits SK5/S-BAL35 family, not BaLF4 |
 | SF4 / N-SF4 | 1.75520 | 27.5 | L5, L13 | Catalog match by code |
@@ -168,7 +168,7 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 | SUMITA F3 catalog equivalent | 1.61293 | 36.9 | L11 | Exact code 613369 coordinate; production supplier unspecified |
 | KF3 catalog equivalent | 1.51454 | 54.6 | L14 | Exact coordinate in SUMITA's discontinued-inclusive catalog; supplier unspecified |
 | SUMITA BAF12 catalog equivalent | 1.63930 | 45.0 | L17 | Exact code 639450 coordinate; production supplier unspecified |
-| SUMITA K10 catalog equivalent | 1.50137 | 56.5 | L18 | Exact patent coordinate; production supplier unspecified |
+| K10 compatible spectral proxy | 1.50137 | 56.5 | L18 | Catalog νd = 56.41 differs from source; production supplier unspecified |
 | HOYA M-NBF1 catalog equivalent | 1.74443 | 49.4 | L19 | Close coefficient-backed coordinate; production supplier unspecified |
 | F5 / S-TIM5 class | 1.60342 | 38.0 | L20 | Catalog class match by code |
 
@@ -212,7 +212,9 @@ The formula for condition (5) is poorly captured in OCR and in some text extract
 
 The chromatic correction strategy is distributed across the variator and relay rather than concentrated in one front achromat. The front group uses a high-Abbe positive element followed by a three-glass positive-negative-positive corrector. The second group uses a hyperchromatic negative doublet with a low-dispersion negative member. The third group uses over-corrected positive doublets to balance the highly corrected front group. The relay includes a near-afocal three-glass corrector so that the relay does not reintroduce large secondary spectrum.
 
-The patent expressly links compactness, Petzval tolerance, and the use of special partial-dispersion material. It also claims a still-camera zoom lens requiring no infrared calibration. The present data file cannot independently model that spectral claim because the patent does not publish C-, F-, g-line indices or partial-dispersion deviations for the special 486/815 glass.
+The patent expressly links compactness, Petzval tolerance, and the use of special partial-dispersion material. Its prose discusses “quartzite or other special optical glass” and claims a still-camera zoom lens requiring no infrared calibration. It does not establish the chemical identity of the five numerical 1.48606/81.5 media or publish their C-, F-, g-line indices or partial-dispersion ratios. Their anomalous dispersion is unestablished, rather than measured as zero, and the current Abbe-based fallback cannot independently reproduce the claimed special spectral behavior.
+
+All 20 d-line nd/νd pairs remain source-exact. Fifteen media have compatible coefficient-backed spectral proxies; L1, L2, L7, L12 and L15 remain unresolved, with no strict coordinate match in the available catalog. The nonidentical M-NBF1 proxy for L19 has catalog 1.743299744/49.325889 versus source 1.74443/49.4; K10 has νd 56.41 versus source 56.5. Neither difference identifies a supplier or melt.
 
 ## Verification Summary
 
@@ -235,7 +237,7 @@ The 1188.4 mm computed long-end EFL is retained as the design value in the data 
 
 The inferred stop was sized to give an f/11 entrance pupil at both endpoints. Placing the stop 0.5 mm behind surface 21 requires a stop semi-diameter of approximately 24.45 mm. This is an inferred modeling convenience, not a patent-published diaphragm position.
 
-Semi-diameters were estimated because the patent provides no clear-aperture table. The estimates were checked for edge thickness, cross-gap sag intrusion, and renderer rim slope constraints at both zoom endpoints. The front group was capped by the physical 122 mm attachment scale and by edge-thickness limits; full-field paraxial corner bundles therefore vignette in the model, which is preferable to impossible front element geometry.
+The optical section is Figure 2 on PDF page 3; Figure 1 is a group-motion schematic. A fresh review of every air-facing and cemented face found no further resolved concave end land to add. Semi-diameters were estimated because the patent provides no clear-aperture table. The estimates were checked for edge thickness, cross-gap sag intrusion, and renderer rim slope constraints at both zoom endpoints. The front group was capped by the physical 122 mm attachment scale and by edge-thickness limits; full-field paraxial corner bundles therefore vignette in the model, which is preferable to impossible front element geometry.
 
 ## Design Heritage and Context
 

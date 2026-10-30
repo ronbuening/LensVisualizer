@@ -28,7 +28,7 @@ The lens is a positive-lead high-ratio zoom of the form $G_1^+ G_2^- G_3^+ G_4^+
 
 The patent's variable gaps at infinity are $d_5 = 1.266$, $d_{13} = 20.067$, and $d_{19} = 17.344$ mm at the wide end, and $d_5 = 35.760$, $d_{13} = 1.686$, and $d_{19} = 1.231$ mm at the telephoto end. The sum of those three intergroup gaps remains 38.677 mm at both endpoints, so the optical track from the front vertex through the last element is conserved during the published zoom motion. With G2 used as the kinematic reference, G1 and G4 move 34.494 mm toward the object side and G3 moves 18.381 mm toward the object side from wide to telephoto.
 
-The patent does not assign a numerical stop surface in Table 2. FIG. 3 does not tabulate or label the diaphragm, while Nikon's production cross-section places the aperture at the front of G3. The data file therefore inserts a flat stop immediately before L7 and reserves 0.20 mm of the patent's $d_{13}$ gap as the stop-to-L7 spacing. This placement is an inferred renderer stop plane, not a claim that the patent table separately defines that exact diaphragm coordinate.
+The patent does not assign a numerical stop surface in Table 2, and Figure 3 does not label an iris. The data file retains an inferred stop within G3 between L7 and L8, splitting source $d_{15}=0.10$ mm into 0.05 mm on either side. This placement is a tracing assumption rather than a source-defined diaphragm coordinate.
 
 At the full 135-format image height of 21.6 mm, the computed paraxial half-field angles are 30.80° at the wide end and 6.33° at the telephoto end. These correspond to full fields of 61.61° and 12.65°, close to the production specification class of approximately 62° to 12°20'. The residual difference is expected because the patent's Gaussian focal lengths are 36.16 and 193.96 mm, while the marketed focal lengths are rounded to 35 and 200 mm.
 
@@ -42,9 +42,9 @@ L1 is the negative high-dispersion member of the front cemented achromat. Its po
 
 ### L2 — Biconvex Positive, cemented to L1
 
-nd = 1.49782, νd = 82.28. Glass: FK / J-FKH1-class fluorophosphate crown. f = +89.3 mm.
+nd = 1.49782, νd = 82.28. Glass: J-FKH1 spectral proxy; source composition and supplier unspecified. f = +89.3 mm.
 
-L2 is the low-dispersion positive crown partner in the front achromat. Its very high Abbe number places it in the ED / fluorophosphate crown region rather than in ordinary crown glass. The L1/L2 pair has a computed cemented-group focal length of +258.9 mm, so it supplies only moderate net power while strongly reducing longitudinal chromatic aberration at the front of the system.
+L2 is the low-dispersion positive crown partner in the front achromat. Its high Abbe number establishes low primary dispersion, but the prescription does not establish its chemical composition or anomalous partial dispersion. The L1/L2 pair has a computed cemented-group focal length of +258.9 mm, so it supplies only moderate net power while strongly reducing longitudinal chromatic aberration at the front of the system.
 
 ### L3 — Positive Meniscus, convex to object
 
@@ -133,7 +133,7 @@ The patent supplies only nd and νd values, not named glass codes. The following
 | Element(s) | nd | νd | Identification used | Confidence |
 |---|---:|---:|---|---|
 | L1, L5a | 1.80518 | 25.36 | SF6 / S-TIH6 class dense flint | High class confidence |
-| L2 | 1.49782 | 82.28 | FK / J-FKH1-class fluorophosphate crown | High class confidence |
+| L2 | 1.49782 | 82.28 | J-FKH1 compatible spectral proxy | Source composition unspecified |
 | L3 | 1.67003 | 47.05 | BAF10-class barium flint | Near-match |
 | L4 | 1.90265 | 35.76 | J-LASFH9 catalog equivalent | Coefficient-backed equivalent |
 | L5b | 1.80411 | 46.43 | TAF3D catalog equivalent | Coefficient-backed equivalent |
@@ -146,9 +146,9 @@ The patent supplies only nd and νd values, not named glass codes. The following
 | L14a | 1.51835 | 60.34 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate within patent rounding |
 | L14b | 1.78797 | 47.53 | LAH64-class lanthanum flint | Near-match |
 
-The chromatic strategy is concentrated in three regions. The front L1/L2 cemented doublet pairs a dense flint with a fluorophosphate crown, giving a large Abbe separation at the first collector group. G2 uses two cemented doublets to control lateral color while the variator introduces large magnification change. G3 and G4 then use dense flint / low-dispersion crown pairings to flatten the field and keep axial color manageable across a 5.7x zoom ratio.
+The chromatic strategy is concentrated in three regions. The front L1/L2 cemented doublet pairs a dense flint with a high-Abbe crown, giving a large Abbe separation at the first collector group. G2 uses two cemented doublets to control lateral color while the variator introduces large magnification change. G3 and G4 then use dense flint / low-dispersion crown pairings to flatten the field and keep axial color manageable across a 5.7x zoom ratio.
 
-No anomalous partial-dispersion claims are made for the uncertain lanthanum flint matches, because the patent does not publish partial-dispersion data and exact catalog identities were not established for all melts.
+All 17 glass media retain Table 2's d-line indices and Abbe numbers. Current compatible catalog curves cover all 17, but identify spectral proxies rather than production suppliers or melts. J-FKH1 has catalog νd = 82.57 versus source 82.28; J-PKH1 has 69.89 versus 70.08; NBFD2 has 1.797199/41.1438 versus 1.79631/40.98. These differences are retained explicitly rather than described as source rounding. The patent supplies no numerical partial-dispersion ratios or spectral-line anchors, so no catalog-only dispersion override is added.
 
 ## Focus Mechanism
 
@@ -197,7 +197,9 @@ Independent paraxial traces of the corrected Table 2 prescription produced the f
 
 The Petzval computation used the surface-by-surface expression $\sum \Phi/(n n')$, not an element-level thin-lens approximation. The positive Petzval sum corresponds to a signed Petzval radius of approximately -428.6 mm under the usual image-space sign convention; the magnitude is 428.6 mm. The zoom stations and catalog design range use Table 2's printed f = 36.16 and 193.96 mm; the separately reported computed EFLs are 36.2278 and 194.8533 mm, while 35–200 mm remains the nominal marketing range.
 
-The data file uses conservative inferred semi-diameters because the patent does not publish clear apertures. The selected semi-diameters satisfy the renderer's rim and cross-gap clearance rules and preserve element edge thicknesses above the adopted minimum.
+The data file uses inferred semi-diameters because the patent does not publish clear apertures. Direct inspection of Figure 3 supports a concave end land at surface 7: the outer radius is 12.0 mm, with a 2.64 mm axial cut and a 10.85586 mm clear cap. The adopted cap is farther outward than the measured drawing endpoint to preserve the complete traced beam margin. Other faces retain their existing caps where the figure does not resolve a further usable land.
+
+The current model passes canonical shape checks but remains rim-limited at the telephoto endpoint: the aperture audit traces f/5.14 against the stated f/4.5. A minimal continuous-cap opening trial collides across the unchanged 2.7 mm and 0.8 mm air spaces. That trial was rejected; the source radii, gaps, inferred stop and stated design aperture remain intact. This existing limitation should not be read as verified full-aperture performance at the long end.
 
 ## Design Heritage and Context
 
