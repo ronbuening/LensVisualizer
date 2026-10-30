@@ -22,6 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
    * ║  R10/R11 rear air gap. The L4 outer SDs are kept close to the      ║
    * ║  constrained 10/11 throat so the rear pair follows Fig. 4.         ║
    * ║                                                                    ║
+ * ║  Rim review: continuous paired heights follow Fig. 4; the S10/S11
+ * ║  caps stay 11.45 mm under their 0.11655 mm gap constraint. No flat
+ * ║  land is invented on those continuous source curves.
+ * ║
  * ║  Focus: unit focus. Internal spacings are fixed; close focus is    ║
  * ║  modeled as BF extension from infinity to β = -0.5.                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -60,6 +64,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.45851,
       vd: 67.93,
+      indexReference: "d",
       focalLengthMm: -45.431,
       glass: "Fused silica (SiO2, patent material)",
       apd: false,
@@ -73,10 +78,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43388,
       vd: 95.57,
+      indexReference: "d",
       focalLengthMm: 67.018,
       glass: "Calcium fluoride (CaF2, patent material)",
       apd: "patent",
-      apdNote: "θgF = 0.542; ΔPgF = +0.05895 from patent material table.",
+      apdNote: "Patent theta_gF = 0.542 (PDF p. 2); Fig. 11 shows departure from normal glass. dPgF = +0.05895 is derived using the repository normal-line convention.",
       role: "Positive CaF₂ partner of the weak negative L1 component.",
       dPgF: 0.05895,
     },
@@ -87,10 +93,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43388,
       vd: 95.57,
+      indexReference: "d",
       focalLengthMm: 53.524,
       glass: "Calcium fluoride (CaF2, patent material)",
       apd: "patent",
-      apdNote: "θgF = 0.542; ΔPgF = +0.05895 from patent material table.",
+      apdNote: "Patent theta_gF = 0.542 (PDF p. 2); Fig. 11 shows departure from normal glass. dPgF = +0.05895 is derived using the repository normal-line convention.",
       role: "Main pre-stop positive component L2.",
       dPgF: 0.05895,
     },
@@ -101,6 +108,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.45851,
       vd: 67.93,
+      indexReference: "d",
       focalLengthMm: -41.221,
       glass: "Fused silica (SiO2, patent material)",
       apd: false,
@@ -114,10 +122,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43388,
       vd: 95.57,
+      indexReference: "d",
       focalLengthMm: 41.406,
       glass: "Calcium fluoride (CaF2, patent material)",
       apd: "patent",
-      apdNote: "θgF = 0.542; ΔPgF = +0.05895 from patent material table.",
+      apdNote: "Patent theta_gF = 0.542 (PDF p. 2); Fig. 11 shows departure from normal glass. dPgF = +0.05895 is derived using the repository normal-line convention.",
       role: "Strong positive front element of L4 with steep image-side surface.",
       dPgF: 0.05895,
     },
@@ -128,6 +137,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.45851,
       vd: 67.93,
+      indexReference: "d",
       focalLengthMm: -93.858,
       glass: "Fused silica (SiO2, patent material)",
       apd: false,
@@ -138,18 +148,18 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: -34.5492, d: 1.39755, sd: 15.9, medium: 1 },
-    { label: "2", R: 53.12685, d: 3.79365, sd: 15.75 },
+    { label: "2", R: 53.12685, d: 3.79365, sd: 15.9 },
     { label: "3", R: 127.05735, d: 7.78575, sd: 16.65, medium: 2 },
-    { label: "4", R: -37.0083, d: 0.1995, sd: 16.15 },
+    { label: "4", R: -37.0083, d: 0.1995, sd: 16.65 },
     { label: "5", R: 32.71485, d: 7.98525, sd: 16.35, medium: 3 },
-    { label: "6", R: -74.1279, d: 8.3601, sd: 15.7 },
+    { label: "6", R: -74.1279, d: 8.3601, sd: 16.35 },
     { label: "STO", R: "flat", d: 8.3601 },
-    { label: "7", R: -32.71485, d: 1.4973, sd: 12.0, medium: 4 },
+    { label: "7", R: -32.71485, d: 1.4973, sd: 12.1, medium: 4 },
     { label: "8", R: 45.40305, d: 6.28845, sd: 12.1 },
     { label: "9", R: 188.20935, d: 9.3828, sd: 12.7, medium: 5 },
     { label: "10", R: -19.5615, d: 0.11655, sd: 11.45 },
     { label: "11", R: -19.1352, d: 1.99605, sd: 11.45, medium: 6 },
-    { label: "12", R: -35.58555, sd: 12.55 },
+    { label: "12", R: -35.58555, sd: 12.7 },
   ],
 
   focus: { closeFocusM: 0.48, description: "Unit focusing; modeled by BF extension from infinity to β = -0.5." },

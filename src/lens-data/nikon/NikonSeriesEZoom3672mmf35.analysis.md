@@ -72,7 +72,7 @@ final data file. It is not the element's effective power after interaction with 
 
 ### L1 - Negative Meniscus
 
-`nd = 1.80454, νd = 39.5.` Glass: `NBFD3 catalog equivalent (patent 805395; production supplier unspecified)`. Standalone
+`nd = 1.80454, νd = 39.5.` Glass: `NBFD3 coordinate-compatible spectral proxy (patent 805395; production supplier unspecified)`. Standalone
 `f = -52.895 mm`.
 
 L1 is the first and stronger of the two negative menisci at the front of G1. Its high refractive index permits meaningful
@@ -84,7 +84,7 @@ historical production glass or supplier.
 
 ### L2 - Negative Meniscus
 
-`nd = 1.74400, νd = 44.9.` Glass: `H-LaF3B catalog equivalent (patent 744449; production supplier unspecified)`. Standalone
+`nd = 1.74400, νd = 44.9.` Glass: `H-LaF3B coordinate-compatible spectral proxy (patent 744449; production supplier unspecified)`. Standalone
 `f = -118.431 mm`.
 
 L2 is a substantially weaker negative meniscus than L1. Its role at first order is to add negative power while spreading
@@ -96,7 +96,7 @@ justify promoting one vendor's grade to a source fact.
 
 ### L3 - Positive Meniscus
 
-`nd = 1.79504, νd = 28.4.` Glass: `J-LAFH3 catalog equivalent (patent 795284; production supplier unspecified)`. Standalone
+`nd = 1.79504, νd = 28.4.` Glass: `J-LAFH3 coordinate-compatible spectral proxy (patent 795284; production supplier unspecified)`. Standalone
 `f = +69.989 mm`.
 
 L3 is the sole positive element in G1 and completes the patent's negative-negative-positive front-group sequence. Its
@@ -110,7 +110,7 @@ from those two numbers alone.
 
 ### L4 - Biconvex Positive
 
-`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)`. Standalone `f = +44.592 mm`.
+`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 coordinate-compatible spectral proxy (patent 620603; production supplier unspecified)`. Standalone `f = +44.592 mm`.
 
 L4 is the leading element of the positive rear group and the strongest standalone positive element in G2. Its biconvex
 form supplies a large part of the rear group's converging action immediately after the long variable zoom gap at the wide
@@ -121,7 +121,7 @@ farther back in G2. No unique vendor identity is asserted.
 
 ### L5 - Positive Meniscus
 
-`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)`. Standalone `f = +52.950 mm`.
+`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 coordinate-compatible spectral proxy (patent 620603; production supplier unspecified)`. Standalone `f = +52.950 mm`.
 
 L5 is the positive meniscus immediately behind the modeled aperture stop. It uses the same refractive-index and Abbe
 coordinate as L4 but a different curvature distribution. At first order it extends the converging section of G2 while
@@ -132,7 +132,7 @@ by a fictitious cemented-doublet power.
 
 ### L6 - Biconcave Negative
 
-`nd = 1.79504, νd = 28.4.` Glass: `J-LAFH3 catalog equivalent (patent 795284; production supplier unspecified)`. Standalone
+`nd = 1.79504, νd = 28.4.` Glass: `J-LAFH3 coordinate-compatible spectral proxy (patent 795284; production supplier unspecified)`. Standalone
 `f = -20.563 mm`.
 
 L6 has the shortest absolute standalone focal length among the negative elements and therefore the strongest standalone negative power. It interrupts
@@ -145,7 +145,7 @@ against L4 and L5, but the absence of C-, F-, and g-line indices prevents a more
 
 ### L7 - Positive Meniscus
 
-`nd = 1.79631, νd = 40.8.` Glass: `NBFD2 catalog equivalent (patent 796408; production supplier unspecified)`. Standalone
+`nd = 1.79631, νd = 40.8.` Glass: `NBFD2 coordinate-compatible spectral proxy (patent 796408; production supplier unspecified)`. Standalone
 `f = +71.372 mm`.
 
 L7 restores positive power after L6 and begins the final two-element positive tail of G2. Its moderate standalone power
@@ -157,7 +157,7 @@ an equivalent so it does not identify the production supplier.
 
 ### L8 - Positive Meniscus
 
-`nd = 1.79631, νd = 40.8.` Glass: `NBFD2 catalog equivalent (patent 796408; production supplier unspecified)`. Standalone
+`nd = 1.79631, νd = 40.8.` Glass: `NBFD2 coordinate-compatible spectral proxy (patent 796408; production supplier unspecified)`. Standalone
 `f = +145.363 mm`.
 
 L8 is the weakest positive element by standalone power and terminates the rear master group. Its two radii are both
@@ -178,11 +178,11 @@ unspecified.
 
 | Stored glass annotation | nd | νd | Elements | Data-level interpretation |
 | --- | ---: | ---: | --- | --- |
-| `NBFD3 catalog equivalent (patent 805395; production supplier unspecified)` | 1.80454 | 39.5 | L1 | Near-exact coefficient-backed proxy |
-| `H-LaF3B catalog equivalent (patent 744449; production supplier unspecified)` | 1.74400 | 44.9 | L2 | Coordinate-compatible spectral proxy |
-| `J-LAFH3 catalog equivalent (patent 795284; production supplier unspecified)` | 1.79504 | 28.4 | L3, L6 | Exact-index, coordinate-compatible proxy |
-| `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)` | 1.62041 | 60.3 | L4, L5 | Coordinate-compatible higher-Abbe crown proxy |
-| `NBFD2 catalog equivalent (patent 796408; production supplier unspecified)` | 1.79631 | 40.8 | L7, L8 | Coordinate-compatible coefficient-backed proxy |
+| `NBFD3 coordinate-compatible spectral proxy (patent 805395; production supplier unspecified)` | 1.80454 | 39.5 | L1 | Near-exact coefficient-backed proxy |
+| `H-LaF3B coordinate-compatible spectral proxy (patent 744449; production supplier unspecified)` | 1.74400 | 44.9 | L2 | Coordinate-compatible spectral proxy |
+| `J-LAFH3 coordinate-compatible spectral proxy (patent 795284; production supplier unspecified)` | 1.79504 | 28.4 | L3, L6 | Exact-index, coordinate-compatible proxy |
+| `J-SK16 coordinate-compatible spectral proxy (patent 620603; production supplier unspecified)` | 1.62041 | 60.3 | L4, L5 | Coordinate-compatible higher-Abbe crown proxy |
+| `NBFD2 coordinate-compatible spectral proxy (patent 796408; production supplier unspecified)` | 1.79631 | 40.8 | L7, L8 | Coordinate-compatible coefficient-backed proxy |
 
 The palette alternates relatively high- and low-Abbe materials across both optical groups, giving the designer freedom
 to balance longitudinal and lateral color while also distributing refractive power. That is a structural inference from
@@ -253,3 +253,10 @@ No patent value has been silently repaired, no dimensional scaling has been appl
    ManualsLib, <https://www.manualslib.de/manual/1360779/Nikon-E36-72Mm-F-3-5-Serie.html>.
 4. `NikonSeriesEZoom3672mmf35.data.ts`, `NikonSeriesEZoom3672mmf35.stage2_verify.py`, and
    `NikonSeriesEZoom3672mmf35.stage2_results.json`, independent computation from the final authored prescription.
+
+
+## 2026-10-30 — Original patent shape and glass review
+
+Example 1 on PDF page 4 and Figure 1 on page 5 of the original local JP S55-163511 A were read directly. All eight published index/Abbe pairs agree with the data. Their unsuffixed source notation is traced under the stated d-line convention. Eight catalog curves remain qualified spectral proxies; J-LAFH3 has νd≈28.69228 against source 28.4, and NBFD2 has nd≈1.797199/νd≈41.14380 against source 1.79631/40.8. These offsets preclude an exact glass or spectrum identification. No source C/F/g values or APD claim were added.
+
+S8 increases from 12.8 to 13.2 mm to match the continuous rim of L4. The front S2 transition is an oblique bevel. Weak rear curves do not independently establish flat lands. Trials at S11 = 10.9 mm and a rear S12 land to 10.9 mm fail their 1.15/3.15 mm gap constraints; the conservative rear caps remain. No unsupported concave-end trim was added. Source R/d, inferred stop, zoom spacings, aperture law and the unresolved wide-end EFL discrepancy remain unchanged. Surface, image-circle, format-corner and nominal-aperture checks pass; all nine actual SVG states are finite with zero hidden trim.
