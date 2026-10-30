@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned (**1017** visible)
-- **10826 / 11845** non-air surfaces use strict catalog Sellmeier data (91.4%)
-- **10840 / 11845** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.5%)
+- **10812 / 11845** non-air surfaces use strict catalog Sellmeier data (91.3%)
+- **10826 / 11845** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.4%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **336** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **204** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -177,7 +177,6 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [PENTAX SMC FA 20-35mm f/4 AL](../../src/lens-data/pentax/PentaxFA2035mmF4AL.data.ts) | US 6,246,529 B1 | [PDF](../../patents/US6246529.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 4 [resin] (Hybrid resin layer: `Unmatched (patent resin; supplier unconfirmed)`) | abbe: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | [PDF](../../patents/US_20250231383_A1.pdf) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A [resin] (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A [glass] (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) | US 2004/0223070 A1 | Missing from untracked local patents/ references (US20040223070A1, US20040223070, 20040223070) | 90.0% (9/10) | 90.0% (9/10) | 1 | 17 [plastic] (Element L42: `Unmatched (source 1.583060/30.2 medium; polycarbonate is an inference from other examples, chemistry unconfirmed)`) | abbe: 1 |
-| [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | JP 2009-282554 A | [PDF](../../patents/JP2009282554A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 16 [plastic] (Group 4 plastic negative asphere: `Unmatched (proprietary optical polymer; patent plastic-asphere class)`) | abbe: 1 |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | US 5,490,012 | [PDF](../../patents/US5490012.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | WTR [other] (element: `no glass annotation`) | constant: 1 |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | WO 2020/012638 A1 | [PDF](../../patents/JPWO2020012638A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 2 [resin] (Element 1r (resin layer): `Optical resin (patent hybrid layer; chemistry, curing method and supplier unspecified)`) | abbe: 1 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ](../../src/lens-data/olympus/OlympusMZuiko1250mmf3563EZ.data.ts) | JP 2012-173420 A | [PDF](../../patents/JP2012173420A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 17A [plastic] (Element 9: `Unmatched (optical plastic per the patent; polymer unpublished)`) | abbe: 1 |

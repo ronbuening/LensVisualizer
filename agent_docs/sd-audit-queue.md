@@ -183,6 +183,7 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 
 | Lens | Finding | Fix |
 |---|---|---|
+| [Canon EF 28–90mm f/4–5.6 II](../src/lens-data/canon/CanonEF2890mmf456II.audit.md) | JP 2009-282554 A, Numerical Example 6: prescription heading (PDF p. 15) gives wide F/3.83 while Figure 22 gives F/3.84. Table 1 (p. 17) uses Abbe differences 36.860/7.290, whereas the literal rounded pairs give 36.8/7.3. The directly printed pairs and headline aperture target are retained; the table precision basis and wide-label discrepancy are unresolved. | Find independent evidence for the unpublished precision and conflicting aperture label; do not restore catalog precision or tune the prescription to the summary ratios. |
 | [Canon EF 28–70mm f/3.5–4.5 II](../src/lens-data/canon/CanonEF2870mmf3545II.audit.md) | JP H01-189622 A, Numerical Example 1 (PDF pp. 4–5 / printed 192–193), prints R17 = −11.61 and R21 = −141.79 mm. The literal block gives system EFLs 12.0207/13.6722/13.7568 mm versus stated 29.09/50/67.89, and a negative third group. Existing authored replacements −36.74/−37.76 mm are retained as an unresolved reconstruction; agreement with focal summaries does not uniquely prove them. Printed condition 7 R3/FT also fails both examples while its reciprocal fits; that expression remains unresolved. | Establish independent source evidence for the exact replacements and condition 7; do not treat the existing fit as a published prescription or tune another fit to the figure. |
 | [Canon EF 24mm f/1.4 L](../src/lens-data/canon/CanonEF24mmf14L.audit.md) | JP 1999-030743 A, Table 6: printed L7 νd = 28.64 conflicts with its genuine d/C/F indices, which imply 28.4606065; printed values are retained. After the independently supported L10 index correction, Gaussian BFL is 38.133626 mm versus the printed final gap 36.467 mm. Native Figure 7, the table continuation and shared definitions prescribe no rear plate to restore. Both discrepancies are `unresolved`; the extra F asphere coefficient’s A12 interpretation remains qualified. | Establish independent source evidence for the Abbe, image-plane or asphere-order contradictions. Do not invent a plate or move the image plane to make the model focus. |
 | [Canon EF 24–70mm f/2.8 L II](../src/lens-data/canon/CanonEF2470mmf28LII.audit.md) | US 8,736,971 B2, Numerical Example 3: Table 1 condition (1) prints 6.49, while the printed unit powers 105.87/−16.39 imply approximately 6.46. Recorded as `unresolved`; R/d, aperture and controls are unchanged, and the earlier unproven rounding explanation is removed. | Find independent source evidence before resolving the inconsistent condition value; retain the literal prescription and identify the discrepancy in the analysis. |
@@ -240,9 +241,9 @@ when a lens joins or leaves it, so delete the key there with the row here.
 | SONY FE 24mm f/2.8 G | `sony/SonyFE24mmf28G.data.ts` | 2.8 | 2.884 | The patent's stop H = 5.769 reproduces f/2.884 by real-ray trace; the file's paraxially adjusted STO sd 5.6105 does not. Restore the listed H and open to 2.884 | todo |
 | TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004) | `tamron/TamronSP90mmf28Di.data.ts` | 2.8 | 2.89 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source | todo |
 
-Also check, without a row each: 11 files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
+Also check, without a row each, files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
 (three mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
-`Pentax645FA120mmf4`, `CanonEF2890mmf456II` and others), where one of the two fields is likely mislabelled.
+`Pentax645FA120mmf4` and others), where one of the two fields is likely mislabelled.
 
 The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
 variable-aperture zooms carry marketed values at one or more stations it does not see, and quote the patent's
@@ -297,6 +298,7 @@ fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens | File | Station: face, glass from, wide-open iris | Status |
 |---|---|---|---|
+| CANON EF 28mm f/2.8 | `canon/CanonEF28mmf28.data.ts` | Source f/2.8 remains S7-limited (aperture census equivalent f/2.97, +6.2%). The required 6.5 mm cap fails the unchanged S7/S8 0.280 mm source-gap guard. Original-PDF shape/glass review retains source R/d, zero D9 and iris rule; see the [audit](../src/lens-data/canon/CanonEF28mmf28.audit.md). | partial — reviewed; complete beam needs independent source-gap precision evidence |
 | CANON EF 24mm f/1.4 L II USM | `canon/CanonEF24mmf14LII.data.ts` | The original-patent shape/glass review retains the inferred 0.25 m focus model: face 18 reaches the fixed stop above radius 9.1747 mm while its cap is 11.825 mm. The source supplies no finite-focus cam or stop-motion schedule; see the [audit](../src/lens-data/canon/CanonEF24mmf14LII.audit.md). | partial — infinity source reviewed; finite stop ordering needs independent evidence |
 | NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: face 8 past the stop from 9.26 mm, iris 11.21 mm. The stop rides 0.1 mm ahead of r9 with G2, and at tele (d8 = 0.503 mm) r9's vertex lies ahead of any plane behind r8's cap, so no stop plane in air fits there: needs a modelling decision (a stop inside G2, or a smaller tele iris). | todo |
 
