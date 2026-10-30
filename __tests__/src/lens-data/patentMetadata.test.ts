@@ -63,7 +63,6 @@ const APERTURE_ROUNDING = 0.005;
  * and no lens may join it.
  */
 const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
-  "canon-ef-28-70mm-f35-45-ii",
   "canon-ef-70-300mm-f4-56-is-usm",
   "canon-efs-10-18-f4556-is-stm",
   "canon-powershot-g1-x-mark-ii-125-625-f20-39",

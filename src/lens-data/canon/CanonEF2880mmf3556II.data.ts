@@ -8,7 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No finite-focus spacings are published, so identical infinity/close pairs prevent an invented focus state.
  * Semi-diameters are inferred rendering apertures, not manufacturer clear-aperture data. The stop radius is derived
  * from the design f-number at each zoom station.
- * Glass names are current OHARA catalog equivalents; Canon's historical supplier is not identified.
+ * Original-PDF review 2026-10-30: all ten source ni/vi pairs remain, but the original names no
+ * spectral reference. The default d-line tracing convention is approximate; all media are
+ * Unmatched and unsupported catalog-derived per-lens C/F/g/partial overrides are removed.
+ * Resolved air-facing shoulders preserve clear caps; R/d, stops, zoom and static focus remain.
+ * See the audit for the shared schematic figure, rejected shoulder trial and runtime limits.
  */
 
 const LENS_DATA = {
@@ -16,7 +20,8 @@ const LENS_DATA = {
   key: "canon-ef-28-80mm-f35-56-ii",
   maker: "Canon",
   name: "CANON EF 28-80mm f/3.5-5.6 II",
-  subtitle: "US 5,899,585 — Numerical Example 1 (production-correlated patent prescription)",
+  subtitle:
+    "US 5,899,585 — Numerical Example 1 (production-correlated patent prescription)",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -52,12 +57,11 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 273.983442,
-      glass: "S-BSL7 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BSL7 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Weak positive front meniscus used to moderate distortion in the negative first unit.",
-      dPgF: -0.000637016894,
-      nC: 1.513855,
-      nF: 1.521905,
-      ng: 1.526214,
     },
     {
       id: 2,
@@ -67,12 +71,11 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: -36.355632,
-      glass: "S-BAH27 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BAH27 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Strong negative meniscus forming the principal negative power of the first unit.",
-      dPgF: 0.002099891145,
-      nC: 1.696503,
-      nF: 1.713515,
-      ng: 1.723323,
     },
     {
       id: 3,
@@ -82,12 +85,11 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: -47.2438,
-      glass: "S-BSM15 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BSM15 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Low-dispersion negative component that shares first-unit power and chromatic correction.",
-      dPgF: -0.000180836493,
-      nC: 1.619739,
-      nF: 1.63045,
-      ng: 1.636296,
     },
     {
       id: 4,
@@ -97,12 +99,11 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       focalLengthMm: 50.374322,
-      glass: "S-TIH14 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH14 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "High-dispersion positive meniscus completing the negative first unit's aberration balance.",
-      dPgF: 0.014367849927,
-      nC: 1.753567,
-      nF: 1.782296,
-      ng: 1.799923,
     },
     {
       id: 5,
@@ -112,12 +113,11 @@ const LENS_DATA = {
       nd: 1.63854,
       vd: 55.4,
       focalLengthMm: 37.877067,
-      glass: "S-BSM18 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BSM18 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Front positive element of the principal variator unit.",
-      dPgF: -0.00221618559,
-      nC: 1.635051,
-      nF: 1.646582,
-      ng: 1.652906,
     },
     {
       id: 6,
@@ -127,14 +127,13 @@ const LENS_DATA = {
       nd: 1.66672,
       vd: 48.3,
       focalLengthMm: 52.72525,
-      glass: "S-BAH11 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BAH11 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role:
         "Positive meniscus immediately behind the aperture stop, contributing converging power and " +
         "spherical correction.",
-      dPgF: -0.001606719629,
-      nC: 1.662589,
-      nF: 1.676386,
-      ng: 1.684125,
     },
     {
       id: 7,
@@ -144,12 +143,11 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.7,
       focalLengthMm: -19.029663,
-      glass: "S-TIH11 (OHARA equivalent; vendor unspecified)",
-      role: "Strong dense-flint negative element balancing the positive second unit and its chromatic power.",
-      dPgF: 0.015516035316,
-      nC: 1.775965,
-      nF: 1.806519,
-      ng: 1.825344,
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH11 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
+      role: "Strong high-dispersion negative element balancing the positive second unit and its chromatic power.",
     },
     {
       id: 8,
@@ -159,12 +157,11 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.8,
       focalLengthMm: 31.621733,
-      glass: "S-TIL25 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIL25 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Rear positive element completing the net-positive second unit.",
-      dPgF: 0.002176678697,
-      nC: 1.577216,
-      nF: 1.591486,
-      ng: 1.599726,
     },
     {
       id: 9,
@@ -174,12 +171,11 @@ const LENS_DATA = {
       nd: 1.63854,
       vd: 55.4,
       focalLengthMm: -56.675582,
-      glass: "S-BSM18 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BSM18 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Negative front element of the stationary rear field-correction unit.",
-      dPgF: -0.00221618559,
-      nC: 1.635051,
-      nF: 1.646582,
-      ng: 1.652906,
     },
     {
       id: 10,
@@ -189,12 +185,11 @@ const LENS_DATA = {
       nd: 1.66672,
       vd: 48.3,
       focalLengthMm: 67.550745,
-      glass: "S-BAH11 (OHARA equivalent; vendor unspecified)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BAH11 / OHARA comparison conditional)",
+      indexReferenceNote:
+        "US 5,899,585, column 6 defines ni and vi without a spectral reference; the retained d-line tracing convention is approximate and no catalog curve or historical glass identity is established.",
       role: "Positive rear meniscus paired across air with L31 to flatten and relay the final image field.",
-      dPgF: -0.001606719629,
-      nC: 1.662589,
-      nF: 1.676386,
-      ng: 1.684125,
     },
   ],
 
@@ -212,8 +207,8 @@ const LENS_DATA = {
     { label: "STO", R: "flat", d: 0.2 },
     { label: "12", R: 22.321, d: 2.17, sd: 10.5, medium: 6 },
     { label: "13", R: 58.77, d: 0.98, sd: 8.3 },
-    { label: "14", R: -122.838, d: 10.46, sd: 8.3, medium: 7 },
-    { label: "15", R: 17.636, d: 0.89, sd: 7.2 },
+    { label: "14", R: -122.838, d: 10.46, sd: 10.5, medium: 7 },
+    { label: "15", R: 17.636, d: 0.89, sd: 7.2, rimExtensionSd: 10.5 },
     { label: "16", R: 34.854, d: 2.67, sd: 9.1, medium: 8 },
     { label: "17", R: -37.818, sd: 9.1 },
     { label: "18", R: -64.438, d: 1.3, sd: 13.0, medium: 9 },
@@ -258,7 +253,11 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 38, blades: 5 },
+  aperture: {
+    fStops: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 38,
+    blades: 5,
+  },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "8" },

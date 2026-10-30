@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11839** glass elements examined
-- **2896** elements have multiple coordinate-compatible candidates
-- **517** lens files are affected
+- **2888** elements have multiple coordinate-compatible candidates
+- **516** lens files are affected
 - **302** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **130** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1679 |
+| Smallest reference-index residual | 1671 |
 | Evidence-source priority | 912 |
 | Vendor context | 291 |
 | Stable canonical-name order | 12 |
@@ -109,13 +109,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAM60 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 743-493)` | 1.74320 / 49.30 (d) | S-LAM60 — direct name evidence outranks six-digit code evidence. | M-NBF1 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) L21 |
 | `S-LAL8 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 713-539)` | 1.71300 / 53.90 (d) | S-LAL8 — direct name evidence outranks six-digit code evidence. | LAC8 (Hoya, code, vendor ✗, preferred code row)<br>MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) L22 |
 | `S-BSL7 (qualified 517641 spectral proxy; historical supplier unconfirmed)` | 1.51633 / 64.10 (d) | S-BSL7 — direct name evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 1 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) L51 |
-| `834372 — dense lanthanum flint (catalog vendor unresolved)` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 2 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L1 |
-| `583594 — barium/dense crown (catalog vendor unresolved)` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L2 |
-| `805254 — dense flint (catalog vendor unresolved)` | 1.80518 / 25.40 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, code, preferred code row)<br>SF6 (Schott, code, alternate code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L3 |
-| `652585 — lanthanum crown (catalog vendor unresolved)` | 1.65160 / 58.60 (d) | N-LAK7 — smallest d-line \|Δn\| (3.6e-7 vs 3.1e-6) | S-LAL7 (Ohara, code, preferred code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L4 |
-| `847239 — very dense high-dispersion flint (catalog vendor unresolved)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L7 |
-| `755275 — dense flint (catalog vendor unresolved)` | 1.75520 / 27.50 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 3.8e-7) | H-ZF6 (CDGM, code, alternate code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L8 |
-| `603607 — dense crown (catalog vendor unresolved)` | 1.60311 / 60.70 (d) | J-SK14 — smallest d-line \|Δn\| (1.1e-8 vs 8.2e-7) | BACD14 (Hoya, code, alternate code row)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [CANON EF 28-70mm f/3.5-4.5 II](../../src/lens-data/canon/CanonEF2870mmf3545II.data.ts) L10 |
 | `S-BSM14 (OHARA catalog equivalent; patent class 603607)` | 1.60311 / 60.70 (d) | S-BSM14 — direct name evidence outranks six-digit code evidence. | J-SK14 (Hikari, code, vendor ✗, alternate code row)<br>BACD14 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) L1 |
 | `S-TIH53WN (OHARA catalog equivalent; patent class 847239)` | 1.84666 / 23.90 (d) | S-TIH53WN — direct name evidence outranks six-digit code evidence. | S-NPH53 (Ohara, code, vendor ✓, preferred code row)<br>PBH53 (Ohara, code, vendor ✓, alternate code row) | 1 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) L3 |
 | `S-LAH52 (OHARA catalog equivalent; patent class 800422)` | 1.79952 / 42.20 (d) | S-LAH52 — direct name evidence outranks six-digit code evidence. | S-LAH52Q (Ohara, code, vendor ✓, alternate code row) | 1 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) L4 |

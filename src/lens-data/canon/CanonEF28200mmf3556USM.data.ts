@@ -1,41 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON EF 28-200mm f/3.5-5.6 USM                                               ║
- * ╠══════════════════════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2001-350095 A, Numerical Example 1 (Canon Inc.; Makoto Mitsusaka).          ║
- * ║  Production correlation: Canon EF28-200mm f/3.5-5.6 USM, marketed September 2000.            ║
- * ║  Native patent scale; no dimensional or asphere scaling applied.                             ║
- * ║                                                                                              ║
- * ║  Patent architecture: five moving zoom groups, positive-negative-positive-negative-positive. ║
- * ║  Product count: 16 glass substrates / 12 air-separated groups. The elements array also       ║
- * ║  models the 0.05 mm bonded replica/aspheric layer after source surface 6 as a separate       ║
- * ║  hybrid component, giving 17 modeled material entries.                                       ║
- * ║                                                                                              ║
- * ║  Zoom variable gaps: D5, D15, D21, D24, and the solved S30-to-image spacing.                 ║
- * ║  G5 moves integrally with G3: D21 + D24 = 9.960 mm at every published station.               ║
- * ║  No reversing group is present across the three published stations.                          ║
- * ║                                                                                              ║
- * ║  Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes infinity states only.        ║
- * ║  Close focus moves G2 alone toward the object, conserves D5 + D15 at each zoom station,      ║
- * ║  keeps the image plane fixed, and solves the paraxial imaging condition for a 0.45 m         ║
- * ║  object-to-image distance.                                                                   ║
- * ║                                                                                              ║
- * ║  Source corrections: absent minus signs were restored at R12, R18, R23, and R26. The         ║
- * ║  printed negative signs at R20, R28, and R29 were retained. This sign treatment reproduces   ║
- * ║  the patent focal lengths and all five published group-power ratios.                         ║
- * ║                                                                                              ║
- * ║  Semi-diameters are inferred because Example 1 publishes none. They were sized from all      ║
- * ║  infinity and reconstructed-close marginal/chief-ray states, the 135-format image height,    ║
- * ║  the patent optical sections, and Canon's 72 mm filter envelope. The configured 0.60-field,  ║
- * ║  0.75-pupil off-axis fan is contained in every published and reconstructed state.            ║
- * ║                                                                                              ║
- * ║  Exclusions: no sensor cover glass, filter, inactive dummy plane, flare cutter, or           ║
- * ║  mechanical component is included.                                                           ║
- * ╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+ * Canon EF 28–200mm f/3.5–5.6 USM — JP 2001-350095 A, Numerical Example 1.
+ * Exact native prescription: PDF p. 6; corresponding Fig. 1(A/B/C): PDF p. 10. Source R/d, two aspheres,
+ * infinity zoom gaps and existing reconstructed G2-only focus trajectories remain unchanged.
+ * Existing restored R12/R18/R23/R26A signs are formalized in source.errata: the four-sign block alone among all
+ * 16 combinations reproduces the source focal summaries/Table 1, and independently satisfies Claim 5 (PDF p. 2).
  *
- * Product source: https://global.canon/en/c-museum/product/ef361.html
+ * Original ¶0050 (PDF p. 5) defines ni/νi without identifying a reference line. All 17 literal source pairs remain;
+ * approximate d-line tracing is explicit, all media stay Unmatched and catalog resolution is disabled. Removed
+ * catalog-derived per-lens nC/nF/ng/dPgF overrides are not published spectral measurements. Historical chemistry,
+ * supplier and melt remain unresolved, including the 0.05 mm bonded layer; no manufacturing process is proved.
+ *
+ * Native Fig. 1 is a 200 ppi raster at about 2.75 px/mm; inferred endpoint uncertainty is about ±1 mm. The hybrid
+ * front/bonded caps follow the same 13.4 mm source component rim, and S8 adds a flat rear shoulder to 13.4 while
+ * retaining clear sd 10.7. Layer thickness stays positive to that cap; no disconnected resin wing or opaque land
+ * is added at the bonded interface. S13 and S29 retain smaller gap-constrained clear caps. No inferred cut.
+ *
+ * There are 16 glass substrates / 12 air-spaced components plus one separately modeled thin layer. Source filters
+ * and rear plates are absent. The retail association is a qualified correlation, not a factory prescription.
  */
 
 const LENS_DATA = {
@@ -68,6 +51,44 @@ const LENS_DATA = {
     patentYear: 2001,
     authors: ["Makoto Mitsusaka"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "12",
+        field: "R",
+        printed: 45.611,
+        applied: -45.611,
+        evidence: ["source-summary", "claims"],
+        note: "Existing sign correction retained. Numerical Example 1 (PDF p. 6) drops this minus sign in the four-row R12/R18/R23/R26 block. The complete restored block uniquely reproduces the source 28.92/80/193.14 mm summaries and five Table 1 ratios (PDF p. 9) among all 16 sign combinations; literal printed rows give EFL -2.985733/-5.309944/-10.170225 mm. Independently, Claim 5 (PDF p. 2) rejects the printed block and accepts the restored group ratios 0.470214/-0.074926/0.127378/-0.213602/0.253030. Source-summary isolates the full block; claims corroborate it as a unit.",
+      },
+      {
+        status: "corrected",
+        surface: "18",
+        field: "R",
+        printed: 29.422,
+        applied: -29.422,
+        evidence: ["source-summary", "claims"],
+        note: "Existing sign correction retained. Numerical Example 1 (PDF p. 6) drops this minus sign in the four-row R12/R18/R23/R26 block. The complete restored block uniquely reproduces the source 28.92/80/193.14 mm summaries and five Table 1 ratios (PDF p. 9) among all 16 sign combinations; literal printed rows give EFL -2.985733/-5.309944/-10.170225 mm. Independently, Claim 5 (PDF p. 2) rejects the printed block and accepts the restored group ratios 0.470214/-0.074926/0.127378/-0.213602/0.253030. Source-summary isolates the full block; claims corroborate it as a unit.",
+      },
+      {
+        status: "corrected",
+        surface: "23",
+        field: "R",
+        printed: 15.708,
+        applied: -15.708,
+        evidence: ["source-summary", "claims"],
+        note: "Existing sign correction retained. Numerical Example 1 (PDF p. 6) drops this minus sign in the four-row R12/R18/R23/R26 block. The complete restored block uniquely reproduces the source 28.92/80/193.14 mm summaries and five Table 1 ratios (PDF p. 9) among all 16 sign combinations; literal printed rows give EFL -2.985733/-5.309944/-10.170225 mm. Independently, Claim 5 (PDF p. 2) rejects the printed block and accepts the restored group ratios 0.470214/-0.074926/0.127378/-0.213602/0.253030. Source-summary isolates the full block; claims corroborate it as a unit.",
+      },
+      {
+        status: "corrected",
+        surface: "26A",
+        field: "R",
+        printed: 20.778,
+        applied: -20.778,
+        evidence: ["source-summary", "claims"],
+        note: "Existing sign correction retained. Numerical Example 1 (PDF p. 6) drops this minus sign in the four-row R12/R18/R23/R26 block. The complete restored block uniquely reproduces the source 28.92/80/193.14 mm summaries and five Table 1 ratios (PDF p. 9) among all 16 sign combinations; literal printed rows give EFL -2.985733/-5.309944/-10.170225 mm. Independently, Claim 5 (PDF p. 2) rejects the printed block and accepts the restored group ratios 0.470214/-0.074926/0.127378/-0.213602/0.253030. Source-summary isolates the full block; claims corroborate it as a unit.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -80,12 +101,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -146.891018,
-      glass: "S-TIH53WN (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
       cemented: "C1",
-      dPgF: 0.0179,
-      nC: 1.836527,
-      nF: 1.872007,
-      ng: 1.894034,
     },
     {
       id: 2,
@@ -95,12 +113,9 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: 99.820738,
-      glass: "S-BSM15 (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
       cemented: "C1",
-      dPgF: -0.0016,
-      nC: 1.619739,
-      nF: 1.63045,
-      ng: 1.636296,
     },
     {
       id: 3,
@@ -110,11 +125,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: 123.299441,
-      glass: "S-BSM15 (OHARA)",
-      dPgF: -0.0016,
-      nC: 1.619739,
-      nF: 1.63045,
-      ng: 1.636296,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
     },
     {
       id: 4,
@@ -124,7 +136,8 @@ const LENS_DATA = {
       nd: 1.51421,
       vd: 51.4,
       focalLengthMm: -847.565314,
-      glass: "Unmatched (thin replica/aspheric layer; nd=1.514210, vd=51.4)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (bonded thin layer; source n=1.51421, ν=51.4; spectral reference unspecified)",
       cemented: "H1",
     },
     {
@@ -135,12 +148,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -22.775172,
-      glass: "S-LAH60 (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.834, ν=37.2; spectral reference unspecified)",
       cemented: "H1",
-      dPgF: -0.0037,
-      nC: 1.827376,
-      nF: 1.849819,
-      ng: 1.862781,
     },
     {
       id: 6,
@@ -150,11 +160,8 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -26.393152,
-      glass: "S-LAH55V (OHARA)",
-      dPgF: -0.0075,
-      nC: 1.828981,
-      nF: 1.84852,
-      ng: 1.859556,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.834807, ν=42.7; spectral reference unspecified)",
     },
     {
       id: 7,
@@ -164,11 +171,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 19.601756,
-      glass: "S-TIH53WN (OHARA)",
-      dPgF: 0.0179,
-      nC: 1.836527,
-      nF: 1.872007,
-      ng: 1.894034,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
     },
     {
       id: 8,
@@ -178,12 +182,9 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -21.342363,
-      glass: "S-LAH65V (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.804, ν=46.6; spectral reference unspecified)",
       cemented: "C2",
-      dPgF: -0.0088,
-      nC: 1.798817,
-      nF: 1.816076,
-      ng: 1.825694,
     },
     {
       id: 9,
@@ -193,12 +194,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 71.91798,
-      glass: "S-TIH53WN (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
       cemented: "C2",
-      dPgF: 0.0179,
-      nC: 1.836527,
-      nF: 1.872007,
-      ng: 1.894034,
     },
     {
       id: 10,
@@ -208,11 +206,8 @@ const LENS_DATA = {
       nd: 1.518229,
       vd: 58.9,
       focalLengthMm: 30.181663,
-      glass: "S-NSL3 (OHARA)",
-      dPgF: -0.0005,
-      nC: 1.515556,
-      nF: 1.524354,
-      ng: 1.529155,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.518229, ν=58.9; spectral reference unspecified)",
     },
     {
       id: 11,
@@ -222,12 +217,9 @@ const LENS_DATA = {
       nd: 1.517417,
       vd: 52.4,
       focalLengthMm: 24.801607,
-      glass: "S-NSL36 (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.517417, ν=52.4; spectral reference unspecified)",
       cemented: "C3",
-      dPgF: -0.0002,
-      nC: 1.514444,
-      nF: 1.524313,
-      ng: 1.529804,
     },
     {
       id: 12,
@@ -237,12 +229,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -28.742226,
-      glass: "S-TIH53WN (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
       cemented: "C3",
-      dPgF: 0.0179,
-      nC: 1.836527,
-      nF: 1.872007,
-      ng: 1.894034,
     },
     {
       id: 13,
@@ -252,12 +241,9 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: 35.971241,
-      glass: "S-TIH10 (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.72825, ν=28.5; spectral reference unspecified)",
       cemented: "C4",
-      dPgF: 0.0123,
-      nC: 1.720865,
-      nF: 1.746453,
-      ng: 1.762002,
     },
     {
       id: 14,
@@ -267,12 +253,9 @@ const LENS_DATA = {
       nd: 1.882997,
       vd: 40.8,
       focalLengthMm: -19.819009,
-      glass: "S-LAH58 (OHARA)",
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.882997, ν=40.8; spectral reference unspecified)",
       cemented: "C4",
-      dPgF: -0.0088,
-      nC: 1.87656,
-      nF: 1.898221,
-      ng: 1.910497,
     },
     {
       id: 15,
@@ -282,11 +265,8 @@ const LENS_DATA = {
       nd: 1.583126,
       vd: 59.4,
       focalLengthMm: 28.643528,
-      glass: "S-BAL42 (OHARA)",
-      dPgF: -0.002,
-      nC: 1.580139,
-      nF: 1.58996,
-      ng: 1.595297,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.583126, ν=59.4; spectral reference unspecified)",
     },
     {
       id: 16,
@@ -296,11 +276,8 @@ const LENS_DATA = {
       nd: 1.518229,
       vd: 58.9,
       focalLengthMm: 100.846418,
-      glass: "S-NSL3 (OHARA)",
-      dPgF: -0.0005,
-      nC: 1.515556,
-      nF: 1.524354,
-      ng: 1.529155,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.518229, ν=58.9; spectral reference unspecified)",
     },
     {
       id: 17,
@@ -310,58 +287,59 @@ const LENS_DATA = {
       nd: 1.806098,
       vd: 40.9,
       focalLengthMm: -30.242699,
-      glass: "S-LAH53 (OHARA)",
-      dPgF: -0.0052,
-      nC: 1.800248,
-      nF: 1.819945,
-      ng: 1.831174,
+      indexReferenceNote: "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.806098, ν=40.9; spectral reference unspecified)",
     },
   ],
 
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 101.683, d: 1.5, sd: 31.5, medium: 1 },
-    { label: "2", R: 55.565, d: 8.32, sd: 30.8, medium: 2 },
-    { label: "3", R: 491.783, d: 0.15, sd: 30.4 },
-    { label: "4", R: 54.265, d: 6.12, sd: 29.6, medium: 3 },
+    { label: "1", R: 101.683, d: 1.5, sd: 30.5, medium: 1 },
+    { label: "2", R: 55.565, d: 8.32, sd: 30.5, medium: 2 },
+    { label: "3", R: 491.783, d: 0.15, sd: 30.5 },
+    { label: "4", R: 54.265, d: 6.12, sd: 27.8, medium: 3 },
     { label: "5", R: 176.85, sd: 27.8 },
     {
       label: "6A",
       R: 64.293,
       d: 0.05,
-      sd: 11.3,
+      sd: 13.4,
       medium: 4,
       asphere: { K: 0, A4: 4.38644e-6, A6: 2.81127e-8, A8: -2.86365e-10, A10: 1.27865e-12, A12: 0 },
     },
-    { label: "7", R: 56.013, d: 1.15, sd: 11.3, medium: 5 },
-    { label: "8", R: 14.052, d: 5.43, sd: 10.7 },
+    { label: "7", R: 56.013, d: 1.15, sd: 13.4, medium: 5 },
+    { label: "8", R: 14.052, d: 5.43, sd: 10.7, rimExtensionSd: 13.4 },
     { label: "9", R: -54.275, d: 1.0, sd: 9.7, medium: 6 },
     { label: "10", R: 37.401, d: 0.12, sd: 9.8 },
     { label: "11", R: 25.079, d: 3.85, sd: 9.8, medium: 7 },
+    // The original prints a positive R here; restored-sign block evidence is recorded in source.errata.
     { label: "12", R: -45.611, d: 1.06, sd: 9.6 },
     { label: "13", R: -21.102, d: 0.9, sd: 8.2, medium: 8 },
     { label: "14", R: 93.584, d: 1.79, sd: 9.2, medium: 9 },
     { label: "15", R: -172.765, sd: 9.2 },
     { label: "STO", R: "flat", d: 0.71 },
-    { label: "17", R: 31.704, d: 4.36, sd: 9.1, medium: 10 },
+    { label: "17", R: 31.704, d: 4.36, sd: 9.8, medium: 10 },
+    // The original prints a positive R here; restored-sign block evidence is recorded in source.errata.
     { label: "18", R: -29.422, d: 0.15, sd: 9.9 },
     { label: "19", R: 33.868, d: 4.93, sd: 9.9, medium: 11 },
     { label: "20", R: -19.636, d: 0.9, sd: 9.8, medium: 12 },
     { label: "21", R: -103.829, sd: 9.8 },
-    { label: "22", R: -36.508, d: 2.59, sd: 9.9, medium: 13 },
-    { label: "23", R: -15.708, d: 0.9, sd: 10.2, medium: 14 },
-    { label: "24", R: -157.51, sd: 10.3 },
-    { label: "25", R: 76.073, d: 6.02, sd: 12.6, medium: 15 },
+    { label: "22", R: -36.508, d: 2.59, sd: 9.0, medium: 13 },
+    // The original prints a positive R here; restored-sign block evidence is recorded in source.errata.
+    { label: "23", R: -15.708, d: 0.9, sd: 9.0, medium: 14 },
+    { label: "24", R: -157.51, sd: 9.0 },
+    { label: "25", R: 76.073, d: 6.02, sd: 11.4, medium: 15 },
+    // The original prints a positive R26; restored-sign block evidence is recorded in source.errata.
     {
       label: "26A",
       R: -20.778,
       d: 4.7,
-      sd: 13.2,
+      sd: 11.4,
       asphere: { K: 0, A4: 1.07579e-5, A6: 1.68849e-8, A8: 7.49501e-12, A10: -1.82624e-13, A12: 0 },
     },
-    { label: "27", R: 666.832, d: 2.23, sd: 12.3, medium: 16 },
-    { label: "28", R: -56.641, d: 2.3, sd: 12.0 },
+    { label: "27", R: 666.832, d: 2.23, sd: 11.5, medium: 16 },
+    { label: "28", R: -56.641, d: 2.3, sd: 11.5 },
     { label: "29", R: -18.982, d: 1.2, sd: 10.0, medium: 17 },
     { label: "30", R: -88.169, sd: 11.3 },
   ],

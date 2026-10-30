@@ -1,90 +1,61 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║   LENS DATA — CANON EF 28-70mm f/3.5-4.5 II                       ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Source: JP H01-189622 A, Numerical Example 1 (Canon).             ║
- * ║  Three kinematic groups: negative / positive / weak positive.      ║
- * ║  10 elements / 9 air-spaced groups; one aspherical surface.        ║
- * ║                                                                    ║
- * ║  PRESCRIPTION STATUS:                                               ║
- * ║    The rendered patent and later grant print R17 = -11.61 mm and   ║
- * ║    R21 = -141.79 mm. Those values fail the published G2 focal      ║
- * ║    length and all three system EFLs. The locked Stage 1 repair     ║
- * ║    uses R17 = -36.74 mm and R21 = -37.76 mm. These are author      ║
- * ║    inferences, not an official erratum.                            ║
- * ║    R18 is an optically neutral moving flare-cutter plane. It is    ║
- * ║    omitted, and its published D18 is added to D17 at each state.   ║
- * ║                                                                    ║
- * ║  SCALING:                                                           ║
- * ║    None. Source EFLs are 29.09 / 50.0 / 67.89 mm; the corrected    ║
- * ║    model computes 29.083448799 / 49.998100427 / 67.894369753 mm.   ║
- * ║    Scale factor s = 1.0. Radii, thicknesses, SDs, and image-plane  ║
- * ║    coordinates are unscaled. A_p,scaled = A_p,patent / s^(p-1),  ║
- * ║    so the R4A coefficients are unchanged; K is unchanged.          ║
- * ║                                                                    ║
- * ║  ZOOM AND FOCUS:                                                    ║
- * ║    Zoom-only gaps: D17_model = D17 + D18 and rear BFD.             ║
- * ║    Focus gap: D6. G1 performs front-group focusing.                ║
- * ║    Focus model: CONSTRAINED_RECONSTRUCTION. The patent publishes   ║
- * ║    infinity spacings only. Close-focus D6 values were solved by    ║
- * ║    paraxial imaging at the official rounded 0.39 m MFD, treating  ║
- * ║    that distance as image plane to object plane. The tele result   ║
- * ║    is 0.218918×, consistent with the rounded 0.22× product value.  ║
- * ║    The MFD reference-plane convention and retail rounding remain   ║
- * ║    limitations; these values are not a published production cam.  ║
- * ║                                                                    ║
- * ║  APERTURE MODEL:                                                    ║
- * ║    The patent publishes design f/3.6 wide and f/4.6 tele. Runtime  ║
- * ║    nominalFno follows the marketed f/3.5-4.5 specification, with   ║
- * ║    an explicitly inferred f/4.0 middle control point. The stop     ║
- * ║    radius is derived from the station f-numbers [3.5, 4.0, 4.5];   ║
- * ║    no stop clear diameter is patent-published.                     ║
- * ║                                                                    ║
- * ║  SEMI-DIAMETERS:                                                    ║
- * ║    The patent publishes no clear apertures. SDs are inferred from  ║
- * ║    exact marginal/chief-ray envelopes over all zoom and modeled    ║
- * ║    focus states, the 135-format field, the official 52 mm filter   ║
- * ║    limit, the patent section drawing, positive element edge        ║
- * ║    thickness, actual rim slope, shared-band air-gap clearance,     ║
- * ║    cemented-interface compatibility, and zero hidden render trim.  ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** JP H01-189622 A, Numerical Example 1. Original reviewed 2026-10-30.
+ * R17/R21 retain the pre-existing authored reconstruction with unresolved source errata.
+ * The printed pair is rejected by source power/focal targets, but the replacements are not uniquely source-proven.
+ * Source apertures f/3.6, f/4.2 and f/4.6 are restored from Fig.3 and the numerical heading.
+ * The unchanged 390 mm finite-focus endpoints are inferred; interpolated positions are illustrative.
+ * N/ν reference is unspecified, leaving all ten media Unmatched with approximate d-line tracing.
+ * S2 has a resolved outer shoulder; other clear heights follow native Fig.1 under unchanged guards.
  */
-
 const LENS_DATA = {
-  /* ── Identity ── */
   schema: 2,
   key: "canon-ef-28-70mm-f35-45-ii",
   maker: "Canon",
   name: "CANON EF 28-70mm f/3.5-4.5 II",
-  subtitle: "JP H01-189622 A — Numerical Example 1 (correlated and repaired patent prescription)",
-
+  subtitle: "JP H01-189622 A Example 1 — authored reconstruction; printed radii unresolved",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     specs: [
       "10 ELEMENTS / 9 GROUPS",
-      "DESIGN EFL 29.083-67.894 mm",
+      "AUTHORED RECONSTRUCTION EFL 29.083–67.894 mm",
       "DESIGN f/3.6-4.6",
       "1 ASPHERICAL SURFACE",
       "FRONT-GROUP FOCUS",
+      "Printed R17/R21 contradiction remains unresolved",
     ],
     elementCount: 10,
     groupCount: 9,
-    focalLengthMm: { marketing: [28, 70], design: [29.083448799, 67.894369753] },
-    fNumber: { marketing: 3.5, design: 3.6 },
+    focalLengthMm: {
+      marketing: [28, 70],
+      design: [29.083448799, 67.894369753],
+    },
+    fNumber: {
+      marketing: 3.5,
+      design: 3.6,
+    },
   },
-
   source: {
     patentNumber: "JP H01-189622 A",
-    example: { label: "Numerical Example 1", id: "1" },
+    example: {
+      label: "Numerical Example 1",
+      id: "1",
+    },
     patentYear: 1989,
     authors: ["Sadatoshi Takahashi"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example 1, PDF page 4 / printed 192, prints R17 = -11.61 and R21 = -141.79. The pre-existing authored reconstruction -36.74/-37.76 is retained, not source-proven. The literal pair gives G2 f ≈20.14049 mm and system EFL ≈12.02067/13.67220/13.75683 mm, against printed 36.27 and 29.09/50/67.89 mm. Source summary and claimed powers establish an error, but do not uniquely establish the exact adopted replacements.",
+      },
+      {
+        status: "unresolved",
+        note: "Printed condition 7 R3/FT fails both examples; reciprocal FT/R3 fits the interval. The expression is unresolved, without changing literal R3 values.",
+      },
+    ],
   },
-
-  /* ── Elements ── */
   elements: [
     {
       id: 1,
@@ -94,8 +65,10 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -38.32276059,
-      glass: "834372 — dense lanthanum flint (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
       role: "Strong front negative member of G1; expands the wide-angle field before the corrective rear members.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 2,
@@ -105,8 +78,10 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -65.238044111,
-      glass: "583594 — barium/dense crown (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
       role: "Lower-index negative element carrying the R4A asphere; moderates wide-angle aberrations in G1.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 3,
@@ -116,8 +91,10 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 57.125120653,
-      glass: "805254 — dense flint (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
       role: "Positive rear member that balances the two negative elements while leaving G1 net negative.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 4,
@@ -127,8 +104,10 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.6,
       focalLengthMm: 51.970334537,
-      glass: "652585 — lanthanum crown (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate J-LAK7)",
       role: "Pre-stop positive member of G2 and principal front collector for the positive variator group.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 5,
@@ -138,8 +117,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 93.012637283,
-      glass: "487702 — low-index fluor/light crown (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
       role: "Low-dispersion post-stop positive member of G2.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 6,
@@ -149,8 +130,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 60.371789681,
-      glass: "487702 — low-index fluor/light crown (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
       role: "Second low-dispersion positive member reinforcing G2 power after the stop.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 7,
@@ -160,8 +143,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -19.17854567,
-      glass: "847239 — very dense high-dispersion flint (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH53)",
       role: "Strong negative corrector inside G2, paired in air with the following positive singlet.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 8,
@@ -171,8 +156,10 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       focalLengthMm: 38.808139451,
-      glass: "755275 — dense flint (catalog vendor unresolved)",
-      role: "Rear positive member completing the corrected net-positive G2 assembly.",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH4)",
+      role: "Rear positive member of the retained authored G2 reconstruction; the original R17 value is unresolved.",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 9,
@@ -182,9 +169,11 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -152.250261052,
-      glass: "834372 — dense lanthanum flint (catalog vendor unresolved)",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
       role: "Negative front component of the fixed, weakly positive rear cemented doublet.",
       cemented: "D1",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 10,
@@ -194,52 +183,174 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 130.397935962,
-      glass: "603607 — dense crown (catalog vendor unresolved)",
-      role: "Positive rear component that leaves the fixed cemented doublet with weak net positive power.",
+      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM14)",
+      role: "Rear member of the retained authored weak-positive G3 reconstruction; the original R21 value is unresolved.",
       cemented: "D1",
+      indexReferenceNote:
+        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
   ],
-
-  /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 48.61, d: 1.9, sd: 16.0, medium: 1 },
-    { label: "2", R: 18.94, d: 8.2, sd: 14.5 },
-    { label: "3", R: -181.44, d: 2.0, sd: 14.5, medium: 2 },
-    { label: "4A", R: 48.33, d: 1.9, sd: 14.6, asphere: { K: 0, A4: -3.886e-6, A6: -1.883e-9, A8: -3.39e-11, A10: 0, A12: 0, A14: 0 } },
-    { label: "5", R: 35.69, d: 3.7, sd: 14.8, medium: 3 },
-    { label: "6", R: 151.92, sd: 14.5 },
-    { label: "7", R: 37.83, d: 3.1, sd: 10.2, medium: 4 },
-    { label: "8", R: -312.56, d: 1.9, sd: 10.0 },
-    { label: "STO", R: "flat", d: 0.7 },
-    { label: "10", R: 24.59, d: 3.85, sd: 10.2, medium: 5 },
-    { label: "11", R: 50.97, d: 0.28, sd: 9.8 },
-    { label: "12", R: 20.69, d: 4.4, sd: 9.7, medium: 6 },
-    { label: "13", R: 64.81, d: 1.07, sd: 8.5 },
-    { label: "14", R: -211.31, d: 2.9, sd: 8.5, medium: 7 },
-    { label: "15", R: 17.7, d: 2.4, sd: 8.2 },
-    { label: "16", R: 140.47, d: 2.6, sd: 8.6, medium: 8 },
-    { label: "17", R: -36.74, sd: 8.8 },
-    { label: "19", R: -45.0, d: 1.8, sd: 11.8, medium: 9 },
-    { label: "20", R: -70.97, d: 2.3, sd: 12.0, medium: 10 },
-    { label: "21", R: -37.76, sd: 12.2 },
+    {
+      label: "1",
+      R: 48.61,
+      d: 1.9,
+      sd: 18.8,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 18.94,
+      d: 8.2,
+      sd: 14.5,
+      rimExtensionSd: 18.8,
+    },
+    {
+      label: "3",
+      R: -181.44,
+      d: 2,
+      sd: 14.5,
+      medium: 2,
+    },
+    {
+      label: "4A",
+      R: 48.33,
+      d: 1.9,
+      sd: 14.6,
+      asphere: {
+        K: 0,
+        A4: -0.000003886,
+        A6: -1.883e-9,
+        A8: -3.39e-11,
+        A10: 0,
+        A12: 0,
+        A14: 0,
+      },
+    },
+    {
+      label: "5",
+      R: 35.69,
+      d: 3.7,
+      sd: 14.8,
+      medium: 3,
+    },
+    {
+      label: "6",
+      R: 151.92,
+      sd: 14.5,
+    },
+    {
+      label: "7",
+      R: 37.83,
+      d: 3.1,
+      sd: 11.4,
+      medium: 4,
+    },
+    {
+      label: "8",
+      R: -312.56,
+      d: 1.9,
+      sd: 11.4,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.7,
+    },
+    {
+      label: "10",
+      R: 24.59,
+      d: 3.85,
+      sd: 11,
+      medium: 5,
+    },
+    {
+      label: "11",
+      R: 50.97,
+      d: 0.28,
+      sd: 11,
+    },
+    {
+      label: "12",
+      R: 20.69,
+      d: 4.4,
+      sd: 10.2,
+      medium: 6,
+    },
+    {
+      label: "13",
+      R: 64.81,
+      d: 1.07,
+      sd: 10.2,
+    },
+    {
+      label: "14",
+      R: -211.31,
+      d: 2.9,
+      sd: 9.2,
+      medium: 7,
+    },
+    {
+      label: "15",
+      R: 17.7,
+      d: 2.4,
+      sd: 9.2,
+    },
+    {
+      label: "16",
+      R: 140.47,
+      d: 2.6,
+      sd: 8.6,
+      medium: 8,
+    },
+    {
+      label: "17",
+      R: -36.74,
+      sd: 8.8,
+    },
+    {
+      label: "19",
+      R: -45,
+      d: 1.8,
+      sd: 13.2,
+      medium: 9,
+    },
+    {
+      label: "20",
+      R: -70.97,
+      d: 2.3,
+      sd: 13.2,
+      medium: 10,
+    },
+    {
+      label: "21",
+      R: -37.76,
+      sd: 13.2,
+    },
   ],
-
   zoom: {
-    /* (moved from zoomPositions) ── Zoom and focus ── */
     stations: [
-      { focalLengthMm: 29.09, nominalFNumber: 3.5, label: "Wide" },
-      { focalLengthMm: 50.0, nominalFNumber: 4.0 },
-      { focalLengthMm: 67.89, nominalFNumber: 4.5, label: "Tele" },
+      {
+        focalLengthMm: 29.09,
+        nominalFNumber: 3.6,
+        label: "Wide",
+      },
+      {
+        focalLengthMm: 50,
+        nominalFNumber: 4.2,
+      },
+      {
+        focalLengthMm: 67.89,
+        nominalFNumber: 4.6,
+        label: "Tele",
+      },
     ],
   },
-
-  /* ── Product and display controls ── */
   focus: {
     closeFocusM: 0.39,
     description:
       "Front-group focus (G1). The patent publishes infinity zoom spacings only; close-focus D6 values are a constrained paraxial reconstruction solved at the official rounded 0.39 m MFD, with the image-plane reference assumed. The reconstruction is not a published production cam law.",
   },
-
   gaps: {
     "6": {
       label: "D6 / FOCUS",
@@ -266,18 +377,38 @@ const LENS_DATA = {
       ],
     },
   },
-
-  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 29], maxFNumber: 29, blades: 5 },
-
-  /* ── Diagram annotations ── */
+  aperture: {
+    fStops: [3.6, 4.2, 4.6, 5.6, 8, 11, 16, 22, 29],
+    maxFNumber: 29,
+    blades: 5,
+  },
   groups: [
-    { text: "G1 (-) / FOCUS", fromSurface: "1", toSurface: "6" },
-    { text: "G2 (+) / ZOOM", fromSurface: "7", toSurface: "17" },
-    { text: "G3 (weak +) / FIXED", fromSurface: "19", toSurface: "21" },
+    {
+      text: "G1 (-) / FOCUS",
+      fromSurface: "1",
+      toSurface: "6",
+    },
+    {
+      text: "G2 (+) / ZOOM",
+      fromSurface: "7",
+      toSurface: "17",
+    },
+    {
+      text: "G3 (weak +) / FIXED",
+      fromSurface: "19",
+      toSurface: "21",
+    },
   ],
-  doublets: [{ text: "D1", fromSurface: "19", toSurface: "21" }],
-
-  layout: { yScFill: 0.7 },
+  doublets: [
+    {
+      text: "D1",
+      fromSurface: "19",
+      toSurface: "21",
+    },
+  ],
+  layout: {
+    yScFill: 0.7,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

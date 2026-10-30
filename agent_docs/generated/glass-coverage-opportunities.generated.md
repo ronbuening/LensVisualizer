@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned (**1017** visible)
-- **10862 / 11845** non-air surfaces use strict catalog Sellmeier data (91.7%)
-- **10876 / 11845** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.8%)
+- **10826 / 11845** non-air surfaces use strict catalog Sellmeier data (91.4%)
+- **10840 / 11845** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **336** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **204** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -149,7 +149,6 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | JP 2017-161685 A | [PDF](../../patents/JP2017161685A.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 30A [resin] (Element 17 (coating): `Unidentified coating medium; resin interpretation; chemistry and supplier unspecified`) | abbe: 1 |
 | [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | JP 2012-181525 A | [PDF](../../patents/JP2012181525A.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 7A [resin] (G2 hybrid asphere resin layer: `Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=50.0)`) | abbe: 1 |
 | [TAMRON SP 24-70mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA0072470mmf28VC.data.ts) | US 8,810,918 B2 | [PDF](../../patents/US8810918.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 6A [resin] (Element 4 bonded aspheric layer: `Unmatched (hybrid-asphere resin layer; nd=1.51460, vd=49.96)`) | abbe: 1 |
-| [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | JP 2001-350095 A | [PDF](../../patents/JP2001350095A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [resin] (Hybrid replica layer: `Unmatched (thin replica/aspheric layer; nd=1.514210, vd=51.4)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | US 2020/0379223 A1 | [PDF](../../patents/US20200379223A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 19A [resin] (L34 - resin OIS positive asphere: `Unmatched optical resin (W3bp = 1.228; OKP-class high-dispersion polymer)`) | abbe: 1 |
 | [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) | JP 2016-114800 A | [PDF](../../patents/JP2016114800A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [resin] (L21 synthetic-resin aspheric layer: `Unmatched (synthetic resin; patent nd=1.52972, vd=42.7)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | US 7,508,592 B2 | [PDF](../../patents/US7508592.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 7A [resin] (Element 4 resin layer: `Unmatched (replicated resin-layer model; source nd=1.55389, νd=38.09; formulation and curing unspecified)`) | abbe: 1 |
