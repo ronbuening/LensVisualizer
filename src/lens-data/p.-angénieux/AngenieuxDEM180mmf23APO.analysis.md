@@ -103,7 +103,7 @@ The cemented L7/L8 doublet has a computed net focal length of $+103.573$ mm. Unl
 
 ## Glass Identification and Selection
 
-The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. Each element now uses a coordinate-compatible published curve as an optical equivalent while retaining the patent coordinate and leaving the production supplier unspecified. The L2 line data are explicitly representative rather than production provenance.
+The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. Each element now uses a coordinate-compatible published curve as an optical equivalent while retaining the patent coordinate and leaving the production supplier unspecified. No per-lens catalog-only C/F/g indices or exact partial ratio are stored; runtime dispersion uses the compatible catalog curve.
 
 | Patent coordinate | Catalog-equivalent curve | Patent-minus-catalog $\Delta n_d$ | $\Delta \nu_d$ | Elements |
 |---|---|---:|---:|---|
@@ -139,19 +139,7 @@ The diaphragm is inside D8, as published, but its precise position is not. The m
 
 ## Chromatic Correction Strategy
 
-Condition 6 requires at least one positive element in Component II to use a special glass whose relative partial dispersion lies more than 0.02 above the normal line. L2 is the only positive element in that component and its 1.497/81.6 coordinates match the 497816 ED-crown class. With the stored representative line indices,
-
-$$
-P_{gF}=\frac{n_g-n_F}{n_F-n_C}=0.537490,
-$$
-
-and the normal-line value is 0.506549, giving
-
-$$
-\Delta P_{gF}=+0.030941.
-$$
-
-This exceeds the patent threshold and supplies a quantitative basis for describing L2 as an anomalous-partial-dispersion element. The result belongs to the catalog-class model; it does not prove a particular manufacturer or melt.
+Condition 6 requires a special ED glass in Component II with relative partial dispersion more than 0.02 above the normal line, $0.6438-0.001682\nu_d$. L2 is the component's positive member and its 1.497/81.6 coordinates fit the low-dispersion crown class. The patent prints neither an exact partial ratio nor C/F/g indices. Its explicit ED-material requirement supports the source APD flag; the qualified S-FPL51 catalog curve supplies a spectral proxy without identifying the production melt.
 
 The L2/L3 pairing places the special positive ED crown against a high-index dense flint of much lower Abbe number. Because the pair moves during focusing, the chromatic balance also moves as a unit rather than being disturbed by a changing internal separation. The rear L7/L8 cemented pair provides a second conventional negative-flint/positive-crown correction pair within the power-bearing rear group.
 
@@ -200,7 +188,7 @@ The final data arrays were independently traced in height/reduced-angle form and
 
 The 0.146 mm difference between the computed BFL and the authored 80.622 mm rear spacing is the scaled residual of the patent's rounded prescription, not an added optical plate.
 
-The patent publishes no semi-diameters. The modeled values are inferred from the f/2.3 marginal ray, the default 0.6-field chief-ray bundles, the full-frame image height, and geometry constraints. Both defined focus states retain positive edge thickness, acceptable actual rim slope, valid shared-gap clearance, and complete containment of the default 0.6-field ray fans. The minimum element edge thickness is 0.451 mm, the maximum rim angle is 54.37°, and the tightest positive shared-gap clearance is 0.0177 mm at the 0.108 mm L2–L3 air gap. Selected full-field peripheral rays vignette at front or rear physical apertures; the semi-diameters are not enlarged beyond valid element geometry merely to eliminate that modeled vignetting.
+The patent publishes no semi-diameters. The modeled values are inferred from the f/2.3 marginal ray, the default 0.6-field chief-ray bundles, the full-frame image height, and geometry constraints. Both defined focus states retain positive edge thickness, acceptable actual rim slope, valid shared-gap clearance, and complete containment of the default 0.6-field ray fans. Selected full-field peripheral rays vignette at front or rear physical apertures; the semi-diameters are not enlarged beyond valid element geometry merely to eliminate that modeled vignetting.
 
 ## Sources and References
 
@@ -225,3 +213,5 @@ or additional focus adjustment is supported by the published prescription.
 The Angénieux manufacturer brochure, PDF page 2, lists the 180mm f/2.3 DEM in Canon FD, Contax, Leica R and Nikon mounts. The neighboring autofocus zoom’s Canon AF and Minolta AF mounts are not applied to this manual-focus telephoto. [Manufacturer source](https://www.pacificrimcamera.com/rl/02002/02002.pdf).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+The fresh Figure 1 review restores the continuous L2 rear cap to the 38.5 mm body rim and sets the common L3 rim to 32.6 mm. Sloped corner bevels are retained without invented flat lands or numeric cuts. These inferred heights retain the native f/2.3 beam and valid geometry; they are not printed dimensions.

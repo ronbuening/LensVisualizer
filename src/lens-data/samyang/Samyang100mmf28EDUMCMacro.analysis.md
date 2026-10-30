@@ -154,7 +154,7 @@ The source explicitly names HOYA materials. The printed nd/νd values are retain
 | L33 | BSC7_HOYA | BSC7 (HOYA) | 1.516798 / 64.20 |
 | L34 | EFD10_HOYA | E-FD10 (HOYA) | 1.728250 / 28.32 |
 
-The modern catalog coordinates differ by at most 4×10⁻⁶ in nd and 0.01 in νd from the printed source coordinates. All fifteen model elements carry explicit nC, nF and ng evaluated from the HOYA catalog dispersion formulas at 656.2725, 486.1327 and 435.8343 nm. These are catalog-derived values, not patent-published or measured production spectra; for FCD1 (L21) they give P_g,F = 0.5389. The reference index remains the source's d-line value, and no e-line conversion is performed.
+The modern catalog coordinates differ by at most 4×10⁻⁶ in nd and 0.01 in νd from the printed source coordinates. All fifteen model elements resolve compatible HOYA coefficient curves at runtime. No per-lens catalog-only C/F/g indices are stored because the patent prints none. These curves remain source-named family spectral proxies, not production melt identification. The reference index remains the source's d-line value, and no e-line conversion is performed.
 
 The low-dispersion crown/high-dispersion flint combinations are consistent with a primary chromatic-balancing strategy. That interpretation does not establish apochromatic correction, secondary spectrum or measured performance. The computed d-line Petzval sum is +0.001053505836275079 mm⁻¹; it is not itself a measurement of image-surface curvature or a chromatic-performance result.
 
@@ -230,3 +230,5 @@ The rendered section follows the element sequence and proportions of Figure 1 an
 4. [Samyang 2022 catalogue](https://www.lksamyang.com/upload/file/2022_SAMYANG_OPTICS_Catalogue_EN.pdf), p. 36: product-family specifications and optical section.
 5. [Samyang launch notice](https://www.lksamyang.com/en/about/notice-view.php?seq=324), 2015-04-02: manual-focus photo and cine macro launch, preceding the patent filing.
 6. [HOYA AGF glass catalog, including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), 2026-07-07 edition: nd, νd and dispersion coefficients of the named glasses.
+
+The fresh Figure 1 review adds conservative flat outer lands to eight exposed concave faces while retaining every clear aperture, including the qualified S27 reduction. The lands reproduce visible body shoulders and do not add opaque cemented-interface lands or alter sampled ray admission.

@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1026** lenses scanned (**1011** visible)
-- **10894 / 11753** non-air surfaces use strict catalog Sellmeier data (92.7%)
-- **10908 / 11753** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
+- **10896 / 11753** non-air surfaces use strict catalog Sellmeier data (92.7%)
+- **10910 / 11753** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **291** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **159** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -209,6 +209,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) | US 7,106,520 B2 | [PDF](../../patents/US7106520.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 5 [glass] (L13: `Unmatched (nd=1.52538, vd=56.3)`)<br>19A [resin] (L41 resin: `Resin layer (patent hybrid asphere)`) | abbe: 2 |
 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | US 10,690,896 B2 | [PDF](../../patents/US_10690896_B2.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 2 [resin] (L11 resin aspherical layer: `Resin layer (patent nd/vd; formulation unresolved)`)<br>20 [plastic] (L61 plastic asphere: `Optical plastic (patent nd/vd; polymer identity unresolved)`) | abbe: 2 |
 | [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) | US 2021/0263286 A1 | [PDF](../../patents/US20210263286A1.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 9A [resin] (L22: `Unmatched (resin material; patent nd=1.53110, vd=55.9)`) | abbe: 1 |
+| [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | JP 2001-330771 A | [PDF](../../patents/JP2001330771A.pdf) | 83.3% (10/12) | 83.3% (10/12) | 2 | 5A [resin] (Element 3 resin layer: `Unmatched (hybrid optical resin; spectrum unpublished)`)<br>14 [resin] (Element 6 resin layer: `Unmatched (hybrid optical resin; spectrum unpublished)`) | abbe: 2 |
 | [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) | US 2001/0007512 A1 | [PDF](../../patents/US20010007512A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 4 [resin] (Element 2 synthetic-resin layer: `Unmatched (synthetic resin; patent nd=1.52700, νd=43.7)`)<br>18 [glass] (Element 10: `Unmatched (barium-crown vicinity; no exact public-catalog match)`) | abbe: 2 |
 | [CANON RF-S 14-30mm f/4-6.3 IS STM PZ](../../src/lens-data/canon/CanonRFS1430mmF463ISSTMPZ.data.ts) | JP 2025-50505 A | [PDF](../../patents/JP2025050505A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 4A [resin] (Element 2: `Unmatched (molded optical polymer, COP-like coordinates nd 1.53504 / νd 55.7; supplier and grade unconfirmed)`)<br>19A [resin] (Element 9: `Unmatched (molded optical polymer, COP-like coordinates nd 1.53504 / νd 55.7; supplier and grade unconfirmed)`) | abbe: 2 |
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | US 2020/0341238 A1 | [PDF](../../patents/US20200341238A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7 [cement] (Bond layer 1: `UV-curing resin (not counted as a glass element)`)<br>11 [cement] (Bond layer 2: `UV-curing resin (not counted as a glass element)`) | abbe: 2 |

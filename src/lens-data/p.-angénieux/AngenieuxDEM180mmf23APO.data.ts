@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh source review 2026-10-30: US4726669 PDF2 Fig1a/b,7 Example1+ED condition,8 claim6. Continuous L2 rear cap restored to38.5; square L3=32.6 clears the stated beam. Other source corners are sloped bevels, so no invented flat lands/cuts. Eight qualified catalog curves; L2 source ED/APD flag retained, but catalog-only C/F/g and exact dPgF removed because only a >.02 inequality is published. Source scale, V1 emendation, inferred stop split and focus/BF limits retained. */
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — P. ANGÉNIEUX DEM 180mm f/2.3 APO                                ║
@@ -110,13 +112,9 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA catalog equivalent to patent 497816; production supplier unspecified)",
       apd: "patent",
       apdNote:
-        "Patent condition (6) requires ED/APD glass; nC/nF/ng are evaluated from current OHARA S-FPL51 Sellmeier data and dPgF uses the patent normal-line formula. This is a class match, not a melt identification.",
+        "PDF7 condition (6) and PDF8 claim6 require a special ED glass in the positive member of Component II (L2), with PgF minus the stated normal line greater than0.02. No exact PgF or C/F/g indices are published; S-FPL51 remains a qualified catalog spectral proxy, not production melt identification.",
       role: "Low-dispersion positive element in the moving Component II.",
       diagramLabel: "L2",
-      dPgF: 0.030940945693203825,
-      nC: 1.495136,
-      nF: 1.501231,
-      ng: 1.504507,
     },
     {
       id: 3,
@@ -207,9 +205,9 @@ const LENS_DATA = {
     { label: "1", R: 85.6872, d: 11.988, sd: 42.0, medium: 1 },
     { label: "2", R: -2002.0536, sd: 42.0 },
     { label: "3", R: 61.839, d: 13.986, sd: 38.5, medium: 2 },
-    { label: "4", R: 5668.4898, d: 0.108, sd: 32.0 },
-    { label: "5", R: "flat", d: 3.996, sd: 32.0, medium: 3 },
-    { label: "6", R: 131.0832, sd: 32.0 },
+    { label: "4", R: 5668.4898, d: 0.108, sd: 38.5 },
+    { label: "5", R: "flat", d: 3.996, sd: 32.6, medium: 3 },
+    { label: "6", R: 131.0832, sd: 32.6 },
     { label: "7", R: 1784.2662, d: 2.502, sd: 20.5, medium: 4 },
     { label: "8", R: 40.1706, d: 5.499, sd: 20.0 },
     // Claim 7 and Fig. 1 locate the stop in D8; the midpoint split is a disclosed model inference.
