@@ -193,6 +193,16 @@ An independent paraxial y–$n u$ ray trace was run from the transcribed Table 8
 
 The Petzval sum, computed surface-by-surface as $Σ Φ/(n n')$, is +0.000504 mm$^{-1}$ for the Table 8 prescription. The weak net value is consistent with the extensive crown/flint correction groups in G2 and G4. Semi-diameters in the companion data file are not patent values; they are inferred visualization apertures constrained by paraxial ray height, edge thickness, same-element diameter ratios, and cross-gap sag clearance. The apparent 0.200 mm error in the Table 8 close-focus telephoto TL row is not used as an optical spacing; every modeled spacing comes from the surface table and the d10/d17/d22/Bf rows.
 
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US5717527.pdf`: seventh-embodiment Figure 43 on PDF page 44 at 600 dpi and in its native 300 dpi raster; Table 8 on page 69; the d-line definition on page 68; and Figures 44A/45A/46A on pages 45–47. The table and all three plots agree on FNO 4.14/5.10/5.73. The design stations are corrected from 4.5/5.3/5.6 to those source values, with marketing f/4.5 and user stop choices retained. The eighteen source material pairs are exact and unchanged; all eighteen current curves are qualified spectral proxies, without a source partial-dispersion table or production supplier identity.
+
+Figure 43 resolves the short exposed rear land of the first negative meniscus. S2's continuous cap increases from 24.0 to 27.8 mm and draws a land to the existing 29.5 mm outer rim. Native q≈0.94±0.007 at an approximately 292-pixel edge radius agrees with adopted q=0.942. Every other exposed/cemented face was inspected; the staggered body ends and bonded steps do not justify speculative extra trimming. No cemented land or inferred axial cut is added.
+
+The telephoto source f/5.73 beam remains limited by inferred S20/S21 caps of 12.8 mm. The aperture audit reports f/5.89647 (2.905% slower, within its existing 3% reporting band); that numeric pass does not mean the literal source beam clears. The minimum rounded raise is 13.2 mm on both faces, but the unchanged 2.900 mm gap and source radii give 2.750 mm combined sag versus the existing 2.610 mm intrusion budget. The common cap bound under that guard is 12.852515 mm. The trial is rejected without relaxing the guard or changing source geometry. Wide and middle are iris-limited at the corrected source apertures. The tele limitation also existed under the earlier f/5.6 setting.
+
+Surface/circle audits pass, all three format corners reach at least 99%, and nine actual SVG states have eighteen finite, untrimmed paths. At the source close R=391.9 mm conjugate, the current full iris passes 25/25 aimed axial samples at wide and middle, and 13/25 at tele (outer samples clip S20). These are discrete sample counts under the modeled iris, not flux measurements or production-lens vignetting. The production 0.37 m control label, source spacings, and previously documented TL discrepancy are retained. Source/catalog checks and shared glass suites pass (94 tests).
+
 ## Sources
 
 [1] Atsushi Shibayama, Nikon Corporation, US Patent 5,717,527, “Zoom Lens,” granted February 10, 1998.  

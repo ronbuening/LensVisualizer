@@ -46,3 +46,9 @@ Tele 33.00°; 100%), and the image-circle floor still reports nothing undersized
 figures were recomputed at 16.3 mm: polynomial contribution 0.818578 mm, total sag 4.785795 mm, departure from the
 sphere 1.675506 mm and rim slope 44.77° (were 0.526812, 3.677719 and 1.058830 mm and 36.26° at 15.0 mm). Its minimum
 edge thickness is now the compound-asphere layer, 0.425851 mm at 16.1 mm (was 0.634966 mm at 15.0 mm).
+
+## 2026-10-30 — Original-figure land and fresh glass reinspection
+
+- Directly viewed `patents/US20010030812A1.pdf`, Example2 Figure4A/PDF5 at600dpi, Table2/PDF18, d-line convention/PDF17. All12 source nd/vd pairs exact;11 actual catalog curves explicitly qualified, compoundasphere1.50625/55.63 remains unresolved. CurrentJ-LASF0171.79500/45.31 closelymatches source1.794997/45.30 withoutsupplier/meltidentity. SingleinferredED role retained;no sourceCFg/partialvaluesinvented.
+- S2 retainsclear17.2mm withnew exposedland toexisting22.5mmouterrim. Nativeq≈.73±.010 atedge≈190px;adopted.764 preserveslargercap. Everyremainingconvex/concaveface and bondedboundary inspected; compoundlayer/internalinterface receive no lands and noextraexposedclipresolved. Priorcornerfloors/sourceasphere unchanged. Design3.59/4.12/4.62 alreadycorrect;no apertureexception.
+- Surface/circle pass;3aperturesiris-limitedwithin3%,3formatcorners>=99%. AtpublishedcloseD0187.8488/195.2848/195.7094mm,all75fulliris aimedaxialsamplespass. NineactualSVGstates12finitepaths/zero trim, rasterinspected. Source/catalog checks and3sharedglassfiles94testspass.

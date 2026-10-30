@@ -28,6 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ are conservative visualization estimates constrained by paraxial     ║
  * ║ ray height, the 62 mm production filter thread, edge thickness,     ║
  * ║ same-element SD ratios, and cross-gap sag clearance.                ║
+ * ║ Fresh source: S2 cap27.8/outer29.5 land; FNO4.14/5.10/5.73.        ║
+ * ║ Tele source beam remains S20/S21-limited;13.2mm raise fails the     ║
+ * ║ unchanged2.610mm sag budget in the2.900mm source gap.                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -52,6 +55,7 @@ const LENS_DATA = {
     elementCount: 18,
     groupCount: 14,
     focalLengthMm: { marketing: [70, 180], design: [82.401, 194.001] },
+    fNumber: { marketing: 4.5, design: 4.14 },
   },
 
   source: {
@@ -71,7 +75,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       focalLengthMm: -130.5,
-      glass: "J-SFH2 (Hikari; patent code 861230)",
+      glass: "J-SFH2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front high-index negative meniscus of the focusing group.",
     },
     {
@@ -82,7 +86,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       focalLengthMm: 63.1,
-      glass: "J-SFH2 (Hikari; patent code 861230)",
+      glass: "J-SFH2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Symmetric positive lens that balances L1 within the front focus group.",
     },
     {
@@ -93,7 +97,7 @@ const LENS_DATA = {
       nd: 1.6172,
       vd: 54.01,
       focalLengthMm: -89.8,
-      glass: "BACED1 (HOYA catalog equivalent; production supplier unspecified; patent 617540)",
+      glass: "BACED1 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear-power negative element in G1; R5 is 1559.0379 in the patent table image.",
     },
     {
@@ -104,7 +108,7 @@ const LENS_DATA = {
       nd: 1.79504,
       vd: 28.56,
       focalLengthMm: -78.9,
-      glass: "J-LAFH3 (Hikari catalog equivalent; production supplier unspecified; patent 795286)",
+      glass: "J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Strong negative meniscus in the rear part of the focusing group.",
     },
     {
@@ -115,7 +119,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.8,
       focalLengthMm: 191.3,
-      glass: "SF11-class dense flint (Schott, 785/258)",
+      glass: "SF11 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Weak positive meniscus closing G1.",
     },
     {
@@ -126,7 +130,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       focalLengthMm: 83.4,
-      glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
+      glass: "E-LAKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive relay lens at the front of G2.",
     },
     {
@@ -137,7 +141,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.8,
       focalLengthMm: -69.4,
-      glass: "SF11-class dense flint (Schott, 785/258)",
+      glass: "SF11 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the G2 cemented doublet.",
       cemented: "D1",
     },
@@ -149,7 +153,7 @@ const LENS_DATA = {
       nd: 1.64,
       vd: 60.03,
       focalLengthMm: 54.4,
-      glass: "S-BSM81 class (OHARA, 640/600)",
+      glass: "S-BSM81 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive crown member of the G2 cemented doublet.",
       cemented: "D1",
     },
@@ -161,7 +165,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 174.9,
-      glass: "N-FK5 (Schott)",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Low-index, high-Abbe positive meniscus completing G2.",
     },
     {
@@ -172,7 +176,7 @@ const LENS_DATA = {
       nd: 1.80411,
       vd: 46.54,
       focalLengthMm: -28.3,
-      glass: "S-LAH65V class (OHARA, 804/466)",
+      glass: "S-LAH65V (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the G3 variator doublet.",
       cemented: "D2",
     },
@@ -184,7 +188,7 @@ const LENS_DATA = {
       nd: 1.80458,
       vd: 25.5,
       focalLengthMm: 38.2,
-      glass: "SF6-class dense flint (Schott, 805/255)",
+      glass: "SF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive high-dispersion member of the G3 variator doublet.",
       cemented: "D2",
     },
@@ -196,7 +200,7 @@ const LENS_DATA = {
       nd: 1.80411,
       vd: 46.54,
       focalLengthMm: -61.5,
-      glass: "S-LAH65V class (OHARA, 804/466)",
+      glass: "S-LAH65V (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Additional negative variator power in G3.",
     },
     {
@@ -207,7 +211,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       focalLengthMm: 84.7,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive relay lens immediately behind the aperture stop.",
     },
     {
@@ -218,7 +222,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 36.0,
-      glass: "N-FK5 (Schott)",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "First crown member of the G4 cemented triplet.",
       cemented: "T1",
     },
@@ -230,7 +234,7 @@ const LENS_DATA = {
       nd: 1.80384,
       vd: 33.89,
       focalLengthMm: -23.2,
-      glass: "E-LAFH2 (Hikari; patent code 804339)",
+      glass: "E-LAFH2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Central flint member of the G4 cemented triplet.",
       cemented: "T1",
     },
@@ -242,7 +246,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 75.1,
-      glass: "N-FK5 (Schott)",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear crown member of the G4 cemented triplet.",
       cemented: "T1",
     },
@@ -254,7 +258,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.63,
       focalLengthMm: 47.8,
-      glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified; patent 741276)",
+      glass: "E-FD13 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index positive lens supplying rear relay power.",
     },
     {
@@ -265,14 +269,14 @@ const LENS_DATA = {
       nd: 1.80411,
       vd: 46.54,
       focalLengthMm: -36.8,
-      glass: "S-LAH65V class (OHARA, 804/466)",
+      glass: "S-LAH65V (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Final negative meniscus / field-correcting element.",
     },
   ],
 
   surfaces: [
     { label: "1", R: 89.1784, d: 2.5, sd: 29.5, medium: 1 },
-    { label: "2", R: 49.0701, d: 4.1, sd: 24 },
+    { label: "2", R: 49.0701, d: 4.1, sd: 27.8, rimExtensionSd: 29.5 },
     { label: "3", R: 106.7865, d: 8.1, sd: 24, medium: 2 },
     { label: "4", R: -106.7865, d: 0.5, sd: 24 },
     { label: "5", R: 1559.0379, d: 1.8, sd: 24, medium: 3 },
@@ -309,9 +313,9 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 82.4, nominalFNumber: 4.5, label: "82.4 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 135, nominalFNumber: 5.3, label: "135 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 194, nominalFNumber: 5.6, label: "194 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 82.4, nominalFNumber: 4.14, label: "82.4 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 135, nominalFNumber: 5.1, label: "135 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 194, nominalFNumber: 5.73, label: "194 mm", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },

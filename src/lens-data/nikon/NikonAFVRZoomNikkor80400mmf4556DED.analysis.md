@@ -79,10 +79,10 @@ separate.
 ### L11 — Cemented Front Doublet
 
 - **L11a — Negative Meniscus.** `nd = 1.805182`, `νd = 25.41`.
-  Glass annotation: `805254 - dense-flint class (vendor unresolved; vd=25.41)`.
+  Glass annotation: `SF6 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -278.611491 mm`.
 - **L11b — Biconvex Positive.** `nd = 1.497820`, `νd = 82.52`.
-  Glass annotation: `J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)`.
+  Glass annotation: `J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +148.075239 mm`.
 
 L11 is a cemented negative/positive pair whose computed cemented net focal length is +323.599779 mm. That weak positive
@@ -94,7 +94,7 @@ does not convert that production designation into a historical vendor-glass iden
 ### L12 — Biconvex Positive
 
 `nd = 1.487490`, `νd = 70.41`. Glass annotation:
-`487704 - low-dispersion crown class (vendor unresolved)`. Standalone `f = +224.570387 mm`.
+`N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)`. Standalone `f = +224.570387 mm`.
 
 L12 is the separate rear positive element of G1. Together with the L11 doublet it completes the positive focusing group.
 The combination illustrates why standalone element focal length cannot be read as group power: neither the +323.600 mm
@@ -103,10 +103,10 @@ cemented L11 net nor the +224.570 mm standalone L12 value equals the in-situ +13
 ### L21 — Cemented Subgroup G2A
 
 - **L21a — Positive Meniscus.** `nd = 1.805182`, `νd = 25.41`.
-  Glass annotation: `805254 - dense-flint class (vendor unresolved; vd=25.41)`.
+  Glass annotation: `SF6 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +77.560005 mm`.
 - **L21b — Biconcave Negative.** `nd = 1.796310`, `νd = 40.90`.
-  Glass annotation: `NBFD2 catalog equivalent (patent 796409; production supplier unspecified)`.
+  Glass annotation: `NBFD2 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -55.111186 mm`.
 
 Although L21a is positive by itself, the cemented L21 pair is negative overall: its recomputed net EFL is
@@ -116,10 +116,10 @@ patent architecture.
 ### L22 — Cemented Vibration-Reduction Subgroup G2B
 
 - **L22a — Biconcave Negative.** `nd = 1.640000`, `νd = 60.03`.
-  Glass annotation: `S-BSM81 catalog equivalent (patent 640600; production supplier unspecified)`.
+  Glass annotation: `S-BSM81 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -37.679975 mm`.
 - **L22b — Positive Meniscus.** `nd = 1.803840`, `νd = 33.89`.
-  Glass annotation: `E-LAFH2 catalog equivalent (patent 804339; production supplier unspecified)`.
+  Glass annotation: `E-LAFH2 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +69.165175 mm`.
 
 The cemented L22 pair has a computed net EFL of -79.994798 mm, matching the patent's `f2B = -79.995 mm` to source
@@ -134,7 +134,7 @@ to L22a and L22b.
 
 ### L23 — Biconcave Negative Subgroup G2C
 
-`nd = 1.796681`, `νd = 45.37`. Glass annotation: `J-LASF017 catalog equivalent (patent 797454; production supplier unspecified)`.
+`nd = 1.796681`, `νd = 45.37`. Glass annotation: `J-LASF017 (catalog-compatible spectral proxy; production supplier unspecified)`.
 Standalone `f = -141.155081 mm`.
 
 L23 is the third negative subgroup of G2. G2A, G2B, and G2C together produce the much stronger in-situ G2 power of
@@ -144,7 +144,7 @@ to a single compact group, and its central subgroup is selected for the stabiliz
 ### L31 — Biconvex Positive
 
 `nd = 1.487490`, `νd = 70.41`. Glass annotation:
-`487704 - low-dispersion crown class (vendor unresolved)`. Standalone `f = +101.538072 mm`.
+`N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)`. Standalone `f = +101.538072 mm`.
 
 L31 is the front positive element of G3. G3 moves objectward across the three published zoom positions and contributes to
 the changing system magnification between the effectively fixed G2 and G4 stations.
@@ -152,10 +152,10 @@ the changing system magnification between the effectively fixed G2 and G4 statio
 ### L32 — Cemented Doublet in G3
 
 - **L32a — Biconvex Positive.** `nd = 1.497820`, `νd = 82.52`.
-  Glass annotation: `J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)`.
+  Glass annotation: `J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +74.249883 mm`.
 - **L32b — Negative Meniscus.** `nd = 1.772789`, `νd = 49.45`.
-  Glass annotation: `773495 - lanthanum-flint class (vendor unresolved)`.
+  Glass annotation: `M-TAF1 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -139.409686 mm`.
 
 The cemented L32 pair has a computed net EFL of +154.418578 mm. With L31 it forms the complete positive G3, whose
@@ -166,7 +166,7 @@ supplier or publish line-index data, so the data retains a class annotation rath
 ### L41 — Negative Meniscus
 
 `nd = 1.487490`, `νd = 70.41`. Glass annotation:
-`487704 - low-dispersion crown class (vendor unresolved)`. Standalone and group `f = -229.999620 mm`.
+`N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)`. Standalone and group `f = -229.999620 mm`.
 
 L41 is the single element of G4, so its standalone thick-element EFL is also the computed G4 EFL. In the published zoom
 states G4 is effectively stationary relative to the image plane. The inferred aperture stop lies immediately objectwise
@@ -175,10 +175,10 @@ of this group.
 ### L51 — Cemented Doublet in G5
 
 - **L51a — Biconvex Positive.** `nd = 1.487490`, `νd = 70.41`.
-  Glass annotation: `487704 - low-dispersion crown class (vendor unresolved)`.
+  Glass annotation: `N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +52.698608 mm`.
 - **L51b — Negative Meniscus.** `nd = 1.805182`, `νd = 25.35`.
-  Glass annotation: `805254 - dense-flint class (vendor unresolved; vd=25.35)`.
+  Glass annotation: `SF6 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -92.413689 mm`.
 
 The L51 cemented pair has a computed net EFL of +124.373134 mm. It combines with L52 to form G5, whose computed EFL is
@@ -191,7 +191,7 @@ exactly rather than being silently changed to the `νd = 25.41` printed for L11a
 ### L52 — Positive Meniscus
 
 `nd = 1.487490`, `νd = 70.41`. Glass annotation:
-`487704 - low-dispersion crown class (vendor unresolved)`. Standalone `f = +115.143208 mm`.
+`N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)`. Standalone `f = +115.143208 mm`.
 
 L52 is the rear positive element of G5. The patent explicitly identifies Example 4 as using a positive meniscus L52 with
 its convex surface objectwise. Its interaction with L51 yields the stronger +59.948 mm complete G5 power quoted above.
@@ -199,10 +199,10 @@ its convex surface objectwise. Its interaction with L51 yields the stronger +59.
 ### L61 — Cemented Rear Group G6
 
 - **L61a — Biconcave Negative.** `nd = 1.796681`, `νd = 45.37`.
-  Glass annotation: `J-LASF017 catalog equivalent (patent 797454; production supplier unspecified)`.
+  Glass annotation: `J-LASF017 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = -22.946592 mm`.
 - **L61b — Positive Meniscus.** `nd = 1.805182`, `νd = 25.35`.
-  Glass annotation: `805254 - dense-flint class (vendor unresolved; vd=25.35)`.
+  Glass annotation: `SF6 (catalog-compatible spectral proxy; production supplier unspecified)`.
   Standalone `f = +41.380533 mm`.
 
 Because G6 consists only of this cemented pair, its recomputed cemented net and functional-group EFL are both
@@ -216,15 +216,15 @@ where available. Those equivalents improve dispersion modeling without establish
 
 | Patent `nd` / `νd` | Data-file glass annotation | Elements | Disposition |
 |---|---|---|---|
-| 1.805182 / 25.41 | `805254 - dense-flint class (vendor unresolved; vd=25.41)` | L11a, L21a | Class-level identification only |
+| 1.805182 / 25.41 | `SF6 (catalog-compatible spectral proxy; production supplier unspecified)` | L11a, L21a | Class-level identification only |
 | 1.497820 / 82.52 | `J-FKH1 catalog equivalent (patent 498825)` | L11b, L32a | Compatible coefficient-backed ED curve; production supplier unspecified |
-| 1.487490 / 70.41 | `487704 - low-dispersion crown class (vendor unresolved)` | L12, L31, L41, L51a, L52 | Class-level identification only |
+| 1.487490 / 70.41 | `N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)` | L12, L31, L41, L51a, L52 | Class-level identification only |
 | 1.796310 / 40.90 | `NBFD2 catalog equivalent (patent 796409)` | L21b | Compatible coefficient-backed curve; production supplier unspecified |
 | 1.640000 / 60.03 | `S-BSM81 catalog equivalent (patent 640600)` | L22a | Compatible coefficient-backed curve; production supplier unspecified |
 | 1.803840 / 33.89 | `E-LAFH2 catalog equivalent (patent 804339)` | L22b | Exact coefficient-backed coordinate; production supplier unspecified |
 | 1.796681 / 45.37 | `J-LASF017 catalog equivalent (patent 797454)` | L23, L61a | Compatible coefficient-backed curve; production supplier unspecified |
-| 1.772789 / 49.45 | `773495 - lanthanum-flint class (vendor unresolved)` | L32b | Class-level identification only |
-| 1.805182 / 25.35 | `805254 - dense-flint class (vendor unresolved; vd=25.35)` | L51b, L61b | Source-distinct Abbe value retained |
+| 1.772789 / 49.45 | `M-TAF1 (catalog-compatible spectral proxy; production supplier unspecified)` | L32b | Class-level identification only |
+| 1.805182 / 25.35 | `SF6 (catalog-compatible spectral proxy; production supplier unspecified)` | L51b, L61b | Source-distinct Abbe value retained |
 
 Nikon's production documentation states that the commercial lens uses three ED elements, two in G1 and one in G3.[2][3]
 That is a manufacturer product fact. It is not used here to overwrite the patent's glass coordinates or to force a
@@ -360,6 +360,12 @@ The data/analysis pair deliberately separates published facts from author modeli
 - **Production reproduction ratio:** Nikon USA's archived `0.42xx` entry conflicts with Nikon Japan's 1/4.8
   specification, the instruction manual, and the constrained optical trace.[5] The inconsistent USA value is not used as
   a focus constraint.
+
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US6141156.pdf`: Working Example 4 Figure 7 on PDF page 17 at 600 dpi, Table 4A on page 32, Table 4B on page 33, and the d-line definitions on page 30. All seventeen source nd/νd pairs are retained exactly. All seventeen existing resolver curves remain available and now carry explicit spectral-proxy labels; no source line-index, partial-dispersion, supplier, or melt information is invented. The three existing ED-role annotations remain inferred production correlations. The two source 1.796681/45.37 positions use the current J-LASF017 catalog curve at 1.79500/45.31 as a nearby spectral proxy (Δnd=−0.001681), not an exact historical identification. All source coordinates remain authoritative.
+
+Every convex/concave face and cemented boundary was inspected. The source arcs run to their optical rims; hatched shading, labels, group brackets, and cemented steps are excluded from height measurements. No independently resolved exposed land or additional cap cut is supported, so all geometry is retained. Source design apertures and the constrained focus reconstruction remain unchanged. Surface/image-circle audits pass, all three format corners reach at least 99%, and all three infinity apertures are iris-limited within 3%. Nine actual SVG states have seventeen finite paths and zero trim. Source-coordinate/catalog checks and the shared glass suites pass (94 tests).
 
 ## Sources
 
