@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; qualified glass curves do not identify suppliers.
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON PC-NIKKOR 35mm f/2.8                                           ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
@@ -12,8 +13,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ are scaled ×0.35 for correlation to the marketed 35 mm lens. There are no         ║
  * ║ aspheres, so no A_p scaling is required.                                           ║
  * ║                                                                                    ║
- * ║ SOURCE CORRECTION: Beispiel III prints r11=-176.6. This is inconsistent with the  ║
- * ║ patent's negative-L6 description, homologous Beispiel IV, and the patent's own     ║
+ * ║ SOURCE CORRECTION: Beispiel III prints r11=-176.6. The retained correction follows ║
+ * ║ homologous Beispiel IV and the patent's own     ║
  * ║ f=100 / Schnittweite=130.5 first-order values. The modeled value is r11=+176.6,    ║
  * ║ independently yielding EFL=99.6305066 and BFD=130.5037756 before scaling.          ║
  * ║                                                                                    ║
@@ -78,8 +79,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6516,
       vd: 58.5,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: -65.58872045520543,
-      glass: "N-LAK7 catalog equivalent (patent 652585; production supplier unspecified)",
+      glass:
+        "N-LAK7 (catalog-compatible spectral proxy; patent 1.6516/58.5, catalog 1.6516/58.52; production supplier unspecified)",
       role: "First negative meniscus of the retrofocus front group, convex toward the object.",
       diagramLabel: "L1",
     },
@@ -90,8 +94,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6223,
       vd: 53.1,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: -89.7461055924426,
-      glass: "SSK2 catalog equivalent (patent 622531; production supplier unspecified)",
+      glass:
+        "SSK2 (catalog-compatible spectral proxy; patent 1.6223/53.1, catalog 1.6223/53.1; production supplier unspecified)",
       role: "Second negative meniscus of the front retrofocus group, convex toward the object.",
       diagramLabel: "L2",
     },
@@ -102,8 +109,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6727,
       vd: 32.2,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: 213.25480411778904,
-      glass: "SF5 catalog equivalent (patent 673322; production supplier unspecified)",
+      glass:
+        "SF5 (catalog-compatible spectral proxy; patent 1.6727/32.2, catalog 1.6727/32.21; production supplier unspecified)",
       role: "Weak positive element beginning the rear converging section.",
       diagramLabel: "L3",
     },
@@ -114,8 +124,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 50.3,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: 23.083370073933388,
-      glass: "LAC10 catalog equivalent (patent 720503; production supplier unspecified)",
+      glass:
+        "LAC10 (catalog-compatible spectral proxy; patent 1.72/50.3, catalog 1.72/50.35; production supplier unspecified)",
       role: "Strong positive member of the cemented L4/L5 doublet.",
       diagramLabel: "L4",
       cemented: "D1",
@@ -127,8 +140,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.50137,
       vd: 56.5,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: -76.97515056283237,
-      glass: "K10 catalog equivalent (patent 501565; production supplier unspecified)",
+      glass:
+        "K10 (catalog-compatible spectral proxy; patent 1.50137/56.5, catalog 1.50137/56.41; production supplier unspecified)",
       role: "Negative member cemented to L4; the pair remains net positive.",
       diagramLabel: "L5",
       cemented: "D1",
@@ -140,8 +156,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.3,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: -21.854976190360833,
-      glass: "SF10 catalog equivalent (patent 728283; production supplier unspecified)",
+      glass:
+        "SF10 (catalog-compatible spectral proxy; patent 1.72825/28.3, catalog 1.72825/28.41; production supplier unspecified)",
       role: "Air-spaced negative rear element immediately behind the diaphragm.",
       diagramLabel: "L6",
     },
@@ -152,8 +171,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: 41.5404768243343,
-      glass: "LAC8 catalog equivalent (patent 713539; production supplier unspecified)",
+      glass:
+        "LAC8 (catalog-compatible spectral proxy; patent 1.713/53.9, catalog 1.713/53.94; production supplier unspecified)",
       role: "Positive rear meniscus, concave toward the object.",
       diagramLabel: "L7",
     },
@@ -164,30 +186,33 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6516,
       vd: 58.5,
+      indexReferenceNote:
+        "d-line assumed from source coordinate convention; wavelength not explicitly stated in Example III",
       focalLengthMm: 55.00426542849768,
-      glass: "N-LAK7 catalog equivalent (patent 652585; production supplier unspecified)",
+      glass:
+        "N-LAK7 (catalog-compatible spectral proxy; patent 1.6516/58.5, catalog 1.6516/58.52; production supplier unspecified)",
       role: "Final positive meniscus, concave toward the object.",
       diagramLabel: "L8",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 36.1025, d: 1.9565, sd: 17.0, medium: 1 },
-    { label: "2", R: 19.152, d: 4.6515, sd: 14.2 },
-    { label: "3", R: 45.2795, d: 1.3475, sd: 14.5, medium: 2 },
-    { label: "4", R: 24.7205, d: 11.0145, sd: 14.5 },
-    { label: "5", R: 342.65, d: 6.118, sd: 13.5, medium: 3 },
-    { label: "6", R: -245.0, d: 0.1225, sd: 13.3 },
-    { label: "7", R: 34.02, d: 10.892, sd: 12.8, medium: 4 },
-    { label: "8", R: -28.14, d: 1.5925, sd: 10.5, medium: 5 },
-    { label: "9", R: -105.8575, d: 4.40496, sd: 10.3 },
+    { label: "1", R: 36.1025, d: 1.9565, sd: 21.3, medium: 1 },
+    { label: "2", R: 19.152, d: 4.6515, sd: 14.2, rimExtensionSd: 21.3 },
+    { label: "3", R: 45.2795, d: 1.3475, sd: 18.8, medium: 2 },
+    { label: "4", R: 24.7205, d: 11.0145, sd: 18.8, rimCutDepthMm: 5.63 },
+    { label: "5", R: 342.65, d: 6.118, sd: 15.2, medium: 3 },
+    { label: "6", R: -245.0, d: 0.1225, sd: 15.2 },
+    { label: "7", R: 34.02, d: 10.892, sd: 14.1, medium: 4 },
+    { label: "8", R: -28.14, d: 1.5925, sd: 14.1, medium: 5 },
+    { label: "9", R: -105.8575, d: 4.40496, sd: 14.1 },
     { label: "STO", R: "flat", d: 1.71304 },
-    { label: "10", R: -22.1515, d: 4.9, sd: 9.0, medium: 6 },
+    { label: "10", R: -22.1515, d: 4.9, sd: 11, rimCutDepthMm: 1.5, medium: 6 },
     { label: "11", R: 61.81, d: 1.225, sd: 8.7 },
-    { label: "12", R: -81.991, d: 2.45, sd: 9.3, medium: 7 },
-    { label: "13", R: -22.029, d: 0.1225, sd: 9.8 },
-    { label: "14", R: -375.69, d: 2.2015, sd: 9.8, medium: 8 },
-    { label: "15", R: -32.795, d: 45.67632147392648, sd: 10.2 },
+    { label: "12", R: -81.991, d: 2.45, sd: 11, medium: 7 },
+    { label: "13", R: -22.029, d: 0.1225, sd: 11 },
+    { label: "14", R: -375.69, d: 2.2015, sd: 11.6, medium: 8 },
+    { label: "15", R: -32.795, d: 45.67632147392648, sd: 11.6 },
   ],
 
   focus: {

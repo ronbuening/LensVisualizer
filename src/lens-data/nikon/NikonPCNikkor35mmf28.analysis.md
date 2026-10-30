@@ -20,7 +20,7 @@ The production correlation rests on convergent source evidence rather than an ex
 
 The marketed focal length and the optical design value are deliberately kept separate. The patent normalizes the prescription to `f = 100`; the data file applies a uniform scale factor of `s = 0.35`, while independent paraxial computation from the scaled prescription gives a design EFL of **34.8707 mm**. The public product designation remains **35 mm f/2.8**.
 
-One source error is corrected in the model and disclosed rather than silently normalized. Example III visibly prints `r11 = -176.6`, but that sign makes L6 inconsistent with the patent's own negative-lens description and yields first-order results grossly inconsistent with the published `f = 100` and `Schnittweite = 130.5`. Modeling `r11 = +176.6` alone gives normalized EFL **99.6305** and BFD **130.5038**, so the scaled data use `R11 = +61.81 mm`. The original printed sign remains part of the provenance record.
+One source error is corrected in the model and disclosed rather than silently normalized. Example III visibly prints `r11 = -176.6`, but that sign yields first-order results grossly inconsistent with the published `f = 100` and `Schnittweite = 130.5`. Modeling `r11 = +176.6` alone gives normalized EFL **99.6305** and BFD **130.5038**, so the scaled data use `R11 = +61.81 mm`. The original printed sign remains part of the provenance record.
 
 ## Optical Architecture
 
@@ -75,7 +75,7 @@ The patent's explanatory text specifically notes the favorable effect of making 
 
 **nd = 1.72825, νd = 28.3. Glass: SF10 catalog equivalent (patent 728283; production supplier unspecified). f = -21.8550 mm.**
 
-L6 is the strongest negative standalone element in the rear section and sits immediately behind the diaphragm. Its biconcave form depends on the corrected positive sign of the rear radius `r11`; the literal negative sign printed in Example III would not produce the negative-lens geometry described by the patent.
+L6 is the strongest negative standalone element in the rear section and sits immediately behind the diaphragm. Its biconcave form depends on the modeled positive sign of rear radius `r11`. The literal negative sign would still give negative power as a meniscus, as sketched in Figure3; a negative-L6 description alone does not establish the sign correction. The retained correction follows the published focal/back-focus values and the homologous ExampleIV, with this source-internal outline conflict disclosed.
 
 Condition III is tied explicitly to this part of the design. The patent states that the L6 thickness and the following air space are used to balance astigmatism and coma: increasing the L6 thickness improves astigmatism but tends to increase negative coma, while adjustment of the following air space provides the compensating coma correction. Example III satisfies the published `d10 > d11` condition.
 
@@ -137,7 +137,7 @@ The final data file applies a uniform dimensional scale of **0.35** to the paten
 
 The aperture stop requires a modeling inference because the patent specifies only that the diaphragm lies between L5 and L6. Figure 3 places it visibly nearer L6; the model locates the stop at **72% of source `d9` measured from r9 toward r10**. Its semi-diameter, **7.71767 mm**, is then solved paraxially so the corrected scaled prescription is exactly **f/2.8** at infinity. The stop location and diameter are modeling values, not patent-tabulated measurements.
 
-Surface semi-diameters are also absent from the patent tables. The data-file values were inferred from Figure 3, paraxial marginal/chief-ray envelopes, and geometric constraints. Independent checks on the final TypeScript prescription give a minimum authored rim edge thickness of **0.6792 mm**, maximum spherical rim slope of **47.854°**, and maximum positive cross-gap intrusion ratio of **0.88018**, below the configured `0.90` limit. An independent paraxial off-axis containment check passes at **22.5°**, corresponding to 60% of the patent's 37.5° semi-field; repository render diagnostics are a separate integration check.
+Surface semi-diameters are also absent from the patent tables. The data-file values were inferred from Figure 3, paraxial marginal/chief-ray envelopes, and geometric constraints. The fresh source-outline check gives a minimum common-edge thickness≈0.2483mm and maximum spherical cap slope47.854°. Canonical gap/slope rules and actual SVG diagnostics pass. The independent dense inferred-cut probe covers all modeled focus positions and fields, with759654 transmitted beam samples and no cut clipping or missing fields.
 
 The independently traced design EFL is **34.8707 mm** and the BFD is **45.6763 mm**. Reduced-angle sequential tracing and an independent ABCD matrix agree to better than `1e-10 mm` for both quantities. These are computed properties of the authored model, not values directly printed in millimeters by the patent.
 
@@ -148,3 +148,7 @@ Figure 4 of the patent marks **f/2.8** and **37°30′** semi-field for Example 
 - Deutsches Patentamt, **DE 1 497 540 A1**, *Retrofokus-Weitwinkelobjektiv*, Nippon Kogaku K.K.; inventor Ikuo Mori. Example III prescription on PDF pp. 15–16; Figures 3–4 on PDF p. 22.
 - Nikon Corporation, Haruo Sato, **“NIKKOR — The Thousand and One Nights No.17”**. Nikon's historical account states that the newly designed PC-NIKKOR 35mm f/2.8 was released in May 1968 with 7 groups / 8 elements: https://imaging.nikon.com/imaging/information/story/0017/
 - Nikon Corporation, **PC-Nikkor 35mm f/2.8 Instruction Manual**, later 7-element / 7-group revision. Used only to delimit variant-specific metadata such as the 0.3 m distance scale and not as the optical prescription source: https://forum.dxo.com/uploads/short-url/lgerH7wClF1Guq0sLrPU98GfQVM.pdf
+
+## Fresh outline and glass review (2026-10-30)
+
+Abb.3 was remeasured on the native 314×300 ppi scan with pixel-aspect correction. Source body heights are now represented by 21.3/18.8/15.2/14.1 mm in the front/middle train and 11/11.6 mm rear bodies. S2 keeps its14.2 mm clear cap with a flat land to 21.3; the larger illustrated cap is blocked by the printed front air gap. S4 keeps an18.8 mm outer rim with a concave-end cap radius15.7053 mm (cut depth 5.63), and S10 an11 mm outer rim with cap radius8.0128 mm (depth 1.5). S11 remains8.7 mm because an11 mm cap exceeds the1.225 mm neighboring-gap guard; its rear bevel is not replaced with an invented land. All eight source glass coordinates remain literal, all resolver curves are qualified spectral proxies, and the assumed d-line convention is now explicit. No source optical prescription, focus reconstruction or perspective-control setting is changed.
