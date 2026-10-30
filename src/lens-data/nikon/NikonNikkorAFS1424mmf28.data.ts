@@ -1,6 +1,8 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 source figure/table review: exposed flat lands are separate from clear caps;
+ * catalog glass curves are qualified spectral proxies, never production supplier identities.
  * LENS DATA — NIKON AF-S NIKKOR 14-24mm f/2.8G ED
  *
  * Data source: US 7,359,125 B2, Example 1 (Yoko Kimura, Haruo Sato / Nikon), Table 1 and Fig. 1.
@@ -84,7 +86,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       focalLengthMm: -91.3,
-      glass: "S-LAH65V (OHARA catalog equivalent)",
+      glass: "S-LAH65V (catalog-compatible spectral proxy; patent 1.804/46.58, catalog 1.803999/46.5834; production supplier unspecified)",
       apd: false,
       role: "Front field-flattening meniscus; high-index lanthanum crown reduces Petzval curvature",
     },
@@ -96,7 +98,7 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.34,
       focalLengthMm: -71.1,
-      glass: "S-LAL12 (OHARA catalog equivalent)",
+      glass: "S-LAL12 (catalog-compatible spectral proxy; patent 1.6779/55.34, catalog 1.6779/55.34; production supplier unspecified)",
       apd: false,
       role: "Aspherical meniscus; primary corrector for field curvature and distortion across the ultra-wide field",
     },
@@ -108,7 +110,7 @@ const LENS_DATA = {
       nd: 1.741,
       vd: 52.67,
       focalLengthMm: -51.9,
-      glass: "LAK011 (HIKARI catalog equivalent)",
+      glass: "LAK011 (catalog-compatible spectral proxy; patent 1.741/52.67, catalog 1.741/52.672067; production supplier unspecified)",
       apd: false,
       role: "Glass body of the hybrid aspherical element (resin shell E4 carries surface 7A); negative meniscus convex to object",
       cemented: "J1",
@@ -134,7 +136,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.52,
       focalLengthMm: -56.1,
-      glass: "J-FKH1 (HIKARI catalog equivalent)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; patent 1.49782/82.52, catalog 1.49782/82.57; production supplier unspecified)",
       apd: "inferred",
       apdNote: "Fluorophosphate ED glass (patent nd=1.49782, νd=82.52); ED element #1",
       role: "First ED element; provides negative power with minimal chromatic contribution due to very high Abbe number",
@@ -147,7 +149,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.59,
       focalLengthMm: 48.1,
-      glass: "S-LAH63 (OHARA)",
+      glass: "S-LAH63 (catalog-compatible spectral proxy; patent 1.8044/39.59, catalog 1.804398/39.5862; production supplier unspecified)",
       apd: false,
       role: "Sole positive element in G1; forms an achromatic sub-unit with E5 (ED glass) to control lateral chromatic aberration",
     },
@@ -159,7 +161,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -54.9,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH55 (catalog-compatible spectral proxy; patent 1.83481/42.72, catalog 1.834807/42.7137; production supplier unspecified)",
       apd: false,
       role: "Front element of focusing doublet L1; negative meniscus convex to object",
       cemented: "J2",
@@ -172,7 +174,7 @@ const LENS_DATA = {
       nd: 1.62374,
       vd: 47.04,
       focalLengthMm: 32.1,
-      glass: "E-BAF8 (HIKARI catalog equivalent)",
+      glass: "E-BAF8 (catalog-compatible spectral proxy; patent 1.62374/47.04, catalog 1.62374/47.044346; production supplier unspecified)",
       apd: false,
       role: "Rear element of focusing doublet L1; positive meniscus with nearly flat rear (R = 611.6 mm)",
       cemented: "J2",
@@ -185,7 +187,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 110.8,
-      glass: "J-BK7A (HIKARI catalog equivalent)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; patent 1.5168/64.1, catalog 1.5168/64.14; production supplier unspecified)",
       apd: false,
       role: "L2 — gently positive meniscus convex to image; provides symmetric spherical aberration correction near the stop",
     },
@@ -197,7 +199,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -27.7,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH55 (catalog-compatible spectral proxy; patent 1.83481/42.72, catalog 1.834807/42.7137; production supplier unspecified)",
       apd: false,
       role: "L3 — strongest single element; biconcave for sagittal field and sagittal coma correction",
     },
@@ -209,7 +211,7 @@ const LENS_DATA = {
       nd: 1.57099,
       vd: 50.8,
       focalLengthMm: 42.4,
-      glass: "S-BAL2 (OHARA)",
+      glass: "S-BAL2 (catalog-compatible spectral proxy; patent 1.57099/50.8, catalog 1.570989/50.799858; production supplier unspecified)",
       apd: false,
       role: "Moderately powered positive element; counterbalances E10's divergence in a triplet-like sub-unit",
     },
@@ -234,7 +236,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.52,
       focalLengthMm: 26.3,
-      glass: "J-FKH1 (HIKARI catalog equivalent)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; patent 1.49782/82.52, catalog 1.49782/82.57; production supplier unspecified)",
       apd: "inferred",
       apdNote: "Fluorophosphate ED glass (patent nd=1.49782, νd=82.52); ED element #2",
       role: "Second ED element; primary achromatic corrector in G2 paired with E12",
@@ -248,7 +250,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.94,
       focalLengthMm: -25.7,
-      glass: "S-LAH53 (OHARA)",
+      glass: "S-LAH53 (catalog-compatible spectral proxy; patent 1.8061/40.94, catalog 1.806098/40.926; production supplier unspecified)",
       apd: false,
       role: "Front element of near-afocal corrector doublet; negative meniscus (nearly plano front)",
       cemented: "J4",
@@ -261,7 +263,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.18,
       focalLengthMm: 26.6,
-      glass: "S-BAL35 (OHARA)",
+      glass: "S-BAL35 (catalog-compatible spectral proxy; patent 1.58913/61.18, catalog 1.58913/61.135024; production supplier unspecified)",
       apd: false,
       role: "Rear element with aspherical exit surface; near-afocal doublet acts as field-flattening / coma corrector plate",
       cemented: "J4",
@@ -276,13 +278,13 @@ const LENS_DATA = {
   surfaces: [
     // ── G1: Negative front group (5 physical elements incl. hybrid L3 + resin, 5 air-separated groups) ──
     { label: "1", R: 60.3937, d: 3.5, sd: 41.0, medium: 1 },
-    { label: "2", R: 32.2703, d: 7.0835, sd: 29.0 },
+    { label: "2", R: 32.2703, d: 7.0835, sd: 29.0, rimExtensionSd: 41 },
     { label: "3", R: 35.5, d: 4.0, sd: 29.5, medium: 2 },
     {
       label: "4A",
       R: 19.5117,
       d: 12.8951,
-      sd: 25.2,
+      sd: 25.2, rimExtensionSd: 29.5,
       asphere: {
         K: -0.9087, // κ = 0.0913
         A4: -5.1181e-7,

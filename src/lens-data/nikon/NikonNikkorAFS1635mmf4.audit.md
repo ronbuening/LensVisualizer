@@ -90,3 +90,12 @@ and are retained.
   is not modeled.
 - The TL offset of 0.68 mm and the one-group difference from Nikon's published 12 groups are unresolved.
 - G3 and G4 rims remain estimates within about 15 % of the drawing. L11 has no exact catalog glass match.
+
+## 2026-10-30 — Fresh figure, concave-end and glass reinspection
+
+Direct source: `patents/US20100238560A1.pdf`, PDF p. 2 FIG. 1 (600 dpi/native 300 dpi), p. 25 Table 1 and d-line definition; pp. 22–24 Example 1 text. Reviewed all 30 surfaces, including four aspheres and compound interfaces. Native axial span 1581 px /129.90 mm gives 0.0822 mm/px.
+
+- S2A retains clear `sd` 16 and gains rear land to outer 24; source q≈15.8/24=0.658±0.006, adopted 0.667. S5 retains clear 15 and gains front land to 17; source q≈15/17.1=0.877±0.009, adopted0.882. The actual SVG draws these flat annuli without changing the refractive caps.
+- Reject extending S7A to the hybrid body's 17 mm rim: exact geometry gives −0.561 mm resin edge thickness against cemented S6. Do not bypass this domain/interface rule or change source coefficients. Other G2–G4 endpoints and cemented steps contain no separately resolved new flat land; no inferred concave cuts are invented.
+- Fresh Table 1 verification retains all 18 source nd/vd pairs (17 glass + inferred resin); d-line is 587.6 nm. No partial-dispersion or spectral-line rows are supplied. All 17 resolver curves are now explicitly qualified spectral proxies, with coordinates and unspecified supplier. J-LASFH2 remains near (Δnd−0.00006/Δvd−0.07), both J-FKH1 rows retain source82.51 versus catalog82.57; resin identity/UV curing remains an inference. APD remains inferred, without source partial data.
+- Canonical/full cut validation, surface, circle, all three format corners and f/4.1 aperture pass. Nine actual SVG states were checked with zero render trim. No finite focus law is published, so no invented near-focus validation. Source TL discrepancy0.68 mm and modeled/marketed group-count distinction remain disclosed.
