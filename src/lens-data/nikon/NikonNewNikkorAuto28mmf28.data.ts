@@ -32,6 +32,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Optical rims, excluding beveled blanks and labels, use 29.91 micrometers/pixel. These are figure estimates,
  * not published apertures. The stop radius is derived from the design f-number; extreme-field vignetting
  * remains possible. */
+// Fresh Figure 3: source concave end lands at S4/S6 preserve clear caps 9.9/8.5 with outer rims 12.7/10.1.
+// Original Example 2 body/certificate, uniform 0.28 scale and all seven source index/Abbe pairs remain unchanged.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-new-nikkor-auto-28mm-f28",
@@ -67,7 +70,7 @@ const LENS_DATA = {
       vd: 33.8,
       indexReference: "d",
       focalLengthMm: 159.9710803004095,
-      glass: "648338 — flint coordinate class (supplier unresolved)",
+      glass: "648338 — H-ZF1 nonidentical spectral proxy (source 1.64831/33.8; supplier unspecified)",
       diagramLabel: "L1",
     },
     {
@@ -115,7 +118,7 @@ const LENS_DATA = {
       vd: 28.2,
       indexReference: "d",
       focalLengthMm: -19.13823628417871,
-      glass: "740282 — dense-flint class (exact catalog coordinate; supplier unresolved)",
+      glass: "740282 — FD3 compatible spectral proxy (supplier unspecified)",
       diagramLabel: "L5",
     },
     {
@@ -148,9 +151,9 @@ const LENS_DATA = {
     { label: "1", R: 51.3688, d: 2.59, sd: 14.6, medium: 1 },
     { label: "2", R: 99.764, d: 0.056, sd: 14.6 },
     { label: "3", R: 39.6844, d: 1.1032, sd: 12.7, medium: 2 },
-    { label: "4", R: 13.7256, d: 3.8584, sd: 9.9 },
+    { label: "4", R: 13.7256, d: 3.8584, sd: 9.9, rimExtensionSd: 12.7 },
     { label: "5", R: 21.9912, d: 0.826, sd: 10.1, medium: 3 },
-    { label: "6", R: 12.8156, d: 7.4956, sd: 8.5 },
+    { label: "6", R: 12.8156, d: 7.4956, sd: 8.5, rimExtensionSd: 10.1 },
     { label: "7", R: 22.9852, d: 11.354, sd: 7.5, medium: 4 },
     { label: "8", R: -30.59, d: 1.302, sd: 7.5 },
     { label: "STO", R: "flat", d: 4.4856 },

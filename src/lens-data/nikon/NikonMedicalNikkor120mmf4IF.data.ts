@@ -17,7 +17,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ diameter. The stop radius is derived from the design f-number, f/4.      ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: not published. High-resolution Fig. 3 review supports an ║
- * ║ 18 mm D3 rim and 14.2 mm L8 rim. G2 remains at its geometry-safe ceiling.║
+ * ║ 18 mm D3 rim; L8 clear 14.2 plus land to 15.3. G2 keeps its prior caps.║
  * ║ These modeling inferences also preserve the 43.28 mm image circle,       ║
  * ║ positive edge thickness, rim slope, cross-gap clearance, and ray bounds. ║
  * ║                                                                            ║
@@ -29,6 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ is not part of Example 1 and is excluded from this base prescription.    ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
+
+// Fresh Figure 3: common G1 caps 24.0; S12 preserves clear 14.2 with a land to outer 15.3, S13 continuous 15.3.
+// Full G2 height 16.0 fails the unchanged infinity gap. Source R/d, nine nd/vd pairs and controls remain.
 
 const LENS_DATA = {
   /* ── Identity ── */
@@ -73,7 +76,7 @@ const LENS_DATA = {
       vd: 25.5,
       indexReference: "d",
       focalLengthMm: -73.852541,
-      glass: "805255 — dense-flint class (vendor unresolved)",
+      glass: "805255 — J-SF6 compatible spectral proxy (supplier unspecified)",
       apd: false,
       role: "Front member of the cemented positive component in G1.",
       diagramLabel: "L1",
@@ -88,7 +91,7 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: 49.949544,
-      glass: "713539 — lanthanum-crown class (vendor unresolved)",
+      glass: "713539 — LAC8 compatible spectral proxy (supplier unspecified)",
       apd: false,
       role: "Positive rear member of the front cemented component in G1.",
       diagramLabel: "L2",
@@ -103,7 +106,7 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: 99.417567,
-      glass: "713539 — lanthanum-crown class (vendor unresolved)",
+      glass: "713539 — LAC8 compatible spectral proxy (supplier unspecified)",
       apd: false,
       role: "Rear positive component of the fixed first group G1.",
       diagramLabel: "L3",
@@ -147,7 +150,7 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: 40.29088,
-      glass: "713539 — lanthanum-crown class (vendor unresolved)",
+      glass: "713539 — LAC8 compatible spectral proxy (supplier unspecified)",
       apd: false,
       role: "Positive front member of the first cemented component in G3.",
       diagramLabel: "L6",
@@ -191,7 +194,7 @@ const LENS_DATA = {
       vd: 56.7,
       indexReference: "d",
       focalLengthMm: 72.850553,
-      glass: "N-SK10 catalog equivalent for 1.62280/56.7 (production supplier unspecified)",
+      glass: "N-SK10 nonidentical spectral proxy (catalog 1.62278/56.98 versus source 1.62280/56.7; supplier unspecified)",
       apd: false,
       role: "Final positive component of the fixed third group G3.",
       diagramLabel: "L9",
@@ -204,10 +207,10 @@ const LENS_DATA = {
    */
   surfaces: [
     { label: "1", R: 161.53, d: 1.5, sd: 24.0, medium: 1 },
-    { label: "2", R: 43.284, d: 10.0, sd: 23.8, medium: 2 },
-    { label: "3", R: -181.654, d: 0.2, sd: 22.7 },
-    { label: "4", R: 73.861, d: 5.5, sd: 22.7, medium: 3 },
-    { label: "5", R: -1704.595, sd: 22.0 },
+    { label: "2", R: 43.284, d: 10.0, sd: 24, medium: 2 },
+    { label: "3", R: -181.654, d: 0.2, sd: 24 },
+    { label: "4", R: 73.861, d: 5.5, sd: 24, medium: 3 },
+    { label: "5", R: -1704.595, sd: 24 },
     { label: "6", R: -108.243, d: 4.7, sd: 13.82, medium: 4 },
     { label: "7", R: -34.631, d: 2.3, sd: 13.8, medium: 5 },
     { label: "8", R: 49.671, sd: 13.7 },
@@ -215,8 +218,8 @@ const LENS_DATA = {
     { label: "9", R: 26.35, d: 13.6, sd: 18.0, medium: 6 },
     { label: "10", R: 250.0, d: 2.9, sd: 18.0, medium: 7 },
     { label: "11", R: 27.045, d: 25.7, sd: 18.0 },
-    { label: "12", R: -15.884, d: 2.4, sd: 14.2, medium: 8 },
-    { label: "13", R: -21.077, d: 0.1, sd: 14.2 },
+    { label: "12", R: -15.884, d: 2.4, sd: 14.2, rimExtensionSd: 15.3, medium: 8 },
+    { label: "13", R: -21.077, d: 0.1, sd: 15.3 },
     { label: "14", R: 70.7, d: 4.7, sd: 18.0, medium: 9 },
     { label: "15", R: -123.414, d: 58.798, sd: 18.2 },
   ],

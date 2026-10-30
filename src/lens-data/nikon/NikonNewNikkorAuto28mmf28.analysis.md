@@ -35,11 +35,11 @@ All dimensional patent values are uniformly scaled by $s=0.28$, from the patent'
 
 ### L1 — Positive Meniscus, convex to object
 
-**nd = 1.64831, νd = 33.8. Glass: 648338 — flint coordinate class (supplier unresolved). f = +159.971080 mm.**
+**nd = 1.64831, νd = 33.8. Glass: 648338 — H-ZF1 nonidentical spectral proxy (source 1.64831/33.8; supplier unspecified). f = +159.971080 mm.**
 
 L1 is the outer positive meniscus specified by the patent. Its positive standalone power is weak compared with the following two negative menisci, so L1 does not overturn the net divergence of the front section. The patent assigns the front positive meniscus a specific architectural purpose: it moderates the negative distortion that accompanies the strongly refracting diverging group. [P, PDF p. 5]
 
-The glass identity is intentionally unresolved. The stored coordinate is the patent value; no modern catalog name is promoted to historical supplier identity.
+The current H-ZF1 coefficient curve is a nonidentical spectral proxy at 1.64769/33.84 versus source 1.64831/33.8. It supplies wavelength tracing without identifying a historical supplier or melt.
 
 ### L2 — Negative Meniscus, convex to object
 
@@ -67,7 +67,7 @@ H-LaK67 is used as a coordinate-compatible spectral proxy (Δnd = +0.00050, Δν
 
 ### L5 — Biconcave Negative
 
-**nd = 1.74, νd = 28.2. Glass: 740282 — dense-flint class (exact catalog coordinate; supplier unresolved). f = −19.138236 mm.**
+**nd = 1.74, νd = 28.2. Glass: 740282 — FD3 compatible spectral proxy (supplier unspecified). f = −19.138236 mm.**
 
 L5 is the only negative element in the four-element rear sequence and has the largest standalone power magnitude of any individual element in the model. It therefore creates a strong positive-negative power alternation with L4 before the final two positive elements. That statement is a power-distribution observation from the verified prescription; the patent does not assign L5 a unique named aberration function.
 
@@ -93,11 +93,11 @@ The patent supplies six distinct nd/νd coordinates for the seven elements, with
 
 | Elements | nd / νd | Authored identification | Evidence status |
 |---|---:|---|---|
-| L1 | 1.64831 / 33.8 | 648338 flint-class coordinate proxy | Supplier unresolved |
+| L1 | 1.64831 / 33.8 | H-ZF1 nonidentical spectral proxy | Source coordinate retained; supplier unspecified |
 | L2, L6 | 1.62041 / 60.3 | 620603 barium-crown class; S-BSM16 coordinate equivalent | Modern catalog comparison only [O2] |
 | L3 | 1.6583 / 57.3 | 658573 lanthanum-crown class; K-LaK11 coordinate equivalent | Printed-pair equivalence only [S1] |
 | L4 | 1.6695 / 51.5 | 670515 crown coordinate; H-LaK67 spectral proxy | Supplier unresolved |
-| L5 | 1.74 / 28.2 | 740282 dense-flint class; exact SF3 coordinate comparator | Supplier unresolved; exact coordinate match [SCH1] |
+| L5 | 1.74 / 28.2 | FD3 compatible spectral proxy; SF3 coordinate comparator | Source coordinate retained; historical supplier unspecified [SCH1] |
 | L7 | 1.6968 / 55.6 | 697556 lanthanum-crown class; K-LaK14 coordinate equivalent | Printed-pair equivalence only [S1] |
 
 The catalog matches are not substituted into the patent prescription. In particular, no vendor Sellmeier data are authored onto elements whose historical identity is unknown. The file also contains no patent-derived `nC`, `nF`, `ng`, or `dPgF` values. Consequently, the analysis makes no APO, anomalous-partial-dispersion, or secondary-spectrum-performance claim from nd/νd alone.
@@ -111,6 +111,8 @@ Nikon manufacturer literature gives 0.3 m as the production lens's minimum focus
 ## Model Representation and Source Discrepancies
 
 The aperture stop is visible in patent Fig. 3 but is not dimensioned. The model places it 1.302 mm behind model surface 8 (source R9), corresponding to 4.65 patent units, or about 22.5% of the source d9 gap. This is a drawing-based inference. The stop semi-diameter, 6.857990 mm, is then calibrated so that the paraxial entrance pupil diameter is 9.999248 mm and the modeled f-number is 2.8. Agreement with f/2.8 is therefore calibration-dependent and is not independent evidence of the physical diaphragm diameter.
+
+A fresh Figure 3 inspection resolves concave rear-face lands on L2 and L3. Surface 4 retains its 9.9 mm cap with a land to L2's 12.7 mm rim; surface 6 retains its 8.5 mm cap with a land to L3's 10.1 mm rim. All existing optical caps are preserved, so this adds the source outline without further clipping. Other faces have no additional resolved usable land. All seven source index/Abbe pairs and compatible curves remain; their annotations identify qualified spectral proxies. No quantitative APD or source line-index override is inferred. Nine actual SVG views require no automatic rim trim.
 
 The patent gives no surface semi-diameters. The initial ray-envelope apertures were replaced by the figure-inferred optical rims documented below. Earlier throughput counts from the larger apertures do not apply to this refined model; its extreme-field illumination remains a modeling limitation.
 

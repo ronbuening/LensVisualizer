@@ -39,9 +39,9 @@ All fifteen refracting surfaces are spherical. No aspherical equation, conic con
 
 ### D1 — L1 + L2, Cemented Front Component of G1
 
-**L1:** nd = 1.80518, νd = 25.5. Glass: 805255 — dense-flint class (vendor unresolved). f = -73.852541 mm.
+**L1:** nd = 1.80518, νd = 25.5. Glass: 805255 — J-SF6 compatible spectral proxy (supplier unspecified). f = -73.852541 mm.
 
-**L2:** nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum-crown class (vendor unresolved). f = +49.949544 mm.
+**L2:** nd = 1.71300, νd = 53.9. Glass: 713539 — LAC8 compatible spectral proxy (supplier unspecified). f = +49.949544 mm.
 
 The element focal lengths above are standalone thick-element powers in air. They are not the power of the cemented component. Cementing L1 to L2 produces a net positive D1 component with a computed focal length of +149.097057 mm.
 
@@ -49,7 +49,7 @@ This pairing follows the patent's specified first-group structure: a cemented po
 
 ### L3 — Rear Positive Component of G1
 
-**L3:** nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum-crown class (vendor unresolved). f = +99.417567 mm.
+**L3:** nd = 1.71300, νd = 53.9. Glass: 713539 — LAC8 compatible spectral proxy (supplier unspecified). f = +99.417567 mm.
 
 L3 is a biconvex positive singlet separated from D1 by a narrow air gap. Together, D1 and L3 form the fixed first functional group. The complete G1 power, +60.484000 mm, is an in-situ group property and should not be inferred by simply adding the standalone focal powers of its components.
 
@@ -67,7 +67,7 @@ The patent prefers a cemented negative second group and constrains its external 
 
 ### D3 — L6 + L7, Front Cemented Component of G3
 
-**L6:** nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum-crown class (vendor unresolved). f = +40.290880 mm.
+**L6:** nd = 1.71300, νd = 53.9. Glass: 713539 — LAC8 compatible spectral proxy (supplier unspecified). f = +40.290880 mm.
 
 **L7:** nd = 1.72342, νd = 38.0. Glass: 723380 — S-BAH28 catalog equivalent (production supplier unspecified). f = -42.149938 mm.
 
@@ -83,9 +83,9 @@ L8 is the second meniscus component of the patent's preferred G3 structure. It i
 
 ### L9 — Final Positive Component of G3
 
-**L9:** nd = 1.62280, νd = 56.7. Glass: N-SK10 catalog equivalent for 1.62280/56.7 (production supplier unspecified). f = +72.850553 mm.
+**L9:** nd = 1.62280, νd = 56.7. Glass: N-SK10 nonidentical spectral proxy (catalog 1.62278/56.98 versus source 1.62280/56.7; supplier unspecified). f = +72.850553 mm.
 
-L9 is the final biconvex positive element and completes G3. The N-SK10 curve matches its stored coordinates inside the strict catalog guard and is used only as a supplier-neutral spectral equivalent; the historical production glass remains unidentified.
+L9 is the final biconvex positive element and completes G3. The N-SK10 curve is compatible with the runtime guard but is nonidentical: catalog 1.62278/56.98 versus source 1.62280/56.7. The Abbe difference is outside the stricter coordinate-match window and is not source rounding. It remains a qualified spectral proxy; historical supplier and melt are unestablished.
 
 The combination D3 + L8 + L9 yields the full computed G3 focal length of +105.173437 mm. As with G1, this is an in-situ functional-group quantity rather than the algebraic sum of standalone element powers.
 
@@ -97,8 +97,8 @@ Current catalogs also show why a vendor assignment would be unsafe: SUMITA K-LaK
 
 | Data annotation | nd | νd | Elements | Interpretation |
 | --- | ---: | ---: | --- | --- |
-| 805255 — dense-flint class (vendor unresolved) | 1.80518 | 25.5 | L1 | High-index, low-Abbe member of D1 |
-| 713539 — lanthanum-crown class (vendor unresolved) | 1.71300 | 53.9 | L2, L3, L6 | Moderate-dispersion positive glass used repeatedly in G1 and G3 |
+| 805255 — J-SF6 compatible spectral proxy (supplier unspecified) | 1.80518 | 25.5 | L1 | High-index, low-Abbe member of D1 |
+| 713539 — LAC8 compatible spectral proxy (supplier unspecified) | 1.71300 | 53.9 | L2, L3, L6 | Moderate-dispersion positive glass used repeatedly in G1 and G3 |
 | 785261 — SF56A catalog equivalent | 1.78470 | 26.1 | L4, L8 | High-index, low-Abbe glass used in G2 and G3; production supplier unspecified |
 | 697556 — K-LaK14 catalog equivalent | 1.69680 | 55.6 | L5 | Lower-dispersion partner in the moving cemented negative group; production supplier unspecified |
 | 723380 — S-BAH28 catalog equivalent | 1.72342 | 38.0 | L7 | Intermediate-dispersion negative member of D3; production supplier unspecified |
@@ -142,10 +142,7 @@ For condition (4), `βmin` is the first-group lateral magnification in the paten
 
 ## Verification Summary
 
-The exact US 4,437,734 patent PDF was inspected at high resolution on PDF page 3, Fig. 3. Comparing optical rims rather
-than dimension leaders and annotations supports enlarging D3 (surfaces 9-11) to 18.0 mm and setting L8 (surfaces 12-13)
-to 14.2 mm. The moving G2 doublet remains at its geometry-safe ceiling: larger figure-derived candidates overlap the
-adjacent air-gap geometry even though the patent drawing makes that component appear broader.
+The exact US 4,437,734 patent PDF was freshly inspected on PDF page 3, Figure 3. The front group now has continuous 24.0 mm caps, preserving its source common outline. The prior 18.0 mm D3 caps remain. L8 retains its 14.2 mm front optical cap with an explicit land to a 15.3 mm outer rim; its rear continuous cap also reaches 15.3 mm. The drawing places the concave front endpoint farther inward, but no further optical clipping is introduced. A full 16.0 mm G2 trial intrudes 1.11 mm into the unchanged 0.925 mm infinity gap against 0.833 mm allowed, so that doublet retains its previous caps without invented lands. Nine actual SVG focus states have no automatic rim trimming.
 
 Independent reduced-angle tracing of the final TypeScript arrays gives an infinity EFL of 121.167614 mm and BFD of 58.798853 mm, matching the patent's 121.168 mm and 58.798 mm values within source rounding. An independently assembled ABCD matrix and two sequential basis-ray traces agree to stored precision.
 
