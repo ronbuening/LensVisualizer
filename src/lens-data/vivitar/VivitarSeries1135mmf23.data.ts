@@ -27,11 +27,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  to d10 = 21.081081 mm. This is an explicit extrapolation beyond  ║
  * ║  the patent's worked focus range, not a second prescription.       ║
  * ║                                                                    ║
- * ║  SEMI-DIAMETERS: the patent omits clear apertures. SDs are inferred║
- * ║  from the f/2.3 marginal ray, diagonal chief-ray geometry, element ║
- * ║  edge thickness, rim slope, and signed cross-gap sag constraints.  ║
- * ║  The model permits normal wide-open off-axis mechanical vignetting.║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * Fresh source review, 2026-10-30: Figure 3 (PDF 10), Table II (PDF 3-4),
+ * repeated claim 9 (PDF 7). S1/S2 caps grow to 30 mm, S11/S12 to 16.2 mm.
+ * S6 has a source-supported 5.1 mm end cut: clear 18.23538 / outer 23.4 mm.
+ * Full S5 height 23.4 mm fails the preceding gap; retain its 20.3 mm cap.
+ * Six source Nd/Vd pairs unchanged, no additional indices or partial ratios.
+ * Six qualified coefficient curves are available, five strict; N-SSK2 remains
+ * a loose spectral proxy. L4 now names the actual resolver's legacy SF2 curve.
+ * No production identity, R/d, focus, aperture, stop or tolerance change.
  */
 
 const LENS_DATA = {
@@ -103,7 +106,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       focalLengthMm: 47.5813,
-      glass: "N-SF2 (SCHOTT; SF2-class equivalent)",
+      glass: "SF2 (SCHOTT legacy catalog-equivalent; production supplier unspecified)",
       role: "Strong post-stop positive member of the movable objective.",
     },
     {
@@ -133,19 +136,19 @@ const LENS_DATA = {
   /* ── Surfaces: exact unscaled Table II prescription ── */
   /* (moved from asph) ── All-spherical design ── */
   surfaces: [
-    { label: "1", R: 45.6583, d: 12.15, sd: 29.6, medium: 1 },
-    { label: "2", R: -3538.8, d: 0.34, sd: 29.0 },
+    { label: "1", R: 45.6583, d: 12.15, sd: 30, medium: 1 },
+    { label: "2", R: -3538.8, d: 0.34, sd: 30 },
     { label: "3", R: 45.5236, d: 11.13, sd: 26.5, medium: 2 },
     { label: "4", R: 77.8311, d: 4.64, sd: 23.5 },
     { label: "5", R: -145.2645, d: 3.51, sd: 20.3, medium: 3 },
-    { label: "6", R: 35.1509, d: 9.61, sd: 19.5 },
+    { label: "6", R: 35.1509, d: 9.61, sd: 23.4, rimCutDepthMm: 5.1 },
     { label: "STO", R: "flat", d: 9.61 },
     { label: "7", R: 95.1885, d: 6.93, sd: 18.8, medium: 4 },
     { label: "8", R: -44.2681, d: 4.58, sd: 18.3 },
     { label: "9", R: -37.3576, d: 2.0, sd: 16.5, medium: 5 },
     { label: "10", R: -95.1509, sd: 16.5 },
-    { label: "11", R: 62.1185, d: 2.0, sd: 15.5, medium: 6 },
-    { label: "12", R: 44.4264, d: 59.67, sd: 15.5 },
+    { label: "11", R: 62.1185, d: 2.0, sd: 16.2, medium: 6 },
+    { label: "12", R: 44.4264, d: 59.67, sd: 16.2 },
   ],
 
   /* ── Product / UI data ── */

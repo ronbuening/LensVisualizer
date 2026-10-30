@@ -31,11 +31,11 @@ Every radius, thickness, index and zoom gap is used as printed. Table 1 prints n
 
 Paraxial values at the d-line, calculated from the printed prescription, are:
 
-| Zoom station   |      EFL (mm) | Paraxial BFD from s34 (mm) |    Model s1-to-image track (mm) | Fixed-image defocus (mm) |
-| -------------- | ------------: | -------------------------: | ------------------------------: | -----------------------: |
-| 72 mm          |  71.985809602 |               54.655598434 |                          210.67 |             +0.004401566 |
-| 105 mm         | 105.010264288 |               54.658048235 |                          210.67 |             +0.001951765 |
-| 194 mm         | 193.971873633 |               54.677507810 |                          210.66 |             -0.017507810 |
+| Zoom station |      EFL (mm) | Paraxial BFD from s34 (mm) | Model s1-to-image track (mm) | Fixed-image defocus (mm) |
+| ------------ | ------------: | -------------------------: | ---------------------------: | -----------------------: |
+| 72 mm        |  71.985809602 |               54.655598434 |                       210.67 |             +0.004401566 |
+| 105 mm       | 105.010264288 |               54.658048235 |                       210.67 |             +0.001951765 |
+| 194 mm       | 193.971873633 |               54.677507810 |                       210.66 |             -0.017507810 |
 
 The group focal lengths are G1 +95.332859 mm, G2 -27.851178 mm, G3 +85.530001 mm, G4 +89.963751 mm. The paraxial Petzval sum is +0.001653134891 mm⁻¹; it is not a prediction of sagittal or tangential field curvature. Neither BFD > EFL nor total optical track / EFL < 1 holds at these stations, so “telephoto” describes only the focal range, not the optical construction.
 
@@ -165,25 +165,25 @@ L19 is the final positive singlet. Its rear vertex s34 is the reference for the 
 
 The fifteen distinct printed nd/νd pairs were compared against the OHARA, HOYA, Schott, HIKARI, Sumita and CDGM catalogs. The palette uses fourteen OHARA classes plus HOYA FCD1 for L12, because the printed νd differs (81.5 at L3/L4, 81.6 at L12) although the production diagram labels all three low-dispersion positions FK01.
 
-| Source nd / νd | Matching catalog class    | Element(s)       | Catalog νd minus source νd |
-| -------------- | ------------------------- | ---------------- | -------------------------: |
-| 1.48749 / 70.2 | S-FSL5 (OHARA)            | L14              |                  +0.036252 |
-| 1.49700 / 81.5 | S-FPL51 (OHARA)           | L3, L4           |                  +0.045888 |
-| 1.49700 / 81.6 | FCD1 (HOYA)               | L12              |                  +0.010000 |
-| 1.51633 / 64.1 | L-BSL7 (OHARA)            | L6               |                  -0.034871 |
-| 1.60300 / 65.4 | S-PHM53 (OHARA)           | L2               |                  +0.043648 |
-| 1.65160 / 58.6 | S-LAL7 (OHARA)            | L10              |                  -0.049345 |
-| 1.65844 / 50.9 | S-BSM25 (OHARA)           | L17              |                  -0.022446 |
-| 1.70154 / 41.2 | S-BAH27 (OHARA)           | L19              |                  +0.039440 |
-| 1.76200 / 40.1 | S-LAM55 (OHARA)           | L16              |                  +0.000176 |
-| 1.80100 / 35.0 | S-LAM66 (OHARA)           | L11              |                  -0.032597 |
-| 1.80400 / 46.6 | S-LAH65V (OHARA)          | L7               |                  -0.016568 |
-| 1.80518 / 25.4 | S-TIH6 (OHARA)            | L1               |                  +0.025363 |
-| 1.83400 / 37.2 | S-LAH60V (OHARA)          | L13              |                  +0.006855 |
-| 1.83481 / 42.7 | S-LAH55 (OHARA)           | L9               |                  +0.013673 |
-| 1.84666 / 23.8 | S-TIH53 (OHARA)           | L5, L8, L15, L18 |                  -0.022060 |
+| Source nd / νd | Matching catalog class | Element(s)       | Catalog νd minus source νd |
+| -------------- | ---------------------- | ---------------- | -------------------------: |
+| 1.48749 / 70.2 | S-FSL5 (OHARA)         | L14              |                  +0.036252 |
+| 1.49700 / 81.5 | S-FPL51 (OHARA)        | L3, L4           |                  +0.045888 |
+| 1.49700 / 81.6 | FCD1 (HOYA)            | L12              |                  +0.010000 |
+| 1.51633 / 64.1 | L-BSL7 (OHARA)         | L6               |                  -0.034871 |
+| 1.60300 / 65.4 | S-PHM53 (OHARA)        | L2               |                  +0.043648 |
+| 1.65160 / 58.6 | S-LAL7 (OHARA)         | L10              |                  -0.049345 |
+| 1.65844 / 50.9 | S-BSM25 (OHARA)        | L17              |                  -0.022446 |
+| 1.70154 / 41.2 | S-BAH27 (OHARA)        | L19              |                  +0.039440 |
+| 1.76200 / 40.1 | S-LAM55 (OHARA)        | L16              |                  +0.000176 |
+| 1.80100 / 35.0 | S-LAM66 (OHARA)        | L11              |                  -0.032597 |
+| 1.80400 / 46.6 | S-LAH65V (OHARA)       | L7               |                  -0.016568 |
+| 1.80518 / 25.4 | S-TIH6 (OHARA)         | L1               |                  +0.025363 |
+| 1.83400 / 37.2 | S-LAH60V (OHARA)       | L13              |                  +0.006855 |
+| 1.83481 / 42.7 | S-LAH55 (OHARA)        | L9               |                  +0.013673 |
+| 1.84666 / 23.8 | S-TIH53 (OHARA)        | L5, L8, L15, L18 |                  -0.022060 |
 
-The printed nd and νd are unchanged. Each element traces on the catalog dispersion curve of its named glass, and ΔPgF is that glass's catalog partial dispersion measured from the normal line 0.6438 − 0.001682·νd at the printed νd. These are model inputs, not spectral data printed in the patent. L3, L4 and L12 are tagged as inferred anomalous-dispersion elements on the strength of the maker’s SD marking; the patent itself names no glass. Catalog equivalence does not establish production glass chemistry, supplier, melt, APO correction or measured color performance.
+The printed d-line nd and νd are unchanged. Fresh source review found no C/F/g or partial-ratio table. All76 catalog-only per-element spectral copies are removed; the nineteen compatible coefficient curves supply qualified spectral proxies directly. L3/L4/L12 tags stay inferred from the manufacturer SD positions, rather than source anomaly measurements. Catalog coordinate agreement establishes neither supplier/melt nor produced color performance.
 
 ## Focus Mechanism and Scope
 
@@ -192,23 +192,22 @@ The model now estimates internal focus by translating only G1Y, the two positive
 At each printed zoom station, d4 decreases and d8 increases by the same amount; G1Y moves toward the object while G1X, all later groups, the iris and the image plane stay fixed. G1Y’s own internal spacing is unchanged. The physical iris keeps its infinity setting at the selected zoom station.
 
 | Printed zoom station | G1Y travel toward object, mm | d4 at 1 m, mm | d8 at 1 m, mm | Near EFL, mm | Magnification |
-|---|---|---|---|---|---|
-| 72 mm | 13.521832 | 1.728168 | 15.921832 | 84.8543 | −0.104075 |
-| 105 mm | 13.528398 | 1.721602 | 31.828398 | 119.3307 | −0.151834 |
-| 194 mm | 13.534466 | 1.715534 | 48.524466 | 162.9407 | −0.280449 |
+| -------------------- | ---------------------------- | ------------- | ------------- | ------------ | ------------- |
+| 72 mm                | 13.521832                    | 1.728168      | 15.921832     | 84.8543      | −0.104075     |
+| 105 mm               | 13.528398                    | 1.721602      | 31.828398     | 119.3307     | −0.151834     |
+| 194 mm               | 13.534466                    | 1.715534      | 48.524466     | 162.9407     | −0.280449     |
 
 The tele magnification is 1:3.566, close to the manufacturer’s 1:3.57 without fitting to it. The direction follows from solving the finite conjugate with the patent’s stated moving group. Zoom remains limited to the three printed stations.
 
 Thirty-three calculated inverse-distance samples approximate the nonlinear focus travel between infinity and 1 m. Source-rounded infinity gaps are preserved, so their existing 0.004 / 0.002 / 0.018 mm paraxial image-plane offsets remain at infinity. The reconstructed focus states are not marked as published, and finite-focus MTF remains unavailable: the patent’s omitted travel and existing aberration discrepancy prevent treating this reconstruction as a certified optical prescription. Other diagram and analysis outputs at finite focus describe the estimated position.
 
-
 ## Spherical Surfaces and Aperture Model
 
 Example 1 contains no aspherical surface. The stop is s20, 1.50 mm before s21. Its diameter and the clear apertures are not printed. The approximately f/4.1 of ¶0007/¶0015 is taken as the design aperture, and the iris radius is found by tracing the f/4.1 axial ray to the stop at each station: 13.320111690/13.320639345/13.330779339 mm. Agreement with f/4.1 is by construction, not evidence of the diaphragm size.
 
-Clear radii are estimated from the element outlines of Figure 2, which is drawn to scale, and are constrained by positive edge thickness, rim slope, clearance across the air gaps and traced rays. Every element follows its drawn rim (31.0, 30.2, 28.9 and 28.1 mm for L1–L4, 13.6 mm for L7 and 13.4 mm for L9), including the drawn steps at the cemented joints L5/L6, L10/L11 and L13/L14. Two air-spaced pairs meet inside the rims the figure draws: s2 and s3 touch at 29.04 mm where L1 and L2 are drawn 31.0 and 30.2 mm, and s14 and s15 touch at 12.43 mm where L8 and L9 are drawn 13.4 mm. In each pair one face is ended just short of the contact and the other element keeps its drawn square rim: s3, the front of L2, ends at 28.4 mm (0.09 mm of air to s2), and s14, the rear of L8, ends at 12.16 mm. L2 and L8 are therefore drawn with a bevel on that face, where the figure lets the two outlines run together. The figure also draws a flat land outside the curved part of s2 (from about 29 mm), of s24 (from about 11.4 mm) and of s31 (from about 12.2–12.4 mm). The model has no lands: s2 runs to L1's 31.0 mm rim, s24 takes L14's 13.0 mm rim, and L18 keeps a single 14.0 mm rim against a drawn 14.3 mm. Ending s31 at 12.4 mm instead would cut the beam that reaches the frame corner by about 4 points at each station (from 68.6 to 64.8% of the axial beam at 72 mm, 67.0 to 63.1% at 105 mm and 62.5 to 58.4% at 194 mm) and leave the field inside 0.83 of the corner angle unchanged.
+Clear radii are inferred from Figure 2 and bounded by literal profiles, material thickness, gap clearance and beams. Front bodies of 31/30.2/28.9/28.1 mm and source cemented steps remain, with S3 cap 28.4 and S14 cap 12.16 mm approximating two tight gaps. The air-facing S2/S31 lands are now explicit: vertex-depth cuts of 5.6/4.42 mm, clear caps 29.07843/12.97834 mm and outer rims 31/14 mm. S31's cap is moved outward beyond the drawing for beams. The S24 feature is a cemented refracting boundary; the opaque cut model cannot reproduce it. These are qualified outline approximations, not manufacturing dimensions.
 
-The air gap that the axial beam fills most closely is s14–s15 (2.36 mm). At the 194 mm station the f/4.1 axial ray reaches 12.147862871/12.134446840 mm on these faces. s14 is 12.16 mm, the smallest 0.01 mm step that leaves at least 0.01 mm beyond that ray, and s15 takes the 13.4 mm of L9's rear face, so L9 has the square-cut rim the figure draws. The two faces are compared at the smaller height, 12.16 mm, where they take up 95.64% of the gap (2.2572 of 2.36 mm) and 0.103 mm of air remains, so they do not cross; the model lets facing surfaces use up to 96% of an air gap where its default is 90%. From 12.16 to 13.4 mm only L9's front face continues, 0.10 to 0.88 mm clear of L8's rim. The s2–s3 pair is treated the same way: compared at 28.4 mm the two faces take up 95.33% of the 2.01 mm gap, and from there to the rim only L1's rear face continues, 0.09 to 1.55 mm clear of L2's edge. Carried to one height, the two faces would touch at 12.43 mm. No printed curvature, spacing or aperture is adjusted to make the beam pass.
+The air gap that the axial beam fills most closely is s14–s15 (2.36 mm). At the 194 mm station the f/4.1 axial ray reaches 12.147862871/12.134446840 mm on these faces. s14 is 12.16 mm, the smallest 0.01 mm step that leaves at least 0.01 mm beyond that ray, and s15 takes the 13.4 mm of L9's rear face, so L9 has the square-cut rim the figure draws. The two faces are compared at the smaller height, 12.16 mm, where they take up 95.64% of the gap (2.2572 of 2.36 mm) and 0.103 mm of air remains, so they do not cross; the model lets facing surfaces use up to 96% of an air gap where its default is 90%. From 12.16 to 13.4 mm only L9's front face continues, 0.10 to 0.88 mm clear of L8's rim. At the unchanged 28.4 mm shared radius, S2–S3 still uses 95.33% of its 2.01 mm gap. Above that radius only L1 continues: its rear cap now ends at 29.07843 mm and the opaque land finishes the 31 mm body. The coupled full S3 trial and its conflicting gap/beam bounds are recorded below. No printed curvature, spacing or stop law is adjusted.
 
 The full f/4.1 axial beam passes at all three stations, and chief rays reach the 21.633307653 mm half-diagonal of the 24×36 mm frame. Off-axis vignetting from the inferred rims remains: at the 194 mm station a ray at three quarters of the pupil radius is cut by the front of L2 from 61% of the corner field angle. Traced over the whole pupil, the beam that clears every rim at the frame corner is 68.6 / 67.0 / 62.5% of the axial beam at the three stations. The model does not predict production MTF, measured illumination or behavior between the printed zoom stations.
 
@@ -231,3 +230,11 @@ Paragraphs 0024–0028 identify G4Y, L15–L16, as the negative cemented stabili
 - [Official launch announcement, 2014-05-16](https://www.kenko-tokina.co.jp/newproducts/tokina70200mm.html), including the 2014-05-30 release date.
 - [Official feature description](https://www.kenko-tokina.co.jp/camera-lens/tokina/telephoto-lenses/at-x_70-200mm_f4_pro_fx_vcm-s/features.html), internal focus and constant external length during zoom.
 - [OHARA 2026-07-01 catalog](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip) and [HOYA 2026-07-07 catalog](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), the sources of the catalog dispersion data.
+
+## 2026-10-30 source shape and glass reinspection
+
+Original Figure 2 (PDF page 17) was inspected at 600 dpi, with native resolution 200 dpi and approximately 3.993 native pixels/mm. Table 1 and d-line definitions were read on pages 8–9, and Tables 2/3 on page 10. Source S2 cap/outer ratio is approximately 0.94 ±0.016 for one native pixel. Adopted cap 29.07843 / outer 31 mm agrees with that reading and clears reach 28.41978 mm plus margin 0.08724 mm. S31's measured ratio is approximately 0.87 ±0.033; its adopted cap 12.97834 / outer 14 mm moves outward to clear reach 12.92739 mm plus 0.05 mm. Depth 4.41 mm would fail; 4.42 mm passes. The S24 trial correctly rejects a cut on its cemented interface.
+
+Full source S3 cap 30.2 mm with S2 depth 5.6 gives 2.016 mm land intrusion against 1.9296 mm allowed. A coupled S2 depth of 5.36 passes geometry but gives only 28.47110 mm cap, below the already-required 28.5052 mm beam floor; depths 5.37 and higher fail clearance. Retain S3's 28.4 mm cap. S14 at the full 13.4 mm also fails, with 2.75 mm intrusion against 2.2656 mm allowed. No independent flat land is established there, so the 12.16 mm cap remains. Existing gapSagFrac 0.96 is retained without further relaxation.
+
+All nineteen physical source nd/νd pairs match, with d-line convention and one-decimal νd. Compatible coefficient curves remain available; source supplies no additional indices or partial-ratio override. Supplier and melt uncertainty, the 0.540/0.5437 group-power discrepancy and the source prescription/aberration-plot disagreement remain disclosed. G1Y focus remains an estimated reconstruction. The 1 m endpoint and inferred intermediate finite points were checked diagnostically without adding MTF certification.

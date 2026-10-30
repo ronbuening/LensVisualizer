@@ -67,7 +67,7 @@ Its low Abbe number makes L3 the principal dispersive negative member paired aga
 
 ### L4 — Biconvex Positive
 
-nd = 1.64769, νd = 33.8. Glass: N-SF2 (SCHOTT) equivalent. f = +47.58 mm.
+nd = 1.64769, νd = 33.8. Glass: SF2 (SCHOTT legacy proxy) equivalent. f = +47.58 mm.
 
 L4 is the strongest positive standalone element and the first glass after the stop. R7 = +95.1885 mm is weaker than R8 = -44.2681 mm, concentrating much of the positive refraction at the rear surface.
 
@@ -98,14 +98,14 @@ As the front objective moves forward, L6 remains fixed relative to the film plan
 
 The patent gives only nd and νd, not glass names or line-by-line dispersion data. The following entries are catalog equivalents or classes established by comparing the printed pairs against manufacturer data. They do not establish the actual production glass supplier.
 
-| Element | Patent nd | Patent νd | Catalog candidate | Catalog nd | Catalog νd | Δnd | Δνd | Assessment |
-|---|---:|---:|---|---:|---:|---:|---:|---|
-| L1 | 1.62280 | 56.9 | S-BSM10 (OHARA) | 1.62280 | 57.05 | 0.00000 | +0.15 | Close class match |
-| L2 | 1.51680 | 64.2 | N-BK7 (SCHOTT) | 1.51680 | 64.17 | 0.00000 | -0.03 | Match within rounding |
-| L3 | 1.80518 | 25.5 | SF6 (SCHOTT legacy) | 1.80518 | 25.43 | 0.00000 | -0.07 | Close class match |
-| L4 | 1.64769 | 33.8 | N-SF2 (SCHOTT) | 1.64769 | 33.82 | 0.00000 | +0.02 | Match within rounding |
-| L5 | 1.62230 | 53.1 | N-SSK2 (SCHOTT) | 1.62229 | 53.27 | -0.00001 | +0.17 | Close class match |
-| L6 | 1.54814 | 45.8 | LLF1 (SCHOTT) | 1.54814 | 45.75 | 0.00000 | -0.05 | Match within rounding |
+| Element | Patent nd | Patent νd | Catalog candidate         | Catalog nd | Catalog νd |       Δnd |      Δνd | Assessment                      |
+| ------- | --------: | --------: | ------------------------- | ---------: | ---------: | --------: | -------: | ------------------------------- |
+| L1      |   1.62280 |      56.9 | S-BSM10 (OHARA)           |    1.62280 |      57.05 |   0.00000 |    +0.15 | Close class match               |
+| L2      |   1.51680 |      64.2 | N-BK7 (SCHOTT)            |    1.51680 |      64.17 |   0.00000 |    -0.03 | Match within rounding           |
+| L3      |   1.80518 |      25.5 | SF6 (SCHOTT legacy)       |    1.80518 |      25.43 |   0.00000 |    -0.07 | Close class match               |
+| L4      |   1.64769 |      33.8 | SF2 (SCHOTT legacy proxy) |    1.64769 |   33.84824 | -0.000001 | +0.04824 | Compatible rounded-source proxy |
+| L5      |   1.62230 |      53.1 | N-SSK2 (SCHOTT)           |    1.62229 |      53.27 |  -0.00001 |    +0.17 | Close class match               |
+| L6      |   1.54814 |      45.8 | LLF1 (SCHOTT)             |    1.54814 |      45.75 |   0.00000 |    -0.05 | Match within rounding           |
 
 The sequence is crown-crown-flint-flint-crown-flint when the conventional νd ≈ 50 boundary is applied. L4 is a positive-power flint, while L5 is a negative-power crown.
 
@@ -117,12 +117,12 @@ No ED, fluorite, or anomalous-partial-dispersion material is specified. Because 
 
 The mechanism is front-objective focusing with a fixed rear compensator. L1-L5 move together toward the object; L6 and the R12-to-film spacing remain fixed. Only the R10-R11 airspace changes.
 
-| State | R10-R11 gap (mm) | Object distance from front vertex (mm) | Object distance from film plane (mm) | System EFL (mm) | Magnification | Front-vertex-to-film distance (mm) |
-|---|---:|---:|---:|---:|---:|---:|
-| Infinity | 0.8700 | ∞ | ∞ | 135.2107 | 0 | 127.0400 |
-| Patent close endpoint | 10.4000 | 1471.8925 | 1608.4625 | 130.2285 | -0.09950 (1:10.05) | 136.5700 |
-| Data-file 0.900 m endpoint | 21.0811 | 752.7489 | 900.0000 | 125.0635 | -0.21135 (1:4.73) | 147.2511 |
-| Exact 3 ft reference | 20.6229 | 767.6071 | 914.4000 | 125.2766 | -0.20656 (1:4.84) | 146.7929 |
+| State                      | R10-R11 gap (mm) | Object distance from front vertex (mm) | Object distance from film plane (mm) | System EFL (mm) |      Magnification | Front-vertex-to-film distance (mm) |
+| -------------------------- | ---------------: | -------------------------------------: | -----------------------------------: | --------------: | -----------------: | ---------------------------------: |
+| Infinity                   |           0.8700 |                                      ∞ |                                    ∞ |        135.2107 |                  0 |                           127.0400 |
+| Patent close endpoint      |          10.4000 |                              1471.8925 |                            1608.4625 |        130.2285 | -0.09950 (1:10.05) |                           136.5700 |
+| Data-file 0.900 m endpoint |          21.0811 |                               752.7489 |                             900.0000 |        125.0635 |  -0.21135 (1:4.73) |                           147.2511 |
+| Exact 3 ft reference       |          20.6229 |                               767.6071 |                             914.4000 |        125.2766 |  -0.20656 (1:4.84) |                           146.7929 |
 
 The patent states that 0.87-10.40 mm covers infinity to approximately 1500 mm. The independently solved front-vertex conjugate at 10.40 mm is 1471.9 mm, consistent with that rounded statement. The corresponding distance measured from the film plane is 1608.5 mm.
 
@@ -142,13 +142,13 @@ L6 is a weak negative flint. Its principal patented role is focus compensation, 
 
 The Table II example satisfies the patent’s principal first-order conditions:
 
-| Condition | Requirement | Verified Table II value | Result |
-|---|---|---:|---|
-| Telephoto form | EFL > front-vertex distance | 135.2107 mm > 127.0400 mm | Pass |
-| Rear clearance | BFL ≥ 0.7 × image diagonal | 59.67 mm ≥ 30.2866 mm | Pass |
-| Corrector lower-power bound | $|f_c| \ge 2\,\mathrm{BFL}$ | 296.436 mm ≥ 119.340 mm | Pass |
-| Negative-corrector upper bound | $|f_c| \le 3f$ | 296.436 mm ≤ 405.632 mm | Pass |
-| Corrector form | Negative meniscus, concave side imageward | L6 radii +62.1185 / +44.4264 mm | Pass |
+| Condition                      | Requirement                               |         Verified Table II value | Result               |
+| ------------------------------ | ----------------------------------------- | ------------------------------: | -------------------- | ----------------------- | ---- |
+| Telephoto form                 | EFL > front-vertex distance               |       135.2107 mm > 127.0400 mm | Pass                 |
+| Rear clearance                 | BFL ≥ 0.7 × image diagonal                |           59.67 mm ≥ 30.2866 mm | Pass                 |
+| Corrector lower-power bound    | $                                         |                             f_c | \ge 2\,\mathrm{BFL}$ | 296.436 mm ≥ 119.340 mm | Pass |
+| Negative-corrector upper bound | $                                         |                             f_c | \le 3f$              | 296.436 mm ≤ 405.632 mm | Pass |
+| Corrector form                 | Negative meniscus, concave side imageward | L6 radii +62.1185 / +44.4264 mm | Pass                 |
 
 ## Data-File Modeling and Semi-Diameters
 
@@ -171,30 +171,30 @@ These checks establish renderability and physical plausibility. They do not conv
 
 All values below were recalculated from the unscaled Table II radii, thicknesses, nd values, and focus spacing with an independent reduced-angle $[y,n\theta]$ matrix trace and a separate finite-conjugate solve. Element focal lengths are standalone in-air values; the design has no cemented interfaces.
 
-| Quantity | Patent / manufacturer value | Independently computed | Difference / interpretation |
-|---|---:|---:|---|
-| EFL at infinity | 135 mm nominal | 135.2107 mm | +0.2107 mm (+0.1561%) marketing rounding |
-| Patent R12-to-film distance | 59.67 mm | 59.7117 mm paraxial BFL | +0.0417 mm from printed precision |
-| Production BFL sheet | 59.78 mm | 59.7117 mm from Table II | Manufacturer value is +0.0683 mm |
-| Front-vertex-to-film distance | 127.04 mm | 127.0400 mm | Exact axial sum |
-| Diagonal full field | 18° nominal | 18.1802° | From 43.2666 mm diagonal and computed EFL |
-| Telephoto ratio | EFL > FVD | 0.93957 | Telephoto; not in the ≤0.7 compressed class |
-| L6 focal length | -296.4 mm | -296.4362 mm | -0.0362 mm |
-| Surface-by-surface Petzval sum | not stated | +0.000363732 mm⁻¹ | Petzval radius +2749.3 mm |
+| Quantity                       | Patent / manufacturer value |   Independently computed | Difference / interpretation                 |
+| ------------------------------ | --------------------------: | -----------------------: | ------------------------------------------- |
+| EFL at infinity                |              135 mm nominal |              135.2107 mm | +0.2107 mm (+0.1561%) marketing rounding    |
+| Patent R12-to-film distance    |                    59.67 mm |  59.7117 mm paraxial BFL | +0.0417 mm from printed precision           |
+| Production BFL sheet           |                    59.78 mm | 59.7117 mm from Table II | Manufacturer value is +0.0683 mm            |
+| Front-vertex-to-film distance  |                   127.04 mm |              127.0400 mm | Exact axial sum                             |
+| Diagonal full field            |                 18° nominal |                 18.1802° | From 43.2666 mm diagonal and computed EFL   |
+| Telephoto ratio                |                   EFL > FVD |                  0.93957 | Telephoto; not in the ≤0.7 compressed class |
+| L6 focal length                |                   -296.4 mm |             -296.4362 mm | -0.0362 mm                                  |
+| Surface-by-surface Petzval sum |                  not stated |        +0.000363732 mm⁻¹ | Petzval radius +2749.3 mm                   |
 
 The Petzval sum uses the surface expression $\Phi/(nn')$ at every refracting surface. It describes paraxial mean field-curvature tendency only; it does not establish flat tangential and sagittal image surfaces at f/2.3.
 
-| Element / subassembly | Verified standalone or in-air EFL (mm) |
-|---|---:|
-| L1 | +72.4718 |
-| L2 | +189.9170 |
-| L3 | -34.8479 |
-| L4 | +47.5813 |
-| L5 | -100.1655 |
-| L6 | -296.4362 |
-| L1-L2 air-spaced group | +52.1545 |
-| L1-L5 moving objective | +113.6194 |
-| L4-L5 air-spaced group | +82.5736 |
+| Element / subassembly  | Verified standalone or in-air EFL (mm) |
+| ---------------------- | -------------------------------------: |
+| L1                     |                               +72.4718 |
+| L2                     |                              +189.9170 |
+| L3                     |                               -34.8479 |
+| L4                     |                               +47.5813 |
+| L5                     |                              -100.1655 |
+| L6                     |                              -296.4362 |
+| L1-L2 air-spaced group |                               +52.1545 |
+| L1-L5 moving objective |                              +113.6194 |
+| L4-L5 air-spaced group |                               +82.5736 |
 
 ## Design Heritage and Context
 
@@ -206,16 +206,23 @@ Subcontractor, serial-number, and unsupported production-construction claims are
 
 ## Sources
 
-1. GB 1,408,910, *Improvements in or Relating to Photographic Lenses*, Ponder & Best, Inc., published 8 October 1975: pp. 1-8, Table II, Claim 9, and drawing Figure 3.
-2. US 3,942,876, *Telephoto Lens*, Ellis I. Betensky, granted 9 March 1976.
-3. Vivitar Corporation, *135mm f2.3 Automatic Telephoto Lens — Owner’s Manual*, 4/73, specifications p. 15.
-4. Ponder & Best, Inc., *Vivitar Series 1 135mm f2.3 Automatic Telephoto Lens*, September 1974, Section 3, Series 1, p. 6.
+1. GB 1,408,910, _Improvements in or Relating to Photographic Lenses_, Ponder & Best, Inc., published 8 October 1975: pp. 1-8, Table II, Claim 9, and drawing Figure 3.
+2. US 3,942,876, _Telephoto Lens_, Ellis I. Betensky, granted 9 March 1976.
+3. Vivitar Corporation, _135mm f2.3 Automatic Telephoto Lens — Owner’s Manual_, 4/73, specifications p. 15.
+4. Ponder & Best, Inc., _Vivitar Series 1 135mm f2.3 Automatic Telephoto Lens_, September 1974, Section 3, Series 1, p. 6.
 5. OHARA, S-BSM10 optical-glass datasheet.
 6. SCHOTT, N-BK7, SF6/N-SF6, N-SF2, N-SSK2, and LLF1 optical-glass catalog data.
-
 
 ## Production mount assignment
 
 The period Sears 1977–78 catalog, page 17, lists separate ordering codes for the Vivitar Series 1 135mm f/2.3 in Canon, Nikon, Minolta and Olympus mounts. These period systems map to FD, F, SR and OM. Its additional undifferentiated “Pentax Mount” line is left unassigned until the exact screw/bayonet variant is established; the array is a documented subset, not an exhaustive production list. [Source](https://www.cameramanuals.org/booklets/sears_1977-78_catalog.pdf).
 
 The assignment records the correlated production installation, not manufacturer confirmation of an exact patent-to-factory prescription.
+
+## 2026-10-30 source outline and glass reinspection
+
+Figure 3 (PDF page 10) was freshly inspected at 600 dpi against all twelve faces. Table II (pages 3–4) and repeated claim 9 (page 7) confirm all six Nd/Vd pairs. The first-to-last span is 67.37 mm, approximately 14.32 pixels/mm at 600 dpi, from a native scan of about 300 dpi. S1/S2 caps grow to 30 mm and the final compensator to 16.2 mm. S6's measured cap/outer ratio is approximately 0.773 ±0.011 for one native pixel. Depth 5.1 mm gives clear 18.23538 / outer 23.4 mm, ratio 0.77929, within that reading. The finite-point supplement reaches 17.46675 mm with required margin 0.05471 mm. No source-depth exemption is used.
+
+The full 23.4 mm source L3 front S5 produces 5.50 mm intrusion against 4.176 mm allowed in the previous gap. Retain its 20.3 mm cap and a connected conservative body with the accepted 23.4 mm rear land. Weak corners and oblique bevels establish no additional flat cuts. R/d and source/extrapolated focus controls remain unchanged.
+
+Six coefficient curves resolve, five within strict compatibility. Source Nd/Vd remain literal, using d-line notation without a numerical wavelength printed. There are no source additional indices or partial ratios. S-BSM10 (source νd 56.9 / coefficient 57.0527), SF6 (25.5 / 25.4320) and N-SSK2 (53.1 / 53.2737) remain approximate spectral proxies; their differences are not dismissed as rounding. L4's label now names the actual legacy SF2 curve (νd 33.84824), preserving the existing coefficients. Suppliers and historical melts remain unproved. Finite diagnostics cover the published 10.4 mm focus gap, both possible references for its approximate 1500 mm source distance, and the extrapolated 0.9 m endpoint. None is added as a source-certified MTF state.
