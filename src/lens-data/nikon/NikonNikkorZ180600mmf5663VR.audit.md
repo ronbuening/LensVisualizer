@@ -113,3 +113,20 @@ is 7.210 native px per lens mm. One native pixel at the cap end and at the edge 
   `sd`. Land 1.8642 mm, over the minimum.
 - 35: figure q 0.88 at an 85.1 px edge (11.8 mm), range 0.858–0.902. The beam rule put the cut at 0.984 of `sd`.
   Land 0.1946 mm (1.4 native px), over the minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/WO2024062958A1.pdf`, Example 2 / Figure 5, PDF p. 90, at 600 dpi, rotated
+object-left. The previously measured vertex spacings give 7.210 native px/mm (0.1387 mm/px). All 25 physical
+elements, including the modeled L25 glass/resin layers, were checked on both halves. The supported lands on
+5, 10, 21 and 35 already have cuts that clear the traced beams. Their depths and clear radii stay unchanged.
+
+The additional source lands on 12, 36 and 42A end inside the current optical caps. Their outer outlines are
+already represented by the stored radii; adding an extension outside those radii would invent taller elements.
+Moving those caps inward to the figure readings would clip the beams documented above. The other ordinary
+faces run to their edges; cemented interfaces cannot receive extensions. No further cut or extension is supported
+without changing the qualified optical model.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.

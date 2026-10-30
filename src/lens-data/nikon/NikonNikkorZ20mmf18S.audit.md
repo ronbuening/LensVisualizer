@@ -73,3 +73,20 @@ the figure's q:
 
 Every land is longer than the 0.1 mm minimum, and no q range reaches 1. The figure draws L11 and L51 wider than their
 sd at this scale (edges 447 and 274.5 px, 25.7 and 15.8 mm); the ranges above use sd × scale, the wider of the two.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/WO2021117429A1.pdf`, Example 1 / Figure 1, PDF p. 37, on its native 2478 × 3507
+1-bit raster, rotated object-left. This PDF uses raster pixels as page points, so rendering at 72 dpi recovers the
+native source without treating its oversized media box as an A4 sheet. The S1–S27A vertex span remains
+1848 px / 106.119 mm = 17.41 native px/mm. All 14 physical elements (15 modeled media) and both halves were
+checked. The lands on 2, 15 and 26A are already represented by the three retained cuts.
+
+The apparent extra step at L35/L36 is a cemented-boundary height change. The L12 hybrid land belongs to the
+substrate/resin boundary and cannot be extended as an ordinary air face without misrepresenting the bonded layer.
+Other ordinary faces reach their element edges, or leave only an unresolved one/two-pixel change. No further
+extension or concave cut is supported.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the existing inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
