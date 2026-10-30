@@ -1573,7 +1573,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3A | Element 2 resin cap | abbe | `UV-cured optical resin (patent-listed nd/vd)` | No catalog match |
+| 3A | Element 2 resin cap | abbe | `Optical resin (source-listed nd/vd; chemistry and curing process unspecified)` | No catalog match |
 
 ### [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) - 93.3% trusted (14/15); 93.3% Sellmeier (14/15) - US 10,191,246 B2
 
@@ -2427,9 +2427,9 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 16 | G9 BR | abbe | `Unmatched (Canon BR organic; nd=1.57060, νd=20.1)` | Explicit unmatched/proprietary annotation |
-| 17 | G10 | abbe | `Unmatched (patent dense flint; CDGM H-ZBaF4 rejected by partial dispersion)` | Explicit unmatched/proprietary annotation |
-| 27 | G16 | abbe | `Unmatched (patent dense flint; CDGM H-ZBaF4 rejected by partial dispersion)` | Explicit unmatched/proprietary annotation |
+| 16 | G9 high-partial layer | abbe | `Unmatched (anonymous high-partial medium; nd1.57060, nu d20.08; BR production correlation only; chemistry, cure and supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 17 | G10 | abbe | `Unmatched (anonymous patent medium; H-ZBaF4 rejected by published partial mismatch; supplier, melt and chemistry unspecified)` | Explicit unmatched/proprietary annotation |
+| 27 | G16 | abbe | `Unmatched (anonymous patent medium; H-ZBaF4 rejected by published partial mismatch; supplier, melt and chemistry unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18135mmf3556RLMOISWR.data.ts) - 81.3% trusted (13/16); 81.3% Sellmeier (13/16) - US 9,651,761 B2
 

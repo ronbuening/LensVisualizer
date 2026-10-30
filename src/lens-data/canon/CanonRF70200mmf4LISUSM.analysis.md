@@ -9,8 +9,8 @@
 **Published:** February 4, 2021\
 **Inventor:** Makoto Nakahara\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Zoom Lens and Optical Apparatus*\
-**Example details:** Example 1
+**Title:** _Zoom Lens and Optical Apparatus_\
+**Example details:** Numerical Example 1
 
 The prescription transcribed in the data file is Numerical Example 1 of US 2021/0033835 A1. The project correlation is fixed to the CANON RF 70-200mm f/4 L IS USM. Canon does not identify this patent as the production prescription in its public product literature, so the match is a production-correlation inference rather than a manufacturer confirmation.
 
@@ -35,13 +35,13 @@ L1 is the positive front unit. L2 is the fixed negative unit during the three pu
 
 With the image plane held fixed, the wide-to-tele unit motions recomputed from the authored spacing arrays are −55.62 mm for L1, 0 mm for L2, −10.59 mm for L3, −2.49 mm for L4, −10.59 mm for L5, −27.26 mm for L6, and −15.22 mm for L7. These values reproduce the patent's tabulated M1, MLp, and MLn quantities for L1, L3, and L4. The only apparent reversal between the three tabulated stations is L2: its fixed-image start coordinate changes by about +0.02 mm at the middle state and returns at tele. Figure 1 identifies L2 as fixed during zooming; the fixed-image reconstruction shows that this 0.02 mm middle-state excursion is consistent with accumulated rounding in the published two-decimal spacing table rather than a physical reversal.
 
-The term *telephoto* is used here only under the project's strict `TL/EFL < 1` definition. The wide and middle states have `TL/EFL = 1.903195` and `1.302276`, respectively, and therefore do not qualify. The tele endpoint gives `TL/EFL = 0.995985` and narrowly does. None of the three states is retrofocus under the corresponding `BFD > EFL` test.
+The term _telephoto_ is used here only under the project's strict `TL/EFL < 1` definition. The wide and middle states have `TL/EFL = 1.903195` and `1.302276`, respectively, and therefore do not qualify. The tele endpoint gives `TL/EFL = 0.995985` and narrowly does. None of the three states is retrofocus under the corresponding `BFD > EFL` test.
 
 Example 1 is entirely spherical. No surface in the selected example carries an asphere marker and the final data file has an empty `asph` object. No scaling is applied to the patent prescription.
 
-A source/model distinction is required at two non-glass planes. Patent surface 12 is explicitly the diaphragm and becomes the sole `STO` surface in the data file. Patent surface 6 is a plane air-to-air surface followed by 1.55 mm of air. Figure 1 separately labels a flare-cutting diaphragm `FP`; the sequential model therefore treats surface 6 as the probable inactive FP/control plane. Because it has no refractive power and is not an active blocker in LensVisualizer, it is omitted and its 1.55 mm following space is merged into patent gap d5. The authored gap 5 is therefore 2.59/40.93/58.21 mm at wide/middle/tele instead of the patent's raw d5 values of 1.04/39.38/56.66 mm. The omission preserves the axial station of the following powered surfaces.
+A source/model distinction is required at two non-glass planes. Patent surface 12 is the diaphragm and is the modeled `STO`. Source row 6 is a flat air-to-air plane at the Figure 1 flare diaphragm FP; its following 1.55 mm air interval is combined with d5 as 2.59/40.93/58.21 mm. The location is resolved, but no physical aperture diameter or zoom-dependent opening is published. Its clipping is unmodeled; it is not asserted to be optically inactive. The aggregate gaps and all following glass positions remain literal. No arbitrary FP radius or iris schedule is inferred to certify source illumination.
 
-The patent publishes no clear-aperture or stop-diameter table for Example 1. All surface semi-diameters in the data file are consequently modeling inferences, derived from the traced marginal/chief-ray envelopes and constrained by the production mechanical envelope. Figure 1 draws the L12/L13, L22/L23, L41/L42, and L51/L52 cemented pairs with common outer rims; the data therefore uses shared radii of 25.0, 12.5, 12.8, and 14.5 mm across those pairs instead of stepped element outlines. L22/L23 uses the smaller common radius because enlarging its front surface would overlap L21 across the published 4.9 mm air gap. The selected values retain positive edge thickness and pass the surface-domain and image-circle checks. The stop's authored `sd = 12.70 mm` is likewise a modeled clear radius, not a patent dimension. The paraxial wide-open iris radii implied by the modeled entrance pupil and the published design f-numbers are 9.2435, 11.3557, and 12.6903 mm across the three zoom states; the active wide-open iris radii traced from the same f-numbers are 9.252, 11.394, and 12.788 mm, so the tele opening is slightly larger than the authored `sd`.
+The patent publishes no clear-aperture or stop-diameter table for Example 1. All surface semi-diameters are therefore inferences. The current native Figure 1 review below refines fifteen caps and one resolved S26 shoulder, preserving the optical prescription, all source f-numbers and derived iris controls. The five cemented pairs retain connected optical interfaces; D2's front cap remains constrained by S8-S9 clearance, so no unsupported bonded land or equal-height block is added. The active derived iris radii are 9.243505/11.355699/12.690252 mm. Older larger real-ray iris estimates are not current engine values or published physical dimensions.
 
 No sensor cover glass, filter plate, folded path, or mechanical component is included in the sequential optical model.
 
@@ -93,7 +93,7 @@ L31 is the single physical element in positive lens unit L3 (`Lp`), so its stand
 
 ### L41 — Biconcave Negative, D3 Front Member
 
-`nd = 1.76385`, `νd = 48.5`. Glass: **764485 — lanthanum-crown class (vendor unresolved)**. `f = −17.536 mm`.
+`nd = 1.76385`, `νd = 48.5`. Glass: **764485 — high-index moderate-dispersion coordinate class (vendor unresolved)**. `f = −17.536 mm`.
 
 L41 is the strongly negative front member of D3 and provides most of the pair's negative standalone tendency. It is the first element of L4, the patent's negative unit `Ln` immediately behind L3.
 
@@ -101,11 +101,11 @@ L41 is the strongly negative front member of D3 and provides most of the pair's 
 
 `nd = 1.80610`, `νd = 40.7`. Glass: **NBFD13 (HOYA)**. `f = +24.196 mm`.
 
-L42 is the patent's positive lens Gp. Unlike the other glass identities in the prescription, this one is explicit: ¶0033 names HOYA NBFD13 and gives `νd = 40.73` and `θgF = 0.5671`. The final data file supplements the rounded patent surface row with current HOYA catalog values `nC = 1.80022`, `nF = 1.82001`, `ng = 1.83123`, and `ΔPgF = −0.0078`.
+L42 is the patent's positive lens Gp. Selected Example 1 Table 1, PDF page 20 / printed 8, explicitly gives Gp `νdp = 40.73` and `θgFp = 0.5671`. The surface row retains its rounded νd = 40.7. Paragraph 0033 names HOYA NBFD13 as an example material satisfying the conditions; this supports a source-illustrated compatible proxy, not proof of historical supplier or melt. The earlier catalog nC/nF/ng and catalog ΔPgF = -0.0078 overrides are removed; the genuine published partial is retained in the engine convention below.
 
 The distinction between standalone and cemented power is especially important here. Gp by itself is positive at +24.196 mm, while the L41+L42 cemented D3 pair is the complete L4 lens unit and computes to −69.023 mm. Thus the patent's phrase “positive lens Gp included in the negative lens unit Ln” is reproduced literally by the prescription rather than being a naming paradox.
 
-The patent assigns Gp a specific chromatic role. Paragraphs 0028–0035 describe using a material with a suitably small anomalous partial-dispersion quantity in this post-stop negative unit to control longitudinal and lateral chromatic aberration, especially toward the telephoto end. This is the one place where the data file carries explicit line-index and `dPgF` fields, so partial-dispersion discussion is supported rather than inferred from Abbe number alone.
+The patent assigns Gp a specific chromatic role. Paragraphs 0028–0035 describe using a material with a suitably small anomalous partial-dispersion quantity in this post-stop negative unit to control longitudinal and lateral chromatic aberration, especially toward the telephoto end. This is the one place where the data file carries a source-derived `dPgF` field. No per-lens spectral line indices are authored; the partial-dispersion discussion follows the published Table 1 values rather than Abbe number alone.
 
 ### L51 — Negative Meniscus, D4 Front Member
 
@@ -121,13 +121,13 @@ L52 is the third `1.49700/81.5` element and is cemented to L51. The sign and dis
 
 ### L53 — Biconvex Positive
 
-`nd = 1.83481`, `νd = 42.7`. Glass: **835427 — lanthanum class (vendor unresolved)**. `f = +40.542 mm`.
+`nd = 1.83481`, `νd = 42.7`. Glass: **835427 — high-index coordinate class (vendor unresolved)**. `f = +40.542 mm`.
 
 L53 is air-spaced by 0.15 mm from D4 and completes the positive L5 unit. Its high-index biconvex form adds positive power behind the chromatically opposed D4 pair. The same `1.83481/42.7` coordinate reappears in L61, but the two elements have opposite shapes and standalone powers.
 
 ### L61 — Biconcave Negative, D5 Front Member
 
-`nd = 1.83481`, `νd = 42.7`. Glass: **835427 — lanthanum class (vendor unresolved)**. `f = −30.021 mm`.
+`nd = 1.83481`, `νd = 42.7`. Glass: **835427 — high-index coordinate class (vendor unresolved)**. `f = −30.021 mm`.
 
 L61 begins cemented pair D5 and is strongly negative. D5 is the complete L6 lens unit, one of the two units for which Figure 1 shows a dotted focus motion. The patent indicates that L6 moves imageward when focusing from infinity toward a short distance.
 
@@ -147,36 +147,36 @@ L71 is the fourth `1.49700/81.5` element. Unlike the other three repeated low-di
 
 `nd = 1.85478`, `νd = 24.8`. Glass: **855248 — high-index flint class (vendor unresolved)**. `f = +121.788 mm`.
 
-L72 is a positive, high-index/high-dispersion rear element. In combination with negative L71 and the intervening air gap, the complete L7 unit is only weakly negative at −295.358 mm. The patent uses this rear negative unit as part of its compactness strategy (¶0041); the project nevertheless reserves the term *telephoto* for the strict total-length/EFL test described above.
+L72 is a positive, high-index/high-dispersion rear element. In combination with negative L71 and the intervening air gap, the complete L7 unit is only weakly negative at −295.358 mm. The patent uses this rear negative unit as part of its compactness strategy (¶0041); the project nevertheless reserves the term _telephoto_ for the strict total-length/EFL test described above.
 
 ## Glass Identification and Selection
 
 The patent's Numerical Example 1 gives d-line refractive index and Abbe number but does not name the vendor for most rows. The data file therefore uses coordinate classes rather than speculative catalog identities. This prevents a close numerical match in a modern catalog from being mistaken for evidence about Canon's actual melt selection.
 
-| Stored glass label | nd | νd | Elements | Identification status |
-|---|---:|---:|---|---|
-| 487702 low-dispersion crown class | 1.48749 | 70.2 | L11 | Vendor unresolved |
-| 613443 medium-dispersion class | 1.61340 | 44.3 | L12 | Vendor unresolved |
-| 497815 UD-class low-dispersion glass | 1.49700 | 81.5 | L13, L31, L52, L71 | Vendor unresolved; four occurrences correlate with Canon's four-UD product specification |
-| 516641 crown class | 1.51633 | 64.1 | L21 | Vendor unresolved |
-| 541472 flint class | 1.54072 | 47.2 | L22 | Vendor unresolved |
-| 001255 high-index flint class | 2.00069 | 25.5 | L23 | Vendor unresolved |
-| 764485 lanthanum-crown class | 1.76385 | 48.5 | L41 | Vendor unresolved |
-| NBFD13 (HOYA) | 1.80610 | 40.7 | L42 / Gp | Patent-explicit identity; current HOYA line data stored |
-| 051269 very-high-index flint class | 2.05090 | 26.9 | L51 | Vendor unresolved |
-| 835427 lanthanum class | 1.83481 | 42.7 | L53, L61 | Vendor unresolved |
-| 728285 dense-flint class | 1.72825 | 28.5 | L62 | Vendor unresolved |
-| 855248 high-index flint class | 1.85478 | 24.8 | L72 | Vendor unresolved |
+| Stored glass label                                     |      nd |   νd | Elements           | Identification status                                                                     |
+| ------------------------------------------------------ | ------: | ---: | ------------------ | ----------------------------------------------------------------------------------------- |
+| 487702 low-dispersion crown class                      | 1.48749 | 70.2 | L11                | Vendor unresolved                                                                         |
+| 613443 medium-dispersion class                         | 1.61340 | 44.3 | L12                | Vendor unresolved                                                                         |
+| 497815 UD-class low-dispersion glass                   | 1.49700 | 81.5 | L13, L31, L52, L71 | Vendor unresolved; four occurrences correlate with Canon's four-UD product specification  |
+| 516641 crown class                                     | 1.51633 | 64.1 | L21                | Vendor unresolved                                                                         |
+| 541472 flint class                                     | 1.54072 | 47.2 | L22                | Vendor unresolved                                                                         |
+| 001255 high-index flint class                          | 2.00069 | 25.5 | L23                | Vendor unresolved                                                                         |
+| 764485 high-index moderate-dispersion coordinate class | 1.76385 | 48.5 | L41                | Vendor unresolved                                                                         |
+| NBFD13 (HOYA)                                          | 1.80610 | 40.7 | L42 / Gp           | Published Gp partial; source-illustrated compatible proxy, historical supplier unresolved |
+| 051269 very-high-index flint class                     | 2.05090 | 26.9 | L51                | Vendor unresolved                                                                         |
+| 835427 high-index coordinate class                     | 1.83481 | 42.7 | L53, L61           | Vendor unresolved                                                                         |
+| 728285 dense-flint class                               | 1.72825 | 28.5 | L62                | Vendor unresolved                                                                         |
+| 855248 high-index flint class                          | 1.85478 | 24.8 | L72                | Vendor unresolved                                                                         |
 
-Only NBFD13 is promoted to a named catalog glass. The patent itself supplies the identity and the partial-dispersion rationale (¶0033), while the current HOYA catalog supplies the spectral line indices stored in the data file. Recalculation from those stored line indices gives `νd = 40.732693` and `θgF = 0.566953`; these closely reproduce the patent's rounded `40.73` and `0.5671` without replacing the patent values.
+The sixteen media resolve to existing compatible curves: L11 S-FSL5; L12 S-NBM51; four 497815 entries K-PFK80; L21 S-BSL7; L22 S-TIL2; L23 J-LASFH17; L41 S-LAH96; L42 NBFD13; L51 TAFD65; L53/L61 J-LASF05; L62 S-TIH10; L72 S-NBH56. These are qualified spectral proxies, not evidence for historical supplier, melt or chemical composition. Four production-correlated UD badges remain conditional catalog inferences. Gp's APD status is source-backed by its published partial, independent of supplier identity.
 
-No apochromatic classification is asserted. The patent discusses suppression of longitudinal and lateral chromatic aberration, but the data file has direct higher-order spectral information only for Gp. The other class-level elements fall back to their authored d-line `nd/νd` representation unless a future, defensible catalog identity supplies validated Sellmeier data.
+Selected Table 1 prints θgF = 0.5671, νdp = 40.73 and cubic-normal quantity Q = -0.0046. Its definition is `Q = θgF - (-1.665e-7 νd^3 + 5.213e-5 νd^2 - 5.656e-3 νd + 0.7268)`; the printed θ/ν give -0.004561164, rounding to the table. The engine's `dPgF` instead uses the linear normal `0.6438 - 0.001682 νd`. At the retained surface νd = 40.7, that normal is 0.5753426, so source-derived `dPgF = 0.5671 - 0.5753426 = -0.0082426`. This preserves the genuine published partial without mistaking the source cubic Q for the engine field or replacing the rounded prescription Abbe number. The source does not print nC/nF/ng for any selected medium; the three catalog-derived per-lens line fields are removed. No APO or production spectral-identity claim is made.
 
 ## Focus Mechanism
 
 The production lens uses an electronic floating-focus system with two independently driven lens groups. Canon identifies one as the focusing group and one as the floating group, each driven by a Nano USM motor. Canon also publishes a minimum focusing distance of 0.6 m throughout the zoom range and a maximum magnification of 0.28× at 200 mm.
 
-The selected patent embodiment gives only the *directions* of the internal focus motions. Figure 1 and ¶0022 show L4 moving toward the object side and L6 toward the image side when focusing from infinity toward a short distance. Example 1 does not publish the numerical close-focus gaps, close object distance, or close-focus magnification needed to solve both internal group positions over the zoom range.
+The selected patent embodiment gives only the _directions_ of the internal focus motions. Figure 1 and ¶0022 show L4 moving toward the object side and L6 toward the image side when focusing from infinity toward a short distance. Example 1 does not publish the numerical close-focus gaps, close object distance, or close-focus magnification needed to solve both internal group positions over the zoom range.
 
 For that reason the data file's focus status is **NO_INTERNAL_RECONSTRUCTION**. Every zoom `var` entry stores identical infinity/close values, so the focus control does not fabricate a hidden cam law. `closeFocusM = 0.6` remains production metadata only. No total focus travel is claimed because the patent does not provide it and the product specifications do not expose the internal group displacements.
 
@@ -186,9 +186,9 @@ The distinction matters because the L4 and L6 focus motions are independent of t
 
 The most explicit chromatic design choice in the patent is the positive Gp element embedded within net-negative L4. Paragraphs 0028–0035 explain that lateral chromatic aberration becomes difficult as a compact positive-leading zoom is shortened, and that the post-stop negative unit provides a useful ray-height location for correction. Gp is then assigned an anomalous-dispersion condition to control the g-line contribution.
 
-The final data represents this strategy at two levels. First, L42/Gp carries the patent-explicit NBFD13 identity and current HOYA `nC`, `nF`, `ng`, and `dPgF` values. Second, four other elements use the repeated `1.49700/81.5` low-dispersion coordinate pair. Their locations span the front unit, L3, L5, and L7, distributing low-dispersion power across the zoom rather than concentrating it in a single group.
+The final data represents this strategy at two levels. First, L42/Gp retains the selected Table 1 partial through source-derived `dPgF`, with NBFD13 as a source-illustrated compatible curve. Second, four other elements use the repeated `1.49700/81.5` low-dispersion coordinate pair. Their locations span the front unit, L3, L5, and L7, distributing low-dispersion power across the zoom rather than concentrating it in a single group.
 
-The four repeated rows correlate numerically with Canon's statement that the production lens contains four UD elements, but the patent does not label those four rows “UD” or name their vendor. Accordingly, the analysis treats the match as correlation evidence and the data labels them UD-*class*, not as manufacturer-confirmed glass identities.
+The four repeated rows correlate numerically with Canon's statement that the production lens contains four UD elements, but the patent does not label those four rows “UD” or name their vendor. Accordingly, the analysis treats the match as correlation evidence and the data labels them UD-_class_, not as manufacturer-confirmed glass identities.
 
 Those four positions carry `apd: "inferred"` so the diagram's special-glass coloring agrees with the published four-UD count. The separate L42/Gp tag remains `apd: "patent"` because its NBFD13 partial-dispersion condition is explicit in the patent. Neither classification converts the four production-correlated rows into vendor identifications.
 
@@ -200,24 +200,24 @@ The patent's central material condition is written around
 
 A source contradiction must be preserved. Summary ¶0005 and claim 17 print an internally impossible form with a positive lower bound, `+0.1000 < Q < −0.0001`. Body ¶0026 instead prints `−0.1000 < Q < −0.0010`, while claim 1 prints `−0.1000 < Q < −0.0001`. No value in the data file has been altered to “repair” the source. The prescription is unambiguous, and Numerical Example 1's own Table 1 gives `Q = −0.0046`, which is compatible with the coherent body and claim-1 forms.
 
-The following values are independently recomputed from the final prescription where the condition is defined by prescription geometry or powers. Conditions (5) and (6) use the patent's own published `SKw = 14.44 mm`, `LDw = 137.50 mm`, and `fw = 72.27 mm`, because those are the source quantities to which Table 1 applies. For condition (1), the value shown uses the current HOYA line indices stored on Gp; the patent's own rounded Table 1 value remains −0.0046.
+The following values are independently recomputed from the final prescription where the condition is defined by prescription geometry or powers. Conditions (5) and (6) use the patent's own published `SKw = 14.44 mm`, `LDw = 137.50 mm`, and `fw = 72.27 mm`, because those are the source quantities to which Table 1 applies. For conditions (1) and (2), the values shown use the genuine selected Table 1 partial and Abbe coordinates; the rounded source-surface Abbe remains unchanged.
 
-| Condition | Coherent patent range | Recomputed value | Result |
-|---|---|---:|---|
-| (1) Q | `−0.1000 < Q < −0.0010` in ¶0026; claim 1 relaxes upper bound to `−0.0001` | −0.00470213 | Passes both coherent forms |
-| (2) νdp | `20 < νdp < 50` in ¶0026; claim 1 uses `25 < νdp < 50` | 40.732693 from stored HOYA line indices | Pass |
-| (3) Dwp/Dtp | `0.10 < Dwp/Dtp < 0.70` | 0.595202399 | Pass |
-| (4) ndp | `1.65 < ndp < 2.10` | 1.8061 | Pass |
-| (5) SKw/fw | `0.05 < SKw/fw < 0.50` | 0.199806282 | Pass |
-| (6) LDw/fw | `1.0 < LDw/fw < 3.5` | 1.902587519 | Pass |
-| (7) fGp/f1 | `0.10 < fGp/f1 < 1.20` | 0.159588948 | Pass |
-| (8) f2/f1 | `−0.80 < f2/f1 < −0.10` | −0.383362639 | Pass |
-| (9) fRn/f1 | `−3.00 < fRn/f1 < −0.10` | −1.948115262 | Pass |
-| (10) \|MLp/M1\| | `0 < \|MLp/M1\| < 0.50` | 0.190399137 | Pass |
-| (11) \|MLn/M1\| | `0 < \|MLn/M1\| < 0.40` | 0.044768069 | Pass |
-| (12) νdL1Pave | `65 < νdL1Pave < 99` | 75.85 from authored rounded surface values | Pass |
+| Condition       | Coherent patent range                                                      |                           Recomputed value | Result                     |
+| --------------- | -------------------------------------------------------------------------- | -----------------------------------------: | -------------------------- |
+| (1) Q           | `−0.1000 < Q < −0.0010` in ¶0026; claim 1 relaxes upper bound to `−0.0001` |        −0.004561164 from published θgF/νdp | Passes both coherent forms |
+| (2) νdp         | `20 < νdp < 50` in ¶0026; claim 1 uses `25 < νdp < 50`                     |                40.73 from selected Table 1 | Pass                       |
+| (3) Dwp/Dtp     | `0.10 < Dwp/Dtp < 0.70`                                                    |                                0.595202399 | Pass                       |
+| (4) ndp         | `1.65 < ndp < 2.10`                                                        |                                     1.8061 | Pass                       |
+| (5) SKw/fw      | `0.05 < SKw/fw < 0.50`                                                     |                                0.199806282 | Pass                       |
+| (6) LDw/fw      | `1.0 < LDw/fw < 3.5`                                                       |                                1.902587519 | Pass                       |
+| (7) fGp/f1      | `0.10 < fGp/f1 < 1.20`                                                     |                                0.159588948 | Pass                       |
+| (8) f2/f1       | `−0.80 < f2/f1 < −0.10`                                                    |                               −0.383362639 | Pass                       |
+| (9) fRn/f1      | `−3.00 < fRn/f1 < −0.10`                                                   |                               −1.948115262 | Pass                       |
+| (10) \|MLp/M1\| | `0 < \|MLp/M1\| < 0.50`                                                    |                                0.190399137 | Pass                       |
+| (11) \|MLn/M1\| | `0 < \|MLn/M1\| < 0.40`                                                    |                                0.044768069 | Pass                       |
+| (12) νdL1Pave   | `65 < νdL1Pave < 99`                                                       | 75.85 from authored rounded surface values | Pass                       |
 
-Table 1 reports 75.89 for condition (12). The difference from 75.85 is attributable to precision: the surface prescription prints the two relevant L1 positive-lens Abbe numbers as 70.2 and 81.5, whose arithmetic mean is 75.85, whereas Table 1 evidently uses more precise underlying glass coordinates.
+Table 1 reports 75.89 for condition (12). The two relevant surface rows print 70.2 and 81.5, whose mean is 75.85. Printed rounding is a possible explanation for the 0.04 difference, but it is not independently established. The unresolved source-summary qualification retains every printed prescription value.
 
 ## Image Stabilization
 
@@ -230,12 +230,12 @@ Consequently, this analysis does not infer which patent unit is the production I
 The final data file was re-evaluated by independent sequential height/reduced-angle tracing with ray vector `[y, ν = n·u]` and by a separate ABCD multiplication. The maximum basis-ray disagreement across the three zoom states is `2.84×10⁻14`.
 
 | Infinity state | Patent focal length (mm) | Computed EFL (mm) | Patent SK/BFD (mm) | Computed BFD (mm) | Patent overall length (mm) | Computed track (mm) |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 72.27 | 72.257446 | 14.44 | 14.427572 | 137.50 | 137.52 |
-| Middle | 135.02 | 135.025187 | 24.23 | 24.238168 | 175.84 | 175.84 |
-| Tele | 193.89 | 193.918671 | 29.66 | 29.673553 | 193.12 | 193.14 |
+| -------------- | -----------------------: | ----------------: | -----------------: | ----------------: | -------------------------: | ------------------: |
+| Wide           |                    72.27 |         72.257446 |              14.44 |         14.427572 |                     137.50 |              137.52 |
+| Middle         |                   135.02 |        135.025187 |              24.23 |         24.238168 |                     175.84 |              175.84 |
+| Tele           |                   193.89 |        193.918671 |              29.66 |         29.673553 |                     193.12 |              193.14 |
 
-The residuals are at the scale expected from a source table whose radii/thicknesses are mostly printed to 0.001–0.01 mm. No radius-sign correction or uniform focal-length scaling is required.
+The source has small first-order/track discrepancies. Printed rounding is a possible explanation, not an established correction. No radius, spacing or uniform scaling is changed to fit a summary.
 
 The surface-by-surface Petzval calculation, using `P_i = φ_i/(n_i n'_i)`, sums to `+0.000373515525 mm⁻¹`, corresponding to a reciprocal magnitude of approximately 2677.265 mm. This is a first-order curvature diagnostic, not a direct prediction of the final aberrated field surface.
 
@@ -247,4 +247,36 @@ The inferred semi-diameter geometry remains physically separate from the patent 
 2. Canon U.S.A., **RF70-200mm F4 L IS USM — Technical Specifications.** Product/support data used for marketed 70–200 mm f/4 identity, RF mount, 16 elements/11 groups, four UD lenses, 0.6 m MFD, 0.28× maximum magnification, nine-blade diaphragm, dual Nano USM focus/floating system, filter diameter, and mechanical envelope. https://www.usa.canon.com/support/p/rf70-200mm-f4-l-is-usm
 3. Canon U.S.A., **“Canon Adds Two RF Lenses And PIXMA PRO Printer Ideal For The Enthusiast Photographer,”** November 3, 2020. Used for announcement timing and the two-motor floating-focus description. https://www.usa.canon.com/newsroom/2020/20201103-lens
 4. Canon Camera Museum, **RF70-200mm F4 L IS USM.** Used for marketing date, construction summary, production block diagram, and focus/floating description. https://global.canon/en/c-museum/product/rf501.html
-5. HOYA Group Optics Division, **Optical Glass Data, HOYA Excel catalog, updated June 1, 2026.** Used only for the patent-explicit NBFD13 spectral fields stored in the data file. https://www.hoya-opticalworld.com/english/datadownload/index.html
+5. HOYA Group Optics Division, **Optical Glass Data, HOYA Excel catalog, updated June 1, 2026.** Existing compatible NBFD13 spectral proxy context only; catalog per-lens line/partial overrides are removed. Selected-source Table 1 supplies the retained partial. https://www.hoya-opticalworld.com/english/datadownload/index.html
+
+## Original Shape-and-Glass Review - 2026-10-30
+
+Exact original `patents/US20210033835A1.pdf`, SHA-256 `d6ce9da164a73e3753e5ca8448eb1ee06bd5545f4373f9d7e78f50c71ca265b6`, independently confirmed from the first page as US 2021/0033835 A1, Makoto Nakahara / Canon, February 4, 2021. Numerical Example 1, paragraph 0059, is entirely on PDF page 17 / printed 5: rows 1-26 lower left and 27-29 upper right, all sixteen media and complete three-station zoom/summary data. This is not the Example 2 continuation on PDF 18. Paragraph 0055 on PDF 16-17 defines d-referenced index/Abbe; paragraph 0027 gives the spectral definitions, paragraph 0033 on PDF 15 / printed 3 illustrates NBFD13, and selected Table 1 on PDF 20 / printed 8 prints Gp's actual partial. Figure 1 is PDF 2 / sheet 1; Figures 2A/2B are both PDF 3 / sheet 2, with f/4.08 and f/4.12 labels. All source R/d, pairs, stops and controls remain unchanged.
+
+### Native rims, shoulder and retained constraints
+
+The embedded figures are 2560 x 3300 one-bit at 300 ppi. Enlarging them does not add native detail. The Figure 1 first-to-final vertex span is about 1320 native pixels across 123.06 mm, about 10.73 px/mm; practical semi-height uncertainty is +/-0.8 mm for the schematic drawing. Leaders, FP/SP strokes, motion arrows and brackets are excluded. The following cap refinements follow resolved native endpoints and source-supported beam checks; dimensions remain inferred, not patent mechanical apertures.
+
+| Surface      | Previous clear sd (mm) | Adopted clear sd (mm) | Evidence                                                                            |
+| ------------ | ---------------------: | --------------------: | ----------------------------------------------------------------------------------- |
+| 1 / 2        |            30.0 / 29.5 |           25.5 / 25.5 | Native front meniscus about 25.4; removes disproportionate front height             |
+| 7 / 8        |            16.0 / 15.5 |           13.5 / 13.5 | Native L21 endpoints about 13.4                                                     |
+| 10 / 11      |            12.5 / 12.5 |           12.6 / 12.6 | Minimal correction of exact-working tele marginal clip; native D2 about 13.3 +/-0.8 |
+| 13 / 14      |            14.5 / 15.5 |           13.8 / 13.8 | Native L3 about 13.7, resolved equal end heights                                    |
+| 23 / 24 / 25 |     15.0 / 15.5 / 16.0 |    13.5 / 13.5 / 13.5 | Native D5 connected square outline about 13.4                                       |
+| 26 / 27      |            20.0 / 20.5 |           15.5 / 17.0 | Native L71 front curved cap about 15.5; outer blank about 17.0                      |
+| 28 / 29      |            21.5 / 21.5 |           19.0 / 19.0 | Native L72 endpoints about 18.7                                                     |
+
+S26 gains `rimExtensionSd = 17.0` beyond its 15.5 mm optical cap. The native front stroke is vertical from the 17 mm outer blank to the beginning of the concave cap, resolved on both ends and connected to the same optical element. It is not a leader or a mechanical flange. No other shoulder is resolved; no cut, opaque cemented land, resin layer or disconnected wing is added. Five cemented interfaces remain connected, without an invented cement medium. No source filter or rear plate is tabulated.
+
+A uniform D2 clear cap 12.6 mm is rejected: S8-S9 combined sag 4.46 mm exceeds the unchanged 4.410 mm allowed intrusion in the 4.90 mm gap at every source station. S9 therefore remains 12.5; only the interface/rear caps rise by 0.1 mm. No R/d or guard changes. Native-only trials reducing D3 to 11.4, D4 to 13.4 and L53 to 15.0 pass endpoint geometry/aperture/field checks, but are not adopted: their retained approximate caps are within about 15% of the schematic outline and no distinct end-shape defect requires more precision. Conversely, full-clear S26 at the outer 17 mm would curve through the resolved shoulder, so the optical cap remains 15.5. The omitted, undimensioned FP aperture remains an explicit source-illumination limitation.
+
+### Current runtime and actual SVGs
+
+A 65-position diagnostic is identical to actual runtime z, sd and current iris at focus 0/0.5/1 (maximum difference zero); the authored focus pairs are identical, so no finite-focus motion is available. All 65 aperture-census states pass within 3% under the derived/paraxial iris convention. The separate exact-working values are f/4.080633, 4.097978 and 4.149275 versus printed 4.08/4.08/4.12. All 65 exact-working calls trace, maximum excess 0.710569%; before the minimal S10/S11 correction two near-tele calls were vignetted at S10. Across seven presets at 65 zoom positions, 455/455 calls trace after versus 453/455 before. The iris and all aperture presets remain unchanged.
+
+All 65 format-field states reach at least 99%. Independent bounding-sphere vector chiefs at source 16.67/9.10/6.37 degrees clear and reach image heights 21.431436/22.116192/22.225697 mm, distinct from source paraxial Y21.64. Fixed-baseline field angles allow before/after comparison of 260 fields with 193 current-iris pupil samples each. All axial samples pass 193/193; source-station format-edge counts change 180/149/124 to 175/142/119. Across those fields, 139 counts are unchanged, 45 improve and 76 decrease, maximum loss twelve samples. Native source rims can reduce peripheral sampled transmission; no production illumination is claimed.
+
+The source infinity image residuals are -0.012428/+0.008168/+0.013553 mm. The largest interpolated residual is +1.556956 mm at zoom 0.3125, actual EFL 108.364839 versus displayed 111.488750 mm. Three printed stations do not supply a continuous compensator cam, so intermediate states remain illustrative and do not preserve exact infinity focus. No trajectory is invented. Finite focus, decentered IS and full FP illumination remain unavailable.
+
+Actual generated wide/middle/tele SVGs were compared with native Figure 1. All 1,040 paths over 65 states are finite, closed and connected, with zero hidden renderer trimming. Source fidelity, sampled centered runtime clearance and production correlation remain separate conclusions.

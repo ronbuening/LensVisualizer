@@ -1,254 +1,118 @@
+# Canon RF 20mm f/1.4 L VCM — Optical Design Analysis
+
 ## Patent Reference and Design Identification
 
-**Patent:** US 2025/0389929 A1
-**Application Number:** 19/243,548
-**Filed:** Jun. 19, 2025
-**Published:** Dec. 25, 2025
-**Priority:** JP 2024-101168, Jun. 24, 2024
-**Inventor:** Takahiro Saito (Tochigi, JP)
-**Applicant:** Canon Kabushiki Kaisha (Tokyo, JP)
-**Title:** Optical System and Imaging Apparatus Including Same
-**Example details:** FIG. 3; aberration diagrams FIGS. 4A/4B
+**Patent:** US 2025/0389929 A1\
+**Application Number:** 19/243,548\
+**Filed:** June 19, 2025\
+**Published:** December 25, 2025\
+**Priority:** JP 2024-101168, June 24, 2024\
+**Inventor:** Takahiro Saito\
+**Applicant:** Canon Kabushiki Kaisha (Canon Inc.)\
+**Title:** Optical System and Imaging Apparatus Including Same\
+**Example details:** Fig. 3, PDF p. 4; aberrations Fig. 4A/B, p. 5; prescription and single-lens data pp. 28–30; Tables 1–2 pp. 38–39.
 
-The patent discloses seven numerical examples spanning roughly 14–24 mm wide-angle mirrorless-camera objectives. All share a three-group (L1–L2–L3) architecture with inner focus via L2; L1 and L2 are positive in every example, while L3 is negative in six of seven examples (Example 6 alone has a weakly positive L3). Example 2 is identified as the Canon RF 20mm F1.4 L VCM on the following convergent evidence:
+The selected Numerical Example 2 is a three-group fast wide-angle prime with source f = 20.60 mm and F1.46. The 16 explicitly modeled optical media form 11 air-separated groups. One is a 0.70 mm bonded high-partial medium. The existing correlation with the marketed RF 20mm F1.4 L VCM uses the following convergent points:
 
-1. **Focal length.** Patent 20.60 mm; Canon specifies 20 mm.
-2. **Maximum aperture.** Patent F/1.46; Canon specifies f/1.4.
-3. **Element and group count.** Patent prescription contains 16 individual optical members in 11 air-separated groups. Canon specifies 15 elements in 11 groups. The difference of one is accounted for by G9, a 0.70 mm thick Canon BR (Blue Spectrum Refractive) organic layer (nd = 1.57060, νd = 20.1) that the patent counts as a separate lens but Canon marketing does not count as a discrete element.
-4. **Special-element count.** The prescription contains exactly 1× Super UD glass (G3, νd = 94.7), 2× UD glasses (G11 and G13, both νd = 81.7), 1× BR organic element (G9), and 2× GMo (glass-molded) aspherical elements (G2 with one aspherical surface, G14 with two aspherical surfaces — three aspherical surfaces total on two elements). Canon specifies 1× Super UD, 2× UD, 1× BR, 2× GMo Aspherical.
-5. **Field coverage.** Patent Example 2 is tabulated at image height 18.90 mm and half-field angle 42.54°. This is slightly wider than the 18.00 mm full-frame horizontal semiformat, but it is not the 21.64 mm full-frame diagonal semiformat. Canon's production specifications nevertheless state full-frame coverage and a 94° diagonal angle of view; this is treated as an identification caveat rather than a direct patent diagonal-field match.
-6. **Focus type.** L2 moves toward the object during close focusing; L1 and L3 remain stationary (¶0032, ¶0137). Canon specifies inner focus with a Voice Coil Motor (VCM).
-7. **No optical image stabilization.** The patent does not describe an IS group for this embodiment, consistent with the production lens (IBIS only, no in-lens OIS).
-8. **Patent timing.** Priority June 24, 2024; the lens was announced in March 2025. This timeline is typical for Canon L-series filings.
+1. The focal length, aperture and inner-focus positive L2 architecture correspond to the marketed 20 mm f/1.4 lens.
+2. The source's 16 optical media can correspond to the prior production count of 15 elements in 11 groups if the thin bonded layer is not counted separately in that marketed count. This is a counting interpretation, not manufacturer confirmation of the exact prescription.
+3. The low-dispersion positions, two aspheric elements and high-partial layer correspond to the prior production Super UD, UD, GMo and BR descriptions. Those product terms do not prove the source media's chemistry or manufacturing process.
+4. The June 2024 priority and group layout support the family correlation. The source finite state differs from the marketed 0.20 m focus endpoint and cannot establish the production cam.
 
-No other example in this patent matches the production lens. Examples 1 and 5 have f = 14.42 mm (14 mm class). Example 3 has f = 20.60 mm but F/1.85. Example 7 has f = 20.44 mm at F/1.85 with a different element configuration. Example 4 has f = 24 mm. Example 6 has f = 20.6 mm at F/1.50 with a positive L3. Only Example 2 matches the production specification across all criteria simultaneously.
+Earlier shape/material work dated July 4, July 30 and September 24, 2026 remains historical coverage in the audit. The October 30 follow-up directly reinspects this original publication to correct the native outline, selected printed precision and partial-dispersion convention. No other publication or numerical example supplies replacement prescription data.
 
 ## Optical Architecture
 
-The RF 20mm F1.4 L VCM is a negative-front wide-angle design comprising 16 optical members (15 elements in Canon's marketing count, excluding the BR layer) in 11 air-separated groups. It is not a strict retrofocus design: Example 2 has an air-equivalent back focus of 18.44 mm against f = 20.60 mm, so sk/f = 0.895 rather than greater than 1. The design is divided into three lens groups:
+L1 is positive as a group despite its three consecutive leading negative lenses. It contains G1–G10, the stop, cemented D1 and the three-medium D2. L2 contains G11–G14 and moves toward the object during close focusing. L3 is the fixed rear negative doublet G15/G16. The source group focal lengths are +45.15 / +32.25 / −85.88 mm; the literal prescription computes +45.144174 / +32.253875 / −85.883306 mm. The infinity d-line EFL is 20.597916 mm and BF 18.435195 mm, against printed 20.60 and 18.44. Source total track is 117.50 mm. BFD/EFL below one does not meet the strict BFD-greater-than-EFL retrofocus definition.
 
-**L1 (front group, positive, f₁ = 45.15 mm):** Surfaces 1–18, containing G1 through G10. This group collects the wide-angle field (half-angle 42.54°) and delivers a converging beam to L2. It includes three negative meniscus lenses closest to the object (G1, G2, G3), a cemented doublet (G4+G5), a strong equi-biconvex element (G6), a negative meniscus (G7), a cemented triplet containing the BR element (G8+G9+G10), and the aperture stop (surface 14). The stop is located inside L1, between G7 and the cemented triplet (¶0046, ¶0121).
-
-**L2 (focus group, positive, f₂ = 32.25 mm):** Surfaces 19–25, containing G11 through G14. This group moves 1.61 mm toward the object when focusing from infinity to β = −0.1. It contains a cemented doublet (G11+G12), a biconvex singlet (G13), and a biconvex doubly-aspherical element (G14). The concave object-side surface of the lens closest to the object plane in L2 makes the off-axis beam substantially concentric to the surface, reducing variations in astigmatism, coma, and angle of view during focusing (¶0047, ¶0169).
-
-**L3 (rear group, negative, f₃ = −85.88 mm):** Surfaces 26–28, a single cemented doublet (G15+G16). This group acts as a negative field flattener, increasing the exit angle of off-axis rays toward the image plane and reducing the diameter of L3 (¶0049, ¶0152). The negative lens closest to the image plane assists Petzval-sum correction.
-
-The three consecutively arranged negative lenses at the front of L1 (G1, G2, G3) are a defining feature of the patent claims (Claim 1, ¶0042). Distributing the negative refractive power among three elements suppresses barrel distortion and field curvature that would otherwise dominate at 20 mm and f/1.4 (¶0043). The patent notes that no positive lens is disposed between these three negative elements (¶0043), preserving a continuously diverging front section that helps maintain adequate rear clearance for a short-flange mirrorless mount.
+The stop remains inside L1 at surface 14, authored as STO. The selected table lists no optical filter, rear plate or additional hybrid asphere. Paragraph 0175 on PDF p. 26 excludes optical filters, faceplates and similar camera-side members from its reported length. None is invented in this prescription; the last 18.44 mm is the source's air gap. General plastic/organic/glass options at ¶0172 do not identify the chemistry of this selected high-partial medium or establish an aspheric replica layer.
 
 ## Element-by-Element Analysis
 
-### G1 — Negative Meniscus, convex to object
+Every source medium was checked, including G9's bonded layer. The table uses explicit d-line coordinates; the compatible curve column identifies the currently selected spectral proxy, without historical supplier, melt, chemistry or manufacturing proof.
 
-nd = 1.60311, νd = 60.6. Glass: S-BSM14 (Ohara) — dense barium crown. f = −53.14 mm.
+| Medium | Source nd / νd  | Published absolute θgF | Current compatible curve | Optical role                         |
+| ------ | --------------- | ---------------------- | ------------------------ | ------------------------------------ |
+| G1     | 1.60311 / 60.60 | Not printed            | S-BSM14                  | Front negative meniscus              |
+| G2     | 1.58313 / 59.40 | Not printed            | J-SK12                   | Aspherical front negative meniscus   |
+| G3     | 1.43875 / 94.66 | Not printed            | S-FPL55                  | Low-dispersion front negative        |
+| G4     | 1.75500 / 52.30 | Not printed            | N-LAK33B                 | Positive member of D1                |
+| G5     | 1.85478 / 24.80 | 0.6122                 | S-NBH56                  | Negative member of D1                |
+| G6     | 1.90043 / 37.40 | Not printed            | TAFD37A                  | Strong equi-biconvex positive        |
+| G7     | 1.54072 / 47.20 | Not printed            | S-TIL2                   | Weak negative before stop            |
+| G8     | 2.00069 / 25.50 | Not printed            | TAFD40                   | High-index positive member of D2     |
+| G9     | 1.57060 / 20.08 | 0.7782                 | Unresolved               | Thin high-partial member of D2       |
+| G10    | 1.66565 / 35.64 | 0.5824                 | Unresolved               | Negative member of D2                |
+| G11    | 1.49700 / 81.65 | Not printed            | J-FK01A                  | Low-dispersion focus positive, D3    |
+| G12    | 1.77047 / 29.74 | 0.5951                 | NBFD29                   | Focus negative, D3                   |
+| G13    | 1.49700 / 81.65 | Not printed            | J-FK01A                  | Second low-dispersion focus positive |
+| G14    | 1.80400 / 46.50 | Not printed            | S-LAH65VS                | Double-aspheric focus positive       |
+| G15    | 1.59282 / 68.60 | Not printed            | FCD515                   | Positive member of rear D4           |
+| G16    | 1.66565 / 35.60 | Not printed            | Unresolved               | Negative member of rear D4           |
 
-The outermost element collects the ultra-wide field evaluated by the patent at 42.54° half field; the production lens is specified for a 94° diagonal full-frame angle of view. Its meniscus form with the convex surface toward the object provides negative power while controlling the angle of incidence of off-axis rays on the steep rear surface. The moderate-index crown glass keeps the element lightweight at the large front diameter.
-
-### G2 — Negative Meniscus (Asph rear), convex to object
-
-nd = 1.58313, νd = 59.4. Glass: J-SK12 (Hikari) — barium crown. f = −83.73 mm. Surface 4 is aspherical (K = −4.88704; coefficients through A14).
-
-G2 is one of the two GMo aspherical elements. Its rear surface carries a strong negative conic (K ≈ −4.89), which flattens the peripheral curvature relative to the paraxial zone. The aspherical departure corrects distortion and astigmatism across the wide field (¶0154). The choice of a Hikari barium crown — closely matched to Ohara S-BSM14 in index but slightly softer — may reflect moldability requirements for glass-molded asphere production.
-
-### G3 — Negative Meniscus, concave to object (convex to image)
-
-nd = 1.43875, νd = 94.7. Glass: S-FPL55 (Ohara) — fluorophosphate, Canon Super UD designation. f = −70.04 mm.
-
-The third of the three consecutive front negative lenses, and the only Super UD element in the design. Its extremely low dispersion (νd = 94.7) provides strong negative chromatic contribution that opposes the positive chromatic aberration of the downstream high-index positive elements. The concave object-side surface (¶0155) increases the negative air-lens power formed between G2 and G3, contributing to Petzval-sum reduction.
-
-### G4+G5 — Cemented Doublet (positive net, f = +56.66 mm)
-
-**G4** — Biconvex positive. nd = 1.75500, νd = 52.3. Glass: N-LAK33B catalog equivalent (Schott, code 755523; patent supplier not identified) — lanthanum crown. f = +24.46 mm.
-
-**G5** — Negative meniscus, concave to object. nd = 1.85478, νd = 24.8. Glass: S-NBH56 (Ohara) — dense niobium flint. f = −42.84 mm. θgF = 0.6122 (patent Table 2).
-
-This cemented pair forms a classic crown–flint achromatic doublet. The high-index lanthanum crown of G4 provides strong positive power in a compact form. G5 serves as the achromatizing partner and is one of the negative lenses Gn satisfying conditional expressions (6) and (7) for g-line chromatic correction. Its anomalous partial dispersion deviation ΔθgFn ≈ 0.0000 — essentially on the Schott normal line — provides classical achromatic correction without over- or under-correcting on the g-line (¶0079–¶0084).
-
-### G6 — Equi-Biconvex Positive
-
-nd = 1.90043, νd = 37.4. Glass: TAFD37A (Hoya) — dense tantalum flint. f = +40.12 mm.
-
-An equi-biconvex element (|R₁| = |R₂| = 70.946 mm) providing strong positive power. The nd = 1.90 index is among the highest in the design, enabling the element to bend rays strongly while keeping surface curvatures moderate. The symmetric biconvex form distributes refraction equally between the two surfaces.
-
-### G7 — Negative Meniscus, convex to object
-
-nd = 1.54072, νd = 47.2. Glass: S-TIL2 (Ohara) — light titanium flint. f = −129.29 mm.
-
-A weakly negative meniscus placed immediately before the aperture stop. Its low index and moderate dispersion contribute a gentle negative power step that fine-tunes the Petzval sum without introducing significant chromatic imbalance.
-
-### G8+G9+G10 — Cemented Triplet (weakly positive net, f = +229.45 mm)
-
-**G8** — Biconvex positive. nd = 2.00069, νd = 25.5. Glass: TAFD40-W (Hoya) — ultra-dense tantalum flint. f = +51.55 mm.
-
-**G9** — Meniscus, concave to object, weakly positive. nd = 1.57060, νd = 20.1. Glass: Unmatched — Canon BR (Blue Spectrum Refractive) organic material. f = +304.54 mm. θgF = 0.7782 (patent Table 2).
-
-**G10** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: unmatched patent dense flint. f = −53.51 mm. θgF = 0.5824 (patent Table 2). CDGM H-ZBaF4 is close in nd/νd but is rejected because its published ΔPgF = +0.0042 conflicts with the patent's approximately −0.0026.
-
-This cemented triplet is the chromatic correction heart of the design. G8, at nd = 2.00069, is the highest-index element in the system, contributing powerful positive refraction while its ultra-high dispersion (νd = 25.5) would normally produce severe axial chromatic aberration. The BR organic layer G9 — a 0.70 mm thick layer with anomalous partial dispersion (ΔθgFp = +0.1443, satisfying conditional expression (15): 0.050 < ΔθgFp < 0.250) — selectively converges shorter wavelengths toward the g-line, compensating for the excessive secondary spectrum that primary achromatization alone cannot correct (¶0085–¶0086, ¶0115–¶0119). G10 is the negative achromatizing partner, satisfying both CE(6) (ΔθgFn = −0.0026) and CE(7) (Ndn line value = −0.1033), within the prescribed ranges.
-
-The triplet is located on the image side of the aperture stop and remains stationary during focusing (¶0121, ¶0122). Its placement where the axial ray height is large enhances its chromatic correction effectiveness.
-
-### G11+G12 — Cemented Doublet (negative net, f = −39.79 mm)
-
-**G11** — Positive meniscus, concave to object. nd = 1.49700, νd = 81.7. Glass: J-FK01A (Hikari) — fluorophosphate, Canon UD designation. f = +61.63 mm.
-
-**G12** — Negative meniscus, concave to object. nd = 1.77047, νd = 29.7. Glass: NBFD29 (Hoya) — niobium dense flint. f = −25.49 mm. θgF = 0.5951 (patent Table 2).
-
-This doublet is the first element of focus group L2, located closest to the object plane within L2. Its concave object-side surface creates a substantially concentric configuration with respect to the off-axis beam incident from L1, reducing astigmatism, coma, and angle-of-view variations during focusing (¶0047, ¶0162, ¶0166). G12 is a negative lens Gn satisfying CE(6) (ΔθgFn = −0.0047) and CE(7), providing chromatic correction within the moving focus group to reduce variations in axial chromatic aberration during focusing (¶0089, ¶0163). G11 carries the UD classification (νd = 81.7 satisfies CE(12): 60.00 < νd2p < 100.00), contributing to magnification chromatic aberration correction.
-
-### G13 — Biconvex Positive
-
-nd = 1.49700, νd = 81.7. Glass: J-FK01A (Hikari) — fluorophosphate, Canon UD designation. f = +38.67 mm.
-
-The second UD element, providing positive power in L2 with low dispersion. The biconvex form distributes refraction across both surfaces. The fluorophosphate glass matches G11, simplifying manufacturing logistics while maintaining the low-dispersion character needed throughout the focus group.
-
-### G14 — Biconvex Positive (both surfaces aspherical)
-
-nd = 1.80400, νd = 46.5. Glass: S-LAH65VS (Ohara) — dense lanthanum flint. f = +42.45 mm. Surfaces 24 and 25 are both aspherical (K = 0 on both; polynomial coefficients through A12).
-
-The second GMo aspherical element, and the only element with two aspherical surfaces. Although it is a positive element, νd = 46.5 places S-LAH65VS on the dense lanthanum-flint side of the crown/flint boundary, not among ordinary crowns. Located at the rear of L2, it corrects spherical aberration, astigmatism, and coma generated by the fast f/1.4 beam converging toward the image plane (¶0170). The patent notes that configuring one of the positive-lens surfaces in L2 as aspherical is preferred for reducing surface-shape errors during molding (¶0170).
-
-### G15+G16 — Cemented Doublet (L3, negative net, f = −85.88 mm)
-
-**G15** — Biconvex positive (near plano-convex). nd = 1.59282, νd = 68.6. Glass: FCD515 (Hoya) — fluorophosphate crown. f = +46.39 mm.
-
-**G16** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: unmatched patent dense flint. f = −29.75 mm. The repeated coordinate alone is insufficient to borrow CDGM H-ZBaF4's incompatible Sellmeier curve.
-
-L3 consists of this single cemented doublet acting as a negative field-flattening group. The positive element G15 uses a mid-dispersion fluorophosphate crown, while G16 (same glass as G10) provides the dominant negative power. The negative net focal length of L3 increases the exit angle of off-axis rays, reducing the required diameter of L3 (¶0049) and contributing to the compact 76.5 × 99.3 mm form factor. The Petzval contribution of this negative rear group partially cancels the positive Petzval sum of L1+L2, yielding a computed system Petzval radius of approximately 443 mm.
+D1 combines a positive member and a negative achromatizing member. D2 contains the high-index positive G8, the thin positive high-partial G9 and negative G10. D3 is the leading focus doublet G11/G12, followed by G13 and the double-aspheric G14. D4 is the negative rear group. Their curved bonded interfaces are retained as optical caps, without opaque interface lands. G9 remains a single connected layer between the prescribed curvatures; its sampled minimum edge thickness at the adopted 14.3 mm cap is 0.097327 mm, with the source 0.70 mm center thickness unchanged.
 
 ## Glass Identification and Selection
 
-Glass identification was checked against manufacturer catalog data from Ohara, Hoya, Schott, Sumita, Hikari, and CDGM using nd/νd matching at the d-line (587.6 nm), with patent partial dispersion used where available. The identifications below are catalog matches or explicitly marked unmatched.
+Paragraph 0174, PDF p. 26, explicitly defines d = 587.6, F = 486.1, C = 656.3 and g = 435.8 nm, νd = (Nd−1)/(NF−NC) and θgF = (Ng−NF)/(NF−NC). No individual spectral indices are printed. All media now explicitly use `indexReference: "d"`. The 13 existing compatible curve selections remain unchanged and qualified as spectral proxies. G9, G10 and G16 stay unresolved; G9 is an anonymous high-partial source medium with a BR production correlation, not identified proprietary organic chemistry. G10/G16 do not inherit H-ZBaF4: its published partial dispersion conflicts with G10's printed θgF, and repeating the rounded coordinate does not prove G16's historical identity or precise partial.
 
-| Element | nd | νd | Best Match | Catalog | Δnd | Δνd | Label |
-|---|---|---|---|---|---|---|---|
-| G1 | 1.60311 | 60.6 | S-BSM14 | Ohara | 0.00000 | −0.02 | Exact |
-| G2 | 1.58313 | 59.4 | J-SK12 | Hikari | 0.00000 | 0.00 | Exact |
-| G3 | 1.43875 | 94.7 | S-FPL55 | Ohara | 0.00000 | +0.08 | Exact |
-| G4 | 1.75500 | 52.3 | N-LAK33B catalog equivalent | Supplier not identified | 0.00000 | 0.00 | Exact |
-| G5 | 1.85478 | 24.8 | S-NBH56 | Ohara | 0.00001 | +0.01 | Exact |
-| G6 | 1.90043 | 37.4 | TAFD37A | Hoya | 0.00000 | +0.04 | Exact |
-| G7 | 1.54072 | 47.2 | S-TIL2 | Ohara | 0.00000 | −0.01 | Exact |
-| G8 | 2.00069 | 25.5 | TAFD40-W | Hoya | 0.00000 | +0.05 | Exact |
-| G9 | 1.57060 | 20.1 | — | — | — | — | Unmatched (Canon BR organic) |
-| G10 | 1.66565 | 35.6 | — | — | — | — | Unmatched; H-ZBaF4 ΔPgF conflict |
-| G11 | 1.49700 | 81.7 | J-FK01A | Hikari | 0.00000 | +0.09 | Exact |
-| G12 | 1.77047 | 29.7 | NBFD29 | Hoya | 0.00001 | −0.02 | Exact |
-| G13 | 1.49700 | 81.7 | J-FK01A | Hikari | 0.00000 | +0.09 | Exact |
-| G14 | 1.80400 | 46.5 | S-LAH65VS | Ohara | 0.00000 | −0.01 | Exact — dense lanthanum flint |
-| G15 | 1.59282 | 68.6 | FCD515 | Hoya | 0.00000 | 0.00 | Exact |
-| G16 | 1.66565 | 35.6 | — | — | — | — | Unmatched; repeated patent coordinate |
+Table 2's selected Example 2 column supplies more precise νd for six unambiguously named positions. All are consistent with rounding of the primary surface table: G3/S5 94.66→94.7; G9/S16 20.08→20.1; G10/S17 35.64→35.6; G11/S19 and G13/S22 81.65→81.7; G12/S20 29.74→29.7. The 81.65 values are at the half-step that rounds to 81.7. These are printed precision corrections, without changed nd, R/d or curve selection. G16's primary νd 35.6 stays literal; no unprinted precise value is borrowed from G10.
 
-Thirteen of sixteen elements have coefficient-backed catalog matches from Ohara, Hoya, Hikari, or Schott. G9 is Canon's proprietary BR organic material. G10 and G16 share the patent coordinate nd = 1.66565, νd = 35.6, but the newly source-verified CDGM H-ZBaF4 row is not a safe equivalent: its nd/νd pair is nearby while its published PgF = 0.5895 and ΔPgF = +0.0042 conflict with G10's patent θgF = 0.5824 and ΔθgF ≈ −0.0026. Both rows therefore retain the patent Abbe/partial-dispersion fallback rather than receiving an incorrect catalog Sellmeier curve.
+The four genuine θgF values require conversion to the engine normal, rather than storing the paper's differently defined conditional residual as engine `dPgF`:
 
-Canon's published special-element designations map onto the prescription as follows (element positions are inferred from glass identity):
+| Medium | Absolute θgF | Engine dPgF = θgF − (0.6438 − 0.001682νd) | Paper's printed conditional residual |
+| ------ | -----------: | ----------------------------------------: | -----------------------------------: |
+| G5     |       0.6122 |                               +0.01011360 |                               0.0000 |
+| G9     |       0.7782 |                               +0.16817456 |                             +0.14427 |
+| G10    |       0.5824 |                               −0.00145352 |                              −0.0025 |
+| G12    |       0.5951 |                               +0.00132268 |                              −0.0047 |
 
-- **Super UD:** G3 (S-FPL55, νd = 94.7) — 1 element, matching Canon's specification of 1× Super UD.
-- **UD:** G11 and G13 (both J-FK01A, νd = 81.7) — 2 elements, matching Canon's specification of 2× UD.
-- **BR:** G9 (organic, νd = 20.1) — 1 element, matching Canon's specification of 1× BR.
-- **GMo Aspherical:** G2 (1 aspherical surface) and G14 (2 aspherical surfaces) — 2 elements, matching Canon's specification of 2× GMo Aspherical.
+The active runtime normal reconstructs every absolute θgF to floating precision. The paper's conditional values remain source evidence; they are not substituted directly into a different engine normal. Paragraphs 0079 and 0115, PDF pp. 22–23, explicitly discuss anomalous partial dispersion and Table 2 maps these exact positions, supporting the retained patent APD qualification. No catalog-derived individual line override exists or is introduced. The other 12 positions receive no fabricated per-position partial.
 
 ## Focus Mechanism
 
-The lens employs inner focusing via L2 (G11–G14), driven by a Voice Coil Motor (VCM). L1 and L3 remain stationary with respect to the image plane during focusing (¶0032).
+The published endpoints are infinity and the stated β = −0.1 finite row. D18 changes 9.05→7.44 mm and D25 changes 2.20→3.81 mm, moving L2 objectward by 1.61 mm while preserving L1, L3 and the 117.50 mm track. Intermediate focus is linear illustration between these source gaps. The catalog's 0.20 m production MFD is not the actual object plane of focus control 1.
 
-| Parameter | Infinity | β = −0.1 |
-|---|---|---|
-| Object distance from S1 | ∞ | 300.024 mm |
-| d18 (L1–L2 gap) | 9.05 mm | 7.44 mm |
-| d25 (L2–L3 gap) | 2.20 mm | 3.81 mm |
-| Total optical length | 117.50 mm | 117.50 mm |
-
-L2 moves 1.61 mm toward the object from infinity to β = −0.1. The gap changes are exactly complementary (Δd18 = −1.61, Δd25 = +1.61), confirming that L1 and L3 are stationary and total track is invariant. The patent's Table 1 value M₂ = −1.614 mm represents L2's focus travel (negative sign indicating movement toward the object side per ¶0108).
-
-Canon specifies a minimum focusing distance of 0.20 m with 0.19× maximum magnification. The patent's close-focus conjugate at β = −0.1 places the object plane 300.024 mm in front of the first surface, or about 417.5 mm from the patent image plane when the 117.50 mm total optical length is included. Canon's production specification of 0.20 m with 0.19× maximum magnification is therefore substantially closer than the patent's tabulated finite-conjugate state.
+The finite table on PDF p. 29 / printed p. 12 says “First surface from object plane” 300.024 mm. The literal rounded gaps instead give Gaussian first-object distance 182.490667 mm, object-to-image 299.990667 mm and magnification −0.100014. Taking 300.024 mm literally from the first vertex requires a different image gap, 17.701874 mm rather than 18.44, and gives refocused magnification −0.062793. This is an unresolved source reference-plane discrepancy; the near agreement with an image-plane distance does not prove a source correction. All printed focus gaps are retained. Paragraph 0136 also calls L1/L2 stationary after describing L2 motion; the abstract, ¶0032 and Claim 1 identify L1/L3 as stationary. Both qualifications are recorded in `source.errata`.
 
 ## Aspherical Surfaces
 
-Three aspherical surfaces appear on two elements, both manufactured as glass-molded (GMo) aspheres. The patent's aspherical sag equation (¶0176) is:
-
-$$x = \frac{(h^2/R)}{1 + \sqrt{1 - (1+K)(h/R)^2}} + A4 \cdot h^4 + A6 \cdot h^6 + A8 \cdot h^8 + A10 \cdot h^{10} + A12 \cdot h^{12} + A14 \cdot h^{14} + A16 \cdot h^{16}$$
-
-where $x$ is the sag from the vertex, $h$ is the radial height, $R$ is the paraxial radius of curvature, $K$ is the conic constant, and $A4$–$A16$ are the aspherical coefficients. The conic constant convention is standard (K = 0 for a sphere).
-
-**Surface 4 (G2 rear):** R = 17.890 mm, K = −4.88704. Coefficients: A4 = 9.85206e−05, A6 = −4.60796e−07, A8 = 2.61477e−09, A10 = −1.06987e−11, A12 = 2.62680e−14, A14 = −2.76184e−17. The strong negative conic (K ≈ −4.89, hyperbolic departure) significantly flattens the surface at the periphery, correcting distortion and astigmatism across the wide field. At the data-file semi-diameter h = 13.8 mm, the verified total sag is 5.927 mm, or −0.579 mm relative to the best-fit spherical base at the same radius.
-
-**Surface 24 (G14 front):** R = 87.489 mm, K = 0. Coefficients: A4 = −8.28107e−06, A6 = 7.81678e−09, A8 = −5.60781e−11, A10 = 2.06771e−13, A12 = −4.03084e−16. The negative A4 on this weakly curved converging surface flattens the outer zones, correcting residual spherical aberration from the fast f/1.4 beam. At h = 18.0 mm, surface 24 has a verified departure of −0.949 mm relative to its spherical base.
-
-**Surface 25 (G14 rear):** R = −54.320 mm, K = 0. Coefficients: A4 = 6.09726e−06, A6 = 5.11495e−09, A8 = −1.22444e−11, A10 = 1.38078e−13, A12 = −2.89951e−16. The positive A4 term adds curvature at the periphery of this diverging surface, working in concert with surface 24 to balance higher-order spherical aberration and coma. At h = 18.0 mm, surface 25 has a verified departure of +0.837 mm relative to its spherical base.
+The standard (1+K) sag equation at ¶0176, PDF p. 26, applies to S4A, S24A and S25A. All three source conic constants and coefficients remain unchanged: S4A has K = −4.88704 and A4–A14; S24A and S25A have K = 0 and A4–A12. No source radius or polynomial was tuned to the drawing. The aspheric shape is established; the GMo production process is a separate correlation.
 
 ## Chromatic Correction Strategy
 
-The design employs a multi-layered chromatic correction approach spanning all three lens groups, with particular emphasis on controlling axial chromatic aberration on the g-line — a challenge noted in the patent as characteristic of large-diameter lenses (¶0085).
+The low-dispersion negative G3 balances color from downstream positive power; low-dispersion positives G11/G13 operate in the moving focus group. The paper explicitly places negative chromatic-correction media in L1/L2 and a high-partial positive medium in a cemented triplet (¶0079–¶0089, ¶0115–¶0122). These prescribed coordinates and genuine θgF values support a chromatic model, while catalog curves supply qualified spectral interpolation. They do not identify proprietary BR chemistry, cement, cure or historical glass melt.
 
-**Primary achromatization** is provided by conventional crown–flint cementing: the G4+G5 doublet in L1, the G11+G12 doublet in L2, and the G15+G16 doublet in L3.
+## Native Optical Outline and Retained Constraints
 
-**Secondary-spectrum correction on the g-line** is addressed through two mechanisms. First, negative lenses Gn satisfying conditional expressions (6) and (7) are distributed across both L1 and L2: G5 and G10 in L1, and G12 in L2 (¶0086–¶0088). These lenses have low anomalous partial dispersion (|ΔθgFn| < 0.015 for all three), meaning they lie close to the Schott normal line and do not over-correct on the g-line. Second, the BR element G9 — with its strongly anomalous positive partial dispersion (ΔθgFp = +0.1443) — selectively converges g-line radiation that would otherwise diverge excessively through the triplet. The patent characterizes this as enabling favorable correction of excessive axial chromatic aberration at shorter wavelengths (¶0116–¶0119).
+Fig. 3, PDF p. 4 / sheet 3, is a native 2560 × 3300 bilevel raster at approximately 300 ppi. Rotating it preserves native pixels. The 117.50 mm first-vertex-to-image track spans about 1,925 pixels, giving approximately 16.38 px/mm; practical rim uncertainty is ±0.7 mm. Whole-page enlarged renders are magnification, not extra source resolution. The original and final SVG were compared at that axial scale, excluding leaders, stop strokes, group brackets and image-plane ink.
 
-**Low-dispersion elements** (G3 Super UD, G11 and G13 UD) carry the positive refractive power needed for image formation while contributing minimal chromatic aberration of their own. The Super UD glass S-FPL55 (νd = 94.7) in G3 is placed at the front of L1 where it can influence both axial and lateral chromatic aberration across the full field.
+Twenty-six inferred optical caps are corrected to that outline; S2 remains at its prior clear 16.5 mm. The adopted front outer height is 22.65 mm, second-element outer 17.65 mm, G3 14.05 mm, D1 15.55 mm, G6 16.35 mm, G7 15.55 mm, D2 14.3 mm, leading focus D3 12.75 mm, G13 15.25 mm, G14 16.55 mm and rear D4 16.55 mm. S2 outer 22.65 and S4A outer 17.65 are represented by `rimExtensionSd`, retaining their separate clear caps of 16.5 and 15.6. Each source end, concavity and bonded layer/interface was inspected. No opaque bonded block, disconnected wing or inferred cut was added.
 
-No apochromatic claim is made for this design. While the BR element provides g-line correction beyond what classical achromatization achieves, the patent does not publish sufficient ΔPg,F data across enough elements to confirm three-wavelength apochromatic convergence.
-
-## Conditional Expressions
-
-The patent defines 17 conditional expressions (¶0034–¶0128) governing the optical system's architecture. Example 2 satisfies all applicable expressions. Values were independently computed and cross-checked against Table 1:
-
-| CE | Expression | Computed | Patent (Table 1) | Range |
-|---|---|---|---|---|
-| (1) | $f_2 / f$ | 1.566 | 1.566 | 0.50 – 3.00 |
-| (2) | $sk / f$ | 0.895 | 0.895 | 0.20 – 1.20 |
-| (3) | $f_1 / f_2$ | 1.400 | 1.400 | 0.30 – 3.00 |
-| (4) | $f / f_3$ | −0.240 | −0.240 | −1.50 – 1.50 |
-| (5) | $(R_{22} - R_{21}) / (R_{22} + R_{21})$ | 0.261 | 0.261 | −1.50 – 1.50 |
-| (8) | $(1 - \beta_2^2) \times \beta_3^2$ | 1.249 | 1.249 | 0.50 – 2.50 |
-| (9) | $sk / |f_3|$ | 0.215 | 0.215 | 0.00 – 0.80 |
-| (10) | $\Sigma D_{air} / (L - sk)$ | 0.450 | 0.450 | 0.20 – 0.70 |
-| (11) | $L / f$ | 5.704 | 5.704 | 2.00 – 15.00 |
-| (13) | $M_2 / D_{SP}$ | −0.032 | −0.032 | −0.200 – −0.005 |
-| (16) | $(D_{SP} + sk) / L$ | 0.581 | 0.581 | 0.30 – 0.80 |
-| (17) | $f_1 / f$ | 2.192 | 2.192 | 0.50 – 5.00 |
-
-Conditional expressions (6), (7), (12), (14), and (15) are glass-property expressions evaluated per element rather than per system. Their satisfaction was verified from Table 2 values:
-
-- **CE(6)** ΔθgFn: G5 = 0.0000, G10 = −0.0025, G12 = −0.0047 — all within (−0.015, 0.015). ✓
-- **CE(7)** Ndn line: G5 = −0.07182, G10 = −0.10331, G12 = −0.08434 — all within (−0.20, 0.05). ✓
-- **CE(12)** νd2p (positive lens G2p in L2): G11 = 81.65, G13 = 81.65 — both within (60.00, 100.00). ✓
-- **CE(14)** νd1n (negative lens G1n in L1): G3 = 94.66 (from Table 2 data) — within (60.00, 100.00). ✓
-- **CE(15)** ΔθgFp (positive lens Gp): G9 = 0.14427 — within (0.050, 0.250). ✓
-
-Expressions (8) and (13) depend on finite-ray quantities (β₂, β₃, M₂) that are not recoverable from a paraxial trace; the values above are reported on the patent's authority from Table 1.
+A source-like trial S2 optical cap of 17.65 mm was rejected: combined S2–S3 sag is approximately 5.070 mm across only 5.030 mm physical air, exceeding both the physical separation and unchanged 4.527 mm intrusion guard. The current S2 shoulder is cap-anchored, so its exact axial piston differs from the drawing; it does not recover the larger source-like optical cap. The full-cap mismatch is exposed rather than changing R/d or relaxing guards. The rear caps follow the source even though they retain a generic-corner restriction.
 
 ## Verification Summary
 
-Independent y-nu paraxial ray traces confirm the patent's stated values to within rounding tolerance:
+Surface and image-circle checks pass, and the source-station aperture audit meets its 3% convention tolerance. Current derived iris radius is 12.993901 mm, paraxial F1.46; real collimated rays give EFL/input-diameter 1.525873. Printed F1.46 does not independently establish a physical stop diameter. The nominal paraxial input ray reaches 13.645794 mm at the stop and is distinct from the live iris. All controls remain unchanged.
 
-| Quantity | Computed | Patent | Δ |
-|---|---|---|---|
-| System EFL | 20.598 mm | 20.600 mm | 0.002 |
-| L1 focal length | 45.14 mm | 45.15 mm | 0.01 |
-| L2 focal length | 32.25 mm | 32.25 mm | 0.00 |
-| L3 focal length | −85.88 mm | −85.88 mm | 0.00 |
-| Total track | 117.50 mm | 117.50 mm | 0.00 |
-| Back focal distance | 18.44 mm | 18.44 mm | 0.00 |
-| Half-field angle | 42.54° | 42.54° | 0.00 |
-| Petzval sum | 0.002258 | — | — |
-| Petzval radius | 442.9 mm | — | — |
+The source evaluates image height 18.90 mm. The table's 42.54° agrees with its paraxial field convention, while Fig. 4A's 46.4° agrees with the actual infinity chief root 46.402290°. Fig. 4B prints 46.7° for its finite plot; the current Gaussian finite inverse at the same 18.90 mm gives 47.244501°. These source/model conventions remain distinct; the focus reference discrepancy is not fitted away. The generic 21.65 mm corner needs 51.624349° at infinity and clips S28 (16.855223 mm height versus cap 16.55). The field audit reaches 21.262186 mm, 98.209% of the generic corner, while the source boundary remains clear. Its image-circle heuristic result is not full corner clearance.
 
-The data file uses inferred, renderer-conservative semi-diameters because the patent does not publish clear apertures. The chosen values were checked by code against sd/|R| and aspherical slope limits, edge thickness ≥ 0.30 mm, element front/rear semi-diameter ratio ≤ 1.25, and signed cross-gap sag intrusion ≤ 90% of the adjacent air gap. They should not be read as patent-published clear apertures or Canon production mechanical diameters.
+An actual finite-object grid uses 101 focus states × three fields × 97 current-iris pupil samples: 29,391 rays, 100 positive Gaussian finite controls, no virtual controls, and collimated infinity. All axial bundles clear. The single restricted chief is the infinity generic-corner probe; there are 7,214 ordinary pupil clips, 204 independently bounded first-surface cap misses and 274 bounded next-surface S2 misses, without unexplained interior failure or unaimed rays. Ordinary finite object heights are scaled by paraxial magnification, not solved to force a distorted image edge.
 
-All 16 individual element focal lengths were independently verified to ≤ 0.01 mm agreement with the patent's single-lens data table. One OCR discrepancy was detected and corrected during extraction: G10's focal length read as "−51.51" in OCR text but is clearly "−53.51" on the rasterized page 30 image, matching the independent computation of −53.51 mm.
+Separate positive-distance diagnostics preserve the disputed reference alternatives: image-plane 300.024/focus gives 29,391 rays, 7,280 ordinary clips and 498 bounded S1/S2 cap misses; literal first-vertex 300.024/focus gives 29,391 rays, 7,312 ordinary clips and 596 bounded misses. Each has clear axial rays and the same infinity generic-corner chief restriction. These are supplements, not published intermediate conjugates or a source correction.
 
-All 12 system-level conditional expressions match Table 1 exactly. All glass-property conditional expressions (6), (7), (12), (14), (15) are satisfied for the identified elements per Table 2. Focus kinematics are self-consistent: the sum of variable-gap changes is exactly zero, confirming L1 and L3 stationarity.
+A stronger inverse image-edge supplement first solves unclipped finite chief geometry at each of the 100 nonzero focus controls, targeting both 18.90 and 21.65 mm. All 200 roots converge (maximum residual 0.000000952 mm). Every source-height chief clears; 87 generic-corner chiefs at focus 0.01–0.87 clip at S28, while 13 at 0.88–1 clear. Their 19,400 pupil rays include 12,873 ordinary clips and 1,868 independently bounded S1/S2 cap misses. Source-height roots alone have 5,288 ordinary clips and 510 bounded misses; clear chiefs do not imply full-pupil clearance.
 
-## Design Heritage and Context
+The source-height endpoint grid separately traces 582 rays at infinity and the literal-gap Gaussian close control, with clear axial/chief rays, 132 ordinary clips and seven bounded S1/S2 cap misses. A bounding-sphere vector angular diagnostic at focus 0 / 0.5 / 1 gives 873 source-range rays with clear axial/chief rays, 211 ordinary clips and 15 bounded cap misses; all nine separate 80° / 89° / 90° chief seeds are unbracketed. Angular rays at a finite focus control remain collimated and are distinct from explicit finite-object launches. No extreme-field coverage is claimed.
 
-The RF 20mm F1.4 L VCM is part of Canon's L VCM hybrid prime series, which also includes the RF 24mm, 28mm, and 35mm f/1.4L VCM lenses. The VCM designation refers to a Voice Coil Motor focus actuator, offering fast, quiet autofocus optimized for hybrid photo/video use. The lens includes an iris ring for direct manual aperture control during video recording.
+All 101 contour states contain 16 connected, closed, finite SVG paths and zero hidden renderer trimming. Actual final SVGs at infinity, middle and close controls were inspected against the native source. No inferred cut exists. Source outline fidelity, these sampled runtime restrictions and production correlation are separate findings. Full-frame marginal coverage, the S2 cap/piston compromise, the disputed finite reference and historical material identity remain qualified limitations.
 
-The three-consecutive-negative-front-element architecture builds on Canon's tradition of ultra-wide negative-front designs but is distinct from the earlier EF 20mm f/2.8 USM (which used a simpler negative–positive–negative front group). The incorporation of a BR element into an f/1.4 ultra-wide is notable for addressing secondary spectrum at a focal length and aperture where g-line chromatic aberration is particularly challenging.
+## Design Heritage and Sources
 
-The patent's prior-art reference to JP 2023-008471 (¶0002) describes a three-group all-positive architecture whose focus group has limited refractive power, resulting in difficulty focusing at close distances and correcting aberrations during focusing (¶0050). The present design addresses these limitations with a stronger positive L2 and a negative L3 that assists field-curvature correction.
+The source is the local untracked original `patents/US-20250389929-A1.pdf`; no substitute publication was used. Canon's negative-front L VCM production family remains the pre-existing product correlation. Its marketed count, named special optics, manufacturing process, MFD and motor do not establish a literal production prescription.
 
-## Sources
-
-- US 2025/0389929 A1, "Optical System and Imaging Apparatus Including Same," Saito, Canon Kabushiki Kaisha, published Dec. 25, 2025. Primary source for all prescription data, conditional expressions, and design rationale.
-- Canon official specifications: Canon's regional RF 20mm F1.4L VCM specification pages. Source for production full-frame coverage, 84°/62°/94° angle of view, 15/11 element-group count, 1× Super UD / 2× UD / 1× BR / 2× GMo special optics, 0.20 m MFD, 0.19× maximum magnification, 11-blade diaphragm, and absence of optical image stabilization.
-- Glass catalogs: Ohara (S-BSM14, S-FPL55, S-NBH56, S-TIL2, S-LAH65VS), Hoya (TAFD37A, TAFD40-W, NBFD29, FCD515), Hikari (J-SK12, J-FK01A), and Schott (N-LAK33B). CDGM Optical Glass Data Sheet, June 2022, H-ZBaF4 page 183, was used to reject that nearby row on partial-dispersion evidence.
+- Original publication title/front page: PDF p. 1; selected Fig. 3 and Fig. 4A/B: pp. 4–5.
+- Numerical Example 2: primary rows pp. 28–29, aspheres and finite table p. 29, selected single-lens partials pp. 29–30.
+- Tables 1–2: pp. 38–39; explicit spectral definitions and asphere equation ¶0174–¶0176, p. 26.
+- APD wording: ¶0079 p. 22 and ¶0115 p. 23; stationary-group conflict ¶0136 p. 24 against abstract/¶0032/Claim 1.
+- The existing OHARA/HOYA/HIKARI/Schott catalog curves are compatible spectral proxies. The prior H-ZBaF4 partial mismatch remains an exclusion, without treating coordinate compatibility as historical identity.
