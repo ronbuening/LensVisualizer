@@ -340,7 +340,7 @@ const LENS_DATA = {
       },
     },
     { label: "7", R: 116.5468, d: 1.2, sd: 15.0, medium: 5 },
-    { label: "8", R: 14.1945, d: 5.6, sd: 10.0 },
+    { label: "8", R: 14.1945, d: 5.6, sd: 10.0, rimExtensionSd: 15.0 },
     { label: "9", R: -50.0283, d: 1.0, sd: 9.8, medium: 6 },
     { label: "10", R: 39.1951, d: 0.1, sd: 9.7 },
     { label: "11", R: 27.2138, d: 4.8, sd: 10.5, medium: 7 },
