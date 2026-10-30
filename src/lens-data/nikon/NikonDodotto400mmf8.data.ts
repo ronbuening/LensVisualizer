@@ -26,6 +26,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Fresh local JP97105860 extract: Table 1 PDF p. 3, Example 1 section pp. 2/5.
+// S3 continuous cap is 28.0 like the front compound; no separate concave end land is resolved.
+// All four source n/Abbe pairs remain; the extract has d/g plots but omits full wavelength-definition prose.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-dodotto-400f8",
@@ -66,7 +70,7 @@ const LENS_DATA = {
       nd: 1.6228,
       vd: 57.03,
       focalLengthMm: 98.17,
-      glass: "S-BSM10 (OHARA)",
+      glass: "S-BSM10 spectral proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Front positive crown of the converging cemented front group.",
       cemented: "D1",
@@ -92,7 +96,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.27,
       focalLengthMm: 174.63,
-      glass: "S-TIM2 (OHARA)",
+      glass: "S-TIM2 spectral proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Positive flint component of the negative rear cemented group.",
       cemented: "D2",
@@ -105,7 +109,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: -92.72,
-      glass: "N-BK7 (Schott) / BSC7 class",
+      glass: "N-BK7 spectral proxy (SCHOTT; supplier unspecified)",
       apd: false,
       role: "BK7-class negative crown in the rear cemented field-flattener / teleconverter group.",
       cemented: "D2",
@@ -115,7 +119,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 146.186, d: 7.5, sd: 28.0, medium: 1 },
     { label: "2", R: -103.02, d: 3.0, sd: 28.0, medium: 2 },
-    { label: "3", R: -419.76, d: 60.0, sd: 27.5 },
+    { label: "3", R: -419.76, d: 60.0, sd: 28 },
     { label: "STO", R: "flat", d: 47.0 },
     { label: "5", R: 191.786, d: 3.0, sd: 18.6, medium: 3 },
     { label: "6", R: -247.184, d: 2.0, sd: 18.6, medium: 4 },

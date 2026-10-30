@@ -37,11 +37,11 @@ The rear group also acts as a field flattener and rear converter. The patent des
 
 ### L1 — Biconvex Positive, front crown
 
-nd = 1.62280, νd = 57.03. Glass: S-BSM10 (OHARA) match. f = +98.17 mm in air.
+nd = 1.62280, νd = 57.03. Glass: S-BSM10 compatible spectral proxy (OHARA; supplier unspecified). f = +98.17 mm in air.
 
 L1 is the leading positive element of the front cemented doublet. Its object-side radius is +146.186 mm and its cemented rear radius is −103.020 mm, making it a strong biconvex positive element. In the front group it supplies most of the converging power and works with L2 to correct spherical and chromatic aberration within the group rather than relying on later compensation.
 
-The glass is a moderate-index barium crown. The patent's nd value matches current OHARA S-BSM10 at the d line. The listed patent νd differs from current catalog S-BSM10 only by last-digit melt or catalog rounding.
+The glass is a moderate-index barium crown. The patent's nd value matches current OHARA S-BSM10 at the d line. The source νd = 57.03 differs from catalog 57.05; the available curve is a qualified proxy, and the difference does not establish a melt or rounding explanation.
 
 ### L2 — Negative Meniscus, concave to object
 
@@ -52,12 +52,12 @@ L2 is cemented to L1 at R2 = −103.020 mm and exits to air at R3 = −419.760 m
 The L1-L2 index difference is n2 − n1 = 0.13412. The patent makes this index difference a condition because the cemented interface is being used to correct zonal spherical aberration without adding another air-spaced surface (¶0016). The dispersion difference between L1 and L2 provides the front group's ordinary achromatization, but the patent does not support any apochromatic claim.
 
 Hikari E-LAF11 reproduces the patent's d-line index exactly and gives νd = 31.591, only 0.029 below the rounded patent
-value. Its published coefficients therefore provide a safe catalog-equivalent dispersion curve. The patent does not
+value. That residual exceeds the source's two-decimal rounding interval, but the published coefficients remain a compatible spectral proxy. The patent does not
 name a supplier, so this assignment is a color model rather than a production-material identification.
 
 ### L3 — Biconvex Positive, rear flint
 
-nd = 1.62004, νd = 36.27. Glass: S-TIM2 (OHARA) match. f = +174.63 mm in air.
+nd = 1.62004, νd = 36.27. Glass: S-TIM2 compatible spectral proxy (OHARA; supplier unspecified). f = +174.63 mm in air.
 
 L3 is the positive component in the rear cemented doublet. Its biconvex shape is defined by R5 = +191.786 mm and R6 = −247.184 mm. Although it is a positive element, νd ≈ 36 places it in flint territory rather than crown territory.
 
@@ -79,14 +79,14 @@ The patent's eighth condition, n3 − n4 = 0.103, depends on the index contrast 
 
 | Element | nd | νd | Identification | Match quality |
 |---|---:|---:|---|---|
-| L1 | 1.62280 | 57.03 | S-BSM10 (OHARA) | Exact nd; νd within catalog/melt rounding |
-| L2 | 1.75692 | 31.62 | E-LAF11 catalog equivalent; patent 757/316 | Exact nd; νd within patent rounding |
-| L3 | 1.62004 | 36.27 | S-TIM2 (OHARA) | Exact nd; νd within catalog rounding |
+| L1 | 1.62280 | 57.03 | S-BSM10 (OHARA) | Compatible proxy; catalog νd 57.05 versus source 57.03 |
+| L2 | 1.75692 | 31.62 | E-LAF11 catalog equivalent; patent 757/316 | Compatible proxy; catalog νd 31.5913 versus source 31.62 |
+| L3 | 1.62004 | 36.27 | S-TIM2 (OHARA) | Compatible proxy; catalog νd 36.2634 versus source 36.27 |
 | L4 | 1.51680 | 64.10 | BK7-class crown; N-BK7 (SCHOTT) closest checked match | Better match than current OHARA S-BSL7 |
 
 The front group follows the ordinary positive crown plus negative flint pattern. The rear group reverses the dispersion ordering: the positive L3 is the higher-dispersion element and the negative L4 is the lower-dispersion crown. This is a field-flatness and Petzval-control choice more than a pure rear-group achromatization choice.
 
-No ED, super-ED, fluorite, or anomalous-partial-dispersion glass is present. This matches Nikon's retrospective statement that ED glass was excluded from the Dodotto 400 for cost reasons.
+Nikon's retrospective states that ED glass was excluded from the production Dodotto 400 for cost reasons. The retained patent extract supplies four index/Abbe pairs and d/g aberration plots, but no numerical partial-dispersion ratios or spectral-line indices; no spectral anomaly is inferred as a measured zero. All four media have compatible coefficient curves, with historical suppliers and melts unspecified.
 
 ## Focus Mechanism
 
@@ -146,7 +146,7 @@ A separate paraxial y-nu / ABCD trace was run directly from the Example 1 surfac
 
 The Petzval calculation uses the surface-by-surface sum φ/(n·n′). It should not be replaced by a thin-lens element-power approximation, which gives a different and less reliable result for cemented components.
 
-The patent does not publish semi-diameters. The data file uses inferred mechanical semi-diameters: 28.0 mm for the leading cemented group, 16.566 mm for the patent f/8.13 stop, and 18.6 mm for the rear cemented group. These values pass spherical edge-thickness and cross-gap checks. A fully unvignetted 645-corner f/8.13 bundle would require about 32.4 mm semi-diameter at the first element, which is not compatible with the L1 center thickness and curvature. The 645-format statement should therefore be read as sufficient illumination/coverage, not as unvignetted full-aperture 645 coverage.
+The patent does not publish semi-diameters. The data file uses inferred mechanical semi-diameters: 28.0 mm for the leading cemented group, 16.566 mm for the patent f/8.13 stop, and 18.6 mm for the rear cemented group. Surface 3 now retains a continuous 28.0 mm cap to match the front doublet's common source outline; a source-visible concave end land is not resolved on any face, so no trim or opaque extension is added. These values pass spherical edge-thickness and cross-gap checks. A fully unvignetted 645-corner f/8.13 bundle would require about 32.4 mm semi-diameter at the first element, which is not compatible with the L1 center thickness and curvature. The 645-format statement should therefore be read as sufficient illumination/coverage, not as unvignetted full-aperture 645 coverage.
 
 ## Design Heritage and Context
 
