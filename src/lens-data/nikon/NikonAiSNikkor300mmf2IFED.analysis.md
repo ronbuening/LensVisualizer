@@ -57,7 +57,7 @@ L2 is the stronger of the first two positive collectors in G1. The patent's cond
 
 `nd = 1.74950, νd = 35.2.` Glass: **J-LAF7 catalog-equivalent coefficient proxy**. `f = −332.2751 mm.`
 
-L3 provides the negative component of G1. Its placement immediately after L2 forms the positive-to-negative transition discussed in the patent's coma condition. The data file retains only a class-level S-LAM7 comparison because the patent coordinates do not establish a vendor or unique trade name.
+L3 provides the negative component of G1. Its placement immediately after L2 forms the positive-to-negative transition discussed in the patent's coma condition. The data file uses the compatible HIKARI J-LAF7 catalog curve as a spectral proxy; the patent coordinates do not establish the production supplier or melt.
 
 ### L4 — Positive Meniscus
 
@@ -154,7 +154,7 @@ The LensVisualizer model places the neutral `STO` plane **1.500 mm in front of s
 
 The inferred stop semi-diameter is **29.1666672 mm**. Paraxial propagation through the front section gives an entrance-pupil semi-diameter of **75.0001679 mm**, which with EFL **300.0006716 mm** yields modeled `f/2.000000`. The stop sizing is therefore a solved model constraint tied to the patent f-number, not a measured diaphragm dimension.
 
-The surface semi-diameters are likewise inferred model values. They were constrained by the f/2 marginal-ray envelope, the patent's plotted `y′ = 26 mm` aberration field, 135-format off-axis checks, and the current edge-thickness, rim-slope, and cross-gap criteria. A 600 dpi comparison against the exact Figure 4 optical rims retained the final envelope; the focus arrow, group braces, and leader ink were excluded from the measurement. For the final arrays, the minimum modeled element edge thickness is **+0.7264 mm** and the maximum rim-slope angle is **26.3436°**. Shared-band cross-gap checks pass at both focus endpoints. A representative 0.6-field bundle shows no cemented junction acting as a hidden aperture; the most extreme tested ray is instead vignetted in the front group.
+The surface semi-diameters are likewise inferred model values. They were constrained by the f/2 marginal-ray envelope, the patent's plotted `y′ = 26 mm` aberration field, 135-format off-axis checks, and the current edge-thickness, rim-slope, and cross-gap criteria. Fresh 600 dpi inspection of Figure 4 (PDF p. 3) in the original same-publication scan supports continuous paired rims at S2 = 82.0, S4 = 81.5, S6 = 80.0, S8 = 78.5, S13 = 37.5, S14 = 33.5 and S17 = 33.5 mm. S11 has a distinct concave rear end: its inferred cut depth is 6.25 mm at a 46.0 mm outer rim, retaining a 39.0746 mm cap. Other shallow concave curves remain continuous, with no invented land at a cemented interface. A dense 21-focus-state check traced 116,220 rays; S11 reach 32.5230 mm stays clear of the cap and its 0.1172 mm margin. All nine actual SVG states have finite compound outlines and zero hidden trim. The published R/d/material pairs and 21 mm focus movement are unchanged. For the final arrays, the minimum modeled element edge thickness is **+0.7264 mm** and the maximum rim-slope angle is **26.3436°**. Shared-band cross-gap checks pass at both focus endpoints. A representative 0.6-field bundle shows no cemented junction acting as a hidden aperture; the most extreme tested ray is instead vignetted in the front group.
 
 ## Chromatic Correction Strategy
 
@@ -162,7 +162,7 @@ The patent's chromatic strategy is integrated with spherical-aberration correcti
 
 The patent also states that the second positive-to-negative spacing in G1 affects both coma and chromatic correction. This distributes color correction across the front group, the G2 cemented interface, and the two rear cemented pairs rather than assigning it to a single catalog-defined special glass.
 
-Because the data file contains only `nd` and `νd` for the unresolved glasses, chromatic interpretation is limited to ordinary Abbe-based behavior and the patent's own design conditions. No secondary-spectrum magnitude, APO classification, or anomalous-partial-dispersion performance is inferred.
+All eleven stored nd/νd pairs were freshly verified against Example 4 (PDF p. 20); all eleven media resolve to compatible catalog curves with unchanged spectral responses. The source explicitly defines material refractive indices at the d line, 587.6 nm (PDF p. 19), and discusses g-line aberrations at 435.8 nm (PDF p. 20), but provides no per-material C/F/g indices or partial dispersion. The existing inferred ED position flags at L1/L2/L4 remain tied to the production correlation, not to proof from a proxy curve or a published θgF. The catalog curves support model chromatic tracing with qualified material uncertainty; no APO classification or source-verified secondary-spectrum magnitude is asserted.
 
 ## Conditional Expressions
 
@@ -205,3 +205,5 @@ No scaling was applied, no aspheric coefficients exist, and no filter or cover p
 3. OHARA, **S-LAM7 optical-glass catalog entry**, `nd = 1.74950`, `νd = 35.28`; used only as a class-level coordinate comparison. https://oharacorp.com/glass-type/s-lam/
 4. OHARA, **S-TIM28 optical-glass catalog entry**, `nd = 1.68893`, `νd = 31.07`; used only as a coordinate-equivalent family reference. https://oharacorp.com/glass/s-tim28/
 5. OHARA, **S-TIM35 optical-glass catalog entry**, `nd = 1.69895`, `νd = 30.13`; used only as a coordinate-equivalent reference. https://oharacorp.com/glass/s-tim35/
+
+The intact same-publication [US4732459 original PDF](https://patentimages.storage.googleapis.com/21/87/0f/ef00d1fd40cd55/US4732459.pdf) supplies the Figure 4 source used in the current rim review.

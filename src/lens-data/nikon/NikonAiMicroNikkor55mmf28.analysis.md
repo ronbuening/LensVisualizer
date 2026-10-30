@@ -46,11 +46,11 @@ The focal lengths in this section are standalone element focal lengths in air, a
 
 L1 is the first positive member of G1. The patent describes the first lens as positive with its more strongly curved surface facing the object. In the scaled prescription it supplies substantial positive standalone power at the front of the system, but it operates as part of the three-element G1 rather than as an isolated objective.
 
-The high refractive index allows the required positive power to be obtained without assigning all of the forward-group power to surface curvature alone. The exact supplier and melt are not identified by the patent, so the stored glass label remains a coordinate/class description rather than a catalog attribution.
+The high refractive index allows the required positive power to be obtained without assigning all of the forward-group power to surface curvature alone. The exact supplier and melt are not identified by the patent, so M-TAF1 is a catalog spectral proxy rather than a production attribution.
 
 ### L2 — Positive Meniscus
 
-`nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum-crown coordinate class (supplier unresolved). f = +59.909762 mm.`
+`nd = 1.71300, νd = 53.9. Glass: 713539 — HOYA LAC8 catalog spectral proxy; production supplier unresolved. f = +59.909762 mm.`
 
 L2 is an air-spaced positive meniscus with its convex surface toward the object, matching the patent's description of the second member of G1. Its standalone power is close to that of L1, so the first two elements form a strongly positive front pair before the negative L3 member reduces the net power of the assembled forward group.
 
@@ -58,7 +58,7 @@ The relatively high `νd = 53.9` distinguishes L2 from the lower-Abbe negative L
 
 ### L3 — Negative Meniscus
 
-`nd = 1.61293, νd = 36.9. Glass: 613369 — flint coordinate class (supplier unresolved). f = -32.135825 mm.`
+`nd = 1.61293, νd = 36.9. Glass: 613369 — F3 (SUMITA) catalog spectral proxy; production supplier unresolved. f = -32.135825 mm.`
 
 L3 is the negative rear element of G1 and, as the patent specifies, is a negative meniscus whose convex surface faces the object. Its standalone negative focal length has a smaller magnitude than the focal lengths of L1 or L2, so it provides strong negative power within the otherwise positive forward group.
 
@@ -66,7 +66,7 @@ The assembled G1 remains positive at +114.844131 mm. The negative L3 therefore d
 
 ### L4a / L4b — Cemented Negative-Positive Pair
 
-`L4a: nd = 1.69895, νd = 30.0. Glass: 699300 — dense-flint coordinate class (supplier unresolved). f = -29.664241 mm.`<br>
+`L4a: nd = 1.69895, νd = 30.0. Glass: 699300 — SUMITA SF15 catalog spectral proxy; production supplier unresolved. f = -29.664241 mm.`<br>
 `L4b: nd = 1.74443, νd = 49.4. Glass: 744494 — M-NBF1 (HOYA) coordinate-compatible spectral proxy; production supplier unresolved. f = +31.330906 mm.`
 
 L4 is the cemented meniscus component at the front of G2. The data model represents the cemented interface directly: surface 8 transitions from L4a into downstream element L4b, with no synthetic cement layer. The two members have large and nearly opposed standalone powers, yet the actual cemented pair is only weakly positive, with a computed compound focal length of +289.273482 mm.
@@ -90,13 +90,13 @@ The patent publishes refractive-index and Abbe-number coordinates but does not i
 | Element | nd | νd | Stored glass annotation |
 |---|---:|---:|---|
 | L1 | 1.77279 | 49.4 | 773494 — M-TAF1 spectral proxy; supplier unresolved |
-| L2 | 1.71300 | 53.9 | 713539 — lanthanum-crown coordinate class (supplier unresolved) |
+| L2 | 1.71300 | 53.9 | 713539 — HOYA LAC8 catalog spectral proxy; production supplier unresolved |
 | L3 | 1.61293 | 36.9 | 613369 — F3 spectral proxy; supplier unresolved |
-| L4a | 1.69895 | 30.0 | 699300 — dense-flint coordinate class (supplier unresolved) |
+| L4a | 1.69895 | 30.0 | 699300 — SUMITA SF15 catalog spectral proxy; production supplier unresolved |
 | L4b | 1.74443 | 49.4 | 744494 — M-NBF1 spectral proxy; supplier unresolved |
 | L5 | 1.79668 | 45.4 | 797454 — J-LASF017 spectral proxy; supplier unresolved |
 
-The six-digit strings are used as refractive-coordinate identifiers rather than supplier claims. Independent round-trip checks reproduce all six codes from the stored `nd/νd` pairs.
+All six material pairs were freshly checked against Table 1 (PDF p. 11). The table gives refractive indices and Abbe numbers without an explicit material reference wavelength, so the d-line convention remains a qualified interpretation. All six currently selected catalog curves are compatible; the six-digit strings identify source coordinates rather than production suppliers. M-NBF1 and J-LASF017 are approximate proxies, with catalog-minus-source Δnd approximately −0.00113 and −0.00168; no historical melt is inferred.
 
 No element carries source-authored `nC`, `nF`, `ng`, or `dPgF`, because the patent does not publish those per-glass data. The C-line and g-line aberration plots in Fig. 2 do not supply element-level spectral indices. The qualified catalog curves support Sellmeier tracing, but they do not support claims of APO correction, anomalous partial dispersion, or historical production-glass identity.
 
@@ -142,7 +142,9 @@ The reconstructed production close state gives EFL 55.608783310 mm, 250.00000000
 
 Surface-by-surface Petzval computation using `φ/(n·n′)` gives a scaled sum of +0.003089347446 mm⁻¹, corresponding to a radius magnitude of 323.692954 mm. The sequential reduced-angle trace and independent ABCD matrix agree to numerical precision, and both defined focus states preserve unit matrix determinant.
 
-The semi-diameter model passes the applicable edge-thickness, actual spherical rim-slope, and shared-gap intrusion checks at infinity and reconstructed 1:2 focus. The L3 and cemented-L4 rims were enlarged after a direct Fig. 1A comparison to better reproduce the patent silhouette without changing any prescription coordinate or introducing a new traced-ray clip. A separate exact spherical/Snell ray proxy traced 22 representative on- and off-axis rays through both states; the minimum sampled clearance to an authored aperture was 1.260892 mm at the stop. These values verify the current modeling apertures but remain authoring inferences because the patent does not tabulate clear diameters.
+Fresh inspection of Figs. 1A–1B (PDF p. 2) resolves flat ends at the concave rear of L3 and front of the L4 cemented component. Surface 6 uses an inferred cut depth of 3.15 mm at an 11.0 mm outer rim, retaining a 9.5622 mm cap. Surface 7 retains its 10.5 mm clear cap and adds an opaque land to 12.7 mm. The powered cemented interface S8 rises to 12.7 mm to keep the compound outer edge continuous; it receives no opaque cut. L1's rear and L5's front rise to their paired 15.8 and 13.4 mm rims. All source radii, thicknesses, materials, stop placement, and focus reconstruction remain unchanged.
+
+The coupled L2-rear/L3-front region retains its guarded tapered outline; a taller source-like L2 rear cap exceeds the literal short-gap bound. Other shallow curves do not justify separate end trims. Surface geometry, image-circle, nominal aperture and field checks pass, and all nine actual SVG states have finite continuous outlines with zero hidden trim. A dense 21-focus-state probe traces 647,817 rays: S6 maximum reach 8.1461 mm stays clear of its 9.5622 mm cap and 0.05 mm margin. These apertures and lands remain modeling inferences rather than published mechanical dimensions.
 
 One source contradiction is retained explicitly. Table 1 prints the rear functional-group focal length as `f2 = 115.797` in normalized units, while claim 8 prints `115.777` for the same example. Independent group-matrix calculation gives 115.798796 normalized, supporting Table 1; the claim value is therefore treated as a source error rather than silently propagated. The printed G1 focal length of 208.824 differs from the prescription-derived 208.807510 by an amount consistent with the three-decimal prescription rounding.
 

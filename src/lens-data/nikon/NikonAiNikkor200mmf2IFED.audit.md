@@ -1,0 +1,9 @@
+# Patent audit — NIKON AI NIKKOR 200mm f/2 S IF-ED
+
+## 2026-10-30 — Direct shape and glass reinspection
+
+- Directly inspected `patents/US_4176913_A.pdf`: Second Embodiment full table and index/Abbe definitions, PDF p. 8; Figure 2, PDF p. 2, rendered at 600 dpi/native 281×291 ppi. Reviewed all ten elements and both cemented boundaries. Approximate vertex scale is 4.6 native horizontal px/mm. Excluded leaders around the rear group and the focus-group annotation.
+- Figure 2 supports raising the continuous L13 faces S5/S6 49/47→52/52 mm toward the adjacent front collector height. No distinct flat-end transition is resolved on any concave face; retain the shallow curves and all other guarded heights. L12 rear is not forced to a square 53 mm cap: literal R3 112.869/R4 −600/d3 15.5 would have edge −0.062969 mm at 53. Source R/d/materials, total stop split and published 17 mm group travel remain unchanged.
+- All ten stored pairs match. Source definitions do not specify a line wavelength; the existing d-line interpretation stays qualified. No per-material partial/C/F/g data. Ten current coefficient curves remain compatible and unchanged. J-FKH1 is approximate to 1.50032/81.9 (catalog−patent Δnd −0.0025/Δνd +0.67), FF5 approximate Δnd −0.00237. Front ED position flags stay tied to the prior manufacturer/product correlation, not catalog-curve APD or a printed θgF. Supplier/melt remain unspecified.
+- Surface/circle/nominal aperture/≥99% field checks pass. All nine actual SVG states inspected: finite continuous shapes, zero hidden trim. No inferred numeric cuts to probe.
+- Triad validation: all 27 source pairs/27 unchanged compatible curve selections and spectral channels; source prescription and control invariants verified. Shared dispersion/glass consistency tests 2 files/93 tests passed; AST 3 files/128 objects, zero duplicate keys/parse errors. Candidate copies only; no shared catalog, engine, source PDF or report changes.
