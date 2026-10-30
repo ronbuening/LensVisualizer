@@ -29,6 +29,8 @@ G1, surfaces 1–6, contains two positive elements followed by a negative menisc
 
 The combined first and second groups have $f_{12} = 75.001$ mm, so the rear group magnification at infinity is $f/f_{12} = 1.400$. That value is the central architectural fact of the patent: the first two groups form a bright intermediate system, while the fixed negative rear group increases the effective focal length and helps balance Petzval curvature.
 
+The fresh Figure 1 rim review makes the source-visible concave ends explicit: S6 has inferred cut depth 7.50 mm with outer radius 20.0 mm and clear cap 17.4847 mm; S7 has inferred cut depth 3.72 mm with outer radius 16.0 mm and clear cap 14.7721 mm. Both clear the complete wide-open field/focus beam search and retain the source R/d and floating gaps. Other curved ends and the cemented interface have no independently resolved additional air land.
+
 ## Element-by-Element Analysis
 
 ### L11 — Biconvex Positive, nearly plano-convex
@@ -120,6 +122,8 @@ The patent publishes refractive index and Abbe number only. It does not name gla
 | L31, L33 | 1.59507 | 35.5 | Near FF5 / S-FTM16, but index is higher | Unmatched | Rear-group positive members |
 | L32 | 1.79668 | 45.5 | Near TAF2 / J-LASF017, 795/454 | Soft class match | Main G3 diverger |
 | L34 | 1.80454 | 39.6 | NBFD3 / S-LAH63, 805/396 | Close class match | Final rear negative meniscus |
+
+Current coefficient curves cover 8 of the 10 physical elements, including the now available TAC4 polynomial proxy. TAC4’s catalog index 1.73400 differs from source 1.73350; TAF1’s 1.77250/49.63 differs from 1.77279/49.4, LAC13’s ν 53.34 differs from 53.8, and J-LASF017’s 1.79500/45.31 differs from L32’s 1.79668/45.5. These are compatible spectral proxies, with the patent coordinates retained. L31/L33 remain unresolved at 1.59507/35.5; a full current-catalog coordinate check supplies no strict match. No catalog-only spectral indices or partial-dispersion overrides are added. The table defines n and ν without printing a reference wavelength; the stored d-line interpretation follows the coordinate families rather than an explicit wavelength statement.
 
 The palette is conventional rather than apochromatic. It uses high-index lanthanum and dense-flint classes to keep curvatures manageable, then balances chromatic power through positive/negative pairing within each group. No ED, fluorite, anomalous partial dispersion, or secondary-spectrum claim is supported by the patent data.
 

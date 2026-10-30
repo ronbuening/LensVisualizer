@@ -26,6 +26,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    filter constraint, minimum edge thickness, sd/|R|, and signed   ║
  * ║    cross-gap sag clearance.                                        ║
  * ║                                                                    ║
+ * Current coefficient curves cover 8/10 physical glasses; L31/L33 remain unresolved.
+ * Source Table 1 supplies only n/ν, with no printed wavelength or spectral anchors.
+ * Catalog names are qualified proxies, not production supplier or melt identities.
+ * Fig. 1 PDF p.2 at600dpi supports inferred concave lands S6/S7; see audit for q/beam checks.
+ *
  * ║  IMPORTANT: This file describes only the optical design. It omits   ║
  * ║  filters, mechanical parts, and sensor cover glass.                 ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -117,7 +122,7 @@ const LENS_DATA = {
       nd: 1.7335,
       vd: 51.1,
       focalLengthMm: 50.87,
-      glass: "TAC4 class (HOYA, 734/511)",
+      glass: "TAC4 catalog proxy (HOYA, 734/511; nonidentical source index)",
       role: "Rear lanthanum-crown member of the G2 cemented meniscus.",
       cemented: "L21",
     },
@@ -151,7 +156,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.5,
       focalLengthMm: -43.97,
-      glass: "TAF2 / J-LASF017 class (795/454; patent nd = 1.79668)",
+      glass: "J-LASF017 catalog proxy (HIKARI, 795/453; source 1.79668/45.5)",
       role: "Strong negative element carrying most of the rear group's divergent power.",
     },
     {
@@ -184,8 +189,8 @@ const LENS_DATA = {
     { label: "3", R: 29, d: 5, sd: 20, medium: 2 },
     { label: "4", R: 57, d: 2, sd: 20 },
     { label: "5", R: 91.28, d: 2, sd: 20, medium: 3 },
-    { label: "6", R: 24.131, sd: 19.8 },
-    { label: "7", R: -31.19, d: 2, sd: 16, medium: 4 },
+    { label: "6", R: 24.131, sd: 20, rimCutDepthMm: 7.50 },
+    { label: "7", R: -31.19, d: 2, sd: 16, rimCutDepthMm: 3.72, medium: 4 },
     { label: "8", R: 300, d: 10.5, sd: 16, medium: 5 },
     { label: "9", R: -41.983, d: 1.5, sd: 16 },
     { label: "STO", R: "flat", d: 1.5 },
