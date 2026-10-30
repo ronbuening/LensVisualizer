@@ -115,21 +115,23 @@ const GOLDEN_LENSES: GoldenLens[] = [
     },
   },
   {
+    // 2026-10-30: R18 source sign erratum, printed filter and Figure 1 stop restored.
+    // Independent source-table matrices match f6.3/BF37.657 and the corrected axial LSA matches Figure 2A.
     key: "nikon-fisheye-nikkor-6mm-f28",
     design: "fisheye (equidistant projection)",
-    efl: 37.41323793170968,
+    efl: 6.2998855004266625,
     epSD: 1.125,
-    stopPhysSD: 5.364652292954149,
-    imgZ: 205.24259111597053,
-    zLast: 167.58559111597054,
-    marginal: { h: 0.75, y: 5.512901727374504, u: -0.017546482708249093 },
+    stopPhysSD: 7.523327661352006,
+    imgZ: 205.85699999999997,
+    zLast: 168.19999999999996,
+    marginal: { h: 0.75, y: 4.5078156370637394, u: -0.12018848679545528 },
     skew: {
       x0: 0.36,
       y0: 0.3,
-      x: 2.635146334408721,
-      y: 2.1959552786739347,
-      ux: -0.00920200349332682,
-      uy: -0.0076683362444390545,
+      x: 2.156063357380727,
+      y: 1.7967194644839386,
+      ux: -0.057395545726545205,
+      uy: -0.047829621438787655,
     },
   },
 ];
@@ -254,12 +256,12 @@ describe("exact trace golden values — fisheye projection path", () => {
     const at30 = solveChiefRay(30, 0, 0, L);
     expect(at30.status).toBe("converged");
     expect(at30.launchSurface).toBe("bounding-sphere");
-    expect(at30.yLaunch).toBeCloseTo(28.37371378565419, 6);
+    expect(at30.yLaunch).toBeCloseTo(28.876223741588717, 6);
 
     const at60 = solveChiefRay(60, 0, 0, L);
     expect(at60.status).toBe("converged");
     expect(at60.launchSurface).toBe("bounding-sphere");
-    expect(at60.yLaunch).toBeCloseTo(74.18746088976445, 6);
+    expect(at60.yLaunch).toBeCloseTo(75.85948942283216, 6);
   });
 
   it("traces the solved 30° chief ray to a pinned image-plane intercept", () => {
@@ -280,10 +282,10 @@ describe("exact trace golden values — fisheye projection path", () => {
     );
 
     expect(trace.clipped).toBe(false);
-    expect(trace.y).toBeCloseTo(-4.518794533249658, 6);
-    expect(trace.u).toBeCloseTo(-0.056031104436612474, 8);
+    expect(trace.y).toBeCloseTo(-1.1873110756207985, 6);
+    expect(trace.u).toBeCloseTo(-0.05569076289502699, 8);
     const yImg = trace.y + trace.u * (layout.imgZ - layout.z[layout.z.length - 1]);
-    expect(yImg).toBeCloseTo(-6.628757833019174, 6);
+    expect(yImg).toBeCloseTo(-3.2844581339588306, 6);
   });
 });
 

@@ -119,12 +119,16 @@ describe("paraxialTrace", () => {
 describe("buildLens — production lenses", () => {
   /* First-order values are pinned per reference design in exactTraceGoldenValues.test.ts; the
    * tests below cover how buildLens derives aperture and field metadata, not per-lens constants. */
-  it("Nikon 6mm f/2.8 fisheye uses projection focal length for aperture sizing", () => {
-    const L = buildLens(NikonFisheye6mmf28);
+  it("a fisheye uses projection focal length for aperture sizing", () => {
+    // Deliberately separate the projection constant from the source-corrected Gaussian EFL.
+    const L = buildLens({
+      ...NikonFisheye6mmf28,
+      projection: { ...NikonFisheye6mmf28.projection!, focalLengthMm: 8 },
+    });
 
     expect(L.projection.kind).toBe("fisheye-equidistant");
-    // The Gaussian EFL of this design is far from its projection focal length; the pupil follows the latter.
-    expect(Math.abs(L.EFL - L.apertureReferenceFocalLength)).toBeGreaterThan(10);
+    expect(L.apertureReferenceFocalLength).toBe(8);
+    expect(Math.abs(L.EFL - L.apertureReferenceFocalLength)).toBeGreaterThan(1);
     expect(L.EP.epSD).toBeCloseTo(L.apertureReferenceFocalLength / (2 * L.FOPEN), 10);
     // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
     // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
@@ -156,7 +160,11 @@ describe("buildLens — production lenses", () => {
   });
 
   it("throws when a large focalLengthDesign mismatch lacks projection metadata", () => {
-    const rectilinearData = { ...NikonFisheye6mmf28, projection: undefined } as LensData;
+    const rectilinearData = {
+      ...NikonFisheye6mmf28,
+      focalLengthDesign: 30,
+      projection: undefined,
+    } as LensData;
 
     expect(() => buildLens(rectilinearData)).toThrow(/computed Gaussian EFL/);
   });

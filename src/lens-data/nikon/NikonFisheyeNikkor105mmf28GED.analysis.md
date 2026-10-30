@@ -89,9 +89,11 @@ The glass is a moderate-index, relatively low-dispersion lanthanum crown. It giv
 
 ## Glass Identification and Selection
 
-The prescription uses a predominantly Ohara-like Japanese glass palette, but the ED element should not be forced into an Ohara label. Catalog matching was checked against manufacturer-published data. S-LAM51 is rejected for L3 because Ohara's own S-LAM51 listing does not match the patent's nd and νd; S-LAM52 does.
+The current glass annotations identify available catalog spectral curves only. They do not identify production suppliers, melts, cement formulations, or annealing states. Source nd/vd are retained; Abbe contrast alone does not establish anomalous partial dispersion.
 
-| Element | Patent nd | Patent νd | Catalog identification | Match note |
+The current spectral curves are catalog-compatible proxies, not evidence of Nikon's production glass suppliers or melts. The original Table 9 supplies only d-line indices and Abbe numbers. The selected ED curve is FCD1 at the exact 1.49700/81.61 coordinate; production identity remains unresolved. S-LAM52 matches L3's coordinates, while S-LAM51 does not.
+
+| Element | Patent nd | Patent νd | Catalog spectral proxy | Coordinate note |
 |---|---:|---:|---|---|
 | L1 | 1.62041 | 60.29 | S-BSM16 (OHARA) | Exact |
 | L2 | 1.81600 | 46.63 | S-LAH59 (OHARA) | nd exact; νd within 0.01 of catalog 46.62 |
@@ -101,7 +103,7 @@ The prescription uses a predominantly Ohara-like Japanese glass palette, but the
 | L5a | 1.51742 | 52.42 | S-NSL36 (OHARA) | nd exact; νd within 0.01 of catalog 52.43 |
 | L5b | 1.83481 | 42.72 | S-LAH55V (OHARA) | nd exact; νd within 0.01 of catalog 42.73 |
 | L6a | 1.84666 | 23.78 | S-TIH53 (OHARA) | Exact |
-| L6b | 1.49700 | 81.61 | N-PK52A / FCD1-class ED fluorophosphate | Exact 497/816 class; vendor unresolved |
+| L6b | 1.49700 | 81.61 | FCD1 | Exact coordinate; production identity unresolved |
 | L7 | 1.65160 | 58.54 | S-LAL7Q (OHARA) | Exact |
 
 The chromatic strategy is conventional for a compact retrofocus fisheye: high-index negative components distribute the front-group divergence, while cemented crown/flint and ED/flint pairings reduce lateral color and axial color before the image plane. The L6a/L6b interface is the dominant chromatic correction pair because it combines the highest-dispersion element in the system with the lowest-dispersion element.
@@ -116,7 +118,7 @@ The patent does not publish finite-conjugate spacings for Example 9. The data fi
 
 Example 9 contains no aspherical coefficients and no aspherical surface labels. Table 9 lists only spherical radii and the plane aperture stop. The patent also states, as a preferred construction, that each lens surface of the front and rear lens groups may be spherical or plane to ease manufacture and adjustment.
 
-This conflicts with the official production specification, which lists one aspherical lens element. The most conservative interpretation is that Example 9 is a close patent embodiment of the production lens but does not disclose the final production aspherical modification. The data file therefore uses `asph: {}` and does not assign an asphere to any surface.
+This conflicts with the official production specification, which lists one aspherical lens element. The most conservative interpretation is that Example 9 is a close patent embodiment of the production lens but does not disclose the final production aspherical modification. No asphere is assigned to any surface.
 
 ## Chromatic Correction Strategy
 
@@ -158,9 +160,11 @@ The Petzval sum was computed surface by surface as φ/(n n'), not from thin-lens
 
 ## Data-File Notes
 
-The data file uses the corrected d13 = 6.4398 mm and the computed BFD = 41.114155 mm. It excludes the filter position and all sensor cover glass, consistent with the project data specification.
+The data file retains the previously disclosed d13 = 6.4398 mm source-consistency correction and computed BFD = 41.114155 mm. The present pass does not alter that calibration. No physical filter plate is tabulated for Example 9.
 
-The patent does not publish semi-diameters for Example 9. The semi-diameters in the data file are therefore estimated from FIG. 17 and constrained by renderer-safe optical geometry. The chosen values satisfy sd/|R| < 0.90, front/rear element semi-diameter ratio <= 1.25, positive rim edge thickness for every element, and signed cross-gap sag intrusion <= 90% of the intervening air gap. The small 0.250 mm air separation between surfaces 6 and 7 is the controlling clearance constraint, so the L3/L4 clear apertures are intentionally conservative rather than copied from the apparent drawing height.
+The patent does not publish semi-diameters for Example 9. Fresh Figure 17 inspection restores the first body rim to 27 mm with the S2 concave cap retained at 14.6 mm, followed by a flat rear land. L2's continuous front cap rises to 16.8 mm; its rear cap grows to 13.3 mm and a flat land reaches the same 16.8-mm rim. The drawing's still-larger S2 curve is constrained by the existing spherical limit 0.9R=14.805 mm, so the conservative cap is retained. The small 0.250-mm S6–S7 gap and stepped cemented boundaries prevent a faithful enlargement of the entire middle group; no unsupported land is inserted at a cemented interface.
+
+All ten original nd/vd pairs are freshly confirmed against Table 9. Three formerly authored L6b C/F/g indices were not published there and have been removed; the available qualified FCD1 curve now supplies that spectral shape, anchored to source nd. Its ED/APD tag remains a class inference, not a source partial-dispersion measurement. Surface and image-circle checks pass, and the aperture is iris-limited at F/2.88. Actual SVG states have finite paths and zero automatic trim. Vector pupil samples improve at 60° and 75°; the standard chief solver still fails to bracket at 85°/90°, so these checks do not establish the complete stated 180° field.
 
 ## Design Heritage and Context
 

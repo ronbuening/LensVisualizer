@@ -172,8 +172,16 @@ describe("wide fisheye chief-ray bracketing", () => {
     expect(Number.isFinite(result.yLaunch)).toBe(true);
   });
 
-  it("keeps a vector fallback when the Nikon 6mm f/5.6 field is physically blocked", () => {
-    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_F56_FIXTURE]);
+  it("keeps a vector fallback when a fisheye field is physically blocked", () => {
+    const source = CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_F56_FIXTURE];
+    // Occlude both leading faces explicitly; the patent-corrected catalog lens clears this field.
+    const surfaces = source.surfaces.map((surface, i) => {
+      if (i > 1) return surface;
+      const clipped = { ...surface, sd: 1 };
+      delete clipped.rimExtensionSd;
+      return clipped;
+    });
+    const L = buildLens({ ...source, surfaces });
     const result = solveChiefRay(66, 0, 0, L);
 
     expect(result.launchSurface).toBe("bounding-sphere");
