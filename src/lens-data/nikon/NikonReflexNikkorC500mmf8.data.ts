@@ -61,7 +61,7 @@ const LENS_DATA = {
       nd: 1.5245,
       vd: 59.6,
       focalLengthMm: 696.5,
-      glass: "K5 catalog equivalent (patent 525596; production supplier unspecified)",
+      glass: "K5 (SUMITA compatible spectral proxy; source nd=1.52450, νd=59.6; supplier unspecified)",
       apd: false,
       role: "Weak positive meniscus that pre-converges the entrance beam and corrects field curvature.",
     },

@@ -42,11 +42,11 @@ The Petzval sum, computed surface by surface as `Φ/(n·n′)`, is `+0.0013111 m
 
 ### L1 — Positive meniscus, convex to object
 
-`nd = 1.61272, νd = 58.6. Glass: 613586 dense crown with line-index backfill; Schott N-SK4 / Hoya BACD4 class. f = +77.0 mm.`
+`nd = 1.61272, νd = 58.6. Glass: HOYA BACD4 compatible spectral proxy; production supplier unspecified. f = +77.0 mm.`
 
 L1 is the first converging element and carries most of its power on `r1 = +41.0 mm`. The rear surface, `r2 = +298.19 mm`, is very weakly curved, so the element behaves close to a plano-convex collector in the paraxial sense while retaining a meniscus profile.
 
-The glass is a dense crown match to the Schott N-SK4 / Hoya BACD4 optical region by six-digit code `613586`. The patent gives only `nd` and `νd`, not a vendor name. The data file therefore records the patent code with line-index backfill rather than treating a vendor class as a proven Nikon procurement source.
+The patent supplies only `nd` and `νd`, without a vendor name. The current HOYA BACD4 coefficient curve reproduces n(d) ≈ 1.61271773 and νd ≈ 58.5782, compatible with the source 1.61272/58.6. It is a qualified spectral proxy; the derived coordinate code `613586` is not a supplier or melt identity.
 
 ### L2 — Positive meniscus, convex to object
 
@@ -76,14 +76,14 @@ The use of a positive dense flint in this position is deliberate. A high-index p
 
 | Element | Patent `nd` | Patent `νd` | Catalog match used | Verification note |
 |---|---:|---:|---|---|
-| L1 | 1.61272 | 58.6 | 613586 dense crown; N-SK4 / BACD4 class | Schott N-SK4 lists `nd = 1.61272`, `νd = 58.63`; the data file keeps a code-based label with line-index backfill because the catalog entry is not currently in the local Sellmeier table. |
+| L1 | 1.61272 | 58.6 | BACD4 (HOYA qualified spectral proxy) | Current coefficient curve n(d) ≈ 1.61271773, νd ≈ 58.5782; source coordinates retained. |
 | L2 | 1.62041 | 60.3 | S-BSM16 (Ohara) / N-SK16-class | Ohara S-BSM16 lists code 620603, `nd = 1.62041`, `νd = 60.29`; Schott N-SK16 and Hoya BACD16 are equivalent-code matches. |
 | L3 | 1.71736 | 29.5 | S-TIH1 (Ohara) / SF1-class | Ohara S-TIH1 lists code 717295, `nd = 1.71736`, `νd = 29.52`; Schott SF1 is a close equivalent-code match. |
 | L4 | 1.74077 | 27.7 | S-TIH13 (Ohara) | Ohara S-TIH13 lists code 741278, `nd = 1.74077`, `νd = 27.79`. |
 
-The glass palette is conventional: two dense crowns followed by two dense flints. No ED glass, fluorite, anomalous-partial-dispersion glass, aspherical surface, or cemented interface is present in the patent example.
+The glass palette is conventional: two dense crowns followed by two dense flints. The patent identifies no ED, fluorite or anomalous-partial-dispersion material. Its prescription has neither an aspherical surface nor a cemented interface.
 
-The data file includes `nC`, `nF`, and `ng` line-index fields where catalog data were available. These fields are catalog-derived and not part of the patent prescription itself.
+The four catalog-derived C/F/g index sets have been removed. All four media now use their compatible catalog coefficient curves while retaining the patent nd/νd values. The patent supplies neither C/F/g indices nor partial-dispersion measurements. Catalog compatibility does not identify Nikon’s production supplier, melt or glass chemistry.
 
 ## Focus Mechanism
 
@@ -154,3 +154,7 @@ The patent's contribution is narrower than a new lens type. It formalizes a comp
 - OHARA Corporation, "S-TIH1," https://oharacorp.com/glass/s-tih1/
 - OHARA Corporation, "S-TIH13," https://oharacorp.com/glass/s-tih13/
 - SCHOTT, "Optical Glass Datasheet SF1," https://media.schott.com/api/public/content/bb675cb9047d468b9e3d75dc05952882
+
+## F-mount Outline Recheck
+
+The patent uses one common schematic, Fig. 1, for three embodiments. Both halves resolve a vertical land at the concave surface-6 end. Its measured cap/edge share is approximately 0.75 ± 0.010 at 300ppi, while this model retains its larger 16.8mm clear cap and extends only the opaque outline to the opposite face’s 18.5mm rim. Surface 2 instead shows continuous curvature and now uses a 21.2mm clear radius to match surface 1. These remain source-guided model dimensions; the shared schematic is not a dimensioned manufacturing drawing. Surface, image-circle and nominal f/2.8 aperture checks pass, and the nine sampled renderer states show no hidden trimming.

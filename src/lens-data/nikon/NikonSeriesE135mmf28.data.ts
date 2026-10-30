@@ -101,14 +101,14 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.71736,
-      vd: 29.52,
+      vd: 29.5,
       focalLengthMm: -43.33,
-      glass: "S-TIH1 (OHARA)",
+      glass: "S-TIH1 (OHARA compatible spectral proxy; source νd=29.5; supplier unspecified)",
       apd: false,
       role: "Strong negative diverger; the rear surface supplies the largest single-surface power in the system.",
-      nC: 1.71033,
-      nF: 1.73463,
-      ng: 1.74933,
+
+
+
     },
     {
       id: 4,
@@ -118,24 +118,30 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       focalLengthMm: 195.18,
-      glass: "785261 — dense flint (line-index backfill; patent nd=1.78470, νd=26.1)",
+      glass: "SF56A (SCHOTT compatible spectral proxy; source nd=1.78470, νd=26.1; supplier unspecified)",
       apd: false,
       role: "Weak rear positive meniscus after the stop; completes the focal length and helps balance field curvature and distortion.",
-      nC: 1.77605,
-      nF: 1.80615,
-      ng: 1.82449,
+
+
+
     },
   ],
 
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
+  // 2026-10-29: US4303314 Fig.1, PDF p2, native300ppi. The common schematic
+  // scale≈9.33 native px/mm from a ~707px S1–S8 span /75.7512mm. It
+  // has an exposed vertical land at the concave S6 end (q≈.75±.010;
+  // outer edge≈181native px). Retain the existing optical cap and extend
+  // the opaque rim to S5's height. S2 is continuously curved to L1's
+  // common outer rim, so its clear SD rises to match S1; no seat is invented.
   surfaces: [
     { label: "1", R: 57.50055, d: 6.75, sd: 25.785, medium: 1 },
-    { label: "2", R: 506.12715, d: 1.30005, sd: 25.515 },
+    { label: "2", R: 506.12715, d: 1.30005, sd: 25.785 },
     { label: "3", R: 40.5, d: 13.2003, sd: 24.57, medium: 2 },
     { label: "4", R: 97.88445, d: 2.4003, sd: 23.22 },
     { label: "5", R: 201.83445, d: 7.5006, sd: 21.6, medium: 3 },
-    { label: "6", R: 26.5194, d: 17.55, sd: 20.52 },
+    { label: "6", R: 26.5194, d: 17.55, sd: 20.52, rimExtensionSd: 21.6 },
     { label: "STO", R: "flat", d: 24.44985 },
     { label: "7", R: 95.80005, d: 2.6001, sd: 18.9, medium: 4 },
     { label: "8", R: 252.75645, sd: 18.225 },
