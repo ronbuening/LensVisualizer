@@ -11,11 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Compound wide-angle macro: Objective + Relay + Macro.             ║
  * ║  27 elements / 19 groups, 0 aspherical surfaces.                  ║
  * ║  Focus: inner focus — single positive element (L23) translates.   ║
- * ║  All-spherical design. f/14 (slow), 2ω ≈ 84.1° (135 format).     ║
+ * ║  All-spherical design. f/14; marketed 2ω ≈ 84.1° (135 format).     ║
  * ║                                                                    ║
  * Glass labels below are coordinate-compatible spectral proxies, not source-named suppliers.
  * Original Example 1 tables (PDF pp6–8) supply d-line nd/vd only; ED/APD flags are inferred.
- * 2026-10-29 Figure 1 reinspection: no additional resolved cap-end land supports a cut/extension.
+ * Fresh F-mount review 2026-10-30: Example 1 Figure 1 and all d-line media rows retained.
+ * No additional resolved cap-end land supports a cut/extension; patent design half-field is 44.6°.
  * ║  NOTE ON P1 ROD LENS:                                              ║
  * ║    Patent surfaces 3–6 describe a thick rod lens with internal     ║
  * ║    flat surfaces (prism fold planes in straight-through mode).     ║
@@ -47,7 +48,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    Source lists no separate camera-side cover/filter plate.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -62,7 +63,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-fe", "pentax-k", "canon-rf", "nikon-z", "l-mount"],
     imageFormat: "135-full-frame",
-    specs: ["27 ELEMENTS / 19 GROUPS", "f ≈ 23.7 mm", "F/14", "2ω ≈ 84.1°", "ALL SPHERICAL"],
+    specs: ["27 ELEMENTS / 19 GROUPS", "f ≈ 23.7 mm", "F/14", "MARKETED 2ω ≈ 84.1°", "ALL SPHERICAL"],
     elementCount: 27,
     groupCount: 19,
     /* ── Explicit metadata ── */

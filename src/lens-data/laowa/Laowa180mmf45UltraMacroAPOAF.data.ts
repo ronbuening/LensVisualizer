@@ -2,6 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /** CN120276109A Example 1, original PDF pp8-9; Figure1 p14.
  * Literal R/d/nd/vd source precision, scale 1; 12 lenses in 9 components.
+ * Fresh F-mount shape/glass review 2026-10-30: both configurations retained; shared MF audit/analysis apply.
  * Camera-side source 23-24 retained through rearPlates, physical gaps unchanged.
  * Source numerical prescription has no asphere coefficients. Paragraph 0087's
  * unsupported asphere claim is disclosed, not implemented by invented terms.
