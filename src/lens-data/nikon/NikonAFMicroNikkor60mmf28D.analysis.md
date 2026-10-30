@@ -170,6 +170,8 @@ The inferred stop has a modeled entrance-pupil semi-diameter of 10.638270 mm and
 
 The semi-diameters remain estimates. Figure 1 review sets surfaces 7–11 to a common 11.0 mm rim, matching the smaller middle group. Repository surface validation passes; the revised apertures can alter peripheral vignetting, so earlier portable ray-clearance counts are not presented as validation of this revision.
 
+A fresh native-resolution review of both halves of Fig. 1 also restores the squared L3 edge at surface 6: its outer semi-diameter is 10 mm and an inferred 2.83 mm-deep opaque land leaves an 8.9293 mm optical cap. The cap is moved outward from the schematic endpoint to clear the full modeled wide-open beam by at least 0.05 mm across focus, while the land remains before the inferred stop plane.
+
 ## Sources
 
 - Suzuki, Kenzaburo. **US Patent 5,751,485**, *Lens Capable of Short Distance Photographing with Vibration Reduction Function*, Nikon Corporation, granted May 12, 1998. Primary prescription: Fig. 1 and First Embodiment/Table 1, supplied PDF pp. 2, 25–26; first-mode conditions, PDF pp. 13–16.

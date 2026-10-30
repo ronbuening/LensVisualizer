@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1026** lenses scanned
 - **11741** glass elements examined
-- **3267** elements have multiple coordinate-compatible candidates
-- **587** lens files are affected
-- **319** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **3266** elements have multiple coordinate-compatible candidates
+- **586** lens files are affected
+- **318** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **209** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1891 |
-| Evidence-source priority | 1017 |
+| Evidence-source priority | 1016 |
 | Vendor context | 345 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -1034,7 +1034,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FC5 (HOYA) / N-FK5 class` | 1.48749 / 70.40 (d) | FC5 — Annotation vendor context matches Hoya. | N-FK5 (Schott, name, vendor ✗) | 1 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) L23 |
 | `S-LAL12 (OHARA; S-LAL12Q class)` | 1.67790 / 55.40 (d) | S-LAL12 — smallest d-line \|Δn\| (1.1e-7 vs 2.5e-7) | S-LAL12Q (Ohara, name, vendor ✓) | 1 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) L32 |
 | `S-LAH66 (OHARA catalog equivalent, nearest 773/496 row; patent 1.77279/49.4 has no exact catalog match)` | 1.77279 / 49.40 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | S-LAH66N (Ohara, code, vendor ✓, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row)<br>TAF1 (Hoya, code, vendor ✗, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row) | 2 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) L2 |
-| `S-TIM22 (OHARA special-order; code 648338 coordinate match)` | 1.64831 / 33.75 (d) | S-TIM22 — direct name evidence outranks six-digit code evidence. | H-ZF1 (CDGM, code, vendor ✗, alternate code row)<br>E-FD2 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AF DC-NIKKOR 135mm f/2 D](../../src/lens-data/nikon/NikonAFDCNikkor135mmf2.data.ts) L2 |
 | `N-PK52A / FCD1 class ED (497/816; vendor unresolved)` | 1.49700 / 81.61 (d) | FCD1 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) L6b |
 | `626357 — F1/TIM1 flint class (vendor unassigned)` | 1.62588 / 35.70 (d) | F1 — direct name evidence outranks six-digit code evidence. | E-F1 (Hoya, code, preferred code row)<br>S-TIM1 (Ohara, code, alternate code row)<br>F13 (CDGM, code, alternate code row) | 1 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) L31 |
 | `785261 — dense-flint class (nearest J-SFS3/S-TIH23)` | 1.78470 / 26.10 (d) | S-TIH23 — direct name evidence outranks six-digit code evidence. | SF56A (Schott, code, preferred code row) | 1 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) L52 |

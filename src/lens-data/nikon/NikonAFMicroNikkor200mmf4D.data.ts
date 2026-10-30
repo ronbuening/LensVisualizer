@@ -247,10 +247,16 @@ const LENS_DATA = {
    * Original patent labels are retained for all 21 refracting surfaces. The inferred STO splits source d8:
    * S8.d = 2.57025 mm (fixed) and STO.d = d8 - 2.57025 mm (variable).
    */
+  // 2026-10-29: US5402268 Fig.1, PDF p2 (native 300 ppi, ~11.4 px/mm,
+  // ~1864 px vertex span /164.1079 mm). L1's common rim is about 28.8 mm;
+  // adopt 28.5 mm on S1–S3 (was 27.5), retaining .1363 mm L12 edge thickness.
+  // A 29 mm trial crosses S2/S3; an S12 increase 16→17 mm violates the S11–S12
+  // gap guard. No separately resolved exposed cap-end land supports either
+  // an opaque workaround or a concave cut; retain the other inferred rims.
   surfaces: [
-    { label: "1", R: 197.971, d: 2.5, sd: 27.5, medium: 1 },
-    { label: "2", R: 85.604, d: 7.0, sd: 27.5, medium: 2 },
-    { label: "3", R: -206.085, d: 0.3, sd: 27.5 },
+    { label: "1", R: 197.971, d: 2.5, sd: 28.5, medium: 1 },
+    { label: "2", R: 85.604, d: 7.0, sd: 28.5, medium: 2 },
+    { label: "3", R: -206.085, d: 0.3, sd: 28.5 },
     { label: "4", R: 71.626, d: 6.0, sd: 29.0, medium: 3 },
     { label: "5", R: 432.817, sd: 29.0 },
     { label: "6", R: 79.137, d: 2.5, sd: 25.0, medium: 4 },
