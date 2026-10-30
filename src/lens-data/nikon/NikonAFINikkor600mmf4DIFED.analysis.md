@@ -51,7 +51,7 @@ The patent likewise does not publish numerical semi-diameters. The semi-diameter
 
 ### L11 — Biconvex Positive
 
-`nd = 1.49782, νd = 82.6.` Glass: **498826 — ED/fluorophosphate-crown class; HIKARI J-FKH1 coordinate match**. Standalone `f = +365.436 mm`.
+`nd = 1.49782, νd = 82.6.` Glass: **J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = +365.436 mm`.
 
 L11 is the first positive collector in the strongly positive G11 front subgroup. Its high Abbe number places substantial positive power in a low-dispersion material class. The data file records only a class-level identification: the current HIKARI J-FKH1 coordinate match is exact at the published `nd/νd` pair, but the patent does not identify the historical melt or vendor.
 
@@ -59,7 +59,7 @@ L11 operates with L12 and L13 rather than as an isolated objective. The patent's
 
 ### L12 — Biconvex Positive
 
-`nd = 1.49782, νd = 82.6.` Glass: **498826 — ED/fluorophosphate-crown class; HIKARI J-FKH1 coordinate match**. Standalone `f = +324.511 mm`.
+`nd = 1.49782, νd = 82.6.` Glass: **J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = +324.511 mm`.
 
 L12 is the second positive collector in G11 and uses the same high-Abbe coordinate as L11. Together the two positive elements carry most of the front collecting power before the negative L13. Their repeated low-dispersion coordinate creates a large first-order Abbe contrast against L13, but no anomalous-partial-dispersion or apochromatic behavior is asserted because the source publishes no line indices or `dPgF` values.
 
@@ -109,7 +109,7 @@ The current cross-vendor catalog neighborhood around this coordinate is close bu
 
 ### L31 — Biconvex Positive
 
-`nd = 1.49782, νd = 82.6.` Glass: **498826 — ED/fluorophosphate-crown class; HIKARI J-FKH1 coordinate match**. Standalone and group `f = +204.000 mm`.
+`nd = 1.49782, νd = 82.6.` Glass: **J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone and group `f = +204.000 mm`.
 
 L31 is the single fixed positive element forming G3 in Example 5 [JP H04-238311 A, ¶0020]. Because G3 is a one-element group, its standalone and group focal lengths are the same to the stated calculation precision.
 
@@ -117,16 +117,17 @@ The patent treats both the glass and surface shape of a single-element G3 as des
 
 ## Glass Identification and Selection
 
-The patent supplies d-line `nd` and `νd` values at approximately **587.6 nm** but no glass trade names [JP H04-238311 A, ¶0021]. The final data therefore separates coordinate facts from catalog interpretation. Six-digit strings and class names are identification aids; they are not claims that Nikon used the named current catalog glass.
+The patent supplies d-line `nd` and `νd` values at approximately **587.6 nm** but no glass trade names [JP H04-238311 A, ¶0021]. The final data therefore separates coordinate facts from catalog interpretation. Each catalog name is a qualified spectral proxy; compatible coordinates do not establish the historical supplier, melt, or glass chemistry.
 
 | Stored glass annotation | `nd / νd` | Elements | Identification status |
 |---|---:|---|---|
-| 498826 — ED/fluorophosphate-crown class; HIKARI J-FKH1 coordinate match | 1.49782 / 82.6 | L11, L12, L31 | Exact current HIKARI coordinate match; historical identity unproven |
+| J-FKH1 (HIKARI catalog equivalent; production supplier unspecified) | 1.49782 / 82.6 | L11, L12, L31 | Compatible catalog curve; historical identity unproven |
 | E-LAF11 (HIKARI catalog equivalent; production supplier unspecified) | 1.75692 / 31.7 | L13 | Compatible catalog equivalent; historical identity unproven |
 | J-LAK8 (HIKARI catalog equivalent; production supplier unspecified) | 1.71300 / 54.0 | L14, L22 | Compatible catalog equivalent |
-| J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified) | 1.59319 / 67.9 | L15 | Exact current HIKARI coordinate match; historical identity unproven |
+| J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified) | 1.59319 / 67.9 | L15 | Compatible catalog curve; historical identity unproven |
 | SF6 (SCHOTT catalog equivalent; production supplier unspecified) | 1.80518 / 25.4 | L21 | Compatible catalog equivalent |
 | LAC13 (HOYA catalog equivalent; production supplier unspecified) | 1.69350 / 53.8 | L23 | Compatible catalog equivalent |
+| J-BK7A (catalog-compatible spectral proxy; production supplier unspecified) | 1.51680 / 64.1 | Rear filter F | Compatible catalog curve; supplier unproven |
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored. The source does not publish them, and the class-level glass matches are not sufficient grounds to synthesize line indices from a modern catalog. Consequently, this analysis does not claim apochromatic correction, anomalous partial dispersion, or a specific secondary-spectrum behavior.
 
@@ -192,6 +193,8 @@ Independent sequential height/reduced-angle tracing and an ABCD calculation appl
 | G3 EFL | +204.000152 mm |
 | Petzval sum | −0.000548404159 mm⁻¹ |
 | Reciprocal Petzval radius | −1823.472677 mm |
+
+A fresh Figure 9 review found no independently resolved exposed concave cap-end land; the visible shoulder at cemented surface 10 is not an eligible air-facing rim extension. Geometry is retained. Four cardinal full-iris marginal rays clear the lens at both infinity and the authored 6.0 m endpoint with the fixed physical iris.
 
 The model's inferred semi-diameters also satisfy the independent geometry checks used during data construction. The minimum computed edge thickness is **0.382907 mm**, the maximum spherical rim-slope angle is **51.1264°**, and the tightest cross-gap case remains within the prescribed clearance at both authored focus endpoints. These results validate the internal consistency of the stored geometry; they do not convert the inferred semi-diameters into patent-published mechanical dimensions.
 

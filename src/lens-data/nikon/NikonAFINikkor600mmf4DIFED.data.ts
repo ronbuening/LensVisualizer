@@ -196,7 +196,7 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.5168,
       vd: 64.1,
-      glass: "J-BK7A",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (JP H04-238311 A, Example 5 surfaces 19–20), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],
