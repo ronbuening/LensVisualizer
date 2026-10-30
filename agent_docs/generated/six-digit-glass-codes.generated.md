@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1760** total code-only elements found
-- **1760** elements in this report
-- **282** distinct lens files affected
+- **1761** total code-only elements found
+- **1761** elements in this report
+- **283** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -170,6 +170,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 581407 | 2 | 2 | patents/JPA 1979030821-000000.pdf<br>patents/JP_S54107336_A.pdf | No review-record hit |
 | 581409 | 2 | 2 | patents/JPWO2020158622A1.pdf<br>patents/US20240151940A1.pdf | No review-record hit |
+| 583302 | 2 | 2 | patents/JP_2005092056_A.pdf<br>patents/US20070058265A1.pdf | All rows explicitly disposed |
 | 592670 | 2 | 2 | patents/US20150092100A1.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 600644 | 2 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 606437 | 2 | 2 | patents/WO2024062958A1.pdf<br>patents/US20210132345A1.pdf | No review-record hit |
@@ -277,7 +278,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 580539 | 1 | 1 | patents/US3482900.pdf | No review-record hit |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 581592 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
-| 583302 | 1 | 1 | patents/JP_2005092056_A.pdf | All rows explicitly disposed |
 | 583465 | 1 | 1 | patents/US4452513.pdf | No review-record hit |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 592683 | 1 | 1 | patents/CN_121091494_A.pdf | No review-record hit |
@@ -850,6 +850,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | E9 (Element 9) | R16 | `755275 class (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
 | E10 (Element 10) | R18 | `Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/JP_2005092056_A.pdf | Explicit disposition in data |
 | E11 (Element 11) | R20 | `516641 class (vendor unresolved)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
+
+### [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) - US 2007/0058265 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L41 (Element 10) | 18 | `Unmatched optical medium (583302; historical material, supplier and chemistry unresolved)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/US20070058265A1.pdf | Explicit disposition in data |
 
 ### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - US 3,748,022
 

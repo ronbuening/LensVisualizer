@@ -1833,7 +1833,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 18 | Element 10 | abbe | `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)` | Explicit unmatched/proprietary annotation |
+| 18 | Element 10 | abbe | `Unmatched optical medium (583302; historical material, supplier and chemistry unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) - 90.9% trusted (10/11); 90.9% Sellmeier (10/11) - US 4,210,388
 

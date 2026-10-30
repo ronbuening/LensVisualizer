@@ -9,7 +9,8 @@
 **Published:** June 2, 2022\
 **Inventor:** Takahiro Hatada\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Zoom Lens and Imaging Apparatus Including the Same*
+**Title:** _Zoom Lens and Imaging Apparatus Including the Same_\
+**Example details:** Numerical Example 3; PDF pages 22–23 / printed 8–9; Figure 7 PDF page 8 / sheet 7; Figures 8A/8B PDF page 9 / sheet 8
 
 The prescription modeled here is Numerical Example 3 of US 2022/0171174 A1. The patent describes Example 3 as a
 six-group negative-lead zoom in which the first group is negative, the second and third groups are positive, the fourth
@@ -52,14 +53,14 @@ telephoto or retrofocus label to the entire zoom. The six zoom groups have the p
 **negative–positive–positive–negative–negative–positive**. Independent paraxial calculation from the final prescription
 gives the following in-air group focal lengths:
 
-| Group | Surfaces | Net focal length | Zoom/focus behavior |
-|---|---|---:|---|
-| L1 | 1–8 | −22.934 mm | Moves imageward, then reverses objectward during zoom |
-| L2 | STO–18 | +62.852 mm | Moves objectward; contains LP and the LN IS group |
-| L3 | 19–23A | +21.503 mm | Moves objectward |
-| L4 | 24–25 | −35.510 mm | Moves objectward in zoom; moves imageward for close focus |
-| L5 | 26A–27A | −94.241 mm | Moves objectward |
-| L6 | 28–29 | +114.546 mm | Stationary in zoom |
+| Group | Surfaces | Net focal length | Zoom/focus behavior                                       |
+| ----- | -------- | ---------------: | --------------------------------------------------------- |
+| L1    | 1–8      |       −22.934 mm | Moves imageward, then reverses objectward during zoom     |
+| L2    | STO–18   |       +62.852 mm | Moves objectward; contains LP and the LN IS group         |
+| L3    | 19–23A   |       +21.503 mm | Moves objectward                                          |
+| L4    | 24–25    |       −35.510 mm | Moves objectward in zoom; moves imageward for close focus |
+| L5    | 26A–27A  |       −94.241 mm | Moves objectward                                          |
+| L6    | 28–29    |      +114.546 mm | Stationary in zoom                                        |
 
 The 16 physical elements form 12 air-separated optical groups. That count is distinct from the six functional zoom
 groups L1–L6. Four pairs are cemented doublets: D1 at surfaces 10–12, D2 at 13–15, D3/LN at 16–18, and D4 at
@@ -264,28 +265,28 @@ line indices, or partial-dispersion values. The data therefore preserves the opt
 class-level annotations. S-TIM27 supplies a compatible dispersion curve for E6 without asserting that Canon used OHARA
 glass. `nC`, `nF`, `ng`, and `dPgF` are intentionally absent from all elements.
 
-| Data-file glass annotation | nd | νd | Elements | Interpretation |
-|---|---:|---:|---|---|
-| 773496 class (vendor indeterminate) | 1.77250 | 49.6 | E1 | Dense front-group class; supplier unresolved |
-| 583594 class (vendor indeterminate) | 1.58313 | 59.4 | E2 | Moderate-index crown-class coordinate |
-| 497816-class UD/ED crown (vendor indeterminate) | 1.49700 | 81.5 | E3, E12, E13 | Three high-Abbe elements; production correlation to Canon's three UD elements |
-| 834372 class (vendor indeterminate) | 1.83400 | 37.2 | E4 | High-index L1 positive member |
-| 954323 class (vendor indeterminate) | 1.95375 | 32.3 | E5 | Very high-index D1 negative member |
-| S-TIM27 coefficient proxy (supplier unspecified; patent 640345) | 1.63980 | 34.5 | E6 | Exact six-digit-code proxy for D1 positive partner; supplier not established |
-| 911353 class (vendor indeterminate) | 1.91082 | 35.3 | E7 | High-index D2 negative member |
-| 516641 class (vendor indeterminate) | 1.51633 | 64.1 | E8 | Higher-Abbe D2 positive partner |
-| 720347 class (vendor indeterminate) | 1.72047 | 34.7 | E9 | Negative LN member; enters patent condition (4) |
-| 001255 class (vendor indeterminate) | 2.00069 | 25.5 | E10 | Very high-index LN positive partner |
-| 804465/466 class (vendor indeterminate) | 1.80400 | 46.5 | E11, E14 | Used in L3 negative member and L4 focus element |
-| L-LAH85V-class coordinate match (supplier not established) | 1.85400 | 40.4 | E15 | Closest catalog-coordinate class retained without supplier claim |
-| S-FSL5-class coordinate match (supplier not established) | 1.48749 | 70.2 | E16 | High-Abbe rear positive class retained without supplier claim |
+| Data-file glass annotation                                      |      nd |   νd | Elements     | Interpretation                                                                |
+| --------------------------------------------------------------- | ------: | ---: | ------------ | ----------------------------------------------------------------------------- |
+| 773496 class (vendor indeterminate)                             | 1.77250 | 49.6 | E1           | Dense front-group class; supplier unresolved                                  |
+| 583594 class (vendor indeterminate)                             | 1.58313 | 59.4 | E2           | Moderate-index crown-class coordinate                                         |
+| 497816-class UD/ED crown (vendor indeterminate)                 | 1.49700 | 81.5 | E3, E12, E13 | Three high-Abbe elements; production correlation to Canon's three UD elements |
+| 834372 class (vendor indeterminate)                             | 1.83400 | 37.2 | E4           | High-index L1 positive member                                                 |
+| 954323 class (vendor indeterminate)                             | 1.95375 | 32.3 | E5           | Very high-index D1 negative member                                            |
+| S-TIM27 coefficient proxy (supplier unspecified; patent 640345) | 1.63980 | 34.5 | E6           | Exact six-digit-code proxy for D1 positive partner; supplier not established  |
+| 911353 class (vendor indeterminate)                             | 1.91082 | 35.3 | E7           | High-index D2 negative member                                                 |
+| 516641 class (vendor indeterminate)                             | 1.51633 | 64.1 | E8           | Higher-Abbe D2 positive partner                                               |
+| 720347 class (vendor indeterminate)                             | 1.72047 | 34.7 | E9           | Negative LN member; enters patent condition (4)                               |
+| 001255 class (vendor indeterminate)                             | 2.00069 | 25.5 | E10          | Very high-index LN positive partner                                           |
+| 804465/466 class (vendor indeterminate)                         | 1.80400 | 46.5 | E11, E14     | Used in L3 negative member and L4 focus element                               |
+| L-LAH85V-class coordinate match (supplier not established)      | 1.85400 | 40.4 | E15          | Closest catalog-coordinate class retained without supplier claim              |
+| S-FSL5-class coordinate match (supplier not established)        | 1.48749 | 70.2 | E16          | High-Abbe rear positive class retained without supplier claim                 |
 
 The strongest production-level glass evidence is the **count and placement** of the three `1.49700/81.5` elements.
 Canon specifies three UD elements, including one UD asphere. The patent provides exactly three elements at that
 coordinate, and E13 is aspherical on both surfaces. This supports the production correlation while remaining distinct
 from catalog identification.
 
-No element is labeled anomalous-partial-dispersion glass in the data. In particular, the `1.72047/34.7` coordinate of E9
+The data carries three `apd: "inferred"` badges on E3/E12/E13 for the production-correlated UD positions. Those conditional tags are not published partial-dispersion measurements or proof of historical chemistry. In particular, the `1.72047/34.7` coordinate of E9
 has catalog equivalents in families sometimes associated with unusual partial dispersion, but the patent supplies no
 line data or `dPgF`. A secondary-spectrum or APO claim would therefore exceed the evidence available to this model.
 
@@ -300,11 +301,11 @@ The data file therefore uses a **CONSTRAINED_RECONSTRUCTION**, not a claim of pa
 and D25 decreases by the same amount so the L3-to-L5 interval is conserved at each zoom state. A paraxial solve places
 the image at the fixed patent image plane.
 
-| Zoom state | D23 infinity | D23 close | D25 infinity | D25 close | L4 imageward shift |
-|---|---:|---:|---:|---:|---:|
-| 14.42 mm | 1.400 mm | 2.282992 mm | 7.460 mm | 6.577008 mm | 0.882992 mm |
-| 24.42 mm | 2.290 mm | 3.760420 mm | 6.570 mm | 5.099580 mm | 1.470420 mm |
-| 33.95 mm | 1.880 mm | 3.852945 mm | 6.970 mm | 4.997055 mm | 1.972945 mm |
+| Zoom state | D23 infinity |   D23 close | D25 infinity |   D25 close | L4 imageward shift |
+| ---------- | -----------: | ----------: | -----------: | ----------: | -----------------: |
+| 14.42 mm   |     1.400 mm | 2.282992 mm |     7.460 mm | 6.577008 mm |        0.882992 mm |
+| 24.42 mm   |     2.290 mm | 3.760420 mm |     6.570 mm | 5.099580 mm |        1.470420 mm |
+| 33.95 mm   |     1.880 mm | 3.852945 mm |     6.970 mm | 4.997055 mm |        1.972945 mm |
 
 The reconstructed telephoto state gives a paraxial magnification magnitude of 0.380866 at the normalized 0.200 m
 object-to-sensor distance, agreeing with Canon's marketed 0.38× to normal rounding. That agreement supports the chosen
@@ -330,14 +331,14 @@ Thus the patent's `k` maps directly to the data file's standard `K`; no alternat
 prescription is not scaled (`s = 1`), so the tabulated coefficients are stored exactly as printed. Had a scale factor
 been applied, each coefficient would require `A_p,scaled = A_p,patent / s^(p-1)`, but no such transform occurs here.
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 | A14 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 3A | 0 | −4.032330e−05 | +2.843100e−07 | −1.854190e−09 | +6.481250e−12 | −1.223780e−14 | +9.288920e−18 |
-| 4A | −0.560601 | −6.164520e−05 | +2.382190e−07 | −1.710890e−09 | −6.464930e−12 | +6.501940e−14 | −1.769650e−16 |
-| 22A | 0 | −1.678370e−05 | −3.648430e−08 | +1.076180e−09 | −1.243500e−11 | +7.096010e−14 | 0 |
-| 23A | 0 | +1.931770e−05 | −1.275750e−07 | +6.123780e−10 | −8.153720e−12 | +4.334820e−14 | 0 |
-| 26A | 0 | +2.551010e−05 | −2.648460e−07 | −4.549600e−10 | +8.831990e−12 | −3.330760e−14 | 0 |
-| 27A | 0 | +3.690790e−05 | −2.562850e−07 | +4.521830e−10 | +1.472500e−12 | −6.146780e−15 | 0 |
+| Surface |         K |            A4 |            A6 |            A8 |           A10 |           A12 |           A14 |
+| ------- | --------: | ------------: | ------------: | ------------: | ------------: | ------------: | ------------: |
+| 3A      |         0 | −4.032330e−05 | +2.843100e−07 | −1.854190e−09 | +6.481250e−12 | −1.223780e−14 | +9.288920e−18 |
+| 4A      | −0.560601 | −6.164520e−05 | +2.382190e−07 | −1.710890e−09 | −6.464930e−12 | +6.501940e−14 | −1.769650e−16 |
+| 22A     |         0 | −1.678370e−05 | −3.648430e−08 | +1.076180e−09 | −1.243500e−11 | +7.096010e−14 |             0 |
+| 23A     |         0 | +1.931770e−05 | −1.275750e−07 | +6.123780e−10 | −8.153720e−12 | +4.334820e−14 |             0 |
+| 26A     |         0 | +2.551010e−05 | −2.648460e−07 | −4.549600e−10 | +8.831990e−12 | −3.330760e−14 |             0 |
+| 27A     |         0 | +3.690790e−05 | −2.562850e−07 | +4.521830e−10 | +1.472500e−12 | −6.146780e−15 |             0 |
 
 Paragraph 0063 prints the general expression only through A12, but Numerical Example 3 explicitly tabulates nonzero A14
 terms for surfaces 3 and 4. The data preserves those A14 values as the natural continuation of the same even-power radial
@@ -347,13 +348,13 @@ At the patent effective semi-diameters, the independently evaluated polynomial d
 bases are:
 
 | Surface | Semi-diameter | Polynomial departure from conic base |
-|---|---:|---:|
-| 3A | 15.825 mm | −1.417408 mm |
-| 4A | 13.230 mm | −2.300130 mm |
-| 22A | 9.635 mm | −0.134220 mm |
-| 23A | 10.005 mm | +0.088752 mm |
-| 26A | 10.550 mm | −0.031439 mm |
-| 27A | 11.105 mm | +0.205604 mm |
+| ------- | ------------: | -----------------------------------: |
+| 3A      |     15.825 mm |                         −1.417408 mm |
+| 4A      |     13.230 mm |                         −2.300130 mm |
+| 22A     |      9.635 mm |                         −0.134220 mm |
+| 23A     |     10.005 mm |                         +0.088752 mm |
+| 26A     |     10.550 mm |                         −0.031439 mm |
+| 27A     |     11.105 mm |                         +0.205604 mm |
 
 The front-group aspheres therefore carry the largest polynomial departures in the prescription, while the L3 and L5
 aspheres apply smaller but still measurable edge reshaping. Surface 4A uses `K = −0.560601`; at its full published
@@ -405,16 +406,16 @@ correlation but does not establish the patent's exact IS actuator stroke or dece
 The patent defines eight design conditions in ¶0044 and gives Example 3 values in Table 1. Independent calculation from
 the final prescription reproduces those values to the precision expected from the rounded prescription.
 
-| Condition | Computed | Patent range | Result |
-|---|---:|---:|---|
-| `fLN / ft` | −2.167294 | −4.0 < x < −1.0 | Pass |
-| `fLP / ft` | +1.133639 | 0.8 < x < 1.8 | Pass |
-| `fLN / fLP` | −1.911804 | −2.4 < x < −0.8 | Pass |
-| `νLN` | 34.7 | 30 < x < 60 | Pass |
-| `(r1 + r2) / (r1 − r2)` | +0.315322 | −1.0 < x < 1.0 | Pass |
-| `dLN / dt` | +0.117184 | 0.00 < x < 0.25 | Pass |
-| `f1 / fw` | −1.590459 | −2.2 < x < −1.0 | Pass |
-| `f1 / skw` | −1.529981 | −2.2 < x < −0.9 | Pass |
+| Condition               |  Computed |    Patent range | Result |
+| ----------------------- | --------: | --------------: | ------ |
+| `fLN / ft`              | −2.167294 | −4.0 < x < −1.0 | Pass   |
+| `fLP / ft`              | +1.133639 |   0.8 < x < 1.8 | Pass   |
+| `fLN / fLP`             | −1.911804 | −2.4 < x < −0.8 | Pass   |
+| `νLN`                   |      34.7 |     30 < x < 60 | Pass   |
+| `(r1 + r2) / (r1 − r2)` | +0.315322 |  −1.0 < x < 1.0 | Pass   |
+| `dLN / dt`              | +0.117184 | 0.00 < x < 0.25 | Pass   |
+| `f1 / fw`               | −1.590459 | −2.2 < x < −1.0 | Pass   |
+| `f1 / skw`              | −1.529981 | −2.2 < x < −0.9 | Pass   |
 
 For condition (5), the LN boundary radii are `r1 = −101.166 mm` and `r2 = +52.661 mm`. For condition (6), the relevant
 LN axial distance is 14.75 mm and the telephoto entire lens length is 125.87 mm. These quantities are evaluated from the
@@ -425,11 +426,11 @@ same prescription used by the data file rather than copied from Table 1.
 Independent sequential height/reduced-angle tracing and a 2×2 ABCD calculation agree exactly for the three patent zoom
 states. The first-order results are:
 
-| State | Computed EFL | Patent EFL | Computed BFD | Patent BF |
-|---|---:|---:|---:|---:|
-| Wide | 14.418880 mm | 14.42 mm | 14.990534 mm | 14.99 mm |
-| Middle | 24.420467 mm | 24.42 mm | 15.000928 mm | 14.99 mm |
-| Telephoto | 33.959239 mm | 33.95 mm | 15.034273 mm | 14.99 mm |
+| State     | Computed EFL | Patent EFL | Computed BFD | Patent BF |
+| --------- | -----------: | ---------: | -----------: | --------: |
+| Wide      | 14.418880 mm |   14.42 mm | 14.990534 mm |  14.99 mm |
+| Middle    | 24.420467 mm |   24.42 mm | 15.000928 mm |  14.99 mm |
+| Telephoto | 33.959239 mm |   33.95 mm | 15.034273 mm |  14.99 mm |
 
 The increasing BFD residual at telephoto reaches +0.044273 mm. No source spacing is altered to force exact agreement;
 the residual is consistent with the prescription's printed radius, spacing, and index precision. The wide-state printed
@@ -456,12 +457,11 @@ intersection.
 
 The sequential model omits no published refracting plate from Numerical Example 3. It also adds no sensor cover glass,
 filter, auxiliary stop, dummy plane, flare-cutter plane, blocker, or mechanical component. Surface semi-diameters are
-one-half the patent's published effective diameters; they are not inferred from ray heights. The only reconstructed
-optical state is close focus, explicitly described above.
+one-half the patent's published effective diameters; they are not inferred from ray heights. Only the three infinity zoom stations are tabulated; close focus and intermediate zoom/focus positions are reconstructed or interpolated as explicitly qualified below.
 
 ## Sources / References
 
-1. **US 2022/0171174 A1**, Takahiro Hatada, *Zoom Lens and Imaging Apparatus Including the Same*, Canon Kabushiki
+1. **US 2022/0171174 A1**, Takahiro Hatada, _Zoom Lens and Imaging Apparatus Including the Same_, Canon Kabushiki
    Kaisha, published June 2, 2022. Numerical Example 3; especially ¶0029, ¶0036–¶0064, Figures 7–9, and Table 1.
 2. **Canon U.S.A.**, “RF14-35mm F4 L IS USM Lens,” announcement dated June 29, 2021. Product identity, announced focal
    range/aperture, minimum focus, maximum magnification, optical IS, and Nano USM.\
@@ -480,3 +480,21 @@ optical state is close focus, explicitly described above.
 6. Current official optical-glass catalogs from **OHARA, HOYA, HIKARI, SCHOTT, CDGM, and SUMITA** were used for the
    coordinate-class audit. Because the patent does not identify a supplier, the final data retains class-level or
    coordinate-match annotations rather than assigning unproven production glass names.
+
+## 2026-10-30 original shape, glass and runtime review
+
+The exact local original is `patents/US20220171174A1.pdf`, US 2022/0171174 A1, Numerical Example 3. Native first page confirms Takahiro Hatada / Canon, filed November 24, 2021, priority December 1, 2020. The full 29-surface / 16-medium table and first four asphere tables are PDF page 22 / printed 8; remaining two aspheres, full summary and five zoom-gap rows are page 23 / printed 9. Paragraphs 0061–0063, PDF page 19 / printed 5 define nd/νd notation, air-equivalent BF and the standard (1+K) asphere. Preserve genuinely tabulated A14 on 3A/4A even though the generic equation stops at A12. Figure 7 on page 8 / sheet 7 is the wide section; Figures 8A/B on page 9 / sheet 8 are wide/tele aberrations, and Figures 9A/B on page 10 / sheet 9 are 0.3° stabilization studies. No calibrated transverse IS state is authored.
+
+Every clear cap remains half its printed effective diameter. Native 300 ppi one-bit pages are 2560×3300; 600 ppi viewing would only magnify this ink twofold. In rotated Figure 7, front-cap vertical calibration is about 16.2 px/mm and axial stack about 15.6 px/mm, reflecting schematic scaling. Practical height uncertainty is ±0.6 mm. S2 has a clear vertical outer shoulder from its existing 16.105 mm curved cap to the 21.91 mm front blank; `rimExtensionSd: 21.91` preserves the published optical cap. S4A similarly extends from clear 13.23 to outer 15.825. Native step heights agree within the reading uncertainty. No other separate shoulder is resolved beyond that uncertainty; every cemented interface, concave end and all six aspheres were checked. There are no inferred cuts, opaque bonded lands, resin wings or unsupported blocks.
+
+Rejected clear-inflation trials keep source optics intact: S2 clear 21.91 exceeds its spherical radius 18.113 and fails the slope guard at 90°; S4A clear 15.825 gives actual aspheric rim slope 78.2°, above 64.2°. The adopted air shoulders retain their existing caps. Existing `gapSagFrac: 0.93` is preserved without a new tolerance change: source 4A→5 shared-band intrusion 10.022449 mm in 10.87 mm leaves 0.847551 mm physical clearance, while exceeding the generic 90% margin. This pre-existing, explicit source-cap constraint is not an inferred-cut exemption. No R/d, coefficient, medium value, stop rule, nominal target, gap or focus cam is tuned.
+
+All sixteen source nd/νd pairs are directly checked. Sixteen compatible curves resolve: E1 J-LASF016, E2 J-SK12, E3/E12/E13 H-FK61, E4 J-LASF010, E5 J-LASFH21, E6 S-TIM27, E7 H-ZLaF4LA, E8 S-BSL7, E9 N-KZFS8, E10 J-LASFH17, E11/E14 TAF3D, E15 L-LAH85V and E16 S-FSL5. These are qualified spectral proxies, never historical supplier, melt, chemistry, cement or manufacturing proof. No C/F/g index, partial-dispersion or APD measurement is printed for the individual media; no per-lens override is authored or removed. Three existing APD inferences remain explicitly production-correlated UD positions; they are not converted into source measurements. Source filters, rear plates and hybrid layers are absent. Catalog design endpoints quote printed 14.42/33.95, with computed 14.418880/33.959239 kept separately.
+
+The wide angle labels remain an unresolved source/model/convention question, now in `source.errata`. The summary prints 53.26°, Figure 8A prints 56.3°, and source Y is 21.64 mm. Public bounding-sphere vector chiefs converge with all 29 surfaces and no clipping at those angles: absolute heights 17.494158 and 19.321012 mm. Middle 41.34° gives 21.337918 mm; tele 32.5° gives 21.633027 mm. These results do not select a new field convention or justify changing aspheres/caps. The larger runtime full-frame query is 21.65 mm; at wide its attempted corner needs 59.576284°, where published 26A/27A caps clip. The actual edge is 20.966640 mm / 96.8436% of that query. All source angles are infinity labels; repeating them at finite states does not certify source finite coverage.
+
+A geometry-identical 65-position clone matches actual runtime z/sd exactly at focus 0/.5/1. Surface probe passes and image-circle audit has zero undersized elements. Aperture census is within 3% at all 65 positions using its existing derived/paraxial iris and admitted-beam criterion. Exact aimed-rim working values are separately 4.097865/4.152033/4.287376 versus nominal 4.08/4.08/4.12. Thirteen of 65 exact ratios exceed 3%, worst tele +4.062534%; all trace. No threshold or iris authority is changed. Derived source-station iris radii are 5.657815/7.003855/8.635139 mm; the generic printed stop radius 9.015 remains envelope evidence, not a physical iris schedule.
+
+Field census has 62/65 positions at least 99% of the runtime corner and three widest positions 96.84–98.95%, limited by retained 26A/27A caps. Across 21 zoom × 21 focus × six presets, all 2,646 working calls trace before/after. Full pupil sampling uses each state's iris at 65 zoom × five focus × four fields = 1,300 fields/version, 193 positions each: all axial fields retain 193/193, and corner counts are unchanged (source infinity 41/148/150; reconstructed close 7/144/153). Heavy wide-corner vignetting is retained, not hidden by a blanket clearance claim. The two air shoulders change outline only.
+
+First-order checks span 65 zoom × 21 focus = 1,365 actual states. Source infinity image-plane residuals are +0.000534/+0.010928/+0.044273 mm; reconstructed 0.20 m source-zoom endpoints focus numerically. Sparse source stations do not define a continuous cam: worst infinity residual −1.566540 mm at zoom .28125 (EFL 18.885625 versus displayed 20.045), worst finite −2.888986 mm at zoom .875/focus .6, displayed .333333 m. Preserve all controls and call intervals illustrative. Actual rendered SVGs compared against native Figure 7 cover 1,365 states / 21,840 finite, closed, connected element paths, zero hidden trim. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.

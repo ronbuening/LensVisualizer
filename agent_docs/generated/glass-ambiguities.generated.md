@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2748** elements have multiple coordinate-compatible candidates
-- **499** lens files are affected
+- **2747** elements have multiple coordinate-compatible candidates
+- **498** lens files are affected
 - **291** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **124** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1593 |
-| Evidence-source priority | 861 |
+| Evidence-source priority | 860 |
 | Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -175,7 +175,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `847239 class (vendor unresolved)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 6 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) E4 +2 files |
 | `620363 class (vendor unresolved)` | 1.62004 / 36.30 (d) | S-TIM2 — smallest d-line \|Δn\| (1.6e-7 vs 1.1e-6) | E-F2 (Hoya, code, alternate code row) | 1 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) E8 |
 | `755275 class (vendor unresolved)` | 1.75520 / 27.50 (d) | E-FD4 — smallest d-line \|Δn\| (7.4e-7 vs 1.4e-6) | H-ZF6 (CDGM, code, alternate code row) | 1 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) E9 |
-| `S-BAL42 (OHARA) / 583594 barium crown` | 1.58313 / 59.40 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | L-BAL42 (Ohara, code, vendor ✓, alternate code row)<br>J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) L6 |
 | `S-BAL35 (OHARA; SK5-class equivalent)` | 1.58913 / 61.00 (d) | S-BAL35 — Annotation vendor context matches Ohara. | SK5 (Sumita, name, vendor ✗) | 3 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) E1 |
 | `S-TIH6 (OHARA; SF6-class equivalent)` | 1.80518 / 25.40 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 2 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) E4 |
 | `S-BAH28 (OHARA) / BAFD8 (HOYA) equivalent` | 1.72342 / 38.00 (d) | S-BAH28 — smallest d-line \|Δn\| (1.8e-7 vs 3.2e-6) | BAFD8 (Hoya, name, vendor ✓) | 1 | [CANON FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) L3 |

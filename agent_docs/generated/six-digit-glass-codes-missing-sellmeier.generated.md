@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1760** total code-only elements found
-- **365** elements in this report
-- **132** distinct lens files affected
+- **1761** total code-only elements found
+- **366** elements in this report
+- **133** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **233** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **234** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -79,6 +79,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
 | 539540 | 2 | 1 | patents/JP_H11211978_A.pdf | All rows explicitly disposed |
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
+| 583302 | 2 | 2 | patents/JP_2005092056_A.pdf<br>patents/US20070058265A1.pdf | All rows explicitly disposed |
 | 600644 | 2 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
@@ -156,7 +157,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 581592 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
-| 583302 | 1 | 1 | patents/JP_2005092056_A.pdf | All rows explicitly disposed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 593353 | 1 | 1 | patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
@@ -454,6 +454,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | E10 (Element 10) | R18 | `Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/JP_2005092056_A.pdf | Explicit disposition in data |
+
+### [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) - US 2007/0058265 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L41 (Element 10) | 18 | `Unmatched optical medium (583302; historical material, supplier and chemistry unresolved)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/US20070058265A1.pdf | Explicit disposition in data |
 
 ### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - US 3,748,022
 
