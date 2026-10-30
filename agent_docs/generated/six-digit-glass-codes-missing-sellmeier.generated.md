@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1796** total code-only elements found
-- **346** elements in this report
-- **129** distinct lens files affected
+- **1797** total code-only elements found
+- **352** elements in this report
+- **130** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **214** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **220** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -53,7 +53,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---:|---:|---|---|
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US_4786152_A.pdf | All rows have review records |
 | 487702 | 7 | 3 | patents/JP_2000047107_A.pdf<br>patents/US4826301.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
-| 805254 | 6 | 5 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/US4826301.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
+| 805254 | 7 | 6 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/US4826301.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 847238 | 6 | 4 | patents/JP_2000047107_A.pdf<br>patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 835427 | 5 | 3 | patents/JP_2000047107_A.pdf<br>patents/JP_H11211978_A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 486815 | 4 | 3 | patents/US3774991.pdf | All rows have review records |
@@ -62,6 +62,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 773496 | 4 | 3 | patents/JP_2000047107_A.pdf<br>patents/JP_H11211978_A.pdf | All rows explicitly disposed |
+| 804465 | 4 | 1 | patents/US20020015231A1.pdf | All rows explicitly disposed |
+| 804466 | 4 | 1 | patents/US20020015231A1.pdf | All rows explicitly disposed |
 | 516641 | 3 | 3 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP_H11211978_A.pdf | All rows explicitly disposed |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 583594 | 3 | 2 | patents/US4826301.pdf<br>patents/JP_H11211978_A.pdf | All rows explicitly disposed |
@@ -246,6 +248,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 757297 | 1 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 758316 | 1 | 1 | patents/US3388956A.pdf | All rows explicitly disposed |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 762265 | 1 | 1 | patents/US20020015231A1.pdf | All rows explicitly disposed |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -396,6 +399,17 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | E9 (Element 9) | 16 | `Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
 | E10 (Element 10) | 18 | `Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)` | 1.77250 / 49.60 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
 | E11 (Element 11) | 20 | `Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)` | 1.77250 / 49.60 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
+
+### [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) - US 2002/0015231 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L8 (Element 8) | 15 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 805254 coordinate class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
+| L9 (Element 9) | 16 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 762265 coordinate class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
+| L10 (Element 10) | 18 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.76182 / 26.50 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
+| L11 (Element 11) | 19 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
+| L12 (Element 12) | 21 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
+| L14 (Element 14) | 24 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
 
 ### [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) - US 2013/0335830 A1
 

@@ -46,20 +46,20 @@ prints no numerical clear diameters.
 All 15 powered elements, four cemented interfaces, concave ends and filter FL were inspected against native Fig. 1 and
 actual SVGs. These are inferred optical caps, not published production apertures.
 
-| Element / faces | Previous clear sd, mm | Adopted clear sd, mm | Disposition |
-|---|---|---|---|
-| E1, 1/2 | 55/53 | 51.5/51.5 | Native front collector near 51.5. |
-| E2, 3/4 | 49/45 | 44/44 | Separate positive meniscus near 44. |
-| E3, 5/6 | 41.7/42 | 41.7/42 | Retained gap-constrained caps; source blank restoration remains limited. |
-| E4, 7/8 | 42/39 | 39/39 | Source positive rim near 39. |
-| E5, 9/10 | 39/35.5 | 33.5/30 | Source outer rim near 33.5 with resolved S10 rear shoulder. |
-| L2 doublet, 11/12/13 | 27/26.5/26 | 24.5/24.5/24.5 | Connected focus component near 24.5; no opaque interface land. |
-| L31 doublet, 15/16/17 | 20/20/19.5 | 17.5/17.5/17.5 | Source post-stop component near 17.5. |
-| L32 front pair, 18/19/20 | 19.5/18.5/15.85 | 17/17/15.85 | Clear rear cap retained; outer S20 shoulder reaches 17. |
-| L32 rear negative, 21/22 | 15.85/18 | 15.85/17 | Clear front cap retained; opposed S21 shoulder reaches 17. |
-| L33 doublet, 23/24/25 | 20.5/20.5/20.5 | 19/19/19 | Connected native component near 19. |
-| Final positive, 26/27 | 22/22 | 21/21 | Source plano-convex component near 21. |
-| Filter FL, 28/29 | 22/22 | 25/25 | Native filter outline near 25; supersedes the earlier ray-envelope-only height. |
+| Element / faces          | Previous clear sd, mm | Adopted clear sd, mm | Disposition                                                                     |
+| ------------------------ | --------------------- | -------------------- | ------------------------------------------------------------------------------- |
+| E1, 1/2                  | 55/53                 | 51.5/51.5            | Native front collector near 51.5.                                               |
+| E2, 3/4                  | 49/45                 | 44/44                | Separate positive meniscus near 44.                                             |
+| E3, 5/6                  | 41.7/42               | 41.7/42              | Retained gap-constrained caps; source blank restoration remains limited.        |
+| E4, 7/8                  | 42/39                 | 39/39                | Source positive rim near 39.                                                    |
+| E5, 9/10                 | 39/35.5               | 33.5/30              | Source outer rim near 33.5 with resolved S10 rear shoulder.                     |
+| L2 doublet, 11/12/13     | 27/26.5/26            | 24.5/24.5/24.5       | Connected focus component near 24.5; no opaque interface land.                  |
+| L31 doublet, 15/16/17    | 20/20/19.5            | 17.5/17.5/17.5       | Source post-stop component near 17.5.                                           |
+| L32 front pair, 18/19/20 | 19.5/18.5/15.85       | 17/17/15.85          | Clear rear cap retained; outer S20 shoulder reaches 17.                         |
+| L32 rear negative, 21/22 | 15.85/18              | 15.85/17             | Clear front cap retained; opposed S21 shoulder reaches 17.                      |
+| L33 doublet, 23/24/25    | 20.5/20.5/20.5        | 19/19/19             | Connected native component near 19.                                             |
+| Final positive, 26/27    | 22/22                 | 21/21                | Source plano-convex component near 21.                                          |
+| Filter FL, 28/29         | 22/22                 | 25/25                | Native filter outline near 25; supersedes the earlier ray-envelope-only height. |
 
 There are 23 clear-cap revisions and three outer shoulders. S10 has clear sd 30 and `rimExtensionSd: 33.5`; S20/S21
 keep clear sd 15.85 and use opposed outer shoulders of 17. These are resolved air-facing shoulders. No opaque bonded
@@ -120,3 +120,9 @@ IS is checked only in the authored centered state. The source's Fig. 19 displace
 on PDF p. 64, col. 4) does not give physical L32 actuator travel, so no lateral IS stroke is invented. Moved-state
 clearance, optional converter combinations, continuous illumination and production performance remain unverified.
 Source fidelity, sampled clearance and the qualified retail correlation remain separate conclusions.
+
+- Count/prose consistency follow-up on 2026-10-30 reuses this completed original review: selected
+  Example 1 has 16 media / 12 groups including required drawn FL, so catalog counts/specs now include
+  FL. The retained production 17/13 count additionally includes protection glass absent from this
+  example’s numerical rows. No source reinspection, geometry/control change or extra fresh review is
+  claimed; the actual historical and original-review dates above are preserved.

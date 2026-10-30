@@ -9,13 +9,14 @@
 **Granted:** 5 September 2000; certificate of correction issued 29 May 2001  
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka  
 **Assignee:** Canon Kabushiki Kaisha  
-**Title:** *Optical System and Optical Apparatus Having the Same*  
+**Title:** _Optical System and Optical Apparatus Having the Same_\
 **Example details:** Example 1
 
 The prescription analyzed here is the selected production correlation for the **CANON EF 300mm f/2.8 L IS USM**. The patent does not name that commercial lens, and Canon's product documentation does not identify a patent number, so the connection is a convergent optical and chronological correlation rather than a manufacturer-confirmed patent attribution.
 
 1. **Focal length, aperture, and field.** Numerical Example 1 publishes `f = 293.58 mm`, `Fno = 2.9`, and `2ω = 8.4°`. Independent first-order tracing of the final data file gives an effective focal length of **293.599593947 mm**, closely corresponding to a marketed 300 mm f/2.8 full-frame telephoto.
-2. **Element and group accounting.** The active refractive prescription before the rear filter contains **15 elements in 11 air-separated groups**. The patent then adds a plane-parallel rear filter as a sixteenth glass element and twelfth group. The first-embodiment text also permits a front protection plate. Canon specifies **17 elements in 13 groups** and explicitly states that the production lens's protection glass and rear filter are included in that count.
+2. **Element and group accounting.** The active refractive prescription before the rear filter contains **15 elements in 11 air-separated groups**. The patent then adds a plane-parallel rear filter as a sixteenth glass element and twelfth group. Catalog
+   metadata now counts this complete selected-source 16/12 configuration. The first-embodiment text also permits a front protection plate. Canon specifies **17 elements in 13 groups** and explicitly states that the production lens's protection glass and rear filter are included in that count.
 3. **Special-material pattern.** Example 1 has two identical low-index, high-Abbe elements at `n (source) = 1.496999, ν (source) = 81.5` and one element at `n (source) = 1.433870, ν (source) = 95.1`. Canon states that the production lens uses **two UD elements and one fluorite element**. The data file therefore correlates E1 and E2 with the two production UD elements and E4 with the production fluorite element, while retaining unresolved vendor identities because the patent itself gives only optical coordinates.
 4. **Inner focusing.** The first embodiment specifies a negative second unit L2 that moves toward the image side as object distance decreases. That is the same basic focusing architecture represented by the production lens.
 5. **Image stabilization.** The patent divides the positive third unit L3 into positive L31, negative L32, and positive L33 and moves L32 perpendicular to the optical axis for image stabilization. Canon identifies the production lens as an IS design.
@@ -27,7 +28,8 @@ The 2026-10-30 original-PDF review retains every source optical pair with an exp
 
 ## Optical Architecture
 
-Example 1 is a **positive-negative-positive telephoto system** with inner focusing and a transversely movable stabilization subunit. In the active LensVisualizer model it comprises **15 refractive elements in 11 air-separated groups**, all spherical. The principal functional power sequence is:
+Example 1 is a **positive-negative-positive telephoto system** with inner focusing and a transversely movable stabilization subunit. The selected source model comprises **16 elements in 12 air-separated groups**, including required FL;
+the powered section alone has 15 elements / 11 groups, all spherical. The principal functional power sequence is:
 
 - **L1:** positive front unit, computed focal length **+160.127024189 mm**;
 - **L2:** negative cemented focusing unit, **−115.733484682 mm**;
@@ -162,24 +164,24 @@ The exact original numerical introduction, PDF p. 68 (printed col. 12), defines 
 
 All 16 literal pairs are retained, including filter FL. Every medium now carries an explicit `Unmatched` disposition and `indexReferenceNote`; approximate d-line tracing remains the numerical convention. All 16 previously active catalog curves are disabled. No per-lens nC/nF/ng/dPgF field was present, and none is added. Historical wavelength identity, supplier, melt and chemistry remain unresolved. The prior catalog comparison is retained as identification history, not counted as a fresh spectral measurement.
 
-| Medium | Source n | Source ν | Disposition |
-|---|---:|---:|---|
-| E1 | 1.496999 | 81.5 | Unmatched; source line unspecified |
-| E2 | 1.496999 | 81.5 | Unmatched; source line unspecified |
-| E3 | 1.785896 | 44.2 | Unmatched; source line unspecified |
-| E4 | 1.433870 | 95.1 | Unmatched; source line unspecified |
-| E5 | 1.487490 | 70.2 | Unmatched; source line unspecified |
-| E6 | 1.805181 | 25.4 | Unmatched; source line unspecified |
-| E7 | 1.834807 | 42.7 | Unmatched; source line unspecified |
-| E8 | 1.846658 | 23.9 | Unmatched; source line unspecified |
-| E9 | 1.719995 | 50.2 | Unmatched; source line unspecified |
-| E10 | 1.846658 | 23.9 | Unmatched; source line unspecified |
-| E11 | 1.603112 | 60.6 | Unmatched; source line unspecified |
-| E12 | 1.772499 | 49.6 | Unmatched; source line unspecified |
-| E13 | 1.719995 | 50.2 | Unmatched; source line unspecified |
-| E14 | 1.834000 | 37.2 | Unmatched; source line unspecified |
-| E15 | 1.696797 | 55.5 | Unmatched; source line unspecified |
-| FL | 1.516330 | 64.1 | Unmatched; source line unspecified |
+| Medium | Source n | Source ν | Disposition                        |
+| ------ | -------: | -------: | ---------------------------------- |
+| E1     | 1.496999 |     81.5 | Unmatched; source line unspecified |
+| E2     | 1.496999 |     81.5 | Unmatched; source line unspecified |
+| E3     | 1.785896 |     44.2 | Unmatched; source line unspecified |
+| E4     | 1.433870 |     95.1 | Unmatched; source line unspecified |
+| E5     | 1.487490 |     70.2 | Unmatched; source line unspecified |
+| E6     | 1.805181 |     25.4 | Unmatched; source line unspecified |
+| E7     | 1.834807 |     42.7 | Unmatched; source line unspecified |
+| E8     | 1.846658 |     23.9 | Unmatched; source line unspecified |
+| E9     | 1.719995 |     50.2 | Unmatched; source line unspecified |
+| E10    | 1.846658 |     23.9 | Unmatched; source line unspecified |
+| E11    | 1.603112 |     60.6 | Unmatched; source line unspecified |
+| E12    | 1.772499 |     49.6 | Unmatched; source line unspecified |
+| E13    | 1.719995 |     50.2 | Unmatched; source line unspecified |
+| E14    | 1.834000 |     37.2 | Unmatched; source line unspecified |
+| E15    | 1.696797 |     55.5 | Unmatched; source line unspecified |
+| FL     | 1.516330 |     64.1 | Unmatched; source line unspecified |
 
 The production fluorite/UD statements remain product-correlation evidence. They support the earlier association of E1/E2 with the two production UD elements and E4 with the production fluorite element, but do not identify this patent's reference wavelength, historical crystal, melt or supplier. In particular, the CaF2 curve is not active. No apochromatic or quantitative secondary-spectrum claim follows from the anonymous source pairs.
 
@@ -189,10 +191,10 @@ The lens uses **inner focusing by axial translation of the negative L2 cemented 
 
 The final data file therefore uses a **CONSTRAINED_RECONSTRUCTION**, not a published close-focus state. Canon's marketed **2.5 m** closest focusing distance is used as the external calibration constraint while preserving the patent mechanism as a rigid translation of L2. The two adjacent gaps vary in equal and opposite directions:
 
-| State | D10 before L2 (mm) | D13 after L2 (mm) | D10 + D13 (mm) |
-|---|---:|---:|---:|
-| Infinity | 26.710000000 | 40.400000000 | 67.110000000 |
-| Reconstructed 2.5 m | 41.453206096 | 25.656793904 | 67.110000000 |
+| State               | D10 before L2 (mm) | D13 after L2 (mm) | D10 + D13 (mm) |
+| ------------------- | -----------------: | ----------------: | -------------: |
+| Infinity            |       26.710000000 |      40.400000000 |   67.110000000 |
+| Reconstructed 2.5 m |       41.453206096 |      25.656793904 |   67.110000000 |
 
 The implied imageward L2 travel is **14.743206096 mm**. A fresh finite-conjugate trace of the data-file close state gives paraxial magnification **−0.135694645**, or `|m| = 0.135695`. Canon markets maximum magnification as **0.13×**. The two production values are therefore not imposed simultaneously as exact constraints; the data file is calibrated to MFD and retains the 0.13× value only as a rounded commercial cross-check. The travel was solved on the air-equivalent track; with the rear filter traced physically, the same object lies 2.500681 m from the image plane, within the rounding of Canon's 2.5 m figure.
 
@@ -226,17 +228,17 @@ The optical sign pattern is important. L31 first converges the beam, L32 is stro
 
 The first embodiment defines nine principal design conditions and then gives preferred narrower ranges. Recalculation from the final data-file prescription shows that all nine computed values lie within the preferred ranges.
 
-| Condition | Patent Table 1 | Computed from final data | Preferred range | Result |
-|---|---:|---:|---:|---|
-| (1) `fair/f32` | 1.067 | 1.067338 | 0.7–1.2 | Pass |
-| (2) `|(Rair1+Rair2)/(Rair1−Rair2)|` | 0.350 | 0.349511 | 0.15–0.6 | Pass |
-| (3) `f1/f` | 0.545 | 0.545393 | 0.4–0.7 | Pass |
-| (4) `|f2/f|` | 0.394 | 0.394188 | 0.25–0.6 | Pass |
-| (5) `f/f3` | **0.828** | **1.152326** | 0.1–1.2 | Pass range; source mismatch |
-| (6) `f31/f` | 0.341 | 0.340716 | 0.15–0.45 | Pass |
-| (7) `|f32/f|` | 0.116 | 0.115904 | 0.06–0.14 | Pass |
-| (8) `f33/f` | 0.178 | 0.178029 | 0.11–0.23 | Pass |
-| (9) `νn−νp` | 17.3 | 17.300000 | 8–27 | Pass |
+| Condition      |              Patent Table 1 | Computed from final data | Preferred range | Result                      |
+| -------------- | --------------------------: | -----------------------: | --------------: | --------------------------- | --------- | ---- |
+| (1) `fair/f32` |                       1.067 |                 1.067338 |         0.7–1.2 | Pass                        |
+| (2) `          | (Rair1+Rair2)/(Rair1−Rair2) |                        ` |           0.350 | 0.349511                    | 0.15–0.6  | Pass |
+| (3) `f1/f`     |                       0.545 |                 0.545393 |         0.4–0.7 | Pass                        |
+| (4) `          |                        f2/f |                        ` |           0.394 | 0.394188                    | 0.25–0.6  | Pass |
+| (5) `f/f3`     |                   **0.828** |             **1.152326** |         0.1–1.2 | Pass range; source mismatch |
+| (6) `f31/f`    |                       0.341 |                 0.340716 |       0.15–0.45 | Pass                        |
+| (7) `          |                       f32/f |                        ` |           0.116 | 0.115904                    | 0.06–0.14 | Pass |
+| (8) `f33/f`    |                       0.178 |                 0.178029 |       0.11–0.23 | Pass                        |
+| (9) `νn−νp`    |                        17.3 |                17.300000 |            8–27 | Pass                        |
 
 Condition (5) is a direct patent-source inconsistency. The printed equation (PDF p. 67, col. 9; narrower range on PDF p. 68, col. 12) uses `f/f3`, and Table 1 (PDF p. 72, col. 19) gives **0.828** for Example 1. Recomputing L3 from R15–R27 gives `f3 = +254.788655536 mm`; with the verified system focal length, `f/f3 = 1.1523260065`. The other eight Table 1 factors reproduce to the patent's rounding, and the complete system focal length also reproduces. The patent's 2001 Certificate of Correction (PDF pp. 82–83) does not amend this factor or an Example 1 prescription value. The discrepancy is now formalized as unresolved `source.errata`; the cause remains unidentified.
 
@@ -246,15 +248,15 @@ The data file therefore preserves the published prescription and the independent
 
 The final data file was independently recomputed from its actual TypeScript arrays using sequential height/reduced-angle tracing and an ABCD matrix chain. The two first-order implementations agree to **2.84×10⁻14** maximum absolute matrix residual, and the active system matrix determinant is **1.0000000000000004**.
 
-| Quantity | Source / model value | Independent result | Interpretation |
-|---|---:|---:|---|
-| Published focal length | 293.58 mm | 293.599593947 mm | +0.019594 mm residual |
-| Modeled wide-open f-number | 2.9 | 2.90000000007 | Stop-constrained reconstruction |
-| Full field | 8.4° | 21.560606438 mm semi-image height from 4.2° | Consistency check only |
-| Air-equivalent back focal distance | — | 68.641078902 mm | 8.00 mm + filter + 59.3221048 mm, filter reduced to air |
-| Air-equivalent first-surface-to-image track | — | 267.321078902 mm | `TL/EFL = 0.910495397`; physical 268.002104800 mm |
-| Active Petzval sum | — | +0.000263395169635 mm⁻¹ | Surface-by-surface `φ/(n·n′)` sum |
-| Reconstructed close-focus magnification | Canon: 0.13× marketed | 0.135694645× | MFD-constrained model cross-check |
+| Quantity                                    |  Source / model value |                          Independent result | Interpretation                                          |
+| ------------------------------------------- | --------------------: | ------------------------------------------: | ------------------------------------------------------- |
+| Published focal length                      |             293.58 mm |                            293.599593947 mm | +0.019594 mm residual                                   |
+| Modeled wide-open f-number                  |                   2.9 |                               2.90000000007 | Stop-constrained reconstruction                         |
+| Full field                                  |                  8.4° | 21.560606438 mm semi-image height from 4.2° | Consistency check only                                  |
+| Air-equivalent back focal distance          |                     — |                             68.641078902 mm | 8.00 mm + filter + 59.3221048 mm, filter reduced to air |
+| Air-equivalent first-surface-to-image track |                     — |                            267.321078902 mm | `TL/EFL = 0.910495397`; physical 268.002104800 mm       |
+| Active Petzval sum                          |                     — |                     +0.000263395169635 mm⁻¹ | Surface-by-surface `φ/(n·n′)` sum                       |
+| Reconstructed close-focus magnification     | Canon: 0.13× marketed |                                0.135694645× | MFD-constrained model cross-check                       |
 
 The stop position is published at R14, but its diameter is not. The unchanged derived radius is 17.662797 mm; project paraxial f-number is 2.9 and the independent real collimated input-diameter ratio is 2.969079. Source Fno is preserved as the model target without claiming a physical iris diameter. The source itself defines Fno by an effective axial input beam (PDF p. 63, col. 2); the runtime convention difference is reported rather than fitted away.
 
@@ -278,7 +280,7 @@ The pre-existing `gapSagFrac: 0.96` remains unchanged. At S4–S5 the modeled ph
 
 ## Sources
 
-1. **U.S. Patent 6,115,188**, Akihiro Nishio, Hideki Ogawa, and Makoto Misaka, *Optical System and Optical Apparatus Having the Same*, granted 5 September 2000. Relevant material: Fig. 1; first-embodiment description; Numerical Example 1; Table 1; Certificate of Correction dated 29 May 2001.
+1. **U.S. Patent 6,115,188**, Akihiro Nishio, Hideki Ogawa, and Makoto Misaka, _Optical System and Optical Apparatus Having the Same_, granted 5 September 2000. Relevant material: Fig. 1; first-embodiment description; Numerical Example 1; Table 1; Certificate of Correction dated 29 May 2001.
 2. **Canon Camera Museum — EF300mm f/2.8L IS USM.** Canon's official product record supplies the July 1999 market date, 17-element/13-group production count, eight diaphragm blades, f/32 minimum aperture, 2.5 m closest focusing distance, 0.13× maximum magnification, and the statement that the lens uses one fluorite element and two UD elements and includes protection glass and a rear filter in the element count. <https://global.canon/en/c-museum/product/ef352.html>
 3. **Canon Global — fluorite lens history.** Canon's official fluorite chronology lists the EF300mm f/2.8L IS USM with a July 1999 release and one fluorite element. <https://global.canon/en/news/2020/20200702.html>
 4. **Optical-glass catalogs used for class-level cross-checking:** official OHARA, HOYA, HIKARI, SCHOTT, SUMITA, and CDGM catalog data. Because the patent does not name a vendor, these comparisons support class labels and residual checks rather than vendor-specific identity claims.
