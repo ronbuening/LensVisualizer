@@ -2081,8 +2081,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6A | Element 4 resin layer | abbe | `Unmatched (bonded asphere layer; no verified catalog identity)` | Explicit unmatched/proprietary annotation |
-| 23A | Element 12 resin layer | abbe | `Unmatched (bonded asphere layer; no verified catalog identity)` | Explicit unmatched/proprietary annotation |
+| 6A | Element 4 thin layer (modeled resin) | abbe | `Unmatched (bonded asphere layer; no verified catalog identity)` | Explicit unmatched/proprietary annotation |
+| 23A | Element 12 thin layer (modeled resin) | abbe | `Unmatched (bonded asphere layer; no verified catalog identity)` | Explicit unmatched/proprietary annotation |
 
 ### [OLYMPUS ZUIKO DIGITAL ED 90-250mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED90250mmf28.data.ts) - 88.2% trusted (15/17); 88.2% Sellmeier (15/17) - JP 2006-201524 A
 
@@ -2288,9 +2288,9 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6A | Element 4 resin layer | abbe | `Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=49.96)` | Explicit unmatched/proprietary annotation |
-| 24A | Element 13 resin layer | abbe | `Unmatched (hybrid asphere resin/polymer, nd=1.53610, vd=41.20)` | Explicit unmatched/proprietary annotation |
-| 28A | Element 15 resin layer | abbe | `Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=49.96)` | Explicit unmatched/proprietary annotation |
+| 6A | Element 4 hybrid layer | abbe | `Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)` | Explicit unmatched/proprietary annotation |
+| 24A | Element 13 hybrid layer | abbe | `Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.53610, vd=41.20)` | Explicit unmatched/proprietary annotation |
+| 28A | Element 15 hybrid layer | abbe | `Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) - 85.0% trusted (17/20); 85.0% Sellmeier (17/20) - WO 2025/263124 A1
 
@@ -2583,10 +2583,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7A | Element 4 resin layer | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
-| 20A | Element 10 resin layer | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
-| 31 | Element 15 resin layer | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
-| 34 | Element 16 resin layer | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
+| 7A | Element 4 thin layer (modeled resin) | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
+| 20A | Element 10 thin layer (modeled resin) | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
+| 31 | Element 15 thin layer (modeled resin) | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
+| 34 | Element 16 thin layer (modeled resin) | abbe | `Unmatched (hybrid/aspheric layer; nd=1.53610, νd=41.2)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON EF 17-40mm f/4 L USM](../../src/lens-data/canon/CanonEF1740mmf4LUSM.data.ts) - 78.6% trusted (11/14); 78.6% Sellmeier (11/14) - JP 2020-190696 A
 

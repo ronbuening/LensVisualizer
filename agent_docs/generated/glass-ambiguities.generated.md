@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1026** lenses scanned
 - **11747** glass elements examined
-- **2966** elements have multiple coordinate-compatible candidates
+- **2964** elements have multiple coordinate-compatible candidates
 - **527** lens files are affected
-- **310** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **155** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **309** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **154** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1715 |
+| Smallest reference-index residual | 1713 |
 | Evidence-source priority | 944 |
 | Vendor context | 293 |
 | Stable canonical-name order | 12 |
@@ -2158,7 +2158,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `806-407 class (HOYA NBFD13 / M-NBFD130; process unresolved)` | 1.80610 / 40.73 (d) | M-NBFD130 — smallest d-line \|Δn\| (2.4e-7 vs 4.6e-6) | NBFD13 (Hoya, name, vendor ✓) | 1 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28.data.ts) L8 |
 | `S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class (production supplier unspecified)` | 1.51633 / 64.06 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, name) | 1 | [VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar35mmf35Aspherical.data.ts) L12 |
 | `E-FD5 (HOYA, patent nd/vd match) / SF5-class dense flint` | 1.67270 / 32.20 (d) | E-FD5 — Annotation vendor context matches Hoya. | SF5 (Schott, name, vendor ✗) | 1 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) L44 |
-| `S-BSL7 (OHARA) / K-BK7 (Sumita)` | 1.51680 / 64.20 (d) | S-BSL7 — smallest d-line \|Δn\| (4.7e-4 vs 4.7e-4) | K-BK7 (Sumita, name, vendor ✓) | 2 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) L51 |
 | `883408 — dense lanthanum glass class (vendor unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 2 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) L1 |
 | `729547 — lanthanum crown class (vendor unresolved)` | 1.72916 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) L2 |
 | `847238 — N-SF57/S-TIH53 class (vendor unresolved)` | 1.84666 / 23.78 (d) | S-TIH53 — direct name evidence outranks six-digit code evidence. | J-SF03 (Hikari, code, alternate code row)<br>H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) L4 |

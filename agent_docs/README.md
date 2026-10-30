@@ -39,6 +39,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [recipe] [`adding_a_teleconverter.md`](adding_a_teleconverter.md) — detachable teleconverter workflow; field rules live in `src/lens-data/TELECONVERTER_DATA_SPEC.md`
 - [recipe] [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md) — copy-ready AI handoff for constructing data/analysis pairs
 - [recipe] [`lens-patent-audit.md`](lens-patent-audit.md) — four-phase patent audit and the per-lens `*.audit.md` log format
+- [record] [`lens-review-coverage.md`](lens-review-coverage.md) — reviewed Z/F catalog records, retained constraints and per-lens source-audit links; check before repeating a review
 - [recipe] [`patent-figure-sd-audit-procedure.md`](patent-figure-sd-audit-procedure.md) — semi-diameter vs patent-figure runbook
 - [recipe] [`glass-catalog-buildout.md`](glass-catalog-buildout.md) — glass catalog playbook and how to add a Sellmeier entry safely
 - [recipe] [`adding_an_article.md`](adding_an_article.md) — article and series frontmatter, TOC, links, verification
