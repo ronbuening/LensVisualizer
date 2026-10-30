@@ -8,10 +8,10 @@ Patent: US 4,717,245, Example 2 (Canon / Sadatoshi Takahashi, Jan 5, 1988)
 
 ### Phase 1 — Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| L1 / surface 1 | `glass` | `S-BSL7 (OHARA)` | `S-BSM14 (OHARA)` | S-BSL7 is a BK7-class crown (nd=1.5163); stored nd=1.60311 matches S-BSM14 exactly (Δnd<1e-5). Confirmed by catalog-mismatches.generated.md surface 1 entry and glassRelabelCandidatesScan candidate report. |
-| L2 / surface 3 | `glass` | `S-BSM14 (OHARA)` | `S-LAL14 (OHARA)` | S-BSM14 has nd=1.6031, not 1.6968; stored nd=1.69680 matches S-LAL14 exactly (Δnd<1e-5). Confirmed by catalog-mismatches.generated.md surface 3 entry and glassRelabelCandidatesScan candidate report. |
+| Element / surface | Field   | Before            | After             | Justification                                                                                                                                                                                                |
+| ----------------- | ------- | ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| L1 / surface 1    | `glass` | `S-BSL7 (OHARA)`  | `S-BSM14 (OHARA)` | S-BSL7 is a BK7-class crown (nd=1.5163); stored nd=1.60311 matches S-BSM14 exactly (Δnd<1e-5). Confirmed by catalog-mismatches.generated.md surface 1 entry and glassRelabelCandidatesScan candidate report. |
+| L2 / surface 3    | `glass` | `S-BSM14 (OHARA)` | `S-LAL14 (OHARA)` | S-BSM14 has nd=1.6031, not 1.6968; stored nd=1.69680 matches S-LAL14 exactly (Δnd<1e-5). Confirmed by catalog-mismatches.generated.md surface 3 entry and glassRelabelCandidatesScan candidate report.       |
 
 Other glass annotations verified correct or not in catalog:
 
@@ -41,6 +41,7 @@ Existing metadata confirmed complete: subtitle, patentYear, focalLengthDesign, a
 ### Phase 4 — Analysis sync
 
 Updated [CanonEF50mmf1L.analysis.md](CanonEF50mmf1L.analysis.md):
+
 - §4.1 glass table L1 row: "S-BSL7 (OHARA) / N-SK16 (SCHOTT)" + "Borosilicate crown" → "S-BSM14 (OHARA)" + "Borosilicate medium crown".
 - §4.1 glass table L2 row: "S-BSM14 (OHARA) / S-BAH28 (OHARA)" + "Barium dense crown" → "S-LAL14 (OHARA)" + "Lanthanum crown". Six-digit code corrected 1696/555 → 1697/555 to match S-LAL14 code6="697555".
 - §5 L1 section: glass line updated from "S-BSL7 type" to "S-BSM14 (OHARA)".
@@ -55,10 +56,10 @@ Updated [CanonEF50mmf1L.analysis.md](CanonEF50mmf1L.analysis.md):
 
 ### Glass corrections
 
-| Element / surface | Before | After | Disposition |
-|---|---|---|---|
-| L3 / S5 | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Stored nd/vd matches the coefficient-backed OHARA S-NSL36 catalog row. |
-| L5 / S9 | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Same repeated patent glass as L3. |
+| Element / surface | Before           | After             | Disposition                                                            |
+| ----------------- | ---------------- | ----------------- | ---------------------------------------------------------------------- |
+| L3 / S5           | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Stored nd/vd matches the coefficient-backed OHARA S-NSL36 catalog row. |
+| L5 / S9           | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Same repeated patent glass as L3.                                      |
 
 ### Remaining disposition
 
@@ -99,25 +100,25 @@ Updated [CanonEF50mmf1L.analysis.md](CanonEF50mmf1L.analysis.md):
 
 ### Changes
 
-| Item | Before | After | Evidence |
-|---|---|---|---|
-| sd 3 / 4 (L2) | 24.4 / 23.8 | 26.4 / 26.0 | f/1.0 axial marginal 24.49 / 24.10 clipped; FIG. 2 rim ≈26.6 |
-| sd 6 / 7 (L4) | 21.1 / 21.1 | 22.2 / 20.8 | axial 21.51 clipped at 6; FIG. 2 draws L4 ≈22.0 with L3 flange 23.4 |
-| sd 8 (L5 front) | 19.2 | 21.2 | axial 20.50 clipped; FIG. 2 ≈21.4 |
-| sd 11 / 12 (L6/L7) | 17.4 / 19.8 | 20.6 / 21.1 | axial 20.03 / 20.94 clipped; FIG. 2 ≈20.8 / 21.6 |
-| sd 13 / 14A (L8) | 20.2 / 21.3 | 21.6 / 23.8 | axial 20.94 / 23.47 clipped; FIG. 2 ≈21.7 / 23.7 |
-| sd 15 / 16 (L9) | 21.4 / 22.1 | 25.8 / 25.6 | axial 24.56 / 24.92 clipped; FIG. 2 ≈26.0 / 25.5 |
-| sd 17 / 18 (L10) | 22.1 / 21.6 | 26.0 / 26.0 | axial 25.06 / 25.07 clipped; FIG. 2 ≈26.0 |
-| sd 19 / 20 (L11) | 21.2 / 19.4 | 22.6 / 22.6 | axial 21.81 / 21.28 clipped and 21.6 mm chief ray (21.45) blocked; FIG. 2 ≈22.6 / 22.8 |
-| `gapSagFrac` | default 0.90 | 0.97 | claim-6 air spaces L4–L5 (D7) and L7–L8 (D13) close toward the rim; at the axial marginal height only ≈0.1 mm of air remains, and FIG. 2 draws those rims touching |
-| 5A A4–A10 | 7.356e-8, 1.508e-9, −2.16e-12, 2.323e-15 | 7.3596e-8, 1.5082e-9, −2.1608e-12, 2.3245e-15 | same conversion carried to 5 significant figures; sag error at 23.8 mm falls from 0.07 µm to 0.01 µm |
-| 14A A4–A10 | 7.233e-7, 2.749e-9, −4.206e-12, 2.735e-15 | 7.2364e-7, 2.7505e-9, −4.2075e-12, 2.7366e-15 | same; sag error at 23.8 mm falls from 0.34 µm to 0.02 µm |
-| Focus model | L10–L11 gap 0.48 → 10.39 (L11 fixed, L1–L10 extend) | back gap 37.226 → 42.18 (unit extension) | L11-fixed split had no patent or documented production source (invented internal travel; it also changed EFL to 52.5 mm at close). The patent's stated preferred method is moving the entire lens system; 42.18 mm is calculated for a 600 mm object-to-image distance |
-| L1 glass label | S-BSM14 (OHARA) | BACD14 (HOYA catalog equivalent) | BACD14 603607 reproduces νd 60.7; S-BSM14 is 60.64 |
-| L6 glass label | S-TIH53 (OHARA) | PBH53 (OHARA catalog equivalent) | PBH53 847239 reproduces νd 23.9 (23.89); S-TIH53 is 23.78 |
-| Other glass labels | bare OHARA names | "(OHARA catalog equivalent)" | patent names no glass maker |
-| L11 role | "fixed element in the floating focus mechanism" | neutral role text | fixed-L11 claim unsourced |
-| Header notes | thin-lens close-focus, 0.60 field-fraction SD method | FIG. 2 + f/1.0 trace SD basis, calculated unit-focus note, label mapping | matches the new data |
+| Item               | Before                                               | After                                                                    | Evidence                                                                                                                                                                                                                                                               |
+| ------------------ | ---------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sd 3 / 4 (L2)      | 24.4 / 23.8                                          | 26.4 / 26.0                                                              | f/1.0 axial marginal 24.49 / 24.10 clipped; FIG. 2 rim ≈26.6                                                                                                                                                                                                           |
+| sd 6 / 7 (L4)      | 21.1 / 21.1                                          | 22.2 / 20.8                                                              | axial 21.51 clipped at 6; FIG. 2 draws L4 ≈22.0 with L3 flange 23.4                                                                                                                                                                                                    |
+| sd 8 (L5 front)    | 19.2                                                 | 21.2                                                                     | axial 20.50 clipped; FIG. 2 ≈21.4                                                                                                                                                                                                                                      |
+| sd 11 / 12 (L6/L7) | 17.4 / 19.8                                          | 20.6 / 21.1                                                              | axial 20.03 / 20.94 clipped; FIG. 2 ≈20.8 / 21.6                                                                                                                                                                                                                       |
+| sd 13 / 14A (L8)   | 20.2 / 21.3                                          | 21.6 / 23.8                                                              | axial 20.94 / 23.47 clipped; FIG. 2 ≈21.7 / 23.7                                                                                                                                                                                                                       |
+| sd 15 / 16 (L9)    | 21.4 / 22.1                                          | 25.8 / 25.6                                                              | axial 24.56 / 24.92 clipped; FIG. 2 ≈26.0 / 25.5                                                                                                                                                                                                                       |
+| sd 17 / 18 (L10)   | 22.1 / 21.6                                          | 26.0 / 26.0                                                              | axial 25.06 / 25.07 clipped; FIG. 2 ≈26.0                                                                                                                                                                                                                              |
+| sd 19 / 20 (L11)   | 21.2 / 19.4                                          | 22.6 / 22.6                                                              | axial 21.81 / 21.28 clipped and 21.6 mm chief ray (21.45) blocked; FIG. 2 ≈22.6 / 22.8                                                                                                                                                                                 |
+| `gapSagFrac`       | default 0.90                                         | 0.97                                                                     | claim-6 air spaces L4–L5 (D7) and L7–L8 (D13) close toward the rim; at the axial marginal height only ≈0.1 mm of air remains, and FIG. 2 draws those rims touching                                                                                                     |
+| 5A A4–A10          | 7.356e-8, 1.508e-9, −2.16e-12, 2.323e-15             | 7.3596e-8, 1.5082e-9, −2.1608e-12, 2.3245e-15                            | same conversion carried to 5 significant figures; sag error at 23.8 mm falls from 0.07 µm to 0.01 µm                                                                                                                                                                   |
+| 14A A4–A10         | 7.233e-7, 2.749e-9, −4.206e-12, 2.735e-15            | 7.2364e-7, 2.7505e-9, −4.2075e-12, 2.7366e-15                            | same; sag error at 23.8 mm falls from 0.34 µm to 0.02 µm                                                                                                                                                                                                               |
+| Focus model        | L10–L11 gap 0.48 → 10.39 (L11 fixed, L1–L10 extend)  | back gap 37.226 → 42.18 (unit extension)                                 | L11-fixed split had no patent or documented production source (invented internal travel; it also changed EFL to 52.5 mm at close). The patent's stated preferred method is moving the entire lens system; 42.18 mm is calculated for a 600 mm object-to-image distance |
+| L1 glass label     | S-BSM14 (OHARA)                                      | BACD14 (HOYA catalog equivalent)                                         | BACD14 603607 reproduces νd 60.7; S-BSM14 is 60.64                                                                                                                                                                                                                     |
+| L6 glass label     | S-TIH53 (OHARA)                                      | PBH53 (OHARA catalog equivalent)                                         | PBH53 847239 reproduces νd 23.9 (23.89); S-TIH53 is 23.78                                                                                                                                                                                                              |
+| Other glass labels | bare OHARA names                                     | "(OHARA catalog equivalent)"                                             | patent names no glass maker                                                                                                                                                                                                                                            |
+| L11 role           | "fixed element in the floating focus mechanism"      | neutral role text                                                        | fixed-L11 claim unsourced                                                                                                                                                                                                                                              |
+| Header notes       | thin-lens close-focus, 0.60 field-fraction SD method | FIG. 2 + f/1.0 trace SD basis, calculated unit-focus note, label mapping | matches the new data                                                                                                                                                                                                                                                   |
 
 Analysis sync: group table relabelled with the patent's G1–G10 units; claim-6 air spaces renamed (G6–G7, meniscus
 air lenses, nearly closed at f/1.0); R15 orientation corrected to convex toward the image; asphere departure table
@@ -145,3 +146,67 @@ removed; focus section rewritten for the calculated unit extension.
 - Production floating-group displacements remain unknown; the close state is a calculated unit extension.
 - The two claim-6 air spaces leave only about 0.1 mm of air at the f/1.0 marginal height, so the diagram shows those
   element rims almost touching (gapSagFrac 0.97).
+
+## 2026-10-30 — Scoped shoulders, source-reference and current-runtime follow-up
+
+### Dated reuse and scope
+
+- Reuse the unchanged source prescription, scale 0.50008, asphere conversion and cap/geometric constraints from the
+  completed **2026-09-23** review above; preserve that actual date. Preserve the earlier 2026-04-30 and 2026-05-20
+  catalog relabel records. This is one scoped reviewed lens entry, with no extra reused-entry count.
+- Reopen only native-resolved missing air shoulders, source spectral-reference/chemistry qualification and reproducible
+  stale runtime-clearance claims. No new full-prescription or polynomial-conversion inspection is claimed for reused
+  conclusions. The original is directly checked for these scoped issues.
+- `patents/US4717245.pdf` first page confirms US 4,717,245, January 5, 1988, Sadatoshi Takahashi, Canon. Native Numerical
+  Example 2 is PDF 8/column 5; Figure 2 is PDF 2/sheet 1, matching Figure 5 is PDF 4/sheet 3; definitions/focus/asphere equation
+  are PDF 7/column 4. The included certificate PDF 10 is dated February 7, 1989 and corrects symbols/wording, not the
+  numerical prescription. Normalize structured source.example from Example 2 to Numerical Example 2, matching the heading.
+- Native embedded pages 2320 × 3408 one-bit at 300 ppi. Figure 2 first/last active vertices span about 692 px / 79.626 mm = 8.69 px/mm
+  at the adopted scale. Practical height reading uncertainty ±0.6 mm, plus separate schematic/ink uncertainty. No
+  upsampling is treated as new native detail; exclude label leaders, brackets and stop marks.
+
+### Resolved shoulders and constraints retained
+
+- Stored S9 (source R9, L5 rear) has a distinct vertical outer stroke between its top edge and concave cap. Preserve
+  clear 18.8 mm; add rimExtensionSd = 21.2 mm anchored to the existing S8 front cap. Source native outer radius is about 21.2 mm.
+- Stored S10 (source R11, L6 front) likewise has a distinct air-facing vertical shoulder. Preserve clear 17.4 mm; add
+  rimExtensionSd = 20.6 mm anchored to its bonded S11 cap 20.6 mm, within the native outer reading about 20.8 ±0.6 mm.
+- Do not lower the older beam-constrained clear caps merely to copy the schematic curve junction, and do not inflate
+  the remaining caps to make the current real iris-rim probe pass. No opaque cemented interface land or equal-height
+  block is invented. Continuous aspheres 5A/14A and near-flat faces receive no speculative land.
+- Retain all numeric R/d, all asphere/conic coefficients, sd, stop, focus/aperture controls and checks.gapSagFrac 0.97.
+  Claim 6 positive-form air lenses remain narrow, as documented in 2026-09-23. No cut, exemption, resin wing, new plate,
+  guard/tolerance relaxation or numeric source-erratum correction is added.
+
+### Source glass reference and public material claims
+
+- Column 4/PDF 7 defines only refractive indices N and Abbe numbers ν. Full-original text/figure/certificate check finds
+  no explicit reference wavelength for those prescription coordinates. Figure 5 d/g labels are contextual evidence,
+  not an independent d-line definition for N/ν. This is source-uncertainty qualification, not a changed glass number or
+  a claim that conventional d interpretation is wrong.
+- Keep all 11 source numeric pairs and current approximate d-line convention, add explicit indexReferenceNote, set
+  eleven media Unmatched and disable all 11 catalog curves. Prior BACD14, S-LAL14, S-NSL36, S-LAH58, PBH53, S-TIH6 and
+  S-BAL50 names remain only as disabled conditional coordinate comparisons. Historical supplier/melt/chemistry,
+  cement, grinding/polishing and annealing identity are unresolved.
+- The source supplies no individual C/F/g, partial-dispersion or APD values. No per-lens spectral override was present
+  or removed. Existing apd:false means no source APD designation, not proof of normal production glass.
+- Synchronize every element label, consolidated table and spectral narrative. Remove categorical chemistry,
+  manufacturing, current-value/rarity and production-performance claims unsupported by the original.
+
+### Current state, beam and actual SVG checks
+
+- Surface passes; image-circle zero undersized; full-frame corner chiefs clear at all 21 focus samples. Existing
+  derived iris is 17.386418 mm, not old 16.86 mm. The infinity beam-clearance census is 1.028435679, within 3%, limited by
+  stored S12; it retains paraxial iris authority and is not a successful real iris-rim trace.
+- Real iris-rim probe: all 21 wide-open focus calls are vignetted, at S5A for 0–0.20, S7 for 0.25–0.70, bonded S11 for 0.75–1.
+  Over 21 focus × 9 presets, 168 calls trace/21 vignette. Baseline and shoulder-candidate outputs are identical.
+- Separate 193-sample aimed pupils over 63 focus/field states: axial endpoints 169/193, corner 47/193 at infinity and 49/193 close,
+  all chiefs aimed/valid; baseline/candidate counts identical. The older no-axial-clipping wording is corrected in
+  current public analysis; source/model clipping is retained without speculative cap inflation.
+- First order: EFL 49.999935 mm, infinity BF 37.226151 mm, retained gap 37.226 mm. Existing close 0.6 m conjugate residual −0.000175 mm,
+  magnification magnitude 0.099077×. Max sampled intermediate residual −0.219076 mm at focus 0.55 / display 1.090909 m.
+  Whole-system interpolation and production floating motion remain distinct; no source finite cam is invented.
+- Actual SVG versus native Figure 2: both shoulders visible, all elements/cemented connections contiguous. 21 focus
+  renders give 231 finite connected closed paths, zero hidden trim. No cuts require a beam exemption.
+- Source fidelity, current sampled runtime and production correlation remain independent. Full repository gates are
+  coordinated for the three-review batch; no per-lens tests or relaxed tolerances are introduced.

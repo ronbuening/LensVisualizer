@@ -13,15 +13,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **11839** glass elements examined
-- **2819** elements have multiple coordinate-compatible candidates
-- **507** lens files are affected
+- **11840** glass elements examined
+- **2802** elements have multiple coordinate-compatible candidates
+- **505** lens files are affected
 - **296** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **124** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1637 |
+| Smallest reference-index residual | 1620 |
 | Evidence-source priority | 885 |
 | Vendor context | 283 |
 | Stable canonical-name order | 12 |
@@ -119,18 +119,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents)` | 1.65412 / 39.70 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, code, preferred code row)<br>BPH5 (Ohara, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) L25a |
 | `808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents)` | 1.80810 / 22.80 (d) | S-NPH1 — smallest d-line \|Δn\| (5.3e-6 vs 1.1e-5) | FD225 (Hoya, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) L25b |
 | `516641 class (vendor unresolved; multiple catalog equivalents)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) G |
-| `497816 — low-dispersion / UD coordinate class` | 1.49700 / 81.50 (d) | S-FPL51 — smallest d-line \|Δn\| (2.9e-7 vs 8.4e-7) | FCD1 (Hoya, code, alternate code row)<br>H-FK61 (CDGM, code, alternate code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L1a |
-| `835427 — lanthanum dense-crown coordinate class` | 1.83481 / 42.70 (d) | TAFD5G — smallest d-line \|Δn\| (4.0e-8 vs 9.1e-8) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5F (Hoya, code, alternate code row)<br>J-LASF05 (Hikari, code, alternate code row) | 3 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L1b-2 |
-| `516641 — S-BSL7 / K-BK7 coordinate class` | 1.51633 / 64.10 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, name)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L1c-2 |
-| `805254 — dense-flint coordinate class` | 1.80518 / 25.40 (d) | S-TIH6 — smallest d-line \|Δn\| (2.9e-7 vs 8.2e-7) | N-SF6 (Schott, code, alternate code row)<br>SF6 (Schott, code, alternate code row) | 1 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L2-1 |
-| `847239 — dense-flint coordinate class` | 1.84666 / 23.90 (d) | PBH53 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH53WN (Ohara, code, alternate code row)<br>S-NPH53 (Ohara, code, preferred code row) | 2 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L3a-1 |
-| `678553 — lanthanum crown coordinate class` | 1.67790 / 55.30 (d) | S-LAL12 — smallest d-line \|Δn\| (1.1e-7 vs 2.5e-7) | S-LAL12Q (Ohara, code, alternate code row) | 1 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L3b-2 |
-| `697555 — lanthanum crown coordinate class` | 1.69680 / 55.50 (d) | S-LAL14 — smallest d-line \|Δn\| (1.2e-7 vs 3.0e-6) | J-LAK14 (Hikari, code, alternate code row)<br>LAC14 (Hoya, code, alternate code row) | 1 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) L3c-1 |
-| `773496 — source-coordinate glass class (vendor not identified)` | 1.77250 / 49.60 (d) | S-LAH66 — smallest d-line \|Δn\| (1.4e-7 vs 6.1e-7) | S-LAH66N (Ohara, code, alternate code row)<br>J-LASF016 (Hikari, code, alternate code row)<br>TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row) | 1 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) L1 |
-| `835427 — source-coordinate glass class (vendor not identified)` | 1.83481 / 42.70 (d) | TAFD5G — smallest d-line \|Δn\| (4.0e-8 vs 9.1e-8) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5F (Hoya, code, alternate code row)<br>J-LASF05 (Hikari, code, alternate code row) | 2 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) L2 |
-| `883408 — source-coordinate glass class (vendor not identified)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (2.3e-8 vs 6.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) L5 |
-| `699301 — source-coordinate glass class (vendor not identified)` | 1.69895 / 30.10 (d) | S-TIM35 — smallest d-line \|Δn\| (2.1e-7 vs 2.8e-6) | E-FD15 (Hoya, code, alternate code row) | 1 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) L6 |
-| `804466 — source-coordinate glass class (vendor not identified)` | 1.80400 / 46.60 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 1 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) L8 |
 | `835427 high-index lanthanum class (vendor unresolved; patent theta_gF = 0.5636)` | 1.83481 / 42.70 (d) | J-LASF05 — smallest d-line \|Δn\| (2.1e-8 vs 2.9e-6) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 2 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) L13 |
 | `497815/497816 low-dispersion crown class (vendor unresolved; Canon-correlated UD)` | 1.49700 / 81.50 (d) | S-FPL51 — smallest d-line \|Δn\| (2.9e-7 vs 3.8e-7) | K-PFK80 (Sumita, code, alternate code row)<br>FCD1 (Hoya, code, alternate code row)<br>H-FK61 (CDGM, code, alternate code row)<br>MC-FCD1-M20 (Hoya, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) L1a-1 |
 | `835427 high-index lanthanum class (vendor unresolved)` | 1.83481 / 42.70 (d) | TAFD5G — smallest d-line \|Δn\| (4.0e-8 vs 9.1e-8) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5F (Hoya, code, alternate code row)<br>J-LASF05 (Hikari, code, alternate code row) | 2 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) L1b-2 |

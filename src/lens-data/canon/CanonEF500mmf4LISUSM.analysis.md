@@ -9,7 +9,7 @@
 **Granted:** 2000-09-05  
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka  
 **Assignee:** Canon Kabushiki Kaisha  
-**Title:** *Optical System and Optical Apparatus Having the Same*  
+**Title:** _Optical System and Optical Apparatus Having the Same_
 
 Numerical Example 24 is the fixed prescription used for this model. The patent gives a design focal length of
 490.56 mm, an f-number of 4.1, and a full field angle of 5.0°. Figure 87 identifies the front protection plate HG,
@@ -49,29 +49,29 @@ transversely for image stabilization.
 
 The physical Example 24 design contains 17 elements in 13 air-separated groups when the plane HG protection plate and
 plane FL rear filter are counted, matching Canon's published production count. The active LensVisualizer prescription
-contains 15 powered elements in 11 air-separated groups with FL drawn as a separate plane-parallel plate, HG omitted, as
-is the inactive FC flare-cutter plane. The structured physical element/group metadata therefore remains 17/13 while the
-active arrays remain 15/11.
+now contains all 17 source media / 13 air-separated groups, including integral HG and required drawn FL.
+The inactive FC is omitted because it does not change medium. Catalog 17/13 counts therefore describe the
+actual selected source configuration as well as the retained production count.
 
 The computed net focal lengths below describe the actual multi-element subunits in air; they are not simple sums of the
 standalone element powers listed later. The final row describes the complete active prescription.
 
-| Unit | Construction | Net focal length (mm) | Function in the system |
-|---|---|---:|---|
-| L1a | 1 positive element | +344.3304 | Front collection and initial convergence |
-| L1b | 2 air-spaced elements | -939.5798 | Weak net-negative correction within L1 |
-| L1c | 2 air-spaced elements | +346.6979 | Restores positive power behind L1b |
-| L1 overall | L1a + L1b + L1c | +225.5145 | Strong positive front unit |
-| L2 | cemented doublet | -198.0387 | Axially translating inner-focus unit |
-| L3a | cemented doublet | +152.7805 | Converges the beam before L3b |
-| L3b | cemented doublet + singlet | -43.9002 | Negative transverse image-stabilization subunit |
-| L3c | singlet + cemented doublet | +68.6765 | Positive rear subunit |
-| L3 overall | L3a + L3b + L3c | +3970.7843 | Weak net-positive rear unit after internal cancellation |
-| Complete active model | L1 + L2 + L3 | +491.3568 | Full-system Gaussian EFL from the rounded arrays |
+| Unit                  | Construction               | Net focal length (mm) | Function in the system                                  |
+| --------------------- | -------------------------- | --------------------: | ------------------------------------------------------- |
+| L1a                   | 1 positive element         |             +344.3304 | Front collection and initial convergence                |
+| L1b                   | 2 air-spaced elements      |             -939.5798 | Weak net-negative correction within L1                  |
+| L1c                   | 2 air-spaced elements      |             +346.6979 | Restores positive power behind L1b                      |
+| L1 overall            | L1a + L1b + L1c            |             +225.5145 | Strong positive front unit                              |
+| L2                    | cemented doublet           |             -198.0387 | Axially translating inner-focus unit                    |
+| L3a                   | cemented doublet           |             +152.7805 | Converges the beam before L3b                           |
+| L3b                   | cemented doublet + singlet |              -43.9002 | Negative transverse image-stabilization subunit         |
+| L3c                   | singlet + cemented doublet |              +68.6765 | Positive rear subunit                                   |
+| L3 overall            | L3a + L3b + L3c            |            +3970.7843 | Weak net-positive rear unit after internal cancellation |
+| Complete active model | L1 + L2 + L3               |             +491.3568 | Full-system Gaussian EFL from the rounded arrays        |
 
 The physical track from the first powered surface to the image plane is 404.57 mm.
-The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, nd=1.516330,
-νd=64.1, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
+The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, N=1.516330,
+ν=64.1, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
 combining its adjacent air gaps changes no optical power. The front protection plate
 remains omitted and the previously normalized finite-object reference is retained.
 
@@ -94,9 +94,17 @@ The focal length on each element line is the standalone thick-element focal leng
 Where elements form a cemented or air-spaced functional unit, the unit's net power is stated separately; this avoids
 confusing individual element power with the behavior of the compound group.
 
+### HG — Plane-Parallel Protection Glass
+
+**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved).**
+
+The selected numerical source explicitly includes this integral flat front member with 5.00 mm thickness
+and 1.50 mm following air. It has no infinity power but changes the finite object reference when traced
+physically. Its restoration and the c-7 wording are documented below. No catalog curve is active.
+
 ### L1a — Biconvex Positive
 
-**nd = 1.496999, νd = 81.5. Glass: 497816 — low-dispersion / UD coordinate class. f = +344.3304 mm.**
+**N = 1.496999, ν = 81.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +344.3304 mm.**
 
 L1a is the single-element positive front subunit identified as L1a in the patent's third embodiment. It supplies the
 first strong convergence while using the same low-dispersion coordinate that appears again in L1b-1. The production
@@ -105,7 +113,7 @@ index and Abbe number.
 
 ### L1b-1 — Biconvex Positive
 
-**nd = 1.496999, νd = 81.5. Glass: 497816 — low-dispersion / UD coordinate class. f = +230.7498 mm.**
+**N = 1.496999, ν = 81.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +230.7498 mm.**
 
 This positive element begins L1b. Its standalone positive power is paired with the following high-index negative
 member. The two elements are air-spaced, and their combined subunit focal length is -939.5798 mm; the subunit is
@@ -113,7 +121,7 @@ therefore only weakly negative despite the much stronger standalone powers of it
 
 ### L1b-2 — Biconcave Negative
 
-**nd = 1.834807, νd = 42.7. Glass: 835427 — lanthanum dense-crown coordinate class. f = -174.6660 mm.**
+**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -174.6660 mm.**
 
 L1b-2 supplies the negative power that reverses the sign of the L1b subunit. In the architecture described by the
 patent, the negative middle subunit helps moderate the aberration burden created by the positive front subunit while
@@ -121,16 +129,16 @@ allowing L1 as a whole to remain strongly positive.
 
 ### L1c-1 — Biconvex Positive
 
-**nd = 1.433870, νd = 95.1. Glass: Fluorite (CaF2; manufacturer-correlated crystal). f = +217.8146 mm.**
+**N = 1.433870, ν = 95.1. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +217.8146 mm.**
 
 This is the unique extremely low-index, high-Abbe coordinate in Example 24. The patent does not name the material as
 fluorite, but Canon states that the production lens contains one fluorite element; the production correlation therefore
-assigns that identity to L1c-1. The element provides strong positive power in the rear part of L1 while minimizing the
+retains a qualified association to L1c-1. Source wavelength and historical chemistry remain unresolved. The element provides strong positive power in the rear part of L1 while minimizing the
 dispersion associated with that positive contribution.
 
 ### L1c-2 — Negative Meniscus
 
-**nd = 1.516330, νd = 64.1. Glass: 516641 — S-BSL7 / K-BK7 coordinate class. f = -488.4803 mm.**
+**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -488.4803 mm.**
 
 L1c-2 is a weak negative meniscus following the fluorite-correlated positive element. The pair is air-spaced and forms a
 net-positive L1c subunit with a focal length of +346.6979 mm. Its negative standalone power tempers the positive
@@ -138,14 +146,14 @@ contribution without changing the sign of L1c.
 
 ### L2-1 — Biconvex Positive
 
-**nd = 1.805181, νd = 25.4. Glass: 805254 — dense-flint coordinate class. f = +209.1537 mm.**
+**N = 1.805181, ν = 25.4. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +209.1537 mm.**
 
 L2-1 is the positive front member of the cemented focusing doublet. Its relatively high index and low Abbe number are
 paired directly with the following negative element at the cemented interface.
 
 ### L2-2 — Biconcave Negative
 
-**nd = 1.834807, νd = 42.7. Glass: 835427 — lanthanum dense-crown coordinate class. f = -100.9907 mm.**
+**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -100.9907 mm.**
 
 L2-2 is the stronger negative member of the cemented pair. The completed L2 doublet has a net focal length of
 -198.0387 mm. In the complete system this compact negative unit lies in a converging beam and translates toward the
@@ -154,14 +162,14 @@ position between the positive L1 and L3 units.
 
 ### L3a-1 — Negative Meniscus
 
-**nd = 1.846658, νd = 23.9. Glass: 847239 — dense-flint coordinate class. f = -72.4610 mm.**
+**N = 1.846658, ν = 23.9. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -72.4610 mm.**
 
 L3a-1 is the negative front member of the first rear cemented doublet. Its strong standalone negative power should not
 be read as the sign of the compound group: the cemented partner that follows is still stronger in positive power.
 
 ### L3a-2 — Biconvex Positive
 
-**nd = 1.834807, νd = 42.7. Glass: 835427 — lanthanum dense-crown coordinate class. f = +49.0812 mm.**
+**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +49.0812 mm.**
 
 L3a-2 converts the L3a cemented pair to a net-positive subunit with a focal length of +152.7805 mm. The patent's design
 logic places this positive subunit ahead of the transverse stabilizer so that the beam is further converged before it
@@ -169,7 +177,7 @@ reaches L3b.
 
 ### L3b-1 — Biconvex Positive
 
-**nd = 1.846658, νd = 23.9. Glass: 847239 — dense-flint coordinate class. f = +77.3004 mm.**
+**N = 1.846658, ν = 23.9. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +77.3004 mm.**
 
 L3b-1 is the positive member at the front of the image-stabilization subunit. It is cemented to L3b-2, but that cemented
 pair is followed by an additional negative singlet; the behavior of the stabilization unit therefore cannot be inferred
@@ -177,14 +185,14 @@ from the first doublet alone.
 
 ### L3b-2 — Biconcave Negative
 
-**nd = 1.677900, νd = 55.3. Glass: 678553 — lanthanum crown coordinate class. f = -48.0730 mm.**
+**N = 1.677900, ν = 55.3. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -48.0730 mm.**
 
 L3b-2 is the negative cemented partner to L3b-1. Together with L3b-3, it makes the complete L3b stabilization subunit
 net negative.
 
 ### L3b-3 — Biconcave Negative
 
-**nd = 1.733997, νd = 51.5. Glass: 734515 — lanthanum crown coordinate class. f = -65.4005 mm.**
+**N = 1.733997, ν = 51.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -65.4005 mm.**
 
 L3b-3 is an air-spaced negative singlet behind the cemented pair. The complete L3b subunit has a net focal length of
 -43.9002 mm. The patent uses this negative subunit as the transversely movable image-displacement group rather than as
@@ -192,7 +200,7 @@ an axial focusing group.
 
 ### L3c-1 — Biconvex Positive
 
-**nd = 1.696797, νd = 55.5. Glass: 697555 — lanthanum crown coordinate class. f = +151.3467 mm.**
+**N = 1.696797, ν = 55.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +151.3467 mm.**
 
 L3c-1 begins the final positive subunit. It is followed by a cemented positive/negative pair, so the rear unit
 distributes
@@ -200,50 +208,57 @@ positive power across more than one positive element rather than concentrating i
 
 ### L3c-2 — Biconvex Positive
 
-**nd = 1.517417, νd = 52.4. Glass: 517524 — crown coordinate class. f = +61.7463 mm.**
+**N = 1.517417, ν = 52.4. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +61.7463 mm.**
 
 L3c-2 is the strongest standalone positive element in the final cemented pair. Its rear surface is the cemented junction
 to L3c-3.
 
 ### L3c-3 — Negative Meniscus
 
-**nd = 1.720000, νd = 43.7. Glass: 720437 — legacy S-LAM52 / H-LaF62 coordinate class. f = -118.8387 mm.**
+**N = 1.720000, ν = 43.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -118.8387 mm.**
 
 L3c-3 is the negative cemented partner that moderates the strong positive L3c-2. The entire L3c subunit remains strongly
-positive at +68.6765 mm. The final data file deliberately retains the legacy coordinate-class wording rather than
-substituting the current S-LAL10 family, whose Abbe number does not match the patent coordinate.
+positive at +68.6765 mm. The literal source pair is preserved; no catalog chemistry or supplier identity is assigned.
 
-## Glass Identification and Selection
+### FL — Required Rear Filter
 
-The patent labels its material values as `N` and `ν` without explicitly naming the spectral reference line. The model
-treats them as d-line `nd`/`νd` coordinates because the values round-trip to authoritative d-line glass coordinates and
-Figure 91 explicitly plots d-, C-, F-, and g-line aberrations. This is a wavelength-convention inference, not an
-explicit
-patent statement. The data file therefore keeps conservative glass-class labels rather than supplier assertions. A
-cross-vendor catalog audit checked the coordinates against current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita
-resources and kept the prescription values unchanged.
+**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved).**
 
-| Data-file glass annotation | nd | νd | Elements |
-|---|---:|---:|---|
-| 497816 — low-dispersion / UD coordinate class | 1.496999 | 81.5 | L1a, L1b-1 |
-| 835427 — lanthanum dense-crown coordinate class | 1.834807 | 42.7 | L1b-2, L2-2, L3a-2 |
-| Fluorite (CaF2; manufacturer-correlated crystal) | 1.433870 | 95.1 | L1c-1 |
-| 516641 — S-BSL7 / K-BK7 coordinate class | 1.516330 | 64.1 | L1c-2 |
-| 805254 — dense-flint coordinate class | 1.805181 | 25.4 | L2-1 |
-| 847239 — dense-flint coordinate class | 1.846658 | 23.9 | L3a-1, L3b-1 |
-| 678553 — lanthanum crown coordinate class | 1.677900 | 55.3 | L3b-2 |
-| 734515 — lanthanum crown coordinate class | 1.733997 | 51.5 | L3b-3 |
-| 697555 — lanthanum crown coordinate class | 1.696797 | 55.5 | L3c-1 |
-| 517524 — crown coordinate class | 1.517417 | 52.4 | L3c-2 |
-| 720437 — legacy S-LAM52 / H-LaF62 coordinate class | 1.720000 | 43.7 | L3c-3 |
+The source R30/R31 filter remains a drawn 2.20 mm plate, with 30.00 mm air before it and the printed
+31.34 + 38.94 = 70.28 mm after it. Its revised 25 mm clear semi-diameter follows the optical rectangle
+in Fig. 87. It belongs to the lens’s working source configuration and is included in the 17/13 count;
+no camera-side plate or additional filter medium is invented.
 
-Several six-digit coordinates have very close current catalog anchors. For example, OHARA publicly lists 497816 as
-S-FPL51 at nd = 1.49700 and νd = 81.54, 835427 as S-LAH55V at nd = 1.83481 and νd = 42.73, and 805254 as S-TIH6 at
-nd = 1.80518 and νd = 25.42. These are useful coordinate checks, but they do not establish which supplier or exact melt
-Canon used in the production lens.
+## Glass Content and Reference Qualification
 
-Example 24 does not publish per-element nC, nF, ng, PgF, or dPgF values. The data file therefore does not author those
-fields from catalog candidates. No apochromatic or anomalous-partial-dispersion claim is made from nd/νd alone.
+The original third-embodiment numerical introduction (PDF p. 78, col. 32) defines Ni and νi as refractive
+index and Abbe number without naming a spectral line or numerical wavelength. The complete third-embodiment
+prose (PDF pp. 76–78), Example 24 table (PDF p. 79, cols. 33–34), Table 3 (PDF pp. 79–80), Fig. 91
+(PDF p. 61) and certificate (PDF pp. 82–83) were inspected on 2026-10-30. The d/C/F/g labels on the
+aberration figure identify plotted wavelengths, not per-medium index values or a material-reference anchor.
+
+All 17 source pairs, including restored HG and drawn FL, remain literal. Every medium is `Unmatched`
+with `indexReferenceNote`; the 16 previously active curves are disabled. Approximate d-reference tracing
+is a computational assumption rather than a source identification. No per-element C/F/g index, partial
+dispersion or APD evidence is published for this example. No per-lens spectral override was present or added.
+
+| Source N / ν    | Media              | Disposition                                                        |
+| --------------- | ------------------ | ------------------------------------------------------------------ |
+| 1.516330 / 64.1 | HG, L1c-2, FL      | Source reference and historical medium unresolved                  |
+| 1.496999 / 81.5 | L1a, L1b-1         | Unresolved; product UD association only                            |
+| 1.834807 / 42.7 | L1b-2, L2-2, L3a-2 | Unresolved                                                         |
+| 1.433870 / 95.1 | L1c-1              | Unresolved; product fluorite association only; CaF₂ curve inactive |
+| 1.805181 / 25.4 | L2-1               | Unresolved                                                         |
+| 1.846658 / 23.9 | L3a-1, L3b-1       | Unresolved                                                         |
+| 1.677900 / 55.3 | L3b-2              | Unresolved                                                         |
+| 1.733997 / 51.5 | L3b-3              | Unresolved                                                         |
+| 1.696797 / 55.5 | L3c-1              | Unresolved                                                         |
+| 1.517417 / 52.4 | L3c-2              | Unresolved                                                         |
+| 1.720000 / 43.7 | L3c-3              | Unresolved                                                         |
+
+Compatible catalog curves and coordinate classes remain possible proxies, not proof of source wavelength,
+chemistry, historical supplier or melt. Prior product fluorite/UD research is retained as a qualified
+correlation. There is no separately modeled cement, resin, aspheric or hybrid layer.
 
 ## Focus Mechanism
 
@@ -254,16 +269,17 @@ uses a **CONSTRAINED_RECONSTRUCTION**, not a purported patent-published close-fo
 The reconstruction has one mechanical degree of freedom: translating the cemented L2 doublet changes only the air gaps
 immediately before and after it while preserving their sum.
 
-| Gap | Infinity (mm) | Reconstructed close (mm) | Change (mm) |
-|---|---:|---:|---:|
-| Surface 12 / L2 front gap | 20.520000000 | 37.353981615 | +16.833981615 |
-| Surface 15 / L2 rear gap | 93.550000000 | 76.716018385 | -16.833981615 |
-| Sum | 114.070000000 | 114.070000000 | 0 |
+| Gap                       | Infinity (mm) | Reconstructed close (mm) |   Change (mm) |
+| ------------------------- | ------------: | -----------------------: | ------------: |
+| Surface 12 / L2 front gap |  20.520000000 |             37.353981615 | +16.833981615 |
+| Surface 15 / L2 rear gap  |  93.550000000 |             76.716018385 | -16.833981615 |
+| Sum                       | 114.070000000 |            114.070000000 |             0 |
 
 The single external scalar constraint is Canon's marketed 4.5 m closest focusing distance, measured to the focal plane.
-After normalizing the omitted HG and FL plates to the active model's reference planes, the stored close-focus distance
-is
-4.497548307 m. Recalculation from the final arrays gives a close-focus lateral magnification of -0.121615195, whose
+With the source HG and FL restored physically, the unchanged cam gives a derived object-to-image close
+conjugate of 4.500000000 m. `closeFocusM` now reports 4.5 m rather than the old 4.497548307 m omission
+normalization; this is a coordinate consequence of the restored plates, not a new cam solve or a source
+finite-distance table. Recalculation from the final arrays gives a close-focus lateral magnification of -0.121615195, whose
 absolute value is consistent with Canon's rounded 0.12× product specification.
 
 No additional floating motion is reconstructed. In particular, L3b is not moved axially with focus; its patent-defined
@@ -292,24 +308,26 @@ The third embodiment defines conditions 18-29 for the L1 subunits, the L2 focus 
 below uses the narrowed preferred bands and values recomputed from the rounded Example 24 prescription. Ratios use the
 patent's stated f = 490.56 mm as the normalization, matching the patent's condition table convention.
 
-| Condition | Quantity | Recomputed value | Preferred band | Result |
-|---|---|---:|---|---|
-| 18a | f1a / f | 0.701913 | 0.5 < x < 0.9 | Pass |
-| 19a | D1ab / f | 0.099580 | 0.05 < x < 0.11 | Pass |
-| 20a | \|f1b / f\| | 1.915321 | 1.2 < x < 2.5 | Pass |
-| 21a | f1c / f | 0.706739 | 0.55 < x < 1.0 | Pass |
-| 22a | ν1ap | 81.5 | x > 80 | Pass |
-| 23a | N1ap | 1.496999 | x > 1.49 | Pass |
-| 24a | ν1bp | 81.5 | x > 80 | Pass |
-| 25a | N1bp | 1.496999 | x > 1.49 | Pass |
-| 26a | \|f2 / f\| | 0.403699 | 0.3 < x < 0.45 | Pass |
-| 27a | f3a / f | 0.311441 | 0.2 < x < 0.45 | Pass |
-| 28a | \|f3b / f\| | 0.089490 | 0.06 < x < 0.13 | Pass |
-| 29a | f3c / f | 0.139996 | 0.1 < x < 0.18 | Pass |
+| Condition | Quantity    | Recomputed value | Preferred band  | Result |
+| --------- | ----------- | ---------------: | --------------- | ------ |
+| 18a       | f1a / f     |         0.701913 | 0.5 < x < 0.9   | Pass   |
+| 19a       | D1ab / f    |         0.099580 | 0.05 < x < 0.11 | Pass   |
+| 20a       | \|f1b / f\| |         1.915321 | 1.2 < x < 2.5   | Pass   |
+| 21a       | f1c / f     |         0.706739 | 0.55 < x < 1.0  | Pass   |
+| 22a       | ν1ap        |             81.5 | x > 80          | Pass   |
+| 23a       | N1ap        |         1.496999 | x > 1.49        | Pass   |
+| 24a       | ν1bp        |             81.5 | x > 80          | Pass   |
+| 25a       | N1bp        |         1.496999 | x > 1.49        | Pass   |
+| 26a       | \|f2 / f\|  |         0.403699 | 0.3 < x < 0.45  | Pass   |
+| 27a       | f3a / f     |         0.311441 | 0.2 < x < 0.45  | Pass   |
+| 28a       | \|f3b / f\| |         0.089490 | 0.06 < x < 0.13 | Pass   |
+| 29a       | f3c / f     |         0.139996 | 0.1 < x < 0.18  | Pass   |
 
 The patent's Table 3 carries more displayed precision for conditions 22 and 24 (81.540) than the prescription rows
 (81.5), and the rounded prescription recomputation of condition 21 differs from the printed table by approximately
-0.000239. These are retained as source-precision effects; no prescription value is altered to force exact agreement.
+0.000239. The extra displayed Abbe precision is retained as source evidence without replacing the literal pairs.
+Condition (21) remains a source inconsistency of unresolved cause; no prescription value is changed to
+force agreement.
 
 ## Image Stabilization
 
@@ -330,12 +348,14 @@ IS displacement is therefore introduced.
 
 The rounded active arrays recompute to an infinity EFL of 491.356789096 mm, 0.796789096 mm or 0.1624% above the patent's
 printed 490.56 mm. The sequential reduced-angle trace and an independent ABCD chain agree to machine precision at the
-reported tolerance, so the residual is retained as a source-precision effect rather than corrected by altering a radius
-or spacing.
+reported tolerance, so the discrepancy is retained as unresolved source evidence. A specific rounding or printing cause
+has not been established; no radius or spacing is fitted to the summary.
 
-The calibrated entrance pupil and physical stop recover f/4.1. The stop axial position is patent-published; only its
+The derived stop recovers the project’s paraxial f/4.1 convention. A separate real collimated-beam
+solve gives an input radius of 59.100027227 mm and EFL/diameter f/4.156992917, with the same iris.
+This convention-dependent diagnostic does not establish a source physical iris diameter. The stop axial position is patent-published; only its
 17.719982840 mm semi-diameter is inferred. Example 24 also publishes no clear semi-diameters. The modeled surface
-semi-diameters were therefore derived from exact spherical d-line ray traces at infinity and reconstructed close focus,
+semi-diameters were therefore derived from exact spherical traces using approximate d-reference indices at infinity and reconstructed close focus,
 then checked for element edge thickness, actual rim slope, shared-band cross-gap intrusion, and off-axis ray
 containment.
 
@@ -348,10 +368,89 @@ are no aspherical coefficients in Example 24 in any event. The patent's Certific
 numerical examples but does not alter the Example 24 numeric prescription; no silent source correction is present in the
 modeled surfaces.
 
-The active model omits HG and the inactive FC by design and draws FL as a plane-parallel plate at its source position.
-The close-focus endpoint was solved on the air-equivalent path, so its object reference stays normalized for the omitted
-front plate and for the filter's glass thickness.
-These are modeling transformations of reference planes, not changes to the patent's powered prescription.
+The model now traces HG and FL physically at the selected source positions and omits only the inactive
+FC bookkeeping plane. The existing powered prescription, source rear path and focus gaps are unchanged.
+The source physical R29-to-image path is 30.00 + 2.20 + 31.34 + 38.94 = 102.48 mm, while the literal
+array’s paraxial infinity focus is 103.150443 mm behind R29. The source plane is therefore 0.670443 mm
+ahead of focus; this and the focal-length/condition discrepancy are formalized as unresolved `source.errata`.
+
+## Original Figure and Runtime Review — 2026-10-30
+
+The exact local original is `patents/US6115188.pdf`. Numerical Example 24 is on PDF p. 79, cols. 33–34;
+matching Fig. 87 is on PDF p. 58, sheet 56. Its embedded native raster is 2320 × 3408 px at 300 ppi.
+The 2530 × 1000 rotated optical crop is unresampled. The approximately 2419 px HG-front-to-image span
+across the 411.07 mm physical source track gives about 5.89 px/mm (0.170 mm/px). Practical rim
+uncertainty is ±0.8 mm. The 3× detail crops are reading enlargements and add no source resolution.
+
+### Integral source HG
+
+Example 24 explicitly tabulates HG as R1/R2, a 5.00 mm flat plate with N1 = 1.516330 / ν1 = 64.1,
+followed by 1.50 mm air to R3, and Fig. 87 includes it. Third-embodiment c-7 (PDF p. 78, col. 32) says:
+
+> To protect the exposed lens surface to the outside and to prevent occurrence of a change of the position
+> of the sharp focus owing to the expansion or contraction of the lens elements with change of the ambient
+> temperature, use may be made of a flat glass plate or transparent member or a lens of weak refractive power
+> on the object side of the lens system.
+
+This describes alternative integral front members for protection and thermal-focus behavior. It does not
+call the selected numerical HG an optional, removable or free-location accessory filter. The optional-accessory
+exclusion therefore does not apply. HG is restored physically, consistently with the already included HG
+of Example 25. Media IDs are shifted into ordinary front-to-rear source order; their numeric values are unchanged.
+Both HG and required FL count in the selected source’s 17 elements / 13 groups, matching the retained maker count.
+
+The restored source R1 origin is 6.50 mm ahead of the old R3 origin, and the physical source track becomes
+411.07 mm. EFL, powered R/d, stop rule, L2 gap keyframes and 16.833981615 mm cam travel are unchanged.
+The derived close conjugate changes from 4498.297435 to 4500.000000 mm because the physical HG replaces
+its prior omission normalization; `closeFocusM` is synchronized to that existing 4.5 m reconstruction constraint.
+No finite-focus prescription is claimed as published.
+
+### Figure rims and constraints
+
+| Surfaces                       | Adopted clear sd (mm) | Resolved outer sd (mm) |
+| ------------------------------ | --------------------- | ---------------------- |
+| 1–2, HG                        | 60                    | —                      |
+| 3–4, L1a                       | 61                    | —                      |
+| 5–6, L1b-1                     | 49.8                  | —                      |
+| 7 / 8, L1b-2                   | 48.8 / 46.2           | S8: 48.8               |
+| 9–10, L1c-1                    | 43.6                  | —                      |
+| 11 / 12, L1c-2                 | 38.5 / 34.9           | S12: 38.5              |
+| 13 / 14 / 15, L2               | 30.3 / 30.3 / 28.9    | S15: 30.3              |
+| 17–19, L3a                     | 15.8                  | —                      |
+| 20 / 21 / 22, first L3b pair   | 15.2 / 15.2 / 14.0    | S22: 15.2              |
+| 23 / 24, separate L3b negative | 14.0 / 15.0           | S23: 15.0              |
+| 25–26, first L3c positive      | 16.5                  | —                      |
+| 27–29, final L3c doublet       | 17.5                  | —                      |
+| 30–31, FL                      | 25                    | —                      |
+
+Twenty-three existing caps change; five `rimExtensionSd` fields preserve clear aperture below visible
+outer shoulders. Every element, concave end, four cemented interfaces and both plates was inspected.
+Bracket, leader, stop and mechanical strokes are excluded from optical heights. No bonded-interface land,
+disconnected resin, inferred cut or unsupported full compound blank is authored. The actual SVG at roughly
+native figure scale reproduces the resolved shoulders and source hierarchy.
+
+A full spherical-cap trial reaching all blank heights passed geometry but was rejected where it erased the
+resolved source shoulders. A clear S7 = 49.8 mm trial needs 1.77 mm sag intrusion across D6 = 1.78 mm,
+exceeding the unchanged 0.96 guard allowance of 1.7088 mm; S7 remains 48.8. No tolerance is relaxed.
+Physical residuals are 0.081117 mm at S6–S7 and 0.817689 mm at the capped S22–S23 shoulders.
+
+### Runtime scope
+
+Surface validation, the source infinity aperture criterion, image-circle floor and ≥99% corner-field
+coverage pass. The 201-position focus render census has 17 finite closed connected contours in every
+state and zero hidden trimming. The source infinity axial pupil clears all 97 sampled rays.
+
+The retained source image-plane discrepancy creates a near-infinity interval without a positive real
+object conjugate. At focus 0.01, the derived object-to-image conjugate is −6,732,679 mm; a physical
+finite-object seed cannot represent that state. The actual-conjugate census therefore has three
+unseeded field bundles there. Its other 100 controls × three fields × 97 pupils (29,100 traced rays)
+have clear chiefs and no axial clipping, aim failure or trace failure after HG restoration.
+
+A separate 101-control positive-object probe uses object-to-image distance 4500/focus mm and the full
+paraxial stop-centered chief mapping for the three field heights. All 29,391 sampled rays have valid
+aiming and tracing, all 101 axial bundles and all chiefs clear. This establishes sampled clearance
+in those geometry states; it does not establish a production focus cam or remove the source image-plane
+contradiction. Centered IS only is represented, and displaced IS or attached-converter clearance remains
+unverified. Source fidelity, sampled runtime clearance and production correlation are separate findings.
 
 ## Sources and References
 
@@ -362,6 +461,3 @@ These are modeling transformations of reference planes, not changes to the paten
    groups, eight diaphragm blades, f/32 minimum aperture, 4.5 m closest focusing distance, 0.12× maximum magnification,
    146 × 387 mm dimensions, one fluorite element, two UD elements, image stabilization, and inclusion of protection
    glass and rear filter in the element count.
-3. OHARA INC., **Glass Type**, <https://www.ohara-inc.co.jp/en/product/01000/>. Public d-line coordinate checks used as
-   catalog anchors for several six-digit glass classes; supplier identity is not inferred from coordinate agreement
-   alone.

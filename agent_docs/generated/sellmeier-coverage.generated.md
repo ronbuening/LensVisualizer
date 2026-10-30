@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **674** lenses fully covered by trusted chromatic data
-- **671** visible lenses fully covered by trusted chromatic data
-- **666** lenses fully covered by strict Sellmeier data
-- **663** visible lenses fully covered by strict Sellmeier data
+- **672** lenses fully covered by trusted chromatic data
+- **669** visible lenses fully covered by trusted chromatic data
+- **664** lenses fully covered by strict Sellmeier data
+- **661** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10752 / 11845** non-air surfaces use strict catalog Sellmeier data
-- **90.8%** strict Sellmeier surface coverage overall
-- **10766 / 11845** non-air surfaces use trusted chromatic data
-- **90.9%** trusted chromatic coverage overall
+- **10725 / 11846** non-air surfaces use strict catalog Sellmeier data
+- **90.5%** strict Sellmeier surface coverage overall
+- **10739 / 11846** non-air surfaces use trusted chromatic data
+- **90.7%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -429,7 +429,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [TAMRON SP 70-300mm f/4-5.6 Di VC USD](../../src/lens-data/tamron/TamronA00570300mmf456VC.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) | 16/16 | 16 | 16/16 |
-| [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 70-200mm f/4 L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) | 16/16 | 16 | 16/16 |
@@ -604,7 +603,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON 8.8-36.8mm f/1.8-2.8 (Canon PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) | 11/11 | 11 | 11/11 |
-| [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON RF 35mm f/1.8 MACRO IS STM](../../src/lens-data/canon/CanonRF35mmF18MACROISSTM.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON RF 800mm f/11 IS STM](../../src/lens-data/canon/CanonRF800mmf11ISSTM.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON TS-E 135mm f/4 L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) | 11/11 | 11 | 11/11 |
@@ -1354,18 +1352,20 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 337 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
 | 338 | [CANON EF 20mm f/2.8 USM](../../src/lens-data/canon/CanonEF20mmf28.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
 | 339 | [CANON EF 35mm f/1.4 L USM](../../src/lens-data/canon/CanonEF35mmf14LUSM.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 340 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 341 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
-| 342 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 343 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
-| 344 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 345 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
-| 346 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 347 | [CANON EF 300mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF300mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 348 | [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
-| 349 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 350 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
-| 351 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 340 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 341 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 342 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 343 | [CANON EF 14mm f/2.8 L USM](../../src/lens-data/canon/CanonEF14mmf28L.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 344 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | 0.0% | 0.0% | 0/14 | 0/14 | 14 | abbe: 14 |
+| 345 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 346 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 347 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 348 | [CANON EF 300mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF300mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 349 | [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) | 0.0% | 0.0% | 0/16 | 0/16 | 16 | abbe: 16 |
+| 350 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 351 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 352 | [CANON EF 400mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF400mmf28LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
+| 353 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | 0.0% | 0.0% | 0/17 | 0/17 | 17 | abbe: 17 |
 
 ## Missing Surface Details
 
@@ -3902,6 +3902,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 15 | Element 8 | abbe | `Unmatched (805254/255 class (vendor unresolved); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 3 more missing surfaces |
 
+### [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) - 0.0% trusted (0/11); 0.0% Sellmeier (0/11) - US 4,717,245
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source reference unspecified; prior BACD14 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (source reference unspecified; prior S-LAL14 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 5A | Element 3 | abbe | `Unmatched (source reference unspecified; prior S-NSL36 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (source reference unspecified; prior S-NSL36 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Unmatched (source reference unspecified; prior PBH53 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 8 | abbe | `Unmatched (source reference unspecified; prior S-TIH6 coordinate class is conditional only)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 3 more missing surfaces |
+
 ### [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) - 0.0% trusted (0/11); 0.0% Sellmeier (0/11) - CN 211826700 U
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -4066,6 +4080,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | L1b negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 9 | L1c positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 11 | L1c negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 13 | L2 positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 14 | L2 negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 9 more missing surfaces |
+
+### [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) - 0.0% trusted (0/17); 0.0% Sellmeier (0/17) - US 6,115,188 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Protection glass HG | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 3 | L1a front positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 5 | L1b positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 7 | L1b negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 9 | L1c high-Abbe positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
+| 11 | L1c negative meniscus | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 13 | L2 positive | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | 14 | L2 negative | abbe | `Unmatched (source reference unspecified; historical medium unresolved)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 9 more missing surfaces |
