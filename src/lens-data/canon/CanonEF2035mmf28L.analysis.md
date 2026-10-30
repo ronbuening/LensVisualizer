@@ -10,7 +10,7 @@
 **Inventors:** Sadatoshi Takahashi; Koutaro Yano; Hiroshi Endo
 **Assignee:** Canon Kabushiki Kaisha
 **Title:** Wide-Angle Type Zoom Lens Having Inner-Focus Lens
-**Example details:** Fig. 1
+**Example details:** Numerical Example 1, prescription and definitions on PDF p. 61 (printed cols. 7–8); Fig. 1 on PDF p. 2
 
 The prescription represented here is Numerical Example 1 of US 5,000,550. The patent describes a wide-angle zoom lens for 35 mm single-lens-reflex cameras, with a negative first group split into a stationary object-side sub-group and a movable image-side focus sub-group. Example 1 is the lead four-group super-wide-angle embodiment and is the closest patent match for the Canon EF 20-35 mm f/2.8L.
 
@@ -29,7 +29,7 @@ Example 1 is a negative-lead retrofocus wide-angle zoom with four optical zoom g
 - Group 3 is the negative compensator behind the aperture stop.
 - Group 4 is the positive rear relay group, which supplies the final convergence and sets the back focal distance.
 
-During zooming from wide to telephoto, the separation between groups 1 and 2 decreases, the separation between groups 2 and 3 increases, and the separation between groups 3 and 4 decreases. In the data file these are D8, D13, and D19. The independently computed back focal distance also changes with zoom and is included as the final variable gap BF so the image plane stays at the paraxial infinity focus.
+During zooming from wide to telephoto, the separation between groups 1 and 2 decreases, the separation between groups 2 and 3 increases, and the separation between groups 3 and 4 decreases. In the data file these are D8, D13, and D19. The independently computed back focal distance also changes with zoom and is included as the final variable gap BF so the three published zoom stations lie at paraxial infinity focus. The interpolated states remain an approximation; their back-focus interpolation is not an exact focus-preserving cam.
 
 This is not a telephoto design in the strict optical sense. At the wide end the back focal distance is about 39.28 mm against a 20.60 mm effective focal length, which is the retrofocus condition needed for a 35 mm SLR mirror box. At the long end the back focal distance is about 49.59 mm against a 33.97 mm effective focal length.
 
@@ -41,25 +41,25 @@ Focal lengths below are standalone thick-lens values in air, computed from the p
 
 #### L1 — Negative Meniscus, convex to object, 1× aspherical
 
-nd = 1.77250, νd = 49.6. Glass: S-LAH66-class lanthanum flint. f = -40.9 mm.
+nd = 1.77250, νd = 49.6. Glass: S-LAH66 class (OHARA) (qualified spectral proxy; historical supplier and melt unspecified). f = -40.9 mm.
 
 L1 is the front negative meniscus and carries the only aspherical surface. Its front location makes it the dominant surface for wide-angle distortion control. The patent explicitly states that an aspherical surface is set in the negative meniscus lens of the front sub-group for correcting distortion in this super-wide-angle example.
 
 #### L2 — Positive Meniscus
 
-nd = 1.61293, νd = 37.0. Glass: F3 / E-F3 flint class. f = +191.2 mm.
+nd = 1.61293, νd = 37.0. Glass: F3 / E-F3 class (qualified spectral proxy; historical supplier and melt unspecified). f = +191.2 mm.
 
 L2 is a weak positive partner in stationary sub-group 11A. Its low power moderates the first element's strong negative contribution while preserving the negative net power of the front sub-group.
 
 #### L3 — Biconcave Negative
 
-nd = 1.88300, νd = 40.8. Glass: S-LAH58 / TAFD30 dense lanthanum class. f = -29.8 mm.
+nd = 1.88300, νd = 40.8. Glass: S-LAH58 / TAFD30 class (qualified spectral proxy; historical supplier and melt unspecified). f = -29.8 mm.
 
 L3 is the stronger negative element in the moving focus sub-group 11B. The patent prefers a biconcave negative lens in this location because it helps control the spherical-aberration variation that would otherwise accompany focusing and zooming.
 
 #### L4 — Biconvex Positive
 
-nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 dense flint class. f = +55.6 mm.
+nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 class (qualified spectral proxy; historical supplier and melt unspecified). f = +55.6 mm.
 
 L4 is the positive partner in sub-group 11B. It has a strong object-side convex surface and works with L3 to keep the sub-group net negative while reducing the aberration swing created by moving a powered focus component.
 
@@ -67,31 +67,31 @@ L4 is the positive partner in sub-group 11B. It has a strong object-side convex 
 
 #### L5 + L6 — Cemented achromat
 
-L5: nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 dense flint class. f = -47.0 mm.
+L5: nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 class (qualified spectral proxy; historical supplier and melt unspecified). f = -47.0 mm.
 
-L6: nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 lanthanum-crown class. f = +26.2 mm.
+L6: nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 class (qualified spectral proxy; historical supplier and melt unspecified). f = +26.2 mm.
 
 The L5-L6 cemented doublet has net positive power of about +57.4 mm. Its strong flint/crown dispersion split performs the main axial color correction in the positive second group.
 
 #### L7 — Positive Meniscus
 
-nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 lanthanum-crown class. f = +51.2 mm.
+nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 class (qualified spectral proxy; historical supplier and melt unspecified). f = +51.2 mm.
 
-L7 supplies the remaining positive power of group 2. Reusing the same lanthanum-crown class as L6 keeps the group's Petzval and chromatic burden moderate.
+L7 supplies the remaining positive power of group 2. Its source index/Abbe pair matches L6, helping distribute the group's refractive power and dispersion; no common historical melt is established.
 
 ### Group 3 — Negative compensator group, L8-L10
 
 #### L8 — Biconcave Negative
 
-nd = 1.81600, νd = 46.6. Glass: S-LAH59 / TAF5 lanthanum-flint class. f = -33.8 mm.
+nd = 1.81600, νd = 46.6. Glass: S-LAH59 / TAF5 class (qualified spectral proxy; historical supplier and melt unspecified). f = -33.8 mm.
 
 L8 provides most of the third group's negative power. It sits immediately behind the stop and is a major contributor to balancing the positive powers of groups 2 and 4.
 
 #### L9 + L10 — Near-afocal cemented color corrector
 
-L9: nd = 1.69680, νd = 55.5. Glass: S-LAL14 / N-LAK14 lanthanum-crown class. f = -22.8 mm.
+L9: nd = 1.69680, νd = 55.5. Glass: S-LAL14 / N-LAK14 class (qualified spectral proxy; historical supplier and melt unspecified). f = -22.8 mm.
 
-L10: nd = 1.80518, νd = 25.4. Glass: SF6 / S-TIH6 dense flint class. f = +23.6 mm.
+L10: nd = 1.80518, νd = 25.4. Glass: SF6 / S-TIH6 class (qualified spectral proxy; historical supplier and melt unspecified). f = +23.6 mm.
 
 The L9-L10 cemented pair is nearly afocal in net power, about +2350 mm by paraxial calculation. Its function is therefore chromatic and aberrational correction near the stop rather than first-order power.
 
@@ -99,33 +99,33 @@ The L9-L10 cemented pair is nearly afocal in net power, about +2350 mm by paraxi
 
 #### L11 — Biconvex Positive
 
-nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) / BK7-class crown. f = +93.7 mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) / BK7-class crown (qualified spectral proxy; historical supplier and melt unspecified). f = +93.7 mm.
 
-L11 begins the rear relay group with weak positive power. The exact nd/νd pair is closer to OHARA S-BSL7 than to Schott N-BK7, although it belongs to the same ordinary borosilicate crown family.
+L11 begins the rear relay group with weak positive power. The compatible S-BSL7 curve supplies a qualified spectral proxy; the source coordinates do not establish borosilicate chemistry, a historical supplier or a particular melt.
 
 #### L12 — Negative Meniscus
 
-nd = 1.76182, νd = 26.5. Glass: N-SF14 / S-TIH14 dense flint class. f = -109.9 mm.
+nd = 1.76182, νd = 26.5. Glass: N-SF14 / S-TIH14 class (qualified spectral proxy; historical supplier and melt unspecified). f = -109.9 mm.
 
 L12 is the rear group's negative flint. The patent notes that including at least one negative lens in the fourth group helps correct astigmatism generated by the negative meniscus in the front sub-group.
 
 #### L13 — Near plano-convex positive
 
-nd = 1.69680, νd = 55.5. Glass: S-LAL14 / N-LAK14 lanthanum-crown class. f = +51.7 mm.
+nd = 1.69680, νd = 55.5. Glass: S-LAL14 / N-LAK14 class (qualified spectral proxy; historical supplier and melt unspecified). f = +51.7 mm.
 
 L13 is a low-Petzval positive component with an almost flat front surface. It contributes rear-group convergence and field correction.
 
 #### L14 + L15 — Final cemented doublet
 
-L14: nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 lanthanum-crown class. f = +27.5 mm.
+L14: nd = 1.65160, νd = 58.5. Glass: N-LAK7 / S-LAL7 class (qualified spectral proxy; historical supplier and melt unspecified). f = +27.5 mm.
 
-L15: nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 dense flint class. f = -33.2 mm.
+L15: nd = 1.84666, νd = 23.9. Glass: SF57 / S-TIH53 class (qualified spectral proxy; historical supplier and melt unspecified). f = -33.2 mm.
 
 The final cemented pair has net positive power of about +165.2 mm. Its strong cemented interface performs the last chromatic correction before the image space, while the positive net power helps establish the SLR back focus.
 
 ## Glass Identification and Selection
 
-The patent gives only nd and νd, not Canon's glass supplier. The names below are representative public-catalog matches or catalog-equivalent classes. They should not be read as Canon procurement records.
+The numerical-example introduction explicitly defines Ni as the refractive index for the spectral d-line and νi as the Abbe number (PDF p. 61, printed col. 7). All 15 literal source pairs are retained. Fifteen compatible catalog curves remain qualified spectral proxies, with the same curve selections after label qualification. The patent supplies no individual C/F/g indices, partial-dispersion values or APD evidence; no catalog-derived per-lens spectral overrides are authored. The modern class names below do not establish historical chemistry, supplier or melt.
 
 | Patent code | Representative catalog-equivalent glass | Used at | Function |
 |---|---|---|---|
@@ -140,7 +140,7 @@ The patent gives only nd and νd, not Canon's glass supplier. The names below ar
 | 1.51633 / 64.1 | S-BSL7 / BK7-class borosilicate crown | L11 | Weak rear relay positive |
 | 1.76182 / 26.5 | N-SF14 / S-TIH14 dense flint class | L12 | Rear negative color/astigmatism corrector |
 
-The design uses conventional dense flint / lanthanum crown achromatization. It does not contain an identifiable fluorite, FK, FPL, or other extra-low-dispersion glass from the nd/νd data alone, so the file does not tag any element as ED or anomalous partial-dispersion glass.
+The source pairs support ordinary high-index/low-Abbe and crown-like dispersion contrasts. They establish no fluorite, ED or anomalous-partial-dispersion identity, so no such source material claim or APD annotation is added. Compatible curves describe a spectral estimate; they do not resolve the historical media.
 
 ## Focus Mechanism
 
@@ -188,7 +188,7 @@ The patent gives seven design conditions. Conditions 1-3 govern the first-group 
 
 For condition (3), the text defines r as the rear surface of the negative component of sub-group 11B and r' as the front surface of the positive component. In Example 1 those are R6 = +53.109 and R7 = +58.070, giving 0.915. The patent's factor table prints R5/R6 = 0.998; that is the biconcave element's own radius ratio, not the air-gap ratio described by condition (3). Both values fall within the stated bound, but the data file follows the condition as written.
 
-## Verification Summary
+## First-Order Results and Model Limits
 
 The prescription was re-entered from Numerical Example 1 and checked by an independent paraxial y-nu ray trace.
 
@@ -205,7 +205,13 @@ The prescription was re-entered from Numerical Example 1 and checked by an indep
 | fB | -71.911 mm | -71.92 mm |
 | Petzval sum | +0.005823 mm^-1 | surface-by-surface sum Σφ/(n n') |
 
-The data file includes inferred semi-diameters because the patent does not list clear apertures. These semi-diameters were checked against the renderer's default ray fans at 0.6 of the maximum field, the rim-slope limit, edge thickness, and cross-gap sag intrusion. The tightest signed-sag edge-thickness case is the L9-L10 cemented pair; the L10 rear semi-diameter is limited so that the rear element edge thickness remains above 0.5 mm. The values are conservative visualization apertures, not published mechanical diameters.
+The patent lists no effective diameters. The inferred clear caps now follow the optical outlines in native Fig. 1, rather than the older default ray-envelope estimates. The original 2320 × 3408 raster is 300 ppi; long optical-vertex baselines give about 13.9–14.0 pixels/mm, with practical rim uncertainty about ±0.4 mm. Twenty-one caps are revised, and L1's rear annulus is drawn to 23 mm with `rimExtensionSd`, preserving its 17 mm clear cap. This is a flat shoulder, not a spherical extension beyond the optical radius domain.
+
+The figure suggests larger caps at 2 and 23, but those trials exceed existing cross-gap guards, so their 17/11.3 mm clear caps remain. The first moving concave face at 5 retains 14.1 mm rather than a 14.5 mm figure trial that would invoke hidden trimming at reconstructed close focus. The last cemented assembly's inset outer outline remains constrained by the existing interface and source uncertainty; no unsupported opaque land is added. Source R/d, all four front-asphere coefficients, the stop and focus/zoom controls remain unchanged.
+
+At the three published zoom states the aperture and full-frame chief checks clear. Across 65 interpolated zoom positions, the aperture remains within 3% of f/2.8 and full-frame chiefs are clear, while a separate first-order check finds up to 0.563 mm of interpolation defocus. Quantitative source comparison therefore rests on the three source stations. The source heading says 20.6–34.2 mm, while its zoom table labels the last station 34.0 mm; the literal prescription computes 33.9741 mm. This unresolved source discrepancy is retained without changing the source spacings.
+
+A 21 × 21 zoom/focus diagnostic traces the reconstructed finite conjugates and the infinity field, with 97 sampled pupil rays at center, half and full nominal field. Every axial sample and solved chief clears, with ordinary off-axis vignetting. Eight full-field infinity inversion failures require the shared analysis-field bound before chief aiming. Eighty-four marginal samples still return `noBracket` before the front asphere; the same probe on the previous caps returns 617. These unresolved marginal-entry limits prevent a continuous-pupil clearance claim. The source's 1 m aberration plots do not certify the reconstructed 0.5 m focus spacings or production finite-field performance.
 
 ## Sources
 

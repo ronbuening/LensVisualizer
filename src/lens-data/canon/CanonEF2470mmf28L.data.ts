@@ -1,38 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║        LENS DATA — Canon EF 24-70mm f/2.8L USM                     ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2014-41222 A, Numerical Example 1 (Canon).        ║
- * ║  Representative 24.90-68.14mm f/2.92 full-frame standard zoom.     ║
- * ║  16 elements / 13 air-spaced groups; 6 zoom-moving optical groups. ║
- * ║  Two glass aspherical surfaces: 1A and 31A.                        ║
- * ║  One ED fluorophosphate element plus two patent-defined            ║
- * ║  high-index anomalous-dispersion short-flint elements.             ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: D6, D13, D20(STO), D25, D29.                  ║
- * ║  Focus: patent states the negative fifth group moves imageward.    ║
- * ║  Because the patent publishes only infinity-focus zoom spacings,   ║
- * ║  close-focus D25/D29 values are paraxially solved to the official  ║
- * ║  0.38 m manufacturer MFD while conserving D25 + D29 at each zoom.  ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING: none. The prescription is stored in patent mm.   ║
- * ║  The design endpoints are 24.90 / 35.13 / 68.14 mm, not a uniform  ║
- * ║  scaling of the marketed 24-70mm range.                            ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS: patent omits clear apertures. Values were ║
- * ║  estimated from paraxial marginal/chief ray envelopes, then reduced║
- * ║  where required by signed cross-gap sag clearance, edge thickness, ║
- * ║  and element front/rear semi-diameter ratio checks. The front group║
- * ║  remains bounded by the production lens's 77 mm filter class.      ║
- * ║                                                                    ║
- * ║  IMPORTANT: This file describes ONLY the optical design:           ║
- * ║    ✓ Glass elements and surfaces from front element to image plane ║
- * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
- * ║    ✗ Sensor cover glass, filters, barrel mechanics, and mount     ║
- * ║      hardware are not included.                                    ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * Canon EF 24-70mm f/2.8 L USM — JP 2014-041222 A, Numerical Example 1.
+ * The original prescription spans PDF pages 9–11; aspheres and zoom table are on page 10;
+ * all 16 d/g/C/F index rows are genuinely published on page 11 and retained in full.
+ * Paragraph 0062 on page 9 explicitly defines the d-line reference. APD ratios are derived from
+ * those published line indices; catalog curves remain qualified spectral proxies, not historical glass identities.
+ * Three source-defined media remain catalog-unmatched; no supplier or chemistry is invented.
+ *
+ * Native Figure 1 is a 1072 × 512 JPEG at about 200 ppi on PDF page 14. About 772 native pixels over
+ * the 160.66 mm first-to-last vertex span give 4.80 px/mm, with practical semi-height uncertainty
+ * around +/-0.5 mm. Enlarged details are upsampling only. Printed tables omit clear diameters.
+ * Source-based clear heights replace prior envelope estimates, with resolved rear shoulders on S2/S4.
+ * Those shoulders preserve clear caps 24.0/22.5 mm and extend externally to 29.2/23.8 mm.
+ * S3 and S16 retain gap-limited clear caps 23.0/11.8 mm: literal source 23.8/13.0 mm trials
+ * fail existing air-gap guards. No opaque cemented-interface land or inferred cut is introduced.
+ * SSP's inferred clear radius rises 12.4→12.5 mm to remove a small tele axial clip; its location
+ * and the independent derived STO authority remain unchanged. Its long source callout is not a rim measurement.
+ *
+ * Source R/d, both aspheres and all focus/zoom/aperture controls are preserved. The printed F-numbers
+ * are 2.92/2.92/2.91; the existing scalar 2.92 remains an explicit 0.34% tele approximation.
+ * Source quantitative support is confined to three infinity stations. Interpolated zoom remains illustrative,
+ * not focus-preserving: sampled BF can differ from the 38.47 mm image gap by 8.90 mm. Close focus is
+ * the existing paraxial fifth-group translation reconstructed from product 0.38 m MFD, not a source table.
+ * No source filter, camera-side plate, hybrid/resin layer or separate cement medium is tabulated.
+ * The source is a 2012-filed material-invention architecture, not verified production documentation for 2002.
  */
 
 const LENS_DATA = {
@@ -50,7 +42,7 @@ const LENS_DATA = {
       "24.90-68.14 mm patent design",
       "f/2.8 nominal; F2.92 design",
       "2 aspherical surfaces",
-      "1 ED + 2 anomalous-dispersion glass elements",
+      "1 low-dispersion + 2 source-defined APD elements",
     ],
     elementCount: 16,
     groupCount: 13,
@@ -75,7 +67,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -59.9,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Object-side aspherical negative meniscus of the retrofocus front group.",
       nC: 1.7678,
@@ -90,7 +82,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -57.5,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Principal diverging singlet of the first zoom group.",
       nC: 1.7678,
@@ -105,9 +97,9 @@ const LENS_DATA = {
       nd: 1.84265,
       vd: 25.9,
       focalLengthMm: 115.4,
-      glass: "Unmatched (patent-defined high-index anomalous short flint)",
+      glass: "Unmatched (source-published anomalous glass; supplier and chemistry unresolved)",
       apd: "patent",
-      apdNote: "theta_gF = 0.60572; dPgF ≈ +0.00548 from patent line indices.",
+      apdNote: "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
       role: "Weak positive chromatic-correction element in the negative first group.",
       dPgF: 0.00548,
       nC: 1.83328,
@@ -122,7 +114,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -67.0,
-      glass: "S-TIH6 (OHARA) / SF6 class",
+      glass: "S-TIH6 (OHARA) / SF6 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative dense-flint component of the front cemented doublet in the positive variator.",
       cemented: "D1",
@@ -138,7 +130,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 48.2,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive high-index component cemented to L21 for chromatic balancing of the variator.",
       cemented: "D1",
@@ -154,7 +146,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: 100.3,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "High-index positive singlet within the second zoom group.",
       nC: 1.82898,
@@ -169,7 +161,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: 65.7,
-      glass: "S-LAL14 (OHARA) / N-LAK14 class",
+      glass: "S-LAL14 (OHARA) / N-LAK14 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Rear positive singlet completing the positive second zoom group.",
       nC: 1.69297,
@@ -184,7 +176,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -36.8,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Leading negative singlet of the stop group.",
       nC: 1.87656,
@@ -199,7 +191,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.2,
       focalLengthMm: -36.4,
-      glass: "S-LAL10 (OHARA)",
+      glass: "S-LAL10 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative lanthanum component of the stop-group cemented doublet.",
       cemented: "D2",
@@ -215,7 +207,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 33.1,
-      glass: "S-TIH6 (OHARA) / SF6 class",
+      glass: "S-TIH6 (OHARA) / SF6 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Dense-flint positive partner in the stop-group cemented doublet.",
       cemented: "D2",
@@ -231,9 +223,9 @@ const LENS_DATA = {
       nd: 1.84265,
       vd: 25.9,
       focalLengthMm: -39.4,
-      glass: "Unmatched (patent-defined high-index anomalous short flint)",
+      glass: "Unmatched (source-published anomalous glass; supplier and chemistry unresolved)",
       apd: "patent",
-      apdNote: "theta_gF = 0.60572; dPgF ≈ +0.00548 from patent line indices.",
+      apdNote: "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
       role: "Negative anomalous-dispersion component at the front of the positive rear group.",
       cemented: "D3",
       dPgF: 0.00548,
@@ -249,10 +241,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 35.9,
-      glass: "S-FPL51 (OHARA) / FCD1 class",
+      glass: "S-FPL51 (OHARA) / FCD1 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: "patent",
-      apdNote: "theta_gF = 0.53859; dPgF ≈ +0.03187 from patent line indices.",
-      role: "Fluorophosphate ED crown paired with L41 for secondary-spectrum correction.",
+      apdNote: "theta_gF = 0.53859 and dPgF ≈ +0.03187 are derived from the published C/F/g indices (PDF page 11); a compatible catalog curve does not identify historical chemistry or supplier.",
+      role: "Low-dispersion positive glass paired with L41 for secondary-spectrum correction; chemistry and supplier unresolved.",
       cemented: "D3",
       dPgF: 0.03187,
       nC: 1.49514,
@@ -267,7 +259,7 @@ const LENS_DATA = {
       nd: 1.52542,
       vd: 64.5,
       focalLengthMm: 44.6,
-      glass: "Unmatched (light crown, patent indices)",
+      glass: "Unmatched (source-published light-crown coordinate; supplier and chemistry unresolved)",
       apd: false,
       role: "Main positive-power singlet of the fourth zoom group.",
       nC: 1.52291,
@@ -282,7 +274,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 56.6,
-      glass: "S-TIH53 (OHARA) / SF57 class",
+      glass: "S-TIH53 (OHARA) / SF57 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive dense-flint member of the internally moving focus group.",
       nC: 1.83649,
@@ -297,7 +289,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -21.2,
-      glass: "S-LAH60 (OHARA)",
+      glass: "S-LAH60 (OHARA) (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Strong negative member that makes the fifth zoom group net negative.",
       nC: 1.82738,
@@ -312,7 +304,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 64.2,
-      glass: "S-BAL42 (OHARA) / D-ZK2 class",
+      glass: "S-BAL42 (OHARA) / D-ZK2 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Fixed rear positive field element with an aspherical image-side face.",
       nC: 1.58013,
@@ -326,44 +318,44 @@ const LENS_DATA = {
       label: "1A",
       R: 132.285,
       d: 2.4,
-      sd: 30.0,
+      sd: 29.2,
       medium: 1,
       asphere: { K: 0, A4: 1.19505e-6, A6: 4.93803e-10, A8: -1.21623e-12, A10: 1.13356e-15, A12: -3.85068e-19 },
     },
-    { label: "2", R: 34.01, d: 12.02, sd: 27.0 },
+    { label: "2", R: 34.01, d: 12.02, sd: 24.0, rimExtensionSd: 29.2 },
     { label: "3", R: -164.261, d: 2.3, sd: 23.0, medium: 2 },
-    { label: "4", R: 61.319, d: 0.17, sd: 22.5 },
+    { label: "4", R: 61.319, d: 0.17, sd: 22.5, rimExtensionSd: 23.8 },
     { label: "5", R: 60.454, d: 4.97, sd: 22.5, medium: 3 },
-    { label: "6", R: 153.708, sd: 22.0 },
-    { label: "7", R: 2038.158, d: 1.8, sd: 20.5, medium: 4 },
-    { label: "8", R: 52.562, d: 6.31, sd: 20.1, medium: 5 },
-    { label: "9", R: -120.819, d: 0.15, sd: 20.1 },
-    { label: "10", R: 94.247, d: 3.75, sd: 20.8, medium: 6 },
-    { label: "11", R: -735.401, d: 0.15, sd: 20.8 },
-    { label: "12", R: 44.815, d: 5.26, sd: 20.0, medium: 7 },
-    { label: "13", R: 2017.457, sd: 19.8 },
-    { label: "SSP", R: "flat", d: 2.2, sd: 12.4 },
-    { label: "15", R: -118.448, d: 1.25, sd: 12.0, medium: 8 },
+    { label: "6", R: 153.708, sd: 22.5 },
+    { label: "7", R: 2038.158, d: 1.8, sd: 18.8, medium: 4 },
+    { label: "8", R: 52.562, d: 6.31, sd: 18.8, medium: 5 },
+    { label: "9", R: -120.819, d: 0.15, sd: 18.8 },
+    { label: "10", R: 94.247, d: 3.75, sd: 18.8, medium: 6 },
+    { label: "11", R: -735.401, d: 0.15, sd: 18.8 },
+    { label: "12", R: 44.815, d: 5.26, sd: 18.8, medium: 7 },
+    { label: "13", R: 2017.457, sd: 18.8 },
+    { label: "SSP", R: "flat", d: 2.2, sd: 12.5 },
+    { label: "15", R: -118.448, d: 1.25, sd: 13.0, medium: 8 },
     { label: "16", R: 44.969, d: 2.45, sd: 11.8 },
-    { label: "17", R: -123.35, d: 1.35, sd: 11.8, medium: 9 },
-    { label: "18", R: 33.452, d: 4.84, sd: 12.2, medium: 10 },
-    { label: "19", R: -122.441, d: 0.7, sd: 12.0 },
+    { label: "17", R: -123.35, d: 1.35, sd: 13.0, medium: 9 },
+    { label: "18", R: 33.452, d: 4.84, sd: 13.0, medium: 10 },
+    { label: "19", R: -122.441, d: 0.7, sd: 13.0 },
     { label: "STO", R: "flat" },
-    { label: "21", R: 100.783, d: 1.3, sd: 13.8, medium: 11 },
-    { label: "22", R: 24.825, d: 6.7, sd: 13.8, medium: 12 },
-    { label: "23", R: -57.671, d: 0.1, sd: 13.6 },
-    { label: "24", R: 30.541, d: 5.21, sd: 14.0, medium: 13 },
-    { label: "25", R: -95.184, sd: 14.0 },
-    { label: "26", R: 3554.746, d: 2.9, sd: 14.0, medium: 14 },
-    { label: "27", R: -48.578, d: 0.11, sd: 14.0 },
-    { label: "28", R: -54.737, d: 1.99, sd: 14.0, medium: 15 },
-    { label: "29", R: 26.616, sd: 14.0 },
-    { label: "30", R: 51.549, d: 7.6, sd: 15.0, medium: 16 },
+    { label: "21", R: 100.783, d: 1.3, sd: 13.4, medium: 11 },
+    { label: "22", R: 24.825, d: 6.7, sd: 13.4, medium: 12 },
+    { label: "23", R: -57.671, d: 0.1, sd: 13.4 },
+    { label: "24", R: 30.541, d: 5.21, sd: 13.4, medium: 13 },
+    { label: "25", R: -95.184, sd: 13.4 },
+    { label: "26", R: 3554.746, d: 2.9, sd: 12.6, medium: 14 },
+    { label: "27", R: -48.578, d: 0.11, sd: 12.6 },
+    { label: "28", R: -54.737, d: 1.99, sd: 12.6, medium: 15 },
+    { label: "29", R: 26.616, sd: 12.6 },
+    { label: "30", R: 51.549, d: 7.6, sd: 18.5, medium: 16 },
     {
       label: "31A",
       R: -129.121,
       d: 38.47,
-      sd: 15.2,
+      sd: 18.5,
       asphere: { K: 0, A4: 2.65122e-7, A6: -9.50226e-9, A8: 6.16123e-11, A10: -1.95942e-13, A12: 2.35213e-16 },
     },
   ],
