@@ -45,64 +45,64 @@ The approximately symmetric power distribution avoids the long rear clearance ch
 
 ### L1 — Negative Meniscus, Convex to Object
 
-`nd = 1.6201`, `νd = 60.1`. Glass: **620603 — SK16 / BSM16 / BACD16 class**. Standalone `f = −23.417541 mm`.
+`nd = 1.6201`, `νd = 60.1`. Glass: **BACD16 (Hoya; approximate spectral proxy)**. Standalone `f = −23.417541 mm`.
 
 L1 is the front negative collector and constitutes Group I. Its weakly curved object-side surface and much stronger rear surface produce the negative meniscus power required at the entrance of the symmetrical ultrawide. In the assembled system it expands the angular bundle before the long air space leading to Group II. This role is inferred from the computed power and axial position rather than assigned by a separate patent statement.
 
 ### L2 — Biconvex Positive
 
-`nd = 1.7264`, `νd = 37.8`. Glass: **723380 — BAFD8 / S-BAH28 / J-BASF8 class**. Standalone `f = +16.224290 mm`.
+`nd = 1.7264`, `νd = 37.8`. Glass: **J-BASF8 (Hikari; approximate spectral proxy)**. Standalone `f = +16.224290 mm`.
 
 L2 is the first positive member of the front cemented triplet. Its strong positive power begins the conversion of the expanded front bundle back toward convergence. At its rear surface it is cemented directly to L3; the interface therefore acts between two glasses rather than between glass and air.
 
 ### L3 — Biconcave Negative
 
-`nd = 1.6484`, `νd = 33.8`. Glass: **648338 — SF2 / E-FD2 / J-SF2 class**. Standalone `f = −8.165977 mm`.
+`nd = 1.6484`, `νd = 33.8`. Glass: **J-SF2 (Hikari; approximate spectral proxy)**. Standalone `f = −8.165977 mm`.
 
 L3 is the negative central member of Group II. Its standalone power is stronger in magnitude than either adjacent positive element, but the cemented triplet remains net positive because the powers cannot be combined as thin isolated lenses. The shared interfaces and finite thicknesses materially change the triplet's effective power.
 
 ### L4 — Biconvex Positive
 
-`nd = 1.5816`, `νd = 42.1`. Glass: **LF3 (Sumita coefficient-backed equivalent), 582420**. Standalone `f = +9.236690 mm`.
+`nd = 1.5816`, `νd = 42.1`. Glass: **LF3 (Sumita; approximate spectral proxy)**. Standalone `f = +9.236690 mm`.
 
 L4 completes the front cemented triplet and lies immediately before the stop-containing air space. Its strongly curved front surface supplies substantial positive power near the aperture. Nikon identifies the positive–negative–positive order close to the iris as the principal structural distinction of Wakimoto's design. The complete L2–L4 triplet has a computed net EFL of +19.771380 mm.
 
 ### L5 — Positive Meniscus, Convex to Image
 
-`nd = 1.5170`, `νd = 58.8`. Glass: **518588–518590 — K3 / C3 / NSL3 class**. Standalone `f = +10.260017 mm`.
+`nd = 1.5170`, `νd = 58.8`. Glass: **S-NSL3 (Ohara; approximate spectral proxy)**. Standalone `f = +10.260017 mm`.
 
 L5 begins the rear cemented triplet immediately after the stop. Its meniscus form and positive standalone power initiate the rear half of the lens. Although the architecture is approximately symmetric, L5 is not a literal mirror copy of L4: its index, Abbe number, curvatures, and thickness differ.
 
 ### L6 — Biconcave Negative
 
-`nd = 1.6484`, `νd = 33.8`. Glass: **648338 — SF2 / E-FD2 / J-SF2 class**. Standalone `f = −7.878935 mm`.
+`nd = 1.6484`, `νd = 33.8`. Glass: **J-SF2 (Hikari; approximate spectral proxy)**. Standalone `f = −7.878935 mm`.
 
 L6 is the negative central member of Group III and reuses the same stored `nd/νd` pair and glass-class annotation as L3. Its placement between two positive elements reproduces the patent's positive–negative–positive triplet principle on the image side of the stop.
 
 ### L7 — Biconvex Positive
 
-`nd = 1.7264`, `νd = 37.8`. Glass: **723380 — BAFD8 / S-BAH28 / J-BASF8 class**. Standalone `f = +16.945460 mm`.
+`nd = 1.7264`, `νd = 37.8`. Glass: **J-BASF8 (Hikari; approximate spectral proxy)**. Standalone `f = +16.945460 mm`.
 
 L7 completes the rear cemented triplet. The L5–L7 assembly has a computed net EFL of +27.962761 mm, weaker than the front triplet in power magnitude. That difference is one reason the prescription should be described as approximately, not perfectly, symmetric.
 
 ### L8 — Negative Meniscus, Convex to Image
 
-`nd = 1.6422`, `νd = 58.2`. Glass: **LAK6 (Sumita coefficient-backed equivalent), 643581**. Standalone `f = −20.474215 mm`.
+`nd = 1.6422`, `νd = 58.2`. Glass: **LAK6 (Sumita; approximate spectral proxy)**. Standalone `f = −20.474215 mm`.
 
 L8 is the rear negative collector and constitutes Group IV. It receives the bundle after the long air space following Group III and completes the negative–positive–stop–positive–negative distribution. Its last surface is followed by the independently solved 7.346550 mm image distance; the patent does not print that final spacing.
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive indices and Abbe numbers. It names no glass manufacturer and supplies no `nC`, `nF`, `ng`, `PgF`, or `dPgF` data. The data file therefore uses vendor-neutral six-digit codes and glass-family labels derived from the catalog audit rather than asserting historical supply.
+The patent publishes refractive indices and Abbe numbers (n/ν). It names no glass manufacturer and supplies no `nC`, `nF`, `ng`, `PgF`, or `dPgF` data. The labels name the currently selected compatible catalog curves as approximate spectral proxies; none establishes historical supply. The source labels n/ν without an explicit wavelength statement, and the model retains the conventional d-line interpretation.
 
 | Stored class annotation | `nd` | `νd` | Elements | Status in the model |
 |---|---:|---:|---|---|
-| 620603 — SK16 / BSM16 / BACD16 class | 1.6201 | 60.1 | L1 | Shared current-catalog class code; vendor unresolved |
-| 723380 — BAFD8 / S-BAH28 / J-BASF8 class | 1.7264 | 37.8 | L2, L7 | Nearest current-catalog class; vendor unresolved |
-| 648338 — SF2 / E-FD2 / J-SF2 class | 1.6484 | 33.8 | L3, L6 | Shared current-catalog class code; vendor unresolved |
-| LF3 (Sumita coefficient-backed equivalent), 582420 | 1.5816 | 42.1 | L4 | Coefficient-backed catalog equivalent; historical vendor unresolved |
-| 518588–518590 — K3 / C3 / NSL3 class | 1.5170 | 58.8 | L5 | Closely corresponding crown classes; vendor unresolved |
-| LAK6 (Sumita coefficient-backed equivalent), 643581 | 1.6422 | 58.2 | L8 | Coefficient-backed catalog equivalent; historical vendor unresolved |
+| BACD16 (Hoya; approximate spectral proxy) | 1.6201 | 60.1 | L1 | Compatible approximate spectral proxy; historical vendor unresolved |
+| J-BASF8 (Hikari; approximate spectral proxy) | 1.7264 | 37.8 | L2, L7 | Compatible approximate spectral proxy; historical vendor unresolved |
+| J-SF2 (Hikari; approximate spectral proxy) | 1.6484 | 33.8 | L3, L6 | Compatible approximate spectral proxy; historical vendor unresolved |
+| LF3 (Sumita; approximate spectral proxy) | 1.5816 | 42.1 | L4 | Coefficient-backed catalog equivalent; historical vendor unresolved |
+| S-NSL3 (Ohara; approximate spectral proxy) | 1.5170 | 58.8 | L5 | Compatible approximate crown proxy; historical vendor unresolved |
+| LAK6 (Sumita; approximate spectral proxy) | 1.6422 | 58.2 | L8 | Coefficient-backed catalog equivalent; historical vendor unresolved |
 
 The differing Abbe numbers provide dispersion contrast within the cemented triplets, consistent with ordinary achromatic balancing. The available data do not support an APO designation or a claim of anomalous partial dispersion. LF3 and LAK6 supply coefficient-backed catalog equivalents for wavelength tracing; they are not claims that Sumita supplied the production melts.
 
@@ -152,3 +152,10 @@ The 46° nonparaxial chief ray reaches 21.566243 mm at the solved paraxial image
 - Japanese utility-model application publication **JP 1968-030782 Y1**, *Super-wide-angle lens composed of four groups*, Example 2 and Figures 2–3, published December 14, 1968.
 - Nikon Corporation, **“NIKKOR — The Thousand and One Nights No. 1: NIKKOR-O 2.1cm F4.”** Official historical article: https://imaging.nikon.com/imaging/information/story/0001/
 - Stage 1 and Stage 2 calculation and glass-audit artifacts accompanying `NikonNikkorO21mmf4.data.ts`.
+
+
+## Fresh Outline and Material Reinspection — 2026-10-30
+
+Figure 2/PDF4, freshly viewed at 600 dpi from its native 347 ppi raster, shows a flat end on each deep singlet concavity. S2 retains its 10.2 mm clear cap and gains a land to 13 mm; S11 retains 8.8 mm and gains a land to 12 mm. Their adopted ratios are .7846 and .7333. The source ratios are approximately .74 and .74, with one-native-pixel bands about ±.007 and ±.007 before ink ambiguity; S2's existing cap lies outward from the schematic endpoint. The scaled47.4978 mm vertex track gives about 20 native px/mm. Every powered face and all four cement interfaces were inspected. The triplet shoulders include steps at powered interfaces, which these opaque glass/air land fields cannot represent faithfully; those approximate tapers remain. The almost planar inner faces supply no separately resolved flat land.
+
+All eight material pairs were freshly read from Example 2/PDF2 and retained. Eight compatible curves remain unchanged. In particular, the J-BASF8 proxy differs from the source by approximately−.002980 in nd and+.23 in vd, and S-NSL3 by+.001229/+.102; they are approximate spectral coverage, not exact historical glass identities. No source partial dispersion or C/F/g values are published. All R/d, scaling, inferred stop position and unit-focus motion, image-plane solve and tolerances remain unchanged.

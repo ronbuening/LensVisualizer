@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **1026** lenses scanned
 - **11753** non-air surfaces examined
 - **11762** element glass declarations examined
-- **224** non-explicit-unmatched annotations did not resolve
+- **223** non-explicit-unmatched annotations did not resolve
 - **115** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -292,7 +292,7 @@ or per-lens patent backfills.
 
 ### 514530 — 1 occurrence
 
-- [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
+- [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — modeled resin layer; source nd=1.51380/vd=53.0; chemistry and supplier unspecified`
 
 ### 518523 — 1 occurrence
 

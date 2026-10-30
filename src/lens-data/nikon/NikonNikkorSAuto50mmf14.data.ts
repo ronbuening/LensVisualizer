@@ -19,6 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    constrained by 52 mm filter thread (front SD ≈ 23 mm),         ║
  * ║    slope limits, and cross-gap sag intrusion checks.              ║
  * ║                                                                    ║
+ * ║  Fresh Fig.1/PDF1: S5 cut6.15/cap12.704/outer16.5; S6 cap12.5    ║
+ * ║  land16.5. Rear paired rises remove inherited nominal f/1.4 clips. ║
+ * ║  Source-scaled front contours remain bounded by existing caps.    ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
@@ -64,7 +68,7 @@ const LENS_DATA = {
       nd: 1.66446,
       vd: 35.9,
       focalLengthMm: 80.6,
-      glass: "J-BASF2 (Hikari)",
+      glass: "J-BASF2 (Hikari; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front positive meniscus. Collects incoming light and begins convergence; high-dispersion flint provides chromatic balance globally rather than locally.",
     },
@@ -76,7 +80,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.4,
       focalLengthMm: 43.1,
-      glass: "S-LAL13 (OHARA)",
+      glass: "S-LAL13 (Ohara; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front doublet positive component. Thick lanthanum crown near-plano-convex that carries the primary chromatic correction load in the front group.",
       cemented: "D1",
@@ -89,7 +93,7 @@ const LENS_DATA = {
       nd: 1.64831,
       vd: 33.8,
       focalLengthMm: -25.7,
-      glass: "E-FD2 (HOYA)",
+      glass: "E-FD2 (Hoya; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front doublet negative component. Thin dense flint that provides diverging power for Petzval balance and achromatism against L2.",
       cemented: "D1",
@@ -102,7 +106,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       focalLengthMm: -22.5,
-      glass: "S-TIM35 (OHARA)",
+      glass: "S-TIM35 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Rear doublet negative component. Highest-dispersion glass in the system; its strongly curved front surface r₆ is the dominant source of both spherical aberration and its correction.",
       cemented: "D2",
@@ -115,7 +119,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 35.3,
-      glass: "S-LAL8 (OHARA)",
+      glass: "S-LAL8 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Rear doublet positive component. Thick lanthanum crown symmetric to L2 about the stop; provides achromatism against L4 and positive convergence for image formation.",
       cemented: "D2",
@@ -128,7 +132,7 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.5,
       focalLengthMm: 63.3,
-      glass: "LAC12 (HOYA)",
+      glass: "LAC12 (Hoya; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "First element of the split rear group. Positive meniscus concave toward object; works with L7 to correct coma introduced by the rear doublet — the key innovation over the predecessor 5.8cm f/1.4.",
     },
@@ -140,9 +144,9 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 99.7,
-      glass: "S-LAL8 (OHARA)",
+      glass: "S-LAL8 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
-      role: "Final collecting element. Near-plano-convex biconvex with nearly flat rear surface to minimize last-surface aberration contribution. Same glass as L5, simplifying production.",
+      role: "Final collecting element. Near-plano-convex biconvex with nearly flat rear surface to minimize last-surface aberration contribution. Same source material coordinates as L5.",
     },
   ],
 
@@ -153,18 +157,18 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     { label: "1", R: 38.2662, d: 6.2986, sd: 23.0, medium: 1 }, // L1 front
-    { label: "2", R: 125.2362, d: 0.095, sd: 21.0 }, // L1 rear → air
+    { label: "2", R: 125.2362, d: 0.095, sd: 23.0 }, // L1 rear → air
     { label: "3", R: 28.6734, d: 8.4281, sd: 19.5, medium: 2 }, // L2 front (D1)
     { label: "4", R: 620.0624, d: 1.6446, sd: 16.5, medium: 3 }, // L2→L3 junction (D1)
-    { label: "5", R: 16.1963, d: 8.1381, sd: 14.0 }, // L3 rear → air (to stop)
+    { label: "5", R: 16.1963, d: 8.1381, sd: 16.5, rimCutDepthMm: 6.15 }, // L3 rear → air (to stop)
     { label: "STO", R: "flat", d: 8.1381 }, // Aperture stop — centered in d₅ (inferred from FIG. 1)
-    { label: "6", R: -14.4567, d: 2.0345, sd: 12.5, medium: 4 }, // L4 front (D2)
-    { label: "7", R: -193.7554, d: 8.2331, sd: 13.0, medium: 5 }, // L4→L5 junction (D2)
-    { label: "8", R: -22.6698, d: 0.195, sd: 15.0 }, // L5 rear → air
-    { label: "9", R: -116.2533, d: 4.164, sd: 15.0, medium: 6 }, // L6 front
-    { label: "10", R: -31.7777, d: 0.095, sd: 14.5 }, // L6 rear → air
-    { label: "11", R: 77.5022, d: 3.0993, sd: 14.5, medium: 7 }, // L7 front
-    { label: "12", R: -843.6759, sd: 14.0 }, // L7 rear → image (BFD)
+    { label: "6", R: -14.4567, d: 2.0345, sd: 12.5, rimExtensionSd: 16.5, medium: 4 }, // L4 front (D2)
+    { label: "7", R: -193.7554, d: 8.2331, sd: 16.5, medium: 5 }, // L4→L5 junction (D2)
+    { label: "8", R: -22.6698, d: 0.195, sd: 16.5 }, // L5 rear → air
+    { label: "9", R: -116.2533, d: 4.164, sd: 17.2, medium: 6 }, // L6 front
+    { label: "10", R: -31.7777, d: 0.095, sd: 17.2 }, // L6 rear → air
+    { label: "11", R: 77.5022, d: 3.0993, sd: 19.0, medium: 7 }, // L7 front
+    { label: "12", R: -843.6759, sd: 19.0 }, // L7 rear → image (BFD)
   ],
 
   /* ── Focus configuration ── */

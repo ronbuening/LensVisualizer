@@ -1387,7 +1387,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3A | Element 2r | abbe | `UV-curing resin` | No catalog match |
+| 3A | Element 2r | abbe | `Resin layer; chemistry and supplier unspecified` | No catalog match |
 
 ### [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) - 95.2% trusted (20/21); 95.2% Sellmeier (20/21) - JP 2025-033505 A
 
@@ -1435,7 +1435,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 30A | Element 17 (resin) | abbe | `UV-cure aspherical resin` | No catalog match |
+| 30A | Element 17 (coating) | abbe | `Unidentified coating medium; resin interpretation; chemistry and supplier unspecified` | Explicit unmatched/proprietary annotation |
 
 ### [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) - 94.4% trusted (17/18); 94.4% Sellmeier (17/18) - US 8,081,392 B2
 
@@ -2157,8 +2157,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 2 | Element 1 (resin layer) | abbe | `UV-cure resin` | No catalog match |
-| 7 | Element 3 (resin layer) | abbe | `UV-cure resin` | No catalog match |
+| 2 | Element 1 (resin layer) | abbe | `Optical resin (source-listed layer; chemistry and cure unspecified)` | No catalog match |
+| 7 | Element 3 (resin layer) | abbe | `Optical resin (source-listed layer; chemistry and cure unspecified)` | No catalog match |
 
 ### [SAMYANG AF 14mm f/2.8 EF](../../src/lens-data/samyang/SamyangAF14mmf28EF.data.ts) - 86.7% trusted (13/15); 86.7% Sellmeier (13/15)
 
@@ -2446,7 +2446,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4 | L12 resin layer | abbe | `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)` | No catalog match |
+| 4 | L12 thin layer (modeled resin) | abbe | `514530 — modeled resin layer; source nd=1.51380/vd=53.0; chemistry and supplier unspecified` | No catalog match |
 | 9 | LS cement layer | abbe | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | No catalog match |
 | 19 | Rear doublet cement layer | abbe | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | No catalog match |
 

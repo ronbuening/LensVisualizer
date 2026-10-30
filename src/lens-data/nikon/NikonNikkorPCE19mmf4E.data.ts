@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: JP 2017-161685 A, Example 1                         ║
  * ║    (Konica Minolta / Nikon Corporation, published 2017.09.14).     ║
  * ║  Retrofocus ultra-wide-angle perspective control (tilt-shift).     ║
- * ║  18 elements / 13 groups, 3 aspherical surfaces.                  ║
+ * ║  18 modeled media / 13 groups, 3 aspherical surfaces.                  ║
  * ║  Focus: rear-group (Gr2 + stop) moves toward object.              ║
  * ║                                                                    ║
  * ║  NOTE ON EXAMPLE SELECTION:                                        ║
@@ -16,15 +16,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    triplet (L22+L23+L24) gives 12 groups.  Both examples share    ║
  * ║    identical Gr1 construction; EX1 separates L24 as air-spaced.   ║
  * ║    Nikon markets the lens as "17 elements / 13 groups."           ║
- * ║    Element count: 18 physical pieces (17 marketed — resin L28     ║
- * ║    is counted with glass body L29 as one "element" for marketing).║
+ * ║    Count: 18 modeled media (17 marketed — coating L28     ║
+ * ║    is modeled separately from body L29; chemistry unspecified).║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Visually adjusted to match the Nikon manufacturer's lens       ║
- * ║    construction diagram.  L12/L13/L14 front-group SDs increased   ║
- * ║    for proportional accuracy; surface 6A (R=13.901) is pinned at  ║
- * ║    12.5 by the 64.2° slope limit.  H1 rear element enlarged to   ║
- * ║    reflect its visual prominence in the diagram.                  ║
+ * ║    Fresh Fig.1/PDF24: front lands S2 26.9→36, S4 20.5→28.8,       ║
+ * ║    S6A 15.8→22.3, S8 14.2→18 mm. Source-sized targets exceed         ║
+ * ║    unchanged slope/gap guards; adopted bounds are documented.      ║
+ * ║    Whole compound rims grow together; no buried opaque land.      ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -45,12 +44,12 @@ const LENS_DATA = {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
     specs: [
-      "17 ELEMENTS / 13 GROUPS (18 physical)",
+      "17 ELEMENTS / 13 GROUPS (18 modeled media)",
       "f ≈ 19.4 mm",
       "F/4.08 (design) / F/4 (marketed)",
       "2ω ≈ 119.2° (full image circle for ±12 mm shift)",
-      "3 ASPHERICAL SURFACES (1 molded glass, 1 composite resin)",
-      "3 ED ELEMENTS (S-FPL51)",
+      "3 ASPHERICAL SURFACES (glass element + coated element)",
+      "3 ED POSITIONS (catalog spectral proxies)",
     ],
     elementCount: 17,
     groupCount: 13,
@@ -77,7 +76,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.46,
       focalLengthMm: -154.5,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus — begins diverging the on-axis beam across the 119° field",
     },
@@ -89,9 +88,9 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.46,
       focalLengthMm: -105.4,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
-      role: "Continues beam divergence; same glass as L11 for manufacturing efficiency",
+      role: "Continues beam divergence; same source material coordinates as L11",
     },
     {
       id: 3,
@@ -101,9 +100,9 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.39,
       focalLengthMm: -42.9,
-      glass: "L-BAL42 (OHARA)",
+      glass: "L-BAL42 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
-      role: "Glass-molded double asphere — height-dependent negative power reduction corrects distortion and field curvature across the ultra-wide field",
+      role: "Double asphere; catalog moldable-glass proxy — height-dependent negative power reduction corrects distortion and field curvature across the ultra-wide field",
     },
     {
       id: 4,
@@ -113,7 +112,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: -48.7,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "ED negative meniscus — contributes negative power for retrofocus balance while suppressing lateral chromatic aberration",
     },
@@ -125,7 +124,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       focalLengthMm: +21.6,
-      glass: "E-FD2 (HOYA)",
+      glass: "E-FD2 (Hoya; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front element of coma-control doublet Ja; concave-to-object junction controls residual coma",
       cemented: "Ja",
@@ -138,9 +137,10 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.32,
       focalLengthMm: -13.8,
-      glass: "S-LAH95 (OHARA)",
-      apd: "patent",
-      apdNote: "θgf = 0.5947; (0.6425−θgf)/νd = 0.00153 > 0.00150",
+      glass: "S-LAH95 (Ohara; catalog spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      dPgF: 0.00358024,
+      apdNote: "Example 1/PDF16 prints theta_gF=0.5947; dPgF=+0.00358024 relative to 0.6438-0.001682*vd (theta rounded to four decimals, about +/-0.00005). Catalog C/d/F remain qualified proxy values; no production supplier is identified. Source conditions (10)/(11) select this material numerically; APD classification is inferred.",
       role: "Ultra-high-index APD negative — strong negative power in compact form; aids secondary spectrum correction",
       cemented: "Ja",
     },
@@ -152,7 +152,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -62.4,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front element of spherical-aberration-control doublet Jb; convex-to-object junction adjusts residual SA",
       cemented: "Jb",
@@ -165,9 +165,10 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.68,
       focalLengthMm: +19.4,
-      glass: "S-NBH5 (OHARA)",
-      apd: "patent",
-      apdNote: "θgf = 0.5737; (0.6425−θgf)/νd = 0.00173 > 0.00150",
+      glass: "S-NBH5 (Ohara; catalog spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      dPgF: -0.00335824,
+      apdNote: "Example 1/PDF16 prints theta_gF=0.5737; dPgF=-0.00335824 relative to 0.6438-0.001682*vd (theta rounded to four decimals, about +/-0.00005). Catalog C/d/F remain qualified proxy values; no production supplier is identified. Source conditions (10)/(11) select this material numerically; APD classification is inferred.",
       role: "APD positive — provides positive power with anomalous partial dispersion for secondary spectrum management",
       cemented: "Jb",
     },
@@ -179,7 +180,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       focalLengthMm: +81.3,
-      glass: "E-FD2 (HOYA)",
+      glass: "E-FD2 (Hoya; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Last element of Gr1 — weak positive power begins converging the divergent beam before the stop",
     },
@@ -191,8 +192,10 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.44,
       focalLengthMm: +30.3,
-      glass: "S-FTM16 (OHARA)",
+      glass: "S-FTM16 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
+      dPgF: 0.00841008,
+      apdNote: "Example 1/PDF16 prints theta_gF=0.5926; dPgF=+0.00841008 relative to 0.6438-0.001682*vd (theta rounded to four decimals, about +/-0.00005). Catalog C/d/F remain qualified proxy values; no production supplier is identified.",
       role: "First element of focusing group Gr2; substantial positive power with near-APD dispersion",
     },
     {
@@ -203,7 +206,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -11.5,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index negative in achromatic doublet Jc",
       cemented: "Jc",
@@ -216,7 +219,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.15,
       focalLengthMm: +19.1,
-      glass: "S-NSL36 (OHARA)",
+      glass: "S-NSL36 (Ohara; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Low-index positive in achromatic doublet Jc; large Δnd at junction enables buried-surface aberration control",
       cemented: "Jc",
@@ -229,7 +232,7 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       focalLengthMm: -31.7,
-      glass: "TAFD35 (HOYA)",
+      glass: "TAFD35 (Hoya; catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Highest-index element (nd = 1.911) — air-spaced negative meniscus providing field correction in Gr2",
     },
@@ -241,8 +244,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: +28.9,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
+      dPgF: 0.03226802,
+      apdNote: "Example 1/PDF16 prints theta_gF=0.5388; dPgF=+0.03226802 relative to 0.6438-0.001682*vd (theta rounded to four decimals, about +/-0.00005). Catalog C/d/F remain qualified proxy values; no production supplier is identified.",
       role: "ED biconvex — strongest individual positive power in Gr2; very low dispersion for axial chromatic correction",
     },
     {
@@ -253,9 +258,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -27.1,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
-      role: "High-index flint in achromatic doublet Jd; same glass as L17 for inventory efficiency",
+      role: "High-index flint in achromatic doublet Jd; same source material coordinates as L17",
       cemented: "Jd",
     },
     {
@@ -266,22 +271,24 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: +22.6,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara; catalog spectral proxy; production supplier unspecified)",
       apd: false,
+      dPgF: 0.03226802,
+      apdNote: "Example 1/PDF16 prints theta_gF=0.5388; dPgF=+0.03226802 relative to 0.6438-0.001682*vd (theta rounded to four decimals, about +/-0.00005). Catalog C/d/F remain qualified proxy values; no production supplier is identified.",
       role: "ED biconvex — thick positive element (11 mm) in achromatic doublet Jd; Δνd = 38.89 provides strong chromatic correction",
       cemented: "Jd",
     },
     {
       id: 17,
       name: "L28",
-      label: "Element 17 (resin)",
-      type: "Asph. Resin Layer",
+      label: "Element 17 (coating)",
+      type: "Asph. Coating Layer (modeled resin)",
       nd: 1.5138,
       vd: 52.97,
       focalLengthMm: +2191.2,
-      glass: "UV-cure aspherical resin",
+      glass: "Unidentified coating medium; resin interpretation; chemistry and supplier unspecified",
       apd: false,
-      role: "Thin aspherical resin layer bonded to L29 — corrects field curvature and astigmatism variation during focus travel",
+      role: "Thin aspherical coating on L29; resin chemistry is a model interpretation — corrects field curvature and astigmatism variation during focus travel",
       cemented: "H1",
     },
     {
@@ -292,9 +299,9 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -125.6,
-      glass: "BSC7 (HOYA)",
+      glass: "BSC7 (Hoya; catalog spectral proxy; production supplier unspecified)",
       apd: false,
-      role: "Glass body of composite aspherical element — weak negative meniscus as substrate for aspherical resin layer",
+      role: "Glass body of composite aspherical element; source coating medium modeled separately",
       cemented: "H1",
     },
   ],
@@ -302,15 +309,15 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 43.971, d: 3.5, sd: 26.5, medium: 1 },
-    { label: "2", R: 30.197, d: 7.13, sd: 24.0 },
-    { label: "3", R: 35.045, d: 3.17, sd: 21.0, medium: 2 },
-    { label: "4", R: 22.843, d: 7.0, sd: 20.0 },
+    { label: "1", R: 43.971, d: 3.5, sd: 36.0, medium: 1 },
+    { label: "2", R: 30.197, d: 7.13, sd: 26.9, rimExtensionSd: 36.0 },
+    { label: "3", R: 35.045, d: 3.17, sd: 28.8, medium: 2 },
+    { label: "4", R: 22.843, d: 7.0, sd: 20.5, rimExtensionSd: 28.8 },
     {
       label: "5A",
       R: 34.175,
       d: 3.5,
-      sd: 16.0,
+      sd: 22.3,
       medium: 3,
       asphere: {
         K: 1.1933,
@@ -326,7 +333,7 @@ const LENS_DATA = {
       label: "6A",
       R: 13.901,
       d: 9.41,
-      sd: 12.5,
+      sd: 15.8, rimExtensionSd: 22.3,
       asphere: {
         K: -0.42274,
         A4: -1.1347e-6,
@@ -337,34 +344,34 @@ const LENS_DATA = {
         A14: -1.6393e-17,
       },
     },
-    { label: "7", R: 160.346, d: 2.0, sd: 13.5, medium: 4 },
-    { label: "8", R: 20.956, d: 5.22, sd: 13.0 },
-    { label: "9", R: 76.016, d: 8.4, sd: 11.5, medium: 5 }, // L15 front (Ja)
-    { label: "10", R: -16.389, d: 5.29, sd: 11.0, medium: 6 }, // L15→L16 junction
-    { label: "11", R: 60.949, d: 0.76, sd: 11.0 }, // L16 rear → air
-    { label: "12", R: 34.641, d: 5.0, sd: 11.0, medium: 7 }, // L17 front (Jb)
-    { label: "13", R: 19.438, d: 6.73, sd: 10.8, medium: 8 }, // L17→L18 junction
-    { label: "14", R: -31.576, d: 0.81, sd: 11.0 }, // L18 rear → air
+    { label: "7", R: 160.346, d: 2.0, sd: 18.0, medium: 4 },
+    { label: "8", R: 20.956, d: 5.22, sd: 14.2, rimExtensionSd: 18.0 },
+    { label: "9", R: 76.016, d: 8.4, sd: 13.3, medium: 5 }, // L15 front (Ja)
+    { label: "10", R: -16.389, d: 5.29, sd: 13.3, medium: 6 }, // L15→L16 junction
+    { label: "11", R: 60.949, d: 0.76, sd: 13.3 }, // L16 rear → air
+    { label: "12", R: 34.641, d: 5.0, sd: 12.0, medium: 7 }, // L17 front (Jb)
+    { label: "13", R: 19.438, d: 6.73, sd: 12.0, medium: 8 }, // L17→L18 junction
+    { label: "14", R: -31.576, d: 0.81, sd: 12.0 }, // L18 rear → air
     { label: "15", R: 31.187, d: 2.25, sd: 10.8, medium: 9 }, // L19 front
-    { label: "16", R: 74.264, sd: 10.3 }, // L19 rear → air (VARIABLE)
+    { label: "16", R: 74.264, sd: 10.8 }, // L19 rear → air (VARIABLE)
     { label: "STO", R: "flat", d: 2.72 }, // Aperture stop — moves with Gr2
-    { label: "18", R: 49.359, d: 3.23, sd: 8.5, medium: 10 }, // L21 front
-    { label: "19", R: -27.494, d: 1.02, sd: 8.6 }, // L21 rear → air
+    { label: "18", R: 49.359, d: 3.23, sd: 9.0, medium: 10 }, // L21 front
+    { label: "19", R: -27.494, d: 1.02, sd: 9.0 }, // L21 rear → air
     { label: "20", R: -23.268, d: 1.2, sd: 9.0, medium: 11 }, // L22 front (Jc)
     { label: "21", R: 14.617, d: 4.9, sd: 9.0, medium: 12 }, // L22→L23 junction
     { label: "22", R: -27.0, d: 1.09, sd: 9.0 }, // L23 rear → air
     { label: "23", R: -25.008, d: 1.0, sd: 9.5, medium: 13 }, // L24 front
     { label: "24", R: -188.788, d: 0.37, sd: 9.5 }, // L24 rear → air
-    { label: "25", R: 35.526, d: 5.51, sd: 10.0, medium: 14 }, // L25 front
-    { label: "26", R: -22.931, d: 0.15, sd: 10.5 }, // L25 rear → air
-    { label: "27", R: 112.277, d: 1.2, sd: 11.0, medium: 15 }, // L26 front (Jd)
-    { label: "28", R: 18.718, d: 11.0, sd: 11.5, medium: 16 }, // L26→L27 junction
-    { label: "29", R: -22.556, d: 0.15, sd: 12.0 }, // L27 rear → air
+    { label: "25", R: 35.526, d: 5.51, sd: 11.4, medium: 14 }, // L25 front
+    { label: "26", R: -22.931, d: 0.15, sd: 11.4 }, // L25 rear → air
+    { label: "27", R: 112.277, d: 1.2, sd: 13.3, medium: 15 }, // L26 front (Jd)
+    { label: "28", R: 18.718, d: 11.0, sd: 13.3, medium: 16 }, // L26→L27 junction
+    { label: "29", R: -22.556, d: 0.15, sd: 13.3 }, // L27 rear → air
     {
       label: "30A",
       R: -64.378,
       d: 0.1,
-      sd: 13.5,
+      sd: 15.4,
       medium: 17,
       asphere: {
         K: 0,
@@ -376,8 +383,8 @@ const LENS_DATA = {
         A14: 0,
       },
     }, // L28 front (asph, resin)
-    { label: "31", R: -60.928, d: 1.9, sd: 13.5, medium: 18 }, // L28→L29 junction
-    { label: "32", R: -1000.0, sd: 13.5 }, // L29 rear → air (BFD, VARIABLE)
+    { label: "31", R: -60.928, d: 1.9, sd: 15.4, medium: 18 }, // L28→L29 junction
+    { label: "32", R: -1000.0, sd: 15.4 }, // L29 rear → air (BFD, VARIABLE)
   ],
 
   /* ── Focus configuration ── */

@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1026** lenses scanned
-- **1834** total code-only elements found
-- **1834** elements in this report
-- **291** distinct lens files affected
+- **1833** total code-only elements found
+- **1833** elements in this report
+- **290** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -83,7 +83,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 800422 | 6 | 6 | patents/US4110006.pdf<br>patents/US20210263286A1.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/JP2016114800A.pdf | No review-record hit |
 | 806409 | 6 | 6 | patents/JPA 1991141313-000000.pdf<br>patents/US20110090576A1.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
 | 001255 | 5 | 5 | patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20200073096A1.pdf<br>patents/JP2023033114A.pdf | No review-record hit |
-| 501565 | 5 | 5 | patents/JPA 1999231209-000000.pdf<br>patents/US3743384.pdf<br>patents/DE_1497540_A1.pdf<br>patents/US3336094A.pdf | 1/5 rows have review records |
 | 517522 | 5 | 5 | patents/JP2016090725A.pdf<br>patents/US_5249079_A.pdf<br>patents/US9538088.pdf<br>patents/US10545321.pdf | 1/5 rows have review records |
 | 593353 | 5 | 5 | patents/US20150146044A1.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US20190113711A1.pdf<br>patents/US20170242219A1.pdf | No review-record hit |
 | 603380 | 5 | 5 | patents/US20130308041A1.pdf<br>patents/US_5249079_A.pdf<br>patents/US20240151940A1.pdf<br>patents/JP2017116646A.pdf | 1/5 rows have review records |
@@ -100,6 +99,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 816466 | 5 | 4 | patents/US20170242219A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No review-record hit |
 | 486815 | 4 | 3 | patents/US3774991.pdf | All rows have review records |
 | 498826 | 4 | 1 | patents/US20050157403A1.pdf | All rows have review records |
+| 501565 | 4 | 4 | patents/JPA 1999231209-000000.pdf<br>patents/US3743384.pdf<br>patents/US3336094A.pdf<br>patents/US2927506.pdf | 1/4 rows have review records |
 | 531559 | 4 | 3 | patents/US20200142167A1.pdf<br>patents/US20230213739A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 548458 | 4 | 4 | patents/US20200166730A1.pdf<br>patents/JPWO2017221949A1.pdf<br>patents/US6940655.pdf<br>patents/JP2000321490A.pdf | No review-record hit |
@@ -2086,7 +2086,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12r (L12 resin layer) | 4 | `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)` | 1.51380 / 53.00 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
+| L12r (L12 thin layer (modeled resin)) | 4 | `514530 — modeled resin layer; source nd=1.51380/vd=53.0; chemistry and supplier unspecified` | 1.51380 / 53.00 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
 | C1 (LS cement layer) | 9 | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | 1.51400 / 42.80 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
 | C2 (Rear doublet cement layer) | 19 | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | 1.51400 / 42.80 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
 
@@ -2345,12 +2345,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2B (Element 3) | 4 | `672388 — dense-flint/lanthanum coordinate class (vendor unresolved)` | 1.67163 / 38.80 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | Audit-log hit |
 | L2C (Element 4) | 5 | `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)` | 1.52000 / 70.10 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | Audit-log hit |
 | L3B (Element 6) | 8 | `717295 — dense flint coordinate class (vendor unresolved)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/JP_S5357028_A.pdf | No review-record hit |
-
-### [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) - DE 1 497 540 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 8 | `K10 catalog equivalent (patent 501565; production supplier unspecified)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/DE_1497540_A1.pdf | No review-record hit |
 
 ### [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) - US 5,579,169
 
