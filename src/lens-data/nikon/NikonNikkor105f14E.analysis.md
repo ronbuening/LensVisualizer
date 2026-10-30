@@ -29,7 +29,7 @@ The correspondence between Example 3 and the production lens rests on multiple c
 | Focus mechanism | Internal focus (G2) | IF | ✓ |
 | Minimum f-stop | f/16 implied by design | f/16 | ✓ |
 
-The small differences in focal length and f-number between the patent example and the production specification are normal — patents describe design starting points, and production lenses undergo final optimization. The structural match (14E/9G, 3 ED elements, inner-focus doublet, same focusing magnification) is highly specific and leaves little doubt that Example 3 represents a close variant of the production optical formula, if not the exact one. The independent researcher community at DPReview and CameraGossip has also identified Example 3 as the best known patent match for this lens, while noting it may not be the primary design patent.
+The structural correspondence (14E/9G, three ED-class elements and an inner-focus doublet) supports the selected correlation; Nikon has not confirmed the example as its production prescription. The independent researcher community at DPReview and CameraGossip has also identified Example 3 as the best known patent match for this lens, while noting it may not be the primary design patent.
 
 **Note on paraxial verification:** An independent paraxial marginal ray trace through all 24 surfaces reproduces the patent's stated focal length to within 0.001 mm (computed: 102.149 mm, patent: 102.148 mm), confirming the surface prescription data has been extracted correctly.
 
@@ -62,7 +62,7 @@ The complete surface prescription at infinity focus is reproduced below, organiz
 | 1 | 228.14790 | 4.915 | 1.59349 | 67.00 | 0.537 |
 | 2 | 6415.62050 | 0.100 | (air) | | |
 
-The front element is a weak positive meniscus with its convex side facing the object. R₂ ≈ 6416 mm is effectively plano (sag < 0.08 mm at the full clear aperture). The thin-lens focal length is approximately +399 mm, making this a very weakly convergent element. Its primary function is to begin gently converging the incoming beam while contributing minimal aberration — the nearly plano rear surface ensures low surface power and thus low Seidel contributions at each interface. The fluorophosphate-type glass (nd = 1.59349, νd = 67.00) sits in the fluorophosphate crown region of the glass map and likely corresponds to an Ohara S-FPM2 or equivalent, selected for its low dispersion and positive anomalous partial dispersion (ΔθgF ≈ +0.006 above the Schott normal line).
+The front element is a weak positive meniscus with its convex side facing the object. R₂ ≈ 6416 mm is effectively plano (sag < 0.08 mm at the full clear aperture). The thin-lens focal length is approximately +399 mm, making this a very weakly convergent element. Its primary function is to begin gently converging the incoming beam while contributing minimal aberration — the nearly plano rear surface ensures low surface power and thus low Seidel contributions at each interface. The source coordinate nd=1.59349, νd=67.00 and θgF=.537 is represented by the exact-coordinate PCD51 spectral proxy. The positive partial-dispersion deviation is published numerically; the production glass composition and supplier are not identified.
 
 **L12 — Biconvex positive, ED glass (Element 2)**
 
@@ -113,7 +113,7 @@ Condition (1) constrains the nd–νd relationship to avoid excessive Petzval su
 
 The patent further lists conditions (6)–(8) as desirable but not mandatory. Notably, L21's glass does **not** satisfy condition (6) (ndP1 < 1.63), since nd = 1.659 > 1.63. This is explicitly expected — condition (6) defines a tighter glass selection criterion that applies to some embodiments but not all.
 
-**L22** (f ≈ −57 mm) is a strongly diverging biconcave element in standard borosilicate crown glass (nd = 1.51680, νd = 63.88, θgF = 0.536), very likely **Ohara S-BSL7** or **Schott N-BK7**. Its role within the cemented doublet is to provide the negative power that makes G2 overall divergent, while its normal-dispersion glass provides the achromatic balance to L21's anomalous dispersion.
+**L22** (f ≈ −57 mm) is a strongly diverging biconcave element in standard borosilicate crown glass (nd = 1.51680, νd = 63.88, θgF = 0.536), represented by the **J-BK7A spectral proxy** (catalog nd exact, νd higher by0.26), with production identity unresolved. Its role within the cemented doublet is to provide the negative power that makes G2 overall divergent, while its normal-dispersion glass provides the achromatic balance to L21's anomalous dispersion.
 
 ### Group G3 — Rear Positive Group
 
@@ -124,7 +124,7 @@ The patent further lists conditions (6)–(8) as desirable but not mandatory. No
 | 11 | 59.41150 | 7.084 | 2.00100 | 29.13 | 0.599 |
 | 12 | −9603.99850 | 0.100 | (air) | | |
 
-The first element of G3 is a high-power positive element (f ≈ +59 mm) in ultra-high-index glass (nd ≈ 2.001). The near-plano rear surface (R₁₂ ≈ −9604 mm) makes this effectively a plano-convex element. The glass is tentatively identified as **Ohara S-LAH79** or an equivalent niobium/tantalum-containing lanthanum heavy flint (catalog nd ≈ 2.003, νd ≈ 28.3). This ultra-high refractive index serves two purposes: it provides high surface power per unit curvature (reducing the element's required diameter and center thickness for a given focal length), and the high index creates strong dispersion that aids in chromatically balancing the ED elements in G1. The same glass reappears in element L38.
+The first element of G3 is a high-power positive element (f ≈ +59 mm) in ultra-high-index glass (nd ≈ 2.001). The near-plano rear surface (R₁₂ ≈ −9604 mm) makes this effectively a plano-convex element. The current model uses the **TAFD55 spectral proxy**, whose nd=2.001 and νd=29.13 reproduce the source coordinates; the earlier S-LAH79 near match is superseded. This does not identify the production supplier or chemical composition. This ultra-high refractive index serves two purposes: it provides high surface power per unit curvature (reducing the element's required diameter and center thickness for a given focal length), and the high index creates strong dispersion that aids in chromatically balancing the ED elements in G1. The same glass reappears in element L38.
 
 **L32–L33 — Cemented doublet (Elements 8–9)**
 
@@ -144,7 +144,7 @@ The L32–L33 doublet corrects residual axial chromatic aberration and spherical
 |---------|---|---|
 | 16 | ∞ (flat) | 1.600 |
 
-The aperture stop is positioned between the L32–L33 doublet and element L34. The 1.600 mm axial spacing from surface 15 to 16 represents the physical distance from L33's rear vertex to the stop diaphragm.
+The aperture stop is positioned between the L32–L33 doublet and element L34. Table3 gives 5.843 mm from S15 to the stop (source surface16), followed by1.600 mm from the stop to S17.
 
 **L34 — Biconvex positive, ED glass (Element 10)**
 
@@ -163,7 +163,7 @@ The third ED element (f ≈ +80 mm), again in **S-FPL51**. Positioned immediatel
 | 20 (junction) | 23.56120 | 8.119 | 1.76684 | 46.78 | 0.558 | L36 (pos) |
 | 21 | −400.50550 | 2.828 | (air) | | | |
 
-This doublet pairs a thin biconcave negative element (L35, same patent nd/νd as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, modeled with **Ohara S-LAH96** as a catalog equivalent, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
+This doublet pairs a thin biconcave negative element (L35, same patent nd/νd as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, modeled with **Ohara J-LASFH2** as a catalog equivalent, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
 
 **L37–L38 — Cemented doublet (Elements 13–14)**
 
@@ -181,19 +181,21 @@ This doublet is the last optical element before the image plane and plays a crit
 
 ## 4. Glass Map Summary
 
+Fresh original Table3 reinspection retains all fourteen nd/vd/θgF triples. The current catalog curves identify spectral proxies only. L11 now uses exact-coordinate PCD51; L31/L38 use TAFD55; L36 uses J-LASFH2; L22 uses J-BK7A with exact nd and Δνd=+0.26. These replace poorer coordinate matches without changing source partial ratios or asserting production suppliers. L21 alone is explicitly identified as the anomalous medium in ¶0077/condition(3); the other positive-APD badges are inferred from published coordinates. The source dPgF values continue to control the g-channel relationship.
+
 The system employs 10 distinct glass types across its 14 elements. Three elements use the same ED glass (S-FPL51), two elements share the nd ≈ 2.001 ultra-high-index glass, and two share the nd = 1.72047 niobium-barium heavy flint. The glass selection strategy is characteristic of Nikon's approach to high-performance fast primes:
 
 | Glass | nd | νd | θgF | ΔθgF | Elements | Role |
 |-------|----|----|-----|------|----------|------|
 | S-FPL51 (Ohara) | 1.49700 | 81.61 | 0.539 | +0.03246802 | L12, L13, L34 | ED glass — primary & secondary chromatic correction |
 | APD specialty | 1.65940 | 26.87 | 0.633 | +0.03439534 | L21 | High-dispersion anomalous glass — secondary spectrum via different mechanism |
-| S-LAH79 equiv. | 2.00100 | 29.13 | 0.599 | +0.004 | L31, L38 | Ultra-high index for compact power, monochromatic correction |
+| TAFD55 spectral proxy | 2.00100 | 29.13 | 0.599 | +0.004 | L31, L38 | Ultra-high index for compact power, monochromatic correction |
 | S-LAL14 (Ohara) | 1.69680 | 55.52 | 0.543 | −0.007 | L32 | Lanthanum crown, positive power near stop |
 | S-NBH8 (Ohara) | 1.72047 | 34.71 | 0.583 | −0.002 | L14, L35 | Achromatic flint partner for ED doublets |
-| S-FPM2 equiv. | 1.59349 | 67.00 | 0.537 | +0.006 | L11 | Fluorophosphate crown, front element |
-| S-BSL7 equiv. | 1.51680 | 63.88 | 0.536 | −0.000 | L22 | Standard borosilicate crown |
-| J-SF1 spectral proxy | 1.71736 | 29.57 | 0.604 | +0.010 | L33 | High-dispersion proxy; patent APD retained |
-| S-LAH96 (Ohara) | 1.76684 | 46.78 | 0.558 | −0.007 | L36 | Lanthanum heavy flint |
+| PCD51 spectral proxy | 1.59349 | 67.00 | 0.537 | +0.006 | L11 | Fluorophosphate crown, front element |
+| J-BK7A spectral proxy | 1.51680 | 63.88 | 0.536 | −0.000 | L22 | Standard borosilicate crown |
+| J-SF1 spectral proxy | 1.71736 | 29.57 | 0.604 | +0.010 | L33 | High-dispersion proxy; source ratio retained, APD designation inferred |
+| J-LASFH2 (Ohara) | 1.76684 | 46.78 | 0.558 | −0.007 | L36 | Lanthanum heavy flint |
 | E-FL5 (HOYA) | 1.58144 | 40.98 | 0.576 | +0.001 | L37 | Dense flint |
 
 The ΔθgF column quantifies the deviation from the Schott normal line (θgF = −0.001682 × νd + 0.6438). Values significantly above zero indicate positive anomalous partial dispersion (APD), which is the key property for correcting secondary spectrum. The three S-FPL51 elements and the specialty L21 glass all show ΔθgF > +0.03, confirming they are the principal contributors to secondary spectrum correction.
@@ -294,7 +296,7 @@ Several features visible in the patent but not explicitly described in Nikon's m
 - Nikon Corporation press release, 27 July 2016: "AF-S NIKKOR 105mm f/1.4E ED" (nikon.com/company/news/2016/0727_lens_01.html)
 - "NIKKOR — The Thousand and One Nights," Tale 59: AI Nikkor 105mm f/1.8S and AF-S NIKKOR 105mm f/1.4E ED (imaging.nikon.com/imaging/information/story/0059/)
 - CameraGossip Nikon lens patent database (cameragossip.github.io/nikon-lens-patents.html)
-- Ohara optical glass catalog — S-FPL51, S-NBH8, S-LAH96, S-LAL14, S-BSL7 datasheets
+- Current coefficient-backed catalog entries: OHARA S-FPL51, S-NBH8 and S-LAL14; HOYA PCD51 and TAFD55; HIKARI J-LASFH2 and J-BK7A. These are qualified spectral proxies, not production identities.
 - HOYA optical glass catalog — E-FL5 datasheet
 - Schott optical glass catalog — normal line coefficient reference (θgF = −0.001682 × νd + 0.6438)
 
@@ -321,3 +323,10 @@ Table 3's published partial-dispersion ratios are retained for every element, us
 | L37 | 0.576 | 0.00112836 |
 
 The source close station is β=−0.132 with 12 mm imageward G2 travel. Independent paraxial propagation gives β≈−0.132084 and object-to-image distance≈998.66 mm, consistent with the rounded 1 m slider endpoint. G1, G3 and the stop stay fixed. Intermediate focus distances are approximate; source spacings are preserved.
+
+
+## 2026-10-30 Geometry and Runtime Reinspection
+
+Figure5 restores continuous S5/S6 caps to32.8/32.4mm, with S7 retaining its29.7mm clear cap and gaining a flat rear land to32.4mm. G2's S8/S9 caps become28mm and S10 retains25.4mm with a land to28mm. No land is added at a cemented boundary. A further S15 rear land is rejected because its existing18.6mm cap has7.062835mm sag past the5.843mm stop interval; the present stop-plane guard is retained.
+
+The literal f1.45 axial beam requires S21 radius15.005783mm, while the unchanged2.828mm S21–S22 gap and.90intrusion margin allow only14.537450mm. Its14.5mm aperture remains: current effective aperture isf1.496577(+3.212%), not a fully passed nominal beam. FigureS22 does not resolve a flat land supporting an extra cut. At the source close spacing the retained constant iris passes13/25 discrete axial pupil samples, with rim samples clipped atS4; no near F-number is supplied, and these samples are not measured production vignetting. The source prescription and focus law remain unchanged. Surface/image-circle/corner checks pass, and nine actual SVG states have finite paths/zero automatic trim.

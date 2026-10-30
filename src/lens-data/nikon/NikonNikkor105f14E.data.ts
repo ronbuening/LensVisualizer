@@ -5,7 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4 E ED           ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: WO2019/116563 A1 Example 3 (Nikon / Yamashita).     ║
- * ║  Three-group telephoto prime with APD glass for secondary          ║
+ * ║  Three-group fast prime with APD glass for secondary          ║
  * ║  spectrum correction. All-spherical design. "3D High Fidelity."   ║
  * ║  14 elements / 9 groups, 0 aspherical surfaces.                   ║
  * ║  Focus: Inner focus — G2 cemented doublet translates axially.     ║
@@ -16,6 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    mechanical margin for singletons (5% for cemented surfaces),   ║
  * ║    capped at 82mm filter-thread physical limit.                    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table review; see audit for exposed
+ * lands, retained source dispersion and explicit geometry/iris limitations.
  */
 
 const LENS_DATA = {
@@ -63,9 +66,9 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       focalLengthMm: 398.6,
-      glass: "S-FPM2 equiv. (Ohara); catalog equivalent, production supplier unspecified",
-      apd: "patent",
-      apdNote: "Table 3 θgF = 0.537; partial dispersion retained from the patent.",
+      glass: "PCD51 (catalog-compatible spectral proxy; production supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Table 3 θgF = 0.537; source ratio retained; APD designation inferred from the coordinate, not explicitly named for this element.",
       role: "Gentle beam convergence with minimal aberration. Nearly plano rear surface.",
       dPgF: 0.537 - (0.6438 - 0.001682 * 67.0),
     },
@@ -77,9 +80,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 177.1,
-      glass: "S-FPL51 (Ohara); catalog equivalent, production supplier unspecified",
-      apd: "patent",
-      apdNote: "Table 3 θgF = 0.539; partial dispersion retained from the patent.",
+      glass: "S-FPL51 (catalog-compatible spectral proxy; production supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Table 3 θgF = 0.539; source ratio retained; APD designation inferred from the coordinate, not explicitly named for this element.",
       role: "Primary positive power. Axial chromatic & secondary spectrum correction.",
       dPgF: 0.539 - (0.6438 - 0.001682 * 81.61),
     },
@@ -91,9 +94,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 111.7,
-      glass: "S-FPL51 (Ohara); catalog equivalent, production supplier unspecified",
-      apd: "patent",
-      apdNote: "Table 3 θgF = 0.539; partial dispersion retained from the patent.",
+      glass: "S-FPL51 (catalog-compatible spectral proxy; production supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Table 3 θgF = 0.539; source ratio retained; APD designation inferred from the coordinate, not explicitly named for this element.",
       role: "Cemented ED positive — strong convergence, achromatized by L14.",
       cemented: "D1",
       dPgF: 0.539 - (0.6438 - 0.001682 * 81.61),
@@ -106,7 +109,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.71,
       focalLengthMm: -143.3,
-      glass: "S-NBH8 (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "S-NBH8 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.583; partial dispersion retained from the patent.",
       role: "Achromatic flint partner to L13. First-order color correction of G1 beam.",
@@ -136,7 +139,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       focalLengthMm: -57.2,
-      glass: "S-BSL7 (Ohara) / N-BK7 equiv.; catalog equivalent, production supplier unspecified",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.536; partial dispersion retained from the patent.",
       role: "Strongly diverging. Provides negative G2 group power; chromatic balance to L21.",
@@ -151,7 +154,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       focalLengthMm: 59.0,
-      glass: "S-LAH79 equiv. (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "TAFD55 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.599; partial dispersion retained from the patent.",
       role: "High-power convergence in ultra-high-index glass. Low Petzval per unit power.",
@@ -165,7 +168,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: 50.9,
-      glass: "S-LAL14 (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "S-LAL14 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.543; partial dispersion retained from the patent.",
       role: "Pre-stop positive. Spherical and chromatic correction.",
@@ -180,9 +183,9 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.57,
       focalLengthMm: -25.8,
-      glass: "J-SF1 catalog spectral proxy (patent dPgF retained; production supplier unspecified)",
-      apd: "patent",
-      apdNote: "Table 3 θgF = 0.604; partial dispersion retained from the patent.",
+      glass: "J-SF1 (catalog-compatible spectral proxy; production supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Table 3 θgF = 0.604; source ratio retained; APD designation inferred from the coordinate, not explicitly named for this element.",
       role: "Pre-stop negative. Petzval correction and higher-order spherical aberration.",
       cemented: "D3",
       dPgF: 0.604 - (0.6438 - 0.001682 * 29.57),
@@ -195,9 +198,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 80.1,
-      glass: "S-FPL51 (Ohara); catalog equivalent, production supplier unspecified",
-      apd: "patent",
-      apdNote: "Table 3 θgF = 0.539; partial dispersion retained from the patent.",
+      glass: "S-FPL51 (catalog-compatible spectral proxy; production supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Table 3 θgF = 0.539; source ratio retained; APD designation inferred from the coordinate, not explicitly named for this element.",
       role: "Post-stop ED element. Primarily lateral chromatic & secondary spectrum for off-axis fields.",
       dPgF: 0.539 - (0.6438 - 0.001682 * 81.61),
     },
@@ -209,7 +212,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.71,
       focalLengthMm: -24.8,
-      glass: "S-NBH8 (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "S-NBH8 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.583; partial dispersion retained from the patent.",
       role: "Thin negative. Petzval sum correction, field flattening.",
@@ -224,7 +227,7 @@ const LENS_DATA = {
       nd: 1.76684,
       vd: 46.78,
       focalLengthMm: 29.0,
-      glass: "S-LAH96 (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.558; partial dispersion retained from the patent.",
       role: "Strong positive power for final convergence; higher-order spherical correction.",
@@ -239,7 +242,7 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.98,
       focalLengthMm: -51.1,
-      glass: "E-FL5 (HOYA); catalog equivalent, production supplier unspecified",
+      glass: "E-FL5 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.576; partial dispersion retained from the patent.",
       role: "Final negative. Residual Petzval correction, field flattening, distortion control.",
@@ -254,7 +257,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       focalLengthMm: 36.9,
-      glass: "S-LAH79 equiv. (Ohara); catalog equivalent, production supplier unspecified",
+      glass: "TAFD55 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       apdNote: "Table 3 θgF = 0.599; partial dispersion retained from the patent.",
       role: "Final positive in ultra-high-index glass. Brings beam to focus; low Petzval per unit power.",
@@ -285,15 +288,15 @@ const LENS_DATA = {
     { label: "3", R: 98.0319, d: 9.004, sd: 39.1, medium: 2 },
     { label: "4", R: -860.7055, d: 0.1, sd: 37.3 },
     // L13+L14 cemented doublet (ED + lanthanum flint)
-    { label: "5", R: 70.0561, d: 11.648, sd: 30.5, medium: 3 },
-    { label: "6", R: -266.9895, d: 3.5, sd: 30.8, medium: 4 }, // junction → L14 glass
-    { label: "7", R: 168.2737, sd: 29.7 }, // L14 rear → air (D7, variable)
+    { label: "5", R: 70.0561, d: 11.648, sd: 32.8, medium: 3 },
+    { label: "6", R: -266.9895, d: 3.5, sd: 32.4, medium: 4 }, // junction → L14 glass
+    { label: "7", R: 168.2737, sd: 29.7, rimExtensionSd: 32.4 }, // L14 rear → air (D7, variable)
 
     /* ── G2: Focusing Group (Negative) ── */
     // L21+L22 cemented doublet (APD glass + borosilicate crown)
-    { label: "8", R: -156.9444, d: 4.0, sd: 26.6, medium: 5 },
-    { label: "9", R: -74.8277, d: 2.5, sd: 25.9, medium: 6 }, // junction → L22 glass
-    { label: "10", R: 48.8369, sd: 25.4 }, // L22 rear → air (D10, variable)
+    { label: "8", R: -156.9444, d: 4.0, sd: 28, medium: 5 },
+    { label: "9", R: -74.8277, d: 2.5, sd: 28, medium: 6 }, // junction → L22 glass
+    { label: "10", R: 48.8369, sd: 25.4, rimExtensionSd: 28 }, // L22 rear → air (D10, variable)
 
     /* ── G3: Rear Positive Group ── */
     // L31 — Biconvex positive (ultra-high-index, nd ≈ 2.001)

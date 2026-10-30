@@ -34,7 +34,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  midpoint of the 1.60 mm air gap between the flat faces r20 and r21          ║
  * ║  (0.80 + 0.80 mm), where Fig. 1 draws the diaphragm. The stop radius is      ║
  * ║  derived from the design f-number, F/5.6 (paraxial pupil calculation with    ║
- * ║  the same iris: F/5.50); it is not a published iris size.                    ║
+ * ║  current derived iris: 3.265408 mm); not a published iris size.                    ║
  * ║                                                                              ║
  * ║  NOTE ON SEMI-DIAMETERS: The patent lists none. Values follow the element    ║
  * ║  rims of patent Fig. 1 (PDF p. 4, 0.1317 mm/px at the 352 dpi native scan),  ║
@@ -69,6 +69,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  focus distance. The production lens's 0.3 m close focus and floating        ║
  * ║  correction are not reconstructed.                                           ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table review; see audit for exposed
+ * lands, retained source dispersion and explicit geometry/iris limitations.
  */
 
 const LENS_DATA = {
@@ -118,7 +121,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -143.38605684816815,
       glass:
-        "788475 — lanthanum dense flint, LaSF014 class (nearest J-LASF014 HIKARI / TAF4 HOYA, Δnd +0.0004; supplier unconfirmed)",
+        "TAF4 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000360, Δvd=-0.010)",
       role: "Front negative meniscus; opens the diverging front group and sets the front diameter for the 110° field.",
     },
     {
@@ -131,7 +134,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: 93.19418695841442,
       glass:
-        "713539 — lanthanum crown, LaK8 class (nearest J-LAK8 HIKARI / LAC8 HOYA, Δnd −0.0004; supplier unconfirmed)",
+        "J-LAK8 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=-0.000410, Δvd=0.060)",
       role: "Thick positive meniscus inside the diverging front group.",
     },
     {
@@ -144,7 +147,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -67.90550460774206,
       glass:
-        "693535 — lanthanum crown, LaK13 class (nearest LAC13 HOYA / S-LAL13 OHARA, Δnd +0.0003; supplier unconfirmed)",
+        "S-LAL13 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000301, Δvd=-0.295)",
       role: "Second negative meniscus of the front group.",
     },
     {
@@ -157,7 +160,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -57.56568154518863,
       glass:
-        "693535 — lanthanum crown, LaK13 class (nearest LAC13 HOYA / S-LAL13 OHARA, Δnd +0.0003; supplier unconfirmed)",
+        "S-LAL13 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000301, Δvd=-0.295)",
       role: "Third negative meniscus of the front group; spherical in this table (the patent's own embodiment makes its front surface aspheric).",
     },
     {
@@ -170,7 +173,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -63.72963386448068,
       glass:
-        "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-LAK14 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Last negative meniscus of the front group, directly ahead of the built-in filter.",
     },
     {
@@ -206,7 +209,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: 16.704838914558806,
       glass:
-        "548459 — extra-light flint, LLF1 class (J-LLF1 HIKARI / LLF1 SCHOTT coordinate-compatible; supplier unconfirmed)",
+        "J-LLF1 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000140, Δvd=-0.390)",
       role: "Thick positive rear member of cemented doublet D1.",
       cemented: "D1",
     },
@@ -220,7 +223,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -23.313610610885714,
       glass:
-        "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-LAK14 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Air-spaced negative meniscus between the two cemented doublets.",
     },
     {
@@ -232,7 +235,7 @@ const LENS_DATA = {
       vd: 35.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: 11.329126352489267,
-      glass: "595356 — flint (nearest FF5 HOYA, Δnd −0.0021; not a period identification, supplier unconfirmed)",
+      glass: "FF5 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=-0.002130, Δvd=-0.150)",
       role: "Positive front member of cemented doublet D2, ahead of the stop.",
       cemented: "D2",
     },
@@ -245,7 +248,7 @@ const LENS_DATA = {
       vd: 58.2,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -21.12914131169682,
-      glass: "592582 — dense barium crown, SK13/BaCD13 class (nearest BACD13 HOYA, Δnd +0.0002; supplier unconfirmed)",
+      glass: "BACD13 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000210, Δvd=0.109)",
       role: "Plano-concave rear member of cemented doublet D2; its flat face looks at the stop.",
       cemented: "D2",
     },
@@ -258,7 +261,7 @@ const LENS_DATA = {
       vd: 35.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: 20.098138065469993,
-      glass: "595356 — flint (nearest FF5 HOYA, Δnd −0.0024; not a period identification, supplier unconfirmed)",
+      glass: "FF5 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=-0.002380, Δvd=-0.150)",
       role: "Thick plano-convex positive element directly behind the stop.",
     },
     {
@@ -271,7 +274,7 @@ const LENS_DATA = {
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: -11.012497635516699,
       glass:
-        "861231 — dense flint (nearest J-SFH2 HIKARI, Δnd −0.0007; modern coordinate-compatible curve, not a period glass; supplier unconfirmed)",
+        "J-SFH2 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=-0.000680, Δvd=-0.020)",
       role: "Strong biconcave negative element of the lowest Abbe number in the table.",
     },
     {
@@ -295,7 +298,7 @@ const LENS_DATA = {
       vd: 63.4,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
       focalLengthMm: 43.763632491274464,
-      glass: "510634 — borosilicate crown, BK1 class (nearest BK1 SUMITA, Δnd +0.0003; supplier unconfirmed)",
+      glass: "BK1 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000330, Δvd=0.000)",
       role: "Final biconvex positive element.",
     },
   ],
