@@ -88,9 +88,9 @@ less than EFL at both endpoints, so the design is not retrofocus under the proje
 
 ### L11 — Cemented front component in G1
 
-**L11a:** nd = 1.75692, νd = 31.7. Glass: 757317 — E-LAF11 catalog equivalent (production supplier unspecified). Standalone f = -457.263 mm.
+**L11a:** nd = 1.75692, νd = 31.7. Glass: E-LAF11 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -457.263 mm.
 
-**L11b:** nd = 1.49782, νd = 82.3. Glass: 498823 — J-FKH1 catalog equivalent (production supplier unspecified). Standalone
+**L11b:** nd = 1.49782, νd = 82.3. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = +214.862 mm.
 
 L11 combines a weak negative meniscus with a substantially stronger low-dispersion positive element. When the pair is
@@ -105,7 +105,7 @@ candidate to source fact.
 
 ### L12 — Positive meniscus completing G1
 
-nd = 1.49782, νd = 82.3. Glass: 498823 — J-FKH1 catalog equivalent (production supplier unspecified). Standalone
+nd = 1.49782, νd = 82.3. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = +850.330 mm.
 
 L12 is a relatively weak positive meniscus compared with the cemented L11 component. Its optical importance is therefore
@@ -119,12 +119,12 @@ from which an apochromatic or anomalous-dispersion claim could be made.
 
 ### L21 — Cemented negative-positive-negative triplet in G2
 
-**L2a:** nd = 1.78797, νd = 47.5. Glass: 788475 — lanthanum-flint class (vendor unresolved). Standalone
+**L2a:** nd = 1.78797, νd = 47.5. Glass: TAF4 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = -130.363 mm.
 
-**L2b:** nd = 1.75520, νd = 27.6. Glass: 755276 — SF4 catalog equivalent (production supplier unspecified). Standalone f = +83.901 mm.
+**L2b:** nd = 1.75520, νd = 27.6. Glass: SF4 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = +83.901 mm.
 
-**L2c:** nd = 1.51680, νd = 64.1. Glass: 517641 — BK7 class (vendor unresolved). Standalone f = -101.464 mm.
+**L2c:** nd = 1.51680, νd = 64.1. Glass: N-BK7 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -101.464 mm.
 
 L21 is the most explicitly analyzed component in the patent. The three elements are cemented in negative-positive-negative
 order, and the patent attributes specific chromatic and off-axis correction functions to the two cemented interfaces.
@@ -139,22 +139,21 @@ and the complete G2 focal length in different expressions.
 
 ### L22 — Negative meniscus completing G2
 
-nd = 1.80218, νd = 44.7. Glass: 802447 — M-TAF31 catalog equivalent (production supplier unspecified). Standalone f = -150.242 mm.
+nd = 1.80218, νd = 44.7. Glass: M-TAF31 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -150.242 mm.
 
 L22 is separated from L21 by a 7.5 mm air gap and adds negative power to the variator. The combined G2 group is the
 principal negative-power section of the zoom, and its axial motion produces most of the focal-length change. The patent's
 condition involving f2/r6 evaluates the complete G2 focal length against the radius of its first surface; the finalized
 model gives 0.21921, inside the stated 0 to 0.4 interval. [1]
 
-No defensible public glass identity was established for the exact 1.80218/44.7 coordinate pair, so the final data avoids a
-specific vendor or catalog name.
+The current resolver uses M-TAF31 as a compatible spectral proxy for this coordinate, while the production supplier and melt remain unresolved.
 
 ### L3 — Cemented positive compensator in G3
 
-**L3a:** nd = 1.49782, νd = 82.3. Glass: 498823 — J-FKH1 catalog equivalent (production supplier unspecified). Standalone
+**L3a:** nd = 1.49782, νd = 82.3. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = +101.431 mm.
 
-**L3b:** nd = 1.75692, νd = 31.7. Glass: 757317 — E-LAF11 catalog equivalent (production supplier unspecified). Standalone f = -204.846 mm.
+**L3b:** nd = 1.75692, νd = 31.7. Glass: E-LAF11 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -204.846 mm.
 
 The two elements form a positive cemented component whose independently computed net focal length is +200.0003 mm,
 essentially identical to the patent's f3 = 200.0000 mm after allowing for source precision. G3 is the compensator that
@@ -166,7 +165,7 @@ cemented component, but its in-system role is the zoom compensator rather than t
 
 ### L41 — Front positive singlet of the relay
 
-nd = 1.49782, νd = 82.3. Glass: 498823 — J-FKH1 catalog equivalent (production supplier unspecified). Standalone
+nd = 1.49782, νd = 82.3. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = +93.453 mm.
 
 L41 is the strongest standalone positive element in G4 and begins the fixed positive relay. Its high-Abbe coordinate pair
@@ -179,18 +178,17 @@ the historical glass vendor.
 
 ### L42 — Negative meniscus in the relay
 
-nd = 1.78797, νd = 47.5. Glass: 788475 — lanthanum-flint class (vendor unresolved). Standalone f = -136.851 mm.
+nd = 1.78797, νd = 47.5. Glass: TAF4 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -136.851 mm.
 
 L42 follows L41 across a 10 mm air gap and introduces negative power within the otherwise positive G4 relay. Its glass
 coordinates repeat L2a in the variator. The air separation and opposite power signs allow the relay's principal planes and
 aberration balance to be adjusted without forcing the rear component to carry all of the negative correction.
 
-The final data file retains only the class-level lanthanum-flint description. Although modern catalogs contain close
-coordinate neighbors, the patent does not identify the melt and the analysis does not assign one retroactively.
+The current resolver uses the TAF4 curve as a compatible spectral proxy at both repeated positions. The patent does not identify the supplier or melt.
 
 ### L43 — Positive meniscus ahead of the modeled stop gap
 
-nd = 1.51680, νd = 64.1. Glass: 517641 — BK7 class (vendor unresolved). Standalone f = +435.818 mm.
+nd = 1.51680, νd = 64.1. Glass: N-BK7 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = +435.818 mm.
 
 L43 is a weak positive meniscus separated from L42 by only 0.6 mm. Its rear surface r20 is followed by the patent's long
 66 mm air interval before L44. The patent does not place or dimension the diaphragm in this interval; the finalized model
@@ -202,7 +200,7 @@ through strong isolated focal power.
 
 ### L44 — Strong rear negative singlet
 
-nd = 1.77279, νd = 49.4. Glass: 773494 — M-TAF1 catalog equivalent (production supplier unspecified). Standalone f = -52.443 mm.
+nd = 1.77279, νd = 49.4. Glass: M-TAF1 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = -52.443 mm.
 
 L44 is the strongest standalone negative element in G4. It lies behind the modeled stop and immediately ahead of the
 final cemented component. Its compact 19.5 mm modeled semi-diameter also marks the contraction of the clear aperture in the
@@ -213,10 +211,10 @@ supplier-neutral spectral equivalent, not as a historical production-glass attri
 
 ### L45 — Rear cemented component
 
-**L45a:** nd = 1.73350, νd = 51.1. Glass: 734511 — TAC4 catalog equivalent (production supplier unspecified). Standalone
+**L45a:** nd = 1.73350, νd = 51.1. Glass: TAC4 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = -173.307 mm.
 
-**L45b:** nd = 1.58144, νd = 40.8. Glass: 581408 — PBL25 catalog equivalent (production supplier unspecified). Standalone
+**L45b:** nd = 1.58144, νd = 40.8. Glass: PBL25 (catalog-compatible spectral proxy; production supplier unresolved). Standalone
 f = +54.900 mm.
 
 Although L45a is negative as a standalone element, the much stronger positive L45b makes the cemented pair positive with
@@ -239,9 +237,9 @@ coordinate guard, without treating a modern catalog neighbor as proof of the his
 | --- | ---: | ---: | --- | --- |
 | 757317 — E-LAF11 catalog equivalent | 1.75692 | 31.7 | L11a, L3b | High-index, higher-dispersion partner; production supplier unspecified |
 | 498823 — J-FKH1 catalog equivalent | 1.49782 | 82.3 | L11b, L12, L3a, L41 | Very-low-dispersion positive class; production supplier unspecified |
-| 788475 — lanthanum-flint class | 1.78797 | 47.5 | L2a, L42 | High-index medium-dispersion negative glass class |
+| TAF4 spectral proxy; supplier unresolved | 1.78797 | 47.5 | L2a, L42 | High-index medium-dispersion negative glass class |
 | 755276 — SF4 catalog equivalent | 1.75520 | 27.6 | L2b | High-dispersion positive middle element of the G2 triplet; production supplier unspecified |
-| 517641 — BK7 class | 1.51680 | 64.1 | L2c, L43 | Crown-class coordinate pair used in G2 and G4 |
+| N-BK7 spectral proxy; supplier unresolved | 1.51680 | 64.1 | L2c, L43 | Crown-class coordinate pair used in G2 and G4 |
 | 802447 — M-TAF31 catalog equivalent | 1.80218 | 44.7 | L22 | High-index negative singlet; production supplier unspecified |
 | 773494 — M-TAF1 catalog equivalent | 1.77279 | 49.4 | L44 | High-index rear negative element; production supplier unspecified |
 | 734511 — TAC4 catalog equivalent | 1.73350 | 51.1 | L45a | Negative member of final cemented pair; production supplier unspecified |
@@ -375,6 +373,14 @@ thickness is 0.6321 mm at L11b, maximum spherical rim slope is 48.008° at r19, 
 intrusion is 0.89157 of the 7.5 mm r9-to-r10 air gap, below the configured 0.90 limit. No conic check applies because all
 surfaces are spherical.
 
+
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US4452513.pdf`: Example 3 Figure 15 on PDF page 8 at 600 dpi and native 300 dpi raster, and Table 5 with its fifteen-media prescription plus Table 6 focus references on page 16. Every exposed convex/concave face and cemented boundary was inspected. The continuous arcs reach their optical rims; the staggered bonded endpoints, leaders and group braces are not separate cap-end lands. No additional cut or extension is supported, so all geometry is retained.
+
+The existing S9–S10 constraint is confirmed: the unchanged 7.5 mm gap gives a 6.750 mm sag budget and common-cap bound 26.823897 mm, close to the retained S10 SD26.7. Extending its curve to the neighboring 30 mm body height would violate that guard; the figure does not independently resolve a land that would justify replacing the end. The source prescription, stop inference, linearly interpolated zoom and calculated production 4 m focus controls remain unchanged. The source's nearer worked states remain references rather than silently substituted production controls.
+
+All fifteen source n/ν pairs are exact and preserved. The table does not state a reference wavelength alongside n/ν; the existing catalog-supported d-line interpretation remains an inference, as documented in the data header. All fifteen current curves, including TAF4 and N-BK7 at formerly class-only labels, are explicitly qualified spectral proxies. The four high-Abbe positions remain a production ED correlation, without source APD, C/F/g indices, partial-dispersion values, or a known historical supplier. Surface/circle checks pass; both catalog stations reach at least 99% of the format corner and remain iris-limited within the aperture band. Nine SVG states have fifteen finite paths and zero trim. At the calculated 4 m endpoint conjugates and interpolated middle, the unchanged 19.304930 mm full iris passes 25/25 aimed axial samples each; the middle conjugate is not published. Source/catalog checks and shared glass suites pass (94 tests).
 
 ## Sources and References
 
