@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **1032** lenses scanned
 - **11847** non-air surfaces examined
 - **11856** element glass declarations examined
-- **219** non-explicit-unmatched annotations did not resolve
-- **114** distinct unresolved glass-like tokens found
+- **216** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,7 +20,6 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 493836 | 6 | 2 | |
 | 662561 | 4 | 1 | |
-| 531559 | 3 | 2 | |
 | 486815 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 620586 | 2 | 1 | |
@@ -43,7 +42,6 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 815233 | 2 | 2 | |
 | 819287 | 2 | 2 | |
-| G2 | 2 | 1 | |
 | LAF10 | 2 | 1 | |
 | 489701 | 1 | 1 | |
 | 499801 | 1 | 1 | |
@@ -51,6 +49,7 @@ or per-lens patent backfills.
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 520701 | 1 | 1 | |
+| 531559 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
@@ -150,12 +149,6 @@ or per-lens patent backfills.
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 3: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 7: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 9: `SSK / LaK (Jena in-house, 662/561)`
-
-### 531559 — 3 occurrences
-
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 3A: `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)`
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 17A: `531559 — optical resin coordinate (same as G2; material not named in patent)`
-- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
 
 ### 486815 — 2 occurrences
 
@@ -267,11 +260,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 
-### G2 — 2 occurrences
-
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 3A: `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)`
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 17A: `531559 — optical resin coordinate (same as G2; material not named in patent)`
-
 ### LAF10 — 2 occurrences
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
@@ -300,6 +288,10 @@ or per-lens patent backfills.
 ### 520701 — 1 occurrence
 
 - [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 5: `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)`
+
+### 531559 — 1 occurrence
+
+- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
 
 ### 534554 — 1 occurrence
 

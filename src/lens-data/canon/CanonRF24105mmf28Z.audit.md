@@ -16,30 +16,30 @@ Catalog version: local working tree, 2026-05-19
 
 ### Phase 1 - Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| L1 / 1 | `glass` | `Lanthanum dense flint (900/374)` | `TAFD37A (HOYA)` | Example 4 row 1 lists nd=1.90043, vd=37.4; catalog TAFD37A carries code 900374. |
-| L2 / 3 | `glass` | `Phosphate crown (538/747)` | `S-FPM3 (OHARA)` | Example 4 row 3 lists nd=1.53775, vd=74.7; catalog S-FPM3 matches and is now code-tagged as 538747. |
-| L3 / 5 | `glass` | `Lanthanum crown (729/547)` | `S-LAL18 (OHARA)` | Example 4 row 5 lists nd=1.72916, vd=54.7; catalog S-LAL18 carries code 729547. |
-| L4 / 7 | `glass` | `Lanthanum crown (729/547)` | `S-LAL18 (OHARA)` | Row 7 repeats the L3 nd/vd pair. |
-| L5 / 9 | `glass` | `Dense lanthanum flint (883/408)` | `S-LAH58 (OHARA)` | Example 4 row 9 lists nd=1.88300, vd=40.8; catalog S-LAH58 carries code 883408. |
-| L6 / 11 | `glass` | `Barium crown (595/677)` | `S-FPM2 (OHARA)` | Example 4 row 11 lists nd=1.59522, vd=67.7; catalog S-FPM2 carries code 595677. |
-| L7 / 13 | `glass` | `UD fluorophosphate crown (497/815)` | `S-FPL51 (OHARA)` | Example 4 row 13 lists nd=1.49700, vd=81.5. S-FPL51/FCD1-class public data matches within patent rounding; this is one of the four UD elements. |
-| L8 / 14 | `glass` | `Heavy flint (770/297)` | retained in this May pass | Example 4 row 14 lists nd=1.77047, vd=29.7. The 2026-06-04 source pass later resolved this row as HOYA NBFD29. |
-| L9 / 17 | `glass` | `Very heavy flint (847/238)` | `S-TIH53 (OHARA)` | Example 4 row 17 lists nd=1.84666, vd=23.8; catalog S-TIH53 carries code 847238. |
-| L10 / 19 | `glass` | `Extreme dense flint - OHARA S-NPH4 (001/291)` | `S-LAH99 (OHARA)` | Example 4 row 19 lists nd=2.00100, vd=29.1. The old label resolved to S-NPH4, whose catalog constants do not match; S-LAH99 carries code 001291. |
-| L11 / 20 | `glass` | `Borosilicate crown (517/524)` | `S-NSL36 (OHARA)` | Example 4 row 20 lists nd=1.51742, vd=52.4; catalog S-NSL36 carries code 517524. |
-| L13 / 23 | `glass` | `Lanthanum crown (773/496)` | `S-LAH66 (OHARA)` | Example 4 row 23 lists nd=1.77250, vd=49.6; catalog S-LAH66 carries code 773496. |
-| L14 / 25 | `glass` | `UD fluorophosphate crown (497/815)` | `S-FPL51 (OHARA)` | Same S-FPL51/FCD1-class match as L7. |
-| L15 / 26 | `glass` | `Lanthanum dense flint (900/374)` | `TAFD37A (HOYA)` | Row 26 repeats the L1 nd/vd pair. |
-| L16 / 28 | `glass` | `UD fluorophosphate crown (497/815)` | `S-FPL51 (OHARA)` | Same S-FPL51/FCD1-class match as L7. |
-| L17 / 30 | `glass` | `UD fluorophosphate crown (497/815)` | `S-FPL51 (OHARA)` | Same S-FPL51/FCD1-class match as L7. |
-| L18 / 32A | `glass` | `OHARA L-LAH86 PGM glass (854/404)` | `L-LAH85V (OHARA)` | The aspherical glass layer uses nd=1.85400, vd=40.4. OHARA L-LAH85V publishes code 854404 and matches the row; the old L-LAH86 wording pointed at a different high-index PGM family. |
-| L19 / 33 | `glass` | `Barium crown (603/606)` | `N-SK14 (Schott)` | Example 4 row 33 lists nd=1.60311, vd=60.6; catalog N-SK14 carries code 603606. |
-| L20 / 35 | `glass` | `Lanthanum crown (729/547)` | `S-LAL18 (OHARA)` | Row 35 repeats the L3/L4 nd/vd pair. |
-| L22 / 39 | `glass` | `Heavy flint (805/254)` | `S-TIH6 (OHARA)` | Example 4 row 39 lists nd=1.80518, vd=25.4; catalog S-TIH6 carries code 805254. |
-| L23 / 40 | `glass` | `Fluorocrown (487/702)` | `S-FSL5 (OHARA)` | Example 4 row 40 lists nd=1.48749, vd=70.2; catalog S-FSL5 carries code 487702. |
-| L24 / 42 | `glass` | `Extreme dense flint - OHARA S-NPH3 (001/255)` | `TAFD40 (HOYA)` | Example 4 row 42 lists nd=2.00069, vd=25.5. The old label resolved to S-NPH3, whose catalog constants do not match; TAFD40 carries code 001255. |
+| Element / surface | Field   | Before                                         | After                     | Justification                                                                                                                                                                        |
+| ----------------- | ------- | ---------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| L1 / 1            | `glass` | `Lanthanum dense flint (900/374)`              | `TAFD37A (HOYA)`          | Example 4 row 1 lists nd=1.90043, vd=37.4; catalog TAFD37A carries code 900374.                                                                                                      |
+| L2 / 3            | `glass` | `Phosphate crown (538/747)`                    | `S-FPM3 (OHARA)`          | Example 4 row 3 lists nd=1.53775, vd=74.7; catalog S-FPM3 matches and is now code-tagged as 538747.                                                                                  |
+| L3 / 5            | `glass` | `Lanthanum crown (729/547)`                    | `S-LAL18 (OHARA)`         | Example 4 row 5 lists nd=1.72916, vd=54.7; catalog S-LAL18 carries code 729547.                                                                                                      |
+| L4 / 7            | `glass` | `Lanthanum crown (729/547)`                    | `S-LAL18 (OHARA)`         | Row 7 repeats the L3 nd/vd pair.                                                                                                                                                     |
+| L5 / 9            | `glass` | `Dense lanthanum flint (883/408)`              | `S-LAH58 (OHARA)`         | Example 4 row 9 lists nd=1.88300, vd=40.8; catalog S-LAH58 carries code 883408.                                                                                                      |
+| L6 / 11           | `glass` | `Barium crown (595/677)`                       | `S-FPM2 (OHARA)`          | Example 4 row 11 lists nd=1.59522, vd=67.7; catalog S-FPM2 carries code 595677.                                                                                                      |
+| L7 / 13           | `glass` | `UD fluorophosphate crown (497/815)`           | `S-FPL51 (OHARA)`         | Example 4 row 13 lists nd=1.49700, vd=81.5. S-FPL51/FCD1-class public data matches within patent rounding; this is one of the four UD elements.                                      |
+| L8 / 14           | `glass` | `Heavy flint (770/297)`                        | retained in this May pass | Example 4 row 14 lists nd=1.77047, vd=29.7. The 2026-06-04 source pass later resolved this row as HOYA NBFD29.                                                                       |
+| L9 / 17           | `glass` | `Very heavy flint (847/238)`                   | `S-TIH53 (OHARA)`         | Example 4 row 17 lists nd=1.84666, vd=23.8; catalog S-TIH53 carries code 847238.                                                                                                     |
+| L10 / 19          | `glass` | `Extreme dense flint - OHARA S-NPH4 (001/291)` | `S-LAH99 (OHARA)`         | Example 4 row 19 lists nd=2.00100, vd=29.1. The old label resolved to S-NPH4, whose catalog constants do not match; S-LAH99 carries code 001291.                                     |
+| L11 / 20          | `glass` | `Borosilicate crown (517/524)`                 | `S-NSL36 (OHARA)`         | Example 4 row 20 lists nd=1.51742, vd=52.4; catalog S-NSL36 carries code 517524.                                                                                                     |
+| L13 / 23          | `glass` | `Lanthanum crown (773/496)`                    | `S-LAH66 (OHARA)`         | Example 4 row 23 lists nd=1.77250, vd=49.6; catalog S-LAH66 carries code 773496.                                                                                                     |
+| L14 / 25          | `glass` | `UD fluorophosphate crown (497/815)`           | `S-FPL51 (OHARA)`         | Same S-FPL51/FCD1-class match as L7.                                                                                                                                                 |
+| L15 / 26          | `glass` | `Lanthanum dense flint (900/374)`              | `TAFD37A (HOYA)`          | Row 26 repeats the L1 nd/vd pair.                                                                                                                                                    |
+| L16 / 28          | `glass` | `UD fluorophosphate crown (497/815)`           | `S-FPL51 (OHARA)`         | Same S-FPL51/FCD1-class match as L7.                                                                                                                                                 |
+| L17 / 30          | `glass` | `UD fluorophosphate crown (497/815)`           | `S-FPL51 (OHARA)`         | Same S-FPL51/FCD1-class match as L7.                                                                                                                                                 |
+| L18 / 32A         | `glass` | `OHARA L-LAH86 PGM glass (854/404)`            | `L-LAH85V (OHARA)`        | The aspherical glass layer uses nd=1.85400, vd=40.4. OHARA L-LAH85V publishes code 854404 and matches the row; the old L-LAH86 wording pointed at a different high-index PGM family. |
+| L19 / 33          | `glass` | `Barium crown (603/606)`                       | `N-SK14 (Schott)`         | Example 4 row 33 lists nd=1.60311, vd=60.6; catalog N-SK14 carries code 603606.                                                                                                      |
+| L20 / 35          | `glass` | `Lanthanum crown (729/547)`                    | `S-LAL18 (OHARA)`         | Row 35 repeats the L3/L4 nd/vd pair.                                                                                                                                                 |
+| L22 / 39          | `glass` | `Heavy flint (805/254)`                        | `S-TIH6 (OHARA)`          | Example 4 row 39 lists nd=1.80518, vd=25.4; catalog S-TIH6 carries code 805254.                                                                                                      |
+| L23 / 40          | `glass` | `Fluorocrown (487/702)`                        | `S-FSL5 (OHARA)`          | Example 4 row 40 lists nd=1.48749, vd=70.2; catalog S-FSL5 carries code 487702.                                                                                                      |
+| L24 / 42          | `glass` | `Extreme dense flint - OHARA S-NPH3 (001/255)` | `TAFD40 (HOYA)`           | Example 4 row 42 lists nd=2.00069, vd=25.5. The old label resolved to S-NPH3, whose catalog constants do not match; TAFD40 carries code 001255.                                      |
 
 ### Phase 2 - Retained-information audit
 
@@ -87,20 +87,20 @@ section, measured at 300 dpi), 9 (FIGS. 8A/8B aberrations), 18 (¶0027, ¶0030, 
 
 ### Changes
 
-| Item | Before | After | Evidence |
-|---|---|---|---|
-| L6 focus direction (header, `focusDescription`, L21 role, analysis §3.6, §5) | L6 moves toward the object | L5 and L6 both move toward the image | ¶0069 (Example 4) and both FOCUS arrows in FIG. 7 |
-| `nominalFno` / aperture model | 2.8, fixed iris (engine iris 11.27 mm, ≈f/3.9 equivalent at tele) | 2.9 + `zoomApertureModel: "from-nominal-fno"`; traced iris radii 10.87 / 13.72 / 15.08 mm | Patent Fno 2.90 at all stations; stop moves with L3; no iris diameters published |
-| `fstopSeries` / `maxFstop` | starts f/2.8, default max 16 (f/22 button unreachable) | starts f/2.9, `maxFstop: 22` | Patent Fno; production f/22 minimum |
-| S9 / S10 sd | 17.5 / 15.8 | 20.0 / 17.0 | Wide corner chief ray (Y = 21.6, real ω 45.7°) needs 19.2 / 16.0 and was blocked; FIG. 7 draws L2's first element at 20.1 with the S10 rim at ≈17.3 |
-| S32A sd | 21.0 | 18.0 | The asphere's sag turns over at ≈18.2 mm; the f/2.9 axial beam needs 16.6 and the chief ray 16.2 |
-| S42 / S43 sd | 20.6 / 21.8 | 18.0 / 18.0 | FIG. 7 draws L24 at 17.9 (old values 15 % / 22 % large); the tele chief ray needs 17.65 at S43 |
-| L10 `type` | Positive Meniscus | Negative Meniscus | R 59.615 / 36.734 (both +, R1 > R2); thick-lens f = −98.2 |
-| L19 `glass` | N-SK14 (Schott) | S-BSM14 (OHARA) | Same 603/606 coordinate; Canon's usual supplier |
-| L21 `glass` | OHARA L-BAL42 PGM glass (583/594) | L-BAL42 (OHARA) | Label format; catalog equivalent |
-| `varLabels` d43 | BF | D43 | The patent names the gap d43 |
-| Group labels L4–L7 | "L4 (relay)" … "L7 (corrector)" | "L4" … "L7" | The long labels overlapped under the narrow L5/L6 units in the diagram |
-| Header | Box header with wrong L6 direction and d43 listed as a focus gap | Rewritten: zoom motion, focus, BF, aperture and SD basis | Findings above |
+| Item                                                                         | Before                                                            | After                                                                                     | Evidence                                                                                                                                            |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L6 focus direction (header, `focusDescription`, L21 role, analysis §3.6, §5) | L6 moves toward the object                                        | L5 and L6 both move toward the image                                                      | ¶0069 (Example 4) and both FOCUS arrows in FIG. 7                                                                                                   |
+| `nominalFno` / aperture model                                                | 2.8, fixed iris (engine iris 11.27 mm, ≈f/3.9 equivalent at tele) | 2.9 + `zoomApertureModel: "from-nominal-fno"`; traced iris radii 10.87 / 13.72 / 15.08 mm | Patent Fno 2.90 at all stations; stop moves with L3; no iris diameters published                                                                    |
+| `fstopSeries` / `maxFstop`                                                   | starts f/2.8, default max 16 (f/22 button unreachable)            | starts f/2.9, `maxFstop: 22`                                                              | Patent Fno; production f/22 minimum                                                                                                                 |
+| S9 / S10 sd                                                                  | 17.5 / 15.8                                                       | 20.0 / 17.0                                                                               | Wide corner chief ray (Y = 21.6, real ω 45.7°) needs 19.2 / 16.0 and was blocked; FIG. 7 draws L2's first element at 20.1 with the S10 rim at ≈17.3 |
+| S32A sd                                                                      | 21.0                                                              | 18.0                                                                                      | The asphere's sag turns over at ≈18.2 mm; the f/2.9 axial beam needs 16.6 and the chief ray 16.2                                                    |
+| S42 / S43 sd                                                                 | 20.6 / 21.8                                                       | 18.0 / 18.0                                                                               | FIG. 7 draws L24 at 17.9 (old values 15 % / 22 % large); the tele chief ray needs 17.65 at S43                                                      |
+| L10 `type`                                                                   | Positive Meniscus                                                 | Negative Meniscus                                                                         | R 59.615 / 36.734 (both +, R1 > R2); thick-lens f = −98.2                                                                                           |
+| L19 `glass`                                                                  | N-SK14 (Schott)                                                   | S-BSM14 (OHARA)                                                                           | Same 603/606 coordinate; Canon's usual supplier                                                                                                     |
+| L21 `glass`                                                                  | OHARA L-BAL42 PGM glass (583/594)                                 | L-BAL42 (OHARA)                                                                           | Label format; catalog equivalent                                                                                                                    |
+| `varLabels` d43                                                              | BF                                                                | D43                                                                                       | The patent names the gap d43                                                                                                                        |
+| Group labels L4–L7                                                           | "L4 (relay)" … "L7 (corrector)"                                   | "L4" … "L7"                                                                               | The long labels overlapped under the narrow L5/L6 units in the diagram                                                                              |
+| Header                                                                       | Box header with wrong L6 direction and d43 listed as a focus gap  | Rewritten: zoom motion, focus, BF, aperture and SD basis                                  | Findings above                                                                                                                                      |
 
 Analysis sync: L3/L7 unit focal lengths (119.23, −90.78); E5 and E20 described as convex toward the object; E10 negative
 meniscus; E16 no longer called the strongest positive in L4 (E19, f ≈ +41 mm, is); the patent's ω noted as paraxial
@@ -128,3 +128,27 @@ and departure (≈ −0.87 mm at 18.0 mm) added; distortion quantified from FIG.
   these were kept within tolerance. The replica layer stays capped at 15.5 mm (FIG. 7 ≈16.6) for edge thickness.
 - The engine's paraxial wide half-field (36.4°) is below the patent's paraxial 41.12°, because heavy barrel
   distortion makes paraxial chief heights overstate the rims needed.
+
+## 2026-10-30 — Reused original coverage; runtime and label qualifications
+
+- Reused full original shape/glass coverage from 2026-09-23, preserving May 19/June 4 history. No fresh original-PDF
+  inspection or extra source-review count. Prior commit bfb59fe95 canonical prescription exactly equals current after
+  excluding only source.example added Oct 24; proof retains baseline/current/canonical hashes.
+- Narrow label qualification changes no numeric/control field. All 23 compatible catalog curves retain the same identities;
+  L12r remains Unmatched, now explicitly unidentified bonded medium rather than UV-curing resin. Actual medium labels,
+  layer label/role and inferred UD/process notes now match the public source qualifications. Chemistry, historical supplier,
+  melt, annealing and fabrication remain unproved. No numerical C/F/g/partial override is added/removed.
+- Geometry, source R/d/nd/vd/aspheres, stop, cams, guard values and all clear apertures remain identical. Existing bonded
+  cap 15.5 mm stays coextensive and positive: minimum thickness 0.006909624 mm at rim. This is a runtime check, not a new
+  source-rim measurement. No disconnected wings or new interface lands.
+- All 1365 zoom×focus configurations have geometry identical across focus, preserving infinity-only behavior. Reduced
+  actual-iris census 65 unique zooms (3 published/62 illustrative): 3185/3185 axial, 195/195 chiefs, 0 unaimed; source bundles
+  49/48/1,49/46/22,49/43/24. No aperture deficit over 3%; off-axis vignetting retained. Illustrative interval defocus
+  −1.385116805 mm at z=.28125 and minimum 98.5564% generic field coverage remain distinct from source stations.
+- All 24 actual SVG paths finite/closed/connected, 0 hidden trim across samples. This follow-up does not claim a new
+  native-figure comparison. Original source fidelity, sampled current runtime and production correlation remain separate.
+
+Label-only proof: baseline data SHA256 `d687f382db802be5fe227ca2f95be9599846285461e42b97c5443080a4c4d878`; candidate SHA256 `9bc1505aa23c136c4e7b26a837ecacb1c228958d7c6d0ede942bede8f9591c54`.
+Parsed equality excludes exactly all24 `elements.*.glass` strings and these annotations: L12r label/role, L13 role,
+L7 apdNote, L18 role and product-correlated UD roles on L7/L14/L16/L17. Every other parsed field is identical; all23
+identified curves and the one unresolved medium retain the same resolver outcome. No source-review count is added.

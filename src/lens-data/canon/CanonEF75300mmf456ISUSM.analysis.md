@@ -26,14 +26,14 @@ The six functional groups follow a positive–negative–positive–negative–p
 
 The stop is the explicit plane R16, placed 3.0 mm behind R15. It moves with G3 because that spacing is fixed; D16 is the changing air space between the stop and G4. There is no inferred shift of the stop into another gap.
 
-| Functional group | Elements | Standalone focal length in air | Source role |
-|---|---|---:|---|
-| G1 | L1–L3 | +133.743 mm | Positive front group |
-| G2 | L4–L6 | -40.976 mm | Negative stabilization group |
-| G3 | L7–L9 | +59.944 mm | Positive pre-stop group |
-| G4 | L10 | -410.972 mm | Weak negative fixed group |
-| G5 | L11–L13 | +69.152 mm | Positive rear relay |
-| G6 | L14–L15 | -58.042 mm | Negative terminal group |
+| Functional group | Elements | Standalone focal length in air | Source role                  |
+| ---------------- | -------- | -----------------------------: | ---------------------------- |
+| G1               | L1–L3    |                    +133.743 mm | Positive front group         |
+| G2               | L4–L6    |                     -40.976 mm | Negative stabilization group |
+| G3               | L7–L9    |                     +59.944 mm | Positive pre-stop group      |
+| G4               | L10      |                    -410.972 mm | Weak negative fixed group    |
+| G5               | L11–L13  |                     +69.152 mm | Positive rear relay          |
+| G6               | L14–L15  |                     -58.042 mm | Negative terminal group      |
 
 These are isolated compound-group powers, not a sum of the element focal lengths. Cemented interfaces are traced directly between their two glasses; no artificial air or cement film is introduced.
 
@@ -41,14 +41,14 @@ These are isolated compound-group powers, not a sum of the element focal lengths
 
 Paragraph 20 fixes G2 and G4 during zoom and moves G1, G3, G5 and G6. Positions below are computed from each group’s first vertex to the adopted fixed image plane; negative means objectward. Small deviations of the nominally fixed groups reflect the source's rounded gaps and the rounded computed image distances.
 
-| Group | Wide | Middle | Tele |
-|---|---:|---:|---:|
-| G1 | -182.500 mm | -211.900 mm | -237.490 mm |
-| G2 | -164.300 mm | -164.320 mm | -164.290 mm |
-| G3 | -121.600 mm | -132.350 mm | -150.890 mm |
-| G4 | -103.700 mm | -103.720 mm | -103.690 mm |
-| G5 | -77.400 mm | -83.020 mm | -79.590 mm |
-| G6 | -46.300 mm | -56.970 mm | -66.900 mm |
+| Group |        Wide |      Middle |        Tele |
+| ----- | ----------: | ----------: | ----------: |
+| G1    | -182.500 mm | -211.900 mm | -237.490 mm |
+| G2    | -164.300 mm | -164.320 mm | -164.290 mm |
+| G3    | -121.600 mm | -132.350 mm | -150.890 mm |
+| G4    | -103.700 mm | -103.720 mm | -103.690 mm |
+| G5    |  -77.400 mm |  -83.020 mm |  -79.590 mm |
+| G6    |  -46.300 mm |  -56.970 mm |  -66.900 mm |
 
 D5 increases, D10 decreases, D16 increases and D23 decreases from wide to tele, agreeing with ¶0026. D18 decreases from 23.80 to 18.20 mm and then rises to 21.60 mm. This reversal is preserved rather than replaced by a two-endpoint approximation. It is zoom behavior, not a focus prescription.
 
@@ -56,11 +56,11 @@ The patent prints only these three stations, and the US family publication (Exam
 
 ### Length and reference planes
 
-| Native station | Computed EFL | Adopted rear-vertex image gap | First vertex to image | Track / EFL |
-|---|---:|---:|---:|---:|
-| 76.12 mm | 76.117480 mm | 41.50 mm | 182.50 mm | 2.3976 |
-| 135.00 mm | 135.026499 mm | 52.17 mm | 211.90 mm | 1.5693 |
-| 291.49 mm | 291.499147 mm | 62.10 mm | 237.49 mm | 0.8147 |
+| Native station |  Computed EFL | Adopted rear-vertex image gap | First vertex to image | Track / EFL |
+| -------------- | ------------: | ----------------------------: | --------------------: | ----------: |
+| 76.12 mm       |  76.117480 mm |                      41.50 mm |             182.50 mm |      2.3976 |
+| 135.00 mm      | 135.026499 mm |                      52.17 mm |             211.90 mm |      1.5693 |
+| 291.49 mm      | 291.499147 mm |                      62.10 mm |             237.49 mm |      0.8147 |
 
 Only the tele station has an optical track/EFL ratio below unity. The first-vertex optical track is not the manufacturer's mount-to-front barrel length. There is no justification for comparing those lengths without their distinct reference planes.
 
@@ -161,12 +161,12 @@ The last element is an object-convex positive meniscus with a weakly curved rear
 ### Cemented assemblies
 
 | Elements | Surfaces | Net isolated-doublet focal length |
-|---|---|---:|
-| L1/L2 | R1–R3 | +352.966 mm |
-| L5/L6 | R8–R10 | -136.649 mm |
-| L8/L9 | R13–R15 | -965.737 mm |
-| L11/L12 | R19–R21 | +129.339 mm |
-| L14/L15 | R24–R26 | -58.042 mm |
+| -------- | -------- | --------------------------------: |
+| L1/L2    | R1–R3    |                       +352.966 mm |
+| L5/L6    | R8–R10   |                       -136.649 mm |
+| L8/L9    | R13–R15  |                       -965.737 mm |
+| L11/L12  | R19–R21  |                       +129.339 mm |
+| L14/L15  | R24–R26  |                        -58.042 mm |
 
 The difference between these compound powers and the element powers is intentional. Cemented interfaces refract from glass to glass, whereas the element numbers above use air on both sides.
 
@@ -175,22 +175,22 @@ The difference between these compound powers and the element powers is intention
 The source N/ν coordinates are retained exactly. Paragraph 0057 does not define their reference wavelength; d/g aberration-plot labels alone do not establish that reference. The repeat of this prescription in [US 2001/0030809 A1, Numerical Example 9](https://patents.google.com/patent/US20010030809A1/en) likewise uses generic N/ν. All 15 elements therefore retain an explicit Unmatched disposition and indexReferenceNote. Tracing uses approximate d-line Abbe dispersion; no catalog curve or catalog-derived C/F/g fields are activated. The candidate classes below describe numerical proximity only, with supplier, melt and source reference unresolved.
 
 | Source N | Source ν | Possible d-line catalog class | Element |
-|---:|---:|---|---|
-| 1.80518 | 25.4 | S-TIH6 | L1 |
-| 1.51633 | 64.2 | S-BSL7 | L2 |
-| 1.51633 | 64.2 | S-BSL7 | L3 |
-| 1.77250 | 49.6 | LAH66 | L4 |
-| 1.51633 | 64.2 | S-BSL7 | L5 |
-| 1.84666 | 23.8 | S-TIH53 | L6 |
-| 1.60311 | 60.7 | S-BSM14 | L7 |
-| 1.48749 | 70.2 | S-FSL5 | L8 |
-| 1.83400 | 37.2 | S-LAH60 | L9 |
-| 1.60311 | 60.7 | S-BSM14 | L10 |
-| 1.60311 | 60.7 | S-BSM14 | L11 |
-| 1.80518 | 25.4 | S-TIH6 | L12 |
-| 1.51633 | 64.2 | S-BSL7 | L13 |
-| 1.77250 | 49.6 | LAH66 | L14 |
-| 1.80518 | 25.4 | S-TIH6 | L15 |
+| -------: | -------: | ----------------------------- | ------- |
+|  1.80518 |     25.4 | S-TIH6                        | L1      |
+|  1.51633 |     64.2 | S-BSL7                        | L2      |
+|  1.51633 |     64.2 | S-BSL7                        | L3      |
+|  1.77250 |     49.6 | LAH66                         | L4      |
+|  1.51633 |     64.2 | S-BSL7                        | L5      |
+|  1.84666 |     23.8 | S-TIH53                       | L6      |
+|  1.60311 |     60.7 | S-BSM14                       | L7      |
+|  1.48749 |     70.2 | S-FSL5                        | L8      |
+|  1.83400 |     37.2 | S-LAH60                       | L9      |
+|  1.60311 |     60.7 | S-BSM14                       | L10     |
+|  1.60311 |     60.7 | S-BSM14                       | L11     |
+|  1.80518 |     25.4 | S-TIH6                        | L12     |
+|  1.51633 |     64.2 | S-BSL7                        | L13     |
+|  1.77250 |     49.6 | LAH66                         | L14     |
+|  1.80518 |     25.4 | S-TIH6                        | L15     |
 
 The modern S-prefixed candidates do not assert identity with the legacy OHARA glasses. LAH66 is a separately cataloged legacy curve, also left inactive here. No inferred anomalous-partial-dispersion coefficient, ED count or APO-performance claim is made.
 
@@ -204,11 +204,11 @@ No focus breathing, travel or near-state image quality can be inferred from thos
 
 The physical iris is inferred by tracing the native f-number entrance bundle to the printed stop at each station. Exact spherical-ray calibration gives:
 
-| Station | Native f-number | Inferred stop semi-diameter |
-|---|---:|---:|
-| 76.12 mm | 4.1 | 12.909889366 mm |
-| 135.00 mm | 4.7 | 12.898942265 mm |
-| 291.49 mm | 5.8 | 12.740409069 mm |
+| Station   | Native f-number | Inferred stop semi-diameter |
+| --------- | --------------: | --------------------------: |
+| 76.12 mm  |             4.1 |             12.909889366 mm |
+| 135.00 mm |             4.7 |             12.898942265 mm |
+| 291.49 mm |             5.8 |             12.740409069 mm |
 
 Agreement with the requested f-number is calibration, not independent confirmation of an unpublished physical diaphragm. At the 13 solved stations the f-number (f/4.23 to f/5.66) is chosen so that the iris radius lies on a straight line between these three radii, as for a nearly fixed iris; those f-numbers are not patent data.
 
@@ -222,11 +222,11 @@ The example is all-spherical. There are no aspheric coefficients, diffractive su
 
 The patent's stabilization-group condition reproduces:
 
-| Quantity | Printed | Computed |
-|---|---:|---:|
-| abs(fa / sqrt(fW × fT)) | 0.275 | 0.275086 |
-| abs(foW / frW), literal ¶0033–0035 | 0.335 | 1.979514 |
-| abs(foT / frT), literal ¶0033–0035 | 1.068 | 0.637265 |
+| Quantity                           | Printed | Computed |
+| ---------------------------------- | ------: | -------: |
+| abs(fa / sqrt(fW × fT))            |   0.275 | 0.275086 |
+| abs(foW / frW), literal ¶0033–0035 |   0.335 | 1.979514 |
+| abs(foT / frT), literal ¶0033–0035 |   1.068 | 0.637265 |
 
 The patent states three bounds (¶0030 and ¶0033):
 
@@ -257,3 +257,7 @@ Only the three printed infinity stations carry source authority. The solved inte
 - [US20010030809A1](https://patents.google.com/patent/US20010030809A1/en), family publication, Example 9 (the same prescription and the same three zoom rows) and inventor metadata. It does not replace the selected Japanese source.
 - OHARA, [optical-glass catalog downloads](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), July 2026 Zemax catalog, including preserved legacy entries.
 - HOYA, Schott, Hikari, Sumita and CDGM catalogs, used as comparison sources rather than supplier identifications.
+
+## 2026-10-30 — Narrow source-summary metadata follow-up
+
+The complete **2026-10-14** source/shape/glass review is reused unchanged. A narrow check of the same original JP H08-062541 A, **Numerical Example 2, Table 3, PDF page 9**, confirms the printed focal-length row **76.12 / 135.00 / 291.49 mm**. Catalog design endpoints now quote **76.12 / 291.49 mm**, replacing computed 76.1174798344741 / 291.49914720355235 metadata. Those calculated EFLs remain runtime/analysis results, not printed source endpoints. Marketing 75–300 mm, every optical field, all source/solved zoom stations, focus/aperture controls and actual October 14 review dates are unchanged. This is a metadata-only source-summary check, not a fresh whole-lens source inspection or another reviewed/reused entry.

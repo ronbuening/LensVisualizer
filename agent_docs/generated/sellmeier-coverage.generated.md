@@ -1381,13 +1381,13 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 22A | Element 12 (resin) | abbe | `UV-curing optical resin (replica aspheric)` | No catalog match |
+| 22A | Element 12 (bonded layer) | abbe | `Unmatched (source bonded medium 1.59022/30.1; chemistry and process unidentified)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - 95.2% trusted (20/21); 95.2% Sellmeier (20/21) - US 2020/0142167 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 25A | Element 14 | abbe | `Unmatched (531559; material not stated in patent, resin-class coordinate; patent nd=1.53110, vd=55.9)` | Explicit unmatched/proprietary annotation |
+| 25A | Element 14 | abbe | `Unmatched (source medium 1.53110/55.9; chemistry and process unidentified)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - 95.2% trusted (20/21); 95.2% Sellmeier (20/21) - US 2020/0142168 A1
 
@@ -1997,7 +1997,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 14A | Element 8 | abbe | `Unmatched (Canon PMo optical resin, nd=1.53110, νd=55.9)` | Explicit unmatched/proprietary annotation |
+| 14A | Element 8 | abbe | `Unmatched (source 1.53110/55.9 medium; chemistry and process unidentified)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - DE 3602859 A1
 
@@ -2725,8 +2725,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3A | Element 2 (G2, Asph.) | abbe | `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)` | No catalog match |
-| 17A | Element 8 (L4, Asph.) | abbe | `531559 — optical resin coordinate (same as G2; material not named in patent)` | No catalog match |
+| 3A | Element 2 (G2, Asph.) | abbe | `Unmatched (source d-line 1.53110/55.9; composition not identified)` | Explicit unmatched/proprietary annotation |
+| 17A | Element 8 (L4, Asph.) | abbe | `Unmatched (source d-line 1.53110/55.9; composition not identified)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) - 75.0% trusted (6/8); 75.0% Sellmeier (6/8) - US 2,721,499
 

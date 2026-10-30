@@ -28,17 +28,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON APERTURE: stop diameter unpublished. nominalFno uses the patent's 4.08 / 4.08 / 4.12;
  *   the stop radius is derived from the design f-number at each station.
  *   This is not independent evidence of the physical diaphragm diameter.
- * NOTE ON SEMI-DIAMETERS: unpublished; modeled from exact meridional real-ray traces (on-axis full aperture, full-field
- *   chief ray, full-field bundle to ±50% pupil, 60%-field full bundle) at 9 zoom × 3 focus samples with 8% clearance,
- *   then reduced where edge thickness (≥ 0.5 mm target), rim slope (≤ 64.2°), or cross-gap intrusion (≤ 0.9 × gap)
- *   would fail. Surfaces 15/16 are limited by the 0.80 mm E8–E9 air gap (rim-face clearance ≈ 0.08 mm, ≈ 10% of the gap).
- *
- * Fig. 1 (PDF p. 2, 600 dpi) supports smaller, continuous C2 and C4 rims. C4 surfaces 21–23 share
- * a 9.9 mm rim (figure ≈ 9.3 mm), retaining ray clearance without the former 11.5 mm front step. The C2
- * front rim: surface 13 is 8.4 mm, matching the cemented junction
- * instead of 9.8 mm. The rear rim stays 6.9 mm for cross-gap clearance. These remain modeled apertures.
- * Catalog glass names identify coordinate-compatible, supplier-neutral spectral proxies; production suppliers are
- * not identified by the patent.
+ * NOTE ON SEMI-DIAMETERS: unpublished. Scoped original follow-up 2026-10-30 corrects 17 inferred
+ * clear caps to native Fig. 1 proportions and adds eight free-end rimExtensionSd shoulders.
+ * The original embeds a 300-ppi raster; the October 1 600-dpi rendering was upsampling.
+ * Approximate native blank half-heights include E1 31.4, E2 21.3, focus singlet 7.5,
+ * C2/C3 7.6, E11 9.0, C4 9.3 and rear singlet 20.0 mm, with practical uncertainty
+ * about 0.6 mm (1 mm at the front). Adopted caps remain inferred, not printed apertures.
+ * Existing source R/d, all five aspheres, stops, zoom/focus cams and curve choices are preserved.
+ * The S15/S16 clear caps 6.9/6.85 retain the 0.80 mm gap constraint; their outer shoulders
+ * improve the drawn blanks without expanding optical aperture. Full S7/S25 outer-height
+ * trials fail the unchanged gap guard; conservative adopted shoulders retain those constraints.
+ * October 1 material selections and audit dates remain history; the new native-height evidence
+ * supersedes its C2/C4 modeled cap estimates. Supplier/melt/chemistry and moulding grade remain
+ * unspecified. APD classifications are inferred; no positional partial or line index is published.
  *
  * Optical design only: glass surfaces, stop, variable gaps. No rear plates are listed by the source.
  * See LENS_DATA_SPEC.md § Scope: What to Include.
@@ -73,6 +75,16 @@ const LENS_DATA = {
     patentYear: 2024,
     authors: ["Makoto Nakahara"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example 1 (PDF pp. 20–21 / printed pp. 6–7): literal L3 rows give computed fL3 about 49.325 mm versus printed 49.46 mm; infinity BF is about 12.054/12.021/11.980 mm versus printed 12.13. The original R/d and image plane are retained; no unique source correction is established.",
+      },
+      {
+        status: "unresolved",
+        note: "Fig. 2A header (PDF p. 2 / sheet 1) prints Fno 4.63 and half-field 36.2 degrees, while Example 1 Various Data (PDF p. 21) prints wide Fno 4.08 / paraxial half-field 61.36 degrees. Paragraph0040 (PDF p. 17) identifies Fig. 2A with the wide station. The numerical table is retained without repairing the source plot header.",
+      },
+    ],
   },
 
   elements: [
@@ -80,13 +92,15 @@ const LENS_DATA = {
       id: 1,
       name: "E1",
       label: "Element 1",
-      type: "Neg. Meniscus (2× Asph)",
+      type: "Negative Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.4,
+      indexReference: "d",
       focalLengthMm: -62.51,
-      glass: "S-BAL42 / L-BAL42 (OHARA) class — 583594 barium crown",
+      glass:
+        "S-BAL42 / L-BAL42 (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
-      role: "Front negative meniscus, convex to object; large-diameter double-sided glass-moulded asphere.",
+      role: "Front negative meniscus, convex to object; large double-sided asphere. Source manufacturing process is unspecified.",
     },
     {
       id: 2,
@@ -95,8 +109,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.91082,
       vd: 35.2,
+      indexReference: "d",
       focalLengthMm: -30.18,
-      glass: "TAFD35 (HOYA) / H-ZLaF4LA class — 911352 dense lanthanum flint",
+      glass:
+        "TAFD35 (HOYA) / H-ZLaF4LA (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Second front negative meniscus; strongest negative element of L1.",
     },
@@ -107,8 +123,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.59282,
       vd: 68.6,
+      indexReference: "d",
       focalLengthMm: -87.21,
-      glass: "FCD515 / FCD505 (HOYA) class — 593686 fluorophosphate crown",
+      glass: "FCD515 / FCD505 (HOYA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Third front negative meniscus; low-dispersion negative power in L1.",
     },
@@ -119,11 +136,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.43875,
       vd: 94.7,
+      indexReference: "d",
       focalLengthMm: -34.74,
-      glass: "S-FPL55 (OHARA) class — 439947 fluorophosphate (Super UD class)",
+      glass: "S-FPL55 (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Canon lists 1 Super UD + 3 UD elements; assignment to this νd coordinate is inferred (no PgF published)",
+        "Inferred from low-dispersion coordinates and compatible catalog spectral proxies, consistent with the previously recorded production UD count. The original supplies no positional partial dispersion; historical chemistry, supplier and exact production assignment are unproved.",
       role: "Biconcave negative, front of cemented C1; νd 94.7 Super-UD-class material.",
       cemented: "C1",
     },
@@ -134,8 +152,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 27.83,
-      glass: "TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum flint",
+      glass:
+        "TAFD30 (HOYA) / S-LAH58 (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Biconvex positive, rear of C1; G1P, the only positive lens in L1.",
       diagramLabel: "G1P",
@@ -148,8 +168,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72047,
       vd: 34.7,
+      indexReference: "d",
       focalLengthMm: 73.58,
-      glass: "S-NBH8 (OHARA) / N-KZFS8 (Schott) class — 720347 short flint",
+      glass:
+        "S-NBH8 (OHARA) / N-KZFS8 (Schott) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Single biconvex positive focus lens GP (unit L2); moves toward the image for close focus.",
       diagramLabel: "GP",
@@ -161,8 +183,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8081,
       vd: 22.8,
+      indexReference: "d",
       focalLengthMm: -25.1,
-      glass: "S-NPH1 (OHARA) / FD225 (HOYA) class — 808228 dense flint",
+      glass:
+        "S-NPH1 (OHARA) / FD225 (HOYA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Thin high-dispersion negative meniscus, front of C2 (L3).",
       cemented: "C2",
@@ -174,8 +198,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.673,
       vd: 38.3,
+      indexReference: "d",
       focalLengthMm: 16.55,
-      glass: "S-NBH52V (OHARA) class — 673383",
+      glass: "S-NBH52V (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Positive meniscus, rear of C2.",
       cemented: "C2",
@@ -187,8 +212,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: -11.92,
-      glass: "TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum flint",
+      glass:
+        "TAFD30 (HOYA) / S-LAH58 (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Biconcave negative, front of C3; strongest negative element of L3.",
       cemented: "C3",
@@ -200,8 +227,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.92286,
       vd: 20.9,
+      indexReference: "d",
       focalLengthMm: 21.04,
-      glass: "E-FDS1 (HOYA) / N-SF66 (Schott) class — 923209 dense flint",
+      glass:
+        "E-FDS1 (HOYA) / N-SF66 (Schott) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "High-dispersion positive meniscus, rear of C3.",
       cemented: "C3",
@@ -210,15 +239,17 @@ const LENS_DATA = {
       id: 11,
       name: "E11",
       label: "Element 11",
-      type: "Biconvex Pos. (1× Asph)",
+      type: "Biconvex Positive (1× Asph)",
       nd: 1.497,
       vd: 81.5,
+      indexReference: "d",
       focalLengthMm: 25.04,
-      glass: "S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815 fluorophosphate (UD class)",
+      glass:
+        "S-FPL51 (OHARA) / FCD1 (HOYA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Canon lists 1 Super UD + 3 UD elements; assignment to this νd coordinate is inferred (no PgF published)",
-      role: "Biconvex positive UD-class glass-moulded asphere (rear surface).",
+        "Inferred from low-dispersion coordinates and compatible catalog spectral proxies, consistent with the previously recorded production UD count. The original supplies no positional partial dispersion; historical chemistry, supplier and exact production assignment are unproved.",
+      role: "Low-dispersion biconvex positive with aspheric rear surface; UD assignment is inferred and the source manufacturing process is unspecified.",
     },
     {
       id: 12,
@@ -227,8 +258,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.0509,
       vd: 26.9,
+      indexReference: "d",
       focalLengthMm: -27.4,
-      glass: "TAFD65 (HOYA) / H-ZLaF96 (CDGM) class — 051269 lanthanum dense flint",
+      glass:
+        "TAFD65 (HOYA) / H-ZLaF96 (CDGM) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Very high-index negative meniscus, front of C4.",
       cemented: "C4",
@@ -240,11 +273,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
+      indexReference: "d",
       focalLengthMm: 18.7,
-      glass: "S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815 fluorophosphate (UD class)",
+      glass:
+        "S-FPL51 (OHARA) / FCD1 (HOYA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Canon lists 1 Super UD + 3 UD elements; assignment to this νd coordinate is inferred (no PgF published)",
+        "Inferred from low-dispersion coordinates and compatible catalog spectral proxies, consistent with the previously recorded production UD count. The original supplies no positional partial dispersion; historical chemistry, supplier and exact production assignment are unproved.",
       role: "Biconvex positive UD-class element, rear of C4.",
       cemented: "C4",
     },
@@ -255,8 +290,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: -80.07,
-      glass: "TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum flint",
+      glass:
+        "TAFD30 (HOYA) / S-LAH58 (OHARA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Negative meniscus convex to object; image-stabilising element GIS (LIS), shifted perpendicular to the axis.",
       diagramLabel: "GIS",
@@ -265,13 +302,14 @@ const LENS_DATA = {
       id: 15,
       name: "E15",
       label: "Element 15",
-      type: "Neg. Meniscus (2× Asph)",
+      type: "Negative Meniscus (2× Asph)",
       nd: 1.854,
       vd: 40.4,
+      indexReference: "d",
       focalLengthMm: -62.05,
-      glass: "L-LAH85V (OHARA low-Tg) class — 854404 lanthanum flint",
+      glass: "L-LAH85V (OHARA low-Tg) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
-      role: "Negative meniscus concave to object; double-sided glass-moulded asphere at the rear of L3.",
+      role: "Negative meniscus concave to object; double-sided asphere at the rear of L3. Source manufacturing process is unspecified.",
     },
     {
       id: 16,
@@ -280,11 +318,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.5,
+      indexReference: "d",
       focalLengthMm: 71.72,
-      glass: "S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815 fluorophosphate (UD class)",
+      glass:
+        "S-FPL51 (OHARA) / FCD1 (HOYA) (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Canon lists 1 Super UD + 3 UD elements; assignment to this νd coordinate is inferred (no PgF published)",
+        "Inferred from low-dispersion coordinates and compatible catalog spectral proxies, consistent with the previously recorded production UD count. The original supplies no positional partial dispersion; historical chemistry, supplier and exact production assignment are unproved.",
       role: "Weak positive meniscus convex to image; unit L4 (LN), fixed during zoom and focus.",
       diagramLabel: "LN",
     },
@@ -295,7 +335,7 @@ const LENS_DATA = {
       label: "1A",
       R: 37.0,
       d: 3.0,
-      sd: 33.5,
+      sd: 31.5,
       medium: 1,
       asphere: {
         K: 0,
@@ -311,7 +351,8 @@ const LENS_DATA = {
       label: "2A",
       R: 17.814,
       d: 12.2,
-      sd: 25.6,
+      sd: 23.7,
+      rimExtensionSd: 31.5,
       asphere: {
         K: -8.76022e-1,
         A4: 9.21103e-6,
@@ -322,40 +363,41 @@ const LENS_DATA = {
         A14: 2.03592e-19,
       },
     }, // E1 rear (asph) → air
-    { label: "3", R: 52.582, d: 1.23, sd: 22.7, medium: 2 }, // E2 front
-    { label: "4", R: 17.849, d: 5.54, sd: 16.05 }, // E2 rear
+    { label: "3", R: 52.582, d: 1.23, sd: 21.4, medium: 2 }, // E2 front
+    { label: "4", R: 17.849, d: 5.54, sd: 16.05, rimExtensionSd: 21.4 }, // E2 rear
     { label: "5", R: 30.037, d: 1.15, sd: 15.7, medium: 3 }, // E3 front
-    { label: "6", R: 18.728, d: 9.86, sd: 14.25 }, // E3 rear
+    { label: "6", R: 18.728, d: 9.86, sd: 14.25, rimExtensionSd: 15.7 }, // E3 rear
     { label: "7", R: -28.561, d: 1.1, sd: 13.3, medium: 4 }, // E4 front (C1: Super UD-class)
     { label: "8", R: 33.065, d: 4.99, sd: 13.9, medium: 5 }, // E4→E5 cemented junction
-    { label: "9", R: -88.917, sd: 13.7 }, // E5 rear → air; d9 zoom gap (L1–stop)
+    { label: "9", R: -88.917, sd: 13.7, rimExtensionSd: 13.9 }, // E5 rear → air; d9 zoom gap (L1–stop)
     { label: "STO", R: "flat" }, // Aperture stop (patent surface 10); d10 zoom+focus gap
-    { label: "11", R: 76.538, d: 1.86, sd: 8.4, medium: 6 }, // E6 front — focus lens GP (L2)
-    { label: "12", R: -170.686, sd: 8.6 }, // E6 rear; d12 zoom+focus gap
-    { label: "13", R: 21.236, d: 0.69, sd: 8.4, medium: 7 }, // E7 front (C2; Fig. 1 rim, matched to the junction)
-    { label: "14", R: 10.223, d: 4.67, sd: 8.4, medium: 8 }, // E7→E8 junction
-    { label: "15", R: 101.506, d: 0.8, sd: 6.9 }, // E8 rear
-    { label: "16", R: -48.763, d: 0.55, sd: 6.85, medium: 9 }, // E9 front (C3)
-    { label: "17", R: 13.497, d: 2.73, sd: 8.7, medium: 10 }, // E9→E10 junction
-    { label: "18", R: 39.963, d: 0.35, sd: 8.75 }, // E10 rear
-    { label: "19", R: 19.54, d: 5.55, sd: 10.9, medium: 11 }, // E11 front (UD-class GMo asphere)
+    { label: "11", R: 76.538, d: 1.86, sd: 7.6, medium: 6 }, // E6 front — focus lens GP (L2)
+    { label: "12", R: -170.686, sd: 7.6 }, // E6 rear; d12 zoom+focus gap
+    { label: "13", R: 21.236, d: 0.69, sd: 7.7, medium: 7 }, // E7 front (C2; Fig. 1 rim, matched to the junction)
+    { label: "14", R: 10.223, d: 4.67, sd: 7.7, medium: 8 }, // E7→E8 junction
+    { label: "15", R: 101.506, d: 0.8, sd: 6.9, rimExtensionSd: 7.7 }, // E8 rear
+    { label: "16", R: -48.763, d: 0.55, sd: 6.85, rimExtensionSd: 7.7, medium: 9 }, // E9 front (C3)
+    { label: "17", R: 13.497, d: 2.73, sd: 7.7, medium: 10 }, // E9→E10 junction
+    { label: "18", R: 39.963, d: 0.35, sd: 7.7 }, // E10 rear
+    { label: "19", R: 19.54, d: 5.55, sd: 9.2, medium: 11 }, // E11 front (UD-class GMo asphere)
     {
       label: "20A",
       R: -31.043,
       d: 0.15,
-      sd: 10.85,
+      sd: 9.2,
       asphere: { K: 0, A4: 2.45229e-5, A6: -3.72036e-8, A8: -1.088e-9, A10: 1.0397e-11, A12: -1.91023e-14 },
     }, // E11 rear (asph)
-    { label: "21", R: 18.566, d: 0.64, sd: 9.9, medium: 12 }, // E12 front (C4)
-    { label: "22", R: 11.089, d: 7.99, sd: 9.9, medium: 13 }, // E12→E13 junction
-    { label: "23", R: -43.632, d: 0.35, sd: 9.9 }, // E13 rear
-    { label: "24", R: 22.204, d: 0.9, sd: 10.6, medium: 14 }, // E14 front — IS element GIS
-    { label: "25", R: 16.576, d: 5.56, sd: 10.15 }, // E14 rear
+    { label: "21", R: 18.566, d: 0.64, sd: 9.5, medium: 12 }, // E12 front (C4)
+    { label: "22", R: 11.089, d: 7.99, sd: 9.5, medium: 13 }, // E12→E13 junction
+    { label: "23", R: -43.632, d: 0.35, sd: 9.5 }, // E13 rear
+    { label: "24", R: 22.204, d: 0.9, sd: 9.9, medium: 14 }, // E14 front — IS element GIS
+    { label: "25", R: 16.576, d: 5.56, sd: 9.6, rimExtensionSd: 9.9 }, // E14 rear
     {
       label: "26A",
       R: -26.667,
       d: 1.9,
       sd: 10.6,
+      rimExtensionSd: 11.5,
       medium: 15,
       asphere: { K: 0, A4: 1.66615e-4, A6: -1.90317e-6, A8: 1.2323e-8, A10: -9.41453e-11, A12: 4.39584e-13 },
     }, // E15 front (GMo asph)
@@ -366,7 +408,7 @@ const LENS_DATA = {
       asphere: { K: 0, A4: 1.69532e-4, A6: -1.38711e-6, A8: 4.53596e-9, A10: -6.87436e-12, A12: 2.41668e-14 },
     }, // E15 rear (asph); d27 zoom gap (L3–L4)
     { label: "28", R: -497.495, d: 7.36, sd: 20.2, medium: 16 }, // E16 front (L4, fixed)
-    { label: "29", R: -33.423, d: 12.13, sd: 20.8 }, // E16 rear; BF 12.13 (printed, fixed)
+    { label: "29", R: -33.423, d: 12.13, sd: 20.2 }, // E16 rear; BF 12.13 (printed, fixed)
   ],
 
   zoom: {

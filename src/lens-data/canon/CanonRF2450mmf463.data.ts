@@ -20,9 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    (d14 + 2.95 + d16 = 24.23 mm at every station), with LP         ║
  * ║    floating between them. Variable gaps: d6, d14, d16, d18 (BF).  ║
  * ║    All three tabulated stations (24.71 / 35.01 / 48.53 mm) are     ║
- * ║    stored; nothing is interpolated.                                ║
+ * ║    stored; runtime interpolation remains an illustrative model.    ║
  * ║                                                                    ║
- * ║  NOTE ON SCALING: No scaling applied — patent at production        ║
+ * ║  NOTE ON SCALING: No scaling applied — patent at native        ║
  * ║    focal lengths (f = 24.71–48.53 mm).                             ║
  * ║  NOTE ON BF / CONIC: No filter or cover plate is listed, so d18 is ║
  * ║    the tabulated BF. All three aspheres have K = 0 (convention     ║
@@ -30,20 +30,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON APERTURE: FNO 4.63 / 5.66 / 6.48 with the stop in L2; no  ║
  * ║    iris diameters are published, so the station iris radii are    ║
- * ║    inferred from the FNO schedule (radii: 4.58 /                   ║
- * ║    4.40 / 4.58 mm). The stop radius is derived from the design     ║
- * ║    f-number at each zoom station. FIG. 1 draws the SP opening at   ║
+ * ║    inferred from the FNO schedule (current source-state radii     ║
+ * ║    4.393 / 4.568 mm; wide 4.576). Derived radii are not published. ║
+ * ║    FIG. 1 draws the SP opening at                                ║
  * ║    about 4.4 mm.                                                   ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS: The patent publishes no effective         ║
  * ║    diameters. G1 front (18.8) and L2a (6.4) are measured from      ║
  * ║    FIG. 1 (front page, 300 dpi; 15.02 px/mm from the S1–S18 vertex ║
  * ║    span). S10 (4.9) clears the f/4.63 axial beam (4.72 mm) inside  ║
- * ║    the S10/S11 gap limit. The remaining rims are earlier estimates ║
- * ║    that lie within about 15 % of FIG. 1. The G1 rear curve ends at ║
+ * ║    the S10/S11 gap limit. Native cap refinements and retained gaps ║
+ * ║    are recorded in the 2026-10-30 audit. G1 rear curve ends at    ║
  * ║    about 14.8 mm and L4's front curve at about 12.1 mm, each with  ║
- * ║    a flat flange outside. The wide end relies on digital           ║
- * ║    distortion correction: a real chief ray at the patent's 36.23°  ║
+ * ║    a connected outer shoulder. The source wide field has barrel  ║
+ * ║    distortion: a real chief ray at the patent's 36.23 degrees      ║
  * ║    lands at 15.8 mm (FIG. 2A about −13 %).                         ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS: The patent gives infinity spacings only.     ║
@@ -55,6 +55,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-30: native connected optical shoulders at S2/S17A; six clear-cap
+// refinements. All source R/d/aspheres/cams/stops preserved. Unknown G2/L4
+// composition stays Unmatched; catalog curves qualify six other media only.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -96,9 +99,10 @@ const LENS_DATA = {
       label: "Element 1 (G1)",
       type: "Negative Meniscus",
       nd: 1.63854,
+      indexReference: "d",
       vd: 55.4,
       focalLengthMm: -31.45,
-      glass: "S-BSM18 (OHARA)",
+      glass: "S-BSM18 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "First negative lens — diverges beam for wide-angle coverage. Steeply curved rear surface (R₂ = 18.5 mm) carries the dominant refraction in L1.",
     },
@@ -108,9 +112,10 @@ const LENS_DATA = {
       label: "Element 2 (G2, Asph.)",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.5311,
+      indexReference: "d",
       vd: 55.9,
       focalLengthMm: -112.73,
-      glass: "531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)",
+      glass: "Unmatched (source d-line 1.53110/55.9; composition not identified)",
       apd: false,
       role: "Aspherical correction plate — nearly flat base curve (R₁ ≈ 995 mm) with aspherical departure correcting wide-angle coma and field curvature (¶0061). The patent allows resin for G2 to save weight (¶0062).",
     },
@@ -120,11 +125,12 @@ const LENS_DATA = {
       label: "Element 3 (L1P)",
       type: "Positive Meniscus",
       nd: 1.69895,
+      indexReference: "d",
       vd: 30.1,
       focalLengthMm: 67.52,
-      glass: "S-TIM35 (OHARA 699/301)",
+      glass: "S-TIM35 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
-      role: "Chromatic corrector for L1 — high-dispersion flint counterbalances G1/G2 lateral chromatic aberration.",
+      role: "Chromatic corrector for L1 — high-dispersion coordinate counterbalances G1/G2 lateral chromatic aberration.",
     },
     {
       id: 4,
@@ -132,9 +138,10 @@ const LENS_DATA = {
       label: "Element 4 (L2a)",
       type: "Biconvex Positive",
       nd: 1.90366,
+      indexReference: "d",
       vd: 31.3,
       focalLengthMm: 23.29,
-      glass: "S-LAH95 (OHARA 904/313)",
+      glass: "S-LAH95 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Primary convergence element — highest nd in system (1.904) keeps curvatures moderate despite strong +23 mm power. Near-planoconvex orientation minimizes spherical aberration.",
     },
@@ -144,11 +151,12 @@ const LENS_DATA = {
       label: "Element 5 (L2b)",
       type: "Biconcave Negative",
       nd: 1.84666,
+      indexReference: "d",
       vd: 23.9,
       focalLengthMm: -16.45,
-      glass: "S-NPH53 (OHARA 847/239)",
+      glass: "S-NPH53 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
-      role: "Chromatic corrector for L2 — most dispersive element (νd = 23.9). Air-spaced flint in the L2 PNP triplet provides strong chromatic counterbalance.",
+      role: "Chromatic corrector for L2 — most dispersive element (νd = 23.9). Air-spaced negative member in the L2 PNP triplet provides strong chromatic counterbalance.",
     },
     {
       id: 6,
@@ -156,9 +164,10 @@ const LENS_DATA = {
       label: "Element 6 (L2c)",
       type: "Biconvex Positive",
       nd: 1.7725,
+      indexReference: "d",
       vd: 49.6,
       focalLengthMm: 25.8,
-      glass: "S-LAH66 (OHARA 773/496)",
+      glass: "S-LAH66 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Secondary convergence in L2 — completes the PNP triplet. Biconvex shape distributes refraction for coma balance.",
     },
@@ -168,11 +177,12 @@ const LENS_DATA = {
       label: "Element 7 (LP, Focus)",
       type: "Positive Meniscus",
       nd: 1.48749,
+      indexReference: "d",
       vd: 70.2,
       focalLengthMm: 62.75,
-      glass: "S-FSL5 (OHARA 487/702)",
+      glass: "S-FSL5 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
-      role: "Inner focus element — lightweight fluor crown (density ~2.46 g/cm³) moves toward object for close focus. Concave-toward-object shape reduces field curvature variation during focus.",
+      role: "Inner focus element — the source low-index, high-Abbe positive member moves toward object for close focus; composition and density are not identified. Concave-toward-object shape reduces field curvature variation during focus.",
     },
     {
       id: 8,
@@ -180,11 +190,12 @@ const LENS_DATA = {
       label: "Element 8 (L4, Asph.)",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5311,
+      indexReference: "d",
       vd: 55.9,
       focalLengthMm: -185.51,
-      glass: "531559 — optical resin coordinate (same as G2; material not named in patent)",
+      glass: "Unmatched (source d-line 1.53110/55.9; composition not identified)",
       apd: false,
-      role: "Rear field corrector — dual aspherical surfaces (departures about −1.8 mm at the rims) provide higher-order aberration correction for astigmatism and field curvature. Weak negative power (f ≈ −186 mm) slightly extends BFD.",
+      role: "Rear field corrector — dual aspherical surfaces (departures about −1.84 mm front and −2.37 mm rear at current clear caps) provide higher-order aberration correction for astigmatism and field curvature. Weak negative power (f ≈ −186 mm) slightly extends BFD.",
     },
   ],
 
@@ -193,18 +204,18 @@ const LENS_DATA = {
   surfaces: [
     // ─── L1 (Unit 1): Negative front group ───
     { label: "1", R: 238.756, d: 1.4, sd: 18.8, medium: 1 }, // G1 front
-    { label: "2", R: 18.479, d: 7.21, sd: 14.4 }, // G1 rear → air
+    { label: "2", R: 18.479, d: 7.21, sd: 14.4, rimExtensionSd: 18.8 }, // G1 rear → air
     {
       label: "3A",
       R: 994.673,
       d: 3.7,
-      sd: 14.0,
+      sd: 14,
       medium: 2,
       asphere: { K: 0, A4: 2.06228e-6, A6: -3.09541e-9, A8: 7.24904e-11, A10: -3.07809e-13, A12: 9.19241e-16 },
     }, // G2 front (asph)
-    { label: "4", R: 56.399, d: 0.3, sd: 14.2 }, // G2 rear → air
-    { label: "5", R: 28.004, d: 3.6, sd: 13.2, medium: 3 }, // L1P front
-    { label: "6", R: 65.231, sd: 12.7 }, // L1P rear → air (var: d6, zoom only)
+    { label: "4", R: 56.399, d: 0.3, sd: 15 }, // G2 rear → air
+    { label: "5", R: 28.004, d: 3.6, sd: 14.3, medium: 3 }, // L1P front
+    { label: "6", R: 65.231, sd: 14.3 }, // L1P rear → air (var: d6, zoom only)
 
     // ─── L2 (Unit 2): Positive converging group (IS group) ───
     { label: "7", R: 21.644, d: 3.0, sd: 6.4, medium: 4 }, // L2a front
@@ -220,21 +231,22 @@ const LENS_DATA = {
 
     // ─── LR: Rear group ───
     // LP (Unit 3): Focus lens unit
-    { label: "15", R: -65.961, d: 2.95, sd: 8.6, medium: 7 }, // LP front
-    { label: "16", R: -21.205, sd: 9.0 }, // LP rear → air (var: d16, zoom + focus)
+    { label: "15", R: -65.961, d: 2.95, sd: 9.3, medium: 7 }, // LP front
+    { label: "16", R: -21.205, sd: 9.3 }, // LP rear → air (var: d16, zoom + focus)
     // L4 (Unit 4): Negative field corrector
     {
       label: "17A",
       R: -90.404,
       d: 3.5,
       sd: 11.8,
+      rimExtensionSd: 13.5,
       medium: 8,
       asphere: { K: 0, A4: -1.01775e-4, A6: 1.71677e-7, A8: 1.83977e-10, A10: -1.16025e-11, A12: 2.80092e-14 },
     }, // L4 front (asph)
     {
       label: "18A",
       R: -1111.779,
-      sd: 12.5,
+      sd: 13.5,
       asphere: { K: 0, A4: -9.00719e-5, A6: 2.07355e-7, A8: -1.21619e-10, A10: -4.95038e-12, A12: 1.35424e-14 },
     }, // L4 rear (asph) → image (var: d18/BF, zoom only)
   ],

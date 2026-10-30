@@ -9,27 +9,42 @@
 
 ---
 
+## Reused Source Coverage and Current Qualifications
+
+The completed original shape-and-glass review of **2026-09-23** is reused, preserving the **2026-05-19** glass audit and
+**2026-06-04** curve-source follow-up. The **2026-10-30** work is a runtime and label/prose follow-up; it makes no fresh
+original-PDF inspection claim. Parsed optical data exactly match the Sept23 prescription after later source.example metadata
+is excluded. All source R/d, material pairs, aspheres, clear caps, stops, gaps, controls and guard values remain unchanged.
+
+All named OHARA/HOYA materials below are compatible current catalog spectral proxies. The corresponding chemical-family
+and molding-grade descriptions refer to those catalog candidates, not identified historical lens media. Supplier, melt,
+annealing, composition and fabrication remain unproved. Four UD/APD position tags are product-correlated inferences;
+source nd/νd alone and retail UD counts do not establish numerical partial dispersion. No numerical C/F/g/ΔPgF override
+is present. The 0.05 mm bonded medium 1.59022/30.1 remains Unmatched: UV curing, resin chemistry and replication process
+are unidentified, even though Canon's production construction uses replica terminology. Actual data labels now preserve
+these qualifications without changing curve resolution.
+
 ## 1. Overview and Patent-to-Production Correspondence
 
 US 2024/0192474 A1 presents seven numerical examples of a positive–negative–positive–rear-group zoom lens for mirrorless cameras. Numerical Example 4 (¶0082, FIG. 7, FIGS. 8A/8B) is the best match to the production Canon RF24-105mm F2.8 L IS USM Z on every checkable metric.
 
 The production lens is marketed as 23 elements in 18 groups, with 4 UD (Ultra Low Dispersion) elements, 2 GMo (Glass Moulded) aspherical elements, and 1 replica aspherical element. It features an 11-blade diaphragm, dual Nano USM autofocus motors driving a floating focus system, and a constant-length internal zoom barrel (88.5 mm diameter × 199 mm length).
 
-Example 4 yields 24 optically distinct refractive bodies (counting the thin replica resin layer separately from its glass substrate), which Canon counts as 23 "elements" because the resin layer and its host glass form a single optical component. The 18-group count, four UD elements (nd = 1.49700, νd = 81.5), two aspheric surfaces on solid elements (S32 and S37, Canon's GMo elements), and one aspheric surface on a 0.05 mm bonded layer (S22, Canon's replica aspheric) all match.
+Example 4 yields 24 optically distinct refractive bodies (counting the thin bonded aspheric layer separately from its glass substrate), which Canon counts as 23 "elements" because the resin layer and its host glass form a single optical component. The 18-group count, four UD elements (nd = 1.49700, νd = 81.5), two aspheric surfaces on solid elements (S32 and S37, Canon's GMo elements), and one aspheric surface on a 0.05 mm bonded layer (S22, Canon's replica aspheric) all match.
 
 **Computed vs. patent specifications (independently verified via ABCD paraxial ray trace):**
 
-| Parameter | WIDE | MIDDLE | TELE | Patent |
-|-----------|------|--------|------|--------|
-| EFL (mm) | 24.78 | 50.31 | 102.08 | 24.78 / 50.31 / 102.06 |
-| Paraxial half-angle ω (°) | 41.12 | 23.27 | 11.97 | 41.12 / 23.27 / 11.97 |
-| F-number | 2.90 | 2.90 | 2.90 | 2.90 |
-| Overall length (mm) | 211.98 | 211.98 | 211.98 | 211.98 |
-| Back focus BF (mm) | 11.63 | 25.76 | 19.01 | 11.63 / 25.76 / 19.01 |
+| Parameter                 | WIDE   | MIDDLE | TELE   | Patent                 |
+| ------------------------- | ------ | ------ | ------ | ---------------------- |
+| EFL (mm)                  | 24.78  | 50.31  | 102.08 | 24.78 / 50.31 / 102.06 |
+| Paraxial half-angle ω (°) | 41.12  | 23.27  | 11.97  | 41.12 / 23.27 / 11.97  |
+| F-number                  | 2.90   | 2.90   | 2.90   | 2.90                   |
+| Overall length (mm)       | 211.98 | 211.98 | 211.98 | 211.98                 |
+| Back focus BF (mm)        | 11.63  | 25.76  | 19.01  | 11.63 / 25.76 / 19.01  |
 
 EFL agreement is within ±0.02% at all zoom positions, and the stored back-focus gaps land within 0.015 mm of the paraxial image at every station (the patent lists no cover glass, so d43 is used as published). The patent's ω is a paraxial value (¶0030): it equals atan(21.64 mm / f) at every station. The constant overall lens length of 211.98 mm confirms internal zoom operation — the sum of all variable air gaps is invariant at 91.52 mm across zoom positions, consistent with the fixed-length barrel design. All three stations (wide, middle, tele) are tabulated in the patent; no station in the data file is interpolated.
 
-The production lens has a marketed focal length range of 24–105 mm and an aperture of f/2.8. The patent example computes to 24.78–102.06 mm at f/2.90. These small differences are typical of patent-vs.-production rounding and final design optimization. The data file uses the patent's f/2.90 as its nominal aperture. Because the stop travels with L3 and the patent publishes no iris diameters, the per-station iris is inferred by tracing the f/2.90 entrance pupil back to the stop (about 21.7 mm diameter at wide, 27.4 mm at the middle station and 30.2 mm at tele); this schedule is calculated, not published.
+The production lens has a marketed focal length range of 24–105 mm and an aperture of f/2.8. The patent example computes to 24.78–102.06 mm at f/2.90. Rounding or subsequent design optimization could contribute to these differences, but that provenance is unproved. The data file uses the patent's f/2.90 as its nominal aperture. Because the stop travels with L3 and the patent publishes no iris diameters, the per-station iris is inferred by tracing the f/2.90 entrance pupil back to the stop (about 21.7 mm diameter at wide, 27.4 mm at the middle station and 30.2 mm at tele); this schedule is calculated, not published.
 
 ---
 
@@ -37,31 +52,31 @@ The production lens has a marketed focal length range of 24–105 mm and an aper
 
 The zoom lens L0 consists of seven lens units separated by variable air gaps. The first lens unit L1 is fixed relative to the image plane during zooming (¶0069); every other unit moves along its own locus, with the overall length held constant by coordinated motion.
 
-| Unit | Surfaces | Power | Focal Length (mm) | Elements | Groups | Role |
-|------|----------|-------|-------------------|----------|--------|------|
-| L1 | S1–S8 | Positive | +90.57 | 4 | 4 | Front group, fixed to image plane; contains negative element L11 and three positive lenses |
-| L2 | S9–S15 | Negative | −27.00 | 4 | 3 | Variator; primary zoom motion, strongest power among all units |
-| L3 | S16–S24 | Positive | +119.23 | 5 | 3 | Compensator with aperture stop; includes replica aspheric |
-| L4 | S25–S34 | Positive | +35.02 | 6 | 4 | Rear relay group; strongest positive power, contains 3 UD elements and GMo aspheric |
-| L5 | S35–S36 | Negative | −47.42 | 1 | 1 | Focus group A (Nano USM #1); single negative meniscus |
-| L6 | S37–S38 | Positive | +112.74 | 1 | 1 | Focus group B (Nano USM #2); single positive meniscus with GMo aspheric |
-| L7 | S39–S43 | Negative | −90.78 | 3 | 2 | Rear field corrector; negative power near the image plane |
+| Unit | Surfaces | Power    | Focal Length (mm) | Elements | Groups | Role                                                                                       |
+| ---- | -------- | -------- | ----------------- | -------- | ------ | ------------------------------------------------------------------------------------------ |
+| L1   | S1–S8    | Positive | +90.57            | 4        | 4      | Front group, fixed to image plane; contains negative element L11 and three positive lenses |
+| L2   | S9–S15   | Negative | −27.00            | 4        | 3      | Variator; primary zoom motion, strongest power among all units                             |
+| L3   | S16–S24  | Positive | +119.23           | 5        | 3      | Compensator with aperture stop; includes replica aspheric                                  |
+| L4   | S25–S34  | Positive | +35.02            | 6        | 4      | Rear relay group; strongest positive power, contains 3 UD elements and GMo aspheric        |
+| L5   | S35–S36  | Negative | −47.42            | 1        | 1      | Focus group A (Nano USM #1); single negative meniscus                                      |
+| L6   | S37–S38  | Positive | +112.74           | 1        | 1      | Focus group B (Nano USM #2); single positive meniscus with GMo aspheric                    |
+| L7   | S39–S43  | Negative | −90.78            | 3        | 2      | Rear field corrector; negative power near the image plane                                  |
 
-Unit focal lengths are the patent's Zoom Lens Unit Data. L3 counts five optical bodies (four Canon elements) because the replica resin layer is modeled separately.
+Unit focal lengths are the patent's Zoom Lens Unit Data. L3 counts five optical bodies (four Canon elements) because the bonded aspheric layer is modeled separately.
 
 ### Zoom Motion
 
 The gap changes from wide to tele reveal the zoom kinematics:
 
-| Gap | Wide (mm) | Mid (mm) | Tele (mm) | Δ (mm) | Motion |
-|-----|-----------|----------|-----------|--------|--------|
-| d8 (L1→L2) | 0.80 | 16.58 | 34.70 | +33.90 | L2 moves away from L1 |
-| d15 (L2→L3) | 42.76 | 21.90 | 2.98 | −39.78 | L3 approaches L2 |
-| d24 (L3→L4) | 19.63 | 10.61 | 0.79 | −18.84 | L4 approaches L3 |
-| d34 (L4→L5) | 2.50 | 1.78 | 1.10 | −1.40 | Small motion |
-| d36 (L5→L6) | 8.07 | 7.90 | 7.19 | −0.88 | Small motion |
-| d38 (L6→L7) | 6.12 | 7.00 | 25.75 | +19.63 | L6 outpaces L7 in object-ward motion |
-| d43 (BF) | 11.63 | 25.76 | 19.01 | +7.38 | Non-monotonic (increases W→M, decreases M→T) |
+| Gap         | Wide (mm) | Mid (mm) | Tele (mm) | Δ (mm) | Motion                                       |
+| ----------- | --------- | -------- | --------- | ------ | -------------------------------------------- |
+| d8 (L1→L2)  | 0.80      | 16.58    | 34.70     | +33.90 | L2 moves away from L1                        |
+| d15 (L2→L3) | 42.76     | 21.90    | 2.98      | −39.78 | L3 approaches L2                             |
+| d24 (L3→L4) | 19.63     | 10.61    | 0.79      | −18.84 | L4 approaches L3                             |
+| d34 (L4→L5) | 2.50      | 1.78     | 1.10      | −1.40  | Small motion                                 |
+| d36 (L5→L6) | 8.07      | 7.90     | 7.19      | −0.88  | Small motion                                 |
+| d38 (L6→L7) | 6.12      | 7.00     | 25.75     | +19.63 | L6 outpaces L7 in object-ward motion         |
+| d43 (BF)    | 11.63     | 25.76    | 19.01     | +7.38  | Non-monotonic (increases W→M, decreases M→T) |
 
 L1 is the reference frame (fixed). Computing absolute unit positions from the cumulative gap changes reveals the true zoom kinematics. L2 translates 33.9 mm toward the image — the dominant zoom motion. L3 and L4 move modestly toward the object (5.9 and 24.7 mm respectively), closing the gaps behind L2. L5 and L6 track together toward the object (26.1 and 27.0 mm), maintaining their tight mutual spacing. L7 exhibits non-monotonic behavior: it moves 14.1 mm toward the object from wide to mid, then reverses 6.7 mm toward the image from mid to tele, for a net 7.4 mm object-ward displacement. The back focal distance d43 is correspondingly non-monotonic, peaking at 25.76 mm at the middle zoom position — a consequence of L7's reversal and the complex power distribution needed to hold f/2.9 and image registration across the range.
 
@@ -82,7 +97,7 @@ R₁ = −266.746 mm, R₂ = +98.340 mm. FL ≈ −79.6 mm. Glass: TAFD37A (HOYA
 R₁ = +192.058 mm, R₂ = −241.263 mm. FL ≈ +200 mm. Glass: S-FPM3 (OHARA), a low-dispersion fluorophosphate crown with six-digit code 538/747. Its low dispersion (νd = 74.7) provides positive power with minimal chromatic aberration introduction.
 
 **Elements 3 and 4 — Biconvex positive (nearly plano-convex), nd = 1.72916, νd = 54.7**
-Both use S-LAL18 (OHARA), the lanthanum crown matching code 729/547. Element 3: R₁ = +119.575, R₂ = −1682.093 (FL ≈ +153 mm). Element 4: R₁ = +76.157, R₂ = −880.300 (FL ≈ +96 mm). Both are biconvex with very weak rear curvatures, making them effectively plano-convex — a shape that minimizes spherical aberration for a given power contribution. Element 4, with its shorter focal length, provides the strongest positive contribution in L1. The use of identical glass in both elements simplifies manufacturing logistics.
+Both use S-LAL18 (OHARA), the lanthanum crown matching code 729/547. Element 3: R₁ = +119.575, R₂ = −1682.093 (FL ≈ +153 mm). Element 4: R₁ = +76.157, R₂ = −880.300 (FL ≈ +96 mm). Both are biconvex with very weak rear curvatures, making them effectively plano-convex — a shape that minimizes spherical aberration for a given power contribution. Element 4, with its shorter focal length, provides the strongest positive contribution in L1. The repeated source nd/νd pairs share one current proxy; identical historical glass or manufacturing logistics are not established.
 
 ### 3.2 Lens Unit L2 — Negative Variator (f = −27.00 mm)
 
@@ -95,7 +110,7 @@ R₁ = +915.083, R₂ = +29.841 (both positive; R₁ ≫ R₂ → nearly flat fr
 R₁ = −218.330, R₂ = +63.389. FL ≈ −82 mm. Glass: S-FPM2 (OHARA), fluorophosphate crown matching code 595/677. A secondary negative element with low dispersion, providing different aberration contributions than element 5 for zonal spherical aberration correction across the zoom range.
 
 **Elements 7+8 — Cemented doublet (Da), overall FL ≈ +265 mm**
-Element 7 (biconcave): nd = 1.49700, νd = 81.5, S-FPL51 (OHARA). **This is a UD element** — the first of four in the lens. Element 8 (biconvex): nd = 1.77047, νd = 29.7, HOYA NBFD29 (770297). This is a *reversed* achromatic doublet — the UD crown element is the *negative* component (FL ≈ −53 mm) and the heavy flint is the *positive* component (FL ≈ +45 mm), opposite to the classic positive-crown/negative-flint arrangement. This inversion is consistent with the doublet's placement within the net-negative L2 unit. The large Abbe number difference (Δνd = 51.8) provides strong achromatization of the longitudinal chromatic aberration from elements 5 and 6. The doublet's net positive focal length (+265 mm) is deliberately weak — it serves primarily as a chromatic corrector rather than a power contributor.
+Element 7 (biconcave): nd = 1.49700, νd = 81.5, S-FPL51 (OHARA). **This is a product-correlated UD position** — the first of four in the lens. Element 8 (biconvex): nd = 1.77047, νd = 29.7, HOYA NBFD29 (770297). This is a _reversed_ achromatic doublet — the UD crown element is the _negative_ component (FL ≈ −53 mm) and the heavy flint is the _positive_ component (FL ≈ +45 mm), opposite to the classic positive-crown/negative-flint arrangement. This inversion is consistent with the doublet's placement within the net-negative L2 unit. The large Abbe number difference (Δνd = 51.8) provides strong achromatization of the longitudinal chromatic aberration from elements 5 and 6. The doublet's net positive focal length (+265 mm) is deliberately weak — it serves primarily as a chromatic corrector rather than a power contributor.
 
 ### 3.3 Lens Unit L3 — Positive Compensator with Aperture Stop (f = +119.23 mm)
 
@@ -108,7 +123,7 @@ R₁ = +78.578, R₂ = −594.031. FL ≈ +82 mm. Glass: S-TIH53 (OHARA), very h
 Element 10 (negative meniscus, convex toward the object; FL ≈ −98 mm): nd = 2.00100, νd = 29.1. **This is the highest-index glass in the entire lens** — S-LAH99 (OHARA), an extreme dense flint matching code 001/291. Element 11 (biconvex): nd = 1.51742, νd = 52.4, S-NSL36 (OHARA). The nd = 2.001 glass provides very strong contribution at the junction surface. The extreme index step at the cemented junction (Δnd = 0.484) creates a powerful internal surface that corrects spherical aberration without requiring strong external curvatures.
 
 **Elements 12+13 — Hybrid replica aspherical composite (Ha), FL ≈ −62.6 mm**
-Element 12 is the **replica aspherical** layer: nd = 1.59022, νd = 30.1, center thickness = 0.05 mm. The patent gives only the index pair; the thin bonded layer is inferred to be a UV-curing optical resin, not a catalog glass. Element 13 is the S-LAH66 glass substrate: nd = 1.77250, νd = 49.6 (code 773/496). Surface 22 carries the aspherical profile (K = 0, with polynomial terms to 8th order). Canon's product literature identifies this as a replica aspherical element. The negative focal length of this composite provides divergence that, combined with element 9 and the doublet 10+11, gives L3 its net positive power while enabling field curvature correction.
+Element 12 is the **replica aspherical** layer: nd = 1.59022, νd = 30.1, center thickness = 0.05 mm. The patent gives only the index pair; the thin bonded medium remains unidentified; neither UV curing nor resin chemistry is source-established. Element 13 is the S-LAH66 glass substrate: nd = 1.77250, νd = 49.6 (code 773/496). Surface 22 carries the aspherical profile (K = 0, with polynomial terms to 8th order). Canon's product literature identifies this as a replica aspherical element. The negative focal length of this composite provides divergence that, combined with element 9 and the doublet 10+11, gives L3 its net positive power while enabling field curvature correction.
 
 Because the replica layer is only 0.05 mm thick on axis, its modeled clear semi-diameter is capped at 15.5 mm (FIG. 7 draws the composite at about 16.6 mm). A larger value would make surfaces 22 and 23 cross at the rim in this renderer's element geometry check; the cap preserves positive edge thickness while still passing the full f/2.9 axial beam (15.3 mm at tele).
 
@@ -126,7 +141,7 @@ R₁ = +41.537, R₂ = −105.932. FL ≈ +61 mm. A standalone UD element provid
 R₁ = +63.231, R₂ = −97.379. FL ≈ +78 mm. The fourth and final UD element, working in concert with element 16 to deliver the positive power of L4. Having two separate UD singlets rather than one strong element distributes the power and reduces higher-order spherical aberration.
 
 **Elements 18+19 — Cemented doublet with GMo aspheric (Dd), FL ≈ +96 mm**
-Element 18 (negative meniscus, GMo aspherical): nd = 1.85400, νd = 40.4. The glass is **OHARA L-LAH85V**, a low-softening-temperature lanthanum dense flint matching code 854/404 — the "L-" prefix designates PGM compatibility, consistent with this element being glass-moulded. R₁ = +85.354, R₂ = +34.925 (FL ≈ −71 mm individually). Surface 32 carries the aspherical profile (K = 0, polynomial to 8th order; all coefficients negative). Element 19 (biconvex): nd = 1.60311, νd = 60.6; OHARA S-BSM14 is the catalog equivalent (code 603/606). The cemented pair is net positive (+96 mm), with element 19 (FL ≈ +41 mm) overpowering element 18's divergence. The GMo aspherical surface on element 18 is the primary corrector for spherical aberration in the strongly converging beam through L4. At a representative semi-diameter of 12 mm, the aspherical departure is −0.158 mm from the base sphere. The polynomial makes the surface's sag turn over at about 18.2 mm, so the modeled clear aperture stops at 18.0 mm (departure ≈ −0.87 mm there), slightly inside the ≈19 mm rim drawn in FIG. 7.
+Element 18 (negative meniscus, GMo aspherical): nd = 1.85400, νd = 40.4. The compatible current proxy is **OHARA L-LAH85V**, a low-softening-temperature lanthanum dense flint matching code 854/404 — the "L-" prefix designates PGM compatibility, compatible with the production-correlated GMo description, without proving this source material or fabrication process. R₁ = +85.354, R₂ = +34.925 (FL ≈ −71 mm individually). Surface 32 carries the aspherical profile (K = 0, polynomial to 8th order; all coefficients negative). Element 19 (biconvex): nd = 1.60311, νd = 60.6; OHARA S-BSM14 is the catalog equivalent (code 603/606). The cemented pair is net positive (+96 mm), with element 19 (FL ≈ +41 mm) overpowering element 18's divergence. The GMo aspherical surface on element 18 is the primary corrector for spherical aberration in the strongly converging beam through L4. At a representative semi-diameter of 12 mm, the aspherical departure is −0.158 mm from the base sphere. The polynomial makes the surface's sag turn over at about 18.2 mm, so the modeled clear aperture stops at 18.0 mm (departure ≈ −0.87 mm there), slightly inside the ≈19 mm rim drawn in FIG. 7.
 
 ### 3.5 Lens Unit L5 — Focus Group A (f = −47.42 mm)
 
@@ -156,35 +171,35 @@ The design uses three aspherical surfaces — matching Canon's specification of 
 
 ### Surface 22 — Replica Aspherical (element 12, in L3)
 
-| Coefficient | Value |
-|-------------|-------|
-| K | 0.0 |
-| A₄ | +3.72124 × 10⁻⁶ |
-| A₆ | +3.39835 × 10⁻¹⁰ |
-| A₈ | +6.96887 × 10⁻¹³ |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.0              |
+| A₄          | +3.72124 × 10⁻⁶  |
+| A₆          | +3.39835 × 10⁻¹⁰ |
+| A₈          | +6.96887 × 10⁻¹³ |
 
-All positive polynomial coefficients: the surface becomes less concave at larger heights. The replica aspherical is a 0.05 mm thick layer (nd = 1.590, νd = 30.1; inferred to be UV-curing resin) bonded to the front surface of element 13 (nd = 1.773, νd = 49.6), with the clear semi-diameter limited to 15.5 mm by edge-thickness feasibility.
+All positive polynomial coefficients: the surface becomes less concave at larger heights. The replica aspherical is a 0.05 mm thick layer (nd = 1.590, νd = 30.1; chemistry and process unidentified) bonded to the front surface of element 13 (nd = 1.773, νd = 49.6), with the clear semi-diameter limited to 15.5 mm by edge-thickness feasibility.
 
 ### Surface 32 — GMo Aspherical (element 18, in L4)
 
-| Coefficient | Value |
-|-------------|-------|
-| K | 0.0 |
-| A₄ | −7.10364 × 10⁻⁶ |
-| A₆ | −3.27713 × 10⁻⁹ |
-| A₈ | −1.38031 × 10⁻¹² |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.0              |
+| A₄          | −7.10364 × 10⁻⁶  |
+| A₆          | −3.27713 × 10⁻⁹  |
+| A₈          | −1.38031 × 10⁻¹² |
 
 All negative polynomial coefficients: the surface flattens progressively toward the edge. This is the strongest aspherical correction in the design — at h = 12 mm, the departure reaches −0.158 mm. The catalog equivalent is OHARA L-LAH85V (a moulding-grade dense lanthanum flint).
 
 ### Surface 37 — GMo Aspherical (element 21, in L6 / focus group B)
 
-| Coefficient | Value |
-|-------------|-------|
-| K | 0.0 |
-| A₄ | +1.68172 × 10⁻⁶ |
-| A₆ | +3.21879 × 10⁻⁹ |
-| A₈ | +5.86323 × 10⁻¹² |
-| A₁₀ | −1.26470 × 10⁻¹⁴ |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.0              |
+| A₄          | +1.68172 × 10⁻⁶  |
+| A₆          | +3.21879 × 10⁻⁹  |
+| A₈          | +5.86323 × 10⁻¹² |
+| A₁₀         | −1.26470 × 10⁻¹⁴ |
 
 This is the only surface requiring a 10th-order polynomial coefficient, indicating complex higher-order aberration correction. The positive lower-order terms make the surface steeper at the edge while the negative A₁₀ provides rolloff at the extreme margin. The catalog equivalent is OHARA L-BAL42. This surface is on a moving focus element, so its aspherical profile must maintain correction across the focus range.
 
@@ -213,9 +228,9 @@ The patent does not provide close-focus air spacing data for this or any other e
 
 ## 6. Glass Budget and Material Strategy
 
-The design uses 17 distinct glass types plus the replica resin across 24 optical bodies (23 elements in Canon's count). Glass names are catalog equivalents matched on the patent's nd/νd; the patent names no glass.
+The design uses 17 distinct glass types plus the unidentified bonded medium across 24 optical bodies (23 elements in Canon's count). Glass names are catalog equivalents matched on the patent's nd/νd; the patent names no glass.
 
-**Ultra-low dispersion glasses (4 elements, nd = 1.497, νd = 81.5):** Elements 7, 14, 16, 17. Canon describes four UD elements, and these four rows share the 497/815 fluorophosphate-crown coordinate of OHARA S-FPL51 (nd = 1.497, νd = 81.55); the UD identification is inferred from that match. All four sit behind L1 — one in L2 (as part of a chromatic correcting doublet) and three in L4 (the rear positive relay). The concentration of UD glass in L4 is deliberate: this is where the beam is converging most strongly toward focus, and the accumulated longitudinal chromatic aberration must be corrected without introducing secondary spectrum. The fluorophosphate crown's anomalous partial dispersion aids correction of secondary longitudinal color.
+**Ultra-low dispersion glasses (4 elements, nd = 1.497, νd = 81.5):** Elements 7, 14, 16, 17. Canon describes four UD elements, and these four rows share the 497/815 fluorophosphate-crown coordinate of OHARA S-FPL51 (nd = 1.497, νd = 81.55); the UD identification is inferred from that match. All four sit behind L1 — one in L2 (as part of a chromatic correcting doublet) and three in L4 (the rear positive relay). The concentration of UD glass in L4 is deliberate: this is where the beam is converging most strongly toward focus, and the accumulated longitudinal chromatic aberration must be corrected without introducing secondary spectrum. The current compatible curve has its own partial-dispersion behavior; the source pair does not identify a historical anomalous-dispersion medium or prove that secondary-spectrum correction.
 
 **Extreme-index glasses (2 elements, nd > 2.0):** Elements 10 (S-LAH99, nd = 2.001, νd = 29.1) and 24 (TAFD40, nd = 2.001, νd = 25.5). These extreme dense flints are deployed at critical locations — element 10 in L3 (near the stop) and element 24 as the final element before the image plane. The nd > 2.0 glasses are expensive and present manufacturing challenges, but they provide uniquely strong surface contributions per unit curvature, enabling compact designs with lower surface counts.
 
@@ -261,4 +276,23 @@ The three aspherical surfaces work in concert: S22 (replica, in L3 near the stop
 
 ---
 
-*Analysis generated from US 2024/0192474 A1, Example 4. All focal lengths, Petzval sums, and numerical claims independently verified via paraxial ABCD matrix ray trace. The 2026-05-19 audit promoted most six-digit family labels to public catalog matches; the 2026-06-04 source pass then resolved element 8 to HOYA NBFD29 using first-party coefficient data. Production specifications sourced from Canon's official spec sheet and marketing materials. The 2026-09-23 diagram audit corrected the focus direction of L6 (image-ward, ¶0069), element shape descriptions, the aperture model and several semi-diameters.*
+_Analysis generated from US 2024/0192474 A1, Example 4. All focal lengths, Petzval sums, and numerical claims independently verified via paraxial ABCD matrix ray trace. The 2026-05-19 audit promoted most six-digit family labels to public catalog matches; the 2026-06-04 source pass then resolved element 8 to HOYA NBFD29 using first-party coefficient data. Production specifications sourced from Canon's official spec sheet and marketing materials. The 2026-09-23 diagram audit corrected the focus direction of L6 (image-ward, ¶0069), element shape descriptions, the aperture model and several semi-diameters._
+
+## 2026-10-30 Runtime Follow-up on Reused Coverage
+
+The current raw data SHA before label qualification is `d687f382db802be5fe227ca2f95be9599846285461e42b97c5443080a4c4d878`.
+Its canonical optical prescription equals the completed Sept23 review after only later source.example metadata is excluded.
+The current label-only candidate changes no numeric/control field and keeps all 23 catalog curves plus the one unresolved
+bonded medium identical in resolver outcome. Exact edited-label paths and baseline/candidate hashes are recorded in the audit.
+
+All 1,365 sampled zoom×focus geometries were checked; focus remains an infinity duplicate at every slider position.
+The 65 unique zoom geometries include 3 published stations and 62 illustrative intervals. Their actual-iris census clears
+3,185/3,185 axial and 195/195 chief samples, zero unaimed. Source-position pupil bundles at axial/.6/edge fields are
+49/48/1,49/46/22 and49/43/24; edge vignetting remains heavy. Effective aperture has no deficit over 3%, but illustrative
+interval defocus reaches −1.385116805 mm at z=.28125 and generic field coverage reaches a minimum 98.5564%. Those runtime
+intervals are not additional published prescription stations.
+
+All 24 actual SVG paths remain finite, closed and connected with zero hidden trimming across the sampled geometries.
+The existing bonded 15.5 mm common cap has a minimum thickness 0.006909624 mm at its rim; it stays positive and coextensive,
+with no disconnected layer wing. That is a current geometry diagnostic, not a new original-figure measurement.
+Source fidelity remains inherited from the dated review; sampled clearance and production correlation are separate.
