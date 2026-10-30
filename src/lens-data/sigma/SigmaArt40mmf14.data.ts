@@ -10,22 +10,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Focus: floating inner focus — G2 and G3 move independently,      ║
  * ║         G1 fixed, stop moves with G3.                             ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters.  Estimated via combined    ║
- * ║    marginal + chief ray trace (60% field fraction, 8% mechanical  ║
- * ║    clearance), constrained against sd/|R| < 0.90, positive edge   ║
- * ║    thickness, and cross-gap sag intrusion ≤ 90% of gap.  Front    ║
- * ║    element capped against 82 mm filter thread constraint.         ║
- * ║                                                                    ║
- * ║  NOTE ON PARTIAL DISPERSION:                                       ║
- * ║    `dPgF` is PgF minus the engine's normal line                    ║
- * ║    (0.6438 − 0.001682·νd), not the patent's ΔPgF = PgF − 0.64833   ║
- * ║    + 0.00180·νd (¶0017), which the analysis quotes.  The patent    ║
- * ║    prints PgF to two decimals only, so L2/L3/L12 use the PgF       ║
- * ║    implied by condition (9) (5.36 / νd 95.10 → PgF 0.5335) and     ║
- * ║    L6, L10 and L15 are catalog-derived (FCD705 0.5400, FCD515      ║
- * ║    0.5441); each agrees with the printed two-decimal PgF.          ║
- * ║                                                                    ║
+ * Source review 2026-10-30: Fig1/PDF19 outer rims and six distinct concave
+ * lands are represented with outward-only cap growth and rimExtensionSd.
+ * Some schematic full bodies cross the literal R/d profiles; connected positive
+ * edge/gap bounds remain (audit). No new inward clear-cap cuts were authored.
+ * All16 source nd/vd and PgF are retained: PDF11–12 PgF has two decimals,
+ * uncertainty ±.005. Runtime dPgF uses .6438−.001682*vd; source ΔPgF uses
+ * .64833−.00180*vd. L2/L3 use the finer source condition9=5.36±.005(PDF18).
+ * Its transfer to identical-row L12 is qualified inference, not an individual
+ * source APD designation. Other13 PgF anchors retain source two-decimal precision.
+ * Catalog labels are qualified curve proxies, never production supplier proof.
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
@@ -68,6 +62,7 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.7725,
+      dPgF: -0.01033916,
       vd: 49.62,
       focalLengthMm: 184.7,
       glass: "S-LAH66 (OHARA)",
@@ -85,7 +80,7 @@ const LENS_DATA = {
       glass: "FCD100 (HOYA)",
       apd: "patent",
       apdNote:
-        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; FLD fluorite-equivalent fluorophosphate",
+        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; qualified FLD-position correlation; catalog chemistry/supplier unproved",
       role: "FLD negative meniscus in G1A; provides retrofocus divergence with secondary-spectrum correction (¶0043–0044).",
       dPgF: 0.04967,
     },
@@ -100,7 +95,7 @@ const LENS_DATA = {
       glass: "FCD100 (HOYA)",
       apd: "patent",
       apdNote:
-        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; FLD fluorite-equivalent fluorophosphate",
+        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; qualified FLD-position correlation; catalog chemistry/supplier unproved",
       role: "Second FLD negative meniscus; distributes G1A negative power across two elements (¶0021).",
       dPgF: 0.04967,
     },
@@ -111,6 +106,7 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.64769,
+      dPgF: 0.00311888,
       vd: 33.84,
       focalLengthMm: -48.3,
       glass: "E-FD2 (HOYA)",
@@ -124,6 +120,7 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.83481,
+      dPgF: -0.01194496,
       vd: 42.72,
       focalLengthMm: 50.9,
       glass: "S-LAH55V (OHARA)",
@@ -142,10 +139,10 @@ const LENS_DATA = {
       glass: "FCD705 (HOYA)",
       apd: "inferred",
       apdNote:
-        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.028 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD705 PgF 0.5400, runtime dPgF +0.02318; SLD PGM-compatible fluorophosphate crown",
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.028 by the patent's line PgF − 0.64833 + 0.00180·νd). Runtime dPgF +0.023191 from source PgF0.54±.005; SLD classification inferred from product position and compatible FCD705 proxy, not source anomaly proof",
       role: "LY1 — positive element of Component Y (old-achromatism doublet); high-order SA correction (¶0026).",
       cemented: "Y",
-      dPgF: 0.023177,
+      dPgF: 0.023191,
     },
     {
       id: 7,
@@ -153,6 +150,7 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.60342,
+      dPgF: 0.00013282,
       vd: 38.01,
       focalLengthMm: -47.9,
       glass: "S-TIM5 (OHARA)",
@@ -166,6 +164,7 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.7725,
+      dPgF: -0.01033916,
       vd: 49.62,
       focalLengthMm: 88.3,
       glass: "S-LAH66 (OHARA)",
@@ -179,6 +178,7 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.92286,
+      dPgF: 0.03132016,
       vd: 20.88,
       focalLengthMm: 83.7,
       glass: "PBH21 (OHARA; historical 923209)",
@@ -196,10 +196,10 @@ const LENS_DATA = {
       glass: "FCD515 (HOYA) / FCD505 class",
       apd: "inferred",
       apdNote:
-        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD515 PgF 0.5441 (ΔPgF +0.0193 by the patent's line), runtime dPgF +0.01575; SLD fluorophosphate crown",
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Runtime dPgF +0.01163566 from source PgF0.54±.005; SLD classification inferred from product position and compatible FCD515 proxy, not source anomaly proof",
       role: "Crown element of G2 doublet; SLD glass for axial-color trimming near the stop.",
       cemented: "D2",
-      dPgF: 0.015751,
+      dPgF: 0.01163566,
     },
     {
       id: 11,
@@ -207,6 +207,7 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.58144,
+      dPgF: 0.00497698,
       vd: 40.89,
       focalLengthMm: -36.0,
       glass: "E-FL5 (HOYA)",
@@ -224,9 +225,9 @@ const LENS_DATA = {
       vd: 95.1,
       focalLengthMm: 53.3,
       glass: "FCD100 (HOYA)",
-      apd: "patent",
+      apd: "inferred",
       apdNote:
-        "Same glass row as L2/L3 (nd 1.43700, νd 95.10, table PgF 0.53), so PgF = 0.5335 from patent condition (9): ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04967; FLD fluorite-equivalent — third and final FLD element",
+        "Source PgF0.53±.005; condition9-derived finer ratio is transferred from identical G1A nd/vd/PgF rows as a qualified material-model inference, not an individual source APD designation.",
       role: "L31 — positive crown of Component L3a; axial-color and SA correction immediately after stop (¶0049).",
       cemented: "L3a",
       dPgF: 0.04967,
@@ -237,6 +238,7 @@ const LENS_DATA = {
       label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.64769,
+      dPgF: 0.00311888,
       vd: 33.84,
       focalLengthMm: -33.5,
       glass: "E-FD2 (HOYA)",
@@ -250,6 +252,7 @@ const LENS_DATA = {
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 1.62588,
+      dPgF: 0.00631468,
       vd: 35.74,
       focalLengthMm: -55.5,
       glass: "E-F1 (HOYA)",
@@ -267,9 +270,9 @@ const LENS_DATA = {
       glass: "FCD515 (HOYA) / FCD505 class",
       apd: "inferred",
       apdNote:
-        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD515 PgF 0.5441 (ΔPgF +0.0193 by the patent's line), runtime dPgF +0.01575; SLD fluorophosphate crown",
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Runtime dPgF +0.01163566 from source PgF0.54±.005; SLD classification inferred from product position and compatible FCD515 proxy, not source anomaly proof",
       role: "L34 — convergent relay element; SLD glass minimises rear-group chromatic residual.",
-      dPgF: 0.015751,
+      dPgF: 0.01163566,
     },
     {
       id: 16,
@@ -277,6 +280,7 @@ const LENS_DATA = {
       label: "Element 16",
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.85135,
+      dPgF: -0.0063518,
       vd: 40.1,
       focalLengthMm: 74.1,
       glass: "M-TAFD305 (HOYA)",
@@ -289,54 +293,59 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // G1A — negative subgroup (fixed)
-    { label: "1", R: 111.7037, d: 5.5478, sd: 37.0, medium: 1 },
-    { label: "2", R: 514.0093, d: 0.15, sd: 36.0 },
-    { label: "3", R: 191.8963, d: 1.5, sd: 28.0, medium: 2 },
-    { label: "4", R: 30.2492, d: 12.0599, sd: 23.0 },
-    { label: "5", R: 423.9805, d: 1.5, sd: 23.0, medium: 3 },
-    { label: "6", R: 50.8216, d: 13.2984, sd: 21.0 },
+    { label: "1", R: 111.7037, d: 5.5478, sd: 38.5, medium: 1 },
+    { label: "2", R: 514.0093, d: 0.15, sd: 38.5 },
+    { label: "3", R: 191.8963, d: 1.5, sd: 36.3, medium: 2 },
+    { label: "4", R: 30.2492, d: 12.0599, sd: 23.0, rimExtensionSd: 36.3 },
+    { label: "5", R: 423.9805, d: 1.5, sd: 28.9, medium: 3 },
+    { label: "6", R: 50.8216, d: 13.2984, sd: 21.0, rimExtensionSd: 28.9 },
     // G1B — positive subgroup (fixed)
     // Component X (L4 + L5 cemented)
-    { label: "7", R: -38.1791, d: 1.5, sd: 21.0, medium: 4 },
-    { label: "8", R: 172.544, d: 9.3857, sd: 22.0, medium: 5 },
-    { label: "9", R: -56.304, d: 0.15, sd: 22.0 },
+    { label: "7", R: -38.1791, d: 1.5, sd: 22.5, medium: 4, rimExtensionSd: 27.5 },
+    { label: "8", R: 172.544, d: 9.3857, sd: 27.5, medium: 5 },
+    { label: "9", R: -56.304, d: 0.15, sd: 27.5 },
     // Component Y (L6 + L7 cemented)
-    { label: "10", R: -1641.6822, d: 12.4672, sd: 22.5, medium: 6 },
-    { label: "11", R: -32.7021, d: 1.5, sd: 22.5, medium: 7 },
+    { label: "10", R: -1641.6822, d: 12.4672, sd: 25.5, medium: 6 },
+    { label: "11", R: -32.7021, d: 1.5, sd: 25.5, medium: 7 },
     { label: "12", R: 246.8799, d: 0.15, sd: 22.5 },
     // L8 singlet
     { label: "13", R: 83.2754, d: 5.882, sd: 23.0, medium: 8 },
     { label: "14", R: -377.0503, sd: 23.0 },
     // G2 — focus group
-    { label: "15", R: 90.4416, d: 5.3037, sd: 21.0, medium: 9 },
-    { label: "16", R: -527.4885, d: 0.15, sd: 21.0 },
+    { label: "15", R: 90.4416, d: 5.3037, sd: 28.3, medium: 9 },
+    { label: "16", R: -527.4885, d: 0.15, sd: 28.3 },
     // G2 doublet (L10 + L11 cemented)
-    { label: "17", R: 55.6364, d: 11.866, sd: 20.0, medium: 10 },
-    { label: "18", R: -44.6058, d: 2.482, sd: 18.5, medium: 11 },
-    { label: "19", R: 39.3845, sd: 17.5 },
+    { label: "17", R: 55.6364, d: 11.866, sd: 23.3, medium: 10 },
+    { label: "18", R: -44.6058, d: 2.482, sd: 23.3, medium: 11 },
+    { label: "19", R: 39.3845, sd: 19.5, rimExtensionSd: 23.3 },
     // Aperture stop — attached to G3, moves during focus
     { label: "STO", R: "flat", d: 1.5 },
     // G3 — rear focus group
     // Component L3a (L12 + L13 cemented)
-    { label: "21", R: 84.0231, d: 6.8887, sd: 15.5, medium: 12 },
-    { label: "22", R: -32.202, d: 1.5, sd: 15.5, medium: 13 },
-    { label: "23", R: 66.2242, d: 7.8613, sd: 15.5 },
+    { label: "21", R: 84.0231, d: 6.8887, sd: 17.2, medium: 12 },
+    { label: "22", R: -32.202, d: 1.5, sd: 17.2, medium: 13 },
+    { label: "23", R: 66.2242, d: 7.8613, sd: 15.5, rimExtensionSd: 17.2 },
     // L14 — concentric negative meniscus
-    { label: "24", R: -26.9856, d: 1.5, sd: 14.5, medium: 14 },
-    { label: "25", R: -121.029, d: 0.15, sd: 14.5 },
+    { label: "24", R: -26.9856, d: 1.5, sd: 15.9, medium: 14, rimExtensionSd: 18 },
+    { label: "25", R: -121.029, d: 0.15, sd: 18 },
     // L15 singlet
-    { label: "26", R: 64.6922, d: 6.7685, sd: 15.0, medium: 15 },
-    { label: "27", R: -40.8255, d: 0.15, sd: 15.5 },
+    { label: "26", R: 64.6922, d: 6.7685, sd: 17.9, medium: 15 },
+    { label: "27", R: -40.8255, d: 0.15, sd: 17.9 },
     // L16 — dual-asphere final element
     {
       label: "28A",
       R: -430.037,
       d: 4.6315,
-      sd: 15.5,
+      sd: 18.8,
       medium: 16,
       asphere: { K: 0, A4: -2.73662e-6, A6: 3.07519e-9, A8: 3.90515e-11, A10: -1.94154e-14, A12: 0 },
     },
-    { label: "29A", R: -54.9865, sd: 15.5, asphere: { K: 0, A4: 3.26804e-6, A6: 3.98767e-9, A8: 3.58258e-11, A10: 0, A12: 0 } },
+    {
+      label: "29A",
+      R: -54.9865,
+      sd: 18.8,
+      asphere: { K: 0, A4: 3.26804e-6, A6: 3.98767e-9, A8: 3.58258e-11, A10: 0, A12: 0 },
+    },
   ],
 
   /* ── Focus configuration ── */

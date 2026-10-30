@@ -44,8 +44,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * added to force agreement.
  * Printed inconsistency in the source: the condition summary gives
  * beta2 = 4.8 and beta4 = 1.5, the prescription gives 4.876 and 1.567.
- * Glass names and C/F/g/dPgF fields are catalog-equivalent spectral proxies
- * from HOYA formula-1 coefficients, not historical supplier/melt identification.
+ * Glass names select qualified current coefficient curves, not historical
+ * supplier/melt identities. Source publishes only d-line nd/vd, no C/F/g/theta;
+ * catalog-only per-element spectral copies removed on 2026-10-30.
  * No apochromatic performance claim follows from the commercial APO name.
  * Figure-based rims retain modeled edge vignetting. Geometry uses default
  * gapSagFrac 0.90; no hidden trim or relaxed slope/conic policy is intended.
@@ -108,10 +109,6 @@ const LENS_DATA = {
       apdNote:
         "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma markets the lens as APO with SLD glass; the patent does not designate the element.",
       role: "Positive front singlet of the fixed first group G1.",
-      dPgF: 0.03230303,
-      nC: 1.4951374776,
-      nF: 1.5012275046,
-      ng: 1.5045091267,
     },
     {
       id: 2,
@@ -128,10 +125,6 @@ const LENS_DATA = {
         "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma markets the lens as APO with SLD glass; the patent does not designate the element.",
       role: "Positive front element of the cemented doublet in the fixed first group G1.",
       cemented: "D1",
-      dPgF: 0.03230303,
-      nC: 1.4951374776,
-      nF: 1.5012275046,
-      ng: 1.5045091267,
     },
     {
       id: 3,
@@ -145,10 +138,6 @@ const LENS_DATA = {
       glass: "NBFD10 equivalent (HOYA)",
       role: "Negative rear element of the cemented doublet in the fixed first group G1.",
       cemented: "D1",
-      dPgF: -0.00200524,
-      nC: 1.8274203039,
-      nF: 1.8497525931,
-      ng: 1.8626842428,
     },
     {
       id: 4,
@@ -162,10 +151,6 @@ const LENS_DATA = {
       glass: "FDS90-SG equivalent (HOYA)",
       role: "Positive front element of the cemented negative focusing group G2, which moves toward the image for close focus.",
       cemented: "D2",
-      dPgF: 0.01543452,
-      nC: 1.8364919125,
-      nF: 1.8720887041,
-      ng: 1.8941303413,
     },
     {
       id: 5,
@@ -179,10 +164,6 @@ const LENS_DATA = {
       glass: "NBFD11 equivalent (HOYA)",
       role: "Negative rear element of the cemented focusing group G2, which moves toward the image for close focus.",
       cemented: "D2",
-      dPgF: -0.00880871,
-      nC: 1.7805325504,
-      nF: 1.7984205191,
-      ng: 1.8084583793,
     },
     {
       id: 6,
@@ -196,10 +177,6 @@ const LENS_DATA = {
       glass: "E-FD4 / E-FD4L equivalent (HOYA)",
       role: "Negative front element of the cemented positive focusing group G3, which moves toward the object for close focus.",
       cemented: "D3",
-      dPgF: 0.01229321,
-      nC: 1.7472969243,
-      nF: 1.7747285905,
-      ng: 1.7914574687,
     },
     {
       id: 7,
@@ -213,10 +190,6 @@ const LENS_DATA = {
       glass: "FC5 equivalent (HOYA)",
       role: "Positive rear element of the cemented focusing group G3, which moves toward the object for close focus.",
       cemented: "D3",
-      dPgF: 0.00520634,
-      nC: 1.485350004,
-      nF: 1.4922705241,
-      ng: 1.4959425074,
     },
     {
       id: 8,
@@ -229,10 +202,6 @@ const LENS_DATA = {
       focalLengthMm: -42.963168,
       glass: "LAC8 equivalent (HOYA)",
       role: "Negative front element of the fixed rear group G4.",
-      dPgF: -0.00892045,
-      nC: 1.7089785191,
-      nF: 1.7221971878,
-      ng: 1.7293910485,
     },
     {
       id: 9,
@@ -245,10 +214,6 @@ const LENS_DATA = {
       focalLengthMm: 97.666352,
       glass: "FDS90-SG equivalent (HOYA)",
       role: "Positive rear meniscus of the fixed rear group G4.",
-      dPgF: 0.01543452,
-      nC: 1.8364919125,
-      nF: 1.8720887041,
-      ng: 1.8941303413,
     },
   ],
 

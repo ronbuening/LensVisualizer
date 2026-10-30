@@ -49,7 +49,7 @@ L1 is a thick (5.55 mm), strongly curved positive meniscus positioned at the lea
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA) — fluorite-equivalent fluorophosphate (FLD). f = −82.2 mm.
 
-L2 is the first of two FLD negative meniscus lenses that constitute the diverging core of subgroup G1A. Its front radius (R = +191.9 mm) and rear radius (R = +30.25 mm) create strong negative power that diverges the axial beam, producing the height separation between marginal and chief rays exploited throughout the rest of the system. The fluorite-class glass provides extremely low dispersion (νd = 95.10) combined with strong positive anomalous partial dispersion (ΔPgF ≈ +0.053), enabling secondary-spectrum correction of lateral color at the field periphery where this element's chief-ray contribution dominates. The patent's condition (9) — VnA × ΔPgFnA > 1.0 — is satisfied at 5.36 (patent value, computed from full-precision catalog data) for this element (¶0043–0044).
+L2 is the first of two FLD negative meniscus lenses that constitute the diverging core of subgroup G1A. Its front radius (R = +191.9 mm) and rear radius (R = +30.25 mm) create strong negative power that diverges the axial beam, producing the height separation between marginal and chief rays exploited throughout the rest of the system. The fluorite-class glass provides extremely low dispersion (νd = 95.10) combined with strong positive anomalous partial dispersion (ΔPgF ≈ +0.053), enabling secondary-spectrum correction of lateral color at the field periphery where this element's chief-ray contribution dominates. The patent's condition (9) — VnA × ΔPgFnA > 1.0 — is satisfied at 5.36 (rounded patent condition-table value, independent of catalog selection) for this element (¶0043–0044).
 
 ### L3 — Negative Meniscus, convex to object (G1A, FLD)
 
@@ -145,21 +145,23 @@ L16 is the final element before the image plane and carries the design's only tw
 
 The design uses eleven distinct glass types across sixteen elements, drawing from the HOYA and OHARA catalogs. The chromatic strategy is structured around three FLD (fluorite-class) elements and three SLD (special low-dispersion) elements, consistent with Sigma's published product specifications.
 
-| Element(s) | nd | νd | ΔPgF | Glass | Vendor | Sigma Class | Role |
-|---|---|---|---|---|---|---|---|
-| L1, L8 | 1.77250 | 49.62 | −0.009 | S-LAH66 | OHARA | Standard | Lanthanum crown, moderate-dispersion positive |
-| L2, L3, L12 | 1.43700 | 95.10 | +0.053 | FCD100 | HOYA | FLD | Fluorite-equivalent ED fluorophosphate |
-| L4, L13 | 1.64769 | 33.84 | +0.003 | E-FD2 | HOYA | Standard | Dense flint, achromatizing partner |
-| L5 | 1.83481 | 42.72 | −0.011 | S-LAH55V | OHARA | Standard | Lanthanum dense crown |
-| L6 | 1.55032 | 75.50 | +0.028 | FCD705 | HOYA | SLD | Fluorophosphate crown |
-| L7 | 1.60342 | 38.01 | ±0.000 | S-TIM5 | OHARA | Standard | Flint |
-| L9 | 1.92286 | 20.88 | +0.029 | PBH21 | OHARA | Standard | Super-dense lanthanum flint |
-| L10, L15 | 1.59282 | 68.63 | +0.015 | FCD515 / FCD505 | HOYA | SLD | Fluorophosphate crown |
-| L11 | 1.58144 | 40.89 | +0.005 | E-FL5 | HOYA | Standard | Light flint |
-| L14 | 1.62588 | 35.74 | +0.006 | E-F1 | HOYA | Standard | Flint |
-| L16 | 1.85135 | 40.10 | −0.006 | M-TAFD305 | HOYA | PGM | Moldable lanthanum/tantalum glass |
+| Element(s)  | nd      | νd    | ΔPgF   | Glass           | Vendor | Sigma Class | Role                                          |
+| ----------- | ------- | ----- | ------ | --------------- | ------ | ----------- | --------------------------------------------- |
+| L1, L8      | 1.77250 | 49.62 | −0.009 | S-LAH66         | OHARA  | Standard    | Lanthanum crown, moderate-dispersion positive |
+| L2, L3, L12 | 1.43700 | 95.10 | +0.053 | FCD100          | HOYA   | FLD         | Fluorite-equivalent ED fluorophosphate        |
+| L4, L13     | 1.64769 | 33.84 | +0.003 | E-FD2           | HOYA   | Standard    | Dense flint, achromatizing partner            |
+| L5          | 1.83481 | 42.72 | −0.011 | S-LAH55V        | OHARA  | Standard    | Lanthanum dense crown                         |
+| L6          | 1.55032 | 75.50 | +0.028 | FCD705          | HOYA   | SLD         | Fluorophosphate crown                         |
+| L7          | 1.60342 | 38.01 | ±0.000 | S-TIM5          | OHARA  | Standard    | Flint                                         |
+| L9          | 1.92286 | 20.88 | +0.029 | PBH21           | OHARA  | Standard    | Super-dense lanthanum flint                   |
+| L10, L15    | 1.59282 | 68.63 | +0.015 | FCD515 / FCD505 | HOYA   | SLD         | Fluorophosphate crown                         |
+| L11         | 1.58144 | 40.89 | +0.005 | E-FL5           | HOYA   | Standard    | Light flint                                   |
+| L14         | 1.62588 | 35.74 | +0.006 | E-F1            | HOYA   | Standard    | Flint                                         |
+| L16         | 1.85135 | 40.10 | −0.006 | M-TAFD305       | HOYA   | PGM         | Moldable lanthanum/tantalum glass             |
 
-ΔPgF in this table and throughout this note is the patent's own deviation, ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0017), the quantity condition (9) uses, evaluated here from the two-decimal PgF printed in the surface table. The data file's `dPgF` field is measured from the ray-trace engine's normal line, 0.6438 − 0.001682·νd, so the stored numbers differ from the ΔPgF quoted here: L2/L3/L12 +0.049670 (PgF 0.5335, recovered from the patent's condition (9) value of 5.36 at νd 95.10, which is +0.0564 on the patent's line), L6 +0.023177 and L10/L15 +0.015751. The last two are catalog-derived (HOYA FCD705 PgF 0.5400 and FCD515 PgF 0.5441, both rounding to the printed 0.54), because a two-decimal PgF is too coarse to fix the value. For L10/L15 the stored +0.015751 sits close to the table's +0.015 only by coincidence: the FCD515 catalog PgF is +0.0193 on the patent's line, and the rounding of 0.5441 to 0.54 nearly cancels the gap between the two lines at νd 68.63.
+ΔPgF in the table uses the patent line PgF−0.64833+0.00180νd (¶0017/PDF6), evaluated from the printed two-decimal PgF. Runtime dPgF instead uses PgF−0.6438+0.001682νd. All16 source ratios are now represented with their ±.005 precision. For L2/L3, condition9=5.36±.005 (PDF18) gives PgF≈.533512 and runtime dPgF+.049670; the same finer ratio on L12 is explicitly a qualified transfer between identical nd/νd/PgF rows, not an individual source APD designation. Other elements use the actual coarse source ratios; L6 is+.023191 and L10/L15+.01163566, replacing catalog-derived overrides. These differences are within the source's broad rounding bands and cannot establish the manufactured curve or rule out a compatible catalog proxy.
+
+All glass labels in this table identify compatible current coefficient curves. The source does not identify production suppliers, melts, resin chemistry, or molding method. The source anomalous-material condition explicitly covers G1A negatives L2/L3 (PDF9); the other FLD/SLD position tags remain qualified inferences.
 
 The chromatic correction strategy employs a front-loaded secondary-spectrum architecture: the three FLD elements (L2, L3 in G1A and L12 in G3) carry the bulk of the anomalous dispersion correction, with their high positive ΔPgF (+0.053) used at positions of maximum chief-ray or marginal-ray height respectively. The three SLD elements (L6 in G1B, L10 and L15 in G2/G3) provide secondary support with moderate positive anomalous character (ΔPgF = +0.015 to +0.028), distributed across the central and rear regions.
 
@@ -171,11 +173,11 @@ The exact FCD705 and M-TAFD305 matches reinforce the use of HOYA low-dispersion 
 
 The lens employs a **floating inner focus** system with two independently moving groups (¶0057). G1 remains fixed relative to the image plane; G2 and G3 (with the aperture stop attached) move toward the object during close focusing, each with different travel distances.
 
-| Parameter | Infinity | Close (393 mm) | Δ |
-|---|---|---|---|
-| d14 (G1–G2 gap) | 8.767 mm | 2.603 mm | −6.164 mm |
-| d19 (G2–Stop gap) | 7.391 mm | 6.342 mm | −1.049 mm |
-| BF (last surface to image) | 39.000 mm | 46.212 mm | +7.212 mm |
+| Parameter                  | Infinity  | Close (393 mm) | Δ         |
+| -------------------------- | --------- | -------------- | --------- |
+| d14 (G1–G2 gap)            | 8.767 mm  | 2.603 mm       | −6.164 mm |
+| d19 (G2–Stop gap)          | 7.391 mm  | 6.342 mm       | −1.049 mm |
+| BF (last surface to image) | 39.000 mm | 46.212 mm      | +7.212 mm |
 
 The total track from the front vertex to the image plane remains constant at 171.00 mm (verified: Δd14 + Δd19 + ΔBF = 0.000 mm), confirming that G1 is fixed and the overall length does not change during focus — a requirement for the lens's dust-and-splash-proof barrel construction.
 
@@ -193,54 +195,54 @@ where $K$ is the conic constant (K = 0 for both surfaces, i.e., the base curve i
 
 ### Surface 28 (L16 front, concave to object)
 
-| Coefficient | Value |
-|---|---|
-| K | 0.0000 |
-| A4 | −2.73662 × 10⁻⁶ |
-| A6 | +3.07519 × 10⁻⁹ |
-| A8 | +3.90515 × 10⁻¹¹ |
-| A10 | −1.94154 × 10⁻¹⁴ |
-| A12 | 0.0 |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.0000           |
+| A4          | −2.73662 × 10⁻⁶  |
+| A6          | +3.07519 × 10⁻⁹  |
+| A8          | +3.90515 × 10⁻¹¹ |
+| A10         | −1.94154 × 10⁻¹⁴ |
+| A12         | 0.0              |
 
 The dominant A4 coefficient is **negative**, meaning the surface develops progressively more negative departure from the base sphere with increasing height. On a surface that is weakly concave to the object (R = −430.0 mm), this increases the negative power contribution at the periphery, correcting residual spherical aberration in the converging beam. The small positive A6 and A8 terms introduce a mid-zone inflection that fine-tunes the zonal correction profile.
 
 ### Surface 29 (L16 rear, concave to object)
 
-| Coefficient | Value |
-|---|---|
-| K | 0.0000 |
-| A4 | +3.26804 × 10⁻⁶ |
-| A6 | +3.98767 × 10⁻⁹ |
-| A8 | +3.58258 × 10⁻¹¹ |
-| A10 | 0.0 |
-| A12 | 0.0 |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.0000           |
+| A4          | +3.26804 × 10⁻⁶  |
+| A6          | +3.98767 × 10⁻⁹  |
+| A8          | +3.58258 × 10⁻¹¹ |
+| A10         | 0.0              |
+| A12         | 0.0              |
 
 Surface 29's A4 is **positive**, producing increasing positive departure at the rim. On a surface that is more strongly concave to the object (R = −54.99 mm), the positive departure flattens the surface at large heights relative to the base sphere. Since this is the exit surface (glass to air, φ = (1.0 − 1.85135)/R > 0), a flatter rim reduces the positive refractive power of this surface at the periphery. Combined with surface 28's increasing negative contribution, the net effect is that L16 develops progressively increasing negative power toward the field edge — precisely the "光軸から離れるほど負のパワーが強くなる非球面" described in ¶0056. This aspherical profile enables peripheral spherical-aberration correction without degrading off-axis performance, as the aspherical departure primarily affects the axial marginal ray while leaving oblique ray bundles largely unperturbed.
 
-Both surfaces use M-TAFD305 glass (HOYA). The "M-" prefix identifies a precision-molding formulation, making molded manufacture a natural fit for this small rear element, although the patent does not state the production method explicitly.
+The model uses a qualified M-TAFD305 coefficient curve for L16. That catalog prefix does not establish the production glass supplier, melt or manufacturing method.
 
 ## Conditional Expressions
 
 The patent defines twelve conditional inequalities governing the design. All are satisfied by Example 1 as tabulated in the patent's own conditional-expression summary (pp. 18–19):
 
-| Condition | Expression | Ex. 1 Value | Range | Status |
-|---|---|---|---|---|
-| (1) | f3/fw | 1.78 | 1.3–2.5 | ✓ |
-| (2) | VX1/VX2 | 0.79 | 0.6–1.2 | ✓ |
-| (3) | VY1/VY2 | 1.99 | 1.6–2.5 | ✓ |
-| (4) | (RY11+RY12)/(RY11−RY12) | 1.04 | 0.4–2.5 | ✓ |
-| (5) | \|fw/fX1\| | 0.86 | 0.4–1.5 | ✓ |
-| (6) | fw/fX2 | 0.80 | 0.3–1.2 | ✓ |
-| (7) | fw/fY1 | 0.68 | 0.4–1.5 | ✓ |
-| (8) | \|fw/fY2\| | 0.86 | 0.5–1.5 | ✓ |
-| (9) | VnA × ΔPgFnA | 5.36* | > 1.0 | ✓ |
-| (10) | 100×(N32−N31)/(V32−V31) | −0.34 | −0.7 to −0.05 | ✓ |
-| (11) | V31 | 95.10 | > 60 | ✓ |
-| (12) | R33/Ds33 | −1.52 | −1.8 to −1.0 | ✓ |
+| Condition | Expression              | Ex. 1 Value | Range         | Status |
+| --------- | ----------------------- | ----------- | ------------- | ------ |
+| (1)       | f3/fw                   | 1.78        | 1.3–2.5       | ✓      |
+| (2)       | VX1/VX2                 | 0.79        | 0.6–1.2       | ✓      |
+| (3)       | VY1/VY2                 | 1.99        | 1.6–2.5       | ✓      |
+| (4)       | (RY11+RY12)/(RY11−RY12) | 1.04        | 0.4–2.5       | ✓      |
+| (5)       | \|fw/fX1\|              | 0.86        | 0.4–1.5       | ✓      |
+| (6)       | fw/fX2                  | 0.80        | 0.3–1.2       | ✓      |
+| (7)       | fw/fY1                  | 0.68        | 0.4–1.5       | ✓      |
+| (8)       | \|fw/fY2\|              | 0.86        | 0.5–1.5       | ✓      |
+| (9)       | VnA × ΔPgFnA            | 5.36\*      | > 1.0         | ✓      |
+| (10)      | 100×(N32−N31)/(V32−V31) | −0.34       | −0.7 to −0.05 | ✓      |
+| (11)      | V31                     | 95.10       | > 60          | ✓      |
+| (12)      | R33/Ds33                | −1.52       | −1.8 to −1.0  | ✓      |
 
 Conditions (2) and (3) together encode the design's central innovation: Component X uses a "new achromatism" pairing (close Abbe numbers, VX1/VX2 ≈ 0.8) where the cemented interface's geometric bending of field-marginal rays dominates, primarily correcting field curvature; Component Y uses "old achromatism" (wide Abbe gap, VY1/VY2 ≈ 2.0) where the strong refractive-index contrast at the cemented surface controls high-order spherical aberration (¶0026). The patent argues this division of labor — field curvature in X, high-order SA in Y — is essential for simultaneous correction at F/1.4 while both doublets also contribute achromatizing effects as a secondary benefit (¶0026–0027).
 
-*Note on condition (9): The patent's conditional table reports 5.36 for all four examples, computed from full-precision catalog PgF data. Using the two-decimal PgF = 0.53 printed in the surface-data table yields 5.03. The discrepancy is purely a rounding artifact; the full-precision PgF for FCD100 glass (approximately 0.5335, i.e. ΔPgF = +0.0564 on the patent's line) recovers the patent's stated value. The data file stores that PgF for L2, L3 and L12 as `dPgF` = +0.049670 against the engine's normal line.
+\*Note on condition (9): The patent's conditional table reports 5.36 for all four examples, with two-decimal source precision. Using the two-decimal PgF = 0.53 printed in the surface-data table yields 5.03. The discrepancy is purely a rounding artifact; the full-precision PgF for FCD100 glass (approximately 0.5335, i.e. ΔPgF = +0.0564 on the patent's line) recovers the patent's stated value. The data file stores that PgF for L2, L3 and L12 as `dPgF` = +0.049670 against the engine's normal line.
 
 ## Aberration Correction Strategy
 
@@ -277,9 +279,12 @@ The patent was filed by inventor Yamanaka Kenji, with the publication appearing 
 
 `imageFormat: "135-full-frame"` follows [Sigma’s official product specifications](https://www.sigma-global.com/en/lenses/a018_40_14/), which identify the production lens as Full-frame [DG]. The format assignment does not assert production prescription identity. Native production mounts are documented separately below.
 
-
 ## Production mount assignment
 
 Sigma lists five native production mounts for the DG HSM Art lens. [Manufacturer source](https://www.sigma-global.com/en/lenses/a018_40_14/).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+## 2026-10-30 source outline and glass reinspection
+
+Example1 Figure1/PDF19 was directly inspected at600dpi, along with every medium row in PDF11–12, the wavelength/ratio definitions in PDF6/10, anomalous-material condition9 in PDF9 and its5.36 value in PDF18. Continuous caps grow outward to the source outline; S4/S6/S7/S19/S23/S24 have explicit lands. Existing caps are preserved or enlarged, with no inferred inward cut. Several schematic full bodies conflict with the literal profiles:29.5mm at L5 crosses by1.502mm;28.7mm at L6 by4.308mm;26.4mm at L10 by3.448mm;18.8mm at L12 by1.299mm and at L15 by.610mm. Their adopted connected positive-edge bounds are27.5/25.5/23.3/17.2/17.9mm. S7 and S24 use enlarged22.5/15.9mm clear caps; source endpoints23.4/16.2mm exceed the strict neighboring-gap bounds. S15/S16 can represent the full28.3mm source rim. Both rear aspheres now extend to18.8mm with source coefficients unchanged. No printed clear-aperture dimension is claimed.

@@ -47,11 +47,11 @@ E1 to E9 are this model's sequential element names, not patent designations, and
 patent's groups. D1 to D3 are likewise model labels for the cemented pairs. [1, PDF pp1–2, p6]
 
 | Functional group | Elements | Isolated group focal length | Motion toward macro |
-|---|---|---:|---|
-| G1 | E1–E3 | +68.024 mm | Fixed |
-| G2 | E4–E5 | -54.365 mm | Imageward |
-| G3 | E6–E7 | +91.634 mm | Objectward |
-| G4 | E8–E9 | -79.023 mm | Fixed |
+| ---------------- | -------- | --------------------------: | ------------------- |
+| G1               | E1–E3    |                  +68.024 mm | Fixed               |
+| G2               | E4–E5    |                  -54.365 mm | Imageward           |
+| G3               | E6–E7    |                  +91.634 mm | Objectward          |
+| G4               | E8–E9    |                  -79.023 mm | Fixed               |
 
 The calculated infinity EFL is 174.864 mm. Back focal distance is 40.0805 mm from the last
 glass vertex in air, agreeing with printed 40.08 mm at source precision. First-to-last vertex track is
@@ -155,22 +155,16 @@ consistent, explicitly approximate spectral set rather than proof of manufacturi
 indices and Abbe numbers are unchanged. The nominal catalog coordinates are: [3–8]
 
 | Elements | HOYA equivalent | Patent nd / νd | Catalog nd / νd |
-|---|---|---|---|
-| E1, E2 | FCD1 | 1.49700 / 81.6 | 1.49700 / 81.61 |
-| E3 | NBFD10 | 1.83400 / 37.3 | 1.83400 / 37.34 |
-| E4, E9 | FDS90-SG | 1.84666 / 23.8 | 1.84666 / 23.78 |
-| E5 | NBFD11 | 1.78590 / 43.9 | 1.78590 / 43.94 |
-| E6 | E-FD4 / E-FD4L | 1.75520 / 27.5 | 1.75520 / 27.53 |
-| E7 | FC5 | 1.48749 / 70.4 | 1.48749 / 70.44 |
-| E8 | LAC8 | 1.71300 / 53.9 | 1.71300 / 53.94 |
+| -------- | --------------- | -------------- | --------------- |
+| E1, E2   | FCD1            | 1.49700 / 81.6 | 1.49700 / 81.61 |
+| E3       | NBFD10          | 1.83400 / 37.3 | 1.83400 / 37.34 |
+| E4, E9   | FDS90-SG        | 1.84666 / 23.8 | 1.84666 / 23.78 |
+| E5       | NBFD11          | 1.78590 / 43.9 | 1.78590 / 43.94 |
+| E6       | E-FD4 / E-FD4L  | 1.75520 / 27.5 | 1.75520 / 27.53 |
+| E7       | FC5             | 1.48749 / 70.4 | 1.48749 / 70.44 |
+| E8       | LAC8            | 1.71300 / 53.9 | 1.71300 / 53.94 |
 
-The explicit nC, nF and ng values are evaluated from the official HOYA formula-1 coefficients at
-656.2725, 486.1327 and 435.8343 nm. The d-line reference is 587.5618 nm. The catalog ratio PgF is converted to
-dPgF against the model's normal line, 0.6438 − 0.001682×νd, using the patent's νd.
-These derived properties are stored directly on the elements. They allow a spectral proxy model, but no
-apochromatic performance is established for the manufactured lens. “APO” remains part of the product identity,
-not a measured conclusion of this analysis. In particular, modern equivalents cannot settle melt variation,
-coatings or the actual historical dispersion curve. [3]
+The source publishes only d-line nd and νd (PDF3–4), with νd rounded to one decimal. Catalog-only C/F/g and dPgF copies were removed in the 2026-10-30 reinspection; the named compatible coefficient curves now supply the spectral proxies directly. The patent provides no additional spectral anchors or individual anomalous-material designations. “APO” remains the product identity, not a measured conclusion; historical supplier, melt and production performance are unestablished.
 
 The E1/E2 coordinate is an FCD1-class extra-low-dispersion glass (catalogue dPgF about +0.032), the type Sigma
 calls SLD; the patent itself does not designate it. OHARA S- and L-prefixed families are kept distinct, and the
@@ -185,11 +179,11 @@ The motions follow directly from the two printed gap sets. Claim 1 states the sa
 toward the image and the third toward the object, and Figure 5 marks those two groups as the focusing groups. [1]
 
 | Gap after source row | Infinity | Published 0.5× |
-|---|---:|---:|
-| 5 | 12.48 mm | 23.66 mm |
-| 8 | 14.50 mm | 3.32 mm |
-| 9, STO | 11.63 mm | 3.38 mm |
-| 12 | 33.45 mm | 41.70 mm |
+| -------------------- | -------: | -------------: |
+| 5                    | 12.48 mm |       23.66 mm |
+| 8                    | 14.50 mm |        3.32 mm |
+| 9, STO               | 11.63 mm |        3.38 mm |
+| 12                   | 33.45 mm |       41.70 mm |
 
 The 0.5× object distance is 403.0 mm from the first surface. The model keeps the 40.080 mm last-vertex image
 gap at both states. That value is printed as the infinity back focus; the source does not repeat it for the
@@ -216,14 +210,14 @@ The patent's six inequalities are evaluated with isolated functional-group power
 magnifications from the final prescription. Group magnification here is the appropriate paraxial conjugate
 mapping, not the product's overall reproduction ratio. [1, PDF pp1–4]
 
-| Source condition | Calculated | Printed summary |
-|---|---:|---:|
-| 0.27 < f1/f < 0.61 | 0.389012 | 0.39 |
-| 1.8 < beta2,infinity < 6.9 | 4.875859 | 4.8 |
-| 0.22 < abs(f2/f) < 0.64 | 0.310899 | 0.31 |
-| 1.10 < abs(beta3,infinity/beta3,MOD) < 2.30 | 1.372545 | 1.37 |
-| 0.15 < abs(f4/f) < 0.64 | 0.451912 | 0.45 |
-| 1.2 < beta4 < 3.9 | 1.567227 | 1.5 |
+| Source condition                            | Calculated | Printed summary |
+| ------------------------------------------- | ---------: | --------------: |
+| 0.27 < f1/f < 0.61                          |   0.389012 |            0.39 |
+| 1.8 < beta2,infinity < 6.9                  |   4.875859 |             4.8 |
+| 0.22 < abs(f2/f) < 0.64                     |   0.310899 |            0.31 |
+| 1.10 < abs(beta3,infinity/beta3,MOD) < 2.30 |   1.372545 |            1.37 |
+| 0.15 < abs(f4/f) < 0.64                     |   0.451912 |            0.45 |
+| 1.2 < beta4 < 3.9                           |   1.567227 |             1.5 |
 
 All six inequalities hold. Two printed summary values do not follow from the prescription by ordinary rounding:
 β2,∞ is 4.875859 against printed 4.8, and β4 is 1.567227 against printed 1.5. Example 1's summary values round
@@ -276,3 +270,7 @@ inferred rims, not a measured illumination curve or manufactured-lens MTF.
 8. SUMITA, Glass Data Book version 14.02.00, obtained through the [official download page](https://www.sumita-opt.co.jp/en/download/), coordinate comparison.
 9. Phillip Reeve, [Review: Sigma 180mm 5.6 Apo Macro (MF)](https://phillipreeve.net/blog/review-sigma-180mm-5-6-apo-macro-mf/):
    published specifications, internal focusing with two moving groups, 1990 introduction.
+
+## 2026-10-30 source outline and glass reinspection
+
+Original Figure5/PDF6 was freshly inspected at600dpi, and all nine glass pairs read directly from Example3/PDF4. Existing20/18/14/11.31/14/16mm component rims remain close to the native352dpi outline. E5/E8 front corners are oblique bevels; a flat concave land would misrepresent their topology, so no new cut or extension was added. Cemented interfaces and both source focus stations remain unchanged. All nine elements resolve to qualified current coefficient curves; source d-line coordinates remain literal and the36 catalog-only spectral copies are removed.
