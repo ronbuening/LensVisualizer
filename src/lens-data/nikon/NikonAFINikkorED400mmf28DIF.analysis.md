@@ -71,7 +71,7 @@ L21 is the front element of moving unit G2. The patent gives several conditional
 
 **L22a:** `nd = 1.84666`, `νd = 23.8`. Glass: **J-SF03 (HIKARI catalog correlation; patent vendor unspecified)**. Standalone `f = +139.5398 mm`.
 
-**L22b:** `nd = 1.53172`, `νd = 49.1`. Glass: **J-LLF6 (HIKARI line-data correlation; patent νd differs by +0.32)**. Standalone `f = -84.2658 mm`.
+**L22b:** `nd = 1.53172`, `νd = 49.1`. Glass: **J-LLF6 (catalog-compatible spectral proxy; source νd=49.1, catalog=48.78; supplier unresolved)**. Standalone `f = -84.2658 mm`.
 
 The two members form a negative cemented component with computed EFL **-211.2839 mm**. Their refractive-index difference is **0.31494**, while their Abbe-number difference is **25.3**; both quantities are explicitly controlled by the patent's conditions. Combined with L21, the complete translating G2 unit has EFL **-87.9602 mm**.
 
@@ -85,20 +85,20 @@ G3 is positive overall, with computed EFL **+156.8803 mm**. L3b illustrates why 
 
 ## Glass Identification and Selection
 
-The patent identifies its glasses only by d-line `nd` and `νd`; it does not name a vendor or melt. The data file therefore preserves the patent coordinates as authoritative while treating every HIKARI name and every `nC`, `nF`, `ng`, and `dPgF` value as catalog-derived correlation data. No production-melt identity is asserted.
+The patent identifies its glasses only by d-line `nd` and `νd`; it does not name a vendor or melt. The data file therefore preserves the patent coordinates as authoritative while treating every HIKARI name as a qualified catalog spectral proxy. Catalog-derived `nC`, `nF`, `ng`, and `dPgF` copies have been removed from the prescription; no measured source values exist for those fields. No production-melt identity is asserted.
 
-| Data-file correlation | Patent `nd` | Patent `νd` | Catalog `dPgF` | Elements |
-|---|---:|---:|---:|---|
-| J-FKH1 | 1.49782 | 82.6 | +0.0327 | L11, L12, L3a |
-| J-LAF7 | 1.74950 | 35.2 | +0.0029 | L13 |
-| J-LAK14 | 1.69680 | 55.6 | -0.0082 | L14a |
-| J-PSKH1 | 1.59319 | 67.9 | +0.0135 | L14b |
-| J-BK7A | 1.51680 | 64.1 | -0.0010 | L21 |
-| J-SF03 | 1.84666 | 23.8 | +0.0171 | L22a |
-| J-LLF6 | 1.53172 | 49.1 | -0.0003 | L22b |
-| J-SF8 | 1.68893 | 31.1 | +0.0072 | L3b |
+| Data-file spectral proxy | Patent `nd` | Patent `νd` | Elements |
+|---|---:|---:|---|
+| J-FKH1 | 1.49782 | 82.6 | L11, L12, L3a |
+| J-LAF7 | 1.74950 | 35.2 | L13 |
+| J-LAK14 | 1.69680 | 55.6 | L14a |
+| J-PSKH1 | 1.59319 | 67.9 | L14b |
+| J-BK7A | 1.51680 | 64.1 | L21 |
+| J-SF03 | 1.84666 | 23.8 | L22a |
+| J-LLF6 | 1.53172 | 49.1 | L22b |
+| J-SF8 | 1.68893 | 31.1 | L3b |
 
-All selected catalog correlations are index-exact at the stored `nd` precision. The largest Abbe-number residual is **0.32** for L22b / J-LLF6; the remaining correlations are closer. The stored line indices and `dPgF` values reproduce the Stage 1 HIKARI catalog data at their written precision. These spectral fields improve the model's dispersion basis, but they do not turn a catalog correlation into evidence for the production lens's actual melt selection or justify a stronger chromatic-performance classification by themselves.
+All selected catalog correlations are index-exact at the stored `nd` precision. The largest Abbe-number residual is **0.32** for L22b / J-LLF6; the remaining correlations are closer. The runtime now resolves the catalog curves directly. In particular, J-LLF6 has catalog νd=48.78 against the retained source value 49.1. Compatible coordinates support a spectral proxy, not the production melt or a stronger chromatic-performance classification.
 
 ## Focus Mechanism
 
@@ -120,7 +120,7 @@ The prescription distributes dispersion correction across both the large fixed f
 
 The patent is especially explicit about G2. L21 must have `νa > 45`; the positive and negative members of L22 must maintain a substantial refractive-index difference; and the negative member must exceed the positive member's Abbe number by more than 25. Example 1 satisfies these constraints with `νa = 64.1`, `Nb - Nc = 0.31494`, and `νc - νb = 25.3`. This makes the translating focus group a deliberately dispersion-balanced negative unit rather than a simple single negative lens.
 
-The HIKARI correlations add C-, F-, and g-line indices and `dPgF` to the model, so the stored data can represent more than an Abbe-only approximation. Those values are catalog-derived, however; the patent itself publishes only d-line coordinates.
+The HIKARI correlations provide catalog dispersion curves through the runtime resolver. The patent itself publishes only d-line coordinates, so catalog line indices and partial-dispersion values are not authored as prescription measurements.
 
 ## Conditional Expressions
 
@@ -149,7 +149,9 @@ At infinity, the computed EFL is **392.005464 mm**, only **-0.001136 mm** from t
 
 The patent also includes a 2.00 mm, `n = 1.51680`, `ν = 64.1` plane-parallel filter after G3 (surfaces 18–19, labeled FILTER in Figure 1). The data file draws it as a plane-parallel plate element (J-BK7A class): the stop-to-filter gap is the patent's 46.34 mm minus the inferred 23.7 mm stop offset, and the printed `Bf = 104.5069 mm` runs from the filter to the image. Every analysis traces the filter; its semi-diameter is a ray-trace estimate because the source lists none, and it is not counted in `elementCount`. Its paraxial air-equivalent surface-17-to-image distance is **152.165465 mm**, the value earlier versions stored as a folded rear gap; the filter does not change the powered prescription.
 
-Clear apertures are likewise not tabulated. Surface 1 uses `sd = 68.2 mm`, anchored by the patent's condition-(8) effective semi-diameter of approximately **68.046 mm**; the remaining semi-diameters are inferred from the marginal-ray envelope, Figure 1 proportions, and geometry constraints. Across the published infinity and close states, the final model has minimum edge thickness **2.6931 mm**, maximum spherical rim angle **39.2468°**, maximum positive cross-gap intrusion fraction **0.4581**, and minimum exact full-stop marginal-ray clearance **0.2810 mm**. These are validation results for the authored geometry, not patent specifications.
+Clear apertures are likewise not tabulated. Surface 1 uses `sd = 68.2 mm`, anchored by the patent's condition-(8) effective semi-diameter of approximately **68.046 mm**; the remaining semi-diameters are inferred from the marginal-ray envelope, Figure 1 proportions, and geometry constraints. Across the published infinity and close states, the final model has minimum edge thickness **2.6931 mm**, maximum spherical rim angle **39.2468°**, maximum positive cross-gap intrusion fraction **0.4581**. These are validation results for the authored geometry, not patent specifications.
+
+A fresh Figure 1 review found no independently resolved exposed concave cap-end land. The step at cemented surface 8 does not support an air-facing rim extension; the remaining caps and inferred heights are retained. Four cardinal full-iris marginal rays clear at infinity, but clip surface 1 at the published close object distance in both the baseline and current models. This inherited finite-conjugate limitation remains distinct from the passing surface geometry and infinity aperture checks.
 
 The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is **+0.000260406876 mm⁻¹**, corresponding to a reciprocal radius of approximately **+3840.14 mm**. No patent prescription value was altered to obtain these agreements; the small residuals in focal length and close-focus imaging remain as consequences of printed source precision.
 
@@ -158,4 +160,4 @@ The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is **+0.0002604
 1. **Nakashima, Masahiro.** US 5,438,455 A, *Internal Focus Telephoto Lens for an Auto Focus Camera*. Nikon Corporation. Granted August 1, 1995. Example 1, Figure 1, Table 1, and the patent's conditions (1)–(8). Original patent PDF is included in the handoff package.
 2. **Nikon Imaging.** [AF-S Teleconverter TC-20E III — compatible lenses](https://imaging.nikon.com/imaging/lineup/lens/f-mount/teleconverters/af-s_tc-20e_3/). Lists `AF-I Nikkor 400mm f/2.8D IF-ED` and provides manufacturer-source support for the production identity and F-mount context.
 3. **Nikon Imaging.** [NIKKOR — The Thousand and One Nights No. 67](https://imaging.nikon.com/imaging/information/story/0067/). Historical Nikon account noting the 300 mm, 400 mm, and 500 mm AF-I lens generation in the silver-halide era.
-4. **HIKARI Glass Co., Ltd.** [Optical Glass Catalog](https://www.hikari-g.co.jp/optical_glass/catalog/). Manufacturer catalog source for the HIKARI glass correlations and spectral line data stored in the data file; these are correlations, not patent-identified melts.
+4. **HIKARI Glass Co., Ltd.** [Optical Glass Catalog](https://www.hikari-g.co.jp/optical_glass/catalog/). Manufacturer catalog source for the HIKARI glass correlations used by the runtime; these are correlations, not patent-identified melts.

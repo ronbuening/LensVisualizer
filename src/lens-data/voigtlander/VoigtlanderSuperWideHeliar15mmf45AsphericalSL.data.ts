@@ -10,6 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f-number, patent f/4.57.
  * Every surface semi-diameter is modeled from exact meridional bundle coverage
  * and the optical sections, constrained by edge/rim/conic/shared-gap checks.
+ * Original Fig. 5 supports independent outer lands on concave S2/S4/14A;
+ * their clear caps stay constrained by the traced beam and surface domains.
  * Nominal 110.1-degree coverage is published; peripheral vignetting is retained.
  * HOYA coordinate-compatible catalog dispersion proxies do not identify
  * the source glass supplier, melt, partial dispersion, or production recipe.
@@ -144,9 +146,9 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 22.739, d: 1.2, sd: 12.6, medium: 1 },
-    { label: "2", R: 11.2, d: 3.88, sd: 9.9 },
+    { label: "2", R: 11.2, d: 3.88, sd: 9.9, rimExtensionSd: 12.6 },
     { label: "3", R: 25.576, d: 1.0, sd: 9.5, medium: 2 },
-    { label: "4", R: 10.899, d: 2.75, sd: 8.0 },
+    { label: "4", R: 10.899, d: 2.75, sd: 8.1, rimExtensionSd: 9.5 },
     { label: "5", R: 31.315, d: 2.98, sd: 7.9, medium: 3 },
     { label: "6", R: -304.509, d: 5.05, sd: 7.9 },
     { label: "7", R: 19.363, d: 3.39, sd: 4.6, medium: 4 },
@@ -161,6 +163,7 @@ const LENS_DATA = {
       R: -15.197,
       d: 1.5,
       sd: 6.3,
+      rimExtensionSd: 7.6,
       medium: 8,
       asphere: { K: 3.993265, A4: -0.000195704, A6: 1.78495e-6, A8: -1.12758e-7, A10: 9.00778e-10, A12: 0, A14: 0 },
     },

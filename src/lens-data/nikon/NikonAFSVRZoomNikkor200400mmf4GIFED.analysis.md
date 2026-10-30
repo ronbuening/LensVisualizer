@@ -249,6 +249,8 @@ The smallest modeled element edge thickness occurs in this final pair and remain
 
 ## Glass Identification and Selection
 
+Fresh direct inspection of US20050157403A1.pdf (PDF pages 27–28, Table 1) confirms all 25 stored nd/νd pairs at d = 587.6 nm. All 25 modeled media resolve to compatible catalog curves, including the source rear-inserting BFL filter. The source gives no per-element C/F/g indices or partial-dispersion ratios. All source indices and runtime spectral channels remain unchanged. Production supplier, melt and proprietary ED identity remain unproved; vendor-unresolved wording concerns provenance rather than absent dispersion coverage.
+
 The patent supplies d-line refractive index and Abbe number for each glass but does not name commercial glasses. The final data retains the patent coordinates and uses compatible coefficient-backed catalog equivalents where available. Those equivalents provide dispersion curves without asserting the historical production supplier.
 
 | Authored glass annotation | nd | νd | Elements | Interpretation |
@@ -347,6 +349,8 @@ The tightest modeled air-space geometry occurs between G2 surfaces 19 and 20. At
 Across the final semi-diameter set, the maximum spherical rim slope is 0.481772 in dz/dy magnitude and the minimum modeled element edge thickness is 0.304695 mm. The S2 full-field envelope is 17.825984 mm, below its inferred 17.90 mm clear semi-diameter. These checks support the modeled apertures without treating them as source-published mechanical diameters.
 
 No aspheres are present, so there are no conic-domain or polynomial-departure checks. No sensor cover, flare-cutter, or dummy plane is in the active sequential model. The separate source rear filter is drawn as a plane-parallel plate element with its printed thickness, index, and gaps, and it is traced by every analysis.
+
+Fresh 600 dpi inspection of the exact source figure (native raster 300 ppi) retained all existing geometry. Every convex/concave/cemented face was reviewed, including the compact rear relay. Short shallow-profile strokes, leaders and ray crossings do not establish another independent cap endpoint, so no inferred cut or land was added. Nine focus/zoom SVG states were inspected with finite outlines and zero hidden trim; the nominal aperture and surface/image-circle checks pass. These checks retain the qualified figure/ray-derived apertures without converting them into manufacturing dimensions.
 
 ## Sources and References
 

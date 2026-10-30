@@ -67,7 +67,7 @@ $nd = 1.49700$, $\nu_d = 81.61$. Glass: OHARA S-FPL51 / HOYA FCD1 class ED fluor
 
 L21 is the most object-side element of Gr2A and the first element of the moving rear-focus group. Its biconcave form gives it negative power inside the otherwise positive second group. The patent requires the most object-side lens of the front lens group in Gr2 to satisfy $-4 < f_{21}/f_L < -2.5$; Example 3 gives $f_{21}/f_L = -3.57$, within that range.
 
-Its low dispersion is central. A strong negative element at this position would otherwise introduce substantial longitudinal and lateral color. The S-FPL51/FCD1-class match provides very high Abbe number and positive anomalous partial dispersion. The data file records catalog spectral fields for S-FPL51 as the closest public surrogate for chromatic modeling, while preserving the patent's exact $nd$ and $\nu_d$ values in the prescription.
+Its low dispersion is central. A strong negative element at this position would otherwise introduce substantial longitudinal and lateral color. The source pair has a very high Abbe number. The selected S-FPL51 catalog curve provides proxy dispersion, without establishing the source material's partial-dispersion behavior. The runtime uses the compatible S-FPL51 catalog curve as a spectral proxy while retaining the exact source $nd$ and $\nu_d$ values; source partial dispersion is not supplied.
 
 ### L22 — Biconvex Positive Element
 
@@ -97,13 +97,13 @@ L24 is the first block of Gr2B and is net negative. It consists of a biconcave d
 
 L24a has $nd = 1.71736$, $\nu_d = 29.50$, code 717295, and standalone focal length $f \approx -21.0$ mm. L24b has $nd = 1.77250$, $\nu_d = 49.36$, code 773496, and standalone focal length $f \approx +33.2$ mm. The cemented block as a whole has verified focal length $f = -66.96$ mm, matching the patent's tabulated value.
 
-The patent identifies sagittal coma as a central difficulty in a wide-angle lens faster than f/1.9. In the negative-positive-positive Gr2B layout, a strongly curved concave surface on the object side of the first rear block generates significant coma. Surface 21, on the image side of L24b, is placed to counter that behavior. At the verified data-file semi-diameter of 16.2 mm, the full surface including polynomial terms departs by approximately $+1.34$ mm from the corresponding spherical base surface. The polynomial contribution is large and positive at that height, so the surface should be interpreted from the computed departure, not from the conic constant alone.
+The patent identifies sagittal coma as a central difficulty in a wide-angle lens faster than f/1.9. In the negative-positive-positive Gr2B layout, a strongly curved concave surface on the object side of the first rear block generates significant coma. Surface 21, on the image side of L24b, is placed to counter that behavior. At the adopted data-file semi-diameter of 16.5 mm, the full surface including polynomial terms departs by approximately $+1.44$ mm from the corresponding spherical base surface. The polynomial contribution is large and positive at that height, so the surface should be interpreted from the computed departure, not from the conic constant alone.
 
 ### L25 — Biconvex Positive Low-Dispersion Element
 
 $nd = 1.59319$, $\nu_d = 67.90$. Glass: J-PSKH1 / FCD515-family abnormal-dispersion phosphate crown, code 593679. Verified focal length: $f = +45.97$ mm.
 
-L25 is the second block of Gr2B and satisfies the patent's chromatic condition $\nu_{d2} > 65$. Nikon publishes two ED glass elements for the production AF-S 24 mm f/1.4G ED; in Example 3, L21 is the clear 497816 ED element and L25 is the other low-dispersion positive element with anomalous-dispersion catalog equivalents. The data file therefore treats L25 as the second ED/anomalous-dispersion element for chromatic modeling, using Hikari J-PSKH1 spectral data as the public catalog surrogate.
+L25 is the second block of Gr2B and satisfies the patent's chromatic condition $\nu_{d2} > 65$. The production lens has two ED elements, and the model retains L21 and L25 as inferred positions from their low-dispersion coordinates and the product correlation. The source does not identify the ED positions or publish their partial dispersion. J-PSKH1 remains a catalog spectral proxy for L25.
 
 The strong positive power of L25 would make it chromatically dangerous if made from ordinary crown glass. Its high Abbe number suppresses the color contribution while preserving the positive power needed in the rear half of the lens.
 
@@ -193,7 +193,7 @@ Surface 4A is the primary front-group asphere. Its computed departure at the dat
 | A14 | $+2.9552390 \times 10^{-18}$ |
 | A16 | $-4.8207586 \times 10^{-21}$ |
 
-Surface 21A is the rear-group coma-control asphere. Its conic constant alone is not enough to describe the peripheral shape, because the polynomial contribution is large. At the data-file semi-diameter of 16.2 mm, the full surface is approximately $+1.34$ mm relative to the spherical base surface. This correction is placed after the strong L24a negative component, exactly where the patent describes the need to suppress sagittal coma from the first negative block in Gr2B.
+Surface 21A is the rear-group coma-control asphere. Its conic constant alone is not enough to describe the peripheral shape, because the polynomial contribution is large. At the data-file semi-diameter of 16.5 mm, the full surface is approximately $+1.44$ mm relative to the spherical base surface. This correction is placed after the strong L24a negative component, exactly where the patent describes the need to suppress sagittal coma from the first negative block in Gr2B.
 
 ## Conditional Expressions
 
@@ -239,3 +239,9 @@ The Petzval sum was also recalculated surface by surface as $\sum \Phi/(n n')$. 
 3. HOYA Group Optics Division, “Glass Cross Reference Index,” used for six-digit glass-code cross-references among HOYA, SCHOTT, OHARA, HIKARI, SUMITA, and CDGM. https://www.hoya-opticalworld.com/english/products/crossreference.html
 4. OHARA Corporation, S-FPL51 and S-BSM14 optical glass data sheets and catalog pages, used for ED and barium-crown spectral checks. https://oharacorp.com/glass/s-fpl51/ and https://oharacorp.com/glass/s-bsm14/
 5. Hikari Glass / Nikon, J-PSKH1, J-LAK14, and related optical glass data sheets, used as public catalog surrogates for Hikari-class glass-code matches.
+
+## Current Source and Rim Reinspection
+
+All 14 modeled media, including the two explicit 0.010 mm cement layers, match Example 3/PDF35. The material definition on PDF33 uses the d line,587.56 nm. Twelve compatible catalog curves remain unchanged and the two cement media remain source Abbe-based fallbacks. Removed two catalog-derived dPgF and six C/F/g overrides: the source publishes none of those per-material values. The two ED position flags remain inferred from the production correlation and source low-dispersion coordinates; they do not turn the chosen curves into production-glass identities.
+
+Figure 3/PDF4 was freshly inspected face by face, including both cemented components. Its beveled front and block shoulders are retained without replacing them with unsupported flat lands. Continuous paired rims rise at S8=18.5, S12=17.5, S14–16=16.8, S21A=16.5, S23=17.5 and S25=16.8 mm. At 16.5 mm, S21A departure is +1.4436 mm and its rim slope is 1.6280°; S4A remains −2.5048 mm at 19.0 mm. All nine actual SVG states have finite continuous outlines with zero hidden trim. Every source R/d/material pair/aspheric coefficient/focus control and tolerance is unchanged.

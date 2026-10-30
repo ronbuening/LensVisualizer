@@ -85,3 +85,17 @@ cut was authored and the data file is unchanged.
   and focus state) and the convex front face 17.
 - Aperture audit unchanged: all three stations trace within 3 % of the stated f/4.5, f/5.1 and f/6.3, with no rim,
   trace, iris or failed rows. Side vignetting is unchanged because nothing was cut.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JPWO2020105107A1.pdf`, Example 1, Figure 1A (wide) and Figure 1C (tele), PDF p. 42, and inspected every element at 600 dpi on the halves without leader lines. The figure gives about 4.4 native px/mm. No face shows a resolved square land: the curved profiles meet their element edges continuously, and the short final stroke on 28 remains within the native pixel uncertainty of the sphere. The larger L12 flange is at cemented junction 4. The schematic crossing of the full curves on opposing faces 7 and 8 is not evidence for an opaque land; extending those old clear caps to the drawn outer edges would still put the facing rims across one another.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. Existing optical apertures and the documented schematic-figure limitation were retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/JPWO2020105107A1.pdf`, Example 1, Table 1 on PDF pp. 19–21. All 16 lens-element nd/νd pairs match the source d-line table, including its one-decimal Abbe values. No camera-side glass row, C/F/g index table or numerical partial-dispersion data are supplied there.
+
+All 16 catalog resolutions were individually checked and retained: L11 J-BK7A; L12 F5; L13 J-FK5; L21 J-LASF016; L22/L42 H-ZLaF52A; L23 FDS18; L31 J-FK01A; L32 J-LASF021; L33 E-C3; L34 J-LASFH24; L35 S-LAM2; L36 J-LASF017; L41 H-ZF7LA; L51 J-SK5; L52 H-ZLaF4LA. These are compatible coefficient-backed spectral models, not named production suppliers. L31's APD remains inferred; its high Abbe number does not publish a partial-dispersion measurement. The analysis already reflects the recovered J-LASFH24 curve and the qualified L23/L52 property classes.
+
+No correction was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.

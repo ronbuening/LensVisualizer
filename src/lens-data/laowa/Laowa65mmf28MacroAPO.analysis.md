@@ -42,7 +42,7 @@ The system focal length of $f = 66.02$ mm arises from the interaction of the str
 
 The computed Petzval sum is $\Sigma P = +0.00307\ \text{mm}^{-1}$, giving a Petzval radius of $\approx -325$ mm. The product $\Sigma P \times f = 0.203$ — well-corrected for a macro design that must perform across a wide range of conjugates from infinity to beyond 2:1.
 
-The design has **no aspherical surfaces**. Both Example 1 and Example 2 contain only spherical radius data; no aspherical coefficient tables are provided and the patent text makes no mention of aspherical surfaces (非球面). All 14 elements are spherical. This is a notable design choice: many contemporary macro lenses employ aspherical elements to control spherical aberration at wide apertures or to reduce element count. The Laowa 65mm achieves its correction entirely through the careful arrangement of 14 spherical elements and the selection of high-index, high-dispersion flint glasses to provide sufficient degrees of freedom for aberration balancing. The trade-off is a higher element count, but the all-spherical design avoids the manufacturing challenges and cost of precision aspheric surfaces — an important consideration for a lens positioned at the $\approx$\$400 price point.
+The selected design has **no aspherical surfaces**: the numerical examples supply spherical radii and no aspheric coefficient tables. All fourteen modeled lens elements are spherical. Their powers and source Abbe-number contrasts provide optical degrees of freedom; the source does not establish manufacturing costs, a price-driven design choice or a production correction outcome.
 
 ---
 
@@ -64,7 +64,7 @@ L1's front radius of 131 mm is deliberately gentle. With the production lens hav
 
 $n_d = 1.60342$, $\nu_d = 38.01$. Glass: HOYA E-F5 catalog equivalent; production supplier unspecified. $f = +142.0$ mm.
 
-L2 is cemented to L1, sharing the junction surface at R = +55.57. Its rear surface (R = +154.25) is more weakly curved than the junction, yielding net positive power. The pairing of a negative crown (L1) with a positive flint (L2) is an achromatic doublet with reversed power distribution compared to the conventional Fraunhofer form (which uses a positive crown and negative flint). The net result is extremely weak positive power ($f_{D1} \approx +1686$ mm) — the doublet is nearly afocal. Its primary purpose is chromatic pre-correction: the $\Delta\nu_d = 63.39 - 38.01 = 25.38$ between the crown and flint provides a controlled amount of longitudinal color correction that seeds the apochromatic performance developed by G2 and G3.
+L2 is cemented to L1, sharing the junction surface at R = +55.57. Its rear surface (R = +154.25) is more weakly curved than the junction, yielding net positive power. The pairing of a negative crown (L1) with a positive flint (L2) is an achromatic doublet with reversed power distribution compared to the conventional Fraunhofer form (which uses a positive crown and negative flint). The net result is extremely weak positive power ($f_{D1} \approx +1686$ mm) — the doublet is nearly afocal. Its primary purpose is chromatic pre-correction: the $\Delta\nu_d = 63.39 - 38.01 = 25.38$ between the crown and flint provides a degree of primary-color balancing in the model; it does not establish production apochromatic performance.
 
 At infinity focus, the air gap D(3) behind this doublet is 36.05 mm — by far the largest spacing in the system. This gap acts as the "runway" for G2's focusing travel. When the lens focuses to maximum magnification (1.95×), D(3) collapses to just 1.05 mm as G2 advances forward.
 
@@ -78,15 +78,15 @@ $n_d = 1.77250$, $\nu_d = 53.00$. Glass: **773530 — high-index lanthanum crown
 
 L3 is the leading element of the focusing group. Its strongly curved front surface (R = +45.53) provides the first substantial positive power the incoming beam encounters. The rear surface (R = −348.93) is nearly flat, making L3 a quasi-plano-convex element. The high refractive index ($n_d = 1.773$) keeps the surface curvatures moderate for the required power, reducing higher-order spherical aberration.
 
-This glass has an unusual Abbe number for its refractive index — $\nu_d = 53.0$ is notably higher than the standard CDGM H-LAK51 catalog entry ($\nu_d \approx 49.6$ at the same $n_d$). The six-digit code 773530 does not correspond to any widely published CDGM, Schott, OHARA, or Hoya catalog entry. This may represent a proprietary melt, a less-commonly-published CDGM grade, or an idealized value in the patent text. The elevated Abbe number reduces the chromatic contribution of this powerful positive element, which is beneficial for the apochromatic correction strategy.
+The L3 source coordinate remains 1.77250/53.00. It does not establish an exact commercial glass identity, and nearby catalog rows have appreciably different Abbe numbers. No proprietary-melt or supplier explanation is inferred.
 
 #### L4 — Positive Meniscus, convex to object (ED)
 
 $n_d = 1.49700$, $\nu_d = 81.61$. Glass: H-FK61 (CDGM) — ED fluorophosphate crown. $f = +66.7$ mm.
 
-L4 is the first of three ED elements in the design. It is a meniscus with both surfaces convex to the object (R1 = +25.18, R2 = +100.27), the front surface being substantially more steeply curved. At $\nu_d = 81.6$, this is the lowest-dispersion glass in the system. Its purpose is twofold: it contributes substantial positive power with minimal chromatic aberration, and its anomalous partial dispersion ($\Delta P_{g,F}$ characteristic of FK61-class fluorophosphates) enables secondary spectrum correction when paired with the high-dispersion flints that follow.
+L4 is the first of three source 1.49700/81.61 ED-class assignments. Its meniscus radii are +25.18 and +100.27 mm. Its high Abbe number supports a relatively low primary-color contribution for its positive power. H-FK61 supplies a qualified spectral proxy; the patent does not identify anomalous partial dispersion or quantify secondary-spectrum correction.
 
-H-FK61 is the CDGM equivalent of OHARA S-FPL51 and Hoya FCD1. At a relative price index of approximately 12.6× the baseline crown (H-K9L), it is the most expensive glass type in this design, and its use in three elements is a significant cost driver — but essential for the APO designation.
+H-FK61, S-FPL51 and FCD1 are compatible ED-class modeling alternatives. Coordinate compatibility identifies neither the production supplier nor material price, and does not establish that a particular glass is required for the marketed APO designation.
 
 #### L5 — Biconcave Negative (cemented with L6)
 
@@ -100,7 +100,7 @@ $n_d = 1.92286$, $\nu_d = 20.88$. Glass: H-ZF72A (CDGM) — super-dense flint. $
 
 L6 is cemented to L5, sharing the junction at R = +10.70. Both surfaces are convex to the object (R1 = +10.70, R2 = +16.77), forming a positive meniscus. This is the highest-refractive-index glass in the design ($n_d = 1.923$), with extremely high dispersion ($\nu_d = 20.9$). It is equivalent to Schott N-SF66 / OHARA S-NPH2.
 
-The L5–L6 cemented doublet ($f_{D2} \approx -17.6$ mm) is a net-negative pair that functions as a powerful chromatic corrector at the heart of the focusing group. The combination of a moderate-dispersion flint (L5, $\nu_d = 25.5$) with a super-dense flint (L6, $\nu_d = 20.9$) is unusual — in most designs, the flint partner in a doublet would be paired with a crown, not another flint. Here, the two flints of differing dispersion levels create a controlled "split-flint" achromatic correction that addresses secondary spectrum. The extreme refractive index of L6 also provides strong Petzval sum control: the large index mismatch at the junction surface generates significant field curvature correction.
+The L5–L6 pair has net negative standalone power ($f_{D2}\approx-17.6$ mm). Both source media are flint-like, with Abbe numbers 25.46 and 20.88. Their different indices and selected proxy spectra provide degrees of freedom for aberration balancing. The source does not isolate a measured secondary-spectrum contribution or establish the designer's intended distribution of correction.
 
 #### L7 — Negative Meniscus, convex to object (cemented with L8)
 
@@ -112,9 +112,9 @@ L7 is a meniscus with both surfaces convex to the object (R1 = +15.20, R2 = +11.
 
 $n_d = 1.49700$, $\nu_d = 81.61$. Glass: H-FK61 (CDGM) — ED fluorophosphate crown. $f = +19.3$ mm.
 
-L8 is the second ED element. It is a strongly positive biconvex (R1 = +11.30, R2 = −54.04) cemented to L7. The L7–L8 cemented doublet ($f_{D3} \approx +28.8$ mm) is a conventional crown-flint achromat (ED crown + lanthanum flint), but placed behind the split-flint pair L5–L6 so that the two doublets together provide a four-glass chromatic correction. This is the architectural key to the APO performance: the first doublet (L5–L6, split-flint) addresses secondary spectrum at one conjugate, while the second doublet (L7–L8, ED-crown/lanthanum-flint) does so at a complementary angle. Together, they bring three wavelengths into coincidence at the focal plane.
+L8 is the second ED-class coordinate assignment, a positive biconvex member with radii +11.30 and −54.04 mm. Its pair with L7 has net positive standalone power ($f_{D3}\approx+28.8$ mm) and a source Abbe-number difference of 35.11. This supports a primary-color-balancing interpretation. Neither that contrast nor its placement behind L5–L6 proves three-wavelength coincidence.
 
-L8 has the shortest focal length of any positive element in the lens at +19.3 mm; it carries more converging power per millimeter of aperture than any other element. This makes it the element most sensitive to manufacturing tolerances — centering errors and surface irregularity on L8 will dominate the system wavefront error budget.
+L8 has the shortest listed standalone focal length among the positive elements, +19.3 mm. This establishes substantial positive element power; the source provides no sensitivity or manufacturing-tolerance budget from which to rank its dominance.
 
 #### L9 — Biconvex Positive (nearly plano-convex)
 
@@ -148,23 +148,21 @@ L10's strong negative power diverges the beam exiting the stop. This is essentia
 
 $n_d = 1.76182$, $\nu_d = 26.61$. Glass: S-TIH14 (OHARA) — dense flint. $f = -14.8$ mm.
 
-L11 is a strongly negative biconcave element (R1 = −40.27, R2 = +15.90) cemented to L12. The high dispersion contributes negative (overcorrecting) chromatic aberration in the rear group, counterbalancing any residual undercorrection from the front groups and providing the third leg of the apochromatic color correction. S-TIH14 is the closest catalog-backed match for the patent pair.
+L11 is a negative biconcave member, with radii −40.27 and +15.90 mm, cemented to L12. Its 1.76182/26.61 coordinate has relatively high dispersion and is modeled with the compatible S-TIH14 proxy. Its exact contribution to the complete chromatic correction requires a wavelength-dependent calculation; it is not established as a separate third leg of production APO correction.
 
 #### L12 — Biconvex Positive (cemented with L11)
 
 $n_d = 1.90366$, $\nu_d = 31.31$. Glass: S-LAH95 / TAFD25 class (904313) — lanthanum dense flint. $f = +10.9$ mm.
 
-L12 is strongly positive (R1 = +15.90, R2 = −20.92), with the shortest focal length of any element in G3. It is cemented to L11, forming a net-positive doublet ($f_{D4} \approx +28.4$ mm). The use of a high-index lanthanum flint ($n_d = 1.904$) rather than a crown in a positive role is a deliberate choice to minimize Petzval contribution — the high index reduces $\phi/(n \cdot n')$ per unit of power. This glass is approximately equivalent to Hoya TAFD40.
+L12 is positive, with radii +15.90 and −20.92 mm and standalone focal length +10.9 mm. Its pair with L11 is net positive ($f_{D4}\approx+28.4$ mm). The high source index affects both surface power and the computed Petzval sum. S-LAH95/TAFD25-class curves are compatible modeling proxies, without establishing a production glass or an intended cost/Petzval optimization.
 
-The L11–L12 doublet is a **second split-flint pair** in this design: L11 has $\nu_d = 26.6$ and L12 has $\nu_d = 31.3$, placing both elements firmly in the flint category. Unlike the conventional crown-flint achromat D3 (L7–L8) in G2, this rear split-flint doublet D4 exploits the difference in partial dispersion between two high-dispersion glasses of different families (a titanium-family dense flint paired with a lanthanum-family dense flint) to provide a further degree of secondary spectrum correction. The primary role of D4, however, is Petzval flattening and coma correction in the diverging beam behind the stop, with the chromatic contribution being a valuable secondary benefit.
+Both L11 and L12 have flint-like source Abbe numbers, 26.61 and 31.31. Their selected catalog curves permit a model of their differing partial dispersions. The source does not publish those spectra or isolate the pair's secondary-spectrum, coma or field-curvature correction, so those roles remain interpretations rather than measured design facts.
 
 #### L13 — Biconcave Negative (ED)
 
 $n_d = 1.49700$, $\nu_d = 81.61$. Glass: H-FK61 (CDGM) — ED fluorophosphate crown. $f = -25.1$ mm.
 
-L13 is the third and final ED element. Uniquely in this design, the ED glass is used here in a *negative* element (R1 = −17.18, R2 = +46.33, biconcave). This is a deliberate APO correction technique: by placing an ED crown in a diverging position in the rear group, the designer exploits its anomalous partial dispersion in the opposite sign direction compared to the two positive ED elements (L4, L8) in G2. The three ED elements together — two positive in G2 and one negative in G3 — provide a balanced three-wavelength correction that defines the lens's apochromatic behavior.
-
-The use of expensive FK61-class ED glass in a negative element, where ordinary flint glass could provide the required negative power more cheaply, underscores the priority placed on chromatic correction in this design. Laowa explicitly markets this lens as having "inherited the excellent APO design from the Laowa 100mm f/2.8 2× Macro," and the three-ED-element strategy is central to that claim.
+L13 is the third source ED-class coordinate assignment, used in a negative element ($R_1=-17.18$, $R_2=+46.33$ mm). In a catalog-proxy calculation, that negative power can oppose the chromatic contribution of positive ED-class L4 and L8. The patent publishes no partial dispersion, so this is a correction hypothesis rather than proof of production three-wavelength balance; its APD flag remains inferred.
 
 #### L14 — Plano-Convex Positive
 
@@ -180,26 +178,26 @@ The center thickness of L14 is 7.0 mm — relatively thick for a crown element o
 
 ## Glass Identification and Selection
 
-The following table summarizes the glass palette. Laowa, being a Chinese manufacturer, most likely sources from CDGM (成都光明光电), the dominant Chinese optical glass supplier. Identifications are based on matching $(n_d, \nu_d)$ pairs against the CDGM catalog, with cross-references to Schott, OHARA, and Hoya equivalents.
+The source supplies d-line nd/νd coordinates, rather than production glass names. Twelve of fourteen lens elements and the physical rear plate resolve to compatible catalog spectra; L3 and L10 remain unmatched. The following table lists proxy assignments and coordinate classes. Supplier, melt and actual partial dispersion are unconfirmed; the manufacturer's location does not establish glass procurement.
 
-| Element | $n_d$ | $\nu_d$ | Best CDGM Match | Equivalent | Class | Confidence |
+| Element | $n_d$ | $\nu_d$ | Catalog proxy / disposition | Curve family / vendor | Class | Coordinate status |
 |---------|-------|---------|-----------------|------------|-------|------------|
-| L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | High |
-| L2 | 1.60342 | 38.01 | E-F5 | HOYA | Light flint | High; supplier unspecified |
+| L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | Compatible proxy |
+| L2 | 1.60342 | 38.01 | E-F5 | HOYA | Light flint | Compatible proxy; supplier unspecified |
 | L3 | 1.77250 | 53.00 | 773530 — high-index lanthanum crown | — | Lanthanum crown | Uncertain |
-| L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
-| L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | High |
-| L6 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
-| L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | High |
-| L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
-| L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
+| L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
+| L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | Compatible proxy |
+| L6 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | Compatible proxy |
+| L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | Compatible proxy |
+| L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
+| L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | Compatible proxy |
 | L10 | 1.72916 | 57.67 | Unmatched 729577 high-index crown | — | Lanthanum crown | Prior H-LAK52 candidate rejected ($\Delta\nu_d = +3.0$) |
-| L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | High |
-| L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | High |
-| L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
-| L14 | 1.51823 | 58.96 | E-C3 | HOYA | Crown | High; supplier unspecified |
+| L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | Compatible proxy |
+| L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | Compatible proxy |
+| L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
+| L14 | 1.51823 | 58.96 | E-C3 | HOYA | Crown | Compatible proxy; supplier unspecified |
 
-**Notes on uncertain identifications.** L3 and L10 have $(n_d, \nu_d)$ combinations that do not precisely match any widely published CDGM catalog entry. For L3 ($n_d = 1.77250$, $\nu_d = 53.00$), the nearest CDGM glass is H-LAK51 at $\nu_d \approx 49.6$ — a discrepancy of +3.4 in Abbe number. For L10 ($n_d = 1.72916$, $\nu_d = 57.67$), H-LAK52 matches the refractive index exactly but has $\nu_d = 54.68$ — a discrepancy of +3.0. Both offsets are too large for confident identification, so the data file preserves them as explicit six-digit patent-code rows for future catalog auto-upgrade instead of resolving them to H-LAK51/H-LAK52. These may be proprietary melts, less-commonly-published CDGM grades, or idealized values in the patent text. In both cases the Abbe numbers are higher (lower dispersion) than the nearest standard catalog glasses at the same index, which would slightly favor the chromatic correction.
+**Unresolved coordinates.** L3 ($n_d=1.77250$, $\nu_d=53.00$) and L10 ($n_d=1.72916$, $\nu_d=57.67$) remain source-faithful unmatched rows. Nearby catalog classes differ substantially in Abbe number and are not identities. The source does not establish whether these values represent production melts or idealized design coordinates; no supplier explanation or correction is inferred.
 
 ---
 
@@ -227,17 +225,9 @@ Several features are evident:
 
 ## Chromatic Correction Strategy
 
-The lens achieves its APO designation through a multi-tier chromatic correction scheme using four cemented doublets of three distinct types:
+The marketed APO designation is consistent with a prescription combining four cemented doublets and three 1.49700/81.61 ED-class elements. The front crown/flint pair and G2's crown/flint pair provide substantial Abbe-number contrast for primary-color balancing. The flint/flint pairs in G2 and G3 offer further spectral degrees of freedom, while negative ED-class L13 can oppose contributions from positive L4 and L8.
 
-1. **Primary color correction** is seeded by the weak G1 achromatic doublet (L1 crown + L2 light flint, $\Delta\nu_d = 25.4$) and principally delivered by the conventional ED-crown/lanthanum-flint achromat D3 (L7 + L8, $\Delta\nu_d = 35.1$) in G2. These handle primary longitudinal color — bringing the C-line (656.3 nm) and F-line (486.1 nm) to a common focus.
-
-2. **Secondary spectrum correction** is addressed by two split-flint doublets: D2 (L5 + L6, $\nu_d = 25.5/20.9$) in G2 and D4 (L11 + L12, $\nu_d = 26.6/31.3$) in G3. Each pairs two flint glasses of different dispersion families — exploiting the difference in their partial dispersion ($P_{g,F}$) characteristics to bend the g-line (435.8 nm) toward coincidence with the C–F focal point. The split-flint technique achieves secondary spectrum correction at surfaces where conventional crown-flint achromats cannot, because it operates on the *difference* in partial dispersion between two high-dispersion glasses rather than between a crown and a flint.
-
-3. **Residual lateral color correction** is performed by the negative ED element L13 in G3. By placing an FK61-class element in a negative-power role behind the stop, the designer creates an opposite-sign partial-dispersion contribution that balances the residual lateral color left by the positive ED elements in G2. This three-ED configuration — positive (L4), positive (L8), negative (L13) — is the hallmark of Laowa's APO macro designs, shared with the Laowa 100mm f/2.8 2× Macro according to the manufacturer.
-
-The three ED elements (L4, L8, L13) collectively constitute the dominant cost driver in the glass budget. H-FK61 is approximately 12.6× the price of baseline H-K9L crown, and the design requires three pieces of it.
-
----
+These are architectural interpretations. Example 2 publishes no $n_C$, $n_F$, $n_g$, $P_{g,F}$ or Sellmeier coefficients. Catalog-proxy curves cover twelve lens elements and the rear plate, with two unresolved lens materials; neither those proxies nor the inferred APD tags certify production secondary-spectrum correction or glass cost.
 
 ## Cover Glass and BFD Convention
 
@@ -271,3 +261,5 @@ The small discrepancy in conditional (1) (0.337 vs 0.333) arises from using the 
 3. Digital Camera World, "Laowa 65mm f/2.8 2x Ultra Macro APO review," March 2020.
 4. CDGM glass catalog data accessed via refractiveindex.info (Zemax catalog 2022-06) and sinoptix.eu glass equivalency tables.
 5. Hoya Glass Cross Reference Index, https://www.hoya-opticalworld.com/english/products/crossreference.html
+
+Example 2 Figure 3 (PDF p. 12) now supplies concave cap-end lands on S17 and S18, with inferred cut depths 1.57 and 0.57 mm (clear radii 6.820 and 6.751 mm). Both clear the complete traced wide-open beams and required margins. S21 preserves its existing 8.5 mm cap with an opaque extension to the 9 mm outer rim. A proposed S8 trim was rejected because the traced beam reaches its full 9.5 mm cap; all remaining air and cemented faces retain their geometry.

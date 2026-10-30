@@ -31,6 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   retained; modern catalog line indices are not transferred to the vendor-unresolved patent elements.
  */
 
+/** 2026-10-30: fresh original figure/table and glass review; see the audit sidecar. L4 continuous caps restored to35 mm from Fig.1A; no independently resolved rim land. Four qualified curves, two source fluophosphate positions unresolved. */
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-nikkor-300mm-f45-ed",
@@ -78,7 +80,7 @@ const LENS_DATA = {
       vd: 44.9,
       indexReference: "d",
       focalLengthMm: -91.40259769579879,
-      glass: "744449 - lanthanum glass class (vendor unresolved)",
+      glass: "744449 source lanthanum class (H-LaF3B qualified spectral proxy; production supplier unspecified)",
       role: "Negative lanthanum-class element of the first cemented pair.",
       cemented: "D1",
     },
@@ -91,7 +93,7 @@ const LENS_DATA = {
       vd: 45,
       indexReference: "d",
       focalLengthMm: 251.9171058367256,
-      glass: "639450 - barium flint class (vendor unresolved)",
+      glass: "639450 source barium-flint class (BAF12 qualified spectral proxy; production supplier unspecified)",
       role: "Positive barium-flint-class partner cemented to L2.",
       cemented: "D1",
     },
@@ -116,7 +118,7 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       focalLengthMm: -53.76045292981103,
-      glass: "620603 - SK16-class crown (vendor unresolved)",
+      glass: "620603 source coordinate (N-SK16 qualified spectral proxy; production supplier unspecified)",
       role: "Negative element of the widely separated rear cemented group.",
       cemented: "D2",
     },
@@ -129,7 +131,7 @@ const LENS_DATA = {
       vd: 36.3,
       indexReference: "d",
       focalLengthMm: 100.0394403937781,
-      glass: "620363 - F2-class flint (vendor unresolved)",
+      glass: "620363 source coordinate (F2 qualified spectral proxy; production supplier unspecified)",
       role: "Positive partner in the rear cemented pair; the pair is net negative.",
       cemented: "D2",
     },
@@ -141,8 +143,8 @@ const LENS_DATA = {
     { label: "3", R: -144, d: 3, sd: 34, medium: 2 },
     { label: "4", R: 130, d: 12, sd: 33, medium: 3 },
     { label: "5", R: 650, d: 1, sd: 32.2 },
-    { label: "6", R: 95, d: 7.7, sd: 31.6, medium: 4 },
-    { label: "7", R: 878.8, d: 1, sd: 30.7 },
+    { label: "6", R: 95, d: 7.7, sd: 35.0, medium: 4 },
+    { label: "7", R: 878.8, d: 1, sd: 35.0 },
     { label: "STO", R: "flat", d: 118.3 },
     { label: "8", R: -43, d: 1, sd: 18.1, medium: 5 },
     { label: "9", R: 150, d: 3.5, sd: 18.5, medium: 6 },

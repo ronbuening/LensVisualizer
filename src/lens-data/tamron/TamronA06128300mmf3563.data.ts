@@ -26,15 +26,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Scaling: none. Patent d-line coordinates and dimensions stay at source scale. The patent conic convention already
  * matches the project's standard K=e form.
  *
- * Glass: patent nd/vd remain authoritative. Bulk-glass labels and nC/nF/ng/dPgF use selected current OHARA
- * catalog representatives for the corresponding coordinate classes; cross-vendor equivalents exist, so these are
- * modeling representatives rather than source-proven production glass identities. The bonded nd=1.53610, vd=41.2
- * resin is unresolved, so no line indices or partial dispersion are invented.
+ * Glass: patent nd/vd remain authoritative. Bulk labels select current OHARA spectral proxies; no per-lens
+ * catalog-only line/partial copies remain. Cross-vendor equivalents exist, so these do not establish a
+ * source-proven production supplier or melt. The bonded nd=1.53610, vd=41.2 resin remains unresolved;
+ * its line indices and partial dispersion are not invented.
  *
  * Semi-diameters are not published. They are inferred from exact meridional ray containment over every defined
  * zoom/focus state: on-axis marginal rays, the default 0.6-field off-axis fan, and full-field chief rays. The final
  * values are also checked for edge thickness, actual rim slope, conic domain, and cross-gap intrusion. The 62 mm
- * filter class and patent optical section are used only as external mechanical plausibility checks.
+ * filter class and patent optical section are used only as external mechanical plausibility checks. Figure 1
+ * supports an independent air-facing land at S8; its 11.7 mm body retains a 9.7 mm clear cap, held outward by
+ * the full inferred-cut beam guard. The shared resin/glass interface is continuous and has no opaque land.
  */
 
 const LENS_DATA = {
@@ -86,10 +88,6 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA)",
       role: "Front negative meniscus of G1.",
       cemented: "D1",
-      dPgF: 0.0175,
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 2,
@@ -105,10 +103,6 @@ const LENS_DATA = {
         "Production construction identifies two LD elements; the two S-FPL51 positions in this correlated patent design reproduce that count.",
       role: "Low-dispersion positive member of the front cemented pair in G1.",
       cemented: "D1",
-      dPgF: 0.028,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 3,
@@ -120,10 +114,6 @@ const LENS_DATA = {
       focalLengthMm: 126.180747,
       glass: "S-LAH66N (OHARA)",
       role: "Rear positive member of G1.",
-      dPgF: -0.0094,
-      nC: 1.76779,
-      nF: 1.78338,
-      ng: 1.79199,
     },
     {
       id: 4,
@@ -150,10 +140,6 @@ const LENS_DATA = {
       role: "Strong negative substrate of the front hybrid asphere in G2.",
       diagramLabel: "4",
       cemented: "H1",
-      dPgF: -0.0075,
-      nC: 1.82899,
-      nF: 1.84852,
-      ng: 1.85955,
     },
     {
       id: 6,
@@ -166,10 +152,6 @@ const LENS_DATA = {
       glass: "S-LAL14 (OHARA)",
       role: "Negative element in G2.",
       diagramLabel: "5",
-      dPgF: -0.0082,
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 7,
@@ -182,10 +164,6 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA)",
       role: "Strong positive element inside the net-negative G2 focus group.",
       diagramLabel: "6",
-      dPgF: 0.0175,
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 8,
@@ -198,10 +176,6 @@ const LENS_DATA = {
       glass: "S-LAH55VS (OHARA)",
       role: "Rear negative element of G2.",
       diagramLabel: "7",
-      dPgF: -0.0075,
-      nC: 1.82899,
-      nF: 1.84852,
-      ng: 1.85955,
     },
     {
       id: 9,
@@ -228,10 +202,6 @@ const LENS_DATA = {
       role: "Positive substrate of the front hybrid asphere in G3.",
       diagramLabel: "8",
       cemented: "H2",
-      dPgF: 0.0051,
-      nC: 1.61504,
-      nF: 1.62479,
-      ng: 1.6301,
     },
     {
       id: 11,
@@ -247,10 +217,6 @@ const LENS_DATA = {
         "Production construction identifies two LD elements; the two S-FPL51 positions in this correlated patent design reproduce that count.",
       role: "Low-dispersion positive element in G3.",
       diagramLabel: "9",
-      dPgF: 0.028,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 12,
@@ -263,10 +229,6 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA)",
       role: "Rear negative element of G3.",
       diagramLabel: "10",
-      dPgF: 0.0175,
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 13,
@@ -279,10 +241,6 @@ const LENS_DATA = {
       glass: "S-FSL5 (OHARA)",
       role: "Front positive element of G4.",
       diagramLabel: "11",
-      dPgF: 0.0022,
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
     },
     {
       id: 14,
@@ -295,10 +253,6 @@ const LENS_DATA = {
       glass: "S-LAH66N (OHARA)",
       role: "Negative meniscus in G4.",
       diagramLabel: "12",
-      dPgF: -0.0094,
-      nC: 1.76779,
-      nF: 1.78338,
-      ng: 1.79199,
     },
     {
       id: 15,
@@ -312,10 +266,6 @@ const LENS_DATA = {
       role: "Positive substrate carrying the rear bonded aspheric layer in G4.",
       diagramLabel: "13",
       cemented: "H3",
-      dPgF: -0.0005,
-      nC: 1.51556,
-      nF: 1.52435,
-      ng: 1.52915,
     },
     {
       id: 16,
@@ -342,10 +292,6 @@ const LENS_DATA = {
       role: "Strong positive member of the rear cemented pair in G4.",
       diagramLabel: "14",
       cemented: "D2",
-      dPgF: 0,
-      nC: 1.5373,
-      nF: 1.54875,
-      ng: 1.55522,
     },
     {
       id: 18,
@@ -359,10 +305,6 @@ const LENS_DATA = {
       role: "Rear negative member of the final cemented pair in G4.",
       diagramLabel: "15",
       cemented: "D2",
-      dPgF: -0.0094,
-      nC: 1.76779,
-      nF: 1.78338,
-      ng: 1.79199,
     },
   ],
 
@@ -383,7 +325,8 @@ const LENS_DATA = {
       asphere: { K: 33.6256, A4: 5.42142e-6, A6: 9.41353e-9, A8: -7.17372e-11, A10: 5.53524e-13, A12: 0, A14: 0 },
     },
     { label: "7", R: 68.35, d: 0.8, sd: 11.7, medium: 5 },
-    { label: "8", R: 15.9, d: 5.8, sd: 10 },
+    // Figure 1 substrate rear land; 9.7 mm cap clears the full wide-open beam guard.
+    { label: "8", R: 15.9, d: 5.8, sd: 11.7, rimCutDepthMm: 3.301587401581102 },
     { label: "9", R: -31.95, d: 0.8, sd: 8.8, medium: 6 },
     { label: "10", R: 89.3, d: 0.1, sd: 8.8 },
     { label: "11", R: 32.92, d: 4.8, sd: 9.1, medium: 7 },

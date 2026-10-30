@@ -318,7 +318,7 @@ All computed values match the patent to within rounding precision of the stated 
 
 The patent does not provide semi-diameters or iris diameters.
 
-**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. Fig. 10 ends L11's and L12's concave rear caps on flat lands square to the axis, with each element's edge at its front face's height. The data file keeps both rear faces at their rims with no cut and does not draw the lands. L11's rear stays at its 21.4 mm cap end, the asphere's designed extent; a semi-diameter at the 32.8 mm edge would extend the asphere past it. L12's rear keeps its 15.6 mm rim, since a land there would stop traced rays.
+**Front groups from Fig. 10.** The G1 and G2 rims in the companion `.data.ts` file are measured on the patent's Fig. 10 wide-state section, scaled at 0.0784 mm per pixel from the 115.72 mm first-to-last-vertex glass span. Fig. 10 ends L11's and L12's concave rear caps on flat lands square to the axis, with each element's edge at its front face's height. The rear optical caps retain their 21.4 and 15.6 mm semi-diameters. Opaque rim extensions now draw the lands out to the 32.8 and 20.6 mm front-face edges without continuing either asphere or opening either aperture. L40's front cap likewise retains its 12.0 mm radius, with an opaque land to the 12.5 mm rear-face edge; the smaller figure cap end remains excluded because it would clip traced beams.
 
 | Surfaces | Element | Fig. 10 reading (mm) | Data file (mm) |
 |----------|---------|----------------------|----------------|

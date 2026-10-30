@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; qualified glass curves do not identify suppliers.
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — Nikon Reflex-Nikkor 500mm f/8 (New)                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
@@ -71,8 +72,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.12,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: 569.716,
-      glass: "BSC7 / N-BK7 class crown (patent 517/641)",
+      glass:
+        "N-BK7 (catalog-compatible spectral proxy; patent 1.5168/64.12, catalog 1.5168/64.17; production supplier unspecified)",
       apd: false,
       role: "Weak biconvex moving front collector; forms the focus unit with M2.",
     },
@@ -83,8 +87,11 @@ const LENS_DATA = {
       type: "Positive Mangin Mirror",
       nd: 1.5168,
       vd: 64.12,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: 128.044,
-      glass: "BSC7 / N-BK7 class crown (patent 517/641)",
+      glass:
+        "N-BK7 (catalog-compatible spectral proxy; patent 1.5168/64.12, catalog 1.5168/64.17; production supplier unspecified)",
       apd: false,
       role: "Annular second-surface Mangin primary with a central aperture for the rear corrector group.",
       span: ["3/5", "4"],
@@ -96,8 +103,11 @@ const LENS_DATA = {
       type: "Negative Mangin Mirror",
       nd: 1.5168,
       vd: 64.12,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: -86.912,
-      glass: "BSC7 / N-BK7 class crown (patent 517/641)",
+      glass:
+        "N-BK7 (catalog-compatible spectral proxy; patent 1.5168/64.12, catalog 1.5168/64.17; production supplier unspecified)",
       apd: false,
       role: "Diverging second-surface secondary mirror; moves integrally with L1 for focus.",
       span: ["7", "6/8"],
@@ -109,8 +119,11 @@ const LENS_DATA = {
       type: "Near-Plano-Concave Negative",
       nd: 1.5168,
       vd: 64.12,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: -49.156,
-      glass: "BSC7 / N-BK7 class crown (patent 517/641)",
+      glass:
+        "N-BK7 (catalog-compatible spectral proxy; patent 1.5168/64.12, catalog 1.5168/64.17; production supplier unspecified)",
       apd: false,
       role: "Strong negative first element of the rear corrector group, located inside the primary mirror aperture.",
     },
@@ -121,8 +134,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51823,
       vd: 58.96,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: -222.698,
-      glass: "E-C3 (HOYA) / S-NSL3 class crown (518/590)",
+      glass:
+        "E-C3 (catalog-compatible spectral proxy; patent 1.51823/58.96, catalog 1.51823/58.96; production supplier unspecified)",
       apd: false,
       role: "Weak negative meniscus for off-axis correction in the rear group.",
     },
@@ -133,8 +149,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.79631,
       vd: 40.96,
+      indexReferenceNote:
+        "d-line interpretation supported by the patent d-line aberration convention; Table 1 headings do not separately label the index wavelength",
       focalLengthMm: 125.619,
-      glass: "796410 class; NBFD2 catalog spectral proxy (production supplier unspecified)",
+      glass:
+        "NBFD2 (catalog-compatible spectral proxy; patent 1.79631/40.96, catalog 1.797199/41.143795; production supplier unspecified)",
       apd: false,
       role: "High-index positive field-corrector meniscus; the rear group remains net negative.",
     },

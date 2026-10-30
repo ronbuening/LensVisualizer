@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.795041,
       vd: 28.69,
       focalLengthMm: -186.4,
-      glass: "J-LAFH3 (HIKARI; 795287, coefficients unavailable)",
+      glass: "J-LAFH3 (HIKARI compatible spectral proxy; source 1.795041/28.69; production supplier unspecified)",
       role: "Front high-dispersion element of the leading achromat.",
       cemented: "D1",
     },

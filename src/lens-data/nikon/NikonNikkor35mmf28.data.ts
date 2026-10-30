@@ -60,6 +60,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * effective-aperture bound (drawn glass rim 14.7 mm). L4 and L5 are drawn 8.3 mm tall with their rims touching, but
  * the prescribed 1.3125 mm air gap closes at 7.40 mm, so the figure is not to scale there: the facing surfaces R8/R9
  * are set to 7.3 mm (just inside contact) and the outer surfaces R7/R10 to 7.6 mm. */
+/** 2026-10-30: fresh original figure/table and glass review; see the audit sidecar. L1 rear cap11.6 mm +outer land14 mm; equivalent numeric-cut full-beam proof clears0.05 mm. Source spectral anchors and all six qualified curves unchanged. */
+
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -171,7 +173,7 @@ const LENS_DATA = {
    */
   surfaces: [
     { label: "1", R: 46.66655, d: 1.9446, sd: 14.0, medium: 1 },
-    { label: "2", R: 14.72905, d: 7.7777, sd: 11.4 },
+    { label: "2", R: 14.72905, d: 7.7777, sd: 11.6, rimExtensionSd: 14.0 },
     { label: "3", R: -90.41655, d: 9.7223, sd: 11.2, medium: 2 },
     { label: "4", R: -81.66655, d: 0.0973, sd: 11.2 },
     { label: "5", R: 25.5696, d: 13.125, sd: 9.9, medium: 3 },

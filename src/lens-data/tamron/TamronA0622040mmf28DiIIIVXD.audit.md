@@ -260,3 +260,34 @@ The coordinator then applied the pair. Surface 8 went from 10.16 to 11.3 mm and 
 ### Open limitations
 
 The off-axis transmission counts in the analysis predate the surface-3 and surface-18 rims and have not been recomputed. The renderer joins front and rear rims with a straight edge. As a result, the drawn flanges of L1, L2, L5, L9, L11 and L12 still appear as chamfers.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/JP2022131391A.pdf`, Numerical Example 5: Figure 17 PDF page 44; prescription and rear-plate rows pp 23–24. Page images were rendered and inspected anew; earlier audit records provided locators only.
+
+Every convex/concave face and cemented boundary was inspected in the new 600 dpi Figure 17 crop, with all three infinity zoom panels checked. Native raster 318 dpi; S1–S24 at wide spans 1188 px /93.475 mm =12.710 native px/mm (23.982 px/mm at 600 dpi), cross-checked against the intermediate vertices. Added extensions 2→21.5, 4→17.4, 18→10.4 and 23A→14.5 mm, retaining the optical caps 15.8, 14.2, 9.0 and 12.0 mm. These draw the resolved L1/L2/L9/L12 concave seats.
+
+Surface 22 has a resolved rear concave seat. Source cap/edge≈12.3/13.6 mm, q≈0.904±0.011 (native edge≈173 px). At the stored 13.0 mm rim the unadjusted cap would be≈11.76 mm. The beam reaches 11.985165 mm and requires 0.05 mm extra clearance. Depth 2.05 mm is the first 0.01 mm sag step that passes, giving cap 12.040428 mm and a 0.959572 mm land;2.04 mm would end at 12.011874 mm and fail. The outward cap adjustment follows the inferred-cut rule and remains explicitly distinguished from the measured source q.
+
+Rejected extension 9→11.5: combined 8→9 intrusion 2.33 mm exceeds 2.277 mm allowed; the figure draws near contact there. Existing square L4 at 8=11.3 and the tight 9=10.18 cap are retained, as is gapSagFrac 0.99. L11’s front height difference is not repaired by inventing an unpictured front land. No optical SD or source prescription value changed.
+
+Every source medium nd/νd pair was checked directly and retained, with d-line convention confirmed. No source numerical θgF/partial-dispersion or spectral-line indices are published for these media, so no dispersion override is introduced. Existing catalog-inferred APD classification remains inferred.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L1     | 1.72916 / 54.67 | TAC8                             |
+| L2     | 1.49700 / 81.61 | FCD1                             |
+| L3     | 1.58144 / 40.75 | S-TIL25                          |
+| L4     | 1.85025 / 30.05 | S-NBH57                          |
+| L5     | 1.65160 / 58.55 | S-LAL7                           |
+| L6     | 1.49710 / 81.56 | M-FCD1                           |
+| L7     | 1.69895 / 30.05 | E-FD15                           |
+| L8     | 1.49700 / 81.61 | FCD1                             |
+| L9     | 1.48749 / 70.44 | FC5                              |
+| L10    | 1.49700 / 81.61 | FCD1                             |
+| L11    | 1.48749 / 70.44 | FC5                              |
+| L12    | 1.69350 / 53.2  | M-LAC130                         |
+
+Coverage: 12/12 modeled media, representing 12 physical lens elements. Rear plate(s) checked separately: 1.51680/64.17. Catalog-compatible spectra are qualified proxies, not production supplier/melt identifications. No catalog tolerance is relaxed.
+
+Verification: focused surface/inferred-beam and image-circle audits, aperture census after added cuts, actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label glass resolver/coordinate compatibility and the shared dispersion/partial-dispersion consistency suites. Full repository gates are recorded by the coordinator at commit time.

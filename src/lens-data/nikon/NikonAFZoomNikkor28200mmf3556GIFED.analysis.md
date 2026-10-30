@@ -79,9 +79,9 @@ The central design economy is the two-component master group. The patent explain
 
 #### L11 — Cemented Positive Doublet
 
-**L11a:** nd = 1.846660, νd = 23.78. Glass: `847238 — dense flint class`. Standalone f = -164.173 mm.
+**L11a:** nd = 1.846660, νd = 23.78. Glass: `J-SF03 spectral proxy (patent 847238; production supplier unconfirmed)`. Standalone f = -164.173 mm.
 
-**L11b:** nd = 1.640000, νd = 60.09. Glass: `J-LAK01 (Hikari; patent code 640601)`. Standalone f = +81.429 mm.
+**L11b:** nd = 1.640000, νd = 60.09. Glass: `J-LAK01 spectral proxy (Hikari catalog; patent 640601; production supplier unconfirmed)`. Standalone f = +81.429 mm.
 
 L11a is a negative meniscus with its convex side toward the object. L11b is a positive rear member cemented directly to it. The two standalone powers must not be read as the power of the cemented assembly: with the shared interface retained, L11 is a net positive doublet with computed focal length +164.686 mm.
 
@@ -89,7 +89,7 @@ The doublet forms the leading part of G1. Its low-Abbe negative front member and
 
 #### L12 — Positive Meniscus
 
-**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 (Hikari; patent code 498825)`. Standalone f = +151.513 mm.**
+**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)`. Standalone f = +151.513 mm.**
 
 L12 is a positive meniscus with its convex side toward the object. It completes G1 after a 0.1000 mm air gap from L11. Its high Abbe number supplies low-dispersion positive power in the front group. Current Hikari J-FKH1 has the same `nd` and a `νd` difference of only 0.05, so the catalog model is used while preserving the patent's 498825 code.
 
@@ -101,7 +101,7 @@ Together, L11 and L12 produce G1's computed +80.172 mm focal length. G1 remains 
 
 **L21r:** nd = 1.553890, νd = 38.09. Glass: `Unmatched (optical resin, nd=1.553890, νd=38.09)`. Standalone f = -1328.983 mm.
 
-**L21g:** nd = 1.834810, νd = 42.72. Glass: `835427 — lanthanum flint class`. Standalone f = -21.605 mm.
+**L21g:** nd = 1.834810, νd = 42.72. Glass: `J-LASF05 spectral proxy (patent 835427; production supplier unconfirmed)`. Standalone f = -21.605 mm.
 
 L21 is a bonded glass/resin component. The thin 0.0500 mm resin layer carries the object-side asphere `6A`; the glass body provides nearly all of the component's negative paraxial power. The very long standalone focal length of the resin layer shows why it should not be described as an independent powered lens in the physical count.
 
@@ -109,13 +109,13 @@ With the resin/glass junction retained, the hybrid component has a computed net 
 
 #### L22 — Biconcave Negative
 
-**nd = 1.772500, νd = 49.61. Glass: `773496 — lanthanum flint class`. Standalone f = -34.790 mm.**
+**nd = 1.772500, νd = 49.61. Glass: `J-LASF016 spectral proxy (patent 773496; production supplier unconfirmed)`. Standalone f = -34.790 mm.**
 
 L22 is an air-spaced biconcave member following L21. It adds negative power without introducing another cemented interface. In the fixed four-element G2 assembly, L22 shares the variator and focusing motion of the group rather than moving independently.
 
 #### L23 — Biconvex Positive
 
-**nd = 1.808090, νd = 22.76. Glass: `808228 — very dense flint class`. Standalone f = +22.399 mm.**
+**nd = 1.808090, νd = 22.76. Glass: `FD225 spectral proxy (patent 808228; production supplier unconfirmed)`. Standalone f = +22.399 mm.**
 
 L23 is the sole positive member within the otherwise negative G2. Its high refractive index and low Abbe number are explicit patent design variables: Example 1 reports `np = 1.80809` and `νp = 22.76`, satisfying the patent limits `np < 1.85` and `νp < 27` [1, cols. 2 and 12].
 
@@ -123,7 +123,7 @@ The positive power moderates the aberration and dispersion balance of the strong
 
 #### L24 — Biconcave Negative
 
-**nd = 1.772500, νd = 49.61. Glass: `773496 — lanthanum flint class`. Standalone f = -31.072 mm.**
+**nd = 1.772500, νd = 49.61. Glass: `J-LASF016 spectral proxy (patent 773496; production supplier unconfirmed)`. Standalone f = -31.072 mm.**
 
 L24 is the rear negative member of G2. It uses the same stored glass class as L22, giving the group a symmetric material choice around the positive L23 despite different radii and thicknesses.
 
@@ -133,7 +133,7 @@ The air gaps immediately before and after G2 are the focusing pair. During close
 
 #### L31 — Biconvex Positive
 
-**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 (Hikari; patent code 498825)`. Standalone f = +30.869 mm.**
+**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)`. Standalone f = +30.869 mm.**
 
 L31 is the strongest standalone positive element in G3 and lies 0.5000 mm behind the aperture stop. Its high-Abbe material adds substantial positive power with comparatively low primary dispersion.
 
@@ -141,13 +141,13 @@ The position directly behind `STO` gives L31 high influence over axial marginal 
 
 #### L32 — Positive Meniscus
 
-**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 (Hikari; patent code 498825)`. Standalone f = +95.557 mm.**
+**nd = 1.497820, νd = 82.52. Glass: `J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)`. Standalone f = +95.557 mm.**
 
 L32 is a weaker positive meniscus using the same J-FKH1-coordinate material as L12 and L31. It extends the low-dispersion positive contribution through the relay group without adding another glass class.
 
 #### L33 — Negative Meniscus
 
-**nd = 1.846660, νd = 23.78. Glass: `847238 — dense flint class`. Standalone f = -53.558 mm.**
+**nd = 1.846660, νd = 23.78. Glass: `J-SF03 spectral proxy (patent 847238; production supplier unconfirmed)`. Standalone f = -53.558 mm.**
 
 L33 is the negative rear member of G3. It uses the same dense-flint class as L11a. The positive L31 and L32 powers dominate, so the assembled G3 remains net positive with computed focal length +35.335 mm.
 
@@ -157,7 +157,7 @@ The high-dispersion negative L33 forms a chromatic counterweight to the two ED-c
 
 #### L1 — Double-Aspherical Biconvex Positive
 
-**nd = 1.516800, νd = 64.10. Glass: `517641 — borosilicate crown class`. Standalone f = +44.529 mm.**
+**nd = 1.516800, νd = 64.10. Glass: `J-BK7A spectral proxy (patent 517641; production supplier unconfirmed)`. Standalone f = +44.529 mm.**
 
 L1 is a biconvex positive element with aspherical surfaces on both sides, labeled `22A` and `23A`. It is the principal positive component of the compact master group. The patent specifically assigns double aspheres to this positive component and describes the image-side profile as increasing curvature toward the effective aperture [1, cols. 8–10].
 
@@ -167,7 +167,7 @@ The data retains the code-level glass label because the patent does not identify
 
 **L2r:** nd = 1.553890, νd = 38.09. Glass: `Unmatched (optical resin, nd=1.553890, νd=38.09)`. Standalone f = +265.961 mm.
 
-**L2g:** nd = 1.804000, νd = 46.58. Glass: `804466 — lanthanum flint class`. Standalone f = -69.005 mm.
+**L2g:** nd = 1.804000, νd = 46.58. Glass: `H-ZLaF50D spectral proxy (patent 804466; production supplier unconfirmed)`. Standalone f = -69.005 mm.
 
 L2 is a bonded resin/glass component. The thin resin layer is positive as an isolated thick element in air, while the glass body is negative. Their cemented net is negative, with computed focal length -93.303 mm. This distinction is important: the positive standalone resin power does not make the physical L2 component positive.
 
@@ -177,21 +177,21 @@ L1 and L2 together form a net-positive Gm with computed focal length +72.034 mm.
 
 ## Glass Identification and Selection
 
-The patent supplies d-line index and Abbe number but does not name glass vendors. Most rows therefore retain six-digit classes or `Unmatched (...)` labels. Two Hikari classifications are strong enough to use as coordinate successors: current J-LAK01 differs from patent 640601 by the last rounded code digit, and current J-FKH1 has the exact `nd` of patent 498825 with only a 0.05 `νd` difference. The patent codes remain explicit rather than being presented as melt provenance.
+The patent supplies d-line index and Abbe number but does not name glass vendors. The ordinary-glass rows use coordinate-compatible catalog curves as spectral proxies; the two source-stated resin layers remain unresolved. Two Hikari classifications are strong enough to use as coordinate successors: current J-LAK01 differs from patent 640601 by the last rounded code digit, and current J-FKH1 has the exact `nd` of patent 498825 with only a 0.05 `νd` difference. The patent codes remain explicit rather than being presented as melt provenance.
 
 | Stored glass annotation | nd | νd | Elements | Data status |
 |---|---:|---:|---|---|
-| `847238 — dense flint class` | 1.846660 | 23.78 | L11a, L33 | Exact six-digit class; vendor unresolved; representative `nC/nF/ng` stored |
-| `J-LAK01 (Hikari; patent code 640601)` | 1.640000 | 60.09 | L11b | Current Hikari coordinate successor; representative `nC/nF/ng` stored |
-| `J-FKH1 (Hikari; patent code 498825)` | 1.497820 | 82.52 | L12, L31, L32 | Current Hikari coordinate successor for the patent/production ED correlation |
+| `J-SF03 spectral proxy (patent 847238; production supplier unconfirmed)` | 1.846660 | 23.78 | L11a, L33 | Compatible catalog curve; production vendor unresolved |
+| `J-LAK01 spectral proxy (Hikari catalog; patent 640601; production supplier unconfirmed)` | 1.640000 | 60.09 | L11b | Compatible Hikari catalog curve; production vendor unresolved |
+| `J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)` | 1.497820 | 82.52 | L12, L31, L32 | Current Hikari coordinate successor for the patent/production ED correlation |
 | `Unmatched (optical resin, nd=1.553890, νd=38.09)` | 1.553890 | 38.09 | L21r, L2r | Hybrid optical resin; not treated as catalog glass |
-| `835427 — lanthanum flint class` | 1.834810 | 42.72 | L21g | Code-level class; representative `nC/nF/ng` stored |
-| `773496 — lanthanum flint class` | 1.772500 | 49.61 | L22, L24 | Code-level class; representative `nC/nF/ng` stored |
-| `808228 — very dense flint class` | 1.808090 | 22.76 | L23 | Exact condition glass class; representative `nC/nF/ng` stored |
-| `517641 — borosilicate crown class` | 1.516800 | 64.10 | L1 | Code-level class; no line-index triplet authored |
-| `804466 — lanthanum flint class` | 1.804000 | 46.58 | L2g | Code-level class; representative `nC/nF/ng` stored |
+| `J-LASF05 spectral proxy (patent 835427; production supplier unconfirmed)` | 1.834810 | 42.72 | L21g | Compatible catalog curve; production vendor unresolved |
+| `J-LASF016 spectral proxy (patent 773496; production supplier unconfirmed)` | 1.772500 | 49.61 | L22, L24 | Compatible catalog curve; production vendor unresolved |
+| `FD225 spectral proxy (patent 808228; production supplier unconfirmed)` | 1.808090 | 22.76 | L23 | Source condition coordinate; compatible catalog curve |
+| `J-BK7A spectral proxy (patent 517641; production supplier unconfirmed)` | 1.516800 | 64.10 | L1 | Compatible catalog curve; production vendor unresolved |
+| `H-ZLaF50D spectral proxy (patent 804466; production supplier unconfirmed)` | 1.804000 | 46.58 | L2g | Compatible catalog curve; production vendor unresolved |
 
-The stored `nC`, `nF`, and `ng` values are catalog-derived representative class data. They are not values printed in the patent. They are omitted for the J-FKH1-coordinate rows, both resin layers, and 517641; J-FKH1 instead supplies source-backed formula-3 dispersion at runtime. The data contains no `dPgF`, and it makes no APO or patent-specific anomalous-partial-dispersion claim.
+Table 1 publishes only d-line `nd` and `νd` for each medium. The 24 former catalog-derived `nC`, `nF`, and `ng` overrides on eight glass rows have been removed so that the current compatible catalog curves supply their spectral response. All 12 ordinary-glass media resolve to compatible coefficient-backed curves; both `1.553890 / 38.09` resin layers retain the source coordinates without an invented formulation or catalog identity. Catalog names identify spectral proxies, not historical suppliers or melts. The source supplies no element-specific partial dispersion here, so no `dPgF` or patent APD claim is authored.
 
 The broad material strategy is visible without assigning proprietary melt names. G1 combines a low-Abbe dense-flint negative with a higher-Abbe positive and adds an ED-class positive meniscus. G2 uses a high-index, low-Abbe positive inside a strong negative group. G3 pairs two ED-class positives with a dense-flint negative. Gm uses a moderate-index crown positive with a high-index negative hybrid. This distributes primary chromatic balancing across all four moving groups rather than concentrating it in a single achromat.
 
@@ -309,7 +309,7 @@ Surface `25A` has the tightest real conic domain of the four aspheres. Its autho
 
 The patent prescription uses d-line indices and Abbe numbers. It plots d- and g-line aberration curves but does not provide per-element C-, F-, or g-line indices, Sellmeier coefficients, or anomalous partial-dispersion deviations [1, Table 1 and Figs. 2–4]. The analysis therefore does not characterize the system as apochromatic.
 
-Three physical elements—L12, L31, and L32—share `nd = 1.497820` and `νd = 82.52`. Nikon identifies ED glass as one of the means by which the production design reduced element count [2]. Current Hikari J-FKH1 supplies the source-backed coordinate-successor dispersion model; retaining patent code 498825 in each label makes clear that the classification does not prove the historical melt.
+Three physical elements—L12, L31, and L32—share `nd = 1.497820` and `νd = 82.52`. Nikon identifies ED glass as one of the means by which the production design reduced element count [2]. Current Hikari J-FKH1 supplies the catalog-backed coordinate-successor dispersion model; retaining patent code 498825 in each label makes clear that the classification does not prove the historical melt.
 
 The ED-class elements are distributed between G1 and G3 rather than concentrated in one cemented group. L12 supplies low-dispersion positive power in the front group; L31 and L32 provide low-dispersion positive power behind the stop. Dense-flint negatives L11a and L33 provide opposing dispersion in those positive groups.
 
@@ -356,6 +356,8 @@ The authored base `STO.sd` is 8.156585 mm, derived from the wide-state paraxial 
 ### Semi-Diameter and Geometry Validation
 
 The final semi-diameters are inferred. The patent-figure pass reduced L12's envelope and enlarged the hybrid L21 envelope to follow Figure 1 more closely. The targeted geometry gate passes edge-thickness, rim-slope, conic-domain, cross-gap, render-trim, and selected infinity/close/off-axis ray checks.
+
+Fresh inspection of all three Figure 1 zoom states (PDF page 2) resolves a flat stroke behind L21's concave rear face. Surface 8 keeps its 12.5 mm outer radius and uses an inferred 3.80 mm cut depth, ending the refracting cap at 10.028007 mm (`q = 0.80224`). The measured figure ratio is about 0.81 with a one-native-pixel band of roughly ±0.016. The optical resin/glass interface at surface 7 is unchanged, and the complete component remains connected without a detached resin wing. Other concave, convex, cemented, and hybrid faces showed no additional distinct cap/land break; their existing bounds remain. The four aspheric caps and their coefficients are unchanged.
 
 The non-default `gapSagFrac: 0.915` is used because the telephoto axial marginal ray requires an 8.8 mm semi-diameter at surface 19. At the 19→20 boundary, the shared-band sag intrusion is 2.45778 mm across a 2.70000 mm axial gap, leaving 0.24222 mm of physical clearance. The parameter does not conceal an overlap.
 

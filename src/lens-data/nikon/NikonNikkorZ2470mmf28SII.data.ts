@@ -28,7 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * out to the element rims. 24 takes its partner's sd (18 mm) with rimCutDepthMm 5.72: the
  * clear radius goes from the old 16.0 mm rim to the 16.0042 mm cut radius, and the wide-open
  * beams reach 15.4701 mm there. 2A keeps its 24.0 mm rim uncut: its asphere's slope turns
- * over past 27 mm, so it is not carried out to the 30 mm element rim.
+ * over past 27 mm, so its optical cap is not carried out to the 30 mm element rim.
+ * Rim extension (2026-10-29): Figure 3, p. 69, 13.46 native px/mm, draws the
+ * 2A cap ending at about 24 mm and a land to the 30 mm L1 rim. rimExtensionSd
+ * restores that land without extending the asphere or changing its 24 mm clear radius.
  * Shared junction SDs 7=18.0 / 20=13.0 mm are ray-envelope refinements beyond the
  * figure estimate. These are not published SDs.
  * Zoom/focus interpolation is schematic; no CODE V cam, aperture, plate,
@@ -291,6 +294,7 @@ const LENS_DATA = {
       R: 24.9268,
       d: 14.774,
       sd: 24.0,
+      rimExtensionSd: 30,
       asphere: {
         K: -1.0,
         A4: 5.692e-6,

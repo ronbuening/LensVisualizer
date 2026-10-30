@@ -170,6 +170,7 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   // All-spherical design
+  // Original patent cap-end/blank outline rechecked 2026-10-29; native scale and validation in audit.
   surfaces: [
     // ── G1: Fixed front converter group (L1a, L1b, L2, L3) ──
     { label: "1", R: 82.1305, d: 4.6, sd: 36, medium: 1 }, // L1a front
@@ -177,21 +178,21 @@ const LENS_DATA = {
     { label: "3", R: 50.1028, d: 9.6, sd: 32.5, medium: 2 }, // L1b front
     { label: "4", R: 180.9466, d: 0.1, sd: 32.5 }, // L1b rear → air
     { label: "5", R: 43.2464, d: 7.0, sd: 28, medium: 3 }, // L2 front
-    { label: "6", R: 50.6525, d: 4.0, sd: 28 }, // L2 rear → air
+    { label: "6", R: 50.6525, d: 4.0, sd: 28, rimCutDepthMm: 6.35 }, // L2 rear → air
     { label: "7", R: 85.0525, d: 2.4, sd: 23.5, medium: 4 }, // L3 front
-    { label: "8", R: 29.0685, sd: 23.5 }, // L3 rear → air (variable: G1–G2 gap)
+    { label: "8", R: 29.0685, sd: 23.5, rimCutDepthMm: 8.36 }, // L3 rear → air (variable: G1–G2 gap)
 
     // ── G2: Movable focus group — front sub-unit G21 (L4, L5) ──
     { label: "9", R: 39.2512, d: 4.8, sd: 18, medium: 5 }, // L4 front
     { label: "10", R: 198.2455, d: 2.5, sd: 18 }, // L4 rear → air
     { label: "11", R: -126.0081, d: 2.0, sd: 17.5, medium: 6 }, // L5 front
-    { label: "12", R: 36.9324, d: 4.0, sd: 15.8 }, // L5 rear → air
+    { label: "12", R: 36.9324, d: 4.0, sd: 15.8, rimExtensionSd: 17.5 }, // L5 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R: "flat", d: 4.0 }, // stop moves with G2
 
     // ── G2: Movable focus group — rear sub-unit G22 (L6 cemented, L7) ──
-    { label: "14", R: -36.6878, d: 1.8, sd: 15.8, medium: 7 }, // L6a (neg) front
+    { label: "14", R: -36.6878, d: 1.8, sd: 15.8, rimExtensionSd: 17.3, medium: 7 }, // L6a (neg) front
     { label: "15", R: 158.8503, d: 8.0, sd: 17.3, medium: 8 }, // L6 cemented junction → L6b (pos)
     { label: "16", R: -46.1165, d: 0.1, sd: 17.3 }, // L6b rear → air
     { label: "17", R: 84.9089, d: 4.0, sd: 17.3, medium: 9 }, // L7 front

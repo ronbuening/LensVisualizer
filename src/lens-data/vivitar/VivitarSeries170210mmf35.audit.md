@@ -6,10 +6,10 @@ Patent: JP S51-63635 A (特開昭51-63635), Table 1 (sole numerical example)
 
 Source scope: the 2026-10-07 audit records the Japanese Table 1 note placing the stop directly behind r21, without a distance. The English counterpart [US 3,817,600](https://patents.google.com/patent/US3817600A/en), description of aperture adjustment 50, likewise places it behind L13 without specifying the iris location. The Japanese original was not recovered for this follow-up; filename-only report fixtures are not patent originals. No numerical iris dimension is claimed from either source.
 
-| Field | Before | After | Basis |
-|---|---:|---:|---|
-| Surface 21 `d` | 0 mm | 1.2 mm | Inferred aperture plane, not a source dimension |
-| `STO` `d` | 49.846 mm | 48.646 mm | Preserve the published r21–r22 vertex gap |
+| Field             |       Before |        After | Basis                                                                                     |
+| ----------------- | -----------: | -----------: | ----------------------------------------------------------------------------------------- |
+| Surface 21 `d`    |         0 mm |       1.2 mm | Inferred aperture plane, not a source dimension                                           |
+| `STO` `d`         |    49.846 mm |    48.646 mm | Preserve the published r21–r22 vertex gap                                                 |
 | `STO` stored `sd` | 14.457801 mm | 14.777836 mm | Real marginal-ray wide-station f/3.65 iris at the inferred plane, rounded to six decimals |
 
 For R = +94.78 mm and the retained 15 mm clear radius, the spherical sag is 1.194486163722967 mm. A 1.2 mm plane rounds that value upward to the next 0.1 mm and leaves about 0.005514 mm axial clearance beyond the clear cap. Sag is monotone over that cap, so the clearance holds independently of the sampled rays. Group IV is fixed internally throughout the authored zoom and focus travel. This is sufficient forward clearance for a sequential aperture-plane model; it is neither a measured blade position nor a universal mechanical lower bound. Other aperture abstractions could represent an iris nearer the vertex. The zero-gap model instead demands backward travel from nonaxial r21 hits to the stop.
@@ -24,26 +24,26 @@ The correction resolves the stop-plane failure in the endpoint aperture and infi
 
 Local source: `patents/JPA 1976063635-000000.pdf` (5 pages; gazette pp. 263–267). Table 1 runs from PDF p. 3 (rows r1–r17) to the rotated continuation on PDF p. 4 (rows r18–r25), read from 300–600 dpi renders.
 
-| Field | Before | After | Source |
-|---|---|---|---|
-| Surface 19 `R` | 38.55 | 38.35 | PDF p. 4 (gazette p. 266), Table 1 continuation, row r19: 38.35 (same row: t19 6.0, n12 1.48749, ν12 70.0). The third digit has the flat-topped form of the leading 3 and of the 3s in r23 −53.33, not the form of the final 5. A transcription error in the file, not a source erratum. |
-| Surface 25 `d` (image-plane gap) | 40.873732 | 40.003152 | Not printed in the patent. Mean of the paraxial back focal lengths of the corrected table at the two Table 1 stations (39.991236 and 40.015068 mm). |
-| `focalLengthDesign` | [72.662091, 204.940289] | [71.979219, 203.013778] | Paraxial EFL of the corrected table at the printed gaps d5 2.041~47.555, d10 28.624~6.000, d13 24.389~1.500 (PDF p. 3, Table 1). |
-| L12 `fl` | 58.5 | 58.3 | Thick-lens focal length in air from r19 38.35, r20 −104.13, t19 6.0, n12 1.48749 (PDF p. 4, Table 1 continuation): 58.2985 mm. |
-| Header BFD lines | 40.873732; 40.861589 and 40.885874; ±0.012143 | 40.003152; 39.991236 and 40.015068; ±0.011916 | Same calculation as the surface 25 gap. |
+| Field                            | Before                                        | After                                         | Source                                                                                                                                                                                                                                                                                   |
+| -------------------------------- | --------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Surface 19 `R`                   | 38.55                                         | 38.35                                         | PDF p. 4 (gazette p. 266), Table 1 continuation, row r19: 38.35 (same row: t19 6.0, n12 1.48749, ν12 70.0). The third digit has the flat-topped form of the leading 3 and of the 3s in r23 −53.33, not the form of the final 5. A transcription error in the file, not a source erratum. |
+| Surface 25 `d` (image-plane gap) | 40.873732                                     | 40.003152                                     | Not printed in the patent. Mean of the paraxial back focal lengths of the corrected table at the two Table 1 stations (39.991236 and 40.015068 mm).                                                                                                                                      |
+| `focalLengthDesign`              | [72.662091, 204.940289]                       | [71.979219, 203.013778]                       | Paraxial EFL of the corrected table at the printed gaps d5 2.041~47.555, d10 28.624~6.000, d13 24.389~1.500 (PDF p. 3, Table 1).                                                                                                                                                         |
+| L12 `fl`                         | 58.5                                          | 58.3                                          | Thick-lens focal length in air from r19 38.35, r20 −104.13, t19 6.0, n12 1.48749 (PDF p. 4, Table 1 continuation): 58.2985 mm.                                                                                                                                                           |
+| Header BFD lines                 | 40.873732; 40.861589 and 40.885874; ±0.012143 | 40.003152; 39.991236 and 40.015068; ±0.011916 | Same calculation as the surface 25 gap.                                                                                                                                                                                                                                                  |
 
 First-order values of the table against what the patent prints:
 
-| Quantity | Patent prints | Before (r19 38.55) | After (r19 38.35) |
-|---|---|---:|---:|
-| Wide focal length | 70 mm, nominal (Table 1 header "f = 70−205 mm", PDF p. 3; Fig. 2(a) "f=70 mm", PDF p. 4) | 72.6621 mm (+3.80 %) | 71.9792 mm (+2.83 %) |
-| Tele focal length | 205 mm, nominal (same header; Fig. 2(c) "f=205 mm") | 204.9403 mm (−0.03 %) | 203.0138 mm (−0.97 %) |
-| Back focal length, wide / tele | not printed | 40.8616 / 40.8859 mm | 39.9912 / 40.0151 mm |
-| Image-plane gap stored after surface 25 | not printed | 40.873732 mm | 40.003152 mm |
-| First-to-last glass track, wide / tele | not printed in the Japanese publication | 160.000 / 160.001 mm | 160.000 / 160.001 mm |
-| Total length, surface 1 to image, wide / tele | not printed | 200.8737 / 200.8747 mm | 200.0032 / 200.0042 mm |
-| Group IV focal length (surfaces 14–25) | not printed in the Japanese publication; the analysis note quotes about +44.04 mm from US 3,817,600 | +44.1873 mm | +44.0400 mm |
-| Relative aperture | 1:3.65 (Table 1 header, PDF p. 3; text, PDF p. 2 right column; Fig. 2(a)–(c) "F3.65", PDF p. 4) | fixed iris 15.1614 mm: f/3.650 / f/3.646 | fixed iris 15.0042 mm: f/3.650 / f/3.646 |
+| Quantity                                      | Patent prints                                                                                       |                       Before (r19 38.55) |                        After (r19 38.35) |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------: | ---------------------------------------: |
+| Wide focal length                             | 70 mm, nominal (Table 1 header "f = 70−205 mm", PDF p. 3; Fig. 2(a) "f=70 mm", PDF p. 4)            |                     72.6621 mm (+3.80 %) |                     71.9792 mm (+2.83 %) |
+| Tele focal length                             | 205 mm, nominal (same header; Fig. 2(c) "f=205 mm")                                                 |                    204.9403 mm (−0.03 %) |                    203.0138 mm (−0.97 %) |
+| Back focal length, wide / tele                | not printed                                                                                         |                     40.8616 / 40.8859 mm |                     39.9912 / 40.0151 mm |
+| Image-plane gap stored after surface 25       | not printed                                                                                         |                             40.873732 mm |                             40.003152 mm |
+| First-to-last glass track, wide / tele        | not printed in the Japanese publication                                                             |                     160.000 / 160.001 mm |                     160.000 / 160.001 mm |
+| Total length, surface 1 to image, wide / tele | not printed                                                                                         |                   200.8737 / 200.8747 mm |                   200.0032 / 200.0042 mm |
+| Group IV focal length (surfaces 14–25)        | not printed in the Japanese publication; the analysis note quotes about +44.04 mm from US 3,817,600 |                              +44.1873 mm |                              +44.0400 mm |
+| Relative aperture                             | 1:3.65 (Table 1 header, PDF p. 3; text, PDF p. 2 right column; Fig. 2(a)–(c) "F3.65", PDF p. 4)     | fixed iris 15.1614 mm: f/3.650 / f/3.646 | fixed iris 15.0042 mm: f/3.650 / f/3.646 |
 
 The analysis note carries the matching figures: endpoint EFL and BFL, the image-plane gap and its ±0.011916 mm residual, tele track ratio 0.9852, L12 +58.3 mm, the L12–L13 pair +204.0 mm, surfaces 14–21 +44.6412 mm, Petzval sum +0.000385045 mm⁻¹ (radius 2597.1 mm), maximum-macro EFL 53.9716 mm at 1:2.251 with a 289.4662 mm object-to-image distance, diagonal fields 33.46° / 12.17°, and the stop rows of its summary table. Its Group-I travel to the 1.8 m focus position is quoted to four decimals (9.4209 mm wide, 9.4621 mm tele): the exact paraxial solution onto the 40.003152 mm plane is 9.420946 / 9.462060 mm, where the six-decimal figures of the r19 = 38.55 table were 9.420944 / 9.462059 mm.
 
@@ -69,8 +69,8 @@ Left open:
 
 Source: JP S51-63635 A, Table 1, PDF pp. 3–4. Applied the approved focal-length metadata proposal.
 
-| Field | Before | After |
-|---|---|---|
+| Field                          | Before                    | After       |
+| ------------------------------ | ------------------------- | ----------- |
 | `catalog.focalLengthMm.design` | `[71.979219, 203.013778]` | `[70, 205]` |
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
@@ -78,3 +78,12 @@ Retained all station labels, marketing values, prescription geometry and image d
 The approved proposal independently reproduced infinity EFLs of 71.979219 / 203.013778 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. JP S51-63635 A, Table 1 (PDF pp. 3–4; gazette pp. 265–266), states f = 70–205 mm; Figure 2(a,c) repeats those endpoints. The unscaled printed prescription, including r19 = 38.35 mm, traces to 71.979219/203.013778 mm at the published endpoint gaps. The cause of the discrepancy is not isolated; the printed prescription is retained.
+
+## 2026-10-30 — Fresh Japanese-original shape and glass review
+
+- Recovered original local `JPA 1976063635-000000.pdf` directly re-read: Table1r1–r17/PDF3 and rotated r18–r25/PDF4, explicit d-line Nd/Abbe headings, Fig1(a)/PDF4 atnative347dpi+600dpi. This freshsource inspection supersedes any older follow-up statement that only an English counterpart was available. All15source nd/νd pairs exact; no extraindices/θ ratios published. r19clearly38.35, retained. Everyconvex/concave and cementboundary inspected, paired nominal70/205F3.65plotlabels retained distinct from computed71.979219/203.013778.
+- Sourcefirstlast≈1160px600dpi/160mm=7.25px/mm,native≈4.19px/mm. S8preserves19.5cap+land22, S10preserves16+land19.5, S11preserves16+land17.5; completecompounds remainconnected. Source weakfewpixel/cementendpoints are not extra inferredcuts.
+- NewS22frontconcave cutdepth6.05 onunchangedouter16 givescap14.411679/q.90073/land1.588321. Native cap/edge≈53.1/59px,q≈.90,one-pixelrange±.0322. Full uncutbeamreach13.324767+.05margin clears it (0untraced/errors), including temporary retained1800/80mm firstsurfaceendpoint diagnostics. Japanese400mm plot does not supply completefocusspacings/referenceplane; no guessedcertificate for it. Existing normal/macro focus interpolation is schematic, as documented.
+- Remove45catalog-only C/F/gcopies from15glass; source d-line pairs unchanged.15compatible currentcurves remain qualified proxies, not productionSUMITA/HIKARI/OHARA identity. Three1.48749/70.0 media resolve loose J-FK5νd≈70.31879; source70.0 is neither silently replaced nor claimed exactcatalogrounding. No measuredAPD/chemistry invented. Currentpublicglassing/references synchronized.
+  -144405samecollimated samplelaunches:121409retained,0lost/0gained,22996bothblocked;countsnotflux. Stop1.2mm abstraction/full49.846gap,BFD40.003152±.011916 residual,originalEFLunresolvederratum, sourceversusreconstructedfocuslimits allretained.
+- Focused surface and image-circle checks pass (0 errors/undersized). Aperture audit:5/5 stored-design stations within3%, no rim/iris/trace failures. Field audit:4/5stations≥99%;35–85wide retains75% (16.28/21.65mm, S9limit), explicitly unresolved.27actualSVG zoom/focusstates viewed,0renderertrim and connected compounds.94shared dispersion/resolver/partial-line tests pass. Source R/d/nd/vd/stop/focus/zoom/tolerances and existing normalizations/errata invariant. No live/shared engine/catalog/test/report edits.

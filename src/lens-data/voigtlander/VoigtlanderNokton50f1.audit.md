@@ -62,3 +62,22 @@ Patent: JP2023-063766 A, Example 1
   cut radius, so the inferred cut clears the rim-cut beam rule's 0.05 mm margin.
 - The axial beam is unchanged (f/1 traces f/1.10, limited by rim 4), as are the 23.95°
   half field and the stop radius. No patent value changed; the drawn L4 front now ends in the land at the stop plane.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/JP2023063766A.pdf`, Example 1 Figure 1 (PDF p.10, 600 dpi complete crop, rotated for inspection), and Tables 1–2 (p.6). Reviewed all nine elements, every exposed face and both cemented interfaces. The approximately 65.02 mm first-to-last vertex span gives 22.58 render px/mm at 600 dpi, or approximately **24.3 native px/mm** in the embedded 647 dpi figure.
+
+- Source-resolved square lands now extend S4 **20→draw24**, S6 **17→draw19**, and S15 **12.2→draw15.5 mm**, preserving those clear caps and all optical coefficients. S15's small cap remains constrained by its following air gap.
+- The final concave rear asphere S17A has cap-end q≈**0.93±0.0061** (one native pixel at cap and edge). The figure-proportional 1.25 mm trial, radius 12.112 mm, fails the beam guard: reach 12.7335 mm requires radius ≥12.7835 mm. Moved the cut outward to **1.46 mm**, radius **12.8099561 mm**, leaving a 0.1900 mm land inside the unchanged 13 mm outer rim. The existing S8 cut at the printed 3.24 mm stop spacing is retained. No other exposed concave end or cement boundary supports an added cut.
+- All nine printed nd/νd rows and the d-line convention match the stored prescription. All nine existing catalog curves resolve as labeled; supplier qualifications remain. The source supplies no measured partial dispersion or nC/nF/ng, so no APD claim, source line index or synthetic dPgF is added. Source radii, spacings, coefficients and inferred unit-focus approximation are retained.
+- Updated the public asphere departure to the actual S17A cap: **+777.15 µm at 12.810 mm**, replacing the uncut 13 mm reference value.
+
+`audit:surface` and `audit:image-circle` passed. `audit:aperture` ran successfully and reports the unchanged pre-existing S4 limit, f/1.00→f/1.06 (+6.4%); direct comparison with baseline `fd673662c` returns the same result. Nine prepared-state SVG probes (focus 0/.5/1 and ignored prime zoom) were generated, rasterized and viewed: nine finite element paths each, zero renderer trim. Scoped catalog/resolver checks and shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).
+
+### 2026-10-29 follow-up — Exact axial-aperture constraint
+
+Directly checked Example 1's explicit f=50 mm/FNo 1.0 declaration in ¶0022 (PDF p.5), Table 1's 3.24 mm stop-to-S8 gap (p.6), and Figure 1 (p.10). Clear apertures are not published. The current inferred rims limit the axial census to about f/1.064, initially at S4. `--raise` proposes S4=21.7, S5=20.4 and the S8–S10 square doublet rim=17.9 mm. These partial raises pass raw material/gap geometry but leave S8's source-plane cut limiting the candidate to **f/1.0102202**. The census calls that within its 3% reporting threshold; it still does not pass the entire stated beam.
+
+The iris ray reaches S8 at **16.1437886 mm**, requiring **3.3125357 mm** spherical sag. The printed iris plane is only **3.24 mm** before S8. After the partial raises, the inferred-cut beam guard reaches 16.1440 mm at S8 and needs at least **16.1940mm** radius, or approximately **3.334mm** depth including its margin. An explicit 3.34 mm trial is rejected: `Surface "8": its rim cut (depth 3.34 mm) reaches past the stop plane, 3.240 mm away`. The current 3.24 mm cut has radius 15.973 mm and keeps the iris in air.
+
+Thus a complete nominal-F/1 raise cannot retain both the literal stop geometry and the inferred-cut beam contract. Kept all Nokton SDs unchanged; no relaxed geometry tolerance, embedded iris, altered gap, fabricated source correction, or forced `rimCutDepthSource` was introduced. The current header and public analysis now explain this precise limitation. The earlier focused surface/circle checks remain valid because this follow-up changes no optical number.

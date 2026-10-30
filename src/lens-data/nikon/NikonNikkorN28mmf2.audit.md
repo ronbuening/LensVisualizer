@@ -98,3 +98,11 @@ p. 5 col. 4 lines 27–51; close-focus statement p. 6 col. 5 lines 1–4.
   is a labelled calculation with d9 held at the β = −1/10 value.
 - L8's 1.74443 / 47.9 glass has no catalog Sellmeier; a Hikari/Ohara 1970 catalog entry with coefficients would let
   the `744479` code auto-upgrade.
+
+## 2026-10-30 — Fresh figure, concave-end and glass reinspection
+
+Direct source: `patents/US3736049.pdf`, PDF p.2 FIG.1 (600dpi/native300dpi), p.5 sole table and yellow-helium-d line definition; p.6 finite CRC statement. Reviewed all17 powered faces and cemented interface.
+
+- S2 retains its16mm clear cap and gains flat rear land to22mm body. Source q≈315/407=0.774±0.005; adopted16/22=0.727 conservatively retains the cap because the following6.364mm gap bounds the continuous curve near16.4mm. S6 retains13.5mm clear cap and gains rear land to15.8mm, sourceq≈250/292=0.856±0.007/adopt0.854. Both flat spans are resolved beyond scan stroke. No `rimCutDepthMm`; the other small oblique bevels and cemented steps do not establish new independent lands.
+- All9 literal nd/vd pairs freshly match p.5, including source58.1 (not catalog58.17) and unresolvedL8=1.74443/47.9. Source explicitly defines yellow helium d. No partial-dispersion, C/F/g indices or APD claim; none invented. Eight actual resolver curves qualified by source/catalog coordinates and unspecified supplier. L8 remains unresolved; coarse nearest catalog families do not prove its material.
+- Canonical/full cut guard, surface, image-circle, full formatcorner and nominal f2 pass. Nine actual SVG states checked at all three focus keyframes, zero trimming. Modeled closest D0=196.049738mm passes25/25 axial pupil samples at unchanged iris. Preserve the source f/BF conflict, source β−0.1 CRC row and calculated extra back-focus keyframe, without prescription recalibration.

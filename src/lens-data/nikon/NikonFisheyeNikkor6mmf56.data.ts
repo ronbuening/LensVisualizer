@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,524,697 Example 1 (Isshiki / Matsuki).          ║
  * ║  Mirror-lock-up circular fisheye, patent normalized at f≈10.       ║
- * ║  9 glass elements / 6 groups, all spherical.                       ║
+ * ║  9 powered elements / 6 groups + optional filter, all spherical.                       ║
  * ║  Focus: fixed-focus; no variable air spacings in the patent.       ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
@@ -15,16 +15,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    ×0.599723199 to the manufacturer nominal 6.0 mm focal length.       ║
  * ║                                                                    ║
  * ║  NOTE ON FILTER:                                                   ║
- * ║    Patent L5 is a flat filter that the patent calls optional, so   ║
- * ║    it is not modeled. The r7-to-r10 air gap keeps its air-         ║
- * ║    equivalent thickness, t/n = 1.9 / 1.51743 patent units, so the  ║
- * ║    published first-order values hold.                              ║
- * ║                                                                    ║
+ * ║    Patent L5 is optional; this model includes its printed plane plate.   ║
+ * ║    Physical d7/d8/d9 = 3.2/1.9/6.4 are scaled by the existing factor.   ║
+ * ║    The inferred stop's axial station is preserved; no t/n gap folding.   ║
+ * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear apertures. SD values are       ║
  * ║    conservative estimates from Fig. 1 proportions, stop geometry,   ║
  * ║    spherical rim-slope limits, edge thickness, and cross-gap sag.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table review; exposed lands and
+ * source-filter restoration are documented in the audit sidecar.
  */
 
 const LENS_DATA = {
@@ -37,7 +39,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
-    specs: ["9 elements / 6 groups", "f ≈ 6.00 mm", "F/5.6", "2ω = 220°", "all-spherical"],
+    specs: ["9 powered elements / 6 groups + optional filter included", "f ≈ 6.00 mm", "F/5.6", "2ω = 220°", "all-spherical"],
     elementCount: 9,
     groupCount: 6,
     focalLengthMm: { marketing: 6, design: 6.0 },
@@ -61,7 +63,7 @@ const LENS_DATA = {
       nd: 1.61272,
       vd: 58.6,
       focalLengthMm: -46.53,
-      glass: "BACD4 / N-SK4 class (613/586)",
+      glass: "BACD4 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "First strongly curved negative meniscus for extreme-field angular compression.",
     },
@@ -73,7 +75,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: -16.78,
-      glass: "BACD16 / N-SK16 / S-BSM16 class (620/603)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Second negative meniscus; the stronger front-group angular compressor.",
     },
@@ -85,7 +87,7 @@ const LENS_DATA = {
       nd: 1.48848,
       vd: 70.3,
       focalLengthMm: -16.62,
-      glass: "FC5 / N-FK5 / S-FSL5 class (488/703)",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Low-dispersion negative member of the front achromatizing doublet.",
       cemented: "D1",
@@ -98,10 +100,21 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.0,
       focalLengthMm: 17.33,
-      glass: "FD110 / N-SF11 / S-TIH11 class (785/260)",
+      glass: "FD110 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Dense-flint positive member of the front doublet; lateral-color correction.",
       cemented: "D1",
+    },
+    {
+      id: 10,
+      name: "L5 Filter",
+      label: "Patent L5 optional filter",
+      type: "Plane-Parallel Plate",
+      nd: 1.51743,
+      vd: 58.5,
+      indexReference: "d",
+      glass: "J-K3 (catalog-compatible spectral proxy; production supplier unresolved)",
+      role: "Source-included optional internal filter; this model includes the printed plate and physical gaps.",
     },
     {
       id: 5,
@@ -111,7 +124,7 @@ const LENS_DATA = {
       nd: 1.78477,
       vd: 26.0,
       focalLengthMm: -11.26,
-      glass: "FD110 / N-SF11 / S-TIH11 class (785/260)",
+      glass: "S-TIH11 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Dense-flint negative member of the rear chromatic-correction doublet.",
       cemented: "D2",
@@ -124,7 +137,7 @@ const LENS_DATA = {
       nd: 1.74372,
       vd: 45.0,
       focalLengthMm: 10.15,
-      glass: "LAF2 / N-LAF2 / S-LAM2 class (744/450)",
+      glass: "N-LAF2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "High-index positive member behind the stop; longitudinal chromatic correction with L6.",
       cemented: "D2",
@@ -137,7 +150,7 @@ const LENS_DATA = {
       nd: 1.76764,
       vd: 46.5,
       focalLengthMm: 24.83,
-      glass: "J-LASFH2 (Hikari catalog equivalent; patent code 768465, supplier unspecified)",
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Air-spaced positive meniscus; field-shaping and rear-group power balance.",
     },
@@ -149,7 +162,7 @@ const LENS_DATA = {
       nd: 1.78485,
       vd: 26.0,
       focalLengthMm: -26.65,
-      glass: "FD110 / N-SF11 / S-TIH11 class (785/260)",
+      glass: "S-TIH11 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Dense-flint negative member of the final cemented doublet; astigmatism and lateral-color balance.",
       cemented: "D3",
@@ -162,7 +175,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.1,
       focalLengthMm: 17.5,
-      glass: "S-BSM22 (OHARA) / N-SSK2 class (622/532)",
+      glass: "S-BSM22 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Thick final positive element; image-side convergence and final field/chromatic balancing.",
       cemented: "D3",
@@ -170,22 +183,24 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 53.20864, d: 2.69875, sd: 14.9931, medium: 1 }, // patent r1; L1 front
-    { label: "2", R: 18.2052, d: 14.69322, sd: 14.0935 }, // patent r2; L1 rear
-    { label: "3", R: 53.75139, d: 2.33892, sd: 7.1967, medium: 2 }, // patent r3; L2 front
-    { label: "4", R: 8.57664, d: 9.29571, sd: 6.8968 }, // patent r4; L2 rear
-    { label: "5", R: -39.75085, d: 0.77964, sd: 4.4979, medium: 3 }, // patent r5; L3 front
-    { label: "6", R: 10.27146, d: 3.47839, sd: 4.4979, medium: 4 }, // patent r6; L3/L4 cemented surface
-    { label: "7", R: 35.73511, d: 3.26976, sd: 4.4979 }, // patent r7; L4 rear; folded filter-equivalent gap to stop
-    { label: "STO", R: "flat", d: 3.23851 }, // stop inferred from Fig. 1, in air after the omitted filter
-    { label: "8", R: -1931.61786, d: 3.35845, sd: 3.1186, medium: 5 }, // patent r10; L6 front
-    { label: "9", R: 8.8855, d: 6.77687, sd: 3.1186, medium: 6 }, // patent r11; L6/L7 cemented surface
-    { label: "10", R: -33.8034, d: 0.11994, sd: 3.4784 }, // patent r12; L7 rear
-    { label: "11", R: -183.5039, d: 2.87867, sd: 3.8982, medium: 7 }, // patent r13; L8 front
-    { label: "12", R: -17.38478, d: 10.31524, sd: 4.7978 }, // patent r14; L8 rear
-    { label: "13", R: 38.63237, d: 1.55928, sd: 6.597, medium: 8 }, // patent r15; L9 front
-    { label: "14", R: 13.32825, d: 10.43518, sd: 7.1967, medium: 9 }, // patent r16; L9/L10 cemented surface
-    { label: "15", R: -41.68556, d: 10.71129, sd: 7.4965 }, // patent r17; L10 rear to image plane
+    { label: "1", R: 53.20864, d: 2.69875, sd: 34.5, medium: 1 }, // patent r1; L1 front
+    { label: "2", R: 18.2052, d: 14.69322, sd: 16.35, rimExtensionSd: 34.5 }, // patent r2; L1 rear
+    { label: "3", R: 53.75139, d: 2.33892, sd: 16.1, medium: 2 }, // patent r3; L2 front
+    { label: "4", R: 8.57664, d: 9.29571, sd: 7.65, rimExtensionSd: 16.1 }, // patent r4; L2 rear
+    { label: "5", R: -39.75085, d: 0.77964, sd: 6.7, medium: 3 }, // patent r5; L3 front
+    { label: "6", R: 10.27146, d: 3.47839, sd: 6.7, medium: 4 }, // patent r6; L3/L4 cemented surface
+    { label: "7", R: 35.73511, d: 1.9191142368, sd: 6.7 }, // patent r7; source d7 = 3.2 × scale
+    { label: "FILTER1", R: "flat", d: 1.1394740781, sd: 4.5, medium: 10 }, // patent r8; source d8 = 1.9 × scale
+    { label: "FILTER2", R: "flat", d: 0.2111716851, sd: 4.5 }, // patent r9; split source d9 to preserve inferred stop station
+    { label: "STO", R: "flat", d: 3.6270567885 }, // original stop coordinate; remaining source 6.4 × scale air
+    { label: "8", R: -1931.61786, d: 3.35845, sd: 6.7, medium: 5 }, // patent r10; L6 front
+    { label: "9", R: 8.8855, d: 6.77687, sd: 6.7, medium: 6 }, // patent r11; L6/L7 cemented surface
+    { label: "10", R: -33.8034, d: 0.11994, sd: 6.7 }, // patent r12; L7 rear
+    { label: "11", R: -183.5039, d: 2.87867, sd: 7.8, medium: 7 }, // patent r13; L8 front
+    { label: "12", R: -17.38478, d: 10.31524, sd: 7.8 }, // patent r14; L8 rear
+    { label: "13", R: 38.63237, d: 1.55928, sd: 10.1, medium: 8 }, // patent r15; L9 front
+    { label: "14", R: 13.32825, d: 10.43518, sd: 10.1, medium: 9 }, // patent r16; L9/L10 cemented surface
+    { label: "15", R: -41.68556, d: 10.71129, sd: 10.1 }, // patent r17; L10 rear to image plane
   ],
 
   focus: {

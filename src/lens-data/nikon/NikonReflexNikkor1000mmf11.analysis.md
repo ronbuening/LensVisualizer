@@ -45,7 +45,7 @@ The patent emphasizes that the L1-M1 image must be well corrected before seconda
 
 ### M2 — Secondary Mangin Mirror
 
-nd = 1.54814, νd = 45.9. Glass: light-flint 548/459 class, equivalent to LLF1 / Hoya E-FEL1 / Ohara S-TIL1 class. Refractive substrate f = -909.5 mm when traversed R5 -> R6; Mangin unit focal-length magnitude ≈ 181.5 mm.
+nd = 1.54814, νd = 45.9. Glass: light-flint 548/459 class, equivalent to E-FEL1 compatible spectral proxy. Refractive substrate f = -909.5 mm when traversed R5 -> R6; Mangin unit focal-length magnitude ≈ 181.5 mm.
 
 M2 is the convex secondary Mangin mirror. In optical sequence after primary reflection, the ray enters through R5 = -169.430, reflects from R6 = -258.420, and exits again through R5. The convex reflection enlarges and relays the primary image back through the primary perforation.
 
@@ -53,7 +53,7 @@ Claim 1 describes the second mirror as being constituted by a positive meniscus 
 
 ### L2 — Rear Biconcave Negative Corrector
 
-nd = 1.51680, νd = 64.2. Glass: BK7/BSC7/H-K9L-family borosilicate crown, 517/642 class. f = -99.3 mm.
+nd = 1.51680, νd = 64.2. Glass: H-K9L compatible borosilicate-crown proxy, 517/642 class. f = -99.3 mm.
 
 L2 is the strong negative member of the rear correcting group. The rendered patent table and Claim 1 table were checked for the rear radius; r8 is +69.200, not the +60.200 that appears in some OCR text. With r7 = -200.000 and r8 = +69.200, L2 is biconcave and strongly negative.
 
@@ -73,11 +73,11 @@ The patent gives nd and νd but does not name glass vendors. The table therefore
 
 | Element | nd | νd | Code class | Catalog-equivalent wording used | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.51823 | 59.0 | 518/590 | Hoya E-C3 / Ohara S-NSL3 / Hikari J-K3 class | Weak front corrector crown |
-| M1 | 1.54072 | 47.2 | 541/472 | Hoya E-FEL2 / Ohara S-TIL2 / LLF2 class | Primary Mangin substrate |
-| M2 | 1.54814 | 45.9 | 548/459 | LLF1 / Hoya E-FEL1 / Ohara S-TIL1 class | Secondary Mangin substrate |
-| L2 | 1.51680 | 64.2 | 517/642 | BK7/BSC7/H-K9L-family borosilicate crown | Strong negative rear corrector |
-| L3 | 1.74077 | 27.7 | 741/277 | Hoya E-FD13 / Ohara S-TIH13 / Hikari J-SF13 class | Dense-flint rear positive |
+| L1 | 1.51823 | 59.0 | 518/590 | E-C3 compatible spectral proxy | Weak front corrector crown |
+| M1 | 1.54072 | 47.2 | 541/472 | E-FEL2 compatible spectral proxy | Primary Mangin substrate |
+| M2 | 1.54814 | 45.9 | 548/459 | E-FEL1 compatible spectral proxy | Secondary Mangin substrate |
+| L2 | 1.51680 | 64.2 | 517/642 | H-K9L compatible borosilicate-crown proxy | Strong negative rear corrector |
+| L3 | 1.74077 | 27.7 | 741/277 | E-FD13 compatible spectral proxy | Dense-flint rear positive |
 
 No ED, fluorite, or anomalous-partial-dispersion glass is required by the patent. The lens should be described as a well-corrected achromatic catadioptric, not as an apochromat in the modern ED-glass sense. The patent's own explanation is architectural: reverse-surface mirrors provide useful spherical-aberration correction, while the remaining refractive elements control the chromatic cost of the Mangin construction.
 
@@ -126,3 +126,7 @@ No aspherical surfaces, cover glass, or filters are included.
 - Nikon, *Reflex-Nikkor 1000mm f/11* instruction manual. Production specifications, fixed-aperture and ND-filter handling, focusing-ring description, rear filter size, and close-focus figure.
 - Nikon Imaging, *The Thousand and One Nights No. 13*. Historical placement of the 1000mm f/11 in Nikon's Reflex-Nikkor sequence.
 - Hoya, Ohara, Hikari, Schott, CDGM, and Sumita optical-glass catalogs and cross-reference tables for nd/νd class checking. Vendor equivalents are representative; the patent itself names no glass vendor.
+
+## Fresh source review (2026-10-30)
+
+FIG.1 and Embodiment 1/Claim 1 tables were reread directly. All five material pairs and the explicit d-line convention remain intact. The actual E-C3/E-FEL2/E-FEL1/H-K9L/E-FD13 curves are qualified spectral proxies; supplier/melt identities are unknown. The separate Embodiment 3 A′/C/d table supplies no extra indices for this model. Continuous source faces justify no new concave cuts or lands. Actual annular SVGs have no hidden trimming; generalized sampled rays pass96/96 on axis and 89/96 at±1.23° (seven primary-rim clips), without claiming those discrete counts as flux or production illumination. No finite-focus law is reconstructed.

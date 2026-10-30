@@ -1,4 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, qualified spectra and constrained geometry decisions are recorded in the audit sidecar. */
 /**
  * JP 2001-108902 A, Numerical Example 1 / Figure 1, rather than Examples 2 or 3.
  * All source R, d, nd and νd are retained at physical millimetre scale (1:1).
@@ -375,13 +377,13 @@ const LENS_DATA = {
     {
       label: "8",
       R: 32.37,
-      sd: 19.5,
+      rimExtensionSd: 25.5, sd: 19.5,
       d: 11.01,
     },
     {
       label: "9",
       R: -61.0,
-      sd: 19.5,
+      rimExtensionSd: 22, sd: 19.5,
       medium: 5,
       d: 1.98,
     },

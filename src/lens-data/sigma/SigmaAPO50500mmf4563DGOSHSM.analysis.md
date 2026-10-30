@@ -190,7 +190,7 @@ The rear doublet (−123.7 mm) and the last optical surfaces. With E19/E20 it ma
 
 ## Glass Identification
 
-Every element keeps the patent's printed nd and νd. Each coordinate equals a catalog glass, used here only for dispersion; production suppliers are unconfirmed.
+Every element keeps the patent's printed nd and νd. All22 source pairs were freshly verified on original PDF9 on2026-10-30 against the d-line definition in¶0032/PDF7. All22 entries retain compatible current catalogue coefficient models, used as qualified spectral proxies; production suppliers and melts are unconfirmed. The patent publishes no C/F/g indices or partial-dispersion ratios. No spectral override or patent-backed APD badge is invented.
 
 | Glass (vendor) | nd / νd | Elements | Role |
 | --- | --- | --- | --- |
@@ -273,3 +273,9 @@ None. All 38 refracting surfaces of Example 2 are spherical.
 2. JP 5417083 B2, the granted publication of the same application. Example 2 is on printed page 8.
 3. [Sigma APO 50-500mm F4.5-6.3 DG OS HSM product page](https://www.sigma-global.com/en/lenses/50_500_45_63_os/): construction diagram, 22 elements / 16 groups, SLD glass, 50–180 cm minimum focus, 1:3.1 maximum magnification, 95 mm filter, available mounts.
 4. [Imaging Resource specifications](https://imaging-resource.com/lenses/sigma/50-500mm-f4.5-6.3-dg-os-hsm-apo/specifications): 22 elements / 16 groups including four SLD elements.
+
+## Original-Figure Rim Reinspection — 2026-10-30
+
+The original Example2 Fig.8 on PDF13 was inspected native300dpi and at600dpi, with all38 refracting faces and all cemented boundaries checked. The native first/last vertex span979px over206.359mm gives4.744px/mm. Ten vertical rim extensions now preserve the existing clear caps and complete the independently drawn concave lands: S2→43.5, S6→41.2, S8→26.2, S11/S12→14.3, S22→12, S25→13.2, S27→13.3, S36→11.7841 and S37→13mm. Source-backed cuts are represented as cap-preserving extensions here; no additional inward optical trim is needed. Every compound stays connected, without opaque cement-interface lands. Other faces are retained as continuous or unresolved few-pixel ends.
+
+All optical clear radii, source R/d/glass, stop,65zoom stations, source/interpolated focus states and tolerances remain unchanged, so these drawing additions do not alter accepted rays. Surface/image-circle/field/aperture checks pass across all65stations (with the two primes,67stations), and actual nine-state SVGs show no automatic trimming. The source's d28/d35 variable-gap label error still maps to the only possible d24/d33 gaps; numerical values, source-derived cam qualification and the published finite-distance limits remain unchanged. Decentered OIS and closer production-MFD travel remain unmodeled.

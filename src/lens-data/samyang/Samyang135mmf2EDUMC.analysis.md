@@ -110,3 +110,6 @@ The model keeps the native 130 mm table unscaled, uses the paraxial image distan
 - [HOYA optical-glass AGF catalog, 2026-07-07 including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), named TAF1, FCD1, FDS90, TAC6 and FF5 rows and dispersion coefficients.
 - [SCHOTT optical-glass catalog archive](https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351), June 2025 AGF, named N-SF66 and N-SF1 entries. Catalog versions, exact coefficient rows, hashes and comparison residuals are preserved in the dossier.
 - [Schott Optical Glass 2025](https://media.schott.com/api/public/content/b37dbd8fa7e64662b2d0ae523ae56238?download=true&v=97f67105), PDF pp.132–133, legacy SF1 coordinates used to distinguish the selected proxy from N-SF1.
+
+
+The fresh F-mount review preserves the printed clear-radius and owner-approved minimal axial-beam exceptions. Figure 1's square doublet blanks cannot be recovered by opaque lands on their powered cemented interfaces. The displayed taper is therefore retained as a qualified outline limitation; it does not establish a tapered production blank. All eleven source glasses retain qualified compatible spectral proxies, with historical production melt identity unconfirmed.

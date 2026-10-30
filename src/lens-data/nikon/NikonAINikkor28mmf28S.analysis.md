@@ -106,15 +106,15 @@ The patent's condition (6) requires the Abbe number of the biconvex lens nearest
 
 ## Glass Identification and Selection
 
-The glass identifications were rechecked against Nikon/HIKARI's published optical-glass catalog data. The patent gives nd, νd, and n(G), which permits an independent check beyond nd/νd alone.
+The source coordinates and current catalog curves were freshly rechecked; catalog names identify spectral proxies, not original suppliers. The patent gives nd, νd, and n(G), which permits an independent check beyond nd/νd alone.
 
-| Element(s) | Patent nd | Patent νd | Patent n(G) | HIKARI catalog match | Catalog residual summary | Role |
+| Element(s) | Patent nd | Patent νd | Patent n(G) | Selected catalog spectral proxy | Catalog residual summary | Role |
 |---|---:|---:|---:|---|---|---|
-| L1 | 1.67003 | 47.07 | 1.688060 | N-BAF10 surrogate for J-BAF10 class | nd exact; νd +0.04; HIKARI nG retained from patent table | Barium flint front corrector |
-| L2, L3 | 1.51680 | 64.10 | 1.526690 | N-BK7 surrogate for J-BK7A class | nd exact; νd +0.07; HIKARI nG retained from patent table | Borosilicate crown negative menisci |
+| L1 | 1.67003 | 47.07 | 1.688060 | N-BAF10 surrogate for J-BAF10 class | nd exact; νd +0.04; source ng retained; runtime uses qualified catalog curve | Barium flint front corrector |
+| L2, L3 | 1.51680 | 64.10 | 1.526690 | N-BK7 surrogate for J-BK7A class | nd exact; νd +0.07; source ng retained; runtime uses qualified catalog curve | Borosilicate crown negative menisci |
 | L4 | 1.66755 | 41.96 | 1.687870 | J-BASF6 | nd exact; νd -0.09; nG +0.000062 | Barium dense flint positive element |
-| L5 | 1.62041 | 60.14 | 1.633140 | S-BSM16 surrogate for J-SK16 class | nd exact; νd +0.15; HIKARI nG retained from patent table | Dense crown positive element |
-| L6 | 1.75520 | 27.61 | 1.791120 | SF4 surrogate for J-SF4 class | nd exact; νd -0.03; HIKARI nG retained from patent table | Dense flint post-stop negative element |
+| L5 | 1.62041 | 60.14 | 1.633140 | S-BSM16 surrogate for J-SK16 class | nd exact; νd +0.15; source ng retained; runtime uses qualified catalog curve | Dense crown positive element |
+| L6 | 1.75520 | 27.61 | 1.791120 | SF4 surrogate for J-SF4 class | nd exact; νd -0.03; source ng retained; runtime uses qualified catalog curve | Dense flint post-stop negative element |
 | L7, L8 | 1.67025 | 57.53 | 1.684660 | J-LAK02 catalog-equivalent proxy | First-party Hikari curve is inside the catalog contract; production supplier unspecified | Lanthanum crown GLP elements |
 
 L7 and L8 use Hikari J-LAK02 as a catalog-equivalent spectral proxy. The first-party curve is inside the project's index/Abbe tolerance for the patent coordinate, but it does not establish the production supplier. No ED, fluorite, or anomalous-partial-dispersion glass is identified in the prescription.
@@ -175,8 +175,18 @@ Nikon states that the AI Nikkor 28mm f/2.8S was released in 1981 after two trial
 
 The patent is therefore best read as a later Nikon stabilization patent using a formula closely matching the production 28mm f/2.8S, not as the chronological origin of the 1981 manual-focus lens.
 
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US5917663.pdf`: Example 2 Figure 3 on PDF page 4 at 600 dpi and its native 300 dpi raster, and Table 2 plus the d/g-line definitions on page 12. The r1–r17 vertex span gives approximately 22.8 native pixels per lens mm. The front common rim is corrected from the earlier 24.5 mm estimate to the figure's approximately 20.6 mm. L2's continuous front cap grows from 13.5 to the measured 17.3 mm body rim; its rear S4 retains clear SD 12.6 and gains a land to 17.3. Native S4 q≈0.77 ±0.005 (edge≈394 pixels); adopted q=0.728 is constrained by the unchanged 4.0 mm gap: the current 90% sag guard bounds the cap at 12.627835 mm, while a source-ratio trial at 13.2 fails with 4.19 mm intrusion versus 3.600 mm allowed. The larger outer rim leaves that clear-cap constraint intact. This source-backed front-height restoration also clears the former S3 format-corner clipping (13.7884 mm chief-ray height versus old SD13.5), raising corner coverage from 97.49% to 100%.
+
+S6 receives an inferred concave-end cut at depth 5.31 mm, cap radius11.510191 and outer rim 13.2. Native q≈0.87 ±0.006 (edge≈302 pixels), adopted0.872. Every other face was checked. At S13/S14 the existing1.0 mm air gap bounds a common continuous cap at6.647698 mm under the unchanged 0.90 guard; no separately resolved land there justifies inventing an extension. All remaining radii, spacings, stop and approximate unit-extension controls are retained. This later stabilization patent remains a qualified production correlation, not the original 1981 lens patent.
+
+All eight source nd/νd/ng triples are exact and preserved. The available N-BAF10, N-BK7 (twice), J-BASF6, S-BSM16, SF4 and J-LAK02 (twice) curves are explicitly qualified spectral proxies. The source publishes no C/F indices or measured partial-dispersion ratio. Current runtime resolution uses the catalog curves when only ng is supplied; ng-only does not override the traced g channel. The anchored catalog g residuals range from−0.00005342 to +0.00008856 against the source ng values. No C/F values or dPgF are synthesized to force that override, and no APD or supplier identity is inferred from the coordinates.
+
+Surface/circle checks and the complete inferred-cut beam guard pass; the format corner reaches 100% and the axial aperture is iris-limited at f/2.89. Nine actual SVG states have eight finite paths and zero trim. At the approximate close conjugate D0=103.8544 mm the full 6.724495 mm iris passes 25/25 aimed axial samples. Source/catalog checks and shared glass suites pass (94 tests). The full adaptive beam search across focus in 0.05 steps and through field edges finds maximum S1/S2 reaches of 19.448601/18.453389 mm with all other new geometry and the old 24.5 mm front rim; those reaches are identical with the adopted 20.6 mm rim, leaving 1.151399/2.146611 mm clearance. The pre-review baseline reaches only 16.301121/15.109976 mm because its smaller S3 rim limits the beams. A separate grid of 21 focus values × 14 fields through 37.4383° × 97 pupil samples traces 28,518 identical physical rays against the pre-review baseline and final candidate: 22,113 transmitted rays retained, zero lost, 1,953 gained and 4,452 stopped in both. These are sample counts, not flux percentages.
+
 ## Sources
 
 - US Patent 5,917,663, "Wide-Angle Lens with an Image Stabilizing Function," Kenzaburo Suzuki, Nikon Corporation, granted June 29, 1999. Table 2 and Fig. 3 are the numerical source for this transcription.
-- Nikon Imaging, "NIKKOR - The Thousand and One Nights No. 57: AI Nikkor 28mm f/2.8S," by Kouichi Ohshita. https://imaging.nikon.com/imaging/information/story/0057/
+- Nikon Imaging, "NIKKOR - The Thousand and One Nights No. 57: AI Nikkor 28 mm f/2.8S," by Kouichi Ohshita. https://imaging.nikon.com/imaging/information/story/0057/
 - Nikon / HIKARI Optical Glass, "HIKARI General Catalog Data" spreadsheet. https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/hikari_general_catalog_data.xlsx

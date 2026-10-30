@@ -88,7 +88,7 @@ The source coordinates remain unmatched; assigning a familiar crown solely by re
 nd = 1.4970, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent). f = +89.695704 mm.
 
 L2 leads G2a and is the first of the two low-dispersion positive singlets. The patent explicitly associates this
-coordinate pair with G2a's low-dispersion material in ¶0090. Its ED position agrees with the manufacturer section.
+coordinate pair with G2a's low-dispersion material in ¶0090. Its ED position agrees with the manufacturer section. The APD flag is inferred from the fluor-crown class: neither ¶0060 nor ¶0090 identifies anomalous partial dispersion or supplies its numerical value.
 Its movement is the movement of the complete G2 assembly in this example; no separate floating trajectory is supplied.
 
 ### L3 — Positive Meniscus
@@ -338,7 +338,7 @@ The cemented D3 block carries one 9.5 mm semi-diameter at S16, S17 and S18, as F
 full-frame bundle needs at most 9.00 mm there at the five published states. The earlier sampled-ray statistics were
 taken with S6 at 14.2 mm and S17/S18 at 10.0 mm and were not repeated. The D1 cement and rear surfaces, S8 and S9,
 carry 15.5 mm, close to the 15.7 mm block Figure 1 draws and above the 15.0 mm of L12, while L4's front face stays at
-the 14.1 mm shared radius; the doublet's edge therefore renders with a slight taper that the figure does not show. These checks concern the chosen physical apertures and
+the 14.1 mm shared radius; a proposed opaque extension to 15.5 mm would violate the existing S6–S7 gap allowance and is therefore not applied. Its rear concave face S9 now has a 2.60 mm inferred cut (13.908 mm cap radius) and L11 front S19 has a 2.14 mm cut (13.252 mm radius), restoring source cap-end lands while clearing traced wide-open beams. These checks concern the chosen physical apertures and
 sampled rays, not a guarantee of uniform illumination over every field, pupil coordinate, or intermediate focus.
 The source 7.02° half-field applies at infinity; using that angle as a finite-conjugate stress test does not assert
 that the patent publishes the same angular field at macro distances.

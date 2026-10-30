@@ -19,7 +19,7 @@ The association rests on several independent points:
 1. **Optical count.** The patent example contains 14 elements in 10 air-separated groups. Tamron specifies the production lens as 14 elements in 10 groups.
 2. **Focal length and aperture.** The patent gives $f = 61.500$ mm and FNo. = 2.06; the product is marketed as 60 mm f/2.
 3. **Format and field.** The patent uses image height $Y = 14.5$ mm and full field $2\omega = 26.6^\circ$, consistent with an APS-C lens. Tamron identifies the product as Di II and currently publishes a diagonal field of $26^\circ 11'$.
-4. **Macro range.** The prescription includes infinity, 5:1, and 1:1 focus states. A finite-conjugate paraxial solution gives a sensor-plane-to-object distance of 230.068 mm at the 1:1 state, independently matching Tamron's 0.23 m minimum object distance.
+4. **Macro range.** The prescription includes infinity, object:image 5:1 (0.2×), and 1:1 focus states. A finite-conjugate paraxial solution gives a sensor-plane-to-object distance of 230.068 mm at the 1:1 state, independently matching Tamron's 0.23 m minimum object distance.
 5. **Focus architecture.** In the patent, the first and fourth groups remain fixed, the second group moves imageward, and the third group moves objectward. Tamron identifies the product as internally focusing and states that the lens does not change overall length during focusing.
 6. **Low-dispersion count.** Embodiment 1 contains two elements with $n_d = 1.49700$, $\nu_d = 81.6$, while Tamron specifies two LD elements.
 7. **Timing.** The February 2009 Japanese priority filing immediately precedes the March 2009 product literature and June 2009 Canon-mount release.
@@ -42,22 +42,22 @@ The complete prescription contains 14 elements in 10 groups. All refracting surf
 
 Independent paraxial group focal lengths at infinity are:
 
-| Group | Surfaces | Focal length | Power |
-|---|---:|---:|---|
-| G1 | 1–9 | +40.131 mm | Positive |
-| G2 | 10–14 | −24.352 mm | Negative |
-| G3 | 16–22 | +31.592 mm | Positive |
-| G4 | 23–25 | −84.172 mm | Negative |
+| Group | Surfaces | Focal length | Power    |
+| ----- | -------: | -----------: | -------- |
+| G1    |      1–9 |   +40.131 mm | Positive |
+| G2    |    10–14 |   −24.352 mm | Negative |
+| G3    |    16–22 |   +31.592 mm | Positive |
+| G4    |    23–25 |   −84.172 mm | Negative |
 
 G1 supplies the principal positive power and contains the patent example's two low-dispersion positive elements. G2 is the negative imageward-moving focus group. The fixed stop separates G2 from G3. G3 is a positive objectward-moving group that restores convergence after G2, while G4 is a weak fixed negative cemented group behind it.
 
 The four variable air spaces conserve the lens's axial length to the precision of the patent table:
 
 | Focus state | D(9) + D(14) + D(15) + D(22) |
-|---|---:|
-| Infinity | 33.9105 mm |
-| 5:1 | 33.9106 mm |
-| 1:1 | 33.9106 mm |
+| ----------- | ---------------------------: |
+| Infinity    |                   33.9105 mm |
+| 5:1         |                   33.9106 mm |
+| 1:1         |                   33.9106 mm |
 
 The 0.0001 mm difference is table rounding. With the computed infinity back focal distance included, the first-surface-to-image-plane track is 123.2288 mm and remains constant to the same rounding tolerance.
 
@@ -79,7 +79,7 @@ L2 adds positive power ahead of the first cemented pair. Although its index is n
 
 ### L3 + L4 — Cemented Positive/Negative Pair D1
 
-**L3:** $n_d = 1.49700$, $\nu_d = 81.6$. Glass: S-FPL51 (OHARA). Standalone $f = +58.696$ mm.  
+**L3:** $n_d = 1.49700$, $\nu_d = 81.6$. Glass: FCD1 (qualified HOYA coefficient proxy). Standalone $f = +58.696$ mm.
 **L4:** $n_d = 1.75520$, $\nu_d = 27.5$. Glass: S-TIH4 (OHARA). Standalone $f = -41.996$ mm.
 
 L3 is biconvex and L4 is biconcave. Their large Abbe-number separation, $|\nu_{d1}-\nu_{d2}| = 54.1$, supplies strong primary chromatic balancing. Their refractive-index separation, $|n_{d2}-n_{d1}| = 0.25820$, also satisfies the patent's cemented-interface condition for spherical and chromatic correction (§0025–0026).
@@ -88,11 +88,11 @@ The cemented pair's net in-situ focal length is $-174.153$ mm. The pair is there
 
 ### L5 — Biconvex Positive
 
-$n_d = 1.49700$, $\nu_d = 81.6$. Glass: S-FPL51 (OHARA). Standalone $f = +64.788$ mm.
+$n_d = 1.49700$, $\nu_d = 81.6$. Glass: FCD1 (qualified HOYA coefficient proxy). Standalone $f = +64.788$ mm.
 
 L5 is the final element of fixed group G1. Its rear radius is very weak, so most of its refraction occurs at the strongly convex front surface. Together with L3, it provides the two low-dispersion elements in the numerical example.
 
-The S-FPL51 identification supports a low-dispersion interpretation, but it does not remove the production-match caveat: Tamron's construction diagram marks different physical slots as LD.
+The high-Abbe source coordinate supports a low-dispersion interpretation, but it does not remove the production-match caveat: Tamron's construction diagram marks different physical slots as LD.
 
 ### L6 — Biconcave Negative
 
@@ -119,12 +119,12 @@ L9 is the first element after the stop and the leading member of G3. Its positiv
 
 ### L10 + L11 — Cemented Positive/Negative Pair D3
 
-**L10:** $n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH66N (OHARA). Standalone $f = +34.086$ mm.  
+**L10:** $n_d = 1.77250$, $\nu_d = 49.6$. Glass: TAF1 (qualified HOYA coefficient proxy). Standalone $f = +34.086$ mm.
 **L11:** $n_d = 1.72825$, $\nu_d = 28.5$. Glass: S-TIH10 (OHARA). Standalone $f = -27.009$ mm.
 
 L10 is biconvex and L11 is biconcave. The cemented pair has net in-situ focal length $-170.148$ mm. As with D1, the net assembly is weakly negative despite the strong isolated positive member. D3 primarily redistributes power and chromatic correction inside otherwise positive G3.
 
-The current OHARA catalog designation for the $1.77250/49.6$ pair is S-LAH66N.
+For source 1.77250 / 49.6, the current TAF1 curve gives νd 49.6243 and remains a qualified proxy. The former S-LAH66N curve gives 49.5479, slightly beyond the source one-decimal rounding band. Neither identifies the production supplier.
 
 ### L12 — Biconvex Positive
 
@@ -143,25 +143,23 @@ G4 remains fixed during focusing (§0028). Its negative surface-by-surface Petzv
 
 ## Glass Identification
 
-The prescription uses 11 distinct glass identities across 14 elements. Identifications are based on exact or near-exact manufacturer catalog codes formed from the patent's $n_d/\nu_d$ pairs. The patent itself does not name glass vendors.
+The prescription uses eleven distinct source coordinates across fourteen elements. Catalog labels identify qualified compatible coefficient curves; derived coordinate codes are not source-published glass names. The patent identifies no supplier or melt.
 
-| Elements | Patent $n_d$ | Patent $\nu_d$ | Catalog identification | Match note |
-|---|---:|---:|---|---|
-| L1 | 1.80610 | 33.3 | NBFD15 (HOYA, legacy) | Exact legacy pair |
-| L2 | 1.80610 | 40.9 | S-LAH53 (OHARA) | Exact code 806409 |
-| L3, L5 | 1.49700 | 81.6 | S-FPL51 (OHARA) | Exact code 497816 |
-| L4 | 1.75520 | 27.5 | S-TIH4 (OHARA) | Exact code 755275 |
-| L6 | 1.80400 | 46.6 | S-LAH65V (OHARA) | Exact code 804466 |
-| L7 | 1.51680 | 64.2 | BSC7 (HOYA) | Exact legacy pair |
-| L8, L14 | 1.84666 | 23.8 | S-TIH53 (OHARA) | Exact code 847238 |
-| L9, L12 | 1.69680 | 55.5 | S-LAL14 (OHARA) | Exact code 697555 |
-| L10 | 1.77250 | 49.6 | S-LAH66N (OHARA) | Exact code 773496 |
-| L11 | 1.72825 | 28.5 | S-TIH10 (OHARA) | Exact code 728285 |
-| L13 | 1.54072 | 47.2 | S-TIL2 (OHARA) | Exact code 541472 |
+| Elements | Patent $n_d$ | Patent $\nu_d$ | Catalog identification | Match note                     |
+| -------- | -----------: | -------------: | ---------------------- | ------------------------------ |
+| L1       |      1.80610 |           33.3 | NBFD15 (HOYA, legacy)  | Compatible legacy proxy        |
+| L2       |      1.80610 |           40.9 | S-LAH53 (OHARA)        | Derived coordinate code 806409 |
+| L3, L5   |      1.49700 |           81.6 | FCD1 (HOYA proxy)      | Current νd 81.609; source 81.6 |
+| L4       |      1.75520 |           27.5 | S-TIH4 (OHARA)         | Derived coordinate code 755275 |
+| L6       |      1.80400 |           46.6 | S-LAH65V (OHARA)       | Derived coordinate code 804466 |
+| L7       |      1.51680 |           64.2 | BSC7 (HOYA)            | Compatible legacy proxy        |
+| L8, L14  |      1.84666 |           23.8 | S-TIH53 (OHARA)        | Derived coordinate code 847238 |
+| L9, L12  |      1.69680 |           55.5 | S-LAL14 (OHARA)        | Derived coordinate code 697555 |
+| L10      |      1.77250 |           49.6 | TAF1 (HOYA proxy)      | Current νd 49.624; source 49.6 |
+| L11      |      1.72825 |           28.5 | S-TIH10 (OHARA)        | Derived coordinate code 728285 |
+| L13      |      1.54072 |           47.2 | S-TIL2 (OHARA)         | Derived coordinate code 541472 |
 
-The data file includes catalog-derived C-, F-, and g-line indices for spectral tracing. Those line indices and the resulting $\Delta P_{g,F}$ values are catalog supplements; they were not published in the patent. Consequently, claims about anomalous partial dispersion are identified as catalog-derived rather than patent-measured.
-
-S-FPL51 is the clearest low-dispersion material in Embodiment 1. Its catalog-derived $\Delta P_{g,F}$ is approximately $+0.03194$. This supports secondary-spectrum reduction in the patent example, but it does not prove that production Model G005 places S-FPL51 in the same physical slots.
+The source supplies only d-line nd and νd, with νd to one decimal. All 56 catalog-only C/F/g/dPgF copies were removed in the fresh 2026-10-30 review; selected coefficient curves now supply dispersion directly. L3/L5 use FCD1 (coefficient νd 81.60895) instead of S-FPL51 (81.54589), and L10 uses TAF1 (49.62428) instead of S-LAH66N (49.54791). This improves agreement with printed 81.6/49.6 without establishing historical identity. The other eleven elements retain qualified compatible curves. Inferred LD/APD tags preserve the production-position mismatch. No source-measured anomaly or manufactured apochromatic performance is claimed.
 
 ## Focus Mechanism
 
@@ -175,14 +173,14 @@ Embodiment 1 uses two internal moving groups:
 
 The patent's three focus states are:
 
-| Quantity | Infinity | 5:1 | 1:1 |
-|---|---:|---:|---:|
-| System EFL | 61.5000 mm | 65.1885 mm | 52.3578 mm |
-| Patent FNo. | 2.06 | 2.46 | 4.10 |
-| D(9) | 1.5848 mm | 4.6948 mm | 17.4252 mm |
-| D(14) | 17.2873 mm | 14.1774 mm | 1.4470 mm |
-| D(15) | 13.2179 mm | 10.5905 mm | 1.5000 mm |
-| D(22) | 1.8205 mm | 4.4479 mm | 13.5384 mm |
+| Quantity    |   Infinity |        5:1 |        1:1 |
+| ----------- | ---------: | ---------: | ---------: |
+| System EFL  | 61.5000 mm | 65.1885 mm | 52.3578 mm |
+| Patent FNo. |       2.06 |       2.46 |       4.10 |
+| D(9)        |  1.5848 mm |  4.6948 mm | 17.4252 mm |
+| D(14)       | 17.2873 mm | 14.1774 mm |  1.4470 mm |
+| D(15)       | 13.2179 mm | 10.5905 mm |  1.5000 mm |
+| D(22)       |  1.8205 mm |  4.4479 mm | 13.5384 mm |
 
 From infinity to 1:1:
 
@@ -213,12 +211,12 @@ The large Abbe separation provides primary axial-color balancing, while the larg
 
 Additional positive/negative cemented pairs in G2, G3, and G4 distribute color correction through the moving and fixed rear sections. The four cemented assemblies have independently computed net focal lengths:
 
-| Assembly | Elements | Net in-situ focal length |
-|---|---|---:|
-| D1 | L3 + L4 | −174.153 mm |
-| D2 | L7 + L8 | −600.927 mm |
-| D3 | L10 + L11 | −170.148 mm |
-| D4 | L13 + L14 | −84.172 mm |
+| Assembly | Elements  | Net in-situ focal length |
+| -------- | --------- | -----------------------: |
+| D1       | L3 + L4   |              −174.153 mm |
+| D2       | L7 + L8   |              −600.927 mm |
+| D3       | L10 + L11 |              −170.148 mm |
+| D4       | L13 + L14 |               −84.172 mm |
 
 These values demonstrate why the individual standalone focal lengths must not be treated as additive thin lenses.
 
@@ -282,21 +280,21 @@ The patent correspondence table rounds this to −0.40.
 
 All prescription-derived quantities were independently calculated from the numerical table.
 
-| Quantity | Patent / manufacturer value | Independent result |
-|---|---:|---:|
-| EFL, infinity | 61.5000 mm | 61.499596 mm |
-| EFL, 5:1 | 65.1885 mm | 65.188280 mm |
-| EFL, 1:1 | 52.3578 mm | 52.357833 mm |
-| Back focal distance, infinity | Not tabulated | 41.772359 mm |
-| First surface to image plane | Not tabulated | 123.228759 mm |
-| G1 focal length | Implied by $f_1/f=0.65$ | +40.131265 mm |
-| G2 focal length | Implied by $f_2/f=-0.40$ | −24.352194 mm |
-| G3 focal length | Not tabulated | +31.591637 mm |
-| G4 focal length | Not tabulated | −84.171726 mm |
-| 1:1 sensor-plane object distance | Tamron 0.23 m | 230.068282 mm |
-| 1:1 lateral magnification | 1:1 | −0.996790 |
-| Petzval sum | Not tabulated | +0.002233072 mm⁻¹ |
-| Petzval radius, $R_P=-1/P$ convention | Not tabulated | −447.813546 mm |
+| Quantity                              | Patent / manufacturer value | Independent result |
+| ------------------------------------- | --------------------------: | -----------------: |
+| EFL, infinity                         |                  61.5000 mm |       61.499596 mm |
+| EFL, 5:1                              |                  65.1885 mm |       65.188280 mm |
+| EFL, 1:1                              |                  52.3578 mm |       52.357833 mm |
+| Back focal distance, infinity         |               Not tabulated |       41.772359 mm |
+| First surface to image plane          |               Not tabulated |      123.228759 mm |
+| G1 focal length                       |     Implied by $f_1/f=0.65$ |      +40.131265 mm |
+| G2 focal length                       |    Implied by $f_2/f=-0.40$ |      −24.352194 mm |
+| G3 focal length                       |               Not tabulated |      +31.591637 mm |
+| G4 focal length                       |               Not tabulated |      −84.171726 mm |
+| 1:1 sensor-plane object distance      |               Tamron 0.23 m |      230.068282 mm |
+| 1:1 lateral magnification             |                         1:1 |          −0.996790 |
+| Petzval sum                           |               Not tabulated |  +0.002233072 mm⁻¹ |
+| Petzval radius, $R_P=-1/P$ convention |               Not tabulated |     −447.813546 mm |
 
 The Petzval result uses the surface-by-surface expression
 
@@ -308,7 +306,7 @@ $$
 
 not a thin-element approximation.
 
-The inferred surface semi-diameters in the data file are not patent values. They were guided by the official construction drawing and paraxial ray envelopes, then constrained by the 55 mm filter envelope, element edge thickness, rim slope, and cross-gap surface clearance. Because the patent gives no clear apertures and the numerical example is not demonstrably the production master, the semi-diameters should be interpreted as renderer-safe visualization estimates rather than manufacturing dimensions.
+The semi-diameters remain inferred. The fresh review uses original Figure 1A/B optical rims, bounded by literal R/d, material thickness, air gaps and full beams. Most front caps already exceed the schematic proportions; rear caps grow to 15 mm (S16/17) and 14.5 mm (S18–25). S7 gains an explicit concave end trim, with its adopted cap moved outward for beams. These are qualified visualization apertures, not production dimensions.
 
 ## Design Heritage and Context
 
@@ -324,3 +322,9 @@ For Embodiment 1, this produces a 61.5 mm, f/2.06, 1:1 design using only spheric
 - Tamron Co., Ltd. **G005 Optical Construction Diagram.** https://www.tamron.com/product/pc_file/file/g005_lens-construction_en.svg
 - OHARA Inc. **Optical Glass Lineup and individual glass data sheets.** https://www.ohara-inc.co.jp/product/01001/
 - HOYA Corporation. **Optical Glass Catalog / nd–νd Map and legacy catalog data.** https://www.hoya-opticalworld.com/
+
+## 2026-10-30 source outline and glass reinspection
+
+Every face and cemented boundary was directly checked in Figure 1A/B (PDF page 2, 600 dpi). All fourteen glass pairs and the d-line convention were read in ¶0045–46 (page 12). S7's measured cap/outer ratio is approximately 0.825 ±0.010 for one native pixel. On the retained 17.2 mm body this suggests about 14.2 mm clear radius. Full beams reach 15.15293 mm and require 0.05 mm margin, so depth 1.85 mm gives an adopted 15.23883 mm cap and 1.96117 mm land. Depth 1.84 mm would fail. Other caps are retained or enlarged, including connected rear cemented groups.
+
+All fourteen physical glasses resolve to qualified current coefficient curves. Source nd/νd, R/d, three focus configurations, stop/aperture and tolerances remain unchanged. Finite-point supplements use conjugates derived at the printed macro gaps and retained image plane; those calculated distances are not added as source-certified MTF states.

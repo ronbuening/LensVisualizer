@@ -162,3 +162,38 @@ Figure scale and land length: Fig. 7 is 12.34 native px per lens mm, from the S1
 
 - 3: figure q 0.91 (0.90–0.92 on both halves) at a 134.5 px edge (10.9 mm), range 0.896–0.924; the figure draws L12's
   edge at 134 px. The cut sits at 0.908 of `sd`. Land 1.0038 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/JP2021189351A.pdf`, PDF p. 28, Figure 7 (Example 4), including a 600 dpi crop of the complete section. The source's vertical optical axis, object at bottom, and all air faces were checked. Native scale: 12.34 px/mm from the 582 px S1–S13 vertex span / 47.150 mm.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Evidence |
+|---|---|---|---|
+| 5, L21 front | 8.4 → 8.4 mm | absent → 11 mm | Both halves show a flat land to the cemented partner's height; cap/edge q about 0.764, native one-pixel range 0.751–0.777. |
+
+The extension restores the square outer outline without raising the optical cap. It therefore preserves the original rim clipping that prevented an inferred cut at this location. Surface 3's existing safe cut is retained. All remaining concave faces meet their corners or have no resolved air-side land. The L31 resin/glass shoulder is a cemented junction and remains unchanged. No optical prescription or clear-aperture value changed.
+
+Validation: `audit:surface` and `audit:image-circle`; parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/JP2021189351A.pdf`, Example 4 / Table 4, PDF p. 19; hybrid resin construction on pp. 14 and 18 (Example 4 retains Example 1's G1/G2 construction). Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.83481 / 42.73 | S-LAH55V | source pair retained; compatible proxy |
+| L12 | 1.71736 / 29.57 | J-SF1 | source pair retained; compatible proxy |
+| L21 | 1.75520 / 27.57 | SF4 | source pair retained; compatible proxy |
+| L22 | 1.80400 / 46.6 | J-LASF015 | source pair retained; compatible proxy |
+| L22r | 1.56093 / 36.64 | none | unresolved; Abbe approximation |
+| L23 | 1.83481 / 42.73 | S-LAH55V | source pair retained; compatible proxy |
+| L31r | 1.56093 / 36.64 | none | unresolved; Abbe approximation |
+| L31 | 1.51742 / 52.2 | E-CF6 | source pair retained; compatible proxy |
+
+Coverage: 6 physical lens elements, 8 authored media, 6 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/63.88, J-BK7). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All six glass-body and two resin-layer nd/νd pairs are retained, as is the separate FL plate. L21's six-digit label already selected Schott SF4; the label and analysis now explicitly call it a compatible spectral proxy (Δnd about +0.000001, Δνd about +0.01), without asserting a production identity. Both 1.56093/36.64 resin layers stay unresolved and use Abbe approximation. Unsupported UV-curing, Nikon chemistry/supplier, cost and durability claims were removed; the source confirms resin layers, not those details. No source partial-dispersion values or per-lens spectral overrides were found. All APD flags remain false.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

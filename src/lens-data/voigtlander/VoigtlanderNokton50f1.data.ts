@@ -158,7 +158,9 @@ const LENS_DATA = {
    * Surface 8's concave rim reaches 3.69 mm ahead of its vertex at the 17 mm rim, past the printed stop 3.24 mm
    * ahead. A flat rim cut at the stop plane (rimCutDepthMm 3.24) ends the cap at r = 15.97 mm, inside the
    * 16.138 mm f/1 iris; an opaque land runs from there to the rim. A ray past 15.97 mm at the stop plane steps
-   * back to the cap and is clipped on the land. No traced beam reaches it (15.35 mm).
+   * back to the cap and is clipped on the land. The beam admitted by the current inferred SDs reaches 15.35 mm.
+   * Passing the nominal F/1 ray instead needs S8 radius 16.1438 mm (sag 3.3125 mm); the inferred-cut guard
+   * needs about 3.334 mm depth, beyond the source stop plane at 3.24 mm. The literal geometry remains limited.
    */
   /* (moved from asph) ── Aspherical coefficients — Patent Table 2, Example 1 ──
    *  Keyed by surface label.  Sag equation:
@@ -166,6 +168,9 @@ const LENS_DATA = {
    *  Used for element shape and exact surface tracing.
    *  For all-spherical designs, set asph: {}
    */
+  // Fig. 1 (PDF p. 10): S4/S6/S15 retain their optical caps with square outer lands.
+  // S17A cap-end q≈0.93 at ≈24.3 native px/mm; its inferred cut moves outward
+  // to radius 12.810 mm for full-beam clearance. Existing S8 stop-plane cut remains.
   surfaces: [
     {
       label: "1A",
@@ -185,9 +190,9 @@ const LENS_DATA = {
     },
     { label: "2", R: 65.488, d: 1.07, sd: 26.0 },
     { label: "3", R: 32.975, d: 8.01, sd: 24.0, medium: 2 },
-    { label: "4", R: 84.15, d: 0.87, sd: 20.0 },
+    { label: "4", R: 84.15, d: 0.87, sd: 20.0, rimExtensionSd: 24 },
     { label: "5", R: 58.596, d: 1.65, sd: 19.0, medium: 3 },
-    { label: "6", R: 19.835, d: 12.05, sd: 17.0 },
+    { label: "6", R: 19.835, d: 12.05, sd: 17.0, rimExtensionSd: 19 },
     { label: "STO", R: "flat", d: 3.24 },
     { label: "8", R: -40.995, d: 1.55, sd: 17.0, rimCutDepthMm: 3.24, medium: 4 },
     { label: "9", R: 26.578, d: 10.8, sd: 17.0, medium: 5 },
@@ -196,7 +201,7 @@ const LENS_DATA = {
     { label: "12", R: -125.199, d: 0.31, sd: 18 },
     { label: "13", R: 53.736, d: 9.47, sd: 16.0, medium: 7 },
     { label: "14", R: -78.407, d: 1.55, sd: 15.5, medium: 8 },
-    { label: "15", R: 45.846, d: 1.42, sd: 12.2 },
+    { label: "15", R: 45.846, d: 1.42, sd: 12.2, rimExtensionSd: 15.5 },
     {
       label: "16A",
       R: 3376.612,
@@ -215,6 +220,7 @@ const LENS_DATA = {
     },
     {
       label: "17A",
+      rimCutDepthMm: 1.46,
       R: 120.496,
       sd: 13,
       asphere: {

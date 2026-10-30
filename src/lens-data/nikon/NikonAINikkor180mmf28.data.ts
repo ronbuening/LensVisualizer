@@ -6,6 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Clear apertures are inferred for rendering from paraxial ray envelopes and the 72 mm front filter constraint;
 // the patent does not publish semi-diameters. The stop position is inferred from Fig. 1 in the long d6 air gap.
 
+// All five source n/ν pairs are retained. No explicit table wavelength or partial-dispersion data is printed.
+// Current compatible coefficient curves cover four; L1 stays unresolved. Fig. 1 is the common architecture
+// drawing for all three embodiments, not a uniformly scaled numerical drawing of Embodiment 2.
+// Its concave curves show no independently resolved new flat end lands; inferred SDs are retained.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-nikkor-180mm-f28-ed",
@@ -46,9 +51,9 @@ const LENS_DATA = {
       nd: 1.50032,
       vd: 81.9,
       focalLengthMm: 118.099,
-      glass: "Unmatched Nikon ED fluorophosphate (near S-FPL51/FCD1 class; nd offset +0.0033)",
+      glass: "Unresolved low-dispersion glass (source 1.50032/81.9; ED class inferred, composition unspecified)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; the patent does not publish partial-dispersion constants.",
+      apdNote: "ED/APD inference from the correlated production design and high Abbe number; source does not name composition or publish partial-dispersion constants.",
       role: "Front ED collector and low-dispersion member of the L1-L2 achromatizing pair.",
     },
     {
@@ -92,7 +97,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       focalLengthMm: 117.873,
-      glass: "Unmatched (TAF/LaSF-class high-index flint, nd=1.79668, νd=45.4; near HOYA TAF2 / HIKARI J-LASF017)",
+      glass: "J-LASF017 catalog proxy (HIKARI, 795/453; source 1.79668/45.4, nonidentical)",
       role: "Rear positive corrector; reduces L4 pincushion distortion and contributes to field flattening.",
     },
   ],

@@ -1,59 +1,22 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — TAMRON SP 70-200mm f/2.8 Di VC USD (A009)                        ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 8,867,144 B2, Example 1 / Embodiment 1 (Hisayuki Yamanaka).       ║
- * ║ Unscaled d-line prescription: 23 elements / 17 air-separated groups.         ║
- * ║ The 41-plane source prescription is all-spherical; source surface 23 is STO. ║
- * ║ Zoom groups: LG2, LG3, and LG4 move imageward; LG1 and LG5 are fixed.        ║
- * ║ Focus status: PUBLISHED. LG3 alone moves objectward at close focus.          ║
- * ║ Zoom-only gaps: d7 and d22. Zoom+focus gaps: d10 and d17.                    ║
- * ║ LG2/LG3 separation d10 narrows, then widens across the zoom positions.       ║
- * ║                                                                              ║
- * ║ The stop radius is derived from the design f-number and held at every zoom   ║
- * ║ station; it is not patent-published. The prior mean paraxial radius for      ║
- * ║ source FNo.=2.90 at the three infinity states gave modeled F/# 2.90142 /     ║
- * ║ 2.89654 / 2.90205.                                                           ║
- * ║                                                                              ║
- * ║ Semi-diameters are MODELING VALUES because Example 1 publishes no SDs.       ║
- * ║ Their profile was initialized from paraxial marginal/chief-ray envelopes     ║
- * ║ and Tamron's A009 optical-construction section, then reduced only where      ║
- * ║ required by current edge-thickness/cross-gap geometry. They are not          ║
- * ║ presented as patent or factory clear-aperture dimensions.                    ║
- * ║ Every rim clears the on-axis f/2.90 ray at all three zoom positions.         ║
- * ║ Surface 15 (L9 rear, 17.1) and surface 27 (L15 rear, 14.9) sit at the        ║
- * ║ height that ray reaches at 194.5 mm (17.02 and 14.85 mm), rounded up to      ║
- * ║ 0.1 mm. Both elements keep stepped rims: front faces 14 and 26 carry 20.0    ║
- * ║ and 18.6 mm, and the air gaps behind the rear faces close at 17.70 mm        ║
- * ║ (15/16) and 14.90 mm (27/28). Figure 1 draws D3 and L15 square-cut, at       ║
- * ║ about 18.6 and 17.2 mm.                                                      ║
- * ║ gapSagFrac = 1.00 admits two pairs that Figure 1 draws meeting at the rim:   ║
- * ║   27/28 (L15/L16): 99.98 % of the 1.8091 mm gap, 0.0004 mm rim clearance.    ║
- * ║   15/16 (L9/L10):  93.3 % of the 3.1602 mm gap, 0.213 mm rim clearance.      ║
- * ║ Tamron sources:                                                              ║
- * ║ https://www.tamron.com/global/consumer/lenses/a009/spec.html                 ║
- * ║ https://www.tamron.com/product/pc_file/file/a009_lens-construction_en.svg    ║
- * ║                                                                              ║
- * ║ Glass labels are HOYA catalog-coordinate equivalents selected because all    ║
- * ║ 14 patent nd/νd pairs follow that family closely. The patent does not name   ║
- * ║ the glass vendor; these labels do not assert production melt identity.       ║
- * ║ nC/nF/ng are catalog-derived from the matching HOYA 2026 data rows.          ║
- * ║ They are modeling values for the stated HOYA equivalents, not patent-        ║
- * ║ published line data or claims about the production melts.                    ║
- * ║                                                                              ║
- * ║ NOTE ON PARTIAL DISPERSION:                                                  ║
- * ║ The patent prints nd and νd only and defines no partial-dispersion           ║
- * ║ deviation of its own. `dPgF` is PgF minus the engine's normal line           ║
- * ║ (0.6438 − 0.001682·νd), with PgF = (ng − nF)/(nF − nC) taken from each       ║
- * ║ element's stored HOYA line indices; the trace reads those indices, so        ║
- * ║ `dPgF` is the matching annotation. It is not HOYA's catalog ΔPgF, which      ║
- * ║ fits the line 0.64833 − 0.00180·νd and was stored here before. L10, L13      ║
- * ║ and L20 already sat within 0.0003 and keep their four-decimal values.        ║
- * ║                                                                              ║
- * ║ No scaling, omitted cover/filter plate, dummy plane, or folded path.         ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * TAMRON SP70-200mm f/2.8 DiVCUSD (A009), native US8,867,144B2 Example1.
+ * Fresh source: Fig1/PDF2 at native300dpi/600dpi; media+d-line PDF34–35; conditions31–33.
+ * 23glass/17groups,41sourceplanes inclSTO23, all spherical. No plate/dummy/folded path.
+ * PUBLISHED focus: LG3 alone translates objectward, d10 decreases exactly as d17 increases;
+ * source d0=1065.7mm to first surface at each close station. No reconstruction/control change.
+ * SourceFNO2.90; fixed iris derived, not printed. Marketing70–200/f2.8 remains separate.
+ * 2026-10-30 S8continuous23.9→24, S10clear20.8→21.2 with independently drawn land to24;
+ * S9cementedinterface24 stays. Weak few-pixel endpoints are not new cuts.
+ * Full S15/S27/S33 lands are rejected by actual gaps; their constrained old outlines remain.
+ * gapSagFrac1.00 is PREEXISTING:27/28uses99.98% gap,0.0004mm air;15/16uses93.3%,.213mm air.
+ * Fig1 draws D3/L15 square near18.6/17.2; exact geometry cannot reproduce those complete rims.
+ * Old L9 diagonal-edge/L10 corner overlap is a documented unresolved outline approximation;
+ * no unsupported adjacent cut, new tolerance or R/d edit is used to hide it.
+ * Glass: all23source nd/vd retained.92catalog-only C/F/g/dPgF copies removed; the runtime
+ * supplies23 compatible catalog curves as qualified spectral proxies. Named HOYA references
+ * do not prove supplier/melt. Five LD/XLD-position APD tags stay inferred, not source measurements.
  */
 
 const LENS_DATA = {
@@ -61,7 +24,8 @@ const LENS_DATA = {
   key: "tamron-sp-a009-70-200mm-f28-vc-usd",
   maker: "Tamron",
   name: "TAMRON SP 70-200mm f/2.8 Di VC USD",
-  subtitle: "US 8,867,144 B2 Example 1 — A009 production correlation; unscaled patent prescription",
+  subtitle:
+    "US 8,867,144 B2 Example 1 — A009 production correlation; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
@@ -99,10 +63,6 @@ const LENS_DATA = {
       glass: "NBFD15-W (Hoya)",
       role: "LG1 front negative member of the first cemented pair.",
       cemented: "D1",
-      dPgF: 0.000930,
-      nC: 1.79902,
-      nF: 1.82324,
-      ng: 1.83750,
     },
     {
       id: 2,
@@ -120,10 +80,6 @@ const LENS_DATA = {
         "runtime dPgF +0.04877 (HOYA's catalog ΔPgF for the equivalent, +0.0564, is against HOYA's own line).",
       role: "LG1 low-dispersion positive partner; correlates to the product XLD count.",
       cemented: "D1",
-      dPgF: 0.048767,
-      nC: 1.43559,
-      nF: 1.44019,
-      ng: 1.44264,
     },
     {
       id: 3,
@@ -140,10 +96,6 @@ const LENS_DATA = {
         "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
         "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       role: "LG1 low-dispersion positive element.",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 4,
@@ -160,10 +112,6 @@ const LENS_DATA = {
         "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
         "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       role: "LG1 low-dispersion positive element.",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 5,
@@ -176,10 +124,6 @@ const LENS_DATA = {
       glass: "TAFD25 (Hoya)",
       role: "LG2 positive member of the negative zoom doublet.",
       cemented: "D2",
-      dPgF: 0.003458,
-      nC: 1.89526,
-      nF: 1.92412,
-      ng: 1.94128,
     },
     {
       id: 6,
@@ -192,10 +136,6 @@ const LENS_DATA = {
       glass: "LAC14 (Hoya)",
       role: "LG2 negative member; the cemented group has net negative power.",
       cemented: "D2",
-      dPgF: -0.007523,
-      nC: 1.69297,
-      nF: 1.70553,
-      ng: 1.71235,
     },
     {
       id: 7,
@@ -207,10 +147,6 @@ const LENS_DATA = {
       focalLengthMm: -133.058375,
       glass: "PCD4 (Hoya)",
       role: "LG3 front negative focus member.",
-      dPgF: 0.002309,
-      nC: 1.61503,
-      nF: 1.62478,
-      ng: 1.63004,
     },
     {
       id: 8,
@@ -223,10 +159,6 @@ const LENS_DATA = {
       glass: "FC5 (Hoya)",
       role: "LG3 negative member of the central cemented pair.",
       cemented: "D3",
-      dPgF: 0.005027,
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49594,
     },
     {
       id: 9,
@@ -239,10 +171,6 @@ const LENS_DATA = {
       glass: "FD60 (Hoya)",
       role: "LG3 positive partner in the central cemented pair.",
       cemented: "D3",
-      dPgF: 0.014579,
-      nC: 1.79611,
-      nF: 1.82774,
-      ng: 1.84721,
     },
     {
       id: 10,
@@ -254,10 +182,6 @@ const LENS_DATA = {
       focalLengthMm: -61.718456,
       glass: "TAFD5G (Hoya)",
       role: "LG3 rear negative focus member.",
-      dPgF: -0.0067,
-      nC: 1.82898,
-      nF: 1.84852,
-      ng: 1.85956,
     },
     {
       id: 11,
@@ -269,10 +193,6 @@ const LENS_DATA = {
       focalLengthMm: 97.092797,
       glass: "TAF1 (Hoya)",
       role: "LG4 front positive element.",
-      dPgF: -0.009568,
-      nC: 1.76780,
-      nF: 1.78336,
-      ng: 1.79193,
     },
     {
       id: 12,
@@ -285,10 +205,6 @@ const LENS_DATA = {
       glass: "FC5 (Hoya)",
       role: "LG4 positive member of the rear cemented pair.",
       cemented: "D4",
-      dPgF: 0.005027,
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49594,
     },
     {
       id: 13,
@@ -301,10 +217,6 @@ const LENS_DATA = {
       glass: "TAFD5G (Hoya)",
       role: "LG4 negative partner; the full group remains positive.",
       cemented: "D4",
-      dPgF: -0.0067,
-      nC: 1.82898,
-      nF: 1.84852,
-      ng: 1.85956,
     },
     {
       id: 14,
@@ -316,10 +228,6 @@ const LENS_DATA = {
       focalLengthMm: 47.424167,
       glass: "TAC8 (Hoya)",
       role: "LG5/5A front positive element immediately behind the stop.",
-      dPgF: -0.006868,
-      nC: 1.72510,
-      nF: 1.73844,
-      ng: 1.74571,
     },
     {
       id: 15,
@@ -336,10 +244,6 @@ const LENS_DATA = {
         "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
         "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       role: "LG5/5A low-dispersion positive element.",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 16,
@@ -352,10 +256,6 @@ const LENS_DATA = {
       glass: "NBFD15-W (Hoya)",
       role: "LG5/5A negative member of the rear cemented pair.",
       cemented: "D5",
-      dPgF: 0.000930,
-      nC: 1.79902,
-      nF: 1.82324,
-      ng: 1.83750,
     },
     {
       id: 17,
@@ -373,10 +273,6 @@ const LENS_DATA = {
         "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       role: "LG5/5A low-dispersion positive partner.",
       cemented: "D5",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 18,
@@ -389,10 +285,6 @@ const LENS_DATA = {
       glass: "FD60 (Hoya)",
       role: "LG5/5B positive member of the transverse VC doublet.",
       cemented: "D6",
-      dPgF: 0.014579,
-      nC: 1.79611,
-      nF: 1.82774,
-      ng: 1.84721,
     },
     {
       id: 19,
@@ -405,10 +297,6 @@ const LENS_DATA = {
       glass: "BAC4 (Hoya)",
       role: "LG5/5B negative partner in the transverse VC subset.",
       cemented: "D6",
-      dPgF: -0.000772,
-      nC: 1.56575,
-      nF: 1.57590,
-      ng: 1.58147,
     },
     {
       id: 20,
@@ -420,10 +308,6 @@ const LENS_DATA = {
       focalLengthMm: -44.461186,
       glass: "E-F5 (Hoya)",
       role: "LG5/5B rear negative element; 5B has net negative power.",
-      dPgF: 0.0029,
-      nC: 1.59874,
-      nF: 1.61462,
-      ng: 1.62387,
     },
     {
       id: 21,
@@ -435,10 +319,6 @@ const LENS_DATA = {
       focalLengthMm: 42.996061,
       glass: "LAC14 (Hoya)",
       role: "LG5/5C front positive element.",
-      dPgF: -0.007523,
-      nC: 1.69297,
-      nF: 1.70553,
-      ng: 1.71235,
     },
     {
       id: 22,
@@ -450,10 +330,6 @@ const LENS_DATA = {
       focalLengthMm: -45.473562,
       glass: "TAFD25 (Hoya)",
       role: "LG5/5C high-index negative element.",
-      dPgF: 0.003458,
-      nC: 1.89526,
-      nF: 1.92412,
-      ng: 1.94128,
     },
     {
       id: 23,
@@ -465,10 +341,6 @@ const LENS_DATA = {
       focalLengthMm: 63.698882,
       glass: "FDS90 (Hoya)",
       role: "LG5/5C final positive element satisfying the patent νd ≤ 30 condition.",
-      dPgF: 0.015299,
-      nC: 1.83649,
-      nF: 1.87209,
-      ng: 1.89413,
     },
   ],
 
@@ -480,9 +352,9 @@ const LENS_DATA = {
     { label: "5", R: 298.9745, d: 0.2, sd: 37.5 },
     { label: "6", R: 84.2299, d: 8.2046, sd: 35.8, medium: 4 },
     { label: "7", R: 3112.4218, sd: 35.8 },
-    { label: "8", R: -2017.5362, d: 3.5529, sd: 23.9, medium: 5 },
+    { label: "8", R: -2017.5362, d: 3.5529, sd: 24, medium: 5 },
     { label: "9", R: -106.5734, d: 1.5, sd: 24.0, medium: 6 },
-    { label: "10", R: 51.7905, sd: 20.8 },
+    { label: "10", R: 51.7905, sd: 21.2, rimExtensionSd: 24 },
     { label: "11", R: 226.3153, d: 1.3, sd: 19.4, medium: 7 },
     { label: "12", R: 60.1827, d: 3.2285, sd: 18.9 },
     { label: "13", R: 407.1084, d: 1.3, sd: 20.1, medium: 8 },
@@ -519,9 +391,19 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 71.8, label: "Wide", published: true, publishedFocus: [1] },
+      {
+        focalLengthMm: 71.8,
+        label: "Wide",
+        published: true,
+        publishedFocus: [1],
+      },
       { focalLengthMm: 118.0, published: true, publishedFocus: [1] },
-      { focalLengthMm: 194.5, label: "Tele", published: true, publishedFocus: [1] },
+      {
+        focalLengthMm: 194.5,
+        label: "Tele",
+        published: true,
+        publishedFocus: [1],
+      },
     ],
     apertureModel: "fixed-iris",
     step: 0.004,
@@ -569,7 +451,12 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
+  aperture: {
+    nominalFNumber: 2.9,
+    fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+    blades: 9,
+  },
 
   groups: [
     { text: "LG1", fromSurface: "1", toSurface: "7" },

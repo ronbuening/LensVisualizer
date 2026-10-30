@@ -35,21 +35,21 @@ This analysis uses the single-character repair **R7 = −567.0**. It is an infer
 
 The repair does not remove every conflict. The patent text gives BFL 77.5 mm, FVD 157.9 mm and a corrector focal length of −240.4 mm, whereas the printed L6 data give −249.4 mm whatever R7 is, and no single-value change to the table reproduces the 200 mm focal length, the 77.5 mm back focus and the published close-focus conjugate together. (A change confined to L1, for example an index near 1.552 instead of the printed 1.56873, does return 200.0 mm and 77.50 mm with good monochromatic correction, but it contradicts a glass coordinate that is printed four times and matches a real catalog glass exactly, and it leaves the lens 0.19 mm short of achromatism.) The residual differences are therefore carried as an open source inconsistency, and the focal length, back focus and track quoted below are calculated from the repaired table.
 
-| Surface | Radius (mm) | Thickness (mm) | n_d | Element |
-|---------|-------------|----------------|---------|---------|
-| R1 | 56.828 | 12.00 | 1.56873 | L1 |
-| R2 | 3586.0 | 0.50 | 1.0 (air) | — |
-| R3 | 62.384 | 11.30 | 1.51680 | L2 |
-| R4 | 428.03 | 5.46 | 1.0 (air) | — |
-| R5 | −254.83 | 4.13 | 1.80518 | L3 |
-| R6 | 64.06 | 29.21 | 1.0 (air) | — |
-| *STO* | *(in gap)* | — | — | — |
-| R7 | −567.0 † | 5.61 | 1.80518 | L4 |
-| R8 | −54.70 | 5.24 | 1.0 (air) | — |
-| R9 | −38.14 | 1.85 | 1.71270 | L5 |
-| R10 | −157.93 | 3.20 → 33.80 ‡ | 1.0 (air) | — |
-| R11 | 71.98 | 2.00 | 1.57957 | L6 |
-| R12 | 47.56 | 75.50 (calculated BFL; patent prints 77.5) | 1.0 (air) | — |
+| Surface | Radius (mm) | Thickness (mm)                             | n_d       | Element |
+| ------- | ----------- | ------------------------------------------ | --------- | ------- |
+| R1      | 56.828      | 12.00                                      | 1.56873   | L1      |
+| R2      | 3586.0      | 0.50                                       | 1.0 (air) | —       |
+| R3      | 62.384      | 11.30                                      | 1.51680   | L2      |
+| R4      | 428.03      | 5.46                                       | 1.0 (air) | —       |
+| R5      | −254.83     | 4.13                                       | 1.80518   | L3      |
+| R6      | 64.06       | 29.21                                      | 1.0 (air) | —       |
+| _STO_   | _(in gap)_  | —                                          | —         | —       |
+| R7      | −567.0 †    | 5.61                                       | 1.80518   | L4      |
+| R8      | −54.70      | 5.24                                       | 1.0 (air) | —       |
+| R9      | −38.14      | 1.85                                       | 1.71270   | L5      |
+| R10     | −157.93     | 3.20 → 33.80 ‡                             | 1.0 (air) | —       |
+| R11     | 71.98       | 2.00                                       | 1.57957   | L6      |
+| R12     | 47.56       | 75.50 (calculated BFL; patent prints 77.5) | 1.0 (air) | —       |
 
 † Inferred repair of the printed −1567.0; see discussion above. The printed value appears in Table IV, claim 6, claim 13 and GB 1,408,910 Table IV.
 
@@ -61,20 +61,20 @@ The repair does not remove every conflict. The patent text gives BFL 77.5 mm, FV
 
 All values computed via ABCD matrix paraxial ray trace with the repaired R7 = −567.0.
 
-| Parameter | Computed | Patent Stated |
-|-----------|----------|---------------|
-| EFL (infinity) | 202.0 mm | 200 mm |
-| BFL | 75.5 mm | 77.5 mm |
-| FVD | 156.0 mm | 157.9 mm |
-| Telephoto ratio (FVD/EFL) | 0.77 | 0.79 |
-| Corrector EFL (L6) | −249.4 mm | −240.4 mm |
-| Focusing travel (3.2 → 15.0 mm row) | 11.8 mm | 11.8 mm |
-| EFL at the 15.0 mm row | 190.4 mm | — |
-| EFL at the calculated 1.2 m endpoint | 174.4 mm | — |
-| FT / EFL | 0.058 | 0.059 |
-| Petzval sum | −1.29 × 10⁻³ mm⁻¹ | — |
-| Petzval radius | −773 mm | — |
-| Half-field angle (24×36 mm) | 6.1° | — |
+| Parameter                            | Computed          | Patent Stated |
+| ------------------------------------ | ----------------- | ------------- |
+| EFL (infinity)                       | 202.0 mm          | 200 mm        |
+| BFL                                  | 75.5 mm           | 77.5 mm       |
+| FVD                                  | 156.0 mm          | 157.9 mm      |
+| Telephoto ratio (FVD/EFL)            | 0.77              | 0.79          |
+| Corrector EFL (L6)                   | −249.4 mm         | −240.4 mm     |
+| Focusing travel (3.2 → 15.0 mm row)  | 11.8 mm           | 11.8 mm       |
+| EFL at the 15.0 mm row               | 190.4 mm          | —             |
+| EFL at the calculated 1.2 m endpoint | 174.4 mm          | —             |
+| FT / EFL                             | 0.058             | 0.059         |
+| Petzval sum                          | −1.29 × 10⁻³ mm⁻¹ | —             |
+| Petzval radius                       | −773 mm           | —             |
+| Half-field angle (24×36 mm)          | 6.1°              | —             |
 
 The residual differences (+1.0% in focal length, −2.0 mm in back focus, −1.9 mm in track, +3.7% in corrector focal length) are larger than this patent's other tables show, so they are treated as an unresolved inconsistency in the published example rather than as rounding. The corrector value follows from the printed L6 data alone and does not depend on the R7 repair.
 
@@ -92,43 +92,43 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 
 ### L1 — Front Positive Meniscus
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R1 = +56.828, R2 = +3586.0 |
-| Thickness | 12.00 mm |
-| n_d / ν_d | 1.56873 / 63.1 |
-| Focal length | +101.4 mm |
-| Shape | Positive meniscus, convex toward object |
+| Property     | Value                                   |
+| ------------ | --------------------------------------- |
+| Surfaces     | R1 = +56.828, R2 = +3586.0              |
+| Thickness    | 12.00 mm                                |
+| n_d / ν_d    | 1.56873 / 63.1                          |
+| Focal length | +101.4 mm                               |
+| Shape        | Positive meniscus, convex toward object |
 
-**Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** ($n_d=1.56873$, $\nu_d=63.16$), a phosphate-silicate crown. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families. HOYA's PCD2 (1.56873 / 63.11) shares the code and is the row the repository catalog resolves for this element; the patent names no supplier. OHARA S-PHM51 is not an equivalent: its published code is 617628.
+**Glass identification:** Source1.56873/63.1 is retained. The current resolver supplies HOYA PCD2 (coefficient-derivedνd≈63.10503) as a compatible spectral proxy. PSK2 remains a historical coordinate-class reference; neither it nor PCD2 identifies the production supplier or melt. OHARA S-PHM51 is a different617628 class.
 
 **Optical role:** L1 is the leading positive element of the front group. Its strongly convex front surface (R1 = +56.828) provides the dominant positive refractive power, while the nearly flat rear surface (R2 = +3586.0, essentially plano) minimizes spherical aberration contribution from the second surface. The low dispersion (ν_d = 63.1) keeps L1's contribution to longitudinal chromatic aberration modest. At f/3 with a ~67 mm entrance pupil, L1 carries the largest clear aperture in the system and is the primary light-gathering element.
 
 ### L2 — Second Positive Meniscus
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R3 = +62.384, R4 = +428.03 |
-| Thickness | 11.30 mm |
-| n_d / ν_d | 1.51680 / 64.2 |
-| Focal length | +139.8 mm |
-| Shape | Positive meniscus, convex toward object |
+| Property     | Value                                   |
+| ------------ | --------------------------------------- |
+| Surfaces     | R3 = +62.384, R4 = +428.03              |
+| Thickness    | 11.30 mm                                |
+| n_d / ν_d    | 1.51680 / 64.2                          |
+| Focal length | +139.8 mm                               |
+| Shape        | Positive meniscus, convex toward object |
 
-**Glass identification:** Six-digit code **517642**. This matches HOYA BSC7 (n_d = 1.51680, ν_d = 64.2) exactly. It is the HOYA designation for the ubiquitous borosilicate crown glass family also known as Schott N-BK7 (n_d = 1.51633, ν_d = 64.14) and OHARA S-BSL7. The small residual in n_d (Δn_d = 0.00047 vs. Schott) is within the range of manufacturer variation. BK7/BSC7 is the workhorse optical glass of the industry — inexpensive, chemically stable, easy to polish, and well-characterized.
+**Glass identification:** Source1.51680/64.2 is retained. Compatible current Schott N-BK7 has nd≈1.51680 and coefficient-derivedνd≈64.16734; BSC7/S-BSL7 are family references, not production identities. The earlier N-BK7 figure1.51633 and claimed.00047 manufacturer variation were incorrect and are superseded by the current catalog curve.
 
 **Optical role:** L2 shares the positive power of the front group with L1. Together, L1 and L2 form an air-spaced positive doublet with a combined focal length of approximately 60.5 mm. The moderate curvatures and the 0.5 mm air space between L1 and L2 allow for some correction of spherical aberration and coma generated by the front group. The use of a low-cost, low-index glass for L2 is a pragmatic design choice — L2 operates at a lower marginal ray height than L1 and contributes less to higher-order aberrations.
 
 ### L3 — Negative Diverging Element
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R5 = −254.83, R6 = +64.06 |
-| Thickness | 4.13 mm |
-| n_d / ν_d | 1.80518 / 25.5 |
-| Focal length | −63.2 mm |
-| Shape | Asymmetric biconcave (R5 weakly concave, R6 strongly concave) |
+| Property     | Value                                                         |
+| ------------ | ------------------------------------------------------------- |
+| Surfaces     | R5 = −254.83, R6 = +64.06                                     |
+| Thickness    | 4.13 mm                                                       |
+| n_d / ν_d    | 1.80518 / 25.5                                                |
+| Focal length | −63.2 mm                                                      |
+| Shape        | Asymmetric biconcave (R5 weakly concave, R6 strongly concave) |
 
-**Glass identification:** Six-digit code **805255**. This is an exact match to the Schott **SF6** family (n_d = 1.80518, ν_d = 25.43), one of the highest-index, highest-dispersion conventional dense flint glasses. Equivalents: OHARA S-TIH6, HOYA FD60. SF6 is a lead-based dense flint (now largely replaced by lead-free N-SF6 in modern catalogs).
+**Glass identification:** Source1.80518/25.5 is retained. SF6/S-TIH6/FD60 are qualified dense-flint spectral references. The current S-TIH6 curve has coefficient-derivedνd≈25.42536, a.07464difference from the patent, so it is not an exact pair or an established source-rounding explanation. No supplier, lead formulation or production melt is inferred.
 
 **Optical role:** L3 is the critical negative element of the Sonnar-type telephoto configuration. It is the strongest single element in the system (fl = −63.2 mm), and its positioning after the front positive group creates the telephoto effect that makes the physical length shorter than the focal length. The high-dispersion SF6 glass is deliberately chosen: paired against the low-dispersion crowns of L1 and L2, it provides chromatic aberration correction for the front group. L3's strong rear surface (R6 = +64.06 mm) is the dominant source of the element's diverging power.
 
@@ -136,15 +136,15 @@ The patent text confirms: "the third element is negative with a concave rear sur
 
 ### L4 — Rear Positive Meniscus
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R7 = −567.0 †, R8 = −54.70 |
-| Thickness | 5.61 mm |
-| n_d / ν_d | 1.80518 / 25.5 |
-| Focal length | +74.8 mm |
-| Shape | Positive meniscus, concave toward object (convex rear) |
+| Property     | Value                                                  |
+| ------------ | ------------------------------------------------------ |
+| Surfaces     | R7 = −567.0 †, R8 = −54.70                             |
+| Thickness    | 5.61 mm                                                |
+| n_d / ν_d    | 1.80518 / 25.5                                         |
+| Focal length | +74.8 mm                                               |
+| Shape        | Positive meniscus, concave toward object (convex rear) |
 
-**Glass identification:** Identical to L3 — Schott **SF6** / OHARA S-TIH6 / HOYA FD60. The use of the same high-dispersion dense flint in both L3 (negative) and L4 (positive) is a characteristic feature of Sonnar-type designs. It is cost-effective (single glass type for two elements) and allows both elements to be ground from the same melt, ensuring precise index matching.
+**Glass identification:** L4 shares L3's printed coordinate pair and qualified S-TIH6/SF6 spectral reference. Equal nd/νd does not establish identical production chemistry, supplier or a shared melt.
 
 **Optical role:** L4 is the first element after the aperture stop and provides positive power to reconverge the beam toward the image. Its nearly flat front surface (R7 = −567.0, very weakly concave) means almost all of its refractive power comes from the strongly curved rear surface R8 = −54.70. The patent describes L4 as "positive with a convex rear surface," which is confirmed by the sign convention: R8 < 0 means the surface is convex when viewed from the image side.
 
@@ -152,13 +152,13 @@ L4 operates as the leading element of the rear positive group. Despite using a h
 
 ### L5 — Negative Meniscus
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R9 = −38.14, R10 = −157.93 |
-| Thickness | 1.85 mm |
-| n_d / ν_d | 1.71270 / 43.3 |
-| Focal length | −71.0 mm |
-| Shape | Negative meniscus, concave toward object (convex rear) |
+| Property     | Value                                                  |
+| ------------ | ------------------------------------------------------ |
+| Surfaces     | R9 = −38.14, R10 = −157.93                             |
+| Thickness    | 1.85 mm                                                |
+| n_d / ν_d    | 1.71270 / 43.3                                         |
+| Focal length | −71.0 mm                                               |
+| Shape        | Negative meniscus, concave toward object (convex rear) |
 
 **Glass identification:** Six-digit code **713433**. HOYA's discontinued LAFL4 row (`nd = 1.712704`,
 `νd = 43.295113`) reproduces the patent coordinate and supplies the coefficient-backed dispersion curve. LAFL4 is used
@@ -166,19 +166,19 @@ as a catalog equivalent; the patent does not establish the production supplier.
 
 **Optical role:** L5 is the "fifth element" referenced in the patent as "negative with a convex rear surface." It is the last element of the movable objective group and works in concert with L4 to form the rear positive subgroup. Although individually negative (fl = −71.0 mm), L4 + L5 together form a nearly afocal pair (combined thick-lens focal length ≈ 7,083 mm, or +0.14 diopters), meaning this pair contributes very little net refractive power but plays a crucial role in correcting field curvature.
 
-The mechanism is the index asymmetry between L4 and L5. Each element's Petzval contribution is proportional to φ/n (power divided by refractive index). L4 uses SF6 (nd = 1.805) and L5 uses the lower-index 713433 glass (nd = 1.713). Because L5's index is lower, its Petzval contribution per unit of power is *larger* than L4's. Numerically: L4 contributes +7.37 × 10⁻³ mm⁻¹ to the Petzval sum and L5 contributes −8.28 × 10⁻³ mm⁻¹, for a net of −0.91 × 10⁻³ mm⁻¹ — a significant negative Petzval contribution from a nearly powerless pair. This deliberate index mismatch between elements of opposite sign is a classic field-flattening technique, and the choice of L5's glass (high-ish index, but not as high as SF6) appears to be driven by this Petzval requirement rather than by chromatic correction.
+The mechanism is the index asymmetry between L4 and L5. Each element's Petzval contribution is proportional to φ/n (power divided by refractive index). L4 uses SF6 (nd = 1.805) and L5 uses the lower-index 713433 glass (nd = 1.713). Because L5's index is lower, its Petzval contribution per unit of power is _larger_ than L4's. Numerically: L4 contributes +7.37 × 10⁻³ mm⁻¹ to the Petzval sum and L5 contributes −8.28 × 10⁻³ mm⁻¹, for a net of −0.91 × 10⁻³ mm⁻¹ — a significant negative Petzval contribution from a nearly powerless pair. This deliberate index mismatch between elements of opposite sign is a classic field-flattening technique, and the choice of L5's glass (high-ish index, but not as high as SF6) appears to be driven by this Petzval requirement rather than by chromatic correction.
 
 L5 is also the last element before the variable air gap (R10 → R11), which the patent tabulates from 3.2 mm at infinity to 15.0 mm at its close state, and which the data file extends by calculation to 33.80 mm for the production close-focus distance of 1.2 m (see Focusing Mechanism section).
 
 ### L6 — Stationary Rear Corrector (Compensating Element)
 
-| Property | Value |
-|----------|-------|
-| Surfaces | R11 = +71.98, R12 = +47.56 |
-| Thickness | 2.00 mm |
-| n_d / ν_d | 1.57957 / 53.7 |
-| Focal length | −249.4 mm |
-| Shape | Negative meniscus, concave toward image |
+| Property     | Value                                   |
+| ------------ | --------------------------------------- |
+| Surfaces     | R11 = +71.98, R12 = +47.56              |
+| Thickness    | 2.00 mm                                 |
+| n_d / ν_d    | 1.57957 / 53.7                          |
+| Focal length | −249.4 mm                               |
+| Shape        | Negative meniscus, concave toward image |
 
 **Glass identification:** Six-digit code **580537**. This is a BaLF4/N-BALF4-class barium light flint row. The data file uses coefficient-backed Schott N-BALF4 (n_d = 1.57956, ν_d = 53.87) as the closest local Sellmeier proxy for the patent's n_d = 1.57957, ν_d = 53.7. BaLF4 sits in the transition zone between barium crowns and light flints — moderate index, moderate dispersion. It is a well-behaved, relatively inexpensive optical glass.
 
@@ -186,7 +186,7 @@ L5 is also the last element before the variable air gap (R10 → R11), which the
 
 1. **Off-axis aberration compensation.** When the front objective (L1–L5) moves forward for close focusing, the change in conjugate produces significant off-axis aberrations (primarily coma and astigmatism). The patent explains that L6's fixed position relative to the image plane introduces compensating aberrations that counteract this degradation. This is what allows the lens to maintain consistent edge-to-edge sharpness across a wide focusing range — a feature heavily advertised by Vivitar, which marketed the production lens with close focus to 1.2 m.
 
-2. **EFL reduction during close focus.** Because L6 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at the patent's 15.0 mm close state, a decrease of approximately 5.8%, and to 174.4 mm at the calculated 1.2 m endpoint. Since focusing travel scales with the *square* of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design reaches the patent's close state of 2,372 mm (Table VI: 11.81 EFL) with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
+2. **EFL reduction during close focus.** Because L6 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at the patent's 15.0 mm close state, a decrease of approximately 5.8%, and to 174.4 mm at the calculated 1.2 m endpoint. Since focusing travel scales with the _square_ of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design reaches the patent's close state of 2,372 mm (Table VI: 11.81 EFL) with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
 
 The patent specifies that the corrector's EFL magnitude should be no greater than three times the overall system EFL, and that it should be a negative meniscus with the concave side facing the image — both conditions are satisfied here (|−249.4| < 3 × 202, and R12 = +47.56 is indeed concave toward the image when viewed from behind the lens).
 
@@ -208,18 +208,18 @@ The patent publishes two states of the variable gap: 3.2 mm at infinity and 15.0
 
 In the repaired prescription, with the film plane held at the calculated 75.5 mm back focus, the 15.0 mm gap is conjugate to an object 2,286 mm in front of R1, or 2,453 mm from the film plane — 3.6% short of the patent's 2,372 mm on the front-vertex reading. That difference is of the same order as the other Table IV residuals and is left as found; the 15.0 mm row itself is stored unchanged.
 
-The production Vivitar lens was marketed with a significantly closer minimum focus distance of **1.2 m** (~47 inches, ~6× EFL), yielding a 1:4 reproduction ratio. The patent gives no spacing for that distance. Paraxial conjugate matching — solving for the gap *G* such that the image from the full system (with gap *G* and object at distance MFD − FVD(G) from R1) lands at the fixed R12-to-film distance — gives the following calculated table (distances from the film plane):
+The production Vivitar lens was marketed with a significantly closer minimum focus distance of **1.2 m** (~47 inches, ~6× EFL), yielding a 1:4 reproduction ratio. The patent gives no spacing for that distance. Paraxial conjugate matching — solving for the gap _G_ such that the image from the full system (with gap _G_ and object at distance MFD − FVD(G) from R1) lands at the fixed R12-to-film distance — gives the following calculated table (distances from the film plane):
 
-| Object-to-film (mm) | Gap (mm) | Extension (mm) | FVD (mm) | Source |
-|----------|----------|----------------|----------|--------|
-| ∞ | 3.20 | 0.00 | 156.0 | patent row |
-| 10,000 | 5.74 | 2.54 | 158.5 | calculated |
-| 5,000 | 8.49 | 5.29 | 161.3 | calculated |
-| 3,000 | 12.53 | 9.33 | 165.3 | calculated |
-| 2,453 | 15.00 | 11.80 | 167.8 | patent row (distance calculated) |
-| 2,000 | 18.34 | 15.14 | 171.1 | calculated |
-| 1,500 | 25.27 | 22.07 | 178.1 | calculated |
-| **1,200** | **33.80** | **30.60** | **186.6** | calculated endpoint |
+| Object-to-film (mm) | Gap (mm)  | Extension (mm) | FVD (mm)  | Source                           |
+| ------------------- | --------- | -------------- | --------- | -------------------------------- |
+| ∞                   | 3.20      | 0.00           | 156.0     | patent row                       |
+| 10,000              | 5.74      | 2.54           | 158.5     | calculated                       |
+| 5,000               | 8.49      | 5.29           | 161.3     | calculated                       |
+| 3,000               | 12.53     | 9.33           | 165.3     | calculated                       |
+| 2,453               | 15.00     | 11.80          | 167.8     | patent row (distance calculated) |
+| 2,000               | 18.34     | 15.14          | 171.1     | calculated                       |
+| 1,500               | 25.27     | 22.07          | 178.1     | calculated                       |
+| **1,200**           | **33.80** | **30.60**      | **186.6** | calculated endpoint              |
 
 At the production MFD of 1.2 m, the required gap is approximately **33.8 mm**, corresponding to a barrel extension of 30.6 mm and a magnification of 0.253 — consistent with the marketed **1:4 reproduction ratio**. The FVD grows from 156 mm to 187 mm, meaning the barrel extends roughly 30 mm from its infinity position. This is physically plausible given the barrel length and helicoid travel of the production housing, but the 33.8 mm figure is an extrapolation of the patent's single focusing gap beyond its published range, not patent data.
 
@@ -229,7 +229,7 @@ The data file stores all three states as focus keyframes (3.2, 15.0 and 33.8 mm)
 
 ## Aperture Stop Position
 
-The patent does not explicitly state the stop position within the 29.21 mm air gap between R6 and R7. The patent text says only that "the third element is negative with a concave rear surface *followed by the aperture stop*," confirming the stop is in this gap.
+The patent does not explicitly state the stop position within the 29.21 mm air gap between R6 and R7. The patent text says only that "the third element is negative with a concave rear surface _followed by the aperture stop_," confirming the stop is in this gap.
 
 FIG. 5 draws the iris as a pair of short lines near the middle of the gap. Measured on the 300 dpi page scan, with the axial scale fitted to the twelve vertex crossings (about 0.103 mm per pixel; the drawn vertices sit within 0.7 mm of their tabulated positions), the stop lines lie 14.5–14.9 mm behind R6. The data file keeps its earlier 15.00 mm (R6 to STO) + 14.21 mm (STO to R7) split, which agrees within the drawing's resolution; the station is an inference from the figure. At this station the exact f/3 marginal ray crosses the stop plane at 20.65 mm, which is the stored stop semi-diameter; the paraxial height is 19.4 mm, the difference being the spherical aberration of the front group at the stop. The drawn iris opening (about 17.4 mm) is smaller than either, one of several signs that FIG. 5 is a schematic rather than a scaled aperture drawing.
 
@@ -259,7 +259,7 @@ The glass selection explains this. The design uses five distinct glass types acr
 - **High-dispersion elements (L3, L4):** ν_d = 25.5 — dense flint (SF6)
 - **Moderate-dispersion elements (L5, L6):** ν_d = 43.3 and 53.7
 
-No ED (extra-low dispersion), fluorite, or anomalous partial dispersion glasses are used. In the early 1970s, such glasses were either unavailable or prohibitively expensive for a lens at this price point. The result is that while primary chromatic aberration (C-line to F-line) is reasonably corrected by the crown-flint balance, the **secondary spectrum** (residual chromatism beyond the primary correction) is left substantially uncorrected. This secondary spectrum is what manifests as the longitudinal CA that users consistently report. The Nikon 180mm f/2.8 ED (introduced 1981), which uses ED glass, largely eliminated this artifact — but at three times the price.
+The patent supplies no named ED/crystalline material, measured partial-dispersion ratio or individual C/F/g indices. The absence of an authored APD tag is not a measurement of zero anomaly. Qualified catalog curves provide the model's secondary-dispersion behavior; they do not establish the production glass identities or measured chromatic performance.
 
 ---
 
@@ -310,14 +310,14 @@ The `.data.ts` file for this lens incorporates several departures from a literal
 
 ## Summary Table
 
-| Element | Glass | n_d | ν_d | Focal Length | Power | Role |
-|---------|-------|-----|-----|-------------|-------|------|
-| L1 | PSK2 | 1.56873 | 63.1 | +101.4 mm | Positive | Front crown, primary power |
-| L2 | BK7/BSC7 | 1.51680 | 64.2 | +139.8 mm | Positive | Secondary crown |
-| L3 | SF6 | 1.80518 | 25.5 | −63.2 mm | Negative | Telephoto diverger, chromatic correction |
-| L4 | SF6 | 1.80518 | 25.5 | +74.8 mm | Positive | Rear converger |
-| L5 | LAFL4 (HOYA catalog equivalent) | 1.71270 | 43.3 | −71.0 mm | Negative | Petzval/aberration balancing |
-| L6 | N-BALF4 / BaLF4 class | 1.57957 | 53.7 | −249.4 mm | Negative | Fixed compensator/corrector |
+| Element | Glass                             | n_d     | ν_d  | Focal Length | Power    | Role                                     |
+| ------- | --------------------------------- | ------- | ---- | ------------ | -------- | ---------------------------------------- |
+| L1      | PCD2 proxy / PSK2 reference class | 1.56873 | 63.1 | +101.4 mm    | Positive | Front crown, primary power               |
+| L2      | BK7/BSC7                          | 1.51680 | 64.2 | +139.8 mm    | Positive | Secondary crown                          |
+| L3      | SF6                               | 1.80518 | 25.5 | −63.2 mm     | Negative | Telephoto diverger, chromatic correction |
+| L4      | SF6                               | 1.80518 | 25.5 | +74.8 mm     | Positive | Rear converger                           |
+| L5      | LAFL4 (HOYA catalog equivalent)   | 1.71270 | 43.3 | −71.0 mm     | Negative | Petzval/aberration balancing             |
+| L6      | N-BALF4 / BaLF4 class             | 1.57957 | 53.7 | −249.4 mm    | Negative | Fixed compensator/corrector              |
 
 ---
 
@@ -330,9 +330,14 @@ The `.data.ts` file for this lens incorporates several departures from a literal
 5. HOYA Optics Division: Glass Cross Reference Index (hoya-opticalworld.com).
 6. Schott AG: Optical Glass Data Sheets (various editions).
 
-
 ## Production mount assignment
 
 The Vivitar Series 1 catalog’s 200mm panel explicitly lists Nikon, Canon, Minolta, Konica, Olympus OM and Pentax S/universal-thread versions. Those period SLR systems map to these ids; a later Pentax K version is not inferred from the Pentax S label. [Manufacturer source](https://www.pacificrimcamera.com/rl/01201/01201.pdf).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+## Fresh source rim and glass review —2026-10-30
+
+Original TableIV/PDF6 and Nd/Vd definition/PDF7 confirm all6retained media pairs; the source publishes no extra spectral anchors. Fig.5/PDF3 was checked at native300dpi and600dpi across every face. S6 keeps its24mm cap with a new land to the existing26mm front rim of L3. The drawn endpoint is shorter; the adopted cap preserves the prior beam envelope and does not claim an exact source clear aperture. Other weak endpoint marks are not extra cuts. Actual nine-state SVGs have zero trim; no optical cap, R/d, existing inferredR7repair, stop or focus state changes.
+
+All6current curves are compatible spectral proxies. L3/L4 and N-BALF4L6 have nonidentical Abbe values; L6coefficientνd≈53.86590 versus source53.7 is explicitly loose, not source precision or a melt identity. The printed−1567R7 versus retained−567repair, source BFL77.5 versus calculated75.5, source near2372mm versus model residual and reconstructed1.2m endpoint remain qualified above.

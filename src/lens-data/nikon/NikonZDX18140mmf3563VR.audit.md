@@ -88,3 +88,26 @@ end's 103.388 mm, which matches. The q range is ±(1 + q) / (edge px), with edge
   of sd. The figure draws L51's edge at 177 px (9.89 mm), short of the stored 11.0 mm sd; on that drawn edge the range
   is 0.893–0.915.
 - The land, 1.0382 mm, is longer than the 0.1 mm minimum, and the q range does not reach 1.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/WO2022264542A1.pdf`, Example 1, Figure 1 (PDF p. 56), and inspected every element on a 600 dpi crop, with a separate enlarged crop of L23. The source S1-to-image span gives 17.9 native px/mm. The existing surface-30 cut already draws L51's resolved concave land. Surface 7's shorter figure cap remains excluded under the full-beam criterion documented above; the figure's own L21 edge is about 12.2 mm, so the larger 14.0 mm front `sd` is not an extension target.
+
+The convex rear face of L23 (surface 11) has a short square stroke, about 7.5 native px or 0.4–0.5 mm, that the earlier concave-cut-only review could not represent. An extension from its retained 10.0 mm cap to front face 10's 10.5 mm outer edge was tested in a temporary candidate, but the land would cross the front face: `audit:surface` reports negative edge thickness -0.125 mm. A 10.3 mm candidate still crosses (-0.037 mm). A truncated 10.1 mm land passes but does not reach the figure's outer edge, so it was rejected rather than substituting an arbitrarily short shoulder. No optical `sd`, curvature or thickness was changed to force that inferred outline.
+
+No geometry changed. `audit:surface` passes with the existing inferred-cut beam check; `audit:image-circle` reports 0 undersized and 0 skipped. The unmodeled L23 stroke is a source/model limitation, not a validated optical aperture.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2022264542A1.pdf`, Example 1: Table 1 on PDF pp. 28–31, its d-line definition on p. 25 (¶0102) and the element-specific prose on pp. 26–27 (¶0110–¶0114). All 19 modeled lens media (17 physical elements) and PP retain the printed nd/νd pairs. No additional C/F/g or numerical partial-dispersion rows are supplied.
+
+| Elements | Before | After / source justification |
+| --- | --- | --- |
+| L12/L34 | S-FPL51; APD `patent` | J-FKH1 catalog spectral proxy at the exact 1.49782/82.57 coordinate; APD `inferred`. The source supplies high-Abbe coordinates, not a named formulation or measured partial dispersion for these elements. |
+| L33/L41 | S-LAH79 | S-LAH99 spectral proxy: catalog nd 2.00100 matches the source; S-LAH79's 2.00330 was only a broad-guard match. Source νd remains 29.12. |
+| L31r/L35r | UV-curing resin | Optical resin, with chemistry/curing/supplier unspecified, as ¶0112 actually states. Both source 1.56093/36.64 coordinates remain unchanged and lack catalog curves. |
+| L52 | SF57 (Schott) | S-TIH53 catalog spectral proxy, which was already the resolver-selected curve. Corrected analysis claims that S-TIH53 had nd 1.80809 and that a Schott production supplier was established. |
+
+The remaining lens media L11, L13, L21–L24, L31g, L32, L35g, L36, L42 and L51 and plate PP were individually checked and retain their compatible coefficient-backed proxies. All 17 glass lens media plus PP resolve; the two resin media remain explicit spectral approximations. The analysis no longer asserts an older FPL51 melt, numerical ΔPgF ≈ +0.038, UV curing or supplier/chemistry identity from nd/νd alone. Catalog curves remain qualified spectral proxies.
+
+`assertCatalogConsistent()`, the scoped resolver review and the three shared glass suites pass (94 tests); `audit:surface` passes. Source optical coordinates and surface geometry are unchanged.

@@ -31,8 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 4 (L12), 8 (L21), 31 (L52) and 34A
  * (L71). Faces 4 and 8 take their element edge as sd (the partner face: 34.2 / 22.6) and rimCutDepthMm ends the cap
  * just outside the old 33.15 / 20.7 mm rims, at cut radii 33.1581 / 20.7130 mm (so the 8 value above is now a cut
- * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A keep their 11.6 / 17.5 mm rims uncut: a land
- * there would stop rays those rims stop.
+ * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A keep their 11.6 / 17.5 mm clear radii:
+ * an inferred cut there would stop rays those rims stop.
  *
  * FOCAL LENGTHS — catalog.focalLengthMm.design and the zoom station focal lengths are the patent's printed
  * f (71.402 / 134.997 / 195.996 mm). The
@@ -42,6 +42,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * publishes 11 blades, f/22 minimum aperture and Z TC-1.4x / TC-2.0x compatibility (acceptsTeleconverters).
  *
  * Glass names are coordinate-compatible catalog counterparts; they do not establish supplier or melt.
+ * Rim extensions (2026-10-29): Fig. 1, p. 83, 6.80 native px/mm, draws the
+ * L52 rear and L71 front caps inside square outer edges. 31 and 34A keep their
+ * 11.6 and 17.5 mm clear radii; rimExtensionSd adds lands to 12.4 and 18.7 mm.
  */
 
 const LENS_DATA = {
@@ -392,7 +395,7 @@ const LENS_DATA = {
     { label: "28", R: 286.532, d: 2.6, sd: 13.45, medium: 15 }, // G5: L51 front
     { label: "29", R: -166.6633, d: 1.1, sd: 13.05 }, // L51 rear → air
     { label: "30", R: -303.2044, d: 1.2, sd: 12.4, medium: 16 }, // L52 front
-    { label: "31", R: 33.0069, sd: 11.6 }, // L52 rear → air [VAR zoom+focus D31]
+    { label: "31", R: 33.0069, sd: 11.6, rimExtensionSd: 12.4 }, // L52 rear → air [VAR zoom+focus D31]
     { label: "32", R: 133.0887, d: 5.4, sd: 18.3, medium: 17 }, // G6: L61 front
     { label: "33", R: -65.3298, sd: 18.3 }, // L61 rear → air [VAR zoom+focus D33]
     {
@@ -400,6 +403,7 @@ const LENS_DATA = {
       R: -34.6941,
       d: 1.4,
       sd: 17.5,
+      rimExtensionSd: 18.7,
       medium: 18,
       asphere: {
         K: 0,

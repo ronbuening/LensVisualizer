@@ -210,7 +210,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 17.47,
       "d": 8.72,
-      "sd": 14.5
+      "sd": 14.5,
+      "rimExtensionSd": 20
     },
     {
       "label": "3",
@@ -286,7 +287,8 @@ const LENS_DATA = {
       "label": "13",
       "R": 18.28,
       "d": 1.82,
-      "sd": 8.3
+      "sd": 8.3,
+      "rimExtensionSd": 11
     },
     {
       "label": "14",

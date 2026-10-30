@@ -1,4 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** Fresh source review 2026-10-30: KR20170073883A PDF10-11 Table1/d-line,12 Fig1 native1340x583 raster and600dpi. Eight exposed concave faces receive source-supported flat lands to conservative existing compound/body heights; every clear sd and source R/d/control remains unchanged. Forty-five catalog-only C/F/g values removed; all15 source-named HOYA coordinate pairs retained with qualified catalog curves. Source C/stop/BF contradictions and absent finite-focus law remain documented; no optional unprescribed filter is invented. */
 /**
  * Samyang 100mm F2.8 ED UMC Macro; KR 10-2017-0073883 A, Example 1 (Table 1, Figure 1),
  * the patent's only numerical example.
@@ -61,9 +63,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * every focus-slider position. closeFocusM 0.307 is the maker's stated minimum focus
  * distance, not a modelled state.
  *
- * nC/nF/ng are evaluated from the HOYA catalog dispersion formulas of the glasses the
- * patent names. They are catalog values, not line indices published in the patent or
- * melt data, and support no apochromatic or measured-performance claim.
+ * Dispersion uses compatible HOYA catalog curves for source-named families. The patent
+ * supplies no C/F/g indices; no per-lens catalog spectral copies are stored. The curves
+ * are spectral proxies and support no melt or measured-performance claim.
  */
 const LENS_DATA = {
   schema: 2,
@@ -110,7 +112,7 @@ const LENS_DATA = {
       },
       {
         status: "unresolved",
-        note: "Column C is described as a diameter, but its values act as semi-diameters: the stop value traces to f/2.904 and condition 1 holds only with diameters of 2C. As printed, the rounded values also sit 0.001–0.015 mm inside the f/2.904 axial ray on surfaces 8–11 and 19, so those five are modelled 0.01–0.02 mm larger; surface 26 is modelled at 12.72 mm against the printed 13.23 mm to keep it clear of surface 27, which adds some corner vignetting.",
+        note: "Column C is described as a diameter, but its values act as semi-diameters: the stop value traces to f/2.904 and condition 1 holds only with diameters of 2C. As printed, the rounded values also sit 0.001–0.015 mm inside the f/2.904 axial ray on surfaces 8–11 and 19, so those five are modelled 0.01–0.02 mm larger; surface 27 is modelled at 12.72 mm against the printed 13.23 mm to preserve the 26–27 gap; surface 26 retains the printed 13.23 mm. This adds some corner vignetting.",
       },
       {
         status: "unresolved",
@@ -128,12 +130,9 @@ const LENS_DATA = {
       nd: 1.658436,
       vd: 50.85,
       focalLengthMm: -132.443126682,
-      glass: "BACED5 (Hoya; source-named catalog equivalent)",
+      glass: "BACED5 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative meniscus, convex to the object; front element of the fixed first group.",
       diagramLabel: "L10",
-      nC: 1.65454401837,
-      nF: 1.66749143632,
-      ng: 1.67471001071,
     },
     {
       id: 2,
@@ -143,12 +142,9 @@ const LENS_DATA = {
       nd: 1.785897,
       vd: 43.93,
       focalLengthMm: 151.440632361,
-      glass: "NBFD11 (Hoya; source-named catalog equivalent)",
+      glass: "NBFD11 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Positive meniscus, convex to the object; completes the weakly negative fixed first group.",
       diagramLabel: "L11",
-      nC: 1.78053255045,
-      nF: 1.79842051906,
-      ng: 1.80845837934,
     },
     {
       id: 3,
@@ -158,12 +154,9 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       focalLengthMm: 54.006024749,
-      glass: "E-FDS1 (Hoya; source-named catalog equivalent)",
+      glass: "E-FDS1 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Plano-convex high-index element that opens the central group; the position Samyang marks HR.",
       diagramLabel: "L20",
-      nC: 1.91037567834,
-      nF: 1.95457312693,
-      ng: 1.9828139743,
     },
     {
       id: 4,
@@ -173,16 +166,13 @@ const LENS_DATA = {
       nd: 1.496997,
       vd: 81.61,
       focalLengthMm: 59.333673524,
-      glass: "FCD1 (Hoya; source-named catalog equivalent)",
+      glass: "FCD1 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       apd: "inferred",
       apdNote:
-        "Samyang marks this position ED; FCD1 (νd 81.61) is an extra-low-dispersion crown whose catalog lines give ΔPgF ≈ +0.032, and the tag is inferred from the patent/product correlation, not stated in the patent.",
+        "Samyang marks this position ED; FCD1 (νd 81.61) is an extra-low-dispersion crown whose catalog curve gives ΔPgF ≈ +0.032, and the tag is inferred from the patent/product correlation, not stated in the patent.",
       role: "Low-dispersion positive front element of the first cemented pair; the position Samyang marks ED.",
       diagramLabel: "L21",
       cemented: "D1",
-      nC: 1.49513747764,
-      nF: 1.50122750457,
-      ng: 1.50450912671,
     },
     {
       id: 5,
@@ -192,13 +182,10 @@ const LENS_DATA = {
       nd: 1.846663,
       vd: 23.78,
       focalLengthMm: -28.444777161,
-      glass: "FDS90 (Hoya; source-named catalog equivalent)",
+      glass: "FDS90 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "High-dispersion negative rear element of the first cemented pair.",
       diagramLabel: "L22",
       cemented: "D1",
-      nC: 1.83649191249,
-      nF: 1.87208870412,
-      ng: 1.89413034128,
     },
     {
       id: 6,
@@ -208,13 +195,10 @@ const LENS_DATA = {
       nd: 1.487489,
       vd: 70.44,
       focalLengthMm: 39.664113022,
-      glass: "FC5 (Hoya; source-named catalog equivalent)",
+      glass: "FC5 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Positive crown front element of the second cemented pair.",
       diagramLabel: "L23",
       cemented: "D2",
-      nC: 1.48535000402,
-      nF: 1.49227052409,
-      ng: 1.49594250735,
     },
     {
       id: 7,
@@ -224,13 +208,10 @@ const LENS_DATA = {
       nd: 1.846663,
       vd: 23.78,
       focalLengthMm: -43.479932607,
-      glass: "FDS90 (Hoya; source-named catalog equivalent)",
+      glass: "FDS90 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative flint meniscus, convex to the image; rear element of the second cemented pair.",
       diagramLabel: "L24",
       cemented: "D2",
-      nC: 1.83649191249,
-      nF: 1.87208870412,
-      ng: 1.89413034128,
     },
     {
       id: 8,
@@ -240,13 +221,10 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.16,
       focalLengthMm: -50.822873943,
-      glass: "E-FD8 (Hoya; source-named catalog equivalent)",
+      glass: "E-FD8 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative front element of the third cemented pair.",
       diagramLabel: "L25",
       cemented: "D3",
-      nC: 1.68250612113,
-      nF: 1.70461517554,
-      ng: 1.71785801799,
     },
     {
       id: 9,
@@ -256,13 +234,10 @@ const LENS_DATA = {
       nd: 1.805181,
       vd: 25.46,
       focalLengthMm: 41.656523808,
-      glass: "FD60 (Hoya; source-named catalog equivalent)",
+      glass: "FD60 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Positive rear element of the third cemented pair.",
       diagramLabel: "L26",
       cemented: "D3",
-      nC: 1.79610909458,
-      nF: 1.82773885579,
-      ng: 1.8472131129,
     },
     {
       id: 10,
@@ -272,12 +247,9 @@ const LENS_DATA = {
       nd: 1.719998,
       vd: 50.34,
       focalLengthMm: 96.575494449,
-      glass: "LAC10 (Hoya; source-named catalog equivalent)",
+      glass: "LAC10 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Positive singlet that closes the central group, immediately ahead of the stop.",
       diagramLabel: "L27",
-      nC: 1.71567865885,
-      nF: 1.72998029196,
-      ng: 1.73784961376,
     },
     {
       id: 11,
@@ -287,12 +259,9 @@ const LENS_DATA = {
       nd: 1.701543,
       vd: 41.15,
       focalLengthMm: -56.397481007,
-      glass: "BAFD7 (Hoya; source-named catalog equivalent)",
+      glass: "BAFD7 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative meniscus, convex to the object; first of the five rear singlets.",
       diagramLabel: "L30",
-      nC: 1.69650852119,
-      nF: 1.71355737635,
-      ng: 1.72339475217,
     },
     {
       id: 12,
@@ -302,12 +271,9 @@ const LENS_DATA = {
       nd: 1.487489,
       vd: 70.44,
       focalLengthMm: -78.538864086,
-      glass: "FC5 (Hoya; source-named catalog equivalent)",
+      glass: "FC5 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Biconcave negative singlet of the rear group.",
       diagramLabel: "L31",
-      nC: 1.48535000402,
-      nF: 1.49227052409,
-      ng: 1.49594250735,
     },
     {
       id: 13,
@@ -317,12 +283,9 @@ const LENS_DATA = {
       nd: 1.834001,
       vd: 37.35,
       focalLengthMm: 28.95342882,
-      glass: "NBFD10 (Hoya; source-named catalog equivalent)",
+      glass: "NBFD10 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Strong positive singlet of the rear group.",
       diagramLabel: "L32",
-      nC: 1.82742030392,
-      nF: 1.84975259312,
-      ng: 1.86268424279,
     },
     {
       id: 14,
@@ -332,12 +295,9 @@ const LENS_DATA = {
       nd: 1.516798,
       vd: 64.2,
       focalLengthMm: -109.114112394,
-      glass: "BSC7 (Hoya; source-named catalog equivalent)",
+      glass: "BSC7 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative meniscus, convex to the image, in the rear group.",
       diagramLabel: "L33",
-      nC: 1.51431870283,
-      nF: 1.52236873773,
-      ng: 1.52666971664,
     },
     {
       id: 15,
@@ -347,20 +307,17 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.32,
       focalLengthMm: -93.311527424,
-      glass: "E-FD10 (Hoya; source-named catalog equivalent)",
+      glass: "E-FD10 (Hoya; source-named family; catalog spectral proxy; production melt unspecified)",
       role: "Negative meniscus, convex to the image; last element of the lens.",
       diagramLabel: "L34",
-      nC: 1.72082031297,
-      nF: 1.74653490636,
-      ng: 1.76211465316,
     },
   ],
 
   surfaces: [
     { label: "1", R: 65.34, d: 2.7, sd: 23.9, medium: 1 },
-    { label: "2", R: 36.74, d: 1.2, sd: 22.3 },
+    { label: "2", R: 36.74, d: 1.2, rimExtensionSd: 23.9, sd: 22.3 },
     { label: "3", R: 36.68, d: 5.0, sd: 22.3, medium: 2 },
-    { label: "4", R: 49.84, d: 41.91508, sd: 21.5 },
+    { label: "4", R: 49.84, d: 41.91508, rimExtensionSd: 22.3, sd: 21.5 },
     { label: "5", R: 49.84, d: 5.2, sd: 17.1, medium: 3 },
     { label: "6", R: "flat", d: 0.261807, sd: 16.75 },
     { label: "7", R: 37.81, d: 6.926214, sd: 15.57, medium: 4 },
@@ -375,6 +332,7 @@ const LENS_DATA = {
       label: "9",
       R: 30.0,
       d: 1.676098,
+      rimExtensionSd: 14.58,
       sd: 13.06, // Source C=13.04; the f/2.904 axial ray reaches 13.054 here.
     },
     {
@@ -392,7 +350,7 @@ const LENS_DATA = {
       medium: 7,
     },
     { label: "12", R: -112.49, d: 1.742473, sd: 12.78 },
-    { label: "13", R: -37.42, d: 2.0, sd: 12.78, medium: 8 },
+    { label: "13", R: -37.42, d: 2.0, rimExtensionSd: 13.53, sd: 12.78, medium: 8 },
     { label: "14", R: 556.29, d: 5.7, sd: 13.53, medium: 9 },
     { label: "15", R: -35.53, d: 0.1, sd: 13.95 },
     { label: "16", R: 138.12, d: 4.5, sd: 13.74, medium: 10 },
@@ -406,17 +364,18 @@ const LENS_DATA = {
       sd: 10.71, // Source C=10.7; the f/2.904 axial ray reaches 10.7007 here.
       medium: 11,
     },
-    { label: "20", R: 26.24, d: 8.201572, sd: 9.91 },
-    { label: "21", R: -76.9, d: 2.0, sd: 9.7, medium: 12 },
+    { label: "20", R: 26.24, d: 8.201572, rimExtensionSd: 10.71, sd: 9.91 },
+    { label: "21", R: -76.9, d: 2.0, rimExtensionSd: 10.4, sd: 9.7, medium: 12 },
     { label: "22", R: 76.9, d: 5.0, sd: 10.4 },
     { label: "23", R: 58.93, d: 5.767684, sd: 13.0, medium: 13 },
     { label: "24", R: -39.09, d: 0.390847, sd: 13.23 },
-    { label: "25", R: -51.63, d: 2.0, sd: 13.13, medium: 14 },
+    { label: "25", R: -51.63, d: 2.0, rimExtensionSd: 13.23, sd: 13.13, medium: 14 },
     { label: "26", R: -619.72, d: 2.514227, sd: 13.23 },
     {
       label: "27",
       R: -35.03,
       d: 2.0,
+      rimExtensionSd: 13.85,
       sd: 12.72, // Source C=13.23; held here so the 26->27 pair fills 89.9% of its gap, not 97.6%.
       medium: 15,
     },

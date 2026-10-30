@@ -27,16 +27,16 @@ Example 4 is a four-group large-aperture zoom with power sequence **positive LG1
 
 Independent first-order computation from the final data file gives the following group focal lengths. These are subsystem powers evaluated in air and should not be confused with the standalone powers stored on individual elements.
 
-| Group | Computed focal length |
-|---|---:|
-| LG1 | +114.154 mm |
-| LG2 | -18.787 mm |
-| G31 | +32.069 mm |
-| G32 | -50.245 mm |
-| LG3, wide | +59.426 mm |
-| LG3, intermediate | +60.204 mm |
-| LG3, tele | +60.864 mm |
-| LG4 | +45.649 mm |
+| Group             | Computed focal length |
+| ----------------- | --------------------: |
+| LG1               |           +114.154 mm |
+| LG2               |            -18.787 mm |
+| G31               |            +32.069 mm |
+| G32               |            -50.245 mm |
+| LG3, wide         |            +59.426 mm |
+| LG3, intermediate |            +60.204 mm |
+| LG3, tele         |            +60.864 mm |
+| LG4               |            +45.649 mm |
 
 LG1 is the positive front collector. Its relatively weak cemented front pair is followed by a stronger positive singlet, producing a positive group with a large front clear aperture. LG2 is the strong negative variator. It begins with the hybrid negative element, continues through a cemented pair of opposing powers, and ends with a high-Abbe negative member. The aperture stop is the patent's surface 14, in air between LG2 and LG3.
 
@@ -46,13 +46,13 @@ LG4 is a positive rear relay composed of alternating positive and negative power
 
 The patent publishes five zoom-dependent axial gaps. They are modeled exactly as infinity-focus zoom spacings:
 
-| Gap | Wide | Intermediate | Tele |
-|---|---:|---:|---:|
-| D(5) | 3.2354 mm | 18.8990 mm | 34.5562 mm |
-| D(13) | 17.0881 mm | 6.6767 mm | 1.0000 mm |
-| D(19) | 2.0000 mm | 1.6500 mm | 1.3596 mm |
-| D(22) | 8.1524 mm | 3.0901 mm | 1.2000 mm |
-| D(31) / image spacing | 40.3258 mm | 53.2243 mm | 63.2093 mm |
+| Gap                   |       Wide | Intermediate |       Tele |
+| --------------------- | ---------: | -----------: | ---------: |
+| D(5)                  |  3.2354 mm |   18.8990 mm | 34.5562 mm |
+| D(13)                 | 17.0881 mm |    6.6767 mm |  1.0000 mm |
+| D(19)                 |  2.0000 mm |    1.6500 mm |  1.3596 mm |
+| D(22)                 |  8.1524 mm |    3.0901 mm |  1.2000 mm |
+| D(31) / image spacing | 40.3258 mm |   53.2243 mm | 63.2093 mm |
 
 With the image plane held fixed, the computed absolute motion of LG2 reverses between the intermediate and telephoto states even though each tabulated gap itself is monotonic. The other principal group stations move objectward over the wide-to-tele sequence. This reversal is an in-situ kinematic result, not an additional patent spacing.
 
@@ -103,7 +103,7 @@ nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya). Standalone f = -88.301 mm.
 
 L7 closes LG2 as an air-spaced negative meniscus. Its very high νd is the first of three 1.49700 / 81.61 media in the prescription, each matching HOYA FCD1 at the patent coordinates. In first-order terms, this lets the rear of the negative variator carry negative optical power with comparatively low d-line dispersion.
 
-Tamron’s A007 construction diagram marks three LD elements at the same three positions represented by L7, L9, and L13. The FCD1 assignment is a catalog identification consistent with that map; the patent itself neither uses the production “LD” label nor names a glass supplier.
+Tamron’s A007 construction diagram marks three LD elements at the same three positions represented by L7, L9, and L13. The FCD1 reference is a qualified spectral proxy consistent with that map; the patent itself neither uses the production “LD” label nor names a glass supplier.
 
 ### L8 — Biconvex Positive, Two Aspherical Surfaces
 
@@ -170,20 +170,20 @@ Example 4 publishes Fraunhofer d-line refractive indices and Abbe numbers but no
 
 This coherence supports named HOYA catalog matches in the model, but it does not prove the supplier or production melt. Several coordinates also have exact or near-exact OHARA or HIKARI equivalents. The names below are therefore **catalog-derived material assignments**, not patent facts.
 
-| Authored glass | Patent nd | Patent νd | Current HOYA coordinate | Residual | Used in |
-|---|---:|---:|---|---|---|
-| E-FDS1 (Hoya) | 1.92286 | 20.88 | 1.92286 / 20.88 | Δn = 0, Δνd = 0 | L1 |
-| TAF3 (Hoya) | 1.80420 | 46.50 | 1.80420 / 46.50 | Δn = 0, Δνd = 0 | L2, L3 |
-| Unmatched hybrid-asphere resin layer | 1.51460 | 49.96 | no defensible match within the audit window | — | L4r |
-| NBFD10 (Hoya) | 1.83400 | 37.34 | 1.83400 / 37.34 | Δn = 0, Δνd = 0 | L4g |
-| LAC8 (Hoya) | 1.71300 | 53.94 | 1.71300 / 53.94 | Δn = 0, Δνd = 0 | L5, L15 |
-| TAFD25 (Hoya) | 1.90366 | 31.31 | 1.90366 / 31.32 | Δn = 0, Δνd = +0.01 | L6, L10, L14 |
-| FCD1 (Hoya) | 1.49700 | 81.61 | 1.49700 / 81.61 | Δn = 0, Δνd = 0 | L7, L9, L13 |
-| M-PCD4 (Hoya) | 1.61881 | 63.85 | 1.61881 / 63.85 | Δn = 0, Δνd = 0 | L8 |
-| M-LAC130 (Hoya) | 1.69350 | 53.20 | 1.69350 / 53.20 | Δn = 0, Δνd = 0 | L11 |
-| E-FD4 (Hoya) | 1.75520 | 27.53 | 1.75520 / 27.53 | Δn = 0, Δνd = 0 | L12 |
-| M-TAFD51 (Hoya) | 1.82080 | 42.71 | 1.82080 / 42.71 | Δn = 0, Δνd = 0 | L16 |
-| NBF1 (Hoya) | 1.74330 | 49.22 | 1.74330 / 49.22 | Δn = 0, Δνd = 0 | L17 |
+| Authored glass                       | Patent nd | Patent νd | Current HOYA coordinate                     | Residual            | Used in      |
+| ------------------------------------ | --------: | --------: | ------------------------------------------- | ------------------- | ------------ |
+| E-FDS1 (Hoya)                        |   1.92286 |     20.88 | 1.92286 / 20.88                             | Δn = 0, Δνd = 0     | L1           |
+| TAF3 (Hoya)                          |   1.80420 |     46.50 | 1.80420 / 46.50                             | Δn = 0, Δνd = 0     | L2, L3       |
+| Unmatched hybrid-asphere resin layer |   1.51460 |     49.96 | no defensible match within the audit window | —                   | L4r          |
+| NBFD10 (Hoya)                        |   1.83400 |     37.34 | 1.83400 / 37.34                             | Δn = 0, Δνd = 0     | L4g          |
+| LAC8 (Hoya)                          |   1.71300 |     53.94 | 1.71300 / 53.94                             | Δn = 0, Δνd = 0     | L5, L15      |
+| TAFD25 (Hoya)                        |   1.90366 |     31.31 | 1.90366 / 31.32                             | Δn = 0, Δνd = +0.01 | L6, L10, L14 |
+| FCD1 (Hoya)                          |   1.49700 |     81.61 | 1.49700 / 81.61                             | Δn = 0, Δνd = 0     | L7, L9, L13  |
+| M-PCD4 (Hoya)                        |   1.61881 |     63.85 | 1.61881 / 63.85                             | Δn = 0, Δνd = 0     | L8           |
+| M-LAC130 (Hoya)                      |   1.69350 |     53.20 | 1.69350 / 53.20                             | Δn = 0, Δνd = 0     | L11          |
+| E-FD4 (Hoya)                         |   1.75520 |     27.53 | 1.75520 / 27.53                             | Δn = 0, Δνd = 0     | L12          |
+| M-TAFD51 (Hoya)                      |   1.82080 |     42.71 | 1.82080 / 42.71                             | Δn = 0, Δνd = 0     | L16          |
+| NBF1 (Hoya)                          |   1.74330 |     49.22 | 1.74330 / 49.22                             | Δn = 0, Δνd = 0     | L17          |
 
 The hybrid layer is treated separately from its NBFD10-coordinate substrate because the patent explicitly changes refractive index at surface 7. Tamron's construction diagram identifies the corresponding physical element as a hybrid asphere, supporting the interpretation of the 0.3000 mm medium as a bonded aspherical layer rather than an independently mounted lens.
 
@@ -217,14 +217,14 @@ $$
 
 The patent's quadratic `A h^2` term is zero for every Example 4 asphere. The final data stores the published fourth- through tenth-order terms as A4 through A10. A12 and A14 are zero-valued schema fields because Example 4 publishes no corresponding higher-order coefficients; they are not represented as independently published patent values.
 
-| Surface | Element | K | A4 (mm^-3) | A6 (mm^-5) | A8 (mm^-7) | A10 (mm^-9) |
-|---|---|---:|---:|---:|---:|---:|
-| 6A | L4r | 0.0000 | +1.43821×10^-5 | -2.52546×10^-8 | +7.46124×10^-11 | -1.61976×10^-13 |
-| 15A | L8 front | -0.9117 | +1.63947×10^-6 | +2.74286×10^-8 | -1.09388×10^-10 | +6.10564×10^-13 |
-| 16A | L8 rear | 0.0000 | +5.27374×10^-6 | +4.71512×10^-9 | +1.56698×10^-10 | -8.27035×10^-13 |
-| 20A | L11 front | 0.0000 | +4.43544×10^-6 | -5.49207×10^-10 | +1.55881×10^-11 | -1.14261×10^-13 |
-| 28A | L16 front | 0.0000 | +5.26332×10^-6 | -5.66812×10^-9 | -6.55846×10^-12 | -1.35552×10^-13 |
-| 29A | L16 rear | 0.0000 | +2.25411×10^-5 | +1.29573×10^-8 | +3.31551×10^-11 | -6.66568×10^-14 |
+| Surface | Element   |       K |     A4 (mm^-3) |      A6 (mm^-5) |      A8 (mm^-7) |     A10 (mm^-9) |
+| ------- | --------- | ------: | -------------: | --------------: | --------------: | --------------: |
+| 6A      | L4r       |  0.0000 | +1.43821×10^-5 |  -2.52546×10^-8 | +7.46124×10^-11 | -1.61976×10^-13 |
+| 15A     | L8 front  | -0.9117 | +1.63947×10^-6 |  +2.74286×10^-8 | -1.09388×10^-10 | +6.10564×10^-13 |
+| 16A     | L8 rear   |  0.0000 | +5.27374×10^-6 |  +4.71512×10^-9 | +1.56698×10^-10 | -8.27035×10^-13 |
+| 20A     | L11 front |  0.0000 | +4.43544×10^-6 | -5.49207×10^-10 | +1.55881×10^-11 | -1.14261×10^-13 |
+| 28A     | L16 front |  0.0000 | +5.26332×10^-6 |  -5.66812×10^-9 | -6.55846×10^-12 | -1.35552×10^-13 |
+| 29A     | L16 rear  |  0.0000 | +2.25411×10^-5 |  +1.29573×10^-8 | +3.31551×10^-11 | -6.66568×10^-14 |
 
 Surface 6A is the aspherical boundary on the thin bonded medium at the front of LG2. Its departure is dominated at low radial order by positive A4, with alternating higher-order terms shaping the periphery. Surfaces 15A and 16A form a two-sided aspherical positive element directly behind the stop; 15A additionally uses the strongly negative standard conic constant K = -0.9117. Surface 20A places an asphere directly on the laterally moving negative stabilization subgroup. Surfaces 28A and 29A provide a second two-sided aspherical element near the rear of LG4.
 
@@ -286,11 +286,11 @@ The production A007's Canon EF and Nikon F versions used Tamron's VC implementat
 
 The final prescription was independently re-entered from the rendered Example 4 table and evaluated in both height/reduced-angle and height/angle ABCD form. The two matrix formulations agree to numerical precision. EFL and paraxial BFD reproduce the patent values within 0.003 mm at all three published zoom states.
 
-| State | Computed EFL | Computed BFD | S1→image track | H1 from S1 | H2 from S31 | TL/EFL |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 24.699827 mm | 40.324769 mm | 151.3154 mm | +50.4101 mm | +15.6249 mm | 6.1262 |
-| Intermediate | 42.499325 mm | 53.222675 mm | 164.0538 mm | +81.8620 mm | +10.7234 mm | 3.8602 |
-| Tele | 67.797751 mm | 63.207260 mm | 181.8388 mm | +119.7987 mm | -4.5905 mm | 2.6821 |
+| State        | Computed EFL | Computed BFD | S1→image track |   H1 from S1 | H2 from S31 | TL/EFL |
+| ------------ | -----------: | -----------: | -------------: | -----------: | ----------: | -----: |
+| Wide         | 24.699827 mm | 40.324769 mm |    151.3154 mm |  +50.4101 mm | +15.6249 mm | 6.1262 |
+| Intermediate | 42.499325 mm | 53.222675 mm |    164.0538 mm |  +81.8620 mm | +10.7234 mm | 3.8602 |
+| Tele         | 67.797751 mm | 63.207260 mm |    181.8388 mm | +119.7987 mm |  -4.5905 mm | 2.6821 |
 
 Principal-plane offsets are signed positive toward image space. The BFD exceeds EFL at the wide and intermediate states but not at tele, so the design is not globally classified as retrofocus. The total-track ratio remains greater than one at every state, so it does not meet the project's telephoto-form criterion `TL/EFL < 1`.
 
@@ -298,7 +298,9 @@ For the modeled F/2.9 aperture, the entrance-pupil radii are **4.258591 / 7.3274
 
 The signed Petzval sum, computed surface by surface as `φ/(n·n′)`, is **+0.00130255284 mm^-1**, corresponding to a signed reciprocal of approximately **+767.723 mm**. This is a first-order field-curvature quantity rather than a prediction of the final higher-order best-focus surface.
 
-The modeled semi-diameters pass independent geometry checks. Minimum edge thickness is **0.431794 mm** at the L4r bonded layer; maximum actual rim slope is **63.546°** at surface 8; and the maximum shared-band cross-gap intrusion ratio is **0.863862** at S8→S9 in the wide state, below the 0.90 limit. Exact meridional Snell traces of the active F/2.9 on-axis marginal pair and the default 0.60-field bundle at all three zoom states remain inside every authored clear aperture; the smallest traced clearance is approximately **0.238 mm** at the telephoto on-axis marginal ray.
+The fresh2026-10-30 review compared every face of original Fig.22 (PDF23, native300dpi and600dpi) with actual nine-state SVGs. The hybrid now has a connected18.8mm outer body: S6A and its cemented substrate interface S7 grow continuously to18.8mm; S8 keeps its15.5mm optical cap with a land to18.8mm. The substrate spans the whole rim, without a detached resin wing or invented cemented land. S15A and S16A grow continuously to14.5mm. Full S9front-land trial at14mm fails the S8→S9 gap (9.401mm intrusion versus7.818mm allowed), so that source-outline limitation remains. Weak endpoint marks elsewhere do not justify extra cuts; no inward cap change is made.
+
+All18 original d-line nd/νd pairs (PDF35) remain exact, with17compatible glass curves and one unresolved hybrid resin. No additional spectral anchor or partial ratio is printed. Current catalog names remain qualified proxies, without production supplier, molding-grade or polymer-chemistry identification. Source asphere coefficients and epsilon-to-K conversion are unchanged. Polynomial departures at changed modeled caps are S6A+.952535mm@18.8, S15A+.364492mm@14.5 and S16A+.243366mm@14.5, not patent aperture measurements. Focused geometry, image-circle, aperture and full-field checks pass; actual nine-state rendering has zero trim.
 
 The patent publishes no clear-aperture heights, so the six asphere departures are not treated as source dimensions. They were nevertheless checked at the authored modeled semi-diameters for geometry validation. No K > 0 surface is present, so no finite conic-height cap is active.
 

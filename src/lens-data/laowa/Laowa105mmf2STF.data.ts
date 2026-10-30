@@ -27,8 +27,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Figure 1 (0.0846 mm/px over the 85.47 mm vertex span) and floor-checked by exact ray
  * trace under the default geometry rules. S6 and S11 end where Figure 1 ends the concave
  * rear faces of L3 and L6 at a flat annulus (20.5 mm, inside the 19.7–20.7 mm the figure
- * reads, and 15.6 mm); the renderer joins those unequal rims with a straight edge where
- * the figure draws a square block. L4 is square-cut at 21.5 mm on both faces, as drawn.
+ * reads, and 15.6 mm). Their independently drawn flat outer lands extend to 25.2 and
+ * 20 mm. S2/S8 use drawing-inferred cut depths 5.0/3.4 mm: S2's measured ~4.47 mm
+ * cannot clear the full modeled beam, so 5.0 mm is the conservative adopted value,
+ * not a measured dimension. L4 remains square-cut at 21.5 mm on both faces.
  * The narrow S6/S7 air gap admits that only with S6 at 20.5 mm or less under the default
  * gap rule; no gap-margin override is used. Figure 1 draws the ST1 opening near 13.2 mm,
  * below the 14.15 mm the F/2.05 axial ray needs there, so ST1 stays at 14.5 mm.
@@ -211,16 +213,16 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 40.6092, d: 6.6978, sd: 27, medium: 1 },
-    { label: "2", R: 69.6626, d: 0.2, sd: 27 },
+    { label: "2", R: 69.6626, d: 0.2, sd: 27, rimCutDepthMm: 5.0 },
     { label: "3", R: 56.3816, d: 6.8, sd: 25.2, medium: 2 },
     { label: "4", R: 400.1135, d: 0.0, sd: 25.2 },
     { label: "5", R: 400.1135, d: 2.0, sd: 25.2, medium: 3 },
-    { label: "6", R: 31.7755, d: 2.0812, sd: 20.5 },
+    { label: "6", R: 31.7755, d: 2.0812, sd: 20.5, rimExtensionSd: 25.2 },
     { label: "7", R: 40.1264, d: 4.2823, sd: 21.5, medium: 4 },
-    { label: "8", R: 62.1692, d: 0.2, sd: 21.5 },
+    { label: "8", R: 62.1692, d: 0.2, sd: 21.5, rimCutDepthMm: 3.4 },
     { label: "9", R: 31.8589, d: 8.9787, sd: 20, medium: 5 },
     { label: "10", R: -190.9504, d: 4.1646, sd: 20, medium: 6 },
-    { label: "11", R: 27.9354, sd: 15.6 },
+    { label: "11", R: 27.9354, sd: 15.6, rimExtensionSd: 20 },
     { label: "ST1", R: "flat", d: 1.0, sd: 14.5 },
     { label: "13", R: 90.8315, d: 3.0635, sd: 14.6, medium: 7 },
     { label: "14", R: -881.1564, d: 1.5, sd: 14.6 },

@@ -115,7 +115,7 @@ must not be read as dimensions disclosed by the patent.
 
 ### L11 — Negative Meniscus (convex to object)
 
-**nd = 1.84666, νd = 23.8. Glass: 847238 class. Standalone f = −144.349 mm.**
+**nd = 1.84666, νd = 23.8. Glass: J-SF03 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −144.349 mm.**
 
 L11 is the front member of the G1 cemented pair. Its standalone power is weakly negative, but that number describes the
 isolated element in air; it does not describe the bonded pair or the assembled G1. The low Abbe number relative to L12
@@ -127,7 +127,7 @@ remain positive without placing all of the positive power in a single crown elem
 
 ### L12 — Positive Meniscus (convex to object)
 
-**nd = 1.64000, νd = 60.1. Glass: S-BSM81 catalog equivalent (patent 640601; production supplier unspecified). Standalone f = +97.879 mm.**
+**nd = 1.64000, νd = 60.1. Glass: S-BSM81 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +97.879 mm.**
 
 L12 is cemented directly to L11. Its positive standalone power and substantially higher νd oppose both the sign of L11's
 power and its stronger dispersion. The isolated L11+L12 cemented pair has a net focal length of +310.469 mm, much weaker
@@ -140,7 +140,7 @@ made.
 
 ### L13 — Positive Meniscus (convex to object)
 
-**nd = 1.71300, νd = 53.9. Glass: 713539 class. Standalone f = +104.241 mm.**
+**nd = 1.71300, νd = 53.9. Glass: LAC8 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +104.241 mm.**
 
 L13 is the air-spaced rear positive element of G1. The weakly positive L11+L12 pair is followed by this stronger positive
 meniscus so that the complete isolated G1 reaches +78.788 mm. This distribution separates the chromatic balancing of the
@@ -163,7 +163,7 @@ discussed separately below.
 
 ### L21 — Negative Meniscus (convex to object)
 
-**nd = 1.80400, νd = 46.6. Glass: 804466 class. Standalone f = −18.023 mm.**
+**nd = 1.80400, νd = 46.6. Glass: H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −18.023 mm.**
 
 L21 is the glass substrate of the hybrid front component of G2. It supplies most of the negative power of that hybrid
 pair and begins the strongly negative focusing group. Because the resin layer is bonded to its front surface, the optical
@@ -176,7 +176,7 @@ and movement considerations.
 
 ### L22 — Biconcave Negative
 
-**nd = 1.80400, νd = 46.6. Glass: 804466 class. Standalone f = −19.292 mm.**
+**nd = 1.80400, νd = 46.6. Glass: H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −19.292 mm.**
 
 L22 repeats the same nd/νd coordinate class as the L21 substrate but uses a biconcave form and remains air-spaced. Its
 standalone negative power is comparable to L21's, increasing the negative strength of G2 without adding another material
@@ -188,7 +188,7 @@ G2 as −14.000 mm after all four physical elements and their internal separatio
 
 ### L23 — Biconvex Positive
 
-**nd = 1.79504, νd = 28.5. Glass: J-LAFH3 catalog equivalent (patent 795285; production supplier unspecified). Standalone f = +16.676 mm.**
+**nd = 1.79504, νd = 28.5. Glass: J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +16.676 mm.**
 
 L23 is the sole positive element within the negative G2. Its strong positive standalone power opposes the surrounding
 negative members and helps shape the net group power rather than simply maximizing divergence. The low νd means it is not
@@ -199,7 +199,7 @@ coordinate, so the label remains a modeling proxy and does not identify Nikon's 
 
 ### L24 — Negative Meniscus (concave to object)
 
-**nd = 1.80400, νd = 46.6. Glass: 804466 class. Standalone f = −44.576 mm.**
+**nd = 1.80400, νd = 46.6. Glass: H-ZLaF50D (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −44.576 mm.**
 
 L24 is the rear negative meniscus of G2. It closes the focusing group immediately ahead of D14 and the aperture-stop
 region, so translation of G2 directly changes the G2-to-stop/G3 separation.
@@ -210,7 +210,7 @@ the patent discusses G2's power limits at the group level rather than assigning 
 
 ### L31 — Negative Meniscus (convex to object)
 
-**nd = 1.80440, νd = 39.6. Glass: 804396 class. Standalone f = −27.228 mm.**
+**nd = 1.80440, νd = 39.6. Glass: J-LASF013 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −27.228 mm.**
 
 L31 is the negative front member of the G3 cemented pair and lies immediately behind the aperture stop. Its negative
 standalone power is almost equal in magnitude to the positive standalone power of L32.
@@ -221,7 +221,7 @@ by the cemented pair alone but is completed by L33 and the internal group geomet
 
 ### L32 — Biconvex Positive
 
-**nd = 1.49782, νd = 82.6. Glass: J-FKH1 catalog equivalent (patent 498826; production supplier unspecified). Standalone f = +26.170 mm.**
+**nd = 1.49782, νd = 82.6. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +26.170 mm.**
 
 L32 is the positive rear member of the G3 cemented pair. Its very high νd is the strongest low-dispersion coordinate in
 the front three groups and creates a large dispersion contrast against L31 while their powers nearly cancel as a bonded
@@ -233,7 +233,7 @@ consistent with classifying L32 as ED, but it does not establish a particular me
 
 ### L33 — Biconvex Positive
 
-**nd = 1.48749, νd = 70.4. Glass: 487704 class. Standalone f = +28.150 mm.**
+**nd = 1.48749, νd = 70.4. Glass: N-FK5 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +28.150 mm.**
 
 L33 is the air-spaced positive rear element of G3. After the nearly neutral L31+L32 cemented pair, L33 supplies much of
 the positive group power required around the stop. The complete isolated G3 has an EFL of +26.681 mm.
@@ -244,7 +244,7 @@ patent to the spherical-aberration/compactness trade.
 
 ### L41 — Positive Meniscus (concave to object)
 
-**nd = 1.84666, νd = 23.8. Glass: 847238 class. Standalone f = +34.418 mm.**
+**nd = 1.84666, νd = 23.8. Glass: J-SF03 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +34.418 mm.**
 
 L41 is the positive front element of the fixed G4. Although positive in isolation, it is paired across a narrow air gap
 with the stronger negative L42 so that the complete isolated G4 is negative at −41.402 mm.
@@ -256,7 +256,7 @@ cemented interface.
 
 ### L42 — Biconcave Negative
 
-**nd = 1.83481, νd = 42.7. Glass: 835427 class. Standalone f = −18.612 mm.**
+**nd = 1.83481, νd = 42.7. Glass: J-LASF05 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −18.612 mm.**
 
 L42 supplies the dominant negative power of G4. The patent states that G4 remains fixed during zooming (¶0086), and the
 image-plane-normalized reconstruction confirms that its station is constant to within 0.0088 mm across the three
@@ -268,7 +268,7 @@ placing G4 within the permitted power range and fixing it mechanically during zo
 
 ### L51 — Positive Meniscus (concave to object)
 
-**nd = 1.49782, νd = 82.5. Glass: J-FKH1 catalog equivalent (patent 498825; production supplier unspecified). Standalone f = +39.017 mm.**
+**nd = 1.49782, νd = 82.5. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +39.017 mm.**
 
 L51 begins the rear positive group G5. Its high νd identifies it as a low-dispersion coordinate class in the modeled prescription.
 The element's very weakly curved front surface and stronger rear surface produce positive standalone power while keeping
@@ -280,7 +280,7 @@ not a vendor or melt identification.
 
 ### L52 — Biconvex Positive
 
-**nd = 1.49782, νd = 82.5. Glass: J-FKH1 catalog equivalent (patent 498825; production supplier unspecified). Standalone f = +41.336 mm.**
+**nd = 1.49782, νd = 82.5. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = +41.336 mm.**
 
 L52 is the second low-dispersion positive element of G5 and uses the same coordinate pair as L51. Its biconvex form adds
 positive power behind L51 before the final negative meniscus.
@@ -291,7 +291,7 @@ identity.
 
 ### L53 — Negative Meniscus (concave to object)
 
-**nd = 1.80518, νd = 25.4. Glass: 805254 class. Standalone f = −43.289 mm.**
+**nd = 1.80518, νd = 25.4. Glass: N-SF6 (catalog-compatible spectral proxy; production supplier unspecified). Standalone f = −43.289 mm.**
 
 L53 is the rear negative meniscus and final physical element. Its high index and low νd oppose the two positive,
 high-νd elements ahead of it, leaving the complete isolated G5 positive at +34.681 mm.
@@ -302,33 +302,28 @@ behavior to L51, L52, or L53.
 
 ## Glass Identification and Selection
 
-The patent does not name glass manufacturers. It publishes only d-line refractive index and Abbe number. The model uses
-coordinate classes or supplier-neutral catalog equivalents where a compatible dispersion curve exists; each proxy
-retains the patent code and explicitly leaves the production supplier unspecified.
+The original prescription supplies d-line indices and Abbe numbers, with no supplier, melt, measured line-index set, or partial-dispersion table. Every source `nd`/`νd` pair is retained. The following names identify the current resolver's catalog-compatible spectral curves; they do not identify Nikon's production glass.
 
-| Modeled glass label | nd | νd | Used by | Interpretation |
-|---|---:|---:|---|---|
-| 847238 class | 1.84666 | 23.8 | L11, L41 | high-index, high-dispersion class |
-| S-BSM81 catalog equivalent (patent 640601) | 1.64000 | 60.1 | L12 | supplier-neutral dispersion proxy |
-| 713539 class | 1.71300 | 53.9 | L13 | high-index crown/lanthanum-class coordinate |
-| Unmatched (hybrid aspheric resin; patent nd=1.55389, vd=38.1) | 1.55389 | 38.1 | L21r | bonded resin medium, not optical glass |
-| 804466 class | 1.80400 | 46.6 | L21, L22, L24 | high-index class used throughout G2 |
-| J-LAFH3 catalog equivalent (patent 795285) | 1.79504 | 28.5 | L23 | supplier-neutral dispersion proxy |
-| 804396 class | 1.80440 | 39.6 | L31 | high-index cemented negative member |
-| J-FKH1 catalog equivalent (patent 498826) | 1.49782 | 82.6 | L32 | supplier-neutral proxy; inferred ED role |
-| 487704 class | 1.48749 | 70.4 | L33 | low-dispersion crown coordinate |
-| 835427 class | 1.83481 | 42.7 | L42 | high-index negative coordinate |
-| J-FKH1 catalog equivalent (patent 498825) | 1.49782 | 82.5 | L51, L52 | supplier-neutral proxy; inferred ED role |
-| 805254 class | 1.80518 | 25.4 | L53 | dense, high-dispersion rear negative coordinate |
+| Medium | Source nd | Source νd | Selected spectral proxy |
+|---|---:|---:|---|
+| L11 | 1.84666 | 23.80 | J-SF03 |
+| L12 | 1.64000 | 60.10 | S-BSM81 |
+| L13 | 1.71300 | 53.90 | LAC8 |
+| L21r | 1.55389 | 38.10 | Unresolved resin; trade name unpublished |
+| L21 | 1.80400 | 46.60 | H-ZLaF50D |
+| L22 | 1.80400 | 46.60 | H-ZLaF50D |
+| L23 | 1.79504 | 28.50 | J-LAFH3 |
+| L24 | 1.80400 | 46.60 | H-ZLaF50D |
+| L31 | 1.80440 | 39.60 | J-LASF013 |
+| L32 | 1.49782 | 82.60 | J-FKH1 |
+| L33 | 1.48749 | 70.40 | N-FK5 |
+| L41 | 1.84666 | 23.80 | J-SF03 |
+| L42 | 1.83481 | 42.70 | J-LASF05 |
+| L51 | 1.49782 | 82.50 | J-FKH1 |
+| L52 | 1.49782 | 82.50 | J-FKH1 |
+| L53 | 1.80518 | 25.40 | N-SF6 |
 
-Comparison against the catalog identifies compatible Sellmeier proxies for the 640601, 795285, 498826, and 498825
-coordinates. These matches increase modeled chromatic coverage but do not establish vendor identity. The
-1.49782/82.5 coordinate of L51 and L52 remains recorded separately from L32's 1.49782/82.6 patent coordinate.
-
-The glass palette establishes substantial first-order dispersion contrasts: L11/L12 in G1, L31/L32 in the G3 cemented
-pair, and L51/L52 against L53 in G5. These contrasts provide first-order dispersion leverage for chromatic balancing at the d-line/Abbe level,
-but they do not establish secondary-spectrum behavior. The patent supplies no per-element nC, nF, ng, θgF, or ΔPgF,
-and the model therefore contains no such values.
+No source `nC`, `nF`, `ng`, or `dPgF` values are invented. Catalog Sellmeier curves supply qualified modeled chromatic behavior where available; unresolved resin uses the Abbe model. The inferred ED roles of L32, L51, and L52 remain product correlations, without source APD measurements or supplier claims.
 
 ## Focus Mechanism
 
@@ -503,3 +498,7 @@ rather than enlarging the two elements until their surfaces overlap.
    (<https://www.us.schott.com/shop/advanced-optics/en/search/>), HIKARI (<https://www.hikari-g.co.jp/optical_glass/>),
    CDGM (<https://www.cdgmgd.com/database/toWebDatabase.htm?url=database>), and SUMITA
    (<https://www.sumita-opt.co.jp/en/download/>).
+
+## Fresh Source Reinspection
+
+The 2026-10-29 review directly inspected local `US20050068636A1.pdf`, Figure 2 on PDF page 3 at 600 dpi and Table 1/d-line definitions on pages 30–31. All sixteen media match the source. Surface 8 now retains its 8.5 mm curved cap and extends vertically to the existing 11.5 mm common outer rim, reproducing the exposed rear land of L21. At the original 300 dpi image scale (about 20.7 native px/mm), the measured endpoint ratio is q≈0.715±0.012; the adopted q=0.739 preserves the larger existing clear cap. Every other convex/concave face and cemented boundary was inspected. No additional exposed land is resolved strongly enough to justify clipping; the tight 0.28 mm S21/S22 gap retains its conservative 7.2 mm caps. Optical spacings, focus reconstruction, and source F-numbers remain unchanged.

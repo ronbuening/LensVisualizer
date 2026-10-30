@@ -209,7 +209,7 @@ reported for them.
 
 #### L13 — Biconvex Positive, ED-Class Coordinate
 
-`nd = 1.49782`, `νd = 82.5`. Glass: `498826 ED-class`. Standalone `f = +35.011 mm`.
+`nd = 1.49782`, `νd = 82.5`. Glass: `J-FKH1 — coordinate-compatible ED-class spectral proxy (supplier unresolved)`. Standalone `f = +35.011 mm`.
 
 L13 is the design's only coordinate with very high Abbe number. Nikon independently specifies one ED glass element in the
 production lens, so identifying this physical component as the ED-class correlate is well supported as a production-match
@@ -315,8 +315,8 @@ discarding it. The final authored coefficients are:
 | `A12` | +9.6020e-16 mm^-11 |
 
 No scale transformation is applied to the prescription, so these coefficient values remain at the patent's native scale.
-At the modeled `sd = 11.600 mm` rim of surface 6A, the verified sag is `1.186456 mm`; its departure from the corresponding
-spherical base is `-0.057569 mm`, and its polynomial departure from the mapped conic base is `-0.032092 mm`. These rim
+At the modeled `sd = 13.000 mm` rim of surface 6A, the verified sag is `1.465729 mm`; its departure from the corresponding
+spherical base is `-0.101380 mm`, and its polynomial departure from the mapped conic base is `-0.061141 mm`. These rim
 numbers depend on the modeled semi-diameter because the patent does not publish a clear aperture.
 
 The patent itself states that using the aspherical lens in G2 can effectively correct aberrations, particularly field
@@ -364,7 +364,7 @@ independent evidence of the production diaphragm diameter.
 
 The patent publishes no surface clear apertures. Every `sd` remains modeled. Figure 3 on PDF page 8 shows a broader
 G2 cemented pair and following positive meniscus than the initial ray-envelope estimates: surfaces 9–11 now use 9.4 mm
-and surfaces 12–13 use 8.8 mm. The front hybrid layer and its substrate retain their stepped optical rims; annotations,
+and surfaces 12–13 use 8.8 mm. The source-scaled compound outer rim is now 13.0 mm: both the continuous S6A aspheric face and S7 glass/layer interface reach that height, and the S8 rear land joins its retained 8.8 mm clear cap to the same outer rim. The complete compound stays connected, with positive layer-edge thickness 0.059532 mm at 13.0 mm. The layer is not assigned an unsupported resin identity. Other compound steps remain; annotations,
 group brackets, and manufacturing outlines were excluded from the measurement. Surface validation passes, and production
 render diagnostics show zero hidden trims across 15 sampled zoom/focus combinations.
 

@@ -9,7 +9,7 @@
 **Granted:** May 1, 2012\
 **Inventors:** Dayong Li; Hiroshi Yamamoto; Hiroki Harada\
 **Assignees:** Tamron Co., Ltd.; Nikon Corporation\
-**Title:** *Wide-Angle Zoom Lens*\
+**Title:** _Wide-Angle Zoom Lens_\
 **Example details:** Example 4, optical layout of FIG. 10
 
 The implemented prescription transcribes Example 4 of US 8,169,718 B2 without a focal-length scale factor. The patent
@@ -61,11 +61,11 @@ aspheric piece.
 
 The computed paraxial states are:
 
-| Zoom state | EFL (mm) | S26→image BFD (mm) | S1→S26 track (mm) | BFD/EFL |
-|---|---:|---:|---:|---:|
-| Wide | 10.294415 | 38.903508 | 94.6000 | 3.779089 |
-| Middle | 15.597244 | 45.894621 | 85.6378 | 2.942483 |
-| Tele | 23.392172 | 58.455034 | 80.3440 | 2.498914 |
+| Zoom state |  EFL (mm) | S26→image BFD (mm) | S1→S26 track (mm) |  BFD/EFL |
+| ---------- | --------: | -----------------: | ----------------: | -------: |
+| Wide       | 10.294415 |          38.903508 |           94.6000 | 3.779089 |
+| Middle     | 15.597244 |          45.894621 |           85.6378 | 2.942483 |
+| Tele       | 23.392172 |          58.455034 |           80.3440 | 2.498914 |
 
 Because `BFD > EFL` at all three source states, the verified design is retrofocus at wide, middle, and tele. The term is
 used here in the project's explicit first-order sense. For the separate telephoto test, total optical-system length is
@@ -201,7 +201,6 @@ S24–S26 stack is `-380.484395 mm`, so H2 is a very weak negative subassembly i
 
 ## Glass Identification and Selection
 
-
 The integration audit uses these runtime spectral curves: L1: `NBF1`; L2, L5: `TAFD30`; L2c, L14c: `Unmatched`; L3: `E-FD15`; L4: `M-FD80`; L6: `M-BACD5N`; L7: `NBFD15`; L8: `N-LAF34`; L9: `H-ZF52`; L10, L12: `FCD1`; L11, L13: `TAFD25`; L14: `E-FL5`. The coordinate/class descriptions below retain the source-identification context; catalog names are qualified proxies, not evidence of production suppliers.
 
 The prescription contains 13 distinct non-air `Nd/νd` coordinates across 16 refractive media entries. Authoritative
@@ -209,21 +208,21 @@ catalogs from HOYA, OHARA, SCHOTT, HIKARI, CDGM, and SUMITA were checked during 
 or near-equality is treated as candidate evidence, not as proof of the supplier or melt actually used in the patented or
 production lens.
 
-| Patent coordinate | Modeled use | Defensible model label / catalog evidence |
-|---|---|---|
-| 1.74330 / 49.22 | L1 | 743492 lanthanum-crown class; CDGM H-LaF53 exact, OHARA S-LAM60 and SCHOTT N-LAF35 nearby; supplier unresolved |
-| 1.88300 / 40.80 | L2, L5 | 883408 dense lanthanum-flint class; historical HOYA TAFD30 coordinate exact; supplier unresolved |
-| 1.53610 / 41.21 | L2c | Unmatched thin composite-asphere coordinate 536412 |
-| 1.69895 / 30.05 | L3 | 699301 dense-flint class; HOYA E-FD15L coordinate exact; supplier unresolved |
-| 1.68893 / 31.16 | L4 | 689312 dense-flint class; HOYA MP-FD80 coordinate exact; supplier unresolved |
-| 1.58913 / 61.25 | L6 | 589613 crown class; HOYA MP-BACD5N coordinate exact; supplier unresolved |
-| 1.80610 / 33.27 | L7 | 806333 dense-flint class; HOYA NBFD15 coordinate exact; supplier unresolved |
-| 1.77250 / 49.62 | L8 | 773496 lanthanum-crown class; SCHOTT N-LAF34 and historical HOYA TAF1 coordinates exact; supplier unresolved |
-| 1.84666 / 23.78 | L9 | 847238 high-dispersion flint class; HOYA FDS90 and CDGM H-ZF52 coordinates exact; supplier unresolved |
-| 1.49700 / 81.61 | L10, L12 | 497816 ED fluorophosphate class; HOYA FCD1 and CDGM D-FK61 coordinates exact; supplier unresolved |
-| 1.90366 / 31.31 | L11, L13 | 904313 dense lanthanum-flint class; HOYA TAFD25-class match within `Δνd = +0.006`; supplier unresolved |
-| 1.51460 / 49.96 | L14c | Unmatched thin composite-asphere coordinate 515500 |
-| 1.58144 / 40.89 | L14 | 581409 light-flint class; CDGM H-QF50 coordinate exact; supplier unresolved |
+| Patent coordinate | Modeled use | Defensible model label / catalog evidence                                                                      |
+| ----------------- | ----------- | -------------------------------------------------------------------------------------------------------------- |
+| 1.74330 / 49.22   | L1          | 743492 lanthanum-crown class; CDGM H-LaF53 exact, OHARA S-LAM60 and SCHOTT N-LAF35 nearby; supplier unresolved |
+| 1.88300 / 40.80   | L2, L5      | 883408 dense lanthanum-flint class; historical HOYA TAFD30 coordinate exact; supplier unresolved               |
+| 1.53610 / 41.21   | L2c         | Unmatched thin composite-asphere coordinate 536412                                                             |
+| 1.69895 / 30.05   | L3          | 699301 dense-flint class; HOYA E-FD15L coordinate exact; supplier unresolved                                   |
+| 1.68893 / 31.16   | L4          | 689312 dense-flint class; HOYA MP-FD80 coordinate exact; supplier unresolved                                   |
+| 1.58913 / 61.25   | L6          | 589613 crown class; HOYA MP-BACD5N coordinate exact; supplier unresolved                                       |
+| 1.80610 / 33.27   | L7          | 806333 dense-flint class; HOYA NBFD15 coordinate exact; supplier unresolved                                    |
+| 1.77250 / 49.62   | L8          | 773496 lanthanum-crown class; SCHOTT N-LAF34 and historical HOYA TAF1 coordinates exact; supplier unresolved   |
+| 1.84666 / 23.78   | L9          | 847238 high-dispersion flint class; HOYA FDS90 and CDGM H-ZF52 coordinates exact; supplier unresolved          |
+| 1.49700 / 81.61   | L10, L12    | 497816 ED fluorophosphate class; HOYA FCD1 and CDGM D-FK61 coordinates exact; supplier unresolved              |
+| 1.90366 / 31.31   | L11, L13    | 904313 dense lanthanum-flint class; HOYA TAFD25-class match within `Δνd = +0.006`; supplier unresolved         |
+| 1.51460 / 49.96   | L14c        | Unmatched thin composite-asphere coordinate 515500                                                             |
+| 1.58144 / 40.89   | L14         | 581409 light-flint class; CDGM H-QF50 coordinate exact; supplier unresolved                                    |
 
 The two `1.49700/81.61` elements are the strongest low-dispersion coordinates in the prescription and occupy separate
 physical positions in G4. Their count aligns with Nikon's two-ED-element product specification. The identification does not
@@ -231,7 +230,7 @@ extend to a specific FCD1 or D-FK61 supplier because the patent does not name on
 
 The patent publishes only d-line index and Abbe number. It does not publish per-element `nC`, `nF`, `ng`, or `dPgF`.
 Some catalog candidates have such data, but using those line indices would silently assume the candidate glass identity.
-The final data therefore does not author those spectral fields. L10 and L12 carry **inferred APD** display tags from their compatible FCD1 curve (catalog deviation approximately +0.0312 from the engine normal line). This inference does not establish the production melt, patent-measured partial dispersion, or APO performance.
+The final data therefore does not author those spectral fields. L10 and L12 carry **inferred APD** display tags from their compatible FCD1 curve (catalog deviation approximately +0.0323 at the stored νd = 81.61 from the engine normal line). This inference does not establish the production melt, patent-measured partial dispersion, or APO performance.
 
 ## Focus Mechanism
 
@@ -295,8 +294,7 @@ aspherical surface. The raw “#11” heading is therefore preserved as a source
 - `A20 = -3.47259e-24 mm^-19`
 
 Surface 2A is the rear face of the front negative meniscus. The patent gives the coefficients but no surface-specific clear
-semi-diameter. The model therefore does not use the authored 17.1 mm semi-diameter as source evidence, and no source-
-verified departure is quoted for this surface.
+semi-diameter. The model therefore does not treat its 17.1 mm clear semi-diameter as a patent measurement. Figure 10 supports a flat opaque rear land, now drawn from that unchanged cap to a 23.2 mm outer radius. The front asphere remains unchanged at its source-verified 23.2 mm clear radius. The land restores the tall front-meniscus outline without tracing the strongly diverging rear polynomial outside its validated cap.
 
 ### Surface 5A
 
@@ -343,23 +341,23 @@ The patent evaluates a set of design inequalities for Example 4. Independent com
 reproduces the printed values within source-precision-aware tolerances. Formula (14) uses the visible `14.50 mm` maximum
 image-height ordinate in Example-4 FIGS. 11–12 as a source cross-check rather than an exact field ray trace.
 
-| Formula | Printed Example-4 value | Recomputed value | Residual |
-|---|---:|---:|---:|
-| (11) | 4.439 | 4.439289 | +0.000289 |
-| (12) | 5.077 | 5.076885 | -0.000115 |
-| (13) | 5.448 | 5.448264 | +0.000264 |
-| (14) | 1.409 | 1.408531 | -0.000469 |
-| (15) | 0.849 | 0.848746 | -0.000254 |
-| (21) | 3.385 | 3.385878 | +0.000878 |
-| (22) | 0.739 | 0.738896 | -0.000104 |
-| (23) | 34.857 | 34.855637 | -0.001363 |
-| (24) | 9.412 | 9.412097 | +0.000097 |
-| (31) | 1.050 | 1.049747 | -0.000253 |
-| (32) | 13.895 | 13.896221 | +0.001221 |
-| (33) | 1.484 | 1.483927 | -0.000073 |
-| (34) | 0.144 | 0.144149 | +0.000149 |
-| (35) | 2.462 | 2.461583 | -0.000417 |
-| (41) | 0.223 | 0.223051 | +0.000051 |
+| Formula | Printed Example-4 value | Recomputed value |  Residual |
+| ------- | ----------------------: | ---------------: | --------: |
+| (11)    |                   4.439 |         4.439289 | +0.000289 |
+| (12)    |                   5.077 |         5.076885 | -0.000115 |
+| (13)    |                   5.448 |         5.448264 | +0.000264 |
+| (14)    |                   1.409 |         1.408531 | -0.000469 |
+| (15)    |                   0.849 |         0.848746 | -0.000254 |
+| (21)    |                   3.385 |         3.385878 | +0.000878 |
+| (22)    |                   0.739 |         0.738896 | -0.000104 |
+| (23)    |                  34.857 |        34.855637 | -0.001363 |
+| (24)    |                   9.412 |         9.412097 | +0.000097 |
+| (31)    |                   1.050 |         1.049747 | -0.000253 |
+| (32)    |                  13.895 |        13.896221 | +0.001221 |
+| (33)    |                   1.484 |         1.483927 | -0.000073 |
+| (34)    |                   0.144 |         0.144149 | +0.000149 |
+| (35)    |                   2.462 |         2.461583 | -0.000417 |
+| (41)    |                   0.223 |         0.223051 | +0.000051 |
 
 Three source issues require explicit qualification. First, Formulae (12)–(13) depend on the front asphere and are reproduced
 from surface 1 despite the normal-angle table's “#11” heading. Second, the patent prose defines `D12w` as the distance
@@ -390,10 +388,7 @@ geometry passes the portable edge-thickness, actual-rim-slope, conic-domain, and
 spherical/aspherical rays pass at the on-axis stop edges and at five pupil samples for 0.60 of the interpolated published
 half-field over nine zoom samples. That sampling does not establish exact full-edge-field containment.
 
-A separate paraxial edge scan exposes the remaining aperture-model limitation. At the wide state at least one sampled ray
-is supported to approximately 0.93 of the published half-field, corresponding to about 103.62° full field rather than the
-published 111.42°. Middle and tele reach the published paraxial field edge in that scan. The wide discrepancy is retained
-as a modeled semi-diameter limitation rather than hidden by enlarging the strongly aspherical front geometry.
+The fresh exact chief-ray field audit reaches the 14.175 mm format corner at all three stations: modeled half-fields are 54.9958°, 42.1113°, and 30.8581°, with no rim clipping of the corner chief rays. This supersedes the earlier wide-field restriction recorded in September. It establishes current model coverage, not exact reproduction of every patent field or aberration curve. Formula (14) still prints Ymax/Fw = 1.254, corresponding to about 12.91 mm at the source wide focal length; that source condition is retained separately from the current format-corner result.
 
 The patent does not tabulate an image-plane row after surface 26. The model therefore appends computed paraxial air BFDs of
 38.903508, 45.894621, and 58.455034 mm at wide, middle, and tele. No sensor cover glass, filter, inactive dummy plane, or
@@ -401,6 +396,8 @@ mechanical part is removed from Example 4 because no such rear plane appears in 
 
 No uniform scaling is applied. The source prescription and the implemented prescription use the same millimeter scale,
 and the aspheric coefficients therefore require no scale transformation.
+
+For the new rear land, the 300 ppi original gives about 15.2 native pixels/mm over the 94.6 mm first-to-last-vertex span. Its cap/edge ratio is approximately 246/387 = 0.636 ±0.0042, with an absolute source-scaled cap near 16.1 mm. A direct ratio-scaled 14.75 mm trial fails the inferred-cut beam rule; the beam reaches 15.2645 mm at wide / field 53.47°, requiring at least 15.3145 mm. A 16.1 mm trial clears that sweep, but a numerical cut at depth 12.54 mm with the required tall 23.2 mm outer rim fails real polynomial geometry: the profile reverses, producing negative edge thickness and excessive slope at that height. The final model therefore preserves the existing 17.1 mm optical cap and adds only `rimExtensionSd: 23.2`; its adopted cap/outer ratio 0.737 is deliberately larger than the drawing’s measured ratio. No optical trim bypasses the ongoing cut guard.
 
 The product-to-patent attribution, the two composite-layer interpretations, the non-source semi-diameters, and the stop
 radius are modeling or correlation inferences. The patent radii, thicknesses, indices, Abbe numbers, zoom clearances, and

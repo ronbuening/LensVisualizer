@@ -42,7 +42,7 @@ The physical lens contains seven elements in five air-separated construction gro
 
 `G2` begins with the low-dispersion positive `L2a`, then the aperture stop, then the front cemented pair `L2ap + L2an`. After an 11.2 mm pneumatic space comes the rear cemented pair `Lbn + Lbp`. The final TypeScript-array computation gives `G2-1` a focal length of approximately +47.0566 mm, `G2-2` approximately +101.5105 mm, and the complete `G2` approximately +38.5000 mm.
 
-The aperture stop position is source-published: it lies 1.8 mm behind surface 7 and 2.0 mm ahead of surface 9. Its physical semi-diameter is not published. The 7.799 mm semi-diameter stored on the stop row of the prescription is a first-order inference from the wide-state F/3.56 condition. The wide-open iris used for tracing is solved at each zoom station from the published F-number with a real marginal ray, and measures 7.893, 7.962, and 8.007 mm at wide, mid, and tele.
+The aperture stop position is source-published: it lies 1.8 mm behind surface 7 and 2.0 mm ahead of surface 9. Its physical semi-diameter is not published. The 7.799 mm semi-diameter stored on the stop row of the prescription is a first-order inference from the wide-state F/3.56 condition. The current per-station runtime iris follows the source F-numbers and measures 7.799001, 7.790765, and 7.748381 mm at wide, mid, and tele. The focused aperture audit is iris-limited at f/3.56, f/4.65, and f/5.90; the earlier real-ray radius estimates in the dated audit are historical calculations.
 
 Zooming is performed by varying the air space between `G1` and `G2` (¶0133). At infinity the `D5` gap contracts from 44.09357 mm at 18.5 mm to 13.18951 mm at 35.0 mm and 1.20774 mm at 53.5 mm. With the image plane used as the fixed reference, `G1` moves imageward from wide to mid and then reverses direction toward the object from mid to tele, while `G2` continues objectward. The three patent zoom stations are therefore retained as interpolation anchors rather than reducing the motion to a monotonic two-point model.
 
@@ -54,9 +54,9 @@ The patent also includes a moving flare stopper `F` behind the last refracting s
 
 ### H1 — L1g + L1r: hybrid front negative element
 
-**L1g:** `nd = 1.772500`, `νd = 49.61`. Glass: `773496` class, vendor ambiguous. Standalone-in-air `f = −24.7341 mm`.
+**L1g:** `nd = 1.772500`, `νd = 49.61`. Glass: J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = −24.7341 mm`.
 
-**L1r:** `nd = 1.553890`, `νd = 38.09`. Glass: `Unmatched (aspheric resin; trade name unpublished)`. Standalone-in-air `f = −90.7827 mm`.
+**L1r:** `nd = 1.553890`, `νd = 38.09`. Glass: Unmatched (aspheric resin; trade name unpublished; patent nd=1.553890, vd=38.09). Standalone-in-air `f = −90.7827 mm`.
 
 The physical front element is a negative meniscus convex toward the object. The patent explicitly describes it as a compound lens made from glass and resin, with the resin on the image side and the outer resin surface aspherical (¶0129). In the data model the substrate and resin are separate entries because they are separate optical media joined at surface 2.
 
@@ -66,7 +66,7 @@ The resin asphere provides a non-spherical correction surface without requiring 
 
 ### L1p — positive meniscus completing G1
 
-**L1p:** `nd = 1.860740`, `νd = 23.06`. Glass: `861231` dense-flint class; HIKARI J-SFH2 is a close modern catalog equivalent, but the historical identity is unproven. Standalone-in-air `f = +77.9678 mm`.
+**L1p:** `nd = 1.860740`, `νd = 23.06`. Glass: J-SFH2 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = +77.9678 mm`.
 
 `L1p` is a positive meniscus convex toward the object and is the second physical element of `G1`. The patent deliberately constrains this element to very high refractive index and very high dispersion: condition (5) requires `ν1p < 23.2`, while condition (6) requires `n1p > 1.790`. Example 4 gives `νd = 23.06` and `nd = 1.860740`.
 
@@ -76,20 +76,20 @@ Together, the hybrid negative element and `L1p` produce the computed `G1` focal 
 
 ### L2a — low-dispersion biconvex positive
 
-**L2a:** `nd = 1.497000`, `νd = 81.61`. Glass: `497816` low-dispersion class, vendor/composition ambiguous. Standalone-in-air `f = +59.4042 mm`.
+**L2a:** `nd = 1.497000`, `νd = 81.61`. Glass: H-FK61 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = +59.4042 mm`.
 
 `L2a` is the first powered element of `G2-1` and lies immediately ahead of the aperture stop. Its unusually high Abbe number makes it the clearest prescription-level counterpart to the production lens's one ED element. That correspondence is part of the production correlation, not proof that a specific vendor's ED glass was used.
 
 The data records that production correlation as `apd: "inferred"`; it does not add unreported partial-dispersion values
 or turn the ED role into a vendor or melt identification.
 
-The independent catalog audit found exact present-day coordinate matches for the `1.497000 / 81.61` pair in more than one vendor family, including SCHOTT N-PK52A, HOYA FCD1, and CDGM H-FK61. Because the patent does not name the glass and the coordinates are not vendor-unique, the final data retains a neutral `497816` low-dispersion class annotation without assigning a composition or vendor.
+The independent catalog audit found exact present-day coordinate matches for the `1.497000 / 81.61` pair in more than one vendor family, including SCHOTT N-PK52A, HOYA FCD1, and CDGM H-FK61. The current model selects H-FK61 as a catalog-compatible spectral proxy; the shared coordinates do not establish a production supplier or composition.
 
 ### D1 — L2ap + L2an: front cemented pair
 
-**L2ap:** `nd = 1.516800`, `νd = 64.10`. Glass: `517641` crown class, BK7-family coordinates. Standalone-in-air `f = +28.6323 mm`.
+**L2ap:** `nd = 1.516800`, `νd = 64.10`. Glass: N-BK7 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = +28.6323 mm`.
 
-**L2an:** `nd = 1.772500`, `νd = 49.61`. Glass: `773496` class, vendor ambiguous. Standalone-in-air `f = −30.1690 mm`.
+**L2an:** `nd = 1.772500`, `νd = 49.61`. Glass: J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = −30.1690 mm`.
 
 This pair follows the stop and closes the front positive subgroup `G2-1`. The two constituents are individually a strong positive biconvex element and a strong negative biconcave element when evaluated separately in air.
 
@@ -99,9 +99,9 @@ That result exposes a direct source contradiction. Paragraph 0131 calls `L2ap + 
 
 ### D2 — Lbn + Lbp: rear cemented pair
 
-**Lbn:** `nd = 1.834000`, `νd = 37.17`. Glass: `834372` high-index class, vendor/composition ambiguous. Standalone-in-air `f = −26.4573 mm`.
+**Lbn:** `nd = 1.834000`, `νd = 37.17`. Glass: J-LASF010 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = −26.4573 mm`.
 
-**Lbp:** `nd = 1.516800`, `νd = 64.10`. Glass: `517641` crown class, BK7-family coordinates. Standalone-in-air `f = +21.5866 mm`.
+**Lbp:** `nd = 1.516800`, `νd = 64.10`. Glass: N-BK7 (catalog-compatible spectral proxy; production supplier unspecified). Standalone-in-air `f = +21.5866 mm`.
 
 The rear subgroup `G2-2` is a cemented negative-meniscus/positive-biconvex pair. Unlike the front cemented pair, its net sign agrees with the patent's positive-subgroup description: computation through surfaces 12–14 gives `+0.00985120 mm⁻¹`, equivalent to approximately `+101.5105 mm`.
 
@@ -109,20 +109,20 @@ The patent's condition (4) constrains the index difference between the negative 
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive index and Abbe number only. It does not publish trade names, melt numbers, `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The glass annotations therefore record coordinate classes or an explicit unmatched resin rather than asserting a vendor identity that the source does not establish.
+The original prescription supplies d-line indices and Abbe numbers, with no supplier, melt, measured line-index set, or partial-dispersion table. Every source `nd`/`νd` pair is retained. The following names identify the current resolver's catalog-compatible spectral curves; they do not identify Nikon's production glass.
 
-| Data annotation | `nd` | `νd` | Used in | Identification discipline |
-|---|---:|---:|---|---|
-| `773496` class | 1.772500 | 49.61 | L1g, L2an | Multiple modern vendor equivalents lie essentially on the same coordinates; historical vendor is ambiguous. |
-| Unmatched aspheric resin | 1.553890 | 38.09 | L1r | Patent identifies resin but gives no trade name; optical-glass catalog naming would be inappropriate. |
-| `861231` dense-flint class | 1.860740 | 23.06 | L1p | HIKARI J-SFH2 is a close coordinate equivalent; identity remains inferred rather than source-published. |
-| `497816` low-dispersion class | 1.497000 | 81.61 | L2a | Multiple vendor families share this coordinate code; the patent does not establish composition or supplier. |
-| `517641` crown class | 1.516800 | 64.10 | L2ap, Lbp | BK7-family coordinate region; no unique vendor can be defended from the patent. |
-| `834372` high-index class | 1.834000 | 37.17 | Lbn | Current HIKARI/OHARA families lie at or very near the coordinates, but the patent does not establish vendor or composition. |
+| Medium | Source nd | Source νd | Selected spectral proxy |
+|---|---:|---:|---|
+| L1g | 1.77250 | 49.61 | J-LASF016 |
+| L1r | 1.55389 | 38.09 | Unresolved resin; trade name unpublished |
+| L1p | 1.86074 | 23.06 | J-SFH2 |
+| L2a | 1.49700 | 81.61 | H-FK61 |
+| L2ap | 1.51680 | 64.10 | N-BK7 |
+| L2an | 1.77250 | 49.61 | J-LASF016 |
+| Lbn | 1.83400 | 37.17 | J-LASF010 |
+| Lbp | 1.51680 | 64.10 | N-BK7 |
 
-The palette uses both dispersion and refractive-index contrast rather than relying on a large number of elements. The front group's `L1p` is deliberately high-index/high-dispersion, while `L2a` is strongly low-dispersion. The two cemented pairs use substantial index differences between their negative and positive constituents, consistent with the patent's Petzval and aberration-balancing conditions.
-
-No apochromatic or anomalous-partial-dispersion claim is made. The final data intentionally omits `nC`, `nF`, `ng`, and `dPgF`, and the class-level glass labels do not provide sufficient historical certainty to import vendor Sellmeier behavior as though it were source data.
+No source `nC`, `nF`, `ng`, or `dPgF` values are invented. Catalog Sellmeier curves supply qualified modeled chromatic behavior where available; unresolved resin uses the Abbe model. The inferred ED role of L2a remains a product correlation, without a source APD measurement or supplier claim.
 
 ## Focus Mechanism
 
@@ -208,21 +208,25 @@ The load-bearing paraxial quantities were recomputed from the final TypeScript a
 
 The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is `+0.0034091601 mm⁻¹`, corresponding to a signed Petzval radius of approximately −293.327 mm under the project's `−1/ΣP` convention.
 
-The `nominalFno` array holds the wide-open F-numbers printed on the spherical-aberration plots of Figs. 14–16; Table 4 gives only the end values, as 3.56–5.9. The wide-open iris is solved separately at each zoom station by tracing a real marginal ray for that station's F-number to the stop plane.
+The station F-numbers are those printed on Figs. 14–16; Table 4 gives the end values as 3.56–5.9. The current runtime derives a separate physical iris from each station's source F-number:
 
-| State | Published FNO | Iris semi-diameter (real marginal ray) | First-order equivalent | Traced on-axis FNO | Axial limiter |
-|---|---:|---:|---:|---:|---|
-| Wide | 3.56 | 7.893 mm | 7.799 mm | 3.56 | Iris |
-| Mid | 4.65 | 7.962 mm | 7.791 mm | 4.65 | Iris |
-| Tele | 5.90 | 8.007 mm | 7.748 mm | 5.90 | Iris |
+| State | Published FNO | Current iris semi-diameter | Audited on-axis FNO | Axial limiter |
+|---|---:|---:|---:|---|
+| Wide | 3.56 | 7.799001 mm | 3.56 | Iris |
+| Mid | 4.65 | 7.790765 mm | 4.65 | Iris |
+| Tele | 5.90 | 7.748381 mm | 5.90 | Iris |
 
-The three stations do not share one stop radius within the rounding of the printed values. The real-ray radii spread by 1.43% and grow toward the telephoto end; the first-order radii spread by 0.65% and shrink. A single 7.799 mm first-order stop gives approximately F/4.6451 at mid, which rounds to the printed 4.65, and F/5.8617 at tele, which agrees with Table 4's one-decimal 5.9 but not with the 5.90 of Fig. 16. A single 7.893 mm real-ray stop gives F/4.69 and F/5.98. Example 4 gives the aperture stop a position but no diameter; the only fixed-diameter statement in its description concerns the flare stopper `F` (¶0133). The model therefore follows the printed station values, and no lens rim limits the axial beam at any of the three stations.
+The source gives the aperture stop a position but no diameter. Its fixed-diameter statement concerns flare stopper `F` (¶0133). These inferred current iris values preserve the source apertures; the dated audit's real-marginal-ray radii are historical estimates, not the current runtime radii. No lens rim limits the focused axial aperture audit.
 
 Because the patent supplies no clear apertures, every modeled semi-diameter is an inference. The patent-figure-refined
 front-group rims pass the independent surface, image-circle, and exact non-paraxial checks over every authored infinity
 and closest-focus zoom endpoint. These results support the modeled apertures without presenting them as patent data.
 
 The known paragraph-0131 sign contradiction remains unresolved by design: the numerical prescription is preserved because it reproduces the focal lengths, focus states, and conditional expressions. Likewise, the production/patent close-focus mismatch is preserved rather than normalized away.
+
+## Fresh Source Reinspection
+
+The 2026-10-29 review directly inspected local `US20060007559A1.pdf`, Figure 13 on PDF page 14 at 600 dpi, Table 4 on page 35, the d-line convention on page 30, and the aperture plots on pages 15–17. All eight media match the original table. No geometry changes were accepted: the apparent front flat land crosses the glass/resin interface. A coupled 15.5 mm interface/outer-rim trial produces a negative resin edge (−1.471 mm) and exceeds the existing spherical rim limit; a resin-only extension leaves the substrate tapered. The current compound model cannot reproduce that land faithfully. Other exposed caps show no independently resolved land, and cemented steps remain unchanged. The source prescription, asphere, focus controls, and F-numbers are retained.
 
 ## Sources
 

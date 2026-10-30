@@ -95,3 +95,13 @@ Example 1 text and Table 1 pp. 11–12.
   and unsuitable for a zoom.
 - Iris radii are inferred from the nominal f-number, not published. E4's resin identity is inferred.
 - S6–S11 and G2 rims remain estimates within about 15 % of Fig. 1.
+
+## 2026-10-30 — Fresh figure, concave-end and glass reinspection
+
+Direct source: `patents/US7359125.pdf`, PDF p. 2 FIG. 1 wide/tele (600 dpi crops, native 300 dpi scan), pp. 11–12 Table 1 and d-line definition. Reviewed every exposed face and cemented interface. The 175 mm front-vertex/image span gives about 0.1202 mm/native pixel.
+
+- Add rear flat lands at S2 (`sd` 29 retained, outer `rimExtensionSd` 41) and S4A (`sd` 25.2 retained, outer 29.5). Source S2 curve/outer ratio is about 30.9/41.8 = 0.739, native one-pixel uncertainty ±0.005; adopted 29/41 = 0.707 deliberately retains the existing conservative cap because 0.9R limits the sphere to 29.04327 mm. S4A q ≈25.2/29.5 = 0.854 ±0.008. Both lands exceed the scan stroke and 0.1 mm threshold; no new optical clipping or `rimCutDepthMm`.
+- The S5/S6/S7A hybrid-body step is a cemented construction, not an exposed independent land. Retain all three caps; do not draw a detached resin wing. All other faces retain source-consistent continuous caps without an independently resolved flat land.
+- Fresh Table 1 check: all 15 material nd/vd pairs retained, including the printed unusual 1.772789/49.45 at S22. Source explicitly uses d = 587.56 nm; no C/F/g indices or partial-dispersion values are published. All 13 available curves are labeled catalog-compatible spectral proxies with source/catalog coordinates and unspecified production supplier. E4 resin identity remains inferred/unresolved; E12 stays unresolved, rather than forcing a 1.7725-class match. ED/APD badges remain inferred, without invented partial data.
+- Canonical/full rim-cut validation, surface and circle checks pass. Current field coverage reaches all three full-frame corners (100%); the older paraxial field-limit note is obsolete. Actual SVGs at all five focus keyframes × three zoom stations were generated and visually checked; all 15 states have zero render trimming. Source close-object D0=125/134.71/140.46 mm with the unchanged runtime iris passes 25/25 axial pupil samples at each station. These are sample counts, not flux estimates.
+- Aperture audit retains the pre-existing tele nonparaxial/stop limit: f/3.00 versus source f/2.88 (+4.2%), classified trace/STO rather than an inferred lens rim. Wide and middle pass. No iris, source R/d, focus motion or tolerance was recalibrated.

@@ -80,7 +80,7 @@ very low-dispersion positive L2. The patent's first-group conditions constrain b
 Abbe-number separation of this pair; Example 3 satisfies them without requiring a catalog-specific identity for L1.
 
 **L2 — Biconvex Positive (ED).** `nd = 1.50032, νd = 81.9.` Glass:
-`J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)`. Standalone `f = +176.454 mm`.
+`J-FKH1 loose spectral proxy (catalog 1.49782/82.57 versus source 1.50032/81.9; supplier unspecified)`. Standalone `f = +176.454 mm`.
 
 Nikon independently identifies the second element of the production first group as ED glass and states that its purpose is to
 reduce axial chromatic aberration. The public data file retains the patent coordinates and uses J-FKH1 only as a compatible
@@ -92,7 +92,7 @@ positive powers simply added in air; the shared cemented interface changes the p
 
 ### G1 — L3 Positive Meniscus
 
-`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)`.
+`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)`.
 Standalone `f = +214.897 mm`.
 
 L3 is the air-spaced positive meniscus that completes G1. Together with D1 it brings the whole first group to
@@ -124,7 +124,7 @@ moving second group.
 
 ### G3 — L8 Biconvex Positive
 
-`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)`.
+`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)`.
 Standalone `f = +118.826 mm`.
 
 L8 is the first of two air-spaced positive singlets in G3. The third group is positive overall and moves opposite G2. The
@@ -133,7 +133,7 @@ purely passive compensator.
 
 ### G3 — L9 Biconvex Positive
 
-`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)`.
+`nd = 1.52000, νd = 70.1.` Glass: `J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)`.
 Standalone `f = +138.411 mm`.
 
 L9 continues the positive power of G3 with the same low-dispersion crown coordinate as L8. Example 3 differs from other
@@ -143,7 +143,7 @@ shape-factor conditions (29) and (30) for these surfaces.
 ### G3 — D2 Cemented Pair: L10 and L11
 
 **L10 — Biconvex Positive.** `nd = 1.52000, νd = 70.1.` Glass:
-`J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)`. Standalone `f = +94.741 mm`.
+`J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)`. Standalone `f = +94.741 mm`.
 
 **L11 — Negative Meniscus.** `nd = 1.80518, νd = 25.5.` Glass: `J-SF6 catalog equivalent (patent 805255; production supplier unspecified)`. Standalone
 `f = -107.155 mm`.
@@ -196,18 +196,18 @@ labels describe spectral proxies, not production suppliers.
 | Data-file glass annotation | `nd` | `νd` | Elements | Identification status |
 | --- | ---: | ---: | --- | --- |
 | `H-LaF4 catalog equivalent (patent 750350; production supplier unspecified)` | 1.74950 | 35.0 | L1 | Coordinate-compatible spectral proxy; vendor not asserted |
-| `J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)` | 1.50032 | 81.9 | L2 | Compatible ED proxy; Nikon identifies the production position as ED |
-| `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)` | 1.52000 | 70.1 | L3, L8, L9, L10 | Compatible low-dispersion crown proxy |
+| `J-FKH1 loose spectral proxy (catalog 1.49782/82.57 versus source 1.50032/81.9; supplier unspecified)` | 1.50032 | 81.9 | L2 | Loose spectral proxy; Nikon identifies the correlated production position as ED |
+| `J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)` | 1.52000 | 70.1 | L3, L8, L9, L10 | Compatible low-dispersion crown proxy |
 | `LAC8 catalog equivalent (patent 713539; production supplier unspecified)` | 1.71300 | 53.9 | L4, L12 | Coordinate-compatible spectral proxy |
 | `S-BAH32 catalog equivalent (patent 670392; production supplier unspecified)` | 1.66998 | 39.2 | L5 | Near-exact coefficient-backed proxy |
 | `N-SK11 catalog equivalent (patent 564608; production supplier unspecified)` | 1.56384 | 60.8 | L6 | Exact coordinate-compatible spectral proxy |
 | `J-SF6 catalog equivalent (patent 805255; production supplier unspecified)` | 1.80518 | 25.5 | L7, L11 | Coordinate-compatible spectral proxy |
 | `S-TIL26 catalog equivalent (patent 567428; production supplier unspecified)` | 1.56732 | 42.8 | L13 | Coordinate-compatible spectral proxy |
 | `J-LASFH2 catalog equivalent (patent 767466; production supplier unspecified)` | 1.76684 | 46.6 | L14 | Compatible coefficient-backed proxy |
-| `S-NSL3 catalog equivalent (patent 518590; production supplier unspecified)` | 1.51823 | 59.0 | L15 | Coordinate match at the patent's rounded precision |
+| `S-NSL3 catalog equivalent (patent 518590; production supplier unspecified)` | 1.51823 | 59.0 | L15 | Compatible nonidentical proxy; source νd 59.0, catalog 58.9021 |
 
 SCHOTT's current N-SK11 data give `nd = 1.56384` and `νd = 60.80`, matching L6 exactly. OHARA lists S-NSL3 at
-`nd = 1.51823` and `νd = 58.90`, which rounds to the patent's 59.0 value for L15. The newly qualified J-FKH1, J-PKH1,
+`nd = 1.51823` and `νd = 58.90`, which differs from source 59.0 rather than rounding to it. J-FKH1 is a loose proxy at 1.49782/82.57 against source 1.50032/81.9; J-PKH1 is 1.51860/69.89 against 1.52000/70.1, and J-LASFH2 has νd 46.78 against 46.6. These nonidentical coordinates remain within the runtime compatibility guard. J-FKH1, J-PKH1,
 S-BAH32, and J-LASFH2 curves likewise stay inside the catalog guard. Together with the already resolved class/code rows,
 all fifteen elements now have coefficient-backed spectral curves without assigning a production supplier.
 
@@ -314,7 +314,7 @@ enter this sum, so it is common to all zoom states.
 The patent does not publish clear semi-diameters. The `sd` values in the data file are therefore modeling inferences derived
 from the verified physical stop, published field angles, representative marginal/chief-ray envelopes, the optical section,
 and geometry limits. They are not asserted as manufacturing apertures. The 35/35/34/34/33 mm G1 and
-14/14/15.5/15.5/15.5/15.5 mm G5 profiles are set against the median G2/G3 height in a 600-dpi reading of Example 3's FIG. 3,
+14/14/15.5/15.5/18.2/18.2 mm G5 profiles are set against the median G2/G3 height in a 600-dpi reading of Example 3's FIG. 3,
 so that the group-height progression follows the patent drawing. The two G4 surfaces both carry 12.6 mm, one square-cut rim
 as FIG. 3 draws L12. The f/4.5 on-axis marginal ray reaches 12.533 mm at surface 19 and 12.360 mm at surface 20 in the
 122.458 mm state, the largest of the three, and both faces take the higher of the two, rounded up to 0.1 mm. FIG. 3 draws
@@ -323,6 +323,8 @@ as the 12.7356 mm iris is in the model. At this value L12 has 3.484 mm of edge t
 an air gap to L13 that widens from 0.963 mm on axis to 2.603 mm at the 12.6 mm rim. Across the three infinity and three
 reconstructed close-focus endpoint states, the model retains positive representative off-axis clearance, positive element
 edge thickness, rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90 fraction.
+
+Fresh inspection of Figure 3 restores L4's nearly plane continuous front cap to 25.2 mm. Its concave rear surface 7 has a 4.98 mm axial cut, leaving a 21.40700 mm clear cap and a 3.79300 mm land to the same outer rim. The cut is moved outward from the measured drawing endpoint to pass the complete beam guard. L15's two continuous caps rise to 18.2 mm, restoring the source's taller final element. The following triplet cannot reach the drawing's complete 23.1 mm outer height without violating the unchanged 9.6 mm air gap, so its prior caps remain. Other faces have no additional supported usable concave end lands. Nine actual SVG zoom/focus states have no automatic rim trimming.
 
 No plate, filter, dummy optical surface, or patent lens surface has been removed. The neutral `STO` plane only splits the
 published G3-to-G4 air gap at the stated diaphragm station. No source number was silently corrected, no uniform scale factor was

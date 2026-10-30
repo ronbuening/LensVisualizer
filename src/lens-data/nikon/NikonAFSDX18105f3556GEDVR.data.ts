@@ -17,8 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * they are estimated from US 7,839,577 B2 Fig. 17 (wide, infinity; 0.0805 mm/px on both axes)
  * and floor-checked by real-ray trace. Surfaces 8, 12 and 13 stay below the figure at the
  * validator gap limit: the facing pairs 8/9 and 12/13 cross at about 11.0 and 10.1 mm.
- * Surface 2 (the L11/L12 junction) takes L11's 26.8 mm rim, so L11 draws as the square block of
- * Fig. 17 and the step down to L12's 25.5 mm rear rim falls at the L12 edge; no ray changes.
+ * Surface 2 (the L11/L12 junction) ends at the source contact radius, 25.5 mm. L11 retains its
+ * 26.8 mm front rim; the exposed annulus cannot be represented by an opaque cemented-interface
+ * land, so its drawn taper remains a disclosed approximation. Fresh sampled rays lose none.
  * Printed W/M/T: f = 18.4 / 57.4 / 102.0 mm, Bf = 38.310 / 58.032 / 65.481 mm, Y = 14.0 mm.
  * Traced EFL 18.401 / 57.434 / 102.002 mm; group focal lengths match the printed table.
  * Zoom: the three printed states are kept exactly. The 23 stations between them are derived:
@@ -27,7 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * groups move; the image plane is fixed. G2 reverses once, near 30 mm, as Fig. 17 draws.
  * Focus: G2 moves objectward (col. 25, ll. 65–67). The patent is infinity-only; the close states are solved
  * paraxially for Nikon's 0.45 m object-to-image distance with d1 + d2 held constant.
- * Glass: catalog equivalents by nd/νd; the source names no supplier and prints no θgF.
+ * Glass: qualified spectral proxies by nd/νd; this source names no supplier and prints no θgF.
+ * The resin partial is a retained later-patent proxy: θgF 0.5928, printed to four decimals (rounding
+ * ±0.00005), not proof of the original resin identity. Its dPgF digits are derived arithmetic.
  */
 const LENS_DATA = {
   schema: 2,
@@ -112,13 +115,13 @@ const LENS_DATA = {
       type: "Aspherical Resin Layer",
       nd: 1.55389,
       vd: 38.09,
-      glass: "UV-cure resin",
+      glass: "Unmatched bonded aspheric resin (chemistry and cure unspecified)",
       role: "Thin bonded resin layer carrying the aspherical object-side surface of L21; part of L21, not a separate lens",
       diagramLabel: "L21r",
       cemented: "H1",
       dPgF: 0.0130674,
       apdNote:
-        "θgF 0.5928 is printed for this resin (nd 1.55389, νd 38.09) in WO 2021/039812 A1 Table 8, a later reprint of this design, and in US 2021/0026133 A1 Table 5; dPgF is taken against the engine's normal line.",
+        "Qualified later-patent spectral proxy: WO 2021/039812 A1 Table 8 prints θgF 0.5928 for its 1.55389/38.09 resin (four-decimal rounding ±0.00005). US 7,839,577 B2 supplies no partial; matching nd/νd does not establish the same resin or cure. dPgF 0.0130674 is derived against 0.6438 − 0.001682νd; its arithmetic digits are not source precision. No original-source anomalous-material classification is claimed.",
       focalLengthMm: -1524.577,
     },
     {
@@ -288,7 +291,7 @@ const LENS_DATA = {
       label: "2",
       R: 58.263,
       d: 6.65,
-      sd: 26.8,
+      sd: 25.5,
       medium: 2,
     },
     {

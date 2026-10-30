@@ -28,6 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Excluded: filters, cover glass, inactive dummy planes, and mechanical parts. No aspheres are present.
  */
 
+/** 2026-10-30: fresh original figure/table and glass review; see the audit sidecar. Original rim geometry and official R5 correction retained. Four qualified curves; source fluophosphate L1 remains unresolved. */
+
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -84,7 +86,7 @@ const LENS_DATA = {
       vd: 44.9,
       indexReference: "d",
       focalLengthMm: -216.390466600516,
-      glass: "744449 — lanthanum glass coordinate class (vendor unresolved)",
+      glass: "744449 source lanthanum class (H-LaF3B qualified spectral proxy; production supplier unspecified)",
       role: "Negative lanthanum-glass member of the forward achromatic group.",
       diagramLabel: "L2",
     },
@@ -97,7 +99,7 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       focalLengthMm: 415.401182806719,
-      glass: "570495 — barium flint glass coordinate class (vendor unresolved)",
+      glass: "570495 source barium-flint class (H-BaF2 qualified spectral proxy; production supplier unspecified)",
       role: "Positive barium-flint member used with L1/L2 in the patent's secondary-spectrum correction strategy.",
       diagramLabel: "L3",
     },
@@ -110,7 +112,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "d",
       focalLengthMm: -116.173741556343,
-      glass: "527511 — crown-flint coordinate (CF2 dispersion proxy; supplier unresolved)",
+      glass: "527511 source coordinate (CF2 approximate spectral proxy, catalog nd −0.000524; production supplier unspecified)",
       role: "Negative front member of the cemented rear doublet.",
       diagramLabel: "L4",
       cemented: "D1",
@@ -124,7 +126,7 @@ const LENS_DATA = {
       vd: 47,
       indexReference: "d",
       focalLengthMm: 131.581100267422,
-      glass: "624470 — barium flint glass coordinate class (vendor unresolved)",
+      glass: "624470 source coordinate (E-BAF8 qualified spectral proxy; production supplier unspecified)",
       role: "Positive rear member of the cemented rear doublet; the cemented pair has net negative paraxial power.",
       diagramLabel: "L5",
       cemented: "D1",

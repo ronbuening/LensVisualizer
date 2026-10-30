@@ -54,13 +54,13 @@ L2 is the second positive component of G1 and has somewhat stronger standalone p
 
 ### L3 — Negative Meniscus
 
-**nd = 1.67270, νd = 32.2. Glass: 673322 class (supplier-neutral). Standalone f = −46.6984 mm.**
+**nd = 1.67270, νd = 32.2. Glass: 673322 — H-ZF2 spectral proxy; production supplier unresolved. Standalone f = −46.6984 mm.**
 
 L3 is the negative rear component of G1. Its substantially lower Abbe number than L1 and L2 supplies a materially different dispersion coordinate within the front moving group, but the patent provides no line-index or partial-dispersion data that would justify an apochromatic or anomalous-dispersion claim. G1 remains positive in aggregate despite L3's strong negative standalone power.
 
 ### L4 — Plano-Concave Negative
 
-**nd = 1.62588, νd = 35.7. Glass: 626357 class (supplier-neutral). Standalone f = −38.6432 mm.**
+**nd = 1.62588, νd = 35.7. Glass: 626357 — E-F1 spectral proxy; production supplier unresolved. Standalone f = −38.6432 mm.**
 
 L4 is the negative front component of the sole cemented doublet D1. Its rear surface is the planar cemented junction at surface 8, so its isolated negative power is set primarily by the strongly curved front face. L4 should not be treated as an independent air-spaced negative lens in the assembled design.
 
@@ -78,7 +78,7 @@ L6 follows the cemented pair and turns the complete G2 into a positive group wit
 
 ### L7 — Positive Meniscus
 
-**nd = 1.80458, νd = 25.5. Glass: 805255 class (supplier-neutral). Standalone f = +90.9900 mm.**
+**nd = 1.80458, νd = 25.5. Glass: 805255 — H-ZF7LA spectral proxy; production supplier unresolved. Standalone f = +90.9900 mm.**
 
 L7 is the positive first element of the floating G3F subgroup. Its high index and low Abbe number distinguish it sharply from the crowns in the front section, but no supplier or melt is identified by the patent. L7 and L8 move together as the forward part of the negative rear converter.
 
@@ -109,6 +109,8 @@ The patent gives only d-line refractive indices and Abbe numbers. It does not id
 | 517641 / J-BK7A proxy | 1.51680 | 64.1 | L9 | Crown-like fixed rear positive coordinate; production supplier unresolved |
 
 A six-vendor coordinate audit found coefficient-backed catalog curves within the project's nd/νd compatibility window for every element. The selected curves are explicitly supplier-neutral spectral proxies because more than one vendor candidate can fit a patent coordinate. The patent supplies no line indices or partial-dispersion deviation, so the analysis does not assign anomalous partial dispersion or claim apochromatic correction.[4–9]
+
+The 2026-10-30 original-table reinspection retained all 9 media and the d-line convention. Every current resolver curve is available and qualified; source line indices and partial-dispersion data remain unavailable.
 
 ## Focus Mechanism
 
@@ -155,7 +157,7 @@ The surface-by-surface Petzval calculation uses φ/(n·n′) and sums to +0.0008
 
 The patent does not tabulate clear semi-diameters. The data file's semi-diameters are inferred from exact marginal- and chief-ray envelopes over all three published states, including the reversing β = −0.5 configuration. At surface 1, the calculated axial marginal-ray heights are 18.2655 mm, 15.5988 mm, and 14.4623 mm for infinity, β = −0.5, and β = −1.0, closely reproducing Figure 11's plotted H values of 18.3, 15.5, and 14.4 mm.[1]
 
-The inferred geometry retains positive edge thickness across every element, with a minimum checked shared-band thickness of 0.8698 mm. The largest actual spherical rim angle is 37.052°, and the independently traced non-stop ray envelope retains at least 0.5261 mm of semi-diameter clearance. Shared-band cross-gap intrusion passes the 0.90×gap criterion in all three published configurations. These are model-validation results, not patent-published mechanical dimensions.
+The current geometry retains positive edge thickness and passes canonical cross-gap and spherical-domain checks at all published configurations. The L3 rear curve keeps its 14.6-mm clear cap, with a flat land extending to the 16.8-mm outer rim; the front of the cemented L4–L5 body follows a continuous curve to its 14.6-mm planar junction. Both finite source conjugates pass all 25 sampled axial stop-pupil rays. Nine actual SVG states have finite paths and zero automatic render trim. These are model checks, not patent-published mechanical dimensions.
 
 No asphere convention or coefficient transformation applies because every optical surface is spherical. No scale factor is used. No cover/filter plate or inactive dummy surface is omitted from the selected numerical example, and no air-equivalent rear-spacing correction is required.
 

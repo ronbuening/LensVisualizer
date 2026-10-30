@@ -32,7 +32,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   production 86 mm filter diameter, then the remaining group ratios are constrained by patent Fig. 1,
  *   on-axis marginal-ray envelopes across all zoom/focus endpoints, cross-gap sag clearance, and the
  *   current rim-slope/edge-thickness rules. The 13.6 mm L6 rear-pair radius is additionally limited by
- *   the 2.0 mm s22->s23 air gap.
+ *   the 2.0 mm s22->s23 air gap; s22 itself now continuously reaches the 14.5 mm s21 height,
+ *   as in Fig. 1, while the following pair stays at 13.6 mm.
  * - No scaling is applied.
  */
 
@@ -253,7 +254,8 @@ const LENS_DATA = {
     { label: "19", R: -405.3952, sd: 19.2 },
     { label: "STO", R: "flat" },
     { label: "21", R: 120, d: 1.8, sd: 14.5, medium: 11 },
-    { label: "22", R: 44.2501, d: 2, sd: 13.6 },
+    // Figure 1 gives both ends of the first L6 member one continuous outer height.
+    { label: "22", R: 44.2501, d: 2, sd: 14.5 },
     { label: "23", R: 239.2721, d: 1.8, sd: 13.6, medium: 12 },
     { label: "24", R: 38.4761, d: 3, sd: 13.6, medium: 13 },
     { label: "25", R: 99.0289, sd: 13.6 },

@@ -302,37 +302,32 @@ L51 precedes it as a strong positive element.
 The final image-plane spacing is measured from the rear vertex of surface 30. No sensor cover glass, filter, dummy rear
 plate, or air-equivalent omitted plate is present in the selected numerical example.
 
-## Glass Identification / Selection
+## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and νd. It does not name glass manufacturers or melts. The final data
-therefore use coordinate classes or `Unmatched (...)` labels rather than promoting catalog candidates to source facts.
-Authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were checked during extraction, but those coordinate
-matches establish equivalence candidates, not the production supplier.
+The original patent supplies d-line indices and Abbe numbers. All source coordinates below are retained. These are the current resolver's catalog-compatible spectral proxies, with production supplier, melt, and exact historical material unspecified. Unresolved resin, cement, or thin regions are retained explicitly rather than forced into glass catalogs.
 
-| Data label | nd | νd | Used in | Identification status |
-|---|---:|---:|---|---|
-| 847238 class | 1.84666 | 23.78 | L11, L53 | class; supplier unresolved |
-| 773496 class (supplier unresolved) | 1.77249 | 49.61 | L12 | class; supplier unresolved |
-| 816466 lanthanum-flint class | 1.81600 | 46.62 | L13 | class; supplier unresolved |
-| Unmatched thin material | 1.53610 | 41.42 | L21a, L51a | no retained public-catalog match |
-| 835427 lanthanum-flint class | 1.83480 | 42.72 | L21b, L22 | class; supplier unresolved |
-| 808228 high-dispersion flint class | 1.80809 | 22.79 | L23 | class; supplier unresolved |
-| 821427 class | 1.82079 | 42.71 | L24 | class; supplier unresolved |
-| 904313 lanthanum-flint class | 1.90366 | 31.27 | L31 | class; supplier unresolved |
-| 603655 crown class | 1.60300 | 65.46 | L32 | class; supplier unresolved |
-| J-FKH1 spectral proxy | 1.49782 | 82.52 | L33 | class; supplier unresolved; ED-role correlation only |
-| 001255 high-index flint class | 2.00069 | 25.45 | L41 | class; supplier unresolved |
-| 806409 class (supplier unresolved) | 1.80610 | 40.94 | L42, L51b | class; supplier unresolved |
-| 804466 lanthanum-flint class | 1.80400 | 46.58 | L43 | class; supplier unresolved |
-| 487704 crown class | 1.48749 | 70.41 | L52 | class; supplier unresolved |
+| Medium | Source nd | Source νd | Current spectral curve |
+|---|---:|---:|---|
+| L11 | 1.84666 | 23.78 | J-SF03 |
+| L12 | 1.77249 | 49.61 | S-LAH66N |
+| L13 | 1.81600 | 46.62 | J-LASF09A |
+| L21a | 1.53610 | 41.42 | Unresolved; composition/trade name unspecified |
+| L21b | 1.83480 | 42.72 | TAFD5F |
+| L22 | 1.83480 | 42.72 | TAFD5F |
+| L23 | 1.80809 | 22.79 | FD225 |
+| L24 | 1.82079 | 42.71 | M-TAFD51 |
+| L31 | 1.90366 | 31.27 | J-LASFH13 |
+| L32 | 1.60300 | 65.46 | S-PHM53 |
+| L33 | 1.49782 | 82.52 | J-FKH1 |
+| L41 | 2.00069 | 25.45 | J-LASFH17 |
+| L42 | 1.80610 | 40.94 | P-LASF47 |
+| L43 | 1.80400 | 46.58 | H-ZLaF50D |
+| L51a | 1.53610 | 41.42 | Unresolved; composition/trade name unspecified |
+| L51b | 1.80610 | 40.94 | P-LASF47 |
+| L52 | 1.48749 | 70.41 | N-FK5 |
+| L53 | 1.84666 | 23.78 | J-SF03 |
 
-Several coordinates have very close or exact matches in current public catalogs. Examples include OHARA S-LAH59 near
-1.81600/46.62, OHARA S-LAH65V at 1.80400/46.58, SCHOTT N-FK5 at 1.48749/70.41, and HIKARI J-LASFH17 near
-2.00069/25.45. These are catalog comparison points, not production identities. The runtime resolver can use these coordinate classes as supplier-neutral spectral proxies; the patent itself does not identify the supplier.
-
-The sole very-high-Abbe coordinate, L33 at νd = 82.52, is compatible with an ED-class role and converges with Nikon's
-production specification of one ED element. It does not by itself establish anomalous partial dispersion, a particular
-Sellmeier curve, or apochromatic correction. No `nC`, `nF`, `ng`, or `dPgF` values are authored in the data file.
+No source `nC`, `nF`, `ng`, or `dPgF` set is published for this embodiment. Qualified catalog curves now supply modeled dispersion wherever available; unresolved layers use the Abbe model. Coordinate compatibility is not production identification or evidence of source-measured anomalous partial dispersion. Existing inferred ED roles remain qualified correlations with the production specification.
 
 ## Focus Mechanism
 
@@ -382,7 +377,7 @@ verified modeled rims used in the final data revision:
 
 | Surface | Modeled semi-diameter | Polynomial departure from K=0 base conic | Rim-slope angle |
 |---|---:|---:|---:|
-| `6A` | 12.8 mm | -0.126519 mm | 6.920° |
+| `6A` | 14.6 mm | -0.262016 mm | 5.864° |
 | `13A` | 9.9 mm | -0.219984 mm | 6.345° |
 | `25A` | 13.3 mm | -1.311246 mm | 21.060° |
 
@@ -485,6 +480,12 @@ Runtime spectral coverage is 16/18 material regions. L33 now names J-FKH1 as a c
 (catalog 1.49782/82.57 versus patent 1.49782/82.52); the old 498825 label did not resolve to the catalog's 498826 code.
 The two thin 1.53610/41.42 regions remain explicitly unmatched. No manufacturer identity, resin chemistry, or APD tag
 is inferred from their coordinates.
+
+## Fresh Source Reinspection
+
+The 2026-10-29 review directly inspected local `JP2011221421A.pdf`: Example 4 Figure 7 on PDF page 25 at 600 dpi and in its native 300 dpi raster; Table 13 on pages 19–20; the d-line definition on page 12; and Figure 8's aperture labels on page 25. Figure 8 confirms FNO 3.50/5.00/5.78, so the existing plot calibration and explicit Table 13 discrepancy remain unchanged.
+
+The S6A/S7 hybrid front/body caps increase from 12.8 to 14.6 mm. S8's continuous concave cap increases from 10.2 to 11.0 mm and gains an outer land to 14.6 mm. The native first/last vertex span is about 570 pixels over 85.88 mm, giving 6.64 px/mm; the body and cap radii are about 97 and 73 native pixels. Thus q≈0.75±0.018 and the adopted ratio 11.0/14.6=0.753 agree within the native stroke uncertainty. Actual SVG inspection confirms a connected compound body and exposed rear land, with no detached thin-layer wing. All remaining convex/concave faces and cemented boundaries were inspected; surface leaders, group brackets, the broad front blank, and unresolved small bevels do not justify further clipping. The asphere coefficients are unchanged; S6A's quoted departure and slope are recalculated at its new clear radius. Source spacings, disabled numeric focus reconstruction, and projection controls are retained.
 
 ## Sources / References
 

@@ -28,31 +28,31 @@ The aperture stop is the patent's surface 13. The source prints `R = 0.0000` for
 
 Example 2 is a four-group positive-negative-positive-positive zoom. The first-order powers recomputed from the final prescription are:
 
-| Functional group | Data span | Elements | Computed focal length | First-order role |
-|---|---|---|---:|---|
-| I | 1–5 | L101–L103 | +119.531 mm | Positive front group |
-| II | 6–12 | L104–L107 | −29.759 mm | Strong negative variator group |
-| III | 14–18 | L109–L111 | +54.839 mm | Positive group immediately behind the stop |
-| IV | 19–30 | L112–L118 | +604.856 mm | Weakly positive rear group containing the VC subsystem |
+| Functional group | Data span | Elements  | Computed focal length | First-order role                                       |
+| ---------------- | --------- | --------- | --------------------: | ------------------------------------------------------ |
+| I                | 1–5       | L101–L103 |           +119.531 mm | Positive front group                                   |
+| II               | 6–12      | L104–L107 |            −29.759 mm | Strong negative variator group                         |
+| III              | 14–18     | L109–L111 |            +54.839 mm | Positive group immediately behind the stop             |
+| IV               | 19–30     | L112–L118 |           +604.856 mm | Weakly positive rear group containing the VC subsystem |
 
 The rear group is itself a three-part power sequence:
 
-| Subgroup | Data span | Elements | Computed focal length | Patent function |
-|---|---|---|---:|---|
-| IV-1 / 141 | 19–23 | L112–L114 | +98.770 mm | Positive leading subgroup |
-| IV-2 / 142 | 24–26 | L115–L116 | −61.094 mm | Transversely shifted anti-vibration subgroup |
-| IV-3 / 143 | 27–30 | L117–L118 | +168.405 mm | Positive trailing subgroup |
+| Subgroup   | Data span | Elements  | Computed focal length | Patent function                              |
+| ---------- | --------- | --------- | --------------------: | -------------------------------------------- |
+| IV-1 / 141 | 19–23     | L112–L114 |            +98.770 mm | Positive leading subgroup                    |
+| IV-2 / 142 | 24–26     | L115–L116 |            −61.094 mm | Transversely shifted anti-vibration subgroup |
+| IV-3 / 143 | 27–30     | L117–L118 |           +168.405 mm | Positive trailing subgroup                   |
 
 These group focal lengths describe complete in-situ subassemblies. They are not interchangeable with the standalone focal lengths stored for individual elements or with the net powers of cemented pairs. The relatively weak positive power of Group IV, for example, results from the separated +/−/+ subgroup combination rather than from any single weak element.
 
 The zoom motion is specified by four published variable air spaces. The final data preserve all three source states because the Group III-to-IV spacing reverses at the intermediate position:
 
-| Variable gap | 71.75 mm | 150.00 mm | 292.00 mm | Trend |
-|---|---:|---:|---:|---|
-| D5 | 3.5000 mm | 32.0254 mm | 46.4397 mm | Increases |
-| D12 | 31.2341 mm | 17.5696 mm | 2.5000 mm | Decreases |
-| D18 | 4.3009 mm | 2.0000 mm | 6.0952 mm | Reverses |
-| BF | 47.5369 mm | 62.6975 mm | 81.5776 mm | Increases |
+| Variable gap |   71.75 mm |  150.00 mm |  292.00 mm | Trend     |
+| ------------ | ---------: | ---------: | ---------: | --------- |
+| D5           |  3.5000 mm | 32.0254 mm | 46.4397 mm | Increases |
+| D12          | 31.2341 mm | 17.5696 mm |  2.5000 mm | Decreases |
+| D18          |  4.3009 mm |  2.0000 mm |  6.0952 mm | Reverses  |
+| BF           | 47.5369 mm | 62.6975 mm | 81.5776 mm | Increases |
 
 The patent describes the corresponding kinematics qualitatively: the separation between Groups I and II increases toward telephoto, Groups II and III approach one another, and Groups III and IV move toward the object by different amounts.[1] The piecewise three-state model preserves the reversal that would be lost in a simple wide-to-tele interpolation.
 
@@ -165,21 +165,21 @@ The final surface of L118 is followed by the zoom-dependent back-focus spacing. 
 
 The validated data deliberately use generic six-digit coordinate classes. The patent supplies `nd` and `νd` values but no manufacturer glass names, so catalog coordinate matches are kept separate from melt identity. Current OHARA, HIKARI, HOYA, and SUMITA sources provide the following representative matches; the residual is catalog minus patent. [5][6][7][8]
 
-| Data glass annotation | nd | νd | Elements | Representative catalog coordinate | Δn | Δνd |
-|---|---:|---:|---|---|---:|---:|
-| 487702 class (vendor unspecified) | 1.48749 | 70.2 | L101, L112 | OHARA S-FSL5, 1.48749 / 70.23 | 0.00000 | +0.03 |
-| 699301 class (vendor unspecified) | 1.69895 | 30.1 | L102 | HIKARI J-SF15, 1.69895 / 30.13 | 0.00000 | +0.03 |
-| 439950 class (vendor unspecified) | 1.43875 | 94.9 | L103 | OHARA S-FPL53, 1.43875 / 94.93 | 0.00000 | +0.03 |
-| 773496 class (vendor unspecified) | 1.77250 | 49.6 | L104, L105, L116, L118 | HIKARI J-LASF016, 1.77250 / 49.62 | 0.00000 | +0.02 |
-| 847238 class (vendor unspecified) | 1.84666 | 23.8 | L106 | HIKARI J-SF03, 1.84666 / 23.80 | 0.00000 | 0.00 |
-| 618634 class (vendor unspecified) | 1.61800 | 63.4 | L107 | HOYA PCD4, 1.61800 / 63.398 | 0.00000 | −0.002 |
-| 883408 class (vendor unspecified) | 1.88300 | 40.8 | L109 | HOYA TAFD30, 1.88300 / 40.806 | 0.00000 | +0.006 |
-| K-PFK80 / MC-FCD1-M20 class (supplier unspecified) | 1.49700 | 81.5 | L110 | SUMITA K-PFK80, 1.49700 / 81.5; HOYA MC-FCD1-M20, 1.49690 / 81.51 | 0.00000 / −0.00010 | 0.00 / +0.01 |
-| 904313 class (vendor unspecified) | 1.90366 | 31.3 | L111 | HOYA TAFD25, 1.90366 / 31.315 | 0.00000 | +0.015 |
-| 911353 class (vendor unspecified) | 1.91082 | 35.3 | L113 | HOYA TAFD35L, 1.91082 / 35.254 | 0.00000 | −0.046 |
-| 517522 class (vendor unspecified) | 1.51742 | 52.2 | L114 | HIKARI J-KF6, 1.51742 / 52.20 | 0.00000 | 0.00 |
-| 806333 class (vendor unspecified) | 1.80610 | 33.3 | L115 | HOYA NBFD15, 1.80610 / 33.269 | 0.00000 | −0.031 |
-| 806407 class (vendor unspecified) | 1.80610 | 40.7 | L117 | HOYA NBFD13, 1.80610 / 40.735 | 0.00000 | +0.035 |
+| Data glass annotation                              |      nd |   νd | Elements               | Representative catalog coordinate                                 |                 Δn |          Δνd |
+| -------------------------------------------------- | ------: | ---: | ---------------------- | ----------------------------------------------------------------- | -----------------: | -----------: |
+| 487702 class (vendor unspecified)                  | 1.48749 | 70.2 | L101, L112             | OHARA S-FSL5, 1.48749 / 70.23                                     |            0.00000 |        +0.03 |
+| 699301 class (vendor unspecified)                  | 1.69895 | 30.1 | L102                   | HIKARI J-SF15, 1.69895 / 30.13                                    |            0.00000 |        +0.03 |
+| 439950 class (vendor unspecified)                  | 1.43875 | 94.9 | L103                   | OHARA S-FPL53, 1.43875 / 94.93                                    |            0.00000 |        +0.03 |
+| 773496 class (vendor unspecified)                  | 1.77250 | 49.6 | L104, L105, L116, L118 | HIKARI J-LASF016, 1.77250 / 49.62                                 |            0.00000 |        +0.02 |
+| 847238 class (vendor unspecified)                  | 1.84666 | 23.8 | L106                   | HIKARI J-SF03, 1.84666 / 23.80                                    |            0.00000 |         0.00 |
+| 618634 class (vendor unspecified)                  | 1.61800 | 63.4 | L107                   | HOYA PCD4, 1.61800 / 63.398                                       |            0.00000 |       −0.002 |
+| 883408 class (vendor unspecified)                  | 1.88300 | 40.8 | L109                   | HOYA TAFD30, 1.88300 / 40.806                                     |            0.00000 |       +0.006 |
+| K-PFK80 / MC-FCD1-M20 class (supplier unspecified) | 1.49700 | 81.5 | L110                   | SUMITA K-PFK80, 1.49700 / 81.5; HOYA MC-FCD1-M20, 1.49690 / 81.51 | 0.00000 / −0.00010 | 0.00 / +0.01 |
+| 904313 class (vendor unspecified)                  | 1.90366 | 31.3 | L111                   | HOYA TAFD25, 1.90366 / 31.315                                     |            0.00000 |       +0.015 |
+| 911353 class (vendor unspecified)                  | 1.91082 | 35.3 | L113                   | HOYA TAFD35L, 1.91082 / 35.254                                    |            0.00000 |       −0.046 |
+| 517522 class (vendor unspecified)                  | 1.51742 | 52.2 | L114                   | HIKARI J-KF6, 1.51742 / 52.20                                     |            0.00000 |         0.00 |
+| 806333 class (vendor unspecified)                  | 1.80610 | 33.3 | L115                   | HOYA NBFD15, 1.80610 / 33.269                                     |            0.00000 |       −0.031 |
+| 806407 class (vendor unspecified)                  | 1.80610 | 40.7 | L117                   | HOYA NBFD13, 1.80610 / 40.735                                     |            0.00000 |       +0.035 |
 
 The classes are therefore coordinate-compatible with current catalog materials, but that does not establish which vendor or melt Tamron used. The distinction is especially important for L110: SUMITA's K-PFK80 is code 497815 and exactly reproduces the patent's 1.49700 / 81.5 coordinate, while HOYA's coefficient-backed MC-FCD1-M20 row carries the same code at 1.49690 / 81.51. Both are kept as qualified equivalents; the neighboring 497816 family is not folded into the label.[8]
 
@@ -207,12 +207,12 @@ Tamron's production XLD/LD designations are therefore kept separate from the pat
 
 The patent places explicit limits on the rear-group geometry and power distribution. Recomputing the quantities from the final data gives:
 
-| Patent condition | Computed value | Result |
-|---|---:|---|
-| `1 < d41/d42 < 4.5` | 4.030753 | Pass |
-| `0 < f4` | +604.855951 mm | Pass |
-| `−0.5 < f42/f43 < 0.2` | −0.362780 | Pass |
-| `−1.0 < f4/f43 < 4.0` | +3.591675 | Pass |
+| Patent condition       | Computed value | Result |
+| ---------------------- | -------------: | ------ |
+| `1 < d41/d42 < 4.5`    |       4.030753 | Pass   |
+| `0 < f4`               | +604.855951 mm | Pass   |
+| `−0.5 < f42/f43 < 0.2` |      −0.362780 | Pass   |
+| `−1.0 < f4/f43 < 4.0`  |      +3.591675 | Pass   |
 
 Here `d41 = 14.1294 mm` is the air space after L114 and `d42 = 3.5054 mm` is the air space after the VC doublet. The focal-length ratios use the independently recomputed powers of Group IV, IV-2, and IV-3 rather than rounded source-table values.
 
@@ -230,21 +230,19 @@ Tamron's production documentation requires one mount-specific qualification. The
 
 The final TypeScript prescription was traced independently with sequential height/reduced-angle matrices and a separate `(y,u)` ABCD formulation. The two methods agree to floating-point precision. The principal first-order results are:
 
-| State | Computed EFL | Patent f | Computed BFD | Published BF | Modeled maximum f-number |
-|---|---:|---:|---:|---:|---:|
-| Wide | 71.749901 mm | 71.75 mm | 47.536995 mm | 47.5369 mm | f/4.121871 |
-| Intermediate | 150.001585 mm | 150.00 mm | 62.698804 mm | 62.6975 mm | f/4.826957 |
-| Tele | 292.014045 mm | 292.00 mm | 81.583349 mm | 81.5776 mm | f/5.852625 |
+| State        |  Computed EFL |  Patent f | Computed BFD | Published BF | Modeled maximum f-number |
+| ------------ | ------------: | --------: | -----------: | -----------: | -----------------------: |
+| Wide         |  71.749901 mm |  71.75 mm | 47.536995 mm |   47.5369 mm |               f/4.121871 |
+| Intermediate | 150.001585 mm | 150.00 mm | 62.698804 mm |   62.6975 mm |               f/4.826957 |
+| Tele         | 292.014045 mm | 292.00 mm | 81.583349 mm |   81.5776 mm |               f/5.852625 |
 
 The modeled maximum f-numbers derive from a single inferred stop semi-diameter of 13.9203457 mm. The patent publishes the stop location and rounded f-numbers (4.1, 4.83, and 5.85) but not the stop diameter, so this semi-diameter is a modeling inference rather than a source dimension. It is the midpoint of the paraxial fixed-stop interval, 13.9147–13.9260 mm, that is consistent with all three printed patent f-number rounding ranges, and the tabulated f-numbers are the paraxial values of that stop.
 
 The data hold one iris across the zoom range (`zoomApertureModel: "fixed-iris"`). The engine opens it to the wide-end real-ray radius of 14.0201 mm, which by itself gives f/4.122, f/4.838, and f/5.875 at the three states. A real on-axis ray trace against every clear aperture gives f/4.12 at 71.75 mm, f/4.84 at 150 mm, and f/5.87 at 292 mm, with the iris as the limiter at all three states. No lens rim sits below the on-axis ray of the stated f-number, so the 0.2 % and 0.4 % by which the intermediate and telephoto states trace slower than the stated f/4.83 and f/5.85 come from the fixed iris alone.
 
-The surface semi-diameters are likewise inferred rather than transcribed. They are constrained by the patent's Figure 12 optical section, paraxial ray envelopes, the production 62 mm filter context, the current geometry rules, and the on-axis ray of the stated telephoto f-number. In the 292 mm state that f/5.852625 ray sizes group II and L109, where it reaches 12.695 mm and 12.424 mm on the two faces of L104; 12.427 mm, 12.896 mm, and 13.055 mm on the three surfaces of the L105/L106 doublet; 13.072 mm and 13.452 mm on L107; and 14.554 mm and 14.581 mm on L109. Figure 12 draws L104, the L105/L106 doublet, L107, and L109 each with a square-cut rim, so each carries a single semi-diameter, set by the highest ray height on its faces and rounded up at the data precision: 12.70 mm for L104, 13.06 mm for the doublet, 13.5 mm for L107, and 14.6 mm for L109.
+The surface semi-diameters are inferred from the original Fig.12 (PDF13, native300dpi and600dpi), checked against the full ray bundles and unchanged gap rules. The fresh2026-10-30 review separates optical caps from drawn lands: S8 keeps its13.06mm cap with outer15.8mm, S11 keeps13.5mm with outer15mm, S18 keeps14.5mm with outer16.7mm, and S21 keeps14.3mm with outer15.6mm. Connected cemented interfaces and continuous convex caps grow to the corresponding source outer heights; L109 grows to16.2mm. These changes restore the source doublet/L107 and L109/L110–111 height ordering.
 
-The 3.0571 mm air gap between L104 and L105 is the tightest in the model. At the 12.70 mm rim of L104 the two facing concave surfaces take up 0.959985 of the gap and leave 0.122 mm of rim air, and Figure 12 draws the rear corners of L104 meeting the front face of L105. The data therefore set `gapSagFrac` to 0.96 for this lens, the smallest two-decimal value that admits the pair, in place of the default 0.90. Two proportions differ from the drawing: the model has L107 0.44 mm taller than the L105/L106 doublet and L109 0.1 mm taller than the L110/L111 doublet, where Figure 12 draws the first doublet about 5 % taller than L107 and L109 about 4 % shorter than L110/L111.
-
-In the resulting model, the smallest physical edge thickness is 0.264587 mm at L115, the limiting 7→8 air-gap sag intrusion is 0.959985 of the gap with 0.122 mm of rim air, the next-tightest gap is 10→11 at 0.845430 with 0.205 mm of rim air, and the largest spherical rim angle is 38.2975° at surface 29. These are validation results for the authored aperture model, not patent clear-aperture specifications.
+L104's front cap grows to14.1mm, but its S7 rear remains12.7mm. Extending that rear to the full source outline violates the unchanged0.96 gap limit against S8; a sufficiently inward replacement cut fails the full-beam margin. The adopted partial outline records that real limitation without weakening the gap rule. The original7→8 shared band keeps0.959985 intrusion and0.122mm of rim air. No new inward trim, radius, spacing, focus motion or tolerance is introduced. Actual nine-state SVGs have connected compounds and zero render trimming; focused surface, image-circle, field and aperture checks pass. These are model results, not published clear apertures.
 
 The surface-by-surface Petzval sum is +0.00147875896 mm⁻¹, corresponding to a reciprocal magnitude of about 676.243 mm. No conic or aspheric limit is applicable because the design is entirely spherical.
 
@@ -260,3 +258,7 @@ The production designation remains deliberately separate from the design values.
 6. HIKARI GLASS CO., LTD., current optical-glass catalog/data for **J-SF15, J-SF03, J-LASF016, and J-KF6**: https://www.hikari-g.co.jp/optical_glass/catalog/
 7. HOYA GROUP Optics Division, **Optical Glass Data Download, 2026-06-01** and cross-reference data: https://www.hoya-opticalworld.com/english/datadownload/index.html
 8. SUMITA OPTICAL GLASS, Inc., current **K-PFK80** product data and optical-glass data book: https://www.sumita-opt.co.jp/en/products/preform.html
+
+## Fresh glass review — 2026-10-30
+
+Example2's full media table on original PDF28 confirms all17 retained nd/νd pairs. The d587.56nm and g435.83nm plot definitions are on PDF25; no individual C/F/g indices or partial-dispersion values are published. All17 media resolve compatible current catalog curves. The authored coordinate classes, qualified XLD/LD production-position correlation and supplier uncertainty remain; no measured APD or procurement identity is inferred.

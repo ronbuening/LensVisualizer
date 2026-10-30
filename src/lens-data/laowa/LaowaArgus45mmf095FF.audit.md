@@ -230,3 +230,33 @@ Open. L1, L5, L6 and L13 keep straight bevels where the figure draws square shou
 Coordinator follow-up to the second review. Surface 20 (L12 front) was raised from 16.5 to 17.1 mm. Figure 3 draws L12 level with L13 (about 17.9 mm) and touching L11 at the rim; the site drew L12 below L13. Surfaces 19 and 20 meet at about 17.5 mm, and 17.1 mm is the largest 0.1 mm step the existing `gapSagFrac` 0.96 admits (combined sag 0.86 mm against 0.868 mm allowed; 17.2 mm is refused at 0.87 mm). `gapSagFrac` is unchanged and now covers both the 6→7 and 19→20 gaps. After the edit the surface validator reports no errors, the engine half-field (23.594°), f/0.98 and stop radius (18.026 mm) are unchanged, no axial ray is clipped and no chief ray blocked at either focus state, the image-circle check reports 0 undersized and corner coverage stays 100%. At that point surface 7 stayed at 23.2 mm and L4 rendered below L3; the second sitting of the review above then moved the 23.2 mm limit to surface 6, set surface 7 to 25.1 mm and squared L12 by raising surface 21 to 17.1 mm.
 
 Closed in the second sitting: "D2" appeared on the page both as the cemented L6/L7 bracket and as the gap label after surface 2, and D3 labelled a cemented triplet. The cemented components are now C1–C3 and the gap labels D(2) and D(9), in the data file and the analysis.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/CN112285890B.pdf`, Example 2: Figure 3, PDF page 12; prescription table, PDF page 8 and gap table, page 9. Source page images were rendered and inspected anew; prior records supplied locators only.
+
+Every face and cemented boundary was inspected in a fresh 600 dpi Figure 3 crop (native 150 dpi; about 6.08 native px/mm, 24.3 px/mm at 600 dpi). The figure resolves flat seats at 2, 4, 9, 11 and 22A. Added `rimExtensionSd` of 31.5, 27.5, 25.1, 23.5 and 17.9 mm respectively, preserving the existing optical caps 28.2, 24.4, 18.5, 18.8 and 15.7 mm. These restore the full element heights without continuing their concave curves.
+
+Additional surface-21 clipping is retained with explicit beam adjustment. The source cap/edge ratio is about 15.8/18.0 = 0.878, with ±0.017 one-native-pixel uncertainty (edge about 109 px). At the current 17.1 mm rim that implies a cap near 15.01 mm, while the inferred beam reaches 15.869293 mm and needs another 0.05 mm. Following the specification’s outward beam-clearance adjustment, depth 2.44 mm is the smallest 0.01 mm sag step that clears that bound (adopted cap 15.935972 mm; land 1.164028 mm). The shallower 2.43 mm step gives cap 15.904047 mm and fails. The adopted cap differs from the source q estimate; it is a qualified inferred approximation, with no alteration of the source surface. Surface 6 has no resolved flat land; its constrained cap stays unchanged. No optical SD, source glass or optical prescription value changed.
+
+All 13 authored glass media were checked against every source nd/νd row. Source uses d-line values and publishes no numerical θgF/partial-dispersion or other spectral-line indices for this embodiment. No source glass value changed.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L1     | 1.49700 / 81.61 | H-FK61                           |
+| L2     | 1.88421 / 37    | unresolved; Abbe approximation   |
+| L3     | 1.88300 / 40.8  | TAFD30                           |
+| L4     | 1.92286 / 20.88 | E-FDS1                           |
+| L5     | 1.69660 / 28.87 | unresolved; Abbe approximation   |
+| L6     | 1.64465 / 33.02 | unresolved; Abbe approximation   |
+| L7     | 1.83098 / 46    | unresolved; Abbe approximation   |
+| L8     | 1.49700 / 81.61 | H-FK61                           |
+| L9     | 1.62004 / 36.3  | E-F2                             |
+| L10    | 1.88300 / 40.8  | TAFD30                           |
+| L11    | 1.88300 / 40.8  | TAFD30                           |
+| L12    | 1.64079 / 33.41 | unresolved; Abbe approximation   |
+| L13    | 1.88300 / 40.8  | TAFD30                           |
+
+Current resolver coverage: 8/13 modeled media; 13 physical lens elements. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
+
+Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.

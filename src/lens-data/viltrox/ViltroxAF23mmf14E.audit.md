@@ -463,3 +463,12 @@ Changed: a second `unresolved` entry in `source.errata`, a FIELD CURVES header n
 Model Scope and Limitations. No optical value changed. The `/* ── Published internal-focus spacings ── */` comment
 above `gaps` was removed: the lens-data round-trip converter drops comments in that position, and the header's FOCUS
 note already cites Table 2. The L12 correction stands; its claims and sibling-example evidence are not affected.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/CN_211826700_U.pdf`, Example 1 Figure 1 (PDF p.16, 600 dpi crop), Table 1 (pp.7–8), and low-dispersion definitions/claim ¶0025–0028 (p.4). Every front/rear face, including the shared S13 interface, was reviewed; leaders and movement brackets were excluded.
+
+- S2's resolved concave rear land measures q≈0.887. At 9.21 native px/mm and edge radius 15.7 mm, one-pixel endpoint/edge uncertainty is ±0.0131 in q. The figure-proportional cut at depth 4.77 mm failed the full-beam rule: reach 14.0749 mm required at least 14.1249 mm. Depth **5.03 mm**, radius **14.1472 mm**, passes. The outer 15.7 mm rim remains.
+- S10/S12 retain clear caps 10.1/8.9 mm and now extend their drawn lands to 10.4/10.7 mm. Their schematic cap shares are about 0.90/0.80; the larger retained caps reflect the existing ray-constrained model. This does not open an aperture. No further resolved land supports cutting S6/S7/S18/S21 or any convex/cemented face.
+- All eleven nd/νd rows plus GL were checked. Retained the documented L12 1.85→1.83 source-error reconstruction; the fresh table still prints 1.85. All remain unmatched Abbe models at coarse coordinates. ¶0028 supports the two low-dispersion designations but supplies no chemistry or measured partial dispersion; removed L14's speculative fluorophosphate wording. No nC/nF/ng or dPgF was invented.
+- Actual `audit:surface`, `audit:image-circle`, and `audit:aperture` passed. Nine prepared-state SVGs were generated and rasterized; all eleven element paths are finite with zero renderer trim. The fixed prime has no zoom dimension. Focus/source discrepancies already recorded remain unresolved. Shared dispersion, resolver parity and partial-dispersion tests passed (3 files/94 tests).

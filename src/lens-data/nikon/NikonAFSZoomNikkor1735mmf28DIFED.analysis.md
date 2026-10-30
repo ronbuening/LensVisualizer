@@ -74,6 +74,8 @@ L1 forms the first physical element of the negative front group G1. Its front su
 and even radial polynomial orders in the patent convention. The directly recomputed standalone focal length closely reproduces
 the patent's printed condition-(1) value `f1 = -28.267 mm`.
 
+The first-element outline is freshly scaled from Figure 2: the front aspheric cap grows from 24.5 to **26.7 mm**, the rear concave cap from 18.0 to **18.8 mm**, and the explicit rear vertical land reaches the **26.7 mm** outer rim. The approximately 9.48 working-px/mm first-to-last-vertex calibration supports those inferred radii. All source curvatures, thicknesses and aspheric coefficients remain unchanged; the coupled caps and land pass geometry and optical checks.
+
 The glass label names a coordinate-compatible spectral proxy. No vendor or melt identity is established by the patent itself.
 
 ### L2 — Compound Aspherical Element: L2r Resin Layer + L2g Glass Substrate
@@ -148,10 +150,9 @@ cemented value.
 
 ### L8 — Biconcave Negative, Front Member of G3 Cemented Pair
 
-`nd = 1.748099, νd = 52.30. Glass: 748523 — class unresolved. f = -24.947549 mm.`
+`nd = 1.748099, νd = 52.30. Glass: E-LAKH1 catalog-coordinate proxy (patent 748523; production supplier unspecified). f = -24.947549 mm.`
 
-L8 begins the cemented G3 pair immediately behind the aperture stop. Its optical constants did not support a defensible exact
-catalog identity, so the file retains a six-digit class-level label rather than assigning a vendor glass.
+L8 begins the cemented G3 pair immediately behind the aperture stop. Its source coordinate resolves to the compatible coefficient-backed E-LAKH1 curve. The label names that current spectral proxy without asserting a historical supplier or production melt.
 
 The L8+L9 cemented pair is net negative, with an in-situ equivalent focal length of approximately -52.506 mm. The stop remains
 3.300 mm in front of L8's first surface throughout the published zoom states.
@@ -226,7 +227,7 @@ supplier used in the 1999 design.
 | J-LAF7 — coordinate-compatible spectral proxy (supplier unresolved) | 1.749501 | 35.19 | L5 | class match |
 | 589611/589612 — SK5 class | 1.589130 | 61.09 | L6 | class match |
 | 717480 — LAF3 class | 1.716999 | 48.04 | L7 | class match |
-| 748523 — class unresolved | 1.748099 | 52.30 | L8 | class only |
+| E-LAKH1 catalog-coordinate proxy (patent 748523; production supplier unspecified) | 1.748099 | 52.30 | L8 | compatible current curve; supplier unasserted |
 | 847238 — SF57/J-SF03 class | 1.846660 | 23.82 | L9 | class match |
 | 498825/498826 — J-FKH1 class | 1.497820 | 82.52 | L10, L12 | close coordinate match; supplier unresolved |
 | 767468 — J-LASFH2 class | 1.766840 | 46.80 | L13 | close coordinate match; supplier unresolved |
@@ -287,8 +288,8 @@ The source coefficient table prints `C9` twice. Because the surface-1 equation e
 the second printed `C9 = -5.98570×10^-15` is implemented as C10 while the raw duplicate label remains preserved in the
 evidence record.
 
-At the final modeled semi-diameter `h = 24.5 mm`, the polynomial terms add `+2.762259 mm` of sag relative to the base conic.
-That aperture is a modeled clear radius, not a dimension published by the patent.
+At the final modeled semi-diameter `h = 26.7 mm`, the polynomial terms add `+3.622171 mm` of sag relative to the base conic.
+The complete sag there is `4.287900 mm`, and departure from the spherical base is `+3.629947 mm`. That aperture is a figure-derived modeled radius, not a tabulated patent dimension.
 
 ### Surface 3A — L2 Compound Resin Asphere
 
@@ -371,7 +372,7 @@ not establish clearance over every continuous pupil, field, and focus state.
 The runtime glass audit resolves 13 of 14 modeled material regions to coefficient-backed catalog proxies. L1 uses
 Q-LASFPH3S (catalog 1.795256/45.25, versus patent 1.796681/45.37), and L5 uses J-LAF7 (1.74950/35.25, versus
 1.749501/35.19). Both satisfy the existing compatibility limits; neither identifies Nikon's production supplier. The
-unnamed L2 resin at 1.495210/56.34 remains on the Abbe fallback. No new catalog curve or anomalous-dispersion tag is inferred.
+unnamed L2 resin at 1.495210/56.34 remains on the Abbe fallback. L8 now explicitly names its compatible E-LAKH1 proxy; L2g retains a qualified nonidentical M-TAF1 curve (catalog 1.7725/49.46 versus source 1.772789/49.45). No new catalog curve or anomalous-dispersion tag is inferred.
 
 The production correlation, glass identities, stop diameter, semi-diameters, and reconstructed close-focus endpoints therefore
 carry different evidence grades. The patent governs the prescription and optical mechanism; Nikon sources govern the marketed

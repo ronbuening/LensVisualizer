@@ -44,6 +44,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * catalog equivalents only where the resolver's coordinate guard passes; none asserts the production supplier.
  */
 
+// Fresh Figure 3 (PDF p. 2): S6 continuous cap 25.2; S7 cut 4.98 / outer 25.2.
+// The inferred cut is beam-adjusted; L15 continuous caps are 18.2. Full T1 height fails source-gap clearance.
+// All 15 source d-line pairs remain; catalog coefficients are qualified, sometimes loose spectral proxies.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-zoom-nikkor-ed-50-300-f45",
@@ -90,8 +94,9 @@ const LENS_DATA = {
       nd: 1.50032,
       vd: 81.9,
       focalLengthMm: 176.454289,
-      glass: "J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)",
+      glass: "J-FKH1 loose spectral proxy (catalog 1.49782/82.57 versus source 1.50032/81.9; supplier unspecified)",
       apd: "inferred",
+      apdNote: "ED position inferred from Nikon production correlation; the patent provides no partial-dispersion ratio or material identity.",
       role: "ED positive member of the fixed first zoom group.",
       diagramLabel: "L2 / ED",
       cemented: "D1",
@@ -104,7 +109,7 @@ const LENS_DATA = {
       nd: 1.52,
       vd: 70.1,
       focalLengthMm: 214.896736,
-      glass: "J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)",
+      glass: "J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)",
       diagramLabel: "L3",
     },
     {
@@ -162,7 +167,7 @@ const LENS_DATA = {
       nd: 1.52,
       vd: 70.1,
       focalLengthMm: 118.825949,
-      glass: "J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)",
+      glass: "J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)",
       diagramLabel: "L8",
     },
     {
@@ -173,7 +178,7 @@ const LENS_DATA = {
       nd: 1.52,
       vd: 70.1,
       focalLengthMm: 138.410621,
-      glass: "J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)",
+      glass: "J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)",
       diagramLabel: "L9",
     },
     {
@@ -184,7 +189,7 @@ const LENS_DATA = {
       nd: 1.52,
       vd: 70.1,
       focalLengthMm: 94.740768,
-      glass: "J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)",
+      glass: "J-PKH1 nonidentical spectral proxy (source 1.52000/70.1; supplier unspecified)",
       diagramLabel: "L10",
       cemented: "D2",
     },
@@ -252,8 +257,8 @@ const LENS_DATA = {
     { label: "3", R: -401.4, d: 0.2, sd: 34.0 },
     { label: "4", R: 107.8, d: 8.5, sd: 34.0, medium: 3 },
     { label: "5", R: 2970.199, sd: 33.0 },
-    { label: "6", R: 3512.5, d: 2.0, sd: 22.0, medium: 4 },
-    { label: "7", R: 48.5, d: 9.6, sd: 21.0 },
+    { label: "6", R: 3512.5, d: 2.0, sd: 25.2, medium: 4 },
+    { label: "7", R: 48.5, d: 9.6, sd: 25.2, rimCutDepthMm: 4.98 },
     { label: "8", R: -62.15, d: 3.5, sd: 21.0, medium: 5 },
     { label: "9", R: -48.31, d: 2.0, sd: 22.0, medium: 6 },
     { label: "10", R: 63.04, d: 5.1, sd: 22.5, medium: 7 },
@@ -272,8 +277,8 @@ const LENS_DATA = {
     { label: "22", R: 82.393, d: 54.7, sd: 14.0 },
     { label: "23", R: -20.4, d: 2.3, sd: 15.5, medium: 14 },
     { label: "24", R: -33.267, d: 0.2, sd: 15.5 },
-    { label: "25", R: 75.25, d: 5.2, sd: 15.5, medium: 15 },
-    { label: "26", R: -124.176, d: 39.732, sd: 15.5 },
+    { label: "25", R: 75.25, d: 5.2, sd: 18.2, medium: 15 },
+    { label: "26", R: -124.176, d: 39.732, sd: 18.2 },
   ],
 
   zoom: {

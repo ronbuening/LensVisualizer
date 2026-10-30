@@ -69,3 +69,14 @@ image-circle floor still reports nothing undersized, and the f/1.8 on-axis bundl
 11.23 mm. Left alone: Figure 4 draws L11 at ≈25.4 mm, 16% above the new 21.8 mm and at the edge of the ~15% noise
 band, so the traced floor stands; surfaces 6 (20.0 mm, drawn ≈16.9) and 12/13 (20.0 mm, L16 drawn ≈15.0) are larger
 than drawn and were not shrunk. The analysis quotes none of the changed values and is unchanged.
+
+
+## 2026-10-30 — Fresh patent shape and glass reinspection
+
+Directly inspected JP2016021011A Figure 4/PDF21 and Example 4 tables/PDF16–18, including all curved faces, hybrid and cement interfaces and the rear plate. Paragraph 0052/PDF11 defines the d-line material convention (587.56 nm). The figure's native raster is 300 ppi; the 600 dpi view is a 2× enlargement, with about 5.9 native px/mm from the 86 mm vertex track. S2, S7 and S15 cap/outer ratios measure approximately .75, .89 and .93; one-native-pixel ratio bands are ±.012, ±.019 and ±.026 respectively, before ink ambiguity.
+
+S2 retains its 17.7 mm clear cap and gains a land to 21.8 mm (adopted q=.81193, outward from the schematic estimate). S7 changes from sd14 to outer sd20 with rimCutDepthMm4.1: its cap is 17.944063 mm/q=.89720. S15 retains 12.9 mm clear height and gains a land to 13.4 mm (q=.96269, outward from the source estimate). Continuous paired rims rise at S14=13.4, S17=13.4, S19–21=12.8 and S26A/S27=13.0 mm. The entire cemented block grows together; no opaque land is placed at a powered cement interface. The shallow hybrid S4/S5A outline remains at 16.5 mm: its source contour does not establish a separate land. Other concave caps are retained where no distinct flat endpoint is resolved.
+
+All 17 modeled media pairs (16 elements/layers plus the rear plate) were checked directly. Fourteen compatible catalog curves remain unchanged; the thin 1.5138/53 medium and two 1.514/42.8 cement layers remain intentional unresolved fallbacks. The source prints the thin layer's coordinates and thickness but does not identify its chemistry or curing process: the former UV-cure label is removed and the resin interpretation is qualified. Source R/d/aspheres, every material pair, focus and stop controls, rear-plate gaps and tolerances are unchanged. Public aspheric figures now use S26A's adopted 13 mm cap: departure +2.2487 mm, slope 18.4992°; unchanged S5A/S25A figures are retained.
+
+Surface, image-circle, nominal aperture and full-field checks pass. The inferred-cut guard used grid41, .5° field spacing and 21 focus samples: 1,036,605 rays, refined S7 reach 13.9526 mm against cap 17.944063 minus .0538 mm margin; zero clipped rays, margin failures or unlaunchable samples. All nine actual SVG states were inspected: finite continuous outlines, zero hidden trim and no detached compound wing. The shared glass suites pass 2 files/93 tests; source/curve consistency and duplicate-key checks pass.

@@ -95,7 +95,7 @@ Glass: nd = 1.76690, νd = 46.85 (six-digit code 767/469). No catalog glass matc
 Glass: nd = 1.88300, νd = 40.76 — OHARA S-LAH58. Weakly biconcave (R = −118.914 / +261.338) providing modest negative power to supplement L11.
 
 **L13 — Biconcave negative + resin aspherical layer (f = −30.9 mm glass, +209.9 mm resin)**
-Glass body: nd = 1.88300, νd = 40.76 — S-LAH58. Strongly biconcave (R = −57.268 / +52.742). A thin UV-curing resin layer (nd = 1.55389, νd = 38.09, thickness 0.40 mm) is bonded to the image-side surface forming a hybrid compound aspherical element. The resin's outer surface (R = +96.287) carries a strongly oblate aspherical profile (K = +7.352). This corrects higher-order field curvature and coma at extreme field angles. The resin layer contributes very weak positive power (+209.9 mm) — its purpose is aspherical correction, not power contribution.
+Glass body: nd = 1.88300, νd = 40.76 — S-LAH58. Strongly biconcave (R = −57.268 / +52.742). An inferred thin resin layer; its UV-curing identity is not published. The layer (nd = 1.55389, νd = 38.09, thickness 0.40 mm) is bonded to the image-side surface forming a hybrid compound aspherical element. The resin's outer surface (R = +96.287) carries a strongly oblate aspherical profile (K = +7.352). This corrects higher-order field curvature and coma at extreme field angles. The resin layer contributes very weak positive power (+209.9 mm) — its purpose is aspherical correction, not power contribution.
 
 **L14 — Biconvex positive lens (f = +37.7 mm)**
 Glass: nd = 1.69895, νd = 30.13 — OHARA S-TIM35, a titanium-containing medium-index flint. This unusual glass choice for a positive element (high-dispersion flint) indicates that L14's primary role is chromatic correction. Paired with the low-dispersion negative elements L12 and L13, L14 forms an achromatic subsystem within G1, correcting lateral color that would otherwise be extreme at short focal lengths.
@@ -176,13 +176,13 @@ Surfaces 7 and 30 both have large positive conic constants (oblate base), but th
 
 ## 6. Glass Selection
 
-The design uses twelve distinct optical materials (eleven glass types plus one UV-curing resin). The patent lists only nd and νd; the names below are catalog equivalents with matching coordinates, not supplier identifications.
+The design uses twelve distinct optical materials (eleven glass types plus one inferred resin layer). The patent lists only nd and νd; the names below are catalog equivalents with matching coordinates, not supplier identifications.
 
 | Glass Code | Catalog Match | nd | νd | Elements | Count |
 |------------|--------------|------|------|----------|-------|
 | 767/469 | Hikari J-LASFH2 (nearest; 1.76684 / 46.78) | 1.76690 | 46.85 | L11 | 1 |
 | 883/408 | S-LAH58 | 1.88300 | 40.76 | L12, L13, L32, L33, L44 | 5 |
-| 554/381 | UV-cure resin | 1.55389 | 38.09 | L13 resin | 1 |
+| 554/381 | Resin layer (inferred) | 1.55389 | 38.09 | L13 resin | 1 |
 | 699/301 | S-TIM35 | 1.69895 | 30.13 | L14 | 1 |
 | 847/238 | S-TIH53 | 1.84666 | 23.78 | L21, L34 | 2 |
 | 603/380 | S-TIM5 | 1.60342 | 38.01 | L22 | 1 |
@@ -230,7 +230,7 @@ The FNO is 4.1 at all three stations, but the stop rides in G3 and no iris diame
 
 ### Field of view in the viewer
 
-An exact trace puts 21.64 mm image height at ω = 54.2° / 41.8° / 32.0°, matching the patent's 2ω = 108° / 84° / 63°. The viewer's paraxial half-field estimate stops at about 44.6° at the wide end, limited by the deep rear surface of L11. A rectilinear coverage override is a single value and would be wrong at the other zoom stations, so it is not used.
+An exact trace puts 21.64 mm image height at ω = 54.2° / 41.8° / 32.0°, matching the patent's 2ω = 108° / 84° / 63°. Current vector field coverage reaches the format corner at all three stations without a projection override.
 
 ---
 
@@ -250,3 +250,9 @@ An exact trace puts 21.64 mm image height at ω = 54.2° / 41.8° / 32.0°, matc
 | Weight | ~680 g | Not specified |
 | VR | VR II (~4 stops) | G3 perpendicular shift |
 | Focus type | Internal (SWM) | CL21 axial translation |
+
+## Fresh source and rendering review (2026-10-30)
+
+The FIG. 1 annuli are now drawn explicitly: S2A retains its 16.0 mm refractive cap and has a flat land to the 24.0 mm body; S5 retains its 15.0 mm cap and has a land to 17.0 mm. An S7A land to 17.0 mm is rejected because it gives −0.561 mm resin edge thickness against cemented S6. Current field checks reach all three full-frame corners, so the historical paraxial wide-field limitation is obsolete. All three source f/4.1 states pass. The source still supplies no finite-focus prescription.
+
+All source nd/νd pairs and d-line conventions were rechecked directly in the local rendered patent tables. Catalog names are compatible spectral proxies, never production supplier or melt identifications. The source supplies no additional spectral-line or partial-dispersion values; none are invented. Seventeen glass curves resolve; the inferred resin remains unresolved.

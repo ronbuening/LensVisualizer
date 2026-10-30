@@ -34,3 +34,13 @@ Reviewed display formatting and romanized inventor metadata against existing can
 Compared the localhost infinity silhouette directly with Fig. 1, retaining the revised 11 mm G2 rims. Exercised the focus slider through its authored states: G1 moves 52.77403 mm objectward and G2 moves 42.90576 mm objectward at 1:1; G3 and the image plane remain fixed. The order is correct, but the default framing clipped the front group at close focus. Reduced scFill to 0.43 to keep all groups visible through travel without changing optics or SDs. This is a prime; no zoom travel exists. All eight glasses remain catalog-backed qualified proxies.
 
 Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Re-read local `patents/US5751485.pdf`, Fig.1 on PDF p2 and First Embodiment/Table1 on p26 (printed cols27–28). Native300 ppi Fig.1 has about 19.6 px/mm from a ~711 px S1–S15 vertex span /36.28307 mm. Both halves show the exposed S6 concave cap stopping before L3's squared edge: mean cap/edge radii≈169/200 px give q≈.845 with one-native-pixel uncertainty ±(1+q)/200=.0092. Restored S6's outer rim9.6→10 mm to match S5, with inferred cut depth 2.83 mm and cap radius 8.9293 mm.
+
+The literal source endpoint (~8.45 mm, depth≈2.50 mm) clips the full beam: the canonical sweep reaches8.8702 mm at close focus, field 1.26°, requiring at least8.9202 mm with its 0.05 mm margin. Moved the cut outward to the adopted radius, rather than changing the source prescription or relaxing clearance. The land remains before the inferred infinity stop plane at 3.024815 mm fromS6. Independent dense probe:22 focus states, grid 41,0.5°field step,428219 traced rays; refined reach8.8696 mm, zero clipped/within-margin rays and no untraced fields. No other exposed concave end has a separately resolved square land.
+
+Freshly checked all 8 Table1 nd/νd pairs and the explicit587.6nm d-line convention. All8 resolve to compatible catalog curves; retained source coordinates and qualified spectral-proxy labels. The patent supplies no C/F/g or partial-dispersion data and establishes no production vendor or melt. No invented spectral fields or APD assertions added.
+
+Surface, image-circle and infinity aperture checks pass. Nine actual renderer states are finite with zero hidden trim. Source R/d/focus data, stop calibration and tolerances are unchanged.

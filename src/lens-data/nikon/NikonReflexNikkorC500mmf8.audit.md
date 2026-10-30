@@ -31,3 +31,7 @@ Patent: US 3,632,190, Example 1
   order, the clear central plug `9` (`nd = 1.54072`), so the returning beam stayed in glass and skipped the exit
   refraction. The tracers now take that medium from the last earlier surface whose clear zone overlaps the annulus,
   here air. Viewer real rays now give EFL 500.0 mm with focus at z = 172.6. No data changed.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Freshly inspected both halves of Fig.1 (PDF p2) and Example1 plus repeated claim2 table (PDF p5) in untracked `patents/US3632190.pdf`. All six modeled media agree with source nd/νd; the primary’s annulus and clear central plug duplicate one physical blank. L1 is 1.52450/59.6, so removed the misleading `patent525596` annotation. K5 remains a broad compatible curve proxy (current n(d)1.52249049, Δn−0.00200951), with no production supplier or melt identified. All six current curves remain compatible; no spectral coordinates changed. No source C/F/g or partial data are supplied. Fig.1 supports the existing zoned mirror/rear-corrector outlines. No cut or extension was invented on this folded path. Surface validation and nine actual SVG states pass with zero hidden trimming. Ordinary image-circle and aperture censuses explicitly skip folded paths; their sequential verdicts are not claimed for this lens. Source prescription, annular zones and optical hit order are unchanged.

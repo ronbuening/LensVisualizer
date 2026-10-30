@@ -32,8 +32,10 @@
  * ║  NOTE ON RIM CUTS (2026-10-27):                                    ║
  * ║    Fig. 10 ends the concave rear caps of L11 (2A) and L12 (4A) on  ║
  * ║    flat lands square to the axis. Both keep their rims uncut: 2A's ║
- * ║    21.4 mm is the asphere's designed extent, and a land on 4A would║
- * ║    stop rays its 15.6 mm rim stops.                                ║
+ * ║    21.4 mm and 15.6 mm optical caps remain unchanged. The new     ║
+ * ║    rim extensions draw opaque lands to 32.8 / 20.6 mm; 27A also   ║
+ * ║    extends its 12.0 mm cap to L40's 12.5 mm edge. Fig. 10 scale  ║
+ * ║    is 12.76 native px/mm from its 115.72 mm vertex span.          ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    Source FNO is 2.91 at both zoom ends while the stop rides in    ║
@@ -59,6 +61,7 @@
 
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+// Glass names are coordinate-compatible spectral proxies; the patent does not name production suppliers.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -334,6 +337,7 @@ const LENS_DATA = {
       R: 16.04,
       d: 13.37,
       sd: 21.4,
+      rimExtensionSd: 32.8,
       asphere: { K: -1, A4: 3.63e-6, A6: 7.91e-9, A8: 2.28e-11, A10: -1.36e-13, A12: 1.21e-16 },
     }, // L11 rear (asph) → air
     { label: "3", R: 88.74, d: 2.0, sd: 20.6, medium: 2 }, // L12 front
@@ -342,6 +346,7 @@ const LENS_DATA = {
       R: 27.44,
       d: 10.0,
       sd: 15.6,
+      rimExtensionSd: 20.6,
       asphere: { K: -1, A4: 2.15e-5, A6: 2.23e-8, A8: 2.16e-11, A10: 1.77e-13, A12: -1.0e-16 },
     }, // L12 rear (asph) → air
     { label: "5", R: -74.77, d: 1.5, sd: 16.9, medium: 3 }, // L13 front (ED)
@@ -375,6 +380,7 @@ const LENS_DATA = {
       R: -68.43,
       d: 2.0,
       sd: 12.0,
+      rimExtensionSd: 12.5,
       medium: 16,
       asphere: {
         K: 0,

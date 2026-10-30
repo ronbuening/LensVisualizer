@@ -222,7 +222,7 @@ const LENS_DATA = {
       glass: "FCD1 (supplier-neutral catalog proxy)",
       apd: "inferred",
       apdNote:
-        "ED-class inference from the coordinate-compatible FCD1 curve (catalog dPgF approximately +0.0312); not patent-measured partial dispersion or proof of production glass identity.",
+        "ED-class inference from the coordinate-compatible FCD1 curve (catalog dPgF approximately +0.0323 at the stored Abbe number); not patent-measured partial dispersion or proof of production glass identity.",
       role: "Front low-dispersion positive element of the fourth zoom group.",
       diagramLabel: "L10",
     },
@@ -252,7 +252,7 @@ const LENS_DATA = {
       glass: "FCD1 (supplier-neutral catalog proxy)",
       apd: "inferred",
       apdNote:
-        "ED-class inference from the coordinate-compatible FCD1 curve (catalog dPgF approximately +0.0312); not patent-measured partial dispersion or proof of production glass identity.",
+        "ED-class inference from the coordinate-compatible FCD1 curve (catalog dPgF approximately +0.0323 at the stored Abbe number); not patent-measured partial dispersion or proof of production glass identity.",
       role: "Low-dispersion positive center member of the G4 cemented triplet.",
       diagramLabel: "L12",
       cemented: "T1",
@@ -324,6 +324,8 @@ const LENS_DATA = {
       R: 12.9,
       d: 16.2015,
       sd: 17.1,
+      // Fig. 10 rear land; the large-rim polynomial cut fails physical geometry.
+      rimExtensionSd: 23.2,
       asphere: {
         K: -1.110553,
         A4: 2.77891e-5,

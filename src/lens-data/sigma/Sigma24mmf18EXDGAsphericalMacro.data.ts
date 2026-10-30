@@ -21,8 +21,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 11.35 mm (0.9265 does not); 0.134 mm of air remains there.
  * The full axial beam passes every surface. Full-aperture off-axis beams are clipped at the inferred rims,
  * first at surface 18.
- * Glass names are catalog glasses that match the printed nd / vd; their line indices are stand-ins, not
- * identified production melts.
+ * Glass names are compatible spectral proxies for the printed nd/vd. Catalog C/F/g indices
+ * and partial-dispersion copies resolve centrally; none is source-published or a production melt.
  * NOTE ON SEMI-DIAMETERS: the patent prints none. Values are estimated from the Fig. 2 outline (PDF page 7) and
  * floor-checked by real-ray trace at F/1.85 and at the 21.63 mm image corner. Fig. 2 draws a flat land outside
  * the concave rear faces of L2, L3 and L8, and draws L9 square to its rim. Surface 4 is 17.5 mm, the rim-slope
@@ -36,8 +36,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * axial ray needs 12.88 mm at L4 and 13.46 mm at L5. Behind the stop the rims are also the drawn heights: L6
  * and its resin layer 14.5 mm, the cemented pair L7–L8 13.4 mm at surfaces 16 and 17, L9 13.6 mm and L10
  * 14.7 mm, against F/1.85 axial ray heights of 13.70, 12.33, 11.51 and 11.44 mm. The renderer joins unequal
- * front and rear rims with a straight edge, so the lands of L2 and L8 appear as bevels: surface 4 cannot reach
- * the 21.9 mm rim of L2 (R = 19.5 mm) and the gap to surface 19 caps surface 18 at 11.35 mm.
+ * L2 rear now carries its source-drawn outer land to 21.9 mm while its clear cap stays 17.5.
+ * S7 uses a drawing-inferred 5.8 mm cut depth (cap 15.0322 mm) with the full beam guard.
+ * The S18 outer land remains constrained: it fails the unchanged gap rule to S19.
  * DIAGRAM LABELS: the group labels are the six sub-groups of Fig. 2. G1 is G1a–G1c ahead of the stop and G2 is
  * G2a–G2c behind it; in the patent's focusing each of the two moves as one unit.
  */
@@ -91,10 +92,6 @@ const LENS_DATA = {
       glass: "BAFD8 (HOYA) / S-BAH28 (OHARA) coordinate-equivalent class; supplier unconfirmed",
       role: "Weak positive front meniscus; forms sub-group G1a of the first group.",
       diagramLabel: "L1",
-      dPgF: 0.0021157304644395802,
-      nC: 1.7178112443785216,
-      nF: 1.7368514829632171,
-      ng: 1.7479328966874885,
     },
     {
       id: 2,
@@ -108,10 +105,6 @@ const LENS_DATA = {
       glass: "NBFD10 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       role: "Negative meniscus; first element of the diverging sub-group G1b.",
       diagramLabel: "L2",
-      dPgF: -0.0020052379708221935,
-      nC: 1.8274203039181818,
-      nF: 1.8497525931192302,
-      ng: 1.862684242793315,
     },
     {
       id: 3,
@@ -140,10 +133,6 @@ const LENS_DATA = {
       role: "Negative meniscus glass body of the front hybrid asphere; completes G1b.",
       diagramLabel: "L3",
       cemented: "H1",
-      dPgF: -0.006476957140342243,
-      nC: 1.7805841191292673,
-      nF: 1.798363507160605,
-      ng: 1.8083759133984296,
     },
     {
       id: 5,
@@ -157,10 +146,6 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA coordinate-equivalent class; supplier unconfirmed)",
       role: "Thick biconvex element with a weak front curve; first element of the converging sub-group G1c.",
       diagramLabel: "L4",
-      dPgF: 0.015053668027861122,
-      nC: 1.7961055627673077,
-      nF: 1.827773968781163,
-      ng: 1.8472858512675383,
     },
     {
       id: 6,
@@ -174,10 +159,6 @@ const LENS_DATA = {
       glass: "NBFD10 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       role: "Positive meniscus; completes G1c ahead of the variable gap d11 and the stop.",
       diagramLabel: "L5",
-      dPgF: -0.0020052379708221935,
-      nC: 1.8274203039181818,
-      nF: 1.8497525931192302,
-      ng: 1.862684242793315,
     },
     {
       id: 7,
@@ -192,10 +173,6 @@ const LENS_DATA = {
       role: "Biconvex positive element behind the stop; glass body of the rear hybrid asphere, sub-group G2a.",
       diagramLabel: "L6",
       cemented: "H2",
-      dPgF: -0.008584048430039681,
-      nC: 1.7089785191080578,
-      nF: 1.7221971878455318,
-      ng: 1.7293910484619255,
     },
     {
       id: 8,
@@ -224,10 +201,6 @@ const LENS_DATA = {
       role: "Positive meniscus crown; front element of the cemented negative doublet G2b.",
       diagramLabel: "L7",
       cemented: "D1",
-      dPgF: -0.006463998537767468,
-      nC: 1.6929936080006105,
-      nF: 1.705513134157419,
-      ng: 1.7123214628278374,
     },
     {
       id: 10,
@@ -242,10 +215,6 @@ const LENS_DATA = {
       role: "Biconcave flint; rear element of the cemented negative doublet G2b.",
       diagramLabel: "L8",
       cemented: "D1",
-      dPgF: 0.012760660485307107,
-      nC: 1.7472950054501213,
-      nF: 1.774744711742615,
-      ng: 1.791497422871583,
     },
     {
       id: 11,
@@ -259,10 +228,6 @@ const LENS_DATA = {
       glass: "LAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       role: "Positive meniscus; first element of the converging rear sub-group G2c.",
       diagramLabel: "L9",
-      dPgF: -0.008584048430039681,
-      nC: 1.7089785191080578,
-      nF: 1.7221971878455318,
-      ng: 1.7293910484619255,
     },
     {
       id: 12,
@@ -283,7 +248,7 @@ const LENS_DATA = {
     { label: "1", R: 69.12, d: 4.33, sd: 26.65, medium: 1 },
     { label: "2", R: 130.23, d: 0.15, sd: 26.65 },
     { label: "3", R: 45.56, d: 1.5, sd: 21.9, medium: 2 },
-    { label: "4", R: 19.5, d: 7.56, sd: 17.5 },
+    { label: "4", R: 19.5, d: 7.56, sd: 17.5, rimExtensionSd: 21.9 },
     {
       label: "5A",
       R: 65.45,
@@ -293,7 +258,7 @@ const LENS_DATA = {
       asphere: { K: 0, A4: 3.844e-6, A6: 1.0581e-8, A8: -9.9037e-12, A10: 5.055e-14 },
     },
     { label: "6", R: 54.47, d: 1.5, sd: 16.9, medium: 4 },
-    { label: "7", R: 22.38, d: 12.9, sd: 16.9 },
+    { label: "7", R: 22.38, d: 12.9, sd: 16.9, rimCutDepthMm: 5.8 },
     { label: "8", R: 313.19, d: 10.08, sd: 14, medium: 5 },
     { label: "9", R: -107.94, d: 0.3, sd: 14 },
     { label: "10", R: 50.85, d: 7.86, sd: 14.5, medium: 6 },

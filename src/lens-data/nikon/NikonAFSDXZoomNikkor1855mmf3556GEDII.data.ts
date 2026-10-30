@@ -34,15 +34,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Semi-diameters are inferred because Example 4 publishes none. They were constrained from the            ║
  * ║  first-order stop solution, exact non-paraxial chief/marginal ray traces at all zoom/focus endpoints,    ║
  * ║  the default 0.6-field off-axis bundle, the full published chief-ray fields, Fig. 13 proportions, edge   ║
- * ║  thickness, actual rim slope, conic domain, shared-gap intrusion, and render-trim proxy checks. The stop ║
- * ║  radius is derived from the design f-number at each zoom station with a real marginal ray, giving        ║
- * ║  7.893 / 7.962 / 8.007 mm for F/3.56 / 4.65 / 5.90 (first-order equivalents 7.799 / 7.791 / 7.748 mm).   ║
- * ║  Neither set fits one radius within the print rounding of Figs. 14-16, and Example 4 gives the stop a    ║
- * ║  position but no diameter. The iris, not a lens rim, limits the axial beam at all three stations.        ║
+ * ║  thickness, actual rim slope, conic domain, shared-gap intrusion, and render-trim proxy checks. ║
+ * ║  current runtime iris follows each station's source f-number; W/M/T radii are        ║
+ * ║  7.799001 / 7.790765 / 7.748381 mm for F/3.56 / 4.65 / 5.90.   ║
+ * ║  Example 4 gives the stop a position but no diameter. The iris limits all three axial beams.        ║
  * ║                                                                                                          ║
  * ║  Glass labels are deliberately conservative. Example 4 publishes only nd/vd, not trade names or       ║
- * ║  nC/nF/ng/dPgF. Ambiguous media therefore use six-digit/classes or Unmatched(...) instead of a         ║
- * ║  speculative vendor identity, and no unsupported spectral fields are authored.                          ║
+ * ║  nC/nF/ng/dPgF. Labels qualify the selected catalog curves as spectral proxies, without a         ║
+ * ║  production supplier claim; the resin is unresolved and no spectral fields are invented.                          ║
  * ║                                                                                                          ║
  * ║  Source contradiction retained: paragraph 0131 calls L2ap+L2an a "cemented negative lens," while      ║
  * ║  Table 4 gives that cemented pair weak positive net paraxial power. Table 4 is transcribed unchanged.   ║
@@ -90,7 +89,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -24.7341,
-      glass: "773496 class (vendor ambiguous; patent nd=1.772500, vd=49.61)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Glass body of the front negative hybrid compound element.",
       cemented: "H1",
     },
@@ -114,7 +113,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.06,
       focalLengthMm: 77.9678,
-      glass: "861231 dense-flint class (HIKARI J-SFH2 is a close catalog equivalent; identity inferred)",
+      glass: "J-SFH2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive meniscus completing the negative first zoom group.",
     },
     {
@@ -125,7 +124,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 59.4042,
-      glass: "497816 low-dispersion class (vendor/composition ambiguous)",
+      glass: "H-FK61 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "The unique very-high-Abbe position correlates with Nikon's one-ED production specification; the patent does not identify a melt or publish partial-dispersion data.",
@@ -139,7 +138,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 28.6323,
-      glass: "517641 crown class (vendor ambiguous; BK7-family coordinates)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive constituent of the front cemented pair in G2-1.",
       cemented: "D1",
     },
@@ -151,7 +150,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -30.169,
-      glass: "773496 class (vendor ambiguous; patent nd=1.772500, vd=49.61)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative constituent of the front cemented pair; the Table 4 pair is weakly net positive in situ.",
       cemented: "D1",
     },
@@ -163,7 +162,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.17,
       focalLengthMm: -26.4573,
-      glass: "834372 high-index class (vendor/composition ambiguous)",
+      glass: "J-LASF010 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative constituent of the rear cemented pair in G2-2.",
       cemented: "D2",
     },
@@ -175,7 +174,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 21.5866,
-      glass: "517641 crown class (vendor ambiguous; BK7-family coordinates)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive constituent of the rear cemented pair in G2-2.",
       cemented: "D2",
     },

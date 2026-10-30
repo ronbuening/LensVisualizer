@@ -19,9 +19,9 @@ at 14.8 mm, stroke edge 15.0 mm) and carries the rear face to 17.03 mm. 35A/36 =
 value outside every transmitted ray sampled to the corner (maxima 14.90 / 14.92 mm) and 37 = 17.0 mm is the drawn
 rim; all three were 16.4 mm, the last 0.1 mm step with positive resin thickness. The resin is now 0.143034573 mm
 thick at its rim. Surface 36, not 37, now bounds the engine half-fields: 18.3348 / 11.3124 / 7.6777 deg (were
-18.3256 / 11.2159 / 7.6308). L6's nearly flat front face 10 = 15.5 mm equals its rear (was 14.95 mm); the 9-10
-shared band stays 14.95 mm. The renderer joins unequal rims with a straight edge, so the drawn seats of L5, L8, L10
-and L20 appear as chamfers.
+18.3256 / 11.2159 / 7.6308). L6's nearly flat front face 10 = 15.5 mm equals its rear outer rim (was 14.95 mm);
+the optical cap of 9 stays 14.95 mm. Resolved air-facing seats at 9/14/35A now use explicit extensions, and 11
+uses a beam-adjusted cut. Cemented-junction steps remain outside the air-boundary schema.
 The iris schedule is inferred from published F-numbers, not published diaphragm radii.
 Glass labels are coordinate-equivalent catalog classes (HOYA; HIKARI for 1.61266/44.46 and 1.85108/40.12),
 not manufacturer/melt identity; the resin stays unmatched and no nC/nF/ng/dPgF is inferred.
@@ -348,12 +348,12 @@ const LENS_DATA = {
     { label: "6", R: 47.5905, d: 4.6723, sd: 18.8, medium: 4 },
     { label: "7", R: 579.8823, d: 0.7769, sd: 18.8 },
     { label: "8", R: 195.9849, d: 1.2, sd: 17.4, medium: 5 },
-    { label: "9", R: 23.4952, d: 5.8813, sd: 14.95 },
+    { label: "9", R: 23.4952, d: 5.8813, sd: 14.95, rimExtensionSd: 17.4 },
     { label: "10", R: 952.5687, d: 1.0, sd: 15.5, medium: 6 },
-    { label: "11", R: 54.2303, d: 0.2, sd: 15.5 },
+    { label: "11", R: 54.2303, d: 0.2, sd: 15.5, rimCutDepthMm: 1.99 },
     { label: "12", R: 33.1087, d: 3.6676, sd: 15.8, medium: 7 },
     { label: "13", R: 92.4947, d: 3.7917, sd: 14.25 },
-    { label: "14", R: -42.622, d: 1.0, sd: 14.21, medium: 8 },
+    { label: "14", R: -42.622, d: 1.0, sd: 14.21, medium: 8, rimExtensionSd: 15.8 },
     { label: "15", R: -206.1433, sd: 15.8 },
     { label: "STO", R: "flat", d: 1.0 },
     { label: "17", R: 38.511, d: 4.9076, sd: 17, medium: 9 },
@@ -404,6 +404,7 @@ const LENS_DATA = {
       R: -22.0,
       d: 0.2,
       sd: 15,
+      rimExtensionSd: 17.0,
       medium: 20,
       asphere: { K: 0, A4: 1.14513e-05, A6: 1.2741e-09, A8: 6.82309e-11, A10: -1.12878e-13, A12: 0, A14: 0 },
     },

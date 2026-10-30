@@ -30,7 +30,7 @@ These production specifications are distinct from the numerical design values be
 
 The model uses no focal-length scaling.
 Its nominal aperture is the patent's f/1.86 at all three infinity zoom stations.
-The original A-publication Figure 1 is degraded; the legible Figure 1 in JP 5952167 B2 is used only for arrangement and for estimating the modeled semi-diameters, never for a prescription number.
+The Japanese Figure 1 in the original A-publication file is degraded. Its PAJ wrapper on PDF p. 1 retains a legible selected figure, which corroborates the optical arrangement and cap-end lands. The legible Figure 1 in JP 5952167 B2 remains supporting evidence for the existing modeled semi-diameter estimates; neither illustration replaces any A-publication prescription number.
 Every radius, thickness, glass coordinate and aspheric coefficient comes from the A publication; independent source-first comparison found all 173 decimal/scientific entries in the selected Example 1 tables identical to the grant. The A publication remains controlling. [1, PDF p28; 2, PDF p26]
 
 ## Optical Architecture
@@ -95,7 +95,7 @@ Its object-side surface 1A is aspherical, while the rear surface is spherical.
 The front position and negative sign are specified by the patent, whose general discussion connects this arrangement with admitting a wide field and retaining back-focus clearance. [1, ¶0020–0021, ¶0034]
 
 The modeled front and rear apertures differ to respect the steep spherical rear profile.
-The grant figure draws the same step, with a flat annulus outside the rear curve.
+The A-file wrapper and grant figures draw the same step, with a flat annulus outside the rear curve. S2 keeps its 19.7 mm clear cap and now draws an opaque land to the 26.3 mm outer rim.
 Neither aperture is a manufacturer dimension; their validity is tied to the disclosed geometric and ray-clearance model.
 
 ### L2 — Negative Meniscus (1× Asph)
@@ -143,7 +143,7 @@ The patent constrains the front curvature of this subgroup in condition (4). [1,
 The high negative subgroup power arises from the complete cemented pair.
 Focus displacement is copied from the source spacing tables rather than inferred from production MFD.
 The grant figure ends the concave front curve near 15.4 mm at a flat annulus and draws the doublet as a square block out to 18.3 mm.
-The renderer joins unequal rims with a straight edge, so the modeled front semi-diameter is carried out to 17.0 mm against 18.3 mm for surfaces 9 and 10; a larger front lets the default off-axis ray fan clip first at cemented surface 9.
+S8 keeps its 17.0 mm optical cap and now draws an opaque land to the common 18.3 mm doublet rim. Its adopted cap remains larger than the figure estimate, preserving existing ray clearance; continuing the optical curve to 18.3 mm lets the default off-axis fan clip first at cemented surface 9.
 The f/1.86 telephoto axial marginal ray reaches about 15.19 mm on surface 8.
 
 ### L6 — Positive Meniscus
@@ -265,7 +265,7 @@ Its rear radius is one of the quantities in condition (6), which governs the sha
 The patent associates that curvature relationship with astigmatism control, rather than attributing the result to L16 alone. [1, ¶0026–0028]
 
 The modeled aperture of surface 28 is held at 13.9 mm by the actual sag intrusion into the printed gap; the two surfaces would meet at 14.26 mm.
-The gap is not increased to manufacture clearance, so L16's rear face draws as a chamfer where the grant figure has a flat annulus.
+The gap and the 13.9 mm optical cap are retained. An opaque land now reaches the 15.1 mm doublet rim at that cap's edge sag, following the source annulus without continuing the curve into the following asphere.
 
 ### L17 — Biconvex Positive (2× Asph)
 
@@ -420,7 +420,7 @@ The exact final data supplies the implemented-model calculation branch.
 The source and implemented branches remain separately identifiable; a marketing specification is never reused as a computed answer.
 
 The physical diaphragm radius and surface clear apertures are unpublished.
-Surface semi-diameters are estimated from the grant's Figure 1, measured with a curvature-calibrated vertical scale because the drawing is about 1.093 times taller than its axial scale, and then limited by traced clearance and the geometry checks below.
+Surface semi-diameters were estimated from the grant's Figure 1 with a curvature-calibrated vertical scale (the drawing is about 1.093 times taller than its axial scale), then limited by traced clearance and geometry. The legible selected figure in the A-file PAJ wrapper corroborates the cap-end lands now represented on S2, S8 and S28. Proposed S4 and S20 lands fail the unchanged gap allowance; their tapered outlines remain. S14A has a continuous source curve, so its slope-limited 18.6 mm cap is retained without inventing a land.
 At the three infinity stations, the current runtime's from-nominal-fno aperture model infers radii by tracing each nominal f/1.86 entrance-pupil marginal ray to the stop.
 This is calibration to a source f-number, not independent evidence of the production diaphragm diameter.
 

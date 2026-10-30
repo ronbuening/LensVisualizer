@@ -57,7 +57,7 @@ The patent couples the image-side surface of L12 to the object-side surface of L
 
 **nd = 1.75520, νd = 27.5. Glass: E-FD4 catalog-equivalent coefficient proxy. f = −300.265 mm.**
 
-L13 completes the fixed front group and offsets part of the power of the two large positive ED elements. Its higher index and much lower Abbe number provide the opposite dispersion sign needed for the front group's chromatic balance. The data deliberately identifies only the six-digit coordinate class; current catalog coincidences do not establish which supplier or melt was used in production.
+L13 completes the fixed front group and offsets part of the power of the two large positive ED elements. Its higher index and much lower Abbe number provide the opposite dispersion sign needed for the front group's chromatic balance. The stored E-FD4 catalog curve is a compatible spectral proxy; current catalog coordinates do not establish which supplier or melt was used in production.
 
 The complete G1 focal length is +180.000532 mm. L13's standalone negative focal length should not be confused with that in-situ group power: G1 remains strongly positive after the three separated elements are combined.
 
@@ -117,7 +117,7 @@ Its optical function is therefore not simply to add negative focal power. In com
 
 ## Glass Identification and Selection
 
-The patent publishes only refractive index and Abbe number. It does not identify suppliers, commercial glass names, Fraunhofer C/F/g line indices, partial-dispersion ratios, or anomalous-dispersion deviations. The data therefore preserves every patent coordinate and uses modern catalog curves only as coordinate-compatible spectral proxies. Those proxy names do not identify the production supplier or historical melt.
+All ten index/Abbe pairs were freshly checked against the Second Embodiment table (PDF p. 8). The table defines refractive indices and Abbe numbers without an explicit wavelength, so the stored d-line convention remains an interpretation. It does not identify suppliers, commercial glass names, per-material C/F/g indices or partial-dispersion ratios. All ten compatible catalog curves remain spectral proxies. In particular, J-FKH1 differs from the two front source coordinates by approximately Δnd = −0.0025 and Δνd = +0.67; FF5 differs from L32a by Δnd ≈ −0.00237. These approximations do not identify production suppliers or historical melts.
 
 | Data glass annotation | nd | νd | Elements | Interpretation in this model |
 |---|---:|---:|---|---|
@@ -202,7 +202,7 @@ The final data separates published or marketed quantities from computed model qu
 
 The aperture stop is a modeling inference because the Second Embodiment does not tabulate a stop position or diameter. Nikon's official production cross-section places the diaphragm in the patent's 22.000 mm air space between r16 and r17. The data preserves that total spacing by splitting it into 12.000 mm before `STO` and 10.000 mm after `STO`. The stop semi-diameter, 19.210431 mm, is solved so that the infinity-state entrance-pupil semi-diameter is 50.000000 mm; combined with the recomputed EFL, this yields the modeled f/2.000005 value used by `nominalFno`.
 
-The patent also does not publish clear semi-diameters. All authored `sd` values are therefore modeling inferences constrained by the modeled entrance pupil, the Nikon production cross-section, FIG. 2 proportions, and geometry checks. The focus and rear groups were enlarged from their draft values to follow the optical rims in FIG. 2 more closely; they are not presented as patent values. A 600 dpi follow-up compared the optical rims directly and retained the resulting envelope; leader lines around L31–L33 were excluded from the measurement. Edge thickness, actual spherical rim slope, and shared-band cross-gap intrusion all pass at both defined focus states in the independent verification.
+Figure 2 (PDF p. 2), freshly inspected at 600 dpi, supports raising both continuous faces of L13 to 52.0 mm from 49.0/47.0 mm, bringing its outer height closer to the adjacent front collector. No distinct flat-end transition is resolved on the concave faces: the shallow arcs remain curved, and leader ink is excluded. The other rims retain their guarded heights. The adjacent L12 rear is not forced to a square 53 mm rim because that trial would cross the literal positive element. All authored apertures remain inferred rather than patent dimensions. Surface, circle, nominal axial aperture and field checks pass; all nine actual SVG states have finite outlines and zero hidden trim. Source radii, thicknesses, materials, stop split and published 17 mm focus travel remain unchanged.
 
 No patent numerical prescription value has been corrected, and no dimensional scale factor is applied. The model omits a protective front filter: the selected patent embodiment does not contain one, and Nikon states that a protective front element was introduced later with the December 1985 “New” production revision. There are no aspheres, dummy optical planes, folded paths, or reconstructed intermediate focus states in this model.
 

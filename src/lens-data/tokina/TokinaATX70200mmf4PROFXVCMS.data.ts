@@ -24,21 +24,24 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * -0.78 / -0.47 / -0.10 mm at 72 / 105 / 194 mm where the figures draw about -0.06 / +0.09 / +0.08 mm. No single
  * printed radius, spacing or index accounts for the difference, so nothing is changed.
  * Semi-diameters are estimated from Figure 2 (200 ppi raster, 3.993 px/mm over the s1-s34 vertex span, rims read at
- * the centre of the outline) and floor-checked by real-ray trace at the three stations. Every element follows its
- * drawn rim: L1 31.0, L2 30.2, L3 28.9, L4 28.1, L7 13.6 and L9 13.4 mm, with the drawn cemented-joint steps at
+ * the centre of the outline) and floor-checked by real-ray trace at the three stations. The source outer bodies guide
+ * these inferred radii: L1 31.0, L2 30.2, L3 28.9, L4 28.1, L7 13.6 and L9 13.4 mm, with the drawn cemented-joint steps at
  * L5 / L6, L10 / L11 and L13 / L14. Two air-spaced pairs touch inside the drawn rims: s2 / s3 at 29.04 mm and
  * s14 / s15 at 12.43 mm. In each pair one face stops short of the contact and its element is drawn bevelled there:
  * s3 ends at 28.4 mm (front of L2) and s14 at 12.16 mm (rear of L8), while L1, L7 and L9 keep the square rims the
- * figure draws. The figure draws flat lands outside the curved part of s2 (from about 29 mm), s24 (about 11.4 mm)
- * and s31 (about 12.2-12.4 mm). Lands are not modelled: s2 runs to L1's rim, s24 carries L14's 13.0 mm rim (the
- * F/4.1 axial ray needs 12.06 mm there) and L18 keeps one 14.0 mm rim. Off-axis vignetting from these rims remains.
+ * figure draws. Fresh Figure 2 review, 2026-10-30, adds source-supported air-facing
+ * s2/s31 end cuts: depths 5.6/4.42 mm, clear 29.07843/12.97834 mm, outer 31/14 mm.
+ * s31 is moved outward from its measured source cap to clear full beams. The drawn
+ * s24 end is a cemented interface; no opaque cut is allowed there. Full s3 cap 30.2
+ * conflicts with land/gap bounds even with a coupled s2 trial; its 28.4 cap stays.
  * gapSagFrac 0.96 is the smallest two-decimal value that admits s14 at 12.16 mm (the tele F/4.1 axial ray needs
  * 12.148 mm there) beside s15: the two faces use 95.6 % of the 2.36 mm gap at that height and keep 0.10 mm of
  * air. It also admits s3 at 28.4 mm beside s2 (95.3 % of the 2.01 mm gap, 0.09 mm of air).
  * Stop: the patent states about F/4.1 and no iris diameter, so the iris radius is computed from F/4.1 at each
  * station (13.32-13.33 mm); it is not a printed dimension.
- * nd / vd are as printed. Glass names are the catalog glasses that match them and supply the dispersion curve
- * and dPgF; they do not identify the supplier. The stabilization doublet L15-L16 is modelled centred, and nothing
+ * nd / vd are as printed. Remove 76 catalog-only C/F/g/dPgF copies (2026-10-30);
+ * the source publishes no such anchors. All 19 current coefficient curves remain
+ * qualified compatible proxies; no supplier, melt or production identity follows. The stabilization doublet L15-L16 is modelled centred, and nothing
  * here certifies close-focus, stabilized or production MTF performance.
  */
 const LENS_DATA = {
@@ -91,7 +94,6 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front meniscus of the fixed subgroup G1X; air-spaced from L2",
       diagramLabel: "L1",
-      dPgF: 0.015053668027861122,
     },
     {
       id: 2,
@@ -105,7 +107,6 @@ const LENS_DATA = {
       glass: "S-PHM53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus of the fixed subgroup G1X",
       diagramLabel: "L2",
-      dPgF: 0.0063959408339324675,
     },
     {
       id: 3,
@@ -122,7 +123,6 @@ const LENS_DATA = {
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.5 and names no glass.",
       role: "First positive element of the focus subgroup G1Y",
       diagramLabel: "L3",
-      dPgF: 0.030742538991392454,
     },
     {
       id: 4,
@@ -139,7 +139,6 @@ const LENS_DATA = {
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.5 and names no glass.",
       role: "Second positive element of the focus subgroup G1Y",
       diagramLabel: "L4",
-      dPgF: 0.030742538991392454,
     },
     {
       id: 5,
@@ -154,7 +153,6 @@ const LENS_DATA = {
       role: "Positive element of the front cemented doublet of the variator G2",
       diagramLabel: "L5",
       cemented: "D1",
-      dPgF: 0.016742550777214982,
     },
     {
       id: 6,
@@ -169,7 +167,6 @@ const LENS_DATA = {
       role: "Biconcave negative element of the front cemented doublet of the variator G2",
       diagramLabel: "L6",
       cemented: "D1",
-      dPgF: -0.002558334813007046,
     },
     {
       id: 7,
@@ -184,7 +181,6 @@ const LENS_DATA = {
       role: "Negative element of the second cemented doublet of the variator G2",
       diagramLabel: "L7",
       cemented: "D2",
-      dPgF: -0.008143737244217575,
     },
     {
       id: 8,
@@ -199,7 +195,6 @@ const LENS_DATA = {
       role: "Positive element of the second cemented doublet of the variator G2",
       diagramLabel: "L8",
       cemented: "D2",
-      dPgF: 0.016742550777214982,
     },
     {
       id: 9,
@@ -213,7 +208,6 @@ const LENS_DATA = {
       glass: "S-LAH55 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconcave negative rear singlet of the variator G2",
       diagramLabel: "L9",
-      dPgF: -0.0076947089450264405,
     },
     {
       id: 10,
@@ -228,7 +222,6 @@ const LENS_DATA = {
       role: "Biconvex positive element of the cemented compensator G3",
       diagramLabel: "L10",
       cemented: "D3",
-      dPgF: -0.0025920779628301194,
     },
     {
       id: 11,
@@ -243,7 +236,6 @@ const LENS_DATA = {
       role: "Negative meniscus cemented to L10 in the compensator G3",
       diagramLabel: "L11",
       cemented: "D3",
-      dPgF: 0.0014663811893945722,
     },
     {
       id: 12,
@@ -260,7 +252,6 @@ const LENS_DATA = {
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.6 and names no glass.",
       role: "Positive meniscus directly behind the stop; front element of the fixed subgroup G4X",
       diagramLabel: "L12",
-      dPgF: 0.03230302590426204,
     },
     {
       id: 13,
@@ -275,7 +266,6 @@ const LENS_DATA = {
       role: "Negative element of the cemented doublet of G4X",
       diagramLabel: "L13",
       cemented: "D4",
-      dPgF: -0.0004357506013965562,
     },
     {
       id: 14,
@@ -290,7 +280,6 @@ const LENS_DATA = {
       role: "Positive element of the cemented doublet of G4X",
       diagramLabel: "L14",
       cemented: "D4",
-      dPgF: 0.0043277423652714475,
     },
     {
       id: 15,
@@ -305,7 +294,6 @@ const LENS_DATA = {
       role: "Positive element of the stabilization doublet G4Y",
       diagramLabel: "L15",
       cemented: "D5",
-      dPgF: 0.016742550777214982,
     },
     {
       id: 16,
@@ -320,7 +308,6 @@ const LENS_DATA = {
       role: "Biconcave negative element of the stabilization doublet G4Y",
       diagramLabel: "L16",
       cemented: "D5",
-      dPgF: 0.00017269921044360537,
     },
     {
       id: 17,
@@ -334,7 +321,6 @@ const LENS_DATA = {
       glass: "S-BSM25 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive front singlet of the rear subgroup G4Z",
       diagramLabel: "L17",
-      dPgF: -0.0020913850839844317,
     },
     {
       id: 18,
@@ -348,7 +334,6 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus singlet of the rear subgroup G4Z",
       diagramLabel: "L18",
-      dPgF: 0.016742550777214982,
     },
     {
       id: 19,
@@ -362,13 +347,12 @@ const LENS_DATA = {
       glass: "S-BAH27 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive last element of the rear subgroup G4Z",
       diagramLabel: "L19",
-      dPgF: 0.002109539072522204,
     },
   ],
 
   surfaces: [
     { label: "1", R: 155.134, d: 2.4, sd: 31.0, medium: 1 },
-    { label: "2", R: 78.296, d: 2.01, sd: 31.0 },
+    { label: "2", R: 78.296, d: 2.01, sd: 31.0, rimCutDepthMm: 5.6 },
     { label: "3", R: 119.756, d: 4.71, sd: 28.4, medium: 2 },
     { label: "4", R: 514.76, sd: 30.2 },
     { label: "5", R: 73.597, d: 7.65, sd: 28.9, medium: 3 },
@@ -397,7 +381,7 @@ const LENS_DATA = {
     { label: "28", R: 35.494, d: 5.73, sd: 11.5 },
     { label: "29", R: 51.87, d: 3.54, sd: 13.5, medium: 17 },
     { label: "30", R: -163.596, d: 5.95, sd: 13.5 },
-    { label: "31", R: -21.264, d: 1.5, sd: 14, medium: 18 },
+    { label: "31", R: -21.264, d: 1.5, sd: 14, medium: 18, rimCutDepthMm: 4.42 },
     { label: "32", R: -37.384, d: 0.2, sd: 14 },
     { label: "33", R: 266.207, d: 3.58, sd: 16, medium: 19 },
     { label: "34", R: -84.104, d: 54.66, sd: 16 },

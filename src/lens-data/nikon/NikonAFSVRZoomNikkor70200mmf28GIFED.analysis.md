@@ -205,6 +205,8 @@ L49 is the negative rear member of the L48+L49 pair. The cemented pair remains n
 
 ## Glass Identification and Selection
 
+Fresh direct inspection of US20030133200A1.pdf (PDF pages 63–64, Table 1) confirms all 21 stored nd/νd pairs at d = 587.6 nm. All 21 modeled media resolve to compatible catalog curves. The source gives no per-element C/F/g indices or partial-dispersion ratios. All source indices and runtime spectral channels remain unchanged. Production supplier, melt and proprietary ED identity remain unproved; vendor-unresolved wording concerns provenance rather than absent dispersion coverage.
+
 The patent publishes only d-line refractive indices and Abbe numbers. It does not identify a glass vendor or trade name for Example 1, nor does it publish per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The data file retains those patent coordinates and uses compatible coefficient-backed catalog equivalents where available, without treating them as evidence of a unique production melt.
 
 | Stored glass annotation | nd | νd | Elements | Data-level interpretation |
@@ -293,6 +295,8 @@ The final data also reproduces the complete set of 21 standalone element focal l
 The prescription is all spherical. The geometry model retains positive edge thickness and positive shared-gap clearance at every defined zoom/focus endpoint. The tightest modeled shared-band gap is the L14→L15 air space; its authored semi-diameters require `gapSagFrac = 0.93` but still leave 0.151938 mm of physical rim clearance. This is a semi-diameter modeling choice, not a change to the patent radii or axial spacings.
 
 The model contains no sensor cover glass, filter plate, dummy optical surface, flare-cutter plane, or mechanical part. The only omitted source planes are the non-powered S2 and S3 field stops described above. No prescription scaling or asphere transformation is present.
+
+Fresh 600 dpi inspection of the exact source figure (native raster 300 ppi) retained all existing geometry. Every convex/concave/cemented face was reviewed, including the compact rear relay. Short shallow-profile strokes, leaders and ray crossings do not establish another independent cap endpoint, so no inferred cut or land was added. Nine focus/zoom SVG states were inspected with finite outlines and zero hidden trim; the nominal aperture and surface/image-circle checks pass. These checks retain the qualified figure/ray-derived apertures without converting them into manufacturing dimensions.
 
 ## Sources and References
 

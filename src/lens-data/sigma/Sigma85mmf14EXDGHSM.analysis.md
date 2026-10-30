@@ -105,23 +105,9 @@ This image-convex negative meniscus closes doublet D3 and the moving group. Its 
 
 ## Glass Identification and Chromatic Limits
 
-Nine distinct source coordinates were compared against OHARA, HOYA, Schott, Hikari, Sumita and CDGM catalog data. Multiple vendors can occupy the same or nearby nd/νd coordinate. The annotations therefore name a compatible class, preserving the original patent coordinates. OHARA historical, S- and L-prefixed entries were kept distinct in the comparison; no brand-based supplier inference was used.
+The 2026-10-30 original-source reinspection verified all eleven nd/νd pairs from Numerical Example5 on PDF18 and the d-line convention in¶0080/PDF13. The source supplies no C/F/g indices or partial-dispersion ratios. Forty catalogue-only C/F/g andΔPgF copies were removed from ten elements; these now use the current compatible coefficient models without repeating catalogue spectra as source anchors. Ten lenses resolve; E6 (1.58763/61.08) remains unresolved, without a forced molding-grade, melt or supplier identification. Compatible HOYA curves elsewhere remain qualified spectral proxies.
 
-| Elements | Source nd / νd | Selected annotation |
-|---|---|---|
-| E1 | 1.49700 / 81.61 | FCD1 (HOYA coordinate-compatible class; supplier unproven) |
-| E6 | 1.58763 / 61.08 | Unmatched (molded-asphere glass; nd 1.58763 / vd 61.08) |
-| E3 | 1.60342 / 38.01 | E-F5 (HOYA coordinate-compatible class; supplier unproven) |
-| E11 | 1.63980 / 34.57 | E-FD7 (HOYA coordinate-compatible class; supplier unproven) |
-| E7 | 1.67270 / 32.17 | E-FD5 (HOYA coordinate-compatible class; supplier unproven) |
-| E4, E8 | 1.72825 / 28.32 | E-FD10 (HOYA coordinate-compatible class; supplier unproven) |
-| E2 | 1.72916 / 54.67 | TAC8 (HOYA coordinate-compatible class; supplier unproven) |
-| E5 | 1.83481 / 42.72 | TAFD5G (HOYA coordinate-compatible class; supplier unproven) |
-| E9, E10 | 1.88300 / 40.81 | TAFD30 (HOYA coordinate-compatible class; supplier unproven) |
-
-For ten elements, nC, nF and ng values are calculated from the HOYA catalog dispersion coefficients of the matching glass and stored in the data. ΔPgF uses the reference line θgF − (0.6438 − 0.001682 νd). These are class-level spectral approximations. The unmatched E6 has no catalog dispersion; the model falls back to an Abbe-number approximation for it, which does not establish the physical glass spectrum. Consequently, the model does not certify secondary-spectrum correction, APO behavior, production MTF or color performance.
-
-The front low-dispersion positive element and multiple flint-like negative elements make chromatic balancing plausible. The patent's weighted-power condition for the rear subgroup is quantitatively reproduced, but it is not a substitute for complete measured spectral data.
+E1 retains an inferred APD badge from the recorded construction correlation. The patent identifies a low-dispersion medium GL and recommends an anomalous medium (¶0069); it does not prove that the Example5 medium uses that specific anomaly or an FCD1 production melt. No source θ or spectral override is invented, and unresolved dispersion is not measured zero chromatic aberration.
 
 ## Focus Mechanism and Derived Image Plane
 
@@ -180,7 +166,7 @@ Condition 1 is R10/f; conditions 2–3 are the sums f/(fi ni) and f/(fi νi) ove
 
 ## Model Scope and Limitations
 
-No physical clear radii are printed. The model's semi-diameters are inferred from the optical section, axial ray envelope and geometry constraints. The front-group rims are measured on Figure 21, which is drawn to scale at infinity focus: 35.7 mm for E1, 31.0 mm for E2, 26.4 mm for the front of E3 and 22.5 mm for its concave rear face, where the figure ends the curve at a flat annulus. The rims from the cemented doublet D1 rearward are estimates that agree with the figure within 3% (D1 is drawn 21.6 mm high against 21 mm in the model). The figure gives E3, E6 and E7 flat rim annuli, which the model draws as slanted rims, and it cuts the thin front shell of D1 back above 19.4 mm, which the model does not show. Source radii, glass thicknesses, indices, asphere coefficients and published d6 spacings remain unchanged.
+No physical clear radii are printed. The model's semi-diameters are inferred from the optical section, axial ray envelope and geometry constraints. The 2026-10-30 reinspection viewed original Fig.21/PDF29 at native resolution and600dpi. S6 preserves its22.5mm clear cap and adds the independently drawn land to26.4mm; S11 preserves16.2mm with a land to19mm. Guarded inferred cuts reproduce the rear E1/S2 land (beam-adjusted depth4.62mm, cap35.183020mm on outer35.7) and E7/S13 land (depth2.36mm, cap15.456mm on outer17). The full S12 front land is rejected by the unchanged0.96 allowance in the5.5771mm gap. Existing cemented interfaces and the D1 shell-notch limitation remain; no opaque cement-interface feature is invented. All source R/d/nd/νd/asphere/stop/focus controls and the19mm asphere cap are unchanged.
 
 The curved air interval between S11 and S12 is the tightest part of the model. The full-aperture axial ray reaches radii 16.133131 and 16.078499 mm on those faces, and the modeled rims are 16.2 and 16.1 mm. At their shared radial band the minimum axial gap is 0.227899 mm, a sag intrusion of 95.913659% of the 5.5771 mm vertex spacing. The data file therefore raises the shared-gap allowance from the default 90% to 96%. Reducing a rim enough for the default allowance would clip the F/1.46 axial bundle, and the source spacing is not altered.
 
@@ -194,3 +180,5 @@ On axis, the full F/1.46 bundle passes at both published focus states. Off axis,
 2. Sigma, [85mm F1.4 EX DG HSM legacy product page](https://www.sigma-global.com/en/lenses/85_14/) and [official construction drawing](https://www.sigma-global.com/lenses/85_14_specification_01.jpg), retrieved 2026-10-09.
 3. Sigma Corporation of America, [US pricing and availability announcement](https://press.sigmaphoto.com/corporate/10/sigma-corporation-of-america-announces-us-pricing-availability-of-85mm-f1-4-ex-dg-hsm-lens/), 2010-10-14. Rear-focus/HSM, molded-element and product specifications.
 4. Optical-glass catalogs from HOYA, OHARA, Schott, Hikari, Sumita and CDGM. The selected labels are equivalence classes, not production attribution.
+
+Fresh full-cut guards also pass a temporary850mm image-plane conjugate diagnostic using the already approved derived image distance; this adds no source certification. The known near F1.704046 versus plot F1.71 discrepancy remains. The final actual nine-state SVGs have no automatic trimming or detached compounds. Identical48,135sampled collimated launches retain39,611, lose0, gain0 and block8,524 inboth; sampled counts are not flux. The detailed source q measurements and adopted beam adjustments are recorded in the audit.

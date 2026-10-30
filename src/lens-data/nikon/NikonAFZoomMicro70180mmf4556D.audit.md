@@ -55,3 +55,10 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
   `nd = 1.748099`, `νd = 52.304982`, exactly matching L6 at the patent's printed precision.
 - Relabeled L6 as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes the
   earlier current-catalog no-match disposition; no prescription, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-10-30 — Original-figure land, source aperture correction, and fresh glass reinspection
+
+- Directly viewed `patents/US5717527.pdf`, seventhembodiment Figure43/PDF44 at600dpi+native300dpi, Table8/PDF69, d-line convention/PDF68, Figures44A/45A/46A/PDF45–47. All18 source nd/vd pairs exact and retained;18 actual resolver curves explicitly qualified. No sourceCFg/partial/APD table or supplier/melt identity supplied; no spectral values invented.
+- Table8 and all3aberrationplots consistentlyprintFNO4.14/5.10/5.73. Correct designstations4.5/5.3/5.6→4.14/5.10/5.73, addcatalogmarketing4.5/design4.14, retainname/userstopchoices. S2 continuous cap24→27.8mm plus exposedland toexistingouter29.5. Nativeq≈.94±.007 atedge≈292px;adopted.942. Allotherexposed/convex/concave/cementedfaces inspected; no furtherindependentland. No source radius/gap/focus/coefficient/tolerance changes.
+- Literal tele f5.73 beam remains S20/S21-limited:current12.8caps tracef5.89647 (+2.905%, inside existing3%auditband). Minimumrounded13.2both trial givescombinedsag2.750mm vsunchanged2.610mm budget in2.900mm sourcegap;commoncap bound12.852515mm. Trial rejected;no toleranceweakening/source-depthbypass. Wide4.14/mid5.10 iris-limited. Existingteleclip alsooccurred underoldf5.6.
+- Surface/circle pass;3formatcorners>=99%,9actualSVGstates18finitepaths/zero trim, rasterinspected. SourcecloseR391.9mm fulliris discreteaxialsamples25/25W,25/25M,13/25T(outerringS20clip). Counts are notflux or measuredproductionvignetting. Production.37m controllabel/sourcefocus/TL discrepancy retained. Source/catalog checks and3sharedglassfiles94testspass.

@@ -54,7 +54,7 @@ The front pair also reduces the marginal-ray height before L3. This is the first
 
 ### L3 — Negative Meniscus, Sharper Rear Curvature
 
-$n_d = 1.71736$, $\nu_d = 29.52$ catalog value; the patent rounds $\nu_d$ to 29.5. Glass: S-TIH1 (OHARA). $f = -43.33$ mm after ×1.35 scaling ($-32.10$ in patent-normalized units).
+$n_d = 1.71736$, $\nu_d = 29.5$ as printed by the patent. S-TIH1 (OHARA) supplies a compatible spectral proxy with catalog $\nu_d = 29.52$; the source value is retained. $f = -43.33$ mm after ×1.35 scaling ($-32.10$ in patent-normalized units).
 
 L3 is the dominant negative component. Its front surface is weak ($r_5 = 149.507$), while its rear surface is much stronger ($r_6 = 19.644$). The rear surface has the largest single-surface paraxial power in the system, $\phi_6 = -0.03652$ in normalized units.
 
@@ -62,7 +62,7 @@ The patent explicitly identifies the image-side surface of L3 as the place where
 
 ### L4 — Positive Meniscus, Convex to Object
 
-$n_d = 1.78470$, $\nu_d = 26.1$ in the patent. Glass: `785261` dense flint with line-index backfill; SF56A-class, but no local Sellmeier entry is currently verified. $f = +195.18$ mm after ×1.35 scaling ($+144.58$ in patent-normalized units).
+$n_d = 1.78470$, $\nu_d = 26.1$ in the patent. Glass: SF56A (SCHOTT compatible spectral proxy; source coordinates retained and production supplier unspecified). $f = +195.18$ mm after ×1.35 scaling ($+144.58$ in patent-normalized units).
 
 L4 is a weak positive meniscus placed after the stop. It completes the system focal length and gives leverage on Petzval curvature and distortion without adding a cemented interface. The long $d_6$ air gap between L3 and L4 is not arbitrary: the patent states that as $f_{123}$ becomes shorter, positive distortion increases, and a larger L3-to-L4 air space is needed to drive distortion back in the negative direction.
 
@@ -77,11 +77,11 @@ The patent does not name glass catalogs. Identifications below are based on matc
 | L1 | 1.62041 | 58.6 | 620586 patent crown glass | none verified | Preserves patent $n_d/\nu_d$ with Abbe fallback |
 | L2 | 1.62041 | 58.6 | 620586 patent crown glass | none verified | Preserves patent $n_d/\nu_d$ with Abbe fallback |
 | L3 | 1.71736 | 29.5 | S-TIH1 (OHARA) | 29.52 | Direct match within rounding |
-| L4 | 1.78470 | 26.1 | 785261 dense flint; SF56A-class | 26.08 | Code-based line-index backfill; vendor uncertain |
+| L4 | 1.78470 | 26.1 | SF56A qualified spectral proxy | 26.08 | Current compatible coefficient curve; production supplier unspecified |
 
 The L1/L2 discrepancy is material. OHARA lists S-BSM16 at $n_d = 1.62041$, $\nu_d = 60.29$; SCHOTT lists N-SK16 at $n_d = 1.62041$, $\nu_d = 60.32$. The patent's $\nu_d = 58.6$ instead corresponds to a different crown region, and Embodiment 1 of the same patent already pairs $n_d = 1.62041$ with $\nu_d = 60.3$. That may indicate a copied Abbe-number error in Embodiment 3, but because the certificate leaves the numerical table unchanged, the data file follows the printed value.
 
-The chromatic correction is an ordinary crown/dense-flint achromatizing strategy, not an apochromatic one. The positive front pair supplies most of the early convergence, while the strong negative dense-flint L3 is the principal chromatic counterweight. L4 is also dense flint, but because it is weakly positive it should be described as a rear corrector rather than as a negative chromatic component. The patent publishes only $n_d$ and $\nu_d$, and no ED, fluorite, or anomalous-partial-dispersion glass is present. The data file includes line-index backfill only where a defensible source is already authored; L1/L2 intentionally remain Abbe-only until a coefficient-backed `620586` glass can be sourced.
+The chromatic correction is an ordinary crown/dense-flint achromatizing strategy, not an apochromatic one. The positive front pair supplies most of the early convergence, while the strong negative dense-flint L3 is the principal chromatic counterweight. L4 is also dense flint, but because it is weakly positive it should be described as a rear corrector rather than as a negative chromatic component. The patent publishes only $n_d$ and $\nu_d$ and identifies no ED, fluorite or anomalous-partial-dispersion material. The two catalog-only C/F/g index sets have been removed; L3/L4 use compatible coefficient curves. L1/L2 retain the printed 1.62041/58.6 pair with Abbe fallback until a coefficient-backed `620586` match can be sourced. A focused search of primary glass-vendor sites found no exact coordinate/code row; that limited search does not establish that no such glass ever existed.
 
 ## Focus Mechanism
 
@@ -180,3 +180,7 @@ The design should be compared against the contemporary AI Nikkor 135mm f/2.8, no
 5. OHARA Inc., optical glass product table, S-BSM16 and S-TIH1 entries, https://www.ohara-inc.co.jp/product/01000/.
 6. SCHOTT, optical glass datasheet SF56A, https://media.schott.com/api/public/content/7428154cd0e04bd5a0cff3defb79443c?v=d460f7da.
 7. SCHOTT, Technical Information TIE-19, N-SK16 reference data, https://media.schott.com/api/public/content/63b62a0d73a640efa8c6fde92f2ad5c2?v=97a6a05a.
+
+## F-mount Outline Recheck
+
+Both halves of the common patent Fig. 1 show a vertical seat at the concave surface-6 end. The measured source cap/edge share is approximately 0.75 ± 0.010 at native 300ppi. The model preserves its existing 20.52mm clear cap and extends the opaque land to the opposite face’s 21.6mm rim; its adopted cap share is 0.95. Surface 2 follows a continuous curve to the common 25.785mm front-element rim. These inferred outlines preserve the numerical prescription and the source’s beveled L2 edge. Surface, image-circle and nominal f/2.8 aperture checks pass, with no hidden trimming in nine sampled renderer states.

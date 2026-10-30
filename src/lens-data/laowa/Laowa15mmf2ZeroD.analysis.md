@@ -239,3 +239,5 @@ The $BF/F_2$ condition requires care. The value matches the patent only when BF 
 [^hoya-tafd]: Hoya Optics Division, "Glass Cross Reference Index," TAFD5G 835-427, TAFD25 904-313 / N-LASF46B, and TAFD35L 911-353 entries. https://www.hoya-opticalworld.com/english/products/crossreference.html
 
 [^hoya-mbacd]: Hoya Optics Division, "Glass Cross Reference Index," M-BACD12 583-595 with L-BAL42 and D-ZK2 cross-reference entries. https://www.hoya-opticalworld.com/english/products/crossreference.html
+
+Example 1 Figure 1 shows flat lands at several concave cap ends. S2, S4A and S22A now preserve their existing optical caps with `rimExtensionSd` to the opposite-face outer rim. S6 and S9 have small additional inferred cuts, moved outward from the figure estimates to clear the complete traced wide-open beams and their required margins; the clear radii are 8.165 and 8.932 mm. These source-guided blank-edge changes do not resolve the numerical asphere/aberration contradiction described above.

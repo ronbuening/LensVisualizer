@@ -24,9 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - The patent publishes no clear apertures. Semi-diameters are derived from the verified d-line marginal bundle,
  *   the F/4.08 stop solution, Fig. 1 proportions, and current edge/slope/cross-gap geometry constraints. They are model
  *   apertures, not patent dimensions. The tight L16 rim and D22/D23 air gap are deliberately geometry-limited.
- * - nC/nF/ng/dPgF values are catalog-derived spectral proxies, not patent-published line indices. HIKARI J-series
- *   proxies are used where their nd/vd/theta_gF coordinates closely match the patent; HOYA TAFD35 is used for the
- *   1.9108/35.2 material. The two unspecified DOE resins have no invented line data.
+ * - Table 1 publishes theta_gF for all 16 glass elements. Stored dPgF converts those rounded source ratios with
+ *   theta_gF - (0.6438 - 0.001682*vd); conversion digits do not imply more precision than the table. Catalog curves
+ *   supply the remaining spectrum, anchored to source nd. No per-lens catalog nC/nF/ng overrides are authored.
+ *   The two unspecified DOE resins have dashes for theta_gF and remain unresolved material fallbacks.
  * - Paragraph 0074 proposes L25+L26+L27 as a lateral VR group. No axial VR state is authored because the patent supplies
  *   no corresponding axial prescription change and the ordinary sequential data model does not require one.
  */
@@ -67,10 +68,7 @@ const LENS_DATA = {
       focalLengthMm: 254.38962374119492,
       glass: "J-FK5 / 487703 class (HIKARI spectral proxy)",
       role: "Front positive collector in G1a.",
-      dPgF: 0.0027,
-      nC: 1.485343,
-      nF: 1.492276,
-      ng: 1.495944,
+      dPgF: 0.0035446,
     },
     {
       id: 2,
@@ -83,13 +81,10 @@ const LENS_DATA = {
       glass: "J-FKH1 / 498826 class (HIKARI spectral proxy; ED-class)",
       apd: "inferred",
       apdNote:
-        "Catalog proxy J-FKH1 has dPgF = +0.0327; the patent itself publishes nd/vd/theta_gF, not the glass name.",
+        "Source Table 1 theta_gF = 0.5386 and vd = 82.6 give converted dPgF = +0.0337332 using 0.6438 - 0.001682*vd. Rounded source values limit precision. J-FKH1 is a compatible spectral proxy, not an identified production melt.",
       role: "High-Abbe positive member of the cemented G1a achromat; production correlation makes this the probable ED element.",
       cemented: "D1",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
+      dPgF: 0.0337332,
     },
     {
       id: 3,
@@ -102,10 +97,7 @@ const LENS_DATA = {
       glass: "J-LF7 / 575415 class (HIKARI spectral proxy)",
       role: "Negative partner cemented to L12 in G1a.",
       cemented: "D1",
-      dPgF: 0.0017,
-      nC: 1.570908,
-      nF: 1.58476,
-      ng: 1.592745,
+      dPgF: 0.002403,
     },
     {
       id: 4,
@@ -117,13 +109,10 @@ const LENS_DATA = {
       focalLengthMm: 513.3961963236305,
       glass: "J-BK7A catalog-equivalent spectral proxy (patent 517639; production supplier unspecified)",
       apdNote:
-        "J-BK7A line indices are used as a compatible catalog-equivalent proxy; current J-BK7A vd = 64.14 versus the patent's rounded 63.9.",
+        "J-BK7A is a compatible catalog-curve proxy (catalog vd 64.14 versus source 63.9); source theta_gF = 0.5359 is retained separately through converted dPgF. Supplier and production melt are unspecified.",
       role: "Positive substrate carrying the contact multilayer DOE on its image-side structure.",
       cemented: "PF1",
-      dPgF: -0.001,
-      nC: 1.514324,
-      nF: 1.522382,
-      ng: 1.526699,
+      dPgF: -0.0004202,
     },
     {
       id: 5,
@@ -158,10 +147,7 @@ const LENS_DATA = {
       glass: "TAFD35 / 911353 class (HOYA spectral proxy)",
       role: "Dense negative member of the weak-net-power G1b cemented pair.",
       cemented: "D2",
-      dPgF: -0.0027,
-      nC: 1.90323,
-      nF: 1.92907,
-      ng: 1.94412,
+      dPgF: -0.0023936,
     },
     {
       id: 8,
@@ -174,10 +160,7 @@ const LENS_DATA = {
       glass: "J-FK5 / 487703 class (HIKARI spectral proxy)",
       role: "Positive partner of G1b; its rim aperture is constrained by the strong R11 curvature.",
       cemented: "D2",
-      dPgF: 0.0027,
-      nC: 1.485343,
-      nF: 1.492276,
-      ng: 1.495944,
+      dPgF: 0.0035446,
     },
     {
       id: 9,
@@ -190,10 +173,7 @@ const LENS_DATA = {
       glass: "J-F2 / 620364 class (HIKARI spectral proxy)",
       role: "Positive member of the translating internal-focus doublet LF.",
       cemented: "LF",
-      dPgF: 0.0045,
-      nC: 1.615037,
-      nF: 1.632073,
-      ng: 1.642086,
+      dPgF: 0.0051248,
     },
     {
       id: 10,
@@ -206,10 +186,7 @@ const LENS_DATA = {
       glass: "J-LAK14 / 697555 class (HIKARI spectral proxy)",
       role: "Negative member of the translating internal-focus doublet LF.",
       cemented: "LF",
-      dPgF: -0.0082,
-      nC: 1.692974,
-      nF: 1.705525,
-      ng: 1.71234,
+      dPgF: -0.007449,
     },
     {
       id: 11,
@@ -222,10 +199,7 @@ const LENS_DATA = {
       glass: "TAFD35 / 911353 class (HOYA spectral proxy)",
       role: "Negative member of LC1 immediately behind the aperture stop.",
       cemented: "LC1",
-      dPgF: -0.0027,
-      nC: 1.90323,
-      nF: 1.92907,
-      ng: 1.94412,
+      dPgF: -0.0023936,
     },
     {
       id: 12,
@@ -238,10 +212,7 @@ const LENS_DATA = {
       glass: "J-LF7 / 575415 class (HIKARI spectral proxy)",
       role: "Positive partner in LC1.",
       cemented: "LC1",
-      dPgF: 0.0017,
-      nC: 1.570908,
-      nF: 1.58476,
-      ng: 1.592745,
+      dPgF: 0.002403,
     },
     {
       id: 13,
@@ -254,10 +225,7 @@ const LENS_DATA = {
       glass: "J-SF10 / 728284 class (HIKARI spectral proxy)",
       role: "Positive member of the L25+L26 pair; part of the patent's preferred lateral VR set with L27.",
       cemented: "D3",
-      dPgF: 0.0101,
-      nC: 1.720838,
-      nF: 1.7465,
-      ng: 1.762074,
+      dPgF: 0.0108688,
     },
     {
       id: 14,
@@ -270,10 +238,7 @@ const LENS_DATA = {
       glass: "729546 class (J-LAK18 spectral proxy)",
       role: "Negative partner cemented to L25; part of the patent's preferred lateral VR set.",
       cemented: "D3",
-      dPgF: -0.0085,
-      nC: 1.725097,
-      nF: 1.738449,
-      ng: 1.745716,
+      dPgF: -0.0077628,
     },
     {
       id: 15,
@@ -285,10 +250,7 @@ const LENS_DATA = {
       focalLengthMm: -55.997535735080106,
       glass: "729546 class (J-LAK18 spectral proxy)",
       role: "Standalone negative element completing the patent's preferred lateral VR set.",
-      dPgF: -0.0085,
-      nC: 1.725097,
-      nF: 1.738449,
-      ng: 1.745716,
+      dPgF: -0.0077628,
     },
     {
       id: 16,
@@ -301,10 +263,7 @@ const LENS_DATA = {
       glass: "J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy)",
       role: "Positive member of LC2.",
       cemented: "LC2",
-      dPgF: 0.0005,
-      nC: 1.54455,
-      nF: 1.556594,
-      ng: 1.563441,
+      dPgF: 0.001131,
     },
     {
       id: 17,
@@ -317,10 +276,7 @@ const LENS_DATA = {
       glass: "J-LASF014 / 788474 class (HIKARI spectral proxy)",
       role: "Negative partner in LC2.",
       cemented: "LC2",
-      dPgF: -0.009,
-      nC: 1.782997,
-      nF: 1.799638,
-      ng: 1.808889,
+      dPgF: -0.0081732,
     },
     {
       id: 18,
@@ -332,10 +288,7 @@ const LENS_DATA = {
       focalLengthMm: 71.37093435025955,
       glass: "J-FK5 / 487703 class (HIKARI spectral proxy)",
       role: "Final positive relay element ahead of the 54.00 mm rear air-equivalent spacing.",
-      dPgF: 0.0027,
-      nC: 1.485343,
-      nF: 1.492276,
-      ng: 1.495944,
+      dPgF: 0.0035446,
     },
   ],
 
@@ -344,7 +297,7 @@ const LENS_DATA = {
     { label: "2", R: 1198.911, d: 0.27, sd: 38.5 },
     { label: "3", R: 80.591, d: 11.45, sd: 38.0, medium: 2 },
     { label: "4", R: -504.43, d: 2.5, sd: 37.5, medium: 3 },
-    { label: "5", R: 215.439, d: 2.0, sd: 36.5 },
+    { label: "5", R: 215.439, d: 2.0, sd: 36.5, rimExtensionSd: 37.5 },
     { label: "6", R: 77.236, d: 5.0, sd: 34.0, medium: 4 },
     { label: "7", R: 106.549, d: 0.2, sd: 33.0, medium: 5 },
     {
@@ -366,17 +319,17 @@ const LENS_DATA = {
     { label: "9", R: 106.549, d: 26.05, sd: 33.0 },
     { label: "10", R: 40.477, d: 1.5, sd: 23.0, medium: 7 },
     { label: "11", R: 26.124, d: 7.51, sd: 22.0, medium: 8 },
-    { label: "12", R: 71.781, sd: 19.6 },
+    { label: "12", R: 71.781, sd: 19.6, rimExtensionSd: 20.7 },
     { label: "13", R: 124.603, d: 2.59, sd: 17.0, medium: 9 },
     { label: "14", R: -321.404, d: 1.2, sd: 17.0, medium: 10 },
-    { label: "15", R: 42.442, sd: 17.0 },
+    { label: "15", R: 42.442, sd: 17.0, rimCutDepthMm: 2.66 },
     { label: "STO", R: "flat", d: 2.99 },
     { label: "17", R: 53.509, d: 1.78, sd: 10.5, medium: 11 },
     { label: "18", R: 23.591, d: 2.77, sd: 10.5, medium: 12 },
     { label: "19", R: 222.119, d: 2.69, sd: 10.5 },
     { label: "20", R: 64.088, d: 2.37, sd: 8.8, medium: 13 },
     { label: "21", R: -67.244, d: 0.85, sd: 8.6, medium: 14 },
-    { label: "22", R: 29.85, d: 2.27, sd: 8.6 },
+    { label: "22", R: 29.85, d: 2.27, sd: 8.6, rimCutDepthMm: 1.23 },
     { label: "23", R: -66.093, d: 0.8, sd: 8.6, medium: 15 },
     { label: "24", R: 107.388, d: 2.17, sd: 8.6 },
     { label: "25", R: 69.491, d: 3.09, sd: 10.8, medium: 16 },

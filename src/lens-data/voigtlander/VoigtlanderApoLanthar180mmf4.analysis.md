@@ -91,7 +91,7 @@ nd = 1.48749, νd = 70.4. Glass: S-FSL5 (OHARA) — fluorine crown. f = +63.6 mm
 
 L22 is the "crown" partner of the first cemented doublet (cemented face at R = 22.803 mm, exit at R = +86.224, d = 6.87 mm). Its low index (1.487) and high Abbe number (70.4) make it the chromatic counterweight to L21's dispersion. The doublet as a whole has a net focal length of −70.4 mm and is nearly achromatic in the primary spectrum: its combined φ/ν residual is only −0.58 × 10⁻³ mm⁻¹.
 
-The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is notable. S-FSL5's low refractive index (1.487) maximizes the index step at the cemented junction with S-LAH60 (Δn = 1.834 − 1.487 = 0.347), producing strong negative power at the interface without requiring extreme curvatures. A higher-index crown would reduce this Δn and necessitate steeper curves to achieve the same divergence. S-FSL5's anomalous partial dispersion (ΔPgF = +0.0022) is modest — near the Schott normal line — so the secondary-spectrum correction in D1 derives primarily from the glass-power pairing rather than from anomalous-dispersion matching.
+The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is notable. S-FSL5's low refractive index (1.487) maximizes the index step at the cemented junction with S-LAH60 (Δn = 1.834 − 1.487 = 0.347), producing strong negative power at the interface without requiring extreme curvatures. A higher-index crown would reduce this Δn and necessitate steeper curves to achieve the same divergence. The compatible S-FSL5 spectrum supplies a qualified low-dispersion crown proxy. The source does not specify an actual partial ratio or establish the historical melt's anomalous-dispersion behavior.
 
 ### L23 — Near-Plano-Concave Negative (G2, cemented with L24)
 
@@ -129,7 +129,7 @@ The use of S-LAH53 (the same glass as L23) in the rear group is notable — it c
 
 ## Glass Identification and Selection
 
-All six distinct glasses in this design are exact matches to OHARA catalog entries, consistent with Cosina's established use of OHARA glass.
+All nine source d-line pairs resolve compatible OHARA coefficient curves. These six catalog families are qualified spectral proxies; the patent names no supplier or production melt and supplies no C/F/g or actual partial ratios. Glass-family descriptions throughout this analysis refer to those proxies.
 
 | Element(s) | Glass | nd | νd | Type | Role |
 |------------|-------|----|----|------|------|
@@ -142,7 +142,7 @@ All six distinct glasses in this design are exact matches to OHARA catalog entri
 
 The glass palette clusters into two functional families:
 
-**Ultra-low-dispersion crowns (νd > 70):** S-FPL51 and S-FSL5 provide the low-dispersion refractive power that anchors the chromatic correction. S-FPL51 in particular has strongly anomalous positive partial dispersion (ΔPgF ≈ +0.035), meaning its blue-to-green dispersion ratio deviates from the Schott normal line. This anomalous dispersion is the mechanism by which the design attacks the secondary spectrum — the residual longitudinal color shift between the C-line, d-line, and F-line focuses that an ordinary achromat cannot eliminate.
+**Ultra-low-dispersion crowns (νd > 70):** S-FPL51 and S-FSL5 provide the low-dispersion refractive power that anchors the chromatic correction. The compatible S-FPL51 coefficient spectrum has anomalous partial dispersion; this is a proxy property rather than a patent measurement or production identity. This anomalous dispersion is the mechanism by which the design attacks the secondary spectrum — the residual longitudinal color shift between the C-line, d-line, and F-line focuses that an ordinary achromat cannot eliminate.
 
 **Dense flints and dense crowns (νd < 42):** S-LAH60, S-LAH53, S-TIH10, and S-TIH6 provide the high-dispersion counterweights. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
 
@@ -178,7 +178,7 @@ where φᵢ is the power and νd,ᵢ is the Abbe number of each element. This el
 
 The APO-Lanthar 180mm uses three independent mechanisms to suppress the secondary spectrum:
 
-1. **Ultra-low-dispersion front group.** All three G1 elements use S-FPL51, which has anomalous partial dispersion (ΔPgF ≈ +0.035 above the Schott normal line). Because the front group generates the primary converging power, using an anomalous-dispersion glass here shifts the secondary-spectrum balance of the entire system. The very high Abbe number (81.6) also means each element contributes minimal primary color per unit of power, reducing the total chromatic load that the negative group must compensate.
+1. **Ultra-low-dispersion front group.** All three G1 elements use S-FPL51, whose compatible catalog proxy has anomalous partial dispersion. Because the front group generates the primary converging power, using an anomalous-dispersion glass here shifts the secondary-spectrum balance of the entire system. The very high Abbe number (81.6) also means each element contributes minimal primary color per unit of power, reducing the total chromatic load that the negative group must compensate.
 
 2. **Reversed-dispersion doublets in G2.** The second doublet (L23+L24) uses the unusual positive-flint/negative-crown architecture. The "flint" element (S-TIH10, νd = 28.3) carries positive power, while the "crown" (S-LAH53, νd = 40.7) carries negative power. This reversal flips the sign of the doublet's secondary-spectrum contribution relative to a conventional achromatic doublet of the same net power. When combined with G1's anomalous-dispersion contribution, the reversed secondary spectrum from D2 enables a three-wavelength correction that a conventional glass pairing cannot achieve.
 
@@ -223,3 +223,5 @@ The designer's approach in Example 1 — using three matched S-FPL51 menisci rat
 - JP 2003-270529 A (P2003-270529A), 「望遠レンズ」, Cosina Co., Ltd. / 蓬田 祥寿. Published 2003-09-25. Primary source for optical prescription, group architecture, conditional expressions, and aberration diagrams.
 - Cosina Co., Ltd. product specifications for the Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. Manufacturer source for production specifications: 9 elements / 7 groups, f/4, MFD 1.2 m, 9 aperture blades, 49 mm filter thread, overall length ~79 mm.
 - OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH60, S-FSL5, S-LAH53, S-TIH10, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.
+
+Fresh Figure 1 measurements and native-beam checks give continuous paired front radii of 25/24/23 mm. The prior 23 mm front cap clipped the source model’s stated F4 beam; the repaired model is iris-limited. These dimensions belong to selected Example 1 at literal scale and cannot be certified as mechanical clearance of the retail 180 mm lens with its 49 mm filter. Paragraph 0012 prints 197 mm while the rounded prescription derives about 197.9 mm; the residual is retained. No numerical end cut is inferred from the short compound steps.

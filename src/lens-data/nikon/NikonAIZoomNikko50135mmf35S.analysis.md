@@ -51,8 +51,8 @@ The sum D1 + D2 + D3 is effectively constant, confirming a constant-length zoom 
 
 #### 1L1 + 1L2 - Cemented Doublet, negative/positive menisci
 
-1L1: nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; exact d-line code 805254). f = -126.65 mm.
-1L2: nd = 1.67790, νd = 55.6. Glass: S-LAL12 class (OHARA; catalog νd differs slightly because the patent rounds to one decimal place). f = +91.93 mm.
+1L1: nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; catalog-coordinate code 805254; spectral proxy). f = -126.65 mm.
+1L2: nd = 1.67790, νd = 55.6. Glass: S-LAL12 class (OHARA; catalog νd differs from the printed patent coordinate; qualified spectral proxy). f = +91.93 mm.
 
 Both elements are menisci convex toward the object. The pair is a weakly convergent achromat, with the high-dispersion dense flint of 1L1 countered by the lower-dispersion lanthanum crown of 1L2. The cemented interface at 1r2 is the main chromatic balancing surface in the front group.
 
@@ -60,7 +60,7 @@ The doublet does not carry most of the G1 power. Its role is to condition the in
 
 #### 1L3 - Positive meniscus, convex to object
 
-nd = 1.66672, νd = 48.4. Glass: S-BAH11 (OHARA; exact within patent rounding). f = +127.22 mm.
+nd = 1.66672, νd = 48.4. Glass: S-BAH11 (OHARA; catalog-coordinate proxy within the resolver tolerance). f = +127.22 mm.
 
 This element supplies most of G1's positive power and is the moving power-bearing component during front-group focusing. The patent's conditions (15)-(17) directly govern its power, refractive index, and Abbe number. The computed ratio f(1L3) / f1 is 1.318, inside the required 1.10-1.45 range.
 
@@ -70,7 +70,7 @@ Because G1 translates as a unit for focusing, 1L3 also drives much of the close-
 
 #### 2L1 - Negative lens, nearly plano-concave
 
-nd = 1.69680, νd = 55.6. Glass: S-LAL14 class (OHARA; catalog νd differs slightly because the patent rounds to one decimal place). f = -31.69 mm.
+nd = 1.69680, νd = 55.6. Glass: S-LAL14 class (OHARA; catalog νd differs from the printed patent coordinate; qualified spectral proxy). f = -31.69 mm.
 
 The front surface is extremely weak (R = -708.168 mm), while the rear surface is much stronger (R = +22.809 mm). Geometrically, the element is nearly plano-concave, though the patent describes it more generally as a negative lens with the sharper curvature facing the image side.
 
@@ -84,7 +84,7 @@ nd = 1.78797, νd = 47.5. Glass: S-LAH64 class (OHARA; catalog nd is 1.78800, cl
 
 #### 2L3 - Positive meniscus, convex to object
 
-nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; exact d-line code 805254). f = +56.03 mm.
+nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; catalog-coordinate code 805254; spectral proxy). f = +56.03 mm.
 
 2L3 partially offsets the negative G2 power while providing a high-dispersion chromatic partner within the variator. The computed shape factor (2r6 + 2r5) / (2r6 - 2r5) is 1.550, within the patent's required 1.0-2.0 range. Its high refractive index also satisfies condition (21), n(2L3) >= 1.70.
 
@@ -120,13 +120,13 @@ The patent explains that this index step serves more than achromatization. It al
 
 #### 4L4 - Biconvex positive, stronger curvature to object
 
-nd = 1.51823, νd = 59.0. Glass: S-NSL3 (OHARA; exact within patent rounding). f = +47.13 mm.
+nd = 1.51823, νd = 59.0. Glass: S-NSL3 (OHARA; catalog-coordinate proxy within the resolver tolerance). f = +47.13 mm.
 
 The element is bent close to the patent's preferred minimum-spherical-aberration form. Its shape factor (4r7 + 4r6) / (4r7 - 4r6) is 0.935, inside the required 0.80-1.10 range.
 
 #### 4L5 - Biconcave negative, stronger curvature to image
 
-nd = 1.79504, νd = 28.6. Glass: J-LAFH3 (HIKARI; exact d-line match to the catalog). f = -41.20 mm.
+nd = 1.79504, νd = 28.6. Glass: J-LAFH3 (HIKARI; close catalog d-line coordinate; spectral proxy). f = -41.20 mm.
 
 4L4 and 4L5 form an opposed positive-negative air-spaced pair. Their focal-length ratio |f(4L4) / f(4L5)| is 1.144, and their refractive-index difference is 0.277. Both values satisfy conditions (7) and (8), which the patent ties to high-order spherical-aberration control and Petzval correction.
 
@@ -154,28 +154,32 @@ Condition (14) constrains |νd(4L8) - νd(4L7)| <= 10. The Example 1 value is 6.
 
 ## Glass Selection
 
-The prescription uses conventional high-index crowns, barium crowns/flints, dense flints, and lanthanum flints. It contains no ED, fluorite, anomalous partial-dispersion, or aspherical elements. Public catalog matches are marked as exact only where the catalog nd/νd pair supports that status; close coefficient-backed rows are labeled as catalog equivalents with the production supplier left unspecified.
+All 16 stored nd/νd pairs match the First Embodiment table (PDF pp. 10–11). The patent defines the reference as the d line, λ = 587.6 nm (PDF p. 8), and supplies no per-material partial dispersion or C/F/g indices. The current resolver supplies 16 compatible catalog curves. Every catalog name below denotes a spectral proxy, including close coordinate matches; the patent does not establish Nikon's production supplier, historical melt, or complete dispersion curve. Differences from present catalog values do not establish that rounding alone caused them. The source prescription is entirely spherical.
 
 | Element | nd | νd | Glass annotation | Certainty | Role |
 |---|---:|---:|---|---|---|
-| 1L1 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Exact | Dense flint achromatizing member |
+| 1L1 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Close catalog coordinate | Dense flint achromatizing member |
 | 1L2 | 1.67790 | 55.6 | S-LAL12 class (OHARA) | Class / rounded | Lanthanum crown |
-| 1L3 | 1.66672 | 48.4 | S-BAH11 (OHARA) | Exact within rounding | Barium flint front-group power |
+| 1L3 | 1.66672 | 48.4 | S-BAH11 (OHARA) | Close catalog coordinate | Barium flint front-group power |
 | 2L1 | 1.69680 | 55.6 | S-LAL14 class (OHARA) | Class / rounded | High-index variator negative |
 | 2L2 | 1.78797 | 47.5 | S-LAH64 class (OHARA) | Class | Lanthanum flint variator negative |
-| 2L3 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Exact | Dense-flint variator positive |
+| 2L3 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Close catalog coordinate | Dense-flint variator positive |
 | 3L1 | 1.67025 | 57.6 | S-LAL52 (OHARA catalog equivalent) | Close catalog coordinate | Compensator negative member |
 | 3L2 | 1.67163 | 38.9 | S-BAH32 catalog equivalent; patent 672389 | Close catalog coordinate | Compensator positive chromatic member |
 | 4L1 | 1.71300 | 54.0 | S-LAL8 class (OHARA) | Class / rounded | Leading master positive |
 | 4L2 | 1.56384 | 60.8 | N-SK11 / BACD11 class, 564608 code | Class | Dense crown cemented member |
 | 4L3 | 1.79631 | 41.0 | NBFD2 catalog equivalent; patent 796410 | Close catalog coordinate | Lanthanum-flint cemented member |
-| 4L4 | 1.51823 | 59.0 | S-NSL3 (OHARA) | Exact within rounding | Positive member of G41 pair |
-| 4L5 | 1.79504 | 28.6 | J-LAFH3 (HIKARI; 795286) | Exact | Strong dense short flint |
+| 4L4 | 1.51823 | 59.0 | S-NSL3 (OHARA) | Close catalog coordinate | Positive member of G41 pair |
+| 4L5 | 1.79504 | 28.6 | J-LAFH3 (HIKARI; 795286) | Close catalog coordinate | Strong dense short flint |
 | 4L6 | 1.51680 | 64.1 | S-BSL7 / N-BK7 class, 517641 code | Class | Borosilicate-crown G42 element |
 | 4L7 | 1.67003 | 47.1 | N-BAF10 class, 670471 code | Class | Rear negative meniscus |
 | 4L8 | 1.70154 | 41.0 | S-BAH27 class (OHARA) | Class / rounded | Rear positive color-balancing member |
 
 The crown/flint boundary has been treated by Abbe number rather than by family name. Elements with νd below roughly 50 are flint-type glasses even when they belong to lanthanum or barium families.
+
+## Inferred Optical Rims
+
+Figure 1 (PDF p. 2) resolves flat ends on the concave rear of 2L1 and the concave front of 4L7. Surface 7 now has a 12.8 mm outer rim and a 3.42 mm inferred cut depth, retaining a 12.0132 mm curved cap; surface 26 has a 14.8 mm outer rim and a 5.55 mm cut depth, giving a 13.1637 mm cap. The first cap is moved outward from the drawing ratio to clear the traced full-field beam. These inferred cuts preserve every published radius, thickness, material value, and zoom gap. Other convex, concave, and cemented boundaries retain their guarded continuous profiles; shallow arcs and labels are not treated as extra flat ends.
 
 ## Focus Mechanism
 
@@ -191,20 +195,20 @@ The patent states 22 conditions. Independent computation confirms that Example 1
 
 | # | Quantity | Computed value | Patent range | Status |
 |---:|---|---:|---|---|
-| 1 | |f42 / f(4r9)| | 2.143 | 1.70-4.20 | Satisfied |
+| 1 | abs(f42 / f(4r9)) | 2.143 | 1.70-4.20 | Satisfied |
 | 2 | 4d9 | 10.150 mm | 0.05f42-0.13f42 = 5.062-13.160 mm | Satisfied |
 | 3 | (4r11 + 4r10) / (4r11 - 4r10) | -0.068 | -0.2 to +0.1 | Satisfied |
 | 4 | f(4r9) / f(4r12) | 1.031 | 0.75-1.15 | Satisfied |
-| 5 | 4d9 + n(4L6)4d10 + 4d11 | 35.550 mm | 0.65-0.85 x |f(4r12)| = 29.787-38.953 mm | Satisfied |
+| 5 | 4d9 + n(4L6)4d10 + 4d11 | 35.550 mm | 0.65-0.85 x abs(f(4r12)) = 29.787-38.953 mm | Satisfied |
 | 6 | n(4L3) - n(4L2) | 0.232 | >= 0.18 | Satisfied |
-| 7 | |f(4L4) / f(4L5)| | 1.144 | 0.8-1.35 | Satisfied |
+| 7 | abs(f(4L4) / f(4L5)) | 1.144 | 0.8-1.35 | Satisfied |
 | 8 | n(4L5) - n(4L4) | 0.277 | >= 0.23 | Satisfied |
 | 9 | (4r7 + 4r6) / (4r7 - 4r6) | 0.935 | 0.80-1.10 | Satisfied |
 | 10 | (4r9 + 4r8) / (4r7 - 4r6) | 0.292 | -0.90 to +1.10 | Satisfied |
 | 11 | (4r13 + 4r12) / (4r13 - 4r12) | 3.784 | 2.5-5.5 | Satisfied |
 | 12 | n(4L1), νd(4L1) | 1.713, 54.0 | n >= 1.65, νd >= 44 | Satisfied |
 | 13 | (νd4L2 - νd4L3) + (νd4L4 - νd4L5) | 50.2 | 40-70 | Satisfied |
-| 14 | |νd4L8 - νd4L7| | 6.1 | <= 10 | Satisfied |
+| 14 | abs(νd4L8 - νd4L7) | 6.1 | <= 10 | Satisfied |
 | 15 | f(1L3) / f1 | 1.318 | 1.10-1.45 | Satisfied |
 | 16 | n(1L3) | 1.667 | 1.65-1.78 | Satisfied |
 | 17 | νd(1L3) | 48.4 | 45-65 | Satisfied |

@@ -31,7 +31,7 @@ The printed Example 3 table contains an impossible fourth-glass entry, `n4 = 1.6
 in the data file. The attached patent also tabulates no semi-diameters and gives only the ordering of the diaphragm
 inside `d6`, not its numerical axial coordinate or diameter. The data model therefore places `STO` at the midpoint of
 scaled `d6` as a disclosed inference and solves its semi-diameter to reproduce the modeled f/1.8 entrance pupil.
-Semi-diameters elsewhere are likewise model-derived rather than patent-published.
+Semi-diameters elsewhere are likewise model-derived rather than patent-published. The fresh local-source check used the nine-page patent scan: its Example 3 and repeated Claim 4 both print the bad fourth-glass pair, and it does not include the correction sheet cited by the earlier reconstruction. The previously documented corrected pair is retained here without presenting that sheet as newly verified.
 
 No sensor cover, filter, inactive dummy plane, flare cutter, or other non-prescription optical plate is tabulated in
 Example 3, and none is inserted in the sequential model.
@@ -212,3 +212,10 @@ Figure 2 supports the matched 14.5 mm L2 rim across surfaces 3–4 and the final
 4. OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA authoritative optical-glass catalogs, as recorded in the companion
    glass audit. These sources support the qualified spectral proxies; no supplier is assigned to the historical
    production lens.
+
+
+## Fresh Concave-End and Aperture Review
+
+The common Figure 2 (PDF page 2) distinctly ends both concave curves beside the diaphragm below their outer rims. At S6 the measured cap/edge share is about 0.76; at S7 it is about 0.80. The adopted inferred cuts preserve full beam access: S6 depth 3.98 mm gives clear radius 10.418758 mm under the 11.8 mm outer rim, and S7 depth 3.56 mm gives clear radius 10.155978 mm under the 11.5 mm outer rim. These beam-constrained endpoints sit outward from the schematic proportions and carry the normal inferred-cut guard. The cemented S8 boundary is untouched.
+
+S5/S6 outer heights rise together from 11.5 to 11.8 mm to pass the existing f/1.8 axial beam and retain a square L3 outer envelope. A source-like square L1 at 18.5 mm is rejected because its source R/d profiles would cross by 0.131 mm at the rear rim; S2 therefore stays at 17.3 mm. Its taper remains qualified. Other faces retain their established bounds. No source radius, thickness, stop coordinate, glass value, aperture, unit-focus rule or tolerance changed.

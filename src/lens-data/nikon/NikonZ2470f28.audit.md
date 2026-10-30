@@ -158,3 +158,23 @@ sd × 11.49. Both cuts sit past their q range because the beam rule moved them o
 | 22 | 0.95 | 140.2 | 0.936–0.964 | 0.967 | 0.4045 mm |
 
 Both lands are longer than the 0.1 mm minimum, and neither q range reaches 1.
+
+## 2026-10-29 — L21 rim extension from the original figure
+
+Reopened `patents/WO2020136749A1.pdf`, Example 1, Figure 4 (PDF p. 83), and inspected every element on a 600 dpi crop. The native S1-to-image span gives 11.49 px/mm. Both halves resolve the long square shoulder on L21's rear face 7; its cap ends near 16.2 mm and the outside edge agrees with the front face's 21.5 mm radius.
+
+| Surface | Optical cap `sd` (retained) | New drawn `rimExtensionSd` | Evidence |
+| --- | --- | --- | --- |
+| 7 | 16.3 mm | 21.5 mm | Flat opaque land connects the existing spherical cap to L21's outer edge. |
+
+The extension does not evaluate the R = 18.6957 mm sphere outside its cap, so it can draw the shoulder that the earlier attempted `sd` raise could not. Existing inferred cuts on 9 and 22 remain at their beam-clearing depths; their figure measurements and uncertainty are recorded above. No additional square land is resolved: 32's slanted bevel, shallow-cap strokes and cemented shoulders remain excluded. Updated the public analysis to describe the opaque shoulder.
+
+`audit:surface` passes, including the retained inferred-cut beam rules; `audit:image-circle` reports 0 undersized and 0 skipped. No optical aperture, curvature, spacing, asphere, stop or glass changed.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2020136749A1.pdf`, Example 1, Table 1 on PDF pp. 34–37. All 17 lens media match the printed nd/νd pairs, including repeated L13/L22 1.77250/49.62, L42 1.49782/82.57, L61 1.79189/45.04 and L72 1.85207/40.15. The table gives d-line coordinates and no measured C/F/g or partial-dispersion rows.
+
+The existing proxies on L11–L52 and L71–L73 were individually checked and retained; all 16 resolve under the existing guard. L24's APD stays inferred from its catalog counterpart. L61 remains the unresolved source coordinate `792450`, without a claimed commercial identity. A fresh catalog scan found TAF2 at 1.7944969/45.3864 as the only broad-guard candidate (Δn +0.002607); that loose proximity does not justify replacing the unresolved spectrum or claiming an exact match. Source values and supplier uncertainty remain intact.
+
+No data or analysis correction was needed. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.

@@ -206,9 +206,9 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     { label: "1", R: 69.258, d: 1.7, sd: 26, medium: 1 },
-    { label: "2", R: 15.165, d: 10.25, sd: 14.3 },
+    { label: "2", R: 15.165, d: 10.25, sd: 14.3, rimExtensionSd: 26 },
     { label: "3", R: 130.505, d: 1.7, sd: 18, medium: 2 },
-    { label: "4", R: 14.794, d: 4, sd: 12 },
+    { label: "4", R: 14.794, d: 4, sd: 12, rimExtensionSd: 18 },
     { label: "5", R: 32.412, d: 8, sd: 11, medium: 3 },
     { label: "6", R: -15.298, d: 9, sd: 11, medium: 4 },
     // Stop position inferred from Nikon's official production cross-section.

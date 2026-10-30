@@ -112,3 +112,17 @@ the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rul
 14A is the one asphere whose `sd` this review raised (12.3 to 13.1 mm). Its slope keeps its sign out to the new rim
 and only levels off (−0.309 at 11.79 mm, −0.312 at 12.45 mm, −0.311 at 13.10 mm; `audit:surface --scan 14A 13.1`), so
 the polynomial does not turn over inside the land, which is all it shapes past the 12.3153 mm cut radius.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/WO2022071249A1.pdf`, Example 2, Figure 3 (PDF p. 47), and inspected every element on a 600 dpi crop. The 1346 native-pixel first-to-last-vertex span / 40.927 mm gives 32.89 native px/mm. The existing cuts on 2, 9, 14A and 18 already draw the four resolved square lands at their measured element-edge heights, with the beam margins documented above. No additional air-side land or taller outside edge is resolved. The L22 step belongs to a cemented junction; the nearly flat or continuously curved faces do not justify extensions or another cut.
+
+No geometry changed. `audit:surface` passes, including the inferred-cut beam rule; `audit:image-circle` reports 0 undersized and 0 skipped. Existing cuts and source optical apertures were retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2022071249A1.pdf`, Example 2, Table 2 on PDF pp. 26–28. All ten modeled lens media (nine physical elements) and the FL rear plate match the printed d-line nd/νd pairs. Resin L24r 1.56093/36.64, L31 1.53113/55.73 and FL 1.51680/63.88 are retained exactly.
+
+Individually checked and retained the eight coefficient-backed lens proxies: L11 J-LLF6, L12/L24g/L32 S-LAH65V, L21 S-LAH99, L22 S-TIH6, L23 J-SFH1 and L41 S-TIM22; FL resolves to J-BK7. The resin and L31 remain unresolved. A fresh current-catalog scan finds no row within the existing broad nd/νd guard for either unresolved coordinate. No line-index or partial-dispersion measurements appear in the source table; all APD flags remain false. The analysis already qualifies supplier/chemistry and the unmatched L31 coordinate.
+
+No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.

@@ -314,7 +314,7 @@ const LENS_DATA = {
     { label: "24", R: 25, d: 2.7637, sd: 14, medium: 13 },
     { label: "25", R: 47.3486, sd: 14 },
     { label: "26", R: 35.4444, d: 0.9, sd: 11.2, medium: 14 },
-    { label: "27", R: 17.8877, d: 3.7091, sd: 10.45 },
+    { label: "27", R: 17.8877, d: 3.7091, sd: 10.45, rimExtensionSd: 11.2 },
     { label: "28", R: 660, d: 6.0973, sd: 10.45, medium: 15 },
     { label: "29", R: -17.1474, d: 0.9, sd: 10.8, medium: 16 },
     { label: "30", R: -26.4237, d: 15.5341, sd: 11 },

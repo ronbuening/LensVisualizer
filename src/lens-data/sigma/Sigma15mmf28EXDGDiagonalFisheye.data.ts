@@ -15,6 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * front and an 8.5 mm rear rim, as both drawings show. L3 and L4 are 8.1 mm; L5 to L7 are larger
  * (8.8, 8.6 and 9.1 mm), as Fig. 1 draws them. Sigma's diagram draws L6 and L7 larger too but L5
  * level with L4. Every rim clears the F/2.8 axial beam and the 90° chief ray.
+ * Fresh F-mount review, 2026-10-30: S4 keeps its 8.5 mm optical cap and adds an exposed flat land
+ * to the existing 10.5 mm L2 body, following the patent notch. The secondary production drawing
+ * shows a chamfer; this flat shoulder remains a source-model inference, not production mechanics.
  * Close focus is modelled as unit focus (see focus.description).
  * The stop diameter is not printed; the engine derives it from F/2.8.
  * L1 has unequal rims: the rear rim follows the near-hemispherical concave surface in Fig. 1,
@@ -182,6 +185,7 @@ const LENS_DATA = {
       label: "4",
       R: 12.2,
       d: 3.01,
+      rimExtensionSd: 10.5,
       sd: 8.5,
     },
     {

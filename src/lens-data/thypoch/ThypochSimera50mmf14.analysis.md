@@ -49,7 +49,7 @@ L1 supplies substantial positive power before the first cemented pair. Its high 
 
 nd = 1.50, νd = 81.60. Glass: Unmatched, low-dispersion crown class; supplier unknown. f = +47.32 mm.
 
-The patent explicitly identifies L2 as the high-Abbe "target lens" of Example 1 and states that the target lens is made of ultra-low-dispersion glass (¶0068–0069, claim 9); the manufacturer's optical section marks the corresponding position as ED. Its positive power is paired with the much more dispersive negative L3. This is an achromatizing arrangement in first-order terms; native nd/νd alone cannot establish secondary-spectrum or apochromatic performance. See Table 1a and the discussion following Table 1c.
+The patent explicitly identifies L2 as the high-Abbe "target lens" of Example 1 and states that the target lens is made of ultra-low-dispersion glass (¶0068–0069, claim 9); the manufacturer's optical section marks the corresponding position as ED. This establishes the source’s ED statement; its anomalous partial dispersion remains unestablished, so the unsupported patent-APD classification is removed. Its positive power is paired with the much more dispersive negative L3. This is an achromatizing arrangement in first-order terms; native nd/νd alone cannot establish secondary-spectrum or apochromatic performance. See Table 1a and the discussion following Table 1c.
 
 ### L3 — Negative meniscus, dispersive member of D1
 
@@ -168,3 +168,6 @@ Actual construction/validation and sampled rendering checks pass with zero trim.
 - [Manufacturer optical-section image](https://framerusercontent.com/images/yklnt80Xzxrox5YhgZqtKRyVYhg.webp?width=2400&height=962): element order, ED/asphere positions and moving-front-assembly correlation.
 
 The evidence dossier preserves exact original-file hashes, the complete six-vendor catalog-search record, current runtime-reference identities, earlier held checkpoints and independent source/numerical reviews. Those records distinguish source assertions, calculated quantities and inferred model geometry.
+
+
+The 2026-10-29 reinspection records the current outline and glass verdicts in the accompanying audit. The two source concave seats now use opaque rim extensions to their established component heights. The source ED statement is retained, while anomalous partial dispersion and commercial glass identities remain unestablished.

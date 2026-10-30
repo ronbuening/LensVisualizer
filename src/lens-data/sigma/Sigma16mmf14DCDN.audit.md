@@ -152,3 +152,36 @@ sd × 6.36.
   129 px edge the q range is 0.708–0.734.
 - 15 sits at the old 12.2 mm rim, inside its q range.
 - Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/JP2018205527A.pdf`, Numerical Example 1: Figure 1 in the abstract, PDF page 1 (compared with the degraded copy on page 28); prescription table, PDF page 18. Source page images were rendered and inspected anew; prior records supplied locators only.
+
+Every convex/concave face and cemented boundary was inspected in a fresh 600 dpi crop of the abstract figure. The native raster is 150 dpi; S1–S16 gives 321 px / 50.503 mm = 6.356 native px/mm, checked against the image-plane span. Surface 27 has a clear concave rear mounting seat: retain its existing optical cap 10.45 mm and extend the drawn rim to 11.2 mm with `rimExtensionSd`. The existing inferred cuts on 4, 7 and 15 remain unchanged and pass the current beam sweep.
+
+A surface-6A extension to the partner rim 13.8 mm was rejected: intrusion into the following gap is 9.703 mm against 9.548 mm allowed. The existing cap 13.45 mm and the clearance policy stay unchanged. Further surface-27 clipping was rejected because the existing clear cap is already at the beam floor (about 10.451 mm). The figure’s weak raster strokes do not justify other changes.
+
+All 16 authored glass media were checked against every source nd/νd row. Source uses d-line values and publishes no numerical θgF/partial-dispersion or other spectral-line indices for this embodiment. No source glass value changed.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L11    | 1.51680 / 64.2  | N-BK7                            |
+| L12    | 2.00100 / 29.13 | TAFD55                           |
+| L13    | 1.58913 / 61.25 | M-BACD5N                         |
+| L14    | 1.43700 / 95.1  | FCD100                           |
+| L15    | 2.00100 / 29.13 | TAFD55                           |
+| L16    | 1.91082 / 35.25 | TAFD35                           |
+| L17    | 1.43700 / 95.1  | FCD100                           |
+| L18    | 1.51742 / 52.15 | E-CF6                            |
+| L19    | 1.67270 / 32.17 | E-FD5                            |
+| L21    | 1.59282 / 68.63 | FCD505                           |
+| L22    | 1.74950 / 35.33 | S-LAM7                           |
+| L23    | 1.69350 / 53.2  | M-LAC130                         |
+| L31    | 1.59282 / 68.63 | FCD505                           |
+| L41    | 1.80518 / 25.46 | S-TIH6                           |
+| L42    | 1.43700 / 95.1  | FCD100                           |
+| L43    | 1.90366 / 31.32 | S-LAH95                          |
+
+Current resolver coverage: 16/16 modeled media; 16 physical lens elements. Rear plates checked separately: 1.51680/64.2. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
+
+Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.

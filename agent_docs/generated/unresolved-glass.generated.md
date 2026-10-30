@@ -9,10 +9,10 @@ or per-lens patent backfills.
 ## Summary
 
 - **1032** lenses scanned
-- **11838** non-air surfaces examined
-- **11847** element glass declarations examined
-- **222** non-explicit-unmatched annotations did not resolve
-- **116** distinct unresolved glass-like tokens found
+- **11844** non-air surfaces examined
+- **11853** element glass declarations examined
+- **223** non-explicit-unmatched annotations did not resolve
+- **115** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -110,7 +110,6 @@ or per-lens patent backfills.
 | 786406 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
-| 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803405 | 1 | 1 | |
 | 803456 | 1 | 1 | |
@@ -293,7 +292,7 @@ or per-lens patent backfills.
 
 ### 514530 — 1 occurrence
 
-- [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
+- [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — modeled resin layer; source nd=1.51380/vd=53.0; chemistry and supplier unspecified`
 
 ### 518523 — 1 occurrence
 
@@ -361,7 +360,7 @@ or per-lens patent backfills.
 
 ### 624584 — 1 occurrence
 
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `624584 crown-class glass (no unique catalog match; patent 1.62372 / 58.4)`
 
 ### 625533 — 1 occurrence
 
@@ -538,10 +537,6 @@ or per-lens patent backfills.
 ### 792450 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
-
-### 797455 — 1 occurrence
-
-- [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) 19: `797455 — dense lanthanum glass class (catalog unresolved)`
 
 ### 800255 — 1 occurrence
 

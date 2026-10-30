@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * concave curve at a flat annulus. The rims from surface 7 rearward are estimates that agree with the
  * figure within 3 % (doublet D1 is drawn 21.6 mm high against 21 mm here). Figure 21 also draws E6 and E7
  * with flat rim annuli (the curves of S11, S12 and S13 end at 16.4, 16.4 and 15.8 mm); the model takes
- * S11 / S12 at the curve ends, where the two elements meet, and S13 at the outer rim. In D1 the figure
+ * S11/S12 optical caps at the curve ends; new S11 extension and guarded S13 cut are described below. In D1 the figure
  * cuts the thin E4 shell back above 19.4 mm, leaving a small notch ahead of E5; the model keeps S7-S9 at
  * one height. All rims are floor-checked by real-ray trace: the axial marginal ray
  * and the corner chief ray (Y = 21.63 mm) clear every rim at infinity and at 0.85 m, and at 0.85 m the
@@ -41,8 +41,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * With the front rims at the Figure 21 heights the model still vignettes off axis: the corner bundle
  * fills 56 % of the meridional stop diameter at infinity and 79 % at 0.85 m, limited by S5 and S20.
  *
- * Dispersion: nC / nF / ng on ten elements are computed from HOYA catalog data for the glass whose nd/vd
- * matches the patent; E6 (1.58763 / 61.08) has no catalog match and its spectrum is unverified.
+ * Fresh2026-10-30 review: original JP2011170128A PDF18-19 Example5 media/asphere, PDF13 d-line definition,
+ * PDF29 Fig21 native and600dpi. All11 source pairs retained. Remove40 catalog-only C/F/g/dPgF copies;
+ * ten entries retain qualified current coefficient curves, molded E6 stays unresolved. No source partials.
+ * Explicit S6/S11 lands retain caps22.5/16.2 to outer26.4/19; guarded source-supported S2/S13 cuts.
+ * Full S12 land remains constrained by the unchanged0.96 gap allowance. No R/d/asphere/control changes.
+
  */
 const LENS_DATA = {
   schema: 2,
@@ -79,16 +83,12 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 345.9780356360224,
-      glass: "FCD1 (HOYA, coordinate equivalent)",
+      glass: "FCD1 (qualified spectral proxy; HOYA, coordinate equivalent)",
       apd: "inferred",
       apdNote:
         "Sigma's construction diagram marks the first element as SLD glass. The patent gives nd/vd 1.49700 / 81.61 (an FCD1-class fluor crown) and calls it only the low-dispersion medium GL of condition (7); paragraph 0069 prefers an anomalous-dispersion medium without saying this example uses one.",
       role: "Weak positive front meniscus of the fixed front group; the lowest-dispersion glass in the design.",
       diagramLabel: "1",
-      dPgF: 0.03231984590426196,
-      nC: 1.4951374776446764,
-      nF: 1.5012275045747954,
-      ng: 1.504509126705896,
     },
     {
       id: 2,
@@ -99,13 +99,9 @@ const LENS_DATA = {
       vd: 54.67,
       indexReference: "d",
       focalLengthMm: 75.41760619106837,
-      glass: "TAC8 (HOYA, coordinate equivalent)",
+      glass: "TAC8 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Strongest positive element of the fixed front group.",
       diagramLabel: "2",
-      dPgF: -0.006526738073688532,
-      nC: 1.7251025131003241,
-      nF: 1.7384391367467673,
-      ng: 1.7457118419738085,
     },
     {
       id: 3,
@@ -116,13 +112,9 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: -67.18473836468984,
-      glass: "E-F5 (HOYA, coordinate equivalent)",
+      glass: "E-F5 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Negative meniscus closing the fixed front group; its concave rear surface faces the focusing gap d6.",
       diagramLabel: "3",
-      dPgF: 0.0029344035665139767,
-      nC: 1.5987431027485142,
-      nF: 1.6146181355785878,
-      ng: 1.623870129851125,
     },
     {
       id: 4,
@@ -133,14 +125,10 @@ const LENS_DATA = {
       vd: 28.32,
       indexReference: "d",
       focalLengthMm: -152.458838271359,
-      glass: "E-FD10 (HOYA, coordinate equivalent)",
+      glass: "E-FD10 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Negative front member of cemented doublet D1, which leads the moving rear group ahead of the iris.",
       diagramLabel: "4",
       cemented: "D1",
-      dPgF: 0.009706032544233412,
-      nC: 1.7208203129692747,
-      nF: 1.7465349063631939,
-      ng: 1.7621146531573137,
     },
     {
       id: 5,
@@ -151,14 +139,10 @@ const LENS_DATA = {
       vd: 42.72,
       indexReference: "d",
       focalLengthMm: 42.74099213468551,
-      glass: "TAFD5G (HOYA, coordinate equivalent)",
+      glass: "TAFD5G (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Positive rear member of cemented doublet D1; makes the doublet net positive (f about +61 mm).",
       diagramLabel: "5",
       cemented: "D1",
-      dPgF: -0.007197163588309463,
-      nC: 1.8289820439329258,
-      nF: 1.848522737316697,
-      ng: 1.8595583008455383,
     },
     {
       id: 6,
@@ -182,13 +166,9 @@ const LENS_DATA = {
       vd: 32.17,
       indexReference: "d",
       focalLengthMm: -52.19545168748249,
-      glass: "E-FD5 (HOYA, coordinate equivalent)",
+      glass: "E-FD5 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Biconcave negative element directly ahead of the iris; last element of the pre-stop subgroup L2a.",
       diagramLabel: "7",
-      dPgF: 0.006609677279758253,
-      nC: 1.666611882995074,
-      nF: 1.6875223110707214,
-      ng: 1.6999911938386372,
     },
     {
       id: 8,
@@ -199,14 +179,10 @@ const LENS_DATA = {
       vd: 28.32,
       indexReference: "d",
       focalLengthMm: -71.52746009902586,
-      glass: "E-FD10 (HOYA, coordinate equivalent)",
+      glass: "E-FD10 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Negative front member of cemented doublet D2, the first component behind the iris.",
       diagramLabel: "8",
       cemented: "D2",
-      dPgF: 0.009706032544233412,
-      nC: 1.7208203129692747,
-      nF: 1.7465349063631939,
-      ng: 1.7621146531573137,
     },
     {
       id: 9,
@@ -217,14 +193,10 @@ const LENS_DATA = {
       vd: 40.81,
       indexReference: "d",
       focalLengthMm: 43.2610408194826,
-      glass: "TAFD30 (HOYA, coordinate equivalent)",
+      glass: "TAFD30 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "High-index positive member of cemented doublet D2 behind the iris.",
       diagramLabel: "9",
       cemented: "D2",
-      dPgF: -0.009612562616099773,
-      nC: 1.8765692413387016,
-      nF: 1.8982085278230374,
-      ng: 1.9104465184739963,
     },
     {
       id: 10,
@@ -235,14 +207,10 @@ const LENS_DATA = {
       vd: 40.81,
       indexReference: "d",
       focalLengthMm: 35.92823534803339,
-      glass: "TAFD30 (HOYA, coordinate equivalent)",
+      glass: "TAFD30 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "High-index positive front member of the final cemented doublet D3.",
       diagramLabel: "10",
       cemented: "D3",
-      dPgF: -0.009612562616099773,
-      nC: 1.8765692413387016,
-      nF: 1.8982085278230374,
-      ng: 1.9104465184739963,
     },
     {
       id: 11,
@@ -253,24 +221,20 @@ const LENS_DATA = {
       vd: 34.57,
       indexReference: "d",
       focalLengthMm: -76.76229199397928,
-      glass: "E-FD7 (HOYA, coordinate equivalent)",
+      glass: "E-FD7 (qualified spectral proxy; HOYA, coordinate equivalent)",
       role: "Negative rear member of cemented doublet D3; last element of the moving rear group.",
       diagramLabel: "11",
       cemented: "D3",
-      dPgF: 0.006059507381757645,
-      nC: 1.6343915638207924,
-      nF: 1.652898624608449,
-      ng: 1.6638494887632156,
     },
   ],
 
   surfaces: [
     { label: "1", R: 77.1278, d: 5.9572, sd: 35.7, medium: 1 },
-    { label: "2", R: 136.2759, d: 4.4241, sd: 35.7 },
+    { label: "2", R: 136.2759, d: 4.4241, sd: 35.7, rimCutDepthMm: 4.62 },
     { label: "3", R: 49.2495, d: 10.753, sd: 31, medium: 2 },
     { label: "4", R: 428.2395, d: 3.6308, sd: 31 },
     { label: "5", R: 831.2882, d: 1.9, sd: 26.4, medium: 3 },
-    { label: "6", R: 38.6222, sd: 22.5 },
+    { label: "6", R: 38.6222, sd: 22.5, rimExtensionSd: 26.4 },
     { label: "7", R: 43.2002, d: 1.4, sd: 21, medium: 4 },
     { label: "8", R: 30.6749, d: 7.9685, sd: 21, medium: 5 },
     { label: "9", R: 192.8074, d: 0.6824, sd: 21 },
@@ -282,9 +246,9 @@ const LENS_DATA = {
       medium: 6,
       asphere: { K: 0, A4: -4.06305e-6, A6: -1.62462e-9, A8: 1.4199e-12, A10: -8.95411e-16, A12: 0, A14: 0 },
     },
-    { label: "11", R: 33.2068, d: 5.5771, sd: 16.2 },
+    { label: "11", R: 33.2068, d: 5.5771, sd: 16.2, rimExtensionSd: 19 },
     { label: "12", R: -109.9496, d: 1.1, sd: 16.1, medium: 7 },
-    { label: "13", R: 51.793, d: 4.4081, sd: 17 },
+    { label: "13", R: 51.793, d: 4.4081, sd: 17, rimCutDepthMm: 2.36 },
     { label: "STO", R: "flat", d: 1.4608 },
     { label: "15", R: 233.908, d: 1.0, sd: 18, medium: 8 },
     { label: "16", R: 42.5258, d: 12.5388, sd: 18, medium: 9 },

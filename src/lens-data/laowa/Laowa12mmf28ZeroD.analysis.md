@@ -222,7 +222,7 @@ $$
 
 Surface 4 verifies the patent’s aspheric convention. Direct sag evaluation gives **G2R/SG10 = 2.18667** and **G2R/SG5 = 7.46626**, matching the Example 2 condition table.
 
-A source conflict must be handled explicitly. The attached CN utility-model scan appears to show the row for surface 26 with **K = 0.4151** and **A4 = 1.60608e-001**. The WO family text gives **K = 0.4154** and **A4 = 1.60608e-004**. The latter value is physically usable and is consistent with the conic limit and rear-element semi-diameter; the former would produce implausible rear-element departure at normal clear apertures. The data file therefore uses **K = 0.4154** and **A4 = 1.60608e-004** for surface 26.
+The original CN utility-model scan, inspected at native resolution and 600 dpi, prints surface 26 **K = 0.4154** and **A4 = 1.60608e-004**. These agree with the stored coefficients. The earlier reading of 0.4151 and an e-001 exponent was a scan-reading error; no family-publication substitution is needed.
 
 ## Data-File Implementation Notes
 
@@ -267,3 +267,8 @@ The corrected interpretation is internally consistent: Example 2 is a 16-element
 Venus Optics lists these eight mounts for the original 12mm f/2.8 Zero-D; this is not the separate Lite or cine model. [Manufacturer source](https://www.venuslens.net/product/laowa-12mm-f2-8-zero-d/).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+The concave rear faces of L1–L3 retain their existing clear semi-diameters and now carry opaque lands to the opposite-face outer rims, as drawn in Example 2 Figure 3. These `rimExtensionSd` values change the drawn blank only; the source does not publish clear apertures.
+
+
+The fresh F-mount figure review preserves connected cemented boundaries: S8/S9 rise to 10 mm, S14 to 8.8 mm, S16 to 8.4 mm, S21/S25 to 12 mm and S26A to 11.8 mm. These continuous-cap changes remove unsupported tapered ends within the source outline and pass the existing geometry rules. The last asphere now has about 1,919 µm departure from its base sphere at 11.8 mm; its rear face remains about 1,906 µm. The drawing gives no additional resolved land at that last member.

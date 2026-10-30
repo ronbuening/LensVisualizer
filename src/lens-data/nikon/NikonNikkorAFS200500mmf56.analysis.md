@@ -87,29 +87,29 @@ Nikon specifies three ED (Extra-low Dispersion) glass elements. These are identi
 
 **Element 2** (nd = 1.49782, vd = 82.57) and **Element 3** (nd = 1.49782, vd = 82.57): These two biconvex elements form the core positive power of the front group G1. Their pair is an exact match for Hikari J-FKH1 (code 498/826), a fluorophosphate crown slightly different from the more common 497/816 S-FPL51/FCD1 type used for E13.
 
-**Element 13** (nd = 1.49700, vd = 81.61): This biconvex element in Group 4 is an exact match for OHARA S-FPL51 (code 497/816) or its HOYA equivalent FCD1. It provides the positive power needed in the relay group while simultaneously correcting secondary chromatic aberration.
+**Element 13** (nd = 1.49700, vd = 81.61): This biconvex element in Group 4 uses the FCD1 catalog-compatible curve (nd exact, catalog νd81.54 versus source81.61); this does not identify its production supplier. It provides the positive power needed in the relay group while simultaneously correcting secondary chromatic aberration.
 
 All three ED elements are biconvex positive lenses positioned at locations where the axial ray height is large — the front group and the relay group. This placement maximizes their chromatic correction effectiveness. Two of the three (E2 and E13) are cemented to higher-index negative partners (E1 and E14, respectively) to form achromatic doublets following the classic positive-ED/negative-flint pairing strategy. E3, by contrast, is a standalone singlet, relying on the upstream cemented doublet (E1+E2) to provide the chromatic balancing for the front group as a whole.
 
 ### 4.2 Complete Glass Table
 
-The table below lists all 19 elements with their optical properties, computed focal lengths, and probable glass identifications. Focal lengths are computed via the thick-lens in-air formula. Meniscus names give the element's optical power: E1 and E11 are negative menisci convex toward the object, while E4 and E18 are positive menisci concave toward the object.
+The table below lists all 19 elements with their optical properties, computed focal lengths, and qualified catalog spectral proxies. Focal lengths are computed via the thick-lens in-air formula. Meniscus names give the element's optical power: E1 and E11 are negative menisci convex toward the object, while E4 and E18 are positive menisci concave toward the object.
 
-| E# | nd | vd | Code | Shape | fl (mm) | Probable Glass | Catalog |
+| E# | nd | vd | Code | Shape | fl (mm) | Spectral Proxy | Catalog |
 |:--:|:----:|:----:|:----:|:------|:-------:|:---------------|:--------|
 | 1 | 1.80400 | 46.60 | 804/466 | Neg. Meniscus | −211.8 | S-LAH65 | OHARA |
 | 2 | 1.49782 | 82.57 | 498/826 | Biconvex | +205.2 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
 | 3 | 1.49782 | 82.57 | 498/826 | Biconvex | +236.7 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
 | 4 | 1.60342 | 38.01 | 603/380 | Pos. Meniscus | +115.7 | S-TIM5 | OHARA |
 | 5 | 1.72916 | 54.67 | 729/547 | Biconcave | −57.4 | S-LAL18 | OHARA |
-| 6 | 1.51742 | 52.15 | 517/522 | Biconcave | −71.6 | 517522 crown | — |
+| 6 | 1.51742 | 52.15 | 517/522 | Biconcave | −71.6 | J-KF6 | Hikari proxy |
 | 7 | 1.80518 | 25.46 | 805/255 | Pos. Meniscus | +104.1 | S-TIH6 | OHARA |
 | 8 | 1.74330 | 49.22 | 743/492 | Biconcave | −143.2 | NBF1 | HOYA |
 | 9 | 1.60738 | 56.82 | 607/568 | Biconvex | +45.2 | N-SK2 | Schott |
 | 10 | 1.65844 | 50.85 | 658/509 | Neg. Meniscus | −59.3 | Schott N-SSK5 extra dense crown | Schott |
 | 11 | 1.90366 | 31.31 | 904/313 | Neg. Meniscus | −209.5 | S-LAH95 | OHARA |
-| 12 | 1.48749 | 70.44 | 487/704 | Biconvex | +71.6 | N-FK5 / E-FEL1 | Schott / HOYA |
-| 13 | 1.49700 | 81.61 | 497/816 | Biconvex | +99.0 | S-FPL51 / FCD1 | OHARA / HOYA [ED] |
+| 12 | 1.48749 | 70.44 | 487/704 | Biconvex | +71.6 | N-FK5 | Schott proxy |
+| 13 | 1.49700 | 81.61 | 497/816 | Biconvex | +99.0 | FCD1 | HOYA proxy [ED inferred] |
 | 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | NBFD10 catalog equivalent | HOYA (supplier unspecified) |
 | 15 | 1.74330 | 49.22 | 743/492 | Pos. Meniscus | +139.2 | NBF1 | HOYA |
 | 16 | 1.64769 | 33.84 | 648/338 | Biconvex | +97.2 | E-FD2 | HOYA |
@@ -123,11 +123,11 @@ The glass palette reflects several deliberate design strategies:
 
 **Chromatic correction hierarchy.** The three ED elements (E2, E3, E13) each have vd > 81, placing them among the lowest-dispersion optical glasses available. They are paired with high-dispersion negative partners (E1 at vd = 46.60; E14 at vd = 37.34) to form achromatic doublets that suppress both primary and secondary longitudinal chromatic aberration. Element 12 (vd = 70.44, likely N-FK5) provides additional low-dispersion contribution in the G3 compensator, where it is cemented to E11 (nd = 1.90366, vd = 31.31) — a very high-index, high-dispersion lanthanum-based glass that provides strong negative correction per unit thickness.
 
-**Anomalous partial dispersion.** The ED elements (J-FKH1 and S-FPL51/FCD1 types) are fluorophosphate crown glasses with anomalous partial dispersion, meaning their secondary spectrum departure (ΔθgF) is strongly negative relative to normal glasses. This is critical for a super-telephoto zoom where secondary spectrum would otherwise produce noticeable color fringing at 500 mm.
+**Anomalous partial dispersion.** ED/APD is inferred from the high-Abbe coordinates and compatible catalog curves. The source publishes no partial-dispersion data or glass supplier; the catalog spectral shape does not establish the production material.
 
 **VR group optimization.** The VR group (L2B) uses comparatively lightweight glasses: E6 (517522 crown, nd = 1.517) and E7 (S-TIH6, nd = 1.805 but very thin at 3.8 mm). E8 (HOYA NBF1 equivalent, nd = 1.743) is a thin singlet at 1.7 mm. The low density of the crown element and the thinness of all three elements minimize the VR group's mass, directly benefiting actuator size, power consumption, and responsiveness.
 
-**Mixed catalog sourcing.** The catalog equivalents span OHARA, HOYA, Hikari, and Schott. These are coordinate matches for the patent's nd/νd pairs; the patent names no glass supplier.
+**Catalog proxy coverage.** The catalog equivalents span OHARA, HOYA, Hikari, and Schott. These are coordinate matches for the patent's nd/νd pairs; the patent names no glass supplier.
 
 ---
 
@@ -355,3 +355,9 @@ The sum varies with zoom because both the stop and G5 move independently during 
 ### 11.5 Errata and Corrections
 
 The 2026-09-23 figure audit corrected the moving-group description: Example 2 moves G4 during zoom, and only G2 and G6 are fixed. It also corrected four meniscus power names (E1, E4, E11, E18), the rear-group and VR-group semi-diameters (§11.1), and the aperture-model description (§11.2). It relabeled E8/E15 to the exact-coordinate HOYA NBF1 equivalent. All prescription values, variable gaps, conditional-expression results and element focal lengths were re-verified against the patent and needed no change.
+
+## Fresh source and rendering review (2026-10-30)
+
+The fresh FIG. 5 inspection supports retaining the continuous concave caps and existing body heights. Cemented steps and leader strokes do not establish additional exposed lands or cap-end cuts. The 2 mm S11–S12 gap prevents enlarging the VR assembly to its full diagram-estimated radius; its documented17.4/17.7 mm caps remain. All three source design apertures and format corners pass, and 25/25 axial pupil samples pass at each printed2.2m object distance. These counts describe sampled rays, not measured production throughput.
+
+All source nd/νd pairs and d-line conventions were rechecked directly in the local rendered patent tables. Catalog names are compatible spectral proxies, never production supplier or melt identifications. The source supplies no additional spectral-line or partial-dispersion values; none are invented. All nineteen media resolve to compatible catalog curves.

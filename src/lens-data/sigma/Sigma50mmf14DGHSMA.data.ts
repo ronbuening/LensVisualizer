@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, rounded source partial data and constrained geometry decisions are recorded in the audit sidecar. */
+
 // Sigma 50mm F1.4 DG HSM | Art (A014)
 // Source: JP 2015-114366 A, Numerical Example 1. Prescription is unscaled.
 // Semi-diameters are inferred because the patent publishes radii, thicknesses, nd/vd, variables,
@@ -194,8 +196,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 59.9687, d: 7.5464, sd: 33.0, medium: 1 },
     { label: "2", R: 178.4018, d: 0.6242, sd: 32.0 },
-    { label: "3", R: 192.0154, d: 2.0, sd: 25.0, medium: 2 },
-    { label: "4", R: 28.7552, d: 16.1562, sd: 25.0 },
+    { label: "3", R: 192.0154, d: 2.0, sd: 28.5, medium: 2 },
+    { label: "4", R: 28.7552, d: 16.1562, sd: 28.5, rimCutDepthMm: 11.5 },
     { label: "5", R: -67.9622, d: 10.7338, sd: 22.3, medium: 3 },
     { label: "6", R: -26.2761, d: 1.5, sd: 22.3, medium: 4 },
     { label: "7", R: 43.9346, d: 10.7524, sd: 22.3, medium: 5 },

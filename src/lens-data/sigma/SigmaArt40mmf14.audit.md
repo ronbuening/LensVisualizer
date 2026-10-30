@@ -15,12 +15,12 @@ Patent: JP 2020-012952 A, Example 1
 
 ### Glass corrections
 
-| Element / surface | Before | After | Disposition |
-|---|---|---|---|
-| L4 / S7 | `E-FD15 (HOYA)` | `E-FD2 (HOYA)` | Exact nd/vd catalog match. |
-| L7 / S11 | `E-F3 (HOYA)` | `S-TIM5 (OHARA)` | Exact nd/vd catalog match. |
-| L13 / S22 | `E-FD15 (HOYA)` | `E-FD2 (HOYA)` | Same glass as L4. |
-| L14 / S24 | `S-TIM35 (OHARA)` | `E-F1 (HOYA)` | Exact nd/vd catalog match. |
+| Element / surface | Before            | After            | Disposition                |
+| ----------------- | ----------------- | ---------------- | -------------------------- |
+| L4 / S7           | `E-FD15 (HOYA)`   | `E-FD2 (HOYA)`   | Exact nd/vd catalog match. |
+| L7 / S11          | `E-F3 (HOYA)`     | `S-TIM5 (OHARA)` | Exact nd/vd catalog match. |
+| L13 / S22         | `E-FD15 (HOYA)`   | `E-FD2 (HOYA)`   | Same glass as L4.          |
+| L14 / S24         | `S-TIM35 (OHARA)` | `E-F1 (HOYA)`    | Exact nd/vd catalog match. |
 
 ### Catalog-search disposition
 
@@ -70,14 +70,14 @@ Patent: JP 2020-012952 A, Example 1
   condition (9) for the FCD100 row, and the repo catalog curve for FCD705 and FCD515 (catalog-derived, stated in the
   `apdNote`), as in the two-decimal θgF rulings already recorded for other lenses.
 
-| Element | νd | Source figure | Stored before | Stored after |
-|---|---:|---|---:|---:|
-| L2 | 95.10 | Patent condition (9) `VnA × ΔPgFnA = 5.36` (PDF page 18): patent deviation +0.056362, `PgF = 0.533512`; table `PgF = 0.53` (surface 3, PDF page 11) | 0.053 | 0.049670 |
-| L3 | 95.10 | Same condition (9) figure; table `PgF = 0.53` (surface 5, PDF page 11) | 0.053 | 0.049670 |
-| L6 | 75.50 | Table `PgF = 0.54` (surface 10, PDF page 11; patent-line deviation +0.027570); catalog HOYA FCD705 `PgF = 0.5400` | 0.028 | 0.023177 |
-| L10 | 68.63 | Table `PgF = 0.54` (surface 17, PDF page 12; patent-line deviation +0.015204); catalog HOYA FCD515 `PgF = 0.5441` | 0.015 | 0.015751 |
-| L12 | 95.10 | Table `PgF = 0.53` (surface 21, PDF page 12), the same glass row as L2/L3; `PgF = 0.533512` from condition (9) | 0.053 | 0.049670 |
-| L15 | 68.63 | Table `PgF = 0.54` (surface 26, PDF page 12; patent-line deviation +0.015204); catalog HOYA FCD515 `PgF = 0.5441` | 0.015 | 0.015751 |
+| Element |    νd | Source figure                                                                                                                                       | Stored before | Stored after |
+| ------- | ----: | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------: | -----------: |
+| L2      | 95.10 | Patent condition (9) `VnA × ΔPgFnA = 5.36` (PDF page 18): patent deviation +0.056362, `PgF = 0.533512`; table `PgF = 0.53` (surface 3, PDF page 11) |         0.053 |     0.049670 |
+| L3      | 95.10 | Same condition (9) figure; table `PgF = 0.53` (surface 5, PDF page 11)                                                                              |         0.053 |     0.049670 |
+| L6      | 75.50 | Table `PgF = 0.54` (surface 10, PDF page 11; patent-line deviation +0.027570); catalog HOYA FCD705 `PgF = 0.5400`                                   |         0.028 |     0.023177 |
+| L10     | 68.63 | Table `PgF = 0.54` (surface 17, PDF page 12; patent-line deviation +0.015204); catalog HOYA FCD515 `PgF = 0.5441`                                   |         0.015 |     0.015751 |
+| L12     | 95.10 | Table `PgF = 0.53` (surface 21, PDF page 12), the same glass row as L2/L3; `PgF = 0.533512` from condition (9)                                      |         0.053 |     0.049670 |
+| L15     | 68.63 | Table `PgF = 0.54` (surface 26, PDF page 12; patent-line deviation +0.015204); catalog HOYA FCD515 `PgF = 0.5441`                                   |         0.015 |     0.015751 |
 
 - For review: converting the two-decimal table figures alone would give +0.046158 (0.53 at νd 95.10), +0.023191 (0.54
   at νd 75.50) and +0.011636 (0.54 at νd 68.63). The first is superseded by the patent's own condition (9) value; the
@@ -100,3 +100,18 @@ Patent: JP 2020-012952 A, Example 1
   (+0.049617 to +0.049723). The repo catalog also holds FCD505 (`PgF` 0.5443, +0.015973), 0.0002 from the FCD515
   figure stored for L10/L15. The L10/L15 `apdNote` and the analysis now also give the FCD515 catalog `PgF` on the
   patent's line (+0.0193), so the stored +0.015751 is not read as the table's +0.015.
+
+## 2026-10-30 — Fresh original outline and glass reinspection
+
+- Direct original `patents/JP2020012952A.pdf`, Example1: Figure1/PDF19 at600dpi, paired Figure2/3; media/asphere/focus tables PDF11–12; d-line/PgF definitions PDF6/10; G1Anegative anomalous-material¶0043–45/PDF9 and conditiontable5.36/PDF18. Earlier catalog-priority choices above are superseded by current source-anchor policy.
+- Native image≈400dpi; vertexspan≈1090px600/131.9999mm≈5.5nativepx/mm. Every face/cemented interface inspected. Continuouscaps grow outward, includingfront38.5, negatives36.3/28.9, G2singlet28.3 and rear dualasphere18.8mm. Lands S4 23→36.3,S6 21→28.9,S7 22.5→27.5,S19 19.5→23.3,S23 15.5→17.2,S24 15.9→18mm. No previously clearcap is reduced; no new inwardnumericcut. The source S4outer exceeds its sphere domainR30.249, correctly represented by a finite clearcap plus a distinct land.
+- Exact fullsource trials reject bodies29.5(L5,−1.502mm edge),28.7(L6,−4.308),26.4(L10,−3.448),18.8(L12,−1.299),18.8(L15,−.610). Adopted27.5/25.5/23.3/17.2/17.9 retain connected positive edges. Source S7endpoint≈23.4 would give12.553mm combined intrusion against11.969allowed; adopted22.5. Source S24endpoint≈16.2 gives7.243 against7.075allowed; adopted15.9. These are constrained outline approximations, not claimed complete diagram equality. S15/S16 full28.3 trial passes and is retained.
+- All16 nd/νd pairs exact. All16 printed PgF ratios now represented at their actual2decimal±.005 precision via enginebaseline. Keep condition9-derived L2/L3+.049670 (source5.36±.005, patentline baseline differs); L12same-row transfer remainsqualified and APDflag becomesinferred. Recover other13 actual coarse source anchors; in particular L6+.023191 andL10/L15+.01163566 supersede catalogue-derived overrides. Source APDdesignation covers G1Anegatives only; otherSLD/FLD tags remaininferred. No nC/F/g/e-line data invented.
+- All16 currentcatalogcurve resolutions remaincompatible; production identity, melt, chemistry and molding process unestablished. Source coefficients retained; rear asphere caps now18.8mm, no previously quoted numerical departure needed correction. Final sampledcounts87276retained/0lost/23745gained/33384bothblocked.
+
+### Verification and limits
+
+- Fresh direct original figure/table views; all source index/Abbe pairs independently compared with the original table. All 16 physical glasses resolve to qualified coefficient curves; no resin, cement layer or plate counted as extra glass. Source R/d, asphere coefficients, stops, focus/zoom/aperture controls and tolerances are unchanged.
+- Focused surface/image-circle/field/aperture checks pass for all3 records; source-format field coverage ≥99%, design-aperture errors within3%. Full shared cut guards report no errors; no new inward cap or numeric inferred cut exists.
+- Actual buildLens/computeElementShapes nine-state SVG for each lens was rasterized and inspected: connected compounds, no renderer trim. Exact d-line before/after collimated sampling uses144405 rays/lens across focus0/.5/1 and fields0/.25/.5/.75/1; counts are samples, not flux or source-certified finite-object performance. No old transmitted ray is lost. Published finite focus geometry is retained and checked in the nine-state layouts.
+- Existing dispersion/glass-resolution/partial-line suites:3files/94tests pass. No new catalog row, tolerance waiver, hidden clipping or production-supplier assertion.

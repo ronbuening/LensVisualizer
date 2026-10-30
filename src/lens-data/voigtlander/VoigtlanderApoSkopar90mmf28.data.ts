@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact sources, inferred contour dimensions and spectral qualifications are recorded in the audit sidecar. */
+
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — VOIGTLÄNDER APO-SKOPAR 90mm f/2.8                           ║
@@ -168,9 +170,9 @@ const LENS_DATA = {
     { label: "5", R: 22.57, d: 4.63, sd: 15.5, medium: 3 },
     { label: "6", R: 52.68, d: 2.32, sd: 15.5 },
     { label: "7", R: 115.61, d: 1.2, sd: 13.8, medium: 4 },
-    { label: "8", R: 16.63, d: 3.64, sd: 13.8 },
+    { label: "8", R: 16.63, d: 3.64, rimCutDepthMm: 4.9, sd: 13.8 },
     { label: "9", R: 48.92, d: 1.2, sd: 11.3, medium: 5 },
-    { label: "10", R: 29.34, d: 3.0, sd: 11.3 },
+    { label: "10", R: 29.34, d: 3.0, rimCutDepthMm: 1.76, sd: 11.3 },
     { label: "STO", R: "flat", d: 14.19 },
     { label: "12", R: 82.06, d: 5.49, sd: 14.3, medium: 6 },
     { label: "13", R: -30.06, d: 1.4, sd: 14.3 },

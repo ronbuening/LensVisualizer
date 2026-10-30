@@ -93,14 +93,14 @@ The complete L₄ component has positive net power, f₄ ≈ +71.8 at patent sca
 
 The patent uses only two optical materials and publishes their d-line refractive index, Abbe number, and partial-dispersion ratio θ = (ng - nF)/(nF - nC).
 
-| Material | nd | νd | θgF | ΔPgF vs. Schott normal line | Elements | Role |
+| Material | nd | νd | θgF | Derived ΔPgF vs. runtime normal line | Elements | Role |
 |---|---:|---:|---:|---:|---|---|
 | Calcium fluoride, CaF₂ | 1.43388 | 95.57 | 0.542 | +0.05895 | E2, E3, E5 | Positive low-dispersion material |
 | Fused silica, SiO₂ | 1.45851 | 67.93 | 0.528 | -0.00154 | E1, E4, E6 | Negative achromatizing material |
 
 The material choice is driven by transmission as much as by refractive index. The patent states that ordinary optical glass absorbs strongly below the near ultraviolet, while CaF₂ and SiO₂ remain useful for imaging beginning around 200 nm and extending into the infrared.
 
-The data file keeps patent partial-dispersion values on both materials for chromatic tracing, but the APD display key is intentionally narrower. CaF₂ elements are flagged as patent APD because they depart strongly from the normal line; the fused-silica elements keep their small negative `dPgF` values without an APD badge because SiO₂ lies close to the ordinary-material line. The `glass` labels use ASCII `CaF2` and `SiO2` tokens so both special-material Sellmeier entries resolve through the catalog.
+The data file derives dPgF from the published theta values using the repository normal-line baseline 0.6438 − 0.001682 νd; dPgF itself is not printed. The printed three-decimal theta values have a rounding band of ±0.0005. The APD display key is narrower than the stored partial information. CaF₂ elements retain the source APD flag because Figure 11 and the accompanying text explicitly show their departure from the normal-glass line; the fused-silica elements keep their small negative `dPgF` values without an APD badge because SiO₂ lies close to the ordinary-material line. The `glass` labels use ASCII `CaF2` and `SiO2` tokens so both special-material Sellmeier entries resolve through the catalog.
 
 The pair is difficult to use in a photographic-format objective because the refractive indices are close and the Abbe-number difference is moderate. The patent explicitly derives the short component focal lengths required for achromatization: approximately +0.29f for the CaF₂ positive component and -0.41f for the SiO₂ negative component in a simple thin achromat. Such strong component powers would normally produce large higher-order aberrations, so this design distributes the correction across L₁, L₂/L₃, and L₄ rather than relying on one cemented doublet.
 
@@ -195,3 +195,10 @@ The patent cites JP Publication S43-26269 as prior art for CaF₂/SiO₂ objecti
 - JP S61-090115 A, "結像用対物レンズ" (Imaging Objective Lens), published May 8, 1986. Primary source for the optical prescription, material table, conditional expressions, design rationale, and aberration diagrams.
 - Nikon, "Rayfact UV Series | Lineup," current Rayfact UV105mm / PF10545MF-UV specifications. Source for the current production-derivative focal length, F-number, field of view, image circle, wavelength range, magnification range, object-to-image distance, F mount, and flange-to-image distance.
 - Daitron / Tochigi Nikon, "UV-105mmF4.5 Tochigi Nikon UV Shooting Lens." Source for the UV-105mm F4.5 industrial presentation, 105 mm focal-distance label, 220-900 nm range, F mount, 46.5 mm flange back, and physical lens data.
+
+
+## 2026-10-30 — Original source shape and material review
+
+The original local patent's material table and wavelength definitions (PDF page 2), Example 4 (page 4), Figure 4 (page 6) and normal-line graph Figure 11 (page 11) were checked directly and independently rechecked by another agent. All six literal nd/νd pairs, the CaF₂/SiO₂ sequence and both theta_gF values are retained. The source identifies material species; the resolved Sellmeier rows remain qualified material models with no supplier, melt, temperature or production transmission identity established.
+
+Continuous paired rims now use S1/S2 = 15.9, S3/S4 = 16.65, S5/S6 = 16.35, S7/S8 = 12.1 mm, and S12 = 12.7 mm. The S10/S11 facing caps remain 11.45 mm under their literal 0.11655 mm gap constraint. A full 12.7 mm continuation overlaps, and the source shows continuous curves rather than independently flattened wings; no artificial land or concave-end trim was added there. All source R/d, aperture, stop and focus travel are retained. Canonical/surface, image-circle, format-corner and nominal-aperture checks pass; all nine actual SVG states are finite with zero hidden trim.

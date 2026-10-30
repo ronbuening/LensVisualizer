@@ -27,6 +27,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-30: fresh source figures/tables and qualified glass review; see the audit sidecar. */
 const LENS_DATA = {
   schema: 2,
   key: "nikon-gugotto-120mm-f45",
@@ -65,8 +66,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.09,
+      indexReference: "d",
       focalLengthMm: 41.63,
-      glass: "Q-SK55S / L-BAL35 class (589/611, uncertain 1995 melt)",
+      glass: "589611 source coordinate (S-BAL35 qualified spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Primary positive element of the cemented front group; supplies most of the converging power.",
       cemented: "L12",
@@ -78,8 +80,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80384,
       vd: 33.89,
+      indexReference: "d",
       focalLengthMm: -72.95,
-      glass: "804339 - dense flint (E-LAFH2 code match; patent nd=1.80384, vd=33.89)",
+      glass: "804339 source coordinate (E-LAFH2 qualified spectral proxy; production supplier unspecified)",
       apd: false,
       role: "High-index negative achromatizing element cemented to L1; controls axial and lateral color and doublet spherical aberration.",
       cemented: "L12",
@@ -91,8 +94,9 @@ const LENS_DATA = {
       type: "Negative Meniscus (convex to image)",
       nd: 1.58913,
       vd: 61.09,
+      indexReference: "d",
       focalLengthMm: -283.62,
-      glass: "Q-SK55S / L-BAL35 class (589/611, uncertain 1995 melt)",
+      glass: "589611 source coordinate (S-BAL35 qualified spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Weak negative rear group; provides the telephoto ratio and acts as the field-flattening diverging component.",
     },
@@ -105,7 +109,7 @@ const LENS_DATA = {
     { label: "STO", R: "flat", d: 15.0 },
     // Patent surface 5: fixed stop FS, positioned between the aperture stop and L3.
     { label: "5", R: "flat", d: 12.0, sd: 10.8 },
-    { label: "6", R: -12.99312, d: 6.79884, sd: 11.5, medium: 3 },
+    { label: "6", R: -12.99312, d: 6.79884, sd: 11.5, rimExtensionSd: 14.3, medium: 3 },
     { label: "7", R: -16.82172, sd: 14.3 },
   ],
 

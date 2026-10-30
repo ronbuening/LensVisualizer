@@ -11,9 +11,9 @@
 
 The transcribed prescription is Example 1 of JP H11-030748 A. The patent describes a compact, low-cost standard zoom lens for SLR use, built from a negative first zoom group and a positive second zoom group. Zooming is performed by varying the separation between G1 and G2, and the most object-side lens of G1 is positive to correct wide-angle distortion (¶0007, ¶0010).
 
-The production identification is strongest for the later AI AF Zoom-Nikkor 28-80mm f/3.5-5.6 D, the 1999 eight-element version. The match is convergent rather than absolute: Example 1 gives $f = 28.8$-$78.0$ mm, $FNO = 3.57$-$5.81$, maximum plotted image height $Y = 21.60$ mm, eight air-spaced spherical elements, Nikon as applicant, and Moriyama as inventor. Nikon's historical product chronology lists an AF Zoom-Nikkor 28-80mm f/3.5-5.6D in 1999, and Nikon's own historical lens article gives the contemporary AI AF Zoom-Nikkor 28-80mm f/3.5-5.6D as an 8-group, 8-element lens with 58 mm filter, 65 mm maximum diameter, 88 mm length, and 265 g weight.
+The production identification is strongest for the later AI AF Zoom-Nikkor 28-80 mm f/3.5-5.6 D, the 1999 eight-element version. The match is convergent rather than absolute: Example 1 gives $f = 28.8$-$78.0$ mm, $FNO = 3.57$-$5.81$, maximum plotted image height $Y = 21.60$ mm, eight air-spaced spherical elements, Nikon as applicant, and Moriyama as inventor. Nikon's historical product chronology lists an AF Zoom-Nikkor 28-80 mm f/3.5-5.6D in 1999, and Nikon's own historical lens article gives the contemporary AI AF Zoom-Nikkor 28-80 mm f/3.5-5.6D as an 8-group, 8-element lens with 58 mm filter, 65 mm maximum diameter, 88 mm length, and 265 g weight.
 
-The earlier 1995 AF-D version is not treated as the same optical prescription because it is generally documented as a seven-element design. The 2001 AF Zoom-Nikkor 28-80mm f/3.3-5.6G is also a distinct successor: Nikon's Moriyama account describes it as a later six-element, six-group G-type lens. This file therefore identifies the patent embodiment as the closest documented match to the 1999 eight-element AF-D lens, not as a proven surface-for-surface production release.
+The earlier 1995 AF-D version is not treated as the same optical prescription because it is generally documented as a seven-element design. The 2001 AF Zoom-Nikkor 28-80 mm f/3.3-5.6G is also a distinct successor: Nikon's Moriyama account describes it as a later six-element, six-group G-type lens. This file therefore identifies the patent embodiment as the closest documented match to the 1999 eight-element AF-D lens, not as a proven surface-for-surface production release.
 
 ## Optical Architecture
 
@@ -26,6 +26,10 @@ G2 consists of L5 through L8 in a positive-positive-negative-positive sequence. 
 The patent also specifies an additional fixed-diameter stop on the image side of G2. That auxiliary stop moves along the optical axis during zooming and blocks excess light bundles that would otherwise contribute upper coma (¶0025). The data file does not model this auxiliary stop because the patent gives no numerical axial location or aperture diameter for it.
 
 Zooming is performed by changing the G1-G2 air gap $d_8$. From wide to mid and then to telephoto, the patent states that G1 first moves slightly toward the image side and then substantially toward the object side, while G2 moves monotonically toward the object side (¶0027). With the optically corrected image positions used in the data file, the front-vertex-to-image tracks are 130.698923 mm, 127.435564 mm, and 142.084686 mm at 28.8, 50.0, and 78.0 mm respectively. These are optical model tracks, not a mechanical barrel-length claim.
+
+The fresh original Figure 1 review makes L2's rear concave land explicit: its source-scaled continuous front cap grows from 20.0 to 23.4 mm, while the existing rear clear cap 16.0 mm gains a vertical land to 23.4 mm. This follows the full drawn outer rim without changing source R/d.
+
+The inferred rear cap S14 is raised from7.0 to7.3 mm, the rounded minimum needed for the stated f/5.81 axial beam at78 mm. Figure 1 draws that continuously curved face with a larger outer extent; no flat land is added there. The focused aperture audit now clears all three design stations.
 
 ## Element-by-Element Analysis
 
@@ -55,7 +59,7 @@ Condition (5), $0.8 < r_6/\lvert f_1\rvert < 1.2$, specifically constrains L3's 
 
 ### L4 — Positive Meniscus, convex to object
 
-nd = 1.86074, νd = 23.01. Glass: J-SFH2 (Hikari coordinate successor to patent code 861230). f = +69.647 mm.
+nd = 1.86074, νd = 23.01. Glass: J-SFH2 catalog-coordinate proxy (patent 861230; production supplier unspecified). f = +69.647 mm.
 
 L4 closes the negative zoom group with positive power. Its dense flint glass provides substantial positive refraction in a compact meniscus form and offsets part of the negative Petzval contribution from L2 and L3.
 
@@ -105,12 +109,14 @@ The patent gives nd and νd values but no catalog glass names. The data file the
 | ---------- | ------: | ----: | ------------------------------------------------ | ------------------------------------------- |
 | L1         | 1.51454 | 54.55 | KF3 (SUMITA catalog equivalent; supplier unspecified) | Weak front distortion corrector             |
 | L2, L3     | 1.79668 | 45.37 | J-LASF017 catalog equivalent (patent 797454)     | Main G1 negative power                      |
-| L4         | 1.86074 | 23.01 | J-SFH2 (Hikari; patent code 861230)              | Positive G1 Petzval balance                 |
+| L4         | 1.86074 | 23.01 | J-SFH2 catalog-coordinate proxy (patent 861230; production supplier unspecified)              | Positive G1 Petzval balance                 |
 | L5, L6     | 1.61720 | 54.01 | 617540 - SSK-class crown                         | Positive rear-group crown pair              |
 | L7         | 1.80518 | 25.41 | Dense flint / SF6-family class (805/254)         | Rear-group chromatic and Petzval correction |
 | L8         | 1.61293 | 36.98 | Moderate-dispersion flint class (613/370)        | Final relay and color trim                  |
 
 The palette is conventional and cost-oriented. The patent prescription contains no ED glass, fluorite, anomalous-partial-dispersion glass, cemented groups, or aspherical surfaces. Two glass types are reused: L2/L3 share the high-index flint class, and L5/L6 share the SSK-class crown.
+
+All eight source nd/vd pairs remain unchanged and resolve to compatible current curves. L2/L3's J-LASF017 curves remain nonidentical proxies (1.79500/45.31 versus source 1.79668/45.37); J-SFH2's νd 23.08 differs from source 23.01 and is not an ordinary rounding of that printed value. These catalog differences do not identify a production material. No source θgF or C/F/g table exists.
 
 ## Focus Mechanism
 
@@ -185,14 +191,14 @@ The patent does not publish clear semi-diameters. The data file uses estimated s
 
 ## Design Heritage and Context
 
-The patent belongs to Nikon's line of concave-convex two-group standard zooms. Nikon's later historical account identifies Kiyoshi Hayashi and Keiji Moriyama as central figures in this AF-era kit-zoom lineage. Moriyama's account places the 1999 revised AI AF Zoom Nikkor 28-80mm f/3.5-5.6D immediately before the 2001 six-element AF Zoom Nikkor 28-80mm f/3.3-5.6G.
+The patent belongs to Nikon's line of concave-convex two-group standard zooms. Nikon's later historical account identifies Kiyoshi Hayashi and Keiji Moriyama as central figures in this AF-era kit-zoom lineage. Moriyama's account places the 1999 revised AI AF Zoom Nikkor 28-80 mm f/3.5-5.6D immediately before the 2001 six-element AF Zoom Nikkor 28-80 mm f/3.3-5.6G.
 
 The patent's design philosophy is conservative: avoid aspheres, use a positive L1 to correct wide-end distortion, constrain the front group and rear group with simple conditional expressions, and keep the construction to eight air-spaced spherical elements. The result is a compact all-spherical standard zoom patent design with a 2.71x focal-length ratio and 135-format coverage.
 
 ## Sources
 
 - JP H11-030748 A / JPH1130748A, "Standard Zoom Lens," Nikon Corporation, filed July 9, 1997, published February 2, 1999. Primary source for the prescription, conditional expressions, element layout, stop placement, Bf table, and design rationale. https://patents.google.com/patent/JPH1130748A/en
-- Nikon, "NIKKOR - The Thousand and One Nights No.4," comparison entry listing the then-current AI AF Zoom-Nikkor 28-80mm f/3.5-5.6D as an 8-group, 8-element lens with 58 mm filter, 65 mm diameter, 88 mm length, and 265 g weight. https://imaging.nikon.com/imaging/information/story/0004/
-- Nikon, "NIKKOR - The Thousand and One Nights No.63," Moriyama's account of the 28-80 mm kit-zoom development sequence, including the 1999 revised AI AF Zoom Nikkor 28-80mm f/3.5-5.6D and the 2001 six-element G-type successor. https://imaging.nikon.com/imaging/information/story/0063/
-- Nikon, "Our Product History: 1990's," product chronology listing the AF Zoom-Nikkor 28-80mm f/3.5-5.6D in 1999. https://imaging.nikon.com/imaging/information/products_history/1990/
-- Ken Rockwell, "Nikon 28-80mm f/3.5-5.6 AF-D," used only as a secondary cross-check for the 0.4 m close-focus listing and eight-element spherical construction. https://www.kenrockwell.com/nikon/2880.htm
+- Nikon, "NIKKOR - The Thousand and One Nights No.4," comparison entry listing the then-current AI AF Zoom-Nikkor 28-80 mm f/3.5-5.6D as an 8-group, 8-element lens with 58 mm filter, 65 mm diameter, 88 mm length, and 265 g weight. https://imaging.nikon.com/imaging/information/story/0004/
+- Nikon, "NIKKOR - The Thousand and One Nights No.63," Moriyama's account of the 28-80 mm kit-zoom development sequence, including the 1999 revised AI AF Zoom Nikkor 28-80 mm f/3.5-5.6D and the 2001 six-element G-type successor. https://imaging.nikon.com/imaging/information/story/0063/
+- Nikon, "Our Product History: 1990's," product chronology listing the AF Zoom-Nikkor 28-80 mm f/3.5-5.6D in 1999. https://imaging.nikon.com/imaging/information/products_history/1990/
+- Ken Rockwell, "Nikon 28-80 mm f/3.5-5.6 AF-D," used only as a secondary cross-check for the 0.4 m close-focus listing and eight-element spherical construction. https://www.kenrockwell.com/nikon/2880.htm

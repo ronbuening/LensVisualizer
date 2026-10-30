@@ -24,6 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   odd/even A3-A16 coefficients.
  *   Surfaces 1A, 28A, and 29A retain the patent even-order coefficients directly.
  *
+ * Fresh F-mount source review 2026-10-30: S2/4/6A preserve caps with opaque lands;
+ * S17/27 have beam-adjusted inferred cuts. C5 spans its source-supported 12.5 mm
+ * outer rim at 25/26/27. All original nd/vd/θgF values and optical controls stay.
+ * Catalog names are compatible spectral proxies, not production supplier/melt identities.
+ *
  * NOTE ON SEMI-DIAMETERS:
  *   The patent does not publish clear apertures. Semi-diameters were estimated from paraxial
  *   marginal/chief-ray envelopes and then constrained for renderer-safe edge thickness,
@@ -157,8 +162,8 @@ const LENS_DATA = {
       vd: 20.88,
       focalLengthMm: -38.2,
       glass: "N-SF66 (SCHOTT) / E-FDS1-W (HOYA) class, 923/209",
-      apd: "patent",
-      apdNote: "High-index APD flint; patent theta_gF = 0.6388; project dPgF = +0.030120",
+      apd: "inferred",
+      apdNote: "Source θgF = 0.6388 is retained (engine dPgF +0.03012). L7 is outside the source anomaly-condition groups; its positive-APD class flag is inferred, not an individual patent anomalous-material identification.",
       role: "High-dispersion flint member of the first G2 cemented doublet.",
       cemented: "C2",
       dPgF: 0.03012,
@@ -316,9 +321,9 @@ const LENS_DATA = {
       medium: 1,
       asphere: { K: 0, A4: 6.55174e-6, A6: -5.9525e-9, A8: 5.79271e-12, A10: -2.8862e-15, A12: 6.61914e-19 },
     },
-    { label: "2", R: 30.9115, d: 8.0372, sd: 27.8 },
+    { label: "2", R: 30.9115, d: 8.0372, sd: 27.8, rimExtensionSd: 37.3 },
     { label: "3", R: 40.7164, d: 2.75, sd: 27.2, medium: 2 },
-    { label: "4", R: 23.7204, d: 9.2439, sd: 21.3 },
+    { label: "4", R: 23.7204, d: 9.2439, sd: 21.3, rimExtensionSd: 27.2 },
     {
       label: "5A",
       R: 55.7625,
@@ -348,6 +353,7 @@ const LENS_DATA = {
       R: 28.3734,
       d: 6.7015,
       sd: 18.7,
+      rimExtensionSd: 21.0,
       asphere: {
         K: 0,
         A4: -2.79917e-5,
@@ -376,7 +382,7 @@ const LENS_DATA = {
     { label: "14", R: 178.1154, d: 0.15, sd: 13.2 },
     { label: "15", R: 41.7845, d: 6.1027, sd: 14.5, medium: 9 },
     { label: "16", R: -34.1098, d: 0.8, sd: 14.0, medium: 10 },
-    { label: "17", R: 90.6372, sd: 14.0 },
+    { label: "17", R: 90.6372, sd: 14.0, rimCutDepthMm: 0.80 },
     { label: "STO", R: "flat", d: 1.2451 },
     { label: "19", R: 61.743, d: 1.6529, sd: 12.5, medium: 11 },
     { label: "20", R: 22.4609, d: 8.7241, sd: 12.8, medium: 12 },
@@ -385,8 +391,8 @@ const LENS_DATA = {
     { label: "23", R: 30.543, d: 6.6588, sd: 13.4, medium: 14 },
     { label: "24", R: -38.9423, d: 0.15, sd: 13.4 },
     { label: "25", R: 33.4494, d: 0.9, sd: 12.5, medium: 15 },
-    { label: "26", R: 17.2295, d: 5.1983, sd: 11.6, medium: 16 },
-    { label: "27", R: 40.7628, d: 3.0166, sd: 11.6 },
+    { label: "26", R: 17.2295, d: 5.1983, sd: 12.5, medium: 16 },
+    { label: "27", R: 40.7628, d: 3.0166, sd: 12.5, rimCutDepthMm: 1.67 },
     {
       label: "28A",
       R: -59.7876,

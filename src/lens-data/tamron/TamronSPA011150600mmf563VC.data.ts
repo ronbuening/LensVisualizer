@@ -40,11 +40,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  thickness, actual spherical rim slope, cross-gap intrusion, and ray containment.║
  * ║  The L18-L20 rear envelopes were enlarged after a direct Fig. 13 audit.           ║
  * ║                                                                                  ║
- * ║  GLASS: Example 4 publishes only nd/vd and no vendor identities. Neutral six-    ║
- * ║  digit optical classes are retained. nC/nF/ng/dPgF are intentionally not         ║
- * ║  authored because neither the patent nor a vendor-neutral class establishes      ║
- * ║  those quantities; importing one vendor-equivalent dispersion would overstate    ║
- * ║  the glass identification.                                                       ║
+ * GLASS (fresh2026-10-30): all20physical source nd/vd+rearplate checked on PDF31,
+ * d587.6nm definition27. Seven printed interlayers1.56732/42.84 remain collapsed by the
+ * preexisting normalization, not claimed absent in the patent.20compatible glass curves+N-BK7
+ * plate curve are qualified spectral proxies, no supplier/melt or measured source APD inferred.
+ * Source prints no C/F/g or partial ratios; no duplicate spectral fields are authored.
+ * SHAPE: original Fig13/PDF15 native300dpi/600dpi supports S38 rear concave end q≈.91;
+ * inferred depth3.36 gives clearcap12.747062 on retained outer14. Full collimated and Table12
+ * source-finite beam guards pass. Other weak ends/cement interfaces are not speculative cuts.
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -53,7 +56,8 @@ const LENS_DATA = {
   key: "tamron-sp-a011-150-600mm-f5-63-vc",
   maker: "Tamron",
   name: "TAMRON SP 150-600mm f/5-6.3 Di VC USD (A011)",
-  subtitle: "US 10,545,321 B2 Example 4 — strong A011 correlation; normalized patent prescription",
+  subtitle:
+    "US 10,545,321 B2 Example 4 — strong A011 correlation; normalized patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
@@ -336,7 +340,7 @@ const LENS_DATA = {
     { label: "33", R: -48.143, d: 1.31, sd: 12.5, medium: 17 },
     { label: "35", R: 1899.0359, sd: 12.3 },
     { label: "37", R: 113.8672, d: 2.28, sd: 14.0, medium: 18 },
-    { label: "38", R: 25.8597, d: 6.9561, sd: 14.0 },
+    { label: "38", rimCutDepthMm: 3.36, R: 25.8597, d: 6.9561, sd: 14.0 },
     { label: "39", R: -55.4034, d: 1.3, sd: 14.5, medium: 19 },
     { label: "40", R: 29.6386, d: 5.91, sd: 15.0, medium: 20 },
     { label: "42", R: -175.0744, sd: 15.0 },
@@ -345,9 +349,26 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 152.1633, nominalFNumber: 4.994152, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 297.4851, nominalFNumber: 5.871856, published: true, publishedFocus: [1] },
-      { focalLengthMm: 582.52, nominalFNumber: 6.540615, label: "Tele", published: true, publishedFocus: [1] },
+      {
+        focalLengthMm: 152.1633,
+        nominalFNumber: 4.994152,
+        label: "Wide",
+        published: true,
+        publishedFocus: [1],
+      },
+      {
+        focalLengthMm: 297.4851,
+        nominalFNumber: 5.871856,
+        published: true,
+        publishedFocus: [1],
+      },
+      {
+        focalLengthMm: 582.52,
+        nominalFNumber: 6.540615,
+        label: "Tele",
+        published: true,
+        publishedFocus: [1],
+      },
     ],
     apertureModel: "fixed-iris",
   },
@@ -401,7 +422,11 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [5, 5.6, 6.3, 8, 11, 16, 22, 32, 40], maxFNumber: 40, blades: 9 },
+  aperture: {
+    fStops: [5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
+    maxFNumber: 40,
+    blades: 9,
+  },
 
   /* ── Rear plate (patent Table 10 surfaces 43–44): traced, not drawn ── */
   rearPlates: [

@@ -24,6 +24,12 @@ The association with the original Reflex-Nikkor 500mm f/8 / Reflex-Nikkor·C 500
 
 Example 2 in the same patent is a close sibling, not the transcribed design. It shares the same general mirror layout but changes the front-meniscus glass, the first rear-corrector glass, several radii, and all three principal air separations. The data file therefore follows Example 1 only.
 
+## Fresh Glass and Outline Review
+
+The original Example 1 table on PDF page 5 prints L1's d-line index as **1.52450**, with νd = 59.6. The earlier `525596` code in the annotation was inconsistent with that coordinate and has been removed. The current SUMITA K5 curve has n(d) ≈ 1.52249049, a residual of −0.00200951, so it remains a broad compatible spectral proxy rather than an exact coordinate or production-glass identification. The other five modeled media, including the clear central region duplicating the primary blank, retain their source coordinates and compatible curves. The patent supplies no C/F/g line indices or partial-dispersion measurements.
+
+Both halves of Fig. 1 were checked for cap-end strokes. The annular main mirror and clear central plug are complementary zones of one blank; the source does not support drawing the small rear corrector across the full primary diameter. Their existing spans are retained. Rim-cut and extension authoring is not supported for this folded path; no substitute land is invented. The source optical path and prior shared-surface correction are unchanged.
+
 ## Optical Architecture
 
 The design is a folded Mangin-mirror Cassegrain telephoto. Light first passes through a weak positive front meniscus, travels rearward to the annular concave primary mirror, reflects forward to the smaller convex secondary mirror, reflects again, and then travels rearward through the cemented corrector group in the clear central zone of the primary mirror. The final image plane lies behind the primary.
@@ -40,7 +46,7 @@ The sequence below follows optical encounter order, not simple physical front-to
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.52450, νd = 59.6. Glass: SUMITA K5 catalog equivalent to patent 525596; production supplier unspecified. f = +696.5mm.
+nd = 1.52450, νd = 59.6. Glass: SUMITA K5 compatible spectral proxy for source 1.52450/59.6; production supplier unspecified. f = +696.5mm.
 
 L1 is a weak positive meniscus at the front of the system. The patent states that this positive element begins to converge the incoming beam before it reaches the main mirror, allowing the main mirror diameter to be smaller than it would be in a bare reflector of the same entrance pupil.
 
@@ -82,7 +88,7 @@ The design uses ordinary crown, barium-crown, light-flint, and dense-flint glass
 
 | Element | nd | νd | Working identification | Confidence | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.52450 | 59.6 | K5 equivalent; patent 525596 | supplier unspecified | Front positive corrector |
+| L1 | 1.52450 | 59.6 | K5 qualified spectral proxy | supplier unspecified | Front positive corrector |
 | M1 / L4 | 1.54072 | 47.2 | LLF2 / S-TIL2 / E-FEL2 class, 541/472 | high class match | Primary Mangin substrate and final clear corrector |
 | M2 | 1.54814 | 45.9 | LLF1 / S-TIL1 / E-FEL1 class, 548/459 | high class match | Secondary Mangin substrate |
 | L2 | 1.56883 | 56.0 | BAK4 / BAC4 class, 569/560 | high class match | Negative member of rear corrector |

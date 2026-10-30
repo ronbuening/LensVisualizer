@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors and qualified geometry decisions are recorded in the audit sidecar. */
+
 /**
  * Sigma 20mm F1.4 DG HSM | Art (A015)
  *
@@ -69,6 +71,7 @@ const LENS_DATA = {
       focalLengthMm: -85.8,
       glass: "E-FDS1 (Hoya)",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Front dense-flint diverging component G1; controls the first stage of retrofocus field bending.",
     },
     {
@@ -92,6 +95,7 @@ const LENS_DATA = {
       focalLengthMm: -103.1,
       glass: "FCD1 (Hoya) / S-FPL51 class",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Low-dispersion front meniscus; one of the SLD-class elements in the production census.",
     },
     {
@@ -115,6 +119,7 @@ const LENS_DATA = {
       focalLengthMm: -62.6,
       glass: "FCD100 (Hoya) / S-FPL53 class",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "FLD negative element in the L1r cemented achromat.",
       cemented: "D1",
     },
@@ -140,6 +145,7 @@ const LENS_DATA = {
       focalLengthMm: 64.8,
       glass: "FCD515 (Hoya)",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Leading low-dispersion positive element of the negative floating focus group L2.",
     },
     {
@@ -152,6 +158,7 @@ const LENS_DATA = {
       focalLengthMm: 47.7,
       glass: "FCD515 (Hoya)",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Low-dispersion positive crown in the L2 cemented doublet.",
       cemented: "D2",
     },
@@ -177,6 +184,7 @@ const LENS_DATA = {
       focalLengthMm: 45.1,
       glass: "FCD100 (Hoya) / S-FPL53 class",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Second FLD element, placed just behind the stop in the L3 cemented triplet.",
       cemented: "T1",
     },
@@ -202,6 +210,7 @@ const LENS_DATA = {
       focalLengthMm: 95.1,
       glass: "FCD515 (Hoya)",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Low-dispersion rear crown of the L3 triplet.",
       cemented: "T1",
     },
@@ -215,6 +224,7 @@ const LENS_DATA = {
       focalLengthMm: 39.5,
       glass: "FCD515 (Hoya)",
       apd: "inferred",
+      apdNote: "Compatible catalog spectral proxy; source supplies d-line nd/vd only and establishes no individual anomalous melt or production supplier.",
       role: "Strong low-dispersion positive singlet supplying much of L3's converging power.",
     },
     {
@@ -242,13 +252,13 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 55.8667, d: 2.0, sd: 32.2, medium: 1 },
-    { label: "2", R: 32.188, d: 11.1453, sd: 27.0 },
+    { label: "1", R: 55.8667, d: 2.0, sd: 38.0, medium: 1 },
+    { label: "2", R: 32.188, d: 11.1453, rimExtensionSd: 38.0, sd: 27.0 },
     {
       label: "3A",
       R: 39.6726,
       d: 3.0,
-      sd: 25.2,
+      sd: 30.0,
       medium: 2,
       asphere: { K: -2.4116, A4: 6.6683e-7, A6: -8.6532e-9, A8: 1.5787e-11, A10: -1.446e-14, A12: 5.7555e-18 },
     },
@@ -256,11 +266,11 @@ const LENS_DATA = {
       label: "4A",
       R: 20.4304,
       d: 19.693,
-      sd: 21.9,
+      rimExtensionSd: 30.0, sd: 21.9,
       asphere: { K: -0.9479, A4: -1.1248e-7, A6: -1.995e-8, A8: 3.17347e-11, A10: -3.4771e-14, A12: 1.7899e-17 },
     },
-    { label: "5", R: 518.9274, d: 1.9, sd: 20.5, medium: 3 },
-    { label: "6", R: 46.5995, d: 7.4808, sd: 20.7 },
+    { label: "5", R: 518.9274, d: 1.9, sd: 25.0, medium: 3 },
+    { label: "6", R: 46.5995, d: 7.4808, sd: 25.0 },
     { label: "7", R: 88.5605, d: 8.0408, sd: 22.7, medium: 4 },
     { label: "8", R: -88.5605, d: 2.8258, sd: 22.1 },
     { label: "9", R: -48.6468, d: 1.9, sd: 22.1, medium: 5 },

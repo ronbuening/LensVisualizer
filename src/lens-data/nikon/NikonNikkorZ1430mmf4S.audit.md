@@ -200,3 +200,46 @@ the 105.104 mm S1 → S27 span at the wide end over 1047 px. Each q range is ±(
 
 - 26A: q 0.940 (110.5 / 117.5 px and 111 / 118 px), edge 116.6 px, range ±0.017 (0.923–0.957). The cut sits at
   q 0.943. Land 0.6681 mm, above the 0.1 mm minimum.
+
+
+## 2026-10-29 — Cap-preserving rim extensions
+
+Re-read local `patents/JP2019008031A.pdf`, Example 1 / Figure 1, PDF p. 29, at 600 dpi, rotated object-left.
+The S1–S27 vertex span gives 1047 native px / 105.104 mm = 9.96 px/mm. Both halves of every air face and
+cemented boundary were checked. Figure 1 explicitly continues the rear faces of L11/L12 from their cap ends
+with lands out to their opposite faces' square edges.
+
+| Face | Clear cap before/after | New drawn radius | Evidence |
+|---|---|---|---|
+| 2A / L11 rear | 22.4 mm, unchanged | `rimExtensionSd: 29.2` | Native cap/edge 223.5/292.5 and 224/293.5 px, q about 0.764 |
+| 4A / L12 rear | 14.5 mm, unchanged | `rimExtensionSd: 19.3` | Native cap/edge 149.5/192.5 px on both halves, q about 0.777 |
+
+The long lands previously could not be represented without asking the aspheric profile to continue beyond its
+clear cap or applying the inferred-cut beam rule to an already clipping rim. Extensions preserve those exact
+optical caps and complete only the outer material. The existing 26A cut remains beam-qualified at 11.0319 mm.
+No further resolved concave land was found; shallow or one-pixel edge changes remain unmodeled.
+
+Before/after `audit:surface` passes; `audit:image-circle` reports 0 undersized / 0 skipped. The actual SVG
+geometry was rendered and compared with Figure 1. Nine zoom/focus states (0, 0.5, 1 on each control) have
+zero hidden semi-diameter trim.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2019008031A.pdf`, Example 1 / Table 1, PDF pp. 12–13. All 14 physical elements'
+d-line nd/νd values agree with the rendered table, including the four repeated 1.49782/82.57 entries and
+all cemented partners. All 14 labels resolve to coordinate-compatible coefficient-backed catalog curves.
+
+| Media | Change / retained verdict |
+|---|---|
+| L13, L33, L34, L51 | Retain source 1.49782/82.57 and inferred APD; remove generic dPgF +0.035 overrides |
+| Other ten elements | Source coordinates and compatible catalog annotations retained |
+
+Table 1 supplies no C/F/g or partial-dispersion values. The removed +0.035 was an inferred family estimate;
+J-FKH1's shared coefficients now supply the full spectral shape without that extra g-line adjustment. This
+retains qualified catalog coverage and does not establish a supplier or production melt. Analysis and APD
+notes were synchronized.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.

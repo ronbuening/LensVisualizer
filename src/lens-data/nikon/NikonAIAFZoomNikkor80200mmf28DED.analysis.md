@@ -15,12 +15,12 @@
 **Assignee:** Nikon Corporation
 
 **Title:** *Zoom Lens Equipped with the Image Stabilizing Function*
-**Example details:** third embodiment, Figure 5 and Table 4
+**Example details:** third embodiment, Figure 3 and Table 4
 
 The prescription is the third embodiment of US 5,579,171 A, selected for correlation with the
 NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED. The patent describes this embodiment as a relatively
 bright 80-200 mm-class zoom with an F-number of 2.8 and gives two infinity-focus endpoints, 80.94 mm
-and 196.00 mm. Its Table 4 contains 16 glass elements in 11 air-separated groups, while Figure 5 shows
+and 196.00 mm. Its Table 4 contains 16 glass elements in 11 air-separated groups, while Figure 3 shows
 the same positive/negative/positive/positive four-unit structure used by the numerical prescription.
 The data file retains those patent dimensions without uniform scaling. [1]
 
@@ -287,7 +287,7 @@ centered prescription gives 65.984391 mm and 65.984457 mm, respectively. [1]
 ## Glass Identification and Selection
 
 The patent supplies refractive index and Abbe number but does not name glass manufacturers. A public-catalog
-recheck supplies coordinate-compatible dispersion curves for fifteen elements while preserving the authored patent
+recheck supplies coordinate-compatible dispersion curves for all sixteen elements while preserving the authored patent
 coordinates and leaving every production supplier unknown. The three 498825 ED positions use Hikari J-FKH1 because
 its `1.49782 / 82.57` curve is compatible with the rounded `1.49782 / 82.52` patent rows; this is not a supplier claim.
 
@@ -407,7 +407,7 @@ is treated as rounding rather than a conflicting optical state.
 
 The final data file has 16 elements, 11 air-separated groups, five cemented doublets, exactly one
 `STO`, and no aspherical surfaces. No scaling is applied. The `nd` and `νd` values remain the patent's
-d-line coordinates; there is no e-line conversion and no imported line-index data.
+tabulated refractive-index/Abbe pairs. The model retains the conventional d-line interpretation; Table 4 does not explicitly print a wavelength. No e-line conversion or additional line-index data is inferred.
 
 Independent sequential height/reduced-angle tracing and ABCD calculation from the final TypeScript
 arrays reproduce the two published infinity endpoints:
@@ -423,7 +423,7 @@ air spaces rather than the surface powers.
 
 ### Aperture stop and inferred clear apertures
 
-The axial position of S3 is a patent fact: Figure 5 and the third-embodiment text place the aperture
+The axial position of S3 is a patent fact: Figure 3 and the third-embodiment text place the aperture
 stop inside G4, and Table 4's otherwise plane surface 24 leaves 9.4 mm from surface 23 to S3 and
 2.0 mm from S3 to surface 25. The clear diameter is not published. The data file therefore retains
 that axial position but infers a fixed stop semi-diameter of 13.839631 mm from the patent's F/2.8
@@ -435,7 +435,7 @@ about 14.454287 mm and 35.000016 mm. These are model results, not source dimensi
 
 No patent semi-diameter table is published for Example 3. Every surface semi-diameter in the data file
 is therefore an author/modeling inference based on the on-axis F/2.8 marginal bundle, 135-format
-field bundles, Figure 5 proportions, and geometric edge-thickness, rim-slope, and cross-gap limits. The stored `gapSagFrac = 0.97` is likewise a geometry-model parameter used to preserve
+field bundles, Figure 3 proportions, and geometric edge-thickness, rim-slope, and cross-gap limits. The stored `gapSagFrac = 0.97` is likewise a geometry-model parameter used to preserve
 the tight G2 rim clearances; it is not a patent specification.
 
 The model does not add a sensor cover, filter, dummy plane, synthetic cement layer, or mechanically
@@ -458,7 +458,7 @@ already corresponds closely to the marketed 80-200 mm lens.
 
 1. Suzuki, Kenzaburo; Nakatsuji, Masahiro; Moriyama, Keiji. **US 5,579,171 A**, *Zoom Lens Equipped
    with the Image Stabilizing Function*. Nikon Corporation. Granted November 26, 1996. In particular:
-   Figure 5; Table 1; Table 4; cols. 1-6 and 14-16.
+   Figure 3; Table 1; Table 4; cols. 1-6 and 14-16.
 2. Nikon Inc. **AF Zoom-NIKKOR 80-200mm f/2.8D ED** official product page. Production metadata used
    here includes 80-200 mm, f/2.8, Nikon F bayonet, FX/35mm format, 16 elements / 11 groups, three ED
    elements, nine diaphragm blades, 1.5 m minimum focus distance, and 0.24x maximum reproduction ratio.
@@ -468,3 +468,10 @@ already corresponds closely to the marketed 80-200 mm lens.
    continued the 1988 optical design with no noteworthy optical changes and identifies the 2003 AF-S
    VR Zoom-Nikkor 70-200mm f/2.8G IF-ED as the later lens in the lineage equipped with VR.
    https://imaging.nikon.com/imaging/information/story/0067/
+
+
+## Fresh Figure and Concave-End Review
+
+The correct source outline is Figure 3 on PDF page 4, explicitly associated with the third embodiment in the text on PDF page 14. The former Figure 5 reference was erroneous: that figure shows the fifth embodiment, a 35–105 mm design with a front filter. It is not the outline for this Table 4 prescription, and no such filter is added. The centered model's source/product correlation and unmodeled stabilization qualifications remain.
+
+Figure 3 resolves a short vertical outer stroke on L15's concave rear face, S26. The measured cap/edge ratio is about 0.875; an inferred 2.80 mm depth would place the clear cap at 12.343 mm but fails the beam guard, which reaches 12.9799 mm and requires at least 13.0299 mm. The adopted 3.16 mm depth moves the cap outward to 13.069140 mm under the retained 14 mm outer rim (`q = 0.93351`). This records both the source proportion and the beam-constrained adoption; the smaller trim is not an exact dimensional copy of the source. The other convex, concave and cemented faces were checked directly; shallow curves and rays do not establish another flat land. All optical source values, controls and existing gap tolerances remain.

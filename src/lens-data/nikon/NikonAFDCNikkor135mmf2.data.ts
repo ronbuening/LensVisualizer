@@ -35,10 +35,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   actual rim slope, shared-gap intrusion, and the Fig. 4 silhouette.       ║
  * ║                                                                            ║
  * ║ GLASS DATA                                                                 ║
- * ║   nd/νd are the patent's d-line values. nC/nF/ng/dPgF are included only   ║
- * ║   for deliberate catalog-coordinate matches. L1 and L3-L6 use current     ║
- * ║   HIKARI data; L2 uses an OHARA special-order code match. L7 uses a        ║
- * ║   coordinate-compatible HIKARI catalog equivalent without asserting melt. ║
+ * ║   nd/νd are the patent's d-line values. All seven media resolve to       ║
+ * ║   qualified catalog spectral proxies. Catalog-only nC/nF/ng/dPgF copies   ║
+ * ║   are removed so the current compatible coefficient curves are used.     ║
+ * ║   Source spectral-line data and production supplier/melt are unspecified.║
  * ║                                                                            ║
  * ║ The production protective glass and all mechanical parts are excluded.    ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
@@ -88,10 +88,6 @@ const LENS_DATA = {
       role: "Front positive member of the cemented G1 collector and achromatizing pair.",
       diagramLabel: "L1",
       cemented: "L1/L2",
-      dPgF: -0.0031,
-      nC: 1.617264,
-      nF: 1.627562,
-      ng: 1.633125,
     },
     {
       id: 2,
@@ -101,14 +97,10 @@ const LENS_DATA = {
       nd: 1.648311,
       vd: 33.75,
       focalLengthMm: -537.323355,
-      glass: "S-TIM22 (OHARA special-order; code 648338 coordinate match)",
+      glass: "S-TIM22 (OHARA compatible spectral proxy; source coordinates differ; production supplier unspecified)",
       role: "Weak negative cemented partner that moderates G1 power and longitudinal color.",
       diagramLabel: "L2",
       cemented: "L1/L2",
-      dPgF: 0.007,
-      nC: 1.642096,
-      nF: 1.661263,
-      ng: 1.672645,
     },
     {
       id: 3,
@@ -121,10 +113,6 @@ const LENS_DATA = {
       glass: "J-LAK8 (HIKARI; coordinate-compatible current catalog match)",
       role: "Positive member of G2; its spacing from G1 is the primary DC variable.",
       diagramLabel: "L3",
-      dPgF: -0.0086,
-      nC: 1.708982,
-      nF: 1.722196,
-      ng: 1.7294,
     },
     {
       id: 4,
@@ -137,10 +125,6 @@ const LENS_DATA = {
       glass: "J-LAF7 (HIKARI; coordinate-compatible current catalog match)",
       role: "Strong negative member completing G2 and controlling the converging bundle before the stop.",
       diagramLabel: "L4",
-      dPgF: 0.0029,
-      nC: 1.743271,
-      nF: 1.764535,
-      ng: 1.77704,
     },
     {
       id: 5,
@@ -153,10 +137,6 @@ const LENS_DATA = {
       glass: "J-SF8 (HIKARI; coordinate-compatible current catalog match)",
       role: "Negative leading member of the rear focusing group GR.",
       diagramLabel: "L5",
-      dPgF: 0.0072,
-      nC: 1.682509,
-      nF: 1.704616,
-      ng: 1.717865,
     },
     {
       id: 6,
@@ -169,10 +149,6 @@ const LENS_DATA = {
       glass: "J-LASFH2 (HIKARI; coordinate-compatible current catalog match)",
       role: "High-index positive member of GR that restores convergence after L5.",
       diagramLabel: "L6",
-      dPgF: -0.0083,
-      nC: 1.761914,
-      nF: 1.778307,
-      ng: 1.787448,
     },
     {
       id: 7,
@@ -193,9 +169,9 @@ const LENS_DATA = {
     { label: "2", R: -569.905, d: 3, sd: 34.5, medium: 2 },
     { label: "3", R: 897.932, d: 10, sd: 33.5 },
     { label: "4", R: 44.435, d: 8, sd: 26, medium: 3 },
-    { label: "5", R: 100.005, d: 2.6, sd: 23.3 },
+    { label: "5", R: 100.005, d: 2.6, sd: 26 },
     { label: "6", R: 626.47, d: 3, sd: 23.3, medium: 4 },
-    { label: "7", R: 32.305, d: 8, sd: 20.5 },
+    { label: "7", R: 32.305, d: 8, sd: 20.5, rimExtensionSd: 23.3 },
     { label: "STO", R: "flat" },
     { label: "8", R: -40.174, d: 3, sd: 17.5, medium: 5 },
     { label: "9", R: -2506.608, d: 7, sd: 18 },

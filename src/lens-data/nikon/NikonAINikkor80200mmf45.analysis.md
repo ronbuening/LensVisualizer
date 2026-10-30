@@ -101,7 +101,7 @@ L6 is the positive component at the front of the fixed relay. The aperture stop 
 
 ### L7 — Negative Meniscus, Relay Front
 
-**nd = 1.75692, νd = 31.7. Glass: E-LAF11 (HIKARI; historical 757316 match to patent 757317 class). Standalone f = -271.716856 mm.** [2][3]
+**nd = 1.75692, νd = 31.7. Glass: E-LAF11 catalog proxy (HIKARI; 757316 versus patent 757317). Standalone f = -271.716856 mm.** [2][3]
 
 L7 is a weak negative element paired with L6 across a 1.0 mm air gap. The large index difference between the relay-front positive and negative components is the quantity constrained by patent condition (2). In the final data it is `1.75692 - 1.51680 = 0.24012`, within the corrected patent interval. The combined G4 focal length is +105.377057 mm. [1][3]
 
@@ -109,7 +109,7 @@ The patent prints +107.181 mm for the relay-front subgroup, but that value is no
 
 ### L8 — Negative Meniscus, Relay Rear
 
-**nd = 1.71300, νd = 53.9. Glass: J-LAK8 (HIKARI; 713540 match to patent 713539 class). Standalone f = -82.941232 mm.** [2][3]
+**nd = 1.71300, νd = 53.9. Glass: J-LAK8 catalog proxy (HIKARI; 713540 versus patent 713539). Standalone f = -82.941232 mm.** [2][3]
 
 L8 is the principal negative element of the rear relay. It is separated from G4 by the patent’s 55.8 mm air space and is followed by L9 after a 0.2 mm gap. Its form is the negative meniscus governed by patent condition (4), which constrains the curvature ratio to control field behavior. [1][2]
 
@@ -121,9 +121,11 @@ L9 nearly cancels the isolated negative power of L8. The L8/L9 rear pair compute
 
 The rear pair’s isolated focal length does not describe its in-situ behavior by itself. In the assembled lens it is entered by a converging ray at reduced height, and it adds a small positive reduced-angle increment to the traced unit input ray at all three zoom states. The complete G4+G5 relay remains positive at +112.519954 mm. [3]
 
+The fresh source-figure review adds only the resolved L8 concave front-end trim: S18 has outer18.0 mm, inferred depth6.70 mm, and clear cap16.280006 mm. It clears the complete field/zoom/focus beam search; no other concave end or cemented step resolves a separate additional land. Source R/d and zoom/focus reconstruction are retained.
+
 ## Glass Identification and Selection
 
-The patent names no glass manufacturer or melt. The data file therefore stores six-digit index/Abbe classes except where a coefficient-backed historical catalog equivalent reproduces the published optical constants. These matches are evidence for class equivalence only; they are not claims that Nikon used those exact catalog products. [1][2][3]
+The patent explicitly defines its indices at spectrum line d, but supplies no numeric C/F/g indices, θgF values, or ED/APD claim. It names no glass manufacturer or melt. The data file therefore stores six-digit index/Abbe classes except where a coefficient-backed historical catalog equivalent reproduces the published optical constants. These matches are evidence for class equivalence only; they are not claims that Nikon used those exact catalog products. [1][2][3]
 
 | Data annotation | nd | νd | Elements | Optical use in this prescription |
 |---|---:|---:|---|---|
@@ -134,11 +136,11 @@ The patent names no glass manufacturer or melt. The data file therefore stores s
 | 517642 — borosilicate crown class | 1.51680 | 64.2 | L3b, L6 | Variator-negative and relay-positive members |
 | 589612 — dense barium crown class | 1.58913 | 61.2 | L4 | Air-spaced variator negative |
 | 620603 — dense crown class | 1.62041 | 60.3 | L5a | Strong compensator positive |
-| E-LAF11 (HIKARI; historical 757316 match to patent 757317 class) | 1.75692 | 31.7 | L7 | Weak relay-front negative |
-| J-LAK8 (HIKARI; 713540 match to patent 713539 class) | 1.71300 | 53.9 | L8 | Rear-relay negative meniscus |
+| E-LAF11 catalog proxy (HIKARI; 757316 versus patent 757317) | 1.75692 | 31.7 | L7 | Weak relay-front negative |
+| J-LAK8 catalog proxy (HIKARI; 713540 versus patent 713539) | 1.71300 | 53.9 | L8 | Rear-relay negative meniscus |
 | 518590 — crown class | 1.51823 | 59.0 | L9 | Final relay positive |
 
-The refreshed catalog audit resolves every element to strict Sellmeier data. A historical Nikon Zemax catalog archived by RefractiveIndex.INFO gives E-LAF11 at `nd = 1.756920`, `νd = 31.591`, and J-LAK8 at `nd = 1.713000`, `νd = 53.96`. Those values reproduce the patent's d-line indices and one-decimal Abbe classes, so the model uses the coefficient-backed names while preserving the patent codes in the annotations. Neither match asserts the production melt. [2][3][5]
+The refreshed catalog audit resolves every element to compatible coefficient-backed dispersion. A historical Nikon Zemax catalog archived by RefractiveIndex.INFO gives E-LAF11 at `nd = 1.756920`, `νd = 31.591`, and J-LAK8 at `nd = 1.713000`, `νd = 53.96`. Those values reproduce the patent’s d-line indices but are not ordinary one-decimal rounding of source 31.7/53.9 (catalog 31.591 rounds 31.6;53.96 rounds 54.0). The model retains the source coordinates and qualifies both as nonidentical spectral proxies. Neither match asserts the production melt. [2][3][5]
 
 The source provides no `nC`, `nF`, `ng`, `PgF`, or `dPgF` values. The data file therefore has no line-index or anomalous-partial-dispersion fields. The design may be discussed as an achromatized zoom in the ordinary first-order sense, but the available evidence does not support an APO or anomalous-dispersion claim. [1][2]
 

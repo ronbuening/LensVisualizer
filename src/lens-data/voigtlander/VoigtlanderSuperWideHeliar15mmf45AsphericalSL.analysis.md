@@ -199,6 +199,9 @@ This paraxial Petzval sum is not a measured sagittal/tangential field-curvature 
 
 ## Numerical Model and Aperture Limits
 
+The detailed finite sampling below records the earlier clear-aperture model. The fresh review later in these notes
+adds source-supported outer lands and increases S4 from 8.0 to 8.1 mm; its current checks are reported separately.
+
 The parsed prescription reproduces the printed EFL, BFD and front-pair focal length within their 0.01 mm source precision.
 Two independently implemented first-order methods agree: sequential reduced-angle rays and matrix propagation.
 The front principal plane is +16.705151 mm from the first vertex; the rear principal plane is −0.800275 mm from the final
@@ -226,6 +229,19 @@ These are modeled-aperture sampling results, not measurements of production illu
 Finite meridional and radial sampling does not prove three-dimensional skew-ray clearance or every point in a continuum.
 The portable silhouette and numerical checks are separate from the project's production renderer and its trim diagnostics.
 No measured MTF, illumination, distortion, or finite-focus performance is inferred from these checks.
+
+## Fresh concave-end and glass review
+
+The original Example 3 tables and Fig. 5 were checked again. All eight source d-line index/Abbe pairs and all eight
+compatible catalog curves remain in place. No source measured partial dispersion, glass supplier or melt is established.
+
+Fig. 5 supports separate outer lands on the concave air faces S2, S4 and S14A. Their clear caps are 9.9, 8.1 and 6.3 mm;
+the paired outer bodies reach 12.6, 9.5 and 7.6 mm. The S2 sphere and S14A conic are not extrapolated beyond their domains.
+Independent equivalent numeric-cut tests using domain-valid untrimmed bodies pass the full unchanged wide-open guard:
+beam reaches are 9.6019, 7.9705 and 5.9864 mm respectively, with a required 0.05 mm clearance. S4's former 8.0 mm cap
+was increased to 8.1 to meet that margin. No measured-depth exemption is claimed. Shared D2 geometry remains constrained.
+Nine actual production SVG states have no hidden trim. The centered full-frame chief and f/4.57 aperture remain clear;
+existing peripheral-pupil and finite-focus qualifications still apply.
 
 ## Sources
 

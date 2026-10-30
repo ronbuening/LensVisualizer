@@ -30,7 +30,7 @@ These focal lengths are calculated for each medium isolated in air with its two 
 |---|---|---|---|---|
 | L11 | 1.68893 | 31.2 | S-TIM28 (inferred coordinate counterpart; OHARA) | -76.54 |
 | L12 | 1.71300 | 53.9 | N-LAK8 (inferred coordinate counterpart; Schott) | -68.37 |
-| L12r | 1.51380 | 53.0 | UV-curing resin (composite) | -368.90 |
+| L12r | 1.51380 | 53.0 | Resin layer (compound asphere; formulation and curing unspecified) | -368.90 |
 | L13 | 1.84666 | 23.8 | S-TIH53 (inferred coordinate counterpart; OHARA) | 86.86 |
 | L14 | 1.56883 | 56.0 | N-BAK4 (inferred coordinate counterpart; Schott catalog-equivalent; patent supplier unspecified) | -60.83 |
 | L15 | 1.88300 | 40.8 | S-LAH58 (inferred coordinate counterpart; OHARA) | 112.04 |
@@ -73,9 +73,9 @@ The source object leg is105.61mm before the first surface. Adding the near table
 
 ## Semi-Diameter Estimation Notes
 
-Figure1, PDF p.21, was inspected at600dpi with the105.91mm optical vertex span as scale. Optical arcs were separated from front-lens shoulders, rim walls and leader lines. The front rim is30.5mm, its rear optical arc24.2mm; L12 front25mm and junction23mm; successive front components use23mm. Rear positive singlets use21/20mm, pre-stop pair18mm, post-stop pair16.4mm, L27 18mm and L28 18.8mm.
+Figure1, PDF p.21, was inspected at600dpi with the105.91mm optical vertex span as scale. Optical arcs were separated from front-lens shoulders, rim walls and leader lines. The front rim is30.5mm, its rear optical arc24.2mm with an explicit opaque land to30.5mm; L12 front25mm and junction23mm; successive front components use23mm. Rear positive singlets use21/20mm, pre-stop pair18mm, post-stop pair16.4mm, L27 18mm and L28 18.8mm.
 
-The resin exit retains21.8mm: an attempted23mm optical radius produces a negative0.203mm resin edge thickness. This figure-versus-prescription limit remains a follow-up; no fabricated thickness repair is made. All adopted surfaces pass geometry and image-circle checks, with no runtime trimming at infinity, midpoint or near. These are inferred drawing rims, not listed clear apertures.
+The resin exit retains21.8mm: an attempted23mm optical radius produces a negative0.203mm resin edge thickness. An attempted opaque extension of the retained21.8mm cap to25mm also crosses the23mm glass/resin interface, giving negative1.182mm edge thickness. This figure-versus-prescription limit remains a follow-up; no fabricated thickness repair is made. All adopted surfaces pass geometry and image-circle checks, with no runtime trimming at infinity, midpoint or near. These are inferred drawing rims, not listed clear apertures.
 
 ## Scope and Limitations
 

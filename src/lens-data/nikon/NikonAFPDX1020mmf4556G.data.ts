@@ -23,6 +23,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  were raised to pass the traced chief ray to the DX corner at the wide end       ║
  * ║  (55.2°; Table 2 prints Y = 14.25 mm at ω = 55.344°, labelled 2ω) in the         ║
  * ║  2026-09-24 field-coverage audit.                                                ║
+ * ║  Figure 3: S6 extends to 12.6 mm; hybrid S3A land is not representable.                     ║
+ * ║  All Table 2 theta_gF ratios are retained as converted dPgF values.            ║
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -75,8 +77,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
+      dPgF: -0.00853916, // Table 2 theta_gF=0.5518; engine normal-line conversion
       focalLengthMm: -31.83,
-      glass: "J-LASF016 / N-LAF34 class (catalog-equivalent high-index lanthanum flint)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Glass substrate of the first composite negative meniscus in the retrofocus front group.",
       cemented: "H1",
     },
@@ -87,8 +90,9 @@ const LENS_DATA = {
       type: "Composite resin asphere",
       nd: 1.56093,
       vd: 36.64,
+      dPgF: 0.01092848, // Table 2 theta_gF=0.5931; engine normal-line conversion
       focalLengthMm: -79.44,
-      glass: "Resin / polymer layer (patent-specified)",
+      glass: "Resin layer (patent nd/vd; formulation unresolved)",
       role: "Thin molded resin layer carrying the image-side aspherical surface of L11.",
       cemented: "H1",
     },
@@ -99,8 +103,9 @@ const LENS_DATA = {
       type: "Composite resin asphere",
       nd: 1.55389,
       vd: 38.09,
+      dPgF: 0.01306738, // Table 2 theta_gF=0.5928; engine normal-line conversion
       focalLengthMm: -484.48,
-      glass: "Resin / polymer layer (patent-specified)",
+      glass: "Resin layer (patent nd/vd; formulation unresolved)",
       role: "Thin molded resin layer carrying the object-side aspherical surface of L12.",
       cemented: "H2",
     },
@@ -111,8 +116,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 40.97,
+      dPgF: -0.00608846, // Table 2 theta_gF=0.5688; engine normal-line conversion
       focalLengthMm: -36.86,
-      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "S-LAH53 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Glass substrate of the second composite negative meniscus in G1.",
       cemented: "H2",
     },
@@ -123,10 +129,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68348,
       vd: 54.8,
+      dPgF: -0.00152640, // Table 2 theta_gF=0.5501; engine normal-line conversion
       focalLengthMm: -56.71,
       glass: "683548 - patent-specified glass (theta_gF=0.5501; unresolved)",
-      apd: "patent",
-      apdNote: "Patent partial-dispersion condition: θgF = 0.5501; θgF − (0.6418 − 0.00168νd) = +0.0004.",
+      apd: false,
+      apdNote: "Source θgF=0.5501 is retained via dPgF; the near-normal conditional ratio does not establish anomalous material identity.",
       role: "Conditioned negative element in G1 for lateral-color and field correction.",
     },
     {
@@ -136,8 +143,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.71736,
       vd: 29.57,
+      dPgF: 0.00953674, // Table 2 theta_gF=0.6036; engine normal-line conversion
       focalLengthMm: 32.54,
-      glass: "J-SF1 (Hikari-equivalent dense flint)",
+      glass: "J-SF1 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive balancing element at the rear of the net-negative first zoom group.",
     },
     {
@@ -147,8 +155,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72825,
       vd: 28.38,
+      dPgF: 0.01083516, // Table 2 theta_gF=0.6069; engine normal-line conversion
       focalLengthMm: 13.75,
-      glass: "J-SF10 (Hikari-equivalent dense flint)",
+      glass: "J-SF10 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the pre-stop correcting doublet in G2.",
       cemented: "D1",
     },
@@ -159,8 +168,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.25,
+      dPgF: -0.00210950, // Table 2 theta_gF=0.5824; engine normal-line conversion
       focalLengthMm: -11.03,
-      glass: "TAFD35 / TAFD35L (Hoya-equivalent high-index flint)",
+      glass: "TAFD35 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index negative member of the pre-stop correcting doublet in G2.",
       cemented: "D1",
     },
@@ -171,8 +181,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 63.88,
+      dPgF: -0.00035384, // Table 2 theta_gF=0.5360; engine normal-line conversion
       focalLengthMm: 54.75,
-      glass: "BK7-family crown (patent nd=1.51680, νd=63.88)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Weak positive meniscus immediately before the stop; patent VR/decentering group.",
     },
     {
@@ -182,8 +193,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.78,
+      dPgF: 0.00044796, // Table 2 theta_gF=0.5622; engine normal-line conversion
       focalLengthMm: 17.22,
-      glass: "J-LLF6 (Hikari-equivalent light flint)",
+      glass: "J-LLF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive post-stop member of the principal G2 cemented doublet.",
       cemented: "D2",
     },
@@ -194,8 +206,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.91082,
       vd: 35.25,
+      dPgF: -0.00210950, // Table 2 theta_gF=0.5824; engine normal-line conversion
       focalLengthMm: -49.18,
-      glass: "TAFD35 / TAFD35L (Hoya-equivalent high-index flint)",
+      glass: "TAFD35 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index negative member of the post-stop G2 doublet.",
       cemented: "D2",
     },
@@ -206,8 +219,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.25,
+      dPgF: -0.00210950, // Table 2 theta_gF=0.5824; engine normal-line conversion
       focalLengthMm: -24.69,
-      glass: "TAFD35 / TAFD35L (Hoya-equivalent high-index flint)",
+      glass: "TAFD35 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Main negative member of the internal focusing group G3.",
     },
     {
@@ -217,8 +231,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 63.88,
+      dPgF: -0.00035384, // Table 2 theta_gF=0.5360; engine normal-line conversion
       focalLengthMm: 46.77,
-      glass: "BK7-family crown (patent nd=1.51680, νd=63.88)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive meniscus following L31 in the internal focusing group.",
     },
     {
@@ -228,6 +243,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (1× Asph)",
       nd: 1.5311,
       vd: 55.91,
+      dPgF: 0.01864062, // Table 2 theta_gF=0.5684; engine normal-line conversion
       focalLengthMm: 148.46,
       glass: "531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)",
       role: "Weak positive rear-group meniscus with image-side field-correction asphere.",
@@ -239,8 +255,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.25,
+      dPgF: -0.00210950, // Table 2 theta_gF=0.5824; engine normal-line conversion
       focalLengthMm: -19.93,
-      glass: "TAFD35 / TAFD35L (Hoya-equivalent high-index flint)",
+      glass: "TAFD35 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the final rear cemented doublet.",
       cemented: "D3",
     },
@@ -251,8 +268,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
+      dPgF: 0.00356142, // Table 2 theta_gF=0.5291; engine normal-line conversion
       focalLengthMm: 19.12,
-      glass: "J-FK5 (Hikari-equivalent low-dispersion fluor-crown)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Low-dispersion positive member of the final rear cemented doublet.",
       cemented: "D3",
     },
@@ -291,7 +309,7 @@ const LENS_DATA = {
       },
     },
     { label: "5", R: 33.7793, d: 1.5, sd: 12.5, medium: 4 },
-    { label: "6", R: 15.4957, d: 6.413, sd: 11.6 },
+    { label: "6", R: 15.4957, d: 6.413, sd: 11.6, rimExtensionSd: 12.6 },
     { label: "7", R: -222.7658, d: 1.3, sd: 12.0, medium: 5 },
     { label: "8", R: 47.0349, d: 0.1, sd: 12.0 },
     { label: "9", R: 25.7276, d: 4.15, sd: 12.0, medium: 6 },

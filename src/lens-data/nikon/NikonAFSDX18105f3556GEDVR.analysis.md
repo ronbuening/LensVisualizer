@@ -9,7 +9,7 @@
 **Assignee:** Nikon Corporation  
 **Example details:** Fifth Example, col. 25, l. 33 – col. 27, Tables 17–20, Fig. 17. JP 2007-331480 was published as JP 2009-156890 A, whose Example 5 prints the same prescription.
 
-The Fifth Example is the Nikon AF-S DX NIKKOR 18-105mm f/3.5-5.6G ED VR, announced on 27 August 2008. The evidence converges:
+The Fifth Example is strongly correlated with the Nikon AF-S DX NIKKOR 18-105mm f/3.5-5.6G ED VR, announced on 27 August 2008. The evidence converges:
 
 1. Nikon specifies 15 elements in 11 groups, including one ED element and one aspherical element. The example has 15 lenses in 11 air-separated groups. Its only asphere is the hybrid L21, and L32 (nd 1.49782, νd 82.56) is its only fluor-crown glass.
 2. Nikon's published construction diagram matches the example lens for lens: a front cemented pair plus a positive meniscus, a four-lens negative group led by the aspherical meniscus, a cemented doublet behind the stop with its ED element in the L32 position, a single biconvex lens, a small negative doublet, and a rear positive meniscus followed by a cemented pair.
@@ -24,13 +24,13 @@ The patent's first four examples share the layout but differ in prescription. Ni
 
 The lens is a five-group positive–negative–positive–negative–positive zoom (col. 25, ll. 34–61):
 
-| Group | Lenses | Surfaces | Printed focal length | Function |
-|---|---:|---|---:|---|
-| G1 | 3 | 1–5 | +91.792 mm | Front positive group |
-| G2 | 4 | 6–14 | −14.310 mm | Negative variator; moves objectward to focus |
-| G3 | 3 | 15–20 | +23.831 mm | Positive group behind the aperture stop S |
-| G4 | 2 | 21–23 | −36.549 mm | Vibration-reduction doublet |
-| G5 | 3 | 24–28 | +45.130 mm | Rear positive group |
+| Group | Lenses | Surfaces | Printed focal length | Function                                     |
+| ----- | -----: | -------- | -------------------: | -------------------------------------------- |
+| G1    |      3 | 1–5      |           +91.792 mm | Front positive group                         |
+| G2    |      4 | 6–14     |           −14.310 mm | Negative variator; moves objectward to focus |
+| G3    |      3 | 15–20    |           +23.831 mm | Positive group behind the aperture stop S    |
+| G4    |      2 | 21–23    |           −36.549 mm | Vibration-reduction doublet                  |
+| G5    |      3 | 24–28    |           +45.130 mm | Rear positive group                          |
 
 From wide to tele, d1 (G1–G2) and d3 (G3–G4) increase, while d2 (G2–G3) and d4 (G4–G5) decrease (col. 13, ll. 50–56). All five groups move, and the stop moves with G3. Over the zoom range G1 travels 45.0 mm toward the object and G4 20.4 mm. G3 and G5 travel 27.2 mm together, because d3 + d4 is 15.846 mm at all three printed states. G2 first moves about 2.8 mm toward the image and then 8.3 mm back toward the object; Figure 17 draws its path as a curve. Figure 17 draws G4's path as the same kind of arch, but its arrows are schematic: the straight arrows of G1, G3 and G5 drop by about the same amount although G1 travels 45.0 mm and G3 and G5 27.2 mm, and both arches end about level with their start. The printed states move G4 14.7 mm toward the object from W to M and 5.7 mm more to T. The calculated cam moves G4 toward the object all the way, so the model does not show an arch for G4.
 
@@ -102,7 +102,11 @@ nd 1.85026, νd 32.35, J-LASF021 (HIKARI) equivalent, f = −26.3 mm. Cemented t
 
 ## Glass Identification and Dispersion
 
-Six glasses match a catalog row exactly at the patent's printed precision: L11, L13, L23, L31, L42/L53 and L52. Five more lie within 0.02 in νd of the nearest row: L12, L21/L22/L24, L32, L41 and L51. L33 is 0.05 from S-PHM52. The patent prints no θgF or line indices, so dispersion follows the matched catalog curves. The resin has no catalog row; its θgF 0.5928 comes from the later WO reprint. L32 carries an inferred anomalous-dispersion tag because Nikon identifies one ED element and L32 is the only glass in the ED range.
+All sixteen modeled d-line index/Abbe pairs agree with US 7,839,577 B2 Table 17 (PDF page 37); the definitions in column 14 (PDF page 31) explicitly specify λ = 587.6 nm. Fifteen bulk media resolve to compatible catalog spectral curves. These curves model dispersion without identifying historical suppliers, melts, compositions or production prescriptions. L33 remains a qualified S-PHM52 proxy despite the small Abbe difference. The 1.55389/38.09 bonded resin has no compatible coefficient-backed catalog row and remains unresolved.
+
+The selected US Fifth Example prints no C/F/g indices or θgF. The retained resin `dPgF: 0.0130674` uses a supplemental spectral proxy from WO 2021/039812 A1 Example 8, Table 8 (printed page 52, PDF page 54), whose resin row prints the same nd/νd and θgF = 0.5928. That later example changes other glass and asphere data; matching nd/νd does not prove identical resin chemistry, cure, or the partial of the original 2008 design. The four-decimal θ value has a ±0.00005 rounding interval. Against the engine normal line 0.6438 − 0.001682νd, the conversion is 0.01306738, stored as 0.0130674; these arithmetic digits are not source precision. No ultraviolet-cure chemistry is established by the original source.
+
+L32 retains an inferred APD/ED-position annotation from the production construction correlation. A high Abbe number, the later resin partial, and an ED marketing label do not establish an original-source anomalous-dispersion classification or an APO result.
 
 ## Focus and Zoom Mechanisms
 
@@ -123,15 +127,15 @@ The asphere is surface 6 (model `6A`), the resin face of L21. The patent's equat
 
 so the engine's conic is K = κ − 1.
 
-| Parameter | Patent (Table 18) | Model |
-|---|---:|---:|
-| r | 161.2961 mm | 161.2961 mm |
-| κ / K | 87.2734 | 86.2734 |
-| A4 | 4.40790E-06 | 4.4079E-06 |
-| A6 | −3.55660E-08 | −3.5566E-08 |
-| A8 | 1.04050E-10 | 1.0405E-10 |
-| A10 | −2.45810E-13 | −2.4581E-13 |
-| A12, A14 | 0 | 0 |
+| Parameter | Patent (Table 18) |       Model |
+| --------- | ----------------: | ----------: |
+| r         |       161.2961 mm | 161.2961 mm |
+| κ / K     |           87.2734 |     86.2734 |
+| A4        |       4.40790E-06 |  4.4079E-06 |
+| A6        |      −3.55660E-08 | −3.5566E-08 |
+| A8        |       1.04050E-10 |  1.0405E-10 |
+| A10       |      −2.45810E-13 | −2.4581E-13 |
+| A12, A14  |                 0 |           0 |
 
 ## Image Stabilization
 
@@ -152,3 +156,13 @@ G4, the cemented L41/L42 doublet, shifts perpendicular to the axis (col. 13, ll.
 4. [Nikon product announcement, 27 August 2008](https://www.nikon.com/company/news/2008/0827_nikkor_02/), construction, angle of view, focusing, closest focus and reproduction ratio.
 5. [Nikon Japan specifications and lens construction diagram](https://nij.nikon.com/products/lineup/nikkor/fmount/af-s_dx_nikkor_18-105mm_f35-56g_ed_vr/spec.html).
 6. [Nikon D90 announcement](https://www.nikon.com/company/news/2008/0827_d90_01.html), sensor dimensions.
+
+## 2026-10-30 source shape and glass review
+
+The exact original US 7,839,577 B2 Fifth Example was reopened at Figure 17 (PDF page 18), Table 17 (PDF page 37), Tables 18–20 (PDF page 38), and the d-line/asphere definitions (PDF page 31). The file wraps native 2560×3300 one-bit page images; the native figure and a twofold enlargement were inspected without treating enlargement as added source precision. Its first/last vertex span of about 1183 native pixels over 95.263 mm gives about 0.0805 mm per pixel. All group heights, concave ends and bonded/cemented contacts were checked.
+
+The L11/L12 powered contact now ends at 25.5 mm instead of 26.8 mm, matching the contact endpoint in Figure 17 and the unchanged rear of L12. L11 keeps its 26.8 mm front radius. The source shows an exposed annulus outside the contact; the shared-interface model cannot add an opaque air-face land there. Its remaining drawn taper is a disclosed approximation rather than a reason to extend the powered contact.
+
+The independent rear land of L21 remains constrained. Extending its unchanged 10.5 mm cap to the 14.8 mm outer body intrudes 5.518 mm into the 6.050 mm gap to L22, exceeding the retained 5.445 mm allowance. Raising both S12/S13 caps to even 9.7 mm also exceeds their unchanged 0.180 mm allowance in the 0.200 mm gap. Those smaller caps, the hybrid connection, all other rims, and the current R/d/asphere/stop/focus/zoom/tolerance data are retained; no compensating cut, interface land or resin wing is added.
+
+Actual SVGs at source W/M/T zoom stations and focus 0/0.5/1 were rasterized and inspected. Across all 26 zoom stations and their midpoints at every focus keyframe plus 0.5, maximum renderer trim is zero. Exact axial stop-edge and Y = 14.0 mm chief checks at W/M/T remain clear and numerically unchanged; the latter reach fields 38.6649°/13.2487°/7.5858°. A 16×16 stop-lattice comparison at five field fractions, five zoom positions and every focus keyframe plus 0.5 retains all 51,460 baseline transmitted samples with zero lost or gained; sample counts are not optical flux. Surface checks pass, image-circle checks find no undersized surface, and all 26 infinity stations retain at least 99% format-corner chief-ray reach and f-number error below 3%. Original source, later spectral proxy, product correlation, derived focus/cam states and current-engine validation remain separate claims.

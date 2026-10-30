@@ -221,3 +221,6 @@ The all-spherical prescription has no aspherical surfaces or diffractive phase t
 ## Integration audit
 
 The October 2, 2026 UTC audit reviewed the exact local patent figure, checked optical rims against edge and gap constraints, and reviewed compatible catalog dispersion. The sibling audit log records retained dimensions, changes and unresolved source limits. Catalog curves are qualified spectral proxies, with production supplier/melt identity unconfirmed.
+
+
+The fresh F-mount Figure 2 review enlarges the continuous front singlet caps to 35.5 mm and the fixed front doublet to 33 mm, using source contour-height proportions rather than a global axial scale. This improves the modeled tele corner reach from about 15.69 to 17.99 mm of the nominal 21.65 mm frame radius. The model still reaches only 77–99% of that radius across zoom, and no full-frame pupil-coverage or production performance claim follows. The source's Table B L2′ index/Abbe pair remains 1.50378/76.7 and unmatched; Table A's different value is not substituted.

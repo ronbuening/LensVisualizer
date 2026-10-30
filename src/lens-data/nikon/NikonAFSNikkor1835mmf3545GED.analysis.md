@@ -124,23 +124,31 @@ L12 is the final glass element before the image plane and carries two aspherical
 
 ## Glass Identification and Selection
 
-The glass identifications in this revision use catalog matches conservatively. The patent gives `nd` and `νd` values but not glass names. Manufacturer catalogs are therefore used to identify exact, near, or class matches; the patent numerical values remain authoritative in the data file.
+The original patent supplies d-line indices and Abbe numbers. All source coordinates below are retained. These are the current resolver's catalog-compatible spectral proxies, with production supplier, melt, and exact historical material unspecified. Unresolved resin, cement, or thin regions are retained explicitly rather than forced into glass catalogs.
 
-| Patent `nd` / `νd` | Catalog identification | Elements | Status |
-|---:|---|---|---|
-| 1.72916 / 54.67 | S-LAL18 (OHARA) | L1, L2 substrate, L8, L11 | Near exact; catalog `νd` differs by about 0.01 |
-| 1.80420 / 46.50 | N-LASF44 (Schott) / 804465 dense lanthanum flint | L3 substrate, L9 | Exact six-digit glass-code match |
-| 1.68893 / 31.16 | S-TIM28 (OHARA) / 689311 dense flint class | L4 | Index exact; Abbe number is a close class match |
-| 1.80518 / 25.46 | S-TIH6 (OHARA) / SF6-class titanium heavy flint | L5 | Index exact; Abbe number is a close class match |
-| 1.64769 / 33.84 | SF2 (Schott) | L6 | Near exact |
-| 1.49700 / 81.61 | S-FPL51 (OHARA) / FCD1-class ED fluorophosphate | L7, L10 | Index exact; Abbe number is a close class match |
-| 1.58313 / 59.39 | S-BAL42 (OHARA) | L12 | Near exact |
-| 1.51400 / 53.00 | Hybrid composite asphere resin | L2 and L3 resin layers | Patent material value; not assigned to a glass catalog |
-| 1.51400 / 42.80 | Optical cement/adhesive medium | Cement layers in GrF and GrR | Patent material value; not assigned to a glass catalog |
+| Medium | Source nd | Source νd | Current spectral curve |
+|---|---:|---:|---|
+| L1 | 1.72916 | 54.67 | S-LAL18 |
+| L2r | 1.51400 | 53.00 | Unresolved; composition/trade name unspecified |
+| L2 | 1.72916 | 54.67 | S-LAL18 |
+| L3 | 1.80420 | 46.50 | N-LASF44 |
+| L3r | 1.51400 | 53.00 | Unresolved; composition/trade name unspecified |
+| L4 | 1.68893 | 31.16 | S-TIM28 |
+| L5 | 1.80518 | 25.46 | S-TIH6 |
+| C1 | 1.51400 | 42.80 | Unresolved; composition/trade name unspecified |
+| L6 | 1.64769 | 33.84 | SF2 |
+| L7 | 1.49700 | 81.61 | S-FPL51 |
+| C2 | 1.51400 | 42.80 | Unresolved; composition/trade name unspecified |
+| L8 | 1.72916 | 54.67 | S-LAL18 |
+| L9 | 1.80420 | 46.50 | N-LASF44 |
+| C3 | 1.51400 | 42.80 | Unresolved; composition/trade name unspecified |
+| L10 | 1.49700 | 81.61 | S-FPL51 |
+| C4 | 1.51400 | 42.80 | Unresolved; composition/trade name unspecified |
+| L11 | 1.72916 | 54.67 | S-LAL18 |
+| L12 | 1.58313 | 59.39 | S-BAL42 |
+| PT | 1.51680 | 64.20 | N-BK7 |
 
-The corrected N-LASF44 / 804465 identification for L3 and L9 is the main glass-catalog change relative to the earlier analysis. The earlier S-LAH65VS naming was not adequately supported by the patent's `nd`/`νd` pair.
-
-The patent publishes only d-line index and Abbe number. The companion data file adds `nC`, `nF`, and `ng` on the nine elements with an OHARA class identification (S-LAL18, S-TIM28, S-TIH6, S-FPL51, S-BAL42); these are catalog line indices for the identified class, not patent data, and they drive the chromatic tracing for those elements. The resin layers and the unmatched glasses carry no line indices.
+No source `nC`, `nF`, `ng`, or `dPgF` set is published for this embodiment. The 27 catalog helper line-index values previously stored on nine elements have been removed. Qualified catalog curves now supply modeled dispersion wherever available; unresolved layers use the Abbe model. Coordinate compatibility is not production identification or evidence of source-measured anomalous partial dispersion. The two high-Abbe coordinates support an ED-class interpretation without proving a particular glass chemistry.
 
 ## Focus Mechanism
 
@@ -184,7 +192,7 @@ The patent's stated problem is not merely ordinary axial color. It specifically 
 
 The first ED-class element, L7, is a high-power positive element just behind the aperture stop and is cemented to L8. The second ED-class element, L10, is buried inside the LS triplet. The triplet keeps a net negative focal length while the central ED element establishes the required Abbe-number gaps to the surrounding negative elements. This allows LS to contribute field flattening without creating excessive lateral color.
 
-The analysis stops short of making an apochromatic claim. The patent does not publish per-element spectral line indices for all glasses, and the design is a compact wide-angle zoom rather than a dedicated apochromat.
+The analysis stops short of making an apochromatic claim. The patent does not publish per-element spectral line indices, and the design is a compact wide-angle zoom rather than a dedicated apochromat.
 
 ## Conditional Expressions
 
@@ -241,6 +249,12 @@ Semi-diameters in the data file are estimated, not patent-tabulated. They were c
 The AF-S Nikkor 18-35mm f/3.5-4.5G ED succeeded the earlier AF Nikkor 18-35mm f/3.5-4.5D ED IF. The older D-version used a different 11-element formula and screw-drive autofocus. The G-version adds AF-S motor drive, changes the optical construction to 12 elements in 8 groups, and incorporates the negative-positive-negative rear cemented triplet disclosed in this patent.
 
 The joint assignment to Konica Minolta and Nikon is notable but should not be overinterpreted. The production identification rests on the optical and mechanical matches described above, not on the joint assignment by itself.
+
+## Fresh Source Reinspection
+
+The 2026-10-29 review directly inspected local `US_9256059_B2.pdf`: Figure 1 on PDF page 2 at 600 dpi and in the original raster; the Example 1 surface/media tables on pages 45–46; and the d-line definition on page 44. All eighteen modeled regions plus rear plate PT match the source. The design station F-numbers are corrected from 3.5/4.0/4.5 to the printed 3.6/4.15/4.63; marketing and user stop choices are retained.
+
+S1's continuous front cap increases from 25 to 27 mm. S2 keeps its 20.5 mm cap and extends to a 27 mm outer rim; S5 keeps its 15.2 mm cap and extends to the existing 17 mm common rim. Native endpoint ratios are q≈0.69±0.007 and 0.80±0.010 (edge radii approximately 258 and 184 native pixels), while the adopted ratios are 0.759 and 0.894. The existing larger clear caps are preserved. The full native vertex span suggests a roughly 30 mm front outline, while a local S1 curvature fit is closer to 27 mm; the conservative 27 mm choice respects the schematic's nonuniform scale and already restores a taller source-like rim. It is an inferred modeling dimension, not a manufacturing diameter. Cemented/hybrid interfaces receive no lands, and small near-flat cap-end features remain unchanged where they are unresolved or unsupported by the exposed-concave rim model. Printed track-length and focus limitations remain as documented.
 
 ## Sources
 

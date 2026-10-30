@@ -28,6 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (0.648327 − 0.0018024·νd) (¶0155–0156). `dPgF` is the θgF recovered from that
  * deviation minus the engine's normal line (0.6438 − 0.001682·νd), not the patent's ΔθgF.
  *
+ * Catalog glass names identify compatible current spectral proxies, not source-named
+ * suppliers, production melts, or resin identities. Source nd/vd and the two published
+ * partial-dispersion constraints are retained independently.
+ *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes axial movement of
  * cemented G1B (L16+L17) but no finite-focus spacing table. The close-focus rows are
  * code-solved at Nikon's marketed 2.0 m minimum distance from the image plane while
@@ -489,7 +493,7 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.5168,
       vd: 63.88,
-      glass: "J-BK7",
+      glass: "J-BK7 (Hikari catalog equivalent; production supplier unspecified)",
       role: "Patent optical filter FL1 (Table 10 surfaces 62–63) in the slip-in filter position; Nikon requires a filter in the holder, so it is part of the working prescription. Not counted in elementCount.",
     },
     {
@@ -650,7 +654,7 @@ const LENS_DATA = {
       thicknessMm: 2.0,
       nd: 1.5168,
       vd: 63.88,
-      glass: "J-BK7",
+      glass: "J-BK7 (Hikari catalog equivalent; production supplier unspecified)",
       gapAfterMm: 0.1,
       source: "WO 2019/131993 A1, second embodiment Example 1, Table 10 surfaces 69–70",
     },

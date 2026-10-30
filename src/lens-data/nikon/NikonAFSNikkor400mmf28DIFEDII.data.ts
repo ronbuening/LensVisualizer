@@ -1,58 +1,21 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II                    ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 6,239,919 B1, Example 4 / Embodiment 4 (Susumu Sato,       ║
- * ║ Nikon Corporation). The active prescription is kept at the patent scale.   ║
- * ║ 11 elements / 9 air-separated groups, all spherical.                       ║
- * ║                                                                            ║
- * ║ Production correlation: Nikon's official specification is 11 elements /    ║
- * ║ 9 groups plus one protective glass, with ED at element positions 1, 2,     ║
- * ║ and 5, no aspheres, internal focusing, and 3.5 m AF / 3.4 m MF minimum     ║
- * ║ focus. Those structural markers match Example 4.                           ║
- * ║                                                                            ║
- * ║ Source correction: Table 4 marks d11 and d16 as variable, while the         ║
- * ║ following focus table mislabels the same rows d13 and d18. The modeled      ║
- * ║ variables are therefore d11 and d16; their sum remains constant.            ║
- * ║                                                                            ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The source train publishes a     ║
- * ║ 3.8 m checkpoint with 10.85845 mm G2 imageward travel. The production      ║
- * ║ endpoint is 3.4 m MF. Because the active model omits the source front      ║
- * ║ plate and field stop and normalizes the rear reference plane, the 3.4 m    ║
- * ║ state is re-solved in the active model: G2 travel = 12.3331402826 mm,      ║
- * ║ with d11 = 36.9284702826 mm and d16 = 15.1103997174 mm at 3.4 m. This is   ║
- * ║ 0.0100719967 mm less than the full-source-train 3.4 m reconstruction.      ║
- * ║ The drawn rear filter plate is paraxially identical to the former          ║
- * ║ air-equivalent fold, so this solve is unchanged.                           ║
- * ║                                                                            ║
- * ║ Rear filter: patent surfaces 25-26 (2.0 mm, nd=1.516800, νd=64.10,         ║
- * ║ J-BK7A) are drawn as a plane-parallel plate element and traced by every    ║
- * ║ analysis, with the printed Bf = 83.53862 mm to the image; its              ║
- * ║ semi-diameter is a ray-trace estimate (the source lists none) and it is    ║
- * ║ not counted in `elementCount`. The field stop (surface 24) is omitted, so  ║
- * ║ the stored d23 spans patent d23 + d24 = 22.0 + 7.2 mm; it is kept at       ║
- * ║ 29.2000730246 mm (73.0 nm longer) to preserve the independently solved     ║
- * ║ image plane that closes the rounded printed prescription paraxially        ║
- * ║ (air-equivalent 114.0572584255 mm vs 114.0571854008 mm direct).            ║
- * ║                                                                            ║
- * ║ Stop: the patent does not publish the physical S1 diameter. The stop       ║
- * ║ radius is derived from the design f-number, published FNO=2.88.            ║
- * ║                                                                            ║
- * ║ Semi-diameters: source effective diameters anchor surface 3 (phi1/2 =       ║
- * ║ 68.1 mm) and surface 12 (phi2/2 = 21.7 mm). Remaining SDs are inferred      ║
- * ║ from Fig. 10 proportions and paraxial marginal-ray envelopes, then reduced  ║
- * ║ only where required by current edge-thickness, rim-slope, shared-band       ║
- * ║ cross-gap, off-axis containment, and render-trim geometry rules.            ║
- * ║ Fig. 10 specifically supports terminal L33 SDs of 15.5 / 16.0 mm instead    ║
- * ║ of the earlier 21.0 / 21.5 mm estimate.                                     ║
- * ║                                                                            ║
- * ║ Glass discipline: Table 4 publishes only d-line nd/nu_d coordinates. Nikon  ║
- * ║ identifies elements 1, 2, and 5 as ED, but does not identify glass vendors. ║
- * ║ Compatible catalog equivalents provide dispersion curves without asserting  ║
- * ║ production suppliers. nC/nF/ng/dPgF remain unauthored source values.         ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * US 6,239,919 B1, Example 4 / Table 4 / Fig. 10; unscaled source prescription.
+ * Production correlation: AF-S400 mm f/2.8D IF-ED II; eleven powered elements in nine groups.
+ * Thirteen drawn/traced optical pieces include the restored front S1/S2 filter (5 mm, nd 1.5168/vd 64.10,
+ * then printed1 mm gap) and the existing rear S25/S26 filter (2 mm, same source pair, then Bf83.53862 mm).
+ * Front sd72.5 mm is the full-field/focus beam floor 68.9700 mm plus 5%, rounded upward to 0.5 mm.
+ * Inactive field stop S24 remains folded out: d23+d24=29.2 mm plus the existing0.0000730246 mm reference-plane
+ * normalization. Physical S1-to-image track is383.767563 mm; infinity EFL/BFL are unchanged by the front plane.
+ * Source focus-table labels d13/d18 are inconsistent with the explicitly variable d11/d16 surface rows.
+ * The previous constrained3.4 m reconstruction retains its G2 travel12.3331402826 mm and all powered spacings;
+ * restoring the front plate gives the disclosed3.402385 m full object-to-image conjugate, with unchanged magnification.
+ * Fig. 10 and nominal beams restore terminal L33 caps 20.5/20.5 mm. S13 grows only20.1→20.2 mm: a20.4 mm cap
+ * exceeds the unchanged90% gap policy (4.05373>4.005 mm; policy radius 20.279316, contact radius 21.354113 mm).
+ * All faces were inspected; shallow-profile ink and ray contamination do not establish an additional flat cap end.
+ * All13 source d-line nd/vd pairs are retained; catalog curves are qualified spectral proxies, especially the
+ * approximate J-LASF017 counterpart for source 1.796681/45.37. No source partial/line-index datum is invented.
  */
 
 const LENS_DATA = {
@@ -139,7 +102,7 @@ const LENS_DATA = {
       vd: 45.37,
       indexReference: "d",
       focalLengthMm: -219.5821834152949,
-      glass: "J-LASF017 catalog equivalent (patent 797454; production supplier unspecified)",
+      glass: "797454 source class (J-LASF017 approximate spectral proxy; production supplier unspecified)",
       role: "Negative member of the cemented positive G1R doublet.",
       cemented: "D1",
     },
@@ -242,15 +205,28 @@ const LENS_DATA = {
       glass: "J-BK7A",
       role: "Plane-parallel filter plate of the patent prescription (US 6,239,919 B1, Example 4 Table 4 surfaces 25–26), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
+    {
+      id: 13,
+      name: "FF",
+      label: "Front plane-glass filter",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A catalog-equivalent spectral proxy (source front filter; production supplier unspecified)",
+      role: "Printed source surfaces 1–2, restored as a drawn/traced front filter. Excluded from the 11 powered-element catalog count. Its unprinted aperture is inferred from the full-field/focus beam floor plus 5%, rounded upward to 0.5 mm.",
+    },
   ],
 
   /* ── Active surface prescription ──
-   * Patent surfaces 1-2 (front plate) and 24 (field stop) are omitted; d23
+   * Patent front surfaces 1-2 are restored; field stop24 remains folded out; d23
    * spans patent d23 + d24 to the rear filter (surfaces 25-26, drawn as a
    * plane-parallel plate element).
    * Source surface 17 is retained as STO.
    */
   surfaces: [
+    // Source front plane-glass filter; unprinted rim inferred from full-field/focus beams.
+    { label: "1", R: "flat", d: 5, sd: 72.5, medium: 13 },
+    { label: "2", R: "flat", d: 1, sd: 72.5 },
     { label: "3", R: 187.1041, d: 20.1, sd: 68.1, medium: 1 },
     { label: "4", R: -746.4748, d: 0.6, sd: 67.0 },
     { label: "5", R: 200.0582, d: 20.1, sd: 66.0, medium: 2 },
@@ -261,7 +237,7 @@ const LENS_DATA = {
     { label: "10", R: 52.62, d: 17.0, sd: 39.0, medium: 5 },
     { label: "11", R: 699.21, sd: 38.5 },
     { label: "12", R: -490.708, d: 2.5, sd: 21.7, medium: 6 },
-    { label: "13", R: 67.859, d: 4.45, sd: 20.1 },
+    { label: "13", R: 67.859, d: 4.45, sd: 20.2 },
     { label: "14", R: -227.924, d: 6.7, sd: 20.8, medium: 7 },
     { label: "15", R: -45.153, d: 2.3, sd: 20.8, medium: 8 },
     { label: "16", R: 155.456, sd: 20.5 },
@@ -270,8 +246,8 @@ const LENS_DATA = {
     { label: "19", R: -128.703, d: 2.24, sd: 20.1 },
     { label: "20", R: -58.397, d: 2.9, sd: 20.5, medium: 10 },
     { label: "21", R: -172.863, d: 0.6, sd: 20.5 },
-    { label: "22", R: 46400.0, d: 5.5, sd: 15.5, medium: 11 },
-    { label: "23", R: -66.68, d: 29.20007302463857, sd: 16.0 }, // patent d23 + d24 → filter
+    { label: "22", R: 46400.0, d: 5.5, sd: 20.5, medium: 11 },
+    { label: "23", R: -66.68, d: 29.20007302463857, sd: 20.5 }, // patent d23 + d24 → filter
     // Slip-in filter F (US 6,239,919 B1, Example 4 Table 4 surfaces 25–26), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: Bf 83.53862
@@ -282,7 +258,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 3.4,
     description:
-      "CONSTRAINED_RECONSTRUCTION: G2 alone translates imageward with D11 + D16 conserved. The patent publishes a 3.8 m checkpoint; the active model (front plate and field stop omitted) is code-solved to Nikon's 3.4 m MF limit after reference-plane normalization.",
+      "CONSTRAINED_RECONSTRUCTION: G2 alone translates imageward with D11 + D16 conserved. The patent publishes a 3.8 m checkpoint; the motion was solved to Nikon's 3.4 m MF limit before restoration of the printed front filter. That motion is retained; the source-complete finite conjugate differs slightly (see analysis).",
   },
 
   /* (moved from var) G2 translates imageward; d11 grows while d16 shrinks by exactly the same amount. */

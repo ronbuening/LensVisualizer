@@ -41,11 +41,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    blocked the corner chief ray); 4A–8 are within 15 % and kept.     ║
  * ║    Every rim clears the f/4 axial beam at all stations.              ║
  * ║                                                                      ║
- * ║  NOTE ON RIM CUTS (2026-10-27):                                      ║
- * ║    Fig. 1 draws flat lands square to the axis at the rims of 2A      ║
- * ║    (L11), 4A (L12) and 26A (L52). 26A is cut at 11.03 mm. 2A keeps   ║
- * ║    its 22.4 mm rim, the asphere's designed extent, uncut, and 4A its ║
- * ║    14.5 mm rim: a land there would stop rays the rim stops.          ║
+ * ║  NOTE ON RIM LANDS (2026-10-29):                                    ║
+ * ║    Fig. 1 (PDF p. 29), 9.96 native px/mm from its S1-S27 span,      ║
+ * ║    draws lands on 2A (L11), 4A (L12) and 26A (L52). Extensions     ║
+ * ║    keep the 22.4/14.5 mm clear caps of 2A/4A and draw opaque lands  ║
+ * ║    to their partner faces' 29.2/19.3 mm rims. No asphere continues ║
+ * ║    past its original cap. The existing 26A cut stays at 11.03 mm.  ║
  * ║                                                                      ║
  * ║  NOTE ON CONIC CONVENTION:                                           ║
  * ║    Formula (a) (¶0078) prints √(1 − κ·y²/R²), which would make       ║
@@ -127,9 +128,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "ED element in G1 for lateral chromatic aberration correction at wide angles.",
-      dPgF: 0.035,
     },
     {
       id: 4,
@@ -218,9 +218,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Primary positive power in G3; ED element for axial chromatic correction.",
-      dPgF: 0.035,
     },
     {
       id: 11,
@@ -233,9 +232,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Second positive ED element in G3; distributes convergent power with L33.",
-      dPgF: 0.035,
     },
     {
       id: 12,
@@ -260,9 +258,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Positive ED-class meniscus of G5; nearly cancels L52 so G5 is almost afocal (f5 = −1392.9 mm).",
-      dPgF: 0.035,
     },
     {
       id: 14,
@@ -288,6 +285,7 @@ const LENS_DATA = {
       R: 18.8098,
       d: 9.5,
       sd: 22.4,
+      rimExtensionSd: 29.2,
       asphere: { K: -1.0, A4: -1.33157e-5, A6: -3.07345e-8, A8: 6.9126e-11, A10: -3.76684e-14 },
     },
     { label: "3", R: 51.563, d: 2.9, sd: 19.3, medium: 2 },
@@ -296,6 +294,7 @@ const LENS_DATA = {
       R: 22.702,
       d: 9.7,
       sd: 14.5,
+      rimExtensionSd: 19.3,
       asphere: { K: -1.0, A4: 3.67009e-5, A6: 1.37031e-7, A8: -5.20756e-10, A10: 3.14884e-12, A12: -5.6153e-15 },
     },
     { label: "5", R: -71.0651, d: 1.9, sd: 14.4, medium: 3 },

@@ -167,7 +167,7 @@ The patent does not name glass vendors or melts. Most rows therefore retain six-
 | L9 | 804396 dense-lanthanum-flint class | 1.804400 | 39.59 | Negative partner in L23 |
 | L11 | N-SK2 catalog equivalent; patent 606574 | 1.606020 | 57.44 | Rear double-aspherical meniscus; supplier unspecified |
 
-Example 1 publishes $n_d$ and $\nu_d$ only. The data file consequently contains no authored $n_C$, $n_F$, $n_g$, or $\Delta P_{g,F}$ values. The M-NBF1 and J-FKH1 catalog models now supply source-backed dispersion for their coordinate-matched rows, but the available evidence does not support an APO designation or a patent-specific anomalous-partial-dispersion claim.
+Example 1 publishes $n_d$ and $\nu_d$ only. The data file consequently contains no authored $n_C$, $n_F$, $n_g$, or $\Delta P_{g,F}$ values. Current catalog curves supply qualified spectral dispersion for11of12media, including the code-level glass annotations; the0.1mm resin layer remains unresolved. These coordinate-compatible curves do not identify production suppliers, and the available source evidence does not establish a patent-specific anomalous-partial-dispersion or APO claim.
 
 ## Focus Mechanism
 
@@ -256,7 +256,7 @@ The table-level design f-number is 4.1 and is used as the scalar `nominalFno`. T
 
 The verified Petzval sum is +0.006784573 mm⁻¹. Surface-by-surface calculation uses $\phi/(n n')$ and produces a corresponding signed Petzval radius of approximately −147.393 mm under the audit convention.
 
-The patent-figure semi-diameter pass enlarged the bonded H1 component's front glass envelope and the following L4 meniscus. The high-curvature resin boundary remains at its validated 10.6 mm aperture rather than following the mechanical housing outline. The final geometry passes edge-thickness, rim-slope, conic-domain, and cross-gap validation, and exact axial and configured 0.6-field ray bundles remain within the authored apertures in all six infinity/0.30 m endpoint states.
+The patent-figure semi-diameter pass enlarged the bonded H1 component's front glass envelope and the following L4 meniscus. The high-curvature resin boundary remains at its validated10.6mm aperture. Drawing only its air-facing6Aland out to17mm would create a resin-only wing above the10.6mm cemented substrate boundary; the full compound step would require an unsupported cemented-interface feature. The final geometry passes edge-thickness, rim-slope, conic-domain, and cross-gap validation, and exact axial and configured 0.6-field ray bundles remain within the authored apertures in all six infinity/0.30 m endpoint states.
 
 Only the semi-diameter of L1 is published. All other lens semi-diameters and the stop opening are modeling inferences constrained by exact-Snell ray envelopes, the patent optical section, and geometry validation. At the extreme 51.22° wide half-field, the formal stop-centered chief ray exceeds the published L1 effective aperture; the model preserves the source aperture rather than enlarging it. The configured 0.6-field rendered bundles remain contained.
 
@@ -269,3 +269,5 @@ The model omits no active lens surface and requires no cover-glass or filter cor
 - Nikon Corporation, *NIKKOR — The Thousand and One Nights*, No. 68 — 2003 release context, Haruo Sato design attribution, and the production lens's two-group negative-lead construction with four elements in G1 and seven in G2.
 - Nikon USA, *AF-S DX Zoom-Nikkor 12-24mm f/4G IF-ED* product specifications — marketed focal range and aperture, Nikon F mount, DX format, 11-element/7-group construction, two ED and three aspherical elements, internal focusing, and 0.12× maximum reproduction ratio.
 - Authoritative optical-glass catalogs from OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita were consulted for class-level residual matching. Hikari's 2023 J-FKH1 formula-3 row supplies the coordinate-successor dispersion model for patent code 498825: https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/hikari_catalog2023.pdf
+
+The front double-asphere’s source maximum effective diameter43.65mm remains represented by the21.825mm clear radii. Figure1’s larger outer rim and rear seat were rechecked: cutting the existing rear cap to fit that seat would intrude into the source clear aperture and alter the reproduced dmax/d0condition; a rear-only extension would need an unsupported front outer-profile closure. Neither geometry trial is adopted. The current outline’s limitation remains explicit.

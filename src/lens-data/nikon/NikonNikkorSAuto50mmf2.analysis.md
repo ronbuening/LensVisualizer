@@ -53,7 +53,7 @@ stop, rather than on isolated thick-lens power alone.
 
 ### L1 — Negative Meniscus
 
-$ n_d = 1.6127$, $\nu_d = 58.6$. Glass: 613586 — SK4 class, catalog equivalent; vendor unconfirmed.
+$ n_d = 1.6127$, $\nu_d = 58.6$. Catalog proxy: BACD4 (Hoya); source 1.6127 / 58.6, native 1.61272 / 58.58; supplier unconfirmed.
 Standalone focal length: $-5607.536\ \mathrm{mm}$.
 
 L1 is a very weak concave meniscus ahead of the Gaussian core. Its large, similarly signed radii leave little standalone
@@ -94,7 +94,7 @@ weakly negative, with a verified net focal length of $-125.446\ \mathrm{mm}$.
 
 #### L5 — Negative Meniscus
 
-$ n_d = 1.7408$, $\nu_d = 27.7$. Glass: 741278 — SF13 / S-TIH13 class, catalog equivalent; vendor unconfirmed.
+$ n_d = 1.7408$, $\nu_d = 27.7$. Catalog proxy: S-TIH13 (Ohara); source 1.7408 / 27.7, native 1.740769 / 27.789359; supplier unconfirmed.
 Standalone focal length: $-25.510\ \mathrm{mm}$.
 
 L5 is the strongest negative standalone element and lies immediately behind the stop. Its high index and low Abbe
@@ -122,21 +122,17 @@ plane.
 
 ## Glass Identification and Selection
 
-The patent supplies only $n_d$ and $\nu_d$; it does not name manufacturers, catalog products, or production melts. The
-data file therefore uses class-level identities and six-digit glass codes. These labels are catalog-derived
-approximations, not assertions about Nippon Kogaku's actual procurement.
+The original source gives d-line nd and Abbe number only. No numeric C/F/g anchors, θgF, supplier, melt or production composition is published. All seven elements currently resolve to coefficient-backed catalog curves, which supply qualified wavelength estimates rather than a measured production spectrum. No partial-dispersion override is invented, and false APD flags are not measurements of zero anomaly.
 
-| Stored class and code | Patent $n_d$ / $\nu_d$ | Elements | Catalog interpretation |
+| Element | Source nd / νd | Current curve (native nd / νd) | Qualification |
 |---|---:|---|---|
-| 613586 — SK4 class | 1.6127 / 58.6 | L1 | Strong class match to historical SK4-family crown positions |
-| 614551 — SK9 / S-BSM9 / H-ZK8 class | 1.6141 / 55.1 | L2, L3 | Strong class match; vendor unresolved |
-| 648338 — SF2 class | 1.6483 / 33.8 | L4 | Strong flint-class match; patent index is slightly above common catalog anchors |
-| 741278 — SF13 / S-TIH13 class | 1.7408 / 27.7 | L5 | Strong dense-flint match; some catalogs encode the rounded Abbe digits as 741277 |
-| 744449 — LAF2 / S-LAM2 class | 1.7440 / 44.9 | L6, L7 | Exact or near-exact class-position match across several catalogs |
-
-No element carries $n_C$, $n_F$, $n_g$, or $\Delta P_{gF}$ in the source or data file. Consequently, the model supports
-$d$-line and Abbe-level chromatic interpretation only. It does not support a claim of apochromatic correction,
-anomalous partial dispersion, or a production-specific Sellmeier model.
+| L1 | 1.612700 / 58.6 | BACD4 (Hoya; 1.612720 / 58.580000) | Spectral proxy; supplier/melt unconfirmed |
+| L2 | 1.614100 / 55.1 | SK9 (Hikari; 1.614050 / 55.061200) | Spectral proxy; supplier/melt unconfirmed |
+| L3 | 1.614100 / 55.1 | SK9 (Hikari; 1.614050 / 55.061200) | Spectral proxy; supplier/melt unconfirmed |
+| L4 | 1.648300 / 33.8 | SF2 (Schott; 1.647690 / 33.850000) | Spectral proxy; supplier/melt unconfirmed |
+| L5 | 1.740800 / 27.7 | S-TIH13 (Ohara; 1.740769 / 27.789359) | Spectral proxy; supplier/melt unconfirmed |
+| L6 | 1.744000 / 44.9 | LAF2 (Hoya; 1.744000 / 44.900000) | Spectral proxy; supplier/melt unconfirmed |
+| L7 | 1.744000 / 44.9 | LAF2 (Hoya; 1.744000 / 44.900000) | Spectral proxy; supplier/melt unconfirmed |
 
 ## Focus Mechanism
 
@@ -192,8 +188,7 @@ $9.0\ \mathrm{mm}$ central gap, leaving $4.5\ \mathrm{mm}$ on each side, and sol
 $8.941685\ \mathrm{mm}$ to reproduce $f/2$. This station and diameter are modeling inferences, not patent values.
 
 The patent also publishes no semi-diameters. The stored clear apertures were measured from patent Figure 1, rounded to
-0.1 mm, and checked against exact marginal and off-axis tracing. Surface 8 is reduced by a further 0.6 mm from its direct
-figure estimate so the strongly opposed stop-side surfaces remain visibly separated in the SVG renderer. Local checks
+0.1 mm, and checked against exact marginal and off-axis tracing. The current S7/S8 end cuts explicitly preserve the shortened concave caps while restoring the drawn S8 rim; see the fresh reinspection below. Local checks
 found positive edge thickness and endpoint separation for every element, acceptable actual rim slopes, no shared-gap
 intrusion or hidden material trim, and containment of the defined ray sets.
 
@@ -212,7 +207,7 @@ clearance for a quick-return mirror, while a conventional 50 mm Gaussian design 
 that distance at $f/2$. Embodiment 1 preserves a near-50 mm Gaussian core and adds the very weak L1 meniscus to alter
 back-focus geometry.
 
-Nikon records the NIKKOR-S Auto 5cm f/2 as entering sale with the Nikon F in June 1959. The later NIKKOR-H Auto 50mm
+Nikon records the NIKKOR-S Auto 5cm f/2 as entering sale with the Nikon F in June 1959. The later NIKKOR-H Auto 50 mm
 f/2, released in January 1964, returned to a four-group, six-element orthodox Gaussian configuration after advances in
 optical design made the extra front element unnecessary. The patent-backed model therefore represents the earlier
 five-group, seven-element solution rather than the later 50 mm f/2 formula.
@@ -226,3 +221,9 @@ five-group, seven-element solution rather than the later 50 mm f/2 formula.
 - [HIKARI optical-glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_ALL_Catalog_Data.xlsx).
 - [CDGM optical-glass database](https://www.cdgmgd.com/database/toWebDatabase.htm?url=database).
 - [SCHOTT optical-glass downloads](https://www.schott.com/en-gb/products/optical-glass-p1000267/downloads).
+
+## Surface ends and current spectral model (2026-10-30)
+
+The original Figure 1 review makes the two iris-side cap ends explicit. S7 has outer radius 11.5 mm, cut depth 3.50 mm and clear cap 8.944831 mm; S8 has outer 10.1 mm, depth 3.16 mm and cap 8.624755 mm. The figure’s measured cap fractions are about.750/.835; adopted fractions.777811/.853936 move outward to clear every traced beam by at least.05 mm. The cuts preserve the inferred stop position and source prescription. S2/S4 now have continuous12.4 mm caps, while S8 regains its10.1 mm drawn outer rim. The source’s small beveled mechanical edges are not additional optical surfaces.
+
+All seven elements use qualified catalog curves. The source itself supplies only d-line index/Abbe pairs; the curves estimate wavelengths without proving a historical supplier, melt, APD designation or production spectrum. SF2’s nonidentical L4 coordinates remain explicit in the glass table. The focused checks pass, with no hidden SVG trim.

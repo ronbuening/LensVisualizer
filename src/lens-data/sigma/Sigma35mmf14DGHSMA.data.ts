@@ -10,12 +10,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prescription is left at its published scale: f = 35.16 mm, F1.45.
  * The production catalog designation is 35 mm F1.4.
  *
- * Semi-diameters are inferred. The patent gives no clear-aperture table, so SDs were
- * selected from a paraxial marginal/chief-ray envelope and then constrained by rim
- * slope, positive edge thickness, element front/rear SD ratio, and cross-gap sag
- * clearance. The full off-axis field is intentionally conservative because the
- * published prescription vignettes at the outer field and the clear apertures are
- * not patent-listed.
+ * 2026-10-30: exact Fig.16 original PNG supplements damaged PDF27, all13 elements/25 faces inspected.
+ * Source-scaled front S1A clear cap27.4 and S2 land to27.4 restore the larger entrance outline. L2 lands
+ * preserve its caps; connected D1 outer21/interface21 ends in S15 cut3.31. D2 keeps front clear15.5 with
+ * land to17 and interface17. S22A keeps cap17 with a source-supported front land to18.3; S23 stays17 because a full18.3 cap violates
+ * its narrow gap. L13 stays17.3 because full18.3 crosses its two optical faces.
+ * Inferred cuts pass full beam guards, including a separate source d0=164mm finite-point check.
+ * All13 d-line pairs (PDF16-17, definitionPDF12) and compatible catalog curves are retained. Glass names
+ * are qualified spectral proxies, without source C/F/g/theta or production supplier/melt evidence.
+ * Infinity F1.45 agrees between table and plot. Close table F1.68/2ω58.35 differs from Fig.18's
+ * F1.58/2ω58.32; both are disclosed, and authored stop/focus/aperture controls remain unchanged.
  */
 const LENS_DATA = {
   schema: 2,
@@ -58,7 +62,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.25,
       focalLengthMm: -73.9,
-      glass: "M-BACD5N (Hoya)",
+      glass: "M-BACD5N (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Large front negative meniscus; aspherical object-side surface controls the wide retrofocus entrance bundle.",
     },
     {
@@ -69,7 +73,7 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       focalLengthMm: -91.9,
-      glass: "FCD100 (Hoya, FLD-class)",
+      glass: "FCD100 (Hoya; qualified spectral proxy, supplier/grade unconfirmed, FLD-class)",
       role: "Very-low-dispersion negative element in the fixed front group.",
     },
     {
@@ -80,7 +84,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       focalLengthMm: 70.7,
-      glass: "TAFD55-W (Hoya)",
+      glass: "TAFD55-W (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "High-index positive in the front group; contributes compact positive power with moderated curvature.",
     },
     {
@@ -91,7 +95,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.32,
       focalLengthMm: -49.2,
-      glass: "E-FD10 (Hoya)",
+      glass: "E-FD10 (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Dense-flint negative element in the fixed front group.",
     },
     {
@@ -102,7 +106,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       focalLengthMm: 51.5,
-      glass: "FCD505 (Hoya, SLD-class)",
+      glass: "FCD505 (Hoya; qualified spectral proxy, supplier/grade unconfirmed, SLD-class)",
       role: "Low-dispersion positive rear element of G1.",
     },
     {
@@ -113,7 +117,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       focalLengthMm: 48.7,
-      glass: "TAFD55-W (Hoya)",
+      glass: "TAFD55-W (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Leading positive element of G2; bends the axial marginal ray back toward the stop.",
     },
     {
@@ -124,7 +128,7 @@ const LENS_DATA = {
       nd: 1.60625,
       vd: 63.71,
       focalLengthMm: 50.4,
-      glass: "LBC3N (Hoya)",
+      glass: "LBC3N (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Low-dispersion positive component of the G2 cemented doublet.",
       cemented: "D1",
     },
@@ -136,7 +140,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 36.96,
       focalLengthMm: -34.1,
-      glass: "E-F3 (Hoya)",
+      glass: "E-F3 (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Negative flint component of the G2 cemented doublet; the doublet is net negative.",
       cemented: "D1",
     },
@@ -148,7 +152,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.32,
       focalLengthMm: -24.0,
-      glass: "E-FD10 (Hoya)",
+      glass: "E-FD10 (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Most object-side negative element of G3, corresponding to the patent's L3A element.",
       cemented: "D2",
     },
@@ -160,7 +164,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       focalLengthMm: 70.0,
-      glass: "FCD505 (Hoya, SLD-class)",
+      glass: "FCD505 (Hoya; qualified spectral proxy, supplier/grade unconfirmed, SLD-class)",
       role: "Low-dispersion positive component cemented behind the L3A negative element.",
       cemented: "D2",
     },
@@ -172,7 +176,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       focalLengthMm: 50.0,
-      glass: "FCD505 (Hoya, SLD-class)",
+      glass: "FCD505 (Hoya; qualified spectral proxy, supplier/grade unconfirmed, SLD-class)",
       role: "Low-dispersion positive element supplying part of G3's split positive power.",
     },
     {
@@ -183,7 +187,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.2,
       focalLengthMm: -53.9,
-      glass: "M-LAC130 (Hoya)",
+      glass: "M-LAC130 (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "Biconcave negative element in G3; object-side asphere and rear air-lens gap help control off-axis aberrations.",
     },
     {
@@ -194,7 +198,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       focalLengthMm: 29.3,
-      glass: "TAF3D (Hoya)",
+      glass: "TAF3D (Hoya; qualified spectral proxy, supplier/grade unconfirmed)",
       role: "High-index rear positive element closing the retrofocus design.",
     },
   ],
@@ -204,13 +208,13 @@ const LENS_DATA = {
       label: "1A",
       R: 51.8624,
       d: 2.5,
-      sd: 21.0,
+      sd: 27.4,
       medium: 1,
       asphere: { K: 0, A4: 1.81501e-6, A6: 1.05655e-9, A8: -1.63693e-14, A10: 0, A12: 0 },
     },
-    { label: "2", R: 23.248, d: 14.0665, sd: 19.8 },
-    { label: "3", R: -125.4639, d: 1.5, sd: 19.8, medium: 2 },
-    { label: "4", R: 59.2477, d: 2.7352, sd: 20.4 },
+    { label: "2", R: 23.248, d: 14.0665, sd: 19.8, rimExtensionSd: 27.4 },
+    { label: "3", R: -125.4639, d: 1.5, sd: 19.8, rimExtensionSd: 22.2, medium: 2 },
+    { label: "4", R: 59.2477, d: 2.7352, sd: 20.4, rimExtensionSd: 22.2 },
     { label: "5", R: 177.4138, d: 4.2614, sd: 20.4, medium: 3 },
     { label: "6", R: -116.3349, d: 3.9519, sd: 19.5 },
     { label: "7", R: -39.4375, d: 1.3, sd: 19.5, medium: 4 },
@@ -220,15 +224,15 @@ const LENS_DATA = {
 
     { label: "11", R: 54.2107, d: 6.0539, sd: 21.5, medium: 6 },
     { label: "12", R: -452.3459, d: 0.15, sd: 21.5 },
-    { label: "13", R: 111.4174, d: 8.6383, sd: 21.0, medium: 7 },
-    { label: "14", R: -40.865, d: 1.5, sd: 17.5, medium: 8 },
-    { label: "15", R: 43.2524, sd: 17.5 },
+    { label: "13", R: 111.4174, d: 8.6383, sd: 21, medium: 7 },
+    { label: "14", R: -40.865, d: 1.5, sd: 21, medium: 8 },
+    { label: "15", R: 43.2524, sd: 21, rimCutDepthMm: 3.31 },
 
     { label: "STO", R: "flat", d: 5.6552 },
 
-    { label: "17", R: -28.6526, d: 1.25, sd: 15.5, medium: 9 },
-    { label: "18", R: 45.5318, d: 4.3091, sd: 16.0, medium: 10 },
-    { label: "19", R: -454.5267, d: 0.15, sd: 17.0 },
+    { label: "17", R: -28.6526, d: 1.25, sd: 15.5, rimExtensionSd: 17, medium: 9 },
+    { label: "18", R: 45.5318, d: 4.3091, sd: 17, medium: 10 },
+    { label: "19", R: -454.5267, d: 0.15, sd: 17 },
     { label: "20", R: 70.0035, d: 6.3705, sd: 17.5, medium: 11 },
     { label: "21", R: -49.6679, d: 0.15, sd: 17.5 },
     {
@@ -236,10 +240,11 @@ const LENS_DATA = {
       R: -186.504,
       d: 1.1,
       sd: 17.0,
+      rimExtensionSd: 18.3,
       medium: 12,
       asphere: { K: 0, A4: -8.88489e-6, A6: -1.53763e-9, A8: 2.41639e-12, A10: 0, A12: 0 },
     },
-    { label: "23", R: 46.8561, d: 0.3229, sd: 17.0 },
+    { label: "23", R: 46.8561, d: 0.3229, sd: 17 },
     { label: "24", R: 51.204, d: 7.4393, sd: 17.3, medium: 13 },
     { label: "25", R: -40.7915, sd: 17.3 },
   ],

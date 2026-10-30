@@ -130,3 +130,37 @@ for 203.369 mm, 5.473 px per lens mm. One native pixel at the cap end and at the
 
 - 7: q 0.963 at a 158.7 px edge (29.0 mm), range 0.951–0.975. Land 1.0974 mm, over the 0.1 mm minimum.
 - 12: q 0.87 at a 125.9 px edge (23.0 mm), range 0.855–0.885. Land 2.9903 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JP2022092388A.pdf`, Figure 1(a), Example 1 wide/infinity, PDF p. 26, at 600 dpi,
+rotated object-left. The published vertex span gives 5.473 native px/mm (1113 px / 203.369 mm). All
+25 drawn glass elements, their shared boundaries and both halves were checked for a cap ending in an axial-normal
+land. Faces 7 and 12 already carry the two resolved concave lands; the remaining curves run into their outer
+edges. Small differences among estimated partner radii alone do not establish a land. No further extension or
+cut is supported, and no clear aperture was widened to equalize element heights.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule; `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2022092388A.pdf`, Example 1 / Table 1, PDF pp. 14–15, including ¶0102's
+explicit d-line (587.6 nm) convention. All 25 physical lens elements and the FL plate retain the printed nd.
+The table contains no νd or partial-dispersion column: every retained νd is still a catalog/code inference,
+not a new patent confirmation. No source C/F/g indices or APD measurements were manufactured.
+
+| Media | Fresh verdict |
+|---|---|
+| L1–L18, L20–L24; FL | Printed nd retained; coordinate-compatible catalog spectral proxies retained (23/25 lens media plus FL) |
+| L19 / source 34 | nd 1.603420 confirmed; inferred νd 56.4 and unresolved `603564` retained |
+| L25 / source 45 | nd 1.738000 confirmed; inferred νd 49.3 and unresolved `738493` retained |
+
+The two unresolved ordinary glasses have no coordinate-compatible row in the current catalog; similar nd alone
+cannot justify changing νd or assigning a supplier. Existing ED/APD cautions and proxy wording remain accurate.
+No lens-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

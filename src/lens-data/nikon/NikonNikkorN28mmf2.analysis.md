@@ -132,7 +132,7 @@ The patent explains that this junction power is "considerably greater than expec
 | Thick-lens focal length | −181.1 mm |
 | Shape | R₁ < 0, R₂ > 0 → biconcave |
 
-**Glass identification:** nd = 1.51680, Vd = 64.2 (code 517/642) is the BK7 coordinate — Schott N-BK7 (1.51680 / 64.17), HOYA BSC7, and Nikon's own Hikari J-BK7A (1.51680 / 64.13), which the data file uses as the catalog equivalent. OHARA S-BSL7 is the same family but sits at nd = 1.51633, so it is not used as the label.
+**Glass identification:** nd = 1.51680, Vd = 64.2 (code 517/642) is the BK7 coordinate — Schott N-BK7 (1.51680 / 64.17), HOYA BSC7, and Nikon's own Hikari J-BK7A (1.51680 / 64.14), which the data file uses as the catalog equivalent. OHARA S-BSL7 is the same family but sits at nd = 1.51633, so it is not used as the label.
 
 **Optical role:** L5 completes the cemented doublet and closes the forward converter group. Its low-index BK7-type glass against L4's high-index lanthanum crown creates the large refractive index step at r₈ that Condition (2) demands. The BK7-type glass also provides high Abbe number (low dispersion), making the L4+L5 doublet an effective achromatic corrector within the forward group. The combined doublet focal length is +142.7 mm.
 
@@ -326,7 +326,7 @@ The patent publishes no clear apertures, so the rims are read from Fig. 1 (a cle
 
 ### Stop Position
 
-The patent states the stop is between L6 and L7 but does not tabulate its position. Fig. 1 and the front-page figure both draw the stop tick about 10% of the way through the d₁₁ air gap measured from L6's rear vertex, giving a split of 0.568 mm (r₁₁ to STO) and 5.110 mm (STO to r₁₂) at the 28 mm scale. The L6 rear surface is convex toward the stop, so its rim lies 2.5 mm in front of the stop plane and the L7 front rim 2.4 mm behind it. The f/2 iris radius derived at this station is 9.89 mm.
+The patent states the stop is between L6 and L7 but does not tabulate its position. Fig. 1 and the front-page figure both draw the stop tick about 10% of the way through the d₁₁ air gap measured from L6's rear vertex, giving a split of 0.568 mm (r₁₁ to STO) and 5.110 mm (STO to r₁₂) at the 28 mm scale. The L6 rear surface is convex toward the stop, so its rim lies 2.5 mm in front of the stop plane and the L7 front rim 2.4 mm behind it. The runtime derives the iris from the unchanged source f/2 nominal and inferred stop position.
 
 ### Variable Air Spacings
 
@@ -345,3 +345,7 @@ The data file implements the CRC focus with two variable gaps and three keyframe
 | Total track (S1–S17) | 63.45 mm |
 | f/2 iris radius at the drawn stop station | 9.89 mm |
 | Field angle reaching Y = 21.6 mm (exact chief ray) | 38.6° |
+
+## Fresh source review (2026-10-30)
+
+The FIG.1 radial lands are now drawn explicitly: S2 cap16mm to outer22mm, and S6 cap13.5mm to outer15.8mm. Their clear caps remain unchanged; small bevels and cemented boundaries do not justify further cuts. All9 nd/vd pairs and the published helium-d convention were rechecked. Eight compatible glass curves remain qualified proxies; the1.74443/47.9 crown remains unresolved. Surface/circle/aperture/corner checks and nine rendered states pass; closest modeled axial samples25/25 pass. The published f/BF discrepancy and estimated extra closest-focus back travel remain disclosed. No unpublished spectral-line indices or partial-dispersion values are added.

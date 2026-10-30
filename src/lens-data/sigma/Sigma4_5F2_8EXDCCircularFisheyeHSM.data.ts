@@ -1,4 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, rounded source partial data and constrained geometry decisions are recorded in the audit sidecar. */
 /** JP 2009-058817 A, Example 3 (Sigma Corporation; inventor Ai Hoshina), Fig. 7.
  * Equisolid projection, y = 2f sin(ω/2), as stated in ¶0028; 2ω = 180°.
  * 13 all-spherical elements in 9 groups; the stop is source surface 16. Radii, thicknesses,
@@ -191,9 +193,10 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.61,
-      "glass": "FCD1 (Hoya equivalent)",
+      "glass": "FCD1 (Hoya equivalent; qualified spectral proxy, production melt unspecified)",
+      "dPgF": 0.03216802,
       "apd": "patent",
-      "apdNote": "Element LP of claim 2: conditions (3) and (4) require νd > 62.5 and PgF above 0.6675 − 0.002νd, and Table 1 gives PgF = 0.5387 for Example 3; also the element Sigma marks as SLD glass.",
+      "apdNote": "Element LP of claim 2: conditions (3) and (4) require νd > 62.5 and PgF above 0.6675 − 0.002νd, and PDF10 Table1 prints PgF=0.5387 (four decimals) for Example3. Source paragraph0023 explicitly calls for low-dispersion, high-partial-ratio glass in LP. Engine dPgF=0.5387-(0.6438-0.001682*81.61)=0.03216802 is derived from that rounded ratio, not extra source precision; supplier/melt remains unknown.",
       "focalLengthMm": 21.068594,
       "cemented": "D4"
     },
@@ -220,7 +223,7 @@ const LENS_DATA = {
     {
       "label": "2",
       "R": 13.3,
-      "sd": 12.5,
+      rimExtensionSd: 21.5, sd: 12.5,
       "d": 8.9003
     },
     {

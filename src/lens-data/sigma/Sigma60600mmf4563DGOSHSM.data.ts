@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, rounded source partial data and constrained geometry decisions are recorded in the audit sidecar. */
+
 /* JP 2020-020948 A (the front page prints the serial as 2020-20948), Numerical Example 1;
  * Sigma Corporation, inventor Noriyuki Ogasawara.
  * Architectural correlation with the 60-600mm Sports lens; not a confirmed factory prescription.
@@ -15,9 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * readings, 47.6 and 47.5 mm), where L2 keeps 0.71 mm of edge; its edge reaches zero at
  * 49.27 mm. L3 carries its drawn 45.7 mm. Neither is a known factory blank. The patent's
  * f/6.50 beam needs 44.44 mm at surface 1.
- * Surface 8 ends where the figure ends its curve (22.3 mm); the figure then squares L5 off
- * with a flat out to 26.6 mm, which a spherical face cannot follow because it would meet L6
- * at 23.5 mm. Surface 16 stays at 14.6 mm: surfaces 16 and 17 meet at 15.0 mm and the tele
+ * Surface 8 ends where the figure ends its curve (22.3 mm), with an exposed flat land
+ * to26.6mm. Continuing the sphere instead would meet L6 at23.5mm. Surface 16 stays at 14.6 mm: surfaces 16 and 17 meet at 15.0 mm and the tele
  * axial ray needs 14.47 mm. Surface 17 carries the 16.5 mm of the cemented L10-L11 block,
  * which the figure draws square-cut, so only L9 keeps an inclined rear edge there. Elements
  * the figure draws square-cut carry one height on both faces (L1, L6, L16 and L24 include a
@@ -406,7 +407,7 @@ const LENS_DATA = {
     { label: "5", R: "flat", sd: 45.7 },
     { label: "6", R: 133.4879, d: 4.4571, sd: 26.6, medium: 4 },
     { label: "7", R: -498.8095, d: 1.5, sd: 26.6, medium: 5 },
-    { label: "8", R: 74.0328, d: 3.232, sd: 22.3 },
+    { label: "8", R: 74.0328, d: 3.232, rimExtensionSd: 26.6, sd: 22.3 },
     { label: "9", R: 457.8311, d: 1.5, sd: 23.7, medium: 6 },
     { label: "10", R: 68.7453, sd: 23.7 },
     { label: "11", R: 96.7106, d: 3.6537, sd: 17.9, medium: 7 },

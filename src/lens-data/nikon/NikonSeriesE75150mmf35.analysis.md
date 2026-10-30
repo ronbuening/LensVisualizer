@@ -142,3 +142,10 @@ The seven intermediate zoom stations and all close-focus spacings are calculated
 - [Nikon Inc., Series E brochure, copyright 1980, print code 8371-150-2/81](https://www.pacificrimcamera.com/rl/01240/01240.pdf): production specifications on pages 6–7. The source is a Nikon publication preserved by an archival host.
 - [US4223981A](https://patents.google.com/patent/US4223981A/en): related alternative topology and numerical embodiments.
 - [OHARA S-BSM16](https://oharacorp.com/glass/s-bsm16/), [S-TIH4](https://oharacorp.com/glass/s-tih4/), [S-TIM1](https://oharacorp.com/glass/s-tim1/) and [Hikari optical glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf): modern coordinate-equivalence review only; no original supplier attribution.
+
+
+## 2026-10-30 — Source rim and glass review
+
+The original Figure 1 supports flat lands on S8/S9 while preserving their 13.1 mm curved caps. Their bodies now reach 14.2/13.4 mm. S14–S17 use common 14.1 mm continuous rims; a 14.2 mm trial exceeds the retained 1 mm air-gap intrusion allowance. The flat-ended concave S18 uses an inferred 5.05 mm cut, cap 13.17224 mm within its 14.2 mm body. The drawn join is farther inward (native q≈0.876); the adopted q=0.92762 preserves the full modeled beam, whose maximum reach is 13.10311 mm with a required 0.05 mm margin. No source-depth exemption is claimed.
+
+All 12 published nd/νd pairs and their existing qualified catalog curves are retained. Source R/d, stop placement, aperture calibration, zoom/focus reconstructions and gap reserve are unchanged. All nine rendered states are finite with zero hidden trim. These checks do not recover manufacturing rims or measured photometric throughput.

@@ -52,7 +52,7 @@ No geometric aspherical surface is present in Example 1 or in the data file. The
 
 L11 is the first positive collector in G1a. Its weak meniscus form starts the converging front-group action without requiring the front surface to carry all of the front-group power. The relatively low index and high Abbe number make its refractive contribution comparatively benign chromatically while leaving the stronger chromatic balancing to the cemented pair and the diffractive structure behind it.
 
-The glass name is not a patent fact. The patent publishes only the refractive coordinates. J-FK5 is used in the data file as a current HIKARI spectral proxy whose coordinates closely match the stored nd/νd pair; the authored nC, nF, ng, and dPgF values are catalog-derived proxy data.
+The glass name is not a patent fact. Table 1 publishes nd, νd and θgF for this element. J-FK5 is a compatible current HIKARI spectral proxy; its curve supplies the remaining spectrum while the source θgF is retained through a converted ΔPgF. No catalog C/F/g line indices are authored on the element.
 
 ### L12 + L13 — Cemented Front Achromat
 
@@ -63,7 +63,7 @@ L12 and L13 form the first cemented pair in G1a. Their standalone powers are opp
 
 L12 is the strongest candidate for the production lens's single ED element because its patent coordinates, nd = 1.4978 and νd = 82.6, are distinctly high-Abbe and because Nikon specifies one ED element in the production lens. That mapping is an inference from the fixed production correlation. The patent does not identify the glass by catalog name or call L12 an ED material.
 
-The data file uses J-FKH1 as the spectral proxy for L12 and records the proxy's nC/nF/ng values and dPgF = +0.0327. Those values permit a higher-fidelity model of the chosen proxy than an Abbe-only approximation, but they do not establish the production melt and are not used to claim an apochromatic designation.
+The data file uses J-FKH1 as a compatible spectral proxy for L12 and retains the source θgF = 0.5386 at νd = 82.6. With the normal line 0.6438 − 0.001682νd this gives ΔPgF = +0.0337332, replacing the catalog-derived +0.0327. Conversion digits do not exceed the precision of the rounded source table. This does not establish a production melt or an apochromatic designation.
 
 ### L14 Substrate and Contact Multilayer DOE
 
@@ -133,25 +133,25 @@ The final 54.00 mm spacing is retained as the patent's air-equivalent rear dista
 
 ## Glass Identification and Selection
 
-The patent supplies nd, νd, and in most cases θgF, but it does not name catalog glasses. The data file therefore separates the **stored patent coordinates** from **catalog-derived spectral proxies**. A proxy name indicates that current manufacturer data provide a close set of spectral coordinates for modeling; it does not convert the patent's unnamed material into a historically proven glass identity.
+The patent supplies nd, νd, and θgF for all 16 glass elements, but it does not name catalog glasses. The data file therefore separates the **stored patent coordinates** from **catalog-derived spectral proxies**. A proxy name indicates that current manufacturer data provide a close set of spectral coordinates for modeling; it does not convert the patent's unnamed material into a historically proven glass identity.
 
-| Data-file glass label | nd / νd | Elements | Interpretation |
-|---|---:|---|---|
-| J-FK5 / 487703 class (HIKARI spectral proxy) | 1.4875 / 70.3 | L11, L16, L30 | Close high-Abbe crown proxy; catalog line indices stored in the data file. |
-| J-FKH1 / 498826 class (HIKARI spectral proxy; ED-class) | 1.4978 / 82.6 | L12 | Very high-Abbe proxy; probable production ED element by correlation, not patent identification. |
-| J-LF7 / 575415 class (HIKARI spectral proxy) | 1.5750 / 41.5 | L13, L24 | Low-flint-class proxy used in two cemented correction pairs. |
-| J-BK7A catalog-equivalent spectral proxy (patent 517639) | 1.5168 / 63.9 | L14 | Compatible current catalog curve; production supplier unspecified. |
-| Unmatched UV-curing DOE resin | 1.5278 / 33.4 | DOE resin 1 | Patent-stated resin medium; no catalog glass identity or invented line data. |
-| Unmatched UV-curing DOE resin | 1.5572 / 50.0 | DOE resin 2 | Patent-stated resin medium; no catalog glass identity or invented line data. |
-| TAFD35 / 911353 class (HOYA spectral proxy) | 1.9108 / 35.2 | L15, L23 | Dense high-index proxy; official HOYA spectral data used. |
-| J-F2 / 620364 class (HIKARI spectral proxy) | 1.6200 / 36.4 | L21 | Flint-class proxy in the positive member of LF. |
-| J-LAK14 / 697555 class (HIKARI spectral proxy) | 1.6968 / 55.5 | L22 | Lanthanum-crown-class proxy in the negative member of LF. |
-| J-SF10 / 728284 class (HIKARI spectral proxy) | 1.7283 / 28.4 | L25 | High-dispersion proxy in the positive member of the preferred VR set. |
-| 729546 class (J-LAK18 spectral proxy) | 1.7292 / 54.6 | L26, L27 | Class-level label avoids asserting a historically unsupported vendor identity. |
-| J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy) | 1.5481 / 45.5 | L28 | First-party coefficient-backed low-flint proxy in LC2. |
-| J-LASF014 / 788474 class (HIKARI spectral proxy) | 1.7880 / 47.4 | L29 | Close high-index proxy in LC2. |
+| Data-file glass label                                            |       nd / νd | Elements      | Interpretation                                                                                  |
+| ---------------------------------------------------------------- | ------------: | ------------- | ----------------------------------------------------------------------------------------------- |
+| J-FK5 / 487703 class (HIKARI spectral proxy)                     | 1.4875 / 70.3 | L11, L16, L30 | Compatible high-Abbe crown curve; source θgF retained.                                          |
+| J-FKH1 / 498826 class (HIKARI spectral proxy; ED-class)          | 1.4978 / 82.6 | L12           | Very high-Abbe proxy; probable production ED element by correlation, not patent identification. |
+| J-LF7 / 575415 class (HIKARI spectral proxy)                     | 1.5750 / 41.5 | L13, L24      | Low-flint-class proxy used in two cemented correction pairs.                                    |
+| J-BK7A catalog-equivalent spectral proxy (patent 517639)         | 1.5168 / 63.9 | L14           | Compatible current catalog curve; production supplier unspecified.                              |
+| Unmatched UV-curing DOE resin                                    | 1.5278 / 33.4 | DOE resin 1   | Patent-stated resin medium; no catalog glass identity or invented line data.                    |
+| Unmatched UV-curing DOE resin                                    | 1.5572 / 50.0 | DOE resin 2   | Patent-stated resin medium; no catalog glass identity or invented line data.                    |
+| TAFD35 / 911353 class (HOYA spectral proxy)                      | 1.9108 / 35.2 | L15, L23      | Dense high-index proxy; official HOYA spectral data used.                                       |
+| J-F2 / 620364 class (HIKARI spectral proxy)                      | 1.6200 / 36.4 | L21           | Flint-class proxy in the positive member of LF.                                                 |
+| J-LAK14 / 697555 class (HIKARI spectral proxy)                   | 1.6968 / 55.5 | L22           | Lanthanum-crown-class proxy in the negative member of LF.                                       |
+| J-SF10 / 728284 class (HIKARI spectral proxy)                    | 1.7283 / 28.4 | L25           | High-dispersion proxy in the positive member of the preferred VR set.                           |
+| 729546 class (J-LAK18 spectral proxy)                            | 1.7292 / 54.6 | L26, L27      | Class-level label avoids asserting a historically unsupported vendor identity.                  |
+| J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy) | 1.5481 / 45.5 | L28           | First-party coefficient-backed low-flint proxy in LC2.                                          |
+| J-LASF014 / 788474 class (HIKARI spectral proxy)                 | 1.7880 / 47.4 | L29           | Close high-index proxy in LC2.                                                                  |
 
-For the refractive proxy materials, the data file stores nC, nF, ng, and dPgF directly on the elements. Independent catalog checking compared those values against the selected manufacturer proxy data and verified the proxy nd/νd residuals. These spectral fields support the modeled proxy dispersion, but they do not establish the production glass melts. The two DOE resins intentionally remain without line-index or dPgF fields.
+Fresh reading of Table 1 (JP2015102852A.pdf, PDF pages 9–10) confirms all 18 modeled nd/νd pairs. Paragraphs 0044–0045 define the d line at 587.6 nm and θgF = (ng − nF)/(nF − nC). The 16 printed glass ratios are retained using ΔPgF = θgF − (0.6438 − 0.001682νd); the runtime reproduces each ratio. Forty-eight catalog-derived per-lens C/F/g overrides were removed. Sixteen compatible catalog curves supply the remaining spectrum, anchored to source nd, without identifying production melts. The two UV-curing DOE resins (¶0042) have source dashes for θgF and no compatible catalog curve; they retain their source pairs and material fallback without invented spectral or chemical identities.
 
 No APO designation is inferred. The prescription clearly uses several chromatic-correction mechanisms, and the patent's own aberration plots show controlled axial color, but the production correlation and proxy glass assignments are not a basis for reclassifying the lens as an apochromat.
 
@@ -161,11 +161,11 @@ The patent uses **internal focusing** with a single rigid cemented doublet, LF =
 
 The data file therefore carries the focus status **CONSTRAINED_RECONSTRUCTION**. The close endpoint is solved from Nikon's production minimum focus distance of 1.4 m measured from the focal plane, while preserving the patent's one-group mechanism and a fixed image plane. Nikon's published 0.24× maximum reproduction is not used as the solving constraint; it is an independent corroborating value.
 
-| Quantity | Infinity | Reconstructed close focus |
-|---|---:|---:|
-| Gap after surface 12, ahead of LF | 6.540000 mm | 20.029772 mm |
-| Gap after surface 15, behind LF | 23.410000 mm | 9.920228 mm |
-| Sum of the two adjacent gaps | 29.950000 mm | 29.950000 mm |
+| Quantity                          |     Infinity | Reconstructed close focus |
+| --------------------------------- | -----------: | ------------------------: |
+| Gap after surface 12, ahead of LF |  6.540000 mm |              20.029772 mm |
+| Gap after surface 15, behind LF   | 23.410000 mm |               9.920228 mm |
+| Sum of the two adjacent gaps      | 29.950000 mm |              29.950000 mm |
 
 The equal and opposite gap changes correspond to **13.489772 mm imageward LF travel**. The independently solved paraxial conjugate gives |m| = 0.243580 at the reconstructed close endpoint, compared with Nikon's rounded 0.24× production specification. This agreement supports the reconstruction but does not turn it into patent-published focus data.
 
@@ -194,7 +194,7 @@ The patent combines ordinary refractive achromatization with a diffractive contr
 
 The production lens is specified by Nikon as containing one ED glass element and one PF element. In the fixed correlation used here, the PF relationship is direct because Example 1 explicitly contains the DOE on L14. The probable mapping of the production ED element to L12 is inferential: its νd = 82.6 is the exceptional refractive coordinate in the prescription and its J-FKH1 proxy is ED-class, but neither the patent nor Nikon's product specification identifies the corresponding surface number.
 
-The authored spectral proxies allow LensVisualizer to distinguish the modeled C, d, F, and g-line behavior of the selected current catalog proxies rather than treating every glass as an Abbe-only material. That improvement is a modeling feature of the data file. It does not imply that the actual production lens used those precise current catalog formulations.
+Compatible catalog curves supply C/d/F behavior and the remaining wavelength range; the 16 source θgF ratios constrain the modeled g-line relation. The unresolved DOE resins remain approximations. None of these curves identifies the production formulations.
 
 ## Image Stabilization
 
@@ -206,12 +206,12 @@ The data file records this role in the relevant element annotations but does not
 
 The patent frames the design around four explicit conditions. Values below are recomputed from the final authored TypeScript prescription rather than copied from the patent's rounded condition table.
 
-| Condition | Patent requirement | Final-model value | Result |
-|---|---:|---:|---|
-| (1) Ldoe / f | 0.075 < value < 0.125 | 0.0977495 | Pass |
-| (2) f1a / f | 0.30 < value < 0.40 | 0.3630009 | Pass |
-| (3) Rdoe / Ddoe | 1.02 < value < 1.35 | 1.2139569 | Pass |
-| (4) L / f | 0.50 < value < 0.80 | 0.6479772 | Pass |
+| Condition       |    Patent requirement | Final-model value | Result |
+| --------------- | --------------------: | ----------------: | ------ |
+| (1) Ldoe / f    | 0.075 < value < 0.125 |         0.0977495 | Pass   |
+| (2) f1a / f     |   0.30 < value < 0.40 |         0.3630009 | Pass   |
+| (3) Rdoe / Ddoe |   1.02 < value < 1.35 |         1.2139569 | Pass   |
+| (4) L / f       |   0.50 < value < 0.80 |         0.6479772 | Pass   |
 
 Condition (1) is the patent's primary DOE-position criterion. Condition (2) constrains the positive power of G1a relative to the complete system. Condition (3) relates the diffractive-surface curvature to the rear-focal geometry of G1a, with the source reference-plane discrepancy noted above. Condition (4) constrains the telephoto ratio. Example 1 remains within the patent's later preferred narrowed limits as well (¶0025, ¶0030, ¶0034, ¶0038).
 
@@ -219,15 +219,17 @@ Condition (1) is the patent's primary DOE-position criterion. Condition (2) cons
 
 The final data file was checked against independent sequential y–ν tracing and an ABCD matrix product. The two first-order calculations agree exactly at the stored numerical precision, with system matrix determinant 1.0000000000000004.
 
-| Quantity | Final-model computation | Patent value |
-|---|---:|---:|
-| Effective focal length | 293.914643 mm | 294 mm |
-| Back focal distance | 54.022257 mm | 54.00 mm |
-| First surface to image plane | 190.450000 mm | 190.5 mm |
-| Full field from Y/EFL | 8.417938° | 8.4° |
-| G1a EFL | 106.691266 mm | 106.69 mm |
-| Wide-open f-number from authored stop | 4.080000 | 4.08 |
-| Petzval sum, Σ φ/(n·n′) including DOE contribution | 0.0002173364 mm⁻¹ | Computed audit quantity |
+| Quantity                                           | Final-model computation |            Patent value |
+| -------------------------------------------------- | ----------------------: | ----------------------: |
+| Effective focal length                             |           293.914643 mm |                  294 mm |
+| Back focal distance                                |            54.022257 mm |                54.00 mm |
+| First surface to image plane                       |           190.450000 mm |                190.5 mm |
+| Full field from Y/EFL                              |               8.417938° |                    8.4° |
+| G1a EFL                                            |           106.691266 mm |               106.69 mm |
+| Wide-open f-number from authored stop              |                4.080000 |                    4.08 |
+| Petzval sum, Σ φ/(n·n′) including DOE contribution |       0.0002173364 mm⁻¹ | Computed audit quantity |
+
+Figure 1 (PDF page 16) resolves flat lands at the concave ends S5, S12, S15 and S22. S5 retains its 36.5 mm cap with a land to 37.5 mm; S12 retains 19.6 mm with a land to 20.7 mm. A 20.8 mm S12 rim would make L16's edge thickness −0.080 mm, so the source's taller outline is only partly represented. S15 has a 2.66 mm inferred cut (cap radius 14.789045 mm inside the 17 mm rim), moved outward from the measured figure share to clear the full beams plus their margin. S22 also ends at radius 8.480454 mm (1.23 mm depth) inside its 8.6 mm rim; its source-sized trim must move outward to clear the off-axis beam. S23 cannot meet both its beam margin and the minimum 0.1 mm land at the required 0.01 mm depth precision; S24 needs more than its current clear radius for the margin, so both remain uncut. Near-plane S19 has no reliably resolved endpoint break in the native raster. All other external faces and cemented/DOE interfaces were inspected; no additional eligible land was adopted. The compound DOE keeps its substrate and both resin layers connected, with no added wing or change to its diffractive interface.
 
 The prescription also passes independent infinity and reconstructed-close geometry checks for positive edge thickness, actual rim slope, shared-band cross-gap intrusion, and authored aperture containment. Those checks use the current geometry rules rather than the obsolete universal sd/|R| < 0.90 or element semi-diameter ratio ≤ 1.25 rules.
 
@@ -240,5 +242,5 @@ No sensor cover, filter, inactive dummy plane, or flare-cutter plane is present 
 1. **JP 2015-102852 A**, Nikon Corporation, Makoto Fujimoto, published 2015-06-04. Example 1, especially ¶0041–0056 and Table 1; DOE rationale ¶0019–0038; preferred VR arrangement ¶0074; Figures 1–3 on patent page 16.
 2. **Nikon, AF-S NIKKOR 300mm f/4E PF ED VR product page.** Official Nikon Consumer specifications: 300 mm f/4, FX/full-frame compatibility, 16 elements in 10 groups, one ED element, one PF element, 1.4 m minimum focus, 0.24× maximum reproduction, nine rounded diaphragm blades. https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/telephoto/af-s_300mmf_4e_pf_ed_vr/
 3. **Nikon Corporation, “AF-S NIKKOR 300mm f/4E PF ED VR,” 2015-01-06.** Official launch announcement identifying the lens as the first NIKKOR to adopt a PF element and describing PF/ED/VR implementation. https://www.nikon.com/company/news/2015/0106_lens_02/
-4. **HIKARI GLASS, Optical Glass Catalog 2023 and manufacturer J-series datasheets.** Used only for current spectral-proxy line indices and dPgF values in the data file. https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/hikari_catalog2023.pdf
+4. **HIKARI GLASS, Optical Glass Catalog 2023 and manufacturer J-series datasheets.** Used for qualified catalog spectral curves; source Table 1 supplies the authored partial-dispersion ratios. https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/hikari_catalog2023.pdf
 5. **HOYA, Optical Glass Data.** Official manufacturer workbook; the download page was current as of 2026-03-11. Used for the TAFD35 spectral proxy; the proxy does not establish historical or production melt identity. https://www.hoyaoptics.eu/download/optical-glass-data

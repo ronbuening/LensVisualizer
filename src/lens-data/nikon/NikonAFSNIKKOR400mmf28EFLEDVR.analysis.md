@@ -8,7 +8,7 @@
 **Published:** 2015-12-03\
 **Inventors:** Kazumasa Tanaka; Toshinori Take; Satoshi Miwa\
 **Applicant:** Nikon Corporation\
-**Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method of manufacturing an optical system*)\
+**Title:** 光学系、光学装置、光学系の製造方法 (_Optical system, optical apparatus, and method of manufacturing an optical system_)\
 **Example details:** 第1実施例
 
 The prescription is the first numerical embodiment in JP 2015-215559 A, described in ¶0122–0133 and tabulated in
@@ -19,7 +19,7 @@ as the production prescription.
 Several independent features converge on that identification:
 
 1. The source embodiment gives a precise infinity focal length of 392.003 mm and F-number 2.88, close to the marketed
-   400 mm and f/2.8 values. After the project-required removal of the front protective glass, the final
+   400 mm and f/2.8 values. After the source-permitted omission of the front protective glass, the final
    active model has an independently verified EFL of 391.496520967 mm and modeled f-number of 2.881515520.
 2. Excluding the separately identified front protective glass, Example 1 contains 16 active elements in 12
    air-separated groups. Nikon specifies 16 elements in 12 groups plus one meniscus protective glass element for the
@@ -38,7 +38,7 @@ FLG-normalized design values stored in the data file.
 
 The patent's first example also includes two auxiliary optical components that are not counted as lens elements in the
 LensVisualizer model. The front FLG meniscus protective glass at source surfaces 1–2 is explicitly described as
-substantially powerless and is omitted under the current data specification; its removal requires a small +0.069284 mm
+substantially powerless (¶0123); paragraph 0199 (PDF page 42) explicitly permits a configuration without it. It is omitted here; its removal requires a small +0.069284 mm
 paraxial image-plane refocus. The rear plane filter FL occupies source surfaces 32–33 (2.00 mm, nd = 1.51680,
 νd = 63.88; ¶0123, ¶0128–0130). It is drawn as a plane-parallel plate element with the printed 9.00 mm gap ahead of it
 and the printed 71.551 mm Bf behind it, so its spherical and chromatic contribution in the converging beam is part of
@@ -63,16 +63,16 @@ slightly longer track and does not cross the project's telephoto threshold.
 
 The independently recomputed paraxial group powers show the intended distribution:
 
-| Group | Constituents | In-situ focal length |
-|---|---|---:|
-| G1 | G1a + G1b, source surfaces 3–11 | +179.735748 mm |
-| G1a | L11, L12, L13 | +355.225446 mm |
-| G1b | cemented L14/L15 | +194.360118 mm |
-| G2 | L21 + cemented L22/L23 | −67.943095 mm |
-| G3 | G3a + G3b + G3c | +163.661422 mm |
-| G3a | L31, L32 | +125.972734 mm |
-| G3b | cemented L33/L34 + L35 | −58.558761 mm |
-| G3c | L36 + cemented L37/L38 | +69.945826 mm |
+| Group | Constituents                    | In-situ focal length |
+| ----- | ------------------------------- | -------------------: |
+| G1    | G1a + G1b, source surfaces 3–11 |       +179.735748 mm |
+| G1a   | L11, L12, L13                   |       +355.225446 mm |
+| G1b   | cemented L14/L15                |       +194.360118 mm |
+| G2    | L21 + cemented L22/L23          |        −67.943095 mm |
+| G3    | G3a + G3b + G3c                 |       +163.661422 mm |
+| G3a   | L31, L32                        |       +125.972734 mm |
+| G3b   | cemented L33/L34 + L35          |        −58.558761 mm |
+| G3c   | L36 + cemented L37/L38          |        +69.945826 mm |
 
 G1 provides the large front collecting power and carries the two fluorite-correlated positive elements. G2 is a compact
 negative inner-focus unit. The stop follows G2, after which G3 combines a fixed positive front section, a negative
@@ -276,37 +276,34 @@ the final data are therefore **catalog-derived coordinate matches**, not supplie
 active optical-glass coordinate pairs match current HIKARI catalog entries; L11 and L12 are treated separately as
 crystalline CaF2 because their source coordinates and the production specification converge on fluorite.
 
-The final data also carries nC, nF, ng, and dPgF on every powered element. For the HIKARI-resolved entries these are catalog
-enrichments. The current HIKARI catalog contains both J-SF03 and the optically coordinate-identical J-SF03HS variant at
-nd = 1.84666 and νd = 23.80; the data uses the base J-SF03 label as a catalog-family annotation, not as a determination
-of the production quality variant. For L11/L12, the line indices come from the Malitson CaF2 dispersion relation while
-the patent's nd = 1.43385 and νd = 95.25 remain the prescription authority. The Malitson C/F indices imply νd ≈ 94.996, a difference of
-about −0.254 from the patent value, so the spectral model is supplemental rather than a replacement for the source pair.
+Fresh inspection of Table 1 (JP2015215559A.pdf, PDF pages 23–24) confirms all 17 modeled nd/νd pairs, including the rear filter FL. Paragraph 0128 (PDF page 22) defines both at d = 587.6 nm. The table supplies no individual C/F/g indices or partial-dispersion ratios. Sixteen catalog-derived ΔPgF overrides and 48 C/F/g line overrides have therefore been removed. All 17 media resolve to compatible catalog curves, anchored to the source nd. These are qualified spectral counterparts; catalog coordinates do not establish the production supplier or quality variant.
 
-| Glass identification in final data | nd | νd | dPgF | Elements |
-|---|---:|---:|---:|---|
-| Fluorite (CaF2; Malitson 1963 spectral model) | 1.43385 | 95.25 | +0.05507 | L11, L12 |
-| J-KZFH1 (HIKARI) | 1.61266 | 44.46 | −0.0058 | L13 |
-| J-LASF017 (HIKARI) | 1.79500 | 45.31 | −0.0085 | L14 |
-| J-FKH1 (HIKARI) | 1.49782 | 82.57 | +0.0327 | L15 |
-| J-LASF016 (HIKARI) | 1.77250 | 49.62 | −0.0093 | L21, L36 |
-| J-SF03 (HIKARI) | 1.84666 | 23.80 | +0.0171 | L22, L32, L33, L38 |
-| J-K3 (HIKARI) | 1.51823 | 58.82 | −0.0008 | L23 |
-| J-FK5 (HIKARI) | 1.48749 | 70.31 | +0.0027 | L31 |
-| J-PSKH1 (HIKARI) | 1.59319 | 67.90 | +0.0135 | L34 |
-| J-LASKH2 (HIKARI) | 1.75500 | 52.34 | −0.0090 | L35 |
-| J-LAK01 (HIKARI) | 1.64000 | 60.20 | −0.0056 | L37 |
+The current HIKARI catalog contains both J-SF03 and coordinate-identical J-SF03HS at nd = 1.84666 / νd = 23.80. The base J-SF03 label does not determine a production variant. The inferred CaF2 curve for L11/L12 has νd about 94.996, while the preserved patent pair is 1.43385 / 95.25; the difference remains a limitation of that spectral counterpart.
+
+| Glass identification in final data            |      nd |    νd | Elements           |
+| --------------------------------------------- | ------: | ----: | ------------------ |
+| Fluorite (CaF2; Malitson 1963 spectral model) | 1.43385 | 95.25 | L11, L12           |
+| J-KZFH1 (HIKARI)                              | 1.61266 | 44.46 | L13                |
+| J-LASF017 (HIKARI)                            | 1.79500 | 45.31 | L14                |
+| J-FKH1 (HIKARI)                               | 1.49782 | 82.57 | L15                |
+| J-LASF016 (HIKARI)                            | 1.77250 | 49.62 | L21, L36           |
+| J-SF03 (HIKARI)                               | 1.84666 | 23.80 | L22, L32, L33, L38 |
+| J-K3 (HIKARI)                                 | 1.51823 | 58.82 | L23                |
+| J-FK5 (HIKARI)                                | 1.48749 | 70.31 | L31                |
+| J-PSKH1 (HIKARI)                              | 1.59319 | 67.90 | L34                |
+| J-LASKH2 (HIKARI)                             | 1.75500 | 52.34 | L35                |
+| J-LAK01 (HIKARI)                              | 1.64000 | 60.20 | L37                |
 
 The strongest source-level chromatic strategy is visible in the patent's own conditional expressions. G1 uses very
 high-Abbe positive material—L11 and L12 at νd = 95.25 and L15 at 82.57—while G2 intentionally includes a much more
 dispersive positive member, L22 at νd = 23.80. The patent explicitly states that both choices contribute to axial and
 lateral chromatic correction (¶0034–0041, ¶0054–0062, ¶0090–0101).
 
-The final spectral enrichment is sufficient for line-index and partial-dispersion tracing, but the analysis does not label
+The catalog curves provide qualified wavelength behavior, but the analysis does not label
 the prescription apochromatic. Nikon markets two ED glass elements in addition to two fluorite elements. The viewer maps
 the two ED tags inferentially to L15 (`νd = 82.57`) and L31 (`νd = 70.31`), the only non-fluorite positive elements with
 exceptionally low dispersion in the selected example. That positional mapping is useful for the diagram, but it is not a
-patent-stated surface assignment or a production-melt identification.
+patent-stated surface assignment, measured anomalous-partial-dispersion claim, or production-melt identification. In particular the L31 J-FK5 proxy does not independently establish anomalous dispersion. The L34 J-PSKH1 curve has its own catalog partial-dispersion behavior, which does not relocate either production ED position.
 
 ## Focus Mechanism
 
@@ -322,14 +319,14 @@ G2 translation. The final data preserves this explicit endpoint difference as a 
 of the rear filter; the plate and the 71.551 mm gap behind it stay fixed. It is not interpreted as a second moving lens
 group.
 
-| Variable spacing in final data | Infinity | Close endpoint | Change |
-|---|---:|---:|---:|
-| d11, before G2 | 19.530 mm | 34.930 mm | +15.400 mm |
-| d16, after G2 | 36.219 mm | 20.820 mm | −15.399 mm |
-| surface 31 to rear filter FL | 9.069284 mm | 9.093284 mm | +0.024 mm |
+| Variable spacing in final data |    Infinity | Close endpoint |     Change |
+| ------------------------------ | ----------: | -------------: | ---------: |
+| d11, before G2                 |   19.530 mm |      34.930 mm | +15.400 mm |
+| d16, after G2                  |   36.219 mm |      20.820 mm | −15.399 mm |
+| surface 31 to rear filter FL   | 9.069284 mm |    9.093284 mm |  +0.024 mm |
 
 The original source geometry, including FLG and rear FL, corresponds to an object-to-image distance of 2.598906 m and
-β = −0.173. After the project-required omission of FLG and exact infinity refocus, retaining the published internal G2
+β = −0.173. After the source-permitted omission of FLG and exact infinity refocus, retaining the published internal G2
 endpoint yields a verified paraxial object-to-image distance of **2.590861 m** and magnification **−0.173643**. The data
 file retains Nikon's marketed `closeFocusM` value of 2.6 m rather than replacing it with the normalized model's more
 precise computational result.
@@ -354,10 +351,7 @@ source conditions do not merely demand low dispersion everywhere: they deliberat
 in G1 and a low-Abbe positive material in G2. That separation gives different groups opposite chromatic leverage while
 preserving the required net powers.
 
-The final data's direct line indices and dPgF values allow the LensVisualizer dispersion engine to model more than an
-Abbe-only approximation. Those spectral values are catalog/model enrichments layered onto the patent prescription, and
-they should not be read as evidence that the patent itself disclosed the commercial glass grades or full dispersion
-curves.
+The compatible catalog curves provide wavelength behavior beyond an Abbe-only approximation. The source supplies nd/νd only; the curves do not establish the patent's commercial grades, full dispersion curves or production melts.
 
 ## Conditional Expressions
 
@@ -365,18 +359,18 @@ Example 1 satisfies the material and power conditions emphasized by the patent. 
 data where the quantity is unchanged by plate normalization, or are explicitly identified as source-defined where the
 omitted FLG changes the original geometric definition.
 
-| Patent condition | Final/source value | Required interval | Status |
-|---|---:|---:|---|
-| (1-1), (2-1): f/f12 | 0.380028, active normalized model | 0.10–0.55 / 0.10–0.85 | satisfied |
-| (1-2), (2-4): νd1p, L11 | 95.25 | 80–110 | satisfied |
-| (1-2), (2-4): νd1p, L12 | 95.25 | 80–110 | satisfied |
-| (1-2), (2-4): νd1p, L15 | 82.57 | 80–110 | satisfied |
-| (1-3), (2-5): νd1pf | 95.25 | 80–110 | satisfied |
-| (1-4), (2-6): nd1n, L13 | 1.61266 | 1.50–1.75 | satisfied |
-| (1-5), (2-7): TL1a/TL1 | 0.47 published; 0.45088 normalized geometric counterpart | 0.30–0.70 | satisfied |
-| (1-6), (2-8): νd1bp, L15 | 82.57 | 70–110 | satisfied |
-| (1-7), (2-3): νd2p, L22 | 23.80 | 15–30 | satisfied |
-| (2-2): nd2n, L23 | 1.51823 | 1.45–1.65 | satisfied |
+| Patent condition         |                                       Final/source value |     Required interval | Status    |
+| ------------------------ | -------------------------------------------------------: | --------------------: | --------- |
+| (1-1), (2-1): f/f12      |                        0.380028, active normalized model | 0.10–0.55 / 0.10–0.85 | satisfied |
+| (1-2), (2-4): νd1p, L11  |                                                    95.25 |                80–110 | satisfied |
+| (1-2), (2-4): νd1p, L12  |                                                    95.25 |                80–110 | satisfied |
+| (1-2), (2-4): νd1p, L15  |                                                    82.57 |                80–110 | satisfied |
+| (1-3), (2-5): νd1pf      |                                                    95.25 |                80–110 | satisfied |
+| (1-4), (2-6): nd1n, L13  |                                                  1.61266 |             1.50–1.75 | satisfied |
+| (1-5), (2-7): TL1a/TL1   | 0.47 published; 0.45088 normalized geometric counterpart |             0.30–0.70 | satisfied |
+| (1-6), (2-8): νd1bp, L15 |                                                    82.57 |                70–110 | satisfied |
+| (1-7), (2-3): νd2p, L22  |                                                    23.80 |                 15–30 | satisfied |
+| (2-2): nd2n, L23         |                                                  1.51823 |             1.45–1.65 | satisfied |
 
 The TL1a/TL1 entry requires special care. The patent's G1a definition includes the front protective glass FLG, so the
 published corresponding value 0.47 belongs to the full source model. Once FLG is intentionally omitted, the analogous
@@ -403,25 +397,22 @@ The final analysis is based on the normalized active `.data.ts` file, not on the
 sequential y–ν tracing and an ABCD matrix give the same infinity EFL to machine precision. The principal verified values
 for the authored model are:
 
-| Quantity | Verified final-model value |
-|---|---:|
-| EFL | 391.496520967 mm |
-| Physical BFD from source surface 31 (through FL) | 82.620284 mm |
-| Source surface 3 to image track | 391.019284 mm |
-| TL/EFL | 0.998781 |
-| Entrance-pupil diameter | 135.864796918 mm |
-| Modeled f-number | 2.881515520 |
-| Active f/f12 | 0.380027758 |
-| Petzval sum | 0.000252158506 mm⁻¹ |
-| Equivalent Petzval radius | 3965.759537 mm |
-| Normalized close object-to-image distance | 2.590861 m |
-| Normalized close magnification | −0.173642730 |
+| Quantity                                         | Verified final-model value |
+| ------------------------------------------------ | -------------------------: |
+| EFL                                              |           391.496520967 mm |
+| Physical BFD from source surface 31 (through FL) |               82.620284 mm |
+| Source surface 3 to image track                  |              391.019284 mm |
+| TL/EFL                                           |                   0.998781 |
+| Entrance-pupil diameter                          |           135.864796918 mm |
+| Modeled f-number                                 |                2.881515520 |
+| Active f/f12                                     |                0.380027758 |
+| Petzval sum                                      |        0.000252158506 mm⁻¹ |
+| Equivalent Petzval radius                        |             3965.759537 mm |
+| Normalized close object-to-image distance        |                 2.590861 m |
+| Normalized close magnification                   |               −0.173642730 |
 
 The clear semi-diameters in the data file are not patent-published dimensions. They were inferred from the modeled
-marginal/chief-ray envelopes, the source optical section, and physical geometry constraints. In the final arrays the
-minimum computed element edge thickness is 0.612926 mm and the maximum spherical rim-slope angle is 44.178815°; all
-infinity and close-focus air gaps pass the current shared-band sag-intrusion check used by the Stage 2 verifier. These
-results validate the authored geometry but do not convert the inferred semi-diameters into source facts.
+marginal/chief-ray envelopes, the source optical section, and physical geometry constraints. Fresh inspection of every exterior/cemented face and both filter faces in Figure 1 (PDF page 45) retained all existing geometry. The short apparent straight ends on the shallow front/G2 profiles remain consistent with ordinary spherical curves at native raster resolution; the compact G3 outlines and adjacent thin elements do not establish additional cap endpoints reliably. Geometry and beam-valid trial lands were therefore rejected for insufficient source evidence. Positive edge thickness and shared-band gap clearance pass at all published focus states. These checks do not convert inferred apertures into source dimensions.
 
 There are no aspherical surfaces in the selected embodiment and no scaling transformation. The patent's generic statement
 that other embodiments may use aspheres does not change Example 1's all-spherical numerical prescription.
@@ -437,12 +428,11 @@ that other embodiments may use aspheres does not change Example 1's all-spherica
    FX coverage, 16-element/12-group construction plus protective glass, two fluorite and two ED elements, 2.6 m MFD,
    0.17× reproduction ratio, nine rounded blades, IF, SWM, and VR.
    <https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/telephoto/af-s_400mmf_28e_fl_ed_vr/>
-4. **HIKARI Glass**, current optical-glass catalog data. Used for catalog matching and supplemental C/F/g line indices and
-   dPgF values on the HIKARI-resolved elements.
+4. **HIKARI Glass**, current optical-glass catalog data. Used for compatible catalog spectral curves; the source supplies no per-element partial-dispersion or C/F/g values.
    <https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_ALL_Catalog_Data.xlsx>
-5. **I. H. Malitson**, “A Redetermination of Some Optical Properties of Calcium Fluoride,” *Applied Optics* 2(11), 1963.
-   Used only for supplemental CaF2 spectral indices on L11/L12; the patent nd/νd pair remains authoritative.
-6. **Nikon Corporation**, *AF-S NIKKOR 400mm f/2.8E FL ED VR User's Manual*, slip-in filter holder section: a filter must
+5. **I. H. Malitson**, “A Redetermination of Some Optical Properties of Calcium Fluoride,” _Applied Optics_ 2(11), 1963.
+   Used for the qualified CaF2 catalog curve on L11/L12; the patent nd/νd pair remains authoritative.
+6. **Nikon Corporation**, _AF-S NIKKOR 400mm f/2.8E FL ED VR User's Manual_, slip-in filter holder section: a filter must
    be inserted in the holder, which ships with a 40.5 mm NC filter.
    <https://downloadcenter.nikonimglib.com/en/products/178/AF-S_NIKKOR_400mm_f_28E_FL_ED_VR.html>
    <https://opg.optica.org/ao/fulltext.cfm?uri=ao-2-11-1103>

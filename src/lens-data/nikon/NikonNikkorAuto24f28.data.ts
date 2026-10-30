@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; glass curves are qualified spectral proxies.
  * US 3,622,227 Example I, normalized dimensions scaled by 24.
  * Exact source signs and dimensions checked against PDF p4; Fig.1 on p2.
  * Nikon's Tale14 verifies CRC narrowing at L6/L7, but not travel magnitudes.
@@ -47,7 +48,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: -54.0,
-      glass: "N-SK16 equivalent (catalog comparison; supplier unspecified)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; patent 1.62041/60.3, catalog 1.62041/60.32; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus (convex→obj). Establishes retrofocus divergence; patent cites L1's negative crown power as primary chromatic correction contributor.",
     },
@@ -60,7 +61,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 72.5,
-      glass: "N-SK16 equivalent (catalog comparison; supplier unspecified)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; patent 1.62041/60.3, catalog 1.62041/60.32; production supplier unspecified)",
       apd: false,
       role: "Symmetric biconvex (r₃ = −r₄). Weak positive power partially offsets front group's negative power; symmetric shape minimizes coma contribution.",
     },
@@ -73,7 +74,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: -28.0,
-      glass: "N-SK16 equivalent (catalog comparison; supplier unspecified)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; patent 1.62041/60.3, catalog 1.62041/60.32; production supplier unspecified)",
       apd: false,
       role: "Strongly negative meniscus (convex→obj). Tightest radius in front group (r₆). Condition (2) governs r₆ for internal coma correction of oblique rays.",
     },
@@ -86,7 +87,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       focalLengthMm: 17.3,
-      glass: "F2 equivalent (catalog comparison; supplier unspecified)",
+      glass: "F2 (catalog-compatible spectral proxy; patent 1.62004/36.3, catalog 1.62004/36.37; production supplier unspecified)",
       apd: false,
       role: "Strongest positive element. Flint glass in positive role (reversed from standard achromat). Cemented with L5; The L4/L5 cemented interface has a reference-index step of −0.10181; a comparison with nonadjacent SK16 does not describe that interface.",
       cemented: "D1",
@@ -100,7 +101,7 @@ const LENS_DATA = {
       nd: 1.51823,
       vd: 59.0,
       focalLengthMm: -76.7,
-      glass: "E-C3 equivalent (catalog comparison; supplier unspecified)",
+      glass: "E-C3 (catalog-compatible spectral proxy; patent 1.51823/59, catalog 1.51823/58.96; production supplier unspecified)",
       apd: false,
       role: "Completes first cemented doublet. Large Δn at junction (0.102) provides dispersive correction. Low-index crown in negative role.",
       cemented: "D1",
@@ -114,7 +115,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1, // Inferred same medium as L7: Example I omits the L6 Abbe entry.
       focalLengthMm: -29.9,
-      glass: "S-TIH23 equivalent (catalog comparison; supplier unspecified)",
+      glass: "S-TIH23 (catalog-compatible spectral proxy; source nd1.7847; vd26.1 inferred from L7, catalog 1.784696/26.291221; production supplier unspecified)",
       apd: false,
       role: "Central corrector of reversed Tessar. Condition (1) centers it between positive subgroups; Condition (3) governs bending (|r₁₀|>|r₁₁|) for internal coma. Near stop → minimal astigmatism contribution.",
     },
@@ -127,7 +128,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       focalLengthMm: -29.1,
-      glass: "S-TIH23 equivalent (catalog comparison; supplier unspecified)",
+      glass: "S-TIH23 (catalog-compatible spectral proxy; patent 1.7847/26.1, catalog 1.784696/26.291221; production supplier unspecified)",
       apd: false,
       role: "Negative half of second cemented doublet. Condition (4) governs junction r₁₃: (n₈−n₇)/r₁₃ < 0 for Petzval and coma correction.",
       cemented: "D2",
@@ -141,7 +142,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 18.8,
-      glass: "N-SK16 equivalent (catalog comparison; supplier unspecified)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; patent 1.62041/60.3, catalog 1.62041/60.32; production supplier unspecified)",
       apd: false,
       role: "Positive half of second cemented doublet. Large Δn at junction (0.164). D2 overall is meniscus concave toward object.",
       cemented: "D2",
@@ -155,7 +156,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 50.4,
-      glass: "LAF2 equivalent (catalog comparison; supplier unspecified)",
+      glass: "LAF2 (catalog-compatible spectral proxy; patent 1.744/44.9, catalog 1.744/44.9; production supplier unspecified)",
       apd: false,
       role: "Final element. Asymmetric biconvex — weak front, strong rear. Lanthanum flint provides high power with moderate dispersion. Field-flattening and final convergence to f=24mm.",
     },

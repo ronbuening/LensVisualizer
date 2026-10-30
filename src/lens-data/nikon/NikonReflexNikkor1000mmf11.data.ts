@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; qualified glass curves do not identify suppliers.
  * Nikon Reflex-Nikkor 1000mm f/11
  *
  * Data source: US 3,507,556, Embodiment 1 / Claim 1 (Yoshiyuki Shimizu, Nippon Kogaku K.K.).
@@ -66,7 +67,8 @@ const LENS_DATA = {
       nd: 1.51823,
       vd: 59.0,
       focalLengthMm: 1316.0,
-      glass: "K crown, 518/590 class (Hoya E-C3 / Ohara S-NSL3 equivalent)",
+      glass:
+        "E-C3 (catalog-compatible spectral proxy; patent 1.51823/59, catalog 1.51823/58.96; production supplier unspecified)",
       apd: false,
       role: "Weak positive front corrector; contributes spherical-aberration and sine-condition balancing before the folded mirror train.",
     },
@@ -78,7 +80,8 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       focalLengthMm: -1759.6,
-      glass: "Light flint, 541/472 class (Hoya E-FEL2 / Ohara S-TIL2 equivalent)",
+      glass:
+        "E-FEL2 (catalog-compatible spectral proxy; patent 1.54072/47.2, catalog 1.54072/47.2; production supplier unspecified)",
       apd: false,
       role: "Annular primary Mangin. The glass substrate is weakly negative as a refractor, while the rear reflecting surface supplies the main convergence.",
     },
@@ -90,7 +93,8 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.9,
       focalLengthMm: -909.5,
-      glass: "Light flint, 548/459 class (LLF1 / Hoya E-FEL1 / Ohara S-TIL1 equivalent)",
+      glass:
+        "E-FEL1 (catalog-compatible spectral proxy; patent 1.54814/45.9, catalog 1.54814/45.82; production supplier unspecified)",
       apd: false,
       role: "Small convex Mangin secondary that enlarges and relays the primary image back through the primary perforation.",
     },
@@ -102,7 +106,8 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -99.3,
-      glass: "BK7-family borosilicate crown, 517/642 class (BSC7 / H-K9L equivalent)",
+      glass:
+        "H-K9L (catalog-compatible spectral proxy; patent 1.5168/64.2, catalog 1.5168/64.2; production supplier unspecified)",
       apd: false,
       role: "Strong negative element in the rear diverging group; primary contributor to field-flattening power.",
     },
@@ -114,7 +119,8 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.7,
       focalLengthMm: 283.1,
-      glass: "SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)",
+      glass:
+        "E-FD13 (catalog-compatible spectral proxy; patent 1.74077/27.7, catalog 1.74077/27.76; production supplier unspecified)",
       apd: false,
       role: "Positive dense-flint partner for L2; moderates colour and spherical residuals while keeping the rear group net negative.",
     },

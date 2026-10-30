@@ -96,7 +96,7 @@ an arbitrary floating correction group.
 
 ### L11 — Negative Meniscus
 
-\(n_d=1.794997,\ \nu_d=45.30\). Glass: **795453 class (vendor unspecified)**.
+\(n_d=1.794997,\ \nu_d=45.30\). Glass: **J-LASF017 (catalog-compatible spectral proxy; production supplier unspecified)**.
 Standalone \(f=-40.975921\) mm.
 
 L11 is the first negative meniscus of G1, with its convex surface facing the object as described in
@@ -115,7 +115,7 @@ The physical L12 is represented by two optical media:
 - **L12 compound layer:** \(n_d=1.506250,\ \nu_d=55.63\). Glass:
   **Unmatched (compound-asphere layer; material not identified)**.
 - **L12 substrate:** \(n_d=1.794997,\ \nu_d=45.30\). Glass:
-  **795453 class (vendor unspecified)**.
+  **J-LASF017 (catalog-compatible spectral proxy; production supplier unspecified)**.
 
 The combined physical compound stack has a verified standalone focal length of
 \(f=-74.182313\) mm in air.
@@ -133,7 +133,7 @@ negative-positive zoom. The detailed coefficient convention is treated separatel
 
 ### L13 — Biconcave Negative
 
-\(n_d=1.744000,\ \nu_d=44.79\). Glass: **H-LaF3B catalog equivalent (patent 744448; production supplier unspecified)**.
+\(n_d=1.744000,\ \nu_d=44.79\). Glass: **H-LaF3B (catalog-compatible spectral proxy; production supplier unspecified)**.
 Standalone \(f=-47.314388\) mm.
 
 L13 is the third negative element in G1 and is explicitly biconcave. Together with L11 and L12 it
@@ -143,7 +143,7 @@ its standalone power therefore remains conceptually distinct from the net power 
 
 ### L14 — Biconvex Positive
 
-\(n_d=1.795040,\ \nu_d=28.56\). Glass: **J-LAFH3 catalog equivalent (patent 795286; production supplier unspecified)**.
+\(n_d=1.795040,\ \nu_d=28.56\). Glass: **J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified)**.
 Standalone \(f=+53.069165\) mm.
 
 L14 is the positive rear element of G1. Its relatively low Abbe number distinguishes it from the
@@ -156,10 +156,10 @@ catalog equivalence is not evidence that Nikon used Hikari as the production sup
 ### L21–L22 — Cemented Positive Inner-Focus Subgroup G2a
 
 **L21:** \(n_d=1.788000,\ \nu_d=47.38\). Glass:
-**788474 class (vendor unspecified)**. Standalone \(f=-54.097023\) mm.
+**J-LASF014 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=-54.097023\) mm.
 
 **L22:** \(n_d=1.501370,\ \nu_d=56.41\). Glass:
-**501564 class (vendor unspecified)**. Standalone \(f=+32.903387\) mm.
+**K10 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=+32.903387\) mm.
 
 L21 and L22 are cemented at the surface of radius +23.0254 mm. The final data correctly assigns the
 cemented junction to the downstream L22 medium rather than inserting a synthetic cement layer.
@@ -177,10 +177,10 @@ spacing sum while translating the cemented doublet.
 ### L23–L24 — First Cemented Pair of G2b
 
 **L23:** \(n_d=1.539960,\ \nu_d=59.47\). Glass:
-**BAK2 catalog equivalent (patent 540595; production supplier unspecified)**. Standalone \(f=+22.324137\) mm.
+**BAK2 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=+22.324137\) mm.
 
 **L24:** \(n_d=1.794997,\ \nu_d=45.30\). Glass:
-**795453 class (vendor unspecified)**. Standalone \(f=-18.423300\) mm.
+**J-LASF017 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=-18.423300\) mm.
 
 L23 and L24 form the first cemented pair in G2b. The patent describes L23 as biconvex and L24 as
 biconcave. The two standalone powers are strong and opposite, but the cemented combination is only
@@ -194,10 +194,10 @@ thin lenses.
 ### L25–L26 — High-Dispersion / High-Abbe Cemented Pair of G2b
 
 **L25:** \(n_d=1.834000,\ \nu_d=37.35\). Glass:
-**NBFD10 catalog equivalent (patent 834374; production supplier unspecified)**. Standalone \(f=-19.395459\) mm.
+**NBFD10 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=-19.395459\) mm.
 
 **L26:** \(n_d=1.497820,\ \nu_d=82.52\). Glass:
-**J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)**. Standalone \(f=+18.481122\) mm.
+**J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)**. Standalone \(f=+18.481122\) mm.
 
 L25 and L26 are the second cemented pair of G2b. Their material contrast is the most conspicuous
 chromatic pairing in the prescription: the refractive-index difference is 0.33618 and the Abbe-number
@@ -217,7 +217,7 @@ complete subgroup behavior are therefore kept separate.
 
 ### L27 — Final Biconvex Positive
 
-\(n_d=1.539960,\ \nu_d=59.47\). Glass: **BAK2 catalog equivalent (patent 540595; production supplier unspecified)**.
+\(n_d=1.539960,\ \nu_d=59.47\). Glass: **BAK2 (catalog-compatible spectral proxy; production supplier unspecified)**.
 Standalone \(f=+128.309853\) mm.
 
 L27 is the final positive element of G2b and uses the same modeled material class as L23. It is much
@@ -428,6 +428,14 @@ wide/intermediate/telephoto × infinity/near states.
 
 These semi-diameter and clearance values are author/modeling results, not published Nikon mechanical
 dimensions. No layout parameter is used to conceal invalid lens geometry.
+
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `US20010030812A1.pdf`: Example 2 Figure 4A on PDF page 5 at 600 dpi; Table 2 on page 18; and the d-line definitions on page 17. All twelve source media retain exact nd/νd. Eleven actual catalog curves are now explicitly qualified spectral proxies, while the 1.50625/55.63 compound-asphere layer remains unresolved. J-LASF017's catalog 1.79500/45.31 closely matches source 1.794997/45.30; the name is a spectral proxy rather than production identification. No source C/F/g or partial-dispersion table is supplied and none is invented. The existing single inferred ED role is retained.
+
+S2 preserves its 17.2 mm curved cap and gains an exposed land to the existing 22.5 mm front rim. Native Figure 4A gives q≈0.73±0.010 at an approximately 190-pixel edge radius; adopted q=0.764 preserves the larger existing cap. Every other convex/concave face and cemented boundary was inspected. The compound layer and internal interface receive no lands, and no additional exposed concave trim is resolved. The previously established corner-clearance radii and all asphere coefficients remain unchanged; the published 3.59/4.12/4.62 design apertures were already correct and are retained.
+
+Focused surface/circle audits pass, all three format corners reach at least 99%, and all three infinity apertures are iris-limited within 3%. At the source close object distances 187.8488/195.2848/195.7094 mm, all 75 aimed full-iris axial samples pass. Nine actual SVG states have twelve finite paths with zero trim. All source/catalog checks and shared glass suites pass (94 tests).
 
 ## Sources
 

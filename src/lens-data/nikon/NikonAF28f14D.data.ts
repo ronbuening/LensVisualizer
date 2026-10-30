@@ -63,7 +63,7 @@ const LENS_DATA = {
       nd: 1.77279,
       vd: 49.4,
       focalLengthMm: 75.4,
-      glass: "S-LAH66 (OHARA) — near nd=1.77250/νd=49.62 (inferred coordinate counterpart)",
+      glass: "S-LAH66 (OHARA) — near nd=1.77250/νd=49.60 (inferred coordinate counterpart)",
       apd: false,
       role: "Positive singlet in moving G2; shares source coordinates with L7.",
     },
@@ -142,7 +142,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.6,
       focalLengthMm: -27.09,
-      glass: "Dense flint (near OHARA S-TIH4, nd=1.75520, νd=27.53) (inferred coordinate counterpart)",
+      glass: "Dense flint (near OHARA S-TIH4, nd=1.75520, νd=27.51) (inferred coordinate counterpart)",
       apd: false,
       role: "Negative member of cemented L6; its Abbe number differs strongly from L6a.",
       cemented: "L6",
@@ -203,13 +203,13 @@ const LENS_DATA = {
   surfaces: [
     // ── G1 ──
     { label: "1", R: 66.23, d: 2.0, sd: 27.5, medium: 1 }, // L1 front
-    { label: "2", R: 25.126, sd: 22.3 }, // L1 rear → air (d2, variable)
+    { label: "2", R: 25.126, sd: 22.3, rimExtensionSd: 27.5 }, // L1 rear → air (d2, variable)
 
     // ── G2 ──
     { label: "3", R: 89.207, d: 4.7, sd: 20.5, medium: 2 }, // L2 front
     { label: "4", R: -164.124, d: 0.1, sd: 20.5 }, // L2 rear → air
     { label: "5", R: 87.119, d: 1.5, sd: 18, medium: 3 }, // L3 front
-    { label: "6", R: 23.125, d: 7.9, sd: 15.5 }, // L3 rear → air
+    { label: "6", R: 23.125, d: 7.9, sd: 15.5, rimExtensionSd: 18 }, // L3 rear → air
     { label: "7", R: -49.577, d: 9.0, sd: 14.3, medium: 4 }, // L4a front
     { label: "8", R: -15.69, d: 1.5, sd: 13.5, medium: 5 }, // L4a→L4b junction
     { label: "9", R: 462.539, d: 0.2, sd: 16.7 }, // L4b rear → air
@@ -220,7 +220,7 @@ const LENS_DATA = {
     { label: "STO", R: "flat" }, // aperture stop
 
     // ── G3 ──
-    { label: "12", R: -23.276, d: 3.6, sd: 14.8, medium: 7 }, // L6a front
+    { label: "12", R: -23.276, d: 3.6, sd: 14.8, medium: 7, rimCutDepthMm: 4.69 }, // L6a front
     { label: "13", R: -19.731, d: 1.0, sd: 14.8, medium: 8 }, // L6a→L6b junction
     { label: "14", R: -568.331, d: 1.0, sd: 15.8 }, // L6b rear → air
     { label: "15", R: -122.249, d: 3.5, sd: 16.4, medium: 9 }, // L7 front

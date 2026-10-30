@@ -87,7 +87,7 @@ This element contributes negative standalone power to the dispersive front syste
 
 nd = 1.69680, νd = 55.6. Glass: 697556 lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed). f = -21.745 mm.
 
-The final front-group element is also negative in isolation. Its clear apertures (9.0 mm front, 7.3 mm rear) follow the rims drawn in Fig. 2(A), with the steep rear surface (R = 9.138 mm) held slightly larger than drawn so the full-field chief ray passes. They are figure-based estimates, not measured production rims.
+The final front-group element is also negative in isolation. Its clear apertures (9.0 mm front, 7.3 mm rear) follow the rims drawn in Fig. 2(A), with the steep rear surface (R = 9.138 mm) held slightly larger than drawn so the full-field chief ray passes. They are figure-based estimates, not measured production rims. Its rear curve now ends in a flat land to the9.0mm body rim while retaining the7.3mm clear cap.
 
 ### L4a — Negative Meniscus
 
@@ -224,10 +224,7 @@ inconsistent with the selected table; neither the denominator nor the radii are 
 15.52 units. These checks preserve native source numbering despite
 the added plane and iris labels. [1, printed columns 2–3]
 
-The inferred stop semi-diameter is 4.013665 mm. An exact axial ray launched at
-EFL/(2×4) calibrates the aperture to f/4.000000. The independently evaluated
-paraxial pupil gives f/3.925996. This explicit difference matters: the exact result is a
-calibration to the published f/4, not independent evidence for an unpublished diaphragm size.
+The current F-number rule derives an iris semi-diameter of3.939408mm at the existing inferred station, and the aperture check is iris-limitedf4.000. This supersedes earlier prose about an independently calibrated4.013665mm radius. Neither coordinate nor diameter is a printed source dimension.
 
 The patent lists no clear apertures. Fig. 2(A) is drawn to scale in its curvatures and vertex
 spacings (the scaled prescription overlays the drawn surfaces at 0.0445 mm per pixel), but its rim
@@ -289,3 +286,6 @@ https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf
 CDGM primary database selected H-F1 row (1.60342/38.01); accessed October2,2026.
 https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf
 https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=13&url=database
+
+
+The 2026-10-30 Figure2(A) reinspection also resolves L2's rear land: S4 retains its11.0mm curved cap and extends to the12.8mm body. L3 similarly retains7.3mm with a land to9.0mm. The larger existing optical caps are retained conservatively relative to the source endpoint ratios. No extra concave cut is supported elsewhere, and cemented steps are not modeled as exposed lands. All eleven original d-line pairs are retained; the current resolver uses qualified J-SK16,J-LAK14,LAC12,S-BAM4,J-F5,J-SF14,J-LASFH2,J-BK7A andS-BAM12 curves. Their suppliers are not identified as historical production suppliers; J-LASFH2's +0.58Abbe residual remains explicit. Surface/circle/corner/aperture checks pass, all25 sampled axial pupil rays pass the source close spacing, and nine actual SVG states have finite paths/zero automatic trim.

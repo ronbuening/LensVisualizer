@@ -31,7 +31,7 @@ The design is entirely spherical. There are no aspherical surfaces, no ED elemen
 
 ### L1 — Biconvex positive element, front element of cemented doublet
 
-$n_d = 1.58913$, $\nu_d = 61.09$. Glass: 589/611 crown, Q-SK55S / L-BAL35 class; exact 1995 melt uncertain. $f = +41.63$ mm production scale, or $+34.69$ mm at the patent's $f = 100$ scale.
+$n_d = 1.58913$, $\nu_d = 61.09$. Glass: 589/611 crown, 589611 coordinate, modeled with a qualified S-BAL35 curve; historical melt unidentified. $f = +41.63$ mm production scale, or $+34.69$ mm at the patent's $f = 100$ scale.
 
 L1 is the principal positive power element. Its front surface is strongly convex, while the cemented rear surface is weaker and negative in radius. The element therefore supplies most of the front group's converging power while leaving part of the spherical-aberration and color correction to the cemented interface with L2.
 
@@ -41,7 +41,7 @@ The glass should not be identified as OHARA S-BAL14. The patent value is a 589/6
 
 ### L2 — Biconcave negative element, rear element of cemented doublet
 
-$n_d = 1.80384$, $\nu_d = 33.89$. Glass: Hikari E-LAFH2, exact code 804339. $f = -72.95$ mm production scale, or $-60.79$ mm at the patent scale.
+$n_d = 1.80384$, $\nu_d = 33.89$. Glass: E-LAFH2 qualified spectral proxy for source coordinate 804339; production supplier unspecified. $f = -72.95$ mm production scale, or $-60.79$ mm at the patent scale.
 
 L2 is the high-index, high-dispersion negative partner in the cemented achromat. Its Abbe number is much lower than L1's, so it provides the flint-side dispersion needed to cancel the chromatic error produced by the positive crown. The index difference is also substantial: $n_2 - n_1 = 0.21471$. The patent explicitly uses that index difference as a manufacturing and aberration-control parameter, because a higher negative-element index allows the cemented interface to carry useful power without becoming excessively steep.
 
@@ -63,9 +63,9 @@ The high Abbe number of L3 matters because rear-group lateral color would be dif
 
 | Element | Patent $n_d$ | Patent $\nu_d$ | Responsible identification | Role |
 |---|---:|---:|---|---|
-| L1 | 1.58913 | 61.09 | Q-SK55S / L-BAL35 / S-BAL35 class, exact 1995 melt uncertain | Positive crown element |
+| L1 | 1.58913 | 61.09 | S-BAL35 qualified spectral proxy; historical melt and supplier unidentified | Positive crown element |
 | L2 | 1.80384 | 33.89 | E-LAFH2 (Hikari), exact 804339 match | Achromatizing negative element |
-| L3 | 1.58913 | 61.09 | Q-SK55S / L-BAL35 / S-BAL35 class, exact 1995 melt uncertain | Weak negative field flattener / telephoto rear group |
+| L3 | 1.58913 | 61.09 | S-BAL35 qualified spectral proxy; historical melt and supplier unidentified | Weak negative field flattener / telephoto rear group |
 
 The glass strategy is simple but deliberate. L1 and L3 use the same low-dispersion crown class, while L2 uses a much higher-index, higher-dispersion flint. This lets the cemented front group act as a compact achromat while keeping the rear group chromatically mild. It is also consistent with the production objective: a very low-cost lens with the fewest possible glass types.
 
@@ -137,6 +137,12 @@ Semi-diameters were not published in the patent. The data file therefore uses co
 The patent explicitly positions this lens against more conventional Ernostar and Gauss telephoto forms. Those designs correct aberrations more comfortably but require more glass elements. The Gugutto Macro instead uses a much older telephoto principle — positive front group, negative rear group — and pushes it to a wider 20° field and approximately f/4.5 speed by tightly constraining the rear meniscus bend, the front/rear group spacing, and the glass pair in the cemented doublet.
 
 The result should not be read as a conventional high-performance macro lens. Nikon's account is clear that the design was cost-driven, mechanically simple, and optimized for close-up use rather than flat-field distant reproduction. The optical interest lies in how much usable performance Ohshita extracted from only three spherical elements, two groups, two glass classes, one fixed aperture, and a reconfigurable barrel.
+
+## Patent rim and glass review
+
+The October 30, 2026 review directly inspected US 5,764,425 Fig. 7 (PDF page 8) at 600 dpi from the native 300 ppi scan, and Table 4 on PDF page 28. L3's concave front face has a distinct straight end stroke. Its existing 11.5 mm clear cap is retained, with a rim extension to the existing 14.3 mm outer height. The drawing's two halves give a cap/outer ratio of roughly 0.72–0.79; the one-native-pixel band is about ±0.008, separate from the larger drawing asymmetry. The adopted ratio 0.804 preserves the current clear cap and moves outward from the figure estimate. It changes the drawn body without removing any previously transmitted ray. The other continuous curves, shared cemented interface, fixed field stop, powered prescription and unit-focus motion remain unchanged.
+
+All three source d-line pairs were rechecked: 1.58913/61.09 at L1/L3 and 1.80384/33.89 at L2. The current curves are S-BAL35 and E-LAFH2, qualified spectral proxies with the retained source anchors. The prior year-specific melt label is removed because the patent identifies neither a melt nor a supplier. No partial-dispersion or individual C/F/g measurement is supplied or invented; the existing curve identities and wavelength behavior are unchanged.
 
 ## Sources
 

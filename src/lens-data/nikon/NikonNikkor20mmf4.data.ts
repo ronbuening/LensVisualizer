@@ -59,6 +59,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                              ║
  * ║  Optical design only: glass surfaces, stop and variable gaps.                ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table review; see audit for exposed
+ * lands, retained source dispersion and explicit geometry/iris limitations.
  */
 
 const LENS_DATA = {
@@ -103,7 +106,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 89.598,
       glass:
-        "620603 — dense barium crown, SK16 class (J-SK16 HIKARI / S-BSM16 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-SK16 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Positive-first front component; patent associates its curvature relation with compactness and distortion control.",
       diagramLabel: "L1",
     },
@@ -117,7 +120,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -37.517,
       glass:
-        "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-LAK14 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Second front-group negative meniscus; part of net dispersive front system.",
       diagramLabel: "L2",
     },
@@ -131,7 +134,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -21.745,
       glass:
-        "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-LAK14 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Third front-group negative meniscus; part of net dispersive front system.",
       diagramLabel: "L3",
     },
@@ -145,7 +148,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -19.302,
       glass:
-        "678555 — lanthanum crown, LaK12 class (LAC12 HOYA / K-LaK12 SUMITA coordinate-compatible; supplier unconfirmed)",
+        "LAC12 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Negative standalone member of cemented positive L4 component.",
       diagramLabel: "L4a",
       cemented: "L4",
@@ -160,7 +163,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 17.381,
       glass:
-        "606439 — barium flint, BaF4 class (S-BAM4 OHARA / N-BAF4 SCHOTT coordinate-compatible; supplier unconfirmed)",
+        "S-BAM4 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Positive member of cemented L4 component.",
       diagramLabel: "L4b",
       cemented: "L4",
@@ -174,7 +177,7 @@ const LENS_DATA = {
       vd: 38.0,
       indexReference: "d",
       focalLengthMm: 36.79,
-      glass: "603380 — flint, F5 class (J-F5 HIKARI / F5 SCHOTT coordinate-compatible; supplier unconfirmed)",
+      glass: "J-F5 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Front half of split positive central L5 component.",
       diagramLabel: "L5a",
     },
@@ -187,7 +190,7 @@ const LENS_DATA = {
       vd: 38.0,
       indexReference: "d",
       focalLengthMm: 31.646,
-      glass: "603380 — flint, F5 class (J-F5 HIKARI / F5 SCHOTT coordinate-compatible; supplier unconfirmed)",
+      glass: "J-F5 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Rear half of split L5; published air separation decreases near focus.",
       diagramLabel: "L5b",
     },
@@ -201,7 +204,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -10.054,
       glass:
-        "762265 — dense flint, SF14 class (J-SF14 HIKARI / S-TIH14 OHARA coordinate-compatible; supplier unconfirmed)",
+        "J-SF14 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Negative member of cemented L6 component.",
       diagramLabel: "L6a",
       cemented: "L6",
@@ -216,7 +219,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 43.089,
       glass:
-        "767462 — lanthanum dense flint (nearest J-LASFH2 HIKARI, nd identical, catalog νd 46.78, Δνd +0.58; supplier unconfirmed)",
+        "J-LASFH2 (catalog-compatible spectral proxy; production supplier unresolved; catalog Δnd=0.000000, Δvd=0.580)",
       role: "Positive member of cemented L6; net component remains negative.",
       diagramLabel: "L6b",
       cemented: "L6",
@@ -231,7 +234,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 32.529,
       glass:
-        "517642 — borosilicate crown, BK7 class (J-BK7A HIKARI / N-BK7 SCHOTT coordinate-compatible; supplier unconfirmed)",
+        "J-BK7A (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Rear positive meniscus.",
       diagramLabel: "L7",
     },
@@ -245,7 +248,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.841,
       glass:
-        "639450 — barium flint, BaF12 class (BAF12 SUMITA / S-BAM12 OHARA coordinate-compatible; supplier unconfirmed)",
+        "S-BAM12 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Final positive meniscus.",
       diagramLabel: "L8",
     },
@@ -259,9 +262,9 @@ const LENS_DATA = {
     { label: "1", R: 31.9, d: 3.018, sd: 16.0, medium: 1 },
     { label: "2", R: 72.148, d: 0.04, sd: 16.0 },
     { label: "3", R: 27.156, d: 0.862, sd: 12.8, medium: 2 },
-    { label: "4", R: 13.146, d: 4.31, sd: 11.0 },
+    { label: "4", R: 13.146, d: 4.31, sd: 11.0, rimExtensionSd: 12.8 },
     { label: "5", R: 24.138, d: 1.078, sd: 9.0, medium: 3 },
-    { label: "6", R: 9.138, d: 4.742, sd: 7.3 },
+    { label: "6", R: 9.138, d: 4.742, sd: 7.3, rimExtensionSd: 9.0 },
     { label: "7", R: 164.658, d: 1.724, sd: 6.6, medium: 4 },
     { label: "9", R: 12.07, d: 7.112, sd: 6.3, medium: 5 },
     { label: "10", R: -64.01, d: 0.04, sd: 6.1 },

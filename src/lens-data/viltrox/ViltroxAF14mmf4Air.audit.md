@@ -40,3 +40,33 @@ deleted; the lens is expected to remain in the numerical census.
 The plate has source nd/vd only, with no established vendor identity or
 line indices. Existing qualified spectral proxies and unresolved glasses
 are unchanged. The analysis now describes the traced physical filter path.
+
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/CN_121091494_A.pdf`, Example 1: Figure 1, PDF page 20; prescription Table 1 on pages 12–13, spectral-line convention and Table 3 continuation on page 14. Page images were rendered and read again; earlier notes supplied locators only.
+
+Every convex/concave face and cemented boundary was rechecked in a fresh 600 dpi Figure 1 crop. Native raster 300 dpi; the approximately 3710 px S1–S22 span at 600 dpi over 54.73 mm gives 67.787 px/mm, or 33.894 native px/mm. The figure resolves concave rear seats on L1 and L2: added extensions 2→12.7 and 4A→9.7 mm, preserving the existing optical caps 9.8 and 7.6 mm. Those drawn outer radii match their existing front-face rims.
+
+No additional resolved concave air-face cap break supports a new cut. Stepped cemented interfaces 6, 9 and 13 remain outside this air-boundary feature. L11’s source silhouette continues its curved faces toward a larger rim, but the source polynomial’s usable branch ends near the existing 7.2/7.7 mm caps and turns over near 7.8 mm. There is no source flat seat at those caps; inventing an extension there would hide that prescription/figure limitation. Its current geometry is retained. The four asphere caps and their quoted departures remain unchanged.
+
+All 12 element index/Abbe pairs and the rear plate match the rounded source table. The D-line plotting convention is stated on page 14. No numerical source θgF/partial-dispersion or per-element line indices are published. Existing six catalog-derived APD flags remain inferred. L10 and L11 still have no compatible catalog curve; the rear plate remains source-only. Qualified proxy labels remain qualified.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.92000 / 20.9 | E-FDS1 |
+| L2 | 1.50000 / 81.6 | J-FKH1 |
+| L3 | 1.59000 / 68.3 | K-GFK68 |
+| L4 | 1.65000 / 33.8 | H-ZF1 |
+| L5 | 1.68000 / 55.5 | K-LaK12 |
+| L6 | 1.67000 / 47.2 | BAF10 |
+| L7 | 1.46000 / 90.2 | FCD10A |
+| L8 | 2.00000 / 25.4 | H-ZLaF90 |
+| L9 | 1.46000 / 90.2 | FCD10A |
+| L10 | 1.78000 / 25.7 | unresolved; Abbe approximation |
+| L11 | 1.64000 / 23.5 | unresolved; Abbe approximation |
+| L12 | 1.59000 / 68.6 | FCD515 |
+
+Coverage: 10/12 modeled media, representing 12 physical lens elements. Rear plate checked separately: 1.52000/64.2 (unresolved). Compatible catalog curves remain spectral proxies, not production supplier/melt identifications.
+
+Verification: focused surface/inferred-beam and image-circle audits; aperture census for the new cuts; actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label resolver and catalog-coordinate sweep, `assertCatalogConsistent()`, and the shared dispersion/partial-dispersion consistency tests. Full repository gates are recorded by the coordinator at commit time.

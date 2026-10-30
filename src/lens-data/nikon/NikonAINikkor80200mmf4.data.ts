@@ -25,34 +25,23 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║  Stop inference: the patent omits an iris surface. STO is inserted at the  ║
  * ║  G4 entrance, immediately before r15. The stop radius is derived from the  ║
- * ║  design f-number, f/4, and held at every zoom station. The former paraxial ║
- * ║  calibration of the stop gave f/4.000000 at 80 mm and f/4.000037 at        ║
- * ║  195.2 mm. The fixed iris is traced from nominalFNumber at 14.1233 mm,     ║
- * ║  which alone gives f/4.000 at 80 mm and f/3.997 at 195.2 mm. The inferred  ║
+ * The fixed iris is derived from nominal f/4 at14.065342 mm; exact aperture checks pass
+ * both source endpoints. No source stop diameter is published. The inferred
  * ║  position reproduces the patent h∞ chief-ray datum to about 0.12 mm in the ║
  * ║  paraxial model.                                                           ║
  * ║                                                                            ║
  * ║  Semi-diameters are inferred from the f/4 on-axis beam, the patent         ║
  * ║  Fig. 3 section, and Nikon's 62 mm attachment / 73 mm barrel envelope.     ║
- * ║  Full-field mechanical vignetting is retained. In G1 the f/4 on-axis       ║
- * ║  ray reaches 24.400 / 24.021 / 23.826 / 23.491 / 23.145 mm on surfaces     ║
- * ║  1-5 at 195.2 mm and infinity focus. Surfaces 1, 3 and 4 carry that        ║
- * ║  height rounded up to 0.1 mm: 24.5, 23.9 and 23.5 mm. FIG. 3 cuts the      ║
- * ║  rims of L11a and L12 square, so surface 2 carries surface 1's 24.5 mm     ║
- * ║  and surface 5 carries surface 4's 23.5 mm; L11b steps in to 23.9 mm       ║
- * ║  at surface 3, as FIG. 3 steps L11 in at the cemented surface.             ║
- * ║  Wide open at infinity the 80 mm station traces f/4.00 on the iris and     ║
- * ║  the 195.2 mm station f/4.00 on the surface-4 rim. At 1.2 m and            ║
- * ║  195.2 mm that rim bounds the on-axis beam and the iris is filled to       ║
- * ║  87 % of its radius; surfaces 6-22 pass the f/4 beam at both focus         ║
- * ║  limits. FIG. 3 draws L11 at about 28.1 mm and L12 at about 26.2 mm.       ║
+ * Full-field vignetting remains part of the traced system. The fresh Figure 3 review restores
+ * continuous caps S1/S2/S3 to 28.1/28.1/27.2 mm and S4/S5 to 26.2 mm; no invented cemented land.
+ * The larger front caps clear the former near-tele on-axis rim restriction. New inferred S19
+ * concave cut depth 7.00 mm keeps outer 18.2; source q/uncertainty and complete beam proof are in the audit.
  * ║  gapSagFrac=0.96 is required at the r9-r10 air lens; the selected          ║
  * ║  13.8 mm shared semi-diameter leaves about 0.182 mm physical rim gap.      ║
  * ║                                                                            ║
- * ║  Glass vendors and line indices are unpublished. Six-digit nd-vd classes   ║
- * ║  are retained except for coefficient-backed equivalents; J-LAFH3           ║
- * ║  reproduces L42's d-line index and one-decimal Abbe class. nC, nF, ng,     ║
- * ║  and dPgF are therefore omitted.                                           ║
+ * Glass vendors and line indices are unpublished. All 13 source n/ν pairs remain;
+ * current compatible curves cover 13/13 as qualified proxies, including nonidentical S-LAL52
+ * and J-LASF017. No production identity, source C/F/g, or partial-dispersion value is invented.
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -96,7 +85,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -185.794,
-      glass: "805254 — dense flint class (catalog unresolved)",
+      glass: "805254 — dense flint class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Front member of the cemented G1 focusing component.",
       cemented: "L11",
     },
@@ -108,7 +97,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 93.228,
-      glass: "620603 — crown class (catalog unresolved)",
+      glass: "620603 — crown class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Positive partner in the cemented G1 focusing component.",
       cemented: "L11",
     },
@@ -120,7 +109,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 332.452,
-      glass: "517641 — crown class (catalog unresolved)",
+      glass: "517641 — crown class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Rear singlet of the convergent G1 focusing group.",
     },
     {
@@ -131,7 +120,7 @@ const LENS_DATA = {
       nd: 1.78797,
       vd: 47.5,
       focalLengthMm: -58.912,
-      glass: "788475 — dense lanthanum glass class (catalog unresolved)",
+      glass: "788475 — dense lanthanum glass class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Front negative member of the G2 variator triplet.",
       cemented: "L21",
     },
@@ -143,7 +132,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.6,
       focalLengthMm: 31.536,
-      glass: "755276 — dense flint class (catalog unresolved)",
+      glass: "755276 — dense flint class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Positive central member of the G2 variator triplet.",
       cemented: "L21",
     },
@@ -155,7 +144,7 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.8,
       focalLengthMm: -40.091,
-      glass: "581408 — light flint class (catalog unresolved)",
+      glass: "581408 — light flint class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Rear negative member of the G2 variator triplet.",
       cemented: "L21",
     },
@@ -167,7 +156,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.2,
       focalLengthMm: -60.143,
-      glass: "589612 — crown class (catalog unresolved)",
+      glass: "589612 — crown class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Rear negative singlet completing the divergent G2 variator.",
     },
     {
@@ -178,7 +167,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 43.007,
-      glass: "620603 — crown class (catalog unresolved)",
+      glass: "620603 — crown class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Positive member of the G3 compensator doublet.",
       cemented: "L3",
     },
@@ -190,7 +179,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.6,
       focalLengthMm: -78.971,
-      glass: "755276 — dense flint class (catalog unresolved)",
+      glass: "755276 — dense flint class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Negative member of the G3 compensator doublet.",
       cemented: "L3",
     },
@@ -213,7 +202,7 @@ const LENS_DATA = {
       nd: 1.79504,
       vd: 28.6,
       focalLengthMm: -262.882,
-      glass: "J-LAFH3 (HIKARI; 795287 match to patent 795286 class)",
+      glass: "J-LAFH3 catalog proxy (HIKARI; 795287 versus patent 795286)",
       role: "Weak negative singlet in the front half of the fixed relay.",
     },
     {
@@ -224,7 +213,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.5,
       focalLengthMm: -89.677,
-      glass: "797455 — dense lanthanum glass class (catalog unresolved)",
+      glass: "J-LASF017 catalog proxy (HIKARI, 795/453; source 1.79668/45.5, nonidentical)",
       role: "Negative singlet in the rear relay pair.",
     },
     {
@@ -235,19 +224,19 @@ const LENS_DATA = {
       nd: 1.58267,
       vd: 46.5,
       focalLengthMm: 102.154,
-      glass: "583465 — barium flint class (catalog unresolved)",
+      glass: "583465 — barium flint class (catalog-compatible spectral proxy; supplier unspecified)",
       role: "Final positive relay singlet adjacent to the image-side back focus.",
     },
   ],
 
   surfaces: [
-    // Surfaces 1, 3, 4: the f/4 on-axis ray height at 195.2 mm, infinity focus, rounded up to 0.1 mm.
-    // Surfaces 2 and 5 carry the front-face value of their element: FIG. 3 cuts L11a and L12 square.
-    { label: "1", R: 109.097, d: 1.7, sd: 24.5, medium: 1 },
-    { label: "2", R: 62.65, d: 8.1, sd: 24.5, medium: 2 },
-    { label: "3", R: -716, d: 0.1, sd: 23.9 },
-    { label: "4", R: 134.056, d: 4, sd: 23.5, medium: 3 },
-    { label: "5", R: 603.844, sd: 23.5 },
+    // Fig. 3 full front-group rims; S2 remains a continuous cemented interface, not an air land.
+    // Prior beam-floor caps were smaller; all source R/d remain unchanged.
+    { label: "1", R: 109.097, d: 1.7, sd: 28.1, medium: 1 },
+    { label: "2", R: 62.65, d: 8.1, sd: 28.1, medium: 2 },
+    { label: "3", R: -716, d: 0.1, sd: 27.2 },
+    { label: "4", R: 134.056, d: 4, sd: 26.2, medium: 3 },
+    { label: "5", R: 603.844, sd: 26.2 },
     { label: "6", R: -300, d: 1, sd: 15.5, medium: 4 },
     { label: "7", R: 55, d: 6.1, sd: 15.2, medium: 5 },
     { label: "8", R: -40, d: 0.9, sd: 14.6, medium: 6 },
@@ -263,7 +252,7 @@ const LENS_DATA = {
     { label: "16", R: 217.9, d: 2, sd: 14.3 },
     { label: "17", R: -692.473, d: 2, sd: 14, medium: 11 },
     { label: "18", R: 299.735, d: 53.4, sd: 14 },
-    { label: "19", R: -23.344, d: 2.4, sd: 18, medium: 12 },
+    { label: "19", R: -23.344, d: 2.4, sd: 18.2, rimCutDepthMm: 7.00, medium: 12 },
     { label: "20", R: -36.254, d: 0.2, sd: 18.2 },
     { label: "21", R: 72, d: 5.3, sd: 18.8, medium: 13 },
     { label: "22", R: -334.14, d: 41.366, sd: 19 },

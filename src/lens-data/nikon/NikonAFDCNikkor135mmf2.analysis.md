@@ -91,7 +91,7 @@ historical production melt. [2]
 
 ### L2 - Biconcave Negative, rear member of L1/L2
 
-**nd = 1.648311, νd = 33.75. Glass: S-TIM22 (OHARA special-order; code 648338 coordinate match). Standalone f = -537.323355 mm.**
+**nd = 1.648311, νd = 33.75. Glass: S-TIM22 (OHARA compatible spectral proxy; source coordinates differ). Standalone f = -537.323355 mm.**
 
 L2 is a weak negative element despite its biconcave form because both radii are long. Cementing it to L1 introduces a
 high-dispersion negative partner without an intervening air surface. The isolated L1 and L2 focal lengths should not be
@@ -99,8 +99,8 @@ combined arithmetically; the verified cemented-doublet net EFL is +99.864818 mm.
 
 OHARA’s special-order catalog lists S-TIM22 with the exact d-line code `648338`, `nd = 1.647689`, and `νd = 33.79`.
 Relative to the patent row, the residuals are -0.000622 in index and +0.04 in Abbe number. The data file therefore
-uses S-TIM22 as a coordinate-and-code match and carries its C-, F-, and g-line data, while making no claim that OHARA
-supplied Nikon’s historical production melt. [5]
+uses S-TIM22 as a compatible spectral proxy through the current catalog coefficient curve. Its native coordinates differ
+from the patent row; no catalog line indices are copied into this prescription and no historical supplier is identified. [5]
 
 ### L3 - Positive Meniscus, first element of G2
 
@@ -143,8 +143,7 @@ L6 is a high-index positive meniscus separated from L5 by 7.0000 mm. It restores
 while retaining a compact five-millimeter center thickness. The air separation allows the pair to act as more than a
 simple cemented achromat and contributes to the rear group's principal-plane placement.
 
-Its current-catalog coordinate match supplies explicit C-, F-, and g-line indices to the data model, but those values are
-catalog-derived annotations rather than patent-published spectral data.
+Its compatible current-catalog coefficient curve supplies the spectral model. Per-lens copies of catalog C-, F-, and g-line indices are removed; the source publishes none of those values.
 
 ### L7 - Biconvex Positive, final element of GR
 
@@ -161,23 +160,19 @@ coefficient-backed optical equivalent while the model preserves the patent coord
 
 The patent publishes only d-line refractive indices and Abbe numbers. The glass names in the data file are present-day
 catalog coordinate matches used for identification and spectral modeling; they are not claims about Nikon's historical
-supplier or melt designation. Current HIKARI coordinates closely reproduce L1 and L3-L6. The OHARA special-order
-catalog supplies an exact six-digit-code match for L2; J-LASF017 supplies the closest compatible HIKARI equivalent for L7. [4][5]
+supplier or melt designation. Current HIKARI coordinates closely reproduce L1 and L3-L6. L2 uses a compatible S-TIM22 spectral proxy with differing native coordinates; J-LASF017 supplies a compatible HIKARI proxy for L7. [4][5]
 
-| Element | Patent nd / νd | Data-file glass annotation | Catalog status | Explicit line data in model |
+| Element | Patent nd / νd | Data-file glass annotation | Catalog status | Spectral model |
 |---|---:|---|---|---|
-| L1 | 1.620409 / 60.14 | J-SK16 | Coordinate-compatible current HIKARI match | nC, nF, ng, dPgF |
-| L2 | 1.648311 / 33.75 | S-TIM22 (OHARA special-order; code 648338) | Exact six-digit code; coordinate-compatible | nC, nF, ng, dPgF |
-| L3 | 1.713000 / 53.93 | J-LAK8 | Coordinate-compatible current HIKARI match | nC, nF, ng, dPgF |
-| L4 | 1.749501 / 35.19 | J-LAF7 | Coordinate-compatible current HIKARI match | nC, nF, ng, dPgF |
-| L5 | 1.688930 / 31.08 | J-SF8 | Coordinate-compatible current HIKARI match | nC, nF, ng, dPgF |
-| L6 | 1.766840 / 46.80 | J-LASFH2 | Coordinate-compatible current HIKARI match | nC, nF, ng, dPgF |
+| L1 | 1.620409 / 60.14 | J-SK16 | Coordinate-compatible current HIKARI match | Compatible catalog coefficient curve |
+| L2 | 1.648311 / 33.75 | S-TIM22 (OHARA qualified proxy) | Source coordinates differ; coordinate-compatible | Compatible catalog coefficient curve |
+| L3 | 1.713000 / 53.93 | J-LAK8 | Coordinate-compatible current HIKARI match | Compatible catalog coefficient curve |
+| L4 | 1.749501 / 35.19 | J-LAF7 | Coordinate-compatible current HIKARI match | Compatible catalog coefficient curve |
+| L5 | 1.688930 / 31.08 | J-SF8 | Coordinate-compatible current HIKARI match | Compatible catalog coefficient curve |
+| L6 | 1.766840 / 46.80 | J-LASFH2 | Coordinate-compatible current HIKARI match | Compatible catalog coefficient curve |
 | L7 | 1.796681 / 45.37 | J-LASF017; patent 797454 | Coordinate-compatible HIKARI equivalent; supplier unspecified | Catalog power-series model |
 
-The explicit `nC`, `nF`, `ng`, and `dPgF` fields for the six catalog-matched rows are copied from the cited HIKARI and
-OHARA datasets after round-trip checks against the stored d-line coordinates. They improve runtime dispersion resolution
-for those elements, while L7 uses the catalog power-series model at runtime. None of these classifications establishes
-the production supplier or historical melt. The evidence does not support an APO designation or a general anomalous-dispersion claim.
+The six catalog-derived `nC`, `nF`, `ng` and `dPgF` copies have been removed. All seven elements now defer to their current compatible catalog coefficient curves; source nd/νd values remain unchanged. These spectra are qualified proxies, including the non-identical native coordinates of S-TIM22 and J-LASF017, rather than source-published line data or production supplier/melt identifications. No APO or general anomalous-dispersion claim follows.
 
 The principal chromatic strategy visible from the prescription is conventional pairing: the higher-Abbe positive L1 is
 cemented to the lower-Abbe negative L2, while the remaining positive and negative powers distribute higher- and
@@ -297,3 +292,6 @@ motions, a fixed image plane, and a conventional multi-glass Gaussian architectu
 3. [Nikon, *AF DC-Nikkor 135mm f/2D User's Manual*](https://downloadcenter.nikonimglib.com/en/products/306/AF_DC-Nikkor_135mm_f_2D.html)
 4. [HIKARI Glass, *Optical Glass Catalog*](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf)
 5. [OHARA, *Optical Glass Data: Special-Order Glass, Six-Decimal CSV*](https://www.ohara-inc.co.jp/en/product/catalog/)
+
+
+The 2026-10-29 original-source reinspection records every outline and glass decision in the accompanying audit. S5’s full curved radius increases from 23.3 to 26.0 mm to match Figure 4; it has no drawn land. S7 keeps its 20.5 mm optical cap with a land to the 23.3 mm outer rim. The source focus/DC controls and geometry policy remain unchanged.

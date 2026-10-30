@@ -69,11 +69,11 @@ const LENS_DATA = {
       nd: 1.61272,
       vd: 58.6,
       focalLengthMm: 76.98,
-      glass: "613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)",
+      glass: "BACD4 (HOYA compatible spectral proxy; source nd=1.61272, νd=58.6; supplier unspecified)",
       role: "Front positive collector; sharper object-side curvature carries most of the element power.",
-      nC: 1.60954,
-      nF: 1.61999,
-      ng: 1.62568,
+
+
+
     },
     {
       id: 2,
@@ -83,11 +83,11 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 75.93,
-      glass: "S-BSM16 (OHARA) / N-SK16 class",
+      glass: "S-BSM16 (OHARA compatible spectral proxy; supplier unspecified)",
       role: "Second positive collector; together with L1 forms the high-power f12 front subsystem.",
-      nC: 1.61728,
-      nF: 1.62757,
-      ng: 1.63315,
+
+
+
     },
     {
       id: 3,
@@ -97,11 +97,11 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       focalLengthMm: -32.36,
-      glass: "S-TIH1 (OHARA) / SF1 class",
+      glass: "S-TIH1 (OHARA compatible spectral proxy; supplier unspecified)",
       role: "Principal negative telephoto element; rear surface r6 is the patent's critical short-wavelength spherical-aberration control surface.",
-      nC: 1.71033,
-      nF: 1.73463,
-      ng: 1.74933,
+
+
+
     },
     {
       id: 4,
@@ -111,21 +111,27 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.7,
       focalLengthMm: 138.69,
-      glass: "S-TIH13 (OHARA)",
+      glass: "S-TIH13 (OHARA compatible spectral proxy; supplier unspecified)",
       role: "Weak rear positive collector behind the stop; completes the telephoto layout and helps restrain Petzval curvature.",
-      nC: 1.73309,
-      nF: 1.75975,
-      ng: 1.77599,
+
+
+
     },
   ],
 
+  // 2026-10-29: US4303314 Fig.1, PDF p2, native300ppi. The common schematic
+  // scale≈13.2 native px/mm from a ~707px S1–S8 span /53.55mm. It
+  // has an exposed vertical land at the concave S6 end (q≈.75±.010;
+  // outer edge≈181native px). Retain the existing optical cap and extend
+  // the opaque rim to S5's height. S2 is continuously curved to L1's
+  // common outer rim, so its clear SD rises to match S1; no seat is invented.
   surfaces: [
     { label: "1", R: 41.0, d: 5.3, sd: 21.2, medium: 1 },
-    { label: "2", R: 298.19, d: 0.75, sd: 20.8 },
+    { label: "2", R: 298.19, d: 0.75, sd: 21.2 },
     { label: "3", R: 29.92, d: 9.8, sd: 20.6, medium: 2 },
     { label: "4", R: 71.72, d: 1.8, sd: 19.2 },
     { label: "5", R: 149.221, d: 4.5, sd: 18.5, medium: 3 },
-    { label: "6", R: 19.836, d: 14.7, sd: 16.8 },
+    { label: "6", R: 19.836, d: 14.7, sd: 16.8, rimExtensionSd: 18.5 },
     { label: "STO", R: "flat", d: 14.7 },
     { label: "7", R: 71.0, d: 2.0, sd: 15.5, medium: 4 },
     { label: "8", R: 227.07, sd: 15.5 },

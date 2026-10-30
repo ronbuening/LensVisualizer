@@ -57,6 +57,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Fresh original Example III (PDF p. 11) and Figure 3A (PDF p. 4) retain all five source pairs and geometry.
+// Source material classes/APD purpose are explicit; catalog coefficients are nonidentical proxies, L1 unresolved.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-nikkor-800mm-f8-ed",
@@ -114,7 +117,7 @@ const LENS_DATA = {
       vd: 44.3,
       indexReference: "d",
       focalLengthMm: -278.336772,
-      glass: "J-KZFH1 (HIKARI) — patent antimony flint 613443",
+      glass: "J-KZFH1 nonidentical spectral proxy (HIKARI; source antimony flint 1.61266/44.3, supplier unspecified)",
       apd: "patent",
       apdNote:
         "The patent selects antimony flint for the negative component for its partial-dispersion value k, paired with the phosphate crown to reduce secondary spectrum (US 3,774,991, printed pp. 1–3).",
@@ -130,7 +133,7 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       focalLengthMm: 436.601356,
-      glass: "570495 — barium flint class (supplier unresolved)",
+      glass: "H-BaF2 nonidentical spectral proxy (CDGM; source barium flint 1.56953/49.5, supplier unspecified)",
       role: "Positive barium-flint component completing the net-positive forward group.",
       diagramLabel: "L3",
     },
@@ -157,7 +160,7 @@ const LENS_DATA = {
       vd: 47,
       indexReference: "d",
       focalLengthMm: 373.836119,
-      glass: "624470 — BaF8-class / barium-flint coordinate (supplier unresolved)",
+      glass: "E-BAF8 nonidentical spectral proxy (HOYA; source 1.62399/47.0, supplier unspecified)",
       role: "Positive member cemented to L4; the L4+L5 pair is weakly negative overall.",
       diagramLabel: "L5",
       cemented: "D1",

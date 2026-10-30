@@ -15,7 +15,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters.  Estimated from the        ║
- * ║    f/2.8 ray envelope, then visually tuned against Nikon's         ║
+ * ║    f/2.89 source-design ray envelope, then visually tuned against Nikon's         ║
  * ║    construction diagram: dominant front pair, stepped-down middle  ║
  * ║    ED/doublet cluster, and compact rear group.  Values remain      ║
  * ║    within edge-thickness (L33 binding), cross-gap sag (≤ 90%),    ║
@@ -28,6 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    ✗ DO NOT include: parent/donor designs (use final design only) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
+
+// Fresh Figure 1: S2/S6 lands retain existing clear caps; continuous growth respects the coupled gaps.
+// Source Table 1 nd/vd pairs are unchanged; L21 uses the closer J-FKH1 curve, not a production identity.
+// Table FNO 2.89 is retained despite Figure 2A 2.87; marketing remains f/2.8.
 
 const LENS_DATA = {
   /* ── Identity ── */
@@ -73,7 +77,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -117.6,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V spectral proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Front negative meniscus of G1 (neg). Convex toward object. High-index lanthanum flint sets up retrofocus divergence and controls distortion across the wide field.",
     },
@@ -97,10 +101,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.56,
       focalLengthMm: -45.3,
-      glass: "Nikon ED glass (near S-FPL51 / FCD1)",
+      glass: "J-FKH1 spectral proxy (HIKARI; source 1.49782/82.56, supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "ED (extra-low dispersion) glass; anomalous partial dispersion inferred from FPL51-family optical properties",
+        "ED position inferred from the production correlation and low source dispersion; source supplies no numerical partial-dispersion data or material identity",
       role: "ED element and principal diverging element of the retrofocus system. Strongest negative power (|f| ≈ 45 mm ≈ system EFL). Very high νd (82.56) minimizes chromatic dispersion; anomalous PD corrects secondary spectrum.",
     },
     {
@@ -111,7 +115,7 @@ const LENS_DATA = {
       nd: 1.788,
       vd: 47.38,
       focalLengthMm: 47.4,
-      glass: "N-LAF21 type (Schott)",
+      glass: "N-LAF21 nonidentical spectral proxy (SCHOTT; source 1.78800/47.38, supplier unspecified)",
       apd: false,
       role: "Positive element of the cemented doublet in G2 (neg). Partially counteracts L21's divergence and provides opposite chromatic sign for achromatic correction within G2.",
       cemented: "D1",
@@ -124,7 +128,7 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.72,
       focalLengthMm: -104.9,
-      glass: "S-TIL26 (OHARA, 567428)",
+      glass: "S-TIL26 nonidentical spectral proxy (OHARA; source 1.56732/42.72, supplier unspecified)",
       apd: false,
       role: "Negative element of the cemented doublet in G2 (neg). L22+L23 form a net positive doublet (f ≈ +81 mm) that corrects L21's chromatic contribution while maintaining G2's net negative character.",
       cemented: "D1",
@@ -137,7 +141,7 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.38,
       focalLengthMm: 42.1,
-      glass: "S-PHM52Q (OHARA)",
+      glass: "S-PHM52Q spectral proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Primary converging element of G3 (pos), placed immediately before the aperture stop. Strongest positive power in the system (f ≈ 42 mm). Phosphate crown glass minimizes chromatic contribution. Patent identifies L31 as the preferred VR element.",
     },
@@ -149,7 +153,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.52,
       focalLengthMm: -27.3,
-      glass: "SF1 (Schott) / FD60 (HOYA)",
+      glass: "SF1 spectral proxy (SCHOTT; supplier unspecified)",
       apd: false,
       role: "Strongest negative element in G3 (pos). Dense flint (νd = 29.52) provides dominant negative chromatic power for axial and lateral color correction. Thickest element (9.2 mm); thick-lens effect exploited for higher-order aberration balancing. Largest single negative Petzval contribution.",
     },
@@ -161,7 +165,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.45,
       focalLengthMm: 71.1,
-      glass: "S-FSL5 (OHARA) / N-FK5 (Schott)",
+      glass: "N-FK5 spectral proxy (SCHOTT; source 1.48749/70.45, supplier unspecified)",
       apd: false,
       role: "Field-flattening positive meniscus (convex toward image) in G3 (pos). High νd (70.45) corrects lateral chromatic aberration per patent conditional expression (6): 60 < ν32 < 83.",
     },
@@ -173,7 +177,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       focalLengthMm: 61.2,
-      glass: "S-LAH65V (OHARA) / TAF3 (HOYA)",
+      glass: "S-LAH65V spectral proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Final optical element. High-index (1.804) allows strong positive power from gentle curvatures, minimizing higher-order aberrations. Rear-biased shape controls exit pupil location and telecentricity.",
     },
@@ -184,26 +188,26 @@ const LENS_DATA = {
   surfaces: [
     // ── G1 (negative): L11 + L12 ──
     { label: "1", R: 49.752, d: 3.0, sd: 22.5, medium: 1 }, // L11 front
-    { label: "2", R: 32.115, d: 5.7, sd: 20.8 }, // L11 rear → air
-    { label: "3", R: 130.0, d: 4.1, sd: 17.0, medium: 2 }, // L12 front
-    { label: "4", R: -492.062, sd: 15.6 }, // L12 rear → air (d4 variable, G1–G2 gap)
+    { label: "2", R: 32.115, d: 5.7, sd: 20.8, rimExtensionSd: 22.5 }, // L11 rear → air
+    { label: "3", R: 130.0, d: 4.1, sd: 19.5, medium: 2 }, // L12 front
+    { label: "4", R: -492.062, sd: 19.5 }, // L12 rear → air (d4 variable, G1–G2 gap)
 
     // ── G2 (negative): L21 (ED) + cemented L22+L23 ──
-    { label: "5", R: 138.964, d: 2.4, sd: 14.2, medium: 3 }, // L21 front (ED)
-    { label: "6", R: 19.308, d: 16.0, sd: 13.4 }, // L21 rear → air
+    { label: "5", R: 138.964, d: 2.4, sd: 17.4, medium: 3 }, // L21 front (ED)
+    { label: "6", R: 19.308, d: 16.0, sd: 13.4, rimExtensionSd: 17.4 }, // L21 rear → air
     { label: "7", R: 42.141, d: 4.6, sd: 12.3, medium: 4 }, // L22 front
     { label: "8", R: -310.529, d: 2.4, sd: 11.8, medium: 5 }, // L22→L23 junction
     { label: "9", R: 73.8, sd: 11.8 }, // L23 rear → air (d9 variable, G2–G3 gap)
 
     // ── G3 (positive): L31, stop, L32, L33, L34 ──
     { label: "10", R: 80.318, d: 6.0, sd: 12.8, medium: 6 }, // L31 front
-    { label: "11", R: -37.349, d: 1.0, sd: 12.2 }, // L31 rear → air
+    { label: "11", R: -37.349, d: 1.0, sd: 12.8 }, // L31 rear → air
     { label: "STO", R: "flat", d: 4.5 }, // Aperture stop (9 blades, rounded)
     { label: "13", R: -28.492, d: 9.2, sd: 11.8, medium: 7 }, // L32 front
     { label: "14", R: 70.877, d: 1.9, sd: 12.2 }, // L32 rear → air
     { label: "15", R: -95.52, d: 3.2, sd: 11.7, medium: 8 }, // L33 front
     { label: "16", R: -25.721, d: 0.1, sd: 12.2 }, // L33 rear → air
-    { label: "17", R: 270.998, d: 3.4, sd: 12.4, medium: 9 }, // L34 front
+    { label: "17", R: 270.998, d: 3.4, sd: 12.8, medium: 9 }, // L34 front
     { label: "18", R: -59.752, sd: 12.8 }, // L34 rear → image (BFD)
   ],
 

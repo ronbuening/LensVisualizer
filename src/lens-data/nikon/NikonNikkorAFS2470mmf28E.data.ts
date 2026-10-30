@@ -39,8 +39,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  are checked against an exact real-ray trace (Y = 21.6 mm, FNo 2.92, ║
  * ║  all stations) and Fig. 1 (W row, 300 dpi, 0.1466 mm/px). Surface 1  ║
  * ║  (32.0), L21 (17.8), 14/15 (17.9) and G3 (11.5–13.4) follow the      ║
- * ║  figure or the ray floor; G1 rear, L22–L26 and G4 are within ~15 %   ║
- * ║  of the figure and retained as earlier estimates.                    ║
+ * ║  figure or ray floor. G1 now follows the source full rims: rear      ║
+ * ║  asphere cap 25.5 with land to 32; hybrid rims 25.5; HRI pair 24.9.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.74389,
       vd: 49.5,
       focalLengthMm: -53.4,
-      glass: "M-NBF1 (Hoya catalog equivalent; patent code 744495, supplier unspecified)",
+      glass: "M-NBF1 (Hoya catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Front element; aspherical rear corrects wide-angle distortion and SA",
     },
@@ -94,7 +94,7 @@ const LENS_DATA = {
       nd: 1.56093,
       vd: 36.6,
       focalLengthMm: 2115.9,
-      glass: "UV-curing resin",
+      glass: "Resin layer; chemistry and supplier unspecified",
       apd: false,
       role: "Composite aspherical resin layer on L12g; corrects field curvature and astigmatism",
       cemented: "H1",
@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -55.2,
-      glass: "J-LASF015 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-LASF015 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Glass body of composite aspherical; strong negative power for G1 divergence",
       cemented: "H1",
@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: 80.2,
-      glass: "TAFD55 (HOYA catalog equivalent, 001291 HRI; S-LAH99 same code; patent gives nd/νd only)",
+      glass: "TAFD55 (Hoya catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "HRI element (nd > 2.0); field flattener with reduced Petzval contribution",
     },
@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       focalLengthMm: 194.6,
-      glass: "J-PSKH4 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSKH4 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Weak positive; gentle convergence at G2 entry",
     },
@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       focalLengthMm: 121.5,
-      glass: "J-PSKH4 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSKH4 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Continues convergence with Petzval-friendly meniscus shape",
     },
@@ -157,7 +157,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       focalLengthMm: 89.4,
-      glass: "J-PSKH4 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSKH4 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Crown element of achromatic doublet; corrects axial chromatic aberration",
       cemented: "Ja",
@@ -170,7 +170,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: -37.5,
-      glass: "J-LASFH13 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-LASFH13 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Flint element of achromatic doublet; net doublet power is negative (−67.6 mm)",
       cemented: "Ja",
@@ -183,7 +183,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 71.2,
-      glass: "J-LASF016 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-LASF016 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Strongest positive element in G21; bulk converging power",
     },
@@ -196,7 +196,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.6,
       focalLengthMm: 64.0,
-      glass: "J-LASF09A (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-LASF09A (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Relay element between focusing group and stop; fixed during focus",
     },
@@ -209,7 +209,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -33.4,
-      glass: "J-LASF015 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-LASF015 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Strong negative; re-collimates converging beam for VR group feed",
     },
@@ -221,7 +221,7 @@ const LENS_DATA = {
       nd: 1.603,
       vd: 65.4,
       focalLengthMm: -129.7,
-      glass: "J-PSK03 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSK03 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED candidate by glass family only (J-PSK03 phosphate crown); the patent gives nd/νd only and does not identify ED elements.",
@@ -235,7 +235,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 51.5,
-      glass: "J-SF03 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-SF03 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Positive flint; forms air-spaced achromat with L31/L32 for lateral color correction",
     },
@@ -248,7 +248,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       focalLengthMm: -72.6,
-      glass: "J-PSKH4 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSKH4 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "VR primary element; low-dispersion glass minimizes chromatic penalty of decentration",
     },
@@ -260,7 +260,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       focalLengthMm: 180.9,
-      glass: "J-SF6 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-SF6 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "VR corrector; weak positive flint compensates L34 chromatic contribution",
     },
@@ -273,9 +273,9 @@ const LENS_DATA = {
       nd: 1.55332,
       vd: 71.7,
       focalLengthMm: 106.8,
-      glass: "M-FCD500 (HOYA catalog equivalent, 553717 mold-press ED; patent gives nd/νd only)",
+      glass: "M-FCD500 (Hoya catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "M-FCD500-class mold-press ED glass matching Nikon's ASP/ED element; the patent gives nd/νd only.",
+      apdNote: "Inferred ASP/ED position from source geometry, material coordinate and production correlation; M-FCD500 is a catalog spectral proxy, not a production melt or molding-process identification.",
       role: "Combined aspherical + ED correction; spherical base (κ = 1) with positive A4 controls zonal SA",
     },
     {
@@ -286,7 +286,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -101.1,
-      glass: "S-LAH55 (OHARA catalog equivalent, 835427; patent gives nd/νd only)",
+      glass: "S-LAH55 (Ohara catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Dense crown element of achromatic doublet; fine-tunes axial color",
       cemented: "Jb",
@@ -299,7 +299,7 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 67.9,
       focalLengthMm: 56.3,
-      glass: "J-PSKH1 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-PSKH1 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: "inferred",
       apdNote: "ED candidate by glass family (J-PSKH1 phosphate crown); the patent gives nd/νd only.",
       role: "Crown in doublet (net +128.1 mm); possible second ED element",
@@ -313,9 +313,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 44.8,
-      glass: "J-FKH1 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-FKH1 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "J-FKH1 fluorophosphate ED glass (S-FPL51 class); the patent gives nd/νd only.",
+      apdNote: "Inferred ED position by low-dispersion coordinate and production correlation; J-FKH1 is only a spectral proxy, with no source partial dispersion or production-supplier identification.",
       role: "ED element; primary secondary-spectrum correction in rear triplet",
       cemented: "Tc",
     },
@@ -327,7 +327,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       focalLengthMm: -37.1,
-      glass: "J-SF6 (HIKARI catalog equivalent; patent gives nd/νd only)",
+      glass: "J-SF6 (Hikari catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Dense flint in triplet; complementary dispersion for rear-group chromatic correction",
       cemented: "Tc",
@@ -340,7 +340,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.3,
       focalLengthMm: 180.6,
-      glass: "LAC13 (HOYA catalog equivalent, 694533; patent gives nd/νd only)",
+      glass: "LAC13 (Hoya catalog spectral proxy; patent nd/vd retained; production supplier unspecified)",
       apd: false,
       role: "Third glass in triplet; aspherical rear (surface 39A) corrects residual field curvature",
       cemented: "Tc",
@@ -356,7 +356,8 @@ const LENS_DATA = {
       label: "2A",
       R: 29.6367,
       d: 15.36,
-      sd: 23.8,
+      sd: 25.5,
+      rimExtensionSd: 32.0,
       // Patent Eq. (a) uses κ with κ = 1 for a sphere; stored K = κ − 1.
       asphere: { K: -1, A4: 2.2151e-6, A6: 2.5769e-9, A8: -6.015e-12, A10: 1.092e-14, A12: -7.29e-18 },
     },
@@ -364,7 +365,7 @@ const LENS_DATA = {
       label: "3A",
       R: -197.50816,
       d: 0.2,
-      sd: 22.8,
+      sd: 25.5,
       medium: 2,
       asphere: {
         K: 0,
@@ -375,10 +376,10 @@ const LENS_DATA = {
         A12: -3.4337e-18,
       },
     }, // L12r resin front (asph)
-    { label: "4", R: -169.39125, d: 2.1, sd: 23.4, medium: 3 }, // L12r→L12g junction
-    { label: "5", R: 60.51496, d: 0.15, sd: 23.8 },
-    { label: "6", R: 52.85097, d: 5.6, sd: 22.0, medium: 4 }, // L13 HRI
-    { label: "7", R: 146.47986, sd: 22.4 }, // D7 variable (zoom+focus)
+    { label: "4", R: -169.39125, d: 2.1, sd: 25.5, medium: 3 }, // L12r→L12g junction
+    { label: "5", R: 60.51496, d: 0.15, sd: 25.5 },
+    { label: "6", R: 52.85097, d: 5.6, sd: 24.9, medium: 4 }, // L13 HRI
+    { label: "7", R: 146.47986, sd: 24.9 }, // D7 variable (zoom+focus)
 
     // ── G21 (focusing, positive): L21, L22, L23+L24 (cemented), L25 ──
     { label: "8", R: 148.41161, d: 3.0, sd: 17.8, medium: 5 },

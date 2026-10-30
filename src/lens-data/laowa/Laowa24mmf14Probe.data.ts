@@ -11,8 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Compound wide-angle macro: Objective + Relay + Macro.             ║
  * ║  27 elements / 19 groups, 0 aspherical surfaces.                  ║
  * ║  Focus: inner focus — single positive element (L23) translates.   ║
- * ║  All-spherical design. f/14 (slow), 2ω ≈ 84.1° (135 format).     ║
+ * ║  All-spherical design. f/14; marketed 2ω ≈ 84.1° (135 format).     ║
  * ║                                                                    ║
+ * Glass labels below are coordinate-compatible spectral proxies, not source-named suppliers.
+ * Original Example 1 tables (PDF pp6–8) supply d-line nd/vd only; ED/APD flags are inferred.
+ * Fresh F-mount review 2026-10-30: Example 1 Figure 1 and all d-line media rows retained.
+ * No additional resolved cap-end land supports a cut/extension; patent design half-field is 44.6°.
  * ║  NOTE ON P1 ROD LENS:                                              ║
  * ║    Patent surfaces 3–6 describe a thick rod lens with internal     ║
  * ║    flat surfaces (prism fold planes in straight-through mode).     ║
@@ -44,7 +48,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    Source lists no separate camera-side cover/filter plate.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -59,7 +63,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-fe", "pentax-k", "canon-rf", "nikon-z", "l-mount"],
     imageFormat: "135-full-frame",
-    specs: ["27 ELEMENTS / 19 GROUPS", "f ≈ 23.7 mm", "F/14", "2ω ≈ 84.1°", "ALL SPHERICAL"],
+    specs: ["27 ELEMENTS / 19 GROUPS", "f ≈ 23.7 mm", "F/14", "MARKETED 2ω ≈ 84.1°", "ALL SPHERICAL"],
     elementCount: 27,
     groupCount: 19,
     /* ── Explicit metadata ── */
@@ -123,7 +127,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -8.5,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Dense flint partner in achromatizing doublet",
       cemented: "D1",
@@ -136,7 +140,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -27.3,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Flint-leading element in achromatic doublet D2",
       cemented: "D2",
@@ -176,7 +180,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 0,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Prism P2 unfolded — zero power in straight-through mode",
     },
@@ -188,7 +192,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 0,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Prism P3 unfolded — zero power in straight-through mode",
     },
@@ -202,7 +206,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -132.8,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Relay entry — weakly negative meniscus",
     },
@@ -214,7 +218,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 8.3,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Primary converging element, relay first half",
       cemented: "D3",
@@ -307,7 +311,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 8.3,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Mirror of L9 — relay symmetry partner",
       cemented: "D6",
@@ -320,7 +324,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -132.8,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Relay exit — mirror of L8",
     },
@@ -358,7 +362,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -17.9,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Dense flint in achromatizing triplet T1",
       cemented: "T1",
@@ -399,7 +403,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 69.3,
-      glass: "H-ZF88A (CDGM)",
+      glass: "S-TIH53 (OHARA spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Focus element (Foc) — sole moving element for inner focus",
     },

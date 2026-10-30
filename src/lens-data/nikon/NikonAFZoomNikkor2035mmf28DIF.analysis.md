@@ -57,6 +57,8 @@ The patent supplies the diaphragm symbol **S** between G2 and G3 but no numerica
 
 The patent also publishes no surface semi-diameters. The semi-diameters in the data model are inferred clear apertures derived from exact spherical/aspherical ray tracing across all three zoom states, the 36×24 mm frame diagonal, the F/2.89 pupil requirement, axial marginal rays, and off-axis bundles. They are therefore modeling quantities rather than source dimensions. No layout control is used to conceal a geometric conflict.
 
+Figure 1 (PDF page 2) clearly ends L11's concave rear curve below its outer edge. Surface 2 retains its 16.5 mm clear cap and now draws a flat opaque land to the 21.2 mm outer radius. The illustrated cap/edge ratio is about 0.70; the adopted ratio is 0.778 because the existing traced clear cap is retained. This is a qualified silhouette correction, not a patent-published aperture or an enlargement of the optical cap. The remaining convex, concave, and cemented faces were rechecked; no other distinct land was resolved.
+
 ## Element-by-Element Analysis
 
 ### L11 — Negative Meniscus with Object-Side Asphere

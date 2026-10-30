@@ -47,7 +47,7 @@ The resin layer has nd = 1.56093 and νd = 36.64 and contributes only weak addit
 
 ### L12 — Negative meniscus in G1 cemented doublet
 
-nd = 1.62299, νd = 58.12. Glass: J-SK15 (HIKARI); N-SK15 / S-BSM15 / BACD15 class. f = −30.61 mm.
+nd = 1.62299, νd = 58.12. Glass: S-BSM15 (qualified catalog spectral proxy; supplier unspecified). f = −30.61 mm.
 
 L12 is the negative front member of the G1 rear cemented doublet. Its front surface is very weak, while the cemented interface to L13 is strongly curved. This places most of the element's paraxial power and chromatic contribution at the internal interface, where it can be paired directly with the following high-dispersion positive element.
 
@@ -97,13 +97,13 @@ The stop is listed as surface 16 in the patent table and lies after L43. In the 
 
 ### L51 — Positive meniscus in G5 cemented doublet
 
-nd = 1.75520, νd = 27.57. Glass: J-SF4 (HIKARI); S-TIH4 / N-SF4 / E-FD4 class. f = +26.09 mm.
+nd = 1.75520, νd = 27.57. Glass: E-FD4 (qualified catalog spectral proxy; supplier unspecified). f = +26.09 mm.
 
 L51 is a positive element made from a high-dispersion dense flint. That is not a conventional positive crown choice; it is used here because G5 as a cemented pair is a negative aberration-correction group, not a simple positive relay group. L51's high dispersion and strong cemented interface prepare the following negative element to generate a net negative doublet with controlled chromatic behavior.
 
 ### L52 — Biconcave negative in G5 cemented doublet
 
-nd = 1.70154, νd = 41.02. Glass: J-BASF7 (HIKARI); S-BAH27 / BAFD7 class. f = −14.51 mm.
+nd = 1.70154, νd = 41.02. Glass: BAFD7 (qualified catalog spectral proxy; supplier unspecified). f = −14.51 mm.
 
 L52 is the strong negative rear member of G5. The L51/L52 cemented group has f = −31.47 mm and constitutes the fifth group's negative power. It floats between the stop/G4 side and G6 as the zoom changes, correcting zoom-dependent field and coma behavior in the rear half of the lens.
 
@@ -123,21 +123,21 @@ L62 supplies most of G6's positive power. It is the final glass element before t
 
 ## Glass Identification and Selection
 
-The prior draft over-identified several glasses as OHARA types that do not match the stored nd/νd pairs. The corrected data file uses HIKARI J-series exact matches where available, with cross-vendor classes listed only as equivalents. This is consistent with a Nikon patent because HIKARI is Nikon's optical-glass affiliate and publishes J-series catalog data matching these six-digit glass codes.
+The patent supplies d-line nd/νd, but no production vendor or melt identities and no partial-dispersion values. The data names the coordinate-compatible curves selected by the current resolver as qualified spectral proxies. L12 uses S-BSM15, L51 uses E-FD4, and L52 uses BAFD7; the former mixed-vendor labels obscured those actual selections. The resin formulation and plastic polymer remain unresolved; no C/F/g indices or measured APD claims are authored.
 
 | Element | nd | νd | Corrected catalog identification | Note |
 |:--|--:|--:|:--|:--|
 | L11 glass | 1.58913 | 61.22 | J-SK5 (HIKARI), 589/612 | Equivalent class includes S-BAL35 / P-SK58A |
-| L11 resin | 1.56093 | 36.64 | UV-curable resin | Patent material, not public glass catalog |
-| L12 | 1.62299 | 58.12 | J-SK15 (HIKARI), 623/581 | Prior S-PHM52 assignment rejected |
+| L11 resin | 1.56093 | 36.64 | Resin layer (formulation unresolved) | Patent material, not public glass catalog |
+| L12 | 1.62299 | 58.12 | S-BSM15 proxy | Prior S-PHM52 assignment rejected |
 | L13 | 1.84666 | 23.80 | J-SF03 (HIKARI), 847/238 | Dense flint; OHARA S-TIH53-class equivalent |
 | L21 | 1.48749 | 70.31 | J-FK5 (HIKARI), 487/703 | OHARA S-FSL5 / Schott N-FK5 class |
 | L31 | 1.77250 | 49.62 | J-LASF016 (HIKARI), 773/496 | Prior S-LAH55VS assignment rejected |
 | L41 | 1.48749 | 70.31 | J-FK5 (HIKARI), 487/703 | Same as L21 |
 | L42 | 1.48749 | 70.31 | J-FK5 (HIKARI), 487/703 | Same as L21 |
 | L43 | 1.84666 | 23.80 | J-SF03 (HIKARI), 847/238 | Same as L13 |
-| L51 | 1.75520 | 27.57 | J-SF4 (HIKARI), 755/276 | Prior S-TIH14 assignment rejected |
-| L52 | 1.70154 | 41.02 | J-BASF7 (HIKARI), 702/410 | Barium dense flint class |
+| L51 | 1.75520 | 27.57 | E-FD4 proxy | Prior S-TIH14 assignment rejected |
+| L52 | 1.70154 | 41.02 | BAFD7 proxy | Barium dense flint class |
 | L61 | 1.52444 | 56.21 | Optical plastic | Patent material, not public glass catalog |
 | L62 | 1.51680 | 63.88 | J-BK7A / S-BSL7 / N-BK7 class | Patent νd is slightly below J-BK7A catalog νd; class assignment retained |
 
@@ -214,6 +214,10 @@ Independent paraxial ray tracing was re-run from the patent prescription using a
 | G6 focal length | +46.90 mm | +46.9030 mm |
 
 The Petzval sum was computed surface-by-surface as Σ φ/(n n′), not by thin-lens element approximation. The result is +0.0017618 mm⁻¹, corresponding to a Petzval radius of −567.6 mm under the image-space sign convention used here.
+
+The nominal design apertures now follow the directly rechecked Table 1 FNO row: 3.64 / 4.62 / 5.88, replacing the marketed 3.5 / 4.5 / 5.6 values previously used by the design controls. The commercial name and useful stop choices are retained. The current derived-iris model reproduces all three design states.
+
+Figure 1 has a front hybrid cap ending at q≈0.78 of an approximately 20 mm outer semi-diameter. A candidate raising the front rim and extending S3A validated numerically, but actual SVG review showed that a resin-only land leaves the glass substrate tapered with a narrow wing. A source-faithful compound land would also have to terminate the cemented S2 profile; a spherical S2 rim of 20 mm exceeds its |R|=18.88 mm domain, and cemented-interface lands are not supported. The compound-land trial was rejected. A separate minimal S1-only increase from 15.3 to 17.8 mm clears the patent's Y=14.25 mm image height: its wide chief ray needs 17.76944 mm at 39.22279° (the 14.175 mm format corner needs 17.68101 mm at 39.05816°), whereas the former front rim stopped the modeled field at34.5° /12.19 mm image height (86% of the corner). The continuous front curve in Figure 1 supports the rise independently of the unsupported compound land. All other semi-diameters remain unchanged; the fresh coverage audit reaches the corner at all three stations. No exposed concave land elsewhere is independently resolved; visible L12/L13 steps are cemented.
 
 Semi-diameter verification was also re-run after applying the corrected conic convention. The limiting adopted edge thicknesses are approximately 0.43 mm for L21, 0.47 mm for L41, 0.47 mm for L51, 0.43 mm for L62, and 0.475 mm for the L11 resin layer. The maximum sd/|R| ratio is 0.862 on surface 3A. No adopted surface exceeds the renderer's spherical/conic or cross-gap clearance constraints.
 

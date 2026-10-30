@@ -52,11 +52,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The patent publishes d-line index and Abbe number only. Glass      ║
  * ║  strings generally use six-digit classes rather than asserted      ║
  * ║  production vendors. Historical HIKARI E-LAF11 and J-LAK8 rows     ║
- * ║  reproduce L7/L8's d-line indices and published one-decimal Abbe   ║
- * ║  classes, so those coefficient-backed equivalents are identified.  ║
+ * They reproduce L7/L8 d-line indices with nonidentical Abbe values, rather than
+ * ordinary rounding of the source one-decimal values; identities stay qualified.
  * ║  nC, nF, ng, and dPgF remain unavailable and are not fabricated.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
+
+// Fresh Fig. 1 PDF2 at 600 dpi supports inferred S18 concave trim depth6.70/outer18.0.
+// All12 source n/ν pairs are retained; the source explicitly specifies spectrum line d.
 
 const LENS_DATA = {
   /* ── Identity ── */
@@ -199,7 +202,7 @@ const LENS_DATA = {
       nd: 1.75692,
       vd: 31.7,
       focalLengthMm: -271.716856,
-      glass: "E-LAF11 (HIKARI; historical 757316 match to patent 757317 class)",
+      glass: "E-LAF11 catalog proxy (HIKARI; 757316 versus patent 757317)",
       role: "Weak negative relay-front singlet with a coefficient-backed historical HIKARI class equivalent.",
     },
     {
@@ -210,7 +213,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: -82.941232,
-      glass: "J-LAK8 (HIKARI; 713540 match to patent 713539 class)",
+      glass: "J-LAK8 catalog proxy (HIKARI; 713540 versus patent 713539)",
       role: "Image-convex negative meniscus providing the rear relay's principal negative power.",
     },
     {
@@ -247,7 +250,7 @@ const LENS_DATA = {
     { label: "15", R: 795.392, d: 1, sd: 15 },
     { label: "16", R: -151.741, d: 2, sd: 15, medium: 10 },
     { label: "17", R: -582, d: 55.8, sd: 15 },
-    { label: "18", R: -23.129, d: 2.4, sd: 17.4, medium: 11 },
+    { label: "18", R: -23.129, d: 2.4, sd: 18, rimCutDepthMm: 6.70, medium: 11 },
     { label: "19", R: -39.626, d: 0.2, sd: 18 },
     { label: "20", R: 68.585, d: 5.3, sd: 18.2, medium: 12 },
     { label: "21", R: -138.19, d: 42.495, sd: 18.8 },

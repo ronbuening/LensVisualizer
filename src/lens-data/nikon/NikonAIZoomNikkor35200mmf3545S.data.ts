@@ -18,7 +18,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  the macro state numerically, not a full normal-focus spacing map. ║
  * ║                                                                    ║
  * ║  Stop placement: the patent table does not assign a stop surface.  ║
- * ║  Figure 3 and Nikon's cross-section place the aperture within G3.  ║
+ * ║  An inferred stop is retained within G3; Fig. 3 labels no iris.   ║
  * ║  This data file inserts a flat stop in the narrow L7-L8 air gap,   ║
  * ║  splitting patent d15 = 0.10 mm into 0.05 + STO + 0.05 mm.         ║
  * ║                                                                    ║
@@ -32,6 +32,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Table 2's infinity columns are f = 36.16 and 193.96 mm; these define the zoom
 // stations and catalog design range. The nominal range is 35–200 mm; the unchanged
 // prescription traces to 36.2278–194.8533 mm.
+// Fresh Figure 3, PDF p. 3 supports the inferred S7 concave cut (2.64 mm, outer 12.0 mm).
+// Its beam-adjusted cap is recorded in the audit. Existing tele aperture remains rim-limited at f/5.14.
+// All 17 source d-line n/ν pairs remain. Compatible catalog curves are proxies, not source suppliers.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s",
@@ -83,8 +87,8 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.28,
       focalLengthMm: 89.3,
-      glass: "FK / J-FKH1 class (fluorophosphate crown, 498/823)",
-      role: "Low-dispersion positive crown half of the front achromat.",
+      glass: "J-FKH1 catalog proxy (HIKARI; source 1.49782/82.28, composition unspecified)",
+      role: "Low-dispersion positive half of the front achromat.",
       cemented: "D1",
     },
     {
@@ -268,7 +272,7 @@ const LENS_DATA = {
     { label: "5", R: 127.19, sd: 22.0 },
 
     { label: "6", R: 133.06, d: 1.3, sd: 12.0, medium: 4 },
-    { label: "7", R: 23.64, d: 2.9, sd: 11.5 },
+    { label: "7", R: 23.64, d: 2.9, sd: 12, rimCutDepthMm: 2.64 },
     { label: "8", R: 154.62, d: 4.2, sd: 11.5, medium: 5 },
     { label: "9", R: -32.48, d: 1.1, sd: 11.3, medium: 6 },
     { label: "10", R: 117.17, d: 2.7, sd: 9.8 },

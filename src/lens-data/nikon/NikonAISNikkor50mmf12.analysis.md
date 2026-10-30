@@ -37,7 +37,7 @@ The surface sign convention is the patent convention used in the data file: posi
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.79668, νd = 45.5. Glass: unmatched Nikon/Hikari lanthanum glass, closest J-LASF017 / TAF2 class. f = +78.0 mm.
+nd = 1.79668, νd = 45.5. Glass: qualified J-LASF017 spectral proxy, nonidentical to the source coordinate. f = +78.0 mm.
 
 L1 has r1 = +47.070 mm and r2 = +184.282 mm, making it a shallow positive meniscus with its sharper curvature facing the object. The patent describes this form as advantageous for aberration correction in a large-aperture lens. Its high index reduces curvature burden elsewhere and contributes to the low Petzval sum.
 
@@ -83,12 +83,12 @@ L7 has r12 = +92.000 mm and r13 = −277.852 mm. It is the single positive rear 
 
 ## Glass Identification and Selection
 
-The patent gives only nd and νd, not manufacturer glass names or partial-dispersion data. The identifications below are therefore catalog-class assignments unless the match is exact. Hikari/Nikon glass is preferred where a public match exists because Hikari is Nikon's optical-glass line; HOYA's cross-reference is used to map equivalent codes across Hoya, Schott, Ohara, Hikari, Sumita, and CDGM. HOYA explicitly cautions that cross-reference equivalence does not mean identical glass composition.
+The patent gives only refractive index and Abbe number, with no explicit wavelength in its table definitions, glass names, line-index data, or partial-dispersion table. Its coordinate families support the conventional stored d-line interpretation. All seven elements currently have compatible coefficient curves; these are spectral proxies, not production supplier or melt identities.
 
 | Element | Patent nd / νd | Catalog-class identification    | Match quality                                           |
 | ------- | -------------: | ------------------------------- | ------------------------------------------------------- |
 | L1      | 1.79668 / 45.5 | J-LASF017 / TAF2 class          | soft; Hikari J-LASF017 is 1.79500 / 45.31               |
-| L2      | 1.79631 / 41.0 | J-LASF02 / S-LAH52 class        | soft; Hikari J-LASF02 is 1.79952 / 42.09                |
+| L2 | 1.79631 / 41.0 | NBFD2 catalog spectral proxy | compatible current curve; supplier unestablished |
 | L3      | 1.71736 / 29.5 | J-SF1 / E-FD1L class            | strong; Hikari J-SF1 is 1.71736 / 29.57                 |
 | L4      | 1.75520 / 27.6 | J-SF4 / N-SF4 class             | strong; Hikari J-SF4 is 1.75520 / 27.57                 |
 | L5      | 1.77279 / 49.4 | J-LASF016 / TAF1 class          | strong class match; Hikari J-LASF016 is 1.77250 / 49.62 |
@@ -98,6 +98,10 @@ The patent gives only nd and νd, not manufacturer glass names or partial-disper
 The design relies heavily on high-index lanthanum glasses rather than anomalous partial-dispersion glass. Five of seven elements have nd above 1.74. The two dense flints, L3 and L4, supply the main high-dispersion negative powers, while L5/L6 and L7 hold the positive rear powers at high index. The computed surface-by-surface Petzval sum is P = 0.002615 mm−1, corresponding to a Petzval radius of about 382 mm and P·f ≈ 0.135. That value supports the patent's explicit warning that a low-index rear singlet would drive the Petzval sum too positive and harm astigmatism and coma correction.
 
 No apochromatic claim is made. The patent has no ED, fluorite, anomalous partial-dispersion, or line-index disclosure beyond nd and νd; the chromatic correction is that of a fast achromatized Gauss-type normal lens.
+
+Figure 1 shows the common architectural construction and its concave stop-adjacent end lands, rather than a separately dimensioned third-embodiment outline. The source Table 3 prints f/1.2; the former inferred caps limited the on-axis trace to about f/1.33 at S5. Minimal continuous beam-floor raises are S5 17.8, S8 19.2, S9 19.5, S10 20.8, and S11 21.1 mm (maximum 12.7%), with all source R/d unchanged. These remain inferred rendering apertures, not patent-specified diameters.
+
+With those opened caps, S6 and S7 retain their original 14.7 mm clear caps and gain outer lands to17.8 and19.2 mm respectively. The complete opened-prescription beam search reaches14.619236 and14.498920 mm, leaving the required0.05 mm margin at both. The common figure’s exact cap shares are not forced onto the third embodiment: applying deeper numeric cuts at8.70 mm passes the physical/beam checks but makes their combined17.4 mm sag exceed the drawing’s15.84 mm gap allowance. Those trials are rejected. The retained caps have combined sag15.823551 mm, so their complete lands remain visible with zero display trimming. The expanded compound interface and the five convex-cap floors are continuous, with no invented opaque ceiling or detached wing. Table3’s source stop position8.7 mm aheadr7 and all source R/d remain unchanged.
 
 ## Focus Mechanism
 

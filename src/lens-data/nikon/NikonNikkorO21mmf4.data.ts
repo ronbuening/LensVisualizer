@@ -31,7 +31,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the modeled 0.9 m state increases BF from 7.346550 to 7.875786 mm.        ║
  * ║                                                                            ║
  * ║ SPECTRAL DATA: The patent publishes nd and νd only. nC, nF, ng, and dPgF ║
- * ║ are intentionally omitted; glass labels are vendor-neutral classes.       ║
+ * ║ are intentionally omitted; compatible catalog curves are qualified spectral proxies.       ║
+ * ║  Reinspection 2026-10-30: Fig.2/PDF4 supports S2 land10.2→13 and   ║
+ * ║  S11 land8.8→12. Powered triplet steps remain approximate; opaque  ║
+ * ║  lands cannot be authored at their cement interfaces.              ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
  * Manufacturer identity reference:
@@ -74,7 +77,7 @@ const LENS_DATA = {
       nd: 1.6201,
       vd: 60.1,
       focalLengthMm: -23.417540891093882,
-      glass: "620603 — SK16 / BSM16 / BACD16 class",
+      glass: "BACD16 (Hoya; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Front negative collector; Group I.",
     },
@@ -86,7 +89,7 @@ const LENS_DATA = {
       nd: 1.7264,
       vd: 37.8,
       focalLengthMm: 16.22428982787574,
-      glass: "723380 — BAFD8 / S-BAH28 / J-BASF8 class",
+      glass: "J-BASF8 (Hikari; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive outer member of the front cemented triplet.",
       cemented: "GII",
@@ -99,7 +102,7 @@ const LENS_DATA = {
       nd: 1.6484,
       vd: 33.8,
       focalLengthMm: -8.165977470375733,
-      glass: "648338 — SF2 / E-FD2 / J-SF2 class",
+      glass: "J-SF2 (Hikari; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Negative central member of the front cemented triplet.",
       cemented: "GII",
@@ -112,7 +115,7 @@ const LENS_DATA = {
       nd: 1.5816,
       vd: 42.1,
       focalLengthMm: 9.236689830244343,
-      glass: "LF3 (Sumita coefficient-backed equivalent), 582420",
+      glass: "LF3 (Sumita; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive inner member of the front cemented triplet adjacent to the stop.",
       cemented: "GII",
@@ -125,7 +128,7 @@ const LENS_DATA = {
       nd: 1.517,
       vd: 58.8,
       focalLengthMm: 10.260016969483221,
-      glass: "518588–518590 — K3 / C3 / NSL3 class",
+      glass: "S-NSL3 (Ohara; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive inner member of the rear cemented triplet adjacent to the stop.",
       cemented: "GIII",
@@ -138,7 +141,7 @@ const LENS_DATA = {
       nd: 1.6484,
       vd: 33.8,
       focalLengthMm: -7.878934694706496,
-      glass: "648338 — SF2 / E-FD2 / J-SF2 class",
+      glass: "J-SF2 (Hikari; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Negative central member of the rear cemented triplet.",
       cemented: "GIII",
@@ -151,7 +154,7 @@ const LENS_DATA = {
       nd: 1.7264,
       vd: 37.8,
       focalLengthMm: 16.945460472109048,
-      glass: "723380 — BAFD8 / S-BAH28 / J-BASF8 class",
+      glass: "J-BASF8 (Hikari; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Positive outer member of the rear cemented triplet.",
       cemented: "GIII",
@@ -164,7 +167,7 @@ const LENS_DATA = {
       nd: 1.6422,
       vd: 58.2,
       focalLengthMm: -20.47421473662872,
-      glass: "LAK6 (Sumita coefficient-backed equivalent), 643581",
+      glass: "LAK6 (Sumita; approximate catalog spectral proxy; production supplier unspecified)",
       apd: false,
       role: "Rear negative collector; Group IV.",
     },
@@ -176,7 +179,7 @@ const LENS_DATA = {
    */
   surfaces: [
     { label: "1", R: 100.569, d: 0.8001, sd: 13.0, medium: 1 },
-    { label: "2", R: 12.6504, d: 11.9994, sd: 10.2 },
+    { label: "2", R: 12.6504, d: 11.9994, sd: 10.2, rimExtensionSd: 13.0 },
     { label: "3", R: 12.3942, d: 4.8993, sd: 7.7, medium: 2 },
     { label: "4", R: -199.9998, d: 0.9996, sd: 7.7, medium: 3 },
     { label: "5", R: 5.4495, d: 4.0992, sd: 4.3, medium: 4 },
@@ -187,7 +190,7 @@ const LENS_DATA = {
     { label: "8", R: -5.2395, d: 0.9996, sd: 4.2, medium: 6 },
     { label: "9", R: 220.0002, d: 5.5503, sd: 6.7, medium: 7 },
     { label: "10", R: -12.9003, d: 11.6004, sd: 6.7 },
-    { label: "11", R: -10.9809, d: 0.8001, sd: 8.8, medium: 8 },
+    { label: "11", R: -10.9809, d: 0.8001, sd: 8.8, rimExtensionSd: 12.0, medium: 8 },
     // Patent omits the image distance; d is the solved paraxial BFD from r42 to IMG.
     { label: "12", R: -68.5062, sd: 12.0 },
   ],

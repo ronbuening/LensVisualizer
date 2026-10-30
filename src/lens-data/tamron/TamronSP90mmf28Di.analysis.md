@@ -154,41 +154,41 @@ The element contributes negative field-curvature and chromatic power near the im
 
 ## Glass Identification and Selection
 
-The patent supplies only $n_d$ and $\nu_d$; it does not name glass vendors. Identifications therefore use current public manufacturer catalogs and are graded according to whether the numeric pair is unique.
+The patent supplies only $n_d$ and $\nu_d$; it does not name glass vendors. Glass labels therefore denote qualified compatible current catalog curves. A coordinate match never establishes production supplier, historical melt or a unique physical material.
 
-| Element | Patent $n_d$ | Patent $\nu_d$ | Catalog identification | Confidence | Function |
-|---|---:|---:|---|---|---|
-| L1 | 1.77250 | 49.60 | OHARA S-LAH66N / HOYA TAF1 equivalent | Ambiguous vendor | High-index front positive |
-| L2 | 1.43700 | 95.10 | HOYA FCD100 | Exact | XLD positive in D1 |
-| L3 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Dense-flint negative in D1 |
-| L4 | 1.43700 | 95.10 | HOYA FCD100 | Exact | Second XLD positive |
-| L5 | 1.81600 | 46.62 | OHARA S-LAH59 | Exact | High-index negative |
-| L6 | 1.48749 | 70.24 | OHARA S-FSL5 | Near-exact; catalog $\nu_d=70.23$ | Low-dispersion negative |
-| L7 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Positive dense-flint balance |
-| L8 | 1.59282 | 68.62 | HOYA FCD515 | Exact | LD moving positive |
-| L9 | 1.72825 | 28.46 | OHARA S-TIH10 | Exact | Negative member of D2 |
-| L10 | 1.67790 | 55.35 | OHARA S-LAL12Q | Exact | Positive member of D2 |
-| L11 | 1.58913 | 61.13 | OHARA S-BAL35 | Near-exact; catalog $\nu_d=61.14$ | Negative member of VC D3 |
-| L12 | 1.80518 | 25.42 | OHARA S-TIH6 | Exact | Positive member of VC D3 |
-| L13 | 1.72000 | 50.23 | OHARA S-LAL10 | Exact | Rear positive |
-| L14 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Rear negative |
+| Element | Patent $n_d$ | Patent $\nu_d$ | Catalog identification                | Confidence                        | Function                     |
+| ------- | -----------: | -------------: | ------------------------------------- | --------------------------------- | ---------------------------- |
+| L1      |      1.77250 |          49.60 | OHARA S-LAH66N / HOYA TAF1 equivalent | Ambiguous vendor                  | High-index front positive    |
+| L2      |      1.43700 |          95.10 | HOYA FCD100                           | Compatible proxy                  | XLD positive in D1           |
+| L3      |      1.84666 |          23.78 | HOYA FDS90                            | Compatible proxy                  | Dense-flint negative in D1   |
+| L4      |      1.43700 |          95.10 | HOYA FCD100                           | Compatible proxy                  | Second XLD positive          |
+| L5      |      1.81600 |          46.62 | OHARA S-LAH59                         | Compatible proxy                  | High-index negative          |
+| L6      |      1.48749 |          70.24 | OHARA S-FSL5                          | Near-exact; catalog $\nu_d=70.23$ | Low-dispersion negative      |
+| L7      |      1.84666 |          23.78 | HOYA FDS90                            | Compatible proxy                  | Positive dense-flint balance |
+| L8      |      1.59282 |          68.62 | HOYA FCD515                           | Compatible proxy                  | LD moving positive           |
+| L9      |      1.72825 |          28.46 | OHARA S-TIH10                         | Compatible proxy                  | Negative member of D2        |
+| L10     |      1.67790 |          55.35 | OHARA S-LAL12Q                        | Compatible proxy                  | Positive member of D2        |
+| L11     |      1.58913 |          61.13 | OHARA S-BAL35                         | Near-exact; catalog $\nu_d=61.14$ | Negative member of VC D3     |
+| L12     |      1.80518 |          25.42 | OHARA S-TIH6                          | Compatible proxy                  | Positive member of VC D3     |
+| L13     |      1.72000 |          50.23 | OHARA S-LAL10                         | Compatible proxy                  | Rear positive                |
+| L14     |      1.84666 |          23.78 | HOYA FDS90                            | Compatible proxy                  | Rear negative                |
 
 The palette contains seven elements with $\nu_d < 50$ and seven with $\nu_d \ge 50$. This numerical crown/flint split is more informative than family names alone: L1 and L5 remain flint-class by dispersion despite being lanthanum-family glasses.
 
-The data file includes current OHARA C-, F-, and g-line indices and $\Delta P_{gF}$ values for the unambiguous OHARA matches. Those fields come from the public catalog rather than from the patent. HOYA glass names are retained without invented line indices when only the $n_d$/$\nu_d$ match was independently available.
+Catalog-only per-element C/F/g and partial-dispersion copies were removed on2026-10-30; no such anchors occur in the source. Qualified current coefficient curves now supply the spectral proxies for all14 elements directly. Source nd/νd stay literal, including the disclosed small current-catalog Abbe differences. XLD/LD position tags remain inferred, not patent measurements.
 
 ## Focus Mechanism
 
 The lens uses three-group floating inner focus. G1, G5, and G6 remain fixed along the optical axis. G2, G3, and G4 move independently while the stop stays at a fixed axial station.
 
-| Quantity | Infinity | 1:2 | 1:1 | Infinity-to-1:1 change |
-|---|---:|---:|---:|---:|
-| D(7), G1-to-G2 gap | 1.2000 mm | 9.8415 mm | 19.2488 mm | +18.0488 mm |
-| D(13), G2-to-stop gap | 20.0500 mm | 11.4085 mm | 2.0012 mm | −18.0488 mm |
-| D(14), stop-to-G3 gap | 14.0000 mm | 9.2987 mm | 1.7000 mm | −12.3000 mm |
-| D(16), G3-to-G4 gap | 6.7201 mm | 1.0992 mm | 1.4506 mm | −5.2695 mm |
-| D(19), G4-to-G5 gap | 1.7996 mm | 12.1217 mm | 19.3690 mm | +17.5694 mm |
-| Folded final BFD | 46.7393 mm | 46.7793 mm | 46.7641 mm | +0.0248 mm |
+| Quantity              |   Infinity |        1:2 |        1:1 | Infinity-to-1:1 change |
+| --------------------- | ---------: | ---------: | ---------: | ---------------------: |
+| D(7), G1-to-G2 gap    |  1.2000 mm |  9.8415 mm | 19.2488 mm |            +18.0488 mm |
+| D(13), G2-to-stop gap | 20.0500 mm | 11.4085 mm |  2.0012 mm |            −18.0488 mm |
+| D(14), stop-to-G3 gap | 14.0000 mm |  9.2987 mm |  1.7000 mm |            −12.3000 mm |
+| D(16), G3-to-G4 gap   |  6.7201 mm |  1.0992 mm |  1.4506 mm |             −5.2695 mm |
+| D(19), G4-to-G5 gap   |  1.7996 mm | 12.1217 mm | 19.3690 mm |            +17.5694 mm |
+| Folded final BFD      | 46.7393 mm | 46.7793 mm | 46.7641 mm |             +0.0248 mm |
 
 D(7)+D(13) remains 21.2500 mm in all three states, proving that G2 translates 18.0488 mm imageward while the stop remains fixed. G3's position is controlled directly by D(14), which decreases monotonically; G3 therefore moves 12.3000 mm objectward. The position of G4 relative to the stop is D(14) plus the L8 center thickness plus D(16), giving 17.5695 mm of objectward travel. D(19) increases by the same amount, keeping G5 fixed.
 
@@ -196,11 +196,11 @@ The non-monotonic D(16) values do not mean G3 reverses direction. They record th
 
 The independently traced conjugates are:
 
-| State | Computed EFL | Object distance from first surface | Object-to-image distance | Paraxial magnification |
-|---|---:|---:|---:|---:|
-| Infinity | 92.5564 mm | effectively infinite | — | — |
-| 1:2 table state | 81.7477 mm | 217.3499 mm | 376.1247 mm | −0.49428× |
-| 1:1 table state | 64.9771 mm | 140.5468 mm | 299.3064 mm | −1.00033× |
+| State           | Computed EFL | Object distance from first surface | Object-to-image distance | Paraxial magnification |
+| --------------- | -----------: | ---------------------------------: | -----------------------: | ---------------------: |
+| Infinity        |   92.5564 mm |               effectively infinite |                        — |                      — |
+| 1:2 table state |   81.7477 mm |                        217.3499 mm |              376.1247 mm |              −0.49428× |
+| 1:1 table state |   64.9771 mm |                        140.5468 mm |              299.3064 mm |              −1.00033× |
 
 The 1:1 object-to-image distance agrees with Tamron's 0.30 m published minimum focus distance. The calculated distance from the first optical surface to the object is 140.55 mm; Tamron publishes a 139 mm working distance. The small difference is consistent with measuring working distance from the mechanical front of the lens rather than the first surface vertex.
 
@@ -230,16 +230,16 @@ The design should therefore be described as strongly chromatically corrected, no
 
 The patent defines seven conditions. Values below use the printed prescription and independently computed first-order focal lengths. Where the patent's derived table uses its inconsistent $R_{n1}$ value, both figures are shown.
 
-| Condition | Required range | Verified value | Result |
-|---|---:|---:|---|
-| $(R_{n1}-R_{n2})/(R_{n1}+R_{n2})$ | $<0$ | −1.11866 from printed $R_{n1}=-90.2962$ mm; patent table −1.121 | Satisfied |
-| $n_{d1}$ | $<1.6$ | 1.54883 | Satisfied |
-| $\nu_{d1}$ | $>67.5$ | 79.933 | Satisfied |
-| $\nu_{d3}$ | $55<\nu_{d3}<75$ | 68.62 | Satisfied |
-| $n_{d3}$ | $1.55<n_{d3}<1.65$ | 1.59282 | Satisfied |
-| $f_2/f$ | $-0.58<f_2/f<-0.36$ | −0.40251 | Satisfied |
-| $f_4/f_3$ | $0.28<f_4/f_3<1.95$ | 0.69901 | Satisfied |
-| $D/F_R$ | $-0.23<D/F_R<-0.01$ | −0.11399 | Satisfied |
+| Condition                         |      Required range |                                                  Verified value | Result    |
+| --------------------------------- | ------------------: | --------------------------------------------------------------: | --------- |
+| $(R_{n1}-R_{n2})/(R_{n1}+R_{n2})$ |                $<0$ | −1.11866 from printed $R_{n1}=-90.2962$ mm; patent table −1.121 | Satisfied |
+| $n_{d1}$                          |              $<1.6$ |                                                         1.54883 | Satisfied |
+| $\nu_{d1}$                        |             $>67.5$ |                                                          79.933 | Satisfied |
+| $\nu_{d3}$                        |    $55<\nu_{d3}<75$ |                                                           68.62 | Satisfied |
+| $n_{d3}$                          |  $1.55<n_{d3}<1.65$ |                                                         1.59282 | Satisfied |
+| $f_2/f$                           | $-0.58<f_2/f<-0.36$ |                                                        −0.40251 | Satisfied |
+| $f_4/f_3$                         | $0.28<f_4/f_3<1.95$ |                                                         0.69901 | Satisfied |
+| $D/F_R$                           | $-0.23<D/F_R<-0.01$ |                                                        −0.11399 | Satisfied |
 
 For the first condition, $R_{n2}=+1612.2365$ mm. The negative result constrains the form of the front-group concave element L3. The second condition fixes the average glass properties of L1, L2, and L4. Conditions (3) and (4) govern L8. Condition (5) constrains the power and travel balance of the negative G2 focus group. Condition (6) balances the two positive moving groups. Condition (7) uses $D=6.0015$ mm and the standalone focal length of L14, $F_R=-52.6485$ mm.
 
@@ -247,23 +247,23 @@ For the first condition, $R_{n2}=+1612.2365$ mm. The negative result constrains 
 
 All load-bearing first-order quantities were independently recalculated with a Python reduced-angle ABCD trace using the printed prescription. The surface-by-surface Petzval sum used $\sum \phi/(n n')$, not an element-level thin-lens approximation.
 
-| Quantity | Patent | Independently computed | Difference / note |
-|---|---:|---:|---|
-| EFL, infinity | 92.74 mm | 92.5564 mm | −0.1836 mm (−0.198%) |
-| EFL, 1:2 | 81.62 mm | 81.7477 mm | +0.1277 mm (+0.156%) |
-| EFL, 1:1 | 64.66 mm | 64.9771 mm | +0.3171 mm (+0.490%) |
-| G1 focal length | 51.173 mm | 51.4047 mm | Printed-surface inconsistency affects G1 |
-| G2 focal length | −37.255 mm | −37.2553 mm | Agreement within 0.0003 mm |
-| G3 focal length | 116.218 mm | 116.2191 mm | Agreement within 0.0012 mm |
-| G4 focal length | 81.567 mm | 81.2385 mm | Patent table differs by 0.329 mm |
-| G5 VC focal length | −68.674 mm | −68.6736 mm | Agreement within 0.0004 mm |
-| G6 focal length | 149.42 mm | 149.4167 mm | Agreement within 0.0034 mm |
-| Combined G5+G6 rear assembly | −108.031 mm | −108.0333 mm | Agreement within 0.0023 mm |
-| Infinity first-surface-to-image track | 158.72 mm | 158.7349 mm | +0.0149 mm |
-| 1:1 object-to-image distance | — | 299.3064 mm | Matches 0.30 m production MFD |
-| 1:1 first-surface working distance | — | 140.5468 mm | Near 139 mm manufacturer figure |
-| Petzval sum | — | +0.00150791 mm⁻¹ | Surface-by-surface |
-| Petzval radius | — | −663.17 mm | Sign follows image-space convention used here |
+| Quantity                              |      Patent | Independently computed | Difference / note                             |
+| ------------------------------------- | ----------: | ---------------------: | --------------------------------------------- |
+| EFL, infinity                         |    92.74 mm |             92.5564 mm | −0.1836 mm (−0.198%)                          |
+| EFL, 1:2                              |    81.62 mm |             81.7477 mm | +0.1277 mm (+0.156%)                          |
+| EFL, 1:1                              |    64.66 mm |             64.9771 mm | +0.3171 mm (+0.490%)                          |
+| G1 focal length                       |   51.173 mm |             51.4047 mm | Printed-surface inconsistency affects G1      |
+| G2 focal length                       |  −37.255 mm |            −37.2553 mm | Agreement within 0.0003 mm                    |
+| G3 focal length                       |  116.218 mm |            116.2191 mm | Agreement within 0.0012 mm                    |
+| G4 focal length                       |   81.567 mm |             81.2385 mm | Patent table differs by 0.329 mm              |
+| G5 VC focal length                    |  −68.674 mm |            −68.6736 mm | Agreement within 0.0004 mm                    |
+| G6 focal length                       |   149.42 mm |            149.4167 mm | Agreement within 0.0034 mm                    |
+| Combined G5+G6 rear assembly          | −108.031 mm |           −108.0333 mm | Agreement within 0.0023 mm                    |
+| Infinity first-surface-to-image track |   158.72 mm |            158.7349 mm | +0.0149 mm                                    |
+| 1:1 object-to-image distance          |           — |            299.3064 mm | Matches 0.30 m production MFD                 |
+| 1:1 first-surface working distance    |           — |            140.5468 mm | Near 139 mm manufacturer figure               |
+| Petzval sum                           |           — |       +0.00150791 mm⁻¹ | Surface-by-surface                            |
+| Petzval radius                        |           — |             −663.17 mm | Sign follows image-space convention used here |
 
 The EFL differences are not attributed to “finite-ray versus paraxial” behavior. The patent's tabulated focal lengths are themselves first-order quantities. The discrepancies instead reflect rounding and the unresolved surface-4/derived-table inconsistency. The printed prescription remains internally coherent enough to reproduce all focus states, group-power signs, 1:1 magnification, and total track to the stated tolerances.
 
@@ -298,3 +298,9 @@ all stored prescription values but not its own printed infinity focal length.
 EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
 the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
 Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
+
+## 2026-10-30 source outline and glass reinspection
+
+Embodiment7 Figure25/PDF27 was directly viewed at600dpi, and all14 glass pairs read from the original prescription PDF84 with the remaining focus rows on85; d-line convention is explicit in PDF81. All convex/concave faces and cemented interfaces were checked. S5's continuous cap grows20.5→22.5mm to the existing front-doublet body. The biconcave S10/S11 element preserves12.8mm clear caps and gains explicit lands to13/14.5mm respectively. A full14.5mm front land exceeds the real neighboring gap(5.078mm versus4.421allowed);13.1mm also fails(4.445mm), so the front remains conservatively bounded at13mm. No inferred inward cap change is made. Remaining weak corners and existing compound-height differences stay qualified.
+
+The source provides only nd/νd, with no additional spectral anchors. Remove28 catalog-only C/F/g/dPgF fields on7 elements; all14 retain compatible current coefficient curves. No supplier/melt, individually measured anomaly or manufactured apochromatic performance is inferred. Published source R/d, all three conjugates and the documented+.293897mm paraxial image-plane residual remain unchanged.

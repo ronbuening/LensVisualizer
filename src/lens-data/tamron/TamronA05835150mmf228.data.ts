@@ -14,8 +14,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * half-fields (30.97/15.37/8.06 deg); s7 now sets the wide value and s36A the middle one.
  * The L19/L20 doublet follows the figure's L19 blank (s33=15.2 mm) with the cemented and
  * rear faces at 14.7 mm, just inside the 14.9 mm radius where L20 closes to a knife edge.
- * The renderer joins unequal front and rear rims with one straight edge, so L4, L7, L9, L12,
- * L14, L15, L19 and L21 show a chamfer where FIG. 1 draws a flat annulus and a cylinder edge.
+ * Resolved air-facing seats at s7/s15/s32/s36A now use explicit lands. The s12/s26A extensions
+ * fail the existing gap policy; cemented-junction steps remain outside the air-boundary schema.
  * Diagram APD tags: L10 patent-listed (paragraph 0054); L2/L3/L7/L11 inferred LD class.
  * Inferred clear semi-diameters include s15=14.86 mm and s26A=14.41 mm;
  * gapSagFrac=0.932 preserves positive modeled air. Nominal minimum radial headroom is
@@ -260,7 +260,7 @@ const LENS_DATA = {
       nd: 1.77377,
       vd: 47.17,
       focalLengthMm: 26.65996173,
-      glass: "M-TAF401 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      glass: "M-TAF401 (HOYA compatible spectral proxy; source coordinates differ; supplier unconfirmed)",
       role: "Glass-molded biconvex positive element with both faces aspheric; closes G3 (M).",
     },
     {
@@ -331,7 +331,7 @@ const LENS_DATA = {
     { label: "4", R: 71.5654, d: 6.565, sd: 33.5, medium: 3 },
     { label: "5", R: 192.2789, sd: 33.5 },
     { label: "6", R: 83.7631, d: 1.5, sd: 23.5, medium: 4 },
-    { label: "7", R: 28.8102, d: 8.6177, sd: 19.2 },
+    { label: "7", R: 28.8102, d: 8.6177, sd: 19.2, rimExtensionSd: 23.5 },
     { label: "8", R: 520.2462, d: 4.1099, sd: 19, medium: 5 },
     { label: "9", R: -79.0552, d: 0.4606, sd: 19 },
     { label: "10", R: -180.0295, d: 1.2, sd: 17, medium: 6 },
@@ -339,7 +339,7 @@ const LENS_DATA = {
     { label: "12", R: -37.245, d: 1.2, sd: 14.2, medium: 7 },
     { label: "13", R: 46.6295, d: 5.0613, sd: 16.5, medium: 8 },
     { label: "14", R: -120.2559, d: 1.9148, sd: 16.5 },
-    { label: "15", R: -42.1599, d: 1.2, sd: 14.86, medium: 9 },
+    { label: "15", R: -42.1599, d: 1.2, sd: 14.86, medium: 9, rimExtensionSd: 16.5 },
     { label: "16", R: -83.997, sd: 16.5 },
     { label: "STO", R: "flat", d: 1.2 },
     { label: "18", R: 38.6389, d: 5.2507, sd: 20, medium: 10 },
@@ -375,7 +375,7 @@ const LENS_DATA = {
     },
     { label: "30", R: 105.0374, d: 3.0753, sd: 13.5, medium: 17 },
     { label: "31", R: -93.2811, d: 0.9, sd: 13.5, medium: 18 },
-    { label: "32", R: 27.9385, sd: 13.5 },
+    { label: "32", R: 27.9385, sd: 13.5, rimCutDepthMm: 3.18 },
     { label: "33", R: 55.5333, d: 1.2, sd: 15.2, medium: 19 },
     { label: "34", R: 18.9288, d: 9.5794, sd: 14.7, medium: 20 },
     { label: "35", R: -48.7564, d: 6.1999, sd: 14.7 },
@@ -384,6 +384,7 @@ const LENS_DATA = {
       R: -23.1657,
       d: 1.8,
       sd: 15.2,
+      rimExtensionSd: 17.5,
       medium: 21,
       asphere: { K: -0.5742, A4: 3.8299e-06, A6: 1.75904e-08, A8: -4.02738e-10, A10: 1.60174e-12, A12: -2.66841e-15, A14: 0 },
     },

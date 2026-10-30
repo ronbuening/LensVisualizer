@@ -53,6 +53,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    L3b ≈10.6, L4a ≈18.6 mm at 0.1417 mm/px), which also match the traced     ║
  * ║    full-field bundle; L3b is held at 10.4 mm, inside S20's turnover.         ║
  * ║                                                                              ║
+ * ║  RIM EXTENSION (2026-10-29): Fig. 1 (PDF p. 24), wide/middle panels,         ║
+ * ║    draws a land on L1a's rear face. At 3.52 native px/mm from the             ║
+ * ║    75.80 mm S1-S23 span, its cap/edge ratio is about 0.767. Surface 2         ║
+ * ║    keeps its 13.5 mm clear cap and extends the opaque land to S1's           ║
+ * ║    15.5 mm rim; the sphere is not continued past its 15.312 mm radius.       ║
+ * ║                                                                              ║
  * ║  NOTE ON CEMENT LAYER:                                                       ║
  * ║    The cemented doublet L2b+L2c has an explicit cement layer                 ║
  * ║    (nd=1.51400, d=0.01 mm) modeled as element id:6. Manufacturer             ║
@@ -244,7 +250,7 @@ const LENS_DATA = {
   surfaces: [
     // ── G1: Negative front group (f₁ = −32.86 mm) ──
     { label: "1", R: 71.885, d: 1.2, sd: 15.5, medium: 1 }, // L1a front
-    { label: "2", R: 15.312, d: 7.8, sd: 13.5 }, // L1a rear → air
+    { label: "2", R: 15.312, d: 7.8, sd: 13.5, rimExtensionSd: 15.5 }, // L1a rear → air
     {
       label: "3A",
       R: -298.152,

@@ -33,6 +33,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    concave faces 3 (L12 rear) and 5 (L21 front); rimCutDepthMm ends  ║
  * ║    3's cap at 9.90 mm. Face 5 keeps its 8.4 mm rim uncut: a land     ║
  * ║    there would stop rays the rim stops.                              ║
+ * ║    Rim extension (2026-10-29): Fig. 7, p. 28, 12.34 native px/mm,    ║
+ * ║    draws its square outer rim at 11 mm. rimExtensionSd adds that    ║
+ * ║    land while preserving face 5's 8.4 mm optical cap.                ║
  * ║                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                ║
  * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, νd = 63.88,        ║
@@ -110,7 +113,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.57,
       focalLengthMm: -18.9,
-      glass: "755276 dense-flint class (catalog identity unresolved)",
+      glass: "SF4 (SCHOTT spectral proxy; 755276 class, production identity unspecified)",
       apd: false,
       role: "High-dispersion flint — spherical and chromatic corrector in G2 cemented assembly",
       cemented: "H1",
@@ -136,7 +139,7 @@ const LENS_DATA = {
       nd: 1.56093,
       vd: 36.64,
       focalLengthMm: 666.5,
-      glass: "UV-curable photopolymer (Nikon)",
+      glass: "Unmatched (patent resin layer; chemistry and supplier unspecified)",
       apd: false,
       role: "Aspherical resin layer — primary spherical aberration corrector",
       cemented: "H1",
@@ -161,7 +164,7 @@ const LENS_DATA = {
       nd: 1.56093,
       vd: 36.64,
       focalLengthMm: -284.8,
-      glass: "UV-curable photopolymer (Nikon)",
+      glass: "Unmatched (patent resin layer; chemistry and supplier unspecified)",
       apd: false,
       role: "Aspherical resin layer — field-dependent aberration corrector (astigmatism, coma)",
       cemented: "H2",
@@ -196,7 +199,7 @@ const LENS_DATA = {
     { label: "STO", R: "flat" },
 
     /* G2 — positive focus group: cemented assembly (L21 + L22 + L22r) + singlet L23 */
-    { label: "5", R: -16.5359, d: 0.9, sd: 8.4, medium: 3 },
+    { label: "5", R: -16.5359, d: 0.9, sd: 8.4, rimExtensionSd: 11, medium: 3 },
     { label: "6", R: 105.5966, d: 4.55, sd: 11.0, medium: 4 },
     { label: "7", R: -33.838, d: 0.1, sd: 11.0, medium: 5 },
     {

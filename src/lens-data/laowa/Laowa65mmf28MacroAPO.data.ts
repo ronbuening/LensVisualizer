@@ -123,7 +123,7 @@ const LENS_DATA = {
       focalLengthMm: 66.7,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "FK61-class fluorophosphate; anomalous partial dispersion inferred from glass family.",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "First ED element; positive meniscus contributing power with minimal chromatic aberration.",
     },
     {
@@ -175,7 +175,7 @@ const LENS_DATA = {
       focalLengthMm: 19.3,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "FK61-class fluorophosphate; strongest positive power in G2 — most tolerance-sensitive element.",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "Second ED element; strongly positive biconvex completing achromat D3 for three-wavelength correction.",
       cemented: "D3",
     },
@@ -239,8 +239,7 @@ const LENS_DATA = {
       focalLengthMm: -25.1,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote:
-        "FK61-class fluorophosphate in negative role — exploits anomalous partial dispersion in opposite sign for APO correction.",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "Third ED element; negative ED crown balancing the two positive ED elements (L4, L8) for apochromatic performance.",
     },
     {
@@ -259,6 +258,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
+  // Original patent figure rechecked 2026-10-29; opaque cap-end lands and beam-safe cuts documented in audit.
   surfaces: [
     // ── G1: Fixed front cemented doublet (L1 + L2) ──
     { label: "1", R: 131.0392, d: 1.0, sd: 20.5, medium: 1 },
@@ -284,11 +284,11 @@ const LENS_DATA = {
 
     // ── G3: Fixed rear relay group (L10 – L14) ──
     { label: "16", R: 70.696, d: 0.8, sd: 7.5, medium: 10 },
-    { label: "17", R: 15.5978, d: 5.6256, sd: 7.5 },
-    { label: "18", R: -40.2688, d: 1.0, sd: 8.5, medium: 11 },
+    { label: "17", R: 15.5978, d: 5.6256, sd: 7.5, rimCutDepthMm: 1.57 },
+    { label: "18", R: -40.2688, d: 1.0, sd: 8.5, rimCutDepthMm: 0.57, medium: 11 },
     { label: "19", R: 15.897, d: 6.7521, sd: 8.5, medium: 12 },
     { label: "20", R: -20.9235, d: 0.6129, sd: 8.8 },
-    { label: "21", R: -17.1788, d: 0.8, sd: 8.5, medium: 13 },
+    { label: "21", R: -17.1788, d: 0.8, sd: 8.5, rimExtensionSd: 9, medium: 13 },
     { label: "22", R: 46.3288, d: 6.9569, sd: 9.0 },
     { label: "23", R: 26.8458, d: 7.0, sd: 10.0, medium: 14 },
     { label: "24", R: "flat", d: 12.3, sd: 10.0 }, // patent S26: gap to cover glass

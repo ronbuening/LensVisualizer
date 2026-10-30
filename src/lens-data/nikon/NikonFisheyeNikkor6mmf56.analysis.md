@@ -22,7 +22,7 @@ Example 1 of US 3,524,697 is the appropriate patent embodiment for the Nikon Fis
 
 The patent prescription is normalized at f = 10. Independent paraxial tracing of the Example 1 numerical prescription gives EFL = 10.004615 patent units and BFD = 17.860390 patent units. The delivered data file scales all radii, thicknesses, BFD, and estimated semi-diameters by 0.599723199, giving a production-scale EFL of 6.000 mm. This replaces the earlier draft's 0.56 scale factor, which was inferred from the 21.6 mm circular image diameter and the equidistant projection formula rather than from Nikon's nominal focal-length specification.
 
-The flat filter element published as patent L5 is excluded from the `*.data.ts` surfaces and elements arrays. The patent calls L5 an optional filter, and filters the source calls optional are not modeled. Its first-order effect is retained by folding its glass thickness into the adjacent air gap as an equivalent paraxial air thickness: d = 3.2 + 1.9/1.51743 + 6.4 = 10.852117 patent units between patent r7 and r10.
+The patent calls L5 an optional filter. This model includes the plate as printed, with nd=1.51743, νd=58.5 and physical d7/d8/d9=3.2/1.9/6.4 patent units, scaled by the existing 0.599723199 factor. It therefore has nine powered elements in six groups plus one filter plate (ten modeled elements/seven physical groups). Optionality is retained as a source qualification; the plate is no longer replaced by t/n air.
 
 ## Optical Architecture
 
@@ -83,7 +83,7 @@ The previous draft correctly recognized the role of the L6-L7 pair but assigned 
 
 ### L8 — Positive Meniscus, concave toward the object
 
-nd = 1.76764, νd = 46.5. Glass: Hikari J-LASFH2 catalog-equivalent curve, patent code 768465; production melt unspecified. f = +24.83 mm after production scaling.
+nd = 1.76764, νd = 46.5. Glass: Hikari J-LASFH2 qualified catalog spectral proxy, patent code 768465; production melt unspecified. f = +24.83 mm after production scaling.
 
 L8 is an air-spaced positive meniscus between the L6-L7 doublet and the final cemented doublet. Its front radius is very weak (R13 = -305.981 patent units), while the rear radius is much stronger (R14 = -28.988 patent units). This gives the element positive power while keeping the front surface nearly neutral.
 
@@ -101,6 +101,8 @@ L10 is better identified as OHARA S-BSM22 / Schott N-SSK2 class than as generic 
 
 ## Glass Identification and Selection
 
+The current glass annotations identify available catalog spectral curves only. They do not identify production suppliers, melts, cement formulations, or annealing states. Source nd/vd are retained; Abbe contrast alone does not establish anomalous partial dispersion.
+
 | Patent element | nd | νd | Code | Revised identification | Prior-draft issue corrected |
 |---|---:|---:|---:|---|---|
 | L1 | 1.61272 | 58.6 | 613/586 | BACD4 / N-SK4 class | Acceptable class label retained but made code-based |
@@ -109,7 +111,7 @@ L10 is better identified as OHARA S-BSM22 / Schott N-SSK2 class than as generic 
 | L4 | 1.78470 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L6 | 1.78477 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L7 | 1.74372 | 45.0 | 744/450 | LAF2 / N-LAF2 / S-LAM2 class | Not S-LAM3-class |
-| L8 | 1.76764 | 46.5 | 768465 | J-LASFH2 catalog-equivalent curve; supplier unspecified | Not HOYA NBFD3 |
+| L8 | 1.76764 | 46.5 | 768465 | J-LASFH2 qualified catalog spectral proxy; supplier unspecified | Not HOYA NBFD3 |
 | L9 | 1.78485 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L10 | 1.62230 | 53.1 | 622/531 | S-BSM22 / N-SSK2 class | More precise OHARA match added |
 
@@ -121,11 +123,11 @@ The design uses the same 785/260 dense-flint family in three places: L4, L6, and
 
 The patent publishes no variable air spacing table and no moving focusing group. The production lens is a fixed-focus, mirror-lock-up fisheye. Secondary production references describe the distance scale as extending to 0.3 m / 1 ft, but this should be read as a depth-of-field reference, not as evidence of an optical focusing helicoid.[^mir6mm]
 
-The data file therefore has `var: {}` and `varLabels: []`. The required `closeFocusM` metadata is set to 0.3 m to match the published distance-scale endpoint, while the optical prescription itself remains fixed at the patent's infinity condition.
+The data file therefore has no variable gap schedule. The required `closeFocusM` metadata is set to 0.3 m to match the published distance-scale endpoint, while the optical prescription itself remains fixed at the patent's infinity condition.
 
 ## Aspherical Surfaces
 
-Example 1 of US 3,524,697 is all-spherical. The patent prescription lists only spherical radii and flat filter faces; it provides no aspherical equation and no aspherical coefficient table. The data file therefore sets `asph: {}`.
+Example 1 of US 3,524,697 is all-spherical. The patent prescription lists only spherical radii and flat filter faces; it provides no aspherical equation and no aspherical coefficient table. No asphere is authored.
 
 This point matters because Nikon's SAP Fisheye-Nikkor 6.2mm f/5.6 was an aspherical, 230° solid-angle-projection lens from the same general research period.[^nikon53] That lens is not the Example 1 prescription analyzed here. The OP Fisheye-Nikkor 10mm f/5.6 also used an aspherical front element, but it was a different orthographic-projection lens.[^nikon6]
 
@@ -147,21 +149,25 @@ The patent's Seidel coefficient table, normalized to f = 1, reports a total Vj v
 
 ## Verification Summary
 
-The prescription was re-traced from the numerical patent table using a reduced-angle y / nθ paraxial matrix calculation. The flat filter was first included, then removed and replaced by an equivalent air thickness t/n to verify that the data-file simplification preserved the first-order system matrix.
+The prescription was re-traced with the physical source filter restored. All powered radii/thicknesses, the original scale factor, nominal F/5.6 and inferred axial stop station remain unchanged. The existing stop rule derives a radius of 1.481268 mm after the restoration (formerly 1.505272 mm); no authored diameter or aperture calibration is introduced. The change follows from restoring refractive material ahead of the stop at the original physical station.
 
 | Quantity | Patent / source value | Computed value, patent scale | Production-scaled value |
 |---|---:|---:|---:|
 | EFL | f = 10 | 10.004615 | 6.000 mm |
 | BFD | not stated | 17.860390 | 10.711 mm |
 | BFD/EFL | not stated | 1.7852 | 1.7852 |
-| Track, front vertex to final surface, filter included | prescription sum | 126.100000 | 75.626 mm |
-| Track, filter excluded and folded as t/n | data-file sum | 125.452117 | 75.237 mm |
-| Total vertex-to-image distance, folded-filter model | not stated | 143.312507 | 85.948 mm |
+| Track, front vertex to final surface, filter included | prescription sum | 126.100000 | 75.625 mm |
+| Previous track with t/n substitution | superseded model | 125.452117 | 75.237 mm |
+| Total vertex-to-image distance, physical filter | not stated | 143.960390 | 86.336367 mm |
 | Petzval sum Σφ/(n n′) | not stated | -0.0066325 | -0.011060 by mm scaling |
 
 The Petzval sum was recomputed surface-by-surface as Σφ/(n n′), not by a thin-lens element approximation. The scaled Petzval value changes inversely with the scale factor because the surface powers scale as 1/length.
 
-The aperture stop position is not a separate numerical surface in the patent table. In the data file it is placed in the folded r7-to-r10 gap just after the equivalent filter location, consistent with Figure 1. The stop semi-diameter is set to 1.505 mm after scaling; backward paraxial tracing gives an entrance-pupil semi-diameter of 0.5357 mm, corresponding to EFL/(2 × 5.6).
+The aperture stop is not numerically located in the patent table. Its inferred axial station remains z=36.55439 mm, after the restored source filter. The 6.4-unit post-filter air interval is split around that same station. EFL changes from 6.000000669 to 6.000001583 mm and BFL from 10.711298133 to 10.711299874 mm, reflecting retained rounding of the powered prescription. The physical image station moves from 85.94782 to 86.336366789 mm. No finite focus law is added.
+
+Fresh Figure 1 measurements give approximately 22.8 pixels/mm at 600 dpi (11.4 native pixels/mm). The first drawn body is about 38 mm high in semi-diameter; a literal land there fails even with the maximum permitted rear cap, because its front sag is 15.964 mm against only 12.968 mm of available rear-land position. The exact outer bound at that cap limit is 34.812203 mm. The adopted front cap/body is 34.5 mm with rear cap 16.35 mm and a flat land to 34.5 mm, leaving 0.196777-mm positive edge thickness. L2 uses continuous front cap 16.1 mm and rear cap 7.65 mm with a land to 16.1 mm. The other continuous group rims now follow the drawing at 6.7 mm (front and rear doublets), 7.8 mm (L8), and 10.1 mm (final doublet); no flat land is invented at a cemented junction. The optional plate's inferred 4.5-mm radius follows its drawing height.
+
+All ten media are freshly checked against the first source table and explicit d-line convention. The filter uses J-K3 as a qualified near proxy (catalog minus source Δnd=+0.000800, Δνd=+0.32); no production identity is asserted. Other catalog curves likewise remain spectral proxies, including N-FK5's Δnd=−0.000990 from the older source crown. No source C/F/g indices or partial-dispersion values are published or fabricated. All 25 sampled axial stop-pupil rays pass, and 25/25 samples pass at 30°–75° with the restored outlines. The standard chief solver still fails to bracket at 85°–110°; the source 220° field is not thereby validated. Actual SVG states have finite paths and zero automatic trim.
 
 ## Design Heritage and Context
 

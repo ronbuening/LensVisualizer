@@ -122,7 +122,7 @@ The final data revision reproduces the patent's first-order quantities within so
 
 The patent does not publish physical semi-diameters or diaphragm diameter. The data's stop semi-diameter, 9.606081611 mm, is therefore calibrated from the published F/2.006 and the computed entrance-pupil magnification; reproducing F/2.006 is a calibration round trip, not independent evidence for a physical iris dimension. Refracting-surface semi-diameters are modeled from exact spherical meridional ray sampling at the three published focus states, with approximately 10% clearance. The current portable geometry checks pass edge thickness, actual rim slope, cross-gap intrusion, sampled intermediate focus states, and finite full-field meridional containment. These checks are not a substitute for the repository's production render diagnostics.
 
-Example 1 has no aspherical surfaces. No cover glass, filter, dummy plane, or mechanical plane is omitted from the selected patent table, and no air-equivalent rear-spacing conversion or scale transformation is required.
+Figure 1’s L1 rear concave seat is now explicit as an opaque land from the retained 13.4 mm clear cap to the source-scaled 16.6 mm outer radius. The continuous S1 front cap likewise grows from 15.1 to 16.6 mm, so the complete outer outline follows the drawing while S2 retains its 13.4 mm clear cap. Other concave faces meet their drawn rims without a resolved flat cap-end land; no additional cut is inferred. Example 1 has no aspherical surfaces. No cover glass, filter, dummy plane, or mechanical plane is omitted from the selected patent table, and no air-equivalent rear-spacing conversion or scale transformation is required.
 
 ## Sources
 

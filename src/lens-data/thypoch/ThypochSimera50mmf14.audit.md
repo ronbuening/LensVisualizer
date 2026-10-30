@@ -268,3 +268,31 @@ Open limitations:
 - L1, L2/L3, L7 and L8 remain 2-4 % above the figure, the first two because of the f/1.45 axial ray floor.
 - The ray-sample counts in the analysis (71,720 launches and their outcomes) were computed with the package's original
   rims and were not recomputed after either semi-diameter pass.
+
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/CN118244463A.pdf`, Example 1: Figure 1, PDF page 18; Table 1a complete prescription and rear plate on page 7; Table 1b–1c on page 8; explicit ED-material statement paragraphs 0068–0069 on page 9. Page images were rendered and read again; earlier notes supplied locators only.
+
+Every convex/concave face and both cemented boundaries were rechecked in a fresh 600 dpi Figure 1 crop. Native raster 150 dpi; S1–IMAGE spans 637 px / 68.79 mm = 9.260 native px/mm (37.040 px/mm at 600 dpi), checked against the S1–S15 and stop spans. The source rear cap of L3 ends at about 11.0–11.25 mm inside its approximately 15.0 mm block; L5’s concave front ends around 10.9 mm inside its approximately 12.0 mm block. Existing optical caps 5=11.3 and 9=11.0 mm retain their ray clearance. Added extensions to the established opposite-face/component rims, 5→15.4 and 9→12.6 mm; these outer rims already exceed the figure by a few percent under the documented beam-floor/raster limitations.
+
+Both previously tapered seats now have explicit opaque lands. No additional cut is warranted: these optical caps already follow the source’s concave endpoints, and no further resolved air-face land appears on the other faces. Cemented interfaces 4 and 10 remain unchanged. Neither asphere cap nor its quoted departure changes.
+
+All eight element index/Abbe pairs and the rear plate match the source’s two-decimal index table and retained d-line model convention. Source paragraphs 0068–0069 identify L2 as ultra-low-dispersion glass, with νd 81.6. They do not identify anomalous partial dispersion. Removed the unsupported `apd: "patent"` classification and retained the actual ED statement in the note/analysis. Anomalous partial dispersion remains unestablished; this is not a measurement of zero anomaly. No θgF, dPgF, line indices or named catalog identity are invented.
+
+All current catalog rows were checked for coordinate compatibility. The broad runtime guard admits candidates at six physical positions (including both repeated L6/L8 coordinates), but none is a tight source-coordinate identification and several alternatives are ambiguous. Existing explicit Unmatched labels are retained, including CG; no tolerance is relaxed to force a curve.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.95000 / 32.28 | unresolved; Abbe approximation |
+| L2 | 1.50000 / 81.6 | unresolved; Abbe approximation |
+| L3 | 1.85000 / 25.15 | unresolved; Abbe approximation |
+| L4 | 1.77000 / 49.24 | unresolved; Abbe approximation |
+| L5 | 1.60000 / 38.01 | unresolved; Abbe approximation |
+| L6 | 1.88000 / 39.22 | unresolved; Abbe approximation |
+| L7 | 1.65000 / 33.89 | unresolved; Abbe approximation |
+| L8 | 1.88000 / 39.22 | unresolved; Abbe approximation |
+
+Coverage: 0/8 modeled media, representing 8 physical lens elements. Rear plate checked separately: 1.52000/64.2 (unresolved). Compatible catalog curves remain spectral proxies, not production supplier/melt identifications.
+
+Verification: focused surface/inferred-beam and image-circle audits; aperture census for the new cuts; actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label resolver and catalog-coordinate sweep, `assertCatalogConsistent()`, and the shared dispersion/partial-dispersion consistency tests. Full repository gates are recorded by the coordinator at commit time.

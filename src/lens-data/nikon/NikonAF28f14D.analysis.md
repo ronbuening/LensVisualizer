@@ -31,13 +31,13 @@ The following focal lengths are computed from each medium's center thickness, in
 | Element | nd | νd | Glass interpretation | Isolated FL (mm) |
 |---|---|---|---|---|
 | L1 | 1.51680 | 64.10 | BSC7 / BK7 type (HOYA BSC7 nd=1.51680, νd=64.20) (inferred coordinate counterpart) | -79.66 |
-| L2 | 1.77279 | 49.40 | S-LAH66 (OHARA) — near nd=1.77250/νd=49.62 (inferred coordinate counterpart) | 75.40 |
+| L2 | 1.77279 | 49.40 | S-LAH66 (OHARA) — near nd=1.77250/νd=49.60 (inferred coordinate counterpart) | 75.40 |
 | L3 | 1.48749 | 70.40 | FK5 / S-FSL5 type (Schott FK5 nd=1.48749, νd=70.41) (inferred coordinate counterpart) | -65.08 |
 | L4a | 1.51860 | 69.90 | J-PKH1 (Hikari, 519699) (inferred coordinate counterpart) | 40.58 |
 | L4b | 1.51454 | 54.60 | KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified) (inferred coordinate counterpart) | -29.46 |
 | L5 | 1.80411 | 46.50 | S-LAH65V (OHARA) — near nd=1.80400/νd=46.58 (inferred coordinate counterpart) | 30.79 |
 | L6a | 1.74810 | 52.30 | 748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified) (inferred coordinate counterpart) | 120.71 |
-| L6b | 1.75520 | 27.60 | Dense flint (near OHARA S-TIH4, nd=1.75520, νd=27.53) (inferred coordinate counterpart) | -27.09 |
+| L6b | 1.75520 | 27.60 | Dense flint (near OHARA S-TIH4, nd=1.75520, νd=27.51) (inferred coordinate counterpart) | -27.09 |
 | L7 | 1.77279 | 49.40 | S-LAH66 (OHARA) — same as L2 (inferred coordinate counterpart) | 95.10 |
 | L8a | 1.80411 | 46.50 | S-LAH65V (OHARA) — same as L5 (inferred coordinate counterpart) | 25.52 |
 | L8b | 1.86074 | 23.00 | J-SFH2 (Hikari coordinate match) (inferred coordinate counterpart) | -105.12 |
@@ -77,3 +77,6 @@ Two figure-oriented trials conflict with numerical geometry: S7 at14.8mm exceede
 
 - Original local US5315441.pdf: Figure1 p.2, Table1 and asphere equation p.12 (columns5–6).
 - [US5315441A publication](https://patents.google.com/patent/US5315441A/en).
+
+
+The 2026-10-29 original-source reinspection records every outline and glass decision in the accompanying audit. S2/S6 now use opaque rear-seat extensions to 27.5/18.0 mm, preserving their optical caps. S12 uses an inferred 4.69 mm concave cut (cap 14.011880 mm), consistent with the measured figure ratio and clear of sampled beams. The geometry-constrained S7/L8a caps and the S16A asphere remain unchanged.

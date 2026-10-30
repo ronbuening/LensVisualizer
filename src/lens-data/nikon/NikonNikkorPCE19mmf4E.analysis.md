@@ -41,7 +41,7 @@ Example 1 is identified as the most probable production design based on element/
 
 Both examples share identical Gr1 constructions (surfaces 1–16), and their Gr2 prescriptions are very similar. The distinction lies solely in whether L24 is cemented to L23 (EX2) or air-spaced (EX1).
 
-Nikon's marketing material counts 17 elements, though all four examples contain 18 physical optical pieces. The composite aspherical element (resin layer L28 bonded to glass body L29) is counted as a single "element" for marketing purposes — standard industry practice for composite-type aspherical elements.
+Example 1 contains 18 modeled media, including the separately tabulated L28 coating on L29, correlated with Nikon’s 17 marketed elements. The resin interpretation is qualified; the source does not identify its chemistry. This count applies to Example 1, rather than every patent embodiment.
 
 ---
 
@@ -82,6 +82,8 @@ The surface-by-surface Petzval sum is **+0.00532 mm⁻¹**, yielding a Petzval r
 
 Group 1 is the stationary (non-focusing) group. Its front sub-group (L11–L14) consists of four successive negative meniscus elements that progressively diverge the incoming beam, establishing the retrofocus power balance. The rear sub-group (L15–L19) contains two cemented doublets and a positive meniscus that begin re-converging the light before it reaches the stop.
 
+All catalog names in the following tables identify selected spectral proxies. Source nd/vd and published θgf are evidence; a compatible curve does not establish the production supplier, chemistry, melt or manufacturing process.
+
 #### L11 — Negative Meniscus (Surfaces 1–2)
 
 | Property | Value |
@@ -92,7 +94,7 @@ Group 1 is the stationary (non-focusing) group. Its front sub-group (L11–L14) 
 | Standalone focal length | −154.5 mm |
 | Shape | Meniscus convex to object, negative power |
 
-L11 is the outermost element of the lens, directly exposed to the environment (protected by Nikon's fluorine coating). Its weak negative power gently begins diverging the on-axis beam while accepting the full cone of the 119° field. The large radii and moderate-index glass (S-LAL14, a lanthanum crown) keep the surface contributions to spherical aberration and coma manageable. S-LAL14 is a lanthanum alumino-silicate glass with good chemical durability, appropriate for an exposed front element.
+L11 is the front negative element. Its weak power begins diverging the on-axis beam across the 119° source field. The selected S-LAL14 spectral proxy supplies dispersion modeling; the patent’s coordinates do not establish the production glass chemistry, supplier or durability.
 
 #### L12 — Negative Meniscus (Surfaces 3–4)
 
@@ -104,7 +106,7 @@ L11 is the outermost element of the lens, directly exposed to the environment (p
 | Standalone focal length | −105.4 mm |
 | Shape | Meniscus convex to object, negative power |
 
-L12 uses the same glass as L11 and continues the beam divergence with moderately stronger curvatures. Using identical glass in L11 and L12 simplifies manufacturing and inventory while maintaining consistency in the refractive and dispersive properties of the leading sub-group.
+L12 repeats L11’s source material coordinates and continues the beam divergence with moderately stronger curvatures. Equal nd/vd does not establish a shared production melt or procurement intent.
 
 #### L13 — Negative Meniscus, Double Asphere (Surfaces 5A–6A)
 
@@ -119,7 +121,7 @@ L12 uses the same glass as L11 and continues the beam divergence with moderately
 
 L13 is the most optically significant element in the front sub-group. Both surfaces are aspherical, and the patent specifically describes it as having "a negative meniscus with an aspherical shape in which the negative power decreases from the lens center to the periphery" (paragraph 0030). This height-dependent power variation is essential for controlling distortion and field curvature across the enormous 119° field.
 
-The glass choice, L-BAL42, is a moldable (low-Tg) barium alumino-silicate from OHARA's L-series. The "L-" prefix indicates suitability for precision glass molding (PGM), confirming that L13 is a **glass-molded aspherical element** rather than a polished asphere.
+The selected L-BAL42 catalog curve belongs to Ohara’s moldable L-series. That proxy supports wavelength tracing, while the source prescribes two aspheric faces without proving the production material or manufacturing process.
 
 **Aspherical coefficients — Surface 5 (front):**
 
@@ -135,7 +137,7 @@ The glass choice, L-BAL42, is a moldable (low-Tg) barium alumino-silicate from O
 
 The positive conic constant (K = +1.193, oblate ellipsoid) combined with positive A₄ causes the surface to become progressively **more curved** toward the rim compared to a sphere, increasing the front surface's positive refractive contribution at the periphery and thereby reducing the net negative power of the element toward the edge.
 
-Note: The conic height limit for this surface is sd < |R|/√(1+K) = 34.175/√2.193 = 23.1 mm, well above the estimated sd of 14.0 mm.
+Note: The conic height limit for this surface is sd < |R|/√(1+K) = 34.175/√2.193 = 23.1 mm, near the adopted 22.3 mm cap; the source-sized 22.5 mm trial exceeds the unchanged rim-slope guard.
 
 **Aspherical coefficients — Surface 6 (rear):**
 
@@ -149,7 +151,7 @@ Note: The conic height limit for this surface is sd < |R|/√(1+K) = 34.175/√2
 | A₁₂ | +2.0146 × 10⁻¹⁵ |
 | A₁₄ | −1.6393 × 10⁻¹⁷ |
 
-The rear surface has a negative conic (K = −0.423, between sphere and paraboloid) and substantial negative aspherical departure at the rim, making the surface substantially **flatter** at the edge than a sphere of the same vertex radius. Both aspherical surfaces independently act to reduce the net negative power of L13 toward the edge, directly implementing the patent's prescribed power variation.
+At the adopted 15.8 mm clear cap, S6A has sag 9.1743 mm and rim slope 43.5581°. A same-radius sphere has no real point at that height because 15.8>R13.901 mm, so a spherical-departure number there would be undefined. S5A at 22.3 mm has departure +2.1684 mm and slope 61.3761°. The aspheric profiles implement the source’s peripheral power variation; the coefficients are unchanged.
 
 #### L14 — Negative Meniscus, ED Glass (Surfaces 7–8)
 
@@ -161,24 +163,24 @@ The rear surface has a negative conic (K = −0.423, between sphere and parabolo
 | Standalone focal length | −48.7 mm |
 | Shape | Deep negative meniscus, convex to object (near-flat front) |
 
-L14 is the fourth and final negative element in the front sub-group. It uses **S-FPL51**, the same fluorophosphate ED glass used in L25 and L27. The near-flat front surface (R₁ = +160.3 mm) combined with the strongly curved rear (R₂ = +21.0 mm) produces a deep negative meniscus. Using ED glass in a negative element is unusual — typically ED elements are positive to exploit their low dispersion for chromatic correction. Here, L14's role is to contribute negative power to the retrofocus balance while simultaneously reducing lateral chromatic aberration, which is the dominant chromatic error in wide-angle retrofocus designs.
+L14 is the fourth and final negative element in the front sub-group. Its source coordinate repeats L25/L27 and resolves to the compatible **S-FPL51 spectral proxy**; the production supplier and chemistry are unspecified. The near-flat front surface (R₁ = +160.3 mm) combined with the strongly curved rear (R₂ = +21.0 mm) produces a deep negative meniscus. Using ED glass in a negative element is unusual — typically ED elements are positive to exploit their low dispersion for chromatic correction. Here, L14's role is to contribute negative power to the retrofocus balance while simultaneously reducing lateral chromatic aberration, which is the dominant chromatic error in wide-angle retrofocus designs.
 
 #### L15 + L16 — Cemented Doublet "Ja" (Surfaces 9–11)
 
 | Element | Glass | nd | νd | θgf | Radii | ct |
 |---|---|---|---|---|---|---|
 | L15 (positive) | E-FD2 (HOYA) | 1.64769 | 33.84 | — | R₉ = +76.016 (front), R₁₀ = −16.389 (junction) | 8.40 mm |
-| L16 (negative) | S-LAH79 (OHARA) | 1.90366 | 31.32 | 0.5947 | R₁₀ = −16.389 (junction), R₁₁ = +60.949 (rear) | 5.29 mm |
+| L16 (negative) | S-LAH95 (OHARA) | 1.90366 | 31.32 | 0.5947 | R₁₀ = −16.389 (junction), R₁₁ = +60.949 (rear) | 5.29 mm |
 
 | Property | L15 | L16 |
 |---|---|---|
 | Standalone focal length | +21.6 mm | −13.8 mm |
 | Shape | Biconvex | Biconcave |
-| APD status | — | Patent-confirmed APD glass |
+| APD status | — | Inferred APD classification; source θgf printed |
 
 This doublet has a concave-to-object junction surface (R₁₀ = −16.389, satisfying condition (4): R₁a/f = −0.85). Per the patent (paragraph 0033), this doublet primarily **controls coma** — the concave junction allows adjustment of residual coma without significantly affecting other aberrations.
 
-L16 is notable: S-LAH79 (nd = 1.90366) is one of the highest-index commercial optical glasses available, with anomalous partial dispersion (θgf = 0.5947). The extreme refractive index allows L16 to provide strong negative power within a compact element. The small Abbe number difference between L15 and L16 (Δνd = 2.52) means this doublet contributes relatively little to primary chromatic correction — its role is primarily monochromatic aberration control.
+L16 has source nd=1.90366, vd=31.32 and θgf=.5947. The selected S-LAH95 curve is a compatible spectral proxy, with no production supplier identification. The APD classification remains inferred from the source dispersion evidence. The extreme refractive index allows L16 to provide strong negative power within a compact element. The small Abbe number difference between L15 and L16 (Δνd = 2.52) means this doublet contributes relatively little to primary chromatic correction — its role is primarily monochromatic aberration control.
 
 #### L17 + L18 — Cemented Doublet "Jb" (Surfaces 12–14)
 
@@ -191,11 +193,11 @@ L16 is notable: S-LAH79 (nd = 1.90366) is one of the highest-index commercial op
 |---|---|---|
 | Standalone focal length | −62.4 mm | +19.4 mm |
 | Shape | Meniscus (convex to object) | Biconvex |
-| APD status | — | Patent-confirmed APD glass |
+| APD status | — | Inferred APD classification; source θgf printed |
 
 This doublet has a convex-to-object junction (R₁₃ = +19.438, satisfying condition (7): R₁b/f = +1.00). Per the patent (paragraph 0038), it primarily **controls spherical aberration**, allowing the designer to adjust residual spherical aberration independently of other aberrations.
 
-L18 is an anomalous partial dispersion glass (θgf = 0.5737), which contributes to secondary spectrum correction. The negative Abbe number difference (νL₁b₁ − νL₁b₂ = 39.68 − 42.72 = −3.04) confirms the pair is not primarily a chromatic corrector but rather a monochromatic aberration control doublet that uses APD materials for secondary spectrum management.
+L18 has published θgf=.5737; its inferred APD classification and dispersion contrast support a secondary-spectrum correction role. This ratio is source evidence, whereas the selected S-NBH5 curve remains a qualified proxy. The negative Abbe number difference (νL₁b₁ − νL₁b₂ = 39.68 − 42.72 = −3.04) confirms the pair is not primarily a chromatic corrector but rather a monochromatic aberration control doublet that uses APD materials for secondary spectrum management.
 
 #### L19 — Positive Meniscus (Surfaces 15–16)
 
@@ -207,7 +209,7 @@ L18 is an anomalous partial dispersion glass (θgf = 0.5737), which contributes 
 | Standalone focal length | +81.3 mm |
 | Shape | Meniscus convex to object, positive power |
 
-L19 is the last element of Gr1 and provides weak positive power that begins converging the divergent beam before it passes through the stop. Using the same glass as L15 (E-FD2), it shares L15's dispersion characteristics. The air gap after L19 (surface 16, d = 6.81 mm at infinity) is the first variable gap — it decreases to 3.14 mm at close focus as Gr2 (and the stop) advance toward the object.
+L19 is the last element of Gr1 and provides weak positive power that begins converging the divergent beam before it passes through the stop. It repeats L15’s source nd/vd coordinates and selected E-FD2 proxy, without proving a shared production melt. The air gap after L19 (surface 16, d = 6.81 mm at infinity) is the first variable gap — it decreases to 3.14 mm at close focus as Gr2 (and the stop) advance toward the object.
 
 ### 3.2 Aperture Stop (Surface 17)
 
@@ -226,13 +228,13 @@ Group 2 is the focusing group. It translates axially toward the object for close
 | Center thickness | 3.23 mm |
 | Standalone focal length | +30.3 mm |
 
-L21 is the first element of the focusing group and provides substantial positive power. Its partial dispersion ratio places it just below the APD threshold: (0.6425 − 0.5926)/35.44 = 0.00141 < 0.00150. This near-boundary status means L21's chromatic contribution is nearly "anomalous," helping to suppress secondary spectrum. L21 is identified in the patent tables as satisfying conditions (12) and (13), confirming its role as a normal-PD positive element in Gr2.
+L21 is the first element of the focusing group and supplies positive power. Its published θgf=.5926 gives (0.6425−θgf)/vd=.00141, satisfying source conditions (12)/(13). That selection inequality is not a universal normal/anomalous-dispersion boundary: relative to the engine’s normal line, the same source ratio gives ΔPgF=+.00841008.
 
 #### L22 + L23 — Cemented Doublet "Jc" (Surfaces 20–22)
 
 | Element | Glass | nd | νd | Radii | ct | fl |
 |---|---|---|---|---|---|---|
-| L22 (neg) | S-LAH55V (OHARA) | 1.77250 | 49.62 | R₂₀ = −23.268, R₂₁ = +14.617 | 1.20 mm | −11.5 mm |
+| L22 (neg) | S-LAH66 (OHARA) | 1.77250 | 49.62 | R₂₀ = −23.268, R₂₁ = +14.617 | 1.20 mm | −11.5 mm |
 | L23 (pos) | S-NSL36 (OHARA) | 1.51742 | 52.15 | R₂₁ = +14.617, R₂₂ = −27.000 | 4.90 mm | +19.1 mm |
 
 This negative-positive doublet provides aberration correction within the focusing group. The junction's large refractive index difference (Δnd = 1.77250 − 1.51742 = 0.255) creates a "buried surface" effect — strong aberration control with minimal chromatic impact at the cemented interface.
@@ -260,7 +262,7 @@ L24 is the highest-index element in the entire system (nd = 1.911). In EX1, it i
 | Center thickness | 5.51 mm |
 | Standalone focal length | +28.9 mm |
 
-L25 is the first of three ED elements (all using S-FPL51) and provides the strongest individual positive power in the rear group. S-FPL51 is a fluorophosphate crown with exceptionally low dispersion (νd = 81.61) and normal partial dispersion (θgf = 0.5388), making it ideal for correcting both primary and secondary axial chromatic aberration.
+L25 is one of three low-dispersion positions correlated with the marketed ED count. The source prints nd=1.49700, vd=81.61 and θgf=.5388 for L25/L27; S-FPL51 is the compatible catalog spectral proxy. Their source ratios give ΔPgF=+.03226802 relative to the engine normal line, rather than proving normal partial dispersion or a production supplier.
 
 #### L26 + L27 — Cemented Doublet "Jd" (Surfaces 27–29)
 
@@ -269,16 +271,16 @@ L25 is the first of three ED elements (all using S-FPL51) and provides the stron
 | L26 (neg) | S-LAH55V (OHARA) | 1.83481 | 42.72 | — | R₂₇ = +112.277, R₂₈ = +18.718 | 1.20 mm | −27.1 mm |
 | L27 (pos) | S-FPL51 (OHARA) | 1.49700 | 81.61 | 0.5388 | R₂₈ = +18.718, R₂₉ = −22.556 | 11.00 mm | +22.6 mm |
 
-This is a classic achromatic doublet pairing a high-index flint (L26, nd = 1.83481) with a low-index ED crown (L27, nd = 1.49700). The large Abbe number difference (Δνd = 81.61 − 42.72 = 38.89) makes this doublet a powerful chromatic corrector. L27 is notably thick (11.00 mm), contributing substantially to the positive power of Gr2. L26 uses the same glass as L17 (S-LAH55V), maintaining inventory efficiency.
+This is a classic achromatic doublet pairing a high-index flint (L26, nd = 1.83481) with a low-index ED crown (L27, nd = 1.49700). The large Abbe number difference (Δνd = 81.61 − 42.72 = 38.89) makes this doublet a powerful chromatic corrector. L27 is notably thick (11.00 mm), contributing substantially to the positive power of Gr2. L26 uses the same glass as L17 (S-LAH55V), without establishing shared production inventory.
 
 #### L28 + L29 — Composite Aspherical Element "H1" (Surfaces 30A–32)
 
 | Element | Material | nd | νd | Radii | ct |
 |---|---|---|---|---|---|
-| L28 (resin) | UV-cure aspherical resin | 1.51380 | 52.97 | R₃₀ = −64.378 (asph), R₃₁ = −60.928 | 0.10 mm |
+| L28 (resin) | Unidentified coating (modeled resin) | 1.51380 | 52.97 | R₃₀ = −64.378 (asph), R₃₁ = −60.928 | 0.10 mm |
 | L29 (glass) | BSC7 (HOYA) | 1.51680 | 64.20 | R₃₁ = −60.928, R₃₂ = −1000.000 | 1.90 mm |
 
-This is a **composite-type aspherical element** — a thin layer of UV-cured aspherical resin (L28) bonded to the object-side surface of a glass meniscus (L29). The resin layer is extremely thin (0.10 mm center thickness) and has nearly zero optical power on its own (fl ≈ +2191 mm). Its purpose is to provide the aspherical surface correction. The base glass element L29 is a weak negative meniscus (fl = −125.6 mm) concave toward the object, using BSC7 — a borosilicate crown with good optical homogeneity.
+This is a **composite-type aspherical element** — a thin layer of coating medium (L28), interpreted as resin without a published curing chemistry, bonded to the object-side surface of a glass meniscus (L29). The resin layer is extremely thin (0.10 mm center thickness) and has nearly zero optical power on its own (fl ≈ +2191 mm). Its purpose is to provide the aspherical surface correction. The base glass element L29 is a weak negative meniscus (fl = −125.6 mm) concave toward the object, using BSC7 as a compatible spectral proxy, without a production-supplier or homogeneity claim.
 
 **Aspherical coefficients — Surface 30 (resin front):**
 
@@ -298,7 +300,7 @@ Per the patent (paragraph 0031), placing an aspherical surface on the rearmost e
 
 ## 4. Glass Summary
 
-The design uses 13 distinct optical materials (12 glasses plus 1 UV-cure resin) across 18 elements:
+The design uses 13 distinct source material coordinates (12 glass coordinates plus 1 coating medium) across 18 elements:
 
 | Glass | Catalog | nd | νd | Elements | Count | Role |
 |---|---|---|---|---|---|---|
@@ -306,17 +308,17 @@ The design uses 13 distinct optical materials (12 glasses plus 1 UV-cure resin) 
 | L-BAL42 | OHARA | 1.58313 | 59.39 | L13 | 1 | Moldable asphere |
 | S-FPL51 | OHARA | 1.49700 | 81.61 | L14, L25, L27 | 3 | ED elements |
 | E-FD2 | HOYA | 1.64769 | 33.84 | L15, L19 | 2 | Doublet Ja & Gr1 meniscus |
-| S-LAH79 | OHARA | 1.90366 | 31.32 | L16 | 1 | Ultra-high-index negative (APD) |
+| S-LAH95 | OHARA | 1.90366 | 31.32 | L16 | 1 | Ultra-high-index negative (APD) |
 | S-LAH55V | OHARA | 1.83481 | 42.72 | L17, L26 | 2 | High-index flint |
 | S-NBH5 | OHARA | 1.65412 | 39.68 | L18 | 1 | APD positive |
 | S-FTM16 | OHARA | 1.59270 | 35.44 | L21 | 1 | Near-APD positive |
-| S-LAH55V | OHARA | 1.77250 | 49.62 | L22 | 1 | High-index LaF |
+| S-LAH66 | OHARA | 1.77250 | 49.62 | L22 | 1 | High-index LaF |
 | S-NSL36 | OHARA | 1.51742 | 52.15 | L23 | 1 | Low-index crown |
 | TAFD35 | HOYA | 1.91082 | 35.25 | L24 | 1 | Ultra-high-index flint |
-| UV-cure resin | Polymer | 1.51380 | 52.97 | L28 | 1 | Composite asphere |
+| Coating medium | Unspecified | 1.51380 | 52.97 | L28 | 1 | Composite asphere |
 | BSC7 | HOYA | 1.51680 | 64.20 | L29 | 1 | Base glass for composite |
 
-The three ED elements (L14, L25, L27) all use S-FPL51 (νd = 81.61), consistent with Nikon's published specification of "3 ED glass elements." The two aspherical elements — L13 (glass-molded, both surfaces aspherical) and L28+L29 (composite resin aspherical) — match the "2 aspherical elements" specification. The three aspherical *surfaces* are: S5A (L13 front), S6A (L13 rear), and S30A (L28 front).
+The three low-dispersion positions L14/L25/L27 correlate with Nikon’s marketed three-ED count, and all resolve to qualified S-FPL51 spectral proxies. The patent describes L28 as a coating on L29; the resin interpretation and any production process remain unconfirmed. The three aspherical *surfaces* are: S5A (L13 front), S6A (L13 rear), and S30A (L28 front).
 
 ---
 
@@ -347,7 +349,7 @@ The design employs a multi-pronged strategy for chromatic aberration correction:
 
 **Lateral chromatic aberration** — the dominant chromatic error in retrofocus wide-angles — is addressed by placing an ED element (L14, S-FPL51) in the front negative sub-group. By using extremely low-dispersion glass for a negative element at high ray heights, the lateral color contribution from the diverging front group is suppressed at its source.
 
-**Secondary spectrum** is controlled through anomalous partial dispersion materials. The patent identifies L16 (θgf = 0.5947) and L18 (θgf = 0.5737) as satisfying APD conditions (10) and (11), meaning they have positive anomalous partial dispersion that can be balanced against the normal-PD ED elements (L25 and L27, θgf = 0.5388) to reduce secondary spectrum. The patent requires at least three positive elements in Gr2 satisfying conditions (12)+(13) — met by L25, L27, and L21.
+**Secondary spectrum** is constrained by five published θgf values: L16=.5947, L18=.5737, L21=.5926 and L25/L27=.5388. Conditions (10)/(11) select L16/L18 and (12)/(13) select L21/L25/L27; these numerical criteria do not identify a production supplier or by themselves label a glass anomalous. The model preserves all five ratios through converted ΔPgF values, with inferred APD classification for L16/L18.
 
 ---
 
@@ -379,8 +381,22 @@ The PC NIKKOR 19mm f/4E ED represents a significant engineering achievement: an 
 
 The joint patent filing by Konica Minolta and Nikon is notable. Konica Minolta's optical engineering division has deep expertise in wide-angle design (inherited from Minolta's legacy), and this collaboration leverages that capability for a lens marketed exclusively under the NIKKOR brand.
 
-The 18-element (17 marketed) construction with three aspherical surfaces and three ED elements is complex for a prime lens, but justified by the extraordinary optical demands: maintaining resolution and a flat image plane across a 66 mm image circle while allowing the optical axis to be shifted and tilted relative to the sensor. The long back focal distance (56.38 mm) provides the necessary mechanical clearance for the tilt-shift mechanism behind the rear element, a constraint that fundamentally shapes the retrofocus power balance.
+The 18-medium (17 marketed elements) construction with three aspherical surfaces and three ED elements is complex for a prime lens, but justified by the extraordinary optical demands: maintaining resolution and a flat image plane across a 66 mm image circle while allowing the optical axis to be shifted and tilted relative to the sensor. The long back focal distance (56.38 mm) provides the necessary mechanical clearance for the tilt-shift mechanism behind the rear element, a constraint that fundamentally shapes the retrofocus power balance.
 
 ---
 
-*Analysis based on JP 2017-161685 A, Example 1. Paraxial parameters independently verified via ABCD matrix ray trace. Glass identifications cross-referenced against OHARA, HOYA, SCHOTT, and CDGM catalogs using six-digit code matching. Semi-diameters estimated via combined marginal + chief ray trace and validated against edge thickness, cross-gap sag overlap, and sd/|R| constraints. All computations performed in Python with IEEE-754 double precision.*
+*Analysis based on JP 2017-161685 A, Example 1. The fresh review directly inspected the original figure and material tables, checked the actual compatible catalog-curve selections, and validated the adopted outlines with the current TypeScript optics and SVG renderer. Source evidence, product correlation and runtime validation remain separate.*
+
+
+## Fresh Patent Reinspection — 2026-10-30
+
+All 18 material rows were freshly checked against Example 1/PDF15–17. Paragraph 0067/PDF14 defines the d line at 587.56 nm; paragraphs 0043/0049/PDF10–11 define θgf=(ng−nF)/(nF−nC). Seventeen compatible coefficient curves remain qualified spectral proxies, with the coating medium 1.5138/52.97 intentionally unresolved. The patent lists candidate suppliers/materials for broad conditions; it does not identify the actual Example 1 or production supplier. Its L28 coating identity is explicit in paragraph 0062/PDF13, while resin chemistry and UV curing are unproven. The five printed ratios are encoded as ΔPgF=θgf−(.6438−.001682νd): L16+.00358024, L18−.00335824, L21+.00841008, L25/L27+.03226802. Their eight-decimal derived values retain the source’s four-decimal θ uncertainty (about ±.00005), and catalog C/d/F curves remain proxies.
+
+Figure 1/PDF24 was inspected face by face at 600 dpi from native 300 ppi, about 4.56 native px/mm from the 112.52 mm vertex span. The four concave front-block faces show real flat ends. Adopted clear/outer heights are S2=26.9/36, S4=20.5/28.8, S6A=15.8/22.3 and S8=14.2/18 mm. Rounded source-sized S2=29.5/38.5 and S4=22.5/29.5 trial targets fail unchanged slope and cross-gap guards; S5A22.5 mm also exceeds the slope guard. S6A's source endpoint around 18 mm approaches the conic-domain/slope limit and its 17.8 mm trial intrudes 10.1754 mm into an allowed 8.469 mm gap. The exact gap bound is 15.8885 mm; 15.8 mm is adopted, extending the old 12.5 mm clear cap. These are guarded source approximations, not exact figure dimensions.
+
+Whole cemented rims rise together: Ja S9–11=13.3; Jb S12–14=12; Jd S27–29=13.3 mm. Ja13.8 and Jd14.2 rounded trial targets have negative edges; actual contacts are 13.5578 and 13.9138 mm, respectively. L25 adopts 11.4 mm on both faces below its 12.0323 mm contact; the final coating/body compound rises together to 15.4 mm. No opaque land is placed at a powered interface, and all nine actual SVG states show finite continuous outlines with zero hidden trim or detached coating wing. S30A at 15.4 mm has departure −.5853 mm and slope 20.8794°. Source R/d, every aspheric coefficient, media pair, stop/focus/perspective controls and tolerances remain unchanged.
+
+Native-image remeasurement gives approximately 4.56 px/mm and source q=.767, .758, .814 and .782 for S2/S4/S6A/S8; one-native-pixel bands are ±.0103, ±.0133, ±.0178 and ±.0228 respectively, before ink ambiguity. The final adopted ratios .7472/.7118/.7085/.7889 reflect the unchanged slope/gap/edge constraints. The measured outer heights are about 37.7/29.0/22.4/17.1 mm; the guarded lands retain those source features without claiming exact contour equality. Nominal aperture, image-circle screening and centered FX field checks pass (≥99% coverage); all nine actual SVG states remain finite with zero hidden trim.
+
+
+A separate infinity-focus chief-ray check uses the patent’s maximum image height y′max = 33.0 mm (PDF17, paragraph0077), equivalent to a 66 mm reference circle. The first 26.5 mm S2 cap stopped at 31.8298 mm; opening it to 26.9 mm, within the unchanged slope and gap limits, reaches 33.0 mm at about 60.1215° with every chief-ray aperture clear. The required S2 height is 26.7952 mm. The 36 mm outer land is retained. This verifies that reference chief ray; it does not certify full shifted-pupil transmission, tilt performance or manufacturing clear apertures. The ordinary analysis format remains FX.

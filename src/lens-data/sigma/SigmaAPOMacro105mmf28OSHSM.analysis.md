@@ -139,7 +139,7 @@ The patent does not name glass manufacturers. The table below therefore gives ca
 | E1, E9 | 1.80420 | 46.50 | 804465 | TAF3D / N-LASF44 exact class; OHARA S-LAH65VS close | High class match | High-index positive powers |
 | E2 | 1.49700 | 81.61 | 497816 | S-FPL51 / FCD1 class | High | Main SLD/ED crown |
 | E3, E11 | 1.76182 | 26.61 | 762266 | S-TIH14 class | High | High-index flint mates |
-| E4 | 1.59282 | 68.62 | 593686 | FCD515 exact; S-FPM2 nearby | High for Hoya class | High-index SLD-class crown |
+| E4 | 1.59282 | 68.62 | 593686 | FCD515 coordinate proxy; S-FPM2 nearby | High for catalog class | High-index SLD-class crown |
 | E5 | 1.60342 | 38.01 | 603380 | S-TIM5 / F5 class | High | Moving negative focus singlet |
 | E6 | 1.51680 | 64.20 | 517642 | N-BK7 / BSC7 class | High | Low-index crown in L2a |
 | E7 | 1.84666 | 23.78 | 847238 | S-TIH53 | High | Dense flint in L2a |
@@ -235,3 +235,5 @@ Within Sigma's macro line, the OS HSM lens is a more complex design than the old
 - HOYA optical glass catalog data, including M-BACD5N for the E16 589613 code.
 - HOYA GROUP Optics Division, official optical-glass data download page: https://www.hoya-opticalworld.com/english/datadownload/index.html
 - Schott and Hoya catalog-class equivalents used only where the nd/νd pair is a closer match than a current Ohara S-catalog glass; uncertain vendor provenance is stated as class-level identification rather than as a procurement claim.
+
+The fresh Figure31 review follows exposed flat shoulders at S9/S23/S24 with lands to15.5/15.5/17mm. The S9/S10 clear caps are13mm; the earlier12.4mm value clipped the native axial beam. S10 also has an exposed land to the existing14mm body. Literal radii, air gaps, focus states and iris controls are retained, and the native f2.91 beam is now iris-limited. The remaining short concave steps lack enough native-pixel evidence for numeric cuts. All16 dispersion curves are qualified catalog proxies; the source provides d-line coordinates without actual C/F/g or partial ratios.

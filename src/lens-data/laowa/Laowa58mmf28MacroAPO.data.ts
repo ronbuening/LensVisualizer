@@ -94,7 +94,7 @@ const LENS_DATA = {
       focalLengthMm: 73.5,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.038 (CDGM catalog); equivalent to S-FPL51 (OHARA) / FCD1 (HOYA)",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "First ED element; strong positive power with minimal chromatic contribution at G2 entrance",
     },
     {
@@ -158,7 +158,7 @@ const LENS_DATA = {
       focalLengthMm: 29.9,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.038; primary APO correction site paired with H-ZF13 (Δνd = 57.8)",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "ED element in achromatic doublet; principal secondary-spectrum corrector in G2",
       cemented: "Db",
     },
@@ -223,7 +223,7 @@ const LENS_DATA = {
       focalLengthMm: -34.4,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.038; controls lateral chromatic aberration near image plane",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "Concave-to-object ED meniscus near image; corrects lateral color at large chief ray height",
     },
     {
@@ -236,13 +236,14 @@ const LENS_DATA = {
       focalLengthMm: 59.0,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.038; field flattener with minimal chromatic contribution",
+      apdNote: "H-FK61 is a compatible fluorophosphate-class spectral proxy for source nd=1.49700 and νd=81.61; its ED/APD classification remains inferred. The source supplies d-line nd/vd only, without a measured partial-dispersion value or production supplier.",
       role: "Symmetric ED biconvex field flattener / telecentricity corrector; f ≈ system EFL",
     },
   ],
 
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
+  // Original patent figure rechecked 2026-10-29; opaque cap-end lands and beam-safe cuts documented in audit.
   surfaces: [
     // ── G1: L1–L2 (fixed) ──
     { label: "1", R: 491.1153, d: 1.35, sd: 25.0, medium: 1 }, // L1 front
@@ -267,11 +268,11 @@ const LENS_DATA = {
 
     // ── G3: L10–L14 (auxiliary focus / field corrector) ──
     { label: "18", R: 121.4165, d: 0.8, sd: 10.5, medium: 10 }, // L10 front
-    { label: "19", R: 26.0155, d: 3.1527, sd: 8.5 }, // L10 rear → air
-    { label: "20", R: -31.1757, d: 0.8, sd: 8.5, medium: 11 }, // L11 front (Dc)
+    { label: "19", R: 26.0155, d: 3.1527, sd: 8.5, rimExtensionSd: 10.5 }, // L10 rear → air
+    { label: "20", R: -31.1757, d: 0.8, sd: 8.5, rimExtensionSd: 10.5, medium: 11 }, // L11 front (Dc)
     { label: "21", R: 24.249, d: 5.05, sd: 8.5, medium: 12 }, // L11→L12 junction (Dc)
     { label: "22", R: -40.7308, d: 12.796, sd: 10.5 }, // L12 rear → air
-    { label: "23", R: -17.0405, d: 1.2, sd: 14.5, medium: 13 }, // L13 front
+    { label: "23", R: -17.0405, d: 1.2, sd: 14.5, rimCutDepthMm: 4.89, medium: 13 }, // L13 front
     { label: "24", R: -4370.318, d: 0.9228, sd: 14.5 }, // L13 rear → air
     { label: "25", R: 57.5634, d: 6.55, sd: 14.5, medium: 14 }, // L14 front
     { label: "26", R: -57.5634, sd: 14.0 }, // L14 rear → BFD (D26 var)

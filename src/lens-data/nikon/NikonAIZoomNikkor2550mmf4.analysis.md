@@ -6,7 +6,7 @@
 **Inventors:** Norio Mizutani and Soichi Nakamura
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Wide Angle Zoom Lens System
-**Example details:** with the sign of r11 corrected from the claim text
+**Example details:** Example 8, Figure 8; r11 = −219.5 from repeated Claim 20
 
 Example 8 is the prescription used here for the NIKON AI ZOOM-NIKKOR 25-50mm f/4. The patent example gives a focal-length range of 25.50-35.150-48.805 mm, an f/4 aperture, an 80.6° maximum field, and an 11-element arrangement in which a four-element diverging group is followed by a seven-element converging group. Nikon's own design history for the Ai Zoom Nikkor 25-50mm f/4 identifies the lens as a two-group design with four elements in the first group and seven elements in the second group, designed by Norio Mizutani, completed in February 1976, and released in 1979. That convergence is strong enough to treat Example 8 as the production-family prescription.
 
@@ -110,7 +110,7 @@ L9b is the rear positive member nearest the image plane. Its position gives it s
 
 ## Glass Selection
 
-The glass palette spans eight optical types across eleven elements.
+All 11 stored material pairs match the Example 8 table (PDF p. 22), independently repeated in Claim 20 (PDF p. 26). The table defines refractive indices and Abbe numbers without an explicit wavelength in that definition; the stored d-line convention is retained as an interpretation. All 11 media resolve to compatible catalog curves. The glass names below are qualified spectral proxies rather than production supplier or melt identifications; source nd/vd values remain authoritative.
 
 | Code | Assignment | nd | νd | Elements | Note |
 |---|---:|---:|---:|---|---|
@@ -189,7 +189,7 @@ Independent paraxial y-nu and ABCD traces were rerun from the patent prescriptio
 
 The computed group focal lengths are f1 = -45.379 mm and f2 = +41.080 mm, matching the patent's -45.37879 mm and +41.082 mm values. The computed standalone element focal lengths used in the data file were also checked against independent thick-lens calculations.
 
-Semi-diameters are not published in the patent. The data file uses inferred semi-diameters derived from marginal/chief paraxial ray envelopes and then reduced conservatively to satisfy renderer constraints: sd/|R| < 0.90, element front/rear semi-diameter ratio not exceeding 1.25, positive edge thickness, and signed cross-gap sag intrusion below 90% of the corresponding air gap. The resulting clear apertures should be treated as visualization clear apertures, not manufacturer mechanical drawings.
+Semi-diameters are inferred. Fresh inspection of Figure 8 (PDF p. 5) supports a flat land on the concave rear of L1: its existing 22.0 mm cap remains, with an opaque extension to the 27.5 mm front rim. L3's concave rear receives a 4.80 mm inferred cut depth at a 21.5 mm outer rim, yielding an 18.7208 mm cap. A flat end suggested at L8's rear is not adopted: its drawn cap ratio near 0.87 would require about 8.27 mm, beyond the literal next-gap contact radius of 8.0746 mm and the 7.6877 mm clearance-policy bound. That boundary keeps its existing 7.6 mm curved cap and tapered rim. All other faces retain their guarded profiles. These inferred drawing choices are not patent-listed mechanical apertures.
 
 ## Sources
 

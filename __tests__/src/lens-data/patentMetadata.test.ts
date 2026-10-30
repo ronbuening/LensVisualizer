@@ -74,7 +74,6 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
   "minolta-af-35-105mm-f3-5-4-5-v2",
   "nikkor-z-100-400-f4556",
   "nikon-1-nikkor-vr-10-30-f35-56",
-  "nikon-fuwatto-soft-90mm-f48",
   "nikon-z-dx-16-50-f3563-vr",
   "nikon-z-dx-18-140-f35-63-vr",
   "olympus-zuiko-85mm-f2",

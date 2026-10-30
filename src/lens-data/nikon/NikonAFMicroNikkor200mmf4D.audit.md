@@ -257,3 +257,11 @@ Repository verification completed:
 - Focused analysis, patent-metadata, lens-data, catalog, and production render-diagnostics tests: PASS, 149 tests.
 
 No patent-derived radius, spacing, refractive index, Abbe value, focus endpoint, element/group count, or spherical-surface status required correction during repository integration.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Re-read the original local `patents/US5402268.pdf`: Fig.1 on PDF p2 and Table1/d-line definition on p7. The 300 ppi source has approximately 11.4 native px/mm from the S1–S21 vertex span. L1's common source rim is about 28.8 mm; raised S1–S3 together from 27.5 to 28.5 mm, leaving0.136293 mm positive edge thickness in L12. A29 mm trial crosses the literal S2/S3 profiles, and an S12 16→17 mm trial exceeds the S11–S12 gap guard. Retained those physical bounds and the other inferred rims. No separately resolved exposed vertical cap-end seat justifies a cut or extension; cemented steps and leaders were excluded.
+
+Freshly checked all 13 media against Table1: every stored nd/νd pair and the d-line convention agrees. The source supplies neither named supplier glass nor C/F/g or partial-dispersion measurements. All13 current labels resolve to compatible coefficient-backed spectral proxies; no production supplier, melt, or anomalous-partial-dispersion identity is established. Preserved all coordinates and existing qualified labels.
+
+Surface, image-circle and infinity aperture checks pass; the full nominal f/4 axial beam remains clear. Actual renderer paths at nine sampled control states are finite with zero hidden trimming. Source radii, thicknesses, focus tables, inferred stop and check tolerances are unchanged.

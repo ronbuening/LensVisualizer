@@ -16,7 +16,7 @@ JP 2012-63403 A describes a life-size inner-focus macro lens with optical image 
 Numerical Example 2 is the embodiment that best matches the production **Sigma APO Macro 150mm F2.8 EX DG OS HSM**. The identification rests on the following convergence of patent and manufacturer evidence:
 
 1. The patent embodiment has **19 glass elements in 13 air-separated groups**, matching Sigma's published optical construction.
-2. The patent includes three positive low-dispersion FCD1-class elements at $n_d = 1.49700, \nu_d = 81.61$, corresponding to the production lens's three SLD-class elements.
+2. The patent includes three positive low-dispersion elements compatible with FCD1-class spectral proxies at $n_d = 1.49700, \nu_d = 81.61$, corresponding to the production lens's three SLD-class elements.
 3. The infinity focal length is $f = 150.00$ mm in the patent table; the independent paraxial trace gives 149.992 mm.
 4. The patent maximum image height is $Y = 21.63$ mm. With $f = 149.992$ mm, the full diagonal angle is $2\arctan(21.63/149.992) = 16.41^\circ$, matching Sigma's published 16.4° field.
 5. The focus and stabilization architecture matches the production description: internal focusing, floating focus groups, and a laterally decentered optical stabilizer group.
@@ -60,7 +60,7 @@ The first element is a moderate-index barium dense crown. Its relatively gentle 
 **L12:** $n_d = 1.49700, \nu_d = 81.61$. Glass: **FCD1 (Hoya)**, SLD/ED fluorocrown. Standalone focal length: +119.36 mm.  
 **L13:** $n_d = 1.80518, \nu_d = 25.46$. Glass: **FD60 (Hoya)**, dense flint. Standalone focal length: −145.71 mm.
 
-This cemented doublet is the first major chromatic-correction unit. L12 is the first of the three FCD1 low-dispersion elements. Hoya's current catalog gives FCD1 a strong positive partial-dispersion deviation, $\Delta P_{g,F} \approx +0.0374$ from Hoya's own normal line (about $+0.032$ from the engine's), making it an effective secondary-spectrum corrector when paired with a dense flint.
+This cemented doublet is the first major chromatic-correction unit. L12 is the first of the three FCD1 low-dispersion elements. The compatible FCD1 coefficient spectrum supplies a qualified anomalous-dispersion proxy for secondary-spectrum correction. The source gives neither this catalog spectrum nor an actual partial ratio, and the production melt is unknown.
 
 L13 provides the compact dispersive counter-power. The rear surface is plane in the patent table, so this element is effectively plano-concave, despite its inclusion in a strongly powered cemented pair.
 
@@ -71,7 +71,7 @@ L13 provides the compact dispersive counter-power. The rear surface is plane in 
 
 The second cemented doublet is the strongest positive assembly in L1. It repeats the low-dispersion positive / high-index negative strategy, but the negative element is TAF1 rather than FD60. TAF1's high index lets the cemented interface remain less extreme while still balancing the front group's power and Petzval contribution.
 
-Together, L12 and L14 are the front group's two anomalous-dispersion positive lenses. This directly follows the patent's recommendation that some positive lenses in L1 use anomalous-partial-dispersion, low-dispersion media for axial and lateral color correction (¶0071).
+Together, L12 and L14 are the front group's two anomalous-dispersion positive lenses. This is compatible with the patent's group-level recommendation that some positive lenses in L1 use anomalous-partial-dispersion, low-dispersion media for axial and lateral color correction (¶0071).
 
 ### L21 — Negative meniscus, first focusing group
 
@@ -145,28 +145,26 @@ The closing doublet balances the residual color and field aberrations of the rel
 
 ## Glass Identification and Selection
 
-All patent $(n_d, \nu_d)$ pairs were matched against the current Hoya optical-glass catalog. The Hoya table is a particularly good fit: every glass used in Numerical Example 2 has an exact or near-exact Hoya catalog match, including the FCD1, FD60, TAC8, FDS90, LAC8, E-FD4, and NBFD-family glasses. The data file therefore uses Hoya catalog names and transcribes Hoya C/F/g-line indices for chromatic modeling. The patent prints no partial dispersion, so the file's `dPgF` is derived from those indices: $P_{g,F} = (n_g - n_F)/(n_F - n_C)$ minus the engine's normal line $0.6438 - 0.001682\,\nu_d$. Hoya's catalog $\Delta P_{g,F}$ is measured from Hoya's own normal line (the catalog figures below fit $0.64833 - 0.0018\,\nu_d$), so it is quoted here as the catalog's figure and is not the number the file stores.
+The nineteen source d-line coordinates resolve compatible HOYA coefficient curves as spectral proxies. The patent names no supplier and gives no C/F/g indices, partial ratio or normal-line deviation. Catalog-only line values and exact `dPgF` annotations are removed from the lens data; runtime dispersion comes from the compatible coefficient models. The source coordinates remain authoritative, and no match identifies historical production melts.
 
-| Patent $n_d, \nu_d$ | Catalog match | Hoya catalog $\Delta P_{g,F}$ (Hoya's line) | Stored `dPgF` (engine's line) | Elements | Function |
-|---:|---|---:|---:|---|---|
-| 1.49700, 81.61 | FCD1 (Hoya) | +0.0374 | +0.032056 | L12, L14, L32 | SLD/ED anomalous-dispersion positive crowns |
-| 1.48749, 70.44 | FC5 (Hoya) | +0.0090 | +0.005027 | L23 | Low-dispersion crown in L2 reversed achromat |
-| 1.65844, 50.85 | BACED5 (Hoya) | +0.0008 | −0.000741 | L11 | Moderate-index front crown |
-| 1.72916, 54.67 | TAC8 (Hoya) | −0.0046 | −0.006868 | L21, L24, L31, L52 | High-index crown / negative group workhorse |
-| 1.71300, 53.94 | LAC8 (Hoya) | −0.0071 | −0.009200 | L53 | Negative crown in OS group |
-| 1.77250, 49.62 | TAF1 (Hoya) | −0.0086 | −0.009568 | L15 | High-index front-group negative partner |
-| 1.80611, 40.73 | M-NBFD130 class (Hoya) | −0.0056 | −0.006605 | L61 | Positive rear-relay high-index element |
-| 1.83400, 37.35 | NBFD10 (Hoya) | −0.0021 | −0.0021 | L63 | Positive rear-relay dense-flint element |
-| 1.68893, 31.16 | E-FD8 (Hoya) | +0.0067 | +0.007435 | L41 | Fixed pre-OS negative conditioner |
-| 1.75520, 27.53 | E-FD4 (Hoya) | +0.0103 | +0.011692 | L62 | Rear-relay negative dense flint |
-| 1.80518, 25.46 | FD60 (Hoya) | +0.0132 | +0.014579 | L13, L33, L51 | Dense-flint achromatizing partners |
-| 1.84666, 23.78 | FDS90 (Hoya) | +0.0137 | +0.015299 | L22 | High-dispersion positive flint in L2 |
-
-The trace uses the authored C/F/g indices directly, so `dPgF` is an annotation of them. NBFD10 keeps its earlier figure because the two lines nearly cross at its Abbe number and the index-derived value (−0.001936) is within 0.0003 of it.
+| Source nd / vd | Qualified catalog proxy | Elements |
+|---|---|---|
+| 1.49700 /81.61 | FCD1 | L12,L14,L32 |
+| 1.48749 /70.44 | FC5 | L23 |
+| 1.65844 /50.85 | BACED5 | L11 |
+| 1.72916 /54.67 | TAC8 | L21,L24,L31,L52 |
+| 1.71300 /53.94 | LAC8 | L53 |
+| 1.77250 /49.62 | TAF1 | L15 |
+| 1.80611 /40.73 | M-NBFD130 class | L61 |
+| 1.83400 /37.35 | NBFD10 | L63 |
+| 1.68893 /31.16 | E-FD8 | L41 |
+| 1.75520 /27.53 | E-FD4 | L62 |
+| 1.80518 /25.46 | FD60 | L13,L33,L51 |
+| 1.84666 /23.78 | FDS90 | L22 |
 
 The chromatic strategy is straightforward but well distributed. FCD1 appears twice in the fixed front group and once in the moving rear focus group. This matches the patent's text: L1 should contain anomalous low-dispersion positive lenses for color correction across the focusing range (¶0071), and L3 should contain such a positive lens to maintain axial and lateral color correction as focus changes (¶0070).
 
-The data file does not label the lens as apochromatic merely from Abbe numbers. It includes Hoya line indices and the engine-line $\Delta P_{g,F}$ values they imply because secondary-spectrum correction depends on partial dispersion, not just $n_d$ and $\nu_d$.
+The data file does not label the lens as apochromatic merely from Abbe numbers. Compatible catalog curves provide a qualified spectral model; the three FCD1 APD tags remain inferred at the individual-element level.
 
 ## Focus Mechanism
 
@@ -256,5 +254,7 @@ The solution is not merely to decenter a strong rear group. Sigma inserts L4, a 
 - JP 2012-63403 A, Sigma Corporation, "防振機能を有するインナーフォーカス式マクロレンズ," Numerical Example 2, ¶0085–¶0089. Prescription, variable spacing, group focal lengths, and conditional-expression values.
 - JP 2012-63403 A, ¶0012–¶0019 and ¶0034–¶0072. Six-group layout, focus motion, stabilizer motion, L4/L5 rationale, chromatic glass recommendations, and fixed rear group behavior.
 - Sigma Corporation, "APO MACRO 150mm F2.8 EX DG OS HSM," official product page. Used for production hard specifications: full-frame DG coverage, 19 elements / 13 groups, 16.4° angle of view, 9 rounded blades, F22 minimum aperture, 38 cm MFD, 1:1 maximum magnification, 72 mm filter size, dimensions, weight, and listed mounts.
-- HOYA Group Optics Division, HOYA optical-glass data download, HOYA20260401.xlsx. Used for catalog glass matching, C/F/g-line indices, and $\Delta P_{g,F}$ values.
+- HOYA Group Optics Division, HOYA optical-glass data download, HOYA20260401.xlsx. Used for qualified catalog-coordinate and coefficient-spectrum comparison; its C/F/g and partial-ratio values are not patent measurements.
 - HOYA Group Optics Division, technical information on glass type naming and six-digit glass codes. Used to verify Hoya family names and refractive-index/Abbe-number code interpretation.
+
+The fresh Figure8 review adds exposed flat lands at S8/S10 to22.6/21.2mm while retaining their clear caps. The connected final L6 compound S31/S32/S33 now shares an11.3mm outer/clear radius: the prior10.2mm final cap clipped the native full-frame chief, which reaches about11.12mm. This follows the drawn common body and restores centered corner coverage. All literal spheres, gaps, focus states and iris controls remain unchanged. Other short steps lack enough native-pixel evidence for numeric cuts; no inferred cut is added.

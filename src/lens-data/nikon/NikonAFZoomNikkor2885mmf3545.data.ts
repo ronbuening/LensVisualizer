@@ -22,6 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    at beta = -0.25 from the wide end. Because no tele-end macro prescription is published,        ║
  * ║    the second zoom close-focus pairs are held equal to infinity.                                 ║
  * ║                                                                                                  ║
+ * Current glass names identify compatible catalog curves, not source-named suppliers.
+ * The source table labels n/ν without an explicit reference wavelength; the stored
+ * d-line interpretation is supported by the coordinate families, not a printed wavelength.
+ * Table 1 supplies the traced design f/3.5–4.0 stations; marketed f/3.5–4.5 remains catalog metadata.
+ *
  * ║  NOTE ON SEMI-DIAMETERS:                                                                         ║
  * ║    The patent does not publish clear apertures. Semi-diameters were estimated from paraxial       ║
  * ║    marginal/chief-ray envelopes, the 62 mm filter-thread constraint, rim-slope limits,            ║
@@ -49,6 +54,7 @@ const LENS_DATA = {
     elementCount: 15,
     groupCount: 11,
     focalLengthMm: { marketing: [28, 85], design: [28.833, 83.289] },
+    fNumber: { marketing: 3.5, design: 3.5 },
   },
 
   source: {
@@ -90,7 +96,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.5,
       focalLengthMm: -35.9,
-      glass: "797455 - TAF2 class (Hoya legacy; no exact catalog match)",
+      glass: "TAF2 catalog-coordinate proxy (patent 797455; production supplier unspecified)",
       role: "Negative component of the G1 cemented chromatic-correction doublet.",
       cemented: "D1",
     },
@@ -229,7 +235,7 @@ const LENS_DATA = {
       nd: 1.79504,
       vd: 28.6,
       focalLengthMm: -46.6,
-      glass: "795287 - J-LAFH3 (Hikari; no source-backed catalog match)",
+      glass: "J-LAFH3 catalog-coordinate proxy (source 1.79504/28.6; production supplier unspecified)",
       role: "Rear negative meniscus and field-flattening/chromatic-balancing element.",
     },
   ],
@@ -238,17 +244,17 @@ const LENS_DATA = {
     { label: "1", R: 149.991, d: 3, sd: 30.8, medium: 1 },
     { label: "2", R: 431.194, d: 0.1, sd: 29 },
     { label: "3", R: 75.043, d: 1.7, sd: 22.7, medium: 2 },
-    { label: "4", R: 25.703, d: 7.9, sd: 17.5 },
+    { label: "4", R: 25.703, d: 7.9, sd: 17.5, rimExtensionSd: 22.7 },
     { label: "5", R: -1130.61, d: 1.2, sd: 23, medium: 3 },
     { label: "6", R: 29.317, d: 3.9, sd: 18.6, medium: 4 },
     { label: "7", R: 56.658, d: 0.25, sd: 18.6 },
     { label: "8", R: 34.009, d: 2.4, sd: 19.5, medium: 5 },
     { label: "9", R: 47.268, sd: 19.5 },
     { label: "10", R: 36.551, d: 1.2, sd: 15.0, medium: 6 },
-    { label: "11", R: 22.699, d: 7.4, sd: 12.2, medium: 7 },
-    { label: "12", R: -29.749, d: 1.2, sd: 12.2, medium: 8 },
+    { label: "11", R: 22.699, d: 7.4, sd: 12.4, medium: 7 },
+    { label: "12", R: -29.749, d: 1.2, sd: 12.5, medium: 8 },
     { label: "13", R: -52.051, d: 0.1, sd: 15.0 },
-    { label: "14", R: 32.773, d: 3.6, sd: 13.1, medium: 9 },
+    { label: "14", R: 32.773, d: 3.6, sd: 13.2, medium: 9 },
     { label: "15", R: -1305.526, sd: 13.1 },
     { label: "STO", R: "flat", d: 0.6 },
     { label: "16", R: -100.418, d: 1.9, sd: 9.3, medium: 10 },
@@ -268,7 +274,7 @@ const LENS_DATA = {
     // (moved from publishedStations) Source-tabulated focus rows differ by zoom station.
     stations: [
       { focalLengthMm: 28.8, nominalFNumber: 3.5, label: "28.8 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 83.3, nominalFNumber: 4.5, label: "83.3 mm", published: true },
+      { focalLengthMm: 83.3, nominalFNumber: 4.0, label: "83.3 mm", published: true },
     ],
     step: 0.004,
   },

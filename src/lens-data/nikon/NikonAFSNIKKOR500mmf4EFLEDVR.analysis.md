@@ -15,7 +15,7 @@ The prescription is the project-selected correlation for the **NIKON AF-S NIKKOR
 
 Several independent features converge on that identification:
 
-1. Nikon's production specification describes an FX-format Nikon F-mount 500 mm f/4 lens with 16 lens elements in 12 groups, two fluorite elements, three ED elements, internal focusing, and VR. Example 1 contains a separate front protective meniscus FLG plus 16 active lens elements in 12 air-separated groups. Removing FLG, as the LensVisualizer data policy requires, leaves the same 16-element/12-group active count. [Nikon product specification][nikon-spec]
+1. Nikon's production specification describes an FX-format Nikon F-mount 500 mm f/4 lens with 16 lens elements in 12 groups, two fluorite elements, three ED elements, internal focusing, and VR. Example 1 contains a separate front protective meniscus FLG plus 16 active lens elements in 12 air-separated groups. Omitting FLG in the existing model leaves the same 16-element/12-group active count. [Nikon product specification][nikon-spec]
 2. The patent contains exactly two elements with `nd = 1.43385`, `νd = 95.25` (L11 and L12), matching the production lens's count of two fluorite elements, and exactly three elements with `nd = 1.49782`, `νd = 82.57` (L15, L32, and L35), matching the production count of three ED elements.
 3. Example 1 publishes `f = 490.000 mm`, `FNO = 4.122`, full field `2ω = 5.035°`, and image height `Y = 21.63 mm`; these design quantities correspond closely to the marketed 500 mm f/4 full-frame lens while remaining explicitly separate from its rounded product specifications. Patent Table 1, ¶¶0041–0044.
 4. The patent uses a negative internal-focus group G2 that translates imageward, together with a laterally shifting G3b vibration-reduction group. Those mechanisms agree with Nikon's production description of IF and VR. Patent ¶¶0038–0040; [Nikon product specification][nikon-spec].
@@ -28,7 +28,7 @@ No uniform scale factor is applied. The marketed values remain 500 mm and f/4; t
 
 Example 1 is an all-spherical, fixed-focal-length **telephoto** design. The patent organizes it as a positive G1, negative G2, and positive G3, with G3 subdivided into positive G3a, negative G3b, and positive G3c. The aperture stop is fixed between G2 and G3. Patent ¶¶0034–0039.
 
-The final LensVisualizer prescription contains **16 active elements in 12 air-separated groups**. The source protective meniscus FLG (patent surfaces 1–2) is not modeled as an active lens element. This omission is a modeling normalization, not a correction to the patent: surface 31's rear air is increased from the source `Bf = 87.772 mm` to **87.868557 mm** so that the FLG-free active prescription remains focused at infinity. The omission changes the modeled EFL from the complete patent system's 490.000 mm to **489.459688 mm**.
+The final LensVisualizer prescription contains **16 active elements in 12 air-separated groups**. The source protective meniscus FLG (patent surfaces 1–2) is not modeled as an active lens element. The patent expressly permits a configuration without that protective glass (¶0064, PDF p. 16). Its omission here remains a modeling normalization: surface 31's rear air is increased from the source `Bf = 87.772 mm` to **87.868557 mm** so that the FLG-free active prescription remains focused at infinity. The omission changes the modeled EFL from the complete patent system's 490.000 mm to **489.459688 mm**.
 
 Measured from the first active modeled surface to the image plane, the final axial track is **418.900557 mm**. The ratio `TL/EFL = 0.855843`, so the model satisfies the project's telephoto criterion `TL/EFL < 1`. Its infinity back focal distance is **87.868557 mm**, well below EFL, so it is not retrofocus under the project's `BFD > EFL` definition.
 
@@ -54,7 +54,7 @@ The patent does not publish clear semi-diameters or a physical stop diameter. Co
 
 L11 is the first active positive collector after the omitted protective meniscus. Nikon's product specification establishes that the production lens contains two fluorite elements, and Example 1 contains exactly two elements at this low-index, very-high-Abbe coordinate; the final model therefore correlates L11 and L12 with the production fluorite pair. This is a production correlation, not a glass name supplied by the patent.
 
-The explicit C-, F-, and g-line values stored for L11 are calculated from the cited CaF2 dispersion relation rather than copied from the patent. They support the model's chromatic trace but do not alter the source `nd` and `νd` values.
+The current compatible CaF2 curve is a qualified spectral proxy. The authored `dPgF` instead preserves the center of the patent's two-decimal `θgF = 0.54 ±0.005`; its converted decimal places do not add source precision. No catalog C-, F-, or g-line index is copied into the prescription.
 
 ### L12 — Biconvex Positive
 
@@ -64,21 +64,21 @@ L12 is the stronger of the two front fluorite-correlated positive elements. Toge
 
 ### L13 — Biconcave Negative
 
-`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 spectral match)**. Standalone `f = −338.744576 mm`.
+`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)**. Standalone `f = −338.744576 mm`.
 
-L13 supplies the first negative power within G1 after the two positive front collectors. Its class label reflects the source coordinates; HIKARI J-KZFH1 is used in the final data only as an exact-coordinate spectral analogue for `nC`, `nF`, `ng`, and `dPgF`, not as a claim that Nikon specified that melt.
+L13 supplies the first negative power within G1 after the two positive front collectors. Its class label reflects the source coordinates; HIKARI J-KZFH1 supplies a qualified compatible catalog curve; the authored partial-dispersion value comes from the printed patent ratio, and Nikon's historical supplier remains unspecified.
 
 As one of G1's negative elements, L13 participates in the correction balance described in patent ¶0030. The patent does not assign a unique aberration term to L13 alone.
 
 ### L14 — Negative Meniscus, Convex to Object
 
-`nd = 1.69680`, `νd = 55.52`. Glass: **697555 class (HIKARI J-LAK14 spectral match)**. Standalone `f = −161.158073 mm`.
+`nd = 1.69680`, `νd = 55.52`. Glass: **697555 class (HIKARI J-LAK14 catalog-coordinate proxy)**. Standalone `f = −161.158073 mm`.
 
-L14 is the negative front member of cemented pair D1 at the rear of G1. It is cemented directly to L15 at surface 10. Its spectral fields again use an exact-coordinate HIKARI analogue without asserting vendor identity.
+L14 is the negative front member of cemented pair D1 at the rear of G1. It is cemented directly to L15 at surface 10. Its current catalog curve is a coordinate-compatible HIKARI proxy without asserted vendor identity; the partial-dispersion override uses the rounded source ratio.
 
 ### L15 — Positive Meniscus, Convex to Object
 
-`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 spectral match)**. Standalone `f = +109.492952 mm`.
+`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)**. Standalone `f = +109.492952 mm`.
 
 L15 is the positive partner of L14 and one of the three elements correlated with Nikon's production ED count. The isolated cemented L14+L15 assembly has equivalent focal length **+374.249888 mm**. That net positive assembly power is distinct from either element's standalone-in-air focal length.
 
@@ -86,13 +86,13 @@ The pair closes G1 and places a high-Abbe positive member immediately before the
 
 ### L21 — Plano-Concave Negative
 
-`nd = 1.83400`, `νd = 37.18`. Glass: **834372 class (HIKARI J-LASF010 spectral match)**. Standalone `f = −98.587170 mm`.
+`nd = 1.83400`, `νd = 37.18`. Glass: **834372 class (HIKARI J-LASF010 catalog-coordinate proxy)**. Standalone `f = −98.587170 mm`.
 
 L21 is the leading negative element of G2, the internal-focus group. Its substantial negative standalone power is central to G2's overall negative equivalent focal length. The entire G2 assembly moves imageward during focusing; L21 does not move independently of L22 and L23. Patent ¶¶0036, 0038.
 
 ### L22 — Positive Meniscus, Concave to Object
 
-`nd = 1.80809`, `νd = 22.74`. Glass: **808227 high-dispersion class (HIKARI J-SFH1 spectral match)**. Standalone `f = +151.725029 mm`.
+`nd = 1.80809`, `νd = 22.74`. Glass: **808227 high-dispersion class (HIKARI J-SFH1 catalog-coordinate proxy)**. Standalone `f = +151.725029 mm`.
 
 L22 is the positive member of the cemented L22+L23 pair. Its unusually low Abbe number for a positive lens is intentional in the patent's design logic: condition (2) requires the relevant positive lens in G2 to satisfy `νdp < 30`, and Example 1 uses `νdp = 22.74`. The patent states that this condition suppresses chromatic variation during focusing. Patent ¶¶0017–0018, 0023.
 
@@ -106,31 +106,31 @@ The isolated L22+L23 cemented pair is weakly positive, with equivalent focal len
 
 ### L31 — Negative Meniscus, Convex to Object
 
-`nd = 1.80809`, `νd = 22.74`. Glass: **808227 high-dispersion class (HIKARI J-SFH1 spectral match)**. Standalone `f = −115.189996 mm`.
+`nd = 1.80809`, `νd = 22.74`. Glass: **808227 high-dispersion class (HIKARI J-SFH1 catalog-coordinate proxy)**. Standalone `f = −115.189996 mm`.
 
 L31 begins G3a as the negative member of a cemented pair. Although L31 alone is negative, the pair becomes positive after the strong biconvex L32 is added. Patent ¶0037 identifies G3a as a positive subgroup.
 
 ### L32 — Biconvex Positive
 
-`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 spectral match)**. Standalone `f = +79.685959 mm`.
+`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)**. Standalone `f = +79.685959 mm`.
 
 L32 is the positive partner of L31 and the second of the model's three production-correlated ED-class elements. The cemented L31+L32 pair is identical to G3a and has isolated equivalent focal length **+261.209511 mm**.
 
 ### L33 — Biconcave Negative
 
-`nd = 1.62299`, `νd = 58.12`. Glass: **623581 class (HIKARI J-SK15 spectral match)**. Standalone `f = −186.957194 mm`.
+`nd = 1.62299`, `νd = 58.12`. Glass: **623581 class (HOYA BACD15 catalog-coordinate proxy)**. Standalone `f = −186.957194 mm`.
 
 L33 is the leading negative element of G3b, the laterally shifting vibration-reduction subgroup. Patent ¶0039 specifies G3b as the shift group, while ¶0027 states a preference for the shift group to contain at least one positive and at least one negative lens so chromatic coma during lens shift can be controlled.
 
 ### L34 — Positive Meniscus, Concave to Object
 
-`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 spectral match)**. Standalone `f = +81.749600 mm`.
+`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)**. Standalone `f = +81.749600 mm`.
 
 L34 is the positive member of cemented pair D4 within G3b. Its positive power is paired directly with the ED-class negative L35.
 
 ### L35 — Biconcave Negative
 
-`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 spectral match)**. Standalone `f = −52.475028 mm`.
+`nd = 1.49782`, `νd = 82.57`. Glass: **498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)**. Standalone `f = −52.475028 mm`.
 
 L35 is the negative partner of L34 and the third element correlated with Nikon's production ED count. The ED designation here describes dispersion class, not optical sign: L35 is a strongly negative lens despite its high Abbe number.
 
@@ -138,44 +138,42 @@ The isolated L34+L35 cemented pair has equivalent focal length **−145.943720 m
 
 ### L36 — Biconvex Positive
 
-`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 spectral match)**. Standalone `f = +54.142554 mm`.
+`nd = 1.61266`, `νd = 44.46`. Glass: **613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)**. Standalone `f = +54.142554 mm`.
 
 L36 begins G3c with strong positive power. G3c is the final positive subgroup in the patent architecture and serves as the rear relay following the negative VR group. Patent ¶0037.
 
 ### L37 — Biconcave Negative
 
-`nd = 1.83481`, `νd = 42.73`. Glass: **835427 class (HIKARI J-LASF05 spectral match)**. Standalone `f = −33.107808 mm`.
+`nd = 1.83481`, `νd = 42.73`. Glass: **835427 class (HIKARI J-LASF05 catalog-coordinate proxy)**. Standalone `f = −33.107808 mm`.
 
 L37 inserts strong negative power between the two positive elements of G3c. Its role is best understood as part of the rear subgroup's net correction and power distribution rather than as an independently published aberration corrector; the patent does not allocate a specific aberration term to L37.
 
 ### L38 — Biconvex Positive
 
-`nd = 1.80100`, `νd = 34.92`. Glass: **801349 class (HIKARI J-LAF016 spectral match)**. Standalone `f = +54.837817 mm`.
+`nd = 1.80100`, `νd = 34.92`. Glass: **801349 class (HIKARI J-LAF016 catalog-coordinate proxy)**. Standalone `f = +54.837817 mm`.
 
 L38 is the final positive element. In combination with L36 and L37, it leaves G3c with positive isolated equivalent focal length **+97.292426 mm** before the normalized rear air to the image plane.
 
 ## Glass Identification and Selection
 
-The patent itself supplies `nd`, `νd`, and rounded `θgF` values but does not name glass vendors. The final model therefore separates three kinds of material statement:
+The patent supplies d-line `nd`, `νd`, and `θgF` values rounded to **two decimals** (Table 1, PDF pp. 9–10). Every stored source coordinate is retained. Each `dPgF` now uses the printed ratio's center minus the engine line `0.6438 − 0.001682νd`; every result retains the source ratio's **±0.005 rounding uncertainty**. Additional conversion digits do not imply a more precise source measurement. The source's condition (5) uses the slightly different coefficient 0.0016821; it is evaluated separately below.
 
-- **Manufacturer-correlated material:** L11 and L12 are assigned CaF2 because Nikon's production specification explicitly states that the lens contains two fluorite elements and the patent contains exactly two matching low-index/high-Abbe elements.
-- **Coordinate class with spectral proxy:** where a current HIKARI glass reproduces the patent's `nd/νd` coordinate, the class remains the authored identity while HIKARI line data populate `nC`, `nF`, `ng`, and `dPgF` for chromatic tracing.
-- **Post-filing catalog equivalent:** L23 resolves to the exact-coordinate J-KZFH4 curve for spectral modeling, while its label and note explicitly avoid asserting the later named glass as the historical material.
+| Source material coordinate | `nd` | `νd` | Printed `θgF` | Converted `dPgF` center (±0.005) | Elements | Qualified current curve |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| Fluorite-correlated | 1.43385 | 95.25 | 0.54 | +0.05641050 | L11, L12 | CaF2 |
+| 613445 | 1.61266 | 44.46 | 0.56 | −0.00901828 | L13, L34, L36 | HIKARI J-KZFH1 |
+| 697555 | 1.69680 | 55.52 | 0.54 | −0.01041536 | L14 | HIKARI J-LAK14 |
+| ED-correlated 498826 | 1.49782 | 82.57 | 0.54 | +0.03508274 | L15, L32, L35 | HIKARI J-FKH1 |
+| 834372 | 1.83400 | 37.18 | 0.58 | −0.00126324 | L21 | HIKARI J-LASF010 |
+| 808227 | 1.80809 | 22.74 | 0.63 | +0.02444868 | L22, L31 | HIKARI J-SFH1 |
+| 553551 | 1.55298 | 55.07 | 0.54 | −0.01117226 | L23 | HIKARI J-KZFH4; post-filing proxy |
+| 623581 | 1.62299 | 58.12 | 0.54 | −0.00604216 | L33 | HOYA BACD15 |
+| 835427 | 1.83481 | 42.73 | 0.56 | −0.01192814 | L37 | HIKARI J-LASF05 |
+| 801349 | 1.80100 | 34.92 | 0.59 | +0.00493544 | L38 | HIKARI J-LAF016 |
 
-| Model material | `nd` | `νd` | `dPgF` in final data | Elements | Basis of identification |
-| --- | ---: | ---: | ---: | --- | --- |
-| Calcium fluoride (CaF2 crystal; Nikon-correlated) | 1.43385 | 95.25 | +0.055004227 | L11, L12 | Nikon's two-fluorite count + exact patent coordinate; line data from CaF2 dispersion relation |
-| 613445 class (HIKARI J-KZFH1 spectral match) | 1.61266 | 44.46 | −0.0058 | L13, L34, L36 | Patent coordinate; HIKARI used only for spectral proxy |
-| 697555 class (HIKARI J-LAK14 spectral match) | 1.69680 | 55.52 | −0.0082 | L14 | Patent coordinate; HIKARI spectral proxy |
-| 498826 ED class (HIKARI J-FKH1 spectral match) | 1.49782 | 82.57 | +0.0327 | L15, L32, L35 | Three-element count correlates with Nikon's three ED elements; HIKARI spectral proxy |
-| 834372 class (HIKARI J-LASF010 spectral match) | 1.83400 | 37.18 | −0.0042 | L21 | Patent coordinate; HIKARI spectral proxy |
-| 808227 high-dispersion class (HIKARI J-SFH1 spectral match) | 1.80809 | 22.74 | +0.0226 | L22, L31 | Patent coordinate; HIKARI spectral proxy |
-| 553551 class; J-KZFH4 catalog-equivalent proxy | 1.55298 | 55.07 | −0.0073 | L23 | Exact catalog coordinate; historical identity not asserted because the named glass post-dates the design |
-| 623581 class (HIKARI J-SK15 spectral match) | 1.62299 | 58.12 | −0.0030 | L33 | Patent coordinate; HIKARI spectral proxy |
-| 835427 class (HIKARI J-LASF05 spectral match) | 1.83481 | 42.73 | −0.0079 | L37 | Patent coordinate; HIKARI spectral proxy |
-| 801349 class (HIKARI J-LAF016 spectral match) | 1.80100 | 34.92 | −0.0004 | L38 | Patent coordinate; HIKARI spectral proxy |
+All **16 active elements** resolve to compatible coefficient-backed curves in the current catalog. L33's label now names the actual compatible BACD15 proxy rather than the unavailable J-SK15 label. Catalog C/F/g indices and catalog-only partial-dispersion copies are removed from the authored prescription; catalog curves remain available through the resolver. Their differences within the source's coarse ratio precision neither establish nor disprove a historical material identity.
 
-The explicit spectral fields allow the model to represent more than an Abbe-only dispersion approximation, but they do not establish the historical vendor or melt for the class-coded glasses. No apochromatic classification is inferred from these proxies.
+Nikon's two-fluorite and three-ED product counts still support the qualified L11/L12 and L15/L32/L35 correlations. L23's source condition (5) independently identifies its anomalous-partial-dispersion design property: the printed ratio gives **−0.011166753 ±0.005**, safely below −0.001. Current J-KZFH4 remains a post-filing spectral proxy with historical identity unasserted. No additional anomalous-material or apochromatic identity is inferred from the other rounded ratios.
 
 ## Focus Mechanism
 
@@ -211,7 +209,7 @@ Example 1 is governed by five explicit patent conditions. The following values a
 2. **G2 positive-lens dispersion:** `νdp < 30`. L22 gives **22.74**, satisfying the condition exactly as tabulated.
 3. **G2 negative-lens index/dispersion:** `Ndn + 0.0071νdn - 1.964 < 0`. With L23's source `nd = 1.55298`, `νd = 55.07`, the result is **−0.020023**, matching the tabulated −0.02 after rounding.
 4. **Combined G1+G2 power:** `0 < f/f12` with a preferred upper bound below 1.0. The infinity prescription gives **0.742306552**, not the **0.81** printed in Example 1's corresponding-value table. Substituting the patent's intermediate-focus `d11 = 17.427 mm` gives **0.810082896**, reproducing the printed 0.81. Sibling Examples 2 and 3 reproduce their own listed values from their infinity spacings, so Example 1's 0.81 is retained as a source calculation/copy error rather than forced into the model.
-5. **G2 negative-lens partial dispersion:** `θgFn - 0.6438 + 0.0016821νdn < -0.001`. Table 1 prints `θgF = 0.54` only to two decimals; using that printed value gives **−0.011166753**, which safely satisfies the inequality but cannot reproduce the listed −0.007 exactly. The exact corresponding value is therefore underdetermined by the source precision. No unpublished precision is invented.
+5. **G2 negative-lens partial dispersion:** `θgFn - 0.6438 + 0.0016821νdn < -0.001`. Table 1 prints `θgF = 0.54` only to two decimals; using that printed value gives **−0.011166753 ±0.005**, which safely satisfies the inequality but cannot reproduce the listed −0.007 exactly. The exact corresponding value is therefore underdetermined by the source precision. No unpublished precision is invented.
 
 The condition-(4) discrepancy is the only direct numerical source error that affects an explicitly listed corresponding value. The prescription itself is left unchanged.
 
@@ -250,7 +248,7 @@ At the authored sampling configuration, the defined on-axis and default rendered
 - [Nikon Corporation — 2015-07-02 launch release][nikon-launch].
 - [HIKARI Optical Glass — current catalog downloads][hikari-catalog], used for disclosed coordinate-class spectral proxies rather than historical vendor attribution.
 - [HIKARI J-KZFH product material][hikari-kzfh] and [HIKARI history archive][hikari-history], used to establish that current J-KZFH4 is post-filing and therefore unsuitable as an asserted historical identity for L23.
-- I. H. Malitson, *Applied Optics* **2** (1963), 1103–1107, used for the CaF2 line-index values stored on L11 and L12.
+- I. H. Malitson, *Applied Optics* **2** (1963), 1103–1107, background for the compatible CaF2 spectral curve; no derived C/F/g values are copied into the source prescription.
 
 [nikon-spec]: https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/telephoto/af-s_500mmf_4e_fl_ed_vr/
 [nikon-launch]: https://www.nikon.com/company/news/2015/0702_lens_01/

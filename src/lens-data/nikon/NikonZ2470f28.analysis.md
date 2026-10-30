@@ -26,7 +26,7 @@ G1 supplies positive front power, G2 is the strong negative variator, G3 include
 
 The stop is surface 14, 1.712 mm before surface 15, and moves with G3. The diagram includes it within the G3 annotation. It does not move relative to G3 during focus or zoom.
 
-Figure 4 shows a front assembly substantially larger than the internal groups. Its optical rims were measured at 600 dpi using the 127.426 mm first-to-last-surface span. The largest front semi-diameter is approximately 34 mm, decreasing to 28.8 mm at L13 and 21.5 mm at L21's front. The rear element reaches approximately 16.7 mm. These are inferred drawing dimensions; the patent does not tabulate clear apertures. Mechanical shoulders on the steep L21 rear are excluded. L22 retains 14.5 mm rims because a 14.8 mm trial exceeded the adjacent air-gap clearance allowance.
+Figure 4 shows a front assembly substantially larger than the internal groups. Its optical rims were measured at 600 dpi using the 127.426 mm first-to-last-surface span. The largest front semi-diameter is approximately 34 mm, decreasing to 28.8 mm at L13 and 21.5 mm at L21's front. The rear element reaches approximately 16.7 mm. These are inferred drawing dimensions; the patent does not tabulate clear apertures. The steep L21 rear retains its 16.3 mm optical cap, with an opaque rim extension to the 21.5 mm element edge to draw the shoulder shown in Figure 4. L22 retains 14.5 mm rims because a 14.8 mm trial exceeded the adjacent air-gap clearance allowance.
 
 ## Element-by-Element Analysis
 

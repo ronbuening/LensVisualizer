@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; glass curves are qualified spectral proxies.
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON NIKKOR-H AUTO 2.8cm f/3.5                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
@@ -52,7 +53,7 @@ const LENS_DATA = {
       nd: 1.6726,
       vd: 32.2,
       focalLengthMm: 160.269,
-      glass: "SF5 (Schott equivalent)",
+      glass: "SF5 (catalog-compatible spectral proxy; patent 1.6726/32.2, catalog 1.6727/32.21; production supplier unspecified)",
       apd: false,
       role: "Weak front positive meniscus; low-power front correction member in the retrofocus front group.",
     },
@@ -64,7 +65,7 @@ const LENS_DATA = {
       nd: 1.6212,
       vd: 60.1,
       focalLengthMm: -38.165,
-      glass: "SK16 class (Hikari/Schott equivalent)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; patent 1.6212/60.1, catalog 1.62041/60.32; production supplier unspecified)",
       apd: false,
       role: "Strong negative meniscus that supplies the retrofocus front-group divergence and back-focus extension.",
     },
@@ -76,7 +77,7 @@ const LENS_DATA = {
       nd: 1.6387,
       vd: 55.3,
       focalLengthMm: 26.915,
-      glass: "K-SK18 (Sumita) / SK18 class",
+      glass: "K-SK18 (catalog-compatible spectral proxy; patent 1.6387/55.3, catalog 1.63854/55.5; production supplier unspecified)",
       apd: false,
       role: "Positive pre-stop collector at the entrance of the rear converging group.",
     },
@@ -88,7 +89,7 @@ const LENS_DATA = {
       nd: 1.6726,
       vd: 32.2,
       focalLengthMm: -15.859,
-      glass: "SF5 (Schott equivalent)",
+      glass: "SF5 (catalog-compatible spectral proxy; patent 1.6726/32.2, catalog 1.6727/32.21; production supplier unspecified)",
       apd: false,
       role: "Strong negative post-stop element; principal rear-group chromatic and Petzval correction member.",
     },
@@ -100,7 +101,7 @@ const LENS_DATA = {
       nd: 1.6582,
       vd: 50.8,
       focalLengthMm: 25.592,
-      glass: "N-SSK5 (Schott) / SSK5 class",
+      glass: "N-SSK5 (catalog-compatible spectral proxy; patent 1.6582/50.8, catalog 1.65844/50.88; production supplier unspecified)",
       apd: false,
       role: "Positive meniscus with convex side toward the image; relay and oblique-aberration correction member.",
     },
@@ -112,26 +113,26 @@ const LENS_DATA = {
       nd: 1.5163,
       vd: 64.0,
       focalLengthMm: 56.303,
-      glass: "BK7 class (Schott/Ohara/CDGM equivalent)",
+      glass: "S-BSL7 (catalog-compatible spectral proxy; patent 1.5163/64, catalog 1.51633/64.14; production supplier unspecified)",
       apd: false,
       role: "Final low-dispersion positive relay element adjacent to the image space.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 102.284, d: 5.096, sd: 25.2, medium: 1 },
-    { label: "2", R: 1960.0, d: 0.196, sd: 22.2 },
-    { label: "3", R: 67.2, d: 1.652, sd: 16.0, medium: 2 },
+    { label: "1", R: 102.284, d: 5.096, sd: 23.4, medium: 1 },
+    { label: "2", R: 1960.0, d: 0.196, sd: 23.4 },
+    { label: "3", R: 67.2, d: 1.652, sd: 19.1, medium: 2 },
     { label: "4", R: 17.36, d: 25.76, sd: 15.0 },
-    { label: "5", R: 17.976, d: 3.332, sd: 9.3, medium: 3 },
-    { label: "6", R: -365.176, d: 2.548, sd: 7.7 },
+    { label: "5", R: 17.976, d: 3.332, sd: 6.8, medium: 3 },
+    { label: "6", R: -365.176, d: 2.548, sd: 6.8 },
     { label: "STO", R: "flat", d: 2.548 },
-    { label: "7", R: -16.94, d: 0.868, sd: 6.9, medium: 4 },
-    { label: "8", R: 29.4, d: 1.484, sd: 7.3 },
-    { label: "9", R: -112.588, d: 2.548, sd: 8.2, medium: 5 },
-    { label: "10", R: -14.784, d: 0.196, sd: 8.8 },
-    { label: "11", R: 59.64, d: 1.764, sd: 9.4, medium: 6 },
-    { label: "12", R: -56.14, sd: 9.7 },
+    { label: "7", R: -16.94, d: 0.868, sd: 6.2, medium: 4 },
+    { label: "8", R: 29.4, d: 1.484, sd: 6.2 },
+    { label: "9", R: -112.588, d: 2.548, sd: 6.2, medium: 5 },
+    { label: "10", R: -14.784, d: 0.196, sd: 6.2 },
+    { label: "11", R: 59.64, d: 1.764, sd: 6.8, medium: 6 },
+    { label: "12", R: -56.14, sd: 6.8 },
   ],
 
   focus: {

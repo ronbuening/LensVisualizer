@@ -15,6 +15,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   derived from the design f-number, published FNO=1.850; it is an inferred aperture, not a source stop diameter.
  * - Glass names are catalog-coordinate matches or representatives for the patent's nd/vd values, not source-proven Nikon
  *   production melts. The 1.51380 / 52.97 resin layer remains explicitly unmatched.
+ * - Table 1 publishes no C/F/g indices or partial-dispersion values. Resolved glasses borrow their shared catalog
+ *   coefficient curves; former per-lens catalog line indices and normal-line deviations are not source measurements.
  * - Rim cuts (2026-10-27): Figure 1 draws flat lands at the rims of the concave faces 2 (L11 rear), 15 (L33 front) and
  *   26A (L51 front). Their sd rises to the partner face's (22, 11.5, 14.5) and rimCutDepthMm ends each cap at its old
  *   sd to the 0.01 mm depth: cut radii 17.4988, 10.8958 and 13.4001 mm against the old 17.5, 10.9 and 13.4 mm rims.
@@ -61,10 +63,6 @@ const LENS_DATA = {
       glass: "S-LAL14 (OHARA; coordinate match)",
       role: "Large front negative meniscus in negative GA; exact melt is not source-established.",
       diagramLabel: "L11",
-      dPgF: -0.008,
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 2,
@@ -78,10 +76,6 @@ const LENS_DATA = {
       role: "Glass substrate of the hybrid L12 element.",
       diagramLabel: "L12g",
       cemented: "H12",
-      dPgF: -0.0093,
-      nC: 1.767801,
-      nF: 1.78337,
-      ng: 1.791961,
     },
     {
       id: 3,
@@ -108,10 +102,6 @@ const LENS_DATA = {
       role: "High-Abbe member of the L13-L14 cemented pair in GA.",
       diagramLabel: "L13",
       cemented: "J14",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 5,
@@ -125,10 +115,6 @@ const LENS_DATA = {
       role: "Dense flint partner cemented to L13.",
       diagramLabel: "L14",
       cemented: "J14",
-      dPgF: 0.0004,
-      nC: 1.945145,
-      nF: 1.974641,
-      ng: 1.992059,
     },
     {
       id: 6,
@@ -141,10 +127,6 @@ const LENS_DATA = {
       glass: "J-LASF015 (HIKARI; coordinate match)",
       role: "Positive second lens group and front floating focus group.",
       diagramLabel: "L21",
-      dPgF: -0.0087,
-      nC: 1.798824,
-      nF: 1.816078,
-      ng: 1.825697,
     },
     {
       id: 7,
@@ -158,10 +140,6 @@ const LENS_DATA = {
       role: "Strong positive member at the front of fixed G3.",
       diagramLabel: "L31",
       cemented: "J32",
-      dPgF: 0.0004,
-      nC: 1.945145,
-      nF: 1.974641,
-      ng: 1.992059,
     },
     {
       id: 8,
@@ -175,10 +153,6 @@ const LENS_DATA = {
       role: "High-index flint partner cemented behind L31.",
       diagramLabel: "L32",
       cemented: "J32",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 9,
@@ -191,10 +165,6 @@ const LENS_DATA = {
       glass: "J-SF7 (HIKARI; coordinate match)",
       role: "Negative element immediately after the aperture stop in G3.",
       diagramLabel: "L33",
-      dPgF: 0.0051,
-      nC: 1.634385,
-      nF: 1.652905,
-      ng: 1.663859,
     },
     {
       id: 10,
@@ -207,10 +177,6 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI; coordinate match)",
       role: "High-Abbe positive element in fixed G3.",
       diagramLabel: "L34",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 11,
@@ -224,10 +190,6 @@ const LENS_DATA = {
       role: "High-Abbe positive member cemented to L36.",
       diagramLabel: "L35",
       cemented: "J36",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 12,
@@ -241,10 +203,6 @@ const LENS_DATA = {
       role: "Dense flint partner at the rear of the G3 cemented pair.",
       diagramLabel: "L36",
       cemented: "J36",
-      dPgF: 0.0004,
-      nC: 1.945145,
-      nF: 1.974641,
-      ng: 1.992059,
     },
     {
       id: 13,
@@ -257,10 +215,6 @@ const LENS_DATA = {
       glass: "S-TIH57 (OHARA; coordinate match)",
       role: "Dense positive rear member of fixed G3.",
       diagramLabel: "L37",
-      dPgF: 0.0187,
-      nC: 1.9516,
-      nF: 1.99153,
-      ng: 2.01634,
     },
     {
       id: 14,
@@ -273,10 +227,6 @@ const LENS_DATA = {
       glass: "L-LAH94 (OHARA; coordinate match)",
       role: "Negative fourth lens group and rear floating focus group.",
       diagramLabel: "L41",
-      dPgF: -0.0029,
-      nC: 1.85416,
-      nF: 1.87737,
-      ng: 1.8908,
     },
     {
       id: 15,
@@ -289,10 +239,6 @@ const LENS_DATA = {
       glass: "L-LAH94 (OHARA; coordinate match)",
       role: "Fixed rear negative aspherical field group.",
       diagramLabel: "L51",
-      dPgF: -0.0029,
-      nC: 1.85416,
-      nF: 1.87737,
-      ng: 1.8908,
     },
   ],
 

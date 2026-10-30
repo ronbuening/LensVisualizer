@@ -28,6 +28,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    geometry: rim slope, edge thickness, surface SD ratios, cross-gap ║
  * ║    sag clearance, and the 52 mm production filter thread.            ║
  * ║                                                                    ║
+ * Figure 1 represents Embodiment I, a shared architectural outline rather than a separate III drawing.
+ * Its air-facing lands guide inferred S4 extension; numerical III R/d remain exact.
+ * All 11 source n/ν pairs remain; table does not print a reference wavelength or spectral anchors.
+ * Current coefficient curves cover all 11 as qualified proxies, not production supplier identities.
+ *
  * ║  IMPORTANT: This file describes ONLY the optical design. It does    ║
  * ║  not include filters, sensor cover glass, or mechanical parts.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -67,7 +72,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.8,
       focalLengthMm: 169.624,
-      glass: "N-SSK5 (SCHOTT; S-BSM25/BACED5 class)",
+      glass: "N-SSK5 catalog proxy (SCHOTT; S-BSM25/BACED5 class)",
       role: "Weak positive front meniscus; moderates the retrofocus front group and contributes to distortion/field balance.",
     },
     {
@@ -78,7 +83,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: -30.343,
-      glass: "S-LAL8 (OHARA)",
+      glass: "S-LAL8 catalog proxy (OHARA)",
       role: "First strong negative meniscus of the retrofocus front group.",
     },
     {
@@ -89,7 +94,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       focalLengthMm: -45.057,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 catalog proxy (OHARA)",
       role: "Second negative meniscus; part of the front divergence and spherical/coma balance.",
     },
     {
@@ -100,7 +105,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.8,
       focalLengthMm: 82.665,
-      glass: "N-SSK5 (SCHOTT; S-BSM25/BACED5 class)",
+      glass: "N-SSK5 catalog proxy (SCHOTT; S-BSM25/BACED5 class)",
       role: "Positive balancing element between the front negative menisci.",
     },
     {
@@ -111,7 +116,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       focalLengthMm: -82.295,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 catalog proxy (OHARA)",
       role: "Last negative meniscus before the stop; strong lever for spherical aberration and meridional coma symmetry.",
     },
     {
@@ -133,7 +138,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.8,
       focalLengthMm: 41.382,
-      glass: "N-SK11 (SCHOTT) / BACD11 (HOYA)",
+      glass: "N-SK11 catalog proxy (SCHOTT; BACD11 class)",
       role: "High-Abbe positive element with a nearly flat object-side surface.",
     },
     {
@@ -156,7 +161,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       focalLengthMm: -20.849,
-      glass: "S-TIH6 (OHARA; SF6 class)",
+      glass: "S-TIH6 catalog proxy (OHARA; SF6 class)",
       role: "Dense-flint negative member of the rear cemented doublet; principal chromatic-correction element.",
       cemented: "D1",
     },
@@ -179,7 +184,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       focalLengthMm: 50.947,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 catalog proxy (OHARA)",
       role: "Final positive element; completes the rear convergence toward the image plane.",
     },
   ],
@@ -187,8 +192,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 91.10208, d: 4.1136, sd: 18.6, medium: 1 },
     { label: "2", R: 485.42496, d: 0.1968, sd: 17.6 },
-    { label: "3", R: 48.80712, d: 4.3104, sd: 13.6, medium: 2 },
-    { label: "4", R: 14.43912, d: 3.2808, sd: 11.0 },
+    { label: "3", R: 48.80712, d: 4.3104, sd: 17.3, medium: 2 },
+    { label: "4", R: 14.43912, d: 3.2808, sd: 11.0, rimExtensionSd: 17.3 },
     { label: "5", R: 29.53464, d: 1.2744, sd: 10.9, medium: 3 },
     { label: "6", R: 14.94864, d: 3.624, sd: 10.3 },
     { label: "7", R: 59.4612, d: 6.4656, sd: 12.2, medium: 4 },

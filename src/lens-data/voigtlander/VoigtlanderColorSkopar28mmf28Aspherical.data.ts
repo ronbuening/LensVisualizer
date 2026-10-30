@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact sources, inferred contour dimensions and spectral qualifications are recorded in the audit sidecar. */
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs         ║
@@ -167,12 +169,12 @@ const LENS_DATA = {
     { label: "1", R: 46.15, d: 2.65, sd: 13.3, medium: 1 },
     { label: "2", R: 535.08, d: 0.15, sd: 13.2 },
     { label: "3", R: 21.31, d: 1, sd: 10, medium: 2 },
-    { label: "4", R: 9.5, d: 4.87, sd: 7.8 },
+    { label: "4", R: 9.5, d: 4.87, rimExtensionSd: 10, sd: 7.8 },
     { label: "5", R: -27.9, d: 1, sd: 7.2, medium: 3 },
     { label: "6", R: 14.36, d: 2.72, sd: 7.1, medium: 4 },
     { label: "7", R: -93.58, d: 2.77, sd: 6.7 },
     { label: "STO", R: "flat", d: 6.6 },
-    { label: "9", R: -10.53, d: 1, sd: 7.2, medium: 5 },
+    { label: "9", R: -10.53, d: 1, rimExtensionSd: 7.6, sd: 7.2, medium: 5 },
     { label: "10", R: -20.35, d: 0.15, sd: 7.6 },
     { label: "11", R: -2886.42, d: 4.57, sd: 9.3, medium: 6 },
     { label: "12", R: -15.03, d: 0.15, sd: 9.7 },

@@ -223,6 +223,7 @@ const LENS_DATA = {
     },
   ],
 
+  // Cap-end lands: original patent figure rechecked 2026-10-29; see audit for scale and beam-safe cuts.
   surfaces: [
     { label: "1", R: -419.2264, d: 1.5, sd: 35, medium: 1 },
     { label: "2", R: 419.2264, d: 1.7626, sd: 35 },
@@ -241,10 +242,10 @@ const LENS_DATA = {
     { label: "STO", R: "flat" },
     { label: "16", R: 131.5759, d: 1.0, sd: 12, medium: 9 },
     { label: "17", R: 41.669, d: 9.7523, sd: 12 },
-    { label: "18", R: -38.7618, d: 1.0, sd: 16, medium: 10 },
+    { label: "18", R: -38.7618, d: 1.0, sd: 16, rimCutDepthMm: 2.43, medium: 10 },
     { label: "19", R: 70.3932, d: 9.0476, sd: 16, medium: 11 },
     { label: "20", R: -44.8924, d: 16.6161, sd: 16 },
-    { label: "21", R: -32.7269, d: 1.0, sd: 18.9, medium: 12 },
+    { label: "21", R: -32.7269, d: 1.0, sd: 18.9, rimExtensionSd: 23, medium: 12 },
     { label: "22", R: "flat", d: 0.15, sd: 23 },
     { label: "23", R: 218.2766, d: 5.9427, sd: 24, medium: 13 },
     { label: "24", R: -80.7375, sd: 24 },

@@ -344,7 +344,9 @@ describe("stop rule exceptions", () => {
   });
 
   it("sizes a fisheye's stop with its projection focal length", () => {
-    const L = buildFixtureLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
+    const source = CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"];
+    // The corrected source EFL agrees with its projection constant; use an explicit mismatch to test this branch.
+    const L = buildFixtureLens({ ...source, projection: { ...source.projection!, focalLengthMm: 8 } });
     const projectionFocalLength = fisheyeProjectionFocalLengthAtZoom(L.projection, 0)!;
     expect(Math.abs(projectionFocalLength - L.EFL)).toBeGreaterThan(0.01);
     const state = prepareRuntimeState(L, 0, 0);

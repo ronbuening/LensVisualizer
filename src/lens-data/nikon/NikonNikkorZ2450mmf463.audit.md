@@ -114,3 +114,45 @@ is authored, because each would vignette the wide-end corner past the 15-point l
 - The data file is unchanged, and the aperture audit is unchanged: all three stations trace within 3 % of the stated
   f-number, with no rim, trace, iris or failed rows. The app still draws L1a's rear cap out to 13.5 mm and joins it
   to the front rim with a slanted edge, not the figure's land.
+
+
+## 2026-10-29 — L1a rim extension
+
+Re-read local `patents/JP2021189377A.pdf`, Example 1 / Figure 1, PDF p. 24, at 600 dpi, inspecting the
+wide, middle and tele panels and both halves of every element. The S1–S23 vertex span is 266.6 native px /
+75.80 mm = 3.52 px/mm. L1a's rear face clearly ends in a vertical land and square outer edge; the old audit
+could not draw that outer height because the 15.312 mm sphere cannot reach the 15.5 mm front rim.
+
+| Face | Clear cap before/after | Drawn height before/after | Change |
+|---|---|---|---|
+| 2 / L1a rear | 13.5 mm, unchanged | 13.5 → 15.5 mm | `rimExtensionSd: 15.5` adds a 2.0 mm opaque land |
+
+The native figure cap/edge readings remain q about 0.767 (43.1/56.2 px; one-pixel uncertainty about ±0.031).
+The source's smaller cap end would clip the already qualified corner beam, so the original 13.5 mm optical cap
+is retained. No new cut is applied to 20A or the unresolved edge of 18, whose earlier beam checks rejected extra
+clipping. All other faces were rechecked and supply no additional resolved land.
+
+Before/after `audit:surface` passes and `audit:image-circle` reports 0 undersized / 0 skipped. Before/after
+`audit:aperture` reports all three stations within 3% of their stated f-number, with no rim, trace, iris or failed
+stations. The actual SVG geometry was rendered and compared with Figure 1. Nine zoom/focus states (0, 0.5, 1
+on each control) have zero hidden semi-diameter trim.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2021189377A.pdf`, Numerical Example 1, PDF pp. 15–16; summary Tables 1–2,
+p. 22, were checked separately. All twelve modeled media (eleven physical lenses) retain the printed d-line
+nd/νd values: the L1b/L3b pair 1.53048/55.72, cement 1.51400/27.05, both ED positions 1.49700/81.61,
+and the other seven ordinary-glass media all agree. Nine of twelve modeled media have catalog curves; the two
+COP resins and cement are explicit unmatched materials, not ordinary-glass coverage failures.
+
+| Media | Fresh verdict |
+|---|---|
+| L1a, L1c, L2a/L2b, L2c/L2d/L2e, L3a, L4a | Printed coordinates and coordinate-compatible catalog proxies retained |
+| L1b, L3b, Cem | Printed coordinates and qualified unresolved resin/cement identities retained |
+
+The source supplies no C/F/g-index or partial-dispersion table. ED/APD remains inferred and no source spectral
+measurement or production supplier is invented. No glass-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

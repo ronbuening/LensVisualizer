@@ -30,14 +30,14 @@ Each listed focal length uses the thick-lens expression with its two vertex radi
 |---|---|---|---|---|
 | L11 | 1.902650 | 35.77 | 903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 106.97 |
 | L12 | 1.552981 | 55.07 | 553551 class; J-KZFH4 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -85.70 |
-| L13 | 1.612660 | 44.46 | KZFS-type (near N-KZFS4 / S-NBM51) (inferred coordinate counterpart) | -96.72 |
-| L14 | 1.593190 | 67.90 | Coordinate counterpart (near S-FPM2 / FCD10; used ×3) (inferred coordinate counterpart) | 126.47 |
+| L13 | 1.612660 | 44.46 | 613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained; production supplier unspecified) | -96.72 |
+| L14 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) | 126.47 |
 | L21 | 1.848500 | 43.79 | J-LASFH22 (Hikari, patent nd/vd match) (inferred coordinate counterpart) | 83.24 |
 | L22 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 115.19 |
 | L23 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 123.54 |
 | L24 | 1.738000 | 32.33 | High-dispersion flint (near S-NBH53V; used ×2) (inferred coordinate counterpart) | -42.61 |
 | L25 | 1.612660 | 44.46 | 613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -46.66 |
-| L26 | 1.497820 | 82.57 | Coordinate counterpart (near S-FPL51 / FCD1) (inferred coordinate counterpart) | 72.81 |
+| L26 | 1.497820 | 82.57 | 498826 class; J-FKH1 catalog spectral proxy (production supplier unspecified) | 72.81 |
 | L27 | 1.883000 | 40.69 | S-LAH58 (OHARA); used ×3 (inferred coordinate counterpart) | 50.56 |
 | L28 | 1.953750 | 32.33 | S-LAH98 (OHARA) / TAFD45 (HOYA) (inferred coordinate counterpart) | 51.79 |
 | L29 | 1.738000 | 32.33 | 738323 class; J-KZFH9 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -40.94 |
@@ -78,7 +78,7 @@ Figure1 on original PDF p.46 was rendered at600dpi and rotated. The approximatel
 
 The adopted surface radii including the stop are33.5,33,28.7,28.7,33,33,35.3,35.3,32.3,32.3,29.5,29.5,29.5,24.8,24.8,24.8,24.8,25.5,25.5,23.3,22.8,19.5,19.5,19.5,19.5,19.2,19.2,19.2mm. These replace ray-envelope estimates, particularly undersized rear-doublet outlines.
 
-A figure-oriented29.2mm trial on facing S3/S4 exceeded the validator's air-gap intrusion limit:16.84mm versus16.308mm allowance within18.12mm. Both retain constrained28.7mm optical radii; the larger drawn mechanical shoulders are not refracting apertures. This source/geometry limitation remains a follow-up. Figure 1 also ends S13's cap (L24 rear) on a flat land square to the axis: S13 runs to the drawn 29.5mm edge, and `rimCutDepthMm` ends its cap near the former 25.00mm optical radius: the clear radius goes from 25.00mm to the 25.0046mm cut radius, and the traced beams reach 22.84mm there. The lands Figure 1 draws on S3, S4 and S22 stay uncut, since a land there would stop traced rays. Adopted rims pass surface/image-circle checks and cause no hidden renderer trimming at infinity, midpoint or near.
+A figure-oriented29.2mm trial on facing S3/S4 exceeded the validator's air-gap intrusion limit:16.84mm versus16.308mm allowance within18.12mm. Both retain constrained28.7mm optical radii; `rimExtensionSd` now continues their caps with opaque lands out to the 33mm partner rims, as Figure 1 draws, resolving the outline limitation without enlarging either refracting aperture. Figure 1 also ends S13's cap (L24 rear) on a flat land square to the axis: S13 runs to the drawn 29.5mm edge, and `rimCutDepthMm` ends its cap near the former 25.00mm optical radius: the clear radius goes from 25.00mm to the 25.0046mm cut radius, and the traced beams reach 22.84mm there. The lands Figure 1 draws on S3, S4 and S22 use `rimExtensionSd` at their existing clear radii; S22 extends from 19.5mm to its 22.8mm partner rim. All three preserve the original optical apertures. Adopted rims pass surface/image-circle checks and cause no hidden renderer trimming at infinity, midpoint or near.
 
 ## Filter Plate and Model Limitations
 

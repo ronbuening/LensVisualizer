@@ -4,6 +4,8 @@ A standard procedure for reviewing an existing `*.data.ts` file against its sour
 
 This is the procedure to follow when working a lens off the [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md), [glass-relabel-followup.md](glass-relabel-followup.md), or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.
 
+Check the [lens patent review log](lens-review-coverage.md) before repeating a whole-lens pass; the linked audits retain the source decisions and unresolved constraints.
+
 ## When to use this guide
 
 Use it when:

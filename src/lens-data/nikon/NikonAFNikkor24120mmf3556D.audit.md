@@ -120,3 +120,32 @@ Read against US 5,734,508, Working Example 1: EQ. 3 (col. 15, lines 47-48, PDF p
 - Open: Table 3's conditions (4) and (5) are not reproduced to the printed digit by any of the four readings (0.01874 to 0.01876 against 0.01877; 0.00597 to 0.00613 against 0.00610), so they neither confirm nor contradict the conic reading. Working Example 2's condition (4) likewise misses its printed 0.01616 under both readings of `k = 0` (0.01581 and 0.01588).
 - Open: the helper's EFL/(2h) reading finds no common radius for 3.60 / 4.68 / 5.90 (8.1162 / 8.0774 / 8.1044 mm, spread 0.48 %), while the image-space sine reading does. The engine's fixed iris follows its own definition from the wide value and sits 0.4 % above the 8.0758-8.0834 mm window; nothing is tuned to close that.
 - Open: the Table 1 header prints `F/# = 2.6 to 5.9`. The file keeps 3.6 at the wide station from FIG. 3A(I); Working Example 3's Table 7 header prints 3.6 to 5.9 for the same focal range. Not a `sourceErrata` entry in this pass.
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Fresh original source: `patents/US5734508.pdf`, Working Example 1, Figure 2 on PDF page 3 (wide/mid/tele panels), Table 1 across pages 30–31 and the asphere equation/coefficients on those pages. Directly inspected the 600 dpi figure detail, every convex/concave face and all five material interfaces (four cemented groups and the hybrid interface). The embedded figure raster is 300 dpi; the wide-state first-to-last vertex span is approximately 1340 px at 600 dpi over 85.4155 mm, about 7.8 native px/mm. Figure-derived physical heights remain approximate.
+
+Added S19 rear concave rim extension: its existing 10.5 mm clear cap is unchanged and the opaque land reaches the existing 13.65 mm modeled L21 outer height. The source cap/edge ratio is approximately 185/240 ≈0.77, consistent with 10.5/13.65. The two source-published asphere clear radii remain 13.65 and 7.8 mm. The other concave air faces, including S20/S25/S31/S35/S36, have no independently resolved cap-end land supporting a new cut; cemented/hybrid boundaries cannot use an air-face extension. No additional clipping is invented. Source R/d, aspheres, aperture, zoom and constrained close-focus reconstruction remain unchanged.
+
+All 16 source media match Table 1 at the explicitly defined d-line (587.6 nm): 15 physical lens elements plus the separate 0.03 mm hybrid resin layer. The source supplies no θgF, extra spectral-line indices or APD identity. All such overrides remain absent. The current catalog supplies 13/16 coefficient-backed curves; neither the resin 1.49521/56.3 nor the two 1.84042/43.4 media has a compatible current catalog row, so those remain unresolved. L3R2’s ambiguous code-only label now names its already selected TAF2 proxy with the actual source coordinates, without claiming a production supplier or changing the selected curve.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L11 | 1.860740 / 23 | J-SFH2 |
+| L12 | 1.713000 / 53.9 | LAC8 |
+| L13 | 1.772790 / 49.5 | M-TAF1 |
+| L21r | 1.495210 / 56.3 | Unresolved |
+| L21g | 1.840420 / 43.4 | Unresolved |
+| L22 | 1.840420 / 43.4 | Unresolved |
+| L23 | 1.688930 / 31.1 | S-TIM28 |
+| L24 | 1.755200 / 27.6 | SF4 |
+| L25 | 1.772790 / 49.5 | M-TAF1 |
+| L3F1 | 1.516800 / 64.1 | N-BK7 |
+| L3F2 | 1.516800 / 64.1 | N-BK7 |
+| L3F3 | 1.796310 / 40.9 | NBFD2 |
+| L3R1 | 1.658440 / 50.8 | J-SSK5 |
+| L3R2 | 1.796680 / 45.4 | TAF2 |
+| L3R3 | 1.834000 / 37.4 | NBFD10 |
+| L3R4 | 1.518230 / 58.9 | J-K3 |
+
+All selected curves are qualified spectral proxies; source coordinates and any source θgF remain authoritative. No tolerance was relaxed. Focused surface, image-circle and aperture audits pass on this absolute-path candidate; current-label resolver and `assertCatalogConsistent()` pass. Native SVG geometry at nine focus/zoom states has no hidden rim trim; the rendered outlines were inspected. Shared dispersion/partial-dispersion suites passed 2 files / 93 tests for this wave. Full gates and commit integration are performed by the coordinator.

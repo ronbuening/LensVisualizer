@@ -93,7 +93,6 @@ Nothing can be audited on these until the source is available.
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
 | Fujifilm X10 7.1-28.4mm f/2-2.8 | `US 2014/0133036 A1` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
-| Nikon AF-S DX 55-200mm f/4-5.6G ED VR II | `WO 2015/141574 A1` not in `patents/`; its fixed iris is unchecked and its `nominalFno` mixes marketed ends with the patent's middle value | adding the PDF |
 | Olympus Zuiko Auto-Zoom 65-200mm f/4 | `US 4,568,150` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
 
 ## Section D — MTF field census
@@ -160,7 +159,7 @@ them is fixed by raising semi-diameters alone: each needs the source, decision o
 | Lens | File | Station | Traced edge | Reason | Status |
 |---|---|---|---|---|---|
 | OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5 | `olympus/OlympusZuiko16mmf35.data.ts` | — | 43% | No `projection`: the 180° diagonal fisheye (US 3,850,509 col. 1; FIGS. 2B–2D at 90°) is traced as rectilinear and the solver gives up past ~52°. Declare `fisheye-equisolid` (fullFieldDeg 180, maxTraceFieldDeg 90, imageCircleMm ≈43.0 from the traced 21.52 mm at 90°), then raise the front rims to the 90° chief ray (1 20.9, 3 10.7, 4 9.7, 5 9.0, 6 7.0, 7 5.9 mm; 2 needs 11.2 mm on R 11.79, past the default rim-slope cap). FIG. 1 draws L1 ≈3.8× L4 (data 1.45×). | todo |
-| NIKON GYOGYOTTO 20mm f/8 | `nikon/NikonGyogyotto20mmf8.data.ts` | — | 67% | No `projection` for a "so-called fisheye" (US 5,949,588 Table 8; 2ω 164°, FIG. 16A Y = 22.0 mm, distortion referenced to 2f·sin(θ/2)). Declare `fisheye-equisolid` (fullFieldDeg 164, imageCircleMm 44.0), then rims at the 78.46° corner: 1 ≥ 28.85, 2 ≥ 18.13 mm. | todo |
+| NIKON GYOGYOTTO 20mm f/8 | `nikon/NikonGyogyotto20mmf8.data.ts` | — | sampled source chiefs clear | US 5,949,588 Table 8 / Figs. 15–16 now supply the declared equisolid reference, 164° field and 44 mm circle; L1 rims are restored. Independent dense bounding-sphere roots clear every rim through 82°, but the generic sparse bracket misses real stop-centre paths at high fields. See the lens audit for source/trace separation and pupil-sample counts. | partial (needs generic vector-chief bracketing improvement) |
 | KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE | `kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts` | — | 85% | Its traced mapping is close to stereographic (US 3,037,426 Ex. 3; 197°, 8.7 mm circle), which no projection kind covers, so it is traced as rectilinear and no chief ray reaches the stop centre past ~81°. The rims are not the limit. | blocked (needs a stereographic projection kind) |
 | OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | — | 74% | The inferred stop sits mid-gap, 2.898 mm behind r6; FIG. 2 (US 4,235,521) draws it ≈0.6 mm behind r6. With the data's stop the chief ray past ~26° crosses L1's rear and L2's front above h ≈ 5.93 mm, where they meet. Move the stop per FIG. 2 (surface 7 d ≈ 0.60, STO d ≈ 5.20), then raise 10 ≥ 7.13 and 11 ≥ 7.79 mm (also closes its Section A row). | todo |
 | NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5 | `nikon/NikonAutoZoomNikkor80200mmf45.data.ts` | 80 / 126.4 / 200 mm | 83 / 81 / 70% | US 3,615,125 prints no stop; the inferred stop mid-gap in D18 blocks every corner (at 200 mm the chief ray would cross L1 past its ≈30.3 mm knife edge; at 80 mm the 8/9 gap closes at ≈14.2 mm). A stop 1–3 mm behind r18 passes all three corners within the current rims. | todo (needs a measured diaphragm position) |
@@ -169,7 +168,6 @@ them is fixed by raising semi-diameters alone: each needs the source, decision o
 | SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | — | 74% | 13A/14A are cut to 2.0 mm because the seven-decimal Table 4 coefficients diverge beyond it; with no apertures at all the image height peaks at 2.74 mm (patent Y 3.50 mm, US 2021/0149156 A1 FIG. 2). Restoring the published 2.720/2.880 radii cannot help. | blocked (needs higher-precision S13/S14 coefficients) |
 | VIVITAR SERIES 1 35-85mm f/2.8 VMC | `vivitar/VivitarSeries13585mmf28.data.ts` | Wide 36 mm | 75% | Past ~30° the chief ray crosses L4 above its ≈16.07 mm zero-edge height, so no rim can pass it, and S9 is capped by the L5/L6 contact at the tele gap. Table I computes to f 38.46–89.08 mm against the text's 36–83 mm (US 3,975,089), a possible Table I error. | blocked (needs a corrected Table I) |
 | SAMYANG AF 35-150mm f/2-2.8 FE / L | `samyang/SamyangAF35150mmf228.data.ts` | 35 mm | 81% | US 2025/0231383 A1 is not in `patents/`; its Google Patents text gives ω 30.9° at 35.989 mm (f·tanω 21.54 mm). Corner minimums: 6A ≥ 18.46, 7 ≥ 18.33, 8 ≥ 15.61, 40A ≥ 13.83, 41A ≥ 15.41 mm. | blocked (patent PDF missing) |
-| NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR | `nikon/NikonAFPDX1855mmf3556G.data.ts` | 18.5 mm | 86% | US 10,690,896 B2 is not in `patents/`; analysis.md gives Y 14.25 mm. Only surface 1 clips: 15.3 → ≥ 17.68 mm at the corner. | blocked (patent PDF missing) |
 | MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | Wide 36 mm | 90% (89.6) | US 4,560,253 is not in `patents/`; analysis.md's y' = 21.6 mm is unverified. Corner minimums: 3 ≥ 15.26, 4 ≥ 14.82, 4A ≥ 14.76 mm. | blocked (patent PDF missing) |
 
 ### Not covered by the traced check
@@ -185,7 +183,6 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 
 | Lens | Finding | Fix |
 |---|---|---|
-| Nikon Fisheye-Nikkor 6mm f/2.8 | The file's surfaces trace to EFL 37.41 mm and a back focus of 273 mm; US 3,737,214 Example I states f = 6.3 and B.f. = 37.657. The table prints `R18 = −45.0`; `+45.0` gives EFL 6.300 and back focus 37.658. The file also places the stop ahead of the filter, while Fig. 1 draws it behind R17, and omits the listed filter plate R11/R12 (1.8 mm, n 1.51823). | Re-audit: correct R18 and the element types it changes, move the stop per Fig. 1, draw the filter plate, re-derive semi-diameters, and rewrite the analysis, which treats 37.4 mm as the Gaussian focal length. |
 | Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
 | Vivitar Series 1 35-85mm f/2.8 | Every row of Table I of US 3,975,089 and its three claim copies matches the file, yet the table computes 38.46 / 89.08 mm and a back focus of 45.82 mm where the text states 36-83 mm and 40.06 mm, and Group IV computes a power of 0.0319 against Table III's .0333. No single Group IV value repairs all three, and the patent has no aberration plots. Recorded as `unresolved`. | A second printing of the prescription (a foreign counterpart of application 462,366). |
 | Konica UC Zoom-Hexanon AR 80-200mm f/4 | Every row of the table of JP S51-37247 A matches the file and the example is not normalized, yet it traces to 80.88 / 199.75 mm and a back focus of 49.50 mm where the patent prints f = 79.925~196.158 and fB = 48.523. The table's zoom ratio matches the focal lengths on the patent's own plots (80.0 / 197.5 mm), and no single misprint-style change among 7,444 tried reproduces focal lengths and back focus together. Recorded as `unresolved`. | A second printing of the table (a counterpart of application S49-110764). |
@@ -230,7 +227,6 @@ when a lens joins or leaves it, so delete the key there with the row here.
 | CANON TS-E 50mm f/2.8 L MACRO | `canon/CanonTSE50mmf28L.data.ts` | 2.8 | 2.88 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source | todo |
 | MINOLTA AF 35-105mm f/3.5-4.5 New (v2) | `minolta/MinoltaAF35105mmf3545v2.data.ts` | [3.5, 4.2, 4.5] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 | `nikon/Nikon1Nikkor1030mmf3556.data.ts` | [3.5, 4.35, 5.6] | 3.63 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
-| NIKON FUWATTO SOFT 90mm f/4.8 | `nikon/NikonFuwattoSoft90mmf48.data.ts` | 4.8 | 4.95 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
 | NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S | `nikon/NikonNikkorZ100400f4556.data.ts` | [4.58, 5.76] | 5.76 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR | `nikon/NikonZDX1650mmf3563VR.data.ts` | [3.5, 5.3, 6.3] | 3.56 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR | `nikon/NikonZDX18140mmf3563VR.data.ts` | [3.5, 5, 6.3] | 3.604 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
@@ -250,17 +246,15 @@ Also check, without a row each: 11 files whose `nominalFno` is slower than `aper
 The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
 variable-aperture zooms carry marketed values at one or more stations it does not see, and quote the patent's
 station f-numbers in their own header or note; replace each array from the source the same way:
-`nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFPDX1855mmf3556G`, `nikon/NikonAFSDX55300mmf4556G`,
-`nikon/NikonAFSDX55200mmf456G`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
+`nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
 `nikon/NikonAFZoomNikkor2885mmf3545`, `nikon/NikonNikkorZ1228mmf3556PZ`, `nikon/NikonZDX50250mmf4564VR`,
 `canon/CanonEFS1855mmf3556IS`, `canon/CanonEFS1022mmf3545`, `canon/CanonEF28105mmf456`,
 `canon/CanonPowerShotG1X1560mmf28`, `canon/CanonPowerShotG1XIII1545mmf2856`, `fujifilm/FujifilmGF3570mmf4556`,
 `olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
 `sony/SonyFE2870mmf3556`.
 
-`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the one fixed-iris file whose stated station f-numbers
-are not the ones its iris gives; delete the key there when the file is corrected. `nikon/NikonAFSDX55200mmf456G` is
-in the list above and its patent is not held locally (Section C).
+`__tests__/src/lens-data/zoomApertureModel.test.ts` requires every fixed-iris file's stated station f-numbers to agree
+with the radius its iris gives; there are no per-lens exceptions.
 
 ## Section I — stated axial beam does not pass
 
@@ -290,8 +284,8 @@ The other diagnoses are not rim problems:
   AF-S Nikkor 14-24mm f/2.8 at 23.8 mm the ray toward the iris rim cannot be traced to the stop, so the audit compares
   the beam with the stated pupil instead. A stop plane inside the sag of the surface before it is no trace failure:
   the sequential trace steps back to it.
-- `iris`, three lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
-  (Zeiss Hologon 15mm f/8), the fixed iris of the Nikon AF-S DX 55-200mm (Section H), and the published schedule of
+- `iris`, two lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
+  (Zeiss Hologon 15mm f/8), and the published schedule of
   the Sigma 24-70mm f/2.8 DG OS HSM Art, which opens to f/2.80–2.84 against the stated f/2.93 from 39 to 68 mm.
 
 Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the

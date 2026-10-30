@@ -60,7 +60,7 @@ The focal lengths in the element headings are the standalone-in-air values store
 
 #### L1 - Biconvex Positive
 
-**nd = 1.62041, νd = 60.3. Glass: 620603 - SK16 class (vendor unresolved). Standalone f = +151.336 mm.**
+**nd = 1.62041, νd = 60.3. Glass: N-SK16 spectral proxy (source 620603; supplier unspecified). Standalone f = +151.336 mm.**
 
 L1 is the positive entrance singlet of the fixed first zoom group. Its moderate positive power begins the collection of the axial and field bundles before the weakly positive cemented pair behind it. In the complete G1 assembly, L1 supplies a substantial share of the group's +121.008 mm net power.
 
@@ -72,11 +72,11 @@ The class label is coordinate-based. The patent gives no manufacturer or melt na
 
 L2 is cemented directly to L3. Its positive standalone power is opposed by the negative component, producing a D1 cemented-pair EFL of +634.830 mm. The pair is therefore only weakly positive in situ compared with either isolated component.
 
-No first-party coefficient row matching both stored coordinates was located in the current vendor sources. The patent does not identify the historical glass vendor or melt.
+The current HOYA BACD6 coefficient row at 1.613753/56.377856 is a compatible spectral proxy. Its Abbe number differs from source 56.3; the patent does not identify a historical supplier or melt.
 
 #### L3 - Biconcave Negative, rear component of D1
 
-**nd = 1.75520, νd = 27.5. Glass: 755275 - SF4 class (vendor unresolved). Standalone f = -143.544 mm.**
+**nd = 1.75520, νd = 27.5. Glass: SF4 spectral proxy (source 755275; supplier unspecified). Standalone f = -143.544 mm.**
 
 L3 provides the negative half of the front cemented pair. The large Abbe-number contrast between L2 and L3 supports primary chromatic balancing of G1, but the available data do not justify a claim about anomalous partial dispersion or apochromatic correction.
 
@@ -86,7 +86,7 @@ D1's weak net positive power indicates that its chief purpose within G1 is not s
 
 #### L4 - Biconvex Positive, front component of D2
 
-**nd = 1.68893, νd = 31.1. Glass: 689311 - SF8 class (vendor unresolved). Standalone f = +64.388 mm.**
+**nd = 1.68893, νd = 31.1. Glass: N-SF8 nonidentical spectral proxy (source 689311; supplier unspecified). Standalone f = +64.388 mm.**
 
 L4 begins the moving negative variator. Although it is positive in isolation, its cemented combination with L5 is negative, with a computed D2 EFL of -155.462 mm. The front face is nearly plane (`R6 = 10000 mm`), a feature also governed by the patent's explicit `R6` condition.
 
@@ -94,15 +94,15 @@ Its relatively high index and low Abbe number make it the high-dispersion partne
 
 #### L5 - Biconcave Negative, rear component of D2
 
-**nd = 1.51728, νd = 69.6. Glass: S-APL1 (OHARA; 517696). Standalone f = -45.305 mm.**
+**nd = 1.51728, νd = 69.6. Glass: S-APL1 spectral proxy (OHARA; source 517696, supplier unspecified). Standalone f = -45.305 mm.**
 
 L5 is the negative, low-dispersion member of D2. Its strong negative standalone power and high Abbe number contrast with L4's positive, more dispersive power. Together they form a negative achromatizing pair within the variator.
 
-The data file sets `apd: false` and carries no `nC`, `nF`, `ng`, or `dPgF`. The exact S-APL1 identity is catalog-backed, but it is not evidence for anomalous-dispersion performance.
+The data file sets `apd: false` and carries no `nC`, `nF`, `ng`, or `dPgF`. The compatible S-APL1 coefficient curve supplies spectral coverage, but does not establish a production identity or measured anomalous-dispersion performance.
 
 #### L6 - Biconcave Negative
 
-**nd = 1.62041, νd = 60.3. Glass: 620603 - SK16 class (vendor unresolved). Standalone f = -55.865 mm.**
+**nd = 1.62041, νd = 60.3. Glass: N-SK16 spectral proxy (source 620603; supplier unspecified). Standalone f = -55.865 mm.**
 
 L6 is the rear negative singlet of G2. It adds strong negative power behind D2 and brings the complete variator to a computed EFL of -40.306 mm, matching the patent's rounded `f2 = -40.3 mm`.
 
@@ -112,7 +112,7 @@ Because G2 is the principal focal-length-changing group, the negative power of L
 
 #### L7 - Biconvex Positive, front component of D3
 
-**nd = 1.62041, νd = 60.3. Glass: 620603 - SK16 class (vendor unresolved). Standalone f = +58.671 mm.**
+**nd = 1.62041, νd = 60.3. Glass: N-SK16 spectral proxy (source 620603; supplier unspecified). Standalone f = +58.671 mm.**
 
 L7 supplies the main positive power of the moving compensator. Cemented to L8, it forms a net-positive pair with a computed EFL of +108.266 mm, essentially the patent's rounded `f3 = 108.3 mm`.
 
@@ -120,7 +120,7 @@ The complete D3 group moves imageward and then reverses as focal length increase
 
 #### L8 - Negative Meniscus, rear component of D3
 
-**nd = 1.62004, νd = 36.3. Glass: 620363 - F2 class (vendor unresolved). Standalone f = -127.185 mm.**
+**nd = 1.62004, νd = 36.3. Glass: F2 spectral proxy (source 620363; supplier unspecified). Standalone f = -127.185 mm.**
 
 L8 tempers L7's positive power and introduces a substantial dispersion contrast within the cemented compensator. Its negative meniscus form leaves D3 positive overall while providing an additional degree of freedom for the aberration balance of a group that changes axial position substantially during zooming.
 
@@ -130,7 +130,7 @@ The description of this role is a modeling interpretation of the prescribed powe
 
 #### L9 - Biconvex Positive
 
-**nd = 1.54814, νd = 45.9. Glass: 548459 - LLF1 class (vendor unresolved). Standalone f = +139.235 mm.**
+**nd = 1.54814, νd = 45.9. Glass: LLF1 spectral proxy (source 548459; supplier unspecified). Standalone f = +139.235 mm.**
 
 L9 is the positive singlet at the entrance to the fixed relay. It begins the relay's convergence before the nearly afocal L10-L11 cemented pair.
 
@@ -138,7 +138,7 @@ The patent explains that the relay must correct astigmatism and spherical aberra
 
 #### L10 - Biconvex Positive, front component of D4
 
-**nd = 1.53172, νd = 48.9. Glass: 532489 - LLF6 class (vendor unresolved). Standalone f = +54.235 mm.**
+**nd = 1.53172, νd = 48.9. Glass: LLF6 spectral proxy (source 532489; supplier unspecified). Standalone f = +54.235 mm.**
 
 L10 is the strong positive member of D4. Its power is almost cancelled by L11, leaving the cemented pair with a computed EFL of approximately +6729.981 mm. The pair is thus nearly afocal as a cemented assembly despite the strong isolated powers of both elements.
 
@@ -146,7 +146,7 @@ This distinction is important: a near-zero cemented net power does not make D4 o
 
 #### L11 - Biconcave Negative, rear component of D4
 
-**nd = 1.78470, νd = 26.1. Glass: 785261 - SFS3 / dense short-flint class (vendor unresolved). Standalone f = -47.310 mm.**
+**nd = 1.78470, νd = 26.1. Glass: SF56A spectral proxy (source 785261; supplier unspecified). Standalone f = -47.310 mm.**
 
 L11 opposes L10 and provides a large refractive-index and dispersion contrast. The index difference is `1.78470 - 1.53172 = 0.25298`, which lies within the patent's required 0.1-0.49 interval for the corresponding relay cemented pair.[1]
 
@@ -156,7 +156,7 @@ The patent associates this index contrast with the relay's astigmatism correctio
 
 #### L12 - Biconvex Positive
 
-**nd = 1.51680, νd = 64.2. Glass: 517642 - BK7 class (vendor unresolved). Standalone f = +76.631 mm.**
+**nd = 1.51680, νd = 64.2. Glass: N-BK7 spectral proxy (source 517642; supplier unspecified). Standalone f = +76.631 mm.**
 
 L12 is the front positive singlet of the relay-rear section. It provides the first converging part of the patent's converging-diverging-converging rear-relay sequence.
 
@@ -164,7 +164,7 @@ Its BK7-class coordinate is a broad cross-vendor family identification rather th
 
 #### L13 - Biconcave Negative, front component of D5
 
-**nd = 1.74400, νd = 44.9. Glass: 744449 - LAF2 class (vendor unresolved). Standalone f = -23.358 mm.**
+**nd = 1.74400, νd = 44.9. Glass: LAF2 spectral proxy (source 744449; supplier unspecified). Standalone f = -23.358 mm.**
 
 L13 is the strongest isolated negative element in the relay rear. Cemented to L14, it forms a net-negative D5 pair with a computed EFL of -40.032 mm.
 
@@ -188,21 +188,21 @@ The patent requires the absolute radius of L15's front surface to be smaller tha
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive indices and Abbe numbers. It does not name glass manufacturers, catalog designations, melt numbers, C-, F-, or g-line indices, or anomalous partial-dispersion values. The data file therefore uses six-digit optical-coordinate codes and conservative class labels. These labels are catalog-derived approximations, not source facts about the historical production melts.
+The patent publishes only d-line refractive indices and Abbe numbers. It does not name glass manufacturers, catalog designations, melt numbers, C-, F-, or g-line indices, or anomalous partial-dispersion values. The data file therefore uses six-digit optical-coordinate codes and conservative class labels. These labels are qualified spectral proxies, not source facts about historical production melts. All fifteen media resolve to compatible coefficient curves. N-SF8 has catalog 1.68894/31.31 versus source 1.68893/31.1, and LLF1 has νd 45.75 versus 45.9; those differences remain explicit. No catalog-only spectral-line or partial-dispersion override is added.
 
 | Data-file glass annotation | nd | νd | Elements | Interpretation |
 |---|---:|---:|---|---|
-| 620603 - SK16 class (vendor unresolved) | 1.62041 | 60.3 | L1, L6, L7 | medium-index crown-class coordinate |
+| N-SK16 spectral proxy (source 620603; supplier unspecified) | 1.62041 | 60.3 | L1, L6, L7 | medium-index crown-class coordinate |
 | BACD6 (HOYA catalog-equivalent) | 1.61375 | 56.3 | L2 | patent supplier unspecified |
-| 755275 - SF4 class (vendor unresolved) | 1.75520 | 27.5 | L3 | dense flint-class coordinate |
-| 689311 - SF8 class (vendor unresolved) | 1.68893 | 31.1 | L4 | flint-class coordinate |
-| S-APL1 (OHARA; 517696) | 1.51728 | 69.6 | L5 | catalog-backed low-dispersion crown |
-| 620363 - F2 class (vendor unresolved) | 1.62004 | 36.3 | L8 | flint-class coordinate |
-| 548459 - LLF1 class (vendor unresolved) | 1.54814 | 45.9 | L9 | light-flint-class coordinate |
-| 532489 - LLF6 class (vendor unresolved) | 1.53172 | 48.9 | L10 | light-flint-class coordinate |
-| 785261 - SFS3 / dense short-flint class (vendor unresolved) | 1.78470 | 26.1 | L11 | dense short-flint-class coordinate |
-| 517642 - BK7 class (vendor unresolved) | 1.51680 | 64.2 | L12 | common crown-family coordinate |
-| 744449 - LAF2 class (vendor unresolved) | 1.74400 | 44.9 | L13 | lanthanum-flint-class coordinate |
+| SF4 spectral proxy (source 755275; supplier unspecified) | 1.75520 | 27.5 | L3 | dense flint-class coordinate |
+| N-SF8 nonidentical spectral proxy (source 689311; supplier unspecified) | 1.68893 | 31.1 | L4 | flint-class coordinate |
+| S-APL1 spectral proxy (OHARA; source 517696, supplier unspecified) | 1.51728 | 69.6 | L5 | catalog-backed low-dispersion crown |
+| F2 spectral proxy (source 620363; supplier unspecified) | 1.62004 | 36.3 | L8 | flint-class coordinate |
+| LLF1 spectral proxy (source 548459; supplier unspecified) | 1.54814 | 45.9 | L9 | light-flint-class coordinate |
+| LLF6 spectral proxy (source 532489; supplier unspecified) | 1.53172 | 48.9 | L10 | light-flint-class coordinate |
+| SF56A spectral proxy (source 785261; supplier unspecified) | 1.78470 | 26.1 | L11 | dense short-flint-class coordinate |
+| N-BK7 spectral proxy (source 517642; supplier unspecified) | 1.51680 | 64.2 | L12 | common crown-family coordinate |
+| LAF2 spectral proxy (source 744449; supplier unspecified) | 1.74400 | 44.9 | L13 | lanthanum-flint-class coordinate |
 | SF15 (Sumita coefficient-backed equivalent), 699300 | 1.69895 | 30.0 | L14 | coefficient-backed dense-flint equivalent; historical vendor unresolved |
 | BASF7 (Sumita coefficient-backed equivalent), 702411 | 1.70154 | 41.1 | L15 | coefficient-backed barium-flint equivalent; historical vendor unresolved |
 
@@ -239,7 +239,7 @@ The modeled stop semi-diameter is 7.821202 mm, corresponding to a 15.642403 mm d
 
 ### Semi-diameters and omitted planes
 
-The patent has no clear-aperture table. Semi-diameters were measured from Figure 1 and checked against the f/4.5 marginal bundle, the published field angles, the 135-format field, and the period Nikon cross-section’s 52 mm front-element envelope.[4] Surfaces 8 and 9 retain the smaller validator-safe clearance required by their opposing curvatures. Local edge-thickness, actual-rim-slope, and shared-gap checks pass at every defined zoom state. Exact meridional tracing at the patent’s extreme fields nevertheless shows substantial clipping by the inferred apertures, so the stored semi-diameters are not a reconstruction of the production clear-aperture schedule and cannot support photometric-vignetting claims.
+The patent has no clear-aperture table. Semi-diameters were measured from Figure 1 and checked against the f/4.5 marginal bundle, the published field angles, the 135-format field, and the period Nikon cross-section’s 52 mm front-element envelope.[4] Fresh Figure 1 inspection restores the continuous rear face of L1 to 26.0 mm, all three faces of the L2/L3 doublet to 25.0 mm, and relay-rear surfaces 19–25 to 16.0 mm. Surfaces 8 and 9 retain their 13.5 mm caps: a coupled 16.0 mm full-outline trial exceeds the unchanged 4.4 mm air gap (5.56 mm sag intrusion against 3.96 mm allowed). The drawing does not resolve a separate concave end land there, so no cut or fabricated opaque extension replaces that conflict. Local edge-thickness, actual-rim-slope, and shared-gap checks pass at every defined zoom state. Exact meridional tracing at the patent’s extreme fields nevertheless shows substantial clipping by the inferred apertures, so the stored semi-diameters are not a reconstruction of the production clear-aperture schedule and cannot support photometric-vignetting claims.
 
 No sensor cover glass, filter, inactive dummy plane, flare cutter, blocker, or mechanical component is included. None is required by the selected patent example. Surface 23 is retained because it is the real plane rear surface of L14.
 
@@ -289,7 +289,7 @@ The reduced-angle matrix, an independent unreduced-angle ABCD model, and direct 
 
 The figure-matched geometry passed the locally reproducible checks at all three zoom positions, including the constrained surface 8-to-9 gap.
 
-On-axis exact meridional tracing admitted all 201 sampled stop coordinates at each zoom state. At the patent’s extreme field angles, only 16.4%, 21.4%, and 13.9% of those sampled coordinates both retained a continuous sequential path and remained within the inferred semi-diameters at wide, middle, and tele, respectively. These are one-dimensional model-aperture diagnostics, not measured photometric vignetting data for the production lens.
+The current focused aperture audit passes all three stated f/4.5 zoom stations. The field audit still shows substantial clipping, reaching approximately 83%, 84% and 73% of the target image-height field at wide, middle and tele, respectively. The middle/tele values improve from approximately 81%/70% before the cap restorations. These are model chief-ray field-coverage diagnostics, not measured photometric vignetting. All nine actual SVG zoom/focus views retain connected compound outlines and require no automatic rim trim.
 
 ## Sources
 

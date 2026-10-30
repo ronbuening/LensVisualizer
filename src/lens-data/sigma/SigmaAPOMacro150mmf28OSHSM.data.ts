@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, qualified spectra and constrained geometry decisions are recorded in the audit sidecar. */
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — SIGMA APO MACRO 150mm F2.8 EX DG OS HSM                       ║
@@ -19,13 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ with local reductions where required by edge-thickness and cross-gap sag   ║
  * ║ clearance. They are not manufacturer-published mechanical diameters.        ║
  * ║                                                                              ║
- * ║ Partial dispersion: the patent prints only nd and νd (no PgF, no deviation,  ║
- * ║ no normal-line formula). nC/nF/ng are Hoya catalog line indices and drive    ║
- * ║ the trace, so `dPgF` is an annotation: the PgF of those indices minus the    ║
- * ║ engine's normal line (0.6438 − 0.001682·νd). It is not Hoya's catalog ΔPgF,  ║
- * ║ which is taken against Hoya's own line; the values stored before fit         ║
- * ║ 0.64833 − 0.0018·νd. L63 keeps its −0.0021, which is within 0.0003 of the    ║
- * ║ index value (−0.001936).                                                     ║
+ * ║ Dispersion: source supplies nd/vd only. Runtime uses compatible catalog     ║
+ * ║ coefficient curves as spectral proxies; no per-lens catalog C/F/g copies   ║
+ * ║ or exact partial ratios are stored. Supplier/melt identity is unresolved.   ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -74,10 +72,10 @@ const LENS_DATA = {
       glass: "BACED5 (Hoya; barium dense crown)",
       apd: false,
       role: "Moderate-index front collector; starts convergence without excessive front-surface curvature.",
-      dPgF: -0.000741,
-      nC: 1.65454,
-      nF: 1.66749,
-      ng: 1.67471,
+
+
+
+
     },
     {
       id: 2,
@@ -87,14 +85,15 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 119.36,
-      glass: "FCD1 (Hoya; SLD/ED fluorocrown)",
+      glass: "FCD1 (Hoya; qualified low-dispersion spectral proxy; production supplier unspecified)",
       apd: "inferred",
+      apdNote: "Compatible FCD1 catalog proxy; source paragraphs0070–0071 recommend anomalous low-dispersion glass by group but identify no individual melt or exact partial ratio.",
       role: "First SLD positive crown in the front achromat; primary secondary-spectrum correction.",
       cemented: "D1",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
+
+
+
+
     },
     {
       id: 3,
@@ -108,10 +107,10 @@ const LENS_DATA = {
       apd: false,
       role: "Dense-flint counter element cemented to L12 for axial-color correction.",
       cemented: "D1",
-      dPgF: 0.014579,
-      nC: 1.79611,
-      nF: 1.82774,
-      ng: 1.84721,
+
+
+
+
     },
     {
       id: 4,
@@ -121,14 +120,15 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 73.63,
-      glass: "FCD1 (Hoya; SLD/ED fluorocrown)",
+      glass: "FCD1 (Hoya; qualified low-dispersion spectral proxy; production supplier unspecified)",
       apd: "inferred",
+      apdNote: "Compatible FCD1 catalog proxy; source paragraphs0070–0071 recommend anomalous low-dispersion glass by group but identify no individual melt or exact partial ratio.",
       role: "Second front SLD crown; strongest positive element in L1 and main front-group color corrector.",
       cemented: "D2",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
+
+
+
+
     },
     {
       id: 5,
@@ -142,10 +142,10 @@ const LENS_DATA = {
       apd: false,
       role: "High-index negative partner for the second front-group achromat.",
       cemented: "D2",
-      dPgF: -0.009568,
-      nC: 1.7678,
-      nF: 1.78336,
-      ng: 1.79193,
+
+
+
+
     },
     {
       id: 6,
@@ -158,10 +158,10 @@ const LENS_DATA = {
       glass: "TAC8 (Hoya; tantalum crown)",
       apd: false,
       role: "Leading negative meniscus of the first moving focus group.",
-      dPgF: -0.006868,
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.74571,
+
+
+
+
     },
     {
       id: 7,
@@ -175,10 +175,10 @@ const LENS_DATA = {
       apd: false,
       role: "Positive dense flint inside the reversed achromat of L2.",
       cemented: "D3",
-      dPgF: 0.015299,
-      nC: 1.83649,
-      nF: 1.87209,
-      ng: 1.89413,
+
+
+
+
     },
     {
       id: 8,
@@ -192,10 +192,10 @@ const LENS_DATA = {
       apd: false,
       role: "Low-dispersion crown component completing the internally corrected negative focus group.",
       cemented: "D3",
-      dPgF: 0.005027,
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49594,
+
+
+
+
     },
     {
       id: 9,
@@ -208,10 +208,10 @@ const LENS_DATA = {
       glass: "TAC8 (Hoya; tantalum crown)",
       apd: false,
       role: "Trailing negative element of L2; maintains negative group power through focus travel.",
-      dPgF: -0.006868,
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.74571,
+
+
+
+
     },
     {
       id: 10,
@@ -224,10 +224,10 @@ const LENS_DATA = {
       glass: "TAC8 (Hoya; tantalum crown)",
       apd: false,
       role: "First positive lens after the stop; part of the second moving focus group.",
-      dPgF: -0.006868,
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.74571,
+
+
+
+
     },
     {
       id: 11,
@@ -237,14 +237,15 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 60.96,
-      glass: "FCD1 (Hoya; SLD/ED fluorocrown)",
+      glass: "FCD1 (Hoya; qualified low-dispersion spectral proxy; production supplier unspecified)",
       apd: "inferred",
+      apdNote: "Compatible FCD1 catalog proxy; source paragraphs0070–0071 recommend anomalous low-dispersion glass by group but identify no individual melt or exact partial ratio.",
       role: "Third SLD crown; stabilizes axial and lateral color across the floating-focus stroke.",
       cemented: "D4",
-      dPgF: 0.032056,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
+
+
+
+
     },
     {
       id: 12,
@@ -258,10 +259,10 @@ const LENS_DATA = {
       apd: false,
       role: "Dense-flint cemented partner for L32 in the positive rear focus group.",
       cemented: "D4",
-      dPgF: 0.014579,
-      nC: 1.79611,
-      nF: 1.82774,
-      ng: 1.84721,
+
+
+
+
     },
     {
       id: 13,
@@ -274,10 +275,10 @@ const LENS_DATA = {
       glass: "E-FD8 (Hoya; flint)",
       apd: false,
       role: "Fixed weak negative conditioner immediately before the stabilizer group.",
-      dPgF: 0.007435,
-      nC: 1.68251,
-      nF: 1.70462,
-      ng: 1.71786,
+
+
+
+
     },
     {
       id: 14,
@@ -291,10 +292,10 @@ const LENS_DATA = {
       apd: false,
       role: "Positive dense-flint component of the decentering stabilization group.",
       cemented: "D5",
-      dPgF: 0.014579,
-      nC: 1.79611,
-      nF: 1.82774,
-      ng: 1.84721,
+
+
+
+
     },
     {
       id: 15,
@@ -308,10 +309,10 @@ const LENS_DATA = {
       apd: false,
       role: "Strong negative crown in the stabilizer doublet; supplies most of L5 negative power.",
       cemented: "D5",
-      dPgF: -0.006868,
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.74571,
+
+
+
+
     },
     {
       id: 16,
@@ -324,10 +325,10 @@ const LENS_DATA = {
       glass: "LAC8 (Hoya; lanthanum crown)",
       apd: false,
       role: "Negative singlet completing the compact OS group.",
-      dPgF: -0.0092,
-      nC: 1.70898,
-      nF: 1.7222,
-      ng: 1.72939,
+
+
+
+
     },
     {
       id: 17,
@@ -340,10 +341,10 @@ const LENS_DATA = {
       glass: "M-NBFD130 (Hoya; 806/407 dense niobium flint match)",
       apd: false,
       role: "Front positive element of the fixed rear relay; lowers off-axis ray height behind the OS unit.",
-      dPgF: -0.006605,
-      nC: 1.80022,
-      nF: 1.82002,
-      ng: 1.83128,
+
+
+
+
     },
     {
       id: 18,
@@ -357,10 +358,10 @@ const LENS_DATA = {
       apd: false,
       role: "Negative flint component in the rear relay doublet.",
       cemented: "D6",
-      dPgF: 0.011692,
-      nC: 1.74729,
-      nF: 1.77472,
-      ng: 1.79143,
+
+
+
+
     },
     {
       id: 19,
@@ -374,10 +375,10 @@ const LENS_DATA = {
       apd: false,
       role: "Final positive meniscus; closes the rear relay and sets the exit geometry.",
       cemented: "D6",
-      dPgF: -0.0021,
-      nC: 1.82742,
-      nF: 1.84975,
-      ng: 1.86268,
+
+
+
+
     },
   ],
 
@@ -389,9 +390,9 @@ const LENS_DATA = {
     { label: "5", R: "flat", d: 0.2, sd: 25.9 },
     { label: "6", R: 51.3542, d: 10.37, sd: 25.9, medium: 4 },
     { label: "7", R: -118.7741, d: 1.7, sd: 22.6, medium: 5 },
-    { label: "8", R: 303.8511, sd: 22.2 },
+    { label: "8", R: 303.8511, rimExtensionSd: 22.6, sd: 22.2 },
     { label: "9", R: 171.2605, d: 1.3, sd: 21.2, medium: 6 },
-    { label: "10", R: 49.907, d: 4.2, sd: 18.55 },
+    { label: "10", R: 49.907, d: 4.2, rimExtensionSd: 21.2, sd: 18.55 },
     { label: "11", R: -944.6684, d: 4.45, sd: 18.55, medium: 7 },
     { label: "12", R: -60.464, d: 1.2, sd: 19.85, medium: 8 },
     { label: "13", R: 303.9765, d: 2.21, sd: 19.65 },
@@ -412,9 +413,9 @@ const LENS_DATA = {
     { label: "28", R: 110.3321, d: 2.5, sd: 11.55 },
     { label: "29", R: 67.0168, d: 6.35, sd: 11.65, medium: 17 },
     { label: "30", R: -87.1218, d: 0.72, sd: 11.25 },
-    { label: "31", R: -228.2708, d: 1.55, sd: 11.1, medium: 18 },
-    { label: "32", R: 33.1513, d: 6.62, sd: 10.95, medium: 19 },
-    { label: "33", R: 581.2078, d: 54.019889, sd: 10.2 },
+    { label: "31", R: -228.2708, d: 1.55, sd: 11.3, medium: 18 },
+    { label: "32", R: 33.1513, d: 6.62, sd: 11.3, medium: 19 },
+    { label: "33", R: 581.2078, d: 54.019889, sd: 11.3 },
   ],
 
   focus: {

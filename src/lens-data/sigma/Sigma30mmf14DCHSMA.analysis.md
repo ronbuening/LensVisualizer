@@ -6,7 +6,7 @@
 **Application Number:** 特願2013-11582 (P2013-11582)
 **Filed:** 2013-01-25 (平成25年1月25日)
 **Published:** 2014-08-07 (平成26年8月7日)
-**Inventor:** Daiki Uehara (上原 大樹)
+**Inventor:** Hiroki Uehara (上原 大樹)
 **Applicant:** Sigma Corporation (株式会社シグマ)
 **Title:** Imaging Lens System (撮像レンズ系)
 **Classification:** IPC G02B 13/00, G02B 13/18
@@ -41,7 +41,7 @@ The stop is inside G2 between L5 and the cemented doublet. The patent states tha
 
 ## Element-by-Element Analysis
 
-Surface numbers follow the patent's object-to-image numbering. Element focal lengths below are standalone thick-lens values in air. The L6+L7 cemented-pair focal length is computed by paraxial tracing of the bonded pair in air.
+Glass names below denote qualified current catalogue spectral proxies, without establishing a supplier, historical melt or production molding grade. Surface numbers follow the patent's object-to-image numbering. Element focal lengths below are standalone thick-lens values in air. The L6+L7 cemented-pair focal length is computed by paraxial tracing of the bonded pair in air.
 
 ### L1 — Negative Meniscus, convex to object (surfaces 1-2)
 
@@ -99,9 +99,9 @@ L9 is the rearmost element and the only aspherical element in Example 1. Its fro
 
 ## Glass Identification and Selection
 
-The glass identifications were rechecked against Hoya's official cross-reference data by six-digit nd/νd code. The codes match the Hoya entries or Hoya reference entries below. Equivalent Schott and Ohara names are included only as class references; they are not treated as proof that those vendors supplied the melt.
+The 2026-10-30 reinspection verified all nine source nd/νd pairs from Numerical Example 1 on PDF pages 8–9 and the d-line convention (587.56 nm) in ¶0046 on PDF page 7. All nine entries resolve to compatible coefficient curves, with the source pairs retained exactly. Hoya names and cross-vendor class names below are qualified spectral proxies, not supplier or production-grade identifications. For L4 the actual resolver selects E-FD4; E-FD4L remains a reference annotation. The patent supplies no C/F/g indices, θgF or ΔPgF overrides.
 
-| Element | nd | νd | Hoya match | Code | Class / role |
+| Element | nd | νd | Qualified Hoya proxy | Code | Class / role |
 |---|---:|---:|---|---:|---|
 | L1 | 1.51680 | 64.2 | BSC7 | 517/642 | Borosilicate crown; front negative meniscus |
 | L2 | 1.48749 | 70.4 | FC5 | 487/704 | Fluor crown; low-dispersion negative meniscus |
@@ -113,7 +113,7 @@ The glass identifications were rechecked against Hoya's official cross-reference
 | L8 | 1.72916 | 54.7 | TAC8 | 729/547 | Lanthanum crown; rear positive meniscus |
 | L9 | 1.77250 | 49.5 | M-TAF1 reference | 773/495 | Moldable lanthanum flint; double-aspherical positive |
 
-The chromatic strategy is conventional achromatization. No SLD, FLD, fluorite, or strong anomalous-partial-dispersion element is present in the patent table. L2 is a fluor crown, but the patent gives only nd and νd, not θgF, ΔPgF, or line indices; therefore it should not be described as a secondary-spectrum correcting element on patent evidence alone. Color correction is instead distributed through the rear group by pairing dense flints (L4, L5, L6) with high-index lanthanum glasses (L7, L8, L9), especially across the cemented L6+L7 interface.
+The chromatic strategy is conventional achromatization. The table does not identify SLD, FLD, fluorite or anomalous-partial-dispersion materials; absence of those data is not a measurement of zero anomaly. L2 is a fluor crown, but the patent gives only nd and νd, not θgF, ΔPgF, or line indices; therefore it should not be described as a secondary-spectrum correcting element on patent evidence alone. Color correction is instead distributed through the rear group by pairing dense flints (L4, L5, L6) with high-index lanthanum glasses (L7, L8, L9), especially across the cemented L6+L7 interface.
 
 ## Focus Mechanism
 
@@ -179,7 +179,7 @@ The prescription was transcribed from the patent's Numerical Example 1 and reche
 
 Standalone element focal lengths are: L1 -67.6 mm, L2 -74.2 mm, L3 +39.8 mm, L4 +52.5 mm, L5 -43.7 mm, L6 -18.7 mm, L7 +31.4 mm, L8 +74.5 mm, and L9 +43.0 mm. The cemented L6+L7 pair is net negative at -60.2 mm. The surface-by-surface Petzval sum, computed as Σφ/(n·n′), is +4.153 × 10^-3 mm^-1, giving a Petzval radius of approximately -241 mm and P·f ≈ 0.128.
 
-The data file uses inferred semi-diameters because the patent does not publish clear apertures. They were set from paraxial on-axis marginal rays plus full-field chief rays, then checked for element edge thickness, front/rear semi-diameter ratio, spherical/aspherical rim behavior, and signed cross-gap sag clearance. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; `nominalFno` (the f-number the stop opens to) is that same patent design value, 1.46, and `apertureMarketing` records the marketed F1.4.
+The data file uses inferred semi-diameters because the patent does not publish clear apertures. The 2026-10-30 reinspection used the legible original Fig. 1 image from the same publication to supplement missing strokes in local PDF page 18. The front outline is 15.5 mm; inferred cuts on S2 (depth 4.82 mm, cap 14.492197 mm), S10 (1.70 mm, cap 12.184178 mm) and S12 (4.48 mm, cap 11.849148 mm) reproduce supported concave lands subject to full-beam clearance. The cemented S13 interface grows to the common 15 mm outer radius, keeping the post-stop doublet connected. The small S4 land was rejected because its passing beam-safe radius leaves less than 0.1 mm of land. Geometry, beam guards, the source 600 mm finite point and the existing derived 0.30 m endpoint pass; neither conjugate is newly certified in the authored data. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; `nominalFno` (the f-number the stop opens to) is that same patent design value, 1.46, and `apertureMarketing` records the marketed F1.4.
 
 ## Design Heritage and Context
 
@@ -191,3 +191,5 @@ The lens is the Art-line successor to Sigma's earlier 30mm F1.4 EX DC HSM. The o
 - Sigma Corporation, "30mm F1.4 DC HSM | Art" official product page — production specifications, mounts, lens construction, angle of view, minimum focusing distance, maximum magnification, HSM, and rear-focus description.
 - Sigma Corporation, official lens-construction diagram for the A013 30mm F1.4 DC HSM — confirmation that the highlighted aspherical element is the rearmost element.
 - Hoya Group Optics Division, "Glass Cross Reference Index" — Hoya glass names, six-digit codes, and cross-vendor class equivalents.
+
+The exact-publication [original Fig. 1 image](https://patentimages.storage.googleapis.com/27/8e/6a/2fe7894dddf48a/2014142520-4.png) is supplementary figure evidence; its paired infinity and close plots identify Example 1. The local PDF remains the prescription source.

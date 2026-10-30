@@ -28,8 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ actual spherical rim slope, shared-band cross-gap intrusion, default off-axis containment, and       ║
  * ║ render-trim-equivalent geometric clearance. No layout control is used to conceal invalid geometry.   ║
  * ║                                                                                                      ║
- * ║ GLASS: patent nd/νd values are authoritative. Names and nC/nF/ng/dPgF are HIKARI catalog            ║
- * ║ correlations from the Stage-1 glass audit; the patent does not identify a glass vendor or melt.      ║
+ * ║ GLASS: patent nd/νd values are authoritative. Names are qualified HIKARI catalog            ║
+ * ║ correlations; no source nC/nF/ng/dPgF is supplied, and the patent identifies no glass vendor or melt.      ║
  * ║                                                                                                      ║
  * ║ closeFocusM = 3.3 uses the patent's published close object-to-image distance R = 3300 mm for the     ║
  * ║ modeled endpoint; it is not presented as an independently verified production marketing MFD.        ║
@@ -83,10 +83,6 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "ED-class correlation from the patent coordinate; the source publishes nd/vd only.",
       role: "First positive collector in fixed unit G1; very-high-Abbe member.",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 2,
@@ -100,10 +96,6 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "ED-class correlation from the patent coordinate; the source publishes nd/vd only.",
       role: "Second positive collector in fixed unit G1; paired with L13 for chromatic and power balance.",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 3,
@@ -115,10 +107,6 @@ const LENS_DATA = {
       focalLengthMm: -337.5786,
       glass: "J-LAF7 (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Negative member completing the front G11 subgroup.",
-      dPgF: 0.0029,
-      nC: 1.743271,
-      nF: 1.764535,
-      ng: 1.77704,
     },
     {
       id: 4,
@@ -131,10 +119,6 @@ const LENS_DATA = {
       glass: "J-LAK14 (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Front member of cemented component L14 in fixed positive unit G1.",
       cemented: "L14",
-      dPgF: -0.0082,
-      nC: 1.692974,
-      nF: 1.705525,
-      ng: 1.71234,
     },
     {
       id: 5,
@@ -147,10 +131,6 @@ const LENS_DATA = {
       glass: "J-PSKH1 (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Rear member of cemented component L14; completes fixed unit G1.",
       cemented: "L14",
-      dPgF: 0.0135,
-      nC: 1.59054,
-      nF: 1.599276,
-      ng: 1.604028,
     },
     {
       id: 6,
@@ -162,10 +142,6 @@ const LENS_DATA = {
       focalLengthMm: -168.5296,
       glass: "J-BK7A (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Front negative element of translating internal-focus unit G2.",
-      dPgF: -0.001,
-      nC: 1.514324,
-      nF: 1.522382,
-      ng: 1.526699,
     },
     {
       id: 7,
@@ -178,10 +154,6 @@ const LENS_DATA = {
       glass: "J-SF03 (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Positive front member of the negative cemented component L22 in moving unit G2.",
       cemented: "L22",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 8,
@@ -191,13 +163,9 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 49.1,
       focalLengthMm: -84.2658,
-      glass: "J-LLF6 (HIKARI line-data correlation; patent νd differs by +0.32)",
+      glass: "J-LLF6 (catalog-compatible spectral proxy; source νd=49.1, catalog=48.78; supplier unresolved)",
       role: "Negative rear member of cemented component L22; G2 is negative overall.",
       cemented: "L22",
-      dPgF: -0.0003,
-      nC: 1.528453,
-      nF: 1.539353,
-      ng: 1.545481,
     },
     {
       id: 9,
@@ -212,10 +180,6 @@ const LENS_DATA = {
       apdNote: "ED-class correlation from the patent coordinate; the source publishes nd/vd only.",
       role: "Positive front member of fixed rear unit G3.",
       cemented: "L3",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 10,
@@ -228,10 +192,6 @@ const LENS_DATA = {
       glass: "J-SF8 (HIKARI catalog correlation; patent vendor unspecified)",
       role: "Rear member of G3; its two in-situ interface powers sum positive in the cemented assembly.",
       cemented: "L3",
-      dPgF: 0.0072,
-      nC: 1.682509,
-      nF: 1.704616,
-      ng: 1.717865,
     },
     {
       id: 11,
@@ -240,7 +200,7 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.5168,
       vd: 64.1,
-      glass: "J-BK7A",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (US 5,438,455 A, Example 1 Table 1 surfaces 18–19), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],

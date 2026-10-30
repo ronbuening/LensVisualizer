@@ -220,3 +220,38 @@ range is ±(1 + q) / (sd × 7.78 px/mm):
   1.2856 mm.
 
 Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JPWO2020157904A1.pdf`, Example 1 / Figure 1, PDF p. 56, at 600 dpi, rotated
+object-left. The vertex-spacing scale remains 7.78 native px/mm. All 19 elements and both halves were checked.
+The three resolved lands on 2, 8 and 32 already draw to the stored outer edges via beam-qualified cuts.
+Their clear radii, 30.0621 / 11.5977 / 13.3144 mm, are retained. No new outer extension is supported on the
+remaining faces: the curves reach their element edges, with shallow 6/14 and the one-pixel change at 21 below
+what the raster can establish. The source's lower cap end at 8 remains qualified by the existing beam evidence.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JPWO2020157904A1.pdf`, Example 1 / Table 1, PDF pp. 15–16, and the convention
+paragraphs on pp. 13–14. All 19 physical elements' d-line nd/νd values match the rendered table. Every label
+resolves to a coordinate-compatible coefficient curve, including former code-only rows L33 (N-BALF4), L52
+(M-TAFD305), L61 (M-TAFD51) and L62 (J-KZFH6).
+
+| Media | Change / retained verdict |
+|---|---|
+| L44 | Retain source 1.49710/81.49, compatible M-FCD1 proxy and inferred APD; remove generic family dPgF +0.028 |
+| Other eighteen glasses | Source coordinates and compatible annotations retained |
+
+Table 1 contains no partial-dispersion or C/F/g-index values. The former +0.028 was a family estimate on an
+older vendor convention, not source data. M-FCD1's shared coefficients now determine the spectrum without
+that per-lens g-line override. The APD and molding interpretation stays catalog-derived, with no production
+supplier identification. Related analysis and APD note were synchronized.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.

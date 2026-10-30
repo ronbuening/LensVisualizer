@@ -14,11 +14,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  focus t = 0.2102460786 (d11 = 17.427, d16 = 33.183 mm).                  ║
  * ║                                                                            ║
  * ║  MODEL NORMALIZATION: patent protective filter glass FLG (surfaces 1–2)    ║
- * ║  is omitted by current LensVisualizer policy. The rear air spacing is      ║
+ * ║  is omitted as permitted by source ¶0064. The rear air spacing is      ║
  * ║  therefore normalized from patent Bf = 87.772 mm to 87.868557 mm so the    ║
  * ║  active prescription remains focused at infinity. This changes the active  ║
  * ║  model EFL from the complete patent system's 490.000 mm to 489.459688 mm.  ║
  * ║                                                                            ║
+ * Source optionality: ¶0064, PDF p. 16, 「これを備えない構成としてもよい」
+ * permits a configuration without FLG; the EFL/BF recalibration below remains a model choice.
+ *
  * ║  STOP: the patent fixes S between G2 and G3. The stop radius is derived    ║
  * ║  from the design f-number, patent FNO = 4.122.                             ║
  * ║                                                                            ║
@@ -31,14 +34,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  independently traced wide-open marginal ray. No mathematical overlap is   ║
  * ║  accepted and no renderer-only trim is used as a geometry substitute.      ║
  * ║                                                                            ║
- * ║  GLASS / SPECTRAL DATA: the patent supplies nd, vd, and rounded theta_gF,  ║
- * ║  not vendor names or full line indices. For exact-coordinate classes,      ║
- * ║  nC/nF/ng/dPgF use current HIKARI catalog analogues as Nikon-group spectral ║
- * ║  proxies; these are not claims that the patent names HIKARI melts. L23     ║
- * ║  uses current J-KZFH4 as an exact-coordinate catalog-equivalent spectral    ║
- * ║  proxy while explicitly retaining its post-filing historical caveat.       ║
- * ║  L11/L12 use CaF2 line indices from Malitson's 24 °C                       ║
- * ║  dispersion relation.                                                      ║
+ * ║  GLASS / SPECTRAL DATA: Table 1 supplies d-line nd/vd and theta_gF      ║
+ * ║  rounded to two decimals (±0.005), not vendor names or C/F/g indices.    ║
+ * ║  dPgF stores each printed theta_gF center minus 0.6438 − 0.001682·vd;   ║
+ * ║  its extra decimals express conversion, not source precision. Compatible ║
+ * ║  current catalog curves supply qualified spectral proxies. L23's current ║
+ * ║  J-KZFH4 curve post-dates filing; no historical supplier is asserted.      ║
  * ║                                                                            ║
  * ║  SOURCE DISCREPANCY: Table 1 lists condition (4) as 0.81, but the published║
  * ║  infinity prescription gives f/f12 = 0.742306552. The listed 0.81 is       ║
@@ -94,10 +95,7 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Front positive collector; one of the two production-correlated fluorite elements.",
-      dPgF: 0.055004227,
-      nC: 1.432457539,
-      nF: 1.437026402,
-      ng: 1.439487119,
+      dPgF: 0.05641050, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 2,
@@ -111,10 +109,7 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Second front-group positive collector; one of the two production-correlated fluorite elements.",
-      dPgF: 0.055004227,
-      nC: 1.432457539,
-      nF: 1.437026402,
-      ng: 1.439487119,
+      dPgF: 0.05641050, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 3,
@@ -124,12 +119,9 @@ const LENS_DATA = {
       nd: 1.61266,
       vd: 44.46,
       focalLengthMm: -338.744576,
-      glass: "613445 class (HIKARI J-KZFH1 spectral match)",
-      role: "Front-group negative corrector; spectral fields use the exact-coordinate HIKARI catalogue analogue.",
-      dPgF: -0.0058,
-      nC: 1.608532,
-      nF: 1.622313,
-      ng: 1.630085,
+      glass: "613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)",
+      role: "Front-group negative corrector; qualified current catalog curve and source-rounded partial dispersion.",
+      dPgF: -0.00901828, // Patent θgF 0.56 ±0.005; converted to the engine baseline.
     },
     {
       id: 4,
@@ -139,13 +131,10 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: -161.158073,
-      glass: "697555 class (HIKARI J-LAK14 spectral match)",
+      glass: "697555 class (HIKARI J-LAK14 catalog-coordinate proxy)",
       role: "Negative member of the rear G1 cemented pair.",
       cemented: "D1",
-      dPgF: -0.0082,
-      nC: 1.692974,
-      nF: 1.705525,
-      ng: 1.71234,
+      dPgF: -0.01041536, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 5,
@@ -155,15 +144,12 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       focalLengthMm: 109.492952,
-      glass: "498826 ED class (HIKARI J-FKH1 spectral match)",
+      glass: "498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)",
       apd: "inferred",
       apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Positive cemented partner of L14; one of the three production-correlated ED-class elements.",
       cemented: "D1",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
+      dPgF: 0.03508274, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 6,
@@ -173,12 +159,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.18,
       focalLengthMm: -98.58717,
-      glass: "834372 class (HIKARI J-LASF010 spectral match)",
+      glass: "834372 class (HIKARI J-LASF010 catalog-coordinate proxy)",
       role: "Leading negative element of the moving G2 internal-focus group.",
-      dPgF: -0.0042,
-      nC: 1.827379,
-      nF: 1.849808,
-      ng: 1.862767,
+      dPgF: -0.00126324, // Patent θgF 0.58 ±0.005; converted to the engine baseline.
     },
     {
       id: 7,
@@ -188,13 +171,10 @@ const LENS_DATA = {
       nd: 1.80809,
       vd: 22.74,
       focalLengthMm: 151.725029,
-      glass: "808227 high-dispersion class (HIKARI J-SFH1 spectral match)",
+      glass: "808227 high-dispersion class (HIKARI J-SFH1 catalog-coordinate proxy)",
       role: "Positive high-dispersion member of the moving G2 cemented pair; satisfies patent condition (2).",
       cemented: "D2",
-      dPgF: 0.0226,
-      nC: 1.797989,
-      nF: 1.833527,
-      ng: 1.855872,
+      dPgF: 0.02444868, // Patent θgF 0.63 ±0.005; converted to the engine baseline.
     },
     {
       id: 8,
@@ -208,13 +188,10 @@ const LENS_DATA = {
         "J-KZFH4 catalog-equivalent spectral proxy (patent 553551; current glass post-dates filing; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "Current J-KZFH4 line data are used only as an exact-coordinate spectral proxy; glass identity is not asserted.",
+        "Patent condition (5) identifies the anomalous-partial-dispersion design property: printed θgF 0.54 ±0.005 gives −0.011166753 ±0.005 under its line, below −0.001. Current J-KZFH4 is only a post-filing coordinate proxy; historical identity is unasserted.",
       role: "Negative G2 cemented partner governed by patent conditions (3) and (5).",
       cemented: "D2",
-      dPgF: -0.0073,
-      nC: 1.549923,
-      nF: 1.559964,
-      ng: 1.565433,
+      dPgF: -0.01117226, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 9,
@@ -224,13 +201,10 @@ const LENS_DATA = {
       nd: 1.80809,
       vd: 22.74,
       focalLengthMm: -115.189996,
-      glass: "808227 high-dispersion class (HIKARI J-SFH1 spectral match)",
+      glass: "808227 high-dispersion class (HIKARI J-SFH1 catalog-coordinate proxy)",
       role: "Negative front member of the positive G3a cemented pair.",
       cemented: "D3",
-      dPgF: 0.0226,
-      nC: 1.797989,
-      nF: 1.833527,
-      ng: 1.855872,
+      dPgF: 0.02444868, // Patent θgF 0.63 ±0.005; converted to the engine baseline.
     },
     {
       id: 10,
@@ -240,15 +214,12 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       focalLengthMm: 79.685959,
-      glass: "498826 ED class (HIKARI J-FKH1 spectral match)",
+      glass: "498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)",
       apd: "inferred",
       apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Positive G3a cemented partner; one of the three production-correlated ED-class elements.",
       cemented: "D3",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
+      dPgF: 0.03508274, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 11,
@@ -258,12 +229,9 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.12,
       focalLengthMm: -186.957194,
-      glass: "623581 class (HIKARI J-SK15 spectral match)",
+      glass: "623581 class (HOYA BACD15 catalog-coordinate proxy)",
       role: "Leading negative element of the laterally shifting G3b VR group.",
-      dPgF: -0.003,
-      nC: 1.619729,
-      nF: 1.630448,
-      ng: 1.636277,
+      dPgF: -0.00604216, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 12,
@@ -273,13 +241,10 @@ const LENS_DATA = {
       nd: 1.61266,
       vd: 44.46,
       focalLengthMm: 81.7496,
-      glass: "613445 class (HIKARI J-KZFH1 spectral match)",
+      glass: "613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)",
       role: "Positive member of the G3b VR cemented pair.",
       cemented: "D4",
-      dPgF: -0.0058,
-      nC: 1.608532,
-      nF: 1.622313,
-      ng: 1.630085,
+      dPgF: -0.00901828, // Patent θgF 0.56 ±0.005; converted to the engine baseline.
     },
     {
       id: 13,
@@ -289,15 +254,12 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       focalLengthMm: -52.475028,
-      glass: "498826 ED class (HIKARI J-FKH1 spectral match)",
+      glass: "498826 ED class (HIKARI J-FKH1 catalog-coordinate proxy)",
       apd: "inferred",
       apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Negative cemented partner in the G3b VR group; one of the three production-correlated ED-class elements.",
       cemented: "D4",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
+      dPgF: 0.03508274, // Patent θgF 0.54 ±0.005; converted to the engine baseline.
     },
     {
       id: 14,
@@ -307,12 +269,9 @@ const LENS_DATA = {
       nd: 1.61266,
       vd: 44.46,
       focalLengthMm: 54.142554,
-      glass: "613445 class (HIKARI J-KZFH1 spectral match)",
+      glass: "613445 class (HIKARI J-KZFH1 catalog-coordinate proxy)",
       role: "First positive relay element of G3c.",
-      dPgF: -0.0058,
-      nC: 1.608532,
-      nF: 1.622313,
-      ng: 1.630085,
+      dPgF: -0.00901828, // Patent θgF 0.56 ±0.005; converted to the engine baseline.
     },
     {
       id: 15,
@@ -322,12 +281,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.73,
       focalLengthMm: -33.107808,
-      glass: "835427 class (HIKARI J-LASF05 spectral match)",
+      glass: "835427 class (HIKARI J-LASF05 catalog-coordinate proxy)",
       role: "Negative rear-relay corrector in G3c.",
-      dPgF: -0.0079,
-      nC: 1.828989,
-      nF: 1.848524,
-      ng: 1.859557,
+      dPgF: -0.01192814, // Patent θgF 0.56 ±0.005; converted to the engine baseline.
     },
     {
       id: 16,
@@ -337,12 +293,9 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.92,
       focalLengthMm: 54.837817,
-      glass: "801349 class (HIKARI J-LAF016 spectral match)",
+      glass: "801349 class (HIKARI J-LAF016 catalog-coordinate proxy)",
       role: "Final positive relay element of G3c.",
-      dPgF: -0.0004,
-      nC: 1.794267,
-      nF: 1.817203,
-      ng: 1.830628,
+      dPgF: 0.00493544, // Patent θgF 0.59 ±0.005; converted to the engine baseline.
     },
   ],
 

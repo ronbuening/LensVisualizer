@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors and qualified geometry decisions are recorded in the audit sidecar. */
+
 /**
  * JP2015055858A, Numerical Example 2. Construction correlation with the
  * SIGMA 24-105mm F4 DG OS HSM Art, not confirmed factory prescription.

@@ -88,7 +88,7 @@ nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA) — SLD fluorophosphate crown, s
 
 L7 is the second SLD element and the strongest single positive element in G1 (f = +114.2 mm). Positioned at the rear of G1, it acts as the final convergence stage before the beam crosses the G1–G2 air gap. Its biconvex shape (unlike the meniscus shape of L2) is appropriate here because the beam is narrower at this position, allowing steeper curvatures without excessive spherical aberration.
 
-Together, L2 and L7 provide the bulk of G1's chromatic correction via their low dispersion and positive ΔPgF. Their shared glass type (FCD705) is significant: it means a single melt lot can supply both elements, reducing manufacturing variability and ensuring that the dispersion pairing between the SLD elements and the negative correctors (L3–L5) is consistent across production runs.
+L2 and L7 share the printed nd/νd/PgF coordinate and both carry the patent's Lp1 designation. FCD705 is a qualified spectral proxy; the disclosure does not establish a common production supplier, melt lot or manufacturing variability.
 
 ### L8 — Positive Meniscus, Convex to Object (G2A singlet)
 
@@ -130,21 +130,21 @@ $$\frac{1/R_{Sm2}}{\phi_{Sm1} + \phi_{Sm2}} = \frac{1/(-73.54)}{(-0.01284) + (-0
 
 This value falls within the prescribed range of 0.50–0.90, confirming that the negative power is appropriately distributed between the two concave-to-object surfaces to balance coma correction against field flattening (¶0065–0067).
 
-S-TIM25 is the only OHARA catalog row used in the data-file interpretation; all other resolved elements use HOYA or Hikari rows. The patent coordinates support the optical model but do not prove Sigma's production supplier.
+L3 and L13 use OHARA coefficient rows (S-NBM51 and S-TIM25); the other resolved elements use HOYA or Hikari proxies. S-TIM25 is compatible rather than source-precision-identical: its coefficient-derived Abbe number is about 32.10 against the source's 32.17, and the actual source PgF override is retained. The patent coordinates support the optical model but do not prove Sigma's production supplier.
 
-### L14 — Biconvex Positive, Double Aspherical (PGM)
+### L14 — Biconvex Positive, Double Aspherical
 
 nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA) — precision-glass-moldable (PGM) lanthanum flint. f = +38.4 mm. ΔPgF = −0.0067.
 
 L14 is the rearmost optical element and the only aspherical element in the design. Both its front (R = +74.32 mm) and rear (R = −55.47 mm) surfaces carry aspherical departures. It is the strongest single positive element in the entire system (f = +38.4 mm) and plays a dominant role in converging the beam to the image plane.
 
-The glass designation M-TAFD305 carries the HOYA "M-" prefix, indicating that it is formulated for precision glass molding — a manufacturing process in which heated glass is pressed directly into aspherical form without subsequent polishing. This is consistent with the production lens's cost structure: a single PGM element at the rear replaces what would otherwise require two or three polished spherical elements to achieve equivalent aberration correction.
+The catalogue proxy M-TAFD305 is a precision-molding glass. Its compatible coordinates do not establish the production grade, supplier, melt, fabrication process or a manufacturing-cost advantage.
 
 The aspherical profiles are discussed in detail in the Aspherical Surfaces section below.
 
 ## Glass Identification and Selection
 
-The design uses 10 distinct glass types across 14 elements. The catalog interpretation is predominantly HOYA, with S-TIM25 supplying the exact 1.67270/32.17 row for L13; this should not be read as a production-sourcing claim.
+The design uses 10 distinct glass types across 14 elements. The catalogue interpretation uses compatible coefficient models, predominantly HOYA with OHARA and Hikari entries; these are spectral proxies, without a production-sourcing or exact-melt claim. All fourteen source pairs and the LPF pair were freshly checked on PDF19 on 2026-10-30.
 
 | Element | nd | νd | PgF | ΔPgF | Glass | Vendor | Family |
 |---------|--------|-------|--------|---------|------|--------|--------|
@@ -159,7 +159,7 @@ The design uses 10 distinct glass types across 14 elements. The catalog interpre
 | L13 | 1.67270 | 32.17 | 0.5962 | +0.0058 | S-TIM25 | OHARA | Titanium flint |
 | L14 | 1.85135 | 40.10 | 0.5694 | −0.0067 | M-TAFD305 | HOYA | Dense La-flint (PGM) |
 
-ΔPgF in this table and throughout this note is the patent's own deviation, ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0023); it is the quantity conditions (4) and (6) use. The data file's `dPgF` field holds the same patent PgF measured from the ray-trace engine's normal line, 0.6438 − 0.001682·νd, so the stored numbers differ from the ΔPgF quoted here: L1 −0.006645, L2/L7 +0.023091, L3 −0.006038, L4/L5/L11 +0.000261, L6 +0.030120, L9 −0.008487, L10 +0.009544, L13 +0.006510. L8/L12 (−0.0095) and L14 (−0.0067) sit where the two lines nearly cross and keep four-decimal figures that agree with the engine-line value within 0.0003.
+ΔPgF in this table and throughout this note is the patent's own deviation, ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0023); it is the quantity conditions (4) and (6) use. The data file's `dPgF` field holds the same patent PgF measured from the ray-trace engine's normal line, 0.6438 − 0.001682·νd, so the stored numbers differ from the ΔPgF quoted here: L1 −0.006645, L2/L7 +0.023091, L3 −0.006038, L4/L5/L11 +0.000261, L6 +0.030120, L9 −0.008487, L10 +0.009544, L13 +0.006510. L8/L12 now store −0.009774 and L14 −0.006952, directly recovering the printed PgF values within their ±0.00005 precision. The historical loose 0.0003 retention is superseded; it could not justify reconstructing the published ratios several rounding units away.
 
 The chromatic correction strategy relies on patent-listed PgF values for every glass, but only three elements are highlighted as APD in the viewer:
 
@@ -219,7 +219,7 @@ The positive A4 on the rear concave surface (R < 0) reduces the absolute sag com
 
 The patent does not publish semi-diameters. The departure values above are computed at representative heights of 16–18 mm, estimated from the converging beam geometry at L14's position. The actual clear aperture of L14 is likely in the 14–18 mm SD range, given the production lens's 86 mm filter thread and the substantial beam convergence by this point in the optical path.
 
-Together, the two aspherical surfaces act as a spherical-aberration corrector positioned after the stop, precisely where the patent recommends placing the asphere for cost-effective manufacturing (¶0077): post-stop placement keeps the element diameter small, reducing the difficulty and cost of precision glass molding. The use of M-TAFD305 (a moldable glass) confirms that L14 is manufactured by PGM rather than conventional polishing.
+Together, the two aspherical surfaces act as a spherical-aberration corrector positioned after the stop, precisely where the patent recommends placing the asphere for cost-effective manufacturing (¶0077): post-stop placement keeps the element diameter small, reducing the difficulty and cost of precision glass molding. M-TAFD305 is a compatible moldable-glass proxy, rather than confirmation of the production fabrication process.
 
 The mild aspherical departures — only A4 and A6 terms, with maximum departure under 0.3 mm at the estimated clear aperture — are well within the capability of modern PGM processes and contribute to the production lens's relatively moderate price point for its specification class.
 
@@ -270,3 +270,11 @@ The lens was later succeeded by the Sigma 85mm F1.4 DG DN | Art (A020, 2020), an
 - HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF3D, E-FD15, M-TAFD305).
 - Hikari Optical Glass Catalog (J-KZFH9).
 - OHARA Corporation, Optical Glass Catalog (S-NBM51, S-TIM25).
+
+## Original-Figure Rim Reinspection — 2026-10-30
+
+Fig. 16 on original JP 2018-005099 A PDF27 was inspected at native resolution and600dpi, with all27 lens faces and the LPF distinguished. The source-scale estimate is4.09nativepx/mm from the powered first/last vertices (≈519px/126.8264mm). Source-scaled continuous caps include S3 at38mm, G1 S9–14 at30.5mm, S15 at27.5mm, S17 at25mm, the connected S18 interface at24.9mm, S22/S23 at17.7mm, S25 at17.8mm and both final aspheres at17.1mm. Explicit cap-preserving lands are S4→38, S6→36, S21→17.7 and S24→17.8mm. The common cemented outlines remain connected.
+
+S19 uses the source's approximately18.8mm clear cap with an outer24.9mm extension, completing the full-height cemented body. Its source cap/edge ratio≈0.755 is applied to the measured common outer radius. The sphere's R23.792mm domain prevents encoding the whole24.9mm outer as a numeric cut; a separate equivalent depth9.21mm cut on the old21.4mm untrimmed cap provides the full stepped-field/focus beam proof. Its slightly smaller cap18.799589mm already clears reach17.815319 plus0.056399mm margin, including the source finite-point check. The actual extension cap18.8 is therefore conservative to that proof, without a source flag or tolerance change. The plane at sag(18.8)≈9.21054mm is before both source iris positions. A front S7 land to31.5mm is also rejected by the unchanged6–7 gap allowance. Weak few-pixel ends elsewhere are retained without invented flat lands.
+
+At the final17.1mm clear caps, the asphere polynomial departures are−0.215402mm (S26A) and+0.083056mm (S27A). Coefficients are unchanged. Canonical/surface, image-circle, field, aperture and full-cut checks pass, including a separate source d0=681.5mm finite-point diagnostic. Identical48,135sampled collimated launches retain33,379, lose59 and gain3,876 (10,821blocked inboth); these are sampled counts, not flux or production vignetting measurements. No source radius, spacing, index/Abbe pair, stop, focus/aperture control or tolerance changes were made.

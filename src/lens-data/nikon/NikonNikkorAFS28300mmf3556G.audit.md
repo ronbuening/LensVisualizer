@@ -1,4 +1,4 @@
-# Audit Log — Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR
+# Audit Log — Nikon AF-S NIKKOR 28-300 mm f/3.5-5.6G ED VR
 
 Patent: US 2010/0220400 A1, Example 2 / Table 2
 
@@ -101,3 +101,12 @@ flag expected. Existing glass and spectral data remain unchanged.
 ## 2026-10-08 — Glass coverage: catalog row for one unresolved element
 
 L21 (1.76546 / 46.73, aspherical) was labelled Unmatched beside HIKARI J-LASFH2, which sits 0.0014 away in nd. HIKARI's moulding glass Q-LASFPH2S, already in the site catalog, is 1.76544 / 46.75: within 0.00002 and 0.02 of the patent pair, and a moulding glass suits the aspherical element. The label now names it as a coordinate equivalent and L21 traces on its catalog curve. Stored nd and νd are unchanged; the resin layer L43r remains the one medium on the Abbe estimate.
+
+## 2026-10-30 — Fresh original-figure and glass reinspection
+
+- Directly viewed local `patents/US20100220400A1.pdf`: Example 2 Fig. 4, PDF 5 (600 dpi optical-rim crop); Table 2, PDF 24, all 20 media; d-line definitions/Example 2 prose, PDF 23; general resin process ¶0105, PDF 27. Source d is587.6 nm (the plot g convention is435.6 nm); no numeric per-medium θgF or C/F/g anchors are supplied. Every stored nd/νd pair is retained:19 physical glass elements plus the0.190 mm hybrid-layer medium.
+- Added S7 `rimExtensionSd:15.8`, preserving its12.4 mm optical cap. Fig. 4 shows the straight concave-end land: measured q≈.78±.011 (one-native-pixel range, edge≈167 nativepx; native scale≈10.8 px/mm from the119.164 mm vertex span). Adopted q=.78481 and 3.4 mm land use the existing15.8 mm working front rim. No new numeric cut or inward cap change.
+- Source continuous outlines support S11/12/13A→11.1, hybrid frontS26→9.5 to match its existing junction/back, and rearS33/34/35A→12.8. The complete hybrid outline remains connected in actual SVG; no resin-only wing. Asphere departures at final caps: S6A15.8:+.363739 mm; S13A11.1:−.008853 mm; S27A9.5:+.145192 mm; S35A12.8:−.197388 mm. Polynomials remain physical on their opened ranges.
+- Rejected the figure-scale front reduction to≈29.5 mm: full beam screening/refinement gives S1 reach 33.419896 mm (z=.05/focus1/field36.15758°), S2 31.000000 mm, S3 30.888570 mm, versus proposed cap 29.5+required margin.0885 mm; no untraced fields. Existing38/31/31 mm front caps remain a working-aperture departure from the figure. Other face endpoints, including the VR doublet, have no separately resolved, admissible additional land; retain their existing caps rather than invent cement-interface features.
+- All 19 resolved curves remain unchanged qualified proxies; L43r alone is unresolved/Abbe-estimated. The source does not identify UV curing: removed that unsupported wording, keeping the hybrid/resin interpretation and unspecified chemistry/cure. Native-coordinate differences remain explicit in the public inventory (including Q-LASFPH2S1.765437/46.75 versus source 1.76546/46.73). Two ED positions remain a production correlation, not source-measured anomalous dispersion or supplier identification.
+- Focused surface/image-circle/aperture checks pass. Full-field census: all 3 stations≥90%,2≥99%; the remaining source-prescription/summary discrepancy is retained. Nine actual SVG states have zero automatic trim. Glass resolver/catalog consistency passes, with 19/20 modeled coefficient curves. Source R/d/aspheres, every nd/νd pair and all controls remain unchanged.

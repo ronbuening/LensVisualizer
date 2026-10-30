@@ -275,7 +275,7 @@ The clear apertures of the refracting surfaces are also inferred: they are read 
 to-scale structure drawings (FIGs. 1, 2 and 4) and held above the F1.8 axial marginal ray and
 the corner chief ray. The figures draw L31's faces stopping at about 11 mm inside a 13.1 mm
 edge land; the model keeps 12.8 mm for both faces of L31 and the drawn land height for the
-rest of the triplet.
+rest of the triplet. The 2026-10-29 review adds opaque drawn lands on S2/S4/S7/S13/S21A to 28/20.5/18.1/13.1/15.5 mm respectively, retaining all existing clear caps. S21A’s front cap remains 14 mm, independently of the taller 16 mm rear-face rim.
 The modeled front diameter is 56 mm; the source provides only a lower bound of 54 mm.
 The modeled shapes keep positive edge thickness, stay inside each asphere's conic
 domain and do not intrude into neighbouring air gaps. They do not establish production

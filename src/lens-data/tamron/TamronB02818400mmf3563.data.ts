@@ -29,18 +29,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  close-focus spacing table. Close rows are code-solved at the production 0.45 m sensor-to-subject MOD,    ║
  * ║  moving only G2 and conserving D(5)+D(14) at each zoom state.                                              ║
  * ║                                                                                                            ║
- * ║  Stop: the patent publishes position but not radius. The stop radius is derived from the design f-number   ║
- * ║  and held at every zoom station. The prior common inferred stop gave modeled f-numbers 3.405871000387 /    ║
- * ║  5.605121129351 / 6.482831860675. These modeled f-numbers, not the marketed f/3.5-6.3 values, are used for ║
- * ║  `nominalFno`.                                                                                             ║
- * ║                                                                                                            ║
+ * Stop source correction2026-10-30: original Table1/¶0065/PDF10 prints
+ * Fno3.463/5.639/6.509. Use those source station nominals and infer a separate
+ * iris at each station (from-nominal-fno), superseding the old common-stop
+ * calibration3.405871/5.605121/6.482832. Marketing f/3.5–6.3 stays separate.
+ * Figures2/3/4 use normalized pupil fractions and print no contrary FNO.
  * ║  Semi-diameters: not patent-published. They are inferred from the common stop, on-axis marginal-ray       ║
  * ║  envelopes at all infinity/close states, representative 0.6-field off-axis bundles, Fig. 1 proportions,   ║
  * ║  and the production 72 mm filter / 79 mm barrel envelope. The G2 profile is enlarged to follow Fig. 1,     ║
  * ║  with the thin front composite capped at 14.0 mm by its validated edge geometry. Values were then          ║
  * ║  constrained by edge thickness,                                                                            ║
  * ║  actual aspheric/spherical rim slope, conic limits, shared-band cross-gap intrusion, and off-axis clipping.║
- * ║  The only representative off-axis clipping found is the extreme tele bundle at the first optical surface.║
+ * ║  The2026-10-30 source-supported S8 end trim is depth4.26mm, moved outward
+ * from the measured cap to clear full beams by the shared .05mm margin.
+ * The compound layer/interface remains at14mm and fully connected.║
  * ║                                                                                                            ║
  * ║  Glass labels are neutral six-digit nd/vd coordinate classes because the patent does not identify vendors.║
  * ║  The thin aspheric layer remains explicitly Unmatched. No nC/nF/ng/dPgF values are authored because the   ║
@@ -66,14 +68,14 @@ const LENS_DATA = {
     specs: [
       "16 ELEMENTS / 11 GROUPS",
       "18-400mm MARKETING / 18.5105-389.00mm PATENT",
-      "MODELED F/3.4059-6.4828",
+      "SOURCE F/3.463-6.509",
       "4 ASPHERICAL SURFACES",
       "G2 INNER FOCUS / G4 VC",
     ],
     elementCount: 16,
     groupCount: 11,
     focalLengthMm: { marketing: [18, 400], design: [18.510468623219342, 388.66240937787467] },
-    fNumber: { marketing: 3.5, design: 3.4058710003870507 },
+    fNumber: { marketing: 3.5, design: 3.463 },
   },
 
   source: {
@@ -333,10 +335,18 @@ const LENS_DATA = {
       d: 0.16,
       sd: 14,
       medium: 4,
-      asphere: { K: -95, A4: 1.23678e-5, A6: -1.16542e-8, A8: -1.13405e-10, A10: 7.30168e-13, A12: -1.27023e-15, A14: 0 },
+      asphere: {
+        K: -95,
+        A4: 1.23678e-5,
+        A6: -1.16542e-8,
+        A8: -1.13405e-10,
+        A10: 7.30168e-13,
+        A12: -1.27023e-15,
+        A14: 0,
+      },
     },
     { label: "7", R: 100.9, d: 0.9, sd: 14, medium: 5 },
-    { label: "8", R: 17.35, d: 6.2191, sd: 14 },
+    { label: "8", R: 17.35, d: 6.2191, sd: 14, rimCutDepthMm: 4.26 },
     { label: "9", R: -50.8, d: 0.8, sd: 11.3, medium: 6 },
     { label: "10", R: 18.87, d: 5.53, sd: 11.3, medium: 7 },
     { label: "12", R: -89.61, d: 1.7168, sd: 11.3 },
@@ -359,7 +369,15 @@ const LENS_DATA = {
       d: 0.9,
       sd: 8.6,
       medium: 13,
-      asphere: { K: 0.6893, A4: 8.42359e-6, A6: 4.45558e-9, A8: 2.18109e-10, A10: -4.42521e-12, A12: 2.61402e-14, A14: 0 },
+      asphere: {
+        K: 0.6893,
+        A4: 8.42359e-6,
+        A6: 4.45558e-9,
+        A8: 2.18109e-10,
+        A10: -4.42521e-12,
+        A12: 2.61402e-14,
+        A14: 0,
+      },
     },
     { label: "24", R: 20.72, d: 2.88, sd: 8.6, medium: 14 },
     { label: "25", R: 70.3, sd: 8.6 },
@@ -370,14 +388,30 @@ const LENS_DATA = {
       d: 3.83,
       sd: 10.2,
       medium: 15,
-      asphere: { K: 2.5416, A4: 2.18061e-6, A6: -1.04542e-7, A8: 1.57166e-10, A10: 1.35803e-11, A12: -1.33982e-13, A14: 0 },
+      asphere: {
+        K: 2.5416,
+        A4: 2.18061e-6,
+        A6: -1.04542e-7,
+        A8: 1.57166e-10,
+        A10: 1.35803e-11,
+        A12: -1.33982e-13,
+        A14: 0,
+      },
     },
     {
       label: "27A",
       R: -39.5114,
       d: 0.15,
       sd: 10.2,
-      asphere: { K: -16.8612, A4: -2.12029e-5, A6: 5.01726e-8, A8: -7.40334e-10, A10: 1.65997e-11, A12: -1.34975e-13, A14: 0 },
+      asphere: {
+        K: -16.8612,
+        A4: -2.12029e-5,
+        A6: 5.01726e-8,
+        A8: -7.40334e-10,
+        A10: 1.65997e-11,
+        A12: -1.34975e-13,
+        A14: 0,
+      },
     },
     { label: "28", R: -165, d: 0.7, sd: 10.2, medium: 16 },
     { label: "29", R: 17.87, d: 5.9, sd: 10.2, medium: 17 },
@@ -388,11 +422,11 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Zoom + focus variable spacings ── */
     /* (moved from nominalFno) ── Aperture configuration ── */
     stations: [
-      { focalLengthMm: 18.5105, nominalFNumber: 3.4058710003870507, label: "Wide" },
-      { focalLengthMm: 85.0242, nominalFNumber: 5.605121129350794 },
-      { focalLengthMm: 389, nominalFNumber: 6.482831860675359, label: "Tele" },
+      { focalLengthMm: 18.5105, nominalFNumber: 3.463, label: "Wide" },
+      { focalLengthMm: 85.0242, nominalFNumber: 5.639 },
+      { focalLengthMm: 389, nominalFNumber: 6.509, label: "Tele" },
     ],
-    apertureModel: "fixed-iris",
+    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

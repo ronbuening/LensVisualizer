@@ -37,12 +37,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-30: original Fig.1 (PDF2) supports the inferred S29 concave-end trim
+// depth5.28mm (cap16.0794, outer17); full collimated and retained .95m reconstruction guards pass.
+// Source nd/vd remain exact; all18 current resolver curves are qualified spectral proxies.
 const LENS_DATA = {
   schema: 2,
   key: "tamron-a001-70-200mm-f28",
   maker: "Tamron",
   name: "TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO",
-  subtitle: "US 2008/0212200 A1 Example 1 — inferred A001 correlation; constrained focus reconstruction",
+  subtitle:
+    "US 2008/0212200 A1 Example 1 — inferred A001 correlation; constrained focus reconstruction",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "pentax-k", "sony-a"],
@@ -319,7 +323,14 @@ const LENS_DATA = {
     { label: "26", R: 141.754, d: 22.815, sd: 15.0 },
     { label: "27", R: 267.9086, d: 3.303, sd: 16.0, medium: 16 },
     { label: "28", R: -99.3972, d: 9.536, sd: 16.0 },
-    { label: "29", R: -27.1236, d: 1.2, sd: 17.0, medium: 17 },
+    {
+      label: "29",
+      R: -27.1236,
+      d: 1.2,
+      sd: 17.0,
+      medium: 17,
+      rimCutDepthMm: 5.28,
+    },
     { label: "30", R: -77.3739, d: 0.433, sd: 17.0 },
     { label: "31", R: 80.0747, d: 4.025, sd: 18.0, medium: 18 },
     { label: "32", R: -293.117, d: 46.696, sd: 18.0 },
@@ -375,7 +386,12 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 2.88, fStops: [2.88, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
+  aperture: {
+    nominalFNumber: 2.88,
+    fStops: [2.88, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+    blades: 9,
+  },
 
   groups: [
     { text: "G1F", fromSurface: "1", toSurface: "3" },

@@ -149,3 +149,45 @@ Coordinator follow-up: queue the unresolved outer-field case for independent exa
 family table/equation check. Distinguish a source typo from an intersection/normal or pupil-analysis limitation
 before changing the conic, polynomial, rims or analysis guard. Full per-field before/after data are in the assigned
 scratch `report.md`; shared engine and queue files were outside this assignment's edit scope.
+
+
+## 2026-10-29 — Cap-preserving rim extensions
+
+Re-read local `patents/US-20260056396-A1.pdf`, Figure 1 / Example 1, PDF p. 2, at 600 dpi, rotated
+object-left. The S1–S24 vertex span is 930.5 native px over 67.438 mm = 13.80 px/mm. The source
+has explicit vertical lands on L12/L13's concave rear faces; all other faces were checked on both halves.
+
+| Face | Before | After | Source-backed decision |
+|---|---|---|---|
+| 4, L12 rear | sd 13.2, cut 6.62 mm (clear radius 11.5002) | sd 11.5, extension 15.2 mm | Complete the square outline to the opposite face without continuing a sphere past its 13.299 mm radius |
+| 6, L13 rear | sd 10.2, cut 4.00 mm (clear radius 9.5070) | sd 9.5, extension 10.2 mm | Preserve the original optical cap and draw its opaque outer land |
+
+The figure's cap/edge ratios remain q = 0.70 ± 0.0093 and 0.83 ± 0.0130. The caps are deliberately
+farther out than those figure readings, as in the previous beam-qualified model. The outer radii use the existing
+opposite-face heights; the figure's independently measured outlines (about 16.6/10.8 mm) are larger still and
+remain schematic estimates. Surface 4's land grows from 1.6998 to 3.7 mm; 6 draws a 0.7 mm land. The optical
+caps return to their exact pre-cut values, only 0.0002/0.0070 mm inside the rounded former cut radii.
+No additional concave land is resolved elsewhere. The separate, documented asphere localization uncertainty is
+unchanged.
+
+`audit:surface` passes. `audit:image-circle` reports 0 undersized / 0 skipped. Before/after `audit:aperture`
+both report all three zoom stations within 3% of their stated f-number, with no rim, trace, iris or failed stations.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/US-20260056396-A1.pdf`, Example 1 / Table 1, PDF p. 29 (printed p. 8), and
+¶0102, PDF p. 28, defining nd at the d line. All 12 elements' nd and medium-to-surface assignments match the
+rendered table. The table has no νd, C/F/g-index or partial-dispersion column.
+
+| Media | Fresh verdict |
+|---|---|
+| L11/L21; L12/L13; L14/L23 | Repeated source indices and existing qualified catalog proxies retained |
+| L22, L24, L25, L26, L31, L41 | Source indices retained; all six individual proxies remain coordinate-compatible |
+
+All 12 modeled media resolve to coefficient-backed curves. Their retained νd values are spectral proxies;
+L24's ED/APD attribution remains inferred, and no catalog curve proves the production glass. The existing
+analysis already discloses the absent νd column. No glass-data correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

@@ -93,16 +93,16 @@ The actual ray action depends on the ray heights and reduced angles established 
 
 The patent publishes refractive index and Abbe number at the d-line, 587.6 nm, but does not name glass manufacturers or melts. The data preserves those exact coordinates. Named modern glasses are coefficient-backed optical equivalents, not claims about the original Nikon production supplier or melt.
 
-| Element | `nd` | `νd` | Authored glass annotation | Identification basis |
-|---|---:|---:|---|---|
-| L1 | 1.64000 | 60.0 | J-LAK01; patent 640600 | Reproduces `nd`; `Δνd = +0.20`; production supplier unspecified |
-| L2 | 1.62041 | 60.1 | 620601 — SK16/BSM16 crown class | J-SK16 reproduces `nd`; `Δνd = +0.15`; vendor unassigned |
-| L31 | 1.62588 | 35.7 | 626357 — F1/TIM1 flint class | J-F1 reproduces `nd`; `Δνd = +0.02`; vendor unassigned |
-| L32 | 1.79668 | 45.4 | J-LASF017; patent 797454 | `Δnd = −0.00168`, `Δνd = −0.09`; production supplier unspecified |
-| L41 | 1.58144 | 40.8 | 581408 — FL5/TIL25 flint class | J-LF5 reproduces `nd`; `Δνd = +0.18`; vendor unassigned |
-| L42 | 1.51823 | 58.9 | J-K3; patent 518589 | Reproduces `nd`; `Δνd = −0.08`; production supplier unspecified |
-| L51 | 1.51860 | 70.0 | J-PKH1; patent 519700 | Reproduces `nd`; `Δνd = −0.11`; production supplier unspecified |
-| L52 | 1.78470 | 26.1 | 785261 — dense-flint class | J-SFS3 reproduces `nd`; `Δνd = +0.17`; S-TIH23 is similarly close |
+| Element | Source `nd` / `νd` | Current resolved spectral proxy | Native curve nd / νd |
+|---|---|---|---|
+| L1 | 1.64000 / 60 | J-LAK01 | 1.640000 / 60.2 |
+| L2 | 1.62041 / 60.1 | N-SK16 | 1.620410 / 60.32 |
+| L31 | 1.62588 / 35.7 | F1 | 1.625880 / 35.6 |
+| L32 | 1.79668 / 45.4 | J-LASF017 | 1.795000 / 45.31 |
+| L41 | 1.58144 / 40.8 | PBL25 | 1.581439 / 40.7534 |
+| L42 | 1.51823 / 58.9 | J-K3 | 1.518230 / 58.82 |
+| L51 | 1.51860 / 70 | J-PKH1 | 1.518600 / 69.89 |
+| L52 | 1.78470 / 26.1 | S-TIH23 | 1.784696 / 26.2912 |
 
 The chromatic strategy uses ordinary crown/flint and low-/high-dispersion pairings across the three cemented doublets. The source provides no `nC`, `nF`, `ng`, `dPgF`, partial-dispersion ratio, or Sellmeier coefficients. Consequently, the model makes no APO or anomalous-dispersion claim and leaves all structured line-index fields unset.
 
@@ -208,3 +208,6 @@ The infinity and close ABCD implementations agree within `7.11 × 10⁻15`. Both
 3. Nikon, [official production optical section](https://imaging.nikon.com/imaging/information/story/0053/img/img1.jpg), used only for stop-position and semi-diameter inference.
 4. Nikon USA, [AF Fisheye-Nikkor 16mm f/2.8D product page](https://www.nikonusa.com/p/af-fisheye-nikkor-16mm-f28d/1910/overview), for marketed focal length, aperture, mount, format, field, minimum focus, reproduction ratio, blade count, and minimum aperture.
 5. Official HIKARI and OHARA glass catalogs and HOYA's official cross-vendor reference, used for independent coordinate screening. The data file retains vendor-neutral or unmatched annotations because catalog proximity does not establish the original Nikon melts.
+
+
+The 2026-10-29 original-source reinspection records every outline and glass decision in the accompanying audit. The large concave rear seats of L1 and L2 now use rim extensions to 26.0 and 18.0 mm, retaining optical caps 14.3 and 12.0 mm. No inferred cut is added to the fisheye, and no unpictured seat is invented at the constrained S7 cap. The optional filter, projection inference and all source/control values remain unchanged.

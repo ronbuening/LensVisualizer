@@ -24,6 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * element semi-diameter ratio, sd/|R|, and signed cross-gap sag intrusion checks.
  */
 
+// Source Table 3 d-line n(D)/ν and g-line n(G) (435.8 nm) are retained.
+// Current catalog resolution does not override a compatible curve with an ng-only
+// anchor; these genuine source indices are retained without inventing C/F or θ.
+// Catalog glass names below are qualified current spectral proxies.
 const LENS_DATA = {
   schema: 2,
   key: "nikon-af-zoom-nikkor-35-70mm-f28d",
@@ -104,7 +108,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       focalLengthMm: 131.6,
-      glass: "J-SFH2 class (HIKARI)",
+      glass: "J-SFH2 catalog-coordinate proxy (HIKARI; supplier unspecified)",
       apd: false,
       role: "High-index dense-flint rear corrector for G1.",
       ng: 1.91065,
@@ -117,7 +121,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       focalLengthMm: -85.2,
-      glass: "J-SFH2 class (HIKARI)",
+      glass: "J-SFH2 catalog-coordinate proxy (HIKARI; supplier unspecified)",
       apd: false,
       role: "Front negative component of the G2 cemented triplet.",
       cemented: "T1",
@@ -131,7 +135,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 41.4,
-      glass: "N-FK5 (SCHOTT)",
+      glass: "N-FK5 catalog-coordinate proxy (SCHOTT; supplier unspecified)",
       apd: false,
       role: "Low-dispersion positive core of the G2 cemented triplet.",
       cemented: "T1",
@@ -159,7 +163,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 68.2,
-      glass: "N-FK5 (SCHOTT)",
+      glass: "N-FK5 catalog-coordinate proxy (SCHOTT; supplier unspecified)",
       apd: false,
       role: "Standalone low-dispersion positive variator element.",
       ng: 1.49596,
@@ -185,7 +189,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       focalLengthMm: 77.6,
-      glass: "J-SFH2 class (HIKARI)",
+      glass: "J-SFH2 catalog-coordinate proxy (HIKARI; supplier unspecified)",
       apd: false,
       role: "Positive front element of the G3 cemented doublet.",
       cemented: "D1",
@@ -199,7 +203,7 @@ const LENS_DATA = {
       nd: 1.5186,
       vd: 69.98,
       focalLengthMm: -59.6,
-      glass: "J-PKH1 class (HIKARI)",
+      glass: "J-PKH1 catalog-coordinate proxy (HIKARI; supplier unspecified)",
       apd: false,
       role: "High-Abbe negative element inside the G3 cemented doublet.",
       cemented: "D1",
@@ -213,7 +217,7 @@ const LENS_DATA = {
       nd: 1.5186,
       vd: 69.98,
       focalLengthMm: -57.0,
-      glass: "J-PKH1 class (HIKARI)",
+      glass: "J-PKH1 catalog-coordinate proxy (HIKARI; supplier unspecified)",
       apd: false,
       role: "Strongest negative component of the vibration-reduction group.",
       ng: 1.52766,
@@ -226,7 +230,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.09,
       focalLengthMm: 85.5,
-      glass: "S-BAL35 class (OHARA)",
+      glass: "S-BAL35 catalog-coordinate proxy (OHARA; supplier unspecified)",
       apd: false,
       role: "Positive relay meniscus following G3.",
       ng: 1.60102,
@@ -262,8 +266,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 149.4295, d: 3.0, sd: 30.0, medium: 1 },
     { label: "2", R: 398.3922, d: 0.2, sd: 29.0 },
-    { label: "3", R: 214.5071, d: 2.1, sd: 26.6, medium: 2 },
-    { label: "4", R: 39.0567, d: 7.7, sd: 21.5 },
+    { label: "3", R: 214.5071, d: 2.1, sd: 25.2, medium: 2 },
+    { label: "4", R: 39.0567, d: 7.7, sd: 22.2, rimExtensionSd: 25.2 },
     { label: "5", R: -720.3689, d: 2.0, sd: 21.5, medium: 3 },
     { label: "6", R: 42.9937, d: 3.1, sd: 23.8 },
     { label: "7", R: 42.4532, d: 3.5, sd: 24.5, medium: 4 },

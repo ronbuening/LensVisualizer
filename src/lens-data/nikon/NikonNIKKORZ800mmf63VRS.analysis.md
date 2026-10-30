@@ -81,7 +81,7 @@ L18: nd = 1.66382, νd = 27.35. Glass: J-SFH4 (HIKARI), coordinate-compatible ca
 
 L17 is biconcave negative and L18 is biconvex positive. Their standalone powers are nearly opposed, and the computed cemented-pair focal length is about +10.56 m, making D2 nearly neutral in first-order power while still allowing the two surfaces and two dispersions to participate in the G1 correction balance.
 
-L18 is also the positive lens in G1 with the smallest νd in Example 6. That specific status is used by the patent's conditions involving νdp1, ndp1, and θgFp1. The model carries the independently checked J-SFH4 line data nC = 1.656918, nF = 1.681192, ng = 1.696531, and dPgF = +0.0334 on L18.
+L18 is also the positive lens in G1 with the smallest νd in Example 6. That specific status is used by the patent's conditions involving νdp1, ndp1, and θgFp1. The model borrows the compatible J-SFH4 coefficient curve for C/d/F dispersion and retains the patent's θgF = 0.6319, converted to the runtime normal-line deviation dPgF = +0.0341027. Catalog-derived line indices are resolved through that shared curve rather than duplicated as patent-specific values.
 
 ### L21 — Negative Meniscus Focus Element
 
@@ -169,13 +169,13 @@ The patent publishes nd and νd coordinates, not supplier glass names. The names
 | J-LASFH23 (HIKARI) | 1.85 | 27.03 | L312 | Exact coordinate match |
 | FDS18 (HOYA) | 1.945944 | 17.98 | L313 | Coordinate-compatible to catalog rounding |
 
-The patent explicitly singles out L18 as the positive lens in G1 with the smallest νd. Its stored Hikari line indices give
+The patent explicitly singles out L18 as the positive lens in G1 with the smallest νd (¶0159, PDF p. 29). Table 16 gives νd = 27.35, and Table 26 gives θgF = 0.6319 for Example 6. The runtime normal line is 0.6438 − 0.001682νd, so the stored deviation is
 
 $$
-\theta_{gF}=\frac{n_g-n_F}{n_F-n_C}=0.6319106863,
+\Delta P_{gF}=0.6319-(0.6438-0.001682\times27.35)=+0.0341027.
 $$
 
-which reproduces the patent's Table 26 value 0.6319. The same L18 entry carries dPgF = +0.0334 from the authoritative Hikari data sheet. This provides direct spectral support for the patent conditions involving θgFp1; it does not by itself justify describing the complete lens as apochromatic. No broader APO claim is made here.
+The former +0.0334 and copied Hikari C/F/g indices have been removed. J-SFH4 remains a compatible coefficient-backed spectral proxy, with the patent ratio controlling g relative to the catalog C/F span. The source does not publish those separate C/F/g indices or prove the production supplier. The source ratio supports the stated secondary-spectrum condition; it does not establish system-level apochromatic performance.
 
 Nikon markets the production lens as containing three ED elements and one SR element in addition to one PF element, and its lens-construction diagram identifies them as L16, L34, and L37 (ED) and L18 (SR). The data file flags the three ED rows `apd: "inferred"` (the identification comes from the manufacturer diagram, not the patent) and L18 `apd: "patent"` (the patent's θgF conditions single it out). The catalog labels still name dispersion curves, not Nikon's production melts.
 

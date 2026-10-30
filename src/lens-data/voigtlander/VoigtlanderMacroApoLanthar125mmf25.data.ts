@@ -11,17 +11,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║         Group 3 fixed). Infinity to 1:1 macro, MFD 0.38 m.            ║
  * ║                                                                        ║
  * ║  NOTE ON SCALING:                                                      ║
- * ║    Patent at f ≈ 100 mm (design scale); all R, d, sd values scaled    ║
+ * ║    Patent at f ≈ 100 mm; all R and d values uniformly scaled    ║
  * ║    ×1.25 to f ≈ 125 mm production focal length.                       ║
  * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                               ║
- * ║    No SDs published in patent. Estimated from combined marginal        ║
- * ║    (f/2.53) + chief ray (60% field) trace with 8% mechanical          ║
- * ║    clearance; front group capped at 58 mm filter thread (~26 mm SD).  ║
+ * ║    Inferred from original Fig. 5 optical rims and traced clearance.    ║
+ * ║    Concave rear faces use separately inferred outer lands. Rear relay ║
+ * ║    heights follow source proportions; no numerical SD is published.  ║
  * ║                                                                        ║
  * ║  NOTE ON EMBODIMENT:                                                   ║
  * ║    Example 2 selected: 10 elements in 9 groups with 2× S-FPL51 ED    ║
- * ║    elements, matching production marketing ("2 ED elements").          ║
+ * ║    compatible proxies; no production supplier or melt is established.          ║
  * ║    Production spec lists "11 elements / 9 groups" — the discrepancy   ║
  * ║    (favoring Example 1's 11-element layout) is documented in the      ║
  * ║    companion analysis.                                                 ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "voigtlander-macro-apo-lanthar-125-f25",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL",
-  subtitle: "JP 2002-090622 A Example 2 — Cosina / Aida Yoshihisa",
+  subtitle: "JP 2002-090622 A Example 2 — Cosina / Yoshihisa Yomogida",
 
   catalog: {
     lensMounts: ["nikon-f", "canon-fd", "m42", "pentax-k", "minolta-sr", "olympus-om"],
@@ -90,9 +90,8 @@ const LENS_DATA = {
       focalLengthMm: 161.8,
       glass: "S-FPL51 (OHARA) / K-FPL51 (Sumita)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.032 (OHARA catalog value for S-FPL51)",
-      role: "First ED element; provides anomalous partial dispersion for secondary-spectrum correction.",
-      dPgF: 0.032,
+      apdNote: "ED/APD class inferred from a compatible S-FPL51 catalog proxy; the patent supplies only d-line index and Abbe number, with no measured partial dispersion or supplier.",
+      role: "First low-dispersion element; an S-FPL51-class spectral proxy is used for chromatic modeling without identifying the historical glass.",
     },
     {
       id: 3,
@@ -104,9 +103,8 @@ const LENS_DATA = {
       focalLengthMm: 150.6,
       glass: "S-FPL51 (OHARA) / K-FPL51 (Sumita)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.032 (OHARA catalog value for S-FPL51)",
-      role: "Second ED element; splits primary chromatic correction with L42 across separated surfaces for better higher-order control.",
-      dPgF: 0.032,
+      apdNote: "ED/APD class inferred from a compatible S-FPL51 catalog proxy; the patent supplies only d-line index and Abbe number, with no measured partial dispersion or supplier.",
+      role: "Second low-dispersion element; shares chromatic correction with L42. Its compatible catalog dispersion is a proxy rather than a source measurement.",
     },
     {
       id: 4,
@@ -166,7 +164,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -138.7,
-      glass: "S-BSL7 (OHARA) / K-BK7 (Sumita)",
+      glass: "N-BK7 class (Schott; qualified spectral proxy, supplier unconfirmed)",
       apd: false,
       role: "Sole element of Group 2; floating-focus field compensator, chromatically neutral (BK7 class) to preserve apochromatic correction across focus range.",
     },
@@ -178,7 +176,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -55.2,
-      glass: "S-BSL7 (OHARA) / K-BK7 (Sumita)",
+      glass: "N-BK7 class (Schott; qualified spectral proxy, supplier unconfirmed)",
       apd: false,
       role: "Front element of fixed Group 3; provides overcorrected Petzval contribution to flatten the field.",
     },
@@ -206,29 +204,29 @@ const LENS_DATA = {
   surfaces: [
     // Group 1 — front positive group (7 elements)
     { label: "1", R: 139.114, d: 3.5125, sd: 26.0, medium: 1 }, // L41 front
-    { label: "2", R: 513.216, d: 0.2, sd: 25.5 }, // L41 rear → air
+    { label: "2", R: 513.216, d: 0.2, sd: 26.0 }, // L41 rear → air
     { label: "3", R: 60.545, d: 6.15, sd: 25.0, medium: 2 }, // L42 front
-    { label: "4", R: 236.643, d: 0.2, sd: 24.5 }, // L42 rear → air
+    { label: "4", R: 236.643, d: 0.2, sd: 25.0 }, // L42 rear → air
     { label: "5", R: 53.679, d: 6.35, sd: 24.0, medium: 3 }, // L43 front
-    { label: "6", R: 182.234, d: 10.8, sd: 22.0 }, // L43 rear → air (trimmed for STO)
+    { label: "6", R: 182.234, d: 10.8, sd: 24.0 }, // L43 rear → air; source-continuous rim
     { label: "STO", R: "flat", d: 0.625 }, // Aperture stop (inferred from Fig. 5)
     { label: "7", R: -2216.079, d: 5.75, sd: 17.5, medium: 4 }, // L44 front
-    { label: "8", R: 38.164, d: 3.725, sd: 16.5 }, // L44 rear → air
+    { label: "8", R: 38.164, d: 3.725, sd: 16.5, rimExtensionSd: 17.5 }, // L44 rear → air
     { label: "9", R: 49.248, d: 2.2125, sd: 16.0, medium: 5 }, // L45 front (cemented D1)
-    { label: "10", R: 23.034, d: 5.525, sd: 15.5, medium: 6 }, // L45→L46 junction — elemId: 6
-    { label: "11", R: 31.005, d: 4.625, sd: 15.0 }, // L46 rear → air
+    { label: "10", R: 23.034, d: 5.525, sd: 16.0, medium: 6 }, // L45→L46 junction — elemId: 6
+    { label: "11", R: 31.005, d: 4.625, sd: 16.0 }, // L46 rear → air
     { label: "12", R: 42.593, d: 5.125, sd: 14.5, medium: 7 }, // L47 front
-    { label: "13", R: -160.005, sd: 14.0 }, // L47 rear → air (var D13)
+    { label: "13", R: -160.005, sd: 14.5 }, // L47 rear → air (var D13)
 
     // Group 2 — floating focus compensator (1 element)
     { label: "14", R: 63.505, d: 3.475, sd: 12.5, medium: 8 }, // L51 front
-    { label: "15", R: 33.044, sd: 12.0 }, // L51 rear → air (var D15)
+    { label: "15", R: 33.044, sd: 12.5 }, // L51 rear → air (var D15)
 
     // Group 3 — fixed rear relay (2 elements)
-    { label: "16", R: -64.485, d: 1.4875, sd: 11.5, medium: 9 }, // L61 front
-    { label: "17", R: 51.48, d: 7.4375, sd: 11.5 }, // L61 rear → air
-    { label: "18", R: 68.141, d: 5.625, sd: 13.0, medium: 10 }, // L62 front
-    { label: "19", R: -83.065, d: 46.662, sd: 13.5 }, // L62 rear → image (BFD)
+    { label: "16", R: -64.485, d: 1.4875, sd: 13.8, medium: 9 }, // L61 front
+    { label: "17", R: 51.48, d: 7.4375, sd: 13.8 }, // L61 rear → air
+    { label: "18", R: 68.141, d: 5.625, sd: 18.4, medium: 10 }, // L62 front
+    { label: "19", R: -83.065, d: 46.662, sd: 18.4 }, // L62 rear → image (BFD)
   ],
 
   /* ── Focus configuration ── */

@@ -112,14 +112,14 @@ because the adjoining refractive media and spacings change the optical context.
 
 ### L1 — Negative Meniscus with Rear Asphere
 
-**nd = 1.744429, νd = 49.55. Glass: M-NBF1 catalog equivalent (patent 744495; production supplier unspecified). f = -49.765033 mm.**
+**nd = 1.744429, νd = 49.55. Glass: M-NBF1 compatible spectral proxy (source 1.744429/49.55; production supplier unspecified). f = -49.765033 mm.**
 
 L1 is the first and largest element of G1. Its negative meniscus form supplies a substantial part of the front group's
 negative power. Surface 2A is the first of the three aspherical surfaces and is the strongest geometric asphere in the
 modeled prescription.
 
 M-NBF1 is used as a supplier-neutral dispersion proxy because its catalog coordinate falls within the project's strict
-compatibility window. The patent's 744495 coordinate remains explicit, and the proxy does not identify Nikon's
+compatibility window. The source pair1.744429/49.55 remains explicit, and the proxy does not identify Nikon's
 production supplier or melt.
 
 ### L2 — Biconcave Negative, Special-Glass Element SL1
@@ -154,8 +154,7 @@ During
 close focusing L4 translates imageward together with the following cemented pair L5/L6, while L7 does not join this
 focus translation.
 
-The S-LAL12 annotation is retained because the stored d-line coordinates exactly match the current OHARA catalog entry.
-This is a catalog-coordinate identification, not a statement that the patent names OHARA as Nikon's supplier.
+The S-LAL12 curve is retained as a compatible spectral proxy. Its current catalog coordinate1.676974/54.52 differs from source1.677900/55.34 by about−0.000926/−0.82, so it is not an exact coordinate match or a production identity.
 
 ### L5 — Negative Meniscus, Front Member of the G2 Cemented Pair
 
@@ -175,8 +174,7 @@ L6 supplies the positive member of the moving G2 cemented pair. Its standalone f
 that of L5, but the actual cemented doublet behavior depends on the shared interface and the two glass indices rather
 than on a simple sum of isolated powers.
 
-The final glass annotation remains a class designation. No vendor-specific line indices or Sellmeier assignment are
-introduced beyond what the stored prescription can defend.
+The annotation remains a source-code class; the current resolver supplies the compatible S-PHM52 coefficient curve. No catalog line indices are copied as lens-specific overrides or asserted as patent measurements.
 
 ### L7 — Biconvex Positive with Front Asphere
 
@@ -273,14 +271,14 @@ dispersion fields.
 
 | Data-file glass annotation | nd | νd | Elements | Audit status |
 |---|---:|---:|---|---|
-| M-NBF1 catalog equivalent (patent 744495; production supplier unspecified) | 1.744429 | 49.55 | L1 | Supplier-neutral proxy; residual Δn=-0.001129, Δν=-0.22 |
+| M-NBF1 compatible spectral proxy (source 1.744429/49.55; production supplier unspecified) | 1.744429 | 49.55 | L1 | Supplier-neutral proxy; residual Δn=-0.001129, Δν=-0.22 |
 | J-PKH1 catalog equivalent (patent 519700; production supplier unspecified) | 1.518601 | 69.98 | L2 | Supplier-neutral proxy; residual Δn=-0.000001, Δν=-0.09 |
 | SF6 class / 805254 | 1.805180 | 25.43 | L3 | Class/code; Schott SF6 is an exact coordinate match |
-| S-LAL12 (OHARA) | 1.677900 | 55.34 | L4 | Exact current OHARA coordinate match |
-| S-TIH53 (OHARA) | 1.846660 | 23.78 | L5, L8, L14 | Exact current OHARA coordinate match |
-| 618634 phosphate-crown class | 1.618000 | 63.38 | L6, L12 | Class/code; CDGM H-ZPK1A residual Δn=0, Δν=-0.01 |
+| S-LAL12 (OHARA) | 1.677900 | 55.34 | L4 | Compatible current OHARA spectral proxy |
+| S-TIH53 (OHARA) | 1.846660 | 23.78 | L5, L8, L14 | Compatible current OHARA spectral proxy |
+| 618634 phosphate-crown class | 1.618000 | 63.38 | L6, L12 | Class/code; current resolver uses compatible S-PHM52 curve |
 | Unmatched (740493; nd=1.739929, νd=49.25) | 1.739929 | 49.25 | L7 | Unmatched; L-LAM60 Δn=-0.003271, Δν=-0.05 |
-| S-LAH65V (OHARA) | 1.804000 | 46.58 | L9, L10 | Exact current OHARA coordinate match |
+| S-LAH65V (OHARA) | 1.804000 | 46.58 | L9, L10 | Compatible current OHARA spectral proxy |
 | J-FKH1 catalog equivalent (patent 498825; production supplier unspecified) | 1.497820 | 82.52 | L11, L13 | Supplier-neutral proxy; residual Δn=0, Δν=+0.05 |
 
 The patent identifies three positions as "special glass": SL1 at L2 in G1 and SL2/SL3 at L11/L13 in G4. Those labels
@@ -482,3 +480,5 @@ constrained close-focus D5/D10 states, and the inferred clear semi-diameters/ape
     https://www.cdgmgd.com/database/toWebDatabase.htm?typeId=5&url=database
 11. OHARA, **Low Softening Temperature Optical Glass** (L-LAM60):
     https://oharacorp.com/optical-glass/low-softening-temperature-optical-glass/
+
+Figure9’s L1 rear-asphere seat is now explicit as an opaque extension from the retained26.0mm optical cap to the existing30.0mm front outer height. Other concave air faces meet their rims without a distinct short cap-end stroke, so no additional cut is inferred. The source R/d, conic coefficients, optical caps, reconstructed focus and zoom/aperture controls remain unchanged.

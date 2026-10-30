@@ -13,12 +13,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    No scaling applied. Patent infinity EFL is 174.60 mm; the      ║
  * ║    production lens is marketed as 180 mm.                          ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not publish clear apertures. SDs were estimated     ║
- * ║    from paraxial f/2.92 marginal-ray heights, constrained by the   ║
- * ║    86 mm filter thread, edge thickness, cross-gap sag clearance,   ║
- * ║    and element front/rear SD ratio <= 1.25.                        ║
- * ║                                                                    ║
+ * Source review 2026-10-30: Fig11/PDF25 gives drawn outer rims; inferred
+ * continuous caps and five independently visible concave lands replace the
+ * old ray-only outline. Exact R/d and all focus/stop controls remain literal.
+ * Full drawn bodies at S7/8 and S18/19 cross their exact profiles; conservative
+ * connected bounds remain. The 86mm product filter is not a patent aperture.
+ * All19 nd/vd retained. Only first5 elements have printed C/F/g/theta(PDF16);
+ * retain those source anchors, remove the unsupported spectral copies on L33.
+ * Source condition8 balances group theta and does not designate each material
+ * anomalous: FLD-position tags inferred, ordinary first-group tags false.
+ * Catalog curves remain qualified spectral proxies, not supplier/melt proof.
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and optical surfaces                           ║
  * ║    ✓ Aperture stop and variable focus gaps                         ║
@@ -67,8 +71,7 @@ const LENS_DATA = {
       vd: 64.2,
       focalLengthMm: 487.2,
       glass: "N-BK7 (Schott catalog-equivalent; production supplier unspecified)",
-      apd: "patent",
-      apdNote: "θgF = 0.534 from patent L1 glass table",
+      apd: false,
       role: "Weak front collector in the positive first group.",
       dPgF: -0.0018,
       nC: 1.51432,
@@ -84,8 +87,9 @@ const LENS_DATA = {
       vd: 95.1,
       focalLengthMm: 424.6,
       glass: "FCD100 / S-FPL53 class fluorite-like ED glass (Sigma FLD)",
-      apd: "patent",
-      apdNote: "θgF = 0.533 from patent L1 glass table",
+      apd: "inferred",
+      apdNote:
+        "Printed C/F/g/theta anchors plus FLD production-position correlation; source does not individually designate an anomalous material or supplier.",
       role: "First FLD-class positive for secondary-spectrum correction.",
       dPgF: 0.0492,
       nC: 1.43559,
@@ -101,8 +105,9 @@ const LENS_DATA = {
       vd: 95.1,
       focalLengthMm: 381.5,
       glass: "FCD100 / S-FPL53 class fluorite-like ED glass (Sigma FLD)",
-      apd: "patent",
-      apdNote: "θgF = 0.533 from patent L1 glass table",
+      apd: "inferred",
+      apdNote:
+        "Printed C/F/g/theta anchors plus FLD production-position correlation; source does not individually designate an anomalous material or supplier.",
       role: "Second FLD-class positive in the front collector group.",
       dPgF: 0.0492,
       nC: 1.43559,
@@ -118,8 +123,7 @@ const LENS_DATA = {
       vd: 67,
       focalLengthMm: 111.2,
       glass: "PCD51 class low-dispersion crown",
-      apd: "patent",
-      apdNote: "θgF = 0.536 from patent L1 glass table",
+      apd: false,
       role: "Strong positive crown half of the first-group cemented doublet.",
       cemented: "D1",
       dPgF: 0.0049,
@@ -136,8 +140,7 @@ const LENS_DATA = {
       vd: 40.73,
       focalLengthMm: -136.5,
       glass: "M-NBFD130 class dense lanthanum flint",
-      apd: "patent",
-      apdNote: "θgF = 0.567 from patent L1 glass table",
+      apd: false,
       role: "Negative flint half of the first-group achromatizing doublet.",
       cemented: "D1",
       dPgF: -0.0083,
@@ -213,13 +216,10 @@ const LENS_DATA = {
       focalLengthMm: 65.9,
       glass: "FCD100 / S-FPL53 class fluorite-like ED glass (Sigma FLD)",
       apd: "inferred",
-      apdNote: "Same nd/vd as patent-listed L12/L13 FLD-class glass; line data copied from the L1 table.",
+      apdNote:
+        "Same source nd/vd coordinate as L12/L13 and a correlated FLD production position; no individual source line indices or measured anomaly are published for this element.",
       role: "FLD-class positive in the moving L3 group to stabilize color correction during focus.",
       cemented: "D3",
-      dPgF: 0.0492,
-      nC: 1.43559,
-      nF: 1.44019,
-      ng: 1.44264,
     },
     {
       id: 12,
@@ -316,40 +316,40 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 502.7544, d: 4.9645, sd: 42, medium: 1 },
-    { label: "2", R: -502.7544, d: 0.25, sd: 41.5 },
-    { label: "3", R: 227.4305, d: 5.9179, sd: 40, medium: 2 },
-    { label: "4", R: -1000.0, d: 0.25, sd: 39.5 },
-    { label: "5", R: 132.3846, d: 5.9221, sd: 38.5, medium: 3 },
-    { label: "6", R: 634.3574, d: 0.25, sd: 37.5 },
-    { label: "7", R: 100.0713, d: 10.3585, sd: 36.0, medium: 4 },
-    { label: "8", R: -186.4796, d: 2.5, sd: 35.5, medium: 5 },
-    { label: "9", R: 269.9115, sd: 34 },
-    { label: "10", R: 789.5498, d: 2.5, sd: 31, medium: 6 },
-    { label: "11", R: 105.792, d: 3.8, sd: 26.5 },
-    { label: "12", R: "flat", d: 4.4176, sd: 26.5, medium: 7 },
-    { label: "13", R: -138.2928, d: 2.0, sd: 26.5, medium: 8 },
-    { label: "14", R: 98.1202, sd: 26 },
-    { label: "15", R: 57.5218, d: 4.6931, sd: 22.5, medium: 9 },
-    { label: "16", R: 996.1094, d: 0.15, sd: 22.5 },
+    { label: "1", R: 502.7544, d: 4.9645, sd: 44.5, medium: 1 },
+    { label: "2", R: -502.7544, d: 0.25, sd: 44.5 },
+    { label: "3", R: 227.4305, d: 5.9179, sd: 43.2, medium: 2 },
+    { label: "4", R: -1000.0, d: 0.25, sd: 43.2 },
+    { label: "5", R: 132.3846, d: 5.9221, sd: 40.8, medium: 3 },
+    { label: "6", R: 634.3574, d: 0.25, sd: 40.8 },
+    { label: "7", R: 100.0713, d: 10.3585, sd: 36.1, medium: 4 },
+    { label: "8", R: -186.4796, d: 2.5, sd: 36.1, medium: 5 },
+    { label: "9", R: 269.9115, sd: 34, rimExtensionSd: 36.1 },
+    { label: "10", R: 789.5498, d: 2.5, sd: 32.5, medium: 6 },
+    { label: "11", R: 105.792, d: 3.8, sd: 26.5, rimExtensionSd: 32.5 },
+    { label: "12", R: "flat", d: 4.4176, sd: 31, medium: 7 },
+    { label: "13", R: -138.2928, d: 2.0, sd: 31, medium: 8 },
+    { label: "14", R: 98.1202, sd: 26, rimExtensionSd: 31 },
+    { label: "15", R: 57.5218, d: 4.6931, sd: 23, medium: 9 },
+    { label: "16", R: 996.1094, d: 0.15, sd: 23 },
     { label: "17", R: 61.0475, d: 1.3, sd: 22, medium: 10 },
     { label: "18", R: 29.5595, d: 8.3023, sd: 20.2, medium: 11 },
-    { label: "19", R: -1000.0, sd: 19 },
+    { label: "19", R: -1000.0, sd: 20.2 },
     { label: "STO", R: "flat", d: 2.7464 },
-    { label: "21", R: -116.8912, d: 2.1207, sd: 16, medium: 12 },
-    { label: "22", R: 50.7383, d: 4.1973, sd: 15.5 },
-    { label: "23", R: 65.0249, d: 5.6223, sd: 16, medium: 13 },
-    { label: "24", R: -95.7593, d: 3.5133, sd: 15.5 },
+    { label: "21", R: -116.8912, d: 2.1207, sd: 17, medium: 12 },
+    { label: "22", R: 50.7383, d: 4.1973, sd: 15.5, rimExtensionSd: 17 },
+    { label: "23", R: 65.0249, d: 5.6223, sd: 16.5, medium: 13 },
+    { label: "24", R: -95.7593, d: 3.5133, sd: 16.5 },
     { label: "25", R: 93.4176, d: 0.9, sd: 15, medium: 14 },
     { label: "26", R: 19.8131, d: 3.143, sd: 14.5, medium: 15 },
-    { label: "27", R: 27.8919, d: 4.3024, sd: 12.2 },
+    { label: "27", R: 27.8919, d: 4.3024, sd: 15 },
     { label: "28", R: -73.9049, d: 0.9, sd: 12.2, medium: 16 },
-    { label: "29", R: 56.8499, d: 2.9237, sd: 12.2 },
-    { label: "30", R: 67.7077, d: 2.7826, sd: 15, medium: 17 },
-    { label: "31", R: 308.2191, d: 1.2017, sd: 15 },
-    { label: "32", R: 62.8338, d: 1.3, sd: 15.5, medium: 18 },
-    { label: "33", R: 28.6712, d: 9.5, sd: 15.5, medium: 19 },
-    { label: "34", R: -434.5575, d: 53.29, sd: 15.5 },
+    { label: "29", R: 56.8499, d: 2.9237, sd: 12.2, rimExtensionSd: 14.5 },
+    { label: "30", R: 67.7077, d: 2.7826, sd: 17, medium: 17 },
+    { label: "31", R: 308.2191, d: 1.2017, sd: 17 },
+    { label: "32", R: 62.8338, d: 1.3, sd: 19, medium: 18 },
+    { label: "33", R: 28.6712, d: 9.5, sd: 19, medium: 19 },
+    { label: "34", R: -434.5575, d: 53.29, sd: 19 },
   ],
 
   focus: {

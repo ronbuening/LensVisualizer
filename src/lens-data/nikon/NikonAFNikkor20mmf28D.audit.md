@@ -50,3 +50,11 @@ The validator accepts the new values, the traced edge now reaches 21.65 mm at 47
 the image-circle floor still reports nothing undersized. The lens is all-spherical. The analysis's maximum sd/|R|
 moved from 0.868 to 0.896 (surface 4); its thinnest edge (L8, 1.006 mm) and largest cross-gap intrusion (surfaces
 17→18, 0.834) are unchanged.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Re-read local `patents/US4690517.pdf`, Fig.1 on PDF p2 and First Embodiment/Table1 with its d-line definition on p6. Native300 ppi figure scale is about 14.9 px/mm from the ~711 px S1–S21 vertex span /47.7204 mm. Both halves show vertical exposed seats on S4 and S6. Preserved their 9.7/7.8 mm clear caps and added opaque extensions to 13.9/9.5 mm, matching the opposite faces. Source q≈.66/.82 at edge radii≈225/150 native pixels gives one-pixel bands±.0074/±.0121. Adopted cap/rim ratios.698/.821 retain the previously established field-clearance caps. S2 instead has continuous curvature, so raised its clear SD18.3→20.9 mm to the common L1 rim; no opaque break is invented there. Other source curves, ray crossings, brackets and leaders do not justify further cap-end lands.
+
+Freshly verified all 12 stored media (eight distinct nd/νd pairs) against Table1, retaining the native d-line convention and coordinates. All12 resolve to compatible catalog curves, including the recovered official J-BAF3 row. Qualified L6's label explicitly as a Hikari catalog spectral proxy with unproven production supplier. The source gives no named glass, C/F/g indices or partial-dispersion measurements; no new spectral or APD claim is inferred.
+
+Surface, image-circle and infinity aperture checks pass; the full nominal f/2.8 axial beam clears. Nine actual renderer states are finite with zero hidden trim. Source R/d, inferred stop split, focus behavior and check tolerances are unchanged.

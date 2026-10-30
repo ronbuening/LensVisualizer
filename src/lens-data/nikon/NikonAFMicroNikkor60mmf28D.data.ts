@@ -167,14 +167,22 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surface prescription ── */
+  /* ── Surface prescription ──
+   * 2026-10-29: US5751485 Fig.1 (PDF p2), native 300 ppi, about 19.6 px/mm
+   * from the ~711 px S1–S15 vertex span /36.28307 mm. S6's exposed concave
+   * cap ends at q≈169/200=.845 ±.0092 (one native pixel at cap and rim).
+   * Use the existing 10 mm L3 outer rim, with an inferred 2.83 mm cut:
+   * radius 8.9293 mm, moved outward from the figure's≈8.45 mm endpoint
+   * to clear the full wide-open beams (reach8.8702 mm +.05 mm margin).
+   * The2.83 mm land also stays before the inferred infinity stop at 3.024815 mm.
+   */
   surfaces: [
     { label: "1", R: 70.8774, d: 2.8, sd: 13.8, medium: 1 },
     { label: "2", R: -205.2345, d: 0.1, sd: 13.5 },
     { label: "3", R: 17.8517, d: 3.5, sd: 11.7, medium: 2 },
     { label: "4", R: 35.801, d: 1.0, sd: 10.2 },
     { label: "5", R: 93.5847, d: 1.2, sd: 10.0, medium: 3 },
-    { label: "6", R: 15.502, sd: 9.6 },
+    { label: "6", R: 15.502, sd: 10, rimCutDepthMm: 2.83 },
     // Synthetic stop: Fig. 1 supports a near-mid-gap station; d6 is split 50/50 at each authored focus state.
     { label: "STO", R: "flat" },
     { label: "7", R: -23.4716, d: 1.2, sd: 11, medium: 4 },

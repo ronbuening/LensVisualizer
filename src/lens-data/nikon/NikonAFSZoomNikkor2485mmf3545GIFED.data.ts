@@ -20,6 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * patent publishes no clear apertures. G2 rims 9–13 were refined against Figure 3. Surface 6 is the patent asphere and is labeled 6A. The patent's Table 5 C3 term
  * is retained despite Equation 1 omitting C3 from its displayed polynomial series. Its conic maps by K = kappa - 1.
  *
+ * Source Figure 3 compound outer rim13 mm spans S6A and S7; S8 keeps clear sd8.8.
+ * The S8 rear land reaches that full rim, with the complete compound connected.
+ *
  * Physical count: 15 elements / 12 groups. The elements array has 16 optical-media entries because the inferred hybrid
  * aspherical component is represented as a thin unmatched layer plus its glass substrate, while elementCount retains the
  * physical production count of 15.
@@ -255,7 +258,7 @@ const LENS_DATA = {
       label: "6A",
       R: 54.7045,
       d: 0.1,
-      sd: 11.6,
+      sd: 13,
       medium: 4,
       asphere: {
         K: -1.835,
@@ -267,8 +270,8 @@ const LENS_DATA = {
         A3: -6.1899e-7,
       },
     },
-    { label: "7", R: 60.0, d: 1.2, sd: 11.5, medium: 5 },
-    { label: "8", R: 12.1693, d: 5.45, sd: 8.8 },
+    { label: "7", R: 60.0, d: 1.2, sd: 13, medium: 5 },
+    { label: "8", R: 12.1693, d: 5.45, sd: 8.8, rimExtensionSd: 13 },
     { label: "9", R: -44.3426, d: 1.0, sd: 9.4, medium: 6 },
     { label: "10", R: 19.1723, d: 2.1, sd: 9.4, medium: 7 },
     { label: "11", R: 34.1502, d: 0.2, sd: 9.4 },

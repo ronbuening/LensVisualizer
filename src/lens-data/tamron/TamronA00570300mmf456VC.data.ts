@@ -1,80 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — TAMRON SP 70-300mm f/4-5.6 Di VC USD (A005)                    ║
- * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 8,228,605 B2, Example 2 (Arakawa / Wei; Tamron Co., Ltd.).      ║
- * ║ Correlation: 17 elements / 12 air-spaced groups, 135/full-frame coverage,  ║
- * ║ four functional zoom groups (+/−/+/+), and IV-2 transverse VC subgroup.    ║
- * ║                                                                            ║
- * ║ DESIGN / SOURCE NORMALIZATION                                              ║
- * ║ - Scale factor s = 1.0. No production-focal-length rescaling is applied.   ║
- * ║ - Marketing 70–300mm is kept separate from the verified Example 2 design.  ║
- * ║ - Example 2 summary gives 71.75–150.00–292.00mm. The adjacent spacing      ║
- * ║   table prints 292.50 in its tele header; that raw typo is preserved in    ║
- * ║   the audit, while the modeled tele state is 292.00mm. Independent trace   ║
- * ║   gives EFL ≈ 292.014mm.                                                   ║
- * ║ - Surface 13 is the published aperture stop. Its raw R=0.0000 is modeled   ║
- * ║   as one flat STO plane (R=1e15), not a refracting zero-radius surface.    ║
- * ║ - All refracting surfaces are spherical; no aspheres are published.        ║
- * ║                                                                            ║
- * ║ ZOOM / FOCUS                                                               ║
- * ║ - Zoom-only variables: D5, D12, D18, BF. All infinity/close pairs are      ║
- * ║   intentionally identical because Example 2 publishes no focus movement.   ║
- * ║ - D18 reverses (4.3009 → 2.0000 → 6.0952mm); the group-II path also        ║
- * ║   reverses in the fixed-image reference frame. Piecewise zoom interpolation║
- * ║   must retain the intermediate 150mm state.                                ║
- * ║ - Focus status: NO_INTERNAL_RECONSTRUCTION. Tamron's 1.5m production MOD   ║
- * ║   is metadata only and is not used to invent internal focus travel.        ║
- * ║                                                                            ║
- * ║ STOP / F-NUMBER                                                            ║
- * ║ - The patent prints Fno. 4.1 / 4.83 / 5.85 and no stop diameter. The       ║
- * ║   midpoint of the paraxial fixed-stop interval (13.9147–13.9260 mm) fits   ║
- * ║   all three printed F-number rounding ranges.                              ║
- * ║ - nominalFno carries the paraxial f-numbers for that midpoint radius at    ║
- * ║   the three zoom states: 4.1218709542, 4.8269570055, 5.8526252296.         ║
- * ║ - zoomApertureModel "fixed-iris": the engine opens the iris to the         ║
- * ║   wide-end real-ray radius, 14.0201mm, and holds it. The iris alone gives  ║
- * ║   f/4.122, f/4.838 and f/5.875.                                            ║
- * ║ - Traced on axis: f/4.12 at 71.75mm, f/4.84 at 150mm and f/5.87 at 292mm,  ║
- * ║   each limited by the iris (at the stated value, 0.2% slower and 0.4%      ║
- * ║   slower). No rim sits below the stated on-axis ray (see SEMI-DIAMETERS).  ║
- * ║                                                                            ║
- * ║ SEMI-DIAMETERS                                                             ║
- * ║ - The patent does not publish clear semi-diameters. Values below are a     ║
- * ║   constrained model inferred from paraxial marginal/chief-ray envelopes,   ║
- * ║   the Fig. 12 optical section, the production 62mm filter context, and the ║
- * ║   current edge-thickness/rim-slope/cross-gap rules.                        ║
- * ║ - Group II and L109 are sized by the stated on-axis ray (f/5.8526 at       ║
- * ║   292mm). It reaches 12.695 / 12.424mm on surfaces 6 / 7, 12.427 / 12.896  ║
- * ║   / 13.055mm on 8 / 9 / 10, 13.072 / 13.452mm on 11 / 12 and 14.554 /      ║
- * ║   14.581mm on 14 / 15.                                                     ║
- * ║ - Fig. 12 draws L104, the L105/L106 doublet, L107 and L109 with square-cut ║
- * ║   rims, so each carries one value: the highest ray height on its faces,    ║
- * ║   rounded up at the file's precision. L104 12.70mm, L105/L106 13.06mm,     ║
- * ║   L107 13.5mm, L109 14.6mm.                                                ║
- * ║ - gapSagFrac is 0.96 for the L104 rear / L105 front pair (surfaces 7→8,    ║
- * ║   3.0571mm gap). At the 12.70mm L104 rim the combined sag is ≈0.95999×gap  ║
- * ║   with 0.122mm of rim air, and Fig. 12 draws the L104 rear corners meeting ║
- * ║   the L105 front face. The next-tightest gap is 10→11 at ≈0.84543×gap.     ║
- * ║ - Fig. 12 draws the L105/L106 doublet about 5% taller than L107 and L109   ║
- * ║   about 4% shorter than L110/L111. The model has L107 0.44mm taller than   ║
- * ║   the doublet and L109 0.1mm taller than L110/L111, as the ray heights set.║
- * ║ - The L115/L116 VC doublet is limited to 11.80mm by L115 edge thickness;   ║
- * ║   the modeled L115 rim retains ≈0.265mm physical edge thickness.           ║
- * ║ - Default on/off-axis rendered ray fans are contained by every cemented    ║
- * ║   interface at all three published zoom states in the local Stage 2 check. ║
- * ║                                                                            ║
- * ║ GLASS                                                                      ║
- * ║ - The patent publishes nd/νd only. Glass strings are conservative six-digit║
- * ║   coordinate classes; vendor/melt identity is intentionally not asserted.  ║
- * ║ - No nC, nF, ng, or dPgF values are authored because none are published or ║
- * ║   independently established for the patent elements.                       ║
- * ║                                                                            ║
- * ║ No sensor cover glass, filter, inactive dummy plane, or mechanical part is ║
- * ║ included.                                                                  ║
- * ╚════════════════════════════════════════════════════════════════════════════╝
+ * TAMRON SP 70-300mm f/4-5.6 Di VC USD (A005).
+ * Source: US8,228,605B2 Example2, native scale; all17 media freshly checked PDF28,
+ * d587.56nm plot convention PDF25, Fig12 PDF13 (native300dpi /600dpi inspection).
+ * Source summary71.75/150/292.00mm vs adjacent tele heading292.50 is retained as a source erratum.
+ * All spherical. Source stop13 is modeled flat; no plate, dummy plane or fabricated VC decenter.
+ * Source nd/vd only; vendor-neutral classes resolve17 qualified compatible curves, without
+ * production supplier/melt or measured partial-dispersion attribution.
+ * NO_INTERNAL_RECONSTRUCTION: identical infinity/close zoom pairs, production MOD1.5m metadata only.
+ * D5/D12/D18/BF retain all3 source states and D18 reversal. Marketing70–300/f4–5.6 remains separate.
+ * Printed FNO4.1/4.83/5.85 admits paraxial fixed-iris midpoint13.9203457mm; authored nominal values
+ *4.1218709542/4.8269570055/5.8526252296 retain it. Real iris14.0201mm gives f4.122/4.838/5.875.
+ * 2026-10-30 source-outline review: continuous caps S6→14.1,S9/S10→15.8,S12→15,
+ * S14/S15→16.2,S16/S17→16.7,S19/S20→15.6. Independently drawn air-facing lands preserve
+ * caps S8=13.06→outer15.8,S11=13.5→15,S18=14.5→16.7,S21=14.3→15.6.
+ * The full S7 rear land to14.1 is rejected: unchanged .96 gap rule to S8 permits only a cap
+ * below the full-beam requirement. S7 stays12.7, so L104 retains its constrained rear outline.
+ * The tight7→8 gap keeps .959985 intrusion and .122mm air; no tolerance/gap/source-radius edits.
+ * Source figures give inferred outer rims, never measured production clear apertures.
  */
 
 const LENS_DATA = {
@@ -96,7 +40,10 @@ const LENS_DATA = {
     ],
     elementCount: 17,
     groupCount: 12,
-    focalLengthMm: { marketing: [70, 300], design: [71.74990140102719, 292.0140449910131] },
+    focalLengthMm: {
+      marketing: [70, 300],
+      design: [71.74990140102719, 292.0140449910131],
+    },
     fNumber: { marketing: 4, design: 4.121870954179845 },
   },
 
@@ -314,22 +261,36 @@ const LENS_DATA = {
     { label: "3", R: 65.4212, d: 1.5, sd: 24.8, medium: 2 },
     { label: "4", R: 46.5711, d: 8.4101, sd: 24.8, medium: 3 },
     { label: "5", R: -648.0663, sd: 24.8 },
-    { label: "6", R: -213.5045, d: 1.2, sd: 12.7, medium: 4 },
+    { label: "6", R: -213.5045, d: 1.2, sd: 14.1, medium: 4 },
     { label: "7", R: 56.253, d: 3.0571, sd: 12.7 },
-    { label: "8", R: -55.1425, d: 1.2, sd: 13.06, medium: 5 },
-    { label: "9", R: 47.9635, d: 4.1563, sd: 13.06, medium: 6 },
-    { label: "10", R: -133.8489, d: 1.3243, sd: 13.06 },
-    { label: "11", R: -49.3822, d: 1.2, sd: 13.5, medium: 7 },
-    { label: "12", R: -169.9332, sd: 13.5 },
+    {
+      label: "8",
+      R: -55.1425,
+      d: 1.2,
+      sd: 13.06,
+      medium: 5,
+      rimExtensionSd: 15.8,
+    },
+    { label: "9", R: 47.9635, d: 4.1563, sd: 15.8, medium: 6 },
+    { label: "10", R: -133.8489, d: 1.3243, sd: 15.8 },
+    {
+      label: "11",
+      R: -49.3822,
+      d: 1.2,
+      sd: 13.5,
+      medium: 7,
+      rimExtensionSd: 15,
+    },
+    { label: "12", R: -169.9332, sd: 15 },
     { label: "STO", R: "flat", d: 1.0 },
-    { label: "14", R: 79.138, d: 4.3069, sd: 14.6, medium: 8 },
-    { label: "15", R: -79.138, d: 0.2, sd: 14.6 },
-    { label: "16", R: 56.1087, d: 5.8909, sd: 14.5, medium: 9 },
-    { label: "17", R: -45.5752, d: 1.2, sd: 14.5, medium: 10 },
-    { label: "18", R: 156.9544, sd: 14.5 },
-    { label: "19", R: 49.6914, d: 5.071, sd: 14.3, medium: 11 },
-    { label: "20", R: -64.2211, d: 1.0, sd: 14.3, medium: 12 },
-    { label: "21", R: 64.2211, d: 0.2, sd: 14.3 },
+    { label: "14", R: 79.138, d: 4.3069, sd: 16.2, medium: 8 },
+    { label: "15", R: -79.138, d: 0.2, sd: 16.2 },
+    { label: "16", R: 56.1087, d: 5.8909, sd: 16.7, medium: 9 },
+    { label: "17", R: -45.5752, d: 1.2, sd: 16.7, medium: 10 },
+    { label: "18", R: 156.9544, sd: 14.5, rimExtensionSd: 16.7 },
+    { label: "19", R: 49.6914, d: 5.071, sd: 15.6, medium: 11 },
+    { label: "20", R: -64.2211, d: 1.0, sd: 15.6, medium: 12 },
+    { label: "21", R: 64.2211, d: 0.2, sd: 14.3, rimExtensionSd: 15.6 },
     { label: "22", R: 34.7404, d: 5.9458, sd: 14.1, medium: 13 },
     { label: "23", R: -82.3989, d: 14.1294, sd: 14.1 },
     { label: "24", R: 1471.7974, d: 3.0, sd: 11.8, medium: 14 },
@@ -343,9 +304,17 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 71.75, nominalFNumber: 4.121870954179845, label: "Wide" },
+      {
+        focalLengthMm: 71.75,
+        nominalFNumber: 4.121870954179845,
+        label: "Wide",
+      },
       { focalLengthMm: 150.0, nominalFNumber: 4.826957005511833 },
-      { focalLengthMm: 292.0, nominalFNumber: 5.852625229580979, label: "Tele" },
+      {
+        focalLengthMm: 292.0,
+        nominalFNumber: 5.852625229580979,
+        label: "Tele",
+      },
     ],
     apertureModel: "fixed-iris",
   },
@@ -391,7 +360,11 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 5.6, 8, 11, 16, 22, 32, 45], maxFNumber: 45, blades: 9 },
+  aperture: {
+    fStops: [4, 5.6, 8, 11, 16, 22, 32, 45],
+    maxFNumber: 45,
+    blades: 9,
+  },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "5" },

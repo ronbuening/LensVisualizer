@@ -36,6 +36,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Exact optical section is Figure2 PDF3; Figure1 is the group-motion schematic.
+// All20 source d-line n/ν pairs and certificate corrections remain. Five486815 media stay unresolved.
+// Source prose discusses good partial dispersion and “quartzite or other special optical glass”;
+// it does not establish those numerical media identities or publish spectral anchors/θgF.
+// Their anomalous dispersion is unquantified, not measured as zero; no guessed override is added.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
@@ -76,7 +82,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       focalLengthMm: 517.1,
-      glass: "Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)",
+      glass: "Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)",
       role: "Primary collector element of the front convergent group.",
     },
     {
@@ -87,7 +93,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       focalLengthMm: 395.9,
-      glass: "Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)",
+      glass: "Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)",
       role: "Positive low-dispersion member ahead of the apochromatic front corrector pair.",
     },
     {
@@ -146,7 +152,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       focalLengthMm: -142.1,
-      glass: "Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)",
+      glass: "Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)",
       role: "Strong negative low-dispersion member of the hyperchromatic variator doublet.",
       cemented: "D2",
     },
@@ -205,7 +211,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       focalLengthMm: 217.3,
-      glass: "Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)",
+      glass: "Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)",
       role: "Low-dispersion positive member of the rear compensator doublet.",
       cemented: "D4",
     },
@@ -240,7 +246,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       focalLengthMm: 167.4,
-      glass: "Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)",
+      glass: "Unresolved special low-dispersion medium (source 1.48606/81.5; composition and spectral anomaly unestablished)",
       role: "Low-dispersion positive member of the near-afocal relay triplet.",
       cemented: "T2",
     },

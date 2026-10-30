@@ -16,15 +16,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    8.730 / 5.730 mm. No refocus path is invented.                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent omits clear apertures. Group SDs are measured from   ║
- * ║    Fig. 5 (18.7 / 15.0 / 13.2 mm), then checked with exact         ║
- * ║    marginal/chief-ray bundles and current geometry constraints.    ║
+ * ║    The patent omits clear apertures. Fig. 5 supplies the square    ║
+ * ║    group rims; the stated axial beam requires inferred SDs of     ║
+ * ║    19.4 / 15.3 / 13.6 mm, checked against current geometry.       ║
  * ║    The stop radius is derived from the design f-number, the        ║
  * ║    sharp-state F/1.858 of the paraxial pupil model.                ║
  * ║                                                                    ║
  * ║  NOTE ON SPECTRAL DATA:                                            ║
- * ║    The patent publishes d-line nd/νd only. Vendor-neutral six-     ║
- * ║    digit classes are used; nC, nF, ng, and dPgF are not invented. ║
+ * ║    The patent publishes d-line nd/νd only. Catalog curves are     ║
+ * ║    Qualified spectral proxies; supplier/chemistry unresolved.     ║
+ * ║    Source nC, nF, ng, and dPgF are not supplied or invented.      ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the active optical design.    ║
  * ║    Sensor glass, filters, dummy planes, and mechanics are omitted. ║
@@ -73,7 +74,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: 38.863947,
-      glass: "883408 — high-index lanthanum glass class (vendor unresolved)",
+      glass: "S-LAH58 (catalog-compatible spectral proxy; production supplier and chemistry unresolved)",
       apd: false,
       role: "Front positive member of the G1 cemented doublet.",
       cemented: "G1",
@@ -86,7 +87,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -106.839291,
-      glass: "847238 — very-dense-flint class (vendor unresolved)",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative chromatic partner completing the positive G1 doublet.",
       cemented: "G1",
@@ -99,7 +100,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.46,
       focalLengthMm: 64.434685,
-      glass: "805255 — dense-flint class (vendor unresolved)",
+      glass: "J-SF6 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive front member of the net-negative movable-control doublet G2.",
       cemented: "G2",
@@ -112,7 +113,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       focalLengthMm: -22.116992,
-      glass: "648338 — dense-flint class (vendor unresolved)",
+      glass: "E-FD2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Strong negative rear member setting the net-negative power of G2.",
       cemented: "G2",
@@ -125,7 +126,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.72,
       focalLengthMm: -51.83896,
-      glass: "785257 — dense-flint class (vendor unresolved)",
+      glass: "H-ZF13 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative front member of the rear positive cemented doublet.",
       cemented: "G3",
@@ -138,7 +139,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: 23.184192,
-      glass: "883408 — high-index lanthanum glass class (vendor unresolved)",
+      glass: "S-LAH58 (catalog-compatible spectral proxy; production supplier and chemistry unresolved)",
       apd: false,
       role: "Strong positive rear member completing G3 and the image-side relay.",
       cemented: "G3",
@@ -146,17 +147,20 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription: patent Example 2, sharp/infinity base ── */
+  // Fig. 5 (PDF p. 17): S6 concave rear cap q≈0.85 at ≈24.5 native px/mm.
+  // The inferred cut moves outward to radius 13.229 mm for full beams, including
+  // all 41 SA spacings with the original physical iris held fixed (see audit).
   surfaces: [
-    { label: "1", R: 45.111, d: 9.0, sd: 18.7, medium: 1 },
-    { label: "2", R: -130.0, d: 2.5, sd: 18.7, medium: 2 },
-    { label: "3", R: 300.0, d: 8.73, sd: 18.7 },
-    { label: "4", R: -60.111, d: 8.0, sd: 15.0, medium: 3 },
-    { label: "5", R: -29.5, d: 5.2, sd: 15.0, medium: 4 },
-    { label: "6", R: 29.777, d: 4.0, sd: 15.0 },
+    { label: "1", R: 45.111, d: 9.0, sd: 19.4, medium: 1 },
+    { label: "2", R: -130.0, d: 2.5, sd: 19.4, medium: 2 },
+    { label: "3", R: 300.0, d: 8.73, sd: 19.4 },
+    { label: "4", R: -60.111, d: 8.0, sd: 15.3, medium: 3 },
+    { label: "5", R: -29.5, d: 5.2, sd: 15.3, medium: 4 },
+    { label: "6", R: 29.777, d: 4.0, sd: 15.3, rimCutDepthMm: 3.10 },
     { label: "STO", R: "flat", d: 2.6 },
-    { label: "8", R: 75.555, d: 2.55, sd: 13.2, medium: 5 },
-    { label: "9", R: 26.05, d: 9.0, sd: 13.2, medium: 6 },
-    { label: "10", R: -80.111, sd: 13.2 },
+    { label: "8", R: 75.555, d: 2.55, sd: 13.6, medium: 5 },
+    { label: "9", R: 26.05, d: 9.0, sd: 13.6, medium: 6 },
+    { label: "10", R: -80.111, sd: 13.6 },
   ],
 
   /* ── Focus configuration ── */

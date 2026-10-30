@@ -24,7 +24,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ each keyframe. The original Bf values and residuals remain in evidence.   ║
  * ║                                                                            ║
  * ║ Stop: the patent publishes only that the stop lies between functional     ║
- * ║ groups 2 and 3. This model places STO at the midpoint of the published    ║
+ * ║ groups 2 and 3 in Fig. 5; the corresponding text refers to Embodiment II.
+ * ║ This model places STO at the midpoint of the published    ║
  * ║ 4.8 mm d10 gap (2.4 mm + 2.4 mm), consistent with Fig. 2 topology.        ║
  * ║                                                                            ║
  * ║ Aperture: the patent gives one aperture ratio, F/4.5, for the whole        ║
@@ -230,19 +231,20 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 52.201, d: 2, sd: 25.8, medium: 1 },
-    { label: "2", R: 28.743, d: 11.5, sd: 22.1 },
+    // Fig. 5: preserve the 22.1 mm curved cap and extend its flat outer land to the 25.8 mm body.
+    { label: "2", R: 28.743, d: 11.5, sd: 22.1, rimExtensionSd: 25.8 },
     { label: "3", R: -744.562, d: 4.2, sd: 21.5, medium: 2 },
     { label: "4", R: -70.591, d: 1.3, sd: 21.2, medium: 3 },
     { label: "5", R: 29.871, sd: 17.3 },
     { label: "6", R: 39.507, d: 4.5, sd: 9.6, medium: 4 },
-    { label: "7", R: -32.141, d: 1.1, sd: 9, medium: 5 },
-    { label: "8", R: -65.335, d: 0.1, sd: 8.7 },
+    { label: "7", R: -32.141, d: 1.1, sd: 9.6, medium: 5 },
+    { label: "8", R: -65.335, d: 0.1, sd: 9.6 },
     { label: "9", R: 18.809, d: 3, sd: 7.6, medium: 6 },
-    { label: "10", R: 60.333, d: 2.4, sd: 6.7 },
-    // STO station inferred from patent Fig. 2: midpoint of the published 4.8 mm d10 air gap.
+    { label: "10", R: 60.333, d: 2.4, sd: 7.6 },
+    // Fig. 5 supports the stop topology; its midpoint in the published 4.8 mm d10 gap remains an inference.
     { label: "STO", R: "flat", d: 2.4 },
-    { label: "11", R: -117.506, d: 1.7, sd: 5.7, medium: 7 },
-    { label: "12", R: -19.07, d: 1, sd: 5.9, medium: 8 },
+    { label: "11", R: -117.506, d: 1.7, sd: 6.1, medium: 7 },
+    { label: "12", R: -19.07, d: 1, sd: 6.1, medium: 8 },
     { label: "13", R: 19.373, sd: 6.1 },
     // USPTO Certificate of Correction: printed +889.704 -> corrected +889.074 mm.
     { label: "14", R: 889.074, d: 0.7, sd: 6.2, medium: 9 },

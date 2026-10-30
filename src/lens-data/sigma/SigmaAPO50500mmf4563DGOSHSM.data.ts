@@ -24,7 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * a concave face (S2, S6, S8, S11/S12, S22, S25, S27, S36, S37), sd is where the curve ends, not the flange. S22
  * and S27 sit on the real-ray axial floor at the design f-numbers; S34/S35 keep their earlier value.
  * apd "inferred" on E2, E3, E9 and E14 follows the four SLD positions Sigma's diagram marks; the patent names no
- * special glass. Glass names are coordinate equivalents; production suppliers are unconfirmed.
+ * special glass. Glass names are qualified spectral proxies; production suppliers are unconfirmed.
+ * Fresh2026-10-30 original PDF9 Example2 media, PDF7 d-line/Obj definitions and PDF13 Fig8 review:
+ * all22 nd/vd pairs and compatible curves retained, no source C/F/g/theta. Ten cap-preserving extensions
+ * make the independently drawn concave lands explicit (S2/6/8/11/12/22/25/27/36/37); no optical caps,
+ * source R/d, stop, source/calculated zoom/focus states, controls or tolerances change.
  */
 const LENS_DATA = {
   schema: 2,
@@ -73,7 +77,7 @@ const LENS_DATA = {
       vd: 37.34,
       focalLengthMm: -271.65,
       indexReference: "d",
-      glass: "NBFD10 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "NBFD10 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-index negative front meniscus of L1; offsets the two SLD positives behind it.",
     },
     {
@@ -85,7 +89,7 @@ const LENS_DATA = {
       vd: 81.6,
       focalLengthMm: 190.3284,
       indexReference: "d",
-      glass: "FCD1 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
@@ -100,7 +104,7 @@ const LENS_DATA = {
       vd: 81.6,
       focalLengthMm: 288.4653,
       indexReference: "d",
-      glass: "FCD1 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
@@ -115,7 +119,7 @@ const LENS_DATA = {
       vd: 49.62,
       focalLengthMm: -63.7067,
       indexReference: "d",
-      glass: "N-LAF34 (SCHOTT coordinate equivalent; supplier unconfirmed)",
+      glass: "N-LAF34 (qualified spectral proxy; SCHOTT coordinate equivalent; supplier unconfirmed)",
       role: "Single negative element forming the variator L2; nearly flat front face. Moves toward the image when zooming to tele.",
     },
     {
@@ -127,7 +131,7 @@ const LENS_DATA = {
       vd: 33.27,
       focalLengthMm: 69.5032,
       indexReference: "d",
-      glass: "NBFD15 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "NBFD15 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Positive singlet forming sub-group L3a of the fixed group L3; converges the beam onto the stabilizing sub-group.",
     },
     {
@@ -139,7 +143,7 @@ const LENS_DATA = {
       vd: 53.94,
       focalLengthMm: -76.2727,
       indexReference: "d",
-      glass: "LAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "LAC8 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Front negative element of sub-group L3b, which shifts across the axis for image stabilization.",
     },
     {
@@ -151,7 +155,7 @@ const LENS_DATA = {
       vd: 23.78,
       focalLengthMm: 56.4939,
       indexReference: "d",
-      glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion positive meniscus of the L3b cemented doublet; achromatizes the stabilizing sub-group.",
     },
     {
@@ -163,7 +167,7 @@ const LENS_DATA = {
       vd: 49.62,
       focalLengthMm: -35.041,
       indexReference: "d",
-      glass: "N-LAF34 (SCHOTT coordinate equivalent; supplier unconfirmed)",
+      glass: "N-LAF34 (qualified spectral proxy; SCHOTT coordinate equivalent; supplier unconfirmed)",
       role: "Negative member of the L3b cemented doublet; gives the stabilizing sub-group most of its negative power.",
     },
     {
@@ -175,7 +179,7 @@ const LENS_DATA = {
       vd: 81.6,
       focalLengthMm: 52.2634,
       indexReference: "d",
-      glass: "FCD1 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
@@ -190,7 +194,7 @@ const LENS_DATA = {
       vd: 70.44,
       focalLengthMm: 57.6747,
       indexReference: "d",
-      glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
+      glass: "H-QK3L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Equiconvex crown of the L4 cemented doublet.",
     },
     {
@@ -202,7 +206,7 @@ const LENS_DATA = {
       vd: 23.78,
       focalLengthMm: -51.5377,
       indexReference: "d",
-      glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Dense-flint negative of the L4 cemented doublet; axial-color correction for L4.",
     },
     {
@@ -214,7 +218,7 @@ const LENS_DATA = {
       vd: 54.67,
       focalLengthMm: -23.2722,
       indexReference: "d",
-      glass: "TAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "TAC8 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Strong biconcave negative opening L5 directly behind the stop.",
     },
     {
@@ -226,7 +230,7 @@ const LENS_DATA = {
       vd: 25.46,
       focalLengthMm: 44.258,
       indexReference: "d",
-      glass: "FD60 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FD60 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion positive meniscus cemented to E12; L5 stays negative overall.",
     },
     {
@@ -238,7 +242,7 @@ const LENS_DATA = {
       vd: 81.6,
       focalLengthMm: 152.6181,
       indexReference: "d",
-      glass: "FCD1 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
@@ -253,7 +257,7 @@ const LENS_DATA = {
       vd: 64.19,
       focalLengthMm: 152.7199,
       indexReference: "d",
-      glass: "H-K9L (CDGM coordinate equivalent; supplier unconfirmed)",
+      glass: "H-K9L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Crown positive meniscus in L6.",
     },
     {
@@ -265,7 +269,7 @@ const LENS_DATA = {
       vd: 70.44,
       focalLengthMm: 82.5,
       indexReference: "d",
-      glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
+      glass: "H-QK3L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Biconvex crown positive in L6.",
     },
     {
@@ -277,7 +281,7 @@ const LENS_DATA = {
       vd: 70.44,
       focalLengthMm: 47.6509,
       indexReference: "d",
-      glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
+      glass: "H-QK3L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Biconvex crown of the rear L6 cemented doublet.",
     },
     {
@@ -289,7 +293,7 @@ const LENS_DATA = {
       vd: 23.78,
       focalLengthMm: -67.0189,
       indexReference: "d",
-      glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Dense-flint negative meniscus of the rear L6 doublet; color correction for L6.",
     },
     {
@@ -301,7 +305,7 @@ const LENS_DATA = {
       vd: 25.46,
       focalLengthMm: 44.5378,
       indexReference: "d",
-      glass: "FD60 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "FD60 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion biconvex positive of the front doublet in the focusing group L7.",
     },
     {
@@ -313,7 +317,7 @@ const LENS_DATA = {
       vd: 53.94,
       focalLengthMm: -25.6452,
       indexReference: "d",
-      glass: "LAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "LAC8 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconcave negative of the front L7 doublet; main negative power of the focusing group.",
     },
     {
@@ -325,7 +329,7 @@ const LENS_DATA = {
       vd: 37.34,
       focalLengthMm: -28.1062,
       indexReference: "d",
-      glass: "NBFD10 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "NBFD10 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconcave negative of the rear L7 cemented doublet.",
     },
     {
@@ -337,7 +341,7 @@ const LENS_DATA = {
       vd: 42.84,
       focalLengthMm: 39.7634,
       indexReference: "d",
-      glass: "E-FL6 (HOYA coordinate equivalent; supplier unconfirmed)",
+      glass: "E-FL6 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconvex rear element, cemented to E21; last element of the lens.",
     },
   ],
@@ -353,7 +357,7 @@ const LENS_DATA = {
       label: "2",
       R: 119.2835,
       d: 1.4195,
-      sd: 40.6,
+      sd: 40.6, rimExtensionSd: 43.5,
     },
     {
       label: "3",
@@ -378,7 +382,7 @@ const LENS_DATA = {
     {
       label: "6",
       R: 429.3566,
-      sd: 36.8,
+      sd: 36.8, rimExtensionSd: 41.2,
     },
     {
       label: "7",
@@ -390,7 +394,7 @@ const LENS_DATA = {
     {
       label: "8",
       R: 49.3463,
-      sd: 22.2,
+      sd: 22.2, rimExtensionSd: 26.2,
     },
     {
       label: "9",
@@ -410,13 +414,13 @@ const LENS_DATA = {
       R: -125.4315,
       d: 1.5,
       medium: 6,
-      sd: 13.2,
+      sd: 13.2, rimExtensionSd: 14.3,
     },
     {
       label: "12",
       R: 96.4858,
       d: 3.2281,
-      sd: 12.1,
+      sd: 12.1, rimExtensionSd: 14.3,
     },
     {
       label: "13",
@@ -479,7 +483,7 @@ const LENS_DATA = {
       R: -39.9147,
       d: 3.8,
       medium: 12,
-      sd: 10.4,
+      sd: 10.4, rimExtensionSd: 12,
     },
     {
       label: "23",
@@ -498,7 +502,7 @@ const LENS_DATA = {
       R: -81.9823,
       d: 3.9904,
       medium: 14,
-      sd: 11.9,
+      sd: 11.9, rimExtensionSd: 13.2,
     },
     {
       label: "26",
@@ -511,7 +515,7 @@ const LENS_DATA = {
       R: -264.6891,
       d: 3.9709,
       medium: 15,
-      sd: 12.2,
+      sd: 12.2, rimExtensionSd: 13.3,
     },
     {
       label: "28",
@@ -569,14 +573,14 @@ const LENS_DATA = {
       label: "36",
       R: 32.4946,
       d: 4.4207,
-      sd: 9.6,
+      sd: 9.6, rimExtensionSd: 11.7841,
     },
     {
       label: "37",
       R: -40.6856,
       d: 1,
       medium: 21,
-      sd: 11,
+      sd: 11, rimExtensionSd: 13,
     },
     {
       label: "38",

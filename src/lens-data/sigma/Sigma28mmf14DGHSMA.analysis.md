@@ -487,3 +487,6 @@ or full-spectrum production-performance claim is made by this reconstruction.
 4. [OHARA, Glass Type table](https://www.ohara-inc.co.jp/product/01000/) and
    [S-NBH53V detailed data](https://www.ohara-inc.co.jp/assets/product/pdf/jsnbh53v.pdf),
    accessed 2026-10-04. Focused S-LAH96/S-NBH53V coordinate and spectral-proxy evidence.
+
+
+The fresh F-mount review restores independently evidenced flat outer lands on S2/S4A/S7/S10/S21/S23 to 28.8/23.6/21.3/20.6/18.9/16.0 mm, respectively. Clear caps and powered cemented interfaces are unchanged. The S23 land stops at the existing S24 interface radius; the full triplet cannot be squared by an opaque interface land or by exceeding the shared sphere's slope bound. The source E11 anomaly of 0.0283 uses the patent's normal line, implies PgF 0.639046, and converts to runtime ΔPgF 0.03036616; the final eight digits are arithmetic, not eight-digit measurement precision. Its explicit anomalous-material definition supports the patent APD tag; the five low-dispersion family tags remain inferred. The LPF's C12 curve is a qualified spectral proxy, with chemistry and production supplier unconfirmed.

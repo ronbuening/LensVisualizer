@@ -12,11 +12,11 @@
 
 US 4,806,000 discloses a zoom lens with separate normal-focus and macro-focus mechanisms. The numerical prescription in Tables 1 and 2 is a four-group negative-positive-negative-positive zoom with a 28.8-83.3 mm patent focal-length range, f/3.5-4.0 patent f-number range, and a tabulated macro state at β = -0.25 from the wide-angle end.
 
-The convergent identification with the Nikon AF Zoom-Nikkor 28-85mm f/3.5-4.5 is strong but should be stated as an optical-formula match rather than as a claim that the patent reproduces every production mechanical detail.
+The convergent identification with the Nikon AF Zoom-Nikkor 28-85 mm f/3.5-4.5 is strong but should be stated as an optical-formula match rather than as a claim that the patent reproduces every production mechanical detail.
 
 1. The patent focal-length range of 28.8-83.3 mm corresponds to the production 28-85 mm class.
 2. The patent prescription has 15 elements in 11 air-separated groups, matching the published production lens construction.
-3. The patent f-number range is f/3.5-4.0, while the production lens is marked f/3.5-4.5. The data file therefore uses the production maximum-aperture labeling for `nominalFno`; the patent does not publish a stop diameter, so the stop semi-diameter is an inferred modeling value rather than a tabulated patent value.
+3. The patent f-number range is f/3.5-4.0, while the production lens is marked f/3.5-4.5. The traced design stations use the patent’s f/3.5–4.0 values, with the marketed f/3.5–4.5 range recorded separately. The patent does not publish a stop diameter, so the stop semi-diameter is derived from the design f-number rather than treated as tabulated patent data.
 4. The patent mechanism moves G1 for normal focusing, and uses a separate macro ring to move G1, G2, and G4 together with G3 fixed. This is the same type of dedicated wide-end macro operation associated with the 28-85 mm Nikon zoom.
 5. The patent’s macro limit system gives the greatest macro movement at the wide end and mechanically drives the zoom setting back toward the wide end if the macro ring is forced beyond the allowable macro range at longer focal lengths.
 6. No aspherical or ED element is present in the prescription; the design is an all-spherical classical crown/flint zoom.
@@ -34,6 +34,8 @@ The first group G1 comprises five elements in four air-separated subgroups. It s
 The aperture stop lies between G2 and G3. Table 1 gives the entire G2-G3 distance as the variable spacing d15; Fig. 15 indicates the stop in that gap, close to the fixed G3 barrel, but the exact axial split is not tabulated. The data file therefore uses an inferred split: a variable G2-to-stop distance plus a fixed 0.600 mm stop-to-G3 distance. This keeps the diaphragm fixed with G3 while preserving the patent’s published G2-G3 total spacing.
 
 During zooming from wide to tele, G2 and G4 move together toward the object, G3 remains fixed, and G1 follows a separate cam path. In Table 2, d15 increases from 2.945 mm to 20.744 mm while d20 decreases from 19.920 mm to 2.120 mm, confirming the equal motion of G2 and G4 relative to fixed G3. The d9 spacing decreases from 41.311 mm to 0.835 mm, showing that G1 has its own compensating movement.
+
+The fresh Figure 15 review adds L2's rear concave land from its existing 17.5 mm clear cap to the 22.7 mm outer rim, matching its front cap and the drawn outer height. The larger roughly 19.1 mm drawn rear endpoint cannot be forced into the exact prescription: a trial intrudes 8.731 mm into the 7.900 mm gap to S5, exceeding even the full physical gap and the unchanged 7.110 mm authoring allowance. The valid existing cap is retained and the source drawing discrepancy remains explicit.
 
 ## Element-by-Element Analysis
 
@@ -53,7 +55,7 @@ The 0.100 mm air gap between L1 and L2 makes the two lenses an almost-contacted 
 
 ### L3 + L4 — Cemented Doublet in G1
 
-L3: nd = 1.79668, νd = 45.5. Glass: 797455 - TAF2 class (Hoya legacy; no exact catalog match). f = -35.9 mm standalone.
+L3: nd = 1.79668, νd = 45.5. Glass: TAF2 catalog-coordinate proxy (patent 797455; production supplier unspecified). f = -35.9 mm standalone.
 L4: nd = 1.80458, νd = 25.5. Glass: S-TIH6 class (OHARA). f = +71.0 mm standalone.
 Cemented doublet net focal length: -68.2 mm.
 
@@ -102,7 +104,7 @@ nd = 1.51835, νd = 60.3. Glass: BALK3 (SUMITA catalog equivalent; production su
 
 L12 supplies most of the third group’s negative optical power. It is a biconcave element with R19 = -51.601 mm and R20 = +36.052 mm, positioned immediately before the G3-G4 variable air gap. This makes it a principal beam-shaping element before the rear relay group.
 
-The glass is a crown-like material by index and dispersion, but it does not resolve cleanly to a current major catalog entry. It should therefore remain labeled as unmatched rather than forced to a modern Ohara or Schott name.
+The source coordinate resolves to the current coefficient-backed SUMITA BALK3 proxy. Its name supplies a qualified spectral curve without identifying the historical production supplier.
 
 ### L13 — Near Plano-Convex Positive Singlet
 
@@ -122,7 +124,7 @@ The 0.100 mm gap between L13 and L14 makes them a near-contact air-spaced pair. 
 
 ### L15 — Negative Meniscus, concave to object
 
-nd = 1.79504, νd = 28.6. Glass: 795287 - J-LAFH3 (Hikari; no source-backed catalog match). f = -46.6 mm.
+nd = 1.79504, νd = 28.6. Glass: J-LAFH3 catalog-coordinate proxy (source 1.79504/28.6; production supplier unspecified). f = -46.6 mm.
 
 L15 is the final optical element before the image plane. It is a negative meniscus of high refractive index and relatively high dispersion. Its front surface, R25 = -29.860 mm, supplies the principal negative power in the final element.
 
@@ -130,13 +132,13 @@ The element counterbalances the preceding positive crown elements in G4. It also
 
 ## Glass Identification
 
-The patent gives refractive index and Abbe number only. It does not name glass catalogs. The identifications below therefore distinguish exact catalog matches, close class matches, and unresolved materials. Japanese vendor catalogs are preferred where the optical constants support them, but the review does not force a vendor label when the current public catalogs do not match closely.
+The patent gives refractive index and Abbe number only. It does not name glass catalogs. The annotations below distinguish compatible current catalog curves from source material identities. All 15 positions currently resolve; no vendor or production melt is established by a coordinate match.
 
 | Element | nd | νd | Identification used | Status |
 |---|---:|---:|---|---|
 | L1 | 1.48749 | 70.2 | S-FSL5 (OHARA) | exact catalog match |
 | L2 | 1.71700 | 48.1 | S-LAM3 (OHARA) | close catalog match |
-| L3 | 1.79668 | 45.5 | 797455 - TAF2 class (Hoya legacy; no exact catalog match) | class attribution; not uniquely catalog-resolved |
+| L3 | 1.79668 | 45.5 | TAF2 catalog-coordinate proxy (patent 797455; production supplier unspecified) | Compatible current TAF2 curve; νd45.4 versus source 45.5 |
 | L4 | 1.80458 | 25.5 | S-TIH6 class (OHARA) | close class match |
 | L5 | 1.86074 | 23.0 | J-SFH2 (Hikari, 861231) | coefficient-backed coordinate |
 | L6 | 1.86074 | 23.0 | J-SFH2 (Hikari, 861231) | same glass as L5 |
@@ -148,11 +150,11 @@ The patent gives refractive index and Abbe number only. It does not name glass c
 | L12 | 1.51835 | 60.3 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate; production supplier unspecified |
 | L13 | 1.58913 | 61.2 | SK5 type (589/612) | class match |
 | L14 | 1.62280 | 57.0 | S-BSM10 (OHARA) | close catalog match |
-| L15 | 1.79504 | 28.6 | 795287 - J-LAFH3 (Hikari; no source-backed catalog match) | unresolved six-digit class |
+| L15 | 1.79504 | 28.6 | J-LAFH3 catalog-coordinate proxy (source 1.79504/28.6; production supplier unspecified) | Compatible current J-LAFH3 curve; νd28.69 versus source 28.6 |
 
 The glass palette is conventional for a mid-1980s all-spherical zoom. Chromatic correction is obtained by crown/flint pairing rather than by ED or anomalous-partial-dispersion glass. The strongest dispersion contrasts occur in the G2 triplet, where a high-Abbe fluorophosphate crown is cemented between high- and moderate-dispersion flints, and in the rear group, where positive crown elements are balanced by a high-index flint meniscus.
 
-The prior label for L12 as an Ohara S-NSL3 class glass was too specific. The current S-NSL3 constant is close in nd but not in νd, so the data file now leaves L12 as an unmatched crown-type material.
+L12 now resolves to the coefficient-backed SUMITA BALK3 proxy at 1.51835/60.3. All 15 physical glasses currently resolve to compatible curves, including TAF2 at L3 and J-LAFH3 at L15; their historical supplier identities remain unasserted. The source table captions n/ν without an explicit wavelength. Its stored d-line interpretation is supported by the catalog-coordinate families rather than a printed source wavelength. No C/F/g or θgF is supplied or invented.
 
 ## Focus and Macro Mechanism
 
@@ -170,6 +172,8 @@ Macro focusing is a separate operation. At the wide-angle end, the macro operati
 | Bf | 39.287 mm | 41.601 mm | +2.314 mm |
 
 The data file represents the patent macro state at the wide end. Because Table 2 does not provide macro data at the telephoto end, the telephoto close-focus values are left equal to the telephoto infinity values. This is a conservative data-modeling choice and should not be interpreted as a statement that the mechanical lens has no close-focus travel at longer focal lengths.
+
+The source design aperture is f/3.5 at wide and f/4.0 at tele. The mechanical patent contains no paired aberration plots or competing aperture figure. Required inferred cap floors are S11 12.4, S12 12.5, S14 13.2 mm. Marketed f/3.5–4.5 remains separate catalog/specification information.
 
 ## Verification Summary
 
@@ -208,7 +212,7 @@ The optical design is more complex than a simple two-group standard zoom but rem
 ## Sources
 
 - US Patent 4,806,000, "Zoom Lens Capable of Macro Photography," Nikon Corporation, granted February 21, 1989. Tables 1 and 2 provide the numerical prescription and variable spacings; Figs. 9, 10, and 15 show the four-group kinematics and lens construction.
-- Nikon-published product and compatibility literature for the AF Zoom-Nikkor 28-85mm f/3.5-4.5 family, used for production naming and marketed aperture range.
+- Nikon-published product and compatibility literature for the AF Zoom-Nikkor 28-85 mm f/3.5-4.5 family, used for production naming and marketed aperture range.
 - OHARA optical glass data sheets for S-FSL5, S-LAM3, S-TIH6/S-TIH11 class matches, S-BSM14, S-BSM10, and comparison against S-NSL3.
-- Hikari optical glass data for coefficient-backed J-SFH2 and the unresolved J-LAFH3 class check.
+- Hikari optical glass data for coefficient-backed J-SFH2 and the qualified current J-LAFH3 proxy.
 - Schott historical/catalog data for LF5/E-FL5 and N-BK7-class comparisons.

@@ -203,6 +203,7 @@ const LENS_DATA = {
     { label: "1", R: 68.8358, d: 1.3514, sd: 14.2, medium: 1 }, // L1 front
     {
       label: "2A",
+      rimCutDepthMm: 4.04, // Fig. 3 land; moved outward from measured q to clear every wide-open beam.
       R: 25.1596,
       d: 3.1598,
       sd: 14.2,
@@ -220,12 +221,13 @@ const LENS_DATA = {
     { label: "6", R: -213.335, sd: 13.0 }, // L3 rear → air (var: G1→G2)
 
     // ── Group 2 (G2): Focusing group, moves toward image ──
-    { label: "7", R: 114.0007, d: 1.2549, sd: 10.5, medium: 4 }, // L4 front
+    { label: "7", R: 114.0007, d: 1.2549, sd: 11.5, medium: 4 }, // L4 front
     {
       label: "8A",
+      rimExtensionSd: 10.6, // Source land, limited by the unchanged 5.2 mm gap to S9.
       R: 21.4584,
       d: 5.2,
-      sd: 10.0,
+      sd: 10.2,
       asphere: {
         K: 1.1218, // source kappa = 2.1218
         A4: -2.6928e-5,

@@ -284,6 +284,8 @@ const LENS_DATA = {
       role: "Negative meniscus at the rear of the fixed rear group.",
     },
   ],
+  // Fig. 1 (PDF p. 21), 13.70 native px/mm: preserve the S9/S11 clear caps
+  // and extend only their drawn lands to the square outer rims.
   surfaces: [
     {
       label: "1",
@@ -343,6 +345,7 @@ const LENS_DATA = {
       R: 56.136,
       d: 1.119,
       sd: 20.4,
+      rimExtensionSd: 23.48953137089427,
     },
     {
       label: "10",
@@ -356,6 +359,7 @@ const LENS_DATA = {
       R: 28.856,
       d: 8.586,
       sd: 18.2,
+      rimExtensionSd: 20.390024153836812,
     },
     {
       label: "STO",

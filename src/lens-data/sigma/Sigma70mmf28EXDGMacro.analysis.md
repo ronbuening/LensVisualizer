@@ -258,3 +258,6 @@ not independent spectrometric measurements.
 
 Catalog access and comparison date: 2026-10-04. None of these catalog matches establishes a
 production supplier or melt identity.
+
+
+The fresh original-figure review distinguishes the oblique bevels of E1, E4 and E5 from flat annular lands. Their present face steps remain qualified outline approximations; no opaque cemented interface or flat land is inferred from a bevel. Original Table 1 prints 1.5605, the rounded form of the prescription's 1.56045. Its native anomalous-dispersion terms of 0.0285 for L2B/L3A and 0.0443 for L3B remain at the printed precision, with the normal-line conversion kept separate from a claim of measured individual spectral indices.

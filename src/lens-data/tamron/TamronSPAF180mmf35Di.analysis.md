@@ -12,7 +12,7 @@
 Example 2 is identified with high confidence as the prescription underlying the Tamron SP AF 180mm F/3.5 Di LD [IF] Macro 1:1, model B01. The patent does not name the commercial model, so the identification rests on convergent evidence rather than an explicit statement:
 
 1. Example 2 has 14 elements in 11 air-separated groups, exactly matching Tamron's published B01 specification. Example 1 has 13 elements in 10 groups and is excluded.
-2. Two Example 2 elements have $n_d = 1.49700$ and $\nu_d = 81.61$. Those coordinates exactly match OHARA S-FPL51 and are consistent with Tamron's statement that B01 uses two LD elements.
+2. Two Example 2 elements have $n_d = 1.49700$ and $\nu_d = 81.61$. Those coordinates admit compatible ED-class catalog proxies and are consistent with Tamron's statement that B01 uses two LD elements.
 3. The patent gives $f = 176.9587$ mm and FNO 3.536 at infinity, consistent with the marketed 180 mm f/3.5 designation.
 4. The prescription includes a −1× state. After uniform scaling to the marketed 180 mm focal length, the independently traced object-to-image distance at that state is 468.63 mm, agreeing with Tamron's published 0.47 m minimum focus distance and 1:1 maximum reproduction ratio.
 5. The patent's fixed LG1 plus three moving rear groups matches Tamron's published floating internal-focus description and constant external length.
@@ -70,64 +70,64 @@ The focal lengths in this section are standalone thick-element values in air at 
 
 ### L1 — Biconvex Positive
 
-$n_d = 1.48749$, $\nu_d = 70.21$. Glass: S-FSL5 (OHARA catalog-coordinate match). $f = +163.727$ mm.
+$n_d = 1.48749$, $\nu_d = 70.21$. Glass: S-FSL5 (qualified OHARA catalog proxy). $f = +163.727$ mm.
 
 L1 is the fixed front collector. Its relatively low index and high Abbe number provide moderate positive power with limited primary chromatic contribution. The unequal curvatures distribute the refraction more strongly at the front surface while retaining a biconvex form.
 
 ### L2 — Positive Meniscus, Convex to Object (LD)
 
-$n_d = 1.49700$, $\nu_d = 81.61$. Glass: S-FPL51 (OHARA catalog-coordinate match). $f = +149.959$ mm.
+$n_d = 1.49700$, $\nu_d = 81.61$. Glass: FCD1 class (qualified HOYA spectral proxy). $f = +149.959$ mm.
 
-L2 is the first low-dispersion positive element. The rear radius of +5000 mm is nearly plane, so most of its power is at the front surface. The S-FPL51 catalog match has $\Delta P_{g,F} = +0.0280$; because the patent publishes only $n_d$ and $\nu_d$, the partial-dispersion identification is catalog-supported but not patent-explicit.
+L2 is the first low-dispersion positive element. The rear radius of +5000 mm is nearly plane, so most of its power is at the front surface. The current FCD1 coefficient model is a compatible spectral proxy. The patent supplies neither a measured partial dispersion nor a named glass supplier.
 
 ### L3 — Biconcave Negative
 
-$n_d = 1.83400$, $\nu_d = 37.17$. Glass: S-LAH60 (OHARA catalog-coordinate match). $f = -140.749$ mm.
+$n_d = 1.83400$, $\nu_d = 37.17$. Glass: S-LAH60 (qualified OHARA catalog proxy). $f = -140.749$ mm.
 
-L3 supplies high-index negative power between the two S-FPL51-coordinate elements. Its substantially lower Abbe number makes it the principal compensating partner in the front chromatic-correction section. The high index reduces the curvature required for a given surface power relative to a lower-index flint.
+L3 supplies high-index negative power between the two compatible ED-class elements. Its substantially lower Abbe number makes it the principal compensating partner in the front chromatic-correction section. The high index reduces the curvature required for a given surface power relative to a lower-index flint.
 
 ### L4 — Biconvex Positive (LD)
 
-$n_d = 1.49700$, $\nu_d = 81.61$. Glass: S-FPL51 (OHARA catalog-coordinate match). $f = +154.010$ mm.
+$n_d = 1.49700$, $\nu_d = 81.61$. Glass: FCD1 class (qualified HOYA spectral proxy). $f = +154.010$ mm.
 
 L4 is the second low-dispersion positive element. It repeats the L2 glass coordinates but uses a biconvex form. Together, L2, L3, and L4 form the main positive-negative-positive color-correction sequence in LG1.
 
 ### L5 + L6 — Cemented Doublet D1
 
-**L5:** $n_d = 1.74400$, $\nu_d = 44.79$. Glass: S-LAM2 (OHARA catalog-coordinate match). Standalone $f = -81.052$ mm.  
-**L6:** $n_d = 1.51633$, $\nu_d = 64.15$. Glass: S-BSL7 (OHARA catalog-coordinate match). Standalone $f = +79.976$ mm.
+**L5:** $n_d = 1.74400$, $\nu_d = 44.79$. Glass: S-LAM2 (qualified OHARA catalog proxy). Standalone $f = -81.052$ mm.
+**L6:** $n_d = 1.51633$, $\nu_d = 64.15$. Glass: S-BSL7 (qualified OHARA catalog proxy). Standalone $f = +79.976$ mm.
 
 The cemented pair has a net patent-scale focal length of −2191.54 mm. Its nearly power-neutral result is analytically important: the strong individual component powers largely cancel, while the large dispersion difference and strongly curved cemented interface provide chromatic correction. The individual standalone focal lengths must not be confused with their in-situ behavior inside the cemented assembly.
 
 ### L7 — Biconcave Negative
 
-$n_d = 1.69680$, $\nu_d = 55.50$. Glass: S-LAL14 (OHARA catalog-coordinate match). $f = -65.008$ mm.
+$n_d = 1.69680$, $\nu_d = 55.50$. Glass: S-LAL14 (qualified OHARA catalog proxy). $f = -65.008$ mm.
 
 L7 is the strongest independent negative component in LG2 and supplies most of that group's diverging action. LG2's group focal length is −48.0569 mm, so L7 works with D2 rather than acting as an isolated focus lens.
 
 ### L8 + L9 — Cemented Doublet D2
 
-**L8:** $n_d = 1.69680$, $\nu_d = 55.50$. Glass: S-LAL14 (OHARA catalog-coordinate match). Standalone $f = -58.296$ mm.  
-**L9:** $n_d = 1.84666$, $\nu_d = 23.78$. Glass: S-TIH53 (OHARA catalog-coordinate match). Standalone $f = +76.487$ mm.
+**L8:** $n_d = 1.69680$, $\nu_d = 55.50$. Glass: S-LAL14 (qualified OHARA catalog proxy). Standalone $f = -58.296$ mm.
+**L9:** $n_d = 1.84666$, $\nu_d = 23.78$. Glass: S-TIH53 (qualified OHARA catalog proxy). Standalone $f = +76.487$ mm.
 
 D2 has a net patent-scale focal length of −223.943 mm. The pair combines a negative lanthanum crown-coordinate element with a very high-index, low-Abbe positive element. Its net negative power supplements L7 while the large dispersion separation controls the chromatic variation introduced by the moving negative group.
 
 ### L10 — Biconvex Positive
 
-$n_d = 1.58913$, $\nu_d = 61.18$. Glass: S-BAL35 (OHARA catalog-coordinate match). $f = +93.715$ mm.
+$n_d = 1.58913$, $\nu_d = 61.18$. Glass: S-BAL35 (qualified OHARA catalog proxy). $f = +93.715$ mm.
 
 L10 begins the positive LG3 immediately behind the stop. It restores convergence after LG2 and contributes to the compensating action required as LG2 moves through a large axial range.
 
 ### L11 + L12 — Cemented Doublet D3
 
-**L11:** $n_d = 1.58913$, $\nu_d = 61.18$. Glass: S-BAL35 (OHARA catalog-coordinate match). Standalone $f = +66.463$ mm.  
-**L12:** $n_d = 1.72825$, $\nu_d = 28.46$. Glass: S-TIH10 (OHARA catalog-coordinate match). Standalone $f = -124.954$ mm.
+**L11:** $n_d = 1.58913$, $\nu_d = 61.18$. Glass: S-BAL35 (qualified OHARA catalog proxy). Standalone $f = +66.463$ mm.
+**L12:** $n_d = 1.72825$, $\nu_d = 28.46$. Glass: S-TIH10 (qualified OHARA catalog proxy). Standalone $f = -124.954$ mm.
 
 D3 has a net patent-scale focal length of +144.335 mm. Paragraph ¶0021 identifies the added positive lens in LG3 as the distinguishing change from Example 1 and attributes reduced spherical and axial chromatic aberration, plus shorter LG3 travel, to that modification. The numerical prescription implements the change as the positive L10 plus the positive-net D3 pair.
 
 ### L13 — Biconcave Negative
 
-$n_d = 1.53172$, $\nu_d = 48.91$. Glass: S-TIL6 (OHARA catalog-coordinate match). $f = -45.194$ mm.
+$n_d = 1.53172$, $\nu_d = 48.91$. Glass: S-TIL6 (qualified OHARA catalog proxy). $f = -45.194$ mm.
 
 L13 supplies the dominant negative power in LG4. Its position near the image side gives it substantial leverage over field curvature, astigmatism, and coma, although the patent does not assign those corrections element by element. Those roles are therefore an optical interpretation of its power and placement rather than quoted patent language.
 
@@ -139,27 +139,27 @@ L14 partially offsets L13 but does not reverse the sign of LG4, whose net focal 
 
 ## Glass Identification and Selection
 
-The patent gives only $n_d$ and $\nu_d$, not manufacturer glass names. Every distinct coordinate pair in Example 2 matches an OHARA catalog entry at the listed precision. These are therefore exact **catalog-coordinate matches**, not proof that Tamron purchased a particular OHARA melt. HOYA's official cross-reference tables list equivalent or near-equivalent commercial grades for several of the same six-digit glass codes and explicitly caution that matching codes do not guarantee identical composition.
+The patent gives only $n_d$ and $\nu_d$, not manufacturer glass names. All14 positions have compatible catalog coefficient models, with retained source coordinates and stated compatibility residuals. Those curves do not establish the historical glass or supplier. HOYA's official cross-reference tables list equivalent or near-equivalent commercial grades for several of the same six-digit glass codes and explicitly caution that matching codes do not guarantee identical composition.
 
-| Elements | Patent $n_d$ | Patent $\nu_d$ | OHARA coordinate match | Match status | Function in this design |
+| Elements | Patent $n_d$ | Patent $\nu_d$ | Compatible catalog proxy | Match status | Function in this design |
 |---|---:|---:|---|---|---|
-| L1 | 1.48749 | 70.21 | S-FSL5 | Exact | Low-index front crown |
-| L2, L4 | 1.49700 | 81.61 | S-FPL51 | Exact | LD fluorophosphate-coordinate positive elements |
-| L3 | 1.83400 | 37.17 | S-LAH60 | Exact | High-index negative chromatic partner |
-| L5 | 1.74400 | 44.79 | S-LAM2 | Exact | Negative member of D1 |
-| L6 | 1.51633 | 64.15 | S-BSL7 | Exact | Positive crown member of D1 |
-| L7, L8 | 1.69680 | 55.50 | S-LAL14 | Exact | Negative LG2 components |
-| L9 | 1.84666 | 23.78 | S-TIH53 | Exact | Dense-flint positive member of D2 |
-| L10, L11 | 1.58913 | 61.18 | S-BAL35 | Exact | Positive LG3 components |
-| L12 | 1.72825 | 28.46 | S-TIH10 | Exact | Dense-flint negative member of D3 |
-| L13 | 1.53172 | 48.91 | S-TIL6 | Exact | Negative rear corrector |
-| L14 | 1.67003 | 47.25 | S-BAH10 | Exact, special-order catalog | Positive final meniscus |
+| L1 | 1.48749 | 70.21 | S-FSL5 | Qualified proxy | Low-index front crown |
+| L2, L4 | 1.49700 | 81.61 | FCD1 | Qualified proxy | Inferred LD-class positive elements |
+| L3 | 1.83400 | 37.17 | S-LAH60 | Qualified proxy | High-index negative chromatic partner |
+| L5 | 1.74400 | 44.79 | S-LAM2 | Qualified proxy | Negative member of D1 |
+| L6 | 1.51633 | 64.15 | S-BSL7 | Qualified proxy | Positive crown member of D1 |
+| L7, L8 | 1.69680 | 55.50 | S-LAL14 | Qualified proxy | Negative LG2 components |
+| L9 | 1.84666 | 23.78 | S-TIH53 | Qualified proxy | Dense-flint positive member of D2 |
+| L10, L11 | 1.58913 | 61.18 | S-BAL35 | Qualified proxy | Positive LG3 components |
+| L12 | 1.72825 | 28.46 | S-TIH10 | Qualified proxy | Dense-flint negative member of D3 |
+| L13 | 1.53172 | 48.91 | S-TIL6 | Qualified proxy | Negative rear corrector |
+| L14 | 1.67003 | 47.25 | S-BAH10 | Qualified proxy | Positive final meniscus |
 
-The data file carries OHARA catalog $n_C$, $n_F$, and $n_g$ indices for every element. L2 and L4 also carry the S-FPL51 catalog deviation $\Delta P_{g,F} = +0.0280$. This supports a spectral model beyond plain Abbe interpolation while preserving the distinction between a coordinate match and a patent-disclosed glass name.
+The data now resolves qualified catalog curves at runtime. Its former catalog-only C/F/g indices and copied partial deviations were removed; the original patent supplies only d-line index and Abbe number.
 
 The chromatic architecture has three principal stations:
 
-- LG1 uses two high-Abbe S-FPL51-coordinate positive elements around the high-index, lower-Abbe L3, followed by the almost power-neutral D1 doublet.
+- LG1 uses two high-Abbe compatible ED-class positive elements around the high-index, lower-Abbe L3, followed by the almost power-neutral D1 doublet.
 - LG2 combines L7 with D2, whose components differ by 31.72 Abbe units.
 - LG3 uses the positive-net D3 doublet with a 32.72-unit Abbe separation.
 
@@ -251,15 +251,7 @@ All load-bearing paraxial values were recomputed from the numerical prescription
 | Scaled infinity EFL | 180 mm marketed | 180.0004 mm | +0.0004 mm |
 | Scaled −1× object-to-image distance | 0.47 m MFD | 468.63 mm | −1.37 mm |
 
-The inferred semi-diameter set was also checked numerically:
-
-| Constraint | Verified result |
-|---|---:|
-| Maximum $sd/|R|$ | 0.7602 < 0.90 |
-| Maximum front/rear SD ratio within one element | 1.2480 ≤ 1.25 |
-| Minimum computed edge thickness | 0.531 mm |
-| Maximum signed cross-gap sag fraction | 0.8890 < 0.90 |
-| Front-element semi-diameter | 34.5 mm < 36 mm filter radius |
+The current inferred rims pass the unchanged edge, slope, ratio and shared-gap checks; current source-supported changes and limitations are recorded below.
 
 The data file reproduces the infinity, −1/2×, and −1× patent rows as exact focus keyframes after scaling. Motion between those source states remains piecewise-linear visualization.
 
@@ -276,3 +268,11 @@ Tamron's official product page identifies B01 as a 2003 model with 180 mm focal 
 - Tamron Co., Ltd., official Lens History, 2003 model listing: https://www.tamron.com/global/consumer/brandsite/history/
 - OHARA GmbH, official “Glass data 5 decimal places,” April 2026, plus the official special-order glass catalog for S-BAH10: https://www.ohara-gmbh.com/en/dialog/downloads.html
 - HOYA Optics Europe, official Glass Cross Reference Index: https://www.hoyaoptics.eu/glass-cross-reference-index
+
+## Fresh original-patent shape and glass review
+
+Original Example2 Table/definitions on PDF4 and Fig.5/PDF6 were checked again. All14 source d-line pairs remain. The42 catalog C/F/g values and2 copied partial deviations have been removed in favor of qualified catalog resolution; L2/L4 use the closer FCD1 spectral proxy without changing source coordinates.
+
+Fig.5's axial ruler supports a roughly16.5mm final-meniscus radius; S25/S26 now share16.5mm. Other source-continuous paired caps are squared, and D1 S9/S10/S11 share the existing22.7mm interface height, removing the old diagonal taper artifact. Remaining concave ends do not show a separately resolved opaque shoulder, so no cut is invented. Source radii/gaps/scaling/focus/iris/tolerances are retained. Current nine-state SVGs have zero hidden trim; centered chiefs/native aperture pass. Stop-lattice counts3312/0/180 describe samples, not flux.
+
+All current named classes are compatible spectral proxies; none identifies a historical supplier, melt, resin chemistry or cure. Source index/Abbe values remain separate from coefficient models.

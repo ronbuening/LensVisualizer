@@ -22,14 +22,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ NOTE ON SEMI-DIAMETERS:                                              ║
  * ║   US 7,161,746 B2 does not publish clear semi-diameters for Example 9.║
  * ║   The values below are estimated from FIG. 17 and constrained by     ║
- * ║   signed sag clearance. They satisfy sd/|R| < 0.90, front/rear       ║
- * ║   element SD ratio ≤ 1.25, positive rim edge thickness for every     ║
- * ║   element, and cross-gap sag intrusion ≤ 90% of the intervening gap. ║
+ * ║   signed sag clearance. Exposed rear lands preserve smaller clear caps  ║
+ * ║   while restoring drawn body heights; see the 2026-10-30 audit.            ║
  * ║                                                                        ║
  * ║ IMPORTANT: This file describes only the optical prescription:         ║
  * ║   ✓ glass elements, surfaces, aperture stop, and image-plane gap      ║
  * ║   ✗ no sensor cover glass, filters, barrel, AF drive, or mount parts ║
  * ╚════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table review; exposed lands and
+ * source-filter restoration are documented in the audit sidecar.
  */
 
 const LENS_DATA = {
@@ -72,7 +74,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       focalLengthMm: -33.26,
-      glass: "S-BSM16 (OHARA)",
+      glass: "S-BSM16 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Large front negative meniscus that begins the 180° fisheye ray bending.",
     },
     {
@@ -83,7 +85,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.63,
       focalLengthMm: -37.52,
-      glass: "S-LAH59 (OHARA)",
+      glass: "S-LAH59 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "High-index second negative meniscus that shares front-group divergence with L1.",
     },
     {
@@ -94,7 +96,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 43.69,
       focalLengthMm: 50.85,
-      glass: "S-LAM52 (OHARA, NR)",
+      glass: "S-LAM52 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Positive meniscus that moderates front-group divergence before the cemented correction groups.",
     },
     {
@@ -105,7 +107,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -10.11,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Negative member of the first cemented front-group achromatizing doublet.",
       cemented: "D1",
     },
@@ -117,7 +119,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.46,
       focalLengthMm: 13.49,
-      glass: "S-TIH10 (OHARA)",
+      glass: "S-TIH10 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "High-dispersion positive member of the first cemented front-group doublet.",
       cemented: "D1",
     },
@@ -129,7 +131,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.42,
       focalLengthMm: 22.43,
-      glass: "S-NSL36 (OHARA)",
+      glass: "S-NSL36 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Low-index positive member of the weak cemented group before the stop.",
       cemented: "D2",
     },
@@ -141,7 +143,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -21.14,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "High-index negative member of the weak cemented group before the stop.",
       cemented: "D2",
     },
@@ -153,7 +155,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -34.7,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Very dense flint negative member of the rear ED correction doublet.",
       cemented: "D3",
     },
@@ -165,15 +167,12 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 25.87,
-      glass: "N-PK52A / FCD1 class ED (497/816; vendor unresolved)",
+      glass: "FCD1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: "inferred",
       apdNote:
-        "Exact 497/816 ED-class match; vendor not named by the patent. OHARA S-FPL51 is a near-equivalent, not an exact νd match.",
+        "ED-class inference from source nd/vd and compatible FCD1 curve; the patent publishes no per-element partial dispersion or source C/F/g indices, and production glass identity remains unresolved.",
       role: "Low-dispersion positive member of the rear cemented doublet and the design's ED-class element.",
       cemented: "D3",
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.5045,
     },
     {
       id: 10,
@@ -183,16 +182,16 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.54,
       focalLengthMm: 34.82,
-      glass: "S-LAL7Q (OHARA)",
+      glass: "S-LAL7Q (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Final positive biconvex relay element that helps form the long-back-focus image.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 85, d: 2.04, sd: 18, medium: 1 },
-    { label: "2", R: 16.45, d: 8.32, sd: 14.6 },
-    { label: "3", R: 61.18, d: 1.7, sd: 14, medium: 2 },
-    { label: "4", R: 20.15, d: 10.316, sd: 12 },
+    { label: "1", R: 85, d: 2.04, sd: 27, medium: 1 },
+    { label: "2", R: 16.45, d: 8.32, sd: 14.6, rimExtensionSd: 27 },
+    { label: "3", R: 61.18, d: 1.7, sd: 16.8, medium: 2 },
+    { label: "4", R: 20.15, d: 10.316, sd: 13.3, rimExtensionSd: 16.8 },
     { label: "5", R: -204, d: 3.43, sd: 10, medium: 3 },
     { label: "6", R: -31.26, d: 0.25, sd: 8.8 },
     { label: "7", R: -27, d: 2.78, sd: 8.45, medium: 4 },

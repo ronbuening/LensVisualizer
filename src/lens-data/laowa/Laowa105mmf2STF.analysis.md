@@ -302,8 +302,7 @@ The patent publishes no clear apertures, so every semi-diameter is inferred. The
 follow the element heights drawn in Figure 1, scaled from its 85.47 mm vertex span, and each
 is at least the height the F/2.05 axial ray reaches on that surface. The concave rear faces
 of L3 and L6 stop at 20.5 mm and 15.6 mm, where Figure 1 ends the curves at a flat annulus;
-the viewer joins the unequal rims of those two elements with a straight edge where the
-figure draws a square block. L4 is square-cut at 21.5 mm on both faces, as drawn.
+independently evidenced flat outer lands extend to 25.2 and 20 mm without enlarging the clear caps. S2 and S8 also carry drawing-inferred cut depths of 5.0 and 3.4 mm. The S2 land plane measures approximately 4.47 mm; that literal cut fails the full beam-clearance guard, so the adopted 5.0 mm preserves the wider modeled field and is explicitly a conservative model choice. S8 measures approximately 3.34 mm; 3.4 mm is the rounded adopted depth. Neither cut is a source-printed dimension. L4 remains square-cut at 21.5 mm.
 
 The S6/S7 air space is tightly bounded: the axial marginal ray reaches 20.39 mm on S6 and
 20.38 mm on S7, while the default rule that surface sag may take up at most 90 % of an air

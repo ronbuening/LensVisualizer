@@ -99,3 +99,17 @@ set in the #928 review). Traced against that rule, these cuts from the figure re
   where it vanishes, they reach the 16.4 mm rim itself (focusT 0.80, 15.33°).
 
 The lens carries no cut, and the surface audit and the beam rule pass.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JP2020173366A.pdf`, Example 3, Figure 3 (PDF p. 20, lower-left EX3 panel), and inspected every element at 600 dpi. The 97.291 mm first-to-last-vertex span gives about 6.97 native px/mm. The figure's element edges continue to agree with the stored rims; its short concave lands on 4, 7, 10, 16 and 20 would reduce existing clear apertures. No separate taller air-side edge can be added while preserving those caps. The earlier full-beam checks remain the reason those inferred cuts are excluded, especially 16 where the beam reaches the 16.4 mm rim. The almost-flat face 19 does not resolve a land.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The source-summary contradiction and the existing optical apertures remain explicitly qualified; no speculative prescription correction or clipping change was made.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/JP2020173366A.pdf`, Example 3 (¶0069–¶0070), PDF pp. 16–17. All 12 lens-element nd/νd pairs and the PT rear plate match the d-line table; Example 2's different rows on the top of p. 16 were excluded. L14 is 1.85025/30.05, L43 1.84850/43.79 and PT 1.51680/64.20 as stored.
+
+Each annotation resolves compatibly: L11 S-LAH66, L12 FCD705, L13 S-FPL51, L14 H-ZLaF76, L21 PBH21, L22/L44 J-F5, L31 J-PSKH4, L41 TAFD35, L42 H-ZF2, L43 J-LASFH22, L45 SF2, and PT J-BK7A. All 12 lens elements plus PT have coefficient-backed catalog curves. No source line-index or partial-dispersion measurement supports restoring the former L12/L13 APD claims; their false flags and qualified analysis remain correct. Exact-coordinate or compatible matches do not establish production material chemistry or suppliers.
+
+No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry and the separately documented source-summary contradiction are unchanged.

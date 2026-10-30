@@ -188,6 +188,8 @@ The Table 1 prescription was independently re-traced using a paraxial reduced-an
 
 The explicit `STO` surface in the data file is an inferred split of the patent's surface-14 air gap. The stop split is optically neutral in first order and is used only to render and trace the aperture position. With the selected `STO` semi-diameter of `6.12 mm`, pupil tracing gives approximately `f/2.7995`, consistent with the patent and production f/2.8 designation.
 
+A fresh review of both halves of patent Fig. 1 restores the drawn vertical lands on surfaces 4 and 6: their existing 9.7/7.8 mm optical caps remain intact, and opaque extensions reach the opposite faces' 13.9/9.5 mm rims. Surface 2 shows continuous curvature and now uses a 20.9 mm clear radius, matching the front face. The lands preserve the optical apertures; the surface 2 change expands its cap. These dimensions remain source-guided modeling estimates.
+
 The inferred clear apertures were checked against the current renderer constraints. The maximum `sd/|R|` value is approximately `0.896` (surface 4), below the `0.90` spherical rim limit. The minimum computed edge thickness remains greater than `1.0 mm`. The largest positive cross-gap sag-intrusion fraction is approximately `0.834`, below the `0.90` project limit.
 
 ## Design Heritage and Context

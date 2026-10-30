@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: -69.1,
-      glass: "697555 — lanthanum crown (patent coordinate; vendor unresolved)",
+      glass: "697555 — J-LAK14 catalog spectral proxy (patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Negative G2 focus element; moves toward the image.",
     },
@@ -164,12 +164,11 @@ const LENS_DATA = {
       vd: 25.15,
       focalLengthMm: -62.5,
       glass: "NBFD25 (inferred catalog counterpart; production material unspecified)",
-      apd: "patent",
+      apd: "inferred",
       apdNote:
-        "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+        "Catalog-proxy dispersion only. Paragraph 0109 identifies L5 as Nf, so condition 17 is not a published partial-dispersion value for L9 despite their repeated nd/vd.",
       role: "Negative member of cemented doublet D2.",
       cemented: "D2",
-      dPgF: 0.0092593,
     },
     {
       id: 10,

@@ -33,7 +33,7 @@ Zooming is by changing the spacing between G1 and G2 and by moving the rear flar
 
 ### L1 — Negative Meniscus, Compound Aspherical
 
-nd = 1.77279, νd = 49.5 for the glass substrate. Glass: S-LAH66 class (OHARA). Resin layer: nd = 1.49712, νd = 55.9, proprietary UV-curing optical resin. f = -28.42 mm for the compound element.
+nd = 1.77279, νd = 49.5 for the glass substrate. Glass: S-LAH66 spectral proxy from the OHARA catalog; production supplier unconfirmed. Resin layer: nd = 1.49712, νd = 55.9; the patent identifies a resinous/glass compound but does not establish the resin formulation or cure chemistry. f = -28.42 mm for the compound element.
 
 L1 is the front negative element of G1 and the only aspherical element in the patent embodiment. The glass substrate uses R1 = +97.086 mm and R2 = +19.500 mm with a center thickness of 2.20 mm. A 0.03 mm resin layer is bonded to its rear surface, and the resin's air-contact face is the aspherical surface with paraxial R3 = +16.891 mm.
 
@@ -41,7 +41,7 @@ The hybrid construction is not merely a manufacturing detail. The aspherical sur
 
 ### L2 — Positive Meniscus, Convex to Object
 
-nd = 1.80458, νd = 25.5. Glass: S-TIH6 class (OHARA). f = +80.34 mm.
+nd = 1.80458, νd = 25.5. Glass: S-TIH6 spectral proxy from the OHARA catalog; production supplier unconfirmed. f = +80.34 mm.
 
 L2 completes the negative first zoom group. Its radii, R4 = +26.633 mm and R5 = +42.414 mm, form a positive meniscus convex toward the object. The high-index, high-dispersion flint moderates L1's strong negative power and contributes to front-group chromatic correction.
 
@@ -49,7 +49,7 @@ Although G1 is negative overall, L2 is important to the compactness of the lens.
 
 ### L3 — Biconvex Positive
 
-nd = 1.64000, νd = 60.0. Glass: S-BSM81 (OHARA). f = +35.38 mm.
+nd = 1.64000, νd = 60.0. Glass: S-BSM81 spectral proxy from the OHARA catalog; production supplier unconfirmed. f = +35.38 mm.
 
 L3 is the leading positive element in G2. Its front surface, R6 = +25.554 mm, carries most of the curvature; the rear surface, R7 = -186.207 mm, is weak. This element begins the convergence of the divergent bundle from G1 and contributes a large positive Petzval term.
 
@@ -57,23 +57,23 @@ The stop is located in the 1.40 mm air interval between L3 and L4. The data file
 
 ### L4 — Positive Meniscus, Convex to Object
 
-nd = 1.51680, νd = 64.1. Glass: J-BK7A (HIKARI) / N-BK7 class (SCHOTT). f = +47.18 mm.
+nd = 1.51680, νd = 64.1. Glass: J-BK7A spectral proxy from the Hikari catalog; production supplier unconfirmed. f = +47.18 mm.
 
 L4 follows the aperture stop. Its R8 = +22.446 mm and R9 = +267.680 mm form a positive meniscus convex toward the object. It supplies additional positive power after the stop while keeping dispersion low.
 
-The earlier S-BSL7 label is not the best catalog identification. OHARA S-BSL7 is a BK7-family glass but its published nd is about 1.51633, whereas the patent value is 1.51680. HIKARI J-BK7A and SCHOTT N-BK7-class glass match the tabulated index and Abbe number more closely, so the data and analysis use that identification.
+The earlier S-BSL7 label is not the best catalog identification. OHARA S-BSL7 is a BK7-family glass but its published nd is about 1.51633, whereas the patent value is 1.51680. HIKARI J-BK7A and SCHOTT N-BK7-class glass match the tabulated index and Abbe number more closely, so the data and analysis use that qualified spectral proxy.
 
 ### L5 — Biconcave Negative
 
-nd = 1.79504, νd = 28.6. Glass: 795286 - J-LAFH3 (HIKARI; no source-backed catalog match). f = -17.52 mm.
+nd = 1.79504, νd = 28.6. Glass: J-LAFH3 spectral proxy from the Hikari catalog (patent 795286); production supplier unconfirmed. f = -17.52 mm.
 
-L5 is the sole negative element in G2. The front surface is R10 = -61.313 mm and the rear surface is R11 = +18.917 mm, with the stronger curvature on the image side. Its high-index lanthanum-flint character makes it the main negative correction element in the rear group.
+L5 is the sole negative element in G2. The front surface is R10 = -61.313 mm and the rear surface is R11 = +18.917 mm, with the stronger curvature on the image side. Its high refractive index and low Abbe number makes it the main negative correction element in the rear group.
 
 A surface-by-surface Petzval calculation gives L5 contributions of -0.00722 mm^-1 at surface 10 and -0.02341 mm^-1 at surface 11. The rear surface of L5 is therefore the single largest negative Petzval term in the prescription, pulling the otherwise positive rear group toward a flatter field.
 
 ### L6 — Biconvex Positive
 
-nd = 1.64831, νd = 33.7. Glass: J-SF2 / S-TIM22 / N-SF2 class. f = +37.73 mm.
+nd = 1.64831, νd = 33.7. Glass: J-SF2 spectral proxy (patent 648337); production supplier unconfirmed. f = +37.73 mm.
 
 L6 is the final refractive element, with R12 = +141.576 mm and R13 = -29.366 mm. It provides the final positive convergence before the image plane and works with L5 to balance longitudinal color and field curvature near the rear of the system.
 
@@ -81,19 +81,19 @@ The flat surface labeled S in the patent follows L6. It is a fixed-diameter flar
 
 ## Glass Identification and Selection
 
-The glass identifications below are based on independent catalog matching against authoritative manufacturer data. They are class identifications unless the catalog pair closely matches both nd and νd.
+The glass identifications below are based on independent catalog matching against authoritative manufacturer data. All six glass rows now resolve to coordinate-compatible coefficient-backed catalog curves; these are spectral proxies and do not identify production suppliers or melts. The source-stated resin remains unresolved.
 
 | Element | Patent nd | Patent νd | Preferred identification | Catalog comparison |
 |---|---:|---:|---|---|
 | L1 glass | 1.77279 | 49.5 | S-LAH66 class (OHARA) | OHARA S-LAH66: nd 1.77250, νd 49.60 |
-| L1 resin | 1.49712 | 55.9 | UV-curing optical resin | Proprietary patent-listed resin |
+| L1 resin | 1.49712 | 55.9 | Optical resin | Source-stated compound layer; formulation and cure chemistry unspecified |
 | L2 | 1.80458 | 25.5 | S-TIH6 class (OHARA) | OHARA S-TIH6: nd 1.80518, νd 25.42 |
 | L3 | 1.64000 | 60.0 | S-BSM81 (OHARA) | OHARA S-BSM81: nd 1.64000, νd 60.08 |
 | L4 | 1.51680 | 64.1 | J-BK7A / N-BK7 class | HIKARI J-BK7A: nd 1.516800, νd 64.14; SCHOTT N-BK7: nd 1.51680, νd 64.17 |
-| L5 | 1.79504 | 28.6 | 795286 - J-LAFH3 (HIKARI; no source-backed catalog match) | Six-digit class retained; no source-backed Sellmeier entry added |
+| L5 | 1.79504 | 28.6 | J-LAFH3 spectral proxy (Hikari catalog) | Current compatible coefficient-backed curve; production supplier unconfirmed |
 | L6 | 1.64831 | 33.7 | J-SF2 / S-TIM22 / N-SF2 class | HIKARI J-SF2 and SCHOTT N-SF2 are slightly lower in nd but match the dense-flint class |
 
-The design uses conventional crown/flint balancing rather than ED or anomalous-partial-dispersion correction. L1 and L2 form the front-group chromatic pair; L3/L4 supply low-dispersion positive power after the group separation; L5 and L6 provide the negative/positive rear correction pair.
+The source provides d-line index and Abbe number without element-specific partial-dispersion values; the data therefore authors no patent APD claim. Primary color balancing can be described from the source power and Abbe-number pairs. L1 and L2 form the front-group chromatic pair; L3/L4 supply low-dispersion positive power after the group separation; L5 and L6 provide the negative/positive rear correction pair.
 
 ## Focus Mechanism
 
@@ -131,10 +131,10 @@ All conditional values below were recomputed from the Table 4 prescription by pa
 
 | Condition | Formula | Patent value | Computed value |
 |---|---|---:|---:|
-| (1) | f2 / |f1| | 0.762 | 0.7616 |
+| (1) | f2 / abs(f1) | 0.762 | 0.7616 |
 | (2) | X2 / fw | 1.291 | 1.2906 |
-| (3) | |f1| / sqrt(fw fT) | 1.01 | 1.0150 |
-| (4) | |f1| / fT | 0.618 | 0.6183 |
+| (3) | abs(f1) / sqrt(fw fT) | 1.01 | 1.0150 |
+| (4) | abs(f1) / fT | 0.618 | 0.6183 |
 | (5) | f2 / fT | 0.471 | 0.4709 |
 | (6) | (Dw - DT) / fw | 1.33 | 1.3294 |
 | (7) | Bfw / fw | 1.487 | 1.4868 |
@@ -153,10 +153,10 @@ The prescription was re-entered from Table 4 and checked with an independent y-u
 | Computed BFD from L6 rear (mm) | 42.8187 | 58.9639 | 79.9811 |
 | Patent d13 + d14 (mm) | 42.8194 | 58.9667 | 79.9884 |
 | Patent S-to-image d14 (mm) | 42.8194 | 50.9667 | 63.9884 |
-| Computed design F-number from STO = 8.30 mm | 3.423 | 4.455 | 5.799 |
+| Current model stated / traced F-number | 3.300 | 4.500 | 5.600 |
 | Total front-surface-to-image track (mm) | 116.2450 | 106.5778 | 115.1269 |
 
-The EFL agreement is within 0.01% at all three zoom positions. The optical BFD values agree with d13 + d14 to within the rounding expected from the patent table. The fixed stop semi-diameter in the data file reproduces the patent's design F-number range of about f/3.4-5.8; the separate `nominalFno` array records Nikon's marketed f/3.3, f/4.5, and f/5.6 values for the UI.
+The EFL agreement is within 0.01% at all three zoom positions. The optical BFD values agree with d13 + d14 to within the rounding expected from the patent table. The current zoom-dependent stop is derived from the model's existing f/3.3, f/4.5, and f/5.6 controls; these remain distinct from the patent's design f/3.4–5.8. The aperture review below gives the current computed stop radii and traced clearances.
 
 The Petzval sum was computed surface-by-surface as Σ φ/(n n′), not by thin-lens element approximation. The result is +0.002542 mm^-1, corresponding to a Petzval radius of approximately +393 mm. This weak positive value is consistent with a compact standard zoom that relies on the L5 negative element for field flattening but does not include a dedicated field flattener.
 
@@ -174,5 +174,11 @@ Nikon's later design article identifies the AF Zoom-Nikkor 28-80mm f/3.3-5.6G as
 - Nikon Corporation, "NIKKOR - The Thousand and One Nights No.63: The AF Zoom-Nikkor 28-80mm f/3.3-5.6G."
 - Nikon Corporation, "AF Nikkor Lenses Specifications," April 2004, row for AF 28-80mm f/3.3-5.6G.
 - OHARA Corporation optical glass catalog entries for S-LAH66, S-TIH6, and S-BSM81.
-- Hikari Glass / Nikon J-series optical glass catalog entries for J-BK7A and J-SF2; J-LAFH3 was checked but retained as an unresolved six-digit class label.
+- Hikari Glass / Nikon J-series optical glass catalog entries for J-BK7A, J-SF2, and the currently available compatible J-LAFH3 curve.
 - SCHOTT optical glass catalog entries for N-BK7 and N-SF2.
+
+## Current Aperture and Outline Review
+
+The current model derives the zoom-dependent stop from the existing f/3.3, f/4.5, and f/5.6 controls, giving stop radii 8.608328, 8.216850, and 8.594584 mm. These are model apertures, distinct from Table 4's source design f/3.4–5.8. Fresh Figure 4A–C inspection (PDF page 5) and axial-beam checks support raising surfaces 8/9 together from 7.9/7.4 to 8.3/8.3 mm, surface 10 from 7.7 to 7.9 mm, and surface 11 from 6.45 to 6.9 mm. The stated axial apertures now pass exactly at all three zoom stations. Making L5 fully square at 7.9 mm would exceed the allowed intrusion in the printed 1.35 mm gap: 1.390 mm against the unchanged 1.215 mm bound. Its smaller rear cap therefore remains qualified.
+
+Figure 4 also clearly draws a flat outer end on the compound L1 rear face. Extending the current 14.6 mm resin cap to the full 18 mm outer glass rim would give negative resin edge thickness (−1.362 mm at the 16 mm glass/resin interface). That extension is rejected; a flat land cannot be added to the cemented interface under the current surface schema, and an isolated resin wing would be incorrect. Other possible short concave ends, including L5, are not distinguishable from the native figure ink well enough to justify an additional inferred trim. The front compound remains a qualified tapered approximation. Its aspheric clear cap is unchanged at 14.6 mm, with computed same-radius spherical departure −1.435732 mm and rim slope 46.343740°. No source radius, thickness, conic, polynomial, zoom gap, focus rule, or aperture control changed.

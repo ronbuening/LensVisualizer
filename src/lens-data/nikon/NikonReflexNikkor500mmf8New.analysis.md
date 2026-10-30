@@ -73,7 +73,7 @@ This element begins the net negative power of the rear corrector and strongly pa
 
 ### L22 — Negative Meniscus Corrector
 
-nd = 1.51823, νd = 58.96. Glass: Hoya E-C3 exact by nd/νd; Ohara S-NSL3 is a near-equivalent 518/590 crown. f = −222.7 mm.
+nd = 1.51823, νd = 58.96. Glass: E-C3 catalog-compatible spectral proxy at the exact nd/νd coordinate; production supplier unspecified. f = −222.7 mm.
 
 L22 is a weak negative meniscus, concave to the object side, with R11 = −29.450 mm and R12 = −41.602 mm. It is less powerful than L21 but provides a controlled curvature transition between the strong negative first corrector and the positive rear meniscus.
 
@@ -94,7 +94,7 @@ The glass palette is conservative. Four of the six elements use the same 517/641
 | Element(s) | Patent nd | Patent νd | Identification | Role |
 |---|---:|---:|---|---|
 | L1, M1, M2, L21 | 1.51680 | 64.12 | 517/641 borosilicate crown; BSC7 / N-BK7 class | Front collector, both Mangin mirror bodies, first rear corrector |
-| L22 | 1.51823 | 58.96 | Hoya E-C3 exact; Ohara S-NSL3 near-equivalent | Weak negative meniscus corrector |
+| L22 | 1.51823 | 58.96 | E-C3 exact-coordinate spectral proxy, supplier unspecified | Weak negative meniscus corrector |
 | L23 | 1.79631 | 40.96 | 796410 class; NBFD2 catalog spectral proxy, supplier unspecified | Positive high-index field-corrector meniscus |
 
 The mirror-powered architecture is the main chromatic-correction mechanism. Mirrors do not disperse light, so the dominant positive and negative powers do not introduce ordinary longitudinal color in the way a purely refractive 500 mm telephoto would. The glass choices therefore keep residual refractive color under control rather than attempting an apochromatic refractive correction.
@@ -138,7 +138,7 @@ The rear corrector group handles most of the field-dependent cleanup. Table 3 of
 
 Using the surface-by-surface Petzval formula φ/(n·n′), including signed refractive index through reflection, the full system gives a Petzval sum of approximately +7.62 × 10⁻⁴ mm⁻¹. That corresponds to a Petzval radius of about +1313 mm, or roughly 2.63 times the 499.482 mm focal length. The positive M2 Petzval term and the negative M1 and rear-corrector terms nearly cancel, leaving a relatively flat field for a very short folded telephoto.
 
-The aperture distinction also matters. The patent's F-number is geometric: F/6.7 from the clear annular entrance geometry. The production lens is designated f/8 because the secondary obstruction removes roughly 30% of the collecting area. The data file therefore records both: apertureDesign = 6.7 and apertureMarketing / nominalFno = 8.
+The aperture distinction also matters. The patent's F-number is geometric: F/6.7 from the clear annular entrance geometry. The model chooses its obstruction to relate the geometric f/6.7 aperture to an area-equivalent f/8, removing roughly30% of the modeled entrance area. This is an inferred modeling relationship, not a patent measurement or proof of why the production lens was designated f/8. The data file therefore records both: apertureDesign = 6.7 and apertureMarketing / nominalFno = 8.
 
 ## Verification Summary
 
@@ -161,3 +161,7 @@ The design's practical limitations are the usual ones for a compact catadioptric
 - Hoya Optical World, Glass Cross Reference Index, for six-digit glass-code equivalence classes.
 - Hoya optical glass catalog data for E-C3, nd = 1.51823, νd = 58.96.
 - SCHOTT N-BK7 datasheet and Ohara S-NSL3 / S-LAH52 datasheets, used only as catalog-class checks against the patent nd/νd values.
+
+## Fresh source review (2026-10-30)
+
+FIG.1/Table 1 and the repeated claim table were directly rechecked. All six source coordinate pairs remain literal. Four N-BK7 curves differ from sourceν64.12 by+.05; E-C3 matches the source coordinate. NBFD2 remains a deliberately approximate spectral proxy: current catalog 1.797199/41.143795 versus source 1.79631/40.96 (Δnd+.000889/Δν+.183795). None identifies a production supplier or historical melt. Table headings do not separately label index wavelength; the d-line interpretation follows the patent aberration convention. No unpublished partial/spectral data are added. Continuous mirror/lens caps justify no new lands or cuts, and annular SVG geometry has zero hidden trim. Generalized sampled rays pass96/96 axially across the focus travel; source-angle collimated checks retain the documented off-axis clipping. Such counts validate traversal, not production flux or finite focus accuracy.

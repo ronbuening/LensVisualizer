@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 7,898,744 B2 — *Close-Up Lens, Imaging Apparatus, and Method for Focusing Close-Up Lens*
+**Patent:** US 7,898,744 B2 — _Close-Up Lens, Imaging Apparatus, and Method for Focusing Close-Up Lens_
 
 **Inventor:** Mitsuaki Wada
 
@@ -100,7 +100,7 @@ Positive component of G4 cemented doublet; same glass as L9, strong convergence 
 
 ## Glass Identification and Selection
 
-Table 2 publishes refractive indices and Abbe numbers, not supplier identities. All named glasses above are inferred catalog counterparts. L4's S-BSL7 counterpart is approximate: the source index is 1.516120, not the catalog 1.516800. The source coordinates remain authoritative for the prescription.
+Fresh inspection of Table 2 (US7898744.pdf, PDF pages 22–23) confirms all 12 stored nd/νd pairs at the d line (587.6 nm, column 6). The table supplies no individual C/F/g indices or partial-dispersion ratios. All 12 elements resolve to compatible catalog curves; that wavelength coverage does not identify a production melt. Table 2 publishes refractive indices and Abbe numbers, not supplier identities. All named glasses above are inferred catalog counterparts. L4's S-BSL7 counterpart is approximate: the source index is 1.516120, not the catalog 1.516800. The source coordinates remain authoritative for the prescription.
 
 L7 has the lowest dispersion (νd 82.56). This supports a low-dispersion description but does not establish Nikon's proprietary ED identity, glass chemistry or a patent-measured anomalous-dispersion value. The previous approximate ΔPgF=0.033 override was removed; wavelength behavior based on a compatible catalog curve remains a modeling inference. The L8/L9 doublet combines νd 65.47 and 23.78, providing dispersion contrast for chromatic balancing.
 
@@ -108,12 +108,12 @@ L7 has the lowest dispersion (νd 82.56). This supports a low-dispersion descrip
 
 Table 2 specifies three stations; intermediate movement is interpolated.
 
-| Air gap (mm) | Infinity | β = −0.5 | β = −1 |
-|---|---:|---:|---:|
-| D6, G1–G2 | 2.62569 | 6.63506 | 13.83349 |
-| D11, G2–stop | 12.29619 | 8.28682 | 1.08839 |
-| D12, stop–G3 | 23.27238 | 12.33659 | 1.87196 |
-| D17, G3–G4 | 4.49094 | 15.42810 | 25.89136 |
+| Air gap (mm) | Infinity | β = −0.5 |   β = −1 |
+| ------------ | -------: | -------: | -------: |
+| D6, G1–G2    |  2.62569 |  6.63506 | 13.83349 |
+| D11, G2–stop | 12.29619 |  8.28682 |  1.08839 |
+| D12, stop–G3 | 23.27238 | 12.33659 |  1.87196 |
+| D17, G3–G4   |  4.49094 | 15.42810 | 25.89136 |
 
 G2 travels 11.20780 mm imageward; G3 travels 21.40042 mm objectward. The source middle station has a 0.00137 mm discrepancy in D12+D17 relative to the endpoints. Its rows are preserved, so the model has that small rear-group drift rather than a silently repaired gap.
 
@@ -123,22 +123,24 @@ A reduced-angle paraxial matrix independently reproduces 58.01453 mm EFL at infi
 
 The equation in column 6 uses a square-root term 1−κh²/R². The viewer uses 1−(1+K)h²/R², hence K=κ−1. Copying κ directly as K changed both displayed surfaces.
 
-| Parameter | S2A | S8A |
-|---|---:|---:|
-| Source κ | −5.3148 | +2.1218 |
-| Standard K | −6.3148 | +1.1218 |
-| A4 | +5.58040e−5 | −2.69280e−5 |
-| A6 | −1.43070e−7 | −9.47080e−8 |
-| A8 | +5.02630e−10 | +9.70030e−11 |
-| A10 | −7.75980e−13 | −2.56360e−12 |
+| Parameter  |          S2A |          S8A |
+| ---------- | -----------: | -----------: |
+| Source κ   |      −5.3148 |      +2.1218 |
+| Standard K |      −6.3148 |      +1.1218 |
+| A4         |  +5.58040e−5 |  −2.69280e−5 |
+| A6         |  −1.43070e−7 |  −9.47080e−8 |
+| A8         | +5.02630e−10 | +9.70030e−11 |
+| A10        | −7.75980e−13 | −2.56360e−12 |
 
-All polynomial terms retain the published values. The S8A conic domain now ends at about 14.73 mm radius; clearance to its neighbor imposes a tighter practical rendering limit. Neither conic nor glass coordinates identify a molding process.
+All polynomial terms retain the published values. At the actual adopted cap radius 13.298866 mm, S2A departs from its vertex sphere by +237.966 µm and has a 34.919° rim slope. S8A at its 10.2 mm cap has −180.869 µm departure and a 24.704° slope. Its conic domain ends at about 14.73 mm radius; clearance to its neighbor imposes a tighter practical drawing limit. Neither conic nor glass coordinates identify a molding process.
 
 ## Diagram Dimensions and Modeling Limits
 
 Semi-diameters are inferred from Figure 3, checked at 600 dpi, rather than published clear apertures. Front radii are about 14.2 mm for L1, 13.4 mm for L2 and 13.0 mm for L3. The G2 doublet is approximately 13.3/12.8 mm, and G3 about 12.5/12.4 mm.
 
-Figure-sized candidates for L4 and G4 violate the model's cross-gap clearance constraints at S8A–S9 and S19–S20. Their existing conservative radii remain: L4 10.5/10.0 mm and G4 11.5 mm (S19 11.4 mm). These are unresolved figure-versus-clear-aperture differences; they are not claimed to reproduce the full drawn rims. No source radii or air gaps were altered to force a silhouette match.
+Figure 3 resolves short flat lands on the concave rear faces of L1 and L4. S2A now ends at radius 13.298866 mm (4.04 mm cut depth) inside its unchanged 14.2 mm outer rim. This lies outward of the measured figure cap to preserve the full wide-open beams and their clearance margin. L4 has an 11.5 mm front radius; its rear cap grows from 10.0 to 10.2 mm to pass the nominal axial beam, followed by a flat land to 10.6 mm.
+
+A source-like 11.5 mm L4 rear rim would intrude 5.082 mm into the unchanged 5.2 mm gap to S9, above the 4.680 mm policy bound; even a 10.7 mm rim reaches 4.704 mm. The adopted 10.6 mm land passes. G4 retains 11.5 mm rims (S19 11.4 mm): its larger figure-sized trial still violates S19–S20 clearance, and the small endpoint strokes do not establish another safe trim. These residual silhouette differences remain explicit. All other faces and three cemented boundaries were inspected; no additional resolved, eligible land was adopted. No source radii or air gaps were altered.
 
 This example contains no cover-glass or filter surfaces. The source rear air gap of 37.45 mm is retained unchanged. Aperture controls start at the patent f/2.88; the modeled iris and intermediate focus states do not establish a production diaphragm schedule.
 

@@ -34,6 +34,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Fig. 1A draws flat lands at the rims of the concave faces 5A (L21   ║
  * ║    rear) and 25 (L52 front). 25 is cut at 15.12 mm. 5A keeps its       ║
  * ║    14.4 mm rim, the asphere's designed extent, uncut.                  ║
+ * ║    Rim extension (2026-10-29): Fig. 1A, p. 38, 4.126 native px/mm,    ║
+ * ║    draws 5A's land to the 21.5 mm partner rim. rimExtensionSd adds    ║
+ * ║    that land while keeping the optical cap at 14.4 mm.                 ║
  * ║                                                                        ║
  * ║  NOTE ON APERTURE:                                                     ║
  * ║    FNo 4.00 at W/M/T with the stop riding in G3. The patent lists no   ║
@@ -216,8 +219,9 @@ const LENS_DATA = {
       focalLengthMm: 17.7,
       glass: "J-PSKH1 (Hikari)",
       apd: "inferred",
-      apdNote: "νd = 67.9, low-Tg lanthanum crown — Nikon's second designated ED element",
-      role: "G3 field-correcting doublet rear — ED glass for secondary spectrum correction",
+      apdNote:
+        "Inferred from the compatible J-PSKH1 catalog curve; the patent gives no partial dispersion for L35. Its production ED-element association remains unconfirmed.",
+      role: "G3 field-correcting doublet rear — low-dispersion positive glass; APD behavior is a catalog-based inference",
       cemented: "D3b",
     },
     {
@@ -285,6 +289,7 @@ const LENS_DATA = {
       R: 17.04241,
       d: 8.087,
       sd: 14.4,
+      rimExtensionSd: 21.5,
       asphere: {
         K: -1, // patent κ = 0 → K = κ − 1 = −1 (paraboloid)
         A4: 2.11342e-5,

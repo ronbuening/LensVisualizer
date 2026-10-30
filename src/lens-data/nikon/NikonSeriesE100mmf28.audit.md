@@ -37,3 +37,7 @@ Patent: US 4,303,314, Embodiment 1 / Claim 2
 
 - L1 now preserves the patent `613586` pair with authored line-index backfill.
 - L2, L3, and L4 retain their existing catalog-backed/class labels because their stored `nd`/`vd` values match the patent and resolve consistently.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Re-read original `patents/US4303314.pdf`, Fig.1 (PDF p2) and Embodiment1/claim2 tables (p5). All four source nd/νd pairs are preserved. Removed all12 unsourced catalog C/F/g fields, so spectra now use the four compatible coefficient-backed catalog curves. L1’s BACD4 curve is available in the current catalog; replaced the obsolete line-backfill/unavailable label with a qualified proxy. No source partial data, production supplier, melt or APD identification is established. The shared schematic has scale≈13.2 native px/mm from ~707px /53.55mm vertex span. At S6, cap/edge q≈.75 with ±(1+q)/181≈.010 one-native-pixel uncertainty; retain existing16.8mm cap and extend the opaque rim to18.5mm (adoptedq.908). S2 is continuously curved, so raise its clear SD20.8→21.2mm to the common L1 rim. The L2 source bevel remains a bevel, without a fabricated land. Surface/circle and f/2.8 aperture checks pass; nine actual SVG states are finite with zero hidden trim. Source R/d, focus, stop and tolerances are unchanged.

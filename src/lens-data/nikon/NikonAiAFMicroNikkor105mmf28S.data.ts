@@ -39,6 +39,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ No scaling, aspheres, cover/filter plates, dummy planes, folded paths, or  ║
  * ║ synthetic cement layers are used.                                          ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-10-30: Fresh original figure/media-table reinspection; see the audit
+ * sidecar for inferred exposed lands, retained source values, and beam checks.
  */
 
 const LENS_DATA = {
@@ -82,7 +85,7 @@ const LENS_DATA = {
       vd: 53.7,
       indexReference: "d",
       focalLengthMm: 97.1022,
-      glass: "694537 — H-LaK6A (CDGM) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "H-LaK6A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front positive collector in functional group G1.",
       diagramLabel: "L1",
@@ -96,7 +99,7 @@ const LENS_DATA = {
       vd: 48.1,
       indexReference: "d",
       focalLengthMm: 77.812,
-      glass: "717481 — LAF3 (HOYA) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "LAF3 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Second positive component of G1.",
       diagramLabel: "L2",
@@ -110,7 +113,7 @@ const LENS_DATA = {
       vd: 32.2,
       indexReference: "d",
       focalLengthMm: -46.6984,
-      glass: "673322 class (supplier-neutral)",
+      glass: "H-ZF2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative rear component of the moving G1 triplet.",
       diagramLabel: "L3",
@@ -124,7 +127,7 @@ const LENS_DATA = {
       vd: 35.7,
       indexReference: "d",
       focalLengthMm: -38.6432,
-      glass: "626357 class (supplier-neutral)",
+      glass: "E-F1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Negative front element of the only cemented pair in G2.",
       diagramLabel: "L4",
@@ -139,7 +142,7 @@ const LENS_DATA = {
       vd: 53.7,
       indexReference: "d",
       focalLengthMm: 50.4167,
-      glass: "694537 — H-LaK6A (CDGM) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "H-LaK6A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive rear element of the L4-L5 cemented pair.",
       diagramLabel: "L5",
@@ -154,7 +157,7 @@ const LENS_DATA = {
       vd: 53.7,
       indexReference: "d",
       focalLengthMm: 68.8771,
-      glass: "694537 — H-LaK6A (CDGM) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "H-LaK6A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive rear component of functional group G2.",
       diagramLabel: "L6",
@@ -168,7 +171,7 @@ const LENS_DATA = {
       vd: 25.5,
       indexReference: "d",
       focalLengthMm: 90.99,
-      glass: "805255 class (supplier-neutral)",
+      glass: "H-ZF7LA (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive first element of the floating G3F subgroup.",
       diagramLabel: "L7",
@@ -182,7 +185,7 @@ const LENS_DATA = {
       vd: 39.6,
       indexReference: "d",
       focalLengthMm: -30.4224,
-      glass: "805396 — NBFD3 (NIKON) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "NBFD3 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Strong negative element completing the floating G3F subgroup.",
       diagramLabel: "L8",
@@ -196,7 +199,7 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 80.1283,
-      glass: "517641 — J-BK7A (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Fixed positive rear element G3R ahead of the constant back focus.",
       diagramLabel: "L9",
@@ -210,10 +213,10 @@ const LENS_DATA = {
     { label: "4", R: 71.416, d: 1.8, sd: 17.5 },
     { label: "5", R: 109.137, d: 1.8, sd: 16.8, medium: 3 },
     // Published d6=22.982 mm at infinity; 5.5 mm is reserved below for STO→surface 7.
-    { label: "6", R: 24.231, sd: 14.6 },
+    { label: "6", R: 24.231, sd: 14.6, rimExtensionSd: 16.8 },
     // Patent gives the stop 5.5 mm from surface 7 and moving with G2; object-side placement is the Stage 1 inference.
     { label: "STO", R: "flat", d: 5.5 },
-    { label: "7", R: -24.186, d: 1.8, sd: 13.2, medium: 4 },
+    { label: "7", R: -24.186, d: 1.8, sd: 14.6, medium: 4 },
     // Cemented L4→L5 junction: downstream element L5 owns the interface.
     { label: "8", R: "flat", d: 6.6, sd: 14.6, medium: 5 },
     { label: "9", R: -34.964, d: 0.2, sd: 15.4 },

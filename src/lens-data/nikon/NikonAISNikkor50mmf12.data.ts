@@ -25,6 +25,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Fig. 1 shows the common three-unit architecture and stop-adjacent concave lands.
+// Table3 puts the stop8.7 mm ahead of r7. S6/S7 preserve their original14.7 clear caps
+// with source-supported outer lands; deeper shared-figure caps violate the drawing gap bound.
+// Minimal inferred continuous caps S5/S8/S9/S10/S11 restore the source f/1.2 beam; see audit.
+// All7 source n/ν pairs remain; current curves are qualified proxies, not source-named glasses.
+
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ais-nikkor-50mm-f12",
@@ -65,7 +71,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.5,
       focalLengthMm: 78.015,
-      glass: "Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)",
+      glass: "J-LASF017 catalog proxy (HIKARI, 795/453; source 1.79668/45.5, nonidentical)",
       role: "Front high-index positive meniscus; part of the field-flattening and spherical-aberration balance.",
     },
     {
@@ -143,15 +149,15 @@ const LENS_DATA = {
     { label: "2", R: 184.282, d: 0.6, sd: 23.4 },
     { label: "3", R: 29.92, d: 7.15, sd: 22.5, medium: 2 },
     { label: "4", R: 50.5, d: 2, sd: 21.4 },
-    { label: "5", R: 60.5, d: 1, sd: 15.8, medium: 3 },
+    { label: "5", R: 60.5, d: 1, sd: 17.8, medium: 3 },
     // D1 is the full L3↔L4 space. The stop is fixed 8.7 mm ahead of r7, so this pre-stop segment varies.
-    { label: "6", R: 17.728, sd: 14.7 },
+    { label: "6", R: 17.728, sd: 14.7, rimExtensionSd: 17.8 },
     { label: "STO", R: "flat", d: 8.7 },
-    { label: "7", R: -17.5, d: 1.3, sd: 14.7, medium: 4 },
-    { label: "8", R: 1000, d: 8.45, sd: 17.8, medium: 5 },
-    { label: "9", R: -28, d: 0.1, sd: 17.8 },
-    { label: "10", R: -142, d: 6.8, sd: 18.7, medium: 6 },
-    { label: "11", R: -35.94, sd: 18.9 },
+    { label: "7", R: -17.5, d: 1.3, sd: 14.7, rimExtensionSd: 19.2, medium: 4 },
+    { label: "8", R: 1000, d: 8.45, sd: 19.2, medium: 5 },
+    { label: "9", R: -28, d: 0.1, sd: 19.5 },
+    { label: "10", R: -142, d: 6.8, sd: 20.8, medium: 6 },
+    { label: "11", R: -35.94, sd: 21.1 },
     { label: "12", R: 92, d: 3.3, sd: 19.2, medium: 7 },
     { label: "13", R: -277.852, sd: 19.2 },
   ],

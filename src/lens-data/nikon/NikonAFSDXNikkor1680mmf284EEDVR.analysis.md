@@ -54,11 +54,11 @@ in patent ¶0144. Over the same endpoints, G1 moves 41.200 mm objectward, G2 7.7
 
 The whole-system infinity-focus first-order results are:
 
-| State | Calculated EFL | Calculated BFD | Total length, first surface to image |
-|---|---:|---:|---:|
-| Wide | 16.491536 mm | 37.993874 mm | 130.371 mm |
-| Intermediate | 34.999307 mm | 49.377794 mm | 146.181 mm |
-| Telephoto | 77.792159 mm | 63.528107 mm | 171.571 mm |
+| State        | Calculated EFL | Calculated BFD | Total length, first surface to image |
+| ------------ | -------------: | -------------: | -----------------------------------: |
+| Wide         |   16.491536 mm |   37.993874 mm |                           130.371 mm |
+| Intermediate |   34.999307 mm |   49.377794 mm |                           146.181 mm |
+| Telephoto    |   77.792159 mm |   63.528107 mm |                           171.571 mm |
 
 The BFD is measured from the surface-32 vertex to the image plane. Patent ¶0147 explicitly defines this quantity as an
 air-equivalent back focus. No sensor cover glass, filter, or other rear plate appears in Example 1, so the data model
@@ -74,7 +74,7 @@ The aperture-stop axial station is source-published, but its diameter is not. Th
 7.698802, and 7.679827 mm at the three published zoom states. Agreement with the source FNO values is therefore a model
 calibration, not an independent measurement or verification of the manufactured diaphragm diameter.
 
-Surface semi-diameters are not published. The 2026-09-26 Fig. 1 review enlarges the front cemented pair (S1/S2/S3: 28.0/26.7/26.7 mm) and bonded L21 (S6A/S7/S8: 14.0/14.0/10.5 mm), preserving its stepped optical rim. Other apertures retain the initial ray-envelope estimates. All three infinity zoom stations reach the format corner, and the production renderer reports zero trimming over five zoom and three focus samples. The original 630-ray margin figures described the smaller initial apertures and are superseded here; these remain model dimensions.
+Surface semi-diameters are not published. The 2026-09-26 Figure 1 review enlarged the front cemented pair to S1/S2/S3 clear radii 28.0/26.7/26.7 mm and bonded L21 to S6A/S7/S8 clear radii 14.0/14.0/10.5 mm. Fresh 600 dpi inspection of all W/M/T outlines now adds S8’s source-supported flat opaque rear land out to 14 mm, keeping its existing 10.5 mm clear cap. Both the resin layer and substrate then close at the common 14 mm blank height, without extending a resin wing beyond its glass support. Other apertures retain their ray-envelope estimates. All three infinity zoom stations reach the format corner, and the production renderer reports zero trimming over five zoom and three focus samples. The original 630-ray margin figures described the smaller initial apertures and are superseded here; these remain model dimensions.
 
 The surface-by-surface Petzval sum from the final parsed model is 0.003023716174 mm⁻¹, corresponding to a reciprocal
 radius of about 330.719 mm under the calculation's sign convention. This is a first-order field-curvature invariant of the
@@ -235,26 +235,25 @@ class level.
 
 ## Glass Identification and Selection
 
-
 The integration audit uses these runtime spectral curves: L11, L23: `J-SF03`; L12: `J-PSKH1`; L13, L21, L22, L43: `J-LASF09A`; L21r, L41: `Unmatched`; L24: `J-LASF08A`; L31: `LLF1`; L32: `J-KF6`; L33, L42: `J-LASFH24`; L34, L51, L52: `J-FKH1`; L53: `M-TAFD307`. The coordinate/class descriptions below retain the source-identification context; catalog names are qualified proxies, not evidence of production suppliers.
 
 The patent specifies d-line refractive indices and Abbe numbers rather than glass trade names. The final data consequently
 uses named spectral proxies or an explicit unmatched label. Catalog matches are evidence for coordinate compatibility, not
 proof of Nikon's production supplier or melt.
 
-| Source-coordinate classification | $n_d$ | $\nu_d$ | Physical lenses / model entries | Catalog-evidence disposition |
-|---|---:|---:|---|---|
-| 847238 class | 1.84666 | 23.8 | L11, L23 | Coordinate-exact or near-exact candidates exist across multiple vendors; supplier unresolved |
-| 593679 class | 1.59319 | 67.9 | L12 | Exact coordinate candidate exists; supplier unresolved |
-| 816466 class | 1.81600 | 46.6 | L13, L21 substrate, L22, L43 | Multiple coordinate-compatible candidates; supplier unresolved |
-| 883407/883408 class | 1.88300 | 40.7 | L24 | Several close public catalog candidates; supplier unresolved |
-| 548458 class | 1.54814 | 45.8 | L31 | Coordinate-compatible CDGM/SCHOTT-class evidence; supplier unresolved |
-| 517522 class | 1.51742 | 52.2 | L32 | Exact or near-exact candidates; supplier unresolved |
-| 902253 class | 1.90200 | 25.3 | L33, L42 | Coordinate-compatible HIKARI-class evidence; supplier unresolved |
-| 498826 class | 1.49782 | 82.6 | L34, L51, L52 | Exact/near-exact high-Abbe candidate evidence; supplier unresolved |
-| Unmatched | 1.79050 | 45.0 | L41 | No exact row established in the checked public catalogs |
-| 882372 class | 1.88202 | 37.2 | L53 | Coordinate-compatible molded-glass family exists; supplier unresolved |
-| Bonded resin medium | 1.56093 | 36.6 | L21r | Patent resin layer; inorganic-glass catalog matching not applicable |
+| Source-coordinate classification |   $n_d$ | $\nu_d$ | Physical lenses / model entries | Catalog-evidence disposition                                                                 |
+| -------------------------------- | ------: | ------: | ------------------------------- | -------------------------------------------------------------------------------------------- |
+| 847238 class                     | 1.84666 |    23.8 | L11, L23                        | Coordinate-exact or near-exact candidates exist across multiple vendors; supplier unresolved |
+| 593679 class                     | 1.59319 |    67.9 | L12                             | Exact coordinate candidate exists; supplier unresolved                                       |
+| 816466 class                     | 1.81600 |    46.6 | L13, L21 substrate, L22, L43    | Multiple coordinate-compatible candidates; supplier unresolved                               |
+| 883407/883408 class              | 1.88300 |    40.7 | L24                             | Several close public catalog candidates; supplier unresolved                                 |
+| 548458 class                     | 1.54814 |    45.8 | L31                             | Coordinate-compatible CDGM/SCHOTT-class evidence; supplier unresolved                        |
+| 517522 class                     | 1.51742 |    52.2 | L32                             | Exact or near-exact candidates; supplier unresolved                                          |
+| 902253 class                     | 1.90200 |    25.3 | L33, L42                        | Coordinate-compatible HIKARI-class evidence; supplier unresolved                             |
+| 498826 class                     | 1.49782 |    82.6 | L34, L51, L52                   | Exact/near-exact high-Abbe candidate evidence; supplier unresolved                           |
+| Unmatched                        | 1.79050 |    45.0 | L41                             | No exact row established in the checked public catalogs                                      |
+| 882372 class                     | 1.88202 |    37.2 | L53                             | Coordinate-compatible molded-glass family exists; supplier unresolved                        |
+| Bonded resin medium              | 1.56093 |    36.6 | L21r                            | Patent resin layer; inorganic-glass catalog matching not applicable                          |
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored in the final data. The dossier's catalog evidence records some candidate
 line-index data, but those values belong to candidate catalog glasses rather than to a patent-identified or production-
@@ -270,11 +269,11 @@ of secondary-spectrum correction would require verified spectral-line data or a 
 Focus status is **PUBLISHED**. Patent ¶0145 and Table 3 specify that G2 moves toward the object when focusing from infinity
 to the short-distance state. No close-focus reconstruction is used.
 
-| Zoom state | D5 infinity | D5 short | D14 infinity | D14 short | G2 objectward shift | Published $\beta$ |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 2.100 mm | 0.885 mm | 18.846 mm | 20.061 mm | 1.215 mm | -0.0648 |
-| Intermediate | 17.730 mm | 15.776 mm | 7.642 mm | 9.596 mm | 1.954 mm | -0.1260 |
-| Telephoto | 35.502 mm | 31.579 mm | 1.110 mm | 5.033 mm | 3.923 mm | -0.2249 |
+| Zoom state   | D5 infinity |  D5 short | D14 infinity | D14 short | G2 objectward shift | Published $\beta$ |
+| ------------ | ----------: | --------: | -----------: | --------: | ------------------: | ----------------: |
+| Wide         |    2.100 mm |  0.885 mm |    18.846 mm | 20.061 mm |            1.215 mm |           -0.0648 |
+| Intermediate |   17.730 mm | 15.776 mm |     7.642 mm |  9.596 mm |            1.954 mm |           -0.1260 |
+| Telephoto    |   35.502 mm | 31.579 mm |     1.110 mm |  5.033 mm |            3.923 mm |           -0.2249 |
 
 For each zoom state, `D5 + D14` is exactly conserved between infinity and close focus in the published table: 20.946,
 25.372, and 36.612 mm respectively. This independently supports the single translating-G2 interpretation. The other
@@ -306,11 +305,11 @@ $K_{\mathrm{LV}}=K_{\mathrm{pat}}-1$. All three patent values are $K_{\mathrm{pa
 conic constants are $K=0$. This is a convention conversion, not a correction to the source. No linear scaling is applied,
 so the asphere coefficients are retained at their published magnitudes.
 
-| Surface | Physical lens | $K$ in data | $A_4$ | $A_6$ | $A_8$ | $A_{10}$ | $A_{12}$ |
-|---|---|---:|---:|---:|---:|---:|---:|
-| 6A | L21 resin layer | 0 | 1.91866e-05 | -3.07743e-08 | -1.44905e-10 | 1.15106e-12 | -1.98690e-15 |
-| 23A | L41 | 0 | 3.75789e-06 | -1.80254e-08 | 0 | 0 | 0 |
-| 32A | L53 | 0 | 7.46360e-06 | 8.05331e-09 | -4.65179e-11 | 2.16314e-13 | 0 |
+| Surface | Physical lens   | $K$ in data |       $A_4$ |        $A_6$ |        $A_8$ |    $A_{10}$ |     $A_{12}$ |
+| ------- | --------------- | ----------: | ----------: | -----------: | -----------: | ----------: | -----------: |
+| 6A      | L21 resin layer |           0 | 1.91866e-05 | -3.07743e-08 | -1.44905e-10 | 1.15106e-12 | -1.98690e-15 |
+| 23A     | L41             |           0 | 3.75789e-06 | -1.80254e-08 |            0 |           0 |            0 |
+| 32A     | L53             |           0 | 7.46360e-06 |  8.05331e-09 | -4.65179e-11 | 2.16314e-13 |            0 |
 
 The data file also contains schema-required `A14: 0` entries; A14 is not a nonzero published coefficient. The patent
 identifies the L21 asphere as a bonded resin composite and L41/L53 as glass-molded aspherical lenses (¶0143).
@@ -341,25 +340,25 @@ were independently reevaluated. Conditions 2 and 6 use the source FNO values, an
 half-field values; because the patent does not publish physical stop diameter or clear semi-diameters, those four are
 source-condition checks rather than independent exact pupil/field-geometry measurements.
 
-| No. | Condition | Recomputed/source value | Table 4 | Result |
-|---:|---|---:|---:|---|
-| 1 | $0.80 < (-f_4)/f_{5w} < 2.50$ | 0.975142 | 0.975 | Pass |
-| 2 | $FN_w < 3.50$ | 2.72 | 2.722 | Pass |
-| 3 | $0.30 < N_{5n}-N_{5p}$ | 0.384200 | 0.384 | Pass |
-| 4 | $1.85 < N_{5n}$ | 1.88202 | 1.882 | Pass |
-| 5 | $3.50 < f_t/f_w$ | 4.717096 | 4.717 | Pass |
-| 6 | $FN_t < 4.50$ | 4.16 | 4.160 | Pass |
-| 7 | $2.50 < f_1/f_3 < 4.20$ | 3.480246 | 3.480 | Pass |
-| 8 | $0.25 < f_2/f_4 < 0.55$ | 0.370665 | 0.371 | Pass |
-| 9 | $1.85 < N_{2\max}$ | 1.88300 | 1.883 | Pass |
-| 10 | $0.40 < f_w/f_3 < 1.00$ | 0.663591 | 0.664 | Pass |
-| 11 | $0.30 < f_w/(-f_4) < 0.80$ | 0.469687 | 0.470 | Pass |
-| 12 | $2.00 < f_t/f_3 < 5.00$ | 3.130223 | 3.130 | Pass |
-| 13 | $1.50 < f_t/(-f_4) < 4.50$ | 2.215558 | 2.216 | Pass |
-| 14 | $0.30 < N_{3n}-N_{3p}$ | 0.380873 | 0.381 | Pass |
-| 15 | $1.85 < N_{3n}$ | 1.90200 | 1.902 | Pass |
-| 16 | $25.0^\circ < \omega_w < 60.0^\circ$ | 43.244° | 43.244° | Pass |
-| 17 | $3.0^\circ < \omega_t < 20.0^\circ$ | 10.411° | 10.411° | Pass |
+| No. | Condition                            | Recomputed/source value | Table 4 | Result |
+| --: | ------------------------------------ | ----------------------: | ------: | ------ |
+|   1 | $0.80 < (-f_4)/f_{5w} < 2.50$        |                0.975142 |   0.975 | Pass   |
+|   2 | $FN_w < 3.50$                        |                    2.72 |   2.722 | Pass   |
+|   3 | $0.30 < N_{5n}-N_{5p}$               |                0.384200 |   0.384 | Pass   |
+|   4 | $1.85 < N_{5n}$                      |                 1.88202 |   1.882 | Pass   |
+|   5 | $3.50 < f_t/f_w$                     |                4.717096 |   4.717 | Pass   |
+|   6 | $FN_t < 4.50$                        |                    4.16 |   4.160 | Pass   |
+|   7 | $2.50 < f_1/f_3 < 4.20$              |                3.480246 |   3.480 | Pass   |
+|   8 | $0.25 < f_2/f_4 < 0.55$              |                0.370665 |   0.371 | Pass   |
+|   9 | $1.85 < N_{2\max}$                   |                 1.88300 |   1.883 | Pass   |
+|  10 | $0.40 < f_w/f_3 < 1.00$              |                0.663591 |   0.664 | Pass   |
+|  11 | $0.30 < f_w/(-f_4) < 0.80$           |                0.469687 |   0.470 | Pass   |
+|  12 | $2.00 < f_t/f_3 < 5.00$              |                3.130223 |   3.130 | Pass   |
+|  13 | $1.50 < f_t/(-f_4) < 4.50$           |                2.215558 |   2.216 | Pass   |
+|  14 | $0.30 < N_{3n}-N_{3p}$               |                0.380873 |   0.381 | Pass   |
+|  15 | $1.85 < N_{3n}$                      |                 1.90200 |   1.902 | Pass   |
+|  16 | $25.0^\circ < \omega_w < 60.0^\circ$ |                 43.244° | 43.244° | Pass   |
+|  17 | $3.0^\circ < \omega_t < 20.0^\circ$  |                 10.411° | 10.411° | Pass   |
 
 Condition 8 also helps resolve the patent's one material numerical discrepancy. Table 1 prints the G2 focal length as
 -13.10 mm, but the surface prescription gives -13.014705 mm. Combining that calculated G2 value with the independently
@@ -377,6 +376,10 @@ For the patent's 0.50° example, independent calculation gives shifts of -0.2213
 intermediate state, and -0.685720 mm at telephoto. The patent rounds these to -0.22, -0.39, and -0.68 mm respectively.
 These are optical-unit displacements from the patent model, not claims about the production VR actuator's total mechanical
 travel.
+
+The new S8 land follows Figure 1, PDF page 2, whose embedded raster is 300 ppi. The wide drawing gives about 9.2 native pixels/mm over 92.377 mm between the first and last vertices. Its measured rear cap/edge ratio is about 93/132 = 0.705 ±0.0129; the retained modeled cap/drawn-rim ratio is 10.5/14 = 0.75. This conservative reconstruction preserves the larger existing clear cap instead of claiming an exact dimensional reading. Every other curved face, resin interface and cemented boundary was inspected; no further resolved short vertical land supports additional clipping. Source profiles, stop/zoom/focus data and all clear caps remain unchanged.
+
+Fresh Table 1 review on PDF pages 34–35 confirms all eighteen stored material-coordinate pairs under paragraph 147’s d-line 587.6 nm convention. Sixteen selected catalog curves remain compatible. The 1.56093/36.6 resin and 1.79050/45.0 molded L41 glass remain explicitly unresolved; neither is forced onto a nearby catalog curve. Paragraph 143 on page 33 directly identifies L21’s resin-composite construction, and the source identifies L41/L53 as glass-molded. The patent gives no per-element partial dispersions or C/F/g indices. Its four qualified catalog-based APD inferences remain unchanged, with no production-supplier or melt claim.
 
 ## Verification Summary
 
@@ -397,8 +400,8 @@ all refracting-surface semi-diameters; both are disclosed above and remain disti
 
 ## Sources
 
-1. Satoshi Yamaguchi, **US 2018/0252903 A1**, *Zoom Optical System, Optical Device and Method for Manufacturing the Zoom
-   Optical System*, Nikon Corporation, published September 6, 2018. Example 1: FIG. 1; ¶¶0140-0153; Tables 1-4; PDF
+1. Satoshi Yamaguchi, **US 2018/0252903 A1**, _Zoom Optical System, Optical Device and Method for Manufacturing the Zoom
+   Optical System_, Nikon Corporation, published September 6, 2018. Example 1: FIG. 1; ¶¶0140-0153; Tables 1-4; PDF
    pp. 33-36. Patent publication: https://patents.google.com/patent/US20180252903A1/en
 2. Nikon USA, **AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR — Tech Specs**, retrieved September 18, 2026:
    https://www.nikonusa.com/p/af-s-dx-nikkor-16-80mm-f28-4e-ed-vr/20055/overview

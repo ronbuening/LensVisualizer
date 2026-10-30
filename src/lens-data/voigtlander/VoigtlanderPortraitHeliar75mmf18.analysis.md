@@ -89,7 +89,7 @@ group powers or with each element's in-situ contribution to the complete system.
 
 #### L4f — Biconvex Positive
 
-**nd = 1.88300, νd = 40.80. Glass: 883408 — high-index lanthanum glass class (vendor unresolved). Standalone f = +38.863947 mm.**
+**nd = 1.88300, νd = 40.80. Glass: S-LAH58 (catalog-compatible spectral proxy; production supplier and chemistry unresolved). Standalone f = +38.863947 mm.**
 
 L4f is the principal positive member of G1 and the strongest isolated element in the front doublet. Its high d-line
 index supplies substantial positive power without requiring the element to carry the entire group correction alone.
@@ -101,7 +101,7 @@ a substantially weaker net EFL of +57.653792 mm.
 
 #### L4r — Biconcave Negative
 
-**nd = 1.84666, νd = 23.78. Glass: 847238 — very-dense-flint class (vendor unresolved). Standalone f = −106.839291 mm.**
+**nd = 1.84666, νd = 23.78. Glass: J-SF03 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = −106.839291 mm.**
 
 L4r is the negative rear member of G1. Its lower Abbe number than L4f supplies the local dispersion contrast expected of
 the negative member in a cemented positive doublet. This chromatic role is an optical inference from the stored nd and
@@ -115,7 +115,7 @@ spherical-aberration control.
 
 #### L5f — Positive Meniscus, convex to image
 
-**nd = 1.80518, νd = 25.46. Glass: 805255 — dense-flint class (vendor unresolved). Standalone f = +64.434685 mm.**
+**nd = 1.80518, νd = 25.46. Glass: J-SF6 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = +64.434685 mm.**
 
 L5f is a positive meniscus whose convex side faces the image. Although positive in isolation, it is the weaker member of
 the central doublet and does not determine the sign of G2. Its position immediately after the variable U3 gap makes its
@@ -127,7 +127,7 @@ standalone positive corrector.
 
 #### L5r — Biconcave Negative
 
-**nd = 1.64769, νd = 33.84. Glass: 648338 — dense-flint class (vendor unresolved). Standalone f = −22.116992 mm.**
+**nd = 1.64769, νd = 33.84. Glass: E-FD2 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = −22.116992 mm.**
 
 L5r is the strongest isolated negative element in the prescription. It dominates the sign of G2, leaving the cemented
 pair with a net EFL of −31.935457 mm. The strongly curved biconcave form also places the negative group directly ahead of
@@ -141,7 +141,7 @@ control within the main imaging system and avoids increasing the element count, 
 
 #### L6f — Negative Meniscus, convex to object
 
-**nd = 1.78472, νd = 25.72. Glass: 785257 — dense-flint class (vendor unresolved). Standalone f = −51.838960 mm.**
+**nd = 1.78472, νd = 25.72. Glass: H-ZF13 (catalog-compatible spectral proxy; production supplier unresolved). Standalone f = −51.838960 mm.**
 
 L6f is the negative front member of G3, with its convex surface toward the object. It receives the beam shortly after the
 stop and acts as the negative partner of the strong positive L6r. Its low Abbe number again supplies a dispersion
@@ -150,7 +150,7 @@ partial dispersion.
 
 #### L6r — Biconvex Positive
 
-**nd = 1.88300, νd = 40.80. Glass: 883408 — high-index lanthanum glass class (vendor unresolved). Standalone f = +23.184192 mm.**
+**nd = 1.88300, νd = 40.80. Glass: S-LAH58 (catalog-compatible spectral proxy; production supplier and chemistry unresolved). Standalone f = +23.184192 mm.**
 
 L6r is the strongest isolated positive element in the prescription. Combined with L6f, it gives G3 a net EFL of
 +41.290725 mm. The same 1.88300 / 40.80 glass class used in L4f is therefore placed at both ends of the system's power
@@ -163,20 +163,17 @@ condition with controlling coma, field curvature, and their variation during sof
 ## Glass Identification and Selection
 
 The patent publishes only d-line refractive index and Abbe number. It supplies no glass-maker names, Sellmeier
-coefficients, C-, F-, or g-line indices, or anomalous partial-dispersion values. The data therefore preserves
-vendor-neutral six-digit codes and broad optical classes rather than assigning speculative catalog identities.
+coefficients, C-, F-, or g-line indices, or anomalous partial-dispersion values. Stored nd/νd preserve Table 6; labels name the current resolver’s catalog-compatible spectral proxies and state supplier uncertainty.
 
-| Code and class | nd | νd | Elements | Status |
+| Catalog spectral proxy | Source nd | Source νd | Elements | Status |
 |---|---:|---:|---|---|
-| 883408 — high-index lanthanum glass class | 1.88300 | 40.80 | L4f, L6r | Vendor and melt unresolved |
-| 847238 — very-dense-flint class | 1.84666 | 23.78 | L4r | Vendor and melt unresolved |
-| 805255 — dense-flint class | 1.80518 | 25.46 | L5f | Vendor and melt unresolved |
-| 648338 — dense-flint class | 1.64769 | 33.84 | L5r | Vendor and melt unresolved |
-| 785257 — dense-flint class | 1.78472 | 25.72 | L6f | Vendor and melt unresolved |
+| S-LAH58 | 1.88300 | 40.80 | L4f, L6r | Vendor and melt unresolved |
+| J-SF03 | 1.84666 | 23.78 | L4r | Vendor and melt unresolved |
+| J-SF6 | 1.80518 | 25.46 | L5f | Vendor and melt unresolved |
+| E-FD2 | 1.64769 | 33.84 | L5r | Vendor and melt unresolved |
+| H-ZF13 | 1.78472 | 25.72 | L6f | Vendor and melt unresolved |
 
-The independent catalog audit found exact or near-exact equivalents for each coordinate among current OHARA, HOYA,
-SCHOTT, HIKARI, CDGM, and SUMITA data. Because several vendors supply materially indistinguishable nd/νd coordinates,
-that agreement establishes optical equivalence classes rather than the actual production melts.
+The current resolver selects these curves using compatible nd/νd coordinates. Coordinate compatibility does not identify the production supplier, melt, chemistry or complete measured spectrum. These labels expose the curves already selected before this review; the source coordinates and runtime curve choices are retained.
 
 The glass palette uses relatively high indices throughout and deliberately pairs members with different Abbe numbers
 inside each cemented group. That observation supports a conventional local achromatizing interpretation, but Abbe-only
@@ -280,18 +277,17 @@ $BFD/EFL=0.641810$ is below one, so it is not retrofocus. Surface-by-surface Pet
 $\phi/(n n')$ gives a signed sum of +0.002916318626 mm⁻¹, equivalent to −342.898060 mm under the $-1/\Sigma P$
 convention.
 
-The semi-diameters are modeling inferences because the patent omits clear apertures. They are 18.7 mm for G1, 15.0 mm
-for G2, and 13.2 mm for G3, measured from patent Figure 5 and checked against ray bundles. The physical stop
+The semi-diameters are modeling inferences because the patent omits clear apertures. They are 19.4 mm for G1, 15.3 mm
+for G2, and 13.6 mm for G3. Figure 5 supplies the square group outlines; the stated on-axis beam sets the minimum inferred sizes, up to 3.7% above the earlier drawing estimates. The physical stop
 semi-diameter of 13.246083 mm is inferred from the sharp-state paraxial entrance pupil required by F/1.858, following
 the LensVisualizer stop convention; it is not a patent-published dimension.
 
 Across the checked Plus, Sharp, Minus, and close-focus states, the modeled geometry retains positive edge thickness. The
-minimum edge thickness is 1.396706 mm, the maximum spherical rim angle is 35.1887°, and the minimum shared-gap clearance
-margin is 2.220969 mm. No conic limit applies because every surface is spherical.
+surface and image-circle audits pass with the larger inferred rims and the revised S6 land. No conic limit applies because every surface is spherical.
 
 No prescription value was scaled, no aspheric coefficient transformation was required, and no patent radius, thickness,
 index, Abbe number, focus spacing, or control spacing was corrected. The only numerical modeling inputs absent from the
-source are the explicitly inferred clear apertures and stop radius. The active prescription requires no omitted plate
+source are the explicitly inferred clear apertures, S6 land depth and stop radius. The active prescription requires no omitted plate
 correction and contains no inactive optical plane.
 
 ## Sources
@@ -306,3 +302,5 @@ correction and contains no inactive optical plane.
 - Authoritative catalog coordinates checked through OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA official optical-glass
   data; the companion glass audit records candidate residuals without assigning a production melt.
 - Independent calculations and state-by-state results are recorded in the companion audit.
+
+Figure 5 resolves a flat land on G2’s concave rear face S6. Its inferred 3.10 mm cut keeps the 15.3 mm outer rim and ends the curved cap at 13.2290 mm. The initial figure-proportional cut fails the full-beam clearance rule, so this cap is moved outward. Extra beam checks over 41 spherical-aberration spacings with the original physical iris held fixed require at least 13.2153 mm after the axial-beam rim correction. The square rims of all three groups remain shared across their exposed faces and cement boundaries. The final axial aperture census is iris-limited at f/1.858; no printed prescription value changes.

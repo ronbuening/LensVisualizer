@@ -31,10 +31,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                              ║
  * ║  SEMI-DIAMETERS: not numerically published. Values are constrained by       ║
  * ║  the patent optical section, the H=51.0 infinity aperture reference,         ║
- * ║  full-stop on-axis marginal rays at infinity and the published close state,  ║
- * ║  and the defined 0.6-field / ±0.5-pupil off-axis diagnostic fan. Figure 1   ║
+ * ║  full-stop infinity rays and the defined off-axis diagnostic fan.            ║
+ * ║  Close full-iris rays retain baseline clipping at surface 2. Figure 1       ║
  * ║  shows the three L14 cemented-pair surfaces ending at one rim, so surfaces   ║
- * ║  7-9 share a 29.5 mm semi-diameter. Surface 8 remains steep;                 ║
+ * ║  7-9 share a 29.8 mm semi-diameter, minimally raised from the 29.5 mm        ║
+ * ║  figure estimate to pass FN=2.9. Surface 8 remains steep;                    ║
  * ║  maxRimAngleDeg is 71° after edge-thickness and shared-gap checks.           ║
  * ║                                                                              ║
  * ║  SPECTRAL DATA: patent nd/νd remain authoritative. Catalog-resolved class ║
@@ -206,6 +207,8 @@ const LENS_DATA = {
     },
   ],
 
+  // Figure 1 square L14 rim was 29.5 mm; the stated FN=2.9 beam needs 29.8 mm.
+  // S11 rises minimally 23.4→23.5 mm; the remaining inferred caps are retained.
   surfaces: [
     { label: "1", R: 117.124, d: 14.4, sd: 55.5, medium: 1 },
     { label: "2", R: 9945, d: 0.3, sd: 53.3 },
@@ -213,11 +216,11 @@ const LENS_DATA = {
     { label: "4", R: -410.068, d: 4.1, sd: 48.5 },
     { label: "5", R: -335.183, d: 4.7, sd: 46.5, medium: 3 },
     { label: "6", R: 480.374, d: 34.6628, sd: 45.5 },
-    { label: "7", R: 105.825, d: 3.5, sd: 29.5, medium: 4 },
-    { label: "8", R: 35.452, d: 14.4, sd: 29.5, medium: 5 },
-    { label: "9", R: 180.758, sd: 29.5 },
+    { label: "7", R: 105.825, d: 3.5, sd: 29.8, medium: 4 },
+    { label: "8", R: 35.452, d: 14.4, sd: 29.8, medium: 5 },
+    { label: "9", R: 180.758, sd: 29.8 },
     { label: "10", R: -9945, d: 6.6, sd: 24.5, medium: 6 },
-    { label: "11", R: -80.453, d: 2.3, sd: 23.4, medium: 7 },
+    { label: "11", R: -80.453, d: 2.3, sd: 23.5, medium: 7 },
     { label: "12", R: 119.561, d: 5.1, sd: 22.8 },
     { label: "13", R: -172.119, d: 2.3, sd: 21.4, medium: 8 },
     { label: "14", R: 65.626, sd: 21.1 },

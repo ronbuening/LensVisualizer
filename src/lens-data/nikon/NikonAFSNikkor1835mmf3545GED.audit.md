@@ -24,3 +24,10 @@ Patent: US 9,256,059 B2, Example 1
   layers total 0.20 mm, so dropping them does not explain it either.
 - The same excess of table sum over printed TL (0.093–0.142 mm) appears in all six examples of the patent, so it is the
   source's own TL bookkeeping, not a transcription error. Recorded in the header and analysis as patent value vs derived.
+
+## 2026-10-29 — Original-figure height/lands and fresh glass reinspection
+
+- Directly inspected local `patents/US_9256059_B2.pdf`, Figure1/PDF2 at600dpi and original2560×3300 raster, Example1 media table/PDF45–46, d-line convention/PDF44. All eighteen regions plus PT retain exact source nd/vd. Removed27 unsourced catalog CFg helper values on nine regions;13 catalog curves includingPT are qualified spectral proxies, six resin/cement layers remain unresolved. No source partial-dispersion/APD designation or production supplier is invented.
+- S1 continuous clear cap25→27mm; S2 clear20.5 preserved with outer27 land; S5 clear15.2 preserved with outer17 land. Original raster q≈.69±.007 and .80±.010 at edge258/184nativepx; adopted.759/.894 keeps larger clear caps. The full native vertex span suggests frontheight~30mm, whereas local S1curvature fit suggests~27mm; adopted27 conservatively acknowledges the schematic's nonuniform scale (original image310×282ppi). Every exposed/cemented face was checked. No hybrid/cemented interface land is added; tiny near-flat features are unresolved. A convex S20cut trial is rejected by the existing rim-direction contract, rather than bypassing it. No inferred cut is retained.
+- Corrected design nominal3.5/4.0/4.5→source3.6/4.15/4.63 (PDF46Fno row), withcatalog marketing3.5/design3.6 and unchanged name/user stopchoices. All printed radii/thicknesses/aspheres/focus gaps remain unchanged; existing source TL mismatch and absent close-focus spacings remain explicit.
+- Focused surface/circle pass; W/M/T axial apertures iris-limited within3%; all3 formatcorner stations>=99%. Nine actualSVG states have18finite paths/zero trim, with connected lands and no thin-layer wing. All19 sourcepairs/catalog checks pass; shared dispersion/parity/partial tests3files94pass.

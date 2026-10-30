@@ -122,7 +122,7 @@ G4 as a complete group computes to **+70.213 mm**. Its power is much weaker than
 
 ## Glass Identification and Selection
 
-The patent publishes nd, νd, and θgF; it does not name commercial glass products. The data file therefore uses catalog-equivalent labels where the constants are consistent with familiar Hikari, Hoya, or Schott-family glasses, and it leaves unresolved materials with explicit unbroken six-digit codes. These labels should be read as optical catalog equivalents, not as claims about Nikon's purchasing records.
+The patent publishes nd, νd, and θgF; it does not name commercial glass products. The data file therefore uses catalog-equivalent labels where the constants are consistent with familiar Hikari, Hoya, or Schott-family glasses, and it leaves unresolved materials with explicit unbroken six-digit codes. These labels are qualified spectral proxies, with supplier and melt identity unproven. All 16 printed θgF ratios are now authored as `dPgF = θgF − (0.6438 − 0.001682νd)`. The resolver retains each compatible catalog C/d/F curve and reconstructs g from the source ratio; the two resin layers and unresolved L13/L41 use Abbe C/F estimates with that same source g/F ratio. No source C/F/g indices are invented. The L13 conditional ratio near the patent normal line is not treated as a patent identification of anomalous material.
 
 | Element / medium | Patent nd | Patent νd | Patent θgF | Data-file assignment | Status |
 |---|---:|---:|---:|---|---|
@@ -205,15 +205,15 @@ The data file transcribes the Table 2 prescription directly, with no focal-lengt
 
 The `nominalFno` values are the Table 2 design FNO values of 4.625, 5.233, and 5.828 at the wide, middle, and telephoto positions. The manufacturer-marketed f/4.5-5.6 range is slightly faster; its wide value is recorded separately as `apertureMarketing`.
 
-Table 2 lists no stop diameter, and the Example 2 text locates the stop S only by position, inside G2 between L23 and the L24/L25 doublet. The data file models one iris radius for the whole zoom range (`zoomApertureModel: "fixed-iris"`). A real marginal ray traced at the wide position for f/4.625 reaches the stop at **4.890 mm**, and that single radius traces f/4.625, f/5.233, and f/5.828 at the three zoom positions, which are the Table 2 values to the printed digit. The stop travels with G2, so the 1.455 mm and 1.802 mm air gaps on either side of it are the same at every position.
+Table 2 lists no stop diameter and places S inside G2 between L23 and the L24/L25 doublet. The current `fixed-iris` runtime derives one physical radius of **4.859367 mm** from the wide nominal and retains it across zoom. The aperture audit reports the following baseline-matched values, with the iris limiting every station. The differences are model residuals, not a source-published aperture schedule.
 
-| Zoom position | Table 2 FNO | Real-ray stop radius for that FNO | FNO traced with the 4.890 mm iris |
-|---|---:|---:|---:|
-| Wide | 4.625 | 4.8900 mm | 4.625 |
-| Middle | 5.233 | 4.8899 mm | 5.233 |
-| Telephoto | 5.828 | 4.8901 mm | 5.828 |
+| Station | Table 2 FNO | Current traced FNO |
+|---|---:|---:|
+| Wide | 4.625 | 4.625 |
+| Middle | 5.233 | 5.218 |
+| Telephoto | 5.828 | 5.795 |
 
-The semi-diameter written on the `STO` row is **4.846 mm**, the paraxial stop radius for the middle position's f/5.233; the paraxial radii for the wide and telephoto values are 4.859 mm and 4.832 mm. The wide-open iris is the real-ray 4.890 mm radius derived from `nominalFno`, not the `STO` row value.
+The authored STO semi-diameter of 4.846 mm is a paraxial estimate and does not size the runtime iris. The 1.455 mm and 1.802 mm air gaps on either side of S remain fixed within G2.
 
 The production lens has 14 glass elements. The data file has 16 element records because the two molded resin layers on L11 and L12 must be modeled as separate optical materials. This is a data-modeling distinction, not a change to the production element count.
 
@@ -239,6 +239,8 @@ The recomputed group focal lengths also match the patent group table:
 | G4 | +70.213 mm | +70.213217 mm |
 
 The surface-by-surface Petzval sum, calculated as `Σ[(n' − n)/(R n n')]`, is **+0.0084549 mm^-1**, corresponding to a Petzval radius of about **-118.27 mm** under this sign convention. This is a first-order curvature check, not a prediction of final sagittal or meridional image curvature.
+
+Figure 3 shows a flat cap end on exposed S6. Its existing 11.6 mm clear cap is retained, with a vertical land to the 12.6 mm drawn rim. The source cap ratio is approximately 0.868; the adopted endpoint is farther out at 11.6/12.6=0.921, preserving the existing clear aperture. The larger L11 hybrid land crosses the glass/resin boundary: extending only the resin S3A face leaves a tapered substrate and a narrow wing in the actual SVG. That trial was rejected because the current model disallows a cemented-interface land. The original S3A and compound heights remain, with this source-silhouette limitation disclosed.
 
 ## Sources and References
 

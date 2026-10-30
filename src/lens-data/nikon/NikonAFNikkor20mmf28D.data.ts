@@ -157,7 +157,7 @@ const LENS_DATA = {
       nd: 1.58267,
       vd: 46.5,
       focalLengthMm: 33.06,
-      glass: "J-BAF3 (HIKARI / Nikon)",
+      glass: "J-BAF3 (Hikari, coordinate-compatible spectral proxy; supplier unproven)",
       apd: false,
       role: "Positive meniscus immediately ahead of the aperture stop.",
     },
@@ -213,13 +213,21 @@ const LENS_DATA = {
     },
   ],
 
+  // 2026-10-29: US4690517 Fig. 1 (PDF p2), native 300ppi, about 14.9px/mm
+  // from the ~711px S1–S21 vertex span /47.7204mm. Both halves show
+  // vertical seats at S4/S6; retain their 9.7/7.8mm clear caps and extend
+  // the opaque drawn rims to the opposite faces' 13.9/9.5mm heights.
+  // Source q≈.66/.82 at edge radii≈225/150 native px gives one-pixel bands
+  // ±.0074/±.0121. Adopted .698/.821 cap/rim ratios retain field-clearance caps.
+  // S2 has continuous curvature, so its clear SD rises 18.3→20.9mm to the
+  // common L1 rim; no opaque break is invented.
   surfaces: [
     { label: "1", R: 38.8882, d: 5.4962, sd: 20.9, medium: 1 },
-    { label: "2", R: 99.2998, d: 0.0982, sd: 18.3 },
+    { label: "2", R: 99.2998, d: 0.0982, sd: 20.9 },
     { label: "3", R: 27.095, d: 1.374, sd: 13.9, medium: 2 },
-    { label: "4", R: 10.8308, d: 3.9258, sd: 9.7 },
+    { label: "4", R: 10.8308, d: 3.9258, sd: 9.7, rimExtensionSd: 13.9 },
     { label: "5", R: 19.05, d: 1.1778, sd: 9.5, medium: 3 },
-    { label: "6", R: 10.1384, d: 3.7296, sd: 7.8 },
+    { label: "6", R: 10.1384, d: 3.7296, sd: 7.8, rimExtensionSd: 9.5 },
     { label: "7", R: 75.0028, d: 3.1406, sd: 7.5, medium: 4 },
     { label: "8", R: -29.5026, d: 1.2758, sd: 7.25, medium: 5 },
     { label: "9", R: 11.738, d: 4.9072, sd: 7.15, medium: 6 },

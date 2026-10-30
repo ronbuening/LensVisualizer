@@ -67,3 +67,9 @@ so their rear surfaces keep their own values: surface 4 is crossed at 10.83 mm (
 The validator accepts the new values, the traced edge now reaches 21.65 mm at 55.3° with every rim clear (100%), and the
 image-circle floor still reports nothing undersized. All surfaces are spherical, and the analysis quotes none of the
 changed semi-diameters.
+
+## 2026-10-30 — Fresh F-mount optical rims and glass
+
+- Reopened original `patents/CN 205427291 U.pdf`: Example 2 definitions/table/states PDFpp.7–9 and Figure 3/published 21.63 mm aberration image height p.14 at native resolution and 600 dpi. Every 12 nd/νd pair matches; d-line explicit¶0059. All 12 retain compatible coefficient proxies; S-LAH 95/TAFD 25 and H-QK 3 L are qualified coordinate models, never historical melt identities. No source nC/nF/ng/PgF/theta/Sellmeier or anomalous-material claim; no per-lens spectral copies.
+- Figure independently resolves rear flat lands S 2/S 4/S 6/S 9. Retain clear caps 23/11/8/9 and extend blank only to 26/15.1/10.6/10.5 mm. Raise continuous/connected S 8:10→10.5 and S 10/S 11/S 12:9→10.5, S 13:8.5→10.5 mm. The drawn L 4 doublet/L 5/L 6 share the~10.5 mm envelope; no opaque interface land. All other rims retained. Figure uncertainty~0.2–0.4 mm, no printed effective diameters. Front land remains bounded below S 1 outer 27.5, following its unequal meniscus ends.
+- No inferred cuts introduced. Canonical build and surface checks pass with existing gap/edge/slope rules; image-circle zero undersized, centered field reaches 21.65 mm. Actual 9-stateSVG inspected with finite paths/zero hidden trim. Common-field 16×16 lattice at 3 focus×5 field fractions:2914 retained,0 lost,18 gained; counts not flux. Centered full-frame trace does not establish production shifted-pupil coverage. Published finite endpoint remains 0.7836×, not production 1:1. R/d/stop/focus/aperture/tolerances unchanged.

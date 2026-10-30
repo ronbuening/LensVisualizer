@@ -629,3 +629,5 @@ without a claim to reproduce the published aberration curves exactly.
 
 Primary web and catalog sources were consulted on 4 October 2026; the
 Sigma construction diagram was consulted again on 13 October 2026.
+
+The fresh source review models L5’s exposed annulus directly: S8 retains its22.3mm clear cap and a flat land reaches26.6mm. L9’s analogous S16 land to15.9mm fails unchanged gap clearance and is retained as a constrained inclined edge. No sphere, spacing, iris, focus state or tolerance changes.

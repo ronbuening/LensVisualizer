@@ -132,7 +132,7 @@ Surface 7A is by far the most aggressive asphere. Its K = −7.38 alone would fl
 
 ## 5. Glass Selection and Material Strategy
 
-The design uses 13 distinct glass types plus the resin layer of the hybrid asphere. The patent gives only nd and νd; the names below are catalog equivalents with matching values, not glass identities stated by Nikon. Nikon's in-house supplier is Hikari, and several of the pairs are exact Hikari coordinates.
+The design uses 12 distinct glass types plus the resin layer of the hybrid asphere. The patent gives only nd and νd; the names below are catalog equivalents with matching values, not glass identities stated by Nikon. Nikon's in-house supplier is Hikari, and several of the pairs are exact Hikari coordinates.
 
 ### Glass Census
 
@@ -231,9 +231,9 @@ The design achieves what the patent abstract calls "a wide angle of view, a fast
 
 ### Semi-diameter methodology
 
-The patent does not publish clear apertures, so every semi-diameter is an estimate. The front group follows Fig. 1 (wide panel), scaled from the 175.00 mm front-vertex-to-image distance: the rims are taken where each curved surface ends, not at the flat mounting annuli drawn outside them. That gives about 41 mm for the front surface of E1, 29.5 mm and 25.2 mm for E2, and 25 mm for the front of E3, whose cemented rear and resin surface stop at about 20 mm. An exact real-ray trace confirms that the wide-end chief ray for the 21.6 mm image corner (ω = 57.36°, the patent's value) crosses these surfaces at 37.5, 28.6, 27.0, 22.9 and 20.8 mm, so all of them pass it. The deep concave rear of E1 is drawn at 29.0 mm rather than the figure's 30.9 mm because the renderer limits how close a spherical rim can come to its 32.27 mm radius; the chief ray needs 28.6 mm there. The remaining front-group rims and all rear-group rims agree with Fig. 1 within about 15 % and are retained.
+The patent does not publish clear apertures, so every semi-diameter is an estimate. The front group follows Fig. 1 (wide panel), scaled from the 175.00 mm front-vertex-to-image distance: the clear caps follow the curved endpoints, while the exposed S2/S4A flat annuli are drawn separately to their outer rims. That gives about 41 mm for the front surface of E1, 29.5 mm and 25.2 mm for E2, and 25 mm for the front of E3, whose cemented rear and resin surface stop at about 20 mm. An exact real-ray trace confirms that the wide-end chief ray for the 21.6 mm image corner (ω = 57.36°, the patent's value) crosses these surfaces at 37.5, 28.6, 27.0, 22.9 and 20.8 mm, so all of them pass it. The deep concave rear of E1 is drawn at 29.0 mm rather than the figure's 30.9 mm because the renderer limits how close a spherical rim can come to its 32.27 mm radius; the chief ray needs 28.6 mm there. The remaining front-group rims and all rear-group rims agree with Fig. 1 within about 15 % and are retained.
 
-The viewer estimates its wide-end field paraxially, and that estimate stops at about 46° (half-angle) because it overstates the chief-ray height on the rear of E1. The patent's full 57.36° wide-end field is therefore not drawn, although the rims admit it.
+Current vector field checks reach the full-frame corner at all three zoom stations.
 
 ### Glass identification
 
@@ -262,3 +262,9 @@ The patent uses κ in the sag formula where κ = 1 + K (standard conic conventio
 | G2 focal length | +42.65 mm |
 | Glass identification | Catalog equivalents (Ohara/Hikari) from patent nd/νd; E12 unmatched, E4 resin |
 | Aperture blades | 9, rounded (production spec) |
+
+## Fresh source and rendering review (2026-10-30)
+
+The rechecked FIG. 1 flat annuli are now drawn with `rimExtensionSd`: S2 keeps its 29.0 mm refractive cap and extends to the 41.0 mm front body; S4A keeps its 25.2 mm asphere and extends to 29.5 mm. The printed S2 curvature would place the illustrated 30.9 mm cap beyond the existing 0.9R bound (29.04327 mm), so the conservative cap remains explicit. Cemented hybrid-body steps are not independent exposed lands. Current vector field checks reach every format corner; the former paraxial display-limit note no longer describes the engine. At the printed close-object distances, 25/25 axial pupil samples pass at every zoom station. The aperture audit still finds f/3.00 at tele versus source f/2.88, classified as a trace/stop effect; no inferred lens rim, source gap or iris is changed to conceal it.
+
+All source nd/νd pairs and d-line conventions were rechecked directly in the local rendered patent tables. Catalog names are compatible spectral proxies, never production supplier or melt identifications. The source supplies no additional spectral-line or partial-dispersion values; none are invented. Thirteen glass curves resolve; the inferred resin and the unusual1.772789/49.45 crown remain unresolved.

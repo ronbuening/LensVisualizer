@@ -5,6 +5,7 @@
  * - each leg's output ingests to the source's canonical prescription;
  * - the first round trip's output holds every comment of the source once, as written or with the converter's note;
  * - the second round trip writes byte for byte what the first wrote, in both versions.
+ * Tooling projects partition the path-sorted corpus round-robin; every partition keeps all five legs and checks.
  *
  * Each leg type-checks every converted text where it is written, and a file the command line refuses is a case with
  * its reason; the leg then runs again without it, so the other files go on. Every catalog file must go through every
@@ -15,7 +16,7 @@ import * as nodeFs from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, inject, it } from "vitest";
 import { runConversion } from "../../scripts/lens-data-convert/cli.mjs";
 import { commentNotCarried } from "../../scripts/lens-data-convert/comments.mjs";
 import { readLensDataFile } from "../../scripts/lens-data-convert/read.mjs";
@@ -29,6 +30,23 @@ const { statSync, writeFileSync } = nodeFs;
 const ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const CATALOG = join(ROOT, "src", "lens-data");
 const TYPES = join(ROOT, "src", "types");
+
+declare module "vitest" {
+  export interface ProvidedContext {
+    conversionCorpusShard?: { index: number; count: number };
+  }
+}
+
+const CORPUS_SHARD = inject("conversionCorpusShard") ?? { index: 0, count: 1 };
+if (
+  !Number.isInteger(CORPUS_SHARD.count) ||
+  CORPUS_SHARD.count < 1 ||
+  !Number.isInteger(CORPUS_SHARD.index) ||
+  CORPUS_SHARD.index < 0 ||
+  CORPUS_SHARD.index >= CORPUS_SHARD.count
+) {
+  throw new Error(`Invalid conversion corpus partition: ${JSON.stringify(CORPUS_SHARD)}`);
+}
 
 /** A case the sweep found: the file, the leg or check that found it, and why. */
 interface Offender {
@@ -205,54 +223,74 @@ function put(path: string, text: string) {
 
 describe("the corpus conversion sweep", () => {
   it(
-    "brings every catalog file back to its own prescription, and a second round trip writes the same bytes",
+    `brings every catalog file in partition ${CORPUS_SHARD.index + 1}/${CORPUS_SHARD.count} back to its own prescription, and a second round trip writes the same bytes`,
     async () => {
-      expect(await sweep(CATALOG, temp())).toEqual([]);
+      const files = lensDataFiles(CATALOG);
+      const partitions = Array.from({ length: CORPUS_SHARD.count }, (_, index) =>
+        files.filter((_, fileIndex) => fileIndex % CORPUS_SHARD.count === index),
+      );
+      // Partitioning must neither omit a file nor check one twice across the projects.
+      expect(partitions.flat().sort()).toEqual(files);
+      const selected = partitions[CORPUS_SHARD.index];
+      expect(selected.length).toBeGreaterThan(0);
+      let catalog = CATALOG;
+      if (CORPUS_SHARD.count > 1) {
+        catalog = temp();
+        for (const file of selected) {
+          const destination = join(catalog, file);
+          mkdirSync(dirname(destination), { recursive: true });
+          copyFileSync(join(CATALOG, file), destination);
+        }
+        expect(lensDataFiles(catalog)).toEqual(selected);
+      }
+      expect(await sweep(catalog, temp())).toEqual([]);
     },
     30 * 60_000,
   );
 
-  it("finds a refused file and carries the others of either version through every leg", async () => {
-    const catalog = temp();
-    put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
-    put(join(catalog, "fixture", "Hand.data.ts"), BUILDABLE_V2);
-    put(join(catalog, "fixture", "Odd.data.ts"), v1LensFile(`${PRIME_MEMBERS}\n  mystery: 1,`));
-    put(join(catalog, "fixture", "Converter.teleconverter.ts"), TELECONVERTER_FILE);
-    const work = temp();
-    const offenders = await sweep(catalog, work);
-    expect(offenders).toEqual([
-      {
-        file: join("fixture", "Odd.data.ts"),
-        leg: "V1 files, leg 1 to V2",
-        check: "refused",
-        detail: expect.stringMatching(/mystery/),
-      },
-    ]);
-    expect(lensDataFiles(join(work, "v1-leg5"))).toEqual([
-      join("fixture", "Converter.teleconverter.ts"),
-      join("fixture", "Prime.data.ts"),
-    ]);
-    expect(lensDataFiles(join(work, "v2-leg5"))).toEqual([join("fixture", "Hand.data.ts")]);
-  }, 120_000);
+  if (CORPUS_SHARD.index === 0) {
+    it("finds a refused file and carries the others of either version through every leg", async () => {
+      const catalog = temp();
+      put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
+      put(join(catalog, "fixture", "Hand.data.ts"), BUILDABLE_V2);
+      put(join(catalog, "fixture", "Odd.data.ts"), v1LensFile(`${PRIME_MEMBERS}\n  mystery: 1,`));
+      put(join(catalog, "fixture", "Converter.teleconverter.ts"), TELECONVERTER_FILE);
+      const work = temp();
+      const offenders = await sweep(catalog, work);
+      expect(offenders).toEqual([
+        {
+          file: join("fixture", "Odd.data.ts"),
+          leg: "V1 files, leg 1 to V2",
+          check: "refused",
+          detail: expect.stringMatching(/mystery/),
+        },
+      ]);
+      expect(lensDataFiles(join(work, "v1-leg5"))).toEqual([
+        join("fixture", "Converter.teleconverter.ts"),
+        join("fixture", "Prime.data.ts"),
+      ]);
+      expect(lensDataFiles(join(work, "v2-leg5"))).toEqual([join("fixture", "Hand.data.ts")]);
+    }, 120_000);
 
-  it("takes a run the command line refuses before converting anything as a case for its leg, not a file", async () => {
-    const catalog = temp();
-    put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
-    writeFileSync(join(catalog, "fixture", ".Prime.data.ts.1.convert-bak"), "a backup a run left");
-    const run = {
-      file: "",
-      check: "run",
-      detail: expect.stringMatching(/refused before converting anything: .+ a backup/),
-    };
-    expect(await sweep(catalog, temp())).toEqual([
-      { ...run, leg: "V1 files, leg 1 to V2" },
-      { ...run, leg: "V2 files, leg 1 to V1" },
-      {
-        file: join("fixture", "Prime.data.ts"),
-        leg: "leg 1",
-        check: "coverage",
-        detail: "neither group's first leg wrote or refused it",
-      },
-    ]);
-  }, 120_000);
+    it("takes a run the command line refuses before converting anything as a case for its leg, not a file", async () => {
+      const catalog = temp();
+      put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
+      writeFileSync(join(catalog, "fixture", ".Prime.data.ts.1.convert-bak"), "a backup a run left");
+      const run = {
+        file: "",
+        check: "run",
+        detail: expect.stringMatching(/refused before converting anything: .+ a backup/),
+      };
+      expect(await sweep(catalog, temp())).toEqual([
+        { ...run, leg: "V1 files, leg 1 to V2" },
+        { ...run, leg: "V2 files, leg 1 to V1" },
+        {
+          file: join("fixture", "Prime.data.ts"),
+          leg: "leg 1",
+          check: "coverage",
+          detail: "neither group's first leg wrote or refused it",
+        },
+      ]);
+    }, 120_000);
+  }
 });

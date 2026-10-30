@@ -135,3 +135,47 @@ review (1311 px for 199.886 mm). One native pixel at the cap end and at the edge
 
 - 7: figure q 0.90 (0.904 / 0.904 on the Wide panel, 0.898 / 0.904 on the Middle panel) at a 157.4 px edge (24 mm),
   range 0.888–0.912. The cut sits at 0.900 of `sd`. Land 2.404 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO_2020105104_A1.pdf`, PDF p. 64, Figure 1 / Example 1, including a 600 dpi crop of the complete wide-end section and the middle/tele panels. Native scale remains 6.559 px/mm from the 1311 px / 199.886 mm S1–S40 vertex span. Every concave air face was checked.
+
+No data change is supported. The resolved land on surface 7 is already represented by its safe cut. The small land on 34 remains unauthored: the existing 14 mm rim lies only 0.038 mm outside the prior traced beam reach, less than the 0.05 mm cut margin. An extension cannot restore a land inside the current optical cap without reducing that aperture, and the figure shows no taller outer rim there. All other air faces reach their corners or have no resolved land. Surface 12's existing 18.1 mm gap-constrained rim is retained.
+
+Validation: `audit:surface`, `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1. Parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO_2020105104_A1.pdf`, Example 1 / Table 1, PDF pp. 22–23; partial-dispersion definitions and abnormal-dispersion explanation, pp. 13–14, ¶0048/0054. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 2.00100 / 29.12 | S-LAH99 | source pair retained; compatible proxy |
+| L12 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L13 | 1.43385 / 95.25 | CaF2 | source pair retained; compatible proxy |
+| L21 | 1.60300 / 65.44 | S-PHM53 | source pair retained; compatible proxy |
+| L22 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L23 | 1.66382 / 27.35 | J-SFH4 | source pair retained; compatible proxy |
+| L24 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L31 | 1.94595 / 17.98 | FDS18 | source pair retained; compatible proxy |
+| L41 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L42 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L51 | 1.92286 / 20.88 | N-SF66 | source pair retained; compatible proxy |
+| L52 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L61 | 1.85026 / 32.35 | J-LASF021 | source pair retained; compatible proxy |
+| L62 | 1.59306 / 66.97 | J-PSKH4 | source pair retained; compatible proxy |
+| L63 | 1.62004 / 36.4 | S-TIM2 | source pair retained; compatible proxy |
+| L64 | 1.80100 / 34.92 | J-LAF016 | source pair retained; compatible proxy |
+| L71 | 1.94595 / 17.98 | FDS18 | source pair retained; compatible proxy |
+| L72 | 1.71300 / 53.96 | N-LAK8 | source pair retained; compatible proxy |
+| L81 | 1.90265 / 35.77 | J-LASFH9 | source pair retained; compatible proxy |
+| L91 | 1.51696 / 64.14 | N-BK7 | source pair retained; compatible proxy |
+| L92 | 1.56384 / 60.71 | N-SK11 | source pair retained; compatible proxy |
+
+Coverage: 21 physical lens elements, 21 authored media, 21 modeled media resolving to dispersion curves. Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All twenty-one source nd/νd pairs and compatible curves are retained. The source identifies anomalous partial dispersion in the G2 positive lens and gives θgF(L23) = 0.6319: 0.6319 − (0.6438 − 0.001682×27.35) = 0.0341027, consistent with stored rounded dPgF 0.0341. J-SFH4 remains a numerical spectral proxy, not proof of Nikon SR production composition. The six J-FKH1 low-dispersion inferences and CaF2 association remain qualified. J-PSKH4 at L62, N-LAK8 at L72 and N-BK7 at L91 are non-identical compatible proxies; no substitution or supplier identity was inferred. No catalog-only spectral overrides or authored line indices were found.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

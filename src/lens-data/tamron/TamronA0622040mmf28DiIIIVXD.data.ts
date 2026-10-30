@@ -202,7 +202,8 @@ const DATA={
       "label": "2",
       "R": 18.851,
       "d": 8.3,
-      "sd": 15.8
+      "sd": 15.8,
+      "rimExtensionSd": 21.5
     },
     {
       "label": "3",
@@ -215,7 +216,8 @@ const DATA={
       "label": "4",
       "R": 23.053,
       "d": 4.75,
-      "sd": 14.2
+      "sd": 14.2,
+      "rimExtensionSd": 17.4
     },
     {
       "label": "5A",
@@ -322,7 +324,8 @@ const DATA={
     {
       "label": "18",
       "R": 20.336,
-      "sd": 9
+      "sd": 9,
+      "rimExtensionSd": 10.4
     },
     {
       "label": "19",
@@ -348,13 +351,15 @@ const DATA={
       "label": "22",
       "R": 36.384,
       "d": 5.6,
-      "sd": 13
+      "sd": 13,
+      "rimCutDepthMm": 2.05
     },
     {
       "label": "23A",
       "R": -46.528,
       "d": 1.5,
       "sd": 12,
+      "rimExtensionSd": 14.5,
       "medium": 12,
       "asphere": {
         "A4": -0.00010439,
