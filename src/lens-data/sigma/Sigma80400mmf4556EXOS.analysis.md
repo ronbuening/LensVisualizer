@@ -161,3 +161,6 @@ The stop radius is calculated from the printed f-number at each zoom station. Cl
 - [Sigma Photokina 2002 lens announcement](https://www.dpreview.com/articles/0339224088/sigmalenses) (DPReview), naming the APO 80-400mm F4.5-5.6 EX OS.
 
 The model does not reproduce the manufactured radii, focus closer than the patent's 3 m state, the shifted stabilization states, later DG revisions or measured MTF.
+
+
+The fresh F-mount source review retains the oblique S9 bevel and the S12 compound shoulder. The latter does not establish an opaque land on the powered shared interface, and its stepped height is preserved without enlarging the clear cap or changing the existing gap allowance. All twenty d-line glass coordinates retain qualified compatible coefficient models. The three low-dispersion family assignments remain inferred; no partial-dispersion measurement, actual supplier or melt identity is supplied by the patent.

@@ -61,3 +61,6 @@ The full-frame corner traces at every zoom position. The model does not simulate
 - [JP 2010-217838 A](https://patents.google.com/patent/JP2010217838A/en), Example 1, its finite-object table and Fig. 1.
 - [Gentec's Sigma 70-300mm DG OS announcement](https://www.gentec-intl.com/blogs/news/gentec-introduces-the-sigma-70-300mm-f4-5-6-dg-os-telephoto-zoom-lens-with-optical-stabilizer), product construction and minimum focusing distance.
 - Sigma's construction drawing for the lens (sigma-global.com), element layout and SLD position.
+
+
+The fresh F-mount review restores the independently drawn front land on S26: the clear cap remains 10.5 mm and the blank extends to 12.8 mm, as in Example 1 Figure 1. The S8/S9 continuous curves cannot reach the schematic outer box: their literal spheres cross near 11.55 mm, so the constrained 11.3 mm caps and the resulting taper remain. No opaque shared interface, unsupported land on those two faces, or expanded gap tolerance is used. All sixteen source d-line index/Abbe pairs retain qualified compatible spectral models; the E3 low-dispersion/APD family assignment stays inferred, with production supplier and melt unconfirmed.

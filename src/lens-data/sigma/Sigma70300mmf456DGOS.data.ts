@@ -402,6 +402,7 @@ const LENS_DATA = {
       "label": "26",
       "R": -21.5634,
       "sd": 10.5,
+      "rimExtensionSd": 12.8,
       "d": 3.1815,
       "medium": 15
     },
