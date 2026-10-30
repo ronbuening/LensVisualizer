@@ -180,3 +180,5 @@ Three source defects are interpreted rather than silently propagated. Claim 2 an
 - Cosina, official VM release-date notice: https://www.cosina.co.jp/news/フォクトレンダーブランド-apo-skopar-90mm-f2-8-vm-発売日の-お知らせ/
 - Cosina, official SL IIs release-date notice: https://www.cosina.co.jp/news/フォクトレンダーブランド-apo-skopar-90mm-f2-8-sliis-発売日のお知らせ/
 - OHARA, “Glass Type” and “Comparative Table of Recommended Glasses,” together with current HOYA, SCHOTT, HIKARI, CDGM, and Sumita optical-glass catalogs used for the class-level glass audit; no vendor identity was assigned where the patent remained silent.
+
+The fresh Figure 1 review retains overall heights and models the flat concave-end shoulders of L4 and L5. Inferred axial depths of 4.9/1.76 mm leave clear radii of 11.7883/10.0090 mm inside the existing 13.8/11.3 mm bodies. They follow native endpoint/body ratios around 0.84/0.88 with several-pixel uncertainty. The full uncut-beam guard, including the published 800 mm object-gap state, clears both lands; sampled transmitted rays are retained. These are inferred shapes. All seven coefficient spectra remain qualified proxies, with production supplier and melt unspecified.

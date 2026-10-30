@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact sources, inferred contour dimensions and spectral qualifications are recorded in the audit sidecar. */
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus     ║
@@ -11,16 +13,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Focus: Unit focus (entire assembly translates).                   ║
  * ║                                                                    ║
  * ║  PATENT IDENTIFICATION NOTE:                                       ║
- * ║    The patent contains two examples. Example 1 (f = 197.9 mm) is  ║
+ * ║    The patent contains two examples. Example 1 (source f = 197 mm) is  ║
  * ║    the primary embodiment with three S-FPL51 ED menisci. Example  ║
  * ║    2 (f = 178 mm) may be closer to the production design based    ║
  * ║    on barrel-length and focal-length matching. This file           ║
  * ║    transcribes Example 1 at patent scale, unscaled.               ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    SDs estimated from marginal ray trace (f/4 EP) with 8%         ║
- * ║    mechanical clearance. Front group capped at 23.0 mm to match   ║
- * ║    the production 49 mm filter thread. Cemented junctions         ║
+ * ║    SDs inferred from Figure 1 and the native f/4 beam;         ║
+ * ║    front paired caps are25/24/23mm. The selected patent model   ║
+ * ║    is not certified to the retail49mm filter. Cemented junctions         ║
  * ║    equalized. No patent-published SDs available.                  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:          ║
@@ -66,9 +68,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 179.3,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.035 (ED fluorophosphate crown, ultra-low dispersion)",
+      apdNote: "Compatible S-FPL51 spectral proxy; source specifies ultra-low dispersion but no actual partial ratio, supplier or melt.",
       role: "Front group weakest meniscus; lowest marginal ray refraction.",
     },
     {
@@ -79,9 +81,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 116.5,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.035",
+      apdNote: "Compatible S-FPL51 spectral proxy; source specifies ultra-low dispersion but no actual partial ratio, supplier or melt.",
       role: "Front group middle meniscus; primary convergence contributor.",
     },
     {
@@ -92,9 +94,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 106.2,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.035",
+      apdNote: "Compatible S-FPL51 spectral proxy; source specifies ultra-low dispersion but no actual partial ratio, supplier or melt.",
       role: "Front group strongest meniscus; largest convergence contribution to G1.",
     },
     {
@@ -105,7 +107,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       focalLengthMm: -33.5,
-      glass: "S-LAH60 (OHARA)",
+      glass: "S-LAH60 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "High-index 'flint role' in D1; telephoto divergence at cemented interface.",
       cemented: "D1",
     },
@@ -117,7 +119,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       focalLengthMm: 63.6,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "Low-index crown in D1; maximizes Δn at cemented junction for divergence.",
       cemented: "D1",
     },
@@ -129,7 +131,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.7,
       focalLengthMm: -20.4,
-      glass: "S-LAH53 (OHARA)",
+      glass: "S-LAH53 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "Strongest negative element; primary telephoto compression in reversed doublet.",
       cemented: "D2",
     },
@@ -141,7 +143,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.3,
       focalLengthMm: 34.6,
-      glass: "S-TIH10 (OHARA)",
+      glass: "S-TIH10 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "Positive flint in reversed D2; overcorrected chromatic aberration for APO.",
       cemented: "D2",
     },
@@ -153,7 +155,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       focalLengthMm: 95.4,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "Rear corrector positive element; Petzval flattening and lateral color correction.",
     },
     {
@@ -164,7 +166,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.7,
       focalLengthMm: -113.2,
-      glass: "S-LAH53 (OHARA)",
+      glass: "S-LAH53 (OHARA compatible spectral proxy; production supplier unconfirmed)",
       role: "Rear corrector negative meniscus; field flattening and astigmatism balancing.",
     },
   ],
@@ -173,15 +175,15 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients — all spherical design ── */
   surfaces: [
     // G1 — Front Collector (positive): three air-spaced ED menisci
-    { label: "1", R: 75.791, d: 5.31, sd: 23.0, medium: 1 },
-    { label: "2", R: 496.439, d: 0.3, sd: 23.0 },
-    { label: "3", R: 34.299, d: 7.87, sd: 23.0, medium: 2 },
-    { label: "4", R: 77.742, d: 0.3, sd: 23.0 },
+    { label: "1", R: 75.791, d: 5.31, sd: 25.0, medium: 1 },
+    { label: "2", R: 496.439, d: 0.3, sd: 25.0 },
+    { label: "3", R: 34.299, d: 7.87, sd: 24.0, medium: 2 },
+    { label: "4", R: 77.742, d: 0.3, sd: 24.0 },
     { label: "5", R: 40.526, d: 6.81, sd: 23.0, medium: 3 },
-    { label: "6", R: 165.053, d: 3.25, sd: 20.0 },
+    { label: "6", R: 165.053, d: 3.25, sd: 23.0 },
 
     // G2 — Negative Middle: two cemented doublets
-    // D1: L21 (S-LAH55) + L22 (S-FSL5)
+    // D1: L21 (S-LAH60 proxy) + L22 (S-FSL5 proxy)
     { label: "7", R: 124.264, d: 2.0, sd: 18.0, medium: 4 },
     { label: "8", R: 22.803, d: 6.87, sd: 18.0, medium: 5 },
     { label: "9", R: 86.224, d: 3.46, sd: 15.3 },
