@@ -220,3 +220,16 @@ range is ±(1 + q) / (sd × 7.78 px/mm):
   1.2856 mm.
 
 Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JPWO2020157904A1.pdf`, Example 1 / Figure 1, PDF p. 56, at 600 dpi, rotated
+object-left. The vertex-spacing scale remains 7.78 native px/mm. All 19 elements and both halves were checked.
+The three resolved lands on 2, 8 and 32 already draw to the stored outer edges via beam-qualified cuts.
+Their clear radii, 30.0621 / 11.5977 / 13.3144 mm, are retained. No new outer extension is supported on the
+remaining faces: the curves reach their element edges, with shallow 6/14 and the one-pixel change at 21 below
+what the raster can establish. The source's lower cap end at 8 remains qualified by the existing beam evidence.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.

@@ -181,3 +181,19 @@ lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / 
 
 - 5: figure q 0.796 (236 / 296.5 px) at a 298.1 px edge (20.1 mm), range 0.790–0.802. The cut sits at the old 16.2 mm
   rim, 0.806 of `sd`, within one pixel of the drawn land. Land 3.9016 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/WO2022259649A1.pdf`, Example 5 / Figure 9, PDF p. 109, at 600 dpi, rotated
+object-left. The S1–S30 span gives 117.40 mm at 0.06743 mm/native px, or 14.83 px/mm. Both halves of
+all 16 elements were checked. The large L3 rear land at 5 already ends its cap at 16.1984 mm within the
+20.1 mm square outer edge, so its existing cut is retained.
+
+The short L12 front land at 22 lies inside the current optical cap and would require extra clipping, as the
+2026-10-27 beam review records. Its present outer rim already represents the figure's element edge, so an
+extension beyond it would add unsupported height. Steps at 2 and 20 are cemented junctions. No other
+resolved air-face land calls for an extension or additional cut.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.

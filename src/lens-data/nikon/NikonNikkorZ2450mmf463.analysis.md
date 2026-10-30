@@ -287,6 +287,8 @@ The condition values cluster near the centers of their ranges, suggesting Exampl
 
 The zoom ratio is 1.96×, and the f-number varies from 4.08 to 6.34 — a 1.55× ratio, which Nikon rounds to the marketed f/4–6.3 specification. The total track varies non-monotonically (shortest at middle), reflecting the G1 U-turn behavior.
 
+Figure 1 draws a square outer edge and a flat land on L1a's concave rear face. Its optical cap remains at the estimated 13.5 mm semi-diameter, while an opaque rim extension now completes the outline to the front face's 15.5 mm radius. This draws the land without continuing the sphere beyond its 15.312 mm radius or changing its clear aperture. The figure's smaller cap end is not imposed because it would remove traced corner rays.
+
 ### Verified Group Focal Lengths
 
 | Group | Patent (mm) | Computed (mm) | Delta |
