@@ -239,3 +239,28 @@ Re-read original `patents/JP2019090947A.pdf`, PDF p. 19, FIG. 4 / Example 4, as 
 The earlier beam rule rejected inferred cuts on these faces because the cuts need clearance beyond the full beam. Extensions preserve the existing optical caps and add only opaque material outside them. The existing safe 12A cut stays at 1.87 mm; 18A runs to its edge with no resolved land. No additional concave cut is supported. No prescription, medium, stop or clear radius changes.
 
 Verification: before/after `audit:surface` clean; `audit:image-circle` 0 undersized / 0 skipped; 600 dpi `audit:patent-figure` shows normalized element-size ratios 0.98–1.03. Full catalog and rendered-view checks are recorded in the delivery report.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/JP2019090947A.pdf`, Example 4 surface table, PDF p. 17, and Tables 1–2 on p. 18. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.51680 / 64.13 | J-BK7A | source pair retained; compatible proxy |
+| L12 | 1.95375 / 32.33 | S-LAH98 | source pair retained; compatible proxy |
+| L13 | 1.60342 / 38.03 | S-TIM5 | source pair retained; compatible proxy |
+| L14 | 1.68893 / 31.16 | S-TIM28 | source pair retained; compatible proxy |
+| L15 | 1.85150 / 40.78 | S-LAH89 | source pair retained; compatible proxy |
+| L16 | 1.49700 / 81.61 | S-FPL51 | source pair retained; compatible proxy |
+| L17 | 1.83441 / 37.28 | M-NBFD10 | source pair retained; compatible proxy |
+| L21 | 1.61293 / 36.94 | S-TIM3 | source pair retained; compatible proxy |
+| L22 | 1.59282 / 68.62 | FCD515 | source pair retained; compatible proxy |
+| L23 | 1.69350 / 53.2 | L-LAL13 | source pair retained; compatible proxy |
+| L31 | 1.58313 / 59.46 | M-BACD12 | source pair retained; compatible proxy |
+
+Coverage: 11 physical lens elements, 11 authored media, 11 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (PT 1.51680/64.13, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All eleven lens-glass nd/νd pairs and the separate rear plate match the d-line source values and retain their compatible curves. Table 2 gives θgF(L22) = 0.5441 at νd 68.62; engine dPgF = 0.5441 − (0.6438 − 0.001682×68.62) = 0.01571884, consistent with stored 0.015719. Table 1's rounded +0.019 deviation is measured against the patent's different line and is not substituted for that value. L16 has no source partial dispersion. Removed its duplicated catalog-derived dPgF 0.030928, allowing the resolved S-FPL51 curve to supply dispersion directly, and synchronized the header/APD note/public analysis. L16's qualified catalog-based APD inference remains. No source indices, source spectral constraints or geometry changed.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

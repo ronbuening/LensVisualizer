@@ -131,7 +131,7 @@ This doublet is also weakly positive, but with a different glass strategy: a den
 | Thick-lens fl | +39.8 mm (scaled) |
 | Glass ID | S-FPL51 (OHARA). Match: Δnd = 0.000, Δνd = 0.07. Fluorophosphate ED crown. |
 
-L16 is the first ED element — an OHARA S-FPL51 fluorophosphate crown with νd = 81.6, among the lowest dispersion glasses in common use. From the OHARA catalog: nd = 1.49700, νd = 81.54, θgF = 0.5375, ΔPgF = +0.028. This glass lies above the normal line on the θgF–νd diagram, exhibiting positive anomalous partial dispersion that enables correction of secondary chromatic aberration.
+L16 is an inferred ED element, modeled by the compatible OHARA S-FPL51 spectral proxy at the source's nd = 1.49700 and νd = 81.61. The patent gives no partial dispersion for this element and does not identify its supplier. The catalog curve supplies dispersion directly; the copied catalog-derived per-lens deviation has been removed. OHARA's catalog θgF ≈ 0.5375 and ΔPgF = +0.028 describe that catalog glass on OHARA's own reference line, rather than an additional patent constraint. Its APD designation remains an inference.
 
 L16 is one of the more steeply curved positive elements in Gr1, with an asymmetric biconvex shape (R₁ = 25.7 mm versus |R₂| = 76.7 mm) that concentrates most of its refracting power at the front surface. However, its primary significance is not its curvature — L12 and L15 carry more positive power (fl = +31.3 and +23.2 mm, respectively, versus +39.8 mm for L16). Rather, L16's role is defined by its ED glass: with νd = 81.6, it has by far the lowest dispersion of any element in the design. Its position immediately before the aperture stop means it handles the full marginal ray height at wide aperture, maximizing the chromatic correction efficiency of its low-dispersion fluorophosphate material.
 
@@ -278,7 +278,7 @@ The lens employs a two-pronged chromatic correction strategy:
 
 **Secondary spectrum correction** relies on the two ED elements:
 
-- **L16 (S-FPL51):** A classic fluorophosphate ED crown with very high νd = 81.6 and positive ΔPgF = +0.028. Positioned at a strong positive-power location in Gr1, its extremely low dispersion enables effective primary chromatic correction when paired with the higher-dispersion flint elements. Its anomalous partial dispersion (θgF above the normal line) simultaneously addresses secondary spectrum — the residual chromatic error that persists even after primary achromatization.
+- **L16 (S-FPL51 spectral proxy):** A compatible fluorophosphate crown with νd near 81.6 and catalog ΔPgF = +0.028 on OHARA's own line; the patent provides no partial dispersion for L16. Positioned at a strong positive-power location in Gr1, its extremely low dispersion enables effective primary chromatic correction when paired with the higher-dispersion flint elements. Its anomalous partial dispersion (θgF above the normal line) simultaneously addresses secondary spectrum — the residual chromatic error that persists even after primary achromatization.
 
 - **L22 (fluorophosphate crown):** Moderate νd = 68.6 but strong positive anomalous dispersion (ΔθgF = +0.019). Unlike L16, L22's ED behavior comes primarily from its anomalous partial dispersion rather than extremely low total dispersion. Its placement in the moving focus group means it maintains chromatic correction stability across the entire focus range.
 

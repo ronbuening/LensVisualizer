@@ -68,8 +68,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    (Table 2: 0.5441); its own deviation, condition (6)            ║
  * ║    θgF − (−0.0018·νd + 0.6484) = 0.019, is on a different line    ║
  * ║    and is quoted in the analysis, not stored. L16 has no patent   ║
- * ║    θgF: its `dPgF` is the OHARA S-FPL51 catalog curve on the      ║
- * ║    engine's line, replacing OHARA's own-line ΔPgF = +0.028.       ║
+ * ║    θgF: its dispersion now comes directly from the compatible     ║
+ * ║    OHARA S-FPL51 catalog curve, without a copied dPgF override.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -170,9 +170,8 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote:
-        "Catalog-derived (the patent prints no θgF for L16): OHARA S-FPL51 catalog θgF = 0.5375; ΔPgF = +0.028 by OHARA's own normal line, runtime dPgF +0.03093 from the catalog curve at the patent νd. Fluorophosphate ED crown with very high νd = 81.6.",
+        "Inferred from the compatible OHARA S-FPL51 catalog curve; the patent prints no θgF for L16. The curve supplies dispersion directly, without a per-lens catalog-derived override. Production material and supplier remain unspecified.",
       role: "ED element #1. Extremely low dispersion for primary + secondary chromatic correction. Positioned before stop at full marginal ray height for maximum chromatic efficiency.",
-      dPgF: 0.030928,
     },
     {
       id: 7,

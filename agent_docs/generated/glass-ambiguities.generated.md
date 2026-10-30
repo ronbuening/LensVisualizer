@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1026** lenses scanned
 - **11741** glass elements examined
-- **3276** elements have multiple coordinate-compatible candidates
-- **589** lens files are affected
+- **3273** elements have multiple coordinate-compatible candidates
+- **588** lens files are affected
 - **319** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **211** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1902 |
-| Evidence-source priority | 1015 |
+| Smallest reference-index residual | 1897 |
+| Evidence-source priority | 1017 |
 | Vendor context | 345 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -1398,7 +1398,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `J-KZFH1 (HIKARI) — patent antimony flint 613443` | 1.61266 / 44.30 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | S-NBM51 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) L2 |
 | `648338 — flint coordinate class (supplier unresolved)` | 1.64831 / 33.80 (d) | H-ZF1 — smallest d-line \|Δn\| (6.2e-4 vs 6.2e-4) | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L1 |
 | `620603 — barium-crown class (S-BSM16 coordinate equivalent; supplier unresolved)` | 1.62041 / 60.30 (d) | S-BSM16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>N-SK16 (Schott, code, preferred code row) | 2 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L2 |
-| `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) L7 |
+| `697555 — J-LAK14 catalog spectral proxy (patent coordinate; production supplier unspecified)` | 1.69680 / 55.52 (d) | J-LAK14 — direct name evidence outranks six-digit code evidence. | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) L7 |
 | `J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)` | 1.49782 / 82.60 (d) | J-FKH1 — Annotation vendor context matches Hikari. | S-FPL51 (Ohara, name, vendor ✗) | 4 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L13 |
 | `J-KZFH9 (HIKARI catalog equivalent; patent code 738323, vendor unspecified)` | 1.73800 / 32.30 (d) | J-KZFH9 — direct name evidence outranks six-digit code evidence. | S-NBH53 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L14 |
 | `FCD1 / S-FPL51 class (HOYA/OHARA)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 4 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L2 |
@@ -1411,12 +1411,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FCD1 (HOYA) / S-FPL51` | 1.49700 / 81.61 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 2 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) L2a |
 | `J-LASFH21 (HIKARI catalog equivalent; OHARA S-LAH98 / HOYA TAFD45 share the coordinate)` | 1.95375 / 32.30 (d) | J-LASFH21 — smallest d-line \|Δn\| (3.1e-8 vs 5.9e-7) | S-LAH98 (Ohara, name, vendor ✓)<br>TAFD45 (Hoya, name, vendor ✓) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L15 |
 | `N-KZFS8 (SCHOTT catalog equivalent; OHARA S-NBH8 shares the coordinate)` | 1.72047 / 34.70 (d) | N-KZFS8 — smallest d-line \|Δn\| (3.1e-7 vs 2.9e-6) | S-NBH8 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L21 |
-| `S-FPM2 / FCD505 class (ED fluorophosphate; patent nd=1.59319, νd=67.9)` | 1.59319 / 67.90 (d) | FCD505 — smallest d-line \|Δn\| (3.6e-4 vs 2.0e-3) | S-FPM2 (Ohara, name) | 1 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) L15 |
-| `S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)` | 1.49782 / 82.60 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) L23 |
 | `903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)` | 1.90265 / 35.77 (d) | J-LASFH9 — direct name evidence outranks six-digit code evidence. | J-LASFH9A (Hikari, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L11 |
-| `KZFS-type (near N-KZFS4 / S-NBM51) (inferred coordinate counterpart)` | 1.61266 / 44.46 (d) | N-KZFS4 — smallest d-line \|Δn\| (7.0e-4 vs 7.4e-4) | S-NBM51 (Ohara, name) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L13 |
+| `613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained; production supplier unspecified)` | 1.61266 / 44.46 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | N-KZFS4 (Schott, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L13 |
 | `613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)` | 1.61266 / 44.46 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | N-KZFS4 (Schott, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L25 |
-| `Coordinate counterpart (near S-FPL51 / FCD1) (inferred coordinate counterpart)` | 1.49782 / 82.57 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L26 |
 | `S-LAH98 (OHARA) / TAFD45 (HOYA) (inferred coordinate counterpart)` | 1.95375 / 32.33 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, name, vendor ✓) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L28 |
 | `738323 class; J-KZFH9 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)` | 1.73800 / 32.33 (d) | J-KZFH9 — direct name evidence outranks six-digit code evidence. | S-NBH53 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L29 |
 | `TAFD40 (HOYA) — 2.00069/25.46 coordinate also listed as CDGM H-ZLaF90A and HIKARI J-LASFH17; supplier unresolved` | 2.00069 / 25.46 (d) | J-LASFH17 — smallest d-line \|Δn\| (4.1e-8 vs 3.8e-6) | TAFD40 (Hoya, name, vendor ✓) | 1 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) L32 |

@@ -1489,7 +1489,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 32A | Element 17 | abbe | `Barium crown / LaK family (624584, no exact catalog match)` | No catalog match |
+| 32A | Element 17 | abbe | `624584 crown-class glass (no unique catalog match; patent 1.62372 / 58.4)` | No catalog match |
 
 ### [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) - 94.1% trusted (16/17); 94.1% Sellmeier (16/17) - JP 2016-114800 A
 
@@ -1920,7 +1920,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 2 | Element 1r (resin layer) | abbe | `UV-curable optical resin` | No catalog match |
+| 2 | Element 1r (resin layer) | abbe | `Optical resin (patent hybrid layer; chemistry, curing method and supplier unspecified)` | No catalog match |
 
 ### [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) - 90.0% trusted (9/10); 90.0% Sellmeier (9/10) - US 5,579,169
 
@@ -1963,8 +1963,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 15A | Element 8 | abbe | `UV-curing resin (composite aspheric layer)` | No catalog match |
-| 23A | Element 13 | abbe | `UV-curing resin (composite aspheric layer)` | No catalog match |
+| 15A | Element 8 | abbe | `Optical resin (patent hybrid layer; chemistry, curing method and supplier unspecified)` | No catalog match |
+| 23A | Element 13 | abbe | `Optical resin (patent hybrid layer; chemistry, curing method and supplier unspecified)` | No catalog match |
 
 ### [PENTAX HD DA645 28-45mm f/4.5 ED AW SR](../../src/lens-data/pentax/HDPentaxDA6452845mmF45EDAWSR.data.ts) - 89.5% trusted (17/19); 89.5% Sellmeier (17/19) - JP 2015-87681 A
 
@@ -2744,8 +2744,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7 | Element 4 (resin) | abbe | `UV-curable photopolymer (Nikon)` | No catalog match |
-| 11A | Element 6 (resin) | abbe | `UV-curable photopolymer (Nikon)` | No catalog match |
+| 7 | Element 4 (resin) | abbe | `Unmatched (patent resin layer; chemistry and supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 11A | Element 6 (resin) | abbe | `Unmatched (patent resin layer; chemistry and supplier unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - 75.0% trusted (6/8); 75.0% Sellmeier (6/8) - US 8,994,842 B2
 

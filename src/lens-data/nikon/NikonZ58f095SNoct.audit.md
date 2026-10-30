@@ -123,3 +123,28 @@ Re-read original `patents/WO2019229849A1.pdf`, PDF p. 46, Figure 1 / Example 1, 
 These restore the three visible lands removed by the earlier inferred-cut beam rule while retaining exactly the prior optical caps. S3/S4 no longer require continuing the spheres to the taller drawn rims, resolving the 2026-09-08 outline follow-up. The existing safe S13 cut stays at 7.19 mm; S15 has no resolved land beyond line width, and S25/S28A run to their edges. No additional concave cut is supported. No prescription, glass, stop or clear aperture changes.
 
 Verification: before/after `audit:surface` clean; `audit:image-circle` 0 undersized / 0 skipped. Full catalog and rendered-view checks are recorded in the delivery report.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/WO2019229849A1.pdf`, Example 1, PDF pp. 21–23 (printed pp. 19–21). All 17
+physical lenses and the FL plate retain the printed d-line nd/νd coordinates. The five printed θgF entries
+are retained: L12 0.54467; L13/L25 0.56396; L24/L29 0.58997. Their runtime dPgF conversions remain
+−0.00650226 / −0.00505828 / +0.00054906, respectively. No source partial-dispersion datum was removed.
+
+| Media | Annotation change / retained verdict |
+|---|---|
+| L13 | N-KZFS4/S-NBM51 class → exact-coordinate J-KZFH1 spectral proxy, matching L25; patent dPgF retained |
+| L14 | S-FPM2/FCD10 class → exact-coordinate J-PSKH1 proxy, matching L22/L23 |
+| L26 | S-FPL51/FCD1 class → exact-coordinate J-FKH1 proxy at 1.49782/82.57 |
+| Other fourteen lens glasses; FL | Source coordinates and compatible existing catalog proxies retained |
+
+All seventeen lens media plus FL resolve to compatible coefficient curves. The three annotation refinements
+use already available catalog rows whose coordinates better reproduce the source; they do not identify Nikon's
+production supplier. C/d/F remains catalog-derived and each published θgF still controls its g-line ratio.
+Analysis annotations were synchronized, and existing authored APD flags were preserved.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.
+The runtime spectral probe reproduces all five authored source PgF values within 1e-9 through the catalog tier.

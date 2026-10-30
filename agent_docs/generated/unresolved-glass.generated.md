@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **1026** lenses scanned
 - **11747** non-air surfaces examined
 - **11756** element glass declarations examined
-- **221** non-explicit-unmatched annotations did not resolve
+- **219** non-explicit-unmatched annotations did not resolve
 - **116** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -361,7 +361,7 @@ or per-lens patent backfills.
 
 ### 624584 — 1 occurrence
 
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `624584 crown-class glass (no unique catalog match; patent 1.62372 / 58.4)`
 
 ### 625533 — 1 occurrence
 

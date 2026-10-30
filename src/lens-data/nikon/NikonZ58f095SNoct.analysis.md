@@ -30,14 +30,14 @@ Each listed focal length uses the thick-lens expression with its two vertex radi
 |---|---|---|---|---|
 | L11 | 1.902650 | 35.77 | 903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 106.97 |
 | L12 | 1.552981 | 55.07 | 553551 class; J-KZFH4 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -85.70 |
-| L13 | 1.612660 | 44.46 | KZFS-type (near N-KZFS4 / S-NBM51) (inferred coordinate counterpart) | -96.72 |
-| L14 | 1.593190 | 67.90 | Coordinate counterpart (near S-FPM2 / FCD10; used ×3) (inferred coordinate counterpart) | 126.47 |
+| L13 | 1.612660 | 44.46 | 613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained; production supplier unspecified) | -96.72 |
+| L14 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) | 126.47 |
 | L21 | 1.848500 | 43.79 | J-LASFH22 (Hikari, patent nd/vd match) (inferred coordinate counterpart) | 83.24 |
 | L22 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 115.19 |
 | L23 | 1.593190 | 67.90 | 593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart) | 123.54 |
 | L24 | 1.738000 | 32.33 | High-dispersion flint (near S-NBH53V; used ×2) (inferred coordinate counterpart) | -42.61 |
 | L25 | 1.612660 | 44.46 | 613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -46.66 |
-| L26 | 1.497820 | 82.57 | Coordinate counterpart (near S-FPL51 / FCD1) (inferred coordinate counterpart) | 72.81 |
+| L26 | 1.497820 | 82.57 | 498826 class; J-FKH1 catalog spectral proxy (production supplier unspecified) | 72.81 |
 | L27 | 1.883000 | 40.69 | S-LAH58 (OHARA); used ×3 (inferred coordinate counterpart) | 50.56 |
 | L28 | 1.953750 | 32.33 | S-LAH98 (OHARA) / TAFD45 (HOYA) (inferred coordinate counterpart) | 51.79 |
 | L29 | 1.738000 | 32.33 | 738323 class; J-KZFH9 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart) | -40.94 |
