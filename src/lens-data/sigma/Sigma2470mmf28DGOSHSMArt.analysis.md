@@ -562,3 +562,5 @@ reproduce the displaced aberration diagrams or certify the production stabilizer
 
 Manufacturer and catalog sources accessed 2026-10-04.
 
+
+The fresh Figure1 review adds an exposed flat shoulder on S7A out to16.415mm while preserving its printed12.18mm effective radius and every other printed clear radius. No gap allowance, iris schedule, cam station or focus control changes. The known S24 source-rim clipping remains.

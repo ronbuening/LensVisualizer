@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors and qualified geometry decisions are recorded in the audit sidecar. */
+
 /**
  * SIGMA 24-70mm f/2.8 DG OS HSM | Art, correlated to JP 2017-156719 A,
  * Numerical Example 1.
@@ -332,7 +334,7 @@ const LENS_DATA = {
       label: "7A",
       R: 16.5543,
       d: 8.6668,
-      sd: 12.18,
+      rimExtensionSd: 16.415, sd: 12.18,
       asphere: { A4: 5.9613e-6, A6: -6.1631e-8, A8: 3.7006e-10, A10: -1.9806e-12, A12: 8.9312e-15 },
     },
     { label: "8", R: -26.8666, d: 0.9, sd: 11.91, medium: 5 },

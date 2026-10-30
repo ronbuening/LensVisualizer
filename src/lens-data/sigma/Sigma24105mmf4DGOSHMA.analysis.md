@@ -514,3 +514,5 @@ factory MTF or complete aberration correction.
 - Sigma, [24-105mm F4 DG OS HSM product specifications](https://www.sigma-global.com/en/lenses/a013_24_105_4/), accessed 2026-10-04.
 - Sigma Corporation of America, [product announcement](https://press.sigmaphoto.com/product/10/sigma-corporation-announces-new-optically-stabilized-24-105mm-f4-dg-os-hsm-lens/), 2013-10-16.
 - HOYA, [optical-glass catalogue including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), 2026-07-07. Relevant published rows and dispersion coefficients are retained with provenance.
+
+The fresh exact-publication [original Figure11 image](https://patentimages.storage.googleapis.com/a7/93/2f/fc52751fe18eb4/2015055858-14.png) supplements the damaged A-publication drawing. Same-application grant Figure11 is secondary corroboration after selected-table numeric parity; no grant values replace the source. The S7 flat-shoulder trial is refused by unchanged gap clearance, so the constrained outline is retained.

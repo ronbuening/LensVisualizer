@@ -130,7 +130,7 @@ OHARA's current L-LAH91 row reproduces the stored nd/νd pair and is explicitly 
 
 ## Glass Identification and Selection
 
-The prescription does not name glass vendors; it gives nd and νd values. The identifications below come from cross-checking the six-digit glass codes against Hoya, Ohara, Schott, HIKARI, Sumita, and CDGM references. The Hoya palette is the most internally consistent fit.
+The prescription does not name glass vendors; it gives nd and νd values. The identifications below come from cross-checking the six-digit glass codes against Hoya, Ohara, Schott, HIKARI, Sumita, and CDGM references. The compatible catalog palette supplies spectral proxies; no coordinate match identifies historical production suppliers or melts. All15 elements and the rear plate resolve coefficient curves, including L-LAH91 for E15. The source supplies no C/F/g indices or partial ratios.
 
 | Elements | nd | νd | Code | Catalog identification | Optical role |
 |---|---:|---:|---|---|---|
@@ -233,7 +233,7 @@ $$
 
 A direct paraxial trace through the glass elements gives an air-equivalent focal distance of 38.4532 mm from the last glass vertex; the 0.004 mm difference is within the rounding implied by the patent table.
 
-The stop semi-diameter in the data file is 12.8688 mm, computed from the marketed f/1.4 aperture. The patent design FNO = 1.46 would correspond to a stop semi-diameter of about 12.3400 mm. The model does not open to the authored value: `nominalFno` (the f-number the stop opens to) is the patent design value 1.46, from which the runtime sizes the iris by real-ray trace to about 12.635 mm, and `apertureMarketing` records the marketed f/1.4.
+The model retains the patent design f/1.46 aperture and the separate marketed f/1.4 value. The physical iris is inferred by exact tracing; it is not a published diaphragm dimension.
 
 The patent does not list semi-diameters. The values in the data file are conservative renderer-safe estimates, not physical clear-aperture specifications. They were derived from a combined marginal/chief paraxial envelope and then constrained by edge thickness, element semi-diameter ratio, signed cross-gap sag clearance, and the renderer's rim-angle/sd-to-radius limits. The small gap between surfaces 25 and 26A is the strongest rear-group constraint.
 
@@ -248,7 +248,7 @@ The re-review found no gross transcription error in the original prescription, b
 - Air-equivalent BFD through the LPF: 38.4492 mm from patent distances; paraxial best focus at 38.4532 mm. The physical track including the LPF is 161.26 mm.
 - Patent finite focus: about -0.0247 magnification at the tabulated 959 mm state, not the production minimum focus distance.
 - Data-file close focus: extrapolated to 0.276 m and -0.1407 magnification using the patent's L2:L3 motion ratio.
-- E15 glass: kept as non-unique/probable rather than asserted as an exact Hoya M-TAF101 match.
+- E15 glass: compatible OHARA L-LAH91 spectral proxy; no production supplier or melt is identified.
 
 ## Design Heritage and Context
 
@@ -260,3 +260,5 @@ Within Sigma's Art-line wide-angle family, the 20 mm F1.4 DG HSM | Art is signif
 - Sigma Corporation, official product page for **20mm F1.4 DG HSM | Art (A015)**. Source for production construction, angle of view, mount list, minimum focus distance, maximum magnification, HSM description, aperture-blade count, and special-element count: https://www.sigma-global.com/en/lenses/a015_20_14/
 - HOYA Group Optics Division, official optical-glass data download and technical pages. Used for Hoya glass code and catalog-name cross-reference: https://www.hoya-opticalworld.com/english/datadownload/index.html and https://www.hoya-opticalworld.com/english/technical/001.html
 - Ohara Corporation / Ohara GmbH, S-FPL51 and S-FPL53 glass datasheets and cross-reference tables. Used only for equivalence notes where the stored nd/νd matches the Hoya/Ohara ED-glass families.
+
+The fresh exact-publication [original Figure1 image](https://patentimages.storage.googleapis.com/96/36/9d/199f0e595f2065/2019117419-4.png) recovers strokes missing from local PDFp.19. The first three body radii are inferred as38/30/25mm; S2/S4A retain their clear caps with flat outer lands. These heights improve the drawn proportions without changing the prescription, aspheres or focus controls. Later thin-element rims remain limited by literal geometry; the schematic is not a clear-aperture table.
