@@ -113,7 +113,7 @@ This cemented meniscus pair has a computed focal length of −301.9mm. Its weak 
 
 nd = 1.518, νd = 60.3. Glass: BALK3 (SUMITA catalog equivalent; production supplier unspecified). f = +47.0mm.
 
-L14 is the main positive singlet in G32. It adds strong positive relay power at a rear-group location where chief-ray height remains significant. The exact catalog identity has not been resolved from current public catalogs, so the data file labels it as unmatched rather than forcing a speculative vendor name.
+L14 is the main positive singlet in G32. It adds strong positive relay power at a rear-group location where chief-ray height remains significant. The runtime uses the compatible SUMITA BALK3 catalog curve as a spectral proxy; the patent does not identify the production supplier or complete material dispersion.
 
 #### L15 + L16 — Cemented Doublet, weak negative
 
@@ -124,20 +124,20 @@ The L15/L16 doublet is weakly negative as a cemented pair, with a computed focal
 
 ## Glass Identification
 
-The glass table avoids circular catalog assignment. Exact current OHARA matches are used only where the patent-rounded nd/νd values agree with catalog codes. Where the patent value does not resolve cleanly to a current public catalog entry, the data file uses a class or `Unmatched` label.
+All 16 stored material pairs match Table 7 (PDF p. 23). Its headers give refractive indices and Abbe numbers without an explicit line wavelength; the stored d-line convention remains an interpretation. All 16 elements resolve to compatible catalog curves, including BALK3 for L14. Every catalog identity below is a qualified spectral proxy. Matching a rounded coordinate does not establish the production supplier, historical melt, or partial dispersion.
 
 | Patent nd / νd | Corrected identification | Elements | Notes |
 |---:|---|---|---|
-| 1.805 / 25.3 | S-TIH6 (OHARA), 805/254 dense flint | L1, L5, L10 | Exact code-class match to the patent values. |
-| 1.603 / 60.6 | S-BSM14 (OHARA), 603/607 barium crown | L2, L3 | Exact code-class match. |
+| 1.805 / 25.3 | S-TIH6 (OHARA), 805/254 dense flint | L1, L5, L10 | Compatible catalog coordinate; supplier unspecified. |
+| 1.603 / 60.6 | S-BSM14 (OHARA), 603/607 barium crown | L2, L3 | Compatible catalog coordinate; supplier unspecified. |
 | 1.796 / 45.5 | J-LASF017 class, 795/453-455 | L4, L6, L13 | Close class match; patent values are rounded. |
-| 1.713 / 53.9 | S-LAL8 (OHARA), 713/539 lanthanum crown | L7, L9 | Exact code-class match. |
+| 1.713 / 53.9 | S-LAL8 (OHARA), 713/539 lanthanum crown | L7, L9 | Compatible catalog coordinate; supplier unspecified. |
 | 1.796 / 40.9 | NBFD2 (HOYA catalog equivalent) | L8, L16 | Official legacy row 1.797199 / 41.143795; production supplier unspecified. |
 | 1.568 / 56.0 | N-BAK4 / S-BAL14 class, 569/560-563 | L11 | Rounded barium-crown class, not an exact stored-index match. |
 | 1.563 / 60.8 | BACD11 / N-SK11 / S-BAL41 class, 564/608-607 | L12, L15 | Cross-reference match. |
 | 1.518 / 60.3 | BALK3 (SUMITA catalog equivalent) | L14 | Exact catalog coordinate within patent rounding; supplier unspecified. |
 
-The design uses conventional crown/flint achromatization. It does not contain ED, fluorite, or anomalous-partial-dispersion glass in the modern sense.
+The source specifies conventional crown/flint index and Abbe coordinates but publishes no per-material partial dispersion or C/F/g indices. No APD identity is inferred from the chosen proxy curves.
 
 ## Focus and Zoom Kinematics
 
@@ -168,7 +168,7 @@ The G31 shape-factor values, using q = (R2 + R1) / (R2 − R1), are:
 
 | Element | Computed q | Patent condition | Status |
 |---|---:|---|---|
-| L9 | −0.662 | 0.3 < |q| < 1.0 | Satisfied |
+| L9 | −0.662 | 0.3 < abs(q) < 1.0 | Satisfied |
 | L10 | +3.480 | 2.0 < q < 5.0 | Satisfied |
 | L11 | +2.895 | 3.0 < q < 8.0 | Marginally below |
 
@@ -193,7 +193,9 @@ Catalog design now records the printed endpoints 36.2–103 mm; the computed EFL
 
 The surface-by-surface Petzval sum, computed as Σφ/(n·n′), is +0.002358mm⁻¹, corresponding to a Petzval radius of approximately +424.1mm. Element-level thin-lens Petzval approximations were not used.
 
-The data file's semi-diameters are estimated, because the patent does not publish clear-aperture radii. They were constrained by paraxial stop-edge rays, the 52mm filter objective, edge thickness, element front/rear semi-diameter ratio, and cross-gap sag clearance. The chosen values are rendering-safe estimates rather than patent-listed mechanical apertures.
+Figure 14 (PDF p. 7) supports an inferred flat end on L4's concave rear: surface 8 now uses a 4.20 mm cut depth at a 13.0 mm outer rim, retaining an 11.2137 mm curved cap. This cap lies outward from the measured drawing ratio to clear the full-field beam. Other faces and cemented boundaries retain continuous profiles. In particular, the front L1/L2 outline is merged in the raster and does not justify a separate invented land.
+
+Minimal semi-diameter increases clear the inherited nominal axial beam where the literal geometry permits. The cemented L5/L6 interface rises from 5.7 to 6.5 mm; the required 7.3 mm would cross L5's 1.0 mm thickness, whose contact radius is 6.6316 mm. The adopted radius leaves 0.0405 mm of positive edge thickness. After the other supported raises, wide and middle apertures pass; tele remains limited to approximately f/5.11 versus the stated f/4.5. This geometric limit and the separate EFL/BFL source contradiction remain explicit. No radius, thickness, material pair, stop split, source image distance, or zoom spacing is tuned to remove either discrepancy.
 
 ## Aberration Performance
 
