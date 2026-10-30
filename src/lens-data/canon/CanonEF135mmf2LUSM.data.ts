@@ -20,8 +20,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  SCALE: s = 1.000000. No dimensional scaling was applied.          ║
  * ║                                                                    ║
- * ║  SEMI-DIAMETERS: one half of the patent's published effective      ║
- * ║  diameters. Intentional full-field pupil clipping is retained.     ║
+ * ║  SEMI-DIAMETERS: non-stop caps retain half the published effective
+ * ║  diameters. Fig.1 resolves outer shoulders on 4/6/10, drawn with
+ * ║  rimExtensionSd while their clear sd remains unchanged. Bonded
+ * ║  outer outlines remain constrained by published interface apertures.
+ * ║  The stop is derived from design FNo; source stop effective diameter
+ * ║  35.51 mm is not authored as a physical iris. Vignetting is retained.
  * ║                                                                    ║
  * ║  APODIZATION: the first film is on L4 object surface 7 and the     ║
  * ║  second film is on L9 image surface 17. LensVisualizer has no      ║
@@ -41,7 +45,7 @@ const LENS_DATA = {
   key: "canon-ef-135-f2l-usm",
   maker: "Canon",
   name: "CANON EF 135mm f/2 L USM",
-  subtitle: "JP 2018-049102 A Example 1 — later apodized Canon embodiment correlated to EF 135mm f/2L USM",
+  subtitle: "JP 2018-049102 A Numerical Example 1 — later apodized Canon embodiment correlated to EF 135mm f/2L USM",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -62,7 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2018-049102 A",
-    example: { label: "Example 1", id: "1" },
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2018,
     authors: ["Tomohiko Ishibashi"],
     assignees: ["Canon Inc."],
@@ -92,8 +96,8 @@ const LENS_DATA = {
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "UD classification inferred from Canon's two-UD production specification and the patent coordinate; " +
-        "the patent publishes no partial-dispersion data.",
+        "APD is inferred only from the compatible K-PFK80 spectral proxy (catalog-derived dPgF about +0.030); " +
+        "the patent publishes no partial dispersion, and Canon's UD count does not identify APD or production material.",
       role: "High-Abbe positive element in fixed G1; one of the two patent-coordinate elements consistent with the product's UD count.",
     },
     {
@@ -118,8 +122,8 @@ const LENS_DATA = {
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "UD classification inferred from Canon's two-UD production specification and the patent coordinate; " +
-        "the patent publishes no partial-dispersion data.",
+        "APD is inferred only from the compatible K-PFK80 spectral proxy (catalog-derived dPgF about +0.030); " +
+        "the patent publishes no partial dispersion, and Canon's UD count does not identify APD or production material.",
       role: "High-Abbe positive element in fixed G1; patent surface 7 carries the first radial-transmission film.",
     },
     {
@@ -200,13 +204,13 @@ const LENS_DATA = {
     { label: "1", R: 106.149, d: 9.0, sd: 33.795, medium: 1 },
     { label: "2", R: -290.997, d: 0.5, sd: 33.46 },
     { label: "3", R: 51.244, d: 9.5, sd: 29.665, medium: 2 },
-    { label: "4", R: 231.499, d: 3.0, sd: 28.985 },
+    { label: "4", R: 231.499, d: 3.0, sd: 28.985, rimExtensionSd: 29.665 },
     { label: "5", R: -630.036, d: 3.5, sd: 28.72, medium: 3 },
-    { label: "6", R: 93.25, d: 2.5, sd: 26.87 },
+    { label: "6", R: 93.25, d: 2.5, sd: 26.87, rimExtensionSd: 28.72 },
     { label: "7", R: 60.005, d: 8.0, sd: 26.105, medium: 4 },
     { label: "8", R: -624.746, d: 0.5, sd: 25.7 },
     { label: "9", R: 29.265, d: 3.2, sd: 21.16, medium: 5 },
-    { label: "10", R: 24.308, d: 12.5, sd: 18.98 },
+    { label: "10", R: 24.308, d: 12.5, sd: 18.98, rimExtensionSd: 21.16 },
     // JP 2018-049102 A, Example 1 surface table, stop row: printed effective diameter 35.51 mm at the stop.
     { label: "STO", R: "flat" },
     { label: "12", R: -2278.322, d: 4.5, sd: 16.95, medium: 6 },
