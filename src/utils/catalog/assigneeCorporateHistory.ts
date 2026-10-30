@@ -61,6 +61,7 @@ const SOURCES = {
   samsungElectroMechanicsHistory: "https://www.samsungsem.com/global/newsroom/news/view.do?id=613",
   samsungMerger: "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.70398/",
   schneiderHistory: "https://schneiderkreuznach.com/en/company/about-us/history",
+  sigmaHistory: "https://www.sigma-global.com/en/history/",
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
   tokinaHistory: "https://tokinalens.com/reviews/the_history_of_tokina_1950_2020/",
@@ -904,6 +905,17 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
     corporateFamily: [{ family: "Viltrox", effectiveFrom: "2025-04-18", sourceUrl: SOURCES.viltroxRename }],
+  },
+  "Sigma Corporation": {
+    successorOf: [
+      {
+        organization: "Sigma Research Institute Co., Ltd.",
+        effectiveDate: "1970-11",
+        sourceUrl: SOURCES.sigmaHistory,
+        note: "The official history records the November 1970 company-name change to Sigma Corporation.",
+      },
+    ],
+    corporateFamily: [{ family: "Sigma", effectiveFrom: "1961-09", sourceUrl: SOURCES.sigmaHistory }],
   },
   "Sony Corporation": {
     subsidiaryOf: [

@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-30",
+    type: "lens",
+    summary: "Added the Sigma 15mm fisheye and 100-400mm DG DN, and Pentax, Canon, Nikon and Olympus zooms",
+  },
+  {
     date: "2026-10-29",
     type: "fix",
     summary: "Fixed blank off-axis MTF curves for wide lenses focused close",
