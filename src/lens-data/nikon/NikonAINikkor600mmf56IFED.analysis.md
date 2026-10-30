@@ -25,7 +25,7 @@ The architecture shown in the patent's Figure 1 is notably asymmetric in scale: 
 
 The patent does not identify an aperture-stop plane. For LensVisualizer the stop is therefore a modeling inference, not a source fact: it is fixed at the midpoint of the long infinity `d6` air space between G1 and G2. The calibrated physical stop semi-diameter is 34.849 mm, which gives an entrance-pupil diameter of 107.139 mm and a modeled f-number of 5.6000. This construction reproduces the published f/5.6 while keeping the inferred stop distinct from the patent prescription itself.
 
-A 600 dpi review of local PDF page 3 confirmed the Figure 1 proportions. The drawing uses a smaller global vertical scale than its axial prescription scale, but after normalizing that uniform offset, every element's measured shape stayed within 18% of the authored silhouette. With no discrepancy reaching the project's 25% strong-evidence threshold, the ray-envelope-derived semi-diameters were retained.
+Fresh direct inspection of the exact local JP 1981-035116 A Figure 1 on PDF page 4 at 600 dpi confirms the seven-element arrangement. Its native raster is approximately 347 ppi, so the enlarged render does not add source detail. All convex, concave, and cemented profiles were checked; their near-vertical shallow arcs do not resolve into separate cap/land breaks. Existing square paired heights are retained. The source publishes no clear-aperture table, and its schematic proportions do not justify an additional concave trim.
 
 ## Element-by-Element Analysis
 
@@ -148,3 +148,6 @@ The model contains no sensor cover glass, filter, inactive dummy surface, or mec
 8. HIKARI, **Optical Glass Catalog**: https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/hikari_catalog2023.pdf
 9. CDGM, **Optical Glass Database / 2026 catalog downloads**: https://www.cdgmgd.com/go.htm?k=High_Transmittance_Optical_Glass&url=goods
 10. SUMITA, **Optical Glass Downloads**: https://www.sumita-opt.co.jp/en/download/
+
+
+The two front `1.50032 / 81.9` entries retain J-FKH1 as an approximate spectral proxy: its catalog d-line index differs by about −0.0025, within the existing compatibility guard, without establishing the production melt. Their inferred ED-position annotations remain tied to product correlation, not to a patent partial-dispersion claim. The source prints no element-specific C/F/g indices or relative partial ratios. All seven selected catalog curves and their wavelength responses remain unchanged. The inherited final-element correction `nd = 1.52` remains separately identified from the source's literal `n7 = 1.57`; it is not represented as an exact source transcription or an official correction-sheet amendment.

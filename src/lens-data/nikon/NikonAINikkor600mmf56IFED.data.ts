@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.50032,
       vd: 81.9,
       focalLengthMm: 253.734049056,
-      glass: "J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)",
+      glass: "J-FKH1 approximate spectral proxy (patent 500819; catalog Δnd≈−0.0025; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED-position assignment inferred from Nikon's product designation and the two identical 1.50032/81.9 front elements; the patent publishes nd/νd only.",
@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.50032,
       vd: 81.9,
       focalLengthMm: 253.426115406,
-      glass: "J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)",
+      glass: "J-FKH1 approximate spectral proxy (patent 500819; catalog Δnd≈−0.0025; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED-position assignment inferred from Nikon's product designation and the two identical 1.50032/81.9 front elements; the patent publishes nd/νd only.",

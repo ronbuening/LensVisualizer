@@ -159,11 +159,13 @@ const LENS_DATA = {
     { label: "2", R: 1676.3465, d: 0.095, sd: 17.3 },
     { label: "3", R: 19.388, d: 4.025, sd: 14.5, medium: 2 },
     { label: "4", R: 33.2895, d: 1.26, sd: 14.5 },
-    { label: "5", R: 67.4705, d: 0.97, sd: 11.5, medium: 3 },
-    { label: "6", R: 15.627, d: 5.54975, sd: 11.5 },
+    { label: "5", R: 67.4705, d: 0.97, sd: 11.8, medium: 3 },
+    // Common Figure 2: inferred concave rear land, moved outward to clear the full beam guard.
+    { label: "6", R: 15.627, d: 5.54975, sd: 11.8, rimCutDepthMm: 3.98 },
     // STO position inferred: midpoint of patent d6; this is not a published numeric stop coordinate.
     { label: "STO", R: "flat", d: 5.54975 },
-    { label: "7", R: -16.2665, d: 0.97, sd: 11.5, medium: 4 },
+    // Matching front land beside the diaphragm; source R/d and cemented interface remain unchanged.
+    { label: "7", R: -16.2665, d: 0.97, sd: 11.5, rimCutDepthMm: 3.56, medium: 4 },
     // Cemented junction: elemId/index belong to downstream element L4b.
     { label: "8", R: -211.8925, d: 4.8, sd: 11.5, medium: 5 },
     { label: "9", R: -20.2315, d: 0.095, sd: 11.5 },

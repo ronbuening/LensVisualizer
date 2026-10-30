@@ -75,15 +75,15 @@ The doublet resolves the main Tessar compromise. A shorter cemented-surface radi
 
 ## Glass Identification and Selection
 
-The patent gives $n_d$ and $\nu_d$ only; it does not name glass types. The catalog names below are therefore public-catalog equivalents, not asserted Nikon melt names. OHARA matches are used because the six-digit $n_d/\nu_d$ codes match the patent values closely and are available in current manufacturer data sheets. Nikon/Hikari equivalents may have been used in production, but the patent itself does not establish that.
+The patent gives $n_d$ and $\nu_d$ only; it does not name glass types. The catalog names below are therefore public-catalog equivalents, not asserted Nikon melt names. The four glass bodies resolve to compatible coefficient-backed OHARA catalog curves as spectral proxies; neither a close coordinate match nor a vendor family name establishes the historical production supplier or melt.
 
-| Patent code | Patent $n_d$ | Patent $\nu_d$ | Used in | Catalog-equivalent match | Catalog $n_d,\nu_d$ | $\Delta\theta_{g,F}$ | Role |
-|---|---:|---:|---|---|---|---:|---|
-| 816/466 | 1.81600 | 46.63 | E1 | OHARA S-LAH59 | 1.81600, 46.62 | -0.0092 | high-index front positive glass |
-| 689/311 | 1.68893 | 31.07 | E2, E3 | OHARA S-TIM28 | 1.68893, 31.07 | +0.0092 | dense flint negative glass |
-| 883/408 | 1.88300 | 40.77 | E4 | OHARA S-LAH58 | 1.88300, 40.76 | -0.0088 | very high-index rear positive glass |
+| Patent code | Patent $n_d$ | Patent $\nu_d$ | Used in | Catalog-equivalent match | Catalog $n_d,\nu_d$ | Role |
+|---|---:|---:|---|---|---|---|
+| 816/466 | 1.81600 | 46.63 | E1 | OHARA S-LAH59 | 1.81600, 46.62 | high-index front positive glass |
+| 689/311 | 1.68893 | 31.07 | E2, E3 | OHARA S-TIM28 | 1.68893, 31.07 | dense flint negative glass |
+| 883/408 | 1.88300 | 40.77 | E4 | OHARA S-LAH58 | 1.88300, 40.76 | very high-index rear positive glass |
 
-This is a conventional achromatizing palette, not an apochromatic one. The two positive glasses are high-index lanthanum flints by Abbe number, even though the OHARA family prefix is LAH. The negative partner is a dense flint. The catalog partial-dispersion deviations are small, and neither the patent nor Nikon's production literature makes an ED, fluorite, super-ED, or apochromatic claim.
+The source nd/νd pairs describe primary chromatic balancing between positive and negative powers. Table 6 supplies no element-specific C/F/g indices or relative partial-dispersion ratios. The four former catalog-derived `dPgF` values and twelve C/F/g overrides have therefore been removed from the lens data; the compatible catalog curves now supply the wavelength response. This preserves the source coordinates without presenting surrogate dispersion as a patent measurement or proof of apochromatic performance.
 
 ## Focus Mechanism
 
@@ -147,4 +147,9 @@ The accompanying data file uses the patent's optical prescription scaled to 45 m
 - JP 2003-005030 A (特開2003-5030), "Tessar-type Lens," Nikon Corporation; inventor Kōichi Ōshita; filed 21 June 2001; published 8 January 2003. Primary source for the claims, Table 6 prescription, Table 7 condition values, and Example 6 aberration figures.
 - Nikon, *NIKKOR — The Thousand and One Nights* No. 78, "A Standard Pancake Lens for the Nikon FM3A: AI Nikkor 45mm f/2.8P," by Kōichi Ōshita. Source for production design narrative, Tessar architecture, stop placement, high-index rear positive glass rationale, 17 mm depth, 45 cm close focus, CPU contacts, and GN Auto Nikkor 45mm lineage. https://imaging.nikon.com/imaging/information/story/0078/
 - Nikon, "Nikon FM3A | Camera Chronicle." Source for the production specifications: July 2001 release with FM3A, Nikon F-mount CPU-integrated P-type manual-focus construction, 45 mm focal length, f/2.8 maximum aperture, four elements in three groups, 50° 35 mm angle of view, rotating range-ring focus, 0.45 m shortest object distance, seven circular diaphragm blades, 52 mm attachment size, 63 × 17 mm dimensions, and approximately 120 g weight. https://imaging.nikon.com/imaging/information/chronicle/history-fm3a/
-- OHARA S-LAH59, S-TIM28, and S-LAH58 manufacturer data sheets. Sources for the catalog-equivalent glass identifications, six-digit codes, line indices, and relative partial-dispersion deviations. https://www.ohara-gmbh.com/
+- OHARA S-LAH59, S-TIM28, and S-LAH58 manufacturer data sheets. Sources for the compatible catalog spectral proxies, which do not establish production identities. https://www.ohara-gmbh.com/
+
+
+## Fresh Outline Review
+
+Example 6 is illustrated by Figure 11 (PDF page 7), with its Table 6 on PDF page 5. The two first air-separated bodies have continuous full-height profiles; their smaller paired apertures now become square by raising S2 8.6→10.1 mm and S4 7.8→8.2 mm. No discrete flat cap/end break is resolved on the weakly curved S2, so it remains a continuous spherical profile. The rear cemented pair and the remaining convex/concave faces retain their existing bounds. No additional concave trim is supported by the source figure. These radii are modeled apertures, not source dimensions; source R/d, stop, material values and focus motion are unchanged.
