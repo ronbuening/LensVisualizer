@@ -818,22 +818,22 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| E1 (L1 element 1) | 2 | `847238 — dense flint class` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E2 (L1 element 2) | 3 | `497816 — ED fluorophosphate class` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E3 (L1 element 3) | 5 | `603607 — crown class` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E4 (L2 element 1) | 7 | `835427 — lanthanum crown class` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E5 (L2 element 2) | 9 | `773496 — lanthanum crown class` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E6 (L2 element 3) | 11 | `847238 — dense flint class` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E7 (L2 element 4) | 12 | `773496 — lanthanum crown class` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E8 (L3) | 14 | `805254 — dense flint class` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E9 (L4) | 16 | `904313 — high-index lanthanum class` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E10 (L5A element 1) | 18 | `603607 — crown class` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E11 (L5A element 2) | 21 | `603607 — crown class` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E12 (L5A element 3) | 22 | `847238 — dense flint class` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E13 (L5B element 1) | 24 | `750353 — lanthanum flint/crown transition class` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E14 (L5B element 2) | 25 | `847238 — dense flint class` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E15 (L6 element 1) | 27A | `722292 — dense flint class` | 1.72151 / 29.20 | S-TIH18 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
-| E16 (L6 element 2) | 28 | `596392 — flint class` | 1.59551 / 39.20 | E-F8 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E1 (L1 element 1) | 2 | `847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E2 (L1 element 2) | 3 | `497816 — low-dispersion crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.49700 / 81.50 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E3 (L1 element 3) | 5 | `603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E4 (L2 element 1) | 7 | `835427 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E5 (L2 element 2) | 9 | `773496 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E6 (L2 element 3) | 11 | `847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E7 (L2 element 4) | 12 | `773496 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E8 (L3) | 14 | `805254 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E9 (L4) | 16 | `904313 — high-index lanthanum class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.90366 / 31.30 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E10 (L5A element 1) | 18 | `603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E11 (L5A element 2) | 21 | `603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.60311 / 60.60 | J-SK14 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E12 (L5A element 3) | 22 | `847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E13 (L5B element 1) | 24 | `750353 — lanthanum flint/crown transition class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E14 (L5B element 2) | 25 | `847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E15 (L6 element 1) | 27A | `722292 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.72151 / 29.20 | S-TIH18 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
+| E16 (L6 element 2) | 28 | `596392 — flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)` | 1.59551 / 39.20 | E-F8 (trusted Sellmeier) | sellmeier | patents/US20130088622A1.pdf | No review-record hit |
 
 ### [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) - JP 2005-092056 A
 

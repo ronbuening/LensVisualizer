@@ -2,12 +2,12 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2009-175324 A  
-**Filed:** 2008-01-23  
-**Published:** 2009-08-06  
-**Inventor:** Makoto Misaka  
-**Applicant:** Canon Inc.  
-**Title:** Zoom Lens and Imaging Apparatus Having the Same (English translation)  
+**Patent:** JP 2009-175324 A\
+**Filed:** 2008-01-23\
+**Published:** 2009-08-06\
+**Inventor:** Makoto Misaka\
+**Applicant:** Canon Inc.\
+**Title:** Zoom Lens and Imaging Apparatus Having the Same (English translation)\
 **Example details:** 数値実施例1, ¶0097, original pages 12–13; Fig. 1 and Fig. 2A–C, pages 18–19. Original millimetre scale, no uniform rescaling.
 
 The data file transcribes Numerical Example 1, correlated with the Canon EF-S 18–200mm f/3.5–5.6 IS. The patent does not name the product. The evidence:
@@ -46,7 +46,7 @@ The image gap is not printed; at each printed setting it is the paraxial back fo
 | Middle          | 49.94 mm / 4.70     | 49.918990 mm   | 53.776874 mm      | 172.806874 mm        |
 | Tele            | 193.23 mm / 5.88    | 193.084150 mm  | 68.549684 mm      | 204.339684 mm        |
 
-The small EFL differences come from tracing the rounded printed values; no radius or index has been adjusted. The six printed group focal lengths (L1 90.986, L2 −13.133, Gpf 22.315, Gis −39.673, Gisr −42.371, Gpr 28.750 mm) are reproduced. No cover glass or filter plate is added because the example specifies none.
+The small EFL differences are retained after tracing the literal printed values. Printed precision may contribute, but the original does not establish the cause; no radius or index has been adjusted. The six printed group focal lengths (L1 90.986, L2 −13.133, Gpf 22.315, Gis −39.673, Gisr −42.371, Gpr 28.750 mm) are reproduced. No cover glass or filter plate is added because the example specifies none.
 
 ## Element-by-Element Analysis
 
@@ -96,7 +96,7 @@ The final negative element completes L2. Fig. 1 draws it square-cut, slightly ta
 
 ### E8 — Biconvex Positive (Asph)
 
-nd = 1.583126, νd = 59.4. Glass: L-BAL42 (OHARA) catalog equivalent, the moulding version of S-BAL42 for these glass-moulded aspheres. f = +40.301 mm.
+nd = 1.583126, νd = 59.4. Glass: L-BAL42 (OHARA), a compatible spectral proxy; its catalog molding designation does not establish the original material or manufacturing process. f = +40.301 mm.
 
 The positive stop-adjacent biconvex element carries asphere S16. It acts on large pupil-dependent rays close to the stop and contributes correction across changing zoom separations.
 
@@ -138,7 +138,7 @@ The positive low-dispersion rear element shares the high-Abbe coordinates of E2.
 
 ### E15 — Biconvex Positive (Asph)
 
-nd = 1.583126, νd = 59.4. Glass: L-BAL42 (OHARA) catalog equivalent, the moulding version of S-BAL42 for these glass-moulded aspheres. f = +22.812 mm.
+nd = 1.583126, νd = 59.4. Glass: L-BAL42 (OHARA), a compatible spectral proxy; its catalog molding designation does not establish the original material or manufacturing process. f = +22.812 mm.
 
 The positive member carries asphere S27 and is cemented to E16; the pair is the patent's subunit Gpr2 (¶0051–0052). The high-order polynomial terms change peripheral sag and off-axis correction; their values and signs are as printed.
 
@@ -164,7 +164,7 @@ The printed indices are d-line values (¶0092). The names below are catalog equi
 | E10          | 1.487490  | 70.2      | S-FSL5 (OHARA)     |
 | E11          | 1.712995  | 53.9      | S-LAL8 (OHARA)     |
 
-Each equivalent matches the printed nd to six decimals and νd within 0.05. E2 and E14 sit at the two positions Canon marks UD, and their 1.497 / 81.5 coordinates are those of fluorophosphate UD-class glass, so both carry an inferred anomalous-dispersion tag; the patent itself prints no partial dispersion. The pairings of low- and high-dispersion glass show the first-order colour correction intent, not measured production colour performance.
+Each equivalent matches the printed nd to six decimals and νd within 0.05. E2 and E14 sit at the two positions Canon marks UD, and their 1.496999 / 81.5 coordinates admit a compatible low-dispersion proxy, so both retain an inferred anomalous-dispersion tag from that production-position correlation. The original supplies no partial dispersion or chemical identification; its Abbe-number bounds alone do not prove APD. The pairings of low- and high-dispersion glass show the first-order colour correction intent, not measured production colour performance.
 
 ## Focus Mechanism
 
@@ -189,7 +189,7 @@ The patent uses the spherical-base sag plus A·h² + B·h⁴ + C·h⁶ + D·h⁸
 | S16            | E8 rear   | 0   | 9.19247e−6  | 5.07959e−9  | 0            | 0           |
 | S27            | E15 front | 0   | −1.00175e−5 | −6.53404e−9 | −1.88855e−12 | 4.62133e−13 |
 
-Coefficients use millimetres and the corresponding reciprocal powers. S16's positive polynomial departure increases sag relative to its negative-radius spherical base. S27 includes negative low-order and positive tenth-order departure, so its peripheral behavior cannot be summarized by A4 alone. Canon describes two glass-molded aspherical elements, consistent with the two full-thickness aspherical elements in this example; no unprinted resin layer is introduced.
+Coefficients use millimetres and the corresponding reciprocal powers. S16's positive polynomial departure increases sag relative to its negative-radius spherical base. S27 includes negative low-order and positive tenth-order departure, so its peripheral behavior cannot be summarized by A4 alone. The earlier production correlation cites two glass-molded aspherical elements. The original specifies two full-thickness aspherical elements, without identifying a glass-molding process or resin layer; neither material identity nor process is established by the L-BAL42 proxy.
 
 ## Image Stabilization
 
@@ -216,3 +216,38 @@ Off-axis performance at the intermediate zoom positions depends on the derived c
 3. [JP2009175324A original publication PDF](https://patentimages.storage.googleapis.com/74/fe/f7/2599d8a8e6d5e8/JP2009175324A.pdf): original Japanese source, Numerical Example 1, pp. 12–13; Fig. 1 and Fig. 2A–C, pp. 18–19; ¶0039, ¶0082 and ¶0092.
 4. [JP2009175324A on Google Patents](https://patents.google.com/patent/JP2009175324A/ja): searchable Japanese text, checked against the original PDF page images.
 5. [Canon Camera Museum: EOS 50D](https://global.canon/en/c-museum/product/dslr799.html): contemporary lens/body pairing and sensor dimensions; the corner radius is derived, not a published lens image circle.
+
+## 2026-10-30 Original-PDF Shape and Glass Review
+
+The selected original is **JP 2009-175324 A, Numerical Example 1**: ¶0092–0097 and the unnumbered prescription/asphere/variable-gap tables on PDF pp. 12–13, Fig. 1(a)–(c) on p. 18, and Fig. 2A–C on pp. 18–19. The front page independently confirms Makoto Misaka, Canon Inc., filing 2008-01-23 and publication 2009-08-06. No alternate family publication was substituted.
+
+Fig. 1 is a native **1070 × 1002 pixel JPEG at approximately 200 ppi**, containing all three zoom panels. Its wide first-to-last vertex span is about 475–480 native pixels for 105.58 mm, or about 0.220–0.222 mm/pixel. A two-pixel contour ambiguity is roughly 0.44 mm; small rear-group readings also carry the drawing's scale ambiguity. Earlier 400/800 dpi views enlarged this raster by about 2×/4× and added no native detail. The numerical text was read from fresh 200 dpi renders, including the explicit d-line definition and both aspheric polynomials.
+
+Every element, concave end and four cemented interfaces was compared with actual generated SVGs at the three source zoom positions and infinity/half/closest focus. No new rim change is supported beyond the drawing uncertainty and retained geometric constraints. The source drawings have no hybrid layer, camera-side plate or dimensioned cover filter. Leaders, arrows, group brackets and the front outline/flange were excluded from optical-rim readings; no bonded-interface land or additional opaque body was introduced.
+
+| Body             | Source figure approximate half-height (mm)    | Retained optical geometry (mm)              |
+| ---------------- | --------------------------------------------- | ------------------------------------------- |
+| E1/E2, S1–3      | 29–30; outer outline partly ambiguous         | 29 throughout the connected doublet         |
+| E3, S4–5         | 24.5–25.1                                     | 24.75                                       |
+| E4, S6–7         | 13.0–13.5 outer; about 9.3–9.8 curved-cap end | outer 13.25, inferred cut radius 9.6245     |
+| E5, S8–9         | 9.6–10.1                                      | 9.4, constrained by S7→S8 air gap           |
+| E6, S10–11       | 9.3–9.9                                       | 8.9, constrained by the 0.38 mm S11→S12 gap |
+| E7, S12–13       | 9.9–10.4                                      | 10.1                                        |
+| E8, S15–16A      | 8.2–8.8                                       | 8.5                                         |
+| E9/E10, S17–19   | 8.3–8.9                                       | 8.5 throughout the bond                     |
+| E11/E12, S20–22  | 6.5–7.2                                       | 6.5 throughout the bond                     |
+| E13, S23–24      | 7.3–8.0                                       | 7.5                                         |
+| E14, S25–26      | 11.2–11.9                                     | 11.5                                        |
+| E15/E16, S27A–29 | 11.8–12.5                                     | 12 throughout the bond                      |
+
+Rejected fresh trials preserve the source R/d: E5 at 9.9 mm makes combined S7→S8 sag 5.690 mm exceed the unchanged 5.382 mm allowance in the 5.980 mm gap. E6 at 9.6 mm makes S11→S12 sag about 0.39 mm exceed 0.342 mm in the 0.380 mm gap. Removing the S7 cut while retaining its 13.25 mm outer radius gives an 82.3° spherical rim slope, beyond the unchanged 64.2° threshold. These explain retained constraints, without changing a tolerance or fitting radii to the drawing.
+
+S7's `rimCutDepthMm: 4.09` remains **inferred**, with **no `rimCutDepthSource`**: Fig. 1 shows the square-ended form but states no depth. Its radius 9.6245 mm preserves the source spherical cap until that radius. The cut is not a published dimension or an exemption from the full inferred-cut beam rule. A separate full adaptive rim-edge supplement uses scratch Gaussian finite conjugates at all 97 × 30 states, scans at least the inferred finite-object generic-APS-C corner, and finds reach 9.537617988 mm at wide/infinity versus radius 9.624464660 mm and required 0.05 mm margin, with no untraced field. These inferred finite launches are not published source conjugates. Independent dense probes use grid 41 and 0.5° field steps, with the cut removed while defining the admitted beam. The standard authored/0.05-control union covers 53 zoom × 30 focus states and 24,520,877 beam rays; a complementary 60 zoom × 30 focus probe adds every missing 1/64 zoom sample and 27,499,787 rays. Together the 113 × 30 control union includes every 37-station/65-grid zoom plus 16 extra 0.05 samples: 52,020,664 beam rays, zero clipped, zero within margin, zero untraced. Global refined dense reach is about 9.5626 mm at wide, focus 0.95, field 40.169°, below 9.624464660 − 0.05 = 9.574464660 mm. The complementary probe peaks at 9.528010081 mm. The canonical dense probes use collimated launches where no source finite conjugate is published; the Gaussian finite supplement above independently covers inferred finite-object beams.
+
+All 16 modeled media match the literal six-decimal Ni and printed νi on pp. 12–13. ¶0092 explicitly defines **both at the d line**; each element now records that reference. The source contains **no C/F/g line-index list, numerical partial dispersion, historical supplier/melt or chemical composition**. No per-lens spectral override existed, and none was removed or added. All 16 compatible catalog curves remain qualified spectral proxies. E2/E14 retain only their inferred production-UD-position tags; the original's ν bounds are not independent APD evidence. Catalog labels, notes and the two asphere descriptions now separate spectral compatibility from process/chemistry.
+
+A current-iris census covered **97 zoom positions** (all 37 authored knots union a 65-position grid) × **30 focus values** (all 11 cubic keyframes union the 21-position grid), **2,910 states**, with 49 disk pupil samples at axial, 60% and full format field: **427,770 aimed rays, all 142,590 axial rays and all 8,730 chiefs clear**, no unaimed launches. The 16 generated SVG paths are finite, closed and connected at all states, with **zero hidden renderer trimming**. At the three source zooms, infinity bundle counts are 49/46/24, 49/46/26 and 49/45/24; the closest inferred states give 49/46/26, 49/46/26 and 49/46/19. Peripheral vignetting remains present.
+
+The separate 65-position infinity aperture/first-order/chief census finds no aperture departure over 3%; maximum sampled image-plane residual is −0.016256 mm at zoom 0.015625. Only the three printed zoom stations are source states; all other intervals and every finite conjugate are illustrative reconstructions. The three inferred closest conjugates are 449.991665 / 449.999586 / 450.003804 mm object-to-image. At the **source** half-angles 36.29 / 15.30 / 4.04°, clear chiefs reach 12.883586 / 14.219619 / 13.969857 mm, **90.89 / 100.31 / 98.55%** of the generic APS-C 14.175 mm semi-diagonal. Runtime-format corner clearance is a separate sampled conclusion and extends beyond the wide source field. The drawing and numerical values do not validate the interpolated cam, finite aberrations, decentered IS or a production prescription.
+
+Table 1 (p. 16, native 1809 × 818 bilevel raster at approximately 298 ppi) prints an ambiguous first-row heading resembling νGpr/ft while giving 81.5. The condition (1)/(1a) text and the Example 1 material row identify E14’s Abbe number as 81.5. That literal table-heading discrepancy is retained as a source qualification; no optical value is emended from it.

@@ -11,7 +11,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned (**1017** visible)
 - **10662 / 11847** non-air surfaces use strict catalog Sellmeier data (90.0%)
-- **10676 / 11847** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.1%)
+- **10675 / 11847** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **365** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **233** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -61,6 +61,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | US 5,745,306 A | [PDF](../../patents/US5745306.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 7 [glass] (L13: `Unmatched (nd=1.802180, νd=44.69)`) | abbe: 1 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO 2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 1A [glass] (L11 front XA element: `Unmatched (MC-TAF115-class; Hoya source nominal/polynomial conflict; patent nd=1.77002, νd=49.4)`) | abbe: 1 |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | JP 2022-092388 A | [PDF](../../patents/JP2022092388A.pdf) | 92.0% (23/25) | 92.0% (23/25) | 2 | 34 [glass] (Element 19: `603564 — inferred vd and unresolved identity; patent gives nd only`)<br>45 [glass] (Element 25: `738493 — inferred vd and unresolved identity; patent gives nd only`) | abbe: 2 |
+| [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | US 2008/0112063 A1 | [PDF](../../patents/US20080112063A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 7 [glass] (L2 Element 2: `Unmatched (nd=1.84666, vd=23.93; source medium unspecified)`) | abbe: 1 |
 | [FUJIFILM FUJINON XC 16-50mm f/3.5-5.6 OIS II](../../src/lens-data/fujifilm/FujifilmFujinonXC1650mmf3556OISII.data.ts) | US 2014/0368925 A1 | [PDF](../../patents/US20140368925A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 11A [glass] (L31: `Unmatched (nd 1.80348 / νd 40.44; nearest audited S-LAH63 differs)`) | abbe: 1 |
 | [FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX100TCLX100.data.ts) | US 2015/0226942 A1 | Missing from untracked local patents/ references (US20150226942A1, US20150226942, 20150226942) | 91.7% (11/12) | 91.7% (11/12) | 1 | 18A [glass] (Master L36: `Unmatched (nd=1.56865, νd=58.6; no authoritative catalog match)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | US 2021/0231927 A1 | [PDF](../../patents/US20210231927A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 15A [glass] (Element 8 (L2a) — Aspherical: `NbF/SF (nd=1.689, νd=31.2)`) | abbe: 1 |

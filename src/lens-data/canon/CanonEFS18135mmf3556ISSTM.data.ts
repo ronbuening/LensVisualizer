@@ -1,43 +1,38 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF-S 18–135mm f/3.5–5.6 IS STM                                  ║
- * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 2013/0088622 A1, Numerical Example 4 (Shigenobu Sugita / Canon).   ║
- * ║ Native patent scale retained: no production-focal-length scaling is applied.       ║
- * ║ Active model excludes patent surface 1, explicitly identified as a design dummy.   ║
- * ║ Published total lengths are consistent to source rounding with that 1.50 mm dummy  ║
- * ║ interval included; source totals are audit metadata, not the modeled active track.  ║
- * ║                                                                                      ║
- * ║ 16 physical elements / 11 air-separated construction groups / 6 moving zoom units. ║
- * ║ Power sequence by moving unit: P–N–P–N–P–P. One aspherical surface (patent s27).   ║
- * ║ Production metadata reports 16 elements / 12 groups; that mismatch is not altered. ║
- * ║                                                                                      ║
- * ║ Zoom positions and infinity gaps are patent-published. L2 reverses direction over  ║
- * ║ wide→middle→tele; L3 and L5 have identical zoom travel.                            ║
- * ║                                                                                      ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes no close-focus gap  ║
- * ║ table for Example 4. Close-focus states at 0.39 m are code-solved with L4 as the    ║
- * ║ only axial focusing unit, moving objectward while d15+d17 remains constant at each  ║
- * ║ zoom position. This is a modeled reconstruction, not a patent-published state.      ║
- * ║                                                                                      ║
- * ║ Refracting-surface semi-diameters are one-half of the patent effective diameters.    ║
- * ║ The Numerical Example 4 patent surface table prints 14.52 mm at s20; its 7.26 mm     ║
- * ║ half-diameter, traced with a real marginal ray, gives F/3.591, 4.879 and 5.973 at    ║
- * ║ the three stations, which round to the published F/3.59, 4.88 and 5.97. The viewer   ║
- * ║ holds one iris, sized from the wide-state F/3.59 (7.2618 mm), at every station. One  ║
- * ║ exception to the halved diameters:                                                   ║
- * ║   • patent s9 is trimmed from 11.3000 to 11.2826 mm to satisfy the current 0.90      ║
- * ║     shared-gap sag criterion. This is a model trim, not a source correction.         ║
- * ║                                                                                      ║
- * ║ Glasses remain six-digit coordinate/class labels. The patent does not identify      ║
- * ║ suppliers or publish per-element nC, nF, ng, or dPgF, so those stronger spectral    ║
- * ║ fields are intentionally not invented from catalog candidates.                      ║
- * ║                                                                                      ║
- * ║ Patent ¶0093 prints a spherical-base sag equation; its table separately gives K=0. ║
- * ║ Project K=0 is numerically identical, so no conic conversion changes the surface.   ║
- * ╚══════════════════════════════════════════════════════════════════════════════════════╝
+ * Canon EF-S 18–135mm IS STM — US 2013/0088622 A1, Numerical Example 4.
+ * Original shape/glass inspection: 2026-10-30; prescription PDF p. 39 / printed
+ * p. 9, Fig. 13 PDF p. 23 / sheet 22. Native source raster is 300 ppi.
+ * The source excludes surface 1 as a non-optical design dummy (paragraph 0095).
+ * All 28 active R/d rows, 16 d-reference index/Abbe pairs, asphere, published
+ * zoom gaps, fixed-iris rule and existing L4-only focus reconstruction are kept.
+ * Published design focals are 18.60 / 50.99 / 130.48 mm; computed EFLs differ
+ * slightly. No production-focal scaling or drawing-fit R/d tuning is applied.
+ *
+ * Clear caps retain the printed effective-diameter halves, except the existing
+ * S9 11.2826 mm guard-constrained cap versus printed 11.30. The unchanged 0.90
+ * air-gap guard rejects the literal cap; this is a retained model limitation.
+ * Seven figure-supported outer shoulders preserve optical sd; bonded optical
+ * interfaces are not made opaque. Source dimensions and native rim uncertainty
+ * are distinguished in the audit and analysis.
+ *
+ * The current fixed runtime iris is 7.123822 mm, derived by the paraxial stop
+ * rule, rather than the 7.2618 mm described by older runtime notes. Source row
+ * 20 gives effective diameter 14.52 mm; a separate 7.26 mm real-ray diagnostic
+ * approximates source f-numbers but does not establish a physical iris schedule.
+ * No source finite-focus table is published. Existing 0.39 m reconstructed gaps
+ * and all controls are preserved; finite and interpolated limits are disclosed.
+ *
+ * All 16 existing compatible curves are qualified spectral proxies. The source
+ * gives d-line coordinates, not supplier, melt or historical chemistry, and no
+ * position-specific C/F/g indices, partial dispersion or APD values. No such
+ * per-lens overrides are added. E2 APD remains inferred.
+ *
+ * Figure 13's L3/L4 local labels conflict with paragraph 0088 and numerical unit
+ * powers. Paragraph 0050/Claim 4 define okN for the whole zoom, while Table 1's
+ * value matches L6 alone. Both source discrepancies remain explicitly qualified;
+ * neither is repaired by changing the numerical prescription.
  */
 
 const LENS_DATA = {
@@ -60,16 +55,26 @@ const LENS_DATA = {
     ],
     elementCount: 16,
     groupCount: 11,
-    focalLengthMm: { marketing: [18, 135], design: [18.59925540224872, 130.54639319596174] },
+    focalLengthMm: { marketing: [18, 135], design: [18.6, 130.48] },
     fNumber: { marketing: 3.5, design: 3.59 },
   },
 
   source: {
     patentNumber: "US 2013/0088622 A1",
-    example: { label: "Exemplary Embodiment 4", id: "4" },
+    example: { label: "Numerical Example 4", id: "4" },
     patentYear: 2013,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Fig. 13 (PDF p. 23, sheet 22) locally labels the positive S14–15 unit L4 and the negative S16–17 unit L3. Paragraph 0088 (PDF p. 36) and Numerical Example 4 (PDF p. 39) give L3 positive before L4 negative. Numerical order and source optical values are preserved.",
+      },
+      {
+        status: "unresolved",
+        note: "Paragraph 0050 (PDF p. 33) and Claim 4 (PDF pp. 39–40) define okN using the entire zoom's rear principal point. Table 1 (PDF p. 39) gives okN=-1.311 mm, matching L6 alone (literal -1.311653 mm), while the literal full-system offset is -58.793082 mm. No source optical value or control is changed to fit that definition/table discrepancy.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -83,7 +88,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: -165.36222507149722,
-      glass: "847238 — dense flint class",
+      glass:
+        "847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Front-unit negative member of the cemented pair.",
       cemented: "C1",
     },
@@ -96,10 +102,11 @@ const LENS_DATA = {
       vd: 81.5,
       indexReference: "d",
       focalLengthMm: 116.09107434609513,
-      glass: "497816 — ED fluorophosphate class",
+      glass:
+        "497816 — low-dispersion crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "UD-class assignment inferred from the patent 1.49700/81.5 coordinate and Canon production UD count; neither the production element number nor supplier is confirmed.",
+        "Inferred from the low-dispersion 1.49700/81.5 coordinate and compatible proxy; the source gives no position-specific APD value, and production UD counts do not identify this numerical position or its historical chemistry.",
       role: "Low-dispersion positive partner in the front cemented pair.",
       cemented: "C1",
     },
@@ -112,7 +119,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 111.9749239777085,
-      glass: "603607 — crown class",
+      glass: "603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Air-separated positive member completing L1.",
     },
     {
@@ -124,7 +131,8 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: -20.29178678267285,
-      glass: "835427 — lanthanum crown class",
+      glass:
+        "835427 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Strong negative front member of L2.",
     },
     {
@@ -136,7 +144,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -33.612211590798715,
-      glass: "773496 — lanthanum crown class",
+      glass:
+        "773496 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Negative middle member of L2.",
     },
     {
@@ -148,7 +157,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 24.157296602077544,
-      glass: "847238 — dense flint class",
+      glass:
+        "847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive member of the rear cemented pair in L2.",
       cemented: "C2",
     },
@@ -161,7 +171,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -46.64704669338085,
-      glass: "773496 — lanthanum crown class",
+      glass:
+        "773496 — lanthanum crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Negative rear member of L2.",
       cemented: "C2",
     },
@@ -174,7 +185,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 40.31286156907993,
-      glass: "805254 — dense flint class",
+      glass:
+        "805254 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive third zoom unit.",
     },
     {
@@ -186,7 +198,8 @@ const LENS_DATA = {
       vd: 31.3,
       indexReference: "d",
       focalLengthMm: -31.85127331446981,
-      glass: "904313 — high-index lanthanum class",
+      glass:
+        "904313 — high-index lanthanum class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Negative fourth zoom unit and reconstructed inner-focus unit.",
     },
     {
@@ -198,7 +211,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 29.604929155052215,
-      glass: "603607 — crown class",
+      glass: "603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Front positive member of L5A.",
     },
     {
@@ -210,7 +223,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 19.86605111811857,
-      glass: "603607 — crown class",
+      glass: "603607 — crown class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive member of the L5A cemented pair.",
       cemented: "C3",
     },
@@ -223,7 +236,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: -19.92556462783012,
-      glass: "847238 — dense flint class",
+      glass:
+        "847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Negative partner completing positive L5A.",
       cemented: "C3",
     },
@@ -236,7 +250,8 @@ const LENS_DATA = {
       vd: 35.3,
       indexReference: "d",
       focalLengthMm: -15.126045517881947,
-      glass: "750353 — lanthanum flint/crown transition class",
+      glass:
+        "750353 — lanthanum flint/crown transition class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Negative member of the image-stabilizing L5B subunit.",
       cemented: "C4",
     },
@@ -249,7 +264,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 23.17115071278587,
-      glass: "847238 — dense flint class",
+      glass:
+        "847238 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive partner in the transversely shiftable L5B subunit.",
       cemented: "C4",
     },
@@ -262,7 +278,8 @@ const LENS_DATA = {
       vd: 29.2,
       indexReference: "d",
       focalLengthMm: -141.3741299576284,
-      glass: "722292 — dense flint class",
+      glass:
+        "722292 — dense flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Aspheric negative member of the final positive unit.",
       cemented: "C5",
     },
@@ -275,7 +292,7 @@ const LENS_DATA = {
       vd: 39.2,
       indexReference: "d",
       focalLengthMm: 29.924022576120098,
-      glass: "596392 — flint class",
+      glass: "596392 — flint class (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive rear member of L6.",
       cemented: "C5",
     },
@@ -288,16 +305,16 @@ const LENS_DATA = {
   surfaces: [
     { label: "2", R: 107.732, d: 1.9, sd: 26.125, medium: 1 },
     { label: "3", R: 60.391, d: 7.57, sd: 25.385, medium: 2 },
-    { label: "4", R: -1239.687, d: 0.15, sd: 25.225 },
+    { label: "4", R: -1239.687, d: 0.15, sd: 25.225, rimExtensionSd: 25.385 },
     { label: "5", R: 53.128, d: 6.09, sd: 24.19, medium: 3 },
-    { label: "6", R: 238.329, sd: 23.78 },
+    { label: "6", R: 238.329, sd: 23.78, rimExtensionSd: 24.19 },
     { label: "7", R: 164.319, d: 1.45, sd: 15.095, medium: 4 },
-    { label: "8", R: 15.295, d: 6.85, sd: 11.445 },
+    { label: "8", R: 15.295, d: 6.85, sd: 11.445, rimExtensionSd: 15.095 },
     { label: "9", R: -53.79, d: 1.2, sd: 11.2826, medium: 5 },
-    { label: "10", R: 50.684, d: 0.88, sd: 11.07 },
+    { label: "10", R: 50.684, d: 0.88, sd: 11.07, rimExtensionSd: 11.2826 },
     { label: "11", R: 29.817, d: 5.57, sd: 11.185, medium: 6 },
     { label: "12", R: -59.549, d: 1.1, sd: 10.825, medium: 7 },
-    { label: "13", R: 91.992, sd: 10.385 },
+    { label: "13", R: 91.992, sd: 10.385, rimExtensionSd: 10.825 },
     { label: "14", R: 57.606, d: 1.95, sd: 7.07, medium: 8 },
     { label: "15", R: -73.234, sd: 7.09 },
     { label: "16", R: -35.671, d: 0.7, sd: 6.835, medium: 9 },
@@ -308,7 +325,7 @@ const LENS_DATA = {
     { label: "STO", R: "flat", d: 3.3 },
     { label: "21", R: 25.373, d: 4.95, sd: 7.13, medium: 11 },
     { label: "22", R: -21.035, d: 0.75, sd: 6.74, medium: 12 },
-    { label: "23", R: 86.598, d: 3.56, sd: 6.59 },
+    { label: "23", R: 86.598, d: 3.56, sd: 6.59, rimExtensionSd: 6.74 },
     { label: "24", R: -136.978, d: 0.7, sd: 6.405, medium: 13 },
     { label: "25", R: 12.387, d: 2.58, sd: 6.435, medium: 14 },
     { label: "26", R: 30.397, sd: 6.42 },
@@ -317,6 +334,7 @@ const LENS_DATA = {
       R: 47.113,
       d: 1.0,
       sd: 7.715,
+      rimExtensionSd: 7.92,
       medium: 15,
       asphere: { K: 0, A4: -2.10453e-5, A6: -4.04601e-8, A8: 9.66019e-10, A10: -2.17624e-11, A12: 1.50968e-13, A14: 0 },
     },
