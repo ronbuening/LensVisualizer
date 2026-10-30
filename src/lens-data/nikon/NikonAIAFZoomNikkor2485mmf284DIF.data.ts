@@ -41,8 +41,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Semi-diameters are Figure 1 estimates, checked against Nikon's optical outline,
  * geometry and the stated axial beam. They are not published clear apertures.
- * The L21 hybrid rims (6A/7/8) are 14.2 mm, approaching the figure estimate
- * within the steep spherical rear-face limit. The square Lasp rim is 9.4 mm on both faces (24A/25). Its unchanged 2.0000 mm
+ * L21 outer rims are 14.2 mm; S8 has a 10.9371 mm clear cap and an inferred
+ * flat land at depth 4.30 mm. The square Lasp rim is 9.4 mm on both faces (24A/25). Its unchanged 2.0000 mm
  * gap to surface 26 retains 0.1244 mm positive clearance. gapSagFrac=0.95 preserves
  * that geometry with a 5% drawing margin instead of the default 10%; no source
  * optical dimension or engine-wide threshold is changed.
@@ -312,7 +312,8 @@ const LENS_DATA = {
       },
     },
     { label: "7", R: 250.0, d: 1.8, sd: 14.2, medium: 5 },
-    { label: "8", R: 16.0593, d: 6.1, sd: 14.2 },
+    // Figure 1 L21 rear: source q ≈ 0.73; adopted cut is outward to clear every traced beam.
+    { label: "8", R: 16.0593, d: 6.1, sd: 14.2, rimCutDepthMm: 4.3 },
     { label: "9", R: -55.2385, d: 1.3, sd: 10.5, medium: 6 },
     { label: "10", R: 44.7541, d: 0.1, sd: 10.5 },
     { label: "11", R: 30.8107, d: 7.3, sd: 11.5, medium: 7 },

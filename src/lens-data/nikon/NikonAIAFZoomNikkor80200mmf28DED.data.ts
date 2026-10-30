@@ -20,7 +20,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  station. The former paraxial fixed-iris calibration gave modeled F/# 2.799999 (W) and 2.800001 (T). ║
  * ║                                                                                                      ║
  * ║  Semi-diameters are not patent-published. They are inferred from the W/T paraxial marginal-ray       ║
- * ║  envelopes, 35mm-format field bundles, the Figure 5 section proportions, and current edge/slope/    ║
+ * ║  envelopes, 35mm-format field bundles, the Figure 3 section proportions, and current edge/slope/    ║
  * ║  cross-gap constraints. gapSagFrac = 0.97 is required by the very tight S8-S9 and S11-S12 rim       ║
  * ║  clearances while preserving the on-axis F/2.8 marginal bundle at both zoom endpoints.              ║
  * ║                                                                                                      ║
@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  did not have VR; this file models only the centered prescription and does not claim production VR.  ║
  * ║                                                                                                      ║
  * ║  Glass vendors are not named by the patent. Catalog names identify coordinate-compatible curves,    ║
- * ║  never production suppliers; three non-matching coordinate classes remain explicit.                 ║
+ * ║  never production suppliers; all sixteen glass rows have compatible catalog curves.                 ║
  * ║                                                                                                      ║
  * ║  Source discrepancies preserved, not silently corrected: Table 1 prints ΔY(W)=2.270 although        ║
  * ║  Eq. (1) gives ≈0.270; Expression (4)'s prose radius definition conflicts with Table 1's rt value.  ║
@@ -306,7 +306,8 @@ const LENS_DATA = {
     { label: "23", R: 266.663, d: 9.4, sd: 20.0 },
     { label: "STO", R: "flat", d: 2.0 },
     { label: "25", R: 499.7065, d: 1.5, sd: 14.0, medium: 15 },
-    { label: "26", R: 28.6057, d: 16.7, sd: 14.0 },
+    // Figure 3 L15 rear: measured q ≈ 0.875; cut moves outward to clear the full beam guard.
+    { label: "26", R: 28.6057, d: 16.7, sd: 14.0, rimCutDepthMm: 3.16 },
     { label: "27", R: 86.0991, d: 3.3, sd: 16.0, medium: 16 },
     { label: "28", R: -193.7907, sd: 16.0 },
   ],

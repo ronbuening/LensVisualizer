@@ -82,7 +82,7 @@ At production scale, the rear surface-to-image distance is 38.458 mm at infinity
 
 ## Glass Identification and Selection
 
-The patent gives refractive indices and Abbe numbers, but it does not name glass vendors. The accompanying data file uses resolver-friendly catalog equivalents that preserve the Hikari/Nikon class where useful while pointing the renderer at available Sellmeier data.
+The patent gives refractive indices and Abbe numbers, but it does not name glass vendors. All six source nd/νd pairs resolve to compatible coefficient-backed catalog curves: E-BAF8, J-SK16 (L2/L5), BAFD7, E-FD4, and J-SK5. These are qualified spectral proxies; the source identifies no production supplier, melt, or glass chemistry. No source partial-dispersion values or line-index overrides are authored.
 
 | Element | Patent $n_d$ | Patent $\nu_d$ | Catalog-equivalent label | Catalog class | Role |
 |---|---:|---:|---|---|---|
@@ -95,7 +95,7 @@ The patent gives refractive indices and Abbe numbers, but it does not name glass
 
 Several older cross-reference labels are close but not exact catalog matches. In particular, the prior identification of L1 as an OHARA BAH32-class glass is not retained because OHARA S-BAH32 does not match the patent's $n_d = 1.62374$, $\nu_d = 47.0$ pair. L3 is represented as a BAFD7 / S-BAH27 / J-BASF7 class glass because those catalog entries match the patent's high-index barium-flint pair closely enough to supply useful dispersion data while preserving the patent's published $n_d$ and $\nu_d$.
 
-The chromatic correction is classical rather than apochromatic. The lens balances three crown-type low-dispersion elements, one dense flint post-stop element, and two intermediate glasses. No aspherical, ED, fluorite, or anomalous-partial-dispersion element is present in the patent prescription.
+The chromatic correction is classical rather than apochromatic. The lens balances three crown-type low-dispersion elements, one dense flint post-stop element, and two intermediate glasses. The patent prints spherical prescriptions and does not identify ED, fluorite, or anomalous partial dispersion for these elements.
 
 Using the surface-by-surface Petzval formula
 
@@ -113,7 +113,7 @@ This correction is important. A simple thin-lens estimate understates the focus 
 
 ## Aspherical Surfaces
 
-The design is entirely spherical. US 4,099,850 gives no aspherical coefficients, and all five numerical embodiments are ordinary spherical prescriptions. The companion data file therefore uses `asph: {}`.
+The design is entirely spherical. US 4,099,850 gives no aspherical coefficients, and all five numerical embodiments are ordinary spherical prescriptions. The companion data file therefore authors no aspheric surfaces.
 
 ## Patent Conditions
 
@@ -157,3 +157,10 @@ The result is not a modern flat-field, close-range-corrected 28 mm. It is a comp
 1. US Patent 4,099,850, Sei Matsui, "Wide Angle Photographic Lens," assigned to Nippon Kogaku K.K., granted July 11, 1978; Certificate of Correction issued March 27, 1979.
 2. Public Zemax/refractiveindex.info catalog entries for E-BAF8, N-SK16, S-BSM16, BAFD7, S-BAH27, E-FD4, H-ZF6, N-SK5, and S-BAL35; used as catalog equivalents for the patent's unnamed glass rows.
 3. Kouichi Ohshita, Nikon Corporation, *NIKKOR — The Thousand and One Nights No. 12: NIKKOR-H Auto 2.8cm F3.5*.
+
+
+## Current Outline Review
+
+The patent's common Figure 1 (PDF page 2) supports a flat outer land on the concave rear of L2: surface 4 retains its 13.5 mm clear cap and now extends the drawn rim to 16.8 mm. The illustrated cap/edge ratio is approximately 0.73; the adopted 0.80357 retains the established traced cap. The modest bevel at the outer corner is not treated as an optical curve. L1, L3, L5 and L6 have continuous full-height profiles rather than separate short lands, so their paired radii are made square by raising S2 18→21.5, S6 8.3→9.2, S9 6.4→8, and S11 8.2→9.8 mm. These inferred apertures remain limited by positive edge thickness and traced geometry; L3's enlarged rim is thin (about 0.08 mm), not a production mechanical measurement.
+
+L4's remaining taper is constrained by the printed 1.07688 mm rear gap: a 7 mm square rear cap produces about 1.003 mm combined intrusion against the unchanged 0.969192 mm bound. Its source outline contains a bevel at the front, and no distinct additional vertical rear stroke is resolved well enough to justify an inferred trim. Source radii, thicknesses, stop placement, aperture and unit-focus motion are unchanged.

@@ -1,6 +1,6 @@
 # Audit Log — Nikon AI AF Zoom-Nikkor 80-200mm f/2.8D ED
 
-Patent: US 5,579,171 A, Example 3 / Figure 5.
+Patent: US 5,579,171 A, Example 3 / Figure 3.
 
 ## 2026-08-08 — Patent-figure SD, diagram-label, name, and glass audit
 
@@ -31,3 +31,12 @@ Patent: US 5,579,171 A, Example 3 / Figure 5.
   `Δnd = 0.000000` and `Δνd = -0.10`, and the same equivalent is already used for Nikon's 744450 rows in
   two related telephoto prescriptions. The production supplier remains unspecified.
 - All sixteen glass elements now have coefficient-backed dispersion models.
+
+## 2026-10-30 — Fresh original-source shape and glass review
+
+- Directly inspected local `patents/US5579171.pdf`: **correct Figure 3, PDF p. 4**, 600 dpi crop, associated third-embodiment text (p. 14), and complete Table 4 prescription/glasses/endpoints (p. 15). Native raster is 300 ppi (`pdfimages -list`), so the render is 2×. All sixteen elements, five cemented interfaces, and convex/concave faces were inspected. The old Figure 5 / PDF 6 reference in historical audit prose is an error: that is the fifth embodiment 35–105 mm with a front filter, not this third-embodiment 80.94–196 mm model. Current data/analysis references are corrected; no unrelated filter or geometry is imported.
+- Figure 3 resolves a vertical outer stroke on L15's concave rear S26. Mean source q ≈ 0.875, edge ≈ 118 native px, one-pixel band ±0.0159, separate ink ambiguity ≈ ±0.02. First-to-last vertex span gives ≈ 8.4 native px/mm. Measured-proportion trial depth 2.80 mm gives cap 12.343 mm but fails the beam guard: reach 12.9799 mm at zoom 0.8 / field 5.43° requires at least 13.0299 mm. Adopted inferred depth 3.16 mm gives cap 13.069140 / outer 14 mm (q = 0.93351); the trim is moved outward for complete beam access. Other shallow curves and ray crossings do not establish additional lands. Source gaps and the existing 0.97 gap-sag policy remain unchanged.
+- Fresh glass-only reinspection confirms all 16 Table 4 index/Abbe pairs. All16 resolve to compatible coefficient-backed catalog curves, including current H-LaF3B for L15 and J-SF6 for L7/L14. Historical unmatched counts in dated notes are superseded. Table 4 labels refractive index/Abbe number without an explicit wavelength; the existing conventional d-line interpretation is retained and qualified, without an invented source wavelength or e-line conversion. No C/F/g or partial-dispersion datum is printed here; none is authored. Production ED-position correlation remains separate from catalog supplier/chemistry or APD proof. All source media values, resolver selections and RGB/V responses remain identical.
+- Public source figure and curve-count wording are synchronized. Focused surface/image-circle/aperture/field checks and actual nine-state SVG review are recorded with this batch; finite paths, zero hidden trim. Source R/d, stop, endpoint/interpolation/focus controls and all tolerances remain unchanged. Dense inferred-cut sweep results follow below.
+
+- Dense independent inferred-cut probe: 21 zoom × 21 focus states, grid 41, 0.5° field steps, 4,450,677 beam rays. S26 cap 13.069140 mm, margin 0.05 mm, maximum refined reach 12.9794 mm at zoom 0.6 / focus 0 / field 6.492°. Zero clipped, within-margin, or unlaunchable rays/fields.
