@@ -148,8 +148,8 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 37.6614, d: 1.5, sd: 15.1, medium: 1 },
-    { label: "2", R: 16.4087, d: 16, sd: 13.4 },
+    { label: "1", R: 37.6614, d: 1.5, sd: 16.6, medium: 1 },
+    { label: "2", R: 16.4087, d: 16, sd: 13.4, rimExtensionSd: 16.6 },
     { label: "3", R: 34.4105, d: 9, sd: 12.7, medium: 2 },
     { label: "4", R: -25.7916, d: 5.5, sd: 12.5, medium: 3 },
     { label: "5", R: -369.8812, d: 2, sd: 11.2 },

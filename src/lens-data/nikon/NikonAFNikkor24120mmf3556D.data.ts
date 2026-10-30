@@ -246,7 +246,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       focalLengthMm: -60.366703,
-      glass: "795454 — LaSF class (catalog-near; vendor unresolved)",
+      glass: "TAF2 (HOYA compatible spectral proxy; source 1.79668/45.4; production supplier unspecified)",
       role: "Aspheric negative meniscus for spherical-aberration and coma correction in G3R.",
     },
     {
@@ -295,7 +295,7 @@ const LENS_DATA = {
       asphere: { K: -1, A4: 1.5685e-5, A6: -2.039e-8, A8: 2.6186e-11, A10: 8.5042e-14 },
     },
     { label: "18", R: 107.0, d: 1.77, sd: 13.65, medium: 5 },
-    { label: "19", R: 13.685, d: 6.05, sd: 10.5 },
+    { label: "19", R: 13.685, d: 6.05, sd: 10.5, rimExtensionSd: 13.65 },
     { label: "20", R: -29.385, d: 1.6, sd: 9.4, medium: 6 },
     { label: "21", R: 26.162, d: 2.3, sd: 11.5, medium: 7 },
     { label: "22", R: 69.447, d: 0.1, sd: 11.5 },

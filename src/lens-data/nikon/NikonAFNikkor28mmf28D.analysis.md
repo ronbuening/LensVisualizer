@@ -58,7 +58,7 @@ L₂ is the dominant negative element in G₁. Both radii are positive, R₃ = +
 
 Condition (4) of the patent constrains the image-side radius of L₂, and Example 3 gives r₄/f = +0.535. The same surface is also a major source of lower-frame coma in the patent's discussion, which condition (5) then balances by constraining the rear surface of L₃.
 
-The S-LAL7 identification is firm at the precision needed here: Ohara publishes S-LAL7 as nd = 1.65160 and νd = 58.55. This high-index, relatively high-Abbe lanthanum crown is a rational choice for a strong negative front element because it reduces chromatic burden while maintaining refractive power.
+The current S-LAL7 curve is a compatible spectral proxy: its catalog coordinates are approximately nd = 1.65160 and νd = 58.5507, compared with source 1.65160/58.5. Its catalog lanthanum-crown classification does not establish the production glass chemistry or supplier.
 
 ### L₃ — Biconvex Positive
 
@@ -78,7 +78,7 @@ L₄ is the sole negative element in G₂ and has the strongest standalone negat
 
 The element sits immediately behind the aperture stop. This placement makes it central to the patent's control of off-axis aberrations and exit-pupil behavior. L₄ is also the thickest element in Example 3 at 5.60 mm, consistent with the patent's strategy of increasing rear-section thickness to shift the exit pupil toward the final surface.
 
-Schott publishes SF56A as nd = 1.78470 and νd = 26.08. This is an exact match for the patent at the precision used in the table.
+Schott publishes SF56A as nd = 1.78470 and νd = 26.08, which agrees with the source coordinates at its printed precision. This supports the coefficient curve as a spectral proxy; it does not establish a production identity.
 
 ### L₅ — Positive Meniscus, Concave to Object
 
@@ -88,7 +88,7 @@ L₅ is a positive meniscus with both radii negative, R₁₁ = −77.113 mm and
 
 Together with L₆, L₅ is governed by patent condition (2), which keeps the mean refractive index of the two final positive elements between 1.65 and 1.8. Example 3 gives (N₅ + N₆)/2 = 1.7049. This range is a compromise: higher index helps Petzval correction, while excessive dispersion worsens lateral chromatic aberration.
 
-Ohara publishes S-LAL14 as nd = 1.69680 and νd = 55.53. The patent's rounded νd = 55.6 is consistent with that catalog entry.
+The current S-LAL14 curve has catalog coordinates near nd = 1.69680 and νd = 55.5322. Its Abbe number differs by about 0.068 from the source’s 55.6, so this is a compatible proxy rather than an exact rounding match.
 
 ### L₆ — Biconvex Positive
 
@@ -96,24 +96,24 @@ nd = 1.71300, νd = 54.0. Glass: S-LAL8 (Ohara). f = +42.82 mm.
 
 L₆ is the final positive element. Its radii are R₁₃ = +84.648 mm and R₁₄ = −47.047 mm. It completes image formation and sets the 38.09 mm rear vertex distance in the infinity prescription.
 
-Ohara publishes S-LAL8 as nd = 1.71300 and νd = 53.87. The patent's νd = 54.0 is the expected rounded form. As with L₅, the glass sits inside the condition-(2) index range for the final positive pair.
+Ohara publishes S-LAL8 as nd = 1.71300 and νd = 53.87. The patent's νd = 54.0 differs by 0.13 from that catalog value; S-LAL8 remains a qualified spectral proxy, not an exact rounding match. As with L₅, the glass sits inside the condition-(2) index range for the final positive pair.
 
 ## Glass Identification and Selection
 
-The glass palette is conventional for a compact 1990s all-spherical retrofocus lens: dense flints are used for strong aberration correction, while lanthanum crowns provide high refractive index with comparatively restrained dispersion.
+The named current catalog curves are compatible spectral proxies for the patent’s six d-line coordinate pairs. The patent does not establish production supplier, melt, or glass chemistry; the class names describe those proxies.
 
 | Element | Patent nd | Patent νd | Identification used                                     | Catalog basis                                | Role                                |
 | ------- | --------: | --------: | ------------------------------------------------------- | -------------------------------------------- | ----------------------------------- |
 | L₁      |   1.64831 |      33.8 | SF2-class dense flint; exact catalog identity uncertain | Schott SF2 / N-SF2 class close but not exact | Weak front positive                 |
-| L₂      |   1.65160 |      58.5 | S-LAL7 (Ohara)                                          | Exact nd, rounded νd                         | Strong front negative               |
+| L₂      |   1.65160 |      58.5 | S-LAL7 (Ohara)                                          | Compatible catalog coordinates                         | Strong front negative               |
 | L₃      |   1.79668 |      45.4 | J-LASF017 catalog equivalent (797454)                   | Supplier not identified                      | Strong rear positive                |
-| L₄      |   1.78470 |      26.1 | SF56A (Schott)                                          | Exact nd, rounded νd                         | Rear negative / Petzval correction  |
-| L₅      |   1.69680 |      55.6 | S-LAL14 (Ohara)                                         | Exact nd, rounded νd                         | Positive meniscus / rear correction |
-| L₆      |   1.71300 |      54.0 | S-LAL8 (Ohara)                                          | Exact nd, rounded νd                         | Final positive element              |
+| L₄      |   1.78470 |      26.1 | SF56A (Schott)                                          | Compatible catalog coordinates                         | Rear negative / Petzval correction  |
+| L₅      |   1.69680 |      55.6 | S-LAL14 (Ohara)                                         | Compatible catalog coordinates                         | Positive meniscus / rear correction |
+| L₆      |   1.71300 |      54.0 | S-LAL8 (Ohara)                                          | Compatible catalog coordinates                         | Final positive element              |
 
 The surface-by-surface Petzval sum computes to +0.004966 mm⁻¹, corresponding to a Petzval radius of about +201.4 mm. This is a moderately positive result, consistent with the patent's explanation that the small number of negative elements tends to leave Petzval correction under pressure.
 
-No ED, fluorite, anomalous partial-dispersion, or aspherical glass/plastic elements are present in the patent prescription. Chromatic correction is therefore classical crown/flint balancing, not secondary-spectrum suppression.
+The patent supplies no ED, fluorite, anomalous partial-dispersion or resin identification, and no partial-dispersion measurements. All surfaces are spherical. Secondary-spectrum behavior remains dependent on the qualified catalog curves rather than source-published spectral constraints.
 
 ## Focus Mechanism
 
@@ -165,7 +165,7 @@ The patent text describes thicknesses behind the aperture stop, but Table 6's nu
 | Petzval sum            |                   not tabulated |               +0.004966 mm⁻¹ | Surface-by-surface φ/(n·n′)                |
 | Close-focus model      |             Nikon 0.25 m, 0.18× | BF = 43.1665 mm, m = −0.1775 | Unit-extension approximation               |
 
-Semi-diameters are inferred, not patent-published. The estimates intentionally clip some extreme paraxial off-axis bundles because the patent table lacks real clear apertures and because several strongly curved elements impose hard geometry constraints. The L₄/L₅ inter-element air gap is the binding rear-group constraint: at the selected 6.85 mm shared semi-diameter, signed sag intrusion remains below 90% of the 1.15 mm gap.
+Semi-diameters are inferred, not patent-published. Figure 3’s L₂ rear seat is now drawn as an opaque land from the retained 13.6 mm optical cap to the existing 16.9 mm outer height. No new concave cut is supported on L₄/L₅: their drawn curves meet the rim, and the shared 6.85 mm geometry constraint remains. The estimates intentionally clip some extreme paraxial off-axis bundles because the patent table lacks real clear apertures and because several strongly curved elements impose hard geometry constraints. The L₄/L₅ inter-element air gap is the binding rear-group constraint: at the selected 6.85 mm shared semi-diameter, signed sag intrusion remains below 90% of the 1.15 mm gap.
 
 ## Design Heritage and Context
 

@@ -30,3 +30,22 @@ Reviewed local untracked patent file `patents/US5557473.pdf`, Third Embodiment /
   coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.09`).
 - Relabeled L3 as a J-LASF017 catalog equivalent while leaving the production supplier unidentified. Synchronized
   the analysis; no prescription, focus, aperture, or semi-diameter values changed.
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Fresh original source: `patents/US5557473.pdf`, Third Embodiment Figure 3 on PDF page 4 and Table 5 across pages 7–8. Directly inspected the 600 dpi rotated figure and every convex/concave face of the six singlets. The embedded raster is 300 dpi; the approximately 2380 px first-to-last vertex span at 600 dpi over 50.75 mm gives about 23.4 native px/mm.
+
+Added S4 rear concave rim extension from the retained 13.6 mm optical cap to the existing 16.9 mm outer height, following L2’s clear flat seat. S9/S10/S11 have curved endpoints at their rims, without an independently resolved short land; no new inferred cut is supported. The constrained 6.85 mm L4/L5 shared cap stays unchanged. All source R/d, stop positions, aperture and qualified unit-extension focus model remain unchanged.
+
+All six source nd/νd pairs match Table 5, with explicit d-line wavelength 587.6 nm. The patent publishes no θgF, extra spectral indices or APD identification; no spectral override is invented. All six media already have compatible coefficient-backed curves. Qualified the four bare supplier/glass labels as spectral proxies and corrected the public claim that νd=53.87 rounds to the source’s 54.0: it differs by 0.13 and is a compatible approximation. Supplier, melt and chemistry remain unconfirmed.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.648310 / 33.8 | SF2 |
+| L2 | 1.651600 / 58.5 | S-LAL7 |
+| L3 | 1.796680 / 45.4 | J-LASF017 |
+| L4 | 1.784700 / 26.1 | SF56A |
+| L5 | 1.696800 / 55.6 | S-LAL14 |
+| L6 | 1.713000 / 54 | S-LAL8 |
+
+All selected curves are qualified spectral proxies; source coordinates and any source θgF remain authoritative. No tolerance was relaxed. Focused surface, image-circle and aperture audits pass on this absolute-path candidate; current-label resolver and `assertCatalogConsistent()` pass. Native SVG geometry at nine focus/zoom states has no hidden rim trim; the rendered outlines were inspected. Shared dispersion/partial-dispersion suites passed 2 files / 93 tests for this wave. Full gates and commit integration are performed by the coordinator.
