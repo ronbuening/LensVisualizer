@@ -267,3 +267,5 @@ The corrected interpretation is internally consistent: Example 2 is a 16-element
 Venus Optics lists these eight mounts for the original 12mm f/2.8 Zero-D; this is not the separate Lite or cine model. [Manufacturer source](https://www.venuslens.net/product/laowa-12mm-f2-8-zero-d/).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+The concave rear faces of L1–L3 retain their existing clear semi-diameters and now carry opaque lands to the opposite-face outer rims, as drawn in Example 2 Figure 3. These `rimExtensionSd` values change the drawn blank only; the source does not publish clear apertures.

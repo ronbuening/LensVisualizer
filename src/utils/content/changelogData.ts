@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-29",
     type: "improvement",
+    summary: "Refined third-party Z-mount lens rims and glass against their source patents",
+  },
+  {
+    date: "2026-10-29",
+    type: "improvement",
     summary: "Corrected Nikkor Z glass dispersion data and clarified catalog proxy labels",
   },
   {
