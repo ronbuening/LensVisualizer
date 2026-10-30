@@ -99,7 +99,7 @@ const LENS_DATA = {
       nd: 1.58267,
       vd: 46.43,
       focalLengthMm: -40.85,
-      glass: "BAF3 — compatible catalog counterpart; patent identity unspecified",
+      glass: "J-BAF3 — compatible catalog spectral counterpart; production supplier unspecified",
       apd: false,
       role: "Negative singlet in moving G2",
     },
@@ -229,13 +229,13 @@ const LENS_DATA = {
     { label: "3", R: 49.725, d: 5.0443, sd: 23.5, medium: 2 },
     { label: "4", R: 328.1282, d: 3.2512, sd: 22.5 },
     { label: "5", R: -301.4048, d: 1.3, sd: 22.5, medium: 3 },
-    { label: "6", R: 36.6648, d: 0.2601, sd: 21.5 },
+    { label: "6", R: 36.6648, d: 0.2601, sd: 21.5, rimCutDepthMm: 5.93 },
     { label: "7", R: 39.1876, d: 5.0203, sd: 15.0, medium: 4 },
     { label: "8", R: "flat", sd: 18.0 }, // D8 (variable)
     // ── G2 ──────────────────────────────────────────────────
     { label: "9", R: -184.4593, d: 1.1, sd: 17.5, medium: 5 },
-    { label: "10", R: 27.3895, d: 4.0524, sd: 14.0 },
-    { label: "11", R: -173.3863, d: 1.2519, sd: 12.0, medium: 6 }, // L6 (D1 front)
+    { label: "10", R: 27.3895, d: 4.0524, sd: 14.0, rimExtensionSd: 15.4 },
+    { label: "11", R: -173.3863, d: 1.2519, sd: 12.5, medium: 6 }, // L6 (D1 front)
     { label: "12", R: 26.3938, d: 4.0212, sd: 15.0, medium: 7 }, // L6→L7 junction
     { label: "13", R: 89.6909, sd: 14.5 }, // D13 (variable)
     // ── Aperture stop ───────────────────────────────────────
@@ -252,7 +252,7 @@ const LENS_DATA = {
     { label: "22", R: 21.4197, d: 4.805, sd: 12.5, medium: 12 }, // L11→L12 junction
     { label: "23", R: 37.4268, d: 8.821, sd: 12.0 }, // G4a→G4b air gap
     // ── G4b ─────────────────────────────────────────────────
-    { label: "24", R: -27.164, d: 1.1, sd: 14.0, medium: 13 },
+    { label: "24", R: -27.164, d: 1.1, sd: 14.0, rimCutDepthMm: 3.29, medium: 13 },
     { label: "25", R: -51.22, d: 0.15, sd: 14.5 },
     { label: "26", R: 88.6706, d: 4.9019, sd: 15.0, medium: 14 },
     { label: "27", R: -88.6706, sd: 15.5 }, // D27 / BFD (variable)

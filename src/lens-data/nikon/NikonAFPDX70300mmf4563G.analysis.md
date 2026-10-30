@@ -25,12 +25,12 @@ The file name omits `ED VR` by request, but the analysis and prescription refer 
 
 Example 4 is a compact four-group telephoto zoom with a positive-negative-positive-positive power distribution:
 
-| Group | Patent surfaces | Power | Function |
-|---|---:|---:|---|
-| G1 | 1-5 | +127.677 mm | Front collector / telephoto front group |
-| G2 | 6-10 | -31.532 mm | Negative variator and zoom compensation group |
-| G3 | 11-12 | +70.494 mm | Single-element internal focusing group |
-| G4 | 13-25 | +147.512 mm | Rear relay, stop region, ED-containing corrector, and final field group |
+| Group | Patent surfaces |       Power | Function                                                                |
+| ----- | --------------: | ----------: | ----------------------------------------------------------------------- |
+| G1    |             1-5 | +127.677 mm | Front collector / telephoto front group                                 |
+| G2    |            6-10 |  -31.532 mm | Negative variator and zoom compensation group                           |
+| G3    |           11-12 |  +70.494 mm | Single-element internal focusing group                                  |
+| G4    |           13-25 | +147.512 mm | Rear relay, stop region, ED-containing corrector, and final field group |
 
 The zoom ratio in the patent is 4.05×. Total optical length divided by effective focal length is approximately 2.34 at the wide setting, 1.47 at the middle setting, and 0.76 at the telephoto setting. The system is therefore not retrofocus. It becomes a true telephoto system at the long end, where the total track is shorter than the focal length.
 
@@ -40,7 +40,7 @@ Example 4 contains no aspherical surfaces. Its correction strategy is convention
 
 ### L11 — Biconvex Positive Front Element
 
-**$n_d = 1.51680$, $\nu_d = 63.88$. Glass: 517639 crown glass code; no exact public catalog match. Standalone in-air $f \approx +150.7$ mm.**
+**$n_d = 1.51680$, $\nu_d = 63.88$. Glass: J-BK7-compatible crown spectral counterpart (517639); production supplier unspecified. Standalone in-air $f \approx +150.7$ mm.**
 
 L11 is the front positive collector. Its job is to begin convergence at a moderate refractive index without making the front element strongly dispersive. It carries the largest clear aperture in the inferred data file and sets much of the beam scale for the rest of the zoom.
 
@@ -128,25 +128,27 @@ The patent back focal distances are 43.294 mm at wide angle, 45.652 mm at the mi
 
 ## Glass Identification and Selection
 
-The patent gives refractive index, Abbe number, and partial-dispersion ratio, but it does not name commercial glass melts. The data file therefore uses class-level descriptions and six-digit glass codes rather than vendor catalog names. This avoids circular validation and prevents false precision where no catalog identity has been independently established.
+Table 4 gives d-line refractive index, Abbe number, and θgF for all fourteen elements, but names no commercial glass or supplier. The catalog names below are compatible spectral counterparts, including the J-BK7 curve now available for L11; they do not identify Nikon’s production supplier, melt, or annealing state. L12 remains unresolved and uses the source nd/νd with its published partial dispersion.
 
-| Element(s) | $n_d$ | $\nu_d$ | Class-level description | Role |
-|---|---:|---:|---|---|
-| L11 | 1.51680 | 63.88 | 517639 crown glass, no exact public match | Front collector |
-| L12 | 1.61155 | 31.26 | 612313 anomalous-dispersion flint, no exact public match | Secondary-spectrum control in G1 |
-| L13 | 1.51742 | 52.20 | HOYA E-CF6 (517522) | Cemented partner for L12 |
-| L21 | 1.69680 | 55.52 | OHARA S-LAL14 (697555) | Negative variator component |
-| L22 | 1.80809 | 22.74 | Hikari J-SFH1 (808227) | Variator achromatizing partner |
-| L23 / L42 | 1.85026 | 32.35 | Hikari J-LASF021 (850324) | Strong negative correction |
-| L31 | 1.58913 | 61.22 | OHARA S-BAL35 (589612) | Positive internal-focus group |
-| L41 | 1.49700 | 81.73 | Hikari J-FK01A (497817) | Primary ED-class chromatic corrector |
-| L43 | 1.48749 | 70.31 | Hikari J-FK5 (487703) | Relay before stop |
-| L44 | 1.80100 | 34.92 | Hikari J-LAF016 (801349) | Post-stop positive correction |
-| L45 | 1.70000 | 48.11 | Hikari J-LAF01 (700481) | Post-stop negative correction |
-| L46 | 1.60342 | 38.03 | Schott F5 (603380) | Rear relay and residual color correction |
-| L47 | 1.77250 | 49.62 | OHARA S-LAH66 (773496) | Final field and distortion correction |
+| Element(s) |   $n_d$ | $\nu_d$ | Compatible spectral counterpart or unresolved class      | Role                                     |
+| ---------- | ------: | ------: | -------------------------------------------------------- | ---------------------------------------- |
+| L11        | 1.51680 |   63.88 | J-BK7-compatible crown (517639)                          | Front collector                          |
+| L12        | 1.61155 |   31.26 | 612313 anomalous-dispersion flint, no exact public match | Secondary-spectrum control in G1         |
+| L13        | 1.51742 |   52.20 | HOYA E-CF6 (517522)                                      | Cemented partner for L12                 |
+| L21        | 1.69680 |   55.52 | OHARA S-LAL14 (697555)                                   | Negative variator component              |
+| L22        | 1.80809 |   22.74 | Hikari J-SFH1 (808227)                                   | Variator achromatizing partner           |
+| L23 / L42  | 1.85026 |   32.35 | Hikari J-LASF021 (850324)                                | Strong negative correction               |
+| L31        | 1.58913 |   61.22 | OHARA S-BAL35 (589612)                                   | Positive internal-focus group            |
+| L41        | 1.49700 |   81.73 | Hikari J-FK01A (497817)                                  | Primary ED-class chromatic corrector     |
+| L43        | 1.48749 |   70.31 | Hikari J-FK5 (487703)                                    | Relay before stop                        |
+| L44        | 1.80100 |   34.92 | Hikari J-LAF016 (801349)                                 | Post-stop positive correction            |
+| L45        | 1.70000 |   48.11 | Hikari J-LAF01 (700481)                                  | Post-stop negative correction            |
+| L46        | 1.60342 |   38.03 | Schott F5 (603380)                                       | Rear relay and residual color correction |
+| L47        | 1.77250 |   49.62 | OHARA S-LAH66 (773496)                                   | Final field and distortion correction    |
 
-The safest production-level statement is that Example 4 contains one ED-class element, L41. L12 is important to the patent’s conditional-expression strategy, but its $\nu_d = 31.26$ is in the flint range and should not be called the ED element.
+L41 is the low-dispersion ED-class interpretation in this patent example; its supplier and production identity are unspecified. L12 is important to the patent’s conditional-expression strategy, but its $\nu_d = 31.26$ is in the flint range and should not be called the ED element.
+
+All fourteen printed θgF values are preserved through `dPgF = θgF − (0.6438 − 0.001682νd)`. This changes the violet-channel dispersion while retaining every source nd/νd and the compatible catalog C/d/F shape where available. For L12, θgF = 0.618 gives ΔPgF = +0.02677932; its earlier normal-line fallback gave PgF = 0.59122068. The eight decimal places in the converted deviation are arithmetic, not extra source precision: Table 4 rounds θgF to three decimals. The other catalog-backed elements also retain their individual printed ratios. A published ratio alone does not establish a patent anomaly tag; L12 has that tag because paragraphs 33–37 discuss the specified material’s anomalous dispersion and paragraph 119 maps the specified lens to L12.
 
 ## Focus Mechanism
 
@@ -156,11 +158,11 @@ Example 4 publishes zoom-variable spacings at infinity, but it does not publish 
 
 The data file models the patent’s infinity zoom states only. D5, D10, D12, and BF are entered as zoom variables with identical infinity and close-focus values at each zoom point. This preserves the patent prescription while avoiding an invented close-focus travel table. A paraxial attempt to force a 1.1 m object distance using only G3 translation is underconstrained and does not yield a physically consistent telephoto-end solution with the published infinity spacings, where D10 is only 2.157 mm.
 
-| Zoom state | D5 | D10 | D12 | BF |
-|---|---:|---:|---:|---:|
-| Wide | 2.306 mm | 32.727 mm | 10.112 mm | 43.294 mm |
-| Middle | 36.768 mm | 21.603 mm | 13.560 mm | 45.652 mm |
-| Telephoto | 51.599 mm | 2.157 mm | 16.367 mm | 70.374 mm |
+| Zoom state |        D5 |       D10 |       D12 |        BF |
+| ---------- | --------: | --------: | --------: | --------: |
+| Wide       |  2.306 mm | 32.727 mm | 10.112 mm | 43.294 mm |
+| Middle     | 36.768 mm | 21.603 mm | 13.560 mm | 45.652 mm |
+| Telephoto  | 51.599 mm |  2.157 mm | 16.367 mm | 70.374 mm |
 
 ## Aspherical Surfaces
 
@@ -186,15 +188,15 @@ $$\nu_{d,LZ} < 35.0.$$
 
 In Example 4, the specified lens is L12, with $n_d = 1.61155$, $\nu_d = 31.26$, and $\theta_{gF} = 0.618$. The patent table gives the following corresponding values:
 
-| Quantity | Patent value |
-|---|---:|
-| $n_{d,LZ} + 0.01425\nu_{d,LZ}$ | 2.057 |
-| $\nu_{d,LZ}$ | 31.26 |
-| $\theta_{gF,LZ} + 0.00316\nu_{d,LZ}$ | 0.7168 |
-| $n_{d,LZ} + 0.00787\nu_{d,LZ}$ | 1.858 |
-| $D_{LZ}$ | 1.7 mm |
-| Conditional expression (7) value | 36.513 |
-| Conditional expression (8) value | 12.605 |
+| Quantity                             | Patent value |
+| ------------------------------------ | -----------: |
+| $n_{d,LZ} + 0.01425\nu_{d,LZ}$       |        2.057 |
+| $\nu_{d,LZ}$                         |        31.26 |
+| $\theta_{gF,LZ} + 0.00316\nu_{d,LZ}$ |       0.7168 |
+| $n_{d,LZ} + 0.00787\nu_{d,LZ}$       |        1.858 |
+| $D_{LZ}$                             |       1.7 mm |
+| Conditional expression (7) value     |       36.513 |
+| Conditional expression (8) value     |       12.605 |
 
 These values confirm that L12 is the material singled out by the patent’s chromatic-correction strategy.
 
@@ -203,10 +205,10 @@ These values confirm that L12 is the material singled out by the patent’s chro
 The Table 4 prescription was independently checked with a paraxial $y$-$u$ ray trace using the patent sign convention. The computed focal lengths and back focal distances agree with the patent’s general data within rounding error:
 
 | Zoom position | Patent EFL | Calculated EFL | Patent BF | Calculated BFL |
-|---|---:|---:|---:|---:|
-| Wide | 72.1 mm | 72.0979 mm | 43.294 mm | 43.2925 mm |
-| Middle | 135.0 mm | 134.9956 mm | 45.652 mm | 45.6487 mm |
-| Telephoto | 292.1 mm | 292.1056 mm | 70.374 mm | 70.3688 mm |
+| ------------- | ---------: | -------------: | --------: | -------------: |
+| Wide          |    72.1 mm |     72.0979 mm | 43.294 mm |     43.2925 mm |
+| Middle        |   135.0 mm |    134.9956 mm | 45.652 mm |     45.6487 mm |
+| Telephoto     |   292.1 mm |    292.1056 mm | 70.374 mm |     70.3688 mm |
 
 The group focal lengths from the same trace are G1 = +127.6768 mm, G2 = -31.5320 mm, G3 = +70.4939 mm, and G4 = +147.5055 mm. These values match the patent group data to the displayed precision.
 
@@ -214,7 +216,9 @@ The stop semi-diameter required to reproduce the patent f-numbers is approximate
 
 The Petzval sum was computed from the surface-by-surface expression $\sum \Phi/(n n')$, not from thin-lens element approximations. The resulting paraxial Petzval sum is approximately $+3.49\times10^{-4}\ \mathrm{mm}^{-1}$.
 
-The patent omits semi-diameter data. The data-file semi-diameters are therefore inferred and conservative. They satisfy element edge-thickness checks, front/rear element semi-diameter ratios, spherical rim limits, and signed cross-gap sag intrusion at all three zoom positions.
+The patent omits semi-diameter data. The data-file semi-diameters remain inferred reconstruction values. Fresh inspection of Figure 7, PDF page 10, at 600 dpi found no resolved short vertical land between a curved cap and its outer rim on any air/glass face. The nearly flat exterior faces of the G2 negatives and the final meniscus continue to their edges; their horizontal connecting edges and leaders do not justify a cap-end trim. The four cemented interfaces remain unchanged. No opaque extension or additional concave clipping is introduced. The continuous inferred rims S10, S15, S16 and S17 rise from 10.8/11.4/11.4/10.8 to 11.1/11.5/11.5/11.3 mm, respectively: the smallest one-decimal heights that clear the stated axial beam on those faces. Their curves still meet the exterior edges normally. Element thickness and cross-gap checks pass across zoom.
+
+The wide and middle stations now pass the nominal aperture within 3%; the former S17 wide-angle limit is removed. Telephoto remains limited by S8 at effective f/6.73 against nominal f/6.3 (the patent prints f/6.494). Passing the nominal telephoto beam would require S8/S9 radii of 10.88981/10.89249 mm, rounded to 10.9 mm. At that common radius their sag intrusion is 2.08136 mm across only 2.038 mm of air, a physical overlap of 0.04336 mm. The absolute contact radius is 10.78689 mm; the unchanged 90% gap-clearance policy permits 10.23796 mm. Those two caps therefore remain 10.2 mm. The figure supplies no flat land that could resolve this conflict, and cutting below the needed radii would still block the beam. Source radii, gaps, stop controls and clearance policy are retained.
 
 ## Sources
 

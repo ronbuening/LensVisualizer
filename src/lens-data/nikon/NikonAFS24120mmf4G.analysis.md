@@ -25,18 +25,18 @@ The identification rests on convergent evidence.
 
 Where manufacturer specifications and patent values differ, Nikon's published specifications govern hard product specifications. The patent values describe the design embodiment, not necessarily the rounded marketed lens.
 
-| Hard spec | Nikon official specification | Example 1 design value |
-|---|---:|---:|
-| Focal length | 24-120 mm | 24.70-116.39 mm |
-| Maximum aperture | f/4 constant; minimum f/22 | FNO 4.12-4.14 |
-| Construction | 17 elements / 13 groups | 17 elements / 13 groups |
-| Special elements | 2 ED, 3 aspherical | 2 inferred ED, 3 aspherical surfaces |
-| FX picture angle | 84°-20°20′ | 2ω = 85.24°-20.28° |
-| Minimum focus distance | 0.45 m | patent close table is a characterization state |
-| Maximum reproduction ratio | 0.24× | not reached by the patent close table |
-| Diaphragm | 9 rounded blades | aperture stop in G3 |
-| Filter size | 77 mm | not specified in the patent |
-| Stabilization | VR II | decentering cemented negative component in G4 |
+| Hard spec                  | Nikon official specification |                         Example 1 design value |
+| -------------------------- | ---------------------------: | ---------------------------------------------: |
+| Focal length               |                    24-120 mm |                                24.70-116.39 mm |
+| Maximum aperture           |   f/4 constant; minimum f/22 |                                  FNO 4.12-4.14 |
+| Construction               |      17 elements / 13 groups |                        17 elements / 13 groups |
+| Special elements           |           2 ED, 3 aspherical |           2 inferred ED, 3 aspherical surfaces |
+| FX picture angle           |                   84°-20°20′ |                             2ω = 85.24°-20.28° |
+| Minimum focus distance     |                       0.45 m | patent close table is a characterization state |
+| Maximum reproduction ratio |                        0.24× |          not reached by the patent close table |
+| Diaphragm                  |             9 rounded blades |                            aperture stop in G3 |
+| Filter size                |                        77 mm |                    not specified in the patent |
+| Stabilization              |                        VR II |  decentering cemented negative component in G4 |
 
 ## Optical Architecture
 
@@ -44,24 +44,24 @@ Example 1 is a five-group positive-negative-positive-negative-positive zoom for 
 
 Independent paraxial tracing of the prescription reproduces the patent's group focal lengths within rounding tolerance.
 
-| Group | First surface | Focal length | Function |
-|---|---:|---:|---|
-| G1 | 1 | +106.848 mm | Front collector and chromatic pre-corrector |
-| G2 | 6 | −17.844 mm | Variator and inner-focus group |
-| G3 | 14 | +25.331 mm | Positive relay group carrying the aperture stop |
-| G4 | 22 | −30.712 mm | Negative stabilization group; includes the VR doublet |
-| G5 | 27 | +45.007 mm | Rear positive imaging group |
+| Group | First surface | Focal length | Function                                              |
+| ----- | ------------: | -----------: | ----------------------------------------------------- |
+| G1    |             1 |  +106.848 mm | Front collector and chromatic pre-corrector           |
+| G2    |             6 |   −17.844 mm | Variator and inner-focus group                        |
+| G3    |            14 |   +25.331 mm | Positive relay group carrying the aperture stop       |
+| G4    |            22 |   −30.712 mm | Negative stabilization group; includes the VR doublet |
+| G5    |            27 |   +45.007 mm | Rear positive imaging group                           |
 
 The group distribution is 3 / 4 / 4 / 3 / 3 elements. Counting cemented pairs as one air-separated component, the lens has 13 groups: two in G1, four in G2, three in G3, two in G4, and two in G5.
 
 The four inter-group air gaps change as follows at infinity focus:
 
-| Gap | Between | Wide | Middle | Telephoto | Motion from wide to telephoto |
-|---|---|---:|---:|---:|---|
-| d1 | G1-G2 | 2.899 | 17.248 | 44.501 | increases |
-| d2 | G2-G3 | 24.017 | 11.369 | 1.199 | decreases |
-| d3 | G3-G4 | 1.779 | 5.564 | 8.842 | increases |
-| d4 | G4-G5 | 8.342 | 4.578 | 1.300 | decreases |
+| Gap | Between |   Wide | Middle | Telephoto | Motion from wide to telephoto |
+| --- | ------- | -----: | -----: | --------: | ----------------------------- |
+| d1  | G1-G2   |  2.899 | 17.248 |    44.501 | increases                     |
+| d2  | G2-G3   | 24.017 | 11.369 |     1.199 | decreases                     |
+| d3  | G3-G4   |  1.779 |  5.564 |     8.842 | increases                     |
+| d4  | G4-G5   |  8.342 |  4.578 |     1.300 | decreases                     |
 
 The patent states this same first-order kinematic rule: G1-G2 increases, G2-rear group decreases, and, in the five-group form, G3-G4 increases while G4-G5 decreases during zooming from wide to telephoto.
 
@@ -77,7 +77,7 @@ L11 is the high-index, high-dispersion front member of the leading cemented doub
 
 nd = 1.593189, νd = 67.87. Glass: HIKARI J-PSKH1 / S-FPM2-class anomalous phosphate crown. f = +134.77 mm.
 
-L12 is the positive low-dispersion partner in the front cemented doublet. The L11-L12 doublet has only weak net positive power, about +680 mm, so its main purpose is chromatic balancing at a location where ray heights are large, not strong convergence. HIKARI's J-PSKH1 data list ΔPgF = +0.0135, which makes this the first of the two inferred ED elements.
+L12 is the positive low-dispersion partner in the front cemented doublet. The L11-L12 doublet has only weak net positive power, about +680 mm, so its main purpose is chromatic balancing at a location where ray heights are large, not strong convergence. The compatible J-PSKH1/S-FPM2-class curve suggests an anomalous-dispersion crown, supporting an inferred ED role; the patent does not identify its supplier or label it ED.
 
 ### L13 — Positive Meniscus, convex to object
 
@@ -131,7 +131,7 @@ L33 is the positive low-dispersion member of the G3 cemented doublet. The double
 
 nd = 1.593189, νd = 67.87. Glass: HIKARI J-PSKH1 / S-FPM2-class anomalous phosphate crown. f = +64.94 mm.
 
-L34 is the rear positive singlet of G3 and the second inferred ED element. Its role is chromatic correction in the relay group, not apochromatic correction of the whole lens. The patent does not name this element as ED; the assignment follows from the glass's anomalous partial dispersion and Nikon's published count of two ED elements.
+L34 is the rear positive singlet of G3 and the second inferred ED element. Its role is chromatic correction in the relay group, not apochromatic correction of the whole lens. The patent does not name this element as ED; the assignment is an inference from the compatible catalog counterpart’s anomalous dispersion and the marketed count, rather than proof of production glass identity.
 
 ### L41 — Positive Meniscus, concave to object
 
@@ -171,24 +171,24 @@ L53 is the high-index dispersive rear member of the final cemented pair. The L52
 
 ## Glass Identification and Selection
 
-Glass identifications were checked against manufacturer catalog values by six-digit nd/νd code and by nearest available public catalog entry. Where a patent code matches several cross-vendor equivalents, the table favors the closest optical match and labels non-unique cases as a class.
+Fresh inspection of Example 1 / Table 1 on PDF pages 22–23 confirms all seventeen stored nd/νd pairs. Paragraph 85 defines both at d-line, 587.6 nm. The source gives no individual C/F/g indices or partial-dispersion ratios. All seventeen selected catalog curves pass the coordinate guard; the names below are compatible spectral counterparts, not identifications of Nikon’s production suppliers, melts, or fabrication methods.
 
-| Prescription nd / νd | Elements | Catalog assignment | Residual note | Role |
-|---|---|---|---|---|
-| 1.84666 / 23.77 | L11, L23, L32 | S-TIH53, OHARA | catalog νd 23.78 | dense flint achromatizing partner |
-| 1.593189 / 67.87 | L12, L34 | J-PSKH1, HIKARI; S-FPM2-class | HIKARI nd exact, νd within 0.03 | anomalous-dispersion ED crown |
-| 1.75500 / 52.29 | L13, L31, L42 | S-LAH97, OHARA | catalog νd about 52.32 | lanthanum crown |
-| 1.81600 / 46.63 | L21 | S-LAH59, OHARA | catalog νd about 46.62 | high-index variator glass |
-| 1.79500 / 45.30 | L22 | J-LASF017, HIKARI | catalog nd exact, νd about 45.31 | lanthanum dense flint |
-| 1.80610 / 40.94 | L24 | S-LAH53, OHARA | catalog νd about 40.92 | lanthanum flint |
-| 1.48749 / 70.45 | L33, L52 | FC5 / N-FK5-class fluor-crown | closer to HOYA/SCHOTT class than OHARA S-FSL5 | low-dispersion crown |
-| 1.85026 / 32.35 | L41, L53 | J-LASF021, HIKARI | catalog nd and νd match | lanthanum dense flint |
-| 1.71300 / 53.89 | L43 | S-LAL8, OHARA | catalog νd about 53.87 | lanthanum crown |
-| 1.58913 / 61.18 | L51 | S-BAL35, OHARA | catalog νd about 61.14 | barium crown |
+| Prescription nd / νd | Elements      | Catalog assignment            | Residual note                                 | Role                              |
+| -------------------- | ------------- | ----------------------------- | --------------------------------------------- | --------------------------------- |
+| 1.84666 / 23.77      | L11, L23, L32 | S-TIH53, OHARA                | catalog νd 23.78                              | dense flint achromatizing partner |
+| 1.593189 / 67.87     | L12, L34      | J-PSKH1, HIKARI; S-FPM2-class | HIKARI nd exact, νd within 0.03               | anomalous-dispersion ED crown     |
+| 1.75500 / 52.29      | L13, L31, L42 | S-LAH97, OHARA                | catalog νd about 52.32                        | lanthanum crown                   |
+| 1.81600 / 46.63      | L21           | S-LAH59, OHARA                | catalog νd about 46.62                        | high-index variator glass         |
+| 1.79500 / 45.30      | L22           | J-LASF017, HIKARI             | catalog nd exact, νd about 45.31              | lanthanum dense flint             |
+| 1.80610 / 40.94      | L24           | S-LAH53, OHARA                | catalog νd about 40.92                        | lanthanum flint                   |
+| 1.48749 / 70.45      | L33, L52      | FC5 / N-FK5-class fluor-crown | closer to HOYA/SCHOTT class than OHARA S-FSL5 | low-dispersion crown              |
+| 1.85026 / 32.35      | L41, L53      | J-LASF021, HIKARI             | catalog nd and νd match                       | lanthanum dense flint             |
+| 1.71300 / 53.89      | L43           | S-LAL8, OHARA                 | catalog νd about 53.87                        | lanthanum crown                   |
+| 1.58913 / 61.18      | L51           | S-BAL35, OHARA                | catalog νd about 61.14                        | barium crown                      |
 
-The ED assignment requires care. Two glass families in the design have high Abbe numbers: the J-PSKH1/S-FPM2-class glass at L12 and L34, and the FK5-class glass at L33 and L52. Raw Abbe number alone would favor the FK5-class glass, but that is not the controlling criterion for Nikon's ED designation. HIKARI J-PSKH1 lists ΔPgF = +0.0135, while FK5-class crowns sit much closer to the normal partial-dispersion line. On that basis L12 and L34 are the inferred ED elements. This is an inference from glass identity and Nikon's published count, not a patent statement naming the ED elements.
+L12 and L34 remain inferred ED-class elements because their compatible J-PSKH1/S-FPM2-class counterpart has anomalous partial dispersion. The high Abbe numbers of the FK5-class L33 and L52 do not by themselves identify Nikon’s ED designation. This interpretation uses a qualified spectral counterpart and the marketed count; Table 1 does not name ED elements or production glass. The two catalog-derived ΔPgF overrides and six catalog-derived nC/nF/ng fields have been removed. The engine now uses its compatible J-PSKH1 curve, anchored to each source nd, without presenting catalog line values as patent measurements.
 
-The design is a well-corrected achromatic standard zoom with two anomalous-dispersion elements. The data do not support calling it apochromatic; the patent's own lateral chromatic aberration plots are on a ±0.050 mm scale and show residual color.
+The prescription is an achromatic standard zoom with two inferred anomalous-dispersion crown roles. The data do not support calling it apochromatic; the patent's own lateral chromatic aberration plots are on a ±0.050 mm scale and show residual color.
 
 ## Focus Mechanism
 
@@ -196,11 +196,11 @@ Focusing is by object-side translation of G2. Paragraph 0084 states this directl
 
 The two gaps bracketing G2 conserve their sum at each zoom setting:
 
-| Zoom state | d1 infinity → close | d2 infinity → close | G2 object-side shift | d1 + d2 |
-|---|---:|---:|---:|---:|
-| Wide | 2.899 → 2.077 | 24.017 → 24.840 | 0.822 mm | 26.916 / 26.917 |
-| Middle | 17.248 → 16.566 | 11.369 → 12.051 | 0.682 mm | 28.617 / 28.617 |
-| Telephoto | 44.501 → 43.557 | 1.199 → 2.143 | 0.944 mm | 45.700 / 45.700 |
+| Zoom state | d1 infinity → close | d2 infinity → close | G2 object-side shift |         d1 + d2 |
+| ---------- | ------------------: | ------------------: | -------------------: | --------------: |
+| Wide       |       2.899 → 2.077 |     24.017 → 24.840 |             0.822 mm | 26.916 / 26.917 |
+| Middle     |     17.248 → 16.566 |     11.369 → 12.051 |             0.682 mm | 28.617 / 28.617 |
+| Telephoto  |     44.501 → 43.557 |       1.199 → 2.143 |             0.944 mm | 45.700 / 45.700 |
 
 The patent close-range table contains one anomalous entry: d3 at the wide end changes from 1.779 mm to 1.799 mm. This is inconsistent with the stated G2-only focus mechanism and with the exact d1+d2 conservation above. The data file transcribes the patent value but notes it as a probable table artifact rather than a real floating-focus motion.
 
@@ -210,17 +210,19 @@ Solving the patent close-state prescriptions for the object plane gives magnific
 
 The design has three aspherical surfaces.
 
-| Surface | Element | Patent κ | Standard K | A4 | A6 | A8 | A10 |
-|---|---|---:|---:|---:|---:|---:|---:|
-| 6 | L21 object side | +1.0000 | 0 | +1.31870e−5 | −3.10490e−8 | +4.74440e−11 | −3.43860e−14 |
-| 13 | L24 image side | +1.0000 | 0 | −9.26690e−7 | −2.12150e−8 | +8.52640e−12 | −8.74630e−14 |
-| 27 | L51 object side | −3.0000 | −4 | −7.12220e−6 | −3.55240e−9 | +4.19740e−11 | −1.12730e−13 |
+| Surface | Element         | Patent κ | Standard K |          A4 |          A6 |           A8 |          A10 |
+| ------- | --------------- | -------: | ---------: | ----------: | ----------: | -----------: | -----------: |
+| 6       | L21 object side |  +1.0000 |          0 | +1.31870e−5 | −3.10490e−8 | +4.74440e−11 | −3.43860e−14 |
+| 13      | L24 image side  |  +1.0000 |          0 | −9.26690e−7 | −2.12150e−8 | +8.52640e−12 | −8.74630e−14 |
+| 27      | L51 object side |  −3.0000 |         −4 | −7.12220e−6 | −3.55240e−9 | +4.19740e−11 | −1.12730e−13 |
 
 The patent equation in paragraph 0082 is:
 
-$$ S(y)=\frac{y^2/r}{1+\sqrt{1-\kappa(y/r)^2}} + A_4y^4+A_6y^6+A_8y^8+A_{10}y^{10}. $$
+$$ S(y)=\frac{y^2/r}{1+\sqrt{1-\kappa(y/r)^2}} + A*4y^4+A_6y^6+A_8y^8+A*{10}y^{10}. $$
 
 This means the patent's κ is not the standard conic constant K. The relationship is K = κ − 1. Surfaces 6 and 13 therefore have spherical bases plus polynomial terms; surface 27 has a hyperbolic base with K = −4.
+
+At the current clear radii, departures from the matching paraxial spheres are +489.69 µm for S6A at 15.8 mm, −51.59 µm for S13A at 11 mm, and −298.40 µm for S27A at 14 mm. Their absolute rim-slope angles are 6.399°, 1.114°, and 4.325°, respectively. These are evaluations of the unchanged source profiles over the reconstructed clear caps, not manufacturing tolerances.
 
 Surface 6 is the most object-side G2 surface and is used for wide-angle field curvature and distortion correction. Surface 13 is the most image-side G2 surface and is used for telephoto spherical-aberration correction. Surface 27 is a rear-group corrective asphere; the patent does not assign it a specific prose role, so its interpretation as an exit-cone spherical/coma corrector follows from its location and power.
 
@@ -230,13 +232,13 @@ The patent leaves fabrication open: fine grinding, glass molding, resin-on-glass
 
 The patent gives five conditional expressions and tabulates the values for Example 1. Independent recomputation from Table 1 reproduces the tabulated values.
 
-| Condition | Expression | Example 1 | Claimed range | Preferred range | Result |
-|---|---|---:|---:|---:|---|
-| (1) | (r2 + r1) / (r2 − r1) | 2.386 | 0.80-3.50 | 0.90-3.00 | satisfies both |
-| (2) | (−f2) / fw | 0.722 | 0.50-0.90 | 0.60-0.85 | satisfies both |
-| (3) | f1 / \|f4\| | 3.479 | 2.00-6.00 | 3.55-5.54 | satisfies claim; just below preferred lower bound |
-| (4) | (−f2) / BFw | 0.464 | 0.30-0.60 | 0.35-0.55 | satisfies both |
-| (5) | fw / BFw | 0.642 | 0.45-0.80 | 0.47-0.77 | satisfies both |
+| Condition | Expression            | Example 1 | Claimed range | Preferred range | Result                                            |
+| --------- | --------------------- | --------: | ------------: | --------------: | ------------------------------------------------- |
+| (1)       | (r2 + r1) / (r2 − r1) |     2.386 |     0.80-3.50 |       0.90-3.00 | satisfies both                                    |
+| (2)       | (−f2) / fw            |     0.722 |     0.50-0.90 |       0.60-0.85 | satisfies both                                    |
+| (3)       | f1 / \|f4\|           |     3.479 |     2.00-6.00 |       3.55-5.54 | satisfies claim; just below preferred lower bound |
+| (4)       | (−f2) / BFw           |     0.464 |     0.30-0.60 |       0.35-0.55 | satisfies both                                    |
+| (5)       | fw / BFw              |     0.642 |     0.45-0.80 |       0.47-0.77 | satisfies both                                    |
 
 The radii for condition (1) are those of L22: r1 = −31.9349 and r2 = −78.0281. The group focal lengths used in the remaining conditions are f1 = +106.848, f2 = −17.844, and f4 = −30.712. Condition (3) is the only nuance: the example satisfies the claim but lies slightly below the tighter preferred lower bound. That does not make the embodiment noncompliant.
 
@@ -250,17 +252,19 @@ The power of G4 is tied to conditional expression (3). If G4 becomes too strong,
 
 The prescription was re-entered from Table 1 and independently checked with paraxial y-ν and ABCD tracing. The computed system values agree with the patent values to normal rounding tolerance.
 
-| Quantity | Computed | Patent |
-|---|---:|---:|
-| EFL, wide / middle / telephoto | 24.704 / 45.755 / 116.403 mm | 24.70 / 45.75 / 116.39 mm |
-| BFD, wide / middle / telephoto | 38.543 / 48.786 / 64.326 mm | 38.496 / 48.783 / 64.317 mm |
-| Total lens length, wide / middle / telephoto | 146.398 / 158.342 / 190.966 mm | 146.351 / 158.339 / 190.957 mm |
-| Group focal lengths G1-G5 | +106.848 / −17.845 / +25.332 / −30.713 / +45.008 mm | +106.848 / −17.844 / +25.331 / −30.712 / +45.007 mm |
-| Petzval sum | +3.179e−3 mm−1 | not tabulated |
+| Quantity                                     |                                            Computed |                                              Patent |
+| -------------------------------------------- | --------------------------------------------------: | --------------------------------------------------: |
+| EFL, wide / middle / telephoto               |                        24.704 / 45.755 / 116.403 mm |                           24.70 / 45.75 / 116.39 mm |
+| BFD, wide / middle / telephoto               |                         38.543 / 48.786 / 64.326 mm |                         38.496 / 48.783 / 64.317 mm |
+| Total lens length, wide / middle / telephoto |                      146.398 / 158.342 / 190.966 mm |                      146.351 / 158.339 / 190.957 mm |
+| Group focal lengths G1-G5                    | +106.848 / −17.845 / +25.332 / −30.713 / +45.008 mm | +106.848 / −17.844 / +25.331 / −30.712 / +45.007 mm |
+| Petzval sum                                  |                                      +3.179e−3 mm−1 |                                       not tabulated |
 
 The small BFD and total-length differences are explained by the calculation using the full refractive prescription and the patent's rounded Bf table. The group focal-length match confirms the sign convention, glass indices, and cemented-junction treatment.
 
-The .data.ts file uses the patent prescription without focal-length scaling. Semi-diameters are reconstructed because the patent does not publish clear-aperture radii. The reconstruction was constrained by paraxial marginal/chief-ray envelopes, Fig. 1 proportions, the 77 mm filter constraint, edge-thickness checks, sd/|R| < 0.90, and cross-gap sag clearance.
+The .data.ts file uses the patent prescription without focal-length scaling. Clear radii remain reconstructed because the patent does not tabulate them. Fresh 600 dpi inspection of Figure 1 (PDF page 2; 300 ppi source) supports the taller L21 outline: its continuous object-side asphere S6A now reaches 15.8 mm instead of 14 mm, and concave rear S7 keeps its 11.5 mm clear cap with an opaque flat land out to 15.8 mm. The source’s cap/edge ratio is approximately 124/170 = 0.729 ± 0.010 in native pixels; the axial scale is about 10.8 native pixels/mm. This is a supported clear-cap increase on the continuous front face and an optical-preserving rear extension. The source radius, conic and polynomial coefficients are unchanged.
+
+Every other convex/concave face and all four cemented boundaries were checked; no further resolved cap-end land supports additional clipping. The short edge bevel on the G3 cemented component is not modeled as an invented vertical land. The three aspheres remain ordinary single-material elements; the patent’s generic fabrication options do not establish a resin layer. Surface, image-circle and aperture audits pass, and actual nine-state SVG review shows connected outlines, finite paths, zero hidden trimming and no detached wings.
 
 ## Design Heritage and Context
 

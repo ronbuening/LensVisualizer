@@ -75,8 +75,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 63.88,
+      // Table 4 θgF = 0.536; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00035384,
       focalLengthMm: 150.7,
-      glass: "517639 - crown glass (J-BK7 code match; patent nd=1.51680, vd=63.88)",
+      glass:
+        "517639 - crown glass (J-BK7 code match; patent nd=1.51680, vd=63.88); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Front positive collector in G1.",
     },
@@ -87,11 +90,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.61155,
       vd: 31.26,
+      // Table 4 θgF = 0.618; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.02677932,
       focalLengthMm: -98.7,
       glass:
         "612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)",
       apd: "patent",
-      apdNote: "Patent-listed θgF = 0.618; θgF + 0.00316νd = 0.7168.",
+      apdNote:
+        "Patent Table 4 θgF = 0.618, rounded to three decimals; ΔPgF = +0.02677932 against the engine normal line. Paragraphs 33–37 identify the specified lens anomaly, and paragraph 119 maps it to L12; no compatible catalog curve is assigned.",
       role: "Specified LZ glass in the front cemented achromat.",
       cemented: "D1",
     },
@@ -102,8 +108,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51742,
       vd: 52.2,
+      // Table 4 θgF = 0.558; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.0020004,
       focalLengthMm: 87.5,
-      glass: "E-CF6 (Hoya) — medium-dispersion crown (517522)",
+      glass:
+        "E-CF6 (Hoya) — medium-dispersion crown (517522); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Positive partner for L12 in the G1 cemented pair.",
       cemented: "D1",
@@ -115,8 +124,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6968,
       vd: 55.52,
+      // Table 4 θgF = 0.543; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00741536,
       focalLengthMm: -26.6,
-      glass: "S-LAL14 (OHARA) — lanthanum crown (697555)",
+      glass:
+        "S-LAL14 (OHARA) — lanthanum crown (697555); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Negative component of the G2 variator doublet.",
       cemented: "D2",
@@ -128,8 +140,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80809,
       vd: 22.74,
+      // Table 4 θgF = 0.629; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.02344868,
       focalLengthMm: 35.7,
-      glass: "J-SFH1 (Hikari) — anomalous-dispersion dense flint (808227)",
+      glass:
+        "J-SFH1 (Hikari) — anomalous-dispersion dense flint (808227); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "High-index dense-flint partner in the G2 variator doublet.",
       cemented: "D2",
@@ -141,8 +156,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85026,
       vd: 32.35,
+      // Table 4 θgF = 0.595; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.0056127,
       focalLengthMm: -48.2,
-      glass: "J-LASF021 (Hikari) — dense lanthanum flint (850324)",
+      glass:
+        "J-LASF021 (Hikari) — dense lanthanum flint (850324); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Rear negative element of the G2 variator group.",
     },
@@ -153,8 +171,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.22,
+      // Table 4 θgF = 0.540; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00082796,
       focalLengthMm: 70.5,
-      glass: "S-BAL35 (OHARA) — barium crown (589612)",
+      glass:
+        "S-BAL35 (OHARA) — barium crown (589612); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Single-element internal focusing group G3.",
     },
@@ -165,8 +186,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.73,
+      // Table 4 θgF = 0.537; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.03066986,
       focalLengthMm: 40.4,
-      glass: "J-FK01A (Hikari) — ED fluorophosphate crown (497817)",
+      glass:
+        "J-FK01A (Hikari) — ED fluorophosphate crown (497817); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "ED-class positive element in the front doublet of G4.",
       cemented: "D3",
@@ -178,8 +202,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85026,
       vd: 32.35,
+      // Table 4 θgF = 0.595; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.0056127,
       focalLengthMm: -38.7,
-      glass: "J-LASF021 (Hikari) — dense lanthanum flint (850324)",
+      glass:
+        "J-LASF021 (Hikari) — dense lanthanum flint (850324); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Dense-flint partner for L41 in the ED rear corrector.",
       cemented: "D3",
@@ -191,8 +218,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
+      // Table 4 θgF = 0.529; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.00346142,
       focalLengthMm: 70.0,
-      glass: "J-FK5 (Hikari) — low-dispersion crown (487703)",
+      glass:
+        "J-FK5 (Hikari) — low-dispersion crown (487703); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Positive relay element ahead of the stop.",
     },
@@ -203,8 +233,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.801,
       vd: 34.92,
+      // Table 4 θgF = 0.585; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00006456,
       focalLengthMm: 28.3,
-      glass: "J-LAF016 (Hikari) — dense flint / lanthanum-flint (801349)",
+      glass:
+        "J-LAF016 (Hikari) — dense flint / lanthanum-flint (801349); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Positive post-stop correction element.",
       cemented: "D4",
@@ -216,8 +249,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7,
       vd: 48.11,
+      // Table 4 θgF = 0.560; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00287898,
       focalLengthMm: -15.9,
-      glass: "J-LAF01 (Hikari) — high-index flint (700481)",
+      glass:
+        "J-LAF01 (Hikari) — high-index flint (700481); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Negative partner in the post-stop cemented pair.",
       cemented: "D4",
@@ -229,8 +265,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.03,
+      // Table 4 θgF = 0.583; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: 0.00316646,
       focalLengthMm: 35.8,
-      glass: "F5 (Schott) — medium-index flint (603380)",
+      glass:
+        "F5 (Schott) — medium-index flint (603380); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Rear positive relay and field-shape correction element.",
     },
@@ -241,8 +280,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
+      // Table 4 θgF = 0.552; ΔPgF uses 0.6438 - 0.001682νd.
+      dPgF: -0.00833916,
       focalLengthMm: -67.8,
-      glass: "S-LAH66 (OHARA) — high-index lanthanum (773496)",
+      glass:
+        "S-LAH66 (OHARA) — high-index lanthanum (773496); compatible spectral counterpart, production supplier unspecified",
       apd: false,
       role: "Final negative meniscus for field and ray-angle control.",
     },
@@ -258,14 +300,14 @@ const LENS_DATA = {
     { label: "7", R: 20.159, d: 4.0, sd: 12.0, medium: 5 },
     { label: "8", R: 61.046, d: 2.038, sd: 10.2 },
     { label: "9", R: -54.537, d: 1.4, sd: 10.2, medium: 6 },
-    { label: "10", R: 167.455, sd: 10.8 },
+    { label: "10", R: 167.455, sd: 11.1 },
     { label: "11", R: 102.636, d: 3.4, sd: 13.8, medium: 7 },
     { label: "12", R: -68.899, sd: 13.3 },
     { label: "13", R: 39.218, d: 5.5, sd: 12.0, medium: 8 },
     { label: "14", R: -39.212, d: 1.3, sd: 11.6, medium: 9 },
-    { label: "15", R: 207.543, d: 0.2, sd: 11.4 },
-    { label: "16", R: 51.63, d: 3.7, sd: 11.4, medium: 10 },
-    { label: "17", R: -98.216, d: 0.9, sd: 10.8 },
+    { label: "15", R: 207.543, d: 0.2, sd: 11.5 },
+    { label: "16", R: 51.63, d: 3.7, sd: 11.5, medium: 10 },
+    { label: "17", R: -98.216, d: 0.9, sd: 11.3 },
     { label: "STO", R: "flat", d: 23.297 },
     { label: "19", R: -79.941, d: 3.3, sd: 10.4, medium: 11 },
     { label: "20", R: -17.991, d: 1.0, sd: 10.4, medium: 12 },
