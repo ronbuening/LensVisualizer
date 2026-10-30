@@ -182,3 +182,17 @@ measurement. The lens now carries no cut; both faces from the figure review abov
 
 Both faces draw as they did before the figure review. With no cut left, no land is checked against the 0.1 mm minimum.
 The surface audit and the beam rule pass.
+
+## 2026-10-29 — Rim extensions from the original figure
+
+Reopened `patents/WO2021117563A1.pdf`, Example 4, Figure 10 (PDF p. 82), and inspected every element on a 600 dpi crop. The 1476 native-pixel first-to-last-vertex span / 115.72 mm gives 12.76 native px/mm. The long square lands on L11 and L12 are directly resolved on both halves; the short L40 front land is also visible. Cemented shoulders remain junction geometry.
+
+| Surface | Optical cap `sd` (retained) | New drawn `rimExtensionSd` | Evidence |
+| --- | --- | --- | --- |
+| 2A | 21.4 mm | 32.8 mm | L11 rear cap ends below the front-face edge, followed by a long square land. |
+| 4A | 15.6 mm | 20.6 mm | L12 rear cap ends below the front-face edge; land returns to that edge. |
+| 27A | 12.0 mm | 12.5 mm | L40 front carries a short land to its rear-face edge. |
+
+The source's smaller L40 cap end (about 10.8 mm) and L12's approximately 16.8 mm reading do not replace the validated optical rims. Extensions retain the existing cap endpoints and add only opaque material, so the 2026-10-27 beam-rule exclusions remain in force; no asphere continues beyond its old `sd`. No additional concave cut is justified by the other faces. The public analysis now describes the drawn lands.
+
+`audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. No optical `sd`, curvature, gap, asphere coefficient, stop or glass changed.

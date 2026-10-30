@@ -126,3 +126,9 @@ q ± (1 + q) / (edge px). The q values are averages over the two halves.
 
 9 and 14 sit at q × sd; 4 and 23 sit outside their q ranges, moved out by the beam rule. Every land is longer than
 the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened the original local `patents/WO2024147268A1.pdf`, Example 1, Figure 1 (PDF p. 66), on a 600 dpi crop covering every element. The source's 133.0137 mm vertex span gives 15.40 native px/mm. The four existing concave lands (4, 9, 14 and 23) still match the resolved strokes; their outward beam-rule adjustments remain as documented above. No additional face shows a resolved flat land suitable for a rim extension or another cut. Surface 29's shorter 19.3 mm optical rim remains: the figure shows a continuing curve there, rather than a new square land that would justify `rimExtensionSd`.
+
+No geometry changed. `audit:surface` passes, including the inferred-cut beam check; `audit:image-circle` reports 0 undersized and 0 skipped. Source prescriptions, existing cuts and optical apertures were retained.

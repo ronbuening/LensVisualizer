@@ -158,3 +158,15 @@ sd × 11.49. Both cuts sit past their q range because the beam rule moved them o
 | 22 | 0.95 | 140.2 | 0.936–0.964 | 0.967 | 0.4045 mm |
 
 Both lands are longer than the 0.1 mm minimum, and neither q range reaches 1.
+
+## 2026-10-29 — L21 rim extension from the original figure
+
+Reopened `patents/WO2020136749A1.pdf`, Example 1, Figure 4 (PDF p. 83), and inspected every element on a 600 dpi crop. The native S1-to-image span gives 11.49 px/mm. Both halves resolve the long square shoulder on L21's rear face 7; its cap ends near 16.2 mm and the outside edge agrees with the front face's 21.5 mm radius.
+
+| Surface | Optical cap `sd` (retained) | New drawn `rimExtensionSd` | Evidence |
+| --- | --- | --- | --- |
+| 7 | 16.3 mm | 21.5 mm | Flat opaque land connects the existing spherical cap to L21's outer edge. |
+
+The extension does not evaluate the R = 18.6957 mm sphere outside its cap, so it can draw the shoulder that the earlier attempted `sd` raise could not. Existing inferred cuts on 9 and 22 remain at their beam-clearing depths; their figure measurements and uncertainty are recorded above. No additional square land is resolved: 32's slanted bevel, shallow-cap strokes and cemented shoulders remain excluded. Updated the public analysis to describe the opaque shoulder.
+
+`audit:surface` passes, including the retained inferred-cut beam rules; `audit:image-circle` reports 0 undersized and 0 skipped. No optical aperture, curvature, spacing, asphere, stop or glass changed.

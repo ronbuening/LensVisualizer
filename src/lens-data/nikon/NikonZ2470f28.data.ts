@@ -11,6 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * faces 9 (L22 rear) and 22 (L51 front); rimCutDepthMm ends those caps at
  * 13.85 and 11.80 mm, just clear of the traced beams and outside the figure's
  * 13.21 / 11.58 mm lands, which would stop rays.
+ * Rim extension (2026-10-29): Figure 4 (PDF p. 83; 11.49 native px/mm
+ * from S1 to the image) gives L21's rear face 7 an opaque shoulder from
+ * its existing 16.3 mm cap to the 21.5 mm front-face edge.
  */
 
 const LENS_DATA = {
@@ -302,7 +305,7 @@ const LENS_DATA = {
         A12: 2.0509e-17,
       },
     }, // L21 front (aspherical)
-    { label: "7", R: 18.6957, d: 9.658, sd: 16.3 }, // L21 rear → air
+    { label: "7", R: 18.6957, d: 9.658, sd: 16.3, rimExtensionSd: 21.5 }, // L21 rear → air
     { label: "8", R: -59.6856, d: 1.3, sd: 14.5, medium: 5 }, // L22 front
     { label: "9", R: 59.6856, d: 0.442, sd: 14.5, rimCutDepthMm: 1.63 }, // L22 rear → air
     { label: "10", R: 39.2099, d: 6.4, sd: 14.2, medium: 6 }, // L23 front
