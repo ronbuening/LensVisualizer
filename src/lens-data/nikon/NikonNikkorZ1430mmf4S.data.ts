@@ -128,9 +128,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "ED element in G1 for lateral chromatic aberration correction at wide angles.",
-      dPgF: 0.035,
     },
     {
       id: 4,
@@ -219,9 +218,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Primary positive power in G3; ED element for axial chromatic correction.",
-      dPgF: 0.035,
     },
     {
       id: 11,
@@ -234,9 +232,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Second positive ED element in G3; distributes convergent power with L33.",
-      dPgF: 0.035,
     },
     {
       id: 12,
@@ -261,9 +258,8 @@ const LENS_DATA = {
       glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
       apdNote:
-        "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+        "ED/APD inferred from the nd/νd-compatible J-FKH1 catalog curve; the patent publishes no partial-dispersion value",
       role: "Positive ED-class meniscus of G5; nearly cancels L52 so G5 is almost afocal (f5 = −1392.9 mm).",
-      dPgF: 0.035,
     },
     {
       id: 14,

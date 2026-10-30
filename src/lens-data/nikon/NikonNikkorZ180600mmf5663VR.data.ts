@@ -28,9 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * would stop rays.
  *
  * The physical L25 hybrid counts as one production/patent lens but is represented by two modeled media
- * records (L25r resin and L25g glass), as required for the bonded aspherical layer. Example 2 publishes
- * no element-specific nC, nF, ng, or dPgF values; none are assigned. The condition-level dPgF = -0.0067
- * cannot be attributed to a unique element.
+ * records (L25r resin and L25g glass), as required for the bonded aspherical layer. The source gives
+ * no individual nC/nF/ng set. Its Table 33 condition DeltaPgF1b=-0.0067 belongs to L3, the sole negative
+ * lens in G1b (paragraph 0155). Converted from the source C7/F2 baseline to the runtime line, L3's
+ * dPgF is -0.00731635, derived from the rounded source condition rather than measured to eight decimals.
  */
 
 const LENS_DATA = {
@@ -98,6 +99,10 @@ const LENS_DATA = {
       vd: 42.72,
       focalLengthMm: -142.238129,
       glass: "TAFD5F/TAFD5G class (HOYA)",
+      apd: "patent",
+      apdNote:
+        "WO 2024/062958 A1 paragraph 0155 makes L3 the sole negative lens of G1b. Table 33 Example 2 gives DeltaPgF1b=-0.0067 on the C7/F2 line defined in paragraph 0083, implying PgF≈0.56463 and runtime dPgF≈-0.00732 at vd=42.72. Stored -0.00731635 is the mathematical conversion of the rounded source condition, not new measurement precision; the catalog label remains a spectral proxy.",
+      dPgF: -0.00731635,
       role: "Negative partner of the G1b cemented pair.",
       cemented: "C1",
     },

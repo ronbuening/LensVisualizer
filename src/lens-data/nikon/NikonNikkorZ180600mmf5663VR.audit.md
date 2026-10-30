@@ -130,3 +130,30 @@ without changing the qualified optical model.
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
 rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/WO2024062958A1.pdf`, Example 2: Table 5, PDF pp. 45–46; G1b mapping ¶0155,
+p. 43; partial-dispersion definition ¶0082–0083, p. 25; Table 33, p. 78. All 26 modeled media (25 physical
+lens elements) retain their printed d-line nd/νd coordinates. All 25 glass media resolve compatibly; L25r's
+1.53610/41.21 source resin remains explicitly unmatched and is not relabeled as ordinary glass.
+
+| Media | Change / retained verdict |
+|---|---|
+| L3 | Add patent-supported APD and converted runtime dPgF −0.00731635 |
+| Other 25 media | Retain source coordinates, labels and unresolved resin disposition |
+
+The prior statement that condition (11) could not identify an element was too cautious. ¶0155 explicitly makes
+G1b positive L2 + negative L3 + positive L4; L3 is its sole negative lens. Table 33 gives ΔPgF1b = −0.0067
+for Example 2. ¶0083 defines the source line through C7 (νd 60.49, PgF 0.5393) and F2 (36.30, 0.5829).
+At νd 42.72 that line gives 0.5713286069; subtracting 0.0067 gives PgF 0.5646286069. The runtime line
+0.6438 − 0.001682νd is 0.57194496, so dPgF = −0.0073163531, stored as −0.00731635. Its precision is
+limited by the source's rounded −0.0067, not a measurement to eight decimals. The compatible TAFD5G curve
+supplies C/d/F shape; the source condition supplies g/F partial dispersion. No separate C/F/g indices,
+production supplier or system-level APO performance is claimed. Header and analysis were corrected.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.
+The runtime spectral probe returns PgF 0.56462861 for L3 through the catalog tier, matching the converted source ratio.

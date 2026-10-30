@@ -40,7 +40,7 @@ The principal design distinction is the dual floating focus system. G2 shifts to
 
 **nd = 1.69680, νd = 55.53. Glass: S-LAL14 (OHARA; coordinate match). Isolated f = -43.3362 mm.**
 
-L11 is the large front negative meniscus of G1. Its negative isolated power is consistent with the net negative power of GA. The data file's S-LAL14 assignment is a catalog-coordinate match, not evidence that Nikon used that exact commercial melt; OHARA's current S-LAL14 data reproduce the stored d-line coordinate and the stored C/F/g-line indices.[4]
+L11 is the large front negative meniscus of G1. Its negative isolated power is consistent with the net negative power of GA. The data file's S-LAL14 assignment is a catalog-coordinate match, not evidence that Nikon used that exact commercial melt; the compatible OHARA coefficient curve supplies its spectral shape while the authored d-line index remains anchored to the patent.[4]
 
 As the first refracting element, L11 participates in the large angular transformation required by a 94° full-field design. The patent also uses its two radii in conditional expression (5), which constrains the front-element shape factor (¶0030–0032).
 
@@ -62,7 +62,7 @@ The rear resin surface, 5A, is aspherical. The resin identity is not recoverable
 
 L13 is biconcave and strongly negative in isolation; L14 is a dense, low-Abbe positive meniscus. At their cemented interface the powers almost cancel: the actual L13+L14 cemented pair has a net focal length of approximately +902.834 mm. The pair therefore cannot be understood by adding the isolated focal lengths; the shared interface and in-situ indices matter.
 
-The three 1.49782/82.57 elements in Example 1—L13, L34, and L35—numerically correspond to the production lens's three-element ED count. The data file uses HIKARI J-FKH1 as a coordinate match. HIKARI's current catalog gives the same nd/νd coordinate and dPgF = +0.0327.[3] This supports a low-dispersion, non-normal-partial-dispersion interpretation of the representative glass, but it does not establish Nikon's production melt.
+The three 1.49782/82.57 elements in Example 1—L13, L34, and L35—numerically correspond to the production lens's three-element ED count. The data file uses HIKARI J-FKH1 as a coordinate match. The compatible HIKARI coefficient curve supplies its wavelength dependence, including positive anomalous partial dispersion.[3] This supports a low-dispersion, non-normal-partial-dispersion interpretation of the representative glass, but it does not establish Nikon's production melt.
 
 ### L21 / GF — Biconvex Positive Floating Group
 
@@ -92,7 +92,7 @@ L33 is the first refracting element after the aperture stop. Its biconcave negat
 
 **nd = 1.49782, νd = 82.57. Glass: J-FKH1 (HIKARI; coordinate match). Isolated f = +31.9219 mm.**
 
-L34 is the second of the three high-Abbe 1.49782/82.57 elements. It restores positive power after L33 while introducing a low-dispersion contribution within the fixed central group. Its catalog representative carries the same C/F/g-line data and +0.0327 dPgF value as L13 and L35.[3]
+L34 is the second of the three high-Abbe 1.49782/82.57 elements. It restores positive power after L33 while introducing a low-dispersion contribution within the fixed central group. It uses the same shared J-FKH1 coefficient curve as L13 and L35.[3]
 
 ### L35–L36 — Cemented Positive/Negative Pair
 
@@ -108,7 +108,7 @@ This pairing places a high-Abbe positive component directly against a much lower
 
 **nd = 1.96300, νd = 24.11. Glass: S-TIH57 (OHARA; coordinate match). Isolated f = +38.5060 mm.**
 
-L37 is a dense biconvex positive element at the rear of fixed G3. OHARA S-TIH57 is an exact coordinate match to the stored nd/νd pair; the current OHARA datasheet also reproduces the stored C/F/g-line indices and dPgF = +0.0187.[5]
+L37 is a dense biconvex positive element at the rear of fixed G3. OHARA S-TIH57 is an exact coordinate match to the stored nd/νd pair; the shared OHARA coefficient curve supplies the catalog-derived wavelength dependence.[5]
 
 Together with the preceding positive/negative sequence, L37 leaves G3 with a moderate net positive focal length of +33.6325 mm despite the strong alternating constituent powers.
 
@@ -118,7 +118,7 @@ Together with the preceding positive/negative sequence, L37 leaves G3 with a mod
 
 L41 alone constitutes the weak negative G4 focusing group. Both of its surfaces, 24A and 25A, are aspherical. Near focus is reached with G4 moving 0.91571 mm objectward relative to infinity, opposite the imageward motion of G2.
 
-The data file's L-LAH94 identification is an exact OHARA coordinate match. OHARA classifies L-LAH94 in its low-Tg molded-aspherical family, and its datasheet reproduces the stored C/F/g-line indices and dPgF = -0.0029.[6] That catalog fact makes the material assignment compatible with molded-asphere manufacture, but the patent does not establish that Nikon used L-LAH94 or a particular production process for L41.
+The data file's L-LAH94 identification is an exact OHARA coordinate match. OHARA classifies L-LAH94 in its low-Tg molded-aspherical family, and its shared catalog curve supplies the wavelength dependence without copied per-lens line indices.[6] That catalog fact makes the material assignment compatible with molded-asphere manufacture, but the patent does not establish that Nikon used L-LAH94 or a particular production process for L41.
 
 ### L51 — Double-Aspherical Negative Meniscus
 
@@ -130,22 +130,22 @@ G4 and G5 are individually weak in first-order power compared with the central e
 
 ## Glass Identification and Selection
 
-The patent publishes nd and νd but no commercial glass names. The names in the data file are catalog-coordinate identifications or representatives. They are therefore catalog-derived annotations, not patent facts and not claims about Nikon's production melts. Current HIKARI and OHARA primary catalog data were checked against the stored line indices and dPgF values.[3–6]
+The patent publishes nd and νd but no commercial glass names. The names in the data file are catalog-coordinate identifications or representatives. They are therefore catalog-derived annotations, not patent facts and not claims about Nikon's production melts. The source gives no C/F/g-index or partial-dispersion column. Compatible shared coefficient curves provide the catalog-derived wavelength dependence; the former copied line-index and dPgF overrides have been removed.[3–6]
 
-| Data-file glass annotation | nd | νd | dPgF | Elements | Status |
-|---|---:|---:|---:|---|---|
-| S-LAL14 (OHARA) | 1.69680 | 55.53 | -0.0080 | L11 | Exact coordinate match |
-| 773496 class; J-LASF016 representative | 1.77250 | 49.62 | -0.0093 | L12 substrate | Coordinate-class representative |
-| Unmatched hybrid resin | 1.51380 | 52.97 | — | L12 resin | No defensible catalog identity |
-| J-FKH1 (HIKARI) | 1.49782 | 82.57 | +0.0327 | L13, L34, L35 | Exact coordinate match |
-| J-LASFH21 (HIKARI) | 1.95375 | 32.33 | +0.0004 | L14, L31, L36 | Exact coordinate match |
-| J-LASF015 (HIKARI) | 1.80400 | 46.60 | -0.0087 | L21 | Exact coordinate match |
-| J-SF03 (HIKARI) | 1.84666 | 23.80 | +0.0171 | L32 | Exact coordinate match |
-| J-SF7 (HIKARI) | 1.63980 | 34.55 | +0.0051 | L33 | Exact coordinate match |
-| S-TIH57 (OHARA) | 1.96300 | 24.11 | +0.0187 | L37 | Exact coordinate match |
-| L-LAH94 (OHARA) | 1.86100 | 37.10 | -0.0029 | L41, L51 | Exact coordinate match |
+| Data-file glass annotation | nd | νd | Elements | Status |
+|---|---:|---:|---|---|
+| S-LAL14 (OHARA) | 1.69680 | 55.53 | L11 | Exact coordinate match |
+| 773496 class; J-LASF016 representative | 1.77250 | 49.62 | L12 substrate | Coordinate-class representative |
+| Unmatched hybrid resin | 1.51380 | 52.97 | L12 resin | No defensible catalog identity |
+| J-FKH1 (HIKARI) | 1.49782 | 82.57 | L13, L34, L35 | Exact coordinate match |
+| J-LASFH21 (HIKARI) | 1.95375 | 32.33 | L14, L31, L36 | Exact coordinate match |
+| J-LASF015 (HIKARI) | 1.80400 | 46.60 | L21 | Exact coordinate match |
+| J-SF03 (HIKARI) | 1.84666 | 23.80 | L32 | Exact coordinate match |
+| J-SF7 (HIKARI) | 1.63980 | 34.55 | L33 | Exact coordinate match |
+| S-TIH57 (OHARA) | 1.96300 | 24.11 | L37 | Exact coordinate match |
+| L-LAH94 (OHARA) | 1.86100 | 37.10 | L41, L51 | Exact coordinate match |
 
-The most conspicuous dispersion structure is the repeated 1.49782/82.57 high-Abbe material at L13, L34, and L35, numerically matching Nikon's count of three ED production elements.[1] In the catalog-resolved model these three entries also carry a significant positive dPgF. They are paired elsewhere with dense lower-Abbe glasses such as 1.95375/32.33 and 1.84666/23.80. This combination provides multiple independent levers for primary and secondary chromatic correction. The analysis does not label the complete lens apochromatic; that would require a system-level chromatic residual criterion, not merely the presence of low-dispersion and anomalous-partial-dispersion media.
+The most conspicuous dispersion structure is the repeated 1.49782/82.57 high-Abbe material at L13, L34, and L35, numerically matching Nikon's count of three ED production elements.[1] Their compatible catalog curve also has significant positive anomalous partial dispersion. They are paired elsewhere with dense lower-Abbe glasses such as 1.95375/32.33 and 1.84666/23.80. This combination provides multiple independent levers for primary and secondary chromatic correction. The analysis does not label the complete lens apochromatic; that would require a system-level chromatic residual criterion, not merely the presence of low-dispersion and anomalous-partial-dispersion media.
 
 ## Focus Mechanism
 
@@ -179,11 +179,11 @@ Surface 5A is the explicitly modeled hybrid/composite asphere: the glass substra
 
 ## Chromatic Correction Strategy
 
-The modeled glass palette alternates high-Abbe positive or negative components with dense lower-Abbe partners across several groups. The most direct production-level evidence is Nikon's specification of three ED elements.[1] Example 1 contains exactly three elements at nd = 1.49782, νd = 82.57: L13 in G1 and L34/L35 in G3. In the data file these are represented by HIKARI J-FKH1, whose current catalog provides explicit C/F/g indices and dPgF = +0.0327.[3]
+The modeled glass palette alternates high-Abbe positive or negative components with dense lower-Abbe partners across several groups. The most direct production-level evidence is Nikon's specification of three ED elements.[1] Example 1 contains exactly three elements at nd = 1.49782, νd = 82.57: L13 in G1 and L34/L35 in G3. In the data file these are represented by the shared HIKARI J-FKH1 coefficient curve, rather than copied catalog line-index or dPgF values.[3]
 
 The design does not concentrate chromatic correction in one cemented achromat. Instead, the low-dispersion entries are distributed between the negative front group and the fixed central group, while dense flints appear in the L13–L14, L31–L32, and L35–L36 pairings. That distribution is consistent with a wide-angle system that must control chromatic errors over a large field while also accommodating two moving focus groups. This is an interpretation of the prescription and catalog data, not a specific patent claim about individual aberration allocations.
 
-Because the final data file contains authoritative catalog line indices and dPgF for the resolved glasses, the model has more spectral information than nd/νd alone. Even so, no APO designation is assigned: the available evidence establishes material dispersion behavior, not a system-level apochromatic performance criterion.
+Because the resolved glasses use shared catalog coefficient curves, the model has more spectral information than nd/νd alone; those curves are qualified proxies for the source prescription. Even so, no APO designation is assigned: the available evidence establishes material dispersion behavior, not a system-level apochromatic performance criterion.
 
 ## Conditional Expressions
 

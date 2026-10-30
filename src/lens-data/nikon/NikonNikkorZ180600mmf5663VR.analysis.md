@@ -401,10 +401,7 @@ The six low-dispersion physical elements corresponding to the production count a
 They are distributed across the fixed front group, the main positive relay, the focusing group, and the rear relay
 rather than being concentrated in one assembly.
 
-Example 2 does not publish element-specific `nC`, `nF`, `ng`, or `dPgF`. The patent does give a condition-level
-`ΔPgF1b = −0.0067` for at least one negative lens in subgroup G1b, but it does not identify a unique element or provide
-a complete line-index set. The data therefore assigns no element-specific anomalous-dispersion field, and no
-apochromatic claim is made from Abbe data alone.
+Example 2 publishes no separate `nC`, `nF` or `ng` set. Table 33 gives `ΔPgF1b = −0.0067` for a negative lens in G1b. Paragraph 0155 identifies G1b as positive L2, negative L3 and positive L4, so L3 is the unique applicable negative lens. Paragraph 0083 defines this deviation from the line through C7 (νd = 60.49, PgF = 0.5393) and F2 (νd = 36.30, PgF = 0.5829). At L3's νd = 42.72, the source line gives PgF = 0.57132861; subtracting 0.0067 gives PgF ≈ 0.56463. Against the runtime line 0.6438 − 0.001682νd, this is dPgF ≈ −0.00732. The stored −0.00731635 records that conversion, with precision limited by the rounded source condition. L3 is marked patent-supported APD; its HOYA catalog counterpart still supplies a qualified C/d/F curve and does not identify the production melt. No system-level APO claim follows from this datum.
 
 ## Focus Mechanism
 

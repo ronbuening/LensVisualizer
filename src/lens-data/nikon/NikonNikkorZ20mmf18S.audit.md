@@ -90,3 +90,27 @@ extension or concave cut is supported.
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the existing inferred-cut beam
 rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/WO2021117429A1.pdf`, Example 1 / Table 1, PDF pp. 19–20 (printed pp. 17–18).
+All 15 modeled media (14 physical elements) retain the source d-line nd/νd values. The 0.05 mm hybrid
+layer is explicitly represented by its source 1.51380/52.97 pair. All fourteen ordinary-glass annotations
+resolve to compatible coefficient-backed curves; the resin remains unmatched despite a coincident ordinary
+glass coordinate candidate, because coordinates cannot establish polymer dispersion or identity.
+
+| Media | Change / retained verdict |
+|---|---|
+| Fourteen ordinary glasses | Remove 42 copied catalog nC/nF/ng fields and fourteen catalog/family dPgF overrides; retain all source nd/νd and labels |
+| L12r | Retain source coordinates and explicit unmatched resin disposition |
+
+Table 1 has no C/F/g-index or partial-dispersion column. The removed values came from representative vendor
+catalogs, not the patent; they previously bypassed the shared coefficient curves. The compatible catalog now
+supplies each glass's full wavelength dependence, anchored to the source index. No dispersion measurements
+were discarded. All analysis claims of stored line indices/deviations were synchronized; material/proxy and
+production-supplier uncertainty remains explicit.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.

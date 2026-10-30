@@ -222,3 +222,24 @@ No further resolved concave land was found; shallow or one-pixel edge changes re
 Before/after `audit:surface` passes; `audit:image-circle` reports 0 undersized / 0 skipped. The actual SVG
 geometry was rendered and compared with Figure 1. Nine zoom/focus states (0, 0.5, 1 on each control) have
 zero hidden semi-diameter trim.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2019008031A.pdf`, Example 1 / Table 1, PDF pp. 12–13. All 14 physical elements'
+d-line nd/νd values agree with the rendered table, including the four repeated 1.49782/82.57 entries and
+all cemented partners. All 14 labels resolve to coordinate-compatible coefficient-backed catalog curves.
+
+| Media | Change / retained verdict |
+|---|---|
+| L13, L33, L34, L51 | Retain source 1.49782/82.57 and inferred APD; remove generic dPgF +0.035 overrides |
+| Other ten elements | Source coordinates and compatible catalog annotations retained |
+
+Table 1 supplies no C/F/g or partial-dispersion values. The removed +0.035 was an inferred family estimate;
+J-FKH1's shared coefficients now supply the full spectral shape without that extra g-line adjustment. This
+retains qualified catalog coverage and does not establish a supplier or production melt. Analysis and APD
+notes were synchronized.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.
