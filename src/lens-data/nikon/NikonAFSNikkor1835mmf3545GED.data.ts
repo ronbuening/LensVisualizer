@@ -23,6 +23,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Semi-diameters: patent does not list SDs. Values here are estimated from            ║
  * ║ marginal/chief-ray clearance and then reduced to satisfy spherical rim, asphere     ║
  * ║ slope, edge-thickness, and cross-gap constraints.                                   ║
+ * ║ Fresh Figure1: S1 SD27; exposed S2/S5 lands to outer27/17 retain caps20.5/15.2.  ║
+ * ║ Source FNO3.6/4.15/4.63; qualified catalog proxies, no invented line indices.                                   ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -47,6 +49,7 @@ const LENS_DATA = {
     elementCount: 12,
     groupCount: 8,
     focalLengthMm: { marketing: [18, 35], design: [18.498, 33.994] },
+    fNumber: { marketing: 3.5, design: 3.6 },
   },
 
   source: {
@@ -66,11 +69,8 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       focalLengthMm: -55.1,
-      glass: "S-LAL18 (OHARA) class",
+      glass: "S-LAL18 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front negative meniscus of the retrofocus first group.",
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.7457,
     },
     {
       id: 2,
@@ -91,12 +91,9 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       focalLengthMm: -55.8,
-      glass: "S-LAL18 (OHARA) class",
+      glass: "S-LAL18 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Glass substrate of the second negative meniscus.",
       cemented: "H1",
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.7457,
     },
     {
       id: 4,
@@ -106,7 +103,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       focalLengthMm: -35.0,
-      glass: "N-LASF44 (Schott) / 804465 dense lanthanum flint class",
+      glass: "N-LASF44 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index negative meniscus substrate in Gr1.",
       cemented: "H2",
     },
@@ -129,11 +126,8 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.16,
       focalLengthMm: 47.7,
-      glass: "S-TIM28 (OHARA) / 689311 dense flint class",
+      glass: "S-TIM28 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive compensating element at the rear of Gr1.",
-      nC: 1.6825,
-      nF: 1.70467,
-      ng: 1.71797,
     },
     {
       id: 7,
@@ -143,12 +137,9 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.46,
       focalLengthMm: -70.3,
-      glass: "S-TIH6 (OHARA) / SF6-class titanium heavy flint",
+      glass: "S-TIH6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the GrF focusing doublet.",
       cemented: "D1",
-      nC: 1.79611,
-      nF: 1.82777,
-      ng: 1.84729,
     },
     {
       id: 8,
@@ -169,7 +160,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       focalLengthMm: 37.1,
-      glass: "SF2 (Schott) class",
+      glass: "SF2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the GrF focusing doublet.",
       cemented: "D1",
     },
@@ -181,12 +172,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 28.1,
-      glass: "S-FPL51 (OHARA) / FCD1-class ED fluorophosphate",
+      glass: "S-FPL51 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-power positive ED-class member behind the stop.",
       cemented: "D2",
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 11,
@@ -207,12 +195,9 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       focalLengthMm: -60.9,
-      glass: "S-LAL18 (OHARA) class",
+      glass: "S-LAL18 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative partner to the first rear-group ED-class positive element.",
       cemented: "D2",
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.7457,
     },
     {
       id: 13,
@@ -222,7 +207,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       focalLengthMm: -21.1,
-      glass: "N-LASF44 (Schott) / 804465 dense lanthanum flint class",
+      glass: "N-LASF44 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "First negative element of the three-element cemented lens LS.",
       cemented: "LS",
     },
@@ -245,12 +230,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 14.2,
-      glass: "S-FPL51 (OHARA) / FCD1-class ED fluorophosphate",
+      glass: "S-FPL51 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Central positive ED-class element of LS.",
       cemented: "LS",
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 16,
@@ -271,12 +253,9 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       focalLengthMm: -15.6,
-      glass: "S-LAL18 (OHARA) class",
+      glass: "S-LAL18 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative element of LS.",
       cemented: "LS",
-      nC: 1.7251,
-      nF: 1.73844,
-      ng: 1.7457,
     },
     {
       id: 18,
@@ -286,17 +265,14 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.39,
       focalLengthMm: 36.9,
-      glass: "S-BAL42 (OHARA) class",
+      glass: "S-BAL42 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Double-aspherical rear field corrector.",
-      nC: 1.58014,
-      nF: 1.58996,
-      ng: 1.5953,
     },
   ],
 
   surfaces: [
-    { label: "1", R: 55.466, d: 2.3, sd: 25.0, medium: 1 },
-    { label: "2", R: 22.882, d: 5.75, sd: 20.5 },
+    { label: "1", R: 55.466, d: 2.3, sd: 27.0, medium: 1 },
+    { label: "2", R: 22.882, d: 5.75, sd: 20.5, rimExtensionSd: 27 },
     {
       label: "3A",
       R: 42.477,
@@ -314,7 +290,7 @@ const LENS_DATA = {
       },
     },
     { label: "4", R: 31.616, d: 1.8, sd: 17.0, medium: 3 },
-    { label: "5", R: 19.407, d: 7.62, sd: 15.2 },
+    { label: "5", R: 19.407, d: 7.62, sd: 15.2, rimExtensionSd: 17 },
     { label: "6", R: 201.373, d: 1.73, sd: 15.2, medium: 4 },
     { label: "7", R: 27.873, d: 0.08, sd: 14.0, medium: 5 },
     {
@@ -365,9 +341,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 18.5, nominalFNumber: 3.5, label: "Wide" },
-      { focalLengthMm: 25.08, nominalFNumber: 4.0, label: "Mid" },
-      { focalLengthMm: 34.0, nominalFNumber: 4.5, label: "Tele" },
+      { focalLengthMm: 18.5, nominalFNumber: 3.6, label: "Wide" },
+      { focalLengthMm: 25.08, nominalFNumber: 4.15, label: "Mid" },
+      { focalLengthMm: 34.0, nominalFNumber: 4.63, label: "Tele" },
     ],
     step: 0.004,
   },
@@ -407,7 +383,7 @@ const LENS_DATA = {
       thicknessMm: 1.9,
       nd: 1.5168,
       vd: 64.2,
-      glass: "N-BK7",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       gapAfterMm: 1.0,
       source: "US 9,256,059 B2, Example 1 surfaces 28–29 (BF 1.00)",
     },
