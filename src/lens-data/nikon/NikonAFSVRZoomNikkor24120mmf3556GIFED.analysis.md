@@ -118,14 +118,14 @@ The axial location of L24 is especially important to the focus reconstruction. C
 ### L3A — L3AN + L3AP Cemented VR Doublet
 
 **L3AN:** nd = 1.805182, νd = 25.41. Glass: 805254 dense-flint class, vendor unresolved. Standalone f = -53.594219 mm.
-**L3AP:** nd = 1.497000, νd = 81.61. Glass: 497816 ED fluorophosphate class, vendor unresolved. Standalone f = +23.928810 mm.
+**L3AP:** nd = 1.497000, νd = 81.61. Glass: 497816 low-dispersion class (H-FK61 spectral proxy; chemistry unconfirmed), vendor unresolved. Standalone f = +23.928810 mm.
 **Cemented L3A net:** f = +42.392245 mm.
 
 L3A is the only laterally shifted vibration-reduction unit in the patent. It consists of negative meniscus L3AN cemented to biconvex positive L3AP. The computed cemented focal length of +42.392245 mm reproduces the patent value `f3A = 42.392` to source precision.
 
 The L3AN/L3AP index difference is 0.308182 at the d line, one of the patent's explicit design conditions. The large difference in Abbe number, 25.41 versus 81.61, also gives the cemented pair substantial ordinary chromatic-correction leverage while it is decentered for stabilization. The patent specifically associates the cemented construction with suppression of aberration changes during vibration reduction (¶¶0048-0052).
 
-L3AP's 497816 coordinate is classified as an ED fluorophosphate class. Together with L51, it accounts for Nikon's two-ED production specification, so both carry `apd: "inferred"`. This is production-correlation metadata rather than a vendor identification, quantitative `dPgF` value, or apochromatic claim.
+L3AP's 497816 coordinate is classified as an low-dispersion class (H-FK61 spectral proxy; chemistry unconfirmed). Together with L51, it accounts for Nikon's two-ED production specification, so both carry `apd: "inferred"`. This is production-correlation metadata rather than a vendor identification, quantitative `dPgF` value, or apochromatic claim.
 
 The doublet's +42.392245 mm net power is also distinct from the +26.381025 mm in-situ power of G3. L33 and the air spaces within G3 materially alter the behavior of the complete group.
 
@@ -157,7 +157,7 @@ The G4 axial station is effectively fixed when the patent zoom spacings are refe
 
 ### L51 — Biconvex Positive ED-Class Element
 
-**nd = 1.497000, νd = 81.61. Glass: 497816 ED fluorophosphate class, vendor unresolved. Standalone f = +44.474601 mm.**
+**nd = 1.497000, νd = 81.61. Glass: 497816 low-dispersion class (H-FK61 spectral proxy; chemistry unconfirmed), vendor unresolved. Standalone f = +44.474601 mm.**
 
 L51 begins the positive rear group G5. It uses the same high-Abbe coordinate as L3AP. These are the two physical elements in the modeled prescription that align with Nikon's published count of two ED elements.
 
@@ -192,9 +192,11 @@ The patent publishes only d-line refractive indices and Abbe numbers. It names n
 | 835427 high-index lanthanum class | 1.834810 | 42.72 | L21 substrate, L22, L24, L42 |
 | 785257 dense-flint class | 1.784720 | 25.68 | L23 |
 | 805254 dense-flint class | 1.805182 | 25.41 | L3AN |
-| 497816 ED fluorophosphate class | 1.497000 | 81.61 | L3AP, L51 |
+| 497816 low-dispersion class (H-FK61 spectral proxy; chemistry unconfirmed) | 1.497000 | 81.61 | L3AP, L51 |
 | 517641/517642 BK7-class crown | 1.516800 | 64.10 | L33 |
 | 487702/487704 low-index FK/FSL crown class | 1.487490 | 70.24 | L52 |
+
+Fresh inspection of Table 2 (US20040218274A1.pdf, PDF pages 18–19) confirms all 16 stored d-line nd/νd pairs, including the 0.2000 mm medium at S6–S7. Fifteen physical lens materials resolve to compatible catalog curves; the thin aspheric medium remains unresolved. Its resin/composite construction is a modeling inference, rather than a printed chemical or manufacturing identity. The source supplies no individual C/F/g indices or partial-dispersion ratios, and the current material curves are unchanged. Vendor-unresolved class labels distinguish source coordinates from production identity, while the engine's catalog curves provide qualified spectral coverage.
 
 The glass audit found that most of these coordinates can be reproduced by more than one current OHARA, HOYA, HIKARI, Schott, CDGM, or Sumita catalog entry. A vendor-specific name would therefore imply source knowledge that the patent does not provide. The class/code labels are intentionally more conservative.
 
@@ -276,7 +278,7 @@ Its final modeled clear semi-diameter is 14.4 mm. That value is inferred, not pu
 
 Here the small positive standard conic constant places the conic close to a spherical base, while the polynomial terms supply the principal correction. The negative A4 term is followed by alternating higher-order corrections that reshape the outer zone without requiring a strong conic departure.
 
-The modeled semi-diameter is 7.2 mm. That reduced aperture follows the smaller L33 silhouette in Figure 5 relative to L3A. At that aperture the positive-K conic remains comfortably inside its real-sag domain in every defined state.
+The modeled S18A/S19 caps are restored from 7.2 to 8.0 mm. The previous caps clipped the stated axial beam; the adopted square height better follows Figure 5's compact L33/G4 outline. At the actual 8.0 mm cap, S18A departs from its vertex sphere by −1.734078 µm and has a 17.067320° rim slope. The positive-K conic remains comfortably inside its real-sag domain. S6A remains at 14.4 mm, with +144.821169 µm departure and an 8.866914° slope; its source coefficients and bonded-layer cap are unchanged.
 
 ## Chromatic Correction Strategy
 
@@ -329,6 +331,10 @@ Surface-by-surface Petzval calculation uses `phi/(n*n')`, not a group approximat
 The modeled stop and semi-diameters are not patent facts. At the inferred stop location, the wide-state stop semi-diameter of 7.424006 mm reproduces the design f-number of 3.604. The variable maximum-aperture model uses the patent f-number sequence 3.604, 5.40, and 5.903 rather than substituting the marketed f/3.5-5.6 endpoints.
 
 The inferred aperture geometry also remains physically self-consistent in the modeled states. The minimum modeled edge thickness is approximately 0.05518 mm at the bonded L21 layer, the largest actual rim angle is approximately 49.12° at surface 8, the positive-K conic remains real across its clear aperture, and no modeled element surfaces intersect across the defined zoom/focus states. These are model-validation results, not manufacturing tolerances.
+
+Figure 5 resolves long straight strokes at two concave ends. The L21 substrate's S8 rear cap remains 10.4 mm, with an opaque land extending to 10.8 mm. A source-like 14.4 mm outer rim would intrude 6.046 mm into the unchanged 6.5 mm S8–S9 gap, above the 5.850 mm policy bound. The shorter adopted land preserves the optical cap; the remaining silhouette difference is explicit. The front aspheric layer and substrate interface keep their original 14.4 mm caps, and the compound outline remains connected.
+
+S28, the concave front of L53, has an inferred 4.35 mm cut: cap radius 13.398351 mm inside its 14.0 mm rim. The source endpoint suggests about 12.53 mm; that trial fails the full-beam guard, which requires at least 13.3594 mm including its margin. The adopted cut is deliberately outward of the measured endpoint. All other convex/concave/cemented faces were inspected; no additional reliably resolved eligible land was adopted. No source radius, spacing, asphere coefficient, control or tolerance was changed.
 
 Wide-angle off-axis containment is the tightest aperture case. The source full-field paraxial chief ray reaches approximately 99.28% of the modeled surface-8 semi-diameter at the 24.72 mm infinity state. This near-fill is one reason the L21 rear aperture cannot be reduced substantially without introducing modeled vignetting.
 

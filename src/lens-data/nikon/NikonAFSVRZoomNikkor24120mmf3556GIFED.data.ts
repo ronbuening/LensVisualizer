@@ -29,7 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ from the rendered Figure 5 wide-state optical section and checked against         ║
  * ║ marginal/chief-ray envelopes. They were then reduced only where required by the  ║
  * ║ current edge-thickness, actual-rim-slope, conic, and shared-gap intrusion rules.  ║
- * ║ L33 is reduced relative to L3A to follow the Figure 5 rear-group silhouette.      ║
+ * ║ L33 caps are restored to 8.0 mm to pass the stated axial beam; source Fig. 5 is the height reference. ║
+ * ║ S8 has a source-supported rear land to 10.8 mm; a 14.4 mm rim fails the unchanged 6.5 mm gap guard. ║
+ * ║ S28 has an inferred 4.35 mm cut, moved outward from the source cap to clear full beams. ║
  * ║ No layout control is used to conceal invalid geometry.                            ║
  * ║                                                                                   ║
  * ║ No geometric scale is applied. Patent d-line nd/vd values are retained exactly.  ║
@@ -119,7 +121,7 @@ const LENS_DATA = {
       nd: 1.55389,
       vd: 38.09,
       glass: "Unmatched (thin bonded aspheric resin/composite layer; nd=1.553890, vd=38.09)",
-      role: "0.2000 mm aspheric layer modeled separately from physical L21.",
+      role: "0.2000 mm source-listed aspheric medium modeled separately from physical L21; resin/composite technology is inferred, and chemistry/supplier are unspecified.",
       diagramLabel: "L21r",
       cemented: "H1",
     },
@@ -192,7 +194,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 23.92881,
-      glass: "497816 — ED fluorophosphate class (vendor unresolved)",
+      glass: "497816 low-dispersion class (H-FK61 spectral proxy; production chemistry and supplier unconfirmed)",
       apd: "inferred",
       apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Positive low-dispersion member of the transverse VR cemented doublet.",
@@ -243,7 +245,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: 44.474601,
-      glass: "497816 — ED fluorophosphate class (vendor unresolved)",
+      glass: "497816 low-dispersion class (H-FK61 spectral proxy; production chemistry and supplier unconfirmed)",
       apd: "inferred",
       apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Front low-dispersion positive member of G5.",
@@ -292,7 +294,7 @@ const LENS_DATA = {
       asphere: { K: -7.2822, A4: 4.4929e-6, A6: 7.4142e-10, A8: -4.2168e-11, A10: 1.1193e-13, A12: 7.0252e-18 },
     },
     { label: "7", R: 122.647, d: 1.15, sd: 14.4, medium: 5 },
-    { label: "8", R: 13.7545, d: 6.5, sd: 10.4 },
+    { label: "8", R: 13.7545, d: 6.5, sd: 10.4, rimExtensionSd: 10.8 },
     { label: "9", R: -54.5024, d: 0.9, sd: 11.8, medium: 6 },
     { label: "10", R: 40.4384, d: 0.1, sd: 11.8 },
     { label: "11", R: 26.0771, d: 5.35, sd: 10.0, medium: 7 },
@@ -308,7 +310,7 @@ const LENS_DATA = {
       label: "18A",
       R: 27.2189,
       d: 2.2,
-      sd: 7.2,
+      sd: 8.0,
       medium: 11,
       asphere: {
         K: 0.0063,
@@ -319,7 +321,7 @@ const LENS_DATA = {
         A12: 0,
       },
     },
-    { label: "19", R: 143.4442, sd: 7.2 },
+    { label: "19", R: 143.4442, sd: 8.0 },
     { label: "20", R: -69.6687, d: 2.5, sd: 8.2, medium: 12 },
     { label: "21", R: -19.9954, d: 0.1, sd: 8.2 },
     { label: "22", R: -19.1927, d: 0.8, sd: 8.2, medium: 13 },
@@ -328,7 +330,7 @@ const LENS_DATA = {
     { label: "25", R: -25.0691, d: 0.1, sd: 14.4 },
     { label: "26", R: 73.9596, d: 4.9, sd: 14.8, medium: 15 },
     { label: "27", R: -45.895, d: 4.2246, sd: 14.8 },
-    { label: "28", R: -22.809, d: 1.1, sd: 14.0, medium: 16 },
+    { label: "28", R: -22.809, d: 1.1, sd: 14.0, medium: 16, rimCutDepthMm: 4.35 },
     { label: "29", R: -68.9305, sd: 14.0 },
   ],
 
