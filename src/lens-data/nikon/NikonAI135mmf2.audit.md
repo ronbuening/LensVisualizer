@@ -95,3 +95,11 @@ Analysis synced: §1 scale paragraph and minimum-aperture row, §3 table caption
   plane lies outside the steep R = 30.5 mm sphere); axial heights above come from a closed-form spherical trace.
 - Surface 4 cannot reach the drawn L3 rim (29.1 mm) under the renderer's 0.9 rim-slope cap.
 - Which of the five examples Nikon manufactured remains unconfirmed.
+
+## 2026-10-30 — Fresh shape and glass reinspection
+
+The 2026-10-30 review directly inspected local `US4062630.pdf`: shared Figure 1 on PDF page 2 at 600 dpi and its native 300 dpi raster, Example V's six-media prescription and general data on page 6, and the d/g-line context on pages 5–6. Every exposed convex/concave face and both cemented boundaries were inspected. S8 keeps its existing 18.5 mm curved cap and gains a flat exposed land to the existing 25.8 mm L4/L5 outer rim. At the native Figure 1 body half-height of about 242 pixels, the two cap transitions give q≈0.73 with one-pixel uncertainty about ±0.007; adopted q=0.717 retains the established cap under the shared schematic's height uncertainty. The land's inferred axial depth is about 6.18 mm. The step at cemented S4 is not an exposed land and remains unchanged; no speculative concave cap cut is added.
+
+All six source nd/νd pairs are exact and retained. The available curves S-LAM3, H-BaF8, S-BAL35, FD3, and SF1 (twice) now have explicit spectral-proxy labels. No source C/F/g indices, partial dispersion, APD classification, or production glass supplier is given. The repeated source coordinates of L5/L6 do not identify a historical supplier. Current runtime iris radius is 15.320502 mm; the older 15.7 mm scratch estimate is not the active calibration. The inferred stop, ×1.35 scale, source prescription and calculated unit-focus travel remain unchanged.
+
+Surface/circle checks pass and the infinity format corner reaches at least 99%; the axial aperture is iris-limited at f/2.000000. Nine actual SVG states have six finite, untrimmed paths. At the calculated close conjugate D0=1145.8658 mm the fixed full iris passes 25/25 aimed axial samples. Source/catalog checks and shared glass suites pass (94 tests).

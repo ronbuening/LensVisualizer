@@ -27,9 +27,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  stop radius is derived from the design f-number. The former paraxial        ║
  * ║  calibration of the stop to the patent's F/2.88 gave F/2.88004 at wide       ║
  * ║  infinity and F/2.88006 at tele. The traced iris is set from nominalFNumber  ║
- * ║  by the real marginal ray: 15.6801 mm at 80 mm, held at 196 mm (fixed iris), ║
- * ║  where F/2.88 needs 15.7146 mm. From the iris alone the stations trace       ║
- * ║  f/2.880 and f/2.886. The 5.700 + 5.700 mm split preserves the source d23    ║
+ * ║  by the real marginal ray: 14.759220 mm at 80 mm, held at 196 mm (fixed iris), ║
+ * ║  as currently calibrated by the exact runtime ray. The stations trace       ║
+ * ║  f/2.880000 and f/2.880021. The 5.700 + 5.700 mm split preserves the source d23    ║
  * ║  optical spacing exactly.                                                    ║
  * ║                                                                              ║
  * ║  SEMI-DIAMETERS                                                              ║
@@ -46,7 +46,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  air gap between D3 and L25: at 18.7 mm surfaces 11 and 12 take 0.9103 of    ║
  * ║  its 2.500 mm and stand 0.224 mm apart, where Figure 1 draws the two         ║
  * ║  faces meeting at the rim. The iris limits the on-axis beam at both          ║
- * ║  stations: f/2.88 at 80 mm and f/2.89 at 196 mm. The 38.0 mm front SD        ║
+ * ║  stations: f/2.88 at 80 mm and f/2.880021 at 196 mm. The 38.0 mm front SD        ║
  * ║  remains inside the 77 mm filter diameter published by Nikon for the         ║
  * ║  later optically continuous D version.                                       ║
  * ║                                                                              ║
@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.80458,
       vd: 25.5,
       focalLengthMm: -314.883607,
-      glass: "805255 flint class (catalog unresolved)",
+      glass: "H-ZF7LA (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L11",
       cemented: "D1",
@@ -113,7 +113,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 144.989137,
-      glass: "498826 — J-FKH1 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: "inferred",
       apdNote:
         "ED classification is inferred from the production three-ED identity and the example's three repeated 1.49782/82.6 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
@@ -128,7 +128,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 216.1777,
-      glass: "498826 — J-FKH1 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: "inferred",
       apdNote:
         "ED classification is inferred from the production three-ED identity and the example's three repeated 1.49782/82.6 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
@@ -142,7 +142,7 @@ const LENS_DATA = {
       nd: 1.62588,
       vd: 35.6,
       focalLengthMm: 132.775918,
-      glass: "626356 — F1 (SUMITA) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "F1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L21",
       cemented: "D2",
@@ -155,7 +155,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.8,
       focalLengthMm: -51.393566,
-      glass: "564608 — N-SK11 (SCHOTT) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "N-SK11 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L22",
       cemented: "D2",
@@ -168,7 +168,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: -56.560596,
-      glass: "517641 BK7-class crown (supplier unresolved)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L23",
       cemented: "D3",
@@ -181,7 +181,7 @@ const LENS_DATA = {
       nd: 1.80458,
       vd: 25.5,
       focalLengthMm: 72.379367,
-      glass: "805255 flint class (catalog unresolved)",
+      glass: "H-ZF7LA (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L24",
       cemented: "D3",
@@ -194,7 +194,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 54,
       focalLengthMm: -89.693816,
-      glass: "713540 — J-LAK8 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LAK8 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L25",
     },
@@ -206,7 +206,7 @@ const LENS_DATA = {
       nd: 1.51835,
       vd: 60.3,
       focalLengthMm: 121.344711,
-      glass: "518603 — BALK3 (SUMITA) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "BALK3 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L31",
     },
@@ -218,7 +218,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.8,
       focalLengthMm: 63.245156,
-      glass: "564608 — N-SK11 (SCHOTT) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "N-SK11 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L32",
       cemented: "D4",
@@ -231,7 +231,7 @@ const LENS_DATA = {
       nd: 1.75692,
       vd: 31.7,
       focalLengthMm: -77.414233,
-      glass: "757317 — E-LAF11 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "E-LAF11 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L33",
       cemented: "D4",
@@ -244,7 +244,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       focalLengthMm: 106.920989,
-      glass: "498826 — J-FKH1 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: "inferred",
       apdNote:
         "ED classification is inferred from the production three-ED identity and the example's three repeated 1.49782/82.6 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
@@ -258,7 +258,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 89.30967,
-      glass: "487702 crown class (FK5 coordinate; supplier unresolved)",
+      glass: "FK5 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L42a",
       cemented: "D5",
@@ -271,7 +271,7 @@ const LENS_DATA = {
       nd: 1.80458,
       vd: 25.5,
       focalLengthMm: -360.036569,
-      glass: "805255 flint class (catalog unresolved)",
+      glass: "H-ZF7LA (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L42b",
       cemented: "D5",
@@ -284,7 +284,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 45.1,
       focalLengthMm: -40.839504,
-      glass: "744451 — J-LAF2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-LAF2 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L43",
     },
@@ -296,7 +296,7 @@ const LENS_DATA = {
       nd: 1.66755,
       vd: 42,
       focalLengthMm: 89.539445,
-      glass: "668420 — J-BASF6 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
+      glass: "J-BASF6 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       diagramLabel: "L44",
     },

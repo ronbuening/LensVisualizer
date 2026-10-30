@@ -18,7 +18,7 @@
  *   behind the cemented negative member: 8.3 mm (f = 100 scale) behind the r8 vertex, measured at
  *   16.07 px/mm from the r8–r9 vertex spacing. d8 = 33.8985 mm is therefore split 11.2 mm (r8 → STO)
  *   + 22.6985 mm (STO → r9). The split is a figure measurement; the drawn half-opening (16.5 mm at
- *   production scale) agrees with the traced f/2 beam radius at that plane (15.7 mm).
+ *   production scale) agrees with the current runtime f/2 iris radius at that plane (15.320502 mm).
  *
  * NOTE ON SEMI-DIAMETERS:
  *   The patent lists no clear apertures. Fig. 1 (one drawing for all five examples; its vertex
@@ -29,6 +29,9 @@
  *   figure within about 15 %; surface 4 sits at the renderer's rim-slope limit (sd/|R| = 0.9), short of
  *   the drawn rim. The exact f/2 marginal ray needs 33.75 / 32.83 / 30.28 / 26.34 / 24.71 / 23.13 /
  *   20.70 / 16.72 / 11.89 / 10.17 mm on surfaces 1–10 and clears every stored value.
+ *
+ * Fresh Figure 1 reinspection: S8 retains its 18.5 mm curved cap and draws an exposed land
+ * to the existing 25.8 mm L4/L5 outer rim. No land is added at cemented S4 or S7.
  *
  * Focusing:    Unit focus (entire optical assembly translates); the patent publishes no finite-distance
  *              data. The close-focus back focus is calculated for the production 1.3 m film-to-subject
@@ -78,7 +81,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 48.1,
       focalLengthMm: 132.5,
-      glass: "S-LAM3 (OHARA)",
+      glass: "S-LAM3 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Front positive meniscus — primary converging element, bears full EP diameter",
     },
     {
@@ -89,7 +92,7 @@ const LENS_DATA = {
       nd: 1.62606,
       vd: 39.1,
       focalLengthMm: -128.2,
-      glass: "626391 — barium flint (patent coordinate; vendor unresolved)",
+      glass: "H-BaF8 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Flint component of achromatic doublet (Group II); Δν = 22.1 vs L3",
       cemented: "D1",
     },
@@ -101,7 +104,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.2,
       focalLengthMm: 56.8,
-      glass: "OHARA S-BAL35 / HOYA BACD5 (589/612)",
+      glass: "S-BAL35 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Crown component of achromatic doublet (Group II); strongest positive element in system",
       cemented: "D1",
     },
@@ -113,7 +116,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.2,
       focalLengthMm: 63.5,
-      glass: "FD3 (HOYA catalog-equivalent; production supplier unspecified)",
+      glass: "FD3 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Dense flint positive in monochromatic correction doublet (Group III); near-isochromatic with L5",
       cemented: "D2",
     },
@@ -125,7 +128,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       focalLengthMm: -25.7,
-      glass: "HOYA E-FD1 / Schott SF1 (717/295)",
+      glass: "SF1 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Dense flint negative in monochromatic correction doublet; g-line spherical aberration corrector",
       cemented: "D2",
     },
@@ -137,7 +140,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       focalLengthMm: 132.5,
-      glass: "HOYA E-FD1 / Schott SF1 (717/295)",
+      glass: "SF1 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Rear positive element — field curvature and astigmatism control; same glass as L5",
     },
   ],
@@ -155,7 +158,7 @@ const LENS_DATA = {
     // ── Group III: L4 + L5 cemented doublet (D2) ──
     { label: "6", R: "flat", d: 12.0015, sd: 25.8, medium: 4 },
     { label: "7", R: -47.0, d: 1.6065, sd: 25.8, medium: 5 },
-    { label: "8", R: 30.776, d: 11.2, sd: 18.5 },
+    { label: "8", R: 30.776, d: 11.2, sd: 18.5, rimExtensionSd: 25.8 },
 
     // ── Aperture stop (drawn in Fig. 1 inside d8; not tabulated — split of d8 measured from the figure) ──
     { label: "STO", R: "flat", d: 22.6985 },

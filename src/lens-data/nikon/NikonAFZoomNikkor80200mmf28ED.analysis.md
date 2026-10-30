@@ -48,7 +48,7 @@ G1 contains the front cemented doublet D1 followed by the positive singlet L13. 
 
 #### D1 — L11 + L12
 
-**L11:** nd = 1.80458, νd = 25.5. Glass: 805255 flint class (catalog unresolved). Standalone f = -314.883607 mm.
+**L11:** nd = 1.80458, νd = 25.5. Glass: H-ZF7LA spectral proxy; production supplier unresolved. Standalone f = -314.883607 mm.
 
 **L12:** nd = 1.49782, νd = 82.6. Glass: 498826 ED crown class (supplier unresolved). Standalone f = +144.989137 mm.
 
@@ -84,9 +84,9 @@ The dispersion signs are not arranged as a simple textbook crown-positive/flint-
 
 #### D3 — L23 + L24
 
-**L23:** nd = 1.51680, νd = 64.1. Glass: 517641 BK7-class crown (supplier unresolved). Standalone f = -56.560596 mm.
+**L23:** nd = 1.51680, νd = 64.1. Glass: N-BK7 spectral proxy; production supplier unresolved. Standalone f = -56.560596 mm.
 
-**L24:** nd = 1.80458, νd = 25.5. Glass: 805255 flint class (catalog unresolved). Standalone f = +72.379367 mm.
+**L24:** nd = 1.80458, νd = 25.5. Glass: H-ZF7LA spectral proxy; production supplier unresolved. Standalone f = +72.379367 mm.
 
 **Cemented D3:** net standalone f = -261.546730 mm.
 
@@ -142,9 +142,9 @@ Its patent-controlled shape factor `q4A` is 1.120481, inside the stated 0.85–1
 
 #### D5 — L42a + L42b
 
-**L42a:** nd = 1.48749, νd = 70.2. Glass: 487702 crown class (FK5 coordinate; supplier unresolved). Standalone f = +89.309670 mm.
+**L42a:** nd = 1.48749, νd = 70.2. Glass: FK5 spectral proxy; production supplier unresolved. Standalone f = +89.309670 mm.
 
-**L42b:** nd = 1.80458, νd = 25.5. Glass: 805255 flint class (catalog unresolved). Standalone f = -360.036569 mm.
+**L42b:** nd = 1.80458, νd = 25.5. Glass: H-ZF7LA spectral proxy; production supplier unresolved. Standalone f = -360.036569 mm.
 
 **Cemented D5:** net standalone f = +116.497955 mm.
 
@@ -174,15 +174,15 @@ The data file intentionally keeps its patent coordinates and treats compatible c
 
 | Data annotation | nd | νd | Elements | Interpretation used in the model |
 |---|---:|---:|---|---|
-| 805255 flint class (catalog unresolved) | 1.80458 | 25.5 | L11, L24, L42b | High-index, high-dispersion flint class |
+| H-ZF7LA spectral proxy; production supplier unresolved | 1.80458 | 25.5 | L11, L24, L42b | High-index, high-dispersion flint class |
 | 498826 — J-FKH1 spectral proxy; supplier unresolved | 1.49782 | 82.6 | L12, L13, L41 | Very low-dispersion positive glass; production-correlated with Nikon's three ED elements |
 | 626356 — F1 spectral proxy; supplier unresolved | 1.62588 | 35.6 | L21 | Flint-class member of D2 |
 | 564608 — N-SK11 spectral proxy; supplier unresolved | 1.56384 | 60.8 | L22, L32 | Crown-class glass used in G2 and G3 |
-| 517641 BK7-class crown (supplier unresolved) | 1.51680 | 64.1 | L23 | Low-index crown member of D3 |
+| N-BK7 spectral proxy; production supplier unresolved | 1.51680 | 64.1 | L23 | Low-index crown member of D3 |
 | 713540 — J-LAK8 spectral proxy; supplier unresolved | 1.71300 | 54.0 | L25 | Higher-index rear negative member of G2 |
 | 518603 — BALK3 spectral proxy; supplier unresolved | 1.51835 | 60.3 | L31 | Positive compensator singlet |
 | 757317 — E-LAF11 spectral proxy; supplier unresolved | 1.75692 | 31.7 | L33 | Negative member of D4 |
-| 487702 crown class (FK5 coordinate; supplier unresolved) | 1.48749 | 70.2 | L42a | Low-index, low-dispersion positive member of D5 |
+| FK5 spectral proxy; production supplier unresolved | 1.48749 | 70.2 | L42a | Low-index, low-dispersion positive member of D5 |
 | 744451 — J-LAF2 spectral proxy; supplier unresolved | 1.74400 | 45.1 | L43 | Strong post-stop negative meniscus |
 | 668420 — J-BASF6 spectral proxy; supplier unresolved | 1.66755 | 42.0 | L44 | Final positive relay element |
 
@@ -246,7 +246,7 @@ The aperture stop is the most important inference. The patent drawing places sto
 
 The physical stop semi-diameter is likewise inferred. The authored `STO.sd` is 14.759011 mm, a paraxial entrance-pupil value for the patent's F/2.88: traced through the actual TypeScript prescription it gives F/2.880041 at wide infinity and, with the same fixed stop, F/2.880062 at tele infinity, reproducing the patent's constant endpoint aperture to source precision. The traced iris is set from `nominalFno` by the real marginal ray rather than from that paraxial value: its radius is 15.6801 mm at the 80 mm station and is held at the 196 mm station, where F/2.88 needs 15.7146 mm, so the iris alone gives f/2.880 and f/2.886. Because the inserted `STO` is optically neutral air-to-air, the 5.700/5.700 mm split does not alter the source's first-order refracting prescription.
 
-Semi-diameters are not tabulated by the patent. The data file therefore uses derived clear semi-diameters based on code-traced on-axis and off-axis rays across all four published states, the 21.6 mm image height, the patent optical section, mechanical constraints, and the current geometry checks. Surfaces 7, 9, 10, 12, 13, 15, 16, and 18 through 23 sit at the height the stated F/2.88 on-axis ray reaches at the 196 mm station, rounded up to 0.1 mm; that station needs more than the 80 mm station at every one of them. Three components that Figure 1 draws with a square-cut rim carry one value on every face, the highest any of their faces needs: L24 is 18.8 mm on surfaces 10 and 11, where the ray reaches 18.707 mm and 18.695 mm; L31 is 19.7 mm on surfaces 14 and 15, where it reaches 19.417 mm and 19.614 mm; and the cemented D4 is 20.0 mm on surfaces 16, 17, and 18, where it reaches 19.925 mm, 19.873 mm, and 19.962 mm. Surfaces 11 and 12, the rear of D3 and the front of L25, face each other across the 2.500 mm d11 air gap. Over the 18.7 mm they share, their combined sag is 2.276 mm, 0.9103 of the gap, which leaves 0.224 mm between the two rims; Figure 1 draws these two faces meeting at the rim. The data file sets `gapSagFrac` to 0.92 for that pair, the smallest two-decimal value that admits it, in place of the default 0.90. The iris limits the on-axis beam at both stations, which trace f/2.88 at 80 mm and f/2.89 at 196 mm. The 38.0 mm front semi-diameter is a modeling value; Nikon's later 77 mm filter specification supplies only a production mechanical upper bound, not a patent clear-aperture measurement.
+Semi-diameters are not tabulated by the patent. The data file therefore uses derived clear semi-diameters based on code-traced on-axis and off-axis rays across all four published states, the 21.6 mm image height, the patent optical section, mechanical constraints, and the current geometry checks. Surfaces 7, 9, 10, 12, 13, 15, 16, and 18 through 23 sit at the height the stated F/2.88 on-axis ray reaches at the 196 mm station, rounded up to 0.1 mm; that station needs more than the 80 mm station at every one of them. Three components that Figure 1 draws with a square-cut rim carry one value on every face, the highest any of their faces needs: L24 is 18.8 mm on surfaces 10 and 11, where the ray reaches 18.707 mm and 18.695 mm; L31 is 19.7 mm on surfaces 14 and 15, where it reaches 19.417 mm and 19.614 mm; and the cemented D4 is 20.0 mm on surfaces 16, 17, and 18, where it reaches 19.925 mm, 19.873 mm, and 19.962 mm. Surfaces 11 and 12, the rear of D3 and the front of L25, face each other across the 2.500 mm d11 air gap. Over the 18.7 mm they share, their combined sag is 2.276 mm, 0.9103 of the gap, which leaves 0.224 mm between the two rims; Figure 1 draws these two faces meeting at the rim. The data file sets `gapSagFrac` to 0.92 for that pair, the smallest two-decimal value that admits it, in place of the default 0.90. The iris limits the on-axis beam at both stations, which trace f/2.88 at 80 mm and f/2.880021 at 196 mm. The 38.0 mm front semi-diameter is a modeling value; Nikon's later 77 mm filter specification supplies only a production mechanical upper bound, not a patent clear-aperture measurement.
 
 All surfaces are spherical. `asph` is empty, so no aspheric equation, conic convention, coefficient scaling, or aspheric departure applies. No cover glass, filter, inactive dummy plane, flare cutter, or mechanical component is present in the sequential model. No scaling is applied to the patent prescription.
 
@@ -265,11 +265,19 @@ The final data file was recomputed from its actual TypeScript arrays with sequen
 
 The ABCD determinants are unity to floating-point precision. The surface-by-surface Petzval sum is +0.0008730952 mm^-1, corresponding to a signed Petzval radius of approximately +1145.35 mm in the adopted convention.
 
-The modeled stop gives F/2.88004081 at wide infinity and F/2.88006207 at tele infinity on the paraxial reading. Traced with the real marginal ray through the authored clear apertures, the on-axis beam is f/2.88 at 80 mm and f/2.89 at 196 mm, limited by the iris at both stations. The 21.6 mm image height gives paraxial infinity half-fields of 15.1096° and 6.2888°, consistent with Nikon's rounded production full angles of 30°10′ and 12°20′ without using those marketing angles to alter the patent prescription.
+The modeled stop gives F/2.88004081 at wide infinity and F/2.88006207 at tele infinity on the paraxial reading. Traced with the real marginal ray through the authored clear apertures, the on-axis beam is f/2.88 at 80 mm and f/2.880021 at 196 mm, limited by the iris at both stations. The 21.6 mm image height gives paraxial infinity half-fields of 15.1096° and 6.2888°, consistent with Nikon's rounded production full angles of 30°10′ and 12°20′ without using those marketing angles to alter the patent prescription.
 
 The authored semi-diameters pass the independent geometry gate across all four published states. The minimum element edge thickness is 0.261662 mm, at L12; the maximum actual spherical rim-slope angle is 30.914°, at surface 25; and the worst positive shared-gap sag intrusion is 0.910266 of the available gap, at the 2.500 mm d11 gap between D3 and L25, followed by 0.875508 at the 7.100 mm d8 gap between D2 and D3. The d11 pair is inside the 0.92 limit this file sets through `gapSagFrac`; the d8 pair is also below the default 0.90. The sampled 60%-field ray bundles do not use a cemented interface as a hidden first aperture.
 
-These checks establish numerical consistency of the analysis with the final data file. Repository-specific `buildLens()` validation, production render-trim diagnostics, and corpus tests remain integration-stage checks when the LensVisualizer repository is available.
+The current repository surface, circle, aperture and SVG checks are recorded in the fresh source reinspection below. Earlier independent calculations remain distinct from those runtime checks.
+
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `JP_S62108218_A.pdf`: Figure 1 on PDF page 10 at 600 dpi and native raster resolution; Table 3 on page 6; the d-line (587.6 nm) definition and shared-configuration statement on page 5; and the appended amendment on page 18. Figure 1 is the shared configuration illustrated for Example 1, not a separately dimensioned Example 3 section. All convex/concave faces and cemented steps were checked. The curves reach their body rims without a resolved additional exposed land, so no new cut or extension is justified. The existing 0.92 shared-gap check, all clear apertures, source radii/spacings, amended S17 thickness, fixed iris and focus/zoom controls are retained.
+
+All sixteen source nd/νd pairs remain exact. All sixteen current catalog curves are available and explicitly qualified as spectral proxies, including H-ZF7LA at the three previously labeled unresolved 805255 positions. No supplier, melt, C/F/g index, or partial-dispersion value is published. The three ED-role flags remain inferred production correlations, not source APD evidence. Current tracing gives iris-limited f/2.880000 and f/2.880021 at the two endpoints, with a 14.759220 mm fixed physical iris. The interpolated middle close state is not a published conjugate.
+
+Surface/circle checks pass; all four catalog stations reach at least 99% of the format corner; nine actual SVG states have sixteen finite paths and zero trim. Full-iris axial sampling at the two published close endpoint conjugates passes 25/25 each; the interpolated middle also passes. All source/catalog checks and shared glass suites pass (94 tests).
 
 ## Sources / References
 

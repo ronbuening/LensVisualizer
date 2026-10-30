@@ -20,7 +20,7 @@
  *   with the stop 8–12 units behind r7 (RMS misfit 0.010–0.018 mm for Examples 1–3), whereas a stop in the
  *   2.8 mm d4 gap misses them by 0.075–0.078 mm RMS in all three examples; distortion is insensitive to it.
  *   The position carries roughly ±3 mm of uncertainty. The stop radius is derived from the design f-number,
- *   f/2.8; the traced marginal-ray height at that plane is 13.52 mm, not a published iris diameter.
+ *   f/2.8; the current runtime iris radius at that plane is 13.328008 mm, not a published iris diameter.
  *
  * NOTE ON SEMI-DIAMETERS:
  *   All sd values are estimates. Fig. 1 (one schematic drawing for all three examples; its vertex spacings
@@ -32,6 +32,9 @@
  *   Surfaces 1, 2 = 24.8 (middle of the figure bracket, clears the axial beam, inside the 52 mm filter
  *   thread); 4, 5, 6 = 19.2 (figure rim × 0.97); 8, 9 = 14.5 (figure). Surfaces 3 (22.0) and 7 (16.5) keep
  *   the earlier estimates, which agree with the figure within 15 % and clear the axial beam.
+ *
+ * Fresh Figure 1 reinspection: exposed S4 and S7 retain caps 19.2/16.5 mm and draw lands
+ * to existing outer rims 22.0/19.2 mm. Cemented S6 retains its continuous interface.
  *
  * Focusing:    Unit focus (entire optical assembly translates); the patent publishes no finite-distance
  *              data. The close-focus back focus is calculated for the production 1.3 m film-to-subject
@@ -76,7 +79,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 104.3,
-      glass: "S-BSM16 (OHARA)",
+      glass: "S-BSM16 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Front positive meniscus — primary converging power, low-dispersion crown minimises chromatic contribution",
     },
@@ -88,7 +91,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 105.7,
-      glass: "S-BSM16 (OHARA)",
+      glass: "S-BSM16 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Added by Matsui to the classical Ernostar — splits front-group power to reduce SA and coma at f/2.8",
     },
@@ -100,7 +103,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       focalLengthMm: 74.1,
-      glass: "SF56A (Schott catalog-equivalent, 785261; production supplier unspecified)",
+      glass: "SF56A (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Positive element of cemented doublet — directs g-line SA toward undercorrection per patent Condition II",
       cemented: "D1",
@@ -113,7 +116,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.2,
       focalLengthMm: -26.7,
-      glass: "FD3 (HOYA catalog-equivalent, 740282; production supplier unspecified)",
+      glass: "FD3 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Strongest element — primary negative power, field-flattening Petzval contribution, spherochromatism partner to L3",
       cemented: "D1",
@@ -126,7 +129,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.3,
       focalLengthMm: 172.0,
-      glass: "E-FD10 (HOYA catalog-equivalent, 728283; SF10 type, production supplier unspecified)",
+      glass: "E-FD10 (catalog-compatible spectral proxy; production supplier unresolved)",
       apd: false,
       role: "Rear corrector — isolated by large air gap for distortion and coma correction per patent Condition I",
     },
@@ -139,12 +142,12 @@ const LENS_DATA = {
 
     // ── L2: Positive meniscus (second crown) ──
     { label: "3", R: 38.85, d: 13.001, sd: 22.0, medium: 2 },
-    { label: "4", R: 83.151, d: 2.8, sd: 19.2 },
+    { label: "4", R: 83.151, d: 2.8, sd: 19.2, rimExtensionSd: 22.0 },
 
     // ── L3+L4: Cemented doublet (negative meniscus member) ──
     { label: "5", R: 213.133, d: 4.699, sd: 19.2, medium: 3 },
     { label: "6", R: -79.16, d: 1.5, sd: 19.2, medium: 4 },
-    { label: "7", R: 26.482, d: 13.5, sd: 16.5 },
+    { label: "7", R: 26.482, d: 13.5, sd: 16.5, rimExtensionSd: 19.2 },
 
     // ── Aperture stop (not in the patent; inferred inside d7 — see NOTE ON THE STOP) ──
     { label: "STO", R: "flat", d: 21.2 },
