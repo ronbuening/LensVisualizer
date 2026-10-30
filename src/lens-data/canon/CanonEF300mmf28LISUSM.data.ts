@@ -1,43 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF 300mm f/2.8 L IS USM                                 ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 6,115,188 A, Numerical Example 1 (Nishio, Ogawa, Misaka; Canon).║
- * ║ Product correlation: Canon EF 300mm f/2.8L IS USM, marketed July 1999.     ║
- * ║ Active model: 15 refractive elements / 11 air-separated groups; spherical.   ║
- * ║ Canon's 17/13 production count includes a front protection glass and the     ║
- * ║ standard rear filter. The protection glass is not numerically specified in   ║
- * ║ Example 1. The rear filter R28-R29 (2.00 mm, nd 1.516330, νd 64.1) is drawn  ║
- * ║ as a plane-parallel plate element, not counted in elementCount; its          ║
- * ║ semi-diameter is a ray-trace estimate (the patent lists none). R27 keeps the ║
- * ║ printed D27 = 8.00 mm. The patent prints D29 = 0.00 rather than a back       ║
- * ║ focus, so the 59.3221048 mm filter-to-image air is derived from the file's   ║
- * ║ paraxial image plane: 8.00 + 2.00/1.51633 + 59.3221048 = 68.641078902 mm     ║
- * ║ air-equivalent R27-to-image spacing.                                         ║
- * ║                                                                              ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes only the     ║
- * ║ direction of L2 focus travel. The close endpoint solves a rigid imageward   ║
- * ║ translation of L2 to Canon's marketed 2.5 m MFD, measured from image plane  ║
- * ║ to object. D10 + D13 remains 67.11 mm. This gives 14.743206096 mm L2 travel  ║
- * ║ and |m| = 0.135695; Canon's 0.13× figure is a rounded product specification. ║
- * ║ The solve used the air-equivalent track; with the physical filter the same   ║
- * ║ object sits 2.500681 m from the image plane (closeFocusM keeps Canon's 2.5). ║
- * ║                                                                              ║
- * ║ Semi-diameters are modeling values, not patent table values. They were      ║
- * ║ derived from the f/2.9 stop-constrained marginal ray, the reconstructed     ║
- * ║ close-focus marginal ray, the Fig. 1 optical section, and the production    ║
- * ║ barrel envelope. The thin R4-R5 and R20-R21 gaps require gapSagFrac = 0.96; ║
- * ║ both remain physically separated at the modeled rims in every focus state. ║
- * ║                                                                              ║
- * ║ The patent supplies nd and νd only. nC, nF, ng, and dPgF are intentionally  ║
- * ║ omitted: vendor identity is non-unique, so representative catalog line data ║
- * ║ would introduce false precision. Glass labels therefore remain classes or   ║
- * ║ six-digit coordinate codes except for the manufacturer-backed fluorite      ║
- * ║ correlation, represented spectrally by the catalog CaF2 curve without       ║
- * ║ asserting a production melt identity.                                       ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * Canon EF 300mm f/2.8L IS USM — US 6,115,188 A, Numerical Example 1.
+ * Native source prescription: PDF pp. 68–69 (cols. 12–13), Fig. 1: PDF p. 3, sheet 1. All source R/d, stop position,
+ * source filter and reconstructed L2 focus trajectories remain unchanged. Existing 59.3221048 mm filter-to-image
+ * distance stays independently derived because printed D29 = 0.00 is not a physical back focus.
+ *
+ * Original Ni/νi definitions do not identify their spectral reference. All 16 source media, including filter FL,
+ * remain Unmatched with explicit approximate d-line tracing. Historical material, supplier and melt are unresolved.
+ * The production fluorite/UD association remains qualified correlation; it does not establish this source's wavelength.
+ * No per-lens line index, partial-dispersion override or APD evidence is published or invented.
+ *
+ * No numerical clear diameters are printed. Inferred heights follow native Fig. 1 at about 5.35 px/mm with practical
+ * uncertainty ±0.8 mm. S10 has a resolved rear shoulder; S20/21 retain gap-constrained clear caps and add the resolved
+ * opposed outer shoulders. No opaque bonded land, resin wing or inferred cut is added. Existing gapSagFrac 0.96
+ * remains unchanged for the thin R4–R5 and R20–R21 gaps; it is not increased to obtain a passing fit.
+ *
+ * Table 1 condition (5), 0.828, does not follow literal f/f3 = 1.152326 and remains unresolved in source.errata.
+ * The certificate does not alter Example 1. IS remains a centered model: no source physical actuator stroke is encoded.
+ * The source's 0.3-degree displaced-image plots are not a production lateral-travel specification.
  */
 
 const LENS_DATA = {
@@ -70,6 +51,12 @@ const LENS_DATA = {
     patentYear: 2000,
     authors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Table 1, Numerical Example 1 (PDF p. 72, printed col. 19), lists condition (5) f/f3=0.828, while literal R15–R27 give f3=254.788656 mm and f/f3=1.152326 using the model's 293.599594 mm EFL. Source equations (5)/(5a), PDF pp. 67–68, identify the same f/f3 convention. The certificate of correction (PDF pp. 82–83) does not amend this factor or an Example 1 prescription row. Source R/d is retained; the cause is unresolved and no coefficient is tuned to fit the table.",
+      },
+    ],
   },
 
   elements: [
@@ -81,7 +68,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 193.47696,
-      glass: "497815 — UD-class low-dispersion crown (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)",
       role: "Positive front collector in L1; correlated with one of the production lens's two UD elements.",
     },
     {
@@ -92,7 +80,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 218.62316,
-      glass: "497815 — UD-class low-dispersion crown (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)",
       role: "Second positive low-dispersion element in L1; correlated with the other production UD element.",
     },
     {
@@ -103,7 +92,8 @@ const LENS_DATA = {
       nd: 1.785896,
       vd: 44.2,
       focalLengthMm: -114.74478,
-      glass: "786442 — high-index lanthanum glass class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.785896, ν=44.2; spectral reference unspecified)",
       role: "Negative correction element in the positive L1 front unit.",
     },
     {
@@ -114,7 +104,8 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       focalLengthMm: 158.49796,
-      glass: "Fluorite (CaF2 coefficient proxy; Canon product correlation)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (production fluorite correlation; source n=1.43387, ν=95.1; spectral reference unspecified)",
       role: "Positive L1 element; the production lens's fluorite element provides the manufacturer-backed material correlation.",
     },
     {
@@ -125,7 +116,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -466.48479,
-      glass: "487702 — high-Abbe crown class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.48749, ν=70.2; spectral reference unspecified)",
       role: "Weak negative rear element of L1 preceding the inner-focus unit.",
     },
     {
@@ -136,7 +128,8 @@ const LENS_DATA = {
       nd: 1.805181,
       vd: 25.4,
       focalLengthMm: 125.83165,
-      glass: "805254 — dense-flint class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.805181, ν=25.4; spectral reference unspecified)",
       role: "Positive component of the cemented negative L2 focusing doublet.",
       cemented: "L2",
     },
@@ -148,7 +141,8 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -59.90749,
-      glass: "835427 — high-index lanthanum class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.834807, ν=42.7; spectral reference unspecified)",
       role: "Negative component that makes the cemented L2 group net negative for inner focusing.",
       cemented: "L2",
     },
@@ -160,7 +154,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: -76.187,
-      glass: "847239 — high-index flint class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)",
       role: "Negative component of the net-positive L31 cemented subunit.",
       cemented: "L31",
     },
@@ -172,7 +167,8 @@ const LENS_DATA = {
       nd: 1.719995,
       vd: 50.2,
       focalLengthMm: 43.10923,
-      glass: "720502 — lanthanum crown class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)",
       role: "Strong positive component of L31, immediately behind the aperture stop.",
       cemented: "L31",
     },
@@ -184,7 +180,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: 66.28386,
-      glass: "847239 — high-index flint class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)",
       role: "Positive component of the cemented pair within the transversely movable L32 IS subunit.",
       cemented: "L32a",
     },
@@ -196,7 +193,8 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       focalLengthMm: -43.96039,
-      glass: "603606 — crown class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.603112, ν=60.6; spectral reference unspecified)",
       role: "Negative component of the L32 cemented pair and front boundary of the patent's biconvex air lens.",
       cemented: "L32a",
     },
@@ -208,7 +206,8 @@ const LENS_DATA = {
       nd: 1.772499,
       vd: 49.6,
       focalLengthMm: -45.60909,
-      glass: "772496 — high-index lanthanum glass class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.772499, ν=49.6; spectral reference unspecified)",
       role: "Second negative element of L32 and rear boundary of the biconvex air lens.",
     },
     {
@@ -219,7 +218,8 @@ const LENS_DATA = {
       nd: 1.719995,
       vd: 50.2,
       focalLengthMm: 37.81764,
-      glass: "720502 — lanthanum crown class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)",
       role: "Strong positive component at the front of the positive L33 rear subunit.",
       cemented: "L33a",
     },
@@ -231,7 +231,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -64.09925,
-      glass: "834372 — high-index lanthanum flint class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.834, ν=37.2; spectral reference unspecified)",
       role: "Negative cemented partner within L33.",
       cemented: "L33a",
     },
@@ -243,7 +244,8 @@ const LENS_DATA = {
       nd: 1.696797,
       vd: 55.5,
       focalLengthMm: 117.32398,
-      glass: "697555 — lanthanum crown class (vendor unresolved)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.696797, ν=55.5; spectral reference unspecified)",
       role: "Final positive element of L33; its plane rear surface precedes the 8.00 mm air gap to the rear filter FL.",
     },
     {
@@ -253,44 +255,45 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      glass: "S-BSL7 (OHARA)",
+      indexReferenceNote: "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
+      glass: "Unmatched (source n=1.51633, ν=64.1; spectral reference unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 1 R28–R29), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 130.154, d: 16.56, sd: 55.0, medium: 1 },
-    { label: "2", R: -352.589, d: 14.11, sd: 53.0 },
-    { label: "3", R: 96.004, d: 11.02, sd: 49.0, medium: 2 },
-    { label: "4", R: 793.095, d: 4.07, sd: 45.0 },
+    { label: "1", R: 130.154, d: 16.56, sd: 51.5, medium: 1 },
+    { label: "2", R: -352.589, d: 14.11, sd: 51.5 },
+    { label: "3", R: 96.004, d: 11.02, sd: 44.0, medium: 2 },
+    { label: "4", R: 793.095, d: 4.07, sd: 44.0 },
     { label: "5", R: -311.697, d: 4.0, sd: 41.7, medium: 3 },
     { label: "6", R: 127.604, d: 0.15, sd: 42.0 },
-    { label: "7", R: 79.467, d: 13.88, sd: 42.0, medium: 4 },
+    { label: "7", R: 79.467, d: 13.88, sd: 39.0, medium: 4 },
     { label: "8", R: -483.755, d: 0.17, sd: 39.0 },
-    { label: "9", R: 51.083, d: 5.9, sd: 39.0, medium: 5 },
-    { label: "10", R: 40.134, sd: 35.5 },
-    { label: "11", R: 1686.885, d: 4.61, sd: 27.0, medium: 6 },
-    { label: "12", R: -107.66, d: 2.2, sd: 26.5, medium: 7 },
-    { label: "13", R: 94.265, sd: 26.0 },
+    { label: "9", R: 51.083, d: 5.9, sd: 33.5, medium: 5 },
+    { label: "10", R: 40.134, sd: 30.0, rimExtensionSd: 33.5 },
+    { label: "11", R: 1686.885, d: 4.61, sd: 24.5, medium: 6 },
+    { label: "12", R: -107.66, d: 2.2, sd: 24.5, medium: 7 },
+    { label: "13", R: 94.265, sd: 24.5 },
     { label: "STO", R: "flat", d: 8.51 },
-    { label: "15", R: 79.49, d: 1.8, sd: 20.0, medium: 8 },
-    { label: "16", R: 35.239, d: 7.2, sd: 20.0, medium: 9 },
-    { label: "17", R: -238.114, d: 0.95, sd: 19.5 },
-    { label: "18", R: 129.72, d: 4.25, sd: 19.5, medium: 10 },
-    { label: "19", R: -97.425, d: 1.65, sd: 18.5, medium: 11 },
-    { label: "20", R: 36.658, d: 5.52, sd: 15.85 },
-    { label: "21", R: -76.051, d: 1.6, sd: 15.85, medium: 12 },
-    { label: "22", R: 66.247, d: 2.82, sd: 18.0 },
-    { label: "23", R: 78.646, d: 9.3, sd: 20.5, medium: 13 },
-    { label: "24", R: -39.586, d: 1.8, sd: 20.5, medium: 14 },
-    { label: "25", R: -155.699, d: 4.0, sd: 20.5 },
-    { label: "26", R: 81.751, d: 5.5, sd: 22.0, medium: 15 },
-    { label: "27", R: "flat", d: 8.0, sd: 22.0 },
+    { label: "15", R: 79.49, d: 1.8, sd: 17.5, medium: 8 },
+    { label: "16", R: 35.239, d: 7.2, sd: 17.5, medium: 9 },
+    { label: "17", R: -238.114, d: 0.95, sd: 17.5 },
+    { label: "18", R: 129.72, d: 4.25, sd: 17.0, medium: 10 },
+    { label: "19", R: -97.425, d: 1.65, sd: 17.0, medium: 11 },
+    { label: "20", R: 36.658, d: 5.52, sd: 15.85, rimExtensionSd: 17.0 },
+    { label: "21", R: -76.051, d: 1.6, sd: 15.85, rimExtensionSd: 17.0, medium: 12 },
+    { label: "22", R: 66.247, d: 2.82, sd: 17.0 },
+    { label: "23", R: 78.646, d: 9.3, sd: 19.0, medium: 13 },
+    { label: "24", R: -39.586, d: 1.8, sd: 19.0, medium: 14 },
+    { label: "25", R: -155.699, d: 4.0, sd: 19.0 },
+    { label: "26", R: 81.751, d: 5.5, sd: 21.0, medium: 15 },
+    { label: "27", R: "flat", d: 8.0, sd: 21.0 },
     // Drop-in filter FL (US 6,115,188 A, Numerical Example 1 R28–R29), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: D29 = 0.00 printed; gap after derived from the paraxial image plane
-    { label: "28", R: "flat", d: 2.0, sd: 22, medium: 16 },
-    { label: "29", R: "flat", d: 59.3221048, sd: 22 }, // drop-in filter → image plane
+    { label: "28", R: "flat", d: 2.0, sd: 25.0, medium: 16 },
+    { label: "29", R: "flat", d: 59.3221048, sd: 25.0 }, // drop-in filter → image plane
   ],
 
   focus: {

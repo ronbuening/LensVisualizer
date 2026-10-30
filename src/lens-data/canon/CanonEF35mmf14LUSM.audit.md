@@ -1,0 +1,62 @@
+# Canon EF 35mm f/1.4 L USM Audit
+
+## 2026-10-30 — Original-PDF shape and glass review
+
+Directly inspected `patents/JP_H11211978_A.pdf`, JP H11-211978 A, published August 6, 1999, Yasunori Murata / Makoto Misaka / Canon Inc. SHA-256: `5a6080f5d3627cbcfb6a5d98816ac6f35acdf7a8a86d5712c7fa05ca3113ce7c`. Numerical Example 1, PDF page 5, prints all R/d and eleven medium pairs, the S17 asphere and focus Table 1. Paragraph 0030 / PDF page 4 defines the prescription notation; ¶0031 gives the asphere convention. Figure 1 is PDF page 8; Figure 6(A/B), PDF page 10, gives infinity/300 mm aberrations. Paragraphs 0011/0013 on PDF page 3 define the two focus states and fixed L1 / moving L2 and L3, with the stop traveling with L3. The conditional Table-1 on PDF page 7 is distinct from focus Table 1 on page 5.
+
+The original embeds twelve 1656 × 2339 one-bit pages at native 200 ppi. Native figures and tables were inspected; enlarged viewing is magnification only. Approximately 379 native pixels span the 85.64 mm optical stack in Figure 1, about 4.43 px/mm. Practical inferred cap-height reading uncertainty is approximately ±1.5 mm; larger schematic differences and conservative cap anchors are separate qualifications. Brackets, motion arrows, the fixed-support symbol, leaders and stop symbol are excluded. Neither a production filter dimension nor another drawing substitutes for the original.
+
+### Retained source correction, independently formalized
+
+The native Example 1 cell visibly prints r11 = +72.820 mm. The existing model already uses −72.820 mm; this review changes no numerical radius. The correction is now recorded in all required places: header, inline surface comment, structured corrected `source.errata`, analysis and this audit.
+
+Two independent original evidence kinds support the retained sign:
+
+| Original evidence kind |      Printed +72.820 mm |      Applied −72.820 mm | Source requirement                                                            |
+| ---------------------- | ----------------------: | ----------------------: | ----------------------------------------------------------------------------- |
+| `source-summary`       | System EFL 26.892639 mm | System EFL 34.294832 mm | Numerical Example 1 heading, PDF page 5, f = 34.3 mm                          |
+| `claims`               |   L2b EFL +52.755075 mm |  L2b EFL −277.776682 mm | Claim 1, PDF page 2, explicitly requires negative L2b; ¶0012 repeats its sign |
+
+The source claim is an actual structural condition violated by the printed radius, not an invented condition or product comparison. Multiple paraxial implementations are verification methods, not different source evidence kinds. No family publication, previous note or catalog glass supplies the replacement. The applied correction is retained separately from new shape/glass work.
+
+### Shape disposition and retained constraints
+
+All eleven elements, every concave end, cemented interfaces S12/S16 and the single S17A asphere were inspected. The source does not publish clear diameters. Four inferred clear-cap fields now follow the original contour:
+
+| Surface(s) | Earlier clear sd |           Reviewed clear sd / outer rim | Disposition                                                                            |
+| ---------- | ---------------: | --------------------------------------: | -------------------------------------------------------------------------------------- |
+| S2         |          22.0 mm | clear 22.0 mm; `rimExtensionSd` 25.0 mm | Resolved rear shoulder of first negative meniscus; conservative existing S1 cap anchor |
+| S3 / S4    |   21.5 / 20.5 mm |                          23.0 / 23.0 mm | Second negative meniscus's resolved common height and curved rear cap                  |
+| S9         |          18.5 mm |                                 17.0 mm | Weak negative E5 follows common source height with existing S10 cap                    |
+| S15        |          13.5 mm | clear 13.5 mm; `rimExtensionSd` 14.2 mm | Resolved front shoulder of rear doublet; conservative existing bonded-cap anchor       |
+| S21        |          22.0 mm |                                 18.0 mm | Final meniscus's curved cap follows the source height and existing S20 cap             |
+
+Two shoulders and zero inferred cuts are authored. All current R/d, asphere coefficients, stops and source focus endpoint gaps remain; no equal-height block is invented at either bonded interface. No separate resin/hybrid layer, cement medium, source filter or rear plate is tabulated.
+
+A larger S2 optical cap trial at 23.5 mm, suggested by the schematic curved outline, is rejected: S2→S3 intrusion is 6.72 mm against 6.219 mm allowed in the 6.910 mm printed gap. The 22.0 mm optical cap remains and the visible outer blank is handled separately. Full bonded blanks are not expanded through their curved interfaces. The near-flat S13 and continuous S6/S8/S17A/S19 profiles do not independently resolve further shoulders at this native scale. These are inferred optical caps and conservative outer anchors, not a mechanical blank measurement.
+
+The source asphere table gives R = −65.3464 mm, K = +2.39046 and B/C/D values mapped to A4/A6/A8; the main row rounds R to −65.346. Its separate quadratic A is printed zero. The equation contains E·y^10 but Example 1 does not print E. The existing A10 = 0 remains an explicit modeling assumption, not a source zero or a newly corrected coefficient. A12/A14 are schema completion beyond the printed equation. This underdetermined higher term qualifies source/profile fidelity; it is not silently fitted to the figure or runtime rays.
+
+### Every modeled medium
+
+Paragraph 0030 defines Ni and νi without naming a spectral reference. The complete source supplies d/g/C aberration labels as context but does not independently link those prescription coordinates to a d-line. Every numeric pair and the current d-line convention remain with `indexReferenceNote` explaining the approximation; every medium is Unmatched. This qualifies source uncertainty, not a claim that conventional d inference is wrong.
+
+| Elements  | Source index / Abbe | Prior conditional comparison   | Current disposition |
+| --------- | ------------------: | ------------------------------ | ------------------- |
+| E1 / E2   |      1.58313 / 59.4 | 583594/595 class               | Unmatched           |
+| E3 / E4   |      1.71300 / 53.8 | 713538/539/540 class           | Unmatched           |
+| E5        |      1.51633 / 64.2 | 516641/642 class               | Unmatched           |
+| E6 / E9   |      1.83481 / 42.7 | 835427 class                   | Unmatched           |
+| E7        |      1.63980 / 34.5 | S-TIM27 coefficient comparison | Unmatched           |
+| E8        |      1.80518 / 25.4 | 805254/255 class               | Unmatched           |
+| E10 / E11 |      1.77250 / 49.6 | 773496 class                   | Unmatched           |
+
+Eleven previously active catalog curves are disabled. No C/F/g indices, relative partial-dispersion values or APD evidence are published or authored; no genuine source spectral value or per-lens override is removed. Prior classes/names remain disabled conditional comparisons, not evidence of historical supplier, melt, chemistry or manufacturing route. Data labels, every per-element glass claim and the consolidated analysis agree. No source APO claim is made.
+
+### Focus, beam and actual SVG verification
+
+Surface, image-circle, infinity aperture-census and full-frame corner-field checks pass. The stop stays derived/paraxial at the published nominal f/1.45, radius 12.592601 mm; a source physical iris diameter is not printed. Actual aimed working f-number is 1.457525 at infinity, 1.522935 at focus 0.5 and 1.588318 at the published close configuration. Finite-conjugate working values are separate from the nominal aperture control.
+
+Across 21 focus positions and nine apertures all 189 working-ray calls trace; baseline/candidate values are identical. An aimed 193-point circular-pupil probe at axial, half-field and corner fields over all 21 positions traces every axial sample, and every chief is aimed/valid. Off-axis vignetting remains: infinity corner count 91→86 of 193; close count 125→123. Source-height refinement is not presented as full-pupil production illumination. Source supplies two endpoint gap sets, while intermediate positions remain linear interpolation rather than a complete measured cam. The computed rear gap preserves one fixed image plane and is not a printed BF row.
+
+Actual infinity, mid and close-focus SVGs were compared with Figure 1. Twenty-one states produce 231 finite, singly connected, closed element paths with zero hidden trimming; corner aiming reaches about 21.65 mm. No inferred cut requires a beam exemption or cut probe. Source fidelity, sampled runtime behavior, the unprinted E/A10 assumption, unspecified spectral reference and production correlation remain separate conclusions.

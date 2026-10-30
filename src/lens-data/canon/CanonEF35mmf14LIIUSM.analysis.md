@@ -9,7 +9,7 @@
 **Published:** April 9, 2015\
 **Inventor:** Takashi Shirasuna\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Optical System and Image Pickup Apparatus Including the Same*\
+**Title:** _Optical System and Image Pickup Apparatus Including the Same_\
 **Example details:** Numerical Example 2
 
 The prescription is Numerical Example 2 of US 2015/0098138 A1. The patent defines a fixed-focal-length optical system
@@ -56,11 +56,11 @@ surfaces 14–26 and also contains seven elements; within it, L2a precedes the a
 paraxial calculation from the modeled prescription gives:
 
 | Unit | Surfaces | Computed focal length |
-|---|---|---:|
-| L1 | 1–13 | +147.6794221101 mm |
-| L2 | 14–26 | +55.5161024580 mm |
-| L2a | 14–18 | +409.0663712735 mm |
-| L2b | 20–26 | +49.0858071830 mm |
+| ---- | -------- | --------------------: |
+| L1   | 1–13     |    +147.6794221101 mm |
+| L2   | 14–26    |     +55.5161024580 mm |
+| L2a  | 14–18    |    +409.0663712735 mm |
+| L2b  | 20–26    |     +49.0858071830 mm |
 
 These are complete-unit paraxial focal lengths derived from each unit's full matrix with air on both sides. They are
 distinct from the standalone focal lengths of individual elements and from the net powers of cemented pairs. L2a is
@@ -87,7 +87,7 @@ give positive edge thickness throughout and no geometry failure at either modele
 
 ### E1 — Negative Meniscus, rear asphere
 
-**nd = 1.58313, νd = 59.4. Glass: 583594 BAL42 class; OHARA S-BAL42 spectral proxy, patent vendor unresolved. Standalone f = -88.6325 mm.**
+**nd = 1.58313, νd = 59.4. Glass: OHARA S-BAL42 spectral proxy, patent vendor unresolved. Standalone f = -88.6325 mm.**
 
 E1 is the object-side negative meniscus specified by the patent as the first component of L1. Its convex object-side
 face and negative standalone power establish the initial retrofocus divergence. The rear face, surface 2A, is
@@ -99,7 +99,7 @@ air gap and the other six L1 elements.
 
 ### E2 — Biconcave Negative
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 FSL5/FK5 class; OHARA S-FSL5 spectral proxy, patent vendor unresolved. Standalone f = -70.4267 mm.**
+**nd = 1.48749, νd = 70.2. Glass: OHARA S-FSL5 spectral proxy, patent vendor unresolved. Standalone f = -70.4267 mm.**
 
 E2 is the second negative component of L1. Together with E1 and E4 it distributes the front negative power rather than
 placing the entire retrofocus burden on one surface. This agrees with the patent's stated preference for three or more
@@ -107,7 +107,7 @@ negative lenses in L1 so that the negative power is shared and aberration growth
 
 ### E3 — Biconvex Positive
 
-**nd = 1.91082, νd = 35.3. Glass: 911353 high-index low-dispersion class; CDGM H-ZLaF4LA spectral proxy, patent vendor unresolved. Standalone f = +53.9774 mm.**
+**nd = 1.91082, νd = 35.3. Glass: CDGM H-ZLaF4LA spectral proxy, patent vendor unresolved. Standalone f = +53.9774 mm.**
 
 E3 is the first positive lens in L1. It begins the re-convergence of the strongly diverged front-group beam while the
 unit as a whole remains arranged in retrofocus form. Its high refractive index allows substantial positive standalone
@@ -116,7 +116,7 @@ fact.
 
 ### E4 — Biconcave Negative
 
-**nd = 1.53172, νd = 48.8. Glass: 532488 TIL6/LLF6/QF6A class; OHARA S-TIL6 spectral proxy, patent vendor unresolved. Standalone f = -57.9340 mm.**
+**nd = 1.53172, νd = 48.8. Glass: OHARA S-TIL6 spectral proxy, patent vendor unresolved. Standalone f = -57.9340 mm.**
 
 E4 is the third negative lens in L1. It completes the patent's front-heavy distribution of negative power before the
 rear positive portion of L1. Its position immediately ahead of the final two positive groups in L1 places it at the
@@ -124,8 +124,8 @@ transition between the strongly retrofocus front section and the rear converging
 
 ### D1 — E5 + E6 cemented pair
 
-**E5: nd = 1.49700, νd = 81.5. Glass: 497816 FPL51/FCD1 class; OHARA S-FPL51 spectral proxy. Standalone f = +87.9674 mm.**\
-**E6: nd = 1.80518, νd = 25.4. Glass: 805254 TIH6/SF6 class; OHARA S-TIH6 spectral proxy. Standalone f = -107.0205 mm.**
+**E5: nd = 1.49700, νd = 81.5. Glass: OHARA S-FPL51 spectral proxy. Standalone f = +87.9674 mm.**\
+**E6: nd = 1.80518, νd = 25.4. Glass: OHARA S-TIH6 spectral proxy. Standalone f = -107.0205 mm.**
 
 E5 and E6 form the first cemented pair. The patent describes this portion of Example 2 as a cemented positive lens made
 from a positive element and a negative element (¶0058). E5 is the second positive lens counted from the image side
@@ -140,7 +140,7 @@ generated elsewhere in the system (¶¶0039–0043).
 
 ### E7 — Biconvex Positive
 
-**nd = 1.72916, νd = 54.7. Glass: 729547 LAL18/TAC8 class; OHARA S-LAL18 spectral proxy, patent vendor unresolved. Standalone f = +49.5865 mm.**
+**nd = 1.72916, νd = 54.7. Glass: OHARA S-LAL18 spectral proxy, patent vendor unresolved. Standalone f = +49.5865 mm.**
 
 E7 is the final element of L1 and the first positive lens counted from the image side within that unit. It follows D1
 with only a 0.20 mm air interval and supplies strong positive standalone power near the L1/L2 boundary. Together with
@@ -149,7 +149,7 @@ region of L1.
 
 ### E8 — Biconvex Positive
 
-**nd = 1.91082, νd = 35.3. Glass: 911353 high-index low-dispersion class; CDGM H-ZLaF4LA spectral proxy, patent vendor unresolved. Standalone f = +50.2426 mm.**
+**nd = 1.91082, νd = 35.3. Glass: CDGM H-ZLaF4LA spectral proxy, patent vendor unresolved. Standalone f = +50.2426 mm.**
 
 E8 begins L2a, the front sub-unit of the focusing unit. It has substantial positive standalone power, but L2a's net
 power is much weaker because the following cemented pair includes a strong negative component. This distinction is
@@ -157,8 +157,8 @@ important: E8's isolated focal length does not describe the net behavior of L2a.
 
 ### D2 — E9 + E10 cemented pair
 
-**E9: nd = 1.49700, νd = 81.5. Glass: 497816 FPL51/FCD1 class; OHARA S-FPL51 spectral proxy. Standalone f = +99.4960 mm.**\
-**E10: nd = 1.65412, νd = 39.7. Glass: 654397 NBH5/KZFS5 class; OHARA S-NBH5 spectral proxy. Standalone f = -31.8110 mm.**
+**E9: nd = 1.49700, νd = 81.5. Glass: OHARA S-FPL51 spectral proxy. Standalone f = +99.4960 mm.**\
+**E10: nd = 1.65412, νd = 39.7. Glass: OHARA S-NBH5 spectral proxy. Standalone f = -31.8110 mm.**
 
 D2 closes L2a immediately ahead of the stop. E10 is much stronger as an isolated negative element than E9 is as an
 isolated positive element. The complete cemented pair has a net focal length of **-47.7755 mm**, so D2 is negative even
@@ -168,8 +168,8 @@ refraction around the stop (¶0037).
 
 ### D3 — E11 + E12 cemented pair
 
-**E11: nd = 1.80518, νd = 25.4. Glass: 805254 TIH6/SF6 class; OHARA S-TIH6 spectral proxy. Standalone f = -32.8450 mm.**\
-**E12: nd = 1.72916, νd = 54.7. Glass: 729547 LAL18/TAC8 class; OHARA S-LAL18 spectral proxy. Standalone f = +283.9316 mm.**
+**E11: nd = 1.80518, νd = 25.4. Glass: OHARA S-TIH6 spectral proxy. Standalone f = -32.8450 mm.**\
+**E12: nd = 1.72916, νd = 54.7. Glass: OHARA S-LAL18 spectral proxy. Standalone f = +283.9316 mm.**
 
 D3 begins immediately behind the aperture stop. E11 is a strong negative meniscus, while E12 is a weak positive
 meniscus when isolated in air. The complete cemented pair has a net focal length of **-38.0035 mm**. The object-side
@@ -179,7 +179,7 @@ through high order (¶0037), while later positive power restores the net-positiv
 
 ### E13 — Biconvex Positive
 
-**nd = 1.59522, νd = 67.7. Glass: 595677 FPM2 class; OHARA S-FPM2 spectral proxy, patent vendor unresolved. Standalone f = +41.2795 mm.**
+**nd = 1.59522, νd = 67.7. Glass: OHARA S-FPM2 spectral proxy, patent vendor unresolved. Standalone f = +41.2795 mm.**
 
 E13 provides the strongest positive standalone power in the rear part of L2b after D3. It helps re-converge the beam
 after the strong post-stop negative section and contributes to L2b's computed positive net focal length of
@@ -188,7 +188,7 @@ spectral proxy.
 
 ### E14 — Positive Meniscus, front asphere
 
-**nd = 1.85400, νd = 40.4. Glass: 854404 LAH85V class; OHARA L-LAH85V spectral proxy, patent vendor unresolved. Standalone f = +66.5997 mm.**
+**nd = 1.85400, νd = 40.4. Glass: OHARA L-LAH85V spectral proxy, patent vendor unresolved. Standalone f = +66.5997 mm.**
 
 E14 is the final positive meniscus and carries the second aspherical surface, 25A, on its object-side face. It completes
 the positive rear unit and shapes the final converging bundle before the 39.00 mm published back-focus interval. The
@@ -203,18 +203,18 @@ production material identifications.
 
 The ten distinct patent coordinate pairs are represented as follows:
 
-| Patent nd / νd | Elements | Data-file class | Spectral proxy | Catalog residual Δnd / Δνd |
-|---|---|---|---|---:|
-| 1.58313 / 59.4 | E1 | 583594 BAL42 class | OHARA S-BAL42 | 0.00000 / -0.02 |
-| 1.48749 / 70.2 | E2 | 487702 FSL5/FK5 class | OHARA S-FSL5 | 0.00000 / +0.03 |
-| 1.91082 / 35.3 | E3, E8 | 911353 high-index low-dispersion class | CDGM H-ZLaF4LA | 0.00000 / -0.05 |
-| 1.53172 / 48.8 | E4 | 532488 TIL6/LLF6/QF6A class | OHARA S-TIL6 | 0.00000 / +0.04 |
-| 1.49700 / 81.5 | E5, E9 | 497816 FPL51/FCD1 class | OHARA S-FPL51 | 0.00000 / +0.04 |
-| 1.80518 / 25.4 | E6, E11 | 805254 TIH6/SF6 class | OHARA S-TIH6 | 0.00000 / +0.02 |
-| 1.72916 / 54.7 | E7, E12 | 729547 LAL18/TAC8 class | OHARA S-LAL18 | 0.00000 / -0.02 |
-| 1.65412 / 39.7 | E10 | 654397 NBH5/KZFS5 class | OHARA S-NBH5 | 0.00000 / -0.02 |
-| 1.59522 / 67.7 | E13 | 595677 FPM2 class | OHARA S-FPM2 | 0.00000 / +0.04 |
-| 1.85400 / 40.4 | E14 | 854404 LAH85V class | OHARA L-LAH85V | 0.00000 / -0.02 |
+| Patent nd / νd | Elements | Spectral proxy | Catalog residual Δnd / Δνd |
+| -------------- | -------- | -------------- | -------------------------: |
+| 1.58313 / 59.4 | E1       | OHARA S-BAL42  |            0.00000 / -0.02 |
+| 1.48749 / 70.2 | E2       | OHARA S-FSL5   |            0.00000 / +0.03 |
+| 1.91082 / 35.3 | E3, E8   | CDGM H-ZLaF4LA |            0.00000 / -0.05 |
+| 1.53172 / 48.8 | E4       | OHARA S-TIL6   |            0.00000 / +0.04 |
+| 1.49700 / 81.5 | E5, E9   | OHARA S-FPL51  |            0.00000 / +0.04 |
+| 1.80518 / 25.4 | E6, E11  | OHARA S-TIH6   |            0.00000 / +0.02 |
+| 1.72916 / 54.7 | E7, E12  | OHARA S-LAL18  |            0.00000 / -0.02 |
+| 1.65412 / 39.7 | E10      | OHARA S-NBH5   |            0.00000 / -0.02 |
+| 1.59522 / 67.7 | E13      | OHARA S-FPM2   |            0.00000 / +0.04 |
+| 1.85400 / 40.4 | E14      | OHARA L-LAH85V |            0.00000 / -0.02 |
 
 The engine evaluates these compatible catalog curves directly. Catalog-derived `nC`, `nF`, `ng`, and `dPgF`
 copies are omitted so they cannot override the curve or masquerade as patent-measured spectral evidence.
@@ -236,10 +236,10 @@ The data file therefore uses a **CONSTRAINED_RECONSTRUCTION** rather than presen
 keeps L2 rigid and translates it objectward while the image plane remains fixed. Only the air gap between L1 and L2 and
 the rear back-focus interval change:
 
-| State | L1–L2 gap after s13 | BF after s26 |
-|---|---:|---:|
-| Infinity | 7.690000 mm | 39.000000 mm |
-| Reconstructed close state | 0.065731 mm | 46.624269 mm |
+| State                     | L1–L2 gap after s13 | BF after s26 |
+| ------------------------- | ------------------: | -----------: |
+| Infinity                  |         7.690000 mm | 39.000000 mm |
+| Reconstructed close state |         0.065731 mm | 46.624269 mm |
 
 The sum of those two intervals remains **46.69 mm**, so the modeled L2 travel is **7.6242688101 mm** toward the object.
 Independent paraxial solution of the final data arrays gives an absolute magnification of **0.2100000000×** and a
@@ -262,10 +262,10 @@ $$
 Thus the published `K` values are already standard conic constants; no κ-to-K conversion is required. Both aspheres
 have `K = 0`, so their base conics are spheres and the departure comes from the even-order polynomial terms.
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 |
-|---|---:|---:|---:|---:|---:|---:|
-| 2A | 0 | -1.08011e-6 | -5.77575e-9 | +9.49534e-12 | -1.96264e-14 | +5.77980e-18 |
-| 25A | 0 | -7.38078e-6 | -2.82130e-9 | +6.15573e-12 | -3.38342e-14 | +3.92626e-17 |
+| Surface |   K |          A4 |          A6 |           A8 |          A10 |          A12 |
+| ------- | --: | ----------: | ----------: | -----------: | -----------: | -----------: |
+| 2A      |   0 | -1.08011e-6 | -5.77575e-9 | +9.49534e-12 | -1.96264e-14 | +5.77980e-18 |
+| 25A     |   0 | -7.38078e-6 | -2.82130e-9 | +6.15573e-12 | -3.38342e-14 | +3.92626e-17 |
 
 The current schema also carries `A14: 0` on both surfaces; that zero is schema padding, not an additional coefficient
 published by the patent. Because no scale factor is applied, every published coefficient is stored unchanged.
@@ -286,8 +286,7 @@ surface.
 
 The patent's primary discussion is framed around large-aperture wide-angle aberration correction rather than named glass
 materials. Nevertheless, the prescription itself uses large `νd` contrasts in the cemented pairs and several high-Abbe
-positive elements. The data model preserves those source `nd`/`νd` coordinates and supplements them with catalog line-
-index proxies only for chromatic tracing.
+positive elements. The data model preserves those source `nd`/`νd` coordinates and supplements them with compatible catalog curves for approximate chromatic tracing.
 
 Production literature adds a separate fact: Canon's EF 35mm f/1.4L II USM uses a BR optical element, one UD lens, and
 two aspherical lenses. Canon states that the BR element is an organic optical material placed between two glass elements
@@ -295,8 +294,9 @@ and designed to refract blue light strongly. That production construction must r
 because Numerical Example 2 neither labels a BR layer nor publishes BR line indices. The LensVisualizer prescription
 therefore should not be used to infer the exact production BR or UD material assignment.
 
-No APO designation is made. The authored `dPgF` values belong to catalog proxies chosen to improve numerical chromatic
-tracing; they are not direct measurements or source-published partial-dispersion data for the patent embodiment.
+No APO designation is made. No per-lens `dPgF` or C/F/g-line override is authored. E5/E9 and E13 retain **inferred**
+APD tags from their compatible S-FPL51 and S-FPM2 catalog curves. The source publishes neither their partial
+dispersion nor a measured APD value, and these curve properties do not identify historical chemistry or supplier.
 
 ## Aberration Correction Strategy
 
@@ -320,11 +320,11 @@ higher-order tracing.
 
 The patent gives three principal inequalities for this design family. The modeled prescription satisfies all three and their preferred sub-ranges:
 
-| Condition | Patent range | Preferred range | Computed value |
-|---|---|---|---:|
-| `PL/D1` | 0.15 < PL/D1 < 0.50 | 0.22 < PL/D1 < 0.40 | 0.2869256557 |
-| `ok1/D1` | 1.0 < ok1/D1 < 3.0 | 1.2 < ok1/D1 < 2.5 | 1.4536670778 |
-| `f1/f2` | 1.5 < f1/f2 < 5.0 | 2.0 < f1/f2 < 4.0 | 2.6601186966 |
+| Condition | Patent range        | Preferred range     | Computed value |
+| --------- | ------------------- | ------------------- | -------------: |
+| `PL/D1`   | 0.15 < PL/D1 < 0.50 | 0.22 < PL/D1 < 0.40 |   0.2869256557 |
+| `ok1/D1`  | 1.0 < ok1/D1 < 3.0  | 1.2 < ok1/D1 < 2.5  |   1.4536670778 |
+| `f1/f2`   | 1.5 < f1/f2 < 5.0   | 2.0 < f1/f2 < 4.0   |   2.6601186966 |
 
 `PL` is measured from the object-side surface of the second positive lens counted from the image side in L1 to the last
 surface of L1; `D1` is the first-to-last-surface length of L1. `ok1` is the distance from the final L1 surface to the rear
@@ -343,25 +343,53 @@ Independent re-entry of Numerical Example 2 gives the same system matrix from se
 and a separate ABCD chain at double precision. The following values are therefore properties of the modeled
 prescription:
 
-| Quantity | Verified value |
-|---|---:|
-| Effective focal length | 35.4217858624 mm |
-| Back focal distance from s26 | 38.9982669961 mm |
-| Full field from h = 21.64 mm | 62.8434736865° |
-| Modeled wide-open f-number | 1.4500000000 |
-| L1 focal length | +147.6794221101 mm |
-| L2 focal length | +55.5161024580 mm |
-| Petzval sum | +0.002809194348 mm⁻¹ |
-| Reconstructed close-focus magnification | 0.2100000000× |
-| Reconstructed focal-plane-to-subject distance | 281.749511 mm |
+| Quantity                                      |       Verified value |
+| --------------------------------------------- | -------------------: |
+| Effective focal length                        |     35.4217858624 mm |
+| Back focal distance from s26                  |     38.9982669961 mm |
+| Full field from h = 21.64 mm                  |       62.8434736865° |
+| Modeled wide-open f-number                    |         1.4500000000 |
+| L1 focal length                               |   +147.6794221101 mm |
+| L2 focal length                               |    +55.5161024580 mm |
+| Petzval sum                                   | +0.002809194348 mm⁻¹ |
+| Reconstructed close-focus magnification       |        0.2100000000× |
+| Reconstructed focal-plane-to-subject distance |        281.749511 mm |
 
-The inferred semi-diameter model was checked at infinity and at the reconstructed close state. The maximum actual rim
-angle is **50.8863°** at surface 2A, the minimum computed element edge thickness is **1.327843579 mm**, and the tightest
-shared-gap policy reserve is **0.163312 mm** at the s4→s5 air gap. Dense 0.6-field pupil scans found no ray whose first
-clip occurred at an internal cemented interface.
+The fresh 2026-10-30 original review inspects Figure 3 on PDF page 4/sheet 3 of 9 and Numerical Example 2,
+¶0069 on PDF page 16/printed page 6. The original pages contain native 2560 × 3300 images at 300 dpi; a 600 dpi
+view is upsampling. Paragraph 0067 on PDF page 15/printed page 5 explicitly defines both index and Abbe number
+at the d line. All 14 bulk media and the three bonded interfaces agree with the printed table. No separate resin,
+BR layer, indexed cement, source filter or rear plate is prescribed.
 
-These geometry values validate the authored modeling apertures; they do not convert those apertures into patent source
-data.
+### Original outline and complete focus sampling — 2026-10-30
+
+Figure 3 resolves a shoulder beyond E1's rear asphere. Surface 2A keeps its clear `sd = 20.6 mm` and gains
+`rimExtensionSd = 26 mm`, matching the first blank's outer height. Its native clear/outer half-height ratio is
+approximately 0.82, with about ±0.02 reading uncertainty plus schematic variation; the retained/adopted cap ratio
+is 0.792. The section does not supply dimensioned clear apertures. Approximate blank-height uncertainty is
+±0.5–1 mm; rays, axis strokes, unit brackets and focus arrows are excluded from the measurements. Extending the
+optical cap to 26 mm would exceed the K=0 base-conic radius of 25.389 mm and fail the unchanged rim-slope guard.
+It is an outer shoulder, not a larger traced asphere.
+
+The prior S13 radius of 19.1 mm clips the exact f/1.45 axial boundary (required 19.179128 mm). S12/S13 become
+19.2 mm, consistent with the native seventh-element outline. The inferred finite focus state needs 16.100827 mm
+at S23 and 16.289604 mm at S24; those two radii become 16.3 mm from 15.9 mm, within the schematic height
+uncertainty. These are clear-aperture model corrections, not source dimensions. All other clear radii are retained.
+No opaque land is added to bonded S10/S17/S21, no hidden resin wing is added, and no `rimCutDepthMm` is used.
+Source R/d, both aspheres, stop coordinate and the complete inferred rigid-L2 focus control remain unchanged.
+
+Actual generated SVGs at infinity, half focus and close focus were compared with the native source section.
+All 21 uniformly sampled focus states contain 14 finite, closed, connected element paths with zero hidden renderer
+trim. Each state uses 49 full-open pupil samples at axial, 0.6-format and format-corner fields: all 3087 launches
+are aimed, all 1029 axial samples and all 63 chiefs clear. At infinity, half focus and close focus respectively,
+the axial/0.6-field/corner survivor counts are **49/34/15**, **49/34/22**, and **49/39/27**. Off-axis clipping can
+begin at bonded S21, so full pupil transmission is not claimed and no opaque interface masks that result.
+
+The source half-angle 31.42° traces to 21.324493 mm, 98.6% of the 21.64 mm table height. The independently solved
+runtime format corner is about 31.8° and clears; these are separate field conclusions. The printed 39.00 mm gap
+retains its 0.001733 mm paraxial closure residual. The close endpoint remains an inferred 281.749511 mm,
+|m| = 0.21 conjugate and half focus is approximately 454.478322 mm, |m| = 0.103252. The patent supplies no finite
+focus spacings. Source fidelity, sampled runtime clearance and the qualified production correlation remain separate.
 
 ## Sources / References
 
@@ -383,6 +411,7 @@ data.
 - CDGM Glass. **Optical Glass Catalog.** Catalog source for the H-ZLaF4LA spectral proxy used for the 1.91082 / 35.3
   patent coordinate.
   <https://www.cdgmgd.com/go.htm?k=Special_Flint_Glass&url=goods>
+
 ## Integration audit — 2026-09-11 UTC
 
 US 2015/0098138 A1, Fig. 3, PDF p4 (600 dpi; crop 0.27,0.48,0.655,0.65). Retained the SDs: clean optical rims agree within about 10%; the apparent E2/E10/E11/E13 oversizing in automated ENV/RIM readings comes from overlapping rays or brackets. No clear-aperture table is published.

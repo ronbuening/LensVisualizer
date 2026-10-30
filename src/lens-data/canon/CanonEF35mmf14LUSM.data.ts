@@ -1,46 +1,25 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF 35mm f/1.4 L USM                                             ║
- * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP H11-211978 A, Numerical Example 1 (Canon Inc.).                        ║
- * ║ Correlation to the production EF 35mm f/1.4L USM is inferred from focal length,   ║
- * ║ aperture class, 11-element / 9-group construction, ninth-element asphere, floating ║
- * ║ focus behavior, 0.3 m close state, and December 1998 production timing.            ║
- * ║                                                                                     ║
- * ║ SOURCE CORRECTION: the patent visibly prints r11 = +72.820 mm. Independent y-nu    ║
- * ║ and ABCD checks give EFL = 26.8926 mm and a positive L2b subgroup with that sign,   ║
- * ║ contradicting the source f = 34.3 mm and its stated negative L2b. This model uses  ║
- * ║ r11 = -72.820 mm, which gives EFL = 34.2948319 mm and restores negative L2b.        ║
- * ║                                                                                     ║
- * ║ Scaling: none (s = 1). Marketing values remain separate from design values.         ║
- * ║ Design f-number / nominalFno = 1.45; marketed maximum aperture = f/1.4.             ║
- * ║                                                                                     ║
- * ║ FOCUS STATUS: PUBLISHED. The source publishes d6 = 5.20 -> 0.43 mm and              ║
- * ║ d13 = 3.70 -> 2.06 mm from infinity to the 300 mm state. L1 is fixed; L2 moves      ║
- * ║ 4.77 mm objectward; L3 plus the stop moves 6.41 mm objectward. Surface 21 BF is    ║
- * ║ a computed fixed-image-plane normalization, 38.6533555 -> 45.0633555 mm, not a      ║
- * ║ separately published focus gap.                                                     ║
- * ║                                                                                     ║
- * ║ ASPHERE: r17 uses the more precise source-table base R = -65.3464 mm and standard  ║
- * ║ conic K = +2.39046. Patent B/C/D map to A4/A6/A8. The Example-1 E (h^10) term is   ║
- * ║ not printed; A10 = 0 below is a disclosed modeling assumption, not a source zero.   ║
- * ║ A12 and A14 are zero because the published equation terminates at h^10.             ║
- * ║                                                                                     ║
- * ║ SEMI-DIAMETERS: the patent does not publish clear apertures. SDs are modeled from   ║
- * ║ the f/1.45 pupil constraint (stop radius derived from the design f-number), on-axis ║
- * ║ marginal rays, +/-32 deg chief rays at infinity and the 0.3 m state, and the        ║
- * ║ official Canon block diagram. Surface-specific SDs were then checked for edge       ║
- * ║ thickness, actual rim slope, conic limit, shared-gap intrusion, off-axis            ║
- * ║ containment, and silhouette. Off-axis vignetting is allowed at air-facing element   ║
- * ║ edges; neither cemented junction is the first clipping surface in the verification  ║
- * ║ bundles.                                                                            ║
- * ║                                                                                     ║
- * ║ GLASS: the patent gives d-line nd / vd coordinates but no vendor names or line      ║
- * ║ indices. Generic coordinate classes are stored; nC, nF, ng, and dPgF are omitted    ║
- * ║ because no source-defensible values are available for the unidentified melts.       ║
- * ╚══════════════════════════════════════════════════════════════════════════════════════╝
+ * Canon EF 35mm f/1.4 L USM — JP H11-211978 A, Numerical Example 1.
+ * Original-PDF shape/glass review: 2026-10-30; no scaling.
+ * Four inferred clear-cap fields follow native Figure 1, with two resolved air-facing shoulders.
+ * Source R/d, source endpoint gaps, stops and asphere coefficients remain unchanged.
+ *
+ * Retained source correction: printed r11=+72.820 gives EFL 26.892639 mm and positive L2b
+ * (+52.755075 mm); applied -72.820 gives 34.294832 mm and negative L2b (-277.776682 mm).
+ * The source summary states f = 34.3 (PDF page 5), and Claim1 explicitly requires negative L2b (PDF page 2).
+ * This formalizes the existing sign correction in source.errata; no new numerical R change.
+ *
+ * The original defines Ni/vi without a spectral reference. Numerical pairs and the current
+ * d-line convention remain, with approximate-reference notes and 11 Unmatched media; curves disabled.
+ * No individual C/F/g or partial-dispersion overrides are authored.
+ *
+ * Source focus gaps: d6=5.20→0.43, d13=3.70→2.06 at infinity→300 mm. L1 is fixed,
+ * L2 moves 4.77 mm objectward and L3 plus stop 6.41 mm. BF is fixed-image-plane bookkeeping.
+ * Asphere 17A keeps source-table R = -65.3464, K = 2.39046 and B/C/D terms; unprinted E remains
+ * A10=0 as an explicit modeling assumption. No coefficient is tuned to drawing or ray clearance.
+ * See the audit for native scale, rejected S2 cap trial, glass qualification and runtime limits.
  */
 
 const LENS_DATA = {
@@ -48,7 +27,8 @@ const LENS_DATA = {
   key: "canon-ef-35mm-f14l-usm",
   maker: "Canon",
   name: "CANON EF 35mm f/1.4 L USM",
-  subtitle: "JP H11-211978 A Example 1 — corrected r11 sign; production correlation inferred",
+  subtitle:
+    "JP H11-211978 A Example 1 — corrected r11 sign; production correlation inferred",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -73,6 +53,17 @@ const LENS_DATA = {
     patentYear: 1999,
     authors: ["Yasunori Murata", "Makoto Misaka"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "11",
+        field: "R",
+        printed: 72.82,
+        applied: -72.82,
+        evidence: ["source-summary", "claims"],
+        note: "Retained sign correction, formalized on 2026-10-30 with no numerical R change. Numerical Example 1, PDF page 5, prints r11=+72.820 and f=34.3 mm. Printed r11 gives EFL 26.892639 mm; applied -72.820 gives 34.294832 mm. Independently, Claim1 on PDF page 2 explicitly requires negative L2b: printed r11 gives subgroup EFL +52.755075 mm, whereas applied gives -277.776682 mm. Paragraph 0012 repeats that sign. Both original evidence kinds reject the printed sign and support the retained correction; no other R/d, glass pair or focus control is changed.",
+      },
+    ],
   },
 
   elements: [
@@ -85,7 +76,10 @@ const LENS_DATA = {
       vd: 59.4,
       indexReference: "d",
       focalLengthMm: -77.59314088315068,
-      glass: "583594/595 class (vendor unresolved)",
+      glass:
+        "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 2,
@@ -96,7 +90,10 @@ const LENS_DATA = {
       vd: 59.4,
       indexReference: "d",
       focalLengthMm: -94.17073259813091,
-      glass: "583594/595 class (vendor unresolved)",
+      glass:
+        "Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 3,
@@ -107,7 +104,10 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: 65.85967540206435,
-      glass: "713538/539/540 class (vendor unresolved)",
+      glass:
+        "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 4,
@@ -118,7 +118,10 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: 60.95488850902199,
-      glass: "713538/539/540 class (vendor unresolved)",
+      glass:
+        "Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 5,
@@ -129,7 +132,10 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       focalLengthMm: -314.293452650426,
-      glass: "516641/642 class (vendor unresolved)",
+      glass:
+        "Unmatched (516641/642 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 6,
@@ -140,7 +146,10 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: 50.16186656500432,
-      glass: "835427 class (vendor unresolved)",
+      glass:
+        "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L2b",
     },
     {
@@ -152,7 +161,10 @@ const LENS_DATA = {
       vd: 34.5,
       indexReference: "d",
       focalLengthMm: -43.50725067734946,
-      glass: "S-TIM27 coefficient proxy (patent 640345; production supplier unspecified)",
+      glass:
+        "Unmatched (S-TIM27 coefficient proxy (patent 640345; production supplier unspecified); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L2b",
     },
     {
@@ -164,7 +176,10 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -22.95419584350211,
-      glass: "805254/255 class (vendor unresolved)",
+      glass:
+        "Unmatched (805254/255 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L3a",
     },
     {
@@ -176,7 +191,10 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: 72.20755433769958,
-      glass: "835427 class (vendor unresolved)",
+      glass:
+        "Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
       cemented: "L3a",
     },
     {
@@ -188,7 +206,10 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: 46.7590649936805,
-      glass: "773496 class (vendor unresolved)",
+      glass:
+        "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
     {
       id: 11,
@@ -199,38 +220,57 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: 51.38854165207472,
-      glass: "773496 class (vendor unresolved)",
+      glass:
+        "Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)",
+      indexReferenceNote:
+        "JP H11-211978 A, paragraph 0030 defines Ni and vi without a spectral reference; the retained d-line tracing convention is approximate and catalog identity remains unresolved.",
     },
   ],
 
   surfaces: [
     { label: "1", R: 400.0, d: 2.8, sd: 25.0, medium: 1 },
-    { label: "2", R: 40.544, d: 6.91, sd: 22.0 },
-    { label: "3", R: 606.181, d: 2.3, sd: 21.5, medium: 2 },
-    { label: "4", R: 50.282, d: 10.31, sd: 20.5 },
+    { label: "2", R: 40.544, d: 6.91, sd: 22.0, rimExtensionSd: 25 },
+    { label: "3", R: 606.181, d: 2.3, sd: 23, medium: 2 },
+    { label: "4", R: 50.282, d: 10.31, sd: 23 },
     { label: "5", R: 61.687, d: 6.5, sd: 22.5, medium: 3 },
     { label: "6", R: -188.04, sd: 21.5 },
     { label: "7", R: 47.477, d: 5.06, sd: 19.8, medium: 4 },
     { label: "8", R: -490.98, d: 0.2, sd: 18.8 },
-    { label: "9", R: 31.299, d: 3.0, sd: 18.5, medium: 5 },
+    { label: "9", R: 31.299, d: 3.0, sd: 17, medium: 5 },
     { label: "10", R: 25.382, d: 9.27, sd: 17.0 },
+    // Retained r11 sign correction: original f34.3 summary and Claim1 negative L2b; see source.errata.
     { label: "11", R: -72.82, d: 3.77, sd: 15.0, medium: 6 },
     { label: "12", R: -27.213, d: 1.5, sd: 14.5, medium: 7 },
     { label: "13", R: -1242.161, sd: 14.0 },
     { label: "STO", R: "flat", d: 7.07 },
-    { label: "15", R: -18.961, d: 1.6, sd: 13.5, medium: 8 },
+    {
+      label: "15",
+      R: -18.961,
+      d: 1.6,
+      sd: 13.5,
+      medium: 8,
+      rimExtensionSd: 14.2,
+    },
     { label: "16", R: 759.56, d: 3.3, sd: 14.2, medium: 9 },
     {
       label: "17A",
       R: -65.3464,
       d: 0.2,
       sd: 15.2,
-      asphere: { K: 2.39046, A4: 1.36838e-5, A6: 3.28097e-10, A8: -1.1445e-11, A10: 0, A12: 0, A14: 0 },
+      asphere: {
+        K: 2.39046,
+        A4: 1.36838e-5,
+        A6: 3.28097e-10,
+        A8: -1.1445e-11,
+        A10: 0,
+        A12: 0,
+        A14: 0,
+      },
     },
     { label: "18", R: -172.7, d: 5.94, sd: 15.4, medium: 10 },
     { label: "19", R: -30.321, d: 0.2, sd: 17.5 },
     { label: "20", R: -160.598, d: 6.81, sd: 18.0, medium: 11 },
-    { label: "21", R: -32.418, sd: 22.0 },
+    { label: "21", R: -32.418, sd: 18.0 },
   ],
 
   focus: {
@@ -249,7 +289,12 @@ const LENS_DATA = {
     "21": { label: "BF", values: [[38.653355504539874, 45.06335550453987]] },
   },
 
-  aperture: { nominalFNumber: 1.45, fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 8 },
+  aperture: {
+    nominalFNumber: 1.45,
+    fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 8,
+  },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "6" },
