@@ -41,6 +41,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * moving component. The stop radius is derived from the design f-number, f/4.5, and held at every zoom station; it
  * is not a physical diaphragm measurement.
  *
+ * Fresh source-glass check: Example 3 and claim 3 supply the same 20 index/Abbe pairs.
+ * Compatible catalog curves remain spectral proxies; no source C/F/g or APD evidence is supplied.
+ *
  * Semi-diameters are modeled, not patent-published. They were sized from exact spherical-ray envelopes and checked for
  * positive edge thickness, actual rim slope, shared-band gap intrusion, and off-axis containment. Nikon's production
  * cross-section is used only as a qualitative silhouette reference.

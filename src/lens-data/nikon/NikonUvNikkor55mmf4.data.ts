@@ -27,8 +27,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The stop is inferred from Fig. 1 in the L2-L3 air gap, here       ║
  * ║    placed 25% through d4 after r4. The stop radius is derived from   ║
  * ║    the design f-number, f/4 (365 nm prescription). Semi-diameters    ║
- * ║    are paraxial estimates constrained by edge thickness, cross-gap   ║
- * ║    sag clearance, and the published schematic. The full 21.5°        ║
+ * ║    follow native Fig. 1 at 7.5 / 6.6 / 6.6 mm common element rims.  ║
+ * ║    These are drawing estimates, not published apertures. The 21.5°  ║
  * ║    half-field is allowed to vignette at full aperture; inflating the ║
  * ║    front/rear positives to pass the full-field f/4 bundle would make ║
  * ║    the thin elements physically impossible.                          ║
@@ -68,6 +68,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.537,
       vd: 64,
+      indexReferenceNote: "Source index is n(365 nm), with visible-line Abbe number nu_d; nd stores that UV reference index. The runtime d-line Abbe fallback is approximate and does not reproduce the patent UV dispersion.",
       focalLengthMm: 33.011,
       glass: "Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)",
       apd: false,
@@ -80,6 +81,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56818,
       vd: 47,
+      indexReferenceNote: "Source index is n(365 nm), with visible-line Abbe number nu_d; nd stores that UV reference index. The runtime d-line Abbe fallback is approximate and does not reproduce the patent UV dispersion.",
       focalLengthMm: -18.904,
       glass: "Unmatched UV light flint (J-LLF2/S-TIL2 class; stored index is n365=1.56818, not catalog nd)",
       apd: false,
@@ -92,6 +94,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.537,
       vd: 64,
+      indexReferenceNote: "Source index is n(365 nm), with visible-line Abbe number nu_d; nd stores that UV reference index. The runtime d-line Abbe fallback is approximate and does not reproduce the patent UV dispersion.",
       focalLengthMm: 29.125,
       glass: "Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)",
       apd: false,
@@ -100,13 +103,13 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 19.558, d: 2.7995, sd: 8.85, medium: 1 },
-    { label: "2", R: -179.872, d: 5.093, sd: 8.65 },
-    { label: "3", R: -22.66, d: 0.814, sd: 6.65, medium: 2 },
-    { label: "4", R: 20.6855, d: 1.1715, sd: 6.55 },
+    { label: "1", R: 19.558, d: 2.7995, sd: 7.5, medium: 1 },
+    { label: "2", R: -179.872, d: 5.093, sd: 7.5 },
+    { label: "3", R: -22.66, d: 0.814, sd: 6.6, medium: 2 },
+    { label: "4", R: 20.6855, d: 1.1715, sd: 6.6 },
     { label: "STO", R: "flat", d: 3.5145 },
-    { label: "5", R: 92.2845, d: 2.7005, sd: 8.25, medium: 3 },
-    { label: "6", R: -18.6395, sd: 8.45 },
+    { label: "5", R: 92.2845, d: 2.7005, sd: 6.6, medium: 3 },
+    { label: "6", R: -18.6395, sd: 6.6 },
   ],
 
   focus: {

@@ -322,3 +322,8 @@ runtime was not mounted. Their absence does not convert the portable checks into
 6. Authoritative glass resources recorded in the dossier: OHARA optical-glass catalog, HOYA Optics data downloads,
    SCHOTT optical-glass data, HIKARI optical-glass catalog, CDGM optical-glass data sheets, and SUMITA ZEMAX/AGF data.
    These resources are used only for coordinate/class comparison; no supplier identity is asserted for the patent glasses.
+
+
+## 2026-10-30 — Source rim and glass review
+
+Figure 5 of the original local patent was checked against the selected Embodiment III. S2 keeps its 22.1 mm curved cap and adds a flat land to the 25.8 mm body. Common continuous rims are restored within G2/G3: S7/S8 = 9.6 mm, S10 = 7.6 mm, S11/S12 = 6.1 mm. The diagonal end of the front cemented pair remains a bevel interpretation; no unsupported flat concave-end cut was added. All 11 source glass pairs are retained, with eight qualified catalog curves and three unresolved elements. The stop topology is drawn, while its precise midpoint remains inferred. All five zoom stations pass surface, image-circle, format-corner and nominal-aperture checks; all nine rendered states have zero hidden trim.

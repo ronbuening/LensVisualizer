@@ -221,7 +221,7 @@ The supporting catalog audit checked current sources from OHARA, HOYA, SCHOTT, H
 
 The patent states that chromatic aberration is addressed by making the components achromatic, and its descriptions of components I–III explicitly pair convergent and divergent glasses in cemented groups. [1, PDF pp. 5–6] That source statement does not justify an apochromatic or anomalous-partial-dispersion claim. The implemented model has no direct line-index or `dPgF` evidence. Nikon's retrospective also characterizes chromatic correction as a weakness of the original lens and notes that the later ED version was introduced to improve it. [2, § III]
 
-Accordingly, the present file supports d-line first-order power and Abbe-level dispersion modeling only. No vendor-specific Sellmeier behavior or secondary-spectrum performance should be inferred from the class labels alone.
+All 20 elements currently resolve to coordinate-compatible coefficient-backed catalog curves. Those curves provide qualified spectral models beyond the source Abbe pairs; they do not establish historical suppliers, melts or the patent lens’s secondary-spectrum behavior. The source provides no C/F/g anchors or anomalous-partial-dispersion values to verify those spectra.
 
 ## Focus Mechanism
 
@@ -293,3 +293,8 @@ The integration review below adds project type checking, validation, runtime gla
 US3481666.pdf pp. 1–3 were reviewed, including Fig. 2 at 600 dpi. Fig. 2 illustrates the 14-element f/1.4 example, not the selected 20-element f/4.5 Example 3. Its rims must not be transferred to this prescription. The validated ray-envelope SDs are retained; the patent does not provide an exact Example 3 silhouette for numerical refinement. J-LAFH3 and E-FD13 provide compatible spectral proxies for 795284 and 741277 (Δnd ≈ 0; Δνd ≈ +0.292 and +0.060). Coverage rises from 18/20 to 20/20. The Zoom-Nikkor Auto display name is retained.
 
 The optical prescriptions, stop calibration, and source focus/zoom states are preserved. Surface validation, image-circle screening, and the shared render-diagnostics corpus were run during integration. Catalog proxies preserve patent nd/νd and do not identify the historical supplier, melt, or anomalous partial dispersion.
+
+
+## 2026-10-30 — Source rim and glass review
+
+The original Example 3 and repeated claim confirm all 20 index/Abbe pairs. Their 20 compatible catalog curves remain qualified spectral models; none establishes historical supplier, melt or APD identity. No source partial-dispersion values were available. The only source section is the different 14-element Example 1, and the alternative fourth-component figure also does not match this prescription. Existing envelope estimates and the absence of independently evidenced flat concave trims are retained. All three published zoom stations pass surface, image-circle, format-corner and nominal-aperture checks; all nine rendered states have zero hidden trim.

@@ -35,15 +35,15 @@ The patent drawing places the diaphragm in the air gap between L2 and L3. The nu
 
 ### L1 — Biconvex Positive Front Crown
 
-n(365 nm) = 1.537, νd = 64.0. Glass: UV crown, BK7 / S-BSL7 class, catalog-residual match rather than exact catalog glass. f = +60.020 at patent scale, +33.011 mm after 0.55 scaling.
+n(365 nm) = 1.537, νd = 64.0. Glass: unresolved UV crown; BK7 / S-BSL7 is a comparison class, not an assigned catalog curve. f = +60.020 at patent scale, +33.011 mm after 0.55 scaling.
 
-L1 is a strongly asymmetric positive element. Its steep first surface carries most of the element power, while the rear surface is very weak. At the 55mm scale the center thickness is only 2.7995 mm, so the drawn semi-diameter cannot be expanded to pass the full f/4, 21.5° off-axis bundle without making the element surfaces intersect at the rim. The data file therefore uses physically constrained semi-diameters just below 9 mm, with full-field vignetting accepted as a realistic consequence of the thin triplet package.
+L1 is a strongly asymmetric positive element. Its steep first surface carries most of the element power, while the rear surface is very weak. At the 55mm scale the center thickness is only 2.7995 mm, so the drawn semi-diameter cannot be expanded to pass the full f/4, 21.5° off-axis bundle without making the element surfaces intersect at the rim. The data file now uses a common 7.5 mm rim from the native Figure 1 proportions, with a small margin for scan stroke and schematic uncertainty. Off-axis vignetting is a result of this inferred rim model; its amount is not a recovered production specification.
 
 Optically, L1 provides the front collecting power and establishes the entrance geometry for the triplet. Its crown-class dispersion keeps the positive element from introducing excessive ultraviolet longitudinal color, while its outward-facing strong curvature follows the ordinary triplet strategy of placing the strongest positive curvatures toward the conjugate planes.
 
 ### L2 — Biconcave Negative Central Flint
 
-n(365 nm) = 1.56818, νd = 47.0. Glass: UV light flint, J-LLF2 / S-TIL2 class, catalog-residual match rather than exact catalog glass. f = -34.371 at patent scale, -18.904 mm after 0.55 scaling.
+n(365 nm) = 1.56818, νd = 47.0. Glass: unresolved UV light flint; J-LLF2 / S-TIL2 is a comparison class, not an assigned catalog curve. f = -34.371 at patent scale, -18.904 mm after 0.55 scaling.
 
 L2 is the sole negative element and supplies the system’s dispersion differential. The element is thin: 1.48 at patent scale, or 0.814 mm after scaling. That is consistent with the patent’s discussion that the concave element should be kept thin because the higher-index, lower-Abbe glass is the most difficult member of the system from a UV-transmission standpoint.
 
@@ -51,11 +51,11 @@ Its two concave surfaces also make the dominant negative Petzval contribution. I
 
 ### L3 — Biconvex Positive Rear Crown
 
-n(365 nm) = 1.537, νd = 64.0. Glass: UV crown, BK7 / S-BSL7 class, catalog-residual match rather than exact catalog glass. f = +52.955 at patent scale, +29.125 mm after 0.55 scaling.
+n(365 nm) = 1.537, νd = 64.0. Glass: unresolved UV crown; BK7 / S-BSL7 is a comparison class, not an assigned catalog curve. f = +52.955 at patent scale, +29.125 mm after 0.55 scaling.
 
 L3 is the rear positive element. Its first surface is weak and its final surface is steep, making it the reversed counterpart to L1. The strong final curvature helps set the long back focal distance, which is required for use on the Nikon F SLR mount.
 
-At the 55mm scale L3 is 2.7005 mm thick. The data file uses an approximately 8.3-8.5 mm semi-diameter pair, leaving a small but positive edge thickness for the scaled patent surfaces. This is near the practical lower edge-thickness limit, but it is preferable to an optically oversized rear element that would be physically impossible with the published curvature and thickness.
+At the 55mm scale L3 is 2.7005 mm thick. The data file uses a common 6.6 mm rim from the native Figure 1 proportions. The earlier 8.25/8.45 mm pair was a physically constrained estimate rather than a direct reading of that rear outline.
 
 ## Glass Identification and Selection
 
@@ -64,13 +64,13 @@ The patent gives refractive indices at 365 nm, not at the d line. It also gives 
 | Element | Patent n(365 nm) | Patent νd | Nearest catalog class | Catalog nd / νd | Catalog n(365 nm) | Comment |
 |---|---:|---:|---|---:|---:|---|
 | L1, L3 | 1.53700 | 64.0 | OHARA S-BSL7 / Schott N-BK7 class | 1.51633 / 64.14 for S-BSL7 | 1.53578 | Good Abbe and i-line index match; stored data uses patent n(365), not catalog nd. |
-| L2 | 1.56818 | 47.0 | HIKARI J-LLF2 / OHARA S-TIL2 class | 1.54072 / 46.97 for J-LLF2 | 1.57075 | Good Abbe match but a larger i-line residual; likely a special UV-transparent melt or historical equivalent, not a literal modern catalog stock glass. |
+| L2 | 1.56818 | 47.0 | HIKARI J-LLF2 / OHARA S-TIL2 class | 1.54072 / 46.97 for J-LLF2 | 1.57075 | Good Abbe match but a larger i-line residual; UV suitability and historical glass identity remain unestablished; no catalog curve is assigned. |
 
-The crown identification is comparatively strong. OHARA’s S-BSL7 data sheet gives nd = 1.516330, νd = 64.14, and $n_i$ at 365.015 nm = 1.53578, only about 0.0012 below the patent value. Its published internal-transmission table also shows meaningful transmission at 300 nm for 10 mm thickness, which is consistent with the patent’s use of a thin all-glass UV design.
+The crown comparison is closer numerically, but does not establish identity. OHARA’s S-BSL7 data sheet gives nd = 1.516330, νd = 64.14, and $n_i$ at 365.015 nm = 1.53578, only about 0.0012 below the patent value. Its published internal-transmission table also shows meaningful transmission at 300 nm for 10 mm thickness, which is consistent with the patent’s use of a thin all-glass UV design.
 
-The negative element is less secure as a literal catalog identification. HIKARI J-LLF2 gives nd = 1.540720, νd = 46.97, and $n_i$ = 1.570753, about 0.0026 above the patent value. That is still a plausible index/dispersion class match, but the modern J-LLF2 data sheet shows poor 10 mm internal transmission below roughly 340-350 nm. The patent’s element is very thin, and the patent explicitly requires selecting glasses with the highest available UV transmission, so the safer conclusion is “LLF2/S-TIL2 class, probably special or historical UV-selected melt,” not a hard identification as modern stock J-LLF2 or S-TIL2.
+The negative element is less secure as a literal catalog identification. HIKARI J-LLF2 gives nd = 1.540720, νd = 46.97, and $n_i$ = 1.570753, about 0.0026 above the patent value. That is still a plausible index/dispersion class match, but the modern J-LLF2 data sheet shows poor 10 mm internal transmission below roughly 340-350 nm. The patent’s element is very thin, and the patent explicitly requires selecting glasses with the highest available UV transmission, so LLF2/S-TIL2 remains only a comparison class. The patent does not identify a particular supplier, special melt or historical stock glass.
 
-For this reason, the data file labels the glasses as `Unmatched ... class` and stores the patent’s n(365) values in the single-index `nd` fields. This is intentional. Replacing those fields with catalog nd values would destroy the patent EFL verification.
+The data file labels all three glasses as `Unmatched ... class` and retains the patent’s n(365) values in the index fields. Each element now carries an index-reference note so the inspector labels these as source coordinates. No compatible full spectral curve was established. The runtime Abbe fallback assumes a d-line reference, so its visible chromatic output does not reproduce the patent’s UV correction or Figure 3. Only the monochromatic source-index power check is verified; replacing these indices with catalog nd would lose that check.
 
 ## Focus Mechanism
 
@@ -152,3 +152,10 @@ That choice has clear tradeoffs. The design is simple, compact, and compatible w
 - OHARA S-BSL7 data sheet, OHARA 25-04. Used for nd, νd, 365.015 nm refractive index, and transmission comparison for the UV crown-class elements.
 - HIKARI J-LLF2 data sheet, Hikari Glass Co., Ltd. Used for nd, νd, 365.015 nm refractive index, and transmission comparison for the UV light-flint-class central element.
 - UltravioletPhotography.com forum thread, “UV Nikkor 55mm,” used only as secondary context for the reported Nikon Museum statement on the lens’s limited/non-commercial status.
+
+
+## 2026-10-30 — Native patent rim and glass review
+
+The original four-page local patent was checked directly, including the repeated prescription on pages 2–3, Figure 1 on page 3, and the wavelength plots on page 4. The six powered surfaces retain their source radii, axial spacings and n(365)/νd coordinates. Native Figure 1 gives approximately 7.3/6.4/6.35 mm half-heights after the existing 0.55 scale; common 7.5/6.6/6.6 mm rims include a small scan/schematic allowance. The central element has oblique end bevels, with no independently evidenced flat annulus or concave-end cut. No such cut was added.
+
+The three source pairs remain unresolved for full spectral tracing. No visible-line indices, partial-dispersion values, supplier or melt identity were invented. All 97 aimed axial pupil samples clear at infinity, midpoint and estimated close focus. In 5,820 identical-launch comparisons over three focus states and ten field angles, 4,748 comparisons transmit in both versions, 872 transmit only with the older larger rims, and 200 are blocked in both. These sampled comparisons describe the model change, not flux or measured production vignetting. Full-format chief rays and nominal f/4 pass. All nine rendered states are finite with zero hidden trim.
