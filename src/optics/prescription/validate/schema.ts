@@ -505,6 +505,24 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
         errors.push(`surfaces[${i}] ("${s.label}"): rimCutDepthSource needs a rimCutDepthMm to source`);
       }
     }
+    if (s.rimExtensionSd !== undefined) {
+      if (typeof s.rimExtensionSd !== "number" || !isFinite(s.rimExtensionSd) || s.rimExtensionSd <= 0) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimExtensionSd must be a positive finite number when provided`);
+      } else if (typeof s.sd === "number" && s.rimExtensionSd <= s.sd) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimExtensionSd must be greater than sd`);
+      }
+      if (s.rimCutDepthMm !== undefined) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimExtensionSd and rimCutDepthMm are mutually exclusive`);
+      }
+      if (s.label === "STO" || s.innerSd !== undefined || s.interaction !== undefined || s.diffractive !== undefined) {
+        errors.push(
+          `surfaces[${i}] ("${s.label}"): rimExtensionSd extends an ordinary refracting surface, not the stop, an annular surface, a diffractive surface or one with an interaction`,
+        );
+      }
+      if (data.opticalPath !== undefined) {
+        errors.push(`surfaces[${i}] ("${s.label}"): rimExtensionSd is not allowed on a folded (opticalPath) lens`);
+      }
+    }
     if (s.interaction !== undefined) {
       if (!s.interaction || typeof s.interaction !== "object" || Array.isArray(s.interaction)) {
         errors.push(`surfaces[${i}] ("${s.label}"): interaction must be an object when provided`);

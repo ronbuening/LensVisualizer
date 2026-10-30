@@ -21,6 +21,7 @@ import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { computeFieldGeometry } from "../../../../src/optics/field/geometry.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 import type { AsphericCoefficients } from "../../../../src/types/asphericSchema.js";
+import { FIXTURE_PAIRS } from "../prescription/ingestV2Fixtures.js";
 
 const flatSurfaces = [
   { label: "1", R: 1e15, nd: 1.0, d: 5, sd: 10, elemId: 0 },
@@ -568,6 +569,39 @@ describe("trace capture policies", () => {
       expect(diagnostics).toHaveBeenCalledOnce();
     } finally {
       diagnostics.mockRestore();
+    }
+  });
+});
+
+describe("rim extension", () => {
+  it("preserves the optical cap and field limit, clips at sd, and draws clipped hits on the land", () => {
+    const fixture = FIXTURE_PAIRS.find((pair) => pair.family === "rim extension")!;
+    const extendedData = structuredClone(fixture.v2);
+    extendedData.surfaces[1].rimExtensionSd = 20;
+    const baseData = structuredClone(extendedData);
+    delete baseData.surfaces[1].rimExtensionSd;
+    const extended = build(extendedData);
+    const base = build(baseData);
+    const state = prepareRuntimeState(extended, 0, 0);
+    const baseState = prepareRuntimeState(base, 0, 0);
+    expect(state.surfaces[1].rimCut).toBeNull();
+    expect(state.surfaces[1].rimLand).toMatchObject({ radius: 10, outerRadius: 20 });
+    expect(extended.maxSD).toBe(20);
+    expect(base.maxSD).toBe(15);
+    expect(extended.halfField).toBe(base.halfField);
+    expect(computeFieldGeometry(state).halfFieldDeg).toBe(computeFieldGeometry(baseState).halfFieldDeg);
+    for (const y of [0, 5, 9.99, 10, 10.01, 12, 14]) {
+      const ray = { origin: [0, y, -5] as Vec3, direction: [0, 0, 1] as Vec3 };
+      const options = { checkSemiDiameter: true, stopOnClip: true, stopSemiDiameter: 20 };
+      const trace = traceEngineRay(state, ray, options);
+      expect(trace).toEqual(traceEngineRay(baseState, ray, options));
+      if (y > 10) {
+        expect(trace.status).toBe("clipped");
+        expect(trace.hits[1]).toMatchObject({ surfaceLabel: "1", clipped: true, clipReason: "semi-diameter" });
+        const drawn = engineTraceToRuntimeRayResult(trace, [-5, y], true, state.lens);
+        expect(drawn.ghostPts[0][0]).toBeCloseTo(state.z[1] + state.surfaces[1].profile.sag(10), 10);
+        expect(drawn.ghostPts[0][1]).toBe(y);
+      } else expect(trace.status).toBe("ok");
     }
   });
 });

@@ -5,7 +5,7 @@ import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../s
 import { zoomIndexToT } from "../state/stationTables.js";
 import { fNumberRuleStop } from "../state/apertureStop.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import { clearSemiDiameter } from "../geometry/rimCut.js";
+import { clearSemiDiameter, outlineSemiDiameter } from "../geometry/rimCut.js";
 import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
 import type { ParaxialTraceOptions as ParaxialSurfaceTraceOptions } from "../math/paraxial.js";
 import { createTraceGeometry } from "../trace/geometry.js";
@@ -754,7 +754,11 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
   }
   const imagePlane = resolveImagePlane(data, totalTrack);
   /* Synthetic rear plates carry generous non-clipping rims; keep them out of the diagram's vertical scale. */
-  const maxSD = Math.max(...S.filter((s) => !s.synthetic).map((s) => s.sd));
+  const maxSD = Math.max(
+    ...S.map((surface, i) =>
+      surface.synthetic ? 0 : outlineSemiDiameter({ sd: surface.sd, rimLand: lens.surfaces[i].rimLand }),
+    ),
+  );
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
   const SC = (svgW * scFill) / totalTrack;

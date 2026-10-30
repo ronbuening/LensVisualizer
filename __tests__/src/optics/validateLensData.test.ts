@@ -2340,6 +2340,122 @@ describe("validateLensData — rim cut", () => {
  *  Slope-based rim check (replaces old sd/|R| ratio check)
  * ═══════════════════════════════════════════════════════════════════ */
 
+describe("validateLensData — rim extensions", () => {
+  const extended = (extra: Record<string, unknown> = {}) =>
+    makeValid({
+      surfaces: [
+        { label: "STO", R: 1e15, d: 3, nd: 1, elemId: 0, sd: 6 },
+        { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 8, rimExtensionSd: 12, ...extra },
+        { label: "2", R: -50, d: 50, nd: 1, elemId: 0, sd: 12 },
+      ],
+    }) as Record<string, unknown> & {
+      surfaces: Record<string, unknown>[];
+      elements: Record<string, unknown>[];
+    };
+
+  it.each([50, -50, 1e15])("allows an extension on a convex, concave or flat face (R=%s)", (R) => {
+    expect(validateLensData(extended({ R }))).toEqual([]);
+  });
+
+  it.each([0, -1, NaN, Infinity, "12", null, 8, 7])(
+    "refuses an invalid or non-increasing rim height (%s)",
+    (rimExtensionSd) => {
+      expect(validateLensData(extended({ rimExtensionSd })).some((e) => e.includes("rimExtensionSd must be"))).toBe(
+        true,
+      );
+    },
+  );
+
+  it("refuses two land definitions on the same face", () => {
+    expect(validateLensData(extended({ rimCutDepthMm: 0.5 }))).toContain(
+      'surfaces[1] ("1"): rimExtensionSd and rimCutDepthMm are mutually exclusive',
+    );
+  });
+
+  it("reports the drawn heights when an extension exceeds the element's height ratio", () => {
+    expect(
+      validateLensData(extended({ rimExtensionSd: 40 })).some(
+        (e) => e.includes("SD ratio 3.33") && e.includes("sd=40"),
+      ),
+    ).toBe(true);
+  });
+
+  it.each([
+    { innerSd: 0 },
+    { interaction: { type: "refract" } },
+    { diffractive: { kind: "radial-polynomial", referenceWavelengthNm: 550, diffractionOrder: 1, terms: [] } },
+  ])("keeps rim extensions on ordinary refracting surfaces (%j)", (extra) => {
+    expect(
+      validateLensData(extended(extra)).some((e) =>
+        e.includes("rimExtensionSd extends an ordinary refracting surface"),
+      ),
+    ).toBe(true);
+  });
+
+  it("refuses an extension on a stop, folded lens or cemented interface", () => {
+    const stopped = extended();
+    stopped.surfaces[0].rimExtensionSd = 12;
+    expect(validateLensData(stopped).some((e) => e.includes('("STO"): rimExtensionSd extends'))).toBe(true);
+    expect(validateLensData({ ...extended(), opticalPath: { mode: "auto" } })).toContain(
+      'surfaces[1] ("1"): rimExtensionSd is not allowed on a folded (opticalPath) lens',
+    );
+    const cemented = extended();
+    cemented.surfaces[0].elemId = 2;
+    cemented.surfaces[0].nd = 1.6;
+    expect(validateLensData(cemented)).toContain('Surface "1": a rim extension needs a glass/air boundary');
+  });
+
+  it("checks edge thickness to the taller land, while checking slope only at the cap edge", () => {
+    const data = extended({ R: 20, sd: 7, rimExtensionSd: 14 });
+    data.surfaces[2].sd = 14;
+    data.surfaces[2].R = -100;
+    data.asph = { "1": { K: 3, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+    expect(validateLensData(data)).toEqual([]);
+    data.surfaces[1].d = 2;
+    expect(validateLensData(data).some((e) => e.includes("negative edge thickness"))).toBe(true);
+  });
+
+  it("detects overlap above the original cap edge with the next element", () => {
+    const data = extended({ R: 100, d: 5, rimExtensionSd: undefined, sd: 12 });
+    data.elements.push({ id: 2, name: "L2", label: "L2", type: "test", nd: 1.5, vd: 50 });
+    Object.assign(data.surfaces[2], { R: -50, sd: 6, rimExtensionSd: 12, d: 1 });
+    data.surfaces.push(
+      { label: "3", R: -20, d: 6, nd: 1.5, elemId: 2, sd: 12 },
+      { label: "4", R: -100, d: 50, nd: 1, elemId: 0, sd: 12 },
+    );
+    expect(validateLensData(data).some((e) => e.includes("rim extension's land intrudes"))).toBe(true);
+    delete data.surfaces[2].rimExtensionSd;
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("checks the land against a moving stop at every focus and zoom keyframe", () => {
+    const data = extended({ R: 100, sd: 12, rimExtensionSd: undefined });
+    data.surfaces = [
+      data.surfaces[1],
+      { label: "2", R: 20, d: 3, nd: 1, elemId: 0, sd: 8, rimExtensionSd: 12 },
+      { label: "STO", R: 1e15, d: 50, nd: 1, elemId: 0, sd: 6 },
+    ];
+    data.var = { "2": [3, 1.5] };
+    expect(validateLensData(data).some((e) => e.includes("rim extension") && e.includes("focus keyframe 1"))).toBe(
+      true,
+    );
+    data.var = { "2": [3, 2] };
+    expect(validateLensData(data)).toEqual([]);
+    data.zoomPositions = [50, 70];
+    data.var = {
+      "2": [
+        [3, 2],
+        [3, 1.5],
+      ],
+    };
+    expect(
+      validateLensData(data).some(
+        (e) => e.includes("rim extension") && e.includes("zoom position 1") && e.includes("focus keyframe 1"),
+      ),
+    ).toBe(true);
+  });
+});
+
 describe("validateLensData — rim slope check", () => {
   it("keeps the renderer default rim angle synchronized with validation", () => {
     expect(Math.tan(((v1CatalogDefaults().maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);

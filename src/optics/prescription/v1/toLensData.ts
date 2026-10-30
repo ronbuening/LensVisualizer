@@ -351,6 +351,7 @@ function surfaceView(
   put(out, "innerSd", surface.innerSd);
   put(out, "rimCutDepthMm", surface.rimCutDepthMm);
   put(out, "rimCutDepthSource", surface.rimCutDepthSource);
+  put(out, "rimExtensionSd", surface.rimExtensionSd);
   put(out, "stopPlacement", surface.stopPlacement);
   put(out, "interaction", surface.interaction);
   put(out, "diffractive", surface.diffractive);

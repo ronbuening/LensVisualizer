@@ -7,7 +7,7 @@
 import type { SurfaceData } from "../../types/optics.js";
 import type { CompiledSurface } from "../types.js";
 import { createSurfaceProfile } from "../geometry/surfaceProfile.js";
-import { resolveRimCut } from "../geometry/rimCut.js";
+import { resolveRimCut, resolveRimExtension } from "../geometry/rimCut.js";
 import type { RimCut } from "../geometry/rimCut.js";
 import type { SurfaceProfile } from "../types.js";
 import { compileDiffractivePhase } from "../math/diffractivePhase.js";
@@ -30,6 +30,12 @@ export function compileSurfaces(
     runtimeSurfaces.map((surface, physicalIndex) => {
       const asphere = aspheresByIndex[physicalIndex] ?? null;
       const profile = createSurfaceProfile(surface, asphere ?? undefined);
+      const rimCut = compileRimCut(surface, profile);
+      const rimLand =
+        rimCut ??
+        (surface.rimExtensionSd === undefined
+          ? null
+          : resolveRimExtension(profile.sag, surface.sd, surface.rimExtensionSd));
       return Object.freeze({
         physicalIndex,
         label: surface.label,
@@ -38,7 +44,8 @@ export function compileSurfaces(
         nd: surface.nd,
         sd: surface.sd,
         innerSd: surface.innerSd ?? null,
-        rimCut: compileRimCut(surface, profile),
+        rimCut,
+        rimLand: rimLand && Object.freeze(rimLand),
         clips: surface.clips !== false,
         elemId: surface.elemId,
         stopPlacement: surface.stopPlacement ?? null,

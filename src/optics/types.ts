@@ -6,7 +6,7 @@
  */
 
 import type { TraceGeometry } from "./trace/types.js";
-import type { RimCut } from "./geometry/rimCut.js";
+import type { RimCut, RimLand } from "./geometry/rimCut.js";
 import type { DispersionQuality } from "../types/dispersion.js";
 import type { GlassEntry } from "./chromatic/glassCatalogTypes.js";
 import type {
@@ -125,6 +125,8 @@ export interface CompiledSurface {
   innerSd: number | null;
   /** Flat land cutting the rim: tracing clips beyond its radius, drawing follows it; null on an uncut surface. */
   rimCut: RimCut | null;
+  /** Shared drawn boundary of a rim cut or extension; null on an ordinary face. */
+  rimLand: RimLand | null;
   /** False when `sd` is a generated rear-plate rim: the surface never clips a ray or limits the field. */
   clips: boolean;
   elemId: number;

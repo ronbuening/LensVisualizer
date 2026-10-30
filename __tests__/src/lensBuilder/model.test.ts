@@ -13,6 +13,8 @@ const inputs = [
   catalog.find((d) => d.zoom && d.gaps && d.surfaces.some((s) => s.asphere))!,
   catalog.find((d) => d.rearPlates?.length)!,
 ];
+const extensionInput = createTemplate();
+extensionInput.surfaces[0].rimExtensionSd = extensionInput.surfaces[0].sd! + 2;
 
 describe("lens builder authored model", () => {
   it("builds the teaching template with exactly one stop and real glasses", () => {
@@ -46,7 +48,7 @@ describe("lens builder authored model", () => {
 });
 
 describe("builder transport", () => {
-  it.each(inputs)("round-trips authored catalog data ($key) through a complete TS file", (input) => {
+  it.each([...inputs, extensionInput])("round-trips authored data ($key) through a complete TS file", (input) => {
     const source = exportDataTs(input);
     expect(source).toMatch(/^import type \{ LensDataV2Input \} from "\.\.\/types\/lensDataV2.js";/);
     expect(source).toContain("LENS DATA —");

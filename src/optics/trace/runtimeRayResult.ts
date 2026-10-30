@@ -6,7 +6,7 @@
 
 import type { RayTraceResult } from "../../types/optics.js";
 import type { CompiledLens, Vec3 } from "../types.js";
-import { rimCutLandPoint } from "../geometry/rimCut.js";
+import { rimLandPoint } from "../geometry/rimCut.js";
 import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
 import type { EngineTraceResult, TraceCapture } from "./types.js";
 
@@ -103,8 +103,8 @@ function appendTracePoints(
     if (!Number.isFinite(point[0]) || !Number.isFinite(point[1])) continue;
     if (hit.clipped) {
       // Intersection misses terminate before adding a hit; ghost points here
-      // are only real clipped surface hits. A rim cut's clip is drawn on its land.
-      const land = rimCutLandPoint(L.surfaces[hit.surfaceIndex], hit);
+      // are only real clipped surface hits. A rim land's clip is drawn on its land.
+      const land = rimLandPoint(L.surfaces[hit.surfaceIndex], hit);
       if (ghost) ghostPts.push(land ? [land[2], land[1]] : point);
     } else {
       pts.push(point);

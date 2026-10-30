@@ -216,6 +216,7 @@ const SURFACE_FIELDS: Fields<SurfaceV2Input> = {
   innerSd: true,
   rimCutDepthMm: true,
   rimCutDepthSource: true,
+  rimExtensionSd: true,
   medium: true,
   asphere: true,
   diffractive: true,
@@ -413,6 +414,7 @@ const SURFACE_READ_FIELDS = [
   "innerSd",
   "rimCutDepthMm",
   "rimCutDepthSource",
+  "rimExtensionSd",
   "diffractive",
   "interaction",
   "stopPlacement",
@@ -559,6 +561,7 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
     put(out, "innerSd", surface.innerSd);
     put(out, "rimCutDepthMm", surface.rimCutDepthMm);
     put(out, "rimCutDepthSource", surface.rimCutDepthSource);
+    put(out, "rimExtensionSd", surface.rimExtensionSd);
 
     const medium = surface.medium;
     if (medium === undefined) {

@@ -64,6 +64,11 @@ export interface SurfaceV2Input {
    * any traced ray of the wide-open beam.
    */
   rimCutDepthSource?: string;
+  /**
+   * Outer drawn semi-diameter in mm of a flat, opaque land extending the face vertically from `sd`.
+   * Greater than `sd`, which remains the clear aperture; mutually exclusive with a rim cut.
+   */
+  rimExtensionSd?: number;
   /** The medium after this surface: an element id, a `media` id, or left out for air. */
   medium?: number | string;
   /** Sparse aspheric terms; a term left out is zero. */

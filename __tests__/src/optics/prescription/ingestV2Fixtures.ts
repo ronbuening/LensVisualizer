@@ -503,6 +503,20 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
     }),
   },
   {
+    family: "rim extension",
+    kind: "lens",
+    v1: v1Prime("fixture-rim-extension", {
+      surfaces: v1Surfaces().map((surface) =>
+        surface.label === "1" ? { ...surface, sd: 10, rimExtensionSd: 15 } : surface,
+      ),
+    }),
+    v2: v2Prime("fixture-rim-extension", {
+      surfaces: v2Surfaces().map((surface) =>
+        surface.label === "1" ? { ...surface, sd: 10, rimExtensionSd: 15 } : surface,
+      ),
+    }),
+  },
+  {
     family: "absorption",
     kind: "lens",
     v1: v1Prime("fixture-absorption", { elements: [{ ...ELEMENT, absorptionCoefficientPerMm: 0.01 }] }),

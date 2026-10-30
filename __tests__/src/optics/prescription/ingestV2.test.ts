@@ -95,6 +95,7 @@ describe("V1/V2 fixture pairs", () => {
       "folded (explicit)",
       "mirrors with spans",
       "diffractive",
+      "rim extension",
       "absorption",
       "rear plates",
       "media",

@@ -503,6 +503,9 @@ Folded systems may use a stable physical/model order or the source's transmissio
 axial stations, and `opticalPath` sets the ray-hit order. Document any departure from front-to-rear order in the file
 header and the companion analysis.
 
+The record below lists the available fields. Optional features have combination rules in their sections below;
+in particular, choose either a rim cut or a rim extension on one face.
+
 ```ts
 {
   label: "3A", // REQUIRED: unique label
@@ -512,6 +515,8 @@ header and the companion analysis.
   innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
   rimCutDepthMm: 3.24, // optional: flat cut of a deep rim, this far from the vertex (Rim cuts)
   rimCutDepthSource: "…", // optional: where the source states that depth (Rim cuts)
+  // Alternative to rimCutDepthMm / rimCutDepthSource:
+  // rimExtensionSd: 16.0, // optional: final drawn semi-diameter, larger than sd (Rim extensions)
   medium: 2, // the medium AFTER this surface: an element id, a media id, or left out for air
   asphere: { K: -0.62, A4: 1.2e-5 }, // optional: sparse aspheric terms
   interaction: { type: "reflect" }, // optional: folded-path behavior
@@ -534,6 +539,7 @@ header and the companion analysis.
 | `innerSd` | Inner inactive radius for annular surfaces; non-negative and smaller than `sd`. |
 | `rimCutDepthMm` | Depth from the vertex of a flat, opaque land that cuts a rim bending into air ([Rim cuts](#rim-cuts-rimcutdepthmm)). |
 | `rimCutDepthSource` | Where the source states the cut's depth; without it the cut is inferred ([Rim cuts](#rim-cuts-rimcutdepthmm)). |
+| `rimExtensionSd` | Outer drawn semi-diameter of a vertical land extending the face from its existing `sd` ([Rim extensions](#rim-extensions-rimextensionsd)). |
 
 A surface on a variable gap leaves `d` out: the gap's first thickness supplies it, and writing both is refused even
 when they agree. Every other surface writes `d`.
@@ -713,6 +719,36 @@ there out to `sd`.
   pass through the land. Edge thickness and cross-gap clearance are measured to the land, and rim slope at the cut
   radius. At every zoom station and focus keyframe, the land and the cap stay on their side of an adjacent stop plane,
   and the land clears the surface across its gap within `checks.gapSagFrac`.
+
+### Rim extensions (`rimExtensionSd`)
+
+When a patent figure draws a curved face shorter than the element's edge, followed by a vertical stroke, keep the
+cap's clear semi-diameter in `sd` and set `rimExtensionSd` to the final **drawn semi-diameter in mm**. It is the total
+height from the axis, not an amount to add. The cap ends at `sd`; a flat, opaque land continues vertically at the
+cap's edge sag to `rimExtensionSd`, symmetrically above and below the axis. The opposite face and the usual connecting
+edges complete the element outline.
+
+```ts
+{ label: "1", R: 50, d: 5, sd: 8, rimExtensionSd: 12, medium: 1 },
+{ label: "2", R: -50, d: 40, sd: 12 },
+// Face 1's curve ends at ±8 mm, with vertical lands out to ±12 mm at sag(8).
+```
+
+- **Relation to cuts:** both draw the same kind of land. A cut fixes its axial depth and derives the cap-end radius;
+  an extension keeps the cap-end radius (`sd`) and derives its depth from the existing spherical or aspheric profile.
+  Use one or the other on a face; different faces of an element may use different kinds of land.
+- **Tracing:** `sd` and all optical surface parameters stay unchanged. Rays beyond `sd` remain clipped; the extension
+  never opens the aperture, continues the optical curve, refracts rays, or changes field coverage. A clipped hit on
+  the continued profile within the drawn rim is displayed on the land, using the same projection as a rim cut.
+- **Authoring:** use the figure's curve endpoint for `sd` and its outer edge for `rimExtensionSd`, and record the
+  figure and scale in the file's aperture notes. Do not increase `sd` just to fill out the drawing. The inferred-cut
+  beam rule does not apply: an extension preserves the existing optical cap and adds material outside its aperture.
+- **Validation:** `rimExtensionSd` must be finite and greater than `sd`. It belongs to an ordinary glass/air
+  boundary, convex, concave, aspheric or flat; not the stop, a cemented interface, an annular or diffractive face,
+  a face with an `interaction`, or a folded (`opticalPath`) lens. It is mutually exclusive with `rimCutDepthMm`.
+  Edge thickness, drawn-height ratios and cross-gap clearance include the land; slope and conic-domain checks use
+  the original cap. The land clears the neighboring face and stop at every zoom station and focus keyframe through
+  the same clearance checks used for cuts. Diagram bounds include the taller rim.
 
 ## Stop and Aperture
 
@@ -1543,6 +1579,7 @@ Code: `src/optics/prescription/validate/`.
 | Diffractive kind, wavelength, order and terms | `validateDiffractivePhase` (`diffractive.ts`) |
 | A rim cut is reached inside `sd`, bounds the glass out to `sd`, and cuts glass whose rim bends into air; edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station; edge, slope and cross-gap sag read a rim cut's land; a land stays behind an adjacent stop plane and clears the gap across it at every zoom × focus state | `validateGeometry`, `validateRimCuts`, `validateRimCutClearances` (`geometry.ts`) |
 | An inferred rim cut clears every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its radius at every field, zoom and focus, traced without the inferred cuts; a field it cannot launch refuses the cuts (on a built lens, outside `validateLensData`) | `validateRimCutBeams` (`rimCutBeams.ts`) |
+| A rim extension has a finite outer semi-diameter greater than `sd`, on an ordinary glass/air boundary without a rim cut; its land preserves positive element thickness and clears the neighboring face and stop at every zoom station and focus keyframe | `validateSurfaces` (`schema.ts`), `validateGeometry` (`geometry.ts`) |
 
 A patent declaration (a number or named parties) requires a non-empty, trimmed publication number and both party
 arrays. Empty arrays retain their source meaning above. A year alone or empty party lists without a patent number

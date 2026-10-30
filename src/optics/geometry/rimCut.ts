@@ -1,22 +1,28 @@
 /**
- * Rim cut — a flat land square to the axis that trims the long rim "finger" of a deeply curved surface.
+ * Rim lands — flat, opaque boundaries square to the axis, shared by rim cuts and vertical rim extensions.
  *
  * A surface whose rim bends into the air beside it carries glass past its vertex plane there. `rimCutDepthMm` cuts
  * that glass at a plane `depth` mm from the vertex: the cap stops at the radius where its sag reaches the plane, and
  * a flat, opaque land runs from there out to `sd`. Tracing clips a ray beyond the cut radius, as it does at a rim;
- * drawing follows the land. Validation, compilation and drawing share these helpers so the three agree.
+ * drawing follows the land. `rimExtensionSd` instead adds a land from the existing cap's edge at `sd` to a larger
+ * drawn rim without enlarging the clear aperture. Validation, compilation and drawing share the land geometry.
  */
 
 import type { Vec3 } from "../types.js";
 
-/** A resolved rim cut on one surface, in mm. */
-export interface RimCut {
-  /** Authored depth of the land from the vertex: positive. */
-  depthMm: number;
-  /** Signed axial offset of the land from the vertex: the depth with the sign of the cap's sag at the rim. */
+/** A resolved flat land on one surface, in mm. */
+export interface RimLand {
+  /** Signed axial offset of the land from the vertex. */
   sag: number;
   /** Radius where the cap meets the land: the surface's clear radius for tracing. */
   radius: number;
+  /** Outer drawn radius of the land. */
+  outerRadius: number;
+}
+
+/** A cut additionally retains its authored depth for clearance diagnostics. */
+export interface RimCut extends RimLand {
+  depthMm: number;
 }
 
 const SCAN_STEPS = 256;
@@ -51,7 +57,31 @@ export function resolveRimCut(sag: (radius: number) => number, sd: number, depth
     if (reaches(middle)) outside = middle;
     else inside = middle;
   }
-  return { depthMm, sag: sign * depthMm, radius: outside };
+  return { depthMm, sag: sign * depthMm, radius: outside, outerRadius: sd };
+}
+
+/**
+ * Resolve a vertical extension from the cap's existing edge to a taller drawn rim.
+ *
+ * @param sag - signed sag of the optical cap in mm
+ * @param sd - unchanged clear semi-diameter in mm
+ * @param outerSd - authored outer drawn semi-diameter in mm
+ * @returns the land, or null for a non-finite height, a non-extension or an invalid cap edge
+ */
+export function resolveRimExtension(sag: (radius: number) => number, sd: number, outerSd: number): RimLand | null {
+  if (!Number.isFinite(outerSd) || !(sd > 0) || !(outerSd > sd)) return null;
+  const edgeSag = sag(sd);
+  return Number.isFinite(edgeSag) ? { sag: edgeSag, radius: sd, outerRadius: outerSd } : null;
+}
+
+/**
+ * Radius occupied by a drawn face, including any opaque land beyond the optical cap.
+ *
+ * @param surface - compiled surface with its clear aperture and resolved land
+ * @returns drawn semi-diameter in mm
+ */
+export function outlineSemiDiameter(surface: { sd: number; rimLand: RimLand | null }): number {
+  return surface.rimLand?.outerRadius ?? surface.sd;
 }
 
 /**
@@ -66,15 +96,15 @@ export function clearSemiDiameter(sd: number, cut: RimCut | null): number {
 }
 
 /**
- * Sag of the cut outline: the cap inside the cut radius, the land beyond it.
+ * Sag of the drawn outline: the cap inside the land's start radius, the land beyond it.
  *
  * @param sag - signed sag of the uncut surface, in mm
- * @param cut - resolved cut, or null for an uncut surface
+ * @param land - resolved cut or extension, or null for an ordinary surface
  * @param radius - radial coordinate in mm
  * @returns signed sag in mm
  */
-export function cutOutlineSag(sag: (radius: number) => number, cut: RimCut | null, radius: number): number {
-  return cut && Math.abs(radius) > cut.radius ? cut.sag : sag(radius);
+export function rimOutlineSag(sag: (radius: number) => number, land: RimLand | null, radius: number): number {
+  return land && Math.abs(radius) > land.radius ? land.sag : sag(radius);
 }
 
 /**
@@ -96,23 +126,23 @@ export function rimCutReentryRadius(sag: (radius: number) => number, sd: number,
 }
 
 /**
- * Where a ray that a rim cut clips meets the land, for drawing.
+ * Where a ray clipped beyond the optical cap meets a cut or extension's land, for drawing.
  *
- * The tracer clips such a ray at its hit on the uncut cap beyond the cut radius, inside glass the cut removed; the
- * ray itself stops on the land. A hit outside `sd`, or one the cut did not clip, has no land point.
+ * The tracer keeps its hit on the optical profile beyond the clear aperture; drawing moves that hit to the land.
+ * A hit outside the drawn rim, or one inside the clear aperture, has no land point.
  *
- * @param surface - compiled surface with its profile and cut
+ * @param surface - compiled surface with its optical profile and resolved land
  * @param hit - clipped surface hit with the direction it arrived along
  * @returns the land point in mm, or null
  */
-export function rimCutLandPoint(
-  surface: { profile: { sag(radius: number): number }; rimCut: RimCut | null; sd: number },
+export function rimLandPoint(
+  surface: { profile: { sag(radius: number): number }; rimLand: RimLand | null },
   hit: { point: Vec3; radius: number; incidentDirection?: Vec3 },
 ): Vec3 | null {
-  const cut = surface.rimCut;
+  const land = surface.rimLand;
   const direction = hit.incidentDirection;
-  if (!cut || !direction || hit.radius <= cut.radius || hit.radius > surface.sd) return null;
+  if (!land || !direction || hit.radius <= land.radius || hit.radius > land.outerRadius) return null;
   if (Math.abs(direction[2]) < 1e-12) return null;
-  const t = (cut.sag - surface.profile.sag(hit.radius)) / direction[2];
+  const t = (land.sag - surface.profile.sag(hit.radius)) / direction[2];
   return [hit.point[0] + t * direction[0], hit.point[1] + t * direction[1], hit.point[2] + t * direction[2]];
 }
