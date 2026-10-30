@@ -186,3 +186,6 @@ All values agree to within rounding precision of the patent's tabulated data. Th
 4. ePHOTOzine, "Laowa 15mm f/4 1:1 Macro Lens Review" (distortion measurement of $-4.85\%$).
 5. Phillip Reeve, "Review: Laowa 15mm 4.0 Macro Fullframe," phillipreeve.net, 2019-06-25.
 6. Tobias Hayashi, "Review: Venus Optics Laowa 15mm f4 Macro Lens," tobiashayashi.com, 2017-09-18.
+
+
+The F-mount source review of Example 2 Figure 3 (PDF p. 14) retains independently resolved flat rear lands on S2/S4/S6/S9, extending their existing clear caps to outer heights 26/15.1/10.6/10.5 mm. Continuous caps at S8 and S10–S13 rise to 10.5 mm to follow the drawn connected doublet and collector envelopes. These are figure estimates, not printed effective diameters; prescription radii, thicknesses and focus gaps remain unchanged. Centered full-frame coverage is checked separately from the production lens’s shift capability: the source contains no shifted pupil prescription, and that capability is not established by the centered trace.

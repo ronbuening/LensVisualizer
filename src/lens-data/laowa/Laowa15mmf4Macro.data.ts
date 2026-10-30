@@ -19,7 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    chief ray trace at ~60% field with ~8% mechanical clearance,    ║
  * ║    validated against edge thickness ≥ 0.3 mm, cross-gap sag       ║
  * ║    intrusion ≤ 90%, sd/|R| < 0.90, and element SD ratio ≤ 3.0.   ║
- * ║    Front element (S1) constrained by 77 mm filter thread.         ║
+ * ║    Front element (S1) bounded by the 77 mm filter thread.            ║
+ * ║    Figure 3 supports flat rear lands on S2/S4/S6/S9 and continuous ║
+ * ║    10.5 mm caps through S8 and S10–S13; these remain estimates.     ║
  * ║    S3 (L2 front) and S5 (L3 front) were later raised to pass the   ║
  * ║    traced chief ray to the full-frame corner (21.65 mm at 55.3°;   ║
  * ║    patent ω = 55.199°); the old rims clipped it from 49.2°         ║
@@ -213,18 +215,18 @@ const LENS_DATA = {
   surfaces: [
     /* --- SF group: L1–L6 (surfaces 1–13) --- */
     { label: "1", R: 51.1838, d: 3.9185, sd: 27.5, medium: 1 }, // L1 front
-    { label: "2", R: 78.9199, d: 0.15, sd: 23.0 }, // L1 rear → air
+    { label: "2", R: 78.9199, d: 0.15, sd: 23.0, rimExtensionSd: 26.0 }, // L1 rear → air
     { label: "3", R: 24.9469, d: 1.35, sd: 15.1, medium: 2 }, // L2 front
-    { label: "4", R: 12.5294, d: 5.1363, sd: 11.0 }, // L2 rear → air
+    { label: "4", R: 12.5294, d: 5.1363, sd: 11.0, rimExtensionSd: 15.1 }, // L2 rear → air
     { label: "5", R: 28.226, d: 1.2, sd: 10.6, medium: 3 }, // L3 front
-    { label: "6", R: 10.0604, d: 4.9375, sd: 8.0 }, // L3 rear → air
+    { label: "6", R: 10.0604, d: 4.9375, sd: 8.0, rimExtensionSd: 10.6 }, // L3 rear → air
     { label: "7", R: 212.9888, d: 3.4261, sd: 10.5, medium: 4 }, // L4a front (D1)
-    { label: "8", R: -21.6379, d: 1.2, sd: 10.0, medium: 5 }, // L4a→L4b cemented junction (D1)
-    { label: "9", R: 23.9034, d: 1.9663, sd: 9.0 }, // L4b rear → air
-    { label: "10", R: 230.1139, d: 8.0, sd: 9.0, medium: 6 }, // L5 front
-    { label: "11", R: -217.2471, d: 0.15, sd: 9.0 }, // L5 rear → air
-    { label: "12", R: 60.1975, d: 6.0436, sd: 9.0, medium: 7 }, // L6 front
-    { label: "13", R: -14.8819, sd: 8.5 }, // L6 rear → air (variable D13)
+    { label: "8", R: -21.6379, d: 1.2, sd: 10.5, medium: 5 }, // L4a→L4b cemented junction (D1)
+    { label: "9", R: 23.9034, d: 1.9663, sd: 9.0, rimExtensionSd: 10.5 }, // L4b rear → air
+    { label: "10", R: 230.1139, d: 8.0, sd: 10.5, medium: 6 }, // L5 front
+    { label: "11", R: -217.2471, d: 0.15, sd: 10.5 }, // L5 rear → air
+    { label: "12", R: 60.1975, d: 6.0436, sd: 10.5, medium: 7 }, // L6 front
+    { label: "13", R: -14.8819, sd: 10.5 }, // L6 rear → air (variable D13)
 
     /* --- MF group: Stop + L7–L9 (surfaces 14–22) --- */
     { label: "STO", R: "flat", d: 1.3985 }, // Aperture stop (14-blade)

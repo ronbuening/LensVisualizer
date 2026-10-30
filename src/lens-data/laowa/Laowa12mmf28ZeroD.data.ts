@@ -26,7 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  estimates constrained by the patent stop, paraxial ray heights,    ║
  * ║  edge thickness, element diameter ratio, conic limits, and          ║
  * ║  cross-gap sag intrusion. They are not patent-listed clear          ║
- * ║  apertures.                                                        ║
+ * ║  apertures. F-mount reinspection connects the cemented caps and    ║
+ * ║  retains the source-drawn outer lands; see the audit sidecar.        ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:            ║
  * ║    ✓ Glass elements and surfaces from front element to image plane  ║
@@ -298,29 +299,29 @@ const LENS_DATA = {
     { label: "5", R: 39.7839, d: 1.5, sd: 10.5, medium: 3 },
     { label: "6", R: 10.4818, d: 5.1866, sd: 8.7, rimExtensionSd: 10.5 },
     { label: "7", R: "flat", d: 5.5315, sd: 10.0, medium: 4 },
-    { label: "8", R: -13.8133, d: 1.0, sd: 9.4, medium: 5 },
-    { label: "9", R: 70.345, d: 0.2, sd: 9.4 },
+    { label: "8", R: -13.8133, d: 1.0, sd: 10, medium: 5 },
+    { label: "9", R: 70.345, d: 0.2, sd: 10 },
     { label: "10", R: 32.3483, d: 4.8664, sd: 8.8, medium: 6 },
     { label: "11", R: -14.1918, d: 3.0, sd: 8.8, medium: 7 },
     { label: "12", R: -37.8109, sd: 8.8 },
     { label: "STO", R: "flat", d: 2.6149 },
-    { label: "14", R: 24.8151, d: 3.3, sd: 8.0, medium: 8 },
+    { label: "14", R: 24.8151, d: 3.3, sd: 8.8, medium: 8 },
     { label: "15", R: -43.5495, d: 1.2, sd: 8.8, medium: 9 },
-    { label: "16", R: 12.4551, d: 4.5, sd: 8.2, medium: 10 },
+    { label: "16", R: 12.4551, d: 4.5, sd: 8.4, medium: 10 },
     { label: "17", R: -33.5744, d: 0.15, sd: 8.4 },
     { label: "18", R: -59.478, d: 4.2676, sd: 8.4, medium: 11 },
     { label: "19", R: -10.6778, d: 1.0, sd: 8.4, medium: 12 },
     { label: "20", R: -83.4618, d: 0.15, sd: 9.2 },
-    { label: "21", R: 34.0377, d: 6.6, sd: 11.8, medium: 13 },
+    { label: "21", R: 34.0377, d: 6.6, sd: 12, medium: 13 },
     { label: "22", R: -19.9445, d: 0.15, sd: 12.0 },
     { label: "23", R: 77.2021, d: 1.0, sd: 12.0, medium: 14 },
     { label: "24", R: 19.2911, d: 8.7, sd: 12.0, medium: 15 },
-    { label: "25", R: -19.2911, d: 0.5, sd: 11.8 },
+    { label: "25", R: -19.2911, d: 0.5, sd: 12 },
     {
       label: "26A",
       R: -15.8048,
       d: 1.7,
-      sd: 11.6,
+      sd: 11.8,
       medium: 16,
       asphere: { K: 0.4154, A4: 1.60608e-4, A6: -3.90127e-7, A8: 1.97932e-9, A10: -1.00952e-11, A12: 5.34069e-14 },
     },
