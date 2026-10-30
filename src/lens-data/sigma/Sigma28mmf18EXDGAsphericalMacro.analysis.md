@@ -134,13 +134,13 @@ The biconcave flint is the negative member of G2b. The crown/flint pairing is co
 
 ### L9 — Positive Meniscus
 
-nd = 1.60625, νd = 63.1. Glass: Unmatched (native 1.60625/63.1; no source-precision catalog coordinate adopted). f = +94.086642 mm.
+nd = 1.60625, νd = 63.1. Glass: LBC3N (HOYA loose spectral proxy; source νd 63.1 versus catalog 63.72; supplier unconfirmed). f = +94.086642 mm.
 
-This positive meniscus starts G2c after the narrow s18–s19 air gap. Its weak front curvature contrasts with its stronger rear face. The same printed nd and νd recur in L10; both are left unmatched because no catalogue glass reproduces the pair.
+This positive meniscus starts G2c after the narrow s18–s19 air gap. Its weak front curvature contrasts with its stronger rear face. The same printed nd and νd recur in L10; both retain the printed pair and use the same explicitly nonidentical spectral proxy.
 
 ### L10 — Biconvex Positive
 
-nd = 1.60625, νd = 63.1. Glass: Unmatched (native 1.60625/63.1; no source-precision catalog coordinate adopted). f = +55.828713 mm.
+nd = 1.60625, νd = 63.1. Glass: LBC3N (HOYA loose spectral proxy; source νd 63.1 versus catalog 63.72; supplier unconfirmed). f = +55.828713 mm.
 
 The final biconvex lens completes the positive G2c pair. Its printed d-line index and Abbe number are kept without assigning a supplier. The 38.52 mm image distance is measured from its rear surface s22.
 
@@ -151,12 +151,12 @@ Both resin layers are included in the whole-lens and compound calculations.
 
 The patent defines n as the d-line index in ¶0016. The nine distinct index/Abbe pairs were compared against the
 OHARA, HOYA, Schott, HIKARI, CDGM and Sumita catalogues.
-The chosen names are catalogue glasses with matching coordinates; no supplier or production melt is established.
+The chosen names are qualified catalogue spectral proxies; no supplier or production melt is established. Differences from the source coordinates remain explicit.
 
 | Entries | Patent nd / νd | Catalogue glass | Catalogue nd / νd |
 |---|---|---|---|
 | R1, R2 | 1.51840 / 52.1 | Unmatched | — |
-| L9, L10 | 1.60625 / 63.1 | Unmatched | — |
+| L9, L10 | 1.60625 / 63.1 | LBC3N (HOYA; loose proxy) | 1.60625 / 63.72 |
 | L7 | 1.69680 / 55.6 | K-LaK14 (SUMITA) | 1.6968 / 55.6 |
 | L2 | 1.70154 / 41.0 | BASF7 (SUMITA) | 1.70154 / 41.1 |
 | L6 | 1.71300 / 54.1 | LAC8 (HOYA) | 1.713 / 53.94 |
@@ -165,13 +165,9 @@ The chosen names are catalogue glasses with matching coordinates; no supplier or
 | L3 | 1.78590 / 44.1 | S-LAH51 (OHARA) | 1.785896 / 44.202637 |
 | L4, L5 | 1.80610 / 33.3 | NBFD15 (HOYA) | 1.8061 / 33.27 |
 
-Eight glass elements carry catalogue-derived C, F and g indices and ΔPgF in the data file. The patent nd/νd are unchanged;
-the catalogue dispersion curves are approximations, not exact matches. OHARA S-prefix names are kept as such.
-No catalogue glass is substituted for the resin, and no dispersion curve is invented for it.
+The 2026-10-30 reinspection checked all ten glass and two resin pairs directly against PDF page 4 and the d-line definition in ¶0016. The patent supplies no C/F/g indices or partial-dispersion ratios. Thirty-two catalogue-only C/F/g and ΔPgF copies were removed from eight glass entries; spectral evaluation now uses their current compatible catalogue curves without duplicating those coefficients as purported source anchors.
 
-Both resin layers are therefore traced from the patent nd and νd alone. L9 and L10 are also left unmatched: the nearest
-catalogue glass found, HOYA LBC3N, has νd = 63.72 against the patent's 63.1, too far to adopt as an identification.
-No secondary-spectrum or APO-performance claim follows from these approximate dispersion data.
+L9 and L10 now use HOYA LBC3N as a loose, nonidentical spectral proxy. Its catalogue νd = 63.72 and coefficient-derived νd = 63.710956 differ from the source's 63.1 by much more than its ±0.05 printed precision; this is not a rounding explanation or a historical identification. The source values stay unchanged. All ten glass entries resolve to qualified curves; the two hybrid resins remain unresolved and use the printed nd/νd approximation. Their formulations and cure states are unpublished. No secondary-spectrum or APO-performance claim follows from these approximate dispersion data.
 
 ## Focus Mechanism
 
@@ -236,11 +232,7 @@ axial marginal ray height there (13.38 mm).
 
 The patent publishes no iris diameter or clear radii. The semi-diameters are estimated from the outline of Fig. 1,
 limited by ray clearance, rim slope, edge thickness and the clearance between neighbouring surfaces.
-Fig. 1 draws a flat land outside the concave rear faces of L2, L3 and L8. L2 and L8 have unequal front and rear
-semi-diameters: the rear of L2 (s4) is 17.8 mm, the largest value the rim-slope limit admits, against about
-18.2 mm in the drawing, and L8 is described below. The rear of L3 (s7) is 17 mm, equal to its front, so L3 keeps
-the flat top of the drawing; the drawn curve ends lower, at about 15.4 mm.
-All of these are inferred clear apertures, not production dimensions.
+The 2026-10-30 original-figure reinspection makes the rear lands of L2 and L3 explicit. Surface 4 preserves its 17.8 mm clear cap and adds a vertical land to the 23 mm outer rim. Surface 7 keeps its 17 mm outer rim and uses an inferred 5.68 mm axial cut depth, giving a 15.408569 mm clear cap. The measured cap/edge ratio q ≈ 0.875 is moved outward to clear the full traced beam, which reaches 15.358132 mm, plus the required 0.05 mm margin. The hybrid resin and glass remain connected; their interfaces and both asphere apertures are unchanged. These are inferred dimensions, not production clear apertures.
 
 At the patent's F/1.86 the entrance-pupil radius is 7.286643928 mm, and a real axial ray at that height reaches the
 stop at 13.508414216 mm; this is the stop radius the model uses. The paraxial estimate is 12.397089670 mm.
@@ -250,7 +242,7 @@ The stop size is derived from the f-number; it is not a published diaphragm diam
 The s18–s19 air gap is 1.96 mm on axis and closes toward the rim, where the two surfaces would touch at a height of
 about 11.77 mm. Fig. 1 draws L9 square to its rim and ends the concave rear of L8 in a flat land just ahead of it,
 so the s18 semi-diameter is held to 11.17 mm, with s19 at 14 mm, which leaves 0.197907877 mm of air at that height.
-The drawn curve of s18 ends lower, near 10 mm, which is below the axial beam; the ray height governs.
+The drawn curve of s18 ends lower, near 10 mm, which is below the axial beam; the ray height governs. A cap-preserving land to the full 14 mm outer rim was tested and rejected: its 1.924 mm intrusion exceeds the existing 1.764 mm allowance in the 1.96 mm gap. Even the drawn 13.4 mm rim exceeds that allowance. No shortened invented land or tolerance change is used.
 The F/1.86 axial marginal ray heights at s18 and s19 are 11.127649 and 11.144057 mm, so the axial beam passes s18
 with little margin.
 

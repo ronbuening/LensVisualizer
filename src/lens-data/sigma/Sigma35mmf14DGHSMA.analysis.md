@@ -6,7 +6,7 @@
 **Application Number:** 特願2012-191694 (JP 2012-191694)  
 **Filed:** 2012-08-31  
 **Published:** 2014-03-17  
-**Inventor:** Shiota (塩田 了)  
+**Inventor:** Ryo Shioda (塩田 了)
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Optical System (光学系)  
 **Classification:** IPC G02B 13/04; G02B 13/18  
@@ -22,7 +22,7 @@ The identification rests on the following convergent evidence.
 3. **Format and aperture.** The image height is Y = 21.60 mm, corresponding to a 43.2 mm image circle for 135 full-frame coverage. The design aperture is F1.45, the design realization of the marketed F1.4 class.
 4. **Focus mechanism.** The patent construction for Example 4 places the stop between G2 and G3 and states that, during focus from infinity to near distance, G2 moves toward the object on a trajectory different from G3, while the aperture stop moves with G3. This matches the floating inner-focus arrangement published for the production lens.
 5. **Close distance.** The close-focus table gives d0 = 164.0000 mm and keeps the total track near 300 mm, corresponding to the 0.30 m minimum focusing distance class. The paraxial magnification of the patent example is approximately -0.200, while the production specification is 1:5.2; the difference is within the normal spread between a patent embodiment and the final catalog item.
-6. **Glass palette.** Example 4 carries one FCD100/FLD-class element and several low-dispersion positive elements, including FCD515-class elements, making it a closer production-color-palette match than Example 3, which contains two FCD100/FLD-class elements.
+6. **Glass palette.** Example 4 carries one FCD100/FLD-class element and several low-dispersion positive elements, including qualified FCD505-class proxies, making it a closer production-color-palette match than Example 3, which contains two FCD100/FLD-class elements.
 7. **Stabilization.** Example 4 does not include a decentering image-stabilization group. The patent's stabilization claim is confined to a different configuration, and the production Sigma 35 mm F1.4 DG HSM | Art has no optical stabilizer.
 
 The patent embodiment is therefore not treated as a generic family member. It is used as the best available numerical disclosure for the original DSLR-generation 35 mm F1.4 DG HSM | Art optical formula.
@@ -45,7 +45,7 @@ The combined G2-G3 block has f = 50.81 mm at infinity. The important architectur
 
 ## Element-by-Element Analysis
 
-Element focal lengths below are standalone thick-lens values computed in air. Cemented-pair focal lengths are computed as in-air thick assemblies. Radii use the patent sign convention, with positive radius center of curvature to the image side.
+Glass names below are qualified current spectral proxies, without identifying the production supplier, melt or molding grade. Element focal lengths below are standalone thick-lens values computed in air. Cemented-pair focal lengths are computed as in-air thick assemblies. Radii use the patent sign convention, with positive radius center of curvature to the image side.
 
 ### G1 — Fixed Negative Front Group
 
@@ -70,7 +70,7 @@ nd = 1.72825, νd = 28.32. Glass: E-FD10 (Hoya). f = -49.2 mm.
 L4 is a dense-flint negative element and supplies a stronger negative component than L2. In combination with the surrounding positive elements, it participates in the front group's longitudinal and lateral color balance while preserving the long back-focus character of the design.
 
 **L5 — Biconvex positive, low dispersion.**  
-nd = 1.59282, νd = 68.62. Glass: FCD515 (Hoya), SLD-class. f = +51.5 mm.
+nd = 1.59282, νd = 68.62. Glass: FCD505 (Hoya spectral proxy), SLD-class. f = +51.5 mm.
 
 L5 closes G1 with low-dispersion positive power. Its placement just before the first variable gap helps hand a partially corrected beam to the moving G2 group rather than leaving all chromatic correction to the rear group.
 
@@ -92,13 +92,13 @@ The G2 doublet is positive crown-like glass cemented to a negative flint. Its ne
 
 **L9 + L10 — Cemented doublet, net negative; L3A pair.**  
 L9: nd = 1.72825, νd = 28.32. Glass: E-FD10 (Hoya). f = -24.0 mm.  
-L10: nd = 1.59282, νd = 68.62. Glass: FCD515 (Hoya), SLD-class. f = +70.0 mm.  
+L10: nd = 1.59282, νd = 68.62. Glass: FCD505 (Hoya spectral proxy), SLD-class. f = +70.0 mm.
 Cemented assembly: f = -37.0 mm.
 
 This is the most object-side optical element pair of G3. L9 is the patent's L3A negative element: its object-side surface is concave to the object side, with R3A = -28.6526 mm in Example 4. The cemented low-dispersion positive behind it helps suppress the color introduced by this strong negative power while the pair as a whole remains net negative, preserving back focus.
 
 **L11 — Biconvex positive, low dispersion.**  
-nd = 1.59282, νd = 68.62. Glass: FCD515 (Hoya), SLD-class. f = +50.0 mm.
+nd = 1.59282, νd = 68.62. Glass: FCD505 (Hoya spectral proxy), SLD-class. f = +50.0 mm.
 
 L11 supplies a central share of the G3 positive power. Splitting positive power across L10, L11, and L13 follows the patent's stated design logic: it avoids concentrating rear-group power into one highly curved element, which would increase spherical aberration and reduce glass-selection freedom.
 
@@ -114,18 +114,18 @@ L13 is the final strong positive element. Its high index lets the rear group clo
 
 ## Glass Identification and Selection
 
-The glass assignments were rechecked against Hoya's published current-plus-obsolete ZEMAX AGF catalog. All listed matches reproduce the patent nd values directly, with only the expected last-digit Abbe-number rounding in L7. This review therefore uses Hoya nomenclature rather than generic six-digit glass codes. The 593/686 low-dispersion elements are labeled FCD515 because it matches the patent Abbe value directly; FCD505 is retained only as a near-equivalent catalog note.
+The 2026-10-30 reinspection verified all thirteen nd/νd pairs directly from Example 4 on PDF pages 16–17, with the d-line convention (587.56 nm) defined on PDF page 12. All thirteen retain compatible coefficient curves. Hoya names denote qualified spectral proxies; the patent gives no supplier names, molding grades, C/F/g indices or partial-dispersion ratios. No measured-zero-anomaly or patent-backed APD claim follows. The current resolver uses FCD505 for L5/L10/L11 (coefficient νd ≈ 68.6571, source 68.62); FCD515 is another nearby catalogue type, not an established production identity. This difference is retained as proxy uncertainty, rather than explained as source rounding.
 
-| Element(s) | Patent nd / νd | Catalog match | Optical role |
+| Element(s) | Patent nd / νd | Qualified catalogue proxy | Optical role |
 |---|---:|---|---|
 | L1 | 1.58913 / 61.25 | M-BACD5N (Hoya) | Moldable dense barium crown for the aspheric front meniscus |
 | L2 | 1.43700 / 95.10 | FCD100 (Hoya) | FLD-class very-low-dispersion negative element |
 | L3, L6 | 2.00100 / 29.13 | TAFD55 (Hoya) | High-index positive elements in G1 and G2 |
 | L4, L9 | 1.72825 / 28.32 | E-FD10 (Hoya) | Dense-flint negative elements |
-| L5, L10, L11 | 1.59282 / 68.62 | FCD515 (Hoya); FCD505 is a near-equivalent older catalog type | Low-dispersion positive elements |
+| L5, L10, L11 | 1.59282 / 68.62 | FCD505 (Hoya; FCD515 is another nearby proxy) | Low-dispersion positive elements |
 | L7 | 1.60625 / 63.71 | LBC3N (Hoya) | Low-dispersion positive component of the G2 cemented doublet |
 | L8 | 1.61293 / 36.96 | E-F3 (Hoya) | Flint component of the G2 cemented doublet |
-| L12 | 1.69350 / 53.20 | M-LAC130 (Hoya) | Moldable lanthanum crown for the rear-group aspheric meniscus |
+| L12 | 1.69350 / 53.20 | M-LAC130 (Hoya) | Moldable lanthanum-crown proxy for the rear-group aspheric biconcave element |
 | L13 | 1.80420 / 46.50 | TAF3D (Hoya) | High-index rear positive element |
 
 The main chromatic strategy is straightforward: very-low-dispersion glass is placed in the fixed front negative group, and low-dispersion positive elements are distributed through the front and rear groups. The most important cemented color-correction sites are L7/L8 in G2 and L9/L10 in G3. This is a closer match to Sigma's published one-FLD-plus-SLD description than Example 3, because Example 4 has a single FCD100-class element instead of two.
@@ -140,7 +140,7 @@ The design uses **floating inner focus**. From infinity to the near setting, G1 
 | d15, G2 to G3 | 6.7163 mm | 5.4213 mm | -1.2950 mm |
 | BF, L13 to image | 39.2050 mm | 47.0458 mm | +7.8408 mm |
 
-These spacings imply a 6.55 mm object-ward travel for G2 and a 7.84 mm object-ward travel for G3 and the stop. At the close setting the published d0 = 164.0000 mm and the close-focus optical track sum to 300.005 mm, effectively the 0.30 m minimum-focus specification. The paraxial close-focus magnification of the patent prescription is -0.1996, about 1:5.0; Sigma's production specification is 1:5.2. The discrepancy is small but real, and is recorded rather than forced into agreement.
+These spacings imply a 6.55 mm object-ward travel for G2 and a 7.84 mm object-ward travel for G3 and the stop. At the close setting the published d0 = 164.0000 mm and the close-focus optical track sum to 300.005 mm, effectively the 0.30 m minimum-focus specification. The paraxial close-focus magnification of the patent prescription is -0.1996, about 1:5.0; Sigma's production specification is 1:5.2. The close table gives F1.68 and 2ω = 58.35°, while its paired Fig. 18 plot prints F1.58 and 2ω = 58.32°. Those source discrepancies are preserved; the authored fixed-iris F1.45 calibration and focus controls are unchanged. The discrepancy is small but real, and is recorded rather than forced into agreement.
 
 ## Aspherical Surfaces
 
@@ -163,7 +163,7 @@ In this convention, K = 0 is a spherical base surface. Both Example 4 aspheres h
 
 The front asphere is used at the high-leverage entrance to the retrofocus system. The rear-group asphere on L12 works near the converging rear bundle and the L12/L13 air lens, where it is well placed to trim off-axis aberrations without making the final element aspherical.
 
-At the inferred semi-diameters used in the data file, the polynomial departure from the spherical base is +0.443 mm on surface 1 at h = 21.0 mm and -0.762 mm on surface 22 at h = 17.0 mm. Thus the front asphere moves the rim image-ward relative to the spherical base, while the L12 asphere moves the rim object-ward relative to its negative-radius base surface.
+At the source-scaled clear semi-diameters used after the 2026-10-30 figure reinspection, the polynomial departure from the spherical base is +1.464901 mm on surface 1 at h = 27.4 mm and -0.762 mm on surface 22 at its unchanged h = 17.0 mm. Thus the front asphere moves the rim image-ward relative to the spherical base, while the L12 asphere moves the rim object-ward relative to its negative-radius base surface.
 
 ## Conditional Expressions
 
@@ -205,7 +205,7 @@ All load-bearing numerical claims in this analysis were rederived from the Examp
 | Close object-to-image distance | 300 mm class | 300.005 mm |
 | Close paraxial magnification | not tabulated | -0.1996, about 1:5.0 |
 
-The surface-by-surface Petzval sum, using Σφ/(n n′) with φ = (n′ - n)/R, is +0.00296 mm^-1, corresponding to a Petzval radius of about +338 mm and fP ≈ 0.104. The patent does not tabulate this value. The entrance-pupil calculation for F1.45 gives a stop semi-diameter of about 14.10 mm, which is used in the data file. Because the patent omits clear apertures, semi-diameters in the paired data file are inferred and conservatively sized to preserve positive edge thickness and cross-gap clearance rather than to claim a full unvignetted field.
+The surface-by-surface Petzval sum, using Σφ/(n n′) with φ = (n′ - n)/R, is +0.00296 mm^-1, corresponding to a Petzval radius of about +338 mm and fP ≈ 0.104. The patent does not tabulate this value. The entrance-pupil calculation for F1.45 gives a stop semi-diameter of about 14.10 mm, which is used in the data file. Because the patent omits clear apertures, the outlines remain figure-derived. The 2026-10-30 reinspection used the exact-publication [original Fig. 16 image](https://patentimages.storage.googleapis.com/f8/c5/2c/6bdb3e088badbb/2014048488-19.png) to recover curves missing from local PDF page 27. Paired plots confirm Example 4. Surface 1A now continues to 27.4 mm; S2 keeps its 19.8 mm cap with a land to 27.4 mm. Both L2 faces retain their clear caps and add lands to 22.2 mm. The G2 doublet uses a common 21 mm outer/interface radius and an inferred S15 cut of depth 3.31 mm (cap 16.594420 mm). The G3 doublet retains its S17 cap of 15.5 mm with a land to 17 mm and a full 17 mm cemented interface. L12's S22A keeps its 17 mm clear cap and adds the source-supported front land to 18.3 mm; its curved rear S23 stays at 17 mm, since continuing it to the full source height would violate the narrow gap to L13. No unsupported rear land is substituted. The final L13 stays at 17.3 mm: the source-scaled 18.3 mm trial would cross its two optical faces by 0.278 mm. No radius, thickness, source glass, asphere coefficient, stop, focus control or tolerance changes are used. Full cut guards and a separate source d0 = 164 mm finite-point check pass; off-axis shading remains a model prediction rather than measured production vignetting.
 
 ## Design Heritage and Context
 
@@ -215,6 +215,6 @@ This analysis concerns the original HSM optical formula disclosed in JP 2014-048
 
 ## Sources and References
 
-- JP 2014-048488 A (特開2014-48488), Sigma Corporation; inventor Shiota (塩田 了); filed 2012-08-31, published 2014-03-17. Numerical Example 4 prescription and variable-focus data at ¶0091; construction text at ¶0054-¶0057; conditional table at ¶0097.
+- JP 2014-048488 A (特開2014-48488), Sigma Corporation; inventor Ryo Shioda (塩田 了); filed 2012-08-31, published 2014-03-17. Numerical Example 4 prescription and variable-focus data at ¶0091; construction text at ¶0054-¶0057; conditional table at ¶0097.
 - Sigma Corporation, official 35mm F1.4 DG HSM | Art product specification page: 13 elements in 11 groups; 63.4° angle of view; full-frame DG format; 30 cm minimum focus; 1:5.2 maximum magnification; 67 mm filter; nine rounded blades; HSM; floating system.
 - HOYA Group Optics Division, Optical Glass Data Download, ZEMAX AGF current and obsolete catalogs, updated 2026-06-01. Used for glass-name cross-reference against the patent nd/νd values.
