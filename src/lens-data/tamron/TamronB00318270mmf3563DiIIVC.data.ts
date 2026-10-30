@@ -10,7 +10,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * after surface 35 is read as air; surface 15 is the flat aperture stop. No cover glass is listed.
  *
  * Construction: 18 glass elements in 13 groups (matches Tamron). Surfaces 6, 24 and 28 are 0.2 mm
- * aspherical resin layers on glass substrates (Tamron's three hybrid aspheres); each is a separate
+ * thin composite aspherical layers on glass substrates (Tamron's three hybrid aspheres); each is a separate
  * medium cemented to its substrate (L4r/L4g, L13r/L13g, L15r/L15g), so the elements array has 21
  * entries while elementCount is 18. LD (L2, L11) and AD (L3) tags follow Tamron's diagram; the
  * glass strings are d-line code classes, as the patent names no glass supplier, and dispersion
@@ -36,7 +36,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are inferred from ray clearance and the patent figure, not published. Figure 1
  * is captioned as the telephoto end, but its group spacings match the wide-angle column.
  * The first doublet uses 29.0/28.5/28.5 mm rims and the next singlet 27.0 mm, following
- * the drawing's descending front outline; all other inferred rims retain ray clearance.
+ * the drawing's descending front outline; all other inferred rims retain ray clearance. The2026-10-30 fresh Figure1 review
+ * adds the S8 land from existing clearcap13mm to compound rim14.5mm. Full neighboring
+ * S9/S10 source height fails strict gap geometry; no additional trim is forced.
+ * Hybrid chemistry and cure state remain unestablished; no spectral curve is invented.
  * Stabilization (lateral shift of the LG3 rear doublet) is not simulated.
  */
 
@@ -123,14 +126,14 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4r",
-      label: "Element 4 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 4 hybrid layer",
+      type: "Hybrid Aspheric Layer (1× Asph)",
       nd: 1.5146,
       vd: 49.96,
       indexReference: "d",
       focalLengthMm: -2313.8432243303505,
-      glass: "Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=49.96)",
-      role: "Thin aspherical resin layer on the object side of the second group's front negative meniscus",
+      glass: "Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)",
+      role: "Thin composite aspherical layer on the object side of the second group's front negative meniscus",
       diagramLabel: "4r",
       cemented: "C6",
     },
@@ -262,14 +265,14 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L13r",
-      label: "Element 13 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 13 hybrid layer",
+      type: "Hybrid Aspheric Layer (1× Asph)",
       nd: 1.5361,
       vd: 41.2,
       indexReference: "d",
       focalLengthMm: 84900.59574051666,
-      glass: "Unmatched (hybrid asphere resin/polymer, nd=1.53610, vd=41.20)",
-      role: "Thin aspherical resin layer on the object side of the stabilizing (VC) doublet",
+      glass: "Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.53610, vd=41.20)",
+      role: "Thin composite aspherical layer on the object side of the stabilizing (VC) doublet",
       diagramLabel: "13r",
       cemented: "C24",
     },
@@ -304,14 +307,14 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L15r",
-      label: "Element 15 resin layer",
-      type: "Hybrid Resin Layer (1× Asph)",
+      label: "Element 15 hybrid layer",
+      type: "Hybrid Aspheric Layer (1× Asph)",
       nd: 1.5146,
       vd: 49.96,
       indexReference: "d",
       focalLengthMm: 61211.83564657008,
-      glass: "Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=49.96)",
-      role: "Thin aspherical resin layer on the object side of the fourth group's front positive element",
+      glass: "Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)",
+      role: "Thin composite aspherical layer on the object side of the fourth group's front positive element",
       diagramLabel: "15r",
       cemented: "C28",
     },
@@ -384,10 +387,10 @@ const LENS_DATA = {
       d: 0.2,
       sd: 14.5,
       medium: 4,
-      asphere: { K: 0, A4: 7.56725e-06, A6: -7.65747e-09, A8: -2.26456e-11, A10: 1.23747e-13, A12: 0, A14: 0 },
+      asphere: { K: 0, A4: 7.56725e-6, A6: -7.65747e-9, A8: -2.26456e-11, A10: 1.23747e-13, A12: 0, A14: 0 },
     },
     { label: "7", R: 83.8997, d: 1.2, sd: 14.5, medium: 5 },
-    { label: "8", R: 14.845, d: 6.4, sd: 13.0 },
+    { label: "8", R: 14.845, d: 6.4, sd: 13.0, rimExtensionSd: 14.5 },
     { label: "9", R: -34.8049, d: 1.0, sd: 10.0, medium: 6 },
     { label: "10", R: 47.2288, d: 0.8, sd: 10.0 },
     { label: "11", R: 34.7194, d: 4.8, sd: 10.5, medium: 7 },
@@ -409,7 +412,7 @@ const LENS_DATA = {
       d: 0.2,
       sd: 11.5,
       medium: 14,
-      asphere: { K: 0, A4: 7.89296e-06, A6: 9.60742e-09, A8: 3.69345e-11, A10: -7.34306e-13, A12: 0, A14: 0 },
+      asphere: { K: 0, A4: 7.89296e-6, A6: 9.60742e-9, A8: 3.69345e-11, A10: -7.34306e-13, A12: 0, A14: 0 },
     },
     { label: "25", R: -56.3646, d: 1.0, sd: 11.5, medium: 15 },
     { label: "26", R: 33.9463, d: 2.2, sd: 11.5, medium: 16 },
@@ -420,7 +423,7 @@ const LENS_DATA = {
       d: 0.2,
       sd: 11.8,
       medium: 17,
-      asphere: { K: 0, A4: -3.19107e-05, A6: -5.55382e-09, A8: -3.27936e-11, A10: 3.69412e-13, A12: 0, A14: 0 },
+      asphere: { K: 0, A4: -3.19107e-5, A6: -5.55382e-9, A8: -3.27936e-11, A10: 3.69412e-13, A12: 0, A14: 0 },
     },
     { label: "29", R: 46.2651, d: 4.0, sd: 11.8, medium: 18 },
     { label: "30", R: -30.1602, d: 0.2, sd: 11.8 },

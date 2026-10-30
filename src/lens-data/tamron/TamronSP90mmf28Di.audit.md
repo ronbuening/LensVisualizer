@@ -18,3 +18,13 @@ authored C/F/g line indices. They now read `S-FSL5` and `S-TIH6` in the data and
 existing OHARA catalog rows (1.48749 / 70.24 and 1.80518 / 25.43, equal to the stored pairs within 0.01 in νd). No
 index, Abbe number, line index or identification changed, and the authored line indices still drive tracing; all
 fourteen labels now match a catalog row.
+
+## 2026-10-30 — Fresh original shape and glass reinspection
+
+`patents/US9063253.pdf` Embodiment7: complete source14media/prescription PDF84 and remainingfocusrows85, d-line definitions81, Figure25/PDF27 directly viewed afresh. Figure inspected at600dpi;, native300dpi;111.9956mm firstlastvertices≈3134px600→≈14nativepx/mm. Each convex/concaveface and cement boundary checked.
+
+S5continuouscap20.5→22.5mm extends to its established doubletbody. S10/S11preserve12.8mm clearcaps with lands13/14.5mm. Sourcefull14.5mm frontlandfails neighbor intrusion5.078mm versus4.421allowed;13.1mm stillfails4.445mm. Adopt13mm connected conservativefrontbound,14.5mm rearsourcebody. No inwardcaptrim. Other weak corners/compound differences retained rather than inventing cementinterface features. All9 actualstates connected/maxtrim0.
+
+All14nd/νd exact from original d-linetable, noactualadditionalindices/partialratio. Remove28catalog-onlyC/F/g/dPgF fields on7glasses; all14labels now resolvecompatiblecoefficients directly. Existing XLD/LDtagsremain inferred; FCD515 chemistry corrected to qualifiedfluorophosphateproxy, production supplier/melt unproved. The2026-10-06 historicalclaim authoredindices drive tracing is superseded. Preserve all R/d/sourceconjugates and+.293897mm paraxialimage residual, dummyairreference normalization and sourceR4/derivedtable contradiction. Identical-launch shape counts73335retained/0lost/495gained/70575bothblocked.
+
+Verification: all52 modeled nd/νd pairs freshly source-checked(48physical glass substrates+4explicit hybrid layers); source R/d/asphere coefficients/focus/stop positions/tolerances invariant. Focused surface/image-circle/field/aperture pass:17stations≥99% source-format corner, all17apertures within3%; full shared inferred-cut guard0errors/no untracedfields. Actual nine-state SVGs per lens rasterized and viewed: connected compounds, max hidden trim0. Existing dispersion/resolver/partial-line3suites94tests pass. Exact identical collimated sample comparisons use144405rays/lens and the same baseline iris to isolate shape; not flux or a finite-conjugate transmission certificate. Updated B028 aperture is independently checked by its source-FNO guard/aperture run.

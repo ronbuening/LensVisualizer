@@ -24,11 +24,11 @@ The source has21 non-air slices and 13 air-separated components. Manufacturer br
 
 Sequential height/reduced-angle tracing and independently assembled ABCD matrices agree within2.85e-14. Exact analytic-sag/Snell rays converge to the paraxial BFD to far better than1e-6 mm. Analytic zero-thickness biconvex reference checks pass.
 
-| Native station | EFL mm | BFD mm | Published BF minus computed mm | First vertex to image mm |
-|---|---:|---:|---:|---:|
-| Wide |18.400111742|38.685126365|-0.000126365|145.4065|
-| Middle |71.098274203|75.561807036|+0.000192964|196.4135|
-| Tele |264.214146002|97.162977023|+0.000022977|235.4165|
+| Native station |        EFL mm |       BFD mm | Published BF minus computed mm | First vertex to image mm |
+| -------------- | ------------: | -----------: | -----------------------------: | -----------------------: |
+| Wide           |  18.400111742 | 38.685126365 |                   -0.000126365 |                 145.4065 |
+| Middle         |  71.098274203 | 75.561807036 |                   +0.000192964 |                 196.4135 |
+| Tele           | 264.214146002 | 97.162977023 |                   +0.000022977 |                 235.4165 |
 
 All six group focal lengths reproduce the source to 0.0005 mm. The main groups are+108.563017430,-13.813012968,+45.229679899,+48.814590499 mm; LG3 front/rear are+26.821519707/-40.500029093 mm. Standalone slices, cemented/functional components and in-situ magnifications are separately reported and must not be conflated. Per-surface Petzval sum is+0.001845469941 mm^-1.
 
@@ -48,7 +48,7 @@ The paragraph0020 last-digit comparisons use0.0005 mm tolerance. Middle EFL resi
 
 No source clear-aperture or iris-diameter table exists. Native Fno calibration gives paraxial stop radii8.029265/7.980054/8.026796 mm. These are inferred, so reproducing Fno with them is calibration, not independent validation. No source asphere rim departures are quoted at invented apertures. Pass B separately computes the candidate-edge values at explicitly inferred SDs.
 
-Fresh exact meridional tracing uses analytic surface sag/slope, Newton intersection and vector Snell refraction. It checks all three native stations at axis, headline half-field and coma100% angle, each with stop fractions-1,-0.8,0,+0.8,+1. All 15 axial native rays pass. All six nonzero-field chief rays pass; at the coma angles they land at 14.501746/14.504735/14.498442 mm. Corresponding d-line distortion estimates versus f*tan(theta) are-4.425741%,+2.843980%,+1.551381%, qualitatively consistent with Figures2/4/6.
+Fresh exact meridional tracing uses analytic surface sag/slope, Newton intersection and vector Snell refraction. It checks all three native stations at axis, headline half-field and coma100% angle, each with stop fractions-1,-0.8,0,+0.8,+1. All 15 axial native rays pass. All six nonzero-field chief rays pass; at the coma angles they land at 14.501746/14.504735/14.498442 mm. Corresponding d-line distortion estimates versus f\*tan(theta) are-4.425741%,+2.843980%,+1.551381%, qualitatively consistent with Figures2/4/6.
 
 Eleven direct off-axis rim-aim trials fail with non-forward intersections. Their raw failures and separate40-step chief-to-rim continuation failures are retained. This is not an all-pupil transmission certification: physical rim apertures are unpublished, and the extended sag surfaces can cross outside usable glass. Equal-height material/gap limits are recorded separately, including film6-7 first zero clearance14.832571 mm and film24-25 at 12.977813 mm. These are mathematical bounds, not selected SDs. These source-only checks did not certify candidate apertures. The actual candidate geometry and physical ray checks are addressed in Pass B below.
 
@@ -81,15 +81,15 @@ Candidate Stage3 archive SHA-256: b1179a6f5db11086ba07e552dd96f2a0e12f97b87af3fe
 
 All 35 source rows, all 21 media and their index/Abbe pairs, three complete aspheres, stop mapping, all 12 variable gap values, source Fno/zoom coordinates, group spans, source conditions and counts reconcile with the frozen independent extraction. No R/d/nd/vd/asphere/SD/zoom/aperture values changed. Continuous piecewise-linear zoom remains available. No geometry repair, new exception or new focus reconstruction was introduced.
 
-| Correction | Previous wording | Final treatment and effect |
-|---|---|---|
-| Glass-label provenance | Substrate labels called their identifiers source d-line codes | Most now say derived d-line coordinate codes; the patent prints no codes. Optical values unchanged. |
-| Surface25 proxy |772496 called a source code |Explicit E-LASF016 coordinate-compatible spectral proxy.772496 is the runtime proxy entry's key for nd1.772499; patent1.77250 would conventionally round773496. The exact prior proxy and every computed spectral channel remain unchanged. |
-| M11 shape narrative |Called the19-20 singleton a meniscus despite a biconvex heading |States biconvex numerical signs and separates broad ¶0015 prose from the actual radii. No source edit. |
-| Film chemistry |Resin layer/material wording |Hybrid layer/material wording; composite construction supported but chemistry not identified. |
-| Dispersion formula type |Every catalog proxy called Sellmeier |Catalog-dispersion wording. HIKARI E-LASF016 uses a polynomial; J-SF03/J-LASF010 use power series. |
-| Field definition |General warning only |Explicit headline ideal-projection derivation and actual coma incident-angle comparison are supplied, with full/half distinctions. |
-| UI probe scope |Default-like launch reconstruction only |Actual released UI geometry helper and public traceRay executed and independently checked. |
+| Correction              | Previous wording                                                | Final treatment and effect                                                                                                                                                                                                                  |
+| ----------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Glass-label provenance  | Substrate labels called their identifiers source d-line codes   | Most now say derived d-line coordinate codes; the patent prints no codes. Optical values unchanged.                                                                                                                                         |
+| Surface25 proxy         | 772496 called a source code                                     | Explicit E-LASF016 coordinate-compatible spectral proxy.772496 is the runtime proxy entry's key for nd1.772499; patent1.77250 would conventionally round773496. The exact prior proxy and every computed spectral channel remain unchanged. |
+| M11 shape narrative     | Called the19-20 singleton a meniscus despite a biconvex heading | States biconvex numerical signs and separates broad ¶0015 prose from the actual radii. No source edit.                                                                                                                                      |
+| Film chemistry          | Resin layer/material wording                                    | Hybrid layer/material wording; composite construction supported but chemistry not identified.                                                                                                                                               |
+| Dispersion formula type | Every catalog proxy called Sellmeier                            | Catalog-dispersion wording. HIKARI E-LASF016 uses a polynomial; J-SF03/J-LASF010 use power series.                                                                                                                                          |
+| Field definition        | General warning only                                            | Explicit headline ideal-projection derivation and actual coma incident-angle comparison are supplied, with full/half distinctions.                                                                                                          |
+| UI probe scope          | Default-like launch reconstruction only                         | Actual released UI geometry helper and public traceRay executed and independently checked.                                                                                                                                                  |
 
 The full official Tamron B003 page was inspected after freeze and directly supports three composite aspheres, two LD lenses and one AD lens. This does not identify a catalog supplier, actual melt or measured partial dispersion. The frozen observation that the French brochure does not label its orange swatch remains true.
 
@@ -140,26 +140,36 @@ Source re-read: all 35 rows of ¶0019 (R, d, nd, νd), the 4 variable gaps at 3 
 
 Patent vs model: EFL 18.40/71.10/264.21 vs 18.4001/71.0983/264.2141 mm; BF 38.685/75.562/97.163 vs paraxial 38.6851/75.5618/97.1630 mm; group focal lengths f1/f2/f3/f4/f3a/f3b 108.563/−13.813/45.230/48.815/26.822/−40.500 reproduced exactly. The patent's F/3.50/5.24/6.32 are matched by the f-number calibration with stop radii 8.096/8.092/8.100 mm (nearly one fixed iris). The corner chief ray reaches 14.5 mm at 39.51°/11.22°/3.09°, matching the coma-figure angles. Image-circle and field-coverage audits pass at all stations; clearance shows no axial clipping or chief-ray blocking.
 
-Maker comparison: Tamron specifies 18 elements in 13 groups with three hybrid aspheres, two LD and one AD elements. The brochure construction diagram marks the hybrids at the prescription's resin positions (surfaces 6, 24, 28), LD at the two 497816 positives (L2, L11) and AD at the 618634 lens (L3). Figure 1's caption says telephoto but its spacings match the wide column.
+Maker comparison: Tamron specifies 18 elements in 13 groups with three hybrid aspheres, two LD and one AD elements. The brochure construction diagram marks the hybrids at the prescription's hybrid positions (surfaces 6, 24, 28), LD at the two 497816 positives (L2, L11) and AD at the 618634 lens (L3). Figure 1's caption says telephoto but its spacings match the wide column.
 
-Fields changed: name → "TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [IF] MACRO (B003)"; subtitle → "JP 2010-044103 A, sole embodiment — B003 production correlation"; specs added; elements renamed M1–M21 → L1–L18 with resin layers L4r/L13r/L15r and substrates L4g/L13g/L15g, diagramLabel added, labels "Element N", per-element roles, class-style glass strings (resolved catalog glass unchanged for every element), apd "inferred" with notes on L2, L11 (LD) and L3 (AD); zoomLabels → 18 mm / 270 mm; focusDescription and header rewritten in plain terms; analysis reworded and the verification section replaced by "Model Scope and Limitations".
+Fields changed: name → "TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [IF] MACRO (B003)"; subtitle → "JP 2010-044103 A, sole embodiment — B003 production correlation"; specs added; elements renamed M1–M21 → L1–L18 with hybrid layers L4r/L13r/L15r and substrates L4g/L13g/L15g, diagramLabel added, labels "Element N", per-element roles, class-style glass strings (resolved catalog glass unchanged for every element), apd "inferred" with notes on L2, L11 (LD) and L3 (AD); zoomLabels → 18 mm / 270 mm; focusDescription and header rewritten in plain terms; analysis reworded and the verification section replaced by "Model Scope and Limitations".
 
 Zoom stations: linear interpolation between the three printed states left up to −13.5 mm of paraxial defocus (near zoomT 0.85). Ten solved stations were added (13 in all; printed states at indices 0, 6 and 12 in publishedStations, numerically unchanged): LG1, LG3 and LG4 follow a quadratic in log focal length through their printed positions, LG2 is solved for paraxial focus on the fixed image plane, at focal lengths spaced evenly in log f within each interval. Gaps stay positive; worst remaining defocus is 0.92 mm near 240 mm (0.86 mm on a 0.05 zoomT grid). Solved-station f-numbers (3.72–6.28) are those of the near-constant iris. audit:surface reports no errors.
 
 Open: none.
 
-
 ## 2026-10-14 — Patent-rim, dispersion and metadata audit
 
 Source: Figure 1, PDF page 9 (printed page 8); sole embodiment.
 
-No SD, mount or format correction is justified. The wide-like diagram was inspected at 600 dpi; its telephoto caption remains contradictory, as previously documented. Optical rims agree with the existing front/variator/relay proportions; hatched resin layers and leader lines are excluded from envelope measurements.
+No SD, mount or format correction is justified. The wide-like diagram was inspected at 600 dpi; its telephoto caption remains contradictory, as previously documented. Optical rims agree with the existing front/variator/relay proportions; hatched hybrid layers and leader lines are excluded from envelope measurements.
 
-All eighteen glass substrates already reach coordinate-compatible catalog dispersion. Three resin bodies (L4r/L13r/L15r, two distinct nd/νd coordinates) have no defensible catalog curve and stay unresolved. The official Tamron B003 archive confirms Canon EF and Nikon F versions, APS-C coverage and the full AF / Di II / VC / LD / Aspherical / IF / MACRO designation. The display qualifier is capitalized to ASPHERICAL under the catalog naming convention; B003 remains distinguished from the later B008 PZD.
-
+All eighteen glass substrates already reach coordinate-compatible catalog dispersion. Three hybrid layers (L4r/L13r/L15r, two distinct nd/νd coordinates) have no defensible catalog curve and stay unresolved. The official Tamron B003 archive confirms Canon EF and Nikon F versions, APS-C coverage and the full AF / Di II / VC / LD / Aspherical / IF / MACRO designation. The display qualifier is capitalized to ASPHERICAL under the catalog naming convention; B003 remains distinguished from the later B008 PZD.
 
 ## 2026-10-14 — Local-viewer review
 
 The local wide/tele diagrams were compared with JP2010044103A Figure 1 (PDF page 9, rotated), whose geometry matches the wide row despite its telephoto caption. The optical front outline now descends through 29.0/28.5/28.5 mm first-doublet rims and 27.0 mm next-singlet rims, replacing 30.5/30.0 mm. Axial aperture and APS-C image-corner chief coverage remain available throughout zoom. The existing cemented/hybrid component IDs now have drawing brackets as well as inspector membership.
 
-All four groups move objectward overall during zoom; the solved LG2 path retains its roughly 1.2 mm imageward return near tele. Focus remains unavailable because no near spacings are printed. The two LD and one AD positions remain inferred from Tamron's production diagram, not patent-specified identities; the three resin layers retain Abbe fallback. The patents supply no resin trade name or spectral curve to backfill. Tamron Co., Ltd., Canon EF/Nikon F and APS-C metadata are correct.
+All four groups move objectward overall during zoom; the solved LG2 path retains its roughly 1.2 mm imageward return near tele. Focus remains unavailable because no near spacings are printed. The two LD and one AD positions remain inferred from Tamron's production diagram, not patent-specified identities; the three hybrid layers retain Abbe fallback. The patents supply no resin trade name or spectral curve to backfill. Tamron Co., Ltd., Canon EF/Nikon F and APS-C metadata are correct.
+
+## 2026-10-30 — Fresh original shape and glass reinspection
+
+Original `patents/JP2010044103A.pdf`: all21 media/35rows PDF7/¶0019, source/asphere rows8, d-line/field definitions8–9 and Figure1/PDF9 directly viewed. Figure inspected at600dpi; native400dpi, wide-like vertexscale≈10.81nativepx/mm (existing8.106px/mm at300dpi). Captiontele conflicts with wide-like vertex spacing; retained source discrepancy, no diagram substitution.
+
+Every face and cement boundary inspected. S8 rearconcave retains clear13mm and gains a land to14.5mm, matching its already14.5mm front-layer/substrate compound rim. Entire compound is connected, with no detached film wing. The source neighboring11.3mm S9/S10 body trial would intrude6.685mm into6.4mm gap against5.760allowed. A coupled S8depth6mm trial still fails; no geometry bypass or extra cut forced. Other ends are weakfewpixel arcs/bevels or already conservative: retained. No inwardcap change.
+
+All18 glass substrates and3 explicit layers match source nd/νd exactly; source d-line only, no per-element C/F/g/theta. All18 substrates resolve to qualified compatible curves;3layers(2coordinates) retain unmatched Abbe fallback. Production hybrid construction does not establish resin/polymer trade identity, chemistry or cure: current labels/header/public prose say hybridlayer. Preserve2LD+1AD inferred product-position tags without spectral overrides. All13 authored zoomstations/source3station controls unchanged; old interpolation/rounding/sourcecondition residuals above remain.
+
+Identical-launch shape samples:132432retained/0lost/0gained/11973bothblocked.
+
+Verification: all52 modeled nd/νd pairs freshly source-checked(48physical glass substrates+4explicit hybrid layers); source R/d/asphere coefficients/focus/stop positions/tolerances invariant. Focused surface/image-circle/field/aperture pass:17stations≥99% source-format corner, all17apertures within3%; full shared inferred-cut guard0errors/no untracedfields. Actual nine-state SVGs per lens rasterized and viewed: connected compounds, max hidden trim0. Existing dispersion/resolver/partial-line3suites94tests pass. Exact identical collimated sample comparisons use144405rays/lens and the same baseline iris to isolate shape; not flux or a finite-conjugate transmission certificate. Updated B028 aperture is independently checked by its source-FNO guard/aperture run.

@@ -38,6 +38,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
  */
 
+/* 2026-10-30 fresh original review: Figure25/PDF27 and all14 media PDF84/85.
+ * S5 cap grows to22.5; S10/S11 retain clear12.8 with lands13/14.5mm.
+ * Full frontland14.5 fails gap geometry; conservative13mm keeps a connected body.
+ * Remove28 catalog-only spectral copies; no source C/F/g/theta exists.
+ * Qualified current catalog curves supply dispersion, never supplier/melt identity.
+ */
+
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -136,10 +143,6 @@ const LENS_DATA = {
       focalLengthMm: -49.9168,
       glass: "S-LAH59 (OHARA)",
       role: "Leading negative element of the imageward-moving second group.",
-      dPgF: -0.0092,
-      nC: 1.81075,
-      nF: 1.82825,
-      ng: 1.838,
     },
     {
       id: 6,
@@ -151,10 +154,6 @@ const LENS_DATA = {
       focalLengthMm: -44.0474,
       glass: "S-FSL5 (OHARA; catalog νd 70.23, patent 70.24)",
       role: "Low-index, low-dispersion negative element in the second focus group.",
-      dPgF: 0.0022,
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
     },
     {
       id: 7,
@@ -177,7 +176,7 @@ const LENS_DATA = {
       focalLengthMm: 116.2191,
       glass: "FCD515 (HOYA)",
       apd: "inferred",
-      apdNote: "HOYA low-dispersion phosphate crown; patent supplies only nd and νd.",
+      apdNote: "Qualified HOYA FCD515 fluorophosphate spectral proxy; patent supplies only nd and νd.",
       role: "Single-element third focus group immediately behind the aperture stop.",
     },
     {
@@ -191,10 +190,6 @@ const LENS_DATA = {
       glass: "S-TIH10 (OHARA)",
       role: "Front negative member of the objectward-moving fourth-group doublet.",
       cemented: "D2",
-      dPgF: 0.0123,
-      nC: 1.72086,
-      nF: 1.74645,
-      ng: 1.762,
     },
     {
       id: 10,
@@ -207,10 +202,6 @@ const LENS_DATA = {
       glass: "S-LAL12Q (OHARA)",
       role: "Rear positive member that gives the fourth cemented group net positive power.",
       cemented: "D2",
-      dPgF: -0.0085,
-      nC: 1.67417,
-      nF: 1.68642,
-      ng: 1.69307,
     },
     {
       id: 11,
@@ -223,10 +214,6 @@ const LENS_DATA = {
       glass: "S-BAL35 (OHARA; catalog νd 61.14, patent 61.13)",
       role: "Front negative member of the laterally decentered VC doublet.",
       cemented: "D3",
-      dPgF: -0.0018,
-      nC: 1.58619,
-      nF: 1.59582,
-      ng: 1.60103,
     },
     {
       id: 12,
@@ -239,10 +226,6 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA)",
       role: "Rear positive dense-flint member of the net-negative VC doublet.",
       cemented: "D3",
-      dPgF: 0.0158,
-      nC: 1.79611,
-      nF: 1.82777,
-      ng: 1.84729,
     },
     {
       id: 13,
@@ -254,10 +237,6 @@ const LENS_DATA = {
       focalLengthMm: 45.1632,
       glass: "S-LAL10 (OHARA)",
       role: "Positive collector in the fixed sixth group.",
-      dPgF: -0.0081,
-      nC: 1.71567,
-      nF: 1.73,
-      ng: 1.73792,
     },
     {
       id: 14,
@@ -278,13 +257,13 @@ const LENS_DATA = {
     { label: "2", R: -134.3107, d: 0.15, sd: 26.5 },
     { label: "3", R: 63.0015, d: 7.5198, sd: 24.0, medium: 2 },
     { label: "4", R: -90.2962, d: 1.192, sd: 22.5, medium: 3 },
-    { label: "5", R: 1612.2365, d: 0.15, sd: 20.5 },
+    { label: "5", R: 1612.2365, d: 0.15, sd: 22.5 },
     { label: "6", R: 41.7672, d: 4.6981, sd: 20.5, medium: 4 },
     { label: "7", R: 305.1013, sd: 19.4 },
     { label: "8", R: 192.1, d: 1.2, sd: 18.2, medium: 5 },
     { label: "9", R: 33.512, d: 4.912, sd: 16.0 },
-    { label: "10", R: -46.9417, d: 1.0, sd: 12.8, medium: 6 },
-    { label: "11", R: 39.8523, d: 3.3499, sd: 12.8 },
+    { label: "10", R: -46.9417, d: 1.0, sd: 12.8, medium: 6, rimExtensionSd: 13 },
+    { label: "11", R: 39.8523, d: 3.3499, sd: 12.8, rimExtensionSd: 14.5 },
     { label: "12", R: 60.8772, d: 3.1, sd: 16.0, medium: 7 },
     { label: "13", R: -1857.925, sd: 17.0 },
     { label: "STO", R: "flat" },
