@@ -57,6 +57,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ drawn to scale: calibrated on the published diameters it gives about 16.6, 17.7    ║
  * ║ and 18.8 mm, clear of the corner chief ray (11.2-12.7 mm at surfaces 30-33).       ║
  * ║                                                                                    ║
+ * ║ Figure 1 lands: S7 sd27→outer28; S11 sd16.2→17.4; S12 sd16.2→17.1;            ║
+ * ║ S15 sd17.1→17.6. Optical caps remain. S27 outer18.2 / inferred cut3.91 mm     ║
+ * ║ retains cap16.8586 after outward beam adjustment from the measured~16 mm.    ║
  * ║ GLASS                                                                              ║
  * ║ The patent publishes nd/vd coordinates only. Compatible coefficient-backed         ║
  * ║ catalog equivalents model dispersion without asserting production suppliers.       ║
@@ -354,15 +357,15 @@ const LENS_DATA = {
     { label: "4", R: 157.7721, d: 5.3, sd: 33.5, medium: 3 },
     { label: "5", R: 894.9563, sd: 33 },
     { label: "6", R: 50.7516, d: 2.2, sd: 28, medium: 4 },
-    { label: "7", R: 44.4939, d: 1.81, sd: 27 },
+    { label: "7", R: 44.4939, d: 1.81, sd: 27, rimExtensionSd: 28 },
     { label: "8", R: 53.1452, d: 9, sd: 27, medium: 5 },
     { label: "9", R: 17654.599, sd: 26.5 },
     { label: "10", R: 365.8054, d: 1.5, sd: 17.4, medium: 6 },
-    { label: "11", R: 33.8586, d: 7.52, sd: 16.2 },
-    { label: "12", R: -51.2952, d: 1.8, sd: 16.2, medium: 7 },
+    { label: "11", R: 33.8586, d: 7.52, sd: 16.2, rimExtensionSd: 17.4 },
+    { label: "12", R: -51.2952, d: 1.8, sd: 16.2, rimExtensionSd: 17.1, medium: 7 },
     { label: "13", R: 45.0578, d: 6, sd: 17.1, medium: 8 },
     { label: "14", R: -287.2535, d: 2.11, sd: 17.1 },
-    { label: "15", R: -60.5102, d: 1.8, sd: 17.1, medium: 9 },
+    { label: "15", R: -60.5102, d: 1.8, sd: 17.1, rimExtensionSd: 17.6, medium: 9 },
     { label: "16", R: 8969.214, sd: 17.6 },
     { label: "17", R: 165.9894, d: 4.5, sd: 18.4, medium: 10 },
     { label: "18", R: -106.8038, d: 0.2, sd: 18.6 },
@@ -374,7 +377,7 @@ const LENS_DATA = {
     { label: "24", R: 216.2251, d: 0.2, sd: 19.2 },
     { label: "25", R: 39.9627, d: 6, sd: 19, medium: 14 },
     { label: "26", R: 168.823, d: 4.4, sd: 18.2, medium: 15 },
-    { label: "27", R: 38.2994, d: 30.5, sd: 17.5 },
+    { label: "27", R: 38.2994, d: 30.5, sd: 18.2, rimCutDepthMm: 3.91 },
     { label: "28", R: 272.261, d: 5, sd: 16.6, medium: 16 },
     { label: "29", R: -62.3609, d: 14.8, sd: 16.3 },
     { label: "30", R: -36.5028, d: 1.9, sd: 17.7, medium: 17 },

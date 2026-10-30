@@ -30,6 +30,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ exact meridional ray sampling of the published/reconstructed states and selected  ║
  * ║ intermediate zoom/focus states, then checked for edge thickness, actual rim slope,║
  * ║ conic domain, shared-band cross-gap intrusion, and sampled off-axis containment.  ║
+ * ║ Figure 2 L1 uses source-scaled front cap26.7 / rear cap18.8 / outer26.7 mm. ║
  * ║ Rear G4 rims refined against Figure 2; L12 capped below its edge crossing.                   ║
  * ╚══════════════════════════════════════════════════════════════════════════════════╝
  */
@@ -183,7 +184,7 @@ const LENS_DATA = {
       vd: 52.3,
       indexReference: "d",
       focalLengthMm: -24.947549,
-      glass: "748523 — class unresolved",
+      glass: "E-LAKH1 catalog-coordinate proxy (patent 748523; production supplier unspecified)",
       role: "Front member of the net-negative G3 cemented pair.",
       diagramLabel: "L8",
       cemented: "D2",
@@ -269,7 +270,7 @@ const LENS_DATA = {
       label: "1A",
       R: 542.0779,
       d: 3,
-      sd: 24.5,
+      sd: 26.7,
       medium: 1,
       asphere: {
         K: 19,
@@ -285,7 +286,7 @@ const LENS_DATA = {
         A9: 9.6455e-14,
       },
     },
-    { label: "2", R: 21.5687, d: 12.6, sd: 18 },
+    { label: "2", R: 21.5687, d: 12.6, sd: 18.8, rimExtensionSd: 26.7 },
     {
       label: "3A",
       R: -218.5609,
