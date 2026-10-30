@@ -88,3 +88,11 @@ end's 103.388 mm, which matches. The q range is ±(1 + q) / (edge px), with edge
   of sd. The figure draws L51's edge at 177 px (9.89 mm), short of the stored 11.0 mm sd; on that drawn edge the range
   is 0.893–0.915.
 - The land, 1.0382 mm, is longer than the 0.1 mm minimum, and the q range does not reach 1.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/WO2022264542A1.pdf`, Example 1, Figure 1 (PDF p. 56), and inspected every element on a 600 dpi crop, with a separate enlarged crop of L23. The source S1-to-image span gives 17.9 native px/mm. The existing surface-30 cut already draws L51's resolved concave land. Surface 7's shorter figure cap remains excluded under the full-beam criterion documented above; the figure's own L21 edge is about 12.2 mm, so the larger 14.0 mm front `sd` is not an extension target.
+
+The convex rear face of L23 (surface 11) has a short square stroke, about 7.5 native px or 0.4–0.5 mm, that the earlier concave-cut-only review could not represent. An extension from its retained 10.0 mm cap to front face 10's 10.5 mm outer edge was tested in a temporary candidate, but the land would cross the front face: `audit:surface` reports negative edge thickness -0.125 mm. A 10.3 mm candidate still crosses (-0.037 mm). A truncated 10.1 mm land passes but does not reach the figure's outer edge, so it was rejected rather than substituting an arbitrarily short shoulder. No optical `sd`, curvature or thickness was changed to force that inferred outline.
+
+No geometry changed. `audit:surface` passes with the existing inferred-cut beam check; `audit:image-circle` reports 0 undersized and 0 skipped. The unmodeled L23 stroke is a source/model limitation, not a validated optical aperture.

@@ -106,3 +106,9 @@ faces, the shape `rimCutDepthMm` draws. No cut was authored; the data file is un
   `rim`, `trace`, `iris` or `failed` rows.
 - The diagram draws the L11 body's rim as a slant from the 13.2 mm front edge to junction 2's 9.8 mm rim; the figure's
   square flange would need a land on a cemented face, which `rimCutDepthMm` does not cover.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JPWO2020012638A1.pdf`, Numerical Example 8, Figure 15 (PDF p. 41, upper-left panel), and inspected every element at 600 dpi. The source S1-to-image span gives 12.64 native px/mm. No air-side cap shows a resolved flat land. The long front-element square flange belongs to cemented resin junction 2: the air-side resin face 3A continues past that plane to its own curved edge. Neither `rimExtensionSd` nor a concave rim cut applies to that junction. The remaining small steps belong to cemented interfaces, and the other curves run continuously to their rims.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The existing optical apertures and the front composite-element limitation are retained.

@@ -85,3 +85,9 @@ cut was authored and the data file is unchanged.
   and focus state) and the convex front face 17.
 - Aperture audit unchanged: all three stations trace within 3 % of the stated f/4.5, f/5.1 and f/6.3, with no rim,
   trace, iris or failed rows. Side vignetting is unchanged because nothing was cut.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JPWO2020105107A1.pdf`, Example 1, Figure 1A (wide) and Figure 1C (tele), PDF p. 42, and inspected every element at 600 dpi on the halves without leader lines. The figure gives about 4.4 native px/mm. No face shows a resolved square land: the curved profiles meet their element edges continuously, and the short final stroke on 28 remains within the native pixel uncertainty of the sphere. The larger L12 flange is at cemented junction 4. The schematic crossing of the full curves on opposing faces 7 and 8 is not evidence for an opaque land; extending those old clear caps to the drawn outer edges would still put the facing rims across one another.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. Existing optical apertures and the documented schematic-figure limitation were retained.
