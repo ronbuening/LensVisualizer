@@ -50,3 +50,9 @@ Patent: US 2018/0031811 A1, Example 4 / Figure 11
 - Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
   axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
   corner.
+
+## 2026-10-30 — Original-figure and fresh glass reinspection
+
+- Directly viewed `patents/US20180031811A1.pdf`, Example4 Figure11/PDF12 at600dpi plus original raster, Table4/PDF34, d-line definition/PDF29. Every face and bonded boundary inspected. Arcs meet optical rims; small corner steps do not independently resolve an exposed flat land. Dense rear leaders/brackets excluded. Retain all geometry: no inferred cut or extension, no source-depth flag or tolerance change.
+- All18 source nd/vd pairs exact, includingHG and drawnFL. All18 existing catalog curves retained and explicitly qualified as spectral proxies. CaF2/fluorite and four ED-role flags remain inferred coordinate/product correlations; the patent publishes no material/supplier identity, C/F/g set, or partial/APD values. No new catalog row or spectral field.
+- Surface/circle pass; infinity source aperture f4.08 iris-limited, formatcorner>=99%. Sourceclose d0=3930.900mm fulliris16.983992 gives25/25 aimed axialrayspassing. Nine actualSVG states have18finite paths/zero trim; raster inspected.18sourcepairs/catalog consistency and sharedglass3files94testspass.

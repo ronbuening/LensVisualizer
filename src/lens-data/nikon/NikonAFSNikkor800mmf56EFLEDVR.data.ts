@@ -34,13 +34,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Semi-diameters: estimated from Fig. 1, not patent-published. Rims were         ║
  * ║ measured on the 300/600-dpi render (≈0.375 mm/px, scale from the drawn glass   ║
  * ║ span) and checked against the exact axial marginal ray at all three focus      ║
- * ║ states, which every surface clears. gapSagFrac = 0.98 keeps the drawn G2 rims  ║
+ * ║ states. Close finite full-iris rays still vignette at the front; the infinity ║
+ * ║ source beam clears. gapSagFrac = 0.98 keeps the drawn G2 rims  ║
  * ║ across the 3.095 mm L6→L7 air space. Extreme off-axis front-group rays         ║
  * ║ vignette.                                                                      ║
  * ║                                                                                ║
  * ║ Example 1 is all-spherical/all-plane; no asphere coefficients are published.   ║
  * ║ The patent publishes nd/νd coordinates but no supplier, nC, nF, ng, or dPgF    ║
- * ║ values; glass labels are coordinate matches or class-level descriptions, not   ║
+ * ║ values; selected curves are qualified spectral proxies, without production   ║
  * ║ supplier proof.                                                                ║
  * ╚════════════════════════════════════════════════════════════════════════════════╝
  */
@@ -87,7 +88,7 @@ const LENS_DATA = {
       vd: 64.07,
       indexReference: "d",
       focalLengthMm: 2481772.9242572743,
-      glass: "J-BK7A (HIKARI)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Patent G1a front protective glass; retained as an active optical element.",
       diagramLabel: "HG",
     },
@@ -100,7 +101,7 @@ const LENS_DATA = {
       vd: 95.13,
       indexReference: "d",
       focalLengthMm: 362.5353962923034,
-      glass: "CaF2 fluorite (Nikon specifies two fluorite elements; patent 1.43382/95.13)",
+      glass: "CaF2 (compatible dispersion curve; crystalline-fluorite assignment inferred from source coordinates and product correlation)",
       apd: "inferred",
       apdNote:
         "Fluorite per Nikon's lens-construction diagram (the two large positives behind the protective glass), matching the CaF2 coordinate; the patent publishes nd/νd only.",
@@ -116,7 +117,7 @@ const LENS_DATA = {
       vd: 95.13,
       indexReference: "d",
       focalLengthMm: 383.51525566221585,
-      glass: "CaF2 fluorite (Nikon specifies two fluorite elements; patent 1.43382/95.13)",
+      glass: "CaF2 (compatible dispersion curve; crystalline-fluorite assignment inferred from source coordinates and product correlation)",
       apd: "inferred",
       apdNote:
         "Fluorite per Nikon's lens-construction diagram (the two large positives behind the protective glass), matching the CaF2 coordinate; the patent publishes nd/νd only.",
@@ -132,7 +133,7 @@ const LENS_DATA = {
       vd: 50.17,
       indexReference: "d",
       focalLengthMm: -388.37483999354436,
-      glass: "J-LAK10 (HIKARI)",
+      glass: "J-LAK10 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "G1a negative element.",
       diagramLabel: "L3",
     },
@@ -145,7 +146,7 @@ const LENS_DATA = {
       vd: 55.58,
       indexReference: "d",
       focalLengthMm: -197.2697722714868,
-      glass: "J-LAK14 (HIKARI)",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "G1b negative member of the cemented L4+L5 pair.",
       diagramLabel: "L4",
       cemented: "D1",
@@ -159,7 +160,7 @@ const LENS_DATA = {
       vd: 82.53,
       indexReference: "d",
       focalLengthMm: 168.48430493907134,
-      glass: "J-FKH1 (HIKARI)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED per Nikon's lens-construction diagram (the image-side member of the G1b pair and the rear member of the G3b VR pair), matching the J-FKH1 coordinate; the patent publishes nd/νd only.",
@@ -176,7 +177,7 @@ const LENS_DATA = {
       vd: 42.08,
       indexReference: "d",
       focalLengthMm: -128.6961200224182,
-      glass: "J-LASF02 (HIKARI)",
+      glass: "J-LASF02 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "First negative element of the moving G2 focus group.",
       diagramLabel: "L6",
     },
@@ -189,7 +190,7 @@ const LENS_DATA = {
       vd: 28.7,
       indexReference: "d",
       focalLengthMm: 103.94074352115982,
-      glass: "J-LAFH3 (HIKARI)",
+      glass: "J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the moving G2 cemented L7+L8 pair.",
       diagramLabel: "L7",
       cemented: "D2",
@@ -203,7 +204,7 @@ const LENS_DATA = {
       vd: 55.58,
       indexReference: "d",
       focalLengthMm: -78.80039125493043,
-      glass: "J-LAK14 (HIKARI)",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the moving G2 cemented L7+L8 pair.",
       diagramLabel: "L8",
       cemented: "D2",
@@ -217,7 +218,7 @@ const LENS_DATA = {
       vd: 70.36,
       indexReference: "d",
       focalLengthMm: 117.35703952539525,
-      glass: "J-FK5 (HIKARI)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the G3a cemented L9+L10 pair.",
       diagramLabel: "L9",
       cemented: "D3",
@@ -231,7 +232,7 @@ const LENS_DATA = {
       vd: 28.7,
       indexReference: "d",
       focalLengthMm: -142.52867780237472,
-      glass: "J-LAFH3 (HIKARI)",
+      glass: "J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the G3a cemented L9+L10 pair.",
       diagramLabel: "L10",
       cemented: "D3",
@@ -245,7 +246,7 @@ const LENS_DATA = {
       vd: 58.8,
       indexReference: "d",
       focalLengthMm: 178.9941179919867,
-      glass: "J-K3 (HIKARI)",
+      glass: "J-K3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "G3a positive element ahead of the aperture stop.",
       diagramLabel: "L11",
     },
@@ -258,7 +259,7 @@ const LENS_DATA = {
       vd: 55.58,
       indexReference: "d",
       focalLengthMm: -68.87392113898262,
-      glass: "J-LAK14 (HIKARI)",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "First negative element of the laterally movable G3b VR subgroup.",
       diagramLabel: "L12",
     },
@@ -271,7 +272,7 @@ const LENS_DATA = {
       vd: 40.96,
       indexReference: "d",
       focalLengthMm: 51.320161677174966,
-      glass: "J-LF5 (HIKARI)",
+      glass: "J-LF5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the G3b cemented L13+L14 pair.",
       diagramLabel: "L13",
       cemented: "D4",
@@ -285,7 +286,7 @@ const LENS_DATA = {
       vd: 82.53,
       indexReference: "d",
       focalLengthMm: -48.91083418553724,
-      glass: "J-FKH1 (HIKARI)",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED per Nikon's lens-construction diagram (the image-side member of the G1b pair and the rear member of the G3b VR pair), matching the J-FKH1 coordinate; the patent publishes nd/νd only.",
@@ -302,7 +303,7 @@ const LENS_DATA = {
       vd: 37.96,
       indexReference: "d",
       focalLengthMm: 43.406062530989445,
-      glass: "J-F5 (HIKARI)",
+      glass: "J-F5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive member of the G3c cemented L15+L16 pair.",
       diagramLabel: "L15",
       cemented: "D5",
@@ -316,7 +317,7 @@ const LENS_DATA = {
       vd: 32.36,
       indexReference: "d",
       focalLengthMm: -49.40614012942742,
-      glass: "J-LASF021 (HIKARI)",
+      glass: "J-LASF021 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative member of the G3c cemented L15+L16 pair immediately ahead of the slip-in filter FL.",
       diagramLabel: "L16",
       cemented: "D5",
@@ -329,7 +330,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       indexReference: "d",
-      glass: "J-BK7 (HIKARI)",
+      glass: "J-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Patent surfaces 31–32 slip-in filter plate; Nikon requires a filter in the holder (NC filter supplied), so it is part of the working prescription. Not counted in elementCount.",
       diagramLabel: "FL",
     },
@@ -342,7 +343,7 @@ const LENS_DATA = {
       vd: 52.25,
       indexReference: "d",
       focalLengthMm: 86.29068762475666,
-      glass: "J-KF6 (HIKARI)",
+      glass: "J-KF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "G3c positive relay element after the slip-in filter FL.",
       diagramLabel: "L17",
     },
@@ -355,7 +356,7 @@ const LENS_DATA = {
       vd: 70.36,
       indexReference: "d",
       focalLengthMm: 88.40513983389214,
-      glass: "J-FK5 (HIKARI)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive front member of the G3c cemented L18+L19+L20 triplet.",
       diagramLabel: "L18",
       cemented: "T1",
@@ -369,7 +370,7 @@ const LENS_DATA = {
       vd: 46.56,
       indexReference: "d",
       focalLengthMm: -31.637507236742792,
-      glass: "J-LASF09A (HIKARI)",
+      glass: "J-LASF09A (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative middle member of the G3c cemented L18+L19+L20 triplet.",
       diagramLabel: "L19",
       cemented: "T1",
@@ -383,7 +384,7 @@ const LENS_DATA = {
       vd: 40.96,
       indexReference: "d",
       focalLengthMm: 111.27705738297146,
-      glass: "J-LF5 (HIKARI)",
+      glass: "J-LF5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive rear member of the G3c cemented L18+L19+L20 triplet.",
       diagramLabel: "L20",
       cemented: "T1",

@@ -44,7 +44,7 @@ The focal lengths quoted below are the verified **standalone air-surrounded elem
 
 ### HG — Front protective glass
 
-**nd = 1.51680, νd = 64.07. Glass: J-BK7A (HIKARI). f = +2,481,772.924 mm.**
+**nd = 1.51680, νd = 64.07. Glass: J-BK7A (catalog-compatible spectral proxy; production supplier unspecified). f = +2,481,772.924 mm.**
 
 HG is an almost afocal front protective plate in G1a. The patent explicitly identifies it as protective glass of extremely weak, near-zero refractive power (¶0046). It is retained because it is part of the source optical path and part of the patent's object-side group definition, not because it supplies meaningful system power.
 
@@ -62,14 +62,14 @@ L2 repeats the same extreme nd/νd coordinate as L1 and is the second large posi
 
 ### L3 — Biconcave negative
 
-**nd = 1.72000, νd = 50.17. Glass: J-LAK10 (HIKARI). f = -388.375 mm.**
+**nd = 1.72000, νd = 50.17. Glass: J-LAK10 (catalog-compatible spectral proxy; production supplier unspecified). f = -388.375 mm.**
 
 L3 closes G1a as a weak negative element after the two large positive lenses. Its coordinate matches Hikari J-LAK10 (and the equivalent OHARA S-LAL10), but the supplier and melt are not established by the patent. The positive-positive-negative sequence is part of the patent's G1a construction; any more specific aberration assignment would be interpretive rather than source-stated.
 
 ### L4 + L5 — Cemented G1b pair (D1)
 
-**L4:** nd = 1.69680, νd = 55.58. Glass: J-LAK14 (HIKARI). f = -197.270 mm.  
-**L5:** nd = 1.49782, νd = 82.53. Glass: J-FKH1 (HIKARI). f = +168.484 mm.
+**L4:** nd = 1.69680, νd = 55.58. Glass: J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified). f = -197.270 mm.
+**L5:** nd = 1.49782, νd = 82.53. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). f = +168.484 mm.
 
 L4 is a negative meniscus convex to the object; L5 is a positive meniscus convex to the object. They share a cemented interface and form G1b. Their standalone powers have opposite signs, but the cemented pair must be treated as one optical unit because the interface is glass-to-glass rather than glass-to-air. The verified cemented net focal length is about +1565.239 mm, much weaker than either standalone member.
 
@@ -77,40 +77,40 @@ The high-Abbe L5 coordinate is compatible with an extra-low-dispersion crown cla
 
 ### L6 — Biconcave negative focus-group element
 
-**nd = 1.79952, νd = 42.08. Glass: J-LASF02 (HIKARI). f = -128.696 mm.**
+**nd = 1.79952, νd = 42.08. Glass: J-LASF02 (catalog-compatible spectral proxy; production supplier unspecified). f = -128.696 mm.**
 
 L6 is the first element of moving group G2. Together with D2 it forms a net negative focusing group with isolated group focal length about -90.761 mm. Its axial motion is specified by the patent; the analysis does not infer an independent aberration function for L6 from its sign or glass class.
 
 ### L7 + L8 — Cemented focus-group pair (D2)
 
-**L7:** nd = 1.79504, νd = 28.70. Glass: J-LAFH3 (HIKARI). f = +103.941 mm.  
-**L8:** nd = 1.69680, νd = 55.58. Glass: J-LAK14 (HIKARI). f = -78.800 mm.
+**L7:** nd = 1.79504, νd = 28.70. Glass: J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified). f = +103.941 mm.
+**L8:** nd = 1.69680, νd = 55.58. Glass: J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified). f = -78.800 mm.
 
 L7 is a positive meniscus concave to the object and L8 is biconcave. They form the cemented rear portion of G2. Their verified cemented net focal length is about -321.477 mm. G2's system role is established by the patent as the translating focus group; the individual members' opposite standalone powers should not be mistaken for separate focus motions or independently verified aberration assignments.
 
 ### L9 + L10 — Cemented G3a pair (D3)
 
-**L9:** nd = 1.48749, νd = 70.36. Glass: J-FK5 (HIKARI). f = +117.357 mm.  
-**L10:** nd = 1.79504, νd = 28.70. Glass: J-LAFH3 (HIKARI). f = -142.529 mm.
+**L9:** nd = 1.48749, νd = 70.36. Glass: J-FK5 (catalog-compatible spectral proxy; production supplier unspecified). f = +117.357 mm.
+**L10:** nd = 1.79504, νd = 28.70. Glass: J-LAFH3 (catalog-compatible spectral proxy; production supplier unspecified). f = -142.529 mm.
 
 L9 is biconvex and L10 is plano-concave with its concave face toward the object. Their cemented net focal length is about +610.214 mm. They begin G3a, the positive fixed section ahead of the stop. The strong dispersion contrast is evident from the nd/νd values, but no apochromatic or anomalous-partial-dispersion claim is justified because the patent provides no line-index or dPgF data for these elements.
 
 ### L11 — Biconvex positive before the stop
 
-**nd = 1.51823, νd = 58.80. Glass: J-K3 (HIKARI). f = +178.994 mm.**
+**nd = 1.51823, νd = 58.80. Glass: J-K3 (catalog-compatible spectral proxy; production supplier unspecified). f = +178.994 mm.**
 
 L11 follows D3 and completes G3a before the aperture stop. The isolated G3a focal length is about +141.487 mm. The patent does not assign a unique correction function to L11, so its role is described structurally rather than as a claimed spherical, coma, or field-correction element.
 
 ### L12 — Biconcave negative VR-group element
 
-**nd = 1.69680, νd = 55.58. Glass: J-LAK14 (HIKARI). f = -68.874 mm.**
+**nd = 1.69680, νd = 55.58. Glass: J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified). f = -68.874 mm.**
 
 L12 is the first lens of G3b, immediately after the stop. G3b is the laterally shifted VR subgroup. The subgroup's isolated focal length is about -64.331 mm, agreeing with the patent's requirement that the stabilization group be negative (¶0037–0039).
 
 ### L13 + L14 — Cemented VR pair (D4)
 
-**L13:** nd = 1.58144, νd = 40.96. Glass: J-LF5 (HIKARI). f = +51.320 mm.  
-**L14:** nd = 1.49782, νd = 82.53. Glass: J-FKH1 (HIKARI). f = -48.911 mm.
+**L13:** nd = 1.58144, νd = 40.96. Glass: J-LF5 (catalog-compatible spectral proxy; production supplier unspecified). f = +51.320 mm.
+**L14:** nd = 1.49782, νd = 82.53. Glass: J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified). f = -48.911 mm.
 
 L13 is a positive meniscus concave to the object and L14 is biconcave. The pair's verified cemented net focal length is about -1096.230 mm. L14 is the negative high-Abbe member that directly satisfies the patent's condition νdn > 65.0; its νd = 82.53 reproduces the tabulated condition value 82.5 within source rounding.
 
@@ -118,28 +118,28 @@ Patent ¶0037–0040 links the negative stabilization group and its high-Abbe ne
 
 ### L15 + L16 — Cemented G3c pair (D5)
 
-**L15:** nd = 1.60342, νd = 37.96. Glass: J-F5 (HIKARI). f = +43.406 mm.  
-**L16:** nd = 1.85026, νd = 32.36. Glass: J-LASF021 (HIKARI). f = -49.406 mm.
+**L15:** nd = 1.60342, νd = 37.96. Glass: J-F5 (catalog-compatible spectral proxy; production supplier unspecified). f = +43.406 mm.
+**L16:** nd = 1.85026, νd = 32.36. Glass: J-LASF021 (catalog-compatible spectral proxy; production supplier unspecified). f = -49.406 mm.
 
 L15 is biconvex and L16 is a negative meniscus concave to the object. Their cemented net focal length is about +300.371 mm. In the source prescription this pair lies 9.000 mm ahead of the slip-in filter FL, which the data file models at its printed position.
 
 ### FL — Slip-in filter plate
 
-**nd = 1.51680, νd = 63.88. Glass: J-BK7 (HIKARI). Plane-parallel, 2.000 mm; no power.**
+**nd = 1.51680, νd = 63.88. Glass: J-BK7 (catalog-compatible spectral proxy; production supplier unspecified). Plane-parallel, 2.000 mm; no power.**
 
 FL is the exchangeable filter at source surfaces 31–32, with 9.000 mm of air on each side. Nikon's manual requires a filter in the slip-in holder whenever it is in use and ships the holder with a neutral color filter, so the plate is part of the working optical path. It adds no power, but in the converging beam it contributes a small longitudinal image shift and its own spherical and chromatic terms, which the model now traces directly. Patent condition (1) keeps the object-side optics nearly afocal at this position (f/fFL = 0.21), which is what lets NC, color, polarizing, ND, and IR-cut plates be exchanged with little performance change (¶0049). FL is drawn but not counted in the element total.
 
 ### L17 — Biconvex positive rear relay element
 
-**nd = 1.51742, νd = 52.25. Glass: J-KF6 (HIKARI). f = +86.291 mm.**
+**nd = 1.51742, νd = 52.25. Glass: J-KF6 (catalog-compatible spectral proxy; production supplier unspecified). f = +86.291 mm.**
 
 L17 is the first powered element after the slip-in filter FL in G3c. It is a single biconvex lens separated by a long 34.8 mm air gap from the final cemented triplet. The term “relay” here describes its geometric place in the implemented rear optical train; the patent does not state a separate aberration-control role for L17.
 
 ### L18 + L19 + L20 — Cemented rear triplet (T1)
 
-**L18:** nd = 1.48749, νd = 70.36. Glass: J-FK5 (HIKARI). f = +88.405 mm.  
-**L19:** nd = 1.81600, νd = 46.56. Glass: J-LASF09A (HIKARI). f = -31.638 mm.  
-**L20:** nd = 1.58144, νd = 40.96. Glass: J-LF5 (HIKARI). f = +111.277 mm.
+**L18:** nd = 1.48749, νd = 70.36. Glass: J-FK5 (catalog-compatible spectral proxy; production supplier unspecified). f = +88.405 mm.
+**L19:** nd = 1.81600, νd = 46.56. Glass: J-LASF09A (catalog-compatible spectral proxy; production supplier unspecified). f = -31.638 mm.
+**L20:** nd = 1.58144, νd = 40.96. Glass: J-LF5 (catalog-compatible spectral proxy; production supplier unspecified). f = +111.277 mm.
 
 The final three physical lenses are cemented into a positive-negative-positive triplet. Their verified cemented net focal length is about -90.267 mm despite the positive standalone powers of L18 and L20. This is a useful example of why standalone element focal lengths cannot be summed or used as direct proxies for in-situ group action: the glass-to-glass interfaces and ray state materially change the combined result.
 
@@ -237,9 +237,17 @@ The principal verified quantities from the final parsed data are:
 
 The modeled stop semi-diameter, 14.8162157 mm, is calibrated from the modeled EFL and the patent's FNO = 5.658. Its agreement with the target f-number is therefore a construction calibration, not independent evidence of the physical diaphragm diameter.
 
-Likewise, all surface semi-diameters are modeled because the patent does not publish them. They follow the element rims drawn in Figure 1, measured at about 0.375 mm per 300-dpi pixel with the scale set from the drawn glass span and cross-checked against six element positions: HG and L1 about 70.3–70.5 mm, L2 62.7 mm, L3 60.6 mm, L4 42.2 mm stepping to 39.2 mm at the cemented L4/L5 junction, L6 24.6 mm, L7+L8 22.8 mm, G3a 23.0 mm, and the post-stop elements between 14.5 mm (L12) and 19.1 mm (L17), with FL at 17.4 mm. The drawing places the front group only about 1.5 mm outside the F/5.658 axial bundle (68.9 mm at HG) and draws the rear relay larger than the axial bundle alone requires, which is the silhouette the model now reproduces. Every value clears the exact axial marginal ray at all three published focus states. The L6-to-L7 air space is only 3.095 mm, so the file sets `gapSagFrac` to 0.98 to keep the drawn G2 rims. The minimum element edge thickness is 1.327 mm (L14), the maximum spherical rim slope is 37.01° (surface 10), and the maximum shared-gap sag-intrusion fraction is 0.975. These are construction checks, not measured production clear apertures.
+Likewise, all surface semi-diameters are modeled because the patent does not publish them. They follow the element rims drawn in Figure 1, measured at about 0.375 mm per 300-dpi pixel with the scale set from the drawn glass span and cross-checked against six element positions: HG and L1 about 70.3–70.5 mm, L2 62.7 mm, L3 60.6 mm, L4 42.2 mm stepping to 39.2 mm at the cemented L4/L5 junction, L6 24.6 mm, L7+L8 22.8 mm, G3a 23.0 mm, and the post-stop elements between 14.5 mm (L12) and 19.1 mm (L17), with FL at 17.4 mm. The drawing places the front group only about 1.5 mm outside the F/5.658 axial bundle (68.9 mm at HG) and draws the rear relay larger than the axial bundle alone requires, which is the silhouette the model now reproduces. The infinity source beam clears every rim. A fresh finite-object check also clears the intermediate source focus, but the close full-iris pupil is vignetted at the front group, as detailed below. The L6-to-L7 air space is only 3.095 mm, so the file sets `gapSagFrac` to 0.98 to keep the drawn G2 rims. The minimum element edge thickness is 1.327 mm (L14), the maximum spherical rim slope is 37.01° (surface 10), and the maximum shared-gap sag-intrusion fraction is 0.975. These are construction checks, not measured production clear apertures.
 
 The selected example is all-spherical/all-plane. No aspherical surfaces or coefficients are published for Example 1, and the final data correctly contains `asph: {}`. Patent ¶0084 permits aspheres generically as an optional embodiment variation; it does not make any Example-1 surface aspherical.
+
+## Fresh Source Reinspection
+
+The 2026-10-30 review directly inspected local `JP2013250293A.pdf`: Example 1 Figure 1 on PDF page 17 at 600 dpi and in its native 300 dpi raster, Table 1 on pages 9–10, and the d-line/material convention on page 8. All twenty-two media, including HG and the slip-in FL, retain exact source nd/νd. All twenty-two have qualified catalog curves. The two CaF2 assignments remain inferred from source coordinates and the product correlation; the source does not identify fluorite chemistry, melt, supplier, or measured partial dispersion. No C/F/g or partial-deviation data is invented.
+
+Every convex/concave face and cemented boundary was inspected. The apparent G2 R13 step is a surface leader crossing a full optical curve; the G1 height step is at a cemented boundary. Other cap ends meet their rims within native stroke uncertainty. Neither feature justifies an exposed land or additional cut, and all geometry is retained. The preexisting gapSagFrac=0.98 remains unchanged. Focused surface/circle audits pass, the infinity source aperture is iris-limited at f/5.658, and the format corner is reached. Nine actual SVG states have twenty-two finite paths and zero trim; all source-coordinate/catalog checks and shared glass suites pass (94 tests).
+
+A fresh finite-object check distinguishes aperture behavior from the earlier collimated-ray checks. At the intermediate published focus, all 25 full-iris axial samples pass. At the close source spacing, the exact paraxial object distance is 5299.256 mm from the first vertex (about 5.79857 m from the image plane). With the unchanged 14.816216 mm physical iris, 13 of 25 samples pass and the outer ring clips the front HG rim. Unclipped rim requirements are 72.24/72.19 mm at HG, 72.37/71.93 at L1, 64.91/63.88 at L2, 63.07 at L3's front, and 43.73/40.25 at L4's front/cemented junction. These exceed the drawn front-group ladder by roughly 2–4%. The patent supplies the f/5.658 infinity specification and close spacings, but no close-focus aperture diameter or f-number. The source-like outline is retained with this finite full-iris vignetting limitation; no spacing or source-aperture value is altered to conceal it. These are discrete ray-sample counts, not a flux percentage or a measurement of production-lens vignetting.
 
 ## Sources and References
 
