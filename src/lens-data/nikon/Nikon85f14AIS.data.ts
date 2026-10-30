@@ -132,14 +132,15 @@ const LENS_DATA = {
    *  Stop position inferred from patent FIG. 1 at ~65% through d7 air gap.
    */
   /* (moved from asph) ── Aspherical coefficients ── */
+  // Original patent cap-end/blank outline rechecked 2026-10-29; native scale and validation in audit.
   surfaces: [
     { label: "1", R: 66.436, d: 7.497, sd: 33.5, medium: 1 }, // L1 front
     { label: "2", R: 346.596, d: 1.496, sd: 33.5 }, // L1 rear → air
     { label: "3", R: 37.128, d: 9.699, sd: 28.0, medium: 2 }, // L2 front
-    { label: "4", R: 96.501, d: 1.496, sd: 25.0 }, // L2 rear → air
+    { label: "4", R: 96.501, d: 1.496, sd: 28.0 }, // L2 rear → air
     { label: "5", R: 167.28, d: 6.503, sd: 24.3, medium: 3 }, // L3a front
     { label: "6", R: -120.003, d: 2.797, sd: 23.0, medium: 4 }, // L3a→L3b junction
-    { label: "7", R: 23.639, d: 12.674, sd: 20.5 }, // L3b rear → air
+    { label: "7", R: 23.639, d: 12.674, sd: 20.5, rimExtensionSd: 22.0 }, // L3b rear → air
     { label: "STO", R: "flat", d: 6.825 }, // Aperture stop — inferred from FIG. 1 at ~65% through d7
     { label: "8", R: -31.408, d: 1.496, sd: 19.0, medium: 5 }, // L4a front
     { label: "9", R: 79.807, d: 8.704, sd: 19.0, medium: 6 }, // L4a→L4b junction

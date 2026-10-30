@@ -175,6 +175,7 @@ const LENS_DATA = {
    *  K = patent κ − 1 (see header note on conic convention).
    *  Patent A2 = 0 for all surfaces (omitted per spec).
    */
+  // Original patent cap-end/blank outline rechecked 2026-10-29; native scale and validation in audit.
   surfaces: [
     {
       label: "1A",
@@ -195,11 +196,11 @@ const LENS_DATA = {
     { label: "2", R: 229.3475, d: 0.1, sd: 23.5 }, // La rear → air
     { label: "3", R: 40.3738, d: 6.0, sd: 19.8, medium: 2 }, // Lb1p front
     { label: "4", R: 354.9744, d: 1.5, sd: 19.8, medium: 3 }, // Lb1p→Lb1n junction
-    { label: "5", R: 42.4134, d: 4.1038, sd: 19.8 }, // Lb1n rear → air
+    { label: "5", R: 42.4134, d: 4.1038, sd: 19.8, rimCutDepthMm: 3.84 }, // Lb1n rear → air
     { label: "6", R: 290.8467, d: 1.5, sd: 16.9, medium: 4 }, // Lb2 front
-    { label: "7", R: 31.6359, d: 6.0, sd: 16.9 }, // Lb2 rear → air
+    { label: "7", R: 31.6359, d: 6.0, sd: 16.9, rimCutDepthMm: 4.57 }, // Lb2 rear → air
     { label: "STO", R: "flat", d: 6.0 }, // Aperture stop (patent surface 8)
-    { label: "9", R: -30.7873, d: 1.7, sd: 16.8, medium: 5 }, // Lcn front
+    { label: "9", R: -30.7873, d: 1.7, sd: 16.8, rimCutDepthMm: 3.86, medium: 5 }, // Lcn front
     { label: "10", R: 35.1427, d: 7.0, sd: 16.8, medium: 6 }, // Lcn→Lcp junction
     { label: "11", R: -131.1407, d: 0.1, sd: 16.8 }, // Lcp rear → air
     { label: "12", R: 118.7661, d: 6.0, sd: 16.8, medium: 7 }, // Ldp1 front
