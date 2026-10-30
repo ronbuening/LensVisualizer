@@ -22,8 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    (0.6438 − 0.001682·νd). Lfc is stored that way: PgF 0.5443 from ║
  * ║    the HOYA FCD505 catalog curve, which reproduces the patent's    ║
  * ║    0.0195 on 0.64833 − 0.00180·νd. Lfb is the patent's 0.0376      ║
- * ║    read against that same line (PgF 0.5390), which Cosina's later  ║
- * ║    patents JP 2026-98935 A and JP 2026-121744 A print.             ║
+ * ║    read against that same line (PgF 0.5390), an inferred choice.   ║
+ * ║    Later Cosina patents JP 2026-98935 A and JP 2026-121744 A      ║
+ * ║    explicitly print that line.                                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -154,7 +155,7 @@ const LENS_DATA = {
       focalLengthMm: 23.4,
       glass: "Unmatched (patent nd=1.79334, νd=47.18; supplier unspecified)",
       apd: false,
-      role: "Doublet Jb positive partner; high-index lanthanum glass — drives primary chromatic correction in rear group",
+      role: "Doublet Jb positive partner; high-index glass of unpublished chemistry — contributes primary chromatic correction in rear group",
       cemented: "Jb",
     },
     {
@@ -206,9 +207,12 @@ const LENS_DATA = {
    *  K = 0 for all surfaces (no conic departure).
    *  A4–A10 polynomial terms only (no A12/A14 in this patent).
    */
+  // Fig. 10 (PDF p. 48): source-resolved concave lands, q≈0.92/0.917/0.89
+  // on S2/S10/S12 at ≈7.0 native px/mm, plus the S18A land (q≈0.89).
+  // S2 moves outward for full-beam clearance.
   surfaces: [
     { label: "1", R: -37.07, d: 1.7, sd: 15.0, medium: 1 },
-    { label: "2", R: 75.394, d: 0.2, sd: 15.0 },
+    { label: "2", R: 75.394, d: 0.2, sd: 15.0, rimCutDepthMm: 1.42 },
     {
       label: "3A",
       R: 50.421,
@@ -229,9 +233,9 @@ const LENS_DATA = {
     { label: "7", R: 63.022, d: 4.71, sd: 13.5, medium: 4 },
     { label: "8", R: -65.678, d: 0.2, sd: 13.0 },
     { label: "9", R: 200.0, d: 1.6, sd: 13.0, medium: 5 },
-    { label: "10", R: 29.49, sd: 13.0 },
+    { label: "10", R: 29.49, sd: 13.0, rimCutDepthMm: 2.52 },
     { label: "STO", R: "flat", d: 3.36 },
-    { label: "12", R: -50.154, d: 1.6, sd: 13.0, medium: 6 },
+    { label: "12", R: -50.154, d: 1.6, sd: 13.0, medium: 6, rimCutDepthMm: 1.35 },
     { label: "13", R: 25.432, d: 6.72, sd: 13.0, medium: 7 },
     { label: "14", R: -60.434, sd: 13.0 },
     { label: "15", R: 40.672, d: 6.63, sd: 13.0, medium: 8 },
@@ -239,6 +243,7 @@ const LENS_DATA = {
     { label: "17", R: 30.835, d: 12.49, sd: 12.0 },
     {
       label: "18A",
+      rimCutDepthMm: 4.64,
       R: -34.164,
       d: 2.6,
       sd: 15.0,

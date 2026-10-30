@@ -98,3 +98,11 @@ Aberration curves: the engine's parabasal field curves at 25/50/75/100% field ar
 Glass labels: every proxy resolves. The coordinator relabelled L07 from E-F2 (1.62004/36.30, 0.046 from the printed νd 36.346) to Schott F2 (1.62004/36.37, 0.024 from it). Neither rounds to the printed nd 1.6201. All other labels are the closest catalog row, or tie with it, for the printed pair.
 
 Open: the prescription cannot reproduce Figure 1's S25/S26 contact at 17.3 mm. The maker comparison stands as recorded: 15/11, "3 ED, 9 HR, 1 UA", and no public construction diagram was viewed.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/CN120686438A.pdf`, Example 1 Figure 1 (PDF p.21, 600 dpi crop) and Table 1 (pp.11–12). Every convex/concave face and cement boundary was reviewed; figure scale is approximately 13.70 native px/mm. S9/S11 have resolved square lands beyond the existing 20.4/18.2 mm clear caps. Added drawn extensions to **23.48953137089427/20.390024153836812 mm**, matching their existing partner rims. No clear aperture changed. Other exposed concave faces lack a separately resolved land; no added cut is justified. The last-group 17.3 mm schematic edge remains unsupported because S25/S26 intersect at about 16.93 mm.
+
+All fifteen lens nd/νd rows match Table 1 and resolve to the already qualified catalog proxies. The source's misplaced CG row, its 1.5168/64.198 pair and current Abbe fallback remain explicitly qualified. L02/L03/L04 Abbe bounds support low primary dispersion, not measured partial dispersion; inferred APD flags remain and no line indices or dPgF are invented. The two fitted aspheres, unresolved source table and infinity-only scope are preserved.
+
+`audit:surface` and `audit:image-circle` passed. Nine prepared-state SVG probes were generated, rasterized and viewed, each with fifteen finite paths and zero renderer trim; the prime's inactive controls repeat the static state. Scoped resolver/catalog consistency passed; shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).

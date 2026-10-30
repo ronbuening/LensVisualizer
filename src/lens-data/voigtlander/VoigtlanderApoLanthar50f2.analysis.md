@@ -60,7 +60,7 @@ The high Abbe number provides positive power with low primary dispersion. Table 
 
 nd = 1.59282, νd = 68.62; FCD505-compatible catalog model, supplier unspecified; isolated focal length +55.0002 mm.
 
-Lfc shares positive power with Lfb and carries the other published anomalous-dispersion value, ΔPgF = +0.0195. That figure is the patent's, and the patent states no normal-line formula for it. The runtime does not store it directly: `dPgF` for Lfc is +0.015956, the PgF of the compatible FCD505 curve (0.5443) minus the engine's normal line 0.6438 − 0.001682·νd. The same PgF reads +0.0195 against 0.64833 − 0.0018·νd, so the stored value and the patent's figure describe the same glass. Lfb's `dPgF` is +0.0325: the patent's +0.0376 read against the same 0.64833 − 0.0018·νd line, which the same applicant's later patents print, gives PgF 0.5390. A close catalog coordinate match is a dispersion-model proxy, not evidence of a Cosina–Sumita or Cosina–HOYA supply relationship.
+Lfc shares positive power with Lfb and carries the other published anomalous-dispersion value, ΔPgF = +0.0195. That figure is the patent's, and the patent states no normal-line formula for it. The runtime does not store it directly: `dPgF` for Lfc is +0.015956, the PgF of the compatible FCD505 curve (0.5443) minus the engine's normal line 0.6438 − 0.001682·νd. The same PgF reads +0.0195 against 0.64833 − 0.0018·νd, so the proxy reproduces the printed deviation under that inferred normal-line convention. This does not identify the patent glass or prove which convention the source used. Lfb's `dPgF` is +0.0325: the patent's +0.0376 read against the same 0.64833 − 0.0018·νd line, which the same applicant's later patents print, gives PgF 0.5390. A close catalog coordinate match is a dispersion-model proxy, not evidence of a Cosina–Sumita or Cosina–HOYA supply relationship.
 
 ### Element 5 — Lfd: Negative Meniscus
 
@@ -96,7 +96,7 @@ The cemented interface has a large refractive-index contrast (about 0.249), whil
 
 nd = 1.51633, νd = 64.06; S-BSL7 / N-BK7-compatible catalog models, supplier unspecified; isolated focal length −96.1693 mm.
 
-The isolated rear meniscus carries substantial aspheric departures. Figure 10 shows its optical height close to that of the first element, not the much smaller outline produced by the previous 11 mm estimate. Both semi-diameters are now estimated at 15 mm. The corrected surface-19 polynomial and this rim pass the surface-domain, edge-thickness, and air-gap validation checks.
+The isolated rear meniscus carries substantial aspheric departures. Figure 10 shows its optical height close to that of the first element, not the much smaller outline produced by the previous 11 mm estimate. Both outer rims are estimated at 15 mm; the front curved cap ends at 13.4042 mm inside its opaque land. The corrected surface-19 polynomial and this rim pass the surface-domain, edge-thickness, and air-gap validation checks.
 
 ## Glass Identification and Selection
 
@@ -131,14 +131,14 @@ The patent's ZD0 = 370 mm is the object-to-first-surface spacing. Adding the clo
 
 Table 5 uses a spherical base (K = 0) plus even radial powers through A10. All four coefficient rows were rechecked on the rendered original. Surface 19's A6 is **+1.8942 × 10⁻⁷**, correcting the negative sign previously stored in the viewer and repeated in this analysis.
 
-| Surface | Estimated displayed rim (mm) | Calculated departure from base sphere (µm) |
+| Surface | Displayed curved-cap radius (mm) | Calculated departure from base sphere (µm) |
 |---|---:|---:|
 | 3A | 14.5 | −13.7 |
 | 4A | 14.5 | +358.0 |
-| 18A | 15.0 | −2821.6 |
+| 18A | 13.4042 | −1900.6 |
 | 19A | 15.0 | −1531.8 |
 
-These departures are calculations at estimated rim heights, not patent-published manufacturing specifications. The corrected sign changes the rear outline and nonparaxial tracing without changing paraxial focal length. No material transition temperature, supplier, or fabrication method can be inferred solely from the numerical prescription.
+These departures are calculations at estimated curved-cap heights, not patent-published manufacturing specifications. Surface 18A’s outer drawn rim remains 15 mm; the region beyond its 13.4042 mm curved cap is a flat opaque land. The corrected sign changes the rear outline and nonparaxial tracing without changing paraxial focal length. No material transition temperature, supplier, or fabrication method can be inferred solely from the numerical prescription.
 
 ## Sources and Verification Boundaries
 
@@ -146,3 +146,5 @@ These departures are calculations at estimated rim heights, not patent-published
 - The local file `patents/JP2021043376A.pdf` is the primary numerical and figure source. It is retained outside version control.
 - Catalog dispersion curves use the individually cited sources in the shared glass catalog. Coordinate compatibility is separate from supplier identity.
 - Semi-diameters are reconstructed from the figure and geometry constraints. Focus endpoints are source-authored; intermediate movement is interpolated. Production prescription identity and unlisted partial dispersion remain unresolved.
+
+The fresh 2026-10-29 Figure 10 inspection adds beam-safe concave lands on S2/S10/S12/18A. Their outer rims stay 15/13/13/15 mm and the cuts have depths 1.42/2.52/1.35/4.64 mm. The source-proportional LF front cut fails the beam guard, and Lra’s required clearance would leave less than a 0.1 mm land; both faces retain their existing caps.

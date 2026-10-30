@@ -294,3 +294,13 @@ Unmatched under the two-decimal convention.
 
 Open: L31's stepped faces and the stepped backs of L11, L12 and L14 cannot be drawn; the site shows bevels. The
 patent prints no near-focus spacings.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/CN_209606699_U.pdf`, Example 1 Figure 1 (PDF p.15, 600 dpi crop), material paragraphs ¶0078–0089 (pp.11–12) and the geometry ¶0090 (p.12). Reviewed every exposed convex/concave face and cemented boundary. Figure 1 has approximately 7.92 native px/mm (150 dpi embedded figure); its enlarged group figures and earlier recorded ray/geometry limits explain the unequal retained clear caps.
+
+Added source-resolved opaque lands while preserving every optical `sd`: S2 **22→draw28**, S4 **19.5→20.5**, S7 **15→18.1**, S13 **12.8→13.1**, S21A **14→15.5 mm**. These restore the concave rear steps of L11/L12/L14, the small front triplet shoulder, and the final asphere's front shoulder. The remaining concave ends show no independently resolved extra land. The triplet's schematic ≈11 mm caps would discard existing traced rays, so those caps remain 12.8 mm; cemented S14/S15 are not extended or clipped. The approved −70.25/−70.15 mm shared-radius approximation remains disclosed.
+
+All twelve media retain the seven printed d-line nd/νd pairs. Their rounded coordinates remain unmatched Abbe models, with no forced catalog identities or synthetic nC/nF/ng/dPgF. Existing inferred low-dispersion badges are not measured anomaly claims. No supplier, resin or fluorite identity is established.
+
+`audit:surface` and `audit:image-circle` passed. Nine prepared-state SVG probes were generated, rasterized and viewed, all twelve paths finite with zero renderer trim. The unsupported focus/zoom schedules remain inactive and these repeat the base state. Scoped catalog/resolver checks and shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).
