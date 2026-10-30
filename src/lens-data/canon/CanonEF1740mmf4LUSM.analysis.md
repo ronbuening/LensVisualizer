@@ -55,57 +55,57 @@ This 0.10 mm bonded layer carries the first-group replica asphere on surface 3. 
 
 ### E2 — Biconcave Negative
 
-**nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA), catalog equivalent. f = −27.33 mm.**
+**nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA spectral proxy; production supplier unconfirmed). f = −27.33 mm.**
 
 The high-index negative substrate carries R1. With the following positive meniscus it forms the objectward-moving focusing subgroup Lf within group L1; their internal spacing stays fixed during focus.
 
 ### E3 — Positive Meniscus
 
-**nd = 1.84666, νd = 23.9. Glass: S-NPH53 (OHARA), catalog equivalent. f = +52.95 mm.**
+**nd = 1.84666, νd = 23.9. Glass: S-NPH53 (OHARA spectral proxy; production supplier unconfirmed). f = +52.95 mm.**
 
 The positive dense-flint meniscus balances the front negative elements and completes Lf. Its large dispersion contrast with the negative elements provides chromatic leverage; no secondary-spectrum claim follows from nd/νd alone.
 
 ### E4 — Negative Meniscus
 
-**nd = 1.72825, νd = 28.5. Glass: S-TIH10 (OHARA), catalog equivalent. f = −44.49 mm.**
+**nd = 1.72825, νd = 28.5. Glass: S-TIH10 (OHARA spectral proxy; production supplier unconfirmed). f = −44.49 mm.**
 
 The negative member of cemented doublet C1 in group L2 is the dispersive partner for E5; the two are cemented at surface 9.
 
 ### E5 — Biconvex Positive
 
-**nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA), catalog equivalent. f = +32.10 mm.**
+**nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA spectral proxy; production supplier unconfirmed). f = +32.10 mm.**
 
 The positive crown member completes C1. Its substantially higher Abbe number than E4 supports ordinary achromatic balancing.
 
 ### E6 — Biconvex Positive
 
-**nd = 1.67790, νd = 55.3. Glass: S-LAL12 (OHARA), catalog equivalent. f = +37.04 mm.**
+**nd = 1.67790, νd = 55.3. Glass: S-LAL12 (OHARA spectral proxy; production supplier unconfirmed). f = +37.04 mm.**
 
 This positive biconvex singlet completes group L2, just ahead of the stop. Groups L2 and L4 move together during zoom (¶0034).
 
 ### E7 — Biconcave Negative
 
-**nd = 1.71999, νd = 50.2. Glass: S-LAL10 (OHARA), catalog equivalent. f = −50.88 mm.**
+**nd = 1.71999, νd = 50.2. Glass: S-LAL10 (OHARA spectral proxy; production supplier unconfirmed). f = −50.88 mm.**
 
 The negative singlet immediately behind the stop begins group L3. Its high-index crown class supplies negative power without the low Abbe number of a dense flint.
 
 ### E8 — Biconcave Negative
 
-**nd = 1.62230, νd = 53.2. Glass: S-BSM22 (OHARA), catalog equivalent. f = −37.80 mm.**
+**nd = 1.62230, νd = 53.2. Glass: S-BSM22 (OHARA spectral proxy; production supplier unconfirmed). f = −37.80 mm.**
 
 The negative first member of doublet C2 in group L3 supplies additional negative power. It is cemented to E9 at surface 17.
 
 ### E9 — Positive Meniscus
 
-**nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA), catalog equivalent. f = +40.50 mm.**
+**nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA spectral proxy; production supplier unconfirmed). f = +40.50 mm.**
 
 This positive dense-flint meniscus completes the negative third group; its high dispersion complements the preceding crown.
 
 ### E10 — Biconvex Positive
 
-**nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA), catalog equivalent. f = +35.33 mm.**
+**nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA spectral proxy; production supplier unconfirmed). f = +35.33 mm.**
 
-The biconvex positive singlet begins group L4. Its νd 95.0 is consistent with a fluorophosphate Super UD glass, and Canon's construction diagram places its Super UD element here. S-FPL53 is a close catalog equivalent, not evidence of the original supplier.
+The biconvex positive singlet begins group L4. The printed low-index, very-high-Abbe coordinates are compatible with S-FPL53, used as a qualified spectral proxy. Its inferred APD label comes from that proxy curve; no patent partial-dispersion values are printed. Canon's construction diagram places its Super UD element here, a separate production correlation that does not establish historical fluorophosphate chemistry, supplier or melt.
 
 ### R2 — Aspherical Resin Layer
 
@@ -115,19 +115,19 @@ This 0.15 mm bonded layer carries the rear replica asphere on surface 21, on the
 
 ### E11 — Biconcave Negative
 
-**nd = 1.83400, νd = 37.2. Glass: S-LAH60 (OHARA), catalog equivalent. f = −21.53 mm.**
+**nd = 1.83400, νd = 37.2. Glass: S-LAH60 (OHARA spectral proxy; production supplier unconfirmed). f = −21.53 mm.**
 
 The negative high-index substrate carries R2 and is cemented to E12 at surface 23, so the rear assembly, C3, is a cemented doublet with a replica aspherical front.
 
 ### E12 — Biconvex Positive
 
-**nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA), catalog equivalent. f = +29.31 mm.**
+**nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA spectral proxy; production supplier unconfirmed). f = +29.31 mm.**
 
 The final positive low-dispersion element completes group L4 and doublet C3. The bare image plane follows surface 24 at the paraxially computed back focus.
 
 ## Glass Identification and Spectral Qualification
 
-The patent publishes only nd and νd, and every element keeps the printed values. Close catalog matches are labeled **equivalents**; they do not establish supplier, melt or resin chemistry. The high-index pairings and the very-high-Abbe rear positive element are source facts; their exact partial dispersion is not.
+The patent publishes nd and νd for every medium and explicitly defines the d reference at 587.6 nm, C at 656.3 nm and F at 486.1 nm (¶0063, p. 12). Every element keeps the printed values. Eleven compatible catalog curves are labeled **spectral proxies**, with production supplier unconfirmed. They do not establish historical melt, chemistry or resin identity. No individual line-index or partial-dispersion table is printed; no per-lens catalog-derived spectral overrides are authored. The high-index pairings and the very-high-Abbe rear positive element are source facts; their exact partial dispersion is not.
 
 | Entry | Source nd | Source νd | Catalog equivalent |
 | ----- | --------- | --------- | ------------------ |
@@ -146,7 +146,7 @@ The patent publishes only nd and νd, and every element keeps the printed values
 | E11   | 1.83400   | 37.2      | S-LAH60                    |
 | E12   | 1.48749   | 70.2      | S-FSL5                     |
 
-E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use matching OHARA catalog curves, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. E1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
+E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use compatible OHARA catalog curves as qualified proxies, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. E1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
 
 ## Focus Mechanism and Zoom Motion
 
@@ -181,9 +181,11 @@ The nearly planar front base has a positive leading polynomial departure; the tw
 
 ## Model Scope and Limitations
 
-The patent prints effective **diameters**; every clear radius except the stop is half the printed value, including the different front and rear values on the bonded layers. No figure-fitted reduction or override is used. The stop radius follows F4.1 at each zoom position: 6.049/6.513/6.666/8.062 mm at the four printed states. A real axial ray at F4.1 meets the stop at 8.325 mm at tele, half the printed 16.65 mm stop diameter, which supports the constant F4.1.
+The patent prints effective **diameters**; every clear radius except the stop is half the printed value, including the different front and rear values on the bonded layers. No clear-aperture reduction or override is used. Fig. 1(A) resolves a broad rear annulus on E1 and a smaller rear shoulder on E2: outer radii 26.04 mm at surface 2 and 15.905 mm at surface 5 preserve clear caps 18.03 and 13.96 mm. The native 150 ppi figure gives about 0.36 mm per pixel, with roughly ±0.8 mm outer-rim uncertainty; enlarged readings add no resolution. E3's small cap difference and the bonded blocks remain constrained by that raster, the published interfaces and the two resin layers. No opaque interface lands, disconnected resin wings or unsupported uniform blocks are added. The stop radius follows F4.1 at each zoom position: 6.049/6.513/6.666/8.062 mm at the four printed states. A real axial ray at F4.1 meets the stop at 8.325 mm at tele, half the printed 16.65 mm stop diameter, which is consistent with the printed F4.1 under that real-ray convention. It does not identify a physical iris schedule; the existing paraxial rule is retained.
 
 Fig. 6 plots the bare master at ω = 51°/40°/29.1° for 17.49/25.78/38.83 mm, which corresponds to the patent's 21.64 mm image height under tan ω = Y/f. The model uses the full-frame image-circle radius of 21.65 mm. Real chief rays reach it at 52.4° (17.49 mm), 42.2° (23.99 mm), 40.0° (25.78 mm) and 28.7° (38.83 mm), clear of every rim, at all 65 zoom stations.
+
+The reconstructed 0.28 m states pass sampled axial pupils and retain clear finite-field chief rays. Ordinary off-axis vignetting remains; two tele/full-field marginal samples encounter an unresolved numerical intersection limit. These samples do not certify continuous clearance or the finite conjugate.
 
 At the wide end the full-frame corner of the bare master has weak edge contrast. Fig. 6 and ¶0035 show the bare master's field curvature, which the patent's attachment is designed to correct; the bare model reproduces that behavior rather than fitting radii, materials or spacings to improve it. No finite conjugate is certified, so finite-distance MTF is unavailable, and no production glass, tolerance or measured contrast is implied.
 

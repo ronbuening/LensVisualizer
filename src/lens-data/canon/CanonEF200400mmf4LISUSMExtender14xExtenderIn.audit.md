@@ -21,3 +21,18 @@ Read against US 2013/0308041 A1, Numerical Example 1. Surfaces 1–40 come from 
 - The inserted-state zoom table heads its second column "Intermediate". Its d8 / d18 / d25 of 78.02 / 3.10 / 25.80 are the telephoto values of the not-inserted table and ¶0028 calls FIG. 4B the telephoto end, so the file's "Tele" label stands.
 - Open: `nominalFno` keeps 5.765010383668428 / 5.764593653737933, the paraxial f-numbers of the former 19.3654 mm radius, 0.09 % under the printed 5.77. The wide value sizes the traced iris at 19.8720 mm, 0.015 % under the printed 19.875 mm. The tele label is 0.015 % under the f/5.7655 that iris gives at 545.98 mm, which is why that station reads f/5.76 stated against f/5.77 traced. Not changed in this pass.
 - Open: row 56 prints d = 68.46 and the file carries 68.49, as its header and row comment say. The same page prints BF 68.49 and total lens length 389.84 at both zoom positions, the inserted d41–d53 sum to the 45.38 they replace, and the not-inserted table prints 68.49 for the same surface. The file has no `sourceErrata` entry for it.
+
+
+## 2026-10-30 — Shared-prefix shoulders only; full inserted-state review pending
+
+This is a partial synchronization with the [EXT OUT review](./CanonEF200400mmf4LISUSMExtender14x.audit.md), not a
+completed shape-and-glass review of EXT IN. Independently inspected the [local original](../../../patents/US20130308041A1.pdf):
+the Numerical Example 1 prescription on PDF p. 17 (printed p. 5), the explicit shared-surface declaration on PDF p. 18
+(printed p. 6), and inserted-state Fig. 3 on PDF p. 4 (sheet 3). The figure is a native 2560 × 3300 raster at 300 ppi;
+the reading crops preserve native pixels. Only optical outlines were read, excluding unit brackets, rays and leaders.
+
+Three resolved rear shoulders of unchanged shared lenses now use `rimExtensionSd`: surface 4, 48.875 mm with clear
+sd 47.445 mm; surface 11, 23.675 mm with clear sd 21.5 mm; surface 14, 20.32 mm with clear sd 19.955 mm. The latter
+two stop at existing bonded-cap heights; no new opaque interface land is added. Every clear sd, source R/d,
+material and control is retained. Shared-prefix parity is restored; the complete 56-surface inserted configuration,
+its additional media and its renderer/state constraints remain pending the separate complete review.
