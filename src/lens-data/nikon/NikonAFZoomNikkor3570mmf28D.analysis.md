@@ -1,4 +1,4 @@
-# NIKON AF ZOOM-NIKKOR 35-70mm f/2.8 D
+# NIKON AF ZOOM-NIKKOR 35-70 mm f/2.8 D
 
 ## Patent Reference and Design Identification
 
@@ -14,9 +14,9 @@
 
 US 6,320,698 B1 describes a four-group zoom lens with a negative first group, positive second group, negative third group, and positive fourth group. The patent's vibration-reduction mechanism laterally displaces the third group, or a partial group within it, substantially perpendicular to the optical axis. Example 3 is the worked example used here. It is tabulated at f = 36.0-68.5 mm, FNO = 2.85-2.86, and 2ω = 63.5°-34.2°.
 
-Example 3 is the appropriate patent match for the Nikon AF Zoom-Nikkor 35-70mm f/2.8D on convergent optical and production evidence. The prescription has 15 elements in 12 air-spaced groups, matching the production lens specification. The patent focal-length range rounds naturally to the marketed 35-70 mm range, and the patent FNO corresponds to the marketed constant f/2.8 aperture. The aberration plots for the third embodiment use Y = 21.6 mm, corresponding to the half diagonal of the 135 still-camera format. The patent is assigned to Nikon and has a 1993 Japanese priority date, during the AF 35-70mm f/2.8 production era.
+Example 3 is the appropriate patent match for the Nikon AF Zoom-Nikkor 35-70 mm f/2.8D on convergent optical and production evidence. The prescription has 15 elements in 12 air-spaced groups, matching the production lens specification. The patent focal-length range rounds naturally to the marketed 35-70 mm range, and the patent FNO corresponds to the marketed constant f/2.8 aperture. The aberration plots for the third embodiment use Y = 21.6 mm, corresponding to the half diagonal of the 135 still-camera format. The patent is assigned to Nikon and has a 1993 Japanese priority date, during the AF 35-70 mm f/2.8 production era.
 
-The match is not a claim that the production AF Zoom-Nikkor 35-70mm f/2.8D contains vibration reduction. It does not. The patent is best read as a Nikon design study for adding a laterally shifting G3 vibration-reduction group to the optical family of the 35-70mm f/2.8 standard zoom.
+The match is not a claim that the production AF Zoom-Nikkor 35-70 mm f/2.8D contains vibration reduction. It does not. The patent is best read as a Nikon design study for adding a laterally shifting G3 vibration-reduction group to the optical family of the 35-70 mm f/2.8 standard zoom.
 
 ## Optical Architecture
 
@@ -26,7 +26,9 @@ The element distribution is 4 + 5 + 3 + 3 elements. G1 contains four singlets. G
 
 During zooming from wide to tele, the G1-G2 interval decreases from 35.90188 mm to 2.80378 mm, the G2-G3 interval increases from 5.57243 mm to 16.43503 mm, and the G3-G4 interval decreases from 17.75710 mm to 6.79450 mm. G3 has Δ3 = 0 in the patent condition table, so it remains axially stationary during zooming. This is mechanically favorable for a lateral vibration-reduction actuator because the group does not also need zoom-axis cam travel.
 
-The patent drawing for FIG. 7 shows aperture stop S between G2 and G3 and a stationary flare stop FS between G3 and G4. Table 3 does not specify exact stop sub-gaps or semi-diameters. The data file therefore inserts S and FS as zero-power flat surfaces inside the published d16 and d21 air gaps. These inserted surfaces preserve the published paraxial track length while allowing the viewer to show the two stops in their patent-indicated regions. The aperture stop is placed with 1.500 mm of air between S and G3 at the wide endpoint, and its semi-diameter is set to 11.2 mm so the tele endpoint can clear the patent's f/2.86 aperture; this is an inferred modeling aperture, not a patent-published mechanical iris diameter.
+The patent drawing for FIG. 7 shows aperture stop S between G2 and G3 and a stationary flare stop FS between G3 and G4. Table 3 does not specify exact stop sub-gaps or semi-diameters. The data file therefore inserts S and FS as zero-power flat surfaces inside the published d16 and d21 air gaps. These inserted surfaces preserve the published paraxial track length while allowing the viewer to show the two stops in their patent-indicated regions. The aperture stop is placed with 1.500 mm of air between S and G3 at the wide endpoint, and its radius is derived from the design f-number (current wide-state radius 10.131041 mm); this is an inferred modeling aperture, not a patent-published mechanical iris diameter.
+
+The fresh Figure 7 calibration gives L2 outer/front cap approximately 25.2 mm and rear curved cap 22.2 mm. Those source-scaled caps replace the former 26.6/21.5 mm pair, and a rear vertical land completes the 25.2 mm outer rim. Before the front reduction, a complete wide-open beam search reached 24.884390 mm at S3 (wide, infinity, field 32.886927°), below the new 25.2 mm source cap; no geometry tolerance is relaxed. Other concave faces do not show a separately resolved additional land.
 
 ## Element-by-Element Analysis
 
@@ -143,11 +145,13 @@ The patent publishes nd, νd, and n(G) values but does not name glass manufactur
 
 The chromatic strategy is conventional for a fast standard zoom of this period. High-index dense flints appear in positive and negative roles to control Petzval curvature and longitudinal color, while the strongest positive elements in G2 use low-dispersion N-FK5. The design does not use ED branding, fluorite, or aspherical surfaces.
 
+All 15 source nd/vd/n(G) triples are retained from Table 3, PDF p.16. It explicitly defines the d line as 587.6 nm and the g line as 435.8 nm. These are genuine source index anchors, not catalog copies, and no missing C/F indices or θgF are invented. Current compatible catalog curves cover all 15 glasses; S-LAL52 remains a qualified nonidentical proxy for L2/L3. The runtime currently selects the compatible catalog curve ahead of an ng-only source anchor, so retaining these n(G) fields does not claim that the traced g channel honors them. That resolver limitation remains outside this data audit.
+
 ## Focus Mechanism
 
 Patent Table 3 gives zoom spacings only. It does not provide a separate close-focus prescription, focus-group travel, or macro-mode spacing. The data file therefore models the patent at infinity focus only, with the close-focus entries in the `var` table intentionally repeating the infinity values.
 
-For the production AF Zoom-Nikkor 35-70mm f/2.8D, the normal minimum focus distance is 0.6 m. A macro mode at the 35 mm setting reaches 0.28 m and a maximum reproduction ratio of 1:4; the normal maximum reproduction ratio is 1:7.7. Those production figures are metadata and context, not a reconstructed close-focus prescription.
+For the production AF Zoom-Nikkor 35-70 mm f/2.8D, the normal minimum focus distance is 0.6 m. A macro mode at the 35 mm setting reaches 0.28 m and a maximum reproduction ratio of 1:4; the normal maximum reproduction ratio is 1:7.7. Those production figures are metadata and context, not a reconstructed close-focus prescription.
 
 | Gap represented in data file | Patent wide value | Patent tele value | Data-file treatment                    |
 | ---------------------------- | ----------------: | ----------------: | -------------------------------------- |
@@ -180,7 +184,7 @@ For condition (9), q- is calculated as (R2 + R1) / (R2 - R1) for L11, the first 
 
 The patent's vibration-reduction mechanism moves G3 laterally. For Example 3, the lateral G3 displacement is 0.30 mm at both the wide and tele endpoints. The corresponding image shift is -0.346 mm at the wide end and -0.387 mm at the tele end. The image-shift sensitivity is therefore approximately -1.15x at wide and -1.29x at tele.
 
-The production AF Zoom-Nikkor 35-70mm f/2.8D lacks VR. In the data file, the group is labeled as `G3 / VR` because that is its role in the patent, not because the production lens contains a stabilizer.
+The production AF Zoom-Nikkor 35-70 mm f/2.8D lacks VR. In the data file, the group is labeled as `G3 / VR` because that is its role in the patent, not because the production lens contains a stabilizer.
 
 ## Verification Summary
 
@@ -199,19 +203,19 @@ The prescription was re-entered directly from Table 3 and checked with an indepe
 | Petzval sum    |   0.00349015 |            - |           - |
 | Petzval radius |    286.52 mm |            - |           - |
 
-The Petzval sum was computed surface by surface as φ / (n n'), not from thin-lens element approximations. The semi-diameters in the data file are estimated because the patent table omits clear-aperture data. They were constrained to keep element edge thickness positive, front/rear element semi-diameter ratios within the project limit, sd/|R| below 0.90, and signed cross-gap sag intrusion within 90 percent of each adjacent air gap. The inserted aperture stop semi-diameter is set by the larger tele-end clear-aperture requirement implied by FNO = 2.86, while the nominal f-number field, `nominalFno` (the f-number the stop opens to), holds the patent's wide-end design value, FNO = 2.85; `apertureMarketing` records the marketed f/2.8.
+The Petzval sum was computed surface by surface as φ / (n n'), not from thin-lens element approximations. The semi-diameters in the data file are estimated because the patent table omits clear-aperture data. They were constrained to keep element edge thickness positive, front/rear element semi-diameter ratios within the project limit, sd/|R| below 0.90, and signed cross-gap sag intrusion within 90 percent of each adjacent air gap. The current builder derives the stop schedule from the authored nominal f-number 2.85 (wide radius 10.131041 mm); its radius is not a source-published dimension. The source's tele design f-number 2.86 and marketed f/2.8 remain separate metadata quantities.
 
 ## Design Heritage and Context
 
-Nikon's own historical article identifies the Ai AF Zoom-Nikkor 35-70mm f/2.8S as Nikon's first f/2.8 standard zoom. The D-type version retained the same broad optical identity while adding distance-information encoding for Nikon's metering and flash systems. US 6,320,698 B1 belongs to a later internal development path: it uses the established fast standard-zoom architecture as the base for a G3 lateral-shift vibration-reduction concept.
+Nikon's own historical article identifies the Ai AF Zoom-Nikkor 35-70 mm f/2.8S as Nikon's first f/2.8 standard zoom. The D-type version retained the same broad optical identity while adding distance-information encoding for Nikon's metering and flash systems. US 6,320,698 B1 belongs to a later internal development path: it uses the established fast standard-zoom architecture as the base for a G3 lateral-shift vibration-reduction concept.
 
-The patent is therefore historically useful even though its stabilizer was not commercialized in the AF Zoom-Nikkor 35-70mm f/2.8D. It shows how Nikon evaluated VR placement in a compact fast standard zoom before optical stabilization became common in interchangeable SLR lenses.
+The patent is therefore historically useful even though its stabilizer was not commercialized in the AF Zoom-Nikkor 35-70 mm f/2.8D. It shows how Nikon evaluated VR placement in a compact fast standard zoom before optical stabilization became common in interchangeable SLR lenses.
 
 ## Sources
 
 1. US 6,320,698 B1, Kenzaburo Suzuki, Nikon Corporation, "Zoom Lens with Vibration Reduction Function," granted November 20, 2001; especially FIG. 7 and Table 3.
-2. Nikon, _The Thousand and One Nights No. 39: Ai AF Zoom-Nikkor 35-70mm f/2.8S_, Haruo Sato, Nikon Imaging.
-3. Nikon AF Zoom-Nikkor 35-70mm f/2.8D user-manual/specification material for production lens specifications: 35-70 mm, f/2.8, 15 elements / 12 groups, 62°-34°20' picture angle, 0.6 m normal minimum focus, 0.28 m macro, 1:4 macro reproduction ratio.
+2. Nikon, _The Thousand and One Nights No. 39: Ai AF Zoom-Nikkor 35-70 mm f/2.8S_, Haruo Sato, Nikon Imaging.
+3. Nikon AF Zoom-Nikkor 35-70 mm f/2.8D user-manual/specification material for production lens specifications: 35-70 mm, f/2.8, 15 elements / 12 groups, 62°-34°20' picture angle, 0.6 m normal minimum focus, 0.28 m macro, 1:4 macro reproduction ratio.
 4. SCHOTT, optical glass datasheets: N-FK5 and N-SK16.
 5. OHARA, optical glass datasheets: S-BAL35 and S-TIH6.
 6. HIKARI Glass, optical glass datasheets/catalog entries: J-SFH2, J-PKH1, and J-SK16.
