@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1026** lenses scanned
 - **11741** glass elements examined
-- **3273** elements have multiple coordinate-compatible candidates
-- **588** lens files are affected
+- **3267** elements have multiple coordinate-compatible candidates
+- **587** lens files are affected
 - **319** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1897 |
+| Smallest reference-index residual | 1891 |
 | Evidence-source priority | 1017 |
 | Vendor context | 345 |
 | Stable canonical-name order | 12 |
@@ -2374,11 +2374,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `603380 — flint (vendor unresolved)` | 1.60342 / 38.01 (d) | J-F5 — smallest d-line \|Δn\| (1.6e-8 vs 1.3e-7) | E-F5 (Hoya, code, alternate code row)<br>F5 (Schott, code, preferred code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) L5f |
 | `883408 — high-index lanthanum glass (vendor unresolved)` | 1.88300 / 40.81 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) L5r |
 | `516641 — borosilicate crown (vendor unresolved)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) L6 |
-| `883408 — high-index lanthanum glass class (vendor unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 2 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L4f |
-| `847238 — very-dense-flint class (vendor unresolved)` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L4r |
-| `805255 — dense-flint class (vendor unresolved)` | 1.80518 / 25.46 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L5f |
-| `648338 — dense-flint class (vendor unresolved)` | 1.64769 / 33.84 (d) | E-FD2 — smallest d-line \|Δn\| (1.8e-7 vs 1.2e-6) | S-TIM22 (Ohara, code, preferred code row)<br>H-ZF1 (CDGM, code, alternate code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L5r |
-| `785257 — dense-flint class (vendor unresolved)` | 1.78472 / 25.72 (d) | H-ZF13 — smallest d-line \|Δn\| (1.8e-9 vs 2.7e-6) | S-TIH11 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L6f |
 | `607402 — BAFD3 compatible spectral proxy; patent vendor unspecified` | 1.60717 / 40.20 (d) | BAFD3 — direct name evidence outranks six-digit code evidence. | BASF3 (Sumita, code, preferred code row) | 1 | [VOIGTLÄNDER SKOPAREX 35mm f/3.4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSkoparex35mmf34Bessamatic.data.ts) L4 |
 | `773496 — coordinate class (supplier unconfirmed)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 3 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) L11 +1 files |
 | `805255 — coordinate class (supplier unconfirmed)` | 1.80518 / 25.50 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) L13 |
