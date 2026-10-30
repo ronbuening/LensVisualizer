@@ -1,50 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED                     ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 5,745,306 A, Example 1 (Susumu Sato / Nikon Corporation).║
- * ║  Production correlation: Nikon AF-S Nikkor 300mm f/2.8D IF-ED (1996).     ║
- * ║  11 active powered elements / 8 air-spaced groups / 0 aspheres.           ║
- * ║  Focus status: PUBLISHED. The negative G2 focus group translates          ║
- * ║  imageward by 10.8239 mm from infinity to the published close state.      ║
- * ║                                                                            ║
- * ║  SOURCE-PLANE NORMALIZATION:                                               ║
- * ║    - Source S1-S2 front protection glass is excluded from this active     ║
- * ║      sequential model. The model begins at source S3 (L11 front).         ║
- * ║    - Source S23 and S26 inactive field-stop planes are folded out. The    ║
- * ║      S24-S25 rear filter (2.0 mm, nd 1.516800, νd 64.10) is drawn as a    ║
- * ║      plane-parallel plate element and traced by every analysis; its       ║
- * ║      semi-diameter is a ray-trace estimate (the source lists none) and    ║
- * ║      it is not counted in `elementCount`. S22 stores d22 14.5 + d23 7.0 = ║
- * ║      21.5 mm to the filter; the plate is followed by d25 10.0 + Bf        ║
- * ║      74.1335 = 84.1335 mm to the image. The air-equivalent S22-to-image   ║
- * ║      spacing is unchanged at 106.9520654 mm; physical track from S3 is    ║
- * ║      315.074700 mm.                                                       ║
- * ║    - No dimensional scaling is applied: s = 1.000000.                     ║
- * ║                                                                            ║
- * ║  STOP / PUPIL MODEL:                                                       ║
- * ║    - The patent publishes F/2.88 but no physical stop diameter. The stop   ║
- * ║      radius is derived from the design f-number, F/2.88; it is not a       ║
- * ║      patent-listed aperture dimension.                                     ║
- * ║                                                                            ║
- * ║  SEMI-DIAMETERS:                                                           ║
- * ║    - The patent does not tabulate clear semi-diameters. Values below are  ║
- * ║      Modeling values derived from paraxial marginal/chief rays,           ║
- * ║      the published 43.4 mm G2 effective diameter, condition (12), Fig. 1, ║
- * ║      the 52 mm rear drop-in-filter constraint, and geometry validation.   ║
- * ║    - Fig. 1 supports the reduced terminal L33 SDs of 16.0 / 16.5 mm;       ║
- * ║      the earlier 22.5 / 23.5 mm estimate visibly overstated that element. ║
- * ║    - They are not represented as patent measurements.                     ║
- * ║                                                                            ║
- * ║  GLASS / SPECTRAL DATA:                                                    ║
- * ║    - The patent publishes d-line nd/νd only and does not identify vendors.║
- * ║      Glass strings use compatible catalog equivalents without asserting   ║
- * ║      Nikon's historical production suppliers or melts.                    ║
- * ║    - No nC, nF, ng, or dPgF values are authored because the source does   ║
- * ║      not publish per-element line-index / partial-dispersion data.        ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * US 5,745,306 A, Example 1 / Table 1 / Fig. 1; unscaled source prescription.
+ * Production correlation to the 1996 AF-S 300 mm f/2.8D remains inferential.
+ * Eleven powered elements in eight groups; thirteen drawn/traced optical pieces including both source filters.
+ * Restored front S1/S2: 4.0 mm, nd 1.5168/vd 64.10, followed by the printed0.6 mm gap. Its unprinted sd55.5 mm
+ * is the full-field/focus beam floor 52.4131 mm plus 5%, rounded upward to 0.5 mm.
+ * Rear S24/S25 remains2 mm, nd 1.5168/vd 64.10, after d22+d23=21.5 mm, then10+Bf74.1335=84.1335 mm.
+ * Inactive source field-stop planes remain folded out. Physical track from source S1 is319.6747 mm.
+ * Published negative-G2 motion10.8239 mm is retained. The complete finite endpoint is2.515307 m object-to-image,
+ * consistent with the rounded2.5 m production correlation; no source spacing is changed to force that marketing value.
+ * Fig. 1 and nominal beams restore L33 caps 19.5/19.6 mm. Other small raises keep conservative G2 caps 19.9 mm;
+ * a20.3 mm common cap exceeds the unchanged90% gap policy (4.2063>4.059 mm; contact radius 21.006 mm).
+ * All faces were inspected. No reliably resolved cap/land break justified a rim extension or inferred cut.
+ * All13 source d-line nd/vd pairs are retained. Qualified compatible catalog curves do not identify production
+ * suppliers/melts; the source supplies no individual C/F/g indices or partial-dispersion values.
  */
 
 const LENS_DATA = {
@@ -225,6 +195,16 @@ const LENS_DATA = {
       glass: "J-BK7A",
       role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 1 Table 1 surfaces 24–25), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
+    {
+      id: 13,
+      name: "FF",
+      label: "Front plane-glass filter",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A catalog-equivalent spectral proxy (source front filter; production supplier unspecified)",
+      role: "Printed source surfaces 1–2, restored as a drawn/traced front filter. Excluded from the 11 powered-element catalog count. Its unprinted aperture is inferred from the full-field/focus beam floor plus 5%, rounded upward to 0.5 mm.",
+    },
   ],
 
   /* ── Surface prescription ──
@@ -232,27 +212,30 @@ const LENS_DATA = {
    * Cemented junctions S6, S9, and S14 carry the downstream element's elemId and refractive index.
    */
   surfaces: [
-    { label: "3", R: 173.8655, d: 12, sd: 51.1, medium: 1 },
-    { label: "4", R: -978.0647, d: 0.2, sd: 50 },
+    // Source front plane-glass filter; unprinted rim inferred from full-field/focus beams.
+    { label: "1", R: "flat", d: 4, sd: 55.5, medium: 13 },
+    { label: "2", R: "flat", d: 0.6, sd: 55.5 },
+    { label: "3", R: 173.8655, d: 12, sd: 51.2, medium: 1 },
+    { label: "4", R: -978.0647, d: 0.2, sd: 50.8 },
     { label: "5", R: 133.6355, d: 15, sd: 50, medium: 2 },
-    { label: "6", R: -464.694, d: 5, sd: 46.5, medium: 3 },
-    { label: "7", R: 332.9179, d: 46.3, sd: 45.6 },
+    { label: "6", R: -464.694, d: 5, sd: 48.1, medium: 3 },
+    { label: "7", R: 332.9179, d: 46.3, sd: 46.1 },
     { label: "8", R: 99.5535, d: 3.5, sd: 35.8, medium: 4 },
     { label: "9", R: 55.631, d: 15.9, sd: 35, medium: 5 },
-    { label: "10", R: -1371.0602, sd: 31.5 },
+    { label: "10", R: -1371.0602, sd: 31.8 },
     { label: "11", R: -169.9686, d: 2.7, sd: 21.7, medium: 6 },
-    { label: "12", R: 67.2847, d: 4.51, sd: 19.5 },
-    { label: "13", R: -192.9273, d: 7, sd: 19.5, medium: 7 },
-    { label: "14", R: -43.081, d: 2.8, sd: 19.5, medium: 8 },
-    { label: "15", R: 83.8867, sd: 19.5 },
+    { label: "12", R: 67.2847, d: 4.51, sd: 19.9 },
+    { label: "13", R: -192.9273, d: 7, sd: 19.9, medium: 7 },
+    { label: "14", R: -43.081, d: 2.8, sd: 19.9, medium: 8 },
+    { label: "15", R: 83.8867, sd: 19.9 },
     { label: "STO", R: "flat", d: 17 },
     { label: "17", R: 194.0386, d: 5.8, sd: 19.6, medium: 9 },
     { label: "18", R: -90.9579, d: 3.1, sd: 19.6 },
     { label: "19", R: -43.5951, d: 3.5, sd: 19.6, medium: 10 },
     { label: "20", R: -64.7897, d: 7.6, sd: 20 },
-    { label: "21", R: -175.8037, d: 6.7, sd: 16.0, medium: 11 },
+    { label: "21", R: -175.8037, d: 6.7, sd: 19.5, medium: 11 },
     // S22 → rear filter: source d22 14.5 + d23 7.0 (field-stop plane S23 folded out)
-    { label: "22", R: -53.035, d: 21.5, sd: 16.5 },
+    { label: "22", R: -53.035, d: 21.5, sd: 19.6 },
     // Slip-in filter F (US 5,745,306 A, Example 1 Table 1 surfaces 24–25), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: d25 10.0 + Bf 74.1335, field-stop plane S26 folded out

@@ -7,16 +7,16 @@
 **Granted:** May 29, 2001\
 **Inventor:** Susumu Sato\
 **Assignee:** Nikon Corporation\
-**Title:** *Internal Focusing Telephoto Lens Having High Speed Aperture Ratio*\
+**Title:** _Internal Focusing Telephoto Lens Having High Speed Aperture Ratio_\
 **Example details:** Embodiment 4 (Fig. 10, Table 4)
 
 The modeled prescription is Example 4 of US 6,239,919 B1, retained at its native patent scale. The patent gives a focal length of 392.0 mm and F-number 2.88 for this embodiment. Independent paraxial tracing of the final authored prescription gives an effective focal length of 391.998755 mm, so no dimensional scaling has been applied. The production name, marketing focal length, and marketing aperture remain separate in the data file as 400 mm and f/2.8.
 
 The production correlation to the **NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II** rests on several convergent features rather than focal length alone:
 
-1. Nikon specifies 11 lens elements in 9 groups, plus one protective glass. Setting aside the patent's plane-parallel source plates (the front plate is omitted; the rear filter is drawn as a plane-parallel plate element but not counted in `elementCount`), Example 4 contains exactly 11 active glass elements in 9 air-separated groups.
+1. Nikon specifies 11 lens elements in 9 groups, plus one protective glass. Setting aside the patent's plane-parallel source plates (both filters are drawn/traced and excluded from `elementCount`), Example 4 contains exactly 11 active glass elements in 9 air-separated groups.
 2. Nikon identifies three ED elements at production element positions 1, 2, and 5. The final data file places the same low-dispersion coordinate, `nd = 1.497820`, `νd = 82.52`, at L11, L12, and L15, which occupy those same active-element positions.
-3. Nikon specifies zero aspherical elements. Example 4 and the final data file are entirely spherical.
+3. Nikon specifies zero aspherical elements. All powered surfaces in Example 4 and the final data are spherical; the filter faces are plane.
 4. Nikon identifies the lens as an internal-focusing AF-S design. Example 4 focuses by translating only the negative G2 group toward the image side while the surrounding groups remain fixed.
 5. Nikon specifies minimum focus distances of 3.5 m in AF and 3.4 m in MF, with maximum reproduction ratios of 1/7.7 and 1/7.5 respectively. The mechanism-constrained model is consistent with those endpoints and reproduction ratios.
 6. Nikon's product history lists the II-version 400 mm f/2.8D IF-ED in 2001, the same year as the US patent grant.
@@ -31,15 +31,15 @@ The front half of the system carries most of the optical diameter and power. G1F
 
 The patent's two published effective diameters illustrate the intended reduction in focus-group size: the first active surface has `φ1 = 136.2 mm`, while the G2 front surface has `φ2 = 43.4 mm`, or about 0.319 of the former. The patent explicitly treats reduction of the moving group's effective diameter as a central design objective.
 
-The physical surface-3-to-image track, including the rear filter, is 377.767563 mm (377.086128 mm air-equivalent). With the verified 391.998755 mm EFL, `TL/EFL = 0.963696`, so the prescription satisfies the project's quantitative telephoto criterion. The air-equivalent rear focal distance from surface 23 is 114.057258 mm (114.738693 mm physical through the filter), giving `BFD/EFL = 0.290963`; it is therefore not a retrofocus design under the project's `BFD > EFL` criterion.
+The full source-surface-1-to-image track, including both filters, is 383.767563 mm (the S3-to-image span remains 377.767563 mm). With the verified 391.998755 mm EFL, `TL/EFL = 0.979002`, so the prescription satisfies the project's quantitative telephoto criterion. The air-equivalent rear focal distance from surface 23 is 114.057258 mm (114.738693 mm physical through the filter), giving `BFD/EFL = 0.290963`; it is therefore not a retrofocus design under the project's `BFD > EFL` criterion.
 
-The LensVisualizer model omits the patent's front plane-parallel plate and inactive field stop. The rear plane-parallel filter (surfaces 25–26: 2.0 mm, `nd = 1.516800`, `νd = 64.10`, J-BK7A catalog equivalent) is drawn as a plane-parallel plate element and traced by every analysis, followed by the printed `Bf = 83.53862 mm` to the image. The stored surface-23 gap, 29.200073 mm, spans patent `d23 + d24 = 22.0 + 7.2 mm` to the filter. Its air-equivalent total, 114.057258 mm, is the independently solved spacing that closes the rounded patent prescription at infinity; direct source normalization gives 114.057185 mm, so the 0.000073 mm difference is kept in the gap before the filter. The filter's semi-diameter is a ray-trace estimate because the source lists none.
+The model restores the printed front S1/S2 plane filter: 5.0 mm, nd = 1.516800 / νd = 64.10, then the source 1.0 mm gap to powered S3. No optional omission clause was found in this original. Its unprinted 72.5 mm rim is the full-field/focus beam floor 68.969992 mm plus 5%, rounded upward to 0.5 mm. There are 13 modeled optical pieces (11 powered lenses plus both filters), while the marketed 11-element/nine-group count remains separate. Only the inactive field stop remains folded out. The rear plane-parallel filter (surfaces 25–26: 2.0 mm, `nd = 1.516800`, `νd = 64.10`, J-BK7A catalog equivalent) is drawn as a plane-parallel plate element and traced by every analysis, followed by the printed `Bf = 83.53862 mm` to the image. The stored surface-23 gap, 29.200073 mm, spans patent `d23 + d24 = 22.0 + 7.2 mm` to the filter. Its air-equivalent total, 114.057258 mm, is the independently solved spacing that closes the rounded patent prescription at infinity; direct source normalization gives 114.057185 mm, so the 0.000073 mm difference is kept in the gap before the filter. The filter's semi-diameter is a ray-trace estimate because the source lists none.
 
 The axial position of S1 is published by the patent and is retained as the sole `STO`. Its physical diameter is not published. The modeled stop semi-diameter, 20.065472 mm, is therefore an inference obtained by calibrating the entrance pupil to the published F-number 2.88. The corresponding verified entrance-pupil diameter is 136.110679 mm.
 
 Semi-diameters are partly sourced and partly modeled. Surface 3 uses the patent's `φ1/2 = 68.1 mm`, and surface 12 uses `φ2/2 = 21.7 mm`. The remaining semi-diameters are inferred from Fig. 10 proportions and paraxial ray envelopes, then constrained by the current edge-thickness, rim-slope, shared-band cross-gap, off-axis containment, and render-trim rules. They should not be read as patent-published clear apertures.
 
-No scale factor is applied, and every modeled surface is spherical. Consequently there is no asphere convention or aspheric-coefficient scaling transformation to apply.
+No scale factor is applied; every powered surface is spherical and both filters are plane-parallel. Consequently there is no asphere convention or aspheric-coefficient scaling transformation to apply.
 
 ## Element-by-Element Analysis
 
@@ -69,7 +69,7 @@ The discontinued-inclusive HOYA TAF4 row reproduces the six-digit coordinate wit
 
 ### L14 — Negative Meniscus, Convex to Object
 
-`nd = 1.796681`, `νd = 45.37`. Glass: **J-LASF017 catalog equivalent (patent 797454; production supplier unspecified)**. Standalone `f = -219.582 mm`.
+`nd = 1.796681`, `νd = 45.37`. Glass: **797454 source class (J-LASF017 approximate spectral proxy; production supplier unspecified)**. Standalone `f = -219.582 mm`.
 
 L14 is the negative front member of the cemented G1R doublet D1. Its rear surface is the cemented interface to L15. The element is negative in isolation, but its optical role must be read together with L15 rather than inferred from the standalone focal length alone.
 
@@ -129,15 +129,15 @@ L33 closes G3 as its rear positive element. Its front radius is the very weak bu
 
 The patent publishes d-line `nd` and `νd` coordinates but no glass manufacturers or catalog names. The final data retains those coordinates and assigns compatible coefficient-backed catalog equivalents. These are chromatic models, not claims about production suppliers or melts.
 
-| Glass annotation in final data | `nd` | `νd` | Elements | Interpretation |
-|---|---:|---:|---|---|
-| J-FKH1 equivalent (498825) | 1.497820 | 82.52 | L11, L12, L15 | Low-dispersion curve; Nikon independently identifies production positions 1, 2, and 5 as ED |
-| TAF4 equivalent (788475) | 1.787971 | 47.47 | L13 | Compatible discontinued-inclusive HOYA curve |
-| J-LASF017 equivalent (797454) | 1.796681 | 45.37 | L14 | Compatible Hikari curve |
-| E-LAFH2 equivalent (804339) | 1.803840 | 33.89 | L21, L32 | Exact Hikari coordinate |
-| SF6 equivalent (805254) | 1.805182 | 25.41 | L22 | Exact dense-flint coordinate |
-| S-BSM81 equivalent (640600) | 1.640000 | 60.03 | L23, L33 | Compatible moderate-index crown curve |
-| K-LaK14 equivalent (697556) | 1.696800 | 55.60 | L31 | Exact Sumita coordinate |
+| Glass annotation in final data |     `nd` |  `νd` | Elements      | Interpretation                                                                              |
+| ------------------------------ | -------: | ----: | ------------- | ------------------------------------------------------------------------------------------- |
+| J-FKH1 equivalent (498825)     | 1.497820 | 82.52 | L11, L12, L15 | Low-dispersion curve; Nikon independently identifies production positions 1, 2, and 5 as ED |
+| TAF4 equivalent (788475)       | 1.787971 | 47.47 | L13           | Compatible discontinued-inclusive HOYA curve                                                |
+| J-LASF017 equivalent (797454)  | 1.796681 | 45.37 | L14           | Compatible Hikari curve                                                                     |
+| E-LAFH2 equivalent (804339)    | 1.803840 | 33.89 | L21, L32      | Compatible Hikari spectral proxy                                                            |
+| SF6 equivalent (805254)        | 1.805182 | 25.41 | L22           | Compatible dense-flint spectral proxy                                                       |
+| S-BSM81 equivalent (640600)    | 1.640000 | 60.03 | L23, L33      | Compatible moderate-index crown curve                                                       |
+| K-LaK14 equivalent (697556)    | 1.696800 | 55.60 | L31           | Compatible Sumita spectral proxy                                                            |
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored as patent data. Runtime chromatic tracing uses the named catalog-equivalent curves, but this analysis does not characterize the prescription as apochromatic or claim a historical production melt.
 
@@ -151,16 +151,16 @@ The patent contains a source-table error that must be kept visible. Table 4 mark
 
 The patent's published close checkpoint corresponds to an object-to-image distance of 3.8 m. In the complete source train, G2 moves 10.85845 mm imageward, taking `d11` from 24.59533 to 35.45378 mm and `d16` from 27.44354 to 16.58509 mm. The patent prints a close-state magnification of `β = -0.11789`.
 
-The final LensVisualizer close-focus state is a **CONSTRAINED_RECONSTRUCTION**, not a patent-published 3.4 m row. Nikon specifies a 3.4 m manual-focus limit. With the source front plate and field stop removed and the rear reference plane normalized (the rear filter, now drawn as a plane-parallel plate element, is paraxially identical to the former air-equivalent fold), the actual active TypeScript model is re-solved with the published one-group mechanism and the D11+D16 constraint intact. The resulting 3.4 m state is:
+The close-focus motion remains a **CONSTRAINED_RECONSTRUCTION**, rather than a patent-published 3.4 m row. Its G2 endpoint was solved for Nikon's rounded 3.4 m MF limit before restoration of the front plate. The printed front filter is now included while the powered/internal spacings and reconstructed motion are preserved; the complete physical model gives 3.402385 m object-to-image and unchanged magnification −0.133899. The retained spacing endpoints are:
 
-| Quantity | Infinity | Modeled 3.4 m MF endpoint |
-|---|---:|---:|
-| D11 | 24.59533 mm | 36.928470 mm |
-| D16 | 27.44354 mm | 15.110400 mm |
-| G2 imageward travel | 0 | 12.333140 mm |
-| D11 + D16 | 52.03887 mm | 52.03887 mm |
+| Quantity            |    Infinity | Modeled 3.4 m MF endpoint |
+| ------------------- | ----------: | ------------------------: |
+| D11                 | 24.59533 mm |              36.928470 mm |
+| D16                 | 27.44354 mm |              15.110400 mm |
+| G2 imageward travel |           0 |              12.333140 mm |
+| D11 + D16           | 52.03887 mm |               52.03887 mm |
 
-The normalized active model closes the 3.4 m paraxial conjugate to an imaging-matrix `B` residual of approximately `5.1e-13 mm` and gives `β = -0.133899`, close to Nikon's marketed MF maximum reproduction of `-1/7.5 = -0.133333`. A secondary 3.5 m AF solve gives `β = -0.129477`, close to Nikon's `-1/7.7` specification. These comparisons are consistency checks on the reconstruction, not manufacturer-published prescription states.
+The earlier normalized model's physical object-to-image conjugate was 3.400681 m. The restored front filter adds 1.703586 mm to that complete finite distance while leaving EFL, rear BFL, internal motion and magnification unchanged. The source's separate 3.8 m checkpoint and Nikon's rounded 3.4 m/3.5 m specifications remain qualified context, rather than a reason to alter the printed powered train.
 
 Nikon describes the production lens as using Silent Wave Motor (SWM) drive for autofocus. The patent itself specifies the optical G2 motion, not the production actuator implementation.
 
@@ -176,9 +176,9 @@ Example 4 satisfies the patent's principal focal-length and G1 material conditio
 
 | Condition | Detailed-description range | Recomputed Example 4 value | Result |
 |---|---|---:|---|
-| (1) `|f1·f3 / (f2·F)|` | `0.7 < ... < 1.3` | 0.999938 | Satisfied |
-| (2) `|f2·F / (f1·φ1)|` | `0.4 < ... < 1.0` | 0.848226 | Satisfied |
-| (3) `|f1F / f1R|` | `0.7 < ... < 1.4` | 1.294846 | Satisfied |
+| (1) `abs(f1·f3 / (f2·F))` | `0.7 < ... < 1.3` | 0.999938 | Satisfied |
+| (2) `abs(f2·F / (f1·φ1))` | `0.4 < ... < 1.0` | 0.848226 | Satisfied |
+| (3) `abs(f1F / f1R)` | `0.7 < ... < 1.4` | 1.294846 | Satisfied |
 | (4) `Nn1 - Np1` | `0.2 < ... < 0.4` | 0.294506 | Satisfied |
 | (5) `νp1` | `65 < ... < 100` | 82.52 | Satisfied |
 | (6) `νn1` | `35 < ... < 65` | 47.47, 45.37 | Satisfied |
@@ -197,10 +197,12 @@ The patent aberration figures use image height `Y = 21.60 mm`; with the verified
 
 The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is `+0.0002426857 mm⁻¹`, corresponding to a signed Petzval radius of approximately `-4120.56 mm` under the sign convention used by the verification script.
 
-The inferred semi-diameter set passes the independently computed geometry checks at both infinity and the defined 3.4 m state. The minimum computed element edge thickness is approximately 1.310 mm, the largest spherical rim angle is approximately 47.83°, and the largest positive shared-band cross-gap intrusion fraction is approximately 0.8879 against the current 0.90 limit.
+Fresh Fig. 10 review restores terminal L33 to 20.5/20.5 mm. Its drawn height is comparable to L32; the former 15.5/16.0 mm caps understated it and clipped the nominal beam. S13 grows only to 20.2 mm: the nominal 20.4 mm trial has 4.053729 mm combined sag across the 4.45 mm S13–S14 gap, above the unchanged 4.005 mm policy bound. The policy radius is 20.279316 mm and physical contact is 21.354113 mm. Surface/image-circle checks pass and the traced aperture is f/2.907844, within 3% of the stated f-number.
+
+Every convex/concave/cemented/filter face was inspected in the 600 dpi render (native 300 ppi). Ray contamination and shallow-profile ink do not resolve an additional flat endpoint reliably, so no cut or land is invented. All 13 source nd/νd pairs were freshly checked against Table 4 (PDF page 20, columns 13–14), at d = 587.6 nm. All resolve to compatible catalog curves; the J-LASF017 counterpart for L14 is explicitly approximate (catalog nd differs by −0.001681), anchored to the retained source index, and does not identify a production material. No source partial/line-index datum is supplied or fabricated.
 
 ## Sources
 
-- **US 6,239,919 B1**, Susumu Sato, *Internal Focusing Telephoto Lens Having High Speed Aperture Ratio*, Nikon Corporation, granted May 29, 2001. Primary prescription source: Embodiment 4, Fig. 10, Table 4, and Figs. 11–12 in the supplied patent PDF.
+- **US 6,239,919 B1**, Susumu Sato, _Internal Focusing Telephoto Lens Having High Speed Aperture Ratio_, Nikon Corporation, granted May 29, 2001. Primary prescription source: Embodiment 4, Fig. 10, Table 4, and Figs. 11–12 in the supplied patent PDF.
 - **Nikon Imaging Japan**, [AI AF-S Nikkor ED 400mm F2.8D II (IF)](https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af-s_nikkor_ed_400mm_f28d_2_if/). Production identity, 11-element/9-group construction plus protective glass, three ED elements, zero aspheres, angle of view, focus limits, reproduction ratios, SWM drive, diaphragm-blade count, and minimum aperture.
 - **Nikon Product History — 2000s**, [2001 product listing](https://imaging.nikon.com/imaging/information/products_history/2000/). Production timing for the AI AF-S Nikkor ED 400mm F2.8D II (IF).

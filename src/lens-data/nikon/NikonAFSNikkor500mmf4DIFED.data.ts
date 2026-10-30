@@ -1,48 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED                      ║
- * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 5,745,306 A, Example 2 / Fig. 4 / Table 2 (Sato/Nikon). ║
- * ║ Native patent scale: F=490.0 mm; independent EFL=489.960550 mm.          ║
- * ║ 11 elements / 9 air-separated groups; all spherical.                    ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION.                              ║
- * ║ G2 moves 10.8363 mm toward the image under published constraints.        ║
- * ║ The printed close-focus d16=18.4240 mm is retained in the audit but      ║
- * ║ corrected here to 8.4240 mm: this conserves the adjacent G2 gaps and     ║
- * ║ restores the patent's R=5000 mm object-to-image distance.                ║
- * ║                                                                          ║
- * ║ Filters/planes: source surfaces 1-2 (front plane-glass filter), source ║
- * ║ surface 24 (field stop S2) and prose-only S3 are omitted. Source         ║
- * ║ surfaces 25-26 (drop-in filter, 2.0 mm, nd 1.516800, νd 64.10) are       ║
- * ║ drawn as a plane-parallel plate element and traced by every analysis;    ║
- * ║ its semi-diameter is a ray-trace estimate (the source lists none) and    ║
- * ║ it is not counted in `elementCount`. Surface 23 stores                   ║
- * ║ d23 40.4 + d24 5.0 = 45.4 mm to the filter (S2 folded out), then the     ║
- * ║ printed Bf 113.7034 mm to the image. Air-equivalent surface-23-to-image  ║
- * ║ spacing is unchanged at 160.421965401 mm; physical track from surface 3  ║
- * ║ is 422.122200 mm.                                                        ║
- * ║                                                                          ║
- * ║ Semi-diameters: inferred because Table 2 has no aperture table. The      ║
- * ║ front clear aperture is anchored by condition (12), the G2 front by the  ║
- * ║ published 42.3 mm effective diameter, and the remaining clear apertures  ║
- * ║ are constrained by paraxial marginal/chief rays, Fig. 4 proportions,     ║
- * ║ edge thickness, rim slope, cross-gap clearance, and off-axis clipping.   ║
- * ║ Fig. 4 supports the reduced terminal L3c SDs of 16.5 / 17.0 mm instead    ║
- * ║ of the earlier 20.3 / 20.5 mm estimate.                                   ║
- * ║ gapSagFrac=0.91 is required only by the tight s13-s14 G2 air gap; at     ║
- * ║ h=20.0 mm its spherical-sag intrusion is 3.209551 mm of 3.5400 mm,       ║
- * ║ leaving 0.330449 mm physical rim clearance.                              ║
- * ║                                                                          ║
- * ║ Spectral limitation: Table 2 publishes only nd and νd. nC, nF, ng, and  ║
- * ║ dPgF are therefore intentionally not invented as source values. Glass   ║
- * ║ strings use compatible catalog equivalents without asserting Nikon's    ║
- * ║ production suppliers; two ambiguous coordinates remain unresolved.      ║
- * ╚════════════════════════════════════════════════════════════════════════════╝
- *
- * Manufacturer correlation source (identity/marketing only):
- * https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af-s_nikkor_ed_500mm_f4d_if/
+ * US 5,745,306 A, Example 2 / Table 2 / Fig. 4; unscaled source prescription.
+ * Production correlation: AF-S500 mm f/4D IF-ED; eleven powered elements in nine groups.
+ * Thirteen drawn/traced optical pieces include both printed plane filters. Front S1/S2 is4 mm,
+ * nd 1.5168/vd 64.10, followed by the printed1 mm gap; unprinted sd65.5 mm is the full-field/focus beam floor
+ *62.2454 mm plus 5%, rounded upward to 0.5 mm. Rear S25/S26 remains2 mm, same source pair, after 45.4 mm,
+ * then printed Bf113.7034 mm. Inactive field stops remain folded out. Full S1-to-image track is427.1222 mm.
+ * Existing constrained G2 motion10.8363 mm and d16=8.4240 mm source-error treatment remain unchanged.
+ * Restored front plate gives full near conjugate4.999986 m versus4.998623 m previously, without changing EFL/BFL.
+ * Fig. 4 and nominal beams restore terminal L3c caps 20.1/20.2 mm. G2 retains square 20.0 mm caps: a20.4 mm
+ * trial exceeds the existing91% gap policy (3.34021>3.2214 mm); policy radius 20.036616, contact 20.996475 mm.
+ * No tolerance was changed. No resolved cap/land break justified an inferred cut or extension.
+ * All13 source d-line nd/vd pairs remain. Twelve compatible catalog curves are qualified counterparts;
+ * L13 at 1.80218/44.69 stays unresolved rather than forcing one of several broad-compatible neighbors.
+ * The source supplies no per-element partial dispersion or C/F/g indices; production suppliers/melts remain unspecified.
  */
 
 const LENS_DATA = {
@@ -222,10 +194,23 @@ const LENS_DATA = {
       glass: "J-BK7A",
       role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 2 Table 2 surfaces 25–26), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
+    {
+      id: 13,
+      name: "FF",
+      label: "Front plane-glass filter",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A catalog-equivalent spectral proxy (source front filter; production supplier unspecified)",
+      role: "Printed source surfaces 1–2, restored as a drawn/traced front filter. Excluded from the 11 powered-element catalog count. Its unprinted aperture is inferred from the full-field/focus beam floor plus 5%, rounded upward to 0.5 mm.",
+    },
   ],
 
   /* ── Surface prescription: active patent surfaces 3–23, plus rear filter surfaces 25–26 ── */
   surfaces: [
+    // Source front plane-glass filter; unprinted rim inferred from full-field/focus beams.
+    { label: "1", R: "flat", d: 4, sd: 65.5, medium: 13 },
+    { label: "2", R: "flat", d: 1, sd: 65.5 },
     { label: "3", R: 187.7545, d: 15.2, sd: 61.54, medium: 1 },
     { label: "4", R: -1311.4956, d: 1.8, sd: 60.5 },
     { label: "5", R: 212.8668, d: 14.2, sd: 60.0, medium: 2 },
@@ -245,9 +230,9 @@ const LENS_DATA = {
     { label: "19", R: -110.5814, d: 1.479, sd: 20.2 },
     { label: "20", R: -67.4745, d: 3.5, sd: 20.0, medium: 10 },
     { label: "21", R: -192.317, d: 7.4, sd: 20.2 },
-    { label: "22", R: -5088.9661, d: 5.9, sd: 16.5, medium: 11 },
+    { label: "22", R: -5088.9661, d: 5.9, sd: 20.1, medium: 11 },
     // Surface 23 → drop-in filter: source d23 40.4 + d24 5.0 (field stop S2 folded out)
-    { label: "23", R: -75.9168, d: 45.4, sd: 17.0 },
+    { label: "23", R: -75.9168, d: 45.4, sd: 20.2 },
     // Slip-in filter F (US 5,745,306 A, Example 2 Table 2 surfaces 25–26), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: Bf 113.7034 at infinity and close focus
