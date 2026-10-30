@@ -2232,8 +2232,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4 | G12 resin replica layer | abbe | `UV-cured replica resin (patent medium N3)` | No catalog match |
-| 24 | L4 rear positive asphere | abbe | `Unmatched fluorophosphate crown (485700; nearest OHARA S-FSL5 class)` | Explicit unmatched/proprietary annotation |
+| 4 | G12 resin replica layer | abbe | `Unmatched replica resin (patent N3; chemistry and cure process unspecified)` | Explicit unmatched/proprietary annotation |
+| 24 | L4 rear positive asphere | abbe | `Unmatched low-index high-Abbe glass (485700; chemistry and catalog identity unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) - 85.7% trusted (12/14); 85.7% Sellmeier (12/14) - US 2015/0131163 A1
 

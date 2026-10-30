@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **1032** lenses scanned
 - **11847** non-air surfaces examined
 - **11856** element glass declarations examined
-- **222** non-explicit-unmatched annotations did not resolve
-- **115** distinct unresolved glass-like tokens found
+- **219** non-explicit-unmatched annotations did not resolve
+- **114** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -132,7 +132,6 @@ or per-lens patent backfills.
 | LAFN8 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LF8 | 1 | 1 | |
-| N3 | 1 | 1 | |
 
 ## Occurrences
 
@@ -625,8 +624,4 @@ or per-lens patent backfills.
 ### LF8 — 1 occurrence
 
 - [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 11: `LF8 class (Schott, obsolete, 564438; patent "LF 8")`
-
-### N3 — 1 occurrence
-
-- [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) 4: `UV-cured replica resin (patent medium N3)`
 

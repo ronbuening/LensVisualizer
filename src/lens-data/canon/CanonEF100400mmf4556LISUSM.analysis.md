@@ -41,7 +41,7 @@ The original Fig. 6 is a native 200 ppi page scan, inspected without treating an
 
 The rear concave face of E2 ends in a short square shoulder. At its upper endpoint, the cap reaches approximately 185 px from the axis and the outer edge approximately 193 px, giving q≈0.959±0.010 for one-pixel endpoint uncertainty. The model retains the 36.0 mm drawn rim and uses an inferred 9.48 mm cut depth on surface 4, leaving a 34.4945 mm clear cap and a 1.5055 mm outer land. The source does not dimension that cut. No land is added at the E5/E6 doublet or inside the E15/E16/E17 triplet, and no other concave end resolves a separate cut at this scan resolution.
 
-The inferred land clears the sampled wide-open beams across the authored zoom/focus range. An independent dense check reaches 33.8161 mm against a cap radius of 34.4945 mm and a required margin of 0.1035 mm. Additional finite-point checks use the existing 1.8 m constrained reconstruction and the source's wide/tele 4 m focus motions; these checks do not certify reconstructed travel as source-published states. The existing `gapSagFrac: 0.96` constraint, source radii/spacings and focus/zoom trajectories are retained. Actual SVGs at wide/middle/tele and infinity/intermediate/close controls have finite, connected element outlines and no hidden material trimming. Stabilizer decentering and complete three-dimensional clearance remain outside this centered sampled review.
+The inferred land clears the sampled wide-open beams across the authored zoom/focus range. The independent 21 zoom × 21 focus-control dense check uses collimated launches and reaches 33.8161 mm against a cap radius of 34.4945 mm and a required margin of 0.1035 mm. Additional finite-point checks use the existing 1.8 m constrained reconstruction and the source's wide/tele 4 m focus motions; these checks do not certify reconstructed travel as source-published states. The existing `gapSagFrac: 0.96` constraint, source radii/spacings and focus/zoom trajectories are retained. Actual SVGs at wide/middle/tele and infinity/intermediate/close controls have finite, connected element outlines and no hidden material trimming. Stabilizer decentering and complete three-dimensional clearance remain outside this centered sampled review.
 
 ## Element-by-Element Analysis
 
@@ -241,3 +241,31 @@ The catalog design focal length copies the source-stated 102.68 / 389.19 mm endp
 6. **SCHOTT Optical Glass data.** Manufacturer catalog/download collection used only for coordinate-family and international-code checks, including N-SK14, SF57-class, and N-LAF34 coordinates: <https://www.schott.com/en-us/products/optical-glass-p1000267/downloads>.
 7. **HIKARI J-BAF11 data sheet.** Manufacturer coordinate reference for the 667483 family used by E14: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BAF/J_BAF11.pdf>.
 8. **SUMITA Optical Glass Data.** Manufacturer catalog source for the former K-SSK9 proxy; that curve is now disabled because the patent numerical reference line is unspecified: <https://www.sumita-opt.co.jp/en/download/>.
+
+### 2026-10-30 — Finite-object supplement and launch-scope clarification
+
+The original 3,837,997-ray dense probe used collimated launches at every focus-control
+position because the deliverable has no source-certified finite conjugates. Its
+focus census validates changed geometry, not a focused finite-object prescription.
+The separate earlier 1.8 m keyframe and source 4 m motion checks remain valid,
+limited diagnostics; they did not cover actual conjugates through the full cam.
+
+A new geometry-identical 21 zoom × 21 focus clone reproduces positions and current
+iris radii to 2.84e−14 mm. Of 420 non-infinity controls, 354 have positive actual
+Gaussian object distances at the modeled image plane; 66 produce virtual Gaussian
+objects and cannot represent real front-object imaging. A mixed diagnostic uses
+those 354 actual finite points and retains collimated launches at infinity and the
+66 virtual controls. Across 3,498,837 accepted beam rays, maximum S4 reach is
+33.816375 mm against cut radius 34.494532 mm and required margin 0.103484 mm; there
+are zero cut/margin violations and no unlaunchable field. This is not a claim of
+420 real finite conjugates.
+
+A separate positive-object supplement launches from image-plane distances
+1800 mm / focus at all 420 non-infinity controls, plus collimated infinity. Its
+3,412,929 accepted beam rays reach at most 33.816187 mm at S4, with zero cut/margin
+violations and no unlaunchable field. These positive objects are not necessarily
+focused and are not source-certified distances. Both probes use the canonical
+field range, a 41×41 launch grid, 0.5° field steps and adaptive edge refinement.
+The precise historical source-review dates, R/d, gap controls, cut and clear caps
+are unchanged. These are additional centered runtime-clearance results, separate
+from source fidelity, continuous 3D clearance and production focus correlation.

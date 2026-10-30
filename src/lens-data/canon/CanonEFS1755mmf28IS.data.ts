@@ -1,47 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Canon EF-S 17-55mm f/2.8 IS USM                       ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2007-108398 A, Example 1 (Canon Inc. / Endo).     ║
- * ║  Five-group positive–negative–positive–negative–positive zoom.      ║
- * ║  21 elements (19 glass + 2 resin) / 12 groups,                     ║
- * ║  3 aspherical surfaces (2 hybrid replica, 1 glass-molded).         ║
- * ║  Focus: inner focus via Group 2 (moves object-ward).               ║
- * ║  IS: Group 4a decentering perpendicular to axis.                   ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: D5, D15, D22, D28, BFD (all zoom-dependent). ║
- * ║  Focus variable gaps: D5 and D15 (zoom + focus).                   ║
- * ║  Zoom-only gaps: D22, D28, BFD.                                   ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING: Patent prescription is at production focal       ║
- * ║  length (f = 17.50–53.44 mm). No scaling applied.                  ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS: Estimated via combined marginal + chief   ║
- * ║  ray trace at all 3 zoom positions, then iteratively validated     ║
- * ║  against edge thickness (≥ 0.3 mm), cross-gap sag intrusion       ║
- * ║  (≤ 90% of gap), sd/|R| < 0.90, and element SD ratio ≤ 3.0.      ║
- * ║  Front group constrained by 77 mm filter thread.                   ║
- * ║  Surfaces 9-10 and 33-35 were raised to pass the traced chief ray  ║
- * ║  to the APS-C corner at the wide end, as Fig. 1 draws the rear     ║
- * ║  doublet (2026-09-24 field-coverage audit).                        ║
- * ║                                                                    ║
- * ║  NOTE ON CLOSE FOCUS: Patent publishes only infinity-focus gaps.   ║
- * ║  Close-focus gaps computed via paraxial ray trace for MFD = 0.35 m ║
- * ║  at wide and mid positions. Tele close-focus uses infinity values  ║
- * ║  (paraxial MFD at tele exceeds 0.35 m; production lens uses a     ║
- * ║  different mechanism or finite-conjugate optimization).            ║
- * ║                                                                    ║
- * ║  NOTE ON FLARE STOP: Patent surface r16 (flare-cut stop, d = 0)   ║
- * ║  is omitted — zero thickness, no optical effect. Surface labels    ║
- * ║  skip from "15" to "17" accordingly.                               ║
- * ║                                                                    ║
- * ║  IMPORTANT: This file describes ONLY the optical design:           ║
- * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
- * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * JP2007108398A Numerical Example1; original shape/glass review2026-10-30.
+ * Source prescription/aspheres pp10-11; explicit d reference paragraphs0077-78;
+ * all21 material d/g/C/F rows p15; conditional Table1 p17; Figure1 p19.
+ * All63 C/F/g indices are genuinely published and remain unchanged. Rounded
+ * prescription nd/vd pairs remain literal; eight higher-precision source d
+ * values are recorded in reference notes. No catalog spectral copies removed.
+ * Nineteen catalog curves are qualified proxies, not supplier/melt/chemistry
+ * identities. Both source resin media remain chemically unresolved with their
+ * complete published spectral points. No UV-curing or molding process inferred.
+ * All source R/d, three aspheres, stop, gaps and focus controls are preserved.
+ * Native Figure1 is1070x732px at200dpi; no600dpi native-resolution claim.
+ * Source-supported clear rims restored without opaque bonded-interface lands.
+ * First hybrid layer/support caps coextensive14mm; R8 outer14 beyond clear11.
+ * Tight variator caps retain literal gap limits; no full-height block invented.
+ * No inferred cut, disconnected resin wing or hidden renderer trimming.
+ * Wide/middle finite focus is an inferred approximation; tele endpoints remain
+ * infinity-identical. Only centered IS and no dimensioned flare-stop aperture
+ * are authored. Source fidelity and sampled runtime clearance remain separate.
  */
 
 const LENS_DATA = {
@@ -60,7 +37,7 @@ const LENS_DATA = {
       "f = 17.50–53.44 mm",
       "F/2.9 (marketed f/2.8)",
       "2ω = 75.9°–28.7°",
-      "3 ASPHERICAL SURFACES (2 HYBRID, 1 GMo)",
+      "3 ASPHERICAL SURFACES (2 RESIN HYBRID, 1 GLASS)",
     ],
     elementCount: 21,
     groupCount: 12,
@@ -86,8 +63,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -135.2,
-      glass: "S-TIH53 (OHARA)",
-      role: "Front cemented doublet — flint achromatizer",
+      indexReference: "d",
+      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Front cemented doublet — high-dispersion achromatizing member",
       cemented: "D1",
       nC: 1.836554,
       nF: 1.871929,
@@ -101,8 +79,11 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 113.7,
-      glass: "S-BSM14 (OHARA)",
-      role: "Front cemented doublet — barium crown positive",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.603112; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-BSM14 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Front cemented doublet — lower-dispersion positive",
       cemented: "D1",
       nC: 1.600078,
       nF: 1.610024,
@@ -116,8 +97,11 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 110.1,
-      glass: "S-LAL8 (OHARA)",
-      role: "Front group positive meniscus — lanthanum crown",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.712995; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-LAL8 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Front group positive meniscus — source-coordinate medium",
       nC: 1.708974,
       nF: 1.72221,
       ng: 1.729435,
@@ -130,7 +114,8 @@ const LENS_DATA = {
       nd: 1.5164,
       vd: 52.2,
       focalLengthMm: -604.5,
-      glass: "UV-curing resin",
+      indexReference: "d",
+      glass: "Unmatched optical resin (original resin label and published d/C/F/g; chemistry unresolved)",
       role: "Hybrid composite resin layer — aspherical profile for distortion control",
       cemented: "H1",
       nC: 1.513427,
@@ -145,7 +130,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -19.4,
-      glass: "S-LAH65V (OHARA)",
+      indexReference: "d",
+      glass: "S-LAH65V (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Hybrid composite glass body — primary negative power in variator front",
       cemented: "H1",
       nC: 1.798815,
@@ -160,7 +146,10 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -22.3,
-      glass: "S-LAH55V (OHARA)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.834807; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-LAH55V (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Symmetric biconcave — primary variator power contributor",
       nC: 1.828974,
       nF: 1.848514,
@@ -174,8 +163,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: 19.4,
-      glass: "S-LAH60 (OHARA)",
-      role: "P2A — strongest positive in variator; low-θgF glass for secondary spectrum control",
+      indexReference: "d",
+      glass: "S-LAH60 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "P2A — strongest positive in variator; source Table 1 θgF=0.578 and νd=37.2, satisfying conditions (1)/(2)",
       nC: 1.827376,
       nF: 1.849819,
       ng: 1.862781,
@@ -188,7 +178,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -16.0,
-      glass: "S-LAH65V (OHARA)",
+      indexReference: "d",
+      glass: "S-LAH65V (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Third negative in variator — cemented to P2B for achromatization",
       cemented: "D2",
       nC: 1.798815,
@@ -203,7 +194,10 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 29.1,
-      glass: "S-TIH6 (OHARA)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.805181; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-TIH6 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "P2B — supplementary positive for variator achromatization",
       cemented: "D2",
       nC: 1.796106,
@@ -218,7 +212,8 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.1,
       focalLengthMm: 58.8,
-      glass: "S-BAL35 (OHARA)",
+      indexReference: "d",
+      glass: "S-BAL35 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Relay group front positive — nearly plano-convex",
       nC: 1.586188,
       nF: 1.595824,
@@ -232,8 +227,11 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 20.6,
-      glass: "S-BAL42 (OHARA)",
-      role: "Glass-molded aspherical — primary relay power, SA control across zoom",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.583126; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-BAL42 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Source glass asphere — primary relay power; molding process unconfirmed",
       cemented: "D3",
       nC: 1.580134,
       nF: 1.589954,
@@ -247,7 +245,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -58.9,
-      glass: "S-TIH53 (OHARA)",
+      indexReference: "d",
+      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Relay group achromatizing flint — cemented to L10",
       cemented: "D3",
       nC: 1.836554,
@@ -262,8 +261,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 33.9,
-      glass: "S-TIH53 (OHARA)",
-      role: "IS group L4a — reversed achromat positive flint",
+      indexReference: "d",
+      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "IS group L4a — reversed achromat positive member",
       cemented: "D4",
       nC: 1.836554,
       nF: 1.871929,
@@ -277,8 +277,11 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -20.7,
-      glass: "S-LAL14 (OHARA)",
-      role: "IS group L4a — reversed achromat negative crown",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.696797; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-LAL14 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "IS group L4a — reversed achromat negative member",
       cemented: "D4",
       nC: 1.692974,
       nF: 1.705522,
@@ -292,7 +295,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -50.3,
-      glass: "S-TIH53 (OHARA)",
+      indexReference: "d",
+      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "IS group L4b — primary negative power",
       cemented: "D5",
       nC: 1.836554,
@@ -307,8 +311,9 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.1,
       focalLengthMm: 124.0,
-      glass: "S-BAL35 (OHARA)",
-      role: "IS group L4b — barium crown achromatizer",
+      indexReference: "d",
+      glass: "S-BAL35 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "IS group L4b — lower-dispersion achromatizing member",
       cemented: "D5",
       nC: 1.586188,
       nF: 1.595824,
@@ -318,11 +323,12 @@ const LENS_DATA = {
       id: 17,
       name: "Resin2",
       label: "Element 17 (resin)",
-      type: "Negative Meniscus (1× Asph)",
+      type: "Positive Meniscus (1× Asph)",
       nd: 1.5164,
       vd: 52.2,
       focalLengthMm: 1527.2,
-      glass: "UV-curing resin",
+      indexReference: "d",
+      glass: "Unmatched optical resin (original resin label and published d/C/F/g; chemistry unresolved)",
       role: "Hybrid composite resin layer — aspherical profile for field curvature control",
       cemented: "T1",
       nC: 1.513427,
@@ -337,8 +343,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -56.9,
-      glass: "S-LAH60 (OHARA)",
-      role: "Rear triplet flint — achromatizing partner to UD element L17",
+      indexReference: "d",
+      glass: "S-LAH60 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Rear triplet higher-dispersion member paired with L17; chemistry unresolved",
       cemented: "T1",
       nC: 1.827376,
       nF: 1.849819,
@@ -347,15 +354,19 @@ const LENS_DATA = {
     {
       id: 19,
       name: "L17",
-      label: "Element 19 (UD)",
+      label: "Element 19 (source APD)",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 37.5,
-      glass: "S-FPL51 (OHARA)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.496999; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-FPL51 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       apd: "patent",
-      apdNote: "θgF = 0.537, ΔPgF > 0; satisfies conditions (3) and (4)",
-      role: "First UD element — secondary spectrum correction via anomalous partial dispersion",
+      apdNote:
+        "Original Table 1 prints θgF = 0.537 and νd = 81.5 for this Group 5 positive element; satisfies source conditions (3)/(4). Exact ΔPg,F is not printed; chemistry and UD branding remain unconfirmed.",
+      role: "First source high-Abbe rear positive — published partial dispersion supports secondary-spectrum correction",
       cemented: "T1",
       nC: 1.495138,
       nF: 1.501233,
@@ -364,15 +375,19 @@ const LENS_DATA = {
     {
       id: 20,
       name: "L18",
-      label: "Element 20 (UD)",
+      label: "Element 20 (source APD)",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 36.1,
-      glass: "S-FPL51 (OHARA)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The unnumbered Example 1 line-index list on original page 15 prints d=1.496999; the rounded prescription nd above is retained. All published C/F/g indices are literal source values, not catalog copies.",
+      glass: "S-FPL51 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       apd: "patent",
-      apdNote: "θgF = 0.537, ΔPgF > 0; satisfies conditions (3) and (4)",
-      role: "Second UD element — secondary spectrum correction via anomalous partial dispersion",
+      apdNote:
+        "Original Table 1 prints θgF = 0.537 and νd = 81.5 for this Group 5 positive element; satisfies source conditions (3)/(4). Exact ΔPg,F is not printed; chemistry and UD branding remain unconfirmed.",
+      role: "Second source high-Abbe rear positive — published partial dispersion supports secondary-spectrum correction",
       cemented: "D6",
       nC: 1.495138,
       nF: 1.501233,
@@ -386,8 +401,9 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35.3,
       focalLengthMm: -85.6,
-      glass: "S-NBH51 (OHARA)",
-      role: "Final achromatizing flint — dense lanthanum flint cemented to UD element L18",
+      indexReference: "d",
+      glass: "S-NBH51 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      role: "Final high-dispersion achromatizing member cemented to L18; chemistry unconfirmed",
       cemented: "D6",
       nC: 1.74326,
       nF: 1.76447,
@@ -401,9 +417,9 @@ const LENS_DATA = {
     // Group 1 — Front Collector (f₁ = +95.7 mm)
     { label: "1", R: 217.373, d: 1.9, sd: 34.0, medium: 1 }, // L1 front
     { label: "2", R: 74.677, d: 8.65, sd: 33.0, medium: 2 }, // L1→L2 junction
-    { label: "3", R: -799.538, d: 0.15, sd: 28.0 }, // L2 rear → air
+    { label: "3", R: -799.538, d: 0.15, sd: 33.0 }, // L2 rear → air
     { label: "4", R: 48.982, d: 7.03, sd: 28.0, medium: 3 }, // L3 front
-    { label: "5", R: 122.553, sd: 24.0 }, // L3 rear → air (var)
+    { label: "5", R: 122.553, sd: 28.0 }, // L3 rear → air (var)
 
     // Group 2 — Variator / Focus Group (f₂ = −12.8 mm)
     {
@@ -414,8 +430,8 @@ const LENS_DATA = {
       medium: 4,
       asphere: { K: 0, A4: 1.457415e-5, A6: -3.790177e-8, A8: 6.739559e-11, A10: -1.117466e-13 },
     }, // Resin1 front (asph)
-    { label: "7", R: 59.996, d: 1.2, sd: 13.5, medium: 5 }, // Resin1→L4g junction
-    { label: "8", R: 12.277, d: 6.81, sd: 11.0 }, // L4g rear → air
+    { label: "7", R: 59.996, d: 1.2, sd: 14.0, medium: 5 }, // Resin1→L4g junction
+    { label: "8", R: 12.277, d: 6.81, sd: 11.0, rimExtensionSd: 14.0 }, // L4g rear → air
     { label: "9", R: -37.4, d: 1.0, sd: 8.6, medium: 6 }, // L5 front
     { label: "10", R: 37.4, d: 0.15, sd: 8.9 }, // L5 rear → air
     { label: "11", R: 27.209, d: 4.93, sd: 9.0, medium: 7 }, // L6 front
@@ -423,7 +439,7 @@ const LENS_DATA = {
     { label: "13", R: -25.912, d: 0.9, sd: 8.5, medium: 8 }, // L7 front
     { label: "14", R: 25.912, d: 3.6, sd: 8.5, medium: 9 }, // L7→L8 junction
     { label: "15", R: -225.909, sd: 10.0 }, // L8 rear → air (var)
-    // Flare-cut stop (patent r16, d=0) omitted — zero thickness, no optical effect
+    // Source r16 mechanical flare stop has no numerical aperture; omitted aperture can affect peripheral vignetting.
 
     // Group 3 — Relay Group (f₃ = +22.9 mm)
     { label: "17", R: 254.806, d: 3.5, sd: 11.0, medium: 10 }, // L9 front
@@ -437,8 +453,8 @@ const LENS_DATA = {
       medium: 11,
       asphere: { K: 0, A4: -8.402971e-6, A6: -1.432432e-8, A8: 9.77336e-11, A10: -2.555962e-13 },
     }, // L10 front (asph)
-    { label: "21", R: -16.418, d: 2.5, sd: 11.0, medium: 12 }, // L10→L11 junction
-    { label: "22", R: -26.192, sd: 12.0 }, // L11 rear → air (var)
+    { label: "21", R: -16.418, d: 2.5, sd: 12.5, medium: 12 }, // L10→L11 junction
+    { label: "22", R: -26.192, sd: 12.5 }, // L11 rear → air (var)
 
     // Group 4 — Image Stabilization Group (f₄ = −31.4 mm)
     // Sub-group L4a (IS decentering)
@@ -461,12 +477,12 @@ const LENS_DATA = {
       asphere: { K: 0, A4: -6.201996e-6, A6: 1.518167e-8, A8: -5.562855e-11, A10: 1.910063e-13 },
     }, // Resin2 front (asph)
     { label: "30", R: 154.426, d: 1.32, sd: 13.5, medium: 18 }, // Resin2→L16a junction
-    { label: "31", R: 36.157, d: 6.47, sd: 12.5, medium: 19 }, // L16a→L17 junction
-    { label: "32", R: -36.157, d: 0.15, sd: 12.0 }, // L17 rear → air
+    { label: "31", R: 36.157, d: 6.47, sd: 13.5, medium: 19 }, // L16a→L17 junction
+    { label: "32", R: -36.157, d: 0.15, sd: 13.5 }, // L17 rear → air
     // Cemented doublet: L18 + L19
     { label: "33", R: 64.804, d: 8.2, sd: 14.5, medium: 20 }, // L18 front
-    { label: "34", R: -23.782, d: 1.7, sd: 12.8, medium: 21 }, // L18→L19 junction
-    { label: "35", R: -38.936, sd: 13.4 }, // L19 rear → BFD (var)
+    { label: "34", R: -23.782, d: 1.7, sd: 14.5, medium: 21 }, // L18→L19 junction
+    { label: "35", R: -38.936, sd: 14.5 }, // L19 rear → BFD (var)
   ],
 
   zoom: {
@@ -491,7 +507,8 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   focus: {
     closeFocusM: 0.35,
-    description: "Inner focus — Group 2 (5 elements) translates as rigid body toward object.",
+    description:
+      "Inferred inner focus: Group 2 moves toward the object at wide/middle using approximate 0.35 m endpoints; tele focus endpoints remain identical to infinity because no finite cam is reconstructed. The original publishes infinity spacings only. These controls do not establish production finite-focus behavior.",
   },
 
   gaps: {

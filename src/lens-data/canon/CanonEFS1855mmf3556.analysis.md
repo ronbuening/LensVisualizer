@@ -18,7 +18,7 @@ The prescription represented here is the project-selected correlation between Nu
 5. Canon gives 0.28 m closest focus and 0.28x maximum magnification for the production lens. The constrained close-focus reconstruction of this prescription reaches a paraxial magnification magnitude of 0.28385 at the 55 mm state.
 6. The patent priority date, 19 September 2003, is contemporaneous with the introduction period of the first EF-S 18-55 mm design family.
 
-The exact design values remain distinct from the marketed specification. The finished data model computes 18.000636 mm and 54.998753 mm at the endpoint zoom states, while the commercial name remains 18-55 mm. Likewise, the patent gives endpoint F-numbers of F/3.59 and F/5.99, which are not substituted with the marketed f/3.5-5.6 values.
+The printed design values remain distinct from independently computed EFLs and the marketed specification. Catalog design metadata quotes the Example 5 table endpoints 18.00/55.00 mm (PDF page 13). The finished data model computes 18.000636/54.998753 mm, while the commercial name remains 18-55 mm. Likewise, the patent gives endpoint F-numbers of F/3.59 and F/5.99, which are not substituted with the marketed f/3.5-5.6 values.
 
 A material source defect occurs in the selected A publication's Example 5 table on page 13. The table prints R10 as the aperture stop and R11 as infinity, although the element beginning at R9 requires a finite rear refracting surface before the stop. The patent's stated L2a-stop-L2b architecture, Fig. 13 on page 18, the conditional quantity `Lp/TD2`, and the row structure of another numerical example all require the stop to follow L2a. The model therefore uses a constrained source correction of `R10 = -44.181130175128175 mm` and places `STO` at the original R11 axial station. This is a modeling inference, not a verbatim patent radius. Re-fitting R10 from the final data arrays returns the same value; all three computed focal lengths remain within 0.005 mm of the patent's printed values over the independently determined admissible interval of approximately -44.18644 to -44.17707 mm.
 
@@ -32,7 +32,7 @@ At infinity focus, the computed air-bounded group focal lengths are approximatel
 
 The zooming motion follows the patent's described kinematics. From 18 mm to 55 mm, D8 contracts from 32.31 to 2.05 mm, D14 expands from 1.62 to 7.91 mm, and D17 contracts from 7.72 to 1.44 mm. The fixed-image-plane coordinates show L1 moving imageward from the wide state to the middle state and then reversing objectward toward telephoto. L2 and L4 move objectward almost integrally: their total motions differ by only 0.010 mm, equal to one least-significant digit of the published spacing table. The sum `D14 + D17` is 9.34, 9.35, and 9.35 mm across the three states, which is the same source-precision result.
 
-Under the project's strict first-order terminology, the lens satisfies `BFD > EFL` at all three modeled zoom states and therefore meets the project definition of retrofocus at each tabulated state. Only the 55 mm state also satisfies the project's telephoto criterion `TL/EFL < 1`, with `TL/EFL = 0.92348`. These classifications are computed descriptors, not terminology copied from Canon marketing material.
+Under the project's strict first-order terminology, the lens satisfies `BFD > EFL` at all three modeled zoom states and therefore meets the project definition of retrofocus at each tabulated state. It does not satisfy the strict first-surface-to-image `TL/EFL < 1` telephoto criterion: actual tracks are 115.251775/106.711449/115.387416 mm, about 6.403/3.362/2.098 EFL. The earlier 0.92348 tele ratio excluded the image gap and described only the 50.79 mm first-to-last-lens distance. These are corrected descriptions of unchanged geometry, not a source or control change.
 
 The model excludes sensor cover glass, filters, inactive dummy planes, and mechanical parts. Numerical Example 5 does not publish a rear plate requiring an air-equivalent substitution, so the modeled R21-to-image spacing is the independently computed paraxial BFD rather than a plate-corrected distance.
 
@@ -112,18 +112,18 @@ E11 supplies almost all of the positive standalone power in the rear L4 pair. Th
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive indices and Abbe numbers but does not name glass manufacturers or catalog melts. The final data file therefore preserves eight coordinate classes rather than converting present-day catalog proximity into a historical identity. Current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were used only to test whether the coordinates admit defensible modern equivalents; the resulting vendor names are not stored as production facts.
+The 2026-10-30 direct original check confirms all 11 printed pairs in Numerical Example 5 (PDF page 13) and the explicit d-line definition in paragraph 0047 (PDF page 8). The patent publishes d-line refractive indices and Abbe numbers but does not name glass manufacturers or catalog melts. The final data file therefore preserves eight coordinate classes rather than converting present-day catalog proximity into a historical identity. Current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were used only to test whether the coordinates admit defensible modern equivalents; the resulting vendor names are not stored as production facts.
 
-| Data-file glass annotation | nd | νd | Elements | Status |
-|---|---:|---:|---|---|
-| 516641 class (vendor unresolved) | 1.516330 | 64.1 | E1, E11 | Coordinate class; several modern near-equivalents |
-| 623582 class (vendor unresolved) | 1.622992 | 58.2 | E2, E3 | Coordinate class; several modern near-equivalents |
-| 847239 class (vendor unresolved) | 1.846660 | 23.9 | E4, E6 | Coordinate class; high-index, relatively dispersive |
-| 573578 class (vendor unresolved) | 1.572501 | 57.8 | E5 | Coordinate class |
-| 487702 class (vendor unresolved) | 1.487490 | 70.2 | E7 | Coordinate class; relatively low dispersion |
-| 620363 class (vendor unresolved) | 1.620041 | 36.3 | E8 | Coordinate class |
-| 755275 class (vendor unresolved) | 1.755199 | 27.5 | E9 | Coordinate class |
-| Unmatched (nd=1.583060, vd=30.2; coordinate class 583302) | 1.583060 | 30.2 | E10 | No defensible retained named match |
+| Data-file glass annotation                                |       nd |   νd | Elements | Status                                              |
+| --------------------------------------------------------- | -------: | ---: | -------- | --------------------------------------------------- |
+| 516641 class (vendor unresolved)                          | 1.516330 | 64.1 | E1, E11  | Coordinate class; several modern near-equivalents   |
+| 623582 class (vendor unresolved)                          | 1.622992 | 58.2 | E2, E3   | Coordinate class; several modern near-equivalents   |
+| 847239 class (vendor unresolved)                          | 1.846660 | 23.9 | E4, E6   | Coordinate class; high-index, relatively dispersive |
+| 573578 class (vendor unresolved)                          | 1.572501 | 57.8 | E5       | Coordinate class                                    |
+| 487702 class (vendor unresolved)                          | 1.487490 | 70.2 | E7       | Coordinate class; relatively low dispersion         |
+| 620363 class (vendor unresolved)                          | 1.620041 | 36.3 | E8       | Coordinate class                                    |
+| 755275 class (vendor unresolved)                          | 1.755199 | 27.5 | E9       | Coordinate class                                    |
+| Unmatched (nd=1.583060, vd=30.2; coordinate class 583302) | 1.583060 | 30.2 | E10      | No defensible retained named match                  |
 
 The glass strategy visible from `nd` and `νd` is conventional rather than apochromatic. The most conspicuous Abbe contrast occurs in the cemented L2b pair, where E6 (`νd = 23.9`) is paired with E7 (`νd = 70.2`). This supports ordinary chromatic balancing of the bonded positive sub-unit. The source provides no `nC`, `nF`, `ng`, `PgF`, or `dPgF` values, and no historical melt identity is established strongly enough to substitute catalog Sellmeier data as source fact. Consequently the model makes no APO or anomalous-partial-dispersion claim.
 
@@ -134,10 +134,10 @@ The patent specifies front-group focusing: L1 moves toward the object as focus i
 Canon gives the production lens a 0.28 m closest focusing distance. The reconstructed state treats that distance as measured from the image/focal plane, keeps the image plane and L2-L4 fixed, and solves only the L1 displacement through D8. The resulting three endpoint states are:
 
 | Zoom position | D8 at infinity (mm) | D8 at 0.28 m (mm) | L1 objectward travel (mm) | Paraxial magnification |
-|---:|---:|---:|---:|---:|
-| 18.00 mm | 32.310000 | 35.824178 | 3.514178 | -0.092836 |
-| 31.74 mm | 12.130000 | 15.493419 | 3.363419 | -0.156688 |
-| 55.00 mm | 2.050000 | 5.566683 | 3.516683 | -0.283850 |
+| ------------: | ------------------: | ----------------: | ------------------------: | ---------------------: |
+|      18.00 mm |           32.310000 |         35.824178 |                  3.514178 |              -0.092836 |
+|      31.74 mm |           12.130000 |         15.493419 |                  3.363419 |              -0.156688 |
+|      55.00 mm |            2.050000 |          5.566683 |                  3.516683 |              -0.283850 |
 
 The reconstructed travel varies by only about 0.153 mm across the three zoom states, consistent with the patent's qualitative statement that the required front-group focus movement is substantially constant through the zoom range. At 55 mm, the paraxial magnification magnitude of 0.28385 is consistent with Canon's rounded 0.28x product specification. That agreement is a correlation check, not evidence that Canon published these reconstructed internal spacings.
 
@@ -151,34 +151,34 @@ The only aspherical surface is R19A, the rear surface of E10. The patent's asphe
 
 so the LensVisualizer standard conic constant is `K = 0`. The patent's quadratic coefficient A is zero in Numerical Example 5. The remaining patent coefficients map directly as B→A4, C→A6, D→A8, E→A10, and F→A12.
 
-| Coefficient | R19A value |
-|---|---:|
-| K | 0 |
-| A4 | 2.76705e-5 |
-| A6 | 1.09618e-7 |
-| A8 | 2.25895e-11 |
-| A10 | -1.44537e-11 |
-| A12 | 1.26393e-13 |
-| A14 | 0 |
+| Coefficient |   R19A value |
+| ----------- | -----------: |
+| K           |            0 |
+| A4          |   2.76705e-5 |
+| A6          |   1.09618e-7 |
+| A8          |  2.25895e-11 |
+| A10         | -1.44537e-11 |
+| A12         |  1.26393e-13 |
+| A14         |            0 |
 
-No scaling is applied, so the stored coefficients are not transformed. The patent series terminates at A12 in LensVisualizer notation; the data carries A14 = 0 as an unused schema coefficient. At the verified modeled semi-diameter of 9.9 mm, the computed polynomial departure from the spherical base is +0.352405495 mm. The patent does not publish an aperture height for this surface, so that departure is explicitly tied to the validated modeled semi-diameter rather than represented as a patent-specified edge value. The source also does not establish whether the production surface was molded, polished, hybrid, or otherwise manufactured by a particular asphere process; no manufacturing type is assigned.
+No scaling is applied, so the stored coefficients are not transformed. The patent series terminates at A12 in LensVisualizer notation; the data carries A14 = 0 as an unused schema coefficient. At the current figure-based semi-diameter of 9.5 mm, the computed polynomial departure from the spherical base is +0.289213980 mm; the prior 9.9 mm cap gave +0.352405495 mm. The coefficients are unchanged. The patent does not publish an aperture height for this surface, so that departure is explicitly tied to the validated modeled semi-diameter rather than represented as a patent-specified edge value. The source also does not establish whether the production surface was molded, polished, hybrid, or otherwise manufactured by a particular asphere process; no manufacturing type is assigned.
 
 ## Conditional Expressions
 
 JP2005092056A states a set of first-order design conditions for the four-group system. Numerical Example 5's Table 1 on page 14 gives rounded values for all eight. The final data arrays independently reproduce the load-bearing quantities below except condition (2), for which the exact maximum image height H is not numerically tabulated in the selected example.
 
-Two source-text corrections require explicit treatment. Paragraph 0019 of the A publication prints `2.6 < ft/fw < 4.0`, while paragraph 0025 prints `2.5 < ft/fw < 4.0`; the later corrected/granted Japanese text uses 2.5. The A publication also prints the denominator of condition (7) as `f1a` even though the surrounding definition is for the L2a focal length; the later corrected/granted text uses `f2a`. The table below uses the corrected variable name for the computed comparison while preserving the A-publication history in this note.
+Two internal source-text inconsistencies require explicit treatment. Paragraph 0019 of the A publication prints `2.6 < ft/fw < 4.0`, while original Claim 1 (PDF page 2) and paragraph 0025 print `2.5 < ft/fw < 4.0`. Original Claim 5 and Table 1 print denominator `f1a` even though Claim 5 defines `f2a` as the L2a focal length. The table below evaluates the contextually defined `f2/f2a` and preserves the literal A-publication discrepancy in `source.errata`. This review uses the supplied A original; no later family publication is substituted as fresh evidence.
 
-| Condition | Patent form | Computed from final data | Table 1, Example 5 | Result |
-|---|---|---:|---:|---|
-| (1) | `2.5 < ft/fw < 4.0` in ¶0025 | 3.055556 | 3.06 | within |
-| (2) | `2.2 < bfw/H < 3.0` | not independently recoverable from prescription alone | 2.51 | source value only |
-| (3) | `4.1 < TDw/fw < 5.0` | 4.502222 | 4.50 | within |
-| (4) | `-0.3 < R1/R2 < 0.3` | -0.000510 | 0.00 | within |
-| (5) | `0.1 < (f1/ft)^2 < 0.5` | 0.225254 | 0.23 | within |
-| (6) | `0.01 < Lp/TD2 < 0.5` | 0.229249 | 0.23 | within |
-| (7) | `0.2 < f2/f2a < 0.6` after correction | 0.398788 | 0.40 | within |
-| (8) | `-0.75 < f1/f4 < -0.3` | -0.659668 | -0.66 | within |
+| Condition | Patent form                           |                              Computed from final data | Table 1, Example 5 | Result            |
+| --------- | ------------------------------------- | ----------------------------------------------------: | -----------------: | ----------------- |
+| (1)       | `2.5 < ft/fw < 4.0` in ¶0025          |                                              3.055556 |               3.06 | within            |
+| (2)       | `2.2 < bfw/H < 3.0`                   | not independently recoverable from prescription alone |               2.51 | source value only |
+| (3)       | `4.1 < TDw/fw < 5.0`                  |                                              4.502222 |               4.50 | within            |
+| (4)       | `-0.3 < R1/R2 < 0.3`                  |                                             -0.000510 |               0.00 | within            |
+| (5)       | `0.1 < (f1/ft)^2 < 0.5`               |                                              0.225254 |               0.23 | within            |
+| (6)       | `0.01 < Lp/TD2 < 0.5`                 |                                              0.229249 |               0.23 | within            |
+| (7)       | `0.2 < f2/f2a < 0.6` after correction |                                              0.398788 |               0.40 | within            |
+| (8)       | `-0.75 < f1/f4 < -0.3`                |                                             -0.659668 |              -0.66 | within            |
 
 Condition (6) is particularly relevant to the R10/R11 correction. With the stop at the restored R11 station, `Lp = 2.90 mm` and the computed ratio is 0.229249, reproducing the patent table's 0.23. The same repaired structure gives `f2/f2a = 0.398788`, reproducing 0.40. These independent checks support the corrected row interpretation without converting the inferred R10 radius into a claimed source value.
 
@@ -186,19 +186,19 @@ Condition (6) is particularly relevant to the R10/R11 correction. With the stop 
 
 Numerical Example 5 publishes endpoint F-numbers but no physical stop diameter. Back-solving the source endpoints from the prescription does not produce one common fixed stop radius at source precision. The final model therefore uses the exact endpoint design F-numbers and a disclosed middle-state aperture reconstruction rather than forcing the marketed f/3.5-5.6 values into the design geometry.
 
-The modeled `nominalFno` values are 3.59, 4.42103340096855, and 5.99 at 18.00, 31.74, and 55.00 mm. The middle value is not patent-published. It is obtained by linearly interpolating the exact physical stop semi-diameter between the two endpoint states and then inverting the same pre-stop trace. The corresponding modeled stop semi-diameters are 6.264240, 6.362073, and 6.459907 mm.
+The modeled `nominalFno` values are 3.59, 4.42103340096855, and 5.99 at 18.00, 31.74, and 55.00 mm. The middle value is not patent-published. It is obtained by linearly interpolating the exact physical stop semi-diameter between the two endpoint states and then inverting the same pre-stop trace. The current derived/paraxial stop semi-diameters are 6.252060/6.329229/6.417926 mm. Exact aimed-rim working values are 3.589722/4.445507/6.029607, a separate `1/(2n′sinθ′)` convention. Older 6.264240/6.362073/6.459907 figures do not describe the current runtime and are superseded; no stop authority or nominal aperture is changed.
 
-The patent also gives no surface semi-diameters for Numerical Example 5. Every `sd` in the data file is therefore a modeling value derived from on-axis and off-axis ray envelopes and then constrained by the current geometry rules. The revised front rims pass the surface and image-circle audits at all published zoom stations, and renderer diagnostics show no significant hidden trimming across sampled focus and zoom states. The enlarged clear apertures preserve every previously surviving ray; the remaining SDs and the stop model are unchanged. These values validate the authored geometry; they are not patent clear-aperture specifications.
+The patent also gives no surface semi-diameters for Numerical Example 5. Every `sd` in the data file is therefore a modeling value derived from on-axis and off-axis ray envelopes and then constrained by the current geometry rules. The 2026-10-30 native-figure changes and all-state checks below supersede the earlier ray-envelope sizes where listed. Source-station surface, image-circle and aperture checks pass, and no hidden renderer trimming occurs. Smaller native-supported caps reduce off-axis transmitted pupil samples; unchanged stop authority and surviving on-axis rays remain distinct from source-clear-aperture or production-illumination claims.
 
 ## Verification Summary
 
 Independent sequential height/reduced-angle tracing and an ABCD composition agree to machine precision for the three infinity-focus zoom states. The final data arrays give:
 
 | Patent zoom state | Computed EFL (mm) | Residual from printed f (mm) | Computed BFD (mm) |
-|---:|---:|---:|---:|
-| 18.00 mm | 18.000636211 | +0.000636211 | 34.211774808 |
-| 31.74 mm | 31.743252801 | +0.003252801 | 45.841448661 |
-| 55.00 mm | 54.998753440 | -0.001246560 | 64.597416005 |
+| ----------------: | ----------------: | ---------------------------: | ----------------: |
+|          18.00 mm |      18.000636211 |                 +0.000636211 |      34.211774808 |
+|          31.74 mm |      31.743252801 |                 +0.003252801 |      45.841448661 |
+|          55.00 mm |      54.998753440 |                 -0.001246560 |      64.597416005 |
 
 All EFL residuals are below 0.005 mm, matching the source's 0.01 mm focal-length precision. The finite-conjugate close-focus solves give imaging-matrix B terms of 0, `1.14e-13`, and `-8.53e-14` mm, effectively zero at the precision relevant here.
 
@@ -231,3 +231,23 @@ The newly cataloged OHARA S-BAL11 curve resolves E5 through its published 573578
 The second live-site comparison aligned the L2b cemented pair at 7.8 mm (R12–R14), set R10 to 7.6 mm, and refined the L3 pair to 7.7/7.7/7.6 mm (R15–R17). A common 7.7 mm R17 rim failed the telephoto gap limit, so its rear rim stays at 7.6 mm. Explicit E1–E11 diagram labels now match the inspector element names. The front-group zoom reversal and objectward L1-only focus travel are preserved at all three source stations.
 
 A further polymer survey did not justify filling the final spectral gap. The published one-term polycarbonate fit associated with Sultanova et al. (2009) evaluates to nd = 1.584763 and νd = 27.8583, outside the project’s Δν = ±2 compatibility guard for the patent’s 1.583060 / 30.2 coordinate. The underlying paper’s rounded measurements are not a patent melt identification or a substitute coefficient set. E10 remains explicitly unmatched, with no unsupported resin identity, APD tag, or manufacturing-process label. See [the experimental study](https://przyrbwn.icm.edu.pl/APP/PDF/116/a116z442.pdf) and [the published fit](https://refractiveindex.info/?shelf=organic&book=polycarbonate&page=Sultanova).
+
+## 2026-10-30 original shape, glass and runtime review
+
+The original is `patents/JP_2005092056_A.pdf`, Numerical Example 5, PDF page 13. It gives all 11 index/Abbe pairs, R/d rows and the R19 polynomial through h12. Paragraph 0047, PDF page 8, explicitly defines d-line coordinates; paragraph 0049, page 9, gives the asphere convention. Figure 13, PDF page 18, is its wide section; Figures 14/15 on pages 18/19 are its wide/tele aberrations, with Fno 3.59/5.99. The original embedded pages are 1656×2339 one-bit at 200 ppi. Earlier 600 dpi inspection magnified that ink threefold. The rotated native section has about 621 pixels from first vertex to image against the unchanged 115.251775 mm reconstructed track, about 5.38 px/mm. Practical optical-rim reading uncertainty is ±0.6 mm; these are diagram-based caps, not dimensioned source clear apertures.
+
+Every element and both cemented interfaces were inspected. Native E2 has a real rectangular outer blank stroke after its R4 curved cap. The previous description of that stroke as a mechanical flange is superseded: `rimExtensionSd: 17` on R4 retains its clear `sd: 11.8` while restoring the resolved shoulder. Enlarging the clear cap to 12.5 is rejected: shared R4/R5 sag 8.06 mm exceeds 7.038 mm allowed in the unchanged 7.820 mm air gap at every source zoom. No R/d is adjusted to fit the drawing.
+
+Native E5 supports clear R9/R10 = 7.0/7.0 mm rather than the old 7.6/7.6 ray envelope. The L3 cemented pair uses R15/R16/R17 = 6.5/6.5/6.5 rather than 7.7/7.7/7.6; the curved bonded interface remains a full cap, with no land. Rear R18/R19A/R20/R21 become 9.5/9.5/9.5/9.5 rather than 9.8/9.9/10.2/10.6. Remaining front/L2b caps stay within native reading uncertainty and their geometric constraints. An old R17 = 7.7 trial again fails the tele gap: 1.32 mm combined sag exceeds 1.296 mm allowed in D17 = 1.440 mm. Leaders, focus/zoom arrows, brackets and the image-plane bar are excluded. No inferred concave cut, bonded land, hybrid layer or unsupported block is introduced.
+
+The nonnumeric R10 cell remains an explicit unresolved source problem. For a flat numerical R10 trial, independently evaluated source-state EFLs are 26.619393/58.475290/213.654255 mm, against the printed 18.00/31.74/55.00. Retained inferred R10 = −44.181130175128175 gives 18.000636/31.743253/54.998753. Separately, original Claim 5 defines positive L2a–stop–positive L2b: evaluating its contextually defined f2/f2a yields 0.133326 for a flat rear cap, outside 0.2–0.6, versus 0.398788 retained and Table 1's 0.40. These are source-summary and claims evidence for a missing-curvature/stop-label problem, not proof of the fitted radius to all digits. The exact retained value remains a constrained reconstruction. `source.errata` uses a schema-safe unresolved note rather than inventing a numeric printed value. A generic source-errata follow-up remains appropriate; all existing R/d, asphere terms, source gaps, stop rules and close-focus cams are preserved.
+
+All 11 source medium pairs remain unchanged. Ten compatible curves resolve: E1/E11 S-BSL7, E2/E3 S-BSM15, E4/E6 S-NPH53, E5 S-BAL11, E7 S-FSL5, E8 S-TIM2 and E9 E-FD4. These are qualified spectral proxies; no historical supplier, melt, chemistry, cement or process is established. E10 remains Unmatched. There are no authored C/F/g indices, partial-dispersion or APD measurements to retain or remove; plotted d/g curves do not manufacture such numbers. No filter, rear plate or resin layer is tabulated for this configuration.
+
+A 65-position clone preserves actual runtime geometry at focus 0/0.5/1 to 1.8×10⁻15 mm. Surface probe passes, image-circle audit has zero undersized elements, all 65 aperture-census positions are within 3%, and all 65 infinity field chiefs reach at least 99% of the queried corner. The aperture census retains the derived/paraxial stop-height convention; exact aimed-rim working f-number is reported separately above. Across 21 zoom × 21 focus × 11 aperture presets, all 4,851 working calls trace, matching baseline classifications.
+
+The current-state iris was used for every full-pupil bundle. For 65 zoom × five focus × four field states (1,300 fields per version), each field samples 193 pupil positions. All axial fields retain 193/193. Infinity full-corner counts change from 117/188/188 to 103/165/174 at source zooms; reconstructed close corners change from 86/188/190 to 73/169/177. That extra off-axis clipping is the explicit consequence of figure-supported caps, not a failed on-axis aperture or a production illumination prediction. Finite-state corner queries can reach 13.381446 mm versus the runtime APS-C query 14.175 mm; centered source figures do not certify all reconstructed finite fields.
+
+First-order checks span 65 zoom × 21 focus = 1,365 actual states. The three infinity and reconstructed 0.28 m source-zoom endpoints focus numerically (residuals below 5×10⁻14 mm). Sparse source zoom rows do not certify the interpolated cam: worst infinity residual is −3.511269 mm at zoom 0.78125 (computed EFL 41.322720 mm versus displayed 44.823750), and worst finite conjugate residual is −4.293537 mm at zoom 0.796875/focus 0.55, displayed distance 0.509091 m. These intervals are illustrative; no trajectory is retuned. Actual generated SVGs were compared with the native section: 1,365 states produce 15,015 finite, closed, connected element paths and zero hidden trim. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
+
+Historical September 2026 and live-site paragraphs above retain their original record. Their earlier outer-flange interpretation and listed ray-envelope caps are superseded only by this dated original-figure review. The retained source inference and all numerical control limitations stay explicit.

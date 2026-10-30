@@ -15,7 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  independently solved against all three printed focal lengths as           ║
  * ║  R10 = -44.181130175128175 mm. The stop is placed at the original R11      ║
  * ║  axial station. This value is a modeling inference, not a verbatim patent  ║
- * ║  radius.                                                                   ║
+ * ║  radius. Source-summary and original Claim 5 support the missing-curvature ║
+ * ║  problem, not the exact fitted digits. source.errata discloses the nonnumeric║
+ * ║  printed Stop cell; no numerical printed radius is invented.                ║
  * ║                                                                            ║
  * ║  ZOOM: Patent gaps D8, D14, and D17 are stored on R8, R14, and R17.        ║
  * ║  R21 stores the independently computed paraxial BFD to the fixed image     ║
@@ -34,12 +36,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  two endpoint stop semi-diameters, then inverted through the same exact     ║
  * ║  pre-stop trace. nominalFno therefore carries modeled design values.       ║
  * ║                                                                            ║
- * ║  SEMI-DIAMETERS: The patent publishes none for Example 5. SDs are derived  ║
+ * ║  SEMI-DIAMETERS: The patent publishes none for Example 5. Current caps use  ║
+ * ║  native Fig.13 rim evidence (200 ppi, ~5.38 px/mm, practical +/-0.6 mm),    ║
+ * ║  preserving gap-limited R4 clear11.8 with resolved outer shoulder17.0.     ║
+ * ║  Earlier SDs were derived  ║
  * ║  from exact on-axis and 0.6-design-field marginal/chief-ray envelopes at   ║
  * ║  all three zoom positions and at infinity/0.28 m focus, then refined so    ║
  * ║  surviving full-field rays remain at every defined state. Edge thickness, ║
  * ║  actual rim slope, cross-gap intrusion, asphere height, and ray containment║
- * ║  were independently checked. They are modeling values, not patent data.    ║
+ * ║  were independently checked. All caps remain figure-based modeling values,║
+ * ║  not published clear apertures. Current all-state qualifications: sidecars.║
  * ║                                                                            ║
  * ║  GLASS: The patent gives d-line nd/vd only. Glass strings therefore use    ║
  * ║  coordinate classes or Unmatched(...) rather than unproven vendor melts.   ║
@@ -65,7 +71,7 @@ const LENS_DATA = {
     specs: [
       "11 ELEMENTS / 9 GROUPS",
       "18-55mm MARKETED",
-      "18.0006-54.9988mm DESIGN",
+      "18.0006-54.9988mm COMPUTED EFL",
       "f/3.5-5.6 MARKETED",
       "F/3.59-5.99 PATENT ENDPOINTS",
       "1 ASPHERICAL SURFACE",
@@ -73,7 +79,7 @@ const LENS_DATA = {
     elementCount: 11,
     groupCount: 9,
     /* ── Metadata ── */
-    focalLengthMm: { marketing: [18, 55], design: [18.00063621059004, 54.9987534396274] },
+    focalLengthMm: { marketing: [18, 55], design: [18, 55] },
     fNumber: { marketing: 3.5, design: 3.59 },
   },
 
@@ -83,6 +89,16 @@ const LENS_DATA = {
     patentYear: 2005,
     authors: ["Takeshi Nishimura"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example 5, PDF13, prints R10=Stop and R11=infinity, leaving no numerical rear radius for positive L2a before the stop. Retained R10=-44.181130175128175 mm and STO at the R11 station are a constrained reconstruction, not a verbatim source radius. A flat R10 trial gives EFL26.619393/58.475290/213.654255 versus printed18/31.74/55; retained gives18.000636/31.743253/54.998753. Independently Claim5, PDF2, defines positive L2a-stop-positive L2b and a .2-.6 power ratio: flat gives .133326, retained .398788, consistent with Table1 PDF14 .40. These source-summary/claims checks support a missing-curvature/label problem but do not prove the exact fitted digits. No numeric printed R is fabricated for the nonnumeric cell. Original reconstruction and controls retained; qualification added 2026-10-30.",
+      },
+      {
+        status: "unresolved",
+        note: "The original A publication internally varies ft/fw lower bound: paragraph0019 prints2.6 while Claim1 PDF2 and paragraph0025 print2.5. Claim5 PDF2 and Table1 PDF14 print denominator f1a although the surrounding definition names f2a for positive L2a. The contextual analysis evaluates f2/f2a and preserves the literal A-publication history; no family publication is substituted and no numeric prescription/control is changed.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -237,38 +253,40 @@ const LENS_DATA = {
   ],
 
   // Live Fig. 13 review: align L2b rims; keep R17 below the telephoto cross-gap limit.
-  // Fig. 13 (p. 18), inspected at 600 dpi: restore the larger front-group rims.
-  // R4 stops at 11.8 mm to preserve R4-R5 clearance; the outer drawn flange is mechanical.
+  // 2026-10-30 native Fig.13 (PDF18): 200ppi original; 600ppi was 3x upsampling.
+  // R4 retains its gap-limited clear11.8; the resolved optical blank shoulder reaches17.
+  // E5/L3/rear caps follow native optical ink; leaders, cam arrows and image-plane bar excluded.
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     { label: "R1", R: 93.97, d: 3.2, sd: 20.5, medium: 1 },
     { label: "R2", R: -184142.483, d: 0.12, sd: 20.5 },
     { label: "R3", R: 66.571, d: 1.6, sd: 17, medium: 2 },
-    { label: "R4", R: 14.044, d: 7.82, sd: 11.8 },
+    { label: "R4", R: 14.044, d: 7.82, sd: 11.8, rimExtensionSd: 17 },
     { label: "R5", R: -186.656, d: 1.2, sd: 12.5, medium: 3 },
     { label: "R6", R: 27.091, d: 0.12, sd: 12.5 },
     { label: "R7", R: 20.119, d: 2.9, sd: 12, medium: 4 },
     { label: "R8", R: 35.644, sd: 12 },
-    { label: "R9", R: 131.721, d: 1.7, sd: 7.6, medium: 5 },
-    { label: "R10", R: -44.181130175128175, d: 2.9, sd: 7.6 },
+    { label: "R9", R: 131.721, d: 1.7, sd: 7, medium: 5 },
+    // R10 printed Stop: retained missing-radius reconstruction; see source.errata, not a source numeral.
+    { label: "R10", R: -44.181130175128175, d: 2.9, sd: 7 },
     { label: "STO", R: "flat", d: 2.5 },
     { label: "R12", R: 16.312, d: 0.8, sd: 7.8, medium: 6 },
     { label: "R13", R: 11.532, d: 4.75, sd: 7.8, medium: 7 },
     { label: "R14", R: -57.613, sd: 7.8 },
-    { label: "R15", R: -33.004, d: 0.8, sd: 7.7, medium: 8 },
-    { label: "R16", R: 11.18, d: 3.2, sd: 7.7, medium: 9 },
-    { label: "R17", R: 27.194, sd: 7.6 },
-    { label: "R18", R: -140.794, d: 1.5, sd: 9.8, medium: 10 },
+    { label: "R15", R: -33.004, d: 0.8, sd: 6.5, medium: 8 },
+    { label: "R16", R: 11.18, d: 3.2, sd: 6.5, medium: 9 },
+    { label: "R17", R: 27.194, sd: 6.5 },
+    { label: "R18", R: -140.794, d: 1.5, sd: 9.5, medium: 10 },
     {
       label: "R19A",
       R: -144.846,
       d: 0.12,
-      sd: 9.9,
+      sd: 9.5,
       asphere: { K: 0, A4: 2.76705e-5, A6: 1.09618e-7, A8: 2.25895e-11, A10: -1.44537e-11, A12: 1.26393e-13, A14: 0 },
     },
-    { label: "R20", R: -664.185, d: 4.16, sd: 10.2, medium: 11 },
-    { label: "R21", R: -19.869, sd: 10.6 },
+    { label: "R20", R: -664.185, d: 4.16, sd: 9.5, medium: 11 },
+    { label: "R21", R: -19.869, sd: 9.5 },
   ],
 
   zoom: {
