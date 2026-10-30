@@ -201,7 +201,8 @@ const LENS_DATA = {
       focalLengthMm: 37.84138507455354,
       glass: "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "Nikon specifies one production ED element; the patent publishes nd/vd only.",
+      apdNote:
+        "ED role inferred from the coordinate-compatible J-FKH1 spectral curve and the marketed count. Example 1 publishes nd/vd only; no patent-measured partial dispersion or production glass identity is established.",
       role: "Extreme-low-dispersion member of G3; correlation to the production ED element is inferred.",
       cemented: "D3",
     },

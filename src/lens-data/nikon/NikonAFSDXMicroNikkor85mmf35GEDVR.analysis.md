@@ -9,7 +9,7 @@
 **Published:** 2009-07-30\
 **Inventor:** Haruo Sato\
 **Assignee:** Nikon Corporation\
-**Title:** *Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens*
+**Title:** _Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens_
 
 The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
 
@@ -31,14 +31,14 @@ Example 1 is a five-power-group internal-focus macro architecture arranged posit
 
 The final data contains 14 physical elements and ten air-separated construction groups. The patent's functional grouping is different:
 
-| Functional group | Composition | Computed group focal length | Motion / role |
-|---|---|---:|---|
-| G1 | L11, L12, L13+L14 | +45.99999 mm | Fixed positive front group |
-| G2 | L21, L22+L23 | -30.21276 mm | Negative focusing group; moves imageward |
-| STO | Aperture stop | — | Fixed with respect to the image plane |
-| G3 | L31, L32+L33 | +36.92750 mm | Positive focusing group; moves objectward |
-| G4 | L41+L42 | -39.99532 mm | Negative vibration-proof group; shifts transversely |
-| G5 | L51, L52 | +75.21543 mm | Fixed positive rear group |
+| Functional group | Composition       | Computed group focal length | Motion / role                                       |
+| ---------------- | ----------------- | --------------------------: | --------------------------------------------------- |
+| G1               | L11, L12, L13+L14 |                +45.99999 mm | Fixed positive front group                          |
+| G2               | L21, L22+L23      |                -30.21276 mm | Negative focusing group; moves imageward            |
+| STO              | Aperture stop     |                           — | Fixed with respect to the image plane               |
+| G3               | L31, L32+L33      |                +36.92750 mm | Positive focusing group; moves objectward           |
+| G4               | L41+L42           |                -39.99532 mm | Negative vibration-proof group; shifts transversely |
+| G5               | L51, L52          |                +75.21543 mm | Fixed positive rear group                           |
 
 The computed group powers reproduce the focal lengths printed in Table 1. The design therefore uses two counter-moving internal groups rather than moving the complete optical system for close focus. G4 is placed behind the fixed stop and ahead of the final positive group; the patent explicitly associates this placement with control of aberration change during vibration-proof operation (¶0068–¶0072).
 
@@ -120,7 +120,7 @@ L32 is the negative member of cemented component D3. Its negative isolated power
 
 L33 is the positive member of D3 and has the highest Abbe number in the prescription. The final data therefore identifies it only as an ED-class coordinate; it does not assign a vendor glass. Nikon specifies one ED element in the production lens, making L33 the selected correlation for that element, but the patent itself does not label L33 as the production ED glass.
 
-The L32+L33 cemented component has a computed net focal length of +108.762 mm. Together with L31 and the intervening air space, G3 has an in-situ group focal length of +36.92750 mm. No `nC`, `nF`, `ng`, or `dPgF` values are available in the selected example, so no apochromatic or anomalous-partial-dispersion claim is made for L33.
+The L32+L33 cemented component has a computed net focal length of +108.762 mm. Together with L31 and the intervening air space, G3 has an in-situ group focal length of +36.92750 mm. No `nC`, `nF`, `ng`, or `dPgF` values are printed in the selected example. L33’s APD display tag is an inference from the compatible J-FKH1 spectral curve, not a patent-measured anomaly, production-glass identification, or apochromatic performance claim.
 
 ### L41 — Biconcave Negative
 
@@ -156,21 +156,21 @@ G5 remains fixed during focusing (¶0109). Its position behind the vibration-pro
 
 The patent publishes d-line refractive indices and Abbe numbers but does not name glass vendors or melts. The final data uses coordinate-compatible catalog equivalents for dispersion modeling. These annotations are not claims about Nikon's procurement.
 
-| Element(s) | Glass annotation in data | `nd` | `νd` | Interpretation |
-|---|---|---:|---:|---|
-| L11 | S-LAH66 (OHARA catalog equivalent) | 1.772499 | 49.60 | Dense positive-group glass |
-| L12 | S-LAL14 (OHARA catalog equivalent) | 1.696797 | 55.53 | Positive G1 glass coordinate |
-| L13 | S-TIH1 (OHARA catalog equivalent) | 1.717362 | 29.52 | Higher-dispersion negative member of D1 |
-| L14 | J-LAF01 (HIKARI catalog equivalent) | 1.699998 | 48.08 | Positive partner in D1 |
-| L21, L22, L31 | N-BK7 (SCHOTT catalog equivalent) | 1.516800 | 64.12 | Reused moderate-index crown coordinate |
-| L23, L42 | J-SF03 (HIKARI catalog equivalent) | 1.846660 | 23.78 | High-index, high-dispersion positive partners |
-| L32 | E-FD4 (HOYA catalog equivalent) | 1.755199 | 27.51 | Negative member of D3 |
-| L33 | J-FKH1 (HIKARI catalog equivalent) | 1.497820 | 82.56 | Production ED position inferred from the one-ED product specification |
-| L41 | S-LAH60 (OHARA catalog equivalent) | 1.834000 | 37.16 | Negative member of VR cemented group |
-| L51 | S-NSL3 (OHARA catalog equivalent) | 1.518229 | 58.90 | Weak negative member of G5 |
-| L52 | S-LAH51 (OHARA catalog equivalent) | 1.785896 | 44.20 | Final positive element |
+| Element(s)    | Glass annotation in data            |     `nd` |  `νd` | Interpretation                                                        |
+| ------------- | ----------------------------------- | -------: | ----: | --------------------------------------------------------------------- |
+| L11           | S-LAH66 (OHARA catalog equivalent)  | 1.772499 | 49.60 | Dense positive-group glass                                            |
+| L12           | S-LAL14 (OHARA catalog equivalent)  | 1.696797 | 55.53 | Positive G1 glass coordinate                                          |
+| L13           | S-TIH1 (OHARA catalog equivalent)   | 1.717362 | 29.52 | Higher-dispersion negative member of D1                               |
+| L14           | J-LAF01 (HIKARI catalog equivalent) | 1.699998 | 48.08 | Positive partner in D1                                                |
+| L21, L22, L31 | N-BK7 (SCHOTT catalog equivalent)   | 1.516800 | 64.12 | Reused moderate-index crown coordinate                                |
+| L23, L42      | J-SF03 (HIKARI catalog equivalent)  | 1.846660 | 23.78 | High-index, high-dispersion positive partners                         |
+| L32           | E-FD4 (HOYA catalog equivalent)     | 1.755199 | 27.51 | Negative member of D3                                                 |
+| L33           | J-FKH1 (HIKARI catalog equivalent)  | 1.497820 | 82.56 | Production ED position inferred from the one-ED product specification |
+| L41           | S-LAH60 (OHARA catalog equivalent)  | 1.834000 | 37.16 | Negative member of VR cemented group                                  |
+| L51           | S-NSL3 (OHARA catalog equivalent)   | 1.518229 | 58.90 | Weak negative member of G5                                            |
+| L52           | S-LAH51 (OHARA catalog equivalent)  | 1.785896 | 44.20 | Final positive element                                                |
 
-The prescription clearly uses substantial index and dispersion contrasts across several cemented interfaces, especially D2, D3, and D4. The selected patent example, however, does not publish C-, F-, or g-line indices, nor `dPgF`. The final data likewise contains no synthesized spectral values. Consequently the glass discussion is limited to `nd`, `νd`, and compatible catalog curves; it does not claim APO correction or anomalous partial dispersion.
+The prescription clearly uses substantial index and dispersion contrasts across several cemented interfaces, especially D2, D3, and D4. The selected patent example, however, does not publish C-, F-, or g-line indices, nor `dPgF`. The final data likewise contains no synthesized spectral values. The glass discussion therefore uses source `nd`/`νd` and compatible spectral counterparts. L33 retains a qualified catalog-based APD inference; neither patent-measured anomalous dispersion nor APO performance is asserted. A fresh direct read of Table 1 on PDF page 55 confirms all fourteen stored coordinate pairs, with d-line 587.6 nm defined in paragraph 111 on page 54; every selected curve passes the catalog coordinate guard.
 
 ## Focus Mechanism
 
@@ -178,11 +178,11 @@ Example 1 uses published dual-group internal focusing. G1, the aperture stop, G4
 
 The patent supplies three complete stations:
 
-| State | β | d7 | d12 | d13 | d18 | G2 start | G3 start |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Infinity | 0 | 2.49595 | 17.38925 | 16.18097 | 4.99729 | 17.49595 | 58.66617 |
-| Close | -0.5 | 10.52739 | 9.35781 | 9.51488 | 11.66338 | 25.52739 | 52.00008 |
-| Close | -1.0 | 17.78094 | 2.10426 | 3.18873 | 17.98953 | 32.78094 | 45.67393 |
+| State    |    β |       d7 |      d12 |      d13 |      d18 | G2 start | G3 start |
+| -------- | ---: | -------: | -------: | -------: | -------: | -------: | -------: |
+| Infinity |    0 |  2.49595 | 17.38925 | 16.18097 |  4.99729 | 17.49595 | 58.66617 |
+| Close    | -0.5 | 10.52739 |  9.35781 |  9.51488 | 11.66338 | 25.52739 | 52.00008 |
+| Close    | -1.0 | 17.78094 |  2.10426 |  3.18873 | 17.98953 | 32.78094 | 45.67393 |
 
 All dimensions are millimeters. Relative to infinity, G2 moves +8.03144 mm at β = -0.5 and +15.28499 mm at β = -1.0. G3 moves -6.66609 mm and -12.99224 mm respectively. The aperture stop remains at 42.48520 mm from surface 1, and the image plane remains at 131.13521 mm from surface 1. The fixed rear gap `Bf = 41.97225 mm` is unchanged in all three source rows.
 
@@ -196,15 +196,15 @@ The first preferred embodiment defines seven constraints on the power distributi
 
 At infinity, `d34` is the air distance between the image-side surface of G3 and the object-side surface of G4, corresponding to surface 18→19 (`d18 = 4.99729 mm`). Paragraph 0078 reverses those endpoints in one sentence; the formal definition in ¶0074/¶0076 and Table 1/¶0111 consistently identify `d34` with the G3-to-G4 air gap used here.
 
-| Condition | Patent bound | Published value | Computed from final data |
-|---|---|---:|---:|
-| (1) `(-f4)/d34` | 2.0 < x < 20.8 | 8.005 | 8.00340 |
-| (2) `f5/d34` | 1.0 < x < 41.4 | 15.052 | 15.05124 |
-| (3) `f3/d34` | 1.0 < x < 20.0 | 7.390 | 7.38950 |
-| (4) `(-f2)/d34` | 1.0 < x < 17.0 | 6.046 | 6.04583 |
-| (5) `f1/d34` | 1.0 < x < 23.0 | 9.206 | 9.20499 |
-| (6) `(rb + ra)/(rb - ra)` | -5.0 < x < -1.0 | -1.272 | -1.27249 |
-| (7) `N2nav` | 1.48 < x < 1.65 | 1.5168 | 1.5168 |
+| Condition                 | Patent bound    | Published value | Computed from final data |
+| ------------------------- | --------------- | --------------: | -----------------------: |
+| (1) `(-f4)/d34`           | 2.0 < x < 20.8  |           8.005 |                  8.00340 |
+| (2) `f5/d34`              | 1.0 < x < 41.4  |          15.052 |                 15.05124 |
+| (3) `f3/d34`              | 1.0 < x < 20.0  |           7.390 |                  7.38950 |
+| (4) `(-f2)/d34`           | 1.0 < x < 17.0  |           6.046 |                  6.04583 |
+| (5) `f1/d34`              | 1.0 < x < 23.0  |           9.206 |                  9.20499 |
+| (6) `(rb + ra)/(rb - ra)` | -5.0 < x < -1.0 |          -1.272 |                 -1.27249 |
+| (7) `N2nav`               | 1.48 < x < 1.65 |          1.5168 |                   1.5168 |
 
 All seven computed values lie inside their patent bounds. The small differences from the printed summary values are consistent with the patent's displayed rounding of group focal lengths and `d34`; no prescription value is altered to force exact agreement with the rounded condition table.
 
@@ -217,10 +217,10 @@ The patent publishes `VR = 1.159`. An independent affine paraxial decenter of th
 The Example 1 aberration figures use the following transverse G4 shifts:
 
 | Focus state | Published G4 shift |
-|---|---:|
-| Infinity | -0.423 mm |
-| β = -0.5 | +0.598 mm |
-| β = -1.0 | -0.748 mm |
+| ----------- | -----------------: |
+| Infinity    |          -0.423 mm |
+| β = -0.5    |          +0.598 mm |
+| β = -1.0    |          -0.748 mm |
 
 The shift magnitude increases at closer conjugates. The published transverse-coordinate signs are mixed: `-0.423 mm` at infinity, `+0.598 mm` at β = -0.5, and `-0.748 mm` at β = -1.0. The numerical sign of the corresponding image displacement depends on the adopted transverse-coordinate convention; the patent comparison quantity is the magnitude of the vibration-proof coefficient.
 
@@ -238,8 +238,10 @@ No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical
 
 Several apparent source-reading errors are OCR artifacts rather than patent corrections. Inspection of the rendered Table 1 gives surface 7 radius `558.6033`, surface 25 radius `-83.7255`, infinity `d18 = 4.99729`, and `Bf = 41.97225`. The rendered Example 1 discussion supplies a positive `+0.598 mm` G4 shift at β = -0.5; the minus signs belong to the infinity and β = -1.0 rows. These rendered values are the ones carried by the final data.
 
+Fresh 600 dpi inspection of Figure 2 (PDF page 3; 300 ppi native raster) covers every exterior face and four cemented interfaces. No resolved short vertical land separates a curved cap from its outer rim. The nearly flat G1/D1 faces, G2 negative rear face and G5 concave front continue to their edges; leaders and group brackets do not establish lands. All heights and concave caps are retained. The aperture audit proposes no nominal-beam height increase, and nine actual focus/zoom render states show finite connected outlines and zero hidden trimming.
+
 ## Sources
 
-1. Haruo Sato, *Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens*, US 2009/0190220 A1, Nikon Corporation, published 2009-07-30. Example 1: Fig. 2; Table 1; ¶0103–¶0116. Conditional-expression discussion: ¶0074–¶0101.
+1. Haruo Sato, _Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens_, US 2009/0190220 A1, Nikon Corporation, published 2009-07-30. Example 1: Fig. 2; Table 1; ¶0103–¶0116. Conditional-expression discussion: ¶0074–¶0101.
 2. Nikon USA, **AF-S DX Micro NIKKOR 85mm f/3.5G ED VR** product specifications: https://www.nikonusa.com/p/af-s-dx-micro-nikkor-85mm-f35g-ed-vr/2190/overview
 3. Nikon USA, **Nikon's New AF-S DX 85mm f/3.5 Micro NIKKOR Lens Enables Further Creativity with Sophisticated Technology and Design for Close-Up Photography**, press release, 2009-10-14: https://www.nikonusa.com/press-room/nikons-new-af-s-dx-85mm-f-35
