@@ -1711,7 +1711,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 22A | Element 12 | abbe | `Unmatched (PMo optical-resin class; production-correlation inference)` | Explicit unmatched/proprietary annotation |
+| 22A | Element 12 | abbe | `Unmatched (source 1.53110/55.9 material; supplier and chemistry unidentified)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) - 92.3% trusted (12/13); 92.3% Sellmeier (12/13) - US 2021/0003831 A1
 

@@ -42,9 +42,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    field-coverage audit).                                                  ║
  * ║                                                                            ║
  * ║  GLASS: d-line nd/νd are patent data. Vendor identity is unresolved.      ║
- * ║    Generic coordinate/class labels are used; the 1.53110/55.9 aspheric  ║
+ * ║    Coordinate-compatible curves are qualified proxies; 1.53110/55.9 aspheric  ║
  * ║    material remains Unmatched. nC/nF/ng/dPgF are omitted because the     ║
- * ║    patent does not publish them and no vendor melt is uniquely resolved. ║
+ * ║    patent does not publish them; catalog curves do not identify a melt.  ║
  * ║                                                                            ║
  * ║  SOURCE CONFLICT: Table 1 condition (3) prints 0.975073 although the     ║
  * ║    stated f3A/|f2| evaluates to about 2.33746. The prescription is not   ║
@@ -52,6 +52,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-30 native Fig. 1: S1/S2 clear caps 24 mm; resolved outer shoulders
+// S4 16.2 over clear 12.6 and S22A 12.8 over clear 11.9. No R/d or control edit.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -73,15 +75,21 @@ const LENS_DATA = {
     ],
     elementCount: 13,
     groupCount: 11,
-    focalLengthMm: { marketing: [24, 105], design: [24.721164, 101.867735] },
+    focalLengthMm: { marketing: [24, 105], design: [24.72, 101.85] },
   },
 
   source: {
     patentNumber: "US 2021/0003831 A1",
-    example: { label: "Example 1", id: "1" },
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Yasuaki Hagiwara"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Table 1, PDF page 23 / printed 7, labels condition (3) f3A/|f2| and prints 0.975073 for Numerical Example 1. The source's unit focal values and retained prescription give about 49.846294/21.324965 = 2.337462; the printed value instead closely follows |f2|/f3 = 0.975069. Claim 3, PDF page 24 / printed 8, repeats the f3A/|f2| definition and 0.50-to-1.30 range, so this is a genuine unresolved source condition/table conflict. No unique equation or prescription correction is established. Preserve all R/d/aspheres, glass, stops and controls. Structured qualification added 2026-10-30.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -95,7 +103,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 108.480453,
-      glass: "603606 SK14-class (vendor unresolved)",
+      glass: "603606 SK14-class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Single positive element forming the first zoom unit B1.",
     },
@@ -108,7 +116,7 @@ const LENS_DATA = {
       vd: 31.3,
       indexReference: "d",
       focalLengthMm: -20.029324,
-      glass: "904313 class (vendor unresolved)",
+      glass: "904313 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Leading negative element of the net-negative second zoom unit B2.",
     },
@@ -121,7 +129,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: -37.156145,
-      glass: "603606 SK14-class (vendor unresolved)",
+      glass: "603606 SK14-class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Second negative element of B2.",
     },
@@ -134,7 +142,7 @@ const LENS_DATA = {
       vd: 23.9,
       indexReference: "d",
       focalLengthMm: 34.151341,
-      glass: "847239 class (vendor unresolved)",
+      glass: "847239 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Positive rear element completing the net-negative B2 zoom unit.",
     },
@@ -147,7 +155,7 @@ const LENS_DATA = {
       vd: 31.3,
       indexReference: "d",
       focalLengthMm: 28.275015,
-      glass: "904313 class (vendor unresolved)",
+      glass: "904313 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Front positive element of subunit B3A, immediately ahead of its cemented pair.",
     },
@@ -160,7 +168,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 20.158387,
-      glass: "603606 SK14-class (vendor unresolved)",
+      glass: "603606 SK14-class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Positive component of the cemented B3A pair.",
       cemented: "B3A-D1",
@@ -174,7 +182,7 @@ const LENS_DATA = {
       vd: 31.3,
       indexReference: "d",
       focalLengthMm: -11.913397,
-      glass: "904313 class (vendor unresolved)",
+      glass: "904313 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Negative component of the cemented B3A pair; the cemented pair is net negative.",
       cemented: "B3A-D1",
@@ -188,7 +196,7 @@ const LENS_DATA = {
       vd: 35.3,
       indexReference: "d",
       focalLengthMm: -38.055897,
-      glass: "911353 class (vendor unresolved)",
+      glass: "911353 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Negative component of the cemented image-stabilizing subunit B3B.",
       cemented: "B3B-IS",
@@ -202,7 +210,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 18.706681,
-      glass: "603606 SK14-class (vendor unresolved)",
+      glass: "603606 SK14-class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Positive component that makes B3B net positive; B3B shifts transversely for optical IS.",
       cemented: "B3B-IS",
@@ -216,7 +224,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 51.123344,
-      glass: "603606 SK14-class (vendor unresolved)",
+      glass: "603606 SK14-class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Single positive element forming subunit B3C.",
     },
@@ -229,7 +237,7 @@ const LENS_DATA = {
       vd: 35.3,
       indexReference: "d",
       focalLengthMm: -31.637406,
-      glass: "911353 class (vendor unresolved)",
+      glass: "911353 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Single negative fourth unit; the patent identifies B4 as the axial focus unit.",
     },
@@ -255,7 +263,7 @@ const LENS_DATA = {
       vd: 23.9,
       indexReference: "d",
       focalLengthMm: 76.673936,
-      glass: "847239 class (vendor unresolved)",
+      glass: "847239 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Single positive rear unit B6, immediately ahead of the rear GB block and image-space gap.",
     },
@@ -269,10 +277,10 @@ const LENS_DATA = {
    * Patent equation uses the standard conic denominator with (1 + K), so K is direct.
    */
   surfaces: [
-    { label: "1", R: 56.962, d: 6.4, sd: 21.3, medium: 1 },
-    { label: "2", R: 421.715, sd: 20.7 },
+    { label: "1", R: 56.962, d: 6.4, sd: 24, medium: 1 },
+    { label: "2", R: 421.715, sd: 24 },
     { label: "3", R: 142.374, d: 1.2, sd: 16.2, medium: 2 },
-    { label: "4", R: 15.994, d: 8.29, sd: 12.6 },
+    { label: "4", R: 15.994, d: 8.29, sd: 12.6, rimExtensionSd: 16.2 },
     { label: "5", R: -85.062, d: 1, sd: 12.2, medium: 3 },
     { label: "6", R: 30.559, d: 0.17, sd: 12.2 },
     { label: "7", R: 24.88, d: 4.9, sd: 11.9, medium: 4 },
@@ -295,6 +303,7 @@ const LENS_DATA = {
       R: -51.498,
       d: 2,
       sd: 11.9,
+      rimExtensionSd: 12.8,
       medium: 12,
       asphere: { K: 0, A4: -1.57463e-4, A6: 1.04871e-6, A8: -1.26019e-9, A10: -4.88195e-11, A12: 2.09933e-13, A14: 0 },
     },
@@ -390,7 +399,7 @@ const LENS_DATA = {
       thicknessMm: 1.5,
       nd: 1.51633,
       vd: 64.1,
-      glass: "S-BSL7",
+      glass: "S-BSL7 — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       gapAfterMm: 1.12,
       source: "US 2021/0003831 A1, Numerical Example 1 surfaces 26–27",
     },

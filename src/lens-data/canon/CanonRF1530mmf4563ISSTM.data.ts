@@ -1,43 +1,26 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║          LENS DATA — CANON RF 15-30mm f/4.5-6.3 IS STM                    ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: EP 4 174 551 A1, Second Numerical Embodiment (Example 2).    ║
- * ║  Strong production correlation to Canon RF15-30mm F4.5-6.3 IS STM is an    ║
- * ║  inference, not a Canon statement that the embodiment is the production     ║
- * ║  prescription. Native patent scale is retained; no uniform scaling applied. ║
- * ║                                                                              ║
- * ║  13 elements / 11 air-separated groups / 2 aspherical surfaces.             ║
- * ║  Lens units: L1 negative, L2 positive, L3 negative focus singlet,            ║
- * ║  L4 positive, L5 positive. Exactly one aperture stop is retained.            ║
- * ║                                                                              ║
- * ║  Zoom variable gaps: D8 and D23 (zoom only).                                ║
- * ║  Focus variable gaps: D19 and D21 (zoom + focus).                           ║
- * ║  No zoom unit reverses direction across the three published zoom states.     ║
- * ║                                                                              ║
- * ║  Focus status: CONSTRAINED_RECONSTRUCTION. Patent ¶0047 identifies L3       ║
- * ║  (surfaces 20-21) as the focusing unit but publishes no finite-focus rows.   ║
- * ║  Close-focus D19/D21 values are code-solved for Canon's 0.280 m AF MFD       ║
- * ║  while conserving D19 + D21 = 11.86 mm at each zoom position. The special   ║
- * ║  0.128 m / 0.52× 15 mm manual-focus state is intentionally not generalized. ║
- * ║                                                                              ║
- * ║  Semi-diameters: patent effective diameters / 2 except STO and surface 5.    ║
- * ║  Patent STO ED 10.25 mm is a clear envelope, not the wide-open iris. The     ║
- * ║  stop radius is derived from the design f-number at each zoom station        ║
- * ║  (f/4.60 wide). Surface 5 raw patent sd is 12.290 mm; stored 12.289 mm is an ║
- * ║  explicit source-precision adjustment (1 µm) so the S4→S5 shared-band        ║
- * ║  cross-gap intrusion remains below the current gapSagFrac = 0.90 policy.     ║
- * ║                                                                              ║
- * ║  The patent does not publish per-element nC/nF/ng/dPgF. Vendor identity is   ║
- * ║  underdetermined for the patent nd/νd coordinates, so the data file keeps    ║
- * ║  class/code labels rather than inventing spectral line data or Sellmeier     ║
- * ║  identities. The doubly-aspheric E12 remains Unmatched PMo-resin class.      ║
- * ║                                                                              ║
- * ║  No sensor cover glass, filter, inactive dummy/flare-cutter plane, folded    ║
- * ║  path, or image-stabilizer decenter is present in the selected prescription. ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * EP 4 174 551 A1, Second Numerical Embodiment, ¶0064–68 PDFpp10–12; Fig3 p26.
+ * Native scale; production correlation inferred. Original reviewed 2026-10-30.
+ * All source R/d, aspheres, media, stop position and zoom/focus controls retained.
+ * Printed effective diameters supply clear sd. S2/S4 resolved outer shoulders
+ * use rimExtensionSd and preserve their printed optical caps. S5 retains the
+ * prior 12.289 mm cap versus printed 12.290 mm: a 1 µm model constraint inside
+ * the ±.0025 mm half-diameter rounding bin, not proof of a physical source error.
+ * Literal 12.290 exceeds the .90 cross-gap guard by .000825 mm of sag intrusion;
+ * no tolerance, radius or gap is changed. The physical gap still remains positive.
+ * Source STO ED10.25 is recorded separately from the canonical target-F iris;
+ * the original does not establish the exact mechanical meaning of this difference.
+ * Explicit d-line reference ¶0056; twelve existing compatible catalog curves are
+ * spectral proxies, not historical supplier/melt/chemistry identities. E12 remains
+ * Unmatched; source does not establish resin, a hybrid layer or a molding process.
+ * No published numerical C/F/g or partial-dispersion data; none invented.
+ * L3 close-focus cam is an authored reconstruction, not finite source data.
+ * All1365 sampled zoom/focus states pass axial/chief samples, but the generic
+ * full-frame wide corner reaches only92.22%, and interval close focus/defocus
+ * remain illustrative. Source field-label/aggregate contradictions are unresolved.
+ * No source camera plate, inferred cuts, bonded lands or IS decenter is added.
  */
 
 const LENS_DATA = {
@@ -59,7 +42,7 @@ const LENS_DATA = {
     ],
     elementCount: 13,
     groupCount: 11,
-    focalLengthMm: { marketing: [15, 30], design: [15.448247009546106, 29.139228253831426] },
+    focalLengthMm: { marketing: [15, 30], design: [15.45, 29.15] },
     fNumber: { marketing: 4.5, design: 4.6 },
   },
 
@@ -69,6 +52,16 @@ const LENS_DATA = {
     patentYear: 2023,
     authors: ["Hiroki Ebe", "Shunji Iwamoto"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "EP4174551A1 ¶0066 PDFp11 prints wide half-view49.88° and tele36.58°, but native Fig4A/4B PDFp27 labels54.5°/36.3°. Table1 PDFp21 condition7=-15.24% and imageheight18.34 imply wide angle about54.47° under the source y0=f tan(theta) definition. Literal source data and all controls retained; no unique replacement field schedule is established.",
+      },
+      {
+        status: "unresolved",
+        note: "EP4174551A1 ¶0066 PDFp11 middle overall109.06mm versus literal surface/gap sum109.07mm; ¶0067 PDFp12 L1 structure25.25mm versus literal25.26mm. Independent rounding is a possible explanation, not source-proven. No R/d or cam adjustment made.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -79,11 +72,14 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 2.001,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 29.1,
       focalLengthMm: -39.383139973231984,
-      glass: "001291 — high-index lanthanum-flint class (vendor unresolved)",
+      glass: "S-LAH99 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
-      role: "First negative element of L1; high-index front-group bending for the wide-angle unit.",
+      role: "First negative element of L1; source high-index front-group bending, chemistry unidentified.",
     },
     {
       id: 2,
@@ -91,9 +87,12 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.90043,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 37.4,
       focalLengthMm: -33.21923102003975,
-      glass: "900374 — high-index lanthanum-flint class (vendor unresolved)",
+      glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Second negative element of L1; adjacent negative lens B in the patent's ghost-control conditions.",
     },
@@ -103,13 +102,16 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.497,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 81.5,
       focalLengthMm: -41.23081291222841,
-      glass: "497815 — very-low-dispersion fluorophosphate-crown / UD-like class (vendor unresolved)",
+      glass: "K-PFK80 (SUMITA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
-      role: "Third negative element of L1; one of two 1.49700/81.5 UD-like elements in the selected prescription.",
+      role: "Third negative element of L1; one of two 1.49700/81.5 high-Abbe elements in the selected prescription.",
     },
     {
       id: 4,
@@ -117,9 +119,12 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.8061,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 33.3,
       focalLengthMm: 33.5291172855741,
-      glass: "806333 — dense high-index flint class (vendor unresolved)",
+      glass: "J-LASFH6 (HIKARI catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Positive rear element of L1; balances the three preceding negative elements.",
     },
@@ -129,9 +134,12 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.6393,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 44.9,
       focalLengthMm: 67.565765186738,
-      glass: "639449 — barium-flint class (vendor unresolved)",
+      glass: "S-BAM12 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front positive singlet of L2, immediately ahead of the aperture-stop region.",
     },
@@ -141,9 +149,12 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.804,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 46.5,
       focalLengthMm: -34.62710106228003,
-      glass: "804465 — lanthanum-crown class (vendor unresolved)",
+      glass: "TAF3D (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Negative member of the first cemented pair in L2.",
       cemented: "D1",
@@ -154,9 +165,12 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.713,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 53.9,
       focalLengthMm: 25.627994073423892,
-      glass: "713539 — lanthanum-crown class (vendor unresolved)",
+      glass: "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Positive member of the first cemented pair in L2; D1 net power is positive.",
       cemented: "D1",
@@ -167,9 +181,12 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.48749,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 70.2,
       focalLengthMm: 41.11098455450291,
-      glass: "487702 — low-index crown class (vendor unresolved)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Positive singlet in the central L2 relay.",
     },
@@ -179,9 +196,12 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.90043,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 37.4,
       focalLengthMm: -15.922545914281494,
-      glass: "900374 — high-index lanthanum-flint class (vendor unresolved)",
+      glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Negative member of the second cemented pair in L2.",
       cemented: "D2",
@@ -192,13 +212,16 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 81.5,
       focalLengthMm: 17.06424022513546,
-      glass: "497815 — very-low-dispersion fluorophosphate-crown / UD-like class (vendor unresolved)",
+      glass: "K-PFK80 (SUMITA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
-      role: "Positive UD-like member of the second cemented pair; D2 has weak net negative power.",
+      role: "Positive high-Abbe member of the second cemented pair; D2 has weak net negative power.",
       cemented: "D2",
     },
     {
@@ -207,9 +230,12 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.801,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 35,
       focalLengthMm: -32.49554579342068,
-      glass: "801350 — lanthanum-flint class (vendor unresolved)",
+      glass: "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Single negative L3 focusing element translated for the constrained close-focus reconstruction.",
     },
@@ -219,11 +245,14 @@ const LENS_DATA = {
       label: "Element 12",
       type: "Positive Meniscus (2× Asph)",
       nd: 1.5311,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 55.9,
       focalLengthMm: 185.11915939007292,
-      glass: "Unmatched (PMo optical-resin class; production-correlation inference)",
+      glass: "Unmatched (source 1.53110/55.9 material; supplier and chemistry unidentified)",
       apd: false,
-      role: "Weak positive L4 element with both surfaces aspheric; PMo attribution is a production-correlation inference.",
+      role: "Weak positive L4 element with both surfaces aspheric; original medium chemistry and manufacturing process unidentified.",
     },
     {
       id: 13,
@@ -231,9 +260,12 @@ const LENS_DATA = {
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.804,
+      indexReference: "d",
+      indexReferenceNote:
+        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 46.5,
       focalLengthMm: 72.63443548521461,
-      glass: "804465 — lanthanum-crown class (vendor unresolved)",
+      glass: "TAF3D (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Final positive L5 element; fixed relative to the image plane in the published zoom states.",
     },
@@ -243,18 +275,18 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     { label: "1", R: 39.485, d: 1.8, sd: 17.99, medium: 1 },
-    { label: "2", R: 19.277, d: 6.35, sd: 14.53 },
+    { label: "2", R: 19.277, d: 6.35, sd: 14.53, rimExtensionSd: 17.99 },
     { label: "3", R: 81.393, d: 1.4, sd: 13.945, medium: 2 },
-    { label: "4", R: 21.695, d: 6.53, sd: 12.375 },
+    { label: "4", R: 21.695, d: 6.53, sd: 12.375, rimExtensionSd: 13.945 },
     // Patent effective diameter is 24.58 mm (sd 12.290 mm). The 1 µm reduction is an explicit
-    // source-precision adjustment for the current 0.90 cross-gap policy; the source value is preserved in the audit.
+    // retained model constraint within source rounding precision, not a proved source error; audit records the literal trial.
     { label: "5", R: -37.674, d: 1.3, sd: 12.289, medium: 3 },
     { label: "6", R: 45.445, d: 1.55, sd: 12.4 },
     { label: "7", R: 48.066, d: 6.33, sd: 12.68, medium: 4 },
     { label: "8", R: -58.121, sd: 12.595 },
     { label: "9", R: 75.709, d: 2.91, sd: 6.31, medium: 5 },
     { label: "10", R: -99.071, d: 5, sd: 5.875 },
-    // Second Numerical Embodiment patent surface table: surface-11 effective diameter is 10.25 mm, a clear envelope.
+    // Source surface-11 ED is10.25 mm; its mechanical relationship to the target-F iris is not established.
     // The stop radius is derived from the design f-number at each zoom station.
     { label: "STO", R: "flat", d: 3 },
     { label: "12", R: 90.807, d: 1, sd: 5.1, medium: 6 },
@@ -338,7 +370,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4.5, 5.6, 6.3, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [4.6, 5.6, 6.3, 8, 11, 16, 22], blades: 7 },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "8" },
