@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-10-29",
+    date: "2026-10-30",
     type: "improvement",
     summary: "Refined Nikon F-mount lens rims, design apertures and glass against their source patents",
   },

@@ -16,7 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  lens group.                                                       ║
  * ║                                                                    ║
  * ║  NORMALIZATION: source protective glass FLG (surfaces 1-2) is      ║
- * ║  omitted per project scope. The rear filter FL (surfaces 32-33,    ║
+ * ║  omitted as permitted by source paragraph 0199 (PDF page 42).     ║
+ * ║  The rear filter FL (surfaces 32-33,                               ║
  * ║  2.00 mm, nd 1.51680, νd 63.88) is drawn as a plane-parallel plate ║
  * ║  element and traced by every analysis, with the printed Bf         ║
  * ║  71.551 mm to the image; its semi-diameter is a ray-trace estimate ║
@@ -42,12 +43,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The tight rear aperture is placed at the air boundary after L34; ║
  * ║  representative default bundles do not clip at cemented junctions. ║
  * ║                                                                    ║
- * ║  SPECTRAL DATA: exact HIKARI catalog matches use HIKARI nC/nF/ng  ║
- * ║  and ΔPg,F values. L11/L12 retain the patent nd/vd and use the     ║
- * ║  Malitson CaF2 Sellmeier model for supplemental C/F/g indices;     ║
- * ║  that model implies vd≈94.996 versus patent 95.25 and is therefore ║
- * ║  documented as spectral augmentation, not a replacement for the   ║
- * ║  patent prescription.                                              ║
+ * ║  SPECTRAL DATA: Table 1 publishes nd/vd only, at d = 587.6 nm.    ║
+ * ║  Compatible catalog curves supply qualified spectral proxies,     ║
+ * ║  anchored to stored source nd; no per-lens catalog line indices    ║
+ * ║  or partial-dispersion overrides are authored. CaF2 identification ║
+ * ║  remains inferred, and its curve vd differs from source 95.25.     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -97,10 +97,6 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Front positive collector; correlated with one of the production lens's two fluorite elements.",
-      dPgF: 0.055066835746213016,
-      nC: 1.4324580077794096,
-      nF: 1.437025037791202,
-      ng: 1.439485097442597,
     },
     {
       id: 2,
@@ -114,10 +110,6 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Second front positive collector; correlated with the second production fluorite element.",
-      dPgF: 0.055066835746213016,
-      nC: 1.4324580077794096,
-      nF: 1.437025037791202,
-      ng: 1.439485097442597,
     },
     {
       id: 3,
@@ -129,10 +121,6 @@ const LENS_DATA = {
       focalLengthMm: -297.8444760054091,
       glass: "J-KZFH1 (HIKARI)",
       role: "Negative member completing the widely spaced G1a front section.",
-      dPgF: -0.0058,
-      nC: 1.608532,
-      nF: 1.622313,
-      ng: 1.630085,
     },
     {
       id: 4,
@@ -145,10 +133,6 @@ const LENS_DATA = {
       glass: "J-LASF017 (HIKARI)",
       role: "Negative member of the cemented G1b pair.",
       cemented: "D1",
-      dPgF: -0.0085,
-      nC: 1.789742,
-      nF: 1.807287,
-      ng: 1.817109,
     },
     {
       id: 5,
@@ -163,10 +147,6 @@ const LENS_DATA = {
       apdNote: "ED assignment inferred from Nikon's two-ED production specification and the patent's 498826 class.",
       role: "Positive member of the cemented G1b pair.",
       cemented: "D1",
-      dPgF: 0.0327,
-      nC: 1.49598,
-      nF: 1.502009,
-      ng: 1.505256,
     },
     {
       id: 6,
@@ -178,10 +158,6 @@ const LENS_DATA = {
       focalLengthMm: -142.32286563303919,
       glass: "J-LASF016 (HIKARI)",
       role: "First negative element of the translating G2 inner-focus group.",
-      dPgF: -0.0093,
-      nC: 1.767801,
-      nF: 1.78337,
-      ng: 1.791961,
     },
     {
       id: 7,
@@ -194,10 +170,6 @@ const LENS_DATA = {
       glass: "J-SF03 (HIKARI)",
       role: "Positive member of the cemented pair within G2.",
       cemented: "D2",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 8,
@@ -210,10 +182,6 @@ const LENS_DATA = {
       glass: "J-K3 (HIKARI)",
       role: "Rear negative member of the cemented pair within G2.",
       cemented: "D2",
-      dPgF: -0.0008,
-      nC: 1.515551,
-      nF: 1.524362,
-      ng: 1.529163,
     },
     {
       id: 9,
@@ -226,12 +194,8 @@ const LENS_DATA = {
       glass: "J-FK5 (HIKARI)",
       apd: "inferred",
       apdNote:
-        "ED assignment inferred from Nikon's two-ED production specification and the patent's low-dispersion class.",
+        "Low-dispersion/production-ED position correlation only: source Table 1 gives nd/vd, not an anomalous-partial-dispersion claim. The J-FK5 spectral proxy does not independently establish anomalous dispersion or production identity.",
       role: "Positive first element of fixed G3a behind the stop.",
-      dPgF: 0.0027,
-      nC: 1.485343,
-      nF: 1.492276,
-      ng: 1.495944,
     },
     {
       id: 10,
@@ -243,10 +207,6 @@ const LENS_DATA = {
       focalLengthMm: -185.34281532651266,
       glass: "J-SF03 (HIKARI)",
       role: "Negative second element of fixed G3a.",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 11,
@@ -259,10 +219,6 @@ const LENS_DATA = {
       glass: "J-SF03 (HIKARI)",
       role: "Positive member of the cemented pair in the transverse VR group G3b.",
       cemented: "D3",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 12,
@@ -275,10 +231,6 @@ const LENS_DATA = {
       glass: "J-PSKH1 (HIKARI)",
       role: "Negative member of the cemented pair in the transverse VR group G3b.",
       cemented: "D3",
-      dPgF: 0.0135,
-      nC: 1.59054,
-      nF: 1.599276,
-      ng: 1.604028,
     },
     {
       id: 13,
@@ -290,10 +242,6 @@ const LENS_DATA = {
       focalLengthMm: -106.45202232337849,
       glass: "J-LASKH2 (HIKARI)",
       role: "Rear negative element of the transverse VR group G3b.",
-      dPgF: -0.009,
-      nC: 1.750628,
-      nF: 1.765054,
-      ng: 1.772953,
     },
     {
       id: 14,
@@ -305,10 +253,6 @@ const LENS_DATA = {
       focalLengthMm: 120.86458886298237,
       glass: "J-LASF016 (HIKARI)",
       role: "Positive first element of fixed rear group G3c.",
-      dPgF: -0.0093,
-      nC: 1.767801,
-      nF: 1.78337,
-      ng: 1.791961,
     },
     {
       id: 15,
@@ -321,10 +265,6 @@ const LENS_DATA = {
       glass: "J-LAK01 (HIKARI)",
       role: "Positive member of the final cemented pair in G3c.",
       cemented: "D4",
-      dPgF: -0.0056,
-      nC: 1.636739,
-      nF: 1.647371,
-      ng: 1.653088,
     },
     {
       id: 16,
@@ -337,10 +277,6 @@ const LENS_DATA = {
       glass: "J-SF03 (HIKARI)",
       role: "Negative member of the final cemented pair in G3c.",
       cemented: "D4",
-      dPgF: 0.0171,
-      nC: 1.836505,
-      nF: 1.872084,
-      ng: 1.894197,
     },
     {
       id: 17,

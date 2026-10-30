@@ -19,9 +19,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **673** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10884 / 11747** non-air surfaces use strict catalog Sellmeier data
+- **10885 / 11748** non-air surfaces use strict catalog Sellmeier data
 - **92.7%** strict Sellmeier surface coverage overall
-- **10898 / 11747** non-air surfaces use trusted chromatic data
+- **10899 / 11748** non-air surfaces use trusted chromatic data
 - **92.8%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -590,6 +590,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 12/12 | 12 | 12/12 |
 | [NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) | 12/12 | 12 | 12/12 |
 | [NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts) | 12/12 | 12 | 12/12 |
+| [NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) | 12/12 | 12 | 12/12 |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4.5](../../src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts) | 12/12 | 12 | 12/12 |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | 12/12 | 12 | 12/12 |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | 12/12 | 12 | 12/12 |
@@ -629,7 +630,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts) | 11/11 | 11 | 11/11 |
-| [NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AI NIKKOR 300mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 11/11 | 11 | 11/11 |
@@ -1519,7 +1519,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7A | Element 4 resin layer | abbe | `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)` | Explicit unmatched/proprietary annotation |
+| 7A | Element 4 resin layer | abbe | `Unmatched (replicated resin-layer model; source nd=1.55389, νd=38.09; formulation and curing unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) - 93.8% trusted (15/16); 93.8% Sellmeier (15/16) - US 2004/0218274 A1
 
@@ -1579,7 +1579,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4 | Element 2 (resin) | abbe | `UV-curing resin (composite)` | No catalog match |
+| 4 | Element 2 (resin) | abbe | `Resin layer (compound asphere; formulation and curing unspecified)` | No catalog match |
 
 ### [NIKON NIKKOR Z 20mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ20mmf18S.data.ts) - 93.3% trusted (14/15); 93.3% Sellmeier (14/15) - WO 2021/117429 A1
 
@@ -2285,8 +2285,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4 | L2 resin layer | abbe | `UV-curable resin (patent nd=1.51380, νd=53.0)` | No catalog match |
-| 22A | L12 resin layer | abbe | `UV-curable resin (patent nd=1.51380, νd=53.0)` | No catalog match |
+| 4 | L2 resin layer | abbe | `Unresolved hybrid resin (patent nd=1.51380, νd=53.0; chemistry/trade name unspecified)` | No catalog match |
+| 22A | L12 resin layer | abbe | `Unresolved hybrid resin (patent nd=1.51380, νd=53.0; chemistry/trade name unspecified)` | No catalog match |
 
 ### [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) - 85.7% trusted (12/14); 85.7% Sellmeier (12/14) - US 7,106,520 B2
 
@@ -2322,8 +2322,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 2 | L11 resin aspherical layer | abbe | `UV-curable resin (patent material, no catalog match)` | No catalog match |
-| 20 | L61 plastic asphere | abbe | `Optical plastic (patent material, no catalog match)` | No catalog match |
+| 2 | L11 resin aspherical layer | abbe | `Resin layer (patent nd/vd; formulation unresolved)` | No catalog match |
+| 20 | L61 plastic asphere | abbe | `Optical plastic (patent nd/vd; polymer identity unresolved)` | No catalog match |
 
 ### [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - US 2021/0263286 A1
 
@@ -2814,8 +2814,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 2 | L11 resin layer | abbe | `Resin / polymer layer (patent-specified)` | No catalog match |
-| 4A | L12 resin layer | abbe | `Resin / polymer layer (patent-specified)` | No catalog match |
+| 2 | L11 resin layer | abbe | `Resin layer (patent nd/vd; formulation unresolved)` | No catalog match |
+| 4A | L12 resin layer | abbe | `Resin layer (patent nd/vd; formulation unresolved)` | No catalog match |
 | 7 | L13 | abbe | `683548 - patent-specified glass (theta_gF=0.5501; unresolved)` | No catalog match |
 | 25 | L41 | abbe | `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)` | No catalog match |
 
