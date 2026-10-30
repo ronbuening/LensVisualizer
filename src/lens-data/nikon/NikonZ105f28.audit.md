@@ -203,3 +203,33 @@ Directly re-read `patents/WO2022097401A1.pdf`, PDF p. 55, Figure 1 / Example 1, 
 No data change is supported. Resolved concave lands on 9 and 27A already carry safe cuts. Surface 27A keeps its beam-constrained 17.4865 mm cap end rather than the shorter 17.17 mm figure estimate. The other concave air faces meet their corners or are too shallow for a resolved land. The shoulder at junction 11 is cemented and is not an air-side extension. Existing optical apertures and the corrected 27A asphere are retained.
 
 Validation: `audit:surface`, `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1. Parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2022097401A1.pdf`, Example 1 / Table 1, PDF pp. 27–28. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.83481 / 42.73 | S-LAH55V | source pair retained; compatible proxy |
+| L12 | 1.85451 / 25.15 | NBFD25 | source pair retained; compatible proxy |
+| L13 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L14 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L21 | 1.51860 / 69.89 | J-PKH1 | source pair retained; compatible proxy |
+| L22 | 1.72047 / 34.71 | N-KZFS8 | source pair retained; compatible proxy |
+| L23 | 1.94595 / 17.98 | FDS18 | source pair retained; compatible proxy |
+| L31 | 1.83481 / 42.72 | S-LAH55V | source pair retained; compatible proxy |
+| L32 | 1.85451 / 25.15 | NBFD25 | source pair retained; compatible proxy |
+| L33 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L41 | 1.95375 / 32.33 | S-LAH98 | source pair retained; compatible proxy |
+| L42 | 1.51860 / 69.89 | J-PKH1 | source pair retained; compatible proxy |
+| L43 | 1.94595 / 17.98 | FDS18 | source pair retained; compatible proxy |
+| L44 | 2.00069 / 25.46 | TAFD40L-W | source pair retained; compatible proxy |
+| L45 | 1.80440 / 39.61 | S-LAH63 | source pair retained; compatible proxy |
+| L46 | 1.51680 / 64.14 | N-BK7 | source pair retained; compatible proxy |
+
+Coverage: 16 physical lens elements, 16 authored media, 16 modeled media resolving to dispersion curves. Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All sixteen source nd/νd pairs and compatible curves are retained. The two source θgF entries, 0.6103 at L12 and L32, give 0.6103 − (0.6438 − 0.001682×25.15) = 0.0088023, exactly the stored engine-baseline deviations. Preserve these source constraints and their APD provenance. No additional source partial dispersion or per-lens line-index overrides were found. Every lens medium resolves to a compatible coefficient-backed curve; no glass identity or supplier claim was added. Geometry, including the existing source-erratum correction on 27A, is outside this glass-only pass and remains unchanged.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

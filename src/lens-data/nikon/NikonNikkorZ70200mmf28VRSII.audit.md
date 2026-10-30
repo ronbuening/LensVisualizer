@@ -925,3 +925,35 @@ Directly re-read `patents/WO_2026172598_A1.pdf`, PDF p. 83, Figure 1 / Example 1
 These extensions preserve the original optical caps and their ray clipping; they restore the outer material that the earlier inferred-cut trials could not safely model. The L71 asphere is not continued beyond 17.5 mm. Existing cuts on 4 and 8 are retained. No additional concave land is resolved; junction 21 remains a cemented step. Curvatures, gaps, media and stop schedules are unchanged.
 
 Validation: `audit:surface` (including retained-cut beam rules), `audit:image-circle`, and render diagnostics over zoom/focus 0, 0.5 and 1 (nine states, zero hidden trim). Parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO_2026172598_A1.pdf`, Example 1 / Table 1, PDF pp. 33–34 (including a higher-resolution crop of rows 34–37); partial-dispersion condition (10), p. 69. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.48749 / 70.32 | J-FK5 | source pair retained; compatible proxy |
+| L12 | 1.77047 / 29.74 | NBFD29 | source pair retained; compatible proxy |
+| L13 | 1.43384 / 95.24 | CaF2 | source pair retained; compatible proxy |
+| L21 | 1.55298 / 55.07 | J-KZFH4 | source pair retained; compatible proxy |
+| L31 | 1.51860 / 69.89 | J-PKH1 | source pair retained; compatible proxy |
+| L32 | 2.00069 / 25.46 | J-LASFH17 | source pair retained; compatible proxy |
+| L33 | 1.43700 / 95.1 | FCD100 | source pair retained; compatible proxy |
+| L41 | 1.62200 / 30.66 | J-SFH8 | source pair retained; compatible proxy |
+| L42 | 1.49710 / 81.56 | M-FCD1 | source pair retained; compatible proxy |
+| L43 | 1.85451 / 25.15 | NBFD25 | source pair retained; compatible proxy |
+| L44 | 1.49782 / 82.57 | J-FKH1 | source pair retained; compatible proxy |
+| L45 | 1.59306 / 66.97 | J-PSKH4 | source pair retained; compatible proxy |
+| L46 | 1.80809 / 22.74 | J-SFH1 | source pair retained; compatible proxy |
+| L47 | 1.80610 / 33.27 | NBFD15 | source pair retained; compatible proxy |
+| L51 | 1.80809 / 22.74 | J-SFH1 | source pair retained; compatible proxy |
+| L52 | 1.78800 / 47.35 | J-LASF014 | source pair retained; compatible proxy |
+| L61 | 1.68376 / 37.64 | J-KZFH6 | source pair retained; compatible proxy |
+| L71 | 1.58335 / 59.55 | M-BACD12 | source pair retained; compatible proxy |
+
+Coverage: 18 physical lens elements, 18 authored media, 18 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.13, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All eighteen lens-media pairs, the two-decimal source θgF values and the separate plate were re-read. Every selected lens curve reproduces the corresponding two-decimal source θgF within ±0.005; L41's J-SFH8 gives 0.624789 against the more precise condition-table 0.625 (±0.0005). The stored L41 dPgF 0.0328 is the rounded engine-baseline conversion of that source value (0.03277012); retain it. No override was fabricated from the remaining coarse θgF entries. L45 J-PSKH4 and L71 M-BACD12 stay explicitly non-identical proxies (Δnd about +0.000430 and −0.000220). APD / fluorite / SR designations remain production-correlated inferences, not source manufacturer identities. All eighteen lens media and the rear plate retain coefficient-backed dispersion.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
