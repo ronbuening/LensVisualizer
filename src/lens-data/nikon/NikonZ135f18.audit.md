@@ -132,3 +132,14 @@ the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rul
 Reopened the original local `patents/WO2024147268A1.pdf`, Example 1, Figure 1 (PDF p. 66), on a 600 dpi crop covering every element. The source's 133.0137 mm vertex span gives 15.40 native px/mm. The four existing concave lands (4, 9, 14 and 23) still match the resolved strokes; their outward beam-rule adjustments remain as documented above. No additional face shows a resolved flat land suitable for a rim extension or another cut. Surface 29's shorter 19.3 mm optical rim remains: the figure shows a continuing curve there, rather than a new square land that would justify `rimExtensionSd`.
 
 No geometry changed. `audit:surface` passes, including the inferred-cut beam check; `audit:image-circle` reports 0 undersized and 0 skipped. Source prescriptions, existing cuts and optical apertures were retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected the original `patents/WO2024147268A1.pdf`: Table 1 and d-line definition on PDF pp. 20–22, the element identifications on pp. 18–19, and conditions 14/17 on pp. 56–57. All 16 lens media and the FL rear plate match the printed nd/νd pairs. No additional C/F/g index column is published there.
+
+- Retained catalog spectral proxies for L1; L2–L4; L5/L9; L6/FL; L8; and L10–L16. Each annotation resolves to a coefficient-backed curve under the existing coordinate guard.
+- Clarified L7's existing code-697555 resolution as J-LAK14; its 1.69680/55.52 source coordinate already resolves to that curve. This names the modeling proxy, not the production supplier.
+- Corrected L9 `apd: "patent"` to `"inferred"` and removed its copied `dPgF: 0.0092593`. Paragraph 0109 identifies **L5**, not L9, as Nf. Equal nd/νd pairs do not publish a partial-dispersion measurement for L9. The retained condition-17 conversion belongs to L5; L9 uses its NBFD25 catalog proxy.
+- Retained L1's +0.0343957 and L5's +0.0092593 engine-normal-line departures: source +0.035/+0.010 use 0.6415−0.00162ν, versus the engine's 0.6438−0.001682ν. L1 is explicitly Pf in ¶0109. Source precision remains three decimals. Other APD assertions remain catalog inferences or false.
+
+The public analysis now distinguishes L5's source value from L9's inferred spectrum and lists L7's available proxy. All 16 lens media plus FL resolve; production supplier identities remain unspecified. `assertCatalogConsistent()` and the scoped resolver review pass; the shared dispersion, glass-resolution-parity and partial-dispersion-normal-line suites pass (94 tests). `audit:surface` passes after the L9 provenance correction. Geometry is unchanged.

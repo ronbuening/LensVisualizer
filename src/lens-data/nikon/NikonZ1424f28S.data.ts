@@ -61,6 +61,7 @@
 
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+// Glass names are coordinate-compatible spectral proxies; the patent does not name production suppliers.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,

@@ -196,3 +196,11 @@ Reopened `patents/WO2021117563A1.pdf`, Example 4, Figure 10 (PDF p. 82), and ins
 The source's smaller L40 cap end (about 10.8 mm) and L12's approximately 16.8 mm reading do not replace the validated optical rims. Extensions retain the existing cap endpoints and add only opaque material, so the 2026-10-27 beam-rule exclusions remain in force; no asphere continues beyond its old `sd`. No additional concave cut is justified by the other faces. The public analysis now describes the drawn lands.
 
 `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. No optical `sd`, curvature, gap, asphere coefficient, stop or glass changed.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2021117563A1.pdf`, Example 4: Table 4 on PDF pp. 41–43 and the element-specific prose on pp. 39–40 (¶0108–¶0111). Every stored nd/νd pair for all 16 lens elements matches the d-line table, including L11 1.588870/61.1, L12 1.743104/49.4, the repeated 1.497820/82.6 group and the rounded 32.3/23.7/42.7 Abbe values.
+
+All catalog counterparts were checked and retained: L11 S-BAL35; L12 S-LAM60; L13/L35/L37/L38 J-FKH1; L14 J-KZFH9; L21 TAFD40; L22 S-TIM22; L31 J-LASFH23; L32 J-PSKH4; L33 S-LAH98; L34 S-TIH53; L36/L39 S-LAH55; L40 Q-LASFH58S. All 16 have compatible coefficient-backed curves. The new data-file qualification makes the supplier-neutral proxy status explicit; no production glass identity is inferred.
+
+The four `apd: "patent"` classifications are supported: ¶0108 identifies L13's anomalous-dispersion glass, and ¶0110 does so for L35/L37/L38. No numerical partial dispersion or C/F/g line-index table is supplied for them, so no such values were invented. The other APD flags remain false. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). No optical or geometry values changed.
