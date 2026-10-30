@@ -26,22 +26,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-30",
     type: "improvement",
-    summary: "Refined F-mount lens prescriptions, rims and glass against their source patents",
-  },
-  {
-    date: "2026-10-29",
-    type: "improvement",
-    summary: "Refined third-party Z-mount lens rims and glass against their source patents",
-  },
-  {
-    date: "2026-10-29",
-    type: "improvement",
-    summary: "Corrected Nikkor Z glass dispersion data and clarified catalog proxy labels",
-  },
-  {
-    date: "2026-10-29",
-    type: "improvement",
-    summary: "Refined Nikkor Z element heights and rim lands against their patent diagrams",
+    summary: "Refined Z- and F-mount element heights, concave rims and glass against source patents",
   },
   {
     date: "2026-10-29",
