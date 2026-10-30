@@ -206,13 +206,10 @@ const LENS_DATA = {
       glass: "J-SFH4 (HIKARI)",
       apd: "patent",
       apdNote:
-        "SR element: Nikon's construction diagram marks element 8 as the SR lens, and the patent singles L18 out as the smallest-νd positive lens of G1 with conditions on its θgF (conditions (2) and (14)); stored line indices give θgF = 0.6319.",
+        "Patent ¶0159 identifies L18 as G1's smallest-νd positive lens; Table 16 gives νd=27.35 and Table 26 (Example 6) gives θgF=0.6319. Runtime dPgF=0.6319−(0.6438−0.001682×27.35)=0.0341027. J-SFH4 supplies a qualified catalog dispersion curve, not source line indices or a production-supplier identification.",
       diagramLabel: "L18",
       cemented: "D2",
-      dPgF: 0.0334,
-      nC: 1.656918,
-      nF: 1.681192,
-      ng: 1.696531,
+      dPgF: 0.0341027,
     },
     {
       id: 11,

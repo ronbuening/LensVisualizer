@@ -143,3 +143,24 @@ cut is supported, and no clear aperture was widened to equalize element heights.
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
 rule; `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2022092388A.pdf`, Example 1 / Table 1, PDF pp. 14–15, including ¶0102's
+explicit d-line (587.6 nm) convention. All 25 physical lens elements and the FL plate retain the printed nd.
+The table contains no νd or partial-dispersion column: every retained νd is still a catalog/code inference,
+not a new patent confirmation. No source C/F/g indices or APD measurements were manufactured.
+
+| Media | Fresh verdict |
+|---|---|
+| L1–L18, L20–L24; FL | Printed nd retained; coordinate-compatible catalog spectral proxies retained (23/25 lens media plus FL) |
+| L19 / source 34 | nd 1.603420 confirmed; inferred νd 56.4 and unresolved `603564` retained |
+| L25 / source 45 | nd 1.738000 confirmed; inferred νd 49.3 and unresolved `738493` retained |
+
+The two unresolved ordinary glasses have no coordinate-compatible row in the current catalog; similar nd alone
+cannot justify changing νd or assigning a supplier. Existing ED/APD cautions and proxy wording remain accurate.
+No lens-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-29",
     type: "improvement",
+    summary: "Corrected Nikkor Z glass dispersion data and clarified catalog proxy labels",
+  },
+  {
+    date: "2026-10-29",
+    type: "improvement",
     summary: "Refined Nikkor Z element heights and rim lands against their patent diagrams",
   },
   {

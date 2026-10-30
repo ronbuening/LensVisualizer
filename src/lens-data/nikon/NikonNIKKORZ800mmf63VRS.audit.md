@@ -66,3 +66,27 @@ changing the published layer geometry. Do not put an extension on cemented/diffr
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the existing inferred-cut beam
 rule; `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2023023323A.pdf`, Example 6: Table 16, PDF p. 30; element mapping ¶0159,
+p. 29; partial-dispersion definition ¶0020–0021, p. 8; Table 26, p. 37. Rendered pages were inspected afresh.
+All 24 modeled media (22 physical lens elements) retain the printed d-line nd/νd coordinates. All ordinary
+glasses resolve to compatible coefficient-backed curves (22/24 media); PF media A/B, 1.52950/36.27 and
+1.54980/50.91, remain explicitly unmatched rather than assigned ordinary glass identities.
+
+| Medium | Before | After / verdict |
+|---|---|---|
+| L18 | dPgF +0.0334; copied catalog nC/nF/ng 1.656918/1.681192/1.696531 | Retain source θgF 0.6319; dPgF +0.0341027; use shared J-SFH4 coefficients for C/d/F |
+| Other 23 media | Existing nd/νd, labels and qualified APD flags | Retained after source/resolver check |
+
+¶0159 uniquely identifies L18 as the lowest-νd positive lens in G1. Its νd is 27.35; the runtime baseline
+0.6438 − 0.001682 × 27.35 = 0.5977973 gives 0.6319 − 0.5977973 = 0.0341027. The source prints no
+separate C/F/g line-index set for L18. The removed values were catalog data, not patent measurements.
+Catalog matches remain spectral proxies, and the three ED identifications remain manufacturer-correlated/inferred.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests). The runtime spectral probe
+reproduces each authored source PgF within 1e-9; L18 returns 0.6319 via the catalog tier.
+`audit:surface` also passes after the spectral correction.

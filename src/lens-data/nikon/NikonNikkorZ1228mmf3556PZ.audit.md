@@ -172,3 +172,22 @@ unchanged.
 
 `audit:surface` passes. `audit:image-circle` reports 0 undersized / 0 skipped. Before/after `audit:aperture`
 both report all three zoom stations within 3% of their stated f-number, with no rim, trace, iris or failed stations.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/US-20260056396-A1.pdf`, Example 1 / Table 1, PDF p. 29 (printed p. 8), and
+¶0102, PDF p. 28, defining nd at the d line. All 12 elements' nd and medium-to-surface assignments match the
+rendered table. The table has no νd, C/F/g-index or partial-dispersion column.
+
+| Media | Fresh verdict |
+|---|---|
+| L11/L21; L12/L13; L14/L23 | Repeated source indices and existing qualified catalog proxies retained |
+| L22, L24, L25, L26, L31, L41 | Source indices retained; all six individual proxies remain coordinate-compatible |
+
+All 12 modeled media resolve to coefficient-backed curves. Their retained νd values are spectral proxies;
+L24's ED/APD attribution remains inferred, and no catalog curve proves the production glass. The existing
+analysis already discloses the absent νd column. No glass-data correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
