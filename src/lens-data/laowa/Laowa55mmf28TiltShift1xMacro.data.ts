@@ -245,10 +245,11 @@ const LENS_DATA = {
     },
   ],
 
+  // Original patent figure rechecked 2026-10-29; opaque cap-end lands and beam-safe cuts documented in audit.
   surfaces: [
     { label: "1", R: 20184.5897, d: 1.7, sd: 38.5, medium: 1 },
-    { label: "2", R: 40.3091, d: 17.9119, sd: 29.5 },
-    { label: "3", R: -97.6327, d: 3.0, sd: 32.5, medium: 2 },
+    { label: "2", R: 40.3091, d: 17.9119, sd: 29.5, rimExtensionSd: 38.5 },
+    { label: "3", R: -97.6327, d: 3.0, sd: 32.5, rimCutDepthMm: 4.60, medium: 2 },
     { label: "4", R: 104.0642, d: 0.15, sd: 32.5 },
     { label: "5", R: 71.4829, d: 15.6337, sd: 32.5, medium: 3 },
     { label: "6", R: -79.3328, sd: 32.5 },
