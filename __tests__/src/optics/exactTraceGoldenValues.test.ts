@@ -17,11 +17,11 @@ import type { RuntimeLens } from "../../../src/types/optics.js";
  * diffractive Phase Fresnel telephoto, an odd-order asphere, a projection-aware
  * fisheye, and a folded mirror fixture.
  *
- * Values were captured from the verified exact-trace output (2026-07) and
+ * Values originate from verified exact-trace output (2026-07), with later source-backed updates noted below, and were
  * sanity-checked against design nominals: each EFL sits at its patent value,
  * and the rectilinear marginal rays refocus within ~20 µm of the axis at the
- * paraxial image plane. If one of these assertions moves, the trace engine's
- * absolute behavior changed — do not simply re-pin without understanding why.
+ * paraxial image plane. If an assertion moves, verify both the trace engine and its catalog prescription;
+ * source-data corrections can change a reference spectrum. Do not re-pin without establishing the cause.
  */
 
 interface GoldenLens {
@@ -219,9 +219,12 @@ describe("exact trace golden values — diffractive phase surface", () => {
       return trace.u;
     });
 
-    expect(slopes[0]).toBeCloseTo(-0.06098096391425138, 8);
-    expect(slopes[1]).toBeCloseTo(-0.060974169984543934, 8);
-    expect(slopes[2]).toBeCloseTo(-0.06098734014575166, 8);
+    // 2026-10-30: removed rounded catalog C/F/g copies from the PF prescription. Current anchored coefficient
+    // curves change RGB indices; an explicit-index replay reproduces these slopes and restoring the old indices
+    // reproduces the previous values. The phase, powered prescription and tolerance are unchanged.
+    expect(slopes[0]).toBeCloseTo(-0.06098097543073765, 8);
+    expect(slopes[1]).toBeCloseTo(-0.060974169981466785, 8);
+    expect(slopes[2]).toBeCloseTo(-0.06098633426951101, 8);
     // Distinct per channel: identical slopes would mean wavelength never
     // reached the glass indices or the phase kick.
     expect(new Set(slopes).size).toBe(3);

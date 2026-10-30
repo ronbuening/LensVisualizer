@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,745,306 A, Example 3 (Susumu Sato / Nikon Corporation).       ║
  * ║ Correlation: Nikon AI AF-S Nikkor ED 600mm f/4D II IF.                     ║
- * ║ The model draws 10 powered elements / 7 groups plus the rear filter plate    ║
- * ║ after omission of the patent's front protective plate and inactive S2; the   ║
- * ║ filter plate is not counted in `elementCount`.                               ║
+ * ║ The model draws 10 powered elements / 7 groups plus both source filter      ║
+ * ║ plates. The inactive S2 plane is folded into its adjacent air gap; neither  ║
+ * ║ plate is counted in `elementCount`.                                          ║
  * ║ All powered surfaces are spherical.                                         ║
  * ║                                                                              ║
  * ║ FOCUS STATUS: PUBLISHED. G2 translates imageward by 10.8634 mm from the     ║
@@ -19,8 +19,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ NO SCALING. The design remains the patent's approximately 588 mm, f/4.08    ║
  * ║ prescription; 600 mm f/4 is marketing metadata only.                         ║
  * ║                                                                              ║
- * ║ NORMALIZATION: source surfaces 1–2 (front protective plate) and source       ║
- * ║ surface 21 (inactive field-stop bookkeeping plane) are omitted. Source       ║
+ * ║ SOURCE PLATES: surfaces 1–2 are the front protective plane plate: 5.0 mm,    ║
+ * ║ nd 1.516800, νd 64.10, followed by the printed 1.2 mm air to surface 3.    ║
+ * ║ Its inferred square sd=77 mm clears the measured 72.9841 mm beam envelope   ║
+ * ║ by 5%, rounded up to 0.5 mm. Source surface 21 is an inactive bookkeeping   ║
+ * ║ plane folded into air; no rear-focus recalibration is applied. Source       ║
  * ║ surfaces 22–23 (rear filter, 2.0 mm, nd 1.516800, νd 64.10) are drawn as a   ║
  * ║ plane-parallel plate element and traced by every analysis; its               ║
  * ║ semi-diameter is a ray-trace estimate (the source lists none). STO stores    ║
@@ -224,13 +227,27 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.5168,
       vd: 64.1,
-      glass: "J-BK7A",
+      glass: "J-BK7A catalog-coordinate proxy (production supplier unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 3 Table 3 surfaces 22–23), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
+    {
+      id: 12,
+      name: "P1",
+      label: "Front protective filter P1",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A catalog-coordinate proxy (production supplier unspecified)",
+      diagramLabel: "P1",
+      role: "Source Table 3 surfaces 1–2: 5 mm front protective plane plate, followed by 1.2 mm air. The unprinted square semi-diameter is the full wide-open beam envelope (72.9841 mm) plus 5%, rounded up to 0.5 mm. Separate from the ten powered elements; not counted in elementCount.",
     },
   ],
 
-  /* ── Active prescription: patent source surfaces 3–20, plus rear filter surfaces 22–23 ── */
+  /* ── Source prescription: surfaces 1–20, plus rear filter surfaces 22–23 ── */
   surfaces: [
+    // Source-listed front protective plate; no optionality clause was established.
+    { label: "1", R: "flat", d: 5.0, sd: 77, medium: 12 },
+    { label: "2", R: "flat", d: 1.2, sd: 77 },
     { label: "3", R: 247.184, d: 18.3, sd: 72.05, medium: 1 },
     { label: "4", R: -702.03, d: 0.2, sd: 72.05 },
     { label: "5", R: 217.555, d: 19.8, sd: 72.05, medium: 2 },

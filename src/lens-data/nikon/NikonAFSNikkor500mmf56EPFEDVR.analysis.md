@@ -50,7 +50,7 @@ Source surface 20 is a flat air-to-air plane with no identified optical action. 
 propagation distance is added to the surface-19 air gap. The patent does not tabulate clear apertures. Figure 3 was
 rendered at 600 dpi and measured on its 7.5 px/mm axial scale. The L15/L16, G2, C31, VR1, and CL31 outlines were
 reduced where the stored envelopes differed from the drawing by at least about 15%; the front group and final two
-correction pairs stayed within figure-reading noise and were retained. Every stored semi-diameter and the 11.78466 mm
+correction pairs stayed within figure-reading noise and were retained. A fresh reinspection increases the inferred curved caps at source surfaces 10/11/12 from 24.2/23.5/22.1 mm to **26.9/24.7/23.7 mm**. These are the rounded minimum heights needed by the stated axial beam; the source section on its approximately 7.5 working-px/mm scale has larger L15/L16 outer rims (roughly 28/26 mm). The changes preserve the source curvatures and thicknesses and pass the shared edge/sag checks. No flat land is inferred at those continuously curved endpoints. Every stored semi-diameter and the 11.78466 mm
 physical stop semi-diameter remain modeling inferences constrained by the figure, published f-number and field, pupil
 tracing, edge thickness, rim slope, and cross-gap clearance.
 
@@ -154,13 +154,12 @@ rear relay before the 64.39657 mm published infinity back-focus gap.
 The patent publishes nd, νd, and θgF but does not identify vendors. The catalog labels are therefore coordinate matches
 or classes, not claims about Nikon's production melts. A fresh comparison against the June 2025 Hikari catalog resolves
 19 of the 21 modeled media entries through coefficient-backed catalog rows; only the two bonded PF materials remain
-unmatched. Catalog nC, nF, and ng values are stored directly for those 19 compatible entries, while every element
-retains the patent-derived ΔPgF coordinate.
+unmatched. Catalog-only C/F/g index copies have been removed: all 19 ordinary glasses retain compatible current coefficient curves through the resolver, while every medium keeps its actual patent-derived partial-dispersion override. `dPgF = θgF − (0.6438 − 0.001682νd)` reproduces every stored value after six-decimal rounding. The source prints θgF to four decimals for most media, but only three for L13/L39 (0.564) and L35 (0.544); extra zeros or conversion digits do not add source precision.
 
 | Patent coordinate nd / νd / θgF | Entries | Catalog annotation | Status |
 |---|---|---|---|
 | 1.487490 / 70.31 / 0.5291 | L11, L12, L16 | J-FK5 (Hikari) | Exact coordinate match |
-| 1.612660 / 44.46 / 0.5640 | L13, L39 | J-KZFH1 (Hikari) | Exact coordinate match |
+| 1.612660 / 44.46 / 0.564 | L13, L39 | J-KZFH1 (Hikari) | Exact coordinate match |
 | 1.516800 / 64.13 / 0.5356 | L14 | J-BK7A class (Hikari) | Δνd = +0.01 |
 | 1.527800 / 33.41 / 0.6329 | GDa | Unmatched bonded PF material A | Patent anchors only |
 | 1.557100 / 49.74 / 0.5625 | GDb | Unmatched bonded PF material B | Patent anchors only |
@@ -171,14 +170,14 @@ retains the patent-derived ΔPgF coordinate.
 | 1.518230 / 58.82 / 0.5449 | L32 | J-K3 (Hikari) | Exact coordinate match |
 | 1.620040 / 36.40 / 0.5878 | L33 | J-F2 (Hikari) | Exact coordinate match |
 | 1.497820 / 82.57 / 0.5386 | L34, L37 | J-FKH1 (Hikari) | Exact coordinate match |
-| 1.593190 / 67.90 / 0.5440 | L35 | J-PSKH1 (Hikari) | Exact coordinate match |
+| 1.593190 / 67.90 / 0.544 | L35 | J-PSKH1 (Hikari) | Exact coordinate match |
 | 1.575010 / 41.51 / 0.5765 | L36 | J-LF7 (Hikari) | Exact coordinate match |
 | 1.581440 / 40.98 / 0.5763 | L310 | J-LF5 (Hikari) | Exact coordinate match |
 | 1.808090 / 22.74 / 0.6288 | L311 | J-SFH1 (Hikari) | Exact coordinate match |
 
 The APD badge is reserved for the production-correlated special-dispersion census, rather than being set merely because
 the patent supplied θgF. It is applied to the anomalous PF material GDa and to the three ED elements L34, L35, and L37.
-The other 17 media keep their patent-derived ΔPgF values for chromatic tracing but are explicitly classified as non-APD.
+The other 17 media retain their source-derived partial-dispersion values without an APD badge; this does not assert a measured zero anomaly or identify a material beyond the source evidence.
 
 The two unmatched bonded PF media use a ΔPgF-corrected Abbe representation rather than invented line indices. This is
 the weakest spectral tier in the model and limits quantitative color tracing away from the patent's d-line, Abbe, and
@@ -287,7 +286,7 @@ methods agree numerically.
 | Stored modeled f-number | 5.75019 | 5.75019 | 0 |
 | Exact-ray f-number from inferred stop | 5.74627 | 5.75019 | −0.00392 |
 
-The stop-derived f-number above does not include clipping by downstream rims. In the current model, rear surface 10 limits the full axial beam to about f/6.48; with the supported TC-20E III attached, the corresponding limit is about f/12.84 rather than the composed stop's f/11.39. The converter adds no axial rim clip. This inferred host rim is queued for an exact-source review; it has not been enlarged to enable converter attachment.
+The stop-derived f-number above is distinct from the transmitted axial aperture. The fresh source-backed cap increases at surfaces 10–12 clear the full stated F/5.75019 axial beam; the current focused aperture audit reports no rim, iris, or trace limitation beyond its 3% criterion. The stop and diffractive prescription are unchanged. The earlier host/converter rim-limited figures are superseded by this cap correction.
 
 The surface-by-surface Petzval calculation uses $\phi/(n n')$ at every interface, including the diffractive power on
 surface 8. The total is −1.72676×10⁻⁴ mm⁻¹, corresponding to a first-order Petzval radius of approximately −5791 mm.
