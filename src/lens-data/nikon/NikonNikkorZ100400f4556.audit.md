@@ -130,3 +130,16 @@ for 203.369 mm, 5.473 px per lens mm. One native pixel at the cap end and at the
 
 - 7: q 0.963 at a 158.7 px edge (29.0 mm), range 0.951–0.975. Land 1.0974 mm, over the 0.1 mm minimum.
 - 12: q 0.87 at a 125.9 px edge (23.0 mm), range 0.855–0.885. Land 2.9903 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JP2022092388A.pdf`, Figure 1(a), Example 1 wide/infinity, PDF p. 26, at 600 dpi,
+rotated object-left. The published vertex span gives 5.473 native px/mm (1113 px / 203.369 mm). All
+25 drawn glass elements, their shared boundaries and both halves were checked for a cap ending in an axial-normal
+land. Faces 7 and 12 already carry the two resolved concave lands; the remaining curves run into their outer
+edges. Small differences among estimated partner radii alone do not establish a land. No further extension or
+cut is supported, and no clear aperture was widened to equalize element heights.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule; `audit:image-circle` reports 0 undersized / 0 skipped.

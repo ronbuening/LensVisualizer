@@ -158,6 +158,8 @@ Therefore $K_{standard} = \kappa - 1$. The patent table lists $\kappa = 0.0000$ 
 
 The 2026-10-27 image-based recheck of ¶0103 (PDF p. 28) and Table 1 (PDF p. 29) confirms every coefficient, sign, exponent and power. There are no printed odd terms or normalization factors; ¶0107 specifies millimetres. At the stored 6.5 mm semi-diameter, surface 19A has sag −1.2620 mm, departure −0.5824 mm from the same-radius sphere, and slope angle −46.2°. Its slope does not turn over within that rim.
 
+FIG. 1 also draws flat outer lands on the rear faces of L12 and L13. Their optical caps use the original estimated semi-diameters, 11.5 and 9.5 mm, with opaque rim extensions to the opposite faces' 15.2 and 10.2 mm outer radii. The L12 land can therefore extend beyond the sphere's 13.299 mm radius without continuing its optical curve. Compared with the former rounded-depth cuts, the clear caps move inward by only 0.0002 and 0.0070 mm; all three stations retain their stated axial apertures.
+
 FIG. 1 (PDF p. 2) suggests an L26 optical semi-diameter near 5.4 mm. The automated ENV/RIM readings both give 5.37 mm at 54.25 µm/pixel, and the enlarged optical edges give approximately the same value. This is about 17% below 6.5 mm, below the procedure's roughly 25% threshold for a figure-only change. The estimated 6.5 mm rims are retained; reducing them to remove aberrant rays would not establish the prescription's correctness.
 
 Table 1's ω is explicitly a half-angle (¶0101), with ω = 53.57° / 39.74° / 27.44° and Y = 14.25 mm. The tab's wide-end edge at 53.45° therefore lies inside the published design field. Its approximately −15% barrel distortion agrees with FIG. 2 and is not evidence that the tab extends beyond an unpublished, smaller optical field.

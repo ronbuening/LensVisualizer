@@ -23,12 +23,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Surface 3 was raised to pass the traced chief ray to the patent's  ║
  * ║  Y = 14.25 mm APS-C corner at wide, and L41 (surfaces 23-24) so it  ║
  * ║  also clears the tele corner (2026-09-24 field-coverage audit).     ║
- * ║  Rim cuts (2026-10-27): Figure 1 draws flat lands on the concave    ║
- * ║  rear faces 4 (L12) and 6 (L13). Their sds rise to the drawn edge   ║
- * ║  (13.2, held below |R|, and 10.2) and rimCutDepthMm ends each cap   ║
- * ║  near its old rim: cut radii 11.5002 and 9.5070 mm against the old  ║
- * ║  11.5 and 9.5 mm rims; the wide-open beams reach 10.8963 and        ║
- * ║  8.7303 mm there.                                                   ║
+ * ║  Rim lands (2026-10-29): Figure 1 (PDF p. 2), 13.80 native       ║
+ * ║  px/mm from its S1-S24 vertex span, draws square outer edges on    ║
+ * ║  L12/L13. Faces 4/6 retain the original 11.5/9.5 mm clear caps;    ║
+ * ║  rimExtensionSd draws their opaque lands to the opposite faces'   ║
+ * ║  15.2/10.2 mm rims. Face 4 can now draw beyond |R| without         ║
+ * ║  continuing the sphere. Figure cap/edge ratios are 0.70/0.83;    ║
+ * ║  retained caps stay farther out to preserve the optical model.    ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERIC CONIC:                                           ║
  * ║  The patent uses κ in sqrt(1 - κ y²/R²). LensVisualizer stores the  ║
@@ -225,9 +226,9 @@ const LENS_DATA = {
     { label: "1", R: 66.4503, d: 4.05, sd: 24.0, medium: 1 },
     { label: "2", R: 238.302, d: 0.1, sd: 19.2 },
     { label: "3", R: 46.616, d: 1.7, sd: 15.2, medium: 2 },
-    { label: "4", R: 13.299, d: 7.2, sd: 13.2, rimCutDepthMm: 6.62 },
+    { label: "4", R: 13.299, d: 7.2, sd: 11.5, rimExtensionSd: 15.2 },
     { label: "5", R: -466.4671, d: 1.4, sd: 10.2, medium: 3 },
-    { label: "6", R: 13.2979, d: 3.0, sd: 10.2, rimCutDepthMm: 4.0 },
+    { label: "6", R: 13.2979, d: 3.0, sd: 9.5, rimExtensionSd: 10.2 },
     { label: "7", R: 18.355, d: 2.85, sd: 9.5, medium: 4 },
     { label: "8", R: 56.2992, sd: 9.5 },
 

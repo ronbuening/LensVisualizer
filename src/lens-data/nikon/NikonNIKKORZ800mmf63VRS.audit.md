@@ -53,3 +53,16 @@ px per mm (S1 → S37 gives 5.85, S1 → S5 5.84). Each q range is ±(1 + q) / (
   above the 0.1 mm minimum.
 - 37: q 0.910 (85.5 / 94 px), edge 95.9 px, range ±0.020 (0.890–0.929). The cut sits at q 0.951, outside that range,
   because it moved out to clear the beams. Land 0.8108 mm, above the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JP2023023323A.pdf`, Figure 11 / OL6 on PDF p. 40, at 600 dpi, rotated object-left.
+The S1–S40 native vertex span remains 1865.3 px / 318.885 mm = 5.85 px/mm. Every air face and cemented
+boundary was inspected on both halves. The two previously modeled lands, on 11 and 37, are retained; the
+other ordinary faces run to their element edges, so no new extension or concave cut is supported. The very
+short PF substrate land at 8 remains unmodeled: the 0.25 mm bonded layer cannot clear that land without
+changing the published layer geometry. Do not put an extension on cemented/diffractive faces 6–7.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the existing inferred-cut beam
+rule; `audit:image-circle` reports 0 undersized / 0 skipped.
