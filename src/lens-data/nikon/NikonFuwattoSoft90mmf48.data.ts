@@ -23,13 +23,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  production soft-focus minimum focus distance of 0.40 m.            ║
  * ║                                                                    ║
  * ║  Semi-diameters: the stop radius is derived from the design         ║
- * ║  f-number, using the marketed 90 mm f/4.8 entrance pupil. Glass     ║
+ * ║  f-number, using Table 2 second-soft-state FN = 4.95. Glass     ║
  * ║  SDs are estimated from the scaled patent field and checked         ║
  * ║  against rim slope, edge thickness, and element SD-ratio            ║
  * ║  constraints.                                                       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-30: fresh source figures/tables and qualified glass review; see the audit sidecar. */
 const LENS_DATA = {
   schema: 2,
   key: "nikon-fuwatto-soft-90mm-f48",
@@ -69,8 +70,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80384,
       vd: 33.89,
+      indexReference: "d",
       focalLengthMm: -60.71,
-      glass: "E-LAFH2 (HIKARI, historical/obsolete; 804/339)",
+      glass: "E-LAFH2 qualified spectral proxy (historical catalog entry; production supplier unspecified)",
       apd: false,
       role: "High-index flint element of the cemented achromat; front element after the patent doublet is reversed for soft-focus use.",
       cemented: "G1",
@@ -82,8 +84,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6228,
       vd: 57.03,
+      indexReference: "d",
       focalLengthMm: 38.38,
-      glass: "S-BSM10 (OHARA; 623/570)",
+      glass: "S-BSM10 qualified spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Positive crown element carrying most of the doublet power; its strongly convex original front surface becomes the rear image-side surface in Fuwatto use.",
       cemented: "G1",
@@ -104,7 +107,7 @@ const LENS_DATA = {
 
   gaps: { "3": { label: "BF", values: [[94.77708, 144.30234]] } },
 
-  aperture: { nominalFNumber: 4.8, fStops: [4.8, 5.6, 6, 8, 11, 16], maxFNumber: 16 },
+  aperture: { nominalFNumber: 4.95, fStops: [4.95, 5.6, 6, 8, 11, 16], maxFNumber: 16 },
 
   groups: [{ text: "G1 reversed soft-focus doublet", fromSurface: "1", toSurface: "3" }],
   doublets: [{ text: "G1", fromSurface: "1", toSurface: "3" }],

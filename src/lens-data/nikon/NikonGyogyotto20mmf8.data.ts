@@ -27,11 +27,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent Table 8 does not list clear apertures. SDs are inferred  ║
  * ║    conservatively from the patent figures and mechanical geometry; ║
- * ║    they preserve positive edge thickness and keep the front surface ║
- * ║    below the spherical rim limit.                                  ║
+ * ║    they preserve positive edge thickness and keep the concave cap ║
+ * ║    below the spherical rim limit; a source-supported land restores L1 height.                                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-30: fresh source figures/tables and qualified glass review; see the audit sidecar. */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -73,8 +74,9 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.62041,
       vd: 60.14,
+      indexReference: "d",
       focalLengthMm: -32.77,
-      glass: "N-SK16 / S-BSM16 class (620/601; patent νd=60.14)",
+      glass: "N-SK16 qualified spectral proxy (source νd=60.14; production supplier unspecified)",
       apd: false,
       role: "Strong plano-concave front field lens; generates fisheye barrel distortion and compresses the incident field for the rear cemented group.",
     },
@@ -85,8 +87,9 @@ const LENS_DATA = {
       type: "Thick Negative Meniscus",
       nd: 1.80518,
       vd: 25.35,
+      indexReference: "d",
       focalLengthMm: -45.5,
-      glass: "N-SF6 / S-TIH6 class (805/254)",
+      glass: "N-SF6 qualified spectral proxy (production supplier unspecified)",
       apd: false,
       role: "High-index dense-flint meniscus. The front surface corrects lateral color from L1; the cemented rear surface corrects on-axis color and spherical aberration from L3.",
       cemented: "D1",
@@ -98,8 +101,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.67025,
       vd: 57.53,
+      indexReference: "d",
       focalLengthMm: 13.34,
-      glass: "S-LAL52 catalog equivalent (patent 670575; production supplier unspecified)",
+      glass: "S-LAL52 approximate spectral proxy (source 670575; production supplier unspecified)",
       apd: false,
       role: "Sole positive image-forming element; works with the L2/L3 cemented interface to form a compact corrected rear group.",
       cemented: "D1",
@@ -109,8 +113,8 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: "flat", d: 3.0057, sd: 18.0, medium: 1 },
-    { label: "2", R: 20.33172, d: 50.1331, sd: 17.6 },
+    { label: "1", R: "flat", d: 3.0057, sd: 29.5, medium: 1 },
+    { label: "2", R: 20.33172, d: 50.1331, sd: 18.29, rimExtensionSd: 29.5 },
     { label: "3", R: 22.03474, d: 13.99018, sd: 6.4, medium: 2 },
     { label: "4", R: 9.8628, d: 3.50666, sd: 6.2, medium: 3 },
     { label: "5", R: -82.29078, d: 0.5, sd: 6.0 },
@@ -128,6 +132,8 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 8.25, fStops: [8.25, 11, 16] },
+
+  projection: { kind: "fisheye-equisolid", focalLengthMm: 20, fullFieldDeg: 164, imageCircleMm: 44, maxTraceFieldDeg: 82 },
 
   /* ── Group and doublet annotations ── */
   groups: [

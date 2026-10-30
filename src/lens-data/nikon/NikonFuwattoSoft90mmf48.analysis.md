@@ -41,7 +41,7 @@ In the **first soft-focus configuration**, G1 remains objectwise of the stop. Th
 
 In the **second soft-focus configuration**, the order of the stop and G1 is reversed. The stop is objectwise, the reversed doublet follows it, and the patent gives $f = 75.522$ mm, Bf = 78.981 mm, FN = 4.95, and $2\omega = 27.0^\circ$ at patent scale. This is the state corresponding to the Fuwatto Soft 90mm f/4.8.
 
-The f-number difference between the two soft configurations is a pupil-position effect. In the first soft state, the stop is viewed through G1. In the second soft state, the stop is in front of the glass and is seen directly from object space. The marketed f/4.8 value is therefore modeled by setting the production stop diameter from the 90 mm nominal focal length rather than retaining the exact patent stop diameter.
+The f-number difference between the two soft configurations is a pupil-position effect. In the first soft state, the stop is viewed through G1. In the second soft state, the stop is in front of the glass and is seen directly from object space. The catalog retains the marketed f/4.8 value, while the modeled opening now follows the selected patent configuration’s FN = 4.95.
 
 ## Element-by-Element Analysis
 
@@ -53,7 +53,7 @@ L12 is the image-side element of the sharp-focus parent doublet, but it becomes 
 
 The element is a high-index flint partner to the crown element L11. Its dispersion supplies the negative chromatic power needed to make the two-element group a usable achromat rather than a simple uncorrected singlet. The patent's conditional expression (4), $n_2 - n_1 > 0.05$, is strongly satisfied in Example 2: $1.80384 - 1.62280 = 0.18104$. That large index step also lets the cemented interface remain relatively gentle while still contributing meaningful aberration correction.
 
-The older draft's identification of this glass as HIKARI E-FDS2 is not retained. E-FDS2 is a different very-high-index dense flint family and does not match the 804/339 index-Abbe pair. The stored optical constants instead match HIKARI E-LAFH2-class historical data. Because current public HIKARI catalogs no longer list that older E-series glass as a normal current product, the data file marks it explicitly as historical/obsolete rather than treating it as a readily resolvable current catalog glass.
+The older draft's identification of this glass as HIKARI E-FDS2 is not retained. E-FDS2 is a different very-high-index dense flint family and does not match the 804/339 index-Abbe pair. The stored optical constants instead match HIKARI E-LAFH2-class historical data. The current catalog resolver supplies the historical E-LAFH2 coefficient curve as a qualified spectral proxy; it does not identify the production melt or supplier.
 
 ### L11 — Biconvex Positive, rear element in the Fuwatto state
 
@@ -83,7 +83,7 @@ The older draft's HOYA BSC3 identification is also not retained. BSC3 is not the
 | L11 | Positive crown member of G1 | 1.62280 | 57.03 | OHARA S-BSM10 / 623570 barium crown class | Yes, rear element after reversal |
 | L2 | Rear negative corrector in sharp parent | 1.51823 | 58.90 | OHARA S-NSL3 / HOYA E-C3 class, 518590 borosilicate crown | No; removed for Fuwatto Soft |
 
-The glass palette is deliberately conservative. The Fuwatto optical path contains only the cemented crown/flint doublet, so it preserves ordinary primary achromatization while leaving a large spherical-aberration residual. There is no ED glass, no anomalous-partial-dispersion correction, and no aspherical surface.
+The glass palette is deliberately conservative. The Fuwatto optical path contains only the cemented crown/flint doublet, so it preserves ordinary primary achromatization while leaving a large spherical-aberration residual. All source faces are spherical; the selected source table supplies no individual ED or anomalous-partial-dispersion identification.
 
 The corrected glass identifications matter because the earlier labels implied different catalog glasses. The numerical prescription is unambiguous: L11 is a 623570 crown, L12 is an 804339 high-index flint, and L2 is a 518590 crown. Those code families are also consistent with the patent's conditional expressions governing the refractive-index step and the coma/lateral-color balance of the doublet.
 
@@ -141,7 +141,13 @@ Independent paraxial tracing of Example Embodiment 2 gives the following results
 | $f_1/f$ | 0.755 | 0.7552 | +0.0002 |
 | Telephoto ratio of sharp parent | 0.924 | 0.9240 | within rounding |
 
-For the production Fuwatto data file, all radii and thicknesses are scaled by $1.2$. The computed Fuwatto EFL is 90.6267 mm and the infinity final gap is 94.7771 mm. The wide-open stop semi-diameter is set to 9.44 mm to model the marketed 90 mm f/4.8 aperture rather than the slightly smaller stop implied by the patent's FN = 4.95 numerical example.
+For the production Fuwatto data file, all radii and thicknesses are scaled by $1.2$. The computed Fuwatto EFL is 90.6267 mm and the infinity final gap is 94.7771 mm. The wide-open stop now follows the source FN = 4.95; f/4.8 remains the product marketing specification.
+
+## Patent rim and glass review
+
+The October 30, 2026 review directly checked the selected second soft-focus configuration in US 5,796,530 Table 2 (PDF page 28), and Fig. 9 on PDF page 8. Table 2 explicitly gives FN = 4.95. The modeled full aperture and its first selectable stop now use that design value; the product name and catalog marketing value retain f/4.8. The stop remains 20.00004 mm ahead of the reversed doublet, with all powered curvatures, thicknesses, image gaps and focus travel unchanged. Every doublet face was inspected at 600 dpi from the native 300 ppi scan. Its curves reach the drawn rims; ray overlays and the cemented interface do not establish an additional independent concave-end land or cut, so the 14.5 mm glass caps remain.
+
+Both source d-line pairs were checked afresh: L12 1.80384/33.89 and L11 1.62280/57.03. E-LAFH2 and S-BSM10 supply compatible catalog spectral curves, explicitly qualified as proxies. The former is available through a historical catalog entry; this is no evidence of a production supplier or melt. The source supplies no numeric per-glass partial dispersion or C/F/g indices. Source anchors and the existing coefficient curves remain unchanged.
 
 ## Sources
 

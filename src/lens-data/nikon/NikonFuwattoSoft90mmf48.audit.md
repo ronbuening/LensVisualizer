@@ -21,3 +21,11 @@ Patent: US 5,796,530, Example Embodiment 2, second soft-focus configuration
 
 - The patent gives only `nd` and `vd`. No ED/APD claim, aspherical data, line-index table, or partial-dispersion table was found.
 - No APD flags were added.
+
+## 2026-10-30 — F-mount shape and glass review
+
+The October 30, 2026 review directly checked the selected second soft-focus configuration in US 5,796,530 Table 2 (PDF page 28), and Fig. 9 on PDF page 8. Table 2 explicitly gives FN = 4.95. The modeled full aperture and its first selectable stop now use that design value; the product name and catalog marketing value retain f/4.8. The stop remains 20.00004 mm ahead of the reversed doublet, with all powered curvatures, thicknesses, image gaps and focus travel unchanged. Every doublet face was inspected at 600 dpi from the native 300 ppi scan. Its curves reach the drawn rims; ray overlays and the cemented interface do not establish an additional independent concave-end land or cut, so the 14.5 mm glass caps remain.
+
+Both source d-line pairs were checked afresh: L12 1.80384/33.89 and L11 1.62280/57.03. E-LAFH2 and S-BSM10 supply compatible catalog spectral curves, explicitly qualified as proxies. The former is available through a historical catalog entry; this is no evidence of a production supplier or melt. The source supplies no numeric per-glass partial dispersion or C/F/g indices. Source anchors and the existing coefficient curves remain unchanged.
+
+All three source prescriptions pass canonical surface, image-circle and nominal-aperture audits. Fuwatto/Gugutto format corners pass the traced check; Gyogyotto is checked with the independent vector probes described above. All 27 actual SVG states are finite with zero hidden trim. Powered radii, thicknesses, air spacings, source glass coordinates, stop stations, focus travel and validation tolerances are retained.
