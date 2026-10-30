@@ -81,6 +81,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-30 Fig1/PDF2: S2 inferredcut9.62,outer32.5; S9cap9.2+landto15.8.
+// Source media/TableI4–5 exact at printed precision. Existing focal/field limitations remain.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -90,7 +92,15 @@ const LENS_DATA = {
   subtitle: "US 3,975,089 Table I — Betensky / Ponder & Best",
 
   catalog: {
-    lensMounts: ["canon-fd", "konica-ar", "m42", "minolta-sr", "nikon-f", "olympus-om", "pentax-k"],
+    lensMounts: [
+      "canon-fd",
+      "konica-ar",
+      "m42",
+      "minolta-sr",
+      "nikon-f",
+      "olympus-om",
+      "pentax-k",
+    ],
     imageFormat: "135-full-frame",
     specs: [
       "12 ELEMENTS / 9 GROUPS",
@@ -178,7 +188,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       focalLengthMm: -16.5,
-      glass: "834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)",
+      glass:
+        "834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)",
       apd: false,
       role: "Strongly negative element dominating Group II. R9 (+17.98 mm) is the steepest curvature in the system.",
       cemented: "D1",
@@ -255,7 +266,8 @@ const LENS_DATA = {
       nd: 1.639,
       vd: 45.1,
       focalLengthMm: 33.9,
-      glass: "BAF12 (SUMITA catalog-equivalent; production supplier unspecified)",
+      glass:
+        "BAF12 (SUMITA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Strongly asymmetric biconvex behind the iris. Moderate-dispersion barium flint for higher-order chromatic tuning.",
     },
@@ -278,7 +290,7 @@ const LENS_DATA = {
   surfaces: [
     // ── Group I (L1, L2, L3) — moves during zoom ──
     { label: "1", R: 135.72, d: 2.6, sd: 32.5, medium: 1 }, // L1 front
-    { label: "2", R: 46.71, d: 2.84, sd: 32.0 }, // L1 rear → air
+    { label: "2", R: 46.71, d: 2.84, sd: 32.5, rimCutDepthMm: 9.62 }, // L1 rear → air
     { label: "3", R: 46.5, d: 13.8, sd: 28.5, medium: 2 }, // L2 front
     { label: "4", R: -152.15, d: 0.1, sd: 28.5 }, // L2 rear → air
     { label: "5", R: 41.84, d: 6.6, sd: 25.8, medium: 3 }, // L3 front
@@ -287,7 +299,7 @@ const LENS_DATA = {
     // ── Group II (L4–L5 cemented) — moves during zoom ──
     { label: "7", R: 140.19, d: 3.1, sd: 15.8, medium: 4 }, // L4 front
     { label: "8", R: -60.45, d: 1.1, sd: 15.8, medium: 5 }, // L4→L5 junction
-    { label: "9", R: 17.98, sd: 9.2 }, // L5 rear → air — var gap (2)
+    { label: "9", R: 17.98, sd: 9.2, rimExtensionSd: 15.8 }, // L5 rear → air — var gap (2)
 
     // ── Group III (L6–L7 cemented) — moves during zoom ──
     { label: "10", R: -16.56, d: 1.0, sd: 8.5, medium: 6 }, // L6 front

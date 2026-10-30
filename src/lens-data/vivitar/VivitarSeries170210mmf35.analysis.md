@@ -10,7 +10,7 @@
 **Applicant:** Kino Precision Industries Co., Ltd. (キノ精密工業株式会社)  
 **Title:** Zoom Lens (ズームレンズ)  
 **Example details:** Table 1, the sole numerical example  
-**English counterpart:** US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, granted 18 June 1974
+**English counterpart:** US 3,817,600, _Zoom Lens Having Close-Up Focusing Mode of Operation_, granted 18 June 1974
 
 The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635 A; the US date is retained only as patent-family information.
 
@@ -41,14 +41,14 @@ The zoom-variable air gaps are $d_5$, $d_{10}$, and $d_{13}$. Their endpoint sum
 
 From wide to tele, both Groups II and III move imageward relative to the fixed Groups I and IV. Group II advances 45.514 mm, while Group III advances 22.889 mm; consequently, their mutual air gap contracts from 28.624 to 6.000 mm. The US counterpart’s Figure 8 confirms that the two groups follow different nonlinear zoom trajectories.
 
-| Quantity | Wide patent state | Tele patent state |
-|---|---:|---:|
-| Patent nominal focal length | 70 mm | 205 mm |
-| Independently traced EFL | 71.9792 mm | 203.0138 mm |
-| $d_5$ | 2.041 mm | 47.555 mm |
-| $d_{10}$ | 28.624 mm | 6.000 mm |
-| $d_{13}$ | 24.389 mm | 1.500 mm |
-| Paraxial BFL | 39.9912 mm | 40.0151 mm |
+| Quantity                    | Wide patent state | Tele patent state |
+| --------------------------- | ----------------: | ----------------: |
+| Patent nominal focal length |             70 mm |            205 mm |
+| Independently traced EFL    |        71.9792 mm |       203.0138 mm |
+| $d_5$                       |          2.041 mm |         47.555 mm |
+| $d_{10}$                    |         28.624 mm |          6.000 mm |
+| $d_{13}$                    |         24.389 mm |          1.500 mm |
+| Paraxial BFL                |        39.9912 mm |        40.0151 mm |
 
 The patent omits the final distance from surface 25 to the image plane. The data file uses 40.003152 mm, the mean of the independently traced endpoint BFLs. This leaves endpoint longitudinal residuals of only $±0.011916$ mm without inventing a focal-length-dependent image plane.
 
@@ -62,15 +62,15 @@ The element focal lengths below are standalone thick-lens values in air calculat
 
 ### L1 + L2 — Cemented Positive Achromat
 
-**L1:** $n_d = 1.71736$, $\nu_d = 29.5$. Glass: SF1 dense flint, exact legacy SUMITA match. $f = -159.9$ mm.
+**L1:** $n_d = 1.71736$, $\nu_d = 29.5$. Glass: SF1 dense flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = -159.9$ mm.
 
-**L2:** $n_d = 1.58913$, $\nu_d = 61.2$. Glass: SK5 dense crown, exact legacy SUMITA match. $f = +114.4$ mm.
+**L2:** $n_d = 1.58913$, $\nu_d = 61.2$. Glass: SK5 dense crown, legacy SUMITA reference; qualified compatible spectral proxy. $f = +114.4$ mm.
 
 L1 is a negative meniscus convex to the object; L2 is biconvex and positive. Cemented at surface 2, the pair has a net paraxial focal length of approximately +400.2 mm in air. It provides weak positive power and the first major chromatic correction of Group I.
 
 ### L3 — Positive Meniscus
 
-$n_d = 1.51009$, $\nu_d = 63.4$. Glass: BK1 crown, exact legacy SUMITA match. $f = +182.4$ mm.
+$n_d = 1.51009$, $\nu_d = 63.4$. Glass: BK1 crown, legacy SUMITA reference; qualified compatible spectral proxy. $f = +182.4$ mm.
 
 L3 supplies the remaining positive power of Group I. Its rear radius of +3376.49 mm is nearly planar, concentrating most of its power at surface 4. The complete group has $F_1 = +125.9999$ mm.
 
@@ -78,9 +78,9 @@ The English counterpart’s prose calls the final Group-I singlet double-convex,
 
 ### L4 + L5 — Nearly Afocal Cemented Doublet
 
-**L4:** $n_d = 1.78472$, $\nu_d = 25.7$. Glass: SF11 dense flint, exact legacy SUMITA match. $f = +76.4$ mm.
+**L4:** $n_d = 1.78472$, $\nu_d = 25.7$. Glass: SF11 dense flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = +76.4$ mm.
 
-**L5:** $n_d = 1.66672$, $\nu_d = 48.4$. Glass: BAF11 barium flint, exact legacy SUMITA match. $f = -79.6$ mm.
+**L5:** $n_d = 1.66672$, $\nu_d = 48.4$. Glass: BAF11 barium flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = -79.6$ mm.
 
 The cemented pair has a net focal length of approximately +1458 mm and is nearly afocal. It principally redistributes chromatic and monochromatic aberration within Group II rather than supplying the group’s net negative power.
 
@@ -92,9 +92,9 @@ L6 supplies most of the negative power of the variator. Together with the weakly
 
 ### L7 + L8 — Negative Compensator Doublet
 
-**L7:** $n_d = 1.52249$, $\nu_d = 59.6$. Glass: K5 crown, exact legacy SUMITA match. $f = -37.7$ mm.
+**L7:** $n_d = 1.52249$, $\nu_d = 59.6$. Glass: K5 crown, legacy SUMITA reference; qualified compatible spectral proxy. $f = -37.7$ mm.
 
-**L8:** $n_d = 1.62588$, $\nu_d = 35.6$. Glass: F1 flint, exact legacy SUMITA match. $f = +68.1$ mm.
+**L8:** $n_d = 1.62588$, $\nu_d = 35.6$. Glass: F1 flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = +68.1$ mm.
 
 This cemented doublet is Group III in its entirety and has $F_3 = -82.8897$ mm. The patent’s conditions link L7’s standalone focal length, radius $r_{11}$, and the 24.0-point Abbe-number difference directly to maintaining aberration balance in both zoom and macro operation.
 
@@ -102,11 +102,11 @@ This cemented doublet is Group III in its entirety and has $F_3 = -82.8897$ mm. 
 
 **L9:** $n_d = 1.48749$, $\nu_d = 70.0$. Glass: FK5 class; SUMITA FK5 and HIKARI J-FK5 match $n_d$ but list $\nu_d$ near 70.3–70.4. $f = +54.0$ mm.
 
-**L10:** $n_d = 1.80518$, $\nu_d = 25.5$. Glass: SF6 dense flint, exact legacy SUMITA match. $f = -134.4$ mm.
+**L10:** $n_d = 1.80518$, $\nu_d = 25.5$. Glass: SF6 dense flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = -134.4$ mm.
 
 The pair has a net focal length of approximately +90.5 mm. The large dispersion separation provides strong achromatization. The English counterpart also specifies that L9, L11, and L12 have $n_d < 1.52$ as part of Group IV’s Petzval correction strategy.
 
-FK5 is a fluor-crown-class optical glass. The patent does not establish modern ED behavior, anomalous partial dispersion, or crystalline fluorite. Because the patent $\nu_d=70.0$ is not an exact match to the available FK5 catalog values, the data file does not import catalog $n_C$, $n_F$, or $n_g$ values for L9, L11, and L12.
+FK5 is a fluor-crown-class optical glass. The patent does not establish modern ED behavior, anomalous partial dispersion, or crystalline fluorite. Because the patent $\nu_d=70.0$ is not an exact match to the available FK5 catalog values, the current data file removes catalog-only $n_C$, $n_F$, and $n_g$ copies for every element, including L9, L11 and L12.
 
 ### L11 — Positive Meniscus
 
@@ -118,19 +118,19 @@ L11 adds weak positive relay power between the two cemented achromats in the fro
 
 **L12:** $n_d = 1.48749$, $\nu_d = 70.0$. Glass: FK5 class. $f = +58.3$ mm.
 
-**L13:** $n_d = 1.64328$, $\nu_d = 47.8$. Glass: BAF9 barium flint, exact legacy SUMITA match. $f = -77.0$ mm.
+**L13:** $n_d = 1.64328$, $\nu_d = 47.8$. Glass: BAF9 barium flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = -77.0$ mm.
 
 The pair has a net focal length of approximately +204.0 mm. It completes the positive front section of Group IV immediately before the stop. Together, surfaces 14–21 have a paraxial focal length of +44.6412 mm.
 
 ### L14 — Negative Meniscus, Concave to Object
 
-$n_d = 1.69700$, $\nu_d = 48.5$. Glass: LAFN2 dense lanthanum flint, exact legacy SUMITA match. $f = -47.5$ mm.
+$n_d = 1.69700$, $\nu_d = 48.5$. Glass: LAFN2 dense lanthanum flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = -47.5$ mm.
 
 L14 is the strong negative element behind the long stop gap. Its Abbe number places it in flint territory despite the lanthanum family name. It supplies the principal negative power of Group IV’s rear section and offsets the positive Petzval contribution of the forward relay elements.
 
 ### L15 — Biconvex Positive
 
-$n_d = 1.58921$, $\nu_d = 41.0$. Glass: LF2 light flint, exact legacy SUMITA match. $f = +65.8$ mm.
+$n_d = 1.58921$, $\nu_d = 41.0$. Glass: LF2 light flint, legacy SUMITA reference; qualified compatible spectral proxy. $f = +65.8$ mm.
 
 L15 partially offsets L14. The separated L14–L15 pair remains net negative at approximately −211.4 mm, while the complete Group IV remains positive at $F_{IV}=+44.0400$ mm.
 
@@ -138,24 +138,24 @@ L15 partially offsets L14. The separated L14–L15 pair remains net negative at 
 
 The prescription contains 12 distinct $n_d$/$\nu_d$ pairs. Catalog names identify optical-constant matches, not proven production suppliers. The official SUMITA all-glass catalog is especially useful because it retains discontinued standard glass types with dispersion coefficients.
 
-| Elements | Patent $n_d$ | Patent $\nu_d$ | Catalog identification | Assessment |
-|---|---:|---:|---|---|
-| L1 | 1.71736 | 29.5 | SF1 (SUMITA) | Exact at patent precision |
-| L2 | 1.58913 | 61.2 | SK5 (SUMITA) | Exact at patent precision |
-| L3 | 1.51009 | 63.4 | BK1 (SUMITA) | Exact at patent precision |
-| L4 | 1.78472 | 25.7 | SF11 (SUMITA) | Exact at patent precision |
-| L5, L6 | 1.66672 | 48.4 | BAF11 (SUMITA) | Exact at patent precision |
-| L7 | 1.52249 | 59.6 | K5 (SUMITA) | Exact at patent precision |
-| L8 | 1.62588 | 35.6 | F1 (SUMITA) | Exact at patent precision |
-| L9, L11, L12 | 1.48749 | 70.0 | FK5 class | Exact $n_d$; catalog $\nu_d$ differs by 0.3–0.4 |
-| L10 | 1.80518 | 25.5 | SF6 (SUMITA) | Exact at patent precision |
-| L13 | 1.64328 | 47.8 | BAF9 (SUMITA) | Exact at patent precision |
-| L14 | 1.69700 | 48.5 | LAFN2 (SUMITA) | Exact at patent precision |
-| L15 | 1.58921 | 41.0 | LF2 (SUMITA) | Exact at patent precision |
+| Elements     | Patent $n_d$ | Patent $\nu_d$ | Catalog identification | Assessment                                           |
+| ------------ | -----------: | -------------: | ---------------------- | ---------------------------------------------------- |
+| L1           |      1.71736 |           29.5 | SF1 (SUMITA)           | Qualified legacy reference; current compatible curve |
+| L2           |      1.58913 |           61.2 | SK5 (SUMITA)           | Qualified legacy reference; current compatible curve |
+| L3           |      1.51009 |           63.4 | BK1 (SUMITA)           | Qualified legacy reference; current compatible curve |
+| L4           |      1.78472 |           25.7 | SF11 (SUMITA)          | Qualified legacy reference; current compatible curve |
+| L5, L6       |      1.66672 |           48.4 | BAF11 (SUMITA)         | Qualified legacy reference; current compatible curve |
+| L7           |      1.52249 |           59.6 | K5 (SUMITA)            | Qualified legacy reference; current compatible curve |
+| L8           |      1.62588 |           35.6 | F1 (SUMITA)            | Qualified legacy reference; current compatible curve |
+| L9, L11, L12 |      1.48749 |           70.0 | FK5 class              | Exact $n_d$; catalog $\nu_d$ differs by 0.3–0.4      |
+| L10          |      1.80518 |           25.5 | SF6 (SUMITA)           | Qualified legacy reference; current compatible curve |
+| L13          |      1.64328 |           47.8 | BAF9 (SUMITA)          | Qualified legacy reference; current compatible curve |
+| L14          |      1.69700 |           48.5 | LAFN2 (SUMITA)         | Qualified legacy reference; current compatible curve |
+| L15          |      1.58921 |           41.0 | LF2 (SUMITA)           | Qualified legacy reference; current compatible curve |
 
 The repeated FK5-class elements form the principal low-dispersion set in Group IV. The design is properly described as a strongly achromatized all-spherical zoom. The patent does not publish partial-dispersion data sufficient to claim apochromatic correction.
 
-The exact legacy SUMITA vendor-polynomial records are now present for all previously missing types in this prescription. Strict catalog coverage is therefore 15/15 elements; at runtime, the complete author-supplied $n_C$/$n_F$/$n_g$ line indices remain the higher-priority dispersion source and independently cross-check the catalog assignments.
+The current resolver supplies15compatible coefficient-backed spectral proxies. The fresh2026-10-30 inspection of the original Japanese Table1/PDF3–4 confirms every retained nd/νd pair and its explicit d-line convention, with no individual C/F/g indices or partial ratios.45catalog-only C/F/g copies are removed, so catalog curves provide wavelength behavior directly. Several current curves differ in Abbe number beyond the source's one-decimal rounding: the three1.48749/70.0 media use loose J-FK5 proxies (coefficientνd≈70.31879); that discrepancy is retained and qualified rather than replaced by catalog70.3. No source partial dispersion, supplier, melt or APO identity is invented.
 
 ## Focus Mechanism
 
@@ -165,13 +165,13 @@ The lens has two mechanically distinct focus modes.
 
 **Macro focus:** The mechanism first reaches the tele endpoint and the Group-I 1.8 m focus position. Groups II and III then move objectward equally while $d_{10}$ remains fixed at 6.000 mm. Consequently, $d_5$ decreases and $d_{13}$ increases by the same amount.
 
-| State | $d_5$ | $d_{10}$ | $d_{13}$ |
-|---|---:|---:|---:|
-| Wide, infinity | 2.0410 mm | 28.6240 mm | 24.3890 mm |
+| State                      |      $d_5$ |   $d_{10}$ |   $d_{13}$ |
+| -------------------------- | ---------: | ---------: | ---------: |
+| Wide, infinity             |  2.0410 mm | 28.6240 mm | 24.3890 mm |
 | Wide, normal minimum focus | 11.4619 mm | 28.6240 mm | 24.3890 mm |
-| Tele, infinity | 47.5550 mm | 6.0000 mm | 1.5000 mm |
-| Tele, normal minimum focus | 57.0171 mm | 6.0000 mm | 1.5000 mm |
-| Tele, maximum macro | 11.7804 mm | 6.0000 mm | 46.7367 mm |
+| Tele, infinity             | 47.5550 mm |  6.0000 mm |  1.5000 mm |
+| Tele, normal minimum focus | 57.0171 mm |  6.0000 mm |  1.5000 mm |
+| Tele, maximum macro        | 11.7804 mm |  6.0000 mm | 46.7367 mm |
 
 The macro assembly moves 45.2367 mm objectward from the tele normal-focus position. The resulting configuration has 53.9716 mm EFL. For an object 80 mm in front of surface 1, the paraxial lateral magnification is −0.44422, or 1:2.251, and the object-to-image-plane distance is 289.4662 mm.
 
@@ -221,24 +221,24 @@ All three Japanese conditions are satisfied. The US claims preserve the lower di
 
 All paraxial results were recomputed from a literal transcription of Table 1 using a reduced-angle $[y,n\theta]$ ABCD trace; the wide-open iris radius and its f-numbers come from a real marginal-ray trace of the same prescription. The patent values were not scaled.
 
-| Quantity | Patent statement | Independent result |
-|---|---:|---:|
-| Group I focal length | +126.000 mm | +125.9999 mm |
-| Group II focal length | −63.900 mm | −63.8983 mm |
-| Group III focal length | −82.888 mm | −82.8897 mm |
-| Group IV focal length | approximately +44.04 mm | +44.0400 mm |
-| Groups II+III at 6.000 mm | −34.620 mm | −34.6203 mm |
-| Wide EFL / BFL | nominal 70 mm / not stated | 71.9792 / 39.9912 mm |
-| Tele EFL / BFL | nominal 205 mm / not stated | 203.0138 / 40.0151 mm |
-| Fixed data-file BFD | not stated | 40.003152 mm |
-| Paraxial stop radius for 1:3.65, wide / tele | not stated | 14.1070 / 14.1108 mm |
-| Wide-open iris radius, real marginal ray at 1:3.65 | not stated | 14.7778 mm |
-| Endpoint f-numbers from that iris alone | 3.65 | 3.650 / 3.646 |
-| First-to-last glass track | 160.000 mm | 160.000 / 160.001 mm |
-| Petzval sum, $\sum \phi/(nn')$ | not stated | +0.000385045 mm$^{-1}$ |
-| Petzval-radius magnitude | not stated | 2597.1 mm |
-| Maximum-macro EFL | not stated | 53.9716 mm |
-| Maximum macro magnification | not stated | 0.44422× = 1:2.251 |
+| Quantity                                           |            Patent statement |     Independent result |
+| -------------------------------------------------- | --------------------------: | ---------------------: |
+| Group I focal length                               |                 +126.000 mm |           +125.9999 mm |
+| Group II focal length                              |                  −63.900 mm |            −63.8983 mm |
+| Group III focal length                             |                  −82.888 mm |            −82.8897 mm |
+| Group IV focal length                              |     approximately +44.04 mm |            +44.0400 mm |
+| Groups II+III at 6.000 mm                          |                  −34.620 mm |            −34.6203 mm |
+| Wide EFL / BFL                                     |  nominal 70 mm / not stated |   71.9792 / 39.9912 mm |
+| Tele EFL / BFL                                     | nominal 205 mm / not stated |  203.0138 / 40.0151 mm |
+| Fixed data-file BFD                                |                  not stated |           40.003152 mm |
+| Paraxial stop radius for 1:3.65, wide / tele       |                  not stated |   14.1070 / 14.1108 mm |
+| Wide-open iris radius, real marginal ray at 1:3.65 |                  not stated |             14.7778 mm |
+| Endpoint f-numbers from that iris alone            |                        3.65 |          3.650 / 3.646 |
+| First-to-last glass track                          |                  160.000 mm |   160.000 / 160.001 mm |
+| Petzval sum, $\sum \phi/(nn')$                     |                  not stated | +0.000385045 mm$^{-1}$ |
+| Petzval-radius magnitude                           |                  not stated |              2597.1 mm |
+| Maximum-macro EFL                                  |                  not stated |             53.9716 mm |
+| Maximum macro magnification                        |                  not stated |     0.44422× = 1:2.251 |
 
 The table gives 71.9792 mm at the wide station and 203.0138 mm at the tele station, 2.83% above and 0.97% below the patent’s nominal 70 and 205 mm. The file matches Table 1's endpoint gaps and reproduces near-equal endpoint BFLs. The stated 70–205 mm range is retained in design metadata and station labels; the independently traced 71.979219/203.013778 mm values are calculated results. The source-stated versus traced discrepancy remains unresolved and is not corrected by scaling.
 
@@ -254,9 +254,9 @@ The patent does not publish clear semi-diameters. The data-file apertures were i
 
 The selected values give:
 
-- maximum $sd/|R|=0.7925$ at surface 22;
+- maximum underlying outer $sd/|R|=0.7925$ at surface22; after the inferred trim its actual cap is14.411679mm, or $h/|R|=0.7138$;
 - minimum calculated edge thickness = 0.3510 mm at L2;
-- maximum same-element semi-diameter ratio = 1.2188 at L6;
+- maximum same-element optical-cap semi-diameter ratio =1.2188 at L6; the drawn rim is now common19.5mm;
 - limiting signed cross-gap sag intrusion = 5.3110 mm across the 6.000 mm gap from surfaces 10 to 11, or 88.52%;
 - next-limiting intrusion = 2.2754 mm across the 2.700 mm gap from surfaces 8 to 9, or 84.27%.
 
@@ -274,15 +274,18 @@ The production owner’s manual specifies a 70–210mm f/3.5 lens with 15 elemen
 
 ## Sources
 
-- JP S51-63635 A (特開昭51-63635), *Zoom Lens*, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
-- US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, Rinzō Watanabe and Ellis I. Betensky, granted 18 June 1974. Used for the English group descriptions, published group focal lengths, nonlinear motion curves, and mechanical cam explanation.
-- Vivitar, *Vivitar Series 1 70mm–210mm f3.5 Macro Focusing Auto Zoom Lens — Owner’s Manual*, dated March 1975.
+- JP S51-63635 A (特開昭51-63635), _Zoom Lens_, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
+- US 3,817,600, _Zoom Lens Having Close-Up Focusing Mode of Operation_, Rinzō Watanabe and Ellis I. Betensky, granted 18 June 1974. Used for the English group descriptions, published group focal lengths, nonlinear motion curves, and mechanical cam explanation.
+- Vivitar, _Vivitar Series 1 70mm–210mm f3.5 Macro Focusing Auto Zoom Lens — Owner’s Manual_, dated March 1975.
 - SUMITA Optical Glass, official all-glass Zemax catalog, including discontinued standard types SF1, SK5, BK1, SF11, BAF11, K5, F1, FK5, SF6, BAF9, LAFN2, and LF2.
 - HIKARI Glass Co., Ltd., official optical-glass catalog, used as an independent cross-check for current J-series equivalents where available.
-
 
 ## Production mount assignment
 
 Vivitar’s service manual 3746004C / Revision D (May 1980), PDF page 6, explicitly lists seven mount configurations: universal thread, Minolta MD/SRT/SR, Canon FL/FD, Nikon F/AI, Konica Autoreflex, Olympus OM and Pentax K/M. Canon FL and FD are two catalog ids for one listed configuration. This is the first 15-element 70–210mm f/3.5 family; later f/2.8–4 models are not inferred from it. [Source](https://allphotolenses.com/public/files/pdfs/1aa8836d8ab55113cf3fd62c6b9f17cc.pdf).
 
 The assignment records the correlated production installation, not manufacturer confirmation of an exact patent-to-factory prescription.
+
+## Fresh source shape review —2026-10-30
+
+Original Japanese Fig.1(a)/PDF4 (native347dpi,600dpi) was inspected face by face, including the cemented interfaces. S8 keeps19.5mm with a land to22mm, S10keeps16mm with a land to19.5mm, and S11keeps16mm with a land to17.5mm. Those compounds remain connected. Strong concave S22 receives inferred depth6.05mm, cap14.411679mm on unchanged outer16mm, consistent with sourceq≈.90±.032. Weak endpoint marks and cemented faces are not extra cuts. Full uncut beam and temporary retained1800/80mm first-surface endpoint checks pass. All R/d, d-line source coordinates, r19=38.35, inferred1.2mm aperture-plane split,40.003152mm rear normalization, source EFL discrepancy and schematic normal-focus/macro interpolation remain unchanged. The Japanese source's400mm plotted close situation does not supply a complete focus table or a newly authored certificate for that state. Actual nine-state SVGs have zero renderer trim.

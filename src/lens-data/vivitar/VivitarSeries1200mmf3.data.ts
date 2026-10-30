@@ -37,6 +37,8 @@
 //
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+// 2026-10-30: original Fig5/PDF3 supports S6 air-facing land to26, opticalcap24 retained.
+// All6source nd/vd rechecked TableIV/PDF6; qualified current proxy curves, no source partials.
 const LENS_DATA = {
   schema: 2,
   key: "vivitar-series1-200f3",
@@ -45,7 +47,14 @@ const LENS_DATA = {
   subtitle: "US 3,942,876 Table IV (FIG. 5) — Betensky / Ponder & Best",
 
   catalog: {
-    lensMounts: ["nikon-f", "canon-fd", "minolta-sr", "konica-ar", "olympus-om", "m42"],
+    lensMounts: [
+      "nikon-f",
+      "canon-fd",
+      "minolta-sr",
+      "konica-ar",
+      "olympus-om",
+      "m42",
+    ],
     imageFormat: "135-full-frame",
     specs: [
       "6 elements / 6 groups",
@@ -77,7 +86,8 @@ const LENS_DATA = {
       nd: 1.56873,
       vd: 63.1,
       focalLengthMm: 101.4,
-      glass: "569631 — PSK2 phosphate crown (Schott)",
+      glass:
+        "PCD2 (HOYA spectral proxy; PSK2 reference class, supplier unspecified)",
       apd: false,
       role: "Front positive crown — dominant positive power; strongly convex front surface with nearly flat rear minimizes spherical aberration.",
     },
@@ -154,7 +164,7 @@ const LENS_DATA = {
 
     // ── L3: Biconcave negative (SF6) ──
     { label: "5", R: -254.83, d: 4.13, sd: 26.0, medium: 3 },
-    { label: "6", R: 64.06, d: 15.0, sd: 24.0 },
+    { label: "6", R: 64.06, d: 15.0, sd: 24.0, rimExtensionSd: 26 },
     // ↑ d = distance from R6 to aperture stop (15.0 mm into the 29.21 mm gap)
 
     // ── Aperture stop (station inferred from FIG. 5; radius derived from the design f-number) ──
@@ -188,7 +198,11 @@ const LENS_DATA = {
 
   gaps: { "11": { label: "D11", values: [[3.2, 15.0, 33.8]] } },
 
-  aperture: { nominalFNumber: 3.0, fStops: [3, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+  aperture: {
+    nominalFNumber: 3.0,
+    fStops: [3, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
 
   groups: [
     { text: "OBJECTIVE (L1–L5)", fromSurface: "1", toSurface: "11" },

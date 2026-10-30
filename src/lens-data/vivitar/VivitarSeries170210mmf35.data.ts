@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  thread, patent-figure proportions, and renderer geometry constraints.      ║
  * ║                                                                              ║
  * ║  Glass names identify catalog equivalents, not proven production melts.     ║
- * ║  nC/nF/ng values are from the cited legacy SUMITA glass table; the patent   ║
+ * ║  Catalog-only nC/nF/ng copies are removed; compatible current curves are spectral proxies. The patent   ║
  * ║  itself supplies only nd and νd.                                             ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
@@ -37,6 +37,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // that source range. At native scale the printed prescription traces to
 // 71.979219/203.013778 mm at infinity. The discrepancy remains unresolved;
 // no prescription value or scale is changed.
+// 2026-10-30 original Japanese Fig1a/PDF4: landsS8/S10/S11to22/19.5/17.5,oldcaps retained;
+// S22 inferred concave cut6.05/outer16.0;45 catalog-only C/F/g copies removed,source pairs untouched.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -46,7 +48,16 @@ const LENS_DATA = {
   subtitle: "JP S51-63635 TABLE 1 — RINZŌ WATANABE / ELLIS I. BETENSKY",
 
   catalog: {
-    lensMounts: ["m42", "minolta-sr", "canon-fl", "canon-fd", "nikon-f", "konica-ar", "olympus-om", "pentax-k"],
+    lensMounts: [
+      "m42",
+      "minolta-sr",
+      "canon-fl",
+      "canon-fd",
+      "nikon-f",
+      "konica-ar",
+      "olympus-om",
+      "pentax-k",
+    ],
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 10 GROUPS",
@@ -91,9 +102,6 @@ const LENS_DATA = {
       glass: "SF1 (SUMITA legacy catalog; HIKARI J-SF1 equivalent)",
       role: "Negative flint component of the positive front achromat.",
       cemented: "D1",
-      nC: 1.71031,
-      nF: 1.73462,
-      ng: 1.74916,
     },
     {
       id: 2,
@@ -106,9 +114,6 @@ const LENS_DATA = {
       glass: "SK5 (SUMITA legacy catalog; HIKARI J-SK5 equivalent)",
       role: "Positive crown component of the front achromat.",
       cemented: "D1",
-      nC: 1.58619,
-      nF: 1.59581,
-      ng: 1.601,
     },
     {
       id: 3,
@@ -120,9 +125,6 @@ const LENS_DATA = {
       focalLengthMm: 182.4,
       glass: "BK1 (SUMITA legacy catalog; OHARA BSL1 equivalent)",
       role: "Weak positive meniscus completing focusing Group I.",
-      nC: 1.50762,
-      nF: 1.51567,
-      ng: 1.52,
     },
     {
       id: 4,
@@ -135,9 +137,6 @@ const LENS_DATA = {
       glass: "SF11 (SUMITA legacy catalog; HIKARI J-SF11 equivalent)",
       role: "Positive dense-flint component of the nearly afocal Group II doublet.",
       cemented: "D2",
-      nC: 1.77597,
-      nF: 1.80649,
-      ng: 1.82525,
     },
     {
       id: 5,
@@ -150,9 +149,6 @@ const LENS_DATA = {
       glass: "BAF11 (SUMITA legacy catalog; HIKARI J-BAF11 equivalent)",
       role: "Negative barium-flint component of the Group II achromat.",
       cemented: "D2",
-      nC: 1.6626,
-      nF: 1.67638,
-      ng: 1.68412,
     },
     {
       id: 6,
@@ -164,9 +160,6 @@ const LENS_DATA = {
       focalLengthMm: -60.3,
       glass: "BAF11 (SUMITA legacy catalog; HIKARI J-BAF11 equivalent)",
       role: "Principal negative-power singlet of variator Group II.",
-      nC: 1.6626,
-      nF: 1.67638,
-      ng: 1.68412,
     },
     {
       id: 7,
@@ -179,9 +172,6 @@ const LENS_DATA = {
       glass: "K5 (SUMITA legacy catalog)",
       role: "Strong negative crown component of compensator Group III.",
       cemented: "D3",
-      nC: 1.51982,
-      nF: 1.52858,
-      ng: 1.53335,
     },
     {
       id: 8,
@@ -194,9 +184,6 @@ const LENS_DATA = {
       glass: "F1 (SUMITA legacy catalog; HIKARI J-F1 equivalent)",
       role: "Positive flint partner setting the Group III chromatic balance.",
       cemented: "D3",
-      nC: 1.62073,
-      nF: 1.63829,
-      ng: 1.64855,
     },
     {
       id: 9,
@@ -209,9 +196,6 @@ const LENS_DATA = {
       glass: "FK5 class (SUMITA legacy / HIKARI J-FK5)",
       role: "Low-index fluor-crown-class positive element in master Group IV.",
       cemented: "D4",
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49593,
     },
     {
       id: 10,
@@ -224,9 +208,6 @@ const LENS_DATA = {
       glass: "SF6 (SUMITA legacy catalog; HIKARI J-SF6 equivalent)",
       role: "Dense-flint achromatizing partner of L9.",
       cemented: "D4",
-      nC: 1.7961,
-      nF: 1.82773,
-      ng: 1.84701,
     },
     {
       id: 11,
@@ -238,9 +219,6 @@ const LENS_DATA = {
       focalLengthMm: 158.9,
       glass: "FK5 class (SUMITA legacy / HIKARI J-FK5)",
       role: "Weak positive fluor-crown-class relay element.",
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49593,
     },
     {
       id: 12,
@@ -253,9 +231,6 @@ const LENS_DATA = {
       glass: "FK5 class (SUMITA legacy / HIKARI J-FK5)",
       role: "Positive low-index component of the second Group IV achromat.",
       cemented: "D5",
-      nC: 1.48535,
-      nF: 1.49227,
-      ng: 1.49593,
     },
     {
       id: 13,
@@ -268,9 +243,6 @@ const LENS_DATA = {
       glass: "BAF9 (SUMITA legacy catalog)",
       role: "Negative barium-flint partner preceding the aperture stop.",
       cemented: "D5",
-      nC: 1.63926,
-      nF: 1.65273,
-      ng: 1.66034,
     },
     {
       id: 14,
@@ -282,9 +254,6 @@ const LENS_DATA = {
       focalLengthMm: -47.5,
       glass: "LAFN2 (SUMITA legacy; OHARA S-LAM59 equivalent)",
       role: "Strong negative lanthanum-flint element in the rear relay section.",
-      nC: 1.6927,
-      nF: 1.70708,
-      ng: 1.71514,
     },
     {
       id: 15,
@@ -296,9 +265,6 @@ const LENS_DATA = {
       focalLengthMm: 65.8,
       glass: "LF2 (SUMITA legacy catalog; OHARA PBL22 equivalent)",
       role: "Final positive singlet completing the rear negative subassembly.",
-      nC: 1.58496,
-      nF: 1.59934,
-      ng: 1.6076,
     },
   ],
 
@@ -311,10 +277,10 @@ const LENS_DATA = {
     { label: "5", R: 3376.49, sd: 28.8 },
     { label: "6", R: 222.96, d: 4.7, sd: 22.0, medium: 4 },
     { label: "7", R: -81.3, d: 1.3, sd: 22.0, medium: 5 },
-    { label: "8", R: 154.03, d: 2.7, sd: 19.5 },
+    { label: "8", R: 154.03, d: 2.7, sd: 19.5, rimExtensionSd: 22 },
     { label: "9", R: -184.02, d: 1, sd: 19.5, medium: 6 },
-    { label: "10", R: 51.53, sd: 16.0 },
-    { label: "11", R: -47.69, d: 1, sd: 16.0, medium: 7 },
+    { label: "10", R: 51.53, sd: 16.0, rimExtensionSd: 19.5 },
+    { label: "11", R: -47.69, d: 1, sd: 16.0, medium: 7, rimExtensionSd: 17.5 },
     { label: "12", R: 33.79, d: 4.8, sd: 17.5, medium: 8 },
     { label: "13", R: 153.92, sd: 17.5 },
     { label: "14", R: 88.43, d: 6.5, sd: 17.0, medium: 9 },
@@ -330,7 +296,14 @@ const LENS_DATA = {
     // f/3.65 at the wide end.
     { label: "21", R: 94.78, d: 1.2, sd: 15 },
     { label: "STO", R: "flat", d: 48.646 },
-    { label: "22", R: -20.19, d: 1.48, sd: 16.0, medium: 14 },
+    {
+      label: "22",
+      R: -20.19,
+      d: 1.48,
+      sd: 16.0,
+      medium: 14,
+      rimCutDepthMm: 6.05,
+    },
     { label: "23", R: -53.33, d: 0.267, sd: 16.0 },
     { label: "24", R: 135.84, d: 4, sd: 16.0, medium: 15 },
     { label: "25", R: -53.64, d: 40.003152, sd: 16.0 },
@@ -379,7 +352,11 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 3.65, fStops: [3.65, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+  aperture: {
+    nominalFNumber: 3.65,
+    fStops: [3.65, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
 
   groups: [
     { text: "GROUP I · FOCUS", fromSurface: "1", toSurface: "5" },
