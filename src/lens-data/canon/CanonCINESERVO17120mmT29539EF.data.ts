@@ -10,6 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Aperture: nominalFno [2.8, 2.8, 3.4] is the patent/design schedule. The builder infers the physical
  * iris radius required at each published zoom station; the patent's surface-30 effective diameter is not
  * treated as a published physical iris schedule.
+ * Fig. 1 (p.20) resolves an L1 rear shoulder: surface 2 keeps its 34.8 mm clear radius
+ * and extends the drawn rim to the source front-face radius, 44.135 mm; no opaque bonded-interface lands.
  * Semi-diameters: source effective radii are retained except 20/21 -> 14.38 mm, 38 -> 10.87 mm,
  * 48/49 -> 13.95 mm for validated shared-gap/off-axis containment. The stop radius is derived from the design
  * f-number at each zoom station.
@@ -403,7 +405,7 @@ const LENS_DATA = {
       medium: 1,
       asphere: { K: 2.77301, A4: 3.05128e-07, A6: 1.87256e-10, A8: -1.41108e-13, A10: 4.60119e-17, A12: -6.36153e-21 },
     },
-    { label: "2", R: 42.785, d: 29.54, sd: 34.8 },
+    { label: "2", R: 42.785, d: 29.54, sd: 34.8, rimExtensionSd: 44.135 },
     { label: "3", R: -81.327, d: 2.4, sd: 33.945, medium: 2 },
     { label: "4", R: 253.731, d: 0.63, sd: 35.075 },
     { label: "5", R: 152.98, d: 6.97, sd: 35.99, medium: 3 },

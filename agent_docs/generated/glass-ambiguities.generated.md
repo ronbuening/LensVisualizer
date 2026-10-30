@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11838** glass elements examined
-- **2964** elements have multiple coordinate-compatible candidates
-- **527** lens files are affected
+- **2952** elements have multiple coordinate-compatible candidates
+- **526** lens files are affected
 - **309** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **154** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1713 |
-| Evidence-source priority | 944 |
+| Smallest reference-index residual | 1707 |
+| Evidence-source priority | 938 |
 | Vendor context | 293 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -60,16 +60,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `603607 dense-crown/SK14 class (vendor unspecified)` | 1.60311 / 60.70 (d) | N-SK14 — alias evidence outranks six-digit code evidence. | S-BSM14 (Ohara, code, preferred code row)<br>BACD14 (Hoya, code, alternate code row)<br>J-SK14 (Hikari, code, alternate code row) | 1 | [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) E7 |
 | `834372/373 lanthanum high-index class (vendor unspecified)` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) E9 |
 | `785257 dense-flint class (vendor unspecified)` | 1.78472 / 25.70 (d) | H-ZF13 — smallest d-line \|Δn\| (2.0e-6 vs 4.7e-6) | S-TIH11 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) E13 |
-| `805254 — SF6-class dense flint; vendor/melt unresolved` | 1.80518 / 25.40 (d) | SF6 — direct name evidence outranks six-digit code evidence. | N-SF6 (Schott, code, alternate code row)<br>S-TIH6 (Ohara, code, preferred code row) | 3 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L1 |
-| `516641 — BSL7-class crown; OHARA S/L family unresolved` | 1.51633 / 64.10 (d) | S-BSL7 — alias evidence outranks six-digit code evidence. | L-BSL7 (Ohara, code, vendor ✓, alternate code row)<br>K-BK7 (Sumita, code, vendor ✗, alternate code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L2 |
-| `713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved` | 1.71300 / 53.80 (d) | LAL8 — direct name evidence outranks six-digit code evidence. | N-LAK8 (Schott, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L4 |
-| `697555 — LAK14-class lanthanum crown; vendor unresolved` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L5 |
-| `603607 — SK14/BACD14-class crown; vendor unresolved` | 1.60311 / 60.70 (d) | BACD14 — direct name evidence outranks alias evidence. | N-SK14 (Schott, alias)<br>J-SK14 (Hikari, code, alternate code row)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L9 |
-| `773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved` | 1.77250 / 49.60 (d) | TAF1 — smallest d-line \|Δn\| (2.9e-8 vs 9.1e-7) | LAH66 (Ohara, name)<br>J-LASF016 (Hikari, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L10 |
-| `834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L11 |
-| `575415 — LF7/TIL27-class light flint; vendor unresolved` | 1.57501 / 41.50 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 4.1e-6) | S-TIL27 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L13 |
-| `804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved` | 1.80400 / 46.60 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L14 |
-| `613370 — F3/S-TIM3-class flint; vendor unresolved` | 1.61293 / 37.00 (d) | F3 — smallest d-line \|Δn\| (4.2e-7 vs 8.0e-7) | S-TIM3 (Ohara, name)<br>E-F3 (Hoya, code, alternate code row) | 1 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) L15 |
 | `654397 KZFS/NBH-class flint (vendor unresolved)` | 1.65412 / 39.70 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, code, preferred code row)<br>BPH5 (Ohara, code, alternate code row) | 2 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E02 |
 | `596392 flint class (vendor unresolved)` | 1.59551 / 39.20 (d) | E-F8 — smallest d-line \|Δn\| (1.5e-7 vs 1.1e-6) | S-TIM8 (Ohara, code, preferred code row) | 1 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E04 |
 | `773496 lanthanum flint class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) E05 |

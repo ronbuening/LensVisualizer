@@ -43,6 +43,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  cross-gap intrusion, the patent Fig. 5 proportions, and Canon's 58 mm   ║
  * ║  production filter diameter. No layout override is used to hide geometry.║
  * ║                                                                            ║
+ * ║  Original-PDF shape/glass review 2026-10-30: Fig. 5, PDF page 4, and    ║
+ * ║  Numerical Embodiment 3, PDF page 24 (printed columns 9-10). Retained   ║
+ * ║  inferred caps: no resolved outer shoulder or beam-clearing concave land ║
+ * ║  justifies an extra rim feature. All 14 modeled material pairs checked. ║
+ * ║                                                                            ║
  * ║  Glass labels use supplier-neutral coordinate classes and qualified      ║
  * ║  catalog-equivalent coefficient proxies. Patent nd/vd coordinates remain ║
  * ║  authoritative; no production supplier or partial-dispersion identity is ║

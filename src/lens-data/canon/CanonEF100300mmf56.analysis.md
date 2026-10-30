@@ -1,4 +1,4 @@
-# CANON EF 100-300mm f/5.6 — JP S61-77818 A Example 1
+# CANON EF 100-300mm f/5.6 — JP S61-77818 A sole numerical example
 
 ## Patent Reference and Design Identification
 
@@ -21,7 +21,7 @@ Canon's EOS history places the EF mount in the 35 mm SLR system introduced in 19
 
 One patent source error is corrected in the model. Page 3 prints the third glass as `N3 = 1.43749, νd = 70.1`; the data file uses `nd = 1.48749, νd = 70.1`. With the printed index, the four published spacing states compute to 69.500, 102.299, 219.238, and 384.436 mm, which is incompatible with the patent's 290 mm long state. With `1.48749`, the same prescription computes to 69.207, 99.927, 198.069, and 289.066 mm. The raw value remains a documented source value; `1.48749` is an explicit modeling correction rather than an OCR substitution. [1]
 
-The patent does not state the spectral reference line for its refractive indices. The data file uses the d-line convention as an inference from the published index/Abbe coordinates and glass-position conventions. No element has authored `nC`, `nF`, `ng`, or `dPgF` data.
+The patent defines $N_i$ and $\nu_i$ as refractive index and Abbe number without identifying their spectral reference. The retained d-line tracing convention is therefore approximate. Every element explicitly records this uncertainty and remains `Unmatched`; the class comparisons below do not select a catalog spectral curve. No element has authored `nC`, `nF`, `ng`, or `dPgF` data.
 
 ## Optical Architecture
 
@@ -49,9 +49,9 @@ The focal lengths quoted below are standalone thick-element focal lengths in air
 
 ### C1 — L1 + L2, front cemented pair
 
-**L1 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: 805254 — SF6-class dense flint; vendor/melt unresolved. f = −248.416 mm.`
+**L1 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: Unmatched; conditional class comparison: 805254 — SF6-class dense flint; vendor/melt unresolved. f = −248.416 mm.`
 
-**L2 — Positive Meniscus.** `nd = 1.51633, νd = 64.1. Glass: 516641 — BSL7-class crown; OHARA S/L family unresolved. f = +138.813 mm.`
+**L2 — Positive Meniscus.** `nd = 1.51633, νd = 64.1. Glass: Unmatched; conditional class comparison: 516641 — BSL7-class crown; OHARA S/L family unresolved. f = +138.813 mm.`
 
 The two standalone elements have opposite power signs, but their cemented combination C1 is net positive, with a compound EFL of approximately +323.120 mm. C1 is therefore not equivalent to either constituent element considered alone. In the full prescription it forms the front part of positive functional group G1.
 
@@ -59,87 +59,87 @@ The large Abbe-number separation between L1 and L2 is source data, but the actua
 
 ### L3 — air-spaced positive element completing G1
 
-**L3 — Biconvex Positive.** `nd = 1.48749, νd = 70.1. Glass: 48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate. f = +222.686 mm.`
+**L3 — Biconvex Positive.** `nd = 1.48749, νd = 70.1. Glass: Unmatched; conditional class comparison: 48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate. f = +222.686 mm.`
 
 L3 is separated from C1 by a 0.20 mm air gap and completes positive functional group G1. Its stored index is the corrected N3 value discussed above. The optical-position label is intentionally class-level: the patent does not identify a vendor or melt, and the source correction prevents treating the printed coordinate as a catalog identity.
 
 ### L4 — first element of negative G2
 
-**L4 — Biconcave Negative.** `nd = 1.71300, νd = 53.8. Glass: 713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved. f = −61.708 mm.`
+**L4 — Biconcave Negative.** `nd = 1.71300, νd = 53.8. Glass: Unmatched; conditional class comparison: 713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved. f = −61.708 mm.`
 
 L4 begins the negative second functional group as an air-spaced negative element. Its standalone negative power is reinforced by the following C2 compound. The resulting G2 is the principal negative-power zoom group in the patent's positive–negative–positive–positive architecture.
 
 ### C2 — L5 + L6, negative cemented pair in G2
 
-**L5 — Biconcave Negative.** `nd = 1.69680, νd = 55.5. Glass: 697555 — LAK14-class lanthanum crown; vendor unresolved. f = −36.767 mm.`
+**L5 — Biconcave Negative.** `nd = 1.69680, νd = 55.5. Glass: Unmatched; conditional class comparison: 697555 — LAK14-class lanthanum crown; vendor unresolved. f = −36.767 mm.`
 
-**L6 — Positive Meniscus.** `nd = 1.80518, νd = 25.4. Glass: 805254 — SF6-class dense flint; vendor/melt unresolved. f = +54.950 mm.`
+**L6 — Positive Meniscus.** `nd = 1.80518, νd = 25.4. Glass: Unmatched; conditional class comparison: 805254 — SF6-class dense flint; vendor/melt unresolved. f = +54.950 mm.`
 
 Although L6 is positive as a standalone element, the cemented C2 pair is net negative, with a compound EFL of approximately −111.992 mm. Combined with L4, it preserves the negative sign of G2. This is one example in the design where constituent-element sign and cemented-compound sign cannot be inferred from a single member alone.
 
 ### C3 — L7 + L8, positive third functional group
 
-**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: N-KF9 coefficient proxy (patent 523508; production supplier unspecified). f = +46.505 mm.`
+**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: Unmatched; conditional class comparison: N-KF9 class comparison (patent 523508; production supplier unspecified). f = +46.505 mm.`
 
-**L8 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: 805254 — SF6-class dense flint; vendor/melt unresolved. f = −88.059 mm.`
+**L8 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: Unmatched; conditional class comparison: 805254 — SF6-class dense flint; vendor/melt unresolved. f = −88.059 mm.`
 
 C3 is net positive, with a compound EFL of approximately +99.422 mm, and is identical to functional group G3 because no additional glass elements belong to that group. The aperture stop follows G3 after the variable D13 air space. The patent specifically links the relative motion of G3 and G4 around this stop position to control of astigmatic variation during the second zoom. [1]
 
-L7 now uses Schott N-KF9 as a supplier-neutral coefficient proxy. Its public `nd = 1.52346, νd = 51.54` coordinate lies within the catalog guard of the patent's `1.52301 / 50.8`, but this compatibility does not establish Canon's historical supplier or melt.
+N-KF9 is a possible coordinate comparison if a d-line convention is assumed. It remains a class comparison rather than the active spectral model because the original does not verify that reference line.
 
 ### C4 — L9 + L10, front positive compound of G4
 
-**L9 — Biconvex Positive.** `nd = 1.60311, νd = 60.7. Glass: 603607 — SK14/BACD14-class crown; vendor unresolved. f = +37.576 mm.`
+**L9 — Biconvex Positive.** `nd = 1.60311, νd = 60.7. Glass: Unmatched; conditional class comparison: 603607 — SK14/BACD14-class crown; vendor unresolved. f = +37.576 mm.`
 
-**L10 — Biconcave Negative.** `nd = 1.77250, νd = 49.6. Glass: 773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved. f = −76.534 mm.`
+**L10 — Biconcave Negative.** `nd = 1.77250, νd = 49.6. Glass: Unmatched; conditional class comparison: 773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved. f = −76.534 mm.`
 
 C4 is a net positive cemented pair with a compound EFL of approximately +64.522 mm. It immediately follows the stop and supplies the strongest positive compound contribution within G4. The pair's net sign is positive even though its rear constituent is negative.
 
 ### C5 — L11 + L12, weak net-negative compound in G4
 
-**L11 — Negative Meniscus.** `nd = 1.83400, νd = 37.2. Glass: 834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved. f = −31.161 mm.`
+**L11 — Negative Meniscus.** `nd = 1.83400, νd = 37.2. Glass: Unmatched; conditional class comparison: 834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved. f = −31.161 mm.`
 
-**L12 — Positive Meniscus.** `nd = 1.60729, νd = 49.2. Glass: BAF5-class coefficient proxy (patent 607492; production supplier unspecified). f = +33.587 mm.`
+**L12 — Positive Meniscus.** `nd = 1.60729, νd = 49.2. Glass: Unmatched; conditional class comparison: BAF5-class comparison (patent 607492; production supplier unspecified). f = +33.587 mm.`
 
-C5 has a comparatively weak net negative compound power, with an EFL of approximately −222.447 mm. Its placement between the positive C4 compound and positive L13 means that this local negative contribution does not make the complete fourth functional group negative. L12 is the second explicitly unmatched coordinate in the prescription.
+C5 has a comparatively weak net negative compound power, with an EFL of approximately −222.447 mm. Its placement between the positive C4 compound and positive L13 means that this local negative contribution does not make the complete fourth functional group negative. L12, like every element here, remains unresolved because the source does not identify its spectral reference or glass supplier.
 
 ### L13 — central positive singlet within G4
 
-**L13 — Biconvex Positive.** `nd = 1.57501, νd = 41.5. Glass: 575415 — LF7/TIL27-class light flint; vendor unresolved. f = +82.725 mm.`
+**L13 — Biconvex Positive.** `nd = 1.57501, νd = 41.5. Glass: Unmatched; conditional class comparison: 575415 — LF7/TIL27-class light flint; vendor unresolved. f = +82.725 mm.`
 
 L13 is an air-spaced positive element between C5 and the rear C6 pair. Its very weak front curvature is evident in the large R21 radius, but the element remains a positive biconvex singlet in the final data. It contributes positive power within G4 without being part of a cemented pair.
 
 ### C6 — L14 + L15, rear cemented pair
 
-**L14 — Biconcave Negative.** `nd = 1.80400, νd = 46.6. Glass: 804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved. f = −14.613 mm.`
+**L14 — Biconcave Negative.** `nd = 1.80400, νd = 46.6. Glass: Unmatched; conditional class comparison: 804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved. f = −14.613 mm.`
 
-**L15 — Biconvex Positive.** `nd = 1.61293, νd = 37.0. Glass: 613370 — F3/S-TIM3-class flint; vendor unresolved. f = +26.877 mm.`
+**L15 — Biconvex Positive.** `nd = 1.61293, νd = 37.0. Glass: Unmatched; conditional class comparison: 613370 — F3/S-TIM3-class flint; vendor unresolved. f = +26.877 mm.`
 
 C6 is net negative, with a compound EFL of approximately −37.237 mm. This is another case where local compound power and functional-group power differ: despite the rear pair's negative net power, G4 as a whole remains positive because of the preceding C4 and L13 positive contributions and their internal separations.
 
 ## Glass Identification and Selection
 
-The patent publishes refractive index and Abbe number but no maker names or melt designations. The data file therefore uses six-digit optical positions and qualified class-level or coefficient-proxy labels. These are glass-position identifications, not claims that Canon used a specific current catalog melt.
+The original page-3 numerical example publishes all 15 refractive-index/Abbe pairs, but no spectral reference, glass maker, melt designation, line indices or partial-dispersion values. The d-line convention used for tracing is an approximation. All 15 media retain their numeric coordinates, explicit source-reference notes and `Unmatched` status. The names below are coordinate/class comparisons conditional on the d-line approximation; none selects a catalog curve or identifies the production glass.
 
-| Optical position / class annotation | nd | νd | Elements | Disposition |
+| Conditional optical-position / class comparison | n (source/model) | ν (source) | Elements | Disposition |
 |---|---:|---:|---|---|
 | 805254 — SF6-class dense flint | 1.80518 | 25.4 | L1, L6, L8 | Vendor/melt unresolved |
 | 516641 — BSL7-class crown | 1.51633 | 64.1 | L2 | OHARA S/L family unresolved |
 | 48770x — FK5/FSL5-class low-dispersion crown | 1.48749 | 70.1 | L3 | Source-corrected model coordinate |
 | 713538/540 — LAK8/LAL8-class lanthanum crown | 1.71300 | 53.8 | L4 | Vendor unresolved |
 | 697555 — LAK14-class lanthanum crown | 1.69680 | 55.5 | L5 | Vendor unresolved |
-| N-KF9 coefficient proxy (patent 523508) | 1.52301 | 50.8 | L7 | Compatible public curve; production supplier unspecified |
+| N-KF9 class comparison (patent 523508) | 1.52301 | 50.8 | L7 | Unresolved source reference; class comparison only |
 | 603607 — SK14/BACD14-class crown | 1.60311 | 60.7 | L9 | Vendor unresolved |
 | 773496 — LAF34/LAH66/TAF1-class lanthanum flint | 1.77250 | 49.6 | L10 | Vendor unresolved |
 | 834372/373 — LASF010/LAH60-class dense lanthanum flint | 1.83400 | 37.2 | L11 | Vendor unresolved |
-| BAF5-class coefficient proxy | 1.60729 | 49.2 | L12 | Compatible catalog curve; production supplier unspecified |
+| BAF5-class comparison | 1.60729 | 49.2 | L12 | Unresolved source reference; class comparison only |
 | 575415 — LF7/TIL27-class light flint | 1.57501 | 41.5 | L13 | Vendor unresolved |
 | 804466 — LASF015/LAH65-class lanthanum flint | 1.80400 | 46.6 | L14 | Vendor unresolved |
 | 613370 — F3/S-TIM3-class flint | 1.61293 | 37.0 | L15 | Vendor unresolved |
 
-The repeated 1.80518/25.4 coordinate on L1, L6, and L8 is preserved as the same optical position in the model, but it does not establish a historical manufacturer or melt. L7 uses the compatible coefficient-backed N-KF9 curve while retaining the patent's 523508 coordinate, and L12 does the same with BAF5 for patent coordinate 607492. Both leave the production supplier unspecified.
+The repeated 1.80518/25.4 coordinate on L1, L6 and L8 remains the same modeled coordinate. Historical supplier, melt and chemistry remain unidentified. The previously active compatible catalog curves are disabled for all 15 elements until the source-reference uncertainty is resolved; the source index/Abbe values are preserved, including the separately documented L3 model correction.
 
-No element carries explicit patent C-, F-, or g-line indices or `dPgF`. The qualified catalog-equivalent curves improve chromatic tracing but do not support an APO designation or a claim of anomalous partial dispersion.
+No element carries explicit patent C-, F- or g-line indices or `dPgF`. Chromatic tracing consequently uses the retained index/Abbe approximation. Neither the source pairs nor their conditional catalog comparisons establish anomalous partial dispersion, an APO designation or historical glass identity.
 
 ## Focus Mechanism
 
@@ -170,9 +170,13 @@ The modeled prescription reproduces the four published infinity-focus spacing st
 | 198 mm | 198.0687 mm | 82.5413 mm | 14.7499 mm |
 | 290 mm | 289.0657 mm | 82.5314 mm | 14.7485 mm |
 
-The patent publishes the stop plane and `FNO = 1:5.6` but not the physical stop diameter. Under the project f-number convention, each state's target entrance-pupil radius is `EFL/(2×5.6)` and is mapped to the stop with the front-system paraxial matrix. The resulting physical stop radii are therefore model-derived quantities. The authored `STO.sd = 11.1664 mm` is the 69 mm baseline; maintaining f/5.6 at the 100, 198, and 290 mm states requires the larger modeled radii shown above. Exact spherical rays are solved to these physical stop radii for geometry checks, but finite-height Snell intercepts are not used to define f-number. The patent gives no iris-motion law for the second zoom, so this state dependence is a modeling consequence rather than a source fact.
+The patent publishes the stop plane and `FNO = 1:5.6` but not the physical stop diameter. Under the project f-number convention, each state's target entrance-pupil radius is `EFL/(2×5.6)` and is mapped to the stop with the front-system paraxial matrix. The resulting physical stop radii are therefore model-derived quantities. The derived baseline stop radius is 11.1664 mm at 69 mm; maintaining f/5.6 at the 100, 198, and 290 mm states requires the larger modeled radii shown above. Exact spherical rays are solved to these physical stop radii for geometry checks, but finite-height Snell intercepts are not used to define f-number. The patent gives no iris-motion law for the second zoom, so this state dependence is a modeling consequence rather than a source fact.
 
-Likewise, the patent does not publish clear semi-diameters. The final semi-diameters are inferred from exact spherical real-ray envelopes through the paraxial f/5.6 stop at all four zoom states and are constrained by edge-thickness, actual rim-slope, cross-gap, and off-axis containment checks. The smallest conservative element edge thickness is 0.471 mm, the largest modeled rim angle is 50.46°, and the smallest non-stop traced-ray clearance is 0.706 mm. These values describe the validated visualization model, not dimensions stated by Canon.
+Likewise, the patent does not publish clear semi-diameters. The modeled apertures are inferred from real-ray envelopes and constrained by edge thickness, rim slope, cross-gap clearance and off-axis containment. Figure 1 on supplied page 4 depicts the 100 mm main-zoom state: its spacings agree with that column rather than the additional 69 mm state. The approximately 815-pixel front-to-rear vertex span corresponds to 124.10 mm, giving about 6.57 native pixels per lens millimeter. The source is a 347 ppi raster scan; viewing it at 694 ppi only doubles those pixels.
+
+The concave rear face of L12, surface 20, ends inside a resolved outer shoulder. The figure suggests an outer semi-height of about 12.5 mm and a cap endpoint around 10.6–10.9 mm (approximately ±0.3 mm from stroke and endpoint uncertainty). The model retains the existing larger clear cap, `sd = 11.4 mm`, and adds `rimExtensionSd = 12.5 mm`; the curved cemented interface at surface 19 expands from 12.0 to 12.5 mm to meet that outer height. No opaque land is placed at that bonded interface. The extension changes the outline outside the clear cap.
+
+The source drawing suggests a smaller first-group height, around 24.5 mm at that state, but applying that value across the zoom would clip the 290 mm stated axial beam and raise its effective aperture from f/5.6 to about f/5.83. The larger first-group apertures therefore remain as a documented all-state geometric constraint. Other small differences remain within figure-estimation uncertainty; no additional concave cut is supported. R/d, the stop, all four zoom spacings, the infinity-only focus model and the prior L3 source correction remain unchanged. Rendered element paths remain connected and finite, with no hidden cap trimming at the sampled zoom/focus states. These statements describe the visualization and sampled runtime checks; the patent correlation does not establish production dimensions.
 
 The surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is `5.0970327×10⁻4 mm⁻¹`. This is a computed prescription property. No claim is made that the patent or production literature publishes this value.
 
@@ -180,7 +184,7 @@ No cover plate, sensor glass, filter, inactive dummy surface, or mechanical plan
 
 ## Sources and References
 
-1. **JP S61-77818 A, “Zoom Lens,” Canon Inc., Numerical Example 1.** Supplied five-page Japanese patent scan. The prescription and spacing table are on page 3 of the supplied scan; the optical section and aberration diagrams are on page 4. Metadata and searchable Japanese text were cross-checked at [Google Patents](https://patents.google.com/patent/JPS6177818A/en).
+1. **JP S61-77818 A, “Zoom Lens,” Canon Inc., sole numerical example.** Supplied five-page Japanese patent scan. The prescription and spacing table are on page 3 of the supplied scan; the optical section and aberration diagrams are on page 4. Metadata and searchable Japanese text were cross-checked at [Google Patents](https://patents.google.com/patent/JPS6177818A/en).
 2. **Canon Camera Museum — EF100-300mm f/5.6.** Official English product record: <https://global.canon/en/c-museum/product/ef262.html>.
 3. **Canon Camera Museum — EF100-300mm F5.6.** Official Japanese product record: <https://global.canon/ja/c-museum/product/ef262.html>.
 4. **Canon Camera Museum — View by period, 1987–1991.** EF/EOS system history and 35 mm SLR context: <https://global.canon/en/c-museum/history/story07.html>.

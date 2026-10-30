@@ -9,7 +9,7 @@
 **Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
 **Title:** Optical System and Image Pickup Apparatus Including the Same
 
-**Example details:** Example 3
+**Example details:** Numerical Embodiment 3, PDF page 24 (printed columns 9–10); Fig. 5 on PDF page 4 (drawing sheet 3)
 
 The prescription represented here is Numerical Embodiment 3 of US 7,158,320 B2. The patent describes this embodiment as
 one of its five-unit telephoto zoom examples and defines the units, from object to image, as L1 positive, L2 negative,
@@ -215,18 +215,23 @@ historical melts or patent partial-dispersion behavior.
 | Unmatched patent-defined 15% ITO/polyvinylcarbazole adhesive composite | 1.721040 / 12.55 | ITO | Patent-defined non-glass medium |
 | 517642 crown class; supplier unspecified | 1.516330 / 64.2 | E2 | Catalog-equivalent coefficient proxy |
 | 487702 low-index crown class; supplier unspecified | 1.487490 / 70.2 | E3, E8 | Catalog-equivalent coefficient proxy |
-| 835427 lanthanum high-index class (vendor unspecified) | 1.834807 / 42.7 | E4, E11, E12 | Coordinate class only |
-| 847238/239 high-index flint class (vendor unspecified) | 1.846658 / 23.9 | E5, E6 | Coordinate class only |
-| 603607 dense-crown/SK14 class (vendor unspecified) | 1.603112 / 60.7 | E7 | Coordinate class only |
-| 834372/373 lanthanum high-index class (vendor unspecified) | 1.834000 / 37.2 | E9 | Coordinate class only |
+| 835427 lanthanum high-index class (vendor unspecified) | 1.834807 / 42.7 | E4, E11, E12 | Compatible catalog coefficient proxy |
+| 847238/239 high-index flint class (vendor unspecified) | 1.846658 / 23.9 | E5, E6 | Compatible catalog coefficient proxy |
+| 603607 dense-crown/SK14 class (vendor unspecified) | 1.603112 / 60.7 | E7 | Compatible catalog coefficient proxy |
+| 834372/373 lanthanum high-index class (vendor unspecified) | 1.834000 / 37.2 | E9 | Compatible catalog coefficient proxy |
 | BAF5-class coefficient proxy; supplier unspecified | 1.607289 / 49.2 | E10 | Compatible catalog curve for patent 607492 |
-| 785257 dense-flint class (vendor unspecified) | 1.784718 / 25.7 | E13 | Coordinate class only |
+| 785257 dense-flint class (vendor unspecified) | 1.784718 / 25.7 | E13 | Compatible catalog coefficient proxy |
 
 The ordinary palette alternates lower-dispersion crown-type coordinates with denser and generally higher-index flint or
 lanthanum classes across the zoom units. That pattern is consistent with conventional primary chromatic balancing, but
 the data file intentionally does not assign anomalous-partial-dispersion behavior to any ordinary element. No ordinary
 element has authored `nC`, `nF`, `ng`, or `dPgF`; the compatible catalog curves improve chromatic tracing without
 becoming production-glass or patent partial-dispersion claims.
+
+The current compatible-catalog resolver supplies curves for all 13 ordinary glass elements, including the repeated
+coordinate classes above. The ITO layer remains unresolved and uses the source index/Abbe approximation. This is
+13/14 modeled media with compatible spectral proxies; it is not evidence for historical glass suppliers, melt, polymer
+formulation or measured selected-material partial dispersion.
 
 The ITO adhesive is different in kind. It is not represented as a catalog glass at all. The patent explicitly presents
 the inorganic-particle/polymer mixture as a high-dispersion, low-partial-dispersion material intended to improve
@@ -245,7 +250,7 @@ focus displacement, no magnification-state prescription, and no focus travel. Th
 uniquely determine the internal fourth-group motion because the principal planes and effective focal properties of the
 complete zoom vary with group position.
 
-The data therefore uses focus status `NO_INTERNAL_RECONSTRUCTION`. Every `[infinity, close]` pair in `var` is identical at
+The data therefore uses focus status `NO_INTERNAL_RECONSTRUCTION`. Every `[infinity, close]` pair in `gaps` is identical at
 each zoom position. The 1.5 m value remains catalog metadata rather than being converted into a synthetic close-focus
 optical state. No total focus travel is asserted because the sources do not provide one and the selected prescription
 does not determine it uniquely.
@@ -330,6 +335,12 @@ fractions through ±0.75, checked at all three zoom positions. The smallest veri
 at surface 24 in the tele state. The same apertures retain positive edge thickness, acceptable spherical rim slope, and
 positive shared-band cross-gap clearance under the current validator policy. These semi-diameters should not be cited as
 patent or manufacturer clear-aperture specifications.
+
+The original 300-dpi Fig. 5 scan was reviewed at native resolution in the 2026-10-30 shape/glass pass. Its three
+zoom sections support the retained relative element heights, but do not resolve a separate cap endpoint and outer
+shoulder or a concave-end land. No `rimExtensionSd` or inferred `rimCutDepthMm` is added. The front adhesive remains
+connected to its two substrates at their shared interfaces; no opaque land or disconnected wing is introduced.
+Actual SVG outlines at wide, middle and tele retain 14 finite element paths without hidden renderer trimming.
 
 The approximately 21.63 mm image half-height inferred from the three patent half-field labels is consistent across the
 zoom range, but it is likewise a derived quantity rather than a printed image-height row. The model uses the production

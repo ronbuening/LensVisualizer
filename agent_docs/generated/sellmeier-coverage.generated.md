@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **1017** visible lenses scanned
-- **691** lenses fully covered by trusted chromatic data
-- **688** visible lenses fully covered by trusted chromatic data
-- **683** lenses fully covered by strict Sellmeier data
-- **680** visible lenses fully covered by strict Sellmeier data
+- **690** lenses fully covered by trusted chromatic data
+- **687** visible lenses fully covered by trusted chromatic data
+- **682** lenses fully covered by strict Sellmeier data
+- **679** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10983 / 11844** non-air surfaces use strict catalog Sellmeier data
-- **92.7%** strict Sellmeier surface coverage overall
-- **10997 / 11844** non-air surfaces use trusted chromatic data
-- **92.8%** trusted chromatic coverage overall
+- **10968 / 11844** non-air surfaces use strict catalog Sellmeier data
+- **92.6%** strict Sellmeier surface coverage overall
+- **10982 / 11844** non-air surfaces use trusted chromatic data
+- **92.7%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -475,7 +475,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY FE 8-14mm f/3.5 Fisheye G](../../src/lens-data/sony/SonyFE814mmf35FisheyeG.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | 16/16 | 16 | 16/16 |
-| [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | 15/15 | 15 | 15/15 |
@@ -1365,7 +1364,8 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 331 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
 | 332 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
 | 333 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
-| 334 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 334 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 335 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
 
 ## Missing Surface Details
 
@@ -3808,6 +3808,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 13 | Element 7 | abbe | `Unmatched (low-dispersion crown; rounded patent coordinates)` | Explicit unmatched/proprietary annotation |
 | 14 | Element 8 | abbe | `Unmatched (dense flint; rounded patent coordinates)` | Explicit unmatched/proprietary annotation |
 | ... | ... | ... | ... | 4 more missing surfaces |
+
+### [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) - 0.0% trusted (0/15); 0.0% Sellmeier (0/15) - JP S61-77818 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 2 | abbe | `Unmatched (516641 — BSL7-class crown; OHARA S/L family unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (697555 — LAK14-class lanthanum crown; vendor unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (N-KF9 coefficient proxy (patent 523508; production supplier unspecified); source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| 12 | Element 8 | abbe | `Unmatched (805254 — SF6-class dense flint; vendor/melt unresolved; source spectral reference unspecified)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 7 more missing surfaces |
 
 ### [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) - 0.0% trusted (0/15); 0.0% Sellmeier (0/15) - JP H08-062541 A
 
