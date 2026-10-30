@@ -25,6 +25,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * gaps and keep 0.23 and 0.09 mm of air at the rim). Surface 2 stops at the
  * shared-gap limit, below the rim the figure draws; 21 ends at the drawn
  * optical extent inside the flat rear annulus of E12.
+ * Independently drawn air-face lands are modeled on S2/S4A/S7/S10/S21/S23;
+ * their clear caps and all powered cemented interfaces remain unchanged.
  * They are not published dimensions; field vignetting remains an inference.
  * Elements are named E1–E17 because the patent reserves L1 and L2 for its two
  * lens groups and names no single element; its L2c is the triplet T1.
@@ -298,7 +300,7 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 45.9977, d: 1.9, sd: 28.8, medium: 1 },
-    { label: "2", R: 25.1338, d: 9.407, sd: 21.4 },
+    { label: "2", R: 25.1338, d: 9.407, sd: 21.4, rimExtensionSd: 28.8 },
     {
       label: "3A",
       R: 56.5779,
@@ -312,14 +314,15 @@ const LENS_DATA = {
       R: 24.7684,
       d: 7.4494,
       sd: 20.7,
+      rimExtensionSd: 23.6,
       asphere: { K: -1.0, A4: -4.3891e-06, A6: 1.3317e-09, A8: 8.3525e-12, A10: -5.3271e-14, A12: 3.471e-17, A14: 0 },
     },
     { label: "5", R: 471.3973, d: 3.3291, sd: 21.8, medium: 3 },
     { label: "6", R: -140.0067, d: 3.8048, sd: 21.8 },
-    { label: "7", R: -41.9847, d: 1.7, sd: 20.2, medium: 4 },
+    { label: "7", R: -41.9847, d: 1.7, sd: 20.2, rimExtensionSd: 21.3, medium: 4 },
     { label: "8", R: 100.5258, d: 6.3247, sd: 21.3, medium: 5 },
     { label: "9", R: -72.3098, d: 2.6764, sd: 21.3 },
-    { label: "10", R: -44.8985, d: 1.5, sd: 19.3, medium: 6 },
+    { label: "10", R: -44.8985, d: 1.5, sd: 19.3, rimExtensionSd: 20.6, medium: 6 },
     { label: "11", R: 31.9074, d: 8.8575, sd: 20.6, medium: 7 },
     { label: "12", R: -387.2246, d: 0.25, sd: 20.6 },
     { label: "13", R: 61.526, d: 7.5947, sd: 22, medium: 8 },
@@ -343,9 +346,9 @@ const LENS_DATA = {
     },
     { label: "19", R: 333.2382, d: 4.3554, sd: 18.9, medium: 11 },
     { label: "20", R: -63.293, d: 1.1, sd: 18.9, medium: 12 },
-    { label: "21", R: 30.977, d: 5.5835, sd: 15.4 },
+    { label: "21", R: 30.977, d: 5.5835, sd: 15.4, rimExtensionSd: 18.9 },
     { label: "STO", R: "flat", d: 4.9652 },
-    { label: "23", R: -39.6314, d: 7.4855, sd: 14.5, medium: 13 },
+    { label: "23", R: -39.6314, d: 7.4855, sd: 14.5, rimExtensionSd: 16, medium: 13 },
     { label: "24", R: -17.8628, d: 1.0, sd: 16, medium: 14 },
     { label: "25", R: 168.2052, d: 3.2768, sd: 16.7, medium: 15 },
     { label: "26", R: -118.1115, d: 0.7368, sd: 16.7 },

@@ -166,10 +166,7 @@ The chosen names are catalogue glasses with matching coordinates; no supplier or
 | L4      | 1.80518 / 25.4 | S-TIH6 (OHARA)                 | 1.805181 / 25.425363             |
 | L2, L5  | 1.83400 / 37.3 | NBFD10 (HOYA)                  | 1.834 / 37.34                    |
 
-Nine glass elements carry catalogue-derived C, F and g indices and ΔPgF in the data file. The patent nd/νd are unchanged;
-the catalogue dispersion curves are approximations, not exact matches, and the catalogue νd of S-LAH51 and LAC8 differ
-from the printed values by 0.10 and 0.16. OHARA S-prefix names are kept as such. L1's stored line indices are those of
-HOYA BAFD8; OHARA S-BAH28 has the same nd and a νd of 37.96.
+Nine glass elements resolve centrally to qualified catalogue dispersion curves. The former per-lens catalogue C/F/g and ΔPgF copies have been removed: the patent publishes nd/νd only. The retained source values differ from S-LAH51 and LAC8 catalogue νd by about 0.10 and 0.16; compatibility does not identify the historical supplier. OHARA S-prefix names remain explicit. L1 now follows its compatible S-BAH28 proxy directly, rather than carrying HOYA BAFD8 line-index copies.
 
 Both resin layers are traced from the patent nd and νd alone; a resin cannot be identified with a catalogue glass
 from nd/νd. L10 is also left unmatched: the nearest catalogue glass found, HOYA LBC3N, has νd = 63.72 against the
@@ -248,7 +245,7 @@ the front of L2 is 21.9 mm, L4 is 14.0 mm and L5 is 14.5 mm, each as Fig. 2 draw
 12.88 mm at L4 and 13.46 mm at L5. Behind the stop the rims are also the drawn heights: L6 with its resin layer
 14.5 mm, the cemented pair L7–L8 13.4 mm at its front and cemented surfaces, L9 13.6 mm and L10 14.7 mm, where the
 F/1.85 axial ray needs 13.70, 12.33, 11.51 and 11.44 mm. The diagram joins unequal front and rear rims with a straight
-edge, so the flat lands Fig. 2 draws on L2 and L8 appear as bevels.
+edge only where a source-drawn land is not safe to model. S4 now carries the independently drawn land from its 17.5 mm clear cap to 21.9 mm outer height. S7 uses a drawing-inferred 5.8 mm depth, giving a 15.0322 mm clear radius inside the 16.9 mm blank; the full beam guard and dense probe pass. The S18 land to 13.4 mm fails the retained gap rule against S19 (1.748 mm intrusion versus 1.686 mm allowed), so that constrained taper remains. No gap tolerance was changed.
 
 At the patent's F/1.85 the entrance-pupil radius is 6.672946628 mm, and a real axial ray at that height reaches the
 stop at 13.512993540 mm; this is the stop radius the model uses. The paraxial estimate is 12.378810993 mm.
