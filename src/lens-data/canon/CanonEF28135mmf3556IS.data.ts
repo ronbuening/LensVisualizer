@@ -11,9 +11,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The close-focus columns are a first-order reconstruction constrained to Canon's 0.5 m MFD.
  *
  * The patent does not publish clear apertures. Semi-diameters are inferred for LensVisualizer from
- * paraxial marginal/chief-ray envelopes at all three zoom positions and both focus endpoints, then
- * constrained by the 72 mm filter diameter, element edge thickness, rim slope, and cross-gap sag.
- * They are rendering apertures, not manufacturer-published clear-aperture dimensions.
+ * a partial paraxial envelope and retained geometric limits. The original native Figure 1 was
+ * reviewed on 2026-10-30: rear-unit clear caps now follow the resolved Figure 1 outlines, and
+ * S7 has an outer shoulder to 16 mm while its 12.8 mm optical cap remains. The front cemented
+ * component and unit-II caps retain documented edge, slope and gap limits where literal
+ * full-height restoration is infeasible. The 72 mm production filter is product context,
+ * not an optical-rim ruler.
+ * Source ni/vi have no specified spectral reference; d-line tracing remains approximate, with
+ * every medium explicitly Unmatched and no catalog curve asserted. R/d, asphere, zoom cams
+ * and inferred 0.5 m focus spacings are unchanged. The nominal aperture targets
+ * are restored separately to the printed f/3.60, f/4.36 and f/5.75 states; iris radii remain derived.
+ * See the audit for source and runtime limits.
  */
 
 const LENS_DATA = {
@@ -30,7 +38,7 @@ const LENS_DATA = {
       "16 elements / 12 groups",
       "28-135mm f/3.5-5.6 marketed; 28.891-131.182mm patent design",
       "135 full-frame / Canon EF",
-      "One GMo asphere; unit II inner focus; unit V optical IS",
+      "One asphere; unit II inner focus; unit V optical IS",
     ],
     elementCount: 16,
     groupCount: 12,
@@ -55,7 +63,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -124.445,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "High-index negative front member of the weak positive cemented front component.",
       cemented: "C1",
     },
@@ -67,7 +78,10 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: 86.821,
-      glass: "S-LAL14 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAL14 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Lower-dispersion positive member of the front cemented component.",
       cemented: "C1",
     },
@@ -79,7 +93,10 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.8,
       focalLengthMm: 103.355,
-      glass: "S-LAL8 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAL8 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Air-spaced positive element completing unit I.",
     },
     {
@@ -90,7 +107,10 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -20.187,
-      glass: "S-LAH55V (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Strong leading negative element of the variator and inner-focus unit II.",
     },
     {
@@ -101,7 +121,10 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -36.775,
-      glass: "S-LAH65V (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAH65V (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Second negative element of unit II.",
     },
     {
@@ -112,7 +135,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 20.12,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Positive member embedded within the net-negative unit II.",
     },
     {
@@ -123,7 +149,10 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -28.973,
-      glass: "S-LAH55V (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Rear negative element completing unit II.",
     },
     {
@@ -134,7 +163,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -47.414,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Negative high-dispersion member of positive cemented unit III.",
       cemented: "C2",
     },
@@ -146,7 +178,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 19.34,
-      glass: "S-BSM14 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BSM14 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Positive lower-dispersion member supplying the net power of unit III.",
       cemented: "C2",
     },
@@ -158,7 +193,10 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       focalLengthMm: 28.005,
-      glass: "S-NSL36 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-NSL36 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Positive member of the weak positive relay unit IV.",
       cemented: "C3",
     },
@@ -170,7 +208,10 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -33.347,
-      glass: "S-LAH55V (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Negative member reducing the net power of relay unit IV.",
       cemented: "C3",
     },
@@ -182,7 +223,10 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 25.843,
-      glass: "S-TIH6 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH6 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Positive high-dispersion member of the transversely shifted IS doublet.",
       cemented: "C4",
     },
@@ -194,7 +238,10 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: -16.565,
-      glass: "S-BAH27 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BAH27 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Strong negative member making unit V net negative for optical stabilization.",
       cemented: "C4",
     },
@@ -206,7 +253,10 @@ const LENS_DATA = {
       nd: 1.72342,
       vd: 38,
       focalLengthMm: 76.153,
-      glass: "S-BAH28 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-BAH28 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Leading positive element of rear unit VI.",
     },
     {
@@ -217,8 +267,11 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 30.119,
-      glass: "L-BAL42 (OHARA)",
-      role: "Primary positive rear element; its rear surface 27A is the molded-glass asphere.",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior L-BAL42 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      role: "Primary positive rear element; rear surface 27A is the source asphere. Its manufacturing route is not identified by the patent.",
     },
     {
       id: 16,
@@ -228,7 +281,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -34.559,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
+      indexReferenceNote:
+        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
       role: "Terminal negative meniscus completing positive rear unit VI.",
     },
   ],
@@ -240,7 +296,7 @@ const LENS_DATA = {
     { label: "4", R: 47.062, d: 6.2, sd: 25.5, medium: 3 },
     { label: "5", R: 123.091, sd: 25.5 },
     { label: "6", R: 96.212, d: 1.2, sd: 16.0, medium: 4 },
-    { label: "7", R: 14.259, d: 5.8, sd: 12.8 },
+    { label: "7", R: 14.259, d: 5.8, sd: 12.8, rimExtensionSd: 16 },
     { label: "8", R: -68.032, d: 1.1, sd: 10.25, medium: 5 },
     { label: "9", R: 52.671, d: 0.2, sd: 11.0 },
     { label: "10", R: 24.884, d: 4.6, sd: 11.0, medium: 6 },
@@ -248,35 +304,42 @@ const LENS_DATA = {
     { label: "12", R: -38.098, d: 1.1, sd: 9.25, medium: 7 },
     { label: "13", R: 67.11, sd: 9.8 },
     { label: "STO", R: "flat" },
-    { label: "15", R: 26.756, d: 1, sd: 10.5, medium: 8 },
-    { label: "16", R: 15.78, d: 5, sd: 10, medium: 9 },
+    { label: "15", R: 26.756, d: 1, sd: 9.75, medium: 8 },
+    { label: "16", R: 15.78, d: 5, sd: 9.75, medium: 9 },
     { label: "17", R: -39.386, sd: 9.75 },
     { label: "18", R: 28.082, d: 3.9, sd: 9.75, medium: 10 },
     { label: "19", R: -28.52, d: 1, sd: 9.75, medium: 11 },
-    { label: "20", R: 1182.852, sd: 10.5 },
-    { label: "21", R: -51.345, d: 3.2, sd: 12.3, medium: 12 },
+    { label: "20", R: 1182.852, sd: 9.75 },
+    { label: "21", R: -51.345, d: 3.2, sd: 10.1, medium: 12 },
     { label: "22", R: -15.219, d: 1, sd: 10.1, medium: 13 },
-    { label: "23", R: 50.487, sd: 11.5 },
-    { label: "24", R: 101.396, d: 3.5, sd: 17.5, medium: 14 },
-    { label: "25", R: -118.885, d: 0.2, sd: 17.5 },
-    { label: "26", R: 57.922, d: 7.8, sd: 16, medium: 15 },
+    { label: "23", R: 50.487, sd: 10.1 },
+    { label: "24", R: 101.396, d: 3.5, sd: 15.5, medium: 14 },
+    { label: "25", R: -118.885, d: 0.2, sd: 15.5 },
+    { label: "26", R: 57.922, d: 7.8, sd: 15.5, medium: 15 },
     {
       label: "27A",
       R: -23.956,
       d: 2,
-      sd: 15.8,
-      asphere: { K: 0, A4: 1.29656e-5, A6: 1.07517e-8, A8: -3.30087e-11, A10: 8.80605e-14 },
+      sd: 15.5,
+      asphere: {
+        K: 0,
+        A4: 1.29656e-5,
+        A6: 1.07517e-8,
+        A8: -3.30087e-11,
+        A10: 8.80605e-14,
+      },
     },
-    { label: "28", R: -25.378, d: 1.8, sd: 17.0, medium: 16 },
-    { label: "29", R: -197.498, sd: 17.0 },
+    { label: "28", R: -25.378, d: 1.8, sd: 15.5, medium: 16 },
+    { label: "29", R: -197.498, sd: 15.5 },
   ],
 
   zoom: {
-    // (moved from nominalFno) The middle f/4.24 value scales the patent's f/4.36 state by the mean endpoint design-to-market ratio.
+    // Source targets: Numerical Example 1 heading and Figure 2(a/b/c) directly print f/3.60, f/4.36 and f/5.75.
+    // These restore the paraxial/derived-iris rule; the patent supplies no physical iris-radius schedule.
     stations: [
-      { focalLengthMm: 28.891048, nominalFNumber: 3.5, label: "28mm" },
-      { focalLengthMm: 50.004242, nominalFNumber: 4.24 },
-      { focalLengthMm: 131.182095, nominalFNumber: 5.6, label: "135mm" },
+      { focalLengthMm: 28.891048, nominalFNumber: 3.6, label: "28mm" },
+      { focalLengthMm: 50.004242, nominalFNumber: 4.36 },
+      { focalLengthMm: 131.182095, nominalFNumber: 5.75, label: "135mm" },
     ],
     step: 0.004,
   },
@@ -346,7 +409,11 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22, 32, 36], maxFNumber: 36, blades: 6 },
+  aperture: {
+    fStops: [3.6, 4, 5.6, 8, 11, 16, 22, 32, 36],
+    maxFNumber: 36,
+    blades: 6,
+  },
 
   groups: [
     { text: "I +", fromSurface: "1", toSurface: "5" },

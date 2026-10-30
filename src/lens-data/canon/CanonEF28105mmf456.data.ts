@@ -1,45 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/**
- * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║          LENS DATA — CANON EF 28-105mm f/4-5.6                         ║
- * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2004/0223070 A1, Numerical Example 4 (Shirasuna).      ║
- * ║  Production correlation: Canon EF 28-105mm f/4-5.6 and its USM sibling.  ║
- * ║  Their official block diagrams match Example 4 at published resolution;   ║
- * ║  the patent prescription is used unscaled, but exact production identity   ║
- * ║  is not claimed.                                                           ║
- * ║                                                                            ║
- * ║  Physical construction: 10 elements / 9 air-spaced groups, including     ║
- * ║  the patent's final neutral cover plate L5. The data model omits that     ║
- * ║  protective plate under the corpus rule for cover glass. Its optical      ║
- * ║  path is folded into the final air BFD, so the modeled array contains     ║
- * ║  nine powered elements while elementCount retains Canon's physical 10.    ║
- * ║                                                                            ║
- * ║  Zoom gaps: D3, D9, D14, and the folded rear BFD at surface 18A.          ║
- * ║  Focus gaps: D3 and D9; L2 moves rigidly objectward and D3 + D9 is        ║
- * ║  conserved at each zoom position. Close-focus endpoints are independent   ║
- * ║  paraxial solutions for Canon's 0.48 m MFD, measured from the image plane.║
- * ║                                                                            ║
- * ║  APERTURE: Canon publishes f/4-5.6 endpoints. The 50.07 mm f/5.0 entry    ║
- * ║  is an explicitly modeled intermediate control value, not a separately    ║
- * ║  published product specification.                                         ║
- * ║                                                                            ║
- * ║  SEMI-DIAMETERS: The patent omits clear apertures. SDs are guided by        ║
- * ║  0.6-field marginal/chief-ray envelopes, then constrained by geometry and  ║
- * ║  checked for on-axis marginal clearance at the patent design apertures.    ║
- * ║  Edge thickness >= 0.5 mm, element SD ratio <= 1.25, sd/|R| < 0.90, and   ║
- * ║  signed cross-gap sag intrusion <= 90%. Not factory dimensions.           ║
- * ╚════════════════════════════════════════════════════════════════════════════╝
+/** Original US 2004/0223070 A1, Numerical Example 4. Reviewed 2026-10-30.
+ * Source L5 is a protective lens unit, restored with physical D18 and plate thickness.
+ * Rear image gaps and finite 0.48 m focus endpoints are derived, not published.
+ * Printed design f/3.95–5.85 is distinct from marketed f/4–5.6; middle f/5 is inferred.
+ * Clear apertures and blank outlines are inferred; no historical supplier or resin chemistry is proved.
  */
-
 const LENS_DATA = {
   schema: 2,
   key: "canon-ef-28-105mm-f4-56",
   maker: "Canon",
   name: "CANON EF 28-105mm f/4-5.6",
   subtitle: "US 2004/0223070 A1 — Numerical Example 4 (strong production correlation)",
-
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
@@ -52,18 +24,25 @@ const LENS_DATA = {
     ],
     elementCount: 10,
     groupCount: 9,
-    focalLengthMm: { marketing: [28, 105], design: [28.906826, 101.323296] },
-    fNumber: { marketing: 4, design: 3.95 },
+    focalLengthMm: {
+      marketing: [28, 105],
+      design: [28.906826, 101.323296],
+    },
+    fNumber: {
+      marketing: 4,
+      design: 3.95,
+    },
   },
-
   source: {
     patentNumber: "US 2004/0223070 A1",
-    example: { label: "Numerical Example 4", id: "4" },
+    example: {
+      label: "Numerical Example 4",
+      id: "4",
+    },
     patentYear: 2004,
     authors: ["Takashi Shirasuna"],
     assignees: ["Canon Inc."],
   },
-
   elements: [
     {
       id: 1,
@@ -73,12 +52,10 @@ const LENS_DATA = {
       nd: 1.696797,
       vd: 55.5,
       focalLengthMm: 59.618004,
-      glass: "S-LAL14 (OHARA catalog equivalent; vendor inferred, 697-555)",
+      glass: "S-LAL14 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 697-555)",
       role: "Positive front member of the cemented first zoom unit.",
       cemented: "D1",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
+      indexReference: "d",
     },
     {
       id: 2,
@@ -88,12 +65,11 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -140.766816,
-      glass: "PBH53 / PBH53W (OHARA historical equivalent; vendor inferred, 847-239)",
+      glass:
+        "PBH53 / PBH53W (OHARA historical equivalent; qualified spectral proxy; historical supplier unconfirmed, 847-239)",
       role: "Dense-flint negative member of the cemented front achromat.",
       cemented: "D1",
-      nC: 1.83653,
-      nF: 1.87198,
-      ng: 1.89382,
+      indexReference: "d",
     },
     {
       id: 3,
@@ -103,11 +79,9 @@ const LENS_DATA = {
       nd: 1.743198,
       vd: 49.3,
       focalLengthMm: -21.553528,
-      glass: "S-LAM60 (OHARA catalog equivalent; vendor inferred, 743-493)",
+      glass: "S-LAM60 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 743-493)",
       role: "Leading negative member of the high-power L2 variator/focus unit.",
-      nC: 1.73865,
-      nF: 1.75372,
-      ng: 1.76205,
+      indexReference: "d",
     },
     {
       id: 4,
@@ -117,11 +91,9 @@ const LENS_DATA = {
       nd: 1.712995,
       vd: 53.9,
       focalLengthMm: -27.862292,
-      glass: "S-LAL8 (OHARA catalog equivalent; vendor inferred, 713-539)",
+      glass: "S-LAL8 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 713-539)",
       role: "Second negative member of L2; air-spaced from the positive rear member.",
-      nC: 1.70897,
-      nF: 1.72221,
-      ng: 1.72943,
+      indexReference: "d",
     },
     {
       id: 5,
@@ -131,11 +103,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 29.525715,
-      glass: "PBH53 / PBH53W (OHARA historical equivalent; vendor inferred, 847-239)",
+      glass:
+        "PBH53 / PBH53W (OHARA historical equivalent; qualified spectral proxy; historical supplier unconfirmed, 847-239)",
       role: "Positive, high-dispersion rear member that balances the two negative L2 elements.",
-      nC: 1.83653,
-      nF: 1.87198,
-      ng: 1.89382,
+      indexReference: "d",
     },
     {
       id: 6,
@@ -145,11 +116,9 @@ const LENS_DATA = {
       nd: 1.696797,
       vd: 55.5,
       focalLengthMm: 33.78886,
-      glass: "S-LAL14 (OHARA catalog equivalent; vendor inferred, 697-555)",
+      glass: "S-LAL14 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 697-555)",
       role: "Principal positive member of the L3 compensator immediately behind the stop.",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
+      indexReference: "d",
     },
     {
       id: 7,
@@ -159,11 +128,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -45.391699,
-      glass: "PBH53 / PBH53W (OHARA historical equivalent; vendor inferred, 847-239)",
+      glass:
+        "PBH53 / PBH53W (OHARA historical equivalent; qualified spectral proxy; historical supplier unconfirmed, 847-239)",
       role: "Negative chromatic partner in the net-positive L3 compensator.",
-      nC: 1.83653,
-      nF: 1.87198,
-      ng: 1.89382,
+      indexReference: "d",
     },
     {
       id: 8,
@@ -173,11 +141,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 29.597915,
-      glass: "S-FSL5 (OHARA catalog equivalent; vendor inferred, 487-702)",
+      glass: "S-FSL5 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 487-702)",
       role: "Low-dispersion positive element supplying most of L4's net positive power.",
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
+      indexReference: "d",
     },
     {
       id: 9,
@@ -187,71 +153,196 @@ const LENS_DATA = {
       nd: 1.58306,
       vd: 30.2,
       focalLengthMm: -117.511869,
-      glass: "Unmatched (polycarbonate-class optical resin inferred from nd=1.583060, νd=30.2)",
-      role: "Moldable negative rear member of L4; surface 18A is the sole asphere.",
+      glass:
+        "Unmatched (source 1.583060/30.2 medium; polycarbonate is an inference from other examples, chemistry unconfirmed)",
+      role: "Negative rear member of L4 with published aspherical surface 18; the original does not identify Example 4 chemistry.",
+      indexReference: "d",
+    },
+    {
+      id: 10,
+      name: "L51",
+      label: "Protective plate L5",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.1,
+      indexReference: "d",
+      glass: "S-BSL7 (qualified 517641 spectral proxy; historical supplier unconfirmed)",
+      role: "Published fixed fifth lens unit protects the exposed rear aspherical member; included with physical source thickness and spacing.",
     },
   ],
-
   surfaces: [
-    { label: "1", R: 55.383, d: 7.43, sd: 20.8, medium: 1 },
-    { label: "2", R: -157.062, d: 1.8, sd: 20.0, medium: 2 },
-    { label: "3", R: 496.755, sd: 19.6 },
-
-    { label: "4", R: 204.758, d: 1.4, sd: 11.4, medium: 3 },
-    { label: "5", R: 14.813, d: 5.47, sd: 10.8 },
-    { label: "6", R: -57.982, d: 1.1, sd: 9.3, medium: 4 },
-    { label: "7", R: 30.458, d: 0.12, sd: 9.3 },
-    { label: "8", R: 23.898, d: 3.39, sd: 8.8, medium: 5 },
-    { label: "9", R: 507.665, sd: 8.6 },
-
-    { label: "STO", R: "flat", d: 0.4 },
-
-    { label: "11", R: 36.033, d: 2.42, sd: 7.05, medium: 6 },
-    { label: "12", R: -66.055, d: 0.42, sd: 7.05 },
-    { label: "13", R: -33.405, d: 1, sd: 7.05, medium: 7 },
-    { label: "14", R: -258.92, sd: 7.05 },
-
-    { label: "15", R: 18.494, d: 3.74, sd: 9.3, medium: 8 },
-    { label: "16", R: -61.289, d: 9.58, sd: 10.0 },
-    { label: "17", R: -27.49, d: 1.8, sd: 10.2, medium: 9 },
+    {
+      label: "1",
+      R: 55.383,
+      d: 7.43,
+      sd: 21.5,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: -157.062,
+      d: 1.8,
+      sd: 21.5,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 496.755,
+      sd: 21.5,
+    },
+    {
+      label: "4",
+      R: 204.758,
+      d: 1.4,
+      sd: 13.6,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 14.813,
+      d: 5.47,
+      sd: 10.8,
+      rimExtensionSd: 13.6,
+    },
+    {
+      label: "6",
+      R: -57.982,
+      d: 1.1,
+      sd: 10.1,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: 30.458,
+      d: 0.12,
+      sd: 10.1,
+    },
+    {
+      label: "8",
+      R: 23.898,
+      d: 3.39,
+      sd: 10,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: 507.665,
+      sd: 10,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.4,
+    },
+    {
+      label: "11",
+      R: 36.033,
+      d: 2.42,
+      sd: 7.05,
+      medium: 6,
+    },
+    {
+      label: "12",
+      R: -66.055,
+      d: 0.42,
+      sd: 7.05,
+    },
+    {
+      label: "13",
+      R: -33.405,
+      d: 1,
+      sd: 7.07,
+      medium: 7,
+    },
+    {
+      label: "14",
+      R: -258.92,
+      sd: 7.07,
+    },
+    {
+      label: "15",
+      R: 18.494,
+      d: 3.74,
+      sd: 7.7,
+      medium: 8,
+    },
+    {
+      label: "16",
+      R: -61.289,
+      d: 9.58,
+      sd: 7.7,
+    },
+    {
+      label: "17",
+      R: -27.49,
+      d: 1.8,
+      sd: 9.0,
+      medium: 9,
+    },
     {
       label: "18A",
       R: -47.017,
-      sd: 10.5,
-      asphere: { K: -2.18133, A4: 5.67081e-5, A6: 3.13412e-7, A8: -4.03611e-10, A10: 2.29649e-12 },
+      sd: 9.0,
+      asphere: {
+        K: -2.18133,
+        A4: 0.0000567081,
+        A6: 3.13412e-7,
+        A8: -4.03611e-10,
+        A10: 2.29649e-12,
+      },
+    },
+    {
+      label: "19",
+      R: "flat",
+      d: 1,
+      sd: 14.5,
+      medium: 10,
+    },
+    {
+      label: "20",
+      R: "flat",
+      sd: 14.5,
     },
   ],
-
   zoom: {
     stations: [
-      { focalLengthMm: 28.9, nominalFNumber: 4, label: "28 mm" },
-      { focalLengthMm: 50.07, nominalFNumber: 5 },
-      { focalLengthMm: 101.35, nominalFNumber: 5.6, label: "105 mm" },
+      {
+        focalLengthMm: 28.9,
+        nominalFNumber: 3.95,
+        label: "28 mm",
+      },
+      {
+        focalLengthMm: 50.07,
+        nominalFNumber: 5,
+      },
+      {
+        focalLengthMm: 101.35,
+        nominalFNumber: 5.85,
+        label: "105 mm",
+      },
     ],
     step: 0.004,
   },
-
   focus: {
     closeFocusM: 0.48,
     description:
-      "Inner focus by rigid translation of negative unit L2. In the cover-plate-folded renderer model at Canon's 0.48 m MFD, L2 moves objectward by 2.328 mm at wide, 3.115 mm at 50.07 mm, and 6.421 mm at tele; D3 decreases while D9 increases by the same amount.",
+      "Inner focus by rigid L2 translation. Published infinity D3/D9 retained; finite endpoints are independent paraxial 0.48 m image-plane conjugates with physical source L5 restored, not patent or production cam measurements.",
   },
-
   gaps: {
     "3": {
       label: "D3 / L1-L2",
       values: [
-        [3.39, 1.062392316796],
-        [13.42, 10.305434876154],
-        [33.36, 26.939257379094],
+        [3.39, 1.060566850257842],
+        [13.42, 10.303131295911165],
+        [33.36, 26.935538551785584],
       ],
     },
     "9": {
       label: "D9 / L2-STO",
       values: [
-        [19.23, 21.557607683204],
-        [10.24, 13.354565123846],
-        [2.62, 9.040742620906],
+        [19.23, 21.55943314974216],
+        [10.24, 13.356868704088836],
+        [2.62, 9.044461448214417],
       ],
     },
     "14": {
@@ -262,27 +353,66 @@ const LENS_DATA = {
         [0.79, 0.79],
       ],
     },
-    "18A": {
-      label: "BF / L5 folded",
+    "20": {
+      label: "BF / derived after physical L5",
       values: [
-        [39.87598221128, 39.87598221128],
-        [52.202276564992, 52.202276564992],
-        [64.272505454339, 64.272505454339],
+        [38.38649516030808, 38.38649516030808],
+        [38.39278951401993, 38.39278951401993],
+        [38.373018403367745, 38.373018403367745],
+      ],
+    },
+    "18A": {
+      label: "D18 / L4–L5",
+      values: [
+        [0.83, 0.83],
+        [13.15, 13.15],
+        [25.24, 25.24],
       ],
     },
   },
-
-  aperture: { fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 6 },
-
+  aperture: {
+    fStops: [3.95, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+    blades: 6,
+  },
   groups: [
-    { text: "L1 (+)", fromSurface: "1", toSurface: "3" },
-    { text: "L2 (-) / FOCUS", fromSurface: "4", toSurface: "9" },
-    { text: "L3 (+) / STOP CARRIER", fromSurface: "11", toSurface: "14" },
-    { text: "L4 (+) / ASPH", fromSurface: "15", toSurface: "18A" },
+    {
+      text: "L1 (+)",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "L2 (-) / FOCUS",
+      fromSurface: "4",
+      toSurface: "9",
+    },
+    {
+      text: "L3 (+) / STOP CARRIER",
+      fromSurface: "11",
+      toSurface: "14",
+    },
+    {
+      text: "L4 (+) / ASPH",
+      fromSurface: "15",
+      toSurface: "18A",
+    },
+    {
+      text: "L5 / FIXED PROTECTIVE PLATE",
+      fromSurface: "19",
+      toSurface: "20",
+    },
   ],
-  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
-
-  layout: { scFill: 0.7, yScFill: 0.72 },
+  doublets: [
+    {
+      text: "D1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+  ],
+  layout: {
+    scFill: 0.7,
+    yScFill: 0.72,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

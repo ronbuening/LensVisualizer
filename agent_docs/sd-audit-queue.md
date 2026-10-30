@@ -222,8 +222,6 @@ when a lens joins or leaves it, so delete the key there with the row here.
 |---|---|---|---:|---|---|
 | CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II) | `canon/CanonPowerShotG1XII125625mmf239.data.ts` | [2, 3.5, 3.9] | 2.06 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | CANON 8.8-36.8mm f/1.8-2.8 (Canon PowerShot G7 X) | `canon/CanonPowerShotG7X88368mmf1828.data.ts` | [1.8, 2.54, 2.8] | 1.85 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
-| CANON EF 28-105mm f/3.5-4.5 II USM | `canon/CanonEF28105mmf3545II.data.ts` | [3.5, 4, 4.5] | 3.63 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
-| CANON EF 28-135mm f/3.5-5.6 IS USM | `canon/CanonEF28135mmf3556IS.data.ts` | [3.5, 4.24, 5.6] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | [3.5, 4, 4.5] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | CANON EF 70-300mm f/4-5.6 IS USM | `canon/CanonEF70300mmf456ISUSM.data.ts` | [4.0333081, 4.74696994, 5.94591516] | 4.1 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | CANON EF-S 10-18mm f/4.5-5.6 IS STM | `canon/CanonEFS1018mmf4.data.ts` | [4.5, 5.1, 5.6] | 4.64 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
@@ -251,7 +249,7 @@ variable-aperture zooms carry marketed values at one or more stations it does no
 station f-numbers in their own header or note; replace each array from the source the same way:
 `nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
 `nikon/NikonAFZoomNikkor2885mmf3545`, `nikon/NikonNikkorZ1228mmf3556PZ`, `nikon/NikonZDX50250mmf4564VR`,
-`canon/CanonEFS1855mmf3556IS`, `canon/CanonEFS1022mmf3545`, `canon/CanonEF28105mmf456`,
+`canon/CanonEFS1855mmf3556IS`, `canon/CanonEFS1022mmf3545`,
 `canon/CanonPowerShotG1X1560mmf28`, `canon/CanonPowerShotG1XIII1545mmf2856`, `fujifilm/FujifilmGF3570mmf4556`,
 `olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
 `sony/SonyFE2870mmf3556`.
@@ -318,7 +316,6 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 
 | Lens | File | Station: stated, traced, limiter | Status |
 |---|---|---|---|
-| CANON EF 28-105mm f/4-5.6 | `canon/CanonEF28105mmf456.data.ts` | 101.35 mm: f/5.6 traces f/5.85 (+4.5 %), rim 14 | todo |
 | CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | 67.89 mm: f/4.5 traces f/4.64 (+3.1 %), rim 8 | todo |
 | KONICA ZOOM-HEXANON AR 35-70mm f/3.5 | `konica/KonicaZoomHexanonAR3570mmf35.data.ts` | 69.14 mm: f/3.5 traces f/3.94 (+12.5 %), rim 11 | todo |
 | NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED | `nikon/NikonAFZoomMicro70180mmf4556D.data.ts` | 194 mm: f/5.6 traces f/5.89 (+5.3 %), rim 20 | todo |

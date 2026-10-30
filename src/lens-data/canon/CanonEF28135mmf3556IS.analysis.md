@@ -2,20 +2,20 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 6,061,180  
-**Application Number:** US 08/957,162  
-**Priority:** 29 October 1996; 25 December 1996; 1 April 1997 (Japan)  
-**Filed:** 24 October 1997  
-**Granted:** 9 May 2000; certificate of correction issued 8 May 2001  
-**Inventor:** Shingo Hayakawa  
-**Assignee:** Canon Kabushiki Kaisha  
-**Title:** Zoom Lens  
-**Example details:** Figs. 1–3
+**Patent:** US 6,061,180\
+**Application Number:** US 08/957,162\
+**Priority:** 29 October 1996; 25 December 1996; 1 April 1997 (Japan)\
+**Filed:** 24 October 1997\
+**Granted:** 9 May 2000\
+**Inventor:** Shingo Hayakawa\
+**Assignee:** Canon Inc. (printed Canon Kabushiki Kaisha)\
+**Title:** Zoom Lens\
+**Example details:** Numerical Example 1, PDF pages 45–46 / printed columns 12–13; Figure 1(a–c), PDF page 2; normal Figure 2(a–c), PDF pages 3–5; stabilized Figure 3(a–c), PDF page 6
 
 Numerical Example 1 is the strongest patent-internal identification for the Canon EF 28-135mm f/3.5-5.6 IS USM. Canon does not publish a statement naming the implemented numerical example, so this remains a convergent identification rather than a documentary one.
 
 1. **Element and group count.** Example 1 contains 16 elements in 12 air-separated physical groups. Canon publishes the same 16-element/12-group construction.
-2. **Focal range and aperture.** The patent design is 28.89–131.14 mm at f/3.60–5.75; Canon markets 28–135 mm at f/3.5–5.6. The production values govern the catalog specification, while the patent values govern the prescription.
+2. **Focal range and aperture.** The patent design is 28.89–131.14 mm at f/3.60–5.75; Canon markets 28–135 mm at f/3.5–5.6. Production values govern the catalog specification. The original review restores the numerical model's aperture targets to the directly printed source f/3.60, f/4.36 and f/5.75, separately from marketed catalog apertures. Iris radii remain derived under the existing paraxial rule; no physical iris-radius schedule is printed.
 3. **Image format.** The patent half-fields of 36.9°, 23.4°, and 9.3° imply image-circle diameters of approximately 43.4, 43.3, and 43.0 mm. This agrees with the diagonal of the 36 × 24 mm format and Canon's 75°–18° published diagonal field.
 4. **Image stabilization.** Example 1 explicitly shifts negative unit V perpendicular to the optical axis and includes stabilized-state aberration plots for a 0.5° camera tilt. Canon describes a compact lens-shift IS unit in the production lens.
 5. **Focusing.** The patent moves complete negative unit II toward the object for close focus. Canon specifies ring-USM inner focusing, a 0.5 m minimum focus distance, and 0.19× maximum magnification.
@@ -57,11 +57,11 @@ The prescription was re-extracted from the printed Numerical Example 1 table on 
 
 - **Units:** millimetres. No normalization or production scaling is required.
 - **Radius sign:** positive radius places the center of curvature to the image side.
-- **Index reference:** helium d line, 587.56 nm. The patent values are `nd`, not sodium-D or e-line indices.
+- **Index reference:** source column 12 defines only refractive index $n_i$ and Abbe number $ν_i$, without a spectral reference. The data retains its conventional d-line tracing reference as an explicit approximation. Figure 2/3 d/g curves support that context but do not independently define the prescription coordinates. All sixteen media remain numerically unchanged and are now explicitly Unmatched; catalog dispersion curves are disabled.
 - **Asphere convention:** spherical base plus even polynomial terms through $y^{10}$; standard conic constant $K=0$.
 - **Unavailable patent data:** no clear apertures, semi-diameters, finite-focus prescription, or partial-dispersion table is published for Example 1.
 
-The certificate of correction changes the abstract, notation, later-example entries, and claim wording. It does not alter an Example 1 radius, thickness, refractive index, Abbe number, variable separation, or aspherical coefficient.
+The reviewed local original contains 56 pages: the front page, 38 drawing sheets and 17 pages of description/claims. It does not include a correction certificate. Older certificate-related conclusions are not treated as checked evidence in this review.
 
 ### Published zoom separations
 
@@ -111,127 +111,131 @@ Units III and VI have identical displacement at all three states, reproducing th
 
 ### Semi-diameter reconstruction for the data file
 
-The patent gives no clear apertures. The `*.data.ts` semi-diameters are therefore inferred renderer dimensions rather than patent or production dimensions.
+The 2026-10-30 review compared every element, concave end, four cemented interfaces and the single asphere with original Figure 1(a–c). No separate resin layer, cement medium, source filter or rear plate is tabulated. The figure supplies schematic optical outlines rather than numerical clear apertures. Its source raster is 2320 × 3408 pixels, one-bit, with effective page resolutions about 281 × 291 ppi after fitting the image to A4. Enlarging it adds no source detail.
 
-The initial reconstruction was informed by combined marginal and chief rays at all three zoom states and at infinity and the 0.5 m modeled focus endpoint. The working envelope used the project defaults: on-axis pupil fractions through ±0.83 and off-axis rays at 60% of the patent half-field through pupil fractions through ±0.75. The front group was additionally constrained by Canon's 72 mm filter diameter and by the proportions of Canon's published block diagram.
+At wide angle, about 861 native pixels span the 98.50 mm first-to-last-vertex length, or 8.74 axial px/mm. Vertical proportions give a somewhat different scale: the approximately 251-pixel front semi-height, using the retained 30.5 mm front cap as a conditional datum, gives about 8.23 px/mm. Native ink thickness, page anisotropy and schematic differences therefore warrant a practical height uncertainty of approximately ±1.2 mm. The source's rear-singlet semi-heights near 126 pixels and relay-component heights near 77 pixels support conservative 15.5 mm and approximately 9.75–10.1 mm adopted heights. These are inferred optical caps, not measured production dimensions. The 72 mm production filter is not an optical-rim ruler; leaders, group brackets and the stop symbol were excluded.
 
-The final static geometry passed the following independent checks:
+| Surface(s) | Earlier clear sd |                 Reviewed clear sd | Source disposition                                                                                      |
+| ---------- | ---------------: | --------------------------------: | ------------------------------------------------------------------------------------------------------- |
+| S15 / S16  | 10.50 / 10.00 mm |                    9.75 / 9.75 mm | Curved cemented component C2 follows the same visible outer height as retained S17 = 9.75 mm            |
+| S20        |         10.50 mm |                           9.75 mm | C3 outer outline matches existing S18/S19 = 9.75 mm; curved bond remains intact                         |
+| S21 / S23  | 12.30 / 11.50 mm |                  10.10 / 10.10 mm | C4 ends meet the visible common height, conservatively anchored to retained S22 = 10.10 mm              |
+| S24 / S25  | 17.50 / 17.50 mm |                  15.50 / 15.50 mm | Leading rear singlet's resolved caps                                                                    |
+| S26 / S27A | 16.00 / 15.80 mm |                  15.50 / 15.50 mm | Middle rear asphere's resolved outer height                                                             |
+| S28 / S29  | 17.00 / 17.00 mm |                  15.50 / 15.50 mm | Terminal meniscus's resolved outer height                                                               |
+| S7         |         12.80 mm | 12.80 mm, outer shoulder 16.00 mm | Native vertical stroke before the concave cap is modeled by `rimExtensionSd`, anchored to S6 = 16.00 mm |
 
-| Check                                 |     Verified result |                  Limit |
-| ------------------------------------- | ------------------: | ---------------------: |
-| Largest $sd/                          |                   R |                      $ | 0.897679 at r7 | < 0.90 |
-| Largest rim angle                     |       63.855° at r7 | < 64.2° renderer limit |
-| Largest same-element SD ratio         |        1.250000 for L4 |                 ≤ 1.25 |
-| Minimum modeled edge thickness        | 0.368727 mm for L12 |              ≥ 0.30 mm |
-| Largest signed cross-gap sag fraction |     0.888899 of d11 |                 ≤ 0.90 |
+The eleven clear-cap refinements preserve all source R/d, medium pairs and asphere coefficients. Cemented boundaries remain curved; no opaque interface land or disconnected layer is added. One outer shoulder and zero inferred concave-end cuts are authored.
 
-Because the patent publishes neither clear apertures nor a finite-focus prescription, this geometry is not used to claim exact wide-open bundle clearance, production vignetting, or measured mechanical edge dimensions. The values validate only the static renderer geometry.
+Retained constraints are explicit. Extending the actual S7 optical curve to the 16 mm outer blank exceeds its 14.259 mm radius and the existing 64.2° slope guard; the retained 12.8 mm cap is already at about 63.855°. A square 30.5 mm C1 trial gives L2 edge thickness −0.459 mm, so the front component keeps unequal 30.5/29.5/28.5 mm caps and its source R/d. No separate extra shoulder is resolved on the almost flat S3 stroke. Remaining unit-II caps preserve edge, slope and gap limits; the source ink does not justify filling every schematic block to one height.
 
 ## Element-by-Element Analysis
 
-Standalone focal lengths below are thick-lens focal lengths in air. For members of cemented assemblies, they do not describe the in-situ component power; the cemented net is stated separately.
+The $n_d/ν_d$ notation below describes the retained approximate d-line tracing convention; the original prints unnamed $n_i/ν_i$. Every medium is Unmatched. Previous named classes remain conditional comparisons, with no active catalog curve or historical supplier, melt or chemistry identification. Standalone focal lengths below are thick-lens focal lengths in air. For members of cemented assemblies, they do not describe the in-situ component power; the cemented net is stated separately.
 
 ### C1 — L1 + L2, weak positive cemented front component
 
-**L1:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (OHARA catalog equivalent). $f = -124.444653$ mm. Negative meniscus, concave toward the image.
+**L1:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -124.444653$ mm. Negative meniscus, concave toward the image.
 
-**L2:** $n_d = 1.69680$, $\nu_d = 55.5$. Glass: S-LAL14 (OHARA catalog equivalent). $f = +86.820609$ mm. Positive meniscus, convex toward the object.
+**L2:** $n_d = 1.69680$, $\nu_d = 55.5$. Glass: Unmatched (prior S-LAL14 / OHARA comparison conditional). $f = +86.820609$ mm. Positive meniscus, convex toward the object.
 
 The cemented pair has EFL +300.248201 mm. It is therefore a weak positive component despite the strongly negative standalone L1. This illustrates why isolated element powers cannot be algebraically substituted for the in-situ behavior of a cemented pair.
 
 ### L3 — positive meniscus
 
-**L3:** $n_d = 1.71300$, $\nu_d = 53.8$. Glass: S-LAL8 (OHARA catalog equivalent). $f = +103.354992$ mm.
+**L3:** $n_d = 1.71300$, $\nu_d = 53.8$. Glass: Unmatched (prior S-LAL8 / OHARA comparison conditional). $f = +103.354992$ mm.
 
 L3 is air-spaced from C1 and completes positive unit I, whose net EFL is +78.301204 mm.
 
 ### L4 — negative meniscus
 
-**L4:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (OHARA catalog equivalent). $f = -20.186862$ mm.
+**L4:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -20.186862$ mm.
 
 L4 supplies the strongest individual negative power in unit II and begins the inner-focus variator.
 
 ### L5 — biconcave negative
 
-**L5:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: S-LAH65V (OHARA catalog equivalent). $f = -36.774802$ mm.
+**L5:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: Unmatched (prior S-LAH65V / OHARA comparison conditional). $f = -36.774802$ mm.
 
-The Abbe number places this dense lanthanum glass in flint territory despite the family name.
+The retained Abbe coordinate is 46.6. A catalog family name is not evidence of the source glass chemistry.
 
 ### L6 — biconvex positive
 
-**L6:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (OHARA catalog equivalent). $f = +20.119536$ mm.
+**L6:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = +20.119536$ mm.
 
 L6 is the positive member embedded within the otherwise negative unit II. Its high index permits substantial positive power in a short axial thickness.
 
 ### L7 — biconcave negative
 
-**L7:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (OHARA catalog equivalent). $f = -28.972898$ mm.
+**L7:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -28.972898$ mm.
 
 L7 closes unit II. The complete four-element unit has EFL −15.491985 mm and moves toward the object for close focus.
 
 ### C2 — L8 + L9, positive cemented unit III
 
-**L8:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (OHARA catalog equivalent). $f = -47.413921$ mm. Negative meniscus.
+**L8:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -47.413921$ mm. Negative meniscus.
 
-**L9:** $n_d = 1.60311$, $\nu_d = 60.7$. Glass: S-BSM14 (OHARA catalog equivalent). $f = +19.339618$ mm. Biconvex positive.
+**L9:** $n_d = 1.60311$, $\nu_d = 60.7$. Glass: Unmatched (prior S-BSM14 / OHARA comparison conditional). $f = +19.339618$ mm. Biconvex positive.
 
 The cemented net is +32.533306 mm. Unit III shares its zoom displacement with unit VI.
 
 ### C3 — L10 + L11, weak positive cemented unit IV
 
-**L10:** $n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL36 (OHARA catalog equivalent). $f = +28.004510$ mm. Biconvex positive.
+**L10:** $n_d = 1.51742$, $\nu_d = 52.4$. Glass: Unmatched (prior S-NSL36 / OHARA comparison conditional). $f = +28.004510$ mm. Biconvex positive.
 
-**L11:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (OHARA catalog equivalent). $f = -33.346608$ mm. Biconcave negative.
+**L11:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -33.346608$ mm. Biconcave negative.
 
 The cemented net is only +139.775614 mm. The stop follows the same zoom locus as this weak positive relay.
 
 ### C4 — L12 + L13, negative image-stabilizing unit V
 
-**L12:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH6 (OHARA catalog equivalent). $f = +25.842999$ mm. Positive meniscus, convex toward the image.
+**L12:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: Unmatched (prior S-TIH6 / OHARA comparison conditional). $f = +25.842999$ mm. Positive meniscus, convex toward the image.
 
-**L13:** $n_d = 1.70154$, $\nu_d = 41.2$. Glass: S-BAH27 (OHARA catalog equivalent). $f = -16.565005$ mm. Biconcave negative.
+**L13:** $n_d = 1.70154$, $\nu_d = 41.2$. Glass: Unmatched (prior S-BAH27 / OHARA comparison conditional). $f = -16.565005$ mm. Biconcave negative.
 
 The cemented net is −43.411851 mm. The complete doublet, rather than either member individually, moves perpendicular to the optical axis for stabilization.
 
 ### L14 — biconvex positive
 
-**L14:** $n_d = 1.72342$, $\nu_d = 38.0$. Glass: S-BAH28 (OHARA catalog equivalent). $f = +76.152917$ mm.
+**L14:** $n_d = 1.72342$, $\nu_d = 38.0$. Glass: Unmatched (prior S-BAH28 / OHARA comparison conditional). $f = +76.152917$ mm.
 
 L14 begins positive rear unit VI and is air-spaced from L15.
 
 ### L15 — biconvex positive with rear-surface asphere
 
-**L15:** $n_d = 1.58313$, $\nu_d = 59.4$. Glass: L-BAL42 (OHARA low-$T_g$ catalog equivalent). $f = +30.118835$ mm.
+**L15:** $n_d = 1.58313$, $\nu_d = 59.4$. Glass: Unmatched (prior L-BAL42 / OHARA comparison conditional). $f = +30.118835$ mm.
 
-L15 supplies the principal positive power in the rear triplet. Its rear surface r27 is the only asphere. The exact optical-constant match also exists in polished S-BAL42; the GMo manufacturing statement and the low-softening L-series catalog make L-BAL42 a plausible molding-class reference, not proof of the undisclosed production melt.
+L15 supplies the principal positive power in the rear triplet. Rear surface r27 is the sole source asphere. The earlier L-BAL42/S-BAL42 comparison assumes d-line coordinates and remains conditional; neither a catalog match nor the production GMo description establishes this patent medium, historical melt, chemistry or manufacturing route.
 
 ### L16 — negative meniscus
 
-**L16:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (OHARA catalog equivalent). $f = -34.559468$ mm. Negative meniscus, concave toward the object.
+**L16:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -34.559468$ mm. Negative meniscus, concave toward the object.
 
 L16 is the terminal element. L14–L16 combine to a positive rear-unit EFL of +46.717520 mm.
 
 ## Glass Identification and Selection
 
-The patent discloses only $n_d$ and $\nu_d$, not suppliers or melt names. The following names are nearest OHARA catalog equivalents verified directly against the manufacturer's polished-glass and low-$T_g$ catalogs. They are reference identifications; multiple vendors publish equivalent or near-equivalent optical constants.
+The source publishes sixteen $n_i/ν_i$ pairs in columns 12–13, with no specified index reference and no individual C/F/g indices, relative partial dispersion or APD evidence. All sixteen pairs are preserved. All sixteen media are explicitly Unmatched with `indexReferenceNote`; sixteen previously resolved catalog curves are disabled. No per-lens C/F/g or partial overrides were present to remove. The prescription has no separately specified cement, hybrid/resin layer, filter or camera-side plate.
 
-Residuals are catalog values minus patent values.
+The old OHARA comparisons below are retained as conditional historical comparisons only: their numbers presume a d-line interpretation that the source does not explicitly establish. They are not current resolved glass labels or spectral evidence. Catalog class, supplier, chemistry and manufacturing method remain unresolved. The d/g aberration plots are contextual evidence rather than a table of source line indices.
 
-| Patent $n_d/\nu_d$ | OHARA reference | Catalog $n_d/\nu_d$ | Residual $\Delta n_d/\Delta\nu_d$ | Elements        |
-| -----------------: | --------------- | ------------------: | --------------------------------: | --------------- |
-|     1.84666 / 23.8 | S-TIH53         |     1.84666 / 23.78 |                   0.00000 / −0.02 | L1, L6, L8, L16 |
-|     1.69680 / 55.5 | S-LAL14         |     1.69680 / 55.53 |                   0.00000 / +0.03 | L2              |
-|     1.71300 / 53.8 | S-LAL8          |     1.71300 / 53.87 |                   0.00000 / +0.07 | L3              |
-|     1.83481 / 42.7 | S-LAH55V        |     1.83481 / 42.73 |                   0.00000 / +0.03 | L4, L7, L11     |
-|     1.80400 / 46.6 | S-LAH65V        |     1.80400 / 46.58 |                   0.00000 / −0.02 | L5              |
-|     1.60311 / 60.7 | S-BSM14         |     1.60311 / 60.64 |                   0.00000 / −0.06 | L9              |
-|     1.51742 / 52.4 | S-NSL36         |     1.51742 / 52.43 |                   0.00000 / +0.03 | L10             |
-|     1.80518 / 25.4 | S-TIH6          |     1.80518 / 25.42 |                   0.00000 / +0.02 | L12             |
-|     1.70154 / 41.2 | S-BAH27         |     1.70154 / 41.24 |                   0.00000 / +0.04 | L13             |
-|     1.72342 / 38.0 | S-BAH28         |     1.72342 / 37.95 |                   0.00000 / −0.05 | L14             |
-|     1.58313 / 59.4 | L-BAL42         |     1.58313 / 59.38 |                   0.00000 / −0.02 | L15             |
+Conditional residuals are catalog d-line values minus the unnamed source coordinates, and assume that conventional reference solely for comparison.
 
-No element has the very high Abbe number characteristic of ED, UD, or fluorite-class crown glass. The design's axial color correction is therefore conventional multi-pair achromatization rather than an apochromatic strategy. The data file uses catalog names so the dispersion engine can resolve manufacturer Sellmeier data, but the labels should not be interpreted as procurement records.
+| Source $n_i/ν_i$ | Prior conditional OHARA comparison | Catalog $n_d/\nu_d$ | Residual $\Delta n_d/\Delta\nu_d$ | Elements        |
+| ---------------: | ---------------------------------- | ------------------: | --------------------------------: | --------------- |
+|   1.84666 / 23.8 | S-TIH53                            |     1.84666 / 23.78 |                   0.00000 / −0.02 | L1, L6, L8, L16 |
+|   1.69680 / 55.5 | S-LAL14                            |     1.69680 / 55.53 |                   0.00000 / +0.03 | L2              |
+|   1.71300 / 53.8 | S-LAL8                             |     1.71300 / 53.87 |                   0.00000 / +0.07 | L3              |
+|   1.83481 / 42.7 | S-LAH55V                           |     1.83481 / 42.73 |                   0.00000 / +0.03 | L4, L7, L11     |
+|   1.80400 / 46.6 | S-LAH65V                           |     1.80400 / 46.58 |                   0.00000 / −0.02 | L5              |
+|   1.60311 / 60.7 | S-BSM14                            |     1.60311 / 60.64 |                   0.00000 / −0.06 | L9              |
+|   1.51742 / 52.4 | S-NSL36                            |     1.51742 / 52.43 |                   0.00000 / +0.03 | L10             |
+|   1.80518 / 25.4 | S-TIH6                             |     1.80518 / 25.42 |                   0.00000 / +0.02 | L12             |
+|   1.70154 / 41.2 | S-BAH27                            |     1.70154 / 41.24 |                   0.00000 / +0.04 | L13             |
+|   1.72342 / 38.0 | S-BAH28                            |     1.72342 / 37.95 |                   0.00000 / −0.05 | L14             |
+|   1.58313 / 59.4 | L-BAL42                            |     1.58313 / 59.38 |                   0.00000 / −0.02 | L15             |
+
+The retained Abbe coordinates span 23.8–60.7; the original does not identify ED/UD/fluorite chemistry or anomalous partial dispersion. Coordinate-based class comparisons cannot prove composition or an apochromatic production claim. The default d-line model permits approximate tracing; it does not supply measured source spectra.
 
 ## Focus Mechanism
 
@@ -271,9 +275,9 @@ Compared with the standard conic form, the square-root term corresponds to $K=0$
 | ----------- | ---------: | --: | ---------------: | ---------------: | ----------------: | ----------------: |
 | r27 / `27A` | −23.956 mm |   0 | +1.29656e−5 mm−3 | +1.07517e−8 mm−5 | −3.30087e−11 mm−7 | +8.80605e−14 mm−9 |
 
-At the inferred 15.8 mm renderer semi-diameter, the spherical base sag is −5.949059 mm and the full aspherical sag is −5.016590 mm. The polynomial departure is therefore +0.932469 mm in the imageward coordinate: the rim is shallower than the spherical base. The evaluation height is explicitly tied to the validated data-file semi-diameter, not an assumed arbitrary height.
+At the reviewed inferred 15.5 mm renderer semi-diameter, the spherical base sag is −5.690187 mm and the full aspherical sag is −4.832202 mm. The polynomial departure is therefore +0.857985 mm in the imageward coordinate: the rim is shallower than the spherical base. The evaluation height is explicitly tied to the validated data-file semi-diameter, not an assumed arbitrary height.
 
-Canon identifies the production component as molded glass. The optical constants match both S-BAL42 and the low-softening L-BAL42 family; the data file uses L-BAL42 as a manufacturing-consistent catalog reference, with no claim that Canon disclosed that exact melt.
+Canon's earlier production correlation identifies a molded component. The patent only specifies its aspheric shape and unnamed optical coordinates. The former L-BAL42 label is now a disabled conditional comparison; it cannot establish a molding route or chemistry for this numerical example.
 
 ## Image Stabilization
 
@@ -298,21 +302,21 @@ The calculations use reconstructed rather than rounded focal lengths:
 - $f_4 = 139.775614$ mm; and
 - $\sqrt{f_W f_T} = 61.562880$ mm.
 
-|      No. | Published expression                |          Example 1 result | Status                                       |
-| -------: | ----------------------------------- | ------------------------: | -------------------------------------------- |
-|      (1) | $0.7<(f_{FT}/f_{FW})/(f_T/f_W)<1.2$ |               0.965257878 | Satisfied; patent table rounds to 0.965      |
-|      (2) | $0.2<                               |                       f_C | /\sqrt{f_W f_T}<1.0$                         | 0.705162775 | Satisfied; patent table rounds to 0.705 |
-|      (3) | $D_{1W}<D_{1T}$                     |           2.00 < 33.50 mm | Satisfied                                    |
-|      (4) | $D_{2W}>D_{2T}$                     |           20.30 > 3.74 mm | Satisfied; $D_2=d13+d14$                     |
-|      (5) | $D_{5W}>D_{5T}$                     |           12.50 > 1.84 mm | Satisfied                                    |
-|      (6) | $0.3<I_{CT}<5.0$                    |           $I_{CT}=+1.090$ | Patent third-order value; satisfied          |
-| (7)–(10) | Same applicable separation trends   |                  All true | Numerically satisfied in positive-IV branch  |
-|     (11) | $0.3<f_3/\sqrt{f_Wf_T}<1.3$         |               0.528456527 | Satisfied                                    |
-|     (12) | $0.6<f_4/\sqrt{f_Wf_T}$             |               2.270452812 | Satisfied                                    |
-|     (13) | $\sqrt{f_Wf_T}<10.0$                |          61.562880 < 10.0 | False and dimensionally defective as printed |
-|     (14) | $f_3<f_4$                           | 32.533306 < 139.775614 mm | Satisfied                                    |
+|      No. | Published expression                      |          Example 1 result | Status                                       |
+| -------: | ----------------------------------------- | ------------------------: | -------------------------------------------- |
+|      (1) | $0.7<(f_{FT}/f_{FW})/(f_T/f_W)<1.2$       |               0.965257878 | Satisfied; patent table rounds to 0.965      |
+|      (2) | $0.2<\lvert f_C\rvert/\sqrt{f_W f_T}<1.0$ |               0.705162775 | Satisfied; patent table rounds to 0.705      |
+|      (3) | $D_{1W}<D_{1T}$                           |           2.00 < 33.50 mm | Satisfied                                    |
+|      (4) | $D_{2W}>D_{2T}$                           |           20.30 > 3.74 mm | Satisfied; $D_2=d13+d14$                     |
+|      (5) | $D_{5W}>D_{5T}$                           |           12.50 > 1.84 mm | Satisfied                                    |
+|      (6) | $0.3<I_{CT}<5.0$                          |           $I_{CT}=+1.090$ | Patent third-order value; satisfied          |
+| (7)–(10) | Same applicable separation trends         |                  All true | Numerically satisfied in positive-IV branch  |
+|     (11) | $0.3<f_3/\sqrt{f_Wf_T}<1.3$               |               0.528456527 | Satisfied                                    |
+|     (12) | $0.6<f_4/\sqrt{f_Wf_T}$                   |               2.270452812 | Satisfied                                    |
+|     (13) | $\sqrt{f_Wf_T}<10.0$                      |          61.562880 < 10.0 | False and dimensionally defective as printed |
+|     (14) | $f_3<f_4$                                 | 32.533306 < 139.775614 mm | Satisfied                                    |
 
-The explanatory prose for condition (13) says that it limits the fourth-unit focal length. The likely intended expression is $f_4/\sqrt{f_Wf_T}<10.0$, which gives 2.270452812. This is an inference, not a correction printed in the certificate. Claim 12 omits condition (13), which further limits its legal and analytical significance.
+The explanatory prose for condition (13) says that it limits the fourth-unit focal length. The likely intended expression is $f_4/\sqrt{f_Wf_T}<10.0$, which gives 2.270452812. This is an inference, not a source correction established by the reviewed local original. Claim 12 omits condition (13), which further limits its legal and analytical significance.
 
 The Example 1 correspondence line also publishes third-order spherical-aberration coefficients $I_{FT}=+0.916$, $I_{CT}=+1.090$, and $I_{RT}=-2.299$. These normalized patent quantities are reported on the patent's authority rather than replaced with ABCD-matrix proxies.
 
@@ -328,7 +332,7 @@ The verification uses the reduced-angle vector $[y,nu]$, surface power $\phi=(n'
 | Middle |  50.00 mm |   50.004242 mm | +0.004242 mm | 48.032613 mm |            103.24 mm |         151.272613 mm |
 | Tele   | 131.14 mm |  131.182095 mm | +0.042095 mm | 55.933727 mm |            113.44 mm |         169.373727 mm |
 
-The maximum discrepancy is approximately 0.032% at telephoto and is consistent with the patent's rounded refractive indices and variable gaps. No uniform scale factor is applied. The data file uses marketed endpoint apertures f/3.5 and f/5.6; its middle f/4.24 value is a manufacturer-constrained interpolation obtained by applying the mean endpoint design-to-market ratio to the patent's f/4.36 middle state.
+The maximum discrepancy is approximately 0.032% at telephoto and is consistent with the patent's rounded refractive indices and variable gaps. No uniform scale factor is applied. The earlier model used marketed endpoints f/3.5 and f/5.6 plus an inferred middle f/4.24. All three nominal targets are now restored to the printed source 3.60/4.36/5.75; the middle value is printed directly in Figure 2(b), rather than inferred. This corrects the transcription/control choice without changing source R/d or the zoom/focus spacings.
 
 ### Group, cemented-component, and element powers
 
@@ -392,9 +396,21 @@ The prescription maps explicitly as follows: unit I is r1–r5; unit II r6–r13
 
 Claims 1–10 and 17–21 describe the object-side positive group, negative transverse intermediate unit, positive rear unit, and object-side focusing architecture instantiated by Example 1. Claims 11–14 describe the positive-fourth-unit branch and are numerically compatible with Example 1, apart from the defective printed condition (13) in the explanatory text. Claims 15–16 require a negative fourth unit and therefore do not describe Example 1.
 
+## Original Review and Runtime Limits — 2026-10-30
+
+Surface and image-circle checks pass. A diagnostic copy with 65 uniformly spaced zoom nodes reproduces actual runtime geometry exactly at those nodes (including focus 0/0.5/1); all 65 sampled infinity apertures are within 3% of the restored source-target control, and all 65 corner chiefs clear. The target correction is supported independently by the Numerical Example 1 heading (endpoints), Figure 2(a/b/c) (all three states, PDF pages 3–5), and repeated Figure 3(a/b/c) labels (PDF page 6). The middle f/4.36 is explicitly printed. The nominal sequence changes from 3.5/4.24/5.6 to 3.60/4.36/5.75, and the first aperture preset follows the restored wide value 3.60. This source restoration is separate from rim and glass changes. It retains the existing derived/paraxial semantics: the new derived iris radii are 6.528838, 6.612215 and 6.633283 mm, versus earlier 6.715377, 6.799354 and 6.810960 mm. Real aimed infinity working f-numbers are approximately 3.62668, 4.39318 and 5.78606. No station-by-station physical iris radius is published or asserted.
+
+The source supplies three quantitative zoom stations, not a continuous compensator cam. The existing linearly interpolated gaps are illustrative and do not preserve focus. At zoom 0.828125 the paraxial back focus is 56.606170 mm against the interpolated image gap 53.217719 mm, a +3.388451 mm residual; actual paraxial EFL is 94.538052 mm while the displayed linear focal value is 103.277208 mm. At the three source stations the authored BF values were computed from the prescription and agree to within 0.000001 mm; they are not printed source BF rows.
+
+Across 21 zoom positions, 21 focus positions and nine aperture settings, baseline and reviewed caps produce identical working-ray status totals: 3726 traced and 243 unavailable calls. Those 243 are the nine apertures at 27 interpolated zoom/focus configurations where the finite-object model returns `object-inside-lens` (focus 0.05–0.20 within zoom 0.55–0.95). The source's infinity-only spacing table does not establish a finite-focus trajectory to repair this. The existing 0.5 m product-constrained unit-II reconstruction is retained with this limitation.
+
+Actual SVGs at all three source zoom states were compared with Figure 1(a–c). A 21 × 21 zoom/focus grid produces 7056 finite, singly connected, closed element paths with zero hidden renderer trimming. Corner aiming reaches about 21.65 mm throughout this sampled geometry. An aimed 193-point circular-pupil probe at axial, half-field and corner fields across the same 441 geometry states traces all 193 axial samples. Off-axis illumination remains vignetted: infinity corner counts at wide/middle/tele are 125/158/153 of 193, compared with 129/160/159 before the source-height and separately supported aperture-target restorations; reconstructed close-focus counts are 115/158/146. Finite paths and aimed traces do not override the physical finite-conjugate guard above or certify full-pupil illumination.
+
+Source Figure 3 on PDF page 6 shows stabilized-state aberrations at a 0.5° camera tilt, with fields h = +15/0/−15 mm. It gives no millimetre decenter of unit V. The current runtime has no IS-decenter control, so the review validates centered geometry only; the published stabilized state remains unmodeled. No inferred cut is authored, and no cut exemption or tolerance is introduced. Source transcription, sampled runtime behavior and production correlation remain separate conclusions. The older production and catalog references below are context from the existing analysis, not fresh source inspections in this original-PDF review.
+
 ## Sources
 
-1. Shingo Hayakawa, “Zoom Lens,” US 6,061,180, filed 24 October 1997, granted 9 May 2000, Numerical Example 1, Figs. 1–3, cols. 1–14, claims 1–21, and certificate of correction.
+1. Shingo Hayakawa, “Zoom Lens,” US 6,061,180, filed 24 October 1997, granted 9 May 2000, Numerical Example 1, Figs. 1–3, printed cols. 1–34, claims 1–21. Original local file `patents/US_6061180_A.pdf`, SHA-256 `cef2de761b2206ed076a2e8053734687c54d8cce9735ca985eb315017adc7072`; source inspection 2026-10-30.
 2. [Canon Camera Museum: EF28-135mm f/3.5-5.6 IS USM](https://global.canon/en/c-museum/product/ef342.html) — introduction date, construction, MFD, magnification, filter diameter, GMo asphere, IS description, ring USM, and inner focus.
 3. [Canon Latin America: EF 28-135mm f/3.5-5.6 IS USM](https://www.cla.canon.com/en/p/ef-28-135mm-f-3-5-5-6-is-usm) — marketed focal length/aperture, construction, diagonal field, focusing system, and minimum focus distance.
 4. OHARA, _Optical Glass Pocket Catalog_, 2023 edition, and official glass-type data sheets — polished-glass $n_d/\nu_d$ values and catalog names.
