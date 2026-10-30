@@ -136,3 +136,23 @@ Before/after `audit:surface` passes and `audit:image-circle` reports 0 undersize
 `audit:aperture` reports all three stations within 3% of their stated f-number, with no rim, trace, iris or failed
 stations. The actual SVG geometry was rendered and compared with Figure 1. Nine zoom/focus states (0, 0.5, 1
 on each control) have zero hidden semi-diameter trim.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2021189377A.pdf`, Numerical Example 1, PDF pp. 15–16; summary Tables 1–2,
+p. 22, were checked separately. All twelve modeled media (eleven physical lenses) retain the printed d-line
+nd/νd values: the L1b/L3b pair 1.53048/55.72, cement 1.51400/27.05, both ED positions 1.49700/81.61,
+and the other seven ordinary-glass media all agree. Nine of twelve modeled media have catalog curves; the two
+COP resins and cement are explicit unmatched materials, not ordinary-glass coverage failures.
+
+| Media | Fresh verdict |
+|---|---|
+| L1a, L1c, L2a/L2b, L2c/L2d/L2e, L3a, L4a | Printed coordinates and coordinate-compatible catalog proxies retained |
+| L1b, L3b, Cem | Printed coordinates and qualified unresolved resin/cement identities retained |
+
+The source supplies no C/F/g-index or partial-dispersion table. ED/APD remains inferred and no source spectral
+measurement or production supplier is invented. No glass-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

@@ -197,3 +197,19 @@ resolved air-face land calls for an extension or additional cut.
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
 rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/WO2022259649A1.pdf`, Example 5 / Table 5, PDF pp. 51–52 (printed pp. 49–50).
+All 16 physical elements retain the printed d-line nd/νd values and existing coordinate-compatible catalog
+curves. In particular, repeated L3/L15 1.77503/47.31 remains M-TAF401; L7 1.59306/66.97 remains a
+qualified J-PSKH4 proxy; L12 1.78472/25.64 remains S-TIH11; L14 1.55332/71.67 remains M-FCD500.
+L1–L16 were checked, not only these formerly discussed rows.
+
+All sixteen media resolve to coefficient-backed curves. Table 5 supplies no C/F/g or partial-dispersion column;
+the four ED/APD flags remain inferred from material class/manufacturer correlation. No source spectrum or
+production supplier is inferred from a catalog match. No glass-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

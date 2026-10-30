@@ -233,3 +233,25 @@ what the raster can establish. The source's lower cap end at 8 remains qualified
 
 No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
 rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JPWO2020157904A1.pdf`, Example 1 / Table 1, PDF pp. 15–16, and the convention
+paragraphs on pp. 13–14. All 19 physical elements' d-line nd/νd values match the rendered table. Every label
+resolves to a coordinate-compatible coefficient curve, including former code-only rows L33 (N-BALF4), L52
+(M-TAFD305), L61 (M-TAFD51) and L62 (J-KZFH6).
+
+| Media | Change / retained verdict |
+|---|---|
+| L44 | Retain source 1.49710/81.49, compatible M-FCD1 proxy and inferred APD; remove generic family dPgF +0.028 |
+| Other eighteen glasses | Source coordinates and compatible annotations retained |
+
+Table 1 contains no partial-dispersion or C/F/g-index values. The former +0.028 was a family estimate on an
+older vendor convention, not source data. M-FCD1's shared coefficients now determine the spectrum without
+that per-lens g-line override. The APD and molding interpretation stays catalog-derived, with no production
+supplier identification. Related analysis and APD note were synchronized.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+`audit:surface` passes after the glass-only changes.

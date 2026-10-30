@@ -270,10 +270,9 @@ const LENS_DATA = {
       glass: "M-FCD1 (HOYA) catalog equivalent (patent nd=1.49710, νd=81.49; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "Inferred from the FCD1/S-FPL51 fluorophosphate family (ΔP(g,F) ≈ +0.028, family value, not patent-listed). M-FCD1 is HOYA's precision-molding grade of the exact patent coordinate.",
+        "Inferred from the compatible M-FCD1 fluorophosphate catalog curve; no partial-dispersion value is printed in the patent. The shared coefficients supply the spectrum without a generic family override, and do not prove the production melt.",
       role: "Aspherical ED element — triple duty: ED glass (secondary spectrum), asph S28A (SA correction), achromatic relay power.",
       cemented: "D4b",
-      dPgF: 0.028,
     },
     {
       id: 16,
