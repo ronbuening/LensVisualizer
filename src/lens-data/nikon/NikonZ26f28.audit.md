@@ -103,3 +103,11 @@ Reopened `patents/WO2023190222A1.pdf`, Example 1, Figure 1 (PDF p. 63), and insp
 This draws the shoulder that a former raised-`sd` cut could not retain under the beam rule, and avoids evaluating the R = -9.36192 mm sphere at the 9.7 mm drawn edge. The existing clear aperture and beam clipping stay fixed. Cuts 2 and 10A retain their beam-clearing depths; no additional concave land is resolved. The L8 resin/glass flange and L4/L5 step remain cemented-junction geometry. The public analysis now distinguishes L7's air-side opaque land from those excluded junction flanges.
 
 `audit:surface` passes, including existing inferred-cut beam checks; `audit:image-circle` reports 0 undersized and 0 skipped. No optical aperture or prescription parameter changed.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2023190222A1.pdf`, Example 1, Table 1 on PDF pp. 35–36. All nine modeled media (eight physical elements, with L8 split into resin/glass) match the printed d-line nd/νd pairs. This includes resin L8a 1.56093/36.6, L6 1.58313/59.5 and repeated L3/L8b 1.88300/40.7.
+
+Individually checked and retained the compatible coefficient-backed proxies: L1 S-BAL35, L2 S-FTM16, L3/L8b S-LAH58, L4 J-LASF09A, L5 F2 via the N-F2 annotation, L6 M-BACD12 and L7 SF4. L8a remains an unresolved optical resin: no compatible catalog row is present in the current broad-guard scan, and its chemistry/curing/supplier are not established. The source table supplies no additional line indices or numerical partial dispersion, and no patent APD assertion was added. The current analysis already states these limitations accurately.
+
+No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.
