@@ -19,7 +19,7 @@ The patent's regional angle-of-view comparison needs care. Example 4 lists fov =
 
 The design is a high-speed retrofocus wide-angle lens for a 135-format SLR. It consists of a negative first group, Gr1, and a positive second group, Gr2. Gr1 is fixed during focusing; Gr2 is the rear focusing group. The first group gives the lens its retrofocus character by expanding the incoming field and preserving mirror-box clearance, while the second group supplies the main convergence, aperture-stop control, and final aberration correction.
 
-The patent prescription includes 13 lens elements. In the data file, the thin resin layer on L12 and the two 0.01 mm cement layers are modeled explicitly as optical media, but they are not counted as production lens elements. The sensor cover plate in patent surfaces 29-30 (2.00 mm, nd = 1.51680, νd = 64.2) is modeled physically in `rearPlates`: it is traced by every analysis but not drawn in the cross-section or counted in the element list.
+The patent prescription includes 13 lens elements. In the data file, the thin optical layer on L12 (modeled as resin) and the two 0.01 mm cement layers are modeled explicitly as optical media, but they are not counted as production lens elements. The sensor cover plate in patent surfaces 29-30 (2.00 mm, nd = 1.51680, νd = 64.2) is modeled physically in `rearPlates`: it is traced by every analysis but not drawn in the cross-section or counted in the element list.
 
 The meaningful retrofocus measure is the back focal clearance relative to focal length, not total track divided by focal length. With the patent's 36.31 mm air space from L27 to the cover plate, plus a 2.00 mm cover plate and 1.00 mm final air gap, the physical last-lens-to-image distance is 39.31 mm. Reducing the cover plate to its air equivalent gives a paraxially equivalent final gap of 38.6286 mm (36.31 + 2.00 / 1.51680 + 1.00). Against a 20.6001 mm computed EFL, this gives BFD/EFL ≈ 1.88. The physical total track from the first vertex to the image plane, including the plate, is the patent's 125.31 mm.
 
@@ -36,9 +36,9 @@ L11 is the large front diverging member of the retrofocus group. Its two positiv
 ### L12 — Negative Meniscus with Hybrid Aspherical Rear Layer
 
 Glass body: nd = 1.72916, νd = 54.7. Glass: S-LAL18 / TAC8 class. Glass-body f = −71.6 mm. Composite f = −51.9 mm.  
-Resin layer: nd = 1.51380, νd = 53.0. Glass: patent UV-cure resin layer, code 514530.
+Thin aspherical medium: nd = 1.51380, νd = 53.0, code 514530. The model interprets this 0.08 mm source layer as resin; the patent does not specify its chemistry, curing method or supplier.
 
-L12 is a hybrid composite asphere: a glass meniscus body with a thin resin layer bonded to the rear surface. The aspheric profile is on surface 5. The patent's design discussion states that a first-group negative lens with an aspherical surface is desirable for correcting the distortion produced by the negative front group (¶0034). The computed standalone glass-body focal length is −71.6 mm, while the composite glass-plus-resin pair is −51.9 mm; that difference is why the resin layer is modeled explicitly in the data file.
+L12 is modeled as a hybrid composite asphere: a glass meniscus body with the source's thin optical medium on its rear surface. The resin interpretation does not establish a polymer or curing process. The aspheric profile is on surface 5. The patent's design discussion states that a first-group negative lens with an aspherical surface is desirable for correcting the distortion produced by the negative front group (¶0034). The computed standalone glass-body focal length is −71.6 mm, while the composite glass-plus-resin pair is −51.9 mm; that difference is why the resin layer is modeled explicitly in the data file.
 
 ### L13 — Biconcave Negative ED Element
 
@@ -111,7 +111,7 @@ The patent itself gives only nd and νd, not vendor names. The following identif
 | Element   |      nd |   νd | Corrected identification            | Confidence                | Role                         |
 | --------- | ------: | ---: | ----------------------------------- | ------------------------- | ---------------------------- |
 | L11, L12  | 1.72916 | 54.7 | S-LAL18 / TAC8 class                | Exact class match         | High-index negative menisci  |
-| L12 resin | 1.51380 | 53.0 | Patent UV-cure resin, 514530        | Patent-listed only        | Hybrid aspherical layer      |
+| L12 resin | 1.51380 | 53.0 | Modeled resin interpretation, 514530        | Source index/Abbe only   | Thin aspherical medium      |
 | L13       | 1.49700 | 81.6 | S-FPL51 / FCD1 class                | Exact class match         | ED negative lens             |
 | L14, L24  | 1.80610 | 33.3 | HOYA NBFD15 class                   | Exact match to 806/333    | Dense flint in doublets      |
 | L15       | 1.84666 | 23.8 | S-TIH53 / FDS90 class               | Exact class match         | Very dense flint in LS       |
@@ -224,3 +224,11 @@ The data file uses the patent design aperture, nominalFno = 1.86, as the f-numbe
 3. Nikon USA, “AF-S NIKKOR 20mm f/1.8G ED,” official product / refurbished product specification page. Used for FX angle-of-view, F-mount, rear focusing, and production construction cross-checks.
 4. OHARA optical glass catalog pages for S-LAL18, S-FPL51, S-TIH6, S-TIH53, S-LAH65V, S-BSM18, S-LAH95, L-LAL13, and S-PHM52.
 5. HOYA optical glass cross-reference and optical glass report tables for TAC8, NBFD15, FD60, BACD18, FCD515, and FDS90 class identifications.
+
+## Current Source and Rim Reinspection
+
+All 17 modeled media, including the thin layer, two cement media and rear plate, match Example 4 (PDF pp. 16–18). Paragraph 0052/PDF11 defines nd and νd at the d line, 587.56 nm. Fourteen compatible catalog curves are retained; the layer and cement media keep source Abbe-based fallbacks. Catalog names are spectral proxies, and the two inferred ED positions do not assert published θgF or production melt identities.
+
+Figure 4/PDF21 resolves flat ends on S2, S7 and S15. S2 retains its 17.7 mm cap with a land to 21.8 mm; S7 has a 4.10 mm inferred cut at outer 20.0 mm, giving cap 17.9441 mm; S15 retains 12.9 mm with a land to 13.4 mm. Adjacent continuous rims are restored at S14=13.4, S17=13.4, S19–21=12.8, S26A/S27=13.0 mm. Cement and resin interfaces receive no opaque lands. The hybrid rear asphere keeps its existing 16.5 mm cap rather than forcing the raster shoulder through its thin interface. All nine actual SVG states have finite continuous compound outlines and zero hidden trim.
+
+At the adopted 13.0 mm cap, S26A departs +2.2487 mm from its same-radius base sphere and has rim slope 18.4992°. S25A remains +1.2578 mm at 13.0 mm; S5A remains −3.9831 mm at 16.5 mm. Every source radius, thickness, material pair, aspheric coefficient, focus reconstruction and rear-plate spacing is retained.

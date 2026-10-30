@@ -72,16 +72,16 @@ G1's three elements handle the extreme angular divergence at the wide end (half-
 
 **L11 — Negative Meniscus (convex toward object), 1× aspherical**
 nd = 1.74389, νd = 49.5 · Glass: Hoya M-NBF1 catalog equivalent (patent code 744495; supplier unspecified) · fl = −53.4 mm
-The front element of the entire system. Its meniscus shape keeps the angle of incidence moderate despite the wide field angle, reducing surface reflection losses and coma. The aspherical rear surface (surface 2A) corrects distortion and field aberrations introduced by the steep ray bending at the wide end. The patent gives κ = 0 in its conic convention (κ = 1 is a sphere), so the base surface is a paraboloid (K = −1). Together with the polynomial terms, the surface is about 1.46 mm shallower than the 29.64 mm base sphere at its 23.8 mm clear-aperture estimate. This weakens the element's negative power toward the rim, the usual way to control barrel distortion in a wide-angle front group.
+The front element of the entire system. Its meniscus shape keeps the angle of incidence moderate despite the wide field angle, reducing surface reflection losses and coma. The aspherical rear surface (surface 2A) corrects distortion and field aberrations introduced by the steep ray bending at the wide end. The patent gives κ = 0 in its conic convention (κ = 1 is a sphere), so the base surface is a paraboloid (K = −1). Together with the polynomial terms, the surface is about 2.276 mm shallower than the 29.64 mm base sphere at its 25.5 mm clear-cap estimate. This weakens the element's negative power toward the rim, the usual way to control barrel distortion in a wide-angle front group.
 
 **L12 — Biconcave Negative (composite aspherical)**
 Glass body (L12g): nd = 1.80400, νd = 46.6 · Glass: Hikari J-LASF015 catalog equivalent · fl = −55.2 mm
-Resin layer (L12r): nd = 1.56093, νd = 36.6 · UV-curing polymer, 0.200 mm thick · fl ≈ +2,116 mm (thick-lens value; optically negligible)
-A powerful negative element that, together with L11, establishes G1's diverging power. The composite aspherical front surface (surface 3A, on the resin layer; κ = 1, so the base is spherical with K = 0; A4 = −3.834×10⁻⁷, about −0.13 mm departure at 22.8 mm) corrects higher-order field aberrations — primarily astigmatism and field curvature — across the full zoom range. In the data file, L12 is modeled as a cemented doublet (L12r + L12g) per the hybrid composite pattern, giving two renderer elements from one physical element.
+Resin layer (L12r): nd = 1.56093, νd = 36.6 · source-listed resin, 0.200 mm thick; chemistry and curing method unspecified · fl ≈ +2,116 mm (thick-lens value; optically negligible)
+A powerful negative element that, together with L11, establishes G1's diverging power. The composite aspherical front surface (surface 3A, on the resin layer; κ = 1, so the base is spherical with K = 0; A4 = −3.834×10⁻⁷, about −0.245 mm departure at 25.5 mm) corrects higher-order field aberrations — primarily astigmatism and field curvature — across the full zoom range. In the data file, L12 is modeled as a cemented doublet (L12r + L12g) per the hybrid composite pattern, giving two renderer elements from one physical element.
 
 **L13 — Positive Meniscus (convex toward object) — HRI Element**
 nd = 2.00100, νd = 29.1 · Glass: Hoya TAFD55 catalog equivalent (001291; Ohara S-LAH99 has the same code) · fl = +80.2 mm
-This is the **HRI element** highlighted in Nikon's marketing. With nd > 2.0, this glass bends light significantly per unit thickness, allowing a single element to contribute the corrective positive power that would otherwise require two or three conventional elements. Its placement at the rear of G1 partially compensates the group's strong negative power, reducing the Petzval sum contribution. Compared to a hypothetical element of the same power made from typical crown glass (n ≈ 1.5), L13's Petzval contribution is reduced by a factor of 1.5/2.001 ≈ 0.75 — a 25% reduction.
+This source element is a candidate for the production HRI role; the patent-to-product correlation does not prove the production melt. With nd > 2.0, this glass bends light significantly per unit thickness, allowing a single element to contribute the corrective positive power that would otherwise require two or three conventional elements. Its placement at the rear of G1 partially compensates the group's strong negative power, reducing the Petzval sum contribution. Compared to a hypothetical element of the same power made from typical crown glass (n ≈ 1.5), L13's Petzval contribution is reduced by a factor of 1.5/2.001 ≈ 0.75 — a 25% reduction.
 
 ### Group 2: Main Converging Group (f = +42.49 mm)
 
@@ -142,19 +142,19 @@ G4 is the rear positive group responsible for final image formation. It contains
 
 **L41 — Biconvex Positive — Aspherical ED Element**
 nd = 1.55332, νd = 71.7 · Glass: Hoya M-FCD500 catalog equivalent (553717) · fl = +106.8 mm
-This is the element Nikon markets as **aspherical ED** ("ASP/ED"). The patent gives only nd/νd; the pair matches Hoya's mold-press ED glass M-FCD500 exactly, which fits a molded aspherical ED element, but the patent does not name the glass. The aspherical front surface (31A) has a spherical base (κ = 1, so K = 0) with positive fourth-order correction. It departs about +0.53 mm from the base sphere at 18.4 mm, steepening the surface at the margin to control zonal spherical aberration. Combining aspherical and ED properties in one element eliminates the need for a separate spherical ED corrector, contributing to compact design.
+This is an inferred ASP/ED position based on the source asphere, low-dispersion coordinate and production specification. M-FCD500 is a compatible catalog spectral proxy; the patent does not name the production glass or establish a molding process. The aspherical front surface (31A) has a spherical base (κ = 1, so K = 0) with positive fourth-order correction. It departs about +0.53 mm from the base sphere at 18.4 mm, steepening the surface at the margin to control zonal spherical aberration. Combining aspherical and ED properties in one element eliminates the need for a separate spherical ED corrector, contributing to compact design.
 
 **L42 + L43 — Cemented Doublet (Jb), net f = +128.1 mm**
 L42 (Neg. Meniscus): nd = 1.83481, νd = 42.7 · S-LAH55 (Ohara catalog equivalent) · fl = −101.1 mm
 L43 (Biconvex): nd = 1.59319, νd = 67.9 · J-PSKH1 (Hikari catalog equivalent) · fl = +56.3 mm
-L43 (nd = 1.59319, νd = 67.9) is a candidate for the second ED element in Nikon's specification. It matches Hikari's J-PSKH1 phosphate crown exactly, but the patent does not publish partial-dispersion data or say which elements are ED.
+L43 (nd = 1.59319, νd = 67.9) is a candidate for the second ED element in Nikon's specification. The current resolver uses a compatible J-PSKH1 spectral proxy; the patent does not publish partial dispersion or identify the production ED positions.
 
 **L44 + L45 + L46 — Cemented Triplet (Tc), net f = +393.4 mm**
 L44 (Biconvex): nd = 1.49782, νd = 82.6 · **J-FKH1 (Hikari catalog equivalent), S-FPL51-class ED** · fl = +44.8 mm
 L45 (Biconcave): nd = 1.80518, νd = 25.5 · J-SF6 (Hikari catalog equivalent) · fl = −37.1 mm
 L46 (Pos. Meniscus, 1× asph): nd = 1.69350, νd = 53.3 · LAC13 (Hoya catalog equivalent) · fl = +180.6 mm
 
-This is the system's **final chromatic and field corrector**. L44 matches Hikari's J-FKH1 fluorophosphate ED glass exactly. That is S-FPL51-class ED, not S-FPL53 Super-ED, and νd = 82.6 provides the main secondary-spectrum correction. L45's dense flint provides complementary dispersion. L46 adds a third glass type. Its aspherical rear surface (39A; spherical base, κ = 1 so K = 0; about +0.69 mm departure at 17.4 mm) is the **final aberration corrector**, addressing residual field curvature and astigmatism.
+This is the system's **final chromatic and field corrector**. L44 uses the compatible J-FKH1 catalog spectral proxy for its source low-dispersion coordinate. The νd = 82.6 value supports a chromatic-correction role, without identifying the production material or proving its partial-dispersion behavior. L45's dense flint provides complementary dispersion. L46 adds a third glass type. Its aspherical rear surface (39A; spherical base, κ = 1 so K = 0; about +0.69 mm departure at 17.4 mm) is the **final aberration corrector**, addressing residual field curvature and astigmatism.
 
 ---
 
@@ -164,8 +164,8 @@ The design employs four aspherical surfaces across four elements:
 
 | Surface | Element | Position | Patent κ | K (stored) | A4 | Departure at stored rim | Purpose |
 |---|---|---|---|---|---|---|---|
-| 2A | L11 rear | G1 | 0 | −1 | +2.215e−6 | −1.46 mm at 23.8 mm | Wide-angle distortion & field correction |
-| 3A | L12r front (resin) | G1 | 1 | 0 | −3.834e−7 | −0.13 mm at 22.8 mm | Field curvature & astigmatism |
+| 2A | L11 rear | G1 | 0 | −1 | +2.215e−6 | −2.276 mm at 25.5 mm | Wide-angle distortion & field correction |
+| 3A | L12r front (resin) | G1 | 1 | 0 | −3.834e−7 | −0.245 mm at 25.5 mm | Field curvature & astigmatism |
 | 31A | L41 front | G4 | 1 | 0 | +4.809e−6 | +0.53 mm at 18.4 mm | Zonal SA & coma (ASP/ED) |
 | 39A | L46 rear | G4 | 1 | 0 | +7.565e−6 | +0.69 mm at 17.4 mm | Residual field curvature & astigmatism |
 
@@ -175,12 +175,12 @@ The patent's Equation (a) writes the conic term as (1 − κ·y²/R²)^½, so κ
 
 ## 5. Glass Strategy
 
-The design uses 16 distinct material types across its 20 elements (15 optical glasses plus 1 UV-curing resin):
+The design uses 16 distinct material types across its 20 elements (15 optical glasses plus 1 resin of unspecified chemistry):
 
 | Six-Digit Code | nd | νd | Count | Classification | Probable Catalog Match |
 |---|---|---|---|---|---|
 | M-NBF1 equivalent / 744495 | 1.74389 | 49.5 | 1 | Lanthanum crown | Coefficient-backed Hoya equivalent (nearest, not exact); patent supplier unspecified |
-| 561/366 | 1.56093 | 36.6 | 1 | UV resin | Composite asph. resin |
+| 561/366 | 1.56093 | 36.6 | 1 | Resin | Composite asph. resin |
 | 804/466 | 1.80400 | 46.6 | 2 | Lanthanum flint | Hikari J-LASF015 |
 | 2001/291 | 2.00100 | 29.1 | 1 | **HRI glass** | **Hoya TAFD55 / Ohara S-LAH99** |
 | 593/670 | 1.59349 | 67.0 | 4 | Phosphate crown | Hikari J-PSKH4 |
@@ -196,7 +196,7 @@ The design uses 16 distinct material types across its 20 elements (15 optical gl
 | 498/826 | 1.49782 | 82.6 | 1 | **ED fluorophosphate crown** | **Hikari J-FKH1 (S-FPL51 class)** |
 | 694/533 | 1.69350 | 53.3 | 1 | Lanthanum crown | Hoya LAC13 |
 
-The patent lists only nd and νd, never glass names. The matches above are catalog equivalents with the same nd/νd, preferring Hikari (Nikon's usual glass supplier) where the repository catalog has an exact entry and Hoya or Ohara otherwise. The six-digit codes (nd×1000 / νd×10) serve as manufacturer-agnostic identifiers.
+The patent lists nd and νd without catalog names or production suppliers. The selected compatible curves are qualified spectral proxies, including near-coordinate matches; a supplier preference or coordinate agreement does not establish Nikon's production melt. Six-digit codes describe the source coordinates.
 
 The chromatic correction strategy relies on three tiers: the HRI element L13 (nd = 2.001) for monochromatic field flattening in G1, the ASP/ED element L41 (νd = 71.7) for combined aspherical + ED correction in G4, and the J-FKH1 ED element L44 (νd = 82.6) in the rear triplet for secondary spectrum control.
 
@@ -288,7 +288,7 @@ The patent gives FNo 2.92 at all three stations but no iris diameters. Because t
 
 ### Semi-Diameters
 
-The patent publishes no clear apertures. The data file's semi-diameters are estimates checked two ways: against an exact real-ray trace at FNo 2.92 and full image height (Y = 21.6 mm) at all three stations, and against the Fig. 1 cross-section (wide-angle row, about 0.147 mm per 300 dpi pixel). The front element (32.0 mm) follows the figure and clears the wide-angle chief ray, which needs 28.6 mm. L21 (17.8 mm) and the G3 elements (11.5–13.4 mm) follow the figure. L24's rear face and L25's front face (17.9 mm) are set by the telephoto axial beam, where their 1.64 mm air gap nearly closes at the rim. The rest of G1, L22–L26 and G4 are within about 15 % of the figure and keep their earlier values. The trace reproduces the patent's half-field angles (42.5° / 22.7° / 17.1–17.2°). Off-axis bundles are vignetted at the wide-angle corners, mostly by G3 and G4.
+Fresh inspection of Figure 1/PDF2 at all three zoom positions supports restoring G1's full outer outline. S2A rises 23.8→25.5 mm and receives an opaque land to the existing 32.0 mm front rim; the curved cap grows while its aspheric coefficients stay fixed. The resin front 3A, powered glass/resin interface 4 and compound rear 5 all rise to 25.5 mm, keeping a continuous whole compound outline. The HRI pair 6/7 rises to 24.9 mm. At the new caps, S2A departure is −2.2758 mm/rim slope 47.0747°, and S3A is −0.2451 mm/10.9321°. Other rims retain their guarded heights, including the tight 17.9 mm L24/L25 boundary. Its merged raster endpoints do not justify an additional flat land. All nine actual SVG states are finite with zero hidden trim and no detached resin wing. Source R/d, material pairs, stop convention, zoom/focus motion and tolerances remain unchanged.
 
 ### Composite Aspherical Treatment
 
@@ -342,3 +342,5 @@ The following values were corrected from the prior draft analysis to match indep
 2. US Patent 10,527,829, parent patent (granted January 7, 2020).
 3. Nikon Corporation, "AF-S NIKKOR 24-70mm f/2.8E ED VR" product page, imaging.nikon.com.
 4. Nikon Corporation, "AF-S NIKKOR 24-70mm f/2.8E ED VR" specification sheet: 20 elements in 16 groups, including 2 ED, 1 ASP/ED, 3 AS, 1 HRI.
+
+All 21 media were freshly verified against Table 1/PDF47–48. Paragraph 0136/PDF46 defines nd/νd at the d line; paragraph 0146 identifies the resin layer but no composition or supplier. Twenty compatible catalog curves remain unchanged, with the source 1.56093/36.6 resin unresolved. ED/ASP-ED position flags remain qualified inferences, and no per-material partial or C/F/g indices are published. FC1/FC2 are air diaphragm surfaces in the source table; retaining their physical air spacings does not omit a glass plate.

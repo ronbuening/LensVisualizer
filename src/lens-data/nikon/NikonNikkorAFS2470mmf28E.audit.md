@@ -153,3 +153,14 @@ and S tick marks in Fig. 1 (about 14 mm) are drawing symbols, not iris radii.
 - No clear apertures are published, so all rims are estimates. G4 is drawn about 10–15 % larger than Fig. 1.
 - The patent does not say which elements are ED. L32, L43, L44 and L41 keep `apd: "inferred"`, and Nikon's
   "2 ED + 1 ASP/ED" cannot be assigned from nd/νd alone.
+
+
+## 2026-10-30 — Fresh patent shape and glass reinspection
+
+Directly inspected US20200142168A1 Figure 1/PDF2 at wide, intermediate and telephoto positions, and all 21 material rows in Table 1/PDF47–48. Paragraphs 0135–0136/PDF46 define nd/vd at the d line (587.562 nm); paragraph 0146 identifies the composite resin layer. It does not specify curing chemistry or production supplier, so the inherited UV-curing label is removed. FC1/FC2 are air diaphragm planes in the printed table; their retained air spacings omit no glass medium.
+
+The figure is native 300 ppi, displayed at 600 dpi; the 179.214 mm front-to-last vertex span gives about 6.8 native px/mm. L11's rear cap/outer ratio is approximately .797±.0081 for one-native-pixel endpoint uncertainty (about 223 native edge pixels), before ink ambiguity. S2A clear height rises 23.8→25.5 mm and gains an opaque land to the existing 32 mm outer rim (adopted q=.796875). The entire hybrid compound S3A/S4/S5 rises to 25.5 mm, including its powered glass/resin boundary, and S6/S7 rise to 24.9 mm. No opaque cement-interface land or detached resin wing is introduced. Tight G2 S14/S15 stays 17.9 mm: merged source endpoints do not establish a separate flat land. Remaining convex and concave faces retain their guarded curves where no independent flat endpoint is visible.
+
+Twenty compatible catalog curves and the one unresolved 1.56093/36.6 resin fallback are retained. Every source nd/vd pair was checked; no per-material partial dispersion or C/F/g indices are printed. Curve/vendor names and ED/ASP-ED position flags now distinguish catalog spectral proxies and product-position inference from production identities. All source R/d, aspheric coefficients, stop and zoom/focus controls, air-plane spacings and tolerances remain unchanged. Public departures/slopes are synchronized with the adopted caps: S2A −2.2758 mm/47.0747°; S3A −.2451 mm/10.9321°.
+
+Surface, image-circle, aperture and field checks pass at all three nominal zoom stations (all ≥99% field coverage). Nine actual SVG focus/zoom states were inspected: finite outlines, zero hidden trim and a continuous hybrid compound. The shared glass suites pass 2 files/93 tests; source/curve invariants and duplicate-key checks pass. No inferred numeric cut is introduced.
