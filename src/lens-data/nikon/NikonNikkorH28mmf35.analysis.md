@@ -77,7 +77,7 @@ The element has the thinnest scaled edge margin in the rendered data, so its sem
 
 ### L6 — Biconvex Positive
 
-$n_d$ = 1.5163, $\nu_d$ = 64.0. Glass: BK7 class, close to Schott BK7 / Ohara BSL7 / CDGM K9 equivalents. $f$ = +201.08 patent units, +56.30 mm scaled.
+$n_d$ = 1.5163, $\nu_d$ = 64.0. Glass: S-BSL7 catalog-compatible spectral proxy (catalog1.51633/64.14); source1.5163/64.0 retained, supplier unspecified. $f$ = +201.08 patent units, +56.30 mm scaled.
 
 L6 is a weak positive biconvex relay element adjacent to image space. Its low-dispersion crown glass lets it add final convergence without introducing large residual longitudinal color.
 
@@ -96,7 +96,7 @@ The prescription uses five distinct glass types across six elements. L1 and L4 s
 | L5 | 1.6582 | 50.8 | 658/508 | N-SSK5 / SSK5 family | Positive post-stop meniscus |
 | L6 | 1.5163 | 64.0 | 516/640 | BK7 / K9 family | Low-dispersion rear positive |
 
-The closest catalog matches checked during re-review were Schott SF5 for L1/L4, Schott N-SK16 or Hikari J-SK16 for L2, Hikari J-SK18 for L3, Schott N-SSK5 or Hikari J-SSK5 for L5, and BK7/K9-family crown for L6. The residuals are small enough for class identification, but the file avoids implying that the patent itself named a vendor glass.
+The runtime selects SF5 for L1/L4, N-SK16 for L2, K-SK18 for L3, N-SSK5 for L5 and S-BSL7 for L6. These are qualified spectral proxies. In particular the N-SK16 proxy differs by−0.00079 in index from L2; no exact source material identity or historical supplier is established.
 
 ## Focus Mechanism
 
@@ -159,3 +159,7 @@ The patent analyzed here corresponds to the original six-element Nikkor-H / Nikk
 2. Nikon Imaging, "NIKKOR - The Thousand and One Nights No.12: NIKKOR-H Auto 2.8cm F3.5," Kouichi Ohshita.
 3. Nikon Imaging, "Camera Chronicle: Debut of Nikon F," listing the 1960 NIKKOR-H 2.8cm f/3.5 as a retrofocus wide-angle lens.
 4. Schott SF5 and N-SF5 optical-glass datasheets; Schott N-SK16 and N-SSK5 optical-glass datasheets; Hikari J-SK16, J-SK18, and J-SSK5 optical-glass datasheets.
+
+## Fresh source review (2026-10-30)
+
+FIG.1 was remeasured on the native352×353ppi scan at0.04619mm/px. Continuous common heights now follow the printed silhouette:23.4mm front,19.1mm second-element front and6.8/6.2/6.2/6.8mm rear singlets. The second-element rear retains15mm because its illustrated outer transition is a bevel, not a flat annulus. All nominal axial samples and the formatcorner pass. An identical-launch comparison retains4236, gains317 and loses612 of5335 sampled rays as the oversized rear rims return to their source heights; those counts are not flux measurements. Source indices stay literal; all six glass curves are qualified proxies. The S-BSL7 curve replaces the poorer N-BK7 match for the final element. Supplier/melt identity and production illumination remain uncertain. No unpublished spectral-line indices or partial-dispersion values are added.

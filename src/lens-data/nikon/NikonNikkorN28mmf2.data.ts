@@ -1,6 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 original figure/table review; glass curves are qualified spectral proxies.
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — Nikon Nikkor-N Auto 28mm f/2                 ║
  * ╠══════════════════════════════════════════════════════════════════════╣
@@ -83,7 +84,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.1,
       focalLengthMm: -53.1,
-      glass: "S-BSM15 (OHARA)",
+      glass: "S-BSM15 (catalog-compatible spectral proxy; patent 1.62299/58.1, catalog 1.622992/58.165763; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus of reversed Galilean converter; diverges beam for wide field",
     },
@@ -95,7 +96,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       focalLengthMm: 93.1,
-      glass: "LAF2 (Schott) / S-LAM2 (OHARA)",
+      glass: "S-LAM2 (catalog-compatible spectral proxy; patent 1.744/44.9, catalog 1.743997/44.79; production supplier unspecified)",
       apd: false,
       role: "Corrects negative distortion from L1; nearly flat rear surface",
     },
@@ -107,7 +108,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.1,
       focalLengthMm: -41.8,
-      glass: "S-BSM15 (OHARA)",
+      glass: "S-BSM15 (catalog-compatible spectral proxy; patent 1.62299/58.1, catalog 1.622992/58.165763; production supplier unspecified)",
       apd: false,
       role: "Second negative meniscus; shares converter divergence with L1 to reduce SA and coma",
     },
@@ -119,7 +120,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.5,
       focalLengthMm: 23.6,
-      glass: "E-LASF016 (Hikari) / J-LASF016 / LACL60 class",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; patent 1.7725/49.5, catalog 1.7725/49.62; production supplier unspecified)",
       apd: false,
       role: "Strongest positive element in converter; cemented to L5",
       cemented: "D1",
@@ -132,7 +133,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: -50.7,
-      glass: "J-BK7A (HIKARI catalog equivalent; patent 1.51680 / 64.2, vendor unspecified)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; patent 1.5168/64.2, catalog 1.5168/64.14; production supplier unspecified)",
       apd: false,
       role: "Completes cemented doublet; large index step at junction provides SA correction at f/2",
       cemented: "D1",
@@ -145,7 +146,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       focalLengthMm: 43.1,
-      glass: "J-BK7A (HIKARI catalog equivalent; patent 1.51680 / 64.2, vendor unspecified)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; patent 1.5168/64.2, catalog 1.5168/64.14; production supplier unspecified)",
       apd: false,
       role: "First element of master group M; asymmetric biconvex corrects inner coma per Condition (3)",
     },
@@ -157,7 +158,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       focalLengthMm: -18.5,
-      glass: "FDS9 (HOYA) / SF56A (Schott)",
+      glass: "SF56A (catalog-compatible spectral proxy; patent 1.7847/26.1, catalog 1.7847/26.08; production supplier unspecified)",
       apd: false,
       role: "Strongest negative element; corrects SA from L6 and extends back focus per Conditions (4)/(5)",
     },
@@ -181,7 +182,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: 43.9,
-      glass: "LAK8 (Schott) / S-LAL8 (OHARA)",
+      glass: "S-LAL8 (catalog-compatible spectral proxy; patent 1.713/53.9, catalog 1.712995/53.87; production supplier unspecified)",
       apd: false,
       role: "Final image-forming element; nearly flat front, strong rear surface provides final convergence",
     },
@@ -194,11 +195,11 @@ const LENS_DATA = {
   surfaces: [
     // ── Forward group C (reversed Galilean converter) ──
     { label: "1", R: 63.627, d: 3.133, sd: 22.0, medium: 1 }, // L1 front
-    { label: "2", R: 21.343, d: 6.364, sd: 16.0 }, // L1 rear → air
+    { label: "2", R: 21.343, d: 6.364, sd: 16.0, rimExtensionSd: 22 }, // L1 rear → air
     { label: "3", R: 66.573, d: 4.602, sd: 17.8, medium: 2 }, // L2 front
     { label: "4", R: 1667.889, d: 0.098, sd: 17.8 }, // L2 rear → air
     { label: "5", R: 59.711, d: 1.958, sd: 15.8, medium: 3 }, // L3 front
-    { label: "6", R: 17.916, d: 10.769, sd: 13.5 }, // L3 rear → air
+    { label: "6", R: 17.916, d: 10.769, sd: 13.5, rimExtensionSd: 15.8 }, // L3 rear → air
     { label: "7", R: 32.787, d: 6.56, sd: 13.8, medium: 4 }, // L4 front (cemented D1)
     { label: "8", R: -37.594, d: 4.408, sd: 13.8, medium: 5 }, // L4→L5 junction
     { label: "9", R: 89.947, sd: 13.8 }, // L5 rear → air (variable)
