@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-29",
     type: "improvement",
-    summary: "Refined Nikon F-mount lens rims and glass against their source patents",
+    summary: "Refined Nikon F-mount lens rims, design apertures and glass against their source patents",
   },
   {
     date: "2026-10-29",

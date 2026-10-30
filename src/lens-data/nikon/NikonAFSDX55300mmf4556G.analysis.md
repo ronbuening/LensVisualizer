@@ -56,13 +56,13 @@ L12 is the high-dispersion half of the front achromat. The previous analysis ide
 
 ### L13 - Positive ED meniscus, cemented to L12
 
-$n_d = 1.49700$, $\nu_d = 81.54$. Glass: S-FPL51 / FCD1 class ED fluorophosphate. Standalone in-air $f = +110.6$ mm.
+$n_d = 1.49700$, $\nu_d = 81.54$. Glass: FCD1 spectral proxy, with the ED position inferred from high νd. Standalone in-air $f = +110.6$ mm.
 
 L13 provides most of G1's positive power and is the first ED-class element in the lens. Its large Abbe number makes it the chromatic partner to L12's dense titanium flint. The cemented interface at R = 52.6873 mm is one of the front group's important chromatic correction surfaces.
 
 ### L21 - Biconcave negative variator element, cemented to L22
 
-$n_d = 1.74100$, $\nu_d = 52.67$. Glass: S-LAL61 class. Standalone in-air $f = -24.5$ mm.
+$n_d = 1.74100$, $\nu_d = 52.67$. Glass: S-LAL61 spectral proxy; source νd retained without a rounding hypothesis. Standalone in-air $f = -24.5$ mm.
 
 L21 supplies the dominant negative power in G2. Its short focal length and position in the moving second group make it the main element responsible for the focal-length change as d5 opens and d10 closes. The glass is a lanthanum crown class rather than an ordinary high-dispersion flint, which is useful because this group must balance Petzval curvature as well as provide negative zoom power.
 
@@ -74,25 +74,25 @@ L22 is the high-index, high-dispersion partner in the G2 cemented negative doubl
 
 ### L23 - Negative meniscus, concave to object
 
-$n_d = 1.80400$, $\nu_d = 46.57$. Glass: S-LAH65V/S-LAH65VS class. Standalone in-air $f = -58.0$ mm.
+$n_d = 1.80400$, $\nu_d = 46.57$. Glass: S-LAH65VS spectral proxy. Standalone in-air $f = -58.0$ mm.
 
 L23 completes the negative second group and gives the variator another degree of freedom for astigmatism and field-curvature control. Its $\nu_d$ below 50 places it on the flint side of the conventional crown/flint boundary despite the lanthanum family label.
 
 ### L31 - Biconvex positive relay element
 
-$n_d = 1.69680$, $\nu_d = 55.52$. Glass: S-LAL14 / J-LAK14 class. Standalone in-air $f = +75.8$ mm.
+$n_d = 1.69680$, $\nu_d = 55.52$. Glass: J-LAK14 spectral proxy. Standalone in-air $f = +75.8$ mm.
 
 L31 is the first positive element after the stop. It begins the main relay action of G3. The prior draft's S-BAL42 label was not supported by the index/Abbe pair; the values match the S-LAL14/J-LAK14 lanthanum crown class more closely.
 
 ### L32 - Biconvex positive relay element
 
-$n_d = 1.69680$, $\nu_d = 55.52$. Glass: S-LAL14 / J-LAK14 class. Standalone in-air $f = +77.1$ mm.
+$n_d = 1.69680$, $\nu_d = 55.52$. Glass: J-LAK14 spectral proxy. Standalone in-air $f = +77.1$ mm.
 
 L32 repeats the L31 glass and power class. This distributed positive-power arrangement is central to the patent's stated rationale: G3 contains at least four positive lenses and at least one negative lens so that spherical aberration and coma can be corrected in the third group rather than left to downstream compensation.
 
 ### L33 - Biconvex ED positive element, cemented to L34
 
-$n_d = 1.49700$, $\nu_d = 81.54$. Glass: S-FPL51 / FCD1 class ED fluorophosphate. Standalone in-air $f = +53.8$ mm.
+$n_d = 1.49700$, $\nu_d = 81.54$. Glass: FCD1 spectral proxy, with the ED position inferred from high νd. Standalone in-air $f = +53.8$ mm.
 
 L33 is the second ED element and the positive half of the strongest chromatic-correction doublet in G3. Its nearly symmetric biconvex form places a high-power, low-dispersion positive element near the stop, where it can influence longitudinal color, spherical aberration, and coma across the zoom range.
 
@@ -116,7 +116,7 @@ L41 supplies the dominant negative power in G4. The group is the stabilizer: the
 
 ### L42 - Positive HRI meniscus, cemented to L41, VR group
 
-$n_d = 2.00069$, $\nu_d = 25.46$. Glass: H-ZLaF80 / TAFD40 class HRI glass; vendor not specified by the patent. Standalone in-air $f = +45.6$ mm.
+$n_d = 2.00069$, $\nu_d = 25.46$. Glass: TAFD40 spectral proxy; supplier unspecified. Standalone in-air $f = +45.6$ mm.
 
 L42 is the HRI element in the production match. Its $n_d$ exceeds 2.0, satisfying the patent's high-index positive-element condition in the VR group and matching Nikon's published HRI description. The previous analysis's OHARA S-YGH51 assignment was not retained because the public catalog match is better represented by Hikari/Hoya/CDGM high-index lanthanum/tantalum flint classes around 2.00069/25.46.
 
@@ -148,29 +148,27 @@ L54 is the final glass element. The previous draft treated this as an uncertain 
 
 ## Glass Identification and Selection
 
-The patent gives index and Abbe number, not vendor names. The following glass labels are therefore catalog matches or class identifications, not patent-named materials. Exact public-catalog matches are used where available; otherwise the data file uses an explicit class label.
+The source publishes d-line nd/νd and identifies no production supplier or melt. The following current resolver choices are coordinate-compatible spectral proxies; the source coordinates remain authoritative. No C/F/g indices or partial-dispersion values are published or authored, and no measured APD or production-glass identity is claimed.
 
-| Element | Patent $n_d$ | Patent $\nu_d$ | Corrected catalog/class identification | Notes |
-|---|---:|---:|---|---|
-| L11 | 1.51680 | 64.10 | 517/641 crown class, N-BK7/S-BSL7 equivalent | Vendor uncertain |
-| L12 | 1.78472 | 25.68 | S-TIH11 (OHARA) | Corrected from S-TIH53 |
-| L13 | 1.49700 | 81.54 | S-FPL51 / FCD1 class | ED element #1 |
-| L21 | 1.74100 | 52.67 | S-LAL61 class | Patent $\nu_d$ slightly higher than common catalog value |
-| L22 | 1.84666 | 23.78 | S-TIH53 (OHARA) | Corrected location of S-TIH53 |
-| L23 | 1.80400 | 46.57 | S-LAH65V/S-LAH65VS class | Lanthanum flint |
-| L31 | 1.69680 | 55.52 | S-LAL14 / J-LAK14 class | Corrected from S-BAL42 |
-| L32 | 1.69680 | 55.52 | S-LAL14 / J-LAK14 class | Corrected from S-BAL42 |
-| L33 | 1.49700 | 81.54 | S-FPL51 / FCD1 class | ED element #2 |
-| L34 | 1.90366 | 31.27 | S-LAH95 / 904-313 class | Corrected from S-NPH7 |
-| L35 | 1.56384 | 60.67 | S-BAL41 (OHARA) | Relay crown |
-| L41 | 1.77250 | 49.61 | S-LAH66 (OHARA) | VR negative element |
-| L42 | 2.00069 | 25.46 | H-ZLaF80 / TAFD40 class | HRI element, vendor uncertain |
-| L51 | 1.64769 | 33.80 | S-TIM22 (OHARA) | Corrected from S-TIM35 |
-| L52 | 1.72000 | 50.23 | S-LAL10 (OHARA) | G5 negative partner |
-| L53 | 1.48749 | 70.41 | N-FK5 / J-FK5 / S-FSL5 class | Vendor uncertain |
-| L54 | 1.80100 | 34.96 | S-LAM66 (OHARA) | Corrected from Hoya FDS90-SG |
-
-The main chromatic strategy is conventional in outline but dense in execution: an ED/flint cemented pair in the front group, a second ED/dense-flint cemented pair in G3, and additional rear doublets that tune lateral color and field curvature after the stabilizer group. The HRI element is not an ED element; its value lies in the very high refractive index used in the compact decentered VR doublet.
+| Element | Source nd | Source νd | Qualified spectral proxy |
+|---|---:|---:|---|
+| L11 | 1.51680 | 64.10 | N-BK7 (supplier unspecified) |
+| L12 | 1.78472 | 25.68 | S-TIH11 (supplier unspecified) |
+| L13 | 1.49700 | 81.54 | FCD1 (supplier unspecified) |
+| L21 | 1.74100 | 52.67 | S-LAL61 (supplier unspecified) |
+| L22 | 1.84666 | 23.78 | S-TIH53 (supplier unspecified) |
+| L23 | 1.80400 | 46.57 | S-LAH65VS (supplier unspecified) |
+| L31 | 1.69680 | 55.52 | J-LAK14 (supplier unspecified) |
+| L32 | 1.69680 | 55.52 | J-LAK14 (supplier unspecified) |
+| L33 | 1.49700 | 81.54 | FCD1 (supplier unspecified) |
+| L34 | 1.90366 | 31.27 | S-LAH95 (supplier unspecified) |
+| L35 | 1.56384 | 60.67 | S-BAL41 (supplier unspecified) |
+| L41 | 1.77250 | 49.61 | S-LAH66 (supplier unspecified) |
+| L42 | 2.00069 | 25.46 | TAFD40 (supplier unspecified) |
+| L51 | 1.64769 | 33.80 | S-TIM22 (supplier unspecified) |
+| L52 | 1.72000 | 50.23 | S-LAL10 (supplier unspecified) |
+| L53 | 1.48749 | 70.41 | N-FK5 (supplier unspecified) |
+| L54 | 1.80100 | 34.96 | S-LAM66 (supplier unspecified) |
 
 ## Focus Mechanism
 
@@ -215,6 +213,12 @@ The paraxial recheck reproduces the patent's Table 1 conditional-expression valu
 | (8) $(R_{Ns}+R_{NL})/(R_{NL}-R_{Ns})$ | 4.566 | L42 meniscus shape factor |
 | (9) $v_n-v_p$ | +24.15 | Matches table arithmetic; prose sign is suspect |
 | (10) $R_{Ns}/R_{NL}$ | 0.641 | Same radius ratio as expression (5) |
+
+## Source Shape and Aperture Reinspection
+
+Example 1 Table 1 (PDF page 42 of local US 2011/0102905 A1) prints design FNO 4.63 /4.91 /5.88. These replace the former nominal 4.5 /5.0 /5.6 values while retaining the marketed name and useful stop choices. The current derived-iris model traces all three source nominals, with the iris limiting the beam. The original 11.3 mm S8/S9 caps clear the corrected beam; a baseline 11.4 mm raise proposed against the faster marketed aperture is no longer required.
+
+Every exposed and cemented face in Figure 1 (PDF page 2) was rechecked at 600 dpi. The small G1/G2 shoulders are cemented steps; the exposed concave arcs reach the drawn rims without an independently resolved extra land. No cut, extension or SD raise is adopted. The close-focus positions remain the existing paraxial reconstruction, separate from the patent's infinity zoom table.
 
 ## Verification Summary
 

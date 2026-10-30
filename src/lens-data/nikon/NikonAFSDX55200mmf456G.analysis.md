@@ -44,7 +44,7 @@ At the wide end, TL/f = 148.30 / 56.61 = 2.62, so the optical system is not comp
 
 ### L11 — Weak Biconvex Positive Singlet
 
-nd = 1.51680, νd = 63.88. Glass: BK7-class crown, code 517/639; closest current Nikon/Hikari entry is J-BK7A with the same nd but νd = 64.14. f = +343.3 mm.
+nd = 1.51680, νd = 63.88. Glass: J-BK7A spectral proxy; source νd=63.88 versus catalog 64.14, supplier unspecified. f = +343.3 mm.
 
 L11 is a weak positive front collector. The nearly symmetric radii (R1 = +354.3437 mm, R2 = -354.3437 mm) keep the front element's power low and distribute the bending symmetrically. Its primary role is not large paraxial power, but control of entrance beam geometry before the internal-focus doublet.
 
@@ -132,22 +132,23 @@ The patent back focal distance from the rear surface of L37 to the image plane i
 
 ## Glass Identification and Selection
 
-The glass palette is best read as Nikon/Hikari J-series glass, with one BK7-class front element that matches older BK7-code behavior but not the exact current J-BK7A Abbe number. The previous Ohara-only interpretation is not supported by current catalog values.
+The source publishes d-line nd/νd and identifies no production supplier or melt. The following current resolver choices are coordinate-compatible spectral proxies; the source coordinates remain authoritative. No C/F/g indices or partial-dispersion values are published or authored, and no measured APD or production-glass identity is claimed.
 
-| Element(s) | nd | νd | Catalog identification | Notes |
-|---|---:|---:|---|---|
-| L11 | 1.51680 | 63.88 | BK7-class crown, code 517/639 | Current Nikon/Hikari J-BK7A has nd = 1.516800 but νd = 64.14; the patent value is treated as legacy BK7-class rather than a current exact match.[^hikari_bk] |
-| L12 | 1.84666 | 23.80 | J-SF03 / J-SF03HS (Hikari) | Exact match; dense flint in focus doublet.[^hikari_sf] |
-| L13 | 1.48749 | 70.31 | J-FK5 (Hikari) | Exact match; low-dispersion crown in focus doublet.[^hikari_fk] |
-| L21 | 1.69680 | 55.52 | J-LAK14 (Hikari) | Exact match; lanthanum crown in G2 variator.[^hikari_lak] |
-| L22, L33 | 1.80518 | 25.45 | J-SF6 / J-SF6HS (Hikari) | Exact match; dense flint achromatizing partner.[^hikari_sf] |
-| L23, L36, L37 | 1.77250 | 49.62 | J-LASF016 (Hikari) | Exact match; reused high-index lanthanum flint.[^hikari_lasf] |
-| L31 | 1.60311 | 60.69 | J-SK14 (Hikari) | Exact match; positive G3 relay glass.[^hikari_sk] |
-| L32 | 1.49782 | 82.57 | J-FKH1 (Hikari) — ED | Exact match; the sole ED element.[^hikari_fk] |
-| L34 | 1.85026 | 32.35 | J-LASF021 / J-LASF021HS (Hikari) | Exact match; positive element of VR doublet.[^hikari_lasf] |
-| L35 | 1.79952 | 42.09 | J-LASF02 (Hikari) | Exact match; negative element of VR doublet.[^hikari_lasf] |
-
-The primary chromatic correction strategy uses two high-contrast doublets. The front focus doublet pairs J-SF03 (νd = 23.80) with J-FK5 (νd = 70.31), while the rear ED doublet pairs J-FKH1 (νd = 82.57) with J-SF6 (νd = 25.45). The ED doublet provides the stronger dispersion contrast and is the main secondary-spectrum control point in the prescription, although the patent itself gives only nd and νd rather than a full partial-dispersion table.
+| Element | Source nd | Source νd | Qualified spectral proxy |
+|---|---:|---:|---|
+| L11 | 1.51680 | 63.88 | J-BK7A (supplier unspecified) |
+| L12 | 1.84666 | 23.80 | J-SF03 (supplier unspecified) |
+| L13 | 1.48749 | 70.31 | J-FK5 (supplier unspecified) |
+| L21 | 1.69680 | 55.52 | J-LAK14 (supplier unspecified) |
+| L22 | 1.80518 | 25.45 | J-SF6 (supplier unspecified) |
+| L23 | 1.77250 | 49.62 | J-LASF016 (supplier unspecified) |
+| L31 | 1.60311 | 60.69 | J-SK14 (supplier unspecified) |
+| L32 | 1.49782 | 82.57 | J-FKH1 (supplier unspecified) |
+| L33 | 1.80518 | 25.45 | J-SF6 (supplier unspecified) |
+| L34 | 1.85026 | 32.35 | J-LASF021 (supplier unspecified) |
+| L35 | 1.79952 | 42.09 | J-LASF02 (supplier unspecified) |
+| L36 | 1.77250 | 49.62 | J-LASF016 (supplier unspecified) |
+| L37 | 1.77250 | 49.62 | J-LASF016 (supplier unspecified) |
 
 ## Focus Mechanism
 
@@ -205,6 +206,12 @@ JPWO2015/141574A1 Table 2 does not publish clear-aperture or semi-diameter value
 - Signed cross-gap sag intrusion remains below 90% of each adjacent air gap. The tightest selected gap is between surfaces 8 and 9, where the signed intrusion is 2.247 mm against a 2.286 mm limit.
 
 The stop semi-diameter of 8.92 mm was derived by matching the patent FNO values across the three zoom positions after paraxial entrance-pupil magnification. The three derived stop semi-diameters are 8.925, 8.912, and 8.905 mm at wide, mid, and tele respectively, so a single 8.92 mm stop is consistent with the patent's rounded F-number table.
+
+## Source Shape and Aperture Reinspection
+
+Example 2 Table 2 (local WO 2015/141574 A1, PDF pages 25–26) prints design FNO 4.12 /4.94 /5.78. These replace the marketed 4.0 /4.94 /5.6 values formerly used by the nominal controls. The commercial name and user stop choices remain. The current fixed iris has a derived 8.923702 mm radius and traces f/4.120, f/4.933 and f/5.768, all iris-limited; the residuals are within 0.21% of the printed values.
+
+Figure 4A (PDF page 56), freshly inspected at 600 dpi, has small shoulders at the cemented S4 and S7 interfaces. They do not justify extending exposed caps to those step heights. No independently resolved exposed concave cap-end land supports a new cut or extension. The current tapered G2 outline is retained under its literal edge/gap geometry constraints; the figure is not a numerical aperture prescription. No inferred rim clips the corrected infinity beam.
 
 ## Verification Summary
 

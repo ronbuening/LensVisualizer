@@ -52,6 +52,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/      ║
  * ║   micro/af-s_dx_micro40mmf_28g/index.html                                  ║
  * ║ https://www.nikonusa.com/press-room/get-closer-to-clarity-the-new          ║
+ * ║   Fig. 1: exposed lands at S2/S8/S10; S7 inferred cut 1.06 mm clears beams. ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -96,7 +97,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       focalLengthMm: -35.974194643072416,
-      glass: "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
+      glass: "FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative first member of G1F; the patent places this meniscus closest to the object.",
     },
     {
@@ -107,7 +108,7 @@ const LENS_DATA = {
       nd: 1.80604,
       vd: 40.77,
       focalLengthMm: 42.950519372541955,
-      glass: "NBFD13 (HOYA catalog correlation; patent vendor unspecified)",
+      glass: "NBFD13 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive second member of the negative-power G1F front subgroup.",
     },
     {
@@ -118,7 +119,7 @@ const LENS_DATA = {
       nd: 1.61272,
       vd: 58.73,
       focalLengthMm: 23.87347932366506,
-      glass: "BACD4 (HOYA catalog correlation; patent vendor unspecified)",
+      glass: "BACD4 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Strong positive first member of the positive-power G1R rear subgroup.",
     },
     {
@@ -129,7 +130,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 37,
       focalLengthMm: -24.057353624629997,
-      glass: "F3 (SUMITA catalog equivalent; production supplier unspecified)",
+      glass: "F3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative second member of G1R, immediately preceding the aperture stop.",
     },
     {
@@ -140,7 +141,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 37,
       focalLengthMm: -21.024612610044304,
-      glass: "F3 (SUMITA catalog equivalent; production supplier unspecified)",
+      glass: "F3 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative front member of the cemented L21/L22 pair in positive-power G2.",
       cemented: "D1",
     },
@@ -152,7 +153,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       focalLengthMm: 27.92786543505808,
-      glass: "N-SK16 (SCHOTT catalog equivalent; production supplier unspecified)",
+      glass: "N-SK16 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive rear member of the cemented L21/L22 pair; the junction carries this element's id and index.",
       cemented: "D1",
     },
@@ -164,7 +165,7 @@ const LENS_DATA = {
       nd: 1.61881,
       vd: 63.73,
       focalLengthMm: 31.5364910719777,
-      glass: "M-PCD4 (HOYA catalog correlation; patent vendor unspecified)",
+      glass: "M-PCD4 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive rear member of G2; its image-side surface is the sole patent asphere.",
     },
     {
@@ -175,7 +176,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       focalLengthMm: -58.212830982188954,
-      glass: "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
+      glass: "FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative first member of the fixed rear group G3.",
     },
     {
@@ -186,22 +187,22 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.79,
       focalLengthMm: 93.16380423458116,
-      glass: "J-LAF2 (HIKARI catalog equivalent; production supplier unspecified)",
+      glass: "J-LAF2 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive final member of the net-negative fixed rear group G3.",
     },
   ],
 
   surfaces: [
     { label: "1", R: 177.4342, d: 2, sd: 11.3, medium: 1 },
-    { label: "2", R: 15.9007, d: 3.53, sd: 10.5 },
+    { label: "2", R: 15.9007, d: 3.53, sd: 10.5, rimExtensionSd: 11.3 },
     { label: "3", R: 63.8566, d: 5, sd: 10.6, medium: 2 },
     { label: "4", R: -72.9715, d: 6.961, sd: 10.6 },
     { label: "5", R: 31.3195, d: 5, sd: 10.5, medium: 3 },
     { label: "6", R: -25.782, d: 0.678, sd: 10.2 },
-    { label: "7", R: -40.2105, d: 2, sd: 10.0, medium: 4 },
-    { label: "8", R: 23.7239, sd: 9.4 },
+    { label: "7", R: -40.2105, d: 2, sd: 10.0, medium: 4, rimCutDepthMm: 1.06 },
+    { label: "8", R: 23.7239, sd: 9.4, rimExtensionSd: 10.0 },
     { label: "STO", R: "flat", d: 4 },
-    { label: "10", R: -13.8798, d: 1.2, sd: 8.3, medium: 5 },
+    { label: "10", R: -13.8798, d: 1.2, sd: 8.3, medium: 5, rimExtensionSd: 9.4 },
     { label: "11", R: 186.0079, d: 3.71, sd: 9.4, medium: 6 },
     { label: "12", R: -18.9606, d: 0.1, sd: 9.8 },
     { label: "13", R: 80.2528, d: 3.445, sd: 9.0, medium: 7 },
@@ -240,7 +241,7 @@ const LENS_DATA = {
       thicknessMm: 2,
       nd: 1.5168,
       vd: 64.12,
-      glass: "J-BK7A",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       gapAfterMm: 37.65276,
       source:
         "US 2011/0170195 A1, Example 1 Table 1 surfaces 19–20; Bf 37.65276 derived from printed INF TL/ACTL (printed Bf = 37.65)",

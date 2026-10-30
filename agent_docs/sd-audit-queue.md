@@ -93,7 +93,6 @@ Nothing can be audited on these until the source is available.
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
 | Fujifilm X10 7.1-28.4mm f/2-2.8 | `US 2014/0133036 A1` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
-| Nikon AF-S DX 55-200mm f/4-5.6G ED VR II | `WO 2015/141574 A1` not in `patents/`; its fixed iris is unchecked and its `nominalFno` mixes marketed ends with the patent's middle value | adding the PDF |
 | Olympus Zuiko Auto-Zoom 65-200mm f/4 | `US 4,568,150` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
 
 ## Section D — MTF field census
@@ -169,7 +168,6 @@ them is fixed by raising semi-diameters alone: each needs the source, decision o
 | SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | — | 74% | 13A/14A are cut to 2.0 mm because the seven-decimal Table 4 coefficients diverge beyond it; with no apertures at all the image height peaks at 2.74 mm (patent Y 3.50 mm, US 2021/0149156 A1 FIG. 2). Restoring the published 2.720/2.880 radii cannot help. | blocked (needs higher-precision S13/S14 coefficients) |
 | VIVITAR SERIES 1 35-85mm f/2.8 VMC | `vivitar/VivitarSeries13585mmf28.data.ts` | Wide 36 mm | 75% | Past ~30° the chief ray crosses L4 above its ≈16.07 mm zero-edge height, so no rim can pass it, and S9 is capped by the L5/L6 contact at the tele gap. Table I computes to f 38.46–89.08 mm against the text's 36–83 mm (US 3,975,089), a possible Table I error. | blocked (needs a corrected Table I) |
 | SAMYANG AF 35-150mm f/2-2.8 FE / L | `samyang/SamyangAF35150mmf228.data.ts` | 35 mm | 81% | US 2025/0231383 A1 is not in `patents/`; its Google Patents text gives ω 30.9° at 35.989 mm (f·tanω 21.54 mm). Corner minimums: 6A ≥ 18.46, 7 ≥ 18.33, 8 ≥ 15.61, 40A ≥ 13.83, 41A ≥ 15.41 mm. | blocked (patent PDF missing) |
-| NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR | `nikon/NikonAFPDX1855mmf3556G.data.ts` | 18.5 mm | 86% | US 10,690,896 B2 is not in `patents/`; analysis.md gives Y 14.25 mm. Only surface 1 clips: 15.3 → ≥ 17.68 mm at the corner. | blocked (patent PDF missing) |
 | MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | Wide 36 mm | 90% (89.6) | US 4,560,253 is not in `patents/`; analysis.md's y' = 21.6 mm is unverified. Corner minimums: 3 ≥ 15.26, 4 ≥ 14.82, 4A ≥ 14.76 mm. | blocked (patent PDF missing) |
 
 ### Not covered by the traced check
@@ -249,17 +247,15 @@ Also check, without a row each: 11 files whose `nominalFno` is slower than `aper
 The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
 variable-aperture zooms carry marketed values at one or more stations it does not see, and quote the patent's
 station f-numbers in their own header or note; replace each array from the source the same way:
-`nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFPDX1855mmf3556G`, `nikon/NikonAFSDX55300mmf4556G`,
-`nikon/NikonAFSDX55200mmf456G`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
+`nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
 `nikon/NikonAFZoomNikkor2885mmf3545`, `nikon/NikonNikkorZ1228mmf3556PZ`, `nikon/NikonZDX50250mmf4564VR`,
 `canon/CanonEFS1855mmf3556IS`, `canon/CanonEFS1022mmf3545`, `canon/CanonEF28105mmf456`,
 `canon/CanonPowerShotG1X1560mmf28`, `canon/CanonPowerShotG1XIII1545mmf2856`, `fujifilm/FujifilmGF3570mmf4556`,
 `olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
 `sony/SonyFE2870mmf3556`.
 
-`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the one fixed-iris file whose stated station f-numbers
-are not the ones its iris gives; delete the key there when the file is corrected. `nikon/NikonAFSDX55200mmf456G` is
-in the list above and its patent is not held locally (Section C).
+`__tests__/src/lens-data/zoomApertureModel.test.ts` requires every fixed-iris file's stated station f-numbers to agree
+with the radius its iris gives; there are no per-lens exceptions.
 
 ## Section I — stated axial beam does not pass
 
@@ -289,8 +285,8 @@ The other diagnoses are not rim problems:
   AF-S Nikkor 14-24mm f/2.8 at 23.8 mm the ray toward the iris rim cannot be traced to the stop, so the audit compares
   the beam with the stated pupil instead. A stop plane inside the sag of the surface before it is no trace failure:
   the sequential trace steps back to it.
-- `iris`, three lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
-  (Zeiss Hologon 15mm f/8), the fixed iris of the Nikon AF-S DX 55-200mm (Section H), and the published schedule of
+- `iris`, two lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
+  (Zeiss Hologon 15mm f/8), and the published schedule of
   the Sigma 24-70mm f/2.8 DG OS HSM Art, which opens to f/2.80–2.84 against the stated f/2.93 from 39 to 68 mm.
 
 Iris in glass: at these stations part of the iris stroke, from the smallest stop radius the control reaches to the

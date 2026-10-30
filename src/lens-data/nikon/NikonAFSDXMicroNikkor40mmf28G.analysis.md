@@ -128,6 +128,7 @@ The patent publishes only d-line refractive index and Abbe number (`nd`, `νd`) 
 | N-SK16 (SCHOTT catalog equivalent; production supplier unspecified) | 1.62041 | 60.29 | L22 | Higher-νd positive half of the cemented pair |
 | M-PCD4 (HOYA catalog correlation; patent vendor unspecified) | 1.61881 | 63.73 | L23 | Catalog-compatible positive rear member of G2 and asphere carrier |
 | J-LAF2 (HIKARI catalog equivalent; production supplier unspecified) | 1.74400 | 44.79 | L32 | High-index positive final meniscus |
+| J-BK7A spectral proxy (supplier unspecified) | 1.51680 | 64.12 | Rear low-pass plate P1 | Source-listed plate, traced but not drawn |
 
 The independent glass audit found close coordinate matches in more than one manufacturer family for several rows. The selected entries reproduce the patent coordinates within the project compatibility window and provide verified dispersion curves. They are modeling choices, not evidence that Nikon purchased those melts for this design.
 
@@ -224,6 +225,12 @@ Independent calculation was rerun from the final TypeScript surface and element 
 The low-pass filter P1 published as patent surfaces 19–20 (2.000 mm, nd = 1.51680, νd = 64.12) is modeled in `rearPlates`: every analysis traces it, but the diagram does not draw it. The file stores the patent's 0.100 mm S18→P1 gap and a 37.65276 mm P1→IMG gap derived from the published infinity TL/ACTL (Table 1 prints Bf as 37.65), so the paraxial equivalent remains a **39.07132 mm air-equivalent S18→IMG spacing** and the physical infinity track equals the patent TL of 86.85516 mm. The patent's raw `Bf`/`ACBf` entries exhibit an internal reference-plane inconsistency; the analysis therefore follows the normalized data model instead of silently substituting either raw value.
 
 The stop axial position is source-published, but its diameter is inferred from the modeled f-number. All element semi-diameters are likewise modeling inferences because the patent supplies no clear apertures. Independent Stage-2 geometry checks found positive edge thicknesses, acceptable actual rim slopes, a valid conic domain, no prohibited cross-gap intrusion, and containment of all 42 representative on-axis/off-axis rays across INF, MID, and CLD. These checks validate the authored geometry as a LensVisualizer model; they do not convert inferred semi-diameters into production dimensions.
+
+## Fresh Rim Review
+
+Figure 1's infinity section (local US 2011/0170195 A1, PDF page 2) resolves exposed concave cap-end lands at S2, S7, S8 and S10. S2 retains its 10.5 mm clear cap and extends to 11.3 mm; S8 retains 9.4 mm and extends to 10.0 mm; S10 retains 8.3 mm and extends to 9.4 mm. These flat lands keep the existing optical caps and fill the corresponding outer rims. Other caps and all source prescription values remain unchanged.
+
+For S7, a figure-derived 1.02 mm cut (radius 8.999 mm) failed the inferred-cut guard: the β=-1 focus beam reaches 9.0956 mm at 7.5° and requires at least 9.1456 mm including clearance. The adopted inferred depth 1.06 mm places the cap at 9.171841 mm while retaining the 10.0 mm outer rim. It passes the full zoom/focus/field guard, including published finite keyframes; its endpoint is deliberately farther out than the measured q≈0.88. No source depth or tolerance exception is asserted. The S14A asphere and its 9.0 mm clear radius remain unchanged, so its quoted departure remains applicable.
 
 ## Sources
 

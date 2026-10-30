@@ -1,5 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+// Source Table 2 (WO 2015/141574 A1 PDF p. 26): design FNO 4.12/4.94/5.78; no stop diameter.
 const LENS_DATA = {
   schema: 2,
   key: "nikon-af-s-dx-55-200-f4-5-6g-ed-vr-ii",
@@ -21,6 +22,7 @@ const LENS_DATA = {
     elementCount: 13,
     groupCount: 9,
     focalLengthMm: { marketing: [55, 200], design: [56.61, 194.07] },
+    fNumber: { marketing: 4, design: 4.12 },
   },
 
   source: {
@@ -40,7 +42,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       focalLengthMm: 343.3,
-      glass: "BK7-class crown (517/639; Hikari legacy / current J-BK7A near-match)",
+      glass: "J-BK7A (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Weak positive front collector in G1.",
     },
     {
@@ -51,7 +53,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -171.3,
-      glass: "J-SF03 (Hikari)",
+      glass: "J-SF03 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-dispersion negative element in the internal-focus doublet.",
       cemented: "D1",
     },
@@ -63,7 +65,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       focalLengthMm: 71.5,
-      glass: "J-FK5 (Hikari)",
+      glass: "J-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Low-dispersion positive partner in the internal-focus doublet.",
       cemented: "D1",
     },
@@ -75,7 +77,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: -24.5,
-      glass: "J-LAK14 (Hikari)",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Main negative element of the G2 variator doublet.",
       cemented: "D2",
     },
@@ -87,7 +89,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.45,
       focalLengthMm: 36.8,
-      glass: "J-SF6 (Hikari)",
+      glass: "J-SF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index flint chromatic partner in the G2 variator doublet.",
       cemented: "D2",
     },
@@ -99,7 +101,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -49.8,
-      glass: "J-LASF016 (Hikari)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative singlet in G2; also contributes to Petzval and lateral aberration control.",
     },
     {
@@ -110,7 +112,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.69,
       focalLengthMm: 50.1,
-      glass: "J-SK14 (Hikari)",
+      glass: "J-SK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Front positive relay element of G3.",
     },
     {
@@ -121,7 +123,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       focalLengthMm: 34.7,
-      glass: "J-FKH1 (Hikari) — ED",
+      glass: "J-FKH1 (catalog-compatible spectral proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote: "High-νd ED glass; the patent gives nd/νd but no θgF or ΔPgF table.",
       role: "ED positive element in the G3 achromat, paired with J-SF6.",
@@ -135,7 +137,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.45,
       focalLengthMm: -48.6,
-      glass: "J-SF6 (Hikari)",
+      glass: "J-SF6 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Dense flint negative partner for the ED positive element.",
       cemented: "D3",
     },
@@ -147,7 +149,7 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.35,
       focalLengthMm: 21.1,
-      glass: "J-LASF021 (Hikari)",
+      glass: "J-LASF021 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Positive element of the decentered VR doublet.",
       cemented: "D4",
     },
@@ -159,7 +161,7 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 42.09,
       focalLengthMm: -14.1,
-      glass: "J-LASF02 (Hikari)",
+      glass: "J-LASF02 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative element of the decentered VR doublet; the doublet has net negative power.",
       cemented: "D4",
     },
@@ -171,7 +173,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: 33.8,
-      glass: "J-LASF016 (Hikari)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear G3 positive relay element.",
     },
     {
@@ -182,7 +184,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       focalLengthMm: -59.1,
-      glass: "J-LASF016 (Hikari)",
+      glass: "J-LASF016 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear negative meniscus corrector for field curvature, astigmatism, and distortion.",
     },
   ],
@@ -219,9 +221,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 56.61, nominalFNumber: 4, label: "W" },
+      { focalLengthMm: 56.61, nominalFNumber: 4.12, label: "W" },
       { focalLengthMm: 135, nominalFNumber: 4.94, label: "M" },
-      { focalLengthMm: 194.07, nominalFNumber: 5.6, label: "T" },
+      { focalLengthMm: 194.07, nominalFNumber: 5.78, label: "T" },
     ],
     apertureModel: "fixed-iris",
     step: 0.004,

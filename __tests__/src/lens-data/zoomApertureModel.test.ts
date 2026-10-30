@@ -18,13 +18,6 @@ const modules = import.meta.glob<{ default: LensDataInput }>("../../../src/lens-
 /** Largest share by which a station's traced iris radius may differ from the fixed one. */
 const FIXED_IRIS_TOLERANCE = 0.03;
 
-/**
- * Fixed-iris files outside the tolerance, each queued in Section H or I of agent_docs/sd-audit-queue.md. The Nikon
- * states station f-numbers its iris does not give (its patent is not held locally). The sweep compares for equality,
- * so a corrected file must leave this list and no file may join.
- */
-const FIXED_IRIS_OFF_STATED: readonly string[] = ["nikon-af-s-dx-55-200-f4-5-6g-ed-vr-ii"];
-
 describe("zoom aperture model", () => {
   it("declares a fixed iris only where one radius gives the stated f-number at every station", () => {
     const fixedIris = Object.values(modules)
@@ -38,6 +31,6 @@ describe("zoom aperture model", () => {
       const worst = Math.max(...stationRadii.map((radius) => Math.abs(radius / fixedRadius - 1)));
       return worst > FIXED_IRIS_TOLERANCE ? [data.key] : [];
     });
-    expect(offenders.sort()).toEqual([...FIXED_IRIS_OFF_STATED].sort());
+    expect(offenders).toEqual([]);
   });
 });

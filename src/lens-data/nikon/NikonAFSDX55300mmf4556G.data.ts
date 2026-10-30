@@ -7,6 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 17 elements in 11 air-spaced groups; all surfaces are spherical or plane.
  * Zoom: five optical groups; d5 and d10 vary at infinity, with G3-G4 and G4-G5 spacings fixed.
  * Focus: G1 front-group focus; close-focus d5 values are paraxially solved for Nikon's 1.4 m MFD.
+ * Source Table 1 (PDF p. 42) design FNO 4.63/4.91/5.88; marketing remains 4.5-5.6.
  * Semi-diameters: patent does not list clear apertures; values are ray-trace estimates constrained by
  * front filter diameter, edge thickness, element SD ratio, and cross-gap sag-intrusion checks.
  */
@@ -31,6 +32,7 @@ const LENS_DATA = {
     elementCount: 17,
     groupCount: 11,
     focalLengthMm: { marketing: [55, 300], design: [56.09, 293.9] },
+    fNumber: { marketing: 4.5, design: 4.63 },
   },
 
   source: {
@@ -50,7 +52,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 259.3,
-      glass: "517/641 crown class (N-BK7 / S-BSL7 equivalent; vendor uncertain)",
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Weak front collector; starts the convergence of the telephoto zoom while keeping surface curvatures mild.",
     },
     {
@@ -61,7 +63,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.68,
       focalLengthMm: -223.6,
-      glass: "S-TIH11 (OHARA)",
+      glass: "S-TIH11 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Dense titanium flint half of the front achromat; chromatic counterweight to the ED positive element L13.",
       cemented: "D1",
     },
@@ -73,8 +75,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: 110.6,
-      glass: "S-FPL51 / FCD1 class (ED fluorophosphate)",
-      role: "First ED element; provides most of the positive power of the front cemented doublet.",
+      glass: "FCD1 (catalog-compatible spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED position inferred from high source Abbe number and production correlation; no source partial-dispersion measurement.",
+      role: "First inferred ED position; provides most of the positive power of the front cemented doublet.",
       cemented: "D1",
     },
     {
@@ -85,7 +89,7 @@ const LENS_DATA = {
       nd: 1.741,
       vd: 52.67,
       focalLengthMm: -24.5,
-      glass: "S-LAL61 class (OHARA; patent vd rounded high)",
+      glass: "S-LAL61 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Dominant negative variator element in G2.",
       cemented: "D2",
     },
@@ -97,7 +101,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: 38.7,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index flint partner in the G2 cemented variator doublet.",
       cemented: "D2",
     },
@@ -109,7 +113,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.57,
       focalLengthMm: -58.0,
-      glass: "S-LAH65V / S-LAH65VS class (OHARA)",
+      glass: "S-LAH65VS (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Air-spaced negative meniscus completing the variator group and controlling off-axis aberrations.",
     },
     {
@@ -120,7 +124,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: 75.8,
-      glass: "S-LAL14 / J-LAK14 class",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "First positive relay element after the stop.",
     },
     {
@@ -131,7 +135,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       focalLengthMm: 77.1,
-      glass: "S-LAL14 / J-LAK14 class",
+      glass: "J-LAK14 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Second distributed positive relay element in G3.",
     },
     {
@@ -142,8 +146,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       focalLengthMm: 53.8,
-      glass: "S-FPL51 / FCD1 class (ED fluorophosphate)",
-      role: "Second ED element; positive half of the G3 chromatic-correction doublet.",
+      glass: "FCD1 (catalog-compatible spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED position inferred from high source Abbe number and production correlation; no source partial-dispersion measurement.",
+      role: "Second inferred ED position; positive half of the G3 chromatic-correction doublet.",
       cemented: "D3",
     },
     {
@@ -154,7 +160,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.27,
       focalLengthMm: -26.1,
-      glass: "S-LAH95 / 904-313 dense lanthanum flint class",
+      glass: "S-LAH95 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-index negative element governed by the patent's G3 conditional expressions.",
       cemented: "D3",
     },
@@ -166,7 +172,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.67,
       focalLengthMm: 49.1,
-      glass: "S-BAL41 (OHARA)",
+      glass: "S-BAL41 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Fourth positive element in G3; completes the distributed relay power.",
     },
     {
@@ -177,7 +183,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -24.1,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Dominant negative element in the decentered VR group.",
       cemented: "D4",
     },
@@ -189,7 +195,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       focalLengthMm: 45.6,
-      glass: "H-ZLaF80 / TAFD40 class (Hikari/Hoya; HRI)",
+      glass: "TAFD40 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "High-refractive-index positive VR element; n_d exceeds 2.0.",
       cemented: "D4",
     },
@@ -201,7 +207,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       focalLengthMm: 28.7,
-      glass: "S-TIM22 (OHARA)",
+      glass: "S-TIM22 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Strong positive flint element beginning the rear relay group.",
       cemented: "D5",
     },
@@ -213,7 +219,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.23,
       focalLengthMm: -94.6,
-      glass: "S-LAL10 (OHARA)",
+      glass: "S-LAL10 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Negative lanthanum crown partner in the first G5 cemented doublet.",
       cemented: "D5",
     },
@@ -225,7 +231,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.41,
       focalLengthMm: 66.4,
-      glass: "N-FK5 / J-FK5 / S-FSL5 class",
+      glass: "N-FK5 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Low-index, low-dispersion positive element in the final cemented pair.",
       cemented: "D6",
     },
@@ -237,7 +243,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.96,
       focalLengthMm: -34.0,
-      glass: "S-LAM66 (OHARA)",
+      glass: "S-LAM66 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Rear dense flint element; final field and chromatic corrector before the image plane.",
       cemented: "D6",
     },
@@ -277,9 +283,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 56.09, nominalFNumber: 4.5, label: "Wide" },
-      { focalLengthMm: 129.95, nominalFNumber: 5.0, label: "Mid" },
-      { focalLengthMm: 293.9, nominalFNumber: 5.6, label: "Tele" },
+      { focalLengthMm: 56.09, nominalFNumber: 4.63, label: "Wide" },
+      { focalLengthMm: 129.95, nominalFNumber: 4.91, label: "Mid" },
+      { focalLengthMm: 293.9, nominalFNumber: 5.88, label: "Tele" },
     ],
     step: 0.005,
   },
