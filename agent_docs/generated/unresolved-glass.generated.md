@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **1026** lenses scanned
 - **11751** non-air surfaces examined
 - **11760** element glass declarations examined
-- **220** non-explicit-unmatched annotations did not resolve
-- **116** distinct unresolved glass-like tokens found
+- **219** non-explicit-unmatched annotations did not resolve
+- **115** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -110,7 +110,6 @@ or per-lens patent backfills.
 | 786406 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
-| 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803405 | 1 | 1 | |
 | 803456 | 1 | 1 | |
@@ -538,10 +537,6 @@ or per-lens patent backfills.
 ### 792450 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
-
-### 797455 — 1 occurrence
-
-- [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) 19: `797455 — dense lanthanum glass class (catalog unresolved)`
 
 ### 800255 — 1 occurrence
 

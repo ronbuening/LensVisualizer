@@ -285,7 +285,8 @@ const LENS_DATA = {
         A14: 0,
       },
     },
-    { label: "2", R: 19.409, d: 13, sd: 16.5 },
+    // Figure 1: retain the 16.5 mm clear cap; the flat rear land reaches L11's 21.2 mm drawn rim.
+    { label: "2", R: 19.409, d: 13, sd: 16.5, rimExtensionSd: 21.2 },
     { label: "3", R: -82.454, d: 2, sd: 14.3, medium: 2 },
     { label: "4", R: 38.992, d: 2.8, sd: 13.2 },
     { label: "5", R: 153.969, d: 4, sd: 13, medium: 3 },

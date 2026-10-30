@@ -42,9 +42,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  no overlap is hidden. The 2026-07-29 Figure 1 pass narrowed surfaces 4/5   ║
  * ║  and enlarged the hybrid L21 envelope at 6A/7/8.                            ║
  * ║                                                                            ║
- * ║  Authored nC/nF/ng values are catalog-derived representative class data,    ║
- * ║  not patent-published line indices. They are omitted for J-FKH1-coordinate  ║
- * ║  ED, resin, and 517641 material. No dPgF or APO claim is encoded.            ║
+ * ║  Table 1 publishes d-line nd/νd, not nC/nF/ng or partial dispersion.       ║
+ * ║  Qualified catalog curves supply spectral proxies; no production supplier ║
+ * ║  or resin formulation is established. No dPgF or APO claim is encoded.      ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -89,12 +89,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -164.17297914344846,
-      glass: "847238 — dense flint class",
+      glass: "J-SF03 spectral proxy (patent 847238; production supplier unconfirmed)",
       role: "Negative front member of the cemented positive L11 doublet in G1.",
       cemented: "D1",
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 2,
@@ -104,12 +101,9 @@ const LENS_DATA = {
       nd: 1.64,
       vd: 60.09,
       focalLengthMm: 81.42893994621147,
-      glass: "J-LAK01 (Hikari; patent code 640601)",
+      glass: "J-LAK01 spectral proxy (Hikari catalog; patent 640601; production supplier unconfirmed)",
       role: "Positive rear member of the cemented L11 doublet; the doublet is net positive.",
       cemented: "D1",
-      nC: 1.63673,
-      nF: 1.64738,
-      ng: 1.65311,
     },
     {
       id: 3,
@@ -119,7 +113,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.52,
       focalLengthMm: 151.5125683899441,
-      glass: "J-FKH1 (Hikari; patent code 498825)",
+      glass: "J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)",
       role: "ED-class positive meniscus completing the positive first zoom group.",
     },
     {
@@ -142,12 +136,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       focalLengthMm: -21.60548475091962,
-      glass: "835427 — lanthanum flint class",
+      glass: "J-LASF05 spectral proxy (patent 835427; production supplier unconfirmed)",
       role: "Strong negative glass body of the hybrid L21 component and leading member of G2.",
       cemented: "H1",
-      nC: 1.82898,
-      nF: 1.84852,
-      ng: 1.85956,
     },
     {
       id: 6,
@@ -157,11 +148,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -34.79028637448224,
-      glass: "773496 — lanthanum flint class",
+      glass: "J-LASF016 spectral proxy (patent 773496; production supplier unconfirmed)",
       role: "Biconcave negative member of the focusing second group.",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 7,
@@ -171,11 +159,8 @@ const LENS_DATA = {
       nd: 1.80809,
       vd: 22.76,
       focalLengthMm: 22.399171962952053,
-      glass: "808228 — very dense flint class",
+      glass: "FD225 spectral proxy (patent 808228; production supplier unconfirmed)",
       role: "High-index, low-Abbe positive member specified by the patent conditions np and νp.",
-      nC: 1.79801,
-      nF: 1.83351,
-      ng: 1.8559,
     },
     {
       id: 8,
@@ -185,11 +170,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.61,
       focalLengthMm: -31.072109903142003,
-      glass: "773496 — lanthanum flint class",
+      glass: "J-LASF016 spectral proxy (patent 773496; production supplier unconfirmed)",
       role: "Rear negative member of G2; G2 translates as a rigid inner-focus group.",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 9,
@@ -199,7 +181,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.52,
       focalLengthMm: 30.868873016620665,
-      glass: "J-FKH1 (Hikari; patent code 498825)",
+      glass: "J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)",
       role: "Strong ED-class positive element immediately behind the aperture stop.",
     },
     {
@@ -210,7 +192,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.52,
       focalLengthMm: 95.55735685796363,
-      glass: "J-FKH1 (Hikari; patent code 498825)",
+      glass: "J-FKH1 spectral proxy (Hikari catalog; patent 498825; production supplier unconfirmed)",
       role: "ED-class positive meniscus in G3.",
     },
     {
@@ -221,11 +203,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       focalLengthMm: -53.55771808470057,
-      glass: "847238 — dense flint class",
+      glass: "J-SF03 spectral proxy (patent 847238; production supplier unconfirmed)",
       role: "Negative rear member of the net-positive third group.",
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 12,
@@ -235,7 +214,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.1,
       focalLengthMm: 44.52852898972637,
-      glass: "517641 — borosilicate crown class",
+      glass: "J-BK7A spectral proxy (patent 517641; production supplier unconfirmed)",
       role: "Double-aspherical positive element at the front of the compact master group Gm.",
     },
     {
@@ -258,12 +237,9 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       focalLengthMm: -69.00473964761939,
-      glass: "804466 — lanthanum flint class",
+      glass: "H-ZLaF50D spectral proxy (patent 804466; production supplier unconfirmed)",
       role: "Negative glass body of the final hybrid component; the bonded L2 assembly is net negative.",
       cemented: "H2",
-      nC: 1.79882,
-      nF: 1.81608,
-      ng: 1.82569,
     },
   ],
 
@@ -291,7 +267,8 @@ const LENS_DATA = {
       },
     },
     { label: "7", R: 98.4767, d: 1.6, sd: 12.5, medium: 5 },
-    { label: "8", R: 15.1317, d: 4.8, sd: 12.5 },
+    // Figure 1 L21 rear: source cap/edge q ≈ 0.81; inferred opaque land, full-beam guarded.
+    { label: "8", R: 15.1317, d: 4.8, sd: 12.5, rimCutDepthMm: 3.8 },
     { label: "9", R: -49.006, d: 0.9, sd: 8.6, medium: 6 },
     { label: "10", R: 59.9897, d: 0.1, sd: 8.6 },
     { label: "11", R: 25.8325, d: 3.5, sd: 8.6, medium: 7 },
