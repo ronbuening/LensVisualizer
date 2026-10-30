@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** Fresh F-mount source/rim/glass review: 2026-10-30. Exact source anchors, qualified spectra and constrained geometry decisions are recorded in the audit sidecar. */
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║        LENS DATA — Sigma MACRO 105mm F2.8 EX DG OS HSM                    ║
@@ -107,7 +109,7 @@ const LENS_DATA = {
       focalLengthMm: 101.8,
       glass: "FCD515 (HOYA) / S-FPM2-neighbor class",
       apd: "inferred",
-      apdNote: "High-index SLD-class crown inferred from exact Hoya FCD515 code 593686; patent lists nd/vd only.",
+      apdNote: "High-index SLD-class crown inferred from the compatible HOYA FCD515 spectral proxy and product wording; patent lists nd/vd only and identifies no supplier or melt.",
       role: "Weak positive meniscus completing L1 and providing additional low-dispersion correction.",
     },
     {
@@ -274,8 +276,8 @@ const LENS_DATA = {
     { label: "6", R: 49.2292, d: 3.5517, sd: 18.5, medium: 4 },
     { label: "7", R: 260.546, sd: 18.3 },
     { label: "8", R: -359.578, d: 0.95, sd: 15.5, medium: 5 },
-    { label: "9", R: 26.4941, d: 4.9881, sd: 12.4 },
-    { label: "10", R: -80.7403, d: 1.0, sd: 12.4, medium: 6 },
+    { label: "9", R: 26.4941, d: 4.9881, rimExtensionSd: 15.5, sd: 13 },
+    { label: "10", R: -80.7403, d: 1.0, rimExtensionSd: 14, sd: 13, medium: 6 },
     { label: "11", R: 29.3575, d: 3.9702, sd: 14.0, medium: 7 },
     { label: "12", R: 86.6184, sd: 15.0 },
     { label: "STO", R: "flat", d: 2.35 },
@@ -288,8 +290,8 @@ const LENS_DATA = {
     { label: "20", R: 218.324, sd: 16.0 },
     { label: "21", R: -399.592, d: 3.3872, sd: 15.5, medium: 12 },
     { label: "22", R: -41.4772, d: 0.95, sd: 15.5, medium: 13 },
-    { label: "23", R: 41.4772, d: 4.3666, sd: 14.2 },
-    { label: "24", R: -78.7902, d: 1.2, sd: 14.2, medium: 14 },
+    { label: "23", R: 41.4772, d: 4.3666, rimExtensionSd: 15.5, sd: 14.2 },
+    { label: "24", R: -78.7902, d: 1.2, rimExtensionSd: 17, sd: 14.2, medium: 14 },
     { label: "25", R: 42.8746, d: 5.6999, sd: 17.0, medium: 15 },
     { label: "26", R: -93.6099, d: 0.15, sd: 17.0 },
     { label: "27", R: 53.7454, d: 4.6951, sd: 19.2, medium: 16 },
