@@ -905,17 +905,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| E1 (Element 1) | 1 | `808228 class (vendor unresolved)` | 1.80810 / 22.80 | S-NPH1 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E2 (Element 2) | 3 | `001291 class (vendor unresolved)` | 2.00100 / 29.10 | S-LAH99 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E3 (Element 3) | 5 | `517524 class (vendor unresolved)` | 1.51742 / 52.40 | S-NSL36 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E4 (Element 4) | 6 | `900374 class (vendor unresolved)` | 1.90043 / 37.40 | TAFD37A (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E5 (Element 5) | 9 | `697555 class (vendor unresolved)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E6 (Element 6) | 11A | `583594 class (vendor unresolved)` | 1.58313 / 59.40 | J-SK12 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E7 (Element 7) | 13 | `883408 class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E8 (Element 8) | 14 | `855248 class (vendor unresolved)` | 1.85478 / 24.80 | S-NBH56 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E9 (Element 9) | 16 | `900374 class (vendor unresolved)` | 1.90043 / 37.40 | TAFD37A (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E10 (Element 10) | 18 | `697555 class (vendor unresolved)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
-| E11 (Element 11) | 20 | `593353 class (vendor unresolved)` | 1.59270 / 35.30 | S-FTM16 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E1 (Element 1) | 1 | `808228 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.80810 / 22.80 | S-NPH1 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E2 (Element 2) | 3 | `001291 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 2.00100 / 29.10 | S-LAH99 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E3 (Element 3) | 5 | `517524 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.51742 / 52.40 | S-NSL36 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E4 (Element 4) | 6 | `900374 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.90043 / 37.40 | TAFD37A (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E5 (Element 5) | 9 | `697555 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E6 (Element 6) | 11A | `583594 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.58313 / 59.40 | J-SK12 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E7 (Element 7) | 13 | `883408 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E8 (Element 8) | 14 | `855248 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.85478 / 24.80 | S-NBH56 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E9 (Element 9) | 16 | `900374 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.90043 / 37.40 | TAFD37A (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E10 (Element 10) | 18 | `697555 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
+| E11 (Element 11) | 20 | `593353 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved` | 1.59270 / 35.30 | S-FTM16 (trusted Sellmeier) | sellmeier | patents/US20190113711A1.pdf | No review-record hit |
 
 ### [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) - US 2021/0263286 A1
 

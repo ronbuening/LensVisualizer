@@ -94,3 +94,21 @@ angle labels do not certify finite coverage or decentered IS behavior.
 - Actual SVGs versus native Figure 7: 1,365 states / 21,840 finite, closed, connected paths; hidden trim 0. Source
   fidelity, sampled runtime clearance and production correlation are separate conclusions. Coordinator owns shared
   reports and full validation/publication gates.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 540/540 target chiefs converge: 520 clear the current caps and 20 clip. Across the converged fields, 193 current-iris samples per field give 90,374 passed, 13,710 clipped, 136 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (136). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result            |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | ----------------------- |
+|            0 |                  0 |                  0.200000000 |           0.200000 | 193 / 188 / 0                     | clear / clear / clipped |
+|          0.5 |                  0 |                  0.200000000 |           0.200000 | 193 / 179 / 142                   | clear / clear / clear   |
+|            1 |                  0 |                  0.200000000 |           0.200000 | 193 / 168 / 147                   | clear / clear / clear   |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 92.440222% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.302391116 m versus label 4.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

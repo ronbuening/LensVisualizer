@@ -415,3 +415,21 @@ Source Figure 3 on PDF page 6 shows stabilized-state aberrations at a 0.5° came
 3. [Canon Latin America: EF 28-135mm f/3.5-5.6 IS USM](https://www.cla.canon.com/en/p/ef-28-135mm-f-3-5-5-6-is-usm) — marketed focal length/aperture, construction, diagonal field, focusing system, and minimum focus distance.
 4. OHARA, _Optical Glass Pocket Catalog_, 2023 edition, and official glass-type data sheets — polished-glass $n_d/\nu_d$ values and catalog names.
 5. OHARA, _Low Softening Temperature Optical Glass_, version 9.1 — L-BAL42 molding-family data.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 169 positive-real-object geometries, 507/507 target chiefs converge: 507 clear the current caps and 0 clip. A further 11 sampled control geometries have no positive real Gaussian object, first at zoom 0.625, focus 0.05 (object-to-first-surface -3698.819992 mm); finite-object bundles are not asserted for them. Across the converged fields, 193 current-iris samples per field give 89,564 passed, 7,467 clipped, 820 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ STO` (820). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.499999802 |           0.500000 | 193 / 179 / 120                   | clear / clear / clear |
+|          0.5 |                  0 |                  0.500000044 |           0.500000 | 193 / 188 / 159                   | clear / clear / clear |
+|            1 |                  0 |                  0.499999991 |           0.500000 | 193 / 193 / 152                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 749.198853% at zoom 0.75, focus 0.25, aberration control 0: Gaussian 16.983977066 m versus label 2.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

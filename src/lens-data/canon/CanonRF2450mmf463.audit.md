@@ -126,3 +126,23 @@ At infinity, 56/65 format chiefs reach ≥99%, nine widest 90–99%, minimum 90.
 Three source infinity residuals +0.008253/−0.000159/+0.012174mm; calculated close endpoints +0.007380/+0.000317/+0.008993mm, with old cam values preserved. Worst interpolated infinity residual −0.922559mm at zoom 0.765625 (EFL 41.089274 versus display 42.1925); worst finite residual −1.599621mm at zoom 0.796875/focus 0.6, display 0.563021 m. Sparse interpolation is illustrative and not focus preserving. Source finite spacings, physical iris/FP diameter and moved-IS prescription remain unavailable.
 
 Actual SVG comparison confirms the shoulders and native cap refinements. All 10,920 paths over 1,365 zoom/focus states are finite, closed and connected, with zero hidden renderer trim. Keep source fidelity, sampled runtime clearance and production correlation separate.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 500/540 target chiefs converge: 500 clear the current caps and 0 clip. The other 40 target solves remain unresolved, rather than proving that no physical chief exists. Across the converged fields, 193 current-iris samples per field give 88,066 passed, 8,434 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result               |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | -------------------------- |
+|            0 |                  0 |                  0.300551413 |           0.300000 | 193 / 177 / unresolved            | clear / clear / unresolved |
+|          0.5 |                  0 |                  0.320013940 |           0.320000 | 193 / 186 / 148                   | clear / clear / clear      |
+|            1 |                  0 |                  0.350237736 |           0.350000 | 193 / 186 / 169                   | clear / clear / clear      |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 83.999241% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.992047087 m versus label 6.200000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+The unresolved format-edge roots concern the widest zoom region; their failure is an inverse-solver/model limitation and is not proof that no chief exists. Published source stations, reconstructed close gaps and source-shaped caps retain their existing authority.

@@ -33,13 +33,13 @@ Example 1 is the closest overall match to Canon's published optical construction
 
 Example 1 is a negative-lead five-group zoom. Its paraxial group focal lengths, computed from the prescription and matching the patent's group table (PDF p. 16), are:
 
-| Group | Surfaces | Elements | Focal length (mm) | Role |
-|---|---|---|---|---|
-| L1 | 1–8 | E1–E4 | −36.38 | Front negative group; pupil imaging onto the stop (¶0039) |
-| L2 | 9–10 | E5 | +71.68 | Single positive lens; converges the L1 output ahead of the focus group (¶0077) |
-| L3 | 11–12 | E6 | −47.17 | Single negative focus lens (¶0078) |
-| L4 | STO, 14–28A | E7–E15 | +27.15 | Main positive relay behind the stop; contains the IS doublet |
-| L5 | 29–30 | E16 | +68.99 | Fixed rear positive lens (¶0082) |
+| Group | Surfaces    | Elements | Focal length (mm) | Role                                                                           |
+| ----- | ----------- | -------- | ----------------- | ------------------------------------------------------------------------------ |
+| L1    | 1–8         | E1–E4    | −36.38            | Front negative group; pupil imaging onto the stop (¶0039)                      |
+| L2    | 9–10        | E5       | +71.68            | Single positive lens; converges the L1 output ahead of the focus group (¶0077) |
+| L3    | 11–12       | E6       | −47.17            | Single negative focus lens (¶0078)                                             |
+| L4    | STO, 14–28A | E7–E15   | +27.15            | Main positive relay behind the stop; contains the IS doublet                   |
+| L5    | 29–30       | E16      | +68.99            | Fixed rear positive lens (¶0082)                                               |
 
 L1 holds four lens elements (three negative, one positive), the minimum claim 1 requires. L4 carries nine elements in six air-separated units, including three cemented doublets (D1, D2, D3). The stop is the first surface of L4, immediately behind L3, as ¶0086 recommends.
 
@@ -91,7 +91,7 @@ E6 is the entire focus group (¶0078). Its νd of 49.63 falls inside the 45–60
 
 ### E7 — Biconvex Positive, first element behind the stop
 
-nd = 1.55032, νd = 75.50, θgF = 0.5405 (ΔPgF = +0.0237). Glass: HOYA FCD705 (550755); the only exact-class candidate in the loaded catalogs. f = +40.51 mm.
+nd = 1.55032, νd = 75.50, θgF = 0.5405 (ΔPgF = +0.0237). Glass: FCD705-class coordinates (550755), used as a qualified spectral proxy; historical supplier, melt and chemistry are unspecified. f = +40.51 mm.
 
 E7 is the first of four positive νd ≥ 75 lenses behind the stop. ¶0081 asks for at least two, and preferably three, such lenses in the rear group LR to correct lateral color from the wide field and axial color from the large aperture. ¶0087 prefers that the element following the stop present a strongly convex surface to the object side. E7 does present a convex front (R = 74.62 mm) to the stop, but its stronger curvature is on the rear surface (R = −30.96 mm).
 
@@ -111,13 +111,13 @@ Counting lenses from the object side, E10 and E11 are the 10th and 11th lenses, 
 
 ### E12 — Biconvex Positive, low dispersion
 
-nd = 1.43700, νd = 95.10, θgF = 0.5326 (ΔPgF = +0.0488). Glass: HOYA FCD100 (437951); the only exact-class candidate in the loaded catalogs (OHARA S-FPL53 is equivalent-class). f = +35.45 mm.
+nd = 1.43700, νd = 95.10, θgF = 0.5326 (ΔPgF = +0.0488). Glass: FCD100-class coordinates (437951), used as a qualified spectral proxy; historical supplier, melt and chemistry are unspecified (OHARA S-FPL53 is equivalent-class). f = +35.45 mm.
 
 E12 is the first of two FCD100-class elements, the lowest-dispersion glass in the design. It is a strong positive contributor in L4: at the wide end +14.66 in spherical aberration and +0.0237 in axial color.
 
 ### E13 + E14 — Cemented Doublet D3 (net f = −44.31 mm)
 
-- **E13:** nd = 1.43700, νd = 95.10, θgF = 0.5326 (ΔPgF = +0.0488). Glass: HOYA FCD100 (437951); only exact-class candidate. f = +31.46 mm. Biconvex positive.
+- **E13:** nd = 1.43700, νd = 95.10, θgF = 0.5326 (ΔPgF = +0.0488). Glass: FCD100-class coordinates (437951), used as a qualified spectral proxy; historical supplier, melt and chemistry are unspecified. f = +31.46 mm. Biconvex positive.
 - **E14:** nd = 1.83481, νd = 42.72, θgF = 0.5650. Glass: 835427 coordinates (HOYA TAFD5G, OHARA S-LAH55V); supplier unconfirmed. f = −16.63 mm. Biconcave negative, the strongest single element in the lens.
 
 D3 couples the second FCD100-class lens to a strong high-index negative element, giving a net negative doublet. The νd difference across its cemented interface (95.10 against 42.72) is the largest in the lens. At the wide end D3 is the largest lateral-color contributor in L4 (−0.0113) and offsets E12's axial-color term with −0.0350.
@@ -136,24 +136,24 @@ E16 is L5 by itself and does not move during zoom or focus. ¶0082 gives the dus
 
 ## 4. Glass Identification and Selection
 
-The patent publishes nd, νd, and θgF at the d-line (¶0054) but no line indices. Glass names are therefore coordinate matches against six vendor catalogs (OHARA, HOYA, Schott, HIKARI, CDGM, Sumita) using the distance $\sqrt{\Delta n_d^2 + (\Delta\nu_d/50)^2}$. Every coordinate in Example 1 has at least one exact-class match (distance < 0.001), and most are shared by several vendors, so the listed names identify glass types, not suppliers. ΔPgF is the patent θgF minus the normal line $0.6438 - 0.001682\,\nu_d$.
+The patent publishes d-line nd, νd and absolute θgF (¶0054, PDF p. 9; ¶0094, p. 14), with d = 587.6, F = 486.1, C = 656.3 and g = 435.8 nm explicitly defined. It prints no individual spectral indices. Glass names are therefore coordinate matches against six vendor catalogs (OHARA, HOYA, Schott, HIKARI, CDGM, Sumita) using the distance $\sqrt{\Delta n_d^2 + (\Delta\nu_d/50)^2}$. Every coordinate in Example 1 has at least one exact-class match (distance < 0.001), and most are shared by several vendors, so the listed names identify compatible catalog coordinate classes. All 16 current curves are qualified spectral proxies, without proof of historical supplier, melt, chemistry, molding process or production material. Catalog family terms such as fluorophosphate, lanthanum flint and dense flint below describe these proxies, not a chemical analysis of the patent media. ΔPgF is the patent θgF minus the normal line $0.6438 - 0.001682\,\nu_d$.
 
-| Code | nd / νd | θgF | ΔPgF | Coordinate-compatible glasses | Used in | Role |
-|---|---|---|---|---|---|---|
-| 882372 | 1.88202 / 37.22 | 0.5770 | −0.0042 | HOYA M-TAFD307; CDGM D-ZLaF67-25 | E1 | Aspheric front negative (moldable families only) |
-| 804465 | 1.80420 / 46.50 | 0.5572 | −0.0084 | Schott N-LASF44; HOYA TAF3/TAF3D; OHARA S-LAH65VS | E2 | L1 negative |
-| 497816 | 1.49700 / 81.61 | 0.5386 | +0.0321 | HOYA FCD1; Schott N-PK52A; CDGM H-FK61; HIKARI J-FK01A | E3, E8 | Low-dispersion negative (L1) and crown of D1 |
-| 911352 | 1.91082 / 35.25 | 0.5824 | −0.0021 | HOYA TAFD35; CDGM H-ZLaF4LA | E4 | High-index positive in L1 (nd1m) |
-| 652585 | 1.65160 / 58.54 | 0.5390 | −0.0063 | OHARA S-LAL7Q; Schott N-LAK7 | E5 | L2 positive |
-| 772496 | 1.77250 / 49.63 | 0.5508 | −0.0095 | HOYA TAF1; Schott N-LAF34; OHARA S-LAH66 | E6 | Focus lens |
-| 550755 | 1.55032 / 75.50 | 0.5405 | +0.0237 | HOYA FCD705 | E7 | Low-dispersion positive behind stop |
-| 804396 | 1.80440 / 39.59 | 0.5729 | −0.0043 | OHARA S-LAH63Q; HIKARI J-LASF013 | E9 | Flint of D1 |
-| 847238 | 1.84666 / 23.79 | 0.6191 | +0.0153 | HOYA FDS90; OHARA S-TIH53; CDGM H-ZF52A | E10 | Dense-flint positive of IS doublet |
-| 606437 | 1.60562 / 43.70 | 0.5721 | +0.0018 | OHARA S-BAM4; Schott N-BAF4 | E11 | Negative of IS doublet |
-| 437951 | 1.43700 / 95.10 | 0.5326 | +0.0488 | HOYA FCD100 | E12, E13 | Lowest-dispersion positives in L4 |
-| 835427 | 1.83481 / 42.72 | 0.5650 | −0.0069 | HOYA TAFD5G; OHARA S-LAH55V | E14 | Strong negative of D3 |
-| 583595 | 1.58313 / 59.46 | 0.5418 | −0.0020 | HOYA M-BACD12; CDGM H-ZK2 | E15 | Double-aspheric corrector |
-| 487704 | 1.48749 / 70.44 | 0.5303 | +0.0050 | HOYA FC5; Schott N-FK5 | E16 | Fixed rear positive |
+| Code   | nd / νd         | θgF    | ΔPgF    | Coordinate-compatible glasses                          | Used in  | Role                                             |
+| ------ | --------------- | ------ | ------- | ------------------------------------------------------ | -------- | ------------------------------------------------ |
+| 882372 | 1.88202 / 37.22 | 0.5770 | −0.0042 | HOYA M-TAFD307; CDGM D-ZLaF67-25                       | E1       | Aspheric front negative (moldable families only) |
+| 804465 | 1.80420 / 46.50 | 0.5572 | −0.0084 | Schott N-LASF44; HOYA TAF3/TAF3D; OHARA S-LAH65VS      | E2       | L1 negative                                      |
+| 497816 | 1.49700 / 81.61 | 0.5386 | +0.0321 | HOYA FCD1; Schott N-PK52A; CDGM H-FK61; HIKARI J-FK01A | E3, E8   | Low-dispersion negative (L1) and crown of D1     |
+| 911352 | 1.91082 / 35.25 | 0.5824 | −0.0021 | HOYA TAFD35; CDGM H-ZLaF4LA                            | E4       | High-index positive in L1 (nd1m)                 |
+| 652585 | 1.65160 / 58.54 | 0.5390 | −0.0063 | OHARA S-LAL7Q; Schott N-LAK7                           | E5       | L2 positive                                      |
+| 772496 | 1.77250 / 49.63 | 0.5508 | −0.0095 | HOYA TAF1; Schott N-LAF34; OHARA S-LAH66               | E6       | Focus lens                                       |
+| 550755 | 1.55032 / 75.50 | 0.5405 | +0.0237 | HOYA FCD705                                            | E7       | Low-dispersion positive behind stop              |
+| 804396 | 1.80440 / 39.59 | 0.5729 | −0.0043 | OHARA S-LAH63Q; HIKARI J-LASF013                       | E9       | Flint of D1                                      |
+| 847238 | 1.84666 / 23.79 | 0.6191 | +0.0153 | HOYA FDS90; OHARA S-TIH53; CDGM H-ZF52A                | E10      | Dense-flint positive of IS doublet               |
+| 606437 | 1.60562 / 43.70 | 0.5721 | +0.0018 | OHARA S-BAM4; Schott N-BAF4                            | E11      | Negative of IS doublet                           |
+| 437951 | 1.43700 / 95.10 | 0.5326 | +0.0488 | HOYA FCD100                                            | E12, E13 | Lowest-dispersion positives in L4                |
+| 835427 | 1.83481 / 42.72 | 0.5650 | −0.0069 | HOYA TAFD5G; OHARA S-LAH55V                            | E14      | Strong negative of D3                            |
+| 583595 | 1.58313 / 59.46 | 0.5418 | −0.0020 | HOYA M-BACD12; CDGM H-ZK2                              | E15      | Double-aspheric corrector                        |
+| 487704 | 1.48749 / 70.44 | 0.5303 | +0.0050 | HOYA FC5; Schott N-FK5                                 | E16      | Fixed rear positive                              |
 
 Five elements have νd ≥ 75: E3 in L1 and the four positive lenses E7, E8, E12, and E13 behind the stop. Four such positive lenses in LR exceed the two-to-three that ¶0081 recommends. Canon's published count is four UD elements; which four Canon designates, and whether FCD100-class glass is marketed under a different name, is not established from the sources.
 
@@ -165,11 +165,11 @@ Example 1 focuses internally by moving L3 (E6) toward the object for near object
 
 The close-focus spacings in the data file are therefore a **constrained reconstruction**. L3 moves objectward with D10 + D12 held constant at each zoom station. Its travel is solved paraxially so that an object at Canon's minimum focus distance, measured from the image plane, images onto the fixed infinity image plane. Canon publishes 0.25 m at 16 mm and 0.20 m at 28 mm. The 0.213 m value at the intermediate station is a linear interpolation in focal length, not published data, and the viewer interpolates linearly between stations.
 
-| Station | EFL (mm) | D10 ∞ / close (mm) | D12 ∞ / close (mm) | L3 travel (mm) | Available (mm) | Object to image (m) | Paraxial β | Canon max. mag. |
-|---|---|---|---|---|---|---|---|---|
-| Wide | 15.488 | 6.971 / 3.341 | 4.664 / 8.294 | 3.630 | 6.971 | 0.250 | −0.112 | 0.11× |
-| Intermediate | 24.114 | 8.548 / 3.579 | 3.088 / 8.057 | 4.969 | 8.548 | 0.213 (interpolated) | −0.220 | — |
-| Telephoto | 27.160 | 9.157 / 3.362 | 2.479 / 8.274 | 5.795 | 9.157 | 0.200 | −0.284 | 0.26× |
+| Station      | EFL (mm) | D10 ∞ / close (mm) | D12 ∞ / close (mm) | L3 travel (mm) | Available (mm) | Object to image (m)  | Paraxial β | Canon max. mag. |
+| ------------ | -------- | ------------------ | ------------------ | -------------- | -------------- | -------------------- | ---------- | --------------- |
+| Wide         | 15.488   | 6.971 / 3.341      | 4.664 / 8.294      | 3.630          | 6.971          | 0.250                | −0.112     | 0.11×           |
+| Intermediate | 24.114   | 8.548 / 3.579      | 3.088 / 8.057      | 4.969          | 8.548          | 0.213 (interpolated) | −0.220     | —               |
+| Telephoto    | 27.160   | 9.157 / 3.362      | 2.479 / 8.274      | 5.795          | 9.157          | 0.200                | −0.284     | 0.26×           |
 
 After the spacings are rounded to 0.001 mm, the reconstructed conjugates lie 250.012 / 213.007 / 199.996 mm from the image plane when the image is held on the paraxial infinity focus, as in the solve. That focus lies 0.0009 / 0.0002 / 0.0014 mm behind the authored image plane at the printed 13.270 mm back focus; requiring focus on the authored plane itself, the same spacings image objects 250.086 / 213.012 / 200.014 mm away. The difference is immaterial at the scale of the marketed distances. The paraxial magnification at the wide end agrees with Canon's 0.11×. At the telephoto end it exceeds Canon's 0.26× by 0.024. This is a plausibility comparison between a paraxial model and a marketed figure, not a mismatch test; possible reasons include production differences, real-ray versus paraxial magnification, and the reference plane of the marketed distance.
 
@@ -183,19 +183,19 @@ $$X = \frac{H^2/R}{1+\sqrt{1-(1+K)(H/R)^2}} + A_4H^4 + A_6H^6 + A_8H^8 + A_{10}H
 
 with X the sag along the direction of light travel. This is the standard (1 + K) conic form: K = 0 is a spherical base, and all three surfaces have K = 0. No odd-order terms are used. The data file copies the coefficients unchanged at native scale (no scaling), adding A14 = 0 only to complete the schema.
 
-| Surface | R (mm) | K | A4 | A6 | A8 | A10 | A12 |
-|---|---|---|---|---|---|---|---|
-| 2A | 22.1371 | 0 | −7.11444e-06 | 2.28099e-09 | −8.75851e-11 | 2.46405e-13 | −4.26701e-16 |
-| 27A | −64.2569 | 0 | −7.98050e-05 | 4.31831e-07 | −1.02601e-08 | 9.74514e-11 | −3.31880e-13 |
-| 28A | −800.0000 | 0 | −3.06766e-05 | 2.19257e-07 | −3.28288e-09 | 3.23801e-11 | −9.88714e-14 |
+| Surface | R (mm)    | K   | A4           | A6          | A8           | A10         | A12          |
+| ------- | --------- | --- | ------------ | ----------- | ------------ | ----------- | ------------ |
+| 2A      | 22.1371   | 0   | −7.11444e-06 | 2.28099e-09 | −8.75851e-11 | 2.46405e-13 | −4.26701e-16 |
+| 27A     | −64.2569  | 0   | −7.98050e-05 | 4.31831e-07 | −1.02601e-08 | 9.74514e-11 | −3.31880e-13 |
+| 28A     | −800.0000 | 0   | −3.06766e-05 | 2.19257e-07 | −3.28288e-09 | 3.23801e-11 | −9.88714e-14 |
 
 The patent does not publish clear apertures. Departures are therefore quoted at the modeled semi-diameters of the data file, which were derived from ray floors and Fig. 1 proportions and are not published values.
 
 | Surface | Modeled sd (mm) | Departure from base sphere at 70 % sd (mm) | at 100 % sd (mm) |
-|---|---|---|---|
-| 2A | 17.3 | −0.174 | −0.994 |
-| 27A | 11.7 | −0.334 | −1.490 |
-| 28A | 11.7 | −0.103 | −0.259 |
+| ------- | --------------- | ------------------------------------------ | ---------------- |
+| 2A      | 17.3            | −0.174                                     | −0.994           |
+| 27A     | 11.7            | −0.334                                     | −1.490           |
+| 28A     | 11.7            | −0.103                                     | −0.259           |
 
 **Surface 2A.** On this rear surface of E1, concave toward the image (R = +22.14 mm), the negative departure makes the surface progressively shallower than its base sphere toward the rim. At the wide end the real chief ray at the printed field crosses 2A at 16.31 mm while the axial F2.9 ray is at 2.66 mm, so the surface acts mainly on the off-axis bundle. Its third-order A4 contributions at the wide end are of similar magnitude across spherical aberration (+0.183), coma (−0.213), astigmatism (+0.248), and distortion (−0.290). No single aberration dominates at third order, and the higher-order coefficients (A6–A12) are not captured by that measure.
 
@@ -210,13 +210,13 @@ The chromatic design follows the patent's stated logic. The high-index positive 
 First-order chromatic sums were computed with the published data alone: $n_F - n_C = (n_d - 1)/\nu_d$ and $n_g - n_F = \theta_{gF}(n_F - n_C)$ (¶0054). The coefficients are normalized in the same way as the Seidel sums above.
 
 | Group | Axial C–F (W) | Lateral C–F (W) | Axial C–F (T) | Lateral C–F (T) |
-|---|---|---|---|---|
-| L1 | +0.0128 | +0.0060 | +0.0225 | +0.0084 |
-| L2 | +0.0291 | −0.0033 | +0.0291 | −0.0033 |
-| L3 | −0.0488 | +0.0020 | −0.0514 | +0.0012 |
-| L4 | +0.0048 | −0.0072 | −0.0030 | −0.0093 |
-| L5 | +0.0014 | +0.0027 | +0.0008 | +0.0028 |
-| Total | −0.0007 | +0.0002 | −0.0020 | −0.0001 |
+| ----- | ------------- | --------------- | ------------- | --------------- |
+| L1    | +0.0128       | +0.0060         | +0.0225       | +0.0084         |
+| L2    | +0.0291       | −0.0033         | +0.0291       | −0.0033         |
+| L3    | −0.0488       | +0.0020         | −0.0514       | +0.0012         |
+| L4    | +0.0048       | −0.0072         | −0.0030       | −0.0093         |
+| L5    | +0.0014       | +0.0027         | +0.0008       | +0.0028         |
+| Total | −0.0007       | +0.0002         | −0.0020       | −0.0001         |
 
 The lateral-color terms of L1 and L4 are of opposite sign and similar magnitude at both ends. Within L1, E4 offsets the three negatives (Section 3). Within L4, the largest contributor is doublet D3. The axial terms are dominated by the L2/L3 pair, whose sum changes little with zoom (−0.0197 at the wide end, −0.0223 at the telephoto end), with L1, L4, and L5 balancing the remainder.
 
@@ -244,24 +244,24 @@ The paraxial image displacement per unit decentring of D2 is −0.468 at the wid
 
 The patent's Table 1 (PDF p. 21) lists the conditions for Example 1. Values below are recomputed from the prescription; the claim and range columns refer to the broadest ranges in the claims and ¶0036, ¶0057, ¶0073, and ¶0079.
 
-| Condition | Expression | Range | Example 1 (computed) | Table 1 | Satisfied |
-|---|---|---|---|---|---|
-| (1) | St/TDt | 0.05–0.45 | 0.3876 | 0.388 | Yes |
-| (1T) | St/TDt | 0.050–0.405 | 0.3876 | — | Yes |
-| (2) | fG1/f1 | 0.30–0.98 | 0.8199 | 0.8199 | Yes |
-| (2T) | fG1/f1 | 0.30–0.86 | 0.8199 | — | Yes |
-| (3) | nd1m | 1.90–2.40 | 1.91082 | 1.91082 | Yes |
-| (4) | νd1m | 23–40 | 35.25 | 35.250 | Yes |
-| (5) | θgF1m | 0.57–0.64 | 0.5824 | 0.5824 | Yes |
-| (6) | \|fG1/fG2\| | 0.35–0.64 | 0.542 | 0.542 | Yes |
-| (7) | \|f1\|/skm | 1.8–4.2 | 2.742 | 2.742 | Yes |
-| (8) | SFX | 0.98–3.00 | 1.138 | 1.138 | Yes |
-| (9) | fX/f1 | 1.0–2.4 | 1.297 | 1.297 | Yes |
-| (10) | \|f1\|/fLRw | 0.4–0.7 | 1.195 | 0.527 | See note |
-| (11) | fw/fR | 0.15–0.40 | 0.224 | 0.224 | Yes |
-| (12) | V | 0.2–1.0 | 0.266 | 0.266 | Yes |
-| (13) | ωw (°) | 45–60 | 54.532 | — | Yes |
-| (14) | \|f3/f2\| | 0.2–1.0 | 0.658 | — | Yes |
+| Condition | Expression  | Range       | Example 1 (computed) | Table 1 | Satisfied |
+| --------- | ----------- | ----------- | -------------------- | ------- | --------- |
+| (1)       | St/TDt      | 0.05–0.45   | 0.3876               | 0.388   | Yes       |
+| (1T)      | St/TDt      | 0.050–0.405 | 0.3876               | —       | Yes       |
+| (2)       | fG1/f1      | 0.30–0.98   | 0.8199               | 0.8199  | Yes       |
+| (2T)      | fG1/f1      | 0.30–0.86   | 0.8199               | —       | Yes       |
+| (3)       | nd1m        | 1.90–2.40   | 1.91082              | 1.91082 | Yes       |
+| (4)       | νd1m        | 23–40       | 35.25                | 35.250  | Yes       |
+| (5)       | θgF1m       | 0.57–0.64   | 0.5824               | 0.5824  | Yes       |
+| (6)       | \|fG1/fG2\| | 0.35–0.64   | 0.542                | 0.542   | Yes       |
+| (7)       | \|f1\|/skm  | 1.8–4.2     | 2.742                | 2.742   | Yes       |
+| (8)       | SFX         | 0.98–3.00   | 1.138                | 1.138   | Yes       |
+| (9)       | fX/f1       | 1.0–2.4     | 1.297                | 1.297   | Yes       |
+| (10)      | \|f1\|/fLRw | 0.4–0.7     | 1.195                | 0.527   | See note  |
+| (11)      | fw/fR       | 0.15–0.40   | 0.224                | 0.224   | Yes       |
+| (12)      | V           | 0.2–1.0     | 0.266                | 0.266   | Yes       |
+| (13)      | ωw (°)      | 45–60       | 54.532               | —       | Yes       |
+| (14)      | \|f3/f2\|   | 0.2–1.0     | 0.658                | —       | Yes       |
 
 Example 1 also satisfies every narrower (a) and (b) range of ¶0049, ¶0051, ¶0092, and ¶0093, except condition (10) as defined.
 
@@ -273,17 +273,17 @@ Example 1 also satisfies every narrower (a) and (b) range of ¶0049, ¶0051, ¶0
 
 All quantities below were recomputed from the prescription in the data file by an independent sequential paraxial trace, cross-checked with a separately coded ABCD matrix method, and compared with the patent at printed precision.
 
-| Quantity | Wide | Intermediate | Telephoto | Patent |
-|---|---|---|---|---|
-| EFL (mm) | 15.4881 | 24.1147 | 27.1601 | 15.488 / 24.114 / 27.160 |
-| Paraxial BFD (mm) | 13.2709 | 13.2702 | 13.2714 | 13.270 |
-| First vertex to image (mm) | 140.159 | 129.781 | 129.963 | 140.161 / 129.781 / 129.964 |
-| Real chief-ray image height (mm) | 17.5504 | 20.1006 | 20.4603 | 17.550 / 20.100 / 20.460 |
-| Group focal lengths (mm) | −36.3828, 71.6765, −47.1741, 27.1457, 68.9924 | | | −36.383, 71.676, −47.174, 27.146, 68.992 |
+| Quantity                         | Wide                                          | Intermediate | Telephoto | Patent                                   |
+| -------------------------------- | --------------------------------------------- | ------------ | --------- | ---------------------------------------- |
+| EFL (mm)                         | 15.4881                                       | 24.1147      | 27.1601   | 15.488 / 24.114 / 27.160                 |
+| Paraxial BFD (mm)                | 13.2709                                       | 13.2702      | 13.2714   | 13.270                                   |
+| First vertex to image (mm)       | 140.159                                       | 129.781      | 129.963   | 140.161 / 129.781 / 129.964              |
+| Real chief-ray image height (mm) | 17.5504                                       | 20.1006      | 20.4603   | 17.550 / 20.100 / 20.460                 |
+| Group focal lengths (mm)         | −36.3828, 71.6765, −47.1741, 27.1457, 68.9924 |              |           | −36.383, 71.676, −47.174, 27.146, 68.992 |
 
 The track differs from the printed lens length by −0.002 mm at the wide end and −0.001 mm at the telephoto end, within the rounding of the printed gaps. Table 1's derived quantities (TD, St, Sw, fG1, fG2, fLRw, fLRt, fR, V, and the group magnifications) reproduce within printed-precision tolerances. The telephoto β2 (−13.056 against printed −13.051) has the widest tolerance because L2 is nearly afocal there.
 
-**Implemented-model notes.** The stop diameter is not published. The data file uses the printed F2.9 to set a zoom-dependent iris, giving real-ray stop radii of 8.062 / 10.158 / 10.966 mm (paraxial 7.894 / 9.779 / 10.462 mm); agreement with F2.9 is a calibration, not independent evidence of a diaphragm size. All semi-diameters are modeled. No cover glass or filter is tabulated, so none is modeled, and the last air space is the printed back focus. The LensVisualizer engine (`buildLens`) reproduces the same station focal lengths (15.4881 / 24.1147 / 27.1601 mm) and an F-number of 2.90 at each station. The marketed 16–28 mm f/2.8 figures remain separate from the design's 15.49–27.16 mm F2.9.
+**Implemented-model notes.** The stop diameter is not published. The data file uses the printed F2.9 to set a zoom-dependent iris, giving current derived physical stop radii of 7.894212 / 9.779186 / 10.462193 mm and paraxial F2.9. The previously quoted 8.062 / 10.158 / 10.966 mm are the stop heights reached by nominal paraxial input rays, not the live iris radii. Independently solving real collimated rays through the current iris gives EFL/input-diameter ratios of 2.959146 / 3.003903 / 3.026352. These conventions are distinct; the printed F2.9 does not independently establish a physical iris schedule. All semi-diameters are modeled. No cover glass or filter is tabulated, so none is modeled, and the last air space is the printed back focus. The LensVisualizer engine (`buildLens`) reproduces the same station focal lengths (15.4881 / 24.1147 / 27.1601 mm) and an F-number of 2.90 at each station. The marketed 16–28 mm f/2.8 figures remain separate from the design's 15.49–27.16 mm F2.9.
 
 ## 12. Design Heritage and Context
 
@@ -293,7 +293,7 @@ The four numerical examples trace a small design space around one layout: a four
 
 ## 13. Sources
 
-1. Japan Patent Office. *JP 2024-101615 A*, "ズームレンズおよび撮像装置" (Zoom Lens and Image Pickup Apparatus), applicant Canon Inc., inventor 齋藤 慎一郎; application 2023-5613 filed January 18, 2023; published July 30, 2024. Cited by paragraph (¶), by PDF page for the numerical examples (pp. 15–20), Table 1 (p. 21), and Figs. 1–2 (p. 24).
+1. Japan Patent Office. _JP 2024-101615 A_, "ズームレンズおよび撮像装置" (Zoom Lens and Image Pickup Apparatus), applicant Canon Inc., inventor 齋藤 慎一郎; application 2023-5613 filed January 18, 2023; published July 30, 2024. Cited by paragraph (¶), by PDF page for the numerical examples (pp. 15–20), Table 1 (p. 21), and Figs. 1–2 (p. 24).
 2. Canon Inc. (Japan). "【交換レンズ】RF16-28mm F2.8 IS STM 機種仕様." Canon support FAQ, answer 105228. https://faq.canon.jp/app/answers/detail/a_id/105228/ (accessed September 29, 2026).
 3. Canon Inc. "表現の幅を広げる超広角ズームレンズ“RF16-28mm F2.8 IS STM”を発売." Press release, January 23, 2025, distributed via PR TIMES. https://prtimes.jp/main/html/rd/p/000001076.000013980.html (accessed September 29, 2026).
 4. Canon Europe. "Canon RF 16-28mm F2.8 IS STM — Specifications." https://www.canon-europe.com/lenses/rf-16-28mm-f2-8-is-stm/specifications/ (accessed September 29, 2026).
@@ -301,6 +301,28 @@ The four numerical examples trace a small design space around one layout: a four
 6. Canon U.S.A. "RF16-28mm F2.8 IS STM." Product page. https://www.usa.canon.com/shop/p/rf16-28mm-f2-8-is-stm-lens (accessed September 29, 2026).
 7. Canon Singapore. "Canon's Latest Lens Redefines a New RF Standard," January 23, 2025. https://sg.canon/en/consumer/latest-lens-redefines-a-new-rf-standard/news (accessed September 29, 2026).
 8. Video SALON. "キヤノン、ズーム全域F2.8の超広角ズームレンズ「RF16-28mm F2.8 IS STM」." https://videosalon.jp/news/canon_rf16-28mm (accessed September 29, 2026). Secondary source for extended barrel lengths only.
-9. Optical glass catalogs of OHARA (S-series), HOYA, Schott, HIKARI, CDGM, and Sumita, as distributed with the *opticalglass* 2.0.2 Python package (M. Hayford); catalog coordinates computed at 587.56, 486.13, 656.27, and 435.83 nm.
-10. W. T. Welford, *Aberrations of Optical Systems* (Bristol: Adam Hilger, 1986), for the Seidel and first-order chromatic sum conventions used in Sections 3, 6, 7, and 8.
+9. Optical glass catalogs of OHARA (S-series), HOYA, Schott, HIKARI, CDGM, and Sumita, as distributed with the _opticalglass_ 2.0.2 Python package (M. Hayford); catalog coordinates computed at 587.56, 486.13, 656.27, and 435.83 nm.
+10. W. T. Welford, _Aberrations of Optical Systems_ (Bristol: Adam Hilger, 1986), for the Seidel and first-order chromatic sum conventions used in Sections 3, 6, 7, and 8.
 11. Canon Marketing Japan. Official January 23, 2025 [press release](https://corporate.jp.canon/newsroom/newsrelease/2025/pr-0123), including the downloadable optical construction diagram at 16 mm; cross-checked against the [Japanese product specifications diagram](https://personal.canon.jp/product/camera/rf/rf16-28-f28/spec) on October 1, 2026.
+
+## 14. Original-source shoulder follow-up and runtime scope — 2026-10-30
+
+The completed October 1 shape/glass review and October 8 partial-dispersion review above remain dated coverage. This follow-up reopens a reproducible missing free-end shoulder at S2A and directly rechecks the same original `patents/JP2024101615A.pdf`, Numerical Example 1. Prescription and all 16 media are on PDF pp. 15–16, definitions at ¶0054 on p. 9 and ¶0094 on p. 14, and Fig. 1 plus the corresponding Fig. 2A–C aberrations on p. 24. All 30 radii, 26 fixed distances, four published infinity-gap schedules, three aspheres and 16 nd/νd/θgF triplets match the original. No source radius, spacing, asphere, stop rule, focus or zoom control changed.
+
+**Native figure and adopted shoulder.** Fig. 1 is an embedded 1294 × 1285 JPEG at about 394 ppi, containing all three zoom states. Its wide-end active optical span is approximately 791 native pixels over 126.889 mm, about 6.24 px/mm; practical rim uncertainty is ±0.8 mm from stroke/crop ambiguity. The earlier 600-dpi page rendering adds pixels rather than source detail. The extracted raster was inspected at native size and magnified, and actual final SVGs were compared at the same axial scale with the wide, intermediate and telephoto drawings. Leaders, brackets, the focus arrow, stop strokes and image-plane ink were excluded.
+
+S2A now has `rimExtensionSd: 23.6`, retaining `sd: 17.3` as the clear optical cap. This restores E1's resolved outer height. Its axial outer wall is conservatively anchored to the retained optical cap; the source drawing does not establish that exact shoulder piston independently. It does not restore the source-like larger optical curve or the clipped generic corner. A drawing-inferred trial S2A clear cap of 18.4 mm gives 6.340 mm combined sag across the 6.609 mm S2A–S3 air gap, exceeding the unchanged 5.948 mm intrusion guard despite retaining a positive physical gap. No guard or source geometry was altered to accommodate that trial.
+
+Full-height S5 and S26 shoulders were also rejected: S5 outer 18.1 mm gives 9.347 mm combined intrusion across only 9.218 mm physical air (guard 8.296 mm), and S26 outer 10.9 mm gives 3.874 mm across 3.826 mm (guard 3.443 mm). Those trials physically overlap adjacent optics. Their clear caps remain 15.9 and 9.5 mm with tapered closures, as documented on October 1. All 16 elements, both ends of every concavity, the three curved cemented interfaces and both aspheric elements were inspected. No opaque bonded land, resin wing, inferred cut or equal-height bonded block was added. Example 1 contains no hybrid resin or source filter/plate; other numerical examples' replica layers are different configurations. The final 13.270 mm air gap remains literal, rather than adding a hypothetical plate from the general weak-member allowance of ¶0053.
+
+**Glass disposition.** All 16 current compatible curves are unchanged and qualified as proxies in the public labels. The explicit d reference is now authored on every medium. All 16 genuine published θgF-derived deviations remain at their existing rounded precision; maximum difference from θgF − (0.6438 − 0.001682νd) is 0.00004496. No unsupported individual nC/nF/ng override exists, and no spectral value was removed. The original defines no normal-line deviation; the engine baseline is a conversion convention. Condition (5) concerns the absolute θgF of the highest-index L1 element E4, not an anomaly declaration for every medium. The five APD tags E3/E7/E8/E12/E13 remain inferred. Coordinate agreement does not prove supplier, chemistry, manufacturing process, resin or cement identity.
+
+**Source states versus interpolation.** The printed states remain 15.488 / 24.114 / 27.160 mm at F2.900. Their evaluated image heights are 17.55 / 20.10 / 20.46 mm and their real-ray half-angles, explicitly identified by ¶0094, are 54.532° / 42.075° / 38.744°. Those source boundaries are below the generic 21.65 mm format corner, consistent with ¶0039's electronic distortion correction. The existing close-focus schedules remain reconstructed; the patent publishes infinity only. A geometry-identical 65-position interpolation census agrees with the live model to 3.6 × 10⁻¹⁵ mm in position/iris. Aperture checks pass at all 65 samples. Field coverage reaches at least 99% at 60/65; the five early wide positions are limited at S2A, with coverage 89.263%, 91.461%, 93.726%, 96.111% and 98.560%. At the wide endpoint the modeled reachable edge is 19.325 mm, above the paper's 17.55 mm boundary but below the generic corner. Image-circle heuristic acceptance therefore does not establish full-format clearance. Worst intermediate infinity first-order displacement is −0.786644 mm at zoom 0.28125; this interpolation is illustrative and is not a published focus-preserving cam.
+
+**Actual finite-object sampling.** The 65 zoom positions × seven focus positions × three fields × 97 stop-aimed pupil samples use the current state's actual iris. There are 390 positive Gaussian finite controls and no virtual controls; infinity remains collimated. All sampled axial bundles clear. Of 132,405 planned rays, 132,211 are traced: two infinity wide-format chief seeds are unbracketed, three other early infinity format chiefs clip at S2A, and there are 19,494 ordinary pupil clips plus 66 independently classified next-surface S2A aspheric cap misses. No unexplained interior failure or unaimed pupil is present. A separate positive image-plane-distance supplement, using 250 / 213 / 200 mm divided by focus, gives the same seed/chief restrictions, 19,047 ordinary clips and 68 bounded S2A cap misses. These ordinary finite fields scale object height with paraxial magnification; they do not force the distorted actual image to the nominal sensor edge.
+
+A stronger inverse finite-image-height supplement first solves unclipped chief geometry and then checks actual apertures at zoom 0 / 0.25 / 0.5 / 0.75 / 1 and focus 0.25 / 0.5 / 1. It targets both the source-interpolated boundary and the actual generic 21.65 mm corner. Of 30 attempts, 27 converge with clear actual-aperture chiefs (maximum image residual 0.000000191 mm); the three wide generic-corner attempts are unbracketed. Their 2,619 pupil rays include 1,089 ordinary clips and five independently bounded S2A aspheric cap misses. These finite states and interpolated source boundaries are reconstruction diagnostics, not printed finite-field promises. Clear chiefs do not establish full-pupil coverage.
+
+The three printed source-height boundaries at infinity and reconstructed close focus were also sampled separately: 1,746 rays, all axial and converged chief rays clear, 236 ordinary clips and three bounded S2A cap misses. A bounding-sphere vector-launch check over 65 zoom positions and three focus positions gives 56,745 source-range angular rays with clear axial/chief rays, 6,322 ordinary clips and 19 bounded S2A cap misses. Angular launch at nonzero focus is still collimated, distinct from the actual finite-object grids. Of 585 separate 80° / 89° / 90° extreme-angle attempts, 560 chief seeds are unbracketed; no extreme-field coverage is claimed.
+
+**Rendered result and production limits.** All 1,365 zoom/focus contour states contain 16 connected, closed, finite element paths with zero hidden renderer trimming. Actual final SVGs were inspected at all three published zoom states and at infinity/middle/close focus. Surface and image-circle checks pass; there are no inferred cuts requiring a cut exemption. The missing shoulder is resolved, while the specified cap/gap, interpolation, marginal-pupil and generic-corner limits remain. Family-level production correlation, the absent replica layer and the five numerical low-dispersion media versus Canon's four UD designation remain unchanged. The source review, sampled runtime conclusions and production correlation are separate findings.

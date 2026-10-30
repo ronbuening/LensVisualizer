@@ -7,7 +7,7 @@
 **Published:** 18 April 2019\
 **Inventor:** Shinya Okuoka\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Optical System and Image Pickup Apparatus*\
+**Title:** _Optical System and Image Pickup Apparatus_\
 **Example details:** Numerical Data 1
 
 This prescription uses Example 1 as the fixed production correlation for the CANON RF 35mm f/1.8 MACRO IS STM. The
@@ -184,22 +184,21 @@ The data file therefore uses six-digit coordinate-class labels and explicitly ma
 Authoritative catalog cross-checking found multiple plausible vendor materials at many of these coordinates, so choosing
 a single vendor solely from `nd/νd` would overstate the evidence.
 
-| Data class | nd | νd | Elements | Authored identification |
-|---|---:|---:|---|---|
-| 808228 | 1.80810 | 22.8 | E1 | vendor unresolved |
-| 001291 | 2.00100 | 29.1 | E2 | vendor unresolved |
-| 517524 | 1.51742 | 52.4 | E3 | vendor unresolved |
-| 900374 | 1.90043 | 37.4 | E4, E9 | vendor unresolved |
-| 697555 | 1.69680 | 55.5 | E5, E10 | vendor unresolved |
-| 583594 | 1.58313 | 59.4 | E6 | vendor unresolved |
-| 883408 | 1.88300 | 40.8 | E7 | vendor unresolved |
-| 855248 | 1.85478 | 24.8 | E8 | vendor unresolved |
-| 593353 | 1.59270 | 35.3 | E11 | vendor unresolved |
+| Data class |      nd |   νd | Elements | Authored identification |
+| ---------- | ------: | ---: | -------- | ----------------------- |
+| 808228     | 1.80810 | 22.8 | E1       | vendor unresolved       |
+| 001291     | 2.00100 | 29.1 | E2       | vendor unresolved       |
+| 517524     | 1.51742 | 52.4 | E3       | vendor unresolved       |
+| 900374     | 1.90043 | 37.4 | E4, E9   | vendor unresolved       |
+| 697555     | 1.69680 | 55.5 | E5, E10  | vendor unresolved       |
+| 583594     | 1.58313 | 59.4 | E6       | vendor unresolved       |
+| 883408     | 1.88300 | 40.8 | E7       | vendor unresolved       |
+| 855248     | 1.85478 | 24.8 | E8       | vendor unresolved       |
+| 593353     | 1.59270 | 35.3 | E11      | vendor unresolved       |
 
 The repeated 900374 and 697555 coordinates are retained consistently on their respective elements; no attempt is made to
 assign different vendors to identical patent coordinates. No element carries `nC`, `nF`, `ng`, or `dPgF`, because the
-selected patent does not publish those element-specific data. Consequently, the prescription supports ordinary d-line
-and Abbe-based chromatic interpretation only. It does not support an APO or anomalous-partial-dispersion claim.
+selected patent does not publish those element-specific data. All eleven media resolve to existing compatible catalog curves, retained as qualified spectral proxies: E1 S-NPH1, E2 S-LAH99, E3 S-NSL36, E4/E9 TAFD37A, E5/E10 J-LAK14, E6 J-SK12, E7 S-LAH58, E8 S-NBH56 and E11 S-FTM16. Their spectra extend tracing beyond the printed coordinates without establishing the source supplier, melt, chemistry or exact historical spectral behavior. No unsupported per-lens spectral override is authored. The source does not support an APO or anomalous-partial-dispersion claim.
 
 ## Focus Mechanism
 
@@ -208,14 +207,13 @@ L1 and L2 move integrally toward the object while L3 remains fixed. Numerical Da
 variable spacing after surface 17:
 
 | Focus state | d17, L2-to-L3 gap | Source status |
-|---|---:|---|
-| Infinity | 0.95 mm | published |
-| β = -0.5 | 18.25 mm | published |
+| ----------- | ----------------: | ------------- |
+| Infinity    |           0.95 mm | published     |
+| β = -0.5    |          18.25 mm | published     |
 
 The 17.30 mm gap increase is equivalent to a 17.30 mm objectward translation of the combined L1+L2 assembly relative to
 the fixed L3 and image plane. The internal L1-to-L2 spacing remains unchanged, as does the 11.66 mm rear image space.
-The data model therefore has focus status **PUBLISHED**; no constrained reconstruction or unmeasured internal degree of
-freedom is introduced.
+The data model therefore has focus status **PUBLISHED** for the two gap endpoints. The continuous slider interpolates the published gaps, while its distance label uses the existing rounded 0.17 m endpoint. Intermediate slider labels do not establish additional published conjugates or a focus-preserving cam.
 
 At the close state, independent conjugate tracing gives a lateral magnification of -0.499672. Using the published fixed
 back focus gives a first-surface-to-image-plane track of 97.74 mm, a conjugate object distance of 71.675 mm from the first
@@ -237,13 +235,13 @@ Patent ¶0065-¶0066 uses the standard conic convention
 Accordingly, the authored conic constant is the ordinary `K`, with `K = 0` representing a spherical base. No `κ` or
 `KA` conversion is required.
 
-| Coefficient | Surface 11A value |
-|---|---:|
-| K | 0.00000e+000 |
-| A4 | -4.61997e-005 mm^-3 |
-| A6 | -9.22837e-008 mm^-5 |
-| A8 | -4.60687e-010 mm^-7 |
-| A10 | +1.65555e-013 mm^-9 |
+| Coefficient |   Surface 11A value |
+| ----------- | ------------------: |
+| K           |        0.00000e+000 |
+| A4          | -4.61997e-005 mm^-3 |
+| A6          | -9.22837e-008 mm^-5 |
+| A8          | -4.60687e-010 mm^-7 |
+| A10         | +1.65555e-013 mm^-9 |
 
 The data schema also carries `A12 = 0` and `A14 = 0` as unused required fields; these are not additional patent terms.
 No scaling is applied to the prescription, so the patent coefficients are entered without dimensional transformation.
@@ -258,14 +256,14 @@ ray-envelope semi-height; it is not presented as a manufactured edge departure o
 The patent derives six dimensionless or material-coordinate conditions for this architecture (¶0044-¶0058). Using the
 higher-precision Table 1 quantities for Example 1, the selected prescription satisfies the tightest preferred ranges:
 
-| Condition | Example 1 value | Tightest preferred range | Result |
-|---|---:|---|---|
-| `sk / TD` | 0.144935 | `0.08 < x < 0.17` | pass |
-| `f1 / f2` | 2.394367 | `1.2 < x < 2.8` | pass |
-| `|f / f3|` | 0.241870 | `0.20 < x < 0.29` | pass |
-| `G1vd` | 22.76 | `20 < x < 28` | pass |
-| `|L2R2 / L2R1|` | 0.035999 | `< 0.25` | pass |
-| `G1ST / STGR` | 0.435607 | `0.40 < x < 0.70` | pass |
+| Condition     | Example 1 value | Tightest preferred range | Result   |
+| ------------- | --------------: | ------------------------ | -------- | ----------------- | ---- |
+| `sk / TD`     |        0.144935 | `0.08 < x < 0.17`        | pass     |
+| `f1 / f2`     |        2.394367 | `1.2 < x < 2.8`          | pass     |
+| `             |          f / f3 | `                        | 0.241870 | `0.20 < x < 0.29` | pass |
+| `G1vd`        |           22.76 | `20 < x < 28`            | pass     |
+| `             |     L2R2 / L2R1 | `                        | 0.035999 | `< 0.25`          | pass |
+| `G1ST / STGR` |        0.435607 | `0.40 < x < 0.70`        | pass     |
 
 The condition table intentionally uses Table 1's 22.76 for `G1vd`, whereas the E1 prescription row stores the rounded
 22.8. Likewise, Table 1 gives `G1ST = 20.873 mm` and `STGR = 47.917 mm`, while direct sums of the printed surface spacings
@@ -289,16 +287,16 @@ therefore contains no invented IS displacement state. Its IS annotation identifi
 Independent sequential height/reduced-angle tracing and an ABCD matrix calculation reproduce the patent's first-order
 quantities from the rounded surface prescription:
 
-| Quantity | Independent result | Patent / source value |
-|---|---:|---:|
-| Effective focal length | 36.00912695 mm | 36.00 mm |
-| Back focal length | 11.66975788 mm | 11.66 mm |
-| Front principal point from first surface | +27.85432464 mm | +27.86 mm |
-| Rear principal point from last surface | -24.33936907 mm | -24.34 mm |
-| Entrance pupil from first surface | +14.33859255 mm | +14.34 mm |
-| Exit pupil from last surface | -45.97637476 mm | -45.98 mm |
-| Modeled wide-open f-number | 1.84999957 | 1.85 |
-| Close-state magnification | -0.49967185 | -0.5 |
+| Quantity                                 | Independent result | Patent / source value |
+| ---------------------------------------- | -----------------: | --------------------: |
+| Effective focal length                   |     36.00912695 mm |              36.00 mm |
+| Back focal length                        |     11.66975788 mm |              11.66 mm |
+| Front principal point from first surface |    +27.85432464 mm |             +27.86 mm |
+| Rear principal point from last surface   |    -24.33936907 mm |             -24.34 mm |
+| Entrance pupil from first surface        |    +14.33859255 mm |             +14.34 mm |
+| Exit pupil from last surface             |    -45.97637476 mm |             -45.98 mm |
+| Modeled wide-open f-number               |         1.84999957 |                  1.85 |
+| Close-state magnification                |        -0.49967185 |                  -0.5 |
 
 The small residuals are consistent with the patent's three-decimal radii and mostly two-decimal spacings. Summing the
 printed spacings with the printed 11.66 mm back focus gives 80.44 mm, while substituting the traced 11.66976 mm BFL gives
@@ -311,13 +309,13 @@ most restrictive authored air gap: the retained envelopes leave positive physica
 the 1.92 mm gap in sag. The data file therefore uses `gapSagFrac = 0.92` to preserve the published ray envelope rather
 than shrinking a source-supported aperture for a generic layout margin.
 
-The only non-source semi-diameter is the aperture stop, whose 9.80523 mm semi-diameter is inferred from the published
-f/1.85 constraint. No cover plate, filter, inactive dummy surface, or synthetic cement layer is added. No source error is
-silently corrected; the small track and Table 1 spacing differences are retained as ordinary printed-rounding effects.
+The only non-source clear semi-diameter is the aperture stop, whose 9.80523 mm semi-diameter is inferred from the published
+f/1.85 constraint. The two outer shoulder heights described below are drawing-derived blank extensions beyond the unchanged published optical caps. No cover plate, filter, inactive dummy surface, or synthetic cement layer is added. No source error is
+silently corrected; the small track and Table 1 spacing differences are retained. Printed rounding is a possible explanation, not a demonstrated source correction.
 
 ## Sources
 
-- Okuoka, Shinya. **US 2019/0113711 A1, *Optical System and Image Pickup Apparatus*.** Canon Kabushiki Kaisha,
+- Okuoka, Shinya. **US 2019/0113711 A1, _Optical System and Image Pickup Apparatus_.** Canon Kabushiki Kaisha,
   published 18 April 2019. Example 1 / Numerical Data 1 is the prescription source.
 - Canon Camera Museum. **RF35mm F1.8 MACRO IS STM.**
   https://global.canon/en/c-museum/product/rf473.html
@@ -326,6 +324,7 @@ silently corrected; the small track and Table 1 spacing differences are retained
 - Canon Camera Museum. **EOS R.** https://global.canon/en/c-museum/product/dslr877.html
 - Canon U.S.A. **RF35mm F1.8 Macro IS STM — technical specifications.**
   https://www.usa.canon.com/shop/p/rf35mm-f1-8-macro-is-stm
+
 ## Integration audit — 2026-09-11 UTC
 
 US 2019/0113711 A1, Fig. 1, PDF p2 (600 dpi; crop 0.27,0.44,0.675,0.615). Retained the published effective-aperture-derived SDs and documented cemented-interface envelope. The E6/E7 automated measurement picks up the neighboring larger doublet outline; it does not justify overriding the aperture table.
@@ -333,3 +332,32 @@ US 2019/0113711 A1, Fig. 1, PDF p2 (600 dpi; crop 0.27,0.44,0.675,0.615). Retain
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.
 
 Direct local-SVG comparison retains the published effective-aperture values (SD = ea/2) and source group/element labels. Infinity to macro moves L1 and L2 together toward the object while L3 remains fixed. The glass audit found no source-supported reason to add an APD claim to these elements.
+
+## Scoped Original Review - 2026-10-30
+
+The unchanged source/shape/glass conclusions in the **2026-09-11** integration audit are reused with their actual date. The **2026-09-25** source-state metadata addition recorded the published close gap and its independently calculated conjugate; it changed no optical numbers. Current reopening addresses two omitted resolved shoulders, source metadata and explicit spectral/runtime qualifications. It is one scoped reviewed configuration, with no extra reused-entry count.
+
+The exact original `patents/US20190113711A1.pdf`, SHA-256 `76169e1ddcde01776bfba5a846cee52b7437bed602442df4ecdc2a21f4a33c9d`, was independently confirmed from its first page. Numerical Data 1 is PDF page 17 / printed page 5: all 21 surface rows, eleven nd/vd pairs, the single asphere, effective diameters, f = 36.00 mm, Fno = 1.85 and d17 = 0.95/18.25 mm. Figure 1 is PDF page 2 / sheet 1; Figures 2A/2B on PDF page 3 / sheet 2 show infinity/close aberrations. The Figure 3 sheet belongs to Example 2 and is not substituted. Paragraph 0041, PDF page 15 / printed 3, defines d 587.56 and g 435.835 nm; paragraph 0054, PDF page 16 / printed 4, explicitly ties the material Abbe coordinate to the d-line. Paragraphs 0062-0064 define the numerical coordinates and ray-envelope diameter; paragraphs 0065-0066 define the standard (1+K) asphere. No numerical per-element line indices or partial dispersion values are supplied.
+
+### Native shape and retained constraints
+
+The embedded figures are 2560 x 3300 one-bit rasters at 300 ppi. The earlier 600 dpi inspection enlarged that native image 2x. Vertical source cap anchors give about 15.1-15.2 native px/mm, while the literal track gives about 14.4 px/mm axially; the figure is schematic and not uniformly dimensioned. Adopted outer heights carry practical uncertainty of about +/-0.7 mm.
+
+- E1 rear surface 2 has a connected vertical optical blank stroke outside its curved endpoint. `rimExtensionSd = 13.9` restores the shoulder while retaining the published clear `sd = 12.82`.
+- E11 front surface 20 similarly has a short connected outer stroke before the concave cap. `rimExtensionSd = 18.135` restores that shoulder while retaining published clear `sd = 16.89`. The G3N leader is excluded.
+- All other element ends, the two cemented interfaces and the single asphere retain their source caps. No hybrid layer, cement medium, source filter or rear plate is supplied. No opaque bonded land, disconnected wing or inferred concave cut is added.
+- Trials replacing the S2/S20 clear caps by the outer heights pass geometry checks but are rejected: they curve through the resolved source shoulder and discard the source's dimensioned optical aperture. The existing S2-S3 sag fraction 0.91774 and `gapSagFrac = 0.92` are retained unchanged, with positive physical clearance. No tolerance, R/d, asphere, stop or focus control is tuned to the drawing.
+
+The catalog design focal length now quotes the printed 36.00 mm instead of the calculated 36.00912695 mm. The normalized source label is Numerical Data 1. These are metadata corrections; all source numerical prescription values and controls remain unchanged. All eleven coordinate labels now explicitly qualify the existing compatible curves as proxies, with no source identity or chemistry claim. Curves remain 11/11; no override is added or removed.
+
+### Runtime and actual SVG comparison
+
+Surface and image-circle checks pass. The infinity aperture census passes within 3% under the derived/paraxial iris convention; the separate exact working value is f/1.895609 versus the printed f/1.85. The fixed derived iris remains 9.80522772 mm; the generic 20.16 mm stop-row effective diameter remains ray-envelope evidence, not a physical iris schedule. The infinity field census passes and the source 31-degree vector chief traces without clipping to 21.141438 mm, compared with the source's paraxial image height 21.64 mm. No field or projection is fitted to that difference.
+
+Across 65 focus positions and nine aperture presets, 534/585 exact working calls trace and 51 are vignetted, identical before/after. At nominal f/1.85, focus 0.5 is vignetted at S11A and focus 1 at S9. Those probes use the runtime display-distance object plane. The separate 65-position collimated control grid through focus-adjusted geometry retains every axial 193/193 sample and unchanged source-end edge counts 106/193 and 123/193; those counts do not certify finite-object illumination.
+
+An explicit finite-object supplement derives the positive Gaussian conjugate from each complete current matrix, then inverse-solves object height so the chief reaches actual image heights 0, 10.82 and 21.64 mm. At twenty positive focus positions, all sixty chiefs converge and clear. Current-iris bundles contain 11,580 rays per version: 8,708 pass, 2,872 clip, and none fails or remains unaimed, identical before/after. The minimum axial count is 169/193, first reached at focus 0.25 with the outer ring clipped at S11A; the source close endpoint has 169/193 axial, 151/193 half-field and 114/193 edge samples, with its axial outer ring clipped at S9. These are explicit reconstructed-model clearance limits; the published effective caps and controls are preserved.
+
+The source close geometry gives magnification -0.49967185 and Gaussian object-to-image distance 0.169415412 m. The retained rounded display endpoint 0.17 m has a separate finite paraxial image residual -0.14464276 mm. At interpolated focus 0.625 the display-distance residual reaches -3.97645984 mm; its Gaussian conjugate is 0.206201993 m rather than the displayed 0.272 m. Source endpoint gaps, actual Gaussian conjugates and distance labels remain separate. The largest sampled distance-label difference is 54.7899% at focus 0.05. No intermediate cam or production focus accuracy is inferred.
+
+Actual generated infinity/middle/close SVGs were compared with native Figure 1, resolving both shoulders and the connected doublets. All 715 paths over 65 states are finite, closed and connected, with zero hidden renderer trimming. IS remains centered; moved Hybrid IS, production illumination and actual manufacturing geometry are outside these centered source/model checks.

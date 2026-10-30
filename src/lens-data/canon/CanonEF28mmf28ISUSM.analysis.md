@@ -325,3 +325,19 @@ The source publishes infinity spacings only. The product-MFD constrained focus r
 
 [canon-museum]: https://global.canon/en/c-museum/product/ef421.html
 [canon-europe]: https://www.canon-europe.com/lenses/ef-28mm-f-2-8-is-usm-lens/specification.html
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 9,092 passed, 2,488 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.230000000 |           0.230000 | 193 / 154 / 113                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 40.175193% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.751941102 m versus label 4.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

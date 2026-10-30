@@ -251,3 +251,21 @@ The current-state iris was used for every full-pupil bundle. For 65 zoom × five
 First-order checks span 65 zoom × 21 focus = 1,365 actual states. The three infinity and reconstructed 0.28 m source-zoom endpoints focus numerically (residuals below 5×10⁻14 mm). Sparse source zoom rows do not certify the interpolated cam: worst infinity residual is −3.511269 mm at zoom 0.78125 (computed EFL 41.322720 mm versus displayed 44.823750), and worst finite conjugate residual is −4.293537 mm at zoom 0.796875/focus 0.55, displayed distance 0.509091 m. These intervals are illustrative; no trajectory is retuned. Actual generated SVGs were compared with the native section: 1,365 states produce 15,015 finite, closed, connected element paths and zero hidden trim. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
 
 Historical September 2026 and live-site paragraphs above retain their original record. Their earlier outer-flange interpretation and listed ray-envelope caps are superseded only by this dated original-figure review. The retained source inference and all numerical control limitations stay explicit.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 7.0875 and 14.1750 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 14.1750 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 540/540 target chiefs converge: 527 clear the current caps and 13 clip. Across the converged fields, 193 current-iris samples per field give 97,907 passed, 6,313 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result            |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | ----------------------- |
+|            0 |                  0 |                  0.280000000 |           0.280000 | 193 / 190 / 29                    | clear / clear / clipped |
+|          0.5 |                  0 |                  0.280000000 |           0.280000 | 193 / 188 / 167                   | clear / clear / clear   |
+|            1 |                  0 |                  0.280000000 |           0.280000 | 193 / 190 / 174                   | clear / clear / clear   |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.488590% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.308638954 m versus label 5.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

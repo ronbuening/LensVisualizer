@@ -62,3 +62,21 @@ The final surface and image-circle checks accept the revised geometry. A 65-posi
 A separate aimed circular-pupil check samples 193 coordinates at axial, half-field and corner fields across those sixty-three zoom/focus states. All candidate axial samples pass. Off-axis vignetting remains: at infinity the corner passing counts change 108→93 wide, 93→129 middle and 83→119 tele. The height corrections improve source fidelity and redistribute sampled vignetting; they are not a claim that every off-axis pupil ray clears or that production illumination has been reproduced.
 
 Intermediate zoom remains illustrative rather than focus-preserving. The worst sampled infinity first-order state at normalized zoom 0.796875 has EFL 48.68070 mm versus displayed 54.72969 mm, and BF 29.56846 mm against the retained 38.47 mm image gap (−8.90154 mm defocus). Source-station back focuses are 38.46387/38.45092/38.45450 mm. The source supplies neither an intermediate cam nor a finite-focus table; existing product-MFD close focus and all source spacing/control semantics remain intact. Source fidelity, sampled runtime clearance and production correlation are separate conclusions.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 540/540 target chiefs converge: 540 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 91,621 passed, 12,583 clipped, 16 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (16). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.380000000 |           0.380000 | 193 / 188 / 100                   | clear / clear / clear |
+|          0.5 |                  0 |                  0.380000000 |           0.380000 | 193 / 185 / 131                   | clear / clear / clear |
+|            1 |                  0 |                  0.380000000 |           0.380000 | 193 / 170 / 137                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.916571% at zoom 0.75, focus 0.05, aberration control 0: Gaussian 0.386340607 m versus label 7.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

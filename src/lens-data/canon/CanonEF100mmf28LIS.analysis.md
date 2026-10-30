@@ -197,3 +197,19 @@ The source and model have 15 connected elements, including three cemented double
 - Canon Camera Museum, "EF100mm f/2.8L Macro IS USM," official product page. Confirms marketing date, 15 elements / 12 groups, one UD element, Hybrid IS, 0.30 m closest focusing distance, 1.0x maximum magnification, 67 mm filter size, and 77.7 x 123 mm physical dimensions.
 - Canon U.S.A., "EF 100mm f/2.8L Macro IS USM," official product/support specification page. Confirms 100 mm f/2.8, 15 elements / 12 groups, 23.4° diagonal angle of view, inner focusing with USM, 0.3 m closest focusing distance, and 1x maximum close-up magnification.
 - OHARA Pocket Catalog 2023 and OHARA online datasheets. Coordinate-compatible spectral proxies, with source supplier and melt unspecified: S-LAL18, S-LAM66, S-FPL51, S-NBH8, S-TIL6, S-TIH53, S-PHM52, S-LAL10, S-NBM51, and S-LAM60.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 8,802 passed, 2,774 clipped, 4 failed and 0 unaimed rays. Minimum sampled axial transmission is 169/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ 2` (4). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.297666509 |           0.300000 | 169 / 147 / 116                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 66.519671% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.008819742 m versus label 6.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

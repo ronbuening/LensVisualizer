@@ -45,3 +45,19 @@ Surface, image-circle, infinity aperture-census and corner-field checks pass. Th
 All 126 real working-ray calls across 21 focus positions and six apertures trace, with baseline/candidate results identical. An aimed 193-point circular-pupil probe at axial, half-field and corner fields across those 21 focus states also gives identical passing counts at all 63 fields. Every axial sample passes, all chiefs are aimed/valid, and corner counts remain 103/193 at infinity and 113/193 close. Off-axis vignetting remains rather than a claim of full-pupil illumination.
 
 The actual SVGs at infinity, mid and close focus were compared with Figure 1. Twenty-one focus states produce 189 finite, singly connected, closed element paths with zero hidden renderer trimming, and corner aiming reaches about 21.65 mm. No inferred cut requires an exemption or cut-beam probe. Source only publishes infinity spacings; rigid-group focus constrained to the product MFD remains a reconstruction, not a measured source cam. Figure 3's 0.5° stabilized state was directly inspected, but no millimetre Gis travel is published and no IS-decenter control is modeled. Centered runtime checks do not certify that lateral state. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 9,092 passed, 2,488 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.230000000 |           0.230000 | 193 / 154 / 113                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 40.175193% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.751941102 m versus label 4.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

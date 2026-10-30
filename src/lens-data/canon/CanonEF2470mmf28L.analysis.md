@@ -252,3 +252,21 @@ In that context, JP 2014-41222 A is best treated as a later Canon filing that re
 - Canon Camera Museum, “EF24-70mm f/2.8L USM.” Manufacturer source for marketed date, 16-element / 13-group construction, 0.38 m closest focusing distance, 0.29× maximum magnification, 77 mm filter diameter, dimensions, and mass.
 - Canon Camera Museum, “EF24-70mm f/2.8L II USM.” Manufacturer source for the successor design and for Canon's statement that the predecessor used two aspherical lens elements and one UD lens element.
 - Public Ohara, Hoya, Schott, Hikari, CDGM, and Sumita optical-glass catalogs. Used for nd/νd glass matching; the patent's own nC, nF, and ng values are used for partial-dispersion calculations where available.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 540/540 target chiefs converge: 540 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 91,621 passed, 12,583 clipped, 16 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (16). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.380000000 |           0.380000 | 193 / 188 / 100                   | clear / clear / clear |
+|          0.5 |                  0 |                  0.380000000 |           0.380000 | 193 / 185 / 131                   | clear / clear / clear |
+|            1 |                  0 |                  0.380000000 |           0.380000 | 193 / 170 / 137                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.916571% at zoom 0.75, focus 0.05, aberration control 0: Gaussian 0.386340607 m versus label 7.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

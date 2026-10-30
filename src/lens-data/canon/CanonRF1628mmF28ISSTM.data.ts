@@ -43,15 +43,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    no diaphragm diameter is published, so reproducing F2.9 is a      ║
  * ║    calibration, not independent evidence. The stop radius is derived ║
  * ║    from the design f-number at each zoom station; the largest (tele) ║
- * ║    real-trace radius is 10.97 mm.                                    ║
+ * ║    current derived radius is 10.462193 mm at telephoto.               ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS: not published. Modeled from real-ray        ║
  * ║    floors (F2.9 axial beam and the chief ray at 1.02 × the printed   ║
  * ║    half-field over nine zoom samples and the three close states),    ║
- * ║    then set to element heights measured on Fig. 1 (tele drawing,     ║
- * ║    0.1603 mm/px from the 140.161 mm wide-end track). Reduced for     ║
+ * ║    then compared with Fig. 1 wide/middle/tele drawings. Native wide   ║
+ * ║    active span is about 6.24 px/mm (±0.8 mm rim uncertainty).         ║
+ * ║    The earlier 600-dpi page render was upsampling. Reduced for        ║
  * ║    cross-gap clearance: 2A 17.3 (vs E2), 5 15.9 (vs 4), 26 9.5       ║
- * ║    (vs 27A). Every lens rim clears its floor by ≥ 4 %.               ║
+ * ║    (vs 27A). The prior ≥4% floor applied to its stated sample only;   ║
+ * ║    it is not a full-pupil or generic full-frame clearance claim.      ║
  * ║                                                                      ║
  * ║  NOTE ON IMAGE FIELD: printed image heights (17.55 / 20.10 / 20.46   ║
  * ║    mm) are below the full-frame corner because distortion is         ║
@@ -62,6 +64,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║  Optical design only: glass surfaces, stop, variable gaps.           ║
  * ║  See LENS_DATA_SPEC.md § Scope: What to Include.                     ║
+ * Scoped original follow-up 2026-10-30 adds S2A outer 23.6 while retaining its clear 17.3 cap.
+ * This fixes the native free-end shoulder; it does not restore the clipped optical field.
+ * Full S5/S26 outer trials physically overlap adjacent optics and fail the unchanged guards.
+ * The S2A outer wall is cap-anchored; a trial 18.4 clear cap fails the cross-gap guard.
+ * The earlier 10.97 value is a nominal paraxial input ray height at STO, not its radius.
+ * Figure 1 is an embedded 1294×1285 raster at 394 ppi; earlier 600-dpi renders were upsampling.
+ * October 1 shape history and October 8 genuine partial-dispersion review remain dated coverage.
+ * All R/d, three aspheres, controls, source pairs/partials and compatible curves are preserved.
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -104,14 +114,15 @@ const LENS_DATA = {
       id: 1,
       name: "E1",
       label: "Element 1",
-      type: "Neg. Meniscus (1× Asph)",
+      type: "Negative Meniscus (1× Asph)",
       nd: 1.88202,
       vd: 37.22,
+      indexReference: "d",
       focalLengthMm: -29.83,
       glass:
-        "M-TAFD307 (HOYA) / D-ZLaF67-25 (CDGM) — 882372 coordinates; moldable-glass families only; supplier unconfirmed",
+        "M-TAFD307 (HOYA) / D-ZLaF67-25 (CDGM), 882372 — compatible spectral proxies; historical supplier, melt, chemistry and molding process unspecified",
       apd: false,
-      role: "Front negative meniscus of L1 with the aspherical rear surface 2A; its glass coordinates coincide only with moldable-glass families (see header).",
+      role: "Front negative meniscus of L1 with the aspherical rear surface 2A; catalog molding-family coordinates do not establish a historical molding grade, supplier or manufacturing process.",
       dPgF: -0.0042,
     },
     {
@@ -121,8 +132,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8042,
       vd: 46.5,
+      indexReference: "d",
       focalLengthMm: -55.05,
-      glass: "TAF3D (HOYA) / S-LAH65VS (OHARA) / N-LASF44 (Schott) — 804465 coordinates; supplier unconfirmed",
+      glass:
+        "TAF3D (HOYA) / S-LAH65VS (OHARA) / N-LASF44 (Schott) — 804465 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Second negative meniscus of L1.",
       dPgF: -0.0084,
@@ -134,8 +147,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.61,
+      indexReference: "d",
       focalLengthMm: -66.28,
-      glass: "FCD1 (HOYA) / N-PK52A (Schott) — 497816 fluorophosphate class; supplier unconfirmed",
+      glass:
+        "FCD1 (HOYA) / N-PK52A (Schott) — 497816 fluorophosphate class; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: "inferred",
       apdNote:
         "dPgF = +0.0321 from patent θgF 0.5386 against the engine normal line; the patent does not itself label the glass anomalous",
@@ -149,8 +164,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
+      indexReference: "d",
       focalLengthMm: 36.29,
-      glass: "TAFD35 (HOYA) / H-ZLaF4LA (CDGM) — 911352 coordinates; supplier unconfirmed",
+      glass:
+        "TAFD35 (HOYA) / H-ZLaF4LA (CDGM) — 911352 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "High-index biconvex positive element closing L1.",
       dPgF: -0.0021,
@@ -162,8 +179,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6516,
       vd: 58.54,
+      indexReference: "d",
       focalLengthMm: 71.68,
-      glass: "S-LAL7Q (OHARA) / N-LAK7 (Schott) — 652585 coordinates; supplier unconfirmed",
+      glass:
+        "S-LAL7Q (OHARA) / N-LAK7 (Schott) — 652585 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Single biconvex positive element forming L2; moves with L4 as a linked pair during zoom.",
       dPgF: -0.0063,
@@ -175,8 +194,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.63,
+      indexReference: "d",
       focalLengthMm: -47.17,
-      glass: "TAF1 (HOYA) / S-LAH66 (OHARA) / N-LAF34 (Schott) — 772496 coordinates; supplier unconfirmed",
+      glass:
+        "TAF1 (HOYA) / S-LAH66 (OHARA) / N-LAF34 (Schott) — 772496 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Single negative meniscus forming L3, the focus group; moves toward the object for close focus (reconstructed travel).",
       dPgF: -0.0095,
@@ -188,8 +209,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
+      indexReference: "d",
       focalLengthMm: 40.51,
-      glass: "FCD705 class (550755; supplier-neutral spectral proxy)",
+      glass: "FCD705 class (550755; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "dPgF = +0.0237 from patent θgF 0.5405 against the engine normal line; the patent does not itself label the glass anomalous",
@@ -203,8 +225,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
+      indexReference: "d",
       focalLengthMm: 26.69,
-      glass: "FCD1 (HOYA) / N-PK52A (Schott) — 497816 fluorophosphate class; supplier unconfirmed",
+      glass:
+        "FCD1 (HOYA) / N-PK52A (Schott) — 497816 fluorophosphate class; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: "inferred",
       apdNote:
         "dPgF = +0.0321 from patent θgF 0.5386 against the engine normal line; the patent does not itself label the glass anomalous",
@@ -219,8 +243,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8044,
       vd: 39.59,
+      indexReference: "d",
       focalLengthMm: -29.64,
-      glass: "S-LAH63Q (OHARA) / J-LASF013 (HIKARI) — 804396 coordinates; supplier unconfirmed",
+      glass:
+        "S-LAH63Q (OHARA) / J-LASF013 (HIKARI) — 804396 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Negative meniscus rear element of the first L4 cemented doublet.",
       cemented: "D1",
@@ -233,8 +259,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.79,
+      indexReference: "d",
       focalLengthMm: 50.78,
-      glass: "FDS90 (HOYA) / S-TIH53 (OHARA) / N-SF57 (Schott) — 847238 coordinates; supplier unconfirmed",
+      glass:
+        "FDS90 (HOYA) / S-TIH53 (OHARA) / N-SF57 (Schott) — 847238 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Positive meniscus front element of the cemented image-stabilization doublet (patent ¶0088: 10th and 11th lenses).",
       cemented: "D2",
@@ -247,8 +275,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60562,
       vd: 43.7,
+      indexReference: "d",
       focalLengthMm: -32.17,
-      glass: "S-BAM4 (OHARA) / N-BAF4 (Schott) — 606437 coordinates; supplier unconfirmed",
+      glass:
+        "S-BAM4 (OHARA) / N-BAF4 (Schott) — 606437 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Biconcave rear element of the image-stabilization doublet; the cemented pair has net negative power.",
       cemented: "D2",
@@ -261,8 +291,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
+      indexReference: "d",
       focalLengthMm: 35.45,
-      glass: "FCD100 class (437951; supplier-neutral spectral proxy)",
+      glass: "FCD100 class (437951; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "dPgF = +0.0488 from patent θgF 0.5326 against the engine normal line; the patent does not itself label the glass anomalous",
@@ -276,8 +307,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
+      indexReference: "d",
       focalLengthMm: 31.46,
-      glass: "FCD100 class (437951; supplier-neutral spectral proxy)",
+      glass: "FCD100 class (437951; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "dPgF = +0.0488 from patent θgF 0.5326 against the engine normal line; the patent does not itself label the glass anomalous",
@@ -292,8 +324,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.72,
+      indexReference: "d",
       focalLengthMm: -16.63,
-      glass: "TAFD5G (HOYA) / S-LAH55V (OHARA) — 835427 coordinates; supplier unconfirmed",
+      glass:
+        "TAFD5G (HOYA) / S-LAH55V (OHARA) — 835427 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Biconcave rear element of the second L4 cemented doublet; the pair has net negative power.",
       cemented: "D3",
@@ -303,11 +337,13 @@ const LENS_DATA = {
       id: 15,
       name: "E15",
       label: "Element 15",
-      type: "Neg. Meniscus (2× Asph)",
+      type: "Negative Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.46,
+      indexReference: "d",
       focalLengthMm: -119.92,
-      glass: "M-BACD12 (HOYA) / H-ZK2 (CDGM) — 583595 coordinates; supplier unconfirmed",
+      glass:
+        "M-BACD12 (HOYA) / H-ZK2 (CDGM) — 583595 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Weak negative meniscus closing L4, aspherical on both surfaces.",
       dPgF: -0.002,
@@ -319,8 +355,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.44,
+      indexReference: "d",
       focalLengthMm: 68.99,
-      glass: "FC5 (HOYA) / N-FK5 (Schott) — 487704 coordinates; supplier unconfirmed",
+      glass:
+        "FC5 (HOYA) / N-FK5 (Schott) — 487704 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
       apd: false,
       role: "Single positive meniscus forming L5, fixed relative to the image plane during zoom and focus.",
       dPgF: 0.005,
@@ -336,6 +374,7 @@ const LENS_DATA = {
       R: 22.1371,
       d: 6.609,
       sd: 17.3,
+      rimExtensionSd: 23.6,
       asphere: { K: 0, A4: -7.11444e-6, A6: 2.28099e-9, A8: -8.75851e-11, A10: 2.46405e-13, A12: -4.26701e-16, A14: 0 },
     },
     { label: "3", R: 83.0958, d: 1.2, sd: 18.4, medium: 2 },

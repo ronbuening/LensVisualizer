@@ -27,8 +27,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║      the patent aperture envelope without clipping full-field rays, the   ║
  * ║      validator's gapSagFrac is explicitly set to 0.92.                    ║
  * ║                                                                            ║
- * ║  Glass: the patent publishes only d-line nd/νd coordinates. Vendor       ║
- * ║  identity is unresolved, so six-digit coordinate-class labels are used.  ║
+ * ║  Resolved native outer shoulders: S2 13.9 mm beyond clear 12.82 mm, and   ║
+ * ║  S20 18.135 mm beyond clear 16.89 mm. Source effective caps stay fixed.    ║
+ * ║                                                                            ║
+ * ║  Glass: all eleven published d-line nd/νd pairs are retained. Existing    ║
+ * ║  compatible catalog curves are qualified spectral proxies only; supplier ║
+ * ║  identity, chemistry and melt are unresolved.                              ║
  * ║  nC, nF, ng, and dPgF are not authored because the patent does not       ║
  * ║  publish element-specific line data or partial dispersion.                ║
  * ║                                                                            ║
@@ -63,13 +67,13 @@ const LENS_DATA = {
     ],
     elementCount: 11,
     groupCount: 9,
-    focalLengthMm: { marketing: 35, design: 36.00912695 },
+    focalLengthMm: { marketing: 35, design: 36 },
     fNumber: { marketing: 1.8, design: 1.85 },
   },
 
   source: {
     patentNumber: "US 2019/0113711 A1",
-    example: { label: "Example 1", id: "1" },
+    example: { label: "Numerical Data 1", id: "1" },
     patentYear: 2019,
     authors: ["Shinya Okuoka"],
     assignees: ["Canon Inc."],
@@ -83,9 +87,10 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.8081,
+      indexReference: "d",
       vd: 22.8,
       focalLengthMm: -43.02,
-      glass: "808228 class (vendor unresolved)",
+      glass: "808228 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Front negative lens of L1; patent G1F.",
       diagramLabel: "G1F",
@@ -96,9 +101,10 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 2.001,
+      indexReference: "d",
       vd: 29.1,
       focalLengthMm: 47.64,
-      glass: "001291 class (vendor unresolved)",
+      glass: "001291 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
     },
     {
@@ -107,9 +113,10 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.51742,
+      indexReference: "d",
       vd: 52.4,
       focalLengthMm: -24.44,
-      glass: "517524 class (vendor unresolved)",
+      glass: "517524 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       cemented: "D1",
     },
@@ -119,9 +126,10 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.90043,
+      indexReference: "d",
       vd: 37.4,
       focalLengthMm: 19.66,
-      glass: "900374 class (vendor unresolved)",
+      glass: "900374 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       cemented: "D1",
     },
@@ -131,9 +139,10 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.6968,
+      indexReference: "d",
       vd: 55.5,
       focalLengthMm: 74.53,
-      glass: "697555 class (vendor unresolved)",
+      glass: "697555 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Front positive lens of L2; patent G2F and designated transverse IS element.",
       diagramLabel: "G2F",
@@ -144,9 +153,10 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.58313,
+      indexReference: "d",
       vd: 59.4,
       focalLengthMm: -101.03,
-      glass: "583594 class (vendor unresolved)",
+      glass: "583594 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
     },
     {
@@ -155,9 +165,10 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.883,
+      indexReference: "d",
       vd: 40.8,
       focalLengthMm: 16.25,
-      glass: "883408 class (vendor unresolved)",
+      glass: "883408 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       cemented: "D2",
     },
@@ -167,9 +178,10 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.85478,
+      indexReference: "d",
       vd: 24.8,
       focalLengthMm: -13.54,
-      glass: "855248 class (vendor unresolved)",
+      glass: "855248 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       cemented: "D2",
     },
@@ -179,9 +191,10 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.90043,
+      indexReference: "d",
       vd: 37.4,
       focalLengthMm: 31.0,
-      glass: "900374 class (vendor unresolved)",
+      glass: "900374 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       role: "Rear positive lens of L2; patent G2R.",
       diagramLabel: "G2R",
@@ -192,9 +205,10 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.6968,
+      indexReference: "d",
       vd: 55.5,
       focalLengthMm: 144.87,
-      glass: "697555 class (vendor unresolved)",
+      glass: "697555 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       diagramLabel: "G3P",
     },
@@ -204,9 +218,10 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.5927,
+      indexReference: "d",
       vd: 35.3,
       focalLengthMm: -68.42,
-      glass: "593353 class (vendor unresolved)",
+      glass: "593353 class — qualified coordinate-compatible spectral proxy; supplier and composition unresolved",
       apd: false,
       diagramLabel: "G3N",
     },
@@ -216,7 +231,7 @@ const LENS_DATA = {
   /* (moved from asph) ── Surface 11 asphere: patent standard (1 + K) conic convention ── */
   surfaces: [
     { label: "1", R: 800.0, d: 1.0, sd: 13.9, medium: 1 },
-    { label: "2", R: 33.296, d: 1.92, sd: 12.82 },
+    { label: "2", R: 33.296, d: 1.92, sd: 12.82, rimExtensionSd: 13.9 },
     { label: "3", R: 103.801, d: 3.11, sd: 12.785, medium: 2 },
     { label: "4", R: -86.901, d: 4.09, sd: 12.535 },
     { label: "5", R: -47.674, d: 1.3, sd: 10.22, medium: 3 },
@@ -243,7 +258,7 @@ const LENS_DATA = {
     { label: "17", R: -28.799, sd: 16.57 },
     { label: "18", R: -109.518, d: 2.86, sd: 17.03, medium: 10 },
     { label: "19", R: -53.092, d: 11.79, sd: 17.19 },
-    { label: "20", R: -29.766, d: 1.7, sd: 16.89, medium: 11 },
+    { label: "20", R: -29.766, d: 1.7, sd: 16.89, rimExtensionSd: 18.135, medium: 11 },
     { label: "21", R: -114.3, d: 11.66, sd: 18.135 },
   ],
 

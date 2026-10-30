@@ -331,3 +331,19 @@ The later RF 24mm f/1.4 L VCM is a different short-flange mirrorless design and 
 5. Canon Camera Museum, [EF24mm f/1.4 L USM](https://global.canon/en/c-museum/product/ef341.html): predecessor construction.
 6. OHARA, official optical-glass product pages for [S-LAH55V](https://oharacorp.com/glass/s-lah55v/), [S-LAH58](https://oharacorp.com/glass/s-lah58/), [S-LAH60V](https://oharacorp.com/glass/s-lah60v/), [S-TIM5](https://oharacorp.com/glass/s-tim5/), [S-NBH5](https://oharacorp.com/glass/s-nbh5/), [S-FPL51](https://oharacorp.com/glass/s-fpl51/), [S-FSL5](https://oharacorp.com/glass/s-fsl5/), [S-TIH53](https://oharacorp.com/glass/s-tih53/), [S-PHM52](https://oharacorp.com/glass/s-phm52/), [S-BAL42](https://oharacorp.com/glass/s-bal42/), [S-LAH89](https://oharacorp.com/glass/s-lah89/), and [L-LAH85V](https://oharacorp.com/glass/l-lah85v/).
 7. CDGM, [H-ZPK1A optical-glass data sheet](https://www.cdgmgd.com/webapp/pdf/H-ZPK1A.pdf): $n_d=1.618000$, $\nu_d=63.39$, and catalog code 618634.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 8,141 passed, 2,659 clipped, 780 failed and 0 unaimed rays. Minimum sampled axial transmission is 169/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (780). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.250000007 |           0.250000 | 169 / 153 / 89                    | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 39.453715% at zoom 0, focus 0.05, aberration control 0: Gaussian 3.027314227 m versus label 5.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

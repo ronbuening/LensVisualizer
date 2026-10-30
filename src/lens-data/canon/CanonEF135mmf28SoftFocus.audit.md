@@ -44,3 +44,22 @@ Column 9 defines only refractive indices N and Abbe numbers ν. It never explici
 | L7 | 1.48749 / 70.2 | Preserved; Unmatched, reference unspecified |
 
 All seven media now carry `indexReferenceNote` and an explicit `Unmatched` label. The prior seven coordinate-compatible catalog curves are disabled while the source reference remains unverified (7/7 → 0/7); no numeric pair is changed. This qualifies an uncertain reference rather than proving the conventional d-line inference wrong. No element supplies published `nC`, `nF`, `ng`, partial dispersion or APD data, and no per-lens spectral override is introduced. Conditional class comparisons select no curve and establish no historical supplier, melt or chemistry. The analysis and header now distinguish source N/ν from the approximate tracing convention, preserve the plotted spectral context and qualify the derived stop radius correctly.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions and five independent aberration-control positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 100 positive-real-object geometries, 300/300 target chiefs converge: 300 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 46,519 passed, 9,512 clipped, 1,869 failed and 0 unaimed rays. Minimum sampled axial transmission is 145/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ 6` (1027), `noBracket @ ?` (842). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  1.300000000 |           1.300000 | 145 / 156 / 142                   | clear / clear / clear |
+|            0 |                  1 |                  1.229573150 |           1.300000 | 169 / 178 / 154                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 43.389846% at zoom 0, focus 0.05, aberration control 0.75: Gaussian 14.718639962 m versus label 26.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+Normal/soft source f-number semantics remain unchanged. The five independent aberration states are sampled with the current iris; source-supported normal-state clipping is retained. These ordinary-focus Gaussian objects do not add a published finite-focus table.
