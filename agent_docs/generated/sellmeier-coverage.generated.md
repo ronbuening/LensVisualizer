@@ -2320,7 +2320,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | Source internal filter | constant | `Unmatched (source filter nd=1.51823; Abbe number not published)` | Explicit unmatched/proprietary annotation |
 | 15 | Element 7 | abbe | `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)` | No catalog match |
 
-### [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - US 2021/0263286 A1
+### [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - JP 2021-131499 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
