@@ -25,24 +25,24 @@ The source group powers are −13.43 / +19.23 / −26.67 / +58.19 mm. Its first-
 
 Paragraph 0057 explicitly defines nd and νd at the d line. Every catalog name below is a compatible spectral proxy, with historical supplier, melt, chemistry, cement, coating and manufacture unresolved. Standalone focal lengths are source-rounded element values, not in-system contribution estimates.
 
-| Element | Source surfaces | nd / νd        | Source element f, mm | Qualified disposition                                                      |
-| ------- | --------------- | -------------- | -------------------: | -------------------------------------------------------------------------- |
-| L1      | 1 / 2           | 1.77250 / 49.6 |               −37.58 | S-LAH66 proxy; front negative meniscus                                     |
-| L2      | 3 / 4A          | 1.52996 / 55.8 |               −80.00 | Unmatched; production-correlated PMo position, polymer identity unresolved |
-| L3      | 5 / 6           | 1.77250 / 49.6 |               −27.47 | S-LAH66 proxy; negative meniscus                                           |
-| L4      | 7 / 8           | 1.59522 / 67.7 |               −34.55 | S-FPM2 proxy; lower-dispersion negative member                             |
-| L5      | 9 / 10          | 1.72047 / 34.7 |               +27.94 | S-NBH8 proxy; positive member of front unit                                |
-| L6      | 11 / 12         | 1.48749 / 70.2 |              +160.44 | S-FSL5 proxy; source IS singlet Ls                                         |
-| L7      | 13 / 14         | 1.91082 / 35.3 |               −19.86 | TAFD35 proxy; negative member of D1                                        |
-| L8      | 14 / 15         | 1.60342 / 38.0 |               +14.48 | S-TIM5 proxy; positive member of D1                                        |
-| L9      | 17 / 18         | 1.83481 / 42.7 |               −10.62 | S-LAH55 proxy; negative member of D2                                       |
-| L10     | 18 / 19         | 1.64769 / 33.8 |               +14.28 | S-TIM22 proxy; positive member of D2                                       |
-| L11     | 20 / 21         | 1.49700 / 81.5 |               +17.28 | S-FPL51 proxy; production-correlated inferred UD position                  |
-| L12     | 22 / 23         | 1.91082 / 35.3 |               −26.67 | TAFD35 proxy; source focus singlet LF                                      |
-| L13     | 24 / 25         | 1.91082 / 35.3 |               −16.82 | TAFD35 proxy; negative member of D3                                        |
-| L14     | 25 / 26A        | 1.58313 / 59.4 |               +14.50 | S-BAL42 proxy; rear aspheric member of D3                                  |
+| Element | Source surfaces | nd / νd        | Source element f, mm | Qualified disposition                                              |
+| ------- | --------------- | -------------- | -------------------: | ------------------------------------------------------------------ |
+| L1      | 1 / 2           | 1.77250 / 49.6 |               −37.58 | S-LAH66 proxy; front negative meniscus                             |
+| L2      | 3 / 4A          | 1.52996 / 55.8 |               −80.00 | E48R qualified spectral proxy; source material identity unresolved |
+| L3      | 5 / 6           | 1.77250 / 49.6 |               −27.47 | S-LAH66 proxy; negative meniscus                                   |
+| L4      | 7 / 8           | 1.59522 / 67.7 |               −34.55 | S-FPM2 proxy; lower-dispersion negative member                     |
+| L5      | 9 / 10          | 1.72047 / 34.7 |               +27.94 | S-NBH8 proxy; positive member of front unit                        |
+| L6      | 11 / 12         | 1.48749 / 70.2 |              +160.44 | S-FSL5 proxy; source IS singlet Ls                                 |
+| L7      | 13 / 14         | 1.91082 / 35.3 |               −19.86 | TAFD35 proxy; negative member of D1                                |
+| L8      | 14 / 15         | 1.60342 / 38.0 |               +14.48 | S-TIM5 proxy; positive member of D1                                |
+| L9      | 17 / 18         | 1.83481 / 42.7 |               −10.62 | S-LAH55 proxy; negative member of D2                               |
+| L10     | 18 / 19         | 1.64769 / 33.8 |               +14.28 | S-TIM22 proxy; positive member of D2                               |
+| L11     | 20 / 21         | 1.49700 / 81.5 |               +17.28 | S-FPL51 proxy; production-correlated inferred UD position          |
+| L12     | 22 / 23         | 1.91082 / 35.3 |               −26.67 | TAFD35 proxy; source focus singlet LF                              |
+| L13     | 24 / 25         | 1.91082 / 35.3 |               −16.82 | TAFD35 proxy; negative member of D3                                |
+| L14     | 25 / 26A        | 1.58313 / 59.4 |               +14.50 | S-BAL42 proxy; rear aspheric member of D3                          |
 
-The original prints no per-material C/F/g indices, partial-dispersion values or APD measurements. Thirteen compatible curves remain available; L2 remains Unmatched. No catalog-derived per-lens spectral override exists or is added. Figure 2's d/g aberration curves are contextual design evaluations, not material index measurements. L11's former `apd: "patent"` claim is corrected to `inferred`: the high-Abbe coordinate and production UD count support that qualification, while the original supplies no patent APD number. The production PMo correlation does not prove cyclo-olefin, acrylate, resin chemistry or injection-molding conditions. Catalog family names likewise do not establish the source media's chemical composition.
+The original prints no per-material C/F/g indices, partial-dispersion values or APD measurements. Fourteen compatible curves are available after the October 31 archival E48R follow-up; L2’s source material identity remains unspecified. No catalog-derived per-lens spectral override exists or is added. Figure 2's d/g aberration curves are contextual design evaluations, not material index measurements. L11's former `apd: "patent"` claim is corrected to `inferred`: the high-Abbe coordinate and production UD count support that qualification, while the original supplies no patent APD number. The production PMo correlation does not prove cyclo-olefin, acrylate, resin chemistry or injection-molding conditions. Catalog family names likewise do not establish the source media's chemical composition.
 
 ## Original-PDF shape review — 2026-10-30
 
@@ -113,3 +113,11 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.219456993 |           0.220000 | 193 / 187 / 161                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 92.969174% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.309356345 m versus label 4.400000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original shape-and-glass review remains dated 2026-10-30; this follow-up changes only the spectral-proxy disposition for L2. JP 2015-031869 A, Numerical Example 1: PDF/printed page 10, paragraph 0059, surface 3; d-line definition paragraph 0057, page 9. The prescription does not name polymer chemistry; Canon production PMo correlation remains separate.
+
+The [archival ZEON manufacturer AGF](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf) carries permission to reproduce RadiantZemax data; it is an archival copy, not a direct vendor fetch. [Ansys support](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) identifies ZEON as the catalog provider. Its E48R row uses the six-term polynomial n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, with λ in micrometres, at the archived 25°C reference and within 0.400–1.600 µm. C/d/F/g indices evaluate to 1.528351752 / 1.531160165 / 1.537829337 / 1.543170270, giving νd = 56.043828 and PgF = 0.563533. Against the row’s own nd = 1.531170 and νd = 56.0, residuals −0.000009835 / +0.043828 pass the stricter 0.00003 / 0.11 consistency checks. PgF belongs to the curve and is not copied into per-lens source evidence.
+
+The source pair 1.52996/55.8 differs from the curve by +0.001200165 in nd and +0.243828 in evaluated νd (+0.200000 against archived nominal νd). This is a qualified approximation inside the existing compatibility window, not an exact index match or a source-material identification. Qualified-curve coverage changes 13/14 → 14/14. No catalog code alias, source partial-dispersion claim or APD badge is added. Every source index/Abbe pair, reference wavelength, R/d, asphere, cap/shoulder/cut, stop, plate and focus/zoom control is unchanged. Prior runtime and shape results retain their original dates and scope; this is not a fresh shape review.

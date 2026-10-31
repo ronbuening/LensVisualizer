@@ -98,11 +98,11 @@ E9 supplies positive counter-power within the net-negative L3 doublet. R16 is a 
 
 ### E10 — Weak Negative Meniscus (1x Asph)
 
-**nd = 1.583060, νd = 30.2. Glass: Unmatched (nd=1.583060, vd=30.2; coordinate class 583302). f = -9994.646478 mm.**
+**nd = 1.583060, νd = 30.2. Material: POLYCARB qualified numerical polymer proxy; source composition and supplier unspecified. f = -9994.646478 mm.**
 
 E10 is effectively near-zero-power as an isolated spherical-base element. Its computed standalone focal length is nearly -10 m, so it should not be treated as the main source of L4's positive power. Its principal modeled significance is geometric and aberrational: the rear face R19A carries the prescription's only aspherical departure.
 
-No defensible public catalog identity was retained for this coordinate among the checked authoritative catalogs. The data therefore uses the explicit `Unmatched (...)` form rather than assigning a speculative historical glass name.
+The 2026-10-31 catalog-source follow-up enables the published MISC POLYCARB curve as a numerical spectral proxy. Its catalog nd is +0.002409922 above the source and νd is −0.290815018 below it, within existing compatibility windows. This does not identify the patent medium as polycarbonate or prove a historical glass name; the printed 1.583060/30.2 pair remains authoritative.
 
 ### E11 — Positive Meniscus
 
@@ -112,18 +112,18 @@ E11 supplies almost all of the positive standalone power in the rear L4 pair. Th
 
 ## Glass Identification and Selection
 
-The 2026-10-30 direct original check confirms all 11 printed pairs in Numerical Example 5 (PDF page 13) and the explicit d-line definition in paragraph 0047 (PDF page 8). The patent publishes d-line refractive indices and Abbe numbers but does not name glass manufacturers or catalog melts. The final data file therefore preserves eight coordinate classes rather than converting present-day catalog proximity into a historical identity. Current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were used only to test whether the coordinates admit defensible modern equivalents; the resulting vendor names are not stored as production facts.
+The 2026-10-30 direct original check confirms all 11 printed pairs in Numerical Example 5 (PDF page 13) and the explicit d-line definition in paragraph 0047 (PDF page 8). The patent publishes d-line refractive indices and Abbe numbers but does not name glass manufacturers or catalog melts. The source retains eight distinct numerical coordinate classes. Present-day catalog proxies, including the later POLYCARB numerical proxy, do not establish historical material identities. Current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were used only to test whether the coordinates admit defensible modern equivalents; the resulting vendor names are not stored as production facts.
 
-| Data-file glass annotation                                |       nd |   νd | Elements | Status                                              |
-| --------------------------------------------------------- | -------: | ---: | -------- | --------------------------------------------------- |
-| 516641 class (vendor unresolved)                          | 1.516330 | 64.1 | E1, E11  | Coordinate class; several modern near-equivalents   |
-| 623582 class (vendor unresolved)                          | 1.622992 | 58.2 | E2, E3   | Coordinate class; several modern near-equivalents   |
-| 847239 class (vendor unresolved)                          | 1.846660 | 23.9 | E4, E6   | Coordinate class; high-index, relatively dispersive |
-| 573578 class (vendor unresolved)                          | 1.572501 | 57.8 | E5       | Coordinate class                                    |
-| 487702 class (vendor unresolved)                          | 1.487490 | 70.2 | E7       | Coordinate class; relatively low dispersion         |
-| 620363 class (vendor unresolved)                          | 1.620041 | 36.3 | E8       | Coordinate class                                    |
-| 755275 class (vendor unresolved)                          | 1.755199 | 27.5 | E9       | Coordinate class                                    |
-| Unmatched (nd=1.583060, vd=30.2; coordinate class 583302) | 1.583060 | 30.2 | E10      | No defensible retained named match                  |
+| Data-file glass annotation                 |       nd |   νd | Elements | Status                                                      |
+| ------------------------------------------ | -------: | ---: | -------- | ----------------------------------------------------------- |
+| 516641 class (vendor unresolved)           | 1.516330 | 64.1 | E1, E11  | Coordinate class; several modern near-equivalents           |
+| 623582 class (vendor unresolved)           | 1.622992 | 58.2 | E2, E3   | Coordinate class; several modern near-equivalents           |
+| 847239 class (vendor unresolved)           | 1.846660 | 23.9 | E4, E6   | Coordinate class; high-index, relatively dispersive         |
+| 573578 class (vendor unresolved)           | 1.572501 | 57.8 | E5       | Coordinate class                                            |
+| 487702 class (vendor unresolved)           | 1.487490 | 70.2 | E7       | Coordinate class; relatively low dispersion                 |
+| 620363 class (vendor unresolved)           | 1.620041 | 36.3 | E8       | Coordinate class                                            |
+| 755275 class (vendor unresolved)           | 1.755199 | 27.5 | E9       | Coordinate class                                            |
+| POLYCARB qualified numerical polymer proxy | 1.583060 | 30.2 | E10      | Published curve; source chemistry unspecified; Δnd +0.00241 |
 
 The glass strategy visible from `nd` and `νd` is conventional rather than apochromatic. The most conspicuous Abbe contrast occurs in the cemented L2b pair, where E6 (`νd = 23.9`) is paired with E7 (`νd = 70.2`). This supports ordinary chromatic balancing of the bonded positive sub-unit. The source provides no `nC`, `nF`, `ng`, `PgF`, or `dPgF` values, and no historical melt identity is established strongly enough to substitute catalog Sellmeier data as source fact. Consequently the model makes no APO or anomalous-partial-dispersion claim.
 
@@ -269,3 +269,13 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.280000000 |           0.280000 | 193 / 190 / 174                   | clear / clear / clear   |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.488590% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.308638954 m versus label 5.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — Published POLYCARB numerical proxy follow-up
+
+JP 2005-092056 A, Numerical Example 5, PDF/printed page 13 R18/N10; paragraph 0047, PDF page 8, defines the d-line reference. The source pair, geometry and original review dates are unchanged; this is catalog-source work, not a repeat shape inspection. The previous incompatible E-F3 assignment remains rejected. The earlier dated polymer-fit rejection is retained as research history; it concerns a different, incompatible fitted curve.
+
+The permission-bearing [RadiantZemax MISC.AGF archival copy](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/misc.agf) publishes a replayable POLYCARB Schott polynomial, cited to _Handbook of Optics Vol. II_. The [official Ansys source table](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Glass_Catalog_Sources.html) independently confirms that attribution. This is a published numerical material curve, not a direct material-manufacturer fetch or proof of the selected patent medium's chemistry, formulation, supplier or Canon process. The handbook coefficient table was not directly inspected; its chapter/page is not invented.
+
+The native row uses $n^2=a_0+a_1\lambda^2+a_2\lambda^{-2}+a_3\lambda^{-4}+a_4\lambda^{-6}+a_5\lambda^{-8}$, with wavelength in µm, reference temperature 20 °C and valid range 0.365–1.014 µm. At C/d/F/g it evaluates 1.579863774 / 1.585469922 / 1.599438695 / 1.611520588; computed νd is 29.909184982. Its own-row residuals, −0.00000007757 in nd and −0.00000001834 in νd, pass strict 0.00003/0.11 guards. All 1,001 sampled wavelengths are finite and normally dispersive. Relative to the source 1.583060/30.2 pair, the comparatively large nd difference +0.002409922 and νd difference −0.290815018 fit the existing ±0.003/±2 compatibility windows. The runtime retains the authored source index; the curve supplies only qualified spectral variation. No per-lens C/F/g indices, partials, coefficients or new APD badge are authored.
+
+E10 / N10 now uses this qualified curve; current spectral coverage is 11/11 media. All source pairs, published values, source errata, aperture/focus/zoom controls, physical gaps and shape conclusions remain unchanged.

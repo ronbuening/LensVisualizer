@@ -150,3 +150,11 @@ The 65-position first-order interpolation check reaches −1.024652 mm infinity
 BF displacement at zoom 0.765625 (computed 46.238944 versus image gap 47.263596 mm).
 Published station support, illustrative interpolation, sampled runtime clearance
 and production correlation remain separate conclusions.
+
+## 2026-10-31 — Scoped positive catalog-source follow-up
+
+The 2026-10-30 shape/glass review above retains its actual date and geometric conclusions. This follow-up checks source reference/material classification and positive catalog opportunities only. US 20050286139A 1 Numerical Fifth Embodiment ¶0107, PDF page 23 / printed 9, prints N14 **1.484560/70.0**. The native 300 ppi page was read at native scale. ¶0099's continuation on PDF page 20 / printed 6 explicitly defines d-line Ni and νd. N14 is ordinary glass; the separately modeled N3 thin replica resin (¶0033) remains unidentified. No position-specific C/F/g indices, numerical partial dispersion or APD designation is supplied for N14.
+
+The [OHARA S-FSL5 datasheet](https://www.ohara-inc.co.jp/assets/en/product/pdf/esfsl 05.pdf) and [OHARA_260701 vendor AGF](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip) verify the existing Sellmeier coefficients and nominal 1.48749/70.2363. Residuals to the source are +0.00293/+0.2363; the index is only 0.00007 inside the unchanged resolver bound. Coefficient PgF is 0.530051, with no source PgF available. This is explicitly an approximate compatible proxy, not an exact six-digit-code match or source identity.
+
+Searches of downloaded current OHARA, Nikon/Hikari and SUMITA coefficient catalogs supplied no closer row; no unverified mold-state curve or synthetic offset is created. Source nd 1.484560 is preserved rather than replaced by catalog 1.48749. Only N14's glass label and source-reference annotations change in data. All fourteen source pairs, geometry, rims, resin layer, stops, zoom/focus controls and N 10/N 12 inferred APD tags remain fixed. The 36 catalog-derived per-lens line overrides removed on Oct 30 stay removed. Current coverage is thirteen proxy curves plus one unresolved resin, superseding the earlier twelve-curve/unmatched-N14 disposition without a new shape inspection.

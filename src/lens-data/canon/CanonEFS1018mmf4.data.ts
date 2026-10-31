@@ -20,8 +20,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * marketing-like values. Derived/paraxial iris authority remains; no physical stop size
  * is published. Aperture presets begin at the printed wide 4.64 target.
  *
- * Glass: paragraph 0057 explicitly defines nd/vd at the d line. Thirteen compatible catalog
- * curves remain qualified spectral proxies. L2 remains Unmatched; its production-correlated
+ * Glass: paragraph 0057 explicitly defines nd/vd at the d line. Fourteen compatible catalog
+ * curves are qualified spectral proxies after the 2026-10-31 E48R follow-up. Its production-correlated
  * PMo position does not establish a polymer species or manufacturing process. No material
  * C/F/g indices, partial dispersion or APD measurements are published. L11's UD/APD tag
  * is inferred from production correlation and its high-Abbe coordinate, not patent APD.
@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.52996,
       vd: 55.8,
       focalLengthMm: -80.0,
-      glass: "Unmatched (d-line 1.52996/55.8; production PMo correlation only; polymer identity unresolved)",
+      glass: "E48R (qualified spectral proxy; source composition unspecified; production PMo correlation only)",
       role: "Aspheric negative meniscus; production-correlated PMo position, with source composition and process unresolved",
     },
     {

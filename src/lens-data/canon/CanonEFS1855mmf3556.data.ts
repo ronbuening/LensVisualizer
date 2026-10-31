@@ -48,7 +48,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  not published clear apertures. Current all-state qualifications: sidecars.║
  * ║                                                                            ║
  * ║  GLASS: The patent gives d-line nd/vd only. Glass strings therefore use    ║
- * ║  coordinate classes or Unmatched(...) rather than unproven vendor melts.   ║
+ * ║  coordinate classes and qualified proxies, never proven vendor melts.    ║
  * ║  nC, nF, ng, and dPgF are intentionally omitted because the source does not║
  * ║  publish them and no historical melt identity is established.              ║
  * ║                                                                            ║
@@ -233,7 +233,7 @@ const LENS_DATA = {
       vd: 30.2,
       indexReference: "d",
       focalLengthMm: -9994.646478,
-      glass: "Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)",
+      glass: "POLYCARB (published MISC catalog; qualified numerical polymer proxy; source chemistry and supplier unspecified)",
       role: "Near-zero-power first element of rear positive group L4; rear surface is aspherical.",
       diagramLabel: "E10",
     },

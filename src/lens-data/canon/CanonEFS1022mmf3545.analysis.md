@@ -135,13 +135,14 @@ values are removed**; none are newly treated as published spectral measurements.
 | 11 L4a negative | 1.834000 / 37.2 | OHARA S-LAH60                                          |
 | 12 L4 singlet   | 1.438750 / 95.0 | OHARA S-FPL53                                          |
 | 13 L4b negative | 1.834000 / 37.2 | OHARA S-LAH60                                          |
-| 14 L4b positive | 1.484560 / 70.0 | Unmatched low-index/high-Abbe glass, 485700            |
+| 14 L4b positive | 1.484560 / 70.0 | OHARA S-FSL5, approximate compatible proxy             |
 
-All 12 curves pass the public compatibility resolver. They are qualified spectral
+All 13 curves pass the public compatibility resolver. They are qualified spectral
 proxies, with historical supplier, melt and chemistry unspecified. A coordinate
 match does not establish titanium, lanthanum or fluorophosphate chemistry of the
-source medium. N14's nearby S-FSL5 neighborhood is insufficient for a compatible
-curve; the medium remains unresolved. N10/N12 APD tags remain **inferred** from
+source medium. N14's S-FSL5 proxy differs by +0.00293 in nominal nd and +0.2363
+in Abbe; this approximate curve is near the resolver's existing nd limit, not an
+exact source material. The source pair stays 1.484560/70.0. N10/N12 APD tags remain **inferred** from
 low-dispersion coordinates/proxies. A production Super-UD claim does not assign
 these exact numerical positions or establish source partial dispersion. The
 unsupported UV-cure claim for the resin is removed.
@@ -175,3 +176,11 @@ results and association with the production EF-S lens remain separate conclusion
 - Definitions: ¶0099 / PDF pp. 19–20; resin construction ¶0033 / PDF p. 16;
   rear-component prose ¶0042 / PDF p. 17.
 - Historical review dates and measured/rejected shape trials: [audit](./CanonEFS1022mmf3545.audit.md).
+
+## Scoped Catalog Follow-up — 2026-10-31
+
+Numerical Fifth Embodiment, US 20050286139A 1 ¶0107, PDF page 23 / printed page 9, prints N14 as **1.484560/70.0**. ¶0099 on PDF page 20 / printed page 6 explicitly defines the d reference. This ordinary, thick rear glass is separate from the N3 replica resin (¶0033), whose composition and cure remain unresolved. No individual C/F/g indices, numeric partial dispersion or APD designation is published for N14. The 2026-10-30 shape review, all source pairs and all 36 removed catalog-derived per-lens overrides remain unchanged.
+
+The existing [OHARA S-FSL5 datasheet](https://www.ohara-inc.co.jp/assets/en/product/pdf/esfsl 05.pdf) and [current vendor AGF bundle](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip) confirm the existing standard Sellmeier curve, nominal nd 1.48749/νd 70.2363. Its source residuals **+0.00293/+0.2363** pass the unchanged ±0.003/±2 resolver limits, with only 0.00007 of nd margin. Coefficients give PgF 0.530051; the source has no partial value for comparison. The label explicitly says approximate compatible proxy. No source index or catalog coefficient is changed to make an exact fit; runtime uses the shared authored-nd anchor when borrowing catalog dispersion.
+
+Current OHARA, Nikon/Hikari and SUMITA AGF searches found no closer published coefficient row for this coordinate. No unverified molded-state offset is invented. The present disposition is thirteen compatible catalog proxies plus one unresolved resin; compatibility supports estimated spectra while historical supplier, melt, chemistry and production accuracy remain unproved.
