@@ -122,9 +122,9 @@ Group 4 is the rearmost positive group. It contains a weak negative aspherized e
 
 #### L41 — Weak Negative Meniscus with Rear Asphere
 
-nd = 1.58306, νd = 30.2. Glass: Unmatched optical medium 583302 (historical material, chemistry and supplier unresolved). f = -212.0 mm.
+nd = 1.58306, νd = 30.2. Material: POLYCARB qualified numerical polymer proxy; source composition and supplier unspecified. f = -212.0 mm.
 
-L41 is a weak negative element. Its rear surface, Surface 19, is the only aspherical surface in the patent example. The printed numerical pair corresponds to the 583302 coordinate neighborhood, but does not identify a glass, polymer or chemistry. It does not match OHARA S-TIM28; current OHARA cross-reference data place S-TIM28 near code 689311, which is far from the stored prescription value. Because no current authoritative manufacturer line was captured for 583/302 in the reviewed catalogs, the data file leaves this element explicitly marked as unmatched rather than assigning a false catalog name.
+L41 is a weak negative element. Its rear surface, Surface 19, is the only aspherical surface in the patent example. The printed numerical pair corresponds to the 583302 coordinate neighborhood, but does not identify a glass, polymer or chemistry. It does not match OHARA S-TIM28; current OHARA cross-reference data place S-TIM28 near code 689311, which is far from the stored prescription value. The 2026-10-31 follow-up enables the published MISC POLYCARB curve as a qualified numerical spectral proxy. Its nd difference +0.002409922 and νd difference −0.290815018 fit the existing guards, while the source pair remains unchanged. This curve does not establish polycarbonate chemistry in the selected example.
 
 #### L42 — Positive Biconvex Rear Lens
 
@@ -134,20 +134,20 @@ L42 supplies most of Group 4's positive power. Its very weak front radius and st
 
 ## Glass Identification / Selection
 
-The exact original defines Ni/νi at the d-ray in ¶0116 (PDF p. 23, printed p. 6). All eleven numerical pairs were checked again on 2026-10-30. The source names no historical supplier, melt or chemistry, and gives no position-specific numeric C/F/g line indices, partial dispersion or APD values. Ten existing compatible curves are retained as qualified spectral proxies; N10 remains unresolved. No unsupported per-lens override was present or added.
+The exact original defines Ni/νi at the d-ray in ¶0116 (PDF p. 23, printed p. 6). All eleven numerical pairs were checked again on 2026-10-30. The source names no historical supplier, melt or chemistry, and gives no position-specific numeric C/F/g line indices, partial dispersion or APD values. All eleven media now have qualified spectral proxies after the 2026-10-31 POLYCARB follow-up. N10 source chemistry remains unspecified. No unsupported per-lens override was present or added.
 
-| Element(s)    |      nd |   νd | Compatible proxy / unresolved medium | Coordinate disposition | Note                                                                     |
-| ------------- | ------: | ---: | ------------------------------------ | ---------------------- | ------------------------------------------------------------------------ |
-| L11           | 1.51633 | 64.1 | S-BSL7 (OHARA), BK7-class            | Compatible proxy       | Standard borosilicate crown match                                        |
-| L12, L13      | 1.62299 | 58.2 | S-BSM15 (OHARA)                      | Compatible proxy       | Code 623582; S-BSM22 does not match                                      |
-| L14           | 1.80518 | 25.4 | S-TIH6 (OHARA)                       | Compatible proxy       | Dense flint, code 805254                                                 |
-| L21, L23, L42 | 1.48749 | 70.2 | S-FSL5 (OHARA)                       | Compatible proxy       | Low-dispersion crown, code 487702                                        |
-| L22           | 1.84666 | 23.9 | S-TIH53 (OHARA)                      | Compatible proxy       | Heavy flint, code 847238                                                 |
-| L31           | 1.63980 | 34.5 | S-TIM27 (OHARA)                      | Compatible proxy       | Code 640345                                                              |
-| L32           | 1.78472 | 25.7 | S-TIH11 (OHARA)                      | Compatible proxy       | Code 785257                                                              |
-| L41           | 1.58306 | 30.2 | Unmatched 583302 optical medium      | Unresolved             | Earlier E-F3-class candidate is unconfirmed and supplies no active curve |
+| Element(s)    |      nd |   νd | Compatible proxy / unresolved medium | Coordinate disposition    | Note                                                              |
+| ------------- | ------: | ---: | ------------------------------------ | ------------------------- | ----------------------------------------------------------------- |
+| L11           | 1.51633 | 64.1 | S-BSL7 (OHARA), BK7-class            | Compatible proxy          | Standard borosilicate crown match                                 |
+| L12, L13      | 1.62299 | 58.2 | S-BSM15 (OHARA)                      | Compatible proxy          | Code 623582; S-BSM22 does not match                               |
+| L14           | 1.80518 | 25.4 | S-TIH6 (OHARA)                       | Compatible proxy          | Dense flint, code 805254                                          |
+| L21, L23, L42 | 1.48749 | 70.2 | S-FSL5 (OHARA)                       | Compatible proxy          | Low-dispersion crown, code 487702                                 |
+| L22           | 1.84666 | 23.9 | S-TIH53 (OHARA)                      | Compatible proxy          | Heavy flint, code 847238                                          |
+| L31           | 1.63980 | 34.5 | S-TIM27 (OHARA)                      | Compatible proxy          | Code 640345                                                       |
+| L32           | 1.78472 | 25.7 | S-TIH11 (OHARA)                      | Compatible proxy          | Code 785257                                                       |
+| L41           | 1.58306 | 30.2 | POLYCARB published MISC curve        | Qualified numerical proxy | Source chemistry unspecified; Δnd +0.00241; E-F3 remains rejected |
 
-The numerical palette combines low-dispersion and high-dispersion coordinates for first-order chromatic balancing. Repeated compatible S-FSL5 proxies at L21/L23/L42 do not identify a historical supplier or chemistry. No fluorite, position-specific anomalous partial dispersion or production APO performance is established by the patent. L41 remains an unidentified optical medium; the earlier obsolete HOYA E-F3-class candidate is not a coefficient-backed source identification or an active spectral curve.
+The numerical palette combines low-dispersion and high-dispersion coordinates for first-order chromatic balancing. Repeated compatible S-FSL5 proxies at L21/L23/L42 do not identify a historical supplier or chemistry. No fluorite, position-specific anomalous partial dispersion or production APO performance is established by the patent. L41 retains an unspecified source composition and uses the published POLYCARB curve only as a numerical proxy. The earlier obsolete HOYA E-F3-class candidate remains rejected and supplies no active curve.
 
 ## Focus Mechanism
 
@@ -362,3 +362,13 @@ and identity with a production prescription remain unvalidated.
 2. Canon Camera Museum, "EF-S18-55mm f/3.5-5.6 IS," product page: https://global.canon/en/c-museum/product/ef394.html
 3. OHARA Corporation / OHARA GmbH optical-glass data sheets and cross-reference tables for S-BSL7, S-BSM15, S-TIH6, S-FSL5, S-TIH53, S-TIM27, and S-TIH11.
 4. HOYA Group Optics Division, Glass Cross Reference Index: https://www.hoya-opticalworld.com/english/products/crossreference.html
+
+## 2026-10-31 — Published POLYCARB numerical proxy follow-up
+
+US 2007/0058265 A1, Numerical Example 2, PDF page 24 / printed 7 R18/N10; paragraph 0116, PDF page 23 / printed 6, defines the d-ray reference. The source pair, geometry and original review dates are unchanged; this is catalog-source work, not a repeat shape inspection. The actual June 25 unmatched-source finding and October 30 review remain dated history. The new curve does not prove the old E-F3 suggestion or identify a historical material.
+
+The permission-bearing [RadiantZemax MISC.AGF archival copy](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/misc.agf) publishes a replayable POLYCARB Schott polynomial, cited to _Handbook of Optics Vol. II_. The [official Ansys source table](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Glass_Catalog_Sources.html) independently confirms that attribution. This is a published numerical material curve, not a direct material-manufacturer fetch or proof of the selected patent medium's chemistry, formulation, supplier or Canon process. The handbook coefficient table was not directly inspected; its chapter/page is not invented.
+
+The native row uses $n^2=a_0+a_1\lambda^2+a_2\lambda^{-2}+a_3\lambda^{-4}+a_4\lambda^{-6}+a_5\lambda^{-8}$, with wavelength in µm, reference temperature 20 °C and valid range 0.365–1.014 µm. At C/d/F/g it evaluates 1.579863774 / 1.585469922 / 1.599438695 / 1.611520588; computed νd is 29.909184982. Its own-row residuals, −0.00000007757 in nd and −0.00000001834 in νd, pass strict 0.00003/0.11 guards. All 1,001 sampled wavelengths are finite and normally dispersive. Relative to the source 1.583060/30.2 pair, the comparatively large nd difference +0.002409922 and νd difference −0.290815018 fit the existing ±0.003/±2 compatibility windows. The runtime retains the authored source index; the curve supplies only qualified spectral variation. No per-lens C/F/g indices, partials, coefficients or new APD badge are authored.
+
+L41 / N10 now uses this qualified curve; current spectral coverage is 11/11 media. All source pairs, published values, source errata, aperture/focus/zoom controls, physical gaps and shape conclusions remain unchanged.

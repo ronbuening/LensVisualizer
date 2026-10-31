@@ -141,3 +141,13 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  1.100000000 |           1.100000 | 169 / 151 / 111                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 1001.010987% at zoom 0.25, focus 0.35, aberration control 0: Gaussian 34.603202438 m versus label 3.142857143 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — Scoped positive catalog-source follow-up
+
+This material-only follow-up preserves the actual 2026-10-30 original shape review and all source/control values. US 20080112063A 1 Numerical Embodiment 2, PDF page 35 / printed 5, source S7, prints L22/id5 nd 1.84666/νd 23.93. The native 300 ppi table was read directly. ¶0114 on PDF page 34 / printed 4 explicitly defines d-line indices/Abbe. No individual C/F/g, numerical partial dispersion or APD designation is printed for this ordinary glass; no resin or source camera-side plate is tabulated.
+
+Positive evidence: [SUMITA's official download bundle](https://www.sumita-opt.co.jp/en/download/), `zemax.agf` header 2026/08/21, existing SFLDN3 formula 1 row. The six verbatim coefficients and nominal 1.84666/23.9 match the existing shared polynomial: n²=a0+a1λ²+a2λ^-2+a3λ^-4+a4λ^-6+a5λ^-8, λ in µm, source range 0.27–2.0 µm. Nominal source residuals are 0/−0.03. Evaluated C/d/F/g are 1.83654084/1.84665863/1.87198539/1.89399989, with νd 23.886846 (residual −0.043154) and PgF 0.62109682; there is no published source PgF residual. This is a compatible spectral estimate, not evidence of supplier, melt, chemistry or historical manufacturing identity.
+
+Current OHARA/Nikon-Hikari/SUMITA coefficient searches confirm no uniquely identified replacement. S-NPH53/S-TIH53WN/S-TIH53 have larger nominal Abbe residuals; SFN3 shares the rounded coordinate but differs in partial dispersion, unconstrained by this source. SFLDN3 is the selected existing compatible curve; no new vendor row or fitted line spectrum is needed. The removed 36 line indices and 12dPgF overrides, including L22's former ad hoc fit, stay removed.
+
+Only L22's glass/role strings and synchronized prose/header change. All twelve source pairs, surfaces, rims, cemented interfaces, stops, zoom/focus controls and genuine-source evidence remain fixed. Current catalog coverage is twelve qualified curves. The earlier Oct 30 eleven-curve/unmatched-L22 disposition is retained as history rather than redated as a fresh shape review.

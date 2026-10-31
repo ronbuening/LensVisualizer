@@ -42,8 +42,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ GLASS / SPECTRAL DATA                                                        ║
  * ║   Original paragraph0114 explicitly defines d-line nd/vd. Forty-eight       ║
  * ║   catalog-derived per-lens nC/nF/ng/dPgF overrides are removed (2026-10-30). ║
- * ║   Eleven compatible catalog curves remain qualified spectral proxies; G5   ║
- * ║   stays Unmatched, without its former fitted line-index proxy. Historical  ║
+ * ║   Twelve compatible catalog curves are qualified spectral proxies; G5 uses ║
+ * ║   SFLDN3 without its former fitted line-index overrides. Historical         ║
  * ║   supplier, melt, chemistry and manufacturing identity remain unresolved. ║
  * ║                                                                              ║
  * ║ SOURCE INCLUSIONS / EXCLUSIONS                                               ║
@@ -149,8 +149,8 @@ const LENS_DATA = {
       vd: 23.93,
       indexReference: "d",
       focalLengthMm: 37.79081808402992,
-      glass: "Unmatched (nd=1.84666, vd=23.93; source medium unspecified)",
-      role: "Positive cemented partner in L2; source medium remains spectrally unresolved.",
+      glass: "SFLDN3 (SUMITA compatible spectral proxy; source supplier, melt and chemistry unspecified)",
+      role: "Positive cemented partner in L2; the compatible catalog curve estimates dispersion without identifying the source medium.",
       cemented: "D2",
     },
     {

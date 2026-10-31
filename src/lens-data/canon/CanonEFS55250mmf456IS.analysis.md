@@ -72,11 +72,11 @@ L21 is the strongest negative standalone element in the system. Its biconcave fo
 
 ### L22 — Positive Meniscus, Cemented D2 Rear Member
 
-`nd = 1.84666, νd = 23.93. Glass: Unmatched; source medium unspecified. f = +37.7908 mm.`
+`nd = 1.84666, νd = 23.93. Glass: SFLDN3 (SUMITA compatible spectral proxy; source supplier, melt and chemistry unspecified). f = +37.7908 mm.`
 
 L22 is a high-index, high-dispersion positive meniscus cemented to L21. The complete D2 pair remains negative: its independently computed cemented focal length is **−65.0135 mm**. This distinction matters because L22 is positive in isolation while the cemented pair and the complete L2 unit are both negative.
 
-The source provides only `1.84666 / 23.93`; L22 remains explicitly `Unmatched`. Its former fitted C/F/g indices and S-TIH53WN-derived dPgF were catalog/model assumptions, not original measurements, and are removed. S-TIH53WN is retained only as a rejected historical comparison, without a current curve, partial-dispersion, chemistry or supplier claim.
+The source provides only `1.84666 / 23.93`; L22 now uses the qualified compatible SFLDN3 catalog curve. Its former fitted C/F/g indices and S-TIH53WN-derived dPgF were catalog/model assumptions, not original measurements, and remain removed. S-TIH53WN is retained only as a rejected historical comparison, without a current curve, partial-dispersion, chemistry or supplier claim.
 
 ### L23 — Biconcave Negative
 
@@ -124,24 +124,24 @@ L36 is the final positive element before image space. Its biconvex form closes t
 
 ## Glass Identification and Selection
 
-The patent provides only `nd` and `νd`; it does not identify manufacturers or commercial glass names. The final data file preserves those patent coordinates and treats glass names as catalog-equivalent annotations. Ten of the twelve element coordinates match current OHARA S-family entries exactly in `nd/νd`; L23 exactly matches current CDGM H-ZLaF50E; L22 remains unresolved.
+The patent provides only `nd` and `νd`; it does not identify manufacturers or commercial glass names. The final data file preserves those patent coordinates and treats glass names as catalog-equivalent annotations. Ten of the twelve element coordinates match current OHARA S-family entries exactly in `nd/νd`; L23 exactly matches current CDGM H-ZLaF50E; L22 uses the compatible SUMITA SFLDN3 proxy at the source nd with a −0.03 nominal Abbe residual.
 
-| Element | Patent `nd / νd` | Data-file glass label                | Provenance                                            |
-| ------- | ---------------- | ------------------------------------ | ----------------------------------------------------- |
-| L11     | 1.51633 / 64.14  | S-BSL7                               | Exact OHARA-equivalent coordinate                     |
-| L12     | 1.80100 / 34.97  | S-LAM66                              | Exact OHARA-equivalent coordinate                     |
-| L13     | 1.49700 / 81.54  | S-FPL51                              | Exact OHARA-equivalent coordinate; UD-class candidate |
-| L21     | 1.71300 / 53.87  | S-LAL8                               | Exact OHARA-equivalent coordinate                     |
-| L22     | 1.84666 / 23.93  | Unmatched; source medium unspecified | No qualified retained spectral curve                  |
-| L23     | 1.80400 / 46.57  | H-ZLaF50E                            | Exact CDGM-equivalent coordinate                      |
-| L31     | 1.63854 / 55.38  | S-BSM18                              | Exact OHARA-equivalent coordinate                     |
-| L32     | 1.60311 / 60.64  | S-BSM14                              | Exact OHARA-equivalent coordinate                     |
-| L33     | 1.48749 / 70.23  | S-FSL5                               | Exact OHARA-equivalent coordinate                     |
-| L34     | 1.84666 / 23.78  | S-TIH53                              | Exact OHARA-equivalent coordinate                     |
-| L35     | 1.83400 / 37.16  | S-LAH60                              | Exact OHARA-equivalent coordinate                     |
-| L36     | 1.68893 / 31.07  | S-TIM28                              | Exact OHARA-equivalent coordinate                     |
+| Element | Patent `nd / νd` | Data-file glass label          | Provenance                                            |
+| ------- | ---------------- | ------------------------------ | ----------------------------------------------------- |
+| L11     | 1.51633 / 64.14  | S-BSL7                         | Exact OHARA-equivalent coordinate                     |
+| L12     | 1.80100 / 34.97  | S-LAM66                        | Exact OHARA-equivalent coordinate                     |
+| L13     | 1.49700 / 81.54  | S-FPL51                        | Exact OHARA-equivalent coordinate; UD-class candidate |
+| L21     | 1.71300 / 53.87  | S-LAL8                         | Exact OHARA-equivalent coordinate                     |
+| L22     | 1.84666 / 23.93  | SFLDN3, qualified SUMITA proxy | Same nominal nd; Abbe residual −0.03                  |
+| L23     | 1.80400 / 46.57  | H-ZLaF50E                      | Exact CDGM-equivalent coordinate                      |
+| L31     | 1.63854 / 55.38  | S-BSM18                        | Exact OHARA-equivalent coordinate                     |
+| L32     | 1.60311 / 60.64  | S-BSM14                        | Exact OHARA-equivalent coordinate                     |
+| L33     | 1.48749 / 70.23  | S-FSL5                         | Exact OHARA-equivalent coordinate                     |
+| L34     | 1.84666 / 23.78  | S-TIH53                        | Exact OHARA-equivalent coordinate                     |
+| L35     | 1.83400 / 37.16  | S-LAH60                        | Exact OHARA-equivalent coordinate                     |
+| L36     | 1.68893 / 31.07  | S-TIM28                        | Exact OHARA-equivalent coordinate                     |
 
-The original paragraph 0114 (PDF page 34 / printed page 4) explicitly defines d-line indices/Abbe numbers. It supplies no individual C/F/g indices, partial-dispersion values or APD measurements for these media. All 48 catalog-derived per-lens overrides are removed: 36 line indices and 12 dPgF fields, including the fitted L22 proxy. Eleven compatible catalog curves remain qualified spectral proxies; L22 is unresolved. These do not prove historical supplier, melt, chemistry or manufacturing identity, and no APO claim is made.
+The original paragraph 0114 (PDF page 34 / printed page 4) explicitly defines d-line indices/Abbe numbers. It supplies no individual C/F/g indices, partial-dispersion values or APD measurements for these media. All 48 catalog-derived per-lens overrides are removed: 36 line indices and 12 dPgF fields, including the fitted L22 proxy. Twelve compatible catalog curves remain qualified spectral proxies, including approximate SFLDN3 for L22. These do not prove historical supplier, melt, chemistry or manufacturing identity, and no APO claim is made.
 
 The clearest chromatic pairing is D1. L12 combines `νd = 34.97` with L13 at `νd = 81.54`, giving a large dispersion contrast inside a weakly positive cemented pair. This is consistent with Canon's statement that the production optical system contains one UD element, but the patent itself does not assign the commercial UD designation.
 
@@ -167,7 +167,7 @@ The design's chromatic strategy is most evident in the glass contrasts rather th
 
 The data file's S-FPL51-equivalent L13 has the strongest claim to correspondence with Canon's marketed UD element. That identification is based on the exact `nd/νd` coordinate and the one-UD-element production specification; the patent does not name OHARA or designate L13 as “UD.”
 
-The eleven named coordinate-compatible curves provide qualified spectral modeling without per-lens catalog overrides. L22 now has only the original d-line/Abbe pair and remains spectrally unresolved. Plotted d/g/C aberrations are contextual source evidence, not numerical line-index or partial-dispersion measurements; they do not establish APO, secondary-spectrum accuracy or historical materials identity.
+The twelve named coordinate-compatible curves provide qualified spectral modeling without per-lens catalog overrides. L22 keeps the original d-line/Abbe pair while the compatible SFLDN3 curve supplies estimated dispersion. Plotted d/g/C aberrations are contextual source evidence, not numerical line-index or partial-dispersion measurements; they do not establish APO, secondary-spectrum accuracy or historical materials identity.
 
 ## Conditional Expressions
 
@@ -245,7 +245,7 @@ Every element, concave end and both cemented interfaces were inspected. Native c
 
 Rejected trials preserve numerical source geometry. S8/S9 clear 10/10 gives combined sag 2.30 mm, exceeding 2.090 mm allowed in the unchanged 2.32179 mm air gap. S18 clear 9.5 alongside S17 clear 10 gives sag 0.56 mm, exceeding 0.541 mm allowed in 0.60067 mm. Both fail at every source station. No R/d, asphere, stop authority, nominal target, zoom gap or finite-focus cam is adjusted. Catalog design endpoints now quote the source 56.9/241.3 rather than computed 56.898033/241.315658.
 
-All twelve source nd/νd pairs are directly confirmed and unchanged. The 48 removed overrides were catalog-derived, including L22's ad hoc fitted line-index/partial proxy. Eleven compatible catalog curves remain; L22 is Unmatched. Source spectral references, qualified labels, per-element table and narrative now agree. No source filter, cover plate or bonded resin is tabulated. Historical supplier, melt, chemistry, cement and manufacturing method remain unresolved.
+All twelve source nd/νd pairs are directly confirmed and unchanged. The 48 removed overrides were catalog-derived, including L22's ad hoc fitted line-index/partial proxy. At the Oct30 review eleven compatible catalog curves remained and L22 was Unmatched; the Oct31 scoped follow-up below supplies its qualified SFLDN3 proxy. Source spectral references, qualified labels, per-element table and current narrative now agree. No source filter, cover plate or bonded resin is tabulated. Historical supplier, melt, chemistry, cement and manufacturing method remain unresolved.
 
 Original paragraph 0092 (PDF page 33 / printed 3) defines maximum movement of a reciprocating unit as maximum absolute excursion, while Table 1 on page 36 / printed 6 gives m2/m1 = −0.002, matching endpoint displacement rather than the sampled maximum magnitude 0.120510. This existing source-definition conflict is now structured as unresolved source.errata, with all source gaps and the reversal preserved. No isolated numeric correction is established. A generic source-errata follow-up remains appropriate. The absent d23 spacing row is independently computed BFD, and the middle Fno and finite 1.1 m cam remain explicit reconstructions.
 
@@ -274,3 +274,9 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  1.100000000 |           1.100000 | 169 / 151 / 111                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 1001.010987% at zoom 0.25, focus 0.35, aberration control 0: Gaussian 34.603202438 m versus label 3.142857143 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## Scoped Catalog Follow-up — 2026-10-31
+
+The original US 20080112063A 1 Numerical Embodiment 2 table, PDF page 35 / printed page 5, confirms source S7 / L22/id5 at **1.84666/23.93**. ¶0114 (PDF page 34 / printed page 4) explicitly defines the d reference. This ordinary glass has no published individual C/F/g, numerical partial dispersion or APD designation. No resin layer or source camera-side plate is tabulated. The 2026-10-30 source-shape review, all source coordinates and the removal of 48 unsupported per-lens overrides remain unchanged.
+
+[SUMITA's official download bundle](https://www.sumita-opt.co.jp/en/download/), `zemax.agf` header 2026/08/21, lists the existing SFLDN3 Schott-form polynomial unchanged at nominal 1.84666/23.9. Its nominal residuals are 0/−0.03; coefficient-derived C/d/F/g are 1.83654084/1.84665863/1.87198539/1.89399989 and PgF 0.62109682 (evaluated νd 23.886846, residual −0.043154). The source has no PgF to constrain this estimate. Current OHARA/Nikon-Hikari/SUMITA searches supply no better full-source-constrained choice: S-NPH53, S-TIH53WN and S-TIH53 have larger nominal Abbe differences, while SUMITA SFN3 shares the rounded pair but has a different partial-dispersion curve. No evidence identifies either historical formulation. SFLDN3 is a qualified existing proxy, not the former ad hoc fitted L22 spectrum, and supplies the twelfth compatible curve without new per-lens spectral overrides.

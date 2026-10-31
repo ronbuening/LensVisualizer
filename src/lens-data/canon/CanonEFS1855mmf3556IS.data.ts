@@ -22,10 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * remain unchanged; no source finite-focus table or physical iris is published.
  *
  * Paragraph 0116 (PDF p. 23, printed 6) explicitly defines N/nu at the d-ray.
- * Ten compatible catalog curves remain qualified spectral proxies, with no
- * historical supplier, melt or chemistry identified. N10 remains an unmatched
- * optical medium; a past obsolete-glass candidate does not identify it. The
- * source publishes no position-specific C/F/g indices, partial dispersion or
+ * Eleven compatible catalog curves are qualified spectral proxies, with no
+ * historical supplier, melt or chemistry identified. N10 uses the published
+ * POLYCARB numerical proxy (2026-10-31); its +0.00241 catalog nd difference
+ * does not establish source polycarbonate. The source publishes no
+ * position-specific C/F/g indices, partial dispersion or
  * APD values; no unsupported per-lens spectral override is added.
  *
  * Table 1 condition 5 is 0.59 versus literal 0.659544, and condition 9's printed
@@ -197,7 +198,7 @@ const LENS_DATA = {
       vd: 30.2,
       indexReference: "d",
       focalLengthMm: -211.974,
-      glass: "Unmatched optical medium (583302; historical material, supplier and chemistry unresolved)",
+      glass: "POLYCARB (published MISC catalog; qualified numerical polymer proxy; source chemistry and supplier unspecified)",
       role: "Weak negative optical element carrying the sole asphere on its rear face; historical material is unidentified.",
     },
     {
