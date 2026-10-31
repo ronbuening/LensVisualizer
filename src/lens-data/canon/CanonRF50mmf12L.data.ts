@@ -12,6 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Fifteen legacy dPgF values attributed to absent grantUS10838201B2 are preserved in analysis
  * as unverified provenance, but removed from active tracing: this selected A1 prints none.
  * Source aperture is f/1.25. Source focus endpoints are published; interpolation is qualified.
+ * 2026-10-31 scoped reference-label correction: retain explicit d; source citation
+ * belongs here rather than in the uncertainty-only indexReferenceNote field.
+ * US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.
  */
 
 const LENS_DATA = {
@@ -57,8 +60,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 46.58,
       focalLengthMm: 47.21,
       glass: "S-LAH65V (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -74,8 +75,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68893,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 31.07,
       focalLengthMm: -43.0,
       glass: "S-TIM28 (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -91,8 +90,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 29.13,
       focalLengthMm: 42.8,
       glass: "S-LAH99 (OHARA compatible catalog proxy; source nd/vd pair, supplier/melt unspecified)",
@@ -108,8 +105,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65412,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 39.68,
       focalLengthMm: -50.05,
       glass: "S-NBH5 (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -124,8 +119,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.66565,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 35.64,
       focalLengthMm: -38.82,
       glass: "H-ZBaF4 (CDGM nearest-coordinate spectral proxy; source pair retained, supplier/melt unspecified)",
@@ -141,8 +134,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.95375,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 32.32,
       focalLengthMm: 38.91,
       glass: "S-LAH98 (OHARA compatible catalog proxy; source nd/vd pair, supplier/melt unspecified)",
@@ -158,8 +149,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 81.54,
       focalLengthMm: 42.76,
       glass: "S-FPL51 (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -176,8 +165,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.738,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 32.26,
       focalLengthMm: -26.19,
       glass: "S-NBH53 (OHARA compatible catalog proxy; source nd/vd pair, supplier/melt unspecified)",
@@ -193,8 +180,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76385,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 48.51,
       focalLengthMm: 38.96,
       glass: "S-LAH96 (OHARA compatible catalog proxy; source nd/vd pair, supplier/melt unspecified)",
@@ -210,8 +195,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.66565,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 35.64,
       focalLengthMm: -46.1,
       glass: "H-ZBaF4 (CDGM nearest-coordinate spectral proxy; source pair retained, supplier/melt unspecified)",
@@ -227,8 +210,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.883,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 40.8,
       focalLengthMm: 38.77,
       glass: "S-LAH58 / TAFD30 (compatible catalog proxies; supplier/melt unspecified)",
@@ -243,8 +224,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 40.8,
       focalLengthMm: 33.67,
       glass: "S-LAH58 / TAFD30 (compatible catalog proxies; supplier/melt unspecified)",
@@ -260,8 +239,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59551,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 39.24,
       focalLengthMm: -40.55,
       glass: "S-TIM8 (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -277,8 +254,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.673,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 38.15,
       focalLengthMm: -55.64,
       glass: "S-NBH52 (OHARA compatible catalog proxy; supplier/melt unspecified)",
@@ -294,8 +269,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2019/0265441 A1 ¶0068, PDF15/printed5 defines each material index/Abbe at d; Numerical Data2 PDF16–17. No numerical C/F/g indices or partial dispersion is printed in this application.",
       vd: 46.58,
       focalLengthMm: 89.08,
       glass: "S-LAH65V / L-LAH65V (OHARA compatible catalog proxies; supplier/melt unspecified)",

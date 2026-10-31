@@ -32,6 +32,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and half-angle 30.5 are distinct from the generic full-frame21.65 mm corner .
  * No numerical close-focus travel is published; all focus probes are identical
  * infinity geometries. Production0.28m is metadata, not a reconstructed state.
+ * 2026-10-31 scoped reference-label correction: retain explicit d; source citation
+ * belongs here rather than in the uncertainty-only indexReferenceNote field.
+ * US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.
  */
 
 const LENS_DATA = {
@@ -85,8 +88,6 @@ const LENS_DATA = {
       type: "Negative Meniscus (1× Asph)",
       nd: 1.583,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 59.38,
       focalLengthMm: -60.726202,
       glass: "S-BAL42 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -98,8 +99,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.516,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 64.14,
       focalLengthMm: -45.725707,
       glass: "S-BSL7 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -111,8 +110,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.764,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 48.49,
       focalLengthMm: 26.222833,
       glass: "S-LAH96 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -125,8 +122,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.855,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 24.8,
       focalLengthMm: -61.675756,
       glass: "S-NBH56 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -139,8 +134,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 25.46,
       focalLengthMm: 72.73077,
       glass: "TAFD40 (HOYA) coordinate proxy; patent vendor unresolved",
@@ -152,8 +145,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.595,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 67.74,
       focalLengthMm: 85.074102,
       glass: "S-FPM2 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -165,8 +156,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 29.74,
       focalLengthMm: -108.650028,
       glass: "NBFD29 (HOYA) coordinate proxy; patent vendor unresolved",
@@ -178,8 +167,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 81.54,
       focalLengthMm: 154.170372,
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -196,8 +183,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 29.74,
       focalLengthMm: -26.841416,
       glass: "NBFD29 (HOYA) coordinate proxy; patent vendor unresolved",
@@ -210,8 +195,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 81.54,
       focalLengthMm: 43.211274,
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
@@ -227,8 +210,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 46.53,
       focalLengthMm: 43.854817,
       glass: "S-LAH65VS (OHARA) coordinate proxy; patent vendor unresolved",
@@ -240,8 +221,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 29.13,
       focalLengthMm: 32.796527,
       glass: "TAFD55 (HOYA) coordinate proxy; patent vendor unresolved",
@@ -254,8 +233,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 29.74,
       focalLengthMm: -27.98411,
       glass: "NBFD29 (HOYA) coordinate proxy; patent vendor unresolved",
@@ -268,8 +245,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.613,
       indexReference: "d",
-      indexReferenceNote:
-        "US20240302626A1 ¶0078 PDF p15 defines nd/vd at d 587.6 nm with F 486.1/C 656.3 nm; Table 3/4 pp 16–17 supplies nd/vd only, not numerical C/F/g or partial ratios.",
       vd: 44.27,
       focalLengthMm: -201.545627,
       glass: "S-NBM51 (OHARA) coordinate proxy; patent vendor unresolved",

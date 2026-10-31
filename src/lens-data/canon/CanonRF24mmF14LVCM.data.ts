@@ -22,6 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Both pass axial/chiefs after the inferred rim raise, with0 hidden trim.
  * Source far beta print-bin, field/plot and BF/f contradictions remain unresolved;
  * generic full-frame field reaches~89%, optical IS unmodeled, production correlation inferred.
+ * 2026-10-31 scoped reference-label correction: retain explicit d; source citation
+ * belongs here rather than in the uncertainty-only indexReferenceNote field.
+ * JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.
  */
 
 const LENS_DATA = {
@@ -79,8 +82,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.59349,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 67.0,
       focalLengthMm: -52.148246,
       glass: "J-PSKH4 catalog equivalent (patent 593670; production supplier unspecified)",
@@ -92,8 +93,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.54814,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 45.8,
       focalLengthMm: -35.631525,
       glass: "LLF1 catalog equivalent (patent 548458; production supplier unspecified)",
@@ -105,8 +104,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76385,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 48.5,
       focalLengthMm: 24.869542,
       glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
@@ -119,8 +116,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85478,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 24.8,
       focalLengthMm: -57.252937,
       glass: "S-NBH56 catalog equivalent (patent 855248; production supplier unspecified)",
@@ -133,8 +128,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.00069,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 25.5,
       focalLengthMm: 43.795312,
       glass: "TAFD40L-W catalog equivalent (patent 001255; production supplier unspecified)",
@@ -146,8 +139,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62004,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 36.3,
       focalLengthMm: -167.877978,
       glass: "E-F2 catalog equivalent (patent 620363; production supplier unspecified)",
@@ -159,8 +150,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76385,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 48.5,
       focalLengthMm: 27.259062,
       glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
@@ -173,8 +162,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72047,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 34.7,
       focalLengthMm: -33.678789,
       glass: "N-KZFS8 catalog equivalent (patent 720347; production supplier unspecified)",
@@ -187,8 +174,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 81.5,
       focalLengthMm: 55.175782,
       glass: "H-FK61 catalog equivalent (source 497815, compatible catalog 497816; production supplier unspecified)",
@@ -204,8 +189,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 29.7,
       focalLengthMm: -20.214523,
       glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
@@ -218,8 +201,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 81.5,
       focalLengthMm: 39.737184,
       glass: "H-FK61 catalog equivalent (source 497815, compatible catalog 497816; production supplier unspecified)",
@@ -235,8 +216,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 46.5,
       focalLengthMm: 37.876794,
       glass: "TAF3D catalog equivalent (patent 804465; production supplier unspecified)",
@@ -248,8 +227,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.92286,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 20.9,
       focalLengthMm: 53.875285,
       glass: "N-SF66 catalog equivalent (patent 923209; production supplier unspecified)",
@@ -262,8 +239,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 29.7,
       focalLengthMm: -36.93535,
       glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
@@ -276,8 +251,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65412,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.",
       vd: 39.7,
       focalLengthMm: -170.525195,
       glass: "N-KZFS5 catalog equivalent (patent 654397; production supplier unspecified)",

@@ -86,3 +86,11 @@ The infinity row uses the separate modeled-angle launch; nonzero rows use Gaussi
 These results do not claim true finite-corner reach. Separate infinity source-field, inverse-image-height/vector
 checks remain as previously recorded. Source object-plane uncertainty, field limitations and off-axis vignetting
 remain explicit; no cap, cam or iris is fitted to make paraxial field fractions land at a desired image height.
+
+## 2026-10-31 — Scoped known-d reference citation relocation
+
+Preserve Oct 30 complete source/shape/glass date and Aug 20 history. Direct original `patents/JP2025015010A.pdf`, Numerical Example 3 ¶0089/PDF pp. 15–16, plus ¶0082/pp. 11–12: nd is explicitly d 587.6 nm, νd=(Nd−1)/(NF−NC), F 486.1/C 656.3 nm. The source names g 435.8 nm but publishes no numerical per-medium C/F/g/partial data. All 15 lens pairs and GB source 1.51633/64.1 remain literal.
+
+Exactly 15 identical positive `indexReferenceNote` strings are removed via an exact-value/path whitelist; all explicit d fields remain. Their citation moves to the data header/analysis. The uncertainty-only field had incorrectly selected Inspector n(source)/ν(source); nd/νd now reflects the verified source. No genuine unknown-reference or precision note is removed, and source.errata/APD/material qualifications remain exact.
+
+Native Fig. 5/PDF p. 27 bitmap 1181×1859 px/423 ppi confirms the existing compounds and separate GB; reference/table vector text was rendered at 150/180 dpi only for reading. All physical/source/spectral/control fields, all 16 curves and every C/d/F/g channel remain identical. Nine focus/zoom geometry/SVG/diagnostic comparisons are exact, without a new clearance or complete shape-review claim. Existing constrained finite rim, source β/field/BF issues and production limits remain unchanged.
