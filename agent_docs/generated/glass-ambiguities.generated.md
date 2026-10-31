@@ -16,8 +16,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **11841** glass elements examined
 - **2715** elements have multiple coordinate-compatible candidates
 - **493** lens files are affected
-- **286** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **120** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **285** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **119** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
@@ -278,7 +278,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `F2 / S-TIM2 class (620/363)` | 1.62000 / 36.30 (d) | F2 — smallest d-line \|Δn\| (4.0e-5 vs 4.1e-5) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L12 |
 | `SK14 / S-BSM14 / BACD14 class (603/607)` | 1.60310 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (1.1e-5 vs 1.2e-5) | S-BSM14 (Ohara, name)<br>N-SK14 (Schott, alias)<br>J-SK14 (Hikari, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L2 |
 | `BaF8 / E-BAF8 / K-BaF8 class (624/471)` | 1.62370 / 47.00 (d) | E-BAF8 — direct name evidence outranks six-digit code evidence. | BAM8 (Ohara, code, preferred code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L4 |
-| `N-SSK5 (Schott; S-BSM25 class equivalent)` | 1.65844 / 50.90 (d) | N-SSK5 — Annotation vendor context matches Schott. | S-BSM25 (Ohara, name, vendor ✗) | 1 | [CANON TS-E 135mm f/4 L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) G1 |
+| `N-SSK5 (Schott; S-BSM25 class equivalent) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved` | 1.65844 / 50.90 (d) | N-SSK5 — Annotation vendor context matches Schott. | S-BSM25 (Ohara, name, vendor ✗) | 1 | [CANON TS-E 135mm f/4 L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) G1 |
 | `583594 — vendor-unresolved coordinate class` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L1 |
 | `883408 — vendor-unresolved coordinate class` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 3 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L2 |
 | `497815 — K-PFK80 compatible low-dispersion spectral proxy; patent vendor unspecified` | 1.49700 / 81.50 (d) | K-PFK80 — direct name evidence outranks six-digit code evidence. | MC-FCD1-M20 (Hoya, code, preferred code row) | 3 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L3 |
