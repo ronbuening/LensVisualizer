@@ -226,3 +226,25 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  0.599982193 |           0.600000 | 169 / 141 / 48                    | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 15.086795% at zoom 0, focus 0.05, aberration control 0: Gaussian 10.189584638 m versus label 12.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 11 of 11 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+11 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.60311 / 60.7 | BACD14 | +0.000001 | -0.005 |
+| Element 2 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 3 | 1.51742 / 52.4 | S-NSL36 | -0.000003 | +0.031 |
+| Element 4 | 1.883 / 40.8 | S-LAH58 | -0.000003 | -0.035 |
+| Element 5 | 1.51742 / 52.4 | S-NSL36 | -0.000003 | +0.031 |
+| Element 6 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 7 | 1.883 / 40.8 | S-LAH58 | -0.000003 | -0.035 |
+| Element 8 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 9 | 1.883 / 40.8 | S-LAH58 | -0.000003 | -0.035 |
+| Element 10 | 1.883 / 40.8 | S-LAH58 | -0.000003 | -0.035 |
+| Element 11 | 1.55963 / 61.2 | S-BAL50 | -0.000005 | -0.027 |

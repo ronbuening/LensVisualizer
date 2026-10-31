@@ -127,3 +127,29 @@ The prior pass activated catalog curves despite the unspecified reference line. 
 Preserve the completed **2026-10-14** original-PDF shape/glass and source-state review above. A narrow literal summary check of the same unmodified `patents/JPH0862541A.pdf`, Numerical Example 2 **Table 3, PDF page 9**, reads 焦点距離 (focal length) **76.12 / 135.00 / 291.49 mm**. Only `catalog.focalLengthMm.design` changes: computed `[76.1174798344741, 291.49914720355235]` → printed `[76.12, 291.49]`. Calculated EFL values remain separately in analysis/runtime.
 
 Current raw data SHA-256 `dc5482331941327ffc75ff149fbb74445d6a40b6f7779f0610b8554f22708dbf`; metadata-only candidate SHA-256 `6cd68686ed42de569074d6bb8dd620575f0f952be44afcf1571d640cf3fdae14`. Parsed equality after excluding only `catalog.focalLengthMm.design` confirms every other authored value unchanged, including all optical arrays/media, 16 stations (three source and thirteen solved), controls, source qualifications and actual review dates. Original PDF SHA-256 `3c14cb1f06008b13978987feb9f70056055222ac8231161c8e2289547f8b432b`. No fresh whole-lens review or extra reuse count.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 15 of 15 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+15 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 2 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 3 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 4 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |
+| Element 5 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 6 | 1.84666 / 23.8 | PBH53 | -0.000002 | +0.086 |
+| Element 7 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 8 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 9 | 1.834 / 37.2 | S-LAH60 | -0.000000 | -0.040 |
+| Element 10 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 11 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 12 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 13 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 14 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |
+| Element 15 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |

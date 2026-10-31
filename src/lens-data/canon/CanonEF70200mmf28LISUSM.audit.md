@@ -41,3 +41,35 @@ The 62 non-source interpolated zoom positions are illustrative: maximum aperture
 ### Historical coverage qualification
 
 Older undated 600 dpi rim and live-site comparisons are retained as historical context in the source history; this entry supplies their actual native-scale qualification. Older family and catalog findings are not redated or counted as newly inspected originals. No production supplier or exact-production prescription claim follows from this review.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 21 of 21 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+21 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.7495 / 35.3 | S-LAM7 | -0.000003 | -0.017 |
+| Element 2 | 1.497 / 81.5 | S-FPL51 | -0.000001 | +0.046 |
+| Element 3 | 1.497 / 81.5 | S-FPL51 | -0.000001 | +0.046 |
+| Element 4 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 5 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 6 | 1.8061 / 40.9 | S-LAH53 | -0.000002 | +0.026 |
+| Element 7 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 8 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 9 | 1.71299 / 53.9 | S-LAL8 | +0.000005 | -0.033 |
+| Element 10 | 1.497 / 81.5 | S-FPL51 | -0.000001 | +0.046 |
+| Element 11 | 1.6668 / 33 | S-TIM39 | -0.000000 | +0.055 |
+| Element 12 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 13 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |
+| Element 14 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 15 | 1.60311 / 60.6 | S-BSM14 | +0.000002 | +0.041 |
+| Element 16 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 17 | 1.6935 / 53.2 | L-LAL13 | -0.000000 | -0.014 |
+| Element 18 | 1.6935 / 53.2 | L-LAL13 | -0.000000 | -0.014 |
+| Element 19 | 1.497 / 81.5 | S-FPL51 | -0.000001 | +0.046 |
+| Element 20 | 1.834 / 37.2 | S-LAH60 | -0.000000 | -0.040 |
+| Element 21 | 1.834 / 37.2 | S-LAH60 | -0.000000 | -0.040 |

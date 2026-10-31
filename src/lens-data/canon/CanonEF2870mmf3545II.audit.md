@@ -143,3 +143,24 @@ All 66,885/66,885 axial samples and all 4,095 sampled chiefs clear with the actu
 | 1      | Inferred close | 49 / 48 / 27                                 |
 
 The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 10 of 10 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+10 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.834 / 37.2 | J-LASF010 | +0.000000 | -0.016 |
+| Element 2 | 1.58313 / 59.4 | J-SK12 | +0.000000 | +0.020 |
+| Element 3 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 4 | 1.6516 / 58.6 | N-LAK7 | -0.000000 | -0.082 |
+| Element 5 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 6 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 7 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 8 | 1.7552 / 27.5 | SF4 | +0.000001 | +0.080 |
+| Element 9 | 1.834 / 37.2 | J-LASF010 | +0.000000 | -0.016 |
+| Element 10 | 1.60311 / 60.7 | J-SK14 | +0.000000 | -0.006 |

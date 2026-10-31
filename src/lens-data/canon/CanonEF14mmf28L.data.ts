@@ -78,8 +78,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -97.290202,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAL14)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "First image-facing negative meniscus in the distributed fixed front group.",
     },
     {
@@ -90,8 +90,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -1210.999554,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-BSM14)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative meniscus whose object-side asphere corrects extreme-field distortion.",
     },
     {
@@ -102,8 +102,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -51.444873,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAL14)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Third image-facing negative meniscus; increases front-group divergence progressively.",
     },
     {
@@ -114,8 +114,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -47.79789,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAH66)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index fourth negative meniscus in the fixed front group.",
     },
     {
@@ -126,8 +126,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -24.41362,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAL14)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Fifth negative meniscus; cemented to L6 for zonal and higher-order spherical correction.",
       cemented: "J1",
     },
@@ -139,8 +139,8 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       focalLengthMm: 21.052217,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-TIM8)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-TIM8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear component of the net-positive J1 cemented pair.",
       cemented: "J1",
     },
@@ -152,8 +152,8 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.8,
       focalLengthMm: 16.494741,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-TIL26)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-TIL26 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the first rear-group cemented pair.",
       cemented: "J2",
     },
@@ -165,8 +165,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -63.632718,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAH66)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Object-facing negative meniscus cemented behind L7; J2 remains net positive.",
       cemented: "J2",
     },
@@ -178,8 +178,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -30.293081,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAH66)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second object-facing negative meniscus immediately before the aperture stop.",
     },
     {
@@ -190,8 +190,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 65.166257,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-BSM14)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the weakly negative post-stop J3 pair.",
       cemented: "J3",
     },
@@ -203,8 +203,8 @@ const LENS_DATA = {
       nd: 1.7432,
       vd: 49.3,
       focalLengthMm: -48.570574,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAM60)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAM60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear component that makes J3 net negative and bounds the corrective air lens.",
       cemented: "J3",
     },
@@ -216,8 +216,8 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 21.3,
       focalLengthMm: -29.223516,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate PBH71)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "PBH71 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Very-high-index, high-dispersion negative component of the chromatically active J4 pair.",
       cemented: "J4",
     },
@@ -229,8 +229,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 24.92255,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-FSL5)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive partner in J4; the cemented pair is net positive.",
       cemented: "J4",
     },
@@ -242,8 +242,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: 42.572843,
-      glass: "Unmatched (source index/Abbe reference unspecified; d-line coordinate candidate S-LAH65V)",
-      indexReferenceNote: "The source table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element; shares rear positive power and moderates spherical undercorrection.",
     },
   ],

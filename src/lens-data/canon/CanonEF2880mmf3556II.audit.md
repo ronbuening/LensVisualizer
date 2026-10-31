@@ -58,3 +58,24 @@ All 65 aimed real marginal rays trace, but only 56/65 lie within 3% of nominal; 
 Source stations are separated from illustrative intervals in the first-order census. The fixed inferred image gap gives source-node BF residuals −0.008429 / −0.030984 / −0.107726 mm. At zoom 0.78125, EFL is 61.986601 mm versus displayed 65.232500 mm, and BF 34.988657 mm versus image gap 37.732911 mm, giving −2.744254 mm defocus. Source gaps have only three stations and no compensator cam; linear interpolation remains illustrative and not focus-preserving.
 
 At 21 zoom states × eight aperture presets, all 168 working-ray calls trace. Baseline/candidate results and every 193-point circular-pupil passing count are unchanged over axial, half-field and corner fields at those states (63 fields total). All 193 axial samples pass. Source-node corner counts are 116 / 175 / 163 of 193, retaining off-axis vignetting rather than claiming full-pupil illumination. The actual renderer at 21 zoom states gives 210 finite, singly connected, closed element paths with zero hidden trimming; corner aiming reaches approximately 21.65 mm. Source-station SVGs were compared with native Figure 1(A–C). No inferred cut requires a beam exemption or cut probe. Source fidelity, sampled runtime clearance, the unmodeled finite-focus mechanism and production correlation remain separate conclusions.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 10 of 10 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+10 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| L11 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L12 | 1.70154 / 41.2 | S-BAH27 | -0.000004 | +0.039 |
+| L13 | 1.62299 / 58.2 | S-BSM15 | +0.000002 | -0.034 |
+| L14 | 1.76182 / 26.5 | S-TIH14 | +0.000001 | +0.018 |
+| L21 | 1.63854 / 55.4 | S-BSM18 | -0.000001 | -0.020 |
+| L22 | 1.66672 / 48.3 | S-BAH11 | -0.000002 | +0.025 |
+| L23 | 1.78472 / 25.7 | S-TIH11 | +0.000003 | -0.017 |
+| L24 | 1.58144 / 40.8 | S-TIL25 | -0.000001 | -0.052 |
+| L31 | 1.63854 / 55.4 | S-BSM18 | -0.000001 | -0.020 |
+| L32 | 1.66672 / 48.3 | S-BAH11 | -0.000002 | +0.025 |

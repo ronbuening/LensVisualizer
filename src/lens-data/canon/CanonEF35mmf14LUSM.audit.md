@@ -76,3 +76,25 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  0.299794800 |           0.300000 | 193 / 173 / 120                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 33.724995% at zoom 0, focus 0.05, aberration control 0: Gaussian 3.976500274 m versus label 6.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 11 of 11 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+11 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.58313 / 59.4 | J-SK12 | +0.000000 | +0.020 |
+| Element 2 | 1.58313 / 59.4 | J-SK12 | +0.000000 | +0.020 |
+| Element 3 | 1.713 / 53.8 | N-LAK8 | +0.000003 | +0.032 |
+| Element 4 | 1.713 / 53.8 | N-LAK8 | +0.000003 | +0.032 |
+| Element 5 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 6 | 1.83481 / 42.7 | J-LASF05 | +0.000000 | +0.033 |
+| Element 7 | 1.6398 / 34.5 | S-TIM27 | -0.000001 | -0.034 |
+| Element 8 | 1.80518 / 25.4 | N-SF6 | +0.000000 | -0.040 |
+| Element 9 | 1.83481 / 42.7 | J-LASF05 | +0.000000 | +0.033 |
+| Element 10 | 1.7725 / 49.6 | J-LASF016 | +0.000000 | +0.020 |
+| Element 11 | 1.7725 / 49.6 | J-LASF016 | +0.000000 | +0.020 |

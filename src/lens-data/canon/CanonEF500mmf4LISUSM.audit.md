@@ -133,3 +133,31 @@ unverified. Source fidelity, sampled runtime clearance and production correlatio
 - The old inference of d-reference from catalog agreement and aberration-plot wavelengths is superseded.
   Approximate d-reference tracing and qualified product fluorite/UD associations do not establish source
   wavelength, supplier, melt or historical chemistry. No separate cement/resin/hybrid medium is invented.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 17 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+17 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Protection glass HG | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L1a front positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L1c high-Abbe positive | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| L1c negative meniscus | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L2 positive | 1.805181 / 25.4 | S-TIH6 | -0.000000 | +0.025 |
+| L2 negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L3a negative meniscus | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3a positive | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L3b positive | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3b negative doublet member | 1.6779 / 55.3 | S-LAL12 | -0.000000 | +0.041 |
+| L3b negative singlet | 1.733997 / 51.5 | S-LAL59 | -0.000000 | -0.029 |
+| L3c positive singlet | 1.696797 / 55.5 | S-LAL14 | -0.000000 | +0.032 |
+| L3c positive doublet member | 1.517417 / 52.4 | S-NSL36 | -0.000000 | +0.031 |
+| L3c negative meniscus | 1.72 / 43.7 | S-LAM52 | -0.000000 | -0.010 |
+| Drop-in filter FL | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |

@@ -152,3 +152,30 @@ The DOE coefficients remain −4.22716e−5 and +4.71244e−10 on radial powers 
 to rounding, with physical track 256.3369041 mm and reduced-air track 255.5877756 mm. Source fidelity, sampled
 clearance and production correlation remain distinct; bulk spectra, exact radius provenance, finite focus, lateral IS
 and microscopic diffraction efficiency remain explicit limitations.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 16 of 16 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+16 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.56384 / 60.7 | S-BAL41 | -0.000001 | -0.033 |
+| Element 2 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| Element 3 | 1.51823 / 58.9 | S-NSL3 | -0.000001 | +0.002 |
+| Element 4 | 1.7495 / 35.3 | S-LAM7 | -0.000003 | -0.017 |
+| Element 5 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 6 | 1.6727 / 32.1 | S-TIM25 | -0.000000 | -0.001 |
+| Element 7 | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| Element 8 | 1.80518 / 25.4 | N-SF6 | +0.000000 | -0.040 |
+| Element 9 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 10 | 1.76182 / 26.5 | S-TIH14 | +0.000001 | +0.018 |
+| Element 11 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| Element 12 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| Element 13 | 1.6398 / 34.5 | S-TIM27 | -0.000001 | -0.034 |
+| Element 14 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| Element 15 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| Rear plate F | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |

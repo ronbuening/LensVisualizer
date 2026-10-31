@@ -64,9 +64,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -124.445,
-      glass: "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index negative front member of the weak positive cemented front component.",
       cemented: "C1",
     },
@@ -78,9 +77,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: 86.821,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAL14 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Lower-dispersion positive member of the front cemented component.",
       cemented: "C1",
     },
@@ -92,9 +90,8 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.8,
       focalLengthMm: 103.355,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAL8 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Air-spaced positive element completing unit I.",
     },
     {
@@ -105,9 +102,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -20.187,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong leading negative element of the variator and inner-focus unit II.",
     },
     {
@@ -118,9 +114,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -36.775,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAH65V (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second negative element of unit II.",
     },
     {
@@ -131,9 +126,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 20.12,
-      glass: "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member embedded within the net-negative unit II.",
     },
     {
@@ -144,9 +138,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -28.973,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear negative element completing unit II.",
     },
     {
@@ -157,9 +150,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -47.414,
-      glass: "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative high-dispersion member of positive cemented unit III.",
       cemented: "C2",
     },
@@ -171,9 +163,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 19.34,
-      glass: "Unmatched (source spectral reference unspecified; prior S-BSM14 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive lower-dispersion member supplying the net power of unit III.",
       cemented: "C2",
     },
@@ -185,9 +176,8 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       focalLengthMm: 28.005,
-      glass: "Unmatched (source spectral reference unspecified; prior S-NSL36 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the weak positive relay unit IV.",
       cemented: "C3",
     },
@@ -199,9 +189,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -33.347,
-      glass: "Unmatched (source spectral reference unspecified; prior S-LAH55V (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member reducing the net power of relay unit IV.",
       cemented: "C3",
     },
@@ -213,9 +202,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 25.843,
-      glass: "Unmatched (source spectral reference unspecified; prior S-TIH6 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive high-dispersion member of the transversely shifted IS doublet.",
       cemented: "C4",
     },
@@ -227,9 +215,8 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: -16.565,
-      glass: "Unmatched (source spectral reference unspecified; prior S-BAH27 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong negative member making unit V net negative for optical stabilization.",
       cemented: "C4",
     },
@@ -241,9 +228,8 @@ const LENS_DATA = {
       nd: 1.72342,
       vd: 38,
       focalLengthMm: 76.153,
-      glass: "Unmatched (source spectral reference unspecified; prior S-BAH28 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-BAH28 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Leading positive element of rear unit VI.",
     },
     {
@@ -254,9 +240,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 30.119,
-      glass: "Unmatched (source spectral reference unspecified; prior L-BAL42 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "L-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Primary positive rear element; rear surface 27A is the source asphere. Its manufacturing route is not identified by the patent.",
     },
     {
@@ -267,9 +252,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -34.559,
-      glass: "Unmatched (source spectral reference unspecified; prior S-TIH53 (OHARA) comparison is conditional)",
-      indexReferenceNote:
-        "US 6,061,180, column 12 defines ni and vi without a spectral line; the retained d-line tracing convention is approximate, and no catalog curve or historical glass identity is established.",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Terminal negative meniscus completing positive rear unit VI.",
     },
   ],

@@ -92,3 +92,30 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.499999991 |           0.500000 | 193 / 193 / 152                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 749.198853% at zoom 0.75, focus 0.25, aberration control 0: Gaussian 16.983977066 m versus label 2.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 16 of 16 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+16 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 2 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 3 | 1.713 / 53.8 | S-LAL8 | -0.000005 | +0.067 |
+| Element 4 | 1.83481 / 42.7 | S-LAH55V | -0.000003 | +0.025 |
+| Element 5 | 1.804 / 46.6 | S-LAH65V | -0.000001 | -0.017 |
+| Element 6 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 7 | 1.83481 / 42.7 | S-LAH55V | -0.000003 | +0.025 |
+| Element 8 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Element 9 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 10 | 1.51742 / 52.4 | S-NSL36 | -0.000003 | +0.031 |
+| Element 11 | 1.83481 / 42.7 | S-LAH55V | -0.000003 | +0.025 |
+| Element 12 | 1.80518 / 25.4 | S-TIH6 | +0.000001 | +0.025 |
+| Element 13 | 1.70154 / 41.2 | S-BAH27 | -0.000004 | +0.039 |
+| Element 14 | 1.72342 / 38 | S-BAH28 | -0.000000 | -0.044 |
+| Element 15 | 1.58313 / 59.4 | L-BAL42 | -0.000004 | -0.014 |
+| Element 16 | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |

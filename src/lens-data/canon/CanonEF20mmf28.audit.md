@@ -116,3 +116,25 @@ Corner survivors are 21/49 at infinity and 26/49 at close focus. Some peripheral
 interface; no opaque interface feature conceals that limitation. This is sampled runtime clearance, not complete
 peripheral transmission proof. There is no inferred cut requiring a beam exemption. Production correlation remains
 qualified, including the source filing after the marketed lens's introduction.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 11 of 11 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+11 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.62299 / 58.2 | S-BSM15 | +0.000002 | -0.034 |
+| Element 2 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 3 | 1.58313 / 59.4 | S-BAL42 | -0.000004 | -0.025 |
+| Element 4 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |
+| Element 5 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 6 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 7 | 1.62096 / 35.9 | TIM11 | -0.000005 | -0.019 |
+| Element 8 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 9 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 10 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 11 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |

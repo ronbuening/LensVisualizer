@@ -76,9 +76,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 227.345987,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in patent group L1.",
     },
     {
@@ -89,9 +88,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -126.309451,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the bonded pair whose interface carries the effective Canon DO phase.",
       cemented: "DO1",
     },
@@ -103,9 +101,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 91.815361,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSL7)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear member of the bonded DO pair and main positive component of patent group L1.",
       cemented: "DO1",
     },
@@ -117,9 +114,8 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       focalLengthMm: -60.00451,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAL8)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative member of fixed patent group L2, which the source identifies as the lateral IS group.",
     },
     {
@@ -130,9 +126,8 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: -32.872491,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM15)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented rear pair in the IS group.",
       cemented: "D2",
     },
@@ -144,9 +139,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 51.477738,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-NPH53)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-dispersion positive partner completing the net-negative IS group.",
       cemented: "D2",
     },
@@ -158,9 +152,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 31.188373,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive aspheric member of patent group L3 ahead of the aperture stop.",
     },
     {
@@ -171,9 +164,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -124.344478,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative partner completing patent group L3.",
     },
     {
@@ -184,9 +176,8 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.3,
       focalLengthMm: -39.18805,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH97)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-LAH97 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Single negative moving patent group L4 immediately behind the stop.",
     },
     {
@@ -197,9 +188,8 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       focalLengthMm: 61.309616,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-NSL36)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element of fixed patent group L5.",
     },
     {
@@ -210,9 +200,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -67.676777,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative element balancing the positive members of fixed patent group L5.",
     },
     {
@@ -223,9 +212,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 53.201389,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive element in fixed patent group L5.",
     },
     {
@@ -236,9 +224,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 59.091672,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM14)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive element completing fixed patent group L5.",
     },
     {
@@ -249,9 +236,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -37.415378,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH55)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative element of moving rear-focus patent group L6.",
     },
     {
@@ -262,9 +248,8 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: 25.46681,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH10)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the collapsed zero-air-gap E15/E16 assembly in moving patent group L6.",
       cemented: "D3",
     },
@@ -276,9 +261,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -19.707635,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH55)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative partner in the normalized E15/E16 assembly completing moving patent group L6.",
       cemented: "D3",
     },
@@ -290,9 +274,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 151.175826,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
-      indexReferenceNote:
-        "Paragraph 0052 defines bare ni/vi without a reference wavelength; only the DOE phase reference is explicitly d-line. Default d-line/Abbe tracing is approximate, with source supplier and chemistry unresolved.",
+      glass:
+        "S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Fixed final positive field-relay patent group L7 ahead of the 38.63 mm image spacing.",
     },
   ],

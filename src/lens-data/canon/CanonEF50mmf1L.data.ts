@@ -77,10 +77,9 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 278.2,
-      glass: "Unmatched (source reference unspecified; prior BACD14 coordinate class is conditional only)",
+      glass:
+        "BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -94,10 +93,9 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 176.1,
-      glass: "Unmatched (source reference unspecified; prior S-LAL14 coordinate class is conditional only)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -111,10 +109,9 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: -196.9,
-      glass: "Unmatched (source reference unspecified; prior S-NSL36 coordinate class is conditional only)",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -129,10 +126,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 59.2,
-      glass: "Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -147,10 +143,9 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: -52.1,
-      glass: "Unmatched (source reference unspecified; prior S-NSL36 coordinate class is conditional only)",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -164,10 +159,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: -21.5,
-      glass: "Unmatched (source reference unspecified; prior PBH53 coordinate class is conditional only)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -182,10 +176,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 28.4,
-      glass: "Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -200,10 +193,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: -71.7,
-      glass: "Unmatched (source reference unspecified; prior S-TIH6 coordinate class is conditional only)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -217,10 +208,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 73.2,
-      glass: "Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -234,10 +224,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 76.4,
-      glass: "Unmatched (source reference unspecified; prior S-LAH58 coordinate class is conditional only)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
@@ -251,10 +240,9 @@ const LENS_DATA = {
       nd: 1.55963,
       vd: 61.2,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 4 defines N and Abbe nu without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled, not identified as historical media.",
       focalLengthMm: 148.8,
-      glass: "Unmatched (source reference unspecified; prior S-BAL50 coordinate class is conditional only)",
+      glass:
+        "S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       apdNote:
         "No source APD designation or published partial dispersion; this does not establish a normal production melt.",

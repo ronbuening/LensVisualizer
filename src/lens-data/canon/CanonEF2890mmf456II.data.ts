@@ -75,9 +75,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: -59.434955,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative collector; moderates wide-angle distortion and coma while limiting the front-group diameter.",
     },
     {
@@ -88,9 +87,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: -46.69339,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second negative member concentrating Group 1 power and shaping the negative-lead entrance geometry.",
     },
     {
@@ -101,9 +99,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 76.59215,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-dispersion positive member that balances Group 1 spherical and longitudinal chromatic aberration.",
     },
     {
@@ -114,9 +111,8 @@ const LENS_DATA = {
       nd: 1.701536,
       vd: 41.2,
       focalLengthMm: 60.21314,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.701536, ν=41.2; spectral reference unspecified)",
+      glass:
+        "S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive singlet of the principal variator group.",
     },
     {
@@ -127,9 +123,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -41.769774,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Dispersive negative member of the Group 2 achromatizing doublet.",
       cemented: "J2",
     },
@@ -141,9 +136,8 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       focalLengthMm: 22.061658,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.603112, ν=60.6; spectral reference unspecified)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Crown positive member providing most of the rear-doublet power and longitudinal color correction.",
       cemented: "J2",
     },
@@ -155,9 +149,8 @@ const LENS_DATA = {
       nd: 1.688931,
       vd: 31.1,
       focalLengthMm: -16.651422,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.688931, ν=31.1; spectral reference unspecified)",
+      glass:
+        "S-TIM28 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong negative member of the stop-coupled compensator group.",
       cemented: "J3",
     },
@@ -169,9 +162,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 23.954582,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index positive partner controlling the net negative Group 3 power and cemented-interface coma.",
       cemented: "J3",
     },
@@ -183,9 +175,7 @@ const LENS_DATA = {
       nd: 1.58306,
       vd: 30.2,
       focalLengthMm: -277.806212,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source plastic-asphere option; source n=1.58306, ν=30.2; spectral reference unspecified)",
+      glass: "Unmatched (source plastic-asphere option; n=1.58306, ν=30.2; POLYCARB is a near candidate)",
       role: "Weak negative aspheric corrector; the source permits a plastic form, but formulation and manufacturing process are unresolved.",
     },
     {
@@ -196,9 +186,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 66.761785,
-      indexReferenceNote:
-        "Original ¶0035 (PDF p. 9) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.51633, ν=64.1; spectral reference unspecified)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive relay and field-flattening member that completes the positive fourth group.",
     },
   ],

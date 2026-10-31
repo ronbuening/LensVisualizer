@@ -66,9 +66,8 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front protection glass retained from the patent and Canon's production element count.",
     },
     {
@@ -79,9 +78,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 303.186311,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Single positive front subunit; one of the two production-correlated UD-class elements.",
     },
     {
@@ -92,9 +90,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 227.594019,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the negative-power L1b middle subunit; second production-correlated UD-class element.",
     },
     {
@@ -105,9 +102,8 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -165.488385,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member completing the net-negative L1b middle subunit.",
     },
     {
@@ -118,9 +114,8 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       focalLengthMm: 212.185301,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-Abbe positive element in L1c; the production fluorite association remains a correlation, with source wavelength and chemistry unresolved.",
     },
     {
@@ -131,9 +126,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: -462.297887,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative meniscus completing the net-positive L1c rear subunit.",
     },
     {
@@ -144,9 +138,8 @@ const LENS_DATA = {
       nd: 1.805181,
       vd: 25.4,
       focalLengthMm: 194.582241,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of the cemented inner-focus group L2.",
       cemented: "L2",
     },
@@ -158,9 +151,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -80.042831,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the net-negative cemented inner-focus group L2.",
       cemented: "L2",
     },
@@ -172,9 +164,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: -93.365654,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative first component of the cemented, net-positive L3a subunit.",
       cemented: "L3a",
     },
@@ -186,9 +177,8 @@ const LENS_DATA = {
       nd: 1.772499,
       vd: 49.6,
       focalLengthMm: 52.93004,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "E-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive second component of L3a, converging the beam before the stabilization subunit.",
       cemented: "L3a",
     },
@@ -200,9 +190,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: 72.40268,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive first component of the transversely movable L3b image-stabilization subunit.",
       cemented: "L3b-1",
     },
@@ -214,9 +203,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: -53.607318,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative cemented partner in the first L3b pair.",
       cemented: "L3b-1",
     },
@@ -228,9 +216,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -53.979361,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Separate negative element after the strongly curved L3b air lens; completes the net-negative IS subunit.",
     },
     {
@@ -241,9 +228,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: 117.502293,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "First positive element of the rear L3c subunit.",
     },
     {
@@ -254,9 +240,8 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.3,
       focalLengthMm: 53.972822,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-LAL12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of the final cemented pair in L3c.",
       cemented: "L3c-2",
     },
@@ -268,9 +253,8 @@ const LENS_DATA = {
       nd: 1.882997,
       vd: 40.8,
       focalLengthMm: -80.89395,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative partner of the final cemented pair; the pair remains net positive within L3c.",
       cemented: "L3c-2",
     },
@@ -281,9 +265,8 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      glass: "Unmatched (source reference unspecified; historical medium unresolved)",
-      indexReferenceNote:
-        "US 6,115,188 A, PDF p. 78 col. 32 defines Ni and nu-i without identifying a spectral line. Literal source pairs are retained; approximate d-reference tracing does not establish wavelength, chemistry, supplier or melt.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 25 surfaces R30–R31), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is inferred from original Fig. 88; the numerical table lists none. Included in elementCount with source HG, matching the selected 17-media / 13-group source configuration and retained maker count.",
     },
   ],

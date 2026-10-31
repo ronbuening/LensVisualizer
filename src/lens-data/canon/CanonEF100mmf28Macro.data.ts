@@ -70,9 +70,8 @@ const LENS_DATA = {
       vd: 60.7,
       indexReference: "d",
       focalLengthMm: 160.763571,
-      glass: "Unmatched (source spectral line unspecified; former 603607 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "J-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 2,
@@ -83,9 +82,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 127.917023,
-      glass: "Unmatched (source spectral line unspecified; former 786442 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 3,
@@ -96,9 +94,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 125.169113,
-      glass: "Unmatched (source spectral line unspecified; former 786442 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 4,
@@ -109,9 +106,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -46.729671,
-      glass: "Unmatched (source spectral line unspecified; former 805254 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 5,
@@ -122,9 +117,8 @@ const LENS_DATA = {
       vd: 30.1,
       indexReference: "d",
       focalLengthMm: -44.572309,
-      glass: "Unmatched (source spectral line unspecified; former 699301 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "E-FD15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D1",
     },
     {
@@ -136,9 +130,8 @@ const LENS_DATA = {
       vd: 40.9,
       indexReference: "d",
       focalLengthMm: 56.945473,
-      glass: "Unmatched (source spectral line unspecified; former 806409 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "P-LASF47 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D1",
     },
     {
@@ -150,9 +143,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 63.026971,
-      glass: "Unmatched (source spectral line unspecified; former 786442 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 8,
@@ -163,9 +155,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 71.271302,
-      glass: "Unmatched (source spectral line unspecified; former 805254 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 9,
@@ -176,9 +166,8 @@ const LENS_DATA = {
       vd: 40.1,
       indexReference: "d",
       focalLengthMm: -30.171137,
-      glass: "Unmatched (source spectral line unspecified; former 762401 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-LAM55 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 10,
@@ -189,9 +178,8 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 98.343522,
-      glass: "Unmatched (source spectral line unspecified; former 516641 coordinate class)",
-      indexReferenceNote:
-        "The source defines N_i/nu_i without a wavelength (PDF p.4); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
   ],
 

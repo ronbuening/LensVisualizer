@@ -91,8 +91,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 562.086404,
-      glass: "Unmatched (source index/Abbe reference unspecified; 487702 — crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1a front positive element",
     },
     {
@@ -103,8 +103,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 112.405768,
-      glass: "Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -119,8 +119,8 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 35,
       focalLengthMm: -180.113853,
-      glass: "Unmatched (source index/Abbe reference unspecified; 801350 — high-index class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAM66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1a negative element",
     },
     {
@@ -131,8 +131,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 150.787175,
-      glass: "Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -147,8 +147,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -235.636073,
-      glass: "Unmatched (source index/Abbe reference unspecified; 805254 — dense-flint class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1b negative meniscus",
     },
     {
@@ -159,8 +159,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 158.75464,
-      glass: "Unmatched (source index/Abbe reference unspecified; 487702 — crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1b positive element",
     },
     {
@@ -171,8 +171,8 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -48.651521,
-      glass: "Unmatched (source index/Abbe reference unspecified; 883408 — high-index lanthanum class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 negative front element",
     },
     {
@@ -183,8 +183,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -64.540879,
-      glass: "Unmatched (source index/Abbe reference unspecified; 487702 — crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 negative member of cemented pair",
       cemented: "L2-D1",
     },
@@ -196,8 +196,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 62.663609,
-      glass: "Unmatched (source index/Abbe reference unspecified; 847239 — dense-flint class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 positive member of cemented pair",
       cemented: "L2-D1",
     },
@@ -209,8 +209,8 @@ const LENS_DATA = {
       nd: 1.762,
       vd: 40.1,
       focalLengthMm: 54.750656,
-      glass: "Unmatched (source index/Abbe reference unspecified; 762401 — lanthanum class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAM55 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L3 positive front element",
     },
     {
@@ -221,8 +221,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 83.051492,
-      glass: "Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -238,8 +238,8 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.3,
       focalLengthMm: -34.091213,
-      glass: "Unmatched (source index/Abbe reference unspecified; 593353 — flint class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FTM16 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L3 negative member of cemented pair",
       cemented: "L3-D1",
     },
@@ -251,8 +251,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -535.59855,
-      glass: "Unmatched (source index/Abbe reference unspecified; 834372 — high-index lanthanum class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L4 negative meniscus",
     },
     {
@@ -263,8 +263,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 143.107597,
-      glass: "Unmatched (source index/Abbe reference unspecified; 487702 — crown class)",
-      indexReferenceNote: "The source table labels n/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L4 positive rear element",
     },
   ],

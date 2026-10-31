@@ -67,3 +67,31 @@ Separate65-position infinity aperture/first-order census stays within 3% of the 
 The 2026-08-19 entry above is preserved as its actual historical review. Its17-active-curves, explicit bulk d-line, fixed STO.sd and600 dpi detail claims are superseded by this fresh original/reference and current-schema review; they are not reissued as fresh evidence. No auxiliary publication or production page was silently substituted.
 
 The directly printed endpoint half-fields 16.7°/4.25° have clear chiefs at 21.652893/22.322699 mm, 100.09%/103.19% of the format semi-diagonal; these source-angle heights remain distinct from the runtime format-corner solve.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 17 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+17 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 2 — DO front member | 1.834 / 37.2 | J-LASF010 | +0.000000 | -0.016 |
+| Element 3 — DO rear member | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| Element 4 — IS group | 1.713 / 53.9 | S-LAL8 | -0.000005 | -0.033 |
+| Element 5 — IS group | 1.62299 / 58.2 | S-BSM15 | +0.000002 | -0.034 |
+| Element 6 — IS group | 1.84666 / 23.9 | S-NPH53 | -0.000000 | -0.016 |
+| Element 7 — front asphere | 1.58313 / 59.4 | S-BAL42 | -0.000004 | -0.025 |
+| Element 8 | 1.80518 / 25.4 | S-TIH6 | +0.000001 | +0.025 |
+| Element 9 | 1.755 / 52.3 | S-LAH97 | +0.000000 | +0.019 |
+| Element 10 | 1.51742 / 52.4 | S-NSL36 | -0.000003 | +0.031 |
+| Element 11 | 1.80518 / 25.4 | S-TIH6 | +0.000001 | +0.025 |
+| Element 12 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 13 | 1.60311 / 60.6 | S-BSM14 | +0.000002 | +0.041 |
+| Element 14 — focus group | 1.83481 / 42.7 | J-LASF05 | +0.000000 | +0.033 |
+| Element 15 — focus group | 1.72825 / 28.5 | S-TIH10 | -0.000000 | -0.039 |
+| Element 16 — focus group | 1.83481 / 42.7 | J-LASF05 | +0.000000 | +0.033 |
+| Element 17 | 1.58313 / 59.4 | S-BAL42 | -0.000004 | -0.025 |

@@ -81,3 +81,30 @@ The separate source-summary check reproduces 69.500/102.299/219.238/384.436 mm f
 Independently inspected original Figure 5's solid spherical-aberration curve on page 4 (printed 114), separate from its dashed S.C. curve/leader. The native 347 ppi raster plot prints a ±0.50 mm horizontal scale. Its solid curve has a small positive hump around +0.1 mm and negative marginal hook around −0.15 to −0.2 mm; practical curve/endpoint reading uncertainty is about ±0.04 mm, with a 2× crop used only for magnification. At the source's 290 mm f/5.6 input-pupil radius, longitudinal aberration relative to each trial's own paraxial intercept is +0.743094/+0.763123/−1.093548 mm at 70%/85%/100% pupil for 1.43749. The retained value gives +0.047549/+0.060662/−0.179598 mm. The printed trial leaves the source frame and disagrees with its solid-curve shape; the retained trial follows the resolved small hump and marginal hook. Every diagnostic ray reaches the last surface. An independent analytic spherical-intersection/Snell calculation and the runtime exact tracer agree, so this is a comparison with source aberration evidence rather than a preference for a better-looking trace.
 
 The source's claimed movement ratio depends on spacings and does not independently constrain N3; it is not asserted as correction evidence. No family publication or catalog match is substituted. The spectral reference remains unspecified, all fifteen media stay unmatched, the actual source-review date stays 2026-10-30 and no additional fresh review is counted. Only structured metadata and explanatory notes are added to the retained numerical correction.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 14 of 15 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+14 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 2 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| Element 3 | 1.48749 / 70.1 | S-FSL5 | -0.000000 | +0.136 |
+| Element 4 | 1.713 / 53.8 | LAL8 | -0.000005 | +0.046 |
+| Element 5 | 1.6968 / 55.5 | J-LAK14 | +0.000000 | +0.020 |
+| Element 6 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 8 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 9 | 1.60311 / 60.7 | BACD14 | +0.000001 | -0.005 |
+| Element 10 | 1.7725 / 49.6 | TAF1 | +0.000000 | +0.024 |
+| Element 11 | 1.834 / 37.2 | J-LASF010 | +0.000000 | -0.016 |
+| Element 12 | 1.60729 / 49.2 | BAF5 | +0.000002 | +0.137 |
+| Element 13 | 1.57501 / 41.5 | J-LF7 | +0.000000 | +0.012 |
+| Element 14 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| Element 15 | 1.61293 / 37 | F3 | +0.000000 | -0.053 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Element 7 (1.52301 / 50.8).

@@ -80,9 +80,7 @@ const LENS_DATA = {
       vd: 60.7,
       focalLengthMm: -33.615501,
       glass:
-        "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Large front negative meniscus accepting the extreme field and beginning the retrofocus conversion.",
     },
     {
@@ -94,9 +92,7 @@ const LENS_DATA = {
       vd: 62.8,
       focalLengthMm: -59.765845,
       glass:
-        "Unmatched (S-PHM51 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "S-PHM51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second negative meniscus; continues field-angle compression with relatively weak standalone power.",
     },
     {
@@ -108,9 +104,7 @@ const LENS_DATA = {
       vd: 60.7,
       focalLengthMm: -45.777815,
       glass:
-        "Unmatched (S-BSM14 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final front negative meniscus; its rear radius participates in claim condition (1).",
     },
     {
@@ -122,9 +116,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: 32.842152,
       glass:
-        "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive element before the stop; starts the positive relay after the negative front converter.",
     },
     {
@@ -136,9 +128,7 @@ const LENS_DATA = {
       vd: 60.5,
       focalLengthMm: 63.06703,
       glass:
-        "Unmatched (NSL7 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "NSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak positive post-stop meniscus with much stronger image-side refracting surface.",
     },
     {
@@ -150,9 +140,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: -26.480431,
       glass:
-        "Unmatched (S-NPH53 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the nearly afocal cemented doublet.",
       cemented: "D1",
     },
@@ -165,9 +153,7 @@ const LENS_DATA = {
       vd: 70.2,
       focalLengthMm: 29.029791,
       glass:
-        "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive low-dispersion component of the nearly afocal cemented doublet.",
       cemented: "D1",
     },
@@ -180,9 +166,7 @@ const LENS_DATA = {
       vd: 70.2,
       focalLengthMm: 45.834475,
       glass:
-        "Unmatched (S-FSL5 (OHARA conditional class comparison; patent vendor unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The source defines N and Abbe number without identifying a spectral reference. The retained d-line tracing convention is approximate; catalog identity, supplier and melt remain unresolved.",
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Symmetric final positive element; a principal discriminator of Numerical Example 3.",
     },
   ],

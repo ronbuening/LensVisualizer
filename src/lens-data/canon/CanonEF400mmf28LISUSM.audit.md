@@ -117,3 +117,31 @@ are separate conclusions.
   consistent with the retained maker count. The old FL exclusion is superseded. Source c-7 (PDF p. 78,
   col. 32) describes alternative integral front optical members, not optional/removable accessories;
   the selected numerical rows and Fig. 88 explicitly include HG. Geometry and controls are unchanged.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 17 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+17 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Protection glass | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L1a positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L1c positive | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| L1c negative | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L2 positive | 1.805181 / 25.4 | S-TIH6 | -0.000000 | +0.025 |
+| L2 negative | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| L3a negative | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3a positive | 1.772499 / 49.6 | E-LASF016 | +0.000000 | +0.008 |
+| L3b positive | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3b negative 1 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| L3b negative 2 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| L3c positive 1 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| L3c positive 2 | 1.6779 / 55.3 | S-LAL12 | -0.000000 | +0.041 |
+| L3c negative | 1.882997 / 40.8 | S-LAH58 | -0.000000 | -0.035 |
+| Drop-in filter FL | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |

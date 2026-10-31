@@ -103,3 +103,25 @@ gap 65.149916 mm, computed EFL 64.831256. Only the three published infinity stat
 380 mm close-focus anchors and intermediate trajectories remain reconstructions; the physical-rim probe does not
 certify intermediate focus accuracy, continuous illumination or production behavior. The retail correlation remains
 qualified and separate from source fidelity and sampled clearance.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 9 of 10 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+9 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Group 1 front negative meniscus | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| Group 1 biconcave negative | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| Group 1 positive meniscus | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Group 2 front biconvex positive | 1.701536 / 41.2 | S-BAH27 | -0.000000 | +0.039 |
+| Group 2 negative cemented member | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Group 2 positive cemented member | 1.603112 / 60.6 | S-BSM14 | -0.000000 | +0.041 |
+| Group 3 negative cemented member | 1.688931 / 31.1 | S-TIM28 | -0.000000 | -0.025 |
+| Group 3 positive cemented member | 1.84666 / 23.8 | S-TIH53 | -0.000000 | -0.022 |
+| Group 4 rear positive meniscus | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Group 4 negative asphere; material unresolved (1.58306 / 30.2).

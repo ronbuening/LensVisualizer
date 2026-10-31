@@ -93,3 +93,28 @@ model limitation, not proof of source f/5.8 full-iris clearance. The ordinary in
 its 3% tolerance of f/3.6; image-circle and full-frame corner chief checks pass. No inferred cut is present for the full
 cut-beam guard to exempt. The revised rear caps and sampled clearance do not identify production dimensions or fully
 validate the unpublished continuous focus trajectory, skew-field transmission, historical glass or production formula.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 14 of 14 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+14 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 2 | 1.497 / 81.6 | H-FK61 | -0.000000 | +0.013 |
+| Element 3 | 1.801 / 35 | S-LAM66 | -0.000001 | -0.033 |
+| Element 4 | 1.497 / 81.6 | H-FK61 | -0.000000 | +0.013 |
+| Element 5 | 1.80518 / 25.4 | N-SF6 | +0.000000 | -0.040 |
+| Element 6 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 7 | 1.883 / 40.8 | S-LAH58 | -0.000003 | -0.035 |
+| Element 8 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 9 | 1.84666 / 23.9 | S-NPH53 | -0.000000 | -0.016 |
+| Element 10 | 1.762 / 40.1 | S-LAM55 | +0.000001 | +0.000 |
+| Element 11 | 1.497 / 81.6 | H-FK61 | -0.000000 | +0.013 |
+| Element 12 | 1.5927 / 35.3 | S-FTM16 | +0.000001 | +0.010 |
+| Element 13 | 1.834 / 37.2 | J-LASF010 | +0.000000 | -0.016 |
+| Element 14 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |

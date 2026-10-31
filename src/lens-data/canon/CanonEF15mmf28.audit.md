@@ -86,3 +86,22 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 43.006412% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.279743518 m versus label 4.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
 
 Finite rays leave explicit object points; no scalar tangent launch substitutes for the fisheye projection/vector path. The unresolved full-format edge targets retain the known extreme-field source/model limitation. The original source 180-degree specification is not certified by these finite probes.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 8 of 8 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+8 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 2 | 1.617 / 62.8 | S-PHM51 | +0.000001 | +0.001 |
+| Element 3 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 4 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 5 | 1.51112 / 60.5 | NSL7 | +0.000001 | -0.014 |
+| Element 6 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 7 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 8 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |

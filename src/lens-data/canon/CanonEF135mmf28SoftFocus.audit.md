@@ -63,3 +63,22 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 43.389846% at zoom 0, focus 0.05, aberration control 0.75: Gaussian 14.718639962 m versus label 26.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
 
 Normal/soft source f-number semantics remain unchanged. The five independent aberration states are sampled with the current iris; source-supported normal-state clipping is retained. These ordinary-focus Gaussian objects do not add a published finite-focus table.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 6 of 7 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+6 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.62299 / 58.2 | S-BSM15 | +0.000002 | -0.034 |
+| Element 3 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 4 | 1.58313 / 59.4 | J-SK12 | +0.000000 | +0.020 |
+| Element 5 | 1.7552 / 27.5 | SF4 | +0.000001 | +0.080 |
+| Element 6 | 1.54072 / 47.2 | S-TIL2 | -0.000000 | +0.027 |
+| Element 7 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Element 2 (1.62299 / 60.7).

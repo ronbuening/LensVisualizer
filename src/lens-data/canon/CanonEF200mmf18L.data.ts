@@ -83,8 +83,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 194.863158,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
@@ -98,8 +98,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 272.181368,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
@@ -113,8 +113,8 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       focalLengthMm: -145.573569,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPH5)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "First negative flint in G1; supplies opposite power and dispersion to the preceding low-dispersion positives.",
     },
     {
@@ -125,8 +125,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 154.436378,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-FPL51)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
@@ -140,8 +140,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -281.405845,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-LAL14)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative rear member of G1, immediately ahead of the first focus-variable gap.",
     },
     {
@@ -152,8 +152,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 139.100259,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate PBH53)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Standalone-positive high-index component of the cemented, net-negative moving focus group.",
       cemented: "D1",
     },
@@ -165,8 +165,8 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 43.8,
       focalLengthMm: -60.288767,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPM4)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "BPM4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component that makes cemented doublet D1 net negative; D1 is the sole moving focus group.",
       cemented: "D1",
     },
@@ -178,8 +178,8 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       focalLengthMm: -58.224609,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate BPH5)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strongly object-concave negative at the front of G3; forms the chromatically constrained rear doublet.",
       apdNote:
         "Patent Example 1 correspondence table: theta_3a = 1.271845; partial-dispersion wavelength convention unspecified.",
@@ -193,8 +193,8 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.6,
       focalLengthMm: 71.057526,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-LAL7)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apdNote:
         "Patent Example 1 correspondence table: theta_3b = 1.238095; partial-dispersion wavelength convention unspecified.",
       role: "Positive partner in D2; its published theta_3b participates in the patent's secondary-spectrum condition.",
@@ -208,8 +208,8 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       focalLengthMm: 112.566809,
-      glass: "Unmatched (source N/ν reference unspecified; d-line coordinate candidate S-PHM52)",
-      indexReferenceNote: "The original table labels N/ν without a d/e reference; d-line tracing is an approximation.",
+      glass:
+        "S-PHM52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive singlet; with weakly negative D2, makes G3 net positive.",
     },
   ],

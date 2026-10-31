@@ -632,3 +632,23 @@ Formal unresolved source.errata retains¶0011's textual cancellation sign incons
 ### Historical records
 
 The preceding Stage3 hashes, original stage findings, dated geometry/deployment records and 2026-10-12 catalog entry are retained as history. Their byte-identity, active-curve, exact-ray iris and plot-to-bulk-reference statements describe those earlier states; this fresh entry supersedes them where explicitly corrected. This is one fresh original review, not a redating of prior work.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 9 of 9 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+9 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.6516 / 58.5 | LAL7 | -0.000003 | +0.019 |
+| Element 2 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |
+| Element 3 | 1.713 / 53.8 | LAL8 | -0.000005 | +0.046 |
+| Element 4 | 1.71736 / 29.5 | SF1 | -0.000000 | +0.013 |
+| Element 5 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 6 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 7 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 8 | 1.8061 / 41 | LAH53 | -0.000002 | -0.051 |
+| Element 9 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |

@@ -106,3 +106,32 @@ occur before S1 and independently intersect the unrestricted first sphere outsid
 unexplained inside-cap misses. Other off-axis clipping remains sampled vignetting. This does not certify intermediate
 focus accuracy, continuous illumination or production behavior. Source fidelity, runtime clearance and the retained
 retail correlation remain separate conclusions.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 16 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+16 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.84666 / 23.9 | S-TIH53WN | -0.000001 | -0.036 |
+| Element 2 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| Element 3 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| Element 4 substrate | 1.834 / 37.2 | S-LAH60 | -0.000000 | -0.040 |
+| Element 5 | 1.834807 / 42.7 | S-LAH55V | +0.000000 | +0.025 |
+| Element 6 | 1.84666 / 23.9 | S-TIH53WN | -0.000001 | -0.036 |
+| Element 7 | 1.804 / 46.6 | S-LAH65V | -0.000001 | -0.017 |
+| Element 8 | 1.84666 / 23.9 | S-TIH53WN | -0.000001 | -0.036 |
+| Element 9 | 1.518229 / 58.9 | S-NSL3 | -0.000000 | +0.002 |
+| Element 10 | 1.517417 / 52.4 | S-NSL36 | -0.000000 | +0.031 |
+| Element 11 | 1.84666 / 23.9 | S-TIH53WN | -0.000001 | -0.036 |
+| Element 12 | 1.72825 / 28.5 | S-TIH10 | -0.000000 | -0.039 |
+| Element 13 | 1.882997 / 40.8 | S-LAH58 | -0.000000 | -0.035 |
+| Element 14 | 1.583126 / 59.4 | S-BAL42 | -0.000000 | -0.025 |
+| Element 15 | 1.518229 / 58.9 | S-NSL3 | -0.000000 | +0.002 |
+| Element 16 | 1.806098 / 40.9 | S-LAH53 | -0.000000 | +0.026 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Hybrid replica layer (1.51421 / 51.4).

@@ -98,9 +98,8 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: 79.82300614130565,
-      glass: "Unmatched (623582 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in component I.",
     },
     {
@@ -111,10 +110,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 60.7,
       focalLengthMm: 119.67993390924296,
-      glass:
-        "Unmatched (SK16 class comparison (patent 623607; production supplier unspecified); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass: "Unmatched (1.62299/60.7; no catalog row at this printed pair; SK16 class comparison only)",
       role: "Second positive element in component I; the printed patent index/Abbe pair is preserved.",
     },
     {
@@ -125,9 +121,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -98.02147704110979,
-      glass: "Unmatched (805254 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative corrector completing positive front component I.",
     },
     {
@@ -138,9 +132,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -421.0026167597842,
-      glass: "Unmatched (583594 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass:
+        "J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Aspherical forward-convex meniscus; independent soft-focus mover (component II).",
     },
     {
@@ -151,9 +144,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       focalLengthMm: 99.25034099317321,
-      glass: "Unmatched (755275 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass: "SF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the cemented rear-focus doublet III-1.",
       cemented: "III-1",
     },
@@ -165,9 +156,8 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       focalLengthMm: -36.882006964113216,
-      glass: "Unmatched (541472 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass:
+        "S-TIL2 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented rear-focus doublet III-1; the assembled doublet is net negative.",
       cemented: "III-1",
     },
@@ -179,9 +169,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 81.89968380293107,
-      glass: "Unmatched (487702 class (catalog vendor unresolved); source spectral reference unspecified)",
-      indexReferenceNote:
-        "The patent defines N and Abbe number without tying them to a spectral line. Its d/C/g plots support the retained approximate d-line tracing convention; source glass identity and reference remain unresolved.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Stationary positive rear sub-component III-2.",
     },
   ],

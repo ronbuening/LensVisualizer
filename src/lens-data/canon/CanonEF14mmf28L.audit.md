@@ -178,3 +178,28 @@ The infinity row uses the separate modeled-angle launch; nonzero rows use Gaussi
 These results do not claim true finite-corner reach. Separate infinity source-field, inverse-image-height/vector
 checks remain as previously recorded. Source object-plane uncertainty, field limitations and off-axis vignetting
 remain explicit; no cap, cam or iris is fitted to make paraxial field fractions land at a desired image height.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 14 of 14 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+14 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 2 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 3 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 4 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |
+| Element 5 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 6 | 1.59551 / 39.2 | S-TIM8 | -0.000001 | +0.042 |
+| Element 7 | 1.56732 / 42.8 | S-TIL26 | +0.000002 | +0.017 |
+| Element 8 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |
+| Element 9 | 1.7725 / 49.6 | S-LAH66 | -0.000001 | -0.002 |
+| Element 10 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 11 | 1.7432 / 49.3 | S-LAM60 | -0.000002 | +0.039 |
+| Element 12 | 1.92286 / 21.3 | PBH71 | +0.000004 | -0.011 |
+| Element 13 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 14 | 1.804 / 46.6 | S-LAH65V | -0.000001 | -0.017 |

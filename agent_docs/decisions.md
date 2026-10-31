@@ -78,6 +78,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Standing maintainer decisions
 
+- 2026-10-31 — An unnamed spectral line can be established by the printed coordinates (test in `src/lens-data/LENS_DATA_SPEC.md`, Index reference). The 2026-10-30 Canon reviews marked 26 EF lenses `Unmatched` because their patents define bare Ni/νi. Of their 341 pairs, 335 match a catalog nd/νd and none matches a catalog ne/νe, while 340 known e-line elements across 40 lenses give no d-line match, so those lenses are d-line and carry qualified catalog curves. Catalog-copied nC/nF/ng/dPgF stay removed. Do not disable these curves again for lack of a wavelength statement. (Ron, Canon EF/RF glass review)
 - 2026-10-20 — Engine result changes require independent evidence (an analytic case, comparator or source), maintainer approval, and a changelog entry when user-visible. Use the 2026-08-04 refactor gate for behavior-preserving work. (`architecture/testing.md`, Benchmark Verification; optics rewrite close)
 
 - 2026-10-27 — One stop rule at every f-number: paraxial EPD = F/N at infinity focus of the zoom position (`src/optics/state/apertureStop.ts`). Do not size a stop with a real ray, scale a stop linearly, or add a per-lens rule; the only exceptions are the physical wide-open stops `ApertureStopRule` names (schedule, fixed iris, authored). "Working f/#" means 1 / (2 n′ sin θ′) of the real marginal ray; the thin-lens "eff. f/" estimate is removed and must not return.

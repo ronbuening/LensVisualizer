@@ -175,3 +175,32 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  5.500000000 |           5.500000 | 169 / 150 / 111                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 22.999789% at zoom 0, focus 0.05, aberration control 0: Gaussian 84.700232540 m versus label 110.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 16 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+16 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Front source plate HG | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L1a front positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L1c positive (fluorite correlation) | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| L1c negative meniscus | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L2 positive | 1.805181 / 25.4 | S-TIH6 | -0.000000 | +0.025 |
+| L2 negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L3a negative | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3a positive | 1.603112 / 60.6 | N-SK14 | -0.000002 | -0.003 |
+| L3b positive | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3b cemented negative | 1.603112 / 60.6 | N-SK14 | -0.000002 | -0.003 |
+| L3b negative singlet | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| L3c positive singlet | 1.72 / 43.7 | S-LAM52 | -0.000000 | -0.010 |
+| L3c cemented positive | 1.7495 / 35 | H-LaF4 | +0.000000 | -0.011 |
+| L3c cemented negative | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Drop-in filter FL (1.51633 / 64.4).

@@ -91,9 +91,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
-      glass: "Unmatched (source reference unspecified; historical HG medium unresolved)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Integral front HG of source Numerical Example 22, R1/R2: physical 6.00 mm plate followed by 1.50 mm air. Clause c-7 gives protection/thermal-focus functions but no optional accessory status. Clear cap 77 mm is a native-figure relative estimate anchored to the retained first powered blank; no source aperture column exists.",
       diagramLabel: "HG",
     },
@@ -105,11 +104,9 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 365.989798,
       glass:
-        "Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)",
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
@@ -124,11 +121,9 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 324.493634,
       glass:
-        "Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)",
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
@@ -143,11 +138,9 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -230.532155,
       glass:
-        "Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)",
+        "TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member that makes L1b net negative and balances the front positive power.",
       diagramLabel: "L1b-2",
     },
@@ -159,10 +152,9 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 270.260667,
-      glass: "Unmatched (source reference unspecified; prior Fluorite comparison is conditional only)",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Production-correlated fluorite position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
@@ -177,10 +169,9 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -623.617174,
-      glass: "Unmatched (source reference unspecified; prior 516641 crown comparison is conditional only)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative meniscus completing the net-positive L1c subunit.",
       diagramLabel: "L1c-2",
     },
@@ -192,10 +183,9 @@ const LENS_DATA = {
       nd: 1.805181,
       vd: 25.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 215.019726,
-      glass: "Unmatched (source reference unspecified; prior 805254 dense-flint comparison is conditional only)",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front member of the cemented L2 inner-focus doublet.",
       diagramLabel: "L2-1",
       cemented: "L2",
@@ -208,11 +198,9 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -102.598687,
       glass:
-        "Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)",
+        "TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear member; the cemented L2 unit is net negative and translates for focus.",
       diagramLabel: "L2-2",
       cemented: "L2",
@@ -225,10 +213,9 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -151.002645,
-      glass: "Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the cemented, net-positive L3a subunit.",
       diagramLabel: "L3a-1",
       cemented: "L3a",
@@ -241,11 +228,9 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 91.77353,
       glass:
-        "Unmatched (source reference unspecified; prior 603606/603607 SK14/BSM14 crown comparison is conditional only)",
+        "N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear member that makes L3a net positive ahead of the IS subunit.",
       diagramLabel: "L3a-2",
       cemented: "L3a",
@@ -258,10 +243,9 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 93.422746,
-      glass: "Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front member of the cemented pair inside the transverse IS subunit L3b.",
       diagramLabel: "L3b-1",
       cemented: "L3b-D1",
@@ -274,11 +258,9 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -68.565838,
       glass:
-        "Unmatched (source reference unspecified; prior 603606/603607 SK14/BSM14 crown comparison is conditional only)",
+        "N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear member of the L3b cemented pair.",
       diagramLabel: "L3b-2",
       cemented: "L3b-D1",
@@ -291,10 +273,9 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -76.551196,
-      glass: "Unmatched (source reference unspecified; prior 804466 lanthanum comparison is conditional only)",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative singlet completing the strongly net-negative transverse IS subunit L3b.",
       diagramLabel: "L3b-3",
     },
@@ -306,10 +287,9 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 43.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 148.247444,
-      glass: "Unmatched (source reference unspecified; prior 720437 lanthanum-flint comparison is conditional only)",
+      glass:
+        "S-LAM52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive singlet at the front of the net-positive L3c subunit.",
       diagramLabel: "L3c-1",
     },
@@ -321,10 +301,9 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: 75.722402,
-      glass: "Unmatched (source reference unspecified; prior 750350 lanthanum-flint comparison is conditional only)",
+      glass:
+        "H-LaF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front member of the rear L3c cemented doublet.",
       diagramLabel: "L3c-2",
       cemented: "L3c-D1",
@@ -337,10 +316,9 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
       focalLengthMm: -121.262876,
-      glass: "Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear member; the complete L3c subunit remains strongly net positive.",
       diagramLabel: "L3c-3",
       cemented: "L3c-D1",
@@ -353,9 +331,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Source column 32 defines Ni and Abbe nu_i without a reference wavelength. The retained d-line tracing convention is approximate; catalog spectral curves are disabled and historical media remain unresolved.",
-      glass: "Unmatched (source reference unspecified; prior S-BSL7 comparison is conditional only)",
+      glass: "Unmatched (1.51633/64.4 outside the exact d-line window; S-BSL7 is a near candidate)",
       role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 22, R30–R31), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Included with source HG in the 17-element/13-group correlated count.",
     },
   ],

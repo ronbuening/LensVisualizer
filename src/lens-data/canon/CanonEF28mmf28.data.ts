@@ -55,9 +55,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -40.133858724,
-      glass: "Unmatched (source 1.60311/60.7; spectral reference and historical medium unidentified)",
-      indexReferenceNote:
-        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative meniscus; its rear asphere supplies the principal wide-angle correction.",
     },
     {
@@ -68,9 +67,8 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: 33.841845873,
-      glass: "Unmatched (source 1.78590/44.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote:
-        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element that restores power after L1 and precedes the aperture stop.",
     },
     {
@@ -81,9 +79,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -17.659709222,
-      glass: "Unmatched (source 1.84666/23.9; spectral reference and historical medium unidentified)",
-      indexReferenceNote:
-        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index, high-dispersion negative element behind the stop; balances the positive rear pair.",
     },
     {
@@ -94,9 +91,8 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 42.2,
       focalLengthMm: 25.168233868,
-      glass: "Unmatched (source 1.79952/42.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote:
-        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      glass:
+        "S-LAH52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong rear positive element with a nearly flat front surface and strongly powered rear surface.",
     },
     {
@@ -107,9 +103,8 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: 42.862940291,
-      glass: "Unmatched (source 1.78590/44.2; spectral reference and historical medium unidentified)",
-      indexReferenceNote:
-        "The original defines Ni and νi without identifying their spectral reference. These literal pairs use approximate d-line tracing; no catalog curve, historical supplier, melt or chemistry is established.",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element that completes the rear relay and establishes the long back focus.",
     },
   ],

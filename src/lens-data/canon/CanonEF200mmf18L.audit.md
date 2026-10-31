@@ -112,3 +112,24 @@ its 3% gate and image-circle/full-frame-chief checks pass, but those passes do n
 Older R5/R10 excess numbers at the close spacing refer to collimated input and are now distinguished from the proper
 finite-object trace. There is no inferred cut to exempt from its full beam check. Shape fidelity, sampled clearance
 and correlation with the production lens, including its unmodeled protective/filter plates, remain separate results.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 10 of 10 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+10 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.497 / 81.6 | S-FPL51 | -0.000001 | -0.054 |
+| Element 2 | 1.497 / 81.6 | S-FPL51 | -0.000001 | -0.054 |
+| Element 3 | 1.65412 / 39.7 | BPH5 | -0.000005 | -0.012 |
+| Element 4 | 1.497 / 81.6 | S-FPL51 | -0.000001 | -0.054 |
+| Element 5 | 1.6968 / 55.5 | S-LAL14 | -0.000003 | +0.032 |
+| Element 6 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 7 | 1.6134 / 43.8 | BPM4 | +0.000000 | +0.042 |
+| Element 8 | 1.65412 / 39.7 | BPH5 | -0.000005 | -0.012 |
+| Element 9 | 1.6516 / 58.6 | S-LAL7 | -0.000003 | -0.049 |
+| Element 10 | 1.618 / 63.4 | S-PHM52 | -0.000000 | -0.066 |

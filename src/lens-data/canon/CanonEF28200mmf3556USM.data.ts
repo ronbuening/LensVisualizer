@@ -101,9 +101,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -146.891018,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
+      glass:
+        "S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C1",
     },
     {
@@ -114,9 +113,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: 99.820738,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C1",
     },
     {
@@ -127,9 +125,8 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       focalLengthMm: 123.299441,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 4,
@@ -139,9 +136,7 @@ const LENS_DATA = {
       nd: 1.51421,
       vd: 51.4,
       focalLengthMm: -847.565314,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (bonded thin layer; source n=1.51421, ν=51.4; spectral reference unspecified)",
+      glass: "Unmatched (bonded thin layer; source n=1.51421, ν=51.4; no catalog row within tolerance)",
       cemented: "H1",
     },
     {
@@ -152,9 +147,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -22.775172,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.834, ν=37.2; spectral reference unspecified)",
+      glass:
+        "S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "H1",
     },
     {
@@ -165,9 +159,8 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -26.393152,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.834807, ν=42.7; spectral reference unspecified)",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 7,
@@ -177,9 +170,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 19.601756,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
+      glass:
+        "S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 8,
@@ -189,9 +181,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -21.342363,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.804, ν=46.6; spectral reference unspecified)",
+      glass:
+        "S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C2",
     },
     {
@@ -202,9 +193,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 71.91798,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
+      glass:
+        "S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C2",
     },
     {
@@ -215,9 +205,8 @@ const LENS_DATA = {
       nd: 1.518229,
       vd: 58.9,
       focalLengthMm: 30.181663,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.518229, ν=58.9; spectral reference unspecified)",
+      glass:
+        "S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 11,
@@ -227,9 +216,8 @@ const LENS_DATA = {
       nd: 1.517417,
       vd: 52.4,
       focalLengthMm: 24.801607,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.517417, ν=52.4; spectral reference unspecified)",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C3",
     },
     {
@@ -240,9 +228,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -28.742226,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.84666, ν=23.9; spectral reference unspecified)",
+      glass:
+        "S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C3",
     },
     {
@@ -253,9 +240,8 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: 35.971241,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.72825, ν=28.5; spectral reference unspecified)",
+      glass:
+        "S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C4",
     },
     {
@@ -266,9 +252,8 @@ const LENS_DATA = {
       nd: 1.882997,
       vd: 40.8,
       focalLengthMm: -19.819009,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.882997, ν=40.8; spectral reference unspecified)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "C4",
     },
     {
@@ -279,9 +264,8 @@ const LENS_DATA = {
       nd: 1.583126,
       vd: 59.4,
       focalLengthMm: 28.643528,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.583126, ν=59.4; spectral reference unspecified)",
+      glass:
+        "S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 16,
@@ -291,9 +275,8 @@ const LENS_DATA = {
       nd: 1.518229,
       vd: 58.9,
       focalLengthMm: 100.846418,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.518229, ν=58.9; spectral reference unspecified)",
+      glass:
+        "S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 17,
@@ -303,9 +286,8 @@ const LENS_DATA = {
       nd: 1.806098,
       vd: 40.9,
       focalLengthMm: -30.242699,
-      indexReferenceNote:
-        "Original ¶0050 (PDF p. 5) defines ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.806098, ν=40.9; spectral reference unspecified)",
+      glass:
+        "S-LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
   ],
 

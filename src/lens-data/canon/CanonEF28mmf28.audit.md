@@ -35,3 +35,19 @@ Source fidelity, sampled runtime clearance and production correlation remain sep
 ## Source-stated focal metadata — 2026-10-30
 
 Original JP S62-078520 A, PDF p.3 / printed113, Numerical Example1 states F=1; retained uniform scale28 gives source design28mm. Computed EFL28.219375888mm remains separately labeled. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 5 of 5 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+5 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.60311 / 60.7 | S-BSM14 | +0.000002 | -0.059 |
+| Element 2 | 1.7859 / 44.2 | S-LAH51 | -0.000004 | +0.003 |
+| Element 3 | 1.84666 / 23.9 | PBH53 | -0.000002 | -0.014 |
+| Element 4 | 1.79952 / 42.2 | S-LAH52 | -0.000004 | +0.025 |
+| Element 5 | 1.7859 / 44.2 | S-LAH51 | -0.000004 | +0.003 |

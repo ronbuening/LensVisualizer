@@ -65,10 +65,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -38.32276059,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong front negative member of G1; expands the wide-angle field before the corrective rear members.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 2,
@@ -78,10 +77,9 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -65.238044111,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL42)",
+      glass:
+        "J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Lower-index negative element carrying the R4A asphere; moderates wide-angle aberrations in G1.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 3,
@@ -91,10 +89,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 57.125120653,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH6)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear member that balances the two negative elements while leaving G1 net negative.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 4,
@@ -104,10 +100,9 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.6,
       focalLengthMm: 51.970334537,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate J-LAK7)",
+      glass:
+        "N-LAK7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Pre-stop positive member of G2 and principal front collector for the positive variator group.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 5,
@@ -117,10 +112,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 93.012637283,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion post-stop positive member of G2.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 6,
@@ -130,10 +124,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 60.371789681,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second low-dispersion positive member reinforcing G2 power after the stop.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 7,
@@ -143,10 +136,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -19.17854567,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH53)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong negative corrector inside G2, paired in air with the following positive singlet.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 8,
@@ -156,10 +148,8 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       focalLengthMm: 38.808139451,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH4)",
+      glass: "SF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive member of the retained authored G2 reconstruction; the original R17 value is unresolved.",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 9,
@@ -169,11 +159,10 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -152.250261052,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front component of the fixed, weakly positive rear cemented doublet.",
       cemented: "D1",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
     {
       id: 10,
@@ -183,11 +172,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 130.397935962,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM14)",
+      glass:
+        "J-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear member of the retained authored weak-positive G3 reconstruction; the original R21 value is unresolved.",
       cemented: "D1",
-      indexReferenceNote:
-        "The original defines N/ν as index and Abbe number without a d/e reference. Default d-line tracing is approximate; the catalog coordinate candidate does not identify the source medium.",
     },
   ],
   surfaces: [

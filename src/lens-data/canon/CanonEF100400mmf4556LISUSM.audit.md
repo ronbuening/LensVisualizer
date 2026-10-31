@@ -93,3 +93,32 @@ field range, a 41×41 launch grid, 0.5° field steps and adaptive edge refinemen
 The precise historical source-review dates, R/d, gap controls, cut and clear caps
 are unchanged. These are additional centered runtime-clearance results, separate
 from source fidelity, continuous 3D clearance and production focus correlation.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 16 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+16 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 2 | 1.7495 / 35 | H-LaF4 | +0.000000 | -0.011 |
+| Element 3 | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| Element 4 | 1.713 / 53.9 | LAC8 | -0.000000 | +0.039 |
+| Element 5 | 1.62299 / 58.2 | S-BSM15 | +0.000002 | -0.034 |
+| Element 6 | 1.84666 / 23.8 | J-SF03 | +0.000000 | -0.003 |
+| Element 7 | 1.43875 / 95 | S-FPL53 | +0.000000 | -0.054 |
+| Element 8 | 1.70154 / 41.2 | BAFD7 | +0.000003 | -0.051 |
+| Element 10 | 1.60311 / 60.6 | N-SK14 | +0.000000 | -0.003 |
+| Element 11 | 1.48749 / 70.2 | S-FSL5 | -0.000000 | +0.036 |
+| Element 12 | 1.80518 / 25.4 | N-SF6 | +0.000000 | -0.040 |
+| Element 13 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| Element 14 | 1.66672 / 48.3 | BAF11 | +0.000001 | +0.083 |
+| Element 15 | 1.83481 / 42.7 | S-LAH55V | -0.000003 | +0.025 |
+| Element 16 | 1.72825 / 28.5 | S-TIH10 | -0.000000 | -0.039 |
+| Element 17 | 1.7725 / 49.6 | J-LASF016 | +0.000000 | +0.020 |
+
+The other medium has no exact catalog match and stays `Unmatched`: Element 9 (1.62012 / 49.5).

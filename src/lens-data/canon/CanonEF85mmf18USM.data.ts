@@ -59,9 +59,8 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.5,
       focalLengthMm: 199.017143745,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAL7)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Biconvex front element of the fixed positive G1; first of the three positive lenses that converge the axial beam in stages.",
       diagramLabel: "L1",
     },
@@ -73,9 +72,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 135.794199469,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAH66)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive meniscus, convex to the object; second converging element of the fixed G1.",
       diagramLabel: "L2",
     },
@@ -87,9 +85,8 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.8,
       focalLengthMm: 54.566965611,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAL8)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive meniscus, convex to the object, and the strongest positive element of G1; its rear face and the front face of L4 enclose the air space the patent treats as a negative air lens.",
       diagramLabel: "L3",
     },
@@ -101,9 +98,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       focalLengthMm: -40.895978163,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH1)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass: "SF1 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative meniscus, concave to the image; last element of the fixed G1, directly ahead of the stop. The patent balances the spherical aberration of L1-L3 at its concave rear face.",
       diagramLabel: "L4",
     },
@@ -115,9 +110,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 134.282552927,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH6)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive meniscus, concave to the object; high-dispersion front member of the cemented focusing doublet G2.",
       diagramLabel: "L5",
       cemented: "L5-L6",
@@ -130,9 +123,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.2,
       focalLengthMm: -41.497051496,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate BSL7)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Biconcave crown that gives the cemented doublet G2 its negative power; G2 moves toward the image to focus closer.",
       diagramLabel: "L6",
       cemented: "L5-L6",
@@ -145,9 +137,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -51.731863911,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate PBH6)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative, high-dispersion front member of the cemented doublet that opens the fixed G3; its front face is nearly flat.",
       diagramLabel: "L7",
       cemented: "L7-L8",
@@ -160,9 +150,8 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 41.0,
       focalLengthMm: 47.699580069,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAH53)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Biconvex positive member of the G3 cemented doublet, of lower dispersion than L7; the pair is weakly positive and corrects chromatic aberration within G3.",
       diagramLabel: "L8",
       cemented: "L7-L8",
@@ -175,9 +164,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 59.883866221,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate LAH66)",
-      indexReferenceNote:
-        "Paragraph 0023 defines bare Ni/νi without a wavelength; d/g plot labels do not establish the bulk reference. Default d-line/Abbe tracing is approximate; historical supplier and chemistry remain unresolved.",
+      glass:
+        "LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Biconvex rear element; carries most of the positive power of G3 and, in the patent's account, offsets the positive distortion of G1 and G2.",
       diagramLabel: "L9",
     },

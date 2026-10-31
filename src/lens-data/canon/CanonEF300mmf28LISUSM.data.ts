@@ -70,9 +70,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 193.47696,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)",
+      glass:
+        "K-PFK80 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front collector in L1; correlated with one of the production lens's two UD elements.",
     },
     {
@@ -83,9 +82,8 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       focalLengthMm: 218.62316,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)",
+      glass:
+        "K-PFK80 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second positive low-dispersion element in L1; correlated with the other production UD element.",
     },
     {
@@ -96,9 +94,8 @@ const LENS_DATA = {
       nd: 1.785896,
       vd: 44.2,
       focalLengthMm: -114.74478,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.785896, ν=44.2; spectral reference unspecified)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative correction element in the positive L1 front unit.",
     },
     {
@@ -109,9 +106,8 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       focalLengthMm: 158.49796,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (production fluorite correlation; source n=1.43387, ν=95.1; spectral reference unspecified)",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive L1 element; the production lens's fluorite element provides the manufacturer-backed material correlation.",
     },
     {
@@ -122,9 +118,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -466.48479,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.48749, ν=70.2; spectral reference unspecified)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative rear element of L1 preceding the inner-focus unit.",
     },
     {
@@ -135,9 +130,8 @@ const LENS_DATA = {
       nd: 1.805181,
       vd: 25.4,
       focalLengthMm: 125.83165,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.805181, ν=25.4; spectral reference unspecified)",
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of the cemented negative L2 focusing doublet.",
       cemented: "L2",
     },
@@ -149,9 +143,8 @@ const LENS_DATA = {
       nd: 1.834807,
       vd: 42.7,
       focalLengthMm: -59.90749,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.834807, ν=42.7; spectral reference unspecified)",
+      glass:
+        "TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component that makes the cemented L2 group net negative for inner focusing.",
       cemented: "L2",
     },
@@ -163,9 +156,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: -76.187,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the net-positive L31 cemented subunit.",
       cemented: "L31",
     },
@@ -177,9 +169,8 @@ const LENS_DATA = {
       nd: 1.719995,
       vd: 50.2,
       focalLengthMm: 43.10923,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)",
+      glass:
+        "S-LAL10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive component of L31, immediately behind the aperture stop.",
       cemented: "L31",
     },
@@ -191,9 +182,8 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       focalLengthMm: 66.28386,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of the cemented pair within the transversely movable L32 IS subunit.",
       cemented: "L32a",
     },
@@ -205,9 +195,8 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       focalLengthMm: -43.96039,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.603112, ν=60.6; spectral reference unspecified)",
+      glass:
+        "N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the L32 cemented pair and front boundary of the patent's biconvex air lens.",
       cemented: "L32a",
     },
@@ -219,9 +208,8 @@ const LENS_DATA = {
       nd: 1.772499,
       vd: 49.6,
       focalLengthMm: -45.60909,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.772499, ν=49.6; spectral reference unspecified)",
+      glass:
+        "E-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second negative element of L32 and rear boundary of the biconvex air lens.",
     },
     {
@@ -232,9 +220,8 @@ const LENS_DATA = {
       nd: 1.719995,
       vd: 50.2,
       focalLengthMm: 37.81764,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)",
+      glass:
+        "S-LAL10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive component at the front of the positive L33 rear subunit.",
       cemented: "L33a",
     },
@@ -246,9 +233,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -64.09925,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.834, ν=37.2; spectral reference unspecified)",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative cemented partner within L33.",
       cemented: "L33a",
     },
@@ -260,9 +246,8 @@ const LENS_DATA = {
       nd: 1.696797,
       vd: 55.5,
       focalLengthMm: 117.32398,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.696797, ν=55.5; spectral reference unspecified)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element of L33; its plane rear surface precedes the 8.00 mm air gap to the rear filter FL.",
     },
     {
@@ -272,9 +257,8 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      indexReferenceNote:
-        "Original numerical introduction (PDF p. 68, col. 12) defines Ni/νi without a spectral line; retained source pairs use approximate d-line tracing, and catalog resolution remains disabled.",
-      glass: "Unmatched (source n=1.51633, ν=64.1; spectral reference unspecified)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 1 R28–R29), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Its 25 mm inferred semi-diameter follows native Fig. 1; the numerical table lists none. Included in the selected-source 16-element / 12-group count; the production 17/13 count additionally includes protection glass absent from Example 1 numerical rows.",
     },
   ],

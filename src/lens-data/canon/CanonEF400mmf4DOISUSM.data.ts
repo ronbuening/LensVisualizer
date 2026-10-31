@@ -102,10 +102,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.56384,
       vd: 60.7,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 316.28514596353614,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BAL41)",
+      glass:
+        "S-BAL41 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 2,
@@ -114,10 +113,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 372.42409773436736,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSL7)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 3,
@@ -126,10 +124,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51823,
       vd: 58.9,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 231.92404480834531,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-NSL3)",
+      glass:
+        "S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 4,
@@ -138,10 +135,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7495,
       vd: 35.3,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -141.84105203269104,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAM7)",
+      glass:
+        "S-LAM7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 5,
@@ -150,10 +146,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 202.33631758992254,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 6,
@@ -162,10 +157,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.1,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -328.9903060843815,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIM25)",
+      glass:
+        "S-TIM25 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 7,
@@ -174,11 +168,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.43387,
       vd: 95.1,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -136.25968443456784,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate CaF2 coordinate curve)",
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 8,
@@ -187,11 +179,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -70.50627738595921,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 805254 coordinate class)",
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D2",
     },
     {
@@ -201,11 +191,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 51.46802125959051,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 762265 coordinate class)",
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D2",
     },
     {
@@ -215,11 +203,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76182,
       vd: 26.5,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 42.349601965079444,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)",
+        "S-TIH14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D3",
     },
     {
@@ -229,11 +215,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -25.858934903832207,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)",
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D3",
     },
     {
@@ -243,11 +227,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -58.85570310158505,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)",
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 13,
@@ -256,10 +238,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6398,
       vd: 34.5,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 35.444940733735066,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIM27)",
+      glass:
+        "S-TIM27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D4",
     },
     {
@@ -269,11 +250,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.6,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: -48.01581954863957,
       glass:
-        "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)",
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D4",
     },
     {
@@ -283,10 +262,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
       focalLengthMm: 91.12018098917984,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSL7)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 16,
@@ -295,9 +273,8 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      indexReferenceNote:
-        "The selected original defines ni/νi without a d/e reference for the bulk table. Default d-line tracing and any catalog coordinate candidate are approximate; source supplier and chemistry remain unresolved.",
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSL7)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Plane-parallel plate at the image side of the patent prescription (US 2002/0015231 A1, Numerical Example 1 r28–r29); identifying it with the production drop-in filter is a modeling inference. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],

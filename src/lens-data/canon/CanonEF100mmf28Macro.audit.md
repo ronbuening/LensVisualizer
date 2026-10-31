@@ -46,3 +46,24 @@ The source definition on PDF p. 4 names Nᵢ and νᵢ as index and Abbe number 
 | L10 | 1.51633 / 64.1 | 516641 | Unmatched; source reference line unspecified |
 
 All ten source pairs, including both members of the cemented pair, agree with the authored numbers. No per-element C/F/g indices, partial-dispersion ratio or numerical APD evidence is printed. No such override remains, no numerical cement/resin/filter/rear plate is supplied, and 0/10 catalog curves are active. Modern coordinate resemblance does not establish source wavelength, historical supplier, melt or chemistry. Analysis labels, glass prose, stop wording, rim dimensions and retained constraints now agree with the data. The production correlation remains inferential and separate from source fidelity and sampled runtime clearance.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 10 of 10 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+10 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.60311 / 60.7 | J-SK14 | +0.000000 | -0.006 |
+| Element 2 | 1.7859 / 44.2 | S-LAH51 | -0.000004 | +0.003 |
+| Element 3 | 1.7859 / 44.2 | S-LAH51 | -0.000004 | +0.003 |
+| Element 4 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 5 | 1.69895 / 30.1 | E-FD15 | -0.000000 | -0.049 |
+| Element 6 | 1.8061 / 40.9 | P-LASF47 | +0.000000 | -0.000 |
+| Element 7 | 1.7859 / 44.2 | S-LAH51 | -0.000004 | +0.003 |
+| Element 8 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 9 | 1.762 / 40.1 | S-LAM55 | +0.000001 | +0.000 |
+| Element 10 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |

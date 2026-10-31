@@ -60,10 +60,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7495,
       vd: 35.3,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -259.449509,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAM7)",
+      glass:
+        "S-LAM7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front g1 element.",
     },
     {
@@ -73,10 +72,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 209.461479,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive element in g1.",
     },
     {
@@ -86,10 +84,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.5,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 248.009918,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive element in g1.",
     },
     {
@@ -99,10 +96,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -477.613368,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front element of the positive g2 focusing unit.",
     },
     {
@@ -112,10 +108,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 103.24364,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear element of the g2 focusing unit.",
     },
     {
@@ -125,10 +120,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 40.9,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -46.218167,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH53)",
+      glass:
+        "S-LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative element of g3.",
     },
     {
@@ -138,10 +132,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.48749,
       vd: 70.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -54.469889,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FSL5)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front member of the cemented pair in g3.",
       cemented: "D1",
     },
@@ -152,10 +145,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 49.849048,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear member of the cemented pair in g3.",
       cemented: "D1",
     },
@@ -166,10 +158,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71299,
       vd: 53.9,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -77.636128,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAL8)",
+      glass:
+        "S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear negative element of g3.",
     },
     {
@@ -179,10 +170,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 59.854283,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element of g4.",
     },
     {
@@ -192,10 +182,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6668,
       vd: 33,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -83.070355,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIM39 legacy)",
+      glass:
+        "S-TIM39 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative element in g4.",
     },
     {
@@ -205,10 +194,9 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 163.189474,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear element of g4 adjacent to the stop gap.",
     },
     {
@@ -218,10 +206,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 110.545545,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH66)",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element of g5A.",
     },
     {
@@ -231,10 +218,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -61.276523,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative middle element of g5A.",
     },
     {
@@ -244,10 +230,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.6,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 35.252129,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-BSM14)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive rear element of g5A.",
     },
     {
@@ -257,10 +242,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 74.94317,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-TIH53)",
+      glass:
+        "S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front member of the negative transverse IS unit g5B.",
       cemented: "D2",
     },
@@ -271,10 +255,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6935,
       vd: 53.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -32.53195,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate L-LAL13)",
+      glass:
+        "L-LAL13 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear member of the cemented pair in g5B.",
       cemented: "D2",
     },
@@ -285,10 +268,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6935,
       vd: 53.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -64.496385,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate L-LAL13)",
+      glass:
+        "L-LAL13 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear negative element of g5B, the transverse IS unit.",
     },
     {
@@ -298,10 +280,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 38.11849,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-FPL51)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element of g5C.",
     },
     {
@@ -311,10 +292,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: -48.717804,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
+      glass:
+        "S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative middle element of g5C.",
     },
     {
@@ -324,10 +304,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       vd: 37.2,
-      indexReferenceNote:
-        "The original defines bare Ni/νi without a reference wavelength. Default d-line tracing is approximate; coordinate candidates do not establish supplier or chemistry.",
       focalLengthMm: 86.33175,
-      glass: "Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate S-LAH60)",
+      glass:
+        "S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear element of g5C.",
     },
   ],

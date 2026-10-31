@@ -105,9 +105,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 312.26206,
-      glass: "Unmatched (source spectral line unspecified; former 487702 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in functional zoom group G1.",
     },
     {
@@ -119,9 +118,8 @@ const LENS_DATA = {
       vd: 35.0,
       indexReference: "d",
       focalLengthMm: -248.870426,
-      glass: "Unmatched (source spectral line unspecified; former 750350 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "H-LaF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the front positive zoom group G1.",
     },
     {
@@ -133,9 +131,8 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 155.615754,
-      glass: "Unmatched (source spectral line unspecified; unconfirmed fluorite assignment)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of G1; source spectral line and production fluorite assignment remain unconfirmed.",
     },
     {
@@ -147,9 +144,8 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: -71.239377,
-      glass: "Unmatched (source spectral line unspecified; former 713539 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "LAC8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative component of functional zoom group G2.",
     },
     {
@@ -161,9 +157,8 @@ const LENS_DATA = {
       vd: 58.2,
       indexReference: "d",
       focalLengthMm: -48.620801,
-      glass: "Unmatched (source spectral line unspecified; former 623582 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -176,9 +171,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 76.233815,
-      glass: "Unmatched (source spectral line unspecified; former 847238 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "J-SF03 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive high-dispersion member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -191,9 +185,8 @@ const LENS_DATA = {
       vd: 95.0,
       indexReference: "d",
       focalLengthMm: 71.394018,
-      glass: "Unmatched (source spectral line unspecified; former 439950 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-FPL53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive component at the front of functional group G3.",
     },
     {
@@ -205,9 +198,8 @@ const LENS_DATA = {
       vd: 41.2,
       indexReference: "d",
       focalLengthMm: -167.187167,
-      glass: "Unmatched (source spectral line unspecified; former 702412 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "BAFD7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative middle component of G3.",
     },
     {
@@ -219,9 +211,7 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       focalLengthMm: 161.249705,
-      glass: "Unmatched (source spectral line unspecified; inactive former K-SSK9 proxy)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass: "Unmatched (1.62012/49.5 outside the exact d-line window; K-SSK9 is a near candidate)",
       role: "Positive rear component of G3; source reference line is unspecified, so the former K-SSK9 curve is disabled.",
     },
     {
@@ -233,9 +223,8 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: -135.379089,
-      glass: "Unmatched (source spectral line unspecified; former 603606 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Single negative floating group G4; moves objectward during close focusing.",
     },
     {
@@ -247,9 +236,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 109.887227,
-      glass: "Unmatched (source spectral line unspecified; former 487702 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive component of relay group G5.",
     },
     {
@@ -261,9 +249,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -68.025992,
-      glass: "Unmatched (source spectral line unspecified; former 805254 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of relay group G5.",
     },
     {
@@ -275,9 +262,8 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 107.219815,
-      glass: "Unmatched (source spectral line unspecified; former 516641 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of relay group G5.",
     },
     {
@@ -289,9 +275,8 @@ const LENS_DATA = {
       vd: 48.3,
       indexReference: "d",
       focalLengthMm: 66.41833,
-      glass: "Unmatched (source spectral line unspecified; former 667483 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "BAF11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive component of relay group G5.",
     },
     {
@@ -303,9 +288,8 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: -48.104335,
-      glass: "Unmatched (source spectral line unspecified; former 835427 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -318,9 +302,8 @@ const LENS_DATA = {
       vd: 28.5,
       indexReference: "d",
       focalLengthMm: 44.640957,
-      glass: "Unmatched (source spectral line unspecified; former 728285 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive middle member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -333,9 +316,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -57.598621,
-      glass: "Unmatched (source spectral line unspecified; former 773496 coordinate class)",
-      indexReferenceNote:
-        "The patent defines n_i/nu_i without a wavelength (paragraph 0047); d-line tracing is approximate and catalog curves are disabled.",
+      glass:
+        "J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear member of G6; the complete triplet moves imageward during close focusing.",
       cemented: "T1",
     },
