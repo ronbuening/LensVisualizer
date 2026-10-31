@@ -34,19 +34,19 @@ Numerical Example 1 is a four-unit positive-negative-positive-positive zoom in t
 
 The isolated functional-unit powers computed from the final prescription clarify the architecture without conflating them with individual element powers:
 
-| Functional unit | Isolated EFL | Interpretation |
-|---|---:|---|
-| L1 | +191.690 mm | Positive front/focus unit |
-| L2 | −41.399 mm | Negative variator |
-| L3 | +81.427 mm | Positive compensator |
-| L41 | +132.254 mm | Positive fixed pre-stop subunit |
-| L42 | −67.824 mm | Negative image-stabilizing subunit |
-| L43 + L44, EXT OUT (`L43a`) | +97.662 mm | Combined rear positive section when the extender is removed |
-| L43, EXT IN | +125.853 mm | Positive section ahead of the inserted extender |
-| EXTa | +264.836 mm | Positive front extender subunit |
-| EXTb | −77.819 mm | Negative rear extender subunit |
-| EXT, combined | −176.418 mm | Net negative magnification-conversion unit |
-| L44 | +265.806 mm | Positive rear subunit after the extender |
+| Functional unit             | Isolated EFL | Interpretation                                              |
+| --------------------------- | -----------: | ----------------------------------------------------------- |
+| L1                          |  +191.690 mm | Positive front/focus unit                                   |
+| L2                          |   −41.399 mm | Negative variator                                           |
+| L3                          |   +81.427 mm | Positive compensator                                        |
+| L41                         |  +132.254 mm | Positive fixed pre-stop subunit                             |
+| L42                         |   −67.824 mm | Negative image-stabilizing subunit                          |
+| L43 + L44, EXT OUT (`L43a`) |   +97.662 mm | Combined rear positive section when the extender is removed |
+| L43, EXT IN                 |  +125.853 mm | Positive section ahead of the inserted extender             |
+| EXTa                        |  +264.836 mm | Positive front extender subunit                             |
+| EXTb                        |   −77.819 mm | Negative rear extender subunit                              |
+| EXT, combined               |  −176.418 mm | Net negative magnification-conversion unit                  |
+| L44                         |  +265.806 mm | Positive rear subunit after the extender                    |
 
 These are isolated unit EFLs, not standalone-element powers and not a statement of each unit's effective power in the assembled zoom. The assembled-system behavior is established by the full trace: inserting EXT changes the computed wide-end EFL from 204.991 mm to 286.835 mm and the tele-end EFL from 389.974 mm to 545.647 mm, conversion ratios of approximately 1.3993× and 1.3992× from the rounded prescription.
 
@@ -162,7 +162,7 @@ E17 is the positive member of the cemented front pair in the negative image-stab
 
 ### L42 / IS — E18 — Biconcave Negative, cemented group C4
 
-`nd = 1.51633, νd = 64.1.` Glass: `516/517642 BK7-coordinate crown class (qualified spectral proxy; source supplier and melt unspecified)`. Standalone `f = −79.063 mm`.
+`nd = 1.51633, νd = 64.1.` Glass: `S-BSL7 (Ohara compatible spectral proxy; historical material, supplier and melt unspecified)`. Standalone `f = −79.063 mm`.
 
 E18 opposes E17 in C4. The isolated C4 pair is only weakly negative, with EFL about −1098.84 mm; the complete three-element L42 becomes much stronger because E19 is also negative.
 
@@ -254,26 +254,26 @@ E30 completes EXT-C3. The pair is net positive at +108.861 mm, but when combined
 
 The original table explicitly labels its source coordinates `nd` and `νd` (PDF page 17, printed page 5, ¶0059/0061), identifying the d-line reference by notation. It is vendor-silent and gives no individual C/F/g indices or partial-dispersion values. The data file therefore uses coordinate classes rather than asserting specific melts. The six-digit forms below summarize d-line index and Abbe-number neighborhoods; they are not composition identifiers. Catalog cross-checking found multiple vendors at many of the same coordinates, so those equivalences are not evidence that Canon used any one listed catalog glass.
 
-| Patent `nd / νd` | Data-file identification | Use in the modeled lens |
-|---|---|---|
-| 1.48749 / 70.2 | 487702 crown class | L1 E1 |
-| 1.80610 / 33.3 | 806333 dense-flint/lanthanum class | L1 E2; L42 E17; L43 E22 |
-| 1.43387 / 95.1 | CaF2 spectral proxy; historical material unspecified | L1 E3 |
-| 1.49700 / 81.5 | 497816 ED/UD crown class | L1 E4; L3 E11, E12, E14 |
-| 1.90366 / 31.3 | 904313 high-index lanthanum-flint class | L2 E5, E8; L3 E13; EXTa E25 |
-| 1.69680 / 55.5 | 697555 lanthanum-crown class | L2 E6, E7 |
-| 1.83481 / 42.7 | 835427 high-index lanthanum class | L2 E9, E10 |
-| 1.76182 / 26.5 | 762265 dense-flint class | L41 E15 |
-| 1.59282 / 68.6 | 593686 low-dispersion class | L41 E16; EXTb E30 |
-| 1.51633 / 64.1 | 516/517642 BK7-coordinate crown class | L42 E18 |
-| 1.65160 / 58.5 | 652585 lanthanum-crown class | L42 E19 |
-| 1.62299 / 58.2 | 623582 crown class | L43 E20, E21 |
-| 1.57501 / 41.5 | 575415 light-flint class | L44 positive element |
-| 1.88300 / 40.8 | 883408 high-index lanthanum class | L44 negative element; EXTb E26, E28 |
-| 1.54072 / 47.2 | 541472 light-flint class | EXTa E23 |
-| 1.60342 / 38.0 | 603380 flint class | EXTa E24 |
-| 1.72047 / 34.7 | 720347 KZFS/NBH-coordinate class | EXTb E27 |
-| 1.61340 / 44.3 | 613443/445 KZFS/NBM-coordinate class | EXTb E29 |
+| Patent `nd / νd` | Data-file identification                             | Use in the modeled lens             |
+| ---------------- | ---------------------------------------------------- | ----------------------------------- |
+| 1.48749 / 70.2   | 487702 crown class                                   | L1 E1                               |
+| 1.80610 / 33.3   | 806333 dense-flint/lanthanum class                   | L1 E2; L42 E17; L43 E22             |
+| 1.43387 / 95.1   | CaF2 spectral proxy; historical material unspecified | L1 E3                               |
+| 1.49700 / 81.5   | 497816 ED/UD crown class                             | L1 E4; L3 E11, E12, E14             |
+| 1.90366 / 31.3   | 904313 high-index lanthanum-flint class              | L2 E5, E8; L3 E13; EXTa E25         |
+| 1.69680 / 55.5   | 697555 lanthanum-crown class                         | L2 E6, E7                           |
+| 1.83481 / 42.7   | 835427 high-index lanthanum class                    | L2 E9, E10                          |
+| 1.76182 / 26.5   | 762265 dense-flint class                             | L41 E15                             |
+| 1.59282 / 68.6   | 593686 low-dispersion class                          | L41 E16; EXTb E30                   |
+| 1.51633 / 64.1   | S-BSL7 qualified spectral proxy                      | L42 E18                             |
+| 1.65160 / 58.5   | 652585 lanthanum-crown class                         | L42 E19                             |
+| 1.62299 / 58.2   | 623582 crown class                                   | L43 E20, E21                        |
+| 1.57501 / 41.5   | 575415 light-flint class                             | L44 positive element                |
+| 1.88300 / 40.8   | 883408 high-index lanthanum class                    | L44 negative element; EXTb E26, E28 |
+| 1.54072 / 47.2   | 541472 light-flint class                             | EXTa E23                            |
+| 1.60342 / 38.0   | 603380 flint class                                   | EXTa E24                            |
+| 1.72047 / 34.7   | 720347 KZFS/NBH-coordinate class                     | EXTb E27                            |
+| 1.61340 / 44.3   | 613443/445 KZFS/NBM-coordinate class                 | EXTb E29                            |
 
 The CaF2 curve is compatible with the patent's `1.43387 / 95.1` coordinate, while Canon's production specification calls for one fluorite element. This supports a spectral proxy and a production-correlation inference, not proof of historical chemistry or a particular supplied material. The four 497816 elements likewise align numerically and by count with Canon's four-UD production specification. Those correspondences support the production correlation and a low-dispersion strategy but do not identify an individual glass supplier.
 
@@ -348,11 +348,11 @@ With the patent's stated `β > 1`, `Sk > 0`, and `e > 0`, the right-hand side is
 Independent reduced-angle y–ν tracing and an ABCD matrix calculation agree to numerical precision when applied to the final TypeScript surface arrays. The following is a diagnostic comparison using the generic 39.75 mm source effective-diameter entry as a trial opening. These figures describe that scenario, rather than the current derived runtime iris:
 
 | Configuration | Zoom endpoint | Computed EFL | Patent EFL | F/# from the 39.75 mm stop | Patent F/# |
-|---|---|---:|---:|---:|---:|
-| EXT OUT | Wide | 204.9911 mm | 205.00 mm | 4.1195 | 4.12 |
-| EXT OUT | Tele | 389.9736 mm | 389.99 mm | 4.1200 | 4.12 |
-| EXT IN | Wide | 286.8354 mm | 287.00 mm | 5.7642 | 5.77 |
-| EXT IN | Tele | 545.6471 mm | 545.98 mm | 5.7646 | 5.77 |
+| ------------- | ------------- | -----------: | ---------: | -------------------------: | ---------: |
+| EXT OUT       | Wide          |  204.9911 mm |  205.00 mm |                     4.1195 |       4.12 |
+| EXT OUT       | Tele          |  389.9736 mm |  389.99 mm |                     4.1200 |       4.12 |
+| EXT IN        | Wide          |  286.8354 mm |  287.00 mm |                     5.7642 |       5.77 |
+| EXT IN        | Tele          |  545.6471 mm |  545.98 mm |                     5.7646 |       5.77 |
 
 Under the printed-radius diagnostic, the nominal f/4.12 collimated input rays reach stop heights 19.87226/19.87491 mm at the OUT endpoints. A 19.875 mm trial opening reproduces the rounded source real-beam ratio, but yields a paraxial stop f-number near 4.0144. This convention-dependent agreement and the fixed axial stop position do not independently establish a physical station schedule. The existing stop model and all aperture controls are therefore preserved.
 
@@ -378,3 +378,11 @@ Under the project's strict first-order terminology, only the telephoto endpoints
 - CDGM, **Optical Glass Database.** <https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&url=database>
 - SUMITA Optical Glass, **K-CaFK95 data sheet and catalog family.** <https://www.sumita-opt.co.jp/abbe/pdf/k-cafk95.pdf>
 - Nikon, **CaF2 material constants,** used only as an independent check on the fluorite coordinate. <https://www.nikon.com/business/components/assets/pdf/caf2-e.pdf>
+
+## October 31, 2026 — Shared E18 Catalog-Proxy Followup
+
+Both distinct configurations retain their completed October 30 original shape/glass review dates. This shared material followup does not claim a new shape inspection. The controlling original is [US 2013/0308041 A1](../../../patents/US20130308041A1.pdf), Numerical Example 1: PDF p. 17 (printed p. 5), paragraph 0059 and the surface-table nd/νd headers establish the d-reference notation. Row 32 directly prints E18 at 1.51633 / 64.1. The inserted-state table on PDF p. 18 (printed p. 6) explicitly reuses rows 1–40, so the same E18 applies to EXT OUT and EXT IN. No source material name, individual C/F/g index, partial-dispersion value or APD designation further constrains this medium. No alternate publication replaces this controlling table.
+
+The [official OHARA S-BSL7 detailed sheet, 25-04](https://www.ohara-gmbh.com/fileadmin/user_upload/export-data/pdf/product_datasheets/S-BSL7_English_.pdf), checked October 31, publishes the same Sellmeier coefficients as the existing catalog entry, with λ in micrometres and denominator constants in µm². Its evaluated nd = 1.516329925, νd = 64.142022 and PgF = 0.535285 give source residuals −0.000000075 / +0.042022. The previous N-BK7 curve gives +0.000470035 / +0.067336, so S-BSL7 is the closer existing index/Abbe proxy. Other compatible crown curves remain possible; the numerical advantage does not establish an OHARA production supplier, historical material or melt. No new duplicate catalog row or per-lens spectral anchor is introduced.
+
+E18 is explicitly labelled S-BSL7 in both configurations. Coverage stays 24/24 in EXT OUT and 32/32 in EXT IN. Every source pair, partial/APD field, radius, thickness, clear cap, shoulder, iris rule, image-plane correction and zoom/focus control is unchanged. Pure parsed-data comparison excluding the two glass labels and sampled d-line runtime equality support that limited change. Earlier endpoint-only quantitative scope, interpolated defocus/aperture restrictions and unknown finite-focus/IS prescriptions remain applicable.

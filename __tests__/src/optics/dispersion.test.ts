@@ -66,6 +66,13 @@ describe("glass catalog", () => {
     expect(offenders).toEqual([]);
   });
 
+  it("resolves registered all-letter material names in qualified annotations", () => {
+    expect(resolveCompatibleGlass("POLYCARB (published polymer spectral proxy)", 1.58306, 30.2)?.name).toBe("POLYCARB");
+    expect(resolveGlass("POLYCARBONATE")).toBeNull();
+    expect(resolveGlass("NOTPOLYCARB")).toBeNull();
+    expect(resolveCompatibleGlass("Unmatched POLYCARB", 1.58306, 30.2)).toBeNull();
+  });
+
   // assertCatalogConsistent only checks that each entry's Sellmeier fit
   // reproduces its own stored nd — a systematically wrong catalog would still
   // be self-consistent. These anchors pin two hand-verified reference glasses

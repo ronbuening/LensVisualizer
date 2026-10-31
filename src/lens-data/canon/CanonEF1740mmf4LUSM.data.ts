@@ -84,8 +84,10 @@ const LENS_DATA = {
       nd: 1.58373,
       vd: 59.4,
       focalLengthMm: -38.77,
-      glass: "Unmatched (1.58373/59.4 glass-moldable crown; S-BAL42/L-BAL42 class)",
-      role: "Front negative element of group L1, with the glass-molded aspherical front surface",
+      indexReference: "d",
+      glass:
+        "K-SKLD120-M (SUMITA post-molding catalog spectral proxy; source supplier, melt, chemistry and process unspecified)",
+      role: "Front negative element of group L1 with an aspherical front surface; source manufacturing process is unspecified.",
       diagramLabel: "E1",
     },
     {

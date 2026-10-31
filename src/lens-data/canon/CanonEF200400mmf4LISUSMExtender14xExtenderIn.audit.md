@@ -8,8 +8,8 @@ Passes on this configuration before 2026-10-07, and every pass on the shared ana
 
 Read against US 2013/0308041 A1, Numerical Example 1. Surfaces 1–40 come from the not-inserted surface table (publication p. 5, PDF p. 17), which the inserted-state table declares shared ("surface numbers 1 to 40 are same"); surfaces 41–56 and the inserted-state "Various kinds of data" are on publication p. 6 (PDF p. 18).
 
-| Field | Before | After | Source |
-|---|---|---|---|
+| Field      | Before          | After     | Source                                                                                                                 |
+| ---------- | --------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `STO` `sd` | 19.365397314420 | 19.875000 | Surface data row `30 (stop)`: r ∞, d 22.15, effective diameter 39.75 (publication p. 5, PDF p. 17); one-half is 19.875 |
 
 - The stored value was a paraxial solve from the EXT OUT f/4.12 states (paraxial radii 19.3656 / 19.3652 mm), not a patent number, and was the only shared row whose `sd` was not half the printed effective diameter. The file differed from the print, so this is a transcription correction and carries no `sourceErrata` entry. The EXT OUT member carries the same value, so the two files still agree on every shared row.
@@ -21,7 +21,6 @@ Read against US 2013/0308041 A1, Numerical Example 1. Surfaces 1–40 come from 
 - The inserted-state zoom table heads its second column "Intermediate". Its d8 / d18 / d25 of 78.02 / 3.10 / 25.80 are the telephoto values of the not-inserted table and ¶0028 calls FIG. 4B the telephoto end, so the file's "Tele" label stands.
 - Open: `nominalFno` keeps 5.765010383668428 / 5.764593653737933, the paraxial f-numbers of the former 19.3654 mm radius, 0.09 % under the printed 5.77. The wide value sizes the traced iris at 19.8720 mm, 0.015 % under the printed 19.875 mm. The tele label is 0.015 % under the f/5.7655 that iris gives at 545.98 mm, which is why that station reads f/5.76 stated against f/5.77 traced. Not changed in this pass.
 - Open: row 56 prints d = 68.46 and the file carries 68.49, as its header and row comment say. The same page prints BF 68.49 and total lens length 389.84 at both zoom positions, the inserted d41–d53 sum to the 45.38 they replace, and the not-inserted table prints 68.49 for the same surface. The file has no `sourceErrata` entry for it.
-
 
 ## 2026-10-30 — Shared-prefix shoulders only; full inserted-state review pending
 
@@ -131,3 +130,11 @@ invented to obtain an intermediate pass.
 There are no inferred cuts to require a cut-beam exemption or probe. The shape/material source review is complete
 for this configuration, with no missing-original blocker. Source fidelity, sampled endpoint clearance, intermediate
 runtime limitations and production correlation remain separate conclusions.
+
+## 2026-10-31 — Shared E18 catalog-proxy followup
+
+The complete 2026-10-30 shape/glass source review retains its date; no fresh shape inspection is claimed. Rechecked Numerical Example 1 in the controlling original `patents/US20130308041A1.pdf`: paragraph 0059 and nd/νd headers on PDF p. 17 (printed p. 5), row 32 = 1.51633 / 64.1, and the PDF p. 18 shared-row declaration for EXT IN. The source publishes no material name, individual line indices, partial dispersion or APD constraint for E18.
+
+The existing S-BSL7 coefficients match the [official OHARA 25-04 detailed sheet](https://www.ohara-gmbh.com/fileadmin/user_upload/export-data/pdf/product_datasheets/S-BSL7_English_.pdf), checked 2026-10-31. Evaluated nd/νd = 1.516329925 / 64.142022, with residuals −0.000000075 / +0.042022, improve on N-BK7's +0.000470035 / +0.067336. Both distinct configurations now name S-BSL7 as a qualified spectral proxy; supplier, material and melt remain unproved. This is a curve selection, not a source-pair replacement or a new catalog row. The [shared analysis](./CanonEF200400mmf4LISUSMExtender14x.analysis.md) records the common source/coefficient evidence once for both configurations.
+
+All source numeric/spectral/APD fields, geometry and controls remain unchanged under parsed-data and d-line runtime comparison. Coverage remains 24/24 EXT OUT and 32/32 EXT IN. Existing source errata, endpoint-only optical conclusions and interpolation/focus/IS limitations are retained.

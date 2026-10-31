@@ -64,10 +64,10 @@ Every element face, concave end, cemented interface and the two thin resin layer
 Every clear semi-diameter stays at half the printed effective diameter. No source R/d, asphere, stop, zoom or focus
 control is changed. Two resolved rear shoulders now use outer extensions, rather than enlarging the optical caps.
 
-| Source face | Clear sd retained | Outer rim adopted | Evidence and constraint |
-| --- | ---: | ---: | --- |
-| 2, E1 rear concave | 18.03 mm | 26.04 mm | The broad rear annulus is clear in Fig. 1(A); the outer radius is conservatively anchored to the existing front clear rim, below the drawn roughly 27 mm blank. |
-| 5, E2 rear concave | 13.96 mm | 15.905 mm | The rear shoulder is resolved across several native pixels. Its outer radius meets the existing substrate front cap at 4; R1 retains its own distinct 3A/4 caps and no new resin wing. |
+| Source face        | Clear sd retained | Outer rim adopted | Evidence and constraint                                                                                                                                                                |
+| ------------------ | ----------------: | ----------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2, E1 rear concave |          18.03 mm |          26.04 mm | The broad rear annulus is clear in Fig. 1(A); the outer radius is conservatively anchored to the existing front clear rim, below the drawn roughly 27 mm blank.                        |
+| 5, E2 rear concave |          13.96 mm |         15.905 mm | The rear shoulder is resolved across several native pixels. Its outer radius meets the existing substrate front cap at 4; R1 retains its own distinct 3A/4 caps and no new resin wing. |
 
 `rimExtensionSd` is attached only to 2 and 5. No inferred concave cut is added. The E1 outer annulus lies beyond
 its spherical radius domain, but the optical cap ends at 18.03 mm; the extension is a flat shoulder, not an extrapolated
@@ -118,3 +118,13 @@ continuous-pupil clearance. It is unchanged by the shoulder-only drawing edits; 
 
 Source fidelity, sampled runtime clearance and production correlation are distinct conclusions. There is no original-PDF
 blocker for this configuration; the retained production and finite-field limitations above remain explicit.
+
+## 2026-10-31 — Scoped positive catalog-source follow-up
+
+The 2026-10-30 original-PDF shape review and historical dates above are preserved. This follow-up rechecks only the source material/reference evidence and catalog opportunities. Numerical Example 1, JP2020190696A PDF page 12, prints E1 1.58373/59.4 and ¶0063 defines d 587.6/C 656.3/F 486.1 nm. No individual line indices, partial-dispersion values or material/process identity for E1 are supplied. R1/R2 (1.52421/51.4) remain unidentified replica resin, with no invented formulation or glass curve.
+
+Positive source: [SUMITA official downloads](https://www.sumita-opt.co.jp/en/download/), retrieved 2026-10-31. `zemax.agf` header 2026/08/21, K-SKLD120(M), formula 1; `after_molding_20260821.pdf` page 1 row 41 PG. The vector table was rendered at 350 dpi and inspected; those display pixels are a render of vector text, not a native raster-resolution claim. The PG row prints C/d/F/g 1.58100/1.58401/1.59082/1.59611 and νd 59.5. The six verbatim polynomial coefficients use λ in µm: n²=a0+a1λ²+a2λ^-2+a3λ^-4+a4λ^-6+a5λ^-8, valid 0.36–1.55 µm. They pass the unchanged catalog consistency validator. The internal K-SKLD120-M row omits the copied base-grade code6, which describes a different nominal coordinate.
+
+At the engine reference lines, K-SKLD120-M evaluates to nd 1.58400660/νd 59.457625/PgF 0.537944: source residuals +0.00027660/+0.057625, with no published source PgF residual available. Existing L-BAL42 is compatible and has residuals −0.00060442/−0.014306; the new choice improves nd while modestly worsening Abbe. Rejected K-SKLD200(M) improves nd further (−0.00017750) but worsens Abbe to −0.568637. Current OHARA/Nikon-Hikari/SUMITA AGF tables and OHARA's molded BAL42 table supply no uniquely identified source medium; L-BAL42's molded nd 1.58033 is farther away. No source pair or spectrum is modified to force a catalog match.
+
+Only E1's proxy label, source-reference annotations and process-qualified role change in data. All source numerical fields, surfaces, rims, resin layers, stops, zoom/focus controls and existing eleven curve choices remain fixed. The Oct 30 unmatched-E1 disposition above is historical; the current disposition is twelve compatible glass proxies plus two unresolved resins. Curve selection expands estimated spectral coverage, not source-shape coverage or production verification.

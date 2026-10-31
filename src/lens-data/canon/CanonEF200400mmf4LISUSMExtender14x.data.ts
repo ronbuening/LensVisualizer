@@ -289,7 +289,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: -79.062966,
-      glass: "516/517642 BK7-coordinate crown class (qualified spectral proxy; source supplier and melt unspecified)",
+      glass: "S-BSL7 (Ohara compatible spectral proxy; historical material, supplier and melt unspecified)",
       apd: false,
       role: "Negative image-stabilizing subunit; transverse IS motion is not represented in the axial prescription.",
       cemented: "C4",

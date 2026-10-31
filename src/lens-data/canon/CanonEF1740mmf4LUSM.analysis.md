@@ -43,9 +43,9 @@ The focal lengths below are the patent's tabulated single-lens values, in air, n
 
 ### E1 — Negative Meniscus (1× Asph)
 
-**nd = 1.58373, νd = 59.4. Glass: Unmatched (1.58373/59.4 glass-moldable crown; S-BAL42/L-BAL42 class). f = −38.77 mm.**
+**nd = 1.58373, νd = 59.4. Glass: K-SKLD120-M (SUMITA post-molding catalog spectral proxy; source supplier, melt, chemistry and process unspecified). f = −38.77 mm.**
 
-This strongly negative front meniscus is the retrofocus entrance element. Its almost-flat aspherical front surface carries the polynomial correction, while the 22.591 mm rear radius provides most of the negative power. Canon's single glass-molded asphere is most plausibly this element. The printed nd 1.58373 is kept. It may be a misprint of the common 1.58313 moldable crown (S-BAL42/L-BAL42 class), but Canon's US 2010/0033848 A1 prints the same 1.58373, so a misprint is unconfirmed.
+This strongly negative front meniscus is the retrofocus entrance element. Its almost-flat aspherical front surface carries the polynomial correction, while the 22.591 mm rear radius provides most of the negative power. The printed nd 1.58373 is kept. Canon's production specification lists one glass-molded asphere without identifying this numerical medium or its process. The SUMITA catalog's post-molding curve is a qualified spectral proxy, not evidence that E1 uses that material or process. The older possible BAL42 transcription hypothesis remains unconfirmed and supplies no correction authority.
 
 ### R1 — Aspherical Resin Layer
 
@@ -127,11 +127,11 @@ The final positive low-dispersion element completes group L4 and doublet C3. The
 
 ## Glass Identification and Spectral Qualification
 
-The patent publishes nd and νd for every medium and explicitly defines the d reference at 587.6 nm, C at 656.3 nm and F at 486.1 nm (¶0063, p. 12). Every element keeps the printed values. Eleven compatible catalog curves are labeled **spectral proxies**, with production supplier unconfirmed. They do not establish historical melt, chemistry or resin identity. No individual line-index or partial-dispersion table is printed; no per-lens catalog-derived spectral overrides are authored. The high-index pairings and the very-high-Abbe rear positive element are source facts; their exact partial dispersion is not.
+The patent publishes nd and νd for every medium and explicitly defines the d reference at 587.6 nm, C at 656.3 nm and F at 486.1 nm (¶0063, p. 12). Every element keeps the printed values. Twelve compatible catalog curves are labeled **spectral proxies**, with production supplier unconfirmed. They do not establish historical melt, chemistry or resin identity. No individual line-index or partial-dispersion table is printed; no per-lens catalog-derived spectral overrides are authored. The high-index pairings and the very-high-Abbe rear positive element are source facts; their exact partial dispersion is not.
 
 | Entry | Source nd | Source νd | Catalog equivalent |
 | ----- | --------- | --------- | ------------------ |
-| E1    | 1.58373   | 59.4      | Unmatched          |
+| E1    | 1.58373   | 59.4      | K-SKLD120-M proxy  |
 | R1    | 1.52421   | 51.4      | Unmatched          |
 | E2    | 1.77250   | 49.6      | S-LAH66            |
 | E3    | 1.84666   | 23.9      | S-NPH53            |
@@ -146,7 +146,7 @@ The patent publishes nd and νd for every medium and explicitly defines the d re
 | E11   | 1.83400   | 37.2      | S-LAH60            |
 | E12   | 1.48749   | 70.2      | S-FSL5             |
 
-E1 is left unmatched: the nearby BAL42 class differs by about 0.00060 in nd. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The other 11 glass entries use compatible OHARA catalog curves as qualified proxies, while the d-line indices remain the printed values. Polychromatic results are therefore catalog-based estimates, not a measured production spectral response. E1 and the two resin layers use the engine's nd/νd dispersion estimate; no apochromatic claim follows.
+E1 uses the qualified SUMITA K-SKLD120-M curve; the other eleven glass entries retain their compatible OHARA curves. Neither resin layer is assigned a catalog glass merely because one lies nearby in nd/νd. The d-line indices remain the printed values, while both unidentified resin layers retain the nd/νd dispersion estimate. Catalog-based polychromatic estimates do not establish measured production spectra or an apochromatic design.
 
 ## Focus Mechanism and Zoom Motion
 
@@ -177,7 +177,7 @@ The three master-zoom aspheres are surfaces 1, 3 and 21. The patent's equation (
 | 3       | 0   | -9.21100E-06 | 2.50400E-08  | -1.83800E-11 | -6.64000E-15 | 0 (not listed) |
 | 21      | 0   | -2.20000E-05 | -2.58800E-08 | -1.36300E-11 | 2.92500E-13  | 0 (not listed) |
 
-The nearly planar front base has a positive leading polynomial departure; the two replica surfaces have negative A4. The higher orders matter near the edge. Canon describes one glass-molded and two replica aspheres; assigning the molded process to surface 1 and the replica process to surfaces 3 and 21 follows from the resin layers and the maker's drawing, not from a Canon statement.
+The nearly planar front base has a positive leading polynomial departure; the two replica surfaces have negative A4. The higher orders matter near the edge. Canon describes one glass-molded and two replica aspheres. The two modeled thin layers support a replica construction at surfaces 3 and 21; the published numerical prescription does not identify E1's molding process, resin formulation or production materials.
 
 ## Model Scope and Limitations
 
@@ -200,3 +200,11 @@ The selected bare-master configuration has no separately printed endpoint focal 
 3. [Canon optical construction image](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/ef373-lens-construction.gif): element layout, aspherical and Super UD positions; schematic, not dimensional.
 4. [JP2020190696A bibliographic index](https://patents.google.com/patent/JP2020190696A/en): publication and application dates and the original Japanese inventor name; its automatic English inventor translation is not relied on.
 5. [US20060007342A1](https://patents.google.com/patent/US20060007342A1/en), [JP2006171432A5](https://patents.google.com/patent/JP2006171432A5/en) and the [J-GLOBAL inventor record for JP2006171432](https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=200903083530613036): a separate Canon family giving the Latin name Yoshiyuki Taki for 滝 慶行.
+
+## Scoped Catalog Follow-up — 2026-10-31
+
+The original Numerical Example 1 table and ¶0063 on PDF page 12 were checked for the retained E1 pair 1.58373/59.4 and d/C/F reference. No individual line-index or partial-dispersion values are published. This glass-only follow-up preserves the 2026-10-30 shape review, all geometry and controls, and both unidentified resin media.
+
+[SUMITA's official download bundle](https://www.sumita-opt.co.jp/en/download/) supplies `zemax.agf` (2026-08-21 header; download listing updated August 26) and `after_molding_20260821.pdf`. The latter's page 1, row 41 PG, independently prints K-SKLD120(M)'s post-molding C/d/F/g indices 1.58100/1.58401/1.59082/1.59611 and νd 59.5. The polynomial evaluated at the engine reference lines gives nd 1.58400660, νd 59.457625 and PgF 0.537944; differences from the source pair are +0.00027660/+0.057625. The source gives no PgF for comparison. The internal name K-SKLD120-M denotes this catalog state without importing its base grade's copied six-digit code.
+
+Existing [L-BAL42](https://www.ohara-inc.co.jp/assets/en/product/pdf/elbal 42.pdf) is already compatible: evaluated residuals are −0.00060442/−0.014306. K-SKLD120-M reduces the index difference while slightly worsening the Abbe difference. K-SKLD200(M) is closer in index (−0.00017750) but farther in Abbe (−0.568637), so smallest index residual alone is not the selection rule. OHARA's published L-BAL42 molded state (nd 1.58033) and L-BAL42P standard state (1.58593) do not improve this balance. Searches of the downloaded OHARA, Nikon/Hikari and SUMITA tables do not establish a production identity. The selected curve remains an approximate proxy; it proves neither historical supplier, melt, chemistry nor molding process.

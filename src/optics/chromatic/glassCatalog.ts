@@ -15,8 +15,9 @@
  * hand-maintained. See agent_docs/glass-catalog-buildout.md for the addition history and
  * sourcing playbook.
  *
- * All coefficients are vendor-published physical measurements. Each entry
- * cites its source. Catalog validation checks d-line index, Abbe number,
+ * Coefficients come from published manufacturer data, primary literature and
+ * attributed material catalogs. Each entry cites its source. Catalog validation
+ * checks d-line index, Abbe number,
  * spectral ordering, and the encoded coordinate when a six-digit code exists.
  */
 
@@ -288,6 +289,14 @@ function escapeRegExp(value: string): string {
 const ALIAS_PATTERNS: ReadonlyMap<string, RegExp> = new Map(
   [...ALIASES.keys()].map((alias) => [alias, new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`)]),
 );
+// Match grade names without digits only when registered, so annotation prose
+// cannot create a material candidate.
+const NON_NUMERIC_CATALOG_NAME_PATTERNS: ReadonlyMap<string, RegExp> = new Map(
+  RAW_CATALOG.filter((entry) => !/\d/.test(entry.name)).map((entry) => {
+    const name = entry.name.toUpperCase();
+    return [name, new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(name)}(?=$|[^A-Z0-9-])`)];
+  }),
+);
 const CATALOG_VENDORS: readonly { vendor: string; upper: string }[] = [
   ...new Set(RAW_CATALOG.map((entry) => entry.vendor)),
 ].map((vendor) => ({ vendor, upper: vendor.toUpperCase() }));
@@ -310,6 +319,11 @@ export function glassTokens(glassString: string): string[] {
     if (tokens.some((token) => token.toUpperCase() === alias)) continue;
     if (pattern.test(upperGlassString)) {
       tokens.push(alias);
+    }
+  }
+  for (const [name, pattern] of NON_NUMERIC_CATALOG_NAME_PATTERNS) {
+    if (!tokens.some((token) => token.toUpperCase() === name) && pattern.test(upperGlassString)) {
+      tokens.push(name);
     }
   }
   return tokens;
