@@ -13,7 +13,12 @@
  * nC, nF and ng are computed from the printed nd, νd, PgF and PdC. Eleven elements carry HOYA coordinate equivalents,
  * which are not supplier or melt claims; L9 and L13 match no catalog row.
  * K = 0 and A4–A14 are all printed, not assumed. Source scale unchanged.
- * Clear rims are inferred from Figure 1 and capped by the default 90% sag rule, with no override.
+ * Clear rims are estimated from Figure 1 and floor-checked by real-ray trace at all three printed states. The figure is
+ * stretched across the axis: vertices give 7.618 px/mm along it, the arcs of the printed radii and the stop tick give
+ * 8.55 px/mm across it, and rim heights use the second scale. S2/S3 stop at the drawn cap ends, 13.49 mm; the blocks
+ * drawn past them are not clear aperture. S12 and S14 carry inferred flat lands, cut radii 11.44 and 11.23 mm. The
+ * figure draws L11 square, meeting L12, but S20 and S21 cross at 12.75 mm, so L11 is 12.6 mm, about 0.08 mm of air at
+ * the rim, which needs checks.gapSagFrac 0.98 on the S20–S21 gap.
  * The 65 focus controls reparameterize the printed gap paths and are not a recovered cam.
  * Only infinity, −0.5× and −1× are published; intermediate finite MTF is not certified.
  * Stop: radius 10.616 mm from paraxial EPD 23.43 mm at F/2.90, fixed through focus. Working f/# traces
@@ -287,7 +292,7 @@ const LENS_DATA = {
     {
       label: "1",
       R: -1000.0,
-      sd: 16.5,
+      sd: 14.9,
       medium: 1,
       d: 0.9,
     },
@@ -295,72 +300,75 @@ const LENS_DATA = {
       label: "2",
       R: 37.0,
       sd: 13.49,
+      rimExtensionSd: 14.9,
       d: 5.92,
     },
     {
       label: "3",
       R: -34.2428,
       sd: 13.49,
+      rimExtensionSd: 14.9,
       medium: 2,
       d: 2.7775,
     },
     {
       label: "4",
       R: -249.1531,
-      sd: 16.5,
+      sd: 14.9,
       medium: 3,
       d: 3.6737,
     },
     {
       label: "5",
       R: -43.2458,
-      sd: 16.5,
+      sd: 14.9,
       d: 0.15,
     },
     {
       label: "6",
       R: 88.8019,
-      sd: 17.3,
+      sd: 15.6,
       medium: 4,
       d: 3.3726,
     },
     {
       label: "7",
       R: -238.88,
-      sd: 17.3,
+      sd: 15.6,
       d: 3.6,
     },
     {
       label: "8",
       R: 47.9297,
-      sd: 17.1,
+      sd: 15.4,
       medium: 5,
       d: 4.45,
     },
     {
       label: "9",
       R: -204.7515,
-      sd: 17.1,
+      sd: 15.4,
       d: 3.7292,
     },
     {
       label: "10",
       R: 36.3935,
-      sd: 15.5,
+      sd: 13.9,
       medium: 6,
       d: 6.5,
     },
     {
       label: "11",
       R: -55.84,
-      sd: 15.5,
+      sd: 13.9,
       medium: 7,
       d: 1.0,
     },
     {
       label: "12",
       R: 25.5806,
-      sd: 15.5,
+      sd: 13.9,
+      rimCutDepthMm: 2.7,
     },
     {
       label: "STO",
@@ -370,21 +378,22 @@ const LENS_DATA = {
     {
       label: "14",
       R: -21.6591,
-      sd: 14.4,
+      sd: 12.9,
+      rimCutDepthMm: 3.14,
       medium: 8,
       d: 1.5157,
     },
     {
       label: "15",
       R: 400.0,
-      sd: 14.4,
+      sd: 12.9,
       medium: 9,
       d: 6.5,
     },
     {
       label: "16A",
       R: -24.6449,
-      sd: 14.4,
+      sd: 12.9,
       d: 0.15,
       asphere: {
         K: 0.0,
@@ -399,45 +408,45 @@ const LENS_DATA = {
     {
       label: "17",
       R: 222.1264,
-      sd: 14.5,
+      sd: 13.0,
       medium: 10,
       d: 3.6,
     },
     {
       label: "18",
       R: -54.7041,
-      sd: 14.5,
+      sd: 13.0,
     },
     {
       label: "19",
       R: 84.6604,
-      sd: 14.5,
+      sd: 12.6,
       medium: 11,
       d: 0.9,
     },
     {
       label: "20",
       R: 35.1686,
-      sd: 12.09,
+      sd: 12.6,
       d: 3.22,
     },
     {
       label: "21",
       R: -98.4349,
-      sd: 12.09,
+      sd: 13.8,
       medium: 12,
       d: 1.2,
     },
     {
       label: "22",
       R: 144.1189,
-      sd: 15.4,
+      sd: 13.8,
       d: 0.15,
     },
     {
       label: "23A",
       R: 50.4612,
-      sd: 16.3,
+      sd: 14.8,
       medium: 13,
       d: 4.7,
       asphere: {
@@ -453,7 +462,7 @@ const LENS_DATA = {
     {
       label: "24A",
       R: -162.8978,
-      sd: 16.3,
+      sd: 14.8,
       d: 51.0113,
       asphere: {
         K: 0.0,
@@ -629,6 +638,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.74,
   },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

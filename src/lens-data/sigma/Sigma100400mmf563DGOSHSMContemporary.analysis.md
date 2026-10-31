@@ -227,11 +227,13 @@ G2b (S11–S15) moves transversely for shake correction (¶0073). The model is c
 
 ## Semi-Diameters and Modeling Limits
 
-The patent prints no clear apertures, so every semi-diameter is inferred, and none is a measured factory aperture. Most are measured from the grant's Figure 1 at the wide position, scaled from the printed axial layout and rounded to 0.5 mm. The L1/L2 doublet (32.5 mm), L3 (31 mm) and L19 (14 mm) follow Sigma's construction diagram at the scale set by its fit to Example 1, because Sigma draws the front group about 2 mm smaller and L19 about 2 mm larger than the patent figure. The on-axis beam stays clear of all of them at every printed position; it reaches 29.84 mm at S1 at the tele position.
+The patent prints no clear apertures, so every semi-diameter is inferred, and none is a measured factory aperture. They are measured from the grant's Figure 1 at the wide position, the only print that keeps its glass lines, at 8.2 px/mm from the printed axial layout. The drawing is true to scale within 1 %: its arcs, stop tick and element edge widths all fit the prescription. L3 reaches 32.9 mm and L19 reaches 11.8 mm. L1 and L2 read 33.65 mm and are set to 33.4 mm, which keeps the front element inside the 67 mm filter thread. Sigma's construction diagram draws the front group 1.2 to 2 mm smaller and L19 about 2.4 mm larger. The on-axis beam stays clear of all of them at every printed position; it reaches 29.84 mm at S1 at the tele position and 8.02 mm at S33.
 
-L7 and L12 are reduced to 11.8 and 12.1 mm to stay within the default 90 % air-gap sag limit at S12–S13 and S19–S20.
+The figure ends seven concave faces on flat lands. At S12, S13, S24 and S35 the land is a cut that ends the cap at 12.23, 12.18, 11.03 and 12.57 mm. Only S24 sits at the drawn height; the others sit further out than drawn so that the land clears the traced beams. S12 and S13 would cross at 12.44 mm without their lands.
 
-Wide open at infinity, geometric transmission at the frame corner is 56 % at the wide position, 64 % at the middle position and 58 % at the tele position. The inferred front rims matter here: the patent figure's larger 34 and 33 mm rims would give 71 % at the middle position and 63 % at the tele position, with the wide position unchanged.
+At S10, S20 and S34 the clear aperture itself ends at 12.7, 12.1 and 11.4 mm, and a land carries the outline out to the element edge at 14.5, 13.0 and 11.8 mm. The drawn cap ends are smaller still, at 11.3, 11.7 and 10.4 mm, but the on-axis beam needs 12.16 mm at S10 and 12.03 mm at S20, and S34 at its drawn height would darken the corner by 6 to 8 points.
+
+Wide open at infinity, geometric transmission at the frame corner is 56 % at the wide position, 68 % at the middle position and 61 % at the tele position. The front rims set the middle and tele values: Sigma's smaller front group would give 64 % and 57 %, with the wide position unchanged. The S10 and S20 apertures shade the field inside the corner more than the corner itself. At the wide position transmission is 77 % at 9.7°, where it would be 82 % without them.
 
 The model keeps the printed image plane at every printed position, and it does not refit best focus. The stabilizer stays centred, and the intermediate zoom and all finite-focus positions are derived.
 

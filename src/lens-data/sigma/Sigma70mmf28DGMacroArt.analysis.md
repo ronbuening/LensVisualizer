@@ -128,7 +128,7 @@ Negative meniscus beginning fixed G3 at S19. Its rear rim is limited by the faci
 
 nd = 1.62040, νd = 60.34. Glass: BACD16 (HOYA, coordinate equivalent). f = -94.10 mm.
 
-Negative biconcave element within G3. Its front clear rim is limited by L11; no radius or thickness is changed to remove the overlap.
+Negative biconcave element within G3. Its front face runs out past L11's rear edge to the 13.8 mm rim, as Figure 1 draws it.
 
 ### L13 — Biconvex Positive (Asph)
 
@@ -242,9 +242,13 @@ start at S20 gives a meaningless +97.36 mm, while the complete G3, S19–24, giv
 
 ## Aperture, Rims and Model Limits
 
-Figure 1 is schematic and the patent prints no clear apertures, so all rims are
-inferred. The facing S2/S3 rims are limited to 13.49 mm and S20/S21 to 12.09 mm, under
-the default 90% sag limit across those air gaps. No gap allowance or rim-slope
+The patent prints no clear apertures, so all rims are inferred from Figure 1. The
+figure is to scale along the axis but stretched about 12% across it: its vertices give
+7.62 px/mm, while the arcs of the printed radii and the stop tick give 8.55 px/mm, and
+rim heights are read at the second scale. The clear apertures of S2 and S3 end at the
+13.49 mm cap ends the figure draws, and flat lands carry them out to its square 14.9 mm blocks. S12
+and S14 end in flat lands at 11.44 and 11.23 mm radius. S20 and S21 would cross at
+12.75 mm, so L11 is 12.6 mm, which takes a cross-gap allowance of 0.98. No rim-slope
 override is used.
 
 The stop follows the rule used across the catalog: a paraxial entrance pupil of f/N at
@@ -257,13 +261,13 @@ printed 4.99: no single radius fits all three printed values, which would need 1
 three printed F-numbers in Examples 2, 4 and 6 but misses at −1× in Examples 1, 3 and
 5, and Example 5 has no gap problem. A second fixed limit of about 11.87 mm at S16
 would reproduce the printed values of Examples 1 and 5, which suggests an aperture the
-patent does not print. That is an interpretation: Figure 1 draws S16 near 14.4 mm, and
+patent does not print. That is an interpretation: Figure 1 draws S16 near 12.9 mm, and
 the model carries no such limit.
 
 A chief ray traced to the patent's 21.63 mm image height leaves the object side at
 17.70°, 13.29° and 10.53°, giving 2ω of 35.40°, 26.58° and 21.06° against the printed
-35.40°, 26.59° and 21.07°. With the inferred rims, geometric transmission at the 17.7°
-corner is 45% at infinity.
+35.40°, 26.59° and 21.07°. With the inferred rims, geometric transmission at the format
+corner is 49% at infinity (17.7°), 67% at −0.5× (13.3°) and 78% at −1× (10.5°).
 
 MTF is evaluated at the 21.65 mm format corner, not the patent's 21.63 mm, and its
 finite-state field angles are measured from the first vertex, so they are not directly

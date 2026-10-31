@@ -34,9 +34,8 @@ The link between Sigma's lens and the patent rests on several convergent but non
    The close agreement supports a relation, not an exact identity, and the printed
    distances are not altered to match.
 
-The catalog entry lists the Sigma SA, Canon EF and Nikon F versions and the later Sony E and
-L-Mount versions that Sigma lists for this lens; the mirrorless barrels are not modeled
-separately. The DG DN lens is a different design. Sigma's filter diameter is not used as a
+The catalog entry lists the Sigma SA, Canon EF, Nikon F and Sony A versions and the later Sony E
+and L-Mount versions of this lens; the mirrorless barrels are not modeled separately. The DG DN lens is a different design. Sigma's filter diameter is not used as a
 clear aperture.
 
 ## Optical Architecture
@@ -136,13 +135,13 @@ The strongly negative central member of T1 lies between positive high-Abbe membe
 
 nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA, coordinate equivalent) — SLD position. f = +90.12 mm.
 
-The positive rear member of T1 shares S20 with L11 and ends at S21. It uses the same printed material pair as L7/L8/L13. Its rim is inferred and set to the near-state on-axis marginal ray; the patent specifies no aperture here.
+The positive rear member of T1 shares S20 with L11 and ends at S21. It uses the same printed material pair as L7/L8/L13. Its rim is inferred from Figure 1 and clears the near-state on-axis marginal ray; the patent specifies no aperture here.
 
 ### L13 — Biconvex Positive
 
 nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA, coordinate equivalent) — SLD position. f = +38.75 mm.
 
-This positive biconvex element follows T1 in G2B and has the strongest positive isolated power among the four νd 68.63 elements. Its rim is inferred and set to the near-state on-axis marginal ray, not tuned for MTF.
+This positive biconvex element follows T1 in G2B and has the strongest positive isolated power among the four νd 68.63 elements. Its rim is inferred from Figure 1 and clears the near-state on-axis marginal ray; it is not tuned for MTF.
 
 ### L14 — Biconcave Negative
 
@@ -251,15 +250,23 @@ not a separate thin composite layer; fabrication method remains unverified.
 
 ## Aperture, Clear Rims and Image Planes
 
-The patent does not list clear semi-diameters or an iris radius. Figure 1 was
-measured at its own axial scale to seed outer extents, but its outlines cannot serve
-as square rims on both faces: L10's edge thickness goes negative, the S2 rim passes
-that surface's radius of curvature, and the air gaps after S2, S4, S6, S8 and S25 overlap.
-The model's rims are therefore **inferred**. They keep the large front extent and sit
-inside the curved rear and flange outlines. L12, L13, L14 and L15 are set to the height of
-the on-axis marginal ray at the printed near state (14.39, 15.81, 15.33 and 15.17 mm), so
-that beam passes unclipped. They are not proven factory apertures, and the model's
-vignetting must not be presented as measured production vignetting.
+The patent does not list clear semi-diameters or an iris radius, so the model's rims are
+**inferred** from Figure 1, whose arcs fit the prescription to 0.4 px at 8.04 px/mm axially
+and 8.08 px/mm radially. The drawn heights cannot all serve as clear rims. Used that way they
+would cross the air gaps after S2, S4, S6, S8 and S25, which close at about 22.4, 21.9, 21.1,
+19.5 and 16.0 mm, and S2's radius of curvature is only 25.79 mm. The rims therefore keep the
+drawing's order and steps: L1 28.0 mm, L2 22.1, L3 20.2, L4 and C1 19.2, L7 17.7, L8 and
+L9 16.1, L10 14.0, L11 and L12 15.6, L13 17.0, L14 16.9 and L15 17.2 mm. L2 to C1 sit about 5%
+inside the drawing, where those gaps limit them; L1, G2A and L11 to L15 stay on it.
+
+The flat lands the figure draws are modeled two ways. Rim cuts behind L2, L3 and L9 and ahead
+of L10 clear every wide-open beam, and those on S4 and S6 stand at the beam reach, outside the
+drawn cap ends. Rim extensions carry L1, L14 and L15 past their optical caps: S2's cap stops
+at 22.5 mm and its rim runs to 28.0 mm, and the caps of S25 and S26 stop at 15.9 mm, just short
+of where those faces meet, with rims at 16.9 and 17.2 mm. An extension is opaque and adds no
+aperture. The on-axis marginal ray clears every rim at both printed states. None of this proves
+a factory aperture, and the model's vignetting must not be presented as measured production
+vignetting.
 
 The iris size follows from the design F1.47: the paraxial entrance-pupil diameter at
 infinity equals EFL / F-number, a radius of 8.386 mm, which gives a fixed iris radius of
@@ -283,15 +290,16 @@ infinity and 39.709° with the near-state spacings, matching the printed 41.69°
 The near object-to-first-vertex angle of about 45.85° is a different geometric quantity,
 not a field-angle disagreement.
 
-At the image corner, about 20% of the wide-open beam reaches the image at infinity on these
-inferred rims, so edge results rest on a small part of the pupil.
+At the image corner, about 30% of the wide-open beam reaches the image at infinity and about
+39% at the near state on these inferred rims, so edge results rest on a small part of the
+pupil.
 
 Diffraction MTF at the printed image planes converges at the center, mid-field and edge.
 **Convergence is not optical quality.** At 40 lp/mm wide open at the reference wavelength,
-the infinity center is about 0.551 and the 21.65 mm edge about 0.250 sagittal / 0.146
-tangential. At the near state the center is about 0.759 and the edge about 0.271 sagittal /
-**0.066 tangential**. Photopic values, on the catalog dispersion of the equivalent glasses,
-are lower: about 0.354 at the infinity center and 0.209 / 0.004 at the near edge. Best-axial
+the infinity center is about 0.551 and the 21.65 mm edge about 0.229 sagittal / 0.200
+tangential. At the near state the center is about 0.759 and the edge about 0.219 sagittal /
+**0.070 tangential**. Photopic values, on the catalog dispersion of the equivalent glasses,
+are lower: about 0.354 at the infinity center and 0.194 / 0.010 at the near edge. Best-axial
 focus lifts the centers but leaves the near edge weak. Stopping to f/8 improves most values
 but does not replace the wide-open result. Inferred rims, catalog glass equivalents and the
 undefined finite F-number qualify all numerical performance results. Sigma's MTF charts

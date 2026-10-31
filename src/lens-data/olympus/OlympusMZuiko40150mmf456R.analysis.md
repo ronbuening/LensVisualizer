@@ -146,9 +146,9 @@ Between the control positions, image defocus stays under 0.002 mm at infinity an
 
 The printed image plane is retained. The model's infinity focal lengths are 40.800 / 77.523 / 147.005 mm, and the paraxial image falls within 0.0002 mm of the image plane at all three printed positions. The printed BF is the air-equivalent expression d24 + 4/1.51633 + 0.8, not the physical gap from the last lens to the image. The 4 mm glass and 0.8 mm trailing air are traced as a separate plate, so the plate is not counted twice.
 
-Clear semi-diameters are inferred from Fig. 3; none is published. The figure is scaled from the 77.434 mm printed span from first to last lens surface at the wide end and from the 4 mm cover-plate width. The G2 rear singlet is drawn at about 7.6 ± 0.3 mm. The model uses 7.3 mm because the facing surfaces of L4 and L5 limit that rim to about 7.36 mm. Other rims follow the drawn relative sizes.
+Clear semi-diameters are inferred from Fig. 3; none is published. Vertex spans scale all three panels at 12.32 px/mm, and the drawn image line gives 12.34 px/mm across the axis, so the drawing shows no significant stretch. L4's rear follows its drawn 8.0 mm rim, while the cemented surface 5 keeps L3's 8.9 mm, because one radius cannot draw the step between the two elements. The G2 rear singlet's curved front ends near 7.1 mm against L4, and its land is drawn at about 7.7 mm. The model ends the curved front at 7.3 mm with a flat land out to 7.7 mm, and the rear face reaches 7.7 mm, so the flange draws as printed and its clear aperture stays close to the drawn curve. Other rims are within about 3% of the drawing.
 
-Vignetting is therefore an estimate: relative illumination at the 10.82 mm image corner is about 70 / 66 / 64% at WE / ST / TE, wide open. Infinity MTF describes the printed prescription with inferred rims, not measured production performance.
+Vignetting is therefore an estimate. At the 10.82 mm image corner, wide open, about 70 / 66 / 64% of the beam reaches the image at WE / ST / TE, and relative illumination is about 67 / 64 / 63%. Infinity MTF describes the printed prescription with inferred rims, not measured production performance.
 
 ## Sources
 

@@ -156,7 +156,7 @@ The mean positive-G1 ΔPgF is +0.0182, matching the patent's condition (7) value
 Positive/negative cemented combinations provide chromatic-design freedom; no
 apochromatic performance is claimed. Dispersion remains an estimate: seven of
 the ten partial dispersions are catalog values for equivalent glasses, not
-source data, and the filter plate uses an Abbe-number estimate.
+source data, and the filter plate traces on the BSC7 catalog curve, which matches its printed nd and νd.
 
 ## Focus Mechanism
 
@@ -207,10 +207,16 @@ patent does not state how the aspheres are made.
 ## Aperture, Rim and Field Qualifications
 
 The patent's tables give no clear semi-diameters. The rims were read from
-Figure 1, scaled by the 57.3486 mm first-to-last vertex separation and rounded to
-0.1 mm; about 0.2 mm of reading uncertainty remains, and the mechanical boundaries
-are unknown. All elements use square rims. Sigma's drawing shows larger triplet
-rims, about 11–12 mm against 10.3 mm, and a stepped L14 rear rim, so the model's
+Figure 1, whose arcs fit the printed radii at 7.62 px/mm along the axis and
+7.57 px/mm across it, and rounded to 0.1 mm; about 0.2 mm of reading uncertainty
+remains, and the mechanical boundaries are unknown. Elements use square rims, and
+the concave rear faces of L21 and L11 end in flat lands where Figure 1 ends the
+curves, at 11.08 mm and 18.4 mm. L21's land lies outside the wide-open beams, while
+L11's is a real aperture that trims them off axis. Figure 1 also ends L33's rear
+curve at about 8.9 mm, but the model carries its 10.3 mm rim without a land, because
+that height would lower the corner by a further 8–11 points. Sigma's drawing shows
+larger triplet rims, about 11.2 mm on L31 and L32 and 12.3 mm on L33 against
+10.3 mm, and L14 stepped down to about 15.6 mm against 17.3 mm, so the model's
 vignetting is not a production measurement.
 
 The model sizes every stop by one rule: a paraxial entrance pupil of EFL / F, here
@@ -229,9 +235,10 @@ nine-blade count is kept, but MTF uses a circular iris.
 The chief ray to Y = 14.20 mm leaves at 14.31° at infinity, matching the printed
 2ω of 28.62°. At the 500 mm state its launch slope gives a full angle of 25.05°,
 matching the print, while the angle from the object point to the first vertex is
-26.56°. These are different definitions and are not interchangeable. Wide open at
-infinity the model passes 51.5% of the beam at the 14.3° corner, limited mainly by
-the inferred rims of L11 and triplet C2.
+26.56°. These are different definitions and are not interchangeable. Wide open the
+model passes 48.3% of the beam at the 14.3° corner at infinity and 72.2% at the
+12.5° corner at the 500 mm state, limited mainly by the inferred rims of L11 and
+triplet C2.
 
 ## Model Scope and Limitations
 
@@ -240,11 +247,11 @@ printed group focal lengths. Its results describe this patent example at inferre
 rims, not a production lens.
 
 At the model's wide-open stop on the authored image plane, reference-line
-diffraction MTF at 40 lp/mm is S/T 0.92/0.92 on axis, 0.30/0.88 at half field and
-0.37/0.33 at the edge at infinity. At the 500 mm state it falls to 0.23/0.23 on
-axis, 0.07/0.31 at half field and 0.19/0.14 at the edge, with a photopic edge of
-0.21/0.03. A best-axial focus shift of −0.088 mm lifts the 500 mm axis to 0.59 but
-lowers the reference edge to 0.01/0.02, and it is not applied. The weak 500 mm
+diffraction MTF at 40 lp/mm is S/T 0.92/0.92 on axis, 0.32/0.88 at half field and
+0.37/0.35 at the edge at infinity. At the 500 mm state it falls to 0.23/0.23 on
+axis, 0.07/0.31 at half field and 0.20/0.15 at the edge, with a photopic edge of
+0.22/0.03. A best-axial focus shift of −0.088 mm lifts the 500 mm axis to 0.58 but
+lowers the reference edge to 0.01/0.01, and it is not applied. The weak 500 mm
 result follows from the printed spacings and is not a quality measure of the product.
 
 The model's +3.2% corner pincushion is close to the roughly 2.8% Photozone reports

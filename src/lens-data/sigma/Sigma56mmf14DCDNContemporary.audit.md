@@ -26,4 +26,56 @@ dPgF: moved to the engine's normal line rather than dropped, because the patent 
 
 Fields changed: header, `subtitle`, `specs`, element `label`, `role`, `glass`, `dPgF`, `apd`, `apdNote`, `cemented` and `doublets` text (D1, T1, D2 → C1, C2, C3), `focus.description`, conjugate and plate `source` strings. No R, d, nd, νd, sd, asphere, gap, f-number or mount value changed. The analysis MTF figures were recomputed at the 12.14 mm stop with the new glass labels.
 
-Open: JP 7094550 B2 has not been compared with the application. Sigma's drawing shows larger triplet rims than Figure 1; the file follows the patent figure.
+Open: JP 7094550 B2 has not been compared with the application. Sigma's larger triplet rims are measured in the semi-diameter pass below; the file follows the patent figure.
+
+## 2026-10-31 — Semi-diameter pass against the patent figure
+
+Source: JP 2020-030383 A p. 26, Figure 1, a 674 × 402 px 1-bit raster at 300 dpi, and the same drawing on the front page, 816 × 497 px. Both show Example 1 at infinity. Second check: Sigma's construction drawing, 1316 × 682 px, scaled by its first-to-last vertex span of 890 px to 15.52 px/mm because it is a different prescription.
+
+Scale: S1 to S17A spans 437 px over 57.3486 mm, 7.620 px/mm along the axis. S7 lands at 24.41 mm against 24.49 mm and S10 at 29.79 mm against 29.80 mm, so the drawing is the infinity state. Fits of the printed sag to S1, S2, S3A, S6, S10, S11, S12, S14 and S16 leave 0.21–0.33 px RMS and give 7.574 px/mm across the axis, 0.994 of the axial scale. The front-page copy is 9.224 px/mm along and 9.353 px/mm across, 1.014 of its axial scale. Both figures are anamorphic by these amounts, and every rim below is corrected for it. S17A is too weakly curved to fit.
+
+| Rim or cap end | Stored | Figure 1 | Front page | Sigma | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| S1–S2 edge | 19.6 | 19.77 | 19.78 | 19.3 | kept |
+| S2 cap end | 19.6 | 18.42 | 18.47 | 18.6 | `sd` 18.4, `rimExtensionSd` 19.6 |
+| S3A–S4A edge | 18.4 | 18.48 | 18.44 | 18.1 | kept |
+| S5–S6 edge | 17.3 | 17.43 | 17.43 | 17.2 | kept |
+| S7 tip | 17.3 | 17.36 | 17.48 | 15.6 | kept |
+| Stop inner end | 12.14 engine | 12.87 | 12.83 | 12.6 | stop rule, not changed |
+| S9–S10 edge | 12.6 | 12.58 | 12.54 | 12.6 | kept |
+| S10 cap end | none | 11.02 | 11.07 | 11.0 | cut radius 11.08 |
+| S11–S13 edge | 10.3 | 10.36 | 10.32 | 11.2 | kept |
+| S14 edge | 10.3 | 10.36 | 10.32 | 12.3 | kept |
+| S14 cap end | none | 8.91 | 9.03 | 9.3 | land omitted |
+| S15–S17A edge | 11.9 | 12.01 | 12.03 | 12.5 / 11.8 | kept |
+
+All values are mm. Only S2's `sd` changed. Every stored edge is within 0.18 mm, about 1 %, of the figure, the two figure copies agree to 0.05 mm on the flat edges, and the step order between elements matches.
+
+Sigma against Figure 1: L31 and L32 are 0.9 mm larger, about 9 %, L33 1.9 mm larger, about 19 %, L34 0.5 mm larger and L14 1.8 mm smaller. L11 to L13 run 2 % smaller and L21 and L35 agree. The file keeps the figure, as the patent figure of the modeled example governs. Sigma draws the same three lands, which supports the readings below, and 10 elements in 6 groups, matching the file. Its marks fall on element 2 (SLD, aspherical) and element 10 (aspherical).
+
+Lands, read as q = cap end / edge, ±(1 + q) / edge px for one native pixel:
+
+| Surface | q, Figure 1 / front page | ± | Beam reach | Authored | Land |
+| --- | ---: | ---: | ---: | --- | ---: |
+| S10 | 0.877 / 0.883 | 0.020 | 10.42 | cut depth 3.25, radius 11.08 | 1.52 |
+| S2 | 0.932 / 0.934 | 0.013 | 19.06 | `sd` 18.4, `rimExtensionSd` 19.6 | 1.20 |
+| S14 | 0.860 / 0.876 | 0.024 | 10.13 | none | none |
+
+S10's cut sits at q × `sd` and clears the beams by 0.66 mm. S2's drawn cap end is 0.64 mm inside the beams, which the rim-cut rule refuses, so S2 ends its cap at the drawn height as a real aperture and an extension draws the land. The reading is solid: two figure copies and Sigma's drawing agree within 0.2 mm, and the on-axis ray clears the new rim by 0.43 mm. Restoring S2's `sd` to 19.6 mm without the extension restores the light. S14's inferred cut would have to sit at 10.18 mm or beyond, a land under 0.12 mm whose q range reaches 1, so it is left out.
+
+Clearance: on-axis ray 17.97 mm at S2 and 10.52 mm at S10 with the 12.81 mm real-ray stop, no clipped axial ray or blocked chief ray at either printed state. The image-circle check finds nothing undersized, the corner chief ray reaches 14.20 mm of 14.20 mm, and the aperture audit stays within 3 % of the stated f-number. The dense rim-cut probe, which now covers S10 only, traced 1,004,825 rays over 81 focus states with none clipped. Half-field 16.42°, stop 12.14 mm and F/1.46 are unchanged.
+
+Illumination on the engine's full-pupil lattice, for this final rim set:
+
+| State | Field | Transmitted, before / after | Relative illumination, before / after |
+| --- | ---: | ---: | ---: |
+| Infinity | 14.3° | 51.5 / 48.3 % | 41.3 / 39.0 % |
+| 500 mm | 12.5° | 75.2 / 72.2 % | 52.8 / 51.1 % |
+
+The largest loss at any field sample is the 3.2 points at the infinity corner, under the 5-point line, and all of it comes from S2: the S10 cut clips no traced ray. The analysis's corner value and MTF figures were recomputed for this rim set. At 40 lp/mm the changes are half field at infinity 0.30/0.88 → 0.32/0.88, edge at infinity 0.37/0.33 → 0.37/0.35, edge at 500 mm 0.19/0.14 → 0.20/0.15, photopic edge at 500 mm 0.21/0.03 → 0.22/0.03, and best-axial values at 500 mm 0.59 → 0.58 on axis and 0.01/0.02 → 0.01/0.01 at the edge. The 0.58 is not an S2 effect: the previous rims also gave 0.58 in this pass, and the photopic edge there gave 0.20 against the 0.21 quoted earlier. Removing the rear plate's glass label changes neither. Both gaps sit at the engine's 0.01 convergence tolerance, and their cause was not traced.
+
+Overlaying the engine outline on Figure 1 at these scales puts every curve within about a pixel, and L21 and L11 now match the figure's edges. Live pages at infinity and 500 mm show both lands.
+
+Declined: S14's drawn land. S14 `sd` 9.0 with `rimExtensionSd` 10.3 passes the validator and matches the figure, but from this rim set it takes the corner from 48.3 % to 40.0 % at infinity and from 72.2 % to 60.9 % at 500 mm, 8–11 points against the 5-point line. The file keeps S14 at `sd` 10.3, so its rear corner stands 0.7 mm past the figure's land.
+
+Limitation: Figure 1 ends L13 at a flat step 2.8 mm tall at S6, where L14 continues as free glass to its 17.4 mm tip. The model carries S6 as one junction to the tip, because lands cannot go on cemented surfaces.

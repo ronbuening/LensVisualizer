@@ -235,11 +235,15 @@ against 55.00 / 105.05 / 199.10 mm from the rounded printed f values. The
 differences are kept, not fitted away. The 14.1 mm APS-C semi-diagonal needs half
 fields of 14.13° / 7.44° / 3.97° at 55×, slightly wider than the printed angles.
 
-Rims are inferred from Figure 1, not factory clear apertures. The G2 rim is 7.78 mm,
-just above the 7.77 mm on-axis telephoto marginal ray. Figure 1 draws G2 nearer
-8.7 mm, but S8 and S9 would meet at 8.23 mm. Wide open, geometric transmission at
-the 14.1 mm corner is about 63 % / 71 % / 77 % at the three stations. These are
-modeled clips, not measured factory vignetting.
+Rims are inferred from Figure 1, not factory clear apertures. L4 reaches 8.7 mm, as
+drawn, above the 7.77 mm on-axis telephoto marginal ray at S6. The clear apertures of
+S8 and S9 stop at 8.2 mm, because those faces meet at 8.23 mm, and the model leaves
+0.01 mm of air between them. Figure 1 draws those rims touching, so opaque lands carry
+L5 to 8.7 mm and L6 to 8.54 mm. Figure 1 also ends the concave rear faces of L3 and
+L11 on short flat lands near 15.4 mm and 5.8 mm. The model leaves these out, because
+apertures that small would darken the corners by 8 to 17 points. Wide open, geometric
+transmission at the 14.1 mm corner is about 75 % / 71 % / 77 % at the three stations.
+These are modeled clips, not measured factory vignetting.
 
 The iris radius is 6.97 / 7.10 / 7.73 mm at the three stations, set so the paraxial
 entrance pupil equals focal length over F-number at infinity (11.85 / 19.41 /

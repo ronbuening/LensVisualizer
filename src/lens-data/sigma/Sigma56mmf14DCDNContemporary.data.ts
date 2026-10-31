@@ -5,6 +5,11 @@
  * camera filter F in `rearPlates`.
  * Printed: R, d, nd, νd, both focus states, and PgF for L11, L12 and L14. Inferred: `sd` from Figure 1 and the 63 focus
  * positions between the two printed states.
+ * Semi-diameters: estimated from Figure 1, native scale 7.620 px/mm along the axis and 7.574 px/mm across it from arc
+ * fits, and floor-checked by real-ray trace. Figure 1 draws lands on S2, S10 and S14. S10's cut radius, 11.08 mm, is the
+ * drawn cap end. S2's cap ends at the drawn 18.4 mm, a real aperture, with its land extended to 19.6 mm. S14's land,
+ * drawn from 8.9 mm, is omitted, as it would cost 8–11 points of corner light. Wide open the corner passes 48.3 % at
+ * infinity and 72.2 % at 500 mm.
  * Stop: 12.14 mm radius from the engine's paraxial rule at F/1.46. The printed F-numbers match a real-ray stop of about
  * 12.81 mm, so the traced working f/# is 1.53 at infinity and 1.70 at 500 mm, against 1.46 and 1.62 printed.
  * Glass: catalog equivalents of the printed nd/νd, supplier unconfirmed. dPgF is the printed PgF minus the engine's
@@ -205,7 +210,8 @@ const LENS_DATA = {
     {
       label: "2",
       R: 44.5748,
-      sd: 19.6,
+      sd: 18.4,
+      rimExtensionSd: 19.6,
       d: 4.1307,
     },
     {
@@ -272,6 +278,7 @@ const LENS_DATA = {
       label: "10",
       R: 20.5218,
       sd: 12.6,
+      rimCutDepthMm: 3.25,
     },
     {
       label: "11",
@@ -407,6 +414,7 @@ const LENS_DATA = {
       thicknessMm: 2,
       nd: 1.5168,
       vd: 64.2,
+      glass: "BSC7 (HOYA, coordinate equivalent)",
       indexReference: "d",
       gapAfterMm: 1,
       source:

@@ -17,7 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The three printed infinity rows are exact; every other zoom station is interpolated. Between printed rows G1–G3 move
  * linearly and G4 is solved to hold the image plane. Close-focus G4 travel is calculated for a 0.9 m object-to-image
  * distance; the patent prints no close-focus spacings.
- * Semi-diameters are inferred from Fig. 3, scaled by the printed lens length; none is published.
+ * Semi-diameters are estimated from Fig. 3 and floor-checked by real-ray trace; none is published. Vertex spans scale
+ * all three panels at 12.32 px/mm, and the drawn image line gives 12.34 px/mm across the axis.
+ * Surface 5 keeps L3's drawn height, because one cemented radius cannot also draw L4's lower rim. L5's curved front
+ * stops at 7.3 mm with a land out to 7.7 mm (`rimExtensionSd`), and its rear face reaches 7.7 mm, as drawn.
  * No radius, thickness or index was corrected, and nothing was optimized for MTF.
  * Catalog glass names do not identify production suppliers or exact dispersion.
  * The printed 10.82 mm image height and the Four Thirds format are not a measured image circle.
@@ -263,19 +266,20 @@ const LENS_DATA = {
       label: "6",
       R: 30.504,
       d: 2.01,
-      sd: 8.9,
+      sd: 8.0,
     },
     {
       label: "7",
       R: -30.352,
       d: 1.02,
       sd: 7.3,
+      rimExtensionSd: 7.7,
       medium: 5,
     },
     {
       label: "8",
       R: -327.681,
-      sd: 7.3,
+      sd: 7.7,
     },
     {
       label: "STO",
@@ -2247,6 +2251,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.8,
+  },
+  checks: {
+    gapSagFrac: 0.94,
   },
 } satisfies LensDataV2Input;
 

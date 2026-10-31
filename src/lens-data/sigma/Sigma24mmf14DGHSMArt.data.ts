@@ -7,10 +7,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and remains viable.
  * 15 elements in 11 groups. Aspheres S3, S26 and S27 keep the printed coefficients, including
  * the S3 A12 term. No printed dimension, index, coefficient or image plane is corrected.
- * Semi-diameters are inferred from Figure 1 and are not measured factory apertures. The
- * Figure 1 outlines cannot serve as square rims: L10's edge thickness goes negative, the S2
- * rim passes that surface's radius, and several air gaps overlap. L12 to L15 are set to the
- * on-axis marginal ray at the printed near state, so that beam clears them.
+ * Semi-diameters are inferred from Figure 1 (8.04 px/mm axially, 8.08 radially, by arc fit)
+ * and are not measured factory apertures. Air gaps close at S2-S3 22.4, S8-S9 19.5 and S25-S26
+ * 16.0 mm. G1 therefore stops about 5% inside the drawing (L2 22.1 mm, L4 and C1 19.2 mm), while
+ * L1, G2A and L11 to L15 stay on it. Flat drawn lands are rim cuts on S4, S6, S16 and S18, clear
+ * of the wide-open beams, and rim extensions on S2, S25 and S26, whose caps stop at 22.5, 15.9
+ * and 15.9 mm and whose rims run to 28.0, 16.9 and 17.2 mm. gapSagFrac 0.98 is set for the
+ * S25-S26 lands, which close 0.975 of their 0.4138 mm gap; S8-S9 close 0.969 of theirs. S4's and
+ * S6's cuts stand outside the drawn cap ends to clear the beams. The on-axis marginal ray clears
+ * every rim at both printed states.
  * The iris is derived from the design F1.47 as a paraxial entrance pupil at infinity: radius
  * 12.3155 mm, fixed through focus. Its real marginal ray gives working f/1.4995 at infinity
  * and f/1.5987 at the near state, where the patent prints F1.60 without defining that value.
@@ -21,7 +26,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * distance labels near infinity are unreliable.
  * The near state is 247.5954 mm object to image: d0 115 mm plus track 132.5954 mm.
  * Printed image planes are kept, with paraxial residuals of +1.172 and +1.329 um; best-focus
- * MTF is a diagnostic only. Simulated MTF stays weak at the near-state edge: about 0.066
+ * MTF is a diagnostic only. Simulated MTF stays weak at the near-state edge: about 0.070
  * tangential at 40 lp/mm at the reference wavelength.
  * Glass labels are catalog coordinate equivalents, not confirmed suppliers or melts.
  */
@@ -33,7 +38,7 @@ const LENS_DATA = {
   name: "SIGMA 24mm f/1.4 DG HSM | Art",
   subtitle: "JP 2016-012034 A, Example 1 \u2014 related patent design",
   catalog: {
-    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-fe", "l-mount"],
+    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-a", "sony-fe", "l-mount"],
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 11 GROUPS",
@@ -299,12 +304,13 @@ const LENS_DATA = {
       label: "2",
       R: 25.7944,
       sd: 22.5,
+      rimExtensionSd: 28,
       d: 5.0922,
     },
     {
       label: "3A",
       R: 45.1546,
-      sd: 21.5,
+      sd: 22.1,
       medium: 2,
       d: 2.4,
       asphere: {
@@ -319,7 +325,8 @@ const LENS_DATA = {
     {
       label: "4",
       R: 28.8431,
-      sd: 21.5,
+      sd: 22.1,
+      rimCutDepthMm: 8.54,
       d: 7.6405,
     },
     {
@@ -333,39 +340,40 @@ const LENS_DATA = {
       label: "6",
       R: 32.8511,
       sd: 20.2,
+      rimCutDepthMm: 6.22,
       d: 6.115,
     },
     {
       label: "7",
       R: 143.4549,
-      sd: 18.2,
+      sd: 19.2,
       medium: 4,
       d: 4.2773,
     },
     {
       label: "8",
       R: -119.4892,
-      sd: 18.2,
+      sd: 19.2,
       d: 3.2925,
     },
     {
       label: "9",
       R: -41.2211,
-      sd: 18.2,
+      sd: 19.2,
       medium: 5,
       d: 2.4229,
     },
     {
       label: "10",
       R: 59.9885,
-      sd: 18.2,
+      sd: 19.2,
       medium: 6,
       d: 5.7,
     },
     {
       label: "11",
       R: -177.6617,
-      sd: 18.2,
+      sd: 19.2,
     },
     {
       label: "12",
@@ -398,6 +406,7 @@ const LENS_DATA = {
       label: "16",
       R: 33.9121,
       sd: 16.1,
+      rimCutDepthMm: 2.86,
     },
     {
       label: "STO",
@@ -408,6 +417,7 @@ const LENS_DATA = {
       label: "18",
       R: -31.543,
       sd: 14.0,
+      rimCutDepthMm: 2.64,
       medium: 10,
       d: 5.5164,
     },
@@ -421,46 +431,48 @@ const LENS_DATA = {
     {
       label: "20",
       R: 189.9985,
-      sd: 14.39,
+      sd: 15.6,
       medium: 12,
       d: 3.3257,
     },
     {
       label: "21",
       R: -73.834,
-      sd: 14.39,
+      sd: 15.6,
       d: 0.15,
     },
     {
       label: "22",
       R: 67.3617,
-      sd: 15.81,
+      sd: 17.0,
       medium: 13,
       d: 7.8492,
     },
     {
       label: "23",
       R: -33.3415,
-      sd: 15.81,
+      sd: 17.0,
       d: 0.15,
     },
     {
       label: "24",
       R: -169.3198,
-      sd: 15.33,
+      sd: 16.9,
       medium: 14,
       d: 0.9,
     },
     {
       label: "25",
       R: 77.1561,
-      sd: 15.33,
+      sd: 15.9,
+      rimExtensionSd: 16.9,
       d: 0.4138,
     },
     {
       label: "26A",
       R: 81.0787,
-      sd: 15.17,
+      sd: 15.9,
+      rimExtensionSd: 17.2,
       medium: 15,
       d: 5.8071,
       asphere: {
@@ -475,7 +487,7 @@ const LENS_DATA = {
     {
       label: "27A",
       R: -42.4883,
-      sd: 15.17,
+      sd: 17.2,
       asphere: {
         K: 0.0,
         A4: 4.4107e-6,
@@ -615,6 +627,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.74,
   },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

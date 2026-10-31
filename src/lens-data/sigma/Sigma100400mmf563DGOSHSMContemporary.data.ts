@@ -12,10 +12,16 @@
  * Focus: the patent prints infinity states only; G4 alone moves toward the object (claim 3, ¶0076). The 19 focus keys
  * move G4 that way, D25 shorter and D32 longer by the same amount, to Sigma's 1.6 m minimum focus distance measured
  * from the image plane. The travel is derived, not printed. Finite MTF stays unavailable without a printed conjugate.
- * Semi-diameters are not printed. They are estimated from the grant's Fig. 1 at the wide position. L7 and L12 are
- * reduced to their air-gap limits (11.8 and 12.1 mm). S1–S5 and L19 follow Sigma's construction drawing at its fitted
- * scale (32.5, 31 and 14 mm), which keeps the on-axis beam clear at every printed station. The stop radius follows the
- * printed F-numbers.
+ * Semi-diameters are not printed. They are estimated from the grant's Fig. 1 at the wide position, at 8.2175 px/mm over
+ * 37 vertices, and floor-checked by real-ray trace at every printed zoom and focus state. The figure is isotropic to 1 %,
+ * and the application's print of it has lost the glass lines. L3 32.9 and L19 11.8 mm are the figure's rims, and L1/L2
+ * read 33.65 mm but stay at 33.4 mm, inside the 67 mm filter thread. Sigma's drawing shows 32.2, 30.8 and 14.2 mm there.
+ * Fig. 1 draws flat lands on S10, S12, S13, S20, S24, S34 and S35. Cuts end the S12, S13, S24 and S35 caps at 12.23,
+ * 12.18, 11.03 and 12.57 mm: S24 at the figure's land, the others moved out to clear the traced beams. Extensions end
+ * S10, S20 and S34 at 12.7, 12.1 and 11.4 mm and carry the land out to 14.5, 13.0 and 11.8 mm. Those caps are real clear
+ * apertures. The drawn cap ends, 11.3, 11.7 and 10.4 mm, would clip the on-axis beam at S10 and S20 and darken the corner
+ * at S34, so S20 stops at the on-axis beam and S10 and S34 at a 1-point corner loss. S12/S13 need gapSagFrac 0.97. The
+ * stop radius follows the printed F-numbers.
  * Stabilization: G2b (L7–L9) is the patent's shifting group (¶0073); the model is centred only.
  * Production correlation is inferred, not proven: Sigma lists 21 elements / 15 groups with four SLD elements, and its
  * construction drawing fits Example 1 at the wide position to 0.14 mm RMS over 32 surface positions, with SLD at L2, L3,
@@ -343,34 +349,34 @@ const LENS_DATA = {
     {
       label: "1",
       R: 316.5,
-      sd: 32.5,
+      sd: 33.4,
       medium: 1,
       d: 2.0,
     },
     {
       label: "2",
       R: 89.75,
-      sd: 32.5,
+      sd: 33.4,
       medium: 2,
       d: 8.2,
     },
     {
       label: "3",
       R: -415.0,
-      sd: 32.5,
+      sd: 33.4,
       d: 0.15,
     },
     {
       label: "4",
       R: 88.0,
-      sd: 31.0,
+      sd: 32.9,
       medium: 3,
       d: 7.53,
     },
     {
       label: "5",
       R: -1000.0,
-      sd: 31.0,
+      sd: 32.9,
     },
     {
       label: "6",
@@ -402,40 +408,43 @@ const LENS_DATA = {
     {
       label: "10",
       R: 78.9,
-      sd: 14.5,
+      sd: 12.7,
+      rimExtensionSd: 14.5,
       d: 6.15,
     },
     {
       label: "11",
       R: -340.0,
-      sd: 11.8,
+      sd: 12.5,
       medium: 7,
       d: 1.0,
     },
     {
       label: "12",
       R: 92.7,
-      sd: 11.8,
+      sd: 12.5,
+      rimCutDepthMm: 0.81,
       d: 2.35,
     },
     {
       label: "13",
       R: -51.9,
-      sd: 13.0,
+      sd: 12.7,
+      rimCutDepthMm: 1.45,
       medium: 8,
       d: 1.0,
     },
     {
       label: "14",
       R: 51.9,
-      sd: 13.0,
+      sd: 12.7,
       medium: 9,
       d: 2.55,
     },
     {
       label: "15",
       R: 410.0,
-      sd: 13.0,
+      sd: 12.7,
     },
     {
       label: "16",
@@ -453,47 +462,49 @@ const LENS_DATA = {
     {
       label: "18",
       R: 60.9,
-      sd: 13.5,
+      sd: 13.3,
       medium: 11,
       d: 2.85,
     },
     {
       label: "19",
       R: -505.5,
-      sd: 13.5,
+      sd: 13.3,
       d: 0.86,
     },
     {
       label: "20",
       R: -81.0,
       sd: 12.1,
+      rimExtensionSd: 13.0,
       medium: 12,
       d: 1.0,
     },
     {
       label: "21",
       R: -640.0,
-      sd: 12.1,
+      sd: 13.0,
       d: 0.15,
     },
     {
       label: "22",
       R: 28.29,
-      sd: 13.0,
+      sd: 12.8,
       medium: 13,
       d: 4.15,
     },
     {
       label: "23",
       R: 50.3,
-      sd: 13.0,
+      sd: 12.8,
       medium: 14,
       d: 1.0,
     },
     {
       label: "24",
       R: 28.5,
-      sd: 13.0,
+      sd: 12.8,
+      rimCutDepthMm: 2.22,
       d: 4.1,
     },
     {
@@ -548,20 +559,22 @@ const LENS_DATA = {
     {
       label: "33",
       R: 77.95,
-      sd: 14.0,
+      sd: 11.8,
       medium: 19,
       d: 1.0,
     },
     {
       label: "34",
       R: 27.56,
-      sd: 14.0,
+      sd: 11.4,
+      rimExtensionSd: 11.8,
       d: 6.9,
     },
     {
       label: "35",
       R: -77.95,
       sd: 14.0,
+      rimCutDepthMm: 1.02,
       medium: 20,
       d: 1.0,
     },
@@ -2703,6 +2716,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.72,
+  },
+  checks: {
+    gapSagFrac: 0.97,
   },
 } satisfies LensDataV2Input;
 

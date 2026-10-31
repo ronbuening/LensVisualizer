@@ -33,3 +33,47 @@ Maker comparison: the OM SYSTEM section shows 13 elements in 10 groups, and its 
 Fields changed: `name`, `subtitle`, `specs`, `focus.description`, header comment, element `label` and new `role` text, `apd: "inferred"` with `apdNote` on L6, `glass` labels, `rearPlates[].source`, and `cemented` / `doublets` text D1–D3 to C1–C3 so they no longer collide with the gap labels. L8 (HR) carries no `apd`. All 13 elements and the plate resolved before this pass and resolve to the same rows after it. Each printed pair is within 0.01 in νd of its row; L2, L6, L7 and L9 differ by 0.005–0.006. L6 stores no `dPgF` because its catalog row already supplies P_g,F, matching the corpus form. The stale sentence about a US 7,450,319 B2 hold is gone: the repo's Four Thirds entry is modeled from US 2008/0062534 A1, the same family, and is a separate 12-element, 9-group lens.
 
 The 62 interpolated zoom-station `label` strings are spaced (`Inferred 1/64` and so on). Nothing displays them.
+
+## 2026-10-31 — Semi-diameter pass against the patent figure
+
+Source: `patents/US8767310B2.pdf`, PDF page 4 (sheet 3 of 25), Fig. 3, headed "Example 1-2", panels (a) wide, (b) middle and (c) telephoto, read at the native 300 dpi raster. Example 1-1 is Fig. 2 on sheet 2, PDF page 3. `patents/US20130033621A1.pdf` was not used: it is a Sony application by Masaki Maruyama, not this family. The front page names the family's own publication, US 2014/0022647 A1.
+
+Scale along the axis: all 24 surface crossings against the printed spacings give 12.318 px/mm on panel (a), 0.08 mm RMS, and 12.325 px/mm on panel (c), 0.09 mm RMS. The first-to-last lens surface span gives 12.33 / 12.33 / 12.32 px/mm on panels (a) / (b) / (c). Scale across the axis: the drawn image line reaches 133.5 px either side of the axis on all three panels, which is 12.34 px/mm at the printed 10.82 mm. The iris arrow tips on panels (a) and (c) sit 81.5–82.5 px from the axis, 12.1–12.2 px/mm at the 6.76 mm stop radius. Rim end points on 13 strongly curved surfaces, read against their printed radii, average 12.3 px/mm with a scatter of ±0.55. Whole-arc fits on the 11 deepest arcs read lower, at a mean of 11.6 px/mm and a range of 10.4–12.5 px/mm, because the drawn sags run slightly deep. The straight marks are the better evidence, so rims are read at 12.33 px/mm with no correction, and the figure has no stretch like the 10% found on another Olympus sheet. If the arc fits were right instead, every rim would read up to about 6% low together; the ratios between elements, which drive the one change below, would not move. Printed-radius arcs drawn over the figure at this scale stay within about 3 px of the drawn curves.
+
+Rims are read to the outer edge of the drawn line at 12.33 px/mm, on the lower side of panel (a) and both sides of panel (c), which has no leader lines. Native px are distances from the axis.
+
+| Element (surfaces) | Stored sd    | Fig. 3 px | Fig. 3 mm | Final sd     | Evidence                                                                                 |
+| ------------------ | ------------ | --------- | --------- | ------------ | ---------------------------------------------------------------------------------------- |
+| L1 (1, 2)          | 16.5         | 201.5     | 16.35     | 16.5         | Within noise.                                                                            |
+| L2 (2, 3)          | 16.5         | 199.5     | 16.2      | 16.5         | Within noise.                                                                            |
+| L3 (4, 5)          | 8.9          | 108.5     | 8.8       | 8.9          | Within noise; square land retained.                                                      |
+| L4 (5, 6)          | 8.9          | 99.5      | 8.05      | 8.9, **8.0** | Figure, S6 −10%. S5 stays: see below.                                                    |
+| L5 (7, 8)          | 7.3          | 94.5      | 7.66      | 7.3          | Land −4.7%, within noise and order unchanged; curve ends at 86–88 px, 7.0–7.15 mm.       |
+| L6 (10, 11)        | 7.8          | 96.5      | 7.8       | 7.8          | Agrees.                                                                                  |
+| L7 (12, 13)        | 7.8          | 97        | 7.87      | 7.8          | Agrees.                                                                                  |
+| L8 (13, 14)        | 7.8          | 95        | 7.7       | 7.8          | Within noise.                                                                            |
+| L9 (15, 16)        | 7.8          | 93.5      | 7.6       | 7.8          | −2.9%, within noise; no order reversal against L8 or L10.                                |
+| L10 (17, 18)       | 8.0          | 99        | 8.03      | 8.0          | Agrees.                                                                                  |
+| L11 (19, 20)       | 8.2          | 101       | 8.2       | 8.2          | Agrees.                                                                                  |
+| L12 (21, 22)       | 7.8          | 96        | 7.8       | 7.8          | Agrees.                                                                                  |
+| L13 (23, 24)       | 7.2          | 88.5      | 7.18      | 7.2          | Agrees.                                                                                  |
+
+L3 and L4 cannot both be drawn. Fig. 3 draws L3 square at 8.8 mm with a step down at the S5 rim to L4's square 8.0 mm land, and one cemented S5 radius cannot show that step. Lowering S5 to 8.0 mm would square L4 but would put a long bevel on L3. It leaves the corner values at the three printed positions unchanged, so the choice is about shape alone. S5 keeps L3's height, as the M.Zuiko 12-200 does for its L1/L2 step, and L4 runs straight from the S5 rim down to the S6 rim.
+
+L5's land is drawn 0.36 mm above its stored rim, but its curved front stops at 7.0–7.15 mm, where it merges with S6, and a stroke square to the axis continues outward. The drawn curve therefore supports the stored S7 value. Raising S8 alone to 7.7 mm passed the validator and left the transmission curves unchanged, but it slanted the land in the render, which the figure does not show. Raising both faces to 7.7 mm needs `checks.gapSagFrac` 0.99 and lifts the wide-end corner by 3.2 points by opening S7 past the drawn curve, so neither was adopted.
+
+`rimExtensionSd: 7.7` on S7, with S8 at 7.7 mm and `checks.gapSagFrac: 0.94`, draws L5's flange as printed. The set passes the validator and leaves the corner values at all three printed positions unchanged.
+
+Clearance, final rims: S6 at 8.0 mm sits above the on-axis marginal ray (6.37 mm), the corner chief ray (3.72 mm) and the unvignetted full-field bundle (7.83 mm), the maxima over all 65 stations. There is no `CLIPS-AXIAL` or `BLOCKS-CHIEF` flag at infinity or at closest focus. All 65 stations are within 3% of the stated f-number with no rim limiter. The validator reports no errors, the image-circle check finds nothing undersized, and traced corner coverage is 100% at all 65 stations. Longitudinal spherical aberration stays within 0.12 mm at all 65 stations, which gives no sign of a misprint, and no rim was raised.
+
+| Position | Engine half-field | f-number | Corner transmission, before → after | Corner relative illumination, before → after |
+| -------- | ----------------- | -------- | ----------------------------------- | -------------------------------------------- |
+| WE       | 18.39°            | 4.08     | 70.4% → 70.4%                       | 67.4% → 67.4%                                |
+| ST       | 10.52°            | 4.56     | 66.3% → 66.3%                       | 64.1% → 64.1%                                |
+| TE       | 7.16°             | 5.91     | 64.4% → 64.4%                       | 62.7% → 62.7%                                |
+
+These come from the engine's full-pupil lattice, and the engine half-field and f-number are also unchanged. The analysis previously called the 70 / 66 / 64% transmission figures relative illumination; it now quotes both.
+
+Maker section (the OM SYSTEM drawing, read at the 3.598 px/mm recorded above, assumed to hold across the axis): 13 elements in 10 groups, ED on element 6 and HR on element 8, no aspherical mark. Count and grouping agree with Fig. 3. Its rims read 17.4 / 17.1 / 9.9 / 8.2 / 9.3 mm for L1–L5, 9.3 / 8.2 / 9.0 mm for L6–L8, 8.75 / 8.75 / 9.3 mm for L9–L11 and 8.75 / 8.75 mm for L12–L13, which is 2–21% above Fig. 3. The two inset cemented partners, L4 and L7, agree best. The drawings disagree on order in three places: the maker's L5 stands 1.1 mm proud of L4 where Fig. 3 has it 0.4 mm below, its L7 sits 0.8 mm inside L8 where Fig. 3 has them about level, and its L13 matches L12 where Fig. 3 has it 0.6 mm lower. Fig. 3 of the modeled example governs.
+
+Live check at WE, ST and TE, each at infinity and closest focus: the local page rendered all six states, and the silhouette follows Fig. 3 apart from the L3–L4 step and the L5 land described above. Limitations: the rims remain inferred, and Fig. 3 shows the patent example, not a confirmed production lens.

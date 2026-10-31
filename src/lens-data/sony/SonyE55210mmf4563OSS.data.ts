@@ -10,6 +10,11 @@
  * Table 3's 4.64. Table 3's f-numbers are kept.
  * The 62 intermediate zoom stations, the G4 focus cam, the 1 m close focus and all rims are inferred. The stop follows
  * the paraxial entrance pupil at each station's f-number. Finite-distance MTF stays unavailable.
+ * Semi-diameters are estimated from Fig. 1 (wide state, 14.86 px/mm on both axes) and floor-checked by real-ray trace.
+ * Fig. 1 draws the S8 and S9 rims meeting. Those faces cross at 8.23 mm, so both caps stop at 8.2 mm, and
+ * checks.gapSagFrac = 1 admits the pair (1.64 of 1.65 mm). Lands carry them to the drawn 8.7 and 8.54 mm rims
+ * (rimExtensionSd). The lands Fig. 1 draws on S5 and S20A are left out: their cap ends, 15.4 and 5.8 mm, would cost
+ * 8.5 to 16.8 points of corner illumination.
  * OSS (patent L51, L11 here) is modeled centered. Glass names are catalog coordinate equivalents.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
@@ -274,34 +279,36 @@ const LENS_DATA = {
     {
       label: "6",
       R: -200.695,
-      sd: 7.78,
+      sd: 8.7,
       d: 1.1,
       medium: 4,
     },
     {
       label: "7",
       R: 12.1,
-      sd: 7.78,
+      sd: 8.7,
       d: 3.3,
       medium: 5,
     },
     {
       label: "8",
       R: 53.074999999999996,
-      sd: 7.78,
+      sd: 8.2,
+      rimExtensionSd: 8.7,
       d: 1.65,
     },
     {
       label: "9",
       R: -34.045,
-      sd: 7.78,
+      sd: 8.2,
+      rimExtensionSd: 8.54,
       d: 0.88,
       medium: 6,
     },
     {
       label: "10",
       R: 414.26,
-      sd: 7.78,
+      sd: 8.54,
     },
     {
       label: "STO",
@@ -4415,6 +4422,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.72,
+  },
+  checks: {
+    gapSagFrac: 1,
   },
 } satisfies LensDataV2Input;
 
