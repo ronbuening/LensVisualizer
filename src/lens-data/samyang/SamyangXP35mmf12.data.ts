@@ -224,7 +224,9 @@ const LENS_DATA = {
       nd: 1.85343,
       vd: 40.54,
       focalLengthMm: 31.658456,
-      glass: "L-LAH85V catalog-equivalent (patent coordinates retained; production supplier unspecified)",
+      indexReference: "d",
+      glass:
+        "D-ZLAF85LS-25 (CDGM compatible spectral proxy; source supplier, melt, chemistry and anneal state unspecified)",
       diagramLabel: "L123",
     },
   ],

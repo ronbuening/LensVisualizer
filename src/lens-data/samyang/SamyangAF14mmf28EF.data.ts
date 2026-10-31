@@ -6,6 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * R/d, four aspheres, S7/S8 printed clear caps, source conjugates, fixed reference
  * image/plate and controls remain unchanged. Existing gapSagFrac 0.96 is retained,
  * never widened by this review; its prior source/model constraint remains public.
+ * Scoped catalog follow-up 2026-10-31 adds TAF1 / MP-FCD500-20 as qualified spectral proxies for
+ * L43 / L133 without changing any source number or claiming a fresh shape inspection.
  * Equation 6 remains blank in this original; the existing separately disclosed
  * standard-conic interpretation from a different sibling is not a fresh source
  * recovery or literal equation confirmation. Signed D5 and all source summary
@@ -110,7 +112,7 @@ const LENS_DATA = {
       nd: 1.77271,
       vd: 49.7,
       focalLengthMm: -24.654384957,
-      glass: "Unmatched (source 1.77271 / 49.70; unidentified medium; approximate dispersion)",
+      glass: "TAF1 (HOYA compatible spectral proxy; historical material, supplier, melt and process unspecified)",
       role: "Double-sided aspherical negative meniscus; its two apertures are the only ones the patent prints.",
       diagramLabel: "L43",
       indexReference: "d",
@@ -234,7 +236,7 @@ const LENS_DATA = {
       nd: 1.55352,
       vd: 71.5,
       focalLengthMm: 26.204915752,
-      glass: "Unmatched (source 1.55352 / 71.50; unidentified medium; approximate dispersion)",
+      glass: "MP-FCD500-20 (HOYA compatible spectral proxy; historical material, supplier, melt and process unspecified)",
       role: "Separated double-sided aspherical biconvex element of the rear group.",
       diagramLabel: "L133",
       indexReference: "d",

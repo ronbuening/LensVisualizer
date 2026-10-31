@@ -109,7 +109,7 @@ The 497816/593354 dispersion contrast again provides conventional crown/flint co
 
 ### L12 (L123) — Biconvex Positive, Double-Sided Asphere
 
-**nd = 1.85343, νd = 40.54. Glass: L-LAH85V catalog-equivalent (patent coordinates retained; production supplier unspecified). Standalone f = +31.658456 mm.**
+**nd = 1.85343, νd = 40.54. Glass: D-ZLAF85LS-25 (CDGM compatible spectral proxy; source supplier, melt, chemistry and anneal state unspecified). Standalone f = +31.658456 mm.**
 
 L12 is the final glass element and a strong positive member of G33. Both surfaces, 22A and 23A, are aspherical. The patent specifically states that an aspheric lens at the image-side end of G33 can be used to correct astigmatism and distortion (¶0049), which makes L12 the field-correction counterpart to the stop-adjacent L9 asphere.
 
@@ -131,7 +131,7 @@ The patent publishes d-line refractive indices and Abbe numbers but does not ide
 | 728283 — flint class                                        | 1.72825 | 28.32 | L8         | Higher-dispersion negative member of C1                       |
 | E-FD8 catalog-equivalent                                    | 1.68863 | 31.19 | L9         | Compatible dispersion proxy; production identity unspecified  |
 | 593354 — flint class                                        | 1.59270 | 35.45 | L11        | Negative member of cemented pair C2                           |
-| L-LAH85V catalog-equivalent                                 | 1.85343 | 40.54 | L12        | High-index final positive aspheric element                    |
+| D-ZLAF85LS-25, qualified CDGM proxy                         | 1.85343 | 40.54 | L12        | High-index final positive aspheric element                    |
 
 Samyang's production specification describes the lens as using two aspherical, three HR, and one ED element. The patent directly establishes the two aspherical elements in Example 3, but it does not label individual elements with Samyang's HR or ED marketing categories. The official construction drawing resolves the single ED position as the second element, L23, despite the 1.49700/81.61 coordinate appearing twice. L23 therefore carries an inferred ED/APD display tag through the product correlation. This does not establish a patent-measured anomalous partial dispersion or a production glass supplier. The drawing marks L13, L43, and L53 as HR; these already receive the viewer’s generic high-index color from their retained indices.
 
@@ -224,3 +224,11 @@ At nominal 1.254 the current inferred iris is17.217014505mm. All 65 source-wide 
 Across 65 states, collimated control bundles transmit 10,985/12,545 axial samples; separate actual Gaussian finite-object supplements transmit 2,925/3,185 axial samples and 195/195 chiefs, with 0 aim failures. At near the Gaussian object-to-image 340.717340 mm differs from the published source D0=175.678043 mm ahead of the first vertex and normalized physical object-to-image 340.742447 mm. The scalar field grids remain collimated; finite Gaussian field fractions are paraxial object probes rather than inverse-solved sensor corners. All intermediate focus conjugates are illustrative.
 
 A separate explicit source D0 plane inverse-solves chiefs to actual image heights 0/10.825/21.65 mm. All 3 roots converge and clear; 193-point pupil bundles pass169/162/106 respectively, with 113 clips,29 failed corner intersections/TIR and0 unaimed samples. The outer-field limitations remain. Source infinity 32.027° bounding-sphere chief clears and reaches 21.703893 mm; centered full-frame inverse-height coverage is 100%, independently of pupil throughput. All 780 actual SVG paths across 65 focus states remain finite, closed and connected with 0 hidden trim. Surface/image-circle/field gates pass; aperture audit explicitly retains the 2.7% deficit. No new source measurement, production glass chemistry, plate supplier or full unvignetted field is proved.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original complete reviews remain **2026-09-09** (shape/glass) and **2026-09-23** (physical rear plate). This narrow L12 check confirms KR102077265B1 Example 3, PDF page 14 Table 7, S22 at **1.85343/40.54**. ¶0085 page 11 labels nd/vd, and ¶0094 page 12 identifies C656.2725/d587.5618/F486.1327 nm ray-fan references. The table is vector text rendered for inspection; no upsampled raster resolution is claimed. No individual C/F/g indices or numeric partial dispersion is printed for L12; none is added.
+
+The full 700-entry existing-catalog scan finds no closer curve than the current L-LAH85V, whose evaluated residuals are approximately **+0.00057016/−0.161632**. The [official CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), row 11573 D-ZLAF85LS-25, supplies a genuinely closer curve: evaluated residuals **+0.00000996/+0.017917**, PgF 0.568644 without source partial evidence. Its literal standard Sellmeier coefficients pass the unchanged validator. The vendor's `anneal rate:25℃/h` describes this catalog row only; the source does not identify that rate, formulation, melt or supplier. A new state-specific row is justified rather than a duplicate of an existing equal curve.
+
+L12's qualified label and source-reference annotations change; all source numeric fields, source spectral/partial/APD dispositions, shape constraints, iris/control values and rear plate remain unchanged. All other twelve curve identities are retained. The shared authored-nd anchor preserves d-line geometry, while L12's estimated dispersion changes. The existing 2.7% inferred-aperture deficit and finite/off-axis limits above remain explicit; this is no new complete shape inspection or production-material claim.

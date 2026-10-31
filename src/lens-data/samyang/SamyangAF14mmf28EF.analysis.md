@@ -45,7 +45,7 @@ The rear optical device OD3 is a 2.500 mm plane-parallel plate, nd = 1.51680 and
 
 The number in each heading is the element's ordinal, front to rear, which is the count Samyang's section uses.
 
-All focal lengths below are computed for an individual element surrounded by air. They are not the in-situ interface powers inside cemented components. Existing compatible catalog curves supply qualified spectral proxies; they do not identify a historical supplier, melt or chemistry. The two unidentified media remain Unmatched.
+All focal lengths below are computed for an individual element surrounded by air. They are not the in-situ interface powers inside cemented components. Existing compatible catalog curves supply qualified spectral proxies; they do not identify a historical supplier, melt or chemistry. The two previously unmatched positions now use qualified coordinate-compatible curves; historical material identity remains unresolved.
 
 ### L13 (element 1) — Positive Meniscus
 
@@ -67,7 +67,7 @@ The third element adds negative power ahead of the first asphere. Its rear clear
 
 ### L43 (element 4) — Neg. Meniscus (2× Asph)
 
-nd = 1.77271, νd = 49.70. Glass: Unmatched (source 1.77271 / 49.70; unidentified medium). f = -24.654385 mm.
+nd = 1.77271, νd = 49.70. Glass: TAF1 (HOYA compatible spectral proxy). f = -24.654385 mm.
 
 The two source aspheres are S7/S8. Their published H-Ape values, 15.06 and 12.31 mm, are preserved individually. The aspheric shape remains valid where a same-radius sphere would not, so a spherical sd/R shortcut would be inappropriate.
 
@@ -121,9 +121,9 @@ L123 is the positive partner of the first rear doublet. Its current FD110-compat
 
 ### L133 (element 13) — Biconvex Positive (2× Asph)
 
-nd = 1.55352, νd = 71.50. Glass: Unmatched (source 1.55352 / 71.5; unidentified medium). f = +26.204916 mm.
+nd = 1.55352, νd = 71.50. Glass: MP-FCD500-20 (HOYA compatible spectral proxy). f = +26.204916 mm.
 
-This positive biconvex element has aspheres on both S22 and S23. Its source dispersion coordinate is not replaced with MP-FCD500-20: that catalog glass has νd = 71.72, whereas the patent prints 71.5.
+This positive biconvex element has aspheres on both S22 and S23. Its source coordinate remains 1.55352 / 71.5. MP-FCD500-20 supplies a qualified spectral estimate despite its catalog νd = 71.72; the curve does not replace the printed pair or identify the historical material.
 
 ### L143 (element 14) — Negative Meniscus
 
@@ -141,25 +141,25 @@ The final positive element has the lowest dispersion of the fifteen elements and
 
 The patent supplies nd/νd rather than manufacturer glass names. The printed pairs were compared with the HOYA, OHARA, SCHOTT, HIKARI, SUMITA and CDGM catalogs. Several pairs have more than one compatible candidate. A consistent HOYA-equivalent set is used where a match exists, without asserting that Samyang bought those glasses.
 
-| Elements   | Native nd / νd  | Model interpretation                                    |
-| ---------- | --------------- | ------------------------------------------------------- |
-| L13        | 1.80610 / 33.27 | NBFD15 (HOYA compatible spectral proxy)                 |
-| L23        | 1.72916 / 54.67 | TAC8 (HOYA compatible spectral proxy)                   |
-| L33        | 1.80420 / 46.50 | TAF3 (HOYA compatible spectral proxy)                   |
-| L43        | 1.77271 / 49.70 | Unmatched (source 1.77271 / 49.70; unidentified medium) |
-| L53, L103  | 1.92286 / 20.88 | E-FDS1 (HOYA compatible spectral proxy)                 |
-| L63        | 1.74077 / 27.76 | E-FD13 (HOYA compatible spectral proxy)                 |
-| L73        | 1.84666 / 23.78 | FDS90 (HOYA compatible spectral proxy)                  |
-| L83        | 1.69680 / 55.46 | LAC14 (HOYA compatible spectral proxy)                  |
-| L93        | 1.51823 / 58.96 | E-C3 (HOYA compatible spectral proxy)                   |
-| L113, L143 | 1.95375 / 32.32 | TAFD45 (HOYA compatible spectral proxy)                 |
-| L123       | 1.78472 / 25.72 | FD110 (HOYA compatible spectral proxy)                  |
-| L133       | 1.55352 / 71.50 | Unmatched (source 1.55352 / 71.5; unidentified medium)  |
-| L153       | 1.49700 / 81.61 | FCD1 (HOYA compatible spectral proxy)                   |
+| Elements   | Native nd / νd  | Model interpretation                          |
+| ---------- | --------------- | --------------------------------------------- |
+| L13        | 1.80610 / 33.27 | NBFD15 (HOYA compatible spectral proxy)       |
+| L23        | 1.72916 / 54.67 | TAC8 (HOYA compatible spectral proxy)         |
+| L33        | 1.80420 / 46.50 | TAF3 (HOYA compatible spectral proxy)         |
+| L43        | 1.77271 / 49.70 | TAF1 (HOYA compatible spectral proxy)         |
+| L53, L103  | 1.92286 / 20.88 | E-FDS1 (HOYA compatible spectral proxy)       |
+| L63        | 1.74077 / 27.76 | E-FD13 (HOYA compatible spectral proxy)       |
+| L73        | 1.84666 / 23.78 | FDS90 (HOYA compatible spectral proxy)        |
+| L83        | 1.69680 / 55.46 | LAC14 (HOYA compatible spectral proxy)        |
+| L93        | 1.51823 / 58.96 | E-C3 (HOYA compatible spectral proxy)         |
+| L113, L143 | 1.95375 / 32.32 | TAFD45 (HOYA compatible spectral proxy)       |
+| L123       | 1.78472 / 25.72 | FD110 (HOYA compatible spectral proxy)        |
+| L133       | 1.55352 / 71.50 | MP-FCD500-20 (HOYA compatible spectral proxy) |
+| L153       | 1.49700 / 81.61 | FCD1 (HOYA compatible spectral proxy)         |
 
-The completed October 8/11 reviews had supplied catalog-derived nC/nF/ng on thirteen elements. The October 30 scoped followup removes all 39 active numeric fields: none is printed for a selected medium in the original. Thirteen drawn elements plus OD3 retain fourteen existing compatible catalog curves, while L43/L133 remain Unmatched. All sixteen source nd/νd pairs remain unchanged, with explicit d-reference notation. No catalog value is recast as a published per-element spectral observation or historical melt.
+The completed October 8/11 reviews had supplied catalog-derived nC/nF/ng on thirteen elements. The October 30 scoped followup removes all 39 active numeric fields: none is printed for a selected medium in the original. At that October 30 checkpoint, thirteen drawn elements plus OD3 retained fourteen compatible catalog curves and L43/L133 remained unmatched. The October 31 catalog followup below adds qualified curves for those two positions, bringing coverage to all sixteen modeled media. All sixteen source nd/νd pairs remain unchanged, with explicit d-reference notation. No catalog value is recast as a published per-element spectral observation or historical melt.
 
-L43 and L133 remain explicitly Unmatched. For L43, TAF1 differs by Δnd = −0.00021 and Δνd = −0.07. For L133, MP/MC-FCD500-20 matches nd but differs by Δνd = +0.22. Their modelled dispersion therefore uses the Abbe approximation from the printed nd/νd. The source ray-fan text identifies 656.2700, 587.5600 and 479.9100 nm; the last wavelength is not silently treated as the standard F line.
+L43 now uses TAF1 and L133 uses MP-FCD500-20 as qualified spectral proxies within the existing lens compatibility window, ±0.003 in nd and ±2 in νd. Exact equality to a vendor coordinate is not required for this explicitly approximate use. These names identify the adopted catalog curves, not the historical glasses, suppliers, melts or molding processes. The source ray-fan text identifies 656.2700, 587.5600 and 479.9100 nm; the last wavelength is not silently treated as the standard F line. No per-element line index or partial dispersion is published for either position, and none is added.
 
 The ED/flint pairings suggest a chromatic balancing strategy, but the mixed spectral evidence does not support an APO, secondary-spectrum, measured MTF or production-performance claim. The interface-by-interface d-line Petzval sum is +0.00518138510909 mm⁻¹; it is not a direct measurement of image-surface curvature or chromatic correction.
 
@@ -273,3 +273,18 @@ Two separate finite launch domains are retained. At the exact source D0 values 4
 A separate Gaussian object-plane supplement at 65 positive finite controls inverse-solves actual image targets 0/10.85/21.7 mm: all 195 chiefs converge and physically clear, 27,870 pupil samples pass, 9,390 clip and 375 marginal continuations remain unresolved. Every axial 193-sample bundle clears. This is distinct from source D0 illumination and from collimated rays at nonzero focus. The retained fixed image reference gives Gaussian object-to-image distances 0.539035/0.203177 m at the two native finite controls, versus source/display 0.535528/0.200000 m. At focus 0.015625 the illustrative Gaussian distance is 5.414372 m versus the 12.8 m display label, a 57.700219% discrepancy. Such intervals are not demonstrated production focus cams or source focus-preserving states; no optical fit removes the discrepancy.
 
 The original Table 10 group-power/conditional-expression disagreements, blank Eq. 6, fixed-reference signed-D5 interpretation, assumed OD3 aperture, retained S6/S8 gap limits, marginal pupil clipping and unavailable production glass/IS data remain public. Source fidelity, sampled runtime clearance and production correlation are separate conclusions.
+
+## October 31, 2026 — Scoped Catalog-Proxy Followup
+
+The completed October 8/11 original review and October 30 scoped shape/spectral-override review retain their actual dates. This followup checks the material evidence and existing catalog coefficients; it does not claim another shape inspection. The same original [KR 10-1918210 B1](../../../patents/KR101918210B1.pdf), Numerical Example 3, Table 7 on PDF p. 16, directly prints L43 at surface 7 as 1.77271 / 49.70 and L133 at surface 22 as 1.55352 / 71.5. Paragraph 0100 on p. 13 defines Nd/Vd, identifying the d-reference by notation, and paragraph 0128 on p. 17 gives the ray-fan wavelengths. Neither the selected table nor the source prose supplies a named glass, individual line indices or a partial-dispersion constraint for these positions.
+
+The [official HOYA July 7, 2026 all-products AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf) is checked from its previously retrieved local bytes because a new download timed out. Its TAF1 and MP-FCD500-20 NM/CD rows match the existing six polynomial coefficients exactly. Their native formula is `n² = A0 + A1 λ² + A2 λ⁻² + A3 λ⁻⁴ + A4 λ⁻⁶ + A5 λ⁻⁸`, with λ in micrometres. Evaluating those curves at the standard C/d/F/g lines gives:
+
+| Position          | Qualified curve | Evaluated nd | Evaluated νd | Δnd from source | Δνd from source | Curve PgF |
+| ----------------- | --------------- | -----------: | -----------: | --------------: | --------------: | --------: |
+| L43 / element 4   | TAF1            |  1.772500029 |    49.624284 |    −0.000209971 |       −0.075716 |  0.550358 |
+| L133 / element 13 | MP-FCD500-20    |  1.553517183 |    71.718206 |    −0.000002817 |       +0.218206 |  0.539786 |
+
+TAF1 is closer in the combined normalized index/Abbe residual than the eligible MC-TAF115; the latter's verified index is about 1.77047, not the malformed 1.777047 in one AGF header. MP-FCD500-20 is the closest existing joint-coordinate candidate for L133; the matching MC variant publishes the same coefficients and would add no distinct spectral information. No manufacturing route is inferred from a catalog prefix. The former exact-identity rejection was too strict for a qualified proxy: the ±0.15 Abbe catalog-consistency guard tests a vendor row against its own coefficients, whereas the existing lens-to-catalog window is ±2. Neither tolerance changes.
+
+All fifteen drawn elements plus OD3 now reach compatible catalog curves, 16/16 versus 14/16. The published source pairs remain authoritative, no spectral override or APD evidence is invented, and d-line runtime geometry is unchanged. All source R/d, aspheres, caps, shoulders, stops, focus conjugates and controls retain the previous review's constraints. The blank source equation, fixed-reference interpretation, interpolation errors and sampled pupil limitations above remain applicable.
