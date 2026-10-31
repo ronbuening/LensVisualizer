@@ -16,6 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L4 rear / L5 front (r8/r9) and L18 rear (r33) stay capped by their short air gaps, where Figure 1 draws the
  * facing surfaces meeting at the rim.
  * The source explicitly defines d-line indices; historical glass identity and full dispersion remain unknown.
+ * Scoped 2026-10-31 catalog follow-up selects J-LAK8 proxies for L4/L11. The four nd 1.497 / νd 79.3
+ * SLD positions retain source-pair fallback: S-FPL51Y would reduce their known F-C span by 2.265%.
+ * No shape review is repeated.
  * apd "inferred" on L2, L3, L8 and L9 follows the four SLD positions in Sigma's 2004.9 catalog diagram; the
  * patent itself names no special glass. Group brackets G1–G7 and doublets D1–D4 follow Figure 1.
  * D6, D14, D16, D19, D23, D30 and BF vary with zoom only. Both required focus columns repeat infinity geometry.
@@ -118,7 +121,7 @@ const LENS_DATA = {
       vd: 54.1,
       focalLengthMm: -74.6707,
       indexReference: "d",
-      glass: "Unmatched (nd 1.713, vd 54.1; historical identity unresolved)",
+      glass: "J-LAK8 (Hikari compatible spectral proxy; historical material, supplier and melt unspecified)",
       role: "Negative meniscus at the front of G2.",
     },
     {
@@ -210,7 +213,7 @@ const LENS_DATA = {
       vd: 54.1,
       focalLengthMm: -22.2040,
       indexReference: "d",
-      glass: "Unmatched (nd 1.713, vd 54.1; historical identity unresolved)",
+      glass: "J-LAK8 (Hikari compatible spectral proxy; historical material, supplier and melt unspecified)",
       role: "Negative member of the G5 doublet.",
       cemented: "D2",
     },

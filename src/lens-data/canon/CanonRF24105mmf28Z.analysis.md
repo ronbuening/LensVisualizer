@@ -296,3 +296,7 @@ All 24 actual SVG paths remain finite, closed and connected with zero hidden tri
 The existing bonded 15.5 mm common cap has a minimum thickness 0.006909624 mm at its rim; it stays positive and coextensive,
 with no disconnected layer wing. That is a current geometry diagnostic, not a new original-figure measurement.
 Source fidelity remains inherited from the dated review; sampled clearance and production correlation are separate.
+
+## 2026-10-31 — Scoped catalog search for the bonded medium
+
+The source1.59022/30.1 bonded medium remains unidentified. A full34-record scan of the published MISC/ZEON_UV material datasets found only the broadly compatible POLYSTYR curve; its F−C span is2.441331% smaller than the source-implied span. No source C/F/g or partial evidence supports trading away that known constraint, so the candidate remains rejected and Abbe fallback is retained. The audit records the exact polynomial, native dataset sources and bounded negative search. No source number, optical boundary, focus/zoom/iris control or previously qualified curve changed, and no fresh shape review is claimed.

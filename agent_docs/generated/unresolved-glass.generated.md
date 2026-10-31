@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **1032** lenses scanned
 - **11847** non-air surfaces examined
 - **11856** element glass declarations examined
-- **216** non-explicit-unmatched annotations did not resolve
-- **113** distinct unresolved glass-like tokens found
+- **220** non-explicit-unmatched annotations did not resolve
+- **117** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -53,6 +53,7 @@ or per-lens patent backfills.
 | 534554 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
+| 554522 | 1 | 1 | |
 | 564438 | 1 | 1 | |
 | 570481 | 1 | 1 | |
 | 570575 | 1 | 1 | |
@@ -77,6 +78,7 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 672388 | 1 | 1 | |
 | 673343 | 1 | 1 | |
+| 678314 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -100,6 +102,7 @@ or per-lens patent backfills.
 | 755501 | 1 | 1 | |
 | 767462 | 1 | 1 | |
 | 769497 | 1 | 1 | |
+| 772361 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773501 | 1 | 1 | |
 | 773530 | 1 | 1 | |
@@ -118,6 +121,7 @@ or per-lens patent backfills.
 | 837333 | 1 | 1 | |
 | 839196 | 1 | 1 | |
 | 840433 | 1 | 1 | |
+| 842372 | 1 | 1 | |
 | 866450 | 1 | 1 | |
 | 868323 | 1 | 1 | |
 | 877370 | 1 | 1 | |
@@ -305,6 +309,10 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)`
 
+### 554522 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 18: `554522 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 564438 — 1 occurrence
 
 - [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 11: `LF8 class (Schott, obsolete, 564438; patent "LF 8")`
@@ -401,6 +409,10 @@ or per-lens patent backfills.
 
 - [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 22: `673343 — catalog unresolved (supplier unconfirmed)`
 
+### 678314 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 15: `678314 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 680312 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
@@ -493,6 +505,10 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)`
 
+### 772361 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 11: `772361 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 772493 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
@@ -564,6 +580,10 @@ or per-lens patent backfills.
 ### 840433 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (catalog unresolved; patent nd=1.84042, vd=43.3)`
+
+### 842372 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 19: `842372 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
 
 ### 866450 — 1 occurrence
 

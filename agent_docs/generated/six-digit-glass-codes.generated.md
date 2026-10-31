@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1741** total code-only elements found
-- **1741** elements in this report
-- **279** distinct lens files affected
+- **1738** total code-only elements found
+- **1738** elements in this report
+- **277** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -167,7 +167,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 581407 | 2 | 2 | patents/JPA 1979030821-000000.pdf<br>patents/JP_S54107336_A.pdf | No review-record hit |
 | 581409 | 2 | 2 | patents/JPWO2020158622A1.pdf<br>patents/US20240151940A1.pdf | No review-record hit |
-| 583302 | 2 | 2 | patents/JP_2005092056_A.pdf<br>patents/US20070058265A1.pdf | All rows explicitly disposed |
 | 592670 | 2 | 2 | patents/US20150092100A1.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 600644 | 2 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 606437 | 2 | 2 | patents/WO2024062958A1.pdf<br>patents/US20210132345A1.pdf | No review-record hit |
@@ -236,7 +235,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 457903 | 1 | 1 | patents/JP2023001878A.pdf | No review-record hit |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
-| 485700 | 1 | 1 | patents/US20050286139A1.pdf | All rows explicitly disposed |
 | 489701 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
@@ -263,7 +261,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 552635 | 1 | 1 | patents/US3482900.pdf | No review-record hit |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
-| 554522 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
+| 554522 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 564608 | 1 | 1 | patents/US4223981.pdf | No review-record hit |
 | 569585 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
@@ -325,7 +323,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 673343 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
-| 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
+| 678314 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 678490 | 1 | 1 | patents/US_4192577_A.pdf | All rows explicitly disposed |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 681472 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
@@ -388,7 +386,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770493 | 1 | 1 | patents/WO_2021246545_A1.pdf | All rows explicitly disposed |
-| 772361 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
+| 772361 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
 | 773501 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 773530 | 1 | 1 | patents/CN110161666A.pdf | All rows have review records |
@@ -414,7 +412,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 837333 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 839196 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
-| 842372 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
+| 842372 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 847240 | 1 | 1 | patents/US7307794.pdf | No review-record hit |
@@ -785,12 +783,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L8 (LR negative member) | 13 | `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)` | 1.67542 / 34.80 | No catalog entry | abbe | patents/JP2018180366A.pdf | Explicit disposition in data |
 
-### [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) - US 2005/0286139 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| N14 (L4 rear positive asphere) | 24 | `Unmatched low-index high-Abbe glass (485700; chemistry and catalog identity unresolved)` | 1.48456 / 70.00 | No catalog entry | abbe | patents/US20050286139A1.pdf | Explicit disposition in data |
-
 ### [CANON EF-S 17-85mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts) - US 2006/0023317 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -847,14 +839,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | E7 (Element 7) | R13 | `487702 class (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
 | E8 (Element 8) | R15 | `620363 class (vendor unresolved)` | 1.62004 / 36.30 | S-TIM2 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
 | E9 (Element 9) | R16 | `755275 class (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
-| E10 (Element 10) | R18 | `Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/JP_2005092056_A.pdf | Explicit disposition in data |
 | E11 (Element 11) | R20 | `516641 class (vendor unresolved)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP_2005092056_A.pdf | No review-record hit |
-
-### [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) - US 2007/0058265 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L41 (Element 10) | 18 | `Unmatched optical medium (583302; historical material, supplier and chemistry unresolved)` | 1.58306 / 30.20 | No catalog entry | abbe | patents/US20070058265A1.pdf | Explicit disposition in data |
 
 ### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - US 3,748,022
 
@@ -959,11 +944,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `583594 — vendor-unresolved coordinate class` | 1.58313 / 59.40 | J-SK12 (trusted Sellmeier) | sellmeier | patents/US20100208366A1.pdf | No review-record hit |
 | L2 (Element 2) | 3 | `883408 — vendor-unresolved coordinate class` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20100208366A1.pdf | No review-record hit |
-| L7 (Element 7) | 11 | `Unmatched 772361 — patent coordinate; no compatible published catalog curve found` | 1.77236 / 36.10 | No catalog entry | abbe | patents/US20100208366A1.pdf | Explicit disposition in data |
-| L9 (Element 9) | 15 | `Unmatched 678314 — patent coordinate; no compatible published catalog curve found` | 1.67769 / 31.40 | No catalog entry | abbe | patents/US20100208366A1.pdf | Explicit disposition in data |
+| L7 (Element 7) | 11 | `772361 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved` | 1.77236 / 36.10 | No catalog entry | abbe | patents/US20100208366A1.pdf | No review-record hit |
+| L9 (Element 9) | 15 | `678314 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved` | 1.67769 / 31.40 | No catalog entry | abbe | patents/US20100208366A1.pdf | No review-record hit |
 | L10 (Element 10) | 17 | `883408 — vendor-unresolved coordinate class` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20100208366A1.pdf | No review-record hit |
-| L11 (Element 11) | 18 | `Unmatched 554522 — patent coordinate; no compatible published catalog curve found` | 1.55400 / 52.20 | No catalog entry | abbe | patents/US20100208366A1.pdf | Explicit disposition in data |
-| L12 (Element 12) | 19 | `Unmatched 842372 — patent coordinate; no compatible published catalog curve found` | 1.84175 / 37.20 | No catalog entry | abbe | patents/US20100208366A1.pdf | Explicit disposition in data |
+| L11 (Element 11) | 18 | `554522 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved` | 1.55400 / 52.20 | No catalog entry | abbe | patents/US20100208366A1.pdf | No review-record hit |
+| L12 (Element 12) | 19 | `842372 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved` | 1.84175 / 37.20 | No catalog entry | abbe | patents/US20100208366A1.pdf | No review-record hit |
 | L14 (Element 14) | 23 | `883408 — vendor-unresolved coordinate class` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20100208366A1.pdf | No review-record hit |
 | L16 (Element 16) | 26 | `699301 — vendor-unresolved coordinate class` | 1.69895 / 30.10 | E-FD15 (trusted Sellmeier) | sellmeier | patents/US20100208366A1.pdf | No review-record hit |
 

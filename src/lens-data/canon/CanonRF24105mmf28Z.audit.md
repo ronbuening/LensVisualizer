@@ -152,3 +152,15 @@ Label-only proof: baseline data SHA256 `d687f382db802be5fe227ca2f95be95998462854
 Parsed equality excludes exactly all24 `elements.*.glass` strings and these annotations: L12r label/role, L13 role,
 L7 apdNote, L18 role and product-correlated UD roles on L7/L14/L16/L17. Every other parsed field is identical; all23
 identified curves and the one unresolved medium retain the same resolver outcome. No source-review count is added.
+
+## 2026-10-31 — Bounded polymer-catalog source follow-up
+
+This scoped catalog search reuses the unchanged original Numerical Example4 glass-pair verification and retained shape/runtime coverage above; it does not claim a new whole-lens or original-figure inspection. L12's bonded medium remains the source1.59022/30.1, with no separate published C/F/g indices or partial ratio.
+
+All23 coefficient rows in the permission-bearing archived RadiantZemax MISC.AGF and11 records(10 unique names) in Hyperion's public ZEON_UV.AGF were screened against60 remaining source-known-reference coordinate classes. The archive has31 records passing the existing strict visible-band self-consistency checks; it contains no epoxy/adhesive-named coefficient row matching the repeated1.53610/41.2 or1.51460/49.96 layers. No unpublished formulation is manufactured from those coordinates.
+
+The sole broad coordinate hit is MISC POLYSTYR (Handbook of Optics Vol.II),20°C and0.365–1.014µm: evaluated nd1.590481078 / νd30.866877241, source residual+.000261078 /+.766877241. Its published polynomial gives F−C=.0191299260 versus source-implied (1.59022−1)/30.1=.0196086379: a **−2.441331%** span mismatch. With no further source spectral evidence, the broad nd/ν window alone does not justify replacing the source's Abbe estimate or identifying a polystyrene formulation. Candidate rejected; no unused catalog row added and no tolerance changed. POLYCARB separately fails this medium's index window.
+
+Source dataset: https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/misc.agf (permission-bearing archived bytes; blob47bc6d486a6a806c4f7b1339e77a2b6aabaf4711). Ansys independently attributes POLYSTYR to Handbook of Optics Vol.II: https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Glass_Catalog_Sources.html . This is an attributed published material dataset, not a direct manufacturer retrieval. The other59 coordinate classes have no passing row in these two datasets.
+
+The source layer remains Unmatched. All indices, Abbe/partial/APD fields, absorption, R/d, aspheres, clear caps, connected layer boundaries, controls and existing compatible curves remain unchanged. Source material identity and production correlation remain unresolved.

@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2703** elements have multiple coordinate-compatible candidates
-- **490** lens files are affected
+- **2702** elements have multiple coordinate-compatible candidates
+- **491** lens files are affected
 - **283** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **119** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1575 |
-| Evidence-source priority | 837 |
+| Smallest reference-index residual | 1576 |
+| Evidence-source priority | 835 |
 | Vendor context | 277 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -89,7 +89,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `697555 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E6 +1 files |
 | `835427 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.83481 / 42.70 (d) | J-LASF05 — smallest d-line \|Δn\| (2.1e-8 vs 2.9e-6) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E9 +1 files |
 | `593686 low-dispersion class (qualified spectral proxy; source supplier and melt unspecified)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, code, preferred code row) | 3 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E16 +1 files |
-| `516/517642 BK7-coordinate crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.51633 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E18 +1 files |
 | `652585 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)` | 1.65160 / 58.50 (d) | N-LAK7 — smallest d-line \|Δn\| (3.6e-7 vs 3.1e-6) | S-LAL7 (Ohara, code, preferred code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E19 +1 files |
 | `575415 light-flint class (qualified spectral proxy; source supplier and melt unspecified)` | 1.57501 / 41.50 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 4.1e-6) | S-TIL27 (Ohara, code, preferred code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E23 +1 files |
 | `883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E24 +1 files |
@@ -97,6 +96,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIH6 (OHARA) / SF6 class (qualified spectral proxy; source supplier and melt unspecified)` | 1.80518 / 25.40 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 2 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) L21 |
 | `S-LAL14 (OHARA) / N-LAK14 class (qualified spectral proxy; source supplier and melt unspecified)` | 1.69680 / 55.50 (d) | S-LAL14 — Annotation vendor context matches Ohara. | N-LAK14 (Schott, name, vendor ✗) | 1 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) L24 |
 | `S-FPL51 (OHARA) / FCD1 class (qualified spectral proxy; source supplier and melt unspecified)` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) L42 |
+| `K-SKLD200-M (Sumita molding-state spectral proxy; historical supplier, melt and process unspecified)` | 1.58373 / 59.00 (d) | K-SKLD200-M — smallest d-line \|Δn\| (1.8e-4 vs 2.9e-3) | K-SKLD200 (Sumita, name, vendor ✓) | 1 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) E2 |
 | `S-LAL14 (OHARA; 697/555 class equivalent)` | 1.69680 / 55.53 (d) | S-LAL14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>LAC14 (Hoya, code, vendor ✗, alternate code row) | 2 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L1 |
 | `S-TIH53 (OHARA; 847/238 dense-flint class equivalent)` | 1.84666 / 23.78 (d) | S-TIH53 — direct name evidence outranks six-digit code evidence. | S-TIH53W (Ohara, code, vendor ✓, alternate code row)<br>J-SF03 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF52 (CDGM, code, vendor ✗, alternate code row)<br>FDS90 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L4 |
 | `S-LAH65V (OHARA; 804/466 dense lanthanum-flint class equivalent)` | 1.80400 / 46.58 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L6 |

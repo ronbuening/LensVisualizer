@@ -19,9 +19,9 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-10-30",
+    date: "2026-10-31",
     type: "improvement",
-    summary: "Refined EF- and RF-mount lens rims and glass against original patents",
+    summary: "Refined EF- and RF-mount lens rims and expanded sourced glass coverage",
   },
   {
     date: "2026-10-30",

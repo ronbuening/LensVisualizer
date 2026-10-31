@@ -37,19 +37,19 @@ The high-index negative front meniscus precedes two lower-dispersion positive el
 
 ### L2 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +188.535472 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +188.535472 mm. Maker-marked SLD position. The October 31 material followup retains source-pair dispersion here: the new S-FPL51Y candidate would reduce the printed pair’s F−C span by 2.265%, despite fitting the broad catalog compatibility window.
 
 This large positive front-group element is one of the maker-marked SLD positions. Its literal νd 79.3 must not be harmonized to a modern ED catalog value merely because nd is close.
 
 ### L3 — Positive Meniscus
 
-nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +324.505748 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +324.505748 mm. Maker-marked SLD position. The October 31 material followup retains source-pair dispersion here: the new S-FPL51Y candidate would reduce the printed pair’s F−C span by 2.265%, despite fitting the broad catalog compatibility window.
 
 The positive meniscus completes G1 and is the second maker-marked SLD position. Its separated geometry and positive power differ from L2 even though the source repeats the same optical coordinates.
 
 ### L4 — Negative Meniscus
 
-nd = 1.71300, νd = 54.1. Glass: unmatched; historical melt unconfirmed. Isolated f = -74.670675 mm. Nearest rows J-LAK8 (HIKARI) and LAC8 (HOYA) have Δνd = −0.14 and −0.16, outside the 0.1 coordinate-equivalence tolerance.
+nd = 1.71300, νd = 54.1. Glass: J-LAK8 (Hikari qualified spectral proxy; historical material, supplier and melt unconfirmed). Isolated f = -74.670675 mm. The catalog’s evaluated νd is 53.958770, versus the retained source 54.1.
 
 The negative meniscus begins G2. Its front/rear inferred clear radii are 25.5/19.5 mm: clear cap estimates scaled from Figure 1, not source dimensions. The rear concave cap now ends on an exposed flat land reaching the25.5mm body. The rear rim is constrained by the following short-gap sag geometry; Figure 1 draws r8 and L5's front face meeting at the rim, and the literal prescription makes them touch near 20.6 mm.
 
@@ -73,13 +73,13 @@ The final biconcave singlet restores net-negative G2 power. The large changing D
 
 ### L8 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +83.450391 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +83.450391 mm. Maker-marked SLD position. The October 31 material followup retains source-pair dispersion here: the new S-FPL51Y candidate would reduce the printed pair’s F−C span by 2.265%, despite fitting the broad catalog compatibility window.
 
 The single positive element constitutes G3 and is the third maker-marked SLD position. Its isolated power is also the functional-group power; the following D16 gap changes with zoom.
 
 ### L9 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +72.575969 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +72.575969 mm. Maker-marked SLD position. The October 31 material followup retains source-pair dispersion here: the new S-FPL51Y candidate would reduce the printed pair’s F−C span by 2.265%, despite fitting the broad catalog compatibility window.
 
 This SLD-marked positive member is cemented to L10. It has appreciable positive isolated power, but the real interface r18 uses the index difference to the high-dispersion negative member.
 
@@ -91,7 +91,7 @@ The negative meniscus completes G4. The combination has only modest net positive
 
 ### L11 — Biconcave Negative
 
-nd = 1.71300, νd = 54.1. Glass: unmatched; historical melt unconfirmed. Isolated f = -22.203956 mm. Nearest rows J-LAK8 (HIKARI) and LAC8 (HOYA) have Δνd = −0.14 and −0.16, outside the 0.1 coordinate-equivalence tolerance.
+nd = 1.71300, νd = 54.1. Glass: J-LAK8 (Hikari qualified spectral proxy; historical material, supplier and melt unconfirmed). Isolated f = -22.203956 mm. This uses the same qualified coordinate proxy as L4, without proving a shared historical melt.
 
 The strong biconcave member starts negative G5, immediately after the source stop-to-r21 interval. It is cemented to a positive partner at r22.
 
@@ -151,9 +151,9 @@ The final biconvex singlet offsets part of the rear negative power. G7 remains n
 
 ## Glass Identification
 
-All 20 elements retain the patent's printed d-line index and Abbe number. Catalog coordinate equivalents provide dispersion for 14 elements: HOYA NBFD10 (L1), TAF1 (L7), NBFD15 (L12) and NBFD13 (L18); OHARA S-LAL14 (L5), S-TIH1 (L6), S-TIH6 (L10/L16), S-FSL5 (L13/L15), S-TIL25 (L14), S-TIH4 (L17) and S-TIM22 (L20); and SCHOTT N-LAF35 (L19). These curves support secondary-spectrum and chromatic calculations while tracing retains the printed nd/νd at d; production suppliers and melts remain unconfirmed.
+All 20 elements retain the patent's printed d-line index and Abbe number. Qualified catalog curves now provide dispersion for 16 elements, including Hikari J-LAK8 at L4/L11. The other fourteen retain their earlier selections: HOYA NBFD10 (L1), TAF1 (L7), NBFD15 (L12) and NBFD13 (L18); OHARA S-LAL14 (L5), S-TIH1 (L6), S-TIH6 (L10/L16), S-FSL5 (L13/L15), S-TIL25 (L14), S-TIH4 (L17) and S-TIM22 (L20); and SCHOTT N-LAF35 (L19). These curves support secondary-spectrum and chromatic calculations while tracing retains the printed nd/νd at d; production suppliers and melts remain unconfirmed.
 
-L2/L3/L8/L9 (1.49700/79.3) and L4/L11 (1.71300/54.1) remain unmatched: the nearest catalog rows exceed the 0.1 Abbe-number tolerance. Their dispersion remains an Abbe-based approximation. The diagram tints L2, L3, L8 and L9 as inferred anomalous-dispersion elements: 1.49700/79.3 lies in the fluorophosphate low-dispersion region, about two Abbe units below today's FCD1/S-FPL51-class rows, and these are the positions Sigma's catalog marks SLD; the patent itself names no special glass. The four maker-marked SLD positions do not establish complete apochromatic performance from index and Abbe number alone.
+L4/L11 now use J-LAK8 within the unchanged lens-to-catalog compatibility window; historical identity alone does not require disabling a qualified proxy. L2/L3/L8/L9 (1.49700/79.3) remain unmatched after the bounded October 31 source-aware comparison below. Their Abbe-based approximation preserves the printed pair’s F−C span; individual C/F placement and g remain estimated. The diagram tints L2, L3, L8 and L9 as inferred anomalous-dispersion elements: 1.49700/79.3 lies in the fluorophosphate low-dispersion region, about two Abbe units below today's FCD1/S-FPL51-class rows, and these are the positions Sigma's catalog marks SLD; the patent itself names no special glass. The four maker-marked SLD positions do not establish complete apochromatic performance from index and Abbe number alone.
 
 ## Zoom, Stop and Focus Reconstruction
 
@@ -188,4 +188,16 @@ The patent's Figure 4 aperture discrepancy and stop-to-image ratio residual, unk
 1. [JP2001108902A, DPMA copy](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=JP2001108902A). PDF 1: English PAJ cover; PDF 2–4: claims, definitions and description; PDF 4–5: Example 1 numerical tables; PDF 9: Figure 1; PDF 10: Figures 4–6. The 11-page publication includes the alternative examples.
 2. [Sigma lens catalog, 2004.9](https://w5.fuji.com.tw/pdf/SIGMA-lens-English.pdf). Maker-authored document available from a distributor mirror: PDF 7: construction and description; PDF 12: specifications; PDF 13: date. The catalog gives a full-frame wide field of 46.8°, versus the patent's 47.0°, and states that minimum focusing distance is measured from the film surface.
 
-The fresh source review retains the capped L18 rear face: a flat land to12.5mm would exceed the unchanged air-gap allowance. No numeric concave cut is inferred from its short schematic step. All20 source media were rechecked; fourteen retain compatible coefficient spectra and six remain explicitly unresolved, with no printed C/F/g or actual partial ratio.
+The fresh source review retains the capped L18 rear face: a flat land to12.5mm would exceed the unchanged air-gap allowance. No numeric concave cut is inferred from its short schematic step. At the October 30 checkpoint, all 20 source media were rechecked; fourteen retained compatible coefficient spectra and six remained unresolved, with no printed C/F/g or actual partial ratio. The October 31 material followup below adds the two J-LAK8 proxies while retaining four SLD positions on source-pair dispersion.
+
+## October 31, 2026 — Scoped Catalog Followup and Retained SLD Constraint
+
+Preserve the completed October 30 original source/shape/glass review and earlier October 22 shape work with their actual dates. This followup rechecks material constraints, without another shape inspection. In the same original [JP 2001-108902 A](../../../patents/JP2001108902A.pdf), Numerical Example 1, paragraph 0015 on PDF p. 4 explicitly defines n as the d-line index. The prescription on PDF pp. 4–5 directly prints L4/surface 7 and L11/surface 21 as 1.71300 / 54.1, and L2/L3/L8/L9 at surfaces 3/5/15/17 as 1.49700 / 79.3. No individual C/F/g index, partial-dispersion ratio, commercial material name or patent APD designation is supplied for these media. Sigma's separate maker SLD-position evidence remains inferred rather than a measured patent partial.
+
+The existing [Nikon/Hikari J-LAK8 coefficients](https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/nikon-hikari20220701.zip) exactly match the manufacturer's nine-term power series, including its zero high-order terms, with λ in µm. The curve evaluates nd 1.713000015, νd 53.958770 and PgF 0.545186: residuals +0.000000015 / −0.141230 and a +0.261739% F−C span error. It is the closest joint-coordinate candidate among the checked current and usable primary rows; LAC8 is slightly farther at −0.161147 Abbe residual. The earlier local 0.1 Abbe exact-coordinate criterion was too strict for an explicitly approximate proxy. The standard ±0.003 / ±2 compatibility guards remain unchanged. L4/L11 now use J-LAK8 while retaining the printed source pairs and unknown historical material/supplier/melt.
+
+A different decision applies to the four SLD positions. The OHARA May 29, 2026 all-products AGF publishes S-FPL51Y, a named spectral curve with evaluated nd 1.497003244, νd 81.138165 and PgF 0.538099. It is the only candidate inside the broad compatibility window for 1.49700 / 79.3 among the examined current/usable primary rows. Its +1.838165 Abbe residual fits that window, but that fact alone does not establish a useful replacement for the known source dispersion constraint. The printed pair implies `nF−nC = (1.49700−1)/79.3 = 0.0062673392`. The candidate instead gives 0.0061253942, a reduction of 0.0001419450 or 2.264837%, far beyond the effect of the source's one-decimal Abbe rounding. The curve's g partial and special transmission suffix do not independently identify the older SLD medium or justify this known span mismatch.
+
+The new OHARA row is therefore not adopted at those four positions. No new global tolerance is introduced: this is a documented source-fidelity choice between a broad, materially different curve and the current approximation that preserves the measured-pair F−C span. It does not prove that the Abbe fallback has the correct individual C/F placement or secondary spectrum. The four positions remain unresolved; source νd 79.3 and inferred APD annotations remain unchanged. Modern FCD1/S-FPL51/K-PFK80 neighbors and the new S-FPL51Y row are not asserted to be Sigma's historical SLD chemistry.
+
+Coverage improves from 14/20 to 16/20. No new per-lens spectral override is added, and all source R/d, printed indices/Abbe numbers, source stations, reconstructed cams, iris controls, clear caps and geometric constraints remain unchanged. Source/control parity and d-line runtime equality support this limited followup; earlier finite-focus, interpolation, aperture/field and production-performance limits remain in force.

@@ -152,6 +152,8 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    or a six-digit code that does not encode the listed coordinates. Fix the transcription or source — never relax the
    tolerance to admit a bad row.
 
+Registered material grades may contain no digits (for example, `POLYCARB`). The shared tokenizer recognizes their complete registered names with word boundaries; do not invent a numbered grade or a self-alias solely to enable lookup. Preserve a normalized grade's exact published spelling in its source citation.
+
 6. **If the glass has a common informal alias** (`BK7` for `N-BK7`, `SK16` for `N-SK16`) add a structured entry to
    `ALIAS_RECORDS` in [src/optics/chromatic/glassCatalogAliases.ts](../src/optics/chromatic/glassCatalogAliases.ts), including the alias
    `kind` and a short note explaining why the alias is safe. `ALIASES` is derived from those records.
