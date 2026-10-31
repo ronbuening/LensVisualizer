@@ -117,9 +117,9 @@ R15 = +18.494 mm and R16 = −61.289 mm establish a biconvex form. This element 
 
 ### L42 / E9 — Negative Meniscus with rear asphere
 
-**nd = 1.583060, νd = 30.2. Material: unmatched optical resin; polycarbonate-class identification inferred. f = −117.512 mm.**
+**nd = 1.583060, νd = 30.2. Material: POLYCARB qualified numerical polymer proxy; selected-source composition and supplier unspecified. f = −117.512 mm.**
 
-Both base radii are negative, making E9 a negative meniscus. Surface 18 is the sole asphere. No public OHARA, HOYA, SCHOTT, HIKARI, CDGM, or Sumita optical-glass entry closely matches the printed pair. Paragraph 0052 states that Examples 1 and 2 use polycarbonate, and those examples use the same 1.583060/30.2 pair; that correspondence supports a cross-example hypothesis but does not identify Example 4 chemistry. Its medium remains explicitly Unmatched.
+Both base radii are negative, making E9 a negative meniscus. Surface 18 is the sole asphere. No public OHARA, HOYA, SCHOTT, HIKARI, CDGM, or Sumita optical-glass entry closely matches the printed pair. Paragraph 0052 states that Examples 1 and 2 use polycarbonate, and those examples use the same 1.583060/30.2 pair; that correspondence supports a cross-example hypothesis but does not identify Example 4 chemistry. The 2026-10-31 follow-up enables the published MISC POLYCARB curve as a numerical spectral proxy, with catalog Δnd +0.002409922 and Δνd −0.290815018 inside existing compatibility windows. This does not transfer a material identity from Examples 1/2 to Example 4.
 
 The complete L4 focal length is **+35.564 mm**. Paragraph 0051 explains that changing the L3–L4 spacing makes off-axis bundles encounter the asphere at different heights across the zoom range, allowing one molded surface to contribute over multiple focal lengths.
 
@@ -131,17 +131,17 @@ The patent gives two plane surfaces and 1.00 mm center thickness. The plate has 
 
 ## Glass Identification and Selection
 
-The patent publishes only $n_d$ and $ν_d$; paragraph 0079 explicitly identifies the d-line reference. It publishes no per-element C/F/g indices, partial-dispersion value or APD evidence. The 24 former catalog-derived C/F/g copies on eight glasses are removed; no printed spectral value is discarded. Nine of the ten media have compatible catalog curves used as qualified spectral proxies, while the rear 1.583060/30.2 medium remains unresolved. The source does not identify historical suppliers or chemistry. The labels below are therefore catalog equivalents selected by numerical matching, with OHARA favored because one coherent OHARA palette reproduces the printed pairs. They must not be read as vendor identities proved by the patent.
+The patent publishes only $n_d$ and $ν_d$; paragraph 0079 explicitly identifies the d-line reference. It publishes no per-element C/F/g indices, partial-dispersion value or APD evidence. The 24 former catalog-derived C/F/g copies on eight glasses are removed; no printed spectral value is discarded. All ten media now have compatible catalog curves used as qualified spectral proxies after the 2026-10-31 POLYCARB follow-up. The selected rear medium retains unspecified chemistry. The source does not identify historical suppliers or chemistry. The labels below are therefore catalog equivalents selected by numerical matching, with OHARA favored because one coherent OHARA palette reproduces the printed pairs. They must not be read as vendor identities proved by the patent.
 
-| Patent pair     | Catalog equivalent used                         | Used at      | Identification status                                | Optical role                          |
-| --------------- | ----------------------------------------------- | ------------ | ---------------------------------------------------- | ------------------------------------- |
-| 1.696797 / 55.5 | S-LAL14 (OHARA)                                 | E1, E6       | Printed pair coincides with catalog                  | Positive lanthanum crown in L1 and L3 |
-| 1.846660 / 23.9 | PBH53/PBH53W (OHARA historical)                 | E2, E5, E7   | Printed pair coincides with historical 847-239 entry | Dense-flint chromatic partner         |
-| 1.743198 / 49.3 | S-LAM60 (OHARA)                                 | E3           | Printed pair coincides with catalog                  | High-index negative L2 member         |
-| 1.712995 / 53.9 | S-LAL8 (OHARA)                                  | E4           | Printed pair coincides with catalog                  | Negative L2 member                    |
-| 1.487490 / 70.2 | S-FSL5 (OHARA)                                  | E8           | Printed pair coincides with catalog                  | Low-dispersion positive L4 member     |
-| 1.583060 / 30.2 | Unmatched medium; polycarbonate hypothesis only | E9           | No public optical-glass match                        | Moldable aspherical element           |
-| 1.516330 / 64.1 | BK7 class; S-BSL7 is one equivalent             | Physical E10 | Common non-unique pair; vendor indeterminate         | Neutral protective plate              |
+| Patent pair     | Catalog equivalent used             | Used at      | Identification status                                         | Optical role                          |
+| --------------- | ----------------------------------- | ------------ | ------------------------------------------------------------- | ------------------------------------- |
+| 1.696797 / 55.5 | S-LAL14 (OHARA)                     | E1, E6       | Printed pair coincides with catalog                           | Positive lanthanum crown in L1 and L3 |
+| 1.846660 / 23.9 | PBH53/PBH53W (OHARA historical)     | E2, E5, E7   | Printed pair coincides with historical 847-239 entry          | Dense-flint chromatic partner         |
+| 1.743198 / 49.3 | S-LAM60 (OHARA)                     | E3           | Printed pair coincides with catalog                           | High-index negative L2 member         |
+| 1.712995 / 53.9 | S-LAL8 (OHARA)                      | E4           | Printed pair coincides with catalog                           | Negative L2 member                    |
+| 1.487490 / 70.2 | S-FSL5 (OHARA)                      | E8           | Printed pair coincides with catalog                           | Low-dispersion positive L4 member     |
+| 1.583060 / 30.2 | POLYCARB numerical polymer proxy    | E9           | Published curve; source composition unspecified; Δnd +0.00241 | Aspherical element                    |
+| 1.516330 / 64.1 | BK7 class; S-BSL7 is one equivalent | Physical E10 | Common non-unique pair; vendor indeterminate                  | Neutral protective plate              |
 
 The principal chromatic pairings are repeated S-LAL14/PBH53-equivalent combinations in L1 and L3, a mixed two-negative/one-positive palette in L2, and an S-FSL5-equivalent crown opposed by the low-Abbe resin element in L4. Compatible catalog curves supply qualified spectral proxies beyond the patent’s nd/νd pairs; no catalog C/F/g copies are authored as per-lens source values. The evidence does not support an apochromatic claim.
 
@@ -380,3 +380,13 @@ The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches
 This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 28.9–101.35 mm, taken directly from Numerical Example4, paragraph0085, PDF p19 / printed7: focal-length stations28.90/50.07/101.35. The prior computed model EFL range 28.906826–101.323296 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
 
 All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.
+
+## 2026-10-31 — Published POLYCARB numerical proxy follow-up
+
+US 2004/0223070 A1, Numerical Example 4, PDF page 19 / printed 7, paragraph 0085 R17/L42; paragraph 0079 defines the d-line reference. The source pair, geometry and original review dates are unchanged; this is catalog-source work, not a repeat shape inspection. Paragraph 0052 names polycarbonate for Examples 1/2, not selected Example 4. Neither the numerical match nor the qualified POLYCARB curve converts that cross-example hypothesis into source-established chemistry.
+
+The permission-bearing [RadiantZemax MISC.AGF archival copy](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/misc.agf) publishes a replayable POLYCARB Schott polynomial, cited to _Handbook of Optics Vol. II_. The [official Ansys source table](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Glass_Catalog_Sources.html) independently confirms that attribution. This is a published numerical material curve, not a direct material-manufacturer fetch or proof of the selected patent medium's chemistry, formulation, supplier or Canon process. The handbook coefficient table was not directly inspected; its chapter/page is not invented.
+
+The native row uses $n^2=a_0+a_1\lambda^2+a_2\lambda^{-2}+a_3\lambda^{-4}+a_4\lambda^{-6}+a_5\lambda^{-8}$, with wavelength in µm, reference temperature 20 °C and valid range 0.365–1.014 µm. At C/d/F/g it evaluates 1.579863774 / 1.585469922 / 1.599438695 / 1.611520588; computed νd is 29.909184982. Its own-row residuals, −0.00000007757 in nd and −0.00000001834 in νd, pass strict 0.00003/0.11 guards. All 1,001 sampled wavelengths are finite and normally dispersive. Relative to the source 1.583060/30.2 pair, the comparatively large nd difference +0.002409922 and νd difference −0.290815018 fit the existing ±0.003/±2 compatibility windows. The runtime retains the authored source index; the curve supplies only qualified spectral variation. No per-lens C/F/g indices, partials, coefficients or new APD badge are authored.
+
+L42 / E9 now uses this qualified curve; current spectral coverage is 10/10 media. All source pairs, published values, source errata, aperture/focus/zoom controls, physical gaps and shape conclusions remain unchanged.

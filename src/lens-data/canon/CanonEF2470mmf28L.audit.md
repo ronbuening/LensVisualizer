@@ -6,9 +6,9 @@ Patent: JP 2014-41222 A, Numerical Example 1
 
 ### Phase 1 - Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| All elements | `nd`, `vd`, line indices | Current data | No change | Patent table in paragraph 0065 matches the stored d-line indices, Abbe numbers, and published `nC` / `nF` / `ng` values. |
+| Element / surface | Field                    | Before       | After     | Justification                                                                                                            |
+| ----------------- | ------------------------ | ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| All elements      | `nd`, `vd`, line indices | Current data | No change | Patent table in paragraph 0065 matches the stored d-line indices, Abbe numbers, and published `nC` / `nF` / `ng` values. |
 
 ### Phase 2 - Retained-information audit
 
@@ -18,17 +18,16 @@ Patent: JP 2014-41222 A, Numerical Example 1
 - Infinity zoom positions are correctly ordered as wide / middle / tele: 24.90 mm, 35.13 mm, and 68.14 mm.
 - Infinity variable gaps match the patent table:
 
-| Gap | Wide | Middle | Tele |
-|---|---:|---:|---:|
-| D6 | 55.36 | 31.61 | 3.78 |
-| D13 | 2.90 | 6.51 | 20.41 |
-| D20 | 19.24 | 15.64 | 1.73 |
-| D25 | 1.19 | 3.58 | 10.91 |
-| D29 | 3.99 | 9.73 | 13.28 |
+| Gap |  Wide | Middle |  Tele |
+| --- | ----: | -----: | ----: |
+| D6  | 55.36 |  31.61 |  3.78 |
+| D13 |  2.90 |   6.51 | 20.41 |
+| D20 | 19.24 |  15.64 |  1.73 |
+| D25 |  1.19 |   3.58 | 10.91 |
+| D29 |  3.99 |   9.73 | 13.28 |
 
 - Zoom behavior is not reversed. The patent labels the columns `広角 / 中間 / 望遠`, and paragraph 0033 describes the same wide-to-tele motion stored here: G1 moves imageward; G2, G3, G4, and G5 move objectward; G6 remains fixed.
 - The modeled close-focus state is consistent with paragraph 0058: the fifth group moves imageward from infinity to close focus. In data terms, D25 increases and D29 decreases while conserving D25 + D29 at each zoom position.
-
 
 ## 2026-10-30 — Original-PDF shape and glass review
 
@@ -36,18 +35,18 @@ Confirmed `patents/JP2014041222A.pdf` as JP 2014-041222 A, published March 6, 20
 
 Figure 1 is an embedded native 1072 × 512 JPEG at about 200 ppi. About 772 native pixels over the 160.66 mm first-to-last-vertex span gives 4.80 px/mm. Semi-height uncertainty is about ±0.5 mm from ±1–2 native-pixel stroke/JPEG ambiguity. Enlarged details are magnification only; the source tables themselves are vector text rendered at 300 ppi for numerical inspection. Leaders, zoom arrows, brackets and the long SSP/SP blade/callout strokes were excluded. No numerical clear diameters are published.
 
-| Surface(s) | Prior clear `sd` | Adopted clear `sd` | Outer shoulder / reason |
-|---|---:|---:|---|
-| S1A | 30.0 mm | 29.2 mm | Source curved front-asphere height |
-| S2 | 27.0 mm | 24.0 mm | Resolved rear shoulder extends to `rimExtensionSd: 29.2` |
-| S4 | 22.5 mm | 22.5 mm | Resolved rear shoulder extends to `rimExtensionSd: 23.8` |
-| S6 | 22.0 mm | 22.5 mm | Complete curved rear rim of front positive meniscus |
-| S7–S13 | 19.8–20.8 mm | 18.8 mm | Second-group outlines; all three singlets/doublet caps inspected |
-| S15 / S17–S19 | 11.8–12.2 mm | 13.0 mm | Source third-group curved rims; S16 constrained separately |
-| S21–S25 | 13.6–14.0 mm | 13.4 mm | Fourth-group curved rims, within source stroke uncertainty |
-| S26–S29 | 14.0 mm | 12.6 mm | Source focus-group outlines |
-| S30 / S31A | 15.0 / 15.2 mm | 18.5 / 18.5 mm | Source final positive/aspherical element |
-| SSP | 12.4 mm | 12.5 mm | Beam-inferred flare-stop clearance, not a blade-length measurement |
+| Surface(s)    | Prior clear `sd` | Adopted clear `sd` | Outer shoulder / reason                                            |
+| ------------- | ---------------: | -----------------: | ------------------------------------------------------------------ |
+| S1A           |          30.0 mm |            29.2 mm | Source curved front-asphere height                                 |
+| S2            |          27.0 mm |            24.0 mm | Resolved rear shoulder extends to `rimExtensionSd: 29.2`           |
+| S4            |          22.5 mm |            22.5 mm | Resolved rear shoulder extends to `rimExtensionSd: 23.8`           |
+| S6            |          22.0 mm |            22.5 mm | Complete curved rear rim of front positive meniscus                |
+| S7–S13        |     19.8–20.8 mm |            18.8 mm | Second-group outlines; all three singlets/doublet caps inspected   |
+| S15 / S17–S19 |     11.8–12.2 mm |            13.0 mm | Source third-group curved rims; S16 constrained separately         |
+| S21–S25       |     13.6–14.0 mm |            13.4 mm | Fourth-group curved rims, within source stroke uncertainty         |
+| S26–S29       |          14.0 mm |            12.6 mm | Source focus-group outlines                                        |
+| S30 / S31A    |   15.0 / 15.2 mm |     18.5 / 18.5 mm | Source final positive/aspherical element                           |
+| SSP           |          12.4 mm |            12.5 mm | Beam-inferred flare-stop clearance, not a blade-length measurement |
 
 All sixteen elements, every concave end, both glass aspheres and the three cemented interfaces (S8, S18 and S22) were inspected. No resin/hybrid layer, distinct cement medium, filter or camera-side plate is tabulated. Two external air-facing shoulders and no inferred concave cut are authored. Native residuals within the practical measurement uncertainty remain qualified rather than treated as exact mechanical dimensions.
 
@@ -80,3 +79,13 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.380000000 |           0.380000 | 193 / 170 / 137                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.916571% at zoom 0.75, focus 0.05, aberration control 0: Gaussian 0.386340607 m versus label 7.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — Scoped positive catalog-source follow-up
+
+This glass-only follow-up preserves the 2026-10-30 original shape review and all prescription/control values. Numerical Example 1, JP2014041222A PDF pages 9–10 and the full spectral table on page 11, confirms L43/id13 (source S24) nd 1.52542/νd 64.5 and C/F/g 1.52291/1.53105/1.53541. ¶0062 on page 9 explicitly defines d. The source page 11 vector table was rendered and read directly; enlargement is not additional native raster evidence. All sixteen material rows and all 48 genuine C/F/g values remain intact. No catalog-derived per-lens override is added.
+
+PC3's existing HOYA polynomial is compatible. At the engine reference lines its nd/νd residuals are +0.00000005/+0.119542; its C/F/g errors against the printed L43 row are +0.00001073/+0.00000171/−0.00001074. Catalog PgF 0.53468967 versus printed-line 0.53562654 gives −0.00093687. Thus this is a qualified approximate proxy, not an exact material identity. Complete measured source line indices bypass catalog selection, preserving the modeled source spectrum.
+
+Positive evidence is the existing catalog row's documented [HOYA source](https://www.hoya-opticalworld.com/english/datadownload/) and direct full-source spectral comparison. The present portal, `HOYA20260707_include_obsolete.agf` and PC3 PDF requests timed out; no fresh manufacturer-coefficient download or inaccessible family source is claimed. Current downloaded OHARA/Nikon-Hikari/SUMITA searches did not supply a closer source-backed full-line replacement. No new shared row is required.
+
+The only data changes are L43's qualified PC3 label and explicit source-reference annotations. Both unmatched 1.84265/25.9 special-glass entries and their published lines remain unresolved by catalog identity. Current catalog coverage is fourteen of sixteen media; the Oct 30 thirteen-curve/three-unmatched statements above describe the earlier disposition. Geometry, rims, stops, zoom/focus controls, source pairs, genuine partial data and APD evidence are unchanged.

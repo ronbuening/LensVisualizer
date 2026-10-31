@@ -101,9 +101,9 @@ Surfaces 21(R = 100.783)–23(R = −57.671). The negative anomalous flint is th
 
 ### L43 — Biconvex Positive
 
-nd = 1.52542, νd = 64.5. Glass: unmatched source light-crown coordinate; supplier and chemistry unresolved. f = +44.6 mm.
+nd = 1.52542, νd = 64.5. Glass: PC3 (HOYA compatible spectral proxy; source-published C/F/g indices authoritative; supplier, melt and chemistry unspecified). f = +44.6 mm.
 
-Surfaces 24(R = 30.541)–25(R = −95.184). This element carries most of the remaining positive power of the fourth group. The published nd and νd do not correspond closely enough to a single public catalog glass to justify a named vendor assignment.
+Surfaces 24(R = 30.541)–25(R = −95.184). This element carries most of the remaining positive power of the fourth group. The existing HOYA PC3 curve is compatible with the published pair, but it is only a spectral proxy. Its coefficient-derived line indices are approximate; the source-published C/F/g indices retain runtime precedence.
 
 ### L51 — Plano-Convex Positive, convex to image
 
@@ -125,28 +125,28 @@ Surfaces 30(R = 51.549)–31A(R = −129.121). This final positive element is fi
 
 ## Glass Identification and Selection
 
-The patent publishes nd, ng, nC, and nF for each glass in ¶0065. Thirteen of the sixteen modeled media have compatible curves in the existing catalog library. The two unmatched coordinate classes occupy three elements: L13 and L41 share one source-defined anomalous glass, while L43 has a separate light-crown coordinate. Compatible catalog names qualify spectral proxies and do not establish a Japanese supplier preference or historical vendor identity.
+The patent publishes nd, ng, nC, and nF for each glass in ¶0065. Fourteen of the sixteen modeled media have compatible catalog curves. The remaining unmatched coordinate class occupies L13 and L41, which share one source-defined anomalous glass. L43 uses the existing compatible PC3 curve. Compatible catalog names qualify spectral proxies and do not establish a Japanese supplier preference or historical vendor identity.
 
-| Element(s) | nd | νd | θgF / ΔPgF | Glass assignment | Role |
-|---|---:|---:|---:|---|---|
-| L11, L12, L22 | 1.77250 | 49.6 | patent line indices supplied | S-LAH66 (Ohara) | High-index lanthanum glass, dense-flint side; front group and variator doublet |
-| L13, L41 | 1.84265 | 25.9 | θgF = 0.60572; ΔPgF ≈ +0.00548 | Unmatched patent-defined high-index anomalous short flint | Claimed special glass; front positive and rear negative chromatic correctors |
-| L21, L33 | 1.80518 | 25.4 | patent line indices supplied | S-TIH6 (Ohara) / SF6 class | Dense flint in cemented achromatizing pairs |
-| L23 | 1.83481 | 42.7 | patent line indices supplied | S-LAH55V (Ohara) | Dense lanthanum flint in variator |
-| L24 | 1.69680 | 55.5 | patent line indices supplied | S-LAL14 (Ohara) / N-LAK14 class | Lanthanum crown positive variator element |
-| L31 | 1.88300 | 40.8 | patent line indices supplied | S-LAH58 (Ohara) | High-index lanthanum flint stop-group negative |
-| L32 | 1.72000 | 50.2 | patent line indices supplied | S-LAL10 (Ohara) | Lanthanum crown-side member in stop-group doublet |
-| L42 | 1.49700 | 81.5 | θgF = 0.53859; ΔPgF ≈ +0.03187 | S-FPL51 (Ohara) / FCD1 class | Low-dispersion positive element; chemistry unspecified |
-| L43 | 1.52542 | 64.5 | patent line indices supplied | Unmatched light crown class | Rear positive-power element |
-| L51 | 1.84666 | 23.8 | patent line indices supplied | S-TIH53 (Ohara) / SF57 class | Dense flint in focus group |
-| L52 | 1.83400 | 37.2 | patent line indices supplied | S-LAH60 (Ohara) | High-index lanthanum flint focus-group negative |
-| L6 | 1.58313 | 59.4 | patent line indices supplied | S-BAL42 (Ohara) / D-ZK2 class | Final aspherical barium-crown field element |
+| Element(s)    |      nd |   νd |                     θgF / ΔPgF | Glass assignment                                          | Role                                                                           |
+| ------------- | ------: | ---: | -----------------------------: | --------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| L11, L12, L22 | 1.77250 | 49.6 |   patent line indices supplied | S-LAH66 (Ohara)                                           | High-index lanthanum glass, dense-flint side; front group and variator doublet |
+| L13, L41      | 1.84265 | 25.9 | θgF = 0.60572; ΔPgF ≈ +0.00548 | Unmatched patent-defined high-index anomalous short flint | Claimed special glass; front positive and rear negative chromatic correctors   |
+| L21, L33      | 1.80518 | 25.4 |   patent line indices supplied | S-TIH6 (Ohara) / SF6 class                                | Dense flint in cemented achromatizing pairs                                    |
+| L23           | 1.83481 | 42.7 |   patent line indices supplied | S-LAH55V (Ohara)                                          | Dense lanthanum flint in variator                                              |
+| L24           | 1.69680 | 55.5 |   patent line indices supplied | S-LAL14 (Ohara) / N-LAK14 class                           | Lanthanum crown positive variator element                                      |
+| L31           | 1.88300 | 40.8 |   patent line indices supplied | S-LAH58 (Ohara)                                           | High-index lanthanum flint stop-group negative                                 |
+| L32           | 1.72000 | 50.2 |   patent line indices supplied | S-LAL10 (Ohara)                                           | Lanthanum crown-side member in stop-group doublet                              |
+| L42           | 1.49700 | 81.5 | θgF = 0.53859; ΔPgF ≈ +0.03187 | S-FPL51 (Ohara) / FCD1 class                              | Low-dispersion positive element; chemistry unspecified                         |
+| L43           | 1.52542 | 64.5 |   patent line indices supplied | PC3 (HOYA qualified proxy)                                | Rear positive-power element                                                    |
+| L51           | 1.84666 | 23.8 |   patent line indices supplied | S-TIH53 (Ohara) / SF57 class                              | Dense flint in focus group                                                     |
+| L52           | 1.83400 | 37.2 |   patent line indices supplied | S-LAH60 (Ohara)                                           | High-index lanthanum flint focus-group negative                                |
+| L6            | 1.58313 | 59.4 |   patent line indices supplied | S-BAL42 (Ohara) / D-ZK2 class                             | Final aspherical barium-crown field element                                    |
 
-The original publishes all sixteen `nd/ng/nC/nF` rows on PDF page 11, in addition to the index/Abbe prescription on pages 9–10. Paragraph 0062 on page 9 explicitly defines the d-line reference. All forty-eight C/F/g values are retained as genuine published evidence, including the otherwise unmatched media; none is removed as a catalog override. The source-derived θgF and ΔPgF values are calculations from those printed rows. The thirteen compatible catalog curves are qualified spectral proxies where used between the source coordinates; they do not identify historical supplier, melt or chemistry. L13, L41 and L43 remain catalog-unmatched, despite their published spectral coordinates. The class and chemistry descriptions in the table are catalog interpretations, not source material identifications.
+The original publishes all sixteen `nd/ng/nC/nF` rows on PDF page 11, in addition to the index/Abbe prescription on pages 9–10. Paragraph 0062 on page 9 explicitly defines the d-line reference. All forty-eight C/F/g values are retained as genuine published evidence, including the otherwise unmatched media; none is removed as a catalog override. The source-derived θgF and ΔPgF values are calculations from those printed rows. The fourteen compatible catalog curves are qualified spectral proxies; complete published line-index data remain authoritative. They do not identify historical supplier, melt or chemistry. L13 and L41 remain catalog-unmatched despite their published spectral coordinates. The class and chemistry descriptions in the table are catalog interpretations, not source material identifications.
 
 The previous draft overused the term “crown” for S-LAH-family glasses. That is too loose here. By the usual practical boundary, νd values below about 50 belong to flint territory, even when the family name includes lanthanum. S-LAH66 at νd = 49.6 is borderline but still on the dense-flint side; S-LAH55V, S-LAH58, and S-LAH60 are unambiguously flints.
 
-The special νd = 25.9 glass is not assigned a catalog name. Its published indices satisfy the patent's claimed material conditions, but public catalog matches are not close enough for a catalog assignment. The same caution applies to L43, whose 1.52542 / 64.5 pair is near ordinary light-crown territory but not an in-tolerance match to a specific compatible public catalog curve.
+The special νd = 25.9 glass is not assigned a catalog name. Its published indices satisfy the patent's claimed material conditions, but public catalog matches are not close enough for a catalog assignment. L43 has a compatible PC3 proxy, with approximate catalog Abbe and partial-dispersion agreement rather than an identified historical material.
 
 ## Original-figure heights and retained geometry
 
@@ -167,15 +167,14 @@ Numerical Example 1 focuses internally by moving the fifth group toward the imag
 The patent publishes only infinity-focus spacings. Therefore the `.data.ts` companion keeps the patent's zoom spacings as the infinity state and adds a modeled close-focus state by translating L5 imageward while conserving d25 + d29 at each zoom position. The close state is paraxially solved to Canon's 0.38 m official closest focusing distance, measured from the image plane. These close-focus spacings should be read as a visualization and paraxial consistency model, not as patent-published mechanical travel.
 
 | Zoom position | d25 infinity | d25 close model | d29 infinity | d29 close model | L5 imageward travel |
-|---|---:|---:|---:|---:|---:|
-| 24.90 mm | 1.19 | 2.3838 | 3.99 | 2.7962 | 1.1938 |
-| 35.13 mm | 3.58 | 5.6647 | 9.73 | 7.6453 | 2.0847 |
-| 68.14 mm | 10.91 | 18.3469 | 13.28 | 5.8431 | 7.4369 |
+| ------------- | -----------: | --------------: | -----------: | --------------: | ------------------: |
+| 24.90 mm      |         1.19 |          2.3838 |         3.99 |          2.7962 |              1.1938 |
+| 35.13 mm      |         3.58 |          5.6647 |         9.73 |          7.6453 |              2.0847 |
+| 68.14 mm      |        10.91 |         18.3469 |        13.28 |          5.8431 |              7.4369 |
 
 Three published infinity stations supply the quantitative source configurations. Intermediate zoom positions interpolate the gaps and are illustrative rather than focus-preserving. In a 65-position first-order sweep, normalized zoom 0.796875 has actual paraxial EFL 48.68070 mm versus displayed 54.72969 mm, with BF 29.56846 mm against the retained 38.47 mm image gap (−8.90154 mm defocus). The three source stations instead give BF 38.46387/38.45092/38.45450 mm from the rounded arrays. The source supplies no intermediate cam or finite-focus table that would establish a replacement trajectory.
 
 All sixty-five sampled infinity aperture and corner-field checks pass their existing census thresholds. With the source-based heights and the narrow SSP clearance correction, all 441 real working marginal-ray cases across twenty-one zoom positions, three focus positions and seven aperture settings trace; the baseline had three wide-open cases clipped at SSP or S19. These sampled centered-runtime checks do not certify continuous focus, illumination at all off-axis pupil coordinates or historical production performance.
-
 
 ## Aspherical Surfaces
 
@@ -187,10 +186,10 @@ $$
 
 Here k is the standard conic constant; k = 0 is spherical. Both patent aspheres have k = 0, so their asphericity is entirely polynomial departure from a spherical base.
 
-| Surface | Element / face | k | A4 | A6 | A8 | A10 | A12 |
-|---|---|---:|---:|---:|---:|---:|---:|
-| 1A | L11 object face | 0 | +1.19505e-06 | +4.93803e-10 | −1.21623e-12 | +1.13356e-15 | −3.85068e-19 |
-| 31A | L6 image face | 0 | +2.65122e-07 | −9.50226e-09 | +6.16123e-11 | −1.95942e-13 | +2.35213e-16 |
+| Surface | Element / face  |   k |           A4 |           A6 |           A8 |          A10 |          A12 |
+| ------- | --------------- | --: | -----------: | -----------: | -----------: | -----------: | -----------: |
+| 1A      | L11 object face |   0 | +1.19505e-06 | +4.93803e-10 | −1.21623e-12 | +1.13356e-15 | −3.85068e-19 |
+| 31A     | L6 image face   |   0 | +2.65122e-07 | −9.50226e-09 | +6.16123e-11 | −1.95942e-13 | +2.35213e-16 |
 
 At the semi-diameters used in the companion data file, surface 1A has a polynomial departure of +0.8950 mm at h = 29.2 mm. Surface 31A has polynomial departure of -0.0466 mm at h = 18.5 mm. The front asphere therefore carries the stronger wide-angle distortion and oblique-aberration correction burden, while the rear asphere is a lower-amplitude field and high-order residual trim.
 
@@ -212,21 +211,21 @@ The L41/L42 doublet is the strongest chromatic node. L41 supplies high dispersio
 
 The patent states thirteen conditional expressions and tabulates their values for both examples in Table 1. Two typographic issues are preserved in the patent text: condition (3) sometimes renders as “7 < nd,” but Claim 1 and the tabulated values require “1.7 < nd”; condition (7) renders as “2 < ... < 0.35,” but the table and both examples require a lower bound of 0.2. The computed values below use the corrected, internally consistent forms.
 
-| # | Expression | Quantity | Computed | Patent Table 1 |
-|---:|---|---|---:|---:|
-| 1 | 0.838 < θgF − (3.0e−4·νd² − 1.84e−2·νd) < 0.884 | special glass | 0.881 | 0.881 |
-| 2 | 15 < νd < 27 | special glass | 25.90 | 25.9 |
-| 3 | 1.7 < nd | special glass | 1.843 | 1.843 |
-| 4 | −3.5 < fFP/f1 < −1.5 | L13 vs. L1 | −3.188 | −3.187 |
-| 5 | −2 < fRN/fb < −0.8 | L41 vs. L4 | −1.026 | −1.026 |
-| 6 | 0.6 < (D1w − D1t)/ft < 0.8 | d6 swing | 0.757 | 0.757 |
-| 7 | 0.2 < (Db−1w − Db−1t)/ft < 0.35 | d20 swing | 0.257 | 0.257 |
-| 8 | −1.05 < f1/√(fw·ft) < −0.85 | L1 | −0.879 | −0.879 |
-| 9 | 0.75 < fBF/√(fw·ft) < 1.45 | L2 | 0.787 | 0.787 |
-| 10 | −2.5 < fSP/√(fw·ft) < −0.9 | L3 | −1.061 | −1.061 |
-| 11 | 0.9 < fb/√(fw·ft) < 2.1 | L4 | 0.932 | 0.932 |
-| 12 | 0.22 < BFw/Lw < 0.38 | wide BF ratio | 0.239 | 0.239 |
-| 13 | −0.95 < fG1/ft < −0.8 | L11 | −0.879 | −0.879 |
+|   # | Expression                                      | Quantity      | Computed | Patent Table 1 |
+| --: | ----------------------------------------------- | ------------- | -------: | -------------: |
+|   1 | 0.838 < θgF − (3.0e−4·νd² − 1.84e−2·νd) < 0.884 | special glass |    0.881 |          0.881 |
+|   2 | 15 < νd < 27                                    | special glass |    25.90 |           25.9 |
+|   3 | 1.7 < nd                                        | special glass |    1.843 |          1.843 |
+|   4 | −3.5 < fFP/f1 < −1.5                            | L13 vs. L1    |   −3.188 |         −3.187 |
+|   5 | −2 < fRN/fb < −0.8                              | L41 vs. L4    |   −1.026 |         −1.026 |
+|   6 | 0.6 < (D1w − D1t)/ft < 0.8                      | d6 swing      |    0.757 |          0.757 |
+|   7 | 0.2 < (Db−1w − Db−1t)/ft < 0.35                 | d20 swing     |    0.257 |          0.257 |
+|   8 | −1.05 < f1/√(fw·ft) < −0.85                     | L1            |   −0.879 |         −0.879 |
+|   9 | 0.75 < fBF/√(fw·ft) < 1.45                      | L2            |    0.787 |          0.787 |
+|  10 | −2.5 < fSP/√(fw·ft) < −0.9                      | L3            |   −1.061 |         −1.061 |
+|  11 | 0.9 < fb/√(fw·ft) < 2.1                         | L4            |    0.932 |          0.932 |
+|  12 | 0.22 < BFw/Lw < 0.38                            | wide BF ratio |    0.239 |          0.239 |
+|  13 | −0.95 < fG1/ft < −0.8                           | L11           |   −0.879 |         −0.879 |
 
 All thirteen conditions are satisfied by the transcribed prescription. The computations also confirm that d20 is the L3–L4 separation, represented in the data file as the distance after the aperture stop surface labeled `STO`.
 
@@ -270,3 +269,11 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.380000000 |           0.380000 | 193 / 170 / 137                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 94.916571% at zoom 0.75, focus 0.05, aberration control 0: Gaussian 0.386340607 m versus label 7.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## Scoped Catalog Follow-up — 2026-10-31
+
+The original Numerical Example 1 material table (JP2014041222A, PDF pages 9–11, ¶0062/¶0065) confirms L43/id13, source surface 24, at nd 1.52542/νd 64.5 with C/F/g 1.52291/1.53105/1.53541. Its printed-line PgF is 0.53562654. All 48 genuine source C/F/g values remain unchanged, including both unmatched special-glass elements. This does not reopen the 2026-10-30 shape review.
+
+The existing PC3 catalog row documents the [HOYA catalog download source](https://www.hoya-opticalworld.com/english/datadownload/) (`HOYA20260707_include_obsolete.agf`). Its evaluated nd 1.52542005/νd 64.619542 gives residuals +0.00000005/+0.119542. Evaluated C/F/g residuals are +0.00001073/+0.00000171/−0.00001074 and PgF 0.53468967 differs by −0.00093687. These are approximate catalog values, not replacements for the printed lines. Complete source indices take precedence, so this label change leaves the traced source channels unchanged.
+
+The current HOYA portal, AGF and attempted PC3 PDF endpoints timed out during this follow-up; current primary coefficient retrieval is not claimed. The row's existing documented manufacturer provenance is retained. Downloaded OHARA, Nikon/Hikari and SUMITA catalogs supplied no better source-backed replacement under the source's full line constraints. L43 receives a qualified existing PC3 label; historical supplier, melt and chemistry remain unknown.

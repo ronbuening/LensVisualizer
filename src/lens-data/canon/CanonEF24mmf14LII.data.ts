@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * partial-dispersion data on page 14 (printed 8). Figures 5/6 is PDF page 4, sheet 3 of 5.
  * Paragraph 0116 explicitly defines the d-line reference. Table 1 publishes rounded theta_gF for
  * GP/GN/GNF; their three source-derived dPgF values are retained. Per-medium C/F/g indices are not printed.
- * Nine compatible catalog curves remain qualified spectral proxies; four media stay unmatched.
+ * Thirteen compatible catalog curves supply qualified spectral proxies after the scoped 2026-10-31 catalog followup.
  * Historical supplier, melt, chemistry and manufacturing route are not identified by a catalog match.
  *
  * Published refracting clear caps are retained, including the prior source-rounding/geometry constraints
@@ -80,7 +80,7 @@ const LENS_DATA = {
       nd: 1.58373,
       vd: 59.0,
       focalLengthMm: -70.49,
-      glass: "Unmatched (source 1.58373/59.0; chemistry and supplier unresolved)",
+      glass: "K-SKLD200-M (Sumita molding-state spectral proxy; historical supplier, melt and process unspecified)",
       role: "Second front negative meniscus; rear asphere controls wide-angle off-axis aberrations.",
     },
     {
@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: -56.733,
-      glass: "Unmatched (source 1.49700/81.5 anomalous glass; chemistry and supplier unresolved)",
+      glass: "S-FPL51 (OHARA spectral proxy; published partial retained; historical supplier and melt unspecified)",
       apd: "patent",
       apdNote: "Patent Table 1: θgF = 0.54; ΔPgF = +0.0332830.",
       role: "Negative anomalous-dispersion component used for lateral-color control.",
@@ -168,7 +168,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 38.995,
-      glass: "Unmatched (source 1.49700/81.5 anomalous glass; chemistry and supplier unresolved)",
+      glass: "S-FPL51 (OHARA spectral proxy; published partial retained; historical supplier and melt unspecified)",
       apd: "patent",
       apdNote: "Patent Table 1: θgF = 0.54; ΔPgF = +0.0332830.",
       role: "Positive anomalous-dispersion element immediately ahead of the stop.",
@@ -217,7 +217,7 @@ const LENS_DATA = {
       nd: 1.851,
       vd: 40.4,
       focalLengthMm: 54.099,
-      glass: "Unmatched (source 1.85100/40.4; chemistry and supplier unresolved)",
+      glass: "Q-LASFH58S (Hikari spectral proxy; historical supplier, melt and process unspecified)",
       role: "Rear positive meniscus with a source asphere; production glass-molded position is correlation only.",
     },
   ],

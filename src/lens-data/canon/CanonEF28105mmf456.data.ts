@@ -154,7 +154,7 @@ const LENS_DATA = {
       vd: 30.2,
       focalLengthMm: -117.511869,
       glass:
-        "Unmatched (source 1.583060/30.2 medium; polycarbonate is an inference from other examples, chemistry unconfirmed)",
+        "POLYCARB (published MISC catalog; qualified numerical polymer proxy; source chemistry and supplier unspecified)",
       role: "Negative rear member of L4 with published aspherical surface 18; the original does not identify Example 4 chemistry.",
       indexReference: "d",
     },

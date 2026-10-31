@@ -6,12 +6,12 @@ Confirmed the original `patents/US20100033848A1.pdf` as US 2010/0033848 A1, publ
 
 The original embeds 2560 × 3300 one-bit pages at native 300 ppi. Figure 5's approximately 1096-native-pixel optical vertex span over 90.88 mm gives about 12.06 px/mm; practical outer-rim reading uncertainty is around ±0.3 mm, with schematic outline differences treated separately. Enlarged viewing is magnification only. GNF/GN/GP leaders, aperture blades and group brackets were excluded. Published effective diameters remain the clear-cap authority; figure blank outlines do not overwrite them.
 
-| Air-facing surface | Retained clear `sd` | Added `rimExtensionSd` | Source / retained constraint |
-|---|---:|---:|---|
-| S2 | 21.895 mm | 27.270 mm | Resolved rear vertical shoulder on the front negative element; anchor outer height to its published front cap |
-| S4A | 19.645 mm | 21.600 mm | Resolved rear shoulder on the second aspherical meniscus; use the existing gap-limited front cap |
-| S9 | 17.620 mm | 17.965 mm | Resolved rear shoulder of the first doublet; conservative existing bonded-cap anchor |
-| S12 | 11.440 mm | 13.055 mm | Resolved rear shoulder of the second doublet; conservative existing bonded-cap anchor |
+| Air-facing surface | Retained clear `sd` | Added `rimExtensionSd` | Source / retained constraint                                                                                  |
+| ------------------ | ------------------: | ---------------------: | ------------------------------------------------------------------------------------------------------------- |
+| S2                 |           21.895 mm |              27.270 mm | Resolved rear vertical shoulder on the front negative element; anchor outer height to its published front cap |
+| S4A                |           19.645 mm |              21.600 mm | Resolved rear shoulder on the second aspherical meniscus; use the existing gap-limited front cap              |
+| S9                 |           17.620 mm |              17.965 mm | Resolved rear shoulder of the first doublet; conservative existing bonded-cap anchor                          |
+| S12                |           11.440 mm |              13.055 mm | Resolved rear shoulder of the second doublet; conservative existing bonded-cap anchor                         |
 
 All thirteen elements, all concave ends, both aspheres and three cemented interfaces (S8, S11, S19) were inspected. The last two full schematic blank outlines are taller than the adopted cap anchors. They are not filled by inflating bonded optical curves, adding opaque interface lands or constructing unsupported equal-height blocks. The continuous S23A profile does not resolve a separate additional outer land, so its published cap is retained. No resin/hybrid layer, distinct cement medium, filter or camera-side plate is tabulated. Four shoulders and zero inferred cuts are authored.
 
@@ -40,3 +40,11 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  0.250000007 |           0.250000 | 169 / 153 / 89                    | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 39.453715% at zoom 0, focus 0.05, aberration control 0: Gaussian 3.027314227 m versus label 5.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — Positive catalog-source followup; no shape reopening
+
+- Preserve the completed 2026-10-30 original shape/glass date and all source/control constraints. Reinspect only selected material evidence: original US20100033848A1 Numerical Example 3 pp. 13–14, d reference ¶0116 p. 12, Table 1 GP/GN/GNF partials p. 14. Every source nd/νd and all three authored partial values remain unchanged.
+- E2 gains new SUMITA K-SKLD200-M qualified reference-state curve from the official August 26, 2026 all-glass AGF (header August 21), K-SKLD200(M) row. Native formula-1 six-term polynomial is retained verbatim; λ in μm. Nominal 1.58355/58.8 evaluates to 1.583552504/58.831363, PgF 0.541696240. Catalog round-trip residuals +2.50434e−6/+0.031363 pass unchanged 1e−4/0.15 guards. Source residuals −0.000177496/−0.168637 improve on existing candidates. Base code 587590 is omitted, never aliased to the molding-state coordinate.
+- E4/E9 gain existing S-FPL51 proxies. Its coefficient PgF 0.537459539 lies inside the rounding interval for source θ0.54, and original dPgF +0.033283 remains authoritative. E13 gains existing Q-LASFH58S with residuals +0.000080023/−0.276294. Current official OHARA/Nikon rows have identical coefficients to the stored entries; no duplicate catalog rows are proposed.
+- Compatible catalog-curve coverage becomes 13/13 from 9/13 once the shared new row is integrated. No catalog-derived per-lens C/F/g index override is added. All nd/νd/partials/APD, shapes, controls and diagram constraints are parsed-identical. No new full shape inspection or fresh whole-review count.
+- Manufacturer primary links and formula/reference-state qualifications are in the analysis. SUMITA warns that after-molding indices depend on lens geometry and molding process; this proxy is not Canon supplier, melt, process or chemistry proof. The unresolved production/material identity and prior aperture/focus limitations remain explicit.

@@ -99,7 +99,8 @@ const LENS_DATA = {
       focalLengthMm: 115.4,
       glass: "Unmatched (source-published anomalous glass; supplier and chemistry unresolved)",
       apd: "patent",
-      apdNote: "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
+      apdNote:
+        "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
       role: "Weak positive chromatic-correction element in the negative first group.",
       dPgF: 0.00548,
       nC: 1.83328,
@@ -225,7 +226,8 @@ const LENS_DATA = {
       focalLengthMm: -39.4,
       glass: "Unmatched (source-published anomalous glass; supplier and chemistry unresolved)",
       apd: "patent",
-      apdNote: "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
+      apdNote:
+        "theta_gF = 0.60572 and dPgF ≈ +0.00548 are derived from the published C/F/g indices (PDF page 11); historical chemistry and supplier unresolved.",
       role: "Negative anomalous-dispersion component at the front of the positive rear group.",
       cemented: "D3",
       dPgF: 0.00548,
@@ -243,7 +245,8 @@ const LENS_DATA = {
       focalLengthMm: 35.9,
       glass: "S-FPL51 (OHARA) / FCD1 class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: "patent",
-      apdNote: "theta_gF = 0.53859 and dPgF ≈ +0.03187 are derived from the published C/F/g indices (PDF page 11); a compatible catalog curve does not identify historical chemistry or supplier.",
+      apdNote:
+        "theta_gF = 0.53859 and dPgF ≈ +0.03187 are derived from the published C/F/g indices (PDF page 11); a compatible catalog curve does not identify historical chemistry or supplier.",
       role: "Low-dispersion positive glass paired with L41 for secondary-spectrum correction; chemistry and supplier unresolved.",
       cemented: "D3",
       dPgF: 0.03187,
@@ -259,7 +262,9 @@ const LENS_DATA = {
       nd: 1.52542,
       vd: 64.5,
       focalLengthMm: 44.6,
-      glass: "Unmatched (source-published light-crown coordinate; supplier and chemistry unresolved)",
+      indexReference: "d",
+      glass:
+        "PC3 (HOYA compatible spectral proxy; source-published C/F/g indices authoritative; supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Main positive-power singlet of the fourth zoom group.",
       nC: 1.52291,
