@@ -11,7 +11,7 @@
 **Title:** 一种大光圈广角微距镜头 / Large-aperture wide-angle macro lens
 **Example details:** 第二实施例
 
-The relevant filing is **CN205720849U**, *一种大光圈广角微距镜头* / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optics Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, *一种超广角大光圈镜头*, which is text-searchable and was used as a cross-check against the image-only CN scan.
+The relevant filing is **CN205720849U**, _一种大光圈广角微距镜头_ / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optics Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, _一种超广角大光圈镜头_, which is text-searchable and was used as a cross-check against the image-only CN scan.
 
 This analysis uses **Example 2 / 第二实施例**. In the attached CN document, Example 2 is the design drawn in Figure 3, with its aberration plots in Figure 4. The numerical example gives **f = 12.5 mm**, **Fno = 2.87**, and **half-field angle ω = 60.1°**. Independent reduced-angle paraxial tracing of the transcribed prescription gives **EFL = 12.49993 mm** and **back focal distance = 38.83061 mm**, matching the patent’s stated focal length and the infinity **LB = 38.8325 mm** spacing within transcription precision.
 
@@ -30,13 +30,13 @@ The patent embodiment is therefore best treated as the implemented optical type 
 
 The lens is a **retrofocus ultra-wide-angle design**. Its first group is negative and fixed; its second group is negative and moves for focus; its third group is positive and also moves for focus. The patent’s group structure is therefore **negative / negative / positive**, with the aperture stop between G2 and G3.
 
-| Optical unit | Patent surfaces | Elements | Recalculated paraxial focal length |
-|---|---:|---:|---:|
-| G1 | 1–4 | L1–L2 | -26.819 mm |
-| G2 | 5–12 | L3–L7 | -57.727 mm |
-| G3 | 14–27 | L8–L16 | +28.838 mm |
-| G1+G2 | 1–12 | L1–L7 | -17.890 mm |
-| Complete lens | 1–27 | L1–L16 | +12.49993 mm |
+| Optical unit  | Patent surfaces | Elements | Recalculated paraxial focal length |
+| ------------- | --------------: | -------: | ---------------------------------: |
+| G1            |             1–4 |    L1–L2 |                         -26.819 mm |
+| G2            |            5–12 |    L3–L7 |                         -57.727 mm |
+| G3            |           14–27 |   L8–L16 |                         +28.838 mm |
+| G1+G2         |            1–12 |    L1–L7 |                         -17.890 mm |
+| Complete lens |            1–27 |   L1–L16 |                       +12.49993 mm |
 
 The infinity back focal distance ratio is **BFD/EFL = 3.1065**. This is not a telephoto construction. It is a strong retrofocus design: the image plane lies far behind the last optical surface relative to the 12.5 mm focal length, allowing SLR-compatible rear clearance.
 
@@ -46,14 +46,14 @@ The aperture stop is listed after surface 12. In the data file it is modeled as 
 
 The patent’s conditional expressions are reproduced by the transcribed prescription when the G2–G3 separation **D23** is interpreted as the complete spacing from the last surface of G2 to the first surface of G3, including the stop-to-G3 gap. The recalculated values are:
 
-| Condition | Recalculated Example 2 value | Patent summary value | Interpretation |
-|---|---:|---:|---|
-| (1) $(|F_{12}|+S)/LB$ | 1.66093 | 1.661 | Keeps combined front-negative power and stop position within the required retrofocus range. |
-| (2) $(|F_{12}|+S)/(\tan\omega \times LB)$ | 0.95507 | 0.955 | Normalizes the same compactness condition to field angle. |
-| (3) $(D_{23}+|F_{12}|)/(\tan\omega \times LB)$ | 0.37990 | 0.380 | Constrains the G2–G3 separation while preserving the ultra-wide field. |
-| (4) $|F_1|/|F_{12}|$ | 1.49909 | 1.499 | Balances the first fixed negative group against the combined G1+G2 power. |
-| (5) $G2R/SG10$ | 2.18667 | 2.187 | Measures the strength of the G1 rear asphere at the patent’s SG10 reference. |
-| (6) $G2R/SG5$ | 7.46626 | 7.466 | Measures the same surface at the SG5 reference. |
+| Condition      | Recalculated Example 2 value |        Patent summary value | Interpretation                                                               |
+| -------------- | ---------------------------: | --------------------------: | ---------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------------- |
+| (1) $(         |                      F\_{12} |                     +S)/LB$ | 1.66093                                                                      | 1.661 | Keeps combined front-negative power and stop position within the required retrofocus range. |
+| (2) $(         |                      F\_{12} | +S)/(\tan\omega \times LB)$ | 0.95507                                                                      | 0.955 | Normalizes the same compactness condition to field angle.                                   |
+| (3) $(D\_{23}+ |                      F\_{12} |   )/(\tan\omega \times LB)$ | 0.37990                                                                      | 0.380 | Constrains the G2–G3 separation while preserving the ultra-wide field.                      |
+| (4) $          |                          F_1 |                           / | F\_{12}                                                                      | $     | 1.49909                                                                                     | 1.499 | Balances the first fixed negative group against the combined G1+G2 power. |
+| (5) $G2R/SG10$ |                      2.18667 |                       2.187 | Measures the strength of the G1 rear asphere at the patent’s SG10 reference. |
+| (6) $G2R/SG5$  |                      7.46626 |                       7.466 | Measures the same surface at the SG5 reference.                              |
 
 The surface-by-surface Petzval sum, using $\sum \Phi/(n n')$, is **+0.00983476 mm^-1**, corresponding to a Petzval radius of about **101.68 mm**. For a 12.5 mm retrofocus lens this is relatively well moderated. The result comes from distributing field and chromatic correction across several high-index flint / ED-crown pairings in the rear group rather than relying on a single strong field flattener.
 
@@ -160,21 +160,21 @@ The rear double asphere works on a converged beam. That placement is well suited
 
 The patent does **not** name glass manufacturers. The following identifications are therefore nd/νd-based catalog or class identifications, not patent-printed melt names. Where a catalog match is not sufficiently supported, the glass is deliberately left as an explicit unresolved code class.
 
-| Element(s) | Patent nd / νd | Six-digit code | Best-supported identification | Role |
-|---|---:|---:|---|---|
-| L1 | 1.74916 / 54.67 | 749547 | Unresolved high-index crown / lanthanum-crown class | Front negative power with moderate dispersion. |
-| L2 | 1.58313 / 59.46 | 583/595 | BACD12 / S-BAL42 barium-crown class | Large double-aspheric front correction element. |
-| L3, L13, L15 | 1.49700 / 81.61 | 497/816 | FCD1 / H-FK61 / S-FPL51-class ED fluorophosphate / fluorocrown | Three ED-class elements. |
-| L4 | 1.62588 / 35.74 | 626/357 | HOYA E-F1 class | Positive member of first G2 doublet. |
-| L5 | 1.83481 / 44.72 | 835447 | Unresolved high-index lanthanum-type class | Negative partner in first G2 doublet. |
-| L6 | 1.76182 / 26.61 | 762/266 | HOYA FD140 dense-flint class | Positive dense-flint member of second G2 doublet. |
-| L7 | 1.92286 / 20.88 | 923/209 | SCHOTT N-SF66 / HOYA E-FDS1-class dense flint | Strong pre-stop chromatic leverage. |
-| L8 | 1.61293 / 36.96 | 613/370 | HOYA E-F3 class | First positive component of post-stop triplet. |
-| L9, L14 | 1.91082 / 35.25 | 911/353 | HOYA TAFD35 / TAFD35L class | High-index low-dispersion negative components. |
-| L10 | 1.62004 / 36.30 | 620/363 | HOYA E-F2 class | Positive member completing the post-stop triplet. |
-| L11 | 1.78472 / 25.72 | 785/257 | HOYA FD110 dense-flint class | Positive dense-flint member of rear doublet. |
-| L12 | 1.90366 / 29.31 | 904293 | Unresolved dense-flint class | Negative partner in rear correction doublet. |
-| L16 | 1.80781 / 40.97 | 808410 | D-ZLAF81-25 (CDGM) | Rear double-aspheric field corrector. |
+| Element(s)   |  Patent nd / νd | Six-digit code | Best-supported identification                                  | Role                                              |
+| ------------ | --------------: | -------------: | -------------------------------------------------------------- | ------------------------------------------------- |
+| L1           | 1.74916 / 54.67 |         749547 | Unresolved high-index crown / lanthanum-crown class            | Front negative power with moderate dispersion.    |
+| L2           | 1.58313 / 59.46 |        583/595 | BACD12 / S-BAL42 barium-crown class                            | Large double-aspheric front correction element.   |
+| L3, L13, L15 | 1.49700 / 81.61 |        497/816 | FCD1 / H-FK61 / S-FPL51-class ED fluorophosphate / fluorocrown | Three ED-class elements.                          |
+| L4           | 1.62588 / 35.74 |        626/357 | HOYA E-F1 class                                                | Positive member of first G2 doublet.              |
+| L5           | 1.83481 / 44.72 |         835447 | Unresolved high-index lanthanum-type class                     | Negative partner in first G2 doublet.             |
+| L6           | 1.76182 / 26.61 |        762/266 | HOYA FD140 dense-flint class                                   | Positive dense-flint member of second G2 doublet. |
+| L7           | 1.92286 / 20.88 |        923/209 | SCHOTT N-SF66 / HOYA E-FDS1-class dense flint                  | Strong pre-stop chromatic leverage.               |
+| L8           | 1.61293 / 36.96 |        613/370 | HOYA E-F3 class                                                | First positive component of post-stop triplet.    |
+| L9, L14      | 1.91082 / 35.25 |        911/353 | HOYA TAFD35 / TAFD35L class                                    | High-index low-dispersion negative components.    |
+| L10          | 1.62004 / 36.30 |        620/363 | HOYA E-F2 class                                                | Positive member completing the post-stop triplet. |
+| L11          | 1.78472 / 25.72 |        785/257 | HOYA FD110 dense-flint class                                   | Positive dense-flint member of rear doublet.      |
+| L12          | 1.90366 / 29.31 |         904293 | Unresolved dense-flint class                                   | Negative partner in rear correction doublet.      |
+| L16          | 1.80781 / 40.97 |         808410 | D-ZLAF81-25 (CDGM)                                             | Rear double-aspheric field corrector.             |
 
 The chromatic strategy is distributed. The three ED-class elements are not clustered: one is in moving G2, one is a thick positive element in the middle of G3, and one is cemented into a rear achromatizing doublet. This distribution is appropriate for a rectilinear ultra-wide lens, where axial color, lateral color, field curvature, and focus-distance-dependent color must be controlled simultaneously.
 
@@ -184,11 +184,11 @@ The ED-class elements are paired or balanced against high-index flints and lanth
 
 The patent describes a **two-moving-group floating focus system**. G1 remains fixed. G2 and G3 move as the object distance changes. Example 2 provides two spacing states: infinity and a finite state labeled at approximately **β = 0.02×**.
 
-| Variable spacing | Infinity | Finite state | Change | Meaning |
-|---|---:|---:|---:|---|
-| D(4) | 10.1074 mm | 10.1118 mm | +0.0044 mm | Gap between fixed G1 and moving G2. |
-| D(12) | 5.1500 mm | 4.6207 mm | -0.5293 mm | Gap between G2 and the stop / G3 side. |
-| LB | 38.8325 mm | 39.3529 mm | +0.5204 mm | Back distance from final surface to image plane. |
+| Variable spacing |   Infinity | Finite state |     Change | Meaning                                          |
+| ---------------- | ---------: | -----------: | ---------: | ------------------------------------------------ |
+| D(4)             | 10.1074 mm |   10.1118 mm | +0.0044 mm | Gap between fixed G1 and moving G2.              |
+| D(12)            |  5.1500 mm |    4.6207 mm | -0.5293 mm | Gap between G2 and the stop / G3 side.           |
+| LB               | 38.8325 mm |   39.3529 mm | +0.5204 mm | Back distance from final surface to image plane. |
 
 In coordinates fixed to surface 1, G2 shifts imageward by about **0.0044 mm**, while the stop/G3 assembly shifts objectward by about **0.5249 mm**. The image plane relative to the first surface changes by only about **-0.0045 mm**, effectively constant at the precision of the patent table.
 
@@ -200,12 +200,12 @@ The production lens is specified at **0.18 m minimum focus** and **1:5 / 0.2×**
 
 Example 2 has four aspherical surfaces on two physical elements.
 
-| Surface in patent | Data-file label | Element | Function |
-|---|---|---|---|
-| 3 | 3A | L2 | Front-group distortion and coma correction. |
-| 4 | 4A | L2 | Patent’s explicitly quantified G1 image-side asphere; principal front distortion-control surface. |
-| 26 | 26A | L16 | Rear-field correction in the converging beam. |
-| 27 | 27A | L16 | Final residual field, astigmatism, and distortion correction near the image plane. |
+| Surface in patent | Data-file label | Element | Function                                                                                          |
+| ----------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| 3                 | 3A              | L2      | Front-group distortion and coma correction.                                                       |
+| 4                 | 4A              | L2      | Patent’s explicitly quantified G1 image-side asphere; principal front distortion-control surface. |
+| 26                | 26A             | L16     | Rear-field correction in the converging beam.                                                     |
+| 27                | 27A             | L16     | Final residual field, astigmatism, and distortion correction near the image plane.                |
 
 The aspheric equation uses the standard conic constant **K** directly:
 
@@ -213,12 +213,12 @@ $$
 z = \frac{(1/r)y^2}{1+\sqrt{1-(1+K)(y/r)^2}} + A_4y^4 + A_6y^6 + A_8y^8 + A_{10}y^{10} + A_{12}y^{12}.
 $$
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 |
-|---|---:|---:|---:|---:|---:|---:|
-| 3 | 0.0080 | 5.00208e-005 | -1.48696e-007 | 2.85395e-010 | -3.26206e-013 | 5.77197e-017 |
-| 4 | -0.5807 | 2.41854e-005 | 1.14397e-008 | -1.61462e-009 | 4.64271e-012 | -4.16529e-015 |
-| 26 | 0.4154 | 1.60608e-004 | -3.90127e-007 | 1.97932e-009 | -1.00952e-011 | 5.34069e-014 |
-| 27 | -11.4671 | 3.56937e-005 | 3.58224e-007 | -4.31857e-009 | 2.03624e-011 | -3.90187e-014 |
+| Surface |        K |           A4 |            A6 |            A8 |           A10 |           A12 |
+| ------- | -------: | -----------: | ------------: | ------------: | ------------: | ------------: |
+| 3       |   0.0080 | 5.00208e-005 | -1.48696e-007 |  2.85395e-010 | -3.26206e-013 |  5.77197e-017 |
+| 4       |  -0.5807 | 2.41854e-005 |  1.14397e-008 | -1.61462e-009 |  4.64271e-012 | -4.16529e-015 |
+| 26      |   0.4154 | 1.60608e-004 | -3.90127e-007 |  1.97932e-009 | -1.00952e-011 |  5.34069e-014 |
+| 27      | -11.4671 | 3.56937e-005 |  3.58224e-007 | -4.31857e-009 |  2.03624e-011 | -3.90187e-014 |
 
 Surface 4 verifies the patent’s aspheric convention. Direct sag evaluation gives **G2R/SG10 = 2.18667** and **G2R/SG5 = 7.46626**, matching the Example 2 condition table.
 
@@ -236,31 +236,30 @@ The focus variables in the data file reproduce the patent’s infinity and β = 
 
 The prescription was rechecked by an independent reduced-angle paraxial trace and direct aspheric sag evaluation.
 
-| Quantity | Independent result | Patent value / implication | Status |
-|---|---:|---:|---|
-| Effective focal length | 12.49993 mm | 12.5 mm | Match. |
-| Infinity back focal distance | 38.83061 mm | LB = 38.8325 mm | Match within 0.002 mm. |
-| Total optical distance to image | 121.2727 mm | Sum of patent spacings | Match. |
-| Half-field image height from f and ω | 21.738 mm | Full-frame diagonal half-height ≈ 21.633 mm | Consistent with full-frame coverage. |
-| BFD/EFL | 3.1065 | Retrofocus design | Confirms retrofocus, not telephoto. |
-| G1 focal length | -26.819 mm | Condition-table F1 basis | Reproduces condition (4). |
-| G1+G2 focal length | -17.890 mm | Condition-table F12 basis | Reproduces conditions (1)–(3). |
-| Petzval sum | +0.00983476 mm^-1 | Surface-by-surface calculation | Used in architecture discussion. |
-| Surface 4 G2R/SG10 | 2.18667 | 2.187 | Match. |
-| Surface 4 G2R/SG5 | 7.46626 | 7.466 | Match. |
+| Quantity                             | Independent result |                  Patent value / implication | Status                               |
+| ------------------------------------ | -----------------: | ------------------------------------------: | ------------------------------------ |
+| Effective focal length               |        12.49993 mm |                                     12.5 mm | Match.                               |
+| Infinity back focal distance         |        38.83061 mm |                             LB = 38.8325 mm | Match within 0.002 mm.               |
+| Total optical distance to image      |        121.2727 mm |                      Sum of patent spacings | Match.                               |
+| Half-field image height from f and ω |          21.738 mm | Full-frame diagonal half-height ≈ 21.633 mm | Consistent with full-frame coverage. |
+| BFD/EFL                              |             3.1065 |                           Retrofocus design | Confirms retrofocus, not telephoto.  |
+| G1 focal length                      |         -26.819 mm |                    Condition-table F1 basis | Reproduces condition (4).            |
+| G1+G2 focal length                   |         -17.890 mm |                   Condition-table F12 basis | Reproduces conditions (1)–(3).       |
+| Petzval sum                          |  +0.00983476 mm^-1 |              Surface-by-surface calculation | Used in architecture discussion.     |
+| Surface 4 G2R/SG10                   |            2.18667 |                                       2.187 | Match.                               |
+| Surface 4 G2R/SG5                    |            7.46626 |                                       7.466 | Match.                               |
 
 The corrected interpretation is internally consistent: Example 2 is a 16-element, 10-group retrofocus ultra-wide lens with two physical double-aspheric glass elements, three ED-class elements, a fixed front group, and two moving floating focus groups.
 
 ## Sources and References
 
-1. **CN205720849U**, *一种大光圈广角微距镜头*, Anhui Changgeng Optics Technology Co., Ltd., filed 2016-04-12 and published/granted 2016-11-23. Key pages: bibliographic page; Example 2 prescription and variable spacing table; aspheric coefficient table; Figure 3 and Figure 4.
-2. **WO2017177665A1**, *一种超广角大光圈镜头*, same family disclosure. Used as a text-searchable cross-check for Example 2 numerical data, conditional expressions, and the surface 26 aspheric coefficient row.
+1. **CN205720849U**, _一种大光圈广角微距镜头_, Anhui Changgeng Optics Technology Co., Ltd., filed 2016-04-12 and published/granted 2016-11-23. Key pages: bibliographic page; Example 2 prescription and variable spacing table; aspheric coefficient table; Figure 3 and Figure 4.
+2. **WO2017177665A1**, _一种超广角大光圈镜头_, same family disclosure. Used as a text-searchable cross-check for Example 2 numerical data, conditional expressions, and the surface 26 aspheric coefficient row.
 3. **Laowa / Laowa product documentation** for the Laowa 12mm f/2.8 Zero-D production specifications: 12 mm, f/2.8, 121.96° angle of view, full-frame coverage, 16 elements in 10 groups, two aspherical elements, three ED elements, 0.18 m minimum focus, and 1:5 maximum magnification.
 4. **HOYA Optical Glass technical documentation**, used for six-digit glass-code interpretation and catalog checks for FCD1, E-F1, FD140, E-FDS1, E-F3, E-F2, FD110, and TAFD35 / TAFD35L-class materials.
 5. **OHARA S-FPL51 and S-BAL42 data sheets**, used for low-dispersion and barium-crown cross-vendor class checks.
 6. **CDGM H-FK61 data sheet**, used for the 497/816 ED-class equivalence check.
 7. **SCHOTT N-SF66 data sheet**, used for the 923/209 dense-flint equivalence check.
-
 
 ## Production mount assignment
 
@@ -270,5 +269,16 @@ Venus Optics lists these eight mounts for the original 12mm f/2.8 Zero-D; this i
 
 The concave rear faces of L1–L3 retain their existing clear semi-diameters and now carry opaque lands to the opposite-face outer rims, as drawn in Example 2 Figure 3. These `rimExtensionSd` values change the drawn blank only; the source does not publish clear apertures.
 
-
 The fresh F-mount figure review preserves connected cemented boundaries: S8/S9 rise to 10 mm, S14 to 8.8 mm, S16 to 8.4 mm, S21/S25 to 12 mm and S26A to 11.8 mm. These continuous-cap changes remove unsupported tapered ends within the source outline and pass the existing geometry rules. The last asphere now has about 1,919 µm departure from its base sphere at 11.8 mm; its rear face remains about 1,906 µm. The drawing gives no additional resolved land at that last member.
+
+## October 31, 2026 — Scoped Material and Catalog Followup
+
+The completed June 24 and October 29/30 source/shape reviews retain their actual dates; this is a material/reference and figure-association followup, not a new whole-shape review. Reopened the same local `patents/CN205720849U.pdf`, Example 2: native 300 ppi table pages 7–9, d-reference definition paragraph 0076 on p. 7, and Figure 3 on p. 15. The original has no usable text layer. All sixteen modeled nd/νd pairs were checked directly, including the deliberately retained 1.74916 / 54.67, 1.83481 / 44.72 and 1.90366 / 29.31. The figure accounts for the two double-aspheric glass elements, all bonded members and the stop; no extra resin medium or rear plate is prescribed. Figure association does not turn inferred rims into published apertures or reopen their prior constraints. No per-medium C/F/g index, partial ratio, Sellmeier row or patent APD designation is supplied. The three existing ED/APD tags remain inferred.
+
+The earlier HOYA/OHARA/Schott/Hikari/Sumita/CDGM search is reused rather than repeated. Additional primary screening covers all 182 coefficient rows in [NHG catalog 2601, revised February 2026](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf), preserving literal A0–A5 and the manual's polynomial/µm definition on PDF pp. 25–26. No closer, well-supported proxy is found for the three unresolved positions. NHG H-LaK3 at 1.74693 / 50.95 misses L1 by −0.00223 / −3.72; H-ZLaF55F repeats the weak 1.83481 / 42.72 neighborhood at L5. H-ZLaF70 variants repeat about 1.90366 / 31.32 at L12. Catalog identity is not inferred from a matching six-digit neighborhood.
+
+The broad existing candidates do not justify sacrificing the source's only quantitative spectral constraint. At L5, TAFD5 evaluates νd 42.984244 and changes the source-derived F−C span by +4.061805%; S-LAH55VS/J-LASF05 alter it by about +4.62/+4.65%. At L12, J-LASFH13 changes that span by −6.280679%; NHG's H-ZLaF70B coefficient fit is similarly far away at −6.355652%, and its published νd 31.32 is outside the unchanged ±2 window. These are source-aware rejections rather than a new tolerance or a claim that the normal-line fallback gives exact C/F placement or g. The three native pairs remain unresolved, with source-pair dispersion and 13/16 compatible curves elsewhere.
+
+Additional published polymer sources are bounded negatives: [Osaka Gas Chemicals' OKP product table](https://www.ogc.co.jp/e/products/fluorene/okp.html) lists D-line indices about 1.607–1.656 and Abbe numbers 21–27, incompatible with these gaps; its detailed glass-data download requires a contact form, which was not submitted. [Kuraray's technical brochure](https://www.kuraray.com/uploads/6442319d34c17/Kurarity_Technical_Brochure-A4-18042023-web.pdf) gives KURARITY LA4285 about 1.48 / 58, without a usable matching coefficient row. These published products do not establish chemistry for an unnamed patent medium. This is not an exhaustive search of private or custom materials.
+
+No lens annotation selects a new curve. All source coordinates, spectral/APD fields, R/d, four aspheres, clear caps/shoulders, stops and controls remain unchanged. Prior geometric, source-summary and sampled runtime limitations still apply. No new per-lens spectral anchor, catalog alias or glass row is fabricated to close a coverage gap.

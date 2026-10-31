@@ -21,12 +21,12 @@ Patent: CN205720849U / WO2017177665A1, Example 2
 
 ### Changes made
 
-| Element / surface | Before | After | Disposition |
-|---|---|---|---|
-| L1 / S1 | `Unmatched high-index crown class (749/547)` | `749547 - high-index crown class ...` | Unresolved; explicit code retained. |
-| L5 / S8 | `Unmatched high-index lanthanum class (835/447)` | `835447 - high-index lanthanum class ...` | Unresolved; explicit code retained. |
-| L12 / S19 | `Unmatched dense flint class (904/293)` | `904293 - dense flint class ...` | Unresolved; explicit code retained. |
-| L16 / S26 | `Unmatched high-index class (808/410)` | `D-ZLAF81-25 (CDGM)` | Coefficient-backed catalog match. |
+| Element / surface | Before                                           | After                                     | Disposition                         |
+| ----------------- | ------------------------------------------------ | ----------------------------------------- | ----------------------------------- |
+| L1 / S1           | `Unmatched high-index crown class (749/547)`     | `749547 - high-index crown class ...`     | Unresolved; explicit code retained. |
+| L5 / S8           | `Unmatched high-index lanthanum class (835/447)` | `835447 - high-index lanthanum class ...` | Unresolved; explicit code retained. |
+| L12 / S19         | `Unmatched dense flint class (904/293)`          | `904293 - dense flint class ...`          | Unresolved; explicit code retained. |
+| L16 / S26         | `Unmatched high-index class (808/410)`           | `D-ZLAF81-25 (CDGM)`                      | Coefficient-backed catalog match.   |
 
 ### Analysis sync
 
@@ -63,3 +63,11 @@ Patent: CN205720849U / WO2017177665A1, Example 2
 - Original source S 26 row clearly printsK 0.4154/A 4=1.60608e-004; earlier analysis claimed 0.4151/e-001. Corrected that prose; numerical asphere is unchanged.
 - Retain S 2/S 4 A/S 6 clear caps 20.8/15/8.7 and independently resolved flat outer lands 24.5/18/10.5. Restore continuous/connected source caps S 8/S 9:9.4→10;S 14:8→8.8;S 16:8.2→8.4;S 21/S 25:11.8→12;S 26 A:11.6→11.8 mm. No invented cemented interface lands. Rear aspheric member has no resolved further land. At 11.8 mm S 26 A/S 27 A departures~1919.1/1905.8µm. All other optical rims retained.
 - Source optical scale~14.92 px/mm; outlines/stroke imply~0.2–0.3 mm uncertainty. No printed apertures or cut depths. No new cut, no source exemption. Canonical build and surface checks pass; image-circle floor zero undersized. Actual 9-stateSVG inspected, finite paths and zero hidden trim. Common-field 16×16 stop lattice:2508 retained/0 lost/0 gained, counts not flux. Source field/aperture are qualified geometric checks, not physical flux or production performance. R/d/aspheres/stop/focus/aperture/tolerances unchanged.
+
+## 2026-10-31 — Scoped material/reference followup; bounded negative
+
+Preserve completed June 24 and October 29/30 whole source/shape dates. Directly checked all sixteen Example 2 media in native `CN205720849U.pdf`, pp. 7–9, with explicit d-line paragraph 0076 p. 7 and Figure 3 p. 15. Native table/figure pages are 2481×3509 at 300 ppi. All modeled bonded members and two double-aspheric glass elements are accounted for; no extra layer or plate is inferred. No per-medium numerical line/partial data is printed, and the three ED/APD tags remain inferred. This is a scoped material/figure association check, not a new shape audit.
+
+Reuse the prior six-vendor search. Additional NHG 2601 screening covers 182 native coefficient rows; no stronger source-compatible match appears for L1 1.74916/54.67, L5 1.83481/44.72 or L12 1.90366/29.31. Nearest broad candidates require materially different F−C spans: L5 TAFD5 +4.061805%, L12 J-LASFH13 −6.280679% (NHG H-ZLaF70B −6.355652%). They are rejected for source fidelity, not enabled merely by the broad coordinate window. L1's nearest NHG H-LaK3 also misses νd by −3.72. Osaka OKP and Kuraray's published polymer tables provide no compatible coefficient lead; no contact forms or supplier inquiries were sent. The analysis links the primary datasets and distinguishes the bounded search from an exhaustive materials claim.
+
+Coverage remains 13/16; all source numeric/spectral/APD, geometry and control fields remain unchanged. No new curve or shared catalog row is requested. Previous source/rim/runtime constraints remain applicable.
