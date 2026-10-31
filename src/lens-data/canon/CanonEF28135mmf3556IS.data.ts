@@ -19,8 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * not an optical-rim ruler.
  * Source ni/vi have no specified spectral reference; d-line tracing remains approximate, with
  * every medium explicitly Unmatched and no catalog curve asserted. R/d, asphere, zoom cams
- * and inferred 0.5 m focus spacings are unchanged. The nominal aperture targets
- * are restored separately to the printed f/3.60, f/4.36 and f/5.75 states; iris radii remain derived.
+ * and inferred 0.5 m focus spacings are unchanged.
+ * Source targets: Numerical Example 1 heading and Figure 2(a/b/c) directly print f/3.60, f/4.36 and f/5.75.
+ * These restore the paraxial/derived-iris rule; the patent supplies no physical iris-radius schedule.
  * See the audit for source and runtime limits.
  */
 
@@ -318,8 +319,6 @@ const LENS_DATA = {
   ],
 
   zoom: {
-    // Source targets: Numerical Example 1 heading and Figure 2(a/b/c) directly print f/3.60, f/4.36 and f/5.75.
-    // These restore the paraxial/derived-iris rule; the patent supplies no physical iris-radius schedule.
     stations: [
       { focalLengthMm: 28.891048, nominalFNumber: 3.6, label: "28mm" },
       { focalLengthMm: 50.004242, nominalFNumber: 4.36 },
