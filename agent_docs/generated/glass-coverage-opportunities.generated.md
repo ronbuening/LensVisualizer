@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned (**1017** visible)
-- **10692 / 11847** non-air surfaces use strict catalog Sellmeier data (90.3%)
-- **10704 / 11847** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.4%)
+- **10693 / 11847** non-air surfaces use strict catalog Sellmeier data (90.3%)
+- **10705 / 11847** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.4%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **360** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **226** self-recording explicit dispositions, **0** dispositions missing any review record
+- **359** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **226** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **21** Tier A proprietary backfill rows in Sweep 3
 
@@ -102,7 +102,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SIGMA 24mm f/2.8 (Sigma DP2x)](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | JP 2010-101979 A | [PDF](../../patents/JP2010101979A.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 13 [glass] (Element 7: `BaCD / SK family (various)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) | US 2015/0131163 A1 | [PDF](../../patents/US20150131163A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 3A [glass] (Element 2: `Unmatched (740491 coordinate)`)<br>10A [glass] (Element 5: `Unmatched (581592 coordinate)`) | abbe: 2 |
-| [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
+| [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `Unmatched (source nd=1.77250, vd=53.00; supplier, melt and chemistry unspecified)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
 | [SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)](../../src/lens-data/sony/ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts) | US 2008/0218875 A1 | [PDF](../../patents/US20080218875A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6 [glass] (G3 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`)<br>10A [glass] (G5 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`) | abbe: 2 |
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | US 3,737,214 | [PDF](../../patents/US3737214.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 11 [glass] (Source internal filter: `Unmatched (source filter nd=1.51823; Abbe number not published)`)<br>15 [glass] (Element 7: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`) | abbe: 1, constant: 1 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |

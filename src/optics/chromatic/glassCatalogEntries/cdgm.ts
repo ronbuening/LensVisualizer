@@ -564,4 +564,15 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "CDGM official September2026 Zemax catalog, D-ZK3A-25 NM/CD row; https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c; retrieved2026-10-31. Vendor formula2 Sellmeier constants retained verbatim, λ in µm and C in µm². Qualified spectral proxy only; no historical supplier, melt or process identity is asserted.",
   },
+  {
+    name: "D-ZLAF67",
+    vendor: "CDGM",
+    nd: 1.88385,
+    vd: 37.198899,
+    B: [2.10977576, 0.324313076, 1.37618163],
+    C: [0.0111387884, 0.0453343979, 104.419881],
+    PgF: 0.5777,
+    source:
+      "CDGM official Zemax optical glass catalog UpdatedSep2026, native formula2 D-ZLAF67 row, accessed2026-10-31. https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c. This is an approximate spectral proxy; no source supplier, melt, chemistry or process identity implied.",
+  },
 ];

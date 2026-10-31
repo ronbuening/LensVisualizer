@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **1032** lenses scanned
 - **11847** non-air surfaces examined
 - **11856** element glass declarations examined
-- **220** non-explicit-unmatched annotations did not resolve
-- **117** distinct unresolved glass-like tokens found
+- **219** non-explicit-unmatched annotations did not resolve
+- **116** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -105,7 +105,6 @@ or per-lens patent backfills.
 | 772361 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773501 | 1 | 1 | |
-| 773530 | 1 | 1 | |
 | 781445 | 1 | 1 | |
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
@@ -516,10 +515,6 @@ or per-lens patent backfills.
 ### 773501 — 1 occurrence
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 13: `773501 - lanthanum flint (catalog unresolved)`
-
-### 773530 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 4: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`
 
 ### 781445 — 1 occurrence
 
