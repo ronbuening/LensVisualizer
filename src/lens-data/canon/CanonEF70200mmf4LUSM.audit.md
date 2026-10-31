@@ -228,3 +228,10 @@ Source fidelity, sampled runtime behavior and production correlation are separat
 | E16 R29/R30             | 16.4 / 16.4              | Final positive blank retained; no source plate behind it.                                                                           |
 
 No per-lens test file was added. Coordinator-owned full validation and batch delivery are separate from these source and current-runtime checks. Historical material suppliers, source-gap precision and production camera/stop trajectories remain unresolved.
+
+## 2026-10-31 — Positive d-reference annotation correction
+
+- Scope: reference-field contract only; reuse the completed 2026-10-08 whole source/shape work and the 2026-10-30 scoped original/runtime follow-up. No whole-review count or new shape measurement.
+- Exact source reinspection: **JP 2000-284174 A, Numerical Example 1**. ¶0056 p. 5 explicitly defines Ni/νi at d; all 16 material pairs appear on p. 6; Fig. 1 is on p. 8. The original definition, selected table and corresponding figure were read in fresh 200 dpi renders; the scanned 70–200 original and embedded figure rasters retain approximately 200 ppi native detail, and render magnification adds no evidence.
+- Removed only the 16 repeated positive d-line citations from the uncertainty-only `indexReferenceNote` field. Their provenance is preserved in the data header and analysis. Every `indexReference: "d"` remains. The previous annotations incorrectly selected `n (source)` / `ν (source)` inspector labels despite the explicit d definition.
+- No actual uncertain-reference or rounding note was removed. Source pairs, genuine partials/line indices, APD, curve identities, R/d/sd, rim fields and all controls remain identical. Four compiled channel indices and sampled state geometry are checked against the frozen baseline; compatible-curve counts are unchanged. Existing source/clearance/production limitations remain; no new historical supplier, melt or chemistry is identified.

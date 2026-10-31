@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
+ * 2026-10-31 reference-field follow-up: positive d-line provenance belongs in this header
+ * and the sidecars, not indexReferenceNote (reserved for uncertain source reference).
  * CANON EF-S 18-200mm f/3.5-5.6 IS — JP 2009-175324 A (Makoto Misaka, Canon Inc.), Numerical Example 1 (pp. 12–13),
  * Fig. 1 (p. 18), Figs. 2A–C (pp. 18–19). R, d, nd, νd and the two aspheric surfaces are the printed values, in mm.
  * The patent's asphere equation adds an H² term A, printed 0 on both surfaces; B, C, D, E map to A4–A10 with K = 0.
@@ -84,8 +86,6 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.8061,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 33.3,
       focalLengthMm: -114.400347074,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
@@ -99,8 +99,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496999,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 81.5,
       focalLengthMm: 98.533612819,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -117,8 +115,6 @@ const LENS_DATA = {
       type: "Meniscus Positive",
       nd: 1.603112,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 60.6,
       focalLengthMm: 103.532194921,
       glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -131,8 +127,6 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.834807,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 42.7,
       focalLengthMm: -19.380100608,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
@@ -145,8 +139,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.772499,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 49.6,
       focalLengthMm: -28.371779625,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -159,8 +151,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.805181,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 25.4,
       focalLengthMm: 17.101961965,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
@@ -173,8 +163,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.772499,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 49.6,
       focalLengthMm: -22.886557673,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -187,8 +175,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 59.4,
       focalLengthMm: 40.300899979,
       glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
@@ -201,8 +187,6 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.805181,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 25.4,
       focalLengthMm: -44.801243408,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
@@ -216,8 +200,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 70.2,
       focalLengthMm: 22.803261665,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -231,8 +213,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.712995,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 53.9,
       focalLengthMm: -16.233209394,
       glass: "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
@@ -246,8 +226,6 @@ const LENS_DATA = {
       type: "Meniscus Positive",
       nd: 1.8061,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 33.3,
       focalLengthMm: 26.317339416,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
@@ -261,8 +239,6 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.834807,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 42.7,
       focalLengthMm: -42.369776636,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
@@ -275,8 +251,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496999,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 81.5,
       focalLengthMm: 30.246111788,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -292,8 +266,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 59.4,
       focalLengthMm: 22.812188715,
       glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
@@ -307,8 +279,6 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.834807,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2009-175324 A, p. 12, ¶0092 explicitly defines Ni/νi at the d line; Numerical Example 1, pp. 12–13.",
       vd: 42.7,
       focalLengthMm: -24.195520107,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",

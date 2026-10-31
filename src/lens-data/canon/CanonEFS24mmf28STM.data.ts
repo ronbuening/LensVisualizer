@@ -1,7 +1,10 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * 2026-10-31 reference-field follow-up: positive d-line provenance belongs in this header
+ * and the sidecars, not indexReferenceNote (reserved for uncertain source reference).
  * JP 2015-111192 A, Numerical Example 1, ¶0062–67 pp. 10–11; Figure 1 p. 15.
+ * Explicit d reference: ¶0030 p. 6 (587.6 nm) and numerical definition ¶0062 p. 10.
  * Source R/d, six d-line index/Abbe pairs, S12 asphere and printed image gap are retained.
  * Source surface 5 is the dimensioned flare stop: radius 4.065 mm, 4 mm after S4 and
  * 3.26 mm before the main stop. Its restored air plane has no optical power.
@@ -59,8 +62,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.91082,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 35.3,
       focalLengthMm: 40.28,
       glass: "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
@@ -74,8 +75,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 70.2,
       focalLengthMm: -22.32,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -89,8 +88,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 55.5,
       focalLengthMm: 19.87,
       glass: "N-LAK14 (SCHOTT catalog equivalent; production supplier unspecified)",
@@ -105,8 +102,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 33.3,
       focalLengthMm: -13.72,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
@@ -121,8 +116,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59522,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 67.7,
       focalLengthMm: 24.62,
       glass: "S-FPM2 (OHARA catalog equivalent; production supplier unspecified)",
@@ -139,8 +132,6 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.58313,
       indexReference: "d",
-      indexReferenceNote:
-        "JP 2015-111192 A, ¶0030 p. 6 defines d=587.6 nm; ¶0062 p. 10 defines all numerical ndi/νdi at d.",
       vd: 59.4,
       focalLengthMm: 42.54,
       glass: "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",

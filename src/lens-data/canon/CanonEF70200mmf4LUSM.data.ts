@@ -1,6 +1,8 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * 2026-10-31 reference-field follow-up: positive d-line provenance belongs in this header
+ * and the sidecars, not indexReferenceNote (reserved for uncertain source reference).
  * JP 2000-284174 A, Numerical Example 1: numerical rows/zoom gaps PDF p.6;
  * Fig.1 wide section p.8 and corresponding Figs.2–4 pp.8–9. No scaling.
  * Source shape/glass review 2026-10-30; unchanged source geometry/constraints reuse
@@ -85,8 +87,6 @@ const LENS_DATA = {
       focalLengthMm: 504.97860448150544,
       glass: "S-FSL5 spectral proxy (source supplier and melt unspecified)",
       role: "L1a fixed front positive singlet.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 2,
@@ -99,8 +99,6 @@ const LENS_DATA = {
       focalLengthMm: -232.7745541646512,
       glass: "S-TIH18 spectral proxy (source supplier and melt unspecified)",
       role: "First element of the translating L1b focus subgroup.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 3,
@@ -116,8 +114,6 @@ const LENS_DATA = {
       apdNote:
         "Fluorite element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
       role: "Fluorite-correlated positive element in L1b.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 4,
@@ -133,8 +129,6 @@ const LENS_DATA = {
       apdNote:
         "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
       role: "Low-dispersion positive element completing L1b.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 5,
@@ -147,8 +141,6 @@ const LENS_DATA = {
       focalLengthMm: -40.04080045244512,
       glass: "J-LASF015 spectral proxy (source supplier and melt unspecified)",
       role: "Front negative element of variator L2.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 6,
@@ -162,8 +154,6 @@ const LENS_DATA = {
       glass: "S-BSL7 spectral proxy (source supplier and melt unspecified)",
       role: "Negative member of the L2 cemented pair.",
       cemented: "D1",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 7,
@@ -177,8 +167,6 @@ const LENS_DATA = {
       glass: "S-TIH53WN spectral proxy (source supplier and melt unspecified)",
       role: "Positive high-index member of the L2 cemented pair.",
       cemented: "D1",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 8,
@@ -191,8 +179,6 @@ const LENS_DATA = {
       focalLengthMm: -123.02931910317324,
       glass: "LAFN7 spectral proxy (source supplier and melt unspecified)",
       role: "Rear negative singlet of variator L2.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 9,
@@ -206,8 +192,6 @@ const LENS_DATA = {
       glass: "S-BSM15 spectral proxy (source supplier and melt unspecified)",
       role: "Positive member of compensator L3.",
       cemented: "D2",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 10,
@@ -221,8 +205,6 @@ const LENS_DATA = {
       glass: "S-LAM55 spectral proxy (source supplier and melt unspecified)",
       role: "Negative member of compensator L3.",
       cemented: "D2",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 11,
@@ -235,8 +217,6 @@ const LENS_DATA = {
       focalLengthMm: 62.58129794709216,
       glass: "S-BSM14 spectral proxy (source supplier and melt unspecified)",
       role: "Front positive singlet of fixed relay L4.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 12,
@@ -253,8 +233,6 @@ const LENS_DATA = {
         "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
       role: "Low-dispersion positive member of the relay cemented pair.",
       cemented: "D3",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 13,
@@ -268,8 +246,6 @@ const LENS_DATA = {
       glass: "J-LASF013 spectral proxy (source supplier and melt unspecified)",
       role: "Negative high-index member of the relay cemented pair.",
       cemented: "D3",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 14,
@@ -282,8 +258,6 @@ const LENS_DATA = {
       focalLengthMm: 117.6441505848965,
       glass: "S-BSM14 spectral proxy (source supplier and melt unspecified)",
       role: "Positive relay singlet.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 15,
@@ -296,8 +270,6 @@ const LENS_DATA = {
       focalLengthMm: -75.16362790775038,
       glass: "S-LAL14 spectral proxy (source supplier and melt unspecified)",
       role: "Rear negative relay singlet.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
     {
       id: 16,
@@ -310,8 +282,6 @@ const LENS_DATA = {
       focalLengthMm: 208.66537800636974,
       glass: "S-FTM16 spectral proxy (source supplier and melt unspecified)",
       role: "Final positive relay singlet.",
-      indexReferenceNote:
-        "Original JP 2000-284174 A, paragraph 0056 / PDF page 5 explicitly defines material index on the d line. Numerical Example 1 on page 6 gives the literal index/Abbe pair; a compatible curve does not identify historical supplier, melt or chemistry.",
     },
   ],
   surfaces: [

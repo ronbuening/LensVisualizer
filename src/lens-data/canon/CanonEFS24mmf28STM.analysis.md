@@ -69,3 +69,13 @@ First-order tracing gives **EFL 24.506198 mm**, versus printed 24.50, and BFL **
 ## Sources and Scope
 
 The fresh review used the selected local original **JP2015111192A.pdf**, without substituting a family publication. Source transcription, drawing-derived outer form, sampled runtime clearance and retail correlation are separate conclusions. The main-iris contract mismatch, unrepresented physical outer margins, inferred finite focus and finite full-aperture clipping remain explicit limitations; catalog curves do not establish production materials or performance.
+
+## 2026-10-31 — Source-reference field clarification
+
+Scoped annotation correction, reusing the completed 2026-10-30 whole source/shape/glass work and the earlier 2026-05-20/2026-06-25 glass/APD work. Direct reinspection of the selected original confirms **JP 2015-111192 A, Numerical Example 1**: ¶0030 p. 6 defines d/g/F/C as 587.6/435.8/486.1/656.3 nm, and ¶0062 p. 10 explicitly defines numerical ndi/νdi at d; the six pairs appear on pp. 10–11; Fig. 1 is on p. 15. Fresh 200 dpi page renders were used to read the definitions and selected prescription; the figure was checked for example/material mapping. This is not a new shape measurement or whole-prescription review.
+
+All 6 existing `indexReferenceNote` strings were positive d-line citations, with no reference uncertainty. Per the data specification, that field is reserved for an unspecified source line; its presence had made the inspector label these confirmed coordinates `n (source)` / `ν (source)`. The citations are retained here and in the data header, while the repeated uncertainty-field annotations are removed. The existing `indexReference: "d"` remains on every medium, so the inspector can identify the confirmed `nd` / `νd` coordinates.
+
+All source pairs, APD tags, genuine spectral fields and precision qualifications, compatible curve identities, four compiled color-channel indices, surfaces, rims and controls are unchanged. No new catalog curve, supplier/melt identification, geometry change or fresh shape-inspection claim is made. Prior source/runtime limitations and their actual review dates remain in force.
+
+L5 retains the genuine source-derived `dPgF: 0.0141` and `apd: "patent"`; the existing rounding qualification for θgF = 0.544, νd = 67.7 and Table 2's 0.014 is unchanged.
