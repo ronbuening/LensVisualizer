@@ -71,29 +71,31 @@ assumed image-plane MFD reference. The patent publishes no finite cam. Interpola
 
 ## All media and wavelength qualification
 
-The source defines N and ν as refractive index and Abbe number, but does not identify d/e coordinates. Its d/g
-aberration curves do not define the numerical table’s reference. All ten media are explicit Unmatched entries with
-index-reference notes; default d-line tracing is approximate. Coefficient-curve coverage is 0/10. The following names
-are qualified d-line coordinate candidates only, with no supplier, historical melt or chemistry identified.
+The source defines N and ν as refractive index and Abbe number, but names no spectral line. Its d/g
+aberration curves do not define the numerical table’s reference.
 
-| Element | Retained source N / ν | Qualified coordinate candidate | Shape                                |
-| ------- | --------------------- | ------------------------------ | ------------------------------------ |
-| L1      | 1.83400 / 37.2        | S-LAH60                        | Negative Meniscus (convex to object) |
-| L2      | 1.58313 / 59.4        | S-BAL42                        | Biconcave Negative (1× Asph)         |
-| L3      | 1.80518 / 25.4        | S-TIH6                         | Positive Meniscus (convex to object) |
-| L4      | 1.65160 / 58.6        | J-LAK7                         | Biconvex Positive                    |
-| L5      | 1.48749 / 70.2        | S-FSL5                         | Positive Meniscus (convex to object) |
-| L6      | 1.48749 / 70.2        | S-FSL5                         | Positive Meniscus (convex to object) |
-| L7      | 1.84666 / 23.9        | PBH53                          | Biconcave Negative                   |
-| L8      | 1.75520 / 27.5        | S-TIH4                         | Biconvex Positive                    |
-| L9      | 1.83400 / 37.2        | S-LAH60                        | Negative Meniscus (convex to image)  |
-| L10     | 1.60311 / 60.7        | S-BSM14                        | Positive Meniscus (convex to image)  |
+The patent names no spectral line. 10 of 10 printed pairs match catalog d-line coordinates and none match the e-line,
+so the table is read as d-line. 10 media use catalog curves as spectral proxies; supplier, melt and chemistry stay
+unspecified.
+
+| Element | Printed $n_d$ / $\nu_d$ | Glass                                                                                                           | Shape                                |
+| ------- | ----------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| L1      | 1.83400 / 37.2          | J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | Negative Meniscus (convex to object) |
+| L2      | 1.58313 / 59.4          | J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | Biconcave Negative (1× Asph)         |
+| L3      | 1.80518 / 25.4          | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)        | Positive Meniscus (convex to object) |
+| L4      | 1.65160 / 58.6          | N-LAK7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | Biconvex Positive                    |
+| L5      | 1.48749 / 70.2          | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | Positive Meniscus (convex to object) |
+| L6      | 1.48749 / 70.2          | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | Positive Meniscus (convex to object) |
+| L7      | 1.84666 / 23.9          | PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)      | Biconcave Negative                   |
+| L8      | 1.75520 / 27.5          | SF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)        | Biconvex Positive                    |
+| L9      | 1.83400 / 37.2          | J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | Negative Meniscus (convex to image)  |
+| L10     | 1.60311 / 60.7          | J-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | Positive Meniscus (convex to image)  |
 
 Every pair matches the original. No printed per-element C/F/g indices, partial dispersion, APD quantity, hybrid layer,
-indexed cement, filter or rear plate is present. There were no per-lens spectral overrides to remove. The single
+indexed cement, filter or rear plate is present, and the data carries no per-lens spectral overrides. The single
 bonded interface remains a transition between the published bulk media. No apochromatic or special-chemistry claim
-is inferred from high Abbe values or catalog names. The earlier six-digit codes are not source material identities;
-the stale 652585 shorthand for the printed 1.65160/58.6 pair is not promoted to an exact spectral identification.
+is inferred from high Abbe values or catalog names. Six-digit codes such as 652585 for the printed 1.65160/58.6 pair
+carry only $n_d$/$\nu_d$ and are not source material identities.
 
 ## Asphere and native outline
 
@@ -151,7 +153,7 @@ illustrative intervals. No image plane or cam is tuned to remove interpolation d
 
 Separately, the printed source half-fields 36.7°/23.4°/17.7° produce exact model image heights 20.604/21.603/21.728 mm,
 about 95.2%/99.9%/100.4% of the 135-format half-diagonal. The runtime’s format-corner solves differ from that source-angle
-arithmetic. These are approximate-reference model traces, not a proof of production coverage or of the unprinted
+arithmetic. These are model traces, not a proof of production coverage or of the unprinted
 R17/R21 replacement values. Source fidelity, authored reconstruction and sampled runtime clearance remain separate.
 
 ## Sources
@@ -161,7 +163,7 @@ R17/R21 replacement values. Source fidelity, authored reconstruction and sampled
 2. [Canon Camera Museum — EF28–70 mm f/3.5–4.5 II](https://global.canon/en/c-museum/product/ef273.html), retained product
    correlation: construction, introduction, MFD, magnification, diaphragm and mechanical zoom description.
 3. [Companion audit](CanonEF2870mmf3545II.audit.md): exact original evidence, rejected literal trial, native heights,
-   source-reference disposition and runtime interpolation limits.
+   spectral-reference match counts and runtime interpolation limits.
 
 ## 2026-10-30 — Current-state iris runtime follow-up
 

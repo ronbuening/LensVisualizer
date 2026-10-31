@@ -21,7 +21,7 @@ remains inferred; the original does not name that product. Its supporting featur
    after scaling.
 
 The unchanged prescription, scaling, asphere conversion and retained cap constraints reuse the completed
-**2026-09-23** source review. Only the newly resolved shoulders, source-reference qualification and reproducible
+**2026-09-23** source review. Only the newly resolved shoulders and reproducible
 current-runtime wording defects are reopened on **2026-10-30**. Earlier glass relabel dates are preserved in the audit.
 
 ## Optical Architecture
@@ -50,13 +50,13 @@ The original supplies no filter, rear plate, hybrid resin layer or nonaxial cont
 
 ## Element-by-Element Analysis
 
-The following nd/νd fields retain the numerical source N/ν pairs under an **approximate conventional d-line tracing
-interpretation**. The publication does not explicitly assign those prescription coordinates to a wavelength.
-All historical materials remain Unmatched, and the named catalog comparisons in the glass table are conditional.
+The following $n_d$ and $\nu_d$ fields keep the printed N/ν pairs, read as d-line (see Glass Identification and
+Selection). The patent names no spectral line. Each element's catalog curve is a spectral proxy; supplier, melt and
+chemistry stay unspecified.
 
 ### L1 — Positive Meniscus, First G1 Member
 
-**Stored nd = 1.60311, νd = 60.7. Glass: Unmatched, source reference unspecified. f ≈ +278.2 mm at the adopted scale.**
+**Stored $n_d$ = 1.60311, $\nu_d$ = 60.7. Glass: BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +278.2 mm at the adopted scale.**
 
 L1 provides weak positive collection at the front of the large bundle. The retained figure-derived 28.6 mm front
 clear cap is larger than a simple paraxial pupil radius and remains part of the prior geometric construction model.
@@ -64,7 +64,7 @@ No supplier or crown-glass chemistry follows from its numeric pair.
 
 ### L2 — Positive Meniscus, Second G1 Member
 
-**Stored nd = 1.69680, νd = 55.5. Glass: Unmatched, source reference unspecified. f ≈ +176.1 mm.**
+**Stored $n_d$ = 1.69680, $\nu_d$ = 55.5. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +176.1 mm.**
 
 The second front singlet adds positive power without placing all convergence on the first exposed element.
 Its source-scaled radii and existing 26.4/26.0 mm caps remain. Splitting G1 into two elements distinguishes this
@@ -72,7 +72,7 @@ example from the ten-element first example.
 
 ### L3 — Negative Meniscus, Aspheric Front, First D1 Member
 
-**Stored nd = 1.51742, νd = 52.4. Glass: Unmatched, source reference unspecified. f ≈ −196.9 mm.**
+**Stored $n_d$ = 1.51742, $\nu_d$ = 52.4. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −196.9 mm.**
 
 L3 shares the front Gauss negative-power burden with L5. Its lower index relative to cemented L4 participates in the
 source's Petzval strategy. The source front asphere is a pure polynomial; the retained osculating-sphere conversion
@@ -80,7 +80,7 @@ is detailed below. Grinding, polishing, resin or molding identity is not establi
 
 ### L4 — Positive Meniscus, Rear D1 Member
 
-**Stored nd = 1.88300, νd = 40.8. Glass: Unmatched, source reference unspecified. f ≈ +59.2 mm.**
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +59.2 mm.**
 
 L4 supplies substantial positive power after L3. Its index contrast with L3 is 0.36558, satisfying corrected source
 condition (3). The following narrow air space is preserved; its drawing does not justify an opaque cemented land or
@@ -88,7 +88,7 @@ an inflated equal-height glass block.
 
 ### L5 — Negative Meniscus, Concave Rear Toward Stop
 
-**Stored nd = 1.51742, νd = 52.4. Glass: Unmatched, source reference unspecified. f ≈ −52.1 mm.**
+**Stored $n_d$ = 1.51742, $\nu_d$ = 52.4. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −52.1 mm.**
 
 L5 is the front stop-adjacent negative element. Native Figure 2 resolves a short vertical outer stroke on its rear
 face. The clear radius stays 18.8 mm; a 21.2 mm outer shoulder is anchored to its existing front cap. This preserves
@@ -96,7 +96,7 @@ the old beam-constrained optical cap and supplies the resolved drawn shoulder se
 
 ### L6 — Biconcave Negative, Front D2 Member
 
-**Stored nd = 1.84666, νd = 23.9. Glass: Unmatched, source reference unspecified. f ≈ −21.5 mm.**
+**Stored $n_d$ = 1.84666, $\nu_d$ = 23.9. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −21.5 mm.**
 
 L6 is the strongest standalone negative member. Its low Abbe value relative to L7 provides dispersion contrast in the
 rear cemented pair. The concave air-facing front has a native vertical shoulder; its clear radius remains 17.4 mm,
@@ -104,7 +104,7 @@ with a conservative 20.6 mm outer anchor from the existing bonded cap. No land i
 
 ### L7 — Biconvex Positive, Rear D2 Member
 
-**Stored nd = 1.88300, νd = 40.8. Glass: Unmatched, source reference unspecified. f ≈ +28.4 mm.**
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +28.4 mm.**
 
 The thick positive member offsets much of L6's negative power and carries a long glass path at this speed.
 Its rear face and the following L8 front bound the other claim-6 positive-form air lens. Their near-rim clearance
@@ -112,7 +112,7 @@ remains a retained geometric constraint, independent of the newly drawn L6 front
 
 ### L8 — Negative Meniscus, Aspheric Rear
 
-**Stored nd = 1.80518, νd = 25.4. Glass: Unmatched, source reference unspecified. f ≈ −71.7 mm.**
+**Stored $n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −71.7 mm.**
 
 L8 shares the rear negative-power burden with L6. The source prefers an image-side asphere whose negative power
 increases toward its margin; the polynomial rear face implements that shape without establishing a named material
@@ -120,21 +120,21 @@ or manufacturing route. No separate shoulder is resolved on its continuous asphe
 
 ### L9 — Positive Meniscus, Concave Toward Front
 
-**Stored nd = 1.88300, νd = 40.8. Glass: Unmatched, source reference unspecified. f ≈ +73.2 mm.**
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +73.2 mm.**
 
 L9 starts the final positive train. Its stronger convex-to-image rear face helps bring the wide post-stop bundle
 toward the image. Repeating L4/L7's coordinates does not identify the same historical glass or supplier.
 
 ### L10 — Nearly Plano-Convex Positive
 
-**Stored nd = 1.88300, νd = 40.8. Glass: Unmatched, source reference unspecified. f ≈ +76.4 mm.**
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +76.4 mm.**
 
 L10 has a nearly flat front radius and more strongly curved rear. It contributes positive convergence together with
 L9 while retaining the original thickness and 26.0 mm caps. No extra vertical land is resolved on its near-flat face.
 
 ### L11 — Positive Meniscus, Convex Toward Front
 
-**Stored nd = 1.55963, νd = 61.2. Glass: Unmatched, source reference unspecified. f ≈ +148.8 mm.**
+**Stored $n_d$ = 1.55963, $\nu_d$ = 61.2. Glass: S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +148.8 mm.**
 
 The last weak positive meniscus trims the final power and off-axis balance. Its 22.6 mm caps remain from the prior
 review. The source does not assign it a separate floating-focus role, so none is authored.
@@ -142,30 +142,30 @@ review. The source does not assign it a separate floating-focus role, so none is
 ## Glass Identification and Selection
 
 Column 4 on PDF page 7 defines refractive indices **N** and Abbe numbers **ν** without specifying their reference
-wavelengths. The complete original, including its certificate, does not supply an explicit link between these
-prescription coordinates and the d-line. Figure 5's d/g labels are contextual aberration evidence, not that missing
-coordinate definition. The stored numbers remain unchanged and the current d-line tracing convention is explicitly
-approximate; this qualification does not assert that conventional d-line interpretation is wrong.
+wavelengths. The patent names no spectral line, and the complete original, including its certificate, does not supply an
+explicit link between these prescription coordinates and the d-line. Figure 5's d/g labels are contextual aberration
+evidence, not that missing coordinate definition. 11 of 11 printed pairs match catalog d-line coordinates and none match
+the e-line, so the table is read as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and chemistry
+stay unspecified. The stored numbers are the printed pairs, unchanged.
 
-| Elements        | Source N | Source ν | Disabled conditional catalog comparison | Active disposition |
-| --------------- | -------: | -------: | --------------------------------------- | ------------------ |
-| L1              |  1.60311 |     60.7 | BACD14 / HOYA                           | Unmatched          |
-| L2              |  1.69680 |     55.5 | S-LAL14 / OHARA                         | Unmatched          |
-| L3, L5          |  1.51742 |     52.4 | S-NSL36 / OHARA                         | Unmatched          |
-| L4, L7, L9, L10 |  1.88300 |     40.8 | S-LAH58 / OHARA                         | Unmatched          |
-| L6              |  1.84666 |     23.9 | PBH53 / OHARA                           | Unmatched          |
-| L8              |  1.80518 |     25.4 | S-TIH6 / OHARA                          | Unmatched          |
-| L11             |  1.55963 |     61.2 | S-BAL50 / OHARA                         | Unmatched          |
+| Elements        | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                        |
+| --------------- | ------------: | --------------: | ------------------------------------------------------------------------------------------------------------ |
+| L1              |       1.60311 |            60.7 | BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L2              |       1.69680 |            55.5 | S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L3, L5          |       1.51742 |            52.4 | S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L4, L7, L9, L10 |       1.88300 |            40.8 | S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L6              |       1.84666 |            23.9 | PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L8              |       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     |
+| L11             |       1.55963 |            61.2 | S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
 
-All eleven formerly selected curves are disabled rather than used to imply a verified spectral reference or historical
-identity. Each element carries the approximate-reference note. No individual C/F/g indices, relative partial
-values or APD evidence are published, and no per-lens spectral overrides were present to remove. Existing `apd:false`
-means no source APD designation; it does not establish a normal production melt.
+The curves are numerical matches to the printed pairs. No individual C/F/g indices, relative partial values or APD
+evidence are published. Existing `apd:false` means no source APD designation; it does not establish a normal
+production melt.
 
-Prior coordinate comparisons and their actual review dates remain in the audit. They are conditional comparisons,
-not supplier, melt, chemistry, cement, polishing or annealing identifications. In particular, the high-index rows do
-not establish lanthanum-flint chemistry, and production grinding/polishing statements are not source material evidence.
-No modeled chromatic behavior is presented as measured production performance.
+The catalog names are coordinate matches, not supplier, melt, chemistry, cement, polishing or annealing
+identifications. In particular, the high-index rows do not establish lanthanum-flint chemistry, and production
+grinding/polishing statements are not source material evidence. No modeled chromatic behavior is presented as measured
+production performance.
 
 ## Focus Mechanism
 

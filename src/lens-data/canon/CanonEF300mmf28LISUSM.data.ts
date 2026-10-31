@@ -6,9 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * source filter and reconstructed L2 focus trajectories remain unchanged. Existing 59.3221048 mm filter-to-image
  * distance stays independently derived because printed D29 = 0.00 is not a physical back focus.
  *
- * Original Ni/νi definitions do not identify their spectral reference. All 16 source media, including filter FL,
- * remain Unmatched with explicit approximate d-line tracing. Historical material, supplier and melt are unresolved.
- * The production fluorite/UD association remains qualified correlation; it does not establish this source's wavelength.
+ * The patent names no spectral line. 16 of 16 printed pairs, including filter FL, match catalog d-line coordinates and
+ * none match the e-line, so the table is read as d-line. All 16 media use catalog curves as spectral proxies; supplier,
+ * melt and chemistry stay unspecified. The production fluorite/UD association remains qualified correlation; it does
+ * not identify this source's supplier or chemistry.
  * No per-lens line index, partial-dispersion override or APD evidence is published or invented.
  *
  * No numerical clear diameters are printed. Inferred heights follow native Fig. 1 at about 5.35 px/mm with practical

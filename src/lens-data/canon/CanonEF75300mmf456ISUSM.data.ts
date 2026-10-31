@@ -24,8 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * section. Front 28 mm radius fits behind the 58 mm filter; off-axis vignetting
  * is expected. R7 is limited to 13.7 mm by the thin R7-R8 air lens.
  * Every var entry repeats its infinity value: the patent gives no focus state.
- * Source N/nu leave the reference wavelength unstated. Glasses remain Unmatched;
- * dispersion uses approximate d-line Abbe estimates, with catalog classes left inactive.
+ * The patent names no spectral line for its N/nu pairs. 15 of 15 printed pairs match
+ * catalog d-line coordinates and none match the e-line, so the table is read as d-line.
+ * 15 media use catalog curves as spectral proxies; supplier, melt and chemistry stay
+ * unspecified.
  * The two conditional fo/fr values remain unresolved (see sourceErrata).
  */
 const LENS_DATA = {

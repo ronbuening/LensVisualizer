@@ -7,10 +7,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (surface 20) remains omitted; modeled BF is independently solved, with inferred FC-to-image distance about
  * 38.72–38.74 mm rather than an explicitly published camera-side spacing.
  *
- * All ten source index/Abbe pairs are literal, including rounded Abbe values formerly replaced by catalog decimals.
- * ¶0035 (PDF p. 9) does not identify their spectral reference. All media are Unmatched with explicit approximate
- * d-line tracing; nine former catalog curves and 36 catalog-derived nC/nF/ng/dPgF overrides are disabled/removed.
- * The plastic-asphere teaching permits a material class but does not establish this medium's formulation or process.
+ * All ten source index/Abbe pairs are literal, including rounded Abbe values that differ from catalog decimals.
+ * ¶0035 (PDF p. 9) names no spectral line for them. 9 of 10 printed pairs match catalog d-line coordinates and
+ * none match the e-line, so the table is read as d-line. 9 media use catalog curves as spectral proxies; supplier,
+ * melt and chemistry stay unspecified. The plastic asphere (1.58306 / 30.2) matches no catalog row and stays
+ * Unmatched. The patent prints no per-medium nC/nF/ng/dPgF data. The plastic-asphere teaching permits a material
+ * class but does not establish this medium's formulation or process.
  *
  * Source aperture targets are 3.83/4.45/5.88 rather than the retail endpoint marks. Source headline 3.83 versus wide
  * plot 3.84 remains unresolved in source.errata; no physical iris schedule is inferred and the derived rule is retained.

@@ -55,38 +55,38 @@ Because BFD exceeds EFL, the design is retrofocus in the strict optical sense. T
 
 ### L1 — Negative Meniscus, convex toward object
 
-**$N=1.60311$, $\nu=60.7$. Glass: Unmatched; conditional class comparison: S-BSM14 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=-33.6155$ mm.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-33.6155$ mm.**
 
 L1 is the large front meniscus. Its modestly curved object-side surface and much stronger image-side surface give negative power while providing the frontal acceptance needed by the fisheye geometry. The patent treats L1-L3 collectively as a progressive angle-reduction section rather than assigning the complete retrofocus conversion to one surface.
 
 ### L2 — Negative Meniscus, convex toward object
 
-**$N=1.61700$, $\nu=62.8$. Glass: Unmatched; conditional class comparison: S-PHM51 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=-59.7658$ mm.**
+**$n_d=1.61700$, $\nu_d=62.8$. Glass: S-PHM51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-59.7658$ mm.**
 
-L2 is the weakest of the three standalone front negative elements. Its printed 1.61700/62.8 pair is preserved. The S-PHM51 comparison is conditional on an assumed d-line reference; it selects no runtime catalog curve.[^ohara-historical]
+L2 is the weakest of the three standalone front negative elements. Its printed 1.61700/62.8 pair is preserved, and the S-PHM51 catalog curve is a spectral proxy for that pair.[^ohara-historical]
 
 ### L3 — Negative Meniscus, convex toward object
 
-**$N=1.60311$, $\nu=60.7$. Glass: Unmatched; conditional class comparison: S-BSM14 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=-45.7778$ mm.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-45.7778$ mm.**
 
 L3 completes the negative front converter. Its rear surface $R_6=+22.35$ mm and L4's front surface $R_7=+32.04$ mm are the radii constrained by condition (1), which the patent associates principally with spherical-aberration balance.
 
 ### L4 — Biconvex Positive
 
-**$N=1.84666$, $\nu=23.9$. Glass: Unmatched; conditional class comparison: S-NPH53 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=+32.8422$ mm.**
+**$n_d=1.84666$, $\nu_d=23.9$. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+32.8422$ mm.**
 
 L4 begins the positive relay and supplies the first strong positive power after the negative front converter. The low source Abbe number places this coordinate in a high-dispersion class; it does not identify the historical chemistry. The stop follows after 3.84 mm of air.
 
 ### L5 — Positive Meniscus, concave toward object
 
-**$N=1.51112$, $\nu=60.5$. Glass: Unmatched; conditional class comparison: NSL7 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=+63.0670$ mm.**
+**$n_d=1.51112$, $\nu_d=60.5$. Glass: NSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+63.0670$ mm.**
 
 Both radii are negative, but the image-side surface is much stronger: $R_{10}=-289.77$ mm and $R_{11}=-29.10$ mm. This directly matches the claim's requirement that L5 have stronger refracting action on the image side than on the object side.
 
 ### L6/L7 — Cemented Negative-Positive Doublet
 
-**L6:** Unmatched; $N=1.84666$, $\nu=23.9$; S-NPH53 conditional catalog class comparison (OHARA), patent vendor unspecified; standalone $f=-26.4804$ mm.
-**L7:** Unmatched; $N=1.48749$, $\nu=70.2$; S-FSL5 conditional catalog class comparison (OHARA), patent vendor unspecified; standalone $f=+29.0298$ mm.
+**L6:** PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified); $n_d=1.84666$, $\nu_d=23.9$; standalone $f=-26.4804$ mm.
+**L7:** S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified); $n_d=1.48749$, $\nu_d=70.2$; standalone $f=+29.0298$ mm.
 **Cemented assembly:** $f=-4619.1881$ mm; $\Phi_{6,7}=-2.1648826\times10^{-4}\ \mathrm{mm^{-1}}$.
 
 The separate L6 and L7 focal lengths are standalone in-air thick-lens values. They do not describe the components' in-situ behavior once cemented. The matrix of the complete cemented assembly is the relevant system quantity.
@@ -95,23 +95,23 @@ The interface index step is $N_6-N_7=0.35917$, while the net cemented power is a
 
 ### L8 — Symmetric Biconvex Positive
 
-**$N=1.48749$, $\nu=70.2$. Glass: Unmatched; conditional class comparison: S-FSL5 conditional catalog class comparison (OHARA); actual patent vendor unspecified. Standalone $f=+45.8345$ mm.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+45.8345$ mm.**
 
 L8 is the final positive element. Its equal and opposite radii, $+43.88/-43.88$ mm, are the clearest numerical discriminator between Example 3 and the other examples and are visible in both patent Fig. 2 and Canon's production block diagram.
 
 ## Glass Identification and Selection
 
-The original defines refractive index N and Abbe number ν without naming their spectral reference. The d/g aberration plots provide context for the retained approximate d-line convention, but do not define the prescription coordinates or supply individual line indices. All eight numeric pairs are preserved, and every element now has an explicit source-reference note and `Unmatched` status. No compatible catalog curve is selected while that reference remains unverified.
+The original defines refractive index N and Abbe number ν for each medium. The patent names no spectral line. 8 of 8 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 8 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. The d/g aberration plots are consistent with that reading but do not define the prescription coordinates or supply individual line indices. All eight numeric pairs are preserved.
 
-| Elements | Source N / ν | Conditional class comparison | Runtime disposition |
-|---|---|---|---|
-| L1, L3 | 1.60311 / 60.7 | S-BSM14 / 603607 | Unmatched; source reference unspecified |
-| L2 | 1.61700 / 62.8 | S-PHM51 / 617628 | Unmatched; source reference unspecified |
-| L4, L6 | 1.84666 / 23.9 | S-NPH53 / 847239 | Unmatched; source reference unspecified |
-| L5 | 1.51112 / 60.5 | NSL7 / 511605 | Unmatched; source reference unspecified |
-| L7, L8 | 1.48749 / 70.2 | S-FSL5 / 487702 | Unmatched; source reference unspecified |
+| Elements | Printed $n_d$ / $\nu_d$ | Catalog curve (spectral proxy) |
+|---|---|---|
+| L1, L3 | 1.60311 / 60.7 | S-BSM14 |
+| L2 | 1.61700 / 62.8 | S-PHM51 |
+| L4, L6 | 1.84666 / 23.9 | PBH53 |
+| L5 | 1.51112 / 60.5 | NSL7 |
+| L7, L8 | 1.48749 / 70.2 | S-FSL5 |
 
-These comparisons remain conditional on the d-line approximation, and do not establish historical supplier, melt or chemistry. The previous eight coordinate-compatible catalog curves are disabled (8/8 to 0/8). No element has published C/F/g indices, partial dispersion or APD coefficients, and no per-lens spectral override is added. Chromatic tracing uses the retained index/Abbe approximation. No fluorite, UD, asphere or apochromatic designation is inferred from those pairs.
+The curve names do not establish historical supplier, melt or chemistry. The patent prints no C/F/g indices, partial dispersion or APD coefficients for any element, and no per-lens spectral override is added. No fluorite, UD, asphere or apochromatic designation is inferred from those pairs.
 
 ## Focus Mechanism
 
@@ -149,7 +149,7 @@ The source first rear cap approaches a nearly vertical spherical endpoint. The m
 
 Actual SVG outlines remain connected and finite with no hidden renderer cap trimming in the sampled focus states. The axial f/2.8 check passes. The bounding-sphere vector chief at 60° now converges and traces, where the former first-face aperture prevented a valid solve. The source-declared 180° field remains **unvalidated at the extremes**: a one-degree bounding-sphere sweep at the sampled focus layouts gives converged, traced chiefs through 66°; the solver returns fallback status from 67° onward. At 75–90° the chiefs fail to center or trace under the retained cap limits, and a dense independent vector-offset stop search does not supply a centered root there. The fallback rays' later rim intersections are not treated as proof that those rear apertures should be enlarged.
 
-The full 180° declaration and equisolid reference are source/model metadata, not a runtime coverage certificate. The vector probes describe collimated fields at the sampled modeled focus layouts; they do not certify finite-object edge coverage or the full three-dimensional/skew-ray beam. The first inner-cap guard, approximate semi-diameters, unresolved spectral reference and reconstructed ordinary focus remain explicit limitations.
+The full 180° declaration and equisolid reference are source/model metadata, not a runtime coverage certificate. The vector probes describe collimated fields at the sampled modeled focus layouts; they do not certify finite-object edge coverage or the full three-dimensional/skew-ray beam. The first inner-cap guard, approximate semi-diameters and reconstructed ordinary focus remain explicit limitations.
 
 ## Conditional Expressions
 
@@ -238,7 +238,6 @@ Patent Fig. 5 presents the Example 3 spherical-aberration, astigmatism, distorti
 [^canon-focus]: [Canon Europe, “Close-up Lenses”](https://www.canon-europe.com/pro/infobank/close-up-lenses/).
 [^ohara-current]: [OHARA, “Glass Type” — current polished-lens catalog table](https://www.ohara-inc.co.jp/en/product/01000/).
 [^ohara-historical]: OHARA, *Optical Glass* historical catalog, including S-PHM51, NSL7, and S-BSM14 data; [archival PDF hosted by the University of Arizona](https://wp.optics.arizona.edu/optomech/wp-content/uploads/sites/53/2016/10/Ohara_Glass_Catalog.pdf).
-[^ohara-pocket-2018]: OHARA, *Optical Glass Pocket Catalog*, October 2018, including S-NPH53 code 847239 and its $n_d/\nu_d$ data; [OHARA GmbH archival PDF](https://www.ohara-gmbh.com/fileadmin/user_upload/OHARA_Pocketcatalog__Version_Oct_2018_.pdf).
 
 ## Runtime Launch Qualification - 2026-10-30
 

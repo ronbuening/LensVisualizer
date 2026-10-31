@@ -11,8 +11,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Raw DOE coefficients remain the existing +1 OPD interpretation. The original
  * phase prefactor and aspheric denominator are defective/undefined as printed;
  * no claim of exact printed-equation reproduction or physical micro-layer model.
- * Bulk ni/vi reference is unspecified; only the DOE wavelength is explicitly d.
- * Every bulk medium stays unresolved with approximate coordinate candidates.
+ * The patent names no spectral line for its bulk ni/vi pairs; only the DOE wavelength
+ * is explicitly d. 17 of 17 printed pairs match catalog d-line coordinates and none
+ * match the e-line, so the table is read as d-line. 17 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified.
  * No catalog-derived per-lens spectral values or published partials are present.
  * S4/S5 restored to27mm optical height under the source connected outline;
  * S21/S22 inferred caps11mm remove finite-state boundary clips. These are model

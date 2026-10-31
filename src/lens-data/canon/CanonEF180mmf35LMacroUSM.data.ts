@@ -35,14 +35,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Original-PDF review 2026-10-30: Numerical Example 1, PDF page 6,       ║
  * ║  and Fig. 1, PDF page 17. All source pairs and four focus rows checked. ║
  * ║  Four rear clear caps follow Fig. 1; no distinct extra land is resolved. ║
- * ║  Source n/ν reference is unspecified: all media remain Unmatched with   ║
- * ║  an explicit approximate d-line tracing note.                            ║
  * ║                                                                              ║
- * ║  GLASS NOTE:                                                                ║
- * ║  The patent publishes index/Abbe only. Supplier identity and per-element nC/nF/ ║
- * ║  ng/dPgF are unresolved; no catalog line data are imported from merely     ║
- * ║  coordinate-compatible glasses. Elements 2, 4, and 11 are identified by   ║
- * ║  Canon as UD in the production lens, reflected here only as a class label. ║
+ * ║  GLASS NOTE:                                                                 ║
+ * ║  The patent names no spectral line. 14 of 14 printed pairs match catalog     ║
+ * ║  d-line coordinates and none match the e-line, so the table is read as       ║
+ * ║  d-line. 14 media use catalog curves as spectral proxies; supplier, melt     ║
+ * ║  and chemistry stay unspecified. The patent publishes index/Abbe only and    ║
+ * ║  prints no per-element nC/nF/ng/dPgF. Elements 2, 4, and 11 are identified   ║
+ * ║  by Canon as UD in the production lens, reflected here only as a class       ║
+ * ║  label.                                                                      ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
  * Manufacturer sources:

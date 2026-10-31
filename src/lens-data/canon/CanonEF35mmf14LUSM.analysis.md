@@ -46,11 +46,11 @@ The stop plane is source-published, but its clear diameter is not. The authored 
 
 ## Element-by-Element Analysis
 
-Paragraph 0030 defines only Ni and νi without a spectral reference. The `nd/νd` notation below is the retained approximate d-line tracing convention. All eleven media are Unmatched; prior coordinate classes and S-TIM27 are disabled conditional comparisons, not current resolved spectral evidence or historical identities.
+Paragraph 0030 defines only Ni and νi without a spectral reference. The $n_d/\nu_d$ notation below follows the d-line reading of the printed table described under Glass Identification and Selection. Each catalog curve is a spectral proxy, not a historical identity.
 
 ### E1 — Negative Meniscus
 
-**nd = 1.58313, νd = 59.4. Glass: Unmatched (prior 583594/595 class (vendor unresolved); reference unspecified). f = −77.6 mm.**
+**$n_d = 1.58313$, $\nu_d = 59.4$. Glass: J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −77.6 mm.**
 
 E1 is the first member of the negative L1a subgroup. Its standalone power is negative; together with E2 it forms the strongly negative front subsection of L1. The patent describes L1a in Numerical Example 1 as two negative meniscus lenses at the object side (¶0025).
 
@@ -58,15 +58,15 @@ As a front element, E1 carries a large modeled semi-diameter in the data file. T
 
 ### E2 — Negative Meniscus
 
-**nd = 1.58313, νd = 59.4. Glass: Unmatched (prior 583594/595 class (vendor unresolved); reference unspecified). f = −94.2 mm.**
+**$n_d = 1.58313$, $\nu_d = 59.4$. Glass: J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −94.2 mm.**
 
-E2 uses the same retained approximate tracing coordinates as E1 and completes L1a. The computed EFL of the E1–air–E2 subsection is −40.5808 mm. That subgroup value is distinct from the isolated focal lengths of E1 and E2 and from the much weaker net power of the complete L1 after the positive E3 is included.
+E2 uses the same printed coordinates as E1 and completes L1a. The computed EFL of the E1–air–E2 subsection is −40.5808 mm. That subgroup value is distinct from the isolated focal lengths of E1 and E2 and from the much weaker net power of the complete L1 after the positive E3 is included.
 
 The two negative menisci distribute the front-group divergence across multiple surfaces instead of concentrating it in one element. The patent treats the L1a/L1b separation as a controlled design variable through the $D_{1ab}/f$ condition (¶0023–0024).
 
 ### E3 — Biconvex Positive
 
-**nd = 1.71300, νd = 53.8. Glass: Unmatched (prior 713538/539/540 class (vendor unresolved); reference unspecified). f = +65.9 mm.**
+**$n_d = 1.71300$, $\nu_d = 53.8$. Glass: N-LAK8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +65.9 mm.**
 
 E3 is the positive L1b subsection. Its positive standalone power partially offsets L1a, leaving L1 negative overall rather than allowing the front group to become excessively strong. The resulting L1 segment EFL is −272.3348 mm.
 
@@ -74,7 +74,7 @@ This split negative-positive construction follows the patent's stated L1 archite
 
 ### E4 — Biconvex Positive
 
-**nd = 1.71300, νd = 53.8. Glass: Unmatched (prior 713538/539/540 class (vendor unresolved); reference unspecified). f = +61.0 mm.**
+**$n_d = 1.71300$, $\nu_d = 53.8$. Glass: N-LAK8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +61.0 mm.**
 
 E4 begins the positive L2a subsection. It supplies most of L2a's positive power; with E5 and the intervening air gap, the computed L2a segment EFL is +71.2470 mm.
 
@@ -82,15 +82,15 @@ The patent places L2 between the fixed negative front group and the stop and mak
 
 ### E5 — Negative Meniscus
 
-**nd = 1.51633, νd = 64.2. Glass: Unmatched (prior 516641/642 class (vendor unresolved); reference unspecified). f = −314.3 mm.**
+**$n_d = 1.51633$, $\nu_d = 64.2$. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −314.3 mm.**
 
 E5 is a weak negative meniscus paired by air spacing with E4 inside L2a. Its isolated power is much weaker than E4's. The element therefore modifies the power distribution and bending within L2a without reversing the positive sign of the subsection.
 
-Because the patent supplies only an index/Abbe pair without naming its spectral reference for this element, its chromatic function can be discussed only at that level. No anomalous-partial-dispersion or apochromatic behavior is asserted.
+Because the patent supplies only an index/Abbe pair for this element and names no spectral line, its chromatic function can be discussed only at that level. No anomalous-partial-dispersion or apochromatic behavior is asserted.
 
 ### E6 — Positive Meniscus, L2b Front Element
 
-**nd = 1.83481, νd = 42.7. Glass: Unmatched (prior 835427 class (vendor unresolved); reference unspecified). f = +50.2 mm.**
+**$n_d = 1.83481$, $\nu_d = 42.7$. Glass: J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +50.2 mm.**
 
 E6 is the positive front member of the cemented L2b pair. Its isolated power is positive, but that value does not describe the doublet's net behavior. E6 is cemented directly to E7 at surface 12, where the interface belongs to the downstream E7 medium in the data model.
 
@@ -98,7 +98,7 @@ The sign correction at surface 11 is on E6's front surface. With the corrected $
 
 ### E7 — Negative Meniscus, L2b Rear Element
 
-**nd = 1.63980, νd = 34.5. Glass: Unmatched (prior S-TIM27 coefficient comparison conditional; source reference unspecified). f = −43.5 mm.**
+**$n_d = 1.63980$, $\nu_d = 34.5$. Glass: S-TIM27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −43.5 mm.**
 
 E7 is the negative rear member of L2b. The cemented E6–E7 pair has a verified net EFL of −277.7767 mm even though E6 alone is positive. This distinction between isolated-element power and cemented-subgroup power is important: the negative L2b role belongs to the pair as a whole, not to E6 individually.
 
@@ -106,15 +106,15 @@ L2 remains positive after L2a and L2b are combined, with a computed segment EFL 
 
 ### E8 — Biconcave Negative, L3a Front Element
 
-**nd = 1.80518, νd = 25.4. Glass: Unmatched (prior 805254/255 class (vendor unresolved); reference unspecified). f = −23.0 mm.**
+**$n_d = 1.80518$, $\nu_d = 25.4$. Glass: N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −23.0 mm.**
 
 E8 begins the negative L3a cemented subgroup immediately behind the aperture stop. Its isolated power has the largest magnitude of the eleven individual-element powers (equivalently, the smallest absolute isolated focal length). It is cemented to E9 at surface 16.
 
-The low retained Abbe coordinate indicates relatively strong dispersion relative to the other coordinate classes in the design, but the source supplies no line indices or partial-dispersion data. The analysis therefore does not assign an anomalous-dispersion class or claim apochromatic correction.
+The low printed Abbe number indicates relatively strong dispersion relative to the other glasses in the design, but the source supplies no line indices or partial-dispersion data. The analysis therefore does not assign an anomalous-dispersion class or claim apochromatic correction.
 
 ### E9 — Biconvex Positive (1× Asph), L3a Rear Element
 
-**nd = 1.83481, νd = 42.7. Glass: Unmatched (prior 835427 class (vendor unresolved); reference unspecified). f = +72.2 mm.**
+**$n_d = 1.83481$, $\nu_d = 42.7$. Glass: J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +72.2 mm.**
 
 E9 is the positive rear member of the cemented L3a pair and carries the design's only aspherical surface, 17A, on its image-side face. E8 and E9 together have a computed cemented-subgroup EFL of −35.4688 mm. Thus E9's positive standalone power does not make L3a positive; the stronger negative contribution of E8 dominates the pair.
 
@@ -122,7 +122,7 @@ The patent explicitly specifies L3a as a cemented negative-positive pair and pla
 
 ### E10 — Positive Meniscus
 
-**nd = 1.77250, νd = 49.6. Glass: Unmatched (prior 773496 class (vendor unresolved); reference unspecified). f = +46.8 mm.**
+**$n_d = 1.77250$, $\nu_d = 49.6$. Glass: J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +46.8 mm.**
 
 E10 is the first of the two positive menisci forming L3b. Together with E11 it provides the positive rear subsection that reverses the negative sign of L3a and makes L3 positive overall.
 
@@ -130,27 +130,29 @@ The computed EFL of the E10–air–E11 L3b subsection is +25.5779 mm. The compl
 
 ### E11 — Positive Meniscus
 
-**nd = 1.77250, νd = 49.6. Glass: Unmatched (prior 773496 class (vendor unresolved); reference unspecified). f = +51.4 mm.**
+**$n_d = 1.77250$, $\nu_d = 49.6$. Glass: J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +51.4 mm.**
 
-E11 is the final optical element and shares the same retained approximate tracing coordinates as E10. It completes L3b and the positive rear group. The data file terminates after E11 with a computed rear air clearance to the fixed image plane rather than a patent-published back-focus row.
+E11 is the final optical element and shares the same printed coordinates as E10. It completes L3b and the positive rear group. The data file terminates after E11 with a computed rear air clearance to the fixed image plane rather than a patent-published back-focus row.
 
 At infinity that rear clearance is 38.6533555 mm. During close focusing, the last vertex moves objectward with L3, so the authored surface-21 spacing increases to 45.0633555 mm solely to keep the image plane fixed. That variation is a reference-plane normalization, not an additional mechanical focus degree of freedom.
 
 ## Glass Identification and Selection
 
-The original publishes seven distinct index/Abbe pairs across eleven elements, but ¶0030 / PDF page 4 defines them only as Ni and νi. It does not name their spectral reference. The d/g/C labels in the aberration figures provide context but do not independently define those numerical coordinates. All eleven source pairs and the current d-line tracing convention remain, with explicit approximate-reference `indexReferenceNote` and Unmatched disposition on every element. This qualifies source uncertainty rather than claiming conventional d inference is wrong.
+The original publishes seven distinct index/Abbe pairs across eleven elements, but ¶0030 / PDF page 4 defines them only as Ni and νi. It does not name their spectral reference. The d/g/C labels in the aberration figures provide context but do not independently define those numerical coordinates.
 
-| Elements  | Source index / Abbe | Prior conditional comparison   | Current disposition |
-| --------- | ------------------: | ------------------------------ | ------------------- |
-| E1 / E2   |      1.58313 / 59.4 | 583594/595 class               | Unmatched           |
-| E3 / E4   |      1.71300 / 53.8 | 713538/539/540 class           | Unmatched           |
-| E5        |      1.51633 / 64.2 | 516641/642 class               | Unmatched           |
-| E6 / E9   |      1.83481 / 42.7 | 835427 class                   | Unmatched           |
-| E7        |      1.63980 / 34.5 | S-TIM27 coefficient comparison | Unmatched           |
-| E8        |      1.80518 / 25.4 | 805254/255 class               | Unmatched           |
-| E10 / E11 |      1.77250 / 49.6 | 773496 class                   | Unmatched           |
+The patent names no spectral line. 11 of 11 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-Eleven previously active catalog curves are disabled. No individual C/F/g indices, relative partial dispersions or APD evidence are published or authored, so no genuine source spectral value or per-lens override is removed. Prior named/code classes remain conditional historical comparisons only and cannot establish supplier, melt, chemistry or manufacturing route. The S-TIM27 comparison cannot turn an unspecified source reference into verified spectral data. Approximate d-line tracing does not support an APO or source secondary-spectrum claim.
+| Elements  | Printed nd / νd | Catalog curve |
+| --------- | --------------: | ------------- |
+| E1 / E2   |  1.58313 / 59.4 | J-SK12        |
+| E3 / E4   |  1.71300 / 53.8 | N-LAK8        |
+| E5        |  1.51633 / 64.2 | S-BSL7        |
+| E6 / E9   |  1.83481 / 42.7 | J-LASF05      |
+| E7        |  1.63980 / 34.5 | S-TIM27       |
+| E8        |  1.80518 / 25.4 | N-SF6         |
+| E10 / E11 |  1.77250 / 49.6 | J-LASF016     |
+
+No individual C/F/g indices, relative partial dispersions or APD evidence are published or authored. The catalog curve names are spectral proxies and cannot establish supplier, melt, chemistry or manufacturing route. The d-line reading does not support an APO or source secondary-spectrum claim.
 
 ## Focus Mechanism
 
@@ -243,7 +245,7 @@ Surface, image-circle, infinity aperture-census and full-frame corner-field chec
 
 Across 21 focus positions and nine apertures, all 189 working-ray calls trace, with baseline/candidate results identical. An aimed 193-point circular-pupil probe at axial, half-field and corner fields over all 21 states gives all 193 axial rays passing and every chief aimed/valid. Infinity corner count changes 91→86 of 193 and close count 125→123; source-height refinement retains off-axis vignetting rather than claiming full-pupil illumination. Actual infinity/mid/close SVGs were compared with Figure 1. Twenty-one states produce 231 finite, singly connected, closed element paths with zero hidden trimming, and corner aiming reaches about 21.65 mm.
 
-The source publishes the two endpoint internal focus gaps; linear positions between them remain an interpolation rather than a complete measured cam law. The computed fixed-image rear gap is not a source BF row. The unprinted A10/E assumption, unspecified glass reference and corrected r11 sign are distinct source qualifications. No inferred cut requires an exemption or cut-beam probe. Source fidelity, sampled runtime behavior and production correlation remain separate. Existing external product/catalog links below are older correlation context, not fresh inspections in this original-PDF review.
+The source publishes the two endpoint internal focus gaps; linear positions between them remain an interpolation rather than a complete measured cam law. The computed fixed-image rear gap is not a source BF row. The unprinted A10/E assumption, the unnamed glass spectral line and the corrected r11 sign are distinct source qualifications. No inferred cut requires an exemption or cut-beam probe. Source fidelity, sampled runtime behavior and production correlation remain separate. Existing external product/catalog links below are older correlation context, not fresh inspections in this original-PDF review.
 
 ## Sources / References
 

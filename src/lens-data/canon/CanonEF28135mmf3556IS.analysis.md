@@ -57,7 +57,7 @@ The prescription was re-extracted from the printed Numerical Example 1 table on 
 
 - **Units:** millimetres. No normalization or production scaling is required.
 - **Radius sign:** positive radius places the center of curvature to the image side.
-- **Index reference:** source column 12 defines only refractive index $n_i$ and Abbe number $ν_i$, without a spectral reference. The data retains its conventional d-line tracing reference as an explicit approximation. Figure 2/3 d/g curves support that context but do not independently define the prescription coordinates. All sixteen media remain numerically unchanged and are now explicitly Unmatched; catalog dispersion curves are disabled.
+- **Index reference:** source column 12 defines only refractive index $n_i$ and Abbe number $ν_i$, without naming a spectral line. The table is read as d-line (see Glass Identification and Selection). Figure 2/3 d/g curves support that context but do not independently define the prescription coordinates.
 - **Asphere convention:** spherical base plus even polynomial terms through $y^{10}$; standard conic constant $K=0$.
 - **Unavailable patent data:** no clear apertures, semi-diameters, finite-focus prescription, or partial-dispersion table is published for Example 1.
 
@@ -131,98 +131,98 @@ Retained constraints are explicit. Extending the actual S7 optical curve to the 
 
 ## Element-by-Element Analysis
 
-The $n_d/ν_d$ notation below describes the retained approximate d-line tracing convention; the original prints unnamed $n_i/ν_i$. Every medium is Unmatched. Previous named classes remain conditional comparisons, with no active catalog curve or historical supplier, melt or chemistry identification. Standalone focal lengths below are thick-lens focal lengths in air. For members of cemented assemblies, they do not describe the in-situ component power; the cemented net is stated separately.
+The original prints $n_i/ν_i$ without naming a spectral line; the $n_d/\nu_d$ notation below uses the d-line reading described under Glass Identification and Selection. The catalog curves are spectral proxies and identify no historical supplier, melt or chemistry. Standalone focal lengths below are thick-lens focal lengths in air. For members of cemented assemblies, they do not describe the in-situ component power; the cemented net is stated separately.
 
 ### C1 — L1 + L2, weak positive cemented front component
 
-**L1:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -124.444653$ mm. Negative meniscus, concave toward the image.
+**L1:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -124.444653$ mm. Negative meniscus, concave toward the image.
 
-**L2:** $n_d = 1.69680$, $\nu_d = 55.5$. Glass: Unmatched (prior S-LAL14 / OHARA comparison conditional). $f = +86.820609$ mm. Positive meniscus, convex toward the object.
+**L2:** $n_d = 1.69680$, $\nu_d = 55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +86.820609$ mm. Positive meniscus, convex toward the object.
 
 The cemented pair has EFL +300.248201 mm. It is therefore a weak positive component despite the strongly negative standalone L1. This illustrates why isolated element powers cannot be algebraically substituted for the in-situ behavior of a cemented pair.
 
 ### L3 — positive meniscus
 
-**L3:** $n_d = 1.71300$, $\nu_d = 53.8$. Glass: Unmatched (prior S-LAL8 / OHARA comparison conditional). $f = +103.354992$ mm.
+**L3:** $n_d = 1.71300$, $\nu_d = 53.8$. Glass: S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +103.354992$ mm.
 
 L3 is air-spaced from C1 and completes positive unit I, whose net EFL is +78.301204 mm.
 
 ### L4 — negative meniscus
 
-**L4:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -20.186862$ mm.
+**L4:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -20.186862$ mm.
 
 L4 supplies the strongest individual negative power in unit II and begins the inner-focus variator.
 
 ### L5 — biconcave negative
 
-**L5:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: Unmatched (prior S-LAH65V / OHARA comparison conditional). $f = -36.774802$ mm.
+**L5:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -36.774802$ mm.
 
-The retained Abbe coordinate is 46.6. A catalog family name is not evidence of the source glass chemistry.
+The printed Abbe number is 46.6. A catalog family name is not evidence of the source glass chemistry.
 
 ### L6 — biconvex positive
 
-**L6:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = +20.119536$ mm.
+**L6:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +20.119536$ mm.
 
 L6 is the positive member embedded within the otherwise negative unit II. Its high index permits substantial positive power in a short axial thickness.
 
 ### L7 — biconcave negative
 
-**L7:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -28.972898$ mm.
+**L7:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -28.972898$ mm.
 
 L7 closes unit II. The complete four-element unit has EFL −15.491985 mm and moves toward the object for close focus.
 
 ### C2 — L8 + L9, positive cemented unit III
 
-**L8:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -47.413921$ mm. Negative meniscus.
+**L8:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -47.413921$ mm. Negative meniscus.
 
-**L9:** $n_d = 1.60311$, $\nu_d = 60.7$. Glass: Unmatched (prior S-BSM14 / OHARA comparison conditional). $f = +19.339618$ mm. Biconvex positive.
+**L9:** $n_d = 1.60311$, $\nu_d = 60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +19.339618$ mm. Biconvex positive.
 
 The cemented net is +32.533306 mm. Unit III shares its zoom displacement with unit VI.
 
 ### C3 — L10 + L11, weak positive cemented unit IV
 
-**L10:** $n_d = 1.51742$, $\nu_d = 52.4$. Glass: Unmatched (prior S-NSL36 / OHARA comparison conditional). $f = +28.004510$ mm. Biconvex positive.
+**L10:** $n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +28.004510$ mm. Biconvex positive.
 
-**L11:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: Unmatched (prior S-LAH55V / OHARA comparison conditional). $f = -33.346608$ mm. Biconcave negative.
+**L11:** $n_d = 1.83481$, $\nu_d = 42.7$. Glass: S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -33.346608$ mm. Biconcave negative.
 
 The cemented net is only +139.775614 mm. The stop follows the same zoom locus as this weak positive relay.
 
 ### C4 — L12 + L13, negative image-stabilizing unit V
 
-**L12:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: Unmatched (prior S-TIH6 / OHARA comparison conditional). $f = +25.842999$ mm. Positive meniscus, convex toward the image.
+**L12:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +25.842999$ mm. Positive meniscus, convex toward the image.
 
-**L13:** $n_d = 1.70154$, $\nu_d = 41.2$. Glass: Unmatched (prior S-BAH27 / OHARA comparison conditional). $f = -16.565005$ mm. Biconcave negative.
+**L13:** $n_d = 1.70154$, $\nu_d = 41.2$. Glass: S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -16.565005$ mm. Biconcave negative.
 
 The cemented net is −43.411851 mm. The complete doublet, rather than either member individually, moves perpendicular to the optical axis for stabilization.
 
 ### L14 — biconvex positive
 
-**L14:** $n_d = 1.72342$, $\nu_d = 38.0$. Glass: Unmatched (prior S-BAH28 / OHARA comparison conditional). $f = +76.152917$ mm.
+**L14:** $n_d = 1.72342$, $\nu_d = 38.0$. Glass: S-BAH28 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +76.152917$ mm.
 
 L14 begins positive rear unit VI and is air-spaced from L15.
 
 ### L15 — biconvex positive with rear-surface asphere
 
-**L15:** $n_d = 1.58313$, $\nu_d = 59.4$. Glass: Unmatched (prior L-BAL42 / OHARA comparison conditional). $f = +30.118835$ mm.
+**L15:** $n_d = 1.58313$, $\nu_d = 59.4$. Glass: L-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = +30.118835$ mm.
 
-L15 supplies the principal positive power in the rear triplet. Rear surface r27 is the sole source asphere. The earlier L-BAL42/S-BAL42 comparison assumes d-line coordinates and remains conditional; neither a catalog match nor the production GMo description establishes this patent medium, historical melt, chemistry or manufacturing route.
+L15 supplies the principal positive power in the rear triplet. Rear surface r27 is the sole source asphere. Neither the L-BAL42 catalog match nor the production GMo description establishes this patent medium, historical melt, chemistry or manufacturing route.
 
 ### L16 — negative meniscus
 
-**L16:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: Unmatched (prior S-TIH53 / OHARA comparison conditional). $f = -34.559468$ mm. Negative meniscus, concave toward the object.
+**L16:** $n_d = 1.84666$, $\nu_d = 23.8$. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). $f = -34.559468$ mm. Negative meniscus, concave toward the object.
 
 L16 is the terminal element. L14–L16 combine to a positive rear-unit EFL of +46.717520 mm.
 
 ## Glass Identification and Selection
 
-The source publishes sixteen $n_i/ν_i$ pairs in columns 12–13, with no specified index reference and no individual C/F/g indices, relative partial dispersion or APD evidence. All sixteen pairs are preserved. All sixteen media are explicitly Unmatched with `indexReferenceNote`; sixteen previously resolved catalog curves are disabled. No per-lens C/F/g or partial overrides were present to remove. The prescription has no separately specified cement, hybrid/resin layer, filter or camera-side plate.
+The source publishes sixteen $n_i/ν_i$ pairs in columns 12–13 and no individual C/F/g indices, relative partial dispersion or APD evidence. The patent names no spectral line. 16 of 16 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 16 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. All sixteen pairs are preserved, and no per-lens C/F/g or partial overrides are stored. The prescription has no separately specified cement, hybrid/resin layer, filter or camera-side plate.
 
-The old OHARA comparisons below are retained as conditional historical comparisons only: their numbers presume a d-line interpretation that the source does not explicitly establish. They are not current resolved glass labels or spectral evidence. Catalog class, supplier, chemistry and manufacturing method remain unresolved. The d/g aberration plots are contextual evidence rather than a table of source line indices.
+The table below pairs each printed coordinate with the catalog curve used as its spectral proxy. The curves are not glass labels from the source and are not source spectral evidence; catalog class, supplier, chemistry and manufacturing method stay unspecified. The d/g aberration plots are contextual evidence rather than a table of source line indices.
 
-Conditional residuals are catalog d-line values minus the unnamed source coordinates, and assume that conventional reference solely for comparison.
+Residuals are catalog d-line values minus the printed coordinates.
 
-| Source $n_i/ν_i$ | Prior conditional OHARA comparison | Catalog $n_d/\nu_d$ | Residual $\Delta n_d/\Delta\nu_d$ | Elements        |
-| ---------------: | ---------------------------------- | ------------------: | --------------------------------: | --------------- |
+| Printed $n_d/\nu_d$ | Catalog curve (spectral proxy) | Catalog $n_d/\nu_d$ | Residual $\Delta n_d/\Delta\nu_d$ | Elements        |
+| ------------------: | ------------------------------ | ------------------: | --------------------------------: | --------------- |
 |   1.84666 / 23.8 | S-TIH53                            |     1.84666 / 23.78 |                   0.00000 / −0.02 | L1, L6, L8, L16 |
 |   1.69680 / 55.5 | S-LAL14                            |     1.69680 / 55.53 |                   0.00000 / +0.03 | L2              |
 |   1.71300 / 53.8 | S-LAL8                             |     1.71300 / 53.87 |                   0.00000 / +0.07 | L3              |
@@ -235,7 +235,7 @@ Conditional residuals are catalog d-line values minus the unnamed source coordin
 |   1.72342 / 38.0 | S-BAH28                            |     1.72342 / 37.95 |                   0.00000 / −0.05 | L14             |
 |   1.58313 / 59.4 | L-BAL42                            |     1.58313 / 59.38 |                   0.00000 / −0.02 | L15             |
 
-The retained Abbe coordinates span 23.8–60.7; the original does not identify ED/UD/fluorite chemistry or anomalous partial dispersion. Coordinate-based class comparisons cannot prove composition or an apochromatic production claim. The default d-line model permits approximate tracing; it does not supply measured source spectra.
+The printed Abbe numbers span 23.8–60.7; the original does not identify ED/UD/fluorite chemistry or anomalous partial dispersion. Coordinate-based curve matches cannot prove composition or an apochromatic production claim. The catalog curves are spectral proxies; they do not supply measured source spectra.
 
 ## Focus Mechanism
 
@@ -277,7 +277,7 @@ Compared with the standard conic form, the square-root term corresponds to $K=0$
 
 At the reviewed inferred 15.5 mm renderer semi-diameter, the spherical base sag is −5.690187 mm and the full aspherical sag is −4.832202 mm. The polynomial departure is therefore +0.857985 mm in the imageward coordinate: the rim is shallower than the spherical base. The evaluation height is explicitly tied to the validated data-file semi-diameter, not an assumed arbitrary height.
 
-Canon's earlier production correlation identifies a molded component. The patent only specifies its aspheric shape and unnamed optical coordinates. The former L-BAL42 label is now a disabled conditional comparison; it cannot establish a molding route or chemistry for this numerical example.
+Canon's earlier production correlation identifies a molded component. The patent only specifies its aspheric shape and unnamed optical coordinates. The L-BAL42 catalog curve is a spectral proxy; it cannot establish a molding route or chemistry for this numerical example.
 
 ## Image Stabilization
 

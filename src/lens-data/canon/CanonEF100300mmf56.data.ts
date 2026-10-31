@@ -40,10 +40,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ 14.7536/14.7499/14.7485 mm; nominalFno=5.6 is authoritative. The patent    ║
  * ║ gives no iris-motion law.                                                  ║
  * ║                                                                              ║
- * ║ No scale is applied (s = 1.0). The d-line index reference is an inference  ║
- * ║ from the glass coordinates; the patent does not explicitly name the line.  ║
- * ║ The source-reference uncertainty is now explicit on every element; no     ║
- * ║ catalog spectral curve is selected while the reference remains unverified. ║
+ * ║ No scale is applied (s = 1.0). The patent names no spectral line. 14 of 15   ║
+ * ║ printed pairs match catalog d-line coordinates and none match the e-line, so ║
+ * ║ the table is read as d-line. 14 media use catalog curves as spectral         ║
+ * ║ proxies; supplier, melt and chemistry stay unspecified. L3 is counted at     ║
+ * ║ its corrected index; L7 stays Unmatched.                                     ║
  * ║ Fig. 1 on source page 4 depicts the 100 mm state, not the 69 mm state.    ║
  * ║ Its resolved S20 shoulder uses rimExtensionSd=12.5 while sd stays 11.4;   ║
  * ║ S19 remains a curved bonded interface and extends from 12 to 12.5 mm.     ║
@@ -92,7 +93,7 @@ const LENS_DATA = {
         printed: 1.43749,
         applied: 1.48749,
         evidence: ["source-summary", "aberration-figure"],
-        note: "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data or resolving the source's unnamed spectral reference.",
+        note: "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data.",
       },
     ],
   },

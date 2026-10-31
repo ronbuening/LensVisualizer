@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed D7 = 0.01 and D9 = 0.00 remain 0.28 and 0 mm. Existing gapSagFrac = 1 is unchanged.
  * S7 still limits the stated wide-open beam: the required 6.5 mm raise overlaps the next element.
  * No finite-focus trajectory, plate, bonded land or inferred rim cut is introduced.
- * The source defines Ni/νi without a spectral reference. All five numeric pairs are retained with an
- * approximate d-line convention, no active catalog curves, and no supplier, melt or chemistry identification.
- * Twenty unsupported catalog-derived C/F/g/partial-dispersion overrides are removed.
+ * The patent names no spectral line. 5 of 5 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 5 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified. The patent prints no per-medium C/F/g or partial-dispersion data.
  */
 
 const LENS_DATA = {

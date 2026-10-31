@@ -37,12 +37,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ station; station nominalFNumber values carry the three published design    ║
  * ║ values.                                                                    ║
  * ║                                                                            ║
- * ║ Glass: source n/nu pairs have no explicit spectral-line anchor in paragraph
- * ║ 0047. All 17 media remain Unmatched with an indexReferenceNote; approximate
- * ║ d-line tracing retains the numbers while catalog curves stay disabled.
- * ║ No nC/nF/ng/dPgF is published. Production fluorite/Super UD statements
- * ║ do not identify these modeled media or their reference wavelength.
- * ║
+ * ║ Glass: the patent names no spectral line (paragraph 0047). 16 of 17        ║
+ * ║ printed pairs match catalog d-line coordinates and none match the e-line,  ║
+ * ║ so the table is read as d-line. 16 media use catalog curves as spectral    ║
+ * ║ proxies; supplier, melt and chemistry stay unspecified. E9 stays           ║
+ * ║ Unmatched. No nC/nF/ng/dPgF is published. Production fluorite/Super UD     ║
+ * ║ statements do not identify the supplier or melt of these modeled media.    ║
+ * ║                                                                            ║
  * ║ Semi-diameters: the patent does not tabulate clear apertures. SDs were     ║
  * ║ derived from coded marginal/chief-ray envelopes at all three zoom states  ║
  * ║ and at infinity/MFD, then constrained by Fig. 6 proportions, the 77 mm     ║
@@ -133,7 +134,7 @@ const LENS_DATA = {
       focalLengthMm: 155.615754,
       glass:
         "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
-      role: "Positive component of G1; source spectral line and production fluorite assignment remain unconfirmed.",
+      role: "Positive component of G1; the production fluorite assignment is an unconfirmed correlation.",
     },
     {
       id: 4,
@@ -212,7 +213,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 161.249705,
       glass: "Unmatched (1.62012/49.5 outside the exact d-line window; K-SSK9 is a near candidate)",
-      role: "Positive rear component of G3; source reference line is unspecified, so the former K-SSK9 curve is disabled.",
+      role: "Positive rear component of G3; its printed pair has no exact catalog match, so it keeps the printed index and Abbe number without a catalog curve.",
     },
     {
       id: 10,

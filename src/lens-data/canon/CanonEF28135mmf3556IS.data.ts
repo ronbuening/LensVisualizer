@@ -17,9 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * component and unit-II caps retain documented edge, slope and gap limits where literal
  * full-height restoration is infeasible. The 72 mm production filter is product context,
  * not an optical-rim ruler.
- * Source ni/vi have no specified spectral reference; d-line tracing remains approximate, with
- * every medium explicitly Unmatched and no catalog curve asserted. R/d, asphere, zoom cams
- * and inferred 0.5 m focus spacings are unchanged.
+ * The patent names no spectral line. 16 of 16 printed pairs match catalog d-line coordinates and none
+ * match the e-line, so the table is read as d-line. 16 media use catalog curves as spectral proxies;
+ * supplier, melt and chemistry stay unspecified.
  * Source targets: Numerical Example 1 heading and Figure 2(a/b/c) directly print f/3.60, f/4.36 and f/5.75.
  * These restore the paraxial/derived-iris rule; the patent supplies no physical iris-radius schedule.
  * See the audit for source and runtime limits.

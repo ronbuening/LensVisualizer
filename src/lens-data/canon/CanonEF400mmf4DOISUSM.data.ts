@@ -46,11 +46,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   The old 600-dpi view was upsampling; retained cap heights remain inferred and geometry-constrained.║
  * ║   They are not presented as patent-published dimensions.                                ║
  * ║                                                                                          ║
- * ║ GLASS DATA                                                                                ║
- * ║ The bulk table defines ni/νi without a wavelength identity. All 16 media remain Unmatched,          ║
- * ║ with approximate default d-line tracing and qualified coordinate candidates, never chemistry proof.║
- * ║ No per-lens C/F/g or partial-dispersion data are published. The two UV-layer nd/vd pairs are          ║
- * ║ separately preserved in analysis as source microstructure data, not invented macro resin elements.  ║
+ * ║ GLASS DATA                                                                               ║
+ * ║ The patent names no spectral line. 16 of 16 printed pairs, including rear plate F,       ║
+ * ║ match catalog d-line coordinates and none match the e-line, so the table is read as      ║
+ * ║ d-line. 16 media use catalog curves as spectral proxies; supplier, melt and chemistry    ║
+ * ║ stay unspecified. No per-lens C/F/g or partial-dispersion data are published. The two    ║
+ * ║ UV-layer nd/vd pairs are separately preserved in analysis as source microstructure       ║
+ * ║ data, not invented macro resin elements.                                                 ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════╝
  */
 

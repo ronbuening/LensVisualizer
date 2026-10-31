@@ -19,10 +19,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  it is not a literal complete transcription of the damaged line.         ║
  * ║                                                                            ║
  * ║  Original-PDF review 2026-10-30: Numerical Example 2, PDF page 6,     ║
- * ║  and Fig. 4, PDF page 7. Source N/ν has no stated d/e reference; all   ║
- * ║  media remain Unmatched with an explicit approximate tracing note.   ║
- * ║  Catalog C/F/g copies removed. S2/S4/S6/S8 retain their optical caps   ║
- * ║  and gain the resolved rear shoulders via rimExtensionSd.            ║
+ * ║  and Fig. 4, PDF page 7. The patent names no spectral line. 14 of 14       ║
+ * ║  printed pairs match catalog d-line coordinates and none match the         ║
+ * ║  e-line, so the table is read as d-line. 14 media use catalog curves as    ║
+ * ║  spectral proxies; supplier, melt and chemistry stay unspecified. No       ║
+ * ║  catalog C/F/g copies are authored. S2/S4/S6/S8 retain their optical caps  ║
+ * ║  and gain the resolved rear shoulders via rimExtensionSd.                  ║
  * ║                                                                            ║
  * ║  Semi-diameters are not patent-listed. These are renderer estimates      ║
  * ║  proportioned against the Example 2 section drawing, then checked for    ║

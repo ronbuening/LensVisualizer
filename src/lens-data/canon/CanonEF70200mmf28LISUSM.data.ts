@@ -9,9 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * stop designation and flat section end; the auxiliary family PDF is unavailable.
  * D41 is an inferred Gaussian infinity image plane, not a published spacing.
  * Internal focus and decentered IS are not reconstructed. Focus endpoints match.
- * All 21 bare N/ν pairs have unspecified source reference wavelength. Unmatched
- * labels retain approximate coordinate candidates; default d-line tracing is
- * approximate and does not identify chemistry, supplier or a production melt.
+ * The patent names no spectral line for its 21 bare N/ν pairs. 21 of 21 printed pairs
+ * match catalog d-line coordinates and none match the e-line, so the table is read as
+ * d-line. 21 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified.
  * Clear SDs are constrained modeling apertures, not printed source dimensions.
  * Existing gapSagFrac=0.95 remains unchanged. Equal-height negative-group trial
  * overlaps the literal D12 air gap; no inferred cuts or interface lands are added.

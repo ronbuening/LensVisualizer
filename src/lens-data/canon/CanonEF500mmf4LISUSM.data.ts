@@ -10,10 +10,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Existing powered R/d, L2 focus keyframes, stop/aperture rule and pre-existing gapSagFrac 0.96 are unchanged.
  * Source plates are physical: FL t=2.20 mm, D29=30.00 mm and trailing D31+D32=70.28 mm; inactive FC is omitted.
  *
- * The source defines Ni/nu-i without a material spectral reference (PDF p. 78 col. 32). All 17 literal
- * pairs remain unresolved, with no active catalog curve, APD claim or per-lens spectral override.
- * Approximate d-reference tracing and retained product UD/fluorite associations do not identify source
- * wavelength, historical chemistry, supplier or melt. The original N/nu values are never replaced by catalog data.
+ * The patent names no spectral line (PDF p. 78 col. 32). 17 of 17 printed pairs, including HG and FL, match catalog
+ * d-line coordinates and none match the e-line, so the table is read as d-line. 17 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified. No APD claim or per-lens spectral override is
+ * authored. Product UD/fluorite associations remain correlations and do not identify historical chemistry,
+ * supplier or melt. The original N/nu values are never replaced by catalog data.
  *
  * Source f=490.56 mm differs from literal EFL=491.356789 mm; the printed 102.48 mm physical R29-to-image
  * path is 0.670443 mm short of derived infinity focus. Table 3 condition (21) also differs slightly.
@@ -127,7 +128,7 @@ const LENS_DATA = {
       focalLengthMm: 217.8146,
       glass:
         "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
-      role: "Strong low-dispersion positive member; with a qualified association to the production fluorite count; source wavelength and historical chemistry remain unresolved.",
+      role: "Strong low-dispersion positive member; with a qualified association to the production fluorite count; supplier, melt and chemistry remain unspecified.",
     },
     {
       id: 6,

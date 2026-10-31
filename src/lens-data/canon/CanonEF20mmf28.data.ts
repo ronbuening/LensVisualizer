@@ -38,8 +38,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  ORIGINAL-PDF REVIEW — 2026-10-30:                                ║
  * ║    Fig. 2 resolves air-facing shoulders on S2, S4 and S8.          ║
  * ║    S4 cap follows Fig. 2; source R/d are preserved.              ║
- * ║    Removed 33 catalog C/F/g copies; 11 source media have an         ║
- * ║    unspecified wavelength reference and remain Unmatched.          ║
+ * ║                                                                    ║
+ * ║  NOTE ON SPECTRAL LINE:                                            ║
+ * ║    The patent names no spectral line. 11 of 11 printed pairs       ║
+ * ║    match catalog d-line coordinates and none match the e-line,     ║
+ * ║    so the table is read as d-line. 11 media use catalog curves     ║
+ * ║    as spectral proxies; supplier, melt and chemistry stay          ║
+ * ║    unspecified.                                                    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent omits clear apertures. SDs are inferred from the     ║

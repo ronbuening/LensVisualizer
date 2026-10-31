@@ -64,84 +64,86 @@ The stored total-length-to-EFL ratios are 4.15628, 2.28329, and 1.59864. All exc
 
 ## Element-by-Element Analysis
 
-The original defines only $n_i/ν_i$ without a spectral reference (column 6). The `nd/νd` notation below is the retained approximate d-line tracing convention; all ten media are explicitly Unmatched. Earlier named OHARA comparisons are conditional and no catalog dispersion curve is active. Each focal length below is the independently calculated thick-element focal length **alone in air**. It is not the element's in-situ contribution within the complete zoom.
+The original defines only $n_i/ν_i$ without naming a spectral line (column 6). The printed values are read as $n_d$ and $\nu_d$, as set out under Glass Identification and Selection. Each focal length below is the independently calculated thick-element focal length **alone in air**. It is not the element's in-situ contribution within the complete zoom.
 
 ### L11 — Positive Meniscus
 
-`nd = 1.51633, νd = 64.1. Glass: Unmatched (prior S-BSL7 / OHARA comparison conditional). Standalone f = +273.983442 mm.`
+Printed $n_d$ = 1.51633, $\nu_d$ = 64.1. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +273.983442 mm.
 
 L11 is a weak positive front meniscus. Its modest standalone power shapes the entering bundle and supports the distortion-control role that the patent assigns to the first positive lens of L1.
 
 ### L12 — Negative Meniscus
 
-`nd = 1.70154, νd = 41.2. Glass: Unmatched (prior S-BAH27 / OHARA comparison conditional). Standalone f = −36.355632 mm.`
+Printed $n_d$ = 1.70154, $\nu_d$ = 41.2. Glass: S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −36.355632 mm.
 
 L12 is the strongest negative member of L1 by standalone focal length. Its strongly concave image-side surface supplies a large part of the first unit's negative power in a compact axial space.
 
 ### L13 — Biconcave Negative
 
-`nd = 1.62299, νd = 58.2. Glass: Unmatched (prior S-BSM15 / OHARA comparison conditional). Standalone f = −47.243800 mm.`
+Printed $n_d$ = 1.62299, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −47.243800 mm.
 
 L13 shares the negative work of L1 across two surfaces. Its higher Abbe number than L12 and L14 broadens the first unit's ordinary chromatic balancing freedom without establishing an ED or apochromatic function.
 
 ### L14 — Positive Meniscus
 
-`nd = 1.76182, νd = 26.5. Glass: Unmatched (prior S-TIH14 / OHARA comparison conditional). Standalone f = +50.374322 mm.`
+Printed $n_d$ = 1.76182, $\nu_d$ = 26.5. Glass: S-TIH14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +50.374322 mm.
 
 L14 partially cancels the two negative elements while preserving L1's net-negative sign. Its high-index, high-dispersion class gives the four-element unit additional control over axial and chromatic balance during zooming and front-unit focus.
 
 ### L21 — Biconvex Positive
 
-`nd = 1.63854, νd = 55.4. Glass: Unmatched (prior S-BSM18 / OHARA comparison conditional). Standalone f = +37.877067 mm.`
+Printed $n_d$ = 1.63854, $\nu_d$ = 55.4. Glass: S-BSM18 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +37.877067 mm.
 
 L21 is the leading positive member of L2 and lies immediately before the aperture-stop gap. It provides strong convergence at the entrance of the principal variator and materially influences entrance-pupil imaging.
 
 ### L22 — Positive Meniscus
 
-`nd = 1.66672, νd = 48.3. Glass: Unmatched (prior S-BAH11 / OHARA comparison conditional). Standalone f = +52.725250 mm.`
+Printed $n_d$ = 1.66672, $\nu_d$ = 48.3. Glass: S-BAH11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +52.725250 mm.
 
 L22 is the first refracting element behind the stop. It distributes the positive power of L2 and participates in the unit-level spherical-aberration variation described by the patent.
 
 ### L23 — Biconcave Negative
 
-`nd = 1.78472, νd = 25.7. Glass: Unmatched (prior S-TIH11 / OHARA comparison conditional). Standalone f = −19.029663 mm.`
+Printed $n_d$ = 1.78472, $\nu_d$ = 25.7. Glass: S-TIH11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −19.029663 mm.
 
 L23 is the strongest standalone element in the prescription. Its negative power counterbalances the three positive elements of L2, permitting the unit to remain strongly positive without concentrating all convergence in the surrounding surfaces.
 
 ### L24 — Biconvex Positive
 
-`nd = 1.58144, νd = 40.8. Glass: Unmatched (prior S-TIL25 / OHARA comparison conditional). Standalone f = +31.621733 mm.`
+Printed $n_d$ = 1.58144, $\nu_d$ = 40.8. Glass: S-TIL25 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +31.621733 mm.
 
 L24 restores positive power after L23 and controls the vergence delivered to the stationary rear unit. It completes the verified +32.286533 mm net focal length of L2.
 
 ### L31 — Biconcave Negative
 
-`nd = 1.63854, νd = 55.4. Glass: Unmatched (prior S-BSM18 / OHARA comparison conditional). Standalone f = −56.675582 mm.`
+Printed $n_d$ = 1.63854, $\nu_d$ = 55.4. Glass: S-BSM18 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −56.675582 mm.
 
 L31 supplies the negative component of the stationary rear unit. The patent assigns L3 to residual field-curvature correction after the first two units produce opposing field tendencies.
 
 ### L32 — Positive Meniscus
 
-`nd = 1.66672, νd = 48.3. Glass: Unmatched (prior S-BAH11 / OHARA comparison conditional). Standalone f = +67.550745 mm.`
+Printed $n_d$ = 1.66672, $\nu_d$ = 48.3. Glass: S-BAH11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +67.550745 mm.
 
 L32 is separated from L31 by the patent-published 1.94 mm air gap. The pair is not a cemented doublet; the separation is part of the patent's strategy for shifting the unit principal point and retaining a weak net power.
 
 ## Glass Identification and Selection
 
-Column 6 / PDF page 9 defines ni and νi as refractive index and Abbe number, without naming the reference wavelength. Column 2 names d/g in the aberration plots only. All ten original numerical pairs remain unchanged; the default d-line tracing reference is explicitly approximate via `indexReferenceNote`. All ten media are Unmatched and ten previously resolved catalog curves are disabled. This qualifies the missing source reference rather than claiming the conventional d inference is wrong.
+Column 6 / PDF page 9 defines ni and νi as refractive index and Abbe number, without naming the reference wavelength. Column 2 names d/g in the aberration plots only. All ten original numerical pairs remain unchanged.
 
-| Source index / Abbe | Prior conditional OHARA comparison | Elements  | Disposition |
-| ------------------- | ---------------------------------- | --------- | ----------- |
-| 1.51633 / 64.1      | S-BSL7                             | L11       | Unmatched   |
-| 1.70154 / 41.2      | S-BAH27                            | L12       | Unmatched   |
-| 1.62299 / 58.2      | S-BSM15                            | L13       | Unmatched   |
-| 1.76182 / 26.5      | S-TIH14                            | L14       | Unmatched   |
-| 1.63854 / 55.4      | S-BSM18                            | L21 / L31 | Unmatched   |
-| 1.66672 / 48.3      | S-BAH11                            | L22 / L32 | Unmatched   |
-| 1.78472 / 25.7      | S-TIH11                            | L23       | Unmatched   |
-| 1.58144 / 40.8      | S-TIL25                            | L24       | Unmatched   |
+The patent names no spectral line. 10 of 10 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 10 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-Thirty per-lens C/F/g indices and ten per-lens ΔPgF values were catalog-derived and are removed. The original publishes none of those values, no relative partial-dispersion table and no APD evidence. No genuine published spectral value is removed. A numerical catalog comparison cannot prove historical supplier, melt, chemistry or manufacturing route; the previous table of catalog spectra is no longer presented as source glass content. Production lead-free-glass claims are separate historical product context and do not identify the patent media.
+| Printed $n_d$ / $\nu_d$ | Elements  | Glass                                                                                                         |
+| ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
+| 1.51633 / 64.1          | L11       | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| 1.70154 / 41.2          | L12       | S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.62299 / 58.2          | L13       | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.76182 / 26.5          | L14       | S-TIH14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.63854 / 55.4          | L21 / L31 | S-BSM18 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.66672 / 48.3          | L22 / L32 | S-BAH11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.78472 / 25.7          | L23       | S-TIH11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| 1.58144 / 40.8          | L24       | S-TIL25 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+
+The catalog curves supply the C/F/g indices and partial dispersions; the original publishes none of those values, no relative partial-dispersion table and no APD evidence. A numerical catalog match cannot prove historical supplier, melt, chemistry or manufacturing route. Production lead-free-glass claims are separate historical product context and do not identify the patent media.
 
 ## Focus Mechanism
 

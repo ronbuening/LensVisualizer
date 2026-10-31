@@ -29,7 +29,7 @@ The named production lens is the **CANON EF 28-90mm f/4-5.6 II USM**, introduced
 
 The product aperture marks and patent targets remain separate. The original prescription headline on PDF p. 15 prints f/3.83–5.88, while Fig. 22 on PDF p. 29 prints wide f/3.84. Fig. 23 (PDF p. 29) prints intermediate f/4.45 and Fig. 24 (PDF p. 30) tele f/5.88. The 2026-10-30 review replaces the former retail live targets 4/4.451141943/5.6 with 3.83/4.45/5.88 using the prescription headline at wide. The 3.83/3.84 discrepancy is recorded as unresolved; neither value is claimed to identify a physical iris schedule. Catalog design aperture is now the declared source-headline 3.83. The stop position/rule and focus/zoom trajectories remain unchanged.
 
-All index-dependent calculations below use the retained source index at an explicitly qualified approximate d-line tracing reference. Paragraph 0035 never defines the material spectral line. Source Abbe values are now literal printed values rather than the prior catalog decimals; see the glass section.
+All index-dependent calculations below use the retained source index, read as a d-line value. Paragraph 0035 never defines the material spectral line. Source Abbe values are the literal printed values rather than catalog decimals; see the glass section.
 
 The product has no documented optical stabilization in the cited Canon record, and the patent prescription contains no stabilization group. No image-stabilization function is assigned to any element.
 
@@ -92,13 +92,12 @@ Native Fig. 21 supports sixteen inferred cap revisions and a resolved S2 outer s
 
 A 441-control × three-field × 97-pupil probe samples 128,331 rays using 380/focus mm positive object-to-image distances at finite focus and the shared field/chief solver at infinity. Every axial bundle is 97/97 clear and all chiefs clear, with no seed or aiming failures. Nine full-field marginal noBracket entries occur after S6 at tele, focus 0.30–0.70. Independent unrestricted-sphere intersections meet S7 at heights 14.035596–14.042157 mm, outside its 10 mm cap. None is an unexplained inside-cap failure. Other off-axis clipping remains sampled vignetting, not evidence of production illumination.
 
-The geometry-identical dense copy reproduces surface positions and stop radii with zero difference. The 65-position infinity census retains −4.720239 mm maximum defocus at zoom t = 0.78125: computed BF 60.429677 versus current image gap 65.149916 mm, actual EFL 64.831256 mm. Only the three published infinity stations are quantitative anchors. The inferred 380 mm close anchors and interpolated focus/cam are not a source finite-spacing table; the positive-object probe tests rim passage and does not certify intermediate focus accuracy. All runtime conclusions retain the material-reference uncertainty.
-
+The geometry-identical dense copy reproduces surface positions and stop radii with zero difference. The 65-position infinity census retains −4.720239 mm maximum defocus at zoom t = 0.78125: computed BF 60.429677 versus current image gap 65.149916 mm, actual EFL 64.831256 mm. Only the three published infinity stations are quantitative anchors. The inferred 380 mm close anchors and interpolated focus/cam are not a source finite-spacing table; the positive-object probe tests rim passage and does not certify intermediate focus accuracy.
 ## Element-by-Element Analysis
 
 ### E1 — Negative Meniscus, Convex to Object
 
-**n (source) = 1.622992, ν (source) = 58.2. Glass: Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified). Standalone f = −59.434955 mm.**
+**Printed $n_d$ = 1.622992, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −59.434955 mm.**
 
 **Source fact.** The patent places an object-convex negative meniscus first and states that this form eases wide-end distortion and coma while helping to limit front-element diameter (¶0021–0022). E1 is the first of two negative elements used to concentrate the front group's negative power.
 
@@ -106,31 +105,31 @@ The geometry-identical dense copy reproduces surface positions and stop radii wi
 
 ### E2 — Biconcave Negative
 
-**n (source) = 1.622992, ν (source) = 58.2. Glass: Unmatched (source n=1.622992, ν=58.2; spectral reference unspecified). Standalone f = −46.693390 mm.**
+**Printed $n_d$ = 1.622992, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −46.693390 mm.**
 
 **Source fact.** The patent's preferred Group 1 form uses a biconcave second negative lens (¶0022). Together, E1 and E2 provide the concentrated negative lead used to keep the front group compact.
 
-**Author interpretation.** E2 is the stronger of the two standalone negative elements in G1. Its placement behind E1 makes it the principal negative-power contributor within the front group, while their repeated literal source coordinate keeps the two-element negative section in the same unresolved dispersion class.
+**Author interpretation.** E2 is the stronger of the two standalone negative elements in G1. Its placement behind E1 makes it the principal negative-power contributor within the front group, while their repeated literal source coordinate keeps the two-element negative section in the same dispersion class.
 
 ### E3 — Positive Meniscus, Convex to Object
 
-**n (source) = 1.846660, ν (source) = 23.8. Glass: Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified). Standalone f = +76.592150 mm.**
+**Printed $n_d$ = 1.846660, $\nu_d$ = 23.8. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +76.592150 mm.**
 
 **Source fact.** The patent places a positive lens behind the two negative members to assist tele-end spherical-aberration correction (¶0021–0022). E3 completes G1 without reversing its net negative power.
 
-The prior S-TIH53 candidate was catalog-derived and its reference-line basis remains unverified. The source low Abbe number places this medium in a flint-like dispersion class. No isolated chromatic role is claimed solely from that classification; the element operates as part of the full three-element moving group.
+The printed pair matches the S-TIH53 catalog row, which serves as the spectral proxy. The source low Abbe number places this medium in a flint-like dispersion class. No isolated chromatic role is claimed solely from that classification; the element operates as part of the full three-element moving group.
 
 ### E4 — Biconvex Positive
 
-**n (source) = 1.701536, ν (source) = 41.2. Glass: Unmatched (source n=1.701536, ν=41.2; spectral reference unspecified). Standalone f = +60.213140 mm.**
+**Printed $n_d$ = 1.701536, $\nu_d$ = 41.2. Glass: S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +60.213140 mm.**
 
 E4 is the air-spaced positive singlet at the front of G2. The patent identifies G2 as the main variator and the system's most important positive-power group (¶0023). E4 supplies positive power ahead of the cemented E5-E6 subassembly while keeping G2 to three physical elements.
 
-The source ν = 41.2 falls on the flint side of the usual crown/flint division. Its optical role follows placement and group power; no historical barium chemistry or supplier is identified.
+The printed $\nu_d$ = 41.2 falls on the flint side of the usual crown/flint division. Its optical role follows placement and group power; no historical barium chemistry or supplier is identified.
 
 ### E5 — Negative Meniscus, Cemented Member J2
 
-**n (source) = 1.846660, ν (source) = 23.8. Glass: Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified). Standalone f = −41.769774 mm.**
+**Printed $n_d$ = 1.846660, $\nu_d$ = 23.8. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −41.769774 mm.**
 
 E5 is the negative, high-dispersion member of the G2 cemented doublet. Surface 10 is the shared interface and carries the downstream E6 medium in the data model.
 
@@ -138,7 +137,7 @@ The quoted focal length is E5's standalone thick-lens value in air. It does not 
 
 ### E6 — Biconvex Positive, Cemented Member J2
 
-**n (source) = 1.603112, ν (source) = 60.6. Glass: Unmatched (source n=1.603112, ν=60.6; spectral reference unspecified). Standalone f = +22.061658 mm.**
+**Printed $n_d$ = 1.603112, $\nu_d$ = 60.6. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +22.061658 mm.**
 
 E6 is the positive crown member of J2. The complete E5-E6 cemented assembly has a computed net EFL of **+47.430680425 mm**, not the algebraic combination of the two standalone air values.
 
@@ -152,7 +151,7 @@ The source condition table prints 36.860, whose extra precision cannot be recove
 
 ### E7 — Biconcave Negative, Cemented Member J3
 
-**n (source) = 1.688931, ν (source) = 31.1. Glass: Unmatched (source n=1.688931, ν=31.1; spectral reference unspecified). Standalone f = −16.651422 mm.**
+**Printed $n_d$ = 1.688931, $\nu_d$ = 31.1. Glass: S-TIM28 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = −16.651422 mm.**
 
 E7 is the strong negative member of the compact stop-coupled third group. It begins immediately 1.80 mm behind the stop and supplies the dominant negative power in J3.
 
@@ -160,7 +159,7 @@ The standalone focal length is not an in-situ group value. The cemented interfac
 
 ### E8 — Positive Meniscus, Cemented Member J3
 
-**n (source) = 1.846660, ν (source) = 23.8. Glass: Unmatched (source n=1.84666, ν=23.8; spectral reference unspecified). Standalone f = +23.954582 mm.**
+**Printed $n_d$ = 1.846660, $\nu_d$ = 23.8. Glass: S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +23.954582 mm.**
 
 E8 is the positive partner of J3. Despite its positive standalone power, the completed E7-E8 assembly remains negative, with computed EFL **−50.138684298 mm**.
 
@@ -180,15 +179,15 @@ The patent links these ranges to control of axial color, spherical aberration, a
 
 ### E9 — Negative Meniscus, Concave to Object, Rear Asphere
 
-**n (source) = 1.583060, ν (source) = 30.2. Glass: Unmatched (source plastic-asphere option; source n=1.58306, ν=30.2; spectral reference unspecified). Standalone f = −277.806212 mm.**
+**Printed $n_d$ = 1.583060, $\nu_d$ = 30.2. Glass: Unmatched (source plastic-asphere option; n=1.58306, ν=30.2; POLYCARB is a near candidate). Standalone f = −277.806212 mm.**
 
 E9 is a weak negative meniscus at the front of G4. Its rear surface, 17A, is the prescription's sole asphere. The patent states that an asphere in G4 assists wide-end field-curvature and distortion correction and tele-end spherical-aberration correction (¶0033). It further teaches a plastic aspherical lens as a manufacturing option (¶0034).
 
-The material reference wavelength and formulation are unresolved. The source teaches a plastic-asphere option, but its generic teaching and index/Abbe coordinate do not establish this example's chemistry or forming process. Canon's production diagram supports an aspherical component as correlation evidence; it does not identify the historical material.
+The material's formulation is unspecified. The source teaches a plastic-asphere option, but its generic teaching and index/Abbe coordinate do not establish this example's chemistry or forming process. The pair matches no catalog row within tolerance, so the medium stays Unmatched, with POLYCARB only a near candidate. Canon's production diagram supports an aspherical component as correlation evidence; it does not identify the historical material.
 
 ### E10 — Positive Meniscus, Concave to Object
 
-**n (source) = 1.516330, ν (source) = 64.1. Glass: Unmatched (source n=1.51633, ν=64.1; spectral reference unspecified). Standalone f = +66.761785 mm.**
+**Printed $n_d$ = 1.516330, $\nu_d$ = 64.1. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +66.761785 mm.**
 
 E10 is the final positive element and completes G4's computed net EFL of **+86.484587178 mm**. Its positive power dominates the weak negative E9, leaving the fourth group positive as required by the patent.
 
@@ -196,24 +195,26 @@ E10 is the final positive element and completes G4's computed net EFL of **+86.4
 
 ## Glass Identification and Selection
 
-The 2026-10-30 original-PDF review checked all ten modeled media against Numerical Example 6 on PDF p. 15. Paragraph 0035 on PDF p. 9 defines Ni/νi as refractive index and Abbe number without a spectral line. The d/g labels on the aberration figures name plotted wavelengths; they do not define the table coordinates. All ten entries now carry `Unmatched` and `indexReferenceNote`, retaining approximate d-line tracing without claiming historical d/e identity. All nine previously active catalog curves are disabled.
+All ten modeled media are taken from Numerical Example 6 on PDF p. 15. Paragraph 0035 on PDF p. 9 defines Ni/νi as refractive index and Abbe number without a spectral line. The d/g labels on the aberration figures name plotted wavelengths; they do not define the table coordinates.
 
-Nine Abbe entries are restored from catalog precision to the literal source: E1/E2 58.16→58.2; E3/E5/E8 23.78→23.8; E4 41.24→41.2; E6 60.64→60.6; E7 31.07→31.1; E10 64.14→64.1. E9 stays 30.2. Every refractive index is unchanged. All 36 per-lens nC/nF/ng/dPgF values were copied from catalog rows and are removed; the original prints no individual line indices, partial dispersion or APD evidence. Prior coordinate candidates do not verify reference wavelength, supplier, melt or chemistry. There is no bonded layer, source filter, rear plate or numerical cement medium.
+The patent names no spectral line. 9 of 10 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 9 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. The remaining medium, the E9 plastic asphere (1.583060 / 30.2), has no exact catalog match and stays Unmatched.
 
-| Medium | Source n | Source ν | Disposition                        |
-| ------ | -------: | -------: | ---------------------------------- |
-| E1     | 1.622992 |     58.2 | Unmatched; source line unspecified |
-| E2     | 1.622992 |     58.2 | Unmatched; source line unspecified |
-| E3     | 1.846660 |     23.8 | Unmatched; source line unspecified |
-| E4     | 1.701536 |     41.2 | Unmatched; source line unspecified |
-| E5     | 1.846660 |     23.8 | Unmatched; source line unspecified |
-| E6     | 1.603112 |     60.6 | Unmatched; source line unspecified |
-| E7     | 1.688931 |     31.1 | Unmatched; source line unspecified |
-| E8     | 1.846660 |     23.8 | Unmatched; source line unspecified |
-| E9     | 1.583060 |     30.2 | Unmatched; source line unspecified |
-| E10    | 1.516330 |     64.1 | Unmatched; source line unspecified |
+The Abbe values are the literal printed values, rounded to one decimal; catalog decimals are not substituted. The original prints no individual line indices, partial dispersion or APD evidence, so the catalog curves supply the C/F/g values. The coordinate match fixes the reference line only. There is no bonded layer, source filter, rear plate or numerical cement medium.
 
-Table 1 on PDF p. 17 prints ν2p−ν2n = 36.860 and ν3n−ν3p = 7.290. Literal Example 6 rows yield 36.8 and 7.3. The precision basis is not printed and is recorded as unresolved in `source.errata`; rounding is a possible explanation, not an established cause. Catalog decimals are not substituted to force agreement. The claimed broad ranges remain satisfied. E9 is unresolved; the source's plastic-asphere option does not identify a proprietary polymer formulation or historical manufacturing process.
+| Medium | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                         |
+| ------ | ------------: | --------------: | ------------------------------------------------------------------------------------------------------------- |
+| E1     |      1.622992 |            58.2 | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E2     |      1.622992 |            58.2 | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E3     |      1.846660 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E4     |      1.701536 |            41.2 | S-BAH27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E5     |      1.846660 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E6     |      1.603112 |            60.6 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E7     |      1.688931 |            31.1 | S-TIM28 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E8     |      1.846660 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| E9     |      1.583060 |            30.2 | Unmatched (source plastic-asphere option; n=1.58306, ν=30.2; POLYCARB is a near candidate)                    |
+| E10    |      1.516330 |            64.1 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+
+Table 1 on PDF p. 17 prints ν2p−ν2n = 36.860 and ν3n−ν3p = 7.290. Literal Example 6 rows yield 36.8 and 7.3. The precision basis is not printed and is recorded as unresolved in `source.errata`; rounding is a possible explanation, not an established cause. Catalog decimals are not substituted to force agreement. The claimed broad ranges remain satisfied. E9's formulation is unspecified; the source's plastic-asphere option does not identify a proprietary polymer formulation or historical manufacturing process.
 
 ## Focus Mechanism
 
@@ -259,7 +260,7 @@ No scale factor was applied, so these coefficients are the normalized patent val
 
 **Computed result.** At the adopted 10.000 mm semi-diameter, the polynomial departure from the K = 0 base sphere is **+0.231015600 mm**, and the actual aspheric rim-slope angle is **3.081691°**. Under the patent's +X convention, the positive departure places the aspheric profile imageward of the base sphere at that height. The patent states the intended correction direction—stronger negative refractive effect toward the periphery—but the departure value alone is not treated as an independent performance measurement.
 
-**Manufacturing provenance.** The patent explicitly teaches a plastic aspherical lens in G4 (¶0034), and the prescription index/Abbe pair remains unresolved, with no historical formulation or forming process established. Canon's product page identifies an aspherical lens but does not state whether the production component was molded plastic, a composite replica, or another fabrication form. The analysis therefore does not infer a more specific process.
+**Manufacturing provenance.** The patent explicitly teaches a plastic aspherical lens in G4 (¶0034). The prescription index/Abbe pair matches no catalog row, and no historical formulation or forming process is established. Canon's product page identifies an aspherical lens but does not state whether the production component was molded plastic, a composite replica, or another fabrication form. The analysis therefore does not infer a more specific process.
 
 ## Patent Conditional Expressions
 
@@ -308,7 +309,7 @@ The source's inactive surface-20 flare cutter remains omitted. Raw D19 = 0/13.06
 
 ## Source-Stated Catalog Focal Length — 2026-10-30
 
-The catalog design focal length copies the source-stated 28.9 / 86.89 mm endpoints from PDF p. 15 (Numerical Example 6 heading and variable-spacing focal-length row). Computed 28.904387667 / 86.899293947 mm EFLs remain approximate d-reference model diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+The catalog design focal length copies the source-stated 28.9 / 86.89 mm endpoints from PDF p. 15 (Numerical Example 6 heading and variable-spacing focal-length row). Computed 28.904387667 / 86.899293947 mm EFLs remain model diagnostics. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
 
 ## Sources and References
 

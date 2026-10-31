@@ -41,25 +41,25 @@ The patent calls the design a telephoto type. Under the project's strict geometr
 
 ### L1 — Biconvex Positive
 
-n (source) = 1.62299, ν (source) = 58.2. Glass: Unmatched; conditional class comparison: 623582 class (catalog vendor unresolved). f = +79.823006 mm.
+$n_d$ = 1.62299, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +79.823006 mm.
 
-L1 is the first positive collector in component I. Its relatively strong positive power establishes much of the front assembly's convergence before the beam reaches the soft-focus meniscus. The data file treats the six-digit glass designation only as a coordinate class; no manufacturer melt is asserted.
+L1 is the first positive collector in component I. Its relatively strong positive power establishes much of the front assembly's convergence before the beam reaches the soft-focus meniscus. The catalog S-BSM15 curve serves only as a spectral proxy; no manufacturer melt is asserted.
 
 ### L2 — Biconvex Positive
 
-n (source) = 1.62299, ν (source) = 60.7. Glass: Unmatched; conditional class comparison: SK16 class (patent 623607; production supplier unspecified). f = +119.679934 mm.
+$n_d$ = 1.62299, $\nu_d$ = 60.7. Glass: Unmatched (1.62299/60.7; no catalog row at this printed pair; SK16 class comparison only). f = +119.679934 mm.
 
-L2 adds positive power while retaining a comparatively high Abbe number. Its printed index/Abbe pair is preserved exactly from the patent. SK16-family curves are coordinate-compatible if the d-line convention is assumed, but the source does not explicitly identify the reference line for N/ν. The runtime therefore leaves the material unresolved; the class comparison selects no spectral curve and assigns no production vendor.
+L2 adds positive power while retaining a comparatively high Abbe number. Its printed index/Abbe pair is preserved exactly from the patent. The pair has no exact catalog match, so L2 keeps the printed pair without a catalog curve; SK16-family glasses are a class comparison only and no production vendor is assigned.
 
 ### L3 — Biconcave Negative
 
-n (source) = 1.80518, ν (source) = 25.4. Glass: Unmatched; conditional class comparison: 805254 class (catalog vendor unresolved). f = -98.021477 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -98.021477 mm.
 
-L3 is the negative member that completes component I. Its high index and low Abbe number contrast with L1 and L2, allowing the front component to retain positive net power without assigning all correction to the rear groups. No exact vendor identity or partial-dispersion behavior is claimed from the six-digit class alone.
+L3 is the negative member that completes component I. Its high index and low Abbe number contrast with L1 and L2, allowing the front component to retain positive net power without assigning all correction to the rear groups. No exact vendor identity or partial-dispersion behavior is claimed from the catalog proxy curve alone.
 
 ### L4 — Negative Meniscus, One Aspherical Surface
 
-n (source) = 1.58313, ν (source) = 59.4. Glass: Unmatched; conditional class comparison: 583594 class (catalog vendor unresolved). f = -421.002617 mm.
+$n_d$ = 1.58313, $\nu_d$ = 59.4. Glass: J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -421.002617 mm.
 
 L4 is component II and the defining control element of the design. It is a forward-convex negative meniscus located in a converging beam immediately ahead of the aperture stop. The patent states that rearward movement of a negative component II introduces under-corrected spherical aberration while attempting to limit changes in other aberrations. Example 4 uses exactly that arrangement (US 4,826,301, cols. 7–10).
 
@@ -67,37 +67,37 @@ The front surface 7A is aspherical. Canon's production record independently desc
 
 ### L5 — Positive Meniscus, Cemented Member of III-1
 
-n (source) = 1.75520, ν (source) = 27.5. Glass: Unmatched; conditional class comparison: 755275 class (catalog vendor unresolved). f = +99.250341 mm.
+$n_d$ = 1.75520, $\nu_d$ = 27.5. Glass: SF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +99.250341 mm.
 
 L5 is the positive member of the cemented III-1 focusing doublet. Its isolated positive power must not be confused with the power of the cemented assembly: combined with L6 at their shared interface, III-1 is net negative.
 
 ### L6 — Biconcave Negative, Cemented Member of III-1
 
-n (source) = 1.54072, ν (source) = 47.2. Glass: Unmatched; conditional class comparison: 541472 class (catalog vendor unresolved). f = -36.882007 mm.
+$n_d$ = 1.54072, $\nu_d$ = 47.2. Glass: S-TIL2 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -36.882007 mm.
 
 L6 supplies the dominant negative isolated power in III-1. Together L5 and L6 form the patent's negative front sub-component of component III. The cemented pair has a computed focal length of -57.976146 mm and translates as a unit for ordinary rear focusing.
 
 ### L7 — Biconvex Positive
 
-n (source) = 1.48749, ν (source) = 70.2. Glass: Unmatched; conditional class comparison: 487702 class (catalog vendor unresolved). f = +81.899684 mm.
+$n_d$ = 1.48749, $\nu_d$ = 70.2. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +81.899684 mm.
 
 L7 is the stationary positive III-2 sub-component. It follows the moving negative III-1 group and completes the rear architecture without participating in either the modeled ordinary focus motion or the patent-published soft-focus compensation motion.
 
 ## Glass Identification / Selection
 
-The original defines refractive index N and Abbe number ν without explicitly linking those prescription coordinates to a spectral line (column 9). The d/C/g aberration curves in Figures 12/13 provide spectral context and support the retained d-line tracing convention as an approximation; they do not supply individual line indices or independently define the table's reference. All seven media retain their numeric pairs, explicit source-reference notes and `Unmatched` status. Conditional class comparisons select no catalog spectral curve and do not identify historical supplier, melt or chemistry.
+The original defines refractive index N and Abbe number ν (column 9) and names no spectral line. 6 of 7 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 6 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. L2 has no exact catalog match and stays `Unmatched`. The d/C/g aberration curves in Figures 12/13 do not supply individual line indices.
 
-| Element | Conditional class comparison      | n (source) | ν (source) | Status                                                     |
-| ------- | --------------------------------- | ---------: | ---------: | ---------------------------------------------------------- |
-| L1      | 623582 class                      |    1.62299 |       58.2 | Unmatched; source reference and supplier unresolved        |
-| L2      | SK16 conditional class comparison |    1.62299 |       60.7 | Unmatched; source pair preserved and reference unspecified |
-| L3      | 805254 class                      |    1.80518 |       25.4 | Unmatched; source reference and supplier unresolved        |
-| L4      | 583594 class                      |    1.58313 |       59.4 | Unmatched; source reference and supplier unresolved        |
-| L5      | 755275 class                      |    1.75520 |       27.5 | Unmatched; source reference and supplier unresolved        |
-| L6      | 541472 class                      |    1.54072 |       47.2 | Unmatched; source reference and supplier unresolved        |
-| L7      | 487702 class                      |    1.48749 |       70.2 | Unmatched; source reference and supplier unresolved        |
+| Element | Glass-code class                  | Printed $n_d$ | Printed $\nu_d$ | Medium                                                              |
+| ------- | --------------------------------- | ------------: | --------------: | ------------------------------------------------------------------- |
+| L1      | 623582 class                      |       1.62299 |            58.2 | S-BSM15 (spectral proxy)                                            |
+| L2      | SK16 conditional class comparison |       1.62299 |            60.7 | Unmatched; no catalog row at this printed pair, SK16 class only     |
+| L3      | 805254 class                      |       1.80518 |            25.4 | SF6 (spectral proxy)                                                |
+| L4      | 583594 class                      |       1.58313 |            59.4 | J-SK12 (spectral proxy)                                             |
+| L5      | 755275 class                      |       1.75520 |            27.5 | SF4 (spectral proxy)                                                |
+| L6      | 541472 class                      |       1.54072 |            47.2 | S-TIL2 (spectral proxy)                                             |
+| L7      | 487702 class                      |       1.48749 |            70.2 | S-FSL5 (spectral proxy)                                             |
 
-No element carries authored nC, nF, ng, or dPgF data because Numerical Example 4 does not publish those quantities and no exact vendor melt is established. The previously active catalog-equivalent curves are disabled while the source reference remains unverified; chromatic tracing uses the retained index/Abbe approximation. Consequently, the analysis makes no apochromatic or anomalous-partial-dispersion claim. The patent's chromatic aberration plots show system behavior, but they do not supply the element-level spectral data needed to infer a particular anomalous-dispersion strategy.
+No element carries authored nC, nF, ng, or dPgF data because Numerical Example 4 does not publish those quantities and no exact vendor melt is established. Chromatic tracing for the six matched media uses their catalog curves as spectral proxies. Consequently, the analysis makes no apochromatic or anomalous-partial-dispersion claim. The patent's chromatic aberration plots show system behavior, but they do not supply the element-level spectral data needed to infer a particular anomalous-dispersion strategy.
 
 ## Focus Mechanism
 

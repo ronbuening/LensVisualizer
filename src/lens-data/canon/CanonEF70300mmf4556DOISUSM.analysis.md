@@ -23,11 +23,14 @@ with a 1.5 m focus case; Canon lists the product as 18 elements in 12 groups,
 a three-layer DO element, and 1.4 m minimum focus. Marketing values and patent
 design values are therefore kept separate.
 
-The source does not explicitly state the prescription length unit, radius-sign
-convention, or spectral reference for `ni`. Millimetres, positive center of
-curvature toward the image side, and d-line `nd/νd` are conventional modeling
-interpretations consistent with the figure and numerical scale. The DOE
-reference wavelength alone is explicitly identified as the d-line.
+The source does not explicitly state the prescription length unit or
+radius-sign convention, and the patent names no spectral line for `ni`.
+Millimetres and positive center of curvature toward the image side are
+conventional modeling interpretations consistent with the figure and numerical
+scale. The bulk pairs are read as d-line $n_d$ and $\nu_d$ because all 17 match
+catalog d-line coordinates (see Glass Identification and Source
+Qualifications). The DOE reference wavelength alone is explicitly identified as
+the d-line.
 
 ## Optical Architecture
 
@@ -65,39 +68,39 @@ combined. The seven `groups` entries describe functional zoom units. Canon's
 
 The focal lengths below are isolated-in-air thick-element calculations. They
 show sign and relative strength; they are not in-system or cemented-group focal
-lengths. All bulk media are unresolved because the original does not specify the N/ν reference wavelength. The candidate names below are qualified coordinate comparisons, never patent-named identities or active spectral curves.
+lengths. The patent names no spectral line for the bulk pairs; they are read as d-line (see Glass Identification and Source Qualifications). The glass names below are catalog spectral proxies, never patent-named identities.
 
-| Element | Group | Source N/ν     | Isolated f mm | Glass disposition                | Interpretation                             |
-| ------- | ----- | -------------- | ------------: | -------------------------------- | ------------------------------------------ |
-| E1      | L1    | 1.48749 / 70.2 |      +227.346 | S-FSL5 candidate                 | weak positive front collector              |
-| E2      | L1    | 1.83400 / 37.2 |      -126.309 | 834372 vendor-neutral class      | negative front member of bonded DO pair    |
-| E3      | L1    | 1.51633 / 64.1 |       +91.815 | S-BSL7 candidate                 | positive rear member of bonded DO pair     |
-| E4      | L2    | 1.71300 / 53.9 |       -60.005 | S-LAL8 candidate                 | front negative IS member                   |
-| E5      | L2    | 1.62299 / 58.2 |       -32.872 | S-BSM15 candidate                | negative member of cemented rear pair      |
-| E6      | L2    | 1.84666 / 23.9 |       +51.478 | 847239 vendor-neutral class      | positive partner; L2 remains net negative  |
-| E7      | L3    | 1.58313 / 59.4 |       +31.188 | S-BAL42 candidate                | strong positive element with front asphere |
-| E8      | L3    | 1.80518 / 25.4 |      -124.344 | S-TIH6 candidate                 | weak negative partner                      |
-| E9      | L4    | 1.75500 / 52.3 |       -39.188 | S-LAH97 candidate                | single moving negative group               |
-| E10     | L5    | 1.51742 / 52.4 |       +61.310 | S-NSL36 candidate                | front positive member of fixed cluster     |
-| E11     | L5    | 1.80518 / 25.4 |       -67.677 | S-TIH6 candidate                 | principal negative member of fixed cluster |
-| E12     | L5    | 1.48749 / 70.2 |       +53.201 | S-FSL5 candidate                 | low-dispersion positive member             |
-| E13     | L5    | 1.60311 / 60.6 |       +59.092 | S-BSM14 candidate                | rear positive member                       |
-| E14     | L6    | 1.83481 / 42.7 |       -37.415 | 835427 vendor-neutral class      | front negative focus member                |
-| E15     | L6    | 1.72825 / 28.5 |       +25.467 | S-TIH10 candidate                | positive member of direct E15/E16 assembly |
-| E16     | L6    | 1.83481 / 42.7 |       -19.708 | same vendor-neutral class as E14 | strong negative partner                    |
-| E17     | L7    | 1.58313 / 59.4 |      +151.176 | S-BAL42 candidate                | weak fixed terminal positive element       |
+| Element | Group | Printed $n_d$ | Printed $\nu_d$ | Isolated f mm | Glass                                                                                                          | Interpretation                             |
+| ------- | ----- | ------------: | --------------: | ------------: | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| E1      | L1    |       1.48749 |            70.2 |      +227.346 | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | weak positive front collector              |
+| E2      | L1    |       1.83400 |            37.2 |      -126.309 | J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | negative front member of bonded DO pair    |
+| E3      | L1    |       1.51633 |            64.1 |       +91.815 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | positive rear member of bonded DO pair     |
+| E4      | L2    |       1.71300 |            53.9 |       -60.005 | S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | front negative IS member                   |
+| E5      | L2    |       1.62299 |            58.2 |       -32.872 | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | negative member of cemented rear pair      |
+| E6      | L2    |       1.84666 |            23.9 |       +51.478 | S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | positive partner; L2 remains net negative  |
+| E7      | L3    |       1.58313 |            59.4 |       +31.188 | S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | strong positive element with front asphere |
+| E8      | L3    |       1.80518 |            25.4 |      -124.344 | S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | weak negative partner                      |
+| E9      | L4    |       1.75500 |            52.3 |       -39.188 | S-LAH97 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | single moving negative group               |
+| E10     | L5    |       1.51742 |            52.4 |       +61.310 | S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | front positive member of fixed cluster     |
+| E11     | L5    |       1.80518 |            25.4 |       -67.677 | S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | principal negative member of fixed cluster |
+| E12     | L5    |       1.48749 |            70.2 |       +53.201 | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    | low-dispersion positive member             |
+| E13     | L5    |       1.60311 |            60.6 |       +59.092 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | rear positive member                       |
+| E14     | L6    |       1.83481 |            42.7 |       -37.415 | J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | front negative focus member                |
+| E15     | L6    |       1.72825 |            28.5 |       +25.467 | S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | positive member of direct E15/E16 assembly |
+| E16     | L6    |       1.83481 |            42.7 |       -19.708 | J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | strong negative partner                    |
+| E17     | L7    |       1.58313 |            59.4 |      +151.176 | S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | weak fixed terminal positive element       |
 
-The repeated patent pairs retain identical source values and unresolved coordinate-candidate dispositions:
+The repeated patent pairs retain identical source values and the same catalog curves:
 E1/E12, E7/E17, E8/E11, and E14/E16. No role statement attributes a specific
 aberration correction without a differential source calculation.
 
 ## Glass Identification and Source Qualifications
 
-Fresh original inspection on **2026-10-30** confirms all 17 bare n/ν pairs in Numerical Example 1, PDF/printed pages 14–15. Paragraph 0052 on pages 12–13 defines ni/vi without a reference wavelength. Only the DOE phase reference in paragraph 0054 is explicitly d-line; it does not define every bulk index. All 17 media therefore use Unmatched labels and reference notes. Default d-line/Abbe tracing is approximate, and zero media resolve to catalog spectral curves.
+Fresh original inspection on **2026-10-30** confirms all 17 bare printed pairs in Numerical Example 1, PDF/printed pages 14–15. Paragraph 0052 on pages 12–13 defines ni/vi without a reference wavelength; the patent names no spectral line for them. Only the DOE phase reference in paragraph 0054 is explicitly d-line; it does not define every bulk index. 17 of 17 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 17 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-The earlier catalog comparisons remain qualified coordinate candidates only: E1/E12 S-FSL5, E2 S-LAH60, E3 S-BSL7, E4 S-LAL8, E5 S-BSM15, E6 S-NPH53, E7/E17 S-BAL42, E8/E11 S-TIH6, E9 S-LAH97, E10 S-NSL36, E13 S-BSM14, E14/E16 S-LAH55 and E15 S-TIH10. This retains the earlier ambiguous vendor-neutral rows without claiming their historical supplier, melt or chemistry. The whole-prescription coordinate fingerprint cannot resolve the missing source reference or establish a production vendor.
+The glass names in the element table are coordinate matches, not claims of historical supplier, melt or chemistry. The whole-prescription coordinate fingerprint establishes the reference line, not a production vendor.
 
-No printed C/F/g indices, partial dispersion or APD values are supplied for this example; none existed as a per-lens override. The 17 literal pairs remain in the element table above. No measured normal/anomalous dispersion or Canon UD identity is inferred. No resin thickness, additional hybrid-medium pair or physical three-layer grating prescription is supplied; the direct E2/E3 interface remains the macroscopic phase boundary, with no disconnected resin wings.
+No printed C/F/g indices, partial dispersion or APD values are supplied for this example. The 17 literal pairs remain in the element table above. No measured normal/anomalous dispersion or Canon UD identity is inferred. No resin thickness, additional hybrid-medium pair or physical three-layer grating prescription is supplied; the direct E2/E3 interface remains the macroscopic phase boundary, with no disconnected resin wings.
 
 ## Focus Mechanism
 
@@ -151,7 +154,7 @@ semi-diameter and any rim departure are not patent dimensions.
 
 ## Canon Diffractive Optical Element and Modeling Boundary
 
-Surface 4 is the direct E2/E3 interface, source R=+49.800 mm. The original table on page 15 gives c2=-7.27275e-5, c4=-3.95105e-9 and c6=-3.14725e-12. These numerical values and the existing +1 order remain unchanged. The DOE reference is explicitly d-line; 587.6 nm is its authored standard-line conversion, separate from unknown bulk reference wavelengths.
+Surface 4 is the direct E2/E3 interface, source R=+49.800 mm. The original table on page 15 gives c2=-7.27275e-5, c4=-3.95105e-9 and c6=-3.14725e-12. These numerical values and the existing +1 order remain unchanged. The DOE reference is explicitly d-line; 587.6 nm is its authored standard-line conversion, separate from the bulk glass pairs, for which the patent names no line.
 
 The selected original's actual paragraph 0054/page 13 visibly prints a multiplication prefactor `2πλ0` and `C1·a²` in the leading term, followed by h⁴/h⁶. It does **not** literally print the division prefactor previously asserted in the header. The retained implementation adopts the existing optical-path interpretation W(h)=c2h²+c4h⁴+c6h⁶, with phase 2πW/λ0. Reproduction of the source focal/back-focus scale supports this interpretation, but the printed prefactor/radial-symbol inconsistency is recorded as unresolved source errata. No numerical phase edit or borrowed publication substitutes for the original.
 
@@ -228,7 +231,7 @@ repair is not substituted for the published text.
 
 ## Verification Summary and Modeling Limits
 
-Current first-order results use an approximate d-line interpretation of the bulk indices. They do not establish a source bulk-reference wavelength:
+Current first-order results use the d-line reading of the bulk indices; the patent names no spectral line for them:
 
 | Station | Patent focal mm | Computed EFL mm | Computed BFD mm | Track mm |
 | ------- | --------------: | --------------: | --------------: | -------: |
@@ -236,7 +239,7 @@ Current first-order results use an approximate d-line interpretation of the bulk
 | Middle  |          139.54 |       139.54381 |        38.62281 |   183.96 |
 | Tele    |          290.26 |       290.06617 |        38.56060 |   208.94 |
 
-Earlier approximate first-order work compared all 13 Table 3 values, including
+Earlier first-order work compared all 13 Table 3 values, including
 ESW 5.239, EST 7.241, DXW/MF 0.04989, DXT/MF 0.55446, and the IS sensitivity
 angle 0.66792°. The paraxial Petzval sum including the DO term is
 +0.000530942 mm^-1.
@@ -263,7 +266,7 @@ The model leaves these boundaries explicit:
 1. [JP 2004-317867 A, “Zoom Lens”](https://patents.google.com/patent/JP2004317867A/en), Numerical Example 1, Tables 1–3, Figures 1–2, and paragraphs [0024], [0036], [0048], [0052]–[0055].
 2. [Canon Camera Museum — EF 70-300 mm f/4.5-5.6 DO IS USM](https://global.canon/en/c-museum/product/ef378.html), for product release, construction, minimum focus, and three-layer DO facts.
 3. [Canon USA support — EF 70-300 mm f/4.5-5.6 DO IS USM](https://www.usa.canon.com/support/p/ef-70-300 mm-f-4-5-5-6-do-is-usm), for official product specification corroboration.
-4. [OHARA optical-glass coordinate tables](https://www.ohara-inc.co.jp/en/product/01000/) and [official catalog downloads](https://www.ohara-inc.co.jp/en/product/catalog/), for current surrogate-family evidence.
+4. [OHARA optical-glass coordinate tables](https://www.ohara-inc.co.jp/en/product/01000/) and [official catalog downloads](https://www.ohara-inc.co.jp/en/product/catalog/), for the catalog coordinate matches.
 5. [Canon US 6,208,474 B1](https://patents.google.com/patent/US6208474B1/en), for Canon optical-path/phase convention context only, not this zoom prescription.
 
 ## 2026-10-30 — Complete State and Source-Cam Review
@@ -283,7 +286,7 @@ The full union of65 uniform zoom positions and all 21 authored knots has81 zoom 
 | 1      | Infinity         | 49 / 37 / 27                            |
 | 1      | Source-cam close | 49 / 40 / 22                            |
 
-The independent65-position infinity aperture/chief/first-order census has no aperture difference above 3%; maximum Gaussian defocus against the retained 38.63 mm image gap is+0.121533 mm at z=0.96875. These interpolated positions remain approximations to the printed high-order cams. No source radius, asphere, phase term, stop schedule, focus cam or guard is fitted to remove residuals. Centered IS only, bulk reference unresolved, and patent17/14 versus production18/12 correlation remain separate limitations. No cuts are present.
+The independent65-position infinity aperture/chief/first-order census has no aperture difference above 3%; maximum Gaussian defocus against the retained 38.63 mm image gap is+0.121533 mm at z=0.96875. These interpolated positions remain approximations to the printed high-order cams. No source radius, asphere, phase term, stop schedule, focus cam or guard is fitted to remove residuals. Centered IS only, and patent17/14 versus production18/12 correlation remain separate limitations. No cuts are present.
 
 The directly printed endpoint half-fields 16.7°/4.25° have clear chiefs at 21.652893/22.322699 mm, 100.09%/103.19% of the format semi-diagonal; these source-angle heights remain distinct from the runtime format-corner solve.
 

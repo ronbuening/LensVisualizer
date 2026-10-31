@@ -16,12 +16,12 @@ Numerical Example 1 is the strongest match to the powered optical core of the Ca
 1. **Focal length and aperture.** The patent gives $f=200.00000$ mm and $F\mathrm{NO}=1:1.86$. Canon marketed the production lens as 200 mm f/1.8. The manufacturer value governs the product specification; 1.86 is retained as the patent design aperture.
 2. **Format coverage.** The patent gives a full field $2\omega=12.3^\circ$. At 200 mm, this corresponds to a rectilinear image-circle diameter of $2f\tan(6.15^\circ)=43.100754$ mm, consistent with the 36 × 24 mm frame diagonal.
 3. **Close focus.** The patent tabulates variable spacings at infinity and 2.5 m. A finite-conjugate paraxial trace with the infinity image plane held fixed places the close object 2499.576311 mm from that plane and gives $|m|=0.090896\times$, reproducing Canon's 2.5 m minimum focus and 0.09× maximum magnification.
-4. **Special-element signature.** L1, L2, and L4 all use $n=1.49700$, $\nu=81.6$. Canon specifies three UD elements, and its official block diagram marks these same three front-group positions.
+4. **Special-element signature.** L1, L2, and L4 all use $n_d=1.49700$, $\nu_d=81.6$. Canon specifies three UD elements, and its official block diagram marks these same three front-group positions.
 5. **Construction.** The patent prescription contains ten powered elements in eight air-spaced groups. Canon specifies 12 elements in 10 groups. Its block diagram shows two additional plane-parallel groups, apparently a front protective plate and the rear drop-in-filter group. Their materials and dimensions are not prescribed by the patent. The data file therefore models only the ten powered elements and, retains the sourced powered core without inventing an unprescribed plate or filter. The production drop-in filter is a separate required optical component whose dimensions and material are not supplied by this selected prescription.
 6. **Focus architecture.** Only the compact cemented second group moves, by 14.49 mm toward the image between infinity and 2.5 m. This is a single-group rear-focus design. USM is a production specification; the patent does not identify the motor technology.
 7. **Timing.** The October 1987 filing closely precedes Canon's November 1988 market introduction.
 
-Examples 2 and 3 are weaker matches. Example 2 is a 295 mm design with an 8.4° field and a 3.5 m close-focus state. Example 3 is 195 mm, but its front group uses two $n=1.43387$, $\nu=95.1$ fluorite-like elements rather than the three 497816-class positions that correlate with Canon's three-UD production diagram.
+Examples 2 and 3 are weaker matches. Example 2 is a 295 mm design with an 8.4° field and a 3.5 m close-focus state. Example 3 is 195 mm, but its front group uses two $n_d=1.43387$, $\nu_d=95.1$ fluorite-like elements rather than the three 497816-class positions that correlate with Canon's three-UD production diagram.
 
 ## Optical Architecture
 
@@ -35,92 +35,90 @@ All 18 powered surfaces are spherical. The patent gives no aspheric equation, co
 
 The patent title uses “telephoto” in the broad photographic-category sense. Under the strict optical compactness criterion, however, the powered prescription is not a telephoto-ratio design. Its first-surface-to-image track is 234.499219 mm, so $\mathrm{TL}/\mathrm{EFL}=1.172399>1$. It is therefore more precisely classified as a long-focus lens with a positive–negative–positive rear-focus architecture.
 
-The prescription uses the standard left-to-right radius convention: $R>0$ places the center of curvature toward the image. The numerical table labels N and ν without a d/e reference. Its default d-line interpretation remains an approximation and is identified by an index-reference note on each unresolved medium.
+The prescription uses the standard left-to-right radius convention: $R>0$ places the center of curvature toward the image. The numerical table labels N and ν without naming a spectral line; the Glass Identification and Selection section records how the line is read.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-**$n=1.49700$, $\nu=81.6$. Glass: Unmatched; source reference unspecified; S-FPL51 / 497816 class (OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=+194.863158$ mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+194.863158$ mm.**
 
 L1 is the first large positive collector in G1. Its low dispersion permits substantial positive front-group power while limiting longitudinal chromatic error. It is one of the three positions that correlate with Canon's three UD elements.
 
 ### L2 — Positive Meniscus, convex to object
 
-**$n=1.49700$, $\nu=81.6$. Glass: Unmatched; source reference unspecified; S-FPL51 / 497816 class (OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=+272.181368$ mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+272.181368$ mm.**
 
 L2 continues the low-dispersion positive collector. Its meniscus form distributes positive power across several surfaces rather than concentrating it in one steep element.
 
 ### L3 — Biconcave Negative
 
-**$n=1.65412$, $\nu=39.7$. Glass: Unmatched; source reference unspecified; BPH5 (historical OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=-145.573569$ mm.**
+**$n_d=1.65412$, $\nu_d=39.7$. Glass: BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=-145.573569$ mm.**
 
-L3 supplies negative power and substantially higher dispersion than L1 and L2, forming the principal chromatic opposition in the front group. The historical BPH5 name is retained only as a qualified d-line coordinate candidate for the 654397 pair. The original does not publish per-element C/F/g indices, so a catalog spectral resemblance does not establish selected-source values or supplier identity.
+L3 supplies negative power and substantially higher dispersion than L1 and L2, forming the principal chromatic opposition in the front group. The BPH5 catalog curve is a spectral proxy for the printed 1.65412 / 39.7 pair. The original does not publish per-element C/F/g indices, so the catalog curve does not establish source values or supplier identity.
 
 ### L4 — Positive Meniscus, convex to object
 
-**$n=1.49700$, $\nu=81.6$. Glass: Unmatched; source reference unspecified; S-FPL51 / 497816 class (OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=+154.436378$ mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+154.436378$ mm.**
 
 L4 is the strongest of the three standalone 497816-class positive elements. It restores convergence after L3 and occupies the third position highlighted as UD in Canon's production diagram.
 
 ### L5 — Negative Meniscus, convex to object
 
-**$n=1.69680$, $\nu=55.5$. Glass: Unmatched; source reference unspecified; S-LAL14 / LAL14 class (OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=-281.405845$ mm.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=-281.405845$ mm.**
 
 L5 is the weak negative rear member required by the patent's first-group description. It sits immediately before variable gap D10 and shapes the bundle delivered to the moving focus doublet.
 
 ### L6 — Positive Meniscus, concave to object
 
-**$n=1.84666$, $\nu=23.9$. Glass: Unmatched; source reference unspecified; PBH53 (historical OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=+139.100259$ mm.**
+**$n_d=1.84666$, $\nu_d=23.9$. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+139.100259$ mm.**
 
-L6 is the positive component of the cemented focus doublet. Its very high index permits strong interface power in a compact element. The quoted focal length is the standalone air-bounded value; it does not describe L6's in-situ contribution within the cemented pair. PBH53 is a qualified d-line coordinate candidate for the 847239 pair; its catalog line indices are not published selected-example measurements.
+L6 is the positive component of the cemented focus doublet. Its very high index permits strong interface power in a compact element. The quoted focal length is the standalone air-bounded value; it does not describe L6's in-situ contribution within the cemented pair. PBH53 is a catalog curve used as a spectral proxy for the printed pair; its catalog line indices are not published example measurements.
 
 ### L7 — Biconcave Negative
 
-**$n=1.61340$, $\nu=43.8$. Glass: Unmatched; source reference unspecified; BPM4 (historical OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=-60.288767$ mm.**
+**$n_d=1.61340$, $\nu_d=43.8$. Glass: BPM4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=-60.288767$ mm.**
 
-L7 is cemented to L6 and dominates the pair's negative power. BPM4 is a qualified d-line coordinate candidate for the numeric pair; the original does not tabulate its C/F/g indices. The complete L6+L7 assembly has $f=-107.284922$ mm and moves as a rigid unit during focusing.
+L7 is cemented to L6 and dominates the pair's negative power. BPM4 is a catalog curve used as a spectral proxy for the printed pair; the original does not tabulate C/F/g indices. The complete L6+L7 assembly has $f=-107.284922$ mm and moves as a rigid unit during focusing.
 
 ### L8 — Negative Meniscus, concave to object
 
-**$n=1.65412$, $\nu=39.7$. Glass: Unmatched; source reference unspecified; BPH5 (historical OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=-58.224609$ mm.**
+**$n_d=1.65412$, $\nu_d=39.7$. Glass: BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=-58.224609$ mm.**
 
 L8 begins G3 with the strongly object-concave negative surface required by the claims. It is cemented to L9. The patent constrains this pair through the difference in the glasses' partial-dispersion ratios and Abbe numbers.
 
 ### L9 — Positive Meniscus, convex to image
 
-**$n=1.65160$, $\nu=58.6$. Glass: Unmatched; source reference unspecified; S-LAL7 class (historical OHARA coordinate candidate; coordinate candidate; supplier unspecified). Standalone in-air $f=+71.057526$ mm.**
+**$n_d=1.65160$, $\nu_d=58.6$. Glass: S-LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+71.057526$ mm.**
 
-L9 is the positive component of the first cemented pair in G3. The Example-1 correspondence table directly prints $\theta_{3b}=1.238095$ for this positive member. It defines θ only as a partial-dispersion ratio and supplies no wavelength convention or per-element C/F/g indices. S-LAL7 remains a qualified d-line coordinate candidate; a numerical catalog-ratio resemblance does not establish source identity or chemistry. The published θ value is retained independently of that candidate.
+L9 is the positive component of the first cemented pair in G3. The Example-1 correspondence table directly prints $\theta_{3b}=1.238095$ for this positive member. It defines θ only as a partial-dispersion ratio and supplies no wavelength convention or per-element C/F/g indices. S-LAL7 is a catalog curve used as a spectral proxy; the match to the printed pair does not establish source identity or chemistry. The published θ value is retained independently of that curve.
 
 L9 is strongly positive as an isolated air-bounded element, but the cemented L8+L9 pair is weakly negative at $f=-951.465248$ mm. This distinction between standalone and in-situ power is analytically significant.
 
 ### L10 — Biconvex Positive
 
-**$n=1.61800$, $\nu=63.4$. Glass: Unmatched; source reference unspecified; S-PHM52 / PHM52 class (OHARA; coordinate candidate; supplier unspecified). Standalone in-air $f=+112.566809$ mm.**
+**$n_d=1.61800$, $\nu_d=63.4$. Glass: S-PHM52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone in-air $f=+112.566809$ mm.**
 
 L10 follows the weakly negative rear cemented pair and makes G3 net positive. Its moderate index and relatively high Abbe number provide the final converging power without adding another 497816-class element.
 
 ## Glass Identification and Selection
 
-The original Example-1 table publishes index/Abbe pairs without identifying a d/e reference or supplier. The source
+The original Example-1 table publishes index/Abbe pairs and identifies no supplier. The patent names no spectral line. 10 of 10 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 10 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. The source
 correspondence table separately gives θ3a = 1.271845 and θ3b = 1.238095 for L8/L9. Those genuine partial-ratio
 values are retained, while their wavelength convention remains unspecified. They are not converted to PgF or dPgF.
 
-All ten media are explicit Unmatched entries with index-reference notes; default d-line tracing is an approximation.
-The 34 former per-lens C/F/g and dPgF fields were catalog-derived copies, not source measurements, and are removed.
-No source spectral value is discarded. The names below are coordinate candidates, not resolved source materials;
-coefficient-curve coverage is 0/10 while the source reference remains unspecified.
+The patent prints no per-element C/F/g indices or dPgF, and none are stored; the catalog curves are not source
+measurements. The curve names below are spectral proxies, not identified source materials.
 
-| Source n / ν   | Elements   | Qualified d-line coordinate candidate | Published partial evidence                                          |
-| -------------- | ---------- | ------------------------------------- | ------------------------------------------------------------------- |
-| 1.49700 / 81.6 | L1, L2, L4 | S-FPL51                               | No selected APD number; production UD correlation remains inferred. |
-| 1.65412 / 39.7 | L3, L8     | BPH5                                  | L8: θ3a = 1.271845.                                                 |
-| 1.69680 / 55.5 | L5         | S-LAL14 / LAL14                       | None.                                                               |
-| 1.84666 / 23.9 | L6         | PBH53                                 | None.                                                               |
-| 1.61340 / 43.8 | L7         | BPM4                                  | None.                                                               |
-| 1.65160 / 58.6 | L9         | S-LAL7                                | θ3b = 1.238095.                                                     |
-| 1.61800 / 63.4 | L10        | S-PHM52 / PHM52                       | None.                                                               |
+| Printed $n_d$ / $\nu_d$ | Elements   | Catalog curve (spectral proxy) | Published partial evidence                                          |
+| ----------------------- | ---------- | ------------------------------ | ------------------------------------------------------------------- |
+| 1.49700 / 81.6          | L1, L2, L4 | S-FPL51                        | No selected APD number; production UD correlation remains inferred. |
+| 1.65412 / 39.7          | L3, L8     | BPH5                           | L8: θ3a = 1.271845.                                                 |
+| 1.69680 / 55.5          | L5         | S-LAL14                        | None.                                                               |
+| 1.84666 / 23.9          | L6         | PBH53                          | None.                                                               |
+| 1.61340 / 43.8          | L7         | BPM4                           | None.                                                               |
+| 1.65160 / 58.6          | L9         | S-LAL7                         | θ3b = 1.238095.                                                     |
+| 1.61800 / 63.4          | L10        | S-PHM52                        | None.                                                               |
 
 The three 497816-class elements form the principal low-dispersion positive set in G1. L3 and L5 provide negative power at materially different dispersion levels. The rear cemented pairs serve different purposes: L6/L7 creates a compact net-negative moving group, while L8/L9 satisfies the patent's explicit secondary-spectrum condition.
 
@@ -142,9 +140,9 @@ The close-spacing layout has an EFL of 199.119051 mm and a collimated back focal
 
 ## Chromatic Correction Strategy
 
-Chromatic correction is distributed across all three principal groups. G1 combines three positive 497816-class low-dispersion elements with two negative elements of different dispersion. The patent describes the L6/L7 focus doublet as balancing chromatic variation during focusing and g-line spherical-aberration flare. G3 begins with the BPH5/S-LAL7-class cemented pair governed by condition (4).
+Chromatic correction is distributed across all three principal groups. G1 combines three positive 497816-class low-dispersion elements with two negative elements of different dispersion. The patent describes the L6/L7 focus doublet as balancing chromatic variation during focusing and g-line spherical-aberration flare. G3 begins with the cemented pair, modeled with BPH5 and S-LAL7 curves as spectral proxies, governed by condition (4).
 
-The evidence supports the narrower statement that the design deliberately controls secondary spectrum. It does not justify assigning an unqualified whole-lens apochromatic classification solely from $n/\nu$ data.
+The evidence supports the narrower statement that the design deliberately controls secondary spectrum. It does not justify assigning an unqualified whole-lens apochromatic classification solely from $n_d/\nu_d$ data.
 
 ## Conditional Expressions
 

@@ -5,10 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Original source and shape/glass review: 2026-10-30. Native 2320×3408 at 300 ppi; about
  * 6.14 px/mm in the section, practical ±0.8 mm rim uncertainty. Enlargements add no resolution.
  * All 31 modeled source R/d rows and all 17 literal N/nu pairs are preserved, including HG and FL.
- * The source defines Ni/nu-i without naming a material spectral reference (PDF p. 78 col. 32).
- * Every medium is unresolved; approximate d-reference tracing is not proof of wavelength or chemistry.
- * No catalog curve, per-lens spectral override, or APD claim is active. Product fluorite/UD associations
- * remain qualified correlations, not a source bill of materials or historical supplier/melt identification.
+ * The patent names no spectral line (PDF p. 78 col. 32). 17 of 17 printed pairs, including HG and FL, match catalog
+ * d-line coordinates and none match the e-line, so the table is read as d-line. 17 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified. No per-lens spectral override or APD claim is
+ * active. Product fluorite/UD associations remain qualified correlations, not a source bill of materials or
+ * historical supplier/melt identification.
  *
  * The model has 17 elements / 13 groups including source HG and required drawn FL. The inactive FC is omitted;
  * D31+D32=54.23 mm remains behind FL. Existing D29=15.016884094 mm retains the documented +0.016884094 mm
@@ -116,7 +117,7 @@ const LENS_DATA = {
       focalLengthMm: 212.185301,
       glass:
         "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
-      role: "High-Abbe positive element in L1c; the production fluorite association remains a correlation, with source wavelength and chemistry unresolved.",
+      role: "High-Abbe positive element in L1c; the production fluorite association remains a correlation, with supplier, melt and chemistry unspecified.",
     },
     {
       id: 6,

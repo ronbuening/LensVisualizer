@@ -70,10 +70,10 @@ standalone element powers listed later. The final row describes the complete act
 | Complete active model | L1 + L2 + L3               |             +491.3568 | Full-system Gaussian EFL from the rounded arrays        |
 
 The physical track from the first powered surface to the image plane is 404.57 mm.
-The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, N=1.516330,
-ν=64.1, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
+The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, $n_d = 1.516330$,
+$\nu_d = 64.1$, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
 combining its adjacent air gaps changes no optical power. The front protection plate
-remains omitted and the previously normalized finite-object reference is retained.
+HG is traced ahead of L1a, and the previously normalized finite-object reference is retained.
 
 All powered R/d/index values match Numerical Example 24 (PDF p.79, columns 33–34).
 The source prescription gives EFL 491.356789 mm versus the printed 490.56 mm, and
@@ -96,15 +96,15 @@ confusing individual element power with the behavior of the compound group.
 
 ### HG — Plane-Parallel Protection Glass
 
-**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved).**
+**$n_d = 1.516330$, $\nu_d = 64.1$. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified).**
 
 The selected numerical source explicitly includes this integral flat front member with 5.00 mm thickness
 and 1.50 mm following air. It has no infinity power but changes the finite object reference when traced
-physically. Its restoration and the c-7 wording are documented below. No catalog curve is active.
+physically. Its restoration and the c-7 wording are documented below.
 
 ### L1a — Biconvex Positive
 
-**N = 1.496999, ν = 81.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +344.3304 mm.**
+**$n_d = 1.496999$, $\nu_d = 81.5$. Glass: S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +344.3304 mm.**
 
 L1a is the single-element positive front subunit identified as L1a in the patent's third embodiment. It supplies the
 first strong convergence while using the same low-dispersion coordinate that appears again in L1b-1. The production
@@ -113,7 +113,7 @@ index and Abbe number.
 
 ### L1b-1 — Biconvex Positive
 
-**N = 1.496999, ν = 81.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +230.7498 mm.**
+**$n_d = 1.496999$, $\nu_d = 81.5$. Glass: S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +230.7498 mm.**
 
 This positive element begins L1b. Its standalone positive power is paired with the following high-index negative
 member. The two elements are air-spaced, and their combined subunit focal length is -939.5798 mm; the subunit is
@@ -121,7 +121,7 @@ therefore only weakly negative despite the much stronger standalone powers of it
 
 ### L1b-2 — Biconcave Negative
 
-**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -174.6660 mm.**
+**$n_d = 1.834807$, $\nu_d = 42.7$. Glass: TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -174.6660 mm.**
 
 L1b-2 supplies the negative power that reverses the sign of the L1b subunit. In the architecture described by the
 patent, the negative middle subunit helps moderate the aberration burden created by the positive front subunit while
@@ -129,16 +129,16 @@ allowing L1 as a whole to remain strongly positive.
 
 ### L1c-1 — Biconvex Positive
 
-**N = 1.433870, ν = 95.1. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +217.8146 mm.**
+**$n_d = 1.433870$, $\nu_d = 95.1$. Glass: CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +217.8146 mm.**
 
 This is the unique extremely low-index, high-Abbe coordinate in Example 24. The patent does not name the material as
 fluorite, but Canon states that the production lens contains one fluorite element; the production correlation therefore
-retains a qualified association to L1c-1. Source wavelength and historical chemistry remain unresolved. The element provides strong positive power in the rear part of L1 while minimizing the
+retains a qualified association to L1c-1. Supplier, melt and chemistry remain unspecified. The element provides strong positive power in the rear part of L1 while minimizing the
 dispersion associated with that positive contribution.
 
 ### L1c-2 — Negative Meniscus
 
-**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -488.4803 mm.**
+**$n_d = 1.516330$, $\nu_d = 64.1$. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -488.4803 mm.**
 
 L1c-2 is a weak negative meniscus following the fluorite-correlated positive element. The pair is air-spaced and forms a
 net-positive L1c subunit with a focal length of +346.6979 mm. Its negative standalone power tempers the positive
@@ -146,14 +146,14 @@ contribution without changing the sign of L1c.
 
 ### L2-1 — Biconvex Positive
 
-**N = 1.805181, ν = 25.4. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +209.1537 mm.**
+**$n_d = 1.805181$, $\nu_d = 25.4$. Glass: S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +209.1537 mm.**
 
 L2-1 is the positive front member of the cemented focusing doublet. Its relatively high index and low Abbe number are
 paired directly with the following negative element at the cemented interface.
 
 ### L2-2 — Biconcave Negative
 
-**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -100.9907 mm.**
+**$n_d = 1.834807$, $\nu_d = 42.7$. Glass: TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -100.9907 mm.**
 
 L2-2 is the stronger negative member of the cemented pair. The completed L2 doublet has a net focal length of
 -198.0387 mm. In the complete system this compact negative unit lies in a converging beam and translates toward the
@@ -162,14 +162,14 @@ position between the positive L1 and L3 units.
 
 ### L3a-1 — Negative Meniscus
 
-**N = 1.846658, ν = 23.9. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -72.4610 mm.**
+**$n_d = 1.846658$, $\nu_d = 23.9$. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -72.4610 mm.**
 
 L3a-1 is the negative front member of the first rear cemented doublet. Its strong standalone negative power should not
 be read as the sign of the compound group: the cemented partner that follows is still stronger in positive power.
 
 ### L3a-2 — Biconvex Positive
 
-**N = 1.834807, ν = 42.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +49.0812 mm.**
+**$n_d = 1.834807$, $\nu_d = 42.7$. Glass: TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +49.0812 mm.**
 
 L3a-2 converts the L3a cemented pair to a net-positive subunit with a focal length of +152.7805 mm. The patent's design
 logic places this positive subunit ahead of the transverse stabilizer so that the beam is further converged before it
@@ -177,7 +177,7 @@ reaches L3b.
 
 ### L3b-1 — Biconvex Positive
 
-**N = 1.846658, ν = 23.9. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +77.3004 mm.**
+**$n_d = 1.846658$, $\nu_d = 23.9$. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +77.3004 mm.**
 
 L3b-1 is the positive member at the front of the image-stabilization subunit. It is cemented to L3b-2, but that cemented
 pair is followed by an additional negative singlet; the behavior of the stabilization unit therefore cannot be inferred
@@ -185,14 +185,14 @@ from the first doublet alone.
 
 ### L3b-2 — Biconcave Negative
 
-**N = 1.677900, ν = 55.3. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -48.0730 mm.**
+**$n_d = 1.677900$, $\nu_d = 55.3$. Glass: S-LAL12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -48.0730 mm.**
 
 L3b-2 is the negative cemented partner to L3b-1. Together with L3b-3, it makes the complete L3b stabilization subunit
 net negative.
 
 ### L3b-3 — Biconcave Negative
 
-**N = 1.733997, ν = 51.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -65.4005 mm.**
+**$n_d = 1.733997$, $\nu_d = 51.5$. Glass: S-LAL59 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -65.4005 mm.**
 
 L3b-3 is an air-spaced negative singlet behind the cemented pair. The complete L3b subunit has a net focal length of
 -43.9002 mm. The patent uses this negative subunit as the transversely movable image-displacement group rather than as
@@ -200,7 +200,7 @@ an axial focusing group.
 
 ### L3c-1 — Biconvex Positive
 
-**N = 1.696797, ν = 55.5. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +151.3467 mm.**
+**$n_d = 1.696797$, $\nu_d = 55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +151.3467 mm.**
 
 L3c-1 begins the final positive subunit. It is followed by a cemented positive/negative pair, so the rear unit
 distributes
@@ -208,21 +208,21 @@ positive power across more than one positive element rather than concentrating i
 
 ### L3c-2 — Biconvex Positive
 
-**N = 1.517417, ν = 52.4. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = +61.7463 mm.**
+**$n_d = 1.517417$, $\nu_d = 52.4$. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +61.7463 mm.**
 
 L3c-2 is the strongest standalone positive element in the final cemented pair. Its rear surface is the cemented junction
 to L3c-3.
 
 ### L3c-3 — Negative Meniscus
 
-**N = 1.720000, ν = 43.7. Glass: Unmatched (source reference unspecified; historical medium unresolved). f = -118.8387 mm.**
+**$n_d = 1.720000$, $\nu_d = 43.7$. Glass: S-LAM52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -118.8387 mm.**
 
 L3c-3 is the negative cemented partner that moderates the strong positive L3c-2. The entire L3c subunit remains strongly
 positive at +68.6765 mm. The literal source pair is preserved; no catalog chemistry or supplier identity is assigned.
 
 ### FL — Required Rear Filter
 
-**N = 1.516330, ν = 64.1. Glass: Unmatched (source reference unspecified; historical medium unresolved).**
+**$n_d = 1.516330$, $\nu_d = 64.1$. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified).**
 
 The source R30/R31 filter remains a drawn 2.20 mm plate, with 30.00 mm air before it and the printed
 31.34 + 38.94 = 70.28 mm after it. Its revised 25 mm clear semi-diameter follows the optical rectangle
@@ -237,28 +237,28 @@ prose (PDF pp. 76–78), Example 24 table (PDF p. 79, cols. 33–34), Table 3 (P
 (PDF p. 61) and certificate (PDF pp. 82–83) were inspected on 2026-10-30. The d/C/F/g labels on the
 aberration figure identify plotted wavelengths, not per-medium index values or a material-reference anchor.
 
-All 17 source pairs, including restored HG and drawn FL, remain literal. Every medium is `Unmatched`
-with `indexReferenceNote`; the 16 previously active curves are disabled. Approximate d-reference tracing
-is a computational assumption rather than a source identification. No per-element C/F/g index, partial
-dispersion or APD evidence is published for this example. No per-lens spectral override was present or added.
+The patent names no spectral line. 17 of 17 printed pairs, including HG and drawn FL, match catalog
+d-line coordinates and none match the e-line, so the table is read as d-line. 17 media use catalog curves as
+spectral proxies; supplier, melt and chemistry stay unspecified. No per-element C/F/g index, partial
+dispersion or APD evidence is published for this example, and no per-lens spectral override is authored.
 
-| Source N / ν    | Media              | Disposition                                                        |
-| --------------- | ------------------ | ------------------------------------------------------------------ |
-| 1.516330 / 64.1 | HG, L1c-2, FL      | Source reference and historical medium unresolved                  |
-| 1.496999 / 81.5 | L1a, L1b-1         | Unresolved; product UD association only                            |
-| 1.834807 / 42.7 | L1b-2, L2-2, L3a-2 | Unresolved                                                         |
-| 1.433870 / 95.1 | L1c-1              | Unresolved; product fluorite association only; CaF₂ curve inactive |
-| 1.805181 / 25.4 | L2-1               | Unresolved                                                         |
-| 1.846658 / 23.9 | L3a-1, L3b-1       | Unresolved                                                         |
-| 1.677900 / 55.3 | L3b-2              | Unresolved                                                         |
-| 1.733997 / 51.5 | L3b-3              | Unresolved                                                         |
-| 1.696797 / 55.5 | L3c-1              | Unresolved                                                         |
-| 1.517417 / 52.4 | L3c-2              | Unresolved                                                         |
-| 1.720000 / 43.7 | L3c-3              | Unresolved                                                         |
+| Printed nd / νd | Media              | Catalog curve                           |
+| --------------- | ------------------ | --------------------------------------- |
+| 1.516330 / 64.1 | HG, L1c-2, FL      | S-BSL7                                  |
+| 1.496999 / 81.5 | L1a, L1b-1         | S-FPL51; product UD association only    |
+| 1.834807 / 42.7 | L1b-2, L2-2, L3a-2 | TAFD5G                                  |
+| 1.433870 / 95.1 | L1c-1              | CaF2; product fluorite association only |
+| 1.805181 / 25.4 | L2-1               | S-TIH6                                  |
+| 1.846658 / 23.9 | L3a-1, L3b-1       | PBH53                                   |
+| 1.677900 / 55.3 | L3b-2              | S-LAL12                                 |
+| 1.733997 / 51.5 | L3b-3              | S-LAL59                                 |
+| 1.696797 / 55.5 | L3c-1              | S-LAL14                                 |
+| 1.517417 / 52.4 | L3c-2              | S-NSL36                                 |
+| 1.720000 / 43.7 | L3c-3              | S-LAM52                                 |
 
-Compatible catalog curves and coordinate classes remain possible proxies, not proof of source wavelength,
-chemistry, historical supplier or melt. Prior product fluorite/UD research is retained as a qualified
-correlation. There is no separately modeled cement, resin, aspheric or hybrid layer.
+The catalog curves are spectral proxies, not proof of chemistry, historical supplier or melt. Product
+fluorite/UD research is a qualified correlation. There is no separately modeled cement, resin, aspheric or
+hybrid layer.
 
 ## Focus Mechanism
 
@@ -296,7 +296,7 @@ partners in L1b and the focus/rear groups.
 Canon independently states that the production lens uses two UD elements and one fluorite element. The production
 correlation maps those three special elements to the two 497816-class positives and the unique L1c-1 coordinate. That
 mapping is consistent with the count and optical position, but it remains a correlation inference because the patent
-prescription itself supplies only N and ν values.
+prescription itself supplies only $n_d$ and $\nu_d$ values.
 
 The patent's conditions 22-25 specifically constrain the index and Abbe number of the positive elements in L1a and L1b.
 Those conditions are satisfied by the authored coordinates. Because no element-level line indices or partial-dispersion
@@ -355,7 +355,7 @@ The derived stop recovers the project’s paraxial f/4.1 convention. A separate 
 solve gives an input radius of 59.100027227 mm and EFL/diameter f/4.156992917, with the same iris.
 This convention-dependent diagnostic does not establish a source physical iris diameter. The stop axial position is patent-published; only its
 17.719982840 mm semi-diameter is inferred. Example 24 also publishes no clear semi-diameters. The modeled surface
-semi-diameters were therefore derived from exact spherical traces using approximate d-reference indices at infinity and reconstructed close focus,
+semi-diameters were therefore derived from exact spherical traces using the d-line indices at infinity and reconstructed close focus,
 then checked for element edge thickness, actual rim slope, shared-band cross-gap intrusion, and off-axis ray
 containment.
 

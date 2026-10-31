@@ -17,14 +17,14 @@ The prescription analyzed here is the selected production correlation for the **
 1. **Focal length, aperture, and field.** Numerical Example 1 publishes `f = 293.58 mm`, `Fno = 2.9`, and `2ω = 8.4°`. Independent first-order tracing of the final data file gives an effective focal length of **293.599593947 mm**, closely corresponding to a marketed 300 mm f/2.8 full-frame telephoto.
 2. **Element and group accounting.** The active refractive prescription before the rear filter contains **15 elements in 11 air-separated groups**. The patent then adds a plane-parallel rear filter as a sixteenth glass element and twelfth group. Catalog
    metadata now counts this complete selected-source 16/12 configuration. The first-embodiment text also permits a front protection plate. Canon specifies **17 elements in 13 groups** and explicitly states that the production lens's protection glass and rear filter are included in that count.
-3. **Special-material pattern.** Example 1 has two identical low-index, high-Abbe elements at `n (source) = 1.496999, ν (source) = 81.5` and one element at `n (source) = 1.433870, ν (source) = 95.1`. Canon states that the production lens uses **two UD elements and one fluorite element**. The data file therefore correlates E1 and E2 with the two production UD elements and E4 with the production fluorite element, while retaining unresolved vendor identities because the patent itself gives only optical coordinates.
+3. **Special-material pattern.** Example 1 has two identical low-index, high-Abbe elements at $n_d = 1.496999$, $\nu_d = 81.5$ and one element at $n_d = 1.433870$, $\nu_d = 95.1$. Canon states that the production lens uses **two UD elements and one fluorite element**. The data file therefore correlates E1 and E2 with the two production UD elements and E4 with the production fluorite element, while retaining unresolved vendor identities because the patent itself gives only optical coordinates.
 4. **Inner focusing.** The first embodiment specifies a negative second unit L2 that moves toward the image side as object distance decreases. That is the same basic focusing architecture represented by the production lens.
 5. **Image stabilization.** The patent divides the positive third unit L3 into positive L31, negative L32, and positive L33 and moves L32 perpendicular to the optical axis for image stabilization. Canon identifies the production lens as an IS design.
 6. **Chronology.** The Japanese priority filings precede Canon's July 1999 market introduction, while the U.S. grant follows it in September 2000.
 
 The optical layout in patent Fig. 1 is particularly diagnostic: it shows positive L1, the compact negative focusing unit L2, aperture stop SP, the L31/L32/L33 subdivision of L3, the transverse-motion indication at L32, a rear filter FL, and image plane IP. The final data file follows this layout without importing surfaces from another numerical example.
 
-The 2026-10-30 original-PDF review retains every source optical pair with an explicit unknown-reference qualification. All numerical index-dependent calculations below use approximate d-line tracing; the source defines Ni/νi without a spectral line.
+Every source optical pair is retained as printed. The index-dependent calculations below use the d-line reading of the printed table described under Glass Identification and Selection.
 
 ## Optical Architecture
 
@@ -42,7 +42,7 @@ The stop lies between L2 and L31, exactly where the patent's Example 1 table pla
 
 The active infinity model has an effective focal length of **293.599593947 mm** and an air-equivalent first-surface-to-image track of **267.321078902 mm**, giving `TL/EFL = 0.910495397` (the physical track through the rear filter is **268.002104800 mm**, `TL/EFL = 0.912815`). It therefore satisfies the project definition of a telephoto design. The air-equivalent back focal distance is **68.641078902 mm**, or `BFD/EFL = 0.233791464`; the design is not retrofocus.
 
-No uniform scaling is applied: `s = 1`. Radii, element thicknesses, and published air spaces remain in the patent's dimensional millimetres. The patent's plane-parallel filter R28–R29 (2.00 mm, `n (source) = 1.516330`, `ν (source) = 64.1`) is drawn in the data file as a plane-parallel plate element (surfaces 28–29), so every analysis traces it; its revised 25 mm inferred semi-diameter follows native Fig. 1 because the patent lists no numerical diameter. R27 keeps the printed D27 = 8.00 mm to the filter. The table prints D29 = 0.00 rather than a back focus, so the 59.3221048 mm filter-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 68.641078902 mm air-equivalent R27-to-image spacing. The optional front protection plate described in the patent and present in the production lens is not numerically specified by Example 1 and is therefore not invented.
+No uniform scaling is applied: `s = 1`. Radii, element thicknesses, and published air spaces remain in the patent's dimensional millimetres. The patent's plane-parallel filter R28–R29 (2.00 mm, $n_d = 1.516330$, $\nu_d = 64.1$) is drawn in the data file as a plane-parallel plate element (surfaces 28–29), so every analysis traces it; its revised 25 mm inferred semi-diameter follows native Fig. 1 because the patent lists no numerical diameter. R27 keeps the printed D27 = 8.00 mm to the filter. The table prints D29 = 0.00 rather than a back focus, so the 59.3221048 mm filter-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 68.641078902 mm air-equivalent R27-to-image spacing. The optional front protection plate described in the patent and present in the production lens is not numerically specified by Example 1 and is therefore not invented.
 
 ## Element-by-Element Analysis
 
@@ -52,33 +52,33 @@ L1 contains five air-separated elements and has a computed net focal length of *
 
 #### E1 — Biconvex Positive
 
-`n (source) = 1.496999, ν (source) = 81.5.` Glass: **Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)**. Standalone `f = +193.47696 mm`.
+$n_d = 1.496999$, $\nu_d = 81.5$. Glass: **K-PFK80 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +193.47696 mm`.
 
 E1 is the front collector and the largest modeled element. Its strong positive power begins the telephoto convergence while its high Abbe number limits the amount of dispersion introduced by that front-end power. The production correlation identifies this coordinate pair with one of Canon's two UD elements, but the patent does not name a glass manufacturer or proprietary material designation.
 
 #### E2 — Positive Meniscus
 
-`n (source) = 1.496999, ν (source) = 81.5.` Glass: **Unmatched (source n=1.496999, ν=81.5; spectral reference unspecified)**. Standalone `f = +218.62316 mm`.
+$n_d = 1.496999$, $\nu_d = 81.5$. Glass: **K-PFK80 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +218.62316 mm`.
 
 E2 uses the same optical material coordinates as E1 but distributes its positive power in meniscus form. In combination, E1 and E2 establish a low-dispersion positive front section rather than concentrating all of L1's power in a single thick element. The identification with the second production UD element is a product-correlation inference, not a patent material name.
 
 #### E3 — Biconcave Negative
 
-`n (source) = 1.785896, ν (source) = 44.2.` Glass: **Unmatched (source n=1.785896, ν=44.2; spectral reference unspecified)**. Standalone `f = −114.74478 mm`.
+$n_d = 1.785896$, $\nu_d = 44.2$. Glass: **S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −114.74478 mm`.
 
 E3 introduces substantial negative power within the otherwise positive L1. Its high refractive index allows that correction with moderate curvatures and thickness. In design terms, the negative element counterbalances the strong positive front pair and contributes to the control of spherical and chromatic residuals before the beam reaches the fluorite-correlated positive element.
 
 #### E4 — Biconvex Positive
 
-`n (source) = 1.433870, ν (source) = 95.1.` Glass: **Unmatched (production fluorite correlation; source n=1.43387, ν=95.1; spectral reference unspecified)**. Standalone `f = +158.49796 mm`.
+$n_d = 1.433870$, $\nu_d = 95.1$. Glass: **CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +158.49796 mm`.
 
-E4 is the lowest-index and highest-Abbe element in the active prescription. Canon states that the production EF 300mm f/2.8L IS USM contains one fluorite element, and the Example 1 coordinate pair at E4 is the natural correlation. The former CaF2 curve is disabled because the source material reference wavelength is unspecified. The production association remains a qualified correlation, not proof of this source medium's historical chemistry or supplier.
+E4 is the lowest-index and highest-Abbe element in the active prescription. Canon states that the production EF 300mm f/2.8L IS USM contains one fluorite element, and the Example 1 coordinate pair at E4 is the natural correlation. The CaF2 catalog curve serves as a spectral proxy for the printed coordinates. The production association remains a qualified correlation, not proof of this source medium's historical chemistry or supplier.
 
-At the level supported by `n (source)/ν (source)`, E4 supplies low-dispersion positive power in the front group. No apochromatic or quantified secondary-spectrum claim is made from this coordinate pair alone.
+At the level supported by $n_d/\nu_d$, E4 supplies low-dispersion positive power in the front group. No apochromatic or quantified secondary-spectrum claim is made from this coordinate pair alone.
 
 #### E5 — Negative Meniscus
 
-`n (source) = 1.487490, ν (source) = 70.2.` Glass: **Unmatched (source n=1.48749, ν=70.2; spectral reference unspecified)**. Standalone `f = −466.48479 mm`.
+$n_d = 1.487490$, $\nu_d = 70.2$. Glass: **S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −466.48479 mm`.
 
 E5 is a comparatively weak negative meniscus at the rear of L1. It moderates the converging bundle delivered to the focusing unit and provides another degree of freedom for balancing L1's residual aberrations without materially changing the overall positive sign of the group.
 
@@ -88,13 +88,13 @@ L2 is the sole axial focusing unit. E6 and E7 have opposite standalone powers, b
 
 #### E6 — Biconvex Positive
 
-`n (source) = 1.805181, ν (source) = 25.4.` Glass: **Unmatched (source n=1.805181, ν=25.4; spectral reference unspecified)**. Standalone `f = +125.83165 mm`.
+$n_d = 1.805181$, $\nu_d = 25.4$. Glass: **S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +125.83165 mm`.
 
 E6 is the positive component of L2. Its relatively low Abbe number is deliberate in the context of the patent's condition (9), where the negative partner is required to have the larger Abbe number. This pairing is directed at controlling chromatic variation as the focusing unit translates.
 
 #### E7 — Biconcave Negative
 
-`n (source) = 1.834807, ν (source) = 42.7.` Glass: **Unmatched (source n=1.834807, ν=42.7; spectral reference unspecified)**. Standalone `f = −59.90749 mm`.
+$n_d = 1.834807$, $\nu_d = 42.7$. Glass: **TAFD5G (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −59.90749 mm`.
 
 E7 provides the stronger negative standalone power and makes the cemented pair net negative. The Abbe-number difference is `42.7 − 25.4 = 17.3`, exactly reproducing the Example 1 value for patent condition (9). The cemented construction also avoids introducing a variable internal air gap into the moving focus unit.
 
@@ -104,13 +104,13 @@ The aperture stop is followed by the E8/E9 cemented pair. Although E8 is individ
 
 #### E8 — Negative Meniscus
 
-`n (source) = 1.846658, ν (source) = 23.9.` Glass: **Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)**. Standalone `f = −76.18700 mm`.
+$n_d = 1.846658$, $\nu_d = 23.9$. Glass: **PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −76.18700 mm`.
 
 E8 is the negative component of L31. Its high index and low Abbe number provide a strong counter-term within a cemented pair that is positive overall.
 
 #### E9 — Biconvex Positive
 
-`n (source) = 1.719995, ν (source) = 50.2.` Glass: **Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)**. Standalone `f = +43.10923 mm`.
+$n_d = 1.719995$, $\nu_d = 50.2$. Glass: **S-LAL10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +43.10923 mm`.
 
 E9 supplies the stronger positive contribution and sets the sign of the L31 doublet. Its position immediately after the stop and ahead of L32 makes it part of the beam-convergence strategy used to keep the stabilization subunit compact.
 
@@ -120,19 +120,19 @@ L32 consists of the cemented E10/E11 pair, a strongly curved air gap, and E12. T
 
 #### E10 — Biconvex Positive
 
-`n (source) = 1.846658, ν (source) = 23.9.` Glass: **Unmatched (source n=1.846658, ν=23.9; spectral reference unspecified)**. Standalone `f = +66.28386 mm`.
+$n_d = 1.846658$, $\nu_d = 23.9$. Glass: **PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +66.28386 mm`.
 
 E10 is the positive member of the first L32 cemented pair. Its positive power is outweighed by the negative E11 member, so the pair remains net negative. The element also begins the three-element positive-negative-negative arrangement described by the first-embodiment design rules for the stabilization subunit.
 
 #### E11 — Biconcave Negative
 
-`n (source) = 1.603112, ν (source) = 60.6.` Glass: **Unmatched (source n=1.603112, ν=60.6; spectral reference unspecified)**. Standalone `f = −43.96039 mm`.
+$n_d = 1.603112$, $\nu_d = 60.6$. Glass: **N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −43.96039 mm`.
 
 E11 is the negative cemented partner to E10 and forms the object-side boundary of the patent's biconvex air lens. Its higher Abbe number contrasts with the low-Abbe positive E10, while its surface curvature participates directly in the air-lens condition used to control the behavior of the decentered L32 group.
 
 #### E12 — Biconcave Negative
 
-`n (source) = 1.772499, ν (source) = 49.6.` Glass: **Unmatched (source n=1.772499, ν=49.6; spectral reference unspecified)**. Standalone `f = −45.60909 mm`.
+$n_d = 1.772499$, $\nu_d = 49.6$. Glass: **E-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −45.60909 mm`.
 
 E12 is the second negative element of L32 and forms the image-side boundary of the biconvex air lens. Together with the E10/E11 pair, it produces the strongly negative L32 power required for high image-displacement sensitivity without making the movable assembly a large positive relay.
 
@@ -142,19 +142,19 @@ L33 combines the cemented E13/E14 pair with the final positive E15. The cemented
 
 #### E13 — Biconvex Positive
 
-`n (source) = 1.719995, ν (source) = 50.2.` Glass: **Unmatched (source n=1.719995, ν=50.2; spectral reference unspecified)**. Standalone `f = +37.81764 mm`.
+$n_d = 1.719995$, $\nu_d = 50.2$. Glass: **S-LAL10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +37.81764 mm`.
 
 E13 is the strong positive member at the front of L33. It uses the same optical coordinates as E9 and provides most of the positive power of the E13/E14 cemented pair.
 
 #### E14 — Negative Meniscus
 
-`n (source) = 1.834000, ν (source) = 37.2.` Glass: **Unmatched (source n=1.834, ν=37.2; spectral reference unspecified)**. Standalone `f = −64.09925 mm`.
+$n_d = 1.834000$, $\nu_d = 37.2$. Glass: **J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = −64.09925 mm`.
 
 E14 is the negative cemented partner to E13. Its negative power and lower Abbe number give the cemented pair additional control of residual aberrations while retaining positive net power.
 
 #### E15 — Plano-Convex Positive
 
-`n (source) = 1.696797, ν (source) = 55.5.` Glass: **Unmatched (source n=1.696797, ν=55.5; spectral reference unspecified)**. Standalone `f = +117.32398 mm`.
+$n_d = 1.696797$, $\nu_d = 55.5$. Glass: **S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)**. Standalone `f = +117.32398 mm`.
 
 E15 is the final powered element and has a plane rear surface. It adds positive power to L33 and is followed by the printed 8.00 mm air gap to the patent's plane-parallel rear filter, which the data file draws as a plane-parallel plate element rather than as a powered lens element.
 
@@ -162,28 +162,28 @@ E15 is the final powered element and has a plane rear surface. It adds positive 
 
 The exact original numerical introduction, PDF p. 68 (printed col. 12), defines Ni/νi as refractive index and Abbe number without identifying a material reference line. The complete first-embodiment prose, both source table pages and the appended certificate were inspected. No material d/e anchor, numeric reference wavelength, individual line indices, partial dispersion or APD evidence is supplied. Aberration-plot wavelength labels do not establish the prescription coordinates.
 
-All 16 literal pairs are retained, including filter FL. Every medium now carries an explicit `Unmatched` disposition and `indexReferenceNote`; approximate d-line tracing remains the numerical convention. All 16 previously active catalog curves are disabled. No per-lens nC/nF/ng/dPgF field was present, and none is added. Historical wavelength identity, supplier, melt and chemistry remain unresolved. The prior catalog comparison is retained as identification history, not counted as a fresh spectral measurement.
+The patent names no spectral line. 16 of 16 printed pairs, including filter FL, match catalog d-line coordinates and none match the e-line, so the table is read as d-line. All 16 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. No per-lens nC/nF/ng/dPgF field is stored for any element.
 
-| Medium | Source n | Source ν | Disposition                        |
-| ------ | -------: | -------: | ---------------------------------- |
-| E1     | 1.496999 |     81.5 | Unmatched; source line unspecified |
-| E2     | 1.496999 |     81.5 | Unmatched; source line unspecified |
-| E3     | 1.785896 |     44.2 | Unmatched; source line unspecified |
-| E4     | 1.433870 |     95.1 | Unmatched; source line unspecified |
-| E5     | 1.487490 |     70.2 | Unmatched; source line unspecified |
-| E6     | 1.805181 |     25.4 | Unmatched; source line unspecified |
-| E7     | 1.834807 |     42.7 | Unmatched; source line unspecified |
-| E8     | 1.846658 |     23.9 | Unmatched; source line unspecified |
-| E9     | 1.719995 |     50.2 | Unmatched; source line unspecified |
-| E10    | 1.846658 |     23.9 | Unmatched; source line unspecified |
-| E11    | 1.603112 |     60.6 | Unmatched; source line unspecified |
-| E12    | 1.772499 |     49.6 | Unmatched; source line unspecified |
-| E13    | 1.719995 |     50.2 | Unmatched; source line unspecified |
-| E14    | 1.834000 |     37.2 | Unmatched; source line unspecified |
-| E15    | 1.696797 |     55.5 | Unmatched; source line unspecified |
-| FL     | 1.516330 |     64.1 | Unmatched; source line unspecified |
+| Medium | Printed nd | Printed νd | Catalog curve |
+| ------ | ---------: | ---------: | ------------- |
+| E1     |   1.496999 |       81.5 | K-PFK80       |
+| E2     |   1.496999 |       81.5 | K-PFK80       |
+| E3     |   1.785896 |       44.2 | S-LAH51       |
+| E4     |   1.433870 |       95.1 | CaF2          |
+| E5     |   1.487490 |       70.2 | S-FSL5        |
+| E6     |   1.805181 |       25.4 | S-TIH6        |
+| E7     |   1.834807 |       42.7 | TAFD5G        |
+| E8     |   1.846658 |       23.9 | PBH53         |
+| E9     |   1.719995 |       50.2 | S-LAL10       |
+| E10    |   1.846658 |       23.9 | PBH53         |
+| E11    |   1.603112 |       60.6 | N-SK14        |
+| E12    |   1.772499 |       49.6 | E-LASF016     |
+| E13    |   1.719995 |       50.2 | S-LAL10       |
+| E14    |   1.834000 |       37.2 | J-LASF010     |
+| E15    |   1.696797 |       55.5 | S-LAL14       |
+| FL     |   1.516330 |       64.1 | S-BSL7        |
 
-The production fluorite/UD statements remain product-correlation evidence. They support the earlier association of E1/E2 with the two production UD elements and E4 with the production fluorite element, but do not identify this patent's reference wavelength, historical crystal, melt or supplier. In particular, the CaF2 curve is not active. No apochromatic or quantitative secondary-spectrum claim follows from the anonymous source pairs.
+The production fluorite/UD statements remain product-correlation evidence. They support the association of E1/E2 with the two production UD elements and E4 with the production fluorite element, but do not identify this patent's historical crystal, melt or supplier; the reference line comes from the printed-coordinate match above, not from the production statements. No apochromatic or quantitative secondary-spectrum claim follows from the anonymous source pairs.
 
 ## Focus Mechanism
 
@@ -202,11 +202,11 @@ The production identity includes USM, and Canon describes high-speed autofocus f
 
 ## Chromatic Correction Strategy
 
-The production-to-patent correlation is unusually strong in the front-group material pattern. Canon specifies two UD elements and one fluorite element. Example 1 places two identical `n (source) = 1.496999, ν (source) = 81.5` positive elements at E1 and E2 and a `n (source) = 1.433870, ν (source) = 95.1` positive element at E4. These three elements carry substantial positive power in L1, where axial color generated by the large front aperture is most consequential.
+The production-to-patent correlation is unusually strong in the front-group material pattern. Canon specifies two UD elements and one fluorite element. Example 1 places two identical $n_d = 1.496999$, $\nu_d = 81.5$ positive elements at E1 and E2 and a $n_d = 1.433870$, $\nu_d = 95.1$ positive element at E4. These three elements carry substantial positive power in L1, where axial color generated by the large front aperture is most consequential.
 
-Within the focusing unit, the patent makes chromatic behavior during focus a separate design condition. E6 is positive with `ν (source) = 25.4`, while E7 is negative with `ν (source) = 42.7`; their difference is **17.3**, matching patent condition (9). The patent explicitly associates this Abbe-number separation with control of chromatic-aberration variation during focusing.
+Within the focusing unit, the patent makes chromatic behavior during focus a separate design condition. E6 is positive with $\nu_d = 25.4$, while E7 is negative with $\nu_d = 42.7$; their difference is **17.3**, matching patent condition (9). The patent explicitly associates this Abbe-number separation with control of chromatic-aberration variation during focusing.
 
-The rear groups continue to pair positive and negative elements with different Abbe numbers in cemented combinations, notably E8/E9, E10/E11, and E13/E14. This distribution supports a multi-group chromatic balancing strategy at the `n (source)/ν (source)` level. Because the source does not provide line indices or anomalous partial-dispersion deviations, the analysis stops at that level and does not infer an APO designation or a quantified secondary-spectrum residual.
+The rear groups continue to pair positive and negative elements with different Abbe numbers in cemented combinations, notably E8/E9, E10/E11, and E13/E14. This distribution supports a multi-group chromatic balancing strategy at the $n_d/\nu_d$ level. Because the source does not provide line indices or anomalous partial-dispersion deviations, the analysis stops at that level and does not infer an APO designation or a quantified secondary-spectrum residual.
 
 ## Air Lens
 
@@ -266,7 +266,7 @@ A separate actual-conjugate probe uses 101 focus controls, three fields and 97 p
 
 All 2,251 off-axis noBracket entries occur before S1. Independent unrestricted-sphere intersections put every one outside the modeled first cap; zero are unexplained inside-cap misses. Other off-axis clipping remains sampled vignetting. These probes distinguish source infinity support from reconstructed close-focus clearance and do not certify production illumination or a continuous pupil.
 
-The rear filter is the only published Example 1 glass element that is not a powered lens element. Its 2.00 mm thickness at `n (source) = 1.516330`, `ν (source) = 64.1` is drawn as a plane-parallel plate element behind the printed 8.00 mm gap and traced by every analysis; it is not counted in `elementCount`. The derived 59.3221048 mm filter-to-image air preserves the paraxial image plane. The front protection glass is not numerically specified in Example 1 and is omitted rather than guessed.
+The rear filter is the only published Example 1 glass element that is not a powered lens element. Its 2.00 mm thickness at $n_d = 1.516330$, $\nu_d = 64.1$ is drawn as a plane-parallel plate element behind the printed 8.00 mm gap and traced by every analysis; it is not counted in `elementCount`. The derived 59.3221048 mm filter-to-image air preserves the paraxial image plane. The front protection glass is not numerically specified in Example 1 and is omitted rather than guessed.
 
 Example 1 is entirely spherical. No aspherical coefficients, conic convention, or coefficient scaling is applicable. No formal Certificate of Correction changes an Example 1 numerical prescription value. The parsed patent text contains OCR artifacts such as `1.43387O`, `1.487.490`, `1834.807`, `S.52`, and `1.7724.99`; the rendered Example 1 table resolves these respectively as `1.433870`, `1.487490`, `1.834807`, `5.52`, and `1.772499`. These are transcription corrections, not changes to the patent prescription.
 
@@ -280,7 +280,7 @@ The pre-existing `gapSagFrac: 0.96` remains unchanged. At S4–S5 the modeled ph
 
 ## Source-Stated Catalog Focal Length — 2026-10-30
 
-The catalog design focal length copies the source-stated 293.58 mm from PDF p. 68 (Numerical Example 1 heading, printed column 12). The computed 293.599593947 mm EFL remains an approximate d-reference model result; it is not the printed nominal focal length. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+The catalog design focal length copies the source-stated 293.58 mm from PDF p. 68 (Numerical Example 1 heading, printed column 12). The computed 293.599593947 mm EFL is a d-line model result; it is not the printed nominal focal length. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
 
 ## Sources
 

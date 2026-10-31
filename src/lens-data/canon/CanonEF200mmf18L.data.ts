@@ -26,9 +26,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Original-PDF review 2026-10-30: Example 1, PDF page 5; Fig. 1,      ║
  * ║  PDF page 7. S10 keeps its 31.3 mm clear cap and gains the resolved   ║
  * ║  outer shoulder to 36.5 mm. All source R/d and focus rows retained.   ║
- * ║  Catalog spectral copies removed; source theta_3a/theta_3b preserved  ║
- * ║  as published partial ratios, with unresolved wavelength convention. ║
- * ║  Unspecified N/ν reference leaves all 10 media Unmatched.             ║
+ * ║  Source theta_3a/theta_3b are kept as published partial ratios; their    ║
+ * ║  wavelength convention is unspecified.                                   ║
+ * ║                                                                          ║
+ * ║  NOTE ON SPECTRAL LINE:                                                  ║
+ * ║    The patent names no spectral line. 10 of 10 printed pairs match       ║
+ * ║    catalog d-line coordinates and none match the e-line, so the table    ║
+ * ║    is read as d-line. 10 media use catalog curves as spectral proxies;   ║
+ * ║    supplier, melt and chemistry stay unspecified.                        ║
  * ║                                                                          ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                 ║
  * ║    The patent publishes no clear apertures. SDs use combined marginal-  ║
@@ -86,8 +91,7 @@ const LENS_DATA = {
       glass:
         "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote:
-        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "First low-dispersion positive collector in G1; one of the three production UD-correlated positions.",
     },
     {
@@ -101,8 +105,7 @@ const LENS_DATA = {
       glass:
         "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote:
-        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "Second low-dispersion positive collector in G1; distributes positive power across the front group.",
     },
     {
@@ -128,8 +131,7 @@ const LENS_DATA = {
       glass:
         "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote:
-        "Production UD-position correlation only; source N/ν reference unspecified and no selected APD measurement.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "Third low-dispersion positive in G1; corresponds to the third UD-highlighted production position.",
     },
     {

@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed pair is rejected by source power/focal targets, but the replacements are not uniquely source-proven.
  * Source apertures f/3.6, f/4.2 and f/4.6 are restored from Fig.3 and the numerical heading.
  * The unchanged 390 mm finite-focus endpoints are inferred; interpolated positions are illustrative.
- * N/ν reference is unspecified, leaving all ten media Unmatched with approximate d-line tracing.
+ * The patent names no spectral line. 10 of 10 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 10 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified.
  * S2 has a resolved outer shoulder; other clear heights follow native Fig.1 under unchanged guards.
  */
 const LENS_DATA = {

@@ -29,7 +29,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    S7/S8 use 6.8 mm to match the smaller source positive element.  ║
  * ║    S2 remains slope-limited: a 14.9 mm trial fails the existing    ║
  * ║    guard. 75–90 degree vector chiefs remain a model limitation.    ║
- * ║    Source N/Abbe reference is unspecified; all media Unmatched.    ║
+ * ║                                                                    ║
+ * ║  NOTE ON SPECTRAL LINE:                                            ║
+ * ║    The patent names no spectral line. 8 of 8 printed pairs match   ║
+ * ║    catalog d-line coordinates and none match the e-line, so the    ║
+ * ║    table is read as d-line. 8 media use catalog curves as spectral ║
+ * ║    proxies; supplier, melt and chemistry stay unspecified.         ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design.           ║
  * ║    No rear gelatin filter, sensor cover glass, hood, or mechanics. ║

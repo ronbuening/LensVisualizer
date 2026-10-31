@@ -34,7 +34,7 @@ No elements are cemented. The standalone focal lengths stated below therefore de
 
 ### L1 — Negative Meniscus with Rear Asphere
 
-**Source N = 1.60311, ν = 60.7; reference wavelength unspecified. Medium unidentified. Approximate standalone f = −40.134 mm.**
+**Printed $n_d$ = 1.60311, $\nu_d$ = 60.7; glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Approximate standalone f = −40.134 mm.**
 
 L1 is the sole negative element ahead of the stop and establishes the front-diverging character required for the long back focus. Its convex object-side surface and strongly shaped image-side asphere form a negative meniscus rather than a simple negative front group.
 
@@ -44,7 +44,7 @@ Surface `2A` carries the design's only asphere. Its role is not merely to add pa
 
 ### L2 — Biconvex Positive
 
-**Source N = 1.78590, ν = 44.2; reference wavelength unspecified. Medium unidentified. Approximate standalone f = +33.842 mm.**
+**Printed $n_d$ = 1.78590, $\nu_d$ = 44.2; glass: S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Approximate standalone f = +33.842 mm.**
 
 L2 is the positive member of the front section. Its standalone power exceeds the magnitude of L1's negative power, and the separated L1–L2 section is net positive with a computed standalone section focal length of `+54.753 mm`.
 
@@ -52,7 +52,7 @@ Placed before the stop, L2 reconverges the expanded front bundle and helps estab
 
 ### L3 — Biconcave Negative
 
-**Source N = 1.84666, ν = 23.9; reference wavelength unspecified. Medium unidentified. Approximate standalone f = −17.660 mm.**
+**Printed $n_d$ = 1.84666, $\nu_d$ = 23.9; glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Approximate standalone f = −17.660 mm.**
 
 L3 is the strongest standalone element in the design and lies immediately behind the aperture stop. This location gives its negative power strong influence over the rear ray bundle and the balance between the two positive rear elements.
 
@@ -60,7 +60,7 @@ Its high refractive index and low Abbe number distinguish it from the other glas
 
 ### L4 — Biconvex Positive
 
-**Source N = 1.79952, ν = 42.2; reference wavelength unspecified. Medium unidentified. Approximate standalone f = +25.168 mm.**
+**Printed $n_d$ = 1.79952, $\nu_d$ = 42.2; glass: S-LAH52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Approximate standalone f = +25.168 mm.**
 
 L4 is the stronger of the two final positive elements. Its first surface is nearly plane at the scale of the system, while its rear surface carries most of the element's refractive power. This distributes the rear-section power asymmetrically rather than as a conventional nearly symmetric biconvex lens.
 
@@ -68,7 +68,7 @@ The patent prints the following axial gap after L4 as `D9 = 0.00`. The data file
 
 ### L5 — Biconvex Positive
 
-**Source N = 1.78590, ν = 44.2; reference wavelength unspecified. Medium unidentified. Approximate standalone f = +42.863 mm.**
+**Printed $n_d$ = 1.78590, $\nu_d$ = 44.2; glass: S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Approximate standalone f = +42.863 mm.**
 
 L5 uses the same patent glass pair as L2 but at lower standalone power. It completes the positive rear section and contributes to the final convergence while preserving the rear clearance required by the retrofocus architecture.
 
@@ -76,17 +76,19 @@ The rear L3–L5 section has a computed standalone section focal length of `+55.
 
 ## Glass and Reference-Wavelength Limits
 
-The original defines Ni and νi as glass index and Abbe number on PDF p. 3, without specifying a reference wavelength or d/e-line convention. Its complete numerical tables and figures provide no individual C/F/g indices, partial-dispersion data, APD evidence, glass trade names, supplier or melt. The five source pairs are retained exactly; all five media now remain explicitly unidentified.
+The original defines Ni and νi as glass index and Abbe number on PDF p. 3, without naming a reference wavelength or d/e-line convention. Its complete numerical tables and figures provide no individual C/F/g indices, partial-dispersion data, APD evidence, glass trade names, supplier or melt. The five printed pairs are retained exactly.
 
-| Element | Source N / ν   | Spectral disposition             |
-| ------- | -------------- | -------------------------------- |
-| L1      | 1.60311 / 60.7 | Reference unspecified; Unmatched |
-| L2      | 1.78590 / 44.2 | Reference unspecified; Unmatched |
-| L3      | 1.84666 / 23.9 | Reference unspecified; Unmatched |
-| L4      | 1.79952 / 42.2 | Reference unspecified; Unmatched |
-| L5      | 1.78590 / 44.2 | Reference unspecified; Unmatched |
+The patent names no spectral line. 5 of 5 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 5 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-The twenty previously authored nC/nF/ng/dPgF fields were current-catalog copies, not published per-medium source data, and are removed. The five former catalog curves are disabled because a coordinate match under an assumed line cannot establish compatibility with the unidentified source reference. Current default d-line/Abbe calculations remain an explicit approximation. This does not establish zero chromatic error or identify an historical supplier, formulation, anneal, cement or production process. The numerical palette still separates the high-index, high-dispersion L3 from the other positive members; chemical class and procurement remain unresolved.
+| Element | Printed $n_d$ / $\nu_d$ | Glass                                                                                                         |
+| ------- | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| L1      | 1.60311 / 60.7          | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L2      | 1.78590 / 44.2          | S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L3      | 1.84666 / 23.9          | PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L4      | 1.79952 / 42.2          | S-LAH52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L5      | 1.78590 / 44.2          | S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+
+The catalog curves supply the C/F/g indices and partial dispersions; the patent prints none of them. Catalog selection does not establish zero chromatic error or identify an historical supplier, formulation, anneal, cement or production process. The numerical palette separates the high-index, high-dispersion L3 from the other positive members; its chemical class and procurement are not stated.
 
 ## Focus Mechanism
 
@@ -208,7 +210,7 @@ Actual rendered SVGs were compared with native Figure 1: five connected, finite,
 
 1. **JP S62-078520 A**, _Wide-angle lens having an aspherical surface_, Canon Inc., published 10 April 1987. Numerical Example 1 is on printed pages 113–114; Figure 1 and the corresponding aberration plots are on printed page 115.
 2. **Canon Camera Museum**, [EF28mm f/2.8](https://global.canon/en/c-museum/product/ef264.html). Source for product identity, April 1987 introduction, five-element/five-group construction, five diaphragm blades, 0.3 m closest focus, 0.13× maximum magnification, and the molded-glass first-element asphere.
-3. **Original-patent audit:** [CanonEF28mmf28.audit.md](CanonEF28mmf28.audit.md), reviewed 2026-10-30. Source line identity and historical glass remain unresolved; former catalog candidates are not active spectral evidence.
+3. **Original-patent audit:** [CanonEF28mmf28.audit.md](CanonEF28mmf28.audit.md). Records the printed-coordinate match counts, the native-figure measurements and the retained limitations.
 4. **Companion model:** `CanonEF28mmf28.data.ts`. This is the authority for labels, stored indices, glass annotations, element focal lengths, asphere coefficients, semi-diameters, and focus-state representation.
 
 ## Source-stated focal metadata — 2026-10-30

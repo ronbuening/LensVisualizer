@@ -23,9 +23,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ 13.5 mm at the 1x finite conjugate. No cut or outer extension is resolved.
  * ║ Source R/d and all three published D14 focus keyframes remain unchanged.
  * ║
- * ║ Glass: source N_i/nu_i has no wavelength anchor (PDF p.4). All ten media
- * ║ remain Unmatched with indexReferenceNote; d-line tracing is approximate.
- * ║ No catalog curve, explicit line indices or dPgF is treated as source data.
+ * ║ Glass: the patent names no spectral line (PDF p.4). 10 of 10 printed pairs   ║
+ * ║ match catalog d-line coordinates and none match the e-line, so the table is  ║
+ * ║ read as d-line. 10 media use catalog curves as spectral proxies; supplier,   ║
+ * ║ melt and chemistry stay unspecified. No explicit line indices or dPgF is     ║
+ * ║ treated as source data.                                                      ║
  * ║                                                                            ║
  * ║ Product correlation / marketed specifications: Canon Camera Museum,        ║
  * ║ https://global.canon/en/c-museum/product/ef289.html                         ║

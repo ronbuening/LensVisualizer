@@ -10,8 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * REUSED COVERAGE: source prescription, scale, polynomial-asphere conversion and
  * retained geometric constraints reuse the actual 2026-09-23 review. The 2026-10-30
  * scoped reopening adds native-resolved air shoulders at stored S9 and S10, preserving
- * sd 18.8/17.4 with outer rimExtensionSd 21.2/20.6 mm, and qualifies source spectral
- * uncertainty and current runtime limitations. No opaque cemented land or cut.
+ * sd 18.8/17.4 with outer rimExtensionSd 21.2/20.6 mm, and qualifies current runtime
+ * limitations. No opaque cemented land or cut.
  *
  * SCALE: source F=100; existing s=0.50008 maps R/d/sd and A_n/s^(n-1) to ~50 mm.
  * Stored 1-9 correspond to source R1-R9, STO to R10, stored 10-20 to R11-R21.
@@ -28,10 +28,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * positive-form air lenses remain narrow. Current f/1.0 iris-rim probes clip retained
  * caps; old blanket full-beam-clearance wording is no longer a current runtime claim.
  *
- * GLASS: source column 4 defines only refractive indices N and Abbe numbers nu,
- * without a reference wavelength. Current d-line tracing is retained as approximate,
- * with explicit indexReferenceNote and eleven Unmatched media. Old catalog classes
- * are conditional comparisons only and all eleven catalog curves are disabled.
+ * GLASS: source column 4 prints refractive indices N and Abbe numbers nu without a
+ * reference wavelength. The patent names no spectral line. 11 of 11 printed pairs
+ * match catalog d-line coordinates and none match the e-line, so the table is read
+ * as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified.
  * Source numeric pairs are unchanged; no source C/F/g, partial or APD data exist.
  * No supplier, melt, chemistry, cement or grinding/polishing identity is established.
  *

@@ -38,10 +38,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the 9.1-degree chief ray, close focus, and Figure 10.                      ║
  * ║                                                                            ║
  * ║ GLASS / SPECTRAL DATA                                                      ║
- * ║ The patent supplies N/Abbe pairs without naming their spectral reference. ║
- * ║ Its d/C/g aberration plots support only an approximate d-line convention. ║
- * ║ Every medium remains Unmatched with an explicit reference note; no catalog ║
- * ║ curve or unsupported per-element spectral override is selected.            ║
+ * ║ The patent supplies N/Abbe pairs and names no spectral line. 6 of 7 printed  ║
+ * ║ pairs match catalog d-line coordinates and none match the e-line, so the     ║
+ * ║ table is read as d-line. 6 media use catalog curves as spectral proxies;     ║
+ * ║ supplier, melt and chemistry stay unspecified. L2 stays Unmatched. The       ║
+ * ║ d/C/g aberration plots give no per-element line indices.                     ║
  * ║ All source pairs, control spacings, asphere terms and clear caps remain.   ║
  * ║                                                                            ║
  * ║ No scaling is applied. No sensor cover, filter, dummy plane, or mechanical║

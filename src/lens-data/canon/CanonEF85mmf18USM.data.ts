@@ -6,10 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Native Figure1 resolves R8's outer annulus: rimExtensionSd20.4 retains the
  * optical cap sd16.1. R13 front cap16 retains the source step to bonded R14=17.
  * No opaque bonded land, resin wing or inferred rim cut is introduced.
- * Table N/nu reference remains unspecified. Plot d/g labels do not establish
- * bulk reference wavelength; all9 media are Unmatched, with qualified d-line
- * coordinate candidates only. Default d-line/Abbe tracing is approximate.
- * Historical OHARA palette matching does not identify supplier, melt or chemistry.
+ * The patent names no spectral line for its table N/nu pairs, and plot d/g labels do
+ * not establish one. 9 of 9 printed pairs match catalog d-line coordinates and none
+ * match the e-line, so the table is read as d-line. 9 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified.
  * No source line indices, partial dispersion, APD or extra hybrid layer is given.
  * The0.85m endpoint is derived, not the patent's separately labeled0.8m plot.
  * Native figure images are about200dpi; text/table vectors are rendered at200dpi.

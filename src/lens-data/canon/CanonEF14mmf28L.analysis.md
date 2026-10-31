@@ -91,7 +91,7 @@ cemented assembly.
 
 ### L1 — Negative Meniscus, concave to the image
 
-**$n=1.69680$, $\nu=55.5$. Glass: S-LAL14 (OHARA) d-line coordinate candidate; source reference unspecified, code 697555. Standalone $f=-97.290\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-97.290\ \mathrm{mm}$.**
 
 Both radii are positive, with the rear surface more strongly curved. L1 begins the gradual divergence of the fixed front
 group. Its moderate power is consistent with the patent's strategy of avoiding a single highly stressed front element
@@ -99,7 +99,7 @@ group. Its moderate power is consistent with the patent's strategy of avoiding a
 
 ### L2 — Weak Negative Meniscus with object-side asphere
 
-**$n=1.60311$, $\nu=60.7$. Glass: S-BSM14 (OHARA) d-line coordinate candidate; source reference unspecified, code 603607. Standalone $f=-1211.000\ \mathrm{mm}$.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-1211.000\ \mathrm{mm}$.**
 
 L2 is nearly afocal paraxially. Its design function is dominated by surface 3A, the sole asphere. Claim 2 and ¶0012 state
 that positive refractive action increases with ray height, correcting the increasingly negative distortion of the extreme
@@ -107,21 +107,21 @@ field while limiting influence on spherical aberration.
 
 ### L3 — Negative Meniscus, concave to the image
 
-**$n=1.69680$, $\nu=55.5$. Glass: S-LAL14 (OHARA) d-line coordinate candidate; source reference unspecified, code 697555. Standalone $f=-51.445\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-51.445\ \mathrm{mm}$.**
 
 L3 carries more negative power than L1 or L2. Its placement continues the progressive rise in axial-ray height through
 Group I described in ¶0011.
 
 ### L4 — Negative Meniscus, concave to the image
 
-**$n=1.77250$, $\nu=49.6$. Glass: S-LAH66 (OHARA) d-line coordinate candidate; source reference unspecified, code 773496. Standalone $f=-47.798\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-47.798\ \mathrm{mm}$.**
 
-The high index supports useful negative power without exceptionally short radii. With $\nu<50$, the catalog candidate
+The high index supports useful negative power without exceptionally short radii. With $\nu_d<50$, the catalog proxy
 is a dense lanthanum flint, not a crown.
 
 ### L5 — Negative Meniscus, front component of J1
 
-**$n=1.69680$, $\nu=55.5$. Glass: S-LAL14 (OHARA) d-line coordinate candidate; source reference unspecified, code 697555. Standalone $f=-24.414\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-24.414\ \mathrm{mm}$.**
 
 L5 is the fifth image-facing negative meniscus and the strongest negative element in Group I by standalone power. It is
 cemented to L6 at surface 10. Patent ¶0011 places particular emphasis on this location: the high axial-ray height at L5's
@@ -130,7 +130,7 @@ higher-order terms.
 
 ### L6 — Biconvex Positive, rear component of J1
 
-**$n=1.59551$, $\nu=39.2$. Glass: S-TIM8 (OHARA) d-line coordinate candidate; source reference unspecified, code 596392. Standalone $f=+21.052\ \mathrm{mm}$.**
+**$n_d=1.59551$, $\nu_d=39.2$. Glass: S-TIM8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+21.052\ \mathrm{mm}$.**
 
 L6 is stronger than L5 in isolation, so the complete cemented pair is net positive:
 
@@ -142,7 +142,7 @@ The pair closes Group I while providing the spherical-aberration balance describ
 
 ### L7 — Biconvex Positive, front component of J2
 
-**$n=1.56732$, $\nu=42.8$. Glass: S-TIL26 (OHARA) d-line coordinate candidate; source reference unspecified, code 567428. Standalone $f=+16.495\ \mathrm{mm}$.**
+**$n_d=1.56732$, $\nu_d=42.8$. Glass: S-TIL26 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+16.495\ \mathrm{mm}$.**
 
 L7 begins the converging rear group. It is cemented to L8, and the complete pair remains strongly positive:
 
@@ -152,7 +152,7 @@ $$
 
 ### L8 — Negative Meniscus, concave to the object, rear component of J2
 
-**$n=1.77250$, $\nu=49.6$. Glass: S-LAH66 (OHARA) d-line coordinate candidate; source reference unspecified, code 773496. Standalone $f=-63.633\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-63.633\ \mathrm{mm}$.**
 
 L8 is the first of the two object-facing negative menisci ahead of the stop required by Claim 1. Patent ¶0014 treats the
 pre-stop menisci as a coordinated correction system for spherical aberration, coma, and astigmatism rather than assigning
@@ -160,14 +160,14 @@ a single isolated aberration to L8.
 
 ### L9 — Negative Meniscus, concave to the object
 
-**$n=1.77250$, $\nu=49.6$. Glass: S-LAH66 (OHARA) d-line coordinate candidate; source reference unspecified, code 773496. Standalone $f=-30.293\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-30.293\ \mathrm{mm}$.**
 
 L9 is the second pre-stop negative meniscus and is stronger than L8 in standalone power. Its strongly curved object-side
 surface contributes to the positive-direction spherical correction discussed in ¶0014.
 
 ### L10 — Biconvex Positive, front component of J3
 
-**$n=1.60311$, $\nu=60.7$. Glass: S-BSM14 (OHARA) d-line coordinate candidate; source reference unspecified, code 603607. Standalone $f=+65.166\ \mathrm{mm}$.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+65.166\ \mathrm{mm}$.**
 
 L10 lies immediately behind the stop and is cemented to L11. Although L10 is positive in isolation, the complete pair is
 weakly negative:
@@ -178,22 +178,22 @@ $$
 
 ### L11 — Biconcave Negative, rear component of J3
 
-**$n=1.74320$, $\nu=49.3$. Glass: S-LAM60 (OHARA) d-line coordinate candidate; source reference unspecified, code 743493. Standalone $f=-48.571\ \mathrm{mm}$.**
+**$n_d=1.74320$, $\nu_d=49.3$. Glass: S-LAM60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-48.571\ \mathrm{mm}$.**
 
 L11 overcomes L10's positive power and makes J3 net negative. Its rear surface and the front surface of L12 bound the
 strongly curved air lens that ¶0014 associates with sagittal-flare correction.
 
 ### L12 — Biconcave Negative, front component of J4
 
-**$n=1.92286$, $\nu=21.3$. Glass: PBH71 historical d-line coordinate candidate (OHARA), code 923213; source reference and actual patent vendor unspecified. Standalone $f=-29.224\ \mathrm{mm}$.**
+**$n_d=1.92286$, $\nu_d=21.3$. Glass: PBH71 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-29.224\ \mathrm{mm}$.**
 
-OHARA's historical PBH71 row gives a d-line coordinate candidate for the source's printed numeric pair: catalog
-$n=1.922864$ and $\nu=21.288699$ round to the patent's 1.92286 / 21.3 pair.[5] This is a qualified coordinate candidate under an assumed d-line reference,
+OHARA's historical PBH71 row matches the source's printed numeric pair: catalog
+$n_d=1.922864$ and $\nu_d=21.288699$ round to the patent's 1.92286 / 21.3 pair.[5] The PBH71 curve serves as a spectral proxy,
 not proof that Canon bought the production melt from OHARA. Its very high index and dispersion contrast strongly with L13.
 
 ### L13 — Biconvex Positive, rear component of J4
 
-**$n=1.48749$, $\nu=70.2$. Glass: S-FSL5 (OHARA) d-line coordinate candidate; source reference unspecified, code 487702. Standalone $f=+24.923\ \mathrm{mm}$.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+24.923\ \mathrm{mm}$.**
 
 L13 is the low-dispersion positive partner of L12. The cemented pair is net positive:
 
@@ -206,34 +206,33 @@ astigmatic correction. The available data support a strong achromatizing role, b
 
 ### L14 — Biconvex Positive rear element
 
-**$n=1.80400$, $\nu=46.6$. Glass: S-LAH65V (OHARA) d-line coordinate candidate; source reference unspecified, code 804466. Standalone $f=+42.573\ \mathrm{mm}$.**
+**$n_d=1.80400$, $\nu_d=46.6$. Glass: S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+42.573\ \mathrm{mm}$.**
 
 L14 is a dense lanthanum flint rather than a crown. Patent ¶0015 states that it shares the positive power otherwise
 concentrated at the rear of J4 and thereby moderates undercorrected spherical aberration.
 
 ## Glass Identification and Selection
 
-The patent table publishes N and ν without specifying a d/e spectral reference. Paragraph 0022 defines them only
-as the glass refractive index and Abbe number. The d-line legend on the aberration sheets identifies plotted rays;
-it does not explicitly define the prescription-table reference. Each modeled medium therefore remains Unmatched,
-with an index-reference note that d-line tracing is an approximation. The numeric source pairs remain unchanged.
+The patent table publishes N and ν. Paragraph 0022 defines them only as the glass refractive index and Abbe number.
+The d-line legend on the aberration sheets identifies plotted rays; it does not explicitly define the
+prescription-table reference. The patent names no spectral line. 14 of 14 printed pairs match catalog d-line
+coordinates and none match the e-line, so the table is read as d-line. 14 media use catalog curves as spectral
+proxies; supplier, melt and chemistry stay unspecified.
 
-The names below are qualified d-line coordinate candidates, not resolved source materials or historical supplier
-identifications. The former per-element C/F/g copies came from catalog candidates and are removed. No source
-line-index or partial-dispersion measurement is discarded. All 14 media currently use the source-pair Abbe
-approximation; none is counted as resolved catalog-curve coverage while its source reference remains unspecified.
+The names below are catalog spectral proxies, not resolved source materials or historical supplier
+identifications. No per-element C/F/g indices or partial-dispersion values are authored.
 
-| Derived coordinate code | Source n | Source ν | D-line catalog candidate | Catalog νd | Elements   | Candidate-coordinate agreement  |
-| ----------------------- | -------: | -------: | ------------------------ | ---------: | ---------- | ------------------------------- |
-| 697555                  |  1.69680 |     55.5 | S-LAL14 (OHARA)          |      55.53 | L1, L3, L5 | Exact index; rounded Abbe match |
-| 603607                  |  1.60311 |     60.7 | S-BSM14 (OHARA)          |      60.64 | L2, L10    | Exact index; rounded Abbe match |
-| 773496                  |  1.77250 |     49.6 | S-LAH66 (OHARA)          |      49.60 | L4, L8, L9 | Exact match at patent precision |
-| 596392                  |  1.59551 |     39.2 | S-TIM8 (OHARA)           |      39.24 | L6         | Exact index; rounded Abbe match |
-| 567428                  |  1.56732 |     42.8 | S-TIL26 (OHARA)          |      42.82 | L7         | Exact index; rounded Abbe match |
-| 743493                  |  1.74320 |     49.3 | S-LAM60 (OHARA)          |      49.34 | L11        | Exact index; rounded Abbe match |
-| 923213                  |  1.92286 |     21.3 | PBH71 (OHARA historical) |      21.29 | L12        | Exact match at patent precision |
-| 487702                  |  1.48749 |     70.2 | S-FSL5 (OHARA)           |      70.23 | L13        | Exact index; rounded Abbe match |
-| 804466                  |  1.80400 |     46.6 | S-LAH65V (OHARA)         |      46.58 | L14        | Exact index; rounded Abbe match |
+| Derived coordinate code | Printed $n_d$ | Printed $\nu_d$ | Catalog spectral proxy | Catalog $\nu_d$ | Elements   | Coordinate agreement            |
+| ----------------------- | ------------: | --------------: | ---------------------- | --------------: | ---------- | ------------------------------- |
+| 697555                  |       1.69680 |            55.5 | S-LAL14                |           55.53 | L1, L3, L5 | Exact index; rounded Abbe match |
+| 603607                  |       1.60311 |            60.7 | S-BSM14                |           60.64 | L2, L10    | Exact index; rounded Abbe match |
+| 773496                  |       1.77250 |            49.6 | S-LAH66                |           49.60 | L4, L8, L9 | Exact match at patent precision |
+| 596392                  |       1.59551 |            39.2 | S-TIM8                 |           39.24 | L6         | Exact index; rounded Abbe match |
+| 567428                  |       1.56732 |            42.8 | S-TIL26                |           42.82 | L7         | Exact index; rounded Abbe match |
+| 743493                  |       1.74320 |            49.3 | S-LAM60                |           49.34 | L11        | Exact index; rounded Abbe match |
+| 923213                  |       1.92286 |            21.3 | PBH71 (historical)     |           21.29 | L12        | Exact match at patent precision |
+| 487702                  |       1.48749 |            70.2 | S-FSL5                 |           70.23 | L13        | Exact index; rounded Abbe match |
+| 804466                  |       1.80400 |            46.6 | S-LAH65V               |           46.58 | L14        | Exact index; rounded Abbe match |
 
 The main chromatic lever is J4: very-high-dispersion L12 is cemented to low-dispersion L13. J1 and J2 also combine
 substantially different dispersions, but the patent's explicit axial- and lateral-color discussion centers on J4 (¶0014).
@@ -499,7 +498,7 @@ those first-order qualifications, and no cap, iris, gap or cam is tuned to the s
 
 All 1029/1029 axial and 63/63 chief samples clear over 3087 aimed rays, zero unaimed. Infinity/half/near pupil survivors
 are 49/38/5,49/29/5,49/29/10; peripheral vignetting remains. All 14 actual SVG paths finite/closed/connected, zero
-hidden trim. Existing source-field 97% limit, four native shoulders, unknown index reference and source/runtime/
+hidden trim. Existing source-field 97% limit, four native shoulders and source/runtime/
 production distinctions remain. No original-PDF reinspection or additional source-review count is claimed.
 
 ### Runtime field-coordinate qualification (2026-10-30)

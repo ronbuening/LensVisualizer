@@ -11,8 +11,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * DATED REUSE: retain active-15 coverage from 2026-08-20/21, source/image-plane review
  * from 2026-09-25 and FL addition from 2026-10-04. The 2026-10-30 scoped reopening checks
- * current HG/FL configuration, missing S12 air shoulder, source-reference qualifications
- * and current all-focus runtime. Old 600 dpi images were upsampled from native 300 ppi.
+ * current HG/FL configuration, missing S12 air shoulder and current all-focus runtime.
+ * Old 600 dpi images were upsampled from native 300 ppi.
  *
  * SHAPE: restore R1/R2 HG: flat 6.00 mm, N 1.516330/nu 64.1, followed by 1.50 mm air.
  * All powered R/d, old caps, stops and numeric focus/control values remain unchanged.
@@ -24,12 +24,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * by a new maximum sampled transmitted height 16.194553 mm including diagram field.
  * The taller undimensioned FL blank does not establish a larger optical clear aperture.
  *
- * GLASS: column 32 defines Ni/nu_i without a wavelength. Keep all 17 numeric pairs and
- * the current d-line convention explicitly approximate through indexReferenceNote;
- * all 17 media are Unmatched; all 16 former catalog curves remain disabled. Prior
- * coordinate classes and production fluorite/UD associations remain conditional;
- * no source C/F/g, partial dispersion or APD value is supplied. No historical supplier,
- * melt, chemistry, cement or manufacturing identity is established.
+ * GLASS: column 32 prints Ni/nu_i without a wavelength. The patent names no spectral
+ * line. 16 of 17 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 16 media use catalog curves as spectral
+ * proxies; supplier, melt and chemistry stay unspecified. FL (1.51633/64.4) matches no
+ * catalog row and stays Unmatched. All 17 numeric pairs are unchanged. Production
+ * fluorite/UD associations remain conditional; no source C/F/g, partial dispersion or
+ * APD value is supplied. No historical supplier, melt, chemistry, cement or
+ * manufacturing identity is established.
  *
  * FOCUS: source L2 moves imageward but gives no finite table. Retain reconstructed
  * +18.829163964 mm travel to the correlated 5.5 m endpoint; linear intermediate motion
@@ -109,7 +111,7 @@ const LENS_DATA = {
         "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Production-correlated UD position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
+        "Production-correlated UD position; no source partial dispersion is published. Historical medium remains unresolved.",
       role: "Single positive front subunit L1a; front collector and low-dispersion correction.",
       diagramLabel: "L1a-1",
     },
@@ -126,7 +128,7 @@ const LENS_DATA = {
         "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Production-correlated UD position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
+        "Production-correlated UD position; no source partial dispersion is published. Historical medium remains unresolved.",
       role: "Positive member of the net-negative middle subunit L1b.",
       diagramLabel: "L1b-1",
     },
@@ -157,7 +159,7 @@ const LENS_DATA = {
         "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
-        "Production-correlated fluorite position; no source partial dispersion or index-reference wavelength is published. Historical medium remains unresolved.",
+        "Production-correlated fluorite position; no source partial dispersion is published. Historical medium remains unresolved.",
       role: "Positive member of rear subunit L1c; its production-fluorite association is conditional and does not identify the source medium.",
       diagramLabel: "L1c-1",
     },

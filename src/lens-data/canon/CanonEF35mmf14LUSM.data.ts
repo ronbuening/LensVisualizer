@@ -11,15 +11,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The source summary states f = 34.3 (PDF page 5), and Claim1 explicitly requires negative L2b (PDF page 2).
  * This formalizes the existing sign correction in source.errata; no new numerical R change.
  *
- * The original defines Ni/vi without a spectral reference. Numerical pairs and the current
- * d-line convention remain, with approximate-reference notes and 11 Unmatched media; curves disabled.
- * No individual C/F/g or partial-dispersion overrides are authored.
+ * The patent names no spectral line. 11 of 11 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified. No individual C/F/g or partial-dispersion overrides are authored.
  *
  * Source focus gaps: d6=5.20→0.43, d13=3.70→2.06 at infinity→300 mm. L1 is fixed,
  * L2 moves 4.77 mm objectward and L3 plus stop 6.41 mm. BF is fixed-image-plane bookkeeping.
  * Asphere 17A keeps source-table R = -65.3464, K = 2.39046 and B/C/D terms; unprinted E remains
  * A10=0 as an explicit modeling assumption. No coefficient is tuned to drawing or ray clearance.
- * See the audit for native scale, rejected S2 cap trial, glass qualification and runtime limits.
+ * See the audit for native scale, rejected S2 cap trial, glass reference evidence and runtime limits.
  */
 
 const LENS_DATA = {

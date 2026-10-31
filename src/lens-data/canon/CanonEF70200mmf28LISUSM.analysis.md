@@ -25,33 +25,33 @@ D41 remains a derived Gaussian infinity image distance at each printed zoom stat
 
 ## Glass Identification and Source Qualifications
 
-The original defines bare Ni/νi without specifying a reference wavelength. The d/g labels are aberration-plot legend lines, not a definition of the bulk table's N/ν reference. All 21 explicit `indexReference: "d"` assertions were therefore removed. Every source pair is retained literally. Each medium is Unmatched with an approximate d-line coordinate candidate and an explicit reference note; none resolves to a catalog spectral curve in this model.
+The original defines bare Ni/νi without specifying a reference wavelength; the patent names no spectral line. The d/g labels are aberration-plot legend lines, not a definition of the bulk table's reference. 21 of 21 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. Every source pair is retained literally. 21 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-| Element | Source N | Source ν | Qualified coordinate candidate only |
-| ------- | -------: | -------: | ----------------------------------- |
-| L1      |   1.7495 |     35.3 | S-LAM7                              |
-| L2      |    1.497 |     81.5 | S-FPL51                             |
-| L3      |    1.497 |     81.5 | S-FPL51                             |
-| L4      |  1.84666 |     23.8 | S-TIH53                             |
-| L5      |  1.48749 |     70.2 | S-FSL5                              |
-| L6      |   1.8061 |     40.9 | S-LAH53                             |
-| L7      |  1.48749 |     70.2 | S-FSL5                              |
-| L8      |  1.84666 |     23.8 | S-TIH53                             |
-| L9      |  1.71299 |     53.9 | S-LAL8                              |
-| L10     |    1.497 |     81.5 | S-FPL51                             |
-| L11     |   1.6668 |       33 | S-TIM39 legacy                      |
-| L12     |  1.84666 |     23.8 | S-TIH53                             |
-| L13     |   1.7725 |     49.6 | S-LAH66                             |
-| L14     |  1.84666 |     23.8 | S-TIH53                             |
-| L15     |  1.60311 |     60.6 | S-BSM14                             |
-| L16     |  1.84666 |     23.8 | S-TIH53                             |
-| L17     |   1.6935 |     53.2 | L-LAL13                             |
-| L18     |   1.6935 |     53.2 | L-LAL13                             |
-| L19     |    1.497 |     81.5 | S-FPL51                             |
-| L20     |    1.834 |     37.2 | S-LAH60                             |
-| L21     |    1.834 |     37.2 | S-LAH60                             |
+| Element | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                        |
+| ------- | ------------: | --------------: | ------------------------------------------------------------------------------------------------------------ |
+| L1      |        1.7495 |            35.3 | S-LAM7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L2      |         1.497 |            81.5 | S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L3      |         1.497 |            81.5 | S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L4      |       1.84666 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L5      |       1.48749 |            70.2 | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L6      |        1.8061 |            40.9 | S-LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L7      |       1.48749 |            70.2 | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L8      |       1.84666 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L9      |       1.71299 |            53.9 | S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L10     |         1.497 |            81.5 | S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L11     |        1.6668 |              33 | S-TIM39 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L12     |       1.84666 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L13     |        1.7725 |            49.6 | S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L14     |       1.84666 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L15     |       1.60311 |            60.6 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L16     |       1.84666 |            23.8 | S-TIH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L17     |        1.6935 |            53.2 | L-LAL13 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L18     |        1.6935 |            53.2 | L-LAL13 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L19     |         1.497 |            81.5 | S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L20     |         1.834 |            37.2 | S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L21     |         1.834 |            37.2 | S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
 
-No C/F/g line indices, partial dispersion, ΔPg,F or APD values are published for the selected example, and none was present as a per-lens override to remove. Default d-line/Abbe tracing is approximate. The candidate names are coordinate comparisons rather than proof of historical supplier, melt, fluorophosphate/lanthanum chemistry, UD branding or measured APD. The old claims that stored catalog line indices or 21 active Sellmeier curves were present are superseded by this source audit. There is no prescribed resin layer, filter or camera-side plate to add.
+No C/F/g line indices, partial dispersion, ΔPg,F or APD values are published for the selected example. The catalog names are coordinate matches rather than proof of historical supplier, melt, fluorophosphate/lanthanum chemistry, UD branding or measured APD. There is no prescribed resin layer, filter or camera-side plate to add.
 
 ## Element Heights and Concave Ends
 

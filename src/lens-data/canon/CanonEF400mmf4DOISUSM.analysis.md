@@ -24,7 +24,7 @@ freshly source-proven corrected prescription. The family links below are histori
 
 No prescription scaling is applied. The production marketing focal length remains 400 mm, while the printed catalog design target is 392.00 mm and the independently computed model EFL is 392.025203770699 mm. Likewise, the production aperture designation is f/4, while the modeled design F-number and `nominalFno` are 4.12.
 
-The patent ends Numerical Example 1 with a 2.20 mm plane-parallel `nd = 1.51633` plate. Canon specifies a 52 mm drop-in filter for the production lens, but the patent does not identify its terminal plate as that filter. The model therefore treats the plate as an image-side plate rather than asserting a product-part identity. It is drawn in the data file as a plane-parallel plate element (2.20 mm, `nd = 1.51633`, `νd = 64.1`), so every analysis traces it; its semi-diameter is a ray-trace estimate because the patent lists none. Surface 27 keeps the printed `d27 = 0.72 mm` to the plate. The table ends at `r29 = ∞` without a d29 or back focus, so the 63.3369041 mm plate-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 65.507775640 mm air-equivalent spacing from surface 27 to the image plane.
+The patent ends Numerical Example 1 with a 2.20 mm plane-parallel $n_d = 1.51633$ plate. Canon specifies a 52 mm drop-in filter for the production lens, but the patent does not identify its terminal plate as that filter. The model therefore treats the plate as an image-side plate rather than asserting a product-part identity. It is drawn in the data file as a plane-parallel plate element (2.20 mm, $n_d = 1.51633$, $\nu_d = 64.1$), so every analysis traces it; its semi-diameter is a ray-trace estimate because the patent lists none. Surface 27 keeps the printed `d27 = 0.72 mm` to the plate. The table ends at `r29 = ∞` without a d29 or back focus, so the 63.3369041 mm plate-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 65.507775640 mm air-equivalent spacing from surface 27 to the image plane.
 
 ## Optical Architecture
 
@@ -44,8 +44,8 @@ The focal lengths below are the standalone refractive thick-lens focal lengths s
 
 ### DO1 — L1 + L2 Front Diffractive Pair
 
-**L1:** `nd = 1.56384`, `νd = 60.7`. Glass: `Unmatched; qualified d-line coordinate candidate S-BAL41`. Standalone `f = +316.285 mm`.\
-**L2:** `nd = 1.51633`, `νd = 64.1`. Glass: `Unmatched; qualified d-line coordinate candidate S-BSL7`. Standalone `f = +372.424 mm`.
+**L1:** $n_d = 1.56384$, $\nu_d = 60.7$. Glass: `S-BAL41 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +316.285 mm`.\
+**L2:** $n_d = 1.51633$, $\nu_d = 64.1$. Glass: `S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +372.424 mm`.
 
 L1 is a positive meniscus and L2 a biconvex positive element. They form the `DO1` macro pair, with surface 2 serving simultaneously as the L1/L2 macro junction and the diffractive surface. The patent's thin laminated-grating media are not expanded into ordinary sequential elements, so this macro junction must not be interpreted as a literal cement layer. The pair is the principal front collector in the modeled architecture.
 
@@ -53,73 +53,73 @@ The phase term adds diffractive optical power without changing the spherical out
 
 ### L3 — Positive Meniscus
 
-**L3:** `nd = 1.51823`, `νd = 58.9`. Glass: `Unmatched; qualified d-line coordinate candidate S-NSL3`. Standalone `f = +231.924 mm`.
+**L3:** $n_d = 1.51823$, $\nu_d = 58.9$. Glass: `S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +231.924 mm`.
 
 L3 continues the positive convergence established by the front DO pair after the first substantial air gap. Its placement and moderate positive power make it part of the front collecting system rather than a rear relay element. The patent does not assign L3 a separate named aberration function, so more specific attribution would be interpretive rather than source fact.
 
 ### L4 — Biconcave Negative
 
-**L4:** `nd = 1.74950`, `νd = 35.3`. Glass: `Unmatched; qualified d-line coordinate candidate S-LAM7`. Standalone `f = -141.841 mm`.
+**L4:** $n_d = 1.74950$, $\nu_d = 35.3$. Glass: `S-LAM7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -141.841 mm`.
 
 L4 introduces strong negative power after the first three positive elements. In the modeled architecture it counterbalances the front positive block and contributes to the telephoto compression. Its lower Abbe number also gives it substantially different dispersion from the neighboring crown-like positive elements, but the available data do not support assigning a specific partial-dispersion mechanism.
 
 ### L5 — Positive Meniscus
 
-**L5:** `nd = 1.48749`, `νd = 70.2`. Glass: `Unmatched; qualified d-line coordinate candidate S-FSL5`. Standalone `f = +202.336 mm`.
+**L5:** $n_d = 1.48749$, $\nu_d = 70.2$. Glass: `S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +202.336 mm`.
 
 L5 is a low-index, relatively high-Abbe positive meniscus following L4. It restores positive convergence while maintaining a materially different dispersion from the preceding negative element. In system terms it belongs to the alternating positive/negative pre-stop correction train.
 
 ### L6 — Negative Meniscus
 
-**L6:** `nd = 1.67270`, `νd = 32.1`. Glass: `Unmatched; qualified d-line coordinate candidate S-TIM25`. Standalone `f = -328.990 mm`.
+**L6:** $n_d = 1.67270$, $\nu_d = 32.1$. Glass: `S-TIM25 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -328.990 mm`.
 
-L6 is a comparatively weak negative meniscus in standalone power. Its lower `νd` contrasts with L5 and L7. The element contributes to the pre-stop balance of longitudinal power and chromatic correction, but the patent does not isolate a specific aberration term controlled by L6.
+L6 is a comparatively weak negative meniscus in standalone power. Its lower $\nu_d$ contrasts with L5 and L7. The element contributes to the pre-stop balance of longitudinal power and chromatic correction, but the patent does not isolate a specific aberration term controlled by L6.
 
-### L7 — Unresolved High-Abbe Negative Meniscus
+### L7 — High-Abbe Negative Meniscus
 
-**L7:** `nd = 1.43387`, `νd = 95.1`. Glass: `Unmatched; qualified d-line coordinate candidate CaF2 curve`. Standalone `f = -136.260 mm`.
+**L7:** $n_d = 1.43387$, $\nu_d = 95.1$. Glass: `CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -136.260 mm`.
 
-L7 is a negative meniscus shortly before the stop. Its printed N/ν pair is numerically compatible with an optical
-CaF2 coordinate under a d-line assumption; the bulk table does not explicitly identify that reference, supplier or
-chemistry. It therefore remains Unmatched. Canon's separately reported production fluorite element does not identify
+L7 is a negative meniscus shortly before the stop. Its printed $n_d/\nu_d$ pair reproduces an optical CaF2
+coordinate under the d-line reading; the bulk table does not identify the supplier or chemistry, so the CaF2 curve
+is a spectral proxy. Canon's separately reported production fluorite element does not identify
 this patent member. No source APD designation, partial ratio or secondary-spectrum claim is added. [4]
 
 ### D2 — L8 + L9 Cemented Pair
 
-**L8:** `nd = 1.80518`, `νd = 25.4`. Glass: `Unmatched; 805254 coordinate class only`. Standalone `f = -70.506 mm`.\
-**L9:** `nd = 1.48749`, `νd = 70.2`. Glass: `Unmatched; qualified d-line coordinate candidate S-FSL5`. Standalone `f = +51.468 mm`.
+**L8:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: `N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -70.506 mm`.\
+**L9:** $n_d = 1.48749$, $\nu_d = 70.2$. Glass: `S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +51.468 mm`.
 
 L8 is a negative meniscus and L9 a biconvex positive element, cemented at surface 16. The large dispersion contrast is a conventional achromatizing resource, but the cemented pair must be interpreted as one optical group rather than by adding the standalone focal powers. Positioned immediately behind the stop, D2 begins the compact rear correction and relay section.
 
 ### D3 — L10 + L11 Cemented Pair
 
-**L10:** `nd = 1.76182`, `νd = 26.5`. Glass: `Unmatched; 762265 coordinate class only`. Standalone `f = +42.350 mm`.\
-**L11:** `nd = 1.80400`, `νd = 46.6`. Glass: `Unmatched; 804465/804466 coordinate class only`. Standalone `f = -25.859 mm`.
+**L10:** $n_d = 1.76182$, $\nu_d = 26.5$. Glass: `S-TIH14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +42.350 mm`.\
+**L11:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: `H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -25.859 mm`.
 
 L10 is biconvex positive and L11 biconcave negative, cemented at surface 19. Their strong opposing standalone powers make D3 a locally powerful correction group. The group lies close to D2 and L12, so its in-situ effect cannot be reduced to either element's isolated power.
 
 ### L12 — Biconcave Negative
 
-**L12:** `nd = 1.80400`, `νd = 46.6`. Glass: `Unmatched; 804465/804466 coordinate class only`. Standalone `f = -58.856 mm`.
+**L12:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: `H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -58.856 mm`.
 
 L12 is a high-index biconcave negative singlet between D3 and D4. It adds negative power to the rear train and changes the vergence presented to the following cemented pair. The prescription does not identify it as a dedicated field flattener or focusing group, so those labels are not applied.
 
 ### D4 — L13 + L14 Cemented Pair
 
-**L13:** `nd = 1.63980`, `νd = 34.5`. Glass: `Unmatched; qualified d-line coordinate candidate S-TIM27`. Standalone `f = +35.445 mm`.\
-**L14:** `nd = 1.80400`, `νd = 46.6`. Glass: `Unmatched; 804465/804466 coordinate class only`. Standalone `f = -48.016 mm`.
+**L13:** $n_d = 1.63980$, $\nu_d = 34.5$. Glass: `S-TIM27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +35.445 mm`.\
+**L14:** $n_d = 1.80400$, $\nu_d = 46.6$. Glass: `H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = -48.016 mm`.
 
 L13 is biconvex positive and L14 a negative meniscus, cemented at surface 24. As with D2 and D3, its system role comes from the paired interface and neighboring air spaces, not from a scalar sum of isolated powers. It forms the last cemented correction group before the final positive element.
 
 ### L15 — Final Biconvex Positive
 
-**L15:** `nd = 1.51633`, `νd = 64.1`. Glass: `Unmatched; qualified d-line coordinate candidate S-BSL7`. Standalone `f = +91.120 mm`.
+**L15:** $n_d = 1.51633$, $\nu_d = 64.1$. Glass: `S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`. Standalone `f = +91.120 mm`.
 
 L15 is the final active refractive element. Its positive power converts the rear-group ray bundle toward the image plane after the alternating powers of D2, D3, L12, and D4. It is followed by the printed 0.72 mm air gap to the image-side plane plate, which the data file draws as a plane-parallel plate element; the image plane lies 65.507775640 mm of air-equivalent distance behind surface 27.
 
 ### F — Image-side Source Plate
 
-**N = 1.51633, ν = 64.1. Material: Unmatched; qualified d-line coordinate candidate S-BSL7.**
+**$n_d = 1.51633$, $\nu_d = 64.1$. Glass: `S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)`.**
 
 The source gives a 2.20 mm plane-parallel plate at r28–r29, preceded by 0.72 mm. It provides no d29/back-focus
 value and no filter label. The existing 63.3369041 mm following gap is a derived model plane, not a printed row.
@@ -129,29 +129,29 @@ interpretation; neither source holder ownership nor historical supplier/chemistr
 ## Glass Identification and Selection
 
 The original bulk table and definition ¶0099 (PDF pages 16–17/printed 6–7) use bare ni/νi, without a d/e reference.
-The sixteen source N/ν pairs below are confirmed, but **all sixteen media remain Unmatched** with an explicit
-index-reference note and approximate default d-line tracing. No compatible coefficient curve is claimed under that
-unknown reference. Numerical candidates are qualified hypotheses, not proof of historical supplier, melt or chemistry.
-No per-lens C/F/g or dPgF value was present, and the source publishes none. No source APD material is identified.
+The patent names no spectral line. 16 of 16 printed pairs, including image-side plate F, match catalog d-line
+coordinates and none match the e-line, so the table is read as d-line. 16 media use catalog curves as spectral
+proxies; supplier, melt and chemistry stay unspecified.
+No per-lens C/F/g or dPgF value is stored, and the source publishes none. No source APD material is identified.
 
-| Medium | Printed N / ν  | Qualified d-line coordinate candidate |
-| ------ | -------------- | ------------------------------------- |
-| L1     | 1.56384 / 60.7 | S-BAL41                               |
-| L2     | 1.51633 / 64.1 | S-BSL7                                |
-| L3     | 1.51823 / 58.9 | S-NSL3                                |
-| L4     | 1.74950 / 35.3 | S-LAM7                                |
-| L5     | 1.48749 / 70.2 | S-FSL5                                |
-| L6     | 1.67270 / 32.1 | S-TIM25                               |
-| L7     | 1.43387 / 95.1 | CaF2 curve                            |
-| L8     | 1.80518 / 25.4 | 805254 class                          |
-| L9     | 1.48749 / 70.2 | S-FSL5                                |
-| L10    | 1.76182 / 26.5 | 762265 class                          |
-| L11    | 1.80400 / 46.6 | 804465/804466 class                   |
-| L12    | 1.80400 / 46.6 | 804465/804466 class                   |
-| L13    | 1.63980 / 34.5 | S-TIM27                               |
-| L14    | 1.80400 / 46.6 | 804465/804466 class                   |
-| L15    | 1.51633 / 64.1 | S-BSL7                                |
-| F      | 1.51633 / 64.1 | S-BSL7                                |
+| Medium | Printed nd / νd | Catalog curve |
+| ------ | --------------- | ------------- |
+| L1     | 1.56384 / 60.7  | S-BAL41       |
+| L2     | 1.51633 / 64.1  | S-BSL7        |
+| L3     | 1.51823 / 58.9  | S-NSL3        |
+| L4     | 1.74950 / 35.3  | S-LAM7        |
+| L5     | 1.48749 / 70.2  | S-FSL5        |
+| L6     | 1.67270 / 32.1  | S-TIM25       |
+| L7     | 1.43387 / 95.1  | CaF2          |
+| L8     | 1.80518 / 25.4  | N-SF6         |
+| L9     | 1.48749 / 70.2  | S-FSL5        |
+| L10    | 1.76182 / 26.5  | S-TIH14       |
+| L11    | 1.80400 / 46.6  | H-ZLaF50D     |
+| L12    | 1.80400 / 46.6  | H-ZLaF50D     |
+| L13    | 1.63980 / 34.5  | S-TIM27       |
+| L14    | 1.80400 / 46.6  | H-ZLaF50D     |
+| L15    | 1.51633 / 64.1  | S-BSL7        |
+| F      | 1.51633 / 64.1  | S-BSL7        |
 
 The source also discloses two UV-curable grating materials locally labeled nd/vd in ¶0084: first layer
 1.6685/19.7 at 5 µm, third layer 1.5240/50.8 at 7.5 µm, separated by a thin air layer. Figure 10 on PDF page 8
@@ -170,11 +170,11 @@ The 3.5 m value is retained as `closeFocusM` for product metadata and user-inter
 
 ## Chromatic Correction Strategy
 
-The patent's central premise is that refractive and diffractive surfaces have chromatic behavior of opposite sign, allowing the diffractive element to participate in achromatization (¶¶0004–0007, 0090–0093). Example 1 combines that mechanism with a broad refractive glass palette and one unresolved high-Abbe bulk coordinate.
+The patent's central premise is that refractive and diffractive surfaces have chromatic behavior of opposite sign, allowing the diffractive element to participate in achromatization (¶¶0004–0007, 0090–0093). Example 1 combines that mechanism with a broad refractive glass palette and one high-Abbe bulk coordinate.
 
-In the model, the front DO pair places the phase correction where the axial beam is still large. The remaining pre-stop sequence alternates positive and negative members with substantial differences in `νd`, while the rear section uses three cemented pairs with strong index/dispersion contrasts. This arrangement is consistent with distributed chromatic balancing, but the available data are insufficient to decompose the final longitudinal and secondary spectrum by material without line-index or validated Sellmeier data for every element.
+In the model, the front DO pair places the phase correction where the axial beam is still large. The remaining pre-stop sequence alternates positive and negative members with substantial differences in $\nu_d$, while the rear section uses three cemented pairs with strong index/dispersion contrasts. This arrangement is consistent with distributed chromatic balancing, but the available data are insufficient to decompose the final longitudinal and secondary spectrum by material without line-index or validated Sellmeier data for every element.
 
-The qualitative diffractive achromatization principle remains distinct from quantitative material fidelity or an APO claim. Bulk reference identity, detailed spectral curves and microscopic diffraction efficiency are unresolved.
+The qualitative diffractive achromatization principle remains distinct from quantitative material fidelity or an APO claim. Bulk supplier and chemistry, source spectral curves and microscopic diffraction efficiency remain unspecified.
 
 ## Diffractive Optical Element
 
@@ -184,7 +184,7 @@ Surface 2 carries a `radial-polynomial` diffractive interaction. The authored op
 
 with `h` and `W` in millimeters. These are the patent's Numerical Example 1 coefficients, corresponding to its `C1` and `C2` terms. The first-order paraxial diffractive power at the design order is positive.
 
-The patent does not numerically state the reference wavelength `λ0` for Numerical Example 1. The data uses `referenceWavelengthNm: 587.6` as an explicitly disclosed d-line modeling inference, consistent with the pre-existing grating-pitch interpretation. The bulk table itself uses bare ni/νi, so it does not establish d-line reference identity. The wavelength is therefore not presented as a printed patent value.
+The patent does not numerically state the reference wavelength `λ0` for Numerical Example 1. The data uses `referenceWavelengthNm: 587.6` as an explicitly disclosed d-line modeling inference, consistent with the pre-existing grating-pitch interpretation. The bulk table itself uses bare ni/νi and prints no wavelength. The wavelength is therefore not presented as a printed patent value.
 
 Patent ¶0084 gives an illustrative first-embodiment laminated DOE structure consisting of two UV-curable-plastic grating layers separated by a thin air layer. It states `nd = 1.6685`, `νd = 19.7`, and 5 µm height for the first layer; `nd = 1.5240`, `νd = 50.8`, and 7.5 µm height for the third layer; and a minimum 156 µm pitch at the 155th zone. Those microstructure values are physical DOE-construction data, not additional macro refractive elements in the LensVisualizer prescription.
 
@@ -270,7 +270,7 @@ the correction-provenance follow-up remains unresolved. No new fit is made and n
 The old derived 63.3369041 mm plate-to-image gap retains the adopted Gaussian plane to rounding. The physical track
 is 256.3369041 mm; the air-equivalent track is 255.5877756 mm. Source fidelity, sampled runtime results and the
 production correlation are separate conclusions. The requested fresh original shape/glass inspection is complete,
-with exact radius-replacement provenance, bulk reference identity, finite focus, IS and microscopic efficiency remaining
+with exact radius-replacement provenance, bulk supplier and chemistry, finite focus, IS and microscopic efficiency remaining
 explicit limitations rather than unsupported claims of full physical fidelity.
 
 ## Sources and References

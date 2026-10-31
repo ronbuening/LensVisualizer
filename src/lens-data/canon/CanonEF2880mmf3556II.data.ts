@@ -8,9 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No finite-focus spacings are published, so identical infinity/close pairs prevent an invented focus state.
  * Semi-diameters are inferred rendering apertures, not manufacturer clear-aperture data. The stop radius is derived
  * from the design f-number at each zoom station.
- * Original-PDF review 2026-10-30: all ten source ni/vi pairs remain, but the original names no
- * spectral reference. The default d-line tracing convention is approximate; all media are
- * Unmatched and unsupported catalog-derived per-lens C/F/g/partial overrides are removed.
+ * All ten source ni/vi pairs are retained. The patent names no spectral line. 10 of 10 printed pairs match catalog
+ * d-line coordinates and none match the e-line, so the table is read as d-line. 10 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified. The patent prints no per-medium C/F/g or
+ * partial-dispersion data.
  * Resolved air-facing shoulders preserve clear caps; R/d, stops, zoom and static focus remain.
  * See the audit for the shared schematic figure, rejected shoulder trial and runtime limits.
  */

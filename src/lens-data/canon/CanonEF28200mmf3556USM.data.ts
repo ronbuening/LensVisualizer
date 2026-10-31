@@ -7,10 +7,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Existing restored R12/R18/R23/R26A signs are formalized in source.errata: the four-sign block alone among all
  * 16 combinations reproduces the source focal summaries/Table 1, and independently satisfies Claim 5 (PDF p. 2).
  *
- * Original ¶0050 (PDF p. 5) defines ni/νi without identifying a reference line. All 17 literal source pairs remain;
- * approximate d-line tracing is explicit, all media stay Unmatched and catalog resolution is disabled. Removed
- * catalog-derived per-lens nC/nF/ng/dPgF overrides are not published spectral measurements. Historical chemistry,
- * supplier and melt remain unresolved, including the 0.05 mm bonded layer; no manufacturing process is proved.
+ * Original ¶0050 (PDF p. 5) defines ni/νi without naming a spectral line. All 17 literal source pairs remain.
+ * The patent names no spectral line. 16 of 17 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 16 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified, including for the 0.05 mm bonded layer. That layer (1.51421 / 51.4) matches no catalog
+ * row and stays Unmatched. The patent prints no per-medium nC/nF/ng/dPgF data; no manufacturing process is proved.
  *
  * Native Fig. 1 is a 200 ppi raster at about 2.75 px/mm; inferred endpoint uncertainty is about ±1 mm. The hybrid
  * front/bonded caps follow the same 13.4 mm source component rim, and S8 adds a flat rear shoulder to 13.4 while

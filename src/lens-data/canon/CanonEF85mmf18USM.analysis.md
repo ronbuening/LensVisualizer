@@ -34,79 +34,77 @@ No dimensional rescaling, aspheric conversion, glass-index substitution or sourc
 
 ## Element-by-Element Analysis
 
-The patent table gives N and ν without naming a spectral line. Its Figure 4 d/g trace labels and catalog coordinate similarities do not establish the bulk reference. The nd/νd notation below follows the schema under an explicitly approximate default d-line interpretation. Every material remains unresolved; catalog names are conditional coordinate candidates. Every quoted element focal length is calculated for that element isolated in air. In particular, a cemented member’s standalone focal length must not be substituted for its in-situ contribution.
+The patent table gives N and ν without naming a spectral line. Its Figure 4 d/g trace labels do not establish the bulk reference. All nine printed pairs match catalog d-line coordinates, so the table is read as d-line $n_d$ and $\nu_d$ (see Glass Identification and Source Qualifications), and the glass names below are catalog spectral proxies. Every quoted element focal length is calculated for that element isolated in air. In particular, a cemented member’s standalone focal length must not be substituted for its in-situ contribution.
 
 ### L1 — Biconvex Positive
 
-nd = 1.65160, νd = 58.5. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate LAL7). f = +199.017 mm.
+$n_d$ = 1.65160, $\nu_d$ = 58.5. Glass: LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +199.017 mm.
 
 L1 is the first of the three positive singlets in G1. Its relatively weak standalone power begins the progressive convergence described in ¶0011, before the more strongly powered following menisci. The index–Abbe pair is consistent with a lanthanum-crown class; it does not identify a supplier or demonstrate a special partial-dispersion property. The patent assigns the gradual convergence to the three-element combination rather than publishing an individual aberration budget. [1, ¶0010–0011]
 
 ### L2 — Positive Meniscus, convex to object
 
-nd = 1.77250, νd = 49.6. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate LAH66). f = +135.794 mm.
+$n_d$ = 1.77250, $\nu_d$ = 49.6. Glass: LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +135.794 mm.
 
 L2 continues the front positive sequence. Its meniscus orientation agrees with ¶0010, and it shares its recorded glass coordinates with L9 despite a different shape and position. The higher index and moderate Abbe number distinguish it from L1, but their use is not evidence that the two elements make separable, uniquely assigned chromatic contributions. Its quoted focal length is for L2 alone in air. [1, ¶0010, ¶0024]
 
 ### L3 — Positive Meniscus, convex to object
 
-nd = 1.71300, νd = 53.8. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate LAL8). f = +54.567 mm.
+$n_d$ = 1.71300, $\nu_d$ = 53.8. Glass: LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +54.567 mm.
 
 L3 is the strongest isolated positive singlet in G1. Its rear face and the front face of L4 bound the narrow air space explicitly discussed by the patent as a negative air lens. That surface pair, rather than L3 in isolation, is credited with a higher-order spherical-aberration and sagittal-flare correction function. The glass class remains an inference from coordinates, not a recovered melt specification. [1, ¶0012, ¶0024]
 
 ### L4 — Negative Meniscus, concave to image
 
-nd = 1.71736, νd = 29.5. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate PBH1). f = -40.896 mm.
+$n_d$ = 1.71736, $\nu_d$ = 29.5. Glass: SF1 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -40.896 mm.
 
 L4 terminates G1 with negative standalone power and a strongly concave image-facing surface. It precedes the stop and counteracts the power of the first three positive elements within the complete positive group. Paragraph 0011 contains a sign inconsistency: it describes positive spherical aberration being balanced by positive spherical aberration. That wording is retained as an unresolved textual inconsistency; it is not silently changed or used to assign a measured aberration sign to L4. [1, ¶0010–0012]
 
 ### L5 — Positive Meniscus, cemented to L6
 
-nd = 1.80518, νd = 25.4. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate PBH6). f = +134.283 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +134.283 mm.
 
 L5 is the positive, more dispersive member of the moving G2 doublet. Its rear surface, R11, is a glass-to-glass transition into L6, not an air surface or a layer of generic cement. The positive focal length above describes an isolated L5 in air; it is therefore not the focal power of the actual cemented interface. L5 and L6 move rigidly together in the reconstruction. [1, Fig. 1, ¶0024]
 
 ### L6 — Biconcave Negative, cemented to L5
 
-nd = 1.51633, νd = 64.2. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate BSL7). f = -41.497 mm.
+$n_d$ = 1.51633, $\nu_d$ = 64.2. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -41.497 mm.
 
 L6 supplies the stronger opposing standalone power within G2. The complete L5–L6 assembly has a calculated focal length of -59.521301 mm and is the negative focusing group identified by the patent. The low-dispersion crown/high-dispersion positive pairing provides a degree of freedom for chromatic balancing, but no individual chromatic correction amount follows from the two Abbe numbers alone. Its index of 1.51633 is distinct from the 1.51680 of N-BK7. [1, ¶0009, ¶0020, ¶0024]
 
 ### L7 — Biconcave Negative, cemented to L8
 
-nd = 1.80518, νd = 25.4. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate PBH6). f = -51.732 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -51.732 mm.
 
 L7 opens G3 with a very weakly curved front face and a stronger curved cemented rear interface. It uses the same recorded high-dispersion coordinates as L5, but its isolated power is negative. The patent explicitly assigns chromatic balancing within G3 to this negative, more dispersive component and the following positive, less dispersive one. That is a source-stated group strategy, not a calculated apochromatic classification. [1, ¶0013, ¶0024]
 
 ### L8 — Biconvex Positive, cemented to L7
 
-nd = 1.80610, νd = 41.0. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate LAH53). f = +47.700 mm.
+$n_d$ = 1.80610, $\nu_d$ = 41.0. Glass: LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +47.700 mm.
 
 L8 opposes L7 within the fixed rear doublet. Together L7–L8 have a calculated positive focal length of +527.257551 mm, confirming the weak net positive power described in ¶0013 despite the larger opposed standalone powers. The difference between the two Abbe numbers supports the source description of a chromatic balancing pair; it does not establish a supplier, anomalous dispersion, or the residual secondary spectrum. [1, ¶0013]
 
 ### L9 — Biconvex Positive
 
-nd = 1.77250, νd = 49.6. Glass: Unmatched (source reference unspecified; qualified d-line coordinate candidate LAH66). f = +59.884 mm.
+$n_d$ = 1.77250, $\nu_d$ = 49.6. Glass: LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +59.884 mm.
 
 L9 is the final positive singlet. Paragraph 0013 states that this element bears most of G3’s positive power and acts in the negative direction against positive distortion generated upstream. The calculated standalone and assembly powers are consistent with that description: its standalone power is much stronger than that of the preceding weak-positive doublet. The distortion statement remains the patent’s explanation; no isolated-element distortion contribution is inferred merely from the lens shape. [1, ¶0013, ¶0024]
 
 ## Glass Identification and Source Qualifications
 
-Fresh original inspection on **2026-10-30** confirms all nine bare N/ν pairs in Numerical Example 1, paragraph 0024 on PDF/printed pages 3–4. Paragraph 0023 defines Ni/νi as index and Abbe number without a reference wavelength. The d/g labels in Figure 4/page 7 identify aberration traces; they do not establish the bulk table's reference line. The former header's inference from those plots is removed.
+Fresh original inspection on **2026-10-30** confirms all nine bare index/Abbe pairs in Numerical Example 1, paragraph 0024 on PDF/printed pages 3–4. Paragraph 0023 defines Ni/νi as index and Abbe number without a reference wavelength, and the patent names no spectral line. The d/g labels in Figure 4/page 7 identify aberration traces; they do not establish the bulk table's reference line. 9 of 9 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 9 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-Every medium is therefore Unmatched with a reference note. Default d-line/Abbe tracing remains approximate; zero media resolve to catalog spectral curves. The earlier seven-pair catalog fingerprint is preserved only as qualified coordinate-candidate context:
+| Elements | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                       |
+| -------- | ------------: | --------------: | ----------------------------------------------------------------------------------------------------------- |
+| L1       |       1.65160 |            58.5 | LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L2, L9   |       1.77250 |            49.6 | LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L3       |       1.71300 |            53.8 | LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L4       |       1.71736 |            29.5 | SF1 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    |
+| L5, L7   |       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    |
+| L6       |       1.51633 |            64.2 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L8       |       1.80610 |            41.0 | LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
 
-| Elements | Literal source N /ν | Qualified candidate only |
-| -------- | ------------------- | ------------------------ |
-| L1       | 1.65160 /58.5       | LAL7                     |
-| L2,L9    | 1.77250 /49.6       | LAH66                    |
-| L3       | 1.71300 /53.8       | LAL8                     |
-| L4       | 1.71736 /29.5       | PBH1                     |
-| L5,L7    | 1.80518 /25.4       | PBH6                     |
-| L6       | 1.51633 /64.2       | BSL7                     |
-| L8       | 1.80610 /41.0       | LAH53                    |
-
-All source values remain literal, including L6's64.2 and L8's41.0. Historical/current prefix distinctions and catalog-rounding comparisons remain qualified historical findings, not a fresh supplier identification. No source C/F/g indices, partial dispersion or APD value is published, and no per-lens override existed. No resin, cement thickness or hybrid medium is prescribed. Relative high/low dispersion in paragraph 0013 does not prove ED chemistry, anomalous dispersion or APO performance.
+All source values remain literal, including L6's 64.2 and L8's 41.0. The catalog names are coordinate matches, not supplier identifications. No source C/F/g indices, partial dispersion or APD value is published. No resin, cement thickness or hybrid medium is prescribed. Relative high/low dispersion in paragraph 0013 does not prove ED chemistry, anomalous dispersion or APO performance.
 
 ## Focus Mechanism
 
@@ -186,4 +184,4 @@ All source R/d, the stop, D17 and the derived 0.85 m G2 endpoint remain unchange
 
 The full21-focus grid gives 3,087 aimed pupil launches,1,029/1,029 clear axial samples and 63/63 clear chiefs. Axial/0.6-field/corner counts are49/45/19 at infinity,49/47/23 at half and 49/48/33 at close. All nine SVG paths are finite, closed and connected with zero hidden renderer trimming. Peripheral vignetting remains. The source 14.3° infinity chief is clear at 21.377161 mm,98.82% of the 135-format diagonal semi-height; the runtime format-corner chief is independently clear. No cuts require exemptions.
 
-Paragraph 0011's repeated-positive sign statement and Table 1's4.18 versus literal 4.166223 ratio are formal unresolved source errata. No exact correction is invented. Historical rounding-compatibility calculations remain unconfirmed explanations rather than source replacements. The previous stage/corpus dates and 2026-10-12 catalog record remain historical; neither the old plot-to-d-line inference nor catalog identity/active-curve claims are reissued as new source evidence.
+Paragraph 0011's repeated-positive sign statement and Table 1's4.18 versus literal 4.166223 ratio are formal unresolved source errata. No exact correction is invented. Historical rounding-compatibility calculations remain unconfirmed explanations rather than source replacements. The previous stage/corpus dates and 2026-10-12 catalog record remain historical. The d-line reading rests on the printed coordinates matching catalog values, not on the Figure 4 plot labels, and no catalog name identifies a supplier.
