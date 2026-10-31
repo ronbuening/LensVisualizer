@@ -33,3 +33,31 @@ Direct source half-fields 33.78/24.48/17.38° give chief heights 11.288505/13.35
 Source summary residuals also remain: literal tele EFL 43.626750 versus 43.65 mm; total tracks 89.12/81.23/81.41 versus 89.11/81.23/81.40 mm, with printed-value rounding only a possible contributor. Source stop Phi 9.16 mm is distinct from inferred iris diameters 8.961209/9.041075/9.107707 mm; its mechanical interpretation is unproved. Actual iris/stop location/source F4.56/5.48/6.50 are unchanged. Catalog design metadata computed endpoints 18.529406/43.626750→printed 18.53/43.65 and menu marketing 4.5/6.3→source 4.56/6.5 are separate source-target corrections, not a pupil fit.
 
 Narrow surface/image-circle/aperture checks pass; 0 undersized/raises. Field audit explicitly reports 91.317% wide, 100% middle/tele. Full cut probe finds no inferred cuts. Retain source field restrictions, interval defocus, plot/summary discrepancies, unresolved media, qualified spectra and absent finite-focus/IS reconstruction. Source fidelity, sampled runtime clearance and commercial correlation are separate conclusions; full repository gates are coordinator-owned.
+
+
+## 2026-10-31 — Source reference semantics and E48R catalog follow-up
+
+Exact local original: JP 2021-86024 A, Numerical Example 2. Paragraph 0080 (PDF/printed p11) explicitly defines every numerical nd at d 587.56nm and νd=(Nd−1)/(NF−NC), naming F486.1/C656.3/g435.835nm. Paragraph 0086, PDF/printed p13 surface/asphere table and p14 summary; medium rows1/3/5/7/10/12/14. All 7 modeled pairs were inspected again in the rendered original table; they match the existing data. No source filter, cover plate, additional bonded medium, numerical C/F/g index, partial-dispersion value or new APD evidence is present. Existing genuine fields and inferred badge qualifications are preserved.
+
+The 7 `indexReferenceNote` strings were positive source citations, not uncertainty. Their references are preserved in the data header and these sidecars; the explicit `indexReference: "d"` remains. Removing the misused notes restores the inspector's established nd/νd labels and makes the media eligible for the reference-aware inventory. It does not change wavelengths, source pairs or the existing compatible catalog channels. No genuine reference-uncertainty note is removed.
+
+The installed E48R curve comes from a [permission-bearing archival copy of the ZEON catalog](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf), with [Ansys's published ZEON-catalog attribution](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) supporting its vendor-origin provenance. It is an archival copy, not a direct vendor fetch. The unchanged polynomial evaluates nd=1.531160165 and νd=56.043827969; against source 1.53110/55.9 the differences are +0.000060165 and +0.143827969, within existing compatibility limits. Native valid range is 0.400–1.600µm at 25 °C. The curve supplies qualified spectral variation anchored to the authored source nd. It does not identify this lens's historical E48R grade, polymer chemistry, supplier, Canon formulation, molding or curing process. No catalog line indices or partials are copied into per-lens source fields.
+
+Current spectral coverage is 7/7: 5 existing compatible identities and channel values are retained, and 2 former Abbe-only media now use E48R. Every d/G channel stays exactly at the source nd. The new R/C, B/F and V/g values are catalog proxies, never patent measurements. Zero numeric source, geometry, aperture, focus/zoom, asphere, stop, gap or source-errata values change.
+
+Targeted continuity check only: Figure 3, PDF/printed p24, native 1181×1859 at 400 ppi; wide/tele forms and target crop retain native pixels. Prescription/definition pages were rendered at 180 dpi; that raster scale is separate from the extracted native figure resolution. L2 (R3*/R4*, 1.70 mm) and L7 (R14*/R15*, 2.08 mm) are separate complete elements, not bonded layers. Their printed clear caps 9.82/9.645 mm and 5.395/5.73 mm remain. Paragraph 0050 offers a general resin preference, not selected-grade identity; no hybrid, wing, plate or shape fit is added. Production SVG paths are exactly identical before/after across nine zoom/focus input combinations, with finite closed single connected paths and zero hidden trimming for the affected elements. Duplicate inputs are not additional supported physical states. No optical-rim dimension is remeasured or fitted in this follow-up.
+
+The completed whole-lens shape review remains reused with its actual 2026-10-30 date and all earlier dates intact. Its field, interpolation, reconstructed-focus/IS, source discrepancy and production-correlation limits remain. This scoped source-reference/catalog check does not add a whole-lens shape review or certify the older runtime limitations.
+
+
+| Element / source row | Printed nd / νd | Retained or added qualified curve | Δnd | Δνd (catalog nominal) |
+| --- | --- | --- | ---: | ---: |
+| L1 / R1 | 1.63854 / 55.4 | S-BSM18 (retained) | -0.000000787 | -0.020000 |
+| L2 / R3 | 1.53110 / 55.9 | E48R (added) | +0.000060165 | +0.100000 |
+| L3 / R5 | 1.84666 / 23.8 | J-SF03 (retained) | +0.000000037 | +0.000000 |
+| L4 / R7 | 1.69680 / 55.5 | J-LAK14 (retained) | +0.000000013 | +0.020000 |
+| L5 / R10 | 1.77250 / 49.6 | J-LASF016 (retained) | +0.000000017 | +0.020000 |
+| L6 / R12 | 1.84666 / 23.8 | J-SF03 (retained) | +0.000000037 | +0.000000 |
+| L7 / R14 | 1.53110 / 55.9 | E48R (added) | +0.000060165 | +0.100000 |
+
+Private proof confirms canonical deep equality after excluding only glass labels and the positive bibliographic notes. All retained dispersion channels are exactly equal; source G/nd is exactly equal for every medium. New curve channels and the corrected inspector-label semantics are recorded separately from geometry. Focused formatting/diff checks are run on the nine owned files; full repository gates and reports are coordinator-owned.

@@ -81,7 +81,7 @@ Positive rear member of D2. FCD515 is a coordinate-compatible current spectral p
 
 ### L8 — Pos. Meniscus (2× Asph)
 
-`nd = 1.53110, νd = 55.9.` Glass: Unmatched (source 1.53110/55.9 medium; chemistry and process unidentified); isolated `f ≈ +169.46 mm`.
+`nd = 1.53110, νd = 55.9.` Material: E48R qualified numerical polymer proxy; source composition, supplier and process unspecified; isolated `f ≈ +169.46 mm`.
 
 Weak positive aspheric singlet carrying both source even-polynomial faces. The original does not identify resin, plastic molding, glass molding or cement; the medium remains unresolved.
 
@@ -100,7 +100,7 @@ Each medium now records explicit d provenance. High Abbe number alone does not e
 Removed 21 per-lens C/F/g overrides across seven elements that are absent from the original. Twenty reproduce rounded
 current-catalog values exactly; L6's F value differs in the last reported digit. These are unsupported spectral
 supplements, not published measurements. The eight previous compatible curve choices remain, now explicitly qualified
-as proxies. Source nd/νd remains authoritative; exact supplier, melt, annealing and chemistry remain unidentified.
+as proxies; the 2026-10-31 E48R follow-up adds the ninth. Source nd/νd remains authoritative; exact supplier, melt, annealing and chemistry remain unidentified.
 
 | Element | Source nd/νd | Qualified current curve |
 | ------- | ------------ | ----------------------- |
@@ -111,10 +111,10 @@ as proxies. Source nd/νd remains authoritative; exact supplier, melt, annealing
 | L5      | 1.90366/31.3 | S-LAH95                 |
 | L6      | 1.68893/31.1 | S-TIM28                 |
 | L7      | 1.59282/68.6 | FCD515                  |
-| L8      | 1.53110/55.9 | Unmatched               |
+| L8 | 1.53110/55.9 | E48R numerical polymer proxy |
 | L9      | 1.62299/58.2 | S-BSM15                 |
 
-L8 remains Unmatched. Its 1.53110/55.9 pair and two aspheres do not establish the previous PMo-resin assertion.
+L8 now uses the published E48R curve as a qualified numerical polymer proxy. Its 1.53110/55.9 pair and two aspheres do not establish E48R grade identity or the previous PMo-resin assertion.
 No catalog-derived per-lens override or invented bonded layer is needed to retain a qualified spectral model.
 
 ## Focus Mechanism
@@ -203,3 +203,18 @@ No camera-side plate/filter is dimensioned in Example 3; no plate or material is
   focus¶0027 p 8, source sag¶0031 pp 8–9, native Table 1 p 13. Fresh original review 2026-10-30.
 - Existing production correlation uses Canon Camera Museum and Canon specification references already associated with
   this entry. Their 9/7 count, one aspheric element and retail focus figures are product context, not a source melt identification.
+
+
+## 2026-10-31 — Source reference semantics and E48R catalog follow-up
+
+Exact local original: JP 2022-085382 A, Numerical Example 3. Paragraph 0018 (PDF/printed p6) explicitly defines νd using Fraunhofer d/F/C indices. Paragraph 0031 (p8) links the numerical media to ndi/νdi and the table uses nd/vd; paragraph 0012 (p5) supplies d 587.56 nm and g 435.835 nm. This relies on the prescription notation and explicit Abbe definition, not the aberration-plot labels alone. Paragraph 0036, PDF/printed pp10–11, surface-data rows 1/3/5/8/9/11/12/14/16. All 9 modeled pairs were inspected again in the rendered original table; they match the existing data. No source filter, cover plate, additional bonded medium, numerical C/F/g index, partial-dispersion value or new APD evidence is present. Existing genuine fields and inferred badge qualifications are preserved.
+
+The 9 `indexReferenceNote` strings were positive source citations, not uncertainty. Their references are preserved in the data header and these sidecars; the explicit `indexReference: "d"` remains. Removing the misused notes restores the inspector's established nd/νd labels and makes the media eligible for the reference-aware inventory. It does not change wavelengths, source pairs or the existing compatible catalog channels. No genuine reference-uncertainty note is removed.
+
+The installed E48R curve comes from a [permission-bearing archival copy of the ZEON catalog](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf), with [Ansys's published ZEON-catalog attribution](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) supporting its vendor-origin provenance. It is an archival copy, not a direct vendor fetch. The unchanged polynomial evaluates nd=1.531160165 and νd=56.043827969; against source 1.53110/55.9 the differences are +0.000060165 and +0.143827969, within existing compatibility limits. Native valid range is 0.400–1.600µm at 25 °C. The curve supplies qualified spectral variation anchored to the authored source nd. It does not identify this lens's historical E48R grade, polymer chemistry, supplier, Canon formulation, molding or curing process. No catalog line indices or partials are copied into per-lens source fields.
+
+Current spectral coverage is 9/9: 8 existing compatible identities and channel values are retained, and 1 former Abbe-only media now use E48R. Every d/G channel stays exactly at the source nd. The new R/C, B/F and V/g values are catalog proxies, never patent measurements. Zero numeric source, geometry, aperture, focus/zoom, asphere, stop, gap or source-errata values change.
+
+Targeted continuity check only: Figure 5, PDF/printed p15, native 1323×812 at 403 ppi. Prescription/definition pages were rendered at 180 dpi; that raster scale is separate from the extracted native figure resolution. L8 is the complete independent doubly aspheric element R14*/R15*, 2.10 mm on axis. It is not a bonded coating or hybrid layer. Its existing 10.7/10.7 mm caps remain; no resin wing, land or geometry is added. Production SVG paths are exactly identical before/after across nine zoom/focus input combinations, with finite closed single connected paths and zero hidden trimming for the affected elements. Duplicate inputs are not additional supported physical states. No optical-rim dimension is remeasured or fitted in this follow-up.
+
+The completed whole-lens shape review remains reused with its actual 2026-10-30 date and all earlier dates intact. Its field, interpolation, reconstructed-focus/IS, source discrepancy and production-correlation limits remain. This scoped source-reference/catalog check does not add a whole-lens shape review or certify the older runtime limitations.

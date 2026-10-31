@@ -12,9 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * no tolerance, radius or gap is changed. The physical gap still remains positive.
  * Source STO ED10.25 is recorded separately from the canonical target-F iris;
  * the original does not establish the exact mechanical meaning of this difference.
- * Explicit d-line reference ¶0056; twelve existing compatible catalog curves are
- * spectral proxies, not historical supplier/melt/chemistry identities. E12 remains
- * Unmatched; source does not establish resin, a hybrid layer or a molding process.
+ * Source d-line reference: ¶0056 PDFp8 defines nd at d587.6nm and vd from
+ * F486.1/C656.3nm, with g435.8nm named. Positive citations stay outside
+ * uncertainty-only indexReferenceNote. Thirteen qualified spectral proxies
+ * include the 2026-10-31 E48R numerical proxy for E12; no source resin identity,
+ * hybrid layer, supplier, melt or molding process is established.
  * No published numerical C/F/g or partial-dispersion data; none invented.
  * L3 close-focus cam is an authored reconstruction, not finite source data.
  * All1365 sampled zoom/focus states pass axial/chief samples, but the generic
@@ -73,8 +75,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 29.1,
       focalLengthMm: -39.383139973231984,
       glass: "S-LAH99 (OHARA catalog equivalent; production supplier unspecified)",
@@ -88,8 +88,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90043,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 37.4,
       focalLengthMm: -33.21923102003975,
       glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
@@ -103,8 +101,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 81.5,
       focalLengthMm: -41.23081291222841,
       glass: "K-PFK80 (SUMITA catalog equivalent; production supplier unspecified)",
@@ -120,8 +116,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8061,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 33.3,
       focalLengthMm: 33.5291172855741,
       glass: "J-LASFH6 (HIKARI catalog equivalent; production supplier unspecified)",
@@ -135,8 +129,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6393,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 44.9,
       focalLengthMm: 67.565765186738,
       glass: "S-BAM12 (OHARA catalog equivalent; production supplier unspecified)",
@@ -150,8 +142,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 46.5,
       focalLengthMm: -34.62710106228003,
       glass: "TAF3D (HOYA catalog equivalent; production supplier unspecified)",
@@ -166,8 +156,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 53.9,
       focalLengthMm: 25.627994073423892,
       glass: "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
@@ -182,8 +170,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 70.2,
       focalLengthMm: 41.11098455450291,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -197,8 +183,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90043,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 37.4,
       focalLengthMm: -15.922545914281494,
       glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
@@ -213,8 +197,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 81.5,
       focalLengthMm: 17.06424022513546,
       glass: "K-PFK80 (SUMITA catalog equivalent; production supplier unspecified)",
@@ -231,8 +213,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.801,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 35,
       focalLengthMm: -32.49554579342068,
       glass: "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -246,11 +226,9 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.5311,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 55.9,
       focalLengthMm: 185.11915939007292,
-      glass: "Unmatched (source 1.53110/55.9 material; supplier and chemistry unidentified)",
+      glass: "E48R (published ZEON catalog curve; qualified numerical polymer proxy; source composition and supplier unspecified)",
       apd: false,
       role: "Weak positive L4 element with both surfaces aspheric; original medium chemistry and manufacturing process unidentified.",
     },
@@ -261,8 +239,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "EP 4 174 551 A1, ¶0056 PDFp8 defines all numerical nd/vd at d587.6nm; F486.1/C656.3/g435.8 definitions do not supply numerical line indices.",
       vd: 46.5,
       focalLengthMm: 72.63443548521461,
       glass: "TAF3D (HOYA catalog equivalent; production supplier unspecified)",

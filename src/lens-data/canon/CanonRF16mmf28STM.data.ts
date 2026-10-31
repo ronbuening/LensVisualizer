@@ -9,9 +9,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * outer shoulders preserve concave caps8.2/7.0. S3 retained8.1 versus drawn~8.3
  * because full-height trial fails existing .90 cross-gap guard; no guard relaxed.
  * Cemented rims are coextensive where the source draws them, without opaque lands.
- * Explicit d587.56nm provenance; eight existing compatible curves are qualified
- * spectral proxies. Removed21 C/F/g overrides absent from the original, largely
- * current catalog rounding. L8 medium/chemistry/molding remains unidentified.
+ * Source d provenance: ¶0018 PDFp6 defines vd from Fraunhofer Nd/NF/NC;
+ * ¶0031 p8/table headings use ndi/vdi; ¶0012 p5 gives d587.56nm/g435.835nm.
+ * Positive citations are kept here, outside uncertainty-only indexReferenceNote.
+ * Nine qualified spectral proxies include the 2026-10-31 E48R numerical proxy
+ * for L8. Its source chemistry/molding/supplier remain unspecified. The original
+ * 2026-10-30 removal of21 unsupported C/F/g copies remains unchanged.
  * Source Fig6 field52.9° reaches18.182875mm (84% generic full-frame corner).
  * Source table47.84° agrees with atan(Y/f), but its exact field convention remains
  * an interpretation; no wider field or production digital-correction model added.
@@ -69,8 +72,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60311,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 60.6,
       focalLengthMm: -25.79,
       glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -83,8 +84,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 70.2,
       focalLengthMm: -33.82,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -97,8 +96,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 37.2,
       focalLengthMm: 43.79,
       glass: "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
@@ -111,8 +108,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 42.7,
       focalLengthMm: 8.57,
       glass: "S-LAH55VS (OHARA catalog equivalent; production supplier unspecified)",
@@ -126,8 +121,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 31.3,
       focalLengthMm: -19.27,
       glass: "S-LAH95 (OHARA catalog equivalent; production supplier unspecified)",
@@ -141,8 +134,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68893,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 31.1,
       focalLengthMm: -12.94,
       glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
@@ -156,8 +147,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 68.6,
       focalLengthMm: 20.01,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
@@ -171,11 +160,9 @@ const LENS_DATA = {
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.5311,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 55.9,
       focalLengthMm: 169.46,
-      glass: "Unmatched (source 1.53110/55.9 medium; chemistry and process unidentified)",
+      glass: "E48R (published ZEON catalog curve; qualified numerical polymer proxy; source composition and supplier unspecified)",
       role: "Weak positive aspherical element; both surfaces carry source polynomial correction, but chemistry and manufacturing process are unidentified.",
     },
     {
@@ -185,8 +172,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62299,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2022085382A ¶0012 PDFp5 defines d587.56nm and g435.835nm; ¶0018 p6 defines vd from Nd/NF/NC. Numerical Example3 ¶0036 pp10–11 supplies nd/vd only, no numerical C/F/g or partial ratios.",
       vd: 58.2,
       focalLengthMm: 70.05,
       glass: "S-BSM15 (OHARA catalog equivalent; production supplier unspecified)",

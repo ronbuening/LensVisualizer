@@ -11,10 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No cemented interfaces, hybrid layers, extra plates or inferred rim cuts.
  *
  * Paragraph0080 PDFp11 defines d587.56/F486.1/C656.3/g435.835nm. All seven media
- * carry d provenance; no numerical C/F/g/partial data is published or invented.
- * Five existing compatible curves remain unchanged, qualified as spectral proxies;
- * the two1.53110/55.9 media stay unidentified. A general resin preference does
- * not identify these particular elements. Vendor, melt and chemistry are unknown.
+ * carry explicit d references; positive citations stay here, outside uncertainty-
+ * only indexReferenceNote. No numerical C/F/g/partial data is published or invented.
+ * Seven qualified proxies retain five existing curves and add the 2026-10-31
+ * E48R numerical proxy for L2/L7. A general resin preference does not identify
+ * these particular elements. Source vendor, melt, chemistry and process remain
+ * unspecified; the catalog polymer curve is not production material evidence.
  *
  * Printed design endpoints18.53/43.65 replace computed-EFL catalog metadata;
  * menu4.5/6.3 marketing presets become source4.56/6.5. Source station F numbers,
@@ -79,8 +81,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.63854,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.4,
       focalLengthMm: -35.03,
       glass: "S-BSM18 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -93,11 +93,9 @@ const LENS_DATA = {
       type: "Biconcave Negative (2× Asph)",
       nd: 1.5311,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.9,
       focalLengthMm: -60.57,
-      glass: "Unmatched (nd=1.53110, νd=55.9; vendor unresolved)",
+      glass: "E48R (published ZEON catalog curve; qualified numerical polymer proxy; source composition and supplier unspecified)",
       role: "Double-aspherical negative element in functional group B1.",
     },
     {
@@ -107,8 +105,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 23.8,
       focalLengthMm: 74.25,
       glass: "J-SF03 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
@@ -121,8 +117,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.5,
       focalLengthMm: 48.63,
       glass: "J-LAK14 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
@@ -135,8 +129,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 49.6,
       focalLengthMm: 23.39,
       glass: "J-LASF016 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
@@ -149,8 +141,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 23.8,
       focalLengthMm: -23.06,
       glass: "J-SF03 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
@@ -163,11 +153,9 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.5311,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.9,
       focalLengthMm: 59.61,
-      glass: "Unmatched (nd=1.53110, νd=55.9; vendor unresolved)",
+      glass: "E48R (published ZEON catalog curve; qualified numerical polymer proxy; source composition and supplier unspecified)",
       role: "Double-aspherical positive final functional group B4.",
     },
   ],

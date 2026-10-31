@@ -35,17 +35,17 @@ Paragraph 0081 defines BF as an air-equivalent rear distance and total length as
 
 Paragraph 0080 (PDF p11) explicitly defines d 587.56 nm, F 486.1 nm, C 656.3 nm, g 435.835 nm and vd=(Nd−1)/(NF−NC). All seven media now record d-line provenance. The selected example publishes nd/vd only, with no numerical C/F/g indices, partial ratio/deviation, normal line or APD identification. No override fields are added or removed.
 
-| Element | Source nd/vd | Shape                           | Unchanged resolved spectral proxy |
+| Element | Source nd/vd | Shape                           | Qualified current spectral proxy |
 | ------- | ------------ | ------------------------------- | --------------------------------- |
 | L1      | 1.63854/55.4 | Negative meniscus               | S-BSM18 (OHARA)                   |
-| L2      | 1.53110/55.9 | Biconcave, two aspheres         | Unresolved                        |
+| L2 | 1.53110/55.9 | Biconcave, two aspheres | E48R numerical polymer proxy |
 | L3      | 1.84666/23.8 | Positive meniscus               | J-SF03 (HIKARI)                   |
 | L4      | 1.69680/55.5 | Biconvex IS element             | J-LAK14 (HIKARI)                  |
 | L5      | 1.77250/49.6 | Positive meniscus               | J-LASF016 (HIKARI)                |
 | L6      | 1.84666/23.8 | Biconcave focus element         | J-SF03 (HIKARI)                   |
-| L7      | 1.53110/55.9 | Positive meniscus, two aspheres | Unresolved                        |
+| L7 | 1.53110/55.9 | Positive meniscus, two aspheres | E48R numerical polymer proxy |
 
-Five pre-existing compatible curve choices remain identical; actual labels now name them as qualified proxies rather than asserting lanthanum or other chemistry from a coordinate class. They do not identify historical vendor, melt or composition. L2/L7 remain unidentified. Paragraph 0050 gives a general preference for resin in a first-group asphere, not a specific material identification for either occurrence of 1.53110/55.9. No resin, hybrid layer, UD/APD or production chemistry is inferred as source fact. Table 1 (PDF p22) lists B3 Abbe 23.78 while the prescription rounds to 23.8; both source precisions remain qualified rather than replacing the prescription value.
+Five pre-existing compatible curve choices remain identical; actual labels now name them as qualified proxies rather than asserting lanthanum or other chemistry from a coordinate class. They do not identify historical vendor, melt or composition. L2/L7 now use E48R qualified numerical polymer proxies; their source material identities remain unspecified. Paragraph 0050 gives a general preference for resin in a first-group asphere, not a specific material identification for either occurrence of 1.53110/55.9. No resin, hybrid layer, UD/APD or production chemistry is inferred as source fact. Table 1 (PDF p22) lists B3 Abbe 23.78 while the prescription rounds to 23.8; both source precisions remain qualified rather than replacing the prescription value.
 
 ## Native Shapes, Outer Rim and Rejected Trials
 
@@ -83,3 +83,18 @@ Actual seven SVG bodies are finite, closed and connected, with 0 hidden trimming
 
 - Exact local original JP2021086024A: front p1; Example 2 paragraph 0086 pp13–14; definitions 0080–0084 p11; architecture/focus/IS 0058–0060 p9; Figure 3/4 p24; Table 1 p22. No family publication or external prescription substitutes for this source.
 - Existing production association was established when the file was added on 2026-08-22. This is the original shape/glass review dated 2026-10-30; no earlier detailed native-rim audit date is invented.
+
+
+## 2026-10-31 — Source reference semantics and E48R catalog follow-up
+
+Exact local original: JP 2021-86024 A, Numerical Example 2. Paragraph 0080 (PDF/printed p11) explicitly defines every numerical nd at d 587.56nm and νd=(Nd−1)/(NF−NC), naming F486.1/C656.3/g435.835nm. Paragraph 0086, PDF/printed p13 surface/asphere table and p14 summary; medium rows1/3/5/7/10/12/14. All 7 modeled pairs were inspected again in the rendered original table; they match the existing data. No source filter, cover plate, additional bonded medium, numerical C/F/g index, partial-dispersion value or new APD evidence is present. Existing genuine fields and inferred badge qualifications are preserved.
+
+The 7 `indexReferenceNote` strings were positive source citations, not uncertainty. Their references are preserved in the data header and these sidecars; the explicit `indexReference: "d"` remains. Removing the misused notes restores the inspector's established nd/νd labels and makes the media eligible for the reference-aware inventory. It does not change wavelengths, source pairs or the existing compatible catalog channels. No genuine reference-uncertainty note is removed.
+
+The installed E48R curve comes from a [permission-bearing archival copy of the ZEON catalog](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf), with [Ansys's published ZEON-catalog attribution](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) supporting its vendor-origin provenance. It is an archival copy, not a direct vendor fetch. The unchanged polynomial evaluates nd=1.531160165 and νd=56.043827969; against source 1.53110/55.9 the differences are +0.000060165 and +0.143827969, within existing compatibility limits. Native valid range is 0.400–1.600µm at 25 °C. The curve supplies qualified spectral variation anchored to the authored source nd. It does not identify this lens's historical E48R grade, polymer chemistry, supplier, Canon formulation, molding or curing process. No catalog line indices or partials are copied into per-lens source fields.
+
+Current spectral coverage is 7/7: 5 existing compatible identities and channel values are retained, and 2 former Abbe-only media now use E48R. Every d/G channel stays exactly at the source nd. The new R/C, B/F and V/g values are catalog proxies, never patent measurements. Zero numeric source, geometry, aperture, focus/zoom, asphere, stop, gap or source-errata values change.
+
+Targeted continuity check only: Figure 3, PDF/printed p24, native 1181×1859 at 400 ppi; wide/tele forms and target crop retain native pixels. Prescription/definition pages were rendered at 180 dpi; that raster scale is separate from the extracted native figure resolution. L2 (R3*/R4*, 1.70 mm) and L7 (R14*/R15*, 2.08 mm) are separate complete elements, not bonded layers. Their printed clear caps 9.82/9.645 mm and 5.395/5.73 mm remain. Paragraph 0050 offers a general resin preference, not selected-grade identity; no hybrid, wing, plate or shape fit is added. Production SVG paths are exactly identical before/after across nine zoom/focus input combinations, with finite closed single connected paths and zero hidden trimming for the affected elements. Duplicate inputs are not additional supported physical states. No optical-rim dimension is remeasured or fitted in this follow-up.
+
+The completed whole-lens shape review remains reused with its actual 2026-10-30 date and all earlier dates intact. Its field, interpolation, reconstructed-focus/IS, source discrepancy and production-correlation limits remain. This scoped source-reference/catalog check does not add a whole-lens shape review or certify the older runtime limitations.
