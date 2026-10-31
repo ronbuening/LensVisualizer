@@ -19,7 +19,6 @@ import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/stat
 import { runtimeView } from "../../../../src/optics/prescription/runtimeView.js";
 import { prepareStateSurfacesReal } from "../../../../src/optics/field/geometry.js";
 import SonyFE20Raw from "../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
-import CanonEF2470IIRaw from "../../../../src/lens-data/canon/CanonEF2470mmf28LII.data.js";
 import PentaxFA31Raw from "../../../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.js";
 import type { ChromaticChannel } from "../../../../src/types/optics.js";
 import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
@@ -30,6 +29,7 @@ import {
   analysisRequestForLens,
   apertureAt,
   build,
+  buildChromaticPositiveElementLens,
   buildRearPlateAirEquivalentLens,
   buildRearPlateLens,
   buildSimplePositiveElementLens,
@@ -281,8 +281,11 @@ describe("chromatic analysis helpers", () => {
   });
 
   it("leaves a lateral color field whose chief ray a rim clips out of the maximum, and names its channel", () => {
-    // Wide open at 24 mm, a rim clips red's full-field chief ray while green, blue and violet reach the image.
-    const result = computeLateralColorCurve(analysisRequestForLens(build(CanonEF2470IIRaw)), {
+    // This synthetic singlet's rear rim admits the green reference field but clips red's less-refracted chief ray.
+    // Keep this deliberate clipping case independent of corrected patent-derived catalog apertures.
+    const data = constructionFixtureData(buildChromaticPositiveElementLens("test-lateral-color-rim", { elementSd: 3 }));
+    data.surfaces[2].sd = 1.1;
+    const result = computeLateralColorCurve(analysisRequestForLens(build({ ...data })), {
       fieldFractions: [0, 0.5, 0.75, 1],
     })!;
     const edge = result.fields.find((field) => field.fieldFraction === 1)!;

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — CANON TS-E 135mm f/4 L MACRO                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2018-132674 A, Numerical Example 1.               ║
+ * ║  Data source: JP 2018-132674 A, Numerical Data 1.               ║
  * ║  Canon / Mizuma Akira; all-spherical 11-element tilt-shift macro.  ║
  * ║  11 elements / 7 air-spaced groups; no aspherical surfaces.        ║
  * ║  Focus: double floating focus. L2/FN moves imageward; L3/FP moves  ║
@@ -19,8 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    SDs below are conservative reconstruction values derived from   ║
  * ║    paraxial marginal/chief-ray traces, the official 82 mm filter   ║
  * ║    size, the f/4.05 entrance-pupil solution, and renderer geometry ║
- * ║    constraints. They were reduced where necessary to preserve       ║
- * ║    edge thickness, element SD ratio, and cross-gap sag clearance.  ║
+ * ║    constraints. All clear caps remain unchanged. The native S7 rear ║
+ * ║    outer shoulder extends to 19.8 mm beyond clear 15.95 mm; no cut.    ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces from first element to image plane║
@@ -35,14 +35,14 @@ const LENS_DATA = {
   key: "canon-tse-135mm-f4l",
   maker: "Canon",
   name: "CANON TS-E 135mm f/4 L MACRO",
-  subtitle: "JP 2018-132674 A Example 1 — Canon / Mizuma Akira",
+  subtitle: "JP 2018-132674 A Numerical Data 1 — Canon / Mizuma Akira",
 
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     specs: [
       "11 elements / 7 groups",
-      "f = 132.97 mm design (135 mm marketed)",
+      "f = 133.00 mm patent design (135 mm marketed)",
       "F/4.05 design (f/4 marketed)",
       "Patent image circle: 67.3 mm diameter",
       "All-spherical; 2 UD/ED elements",
@@ -50,16 +50,22 @@ const LENS_DATA = {
     ],
     elementCount: 11,
     groupCount: 7,
-    focalLengthMm: { marketing: 135, design: 132.97085232771016 },
+    focalLengthMm: { marketing: 135, design: 133.0 },
     fNumber: { marketing: 4, design: 4.05 },
   },
 
   source: {
     patentNumber: "JP 2018-132674 A",
-    example: { label: "Example 1", id: "1" },
+    example: { label: "Numerical Data 1", id: "1" },
     patentYear: 2018,
     authors: ["Akira Mizuma"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Data 1, PDF/printed 10–11: literal first-to-image tracks 183.77 mm at infinity and 183.75 mm near versus stated 183.76 mm. The four moving gaps sum 50.48/50.46 mm although source prose keeps L1/SP/RF fixed. Printed rounding is an unproved explanation; all source R/d and focus-gap endpoints remain unchanged.",
+      },
+    ],
   },
 
   elements: [
@@ -69,14 +75,12 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.65844,
+      indexReference: "d",
       vd: 50.9,
       focalLengthMm: 100.26,
-      glass: "N-SSK5 (Schott; S-BSM25 class equivalent)",
+      glass:
+        "N-SSK5 (Schott; S-BSM25 class equivalent) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "Front collector element of positive group L1.",
-      dPgF: -0.00181,
-      nC: 1.65455,
-      nF: 1.66749,
-      ng: 1.67469,
     },
     {
       id: 2,
@@ -84,17 +88,17 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconvex Positive (UD)",
       nd: 1.497,
+      indexReference: "d",
+      // Genuine selected-source partial, converted using retained surface vd.
+      dPgF: 0.031283,
       vd: 81.5,
       focalLengthMm: 71.39,
-      glass: "S-FPL51 (OHARA)",
-      apd: "inferred",
-      apdNote: "Catalog line indices give θgF ≈ 0.539; patent condition L1p/FPp class.",
+      glass: "S-FPL51 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
+      apd: "patent",
+      apdNote:
+        "Selected Numerical Data 1 Table 1, PDF/printed 14: L1p theta_gF=0.538, higher-precision nu_d=81.54; source surface nu_d retained. dPgF=0.031283 derives from published theta and engine/source linear normal 0.6438−0.001682nu_d at the retained surface coordinate. No catalog line indices or historical supplier/melt inference.",
       role: "Low-dispersion positive member of the L1 rear cemented doublet.",
       cemented: "D1",
-      dPgF: 0.03194,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 3,
@@ -102,15 +106,13 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.91082,
+      indexReference: "d",
       vd: 35.3,
       focalLengthMm: -59.62,
-      glass: "TAFD35L (HOYA equivalent; supplier uncertain)",
+      glass:
+        "TAFD35L (HOYA equivalent; supplier uncertain) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "High-index negative partner in the L1 achromatizing doublet.",
       cemented: "D1",
-      dPgF: -0.00118,
-      nC: 1.90324,
-      nF: 1.92908,
-      ng: 1.94415,
     },
     {
       id: 4,
@@ -118,14 +120,11 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.83481,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: -54.84,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "Standalone negative meniscus at the front of the moving FN focus group.",
-      dPgF: -0.00693,
-      nC: 1.82898,
-      nF: 1.84852,
-      ng: 1.85956,
     },
     {
       id: 5,
@@ -133,15 +132,12 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.65412,
+      indexReference: "d",
       vd: 39.7,
       focalLengthMm: -42.29,
-      glass: "S-NBH5 (OHARA)",
+      glass: "S-NBH5 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "Negative short-flint member of the moving FN cemented doublet.",
       cemented: "D2",
-      dPgF: -0.00303,
-      nC: 1.64923,
-      nF: 1.66571,
-      ng: 1.67517,
     },
     {
       id: 6,
@@ -149,17 +145,17 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 2.001,
+      indexReference: "d",
+      // Genuine selected-source partial, converted using retained surface vd.
+      dPgF: 0.0041462,
       vd: 29.1,
       focalLengthMm: 35.95,
-      glass: "S-LAH99 (OHARA)",
-      apd: "inferred",
-      apdNote: "Catalog line indices give θgF ≈ 0.600; positive FNp element in patent conditions (8)-(10).",
+      glass: "S-LAH99 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
+      apd: "patent",
+      apdNote:
+        "Selected Numerical Data 1 Table 1, PDF/printed 14: FNp theta_gF=0.599, higher-precision nu_d=29.13; source surface nu_d retained. dPgF=0.0041462 derives from published theta and engine/source linear normal 0.6438−0.001682nu_d at the retained surface coordinate. No catalog line indices or historical supplier/melt inference.",
       role: "Ultra-high-index positive member of the moving FN doublet.",
       cemented: "D2",
-      dPgF: 0.00492,
-      nC: 1.99105,
-      nF: 2.0254,
-      ng: 2.046,
     },
     {
       id: 7,
@@ -167,14 +163,11 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.6968,
+      indexReference: "d",
       vd: 55.5,
       focalLengthMm: 61.85,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "Standalone positive element at the front of the moving FP focus group.",
-      dPgF: -0.00697,
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 8,
@@ -182,17 +175,17 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Biconvex Positive (UD)",
       nd: 1.497,
+      indexReference: "d",
+      // Genuine selected-source partial, converted using retained surface vd.
+      dPgF: 0.031283,
       vd: 81.5,
       focalLengthMm: 53.77,
-      glass: "S-FPL51 (OHARA)",
-      apd: "inferred",
-      apdNote: "Catalog line indices give θgF ≈ 0.539; positive FPp element in patent conditions (4)-(6).",
+      glass: "S-FPL51 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
+      apd: "patent",
+      apdNote:
+        "Selected Numerical Data 1 Table 1, PDF/printed 14: FPp theta_gF=0.538, higher-precision nu_d=81.54; source surface nu_d retained. dPgF=0.031283 derives from published theta and engine/source linear normal 0.6438−0.001682nu_d at the retained surface coordinate. No catalog line indices or historical supplier/melt inference.",
       role: "Low-dispersion positive member of the moving FP cemented doublet.",
       cemented: "D3",
-      dPgF: 0.03194,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 9,
@@ -200,17 +193,17 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.85478,
+      indexReference: "d",
+      // Genuine selected-source partial, converted using retained surface vd.
+      dPgF: 0.0099136,
       vd: 24.8,
       focalLengthMm: -91.06,
-      glass: "S-NBH56 (OHARA)",
-      apd: "inferred",
-      apdNote: "Catalog line indices give θgF ≈ 0.612; negative FPn element in patent conditions (1)-(3).",
+      glass: "S-NBH56 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
+      apd: "patent",
+      apdNote:
+        "Selected Numerical Data 1 Table 1, PDF/printed 14: FPn theta_gF=0.612, higher-precision nu_d=24.8; source surface nu_d retained. dPgF=0.0099136 derives from published theta and engine/source linear normal 0.6438−0.001682nu_d at the retained surface coordinate. No catalog line indices or historical supplier/melt inference.",
       role: "High-dispersion negative member of the moving FP cemented doublet.",
       cemented: "D3",
-      dPgF: 0.01004,
-      nC: 1.84488,
-      nF: 1.87935,
-      ng: 1.90045,
     },
     {
       id: 10,
@@ -218,15 +211,12 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.95375,
+      indexReference: "d",
       vd: 32.3,
       focalLengthMm: 72.22,
-      glass: "S-LAH98 (OHARA)",
+      glass: "S-LAH98 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "High-index positive member of the stationary rear field-corrector doublet.",
       cemented: "D4",
-      dPgF: 0.00087,
-      nC: 1.94514,
-      nF: 1.97465,
-      ng: 1.99207,
     },
     {
       id: 11,
@@ -234,15 +224,12 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.6516,
+      indexReference: "d",
       vd: 58.5,
       focalLengthMm: -32.52,
-      glass: "S-LAL7 (OHARA)",
+      glass: "S-LAL7 (OHARA) — compatible catalog spectral proxy; historical supplier/composition/melt unresolved",
       role: "Lower-dispersion negative member completing the stationary rear field-corrector doublet.",
       cemented: "D4",
-      dPgF: -0.00354,
-      nC: 1.64821,
-      nF: 1.65934,
-      ng: 1.66537,
     },
   ],
 
@@ -253,7 +240,7 @@ const LENS_DATA = {
     { label: "4", R: -107.029, d: 2.4, sd: 26, medium: 3 },
     { label: "5", R: 111.402, sd: 26 },
     { label: "6", R: 129.518, d: 1.8, sd: 19.8, medium: 4 },
-    { label: "7", R: 33.612, d: 5.21, sd: 15.95 },
+    { label: "7", R: 33.612, d: 5.21, sd: 15.95, rimExtensionSd: 19.8 },
     { label: "8", R: -202.934, d: 1.6, sd: 15.95, medium: 5 },
     { label: "9", R: 32.129, d: 5.35, sd: 17.6, medium: 6 },
     { label: "10", R: 274.715, sd: 17.6 },
@@ -271,7 +258,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.486,
     description:
-      "Double floating focus: L2/FN moves imageward and L3/FP moves objectward; L1, STO, and L4/RF remain fixed.",
+      "Published gap endpoints: L2/FN moves imageward and L3/FP objectward; source prose keeps L1/STO/RF fixed, with a retained 0.02 mm table-track discrepancy. Distance 0.486 m is product metadata and intermediate gaps are interpolated. Source paragraph 0048 prefers a focus-varying iris and near Figure 2(B) states Fno 5.60, but supplies no physical diameter schedule; current fixed derived iris is retained as a model limitation.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

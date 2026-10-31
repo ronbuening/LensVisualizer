@@ -9,10 +9,10 @@ or per-lens patent backfills.
 ## Summary
 
 - **1032** lenses scanned
-- **11844** non-air surfaces examined
-- **11853** element glass declarations examined
-- **223** non-explicit-unmatched annotations did not resolve
-- **115** distinct unresolved glass-like tokens found
+- **11847** non-air surfaces examined
+- **11856** element glass declarations examined
+- **219** non-explicit-unmatched annotations did not resolve
+- **116** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,7 +20,6 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 493836 | 6 | 2 | |
 | 662561 | 4 | 1 | |
-| 531559 | 3 | 2 | |
 | 486815 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 620586 | 2 | 1 | |
@@ -43,7 +42,6 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 815233 | 2 | 2 | |
 | 819287 | 2 | 2 | |
-| G2 | 2 | 1 | |
 | LAF10 | 2 | 1 | |
 | 489701 | 1 | 1 | |
 | 499801 | 1 | 1 | |
@@ -51,9 +49,11 @@ or per-lens patent backfills.
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 520701 | 1 | 1 | |
+| 531559 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
+| 554522 | 1 | 1 | |
 | 564438 | 1 | 1 | |
 | 570481 | 1 | 1 | |
 | 570575 | 1 | 1 | |
@@ -78,6 +78,7 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 672388 | 1 | 1 | |
 | 673343 | 1 | 1 | |
+| 678314 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -101,9 +102,9 @@ or per-lens patent backfills.
 | 755501 | 1 | 1 | |
 | 767462 | 1 | 1 | |
 | 769497 | 1 | 1 | |
+| 772361 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773501 | 1 | 1 | |
-| 773530 | 1 | 1 | |
 | 781445 | 1 | 1 | |
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
@@ -119,6 +120,7 @@ or per-lens patent backfills.
 | 837333 | 1 | 1 | |
 | 839196 | 1 | 1 | |
 | 840433 | 1 | 1 | |
+| 842372 | 1 | 1 | |
 | 866450 | 1 | 1 | |
 | 868323 | 1 | 1 | |
 | 877370 | 1 | 1 | |
@@ -132,7 +134,6 @@ or per-lens patent backfills.
 | LAFN8 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LF8 | 1 | 1 | |
-| N3 | 1 | 1 | |
 
 ## Occurrences
 
@@ -151,12 +152,6 @@ or per-lens patent backfills.
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 3: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 7: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 9: `SSK / LaK (Jena in-house, 662/561)`
-
-### 531559 — 3 occurrences
-
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 3A: `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)`
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 17A: `531559 — optical resin coordinate (same as G2; material not named in patent)`
-- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
 
 ### 486815 — 2 occurrences
 
@@ -268,11 +263,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 
-### G2 — 2 occurrences
-
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 3A: `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)`
-- [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 17A: `531559 — optical resin coordinate (same as G2; material not named in patent)`
-
 ### LAF10 — 2 occurrences
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
@@ -302,6 +292,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 5: `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)`
 
+### 531559 — 1 occurrence
+
+- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
+
 ### 534554 — 1 occurrence
 
 - [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) 15: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`
@@ -313,6 +307,10 @@ or per-lens patent backfills.
 ### 554381 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)`
+
+### 554522 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 18: `554522 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
 
 ### 564438 — 1 occurrence
 
@@ -410,6 +408,10 @@ or per-lens patent backfills.
 
 - [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 22: `673343 — catalog unresolved (supplier unconfirmed)`
 
+### 678314 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 15: `678314 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 680312 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
@@ -502,6 +504,10 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)`
 
+### 772361 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 11: `772361 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 772493 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
@@ -509,10 +515,6 @@ or per-lens patent backfills.
 ### 773501 — 1 occurrence
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 13: `773501 - lanthanum flint (catalog unresolved)`
-
-### 773530 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 4: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`
 
 ### 781445 — 1 occurrence
 
@@ -574,6 +576,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (catalog unresolved; patent nd=1.84042, vd=43.3)`
 
+### 842372 — 1 occurrence
+
+- [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) 19: `842372 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved`
+
 ### 866450 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 1: `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)`
@@ -625,8 +631,4 @@ or per-lens patent backfills.
 ### LF8 — 1 occurrence
 
 - [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 11: `LF8 class (Schott, obsolete, 564438; patent "LF 8")`
-
-### N3 — 1 occurrence
-
-- [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) 4: `UV-cured replica resin (patent medium N3)`
 

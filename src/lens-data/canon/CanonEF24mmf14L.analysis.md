@@ -2,15 +2,15 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1999-030743 A (特開平11-30743)  
-**Application Number:** JP H09-202367  
-**Filed:** 11 July 1997  
-**Published:** 2 February 1999  
-**Inventor:** Makoto Misaka (三坂 誠)  
-**Applicant:** Canon Inc.  
-**Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)  
-**Example details:** Table 6, Figure 7\
-**Worked examples:** 7  
+**Patent:** JP 1999-030743 A (特開平11-30743)\
+**Application Number:** JP H09-202367\
+**Filed:** 11 July 1997\
+**Published:** 2 February 1999\
+**Inventor:** Makoto Misaka (三坂 誠)\
+**Applicant:** Canon Inc.\
+**Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)\
+**Example details:** Numerical Example 6, Table 6 (PDF page 10; caption on page 9), Figure 7 (PDF page 13)\
+**Worked examples:** 7\
 **Claims:** 3
 
 Numerical Example 6 is the strongest prescription match to the first-generation Canon EF 24mm f/1.4 L USM. The
@@ -36,21 +36,22 @@ identification rests on several independent correspondences rather than the nomi
 The identification is architectural, optical, and chronological. It does not imply that Canon disclosed the production
 melt names or the complete production focusing cam in the patent.
 
-### Patent-table corrections required by internal consistency
+### Patent-table inconsistencies and retained correction
 
-Two entries in Table 6 cannot be used literally without contradicting other numbers in the same patent.
+L7’s printed νd = 28.64 conflicts with its printed d/C/F values, which imply
+(1.728250−1)/(1.746453−1.720865) = 28.4606065. The source’s genuinely printed Abbe number is restored literally;
+the earlier normalization is removed. Native sibling examples do not reuse this medium, and a second independent
+source evidence kind for changing ν has not been established. The source-erratum remains unresolved. S-TIH10 is an
+explicitly approximate spectral proxy to the printed pair, with all published C/F/g values retained.
 
-- **L7 Abbe number:** Table 6 prints $\nu_d=28.64$. The published d-, C-, and F-line indices give
-  $\nu_d=(1.728250-1)/(1.746453-1.720865)=28.4606$. The corrected value also corresponds to the 728/285 S-TIH10/SF10
-  glass class. The data file uses 28.4606.
-- **L10 d-line index:** Table 6 prints $n_d=1.613112$, which is greater than its printed F-line index 1.610018 and is
-  therefore spectrally impossible for a normal optical glass. Reading the value as **1.603112** gives
-  $\nu_d=60.6997$, identifies the 603/607 S-BSM14/J-SK14 class, and reproduces the patent's own condition-(9)
-  correspondence value $f_{2b}/f=1.47$. The data file uses 1.603112 while preserving the printed value in the patent-consistency
-  discussion.
+L10’s printed nd = 1.613112 exceeds its printed F-line index 1.610018. The retained correction to 1.603112 is
+supported by two independent source kinds. The source summary gives f = 24.6 mm and f2b/f = 1.47; corrected values
+reproduce those quantities. Native Figure 14’s near-axis relative chromatic BFL span is roughly 0.10–0.13 mm
+(±0.02 mm reading uncertainty). Published C/F/g plus corrected d give a 0.099819 mm span, whereas printed d gives
+0.598914 mm. The structured corrected entry identifies source-summary and aberration-figure. Its source-derived
+νd = 60.6996779 is consistent with the printed rounded 60.70.
 
-These are emendations of demonstrable typographical defects, not adjustments made to force the complete-lens focal
-length toward 24 mm.
+The absolute final image-plane offset remains unresolved. No radius, spacing or asphere is tuned to fit the drawing.
 
 ## Optical Architecture
 
@@ -122,7 +123,7 @@ inferred because the patent names no glass manufacturer.
 **L4: $n_d=1.846660$, $\nu_d=23.78$. Glass: S-TIH53/N-SF57-equivalent 847/238 dense-flint class. Standalone
 $f=+98.343\ \mathrm{mm}$.**
 
-**L5: $n_d=1.496999$, $\nu_d=81.61$. Glass: FCD1-equivalent 497/816 fluorophosphate ED class. Standalone
+**L5: $n_d=1.496999$, $\nu_d=81.61$. Glass: qualified 497/816 anomalous-medium coordinate; historical chemistry unconfirmed. Standalone
 $f=-47.578\ \mathrm{mm}$.**
 
 L4 and L5 share the weakly curved surface 8. L4 is a positive meniscus; L5 is a negative meniscus despite its almost
@@ -144,12 +145,12 @@ lanthanum family name.
 
 ### L7 — Biconcave Negative
 
-**$n_d=1.728250$, corrected $\nu_d=28.4606$. Glass: S-TIH10/SF10-equivalent 728/285 dense-flint class. Standalone
+**$n_d=1.728250$, printed $\nu_d=28.64$. Glass: S-TIH10, approximate spectral proxy to the printed pair. Standalone
 $f=-48.914\ \mathrm{mm}$.**
 
 The negative front radius and positive rear radius establish a biconcave form. L7 moderates the strongly positive power
-of B2a immediately before the stop gap. Its corrected Abbe number is obtained directly from the patent's spectral
-indices; retaining 28.64 would create an internally inconsistent material record.
+of B2a immediately before the stop gap. The printed Abbe number remains literal despite the independent d/C/F ratio of 28.4606065. This unresolved
+redundant-data inconsistency is disclosed; the complete source line indices remain the spectral authority.
 
 ### L8/L9 — Cemented Negative/Positive Pair in B2b
 
@@ -169,7 +170,7 @@ exclusive responsibility for one aberration.
 
 ### L10 — Positive Meniscus, Convex to Image
 
-**Corrected $n_d=1.603112$, $\nu_d=60.6997$. Glass: S-BSM14/J-SK14-equivalent 603/607 crown class. Standalone
+**Corrected $n_d=1.603112$, $\nu_d=60.6997$. Glass: J-SK14 qualified HIKARI catalog proxy; source supplier/melt unspecified. Standalone
 $f=+43.604\ \mathrm{mm}$.**
 
 Both radii are negative, with the rear surface much more strongly curved, so L10 is a positive meniscus convex to the
@@ -191,22 +192,23 @@ convergence and long image-side clearance required by the EF SLR mount.
 
 ## Glass Identification and Selection
 
-The patent publishes $n_d$, $\nu_d$, and d/g/C/F line indices but no vendor names. Glass labels are therefore catalog
-**equivalents or classes**, not assertions about Canon's production melts. Identifications were checked against official
+The patent publishes $n_d$, $\nu_d$, and d/g/C/F line indices but no vendor names. Paragraph 0041 explicitly identifies d/g/C/F indices, so the d-line reference is confirmed. All 33 C/F/g
+values are genuine selected-example measurements and are retained. Glass labels are therefore qualified catalog
+**spectral proxies or classes**, not assertions about Canon's historical supplier, production melts or chemistry. Identifications were checked against official
 OHARA, HOYA, SCHOTT, and HIKARI catalog data without seeding the search with a desired product name.
 
-| Element | Patent or corrected optical position | Preferred catalog class | Qualification                                         |
-| ------- | -----------------------------------: | ----------------------- | ----------------------------------------------------- |
-| L1, L2  |                              697/555 | S-LAL14 class           | Exact six-digit position; vendor not disclosed        |
-| L3      |                              713/538 | N-LAK8 class            | Full spectral match                                   |
-| L4      |                              847/238 | S-TIH53 / N-SF57 class  | Dense flint; multiple vendor equivalents              |
-| L5      |                              497/816 | FCD1 / S-FPL51 class    | FCD1 exactly matches $\nu_d$; vendor remains inferred |
-| L6      |                              804/466 | S-LAH65V class          | Dense lanthanum flint                                 |
-| L7      |                              728/285 | S-TIH10 / SF10 class    | Requires $\nu_d=28.4606$ emendation                   |
-| L8      |                              805/254 | S-TIH6 / SF6 class      | Dense flint                                           |
-| L9      |                              835/427 | S-LAH55V class          | Dense lanthanum flint                                 |
-| L10     |                    corrected 603/607 | S-BSM14 / J-SK14 class  | Printed $n_d=1.613112$ is impossible                  |
-| L11     |                              773/496 | S-LAH66 class           | Full spectral match; not the later S-LAH66N variant   |
+| Element | Patent or corrected optical position | Preferred catalog class   | Qualification                                                         |
+| ------- | -----------------------------------: | ------------------------- | --------------------------------------------------------------------- |
+| L1, L2  |                              697/555 | S-LAL14 class             | Exact six-digit position; vendor not disclosed                        |
+| L3      |                              713/538 | N-LAK8 class              | Full spectral match                                                   |
+| L4      |                              847/238 | S-TIH53 / N-SF57 class    | Dense flint; multiple vendor equivalents                              |
+| L5      |                              497/816 | FCD1 / S-FPL51 class      | FCD1 exactly matches $\nu_d$; vendor remains inferred                 |
+| L6      |                              804/466 | S-LAH65V class            | Dense lanthanum flint                                                 |
+| L7      |             Printed 1.728250 / 28.64 | S-TIH10 approximate proxy | Published C/F/g imply ν = 28.4606065; source inconsistency unresolved |
+| L8      |                              805/254 | S-TIH6 / SF6 class        | Dense flint                                                           |
+| L9      |                              835/427 | S-LAH55V class            | Dense lanthanum flint                                                 |
+| L10 | corrected 603/607 | J-SK14 qualified proxy | Printed $n_d=1.613112$ is impossible; source C/F/g retained |
+| L11     |                              773/496 | S-LAH66 class             | Full spectral match; not the later S-LAH66N variant                   |
 
 The strongest chromatic design choice is L5. From its patent line indices,
 
@@ -239,7 +241,7 @@ data to prove the exact production cam law.
 | Maximum magnification  |                         — |          0.16× production specification |
 
 No close-focus spacings, subgroup travels, or finite-object magnifications are tabulated. The companion data file
-therefore leaves `var` empty rather than inventing a focus model. The production MFD is retained only as catalog
+therefore authors no variable focus gaps. The production MFD is retained only as catalog
 metadata.
 
 ## Aspherical Surfaces
@@ -313,7 +315,7 @@ stop is part of the patented strategy: the designer obtains chromatic leverage o
 placing the ED glass in the frontmost, largest-diameter elements. This is a secondary-spectrum correction mechanism, not
 evidence that the finished lens is apochromatic.
 
-## Verification Summary
+## Source Consistency and Runtime Limits
 
 ### Paraxial trace and residual patent inconsistency
 
@@ -357,23 +359,24 @@ meridional trace: the on-axis marginal ray sets the f/1.45 stop, while the 41.35
 edge-field pupil set the off-axis envelope. The resulting apertures are then constrained against mechanical and geometric
 limits.
 
-- The corrected paraxial EFL at f/1.45 requires an entrance-pupil semi-diameter of 8.5569 mm. Exact spherical/aspherical
-  tracing places the corresponding on-axis marginal ray at 8.3468 mm on the surface-1 vertex plane and gives the adopted
-  physical stop semi-diameter of 11.5174 mm.
-- At the full 41.35° half-field, the exact chief ray clears every surface. The inferred apertures transmit 51.6% of the
-  on-axis pupil width at that extreme field; the remaining clipping is explicit mechanical vignetting rather than an
-  unstated full-pupil assumption.
-- The largest inferred clear aperture is 26.2 mm at surface 1, or 52.4 mm diameter, within the production lens's 77 mm
-  filter envelope.
-- The maximum $sd/|R|$ is 0.724 at surface 16.
-- The maximum front/rear semi-diameter ratio within one element is 1.248 at L1.
-- The minimum calculated edge thickness is 0.572 mm at L11.
-- The tightest signed cross-gap clearance is 10.75% of the axial gap between surfaces 2 and 3, leaving the sag intrusion
-  below the 90% project limit.
-- Surface 18A was checked with its full polynomial sag. No surface requires hidden rim trimming to satisfy the stated
-  limits.
+- The current derived f/1.45 physical stop radius is approximately 11.50728 mm; its strict infinity axial beam clears.
+- Native Figure 7 resolves S2/S4/S9/S16 shoulders. Clear caps and outer radii remain separate; five inferred caps are
+  corrected from the native height ratios and local scale, as recorded in the audit. Source R/d and the asphere remain unchanged.
+- Actual SVGs across the complete control grid have eleven finite closed connected element paths and zero hidden trim.
+  Focus and zoom controls repeat the sole published infinity layout because no finite cam is reconstructed.
+- A 49-point stop-aimed sample passes all 49 axial rays. The 0.6-field and source-edge samples pass 36 and 17 rays;
+  every chief clears and no sample is unaimed. This records substantial peripheral vignetting, including some first clips
+  at bonded S17, without inventing an opaque interface feature.
+- Source half-field 41.35° reaches approximately 20.922 mm on the retained printed image plane, 96.7% of the format
+  half-diagonal. The runtime's separate full-frame corner solve reaches 21.65 mm near 42.3°. A passing corner solve
+  does not remove the source plane's 1.666626 mm paraxial defocus.
+- The first S2 cap trial of 22.5 mm with its shoulder exceeded the existing 90% gap guard: 5.451 mm versus 5.445 mm
+  allowed across 6.050 mm. The adopted 22.4 mm cap fits the native reading uncertainty and retains the unchanged guard.
+  No source radius, spacing, coefficient or image plane is tuned to fit the drawing.
 
-These semi-diameters are engineering reconstructions, not patent-published dimensions.
+These semi-diameters are engineering reconstructions, not patent-published dimensions. The native Figure 7 raster
+is 677 × 461 pixels at about 201 × 199 dpi; the local scale is approximately 7 px/mm with roughly ±0.5 mm reading
+and schematic uncertainty. A shoulder identifies an outer blank outline, not additional optical transmission.
 
 ## Sources
 
@@ -393,3 +396,20 @@ These semi-diameters are engineering reconstructions, not patent-published dimen
    <https://media.schott.com/api/public/content/efc13fa680cf4cca84b8ed29b87d8744?v=fb43de21>
 7. HIKARI, J-SK14 optical-glass data: independent verification of the corrected 603/607 L10 position.
    <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/SK/J_SK14.pdf>
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 24.6 mm, taken directly from Numerical Example6, Table6, PDF p10 (captionp9): header f=24.6mm, F/1.45. The prior computed model EFL value 24.5994023367 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.
+
+
+## 2026-10-31 — Full-source spectral proxy comparison
+
+Exact local original JP 1999-030743 A, Numerical Example 6, Table6 (caption PDF p9, native numerical/spectral table p10/printed cols17–18). Paragraph 0041 (PDF p4/col6) explicitly defines d/g/C/F index columns; it does not print extra numerical wavelengths. Source row 19 is L10: printed d1.613112, g1.615392, C1.600082, F1.610018 and ν60.70. The existing source-supported nd emendation1.603112 remains unchanged, as do all source errata, published image gap and resulting1.666626mm focus discrepancy. Figure 7 (middle native bitmap on PDF p13,677×461 at about 200 ppi) identifies the complete R19/R20 positive meniscus; no bonded layer or new shoulder is inferred. The completed 2026-10-30 shape review and actual 2026-09-25 correction history remain reused.
+
+Use J-SK14 only as a closer full-spectrum catalog proxy. BACD14 was the initial partial-ratio lead, but the actual printed-index θgF is0.540861513688, distinct from the engine reconstruction0.540862055304 from rounded stored dPgF. BACD14 improves catalog θ residual relative to S-BSM14, yet J-SK14 fits the full C/d/F/g vector better. Anchored maximum residuals are17.28838×10⁻⁶ for S-BSM14,7.72930×10⁻⁶ for BACD14 and2.54303×10⁻⁶ for J-SK14; RMS residuals are9.33553/5.32071/1.56848×10⁻⁶. The improvement over S-BSM14 is much larger than the source's six-decimal half-rounding unit0.5×10⁻⁶. Source F−C span error improves from+0.096616% to+0.009349%. This does not make J-SK14 an exact source match: its residual still spans several printed last digits, and historical supplier, melt and chemistry remain unspecified.
+
+Paragraph 0035/condition (12), PDF p4/col6, compares θgF with0.641−0.0016νd. That optional source comparison line differs from the engine normal line0.6438−0.001682νd. For L10 the source bound is0.5438805152, so its printed θ remains below the optional condition; neither the proxy change nor the preserved derived dPgF is a new patent APD designation. All thirty-three genuine source C/F/g points and every source number/partial/APD/control remain untouched. Complete line-index tracing already has priority, so all actual chromatic channels stay exactly identical; the change improves the qualified catalog annotation, not the traced prescription or a production-material claim.
+
+This is a scoped catalog-assignment follow-up. The selected original reference/spectral pages were freshly rendered for numerical reading and native figure pixels inspected for the relevant body/interface only. The prior whole-lens shape pass is reused with its actual date. Source R/d, caps, aspheres, stops, gaps, zoom/focus controls, source spectral values, source errata, field/interpolation limits and production-correlation qualifications are preserved. No source-medium identity or new whole-review count is claimed.

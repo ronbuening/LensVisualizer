@@ -182,7 +182,8 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       focalLengthMm: 83.8,
-      glass: "TAF3D (qualified spectral proxy; HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
+      glass:
+        "TAF3D (qualified spectral proxy; HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Cemented doublet front — strong positive meniscus, controls beam angles entering stop",
       cemented: "L9L10",
@@ -238,7 +239,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.17,
       focalLengthMm: -66.7,
-      glass: "S-TIM25 (qualified spectral proxy; OHARA)",
+      glass: "E-FD5 (qualified spectral proxy; HOYA)",
       apd: false,
       role: "Field flattener (Sm2) — distributes coma correction per condition (7), Petzval corrector",
       dPgF: 0.00651,
@@ -300,8 +301,20 @@ const LENS_DATA = {
     { label: "23", R: -286.5983, d: 2.1988, sd: 17.7 }, // L12 rear → air
     { label: "24", R: -73.544, d: 1.4194, sd: 15.1, rimExtensionSd: 17.8, medium: 13 }, // L13 front (Sm2)
     { label: "25", R: 116.0752, d: 0.5209, sd: 17.8 }, // L13 rear → air
-    { label: "26A", R: 74.3249, d: 8.0, sd: 17.1, medium: 14, asphere: { K: 0, A4: -2.314554e-6, A6: -6.999263e-10, A8: 0, A10: 0, A12: 0 } }, // L14 front (asph)
-    { label: "27A", R: -55.4665, sd: 17.1, asphere: { K: 0, A4: 1.341936e-6, A6: -1.267249e-9, A8: 0, A10: 0, A12: 0 } }, // L14 rear (asph) → LPF [VAR: d27]
+    {
+      label: "26A",
+      R: 74.3249,
+      d: 8.0,
+      sd: 17.1,
+      medium: 14,
+      asphere: { K: 0, A4: -2.314554e-6, A6: -6.999263e-10, A8: 0, A10: 0, A12: 0 },
+    }, // L14 front (asph)
+    {
+      label: "27A",
+      R: -55.4665,
+      sd: 17.1,
+      asphere: { K: 0, A4: 1.341936e-6, A6: -1.267249e-9, A8: 0, A10: 0, A12: 0 },
+    }, // L14 rear (asph) → LPF [VAR: d27]
   ],
 
   /* ── Focus configuration ── */

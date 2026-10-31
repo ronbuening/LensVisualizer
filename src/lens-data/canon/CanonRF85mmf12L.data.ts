@@ -37,6 +37,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/* 2026-10-30 scoped glass correction: source ΔθgF uses a cubic normal,
+ * not the engine's linear normal. Preserve genuine .008/.092 in the notes;
+ * θ = Δsource + (−1.665e−7 ν³ +5.213e−5 ν² −5.656e−3 ν +.7278).
+ * The two converted dPgF values reconstruct those absolute source ratios.
+ * Shape/source geometry remains the completed 2026-09-23 review; no fresh
+ * prescription/outline inspection or source R/d/controls change is claimed.
+ */
+
+/** 2026-10-31 scoped catalog followup retains PBH21: E-FDS1 improves unused native PgF
+ * proximity but slightly worsens the source-implied F-C span. Both genuine converted source partials,
+ * source d-reference, geometry and controls remain unchanged; no new whole-shape review.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -110,22 +122,23 @@ const LENS_DATA = {
       glass: "PBH21 (OHARA historical catalog equivalent; patent vendor unspecified)",
       apd: "patent",
       apdNote:
-        "Patent Lp1 (G3): Table 1 ΔθgF1 = 0.008 — ultra-high-index dense flint placed ahead of the stop for axial secondary spectrum",
+        "Patent Lp1: Table 1 (PDF p36) prints ΔθgF1 = 0.008 on paragraph 0038's cubic normal (p22). Absolute θgF = 0.6388404720215 at vd = 20.90; engine dPgF = 0.0301942720215. Source d/F/C/g = 587.6/486.1/656.3/435.8 nm. Compatible curve; supplier/chemistry unidentified.",
       role: "First APD positive lens — on-axis chromatic correction",
-      dPgF: 0.008,
+      dPgF: 0.0301942720215,
     },
     {
       id: 4,
       name: "L4",
-      label: "Element 4 (UD)",
+      label: "Element 4 (inferred UD)",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 97.8,
       glass: "S-FPL51 (OHARA catalog equivalent; patent vendor unspecified)",
       apd: "inferred",
-      apdNote: "497815 fluorophosphate crown (UD class); the patent does not call it UD — inferred from the glass",
-      role: "Ultra-low Dispersion positive element — primary chromatic correction",
+      apdNote:
+        "Source 497815 coordinate has a compatible S-FPL51 spectral proxy; UD association and chemistry are inferred, not source material identification.",
+      role: "High-Abbe positive element; UD association inferred, chemistry unidentified.",
     },
     {
       id: 5,
@@ -137,7 +150,7 @@ const LENS_DATA = {
       focalLengthMm: -52.5,
       glass: "S-NBH56 (OHARA catalog equivalent; patent vendor unspecified)",
       apd: false,
-      role: "Aspherical element — spherical aberration correction at f/1.2",
+      role: "Aspherical element — spherical aberration correction at modeled f/1.24",
     },
     {
       id: 6,
@@ -181,7 +194,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
-      label: "Element 9 (Lp2 / BR)",
+      label: "Element 9 (Lp2 / inferred BR)",
       type: "Positive Meniscus",
       nd: 1.60401,
       vd: 20.8,
@@ -189,10 +202,10 @@ const LENS_DATA = {
       glass: "Unmatched (604208 — Canon BR-optics organic material, inferred; patent gives nd, νd and ΔθgF only)",
       apd: "patent",
       apdNote:
-        "Patent Lp2 (G9): Table 1 ΔθgF2 = 0.092; identified with Canon BR optics by inference from production marketing",
+        "Patent Lp2: Table 1 (PDF p36) prints ΔθgF2 = 0.092 on paragraph 0038's cubic normal (p22). Absolute θgF = 0.723210404352 at vd = 20.80; engine dPgF = 0.114396004352. Source d/F/C/g = 587.6/486.1/656.3/435.8 nm. BR/organic identity remains inferred; medium unresolved.",
       role: "Second APD positive lens — lateral chromatic aberration of magnification cancellation",
       cemented: "L8–L10",
-      dPgF: 0.092,
+      dPgF: 0.114396004352,
     },
     {
       id: 10,

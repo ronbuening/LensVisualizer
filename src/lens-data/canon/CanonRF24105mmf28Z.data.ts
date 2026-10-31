@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Data source: US 2024/0192474 A1 (Canon / Shunji Iwamoto), Numerical Example 4 (¶0082, FIG. 7, FIGS. 8A/8B).
  * JP priority 2022-192641 (Dec. 1, 2022). Prescription stored at the patent's native scale (f = 24.78–102.06).
  * Positive–negative–positive + rear group (L4 +, L5 −, L6 +, L7 −); 24 optical bodies = 23 elements in 18 groups
- * when the 0.05 mm replica resin layer on L13 is not counted separately. Three aspherical surfaces (S22 replica
+ * when the 0.05 mm bonded aspheric layer on L13 (material unidentified) is not counted separately. Three aspherical surfaces (S22 bonded
  * layer, S32, S37; K = 0 in the patent's (1+K) conic formula). The GMo / replica identification is Canon's
  * published construction, not patent text.
  *
@@ -34,7 +34,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   the S1–image vertex span) and an exact real-ray trace at Y = 21.6 mm, Fno 2.9. S9/S10 were enlarged to the
  *   figure (the wide-angle corner chief ray was blocked), S32A was reduced to its asphere turnover (it was past
  *   it), and L24 was reduced to the figure. Other rims are within ~15 % of FIG. 7 and were kept; the L4 rims run
- *   ~8–11 % larger than the figure. The replica resin layer (S22A/S23) stays capped at 15.5 mm because it is only
+ *   ~8–11 % larger than the figure. The bonded aspheric layer (S22A/S23) stays capped at 15.5 mm because it is only
  *   0.05 mm thick on axis.
  */
 
@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.4,
       focalLengthMm: -79.6,
-      glass: "TAFD37A (HOYA)",
+      glass: "TAFD37A (Hoya catalog equivalent; production supplier unspecified)",
       role: "Single negative lens L11; retrofocus lead, diverges marginal ray for wide-angle coverage",
     },
     {
@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.53775,
       vd: 74.7,
       focalLengthMm: 199.9,
-      glass: "S-FPM3 (OHARA)",
+      glass: "S-FPM3 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Low-dispersion positive; adds power with minimal chromatic contribution",
     },
     {
@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 153.3,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Distributed positive power with low curvatures",
     },
     {
@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 96.4,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Strongest positive element in L1; same glass as Element 3",
     },
 
@@ -128,7 +128,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -35.0,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Primary negative in variator; strongest negative element in L2",
     },
     {
@@ -139,7 +139,7 @@ const LENS_DATA = {
       nd: 1.59522,
       vd: 67.7,
       focalLengthMm: -82.4,
-      glass: "S-FPM2 (OHARA)",
+      glass: "S-FPM2 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Secondary negative in variator",
     },
     {
@@ -150,10 +150,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: -53.0,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "Canon UD glass, equivalent to fluorophosphate crown",
-      role: "UD element; negative crown in reversed achromatic doublet",
+      apdNote:
+        "Product-correlated UD position; source nd/vd only, no numerical partial dispersion. Chemistry and supplier unidentified.",
+      role: "Product-correlated UD position; negative crown in reversed achromatic doublet",
       cemented: "Da",
     },
     {
@@ -164,7 +165,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       focalLengthMm: 44.8,
-      glass: "NBFD29 (HOYA, 770297)",
+      glass: "NBFD29 (Hoya catalog equivalent; production supplier unspecified)",
       role: "Positive flint in reversed achromatic doublet; chromatic corrector for L2",
       cemented: "Da",
     },
@@ -178,7 +179,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 82.1,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Positive near stop; high-dispersion glass deliberately exploited for chromatic balance",
     },
     {
@@ -189,7 +190,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: -98.2,
-      glass: "S-LAH99 (OHARA)",
+      glass: "S-LAH99 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Highest-index glass in design; negative meniscus front of cemented doublet Db, strong index step at the junction",
       cemented: "Db",
     },
@@ -201,20 +202,20 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       focalLengthMm: 50.3,
-      glass: "S-NSL36 (OHARA)",
+      glass: "S-NSL36 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Crown partner in cemented doublet near stop",
       cemented: "Db",
     },
     {
       id: 12,
       name: "L12r",
-      label: "Element 12 (resin)",
+      label: "Element 12 (bonded layer)",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.59022,
       vd: 30.1,
       focalLengthMm: -1256.1,
-      glass: "UV-curing optical resin (replica aspheric)",
-      role: "Replica aspherical resin layer (0.05 mm on axis) bonded to L13; carries aspherical surface S22",
+      glass: "Unmatched (source bonded medium 1.59022/30.1; chemistry and process unidentified)",
+      role: "Thin bonded aspheric layer (0.05 mm on axis) on L13; source material chemistry and manufacturing process unidentified.",
       cemented: "Ha",
     },
     {
@@ -225,8 +226,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -65.9,
-      glass: "S-LAH66 (OHARA)",
-      role: "Glass substrate for replica aspherical composite",
+      glass: "S-LAH66 (Ohara catalog equivalent; production supplier unspecified)",
+      role: "Underlying medium for the bonded aspheric composite; current catalog curve is a qualified proxy.",
       cemented: "Ha",
     },
 
@@ -239,9 +240,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 50.4,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      role: "UD element; positive crown in cemented doublet for chromatic correction",
+      role: "Product-correlated UD position; positive crown in cemented doublet for chromatic correction",
       cemented: "Dc",
     },
     {
@@ -252,7 +253,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.4,
       focalLengthMm: -34.9,
-      glass: "TAFD37A (HOYA)",
+      glass: "TAFD37A (Hoya catalog equivalent; production supplier unspecified)",
       role: "Negative flint partner for UD achromatization",
       cemented: "Dc",
     },
@@ -264,9 +265,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 61.2,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      role: "UD element; standalone positive singlet in L4",
+      role: "Product-correlated UD position; standalone positive singlet in L4",
     },
     {
       id: 17,
@@ -276,9 +277,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 78.2,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      role: "UD element; distributed positive power with Element 16",
+      role: "Product-correlated UD position; distributed positive power with Element 16",
     },
     {
       id: 18,
@@ -288,8 +289,8 @@ const LENS_DATA = {
       nd: 1.854,
       vd: 40.4,
       focalLengthMm: -70.8,
-      glass: "L-LAH85V (OHARA)",
-      role: "GMo aspherical element; primary spherical aberration corrector in converging beam",
+      glass: "L-LAH85V (Ohara catalog equivalent; production supplier unspecified)",
+      role: "Aspherical element; GMo is a production-correlated designation, not proof of the source medium or fabrication process.",
       cemented: "Dd",
     },
     {
@@ -300,7 +301,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 41.2,
-      glass: "S-BSM14 (OHARA)",
+      glass: "S-BSM14 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Positive partner in GMo aspherical doublet; dominant positive power in rear of L4",
       cemented: "Dd",
     },
@@ -314,7 +315,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: -47.4,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Focus group A (Nano USM #1); moves image-ward when focusing close (¶0069)",
     },
 
@@ -327,7 +328,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: 112.7,
-      glass: "L-BAL42 (OHARA)",
+      glass: "L-BAL42 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Focus group B (Nano USM #2); aspherical S37, moves image-ward when focusing close (¶0069)",
     },
 
@@ -340,7 +341,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 48.1,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Flint-lead in rear doublet; chromatic overcorrection for residual color balance",
       cemented: "De",
     },
@@ -352,7 +353,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -53.4,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (Ohara catalog equivalent; production supplier unspecified)",
       role: "Crown partner near image; lateral color correction at field edge",
       cemented: "De",
     },
@@ -364,7 +365,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       focalLengthMm: -70.9,
-      glass: "TAFD40 (HOYA)",
+      glass: "TAFD40 (Hoya catalog equivalent; production supplier unspecified)",
       role: "Final element; extreme index for field curvature and lateral color correction near image plane",
     },
   ],

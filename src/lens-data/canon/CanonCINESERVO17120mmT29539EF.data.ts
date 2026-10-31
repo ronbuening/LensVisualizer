@@ -10,6 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Aperture: nominalFno [2.8, 2.8, 3.4] is the patent/design schedule. The builder infers the physical
  * iris radius required at each published zoom station; the patent's surface-30 effective diameter is not
  * treated as a published physical iris schedule.
+ * Fig. 1 (p.20) resolves an L1 rear shoulder: surface 2 keeps its 34.8 mm clear radius
+ * and extends the drawn rim to the source front-face radius, 44.135 mm; no opaque bonded-interface lands.
  * Semi-diameters: source effective radii are retained except 20/21 -> 14.38 mm, 38 -> 10.87 mm,
  * 48/49 -> 13.95 mm for validated shared-gap/off-axis containment. The stop radius is derived from the design
  * f-number at each zoom station.
@@ -31,14 +33,14 @@ const LENS_DATA = {
     imageCircleMm: 29.6,
     specs: [
       "27 ELEMENTS / 22 GROUPS",
-      "17-120mm PRODUCT / 17.0206-118.9429mm DESIGN",
+      "17-120mm PRODUCT / 17-119mm PATENT / 17.0206-118.9429mm MODELED",
       "F2.8-3.4 DESIGN / T2.95-3.9 PRODUCT",
       "29.6mm PRODUCT IMAGE CIRCLE",
       "2 ASPHERICAL SURFACES",
     ],
     elementCount: 27,
     groupCount: 22,
-    focalLengthMm: { marketing: [17, 120], design: [17.02059017073925, 118.9429343445522] },
+    focalLengthMm: { marketing: [17, 120], design: [17, 119] },
   },
 
   source: {
@@ -401,9 +403,9 @@ const LENS_DATA = {
       d: 3.0,
       sd: 44.135,
       medium: 1,
-      asphere: { K: 2.77301, A4: 3.05128e-07, A6: 1.87256e-10, A8: -1.41108e-13, A10: 4.60119e-17, A12: -6.36153e-21 },
+      asphere: { K: 2.77301, A4: 3.05128e-7, A6: 1.87256e-10, A8: -1.41108e-13, A10: 4.60119e-17, A12: -6.36153e-21 },
     },
-    { label: "2", R: 42.785, d: 29.54, sd: 34.8 },
+    { label: "2", R: 42.785, d: 29.54, sd: 34.8, rimExtensionSd: 44.135 },
     { label: "3", R: -81.327, d: 2.4, sd: 33.945, medium: 2 },
     { label: "4", R: 253.731, d: 0.63, sd: 35.075 },
     { label: "5", R: 152.98, d: 6.97, sd: 35.99, medium: 3 },
@@ -414,7 +416,7 @@ const LENS_DATA = {
       R: -119.665,
       d: 4.8,
       sd: 37.62,
-      asphere: { K: -4.64841, A4: 3.34659e-07, A6: 7.99224e-11, A8: -5.42827e-14, A10: 1.99335e-17, A12: -5.6222e-21 },
+      asphere: { K: -4.64841, A4: 3.34659e-7, A6: 7.99224e-11, A8: -5.42827e-14, A10: 1.99335e-17, A12: -5.6222e-21 },
     },
     { label: "9", R: 289.766, d: 10.63, sd: 37.15, medium: 5 },
     { label: "10", R: -121.912, d: 2.4, sd: 36.98, medium: 6 },

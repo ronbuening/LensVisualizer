@@ -25,35 +25,35 @@ The model's semi-diameters and stop radius are inferred rather than published, a
 
 The design has a fixed negative front group and two positive focusing groups, with the stop between the two moving groups. G3 is the main focusing group; G2 moves independently as an auxiliary correction group. The patent describes G2's purpose as reducing the changes in field curvature and spherical aberration during focusing. That is the patent's stated design intent, not a measured property of the transcribed model.
 
-| Group | Patent surfaces | Calculated focal length | Role |
-|---|---|---:|---|
-| G1 | 1–2 | -220.143686 mm | Fixed front negative |
-| G2 | 3–9 | +181.242991 mm | Auxiliary positive focusing |
-| G3 | 11–23 | +35.402606 mm | Main positive focusing |
+| Group | Patent surfaces | Calculated focal length | Role                        |
+| ----- | --------------- | ----------------------: | --------------------------- |
+| G1    | 1–2             |          -220.143686 mm | Fixed front negative        |
+| G2    | 3–9             |          +181.242991 mm | Auxiliary positive focusing |
+| G3    | 11–23           |           +35.402606 mm | Main positive focusing      |
 
 The 13 elements form two cemented doublets, one cemented triplet and six singlets. The cemented components are labelled C1 to C3 from the front; C3 is the triplet L8/L9/L10. The aperture stop lies between G2 and G3 and keeps a fixed axial separation from the front of G3. No cover plate is specified or added. Row 24 of the patent table is the image plane, not a refracting surface.
 
 | Cemented group | Patent surfaces | Calculated focal length |
-|---|---|---:|
-| C1 | 7–9 | -38.773946 mm |
-| C2 | 11–13 | +345.934182 mm |
-| C3 | 14–17 | +54.262702 mm |
+| -------------- | --------------- | ----------------------: |
+| C1             | 7–9             |           -38.773946 mm |
+| C2             | 11–13           |          +345.934182 mm |
+| C3             | 14–17           |           +54.262702 mm |
 
 These focal lengths include the cemented interfaces. The single-element focal lengths below are evaluated in air and cannot simply be added across a cemented group.
 
 ## Element-by-Element Analysis
 
-Indices are given at the patent's printed precision. A named glass is the catalog glass whose nd/νd equals the patent pair; it identifies a compatible glass, not the supplier. Glasses with no close catalog match are marked Unmatched and use the Abbe-number dispersion model.
+Indices are given at the patent's printed precision. A named glass is a qualified compatible catalog proxy; approximate coordinate differences are disclosed. It does not identify the supplier or actual source spectrum. Glasses with no close catalog match are marked Unmatched and use the Abbe-number dispersion model.
 
 ### L1 — Negative Meniscus
 
 nd = 1.497, νd = 81.61. Glass: H-FK61 (CDGM) coordinate equivalent; supplier unconfirmed. f = -220.14 mm.
 
-L1 alone forms the fixed negative group G1. Its nd/νd pair, 1.497/81.61, is that of an ED fluorophosphate crown and reappears at L8. The manufacturer's diagram marks only L8 as ED, so L1 carries no special-dispersion tag in the data file; the patent example may differ from the production glass at this position.
+L1 alone forms the fixed negative group G1. Its nd/νd pair, 1.497/81.61, matches qualified ED-class proxy curves and reappears at L8; it does not identify source fluorophosphate chemistry. The manufacturer's diagram marks only L8 as ED, so L1 carries no special-dispersion tag in the data file; the patent example may differ from the production glass at this position.
 
 ### L2 — Positive Meniscus
 
-nd = 1.88421, νd = 37.00. Glass: Unmatched (no close catalog nd/νd match). f = +168.97 mm.
+nd = 1.88421, νd = 37.00. Glass: D-ZLAF67 (CDGM compatible spectral proxy; source supplier, melt, chemistry and anneal state unspecified). f = +168.97 mm.
 
 L2 is a positive meniscus at the front of auxiliary G2. Its high index and relatively weak positive power precede the more strongly positive L3. The complete G2 has weak net positive power after the following negative cemented pair is included.
 
@@ -91,7 +91,7 @@ L7 is the biconvex positive member of C2. Its high index and larger Abbe number 
 
 nd = 1.497, νd = 81.61. Glass: H-FK61 (CDGM) coordinate equivalent, supplier unconfirmed — ED class (inferred). f = +46.59 mm.
 
-L8 is the positive, high-Abbe front member of the cemented triplet C3. The manufacturer's diagram marks this element as the lens's single ED element, and its nd/νd pair matches an ED fluorophosphate crown; the data file tags it as inferred special-dispersion glass on that basis. L1 has the same nd/νd pair but is not marked by the manufacturer. The patent publishes no partial-dispersion data.
+L8 is the positive, high-Abbe front member of the cemented triplet C3. The manufacturer's diagram marks this element as the lens's single ED element, and its nd/νd pair matches qualified ED-class catalog curves; the data file tags it as inferred special-dispersion glass on that basis, without a source chemistry or partial-dispersion measurement. L1 has the same nd/νd pair but is not marked by the manufacturer. The patent publishes no partial-dispersion data.
 
 ### L9 — Biconcave Negative
 
@@ -127,31 +127,31 @@ L13 is the final weakly negative meniscus; both of its faces, surfaces 22 and 23
 
 Each distinct nd/νd pair was compared with HOYA, OHARA, SCHOTT, HIKARI, SUMITA and CDGM catalog values. A close nd/νd match supports a compatible glass class; it does not establish the supplier, glass name, melt, anomalous partial dispersion or full spectral equivalence.
 
-L2, L5, L6, L7 and L12 have no close catalog match and are labelled Unmatched. The other eight elements are labelled with a catalog glass whose nd and νd equal the patent pair: H-FK61 (CDGM) for 1.497/81.61, TAFD30 (HOYA) for 1.883/40.80, E-FDS1 (HOYA) for 1.92286/20.88 and E-F2 (HOYA) for 1.62004/36.30. Other vendors list glasses at the same coordinates (FCD1 and S-FPL51; S-LAH58 and H-ZLaF68C; N-SF66; S-TIM2), so the names stand for the coordinate class and the supplier is unconfirmed.
+L5, L6, L7 and L12 retain unresolved labels. L2 now uses the approximate D-ZLAF67 proxy. The other eight elements retain their compatible catalog names: H-FK61 (CDGM) for 1.497/81.61, TAFD30 (HOYA) for 1.883/40.80, E-FDS1 (HOYA) for 1.92286/20.88 and E-F2 (HOYA) for 1.62004/36.30. Other vendors list glasses at the same coordinates (FCD1 and S-FPL51; S-LAH58 and H-ZLaF68C; N-SF66; S-TIM2), so the names stand for the coordinate class and the supplier is unconfirmed.
 
-| nd | νd | Elements | Catalog comparison | Dispersion model |
-|---:|---:|---|---|---|
-| 1.497 | 81.61 | L1, L8 | H-FK61 (CDGM), coordinate equivalent | Catalog dispersion formula |
-| 1.88421 | 37.00 | L2 | Unmatched | Abbe number |
-| 1.883 | 40.80 | L3, L10, L11, L13 | TAFD30 (HOYA), coordinate equivalent | Catalog dispersion formula |
-| 1.92286 | 20.88 | L4 | E-FDS1 (HOYA), coordinate equivalent | Catalog dispersion formula |
-| 1.6966 | 28.87 | L5 | Unmatched | Abbe number |
-| 1.64465 | 33.02 | L6 | Unmatched | Abbe number |
-| 1.83098 | 46.00 | L7 | Unmatched | Abbe number |
-| 1.62004 | 36.30 | L9 | E-F2 (HOYA), coordinate equivalent | Catalog dispersion formula |
-| 1.64079 | 33.41 | L12 | Unmatched | Abbe number |
+|      nd |    νd | Elements          | Catalog comparison                   | Dispersion model           |
+| ------: | ----: | ----------------- | ------------------------------------ | -------------------------- |
+|   1.497 | 81.61 | L1, L8            | H-FK61 (CDGM), coordinate equivalent | Catalog dispersion formula |
+| 1.88421 | 37.00 | L2                | D-ZLAF67, approximate CDGM proxy     | Catalog dispersion formula |
+|   1.883 | 40.80 | L3, L10, L11, L13 | TAFD30 (HOYA), coordinate equivalent | Catalog dispersion formula |
+| 1.92286 | 20.88 | L4                | E-FDS1 (HOYA), coordinate equivalent | Catalog dispersion formula |
+|  1.6966 | 28.87 | L5                | Unmatched                            | Abbe number                |
+| 1.64465 | 33.02 | L6                | Unmatched                            | Abbe number                |
+| 1.83098 | 46.00 | L7                | Unmatched                            | Abbe number                |
+| 1.62004 | 36.30 | L9                | E-F2 (HOYA), coordinate equivalent   | Catalog dispersion formula |
+| 1.64079 | 33.41 | L12               | Unmatched                            | Abbe number                |
 
-The eight named elements trace on the dispersion curves of those catalog glasses; the five Unmatched elements use the Abbe-number model, and the patent prints no nC, nF or ng values. L8 is tagged as inferred ED glass from its nd/νd pair and the manufacturer's diagram, but no partial-dispersion value is assigned to it. Because five elements, including the two strongest negative ones, rely on the Abbe model, the powers and Abbe differences support first-order chromatic reasoning only; secondary-spectrum behaviour is only partly modeled.
+The nine named elements trace on qualified catalog curves; the four Unmatched elements use the Abbe-number model, and the patent prints no nC, nF or ng values. L8 is tagged as inferred ED glass from its nd/νd pair and the manufacturer's diagram, but no partial-dispersion value is assigned to it. Because four elements, including the two strongest negative ones, rely on the Abbe model, the powers and Abbe differences support first-order chromatic reasoning only; secondary-spectrum behaviour is only partly modeled.
 
 ## Focus Mechanism
 
 Focusing is internal with two floating groups. G1 remains fixed. From infinity to the 2500 mm state, G2 moves 2.2512 mm toward the object and G3, with the stop, moves 0.9109 mm toward the object. These travels follow directly from the printed gap changes.
 
-| Gap (patent symbol) | Infinity | 2500 mm state |
-|---|---:|---:|
-| D(2), after surface 2 | 11.6660 mm | 9.4148 mm |
-| D(9), after surface 9 | 8.9660 mm | 10.3063 mm |
-| D(23), after surface 23 (BF) | 12.8692 mm | 13.7801 mm |
+| Gap (patent symbol)          |   Infinity | 2500 mm state |
+| ---------------------------- | ---------: | ------------: |
+| D(2), after surface 2        | 11.6660 mm |     9.4148 mm |
+| D(9), after surface 9        |  8.9660 mm |    10.3063 mm |
+| D(23), after surface 23 (BF) | 12.8692 mm |    13.7801 mm |
 
 The distance from the first vertex to the image plane is 122.4362 mm in both states. Only these two gap sets are published; intermediate positions are linear interpolations, not a published cam law. The computed EFL changes from 44.890439 mm to 45.307214 mm.
 
@@ -167,21 +167,21 @@ $$z(h)=\frac{h^2/R}{1+\sqrt{1-(1+K)(h/R)^2}}+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10}+A
 
 K is the standard conic constant (K = 0 is a sphere) and is used as printed. R is in millimetres and the coefficient A_p has units mm^(1-p). Patent surfaces 22 and 23 are labelled 22A and 23A in the data file. The patent prints terms up to A12; no higher-order terms are used.
 
-| Coefficient | Surface 22A | Surface 23A |
-|---|---:|---:|
-| K | -95.0 | 0.0 |
-| A4 | -5.44460E-05 | -2.26938E-05 |
-| A6 | 1.29944E-07 | 4.66871E-08 |
-| A8 | -2.15045E-10 | 5.31197E-10 |
-| A10 | 3.43403E-13 | -2.34658E-12 |
-| A12 | -2.08375E-15 | 2.67922E-15 |
+| Coefficient |  Surface 22A |  Surface 23A |
+| ----------- | -----------: | -----------: |
+| K           |        -95.0 |          0.0 |
+| A4          | -5.44460E-05 | -2.26938E-05 |
+| A6          |  1.29944E-07 |  4.66871E-08 |
+| A8          | -2.15045E-10 |  5.31197E-10 |
+| A10         |  3.43403E-13 | -2.34658E-12 |
+| A12         | -2.08375E-15 |  2.67922E-15 |
 
 The two faces together remove most of the system's undercorrected spherical aberration: with both replaced by their base spheres, the model's marginal longitudinal aberration at f/0.98 grows from about -0.16 mm to about -2.2 mm. The full conic-plus-polynomial profile sets this correction; the sign of A4 alone does not.
 
-| Surface | Inferred semi-diameter | Sag at rim | Departure from same-R sphere |
-|---|---:|---:|---:|
-| 22A | 15.70 mm | -3.104500 mm | -2.054849 mm |
-| 23A | 17.90 mm | -1.023513 mm | -0.220878 mm |
+| Surface | Inferred semi-diameter |   Sag at rim | Departure from same-R sphere |
+| ------- | ---------------------: | -----------: | ---------------------------: |
+| 22A     |               15.70 mm | -3.104500 mm |                 -2.054849 mm |
+| 23A     |               17.90 mm | -1.023513 mm |                 -0.220878 mm |
 
 The departure includes the conic contribution and all polynomial terms; positive values are toward the image. These are values at the inferred model rims, not published clear apertures. The patent does not state how the asphere is made.
 
@@ -189,12 +189,12 @@ The departure includes the conic contribution and all polynomial terms; positive
 
 D1 and D2 in expression (1) are the patent's symbols for the full separations between the groups at infinity, the two dimensions marked in Figure 3: D1 is the gap after surface 2, which the patent table calls D(2), and D2 is the gap after surface 9, D(9), plus the fixed stop-to-G3 spacing (8.966 mm + 9.285 mm). They are not the cemented components, which are labelled C1 to C3 here.
 
-| Expression | Calculated | Patent value |
-|---|---:|---:|
-| 0.5 ≤ (D1+D2)/F ≤ 2.0 | 0.666445 | 0.666 |
-| 0.5 ≤ abs(F3/F) ≤ 1.5 | 0.788645 | 0.789 |
-| 0.6 ≤ abs(F1/F2) ≤ 1.6 | 1.214633 | 1.215 |
-| 2 ≤ abs(F1/F) ≤ 6 | 4.904022 | 4.904 |
+| Expression             | Calculated | Patent value |
+| ---------------------- | ---------: | -----------: |
+| 0.5 ≤ (D1+D2)/F ≤ 2.0  |   0.666445 |        0.666 |
+| 0.5 ≤ abs(F3/F) ≤ 1.5  |   0.788645 |        0.789 |
+| 0.6 ≤ abs(F1/F2) ≤ 1.6 |   1.214633 |        1.215 |
+| 2 ≤ abs(F1/F) ≤ 6      |   4.904022 |        4.904 |
 
 Every condition is satisfied, and each calculated value rounds to the figure the patent prints.
 
@@ -227,3 +227,11 @@ The model does not represent the production lens's glass, tolerances, coatings o
 - [HOYA catalog](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), [OHARA catalog](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), [SCHOTT catalog](https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351), [HIKARI catalog](https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/nikon-hikari20220701.zip), [SUMITA catalog](https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf), and [CDGM catalog](https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf): catalog nd/νd values used for the glass comparison.
 
 The 2026-10-29 source reinspection records the current outline decisions and per-medium glass coverage in the accompanying audit. Five mounting seats now extend the drawn rims beyond their unchanged optical caps. The additional surface-21 rear-face cut is moved outward from the figure ratio to clear the sampled beam by 0.05 mm; its 2.44 mm depth is a qualified inferred approximation.
+
+## Scoped material and catalog follow-up — 2026-10-31
+
+The completed source/shape/glass review remains **2026-10-29**, preserving the earlier Oct 7/Oct 10 records. This narrow pass checks all 13 medium rows in CN112285890B Example 2, PDF page 8 ¶0078; ¶0074 on page 7 explicitly defines d-line Nd. Figure 3 page 12 confirms ordinary-glass C1 (S8), C2 (S12) and C3 (S15/S16) interfaces, with no separately tabulated resin/cement/filter/plate. Table 753×1069 plus753×346 and figure 778×570 are native 150 ppi; upsampling adds no evidence. Neither the source tables nor definitions supply individual C/F/g/partial values. L8's ED/APD classification remains inferred from the qualified production correlation.
+
+L2/S3 source **1.88421/37.00** now has a stronger supported proxy in the [official CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c): D-ZLAF67, row 11159, literal formula 2 coefficients, d/C/F/g engine-line residuals computed without fitting. It evaluates nd 1.883850025/νd 37.198899/PgF 0.577684, with source differences **−0.000359975/+0.198899**. This is substantially closer in index than existing M-TAFD307 (−0.00218722/+0.221297), but still approximate and without source PgF confirmation. The vendor's 4°C/h anneal-rate record describes its catalog state only, not a Laowa process. The distinct D-ZLAF67-25 row is farther from the source index; no code or alias is added.
+
+The existing/full vendor datasets and official NHG2601 screen add no strong replacement for L5/L6/L7/L12. Boundary-only alternatives such as SF15 for L5 (+0.00235/+1.13) or S-TIM27 for L12 (about−0.000991/+1.06) remain rejected rather than inflating coverage. All other proxy choices stay fixed. Source pairs, APD flags, R/d/aspheres, cap/cut/shoulder constraints, iris and focus controls remain unchanged; only L2's estimated dispersion changes, with the authored d index preserved. The earlier source-plot inconsistency, narrow beam clearances, finite-object and production limits remain.

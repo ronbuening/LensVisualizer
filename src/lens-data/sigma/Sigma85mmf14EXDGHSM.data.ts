@@ -43,7 +43,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Fresh2026-10-30 review: original JP2011170128A PDF18-19 Example5 media/asphere, PDF13 d-line definition,
  * PDF29 Fig21 native and600dpi. All11 source pairs retained. Remove40 catalog-only C/F/g/dPgF copies;
- * ten entries retain qualified current coefficient curves, molded E6 stays unresolved. No source partials.
+ * At that checkpoint ten entries retained qualified curves and E6 remained unresolved. No source partials.
+ * Scoped 2026-10-31 catalog follow-up selects D-ZK3A-25 as an E6 spectral proxy; historical material,
+ * supplier, melt and process remain unknown. All source numeric fields and geometry remain unchanged.
  * Explicit S6/S11 lands retain caps22.5/16.2 to outer26.4/19; guarded source-supported S2/S13 cuts.
  * Full S12 land remains constrained by the unchanged0.96 gap allowance. No R/d/asphere/control changes.
 
@@ -153,7 +155,7 @@ const LENS_DATA = {
       vd: 61.08,
       indexReference: "d",
       focalLengthMm: -95.60916006954619,
-      glass: "Unmatched (molded-asphere glass; nd 1.58763 / vd 61.08)",
+      glass: "D-ZK3A-25 (CDGM compatible spectral proxy; historical material, supplier, melt and process unspecified)",
       role: "Negative meniscus ahead of the iris; its object-side surface S10 is the only asphere.",
       diagramLabel: "6",
     },

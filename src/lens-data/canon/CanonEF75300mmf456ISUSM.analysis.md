@@ -26,14 +26,14 @@ The six functional groups follow a positive–negative–positive–negative–p
 
 The stop is the explicit plane R16, placed 3.0 mm behind R15. It moves with G3 because that spacing is fixed; D16 is the changing air space between the stop and G4. There is no inferred shift of the stop into another gap.
 
-| Functional group | Elements | Standalone focal length in air | Source role |
-|---|---|---:|---|
-| G1 | L1–L3 | +133.743 mm | Positive front group |
-| G2 | L4–L6 | -40.976 mm | Negative stabilization group |
-| G3 | L7–L9 | +59.944 mm | Positive pre-stop group |
-| G4 | L10 | -410.972 mm | Weak negative fixed group |
-| G5 | L11–L13 | +69.152 mm | Positive rear relay |
-| G6 | L14–L15 | -58.042 mm | Negative terminal group |
+| Functional group | Elements | Standalone focal length in air | Source role                  |
+| ---------------- | -------- | -----------------------------: | ---------------------------- |
+| G1               | L1–L3    |                    +133.743 mm | Positive front group         |
+| G2               | L4–L6    |                     -40.976 mm | Negative stabilization group |
+| G3               | L7–L9    |                     +59.944 mm | Positive pre-stop group      |
+| G4               | L10      |                    -410.972 mm | Weak negative fixed group    |
+| G5               | L11–L13  |                     +69.152 mm | Positive rear relay          |
+| G6               | L14–L15  |                     -58.042 mm | Negative terminal group      |
 
 These are isolated compound-group powers, not a sum of the element focal lengths. Cemented interfaces are traced directly between their two glasses; no artificial air or cement film is introduced.
 
@@ -41,14 +41,14 @@ These are isolated compound-group powers, not a sum of the element focal lengths
 
 Paragraph 20 fixes G2 and G4 during zoom and moves G1, G3, G5 and G6. Positions below are computed from each group’s first vertex to the adopted fixed image plane; negative means objectward. Small deviations of the nominally fixed groups reflect the source's rounded gaps and the rounded computed image distances.
 
-| Group | Wide | Middle | Tele |
-|---|---:|---:|---:|
-| G1 | -182.500 mm | -211.900 mm | -237.490 mm |
-| G2 | -164.300 mm | -164.320 mm | -164.290 mm |
-| G3 | -121.600 mm | -132.350 mm | -150.890 mm |
-| G4 | -103.700 mm | -103.720 mm | -103.690 mm |
-| G5 | -77.400 mm | -83.020 mm | -79.590 mm |
-| G6 | -46.300 mm | -56.970 mm | -66.900 mm |
+| Group |        Wide |      Middle |        Tele |
+| ----- | ----------: | ----------: | ----------: |
+| G1    | -182.500 mm | -211.900 mm | -237.490 mm |
+| G2    | -164.300 mm | -164.320 mm | -164.290 mm |
+| G3    | -121.600 mm | -132.350 mm | -150.890 mm |
+| G4    | -103.700 mm | -103.720 mm | -103.690 mm |
+| G5    |  -77.400 mm |  -83.020 mm |  -79.590 mm |
+| G6    |  -46.300 mm |  -56.970 mm |  -66.900 mm |
 
 D5 increases, D10 decreases, D16 increases and D23 decreases from wide to tele, agreeing with ¶0026. D18 decreases from 23.80 to 18.20 mm and then rises to 21.60 mm. This reversal is preserved rather than replaced by a two-endpoint approximation. It is zoom behavior, not a focus prescription.
 
@@ -56,143 +56,143 @@ The patent prints only these three stations, and the US family publication (Exam
 
 ### Length and reference planes
 
-| Native station | Computed EFL | Adopted rear-vertex image gap | First vertex to image | Track / EFL |
-|---|---:|---:|---:|---:|
-| 76.12 mm | 76.117480 mm | 41.50 mm | 182.50 mm | 2.3976 |
-| 135.00 mm | 135.026499 mm | 52.17 mm | 211.90 mm | 1.5693 |
-| 291.49 mm | 291.499147 mm | 62.10 mm | 237.49 mm | 0.8147 |
+| Native station |  Computed EFL | Adopted rear-vertex image gap | First vertex to image | Track / EFL |
+| -------------- | ------------: | ----------------------------: | --------------------: | ----------: |
+| 76.12 mm       |  76.117480 mm |                      41.50 mm |             182.50 mm |      2.3976 |
+| 135.00 mm      | 135.026499 mm |                      52.17 mm |             211.90 mm |      1.5693 |
+| 291.49 mm      | 291.499147 mm |                      62.10 mm |             237.49 mm |      0.8147 |
 
 Only the tele station has an optical track/EFL ratio below unity. The first-vertex optical track is not the manufacturer's mount-to-front barrel length. There is no justification for comparing those lengths without their distinct reference planes.
 
 ## Element-by-Element Analysis
 
-Each focal length below is computed for the individual element in air, including its center thickness. It is not that element's in-situ power inside a cemented pair. The source uses generic N and ν without specifying the reference spectral line. For readability the coordinate slots below are labeled approximate nd/νd; the data file explicitly preserves the uncertainty through explicit Unmatched annotations and indexReferenceNote. The quoted catalog class is a possible d-line coordinate match, never proof of a supplier or production melt.
+Each focal length below is computed for the individual element in air, including its center thickness. It is not that element's in-situ power inside a cemented pair. The source prints generic N and ν, and the patent names no spectral line for them; they are read as d-line $n_d$ and $\nu_d$ (see Glass Identification and Dispersion Limits). The quoted glass names are catalog spectral proxies, never proof of a supplier or production melt.
 
 ### L1 — Negative Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (possible d-line catalog class; supplier and source line unconfirmed). f = -221.388 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -221.388 mm.
 
 The first two elements share R2. This negative, object-convex front meniscus opposes its positive crown partner. Calling that pairing achromatizing is a conventional first-order interpretation; the patent does not provide element-resolved chromatic sensitivities.
 
 ### L2 — Positive Meniscus
 
-Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (possible d-line catalog class; supplier and source line unconfirmed). f = +134.258 mm.
+$n_d$ = 1.51633, $\nu_d$ = 64.2. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +134.258 mm.
 
 The weaker rear curvature is positive, so the two surfaces form an object-convex positive meniscus. The interface with L1 must remain one shared surface. Its independent focal length should not be mistaken for the net focal length of the doublet.
 
 ### L3 — Biconvex Positive
 
-Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (possible d-line catalog class; supplier and source line unconfirmed). f = +208.963 mm.
+$n_d$ = 1.51633, $\nu_d$ = 64.2. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +208.963 mm.
 
 This biconvex crown is separated from L2 by the small printed air gap. It completes the net-positive first functional group. Its clear radius is estimated with the front assembly, not obtained from a published semi-diameter.
 
 ### L4 — Biconcave Negative
 
-Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (possible d-line catalog class; supplier and source line unconfirmed). f = -59.953 mm.
+$n_d$ = 1.77250, $\nu_d$ = 49.6. Glass: LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -59.953 mm.
 
 This negative singlet begins G2. Together with the following cemented pair it moves laterally for stabilization in the patent, while its axial position is fixed at the source zoom stations. The centered model represents only its neutral position.
 
 ### L5 — Biconcave Negative
 
-Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (possible d-line catalog class; supplier and source line unconfirmed). f = -46.656 mm.
+$n_d$ = 1.51633, $\nu_d$ = 64.2. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -46.656 mm.
 
 The biconcave member is followed directly by L6 at R9. The front crown and rear high-dispersion flint give the pair opposite standalone signs. The narrow air space preceding this element constrains the shared clear radius at R7/R8.
 
 ### L6 — Biconvex Positive
 
-Approximate nd = 1.84666, νd = 23.8. Glass: S-TIH53 class (possible d-line catalog class; supplier and source line unconfirmed). f = +72.533 mm.
+$n_d$ = 1.84666, $\nu_d$ = 23.8. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +72.533 mm.
 
 The positive member ends on the negative-radius R10. G2 remains net negative despite this positive contribution. Its role in reducing decentering aberrations belongs to the compound prescription; no isolated numerical aberration contribution is assigned to this element.
 
 ### L7 — Biconvex Positive
 
-Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (possible d-line catalog class; supplier and source line unconfirmed). f = +58.516 mm.
+$n_d$ = 1.60311, $\nu_d$ = 60.7. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +58.516 mm.
 
 The first part of G3 is an air-separated biconvex crown. Its position ahead of the stop changes with zoom. It is followed by the second positive crown at a thin air gap whose curvatures open away from each other.
 
 ### L8 — Biconvex Positive
 
-Approximate nd = 1.48749, νd = 70.2. Glass: S-FSL5 class (possible d-line catalog class; supplier and source line unconfirmed). f = +60.552 mm.
+$n_d$ = 1.48749, $\nu_d$ = 70.2. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +60.552 mm.
 
 This positive crown has the largest Abbe number in the prescription. A low-dispersion crown is not by itself evidence of anomalous partial dispersion or an apochromatic design. The rear surface is the shared R14 interface with L9.
 
 ### L9 — Biconcave Negative
 
-Approximate nd = 1.83400, νd = 37.2. Glass: S-LAH60 class (possible d-line catalog class; supplier and source line unconfirmed). f = -55.248 mm.
+$n_d$ = 1.83400, $\nu_d$ = 37.2. Glass: S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -55.248 mm.
 
 The negative member follows the positive L8 at the cemented interface. The pair is followed by 3.0 mm of air to the stop. This source distance is retained at every zoom station.
 
 ### L10 — Negative Meniscus
 
-Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (possible d-line catalog class; supplier and source line unconfirmed). f = -410.972 mm.
+$n_d$ = 1.60311, $\nu_d$ = 60.7. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -410.972 mm.
 
 Both radii are negative, and the smaller-magnitude front curvature makes the meniscus weakly negative. Figure 4 shows it behind the stop. Its first vertex is approximately fixed relative to the image through the three source zoom stations.
 
 ### L11 — Biconvex Positive
 
-Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (possible d-line catalog class; supplier and source line unconfirmed). f = +57.129 mm.
+$n_d$ = 1.60311, $\nu_d$ = 60.7. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +57.129 mm.
 
 The biconvex crown begins G5 and is cemented to L12. G5 moves relative to G4 and G6 during zoom. Its positive compound power includes the following independent singlet rather than just this doublet.
 
 ### L12 — Negative Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (possible d-line catalog class; supplier and source line unconfirmed). f = -102.810 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -102.810 mm.
 
 The image-convex negative meniscus is the flint partner of L11. The two printed negative radii must not be replaced by a biconcave interpretation. The rear air gap to L13 is retained literally.
 
 ### L13 — Positive Meniscus
 
-Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (possible d-line catalog class; supplier and source line unconfirmed). f = +147.956 mm.
+$n_d$ = 1.51633, $\nu_d$ = 64.2. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +147.956 mm.
 
 The positive object-convex singlet completes G5. Its rear radius is weaker than its front radius. The changing D23 behind it connects this positive assembly to the negative terminal group.
 
 ### L14 — Biconcave Negative
 
-Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (possible d-line catalog class; supplier and source line unconfirmed). f = -30.700 mm.
+$n_d$ = 1.77250, $\nu_d$ = 49.6. Glass: LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -30.700 mm.
 
 The terminal doublet begins with a biconcave, high-index element. The rear partner shares its second face. The negative net power of G6 depends on the two elements and their common boundary.
 
 ### L15 — Positive Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (possible d-line catalog class; supplier and source line unconfirmed). f = +66.041 mm.
+$n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +66.041 mm.
 
 The last element is an object-convex positive meniscus with a weakly curved rear face, not a plane. The final air distance is the computed paraxial back focus because the patent does not tabulate it. No cover glass is added to explain that omission.
 
 ### Cemented assemblies
 
 | Elements | Surfaces | Net isolated-doublet focal length |
-|---|---|---:|
-| L1/L2 | R1–R3 | +352.966 mm |
-| L5/L6 | R8–R10 | -136.649 mm |
-| L8/L9 | R13–R15 | -965.737 mm |
-| L11/L12 | R19–R21 | +129.339 mm |
-| L14/L15 | R24–R26 | -58.042 mm |
+| -------- | -------- | --------------------------------: |
+| L1/L2    | R1–R3    |                       +352.966 mm |
+| L5/L6    | R8–R10   |                       -136.649 mm |
+| L8/L9    | R13–R15  |                       -965.737 mm |
+| L11/L12  | R19–R21  |                       +129.339 mm |
+| L14/L15  | R24–R26  |                        -58.042 mm |
 
 The difference between these compound powers and the element powers is intentional. Cemented interfaces refract from glass to glass, whereas the element numbers above use air on both sides.
 
 ## Glass Identification and Dispersion Limits
 
-The source N/ν coordinates are retained exactly. Paragraph 0057 does not define their reference wavelength; d/g aberration-plot labels alone do not establish that reference. The repeat of this prescription in [US 2001/0030809 A1, Numerical Example 9](https://patents.google.com/patent/US20010030809A1/en) likewise uses generic N/ν. All 15 elements therefore retain an explicit Unmatched disposition and indexReferenceNote. Tracing uses approximate d-line Abbe dispersion; no catalog curve or catalog-derived C/F/g fields are activated. The candidate classes below describe numerical proximity only, with supplier, melt and source reference unresolved.
+The source N/ν coordinates are retained exactly. Paragraph 0057 does not define their reference wavelength, and the patent names no spectral line; d/g aberration-plot labels alone do not establish that reference. The repeat of this prescription in [US 2001/0030809 A1, Numerical Example 9](https://patents.google.com/patent/US20010030809A1/en) likewise uses generic N/ν. 15 of 15 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 15 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. The glass names below describe numerical matches only.
 
-| Source N | Source ν | Possible d-line catalog class | Element |
-|---:|---:|---|---|
-| 1.80518 | 25.4 | S-TIH6 | L1 |
-| 1.51633 | 64.2 | S-BSL7 | L2 |
-| 1.51633 | 64.2 | S-BSL7 | L3 |
-| 1.77250 | 49.6 | LAH66 | L4 |
-| 1.51633 | 64.2 | S-BSL7 | L5 |
-| 1.84666 | 23.8 | S-TIH53 | L6 |
-| 1.60311 | 60.7 | S-BSM14 | L7 |
-| 1.48749 | 70.2 | S-FSL5 | L8 |
-| 1.83400 | 37.2 | S-LAH60 | L9 |
-| 1.60311 | 60.7 | S-BSM14 | L10 |
-| 1.60311 | 60.7 | S-BSM14 | L11 |
-| 1.80518 | 25.4 | S-TIH6 | L12 |
-| 1.51633 | 64.2 | S-BSL7 | L13 |
-| 1.77250 | 49.6 | LAH66 | L14 |
-| 1.80518 | 25.4 | S-TIH6 | L15 |
+| Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                        | Element |
+| ------------: | --------------: | ------------------------------------------------------------------------------------------------------------ | ------- |
+|       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | L1      |
+|       1.51633 |            64.2 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | L2      |
+|       1.51633 |            64.2 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | L3      |
+|       1.77250 |            49.6 | LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | L4      |
+|       1.51633 |            64.2 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | L5      |
+|       1.84666 |            23.8 | PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | L6      |
+|       1.60311 |            60.7 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | L7      |
+|       1.48749 |            70.2 | S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | L8      |
+|       1.83400 |            37.2 | S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | L9      |
+|       1.60311 |            60.7 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | L10     |
+|       1.60311 |            60.7 | S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) | L11     |
+|       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | L12     |
+|       1.51633 |            64.2 | S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  | L13     |
+|       1.77250 |            49.6 | LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   | L14     |
+|       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     | L15     |
 
-The modern S-prefixed candidates do not assert identity with the legacy OHARA glasses. LAH66 is a separately cataloged legacy curve, also left inactive here. No inferred anomalous-partial-dispersion coefficient, ED count or APO-performance claim is made.
+Where the catalog has a legacy row at the printed pair (SF6, PBH53), it is used in preference to the modern S-prefixed row, because the patent dates from 1996 or earlier. None of these names asserts identity with the glass Canon used. No inferred anomalous-partial-dispersion coefficient, ED count or APO-performance claim is made.
 
 ## Focus Mechanism and Model Scope
 
@@ -204,11 +204,11 @@ No focus breathing, travel or near-state image quality can be inferred from thos
 
 The physical iris is inferred by tracing the native f-number entrance bundle to the printed stop at each station. Exact spherical-ray calibration gives:
 
-| Station | Native f-number | Inferred stop semi-diameter |
-|---|---:|---:|
-| 76.12 mm | 4.1 | 12.909889366 mm |
-| 135.00 mm | 4.7 | 12.898942265 mm |
-| 291.49 mm | 5.8 | 12.740409069 mm |
+| Station   | Native f-number | Inferred stop semi-diameter |
+| --------- | --------------: | --------------------------: |
+| 76.12 mm  |             4.1 |             12.909889366 mm |
+| 135.00 mm |             4.7 |             12.898942265 mm |
+| 291.49 mm |             5.8 |             12.740409069 mm |
 
 Agreement with the requested f-number is calibration, not independent confirmation of an unpublished physical diaphragm. At the 13 solved stations the f-number (f/4.23 to f/5.66) is chosen so that the iris radius lies on a straight line between these three radii, as for a nearly fixed iris; those f-numbers are not patent data.
 
@@ -222,11 +222,11 @@ The example is all-spherical. There are no aspheric coefficients, diffractive su
 
 The patent's stabilization-group condition reproduces:
 
-| Quantity | Printed | Computed |
-|---|---:|---:|
-| abs(fa / sqrt(fW × fT)) | 0.275 | 0.275086 |
-| abs(foW / frW), literal ¶0033–0035 | 0.335 | 1.979514 |
-| abs(foT / frT), literal ¶0033–0035 | 1.068 | 0.637265 |
+| Quantity                           | Printed | Computed |
+| ---------------------------------- | ------: | -------: |
+| abs(fa / sqrt(fW × fT))            |   0.275 | 0.275086 |
+| abs(foW / frW), literal ¶0033–0035 |   0.335 | 1.979514 |
+| abs(foT / frT), literal ¶0033–0035 |   1.068 | 0.637265 |
 
 The patent states three bounds (¶0030 and ¶0033):
 
@@ -248,7 +248,7 @@ This model is centered. It does not simulate decentered surfaces, gyro control, 
 
 The prescription reproduces the source focal lengths at all three printed stations. The image gaps there are the computed paraxial back focus rounded to 0.01 mm, not patent-published distances. Off-axis rays that miss the inferred rims are left clipped rather than hidden by enlarging those rims.
 
-Only the three printed infinity stations carry source authority. The solved intermediate stations, unprinted apertures, unspecified source wavelength, inactive catalog-class candidates and approximate Abbe dispersion remain explicit limitations. No MTF, measured chromatic quality, near-focus performance or manufacturer-confirmed production recipe is claimed.
+Only the three printed infinity stations carry source authority. The solved intermediate stations and unprinted apertures remain explicit limitations, as do the unnamed source spectral line and the catalog curves used only as spectral proxies. No MTF, measured chromatic quality, near-focus performance or manufacturer-confirmed production recipe is claimed.
 
 ## Sources
 
@@ -257,3 +257,7 @@ Only the three printed infinity stations carry source authority. The solved inte
 - [US20010030809A1](https://patents.google.com/patent/US20010030809A1/en), family publication, Example 9 (the same prescription and the same three zoom rows) and inventor metadata. It does not replace the selected Japanese source.
 - OHARA, [optical-glass catalog downloads](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), July 2026 Zemax catalog, including preserved legacy entries.
 - HOYA, Schott, Hikari, Sumita and CDGM catalogs, used as comparison sources rather than supplier identifications.
+
+## 2026-10-30 — Narrow source-summary metadata follow-up
+
+The complete **2026-10-14** source/shape/glass review is reused unchanged. A narrow check of the same original JP H08-062541 A, **Numerical Example 2, Table 3, PDF page 9**, confirms the printed focal-length row **76.12 / 135.00 / 291.49 mm**. Catalog design endpoints now quote **76.12 / 291.49 mm**, replacing computed 76.1174798344741 / 291.49914720355235 metadata. Those calculated EFLs remain runtime/analysis results, not printed source endpoints. Marketing 75–300 mm, every optical field, all source/solved zoom stations, focus/aperture controls and actual October 14 review dates are unchanged. This is a metadata-only source-summary check, not a fresh whole-lens source inspection or another reviewed/reused entry.

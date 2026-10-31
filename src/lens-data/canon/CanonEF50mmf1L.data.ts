@@ -1,45 +1,45 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Canon EF 50mm f/1.0L USM                       ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 4,717,245 Numerical Example 2 (Canon / Takahashi),  ║
- * ║  FIG. 2. Modified double-Gauss with power-sharing negative menisci.  ║
- * ║  11 elements / 9 groups, 2 aspherical surfaces (ground & polished).  ║
- * ║                                                                      ║
- * ║  NOTE ON SCALING:                                                    ║
- * ║    Patent at F = 100; every R, d and sd scaled ×0.50008 to          ║
- * ║    EFL = 50.00 mm (A_n ÷ s^(n−1)). Surface labels count the stop    ║
- * ║    separately: stored 1–9 = patent R1–R9, STO = R10, stored 10–20   ║
- * ║    = patent R11–R21 (5A = R5, 14A = R15).                           ║
- * ║                                                                      ║
- * ║  NOTE ON ASPHERICAL SURFACES:                                        ║
- * ║    Patent: R = ∞ with X = A·H² + B·H⁴ + C·H⁶ + D·H⁸ + E·H¹⁰.        ║
- * ║    Stored as the osculating sphere R = 1/(2A), K = 0, with          ║
- * ║    A4 = B − A³, A6 = C − 2A⁵, A8 = D − 5A⁷, A10 = E − 14A⁹, then    ║
- * ║    scaled. Sag matches the patent polynomial within 0.02 µm at the  ║
- * ║    23.8 mm rim (2026-09-23 recomputation).                           ║
- * ║                                                                      ║
- * ║  NOTE ON SEMI-DIAMETERS:                                             ║
- * ║    Patent publishes no effective diameters. Values are measured     ║
- * ║    from FIG. 2 (drawn close to scale: vertex crossings fit          ║
- * ║    ≈0.1155 mm/px at 300 dpi) and floored by an exact f/1.0 axial    ║
- * ║    marginal-ray trace (2026-09-23): every surface clears the        ║
- * ║    F/1.0 axial beam and the 21.6 mm full-field chief ray. The two   ║
- * ║    "positive lens form" air spaces of claim 6 (L4–L5, L7–L8)        ║
- * ║    nearly close at the f/1.0 marginal height, as FIG. 2 draws       ║
- * ║    them; gapSagFrac 0.97 lets those rims clear the axial beam.      ║
- * ║    L1 kept at 28.6 mm (FIG. 2 ≈ 29 mm; 72 mm filter).               ║
- * ║                                                                      ║
- * ║  NOTE ON CLOSE FOCUS:                                                ║
- * ║    Patent publishes infinity data only and says focusing is         ║
- * ║    preferably by moving the entire lens system. The close-focus     ║
- * ║    back gap (42.18 mm, +4.95 mm) is CALCULATED for unit extension   ║
- * ║    to the production 0.6 m MFD (paraxial β ≈ −0.099). The           ║
- * ║    production floating displacements are not published and are     ║
- * ║    not modelled.                                                     ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * LENS DATA — CANON EF 50mm f/1.0 L USM
+ * Original: US 4,717,245, Numerical Example 2, PDF page 8 / column 5;
+ * Figure 2, PDF page 2 / sheet 1; Figure 5 aberrations, PDF page 4 / sheet 3.
+ * Certificate of correction dated February 7, 1989 is included as PDF page 10.
+ * Production correlation is inferred; the patent does not name the commercial lens.
+ *
+ * REUSED COVERAGE: source prescription, scale, polynomial-asphere conversion and
+ * retained geometric constraints reuse the actual 2026-09-23 review. The 2026-10-30
+ * scoped reopening adds native-resolved air shoulders at stored S9 and S10, preserving
+ * sd 18.8/17.4 with outer rimExtensionSd 21.2/20.6 mm, and qualifies current runtime
+ * limitations. No opaque cemented land or cut.
+ *
+ * SCALE: source F=100; existing s=0.50008 maps R/d/sd and A_n/s^(n-1) to ~50 mm.
+ * Stored 1-9 correspond to source R1-R9, STO to R10, stored 10-20 to R11-R21.
+ * Stored 5A=R5 and 14A=R15. All numeric R/d, aspheres, caps and controls remain.
+ *
+ * ASPHERES: source R=infinity, X=A H^2+B H^4+C H^6+D H^8+E H^10.
+ * Existing osculating sphere R=1/(2A), K=0 and residual even coefficients through
+ * h^10 are retained. Prior source/conversion review found <0.02 micrometre sag
+ * residual at the 23.8 mm rim; this approximation is not an exact infinite series.
+ *
+ * CAPS: prior figure-measured/beam-constrained estimates and gapSagFrac=0.97 remain.
+ * Native Figure 2 scale is about 8.69 px/mm after production scaling; practical height
+ * reading uncertainty +/-0.6 mm, separately from schematic distortion. The claim-6
+ * positive-form air lenses remain narrow. Current f/1.0 iris-rim probes clip retained
+ * caps; old blanket full-beam-clearance wording is no longer a current runtime claim.
+ *
+ * GLASS: source column 4 prints refractive indices N and Abbe numbers nu without a
+ * reference wavelength. The patent names no spectral line. 11 of 11 printed pairs
+ * match catalog d-line coordinates and none match the e-line, so the table is read
+ * as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified.
+ * Source numeric pairs are unchanged; no source C/F/g, partial or APD data exist.
+ * No supplier, melt, chemistry, cement or grinding/polishing identity is established.
+ *
+ * FOCUS: source prefers whole-system motion but publishes only infinity spacings.
+ * Existing unit-extension BF 37.226 -> 42.18 mm is an approximate reconstruction
+ * for correlated product 0.6 m MFD. Intermediate motion is not focus preserving;
+ * no production floating displacement is invented.
  */
 
 const LENS_DATA = {
@@ -62,7 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,717,245",
-    example: { label: "Example 2", id: "2" },
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 1988,
     authors: ["Sadatoshi Takahashi"],
     assignees: ["Canon Inc."],
@@ -77,10 +77,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.7,
+      indexReference: "d",
       focalLengthMm: 278.2,
-      glass: "BACD14 (HOYA catalog equivalent)",
+      glass:
+        "BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Front positive meniscus — begins converging the f/1.0 marginal ray bundle with weak power and minimal angle of incidence.",
     },
     {
@@ -90,10 +93,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.5,
+      indexReference: "d",
       focalLengthMm: 176.1,
-      glass: "S-LAL14 (OHARA catalog equivalent)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Second positive meniscus — additional convergence for the large-aperture marginal bundle; two-element front unit is key to Example 2.",
     },
     {
@@ -103,11 +109,14 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.51742,
       vd: 52.4,
+      indexReference: "d",
       focalLengthMm: -196.9,
-      glass: "S-NSL36 (OHARA catalog equivalent)",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
-      role: "Negative meniscus with aspherical front — shares negative Petzval burden with L5, reducing sagittal flare. Ground and polished aspherical surface.",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
+      role: "Negative meniscus with aspherical front — shares negative Petzval burden with L5, reducing sagittal flare. Source asphere; manufacturing method unresolved.",
       cemented: "D1",
     },
     {
@@ -117,11 +126,14 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 59.2,
-      glass: "S-LAH58 (OHARA catalog equivalent)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
-      role: "First high-index lanthanum flint positive — strong convergence toward stop; cemented to L3 for Petzval sum reduction.",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
+      role: "First source high-index positive — strong convergence toward stop; cemented to L3 for Petzval sum reduction.",
       cemented: "D1",
     },
     {
@@ -131,10 +143,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51742,
       vd: 52.4,
+      indexReference: "d",
       focalLengthMm: -52.1,
-      glass: "S-NSL36 (OHARA catalog equivalent)",
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Classical front Gauss negative — concave rear surface (R9) faces stop; curvature weakened by L3's power sharing.",
     },
     {
@@ -144,11 +159,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.9,
+      indexReference: "d",
       focalLengthMm: -21.5,
-      glass: "PBH53 (OHARA catalog equivalent)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
-      role: "Classical rear Gauss negative — strongest negative power in system; high-dispersion flint for chromatic correction.",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
+      role: "Classical rear Gauss negative — strongest negative power in system; high-dispersion material for chromatic correction.",
       cemented: "D2",
     },
     {
@@ -158,10 +176,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 28.4,
-      glass: "S-LAH58 (OHARA catalog equivalent)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Thick biconvex positive cemented to L6 — controls higher-order spherical aberration over the long path length required at f/1.0.",
       cemented: "D2",
     },
@@ -172,11 +193,13 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.80518,
       vd: 25.4,
+      indexReference: "d",
       focalLengthMm: -71.7,
-      glass: "S-TIH6 (OHARA catalog equivalent)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
-      role: "Negative meniscus with aspherical rear — symmetric counterpart to L3, shares rear Gauss negative burden. Ground and polished on dense flint.",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
+      role: "Negative meniscus with aspherical rear — symmetric counterpart to L3, shares rear Gauss negative burden. Source asphere; material chemistry and manufacturing method unresolved.",
     },
     {
       id: 9,
@@ -185,10 +208,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 73.2,
-      glass: "S-LAH58 (OHARA catalog equivalent)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Positive meniscus (concave toward front) — begins converging the wide post-stop beam toward the image.",
     },
     {
@@ -198,10 +224,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 76.4,
-      glass: "S-LAH58 (OHARA catalog equivalent)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Nearly plano-convex positive — primary convergence element in rear group; thick to handle the large-diameter beam.",
     },
     {
@@ -211,10 +240,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.55963,
       vd: 61.2,
+      indexReference: "d",
       focalLengthMm: 148.8,
-      glass: "S-BAL50 (OHARA catalog equivalent; production supplier unspecified)",
+      glass:
+        "S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
-      apdNote: "",
+      apdNote:
+        "No source APD designation or published partial dispersion; this does not establish a normal production melt.",
       role: "Weak positive meniscus (convex toward the front) — last element, trimming field curvature and residual aberrations.",
     },
   ],
@@ -237,9 +269,9 @@ const LENS_DATA = {
     { label: "6", R: 39.016, d: 7.501, sd: 22.2, medium: 4 }, // L3/L4 junction
     { label: "7", R: 140.162, d: 1.25, sd: 20.8 }, // L4 rear → air
     { label: "8", R: 546.837, d: 2.595, sd: 21.2, medium: 5 }, // L5 front
-    { label: "9", R: 25.634, d: 8.941, sd: 18.8 }, // L5 rear → air
+    { label: "9", R: 25.634, d: 8.941, sd: 18.8, rimExtensionSd: 21.2 }, // L5 rear → air
     { label: "STO", R: "flat", d: 8.941 }, // Aperture stop
-    { label: "10", R: -24.444, d: 1.93, sd: 17.4, medium: 6 }, // L6 front
+    { label: "10", R: -24.444, d: 1.93, sd: 17.4, rimExtensionSd: 20.6, medium: 6 }, // L6 front
     { label: "11", R: 74.017, d: 12.752, sd: 20.6, medium: 7 }, // L6/L7 junction
     { label: "12", R: -34.806, d: 1.575, sd: 21.1 }, // L7 rear → air
     { label: "13", R: -30.075, d: 2.405, sd: 21.6, medium: 8 }, // L8 front
@@ -262,7 +294,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.6,
     description:
-      "Unit extension of the whole optical block (the patent's preferred method); the close-focus back gap is calculated for the 0.6 m production MFD. The production lens uses a floating system whose group displacements are not published.",
+      "CONSTRAINED_RECONSTRUCTION: unit extension of the whole optical block follows the source preferred mechanism; the existing close-focus back gap is calculated for the correlated 0.6 m endpoint. The original supplies no finite table or production floating-group displacements, and linear intermediate motion is approximate.",
   },
 
   /* (moved from var) ── Variable air spacings ── */

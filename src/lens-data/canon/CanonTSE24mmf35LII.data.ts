@@ -72,7 +72,7 @@ const LENS_DATA = {
     ],
     elementCount: 16,
     groupCount: 10,
-    focalLengthMm: { marketing: 24, design: 24.247181396464303 },
+    focalLengthMm: { marketing: 24, design: 24.26 },
     fNumber: { marketing: 3.5, design: 3.56 },
   },
 
@@ -166,7 +166,7 @@ const LENS_DATA = {
       nd: 1.77236,
       vd: 36.1,
       focalLengthMm: -32.9581729591154,
-      glass: "Unmatched 772361 — patent coordinate; no compatible published catalog curve found",
+      glass: "772361 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved",
       cemented: "C2",
     },
     {
@@ -188,7 +188,7 @@ const LENS_DATA = {
       nd: 1.67769,
       vd: 31.4,
       focalLengthMm: 27.070107842370923,
-      glass: "Unmatched 678314 — patent coordinate; no compatible published catalog curve found",
+      glass: "678314 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved",
       cemented: "C3",
     },
     {
@@ -210,7 +210,7 @@ const LENS_DATA = {
       nd: 1.554,
       vd: 52.2,
       focalLengthMm: 15.767916793031304,
-      glass: "Unmatched 554522 — patent coordinate; no compatible published catalog curve found",
+      glass: "554522 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved",
       cemented: "C4",
     },
     {
@@ -221,7 +221,7 @@ const LENS_DATA = {
       nd: 1.84175,
       vd: 37.2,
       focalLengthMm: -15.039490056549083,
-      glass: "Unmatched 842372 — patent coordinate; no compatible published catalog curve found",
+      glass: "842372 — source coordinate; no compatible curve in checked vendor catalogs; historical supplier unresolved",
       cemented: "C4",
     },
     {

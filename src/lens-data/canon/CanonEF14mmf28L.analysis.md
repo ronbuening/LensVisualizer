@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP H05-034592 A (特開平5-34592; JP 1993-034592)  
-**Application Number:** JP H03-188669 (特願平3-188669)  
-**Filed:** 29 July 1991  
-**Published:** 12 February 1993  
-**Inventor:** Hideki Ogawa (小川 秀樹)  
-**Applicant:** Canon Inc. (キヤノン株式会社)  
-**Title:** コンパクトなリアフォーカス方式の超広角レンズ (*Compact Rear-Focus Ultra-Wide-Angle Lens*)  
-**Example details:** 数値実施例2  
+**Patent:** JP H05-034592 A (特開平5-34592; JP 1993-034592)\
+**Application Number:** JP H03-188669 (特願平3-188669)\
+**Filed:** 29 July 1991\
+**Published:** 12 February 1993\
+**Inventor:** Hideki Ogawa (小川 秀樹)\
+**Applicant:** Canon Inc. (キヤノン株式会社)\
+**Title:** コンパクトなリアフォーカス方式の超広角レンズ (_Compact Rear-Focus Ultra-Wide-Angle Lens_)\
+**Example details:** 数値実施例2, Numerical Example 2 on PDF page 6; Fig. 4 on PDF page 7
 **Production-lens correspondence:** Original Canon EF 14mm f/2.8L USM; strong design-family match, but the public record does not prove that Example 2 rather than Example 1 was the exact production prescription
 
 Numerical Example 2 is printed on patent page 6 and is transcribed into the paired data file without any focal-length
@@ -91,7 +91,7 @@ cemented assembly.
 
 ### L1 — Negative Meniscus, concave to the image
 
-**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (OHARA) current catalog equivalent, code 697555. Standalone $f=-97.290\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-97.290\ \mathrm{mm}$.**
 
 Both radii are positive, with the rear surface more strongly curved. L1 begins the gradual divergence of the fixed front
 group. Its moderate power is consistent with the patent's strategy of avoiding a single highly stressed front element
@@ -99,7 +99,7 @@ group. Its moderate power is consistent with the patent's strategy of avoiding a
 
 ### L2 — Weak Negative Meniscus with object-side asphere
 
-**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (OHARA) current catalog equivalent, code 603607. Standalone $f=-1211.000\ \mathrm{mm}$.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-1211.000\ \mathrm{mm}$.**
 
 L2 is nearly afocal paraxially. Its design function is dominated by surface 3A, the sole asphere. Claim 2 and ¶0012 state
 that positive refractive action increases with ray height, correcting the increasingly negative distortion of the extreme
@@ -107,21 +107,21 @@ field while limiting influence on spherical aberration.
 
 ### L3 — Negative Meniscus, concave to the image
 
-**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (OHARA) current catalog equivalent, code 697555. Standalone $f=-51.445\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-51.445\ \mathrm{mm}$.**
 
 L3 carries more negative power than L1 or L2. Its placement continues the progressive rise in axial-ray height through
 Group I described in ¶0011.
 
 ### L4 — Negative Meniscus, concave to the image
 
-**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (OHARA) current catalog equivalent, code 773496. Standalone $f=-47.798\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-47.798\ \mathrm{mm}$.**
 
-The high index supports useful negative power without exceptionally short radii. With $\nu_d<50$, the catalog equivalent
+The high index supports useful negative power without exceptionally short radii. With $\nu_d<50$, the catalog proxy
 is a dense lanthanum flint, not a crown.
 
 ### L5 — Negative Meniscus, front component of J1
 
-**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (OHARA) current catalog equivalent, code 697555. Standalone $f=-24.414\ \mathrm{mm}$.**
+**$n_d=1.69680$, $\nu_d=55.5$. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-24.414\ \mathrm{mm}$.**
 
 L5 is the fifth image-facing negative meniscus and the strongest negative element in Group I by standalone power. It is
 cemented to L6 at surface 10. Patent ¶0011 places particular emphasis on this location: the high axial-ray height at L5's
@@ -130,7 +130,7 @@ higher-order terms.
 
 ### L6 — Biconvex Positive, rear component of J1
 
-**$n_d=1.59551$, $\nu_d=39.2$. Glass: S-TIM8 (OHARA) current catalog equivalent, code 596392. Standalone $f=+21.052\ \mathrm{mm}$.**
+**$n_d=1.59551$, $\nu_d=39.2$. Glass: S-TIM8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+21.052\ \mathrm{mm}$.**
 
 L6 is stronger than L5 in isolation, so the complete cemented pair is net positive:
 
@@ -142,7 +142,7 @@ The pair closes Group I while providing the spherical-aberration balance describ
 
 ### L7 — Biconvex Positive, front component of J2
 
-**$n_d=1.56732$, $\nu_d=42.8$. Glass: S-TIL26 (OHARA) current catalog equivalent, code 567428. Standalone $f=+16.495\ \mathrm{mm}$.**
+**$n_d=1.56732$, $\nu_d=42.8$. Glass: S-TIL26 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+16.495\ \mathrm{mm}$.**
 
 L7 begins the converging rear group. It is cemented to L8, and the complete pair remains strongly positive:
 
@@ -152,7 +152,7 @@ $$
 
 ### L8 — Negative Meniscus, concave to the object, rear component of J2
 
-**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (OHARA) current catalog equivalent, code 773496. Standalone $f=-63.633\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-63.633\ \mathrm{mm}$.**
 
 L8 is the first of the two object-facing negative menisci ahead of the stop required by Claim 1. Patent ¶0014 treats the
 pre-stop menisci as a coordinated correction system for spherical aberration, coma, and astigmatism rather than assigning
@@ -160,14 +160,14 @@ a single isolated aberration to L8.
 
 ### L9 — Negative Meniscus, concave to the object
 
-**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (OHARA) current catalog equivalent, code 773496. Standalone $f=-30.293\ \mathrm{mm}$.**
+**$n_d=1.77250$, $\nu_d=49.6$. Glass: S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-30.293\ \mathrm{mm}$.**
 
 L9 is the second pre-stop negative meniscus and is stronger than L8 in standalone power. Its strongly curved object-side
 surface contributes to the positive-direction spherical correction discussed in ¶0014.
 
 ### L10 — Biconvex Positive, front component of J3
 
-**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (OHARA) current catalog equivalent, code 603607. Standalone $f=+65.166\ \mathrm{mm}$.**
+**$n_d=1.60311$, $\nu_d=60.7$. Glass: S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+65.166\ \mathrm{mm}$.**
 
 L10 lies immediately behind the stop and is cemented to L11. Although L10 is positive in isolation, the complete pair is
 weakly negative:
@@ -178,22 +178,22 @@ $$
 
 ### L11 — Biconcave Negative, rear component of J3
 
-**$n_d=1.74320$, $\nu_d=49.3$. Glass: S-LAM60 (OHARA) current catalog equivalent, code 743493. Standalone $f=-48.571\ \mathrm{mm}$.**
+**$n_d=1.74320$, $\nu_d=49.3$. Glass: S-LAM60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-48.571\ \mathrm{mm}$.**
 
 L11 overcomes L10's positive power and makes J3 net negative. Its rear surface and the front surface of L12 bound the
 strongly curved air lens that ¶0014 associates with sagittal-flare correction.
 
 ### L12 — Biconcave Negative, front component of J4
 
-**$n_d=1.92286$, $\nu_d=21.3$. Glass: PBH71 exact historical catalog equivalent (OHARA), code 923213; actual patent vendor unspecified. Standalone $f=-29.224\ \mathrm{mm}$.**
+**$n_d=1.92286$, $\nu_d=21.3$. Glass: PBH71 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=-29.224\ \mathrm{mm}$.**
 
-OHARA's historical PBH71 row reproduces both the six-digit patent code and the printed optical coordinates: catalog
-$n_d=1.922864$ and $\nu_d=21.288699$ round to the patent's 1.92286 / 21.3 pair.[5] This is an exact catalog equivalent,
+OHARA's historical PBH71 row matches the source's printed numeric pair: catalog
+$n_d=1.922864$ and $\nu_d=21.288699$ round to the patent's 1.92286 / 21.3 pair.[5] The PBH71 curve serves as a spectral proxy,
 not proof that Canon bought the production melt from OHARA. Its very high index and dispersion contrast strongly with L13.
 
 ### L13 — Biconvex Positive, rear component of J4
 
-**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (OHARA) current catalog equivalent, code 487702. Standalone $f=+24.923\ \mathrm{mm}$.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+24.923\ \mathrm{mm}$.**
 
 L13 is the low-dispersion positive partner of L12. The cemented pair is net positive:
 
@@ -206,29 +206,33 @@ astigmatic correction. The available data support a strong achromatizing role, b
 
 ### L14 — Biconvex Positive rear element
 
-**$n_d=1.80400$, $\nu_d=46.6$. Glass: S-LAH65V (OHARA) current catalog equivalent, code 804466. Standalone $f=+42.573\ \mathrm{mm}$.**
+**$n_d=1.80400$, $\nu_d=46.6$. Glass: S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone $f=+42.573\ \mathrm{mm}$.**
 
 L14 is a dense lanthanum flint rather than a crown. Patent ¶0015 states that it shares the positive power otherwise
 concentrated at the rear of J4 and thereby moderates undercorrected spherical aberration.
 
 ## Glass Identification and Selection
 
-The patent publishes only $n_d$ and $\nu_d$; it does not name a supplier. The labels below are catalog equivalents, not
-claims about Canon's historical procurement or production melts. The OHARA matches were checked against published
-catalog coordinates and dispersion data. The paired data file carries measured line indices for the current-catalog
-matches; historical PBH71 resolves through the coefficient-backed glass catalog.[4][5]
+The patent table publishes N and ν. Paragraph 0022 defines them only as the glass refractive index and Abbe number.
+The d-line legend on the aberration sheets identifies plotted rays; it does not explicitly define the
+prescription-table reference. The patent names no spectral line. 14 of 14 printed pairs match catalog d-line
+coordinates and none match the e-line, so the table is read as d-line. 14 media use catalog curves as spectral
+proxies; supplier, melt and chemistry stay unspecified.
 
-| Patent code | Patent $n_d$ | Patent $\nu_d$ | Current catalog equivalent | Catalog $\nu_d$ | Elements | Status |
-|---|---:|---:|---|---:|---|---|
-| 697555 | 1.69680 | 55.5 | S-LAL14 (OHARA) | 55.53 | L1, L3, L5 | Exact index; rounded Abbe match |
-| 603607 | 1.60311 | 60.7 | S-BSM14 (OHARA) | 60.64 | L2, L10 | Exact index; rounded Abbe match |
-| 773496 | 1.77250 | 49.6 | S-LAH66 (OHARA) | 49.60 | L4, L8, L9 | Exact match at patent precision |
-| 596392 | 1.59551 | 39.2 | S-TIM8 (OHARA) | 39.24 | L6 | Exact index; rounded Abbe match |
-| 567428 | 1.56732 | 42.8 | S-TIL26 (OHARA) | 42.82 | L7 | Exact index; rounded Abbe match |
-| 743493 | 1.74320 | 49.3 | S-LAM60 (OHARA) | 49.34 | L11 | Exact index; rounded Abbe match |
-| 923213 | 1.92286 | 21.3 | PBH71 (OHARA historical) | 21.29 | L12 | Exact match at patent precision |
-| 487702 | 1.48749 | 70.2 | S-FSL5 (OHARA) | 70.23 | L13 | Exact index; rounded Abbe match |
-| 804466 | 1.80400 | 46.6 | S-LAH65V (OHARA) | 46.58 | L14 | Exact index; rounded Abbe match |
+The names below are catalog spectral proxies, not resolved source materials or historical supplier
+identifications. No per-element C/F/g indices or partial-dispersion values are authored.
+
+| Derived coordinate code | Printed $n_d$ | Printed $\nu_d$ | Catalog spectral proxy | Catalog $\nu_d$ | Elements   | Coordinate agreement            |
+| ----------------------- | ------------: | --------------: | ---------------------- | --------------: | ---------- | ------------------------------- |
+| 697555                  |       1.69680 |            55.5 | S-LAL14                |           55.53 | L1, L3, L5 | Exact index; rounded Abbe match |
+| 603607                  |       1.60311 |            60.7 | S-BSM14                |           60.64 | L2, L10    | Exact index; rounded Abbe match |
+| 773496                  |       1.77250 |            49.6 | S-LAH66                |           49.60 | L4, L8, L9 | Exact match at patent precision |
+| 596392                  |       1.59551 |            39.2 | S-TIM8                 |           39.24 | L6         | Exact index; rounded Abbe match |
+| 567428                  |       1.56732 |            42.8 | S-TIL26                |           42.82 | L7         | Exact index; rounded Abbe match |
+| 743493                  |       1.74320 |            49.3 | S-LAM60                |           49.34 | L11        | Exact index; rounded Abbe match |
+| 923213                  |       1.92286 |            21.3 | PBH71 (historical)     |           21.29 | L12        | Exact match at patent precision |
+| 487702                  |       1.48749 |            70.2 | S-FSL5                 |           70.23 | L13        | Exact index; rounded Abbe match |
+| 804466                  |       1.80400 |            46.6 | S-LAH65V               |           46.58 | L14        | Exact index; rounded Abbe match |
 
 The main chromatic lever is J4: very-high-dispersion L12 is cemented to low-dispersion L13. J1 and J2 also combine
 substantially different dispersions, but the patent's explicit axial- and lateral-color discussion centers on J4 (¶0014).
@@ -244,11 +248,11 @@ The patent provides aberration plots at infinity and 25 cm but no variable-spaci
 25 cm distance. Exact close-focus travel is therefore not a directly published patent value. Two paraxial interpretations
 were solved independently:
 
-| Distance convention | Object plane to surface 1 | $d_{11}$ | Group II shift | Surface 25 to fixed image | Magnification |
-|---|---:|---:|---:|---:|---:|
-| Infinity | $\infty$ | 3.250000 mm | 0 | 38.725812 mm | 0 |
-| 25 cm from surface 1 | 250.000000 mm | 2.156518 mm | 1.093482 mm objectward | 39.819294 mm | −0.052506× |
-| 25 cm from fixed image plane | 121.644188 mm | 1.101054 mm | 2.148946 mm objectward | 40.874758 mm | −0.100294× |
+| Distance convention          | Object plane to surface 1 |    $d_{11}$ |         Group II shift | Surface 25 to fixed image | Magnification |
+| ---------------------------- | ------------------------: | ----------: | ---------------------: | ------------------------: | ------------: |
+| Infinity                     |                  $\infty$ | 3.250000 mm |                      0 |              38.725812 mm |             0 |
+| 25 cm from surface 1         |             250.000000 mm | 2.156518 mm | 1.093482 mm objectward |              39.819294 mm |    −0.052506× |
+| 25 cm from fixed image plane |             121.644188 mm | 1.101054 mm | 2.148946 mm objectward |              40.874758 mm |    −0.100294× |
 
 The image-plane convention reproduces Canon's 0.25 m / 0.10× production specification and is therefore used for the
 paired data file's close-focus endpoint.[2] This is an explicitly documented inference, not a reconstructed patent spacing
@@ -272,9 +276,9 @@ alter the paraxial curvature.
 
 The renderer mapping is:
 
-| Surface | $R$ | $K$ | $A_4$ | $A_6$ | $A_8$ | $A_{10}$ |
-|---|---:|---:|---:|---:|---:|---:|
-| 3A | +58.892 mm | 0 | $+9.62849\times10^{-6}$ | inferred $+2.04161\times10^{-9}$ | $-8.99200\times10^{-12}$ | $+1.96290\times10^{-14}$ |
+| Surface |        $R$ | $K$ |                   $A_4$ |                            $A_6$ |                    $A_8$ |                 $A_{10}$ |
+| ------- | ---------: | --: | ----------------------: | -------------------------------: | -----------------------: | -----------------------: |
+| 3A      | +58.892 mm |   0 | $+9.62849\times10^{-6}$ | inferred $+2.04161\times10^{-9}$ | $-8.99200\times10^{-12}$ | $+1.96290\times10^{-14}$ |
 
 The source line literally prints `C=2.04161D` with no exponent. The $10^{-9}$ exponent is a reconstruction, not a literal
 transcription. It is supported by the neighboring Example 1 coefficient, which is printed as
@@ -309,27 +313,27 @@ $$
 with determinant 1.000000 to numerical precision. In air, $\mathrm{EFL}=-1/C$ and
 $\mathrm{BFD}=-A/C$.
 
-| Quantity | Patent value | Independent value | Difference |
-|---|---:|---:|---:|
-| Complete EFL at infinity | 14.2 mm | 14.201254 mm | +0.001254 mm |
-| Group I focal length | −26.0 mm | −26.001835 mm | −0.001835 mm |
-| Group II focal length | +30.16499 mm | +30.161313 mm | −0.003677 mm |
-| BFD from surface 25 | not tabulated | 38.725812 mm | computed |
-| Surface 1–25 vertex span | not tabulated | 89.630000 mm | computed |
-| Surface 1 to image plane | not tabulated | 128.355812 mm | computed |
-| Image diameter at $w=56.72^\circ$ | not tabulated | 43.271596 mm | computed |
+| Quantity                          |  Patent value | Independent value |   Difference |
+| --------------------------------- | ------------: | ----------------: | -----------: |
+| Complete EFL at infinity          |       14.2 mm |      14.201254 mm | +0.001254 mm |
+| Group I focal length              |      −26.0 mm |     −26.001835 mm | −0.001835 mm |
+| Group II focal length             |  +30.16499 mm |     +30.161313 mm | −0.003677 mm |
+| BFD from surface 25               | not tabulated |      38.725812 mm |     computed |
+| Surface 1–25 vertex span          | not tabulated |      89.630000 mm |     computed |
+| Surface 1 to image plane          | not tabulated |     128.355812 mm |     computed |
+| Image diameter at $w=56.72^\circ$ | not tabulated |      43.271596 mm |     computed |
 
 Selected assembly focal lengths are:
 
-| Assembly | Surfaces | In-situ focal length |
-|---|---|---:|
-| L1–L4 front menisci | 1–8 | −16.373646 mm |
-| J1 | 9–11 | +103.649747 mm |
-| Group II before stop | 12–16 | +81.961274 mm |
-| Group II after stop | 18–25 | +33.584000 mm |
-| J2 | 12–14 | +23.277637 mm |
-| J3 | 18–20 | −241.240975 mm |
-| J4 | 21–23 | +104.596397 mm |
+| Assembly             | Surfaces | In-situ focal length |
+| -------------------- | -------- | -------------------: |
+| L1–L4 front menisci  | 1–8      |        −16.373646 mm |
+| J1                   | 9–11     |       +103.649747 mm |
+| Group II before stop | 12–16    |        +81.961274 mm |
+| Group II after stop  | 18–25    |        +33.584000 mm |
+| J2                   | 12–14    |        +23.277637 mm |
+| J3                   | 18–20    |       −241.240975 mm |
+| J4                   | 21–23    |       +104.596397 mm |
 
 These are assembly values in their stated media and separations. They are not sums of the standalone element powers.
 
@@ -348,9 +352,9 @@ $$
 Using the independently traced values:
 
 | Condition | Patent Example 2 value | Independent value | Result |
-|---|---:|---:|---|
-| $|f_1|/f$ | 1.83 | 1.830953 | Satisfies the stated range |
-| $|f_1|/f_2$ | 0.86 | 0.862092 | Satisfies the stated range |
+| --------- | ---------------------: | ----------------: | ------ | -------- | -------------------------- |
+| $         |                    f_1 |               /f$ | 1.83   | 1.830953 | Satisfies the stated range |
+| $         |                    f_1 |             /f_2$ | 0.86   | 0.862092 | Satisfies the stated range |
 
 Paragraphs 0018–0021 explain the bounds. Excessively strong negative Group I power increases focus travel, mechanical
 interference, aberration variation, back focus, and the positive power demanded of Group II. Excessively weak Group I
@@ -375,16 +379,16 @@ with reciprocal $+118.101209\ \mathrm{mm}$. The sign follows the stated object-t
 paraxial scalar and is not substituted for the patent's finite-ray astigmatic field curves.
 
 | Surface | Contribution ($\mathrm{mm}^{-1}$) | Surface | Contribution ($\mathrm{mm}^{-1}$) | Surface | Contribution ($\mathrm{mm}^{-1}$) |
-|---:|---:|---:|---:|---:|---:|
-| 1 | +0.009286853 | 10 | −0.002388699 | 19 | −0.000725542 |
-| 2 | −0.015799298 | 11 | +0.007832973 | 20 | −0.005504388 |
-| 3A | +0.006388176 | 12 | +0.006294661 | 21 | −0.002785417 |
-| 4 | −0.007170323 | 13 | −0.006968290 | 22 | −0.004750032 |
-| 5 | +0.011193484 | 14 | +0.030379556 | 23 | +0.017813163 |
-| 6 | −0.023088685 | 15 | −0.029074390 | 24 | +0.001335984 |
-| 7 | +0.009026097 | 16 | +0.010184019 | 25 | +0.011736353 |
-| 8 | −0.021076753 | STO | 0 | — | — |
-| 9 | +0.001999549 | 18 | +0.004328261 | — | — |
+| ------: | --------------------------------: | ------: | --------------------------------: | ------: | --------------------------------: |
+|       1 |                      +0.009286853 |      10 |                      −0.002388699 |      19 |                      −0.000725542 |
+|       2 |                      −0.015799298 |      11 |                      +0.007832973 |      20 |                      −0.005504388 |
+|      3A |                      +0.006388176 |      12 |                      +0.006294661 |      21 |                      −0.002785417 |
+|       4 |                      −0.007170323 |      13 |                      −0.006968290 |      22 |                      −0.004750032 |
+|       5 |                      +0.011193484 |      14 |                      +0.030379556 |      23 |                      +0.017813163 |
+|       6 |                      −0.023088685 |      15 |                      −0.029074390 |      24 |                      +0.001335984 |
+|       7 |                      +0.009026097 |      16 |                      +0.010184019 |      25 |                      +0.011736353 |
+|       8 |                      −0.021076753 |     STO |                                 0 |       — |                                 — |
+|       9 |                      +0.001999549 |      18 |                      +0.004328261 |       — |                                 — |
 
 ## Semi-Diameter and Data-File Implementation
 
@@ -405,6 +409,12 @@ $64.2^\circ$ limit ($0.9|R|=23.39\ \mathrm{mm}$ on this sphere), so the data set
 $72^\circ$. Fig. 4 draws the surface near 25 mm. The traced chief ray now clears every rim at 56.72° and out to the
 57.4° corner.
 
+The native Fig. 4 scan separately resolves vertical shoulders behind the first four optical caps. Surface 2 keeps
+24.4 mm clear aperture and extends to a 31.9 mm drawn radius; surfaces 4, 6 and 8 keep 21.1, 14.6 and 12.0 mm caps
+and extend to 22.5, 18.4 and 13.6 mm. The outer heights follow the opposite faces’ retained inferred radii. These
+shoulders change the drawn blank without extending the refracting surface or asserting factory diameters. All other
+concave ends and cemented interfaces retain their supported geometry; no bonded-interface land or resin wing is added.
+
 These values are sufficient for the default LensVisualizer ray display and geometry validation. They remain estimates,
 not factory clear apertures or barrel dimensions, which the patent does not provide.
 
@@ -414,20 +424,22 @@ $2.455265\ \mathrm{mm}$ and therefore the patent design aperture $f/2.892$. `nom
 
 The final estimates pass the following checks:
 
-| Check | Verified result |
-|---|---:|
-| Default on-axis / 0.6-field displayed rays clipped | 0 / 0 |
-| Minimum calculated element edge thickness | 1.664029 mm at L12 |
-| Maximum front/rear SD ratio for one element | 1.307377 at L1 |
-| Maximum positive signed cross-gap intrusion | 67.9462% of the nominal gap |
-| Maximum rim slope | 69.843° at surface 2 (lens limit 72°) |
-| Maximum renderer trim | 0 mm |
+| Check                                              |                       Verified result |
+| -------------------------------------------------- | ------------------------------------: |
+| Default on-axis / 0.6-field displayed rays clipped |                                 0 / 0 |
+| Minimum calculated element edge thickness          |                    1.664029 mm at L12 |
+| Maximum front/rear SD ratio for one element        |                        1.307377 at L1 |
+| Maximum positive signed cross-gap intrusion        |           67.9462% of the nominal gap |
+| Maximum rim slope                                  | 69.843° at surface 2 (lens limit 72°) |
+| Maximum renderer trim                              |                                  0 mm |
 
 The largest signed cross-gap intrusion is the 6.43 mm air space between surfaces 6 and 7. At the shared 13.6 mm
 semi-diameter its remaining rim gap is $2.061057\ \mathrm{mm}$, so intrusion is 67.9462%, below the 90% project limit.
 The tightest absolute clearance is still the 0.69 mm air lens between surfaces 20 and 21: at the common 6.8 mm
 semi-diameter its remaining rim gap is $0.256694\ \mathrm{mm}$ (62.7980% intrusion). No cover glass or sensor stack is
-included.
+included. Fresh actual SVG outlines preserve 14 connected finite element paths without hidden trimming over the
+focus control. The approximate close-focus trajectory and the retained 97% source-field/full-frame-corner distinction
+remain separate from source outline fidelity.
 
 ## Aberration-Correction Strategy
 
@@ -453,15 +465,57 @@ not replace those plots.
 
 ## Sources
 
-1. Japan Patent Office, **JP H05-034592 A**, *コンパクトなリアフォーカス方式の超広角レンズ*, Claims 1–2,
+1. Japan Patent Office, **JP H05-034592 A**, _コンパクトなリアフォーカス方式の超広角レンズ_, Claims 1–2,
    ¶¶0001–0027, Numerical Examples 1–2, and Figs. 1–6. User-supplied publication scan.
 2. Canon Camera Museum, **EF14mm f/2.8L USM**: December 1991 marketing date, 10-group/14-element construction,
    five blades, f/22 minimum aperture, 0.25 m closest focus, 0.10× magnification, and element-2 asphere.
    <https://global.canon/en/c-museum/product/ef306.html>
 3. Canon Camera Museum, **EF14mm f/2.8L II USM**: September 2007 redesign, 11 groups/14 elements, two glass-molded
    aspheres, and two UD elements. <https://global.canon/en/c-museum/product/ef395.html>
-4. OHARA Corporation, **Optical Glass Pocket Catalog**, current-catalog $n_d$, $\nu_d$, $n_C$, $n_F$, and $n_g$ values
+4. OHARA Corporation, **Optical Glass Pocket Catalog**, current-catalog $n$, $\nu$, $n_C$, $n_F$, and $n_g$ values
    for S-LAL14, S-BSM14, S-LAH66, S-TIM8, S-TIL26, S-LAM60, S-FSL5, and S-LAH65V.
    <https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf>
 5. OHARA Zemax catalog 2017-11-30, **PBH71** dispersion coefficients and code 923213, mirrored by
    refractiveindex.info. <https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=PBH71>
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 14.2 mm, taken directly from Numerical Example2, PDF p6 / printed columns9–10: header f=14.2, fno1:2.892. The prior computed model EFL value 14.201254 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.
+
+## 2026-10-30 — Runtime-only finite-object supplement
+
+The original source-review date and optical data remain unchanged. The earlier 21-state pupil/grid result explicitly
+used collimated launches in focus-adjusted geometry; its passing result was a control-geometry census, not physical
+finite-object clearance. Existing first-order/source-plane focus checks are retained.
+
+A separate actual finite-object Gaussian-conjugate supplement now covers 21 focus positions at their own unchanged
+iris, axial and .6/1 paraxial object-field fractions and 49 disk-pupil samples. The H6 focus cam remains an authored reconstruction,
+not source-published finite spacings. Its half/near inferred object-to-image distances are 382.992912/250.000000 mm,
+with modeled magnifications −.051619/−.100294. No source object-plane or physical MFD accuracy is inferred beyond
+those first-order qualifications, and no cap, iris, gap or cam is tuned to the supplement.
+
+All 1029/1029 axial and 63/63 chief samples clear over 3087 aimed rays, zero unaimed. Infinity/half/near pupil survivors
+are 49/38/5,49/29/5,49/29/10; peripheral vignetting remains. All 14 actual SVG paths finite/closed/connected, zero
+hidden trim. Existing source-field 97% limit, four native shoulders and source/runtime/
+production distinctions remain. No original-PDF reinspection or additional source-review count is claimed.
+
+### Runtime field-coordinate qualification (2026-10-30)
+
+The collimated census uses 0/.6/1 fractions of the modeled maximum object angle. The finite-object supplement uses
+0/.6/1 fractions of a **paraxial object-field reference**, yObject=(21.65 mm×fraction)/A, where A is that state's
+first-order transverse matrix term. Those explicit finite-object points establish the launch plane, but distortion
+means their chief rays need not land at the sensor corner. They are paraxial object-field probes, not inverse-solved
+finite sensor-edge rays. The following actual terminal image heights are measured at the authored physical image plane.
+The infinity row uses the separate modeled-angle launch; nonzero rows use Gaussian finite-object geometry.
+
+| Focus control | Probe .6 actual image height | Probe 1.0 actual image height |
+| ------------- | ---------------------------: | ----------------------------: |
+| 0.000000000   |                  9.399566 mm |                  21.077338 mm |
+| 0.500000000   |                 12.575711 mm |                  20.716351 mm |
+| 1.000000000   |                 12.524921 mm |                  20.442175 mm |
+
+These results do not claim true finite-corner reach. Separate infinity source-field, inverse-image-height/vector
+checks remain as previously recorded. Source object-plane uncertainty, field limitations and off-axis vignetting
+remain explicit; no cap, cam or iris is fitted to make paraxial field fractions land at a desired image height.

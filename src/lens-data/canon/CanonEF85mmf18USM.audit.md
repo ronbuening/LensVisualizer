@@ -1,94 +1,94 @@
-# Lens Patent — Canon EF85mm f/1.8 USM — 3 Analysis
+# Lens Patent — Canon EF85 mm f/1.8 USM — 3 Analysis
 
-## Current gate and immutable model
+## Historical Stage3 gate and immutable model
 
-READY_FOR_AUDIT. The final data is byte-identical to the coordinator-accepted Stage2 revision: cb629c1d9af94ffa3437378c2b35a58fda95b56c6c5f6276a2c62976b6ec9903. No upstream optical correction, new focus keyframe, extra group motion, scaling change, index substitution or image-plane adjustment was made during Stage3. The preceding Stage2 package/manifest/evidence/verifier/results hashes and coordinator receipt are recorded in evidence.stage3Entry.
+At Stage3 entry: READY_FOR_AUDIT. The final data was byte-identical to the coordinator-accepted Stage2 revision: cb629c1d9af94ffa3437378c2b35a58fda95b56c6c5f6276a2c62976b6ec9903. No upstream optical correction, new focus keyframe, extra group motion, scaling change, index substitution or image-plane adjustment was made during Stage3. The preceding Stage2 package/manifest/evidence/verifier/results hashes and coordinator receipt are recorded in evidence.stage3Entry.
 
-All prior canonical file hashes were checked, and the Stage2 portable verifier was rerun before analysis authoring. Its complete stable result matched the preceding executed result except executedUTC. All14 current controlling references were rehashed against their manifest at the unchanged d8b406ce112931ab0b2988b87acbd13b0b663c7e pin. No newer reference was silently substituted.
+All prior canonical file hashes were checked, and the Stage2 portable verifier was rerun before analysis authoring. Its complete stable result matched the preceding executed result except executedUTC. All 14 current controlling references were rehashed against their manifest at the unchanged d8b406ce112931ab0b2988b87acbd13b0b663c7e pin. No newer reference was silently substituted.
 
 ## Analysis scope and manual review
 
 The analysis has the specification's metadata block, required section order and nine front-to-rear element subsections. The all-spherical design omits a separate asphere section. Conditional air-lens, aberration, patent-condition and model-verification sections are supported by the selected source and executed model.
 
-The manual interpretive review checked each group/element role against the cited source paragraphs. Standalone element powers are distinguished from complete cemented/group powers and from in-situ aberration contributions. The patent's front-group gradual convergence, air-lens correction argument and rear-group chromatic/distortion discussion remain source-attributed explanations, not newly calculated isolated aberration budgets. The paragraph0011 sign inconsistency remains explicit. No design heritage, supplier procurement, chemical composition, ED or APO performance was invented.
+The manual interpretive review checked each group/element role against the cited source paragraphs. Standalone element powers are distinguished from complete cemented/group powers and from in-situ aberration contributions. The patent's front-group gradual convergence, air-lens correction argument and rear-group chromatic/distortion discussion remain source-attributed explanations, not newly calculated isolated aberration budgets. The paragraph 0011 sign inconsistency remains explicit. No design heritage, supplier procurement, chemical composition, ED or APO performance was invented.
 
 The source N/nu convention remains unestablished. The mandated nd/νd presentation is explicitly described as schema notation for the native source numbers under a limited approximate d-line interpretation. Seven glass pairs and representative candidate names were cross-checked with final data and the complete authoritative catalog evidence. The analysis preserves the L6 index difference from N-BK7 and the conditional L8 candidate distinction. Candidate catalog spectral fields were not imported.
 
-The 0.8m patent plot label remains separate from the reconstructed850mm object-to-fixed-image endpoint. The native fixed-stop table convention and the permitted alternative prose are both explained. The derived travel, predicted magnification, two-keyframe interpolation, estimated intermediate labels and actual adaptive tracking-focus launch remain distinct. The article does not infer displayed blur from the label-based Gaussian mismatch, certify derived states as published finiteConjugates, or claim finite MTF.
+The 0.8 m patent plot label remains separate from the reconstructed850 mm object-to-fixed-image endpoint. The native fixed-stop table convention and the permitted alternative prose are both explained. The derived travel, predicted magnification, two-keyframe interpolation, estimated intermediate labels and actual adaptive tracking-focus launch remain distinct. The article does not infer displayed blur from the label-based Gaussian mismatch, certify derived states as published finiteConjugates, or claim finite MTF.
 
 Manufacturer correlation is explicitly selected and unconfirmed. Canon's marketed month, construction, MFD/magnification, EF/full-frame taxonomy and rear-focus/ring-USM evidence are individually sourced. The non-rotating front-group statement is not misread as evidence of no axial travel. Patent bibliography rests on the original PDF; the accessible Google display supplies a conventional record link and Romanization only.
 
-All12 source links are conventional external URLs. The SUMITA download landing page is cited because its preserved binary download is POST-based. No chat-only citation tokens, private workspace paths or readiness/workflow narrative appear in the analysis itself. This is author consistency review; a fresh independent Stage4 source-first review has not occurred.
+All 12 source links are conventional external URLs. The SUMITA download landing page is cited because its preserved binary download is POST-based. No chat-only citation tokens, private workspace paths or readiness/workflow narrative appear in the analysis itself. This is author consistency review; a fresh independent Stage4 source-first review has not occurred.
 
 ## Quantitative claim map
 
 Every item below is tied to the unchanged final data revision identified above, or explicitly to native source or catalog evidence. Computed quantities are obtained from the running verifier and bound actual Stage2 runtime receipts; no saved result is reused as a substitute numerical prescription.
 
-| Analysis section / claim | Fact or executable result | Authority / qualification |
-|---|---|---|
-| Patent metadata block, dates and Example1 | evidence.sources[P1]; data.patentNumber/patentAuthors/patentAssignees/patentYear | Original PDF p1 fields21/22/43/54/71/72; ¶0024 |
-| Production correlation list and marketed85mm/f1.8,9/7,July1992,0.85m,0.13× | productCorrelation.manufacturerClaims M01–M12 | Canon primary sources; correlation is not confirmed |
-| Architecture9 elements,7 assemblies,3 functional groups,16 interfaces,one stop | F03/F04; rawPrescription; parsed data.surfaces/elements | Source table and Fig1, not a marketing-to-patent proof |
-| All-spherical/no rear plates; unchanged source scale | F04; data.asph; source rearPlates/dummyPlanes; final_payload_source_mapping | No omitted optical plane or synthetic cover glass |
-| Native and derived focus gaps and reference convention | F06/F07; finiteFocusVerification.endpoint; data.var | Only850mm image-plane reconstruction is adopted; alternatives remain diagnostic |
-| Conditions inequalities and printed4.18/0.70/0.91 | rawPrescription.conditions; sourceModel.conditions/comparisons | Original first-summary mismatch retained, separate rounding disposition |
-| Glass table7 pairs and listed analogs | glassEvidence.portableCandidates/relevantSourceExcerpts; analysis_glass_table_catalog_candidates | Conditional d-line coordinate screen, not supplier identity |
-| Aperture15.0/15.5mm and other inferred rims | actual data.surfaces.sd; stage2GeometryAdjustments | Inferred clear radii; no source dimension claim |
-| Small finite ray and conjugate residual statement | finite_paraxial_exact_control; finiteFocusVerification.endpoint | Independent exact ray versus fixed Gaussian image, not full-aperture focus perfection |
-| Full finite aperture/geometry/render claims | actual_runtime_*; whole_motion_geometry; unequal_rim_full_rotational_clearance | Actual finite rays/production paths; finite sampling limits explicit |
-| Element L1: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[0]; parsedPayloadOpticalDiagnostics.standaloneElements[0]; analysis_elements_labels_glass_powers | ¶0010–0011; front positive sequence; no isolated aberration sign inferred from power |
-| Element L2: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[1]; parsedPayloadOpticalDiagnostics.standaloneElements[1]; analysis_elements_labels_glass_powers | ¶0010; positive meniscus; no isolated aberration sign inferred from power |
-| Element L3: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[2]; parsedPayloadOpticalDiagnostics.standaloneElements[2]; analysis_elements_labels_glass_powers | ¶0012; adjacent air-lens role; no isolated aberration sign inferred from power |
+| Analysis section / claim                                                                                         | Fact or executable result                                                                                      | Authority / qualification                                                                           |
+| ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Patent metadata block, dates and Example 1                                                                       | evidence.sources[P1]; data.patentNumber/patentAuthors/patentAssignees/patentYear                               | Original PDF p1 fields21/22/43/54/71/72; ¶0024                                                      |
+| Production correlation list and marketed85 mm/f1.8,9/7,July1992,0.85 m,0.13×                                     | productCorrelation.manufacturerClaims M01–M12                                                                  | Canon primary sources; correlation is not confirmed                                                 |
+| Architecture9 elements,7 assemblies,3 functional groups,16 interfaces,one stop                                   | F03/F04; rawPrescription; parsed data.surfaces/elements                                                        | Source table and Fig1, not a marketing-to-patent proof                                              |
+| All-spherical/no rear plates; unchanged source scale                                                             | F04; data.asph; source rearPlates/dummyPlanes; final_payload_source_mapping                                    | No omitted optical plane or synthetic cover glass                                                   |
+| Native and derived focus gaps and reference convention                                                           | F06/F07; finiteFocusVerification.endpoint; data.var                                                            | Only 850 mm image-plane reconstruction is adopted; alternatives remain diagnostic                   |
+| Conditions inequalities and printed 4.18/0.70/0.91                                                               | rawPrescription.conditions; sourceModel.conditions/comparisons                                                 | Original first-summary mismatch retained, separate rounding disposition                             |
+| Glass table 7 pairs and listed analogs                                                                           | glassEvidence.portableCandidates/relevantSourceExcerpts; analysis_glass_table_catalog_candidates               | Conditional d-line coordinate screen, not supplier identity                                         |
+| Aperture15.0/15.5 mm and other inferred rims                                                                     | actual data.surfaces.sd; stage2GeometryAdjustments                                                             | Inferred clear radii; no source dimension claim                                                     |
+| Small finite ray and conjugate residual statement                                                                | finite_paraxial_exact_control; finiteFocusVerification.endpoint                                                | Independent exact ray versus fixed Gaussian image, not full-aperture focus perfection               |
+| Full finite aperture/geometry/render claims                                                                      | actual*runtime*\*; whole_motion_geometry; unequal_rim_full_rotational_clearance                                | Actual finite rays/production paths; finite sampling limits explicit                                |
+| Element L1: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[0]; parsedPayloadOpticalDiagnostics.standaloneElements[0]; analysis_elements_labels_glass_powers | ¶0010–0011; front positive sequence; no isolated aberration sign inferred from power                |
+| Element L2: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[1]; parsedPayloadOpticalDiagnostics.standaloneElements[1]; analysis_elements_labels_glass_powers | ¶0010; positive meniscus; no isolated aberration sign inferred from power                           |
+| Element L3: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[2]; parsedPayloadOpticalDiagnostics.standaloneElements[2]; analysis_elements_labels_glass_powers | ¶0012; adjacent air-lens role; no isolated aberration sign inferred from power                      |
 | Element L4: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[3]; parsedPayloadOpticalDiagnostics.standaloneElements[3]; analysis_elements_labels_glass_powers | ¶0010–0012; negative meniscus and wording conflict; no isolated aberration sign inferred from power |
-| Element L5: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[4]; parsedPayloadOpticalDiagnostics.standaloneElements[4]; analysis_elements_labels_glass_powers | ¶0024/Fig1; moving cemented group; no isolated aberration sign inferred from power |
-| Element L6: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[5]; parsedPayloadOpticalDiagnostics.standaloneElements[5]; analysis_elements_labels_glass_powers | ¶0009/0020/0024; negative focus group; no isolated aberration sign inferred from power |
-| Element L7: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[6]; parsedPayloadOpticalDiagnostics.standaloneElements[6]; analysis_elements_labels_glass_powers | ¶0013; rear chromatic pair; no isolated aberration sign inferred from power |
-| Element L8: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[7]; parsedPayloadOpticalDiagnostics.standaloneElements[7]; analysis_elements_labels_glass_powers | ¶0013; weak-positive rear doublet; no isolated aberration sign inferred from power |
-| Element L9: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[8]; parsedPayloadOpticalDiagnostics.standaloneElements[8]; analysis_elements_labels_glass_powers | ¶0013; final positive singlet; no isolated aberration sign inferred from power |
-| Quantitative token `84.997673` | A01: implementedModel.cardinal.EFL_mm; native infinity, literal source indices | Recomputed value 84.99767305681792; format `.6f` |
-| Quantitative token `73.520000` | A02: implementedModel.cardinal.vertexTrack_mm; native infinity, literal source indices | Recomputed value 73.52; format `.6f` |
-| Quantitative token `38.905092` | A03: implementedModel.cardinal.BFD_mm; native infinity, literal source indices | Recomputed value 38.9050921339573; format `.6f` |
-| Quantitative token `112.425092` | A04: implementedModel.cardinal.firstVertexToGaussianImage_mm; native infinity, literal source indices | Recomputed value 112.42509213395729; format `.6f` |
-| Quantitative token `1.322684` | A05: implementedModel.cardinal.TL_over_EFL; native infinity, literal source indices | Recomputed value 1.3226843522975638; format `.6f` |
-| Quantitative token `+82.211212 mm` | A06_G1: sourceModel.groupPowers[0]; independently duplicated from parsedPayloadOpticalDiagnostics | Recomputed value 82.21121189007258; format `+.6f` |
-| Quantitative token `-59.521301 mm` | A06_G2: sourceModel.groupPowers[1]; independently duplicated from parsedPayloadOpticalDiagnostics | Recomputed value -59.521301175597; format `+.6f` |
-| Quantitative token `+53.873495 mm` | A06_G3: sourceModel.groupPowers[2]; independently duplicated from parsedPayloadOpticalDiagnostics | Recomputed value 53.87349494471732; format `+.6f` |
-| Quantitative token `+354.119303 mm` | A07: sourceModel.G1G2_EFL_mm, native infinity | Recomputed value 354.1193028807166; format `+.6f` |
-| Quantitative token `-59.521301 mm` | A08_L5-L6: sourceModel.cementedPowers[0], complete assembly in air | Recomputed value -59.521301175597; format `+.6f` |
-| Quantitative token `+527.257551 mm` | A08_L7-L8: sourceModel.cementedPowers[1], complete assembly in air | Recomputed value 527.2575513467962; format `+.6f` |
-| Quantitative token `11.190563 mm` | A09: finiteFocusVerification.endpoint.admissibleRoots[0].delta_mm | Recomputed value 11.19056260413962; format `.6f` |
-| Quantitative token `14.780563 mm` | A10_D9: same solved root D9_mm | Recomputed value 14.78056260413962; format `.6f` |
-| Quantitative token `5.109437 mm` | A10_D12: same solved root D12_mm | Recomputed value 5.109437395860381; format `.6f` |
-| Quantitative token `-0.127006` | A11: same root magnification, prediction not fit | Recomputed value -0.1270055436346283; format `.6f` |
-| Quantitative token `87.176243 mm` | A12: parsedPayloadOpticalDiagnostics.states[2].cardinal.EFL_mm, derived endpoint | Recomputed value 87.17624333334346; format `.6f` |
-| Quantitative token `1488.011 mm` | A13_MID: bound actual displayConjugate.states adaptive distance, pure public runtime execution | Recomputed value 1488.0113422937368; format `.3f` |
-| Quantitative token `+0.001346 mm` | A14_MID: bound actual display diagnostic axial crossing minus fixed imageZ; 0.001 paraxial EP fraction | Recomputed value 0.0013458936406891553; format `+.6f` |
-| Quantitative token `0.048817 mm` | A15_MID: bound display diagnostic transmitted axial sample max-min, not RMS/MTF | Recomputed value 0.04881720572702619; format `.6f` |
-| Quantitative token `849.820 mm` | A13_NEAR: bound actual displayConjugate.states adaptive distance, pure public runtime execution | Recomputed value 849.8203273909124; format `.3f` |
-| Quantitative token `+0.002898 mm` | A14_NEAR: bound actual display diagnostic axial crossing minus fixed imageZ; 0.001 paraxial EP fraction | Recomputed value 0.002898420236419952; format `+.6f` |
-| Quantitative token `0.080605 mm` | A15_NEAR: bound display diagnostic transmitted axial sample max-min, not RMS/MTF | Recomputed value 0.08060527853182542; format `.6f` |
-| Quantitative token `0.774688 mm` | A16: finiteFocusVerification.linearSliderConjugateDiagnostics maximum absolute Gaussian shift | Recomputed value 0.7746877602055529; format `.6f` |
-| Quantitative token `+0.002143551 mm⁻¹` | A17: surface-by-surface phi/(n*nPrime) sum | Recomputed value 0.0021435510361374984; format `+.9f` |
-| Quantitative token `466.516 mm` | A18: reciprocal Petzval sum, not astigmatic field surface | Recomputed value 466.51560104765093; format `.3f` |
-| Quantitative token `4.166223` | A19_1: sourceModel.conditions[0], native infinity | Recomputed value 4.166223499365688; format `.6f` |
-| Quantitative token `0.700270` | A19_2: sourceModel.conditions[1], native infinity | Recomputed value 0.7002697725125855; format `.6f` |
-| Quantitative token `0.905113` | A19_3: sourceModel.conditions[2], native infinity | Recomputed value 0.905112856753286; format `.6f` |
-| Quantitative token `23.610465 mm` | A20_EP: exact native nominal pupil f/(2FNO) | Recomputed value 23.610464738004975; format `.6f` |
-| Quantitative token `14.995052 mm` | A20_IRIS: exact axial nominal ray intercept at native STO | Recomputed value 14.99505235655693; format `.6f` |
-| Quantitative token `14.593623 mm` | A20_PARA: paraxial stop calibration only | Recomputed value 14.593622749321646; format `.6f` |
-| Quantitative token `21.377161 mm` | A21: native 14.3deg exact source-index chief at fixed Gaussian plane | Recomputed value 21.377160813471235; format `.6f` |
-| Quantitative token `21.633308 mm` | A22_CORNER: actual runtime format corner radius | Recomputed value 21.633307652783937; format `.6f` |
-| Quantitative token `14.472310°` | A22_ANGLE: actual runtime native corner chief angle | Recomputed value 14.472309517417045; format `.6f` |
-| Quantitative token `0.00047` | A24_NBK7_DELTA: sourceModel.glassResiduals SCHOTT N-BK7 minus literal L6 index | Recomputed value 0.00046999999999997044; format `.5f` |
-| Quantitative token `1.51680` | A24_NBK7_N: catalog N-BK7 index from verified residual plus parsed L6 native N | Recomputed value 1.5168; format `.5f` |
-| Quantitative token `3.590000 mm` | A23_STO: parsed actual native var[STO][0] | Recomputed value 3.59; format `.6f` |
-| Quantitative token `16.300000 mm` | A23_12: parsed actual native var[12][0] | Recomputed value 16.3; format `.6f` |
+| Element L5: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[4]; parsedPayloadOpticalDiagnostics.standaloneElements[4]; analysis_elements_labels_glass_powers | ¶0024/Fig1; moving cemented group; no isolated aberration sign inferred from power                  |
+| Element L6: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[5]; parsedPayloadOpticalDiagnostics.standaloneElements[5]; analysis_elements_labels_glass_powers | ¶0009/0020/0024; negative focus group; no isolated aberration sign inferred from power              |
+| Element L7: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[6]; parsedPayloadOpticalDiagnostics.standaloneElements[6]; analysis_elements_labels_glass_powers | ¶0013; rear chromatic pair; no isolated aberration sign inferred from power                         |
+| Element L8: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[7]; parsedPayloadOpticalDiagnostics.standaloneElements[7]; analysis_elements_labels_glass_powers | ¶0013; weak-positive rear doublet; no isolated aberration sign inferred from power                  |
+| Element L9: first-line native coordinates, Unmatched label and signed standalone focal length; interpretive role | data.elements[8]; parsedPayloadOpticalDiagnostics.standaloneElements[8]; analysis_elements_labels_glass_powers | ¶0013; final positive singlet; no isolated aberration sign inferred from power                      |
+| Quantitative token `84.997673`                                                                                   | A01: implementedModel.cardinal.EFL_mm; native infinity, literal source indices                                 | Recomputed value 84.99767305681792; format `.6f`                                                    |
+| Quantitative token `73.520000`                                                                                   | A02: implementedModel.cardinal.vertexTrack_mm; native infinity, literal source indices                         | Recomputed value 73.52; format `.6f`                                                                |
+| Quantitative token `38.905092`                                                                                   | A03: implementedModel.cardinal.BFD_mm; native infinity, literal source indices                                 | Recomputed value 38.9050921339573; format `.6f`                                                     |
+| Quantitative token `112.425092`                                                                                  | A04: implementedModel.cardinal.firstVertexToGaussianImage_mm; native infinity, literal source indices          | Recomputed value 112.42509213395729; format `.6f`                                                   |
+| Quantitative token `1.322684`                                                                                    | A05: implementedModel.cardinal.TL_over_EFL; native infinity, literal source indices                            | Recomputed value 1.3226843522975638; format `.6f`                                                   |
+| Quantitative token `+82.211212 mm`                                                                               | A06_G1: sourceModel.groupPowers[0]; independently duplicated from parsedPayloadOpticalDiagnostics              | Recomputed value 82.21121189007258; format `+.6f`                                                   |
+| Quantitative token `-59.521301 mm`                                                                               | A06_G2: sourceModel.groupPowers[1]; independently duplicated from parsedPayloadOpticalDiagnostics              | Recomputed value -59.521301175597; format `+.6f`                                                    |
+| Quantitative token `+53.873495 mm`                                                                               | A06_G3: sourceModel.groupPowers[2]; independently duplicated from parsedPayloadOpticalDiagnostics              | Recomputed value 53.87349494471732; format `+.6f`                                                   |
+| Quantitative token `+354.119303 mm`                                                                              | A07: sourceModel.G1G2_EFL_mm, native infinity                                                                  | Recomputed value 354.1193028807166; format `+.6f`                                                   |
+| Quantitative token `-59.521301 mm`                                                                               | A08_L5-L6: sourceModel.cementedPowers[0], complete assembly in air                                             | Recomputed value -59.521301175597; format `+.6f`                                                    |
+| Quantitative token `+527.257551 mm`                                                                              | A08_L7-L8: sourceModel.cementedPowers[1], complete assembly in air                                             | Recomputed value 527.2575513467962; format `+.6f`                                                   |
+| Quantitative token `11.190563 mm`                                                                                | A09: finiteFocusVerification.endpoint.admissibleRoots[0].delta_mm                                              | Recomputed value 11.19056260413962; format `.6f`                                                    |
+| Quantitative token `14.780563 mm`                                                                                | A10_D9: same solved root D9_mm                                                                                 | Recomputed value 14.78056260413962; format `.6f`                                                    |
+| Quantitative token `5.109437 mm`                                                                                 | A10_D12: same solved root D12_mm                                                                               | Recomputed value 5.109437395860381; format `.6f`                                                    |
+| Quantitative token `-0.127006`                                                                                   | A11: same root magnification, prediction not fit                                                               | Recomputed value -0.1270055436346283; format `.6f`                                                  |
+| Quantitative token `87.176243 mm`                                                                                | A12: parsedPayloadOpticalDiagnostics.states[2].cardinal.EFL_mm, derived endpoint                               | Recomputed value 87.17624333334346; format `.6f`                                                    |
+| Quantitative token `1488.011 mm`                                                                                 | A13_MID: bound actual displayConjugate.states adaptive distance, pure public runtime execution                 | Recomputed value 1488.0113422937368; format `.3f`                                                   |
+| Quantitative token `+0.001346 mm`                                                                                | A14_MID: bound actual display diagnostic axial crossing minus fixed imageZ; 0.001 paraxial EP fraction         | Recomputed value 0.0013458936406891553; format `+.6f`                                               |
+| Quantitative token `0.048817 mm`                                                                                 | A15_MID: bound display diagnostic transmitted axial sample max-min, not RMS/MTF                                | Recomputed value 0.04881720572702619; format `.6f`                                                  |
+| Quantitative token `849.820 mm`                                                                                  | A13_NEAR: bound actual displayConjugate.states adaptive distance, pure public runtime execution                | Recomputed value 849.8203273909124; format `.3f`                                                    |
+| Quantitative token `+0.002898 mm`                                                                                | A14_NEAR: bound actual display diagnostic axial crossing minus fixed imageZ; 0.001 paraxial EP fraction        | Recomputed value 0.002898420236419952; format `+.6f`                                                |
+| Quantitative token `0.080605 mm`                                                                                 | A15_NEAR: bound display diagnostic transmitted axial sample max-min, not RMS/MTF                               | Recomputed value 0.08060527853182542; format `.6f`                                                  |
+| Quantitative token `0.774688 mm`                                                                                 | A16: finiteFocusVerification.linearSliderConjugateDiagnostics maximum absolute Gaussian shift                  | Recomputed value 0.7746877602055529; format `.6f`                                                   |
+| Quantitative token `+0.002143551 mm⁻¹`                                                                           | A17: surface-by-surface phi/(n\*nPrime) sum                                                                    | Recomputed value 0.0021435510361374984; format `+.9f`                                               |
+| Quantitative token `466.516 mm`                                                                                  | A18: reciprocal Petzval sum, not astigmatic field surface                                                      | Recomputed value 466.51560104765093; format `.3f`                                                   |
+| Quantitative token `4.166223`                                                                                    | A19_1: sourceModel.conditions[0], native infinity                                                              | Recomputed value 4.166223499365688; format `.6f`                                                    |
+| Quantitative token `0.700270`                                                                                    | A19_2: sourceModel.conditions[1], native infinity                                                              | Recomputed value 0.7002697725125855; format `.6f`                                                   |
+| Quantitative token `0.905113`                                                                                    | A19_3: sourceModel.conditions[2], native infinity                                                              | Recomputed value 0.905112856753286; format `.6f`                                                    |
+| Quantitative token `23.610465 mm`                                                                                | A20_EP: exact native nominal pupil f/(2FNO)                                                                    | Recomputed value 23.610464738004975; format `.6f`                                                   |
+| Quantitative token `14.995052 mm`                                                                                | A20_IRIS: exact axial nominal ray intercept at native STO                                                      | Recomputed value 14.99505235655693; format `.6f`                                                    |
+| Quantitative token `14.593623 mm`                                                                                | A20_PARA: paraxial stop calibration only                                                                       | Recomputed value 14.593622749321646; format `.6f`                                                   |
+| Quantitative token `21.377161 mm`                                                                                | A21: native 14.3deg exact source-index chief at fixed Gaussian plane                                           | Recomputed value 21.377160813471235; format `.6f`                                                   |
+| Quantitative token `21.633308 mm`                                                                                | A22_CORNER: actual runtime format corner radius                                                                | Recomputed value 21.633307652783937; format `.6f`                                                   |
+| Quantitative token `14.472310°`                                                                                  | A22_ANGLE: actual runtime native corner chief angle                                                            | Recomputed value 14.472309517417045; format `.6f`                                                   |
+| Quantitative token `0.00047`                                                                                     | A24_NBK7_DELTA: sourceModel.glassResiduals SCHOTT N-BK7 minus literal L6 index                                 | Recomputed value 0.00046999999999997044; format `.5f`                                               |
+| Quantitative token `1.51680`                                                                                     | A24_NBK7_N: catalog N-BK7 index from verified residual plus parsed L6 native N                                 | Recomputed value 1.5168; format `.5f`                                                               |
+| Quantitative token `3.590000 mm`                                                                                 | A23_STO: parsed actual native var[STO][0]                                                                      | Recomputed value 3.59; format `.6f`                                                                 |
+| Quantitative token `16.300000 mm`                                                                                | A23_12: parsed actual native var[12][0]                                                                        | Recomputed value 16.3; format `.6f`                                                                 |
 
 ## Stage3 checks and disclosure
 
 The portable checker reads the actual final data and analysis. It checks metadata, section order, all nine element indices/Abbe/glass/power lines, seven glass-pair rows, conditional catalog candidates, source condition rows, quantitative rounding, required uncertainty disclosures and portable citations. It detects an intentionally changed EFL in temporary analysis text. Manual interpretive review is separately bound to the exact analysis and data hashes.
 
-All142 checks currently comprise138 PASS and4 integration-only NOT_RUN. The four unperformed checks are the actual TypeScript compiler, Prettier, browser acceptance and full build. Stage2 real buildLens/validator/exact tracer/render and adaptive launch execution are retained as byte-bound prior evidence, not falsely reported as new Stage3 executions. Stage3 reruns the portable numerical code and analysis gates only.
+All 142 checks currently comprise138 PASS and 4 integration-only NOT_RUN. The four unperformed checks are the actual TypeScript compiler, Prettier, browser acceptance and full build. Stage2 real buildLens/validator/exact tracer/render and adaptive launch execution are retained as byte-bound prior evidence, not falsely reported as new Stage3 executions. Stage3 reruns the portable numerical code and analysis gates only.
 
 The canonical package is ten files, including the original patent/card, unchanged data, new analysis, evidence/verifier/results/audit/manifest and the compact actual-runtime receipt. Complete source/catalog/runtime/trial evidence remains in the three previously verified support volumes, referenced by exact hashes; no catalog binary or runtime tree was recopied for Stage3. A small new support volume retains Stage3 authoring scripts and entry/final replay records.
 
@@ -118,35 +118,35 @@ The source's 0.8 m aberration-plot label remains 0.8 m with undefined origin. Al
 
 All clear semi-diameters are inferred. The native iris radius is 14.995052356557 mm, calibrated with the exact native f/1.8 entrance-pupil ray. Reproducing that f-number is a calibration check, not independent evidence of physical iris diameter. The source N/nu line reference remains unspecified; every glass is Unmatched with indexReferenceNote, and no supplier identity or direct spectral values are invented.
 
-Previously verified unequal R7/R8 rims 20.4/19.6 mm preserve full axial admission while keeping the entire L4 outline 0.111076238466 mm before the fixed stop plane. The inferred R13 front rim remains 15 mm, versus R14/R15 at17 mm. Source Fig1 qualitatively supports a stepped rear-doublet front silhouette, without providing dimensions.
+Previously verified unequal R7/R8 rims 20.4/19.6 mm preserve full axial admission while keeping the entire L4 outline 0.111076238466 mm before the fixed stop plane. The inferred R13 front rim remains 15 mm, versus R14/R15 at 17 mm. Source Fig1 qualitatively supports a stepped rear-doublet front silhouette, without providing dimensions.
 
-Finite-state checks with the prior inferred R10=15.5 mm found four first clips at cemented R11: one at focusT=.75/source14.3 degrees, and three at focusT=1/format-corner12.726984 degrees. Exact ring, azimuth and R10/R11 hit coordinates are preserved in evidence and full trial output. R10 hit radii were 15.378952–15.465980 mm, with shared R11 hits15.540754–15.622066 mm. Reducing only the air-facing inferred R10 clear radius to15.0 mm intercepts these rays before the shared interface; R11/R12 stay15.5 mm. Native axial R10 maximum14.233019932 mm is retained, so the published native f/1.8 beam is not narrowed. The original Fig1 G2 outline is schematic and does not establish this0.5 mm reduction: it is an explicit conservative aperture model, not recovered manufacturing geometry. No published source number changed and no aperture was enlarged to force beam passage.
+Finite-state checks with the prior inferred R10=15.5 mm found four first clips at cemented R11: one at focusT=.75/source 14.3 degrees, and three at focusT=1/format-corner12.726984 degrees. Exact ring, azimuth and R10/R11 hit coordinates are preserved in evidence and full trial output. R10 hit radii were 15.378952–15.465980 mm, with shared R11 hits15.540754–15.622066 mm. Reducing only the air-facing inferred R10 clear radius to 15.0 mm intercepts these rays before the shared interface; R11/R12 stay15.5 mm. Native axial R10 maximum14.233019932 mm is retained, so the published native f/1.8 beam is not narrowed. The original Fig1 G2 outline is schematic and does not establish this0.5 mm reduction: it is an explicit conservative aperture model, not recovered manufacturing geometry. No published source number changed and no aperture was enlarged to force beam passage.
 
-The final payload passes actual buildLens and validateLensData. Independent checks evaluate101 focus positions and257 shared-band radial samples, with positive solid thickness/domain/rim slope checks. Solid shapes are fixed; each moving air-gap separation is affine and its extrema occur at the endpoints, giving a full-motion non-collision bound beyond the sample grid. Maximum sampled cross-gap intrusion fraction is 0.701142454854, below the retained0.9 default. No gap-sag override was needed.
+The final payload passes actual buildLens and validateLensData. Independent checks evaluate101 focus positions and 257 shared-band radial samples, with positive solid thickness/domain/rim slope checks. Solid shapes are fixed; each moving air-gap separation is affine and its extrema occur at the endpoints, giving a full-motion non-collision bound beyond the sample grid. Maximum sampled cross-gap intrusion fraction is 0.701142454854, below the retained 0.9 default. No gap-sag override was needed.
 
-Actual production render diagnostics at21 states report zero hidden trim. Actual production element paths at infinity, midpoint and near focus were rendered and visually inspected alongside original Fig1. This verifies the production geometry implementation, not browser acceptance.
+Actual production render diagnostics at 21 states report zero hidden trim. Actual production element paths at infinity, midpoint and near focus were rendered and visually inspected alongside original Fig1. This verifies the production geometry implementation, not browser acceptance.
 
 ## Real finite rays and physical endpoint controls
 
-The actual pinned public exact tracer evaluated 27,792 incoming-plane pupil-disk samples over eight focus positions, six fields (including the source14.3-degree field and separately solved full-frame corner) and f/1.8, f/4, f/16 iris settings. Real rims and iris remain active; tracing stops at clipping, without ghost continuation. There are no intersection failures, first clips at shared R11/R14, fallback intersections or transmitted-glass containment violations. Each transmitted material segment is sampled at33 points against its actual rotational outline, including unequal-rim edge connections. Full physical iris admission on axis and all sampled source/format chiefs pass. These finite samples are not a proof of continuous pupil transmission or photometric illumination.
+The actual pinned public exact tracer evaluated 27,792 incoming-plane pupil-disk samples over eight focus positions, six fields (including the source 14.3-degree field and separately solved full-frame corner) and f/1.8, f/4, f/16 iris settings. Real rims and iris remain active; tracing stops at clipping, without ghost continuation. There are no intersection failures, first clips at shared R11/R14, fallback intersections or transmitted-glass containment violations. Each transmitted material segment is sampled at 33 points against its actual rotational outline, including unequal-rim edge connections. Full physical iris admission on axis and all sampled source/format chiefs pass. These finite samples are not a proof of continuous pupil transmission or photometric illumination.
 
-The near full-frame corner is reached by a finite-object chief at 12.726984420937 degrees, separately from the source14.3-degree angular diagnostic. Near full-iris axial image intercepts span [-0.05342080816126149, 0.05342080816130945] mm at the unchanged image plane. This finite spherical-aberration spread is reported, not corrected with image motion. An independently traced0.001 mm finite axial launch intersects the axis at112.425092133056 mm, agreeing with the fixed Gaussian endpoint; full-height rays retain their physical aberrations.
+The near full-frame corner is reached by a finite-object chief at 12.726984420937 degrees, separately from the source 14.3-degree angular diagnostic. Near full-iris axial image intercepts span [-0.05342080816126149, 0.05342080816130945] mm at the unchanged image plane. This finite spherical-aberration spread is reported, not corrected with image motion. An independently traced0.001 mm finite axial launch intersects the axis at 112.425092133056 mm, agreeing with the fixed Gaussian endpoint; full-height rays retain their physical aberrations.
 
-The portable verifier independently traces2,646 finite-rim bundle rays using analytic sphere intersections and vector Snell law, alongside chiefs and axial controls. Its chiefs agree with the pinned public tracer within1e-6 mm. Final-file source mapping, sequential/matrix first-order quantities, powers, pupils, Petzval and source conditions are recalculated from the actual parsed payload. The literal parser rejects seven malformed syntax fixtures; a source-radius mutation and impossible-SD runtime mutation are detected.
+The portable verifier independently traces2,646 finite-rim bundle rays using analytic sphere intersections and vector Snell law, alongside chiefs and axial controls. Its chiefs agree with the pinned public tracer within 1e-6 mm. Final-file source mapping, sequential/matrix first-order quantities, powers, pupils, Petzval and source conditions are recalculated from the actual parsed payload. The literal parser rejects seven malformed syntax fixtures; a source-radius mutation and impossible-SD runtime mutation are detected.
 
 ## Slider labels versus actual tracking-focus fan
 
 The approved two-keyframe motion linearly interpolates the two G2 gaps. The runtime distance label is estimated as850/focusT mm. Direct finite-object checking against that label gives a maximum Gaussian image shift magnitude 0.774687760206 mm over100 sampled nonzero slider positions, including -0.772995236060 mm at focusT=.5. The original two-endpoint diagnostic is preserved. This label-derived discrepancy is not assigned to the displayed tracking fan and is not used as an invented universal zero-focus gate.
 
-Actual `conjugateK2` computes a current-state exact-ray sensitivity at0.1 of the paraxial entrance pupil and subtracts the infinity baseline. The verified on-axis hook arithmetic launches u=h*focusK; off-axis adds this correction to the public solved-chief slope. These pure runtime functions and launch arithmetic were executed; React hooks and browser were not.
+Actual `conjugateK2` computes a current-state exact-ray sensitivity at 0.1 of the paraxial entrance pupil and subtracts the infinity baseline. The verified on-axis hook arithmetic launches u=h\*focusK; off-axis adds this correction to the public solved-chief slope. These pure runtime functions and launch arithmetic were executed; React hooks and browser were not.
 
-At focusT=.5, adaptive object-to-image distance is1488.011342294 mm versus the1700 mm label. The +0.001-pupil-fraction ray has +0.001345894 mm axial shift, while the sampled transmitted displayed axial fan spans0.048817206 mm. At focusT=1, adaptive distance is849.820327391 mm versus850 mm, the same small fraction shifts+0.002898420 mm, and the fan spans0.080605279 mm. These fan widths include residual spherical aberration. Some extreme UI pupil samples clip because its state pupil estimate is paraxial; those clipped rays and ghost outputs are retained in the display diagnostic and excluded from transmitted width. No change to source, group motion or image plane was made to suppress any effect.
+At focusT=.5, adaptive object-to-image distance is1488.011342294 mm versus the 1700 mm label. The +0.001-pupil-fraction ray has +0.001345894 mm axial shift, while the sampled transmitted displayed axial fan spans0.048817206 mm. At focusT=1, adaptive distance is849.820327391 mm versus850 mm, the same small fraction shifts+0.002898420 mm, and the fan spans0.080605279 mm. These fan widths include residual spherical aberration. Some extreme UI pupil samples clip because its state pupil estimate is paraxial; those clipped rays and ghost outputs are retained in the display diagnostic and excluded from transmitted width. No change to source, group motion or image plane was made to suppress any effect.
 
 The parent confirmed retention of the approved two endpoints after reviewing these measured distinctions. No intermediate reconstructed states were inserted.
 
 ## Provenance, trials and replay
 
-Full original/catalog/manufacturer evidence and175 exact pinned runtime-source hashes are retained through the explicitly hashed reusable prior support archives. The new support volume holds all unique completion scripts, full ray outputs, display diagnostics, figures and trials. The initial exploratory stop-target method and an off-by-one stop-count checker defect are preserved and explicitly invalidated; the corrected checker uses stopAt9, matching the actual API's surface count. No lens alteration was based on invalid trial02 output.
+Full original/catalog/manufacturer evidence and 175 exact pinned runtime-source hashes are retained through the explicitly hashed reusable prior support archives. The new support volume holds all unique completion scripts, full ray outputs, display diagnostics, figures and trials. The initial exploratory stop-target method and an off-by-one stop-count checker defect are preserved and explicitly invalidated; the corrected checker uses stopAt9, matching the actual API's surface count. No lens alteration was based on invalid trial 02 output.
 
 The canonical dossier has nine root files. Its manifest binds final data, evidence, verifier, results and compact actual-runtime receipts. Safe exact-member extraction, CRC and SHA-256 checks plus independent clean portable/runtime/catalog replays are required before handoff. Outputs go outside extracted canonical files. All source/runtime dependency bytes are verified before replay. No uploads, repository edits, integration, publication, Stage3 or Stage4 were performed.
 
@@ -198,28 +198,28 @@ Canon primary sources verify EF mount, full-frame format, July 1992 introduction
 Convergence supports the user-selected correlation but does not establish manufacturer-confirmed attribution of this exact patent example. Canon's generic rear-focusing description places the focus group behind the diaphragm, without identifying this lens's numbered moving elements. Patent 0.8 m and marketed 0.85 m remain separate. Complete original Canon HTML/PDF/diagram sources and retrieval hashes are preserved.
 
 - [Canon Museum](https://global.canon/en/c-museum/product/ef313.html)
-- [Canon USA specifications](https://www.usa.canon.com/support/p/ef-85mm-f-1-8-usm)
+- [Canon USA specifications](https://www.usa.canon.com/support/p/ef-85 mm-f-1-8-usm)
 - [Canon 2018 EF catalogue](https://asia.canon/media/document/2023/08/25/ac24e05e0718479ea233d5c19cb197c6_Canon_EF_Lens_Catalogue_2018.pdf)
 
 ## Numerical and geometry results
 
 These are literal-source monochromatic calculations at infinity. Sequential height/reduced-angle updates and separately implemented ABCD multiplication agree. Isolated element powers also agree with the thick-lens formula. Vector-Snell exact sphere tracing passes plane-refraction and small-ray Gaussian controls.
 
-| Quantity | Computed result | Reference |
-|---|---:|---|
-| EFL | 84.997673057 mm | Literal N; source 85.0 mm |
-| Gaussian BFD | 38.905092134 mm | From R17; derived, not published |
-| First-to-last vertex track | 73.52000 mm | Sum D1-D16 |
-| First vertex to Gaussian image | 112.425092134 mm | Derived |
-| Front principal plane | 57.047359122 mm | From first vertex |
-| Rear principal plane | 27.427419077 mm | From first vertex |
-| TL/EFL | 1.322684352 | Geometric telephoto criterion not met |
-| BFD/EFL | 0.457719497 | Not retrofocus by BFD>EFL |
-| G1 EFL | 82.211211890 mm | R1-R8 isolated in air |
-| G2 EFL | -59.521301176 mm | R10-R12 isolated in air |
-| G3 EFL | 53.873494945 mm | R13-R17 isolated in air |
-| G1+G2 EFL | 354.119302881 mm | R1-R12 |
-| Petzval sum | 0.002143551036 /mm | Sum phi/(n*nPrime), all interfaces |
+| Quantity                       |    Computed result | Reference                             |
+| ------------------------------ | -----------------: | ------------------------------------- |
+| EFL                            |    84.997673057 mm | Literal N; source 85.0 mm             |
+| Gaussian BFD                   |    38.905092134 mm | From R17; derived, not published      |
+| First-to-last vertex track     |        73.52000 mm | Sum D1-D16                            |
+| First vertex to Gaussian image |   112.425092134 mm | Derived                               |
+| Front principal plane          |    57.047359122 mm | From first vertex                     |
+| Rear principal plane           |    27.427419077 mm | From first vertex                     |
+| TL/EFL                         |        1.322684352 | Geometric telephoto criterion not met |
+| BFD/EFL                        |        0.457719497 | Not retrofocus by BFD>EFL             |
+| G1 EFL                         |    82.211211890 mm | R1-R8 isolated in air                 |
+| G2 EFL                         |   -59.521301176 mm | R10-R12 isolated in air               |
+| G3 EFL                         |    53.873494945 mm | R13-R17 isolated in air               |
+| G1+G2 EFL                      |   354.119302881 mm | R1-R12                                |
+| Petzval sum                    | 0.002143551036 /mm | Sum phi/(n\*nPrime), all interfaces   |
 
 The title's “telephoto” wording remains a source title/focal-length-class description; it is not used to override the numerical TL/EFL criterion. The prescription's first-vertex-to-image length is distinct from Canon's external barrel length.
 
@@ -227,9 +227,9 @@ Calculated f12/f=4.166223499, |f2|/f=0.700269773, and f3/|f2|=0.905112857. All t
 
 The entrance pupil is at z=35.464349247 mm, with stop-image magnification 1.617861798; the exit pupil is at z=-1.501310098 mm from the first vertex, with magnification 2.168496705. Both conjugate B=0 equations pass. A paraxial f/1.8-calibrated stop radius is 14.593622749 mm. This is calibration, not independent aperture evidence.
 
-Exact pupil aberration is material to Stage 2: that paraxial stop intercept corresponds to an incoming axial radius 23.011038815 mm, whereas EFL/(2*1.8) is 23.610464738 mm and reaches the stop at 14.995052357 mm. These alternatives are diagnostics, not two source stops. No final iris convention was chosen.
+Exact pupil aberration is material to Stage 2: that paraxial stop intercept corresponds to an incoming axial radius 23.011038815 mm, whereas EFL/(2\*1.8) is 23.610464738 mm and reaches the stop at 14.995052357 mm. These alternatives are diagnostics, not two source stops. No final iris convention was chosen.
 
-At the derived Gaussian image plane the sampled exact axial marginal-ray longitudinal departure is -0.034531385 mm, and the 0.75 pupil sample departs by -0.056426124 mm. These are spherical-aberration diagnostics, not a zero-Gaussian-focus rule or a reason to move the image plane. The exact 14.3-degree chief reaches 21.377160813 mm versus f*tan(14.3)=21.665635189 mm (-1.331484%); no source image-height or digitized aberration curve is claimed.
+At the derived Gaussian image plane the sampled exact axial marginal-ray longitudinal departure is -0.034531385 mm, and the 0.75 pupil sample departs by -0.056426124 mm. These are spherical-aberration diagnostics, not a zero-Gaussian-focus rule or a reason to move the image plane. The exact 14.3-degree chief reaches 21.377160813 mm versus f\*tan(14.3)=21.665635189 mm (-1.331484%); no source image-height or digitized aberration curve is claimed.
 
 Source geometry feasibility was tested using the exact nominal-pupil axial ray and chief rays at 0, 7.15 and 14.3 degrees, equalizing square-cut assembly rims. The resulting lower-bound diagnostic geometry has minimum edge thickness 1.452379282 mm, maximum rim angle 48.365948 degrees and maximum shared-band intrusion fraction 0.656240231, at R6/R7. No gap-sag override was necessary. These are not final authored SDs, tolerance margins or production-render approval.
 
@@ -247,17 +247,17 @@ Unrimmed exploratory stop-pupil samples trace 49/49 at 0 and 7.15 degrees, and 3
 
 ## Quantitative-claim map and prose review
 
-| Audit claim | Executed/source record | Governing input |
-|---|---|---|
-| EFL, BFD, track, principal planes, geometric ratios | sourceModel.cardinal; facts F01/F02/F05 | Literal evidence.rawPrescription |
-| Element and cemented powers | sourceModel.standaloneElements/cementedPowers | Literal source R/d/N; air isolation disclosed |
-| Group powers and conditions | sourceModel.groupPowers/G1G2_EFL_mm/conditions; comparisons | Source groups, conditions and table |
-| Petzval | sourceModel.petzval.surfaces/sum_per_mm | Every applicable source interface |
-| Pupils and calibrated aperture | sourceModel.pupils/apertureDiagnostic | Source R9 station and FNO; diameter inferred |
-| Exact rays and geometry | sourceModel.axialRayDiagnostics/chiefRays/geometryDiagnostic/unrimmedExploratoryBundles | Literal source plus explicitly diagnostic aperture inputs |
-| Counts/aspheres/focus status | facts F03/F04/F06/F07; rawPrescription/focus | Full rendered patent |
-| Glass coordinates/spectral limitations | evidence.glassEvidence; sourceModel.glassResiduals | Authoritative preserved catalog cells/AGF records |
-| Product specs/timing/correlation | evidence.productCorrelation.manufacturerClaims; fact F08 | Preserved primary Canon sources |
+| Audit claim                                         | Executed/source record                                                                  | Governing input                                           |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| EFL, BFD, track, principal planes, geometric ratios | sourceModel.cardinal; facts F01/F02/F05                                                 | Literal evidence.rawPrescription                          |
+| Element and cemented powers                         | sourceModel.standaloneElements/cementedPowers                                           | Literal source R/d/N; air isolation disclosed             |
+| Group powers and conditions                         | sourceModel.groupPowers/G1G2_EFL_mm/conditions; comparisons                             | Source groups, conditions and table                       |
+| Petzval                                             | sourceModel.petzval.surfaces/sum_per_mm                                                 | Every applicable source interface                         |
+| Pupils and calibrated aperture                      | sourceModel.pupils/apertureDiagnostic                                                   | Source R9 station and FNO; diameter inferred              |
+| Exact rays and geometry                             | sourceModel.axialRayDiagnostics/chiefRays/geometryDiagnostic/unrimmedExploratoryBundles | Literal source plus explicitly diagnostic aperture inputs |
+| Counts/aspheres/focus status                        | facts F03/F04/F06/F07; rawPrescription/focus                                            | Full rendered patent                                      |
+| Glass coordinates/spectral limitations              | evidence.glassEvidence; sourceModel.glassResiduals                                      | Authoritative preserved catalog cells/AGF records         |
+| Product specs/timing/correlation                    | evidence.productCorrelation.manufacturerClaims; fact F08                                | Preserved primary Canon sources                           |
 
 Manual prose review checked the distinctions between marketed versus design quantities, seven optical assemblies versus three functional groups, standalone versus cemented powers, published versus derived values, and source assertion versus inference. No analysis.md or metadata strings for a production data file exist yet.
 
@@ -277,14 +277,13 @@ Integration status: INTEGRATION_PENDING (closed 2026-10-12: deployed to `src/len
 
 Exact archive membership, byte hashes, UTF-8/JSON validity, ZIP CRC, safe extraction and clean replay are checked in the external package receipt. Numerical replay comparisons exclude only environment/run-time metadata and otherwise compare the complete output. Manifest/archive hashes are external to avoid circular hashing.
 
-
 ---
 
-# Lens Patent — Canon EF85mm f/1.8 USM — Independent Pass A
+# Lens Patent — Canon EF85 mm f/1.8 USM — Independent Pass A
 
 ## Job and controlling references
 
-The original card fixes JPH05157964A, Numerical Example 1, Canon EF85mm f/1.8 USM, and output stem `CanonEF85mmf18USM`. The original PDF and card are included without byte changes. Shared CHAT-1.0 protocol/dossier/Stage 4 instructions and the supplied LensVisualizer references at commit `d8b406ce112931ab0b2988b87acbd13b0b663c7e` govern this checkpoint. Their exact hashes and the complete source-support archive are identified in the manifest. This is cloud-only source research, not repository integration.
+The original card fixes JPH05157964A, Numerical Example 1, Canon EF85 mm f/1.8 USM, and output stem `CanonEF85mmf18USM`. The original PDF and card are included without byte changes. Shared CHAT-1.0 protocol/dossier/Stage 4 instructions and the supplied LensVisualizer references at commit `d8b406ce112931ab0b2988b87acbd13b0b663c7e` govern this checkpoint. Their exact hashes and the complete source-support archive are identified in the manifest. This is cloud-only source research, not repository integration.
 
 ## Exposure and independence
 
@@ -304,18 +303,18 @@ The source first-page metadata gives applicant キヤノン株式会社 (Canon I
 
 All quantities below are calculated from the untouched source table; see `results.sourceModel`.
 
-| Quantity | Independent result | Reference |
-|---|---:|---|
-| Infinity EFL | 84.9976730568 mm | Principal-plane focal length in air |
-| Infinity BFD | 38.9050921340 mm | R17 vertex to paraxial image |
-| Vertex track | 73.5200000000 mm | R1 vertex to R17 vertex |
-| Infinity total track | 112.4250921340 mm | R1 vertex to image |
-| TL/EFL | 1.3226843523 | Includes BFD |
-| BFD/EFL | 0.4577194967 | Same infinity state |
-| G1 / G2 / G3 EFL | +82.2112118901 / −59.5213011756 / +53.8734949447 mm | Isolated functional groups in air |
-| G1+G2 EFL | +354.1193028807 mm | Actual infinity separation |
-| E7/E8 cemented net EFL | +527.2575513468 mm | Weak positive doublet |
-| Petzval sum | +0.00214355103614 mm⁻¹ | Sum of φ/(n·n′) over every refracting surface |
+| Quantity               |                                  Independent result | Reference                                     |
+| ---------------------- | --------------------------------------------------: | --------------------------------------------- |
+| Infinity EFL           |                                    84.9976730568 mm | Principal-plane focal length in air           |
+| Infinity BFD           |                                    38.9050921340 mm | R17 vertex to paraxial image                  |
+| Vertex track           |                                    73.5200000000 mm | R1 vertex to R17 vertex                       |
+| Infinity total track   |                                   112.4250921340 mm | R1 vertex to image                            |
+| TL/EFL                 |                                        1.3226843523 | Includes BFD                                  |
+| BFD/EFL                |                                        0.4577194967 | Same infinity state                           |
+| G1 / G2 / G3 EFL       | +82.2112118901 / −59.5213011756 / +53.8734949447 mm | Isolated functional groups in air             |
+| G1+G2 EFL              |                                  +354.1193028807 mm | Actual infinity separation                    |
+| E7/E8 cemented net EFL |                                  +527.2575513468 mm | Weak positive doublet                         |
+| Petzval sum            |                              +0.00214355103614 mm⁻¹ | Sum of φ/(n·n′) over every refracting surface |
 
 “Medium telephoto” may describe the production focal-length class and patent title. A compact telephoto claim under TL/EFL < 1 is unsupported at the identified planes. The system is also not retrofocus under BFD > EFL.
 
@@ -390,7 +389,6 @@ The source baseline passes its numerical, analytical fixture, method agreement, 
 No candidate was available within the source-only boundary. Candidate reconciliation, authored semi-diameter geometry, exact containment with those rims, schema/type checks, actual buildLens/validateLensData, production render-trim, runtime glass resolution, actual tracking-focus launches, and candidate analysis consistency remain unperformed. No portable calculation is labeled a production-engine test. Full integration/build/corpus gates remain integration work and are not run here.
 
 **Disposition: Pass A independent source baseline complete; candidate release required. No READY_FOR_BATCH claim. Integration status: INTEGRATION_PENDING (closed 2026-10-12).**
-
 
 ---
 
@@ -472,7 +470,7 @@ Close focus. An independent paraxial solve for 850 mm object-to-image distance g
 
 Repo checks on the deployed file. The surface audit reports no errors, the image-circle audit reports no undersized circle, and field coverage is 100 % (14.5° reaches 21.65 mm). A real-ray clearance trace at 21.63 mm image height shows no clipped axial beam and no blocked chief ray at infinity or at 0.85 m. The meridional fan at the corner is 41 % of the axial width at f/1.8.
 
-Maker diagram. Canon Camera Museum lists the EF85mm f/1.8 USM as marketed July 1992 with 9 elements in 7 groups, 0.85 m closest focus, 0.13× magnification, f/22 minimum aperture and a 58 mm filter. Its construction diagram shows four singlets, the stop, a cemented doublet, a thick cemented doublet and a biconvex rear element, which is the layout of patent Fig. 1. The thick rear doublet fits Example 1 (D14 = 12.40) better than Examples 2 and 3 (D14 = 7.00). The correlation is strong but not manufacturer-confirmed.
+Maker diagram. Canon Camera Museum lists the EF85 mm f/1.8 USM as marketed July 1992 with 9 elements in 7 groups, 0.85 m closest focus, 0.13× magnification, f/22 minimum aperture and a 58 mm filter. Its construction diagram shows four singlets, the stop, a cemented doublet, a thick cemented doublet and a biconvex rear element, which is the layout of patent Fig. 1. The thick rear doublet fits Example 1 (D14 = 12.40) better than Examples 2 and 3 (D14 = 7.00). The correlation is strong but not manufacturer-confirmed.
 
 Fields changed in this pass. No R, d, nd, νd, semi-diameter or variable-gap value changed. EFL 84.99767305681792, stop radius 14.995052356556943, half-field and both focus states are identical before and after, and the surface audit still reports no errors.
 
@@ -494,18 +492,18 @@ Scale. Vertex crossings were read in a strip 20–40 px off the axis. On page 5,
 
 Before and after. Heights in mm; "figure" is page 5 / page 1.
 
-| Surfaces | Before | Figure | Figure ÷ before | After | Evidence |
-|---|---:|---:|---:|---:|---|
-| R1, R2 (L1) | 25.5 | 26.84 / 26.86 | 1.053 | 26.9 | Figure height; restores the drawn step above L2 |
-| R3, R4 (L2) | 24.8 | 24.02 / 24.12 | 0.971 | 24.1 | Figure height |
-| R5, R6 (L3) | 22.4 | 21.25 / 21.20 | 0.948 | 21.2 | Figure height, supported by the drawn edge thickness; axial-ray floor 20.728 |
-| R7 (L4 front) | 20.4 | 20.27 / 20.28 | 0.994 | 20.4 | Retained; this is the height of the drawn L4 cylinder |
-| R8 (L4 rear) | 19.6 | 16.11 / 15.98 | 0.819 | 16.1 | Figure: the concave arc ends here and a flat annulus continues to the cylinder; axial-ray floor 16.002 |
-| R10 (L5 front) | 15.0 | 14.65 / 14.64 | 0.977 | 15.0 | Retained |
-| R11, R12 (L5–L6 junction, L6 rear) | 15.5 | 14.65 / 14.64 | 0.945 | 15.0 | Figure draws the doublet square-cut; brought to R10's height |
-| R13 (L7 front) | 15.0 | 15.04 / 14.98 | 1.001 | 15.0 | Retained |
-| R14, R15 (L7–L8 junction, L8 rear) | 17 | 17.62 / 17.62 | 1.036 | 17 | Retained |
-| R16, R17 (L9) | 17.5 | 19.02 / 19.04 | 1.087 | 19.0 | Figure height, supported by the drawn edge thickness |
+| Surfaces                           | Before |        Figure | Figure ÷ before | After | Evidence                                                                                               |
+| ---------------------------------- | -----: | ------------: | --------------: | ----: | ------------------------------------------------------------------------------------------------------ |
+| R1, R2 (L1)                        |   25.5 | 26.84 / 26.86 |           1.053 |  26.9 | Figure height; restores the drawn step above L2                                                        |
+| R3, R4 (L2)                        |   24.8 | 24.02 / 24.12 |           0.971 |  24.1 | Figure height                                                                                          |
+| R5, R6 (L3)                        |   22.4 | 21.25 / 21.20 |           0.948 |  21.2 | Figure height, supported by the drawn edge thickness; axial-ray floor 20.728                           |
+| R7 (L4 front)                      |   20.4 | 20.27 / 20.28 |           0.994 |  20.4 | Retained; this is the height of the drawn L4 cylinder                                                  |
+| R8 (L4 rear)                       |   19.6 | 16.11 / 15.98 |           0.819 |  16.1 | Figure: the concave arc ends here and a flat annulus continues to the cylinder; axial-ray floor 16.002 |
+| R10 (L5 front)                     |   15.0 | 14.65 / 14.64 |           0.977 |  15.0 | Retained                                                                                               |
+| R11, R12 (L5–L6 junction, L6 rear) |   15.5 | 14.65 / 14.64 |           0.945 |  15.0 | Figure draws the doublet square-cut; brought to R10's height                                           |
+| R13 (L7 front)                     |   15.0 | 15.04 / 14.98 |           1.001 |  15.0 | Retained                                                                                               |
+| R14, R15 (L7–L8 junction, L8 rear) |     17 | 17.62 / 17.62 |           1.036 |    17 | Retained                                                                                               |
+| R16, R17 (L9)                      |   17.5 | 19.02 / 19.04 |           1.087 |  19.0 | Figure height, supported by the drawn edge thickness                                                   |
 
 Reasons for the changes.
 
@@ -540,17 +538,17 @@ Scale, measured independently. Page 5: R1 to R17 is 896 px for 73.52 mm, 12.19 p
 
 Semi-diameters: no value changed. Heights in mm, page 5 / page 1.
 
-| Surfaces | Stored | This review | First pass | Stored ÷ figure |
-|---|---:|---:|---:|---:|
-| R1, R2 (L1) | 26.9 | 26.84 / 26.87 | 26.84 / 26.86 | 1.002 |
-| R3, R4 (L2) | 24.1 | 24.02 / 24.12 | 24.02 / 24.12 | 1.001 |
-| R5, R6 (L3) | 21.2 | 21.23 / 21.20 | 21.25 / 21.20 | 0.999 |
-| R7 (L4 cylinder) | 20.4 | 20.29 / 20.28 | 20.27 / 20.28 | 1.006 |
-| R8 (end of the concave arc) | 16.1 | 16.35 / 16.30 | 16.11 / 15.98 | 0.986 |
-| R10–R12 (G2 doublet) | 15.0 | 14.72 / 14.63 | 14.65 / 14.64 | 1.022 |
-| R13 (L7) | 15.0 | 15.06 / 14.96 | 15.04 / 14.98 | 0.999 |
-| R14, R15 (L8) | 17 | 17.62 / 17.60 | 17.62 / 17.62 | 0.965 |
-| R16, R17 (L9) | 19.0 | 19.02 / 19.04 | 19.02 / 19.04 | 0.998 |
+| Surfaces                    | Stored |   This review |    First pass | Stored ÷ figure |
+| --------------------------- | -----: | ------------: | ------------: | --------------: |
+| R1, R2 (L1)                 |   26.9 | 26.84 / 26.87 | 26.84 / 26.86 |           1.002 |
+| R3, R4 (L2)                 |   24.1 | 24.02 / 24.12 | 24.02 / 24.12 |           1.001 |
+| R5, R6 (L3)                 |   21.2 | 21.23 / 21.20 | 21.25 / 21.20 |           0.999 |
+| R7 (L4 cylinder)            |   20.4 | 20.29 / 20.28 | 20.27 / 20.28 |           1.006 |
+| R8 (end of the concave arc) |   16.1 | 16.35 / 16.30 | 16.11 / 15.98 |           0.986 |
+| R10–R12 (G2 doublet)        |   15.0 | 14.72 / 14.63 | 14.65 / 14.64 |           1.022 |
+| R13 (L7)                    |   15.0 | 15.06 / 14.96 | 15.04 / 14.98 |           0.999 |
+| R14, R15 (L8)               |     17 | 17.62 / 17.60 | 17.62 / 17.62 |           0.965 |
+| R16, R17 (L9)               |   19.0 | 19.02 / 19.04 | 19.02 / 19.04 |           0.998 |
 
 The two readings of R8 differ by 0.3 mm because the arc runs into the 0.45 mm wide annulus line; this review took the crossing of the two line centres. Either reading is within 0.3 mm of the stored 16.1 mm, which stays 0.098 mm above the f/1.8 axial ray. On the overlay L1, L2, L3, the L4 front face, L9 and the ends of every arc lie on the drawn lines. Three places still differ to the eye, and each was tried before being left:
 
@@ -562,12 +560,12 @@ With no rim changed, the engine values are the same before and after: focal leng
 
 Changes to labels and text.
 
-| Field | Before | After | Evidence |
-|---|---|---|---|
-| `diagramLabel`, elements 1–9 | absent; the diagram printed 1 … 9 | L1 … L9, the same strings as `name` | Fig. 1 and ¶0008 use the bare numerals 1, 2 and 3 for the three groups and give the elements no reference signs (¶0010 only counts the first to fourth lens of group 1). The diagram's bare 1, 2, 3 under the first three elements read as the patent's group numbers, while the cemented brackets above them, the focus text beside them and the inspector already said L5–L6 and L7–L8. The row now reads L1 L2 L3 L4, L5 L6, L7 L8 L9 with no collision. |
-| `role`, elements 1–9 | absent; the inspector showed type, glass and focal length only | one sentence each | ¶0010–0013: three positive lenses converging the axial beam in stages, L2 and L3 convex to the object, the negative air lens between L3 and L4, the concave rear face of L4 as the spherical-aberration balance, the high-dispersion negative and lower-dispersion positive members of the weakly positive G3 doublet (calculated +527.26 mm), and the rear biconvex lens carrying most of G3's power and offsetting positive distortion. Shapes are stated from the signs of R. |
-| `varLabels` | D9 (derived G2), D12 (derived G2) | D9 (STO–G2), D12 (G2–G3) | D9 and D12 are the patent's own names for the two variable gaps (page 3–4 table). Both labels carried the same bracket, which did not say which gap was which, and at infinity it stood beside 3.59 and 16.30, the two values the patent does print. That the 0.85 m values are derived stays in the focus text directly above them. |
-| Header comment | — | note on group numerals, SP and the L1–L9 choice | as above |
+| Field                        | Before                                                         | After                                           | Evidence                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `diagramLabel`, elements 1–9 | absent; the diagram printed 1 … 9                              | L1 … L9, the same strings as `name`             | Fig. 1 and ¶0008 use the bare numerals 1, 2 and 3 for the three groups and give the elements no reference signs (¶0010 only counts the first to fourth lens of group 1). The diagram's bare 1, 2, 3 under the first three elements read as the patent's group numbers, while the cemented brackets above them, the focus text beside them and the inspector already said L5–L6 and L7–L8. The row now reads L1 L2 L3 L4, L5 L6, L7 L8 L9 with no collision.                      |
+| `role`, elements 1–9         | absent; the inspector showed type, glass and focal length only | one sentence each                               | ¶0010–0013: three positive lenses converging the axial beam in stages, L2 and L3 convex to the object, the negative air lens between L3 and L4, the concave rear face of L4 as the spherical-aberration balance, the high-dispersion negative and lower-dispersion positive members of the weakly positive G3 doublet (calculated +527.26 mm), and the rear biconvex lens carrying most of G3's power and offsetting positive distortion. Shapes are stated from the signs of R. |
+| `varLabels`                  | D9 (derived G2), D12 (derived G2)                              | D9 (STO–G2), D12 (G2–G3)                        | D9 and D12 are the patent's own names for the two variable gaps (page 3–4 table). Both labels carried the same bracket, which did not say which gap was which, and at infinity it stood beside 3.59 and 16.30, the two values the patent does print. That the 0.85 m values are derived stays in the focus text directly above them.                                                                                                                                             |
+| Header comment               | —                                                              | note on group numerals, SP and the L1–L9 choice | as above                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 Checked and found correct.
 
@@ -609,3 +607,48 @@ Open.
   about 1e-5 or less at C, F and g.
 - Supplier and melt remain unconfirmed; the labels say so.
 
+## 2026-10-30 — Fresh original shape and glass review
+
+Selected original `patents/JPH05157964A.pdf`, JP H05-157964A, Numerical Example 1. Front page confirms filed 1991-12-06, published 1993-06-25, Hiroshi Endo / Canon Inc. Bare-N/ν definition¶0023 and prescription¶0024 pp3–4; Table 1/Figure 1 p5; corresponding aberration Figure 4 p7. All 17 stations, nine media, cemented interfaces, concave ends and source focus/stop convention checked. Figure 1's native embedded630 × 375 px image is about 200 dpi; body/prescription vector text rendered at 200 dpi. Enlarged figure views add no native detail.
+
+### Connected rims and source-constrained trials
+
+R8 clear cap 16.1 mm is preserved; source-resolved outer annulus is drawn with rimExtensionSd20.4 mm, matching the existing front body height. Native cap/outer ratio≈0.80±0.02 versus adopted 0.789, with additional schematic uncertainty. R13 front15→16 mm retains the source step to 17 mm bonded R14 (native ratio≈0.94±0.03, adopted 0.941). Absolute height reading uncertainty≈±0.5 mm plus schematic error. No bonded-interface land, resin wing or inferred cut is added.
+
+All nine bodies were compared in the actual generated SVG against native Figure 1. L1–L3 retain26.9/24.1/21.2 mm; L4 cap/outer16.1/20.4; moving L5/L6 retain15 mm; L7 front16 with shared17 mm interface; L8 rear17; L9 19 mm. Group brackets, stop leader, focus arrow and axis excluded. The trial replacing R8's cap by a full20.4 mm sphere passes the surface validator but is source-inconsistent: sag 9.637162 versus5.474907 mm, ending0.817162 mm beyond the axial stop instead of the native flat annulus. Rejected on source contour, with no false guard-failure claim. All literal R/d, stops, cams, image gap and existing guards remain unchanged.
+
+### Every material and wavelength qualification
+
+All nine N/ν pairs match the original; paragraph 0023 supplies no spectral reference. Figure 4 d/g trace labels do not define the bulk table. Remove the header's unsupported inference, retain every source pair and use nine Unmatched labels with qualified historical coordinate candidates and indexReferenceNote. Zero active catalog curves; default d-line/Abbe tracing is approximate. No source C/F/g, partial dispersion or APD values are printed, and no per-lens spectral override existed. No inferred resin/cement/hybrid layer. Historical seven-pair OHARA matching remains a coordinate screen, not proof of supplier, melt, chemistry or missing reference line. L6ν64.2 and L8ν41.0 remain literal.
+
+### Controls, runtime and unresolved source text
+
+Source D8 is fixed, D9/D12 variable; the retained stop stays fixed while G2 translates imageward11.190563 mm to the derived 0.85 m endpoint. The patent's separate0.8 m plot lacks a unique distance datum. D17 is unprinted and remains the existing Gaussian infinity38.905092 mm. No alternative stop motion, new source finite conjugate, radius/asphere fit or aperture correction is introduced.
+
+Fresh21-focus grid:3,087 aimed pupil rays,1,029 clear axial samples,63 clear chiefs. Infinity/half/close counts49/45/19,49/47/23,49/48/33. Nine finite, closed connected paths, zero renderer trimming. Source 14.3° chief clear at 21.377161 mm (98.82% format), runtime format corner separately clear. Infinity EFL84.997673 mm, BFL38.905092 mm; current canonical iris 14.593623 mm. Half/close conjugates1488.329524/850.000000 mm and magnifications−.065038/−.127006 are derived model outcomes, not new source data. Peripheral vignetting and slider-label discrepancy remain.
+
+Formal unresolved source.errata retains¶0011's textual cancellation sign inconsistency and Table 1's4.18 versus literal 4.166223 ratio. Historical bounded rounding compatibility is not a proved exact replacement. Source R/d and all inferred focus controls remain unchanged. No rim cuts are present.
+
+### Historical records
+
+The preceding Stage3 hashes, original stage findings, dated geometry/deployment records and 2026-10-12 catalog entry are retained as history. Their byte-identity, active-curve, exact-ray iris and plot-to-bulk-reference statements describe those earlier states; this fresh entry supersedes them where explicitly corrected. This is one fresh original review, not a redating of prior work.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 9 of 9 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+9 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. This patent dates from 1996 or earlier, so lead-silicate rows replace lead-free rows where the catalog has one at the printed pair. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Element 1 | 1.6516 / 58.5 | LAL7 | -0.000003 | +0.019 |
+| Element 2 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |
+| Element 3 | 1.713 / 53.8 | LAL8 | -0.000005 | +0.046 |
+| Element 4 | 1.71736 / 29.5 | SF1 | -0.000000 | +0.013 |
+| Element 5 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 6 | 1.51633 / 64.2 | S-BSL7 | -0.000000 | -0.058 |
+| Element 7 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
+| Element 8 | 1.8061 / 41 | LAH53 | -0.000002 | -0.051 |
+| Element 9 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |

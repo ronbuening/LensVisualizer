@@ -1,13 +1,15 @@
+# Canon EF 35mm f/1.4 L USM — Patent Optical Analysis
+
 ## Patent Reference and Design Identification
 
-**Patent:** JP H11-211978 A (JPH11211978A / 特開平11-211978)  
-**Application Number:** 特願平10-22776  
-**Filed:** 1998-01-20  
-**Published:** 1999-08-06  
-**Inventors:** Yasunori Murata; Makoto Misaka  
-**Applicant:** Canon Inc. (キヤノン株式会社)  
-**Title:** レトロフォーカス型レンズ (Retrofocus-type lens)  
-**Example details:** 数値実施例1
+**Patent:** JP H11-211978 A (JPH11211978A / 特開平11-211978)\
+**Application Number:** 特願平10-22776\
+**Filed:** 1998-01-20\
+**Published:** 1999-08-06\
+**Inventors:** Yasunori Murata; Makoto Misaka\
+**Applicant:** Canon Inc. (キヤノン株式会社)\
+**Title:** レトロフォーカス型レンズ (Retrofocus-type lens)\
+**Example details:** 数値実施例1, prescription/asphere and focus Table 1 on PDF page 5; Figure 1 on PDF page 8; Figure 6(A/B) on PDF page 10 (infinity / 300 mm); conditional Table-1 on PDF page 7
 
 The data file represents Numerical Example 1 of JP H11-211978 A as the optical prescription correlated with the production CANON EF 35mm f/1.4 L USM. The patent itself does not name that commercial lens, so the product correlation is an author/modeling inference rather than a manufacturer-confirmed patent identification. The correlation is supported by several independent points of agreement.
 
@@ -19,7 +21,7 @@ The data file represents Numerical Example 1 of JP H11-211978 A as the optical p
 
 Canon's manufacturer record also identifies floating correction, rear-focus AF, ring USM, eight diaphragm blades, and a minimum aperture of f/22 for the production lens. Those product facts are kept separate from the exact patent-design quantities used by the optical model. The data file therefore stores 35 mm and f/1.4 as marketing values, while the independently verified design values are 34.2948319 mm and f/1.45.
 
-One source correction is required. The Example-1 table visibly prints $r_{11}=+72.820$ mm. With that sign, independent sequential $y$–$\nu$ tracing and an ABCD matrix give an EFL of 26.8926 mm and make the patent's L2b subgroup positive, both contrary to the source's 34.3 mm focal length and its definition of L2b as a negative subgroup. The authored model therefore uses $r_{11}=-72.820$ mm. With only that sign changed, the EFL becomes 34.2948319 mm and L2b becomes negative with a computed cemented-subgroup EFL of −277.7767 mm. This is a documented source correction, not a silent normalization.
+One source correction is required. The Example-1 table visibly prints $r_{11}=+72.820$ mm. With that sign, independent sequential $y$–$\nu$ tracing and an ABCD matrix give an EFL of 26.8926 mm and make the patent's L2b subgroup positive, both contrary to the source's 34.3 mm focal length and its definition of L2b as a negative subgroup. The authored model therefore uses $r_{11}=-72.820$ mm. With only that sign changed, the EFL becomes 34.2948319 mm and L2b becomes negative with a computed cemented-subgroup EFL of −277.7767 mm. The 2026-10-30 original review formalizes this retained correction with `source.errata`, without changing the current radius. The two independent original evidence kinds are the Numerical Example 1 focal summary (PDF page 5) and Claim 1 (PDF page 2), which explicitly requires negative L2b. Printed r11 produces subgroup EFL +52.755075 mm; retained −72.820 produces −277.776682 mm. Two paraxial implementations support the calculation but are not counted as two different source evidence kinds.
 
 No uniform scale is applied: $s=1$. All dimensional prescription values therefore remain at source scale, and the aspheric coefficients require no scale transformation.
 
@@ -44,9 +46,11 @@ The stop plane is source-published, but its clear diameter is not. The authored 
 
 ## Element-by-Element Analysis
 
+Paragraph 0030 defines only Ni and νi without a spectral reference. The $n_d/\nu_d$ notation below follows the d-line reading of the printed table described under Glass Identification and Selection. Each catalog curve is a spectral proxy, not a historical identity.
+
 ### E1 — Negative Meniscus
 
-**nd = 1.58313, νd = 59.4. Glass: 583594/595 class (vendor unresolved). f = −77.6 mm.**
+**$n_d = 1.58313$, $\nu_d = 59.4$. Glass: J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −77.6 mm.**
 
 E1 is the first member of the negative L1a subgroup. Its standalone power is negative; together with E2 it forms the strongly negative front subsection of L1. The patent describes L1a in Numerical Example 1 as two negative meniscus lenses at the object side (¶0025).
 
@@ -54,15 +58,15 @@ As a front element, E1 carries a large modeled semi-diameter in the data file. T
 
 ### E2 — Negative Meniscus
 
-**nd = 1.58313, νd = 59.4. Glass: 583594/595 class (vendor unresolved). f = −94.2 mm.**
+**$n_d = 1.58313$, $\nu_d = 59.4$. Glass: J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −94.2 mm.**
 
-E2 uses the same d-line coordinate class as E1 and completes L1a. The computed EFL of the E1–air–E2 subsection is −40.5808 mm. That subgroup value is distinct from the isolated focal lengths of E1 and E2 and from the much weaker net power of the complete L1 after the positive E3 is included.
+E2 uses the same printed coordinates as E1 and completes L1a. The computed EFL of the E1–air–E2 subsection is −40.5808 mm. That subgroup value is distinct from the isolated focal lengths of E1 and E2 and from the much weaker net power of the complete L1 after the positive E3 is included.
 
 The two negative menisci distribute the front-group divergence across multiple surfaces instead of concentrating it in one element. The patent treats the L1a/L1b separation as a controlled design variable through the $D_{1ab}/f$ condition (¶0023–0024).
 
 ### E3 — Biconvex Positive
 
-**nd = 1.71300, νd = 53.8. Glass: 713538/539/540 class (vendor unresolved). f = +65.9 mm.**
+**$n_d = 1.71300$, $\nu_d = 53.8$. Glass: N-LAK8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +65.9 mm.**
 
 E3 is the positive L1b subsection. Its positive standalone power partially offsets L1a, leaving L1 negative overall rather than allowing the front group to become excessively strong. The resulting L1 segment EFL is −272.3348 mm.
 
@@ -70,7 +74,7 @@ This split negative-positive construction follows the patent's stated L1 archite
 
 ### E4 — Biconvex Positive
 
-**nd = 1.71300, νd = 53.8. Glass: 713538/539/540 class (vendor unresolved). f = +61.0 mm.**
+**$n_d = 1.71300$, $\nu_d = 53.8$. Glass: N-LAK8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +61.0 mm.**
 
 E4 begins the positive L2a subsection. It supplies most of L2a's positive power; with E5 and the intervening air gap, the computed L2a segment EFL is +71.2470 mm.
 
@@ -78,15 +82,15 @@ The patent places L2 between the fixed negative front group and the stop and mak
 
 ### E5 — Negative Meniscus
 
-**nd = 1.51633, νd = 64.2. Glass: 516641/642 class (vendor unresolved). f = −314.3 mm.**
+**$n_d = 1.51633$, $\nu_d = 64.2$. Glass: S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −314.3 mm.**
 
 E5 is a weak negative meniscus paired by air spacing with E4 inside L2a. Its isolated power is much weaker than E4's. The element therefore modifies the power distribution and bending within L2a without reversing the positive sign of the subsection.
 
-Because the patent supplies only d-line index and Abbe number for this element, its chromatic function can be discussed only at that level. No anomalous-partial-dispersion or apochromatic behavior is asserted.
+Because the patent supplies only an index/Abbe pair for this element and names no spectral line, its chromatic function can be discussed only at that level. No anomalous-partial-dispersion or apochromatic behavior is asserted.
 
 ### E6 — Positive Meniscus, L2b Front Element
 
-**nd = 1.83481, νd = 42.7. Glass: 835427 class (vendor unresolved). f = +50.2 mm.**
+**$n_d = 1.83481$, $\nu_d = 42.7$. Glass: J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +50.2 mm.**
 
 E6 is the positive front member of the cemented L2b pair. Its isolated power is positive, but that value does not describe the doublet's net behavior. E6 is cemented directly to E7 at surface 12, where the interface belongs to the downstream E7 medium in the data model.
 
@@ -94,7 +98,7 @@ The sign correction at surface 11 is on E6's front surface. With the corrected $
 
 ### E7 — Negative Meniscus, L2b Rear Element
 
-**nd = 1.63980, νd = 34.5. Glass: S-TIM27 coefficient proxy (patent 640345; production supplier unspecified). f = −43.5 mm.**
+**$n_d = 1.63980$, $\nu_d = 34.5$. Glass: S-TIM27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −43.5 mm.**
 
 E7 is the negative rear member of L2b. The cemented E6–E7 pair has a verified net EFL of −277.7767 mm even though E6 alone is positive. This distinction between isolated-element power and cemented-subgroup power is important: the negative L2b role belongs to the pair as a whole, not to E6 individually.
 
@@ -102,15 +106,15 @@ L2 remains positive after L2a and L2b are combined, with a computed segment EFL 
 
 ### E8 — Biconcave Negative, L3a Front Element
 
-**nd = 1.80518, νd = 25.4. Glass: 805254/255 class (vendor unresolved). f = −23.0 mm.**
+**$n_d = 1.80518$, $\nu_d = 25.4$. Glass: N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −23.0 mm.**
 
 E8 begins the negative L3a cemented subgroup immediately behind the aperture stop. Its isolated power has the largest magnitude of the eleven individual-element powers (equivalently, the smallest absolute isolated focal length). It is cemented to E9 at surface 16.
 
-The low νd value indicates strong normal dispersion relative to the other coordinate classes in the design, but the source supplies no line indices or partial-dispersion data. The analysis therefore does not assign an anomalous-dispersion class or claim apochromatic correction.
+The low printed Abbe number indicates relatively strong dispersion relative to the other glasses in the design, but the source supplies no line indices or partial-dispersion data. The analysis therefore does not assign an anomalous-dispersion class or claim apochromatic correction.
 
 ### E9 — Biconvex Positive (1× Asph), L3a Rear Element
 
-**nd = 1.83481, νd = 42.7. Glass: 835427 class (vendor unresolved). f = +72.2 mm.**
+**$n_d = 1.83481$, $\nu_d = 42.7$. Glass: J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +72.2 mm.**
 
 E9 is the positive rear member of the cemented L3a pair and carries the design's only aspherical surface, 17A, on its image-side face. E8 and E9 together have a computed cemented-subgroup EFL of −35.4688 mm. Thus E9's positive standalone power does not make L3a positive; the stronger negative contribution of E8 dominates the pair.
 
@@ -118,7 +122,7 @@ The patent explicitly specifies L3a as a cemented negative-positive pair and pla
 
 ### E10 — Positive Meniscus
 
-**nd = 1.77250, νd = 49.6. Glass: 773496 class (vendor unresolved). f = +46.8 mm.**
+**$n_d = 1.77250$, $\nu_d = 49.6$. Glass: J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +46.8 mm.**
 
 E10 is the first of the two positive menisci forming L3b. Together with E11 it provides the positive rear subsection that reverses the negative sign of L3a and makes L3 positive overall.
 
@@ -126,38 +130,38 @@ The computed EFL of the E10–air–E11 L3b subsection is +25.5779 mm. The compl
 
 ### E11 — Positive Meniscus
 
-**nd = 1.77250, νd = 49.6. Glass: 773496 class (vendor unresolved). f = +51.4 mm.**
+**$n_d = 1.77250$, $\nu_d = 49.6$. Glass: J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +51.4 mm.**
 
-E11 is the final optical element and shares the same d-line coordinate class as E10. It completes L3b and the positive rear group. The data file terminates after E11 with a computed rear air clearance to the fixed image plane rather than a patent-published back-focus row.
+E11 is the final optical element and shares the same printed coordinates as E10. It completes L3b and the positive rear group. The data file terminates after E11 with a computed rear air clearance to the fixed image plane rather than a patent-published back-focus row.
 
 At infinity that rear clearance is 38.6533555 mm. During close focusing, the last vertex moves objectward with L3, so the authored surface-21 spacing increases to 45.0633555 mm solely to keep the image plane fixed. That variation is a reference-plane normalization, not an additional mechanical focus degree of freedom.
 
 ## Glass Identification and Selection
 
-The patent provides seven distinct d-line $n_d/\nu_d$ coordinate pairs but does not identify glass vendors or trade names. The final data file therefore uses only coordinate classes, and current authoritative glass catalogs contain multiple coordinate-compatible vendor glasses for these pairs. No unique historical melt or supplier can be defended from the source.
+The original publishes seven distinct index/Abbe pairs across eleven elements, but ¶0030 / PDF page 4 defines them only as Ni and νi. It does not name their spectral reference. The d/g/C labels in the aberration figures provide context but do not independently define those numerical coordinates.
 
-| Data-file glass annotation | nd | νd | Elements | Interpretation |
-|---|---:|---:|---|---|
-| 583594/595 class (vendor unresolved) | 1.58313 | 59.4 | E1, E2 | Moderate-index crown-class coordinates in the negative front subsection |
-| 713538/539/540 class (vendor unresolved) | 1.71300 | 53.8 | E3, E4 | Higher-index, moderate-dispersion coordinates in positive L1b/L2a elements |
-| 516641/642 class (vendor unresolved) | 1.51633 | 64.2 | E5 | Lower-index, higher-Abbe coordinate class in the weak negative L2a element |
-| 835427 class (vendor unresolved) | 1.83481 | 42.7 | E6, E9 | Very high-index coordinates used in positive members of both cemented pairs |
-| S-TIM27 coefficient proxy (patent 640345; production supplier unspecified) | 1.63980 | 34.5 | E7 | Lower-Abbe negative member of L2b |
-| 805254/255 class (vendor unresolved) | 1.80518 | 25.4 | E8 | High-index, low-Abbe negative member of L3a |
-| 773496 class (vendor unresolved) | 1.77250 | 49.6 | E10, E11 | High-index positive rear menisci |
+The patent names no spectral line. 11 of 11 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified.
 
-The palette combines high-index positive elements with lower-Abbe negative partners in the two cemented subgroups, a configuration consistent with simultaneous chromatic and monochromatic balancing. That statement is a design inference from the published $n_d/\nu_d$ distribution and group powers; it does not identify the actual production glasses.
+| Elements  | Printed nd / νd | Catalog curve |
+| --------- | --------------: | ------------- |
+| E1 / E2   |  1.58313 / 59.4 | J-SK12        |
+| E3 / E4   |  1.71300 / 53.8 | N-LAK8        |
+| E5        |  1.51633 / 64.2 | S-BSL7        |
+| E6 / E9   |  1.83481 / 42.7 | J-LASF05      |
+| E7        |  1.63980 / 34.5 | S-TIM27       |
+| E8        |  1.80518 / 25.4 | N-SF6         |
+| E10 / E11 |  1.77250 / 49.6 | J-LASF016     |
 
-No `nC`, `nF`, `ng`, or `dPgF` values are stored because the selected patent does not publish them and the coordinate pairs alone do not establish unique vendor glasses from which line data could be imported without circular identification. Consequently no APO, anomalous-partial-dispersion, or secondary-spectrum claim is made.
+No individual C/F/g indices, relative partial dispersions or APD evidence are published or authored. The catalog curve names are spectral proxies and cannot establish supplier, melt, chemistry or manufacturing route. The d-line reading does not support an APO or source secondary-spectrum claim.
 
 ## Focus Mechanism
 
 The focus status is **PUBLISHED**. The patent states that L1 remains fixed while L2 and L3 move toward the object at different rates when focusing from infinity to shorter distances, and that the aperture stop moves integrally with L3 (¶0013). Numerical Example 1 then supplies the two focus-dependent internal gaps directly.
 
-| Gap | Infinity | 300 mm state | Change |
-|---|---:|---:|---:|
-| d6 | 5.20 mm | 0.43 mm | −4.77 mm |
-| d13 | 3.70 mm | 2.06 mm | −1.64 mm |
+| Gap | Infinity | 300 mm state |   Change |
+| --- | -------: | -----------: | -------: |
+| d6  |  5.20 mm |      0.43 mm | −4.77 mm |
+| d13 |  3.70 mm |      2.06 mm | −1.64 mm |
 
 These spacing changes mean L2 translates 4.77 mm objectward relative to fixed L1. L3 and the stop translate 6.41 mm objectward in total, or 1.64 mm farther objectward than L2. No internal focus spacing is reconstructed.
 
@@ -193,14 +197,30 @@ No scale transformation is applied to the asphere because the prescription scale
 
 The patent defines four principal inequalities for the three-group retrofocus architecture. Using the source design focal length $f=34.3$ mm and the final authored spacings, Numerical Example 1 gives:
 
-| Condition | Required range | Verified Example-1 value | Patent Table 1 |
-|---|---:|---:|---:|
-| $D_{2ab}/f$ | $0.15 < D_{2ab}/f < 0.4$ | 0.27026 | 0.27 |
-| $\Sigma D_2/f$ | $0.25 < \Sigma D_2/f < 0.45$ | 0.38863 | 0.39 |
-| $D_{3a}/f$ | $0.1 < D_{3a}/f < 0.2$ | 0.14286 | 0.14 |
-| $D_{1ab}/f$ | $0.18 < D_{1ab}/f < 0.4$ | 0.30058 | 0.30 |
+| Condition      |               Required range | Verified Example-1 value | Patent Table 1 |
+| -------------- | ---------------------------: | -----------------------: | -------------: |
+| $D_{2ab}/f$    |     $0.15 < D_{2ab}/f < 0.4$ |                  0.27026 |           0.27 |
+| $\Sigma D_2/f$ | $0.25 < \Sigma D_2/f < 0.45$ |                  0.38863 |           0.39 |
+| $D_{3a}/f$     |       $0.1 < D_{3a}/f < 0.2$ |                  0.14286 |           0.14 |
+| $D_{1ab}/f$    |     $0.18 < D_{1ab}/f < 0.4$ |                  0.30058 |           0.30 |
 
 All four conditions pass. The same inequalities also pass if the independently computed 34.2948319 mm EFL is substituted for the rounded source focal length. The patent explains these bounds as balancing subgroup separation, center thickness, lens size, and focus-induced aberration variation (¶0014–0024).
+
+## Original Figure Review — 2026-10-30
+
+The exact local original embeds 1656 × 2339 one-bit pages at native 200 ppi. Figure 1 on PDF page 8 was inspected natively; enlarged viewing is magnification only. Approximately 379 pixels span the 85.64 mm optical stack, around 4.43 px/mm. Practical inferred cap-height uncertainty is about ±1.5 mm, with larger schematic/nonuniform drawing differences kept separate. Group brackets, support symbols, movement arrows, leaders and the stop symbol are excluded. Neither the production filter size nor a production block diagram is used as an original-patent ruler.
+
+| Surface(s) | Earlier inferred clear sd | Reviewed clear sd / outer rim | Disposition                                                                                   |
+| ---------- | ------------------------: | ----------------------------: | --------------------------------------------------------------------------------------------- |
+| S2         |                   22.0 mm |  clear 22.0 mm; outer 25.0 mm | Resolved rear shoulder of first negative meniscus, conservatively anchored to existing S1 cap |
+| S3 / S4    |            21.5 / 20.5 mm |                23.0 / 23.0 mm | Second negative meniscus follows source common cap height and curved rear outline             |
+| S9         |                   18.5 mm |                       17.0 mm | Weak negative E5 follows visible common height with existing S10 cap                          |
+| S15        |                   13.5 mm |  clear 13.5 mm; outer 14.2 mm | Resolved front shoulder of rear doublet, conservative existing S16 bonded-cap anchor          |
+| S21        |                   22.0 mm |                       18.0 mm | Final meniscus's curved rear cap follows source height and existing S20 front cap             |
+
+Four inferred clear-cap fields and two outer shoulders change. Every element, concave end, cemented interface S12/S16 and the S17A asphere was inspected. No separate hybrid/resin layer, cement medium, filter or camera-side plate is tabulated. No opaque bonded land or disconnected wing is added, and zero inferred cuts are authored.
+
+A source-outline S2 clear-cap trial at 23.5 mm fails the unchanged S2–S3 air-gap guard: 6.72 mm intrusion exceeds 6.219 mm allowed in the 6.910 mm printed gap. The optical cap therefore remains 22.0 mm and the resolved outer blank uses `rimExtensionSd`. The two bonded blanks are not inflated beyond their existing curved-interface caps. The nearly flat S13 and continuous S6/S8/S17A/S19 outlines do not independently resolve extra lands. Native outline precision does not establish exact mechanical blank dimensions, and the unprinted asphere E term retains its explicit zero assumption above.
 
 ## Verification Summary
 
@@ -219,10 +239,34 @@ The selected Example 1 contains no sensor cover plate, filter, folded-path surfa
 
 The only source correction in the prescription is the documented sign change at r11. No scaling is applied, no internal focus state is reconstructed, and no vendor glass identity or unsubstantiated spectral property is introduced.
 
+### Sampled runtime clearance
+
+Surface, image-circle, infinity aperture-census and full-frame corner-field checks pass. The existing derived/paraxial iris remains 12.592601 mm at the source nominal f/1.45; a physical source iris radius is not printed. Real aimed working f-number is 1.457525 at infinity, 1.522935 at focus 0.5 and 1.588318 at the published close configuration. These finite-conjugate working values are separate from the nominal control.
+
+Across 21 focus positions and nine apertures, all 189 working-ray calls trace, with baseline/candidate results identical. An aimed 193-point circular-pupil probe at axial, half-field and corner fields over all 21 states gives all 193 axial rays passing and every chief aimed/valid. Infinity corner count changes 91→86 of 193 and close count 125→123; source-height refinement retains off-axis vignetting rather than claiming full-pupil illumination. Actual infinity/mid/close SVGs were compared with Figure 1. Twenty-one states produce 231 finite, singly connected, closed element paths with zero hidden trimming, and corner aiming reaches about 21.65 mm.
+
+The source publishes the two endpoint internal focus gaps; linear positions between them remain an interpolation rather than a complete measured cam law. The computed fixed-image rear gap is not a source BF row. The unprinted A10/E assumption, the unnamed glass spectral line and the corrected r11 sign are distinct source qualifications. No inferred cut requires an exemption or cut-beam probe. Source fidelity, sampled runtime behavior and production correlation remain separate. Existing external product/catalog links below are older correlation context, not fresh inspections in this original-PDF review.
+
 ## Sources / References
 
-1. **JP H11-211978 A / JPH11211978A / 特開平11-211978**, *レトロフォーカス型レンズ* (Retrofocus-type lens), Canon Inc., filed 1998-01-20, published 1999-08-06. Numerical Example 1; especially ¶0010–0025, ¶0030–0034, Example-1 prescription/asphere table on p. 5, and conditional-expression Table 1 on p. 7.
+1. **JP H11-211978 A / JPH11211978A / 特開平11-211978**, _レトロフォーカス型レンズ_ (Retrofocus-type lens), Canon Inc., filed 1998-01-20, published 1999-08-06. Numerical Example 1; especially ¶0010–0025, ¶0030–0034, Example-1 prescription/asphere and focus Table 1 on PDF page 5, conditional Table-1 on PDF page 7, Figure 1 on PDF page 8, Figure 6(A/B) on PDF page 10, and Claim 1 on PDF page 2. Local `patents/JP_H11211978_A.pdf`, SHA-256 `5a6080f5d3627cbcfb6a5d98816ac6f35acdf7a8a86d5712c7fa05ca3113ce7c`, inspected 2026-10-30.
 2. **Canon Camera Museum — EF35mm f/1.4L USM.** Product specifications and block diagram: <https://global.canon/en/c-museum/product/ef346.html>
 3. **Canon Camera Museum — EOS / EF system history.** EF mount and EOS system context: <https://global.canon/en/c-museum/history/story07.html>
 4. **OHARA Optical Glass Catalog.** Current coordinate tables used only to test catalog compatibility, not to identify the production melts: <https://www.ohara-inc.co.jp/en/product/01000/>; S-TIM27 data: <https://www.ohara-inc.co.jp/assets/en/product/pdf/estim27.pdf>; legacy S-LAH66 comparison: <https://www.ohara-inc.co.jp/en/news/2025/0127/14998/>
 5. **CDGM Optical Glass Database.** Cross-vendor coordinate/equivalence tables used to confirm that the patent pairs are not vendor-unique: <https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&url=database>
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 9,301 passed, 2,279 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.299794800 |           0.300000 | 193 / 173 / 120                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 33.724995% at zoom 0, focus 0.05, aberration control 0: Gaussian 3.976500274 m versus label 6.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

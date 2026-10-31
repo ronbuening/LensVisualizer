@@ -8,8 +8,8 @@
 **Published:** May 15, 2008  
 **Inventor:** Takahiro Hatada  
 **Assignee:** Canon Kabushiki Kaisha  
-**Title:** *Zoom Lens and Image Pickup Apparatus Having the Same*  
-**Example details:** Example 2
+**Title:** _Zoom Lens and Image Pickup Apparatus Having the Same_
+**Example details:** Numerical Embodiment 2, table heading Embodiment 2 (PDF page 35 / printed page 5); Figure 5 (PDF page 9 / sheet 8)
 
 The prescription modeled here is Numerical Embodiment 2 of US 2008/0112063 A1. The patent defines a three-unit positive-negative-positive zoom architecture for Embodiment 2, with the first and third units moving toward the object during zooming and the second unit following a reversing axial locus while also serving as the transversely shifted image-stabilizing unit (¶¶0078–0079, 0083, 0089). The numerical table on printed patent page 5 supplies 23 numbered surfaces including the aperture stop, two published variable-gap rows across three infinity-focus zoom nodes, and d-line refractive indices and Abbe numbers (¶0114). No aspherical coefficients or clear-aperture table are published for this example.
 
@@ -20,7 +20,7 @@ The selected production correlation is the original **Canon EF-S 55-250mm f/4-5.
 3. The patent places the negative L2 unit in the image-stabilizing role. Canon's product documentation likewise identifies a compact IS unit in the optical system.
 4. Canon publishes a **1.1 m** closest focusing distance and **0.31×** maximum magnification at the telephoto end. With the patent's L1-only focus mechanism and the final data-file geometry, the constrained 1.1 m reconstruction gives **0.310367×** paraxial magnification at telephoto.
 5. The chronology is consistent: the patent claims November 2006 priority, was filed in November 2007, and Canon marketed the original lens in November 2007.
-6. The patent design range computes to **56.898–241.316 mm**, while Canon markets **55–250 mm**. Because the required wide and tele scale factors differ materially, the final prescription is retained **unscaled** rather than forcing the patent endpoints onto the marketing labels.
+6. The source prints **56.9–241.3 mm** and the authored arrays compute **56.898–241.316 mm**, while Canon markets **55–250 mm**. Because the required wide and tele scale factors differ materially, the final prescription is retained **unscaled** rather than forcing the patent endpoints onto the marketing labels.
 
 Marketing and design values are therefore kept separate. The catalog name remains 55–250mm f/4–5.6, while the modeled design uses the patent focal-length nodes `56.9 / 160.8 / 241.3 mm` and the computed EFLs stated below. The patent publishes endpoint F-numbers of **4.16** and **5.88**, which are also kept separate from Canon's rounded f/4–5.6 designation.
 
@@ -48,7 +48,7 @@ The patent describes the family as “telephoto type.” Under the project's str
 
 L11 is the first and largest-diameter element of the system. Its two opposite-sign radii make it biconvex in the adopted object-left/image-right sign convention. Its positive standalone power forms the front collector of L1 and establishes part of the positive power that allows the front unit to serve both zoom and focus functions.
 
-The S-BSL7 label is a catalog-equivalent assignment, not a patent-named material. The stored d-line coordinate matches the OHARA entry exactly; the additional C-, F-, and g-line data in the data file are catalog-derived.
+The S-BSL7 label is a qualified catalog spectral proxy, not a patent-named material or historical identity. The stored d-line coordinate matches the OHARA entry; former per-lens catalog-derived C/F/g indices and partial dispersion are removed by the 2026-10-30 original review.
 
 ### L12 — Negative Meniscus, Cemented D1 Front Member
 
@@ -72,11 +72,11 @@ L21 is the strongest negative standalone element in the system. Its biconcave fo
 
 ### L22 — Positive Meniscus, Cemented D2 Rear Member
 
-`nd = 1.84666, νd = 23.93. Glass: Unmatched (847239 high-index flint; nearest OHARA S-TIH53WN has νd = 23.86). f = +37.7908 mm.`
+`nd = 1.84666, νd = 23.93. Glass: SFLDN3 (SUMITA compatible spectral proxy; source supplier, melt and chemistry unspecified). f = +37.7908 mm.`
 
 L22 is a high-index, high-dispersion positive meniscus cemented to L21. The complete D2 pair remains negative: its independently computed cemented focal length is **−65.0135 mm**. This distinction matters because L22 is positive in isolation while the cemented pair and the complete L2 unit are both negative.
 
-No exact coordinate match for `1.84666 / 23.93` was found in the six-vendor catalog audit. The data therefore retain an explicit `Unmatched` identity. Its stored `nC`, `nF`, and `ng` values are a modeled spectral proxy refit to the patent's `nd/νd`; `dPgF` is retained from the nearest S-TIH53WN family. Those fields support spectral modeling but do **not** establish that the patent glass is S-TIH53WN.
+The source provides only `1.84666 / 23.93`; L22 now uses the qualified compatible SFLDN3 catalog curve. Its former fitted C/F/g indices and S-TIH53WN-derived dPgF were catalog/model assumptions, not original measurements, and remain removed. S-TIH53WN is retained only as a rejected historical comparison, without a current curve, partial-dispersion, chemistry or supplier claim.
 
 ### L23 — Biconcave Negative
 
@@ -124,24 +124,24 @@ L36 is the final positive element before image space. Its biconvex form closes t
 
 ## Glass Identification and Selection
 
-The patent provides only `nd` and `νd`; it does not identify manufacturers or commercial glass names. The final data file preserves those patent coordinates and treats glass names as catalog-equivalent annotations. Ten of the twelve element coordinates match current OHARA S-family entries exactly in `nd/νd`; L23 exactly matches current CDGM H-ZLaF50E; L22 remains unresolved.
+The patent provides only `nd` and `νd`; it does not identify manufacturers or commercial glass names. The final data file preserves those patent coordinates and treats glass names as catalog-equivalent annotations. Ten of the twelve element coordinates match current OHARA S-family entries exactly in `nd/νd`; L23 exactly matches current CDGM H-ZLaF50E; L22 uses the compatible SUMITA SFLDN3 proxy at the source nd with a −0.03 nominal Abbe residual.
 
-| Element | Patent `nd / νd` | Data-file glass label | Provenance |
-|---|---|---|---|
-| L11 | 1.51633 / 64.14 | S-BSL7 | Exact OHARA-equivalent coordinate |
-| L12 | 1.80100 / 34.97 | S-LAM66 | Exact OHARA-equivalent coordinate |
-| L13 | 1.49700 / 81.54 | S-FPL51 | Exact OHARA-equivalent coordinate; UD-class candidate |
-| L21 | 1.71300 / 53.87 | S-LAL8 | Exact OHARA-equivalent coordinate |
-| L22 | 1.84666 / 23.93 | Unmatched 847239 high-index flint | No exact six-vendor catalog match; modeled spectral proxy |
-| L23 | 1.80400 / 46.57 | H-ZLaF50E | Exact CDGM-equivalent coordinate |
-| L31 | 1.63854 / 55.38 | S-BSM18 | Exact OHARA-equivalent coordinate |
-| L32 | 1.60311 / 60.64 | S-BSM14 | Exact OHARA-equivalent coordinate |
-| L33 | 1.48749 / 70.23 | S-FSL5 | Exact OHARA-equivalent coordinate |
-| L34 | 1.84666 / 23.78 | S-TIH53 | Exact OHARA-equivalent coordinate |
-| L35 | 1.83400 / 37.16 | S-LAH60 | Exact OHARA-equivalent coordinate |
-| L36 | 1.68893 / 31.07 | S-TIM28 | Exact OHARA-equivalent coordinate |
+| Element | Patent `nd / νd` | Data-file glass label          | Provenance                                            |
+| ------- | ---------------- | ------------------------------ | ----------------------------------------------------- |
+| L11     | 1.51633 / 64.14  | S-BSL7                         | Exact OHARA-equivalent coordinate                     |
+| L12     | 1.80100 / 34.97  | S-LAM66                        | Exact OHARA-equivalent coordinate                     |
+| L13     | 1.49700 / 81.54  | S-FPL51                        | Exact OHARA-equivalent coordinate; UD-class candidate |
+| L21     | 1.71300 / 53.87  | S-LAL8                         | Exact OHARA-equivalent coordinate                     |
+| L22     | 1.84666 / 23.93  | SFLDN3, qualified SUMITA proxy | Same nominal nd; Abbe residual −0.03                  |
+| L23     | 1.80400 / 46.57  | H-ZLaF50E                      | Exact CDGM-equivalent coordinate                      |
+| L31     | 1.63854 / 55.38  | S-BSM18                        | Exact OHARA-equivalent coordinate                     |
+| L32     | 1.60311 / 60.64  | S-BSM14                        | Exact OHARA-equivalent coordinate                     |
+| L33     | 1.48749 / 70.23  | S-FSL5                         | Exact OHARA-equivalent coordinate                     |
+| L34     | 1.84666 / 23.78  | S-TIH53                        | Exact OHARA-equivalent coordinate                     |
+| L35     | 1.83400 / 37.16  | S-LAH60                        | Exact OHARA-equivalent coordinate                     |
+| L36     | 1.68893 / 31.07  | S-TIM28                        | Exact OHARA-equivalent coordinate                     |
 
-The stored `nC`, `nF`, `ng`, and `dPgF` fields are not patent data. For the named equivalents they come from the catalog audit; for L22 they are explicitly modeled as a proxy. The presence of these line data permits more detailed dispersion modeling than bare Abbe numbers, but it does not justify labeling the complete lens apochromatic. No APO claim is made here.
+The original paragraph 0114 (PDF page 34 / printed page 4) explicitly defines d-line indices/Abbe numbers. It supplies no individual C/F/g indices, partial-dispersion values or APD measurements for these media. All 48 catalog-derived per-lens overrides are removed: 36 line indices and 12 dPgF fields, including the fitted L22 proxy. Twelve compatible catalog curves remain qualified spectral proxies, including approximate SFLDN3 for L22. These do not prove historical supplier, melt, chemistry or manufacturing identity, and no APO claim is made.
 
 The clearest chromatic pairing is D1. L12 combines `νd = 34.97` with L13 at `νd = 81.54`, giving a large dispersion contrast inside a weakly positive cemented pair. This is consistent with Canon's statement that the production optical system contains one UD element, but the patent itself does not assign the commercial UD designation.
 
@@ -151,11 +151,11 @@ The patent specifies axial movement of L1 for focusing (¶0081) but does not pub
 
 The reconstruction combines two source constraints: L1 alone translates axially, and Canon specifies a closest focusing distance of **1.1 m**. Canon documentation measures lens minimum focusing distance from the camera's focal-plane mark to the subject. For each of the three zoom nodes, L2 and L3 remain at their infinity zoom positions, the image plane remains fixed, and a single L1 translation is solved so that the object-to-image paraxial matrix satisfies the conjugate condition.
 
-| Zoom node | Infinity `d5` (mm) | Reconstructed close `d5` (mm) | L1 translation | `|m|` at 1.1 m |
-|---|---:|---:|---:|---:|
-| Wide | 7.19326 | 22.756327 | 15.563067 mm objectward | 0.069471× |
-| Middle | 42.37555 | 58.548635 | 16.173085 mm objectward | 0.204106× |
-| Tele | 47.94835 | 64.342025 | 16.393675 mm objectward | 0.310367× |
+| Zoom node | Infinity `d5` (mm) | Reconstructed close `d5` (mm) |          L1 translation |         ` | m   | ` at 1.1 m |
+| --------- | -----------------: | ----------------------------: | ----------------------: | --------: | --- | ---------- |
+| Wide      |            7.19326 |                     22.756327 | 15.563067 mm objectward | 0.069471× |
+| Middle    |           42.37555 |                     58.548635 | 16.173085 mm objectward | 0.204106× |
+| Tele      |           47.94835 |                     64.342025 | 16.393675 mm objectward | 0.310367× |
 
 The telephoto reconstruction reproduces Canon's rounded **0.31×** maximum magnification closely. That agreement supports the selected correlation and focus interpretation, but it does not convert the reconstructed close-focus spacings into patent-published values.
 
@@ -167,18 +167,18 @@ The design's chromatic strategy is most evident in the glass contrasts rather th
 
 The data file's S-FPL51-equivalent L13 has the strongest claim to correspondence with Canon's marketed UD element. That identification is based on the exact `nd/νd` coordinate and the one-UD-element production specification; the patent does not name OHARA or designate L13 as “UD.”
 
-The line-index data in the final model are sufficient to avoid a purely Abbe-only dispersion model for the named equivalent glasses. L22 remains the exception: its spectral fields are a deliberately disclosed proxy. Consequently, the analysis does not infer apochromatic correction, secondary-spectrum performance, or anomalous-dispersion behavior beyond what the catalog fields directly support.
+The twelve named coordinate-compatible curves provide qualified spectral modeling without per-lens catalog overrides. L22 keeps the original d-line/Abbe pair while the compatible SFLDN3 curve supplies estimated dispersion. Plotted d/g/C aberrations are contextual source evidence, not numerical line-index or partial-dispersion measurements; they do not establish APO, secondary-spectrum accuracy or historical materials identity.
 
 ## Conditional Expressions
 
 The patent uses four dimensionless conditions to constrain the zoom-unit powers and movements (¶¶0090, 0103, 0107). Recalculation from the final data arrays gives the following values:
 
-| Condition | Patent range | Computed value | Result |
-|---|---|---:|---|
-| `(1)` `0.60 < m3/m1 < 0.90` | 0.60–0.90 | 0.740653 | Pass |
-| `(2)` `0.080 < |f2|/ft < 0.120` | 0.080–0.120 | 0.110556 | Pass |
-| `(3)` `0.30 < f1/ft < 0.60` | 0.30–0.60 | 0.467851 | Pass |
-| `(4)` `−0.150 < m2/m1 < 0.150` | −0.150–0.150 | see below | Source-definition conflict |
+| Condition                      | Patent range | Computed value | Result                     |
+| ------------------------------ | ------------ | -------------: | -------------------------- | -------- | ---- |
+| `(1)` `0.60 < m3/m1 < 0.90`    | 0.60–0.90    |       0.740653 | Pass                       |
+| `(2)` `0.080 <                 | f2           |   /ft < 0.120` | 0.080–0.120                | 0.110556 | Pass |
+| `(3)` `0.30 < f1/ft < 0.60`    | 0.30–0.60    |       0.467851 | Pass                       |
+| `(4)` `−0.150 < m2/m1 < 0.150` | −0.150–0.150 |      see below | Source-definition conflict |
 
 Conditions (1)–(3) reproduce the rounded Example 2 entries in Patent Table 1 (`0.74`, `0.111`, and `0.47`).
 
@@ -202,17 +202,17 @@ The required middle zoom node has no patent-published F-number. The final data t
 
 Example 2 likewise publishes no clear-aperture or semi-diameter table. Every authored surface `sd` is therefore an inference based on the paraxial marginal/chief-ray envelope, the 13.66 mm image height shown in the aberration figures, inferred pupil geometry, the proportions of Fig. 5, and geometric validation. These values should not be read as Canon mechanical clear apertures.
 
-The final semi-diameter set was checked across all three zoom nodes at infinity and at the reconstructed close-focus states. The minimum computed glass edge thickness is **0.3801 mm**, the largest spherical rim-slope angle is **36.35°**, and the tightest shared-band cross-gap margin is **0.00718 mm** at the surface 8→9 gap in the wide/infinity state. These are validation results for the authored model, not patent dimensions.
+The current native-figure caps below have minimum computed glass edge thickness **0.695774 mm** and largest spherical rim slope **33.083475°**. Gap-limited curved caps at 8/9 and 17/18 are retained rather than forcing a schematic outline into overlapping source R/d. The earlier 0.3801 mm / 36.35° values describe the previous envelope caps; no source radius or gap is changed. These are runtime constraints, not patent dimensions.
 
 ## Verification Summary
 
 The final TypeScript arrays were reloaded and recomputed rather than relying on a copied prescription table. Sequential reduced-angle `y–ν` tracing and an independently accumulated ABCD matrix agree to floating-point precision at the three infinity zoom nodes.
 
 | Zoom node | Patent focal length (mm) | Computed EFL (mm) | Computed BFD (mm) |
-|---|---:|---:|---:|
-| Wide | 56.9 | 56.898033 | 52.453130 |
-| Middle | 160.8 | 160.860375 | 67.883937 |
-| Tele | 241.3 | 241.315658 | 82.572412 |
+| --------- | -----------------------: | ----------------: | ----------------: |
+| Wide      |                     56.9 |         56.898033 |         52.453130 |
+| Middle    |                    160.8 |        160.860375 |         67.883937 |
+| Tele      |                    241.3 |        241.315658 |         82.572412 |
 
 The patent prints surface 23's following distance as `Variable` but omits the corresponding d23 values for Example 2. The BFD values above are therefore paraxially computed and authored as the rear gap to the fixed image plane; they are not transcribed source rows.
 
@@ -228,9 +228,55 @@ The numerical prescription itself was not “corrected” to repair a patent val
 
 ## Sources and References
 
-1. Takahiro Hatada, **US 2008/0112063 A1**, *Zoom Lens and Image Pickup Apparatus Having the Same*, Canon Kabushiki Kaisha, published May 15, 2008. Numerical Embodiment 2; especially ¶¶0066, 0069, 0078–0083, 0089–0115 and printed patent page 5.
+1. Takahiro Hatada, **US 2008/0112063 A1**, _Zoom Lens and Image Pickup Apparatus Having the Same_, Canon Kabushiki Kaisha, published May 15, 2008. Numerical Embodiment 2; especially ¶¶0066, 0069, 0078–0083, 0089–0115 and printed patent page 5.
 2. Canon Camera Museum, **EF-S55-250mm f/4-5.6 IS** — official production specifications and release timing: https://global.canon/en/c-museum/product/ef396.html
 3. Canon Camera Museum, **EF-S55-250mm f/4-5.6 IS II** — confirms the successor retained the original optical system: https://global.canon/en/c-museum/product/ef414.html
 4. Canon, **EOS camera manual — minimum focusing distance convention** — focal-plane mark to subject: https://cam.start.canon/en/C002/manual/html/UG-02_BasicShooting_0080.html
-5. OHARA Corporation optical-glass catalog/data sheets, used for equivalent-coordinate and line-index assignments. S-TIH53WN reference: https://oharacorp.com/glass/s-tih53wn/
+5. OHARA Corporation optical-glass catalog/data sheets, used for qualified compatible curves. Former per-lens catalog line-index assignments are removed; S-TIH53WN remains only a rejected comparison: https://oharacorp.com/glass/s-tih53wn/
 6. CDGM Glass Co., Ltd., **H-ZLaF50E** optical-glass datasheet and database entry, used for the exact-coordinate L23 catalog equivalence: https://www.cdgmgd.com/webapp/pdf/H-ZLaF50E.pdf
+
+## 2026-10-30 original shape, glass and all-state review
+
+The exact original `patents/US20080112063A1.pdf` confirms US 2008/0112063 A1, Numerical Embodiment 2. Its surface table begins lower-left on PDF page 35 / printed 5 and finishes upper-right on the same page, followed by the three f/d5/d10 rows. Paragraph 0114, PDF page 34 / printed 4 explicitly defines the d-line. Native Figure 5 is PDF page 9 / sheet 8; matching Figures 6A/6B on pages 10/11 give wide/tele Fno 4.16/5.88 and image height 13.66 mm. Figures 7A/7B on pages 12/13 are transverse-stabilization studies, not additional centered zoom/focus prescriptions. All embedded pages are 2560×3300 one-bit at 300 ppi; the older 600 dpi inspection was 2x upsampling. The rotated optical section spans about 1,610 native pixels across the literal 98.90013 mm first-to-final-surface stack, about 16.3 px/mm. Practical height uncertainty is ±0.8 mm because the drawing is schematic; no dimensioned clear-aperture table is supplied.
+
+The actual 2026-08-25 shape/glass record remains historical. Current original ink resolves cap differences that its median/25% comparison left unchanged, while the user's source requirement reopens catalog-derived per-lens spectral overrides. No prior review date is relabeled as today, and no extra reused lens entry is counted.
+
+Every element, concave end and both cemented interfaces were inspected. Native caps become S1/S2 = 22.5/22.5, S3/S4/S5 = 21/21/21, S6/S7 = 10.5/10.5, S11/S12/S13/S14 = 11.5/11.5/11.5/11.5 and S22/S23 = 9/9 mm; S8 = 10.5 and S17 = 10 mm: fifteen cap changes. The two bonded curves remain continuous full caps without opaque interface lands. A short source interface stroke is not treated as evidence of cement chemistry or an opaque land. Native-detail inspection rejects the initial shoulder interpretation at S8/S17: their short apparent vertical strokes are nearly vertical weak spherical caps and adjacent-blank ink, without an independently resolved shoulder. Restore curved clear S8 = 10.5 and S17 = 10 instead. The smaller adjoining S9 = 9.52 and S18 = 9.0 retain the shared-gap constraints. No rimExtensionSd is retained. Remaining source-supported caps and gap constraints are retained. Leaders, bracket ink, IS arrows and IP bar are excluded; no inferred cut, disconnected resin layer or unsupported block is added.
+
+Rejected trials preserve numerical source geometry. S8/S9 clear 10/10 gives combined sag 2.30 mm, exceeding 2.090 mm allowed in the unchanged 2.32179 mm air gap. S18 clear 9.5 alongside S17 clear 10 gives sag 0.56 mm, exceeding 0.541 mm allowed in 0.60067 mm. Both fail at every source station. No R/d, asphere, stop authority, nominal target, zoom gap or finite-focus cam is adjusted. Catalog design endpoints now quote the source 56.9/241.3 rather than computed 56.898033/241.315658.
+
+All twelve source nd/νd pairs are directly confirmed and unchanged. The 48 removed overrides were catalog-derived, including L22's ad hoc fitted line-index/partial proxy. At the Oct30 review eleven compatible catalog curves remained and L22 was Unmatched; the Oct31 scoped follow-up below supplies its qualified SFLDN3 proxy. Source spectral references, qualified labels, per-element table and current narrative now agree. No source filter, cover plate or bonded resin is tabulated. Historical supplier, melt, chemistry, cement and manufacturing method remain unresolved.
+
+Original paragraph 0092 (PDF page 33 / printed 3) defines maximum movement of a reciprocating unit as maximum absolute excursion, while Table 1 on page 36 / printed 6 gives m2/m1 = −0.002, matching endpoint displacement rather than the sampled maximum magnitude 0.120510. This existing source-definition conflict is now structured as unresolved source.errata, with all source gaps and the reversal preserved. No isolated numeric correction is established. A generic source-errata follow-up remains appropriate. The absent d23 spacing row is independently computed BFD, and the middle Fno and finite 1.1 m cam remain explicit reconstructions.
+
+The 65-position dense clone exactly matches actual runtime geometry at focus 0/.5/1. Surface probe passes, image-circle audit has zero undersized elements, aperture census is within 3% at all 65 zooms and infinity chiefs reach at least 99% of the queried corner at all 65. The census uses the existing derived/paraxial iris and admitted-beam criterion. Exact aimed-rim working values are 4.220536/5.209748/5.986376 at source zooms, versus nominal 4.16/5.129132/5.88; source iris radii 9.838562/9.386156/9.355475 remain unchanged. In the dense exact-working check only 42/65 trace and 23 are vignetted at S18; all traced ratios are within 3%, worst +1.809112%. Passing aperture census does not certify every exact nominal marginal ray.
+
+Across 21 zoom × 21 focus × seven presets, baseline 3,087 calls comprise 2,694 traced, 134 vignetted and 259 unavailable; the current version has 2,670 traced, 158 vignetted and the same 259 unavailable. The 24 added finite marginal vignettes come from smaller native front caps. Unavailable field launches occupy 37 early-focus/intermediate-zoom combinations with the library's `object-inside-lens` classification; that API status is not a claim that the displayed subject distance lies inside the barrel. Keep the launch and source-cam limitation explicit.
+
+Full pupil checks use the current-state iris at 65 zoom × five focus × four fields = 1,300 fields/version, 193 pupil samples each. Source infinity axial counts remain 193/193; source close axial totals 193/169/121 remain unchanged, with changed limiting front surfaces. Full-corner infinity counts improve 104/106/112 → 131/127/130; close corners 92/80/103 → 120/88/104. Existing S18 clipping and close-conjugate/front-cap limits remain. These are sampled model results, not production illumination or decentered-IS clearance. Centered tracing does not certify source transverse IS states, whose calibrated production travel is unavailable.
+
+First-order checks cover 65 zoom × 21 focus = 1,365 actual states. Source-zoom infinity and reconstructed close endpoints focus to numerical precision (largest residual 1.2×10⁻12 mm). Intermediate zoom/focus is illustrative: worst infinity residual +4.564456 mm at zoom .34375 (computed EFL 117.566318 versus displayed 128.331250), worst finite −6.475718 mm at tele/focus .55, displayed 2.0 m. No trajectory is invented. Actual SVG comparison against native Figure 5 covers all 1,365 states: 16,380 finite, closed, connected paths and zero hidden trimming. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 7.0875 and 14.1750 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 14.1750 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 165 positive-real-object geometries, 495/495 target chiefs converge: 495 clear the current caps and 0 clip. A further 15 sampled control geometries have no positive real Gaussian object, first at zoom 0.125, focus 0.05 (object-to-first-surface -3417.942526 mm); finite-object bundles are not asserted for them. Across the converged fields, 193 current-iris samples per field give 77,459 passed, 15,269 clipped, 2,807 failed and 0 unaimed rays. Minimum sampled axial transmission is 169/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (2807). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  1.100000000 |           1.100000 | 193 / 179 / 120                   | clear / clear / clear |
+|          0.5 |                  0 |                  1.100000000 |           1.100000 | 193 / 161 / 93                    | clear / clear / clear |
+|            1 |                  0 |                  1.100000000 |           1.100000 | 169 / 151 / 111                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 1001.010987% at zoom 0.25, focus 0.35, aberration control 0: Gaussian 34.603202438 m versus label 3.142857143 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## Scoped Catalog Follow-up — 2026-10-31
+
+The original US 20080112063A 1 Numerical Embodiment 2 table, PDF page 35 / printed page 5, confirms source S7 / L22/id5 at **1.84666/23.93**. ¶0114 (PDF page 34 / printed page 4) explicitly defines the d reference. This ordinary glass has no published individual C/F/g, numerical partial dispersion or APD designation. No resin layer or source camera-side plate is tabulated. The 2026-10-30 source-shape review, all source coordinates and the removal of 48 unsupported per-lens overrides remain unchanged.
+
+[SUMITA's official download bundle](https://www.sumita-opt.co.jp/en/download/), `zemax.agf` header 2026/08/21, lists the existing SFLDN3 Schott-form polynomial unchanged at nominal 1.84666/23.9. Its nominal residuals are 0/−0.03; coefficient-derived C/d/F/g are 1.83654084/1.84665863/1.87198539/1.89399989 and PgF 0.62109682 (evaluated νd 23.886846, residual −0.043154). The source has no PgF to constrain this estimate. Current OHARA/Nikon-Hikari/SUMITA searches supply no better full-source-constrained choice: S-NPH53, S-TIH53WN and S-TIH53 have larger nominal Abbe differences, while SUMITA SFN3 shares the rounded pair but has a different partial-dispersion curve. No evidence identifies either historical formulation. SFLDN3 is a qualified existing proxy, not the former ad hoc fitted L22 spectrum, and supplies the twelfth compatible curve without new per-lens spectral overrides.

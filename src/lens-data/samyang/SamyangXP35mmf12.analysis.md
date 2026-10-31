@@ -7,7 +7,7 @@
 **Published:** 2020-02-14\
 **Inventors:** Jae Myung Yu; Hae Jin Lee; Jung Du Lee; Moon-Kyung Kim\
 **Assignee:** Samyang Optics Co., Ltd.\
-**Title:** 렌즈 광학계 및 이를 포함한 촬영 장치 (*Lens optical system and photographing apparatus including the same*)
+**Title:** 렌즈 광학계 및 이를 포함한 촬영 장치 (_Lens optical system and photographing apparatus including the same_)
 
 This prescription is the project-selected correlation for the **SAMYANG XP 35mm f/1.2**. KR 10-2077265 B1 Example 3 is used as the fixed numerical source; the correlation is not presented as an explicit Samyang statement that the production lens uses this exact patent example.
 
@@ -81,7 +81,7 @@ The group as a whole is positive even though the following cemented pair is net 
 
 ### L7 (L73) / L8 (L83) — Cemented Positive/Negative Pair C1
 
-**L7: nd = 1.71300, νd = 53.94. Glass: 713539 — lanthanum crown class (vendor unspecified). Standalone f = +43.428181 mm.**\
+**L7: nd = 1.71300, νd = 53.94. Glass: 713539 — high-Abbe coordinate proxy (chemistry unspecified) (vendor unspecified). Standalone f = +43.428181 mm.**\
 **L8: nd = 1.72825, νd = 28.32. Glass: 728283 — flint class (vendor unspecified). Standalone f = −29.465370 mm.**
 
 L7 and L8 share the cemented interface at surface 14. Their standalone powers have opposite signs and their Abbe numbers differ substantially. The cemented pair by itself has a computed net focal length of −133.002163 mm, even though L7 is a strong positive element. This negative cemented contribution follows the positive L6 singlet, leaving the complete G23 positive at +88.736798 mm.
@@ -109,7 +109,7 @@ The 497816/593354 dispersion contrast again provides conventional crown/flint co
 
 ### L12 (L123) — Biconvex Positive, Double-Sided Asphere
 
-**nd = 1.85343, νd = 40.54. Glass: L-LAH85V catalog-equivalent (patent coordinates retained; production supplier unspecified). Standalone f = +31.658456 mm.**
+**nd = 1.85343, νd = 40.54. Glass: D-ZLAF85LS-25 (CDGM compatible spectral proxy; source supplier, melt, chemistry and anneal state unspecified). Standalone f = +31.658456 mm.**
 
 L12 is the final glass element and a strong positive member of G33. Both surfaces, 22A and 23A, are aspherical. The patent specifically states that an aspheric lens at the image-side end of G33 can be used to correct astigmatism and distortion (¶0049), which makes L12 the field-correction counterpart to the stop-adjacent L9 asphere.
 
@@ -119,19 +119,19 @@ Its high index supports strong positive power in a compact rear element. The rea
 
 The patent publishes d-line refractive indices and Abbe numbers but does not identify the glass manufacturer or melt names. The final data uses neutral six-digit coordinate classes and qualified catalog equivalents. All twelve elements resolve to compatible coefficient-backed dispersion curves, without promoting those equivalents into source identities.
 
-| Glass annotation in data | nd | νd | Element(s) | Interpretation |
-|---|---:|---:|---|---|
-| 847238 — high-index flint class | 1.84666 | 23.78 | L1 | High-index, high-dispersion negative front-group material |
-| 497816 — low-dispersion crown class | 1.49700 | 81.61 | L2, L10 | Very low-dispersion crown coordinate used in both G13 and G33 |
-| 755275 — dense-flint class | 1.75520 | 27.53 | L3 | Dense, relatively high-dispersion negative material |
-| 001291 — very-high-index glass class | 2.00100 | 29.13 | L4 | Very-high-index positive front-group material |
-| 923209 — dense high-dispersion flint class | 1.92286 | 20.88 | L5 | Very high index and very low Abbe number |
-| 835427 — high-index glass class | 1.83481 | 42.72 | L6 | High-index positive G23 singlet |
-| 713539 — lanthanum crown class | 1.71300 | 53.94 | L7 | Lower-dispersion member of cemented pair C1 |
-| 728283 — flint class | 1.72825 | 28.32 | L8 | Higher-dispersion negative member of C1 |
-| E-FD8 catalog-equivalent | 1.68863 | 31.19 | L9 | Compatible dispersion proxy; production identity unspecified |
-| 593354 — flint class | 1.59270 | 35.45 | L11 | Negative member of cemented pair C2 |
-| L-LAH85V catalog-equivalent | 1.85343 | 40.54 | L12 | High-index final positive aspheric element |
+| Glass annotation in data                                    |      nd |    νd | Element(s) | Interpretation                                                |
+| ----------------------------------------------------------- | ------: | ----: | ---------- | ------------------------------------------------------------- |
+| 847238 — high-index flint class                             | 1.84666 | 23.78 | L1         | High-index, high-dispersion negative front-group material     |
+| 497816 — low-dispersion crown class                         | 1.49700 | 81.61 | L2, L10    | Very low-dispersion crown coordinate used in both G13 and G33 |
+| 755275 — dense-flint class                                  | 1.75520 | 27.53 | L3         | Dense, relatively high-dispersion negative material           |
+| 001291 — very-high-index glass class                        | 2.00100 | 29.13 | L4         | Very-high-index positive front-group material                 |
+| 923209 — dense high-dispersion flint class                  | 1.92286 | 20.88 | L5         | Very high index and very low Abbe number                      |
+| 835427 — high-index glass class                             | 1.83481 | 42.72 | L6         | High-index positive G23 singlet                               |
+| 713539 — high-Abbe coordinate proxy (chemistry unspecified) | 1.71300 | 53.94 | L7         | Lower-dispersion member of cemented pair C1                   |
+| 728283 — flint class                                        | 1.72825 | 28.32 | L8         | Higher-dispersion negative member of C1                       |
+| E-FD8 catalog-equivalent                                    | 1.68863 | 31.19 | L9         | Compatible dispersion proxy; production identity unspecified  |
+| 593354 — flint class                                        | 1.59270 | 35.45 | L11        | Negative member of cemented pair C2                           |
+| D-ZLAF85LS-25, qualified CDGM proxy                         | 1.85343 | 40.54 | L12        | High-index final positive aspheric element                    |
 
 Samyang's production specification describes the lens as using two aspherical, three HR, and one ED element. The patent directly establishes the two aspherical elements in Example 3, but it does not label individual elements with Samyang's HR or ED marketing categories. The official construction drawing resolves the single ED position as the second element, L23, despite the 1.49700/81.61 coordinate appearing twice. L23 therefore carries an inferred ED/APD display tag through the product correlation. This does not establish a patent-measured anomalous partial dispersion or a production glass supplier. The drawing marks L13, L43, and L53 as HR; these already receive the viewer’s generic high-index color from their retained indices.
 
@@ -141,12 +141,12 @@ No element in the final data carries `nC`, `nF`, `ng`, or `dPgF`. The analysis t
 
 The patent uses a published two-state floating internal-focus mechanism. G13 is fixed; G23 and G33 move independently toward the object as focus moves from infinity to the nearest published state (¶0048, ¶0062). The data file transcribes only those two endpoints and does not invent intermediate trajectories or reversals.
 
-| Authored variable spacing | Infinity | Nearest published state | Change |
-|---|---:|---:|---:|
-| G13→G23 gap after surface 10 | 6.795765 mm | 1.000000 mm | −5.795765 mm |
-| G23→STO gap after surface 15 | 7.732498 mm | 6.565902 mm | −1.166596 mm |
-| Surface 23A→plate (D3, close D4 change carried) | 35.985595 mm | 42.991934 mm | +7.006339 mm |
-| Surface 23A→IMG, air-equivalent | 38.162369751 mm | 45.168708751 mm | +7.006339000 mm |
+| Authored variable spacing                       |        Infinity | Nearest published state |          Change |
+| ----------------------------------------------- | --------------: | ----------------------: | --------------: |
+| G13→G23 gap after surface 10                    |     6.795765 mm |             1.000000 mm |    −5.795765 mm |
+| G23→STO gap after surface 15                    |     7.732498 mm |             6.565902 mm |    −1.166596 mm |
+| Surface 23A→plate (D3, close D4 change carried) |    35.985595 mm |            42.991934 mm |    +7.006339 mm |
+| Surface 23A→IMG, air-equivalent                 | 38.162369751 mm |         45.168708751 mm | +7.006339000 mm |
 
 From the front-side gap changes, G23 moves 5.795765 mm objectward and G33 moves 6.962361 mm objectward. G33 therefore moves 1.166596 mm farther toward the object than G23 over the published endpoint range. The rear gap changes by a slightly different amount because it also incorporates the published +0.033904 mm change in the plate-to-image spacing D4, which the model carries in the 23A gap so the plate keeps one plate-to-IMG gap of 0.528568 mm; it should not be interpreted as a direct mechanical travel measurement for G33. In the viewer’s fixed-image-plane coordinates this introduces a common −0.043978 mm shift: G13 −0.043978 mm, G23 −5.839743 mm, and G33 −7.006339 mm. The focus text distinguishes this reference-plane effect from mechanical motion. Diagram groups use the embodiment-specific G13/G23/G33 labels; cemented pairs use C1/C2 to avoid confusion with the D1/D2 air gaps.
 
@@ -162,12 +162,12 @@ Example 3 uses four aspherical surfaces on two elements: 17A and 18A on L9, and 
 
 where `c = 1/R`. The patent's `K` values therefore require no conversion. No uniform scale factor is applied to this prescription, so the aspheric coefficients are transcribed without dimensional rescaling.
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 | A14 | A16 |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 17A | −3.378571 | −3.752406E−05 | 1.692010E−07 | −6.857060E−10 | 1.390576E−12 | −1.189133E−15 | 0 | — |
-| 18A | −11.593490 | 1.059712E−05 | 2.149157E−08 | −1.091410E−10 | 1.185565E−13 | 0 | 0 | — |
-| 22A | 3.286256 | −2.968122E−06 | −8.169816E−09 | 3.128738E−11 | −6.398702E−15 | −3.487114E−16 | 1.001273E−18 | −1.177006E−21 |
-| 23A | −0.472800 | 1.224110E−06 | −1.054896E−08 | 6.441324E−11 | −2.469135E−13 | 5.602042E−16 | −6.187521E−19 | — |
+| Surface |          K |            A4 |            A6 |            A8 |           A10 |           A12 |           A14 |           A16 |
+| ------- | ---------: | ------------: | ------------: | ------------: | ------------: | ------------: | ------------: | ------------: |
+| 17A     |  −3.378571 | −3.752406E−05 |  1.692010E−07 | −6.857060E−10 |  1.390576E−12 | −1.189133E−15 |             0 |             — |
+| 18A     | −11.593490 |  1.059712E−05 |  2.149157E−08 | −1.091410E−10 |  1.185565E−13 |             0 |             0 |             — |
+| 22A     |   3.286256 | −2.968122E−06 | −8.169816E−09 |  3.128738E−11 | −6.398702E−15 | −3.487114E−16 |  1.001273E−18 | −1.177006E−21 |
+| 23A     |  −0.472800 |  1.224110E−06 | −1.054896E−08 |  6.441324E−11 | −2.469135E−13 |  5.602042E−16 | −6.187521E−19 |             — |
 
 The L9 pair is positioned immediately behind the stop, matching the patent's stated strategy of concentrating aspheric correction in a smaller-diameter rear group rather than in the large front elements (¶0049, ¶0052). L12 places the second double-sided asphere at the image-side end of G33, where the patent associates it with astigmatism and distortion correction.
 
@@ -177,12 +177,12 @@ The patent does not publish clear apertures. At the final modeled semi-diameters
 
 KR 10-2077265 B1 gives four principal conditional expressions for the design. Example 3 satisfies all four when the source's Table 10 convention is followed.
 
-| Condition | Patent bounds | Patent Table 10 | Recomputed from final data |
-|---|---:|---:|---:|
-| D2i / f2 | 0.05 ≤ value ≤ 0.30 | 0.207 | 0.207056 |
-| D2i / D2n | 0.90 ≤ value ≤ 1.30 | 1.068 | 1.067798 |
-| Rfront / f2 | 0.60 ≤ value ≤ 1.00 | 0.766 | 0.766458 |
-| frear / f3 | −0.80 ≤ value ≤ −0.50 | −0.680 | −0.679814 |
+| Condition   |         Patent bounds | Patent Table 10 | Recomputed from final data |
+| ----------- | --------------------: | --------------: | -------------------------: |
+| D2i / f2    |   0.05 ≤ value ≤ 0.30 |           0.207 |                   0.207056 |
+| D2i / D2n   |   0.90 ≤ value ≤ 1.30 |           1.068 |                   1.067798 |
+| Rfront / f2 |   0.60 ≤ value ≤ 1.00 |           0.766 |                   0.766458 |
+| frear / f3  | −0.80 ≤ value ≤ −0.50 |          −0.680 |                  −0.679814 |
 
 The first two expressions require a source-interpretation note. Paragraphs 0069 and 0073 describe `D2i` and `D2n` as the distance from the rear vertex of G23 to the stop. Read literally, Example 3 would produce 0.087140 and 1.177675, which do not match Table 10. The tabulated 0.207 and 1.068 values are reproduced only when the distance is taken from the rear G23 vertex at surface 15 through the stop to the first G33 vertex at surface 17A, i.e. `D2 + 10.641 mm`. The final data preserves the published spacings; the analysis records this source-definition inconsistency rather than silently altering the prescription.
 
@@ -190,7 +190,7 @@ For the remaining expressions, `Rfront` is the 68.013 mm object-side radius of L
 
 ## Verification Summary
 
-The final prescription was checked independently using sequential reduced-angle `y–ν` tracing and an ABCD matrix calculation. The two methods agree to machine precision for the authored arrays. At infinity the computed EFL is 35.961900060 mm, only −0.000378940 mm from the patent's 35.962279 mm value; the computed value is stored in `focalLengthDesign`. The recalibrated modeled entrance pupil gives F1.2540000, matching the authored and patent design value F1.254.
+The final prescription was checked independently using sequential reduced-angle `y–ν` tracing and an ABCD matrix calculation. The two methods agree to machine precision for the authored arrays. At infinity the computed EFL is 35.961900060 mm, only −0.000378940 mm from the patent's 35.962279 mm value; the computed value is stored in `focalLengthDesign`. The current shared paraxial-pupil rule derives the iris from the authored/source design value F1.254; this is not independent evidence of a physical diaphragm dimension or exact real working F-number.
 
 The computed Gaussian BFL from 23A is 38.161701693 mm air-equivalent (the paraxial equivalent of the physical plate path). The corresponding first-order architecture therefore satisfies the project's retrofocus criterion. The Petzval sum, evaluated surface by surface as `φ/(n·n′)`, is +0.001520361987 mm⁻¹, with a reciprocal magnitude of about 657.738 mm.
 
@@ -199,18 +199,36 @@ At the nearest published focus state, finite-conjugate tracing gives matrix imag
 Several source and modeling distinctions are carried explicitly in the data and this analysis:
 
 - The patent's rear 2.500 mm, `nd = 1.51680`, `νd = 64.20` optical plate is modeled in `rearPlates` (N-BK7 catalog class): traced by every analysis but not drawn. Surface 23A stores the patent D3 to the plate and the plate's gap to the image is the infinity D4 = 0.528568 mm; the close-state D4 increase (+0.033904 mm) is carried in the 23A close gap, keeping the printed `D3 + 2.5/1.5168 + D4` paraxial path exactly. Physical track grows by 0.851793 mm over the former air-equivalent fold. Table 9's `OAL`/`in Air` bookkeeping numerically includes the negative `D5`, but propagating `D5` as optical space moves the near paraxial imaging term from about −0.0045 mm to +0.3423 mm and breaks the published magnification match. `D5` is therefore retained as source bookkeeping rather than active optical space.
-- The physical stop diameter is not published; the data uses a calibrated stop size that reproduces the patent's infinity F-number.
+- The physical stop diameter is not published; the current inferred stop radius is17.217014505mm under the shared nominal-F-number rule. At nominal wide open its real marginal ray clips S17A, so a real working F-number is not reported for that clipped ray.
 - Surface semi-diameters are inferred model clearances, not patent dimensions.
-- Focus status is `PUBLISHED`; no intermediate focus trajectory is reconstructed.
+- Source focus endpoints are `PUBLISHED`; intermediate slider geometries use interpolation and are not a published mechanical trajectory.
 - No dimensional scaling is applied, so radii, spacings, and aspheric coefficients remain at the patent scale.
 - Paragraph 0047 calls G13 positive while also describing it as diverging; the claims, Example 3 description, and computed power all establish G13 as negative.
 - Paragraph 0065's generic three-element cemented wording for part of G33 does not match Example 3 Table 7 or Figure 5, which show L9 air-separated from the cemented L10/L11 pair.
 
 ## Sources and References
 
-1. **KR 10-2077265 B1**, *렌즈 광학계 및 이를 포함한 촬영 장치*, Samyang Optics Co., Ltd., Example 3. Primary numerical sources: Eq. 5 and Tables 7–10, pp. 10–15; optical layout and focus motion: Figure 5, p. 20; relevant design discussion: ¶0048–¶0066.
+1. **KR 10-2077265 B1**, _렌즈 광학계 및 이를 포함한 촬영 장치_, Samyang Optics Co., Ltd., Example 3. Primary numerical sources: Eq. 5 and Tables 7–10, pp. 10–15; optical layout and focus motion: Figure 5, p. 20; relevant design discussion: ¶0048–¶0066.
 2. **Samyang Optics, XP 35mm F1.2 product page.** Official production specifications: Canon EF mount, 12 elements in 10 groups, ASP 2 / HR 3 / ED 1, 0.34 m MFD, 0.17× maximum magnification, 64.5° full-frame angle of view, nine aperture blades, and F1.2–F16. <https://www.lksamyang.com/en/product/product-view.php?seq=397>
 3. **Samyang Optics, “Samyang Optics Launches the Premium Photo Lens — XP 35mm F1.2,” 2018-11-26.** Official launch timing and production identity. <https://www.lksamyang.com/en/about/notice-view.php?seq=558>
 4. **Samyang Optics 2022 Optical Catalogue**, XP 35mm F1.2 entry, p. 25. Manufacturer catalogue confirmation of 12 elements in 10 groups, F1.2–F16, nine blades, and 0.34 m MOD. <https://www.lksamyang.com/upload/file/2022_SAMYANG_OPTICS_Catalogue_EN.pdf>
 
 The live-site follow-up verified the manufacturer construction image: <https://www.lksamyang.com/upload/editor/1568170384>.
+
+## Reused Coverage and Runtime Follow-up — 2026-10-30
+
+The complete September 9 shape/glass and September 23 rear-plate source reviews retain their actual 2026 dates in the audit. Canonical V1→V2 parity against commit 84580191e proves unchanged optics, excluding only later source.example and focus.published provenance. No fresh original PDF inspection is claimed. Every numeric value, source field, asphere, clear cap, iris/control and camera-plate gap remains unchanged. Two labels now qualify unsupported L7 chemistry and the N-BK7 rear-plate proxy; all thirteen resolved curve identities are identical.
+
+At nominal 1.254 the current inferred iris is17.217014505mm. All 65 source-wide working marginal checks report S17A vignetting; they do not yield a working F-number. The 8 menu presets begin at 1.4 and produce520/520 traced working results; at 1.4 real working F-number is 1.440285∞/1.523894near. The aperture audit retains a 2.7% deficit at S17A (clear 14.9 mm, needed 15.3 mm). This is not full-iris clearance, even though it is within the existing 3% contract. No cap/iris/asphere is tuned to clear the sample.
+
+Across 65 states, collimated control bundles transmit 10,985/12,545 axial samples; separate actual Gaussian finite-object supplements transmit 2,925/3,185 axial samples and 195/195 chiefs, with 0 aim failures. At near the Gaussian object-to-image 340.717340 mm differs from the published source D0=175.678043 mm ahead of the first vertex and normalized physical object-to-image 340.742447 mm. The scalar field grids remain collimated; finite Gaussian field fractions are paraxial object probes rather than inverse-solved sensor corners. All intermediate focus conjugates are illustrative.
+
+A separate explicit source D0 plane inverse-solves chiefs to actual image heights 0/10.825/21.65 mm. All 3 roots converge and clear; 193-point pupil bundles pass169/162/106 respectively, with 113 clips,29 failed corner intersections/TIR and0 unaimed samples. The outer-field limitations remain. Source infinity 32.027° bounding-sphere chief clears and reaches 21.703893 mm; centered full-frame inverse-height coverage is 100%, independently of pupil throughput. All 780 actual SVG paths across 65 focus states remain finite, closed and connected with 0 hidden trim. Surface/image-circle/field gates pass; aperture audit explicitly retains the 2.7% deficit. No new source measurement, production glass chemistry, plate supplier or full unvignetted field is proved.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original complete reviews remain **2026-09-09** (shape/glass) and **2026-09-23** (physical rear plate). This narrow L12 check confirms KR102077265B1 Example 3, PDF page 14 Table 7, S22 at **1.85343/40.54**. ¶0085 page 11 labels nd/vd, and ¶0094 page 12 identifies C656.2725/d587.5618/F486.1327 nm ray-fan references. The table is vector text rendered for inspection; no upsampled raster resolution is claimed. No individual C/F/g indices or numeric partial dispersion is printed for L12; none is added.
+
+The full 700-entry existing-catalog scan finds no closer curve than the current L-LAH85V, whose evaluated residuals are approximately **+0.00057016/−0.161632**. The [official CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), row 11573 D-ZLAF85LS-25, supplies a genuinely closer curve: evaluated residuals **+0.00000996/+0.017917**, PgF 0.568644 without source partial evidence. Its literal standard Sellmeier coefficients pass the unchanged validator. The vendor's `anneal rate:25℃/h` describes this catalog row only; the source does not identify that rate, formulation, melt or supplier. A new state-specific row is justified rather than a duplicate of an existing equal curve.
+
+L12's qualified label and source-reference annotations change; all source numeric fields, source spectral/partial/APD dispositions, shape constraints, iris/control values and rear plate remain unchanged. All other twelve curve identities are retained. The shared authored-nd anchor preserves d-line geometry, while L12's estimated dispersion changes. The existing 2.7% inferred-aperture deficit and finite/off-axis limits above remain explicit; this is no new complete shape inspection or production-material claim.

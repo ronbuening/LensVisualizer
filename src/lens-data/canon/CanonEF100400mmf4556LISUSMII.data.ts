@@ -14,7 +14,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Example 2 states that L6 moves imageward for main focus and L4 slightly           ║
  * ║  objectward for auxiliary floating correction, but it does not publish complete   ║
  * ║  finite-focus spacing rows or the L4 travel magnitude. Every close member of       ║
- * ║  `var` therefore repeats its infinity value. Canon's marketed 0.98 m MFD is         ║
+ * ║  `gaps` therefore repeats its infinity value. Canon's marketed 0.98 m MFD is         ║
  * ║  metadata only; no internal close-focus motion is invented.                        ║
  * ║                                                                                    ║
  * ║  ZOOM: source D6, D14, D19, D20, D23, D30, and BF/D38 are modeled at the          ║
@@ -32,6 +32,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  the 11->12 and 32->33 air gaps use 93.25% and 92.74% of their axial spacing      ║
  * ║  at the shared rim while retaining +0.280 mm and +0.296 mm physical clearance.    ║
  * ║  `gapSagFrac = 0.94` preserves those published apertures without hidden geometry.  ║
+ * ║                                                                                    ║
+ * ║  Original-PDF review 2026-10-30: Fig. 4 (PDF page 5) and Numerical Example 2 ║
+ * ║  surface/diameter/glass table (PDF page 22, printed page 8). Published caps  ║
+ * ║  retained; no separately resolved outer shoulder or concave land is added.  ║
  * ║                                                                                    ║
  * ║  GLASS: Example 2 publishes d-line nd/vd only and does not name vendors. Glass     ║
  * ║  strings therefore remain vendor-neutral classes/codes or explicit Unmatched      ║
@@ -69,13 +73,13 @@ const LENS_DATA = {
     elementCount: 21,
     groupCount: 16,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: [100, 400], design: [102.75785763652577, 388.9390594335833] },
+    focalLengthMm: { marketing: [100, 400], design: [102.79, 389.03] },
     fNumber: { marketing: 4.5, design: 4.63 },
   },
 
   source: {
     patentNumber: "US 2015/0146044 A1",
-    example: { label: "Example 2", id: "2" },
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2015,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],

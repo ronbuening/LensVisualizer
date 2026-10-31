@@ -1,44 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF 28mm f/2.8                                            ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP S62-078520 A, Numerical Example 1 (Canon Inc.).                 ║
- * ║ Inventor: Takashi Matsushita.                                              ║
- * ║ Production correlation: Canon EF 28mm f/2.8, marketed April 1987.          ║
- * ║ Five elements / five groups; patent surface R2 is aspherical.              ║
- * ║ Canon identifies a molded-glass aspherical first element in production.    ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes no focus    ║
- * ║ spacing states; the production 0.3 m MFD is metadata only.                 ║
- * ║                                                                            ║
- * ║ SCALE: The patent is normalized to F = 1. Every radius, spacing,           ║
- * ║ semi-diameter, and image distance is scaled by s = 28. Polynomial          ║
- * ║ coefficients use A_p,scaled = A_p,patent / 28^(p-1); K is unchanged.       ║
- * ║ The rounded prescription computes EFL = 28.2193758885 mm; it is not        ║
- * ║ rescaled a second time to force 28.000 mm.                                 ║
- * ║                                                                            ║
- * ║ ASPHERE: Patent R2 is a plane plus A·H² + B·H⁴ + C·H⁶ + D·H⁸ + E·H¹⁰.     ║
- * ║ The schema has no A2 term, so A·H² is represented exactly by a K = -1     ║
- * ║ paraboloid with R = 1/(2A); A4-A10 store the scaled B-E terms.             ║
- * ║                                                                            ║
- * ║ SOURCE-PRECISION NOTE: Patent D9 is printed 0.00. That raw zero center     ║
- * ║ gap is retained; the facing R9/R10 surfaces diverge away from the axis,    ║
- * ║ so no positive surrogate is required. The very thin printed D7 = 0.01     ║
- * ║ gap is retained as 0.28 mm and uses gapSagFrac = 1.0: at the selected      ║
- * ║ shared clear band, the surfaces remain separated but use nearly the full   ║
- * ║ source-rounded center gap.                                                 ║
- * ║                                                                            ║
- * ║ SEMI-DIAMETERS: No clear apertures are published. Values are inferred      ║
- * ║ from the f/2.8 stop/pupil solution, exact and paraxial ray containment,    ║
- * ║ the 37° patent half-field, the Figure 1 element-height ratios, and         ║
- * ║ geometry gates. The displayed 60%-field ray fan clears every selected     ║
- * ║ rim. All rims pass edge-thickness and actual-slope checks.                 ║
- * ║                                                                            ║
- * ║ GLASS: The patent publishes nd/νd only. OHARA names and nC/nF/ng/dPgF      ║
- * ║ below are current catalog equivalents: nd matches the patent; νd agrees    ║
- * ║ within printed source precision. They are not procurement claims.          ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * JP S62-078520 A, Numerical Example 1: PDF pp. 3–4 (printed 113–114), Figure 1 on p. 5.
+ * Original-PDF shape/glass review: 2026-10-30. The normalized prescription is scaled uniformly by 28;
+ * source R/d, the exact R2 polynomial conversion, derived iris and static-focus controls are preserved.
+ * R2A clear sd 14.5 mm and outer shoulder 17 mm follow the resolved Figure 1 rim conservatively.
+ * Other inferred caps remain within schematic reading uncertainty; these are not factory diameters.
+ * The printed D7 = 0.01 and D9 = 0.00 remain 0.28 and 0 mm. Existing gapSagFrac = 1 is unchanged.
+ * S7 still limits the stated wide-open beam: the required 6.5 mm raise overlaps the next element.
+ * No finite-focus trajectory, plate, bonded land or inferred rim cut is introduced.
+ * The patent names no spectral line. 5 of 5 printed pairs match catalog d-line coordinates and none match the
+ * e-line, so the table is read as d-line. 5 media use catalog curves as spectral proxies; supplier, melt and
+ * chemistry stay unspecified. The patent prints no per-medium C/F/g or partial-dispersion data.
  */
 
 const LENS_DATA = {
@@ -61,7 +34,7 @@ const LENS_DATA = {
     ],
     elementCount: 5,
     groupCount: 5,
-    focalLengthMm: { marketing: 28, design: 28.219375888477686 },
+    focalLengthMm: { marketing: 28, design: 28 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -82,12 +55,9 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -40.133858724,
-      glass: "S-BSM14 (OHARA catalog equivalent; patent class 603607)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative meniscus; its rear asphere supplies the principal wide-angle correction.",
-      dPgF: -0.0019,
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
     },
     {
       id: 2,
@@ -97,12 +67,9 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: 33.841845873,
-      glass: "S-LAH51 (OHARA catalog equivalent; patent class 786442)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element that restores power after L1 and precedes the aperture stop.",
-      dPgF: -0.0069,
-      nC: 1.78058,
-      nF: 1.79836,
-      ng: 1.80838,
     },
     {
       id: 3,
@@ -112,12 +79,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -17.659709222,
-      glass: "S-TIH53WN (OHARA catalog equivalent; patent class 847239)",
-      role: "Dense-flint negative element immediately behind the stop; balances the positive rear pair.",
-      dPgF: 0.0179,
-      nC: 1.83653,
-      nF: 1.87201,
-      ng: 1.89403,
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
+      role: "High-index, high-dispersion negative element behind the stop; balances the positive rear pair.",
     },
     {
       id: 4,
@@ -127,12 +91,9 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 42.2,
       focalLengthMm: 25.168233868,
-      glass: "S-LAH52 (OHARA catalog equivalent; patent class 800422)",
+      glass:
+        "S-LAH52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong rear positive element with a nearly flat front surface and strongly powered rear surface.",
-      dPgF: -0.006,
-      nC: 1.79388,
-      nF: 1.81281,
-      ng: 1.82355,
     },
     {
       id: 5,
@@ -142,12 +103,9 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       focalLengthMm: 42.862940291,
-      glass: "S-LAH51 (OHARA catalog equivalent; patent class 786442)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element that completes the rear relay and establishes the long back focus.",
-      dPgF: -0.0069,
-      nC: 1.78058,
-      nF: 1.79836,
-      ng: 1.80838,
     },
   ],
 
@@ -157,7 +115,8 @@ const LENS_DATA = {
       label: "2A",
       R: 15.932627745533175,
       d: 18.48,
-      sd: 16.3,
+      sd: 14.5,
+      rimExtensionSd: 17,
       asphere: {
         K: -1,
         A4: 2.6020408163265307e-5,

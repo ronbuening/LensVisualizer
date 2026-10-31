@@ -24,8 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * section. Front 28 mm radius fits behind the 58 mm filter; off-axis vignetting
  * is expected. R7 is limited to 13.7 mm by the thin R7-R8 air lens.
  * Every var entry repeats its infinity value: the patent gives no focus state.
- * Source N/nu leave the reference wavelength unstated. Glasses remain Unmatched;
- * dispersion uses approximate d-line Abbe estimates, with catalog classes left inactive.
+ * The patent names no spectral line for its N/nu pairs. 15 of 15 printed pairs match
+ * catalog d-line coordinates and none match the e-line, so the table is read as d-line.
+ * 15 media use catalog curves as spectral proxies; supplier, melt and chemistry stay
+ * unspecified.
  * The two conditional fo/fr values remain unresolved (see sourceErrata).
  */
 const LENS_DATA = {
@@ -47,7 +49,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 10,
-    focalLengthMm: { marketing: [75, 300], design: [76.1174798344741, 291.49914720355235] },
+    focalLengthMm: { marketing: [75, 300], design: [76.12, 291.49] },
     fNumber: { marketing: 4, design: 4.1 },
   },
 
@@ -73,10 +75,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -221.388082194,
-      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the G1 cemented doublet.",
       cemented: "D1",
     },
@@ -87,10 +87,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51633,
       vd: 64.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 134.257507689,
-      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive crown partner of the G1 doublet.",
       cemented: "D1",
     },
@@ -101,10 +100,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 208.963244531,
-      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Air-separated positive G1 singlet.",
     },
     {
@@ -114,10 +112,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -59.952879469,
-      glass: "Unmatched (source wavelength unspecified; LAH66 is a possible d-line catalog class)",
+      glass:
+        "LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative singlet of the laterally moving IS group G2.",
     },
     {
@@ -127,10 +124,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51633,
       vd: 64.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -46.655589497,
-      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative crown member of the rear G2 doublet.",
       cemented: "D2",
     },
@@ -141,10 +137,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.8,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 72.533408228,
-      glass: "Unmatched (source wavelength unspecified; S-TIH53 is a possible d-line catalog class)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive dense-flint member of the G2 doublet.",
       cemented: "D2",
     },
@@ -155,10 +150,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.7,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 58.515790906,
-      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive G3 crown singlet.",
     },
     {
@@ -168,10 +162,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 60.552442335,
-      glass: "Unmatched (source wavelength unspecified; S-FSL5 is a possible d-line catalog class)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive low-dispersion crown member of the G3 doublet.",
       cemented: "D3",
     },
@@ -182,10 +175,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -55.247823581,
-      glass: "Unmatched (source wavelength unspecified; S-LAH60 is a possible d-line catalog class)",
+      glass:
+        "S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative high-index partner of the G3 doublet before the stop.",
       cemented: "D3",
     },
@@ -196,10 +188,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60311,
       vd: 60.7,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -410.971972268,
-      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative, image-convex G4 singlet; fixed during zoom.",
     },
     {
@@ -209,10 +200,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.7,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 57.128704261,
-      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive crown member of the G5 doublet.",
       cemented: "D4",
     },
@@ -223,10 +213,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -102.809620703,
-      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative flint member of the G5 doublet.",
       cemented: "D4",
     },
@@ -237,10 +225,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51633,
       vd: 64.2,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 147.955687663,
-      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Object-convex positive G5 singlet.",
     },
     {
@@ -250,10 +237,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: -30.699716691,
-      glass: "Unmatched (source wavelength unspecified; LAH66 is a possible d-line catalog class)",
+      glass:
+        "LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative lanthanum-glass member of the rear G6 doublet.",
       cemented: "D5",
     },
@@ -264,10 +250,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      indexReferenceNote:
-        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
       focalLengthMm: 66.040722027,
-      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Object-convex positive flint member of G6.",
       cemented: "D5",
     },

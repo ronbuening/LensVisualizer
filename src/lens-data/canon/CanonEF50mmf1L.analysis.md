@@ -1,332 +1,276 @@
-# Canon EF 50mm f/1.0L USM — Optical Design Analysis
+## Patent Reference and Design Identification
 
-**Patent:** US 4,717,245 — *High Relative Aperture Gauss Type Lens*
-**Inventor:** Sadatoshi Takahashi (Canon Kabushiki Kaisha)
-**Filed:** December 5, 1986 (US); priority December 12, 1985 (JP 60-280060)
-**Granted:** January 5, 1988
-**Example details:** 11 elements / 9 groups
-**Production lens marketed:** September 1989 — discontinued 2000
+**Patent:** US 4,717,245\
+**Application Number:** 938,445\
+**Priority:** JP 60-280060, December 12, 1985\
+**Filed:** December 5, 1986\
+**Granted:** January 5, 1988\
+**Inventor:** Sadatoshi Takahashi\
+**Assignee:** Canon Inc.\
+**Title:** _High Relative Aperture Gauss Type Lens_\
+**Example details:** Numerical Example 2, PDF page 8 / column 5; Figure 2 on PDF page 2, Figure 5 on PDF page 4; certificate of correction on PDF page 10
 
----
+The current model selects the original's Numerical Example 2 and retains the established uniform scale 0.50008,
+from source F = 100 to approximately 50 mm. The existing production association with the EF 50mm f/1.0 L USM
+remains inferred; the original does not name that product. Its supporting features are:
 
-## 1. Identification of the Production Design
+1. Eleven elements in nine groups, with two front singlets and two cemented doublets. Example 1 has ten elements;
+   Example 3 has an additional rear cemented contact rather than the same nine-group topology.
+2. Two aspheric surfaces, on the third element's front and eighth element's rear.
+3. Source FNO 1:1.0 and 45.2° full field at normalized F = 100, compatible with the marketed aperture/focal class
+   after scaling.
 
-US 4,717,245 contains three numerical examples. Example 2 is identified as the basis for the Canon EF 50mm f/1.0L USM on the following grounds:
+The unchanged prescription, scaling, asphere conversion and retained cap constraints reuse the completed
+**2026-09-23** source review. Only the newly resolved shoulders and reproducible
+current-runtime wording defects are reopened on **2026-10-30**. Earlier glass relabel dates are preserved in the audit.
 
-The production lens has an 11-element, 9-group construction with two ground-and-polished aspherical surfaces on the 3rd and 8th elements (per the Canon Camera Museum). Example 1 has only 10 elements (one front element in G1) and 8 groups, eliminating it immediately. Examples 2 and 3 both have 11 elements with two-element front units and aspherical surfaces on elements 3 and 8, but they differ in rear group topology: Example 2 uses a cemented doublet (L6+L7) behind the stop, producing 9 air-separated groups, while Example 3 uses a cemented triplet (L6+L7+L8) behind the stop, producing only 8 groups. Since the production lens has 9 groups, Example 2 is the unique match. The patent prescription is given at a normalized focal length of f = 100 mm; scaling to the production focal length of f ≈ 50 mm requires a uniform factor of approximately 0.5001.
+## Optical Architecture
 
-### Production specifications (Canon)
+The design develops the double-Gauss arrangement by sharing negative power between the two stop-adjacent negative
+lenses and additional negative menisci farther from the stop. In the patent's unit numbering, the two front positive
+singlets form G1; subsequent units G2–G10 correspond to the remaining elements. Stored element identifiers L1–L11
+count the two G1 members separately.
 
-| Parameter | Value |
-|-----------|-------|
-| Focal length | 50 mm |
-| Maximum aperture | f/1.0 |
-| Construction | 11 elements / 9 groups |
-| Aspherical surfaces | 2 (ground and polished, elements 3 and 8) |
-| Diaphragm blades | 8 |
-| Minimum aperture | f/16 |
-| Minimum focus distance | 0.6 m |
-| Maximum magnification | 0.11× |
-| Filter diameter | 72 mm |
-| Dimensions (∅ × L) | 91.5 × 81.5 mm |
-| Weight | 985 g |
-| Mount | Canon EF |
-| AF system | Ring USM, focus-by-wire |
-| Focus mechanism | Floating system (group displacements not published) |
+| Unit / elements | Source architecture and role                                                        |
+| --------------- | ----------------------------------------------------------------------------------- |
+| G1 / L1, L2     | Two positive front menisci collect the large-aperture bundle                        |
+| G2–G3 / L3, L4  | Cemented negative/positive menisci; front negative-power sharing and index contrast |
+| G4 / L5         | Negative meniscus with its strong concave rear toward the stop                      |
+| Stop            | Source R10, equal source D9/D10 = 17.88 mm on each side                             |
+| G5–G6 / L6, L7  | Cemented biconcave/biconvex pair behind the stop                                    |
+| G7 / L8         | Additional rear negative meniscus with aspheric rear face                           |
+| G8 / L9         | Positive meniscus in the converging rear train                                      |
+| G9 / L10        | Nearly plano-convex positive element                                                |
+| G10 / L11       | Weak final positive meniscus                                                        |
 
----
+Claim 6 describes the L4–L5 and L7–L8 air spaces as positive-lens forms: their center is thicker than their rim.
+The retained 1.250 and 1.575 mm scaled axial gaps therefore narrow outward. The previously documented gap-sag
+fraction 0.97 is preserved with its actual 2026-09-23 rationale; no new tolerance relaxation is made to fit shoulders.
+The original supplies no filter, rear plate, hybrid resin layer or nonaxial control.
 
-## 2. Optical Architecture
+## Element-by-Element Analysis
 
-The design is a modified double-Gauss with substantial elaboration at both ends. The classical Gauss core — a pair of negative lenses flanking a central stop, each oriented with its strong concave surface facing the stop — is preserved in elements L5 and L6 (G4 and G5 in the patent's notation). Around this core, the patent adds negative meniscus lenses (L3 and L8) to share the negative refractive power that would otherwise concentrate entirely on those two stop-adjacent concave surfaces. This power-sharing is the central design principle of the patent and is the mechanism by which the aperture is pushed to f/1.0 without catastrophic sagittal flare.
+The following $n_d$ and $\nu_d$ fields keep the printed N/ν pairs, read as d-line (see Glass Identification and
+Selection). The patent names no spectral line. Each element's catalog curve is a spectral proxy; supplier, melt and
+chemistry stay unspecified.
 
-The nine air-separated groups, front to rear, are listed below with the patent's own lens-unit labels (the patent calls the two-element front unit G1 and numbers every following lens G2–G10):
+### L1 — Positive Meniscus, First G1 Member
 
-| Air-spaced group | Elements | Patent unit | Function |
-|------------------|----------|-------------|----------|
-| 1 | L1 | G1 (first lens) | Front positive element — collects marginal rays |
-| 2 | L2 | G1 (second lens) | Second positive element — additional convergence for large-aperture marginal bundle |
-| 3 | L3 + L4 (cemented) | G2 + G3 | Negative meniscus + positive meniscus doublet — L3 shares G4's negative Petzval burden |
-| 4 | L5 | G4 | Negative meniscus — classical front Gauss element, concave toward stop |
-| — | Stop | S | Aperture diaphragm (between L5 and L6) |
-| 5 | L6 + L7 (cemented) | G5 + G6 | Biconcave + biconvex doublet — classical rear Gauss pair plus chromatic correction |
-| 6 | L8 | G7 | Negative meniscus — shares G5's negative Petzval burden (symmetric to L3) |
-| 7 | L9 | G8 | Positive meniscus — aberration balancing |
-| 8 | L10 | G9 | Biconvex positive — provides convergence for the rear group |
-| 9 | L11 | G10 | Positive meniscus (convex toward front) — final field correction |
+**Stored $n_d$ = 1.60311, $\nu_d$ = 60.7. Glass: BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +278.2 mm at the adopted scale.**
 
-An additional structural detail noted in patent claim 6 is that the air spaces between the third and fourth lenses (G3–G4, i.e. L4–L5, D7 = 2.50) and between the sixth and seventh lenses (G6–G7, i.e. L7–L8, D13 = 3.15) are "of the positive lens form" — thicker at the center than at the edge. Both are meniscus-shaped air lenses: the G3–G4 space is bounded by R7 = +280.28 and R8 = +1093.50, the G6–G7 space by R13 = −69.60 and R14 = −60.14, and in each case the more strongly curved bounding surface closes the gap toward the rim. At the f/1.0 axial marginal height the two air spaces are nearly closed (about 0.1 mm of air remains at production scale), which is why FIG. 2 draws L4 touching L5 and L7 touching L8 at their rims.
+L1 provides weak positive collection at the front of the large bundle. The retained figure-derived 28.6 mm front
+clear cap is larger than a simple paraxial pupil radius and remains part of the prior geometric construction model.
+No supplier or crown-glass chemistry follows from its numeric pair.
 
-### Computed system parameters (f = 100 scale, verified by ABCD ray trace)
+### L2 — Positive Meniscus, Second G1 Member
 
-| Parameter | Value |
-|-----------|-------|
-| Effective focal length (EFL) | 99.98 mm |
-| Back focal distance (BFD) | 74.44 mm |
-| BFD / EFL | 0.7445 |
-| Total optical track (vertex to image) | 233.67 mm |
-| Front group focal length (L1–L5) | 342.85 mm |
-| Rear group focal length (L6–L11) | 72.56 mm |
-| Half-field angle ω | 22.6° |
-| Image height at f = 100 | 41.62 mm |
-| Petzval sum | +0.00164 |
-| Petzval radius | −610 mm |
-| Stop semi-diameter (at f/1.0, traced) | 33.71 mm |
+**Stored $n_d$ = 1.69680, $\nu_d$ = 55.5. Glass: S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +176.1 mm.**
 
-The BFD/EFL ratio of 0.7445 satisfies the patent's stated constraint of ≥ 0.70, confirming sufficient back focal distance for the SLR quick-return mirror. At the production scale of f ≈ 50 mm, BFD ≈ 37.2 mm, which is less than the EF mount's 44.0 mm flange distance — at infinity focus the rear vertex of the last element sits about 6.8 mm behind the mount flange plane, inside the camera's mirror-box throat (a derived figure; the production barrel geometry is not published in the patent).
+The second front singlet adds positive power without placing all convergence on the first exposed element.
+Its source-scaled radii and existing 26.4/26.0 mm caps remain. Splitting G1 into two elements distinguishes this
+example from the ten-element first example.
 
-The Petzval sum is very nearly zero (+0.00164 at f = 100), confirming that the design achieves nearly flat field curvature. This is accomplished through three principal mechanisms: first, the four positive "workhorse" elements (L4, L7, L9, L10) all use very high-index lanthanum flint glass (nd = 1.883), which reduces each element's Petzval contribution for a given power since the contribution scales as φ/n²; second, the negative elements L3 and L5 use a low-index glass (nd = 1.517), maximizing their negative Petzval contribution per unit of negative power; and third, by distributing the required negative power across four negative elements (L3, L5, L6, L8) rather than concentrating it in the two elements flanking the stop, the design avoids the extreme surface curvatures that would generate excessive sagittal flare.
+### L3 — Negative Meniscus, Aspheric Front, First D1 Member
 
----
+**Stored $n_d$ = 1.51742, $\nu_d$ = 52.4. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −196.9 mm.**
 
-## 3. Aspherical Surfaces
+L3 shares the front Gauss negative-power burden with L5. Its lower index relative to cemented L4 participates in the
+source's Petzval strategy. The source front asphere is a pure polynomial; the retained osculating-sphere conversion
+is detailed below. Grinding, polishing, resin or molding identity is not established by that polynomial.
 
-### 3.1 Patent formulation
+### L4 — Positive Meniscus, Rear D1 Member
 
-The patent uses a non-standard polynomial representation with the base radius R set to infinity:
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +59.2 mm.**
 
-$$Z(H) = \frac{(1/R) H^2}{1 + \sqrt{1 - (H/R)^2}} + AH^2 + BH^4 + CH^6 + DH^8 + EH^{10}$$
+L4 supplies substantial positive power after L3. Its index contrast with L3 is 0.36558, satisfying corrected source
+condition (3). The following narrow air space is preserved; its drawing does not justify an opaque cemented land or
+an inflated equal-height glass block.
 
-With R = ∞, the conic base term vanishes entirely, and the sag is a pure polynomial. The quadratic term AH² is the key: it defines the paraxial curvature of the aspherical surface, while the higher-order terms describe departures from that effective sphere.
+### L5 — Negative Meniscus, Concave Rear Toward Stop
 
-### 3.2 Surface R5 — 3rd element (L3) front surface
+**Stored $n_d$ = 1.51742, $\nu_d$ = 52.4. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −52.1 mm.**
 
-**Patent coefficients (R = ∞):**
+L5 is the front stop-adjacent negative element. Native Figure 2 resolves a short vertical outer stroke on its rear
+face. The clear radius stays 18.8 mm; a 21.2 mm outer shoulder is anchored to its existing front cap. This preserves
+the old beam-constrained optical cap and supplies the resolved drawn shoulder separately.
 
-| Coefficient | Value |
-|------------|-------|
-| A | +3.826 × 10⁻³ |
-| B | +6.521 × 10⁻⁸ |
-| C | +4.881 × 10⁻¹¹ |
-| D | −1.684 × 10⁻¹⁴ |
-| E | +4.549 × 10⁻¹⁸ |
+### L6 — Biconcave Negative, Front D2 Member
 
-The effective paraxial radius is R_eff = 1/(2A) = +130.68 mm. The positive sign indicates that the center of curvature is to the right: the surface is convex toward the front, consistent with the patent's description of G2 as a "negative meniscus convex toward the front." With R_rear = +78.02 (also convex toward front, but more strongly curved), L3 is confirmed as a negative meniscus.
+**Stored $n_d$ = 1.84666, $\nu_d$ = 23.9. Glass: PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −21.5 mm.**
 
-**Role (per patent text):** The aspherical surface on the object side of the stop is figured so that the positive power increases toward the margin. This corrects distortion arising from the asymmetry of the lens system about the stop, and simultaneously reduces sagittal flare.
+L6 is the strongest standalone negative member. Its low Abbe value relative to L7 provides dispersion contrast in the
+rear cemented pair. The concave air-facing front has a native vertical shoulder; its clear radius remains 17.4 mm,
+with a conservative 20.6 mm outer anchor from the existing bonded cap. No land is placed on the bonded interface.
 
-### 3.3 Surface R15 — 8th element (L8) rear surface
+### L7 — Biconvex Positive, Rear D2 Member
 
-**Patent coefficients (R = ∞):**
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +28.4 mm.**
 
-| Coefficient | Value |
-|------------|-------|
-| A | −3.846 × 10⁻³ |
-| B | +3.361 × 10⁻⁸ |
-| C | +8.434 × 10⁻¹¹ |
-| D | −3.297 × 10⁻¹⁴ |
-| E | +5.350 × 10⁻¹⁸ |
+The thick positive member offsets much of L6's negative power and carries a long glass path at this speed.
+Its rear face and the following L8 front bound the other claim-6 positive-form air lens. Their near-rim clearance
+remains a retained geometric constraint, independent of the newly drawn L6 front shoulder.
 
-The effective paraxial radius is R_eff = 1/(2A) = −130.01 mm. The negative sign means the center of curvature is to the left: the surface is convex toward the image. With R_front = −60.14 (concave toward the front) and R_rear_eff ≈ −130.0, both radii are negative and L8 is a negative meniscus convex toward the rear, matching the patent description of G7.
+### L8 — Negative Meniscus, Aspheric Rear
 
-**Role (per patent text):** The aspherical surface on the image side of the stop is figured so that the negative power increases toward the margin. This allows the curvatures of the two strongly concave surfaces flanking the stop (R9 on L5 and R11 on L6) to be weakened, directly reducing the amount of sagittal flare produced.
+**Stored $n_d$ = 1.80518, $\nu_d$ = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ −71.7 mm.**
 
-### 3.4 Conversion to standard sag form
+L8 shares the rear negative-power burden with L6. The source prefers an image-side asphere whose negative power
+increases toward its margin; the polynomial rear face implements that shape without establishing a named material
+or manufacturing route. No separate shoulder is resolved on its continuous aspheric cap.
 
-The lens data specification used by the renderer expects the standard aspherical sag form with explicit base radius R and conic constant K. When the patent provides R = ∞ with an AH² term, conversion is required. Setting R = 1/(2A) and K = 0, the higher-order sphere expansion generates correction terms at each power of h:
+### L9 — Positive Meniscus, Concave Toward Front
 
-| Power | Sphere correction term |
-|-------|----------------------|
-| h⁴ | A³ |
-| h⁶ | 2A⁵ |
-| h⁸ | 5A⁷ |
-| h¹⁰ | 14A⁹ |
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +73.2 mm.**
 
-The standard-form aspherical coefficients are then A4 = B − A³, A6 = C − 2A⁵, A8 = D − 5A⁷ and A10 = E − 14A⁹, followed by the uniform scale to production (A_n ÷ s^(n−1)). The corrections are not small (for R5 the h⁴ correction A³ ≈ 5.6 × 10⁻⁸ nearly cancels B = 6.5 × 10⁻⁸), so omitting them would put sag errors of tenths of a millimetre at the rim. At the production scale the converted form agrees with the patent polynomial to better than 0.02 µm out to the 23.8 mm clear aperture of both aspherical surfaces (recomputed 2026-09-23; the remaining difference is the untruncated h¹² and higher sphere terms).
+L9 starts the final positive train. Its stronger convex-to-image rear face helps bring the wide post-stop bundle
+toward the image. Repeating L4/L7's coordinates does not identify the same historical glass or supplier.
 
-### 3.5 Aspherical departure
+### L10 — Nearly Plano-Convex Positive
 
-The aspherical departure from the osculating sphere (R = 1/(2A)) is small near the axis but grows rapidly toward the clear aperture. Computed at the production scale (f = 50):
+**Stored $n_d$ = 1.88300, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +76.4 mm.**
 
-| Surface | Departure at h = 12.5 mm (half aperture) | Departure at h = 23.8 mm (clear aperture) |
-|---------|------------------------------------------|-------------------------------------------|
-| R5 (L3 front) | ≈ +0.006 mm | +0.211 mm — deeper sag, so steeper than the sphere |
-| R15 (L8 rear) | ≈ +0.025 mm | +0.458 mm — shallower sag, so flatter than the sphere |
+L10 has a nearly flat front radius and more strongly curved rear. It contributes positive convergence together with
+L9 while retaining the original thickness and 26.0 mm caps. No extra vertical land is resolved on its near-flat face.
 
-R5 is an air-to-glass surface convex toward the object; steepening it toward the rim adds positive power at the margin, exactly the patent's instruction for the object-side asphere. R15 is a glass-to-air surface convex toward the image, which contributes positive power near the axis; flattening it toward the rim removes some of that positive power, so relative to the sphere its power becomes more negative toward the margin — the patent's instruction for the image-side asphere. The R15 departure is about twice that of R5 at the same height, reflecting the larger correction burden placed on the image-side surface.
+### L11 — Positive Meniscus, Convex Toward Front
 
-These are ground-and-polished aspherical elements, not molded — the Canon Camera Museum specifically describes them as "large-diameter ground and polished glass aspherical lens elements." This is significant because in 1989, precision glass molding was not mature enough to produce elements of this diameter (the 3rd element is one of the larger elements in the system), and the dense flint glass used for L8 (nd = 1.805) is not amenable to molding. Ground-and-polished aspherical production was a hallmark of Canon's optical manufacturing capability in this era.
+**Stored $n_d$ = 1.55963, $\nu_d$ = 61.2. Glass: S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f ≈ +148.8 mm.**
 
----
+The last weak positive meniscus trims the final power and off-axis balance. Its 22.6 mm caps remain from the prior
+review. The source does not assign it a separate floating-focus role, so none is authored.
 
-## 4. Glass Types
+## Glass Identification and Selection
 
-The lens uses seven distinct glass types. The dominant material is a dense lanthanum flint used for all four of the positive "workhorse" elements.
+Column 4 on PDF page 7 defines refractive indices **N** and Abbe numbers **ν** without specifying their reference
+wavelengths. The patent names no spectral line, and the complete original, including its certificate, does not supply an
+explicit link between these prescription coordinates and the d-line. Figure 5's d/g labels are contextual aberration
+evidence, not that missing coordinate definition. 11 of 11 printed pairs match catalog d-line coordinates and none match
+the e-line, so the table is read as d-line. 11 media use catalog curves as spectral proxies; supplier, melt and chemistry
+stay unspecified. The stored numbers are the printed pairs, unchanged.
 
-### 4.1 Glass identification table
+| Elements        | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                        |
+| --------------- | ------------: | --------------: | ------------------------------------------------------------------------------------------------------------ |
+| L1              |       1.60311 |            60.7 | BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L2              |       1.69680 |            55.5 | S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L3, L5          |       1.51742 |            52.4 | S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L4, L7, L9, L10 |       1.88300 |            40.8 | S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L6              |       1.84666 |            23.9 | PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L8              |       1.80518 |            25.4 | SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)     |
+| L11             |       1.55963 |            61.2 | S-BAL50 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
 
-| Element | nd | vd | Six-digit code | Probable glass | Family |
-|---------|-------|------|--------|---------------|--------|
-| L1 | 1.60311 | 60.7 | 603607 | BACD14 (HOYA) / S-BSM14 (OHARA) | Dense (barium) crown |
-| L2 | 1.69680 | 55.5 | 697555 | S-LAL14 (OHARA) | Lanthanum crown |
-| L3 | 1.51742 | 52.4 | 517524 | S-NSL36 (OHARA) | Low-index crown flint |
-| L4 | 1.88300 | 40.8 | 883408 | S-LAH58 (OHARA) / TAFD30 (HOYA) | Dense lanthanum flint |
-| L5 | 1.51742 | 52.4 | 517524 | S-NSL36 (OHARA) | Low-index crown flint |
-| L6 | 1.84666 | 23.9 | 847239 | PBH53 (OHARA) / SF57 class | Dense flint |
-| L7 | 1.88300 | 40.8 | 883408 | S-LAH58 (OHARA) / TAFD30 (HOYA) | Dense lanthanum flint |
-| L8 | 1.80518 | 25.4 | 805254 | S-TIH6 (OHARA) / SF6 (SCHOTT) | Dense flint |
-| L9 | 1.88300 | 40.8 | 883408 | S-LAH58 (OHARA) / TAFD30 (HOYA) | Dense lanthanum flint |
-| L10 | 1.88300 | 40.8 | 883408 | S-LAH58 (OHARA) / TAFD30 (HOYA) | Dense lanthanum flint |
-| L11 | 1.55963 | 61.2 | 560612 | S-BAL50 (OHARA) | Barium crown |
+The curves are numerical matches to the printed pairs. No individual C/F/g indices, relative partial values or APD
+evidence are published. Existing `apd:false` means no source APD designation; it does not establish a normal
+production melt.
 
-The patent gives only nd and νd, and names no glass maker. The names above are catalog equivalents that reproduce each published nd/νd pair (the data file uses the first name listed); the production melts may have come from any supplier. For L1 and L6 the HOYA BACD14 and legacy OHARA PBH53 entries reproduce the patent's νd exactly (60.7, 23.9), where the current OHARA S-BSM14 and S-TIH53 round to 60.6 and 23.8.
+The catalog names are coordinate matches, not supplier, melt, chemistry, cement, polishing or annealing
+identifications. In particular, the high-index rows do not establish lanthanum-flint chemistry, and production
+grinding/polishing statements are not source material evidence. No modeled chromatic behavior is presented as measured
+production performance.
 
-### 4.2 Glass selection rationale
+## Focus Mechanism
 
-The glass choices divide into three functional categories:
+Column 4 / PDF page 7 prefers focusing by moving the entire lens system. It also permits front/rear halves to move
+with respect to the stop, including different speeds, but supplies no finite-focus table or motion schedule.
+The existing model retains whole-system extension and the prior calculated 0.6 m endpoint.
 
-**High-index positive elements (nd = 1.883, vd = 40.8):** L4, L7, L9, and L10 all use the same dense lanthanum flint. These are the "four high-refraction glass elements" mentioned by the Canon Camera Museum. The very high refractive index accomplishes two things simultaneously: it reduces the Petzval sum contribution of the positive elements (Petzval contribution ∝ φ/n², so higher n reduces the contribution for a given power), and it allows the element curvatures to be weaker for a given power (since φ ∝ (n−1)/R), which reduces higher-order aberrations. The moderate Abbe number (40.8) is a compromise — not as dispersive as the flint elements flanking the stop, but not as low-dispersion as the crown elements.
+| State                       | Final gap | Status                                   |
+| --------------------------- | --------: | ---------------------------------------- |
+| Infinity                    | 37.226 mm | Retained computed source-scale image gap |
+| Focus 0.5 / displayed 1.2 m | 39.703 mm | Linear reconstructed extension           |
+| Focus 1 / displayed 0.6 m   | 42.180 mm | Existing approximate endpoint            |
 
-**Low-index negative elements (nd = 1.517, vd = 52.4):** L3 and L5 share the same low-index crown-flint glass. The patent explicitly states that G2 (L3) should use a glass with refractive index not exceeding 1.65 to prevent the Petzval sum from increasing. The same low-index glass also carries the object-side ground-and-polished aspherical surface (R5). Using the same glass for both L3 and L5 simplifies manufacturing and ensures symmetric Petzval behavior on either side of the cemented doublet region.
+The close endpoint gives magnification magnitude 0.099077× and finite-conjugate image-plane residual −0.000175 mm.
+At focus 0.55 / displayed 1.090909 m, sampled intermediate residual reaches −0.219076 mm. Thus the retained extension
+illustrates the source's mechanism but is not focus preserving at every displayed distance. No production floating
+trajectory or internal fixed element is invented. Near-focus illumination is separately limited as described below.
 
-**Dense flint elements at the stop (nd = 1.847 and 1.805, vd = 23.9 and 25.4):** L6 and L8 use dense flint glasses with very high dispersion. The patent's condition (5) requires that the mean Abbe number of the negative lenses on the image side of the stop (G5 and G7, i.e., L6 and L8) satisfy (v5 + v7)/2 < 30; the actual value is 24.65. This strong dispersion is essential for correcting both longitudinal and lateral chromatic aberration across the full 45° field.
+## Aspherical Surfaces
 
-**Crown elements at the extremities (L1, L2, L11):** The front and rear positive elements use moderate-index crowns — dense barium crowns (L1, L11) and a lanthanum crown (L2). These provide positive power with low chromatic contribution, functioning as the outer "shell" of the modified Gauss design.
+The original equation (PDF page 7 / column 4) has a spherical base plus `A H² + B H⁴ + C H⁶ + D H⁸ + E H¹⁰`.
+Both selected surfaces tabulate base R = infinity, leaving pure polynomial sag. Source coefficients on PDF page 8 /
+column 5, at normalized F = 100, are:
 
----
+| Source surface   |          A |          B |          C |          D |          E |
+| ---------------- | ---------: | ---------: | ---------: | ---------: | ---------: |
+| R5 / stored 5A   | +3.826E−03 | +6.521E−08 | +4.881E−11 | −1.684E−14 | +4.549E−18 |
+| R15 / stored 14A | −3.846E−03 | +3.361E−08 | +8.434E−11 | −3.297E−14 | +5.350E−18 |
 
-## 5. Element-by-Element Functional Analysis
+The existing representation uses osculating radius `R = 1/(2A)`, conic K = 0, and residual coefficients
+`A4 = B − A³`, `A6 = C − 2A⁵`, `A8 = D − 5A⁷`, `A10 = E − 14A⁹`, then scales each nth-order coefficient by
+`1/s^(n−1)`. The stored R values are 65.353 and −65.013 mm after rounding. This replaces a pure polynomial with a
+sphere plus residual terms through h¹⁰; it is an approximation rather than an exact infinite-series identity.
+The **2026-09-23** recomputation reported less than 0.02 µm sag residual at the 23.8 mm rim. That dated result and
+all current coefficients are reused unchanged; neither the aspheres nor clear caps are tuned to fit the new shoulders.
 
-### L1 — Front positive meniscus (G1)
+## Conditional Expressions
 
-**Shape:** Positive meniscus, convex toward front (R1 = +265.49, R2 = +1254.83)
-**Focal length (standalone):** +556 mm (weak positive)
-**Glass:** 603607 — BACD14 (HOYA) catalog equivalent (nd = 1.603, vd = 60.7)
+The certificate of correction dated February 7, 1989 (PDF page 10) corrects condition (3) to n3−n2 and the text's
+v6 reference to v5, among wording errors. It does not change the selected numerical table or add a spectral reference.
+The five source conditions remain:
 
-L1 is the first element the incoming light encounters. Its weak positive power begins converging the extremely wide marginal ray bundle (50 mm entrance pupil radius at f/1.0). The meniscus shape minimizes the angle of incidence on each surface, reducing spherical aberration and coma introduced by the front element — a standard technique for high-speed designs. The large radius of curvature (R1 = 265.49 at f = 100 scale, ≈ 133 mm at production) keeps surface powers low despite the large clear aperture.
+| Condition           | Source interval | Example 2 |
+| ------------------- | --------------- | --------: |
+| (1) R4b/f           | 0.44–0.64       |    0.5126 |
+| (2) absolute R5a/f  | 0.48–0.68       |    0.4888 |
+| (3) n3−n2           | >0.25           |   0.36558 |
+| (4) (n3+n6+n8+n9)/4 | >1.80           |   1.88300 |
+| (5) (v5+v7)/2       | <30             |     24.65 |
 
-### L2 — Second positive meniscus (G2)
+These are source unit labels, which differ from stored physical-element identifiers because source G1 contains
+two elements. The current numerical values satisfy the corrected text under the retained coordinate convention.
+No numeric source-erratum correction is newly applied.
 
-**Shape:** Positive meniscus, convex toward front (R1 = +168.21, R2 = +522.76)
-**Focal length (standalone):** +352 mm (moderate positive)
-**Glass:** 697555 — S-LAL14 (OHARA) catalog equivalent (nd = 1.697, vd = 55.5)
+## Verification Summary
 
-L2 provides additional positive power that a single front element cannot deliver without excessive surface curvature. The slightly higher refractive index (1.697 vs 1.603 for L1) allows a stronger contribution to convergence while maintaining moderate curvatures. The two-element front unit is one of the features that distinguishes Example 2 from Example 1 (which has only one front element). The patent notes that while Example 1's front unit "consists of one positive lens," Example 2's "consists of two positive lenses" — this additional degree of freedom in the front group is presumably what enables Example 2 to achieve better control of marginal-ray aberrations, and is consistent with it being the design selected for production.
+The original embeds 2320 × 3408 one-bit pages at native **300 ppi**. Native Figure 2 spans about 692 px over the
+retained 79.626 mm scaled active track, about 8.69 px/mm. Practical height-reading uncertainty is ±0.6 mm, independently
+of schematic scale and source ink thickness. Leaders, group labels and stop marks are excluded.
 
-### L3 — Negative meniscus with aspherical front (G3), cemented to L4
+New shoulder evidence is limited to the vertical outer strokes on stored S9 and S10. Their outer radii 21.2 and
+20.6 mm use the existing front/bonded-cap anchors; the old 18.8 and 17.4 mm clear radii remain. No opaque cemented
+land, resin wing, full-block inflation or inferred cut is added. Other contour/cap and claim-6 air-gap constraints
+reuse their dated source coverage.
 
-**Shape:** Negative meniscus, convex toward front (R_front_eff = +130.68, R_rear = +78.02)
-**Focal length (standalone, with aspherical R_eff):** −394 mm (weak negative)
-**Focal length (standalone, with R = ∞ front):** −151 mm (moderately negative)
-**Glass:** 517524 — S-NSL36 (OHARA) catalog equivalent (nd = 1.517, vd = 52.4)
+Current surface/image-circle checks pass, with zero undersized. Full-frame corner chiefs clear throughout 21 focus
+positions. EFL is 49.999935 mm and infinity BF 37.226151 mm versus retained 37.226 mm. The current derived iris radius
+is **17.386418 mm**; the old audit's approximately 16.86 mm value is not the current runtime radius.
 
-L3 is the first of the two aspherical elements and one of the most optically significant elements in the design. Its role is defined by the patent's central innovation: sharing the negative Petzval burden of G4 (L5). In a conventional fast Gauss, all of the negative power required to flatten the field and secure sufficient back focus is concentrated in the two elements flanking the stop. This produces intense sagittal flare at apertures beyond f/1.2. By placing a negative meniscus (L3) upstream of the classical negative element (L5), the patent distributes this negative power over a longer baseline, dramatically reducing the surface curvatures required on L5's stop-facing concave surface.
+The infinity beam-clearance aperture census returns **1.028435679**, within its 3% threshold, with stored S12 limiting.
+This criterion preserves the paraxial iris convention; it is distinct from a real aimed iris-rim probe. The real probe
+is vignetted at all 21 wide-open focus positions: S5A at 0–0.20, S7 at 0.25–0.70 and bonded S11 at 0.75–1.00. Across
+nine presets, 168 of 189 calls trace and 21 are vignetted, identical before and after the shoulders. The older blanket
+f/1.0 full-beam-clearance wording is therefore not retained as a current-runtime conclusion.
 
-The low refractive index (1.517) is deliberately chosen: the patent's condition (3) requires n3 − n2 > 0.25 (where n3 is the refractive index of L4 and n2 is the index of L3). The actual difference is 0.366, well within the prescribed range. This large index differential at the cemented junction (R6 = 78.02) between L3 and L4 provides substantial positive power at the junction surface while contributing strongly to Petzval sum reduction through the low-index negative element.
+The separate 193-sample aimed-pupil grid at three fields over 21 focus states passes 169 axial samples at both
+endpoints; corner counts are 47 at infinity and 49 close, with all chiefs valid and aimed. Those counts also remain
+identical. The source caps, iris model and existing 0.97 geometric policy are preserved rather than inflated or relaxed
+to force a full-aperture result. Significant wide-open and corner clipping remains a disclosed model limitation.
 
-The aspherical figuring on R5 adds positive power toward the margin, correcting distortion and reducing sagittal flare from the front group. The ground-and-polished surface on this low-index crown glass represents one of the two most expensive manufacturing steps in the lens.
+Actual SVG comparison with native Figure 2 checks every element and cemented connection. Twenty-one focus renders
+produce 231 finite connected closed paths with zero hidden renderer trimming. No opaque land is placed on a bonded
+interface. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions; full
+repository validation is coordinated in the three-review batch.
 
-### L4 — Positive meniscus (G3), cemented to L3
+## Sources / References
 
-**Shape:** Positive meniscus, convex toward front (R1 = +78.02, R2 = +280.28)
-**Focal length (standalone):** +118 mm (strong positive)
-**Glass:** 883408 — S-LAH58 (OHARA) catalog equivalent (nd = 1.883, vd = 40.8)
+- Sadatoshi Takahashi / Canon Inc., _High Relative Aperture Gauss Type Lens_, US 4,717,245, January 5, 1988, including
+  the February 7, 1989 certificate. Exact local original `patents/US4717245.pdf`, Numerical Example 2, Figures 2/5,
+  columns 3–6 and Claim 6. https://patents.google.com/patent/US4717245A/en
+- Existing catalog correlation: Canon Camera Museum, **EF50mm f/1.0L USM**. The original does not name the production
+  lens or identify historical glass materials. https://global.canon/en/c-museum/product/ef295.html
 
-L4 is the first of the four high-index lanthanum flint elements. Its strong positive power drives the convergence of the marginal ray bundle toward the stop. The meniscus shape (both radii positive, with the front surface more strongly curved) is a characteristic Gauss-type element form. Cemented to L3, the L3+L4 doublet has a combined focal length of +176 mm — net positive, but much weaker than L4 alone. This is by design: the doublet acts as a weak positive group that provides convergence while the L3 component absorbs Petzval burden.
+## Runtime Launch Qualification - 2026-10-30
 
-### L5 — Negative meniscus (G4)
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
 
-**Shape:** Negative meniscus, convex toward front (R1 = +1093.50, R2 = +51.26)
-**Focal length (standalone):** −104 mm (strong negative)
-**Glass:** 517524 — S-NSL36 (OHARA) catalog equivalent (nd = 1.517, vd = 52.4)
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
 
-L5 is the classical front Gauss negative element. Its rear surface (R9 = +51.26) is the strongly concave surface (concave toward the rear) facing the stop, referenced in the patent's condition (1): R4b/f = 0.5126, satisfying 0.44 < R4b/f < 0.64. The critical innovation is that this curvature is weaker than it would be in a conventional f/1.0 Gauss design, because L3 upstream absorbs part of the negative power. This directly reduces the sagittal flare that would otherwise be generated at this surface.
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 7,187 passed, 3,825 clipped, 568 failed and 0 unaimed rays. Minimum sampled axial transmission is 169/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (404), `noBracket @ 18` (164). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
 
-L5 uses the same low-index crown glass as L3 (nd = 1.517), which maximizes the Petzval contribution per unit of negative power. The nearly flat front surface (R8 = +1093.5) and strongly curved rear (R9 = +51.26) give the element its negative meniscus form — both radii positive, with the rear surface's much stronger curvature dominating the power. The patent describes G4 as "a negative fourth lens with its rear surface of strong concave curvature toward the rear," which is exactly what R9 = +51.26 produces. Almost all of L5's refractive power is concentrated at this rear surface.
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
 
-### Aperture stop
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.599982193 |           0.600000 | 169 / 141 / 48                    | clear / clear / clear |
 
-The stop sits in the air gap between L5 and L6. The patent includes the stop as an explicit surface (R10), with D9 = 17.88 mm (L5 rear to stop) and D10 = 17.88 mm (stop to L6 front), yielding a total stop gap of 35.76 mm at f = 100 scale (≈ 17.9 mm at production). This is an exceptionally large air space for a double-Gauss design and reflects the need to accommodate the 8-blade diaphragm mechanism at the full f/1.0 stop diameter. Tracing the f/1.0 axial beam at EFL = 100 mm gives a stop semi-diameter of about 33.7 mm (≈ 16.9 mm at production scale); FIG. 2 draws the stop opening at about 17.3 mm at production scale. The extremely large stop diameter — nearly as wide as the lens barrel — is one of the defining engineering challenges of the design.
-
-### L6 — Biconcave negative (G5), cemented to L7
-
-**Shape:** Biconcave (R1 = −48.88, R2 = +148.01)
-**Focal length (standalone):** −43 mm (very strong negative)
-**Glass:** 847239 — PBH53 (OHARA) catalog equivalent (nd = 1.847, vd = 23.9)
-
-L6 is the classical rear Gauss negative element and carries the strongest negative power of any element in the system. Its front surface (R11 = −48.88) is the strong concave surface referenced in the patent's condition (2): |R5a|/f = 0.4888, satisfying 0.48 < |R5a|/f < 0.68. Together with R9 on L5, these two concave surfaces flanking the stop are the Gauss-type surfaces responsible for securing the long back focal distance and controlling the Petzval sum.
-
-The very high dispersion of L6's glass (vd = 23.9) is critical for chromatic correction. Cemented to L7 (a biconvex positive element in lower-dispersion lanthanum flint), the L6+L7 pair forms a chromatic correction doublet with a combined focal length of approximately −1012 mm — weakly negative (about 10× the system focal length), so the pair contributes minimal net power while providing strong negative Petzval contribution and chromatic correction.
-
-### L7 — Biconvex positive (G5), cemented to L6
-
-**Shape:** Biconvex (R1 = +148.01, R2 = −69.60)
-**Focal length (standalone):** +56.7 mm (strong positive)
-**Glass:** 883408 — S-LAH58 (OHARA) catalog equivalent (nd = 1.883, vd = 40.8)
-
-L7 is notably thick (d = 25.50 at f = 100 scale, ≈ 12.75 mm at production). This extraordinary thickness is unusual in Gauss-type designs and reflects the demands of the f/1.0 aperture: the marginal ray bundle emerging from the stop is extremely wide, and L7 must refract it over a long path length to control higher-order spherical aberration. The biconvex shape provides strong positive power that partially cancels L6's negative power, keeping the cemented pair weakly negative overall while providing essential spherical aberration correction.
-
-### L8 — Negative meniscus with aspherical rear (G6)
-
-**Shape:** Negative meniscus, convex toward rear (R_front = −60.14, R_rear_eff = −130.0)
-**Focal length (standalone, with R_rear = ∞):** −74.7 mm (strong negative)
-**Focal length (standalone, with aspherical R_eff):** −143 mm (moderate negative)
-**Glass:** 805254 — S-TIH6 (OHARA) catalog equivalent (nd = 1.805, vd = 25.4)
-
-L8 is the symmetric counterpart to L3, placed on the image side of the stop+doublet core. Its role mirrors L3's: absorbing part of the negative Petzval burden that would otherwise be concentrated entirely on L6's strong concave surfaces. This power-sharing is the patent's central innovation applied symmetrically on both sides of the stop. The large difference between the two focal length values (−74.7 mm with flat rear vs. −143 mm with aspherical effective curvature) illustrates how much the aspherical figuring weakens L8's negative power by adding a positive contribution at the rear surface.
-
-The aspherical rear surface (R15) is convex toward the image (R_eff = −130.0 at f = 100), so as a glass-to-air surface it contributes positive power near the axis and partly offsets the strongly negative front surface. The patent states that this surface "should be figured so that the negative power increases toward the margin of the lens." The aspheric terms do exactly that: the surface flattens progressively toward the rim (its sag at the 23.8 mm production clear aperture is 0.46 mm shallower than the osculating sphere's), so its positive contribution falls away at large ray heights and the element's net negative power grows toward the margin. Per the patent, this lets the two strongly concave surfaces flanking the stop be weakened, reducing sagittal flare.
-
-The dense flint glass (nd = 1.805, vd = 25.4) provides the high dispersion needed for chromatic correction on the image side of the stop, satisfying the patent's condition (5). L8 therefore carries the image-side ground-and-polished aspherical surface on a dense flint rather than on a crown.
-
-### L9 — Positive meniscus (G7)
-
-**Shape:** Positive meniscus, concave toward front (R1 = −401.91, R2 = −99.27)
-**Focal length (standalone):** +146 mm (moderate positive)
-**Glass:** 883408 — S-LAH58 (OHARA) catalog equivalent (nd = 1.883, vd = 40.8)
-
-L9 begins the rear positive group that converges the beam toward the image. The meniscus shape — concave toward the front, with the rear surface more strongly curved — is unusual for a positive element and reflects the constrained geometry of fitting strong positive power into the space between L8 and the image plane. This shape minimizes the angle of incidence on the more strongly curved rear surface, reducing coma and astigmatism in the converging beam.
-
-### L10 — Biconvex positive (G8)
-
-**Shape:** Biconvex (R1 = +3746.07, R2 = −139.62)
-**Focal length (standalone):** +153 mm (moderate positive)
-**Glass:** 883408 — S-LAH58 (OHARA) catalog equivalent (nd = 1.883, vd = 40.8)
-
-L10 is the primary converging element in the rear group. Its nearly flat front surface (R = 3746) and moderately curved rear surface (R = −139.6) produce a nearly plano-convex form. This element is also thick (d = 12.69 at f = 100 scale, ≈ 6.35 mm at production), reflecting the large-diameter beam it must handle. Together with L9, these two elements provide the convergence necessary to bring the widely spread post-stop beam to a focus within the available back focal distance.
-
-### L11 — Positive meniscus (G9)
-
-**Shape:** Positive meniscus, convex toward front (R1 = +142.39, R2 = +961.53)
-**Focal length (standalone):** +298 mm (weak positive)
-**Glass:** 560612 — S-BAL50 (OHARA) catalog equivalent (nd = 1.559, vd = 61.2)
-
-L11 is the last element and acts as a field flattener and residual aberration corrector. Its weak positive power fine-tunes the field curvature, and the low-dispersion crown glass (vd = 61.2) ensures that this final correction does not introduce chromatic aberration. The meniscus shape with a nearly flat rear surface (R = 961.5) produces minimal distortion of the converging beam.
-
-The patent does not describe how the production lens's floating system divides the optics, and the data file therefore does not assign L11 (or any other group) a separate focusing role.
-
----
-
-## 6. Focus Mechanism
-
-The production Canon EF 50mm f/1.0L USM uses a floating focus system with focus-by-wire electronic control via a ring USM motor. According to the Canon Camera Museum, the floating mechanism "minimizes spherical aberration and curvature of field at close focusing distance."
-
-The patent text describes focusing as "preferably performed by moving the entire lens system" but notes that alternatives include moving either the front or the rear half of the lens system with respect to the stop, or moving both halves at different speeds. The last option is a floating arrangement, and the Canon Camera Museum's description of a floating mechanism implies differential motion between internal groups, but the patent publishes no close-focus data and the production group displacements are not publicly documented.
-
-The data file therefore models the patent's preferred method: the whole optical block extends as a unit. The close-focus back gap is calculated, not published — at the production 0.6 m minimum focus distance (object to image plane) it grows from 37.23 mm to 42.18 mm, a 4.95 mm extension giving a paraxial magnification of about 0.099×. Canon's quoted 0.11× maximum magnification is higher than this unit-extension value, as expected if the production floating system changes the focal length at close range; the modelled close-focus state should be read as an approximation of the patent design, not of the production mechanism.
-
----
-
-## 7. Patent Design Conditions
-
-The patent establishes five inequalities that govern the design space. All are satisfied by Example 2:
-
-| Condition | Expression | Required | Example 2 value | Status |
-|-----------|-----------|----------|-----------------|--------|
-| (1) | R4b / f | 0.44 – 0.64 | 0.5126 | ✓ |
-| (2) | \|R5a\| / f | 0.48 – 0.68 | 0.4888 | ✓ |
-| (3) | n₃ − n₂ | > 0.25 | 0.3656 | ✓ |
-| (4) | (n₃ + n₆ + n₈ + n₉) / 4 | > 1.80 | 1.8830 | ✓ |
-| (5) | (v₅ + v₇) / 2 | < 30 | 24.65 | ✓ |
-
-Conditions (1) and (2) control the curvatures of the stop-adjacent concave surfaces (R9 on L5 and R11 on L6) to balance back focal distance against sagittal flare. Condition (3) ensures sufficient refractive index contrast at the L3/L4 cemented junction for Petzval sum reduction. Condition (4) keeps the mean index of the four main positive elements above 1.80, ensuring adequate Petzval sum reduction from the positive elements. Condition (5) constrains the dispersion of the image-side negative elements for chromatic correction.
-
----
-
-## 8. Historical and Contextual Notes
-
-The Canon EF 50mm f/1.0L USM was the fastest autofocus SLR lens ever produced, and as of 2026, no manufacturer has produced a faster autofocus SLR-mount lens. It was marketed from September 1989 to 2000, with an original price of ¥358,700 (approximately $2,500–3,000 USD at contemporary exchange rates). Production volume was low, and used specimens now typically command $2,000–5,000 depending on condition, with exceptional examples occasionally exceeding this range.
-
-The lens shares its external barrel dimensions (91.5 × 81.5 mm) with the first-generation Canon EF 85mm f/1.2L USM released the same year, suggesting shared mechanical and electronic design between the two flagships. Both use a focus-by-wire ring USM drive.
-
-The optical design represents a definitive answer to the question of whether a Gauss-type lens can reach f/1.0 with acceptable image quality and a practical back focal distance for SLR use. The key innovations — power-sharing via the additional negative meniscus elements L3 and L8, the high-index lanthanum flint glass for all four major positive elements, and the two ground-and-polished aspherical surfaces — were all necessary to achieve this aperture. The design was eventually succeeded by the Canon EF 50mm f/1.2L USM (2007), which traded one stop of aperture for dramatically improved image quality with a simpler 8-element construction.
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 15.086795% at zoom 0, focus 0.05, aberration control 0: Gaussian 10.189584638 m versus label 12.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

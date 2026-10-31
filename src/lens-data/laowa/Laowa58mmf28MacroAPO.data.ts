@@ -29,6 +29,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-31 scoped material followup: all fourteen source d-line pairs retained.
+ * Five unresolved positions remain on source-pair dispersion after additional NHG screening;
+ * broad L10 candidates alter the known F-C span by about four percent. No new shape review.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,

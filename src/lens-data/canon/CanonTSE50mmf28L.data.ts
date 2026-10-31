@@ -20,7 +20,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Numerical Data 1 surface table prints a 29.80 mm effective        ║
  * ║  diameter at the stop; it is not the physical aperture diameter.   ║
  * ║  The patent quotes F/2.88, but the stop radius is derived from     ║
- * ║  aperture.nominalFNumber 2.8.                                      ║
+ * ║  aperture.nominalFNumber 2.88.                                      ║
  * ║                                                                    ║
  * ║  NOTE ON FIELD COVERAGE:                                           ║
  * ║  The patent image height is 33.63 mm (67.26 mm image circle), so   ║
@@ -29,6 +29,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/**
+ * Reference provenance, rechecked 2026-10-31: US 10,571,651 B2 PDF p. 17
+ * (printed col. 11) explicitly defines numerical nd/vd at the d-line;
+ * Numerical Data 1 contains all twelve source pairs. Plot definitions on
+ * PDF p. 14 give d 587.56 nm and g 435.8 nm. No individual C/F/g indices
+ * or partial ratios are published. These positive citations are not
+ * reference uncertainty; all twelve catalog curves remain qualified
+ * numerical proxies, without historical supplier, melt or chemistry claims.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "canon-tse-50f28l-macro",
@@ -50,7 +59,7 @@ const LENS_DATA = {
     ],
     elementCount: 12,
     groupCount: 9,
-    focalLengthMm: { marketing: 50, design: 51.397 },
+    focalLengthMm: { marketing: 50, design: 51.4 },
     fNumber: { marketing: 2.8, design: 2.88 },
   },
 
@@ -60,6 +69,16 @@ const LENS_DATA = {
     patentYear: 2020,
     authors: ["Hideki Sakai"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Data1 PDFp17 prints close beta=-0.5 F4.0, whereas corresponding Figure2B PDFp4 labels F2.9; infinity F2.88 agrees in table/Figure2A. Retain fixed physical iris derived from printed infinity2.88; neither near annotation uniquely establishes a new aperture law.",
+      },
+      {
+        status: "unresolved",
+        note: "Literal source spacings total178.53mm near versus printed178.54. Table1 PDFp18 gives Lf/Lr4.491 and L/f3.004 versus literal rounded prescription4.436 and2.985; no unique replacement is established. Preserve all source R/d/media/focus gaps.",
+      },
+    ],
   },
 
   elements: [
@@ -69,9 +88,10 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.5927,
+      indexReference: "d",
       vd: 35.3,
       focalLengthMm: -81.9,
-      glass: "S-FTM16 (OHARA)",
+      glass: "S-FTM16 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Front diverging meniscus of the retrofocus first unit.",
     },
     {
@@ -80,9 +100,10 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.5927,
+      indexReference: "d",
       vd: 35.3,
       focalLengthMm: -58.6,
-      glass: "S-FTM16 (OHARA)",
+      glass: "S-FTM16 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Second negative element of the first unit; distributes front negative power.",
     },
     {
@@ -91,9 +112,10 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.7495,
+      indexReference: "d",
       vd: 35.3,
       focalLengthMm: 48.5,
-      glass: "S-LAM7 (OHARA)",
+      glass: "S-LAM7 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Strong positive element completing the weak negative first unit.",
     },
     {
@@ -102,9 +124,10 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.65412,
+      indexReference: "d",
       vd: 39.7,
       focalLengthMm: -76.0,
-      glass: "S-NBH5 (OHARA)",
+      glass: "S-NBH5 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Negative part of the floating second unit.",
     },
     {
@@ -113,9 +136,10 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.85478,
+      indexReference: "d",
       vd: 24.8,
       focalLengthMm: 62.8,
-      glass: "S-NBH56 (OHARA)",
+      glass: "S-NBH56 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "High-index positive meniscus completing the weak positive floating second unit.",
     },
     {
@@ -124,10 +148,11 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 39.5,
-      glass: "S-FPL51 (OHARA)",
-      role: "Positive ED crown component of the first L3a cemented doublet.",
+      glass: "S-FPL51 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
+      role: "High-Abbe positive component of the first L3a doublet; production UD association inferred.",
       cemented: "D1",
     },
     {
@@ -136,10 +161,11 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.8,
+      indexReference: "d",
       vd: 29.8,
       focalLengthMm: -102.3,
-      glass: "S-NBH55 (OHARA)",
-      role: "Dense flint partner cemented to L6 for primary color correction.",
+      glass: "S-NBH55 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
+      role: "Low-Abbe negative partner cemented to L6 for primary color correction.",
       cemented: "D1",
     },
     {
@@ -148,10 +174,11 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.618,
+      indexReference: "d",
       vd: 63.4,
       focalLengthMm: 33.5,
-      glass: "S-PHM52 (OHARA)",
-      role: "Symmetric crown element in the weak negative L3a field-correcting doublet.",
+      glass: "S-PHM52 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
+      role: "Symmetric positive element in the weak negative L3a field-correcting doublet.",
       cemented: "D2",
     },
     {
@@ -160,10 +187,11 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.65412,
+      indexReference: "d",
       vd: 39.7,
       focalLengthMm: -26.3,
-      glass: "S-NBH5 (OHARA)",
-      role: "Flint component giving the second L3a doublet weak net negative power.",
+      glass: "S-NBH5 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
+      role: "Low-Abbe component giving the second L3a doublet weak net negative power.",
       cemented: "D2",
     },
     {
@@ -172,9 +200,10 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.95375,
+      indexReference: "d",
       vd: 32.3,
       focalLengthMm: -17.9,
-      glass: "S-LAH98 (OHARA)",
+      glass: "S-LAH98 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Very high-index negative component immediately behind the stop.",
       cemented: "D3",
     },
@@ -184,10 +213,11 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 36.8,
-      glass: "S-FPL51 (OHARA)",
-      role: "Second ED crown element; positive partner in the rear cemented doublet.",
+      glass: "S-FPL51 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
+      role: "High-Abbe positive partner in the rear doublet; production UD association inferred.",
       cemented: "D3",
     },
     {
@@ -196,37 +226,38 @@ const LENS_DATA = {
       label: "Element 12",
       type: "Positive Meniscus",
       nd: 2.001,
+      indexReference: "d",
       vd: 29.1,
       focalLengthMm: 47.9,
-      glass: "S-LAH99 (OHARA)",
+      glass: "S-LAH99 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Final high-index positive meniscus controlling rear convergence and field behavior.",
     },
   ],
 
   surfaces: [
     { label: "1", R: 53.017, d: 2.6, sd: 24.8, medium: 1 },
-    { label: "2", R: 24.876, d: 13.45, sd: 20.45 },
+    { label: "2", R: 24.876, d: 13.45, sd: 20.45, rimExtensionSd: 24.8 },
     { label: "3", R: -140.44, d: 2.2, sd: 20.1, medium: 2 },
     { label: "4", R: 46.402, d: 5.97, sd: 19.3 },
     { label: "5", R: 49.736, d: 9.35, sd: 19.8, medium: 3 },
     { label: "6", R: -124.558, sd: 19.9 },
     { label: "7", R: 71.41, d: 2.0, sd: 19.4, medium: 4 },
-    { label: "8", R: 28.981, d: 6.9, sd: 16.15 },
+    { label: "8", R: 28.981, d: 6.9, sd: 16.15, rimExtensionSd: 19.4 },
     { label: "9", R: 33.591, d: 5.0, sd: 16.0, medium: 5 },
-    { label: "10", R: 83.69, sd: 15.5 },
+    { label: "10", R: 83.69, sd: 15.5, rimExtensionSd: 16.0 },
     { label: "11", R: 79.836, d: 8.4, sd: 14.15, medium: 6 },
     { label: "12", R: -25.138, d: 1.9, sd: 13.9, medium: 7 },
     { label: "13", R: -37.507, d: 0.2, sd: 14.05 },
     { label: "14", R: 40.0, d: 7.2, sd: 12.75, medium: 8 },
     { label: "15", R: -40.0, d: 1.3, sd: 11.75, medium: 9 },
-    { label: "16", R: 30.497, d: 4.44, sd: 10.4 },
+    { label: "16", R: 30.497, d: 4.44, sd: 10.4, rimExtensionSd: 12.75 },
     // US 10,571,651 B2, Numerical Data 1 surface table, stop row: printed effective
     // diameter 29.80 mm at the stop.
     { label: "STO", R: "flat", d: 6.53 },
-    { label: "18", R: -19.525, d: 1.2, sd: 8.8, medium: 10 },
+    { label: "18", R: -19.525, d: 1.2, sd: 8.8, rimExtensionSd: 10.5, medium: 10 },
     { label: "19", R: 139.306, d: 5.5, sd: 9.3, medium: 11 },
     { label: "20", R: -20.756, d: 0.4, sd: 10.5 },
-    { label: "21", R: -477.536, d: 4.3, sd: 12.75, medium: 12 },
+    { label: "21", R: -477.536, d: 4.3, sd: 12.75, rimExtensionSd: 13.55, medium: 12 },
     { label: "22", R: -43.8, sd: 13.55 },
   ],
 
@@ -242,7 +273,7 @@ const LENS_DATA = {
     "22": { label: "BF", values: [[55.96, 81.07]] },
   },
 
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
+  aperture: { nominalFNumber: 2.88, fStops: [2.88, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 66.4, maxTraceFieldDeg: 33.2 },
 

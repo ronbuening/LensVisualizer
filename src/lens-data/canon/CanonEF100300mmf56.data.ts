@@ -20,8 +20,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the numerical design state; 300 is not used as a scaling target.          ║
  * ║                                                                              ║
  * ║ SOURCE CORRECTION: the scan prints N3 = 1.43749, νd = 70.1. Independent    ║
- * ║ reduced-angle and ABCD checks show that this contradicts the patent's own   ║
- * ║ focal-length table. The model therefore uses N3 = 1.48749 explicitly as a  ║
+ * ║ source focal summaries and original Figure 5 spherical-aberration plot   ║
+ * ║ independently reject it. The model retains N3 = 1.48749 explicitly as a   ║
  * ║ source correction; the raw 1.43749 value is not an OCR correction.         ║
  * ║                                                                              ║
  * ║ Zoom-only variable gaps: D5, D10, D13 and the modeled rear BF (surface 25). ║
@@ -40,8 +40,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ 14.7536/14.7499/14.7485 mm; nominalFno=5.6 is authoritative. The patent    ║
  * ║ gives no iris-motion law.                                                  ║
  * ║                                                                              ║
- * ║ No scale is applied (s = 1.0). The d-line index reference is an inference  ║
- * ║ from the glass coordinates; the patent does not explicitly name the line.  ║
+ * ║ No scale is applied (s = 1.0). The patent names no spectral line. 14 of 15   ║
+ * ║ printed pairs match catalog d-line coordinates and none match the e-line, so ║
+ * ║ the table is read as d-line. 14 media use catalog curves as spectral         ║
+ * ║ proxies; supplier, melt and chemistry stay unspecified. L3 is counted at     ║
+ * ║ its corrected index; L7 stays Unmatched.                                     ║
+ * ║ Fig. 1 on source page 4 depicts the 100 mm state, not the 69 mm state.    ║
+ * ║ Its resolved S20 shoulder uses rimExtensionSd=12.5 while sd stays 11.4;   ║
+ * ║ S19 remains a curved bonded interface and extends from 12 to 12.5 mm.     ║
+ * ║ Native figure scale is approximately 6.57 px/mm (347 ppi original scan);  ║
+ * ║ no R/d, stop, zoom spacing or prior N3 source correction changes.         ║
  * ║ No nC/nF/ng/dPgF values are authored because the patent does not identify   ║
  * ║ the actual glass melts or publish per-element line indices.                ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -67,7 +75,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 9,
-    focalLengthMm: { marketing: [100, 300], design: [69.2066329268, 289.0656689639] },
+    focalLengthMm: { marketing: [100, 300], design: [69, 290] },
     fNumber: { marketing: 5.6, design: 5.6 },
   },
 
@@ -77,6 +85,17 @@ const LENS_DATA = {
     patentYear: 1986,
     authors: ["Keiji Ikemori", "Sadatoshi Takahashi", "Takashi Matsushita", "Tsunefumi Tanaka", "Nozomi Kitagishi"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "4",
+        field: "nd",
+        printed: 1.43749,
+        applied: 1.48749,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "Original page 3 prints N3=1.43749. It gives focal states 69.500/102.299/219.238/384.436 mm versus stated 69/100/198/290; retained 1.48749 gives 69.207/99.927/198.069/289.066 mm. Independently, page-4 Figure 5 at f=290/F5.6 shows a small positive longitudinal-spherical hump and negative marginal hook inside its ±0.50 mm frame. At 70%/85%/100% of the source pupil, the printed index gives +0.743/+0.763/−1.094 mm relative to its own paraxial focus; applied gives +0.0475/+0.0607/−0.1796 mm, consistent with the native plot (practical reading uncertainty about ±0.04 mm). This formalizes the retained correction without changing current numerical data.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -90,7 +109,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -248.416159,
-      glass: "805254 — SF6-class dense flint; vendor/melt unresolved",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C1",
     },
@@ -103,7 +122,8 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 138.813057,
-      glass: "516641 — BSL7-class crown; OHARA S/L family unresolved",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C1",
     },
@@ -112,11 +132,12 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
-      nd: 1.48749,
+      nd: 1.48749, // Source N3=1.43749; retained correction has source-summary + aberration-figure evidence above.
       vd: 70.1,
       indexReference: "d",
       focalLengthMm: 222.685764,
-      glass: "48770x — FK5/FSL5-class low-dispersion crown; source-corrected model coordinate",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
     },
     {
@@ -128,7 +149,8 @@ const LENS_DATA = {
       vd: 53.8,
       indexReference: "d",
       focalLengthMm: -61.707648,
-      glass: "713538/540 — LAK8/LAL8-class lanthanum crown; vendor unresolved",
+      glass:
+        "LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
     },
     {
@@ -140,7 +162,8 @@ const LENS_DATA = {
       vd: 55.5,
       indexReference: "d",
       focalLengthMm: -36.767097,
-      glass: "697555 — LAK14-class lanthanum crown; vendor unresolved",
+      glass:
+        "J-LAK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C2",
     },
@@ -153,7 +176,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 54.950334,
-      glass: "805254 — SF6-class dense flint; vendor/melt unresolved",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C2",
     },
@@ -166,7 +189,7 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "d",
       focalLengthMm: 46.504837,
-      glass: "N-KF9 coefficient proxy (patent 523508; production supplier unspecified)",
+      glass: "Unmatched (1.52301/50.8 outside the exact d-line window; KF5 and N-KF9 are near candidates)",
       apd: false,
       cemented: "C3",
     },
@@ -179,7 +202,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -88.058696,
-      glass: "805254 — SF6-class dense flint; vendor/melt unresolved",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C3",
     },
@@ -192,7 +215,8 @@ const LENS_DATA = {
       vd: 60.7,
       indexReference: "d",
       focalLengthMm: 37.575896,
-      glass: "603607 — SK14/BACD14-class crown; vendor unresolved",
+      glass:
+        "BACD14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C4",
     },
@@ -205,7 +229,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -76.534281,
-      glass: "773496 — LAF34/LAH66/TAF1-class lanthanum flint; vendor unresolved",
+      glass:
+        "TAF1 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C4",
     },
@@ -218,7 +243,8 @@ const LENS_DATA = {
       vd: 37.2,
       indexReference: "d",
       focalLengthMm: -31.16078,
-      glass: "834372/373 — LASF010/LAH60-class dense lanthanum flint; vendor unresolved",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C5",
     },
@@ -231,7 +257,8 @@ const LENS_DATA = {
       vd: 49.2,
       indexReference: "d",
       focalLengthMm: 33.587441,
-      glass: "BAF5-class coefficient proxy (patent 607492; production supplier unspecified)",
+      glass:
+        "BAF5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C5",
     },
@@ -244,7 +271,8 @@ const LENS_DATA = {
       vd: 41.5,
       indexReference: "d",
       focalLengthMm: 82.724608,
-      glass: "575415 — LF7/TIL27-class light flint; vendor unresolved",
+      glass:
+        "J-LF7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
     },
     {
@@ -256,7 +284,8 @@ const LENS_DATA = {
       vd: 46.6,
       indexReference: "d",
       focalLengthMm: -14.613437,
-      glass: "804466 — LASF015/LAH65-class lanthanum flint; vendor unresolved",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C6",
     },
@@ -269,7 +298,7 @@ const LENS_DATA = {
       vd: 37,
       indexReference: "d",
       focalLengthMm: 26.876789,
-      glass: "613370 — F3/S-TIM3-class flint; vendor unresolved",
+      glass: "F3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: false,
       cemented: "C6",
     },
@@ -296,8 +325,8 @@ const LENS_DATA = {
     { label: "16", R: -304.22, d: 1.48, sd: 14.7, medium: 10 },
     { label: "17", R: 73.54, d: 1.18, sd: 14 },
     { label: "18", R: 41.01, d: 1.97, sd: 13.5, medium: 11 },
-    { label: "19", R: 15.56, d: 6.88, sd: 12, medium: 12 },
-    { label: "20", R: 54.65, d: 5.34, sd: 11.4 },
+    { label: "19", R: 15.56, d: 6.88, sd: 12.5, medium: 12 },
+    { label: "20", R: 54.65, d: 5.34, sd: 11.4, rimExtensionSd: 12.5 },
     { label: "21", R: 5519.93, d: 3.45, sd: 10.4, medium: 13 },
     { label: "22", R: -47.97, d: 5.32, sd: 10 },
     { label: "23", R: -20.93, d: 0.99, sd: 8.5, medium: 14 },

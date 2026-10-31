@@ -29,8 +29,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source inconsistency: the printed table gives about -0.16 mm of marginal longitudinal spherical aberration at
  * f/0.98, while the d-line curve in the patent's own Figure 4 stays within about 0.02 mm of zero. Values are
  * kept as printed.
- * Eight elements carry coordinate-equal catalog glass names (supplier unconfirmed) and trace on those catalog
- * dispersion curves; the five Unmatched elements use the Abbe-number model.
+ * Nine elements use qualified compatible catalog curves; L2 is an approximate D-ZLAF67 proxy.
+ * Four remaining Unmatched elements use the Abbe-number model; source pairs are unchanged.
  * L1 and L8 share nd = 1.497, vd = 81.61; the maker's diagram marks only L8 as ED, so only L8 carries apd.
  */
 
@@ -81,7 +81,7 @@ const LENS_DATA = {
       vd: 37.0,
       indexReference: "d",
       focalLengthMm: 168.97125859772416,
-      glass: "Unmatched (nd 1.88421, vd 37.00; no close catalog match)",
+      glass: "D-ZLAF67 (CDGM compatible spectral proxy; source supplier, melt, chemistry and anneal state unspecified)",
       diagramLabel: "L2",
     },
     {
@@ -259,8 +259,8 @@ const LENS_DATA = {
       medium: 13,
       asphere: {
         K: -95.0,
-        A4: -5.4446e-05,
-        A6: 1.29944e-07,
+        A4: -5.4446e-5,
+        A6: 1.29944e-7,
         A8: -2.15045e-10,
         A10: 3.43403e-13,
         A12: -2.08375e-15,
@@ -271,7 +271,7 @@ const LENS_DATA = {
       label: "23A",
       R: -200.0,
       sd: 17.9,
-      asphere: { K: 0, A4: -2.26938e-05, A6: 4.66871e-08, A8: 5.31197e-10, A10: -2.34658e-12, A12: 2.67922e-15, A14: 0 },
+      asphere: { K: 0, A4: -2.26938e-5, A6: 4.66871e-8, A8: 5.31197e-10, A10: -2.34658e-12, A12: 2.67922e-15, A14: 0 },
     },
   ],
 

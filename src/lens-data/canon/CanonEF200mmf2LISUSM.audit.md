@@ -137,3 +137,51 @@ Patent: JP 2008-145584 A, Numerical Example 1
   stays below FIG. 1 at L3's rear face (39.9 against 44.1 mm, capped by the 40.99 mm contact height), L4 (39.9
   against 41.8 mm), the rear of the L5 and L6 doublet (31 against a 35.3 mm outer rim) and L11's rear face (17.3
   against 18.8 mm), and above it at L7 and L8 (27 against 24.6 mm); none of these clips the stated beam.
+
+
+## 2026-10-30 — Original-PDF shape and glass review
+
+Confirmed the original local `patents/JP2008145584A.pdf` as JP 2008-145584 A, published June 26, 2008, with inventor Takayoshi Yokoyama and Canon applicant. Selected Numerical Example 1 is the prescription on PDF page 9 (bracketed 【表1】). Its section is Figure 1 and corresponding aberrations Figure 2 on PDF page 14. Paragraph 0058 on PDF page 8 explicitly defines N and ν at the d-line, λ = 587.6 nm. The conditional summary marked 表−1 is on PDF page 12 (bracketed 【表5】); those two table labels are distinguished in the analysis.
+
+The source cross-section is a native 928 × 732 one-bit raster at about 400 ppi; its prescription image is 788 × 1368 at about 200 ppi. The approximately 577-native-pixel first-to-filter-rear vertex span over 171.11 mm yields about 3.375 px/mm, consistent with separate front/rear spans. Practical semi-height uncertainty is about ±0.6 mm from ±1–2 native-pixel edge picks and ink. The 4× detail crop is upsampling only. Optical silhouettes were separated from leaders, LF/LT arrows, SP labels, brackets and filter-holder marks. The source prints no clear-diameter column.
+
+| Surface(s) | Before clear `sd` | Adopted clear `sd` | External shoulder, if any | Source disposition |
+|---|---:|---:|---:|---|
+| S1 / S2 | 56 / 55 mm | 54.2 / 54.2 mm | — | Both complete curved rims follow the approximately 54.2 mm first-element outline |
+| S3 / S4 | 52 / 51 mm | 51.1 / 51.1 mm | — | Curved rims follow the approximately 51.1 mm second-element outline |
+| S5 | 45 mm | 44.1 mm | — | Third front element's curved front rim |
+| S6 | 39.9 mm | 39.9 mm | `rimExtensionSd: 44.1` | Separate rear outer stroke; retain the gap-limited clear cap |
+| S7 / S8 | 39.9 mm | 39.9 mm | `rimExtensionSd: 41.8` on each | Source singlet's resolved outer shoulders; clear caps retained |
+| S12–S14 | 27 mm | 24.8 mm | — | Focus doublet's approximately 24.6 mm outline, with native stroke uncertainty |
+| S16–S18 | 22 mm | 20.7 mm | — | Post-stop doublet's approximately 20.6 mm outline |
+| S19 | 18 mm | 18.8 mm | — | Complete curved front rim of stabilizer singlet |
+| S20 | 17.3 mm | 17.3 mm | `rimExtensionSd: 18.8` | Separate rear shoulder; retain the gap-limited clear cap |
+| S29 / S30 | 21.5 mm | 20.5 mm | — | Source filter outline around 20.1 mm, conservatively within stroke uncertainty and sampled beam clearance |
+
+Every one of the seventeen elements, every concave end and all five cemented interfaces (S10, S13, S17, S22 and S25) was inspected. No asphere, hybrid layer or separately specified cement medium occurs. Filter F is a drawn 2.00 mm plate with source `nd=1.51633 / νd=64.1`, 3.27 mm before it and 60.36 mm after; it is retained in the source train, not omitted or folded into an air gap. No camera-side rear plate is tabulated. Four external shoulders and zero inferred cuts are authored.
+
+A literal full-curve trial at the source outer heights fails both existing near-contact constraints: S6→S7 has about 0.10 mm combined sag against 0.095 mm allowed, and S20→S21 has about 3.74 mm against 3.733 mm allowed. The existing `gapSagFrac: 0.95` is preserved, with no tolerance relaxation. The separate shoulders preserve curved caps 39.9/17.3 mm. A second rejected trial forced S9–S11 to the source schematic doublet's approximately 35.3 mm full blank. It gives L6 negative edge thickness −5.608 mm and S10 rim slope 70.9° against the existing 64.2° limit. The existing curved bonded interface and clear caps remain; the schematic full blank cannot be restored by inventing an opaque bonded land or equal-height optical block. Remaining smaller rim differences fall within native measurement uncertainty. All source R/d, stop authority, focus gaps and controls remain unchanged.
+
+All seventeen published index/Abbe pairs match the data, including the filter. The d-line reference is explicitly published; individual C/F/g indices, partial dispersion and per-element APD values are not. Removed forty-five catalog-derived `nC/nF/ng` overrides from fifteen powered media, preserving every source pair. All seventeen compatible catalog curves remain qualified spectral proxies. Public glass labels, per-element analysis and the glass table now identify supplier/melt uncertainty; CaF2 compatibility and the production special-glass count are correlation, not proof of historical chemistry. The three APD badges remain explicitly catalog-inferred, with corrected notes that do not cite unpublished source line indices.
+
+The current runtime iris radius is 19.920678 mm, consistent with the existing paraxial f/2.05 rule. The old 2026-10-12/header claim that the runtime instead uses 20.382 mm was stale and is superseded. A current real aimed marginal ray gives infinity working f-number 2.09523; this is a distinct convention from the marked/paraxial aperture. The source gives no numerical physical stop radius. The stop model is preserved.
+
+Surface, image-circle, infinity aperture and full-frame field checks accept the revised data. Actual renderer SVGs at infinity, intermediate and reconstructed close focus were compared with Figure 1. Twenty-one focus positions produce 357 finite, singly connected, closed element paths, with zero hidden renderer trimming; all twenty-one corner chiefs reach 21.65 mm within numerical precision. An aimed circular pupil probe uses 193 samples on axial, half-field and corner fields at each of twenty-one focus positions. Baseline and revised passing counts are identical at all sixty-three sampled states. Maximum transmitted filter height is 20.0715 mm; none is stopped by the revised 20.5 mm filter cap.
+
+The existing finite-focus prescription is a paraxial reconstruction from the product 1.9 m MFD, not a published source table. Across twenty-one focus positions and nine marked apertures, both baseline and revised data give 173 traced working marginal rays and sixteen vignetted wide-open positions: S9 at normalized focus 0.25 and S6 at 0.30–1.00. The stopped-down samples trace. The retained source near-contact geometry cannot be expanded merely to fill that reconstructed near-focus iris. Transverse IS amplitudes are unpublished, so these checks represent centered geometry. Source fidelity, sampled runtime clearance and production correlation remain distinct conclusions; this review does not claim fully illuminated close-focus operation or a numerical IS envelope.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 8,900 passed, 2,620 clipped, 60 failed and 0 unaimed rays. Minimum sampled axial transmission is 169/193. Failed traces are retained numerical/path outcomes, separately from clipping: `noBracket @ ?` (60). No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  1.900000016 |           1.900000 | 169 / 152 / 117                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 18.029694% at zoom 0, focus 0.05, aberration control 0: Gaussian 31.148716110 m versus label 38.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

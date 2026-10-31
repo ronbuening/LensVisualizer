@@ -37,11 +37,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ station; station nominalFNumber values carry the three published design    ║
  * ║ values.                                                                    ║
  * ║                                                                            ║
- * ║ Glass: the patent supplies nd/nu_d pairs but not vendor identities or      ║
- * ║ nC/nF/ng/dPgF line data. Vendor-neutral six-digit/class labels are used;   ║
- * ║ E3 fluorite and E7 Super-UD-class labels are production correlations. E9   ║
- * ║ uses K-SSK9 only as a qualified coefficient proxy. No APO/APD behavior is  ║
- * ║ asserted.                                                                   ║
+ * ║ Glass: the patent names no spectral line (paragraph 0047). 16 of 17        ║
+ * ║ printed pairs match catalog d-line coordinates and none match the e-line,  ║
+ * ║ so the table is read as d-line. 16 media use catalog curves as spectral    ║
+ * ║ proxies; supplier, melt and chemistry stay unspecified. E9 stays           ║
+ * ║ Unmatched. No nC/nF/ng/dPgF is published. Production fluorite/Super UD     ║
+ * ║ statements do not identify the supplier or melt of these modeled media.    ║
  * ║                                                                            ║
  * ║ Semi-diameters: the patent does not tabulate clear apertures. SDs were     ║
  * ║ derived from coded marginal/chief-ray envelopes at all three zoom states  ║
@@ -53,6 +54,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ conservative intrusion allowance. This is a geometry policy override, not ║
  * ║ a layout workaround.                                                       ║
  * ║                                                                            ║
+ * ║ Fig.6 (p.13) resolves the E2 concave-rear shoulder: surface 4 is inferred
+ * ║ trimmed at 9.48 mm depth (34.4945 mm cap radius inside sd36). Full wide-open
+ * ║ zoom/focus beams clear its land; source R/d and the existing gap policy stay.
  * ║ The centered sequential model does not model IS-group decenter states.     ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
@@ -77,7 +81,7 @@ const LENS_DATA = {
     elementCount: 17,
     groupCount: 14,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: [100, 400], design: [102.687376759194, 389.165258375804] },
+    focalLengthMm: { marketing: [100, 400], design: [102.68, 389.19] },
     fNumber: {
       marketing: 4.5, // wide-end marketing value; tele-end f/5.6 is carried by the product name
       design: 4.6, // wide-end design value; full 4.6/5.1/5.8 sequence is nominalFno
@@ -102,7 +106,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 312.26206,
-      glass: "487702 class (vendor not established)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in functional zoom group G1.",
     },
     {
@@ -114,7 +119,8 @@ const LENS_DATA = {
       vd: 35.0,
       indexReference: "d",
       focalLengthMm: -248.870426,
-      glass: "750350 class (lanthanum flint coordinate family; vendor not established)",
+      glass:
+        "H-LaF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the front positive zoom group G1.",
     },
     {
@@ -126,8 +132,9 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 155.615754,
-      glass: "Fluorite (CaF2; production correlation)",
-      role: "Low-dispersion positive component of G1; fluorite identification is production-correlated.",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
+      role: "Positive component of G1; the production fluorite assignment is an unconfirmed correlation.",
     },
     {
       id: 4,
@@ -138,7 +145,8 @@ const LENS_DATA = {
       vd: 53.9,
       indexReference: "d",
       focalLengthMm: -71.239377,
-      glass: "713539 class (vendor not established)",
+      glass:
+        "LAC8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative component of functional zoom group G2.",
     },
     {
@@ -150,7 +158,8 @@ const LENS_DATA = {
       vd: 58.2,
       indexReference: "d",
       focalLengthMm: -48.620801,
-      glass: "623582 class (S-BSM15/BACD15 coordinate family; vendor not established)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -163,7 +172,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 76.233815,
-      glass: "847238 class (dense flint coordinate family; vendor not established)",
+      glass:
+        "J-SF03 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive high-dispersion member of the cemented pair in G2.",
       cemented: "D1",
     },
@@ -176,7 +186,8 @@ const LENS_DATA = {
       vd: 95.0,
       indexReference: "d",
       focalLengthMm: 71.394018,
-      glass: "439950 class (S-FPL53 coordinate; Canon Super UD correlation; vendor not established)",
+      glass:
+        "S-FPL53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive component at the front of functional group G3.",
     },
     {
@@ -188,7 +199,8 @@ const LENS_DATA = {
       vd: 41.2,
       indexReference: "d",
       focalLengthMm: -167.187167,
-      glass: "702412 class (vendor not established)",
+      glass:
+        "BAFD7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative middle component of G3.",
     },
     {
@@ -200,8 +212,8 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       focalLengthMm: 161.249705,
-      glass: "K-SSK9 coefficient proxy (patent nd=1.62012, nu_d=49.5; production supplier unspecified)",
-      role: "Positive rear component of G3; K-SSK9 supplies a qualified spectral proxy, not a production identity.",
+      glass: "Unmatched (1.62012/49.5 outside the exact d-line window; K-SSK9 is a near candidate)",
+      role: "Positive rear component of G3; its printed pair has no exact catalog match, so it keeps the printed index and Abbe number without a catalog curve.",
     },
     {
       id: 10,
@@ -212,7 +224,8 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: -135.379089,
-      glass: "603606 class (SK14 coordinate family; vendor not established)",
+      glass:
+        "N-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Single negative floating group G4; moves objectward during close focusing.",
     },
     {
@@ -224,7 +237,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 109.887227,
-      glass: "487702 class (vendor not established)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive component of relay group G5.",
     },
     {
@@ -236,7 +250,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -68.025992,
-      glass: "805254 class (high-index flint coordinate family; vendor not established)",
+      glass:
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of relay group G5.",
     },
     {
@@ -248,7 +263,8 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 107.219815,
-      glass: "516641 class (S-BSL7 coordinate family; vendor not established)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive component of relay group G5.",
     },
     {
@@ -260,7 +276,8 @@ const LENS_DATA = {
       vd: 48.3,
       indexReference: "d",
       focalLengthMm: 66.41833,
-      glass: "667483 class (BAF11 coordinate family; vendor not established)",
+      glass:
+        "BAF11 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive component of relay group G5.",
     },
     {
@@ -272,7 +289,8 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       focalLengthMm: -48.104335,
-      glass: "835427 class (S-LAH55V coordinate family; vendor not established)",
+      glass:
+        "S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -285,7 +303,8 @@ const LENS_DATA = {
       vd: 28.5,
       indexReference: "d",
       focalLengthMm: 44.640957,
-      glass: "728285 class (dense flint coordinate family; vendor not established)",
+      glass:
+        "S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive middle member of the cemented rear-focus triplet G6.",
       cemented: "T1",
     },
@@ -298,7 +317,8 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -57.598621,
-      glass: "773496 class (high-index lanthanum family; vendor not established)",
+      glass:
+        "J-LASF016 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear member of G6; the complete triplet moves imageward during close focusing.",
       cemented: "T1",
     },
@@ -308,7 +328,7 @@ const LENS_DATA = {
     { label: "1", R: 117.449, d: 5.2, sd: 36.0, medium: 1 },
     { label: "2", R: 506.654, d: 0.15, sd: 36.0 },
     { label: "3", R: 108.121, d: 3.5, sd: 36.0, medium: 2 },
-    { label: "4", R: 67.497, d: 0.12, sd: 36.0 },
+    { label: "4", R: 67.497, d: 0.12, sd: 36.0, rimCutDepthMm: 9.48 },
     { label: "5", R: 68.071, d: 10.4, sd: 34.5, medium: 3 },
     { label: "6", R: -7912.525, sd: 34.5 },
     { label: "8", R: -371.134, d: 1.4, sd: 13.85, medium: 4 },

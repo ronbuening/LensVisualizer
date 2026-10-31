@@ -1,5 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
+ * 2026-10-31 reference-field follow-up: positive d-line provenance belongs in this header
+ * and the sidecars, not indexReferenceNote (reserved for uncertain source reference).
  * CANON EF-S 18-200mm f/3.5-5.6 IS — JP 2009-175324 A (Makoto Misaka, Canon Inc.), Numerical Example 1 (pp. 12–13),
  * Fig. 1 (p. 18), Figs. 2A–C (pp. 18–19). R, d, nd, νd and the two aspheric surfaces are the printed values, in mm.
  * The patent's asphere equation adds an H² term A, printed 0 on both surfaces; B, C, D, E map to A4–A10 with K = 0.
@@ -34,7 +36,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Production correlation is inferred, not proven: Canon lists 16 elements / 12 groups with two UD and two
  * glass-moulded aspherical elements, and Example 1 has that layout with high-Abbe glass at E2 and E14 and aspheres
  * on E8 and E15, the positions Canon's construction diagram marks.
- * Glass names are catalog equivalents of the printed nd/νd; the patent gives no partial dispersion or supplier.
+ * All 16 Ni/νi are explicitly d-line values (¶0092). The source supplies no C/F/g indices, partial dispersion,
+ * supplier, melt or chemistry; the compatible catalog curves are qualified spectral proxies. Neither the two
+ * production UD-position correlations nor the L-BAL42 proxy establish source APD chemistry or a molding process.
+ * The inferred S7 cut remains beam-constrained, not a published dimension; no source exemption is asserted.
  */
 const LENS_DATA = {
   schema: 2,
@@ -80,6 +85,7 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Meniscus Negative",
       nd: 1.8061,
+      indexReference: "d",
       vd: 33.3,
       focalLengthMm: -114.400347074,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
@@ -92,6 +98,7 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.496999,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 98.533612819,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -107,6 +114,7 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Meniscus Positive",
       nd: 1.603112,
+      indexReference: "d",
       vd: 60.6,
       focalLengthMm: 103.532194921,
       glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -118,6 +126,7 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Meniscus Negative",
       nd: 1.834807,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: -19.380100608,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
@@ -129,6 +138,7 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.772499,
+      indexReference: "d",
       vd: 49.6,
       focalLengthMm: -28.371779625,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -140,6 +150,7 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.805181,
+      indexReference: "d",
       vd: 25.4,
       focalLengthMm: 17.101961965,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
@@ -151,6 +162,7 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.772499,
+      indexReference: "d",
       vd: 49.6,
       focalLengthMm: -22.886557673,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -162,6 +174,7 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
+      indexReference: "d",
       vd: 59.4,
       focalLengthMm: 40.300899979,
       glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
@@ -173,6 +186,7 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Meniscus Negative",
       nd: 1.805181,
+      indexReference: "d",
       vd: 25.4,
       focalLengthMm: -44.801243408,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
@@ -185,6 +199,7 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.48749,
+      indexReference: "d",
       vd: 70.2,
       focalLengthMm: 22.803261665,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -197,6 +212,7 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.712995,
+      indexReference: "d",
       vd: 53.9,
       focalLengthMm: -16.233209394,
       glass: "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
@@ -209,6 +225,7 @@ const LENS_DATA = {
       label: "Element 12",
       type: "Meniscus Positive",
       nd: 1.8061,
+      indexReference: "d",
       vd: 33.3,
       focalLengthMm: 26.317339416,
       glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
@@ -221,6 +238,7 @@ const LENS_DATA = {
       label: "Element 13",
       type: "Meniscus Negative",
       nd: 1.834807,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: -42.369776636,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
@@ -232,6 +250,7 @@ const LENS_DATA = {
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.496999,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 30.246111788,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -246,6 +265,7 @@ const LENS_DATA = {
       label: "Element 15",
       type: "Biconvex Positive (Asph)",
       nd: 1.583126,
+      indexReference: "d",
       vd: 59.4,
       focalLengthMm: 22.812188715,
       glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
@@ -258,6 +278,7 @@ const LENS_DATA = {
       label: "Element 16",
       type: "Meniscus Negative",
       nd: 1.834807,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: -24.195520107,
       glass: "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",

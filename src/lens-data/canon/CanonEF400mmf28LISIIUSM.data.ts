@@ -2,47 +2,49 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║            LENS DATA — CANON EF 400mm f/2.8 L IS II USM                                           ║
+ * ║ LENS DATA — CANON EF 400mm f/2.8 L IS II USM                                                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 2011/0090576 A1, Second Numerical Embodiment / Example 2 / Fig. 3.                ║
- * ║ Production correlation: Canon EF 400mm f/2.8L IS II USM; correlation is inferred, not patent-named.║
- * ║ Active model: 15 refractive elements / 11 air-separated groups, all spherical, plus rear plate G.  ║
- * ║ REAR FILTER PLATE: patent rows 28-29 are the separate rear glass block G (filter/faceplate): 2.2   ║
- * ║ mm, nd 1.51633, vd 64.14, 15.00 mm behind surface 27. It is drawn as a plane-parallel plate        ║
- * ║ element, not counted in elementCount. The patent's 36.00 mm effective diameter for G is a ray-     ║
- * ║ envelope value, so the plate's semi-diameter is a ray-trace estimate that does not limit the       ║
- * ║ bundles the rest of the model passes. The patent defines back focus with G absent (Re to IP =      ║
- * ║ 70.72 mm), so the air behind the plate is 70.72 - 15.00 - 2.2/1.51633 = 54.269129 mm. The authored ║
- * ║ first-surface to IP track is then 372.00 mm, the patent's Lt.                                      ║
- * ║                                                                                                    ║
+ * ║ Data source: US 2011/0090576 A1, Second Numerical Embodiment / Example 2 / Fig. 3.                  ║
+ * ║ Production correlation: Canon EF 400mm f/2.8L IS II USM; correlation is inferred, not patent-named. ║
+ * ║ Active model: 15 refractive elements / 11 air-separated groups, all spherical, plus rear plate G.   ║
+ * ║ REAR FILTER PLATE: patent rows 28-29 are the separate rear glass block G (filter/faceplate): 2.2    ║
+ * ║ mm, nd 1.51633, vd 64.14, 15.00 mm behind surface 27. It is drawn as a plane-parallel plate         ║
+ * ║ element, not counted in elementCount. Rows 28-29 print effective diameter 36.00 mm; the current     ║
+ * ║ clear caps use its 18.00 mm half-diameter. The former 21.5 mm beam estimate is retired even though  ║
+ * ║ the source cap clips some modeled corner rays. Back focus is defined with G absent (Re to IP =      ║
+ * ║ 70.72 mm), so the air behind the plate is 70.72 - 15.00 - 2.2/1.51633 = 54.269129 mm. The authored  ║
+ * ║ first-surface to IP track is 371.999129 mm, approximately the patent's Lt = 372.00 mm.              ║
+ * ║                                                                                                     ║
  * ║ SCALE: none (s = 1.0). Patent f = 392.15 mm; the active authored arrays compute EFL ≈ 392.260742 mm.║
- * ║ Marketing 400 mm f/2.8 is kept separate from the patent/model design values.                      ║
- * ║                                                                                                    ║
- * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" is a ray-envelope value,   ║
- * ║ not the physical iris diameter. The stop radius is derived from the patent design f-number         ║
- * ║ (f/2.90). The 48.31 mm value is from the Second Numerical Embodiment patent surface table.         ║
- * ║                                                                                                    ║
- * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: patent states cemented L16 moves imageward but gives no      ║
- * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane: with Lt = ║
- * ║ 372.00 mm the object sits 2328.00 mm ahead of surface 1. Holding D10 + D13 = 59.95 mm gives close  ║
- * ║ D10 = 45.149493819 mm and                                                                          ║
- * ║ D13 = 14.800506181 mm. This close state is reconstructed, not patent-published.                 ║
- * ║                                                                                                    ║
- * ║ IS: cemented L22 plus negative L23 form the patent's transverse stabilization unit. No axial IS   ║
- * ║ motion is authored because the patent describes lateral motion, not an axial variable spacing.    ║
- * ║                                                                                                    ║
- * ║ SEMI-DIAMETERS: inferred construction clear apertures, not half of the patent effective-diameter  ║
- * ║ column. They are constrained by patent apertures/section, modeled marginal/chief-ray envelopes,   ║
- * ║ edge thickness, rim slope, shared-band cross-gap intrusion, and configured render-ray containment.║
- * ║ Current gapSagFrac = 0.90; the binding row-20/21 shared radius is 15.75 mm.                        ║
- * ║                                                                                                    ║
- * ║ SPECTRAL DATA: the patent directly publishes nd, νd, θgF and X (= dPgF), but not absolute nC/nF/ng.║
- * ║ dPgF is therefore stored directly on every glass element. Absolute line indices are intentionally ║
- * ║ omitted rather than fabricated from an unproven vendor glass. Ordinary glass labels use neutral   ║
- * ║ six-digit coordinate classes; CaF2 is separately disclosed as a production-correlation inference. ║
- * ║                                                                                                    ║
- * ║ SOURCE CONTRADICTION: patent Table 1 swaps the Gp2/Gn1 position labels for Example 2. Prescription ║
- * ║ geometry is retained: surface 25 is Gp2 front (~0.813L), surface 26 is Gn1 front (~0.973L).        ║
+ * ║ Marketing 400 mm f/2.8 is kept separate from the patent/model design values.                        ║
+ * ║                                                                                                     ║
+ * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" does not independently      ║
+ * ║ establish a physical iris diameter. The stop radius remains derived from the design f-number        ║
+ * ║ (f/2.90). The 48.31 mm value is from the Second Numerical Embodiment patent surface table.          ║
+ * ║                                                                                                     ║
+ * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: patent states cemented L16 moves imageward but gives no         ║
+ * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane: with Lt =  ║
+ * ║ 372.00 mm the object sits 2328.00 mm ahead of surface 1. Holding D10 + D13 = 59.95 mm gives close   ║
+ * ║ D10 = 45.149493819 mm and                                                                           ║
+ * ║ D13 = 14.800506181 mm. This close state and interpolated motion are reconstructed, not published.   ║
+ * ║                                                                                                     ║
+ * ║ IS: cemented L22 plus negative L23 form the patent's transverse stabilization unit. No axial IS     ║
+ * ║ motion is authored because the patent describes lateral motion, not an axial variable spacing.      ║
+ * ║                                                                                                     ║
+ * ║ SEMI-DIAMETERS: active-15 construction caps are inferred; G uses the published 36.00 mm diameter.   ║
+ * ║ Active caps are constrained by the patent section, modeled marginal/chief-ray envelopes,            ║
+ * ║ edge thickness, rim slope, shared-band cross-gap intrusion, and configured render-ray containment.  ║
+ * ║ Current gapSagFrac = 0.90; the binding row-20/21 shared radius is 15.75 mm.                         ║
+ * ║                                                                                                     ║
+ * ║ SPECTRAL DATA: the patent directly publishes nd, νd, θgF and X (= dPgF), but not absolute nC/nF/ng. ║
+ * ║ dPgF is therefore stored directly on every glass element. Absolute line indices are intentionally   ║
+ * ║ omitted rather than fabricated from an unproven vendor glass. Ordinary glass labels use neutral     ║
+ * ║ six-digit coordinate classes; CaF2 is separately disclosed as a production-correlation inference.   ║
+ * ║ All 16 X values, including G, are source-published. Curves are qualified spectral proxies, not      ║
+ * ║ proof of historical supplier, melt, chemistry or manufacture. Reused active-15 audit: 2026-08-19.   ║
+ * ║                                                                                                     ║
+ * ║ SOURCE CONTRADICTION: patent Table 1 swaps the Gp2/Gn1 position labels for Example 2. Prescription  ║
+ * ║ geometry is retained: surface 25 is Gp2 front (~0.813L), surface 26 is Gn1 front (~0.973L).         ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
  *
  * Product sources used for identity/marketing correlation:
@@ -50,6 +52,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * https://global.canon/en/news/2019/20191107.html
  */
 
+/** 2026-10-31 scoped catalog followup: E6/E9/E13 use source-compatible S-TIH6/S-BAH27/S-TIM22
+ * proxies that improve both source-implied F-C and native partial agreement. Retain all genuine X values
+ * and all optics/controls; PgF-only alternatives at E10/E11/E14 are rejected. No new shape review.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -72,7 +78,7 @@ const LENS_DATA = {
     elementCount: 15,
     groupCount: 11,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 400, design: 392.2607419367617 },
+    focalLengthMm: { marketing: 400, design: 392.15 },
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 
@@ -158,7 +164,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 235.80586262670528,
-      glass: "805254 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-TIH6 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive member of the translating L16 inner-focus cemented group.",
       cemented: "L16",
       dPgF: 0.015,
@@ -197,7 +203,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: 44.723174784377214,
-      glass: "702412 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-BAH27 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive partner of L21; the cemented pair is net positive in isolation.",
       cemented: "L21",
       dPgF: 0.0021,
@@ -248,7 +254,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       focalLengthMm: 71.98879921263543,
-      glass: "648338 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-TIM22 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Rear positive relay element ahead of the terminal chromatic-correction cemented pair.",
       dPgF: 0.0069,
     },
@@ -290,7 +296,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.14,
       glass: "516641 class (vendor unresolved; multiple catalog equivalents)",
-      role: "Plane-parallel glass block G of the patent prescription (rows 28-29; X = dPgF = -0.0007), in the rear drop-in filter holder. The patent defines back focus with it absent; Canon counts the drop-in filter in the production lens.",
+      role: "Plane-parallel glass block G of the patent prescription (Second Numerical Embodiment, PDF page 10 rows 28-29; X = dPgF = -0.0007). The source calls G an optical-filter/faceplate block and defines back focus with it absent. The drawn lens-filter configuration and production count association remain qualified correlation.",
       dPgF: -0.0007,
     },
   ],
@@ -326,10 +332,11 @@ const LENS_DATA = {
     { label: "25", R: 92.173, d: 10.46, sd: 18.715, medium: 14 },
     { label: "26", R: -43.681, d: 1.8, sd: 18.49, medium: 15 },
     { label: "27", R: 261.177, d: 15.0, sd: 18.455 },
-    // Drop-in filter G (patent rows 28-29), drawn as a plane-parallel plate. Its sd is a ray-trace estimate; the
-    // patent's 36.00 mm effective diameter is a ray envelope and would limit this model's corner bundle.
-    { label: "28", R: "flat", d: 2.2, sd: 21.5, medium: 16 },
-    { label: "29", R: "flat", d: 54.269129, sd: 21.5 }, // drop-in filter → image plane
+    // G (Second Numerical Embodiment, PDF page 10 rows 28-29): printed effective diameter 36.00 mm.
+    // Restore its 18.00 mm optical half-diameter; modeled corner clipping is retained and documented.
+    // The undimensioned Figure 3 blank is taller, but does not establish a larger optical clear aperture.
+    { label: "28", R: "flat", d: 2.2, sd: 18.0, medium: 16 },
+    { label: "29", R: "flat", d: 54.269129, sd: 18.0 }, // drop-in filter → image plane
   ],
 
   focus: {
@@ -349,7 +356,12 @@ const LENS_DATA = {
   },
 
   /* ── Aperture ── */
-  aperture: { nominalFNumber: 2.9, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
+  aperture: {
+    nominalFNumber: 2.9,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+    blades: 9,
+  },
 
   /* ── Diagram annotations ── */
   groups: [

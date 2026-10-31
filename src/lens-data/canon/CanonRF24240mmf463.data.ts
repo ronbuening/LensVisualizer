@@ -28,8 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Aspheres: patent uses the standard (1 + k) conic form; k = 0 on  ║
  * ║  both surfaces, so K = 0.                                          ║
  * ║                                                                    ║
- * ║  Aperture: nominal F4.12 / 5.66 / 6.41. No iris diameters are     ║
- * ║  published, so the iris schedule is inferred from the FNO values  ║
+ * ║  Aperture: nominal F4.12 / 5.66 / 6.41. The surface table prints stop ED16.32 mm; mechanical iris diameters are not     ║
+ * ║  separately established, so the iris schedule is inferred from source FNO values  ║
  * ║  (radii: 6.63 / 7.64 / 8.16 mm).                                  ║
  * ║  The Numerical Data 1 patent surface table prints a stop          ║
  * ║  effective diameter of 16.32 mm (8.16 mm radius), equal to the    ║
@@ -45,6 +45,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-31 catalog follow-up: L14 uses the published E48R polynomial only as a
+// spectral proxy. Original Numerical Data1 p.6 row25 / paragraph0051 retain the
+// source 1.53110/55.9 d-line pair; neither a resin identity nor manufacturing
+// process is established. Source R/d, aspheres, clear rims and controls are unchanged.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -89,7 +93,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: -160.9,
-      glass: "S-LAH95 type (903/313)",
+      glass: "S-LAH95 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front collector — high-index negative meniscus for SA / field curvature control",
       cemented: "D1",
@@ -102,9 +106,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 126.6,
-      glass: "S-FPL51 type (497/815)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "UD (Ultra-low Dispersion) — fluorophosphate crown, νd = 81.5",
+      apdNote:
+        "Product-correlated UD position; source nd/vd does not establish numerical partial dispersion, chemistry or supplier.",
       role: "Achromatic partner to L1 — UD element for primary chromatic correction",
       cemented: "D1",
     },
@@ -116,7 +121,7 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       focalLengthMm: 123.7,
-      glass: "S-PHM52 type (618/634)",
+      glass: "S-PHM52 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front group positive power contributor; meniscus form for SA correction",
     },
@@ -128,7 +133,7 @@ const LENS_DATA = {
       nd: 1.8515,
       vd: 40.8,
       focalLengthMm: -26.5,
-      glass: "S-LAH89 (OHARA)",
+      glass: "S-LAH89 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Variator — primary negative power element with strong rear curvature",
     },
@@ -140,7 +145,7 @@ const LENS_DATA = {
       nd: 1.8515,
       vd: 40.8,
       focalLengthMm: -29.5,
-      glass: "S-LAH89 (OHARA)",
+      glass: "S-LAH89 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Variator — second negative element for beam divergence",
     },
@@ -152,7 +157,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       focalLengthMm: 25.1,
-      glass: "E-FDS1 (HOYA)",
+      glass: "E-FDS1 (Hoya catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Variator chromatic corrector — high-dispersion positive for LoCA control",
     },
@@ -164,7 +169,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -40.3,
-      glass: "S-LAH66 type (773/496)",
+      glass: "S-LAH66 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Variator trailing negative — shapes exit beam and corrects higher-order aberrations",
     },
@@ -176,7 +181,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       focalLengthMm: 34.5,
-      glass: "S-TIH14 (OHARA)",
+      glass: "S-TIH14 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Subunit X front — converges beam entering the IS unit",
     },
@@ -188,7 +193,7 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.8,
       focalLengthMm: 34.1,
-      glass: "PBL25 (OHARA catalog equivalent; patent code 581408, vendor unspecified)",
+      glass: "PBL25 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Subunit X achromat positive — cemented to L10",
       cemented: "D4",
@@ -201,7 +206,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: -20.5,
-      glass: "S-LAH99 (OHARA catalog equivalent; patent code 001291, vendor unspecified)",
+      glass: "S-LAH99 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Subunit X achromat negative — ultra-high index for compact power",
       cemented: "D4",
@@ -214,7 +219,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       focalLengthMm: -40.9,
-      glass: "TAFD40 (HOYA catalog equivalent; patent code 001255, vendor unspecified)",
+      glass: "TAFD40 (Hoya catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "IS doublet negative — shifts ⊥ to axis for image stabilization",
       cemented: "D5",
@@ -227,7 +232,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 43.7,
       focalLengthMm: 20.6,
-      glass: "S-LAM52 (OHARA; 720/437)",
+      glass: "S-LAM52 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "IS doublet positive — provides net positive power to IS subunit Y",
       cemented: "D5",
@@ -240,7 +245,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: -31.0,
-      glass: "S-LAH99 (OHARA catalog equivalent; patent code 001291, vendor unspecified)",
+      glass: "S-LAH99 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Subunit Z — amplifies IS angular correction, reduces required shift distance",
     },
@@ -252,7 +257,7 @@ const LENS_DATA = {
       nd: 1.5311,
       vd: 55.9,
       focalLengthMm: 105.0,
-      glass: "Unmatched (531559; material not stated in patent, resin-class coordinate; patent nd=1.53110, vd=55.9)",
+      glass: "E48R (qualified spectral proxy; source medium chemistry, supplier and process unspecified)",
       apd: false,
       role: "Aspherical relay element — corrects SA, coma, and field curvature across zoom",
     },
@@ -264,7 +269,7 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       focalLengthMm: -99.6,
-      glass: "S-NBH56 (OHARA)",
+      glass: "S-NBH56 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Relay achromat negative — cemented to L16",
       cemented: "D6",
@@ -277,7 +282,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       focalLengthMm: 39.3,
-      glass: "FCD515 (HOYA catalog-equivalent; production supplier unspecified)",
+      glass: "FCD515 (Hoya catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Relay achromat positive — primary chromatic correction for unit 4",
       cemented: "D6",
@@ -290,9 +295,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 47.0,
-      glass: "S-FPL51 type (497/815)",
+      glass: "S-FPL51 (Ohara catalog equivalent; production supplier unspecified)",
       apd: "inferred",
-      apdNote: "UD (Ultra-low Dispersion) — fluorophosphate crown, νd = 81.5",
+      apdNote:
+        "Product-correlated UD position; source nd/vd does not establish numerical partial dispersion, chemistry or supplier.",
       role: "Second UD element — chromatic correction where off-axis rays diverge",
     },
     {
@@ -303,7 +309,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 166.3,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Focus doublet front — cemented to L19, moves image-ward for close focus",
       cemented: "D7",
@@ -316,7 +322,7 @@ const LENS_DATA = {
       nd: 1.63854,
       vd: 55.4,
       focalLengthMm: -40.0,
-      glass: "S-BSM18 (OHARA)",
+      glass: "S-BSM18 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Focus doublet rear — provides negative power for rear focus mechanism",
       cemented: "D7",
@@ -329,7 +335,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -32.0,
-      glass: "S-LAH55 (OHARA; exact 835427 coordinate match, patent vendor unspecified)",
+      glass: "S-LAH55 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Field corrector negative — field flattening and telecentricity",
       cemented: "D8",
@@ -342,7 +348,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 43.2,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Field corrector positive — residual chromatic and field curvature correction",
       cemented: "D8",

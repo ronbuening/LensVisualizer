@@ -1,63 +1,34 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF 28-70mm F2 L USM                               ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2020-118807 A, Example A main optical system       ║
- * ║  (Canon Inc.; inventor Kohei Kimura). Native patent scale.          ║
- * ║  Four-group positive-negative-positive-positive zoom.               ║
- * ║  19 elements / 13 groups, 5 aspherical surfaces (4 asph elements).  ║
- * ║  Surface labels follow the patent numbering (S22 = AP omitted).     ║
- * ║                                                                      ║
- * ║  Zoom variable gaps: D5 (G1–G2), D13 (G2–G3), D21 (G3–G4),          ║
- * ║                      D34 (BF). Patent zoom table, infinity only.    ║
- * ║  Group motion W→T (image plane fixed, derived from the gap table   ║
- * ║  and Fig. 1 arrows): G1 +21.6 mm toward the object, G2 ≈4 mm       ║
- * ║  toward the image (slight reversal near tele), G3 +9.6 mm and G4   ║
- * ║  +14.7 mm toward the object. No group is fixed.                     ║
- * ║                                                                      ║
- * ║  NOTE ON FLARE CUT (patent S22):                                     ║
- * ║    Patent surface 22 (AP, flare-cut stop, r = ∞) has d = −2.59 mm. ║
- * ║    It is omitted; its negative thickness is folded into d21:        ║
- * ║    stored d21 = patent d21 − 2.59 at each zoom position.            ║
- * ║                                                                      ║
- * ║  NOTE ON COVER GLASS:                                                ║
- * ║    Patent surfaces 35–36 (CG, t = 1.96 mm, nd = 1.51633, νd 64.1)  ║
- * ║    and the trailing air gap d36 = 2.75 mm are modeled physically   ║
- * ║    in `rearPlates` (traced, not drawn). D34 stores the patent gap  ║
- * ║    to the plate: 15.00 / 24.22 / 29.66 mm.                           ║
- * ║                                                                      ║
- * ║  NOTE ON APERTURE:                                                   ║
- * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with ║
- * ║    G3 and no iris diameters are published, so the station iris is   ║
- * ║    inferred from the nominal f-number. The                          ║
- * ║    largest (tele) real-ray iris radius is 16.9 mm.                  ║
- * ║                                                                      ║
- * ║  NOTE ON SEMI-DIAMETERS:                                             ║
- * ║    Not listed in the patent. Measured from the Fig. 1 wide-angle    ║
- * ║    section (8.70 px/mm at 400 dpi, calibrated on the S1–S34 vertex  ║
- * ║    spacing and confirmed by the drawn axial beam at SP) where the   ║
- * ║    earlier estimate was ≳15 % off or clipped the tele f/2.06 axial  ║
- * ║    beam: S1–S2, S7, S15–S16, S20, S23–S29, S32–S34. Other surfaces ║
- * ║    keep the earlier ray-trace estimate (within ~15 % of the         ║
- * ║    figure). S7 (16.0 vs figure 15.1) and S32 (15.4 vs 14.8) sit     ║
- * ║    slightly above the figure so the engine's paraxial wide         ║
- * ║    half-field (37.1°) still covers the patent ω = 36.82°.          ║
- * ║    Full-field corner bundles are mechanically                       ║
- * ║    vignetted at wide, as the patent figure's narrow drawn bundle    ║
- * ║    shows.                                                            ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** JP 2020-118807 A, Example A main optical system (not converter Examples 1–5).
+ * Completed 2026-09-23 source/shape/glass and physical CG coverage is reused.
+ * Original follow-up 2026-10-30 corrects 13 figure-inferred caps and three free-end
+ * shoulders; source R/d, five aspheres, AP gap-fold convention, physical CG,
+ * source station values and disabled focus controls remain unchanged.
+ * Original source rows PDF pp. 16–18; native Fig. 1, PDF p. 29 (1182×1796 at 400 ppi).
+ * Active optical scale 8.70 px/mm; practical rim uncertainty ±0.6 mm.
+ * S7 and S32 are restored from previous paraxial-estimator allowances to the
+ * native cap readings; actual source-height chiefs remain clear.
+ * Retain L17 clear 13.7/14.5: drawing-height 15.5/15.5 trial fails unchanged gap
+ * guards, with physical overlap at S29–S30A. No opaque bond lands or fabricated
+ * aspheric shoulders are added. All 20 media (19 elements plus CG) retain the
+ * same qualified compatible curves; d reference is explicit, no line/partial
+ * overrides. Source historical supplier/melt/chemistry/process unspecified.
+ * The printed Eq 1 numerator 1/R lacks H²; its +A2H² term is absent from all five
+ * selected coefficient tables. The existing standard H²/R base with unlisted
+ * A2=0 is retained, qualified by dimensions, vertex definition and source group
+ * powers. No R, K or polynomial coefficient is changed to fit the drawing.
+ * Physical CG 1.96 mm, nd 1.51633/vd 64.1, rear air 2.75 mm; aperture unreported and
+ * generated non-clipping by the rear-plate contract. AP flare vignetting is not
+ * modeled. No source finite-focus cam or moved-IS coverage is claimed.
  */
 
 const LENS_DATA = {
-  /* ── Identity ── */
   schema: 2,
   key: "canon-rf-28-70-f2",
   maker: "Canon",
   name: "CANON RF 28-70mm f/2 L USM",
   subtitle: "JP 2020-118807 A Example A — Canon / Kimura",
-
   catalog: {
     lensMounts: ["canon-rf"],
     imageFormat: "135-full-frame",
@@ -70,22 +41,32 @@ const LENS_DATA = {
     ],
     elementCount: 19,
     groupCount: 13,
-    /* ── Explicit metadata ── */
-    focalLengthMm: { marketing: [28, 70], design: [28.9, 67.9] },
-    fNumber: { marketing: 2.0, design: 2.06 },
+    focalLengthMm: {
+      marketing: [28, 70],
+      design: [28.9, 67.9],
+    },
+    fNumber: {
+      marketing: 2,
+      design: 2.06,
+    },
   },
-
   source: {
     patentNumber: "JP 2020-118807 A",
-    example: { label: "Example A", id: "A" },
+    example: {
+      label: "Example A",
+      id: "A",
+    },
     patentYear: 2020,
     authors: ["Kohei Kimura"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Equation 1 (PDF p. 16, paragraphs 0094–0096) prints a base numerator 1/R without H², while defining X as axial displacement and R as paraxial radius. It also prints A2H², but none of the five selected asphere tables (PDF pp. 17–18) lists A2. The existing standard H²/R base with absent A2 treated as zero is retained; dimensions, the vertex definition and matching source group powers support that qualified interpretation. No source R/d, K or published coefficient is changed.",
+      },
+    ],
   },
-
-  /* ── Elements ── */
   elements: [
-    // ── Group 1: Front Collector (f = +104.99 mm) ──
     {
       id: 1,
       name: "L1",
@@ -93,13 +74,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8081,
       vd: 22.8,
-      focalLengthMm: -162.0,
-      glass: "S-NPH1 (OHARA)",
+      focalLengthMm: -162,
+      glass: "S-NPH1 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: "inferred",
       apdNote:
         "S-NPH1-class dense flint; catalog θgF 0.632 lies well above the normal line (inferred, not stated in the patent)",
       role: "Front negative corrector in D1; achromatic pair with L2",
       cemented: "D1",
+      indexReference: "d",
     },
     {
       id: 2,
@@ -109,10 +91,12 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 134.4,
-      glass: "S-LAL18 (OHARA)",
+      glass:
+        "S-LAL18 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Positive element in D1 doublet; primary front power contribution",
       cemented: "D1",
+      indexReference: "d",
     },
     {
       id: 3,
@@ -122,22 +106,25 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 117.3,
-      glass: "S-LAH66 (OHARA)",
+      glass:
+        "S-LAH66 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Dominant positive power element in G1; controls entrance pupil",
+      indexReference: "d",
     },
-    // ── Group 2: Variator (f = −19.17 mm) ──
     {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Neg. Meniscus (1× Asph)",
+      type: "Negative Meniscus (1× Asph)",
       nd: 1.76902,
       vd: 49.3,
       focalLengthMm: -30.8,
-      glass: "769493 - MC-TAF101-100 (HOYA)",
+      glass:
+        "769493 - MC-TAF101-100 (HOYA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Strong negative meniscus at variator entrance; asph S6 corrects zonal SA",
+      indexReference: "d",
     },
     {
       id: 5,
@@ -147,10 +134,12 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.5,
       focalLengthMm: -22.4,
-      glass: "S-LAH96 (OHARA, 764485)",
+      glass:
+        "S-LAH96 (OHARA, 764485) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Negative element in D2; variator divergence",
       cemented: "D2",
+      indexReference: "d",
     },
     {
       id: 6,
@@ -160,9 +149,11 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       focalLengthMm: 21.5,
-      glass: "S-NBH56 (OHARA; exact 855248 coordinate match)",
+      glass:
+        "S-NBH56 (OHARA; exact 855248 coordinate match) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       role: "Positive corrector in D2; achromatic pair with L5",
       cemented: "D2",
+      indexReference: "d",
     },
     {
       id: 7,
@@ -172,25 +163,26 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 66.1,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
-      role: "Positive meniscus in D3; low-index fluor crown for chromatic balance",
+      role: "Positive meniscus in D3; low-index compatible proxy for chromatic balance",
       cemented: "D3",
+      indexReference: "d",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
-      type: "Neg. Meniscus (1× Asph)",
+      type: "Negative Meniscus (1× Asph)",
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -31.2,
-      glass: "TAFD30 (HOYA)",
+      glass: "TAFD30 (HOYA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Negative corrector in D3; asph S13 cleans up variator exit aberrations",
       cemented: "D3",
+      indexReference: "d",
     },
-    // ── Group 3: Compensator, carries the stop (f = +47.05 mm) ──
     {
       id: 9,
       name: "L9",
@@ -199,9 +191,11 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 76.5,
-      glass: "S-LAL18 (OHARA)",
+      glass:
+        "S-LAL18 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "First converging element after stop; begins refocusing variator output",
+      indexReference: "d",
     },
     {
       id: 10,
@@ -210,10 +204,12 @@ const LENS_DATA = {
       type: "Biconvex Pos. (1× Asph)",
       nd: 1.804,
       vd: 46.6,
-      focalLengthMm: 37.0,
-      glass: "S-LAH65V (OHARA)",
+      focalLengthMm: 37,
+      glass:
+        "S-LAH65V (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Dominant power element in G3; asph S18 corrects SA and tangential field",
+      indexReference: "d",
     },
     {
       id: 11,
@@ -223,10 +219,12 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.3,
       focalLengthMm: -22.3,
-      glass: "S-NBH53V (OHARA)",
+      glass:
+        "S-NBH53V (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "High-dispersion negative in D4; secondary spectrum correction with UD partner",
       cemented: "D4",
+      indexReference: "d",
     },
     {
       id: 12,
@@ -236,14 +234,15 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 57.3,
-      glass: "S-FPL51 (OHARA)",
+      glass:
+        "S-FPL51 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: "inferred",
       apdNote:
         "S-FPL51-class fluorophosphate (UD-type); anomalous dispersion inferred from the catalog glass, not stated in the patent",
-      role: "UD positive meniscus in D4; secondary-spectrum correction inside Group 3",
+      role: "Low-dispersion positive meniscus in D4; source chemistry unproved",
       cemented: "D4",
+      indexReference: "d",
     },
-    // ── Group 4: Rear Image-Forming (f = +44.67 mm) ──
     {
       id: 13,
       name: "L13",
@@ -252,11 +251,13 @@ const LENS_DATA = {
       nd: 1.43875,
       vd: 94.7,
       focalLengthMm: 66.4,
-      glass: "S-FPL53 (OHARA)",
+      glass:
+        "S-FPL53 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: "inferred",
       apdNote:
         "S-FPL53-class fluorophosphate (Super UD-type, νd = 94.7); anomalous dispersion inferred from the catalog glass, not stated in the patent",
-      role: "Super UD biconvex at G4 front; maximum secondary spectrum correction at large marginal ray height",
+      role: "Low-dispersion biconvex element at G4 front; branded Super UD is a product correlation",
+      indexReference: "d",
     },
     {
       id: 14,
@@ -266,9 +267,10 @@ const LENS_DATA = {
       nd: 1.59522,
       vd: 67.7,
       focalLengthMm: 55.9,
-      glass: "S-FPM2 (OHARA)",
+      glass: "S-FPM2 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Positive convergence element; shares load with L13 to reduce curvatures",
+      indexReference: "d",
     },
     {
       id: 15,
@@ -278,12 +280,14 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 85.6,
-      glass: "S-FPL51 (OHARA)",
+      glass:
+        "S-FPL51 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: "inferred",
       apdNote:
         "S-FPL51-class fluorophosphate (UD-type); anomalous dispersion inferred from the catalog glass, not stated in the patent",
-      role: "UD positive in D5; corrects secondary spectrum in rear image-forming group",
+      role: "Low-dispersion positive in D5; source chemistry and branded UD identity unproved",
       cemented: "D5",
+      indexReference: "d",
     },
     {
       id: 16,
@@ -293,22 +297,25 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 33.3,
       focalLengthMm: -43.8,
-      glass: "NBFD15 (HOYA)",
+      glass: "NBFD15 (HOYA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "High-dispersion negative in D5; achromatic partner for UD L15",
       cemented: "D5",
+      indexReference: "d",
     },
     {
       id: 17,
       name: "L17",
       label: "Element 17",
-      type: "Biconcave Neg. (2× Asph)",
+      type: "Biconcave Negative (2× Asph)",
       nd: 1.854,
       vd: 40.4,
       focalLengthMm: -124.5,
-      glass: "L-LAH85V (OHARA)",
+      glass:
+        "L-LAH85V (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Double-asphere field corrector (nearly plano-concave base); ≈1.4 mm departure on S30 at its rim — primary corrector for field curvature, astigmatism and distortion",
+      indexReference: "d",
     },
     {
       id: 18,
@@ -318,10 +325,11 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -45.4,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (OHARA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
       role: "Low-index negative in D6; extreme Δnd junction (0.514) with L19 for chromatic correction",
       cemented: "D6",
+      indexReference: "d",
     },
     {
       id: 19,
@@ -331,122 +339,291 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: 36.8,
-      glass: "TAFD55 (HOYA)",
+      glass: "TAFD55 (HOYA) (compatible spectral proxy; historical supplier, melt, chemistry and process unspecified)",
       apd: false,
-      role: "Final positive element; ultra-high nd minimizes curvatures close to sensor; exploits RF mount short flange",
+      role: "Final high-index positive member of D6; production-mount rationale is not source established",
       cemented: "D6",
+      indexReference: "d",
     },
   ],
-
-  /* ── Surface prescription ── */
-  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    // ── Group 1: Front Collector ──
-    // Cemented doublet D1 (L1 + L2)
-    { label: "1", R: 187.418, d: 2.2, sd: 39.3, medium: 1 },
-    { label: "2", R: 76.661, d: 8.55, sd: 36.1, medium: 2 },
-    { label: "3", R: 335.605, d: 0.15, sd: 38.0 },
-    // L3 singlet
-    { label: "4", R: 58.97, d: 8.05, sd: 32.0, medium: 3 },
-    { label: "5", R: 158.73, sd: 30.8 }, // [var: G1–G2]
-
-    // ── Group 2: Variator ──
-    // L4 singlet (1× asph front)
+    {
+      label: "1",
+      R: 187.418,
+      d: 2.2,
+      sd: 39.3,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 76.661,
+      d: 8.55,
+      sd: 36.1,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 335.605,
+      d: 0.15,
+      sd: 39.3,
+    },
+    {
+      label: "4",
+      R: 58.97,
+      d: 8.05,
+      sd: 33.4,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 158.73,
+      sd: 33.4,
+    },
     {
       label: "6A",
       R: 167.209,
       d: 1.55,
-      sd: 22.8,
+      sd: 21,
       medium: 4,
-      asphere: { K: 0, A4: 4.38428e-6, A6: -2.70954e-9, A8: 4.53124e-12, A10: -5.11345e-16, A12: 2.85627e-18 },
+      asphere: {
+        K: 0,
+        A4: 0.00000438428,
+        A6: -2.70954e-9,
+        A8: 4.53124e-12,
+        A10: -5.11345e-16,
+        A12: 2.85627e-18,
+      },
     },
-    { label: "7", R: 20.639, d: 9.56, sd: 16.0 },
-    // Cemented doublet D2 (L5 + L6)
-    { label: "8", R: -49.152, d: 1.0, sd: 14.8, medium: 5 },
-    { label: "9", R: 26.487, d: 8.15, sd: 16.1, medium: 6 },
-    { label: "10", R: -51.463, d: 1.45, sd: 16.5 },
-    // Cemented doublet D3 (L7 + L8, rear asph)
-    { label: "11", R: -42.283, d: 5.85, sd: 16.7, medium: 7 },
-    { label: "12", R: -19.11, d: 1.2, sd: 16.25, medium: 8 },
+    {
+      label: "7",
+      R: 20.639,
+      d: 9.56,
+      sd: 15.1,
+      rimExtensionSd: 21,
+    },
+    {
+      label: "8",
+      R: -49.152,
+      d: 1,
+      sd: 14.8,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: 26.487,
+      d: 8.15,
+      sd: 15.15,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: -51.463,
+      d: 1.45,
+      sd: 15.15,
+    },
+    {
+      label: "11",
+      R: -42.283,
+      d: 5.85,
+      sd: 15.75,
+      medium: 7,
+    },
+    {
+      label: "12",
+      R: -19.11,
+      d: 1.2,
+      sd: 14.25,
+      medium: 8,
+    },
     {
       label: "13A",
       R: -64.186,
-      sd: 16.8,
-      asphere: { K: 0, A4: -2.04866e-6, A6: -6.82741e-10, A8: -2.06847e-11, A10: 9.28973e-14, A12: -1.47499e-16 },
-    }, // [var: G2–G3]
-
-    // ── Aperture Stop (patent S14, moves with G3) ──
-    { label: "STO", R: "flat", d: 0.3 },
-
-    // ── Group 3: Compensator ──
-    // L9 singlet (plano-convex)
-    { label: "15", R: 55.781, d: 5.05, sd: 18.9, medium: 9 },
-    { label: "16", R: "flat", d: 0.15, sd: 18.9 },
-    // L10 singlet (1× asph rear)
-    { label: "17", R: 42.901, d: 9.5, sd: 19.2, medium: 10 },
+      sd: 15.75,
+      asphere: {
+        K: 0,
+        A4: -0.00000204866,
+        A6: -6.82741e-10,
+        A8: -2.06847e-11,
+        A10: 9.28973e-14,
+        A12: -1.47499e-16,
+      },
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.3,
+    },
+    {
+      label: "15",
+      R: 55.781,
+      d: 5.05,
+      sd: 18.9,
+      medium: 9,
+    },
+    {
+      label: "16",
+      R: "flat",
+      d: 0.15,
+      sd: 18.9,
+    },
+    {
+      label: "17",
+      R: 42.901,
+      d: 9.5,
+      sd: 19.2,
+      medium: 10,
+    },
     {
       label: "18A",
       R: -87.269,
       d: 3.8,
       sd: 19.4,
-      asphere: { K: 0, A4: 2.64029e-6, A6: -2.43625e-9, A8: -1.84031e-12, A10: -2.30946e-17, A12: 4.15861e-18 },
+      asphere: {
+        K: 0,
+        A4: 0.00000264029,
+        A6: -2.43625e-9,
+        A8: -1.84031e-12,
+        A10: -2.30946e-17,
+        A12: 4.15861e-18,
+      },
     },
-    // Cemented doublet D4 (L11 + L12, UD)
-    { label: "19", R: -50.369, d: 1.5, sd: 19.0, medium: 11 },
-    { label: "20", R: 24.706, d: 7.7, sd: 15.9, medium: 12 },
-    { label: "21", R: 166.989, sd: 18.8 }, // [var: G3–G4, includes AP offset −2.59]
-
-    // ── Group 4: Rear Image-Forming (patent S22 AP omitted) ──
-    // L13 singlet (Super UD)
-    { label: "23", R: 30.373, d: 7.3, sd: 16.9, medium: 13 },
-    { label: "24", R: -664.868, d: 0.15, sd: 16.9 },
-    // L14 singlet
-    { label: "25", R: 48.839, d: 5.5, sd: 16.5, medium: 14 },
-    { label: "26", R: -100.131, d: 0.57, sd: 16.5 },
-    // Cemented doublet D5 (L15 + L16, UD)
-    { label: "27", R: 66.531, d: 4.55, sd: 15.5, medium: 15 },
-    { label: "28", R: -115.19, d: 1.2, sd: 15.5, medium: 16 },
-    { label: "29", R: 51.069, d: 3.84, sd: 13.8 },
-    // L17 singlet (double-asphere)
+    {
+      label: "19",
+      R: -50.369,
+      d: 1.5,
+      sd: 17.5,
+      medium: 11,
+    },
+    {
+      label: "20",
+      R: 24.706,
+      d: 7.7,
+      sd: 15.9,
+      medium: 12,
+    },
+    {
+      label: "21",
+      R: 166.989,
+      sd: 17.5,
+    },
+    {
+      label: "23",
+      R: 30.373,
+      d: 7.3,
+      sd: 16.9,
+      medium: 13,
+    },
+    {
+      label: "24",
+      R: -664.868,
+      d: 0.15,
+      sd: 16.9,
+    },
+    {
+      label: "25",
+      R: 48.839,
+      d: 5.5,
+      sd: 16.5,
+      medium: 14,
+    },
+    {
+      label: "26",
+      R: -100.131,
+      d: 0.57,
+      sd: 16.5,
+    },
+    {
+      label: "27",
+      R: 66.531,
+      d: 4.55,
+      sd: 15.5,
+      medium: 15,
+    },
+    {
+      label: "28",
+      R: -115.19,
+      d: 1.2,
+      sd: 15.5,
+      medium: 16,
+    },
+    {
+      label: "29",
+      R: 51.069,
+      d: 3.84,
+      sd: 13.8,
+      rimExtensionSd: 15.5,
+    },
     {
       label: "30A",
-      R: -1000.0,
-      d: 3.0,
+      R: -1000,
+      d: 3,
       sd: 13.7,
       medium: 17,
-      asphere: { K: 0, A4: -4.43289e-5, A6: -1.56326e-8, A8: 3.31996e-10, A10: -1.13489e-12, A12: 2.02156e-15 },
+      asphere: {
+        K: 0,
+        A4: -0.0000443289,
+        A6: -1.56326e-8,
+        A8: 3.31996e-10,
+        A10: -1.13489e-12,
+        A12: 2.02156e-15,
+      },
     },
     {
       label: "31A",
       R: 119.129,
       d: 3.42,
       sd: 14.5,
-      asphere: { K: 0, A4: -2.52968e-5, A6: 2.32789e-8, A8: 3.09529e-10, A10: -9.01793e-13, A12: 1.19241e-15 },
+      asphere: {
+        K: 0,
+        A4: -0.0000252968,
+        A6: 2.32789e-8,
+        A8: 3.09529e-10,
+        A10: -9.01793e-13,
+        A12: 1.19241e-15,
+      },
     },
-    // Cemented doublet D6 (L18 + L19, ultra-high-index)
-    { label: "32", R: -39.992, d: 1.3, sd: 15.4, medium: 18 },
-    { label: "33", R: 50.003, d: 6.3, sd: 18.4, medium: 19 },
-    { label: "34", R: -131.617, sd: 18.4 }, // [var: BF, patent d34 to the CG plate]
+    {
+      label: "32",
+      R: -39.992,
+      d: 1.3,
+      sd: 14.8,
+      medium: 18,
+      rimExtensionSd: 18.4,
+    },
+    {
+      label: "33",
+      R: 50.003,
+      d: 6.3,
+      sd: 18.4,
+      medium: 19,
+    },
+    {
+      label: "34",
+      R: -131.617,
+      sd: 18.4,
+    },
   ],
-
   zoom: {
-    /* (moved from zoomPositions) ── Zoom configuration ── */
-    stations: [{ focalLengthMm: 28.9, label: "Wide" }, { focalLengthMm: 50.0 }, { focalLengthMm: 67.9, label: "Tele" }],
+    stations: [
+      {
+        focalLengthMm: 28.9,
+        label: "Wide",
+      },
+      {
+        focalLengthMm: 50,
+      },
+      {
+        focalLengthMm: 67.9,
+        label: "Tele",
+      },
+    ],
     step: 0.004,
   },
-
-  /* ── Focus configuration ── */
   focus: {
     closeFocusM: 0.39,
     description:
       "Focusing group not identified in the patent (Canon lists inner focusing with a ring-type USM). No close-focus data in patent — zoom-only model.",
   },
-
-  /* (moved from var) ── Variable air spacings (zoom only — no close-focus data in patent) ──
-   *  All gaps use identical inf/close values (zoom-only movement).
-   *  "21" = patent d21 − 2.59 (absorbed flare-cut AP offset, patent S22).
-   *  "34" = patent d34 (gap to the CG plate; the plate and d36 = 2.75 are in `rearPlates`).
-   */
   gaps: {
     "5": {
       label: "D5",
@@ -454,6 +631,22 @@ const LENS_DATA = {
         [3.93, 3.93],
         [20.98, 20.98],
         [29.21, 29.21],
+      ],
+    },
+    "21": {
+      label: "D21",
+      values: [
+        [6.08, 6.08],
+        [2, 2],
+        [1.02, 1.02],
+      ],
+    },
+    "34": {
+      label: "BF",
+      values: [
+        [15, 15],
+        [24.22, 24.22],
+        [29.66, 29.66],
       ],
     },
     "13A": {
@@ -464,58 +657,83 @@ const LENS_DATA = {
         [2.27, 2.27],
       ],
     },
-    "21": {
-      label: "D21",
-      values: [
-        [6.08, 6.08],
-        [2.0, 2.0],
-        [1.02, 1.02],
-      ],
-    },
-    "34": {
-      label: "BF",
-      values: [
-        [15.0, 15.0],
-        [24.22, 24.22],
-        [29.66, 29.66],
-      ],
-    },
   },
-
-  /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
-
-  /* ── Sensor cover glass (patent surfaces 35–36): traced, not drawn ── */
+  aperture: {
+    nominalFNumber: 2.06,
+    fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 9,
+  },
   rearPlates: [
     {
       label: "CG",
       thicknessMm: 1.96,
       nd: 1.51633,
       vd: 64.1,
-      glass: "S-BSL7",
+      glass: "S-BSL7 (compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       gapAfterMm: 2.75,
       source: "JP 2020-118807 A, Example A surfaces 35–36",
+      indexReference: "d",
     },
   ],
-
-  /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1 (+105)", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (−19)", fromSurface: "6A", toSurface: "13A" },
-    { text: "G3 (+47)", fromSurface: "STO", toSurface: "21" },
-    { text: "G4 (+45)", fromSurface: "23", toSurface: "34" },
+    {
+      text: "G1 (+105)",
+      fromSurface: "1",
+      toSurface: "5",
+    },
+    {
+      text: "G2 (−19)",
+      fromSurface: "6A",
+      toSurface: "13A",
+    },
+    {
+      text: "G3 (+47)",
+      fromSurface: "STO",
+      toSurface: "21",
+    },
+    {
+      text: "G4 (+45)",
+      fromSurface: "23",
+      toSurface: "34",
+    },
   ],
   doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "8", toSurface: "10" },
-    { text: "D3", fromSurface: "11", toSurface: "13A" },
-    { text: "D4", fromSurface: "19", toSurface: "21" },
-    { text: "D5", fromSurface: "27", toSurface: "29" },
-    { text: "D6", fromSurface: "32", toSurface: "34" },
+    {
+      text: "D1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "D2",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+    {
+      text: "D3",
+      fromSurface: "11",
+      toSurface: "13A",
+    },
+    {
+      text: "D4",
+      fromSurface: "19",
+      toSurface: "21",
+    },
+    {
+      text: "D5",
+      fromSurface: "27",
+      toSurface: "29",
+    },
+    {
+      text: "D6",
+      fromSurface: "32",
+      toSurface: "34",
+    },
   ],
-
-  /* ── Layout tuning ── */
-  layout: { scFill: 0.42, yScFill: 0.55, maxAspectRatio: 2.0 },
+  layout: {
+    scFill: 0.42,
+    yScFill: 0.55,
+    maxAspectRatio: 2,
+  },
 } satisfies LensDataV2Input;
-
 export default LENS_DATA;

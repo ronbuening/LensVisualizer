@@ -1,4 +1,5 @@
 # Optical Analysis — CN 110161666A, Example 2
+
 ## Laowa 65mm f/2.8 2× Ultra Macro APO
 
 ---
@@ -30,11 +31,11 @@ Example 1, with its shorter focal length of 50.96 mm, shares the same 14-element
 
 The Laowa 65mm f/2.8 2× Macro is an **all-spherical, inner-focus macro prime** of the general type: nearly afocal positive front group — strong positive focusing group — aperture stop — negative rear relay group. The power distribution is:
 
-| Group | Elements | Focal Length | Power |
-|-------|----------|-------------|-------|
-| G1 | L1–L2 (cemented doublet) | $f_{G1} \approx +1686$ mm | Very weak positive (nearly afocal) |
-| G2 | L3–L9 (7 elements in 5 sub-groups) | $f_{G2} \approx +34.2$ mm | Strong positive (focusing group) |
-| G3 | L10–L14 (5 elements in 4 sub-groups) | $f_{G3} \approx -101.6$ mm | Moderate negative (relay) |
+| Group | Elements                             | Focal Length               | Power                              |
+| ----- | ------------------------------------ | -------------------------- | ---------------------------------- |
+| G1    | L1–L2 (cemented doublet)             | $f_{G1} \approx +1686$ mm  | Very weak positive (nearly afocal) |
+| G2    | L3–L9 (7 elements in 5 sub-groups)   | $f_{G2} \approx +34.2$ mm  | Strong positive (focusing group)   |
+| G3    | L10–L14 (5 elements in 4 sub-groups) | $f_{G3} \approx -101.6$ mm | Moderate negative (relay)          |
 
 This three-group inner-focus architecture places essentially all of the system's converging power in G2, with G3 acting as a negative relay that increases the back focal distance and provides field correction. G1 is an extremely weak front element — with $f_{G1} \approx 1686$ mm, its refractive contribution at infinity focus is negligible. Its primary function is to provide a nearly flat first surface to the incoming beam, while introducing a controlled amount of chromatic pre-correction before the long air gap to G2.
 
@@ -74,7 +75,7 @@ G2 is the optical powerhouse of the design: seven elements in five sub-groups, c
 
 #### L3 — Biconvex Positive
 
-$n_d = 1.77250$, $\nu_d = 53.00$. Glass: **773530 — high-index lanthanum crown**, uncertain — no exact public catalog match at this $(n_d, \nu_d)$. $f = +52.3$ mm.
+$n_d = 1.77250$, $\nu_d = 53.00$. Glass: **Unmatched source coordinate**, supplier, melt and chemistry unspecified; no exact public catalog match at this $(n_d, \nu_d)$. $f = +52.3$ mm.
 
 L3 is the leading element of the focusing group. Its strongly curved front surface (R = +45.53) provides the first substantial positive power the incoming beam encounters. The rear surface (R = −348.93) is nearly flat, making L3 a quasi-plano-convex element. The high refractive index ($n_d = 1.773$) keeps the surface curvatures moderate for the required power, reducing higher-order spherical aberration.
 
@@ -96,17 +97,17 @@ L5 is a strongly negative biconcave element (R1 = −65.89, R2 = +10.70) that fo
 
 #### L6 — Positive Meniscus, convex to object (cemented with L5)
 
-$n_d = 1.92286$, $\nu_d = 20.88$. Glass: H-ZF72A (CDGM) — super-dense flint. $f = +25.6$ mm.
+$n_d = 1.92286$, $\nu_d = 20.88$. Glass: N-SF66 (SCHOTT qualified spectral proxy; source supplier, melt and chemistry unspecified). $f = +25.6$ mm.
 
-L6 is cemented to L5, sharing the junction at R = +10.70. Both surfaces are convex to the object (R1 = +10.70, R2 = +16.77), forming a positive meniscus. This is the highest-refractive-index glass in the design ($n_d = 1.923$), with extremely high dispersion ($\nu_d = 20.9$). It is equivalent to Schott N-SF66 / OHARA S-NPH2.
+L6 is cemented to L5, sharing the junction at R = +10.70. Both surfaces are convex to the object (R1 = +10.70, R2 = +16.77), forming a positive meniscus. This is the highest-refractive-index glass in the design ($n_d = 1.923$), with extremely high dispersion ($\nu_d = 20.9$). N-SF66 closely reproduces the source pair; S-NPH2 and the former H-ZF72A curve have appreciably lower Abbe numbers and are not equivalent source-dispersion matches.
 
 The L5–L6 pair has net negative standalone power ($f_{D2}\approx-17.6$ mm). Both source media are flint-like, with Abbe numbers 25.46 and 20.88. Their different indices and selected proxy spectra provide degrees of freedom for aberration balancing. The source does not isolate a measured secondary-spectrum contribution or establish the designer's intended distribution of correction.
 
 #### L7 — Negative Meniscus, convex to object (cemented with L8)
 
-$n_d = 1.80420$, $\nu_d = 46.50$. Glass: H-ZLAF50D (CDGM) — lanthanum dense flint. $f = -61.8$ mm.
+$n_d = 1.80420$, $\nu_d = 46.50$. Glass: N-LASF44 (SCHOTT qualified spectral proxy; source chemistry and supplier unspecified). $f = -61.8$ mm.
 
-L7 is a meniscus with both surfaces convex to the object (R1 = +15.20, R2 = +11.30); the rear surface is more steeply curved, giving net negative power. It is equivalent to Schott N-LASF44 / OHARA S-LAH64. As a lanthanum dense flint with moderate dispersion, L7 contributes negative power while adding controlled positive chromatic aberration — the opposite sign to its cemented partner L8.
+L7 is a meniscus with both surfaces convex to the object (R1 = +15.20, R2 = +11.30); the rear surface is more steeply curved, giving net negative power. N-LASF44 is a qualified spectral proxy for the source pair, not its historical identity. L7 contributes negative power and primary-color balancing with L8; the source does not establish its lanthanum chemistry or isolate a measured chromatic allocation.
 
 #### L8 — Biconvex Positive (cemented with L7) (ED)
 
@@ -118,7 +119,7 @@ L8 has the shortest listed standalone focal length among the positive elements, 
 
 #### L9 — Biconvex Positive (nearly plano-convex)
 
-$n_d = 1.92286$, $\nu_d = 20.88$. Glass: H-ZF72A (CDGM) — super-dense flint. $f = +57.5$ mm.
+$n_d = 1.92286$, $\nu_d = 20.88$. Glass: N-SF66 (SCHOTT qualified spectral proxy; source supplier, melt and chemistry unspecified). $f = +57.5$ mm.
 
 L9 is a weakly biconvex element with a very gentle front surface (R1 = +249.31) and a more strongly curved rear (R2 = −67.18). It uses the same super-dense flint as L6. Despite being a high-dispersion glass, it is used here as a positive element — an unusual choice that exploits its extreme refractive index ($n_d = 1.923$) to provide positive power with minimal surface curvature. The weak front curvature means the element acts almost as a thick window on the front face, with the optical power concentrated at the rear surface.
 
@@ -136,11 +137,11 @@ G3 is a five-element group with net negative power ($f_{G3} = -101.6$ mm). It ac
 
 #### L10 — Negative Meniscus, convex to object
 
-$n_d = 1.72916$, $\nu_d = 57.67$. Glass: **729577 — high-index lanthanum crown**, uncertain — possibly a proprietary CDGM grade. $f = -27.6$ mm.
+$n_d = 1.72916$, $\nu_d = 57.67$. Glass: **Unmatched source coordinate**, supplier, melt and chemistry unspecified. $f = -27.6$ mm.
 
 L10 is a meniscus with both surfaces convex to the object (R1 = +70.70, R2 = +15.60), the rear being far more steeply curved, giving strong negative power. It is the first element the beam encounters after crossing the variable gap from the stop.
 
-The glass code 729577 does not correspond precisely to any widely published CDGM catalog entry. H-LAK52 has $n_d = 1.72916$ but $\nu_d = 54.68$ — matching the refractive index exactly but not the dispersion ($\Delta\nu_d = +3.0$). Example 1 uses $\nu_d = 57.00$ at the equivalent position, further suggesting this Abbe number is a deliberate design parameter rather than a catalog standard. This may be a proprietary CDGM melt or a less-commonly-published catalog grade. The high index with moderate-to-low dispersion places it in the lanthanum crown family.
+The glass code 729577 does not correspond precisely to any widely published CDGM catalog entry. H-LAK52 has $n_d = 1.72916$ but $\nu_d = 54.68$ — matching the refractive index exactly but not the dispersion ($\Delta\nu_d = +3.0$). Example 1 uses $\nu_d = 57.00$ at the equivalent position, further suggesting this Abbe number is a deliberate design parameter rather than a catalog standard. The source does not establish a proprietary melt, a supplier or a chemical family; those possible explanations are not evidence.
 
 L10's strong negative power diverges the beam exiting the stop. This is essential for two reasons: it increases the back focal distance (allowing the rear element to clear the mirrorless camera mount), and it provides negative Petzval contribution to flatten the field.
 
@@ -180,22 +181,22 @@ The center thickness of L14 is 7.0 mm — relatively thick for a crown element o
 
 The source supplies d-line nd/νd coordinates, rather than production glass names. Twelve of fourteen lens elements and the physical rear plate resolve to compatible catalog spectra; L3 and L10 remain unmatched. The following table lists proxy assignments and coordinate classes. Supplier, melt and actual partial dispersion are unconfirmed; the manufacturer's location does not establish glass procurement.
 
-| Element | $n_d$ | $\nu_d$ | Catalog proxy / disposition | Curve family / vendor | Class | Coordinate status |
-|---------|-------|---------|-----------------|------------|-------|------------|
-| L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | Compatible proxy |
-| L2 | 1.60342 | 38.01 | E-F5 | HOYA | Light flint | Compatible proxy; supplier unspecified |
-| L3 | 1.77250 | 53.00 | 773530 — high-index lanthanum crown | — | Lanthanum crown | Uncertain |
-| L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
-| L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | Compatible proxy |
-| L6 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | Compatible proxy |
-| L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | Compatible proxy |
-| L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
-| L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | Compatible proxy |
-| L10 | 1.72916 | 57.67 | Unmatched 729577 high-index crown | — | Lanthanum crown | Prior H-LAK52 candidate rejected ($\Delta\nu_d = +3.0$) |
-| L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | Compatible proxy |
-| L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | Compatible proxy |
-| L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | Compatible proxy |
-| L14 | 1.51823 | 58.96 | E-C3 | HOYA | Crown | Compatible proxy; supplier unspecified |
+| Element | $n_d$   | $\nu_d$ | Catalog proxy / disposition       | Curve family / vendor | Class                              | Coordinate status                                       |
+| ------- | ------- | ------- | --------------------------------- | --------------------- | ---------------------------------- | ------------------------------------------------------- |
+| L1      | 1.61800 | 63.39   | S-PHM52                           | OHARA                 | Phosphate crown                    | Compatible proxy                                        |
+| L2      | 1.60342 | 38.01   | E-F5                              | HOYA                  | Light flint                        | Compatible proxy; supplier unspecified                  |
+| L3      | 1.77250 | 53.00   | Unmatched source coordinate       | —                     | Chemistry unspecified              | Uncertain                                               |
+| L4      | 1.49700 | 81.61   | H-FK61                            | S-FPL51 / FCD1        | ED fluorophosphate crown           | Compatible proxy                                        |
+| L5      | 1.80518 | 25.46   | H-ZF7LA                           | CDGM                  | Dense flint                        | Compatible proxy                                        |
+| L6      | 1.92286 | 20.88   | N-SF66                            | SCHOTT                | Super-dense flint                  | Compatible proxy                                        |
+| L7      | 1.80420 | 46.50   | N-LASF44                          | SCHOTT                | Catalog-family interpretation only | Compatible proxy                                        |
+| L8      | 1.49700 | 81.61   | H-FK61                            | S-FPL51 / FCD1        | ED fluorophosphate crown           | Compatible proxy                                        |
+| L9      | 1.92286 | 20.88   | N-SF66                            | SCHOTT                | Super-dense flint                  | Compatible proxy                                        |
+| L10     | 1.72916 | 57.67   | Unmatched 729577 high-index crown | —                     | Lanthanum crown                    | Prior H-LAK52 candidate rejected ($\Delta\nu_d = +3.0$) |
+| L11     | 1.76182 | 26.61   | S-TIH14                           | OHARA                 | Dense flint                        | Compatible proxy                                        |
+| L12     | 1.90366 | 31.31   | S-LAH95 / TAFD25 class            | 904313 class          | Lanthanum dense flint              | Compatible proxy                                        |
+| L13     | 1.49700 | 81.61   | H-FK61                            | S-FPL51 / FCD1        | ED fluorophosphate crown           | Compatible proxy                                        |
+| L14     | 1.51823 | 58.96   | E-C3                              | HOYA                  | Crown                              | Compatible proxy; supplier unspecified                  |
 
 **Unresolved coordinates.** L3 ($n_d=1.77250$, $\nu_d=53.00$) and L10 ($n_d=1.72916$, $\nu_d=57.67$) remain source-faithful unmatched rows. Nearby catalog classes differ substantially in Abbe number and are not identities. The source does not establish whether these values represent production melts or idealized design coordinates; no supplier explanation or correction is inferred.
 
@@ -205,11 +206,11 @@ The source supplies d-line nd/νd coordinates, rather than production glass name
 
 The lens uses **inner focus** (internal focus). Group G2 (L3–L9, seven elements) translates as a rigid unit along the optical axis while G1 (L1–L2) and G3 (L10–L14) remain fixed. This is confirmed by the patent's variable-gap table (¶0070):
 
-| Gap | Patent Surface | Infinity ($\beta = 0$) | Close ($\beta = 1.95\times$) | Change |
-|-----|----------------|----------|-------|--------|
-| G1–G2 | D(3) | 36.048 mm | 1.048 mm | −35.000 mm |
-| G2–G3 | D(17) | 1.300 mm | 36.300 mm | +35.000 mm |
-| BFD | D(28) | 1.000 mm | 1.000 mm | 0.000 mm |
+| Gap   | Patent Surface | Infinity ($\beta = 0$) | Close ($\beta = 1.95\times$) | Change     |
+| ----- | -------------- | ---------------------- | ---------------------------- | ---------- |
+| G1–G2 | D(3)           | 36.048 mm              | 1.048 mm                     | −35.000 mm |
+| G2–G3 | D(17)          | 1.300 mm               | 36.300 mm                    | +35.000 mm |
+| BFD   | D(28)          | 1.000 mm               | 1.000 mm                     | 0.000 mm   |
 
 Several features are evident:
 
@@ -239,16 +240,16 @@ The patent lists a final flat plate (surfaces 27–28) with $n_d = 1.51680$, $\n
 
 Independent paraxial ray trace of the Example 2 prescription confirms:
 
-| Parameter | Computed | Patent | Match |
-|-----------|----------|--------|-------|
-| System EFL | 66.024 mm | 66.0242 mm (¶0067) | ✓ ($\Delta = 0.0003$ mm) |
-| Conditional (1): $\|F_2/F_3\|$ | 0.337 | 0.333 (¶0072) | ✓ |
-| Conditional (2): $\|FL/S_2\|$ | 1.886 | 1.886 (¶0072) | ✓ |
-| Conditional (3): $FL/F_2$ | 1.929 | 1.928 (¶0072) | ✓ |
-| Conditional (4): $L/(A_t \times FL)$ | 0.867 | 0.867 (¶0072) | ✓ |
-| Variable gap conservation | 37.348 = 37.348 | — | ✓ |
-| Petzval sum ($\Sigma P$) | +0.00307 mm$^{-1}$ | — | — |
-| Petzval radius | −325 mm | — | — |
+| Parameter                            | Computed           | Patent             | Match                    |
+| ------------------------------------ | ------------------ | ------------------ | ------------------------ |
+| System EFL                           | 66.024 mm          | 66.0242 mm (¶0067) | ✓ ($\Delta = 0.0003$ mm) |
+| Conditional (1): $\|F_2/F_3\|$       | 0.337              | 0.333 (¶0072)      | ✓                        |
+| Conditional (2): $\|FL/S_2\|$        | 1.886              | 1.886 (¶0072)      | ✓                        |
+| Conditional (3): $FL/F_2$            | 1.929              | 1.928 (¶0072)      | ✓                        |
+| Conditional (4): $L/(A_t \times FL)$ | 0.867              | 0.867 (¶0072)      | ✓                        |
+| Variable gap conservation            | 37.348 = 37.348    | —                  | ✓                        |
+| Petzval sum ($\Sigma P$)             | +0.00307 mm$^{-1}$ | —                  | —                        |
+| Petzval radius                       | −325 mm            | —                  | —                        |
 
 The small discrepancy in conditional (1) (0.337 vs 0.333) arises from using the group focal length with slightly different air-gap boundary definitions; the patent likely uses the thin-lens group approximation. All conditional expressions from the patent claims (¶0008–0010, ¶0017, ¶0022) are satisfied.
 
@@ -263,3 +264,13 @@ The small discrepancy in conditional (1) (0.337 vs 0.333) arises from using the 
 5. Hoya Glass Cross Reference Index, https://www.hoya-opticalworld.com/english/products/crossreference.html
 
 Example 2 Figure 3 (PDF p. 12) now supplies concave cap-end lands on S17 and S18, with inferred cut depths 1.57 and 0.57 mm (clear radii 6.820 and 6.751 mm). Both clear the complete traced wide-open beams and required margins. S21 preserves its existing 8.5 mm cap with an opaque extension to the 9 mm outer rim. A proposed S8 trim was rejected because the traced beam reaches its full 9.5 mm cap; all remaining air and cemented faces retain their geometry.
+
+## Scoped material and catalog follow-up — 2026-10-31
+
+The complete shape/glass review remains **2026-10-29**, retaining May 20/June 24/Sept 23 history. This narrow pass reads all 14 lens media and the physical rear plate from CN110161666A Example 2, PDF page 8 ¶0060 and page 9 ¶0061; ¶0065 on page 9 explicitly defines d-line Nd. Figure 3 on page 12 confirms four cemented junctions, ordinary glass elements and a separate flat rear plate, without an independently prescribed resin or cement medium. Table 792×1413 and figure 794×429 are native 150 ppi, not the resolution of an enlarged render. No source individual C/F/g, numerical partial dispersion or Sellmeier coefficients exist for backfill; the three APD tags remain inferred.
+
+Two meaningful proxy mismatches are improved without changing source 1.92286/20.88: L6 (S9) and L9 (S14) previously used H-ZF72A, whose evaluated νd 18.895887 differs by−1.984113. Existing N-SF66 gives evaluated residuals nd+0.000000088/νd−0.000253, PgF 0.639418. [SCHOTT's official N-SF66 sheet](https://media.schott.com/api/public/content/c2e0c3a77dcb4c94b349424ee621ee32?v=3320661c) prints1.92286/20.88 and its constants. Its PgF is a catalog value, not a source measurement or new APD designation. E-FDS1 is another compatible proxy; no duplicate NHG H-ZF62 row is required.
+
+L7 (S11) keeps source 1.80420/46.50 but uses existing N-LASF44 instead of H-ZLaF50D. Its evaluated residuals −0.000000104/+0.000636 improve on−0.000200007/+0.075016. The [official historical SCHOTT collection](https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af) publishes the same N-LASF44 curve and nominal pair. Tiny rounding-only alternatives for other already-compatible media are retained as comparisons, not automatic relabels. All actual data labels now qualify catalog names; L3/L10 remain unresolved rather than being attributed to speculative proprietary CDGM melts or chemistry.
+
+Existing full vendor datasets and the official NHG2601 coordinate screen provide no strong new row for L3 1.77250/53.00 or L10 1.72916/57.67. All source numbers, genuine-source evidence, APD tags, plate gaps, caps, cuts, stops and controls stay fixed; no wavelength-uncertainty note is added to source-confirmed d media. Only qualified labels and unsupported role prose change. Standard authored-nd anchoring keeps d-line geometry identical, while estimated dispersion changes in the three named lens media. Earlier finite/macro/beam/source-shape limitations remain.

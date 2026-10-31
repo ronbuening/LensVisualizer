@@ -1,320 +1,123 @@
-# Canon EF-S 10-18mm f/4.5-5.6 IS STM — Optical Design Analysis
+# Canon EF-S 10–18mm f/4.5–5.6 IS STM — optical analysis
 
-## Patent Reference and Design Identification
+## Patent reference and production correlation
 
-**Patent:** JP 2015-31869 A, "ズームレンズ及びそれを有する撮像装置" (Zoom Lens and Imaging Apparatus Having the Same).
-**Applicant:** Canon Inc. (キヤノン株式会社), Tokyo, Japan.
-**Inventor:** Makoto Nakahara (中原 誠).
-**Filed:** 5 August 2013 (Priority: 特願2013-162437).
-**Published:** 16 February 2015.
-**Example details:** 数値実施例１, corresponding to the lens cross-section in Figure 1.
+**Patent:** JP 2015-031869 A\
+**Application:** JP 2013-162437\
+**Filed:** 2013-08-05\
+**Published:** 2015-02-16\
+**Inventor:** Makoto Nakahara (中原 誠)\
+**Applicant:** Canon Inc.\
+**Title:** Zoom Lens and Imaging Apparatus Having the Same\
+**Example details:** Numerical Example 1 (数値実施例1)
 
-### Production Lens Identification
+The selected prescription is the literal, unscaled Numerical Example 1 of the local original `patents/JP2015031869A.pdf`. Paragraph 0059/PDF page 10 gives all 26 surfaces and 14 material pairs; paragraph 0060 gives both aspheres through A12. Page 11 completes the zoom summary, four variable gaps and group/element powers. Paragraphs 0057–0058 on page 9 define the d-line coordinates, first-surface-to-image track and aspheric convention. Figure 1 on page 16 is the matching wide section, with Figure 2(a)/(b) on page 17 showing the wide/tele aberrations.
 
-The following convergent evidence identifies Numerical Example 1 as the design basis for the Canon EF-S 10-18mm f/4.5-5.6 IS STM (released June 2014):
+The production name remains a strong correlation from 14 elements/11 groups, focal/aperture range, four-unit architecture, one inferred UD position, two aspheric elements and the source focus/IS arrangement. Existing Canon product references identify the marketed EF-S 10–18mm f/4.5–5.6 IS STM, one UD element and two aspheric elements including one PMo member. They do not establish that the patent is the exact shipping prescription or identify a polymer, supplier, melt or manufacturing process. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef431.html)
 
-1. **Element and group count.** The prescription yields 14 elements in 11 air-separated groups, matching Canon's published specification exactly.
-2. **Focal length range.** The patent's computed EFL range of 10.30–17.46 mm is consistent with the marketed 10–18 mm range after rounding.
-3. **Maximum aperture.** The patent's F/4.64 (wide) through F/5.71 (tele) matches the marketed f/4.5-5.6 variable aperture.
-4. **Image circle.** The patent's half-image-height of 13.66 mm yields a diagonal of 27.32 mm, consistent with APS-C coverage (Canon APS-C diagonal ≈ 26.8 mm for the 22.3 × 14.9 mm sensor, with minor margin).
-5. **Zoom group structure.** The patent describes a negative-positive-negative-positive four-group zoom system (¶0020), matching Canon's marketed "4 group optical zoom system."
-6. **Image stabilization.** The patent places the IS group (Ls) as a single positive element within Group 2, ahead of the aperture stop. Canon's specification confirms IS with approximately 4-stop correction.
-7. **Focus mechanism.** The patent designates Group 3 as the rear-focus group (LF), moving image-ward for close focus (¶0021). Canon describes the lens as having a "rear focus system."
-8. **Special elements.** The Canon Camera Museum entry for product code EF431 states the lens contains "one UD (Ultra-low Dispersion) and two aspherical lens elements — one of which is a high-precision large-diameter PMo (Plastic-Molded) lens." The patent prescription contains exactly one element with UD-class dispersion (L11, νd = 81.5) and two aspherical surfaces on two separate elements (surfaces 4 and 26).
-9. **Patent timing.** Filed August 2013, 10 months before the lens's June 2014 commercial release — consistent with Canon's typical patent-to-product timeline.
+Marketed 10–18mm f/4.5–5.6 stays separate from source 10.30 / 13.96 / 17.46 mm and Fno. 4.64 / 5.19 / 5.71. The 2026-10-30 review restores those printed aperture targets from the source numerical summary and Figure 2, replacing 4.5 / 5.1 / 5.6. The iris remains derived under the existing paraxial convention; no physical diameter or cam is inferred from marketing values.
 
-## Optical Architecture
+## Optical architecture and modeled media
 
-The Canon EF-S 10-18mm f/4.5-5.6 IS STM is a negative-lead (retrofocus-type) zoom lens comprising, from object to image, four zoom groups with power distribution negative–positive–negative–positive:
+The four-unit power sequence is negative / positive / negative / positive. Group 1 (S1–S10) contains five elements, Group 2 (S11–S21) six elements and the stop, Group 3 (S22–S23) the single negative focus element, and Group 4 (S24–S26A) a cemented doublet. Three cemented interfaces are retained without invented lands or layers. There are no source filters or camera-side plates in this numerical example.
 
-- **Group 1 (surfaces 1–10):** Negative power, f = −13.43 mm. Five elements (four negative menisci and one positive biconvex). Functions as the front diverging group characteristic of retrofocus wide-angle designs, providing the long back focal distance required for SLR mirror clearance. Two of the menisci use high-index dense lanthanum flint (L1 and L3, nd = 1.77250), while L2 is a large-diameter PMo plastic asphere (nd = 1.530, low index) and L4 uses low-dispersion fluorophosphate crown to control lateral color; L5 is a high-dispersion biconvex flint that provides counterbalancing positive power. Moves in a convex (image-ward then object-ward) trajectory during zooming from wide to telephoto.
+The source group powers are −13.43 / +19.23 / −26.67 / +58.19 mm. Its first-surface-to-image tracks are 117.61 / 114.39 / 115.20 mm and BF 35.35 / 42.66 / 49.42 mm. Image height is 13.66 mm. The printed half-angles 52.98° / 44.37° / 38.04° do not independently certify the viewer's larger 14.175 mm APS-C corner or its exact distorted field mapping; those are checked with the runtime chief solver.
 
-- **Group 2 (surfaces 11–21):** Positive power, f = +19.23 mm. Six elements including two cemented doublets. Contains the image-stabilization element (Ls = L6), the aperture stop, and the primary chromatic-correcting UD element (L11). This is the main converging group. Moves object-ward during zooming.
+Paragraph 0057 explicitly defines nd and νd at the d line. Every catalog name below is a compatible spectral proxy, with historical supplier, melt, chemistry, cement, coating and manufacture unresolved. Standalone focal lengths are source-rounded element values, not in-system contribution estimates.
 
-- **Group 3 (surfaces 22–23):** Negative power, f = −26.67 mm. Single biconcave element serving as the focus group (LF). Moves image-ward for close focusing. Moves object-ward during zooming together with Groups 2 and 4 (see Focus Mechanism).
+| Element | Source surfaces | nd / νd        | Source element f, mm | Qualified disposition                                              |
+| ------- | --------------- | -------------- | -------------------: | ------------------------------------------------------------------ |
+| L1      | 1 / 2           | 1.77250 / 49.6 |               −37.58 | S-LAH66 proxy; front negative meniscus                             |
+| L2      | 3 / 4A          | 1.52996 / 55.8 |               −80.00 | E48R qualified spectral proxy; source material identity unresolved |
+| L3      | 5 / 6           | 1.77250 / 49.6 |               −27.47 | S-LAH66 proxy; negative meniscus                                   |
+| L4      | 7 / 8           | 1.59522 / 67.7 |               −34.55 | S-FPM2 proxy; lower-dispersion negative member                     |
+| L5      | 9 / 10          | 1.72047 / 34.7 |               +27.94 | S-NBH8 proxy; positive member of front unit                        |
+| L6      | 11 / 12         | 1.48749 / 70.2 |              +160.44 | S-FSL5 proxy; source IS singlet Ls                                 |
+| L7      | 13 / 14         | 1.91082 / 35.3 |               −19.86 | TAFD35 proxy; negative member of D1                                |
+| L8      | 14 / 15         | 1.60342 / 38.0 |               +14.48 | S-TIM5 proxy; positive member of D1                                |
+| L9      | 17 / 18         | 1.83481 / 42.7 |               −10.62 | S-LAH55 proxy; negative member of D2                               |
+| L10     | 18 / 19         | 1.64769 / 33.8 |               +14.28 | S-TIM22 proxy; positive member of D2                               |
+| L11     | 20 / 21         | 1.49700 / 81.5 |               +17.28 | S-FPL51 proxy; production-correlated inferred UD position          |
+| L12     | 22 / 23         | 1.91082 / 35.3 |               −26.67 | TAFD35 proxy; source focus singlet LF                              |
+| L13     | 24 / 25         | 1.91082 / 35.3 |               −16.82 | TAFD35 proxy; negative member of D3                                |
+| L14     | 25 / 26A        | 1.58313 / 59.4 |               +14.50 | S-BAL42 proxy; rear aspheric member of D3                          |
 
-- **Group 4 (surfaces 24–26):** Positive power, f = +58.19 mm. Cemented doublet (negative flint + positive crown with aspherical rear surface). Functions as a field-flattening relay group. Moves object-ward during zooming.
+The original prints no per-material C/F/g indices, partial-dispersion values or APD measurements. Fourteen compatible curves are available after the October 31 archival E48R follow-up; L2’s source material identity remains unspecified. No catalog-derived per-lens spectral override exists or is added. Figure 2's d/g aberration curves are contextual design evaluations, not material index measurements. L11's former `apd: "patent"` claim is corrected to `inferred`: the high-Abbe coordinate and production UD count support that qualification, while the original supplies no patent APD number. The production PMo correlation does not prove cyclo-olefin, acrylate, resin chemistry or injection-molding conditions. Catalog family names likewise do not establish the source media's chemical composition.
 
-The zoom ratio is 1.70× (10.30–17.46 mm). The total track length varies from 117.61 mm at the wide end to a minimum of 114.39 mm at mid-zoom, reflecting Group 1's non-monotonic convex trajectory (¶0020). The back focal distance increases substantially from 35.35 mm (wide) to 49.42 mm (tele), a consequence of the negative-lead architecture.
+## Original-PDF shape review — 2026-10-30
 
-The lens produces an image circle for the APS-C format (image height 13.66 mm, diagonal ≈ 27.3 mm) and covers a half-field angle range of 52.98° (wide) to 38.04° (tele).
+The local original was rendered and compared directly. Figure 1 is a native 1002 × 699 JPEG at about 200 ppi. The prescription pages are vector text, rendered separately at 200 ppi; enlarging the JPEG adds no source resolution. Against the 117.61 mm axial track and retained front caps the section is about 7.74 native px/mm, with practical ±0.6 mm rim uncertainty. SP/IP arrows, unit brackets, focus/zoom arrows and the axis are excluded from optical measurements.
 
-## Element-by-Element Analysis
+The prior table/glass review keeps its 2026-05-19 date. The S1 21.3 mm and S4A 14.8 mm corner-clearance correction keeps its actual 2026-09-24 date. Those clear caps remain; the current review adds source-supported outer shoulders and revises other inferred caps where the native curved outlines were visibly larger than the model. These are drawing estimates rather than published aperture dimensions.
 
-### Group 1 — Front Negative Group (5 elements, surfaces 1–10)
+| Surfaces        | Previous clear sd, mm | Adopted clear sd, mm | Figure disposition                                         |
+| --------------- | --------------------- | -------------------- | ---------------------------------------------------------- |
+| S5              | 11.2                  | 10.1                 | Front cap follows the native smaller singlet outline       |
+| S11 / S12       | 3.5 / 3.3             | 4.9 / 4.9            | Complete weak curved faces of source IS singlet            |
+| S13 / S14 / S15 | 3.0 / 2.8 / 2.3       | 4.9 / 4.9 / 4.9      | Drawn D1 curved caps and cemented interface                |
+| S17 / S18 / S19 | 2.9 / 3.1 / 3.9       | 5.6 / 5.6 / 5.6      | Drawn D2 curved caps and cemented interface                |
+| S20 / S21       | 3.9 / 4.7             | 6.0 / 6.0            | Source biconvex singlet endpoints                          |
+| S22 / S23       | 4.9 / 5.0             | 6.2 / 6.2            | Both concave ends of source focus singlet                  |
+| S24 / S25       | 6.3 / 6.4             | 8.4 / 8.4            | Source rear-doublet front and cemented cap; S26A stays 8.4 |
 
-#### L1 — Negative Meniscus, Convex to Object
+Four resolved air-facing shoulders use `rimExtensionSd`: S2 outer 21.3 with clear 16.9, S4A outer 16.7 with clear 14.8, S6 outer 10.1 with clear 8.2, and S7 outer 9.4 with clear 8.2 mm. Their native vertical strokes continue beyond curved optical caps; no bonded-interface land is introduced. Equal cap heights in the three doublets follow complete curved outlines in Figure 1, not unsupported opaque blocks. L2 is modeled as one aspheric element, not a bonded resin layer or disconnected wing.
 
-nd = 1.77250, νd = 49.6. Glass: S-LAH66 class (OHARA) — dense lanthanum flint (νd = 49.6, just below the conventional crown/flint boundary at νd ≈ 50). f = −37.6 mm.
+Rejected trial: extending S6 and S7 optical caps to 8.8 / 9.4 mm gives 6.19 mm combined sag against the unchanged permitted 5.274 mm intrusion in source d6 = 5.860 mm. Keep both 8.2 mm clear caps and express the resolved outer strokes as shoulders. The native drawing does not authorize altering R6/R7, d6 or the geometry guard. S2/S3 also retain their near-spherical rim limits; S4A's clear cap stays within its actual conic domain. There are no inferred cuts. All printed R/d, both aspheres, stops and focus/zoom gap values are retained.
 
-The outermost element is a steeply curved negative meniscus (R1 = +56.0, R2 = +18.9 mm) that begins the strong negative divergence characteristic of a retrofocus front group. Its high refractive index (nd = 1.77250) allows the meniscus to achieve its required negative power with less extreme curvature than a lower-index alternative, reducing higher-order aberrations. The element contributes −0.0152 to the Petzval sum, helping to flatten the field — a critical function in wide-angle designs where the natural Petzval curvature of the converging rear groups would otherwise produce a strongly curved image surface.
+## Aspheric, focus and IS constraints
 
-#### L2 — Negative Meniscus (1× Asph), Convex to Object
+Paragraph 0058 defines the conic-plus-even-polynomial sag convention. S4A has R = +12.302 mm, K = −0.475949 and A4/A6/A8/A10/A12 = −3.84236e−5 / −7.63390e−8 / −6.26237e−10 / +3.48984e−12 / −1.12759e−14. S26A has R = −19.588, K = 0 and +1.25041e−5 / −1.14292e−7 / +4.98491e−9 / −1.03089e−10 / +7.40509e−13. These printed values are unchanged. No source manufacturing process follows from their polynomial form.
 
-nd = 1.52996, νd = 55.8. Material: PMo optical plastic (plastic-molded aspherical element, confirmed by Canon Camera Museum). f = −80.0 mm.
+The source assigns the negative L12 unit LF to focus, moving imageward. It gives only infinity gap rows. Existing close-end reconstructions target 0.22 m with L12 travel +0.28 / +0.44 / +0.64 mm, preserving complementary d21/d23 changes. They remain modeled finite conjugates, not published cams, and are not retuned in this review.
 
-This is one of the design's two aspherical elements and is identified by Canon as the "high-precision large-diameter PMo (Plastic-Molded) lens." Its rear surface (surface 4) carries an aspherical profile with a conic constant K = −0.476 (prolate ellipsoidal base, between a sphere at K = 0 and a paraboloid at K = −1) plus polynomial coefficients through the 12th order. The aspherical departure from a best-fit sphere is strongly negative, reaching approximately −1.14 mm at h = 10 mm, with roughly 56% of the departure contributed by the conic and 44% by the polynomial terms. This surface primarily corrects field curvature and astigmatism across the wide field of view, flattening the strongly diverging wavefront as it exits the front group. The large negative departure effectively reduces the surface's curvature at the periphery, compensating for the high oblique ray heights in this ultra-wide-angle configuration.
+The source identifies L6 as the single positive IS member Ls ahead of the stop. No calibrated transverse travel is authored. Centered aperture, field and pupil checks do not certify moved-IS performance. Product drive, stabilization rating and optical manufacturing claims remain separate from the literal numerical prescription.
 
-The low refractive index and moderate dispersion of the PMo plastic are consistent with cyclo-olefin polymer or acrylate-based optical resins commonly used by Canon in consumer-grade zoom lenses. The plastic material allows cost-effective precision molding of the aspherical profile on a large-diameter element — a critical cost consideration for a lens in this price segment.
+## Current runtime and SVG verification
 
-#### L3 — Negative Meniscus, Convex to Object
+The printed aperture-target restoration changes derived iris radii to 4.389875 / 4.367403 / 4.353613 mm at the three source zooms. The census reproduces source 4.64 / 5.19 / 5.71 under its paraxial-reference convention. Independent aimed real working f-numbers are 4.662604 / 5.242989 / 5.794296, using 1/(2 n′ sin θ′). This is a separate metric, and neither proves a source physical iris schedule.
 
-nd = 1.77250, νd = 49.6. Glass: S-LAH66 class (OHARA) — same dense lanthanum flint as L1. f = −27.5 mm.
+| First-order quantity                       |      Wide |    Middle |      Tele |
+| ------------------------------------------ | --------: | --------: | --------: |
+| EFL from literal prescription, mm          | 10.301524 | 13.964150 | 17.461241 |
+| BFD from literal prescription, mm          | 35.354101 | 42.661186 | 49.421650 |
+| Retained source image gap, mm              |     35.35 |     42.66 |     49.42 |
+| Infinity defocus, mm                       | +0.004101 | +0.001186 | +0.001650 |
+| Reconstructed close conjugate residual, mm | +0.001193 | +0.017035 | −0.011812 |
 
-The strongest negative element in Group 1 (the same glass as L1). Its steep curvature differential (R5 = +27.1, R6 = +11.7 mm) produces the bulk of the group's negative refractive power. Positioned after the large air gap following L2 (d4 = 14.0 mm), it intercepts the diverging beam at a substantial height and bends it further, establishing the wide field of view. The high-index glass again limits the curvature required for the needed power, controlling coma and higher-order field aberrations.
+A 65-position diagnostic clone matches the actual runtime z/sd geometry at every sampled zoom and focus 0/0.5/1 (maximum difference zero). All 65 infinity aperture stations fall within the unchanged 3% criterion, and the field audit reaches at least 99%. A separate 65 zoom × 21 focus first-order/shape grid retains intermediate infinity defocus to −0.617781 mm; the worst finite residual is −0.827938 mm at zoom 0.28125 / focus 0.6. Three source stations do not define the continuous compensator or focus cams. The interpolation remains illustrative, without source-data fitting.
 
-#### L4 — Negative Meniscus, Concave to Object
+At 21 zoom × 21 focus positions × six presets, the source-cap/printed-target candidate traces all 2646 real working calls; the baseline traced 1323 and vignetted 1323, chiefly at undersized S11/S15/S14/S13. A separate current-iris 193-point pupil at 65 zoom × five focus positions × four fields yields 1300 field states. The minimum axial count improves from 97/193 to 193/193. Source-station infinity corner counts improve from 54 / 71 / 77 to 101 / 149 / 160; close counts become 101 / 151 / 161. Off-axis clipping remains explicit and is not a production illumination measurement. No cap or iris is tuned beyond the source-supported geometry to force full transmission.
 
-nd = 1.59522, νd = 67.7. Glass: S-FPM2 class (OHARA) — fluorophosphate crown, low dispersion. f = −34.6 mm.
-
-A concave-to-object negative meniscus made from a fluorophosphate crown with unusually low dispersion for a negative element (νd = 67.7). Its role within the front negative group is partly structural — contributing additional negative power — but the choice of low-dispersion glass is deliberate: it minimizes the lateral chromatic aberration (chromatic difference of magnification) that negative elements in a wide-angle front group introduce. In a negative-lead zoom, each negative element contributes lateral color proportional to both its power and the reciprocal of its Abbe number; L4's high νd = 67.7 keeps its contribution small relative to L1 and L3 (νd = 49.6 each). The thin air gap preceding L4 (d8 = 0.15 mm) places it close to L5, and the pair (L4 + L5) functions as a loosely coupled lateral-color reducer: L4 minimizes the lateral color contributed by its own negative power, while L5's positive power at high dispersion (νd = 34.7) provides an opposing lateral color contribution that partially compensates the other negative elements in the group.
-
-#### L5 — Biconvex Positive
-
-nd = 1.72047, νd = 34.7. Glass: S-NBH8 (OHARA) — high-dispersion niobate flint. f = +27.9 mm.
-
-The sole positive element in Group 1. Its relatively high dispersion (νd = 34.7) is intentional: as a positive element, it contributes lateral color of the opposite sign to the negative elements (L1–L4). The high dispersion amplifies this compensating effect, making L5 the most effective single-element lateral-color corrector in the front group. The glass choice is thus driven by the lateral color budget: a low-dispersion positive element would contribute less correction. L5's positive power also reduces the total negative power of Group 1, preventing excessive divergence that would demand impractically large rear elements.
-
-### Group 2 — Main Positive Group (6 elements, surfaces 11–21)
-
-#### L6 — Positive Meniscus (IS Element, Ls), Concave to Object
-
-nd = 1.48749, νd = 70.2. Glass: S-FSL5 class (OHARA) — fluorosilicate crown, low dispersion. f = +160.4 mm.
-
-This is the image-stabilization element (防振群 Ls), confirmed by Table 1 of the patent which lists νdLs = 70.23. It is a weak positive meniscus (f = +160 mm) made of low-dispersion glass, and it moves perpendicular to the optical axis to correct image blur from camera shake.
-
-The patent discusses the rationale for this design choice in ¶0027–¶0042. The IS group is deliberately kept as a single element to minimize weight and the size of the driving mechanism (¶0038). The weak positive power (condition (1): fLs/fw = 15.58, within the range 6.0–30.0) ensures that the IS sensitivity is low enough to maintain good optical performance during stabilization — stronger power would increase sensitivity but worsen decentering aberrations, particularly decentering coma and astigmatism (¶0027). The low-dispersion glass (νd = 70.2, satisfying condition (4): νdLs > 35.0, and indeed > 60.0 per the tightened condition (4b)) suppresses lateral chromatic aberration during IS decentering (¶0040). When a single lens is decentered, it introduces chromatic aberration proportional to its power and the dispersion of the glass; a low-dispersion material minimizes this effect.
-
-The IS group is positioned ahead of the aperture stop (¶0019, ¶0046), which places it in the converging beam between Group 1 and the stop. The patent argues this is optimal for compactness because the IS mechanism (which requires radial space around the element for actuators) benefits from being in a region where the beam diameter is relatively small, while still being ahead of the stop where the principal ray height is moderate (¶0048–¶0051). The sequence of防振装置 (IS mechanism), 開口装置 (aperture mechanism), and 合焦装置 (focus mechanism) from object to image is described as the most space-efficient arrangement.
-
-#### L7 + L8 — Cemented Doublet (Negative Meniscus + Biconvex Positive)
-
-**L7:** nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −19.9 mm (standalone).
-**L8:** nd = 1.60342, νd = 38.0. Glass: S-TIM5 (OHARA) — titanium flint. f = +14.5 mm (standalone).
-**Doublet net focal length** (computed from cemented system, surfaces 13–15): approximately +53.5 mm.
-
-This cemented doublet sits between the IS element and the aperture stop. L7 is a steeply curved negative meniscus of very high-index dense flint (nd = 1.911), while L8 is a biconvex positive of moderate-index titanium flint. Together they form a net positive doublet that serves as the first power-contributing unit in Group 2.
-
-The glass pairing is notable: both elements have relatively high dispersion (νd = 35.3 and 38.0 respectively), which means the doublet does not function as a classical achromatic pair. Instead, the cemented interface (R14 = +10.275 mm, a strongly convex surface from the L7 side) acts primarily as a coma and spherical aberration corrector. The steep cemented interface creates a large angular deflection at the junction, and the refractive index step (1.91082 → 1.60342, a negative Δn of −0.307) generates significant correction of the monochromatic aberrations introduced by the converging beam geometry.
-
-#### Aperture Stop (Surface 16)
-
-The aperture stop is a flat surface (R = ∞) positioned in the air gap between the L7–L8 doublet and the L9–L10 doublet, within Group 2. The stop location is fixed relative to Group 2 and moves with it during zooming. The stop diameter governs the f-number, which varies from F/4.64 (wide) to F/5.71 (tele) at maximum aperture.
-
-#### L9 + L10 — Cemented Doublet (Biconcave Negative + Biconvex Positive)
-
-**L9:** nd = 1.83481, νd = 42.7. Glass: S-LAH55 (OHARA) — lanthanum flint. f = −10.6 mm (standalone).
-**L10:** nd = 1.64769, νd = 33.8. Glass: S-TIM22 (OHARA) — titanium flint, high dispersion. f = +14.3 mm (standalone).
-**Doublet net focal length:** approximately −44.8 mm (net negative).
-
-This doublet is positioned immediately behind the aperture stop (separated by 4.04 mm). L9 is a strong biconcave negative of high-index lanthanum flint, and L10 is a biconvex positive of high-dispersion titanium flint. The net power of the cemented pair is weakly negative — the strong negative L9 (f = −10.6 mm) slightly overwhelms L10 (f = +14.3 mm).
-
-Like the L7–L8 doublet, the L9–L10 pair does not function as a traditional crown-flint achromatic doublet (both glasses are technically flints, with νd < 50). Instead, the cemented interface at R18 = +10.223 mm provides a strong correcting surface. The refractive index step at the junction (1.83481 → 1.64769, Δn = −0.187) combined with the steep curvature creates substantial spherical aberration and coma correction in the converging post-stop beam. The net negative power of this doublet also contributes a negative Petzval term (−0.0080 total), helping to flatten the field — a useful counterbalance to the strong positive Petzval contribution from L11 immediately behind it.
-
-#### L11 — Biconvex Positive (UD Element)
-
-nd = 1.49700, νd = 81.5. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown, ultra-low dispersion. f = +17.3 mm.
-
-This is Canon's marketed "UD (Ultra-low Dispersion)" element. The glass is S-FPL51 or its equivalent (FCD1 from HOYA), one of the most widely used ED glasses in the optical industry. Its extremely low dispersion (νd = 81.5) and moderate anomalous partial dispersion make it the design's primary chromatic aberration corrector.
-
-L11 is a symmetric biconvex lens (R20 = +16.445, R21 = −16.445 mm — perfectly symmetric radii), which is a deliberately symmetric shape that minimizes coma at the design conjugate. Positioned as the last element of Group 2 and just ahead of the zoom gap to Group 3, L11 acts as the final converging element before the diverging focus group. The primary value of UD glass in this position is that it supplies strong positive power (f = +17.3 mm) with minimal chromatic penalty: the axial color contribution of a lens element scales as φ/ν, and L11's very high Abbe number (νd = 81.5) means its chromatic contribution per unit of power is far less than that of a conventional crown. This allows the design to concentrate convergence in a single element without overwhelming the chromatic aberration budget — a critical enabler for the compact overall architecture.
-
-The Petzval contribution of L11 is significant: the two surfaces contribute +0.0202 each to the Petzval sum (total +0.0404), the single largest positive Petzval contribution in the system. This is the inherent cost of using a strong positive low-index element for chromatic correction — the low refractive index means the Petzval contribution per unit of power is larger than it would be for a high-index crown. The design offsets this with negative Petzval contributions from the numerous high-index negative elements and net-negative cemented groups elsewhere (L1, L2, L3, L4, L9+L10, and L12 collectively contribute −0.0917).
-
-### Group 3 — Focus Group (1 element, surfaces 22–23)
-
-#### L12 — Biconcave Negative (Focus Element, LF)
-
-nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −26.7 mm.
-
-This single biconcave element constitutes the entire focus group (¶0021). It moves image-ward along the optical axis when focusing from infinity to the minimum focus distance of 0.22 m. The use of a single lightweight element as the focus group is consistent with the STM (Stepping Motor) drive system, which benefits from a low-inertia moving element for fast, quiet autofocus performance during both stills and video.
-
-The element's high refractive index (nd = 1.911) keeps its physical size compact while maintaining the required negative power. Its position between Groups 2 and 4 — in the converging beam after the stop — means it acts as a field-lens-type diverging element that spreads the converging cone from Group 2 before it enters the final relay group. During focusing, the axial displacement of L12 changes the spacing d21 (Group 2 to Group 3 gap) and d23 (Group 3 to Group 4 gap) in complementary directions: d21 increases while d23 decreases as L12 moves image-ward for close focus.
-
-The zoom variable spacing data show that d21 and d23 change during zooming (d21: 1.25 → 1.57 → 1.90; d23: 3.80 → 3.48 → 3.15 from wide to tele), but their sum is constant at 5.05 mm across all zoom positions. This means the distance from the rear of Group 2 to the front of Group 4 is invariant during zooming. The patent prose states that Groups 2, 3, and 4 move with "mutually different trajectories" (¶0020), but in this specific numerical example the data show that Group 3's infinity-focus position is fully determined by the constraint d21 + d23 = constant. Whether Group 3 rides on an independent cam or moves rigidly with the G2–G4 assembly during zoom cannot be determined from the infinity-focus data alone — the distinction would only manifest in close-focus cam profiles at different zoom positions.
-
-### Group 4 — Rear Positive Group (2 elements, surfaces 24–26)
-
-#### L13 + L14 — Cemented Doublet (Negative Meniscus + Biconvex Positive, 1× Asph)
-
-**L13:** nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −16.8 mm (standalone).
-**L14:** nd = 1.58313, νd = 59.4. Glass: S-BAL42 (OHARA) — barium crown. f = +14.5 mm (standalone).
-**Doublet net focal length:** +58.2 mm (= Group 4 focal length).
-
-This cemented doublet functions as the final field-flattening relay group. L13 is a negative meniscus of high-index dense flint (the same glass used in L7 and L12, used three times total in the design), and L14 is a biconvex positive of barium crown glass. The pairing is a classic Fraunhofer-type achromatic doublet: the higher-dispersion negative flint (νd = 35.3) is paired with a lower-dispersion positive crown (νd = 59.4), giving the doublet both net positive power and partial achromatization.
-
-The rear surface of L14 (surface 26) carries the design's second aspherical profile. Unlike surface 4 which has a significant conic constant, surface 26 uses a spherical base (K = 0) with purely polynomial correction through the 12th order. At h = 10 mm the total aspherical departure is +0.219 mm (the surface is less concave than a best-fit sphere at the periphery). The polynomial contributions show a complex oscillating pattern with alternating-sign terms of increasing magnitude at high ray heights, indicating that the surface corrects multiple orders of aberration simultaneously — primarily residual field curvature and distortion at the edge of the APS-C image field.
-
-As the last optical surface before the image plane, surface 26 has a privileged position for correcting field-dependent aberrations: rays from different field angles arrive at different heights, so the aspherical correction can be tailored to act differently on axial and off-axis beams. The positive departure (less concave than a sphere) at the periphery has the effect of slightly reducing the negative power of the outer zone of the rear surface, which flattens the tangential field curvature.
-
-## Glass Selection
-
-The design uses a palette of 8 distinct glasses plus one optical plastic, deployed across 14 elements:
-
-| Element(s) | nd | νd | Glass (probable) | Category | Count |
-|---|---|---|---|---|---|
-| L1, L3 | 1.77250 | 49.6 | S-LAH66 (OHARA) | Dense lanthanum flint | 2 |
-| L2 | 1.52996 | 55.8 | PMo optical plastic | Cyclo-olefin polymer / acrylate resin | 1 |
-| L4 | 1.59522 | 67.7 | S-FPM2 (OHARA) | Fluorophosphate crown | 1 |
-| L5 | 1.72047 | 34.7 | S-NBH8 (OHARA) | Niobate flint | 1 |
-| L6 | 1.48749 | 70.2 | S-FSL5 (OHARA) | Fluorosilicate crown | 1 |
-| L7, L12, L13 | 1.91082 | 35.3 | TAFD35 (HOYA) | Dense flint | 3 |
-| L8 | 1.60342 | 38.0 | S-TIM5 (OHARA) | Titanium flint | 1 |
-| L9 | 1.83481 | 42.7 | S-LAH55 (OHARA) | Lanthanum flint | 1 |
-| L10 | 1.64769 | 33.8 | S-TIM22 (OHARA) | Titanium flint | 1 |
-| L11 | 1.49700 | 81.5 | S-FPL51 (OHARA) | ED fluorophosphate (UD) | 1 |
-| L14 | 1.58313 | 59.4 | S-BAL42 (OHARA) | Barium crown | 1 |
-
-Glass identifications are based on six-digit code matching (nd × 1000 / νd × 10) against the project glass catalog. Canon patents typically use OHARA or HOYA glasses; exact catalog matches are listed where the patent's nd/νd pair round-trips cleanly. Cross-vendor equivalents include S-FPM2 ≈ FCD10 (HOYA) for L4, and S-FPL51 ≈ FCD1 (HOYA) for L11. The PMo plastic element (L2) has no catalog glass equivalent — its nd/νd values are characteristic of injection-molded optical polymers.
-
-The most notable feature of the glass palette is the heavy use of TAFD35-class dense flint (nd = 1.91082), appearing in three elements (L7, L12, L13). This very high-index glass allows strong negative power in compact element forms, and its relatively moderate dispersion for its index (νd = 35.3) makes it suitable for both field-flattening negative elements and the achromatizing negative partner in the L13–L14 doublet.
-
-## Focus Mechanism
-
-The lens employs a rear-focus system with Group 3 (L12, a single biconcave element) as the focus group. During focusing from infinity to the minimum focus distance of 0.22 m, L12 moves image-ward along the optical axis (¶0021).
-
-The single-element focus group is an intentional weight optimization: the Canon Camera Museum notes the STM (Stepping Motor) drive, and a light focus group minimizes the inertia the motor must overcome, enabling the fast, smooth, quiet autofocus performance required for Canon's EOS Movie Servo AF during video recording. The STM system uses a lead-screw mechanism that converts rotary motor motion into linear element translation.
-
-The patent publishes only infinity-focus variable spacings at each zoom position. No explicit close-focus air gap data is given in the numerical example. The zoom-dependent variable gaps flanking Group 3 are:
-
-| Zoom position | d21 (G2→G3) | d23 (G3→G4) |
-|---|---|---|
-| Wide (10.3 mm) | 1.25 mm | 3.80 mm |
-| Mid (14.0 mm) | 1.57 mm | 3.48 mm |
-| Tele (17.5 mm) | 1.90 mm | 3.15 mm |
-
-During focusing, d21 increases and d23 decreases by equal amounts (maintaining constant overall length within the sub-assembly), as L12 translates toward the image plane.
-
-Close-focus spacings were computed independently via ABCD system-matrix ray trace at MFD = 0.22 m (220 mm from image plane). At each zoom position, the focus-group travel δ was solved such that the finite-conjugate image distance from the last surface equals the mechanically fixed BFD. The results confirm L12 moves image-ward (positive δ), consistent with the patent's description (¶0021):
-
-| Zoom position | δ (mm) | d21 close | d23 close |
-|---|---|---|---|
-| Wide (10.3 mm) | +0.280 | 1.53 mm | 3.52 mm |
-| Mid (14.0 mm) | +0.445 | 2.01 mm | 3.04 mm |
-| Tele (17.5 mm) | +0.637 | 2.54 mm | 2.51 mm |
-
-The increasing focus travel at longer focal lengths is expected: at telephoto the system magnification is higher, so a given change in object distance produces a larger image shift, requiring greater compensating movement of the focus group.
-
-## Image Stabilization
-
-The IS group (Ls = L6) is a single positive meniscus element (f = +160.4 mm) positioned ahead of the aperture stop within Group 2. It decenters perpendicular to the optical axis to shift the image and compensate for camera shake.
-
-The patent establishes two key conditions governing the IS group:
-
-- **Condition (1):** fLs / fw = 160.44 / 10.30 = 15.58, within the specified range 6.0 < fLs/fw < 30.0 (and within the tightened range 7.0–16.0 per condition (1b)). This ensures the IS group's refractive power is weak enough to maintain good optical performance during decentering, while strong enough that the required physical displacement remains within practical limits for the driving mechanism.
-
-- **Condition (4):** νdLs = 70.23, satisfying νdLs > 35.0 (and the tightened νdLs > 60.0 per condition (4b)). The low dispersion of the IS element suppresses the lateral chromatic aberration that would otherwise be introduced when a single lens is decentered from the axis (¶0040).
-
-Canon rates the IS system at approximately 4 stops of shake correction (CIPA standard).
-
-## Aspherical Surfaces
-
-The design incorporates two aspherical surfaces on two separate elements, as confirmed by the Canon Camera Museum entry:
-
-### Surface 4 — Rear Surface of L2 (PMo Plastic-Molded Asphere)
-
-This surface uses the aspherical sag equation from the patent (¶0058):
-
-$$Z(h) = \frac{h^2/R}{1 + \sqrt{1 - (1+K)(h/R)^2}} + B \cdot h^4 + C \cdot h^6 + D \cdot h^8 + E \cdot h^{10} + F \cdot h^{12}$$
-
-where the patent's coefficients B, C, D, E, F correspond to the standard A4, A6, A8, A10, A12 notation.
-
-| Parameter | Value |
-|---|---|
-| R | +12.302 mm |
-| K | −4.75949 × 10⁻¹ |
-| A4 | −3.84236 × 10⁻⁵ |
-| A6 | −7.63390 × 10⁻⁸ |
-| A8 | −6.26237 × 10⁻¹⁰ |
-| A10 | +3.48984 × 10⁻¹² |
-| A12 | −1.12759 × 10⁻¹⁴ |
-
-The conic constant K = −0.476 defines a prolate ellipsoidal base surface (between a sphere at K = 0 and a paraboloid at K = −1). This alone flattens the curvature at the periphery relative to a sphere — the prolate ellipsoid has less sag than a sphere at a given ray height. At h = 10 mm, the conic departure is −0.642 mm and the polynomial departure is −0.500 mm, for a total departure of −1.142 mm. The departure grows rapidly at higher ray heights, reaching −2.70 mm at h = 11.5 mm.
-
-The strongly negative departure (the surface is flatter than a sphere at the edge) is consistent with the element's role in correcting field curvature and astigmatism across the ultra-wide field of view. In the front group of a retrofocus wide-angle lens, oblique ray bundles pass through the outer zones of the front elements at steep angles, and the aspherical flattening reduces the effective curvature encountered by these marginal rays, suppressing the tangential and sagittal field curvature that would otherwise dominate the image quality at the field edge.
-
-This element is manufactured by plastic injection molding (PMo), a process that enables high-precision aspherical profiles at large diameters at much lower cost than glass molding. The trade-off is reduced thermal stability compared to glass, but for a consumer-grade lens in this price range, the cost savings are decisive.
-
-### Surface 26 — Rear Surface of L14 (Glass-Molded Asphere)
-
-| Parameter | Value |
-|---|---|
-| R | −19.588 mm |
-| K | 0.00000 |
-| A4 | +1.25041 × 10⁻⁵ |
-| A6 | −1.14292 × 10⁻⁷ |
-| A8 | +4.98491 × 10⁻⁹ |
-| A10 | −1.03089 × 10⁻¹⁰ |
-| A12 | +7.40509 × 10⁻¹³ |
-
-The conic constant is zero (spherical base), so all correction is carried by the polynomial terms. The departure from the base sphere is positive (the surface is less concave than a sphere at the periphery), reaching +0.219 mm at h = 10 mm.
-
-The individual polynomial contributions at h = 10 mm are:
-
-| Term | Contribution (mm) |
-|---|---|
-| A4 · h⁴ | +0.125 |
-| A6 · h⁶ | −0.114 |
-| A8 · h⁸ | +0.498 |
-| A10 · h¹⁰ | −1.031 |
-| A12 · h¹² | +0.741 |
-
-The alternating signs and increasing magnitudes of the higher-order terms indicate a complex multi-zone correction profile. At moderate ray heights the correction is dominated by the positive A4 term (reducing peripheral curvature), but at higher heights the A8 and A12 terms provide additional inflections that fine-tune the field curvature and distortion correction across the full APS-C image field.
-
-As the last refracting surface before the image plane, surface 26 is uniquely positioned to correct field-dependent residual aberrations. Rays from different field angles arrive at different heights on this surface, allowing the aspherical polynomial to apply differential correction to axial vs. off-axis beams — effectively acting as a post-stop field corrector.
-
-The glass element (L14, nd = 1.58313) hosting this asphere is a barium crown with moderate refractive index, suitable for precision glass molding (PGM/GMo) processes.
-
-## Conditional Expressions
-
-The patent defines five conditional expressions governing the design. Their values for Numerical Example 1 are:
-
-| Condition | Expression | Range | Value (Ex. 1) | Status |
-|---|---|---|---|---|
-| (1) | fLs / fw | 6.0 – 30.0 | 15.58 | ✓ Satisfied |
-| (2) | fLr / f1 | −3.0 – −2.0 | −2.47 | ✓ Satisfied |
-| (3) | T1smin / fw | 0.5 – 1.4 | 0.98 | ✓ Satisfied |
-| (4) | νdLs | > 35.0 | 70.23 | ✓ Satisfied |
-| (5) | BFw / fw | 2.2 – 5.0 | 3.43 | ✓ Satisfied |
-
-All five conditions also satisfy the tightened ranges (1a)–(5a) and (1b)–(5b) as documented in ¶0031–¶0044.
-
-- **Condition (1)** constrains the IS group power to balance stabilization sensitivity against decentering aberration (¶0027).
-- **Condition (2)** relates the rear subsystem focal length to Group 1's focal length, governing the balance between back focal distance and overall length in the negative-lead architecture (¶0028–¶0030).
-- **Condition (3)** ensures adequate physical space between Group 1 and the aperture stop for the IS mechanism (¶0035–¶0036).
-- **Condition (4)** limits the IS element's dispersion to control decentering lateral chromatic aberration (¶0039–¶0041).
-- **Condition (5)** constrains the back focal distance to ensure sufficient clearance for the SLR mirror and rear optical components (filter stack, etc.) without excessive overall length (¶0042–¶0044).
-
-## Petzval Sum and Field Curvature Budget
-
-The surface-by-surface Petzval sum for the full system is +0.00684, corresponding to a Petzval radius of +146.3 mm. For a wide-angle lens with EFL = 10.3 mm, this yields a Petzval radius / EFL ratio of 14.2, indicating a well-flattened Petzval surface. The negative-lead architecture is instrumental here: the four negative elements in Group 1 (L1–L4) contribute large negative Petzval terms, and additional negative contributions from the L9+L10 doublet and L12 compensate for the strong positive contributions from the converging elements elsewhere — particularly L11, whose low refractive index (nd = 1.497) produces the largest positive Petzval term in the system.
-
-The largest individual Petzval contributions by element are:
-
-| Element(s) | Petzval contribution |
-|---|---|
-| L3 (surfaces 5–6) | −0.0210 (largest negative) |
-| L11 (surfaces 20–21) | +0.0404 (largest positive) |
-| L12 (surfaces 22–23) | −0.0196 |
-| L4 (surfaces 7–8) | −0.0182 |
-| L5 (surfaces 9–10) | +0.0212 |
-| L7+L8 (surfaces 13–15) | +0.0168 |
-| L13+L14 (surfaces 24–26) | +0.0161 |
-| L1 (surfaces 1–2) | −0.0152 |
-
-The design achieves its flat field through a global balance: the six elements with net negative Petzval contributions (L1, L2, L3, L4, L9+L10, L12) collectively contribute −0.0917, while the five elements with net positive contributions (L5, L6, L7+L8, L11, L13+L14) contribute +0.0986, yielding a near-neutral net of +0.0068.
-
-## Design Heritage and Context
-
-The Canon EF-S 10-18mm f/4.5-5.6 IS STM was announced in June 2014 as a compact, affordable alternative to the existing Canon EF-S 10-22mm f/3.5-4.5 USM (released 2004), which lacked IS and used a ring USM focus motor. The 10-18mm was the first Canon EF-S wide-angle zoom to include image stabilization and was designed from the outset for Canon's EOS Movie Servo AF video autofocus system via the STM motor.
-
-The four-group negative-lead zoom architecture is a well-established design family for wide-angle zooms dating to Tokina and Tamron designs of the 1980s and 1990s. The patent's primary contribution is the integration of a single-element IS group within the second (positive) zoom group, placed ahead of the aperture stop, combined with a single-element rear-focus group — a configuration optimized for compactness and compatibility with the STM drive system.
-
-The lens was discontinued following Canon's transition to the RF mount system, with the Canon RF-S 10-18mm f/4.5-6.3 IS STM serving as its mirrorless successor.
+Surface validation passes and image-circle audit reports zero undersized lenses. At 65 zoom × 21 focus states, all 19,110 actual SVG element paths are finite, closed and connected, with zero hidden renderer trimming. All 1365 APS-C corner chiefs clear near 14.175 mm. Wide/middle/tele SVGs were visually compared with the native wide source section; no nonexistent tele section is substituted. Source fidelity, centered runtime, qualified spectral behavior, interpolation/focus limits and production correlation remain separate conclusions.
 
 ## Sources
 
-1. JP 2015-31869 A (Canon Inc., published 16 February 2015). Full patent text and numerical examples.
-2. Canon Camera Museum, product entry EF431: "EF-S10-18mm f/4.5-5.6 IS STM." Confirms 1 UD element, 2 aspherical elements (1 PMo), and IS specification.
-3. Canon U.S.A. product page: EF-S 10-18mm f/4.5-5.6 IS STM. Published specifications: 14 elements / 11 groups, f/4.5-5.6, MFD 0.22 m, filter 67 mm, 240 g.
-4. OHARA and HOYA optical glass catalog data in the project glass resolver. Glass identification cross-references for S-LAH66, S-FPM2, S-NBH8, S-FSL5, TAFD35, S-TIM5, S-LAH55, S-TIM22, S-FPL51, and S-BAL42.
+- [JP 2015-031869 A](https://patents.google.com/patent/JP2015031869A/en), exact local original: paragraphs 0057–0060, Numerical Example 1, Figures 1–2.
+- [Canon Camera Museum — EF-S10–18mm f/4.5–5.6 IS STM](https://global.canon/en/c-museum/product/ef431.html), retained production-correlation reference; not proof of a historical source prescription or material identity.
+- Existing project OHARA/HOYA catalog curves, qualified by source d-line coordinates; no claim of historical supply or melt.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 7.0875 and 14.1750 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 14.1750 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 180 positive-real-object geometries, 540/540 target chiefs converge: 540 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 94,378 passed, 9,842 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.220157802 |           0.220000 | 193 / 180 / 103                   | clear / clear / clear |
+|          0.5 |                  0 |                  0.221282271 |           0.220000 | 193 / 183 / 149                   | clear / clear / clear |
+|            1 |                  0 |                  0.219456993 |           0.220000 | 193 / 187 / 161                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 92.969174% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.309356345 m versus label 4.400000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original shape-and-glass review remains dated 2026-10-30; this follow-up changes only the spectral-proxy disposition for L2. JP 2015-031869 A, Numerical Example 1: PDF/printed page 10, paragraph 0059, surface 3; d-line definition paragraph 0057, page 9. The prescription does not name polymer chemistry; Canon production PMo correlation remains separate.
+
+The [archival ZEON manufacturer AGF](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf) carries permission to reproduce RadiantZemax data; it is an archival copy, not a direct vendor fetch. [Ansys support](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) identifies ZEON as the catalog provider. Its E48R row uses the six-term polynomial n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, with λ in micrometres, at the archived 25°C reference and within 0.400–1.600 µm. C/d/F/g indices evaluate to 1.528351752 / 1.531160165 / 1.537829337 / 1.543170270, giving νd = 56.043828 and PgF = 0.563533. Against the row’s own nd = 1.531170 and νd = 56.0, residuals −0.000009835 / +0.043828 pass the stricter 0.00003 / 0.11 consistency checks. PgF belongs to the curve and is not copied into per-lens source evidence.
+
+The source pair 1.52996/55.8 differs from the curve by +0.001200165 in nd and +0.243828 in evaluated νd (+0.200000 against archived nominal νd). This is a qualified approximation inside the existing compatibility window, not an exact index match or a source-material identification. Qualified-curve coverage changes 13/14 → 14/14. No catalog code alias, source partial-dispersion claim or APD badge is added. Every source index/Abbe pair, reference wavelength, R/d, asphere, cap/shoulder/cut, stop, plate and focus/zoom control is unchanged. Prior runtime and shape results retain their original dates and scope; this is not a fresh shape review.

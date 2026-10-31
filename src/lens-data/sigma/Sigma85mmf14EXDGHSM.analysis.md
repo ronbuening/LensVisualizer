@@ -69,9 +69,9 @@ The positive member of D1 is cemented to E4. The doublet is net positive despite
 
 ### E6 — Negative Meniscus (Aspheric)
 
-nd = 1.58763, νd = 61.08. Glass: Unmatched (molded-asphere glass; nd 1.58763 / vd 61.08). f = -95.609 mm.
+nd = 1.58763, νd = 61.08. Glass: D-ZK3A-25 (CDGM compatible spectral proxy; historical material and process unconfirmed). f = -95.609 mm.
 
-This separate negative meniscus carries the only asphere on its front surface, S10A. The official product drawing highlights this body as aspherical, and the release announcement describes a glass-mold element. Its exact nd/νd coordinate has no tight match in the six catalog families examined; a nearest catalog name is deliberately not substituted. The polynomial sag and clear radius are considered below.
+This separate negative meniscus carries the only asphere on its front surface, S10A. The official product drawing highlights this body as aspherical, and the release announcement describes a glass-mold element. The October 31 catalog followup adopts the sourceable D-ZK3A-25 curve as a qualified spectral proxy, retaining the exact printed nd/νd pair. This does not identify the production molding grade, supplier or melt. The polynomial sag and clear radius are considered below.
 
 ### E7 — Biconcave Negative
 
@@ -105,7 +105,7 @@ This image-convex negative meniscus closes doublet D3 and the moving group. Its 
 
 ## Glass Identification and Chromatic Limits
 
-The 2026-10-30 original-source reinspection verified all eleven nd/νd pairs from Numerical Example5 on PDF18 and the d-line convention in¶0080/PDF13. The source supplies no C/F/g indices or partial-dispersion ratios. Forty catalogue-only C/F/g andΔPgF copies were removed from ten elements; these now use the current compatible coefficient models without repeating catalogue spectra as source anchors. Ten lenses resolve; E6 (1.58763/61.08) remains unresolved, without a forced molding-grade, melt or supplier identification. Compatible HOYA curves elsewhere remain qualified spectral proxies.
+The 2026-10-30 original-source reinspection verified all eleven nd/νd pairs from Numerical Example5 on PDF18 and the d-line convention in¶0080/PDF13. The source supplies no C/F/g indices or partial-dispersion ratios. Forty catalogue-only C/F/g andΔPgF copies were removed from ten elements; these now use the current compatible coefficient models without repeating catalogue spectra as source anchors. At that checkpoint ten elements resolved and E6 (1.58763/61.08) remained unmatched. The October 31 catalog followup below supplies a qualified E6 proxy, bringing coverage to eleven of eleven; the molding grade, melt and supplier remain unproved. Compatible HOYA curves elsewhere remain qualified spectral proxies.
 
 E1 retains an inferred APD badge from the recorded construction correlation. The patent identifies a low-dispersion medium GL and recommends an anomalous medium (¶0069); it does not prove that the Example5 medium uses that specific anomaly or an FCD1 production melt. No source θ or spectral override is invented, and unresolved dispersion is not measured zero chromatic aberration.
 
@@ -113,12 +113,12 @@ E1 retains an inferred APD badge from the recorded construction correlation. The
 
 The mechanism and both d6 endpoint spacings are published; the absolute image distance is not, and is derived. Paragraph 0078 describes fixing the heavier front group relative to the image plane; Figure 21 and the general description move the complete second group objectward. The model preserves both published d6 entries.
 
-| Quantity | Infinity | Printed 0.85 m state |
-|---|---:|---:|
-| d6, published | 15.2520 mm | 4.8554 mm |
-| Last vertex to fixed image, derived | 39.512077506 mm | 49.908677506 mm |
-| Configuration EFL | 83.582921846 mm | 79.823978232 mm |
-| Configuration infinity-conjugate BFD | 39.512077506 mm | 40.667238081 mm |
+| Quantity                             |        Infinity | Printed 0.85 m state |
+| ------------------------------------ | --------------: | -------------------: |
+| d6, published                        |      15.2520 mm |            4.8554 mm |
+| Last vertex to fixed image, derived  | 39.512077506 mm |      49.908677506 mm |
+| Configuration EFL                    | 83.582921846 mm |      79.823978232 mm |
+| Configuration infinity-conjugate BFD | 39.512077506 mm |      40.667238081 mm |
 
 The model sets the infinity image at the Gaussian (paraxial) focus of the printed prescription. Translating L2 objectward by the published 10.3966 mm increases the rear image gap by exactly that amount. The first group and image remain fixed at a first-vertex-to-image track of 129.252977506 mm. The near configuration's 49.908678 mm last-to-image distance is a finite-conjugate distance, not its 40.667238 mm infinity-conjugate BFD.
 
@@ -136,14 +136,14 @@ z = (y²/R) / [1 + √(1 − (1 + K)y²/R²)] + A4 y⁴ + A6 y⁶ + A8 y⁸ + A1
 
 Here K is the printed κ directly, with no unit offset. Lengths are millimetres, and Ap has units mm^(1−p). The selected source prints:
 
-| Coefficient | Value |
-|---|---:|
-| K | 0.000000E+00 |
-| A4 | −4.063050E−06 |
-| A6 | −1.624620E−09 |
-| A8 | +1.419900E−12 |
-| A10 | −8.954110E−16 |
-| A12 | 0.000000E+00 |
+| Coefficient |         Value |
+| ----------- | ------------: |
+| K           |  0.000000E+00 |
+| A4          | −4.063050E−06 |
+| A6          | −1.624620E−09 |
+| A8          | +1.419900E−12 |
+| A10         | −8.954110E−16 |
+| A12         |  0.000000E+00 |
 
 The data file's A14 entry is zero because the patent supplies no A14 term. At the inferred modeled radius of 19 mm, the exact polynomial departure from the K = 0 base sphere is −0.587307 mm. The base-sphere sag is 2.208632 mm and total aspherical sag is 1.621325 mm. This flattens the peripheral profile relative to that base sphere. The quoted radius is an inferred model rim, not a manufacturing specification or a published clear aperture.
 
@@ -151,16 +151,16 @@ The data file's A14 entry is zero because the patent supplies no A14 term. At th
 
 All eight conditions reproduce the printed values within their displayed precision. Calculated values below use the unscaled infinity prescription. Conditions 2 and 3 use standalone element powers in air for E8–E11 (G2b1–G2b4 in the patent's Figure 21), as defined in paragraph 0047.
 
-| Condition | Calculated | Printed |
-|---|---:|---:|
-| 1 | 0.99098115 | 0.99 |
-| 2 | 0.92136296 | 0.92 |
-| 3 | 0.03158889 | 0.03 |
-| 4 | 0.90096713 | 0.9 |
-| 5 | 2.93178689 | 2.93 |
-| 6 | 41.07250000 | 41.1 |
-| 7 | 81.61000000 | 81.61 |
-| 8 | 1.88300000 | 1.883 |
+| Condition |  Calculated | Printed |
+| --------- | ----------: | ------: |
+| 1         |  0.99098115 |    0.99 |
+| 2         |  0.92136296 |    0.92 |
+| 3         |  0.03158889 |    0.03 |
+| 4         |  0.90096713 |     0.9 |
+| 5         |  2.93178689 |    2.93 |
+| 6         | 41.07250000 |    41.1 |
+| 7         | 81.61000000 |   81.61 |
+| 8         |  1.88300000 |   1.883 |
 
 Condition 1 is R10/f; conditions 2–3 are the sums f/(fi ni) and f/(fi νi) over the four post-stop elements. Conditions 4–5 are fL2/f and fL1/f; condition 6 is the mean Abbe number of E4–E7; conditions 7–8 specify the front low-dispersion and rear high-index material coordinates. The source bounds are 0.20 < R10/f < 10.00; 0.25 < Σ f/(fi ni) < 1.50; −0.01 < Σ f/(fi νi) < 0.06; 0.60 < fL2/f < 1.30; 2.00 < fL1/f < 4.00; 35.00 < mean νL2a < 60.00; νGL > 70.00; and nGH > 1.80000. Each reproduced value lies within its corresponding bound. The relevant inequalities and definitions appear in paragraphs 0042–0067, with the example results on PDF page 19.
 
@@ -182,3 +182,13 @@ On axis, the full F/1.46 bundle passes at both published focus states. Off axis,
 4. Optical-glass catalogs from HOYA, OHARA, Schott, Hikari, Sumita and CDGM. The selected labels are equivalence classes, not production attribution.
 
 Fresh full-cut guards also pass a temporary850mm image-plane conjugate diagnostic using the already approved derived image distance; this adds no source certification. The known near F1.704046 versus plot F1.71 discrepancy remains. The final actual nine-state SVGs have no automatic trimming or detached compounds. Identical48,135sampled collimated launches retain39,611, lose0, gain0 and block8,524 inboth; sampled counts are not flux. The detailed source q measurements and adopted beam adjustments are recorded in the audit.
+
+## October 31, 2026 — Scoped E6 Catalog Followup
+
+The complete October 30 original shape/glass review retains its date. This is a scoped material-source and catalog followup, without a new shape inspection. The same local [JP 2011-170128 A](../../../patents/JP2011170128A.pdf), Numerical Example 5 on PDF p. 18 (printed p. 17), directly gives E6 at surface 10 as nd 1.58763 / νd 61.08. Paragraph 0080 on PDF p. 13 expressly defines the d line as 587.56 nm. The selected medium has no published individual C/F/g indices or partial-dispersion ratio. The preferred anomalous medium GL in paragraphs 0068–0069 concerns a positive lens of the first group, rather than this negative E6 of the second group; it does not impose an E6 anomaly or identify a commercial glass.
+
+The [CDGM September 2026 manufacturer AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), D-ZK3A-25 row, supplies a physically usable curve. Its [official detailed sheet](https://www.cdgmgd.com/webapp/pdf/D-ZK3A-25.pdf) independently prints nd 1.588280, νd 61.01 and nF−nC 0.009642, with a 25 °C/h annealing reference. That condition describes the catalog row; it does not establish Sigma's manufacturing process. Native AGF formula 2 is the standard three-term Sellmeier equation, λ in µm and denominator constants in µm²; all B/C coefficients are retained verbatim.
+
+At the standard C/d/F/g lines the curve evaluates nd 1.588279997, νd 61.012484 and PgF 0.537311. The detailed sheet prints PgF 0.5372, about 0.000111 below this coefficient evaluation; that small vendor residual is recorded without refitting the curve or converting the sheet’s own-normal-line ΔPgF into a patent partial. Residuals from the printed E6 coordinate are +0.000649997 / −0.067516; its F−C span is 0.221396% above the span implied by the source pair. The adopted curve is anchored on the retained source d-line index at runtime, and the non-reference spectrum remains approximate. Among the checked current catalog and usable manufacturer rows, D-ZK3A-25 minimizes `|Δnd|/0.003 + |Δνd|/2`; neither tolerance is changed.
+
+The Sumita K-PSK100(M) and K-SKLD100(M) alternatives reduce index error but have evaluated Abbe residuals −0.523819 and −0.653942, respectively. Existing S-BAL35 has +0.001499910 / +0.055024 residuals. None proves the historical material, melt, supplier, molding route or annealing condition. D-ZK3A-25 is a qualified spectral estimate, with no per-lens measured index/partial field invented. Coverage increases from 10/11 to 11/11. All eleven source numeric pairs, E1's inferred APD qualification, R/d, the asphere, rim cuts/shoulders, stop, focus controls and retained geometric/finite-conjugate constraints remain unchanged.

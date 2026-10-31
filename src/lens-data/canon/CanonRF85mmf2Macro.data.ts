@@ -26,7 +26,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    junction were raised to the drawn 14.2 mm rim because the      ║
  * ║    f/2.06 axial pencil reaches 13.7 mm at S10 at β = −0.5. The    ║
  * ║    stop radius is derived from the design f-number (f/2.06),      ║
- * ║    giving a real-ray iris radius of approximately 13.5 mm.        ║
+ * ║    current derived iris radius 13.092625 mm; not source-measured.        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -67,7 +67,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 200.6,
-      glass: "S-BSM14 (OHARA)",
+      glass:
+        "S-BSM14 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Front positive meniscus; gentle initial convergence of on-axis beam.",
     },
@@ -79,9 +80,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 200.8,
-      glass: "S-BSM14 (OHARA)",
+      glass:
+        "S-BSM14 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
-      role: "Second positive meniscus; continues convergence. Same glass as L1.",
+      role: "Second positive meniscus; continues convergence. Same published index/Abbe pair as L1.",
     },
     {
       id: 3,
@@ -91,10 +93,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 101.5,
-      glass: "S-FPL51 (OHARA) — UD",
+      glass:
+        "S-FPL51 (OHARA) — UD — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: "inferred",
       apdNote:
-        "Fluorophosphate crown; strong positive APD (Pg,F above normal line). Canon designates as UD (Ultra-low Dispersion).",
+        "Conditional APD of the compatible S-FPL51 catalog proxy; the patent prints no partial dispersion. Production UD correlation does not identify the selected historical supplier, chemistry or melt.",
       role: "Primary chromatic corrector; strongest positive power in pre-stop group. Paired with L4 for achromatization and secondary spectrum suppression.",
     },
     {
@@ -105,7 +108,8 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.1,
       focalLengthMm: -43.7,
-      glass: "S-TIM28 (OHARA)",
+      glass:
+        "S-TIM28 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Sole negative element in pre-stop group. Chromatic counterpart to L3; strong negative Petzval and spherical aberration contributions.",
     },
@@ -117,7 +121,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -95.1,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "S-TIH53 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Negative component of cemented doublet after stop. High-dispersion flint for chromatic correction of converging post-stop beam.",
       cemented: "D1",
@@ -130,7 +135,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.4,
       focalLengthMm: 35.1,
-      glass: "TAFD37A (HOYA)",
+      glass: "TAFD37A (HOYA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Positive component of cemented doublet. Second-highest nd in system (1.900); dominant converging power of front group.",
       cemented: "D1",
@@ -143,7 +148,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       focalLengthMm: -45.6,
-      glass: "S-NBH8 (OHARA)",
+      glass: "S-NBH8 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "First element of fixed rear group (patent element F). Nearly collimates converging beam from front group; suppresses off-axis aberration variation during focus excursion.",
     },
@@ -155,7 +160,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       focalLengthMm: 85.4,
-      glass: "S-LAH65V (OHARA)",
+      glass:
+        "S-LAH65V (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Positive power in rear group; maintains Petzval balance. Exact S-LAH65V coordinate (1.80400 / 46.5).",
     },
@@ -167,10 +173,10 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       focalLengthMm: 68.3,
-      glass: "E-FDS1 (HOYA)",
+      glass: "E-FDS1 (HOYA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: "inferred",
       apdNote:
-        "Ultra-high-dispersion dense flint (νd 20.9); such flints lie above the normal Pg,F line. Inferred from the catalog glass — the patent gives no partial-dispersion data. OHARA PBH21 and Schott N-SF66 share the 923209 coordinate.",
+        "Conditional catalog-proxy APD inference only; the patent gives no partial-dispersion data. The E-FDS1/PBH21/N-SF66 coordinate comparison does not establish historical supplier, composition or melt.",
       role: "Concave-toward-object positive meniscus; highest index (1.923) and lowest Abbe number in the system. Rear-group chromatic balance element.",
     },
     {
@@ -181,7 +187,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -34.6,
-      glass: "S-LAH60 (OHARA)",
+      glass:
+        "S-LAH60 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Strongest negative element in system. Equal-and-opposite radii (R = ±57.965) eliminate shape-dependent coma; functions primarily as Petzval corrector.",
     },
@@ -193,7 +200,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: 35.6,
-      glass: "S-LAH55V (OHARA)",
+      glass:
+        "S-LAH55V (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Patent element Gp (positive lens adjacent to Gn). Strongest positive singlet; corrects magnification chromatic aberration and distortion near image plane.",
     },
@@ -205,7 +213,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -63.3,
-      glass: "S-TIH53 (OHARA)",
+      glass:
+        "S-TIH53 (OHARA) — compatible catalog spectral proxy; historical supplier, composition and melt unresolved",
       apd: false,
       role: "Patent element Gn (negative lens closest to image). Same glass as L5. Field curvature correction and exit-angle control for digital sensor telecentricity.",
     },

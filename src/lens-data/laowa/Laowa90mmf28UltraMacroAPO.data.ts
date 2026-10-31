@@ -19,6 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No source numerical object distance or continuous cam law is supplied.
  * closeFocusM and intermediate labels are derived display estimates, not production MOD.
  * Unmatched glass spectra remain unknown. APO in the product name is not verified performance.
+ * Scoped 2026-10-31 material follow-up selects H-ZLaF68C for L9 as a qualified spectral proxy;
+ * source nd/vd, all APD fields, shape and controls remain unchanged. Four media remain unresolved.
  */
 
 const LENS_DATA = {
@@ -165,7 +167,7 @@ const LENS_DATA = {
       vd: 40.87,
       indexReference: "d",
       focalLengthMm: -35.40755055104533,
-      glass: "Unmatched (native nd=1.88177, vd=40.87; no tight six-vendor coordinate match)",
+      glass: "H-ZLaF68C (CDGM compatible spectral proxy; historical material, supplier and melt unspecified)",
       diagramLabel: "L9",
     },
     {

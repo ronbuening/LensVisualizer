@@ -16,18 +16,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  treating MFD as object-to-image-plane distance. The solved paraxial      ║
  * ║  magnification is 0.147276x versus Canon's rounded 0.15x specification.   ║
  * ║                                                                            ║
- * ║  SEMI-DIAMETERS:                                                           ║
- * ║  The patent publishes none. The stop radius is derived from the modeled    ║
- * ║  design f-number (F/1.25). Glass SDs are inferred from exact on-axis       ║
- * ║  marginal rays, the Fig. 1 optical envelope, and current                   ║
- * ║  edge/slope/cross-gap limits. At 60% field the outermost ±0.75 pupil       ║
- * ║  samples vignette first at S1 or S14A; no sampled ray first clips at a     ║
- * ║  cemented interface.                                                       ║
- * ║                                                                            ║
- * ║  GLASS: the patent gives d-line nd/νd only and no vendor names or line    ║
- * ║  indices. Neutral six-digit source-coordinate classes are retained;       ║
- * ║  nC, nF, ng, and dPgF are therefore not invented.                         ║
- * ║                                                                            ║
+ * ║  SEMI-DIAMETERS — original review 2026-10-30, native 200 dpi Fig. 1 p16:                       ║
+ * ║  Resolved concave shoulders: S6 cap 15.2/outer 17.95, S8 cap 14.7/outer 16.75,                  ║
+ * ║  S11 cap 16.75/outer 18.9. Source infinity clears the stated f/1.25 axial beam.                ║
+ * ║  The inferred finite cam retains boundary clipping at full iris; a widening trial fails   ║
+ * ║  the unchanged S10–S11 gap guard. All sampled axial rays clear at f/1.4 instead.              ║
+ * ║                                                                                        ║
+ * ║  GLASS: paragraph 0092 explicitly defines d-line index/Abbe. All 8 published pairs remain;   ║
+ * ║  compatible catalog curves are qualified proxies, never supplier/melt/chemistry proof.     ║
+ * ║  No element C/F/g, partial dispersion or source APD evidence is published or invented.     ║
+ * ║                                                                                        ║
  * ║  ASPHERE: patent surface 14 uses a spherical base, so project K = 0.      ║
  * ║  Patent B/C/D/E map to project A4/A6/A8/A10 without scaling.              ║
  * ║                                                                            ║
@@ -57,10 +55,16 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
-    specs: ["8 ELEMENTS / 6 GROUPS", "DESIGN EFL ≈ 51.695 mm", "DESIGN F/1.25", "2ω = 45.4°", "1 ASPHERICAL SURFACE"],
+    specs: [
+      "8 ELEMENTS / 6 GROUPS",
+      "PATENT f = 51.70 mm; MODELED EFL ≈ 51.695 mm",
+      "DESIGN F/1.25",
+      "2ω = 45.4°",
+      "1 ASPHERICAL SURFACE",
+    ],
     elementCount: 8,
     groupCount: 6,
-    focalLengthMm: { marketing: 50, design: 51.695042 },
+    focalLengthMm: { marketing: 50, design: 51.7 },
     fNumber: { marketing: 1.2, design: 1.25 },
   },
 
@@ -70,6 +74,12 @@ const LENS_DATA = {
     patentYear: 2007,
     authors: ["Makoto Mitsusaka"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The original Numerical Example 1 prints D15=38.88 mm (PDF page 10/printed 10), retained literally. Its Gaussian BFL is 38.333791112 mm despite EFL matching printed 51.70 mm. No source plate, unique correction or demonstrated best-focus rationale explains the 0.546208888 mm residual. The September 25, 2026 source-plane audit is retained; no optical number is changed.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -81,8 +91,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.772499,
       vd: 49.6,
+      indexReference: "d",
       focalLengthMm: 93.644,
-      glass: "773496 — source-coordinate glass class (vendor not identified)",
+      glass: "OHARA S-LAH66 spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Front positive collector in the weak-positive GF group.",
       diagramLabel: "G11",
@@ -94,8 +105,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.834807,
       vd: 42.7,
+      indexReference: "d",
       focalLengthMm: 91.211,
-      glass: "835427 — source-coordinate glass class (vendor not identified)",
+      glass: "HOYA TAFD5G spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Second positive element of the front GF group.",
       diagramLabel: "G12",
@@ -107,8 +119,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.639799,
       vd: 34.5,
+      indexReference: "d",
       focalLengthMm: -48.976,
-      glass: "S-TIM27 — catalog-equivalent curve for patent 640345 (production supplier unspecified)",
+      glass: "OHARA S-TIM27 spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Negative element completing the weak-positive front GF group.",
       diagramLabel: "G13",
@@ -120,8 +133,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.5,
+      indexReference: "d",
       focalLengthMm: -28.394,
-      glass: "728285 — source-coordinate glass class (vendor not identified)",
+      glass: "OHARA S-TIH10 spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Negative member of the first cemented pair in the rear GR group.",
       diagramLabel: "NL1",
@@ -134,8 +148,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.882997,
       vd: 40.8,
+      indexReference: "d",
       focalLengthMm: 29.088,
-      glass: "883408 — source-coordinate glass class (vendor not identified)",
+      glass: "OHARA S-LAH58 spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Positive member of the first cemented pair in the rear GR group.",
       diagramLabel: "PL1",
@@ -148,8 +163,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.698947,
       vd: 30.1,
+      indexReference: "d",
       focalLengthMm: -36.915,
-      glass: "699301 — source-coordinate glass class (vendor not identified)",
+      glass: "OHARA S-TIM35 spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Negative member of the second cemented pair in the rear GR group.",
       diagramLabel: "NL2",
@@ -162,8 +178,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834807,
       vd: 42.7,
+      indexReference: "d",
       focalLengthMm: 45.248,
-      glass: "835427 — source-coordinate glass class (vendor not identified)",
+      glass: "HOYA TAFD5G spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Positive member of the second cemented pair in the rear GR group.",
       diagramLabel: "PL2",
@@ -176,15 +193,16 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.804,
       vd: 46.6,
+      indexReference: "d",
       focalLengthMm: 54.54,
-      glass: "804466 — source-coordinate glass class (vendor not identified)",
+      glass: "CDGM H-ZLaF50D spectral proxy (source supplier and chemistry unresolved)",
       apd: false,
       role: "Rear positive aspherical element following the patent's negative air lens.",
       diagramLabel: "PL3",
     },
   ],
 
-  // Live Fig. 1 review: common G11/G12 and NL2+PL2 rims; G13 rear capped at 16.5 mm.
+  // Native original review 2026-10-30: retain outer rims; resolve S6/S8/S11 concave optical caps with shoulders.
   /* ── Surface prescription: JP2007333790A Numerical Example 1 ── */
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
@@ -193,12 +211,12 @@ const LENS_DATA = {
     { label: "3", R: 28.537, d: 5.34, sd: 20.0, medium: 2 },
     { label: "4", R: 41.757, d: 1.14, sd: 20 },
     { label: "5", R: 54.433, d: 2.16, sd: 17.95, medium: 3 },
-    { label: "6", R: 19.579, d: 12.95, sd: 16.5 },
+    { label: "6", R: 19.579, d: 12.95, sd: 15.2, rimExtensionSd: 17.95 },
     { label: "STO", R: "flat", d: 7.41 },
-    { label: "8", R: -23.181, d: 1.4, sd: 16.75, medium: 4 },
+    { label: "8", R: -23.181, d: 1.4, sd: 14.7, rimExtensionSd: 16.75, medium: 4 },
     { label: "9", R: 196.367, d: 7.64, sd: 16.75, medium: 5 },
     { label: "10", R: -29.011, d: 0.45, sd: 16.75 },
-    { label: "11", R: -27.438, d: 1.5, sd: 18.9, medium: 6 },
+    { label: "11", R: -27.438, d: 1.5, sd: 16.75, rimExtensionSd: 18.9, medium: 6 },
     { label: "12", R: 442.408, d: 6.48, sd: 18.9, medium: 7 },
     { label: "13", R: -41.024, d: 0.15, sd: 18.9 },
     {

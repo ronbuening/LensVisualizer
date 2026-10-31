@@ -38,10 +38,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the 9.1-degree chief ray, close focus, and Figure 10.                      ║
  * ║                                                                            ║
  * ║ GLASS / SPECTRAL DATA                                                      ║
- * ║ The patent supplies d-line nd/vd only and no per-element nC, nF, ng, PgF, ║
- * ║ or dPgF. Vendor identity is not established; class/code labels are used.  ║
- * ║ L2 uses a qualified SK16-class coefficient proxy within the catalog guard; ║
- * ║ the patent coordinates remain authoritative and supplier-neutral.          ║
+ * ║ The patent supplies N/Abbe pairs and names no spectral line. 6 of 7 printed  ║
+ * ║ pairs match catalog d-line coordinates and none match the e-line, so the     ║
+ * ║ table is read as d-line. 6 media use catalog curves as spectral proxies;     ║
+ * ║ supplier, melt and chemistry stay unspecified. L2 stays Unmatched. The       ║
+ * ║ d/C/g aberration plots give no per-element line indices.                     ║
+ * ║ All source pairs, control spacings, asphere terms and clear caps remain.   ║
  * ║                                                                            ║
  * ║ No scaling is applied. No sensor cover, filter, dummy plane, or mechanical║
  * ║ component is included. R14.d is the independently computed normal-state   ║
@@ -67,7 +69,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "7 ELEMENTS / 6 GROUPS",
-      "135.043 mm DESIGN EFL",
+      "135.043 mm COMPUTED EFL",
       "f/3.341 SHARP / f/2.8 SOFT",
       "18.2° FULL FIELD",
       "1 GLASS-MOLDED ASPHERE",
@@ -75,7 +77,7 @@ const LENS_DATA = {
     ],
     elementCount: 7,
     groupCount: 6,
-    focalLengthMm: { marketing: 135, design: 135.04315036977448 },
+    focalLengthMm: { marketing: 135, design: 135 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -97,7 +99,8 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: 79.82300614130565,
-      glass: "623582 class (catalog vendor unresolved)",
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in component I.",
     },
     {
@@ -108,7 +111,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 60.7,
       focalLengthMm: 119.67993390924296,
-      glass: "SK16-class coefficient proxy (patent 623607; production supplier unspecified)",
+      glass: "Unmatched (1.62299/60.7; no catalog row at this printed pair; SK16 class comparison only)",
       role: "Second positive element in component I; the printed patent index/Abbe pair is preserved.",
     },
     {
@@ -119,7 +122,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -98.02147704110979,
-      glass: "805254 class (catalog vendor unresolved)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative corrector completing positive front component I.",
     },
     {
@@ -130,7 +133,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -421.0026167597842,
-      glass: "583594 class (catalog vendor unresolved)",
+      glass:
+        "J-SK12 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Aspherical forward-convex meniscus; independent soft-focus mover (component II).",
     },
     {
@@ -141,7 +145,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       focalLengthMm: 99.25034099317321,
-      glass: "755275 class (catalog vendor unresolved)",
+      glass: "SF4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the cemented rear-focus doublet III-1.",
       cemented: "III-1",
     },
@@ -153,7 +157,8 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       focalLengthMm: -36.882006964113216,
-      glass: "541472 class (catalog vendor unresolved)",
+      glass:
+        "S-TIL2 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented rear-focus doublet III-1; the assembled doublet is net negative.",
       cemented: "III-1",
     },
@@ -165,7 +170,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 81.89968380293107,
-      glass: "487702 class (catalog vendor unresolved)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Stationary positive rear sub-component III-2.",
     },
   ],

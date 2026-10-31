@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** CN 116520542 A, "一种高倍率微距镜头" (*A High-Magnification Macro Lens*)
+**Patent:** CN 116520542 A, "一种高倍率微距镜头" (_A High-Magnification Macro Lens_)
 **Applicant:** 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd. — Laowa)
 **Inventor:** 李大勇 (Li Dayong)
 **Filed:** 2023-02-16
@@ -23,16 +23,15 @@ The patent discloses two numerical examples. Example 1 is a longer-focal-length 
 
 These features support the production association; they do not establish an identical manufactured prescription.
 
-
 ## Optical Architecture
 
 The Laowa 58 mm f/2.8 2× is an all-spherical, internally focusing macro design arranged in three functional groups from object to image: a weakly negative fixed front group (G1), a strongly positive main focusing group (G2), and a moderately negative auxiliary focusing group (G3). The power distribution is negative–positive–negative, with the aperture stop located at the rear of G2.
 
-| Group | Elements | Surfaces | Computed $f$ (mm) | Role |
-|-------|----------|----------|-------------------:|------|
-| G1 | L1–L2 | S1–S4 | $-1\,815$ | Fixed front corrector; near-afocal |
-| G2 | L3–L9 + STO | S5–S17 | $+37.0$ | Main positive focusing group |
-| G3 | L10–L14 | S18–S26 | $-65.1$ | Negative auxiliary focus / field corrector |
+| Group | Elements    | Surfaces | Computed $f$ (mm) | Role                                       |
+| ----- | ----------- | -------- | ----------------: | ------------------------------------------ |
+| G1    | L1–L2       | S1–S4    |         $-1\,815$ | Fixed front corrector; near-afocal         |
+| G2    | L3–L9 + STO | S5–S17   |           $+37.0$ | Main positive focusing group               |
+| G3    | L10–L14     | S18–S26  |           $-65.1$ | Negative auxiliary focus / field corrector |
 
 G1 is nearly afocal (extremely weak negative power, $f \approx -1{,}815$ mm). Its primary function is not refractive convergence but rather chromatic pre-correction and collection of the entrance beam at a moderate diameter before delivering it across the large air gap to G2. L1 is a weakly negative meniscus of lanthanum flint, and L2 is a weakly positive meniscus of dense flint; together they form a thin, diverging corrector pair that sets up the chromatic balance for the groups that follow.
 
@@ -41,7 +40,6 @@ G2 is a dense cluster of seven elements spanning five air-separated sub-groups. 
 G3 contains five elements in four air-separated sub-groups: one negative meniscus (L10), one cemented doublet (L11+L12), one concave-to-object negative meniscus (L13), and one equi-biconvex field flattener (L14). Its composite focal length is $-65.1$ mm. G3 moves 8.1 mm toward the object during the same infinity-to-2× travel, compensating for the substantial changes in conjugate ratio, field curvature, and spherochromatism introduced by G2's large displacement.
 
 The total optical track length from the front vertex (S1) to the image plane is 124.88 mm and is conserved at all focus positions — confirming internal focusing with a constant barrel length. The back focal distance varies from 14.93 mm at infinity to 23.02 mm at 2× magnification.
-
 
 ## Element-by-Element Analysis
 
@@ -135,27 +133,26 @@ L14 is the final lens element: an equi-biconvex form with $R_1=+57.56$, $R_2=-57
 
 The 6.55 mm central thickness affects the element's principal-plane position and the final back-focus geometry. These are properties of the source model; the source does not supply manufacturing, centering or material-cost evidence.
 
-
 ## Glass Identification and Selection
 
 The original Example 2 table supplies fourteen d-line nd/νd pairs and no named production glasses. Nine elements resolve to compatible catalog spectra; L1, L9, L10, L11 and L12 remain explicitly unmatched. The table below lists modeling proxies and coordinate dispositions. Neither the applicant's location nor an nd/νd agreement establishes a supplier, melt or production identity.
 
-| Element | $n_d$ | $\nu_d$ | Model glass / disposition | Cross-Reference | Class |
-|---------|------:|--------:|--------------|-----------------|-------|
-| L1 | 1.86665 | 45.00 | 866450 code-only | — | Lanthanum flint |
-| L2 | 1.78472 | 25.72 | H-ZF13 | S-TIH11 (OHARA) | Dense flint |
-| L3 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
-| L4 | 1.72916 | 54.67 | TAC8 catalog equivalent | S-LAL18 (OHARA) shares the coordinate | Lanthanum crown |
-| L5 | 1.83327 | 25.02 | NBFD26 catalog equivalent | HOYA | Dense flint |
-| L6 | 1.92286 | 20.88 | PBH21 catalog equivalent | OHARA | Ultra-high index dense flint |
-| L7 | 1.84666 | 23.78 | H-ZF52 | S-TIH53 (OHARA) | Dense flint |
-| L8 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
-| L9 | 1.89782 | 29.90 | Unmatched 898299 patent glass | H-ZLAF68N rejected | High-index flint region |
-| L10 | 1.79391 | 47.17 | Unmatched lanthanum flint; not catalog H-LAF4 | — | Lanthanum flint |
-| L11 | 1.54517 | 48.63 | 545486 code-only | — | Light crown |
-| L12 | 1.86602 | 41.79 | Unmatched 866418 patent glass | H-ZLAF55C rejected | High-index flint region |
-| L13 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
-| L14 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
+| Element |   $n_d$ | $\nu_d$ | Model glass / disposition                     | Cross-Reference                       | Class                        |
+| ------- | ------: | ------: | --------------------------------------------- | ------------------------------------- | ---------------------------- |
+| L1      | 1.86665 |   45.00 | 866450 code-only                              | —                                     | Lanthanum flint              |
+| L2      | 1.78472 |   25.72 | H-ZF13                                        | S-TIH11 (OHARA)                       | Dense flint                  |
+| L3      | 1.49700 |   81.61 | H-FK61                                        | FCD1 (HOYA), S-FPL51 (OHARA)          | ED fluorophosphate           |
+| L4      | 1.72916 |   54.67 | TAC8 catalog equivalent                       | S-LAL18 (OHARA) shares the coordinate | Lanthanum crown              |
+| L5      | 1.83327 |   25.02 | NBFD26 catalog equivalent                     | HOYA                                  | Dense flint                  |
+| L6      | 1.92286 |   20.88 | PBH21 catalog equivalent                      | OHARA                                 | Ultra-high index dense flint |
+| L7      | 1.84666 |   23.78 | H-ZF52                                        | S-TIH53 (OHARA)                       | Dense flint                  |
+| L8      | 1.49700 |   81.61 | H-FK61                                        | FCD1 (HOYA), S-FPL51 (OHARA)          | ED fluorophosphate           |
+| L9      | 1.89782 |   29.90 | Unmatched 898299 patent glass                 | H-ZLAF68N rejected                    | High-index flint region      |
+| L10     | 1.79391 |   47.17 | Unmatched lanthanum flint; not catalog H-LAF4 | —                                     | Lanthanum flint              |
+| L11     | 1.54517 |   48.63 | 545486 code-only                              | —                                     | Light crown                  |
+| L12     | 1.86602 |   41.79 | Unmatched 866418 patent glass                 | H-ZLAF55C rejected                    | High-index flint region      |
+| L13     | 1.49700 |   81.61 | H-FK61                                        | FCD1 (HOYA), S-FPL51 (OHARA)          | ED fluorophosphate           |
+| L14     | 1.49700 |   81.61 | H-FK61                                        | FCD1 (HOYA), S-FPL51 (OHARA)          | ED fluorophosphate           |
 
 ### ED Glass Strategy
 
@@ -185,7 +182,6 @@ The source distributes its four 1.49700/81.61 coordinates between positive L3/L8
 
 **The role of the non-ED doublets.** The L5+L6 doublet (modeled with NBFD26 and PBH21 equivalents, $\Delta\nu_d = 4.86$) and the L11+L12 doublet (545486 code-only crown plus unmatched 866418 glass, $\Delta\nu_d = 6.84$) are not traditional achromats — their Abbe-number separations are too small. Instead, these pairs contribute primarily to monochromatic aberration control while making smaller chromatic contributions.
 
-
 ## Focus Mechanism
 
 The lens uses a dual-group internal focusing system. During focusing from infinity to 2× magnification:
@@ -196,12 +192,12 @@ The lens uses a dual-group internal focusing system. During focusing from infini
 
 The variable gap data from the patent (¶0059–0060) is:
 
-| Gap | Infinity | 1× Magnification | 2× Magnification |
-|-----|--------:|-----------------:|-----------------:|
-| D(4) — G1 to G2 | 47.7715 | 22.9173 | 0.8000 |
-| D(17) — STO to G3 | 1.4000 | 20.8924 | 40.2782 |
-| D(26) — BFD | 14.9285 | 20.2903 | 23.0218 |
-| **Sum** | **64.1000** | **64.1000** | **64.1000** |
+| Gap               |    Infinity | 1× Magnification | 2× Magnification |
+| ----------------- | ----------: | ---------------: | ---------------: |
+| D(4) — G1 to G2   |     47.7715 |          22.9173 |           0.8000 |
+| D(17) — STO to G3 |      1.4000 |          20.8924 |          40.2782 |
+| D(26) — BFD       |     14.9285 |          20.2903 |          23.0218 |
+| **Sum**           | **64.1000** |      **64.1000** |      **64.1000** |
 
 The total variable gap sum is exactly conserved at 64.10 mm across all focus positions, confirming that the overall optical track length (124.88 mm from front vertex to image plane) remains constant. This is the hallmark of internal focusing: G2 and G3 redistribute the air space within the barrel without changing the barrel's external dimensions.
 
@@ -211,13 +207,11 @@ G3's auxiliary motion is considerably smaller (8.1 mm vs. 47.0 mm for G2) but is
 
 The production lens specifies a minimum focusing distance of 18.5 cm (measured from the sensor plane). At 2× magnification, the object-to-image distance is approximately $\text{MFD} + \text{flange distance} \approx 185$ mm, placing the object roughly 60–70 mm from the front vertex — very close, consistent with the macro working distances reported in reviews.
 
-
 ## Aspherical Surfaces
 
 **The design contains no aspherical surfaces.** The patent publishes no aspheric coefficient table for Example 2. All 26 optical surfaces are spherical, and the aperture stop (S17) is flat ($R = \infty$).
 
 The selected example supplies fourteen spherical elements and no aspheric coefficients. The geometry and differing source Abbe numbers provide optical degrees of freedom without an authored asphere. No manufacturing process, procurement choice, cost optimization or production APO performance is established by that construction.
-
 
 ## Petzval Sum and Field Correction
 
@@ -225,20 +219,18 @@ The surface-by-surface Petzval sum is $\sum \phi_i / (n_i \cdot n_i') = 0.00277$
 
 The flat Petzval is achieved primarily through the high-index elements (L6, L9, L12), which deliver positive power with minimal $n \cdot n'$ denominator penalty, and through the negative groups (the doublets L5+L6, L7+L8, and the G3 architecture), which introduce negative Petzval contributions that offset the positive elements. L14's equi-biconvex form near the image plane also contributes: its focal length ($+59.0$ mm) nearly matches the system EFL, and its position close to the image plane amplifies its field-flattening effect.
 
-
 ## Conditional Expressions
 
 The patent defines four conditional inequalities (¶0007–0025). All are satisfied by Example 2:
 
-| Condition | Expression | Computed | Patent Value | Range | Status |
-|-----------|-----------|--------:|------------:|---------:|--------|
-| (1) | $\|L / DL_2\|$ | 2.614 | 2.613 | 2.0–3.5 | Satisfied |
-| (2) | $\|S_2 / S_1\|$ | 1.890 | 1.891 | 1.4–2.1 | Satisfied |
-| (3) | $Y_{\max} / F_2$ | 0.581 | 0.580 | 0.3–0.8 | Satisfied |
-| (4) | $\|F_2 / F_3\|$ | 0.568 | 0.568 | 0.2–1.5 | Satisfied |
+| Condition | Expression       | Computed | Patent Value |   Range | Status    |
+| --------- | ---------------- | -------: | -----------: | ------: | --------- |
+| (1)       | $\|L / DL_2\|$   |    2.614 |        2.613 | 2.0–3.5 | Satisfied |
+| (2)       | $\|S_2 / S_1\|$  |    1.890 |        1.891 | 1.4–2.1 | Satisfied |
+| (3)       | $Y_{\max} / F_2$ |    0.581 |        0.580 | 0.3–0.8 | Satisfied |
+| (4)       | $\|F_2 / F_3\|$  |    0.568 |        0.568 | 0.2–1.5 | Satisfied |
 
 Condition (1) constrains the ratio of total optical length to the G1–G2 separation, governing the compactness vs. focusing travel trade-off. Condition (2) limits the magnification-to-travel ratio, ensuring that 2× macro is achievable without excessive barrel length. Condition (3) bounds the G2 power relative to the image circle, preventing aberration overcorrection from excessive G2 power. Condition (4) balances G2 and G3 power to ensure the auxiliary focusing group contributes meaningfully to aberration compensation without being so strong that it introduces uncorrectable field curvature.
-
 
 ## Design Heritage and Context
 
@@ -247,7 +239,6 @@ The patent's background section (¶0002–0003) cites JP 2006-153942, JP 2012-53
 The Laowa design simplifies the architecture to three functional groups instead of four or six, with only two moving groups (G2 and G3) that do not share the same travel space. G2 consumes the large fixed air gap D(4) during its forward travel, while G3's much smaller compensating motion occurs in a different region of the optical path. This non-interfering kinematic arrangement is the key structural innovation claimed by the patent: it allows the 47 mm G2 travel needed for 2× magnification without mechanical collision, and without the volume penalty of a four-group design.
 
 The Laowa 58 mm f/2.8 2× Ultra-Macro APO was announced in September 2022 as part of Laowa's "2× Macro APO" family, which also includes the Laowa 90 mm f/2.8 2× and Laowa 100 mm f/2.8 2×. The 58 mm is the shortest focal length in this series and provides the widest angle of view (40.9° on full frame), making it the most versatile for non-macro general photography. All three lenses share the fully manual, metal-body construction with no electronic coupling, 13-blade aperture diaphragm, and internal focusing. The 58 mm is available in Canon RF, Nikon Z, Sony E, and L-mount.
-
 
 ## Sources
 
@@ -258,3 +249,15 @@ The Laowa 58 mm f/2.8 2× Ultra-Macro APO was announced in September 2022 as par
 5. CDGM and cross-vendor glass catalogs — compatible spectral proxies and coordinate-class comparisons. Current coefficient-backed coverage is nine of fourteen modeled elements; the five unmatched source coordinate pairs are retained. These comparisons do not identify production suppliers.
 
 Example 2 Figure 3 (PDF p. 12) now supplies opaque cap-end lands on S19 and S20: their 8.5 mm optical caps remain unchanged and the drawn rims extend to 10.5 mm. The deep concave front of L13 / S23 has an inferred 4.89 mm cut, giving an 11.948 mm clear cap and a land to the retained 14.5 mm outer rim. Other air and cemented faces remain unchanged; all numeric prescription rows, including the clearly printed 3.7500 mm at source row 13, are retained.
+
+## October 31, 2026 — Scoped Material and Catalog Followup
+
+The completed June 24 and October 29 original source/shape reviews retain their dates. Reopened only the material/reference and figure-association evidence in the same `patents/CN116520542A.pdf`, Example 2: all fourteen nd/νd rows on PDF pp. 7–8, explicit d-line definition paragraph 0063 on p. 9, and Figure 3 on p. 12. The numerical tables are native 150 ppi embedded images. Figure 3 is 842×573 pixels at 150 ppi; magnification adds no source detail. It accounts for fourteen glass members and the three cemented pairs, without a source asphere, separate hybrid resin medium or rear plate. No shape dimension is changed or newly certified. No source per-medium C/F/g indices, partial ratio or numerical APD evidence appears; the four 1.49700 / 81.61 tags remain inferred.
+
+The earlier six-vendor search and rejected H-ZLAF68N/H-ZLAF55C identifications remain in force. Additional [NHG 2601 primary coefficient data](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf), revised February 2026, supplies no closer viable curve for L1 1.86665 / 45.00, L9 1.89782 / 29.90, L10 1.79391 / 47.17, L11 1.54517 / 48.63 or L12 1.86602 / 41.79. For example, H-ZLaF64 misses L1 by +0.00405 / −4.27 and L12 by +0.00468 / −1.06; H-ZLaF70 misses L9's index by +0.00584; H-K12 misses L11 by −0.01158 / +6.84. No reference-line swap or tolerance change rescues those differences.
+
+L10 has broad existing candidates, but no new spectral evidence to support them. TAF2 evaluates 1.794496872 / 45.386415, residuals +0.000586872 / −1.783585. Its F−C span is +4.006603% above the span implied by the actual source pair; J-LASF017 and Q-LASFPH3S differ by about +4.25/+4.41%. Keeping the source-derived span is more defensible than activating a substantially different curve solely because the ±0.003 / ±2 window allows it. This retains unknown C/F placement and g rather than pretending the source-pair fallback is a measured full spectrum.
+
+Additional accessible [Osaka OKP](https://www.ogc.co.jp/e/products/fluorene/okp.html) and [Kuraray KURARITY](https://www.kuraray.com/uploads/6442319d34c17/Kurarity_Technical_Brochure-A4-18042023-web.pdf) primary product information provides no compatible curve lead: the former has low-Abbe optical polyesters, the latter an approximately 1.48 / 58 acrylic block copolymer. No private grade, historical supplier, polymer or melt is assigned to a patent glass by its coordinate alone. Contact-form data were not requested.
+
+Coverage remains 9/14. All source numeric pairs, APD/spectral fields, R/d, cap/shoulder/cut geometry, iris and focus controls are unchanged. Prior source-conjugate, interpolation and sampled clearance limits remain applicable. No new catalog row, numeric spectral override or whole-shape review is claimed.

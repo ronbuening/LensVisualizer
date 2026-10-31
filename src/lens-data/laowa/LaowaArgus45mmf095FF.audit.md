@@ -1,36 +1,47 @@
 # Laowa Argus 45mm f/0.95 FF: Stage1 extraction audit
 
 ## Job and reference versions
+
 CN112285890B, Example 2, paragraphs 0061-0083, Figure 3. Current GitHub main was freshly checked2026-10-07 00:31:51 UTC and remains3920234ab22de546bcaacaee275e35bd51eed0ca. Shared reference payloads and project blobs verified against that commit. CHAT-1.0 original prompt kit remains controlling. No TC assembly is involved.
 
 ## Extraction and conventions
+
 Complete selected table, source indices/Abbe values, air blanks, variable spacing symbols, image row, asphere coefficients/equation, definitions and final condition-summary column were read directly from original rendered pages. All numerical strings preserve source precision. No replacement, source correction or scale is applied. K table headings explicitly agree with the equation's1+K; no epsilon mapping is imported from another patent. R22 and K22 remain separate.
 
 ## Model transformations
+
 Image row24 is a source terminal marker only; stop sourceinf becomes a finite1e15 plane only in eventual TypeScript. No cover plate is supplied. Stop and physical aperture estimates are Stage2 tasks. Focus stays PUBLISHED with both native spacing vectors; no extrapolation to productionMOD or assumed continuous cam law.
 
 ## Numerical verification
+
 Sequential reduced-angle propagation and separately coded2×2 products agree. Infinity EFL44.890439352mm; BFD12.868271946mm from last physical vertex; track122.436200mm. Native finite state2500 mm gives first-vertex conjugate2496.961022mm and object-to-image2619.397222mm at the prescribed image plane. The source object-distance reference is unspecified; neither reference is silently promoted to a source fact. Results preserve actual failed source-summary comparisons and sensitivity diagnostics. Standalone elements, cemented groups, functional-group powers, pupils/principal planes and every surface Petzval term are executed.
 
 ## Glass review
+
 Six authoritative vendor catalogs were parsed for every native coordinate:HOYA, OHARA, Schott, HIKARI, Sumita and CDGM. Candidate residuals and preserved native coordinates are in evidence. Tight matches retain code/classes with supplierunknown; nonmatches remain Unmatched. No measured source spectra or supplier identity are invented. APO, where used in a product name, is marketing identification only.
 
 ## Manufacturer correlation
+
 Official overlay visually checked against the selected patent figure. Primary product specification independently read. This is a construction-based association, not a manufacturer-confirmed exact prescription. Manufacturer conflicts and the limits of preserved prior research snapshots are disclosed in evidence rather than silently inherited.
 
 ## Discrepancy and correction register
+
 No optical source corrections. All interval conditions pass; each printed summary has an independent numerical residual. Code-only source glasses and absent iris/rims remain explicit. Focus distance labels and marketedMOD are separate. Figure3/text group-label discrepancy applies only to45mm; prescription boundaries follow table/variablegap evidence. Native18mm total-track difference0.0012mm is retained;45mm totaltrack is constant at its two rows.
 
 ## Independent review
+
 A separate fresh source-first auditor pass is pending. No final data or analysis has been authored yet. This extraction audit is an author construction record, not Stage4 approval. (Closed: data and analysis were authored later; the independent audit and the 2026-10-10 section are recorded below.)
 
 ## Quantitative claim map
+
 Numbers above→results.sourceModel; intervals/summaries→facts.conditions and comparisons; source facts→rawPrescription and primary locators; product/unknowns→productCorrelation. No optical-quality claims beyond calculations are made.
 
 ## Gate and pending integration
+
 READY_FOR_DATA only after the initial seven-file clean-extraction replay passes. Stage2 must establish exact-source physical aperture, slope/domain/edge/sharedgap constraints and current runtime field/render limits. INTEGRATION_PENDING; no Git writes, metadata generation, corpus sweep or build. (Closed 2026-10-10; see the last section.)
 
 ## Owner-authorized local margin trial
+
 The owner authorized this bounded trial. Only source7 inferredSD becomes23.2mm and the affected pair[6, 7] accepts fraction0.96. All source R/d/nd/vd/K/A coefficients and nativeF0.98 are unchanged. The engine exposes a lens-wide gapSagFrac field; the portable verifier independently holds every other gap to0.90.
 
 The ideal equal-radius axial remaining clearance is0.046879315mm. It is not minimum Euclidean separation or a production tolerance guarantee. Numerical original-source endpoint full-iris ray separation is0.048277426mm. Physical seats, edge/bevels, spacers, centering/tilt and thermal stack are unknown. A bevel cannot be presumed to remove illuminated sag without changing optics. In18mm the proposed rim lies only2.34µm above the infinity axial marginal hit; positive air clearance is insufficient manufacturing evidence.
@@ -41,20 +52,17 @@ Independent source freeze and separate monotonic spherical-gap proof preceded th
 
 Current GitHub maincb944bb was checked; full native result equality against3920234 holds except provenance/module hashes. No source glass labels were changed. INTEGRATION_PENDING (closed 2026-10-10; see the last section). This is an intentionally held Stage2 checkpoint; no Stage3 analysis is present.
 
-
 ## Qualified finite-forward Stage2 revision
 
 Independent review now accounts for all62,755 explicit first-cap launches per lens, including final-asphere propagation and earliest physical-root handling. No valid in-cap native missed intersection was found. Raw inverse and forward statuses remain intact; unsupported inverse targets include source-domain samples and are not declared physically excluded. Independent numerical cap, Snell and conditional straight-rim body dispositions support the finite sampled-model scope. Rim-edge interpretation does not certify a production outline, absorption, throughput or manufacturing tolerance.
 
 The owner-approved local gap fraction and rim remain unchanged, and every other gap retains0.90 in independent geometry checks. The new portable verifier accounts for every failed forward launch and cemented first-clip segment. It does not relax source optical values or replace raw native failures with invented successes. READY_FOR_ANALYSIS requires all revised checks and a clean replay; independent final Stage4 remains separate.
 
-
 ## Stage3 analysis claim map
 
 Element/group/component powers and conditional expressions map to sourceModel/results.facts; exact source cells and aspheres map to rawPrescription; glass claims map to glassEvidence; focus movements follow literal gap differences. Local clearance/rim margins are from the independently preserved Argus trial review. Explicit62755-ray counts and unsupported inverse targets retain their original statuses and scope. The additional full-iris axial residual is computed with the identical fixed iris/source surfaces and will be independently checked atStage4. No optical source changes beyond the approved geometric-policy/rim trials are introduced.
 
 READY_FOR_AUDIT requires clean Stage3 replay. Final independent approval and integration remain separate.
-
 
 Current cb944bb data-spec Display Name Convention (lines117–133; SHA dfeaff785f050fbc5753829adf6300cf322b52a2e624604b1a22a922ff4551ac) was explicitly checked2026-10-07 04:14UTC. Manufacturer and optical branding are correctly uppercase, focal length/aperture/characteristic tokens separated, f/ lower-case. The current data display name complies without a new metadata or optical change.
 
@@ -87,7 +95,7 @@ Original Stage3 ZIP `19d4d9d950dd407f04d43d6921729bec3747d98f5813b75d23a3c062e11
 - The source-field prose now distinguishes printed half-field angle, literal plotted maximum height, and runtime estimated construction field. The raw published-source-field label actually targets printed f×tan(printed omega), converted through computed EFL at infinity or derived object distance and magnification at finite focus. All actual launch coordinates are unchanged; no continuous or literal-header-angle coverage is inferred.
 - The45mm Figure3 label discrepancy is explained explicitly: fixed front brace unnumbered, auxiliary G1 and main G2 in the drawing, versus text functional G1/G2/G3. Prescription boundaries and gap tables control.
 - Historical frozen calculator text incorrectly said500mm before first vertex. Its actual S input and calculation already used2500mm. The dated descriptive correction does not rewrite the freeze or establish a source reference plane.
-- CDGM starred H-K9L* supplements historical307-row coverage to308, with no new close match or class change in this lens. All active glass strings carry unknown supplier and therefore invoke Abbe fallback; coordinate compatibility does not activate catalog spectra or prove supplier identity.
+- CDGM starred H-K9L\* supplements historical307-row coverage to308, with no new close match or class change in this lens. All active glass strings carry unknown supplier and therefore invoke Abbe fallback; coordinate compatibility does not activate catalog spectra or prove supplier identity.
 - The SA axes in original PDF11/13 Figures2/4 print−0.1..+0.1 without an explicit quantity or unit. Two reviewers independently confirm that reading; analysis now qualifies comparison with computed mm residuals by the conventional longitudinal-mm interpretation. Exact old/new wording and hashes are retained in sourcePlotUnitAddendum.
 - The18mm hypothetical5µm rim-only centering perturbation is expressly separated from a complete optical-element decenter model. No manufacturing feasibility conclusion is claimed.
 - All exact old/new prose and metadata edits, source locators, the separate claim ledger, complete consolidated glass palette, and validation independence are retained in the independent support. The child reviewer applied documentary edits; the parent auditor reran both numerical paths.
@@ -142,26 +150,26 @@ Scale. Optical axis at y = 749 px. Vertex crossings: surface 1 at x = 507 px, su
 
 Method. Heights were read on both sides of the axis from the outermost ink and from the vertical ink runs. Figure 3 draws each element with its curved faces ending at a flat annulus where one face has the smaller clear aperture; the inner end of that annulus is taken as the surface's optical extent, and each was cross-checked against the sag of the printed radius at the annulus position.
 
-| Surface | Before (mm) | Figure (px → mm) | After (mm) | Evidence |
-|---|---:|---:|---:|---|
-| 1 | 31.5 | 384 → 31.6 | 31.5 | agrees |
-| 2 | 28.2 | 334.5 → 27.5 | 28.2 | agrees within 3%; inner end of L1's flat rear face |
-| 3 | 27.5 | 332 → 27.3 | 27.5 | agrees |
-| 4 | 27.5 | 296 → 24.4 | 24.4 | changed: flat annulus from 296 to 332 px on L2's rear, both sides of the axis; sag cross-check 24.6 mm |
-| 5, 6 | 25.4 | 308 → 25.35 | 25.4 | agrees; L3 drawn to a knife edge |
-| 7 | 23.2 | 303–308 → 24.9–25.3 | 23.2 | retained: surfaces 6 and 7 meet at 23.8 mm, so the drawn height cannot be reached |
-| 8 | 25.1 | 303 → 24.9 | 25.1 | agrees |
-| 9 | 18.5 | 223 → 18.35 | 18.5 | agrees; inner end of L5's rear annulus |
-| STO | 18.03 | 221 → 18.2 | not edited | inner end of the iris ticks |
-| 11 | 23.5 | 228.5 → 18.8 | 18.8 | changed: flat annulus from 228 to 284 px on L6's front, both sides; sag cross-check 18.6 mm |
-| 12, 13 | 23.5 | 284 → 23.4 | 23.5 | agrees |
-| 14 | 22.0 | 281.5 → 23.2 | 23.2 | changed: L8's rim stands 13.5 px (1.1 mm) above the L9/L10 block and is 0.6 mm thick as drawn, against a 2.3 mm flat rim in the old model |
-| 15, 16, 17 | 22.0 | 268 → 22.1 | 22.0 | agrees (L9/L10 block) |
-| 18, 19 | 19.3 | 232 → 19.1 | 19.3 | agrees |
-| 20 | 16.5 | 218 → 17.9 | 16.5 | retained: surfaces 19 and 20 meet at 17.5 mm; 16.5 mm uses 88.4% of the 0.904 mm gap |
-| 21 | 18.5 | 190–195 → 15.6–16.0 | 16.0 | changed: flat annulus from about 192 to 218 px on L12's rear, both sides; sag cross-check 16.0 mm |
-| 22A | 15.7 | 191–193 → 15.7–15.9 | 15.7 | agrees; inner end of L13's front annulus |
-| 23A | 17.9 | 215 → 17.7 | 17.9 | agrees |
+| Surface    | Before (mm) |    Figure (px → mm) | After (mm) | Evidence                                                                                                                                  |
+| ---------- | ----------: | ------------------: | ---------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 1          |        31.5 |          384 → 31.6 |       31.5 | agrees                                                                                                                                    |
+| 2          |        28.2 |        334.5 → 27.5 |       28.2 | agrees within 3%; inner end of L1's flat rear face                                                                                        |
+| 3          |        27.5 |          332 → 27.3 |       27.5 | agrees                                                                                                                                    |
+| 4          |        27.5 |          296 → 24.4 |       24.4 | changed: flat annulus from 296 to 332 px on L2's rear, both sides of the axis; sag cross-check 24.6 mm                                    |
+| 5, 6       |        25.4 |         308 → 25.35 |       25.4 | agrees; L3 drawn to a knife edge                                                                                                          |
+| 7          |        23.2 | 303–308 → 24.9–25.3 |       23.2 | retained: surfaces 6 and 7 meet at 23.8 mm, so the drawn height cannot be reached                                                         |
+| 8          |        25.1 |          303 → 24.9 |       25.1 | agrees                                                                                                                                    |
+| 9          |        18.5 |         223 → 18.35 |       18.5 | agrees; inner end of L5's rear annulus                                                                                                    |
+| STO        |       18.03 |          221 → 18.2 | not edited | inner end of the iris ticks                                                                                                               |
+| 11         |        23.5 |        228.5 → 18.8 |       18.8 | changed: flat annulus from 228 to 284 px on L6's front, both sides; sag cross-check 18.6 mm                                               |
+| 12, 13     |        23.5 |          284 → 23.4 |       23.5 | agrees                                                                                                                                    |
+| 14         |        22.0 |        281.5 → 23.2 |       23.2 | changed: L8's rim stands 13.5 px (1.1 mm) above the L9/L10 block and is 0.6 mm thick as drawn, against a 2.3 mm flat rim in the old model |
+| 15, 16, 17 |        22.0 |          268 → 22.1 |       22.0 | agrees (L9/L10 block)                                                                                                                     |
+| 18, 19     |        19.3 |          232 → 19.1 |       19.3 | agrees                                                                                                                                    |
+| 20         |        16.5 |          218 → 17.9 |       16.5 | retained: surfaces 19 and 20 meet at 17.5 mm; 16.5 mm uses 88.4% of the 0.904 mm gap                                                      |
+| 21         |        18.5 | 190–195 → 15.6–16.0 |       16.0 | changed: flat annulus from about 192 to 218 px on L12's rear, both sides; sag cross-check 16.0 mm                                         |
+| 22A        |        15.7 | 191–193 → 15.7–15.9 |       15.7 | agrees; inner end of L13's front annulus                                                                                                  |
+| 23A        |        17.9 |          215 → 17.7 |       17.9 | agrees                                                                                                                                    |
 
 Four surfaces changed (4, 11, 14, 21). Surface 14 is the only change below 10% (5.5%): it is a relative reading within one figure (281.5 px against 268 px for the block behind it), it restores the step in the D3 cemented group, and it changes no engine quantity.
 
@@ -185,27 +193,27 @@ Source re-read. The image-only table on PDF page 8 was read again from a 150 dpi
 
 Figure scale. Optical axis at y = 1497.5 px. Vertex crossings: surface 1 at x = 1015 px and surface 23 at 3677 px (109.567 mm over 2662 px, 0.04116 mm/px); surface 3 at 1335.5 px and surface 19 at 3440.5 px (86.621 mm over 2105 px, 0.04115 mm/px). All 22 vertices then sit within 2.5 px (0.1 mm) of their infinity-state positions. Heights are read on both sides of the axis from the outermost ink and from the vertical ink runs; the two sides agree within 4 px (0.16 mm), and one native pixel is 0.165 mm.
 
-| Surface | Stored before (mm) | Figure (px → mm) | Stored after (mm) | Note |
-|---|---:|---:|---:|---|
-| 1 | 31.5 | 767.5 → 31.6 | 31.5 | square rim land |
-| 2 | 28.2 | 668.5 → 27.5 | 28.2 | curve end at L1's rear annulus; within 2.5% |
-| 3 | 27.5 | 664 → 27.3 | 27.5 | |
-| 4 | 24.4 | 589 → 24.2 | 24.4 | curve end at L2's rear annulus |
-| 5 | 25.4 | 616.5 → 25.4 | 25.4 | knife edge |
-| 6 | 25.4 | drawn to the 25.4 mm tip; merges with surface 7 from about 23.5 mm | 23.2 | changed, see below |
-| 7 | 23.2 | 615.5 → 25.3 (face), 606 → 24.9 (block edge) | 25.1 | changed, see below |
-| 8 | 25.1 | 606 → 24.9 | 25.1 | |
-| 9 | 18.5 | 444.5 → 18.3 | 18.5 | curve end at L5's rear annulus |
-| STO | 18.03 | 440.5 → 18.1 | not edited | inner end of the iris ticks |
-| 11 | 18.8 | 456.5 → 18.8 | 18.8 | curve end at L6's front annulus |
-| 12, 13 | 23.5 | 568.5 → 23.4 | 23.5 | |
-| 14 | 23.2 | 564 → 23.2 | 23.2 | L8's rim above the block |
-| 15, 16, 17 | 22.0 | 536.5 → 22.1 | 22.0 | square block; surface 17's curve leaves the rear line near 16.9 mm |
-| 18, 19 | 19.3 | 464.5 → 19.1 | 19.3 | square block |
-| 20 | 17.1 | 438.5 → 18.0 (block edge) | 17.1 | capped, see below |
-| 21 | 16.0 | 372–386 → 15.3–15.9 (curve end), 438.5 → 18.0 (block edge) | 17.1 | changed, see below |
-| 22A | 15.7 | 381–389 → 15.7–16.0 | 15.7 | curve end at L13's front annulus |
-| 23A | 17.9 | 431.5 → 17.8 | 17.9 | |
+| Surface    | Stored before (mm) |                                                   Figure (px → mm) | Stored after (mm) | Note                                                               |
+| ---------- | -----------------: | -----------------------------------------------------------------: | ----------------: | ------------------------------------------------------------------ |
+| 1          |               31.5 |                                                       767.5 → 31.6 |              31.5 | square rim land                                                    |
+| 2          |               28.2 |                                                       668.5 → 27.5 |              28.2 | curve end at L1's rear annulus; within 2.5%                        |
+| 3          |               27.5 |                                                         664 → 27.3 |              27.5 |                                                                    |
+| 4          |               24.4 |                                                         589 → 24.2 |              24.4 | curve end at L2's rear annulus                                     |
+| 5          |               25.4 |                                                       616.5 → 25.4 |              25.4 | knife edge                                                         |
+| 6          |               25.4 | drawn to the 25.4 mm tip; merges with surface 7 from about 23.5 mm |              23.2 | changed, see below                                                 |
+| 7          |               23.2 |                       615.5 → 25.3 (face), 606 → 24.9 (block edge) |              25.1 | changed, see below                                                 |
+| 8          |               25.1 |                                                         606 → 24.9 |              25.1 |                                                                    |
+| 9          |               18.5 |                                                       444.5 → 18.3 |              18.5 | curve end at L5's rear annulus                                     |
+| STO        |              18.03 |                                                       440.5 → 18.1 |        not edited | inner end of the iris ticks                                        |
+| 11         |               18.8 |                                                       456.5 → 18.8 |              18.8 | curve end at L6's front annulus                                    |
+| 12, 13     |               23.5 |                                                       568.5 → 23.4 |              23.5 |                                                                    |
+| 14         |               23.2 |                                                         564 → 23.2 |              23.2 | L8's rim above the block                                           |
+| 15, 16, 17 |               22.0 |                                                       536.5 → 22.1 |              22.0 | square block; surface 17's curve leaves the rear line near 16.9 mm |
+| 18, 19     |               19.3 |                                                       464.5 → 19.1 |              19.3 | square block                                                       |
+| 20         |               17.1 |                                          438.5 → 18.0 (block edge) |              17.1 | capped, see below                                                  |
+| 21         |               16.0 |         372–386 → 15.3–15.9 (curve end), 438.5 → 18.0 (block edge) |              17.1 | changed, see below                                                 |
+| 22A        |               15.7 |                                                381–389 → 15.7–16.0 |              15.7 | curve end at L13's front annulus                                   |
+| 23A        |               17.9 |                                                       431.5 → 17.8 |              17.9 |                                                                    |
 
 Apart from the three changed rows and the capped surface 20, every stored value agrees with this independent reading to 2.5% or better, so the first pass's four changes (surfaces 4, 11, 14 and its curve-end reading of 21) are confirmed as measurements.
 
@@ -260,3 +268,11 @@ All 13 authored glass media were checked against every source nd/νd row. Source
 Current resolver coverage: 8/13 modeled media; 13 physical lens elements. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
 
 Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-10-31 — Scoped all-media/reference and positive catalog follow-up
+
+Reuse actual Oct 29 complete shape/glass review with Oct 7/Oct 10 history retained. Direct source check only: exact `patents/CN112285890B.pdf`, Example 2, PDF page 8 ¶0078 all 13 Nd/Vd rows and page 7 ¶0074 explicit d-line reference; Figure 3 page 12 interfaces S8/S12/S15/S16. Native table 753×1069 plus753×346, figure 778×570,150 ppi; no higher native detail is claimed. No independently prescribed resin, cement, filter or rear plate and no per-medium numerical C/F/g/partial values occur. The one inferred ED/APD tag remains inferred.
+
+Positive new source: [CDGM official September 2026 Zemax AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), row 11159 D-ZLAF67, source GC anneal 4°C/h; six verbatim formula 2 coefficients, λ in µm, range 0.365–2.325 µm. It passes unchanged catalog consistency guards. Source L2/S3 remains1.88421/37.00; candidate nd 1.883850025/νd 37.198899 gives residuals −0.000359975/+0.198899 and PgF 0.577684 (no source partial residual available). Existing M-TAFD307 is appreciably farther in index,−0.00218722/+0.221297. D-ZLAF67-25 is a distinct anneal-state row with a farther index. No generic-code reassignment or supplier/chemistry/anneal inference follows.
+
+Bounded all-media search across existing/full prior vendor data and184 NHG2601 headers retains L5/L6/L7/L12 unresolved. SF15's L5 differences +0.00235/+1.13 and S-TIM27's L12 differences about−0.000991/+1.06 are weak approximate windows, not source-spectral evidence. All eight previously active curve choices stay fixed. L2 alone changes from Abbe approximation to a qualified catalog curve; d-line geometry and every numeric/source/APD/asphere/rim/stop/focus field stay equal. Current coverage becomes9/13 lens elements. Existing source aberration-plot discrepancy and runtime/production limits remain; no complete source-shape count, fit or new APD tag is added.

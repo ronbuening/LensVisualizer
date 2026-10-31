@@ -15,22 +15,25 @@
 
 US 2009/0296231 A1 describes a zoom lens having, in order from the object side, a positive first lens unit, a negative second lens unit, and subsequent positive lens units. The first unit is subdivided into a fixed front subunit L1F and a rear subunit L1R that moves during focusing; in Embodiments 1 and 2, L1R also moves during zooming. The tabulated Numerical Embodiment 2 gives a 23-element, 19-group, all-spherical prescription covering $f = 72.14, 135.00, 193.97$ mm at FNO = 2.9, field angle $2\omega = 33.4^\circ, 18.2^\circ, 12.7^\circ$, and image height 21.6 mm.
 
-The production identification rests on convergent evidence rather than on a direct product name in the patent. Canon's EF70-200mm f/2.8L IS II USM specification gives 23 elements in 19 groups, eight diaphragm blades, a 1.2 m closest focusing distance, 0.21× maximum magnification, 77 mm filter thread, and 88.8 × 199 mm barrel dimensions. Canon's own product note also states that the IS II design newly added one fluorite element and used five UD elements. Numerical Embodiment 2 contains exactly five nd = 1.49700, $\nu_d = 81.5$ UD-class elements and one nd = 1.43387, $\nu_d = 95.1$ fluorite element. Canon's EF70-200mm f/2.8L IS III USM page states that the later IS III version inherited the predecessor's 23/19 optical design with one fluorite and five UD elements, adding revised coatings rather than a new prescription.
+The production identification rests on convergent evidence rather than on a direct product name in the patent. Canon's EF70-200mm f/2.8L IS II USM specification gives 23 elements in 19 groups, eight diaphragm blades, a 1.2 m closest focusing distance, 0.21× maximum magnification, 77 mm filter thread, and 88.8 × 199 mm barrel dimensions. Canon's own product note also states that the IS II design newly added one fluorite element and used five UD elements. Numerical Embodiment 2 contains exactly five nd = 1.49700, $\nu_d = 81.5$ UD-class elements and one nd = 1.43387, $\nu_d = 95.1$ high-Abbe body compatible with a CaF2 proxy. These coordinates
+support qualified product-material associations rather than identification of historical chemistry. Canon's EF70-200mm f/2.8L IS III USM page states that the later IS III version inherited the predecessor's 23/19 optical design with one fluorite and five UD elements, adding revised coatings rather than a new prescription.
 
-The data file therefore treats Numerical Embodiment 2 as the patent prescription corresponding to the EF70-200mm f/2.8L IS II USM optical formula, and also relevant to the optically inherited EF70-200mm f/2.8L IS III USM formula. The file does not model coatings or IS decentering; it models the centered axial optical prescription.
+The data file retains an author/model correlation between Numerical Embodiment 2 and the EF70-200mm
+f/2.8L IS II USM, with relevance to the retained IS III inheritance research. Canon’s product data do not
+identify this numerical example as a literal production prescription. The file does not model coatings or IS decentering; it models the centered axial optical prescription.
 
 ## Optical Architecture
 
 The prescription is a five-moving-subunit zoom layout when L1 is split as the patent does: positive L1F, positive L1R, negative L2, positive L3, and positive L4. In broader patent language it is a positive-negative-positive-positive four-unit zoom because L1F and L1R together form the first positive lens unit.
 
-| Unit | Elements | Groups | Paraxial focal length | Function |
-|---|---:|---:|---:|---|
-| L1F | L1-L3 | 3 | +177.23 mm | Fixed front collector and front chromatic-correction station |
-| L1R | L4-L5 | 2 | +142.00 mm | Moving rear first-unit subunit; focus group and zoom participant |
-| L2 | L6-L9 | 3 | -25.70 mm | Negative variator |
-| L3 | L10-L12 | 3 | +83.94 mm | Positive compensator, including the fluorite element |
-| Stop | — | — | — | Aperture stop ahead of L4 |
-| L4 | L13-L23 | 8 | +100.65 mm | Rear relay / image-forming group |
+| Unit | Elements | Groups | Paraxial focal length | Function                                                         |
+| ---- | -------: | -----: | --------------------: | ---------------------------------------------------------------- |
+| L1F  |    L1-L3 |      3 |            +177.23 mm | Fixed front collector and front chromatic-correction station     |
+| L1R  |    L4-L5 |      2 |            +142.00 mm | Moving rear first-unit subunit; focus group and zoom participant |
+| L2   |    L6-L9 |      3 |             -25.70 mm | Negative variator                                                |
+| L3   |  L10-L12 |      3 |             +83.94 mm | Positive compensator, including high-Abbe L11                    |
+| Stop |        — |      — |                     — | Aperture stop ahead of L4                                        |
+| L4   |  L13-L23 |      8 |            +100.65 mm | Rear relay / image-forming group                                 |
 
 The patent calls the class a telephoto-type zoom, and in ordinary photographic use the product is a 70-200mm telephoto zoom. In strict optical-track terms, however, the tele end is not a compact telephoto construction: the first-surface-to-image track is about 238.9 mm at 193.97 mm EFL, giving TL/EFL ≈ 1.23. The design is better described as an internal-zoom EF-mount telephoto zoom whose long rear clearance and constant-length mechanics prevent a short telephoto ratio.
 
@@ -40,50 +43,53 @@ The design is all-spherical. No aspherical coefficient table appears in the nume
 
 ## Element-by-Element Analysis
 
-The patent gives refractive index and Abbe number, not manufacturer glass names. The names below are public OHARA catalog-equivalent matches to the patent's $(n_d, \nu_d)$ pairs. They should not be read as Canon procurement disclosures.
+The patent gives refractive index and Abbe number, not manufacturer glass names. The names below are compatible public spectral proxies for the source d-reference pairs. They do
+not identify historical chemistry, supplier, melt or Canon procurement; production associations are
+retained prior product research, not a new manufacturer inspection.
 
 ### L1 — Negative Meniscus, convex to object
 
-nd = 1.74950, $\nu_d$ = 35.3. Glass: S-NBH51 / S-LAM7 equivalent (OHARA catalog match). f = -251.9 mm.
+nd = 1.74950, $\nu_d$ = 35.3. Glass: S-NBH51 / S-LAM7 equivalent (OHARA qualified spectral proxy). f = -251.9 mm.
 
 The first element is a weak negative meniscus with both radii positive (R1 = +314.575 mm, R2 = +117.542 mm). It moderates the height and convergence of the beam entering the two UD positive elements that follow. Its high dispersion supplies the chromatic counterweight for the low-dispersion positive front elements.
 
 ### L2 — Positive UD Biconvex
 
-nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 equivalent (OHARA catalog match). f = +194.5 mm.
+nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 compatible spectral proxy (historical supplier/melt unspecified). f = +194.5 mm.
 
 L2 is the first of five S-FPL51-class UD elements. Its biconvex form provides major positive power in L1F while limiting secondary spectrum. Together with L1 and L3 it forms a front achromatizing triplet rather than a simple positive collector.
 
 ### L3 — Positive UD Meniscus, convex to object
 
-nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 equivalent (OHARA catalog match). f = +226.7 mm.
+nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 compatible spectral proxy (historical supplier/melt unspecified). f = +226.7 mm.
 
-L3 completes the fixed front subunit. The strong positive front curvature (R5 = +75.124 mm) adds convergence before the variable d6 gap into L1R. Its shared UD material with L2 gives the front subunit two low-dispersion positive members working against L1's flint dispersion.
+L3 completes the fixed front subunit. The strong positive front curvature (R5 = +75.124 mm) adds convergence before the variable d6 gap into L1R. Its shared high-Abbe coordinate with L2 gives the front subunit two low-dispersion positive members working against L1's flint dispersion.
 
 ### L4 — Negative Meniscus, convex to object
 
-nd = 1.80518, $\nu_d$ = 25.4. Glass: S-TIH6 equivalent (OHARA catalog match). f = -384.0 mm.
+nd = 1.80518, $\nu_d$ = 25.4. Glass: S-TIH6 equivalent (OHARA qualified spectral proxy). f = -384.0 mm.
 
 L4 is the negative member of the moving L1R subunit. It is a weak negative meniscus in isolation, but its high index and very low Abbe number make it an efficient chromatic and spherical-aberration balancing element for L5.
 
-### L5 — Positive UD PR Lens, nearly plano-convex
+### L5 — Positive Meniscus PR Lens, nearly plane rear face
 
-nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 equivalent (OHARA catalog match). f = +102.0 mm.
+nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 compatible spectral proxy (historical supplier/melt unspecified). f = +102.0 mm.
 
-L5 is the patent's PR lens: the positive lens in the rear subunit L1R. Its rear surface radius is essentially flat at R10 = +33115.608 mm. The patent identifies the PR lens as one of the two extraordinary-dispersion elements central to the invention, satisfying $\nu_d > 60$ and $\theta_{gF} > -0.0015\nu_d + 0.6425$.
+L5 is the patent's PR lens: the positive lens in the rear subunit L1R. Its rear radius R10 = +33115.608 mm is weak but finite, so its shape class is Positive Meniscus.
+No source radius is replaced by a plane. The patent identifies the PR lens as one of the two extraordinary-dispersion elements central to the invention, satisfying $\nu_d > 60$ and $\theta_{gF} > -0.0015\nu_d + 0.6425$.
 
 Because L1R moves during focusing and, in Embodiment 2, during zooming, the PR lens provides a chromatic correction contribution that tracks focus state rather than remaining fixed in the front collector.
 
 ### L6 — Strong Biconcave Negative
 
-nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA catalog match). f = -41.3 mm.
+nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA qualified spectral proxy). f = -41.3 mm.
 
 L6 begins the negative L2 variator. Its object-side surface is nearly flat relative to the image-side curvature, so most of the negative power occurs at R12 = +34.333 mm. The high index keeps this strong negative member from requiring still steeper curvature.
 
 ### L7-L8 — Cemented Variator Doublet; L7 is the N2 Lens
 
-L7: nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 equivalent (OHARA catalog match). f = -51.0 mm.  
-L8: nd = 1.84666, $\nu_d$ = 23.9. Glass: S-TIH53-class equivalent (OHARA catalog match). f = +48.5 mm.
+L7: nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 compatible spectral proxy (historical supplier/melt unspecified). f = -51.0 mm.\
+L8: nd = 1.84666, $\nu_d$ = 23.9. Glass: S-TIH53-class equivalent (OHARA qualified spectral proxy). f = +48.5 mm.
 
 L7 is the patent's N2 lens, a negative extraordinary-dispersion element in the second lens unit. The patent's chromatic logic is specific: PR in L1R suppresses chromatic aberration at the telephoto side during close focusing, but this can overcorrect lateral color at the wide-angle side. N2 in L2 compensates because off-axis beams pass through L2 at higher height at the wide end and lower height at the tele end.
 
@@ -91,115 +97,139 @@ The cemented interface at R14 = +36.914 mm places a low-index UD crown against a
 
 ### L9 — Negative Singlet
 
-nd = 1.69680, $\nu_d$ = 55.5. Glass: S-LAL14 equivalent (OHARA catalog match). f = -82.0 mm.
+nd = 1.69680, $\nu_d$ = 55.5. Glass: S-LAL14 equivalent (OHARA qualified spectral proxy). f = -82.0 mm.
 
 L9 is the final negative element of L2. Its rear surface is nearly flat (R17 = +3742.480 mm), leaving most of the power at the object-side surface. It helps shape the exiting beam from the variator before the long d17 gap to L3.
 
 ### L10 — Positive Compensator Element
 
-nd = 1.67790, $\nu_d$ = 55.3. Glass: S-LAL12 equivalent (OHARA catalog match). f = +89.9 mm.
+nd = 1.67790, $\nu_d$ = 55.3. Glass: S-LAL12 equivalent (OHARA qualified spectral proxy). f = +89.9 mm.
 
-L10 is the first positive element of L3. It begins reconverging the beam after L2. Its moderate index and moderate dispersion make it a low-risk positive member ahead of the fluorite element.
+L10 is the first positive element of L3. It begins reconverging the beam after L2. Its moderate index and moderate dispersion make it a low-risk positive member ahead of the high-Abbe L11 body.
 
-### L11 — Positive Fluorite Element
+### L11 — High-Abbe Positive / Qualified CaF2 Proxy
 
-nd = 1.43387, $\nu_d$ = 95.1. Glass: CaF2 fluorite. f = +97.4 mm.
+nd = 1.43387, $\nu_d$ = 95.1. Glass: CaF2 spectral proxy (historical material, supplier and melt unspecified). f = +97.4 mm.
 
-L11 is the sole fluorite element in Numerical Embodiment 2. It sits in the moving L3 compensator group, not in the fixed front collector. This position lets the fluorite contribution vary with the compensator motion across the zoom range. Canon's product description emphasizes that the IS II design newly incorporated a fluorite element in addition to five UD elements.
+L11 is the unique 1.43387 / 95.1 high-Abbe body, in the moving L3 compensator. Its qualified
+association to the production fluorite count and use of a compatible CaF2 curve do not identify the
+source chemistry. The patent discusses fluorite generically in paragraphs 0011/0012 but does not
+identify this particular element as fluorite. The old “patent-listed” label is superseded.
 
 The air gap between L11 and L12 is only d21 = 0.09 mm. This is optically close to a cemented interface but remains an air space in the patent prescription. The data file preserves it as an air gap.
 
 ### L12 — Negative Meniscus
 
-nd = 1.80100, $\nu_d$ = 35.0. Glass: S-LAM66 equivalent (OHARA catalog match). f = -107.0 mm.
+nd = 1.80100, $\nu_d$ = 35.0. Glass: S-LAM66 equivalent (OHARA qualified spectral proxy). f = -107.0 mm.
 
 L12 closes the L3 compensator. Its negative power and flint-like dispersion counterbalance the preceding L10/L11 positive pair. The element also helps set the pupil relationship into the aperture stop immediately behind L3.
 
 ### L13 — Positive Meniscus
 
-nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA catalog match). f = +96.6 mm.
+nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA qualified spectral proxy). f = +96.6 mm.
 
 L13 is the first relay element after the aperture stop. Its high index allows useful positive power near the stop with controlled curvature. Elements near the stop are particularly effective for spherical aberration and axial color balancing.
 
 ### L14 — Weak Positive Meniscus
 
-nd = 1.77250, $\nu_d$ = 49.6. Glass: S-LAH66 equivalent (OHARA catalog match). f = +166.4 mm.
+nd = 1.77250, $\nu_d$ = 49.6. Glass: S-LAH66 equivalent (OHARA qualified spectral proxy). f = +166.4 mm.
 
 L14 continues the relay convergence with relatively modest power. The small d26 gap from L13 and the d28 gap into the next doublet give the relay group additional degrees of freedom for balancing zonal spherical aberration.
 
 ### L15-L16 — Cemented Doublet, Negative Flint + Positive UD
 
-L15: nd = 1.74000, $\nu_d$ = 28.3. Glass: S-TIH3 equivalent (OHARA catalog match). f = -50.8 mm.  
-L16: nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 equivalent (OHARA catalog match). f = +57.5 mm.
+L15: nd = 1.74000, $\nu_d$ = 28.3. Glass: S-TIH3 equivalent (OHARA qualified spectral proxy). f = -50.8 mm.\
+L16: nd = 1.49700, $\nu_d$ = 81.5. Glass: S-FPL51 compatible spectral proxy (historical supplier/melt unspecified). f = +57.5 mm.
 
-This L4 cemented doublet is a chromatic correction station in the relay unit. The Abbe contrast is large, and L16 is the fifth UD element in the prescription. The near balance between the standalone negative and positive powers indicates that chromatic correction is at least as important as net imaging power here.
+This L4 cemented doublet is a chromatic correction station in the relay unit. The Abbe contrast is large, and L16 is the fifth occurrence of the high-Abbe 1.49700 / 81.5 coordinate; its production UD
+association is inferred rather than source material identification. The near balance between the standalone negative and positive powers indicates that chromatic correction is at least as important as net imaging power here.
 
 ### L17-L18 — Cemented Doublet, Positive Dense Flint + Negative Crown
 
-L17: nd = 1.80518, $\nu_d$ = 25.4. Glass: S-TIH6 equivalent (OHARA catalog match). f = +66.6 mm.  
-L18: nd = 1.58313, $\nu_d$ = 59.4. Glass: S-BAL42 equivalent (OHARA catalog match). f = -39.2 mm.
+L17: nd = 1.80518, $\nu_d$ = 25.4. Glass: S-TIH6 equivalent (OHARA qualified spectral proxy). f = +66.6 mm.\
+L18: nd = 1.58313, $\nu_d$ = 59.4. Glass: S-BAL42 equivalent (OHARA qualified spectral proxy). f = -39.2 mm.
 
-This doublet has net negative power because L18 is stronger than L17 in isolation. Its position in the rear relay makes it useful for field curvature and oblique aberration control, not just axial color.
+L18 is biconcave because source R33 is negative and R34 positive; its shape label is corrected
+without changing geometry. The doublet has net negative power because L18 is stronger in isolation. Its position in the rear relay makes it useful for field curvature and oblique aberration control, not just axial color.
 
 ### L19 — Negative Singlet
 
-nd = 1.74400, $\nu_d$ = 44.8. Glass: S-LAM2 equivalent (OHARA catalog match). f = -89.6 mm.
+nd = 1.74400, $\nu_d$ = 44.8. Glass: S-LAM2 equivalent (OHARA qualified spectral proxy). f = -89.6 mm.
 
 L19 is a rear-relay negative singlet with most of its power at the object-side surface. It supplies negative contribution for field and pupil control before the final positive relay members.
 
 ### L20 — Positive Biconvex
 
-nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA catalog match). f = +70.9 mm.
+nd = 1.80400, $\nu_d$ = 46.6. Glass: S-LAH65V equivalent (OHARA qualified spectral proxy). f = +70.9 mm.
 
 L20 is one of the stronger positive imaging elements in L4. Its use of the same S-LAH65V-class glass as L6 and L13 is consistent with a need for high index, moderate dispersion, and manageable curvature.
 
 ### L21-L22 — Cemented Doublet, Positive Crown + Negative High-Index Glass
 
-L21: nd = 1.48749, $\nu_d$ = 70.2. Glass: S-FSL5 equivalent (OHARA catalog match). f = +52.5 mm.  
-L22: nd = 1.83400, $\nu_d$ = 37.2. Glass: S-LAH60V equivalent (OHARA catalog match). f = -39.5 mm.
+L21: nd = 1.48749, $\nu_d$ = 70.2. Glass: S-FSL5 equivalent (OHARA qualified spectral proxy). f = +52.5 mm.\
+L22: nd = 1.83400, $\nu_d$ = 37.2. Glass: S-LAH60V equivalent (OHARA qualified spectral proxy). f = -39.5 mm.
 
-The last cemented doublet pairs a high-Abbe crown with a high-index negative member. It has significant power and also provides a late-stage chromatic and field correction station before the final singlet.
+L21 is biconvex because source R39 is positive and R40 negative; its shape label is corrected
+without changing geometry. The last cemented doublet pairs a high-Abbe body with a high-index negative member. It has significant power and also provides a late-stage chromatic and field correction station before the final singlet.
 
 ### L23 — Final Positive Meniscus
 
-nd = 1.83400, $\nu_d$ = 37.2. Glass: S-LAH60V equivalent (OHARA catalog match). f = +131.8 mm.
+nd = 1.83400, $\nu_d$ = 37.2. Glass: S-LAH60V equivalent (OHARA qualified spectral proxy). f = +131.8 mm.
 
 L23 is the final optical element. Its positive meniscus form contributes final relay power and helps set the image-side ray geometry before the 54.1 mm air-equivalent back focus.
 
 ## Glass Identification and Selection
 
-Because the patent gives refractive index and Abbe number rather than manufacturer glass names, the glass labels here are catalog-equivalent identifications derived by direct numerical matching against the OHARA catalog table. Several tempting family-name matches are not supported by the public catalog values: for example, the 1.80518 / 25.4 pair matches S-TIH6, the 1.67790 / 55.3 pair matches S-LAL12, and the 1.83400 / 37.2 pair matches S-LAH60V. These are public catalog equivalents, not Canon material disclosures.
+The original explicitly identifies d-reference material pairs in paragraphs 0078/0111 (PDF pp. 18–19).
+All 23 literal pairs remain. Every curve resolves through the public coordinate-compatible resolver
+and remains a qualified spectral proxy rather than a historical material identification. Several tempting family-name matches are not supported by the public catalog values: for example, the 1.80518 / 25.4 pair matches S-TIH6, the 1.67790 / 55.3 pair matches S-LAL12, and the 1.83400 / 37.2 pair matches S-LAH60V. These are public catalog equivalents, not Canon material disclosures.
 
-| Element(s) | Patent nd / $\nu_d$ | Corrected public catalog match | Role |
-|---|---:|---|---|
-| L1 | 1.74950 / 35.3 | S-NBH51 / S-LAM7 class | Front high-dispersion negative partner |
-| L2, L3, L5, L7, L16 | 1.49700 / 81.5 | S-FPL51 class | UD / extraordinary-dispersion correction |
-| L4, L17 | 1.80518 / 25.4 | S-TIH6 class | Dense titanium flint correction |
-| L6, L13, L20 | 1.80400 / 46.6 | S-LAH65V class | High-index moderate-dispersion workhorse |
-| L8 | 1.84666 / 23.9 | S-TIH53 class | Dense positive flint in L2 doublet |
-| L9 | 1.69680 / 55.5 | S-LAL14 class | Variator negative singlet |
-| L10 | 1.67790 / 55.3 | S-LAL12 class | Positive L3 compensator member |
-| L11 | 1.43387 / 95.1 | CaF2 fluorite | Low-dispersion secondary-spectrum correction |
-| L12 | 1.80100 / 35.0 | S-LAM66 class | Negative L3 flint partner |
-| L14 | 1.77250 / 49.6 | S-LAH66 class | Relay positive member |
-| L15 | 1.74000 / 28.3 | S-TIH3 class | Negative member of relay doublet |
-| L18 | 1.58313 / 59.4 | S-BAL42 class | Negative crown member of relay doublet |
-| L19 | 1.74400 / 44.8 | S-LAM2 class | Rear-relay negative singlet |
-| L21 | 1.48749 / 70.2 | S-FSL5 class | High-Abbe crown in final doublet |
-| L22, L23 | 1.83400 / 37.2 | S-LAH60V class | Final high-index negative/positive members |
+| Element(s)          | Patent nd / $\nu_d$ | Corrected public qualified spectral proxy | Role                                                           |
+| ------------------- | ------------------: | ----------------------------------------- | -------------------------------------------------------------- |
+| L1                  |      1.74950 / 35.3 | S-NBH51 / S-LAM7 class                    | Front high-dispersion negative partner                         |
+| L2, L3, L5, L7, L16 |      1.49700 / 81.5 | S-FPL51 class                             | High-Abbe positions; source APD assigned only to PR L5 / N2 L7 |
+| L4, L17             |      1.80518 / 25.4 | S-TIH6 class                              | Dense titanium flint correction                                |
+| L6, L13, L20        |      1.80400 / 46.6 | S-LAH65V class                            | High-index moderate-dispersion workhorse                       |
+| L8                  |      1.84666 / 23.9 | S-TIH53 class                             | Dense positive flint in L2 doublet                             |
+| L9                  |      1.69680 / 55.5 | S-LAL14 class                             | Variator negative singlet                                      |
+| L10                 |      1.67790 / 55.3 | S-LAL12 class                             | Positive L3 compensator member                                 |
+| L11                 |      1.43387 / 95.1 | Qualified CaF2 proxy                      | Low-dispersion secondary-spectrum correction                   |
+| L12                 |      1.80100 / 35.0 | S-LAM66 class                             | Negative L3 flint partner                                      |
+| L14                 |      1.77250 / 49.6 | S-LAH66 class                             | Relay positive member                                          |
+| L15                 |      1.74000 / 28.3 | S-TIH3 class                              | Negative member of relay doublet                               |
+| L18                 |      1.58313 / 59.4 | S-BAL42 class                             | Negative crown member of relay doublet                         |
+| L19                 |      1.74400 / 44.8 | S-LAM2 class                              | Rear-relay negative singlet                                    |
+| L21                 |      1.48749 / 70.2 | S-FSL5 class                              | High-Abbe crown in final doublet                               |
+| L22, L23            |      1.83400 / 37.2 | S-LAH60V class                            | Final high-index negative/positive members                     |
 
-The chromatic strategy is distributed. The five S-FPL51-class UD elements are not concentrated in one location: two are in L1F, one is the PR lens in L1R, one is the N2 lens in L2, and one is in L4. Fluorite is located in L3. This places low-dispersion correction in every major functional region of the zoom rather than relying on a single front ED group.
+The chromatic strategy is distributed across the five high-Abbe 1.49700 / 81.5 coordinates: two
+are in L1F, PR is in L1R, N2 in L2 and one in L4. High-Abbe L11 with its qualified CaF2 proxy is in L3. This places low-dispersion correction in every major functional region of the zoom rather than relying on a single front ED group.
+
+Original inspection on 2026-10-30 found no numerical per-element nC, nF or ng table. The 66 copied
+catalog line-index fields are removed. The paper’s absolute θgF value is published only through the
+PR/N2 condition table: Table 1 on PDF p. 22 gives 0.539 for Embodiment 2, with νd = 81.5. Paragraph
+0070 (PDF p. 17) maps those source assignments to L5 and L7, and 0073 explicitly calls their material
+extraordinary-dispersion glass. Only L5/L7 retain source APD tags and receive `dPgF = +0.032283`,
+computed from θgF − (0.6438 − 0.001682·81.5), using the repository normal line. The source θ value
+is printed to 0.001, so its nominal precision is about ±0.0005.
+
+The old source APD tags on L2, L3, L11 and L16 become inferred. The same index/Abbe coordinate does
+not extend a source partial-dispersion assignment to another element. Their notes identify qualified
+production/proxy associations rather than published per-lens θ values. Historical chemistry, supplier
+and melt remain unresolved. The source has no modeled hybrid/resin/cement medium, filter or rear plate;
+all 23 media are refracting lenses, and the final 54.1 mm path is air.
 
 ## Focus Mechanism
 
 The patent's first lens unit is split into L1F and L1R. L1F remains fixed during focusing, while L1R moves along the optical axis. In Embodiments 1 and 2, L1R also moves during zooming from wide to tele, increasing the d6 interval between L1F and L1R. The patent states that this reduces the beam height passing through L1R at the telephoto end, reducing the effective diameter and focus drive load.
 
-The source patent does not tabulate close-focus spacing values for Numerical Embodiment 2. It provides aberration plots at infinity and at an object distance of 1.5 m, while Canon's production specification gives a 1.2 m closest focusing distance. The data file therefore uses the production close-focus metadata for catalog display but does not invent close-focus d6/d10 values. All `var` entries are infinity-focus zoom spacings with identical close values.
+The source patent does not tabulate close-focus spacing values for Numerical Embodiment 2. It provides aberration plots at infinity and at an object distance of 1.5 m, while Canon's production specification gives a 1.2 m closest focusing distance. The data file therefore uses the production close-focus metadata for catalog display but does not invent close-focus d6/d10 values. Every `gaps` row has identical focus endpoints; the geometry is infinity-only and the focus control
+is a no-op. The published 1.5 m plots are not used to invent a finite cam.
 
-| Gap | Function | Wide | Mid | Tele |
-|---|---|---:|---:|---:|
-| d6 | L1F to L1R | 10.68 | 26.38 | 33.38 |
-| d10 | L1R to L2 | 1.58 | 13.38 | 17.34 |
+| Gap | Function   |  Wide |   Mid |  Tele |
+| --- | ---------- | ----: | ----: | ----: |
+| d6  | L1F to L1R | 10.68 | 26.38 | 33.38 |
+| d10 | L1R to L2  |  1.58 | 13.38 | 17.34 |
 
 ## Aspherical Surfaces
 
@@ -211,14 +241,14 @@ The zoom is internal in the prescription: the sum of d1 through d42 remains 184.
 
 The variable gaps are:
 
-| Gap | Wide | Mid | Tele | Interpretation |
-|---|---:|---:|---:|---|
-| d6 | 10.68 | 26.38 | 33.38 | L1R moves toward the image relative to fixed L1F |
-| d10 | 1.58 | 13.38 | 17.34 | L2 separates from L1R as zoom proceeds |
-| d17 | 28.81 | 14.37 | 1.08 | L2 approaches L3 monotonically |
-| d23 | 18.32 | 5.25 | 7.59 | L3-to-stop spacing is non-monotonic; L3 follows the compensator cam locus |
+| Gap |  Wide |   Mid |  Tele | Interpretation                                                            |
+| --- | ----: | ----: | ----: | ------------------------------------------------------------------------- |
+| d6  | 10.68 | 26.38 | 33.38 | L1R moves toward the image relative to fixed L1F                          |
+| d10 |  1.58 | 13.38 | 17.34 | L2 separates from L1R as zoom proceeds                                    |
+| d17 | 28.81 | 14.37 |  1.08 | L2 approaches L3 monotonically                                            |
+| d23 | 18.32 |  5.25 |  7.59 | L3-to-stop spacing is non-monotonic; L3 follows the compensator cam locus |
 
-The d23 reversal is consistent with the patent description that L3 moves along a locus convex to the image side. The data file uses three `zoomPositions` matching the patent's EFLs: 72.14, 135.00, and 193.97 mm.
+The d23 reversal is consistent with the patent description that L3 moves along a locus convex to the image side. The data file uses three `zoom.stations` matching the patent’s EFLs: 72.14, 135.00, and 193.97 mm.
 
 ## Chromatic Correction Strategy
 
@@ -228,38 +258,120 @@ $$\nu_d = \frac{n_d - 1}{n_F - n_C}$$
 
 $$\theta_{gF} = \frac{n_g - n_F}{n_F - n_C}$$
 
-For the PR and N2 material, the patent requires $\nu_d > 60$ and $\theta_{gF} > -0.0015\nu_d + 0.6425$. For the S-FPL51-class material in Numerical Embodiment 2, $\nu_d = 81.5$ and $\theta_{gF} = 0.539$, while the threshold is about 0.520.
+For the PR and N2 material, the patent requires $\nu_d > 60$ and $\theta_{gF} > -0.0015\nu_d + 0.6425$. For source PR L5 and N2 L7 in Numerical Embodiment 2, $\nu_d = 81.5$ and $\theta_{gF} = 0.539$, while the threshold is about 0.520.
 
-The patent's logic is zoom-dependent. PR in L1R suppresses chromatic aberration that becomes conspicuous on the telephoto side during finite-distance focusing. N2 in L2 counteracts wide-angle lateral color overcorrection because off-axis beams pass through L2 at greater height at the wide end than at the tele end. Fluorite in L3 adds another low-dispersion correction station in the moving compensator.
+The patent's logic is zoom-dependent. PR in L1R suppresses chromatic aberration that becomes conspicuous on the telephoto side during finite-distance focusing. N2 in L2 counteracts wide-angle lateral color overcorrection because off-axis beams pass through L2 at greater height at the wide end than at the tele end. The high-Abbe L11 body provides another low-dispersion station; its fluorite association remains
+a qualified product/proxy inference.
 
 ## Image Stabilization
 
 US 2009/0296231 A1 is not an image-stabilizer mechanism patent. The centered prescription does not identify a decenterable IS group or give decentering parameters. Canon's product page for the IS II lens states that the production lens has image stabilization equivalent to approximately four shutter-speed stops, and its block diagram identifies UD lenses, a fluorite lens, and an IS unit. The data file models only the centered axial prescription; it does not model lateral IS group shift.
 
-## Data-File Semi-Diameters
+## Original Figure and Geometric Constraints — 2026-10-30
 
-The patent does not publish clear-aperture semi-diameters. The data file uses inferred semi-diameters from a paraxial on-axis marginal ray and full-field chief ray envelope, then reduces neighboring surface diameters where the renderer's cross-gap sag policy would otherwise show surface overlap; that reduction now applies only at the 2/3 and 8/9 air gaps. Nine faces around four other closely spaced pairs (12/13, 15/16, 21/22 and 28/29, including the 0.09 mm d21 air space between L11 and L12) are set to the height the f/2.9 axial marginal ray reaches at 194 mm. FIG. 4 draws those pairs meeting at the rim, and the file's gap-sag allowance is 0.97 so they can: between 0.004 and 0.47 mm of air remains at the rims.
+Exact original: `patents/US20090296231A1.pdf`. Numerical Embodiment 2 is on PDF p. 20 (printed p. 6),
+unit-data continuation PDF p. 21, with corresponding wide-end Fig. 4 on PDF p. 5 (sheet 4). Figs. 5A/5B
+and 6A/6B on PDF pp. 6–7 supply wide/tele infinity and 1.5 m aberration plots; there is no tele section
+or finite spacing table for this configuration. Other numerical embodiments are excluded.
 
-These semi-diameters are therefore drawing and ray-containment estimates, not manufacturer mechanical clear-aperture disclosures. The prescription radii, thicknesses, refractive indices, Abbe numbers, stop position, variable gaps, and back focus remain direct transcriptions of the patent table.
+The native embedded raster is 2560 × 3300 px at 300 ppi. The 2300 × 950 rotated optical crop is
+unresampled; 1672 px from first to last vertex over 184.76 mm gives about 9.05 px/mm, or 0.1105 mm/px.
+The scan axis leans about 0.3°; rim heights use half the separation of opposing optical edges, not a
+fixed row against brackets or arrows. Practical rim uncertainty is ±0.4 mm and up to ±0.5 mm at near-contact
+cap/shoulder junctions. Magnified reading crops add no native resolution.
+
+| Surfaces     | Adopted clear sd (mm) | Resolved outer sd (mm) |
+| ------------ | --------------------- | ---------------------- |
+| 1 / 2        | 37 / 35.1             | S2: 37                 |
+| 3 / 4        | 35.1 / 36             | S3: 36                 |
+| 5–6          | 34                    | —                      |
+| 7 / 8        | 27.3 / 25.1           | S8: 27.3               |
+| 9 / 10       | 25.1 / 25.6           | S9: 25.6               |
+| 11 / 12      | 18 / 15.7             | S12: 18                |
+| 13 / 14 / 15 | 15.7 / 16.7 / 16.3    | S13/S15: 16.7          |
+| 16 / 17      | 16.3 / 17.4           | S16: 17.4              |
+| 18–19        | 18.3                  | —                      |
+| 20 / 21      | 18.1 / 17.35          | S21: 18.1              |
+| 22 / 23      | 17.34 / 18.1          | S22: 18.1              |
+| 25–26        | 18.4                  | —                      |
+| 27 / 28      | 17.3 / 16.5           | S28: 17.3              |
+| 29 / 30 / 31 | 16.5 / 16.8 / 16.8    | S29: 16.8              |
+| 32 / 33 / 34 | 15.4 / 15.4 / 14.0    | S34: 15.4              |
+| 35 / 36      | 13.3 / 15.4           | S35: 15.4              |
+| 37–38        | 16.8                  | —                      |
+| 39–41        | 18.2                  | —                      |
+| 42–43        | 20                    | —                      |
+
+Thirty cap changes and 14 resolved `rimExtensionSd` shoulders replace oversized front caps and
+undersized rear blanks. All 23 elements, concave ends and four cemented interfaces were inspected.
+No shoulder is authored at a cemented interface. Junctions 14/30/33/40 follow the respective source
+blank heights; the other fields preserve clear apertures below visible outer shoulders. No resin
+wing, opaque interface, inferred cut or unsupported full optical block is introduced.
+
+The actual generated SVG was compared with native Fig. 4 at approximately the same scale. Source
+R/d, all 23 pairs, the stop, aperture and four zoom-gap schedules are unchanged. The existing 0.97
+sag guard remains unchanged. A full blank-height spherical-cap trial fails all seven close pairs:
+2–3, 8–9, 12–13, 15–16, 21–22, 28–29 and 34–35; several exceed the physical air gap. Initial clear
+35.2 mm caps at 2/3 and 25.2 mm at 8/9 also exceed the unchanged allowance when their shoulders are
+included. The retained 35.1/25.1 mm caps stay within the reading uncertainty and preserve the source
+geometry without increasing a tolerance.
+
+| Pair  | Minimum idealized physical residual (mm) |
+| ----- | ---------------------------------------: |
+| 2–3   |                                 0.031109 |
+| 8–9   |                                 0.048070 |
+| 12–13 |                                 0.471275 |
+| 15–16 |                                 0.112785 |
+| 21–22 |                            about 0.00429 |
+| 28–29 |                                 0.064379 |
+| 34–35 |                                 0.533442 |
+
+The 0.09 mm source air gap at 21–22 remains air. Its roughly 4 µm idealized residual is a retained
+geometric constraint, not a production clearance certification; the source’s printed precision and
+the drawing cannot establish that manufacturing margin. No R/d, stop, focus cam or cut is tuned to
+fit the figure. Source fidelity, sampled runtime behavior and production correlation are separate.
 
 ## Verification Summary
 
 Independent paraxial tracing of the transcribed prescription gives the following values:
 
-| Quantity | Computed | Patent table |
-|---|---:|---:|
-| EFL, wide | 72.1378 mm | 72.14 mm |
-| EFL, mid | 134.9808 mm | 135.00 mm |
-| EFL, tele | 193.9725 mm | 193.97 mm |
-| Back focal distance from final surface | 54.05-54.06 mm | 54.1 mm |
-| First surface to last surface | 184.75-184.76 mm | 184.7 mm |
-| Full field angle $2\omega$, wide | 33.4° | 33.4° |
-| Full field angle $2\omega$, tele | 12.7° | 12.7° |
-| Stop semi-diameter for FNO 2.9 | 17.31 mm | inferred from FNO |
+| Quantity                               |         Computed |      Patent table |
+| -------------------------------------- | ---------------: | ----------------: |
+| EFL, wide                              |       72.1378 mm |          72.14 mm |
+| EFL, mid                               |      134.9808 mm |         135.00 mm |
+| EFL, tele                              |      193.9725 mm |         193.97 mm |
+| Back focal distance from final surface |   54.05-54.06 mm |           54.1 mm |
+| First surface to last surface          | 184.75-184.76 mm |          184.7 mm |
+| Full field angle $2\omega$, wide       |            33.4° |             33.4° |
+| Full field angle $2\omega$, tele       |            12.7° |             12.7° |
+| Stop semi-diameter for FNO 2.9         |         17.31 mm | inferred from FNO |
 
-The corrected group focal lengths also match the continuation of the patent table for Numerical Embodiment 2: L1F +177.23 mm, L1R +142.00 mm, L2 -25.70 mm, L3 +83.94 mm, and L4 +100.65 mm.
+The recomputed group focal lengths also match the continuation of the patent table for Numerical Embodiment 2: L1F +177.23 mm, L1R +142.00 mm, L2 -25.70 mm, L3 +83.94 mm, and L4 +100.65 mm.
 
 The conditional expression values for Embodiment 2 are reproduced by the prescription and the patent table: (1) 81.5, (2) 0.520 < 0.539, (3) 1.23, (4) 1.99, (5) 1.15, (6) 0.36, (7) 2.23, (8) 2.69, and (10) 0.80.
+
+## Current Runtime Scope — 2026-10-30
+
+The three source stations pass surface, image-circle, project 3% aperture and ≥99% corner-field
+checks. A geometry-identical 65-station diagnostic preserves source positions and current iris to
+within 3.56 × 10⁻15 mm. All 65 stations pass the aperture/field criteria. The unchanged derived iris
+radii are 17.309763 / 17.311475 / 17.311312 mm at wide/mid/tele, giving the project paraxial f/2.9.
+Independent real input-diameter solves give f/2.955389 / 2.954660 / 2.955672. The source publishes no
+physical iris diameter; these are distinct stop-convention diagnostics, and the rule remains unchanged.
+
+A 65-zoom × three-field × 97-pupil census uses each state’s current wide-open stop. All 18,915 rays
+are aimed without seed/aim failures; all axial bundles and chiefs clear. The 1,012 off-axis
+`noBracket` entries before the first surface independently intersect its unrestricted sphere outside
+the clear cap; no inside-cap or interior-surface miss is unexplained. A 65-zoom × 21-focus-control
+render sweep gives 1,365 states with 23 finite closed connected contours and zero hidden trimming.
+The focus endpoints are geometry-identical and do not represent a finite focus model.
+
+Only the published wide/mid/tele infinity states have numerical source support. Linear interpolation
+of their gaps is illustrative and does not preserve focus: the 65-state first-order census has a
+worst image-plane displacement of +3.094639 mm at zoom 0.28125 (EFL 103.130310 mm; BF 57.194639 mm
+versus the fixed 54.1 mm image gap). The source cam values are retained. The 1.2 m product metadata,
+source 1.5 m plots, moved IS, attached teleconverters and continuous production cam behavior are not
+certified by sampled clearance.
 
 ## Sources
 
@@ -268,3 +380,11 @@ The conditional expression values for Embodiment 2 are reproduced by the prescri
 3. Canon Camera Museum, "EF70-200mm f/2.8L IS III USM," https://global.canon/en/c-museum/product/ef469.html.
 4. OHARA INC., "Glass Type," https://www.ohara-inc.co.jp/en/product/01000/.
 5. OHARA Corporation, "S-FPL51," https://oharacorp.com/glass/s-fpl51/.
+
+## Scoped source-partial and catalog follow-up — 2026-10-31
+
+Preserve the actual **2026-10-30** complete source/shape/glass review and earlier June 25/Oct 12 history. Direct source check: US20090296231A1 Numerical Embodiment 2, prescription PDF page 20/printed 6 ¶0114, gives PR L5/S9 and N2 L7/S13 **nd 1.49700/νd 81.5**. Paragraph0070 on page 17 maps the special PR/N2 evidence to those two elements; ¶0078 page 18 defines θ=(ng−nF)/(nF−nC), and ¶0111 page 19 explicitly identifies d-reference indices. Table 1 page 22 gives **θgF0.539** for Embodiment 2. The source condition θ>0.6425−0.0015ν is an inequality, not the engine normal line. Existing dPgF+0.032283 correctly converts the absolute published θ through0.6438−0.001682ν. Figure 4 page 5 confirms the PR singlet and N2's cemented interface; native 2560×3300/300 ppi pages were read without upsampling claims.
+
+FCD1's raw PgF 0.538851832 is closer to the printed 0.539 than S-FPL51's0.537459539 (errors−0.000148168 versus−0.001540461). However, evaluated Abbe shifts from81.545888 to81.608950, farther from source 81.5. The source-implied C–F span is0.00609815951; current0.00609471922 is closer than alternate0.00609001633. Effective borrowed-curveν would worsen81.546004→81.608977. The existing FCD1 row also retains its separately documented historical a0 normalization for stable catalog resolution; this review changes no shared coefficient or ranking.
+
+Both variants already trace exactly source θ0.539 through the unchanged published dPgF. Thus a closer raw catalog g-partial does not establish improved modeled source accuracy when it worsens C/F. Retain S-FPL51 for L5/L7 and every other assignment; do not extend their special partial/APD evidence to other equal-coordinate elements. All23 source pairs, both genuine partial fields, six source/inferred APD dispositions, data bytes, R/d, rims, stops and zoom/focus controls stay fixed. No new row, spectral override or complete review count is added; earlier source/model and production limitations remain.

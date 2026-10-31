@@ -13,6 +13,26 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Semi-diameters: patent lists 有効径 as full clear diameters; this  ║
  * ║  file stores sd = 有効径 / 2 as required by LensVisualizer.          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Original-PDF shape/glass review 2026-10-30: Numerical Example 1 is on PDF pp.13-14;
+ * paragraph 0058 p.11 explicitly defines d-line indices and effective diameters. Figure 1
+ * is the matching wide section, PDF p.21: native 953x514 JPEG at 150 ppi, approximately
+ * 4.6 px/mm with +/-0.6 mm practical rim uncertainty. All printed clear diameters remain.
+ * One resolved S31 front outer shoulder uses rimExtensionSd 12.8 with clear sd 12.15 mm.
+ * No bonded-interface land or inferred cut is added. All source R/d, gaps, stop and controls stay.
+ * All 19 d-line pairs retain qualified compatible catalog proxies, not historical identities.
+ * L2 dPgF -0.00599 is genuinely printed as condition (8), Table 1 p.20; it is retained.
+ * The source's total-length wording ends at the last lens, while summary values/condition (9)
+ * numerically include BF. This unresolved source definition is disclosed; no source value changes.
+ * Source endpoints pass aperture/field checks. Geometry-identical 65-state interpolation has
+ * 25 stations above the 3% aperture criterion (S15, maximum +9.072%) and +12.290 mm defocus.
+ * No continuous cam or finite-focus prescription is available; interpolated states are illustrative.
+ *
+ * Scoped catalog follow-up2026-10-31: L2 uses existing S-NBM51 as a closer
+ * coordinate/partial proxy; the genuine source dPgF−.00599 stays authoritative.
+ * JP2013140404A ¶0058 p11, numerical row3 p13, condition(8) p20.
+ * See audit for source-partial residuals and rejected CDGM/NHG trials.
+ * All source numbers, geometry and controls remain unchanged.
  */
 
 const LENS_DATA = {
@@ -34,7 +54,7 @@ const LENS_DATA = {
     ],
     elementCount: 19,
     groupCount: 14,
-    focalLengthMm: { marketing: [70, 300], design: [72.2035, 290.1091] },
+    focalLengthMm: { marketing: [70, 300], design: [72.2, 290] },
   },
 
   source: {
@@ -43,6 +63,12 @@ const LENS_DATA = {
     patentYear: 2013,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Paragraphs 0052/0059 define total length to the final lens surface, but the printed 185.20/214.53/239.20 mm summaries and Table 1 condition (9)=0.825 agree with first-surface-to-image distances including BF. Summed first-to-final-surface distances are 138.46/166.71/181.79 mm. Keep all literal R/d, BF and summary numbers; no isolated numeric correction is supported.",
+      },
+    ],
   },
 
   elements: [
@@ -54,7 +80,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 189.9,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Low-index front collector for the positive first zoom unit.",
     },
     {
@@ -65,10 +91,10 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.3,
       focalLengthMm: -131.0,
-      glass: "KZFS-class short flint (Schott N-KZFS4 equivalent)",
+      glass: "S-NBM51 (OHARA) — qualified spectral proxy; historical identity unresolved",
       apd: "patent",
       apdNote:
-        "Patent condition (8): θgF - 0.6438 + 0.001682×νdN = -0.00599; closest public catalog match is Schott N-KZFS4.",
+        "Patent condition (8): θgF - 0.6438 + 0.001682×νdN = -0.00599; S-NBM51 is a closer published coordinate/partial-dispersion proxy; historical material identity remains unestablished.",
       role: "Front-unit negative anomalous-dispersion element cemented to the UD positive meniscus.",
       cemented: "D1",
       dPgF: -0.00599,
@@ -81,9 +107,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 99.9,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA) — qualified spectral proxy; historical identity unresolved",
       apd: "inferred",
-      apdNote: "Catalog UD fluorophosphate member of the first-unit achromat; patent-specific APD condition is on L2.",
+      apdNote:
+        "Production-correlated inferred UD position with an S-FPL51-compatible spectral proxy; historical chemistry and source APD measurement are unresolved. The published partial-dispersion condition applies to L2.",
       role: "UD positive meniscus forming the rear element of the first zoom unit.",
       cemented: "D1",
     },
@@ -95,7 +122,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -51.4,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "High-index leading negative element of the stationary second zoom unit.",
     },
     {
@@ -106,7 +133,7 @@ const LENS_DATA = {
       nd: 1.63854,
       vd: 55.4,
       focalLengthMm: -40.4,
-      glass: "S-BSM18 (OHARA)",
+      glass: "S-BSM18 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Negative crown-like partner in the L2 cemented doublet.",
       cemented: "D2",
     },
@@ -118,7 +145,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: 58.2,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "High-dispersion positive partner completing the net-negative second zoom unit doublet.",
       cemented: "D2",
     },
@@ -130,9 +157,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 76.6,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 (OHARA) — qualified spectral proxy; historical identity unresolved",
       apd: "inferred",
-      apdNote: "Second catalog UD fluorophosphate element matching Canon's published two-UD production count.",
+      apdNote:
+        "Second production-correlated inferred UD position with an S-FPL51-compatible spectral proxy; no individual source partial-dispersion value or historical chemistry is established.",
       role: "Second UD element; leading positive element of the relay unit ahead of the stop.",
     },
     {
@@ -143,7 +171,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 49.6,
-      glass: "S-BSM14 (OHARA)",
+      glass: "S-BSM14 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Moderate-index positive element in the L3 cemented achromat.",
       cemented: "D3",
     },
@@ -155,8 +183,8 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.3,
       focalLengthMm: -63.3,
-      glass: "S-LAH71 (OHARA)",
-      role: "Dense lanthanum negative partner in the positive third zoom unit doublet.",
+      glass: "S-LAH71 (OHARA) — qualified spectral proxy; historical identity unresolved",
+      role: "High-index negative partner in the positive third zoom unit doublet.",
       cemented: "D3",
     },
     {
@@ -167,7 +195,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: -27.6,
-      glass: "S-BAH27 (OHARA)",
+      glass: "S-BAH27 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Negative element of the compact fourth zoom unit / probable IS doublet.",
       cemented: "D4",
     },
@@ -179,7 +207,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 38.0,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "High-dispersion positive partner in the compact fourth zoom unit doublet.",
       cemented: "D4",
     },
@@ -191,7 +219,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: 80.2,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL14 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Leading positive meniscus of the stationary fifth zoom unit.",
     },
     {
@@ -202,7 +230,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       focalLengthMm: 41.6,
-      glass: "S-BSM14 (OHARA)",
+      glass: "S-BSM14 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Positive partner in the fifth-unit cemented achromat.",
       cemented: "D5",
     },
@@ -214,7 +242,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       focalLengthMm: -48.1,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "High-dispersion negative partner in the fifth-unit cemented achromat.",
       cemented: "D5",
     },
@@ -226,7 +254,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 108.6,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Rear positive field-correcting meniscus of the fifth zoom unit.",
     },
     {
@@ -237,7 +265,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -48.7,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "High-index negative leading element of the rear negative zoom unit.",
     },
     {
@@ -248,7 +276,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 58.8,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Positive chromatic-balancing element within the rear negative unit.",
     },
     {
@@ -259,7 +287,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -29.9,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Strong rear negative element providing much of the final unit's diverging power.",
     },
     {
@@ -270,7 +298,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       focalLengthMm: 69.1,
-      glass: "S-TIM35 (OHARA)",
+      glass: "S-TIM35 (OHARA) — qualified spectral proxy; historical identity unresolved",
       role: "Final positive rear corrector controlling rear-group power and field curvature.",
     },
   ],
@@ -308,7 +336,14 @@ const LENS_DATA = {
     { label: "28", R: 30.346, d: 4.69, sd: 11.97 },
     { label: "29", R: -141.521, d: 2.99, sd: 12.23, medium: 17 },
     { label: "30", R: -35.789, d: 3.64, sd: 12.395 },
-    { label: "31", R: -31.158, d: 1.2, sd: 12.15, medium: 18 },
+    {
+      label: "31",
+      R: -31.158,
+      d: 1.2,
+      sd: 12.15,
+      rimExtensionSd: 12.8,
+      medium: 18,
+    },
     { label: "32", R: 177.055, d: 2.14, sd: 12.8 },
     { label: "33", R: 62.632, d: 3.42, sd: 14.145, medium: 19 },
     { label: "34", R: -205.77, sd: 14.315 },

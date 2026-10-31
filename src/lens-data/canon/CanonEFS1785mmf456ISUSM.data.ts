@@ -1,53 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF-S 17-85mm f/4-5.6 IS USM                             ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 2006/0023317 A1, Numerical Embodiment 1 (Makoto Fujimoto /     ║
- * ║ Canon Kabushiki Kaisha). The patent prescription is retained at scale      ║
- * ║ s = 1. Production correlation uses Canon's 17/12 construction, EF-S APS-C  ║
- * ║ identity, 0.35 m MFD, 0.20x maximum magnification, IS, and timing.          ║
- * ║                                                                              ║
- * ║ 17 elements / 12 groups; five powered units (+ - + - +); two aspherical   ║
- * ║ surfaces on E15 (patent surfaces 26/27).                                   ║
- * ║                                                                              ║
- * ║ Zoom positions: 17.55 / 35.00 / 82.48 mm. Patent infinity gaps d5, d13,   ║
- * ║ d14, d20, and d25 are transcribed exactly. d30 is the independently         ║
- * ║ computed Gaussian BFD required to keep the image plane conjugate at each    ║
- * ║ zoom state because Numerical Embodiment 1 publishes no d30 row.             ║
- * ║ d14 is keyed as STO because patent surface 14 is the aperture stop.         ║
- * ║                                                                              ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. Only L2 translates. At each       ║
- * ║ zoom state d5 + d13 is conserved and the image plane remains fixed. The     ║
- * ║ 0.35 m Canon MFD solutions require L2 to move objectward, contrary to       ║
- * ║ patent paragraph 0056; the tele solution independently gives 0.20214x.      ║
- * ║                                                                              ║
- * ║ Source discrepancy: paragraph 0054 says L4 moves imageward wide-to-tele,    ║
- * ║ while the fixed-image-plane numerical kinematics move L4 objectward by      ║
- * ║ about 4.86 mm. The numerical prescription is not altered to follow prose.   ║
- * ║                                                                              ║
- * ║ Maximum-aperture design states use Figure 2 values f/4.11, f/4.45, and      ║
- * ║ f/5.77. The header's rounded wide f/4.0 and the marketed f/4-5.6 range      ║
- * ║ remain metadata only. The stop radius is derived from the design f-number at ║
- * ║ each station; the traced wide-open iris radii are 4.637 / 5.463 / 4.877 mm.  ║
- * ║                                                                              ║
- * ║ Semi-diameters are inferred, not patent-published. They were derived from   ║
- * ║ full-pupil paraxial marginal/chief bundles through 0.60 x the published     ║
- * ║ 13.65 mm image height at all infinity and reconstructed 0.35 m states,      ║
- * ║ then expanded toward the Figure 1 silhouette where edge, rim-slope, conic,  ║
- * ║ and cross-gap limits permit. Figure 1 review enlarged E5 surfaces 8/9 to    ║
- * ║ 11.8/12.5 mm so its optical silhouette matches the visibly taller L2 member. ║
- * ║ Full-corner pupil vignetting is allowed outside the 0.60-field envelope.     ║
- * ║                                                                              ║
- * ║ Glass vendor identity is not asserted. The patent publishes only rounded    ║
- * ║ d-line nd/vd coordinates. Vendor-neutral six-digit coordinate classes let   ║
- * ║ the resolver use compatible catalog curves without asserting production     ║
- * ║ melts. nC, nF, ng, and dPgF remain omitted because the patent omits them.    ║
- * ║                                                                              ║
- * ║ No sensor cover glass, filter, dummy/flare-cutter plane, mechanical part,   ║
- * ║ folded path, or uniform scaling is included.                                ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * Canon EF-S 17-85mm f/4-5.6 IS USM — US 2006/0023317 A1, Numerical Embodiment 1.
+ * Scoped original review 2026-10-30: unchanged 2026-08-25 source/glass/cap conclusions
+ * are reused except the reproducible E4/E5 native-outline assignment error and omitted
+ * air shoulders. Exact original Numerical Embodiment 1 is on PDF pp.16-17 (printed 4–5),
+ * d-line/asphere definition paragraph 0078 on p.16, Figure 1 p.2 / sheet 1 and Figure 2A–C
+ * p.3 / sheet 2. Native scan is 300 ppi; earlier 600 dpi viewing was upsampling.
+ *
+ * The native first L2 blank is E4 (R6/R7), not E5 (R8/R9). Set S6 clear 12.5 and restore
+ * S8/S9 clear 8.5 / 8.5 mm. Three resolved air shoulders preserve clear caps: S7 outer 12.5
+ * / clear 8.15, S11 outer 8.5 / clear 6.85, S12 outer 7.75 / clear 6.85 mm. The latter caps
+ * remain limited by the source 0.05 mm air gap. No bonded-interface land or cut is added.
+ * All source R/d, both aspheres, numeric glass pairs, source zoom rows, derived iris and
+ * reconstructed close cams stay unchanged; no tolerance or source datum is fitted.
+ *
+ * All 17 explicitly d-referenced media retain qualified catalog-compatible curves. These
+ * are spectral proxies, not source-stated suppliers, melts, chemistry or manufacture.
+ * No material C/F/g indices, partial dispersion or APD evidence is supplied. The optional
+ * source filter/weak unit is outside this selected numerical prescription and not added.
+ *
+ * Only infinity gaps are source data. Computed final BFD and constrained L2 close cams
+ * remain reconstructions. Existing source/model motion and Table 1 label contradictions
+ * are recorded unresolved below, without numeric correction. Three source station f-numbers
+ * stay 4.11 / 4.45 / 5.77 from Figure 2; header rounded 4.0 stays a source qualification.
+ * Current iris radii are 4.606743 / 5.409613 / 4.844751 mm under unchanged derived authority.
+ * Intermediate zoom/focus states are illustrative; current checks retain 1.0871 mm infinity
+ * and 1.4692 mm finite defocus, plus some unavailable object-inside-lens runtime states.
+ * IS transverse travel is not calibrated or modeled.
  */
 
 const LENS_DATA = {
@@ -81,6 +61,16 @@ const LENS_DATA = {
     patentYear: 2006,
     authors: ["Makoto Fujimoto"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Paragraph 0054 says L4 moves imageward wide-to-tele, while literal source zoom rows with the computed fixed Gaussian image plane move L4 4.863352 mm objectward. Paragraph 0056 describes imageward near-focus L2 motion, while the retained constrained 0.35 m reconstruction moves L2 objectward. The source supplies no final-image gap or finite-focus table; preserve all numerical source data and qualify these model/source kinematic differences. Existing 2026-08-25 audit conclusions retained; structured note added 2026-10-30.",
+      },
+      {
+        status: "unresolved",
+        note: "Table 1, Numerical Embodiment 1, labels values 34.07 and -79.65 as phi5/phi5b, but they agree with focal lengths in mm, not powers. The reciprocal-power ratio gives printed 0.43. Preserve every source number; no prescription correction follows. Existing analysis qualification formalized 2026-10-30.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -309,13 +299,13 @@ const LENS_DATA = {
     { label: "3", R: "flat", d: 0.12, sd: 25.5 },
     { label: "4", R: 42.152, d: 5.6, sd: 24.0, medium: 3 },
     { label: "5", R: 133.136, sd: 22.0 },
-    { label: "6", R: 154.643, d: 1.2, sd: 11.0, medium: 4 },
-    { label: "7", R: 10.222, d: 5.02, sd: 8.15 },
-    { label: "8", R: -92.741, d: 1.0, sd: 11.8, medium: 5 },
-    { label: "9", R: 26.583, d: 0.15, sd: 12.5 },
+    { label: "6", R: 154.643, d: 1.2, sd: 12.5, medium: 4 },
+    { label: "7", R: 10.222, d: 5.02, sd: 8.15, rimExtensionSd: 12.5 },
+    { label: "8", R: -92.741, d: 1.0, sd: 8.5, medium: 5 },
+    { label: "9", R: 26.583, d: 0.15, sd: 8.5 },
     { label: "10", R: 16.82, d: 5.5, sd: 8.5, medium: 6 },
-    { label: "11", R: -42.034, d: 0.05, sd: 6.85 },
-    { label: "12", R: -39.123, d: 1.0, sd: 6.85, medium: 7 },
+    { label: "11", R: -42.034, d: 0.05, sd: 6.85, rimExtensionSd: 8.5 },
+    { label: "12", R: -39.123, d: 1.0, sd: 6.85, rimExtensionSd: 7.75, medium: 7 },
     { label: "13", R: 52.275, sd: 7.75 },
     { label: "STO", R: "flat" },
     { label: "15", R: 47.384, d: 0.8, sd: 6.75, medium: 8 },

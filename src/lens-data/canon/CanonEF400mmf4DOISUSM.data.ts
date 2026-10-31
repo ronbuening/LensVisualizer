@@ -7,12 +7,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Source prescription: US 2002/0015231 A1, Numerical Example 1 (Hideki Ogawa).           ║
  * ║ Production correlation: Canon EF 400mm f/4 DO IS USM, released December 2001.           ║
  * ║                                                                                          ║
- * ║ SOURCE CORRECTIONS USED BY THE MODEL                                                     ║
- * ║   • r17: A1 prints +87.040 mm; same-application US 6,473,232 B2 and the direct          ║
- * ║     divisional print -87.040 mm. The model uses -87.040 mm.                             ║
- * ║   • r22: A1/B2 print +131.344 mm; direct divisional US 2003/0053212 A1 prints           ║
- * ║     +131.844 mm. Independent EFL/source-precision verification supports +131.844 mm.    ║
- * ║                                                                                          ║
+ * ║ NONLITERAL RADII — PROVENANCE UNRESOLVED IN THE 2026-10-30 ORIGINAL REVIEW                         ║
+ * ║ A1 prints r17=+87.040, r19=+59.203 and r22=+131.344; the existing model retains                    ║
+ * ║ -87.040/-59.203/+131.844. Prior family-source correction claims are not freshly verified:           ║
+ * ║ their local originals are absent. The literal A1 block contradicts its 392 mm summary, but does      ║
+ * ║ not uniquely prove these exact replacements. See structured unresolved source.errata and audit.     ║
+ * ║                                                                                                  ║
  * ║ MODEL NORMALIZATION                                                                       ║
  * ║   • Patent r28-r29 is a 2.20 mm plane-parallel plate (nd 1.51633, νd 64.1) at the image  ║
  * ║     side, drawn as a plane-parallel plate element with a ray-trace estimated             ║
@@ -42,14 +42,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   The patent does not tabulate clear semi-diameters. Values below are modeling          ║
  * ║   estimates from the f/4.12 pupil/ray envelope, Fig. 1 optical-section proportions,     ║
  * ║   Canon's 128 mm maximum barrel diameter, and independent edge/rim/cross-gap checks.    ║
- * ║   The August 2026 600-dpi review retained the pupil-critical DO pair and tightened the   ║
- * ║   L3/L5-L7/rear-unit rims to the optical outlines rather than the surrounding ray ink.   ║
+ * ║   The 2026-10-30 native 300-dpi review adds S11 outer 31/cap 28.1 and corrects S6/S7 to 36.75 mm.      ║
+ * ║   The old 600-dpi view was upsampling; retained cap heights remain inferred and geometry-constrained.║
  * ║   They are not presented as patent-published dimensions.                                ║
  * ║                                                                                          ║
- * ║ GLASS DATA                                                                                 ║
- * ║   Glass strings are coordinate-compatible classes/equivalents, not claims of Canon's    ║
- * ║   melt vendor. Example 1 publishes nd/νd only; nC, nF, ng, and dPgF are therefore not   ║
- * ║   authored without source-defensible line data.                                         ║
+ * ║ GLASS DATA                                                                               ║
+ * ║ The patent names no spectral line. 16 of 16 printed pairs, including rear plate F,       ║
+ * ║ match catalog d-line coordinates and none match the e-line, so the table is read as      ║
+ * ║ d-line. 16 media use catalog curves as spectral proxies; supplier, melt and chemistry    ║
+ * ║ stay unspecified. No per-lens C/F/g or partial-dispersion data are published. The two    ║
+ * ║ UV-layer nd/vd pairs are separately preserved in analysis as source microstructure       ║
+ * ║ data, not invented macro resin elements.                                                 ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -59,7 +62,7 @@ const LENS_DATA = {
   key: "canon-ef-400mm-f4-do-is-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/4 DO IS USM",
-  subtitle: "US 2002/0015231 A1 Example 1 — corrected family-source model",
+  subtitle: "US 2002/0015231 A1 Example 1 — qualified nonliteral model; radius provenance unresolved",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -67,14 +70,14 @@ const LENS_DATA = {
     specs: [
       "US 2002/0015231 A1 — Example 1",
       "15 powered elements / 11 active groups + rear plate",
-      "Design f = 392.025 mm, F/4.12",
+      "PATENT f = 392.00 mm, F/4.12",
       "2ω = 6.32°",
       "r2 radial-polynomial DO phase",
     ],
     elementCount: 15,
     groupCount: 11,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 400, design: 392.0252037706986 },
+    focalLengthMm: { marketing: 400, design: 392.0 },
     fNumber: { marketing: 4, design: 4.12 },
   },
 
@@ -84,6 +87,12 @@ const LENS_DATA = {
     patentYear: 2002,
     authors: ["Hideki Ogawa"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example 1 on original A1 PDF page 17/printed 7 prints r17=+87.040, r19=+59.203, r22=+131.344 mm. The pre-existing -87.040/-59.203/+131.844 mm model is retained. Prior B2/divisional correction claims cannot be freshly checked because those local originals are absent. Fully literal values give EFL 1088.527323 mm against printed 392; that contradiction does not uniquely prove the exact adopted replacements. See the audit and generic follow-up queue.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -96,7 +105,8 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.7,
       focalLengthMm: 316.28514596353614,
-      glass: "S-BAL41-equivalent class (564607; vendor unproven)",
+      glass:
+        "S-BAL41 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 2,
@@ -106,7 +116,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 372.42409773436736,
-      glass: "S-BSL7-equivalent class (516641; vendor unproven)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 3,
@@ -116,7 +127,8 @@ const LENS_DATA = {
       nd: 1.51823,
       vd: 58.9,
       focalLengthMm: 231.92404480834531,
-      glass: "S-NSL3-equivalent class (518590; vendor unproven)",
+      glass:
+        "S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 4,
@@ -126,7 +138,8 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35.3,
       focalLengthMm: -141.84105203269104,
-      glass: "S-LAM7-equivalent class (750353; vendor unproven)",
+      glass:
+        "S-LAM7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 5,
@@ -136,7 +149,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 202.33631758992254,
-      glass: "S-FSL5-equivalent class (487702; vendor unproven)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 6,
@@ -146,7 +160,8 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.1,
       focalLengthMm: -328.9903060843815,
-      glass: "S-TIM25-equivalent class (673321; vendor unproven)",
+      glass:
+        "S-TIM25 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 7,
@@ -156,7 +171,8 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       focalLengthMm: -136.25968443456784,
-      glass: "Fluorite (CaF2) class",
+      glass:
+        "CaF2 (fluorite spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 8,
@@ -166,7 +182,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -70.50627738595921,
-      glass: "805254 class (vendor unresolved)",
+      glass:
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D2",
     },
     {
@@ -177,7 +194,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 51.46802125959051,
-      glass: "S-FSL5-equivalent class (487702; vendor unproven)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D2",
     },
     {
@@ -188,7 +206,8 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       focalLengthMm: 42.349601965079444,
-      glass: "762265 class (vendor unresolved)",
+      glass:
+        "S-TIH14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D3",
     },
     {
@@ -199,7 +218,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -25.858934903832207,
-      glass: "804465/804466 class (vendor unresolved)",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D3",
     },
     {
@@ -210,7 +230,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -58.85570310158505,
-      glass: "804465/804466 class (vendor unresolved)",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 13,
@@ -220,7 +241,8 @@ const LENS_DATA = {
       nd: 1.6398,
       vd: 34.5,
       focalLengthMm: 35.444940733735066,
-      glass: "S-TIM27 / 640345 class (vendor unproven)",
+      glass:
+        "S-TIM27 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D4",
     },
     {
@@ -231,7 +253,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -48.01581954863957,
-      glass: "804465/804466 class (vendor unresolved)",
+      glass:
+        "H-ZLaF50D (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D4",
     },
     {
@@ -242,7 +265,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 91.12018098917984,
-      glass: "S-BSL7-equivalent class (516641; vendor unproven)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 16,
@@ -251,7 +275,8 @@ const LENS_DATA = {
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
-      glass: "S-BSL7",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Plane-parallel plate at the image side of the patent prescription (US 2002/0015231 A1, Numerical Example 1 r28–r29); identifying it with the production drop-in filter is a modeling inference. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],
@@ -278,12 +303,12 @@ const LENS_DATA = {
     { label: "3", R: -478.031, d: 16.76, sd: 54.5 },
     { label: "4", R: 96.413, d: 8.6, sd: 39.0, medium: 3 },
     { label: "5", R: 472.518, d: 3.11, sd: 39.0 },
-    { label: "6", R: -495.228, d: 3.6, sd: 36.6, medium: 4 },
-    { label: "7", R: 135.791, d: 4.08, sd: 36.6 },
+    { label: "6", R: -495.228, d: 3.6, sd: 36.75, medium: 4 },
+    { label: "7", R: 135.791, d: 4.08, sd: 36.75 },
     { label: "8", R: 71.132, d: 8.4, sd: 34.0, medium: 5 },
     { label: "9", R: 245.218, d: 0.8, sd: 34.0 },
     { label: "10", R: 51.628, d: 5.3, sd: 31.0, medium: 6 },
-    { label: "11", R: 40.134, d: 39.15, sd: 31.0 },
+    { label: "11", R: 40.134, d: 39.15, sd: 28.1, rimExtensionSd: 31.0 },
     { label: "12", R: 1141.04, d: 1.8, sd: 20.0, medium: 7 },
     { label: "13", R: 56.18, d: 22.84, sd: 20.0 },
     { label: "STO", R: "flat", d: 10.5 },

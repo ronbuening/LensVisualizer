@@ -5,34 +5,37 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Complete optical configuration: built-in extender INSERTED.
  * Paired with `CanonEF200400mmf4LISUSMExtender14x.data.ts` via
  * `opticalConfiguration`.
- * Patent-active model: 32 elements / 23 air-separated groups; Canon's one rear filter is excluded
- * by project scope. Zoom positions are the patent design focal lengths; marketed focal lengths and apertures are
+ * Patent-active model: 32 elements / 23 air-separated groups. The source table contains no rear filter; the
+ * production filter has no supplied prescription and is not invented here. Zoom positions are the patent design focal lengths; marketed focal lengths and apertures are
  * kept in separate metadata fields.
  *
  * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity focus only. L1 is identified as the
  * focusing unit, but no finite-distance spacing table is published. Canon's 2.0 m MFD is retained as product
  * metadata only; no internal focus motion is invented.
  * Zoom-only variable gaps: d8, d18, d25. Each var pair keeps infinity/close values identical at a given zoom
- * position.
+ * position. The two source endpoints do not define a focus-preserving intermediate cam. Current linear gap
+ * interpolation is illustrative: at t=0.578125 it has 31.53 mm paraxial defocus and the aperture check is f/7.466
+ * versus nominal f/5.765; source caps/R/d and controls are preserved rather than inventing an unpublished cam.
  *
- * Stop: patent surface 30 (SP/STO), in the fixed fourth unit ahead of the extender. The Numerical Example 1 patent
- * surface table prints a 39.75 mm effective diameter (19.875 mm radius). By real marginal ray that opening gives
- * f/5.764 at 287.00 mm and f/5.765 at 545.98 mm, 0.1 % under the patent's f/5.77 (the computed focal lengths are
- * 0.06 % under the printed ones); a paraxial f-number for the same opening is f/5.617.
- * The trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm, 0.015 % under the printed
- * radius, held at both zoom positions and the same opening the EXT OUT member traces.
- * Semi-diameters: one-half of the patent effective diameters on every refracting surface; the stop radius is derived
- * from the design f-number.
+ * Stop: patent surface 30 (SP/STO), in the fixed fourth unit ahead of the extender. The source lists 39.75 mm
+ * as its effective diameter, not a proven physical iris schedule. The existing fixed-iris rule derives a live radius
+ * of 19.365397 mm at both zoom endpoints. Its paraxial f-numbers are 5.765010/5.764594; EFL divided by the real
+ * transmitted collimated-beam diameter is 5.907995/5.908677. A diagnostic 19.875 mm iris gives real-beam
+ * 5.765213/5.764806 but paraxial 5.617193/5.616787. That convention-dependent agreement is not evidence to replace
+ * the stop rule. Every refracting clear sd stays at half the source effective diameter. Three outer shoulders on
+ * shared surfaces 4/11/14 preserve their optical caps; no source radius, spacing or control is tuned to fit Fig. 3.
  *
  * No scaling is applied. All surfaces are spherical; no asphere or conic conversion is applicable.
- * Glass source: the patent publishes nd/νd only and is vendor-silent. Glass strings therefore use coordinate
- * classes rather than claimed melts. The sole stronger identity is CaF2 fluorite, supported by Canon's one-fluorite
- * production specification and the unique patent coordinate. nC/nF/ng/dPgF are not authored because the selected
- * patent does not publish them and vendor identity is generally not unique.
+ * Glass source: the table headers identify nd/νd, hence the d-line reference; no individual line indices or partial
+ * dispersion values are published. Coordinate classes and all 32 compatible catalog curves are qualified spectral
+ * proxies, not historical supplier, melt or chemistry evidence. CaF2 is also a proxy; the maker's fluorite count is a
+ * separate production correlation. No per-lens nC/nF/ng/dPgF is authored and no source APD claim is inferred from the
+ * production material count.
  *
  * Source corrections preserved: surface 38 is R=+174.462 after rendered-page inspection. In the EXT IN member,
- * raw d56=68.46 mm is normalized to the patent-defined BF summary 68.49 mm; the raw value remains in the audit and
- * verification artifacts.
+ * the existing last gap remains 68.49 mm from the patent BF summary, against the raw d56=68.46 mm row.
+ * Source-summary BF/total length and Claim 1 independently support this correction; it is recorded in source.errata.
+ * No new numeric R/d change is made.
  * Manufacturer identity/spec sources: Canon Camera Museum and Canon U.S.A. support pages.
  */
 
@@ -48,7 +51,7 @@ const LENS_DATA = {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     specs: [
-      "32 ELEMENTS / 23 GROUPS (PATENT ACTIVE; REAR FILTER EXCLUDED)",
+      "32 ELEMENTS / 23 GROUPS (PATENT CONFIGURATION)",
       "280–560mm f/5.6 MARKETED",
       "287.00–545.98 mm / f/5.77 PATENT DESIGN",
       "BUILT-IN 1.4× EXTENDER IN",
@@ -66,6 +69,17 @@ const LENS_DATA = {
     patentYear: 2013,
     authors: ["Takahiro Hatada"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "56",
+        field: "d",
+        printed: 68.46,
+        applied: 68.49,
+        evidence: ["source-summary", "claims"],
+        note: "PDF p. 18 prints d56=68.46 but BF=68.49 and total length 389.84 mm. Literal d56 gives rounded track 389.82 mm; 68.49 gives 389.85 mm, matching EXT OUT. Both corrected stacks retain a 0.01 mm rounding residual from the stated 389.84 mm total. Claim 1 (PDF p. 23, printed 11) independently requires constant total lens length before/after insertion. The existing 68.49 correction is retained, without fitting paraxial focus.",
+      },
+    ],
   },
 
   elements: [
@@ -77,7 +91,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 480.294753,
-      glass: "487702 crown class (vendor unspecified)",
+      glass: "487702 crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front/focus unit; fixed during zoom. Finite-focus motion is not reconstructed.",
     },
@@ -89,7 +103,7 @@ const LENS_DATA = {
       nd: 1.80610,
       vd: 33.3,
       focalLengthMm: -276.190735,
-      glass: "806333 dense-flint/lanthanum class (vendor unspecified)",
+      glass: "806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front/focus unit; fixed during zoom. Finite-focus motion is not reconstructed.",
     },
@@ -101,7 +115,7 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       focalLengthMm: 304.651025,
-      glass: "Fluorite (CaF2; production-correlation inference)",
+      glass: "Fluorite (CaF2 spectral proxy; historical material and supplier unspecified)",
       apd: false,
       role: "Positive front/focus unit; fixed during zoom. Finite-focus motion is not reconstructed.",
     },
@@ -113,7 +127,7 @@ const LENS_DATA = {
       nd: 1.49700,
       vd: 81.5,
       focalLengthMm: 278.180469,
-      glass: "497816 ED/UD crown class (vendor unspecified)",
+      glass: "497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front/focus unit; fixed during zoom. Finite-focus motion is not reconstructed.",
     },
@@ -125,7 +139,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: 67.890238,
-      glass: "904313 high-index lanthanum-flint class (vendor unspecified)",
+      glass: "904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
       cemented: "C1",
@@ -138,7 +152,7 @@ const LENS_DATA = {
       nd: 1.69680,
       vd: 55.5,
       focalLengthMm: -63.317718,
-      glass: "697555 lanthanum-crown class (vendor unspecified)",
+      glass: "697555 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
       cemented: "C1",
@@ -151,7 +165,7 @@ const LENS_DATA = {
       nd: 1.69680,
       vd: 55.5,
       focalLengthMm: -81.217332,
-      glass: "697555 lanthanum-crown class (vendor unspecified)",
+      glass: "697555 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
       cemented: "C2",
@@ -164,7 +178,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: 66.734326,
-      glass: "904313 high-index lanthanum-flint class (vendor unspecified)",
+      glass: "904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
       cemented: "C2",
@@ -177,7 +191,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -69.141599,
-      glass: "835427 high-index lanthanum class (vendor unspecified)",
+      glass: "835427 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
     },
@@ -189,7 +203,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -82.897225,
-      glass: "835427 high-index lanthanum class (vendor unspecified)",
+      glass: "835427 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative zooming unit.",
     },
@@ -201,7 +215,7 @@ const LENS_DATA = {
       nd: 1.49700,
       vd: 81.5,
       focalLengthMm: 223.377845,
-      glass: "497816 ED/UD crown class (vendor unspecified)",
+      glass: "497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive compensating zoom unit.",
     },
@@ -213,7 +227,7 @@ const LENS_DATA = {
       nd: 1.49700,
       vd: 81.5,
       focalLengthMm: 205.975853,
-      glass: "497816 ED/UD crown class (vendor unspecified)",
+      glass: "497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive compensating zoom unit.",
     },
@@ -225,7 +239,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: -172.567935,
-      glass: "904313 high-index lanthanum-flint class (vendor unspecified)",
+      glass: "904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive compensating zoom unit.",
       cemented: "C3",
@@ -238,7 +252,7 @@ const LENS_DATA = {
       nd: 1.49700,
       vd: 81.5,
       focalLengthMm: 113.014134,
-      glass: "497816 ED/UD crown class (vendor unspecified)",
+      glass: "497816 ED/UD crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive compensating zoom unit.",
       cemented: "C3",
@@ -251,7 +265,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       focalLengthMm: -273.676928,
-      glass: "762265 dense-flint class (vendor unspecified)",
+      glass: "762265 dense-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed fourth-unit front subunit ahead of the aperture stop.",
     },
@@ -263,7 +277,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       focalLengthMm: 96.666550,
-      glass: "593686 low-dispersion class (vendor unspecified)",
+      glass: "593686 low-dispersion class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed fourth-unit front subunit ahead of the aperture stop.",
     },
@@ -275,7 +289,7 @@ const LENS_DATA = {
       nd: 1.80610,
       vd: 33.3,
       focalLengthMm: 86.919133,
-      glass: "806333 dense-flint/lanthanum class (vendor unspecified)",
+      glass: "806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative image-stabilizing subunit; transverse IS motion is not represented in the axial prescription.",
       cemented: "C4",
@@ -288,7 +302,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: -79.062966,
-      glass: "516/517642 BK7-coordinate crown class (vendor unspecified)",
+      glass: "S-BSL7 (Ohara compatible spectral proxy; historical material, supplier and melt unspecified)",
       apd: false,
       role: "Negative image-stabilizing subunit; transverse IS motion is not represented in the axial prescription.",
       cemented: "C4",
@@ -301,7 +315,7 @@ const LENS_DATA = {
       nd: 1.65160,
       vd: 58.5,
       focalLengthMm: -71.226716,
-      glass: "652585 lanthanum-crown class (vendor unspecified)",
+      glass: "652585 lanthanum-crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative image-stabilizing subunit; transverse IS motion is not represented in the axial prescription.",
     },
@@ -313,7 +327,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: 78.499634,
-      glass: "623582 crown class (vendor unspecified)",
+      glass: "623582 crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed subunit ahead of the extender insertion position.",
     },
@@ -325,7 +339,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       focalLengthMm: 116.241497,
-      glass: "623582 crown class (vendor unspecified)",
+      glass: "623582 crown class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed subunit ahead of the extender insertion position.",
     },
@@ -337,7 +351,7 @@ const LENS_DATA = {
       nd: 1.80610,
       vd: 33.3,
       focalLengthMm: -70.483132,
-      glass: "806333 dense-flint/lanthanum class (vendor unspecified)",
+      glass: "806333 dense-flint/lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed subunit ahead of the extender insertion position.",
     },
@@ -349,7 +363,7 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       focalLengthMm: 52.687450,
-      glass: "541472 light-flint class (vendor unspecified)",
+      glass: "541472 light-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front subunit of the inserted 1.4× extender.",
     },
@@ -361,7 +375,7 @@ const LENS_DATA = {
       nd: 1.60342,
       vd: 38.0,
       focalLengthMm: 44.362126,
-      glass: "603380 flint class (vendor unspecified)",
+      glass: "603380 flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front subunit of the inserted 1.4× extender.",
       cemented: "EXT-C1",
@@ -374,7 +388,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       focalLengthMm: -22.315025,
-      glass: "904313 high-index lanthanum-flint class (vendor unspecified)",
+      glass: "904313 high-index lanthanum-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive front subunit of the inserted 1.4× extender.",
       cemented: "EXT-C1",
@@ -387,7 +401,7 @@ const LENS_DATA = {
       nd: 1.88300,
       vd: 40.8,
       focalLengthMm: -25.101358,
-      glass: "883408 high-index lanthanum class (vendor unspecified)",
+      glass: "883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative rear subunit of the inserted 1.4× extender.",
       cemented: "EXT-C2",
@@ -400,7 +414,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       focalLengthMm: 17.959248,
-      glass: "720347 KZFS/NBH-coordinate class (vendor unspecified)",
+      glass: "720347 KZFS/NBH-coordinate class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative rear subunit of the inserted 1.4× extender.",
       cemented: "EXT-C2",
@@ -413,7 +427,7 @@ const LENS_DATA = {
       nd: 1.88300,
       vd: 40.8,
       focalLengthMm: -25.046053,
-      glass: "883408 high-index lanthanum class (vendor unspecified)",
+      glass: "883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative rear subunit of the inserted 1.4× extender.",
       cemented: "EXT-C2",
@@ -426,7 +440,7 @@ const LENS_DATA = {
       nd: 1.61340,
       vd: 44.3,
       focalLengthMm: 25.499614,
-      glass: "613443/445 KZFS/NBM-coordinate class (vendor unspecified)",
+      glass: "613443/445 KZFS/NBM-coordinate class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative rear subunit of the inserted 1.4× extender.",
       cemented: "EXT-C3",
@@ -439,7 +453,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       focalLengthMm: -30.867162,
-      glass: "593686 low-dispersion class (vendor unspecified)",
+      glass: "593686 low-dispersion class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Negative rear subunit of the inserted 1.4× extender.",
       cemented: "EXT-C3",
@@ -452,7 +466,7 @@ const LENS_DATA = {
       nd: 1.57501,
       vd: 41.5,
       focalLengthMm: 72.811051,
-      glass: "575415 light-flint class (vendor unspecified)",
+      glass: "575415 light-flint class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed rear subunit behind the extender insertion position.",
       cemented: "C5",
@@ -465,7 +479,7 @@ const LENS_DATA = {
       nd: 1.88300,
       vd: 40.8,
       focalLengthMm: -96.007473,
-      glass: "883408 high-index lanthanum class (vendor unspecified)",
+      glass: "883408 high-index lanthanum class (qualified spectral proxy; source supplier and melt unspecified)",
       apd: false,
       role: "Positive fixed rear subunit behind the extender insertion position.",
       cemented: "C5",
@@ -476,17 +490,17 @@ const LENS_DATA = {
     { label: "1", R: 304.970, d: 8.16, sd: 50.030000, medium: 1 },
     { label: "2", R: -999.267, d: 0.30, sd: 49.775000 },
     { label: "3", R: 299.609, d: 3.55, sd: 48.875000, medium: 2 },
-    { label: "4", R: 127.050, d: 0.11, sd: 47.445000 },
+    { label: "4", R: 127.050, d: 0.11, sd: 47.445000, rimExtensionSd: 48.875 },
     { label: "5", R: 127.907, d: 12.03, sd: 47.450000, medium: 3 },
     { label: "6", R: 3844.966, d: 0.60, sd: 47.120000 },
     { label: "7", R: 121.044, d: 11.08, sd: 45.790000, medium: 4 },
     { label: "8", R: 942.757, sd: 45.065000 },
     { label: "9", R: 156.356, d: 6.56, sd: 24.050000, medium: 5 },
     { label: "10", R: -98.955, d: 2.30, sd: 23.675000, medium: 6 },
-    { label: "11", R: 80.378, d: 3.14, sd: 21.500000 },
+    { label: "11", R: 80.378, d: 3.14, sd: 21.500000, rimExtensionSd: 23.675 },
     { label: "12", R: 488.480, d: 2.10, sd: 21.320000, medium: 7 },
     { label: "13", R: 50.627, d: 5.43, sd: 20.320000, medium: 8 },
-    { label: "14", R: 299.399, d: 2.12, sd: 19.955000 },
+    { label: "14", R: 299.399, d: 2.12, sd: 19.955000, rimExtensionSd: 20.32 },
     { label: "15", R: -162.580, d: 2.00, sd: 19.875000, medium: 9 },
     { label: "16", R: 89.993, d: 5.17, sd: 19.290000 },
     { label: "17", R: -74.380, d: 1.95, sd: 19.280000, medium: 10 },

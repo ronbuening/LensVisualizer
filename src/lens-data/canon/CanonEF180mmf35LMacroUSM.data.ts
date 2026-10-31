@@ -29,14 +29,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  modeling inferences from the f/3.6 marginal bundle, the default 0.60-field ║
  * ║  / 0.75-pupil off-axis bundle, the Fig. 1 optical-section proportions, and ║
  * ║  the current edge-thickness/rim-slope/shared-gap geometry constraints.      ║
- * ║  Close-focus outer rays naturally vignette at air-separated element rims;  ║
+ * ║  Sampled close-focus outer rays vignette at air-separated element rims;  ║
  * ║  no first clipping occurs at either cemented interface in the audit trace.  ║
  * ║                                                                              ║
- * ║  GLASS NOTE:                                                                ║
- * ║  The patent publishes nd/νd only. Supplier identity and per-element nC/nF/ ║
- * ║  ng/dPgF are unresolved; no catalog line data are imported from merely     ║
- * ║  coordinate-compatible glasses. Elements 2, 4, and 11 are identified by   ║
- * ║  Canon as UD in the production lens, reflected here only as a class label. ║
+ * ║  Original-PDF review 2026-10-30: Numerical Example 1, PDF page 6,       ║
+ * ║  and Fig. 1, PDF page 17. All source pairs and four focus rows checked. ║
+ * ║  Four rear clear caps follow Fig. 1; no distinct extra land is resolved. ║
+ * ║                                                                              ║
+ * ║  GLASS NOTE:                                                                 ║
+ * ║  The patent names no spectral line. 14 of 14 printed pairs match catalog     ║
+ * ║  d-line coordinates and none match the e-line, so the table is read as       ║
+ * ║  d-line. 14 media use catalog curves as spectral proxies; supplier, melt     ║
+ * ║  and chemistry stay unspecified. The patent publishes index/Abbe only and    ║
+ * ║  prints no per-element nC/nF/ng/dPgF. Elements 2, 4, and 11 are identified   ║
+ * ║  by Canon as UD in the production lens, reflected here only as a class       ║
+ * ║  label.                                                                      ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
  * Manufacturer sources:
@@ -57,14 +64,14 @@ const LENS_DATA = {
     specs: [
       "14 ELEMENTS / 12 GROUPS",
       "180mm f/3.5 MARKETED",
-      "f = 180.009 mm / f/3.6 DESIGN",
+      "PATENT f = 180.0 mm / f/3.6",
       "1.0× / 0.48 m MFD",
       "ALL-SPHERICAL",
     ],
     elementCount: 14,
     groupCount: 12,
     acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-    focalLengthMm: { marketing: 180, design: 180.009424 },
+    focalLengthMm: { marketing: 180, design: 180.0 },
     fNumber: { marketing: 3.5, design: 3.6 },
   },
 
@@ -85,7 +92,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 562.086404,
-      glass: "487702 — crown class (supplier unresolved)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1a front positive element",
     },
     {
@@ -96,7 +104,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 112.405768,
-      glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -111,7 +120,8 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 35,
       focalLengthMm: -180.113853,
-      glass: "801350 — high-index class (supplier unresolved)",
+      glass:
+        "S-LAM66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1a negative element",
     },
     {
@@ -122,7 +132,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 150.787175,
-      glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -137,7 +148,8 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: -235.636073,
-      glass: "805254 — dense-flint class (supplier unresolved)",
+      glass:
+        "N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1b negative meniscus",
     },
     {
@@ -148,7 +160,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 158.75464,
-      glass: "487702 — crown class (supplier unresolved)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L1b positive element",
     },
     {
@@ -159,7 +172,8 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -48.651521,
-      glass: "883408 — high-index lanthanum class (supplier unresolved)",
+      glass:
+        "S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 negative front element",
     },
     {
@@ -170,7 +184,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: -64.540879,
-      glass: "487702 — crown class (supplier unresolved)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 negative member of cemented pair",
       cemented: "L2-D1",
     },
@@ -182,7 +197,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 62.663609,
-      glass: "847239 — dense-flint class (supplier unresolved)",
+      glass:
+        "S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L2 positive member of cemented pair",
       cemented: "L2-D1",
     },
@@ -194,7 +210,8 @@ const LENS_DATA = {
       nd: 1.762,
       vd: 40.1,
       focalLengthMm: 54.750656,
-      glass: "762401 — lanthanum class (supplier unresolved)",
+      glass:
+        "S-LAM55 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L3 positive front element",
     },
     {
@@ -205,7 +222,8 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 83.051492,
-      glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      glass:
+        "H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "UD classification from Canon's production element-position specification; " +
@@ -221,7 +239,8 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.3,
       focalLengthMm: -34.091213,
-      glass: "593353 — flint class (supplier unresolved)",
+      glass:
+        "S-FTM16 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L3 negative member of cemented pair",
       cemented: "L3-D1",
     },
@@ -233,7 +252,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -535.59855,
-      glass: "834372 — high-index lanthanum class (supplier unresolved)",
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L4 negative meniscus",
     },
     {
@@ -244,7 +264,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 143.107597,
-      glass: "487702 — crown class (supplier unresolved)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "L4 positive rear element",
     },
   ],
@@ -273,10 +294,10 @@ const LENS_DATA = {
     { label: "21", R: 98.39, d: 4.7, sd: 14.7, medium: 11 },
     { label: "22", R: -69.98, d: 3.32, sd: 13.6, medium: 12 },
     { label: "23", R: 28.91, sd: 13.0 },
-    { label: "24", R: -31.14, d: 3.0, sd: 14.0, medium: 13 },
-    { label: "25", R: -34.94, d: 0.15, sd: 14.6 },
-    { label: "26", R: 72.15, d: 4.6, sd: 14.6, medium: 14 },
-    { label: "27", R: -2065.08, d: 67.54, sd: 14.6 },
+    { label: "24", R: -31.14, d: 3.0, sd: 17.6, medium: 13 },
+    { label: "25", R: -34.94, d: 0.15, sd: 17.6 },
+    { label: "26", R: 72.15, d: 4.6, sd: 19.0, medium: 14 },
+    { label: "27", R: -2065.08, d: 67.54, sd: 19.0 },
   ],
 
   focus: {

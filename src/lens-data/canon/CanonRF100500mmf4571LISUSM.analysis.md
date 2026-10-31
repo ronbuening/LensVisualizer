@@ -9,7 +9,7 @@
 **Published:** January 7, 2021\
 **Inventors:** Masato Katayose; Junya Ichimura\
 **Applicant:** Canon Inc.\
-**Title:** *Zoom Lens and Image Pickup Apparatus Having the Same*\
+**Title:** _Zoom Lens and Image Pickup Apparatus Having the Same_\
 **Example details:** Numerical Example 2
 
 The prescription is the fixed Numerical Example 2 selected for correlation with the production Canon RF100-500mm
@@ -51,16 +51,16 @@ spherical.
 
 The patent unit powers, independently reproduced from the final data file, are:
 
-| Unit | Power | Elements | Unit focal length |
-|---|---:|---|---:|
-| L1 | + | L11, L12, L13 | +202.77 mm |
-| L2 | − | L21, L22, L23 | −58.58 mm |
-| L3 | + | L31, L32, L33 | +82.07 mm |
-| L4 | − | L41 | −99.09 mm |
-| L5 | + | L51, L52, L53, L54 | +48.05 mm |
-| L6 | − | L61, L62 | −62.75 mm |
-| L7 | + | L71 | +67.32 mm |
-| L8 | − | L81, L82, L83 | −51.29 mm |
+| Unit | Power | Elements           | Unit focal length |
+| ---- | ----: | ------------------ | ----------------: |
+| L1   |     + | L11, L12, L13      |        +202.77 mm |
+| L2   |     − | L21, L22, L23      |         −58.58 mm |
+| L3   |     + | L31, L32, L33      |         +82.07 mm |
+| L4   |     − | L41                |         −99.09 mm |
+| L5   |     + | L51, L52, L53, L54 |         +48.05 mm |
+| L6   |     − | L61, L62           |         −62.75 mm |
+| L7   |     + | L71                |         +67.32 mm |
+| L8   |     − | L81, L82, L83      |         −51.29 mm |
 
 The power sequence distributes zooming and aberration correction across more units than a simple four-group
 telephoto zoom. The strong negative L2 sits behind the positive front unit; L3 and L5 restore positive power around the
@@ -87,15 +87,12 @@ By the project's geometric criterion `TL/EFL < 1`, only the 490 mm endpoint is t
 about 0.636 times its computed EFL. The 103 and 225 mm states do not meet that criterion, and none of the three states is
 retrofocus because the back focal distance remains shorter than the EFL.
 
-The patent includes a rear optical block `G` after the final active lens surface. Paragraph ¶0062 describes the last two
-surfaces as an optical block such as a filter or faceplate. Those surfaces are excluded from the ordinary LensVisualizer
-prescription. Their optical effect is retained by replacing the raw rear path with the air-equivalent distance from
-active surface 35 to the paraxial image plane. The authored values are 21.139487, 32.089487, and 63.569487 mm at the
-three zoom controls. This is a reference-plane normalization, not a correction to the patent.
+The source camera-side optical block `G` is now modeled through `rearPlates`, using the directly printed S36–37 values: thickness 1.00 mm, nd 1.51633, νd 64.14, θgF 0.5353 and trailing air 1.00 mm. The physical gaps after S35 are **19.48 / 30.43 / 61.91 mm**. Paragraph 0062 identifies the final block as a filter/faceplate type; its diameter is absent, so no arbitrary plate clipping is added. Its qualified S-BSL7 proxy retains the source-derived ΔPgF −0.00061652. The camera plate remains hidden in the drawn lens element count while participating in every trace.
+
+Paragraph 0063 defines source BF and overall length with **air-equivalent BF**. The former air fold preserved paraxial propagation but omitted plate spherical/chromatic behavior. Restoring the physical plate moves the image plane back by **0.340512949 mm** and leaves source-state EFL unchanged; defocus differs only by approximately 5.1e−8 mm from the former six-decimal fold. The source's air-equivalent length and the physical image-plane track are reported separately below.
 
 The patent publishes no clear-aperture table. The stop station is a source fact, but its diameter and all surface
-semi-diameters in the data file are modeling quantities. They were derived from the verified pupil and ray envelopes and
-checked against edge thickness, rim slope, shared-gap clearance, off-axis containment, and the Figure 3 silhouette.
+semi-diameters in the data file are modeling quantities. They are measured from the native Figure 3 optical rims, subject to the explicit retained edge/gap constraints and runtime checks recorded in the 2026-10-30 review below.
 They should not be read as patent-published mechanical apertures.
 
 ## Element-by-Element Analysis
@@ -125,8 +122,7 @@ be confused with the full L1 unit focal length of +202.77 mm, which also include
 
 Paragraph ¶0051 assigns the L1 architecture to a positive L11 followed by a cemented negative L12 and positive L13. It
 also identifies the high-`νd`, selected-partial-dispersion positive lenses L11 and L13 as important to lateral secondary
-spectrum at the tele end. L13's adopted S-FPL55 equivalent supplies explicit catalog line data in the model; its vendor
-label remains an optical equivalent, not supplier evidence.
+spectrum at the tele end. L13's adopted S-FPL55 equivalent supplies a qualified catalog curve; its vendor label remains an optical equivalent, not supplier evidence. The numerical partial-dispersion ratio is genuinely published by the original.
 
 ### L21 — Negative Meniscus
 
@@ -299,23 +295,25 @@ C/d/F dispersion, while each structured `dPgF` is calculated from the patent's p
 `θgF - (0.6438 - 0.001682νd)` and controls the violet-channel correction. This separation is especially important for
 L81 because FCD515 has a measurable partial-dispersion mismatch from the patent row.
 
-| Glass annotation | `nd` | `νd` | Patent-derived `dPgF` | Elements | Status |
-|---|---:|---:|---:|---|---|
-| S-FPL51 (OHARA) | 1.49700 | 81.54 | +0.03085028 | L11, L22, L31, L41, L54, L82 | Exact coordinate equivalent within source precision |
-| S-NBM51 (OHARA) | 1.61340 | 44.27 | −0.00603786 | L12 | Exact coordinate equivalent within source precision |
-| S-FPL55 (OHARA) | 1.43875 | 94.66 | +0.04941812 | L13 | Exact coordinate equivalent |
-| S-LAL14 (OHARA) | 1.69680 | 55.53 | −0.00699854 | L21 | Exact coordinate equivalent within source precision |
-| S-TIH14 (OHARA) | 1.76182 | 26.52 | +0.01440664 | L23 | Exact coordinate equivalent within source precision |
-| S-FTM16 (OHARA) | 1.59270 | 35.31 | +0.00889142 | L32 | Exact coordinate equivalent within source precision |
-| HOYA TAFD45L modeling equivalent | 1.95375 | 32.32 | +0.00036224 | L33 | Coordinate-compatible curve; supplier unspecified |
-| S-TIM28 (OHARA) | 1.68893 | 31.07 | +0.00885974 | L51 | Exact coordinate equivalent within source precision |
-| S-NSL3 (OHARA) | 1.51823 | 58.90 | +0.00096980 | L52 | Exact coordinate equivalent within source precision |
-| HOYA TAFD65 modeling equivalent | 2.05090 | 26.94 | +0.00691308 | L53 | Coordinate-compatible curve; full-triad identity not proven |
-| S-TIM22 (OHARA) | 1.64769 | 33.79 | +0.00683478 | L61 | Exact coordinate equivalent within source precision |
-| S-LAH66 (OHARA) | 1.77250 | 49.60 | −0.00837280 | L62 | Exact coordinate equivalent within source precision |
-| S-FSL5 (OHARA) | 1.48749 | 70.23 | +0.00432686 | L71 | Exact coordinate equivalent |
-| HOYA FCD515 modeling equivalent | 1.59282 | 68.63 | +0.01623566 | L81 | Coordinate-compatible curve; partial-dispersion mismatch |
-| S-NBH8 (OHARA) | 1.72047 | 34.71 | −0.00201778 | L83 | Exact coordinate equivalent within source precision |
+| Glass annotation                 |    `nd` |  `νd` | Patent-derived `dPgF` | Elements                     | Status                                                      |
+| -------------------------------- | ------: | ----: | --------------------: | ---------------------------- | ----------------------------------------------------------- |
+| S-FPL51 (OHARA)                  | 1.49700 | 81.54 |           +0.03085028 | L11, L22, L31, L41, L54, L82 | Exact coordinate equivalent within source precision         |
+| S-NBM51 (OHARA)                  | 1.61340 | 44.27 |           −0.00603786 | L12                          | Exact coordinate equivalent within source precision         |
+| S-FPL55 (OHARA)                  | 1.43875 | 94.66 |           +0.04941812 | L13                          | Exact coordinate equivalent                                 |
+| S-LAL14 (OHARA)                  | 1.69680 | 55.53 |           −0.00699854 | L21                          | Exact coordinate equivalent within source precision         |
+| S-TIH14 (OHARA)                  | 1.76182 | 26.52 |           +0.01440664 | L23                          | Exact coordinate equivalent within source precision         |
+| S-FTM16 (OHARA)                  | 1.59270 | 35.31 |           +0.00889142 | L32                          | Exact coordinate equivalent within source precision         |
+| HOYA TAFD45L modeling equivalent | 1.95375 | 32.32 |           +0.00036224 | L33                          | Coordinate-compatible curve; supplier unspecified           |
+| S-TIM28 (OHARA)                  | 1.68893 | 31.07 |           +0.00885974 | L51                          | Exact coordinate equivalent within source precision         |
+| S-NSL3 (OHARA)                   | 1.51823 | 58.90 |           +0.00096980 | L52                          | Exact coordinate equivalent within source precision         |
+| HOYA TAFD65 modeling equivalent  | 2.05090 | 26.94 |           +0.00691308 | L53                          | Coordinate-compatible curve; full-triad identity not proven |
+| S-TIM22 (OHARA)                  | 1.64769 | 33.79 |           +0.00683478 | L61                          | Exact coordinate equivalent within source precision         |
+| S-LAH66 (OHARA)                  | 1.77250 | 49.60 |           −0.00837280 | L62                          | Exact coordinate equivalent within source precision         |
+| S-FSL5 (OHARA)                   | 1.48749 | 70.23 |           +0.00432686 | L71                          | Exact coordinate equivalent                                 |
+| HOYA FCD515 modeling equivalent  | 1.59282 | 68.63 |           +0.01623566 | L81                          | Coordinate-compatible curve; partial-dispersion mismatch    |
+| S-NBH8 (OHARA)                   | 1.72047 | 34.71 |           −0.00201778 | L83                          | Exact coordinate equivalent within source precision         |
+
+Camera plate G uses the compatible S-BSL7 curve at nd 1.51633 / νd 64.14 and source θgF 0.5353, with source-derived dPgF −0.00061652. Its supplier and chemical identity remain unresolved.
 
 The palette is not simply a sequence of low- and high-dispersion pairs. It repeatedly places very high-`νd` materials
 at optically strategic locations: positive L11 and L13 in the first unit, negative L22 near the front negative unit,
@@ -396,13 +394,13 @@ properly.
 
 The remaining Example-2 conditions reproduce the patent's rounded Table 1 values from the final prescription:
 
-| Condition | Verified value | Table 1 | Result |
-|---|---:|---:|---|
-| `1.00 < f4/f2 < 2.00` | 1.691591 | 1.692 | Pass |
-| `0.30 < f1/ft < 0.70` | 0.413832 | 0.414 | Pass |
-| `0.80 < fn2/f2 < 1.50` | 1.100691 | 1.101 | Pass |
-| `0.50 < fp3/f3 < 1.10` | 0.829098 | 0.829 | Pass |
-| `3.5 < ft/fw < 7.0` | 4.757691 | 4.760 | Pass |
+| Condition              | Verified value | Table 1 | Result |
+| ---------------------- | -------------: | ------: | ------ |
+| `1.00 < f4/f2 < 2.00`  |       1.691591 |   1.692 | Pass   |
+| `0.30 < f1/ft < 0.70`  |       0.413832 |   0.414 | Pass   |
+| `0.80 < fn2/f2 < 1.50` |       1.100691 |   1.101 | Pass   |
+| `0.50 < fp3/f3 < 1.10` |       0.829098 |   0.829 | Pass   |
+| `3.5 < ft/fw < 7.0`    |       4.757691 |   4.760 | Pass   |
 
 Here `fn2` is the standalone focal length of qualifying negative L22 and `fp3` is the standalone focal length of
 qualifying positive L31. The ratios therefore use the patent's intended distinction between element power and complete
@@ -421,47 +419,9 @@ in the current model.
 Canon's production specification lists optical image stabilization rated at five stops. That value describes the
 commercial mechanism and is not used to infer a decenter distance or to modify the patent's centered surface data.
 
-## Verification Summary
-
-Independent verification of the final data file against the selected numerical example uses sequential reduced-angle
-tracing and a separate ABCD assembly. The resulting EFLs are 102.988151, 225.038656,
-and 489.985751 mm for the 103, 225, and 490 mm design controls. The largest difference from the patent's rounded focal
-lengths is 0.038656 mm. Direct and matrix states agree to approximately `5.55 × 10⁻17` in the verification calculation.
-
-After removal of optical block `G`, the normalized front-to-image tracks are 221.519487, 284.169487, and 311.519487 mm.
-The wide and tele values differ from the patent's rounded overall lengths by about 0.0005 mm; the middle value differs by
-about 0.0105 mm, consistent with the source's two-decimal variable spacings and the explicit air-equivalent rear
-normalization.
-
-The active-surface Petzval sum, computed surface by surface as `φ/(n·n′)`, is
-`+0.000383853245902 mm⁻¹`, with reciprocal 2605.162287 mm. It is unchanged with zoom because the glass surfaces and
-indices are fixed while only axial separations vary.
-
-The stop station is published but the stop diameter is not. The authored wide-state `STO.sd = 12.134006 mm` is derived
-from the verified wide EFL and f/4.60 pupil geometry. The independently solved maximum-aperture stop radii at the middle
-and tele controls are 13.256905 and 13.106825 mm. The variable maximum aperture is represented by the design
-`nominalFno` values 4.60, 5.16, and 7.20 rather than by inventing extra stop surfaces.
-
-All semi-diameters are modeled. A 600 dpi comparison against the wide-angle
-panel in Figure 3 found one strong shape mismatch: the terminal cemented
-L82/L83 group measured about 17.5 mm at its optical rim, while the draft stored
-12.8-13.3 mm. Surfaces 33-35 therefore use a proportional 17.2/17.5/17.9 mm
-envelope. The remaining groups differ from the drawing by less than the audit
-threshold. Verified geometry retains positive edge clearance, a maximum
-spherical rim slope below the validator limit, and its tightest shared-gap
-utilization between surfaces 7 and 8 at the wide state. Default on-axis and
-0.60-field off-axis ray bundles remain inside the authored apertures at all
-three zoom controls. These checks support the modeled silhouette; they do not
-convert the inferred semi-diameters into source facts.
-
-No uniform scaling was applied. Numerical Example 2 is all-spherical, so no conic convention or aspheric coefficient
-transformation is applicable. No diffractive or folded-path interaction is introduced. The only omitted source optical
-component is rear block `G`, whose effect is retained through the documented air-equivalent image spacing.
-
-
 ## Sources and References
 
-1. **US 2021/0003832 A1**, Masato Katayose and Junya Ichimura, *Zoom Lens and Image Pickup Apparatus Having the Same*,
+1. **US 2021/0003832 A1**, Masato Katayose and Junya Ichimura, _Zoom Lens and Image Pickup Apparatus Having the Same_,
    Canon Inc., published January 7, 2021. Primary sections used: Figure 3, Figures 4A-4C, ¶¶0023, 0026,
    0029, 0032, 0033-0046, 0049-0065, Numerical Example 2, and Table 1.
 2. **Canon U.S.A. — RF100-500mm F4.5-7.1 L IS USM product/support specifications.** Production focal range,
@@ -476,3 +436,89 @@ component is rear block `G`, whose effect is retained through the documented air
 6. **HOYA Optics Division optical-glass catalog/data downloads.** The July 7, 2026 Zemax catalog supplies the
    coordinate-compatible TAFD45L, TAFD65, and FCD515 modeling curves for patent classes 954323, 051269, and 593686.
    https://www.hoya-opticalworld.com/english/
+
+## 2026-10-30 Original-PDF Shape and Glass Review
+
+The selected original `US20210003832A1.pdf` was freshly inspected: Numerical Example 2, ¶0065, **PDF p. 19 / printed p. 6**, with single-lens continuation p. 20; **Fig. 3, PDF p. 5 / Sheet 4**, and Fig. 4A–C, pp. 6–7. Definitions ¶0062–63 are on PDF p. 18 / printed p. 5. The native front page confirms Masato Katayose and Junya Ichimura, Canon as applicant, filing 2020-06-09, priority 2019-07-02 and publication 2021-01-07. No family publication was substituted.
+
+Every PDF page is a native **2560 × 3300 bilevel image at 300 ppi**. Fig. 3 was rotated and cropped at native resolution. Earlier 600 dpi views are 2× upsampling. The wide S1→S35 span is about **2,183 native pixels for 200.38 mm**, approximately **0.0918 mm/pixel**. The independent R1 curvature check gives about 59 pixels of sag at a 35.6 mm half-height, or 5.42 mm, versus 5.43 mm from printed R1 = 119.358; the scale is approximately isotropic. Two-pixel contour uncertainty is roughly 0.18 mm; the short bonded-cap endpoint carries about 0.3 mm uncertainty. Source figure contours, sampled runtime clearance and production dimensions remain separate.
+
+The former rims were largely fitted to ray envelopes at 60% field and a production barrel-diameter bound. The native optical rims support the following replacements, excluding leaders, rays, group brackets and mechanical barrel dimensions. All 20 elements, concave ends, six cemented interfaces and the camera plate were reviewed; the original contains no hybrid layer or asphere.
+
+| Body / source surfaces | Native figure approximate optical half-height (mm) | Adopted clear caps (mm)           |
+| ---------------------- | -------------------------------------------------- | --------------------------------- |
+| L11, S1–2              | 35.6                                               | 35.6 / 35.6                       |
+| L12/L13, S3–5          | outer 34.2; bonded optical cap about 33.0          | 34.2 / 33.0 / 34.2                |
+| L21, S6–7              | about 16.1                                         | 16.1 / 14.9, tight-gap constraint |
+| L22/L23, S8–10         | 16.3                                               | 16.3 throughout the bond          |
+| L31, S11–12            | 17.3                                               | 17.3 / 17.3                       |
+| L32/L33, S13–15        | 16.5                                               | 16.5 throughout the bond          |
+| L41, S17–18            | 12.7                                               | 12.7 / 12.7                       |
+| L51, S19–20            | 13.9                                               | 13.9 / 13.9                       |
+| L52/L53, S21–23        | 13.4                                               | 13.4 throughout the bond          |
+| L54, S24–25            | 13.6                                               | 13.6 / 13.6                       |
+| L61/L62, S26–28        | 12.7                                               | 12.7 throughout the bond          |
+| L71, S29–30            | 15.9                                               | 15.9 / 15.9                       |
+| L81, S31–32            | 15.4                                               | 15.4 / 14.7, tight-gap constraint |
+| L82/L83, S33–35        | 17.3                                               | 17.3 throughout the bond          |
+
+Rejected trials preserve the numerical prescription and the unchanged guards. S7 at the full drawn 16.1 mm gives S7→S8 combined sag **4.52 mm > 3.879 mm** allowed in D7 = 4.310 mm; its adopted cap is 14.9 mm. S32 at 15.4 mm gives **4.49 > 4.131 mm** allowed in D32 = 4.590 mm. Even 14.8 mm gives about **4.14 > 4.131 mm**, so 14.7 mm is adopted. These two physical-outline differences remain visible. The short vertical endpoint on the L12/L13 bond was not interpreted as an opaque interface land; the optical cap stays about 33.0 mm beneath the 34.2 mm outer box, producing a retained tapered outer contour. No `rimExtensionSd`, inferred cut, source exemption or unsupported equal-height block is introduced.
+
+All **20 lens material rows plus G** were checked directly against the original's nd, νd and θgF. Paragraph 0062 explicitly defines d = 587.6 nm, g = 435.8 nm, F = 486.1 nm and C = 656.3 nm and the Abbe/partial-dispersion equations. All 21 media now carry explicit d references. **All 20 genuine lens θ-derived `dPgF` values are retained**, with numerical residual below 1.3e−16 against the printed ratios and the model’s reference line 0.6438 − 0.001682νd; the restored plate adds its genuine θ-derived −0.00061652. No numerical per-lens C/F/g line indices existed, were removed or were invented. Twenty-one compatible catalog curves are qualified spectral proxies; source supplier, melt and chemistry remain unidentified.
+
+The catalog's design range is restored from computed 102.988151 / 489.985751 to the **directly printed 103.00 / 490.00 mm**. The source three nominal apertures **4.60 / 5.16 / 7.20**, stop location, all R/d and all zoom/focus gap controls remain unchanged except replacing the rear air fold with the original physical plate path. Computed EFLs are **102.988151 / 225.038656 / 489.985751 mm**. Source-state paraxial residuals are **−0.010945 / +0.012809 / −0.003351 mm**; these residuals are retained, not fitted away.
+
+Physical image-plane tracks after restoring G are **221.86 / 284.51 / 311.86 mm**. Their air-equivalent counterparts are **221.519487 / 284.169487 / 311.519487 mm**. The source prints overall lengths 221.52 / **284.18** / 311.52, leaving a middle-state **0.010513 mm discrepancy** (literal result rounds to 284.17). Rounding is an unproved hypothesis; structured `source.errata` preserves that contradiction and every printed spacing.
+
+## Sampled Controls and Rendered SVG Verification
+
+The **65-position zoom grid** includes the three source stations and 62 illustrative intervals. A geometry census checked all **1,365 zoom/focus combinations** (65 × 21): every focus setting duplicates infinity geometry. No finite-focus optical state is reconstructed, despite the source's qualitative L4/L6 focus directions and the approximate product distance label.
+
+The ray census traces the **65 unique geometries**, 49 disk pupil samples at axial/60%/full format field: **9,555 aimed rays**, zero unaimed, all **195 chiefs pass**. Source-station bundles are **49/42/27**, **49/47/31**, **49/42/34**. Across illustrative zoom positions, **3,121 / 3,185 axial samples pass**; 16 intervals clip four marginal samples at S17/S18. The separate continuous axial-boundary census finds a maximum effective-aperture deficit **1.9043%** at zoom 0.296875, with none over 3%. Requested f/5.6 leaves eight marginal samples clipped across two intervals; **f/8 clears all 3,185 sampled axial rays**. These are sampled runtime limits, not changes to the source aperture targets.
+
+The 65-position first-order census finds a maximum paraxial residual **+9.827378 mm at zoom 0.8125**. Only the three printed configurations are published designs; the linear spacing interpolation is not a factory cam and is not source-verified infinity focus between stations. Its source controls and gaps remain unchanged.
+
+Actual generated SVG element paths were compared with native Fig. 3 at matching scale and at wide/middle/tele. All **20 drawn paths are finite, closed and connected at every sampled geometry**, with **zero hidden renderer trimming**. The restored camera plate is synthetic and participates in tracing while remaining outside the drawn lens count. Canonical surface, source-state aperture, image-circle and runtime corner-field checks pass; no inferred cuts exist.
+
+At the **published half-fields 11.86 / 5.49 / 2.53°**, clear chiefs reach **21.628196 / 22.006767 / 22.039963 mm**, approximately **99.90 / 101.65 / 101.80%** of the generic full-frame semi-diagonal 21.65 mm. Source field evidence, sampled runtime clearance, the three published numerical states and retail-lens correlation are separate conclusions. Physical outer-margin constraints, interval clipping/defocus, infinity-only focus, centered IS and unidentified production materials remain explicit limitations.
+
+The model’s ΔPgF reference line is distinct from the source’s claimed material bounds in ¶0033 (PDF p. 16): 60 < νd < 100, −0.00047νd + 0.5666 < θgF < −0.00047νd + 0.5966, and −0.00274νd + 0.7144 < θgF. Each original lens θgF is retained explicitly in its material note; neither conversion nor a compatible catalog code replaces those source inequalities.
+
+The four-decimal θgF and two-decimal νd rows imply roughly ±0.00006 printed precision in the converted ΔPgF. Eight-decimal stored results preserve arithmetic, not melt precision. The actual source θ values and their reference-line definitions remain the evidence.
+
+
+## 2026-10-31 — Source-vector catalog follow-up
+
+Exact local original US 2021/0003832 A1, Numerical Example 2, paragraph 0065 PDFp19/printed6. Paragraph 0062 PDFp18/printed5 explicitly defines every numerical nd/νd at d587.6nm and θgF using g435.8/F486.1/C656.3nm. All twenty element indexReferenceNote strings positively cite that definition and their printed θ row; none describes uncertainty in the spectral reference. The separate rearPlate G note is retained unchanged. Move exactly these20 positive citations to the data header and the source table below, preserving the explicit d references and every θ-derived dPgF field. This restores inspector nd/νd semantics and inventory eligibility without changing any traced channel. No genuine reference-uncertainty note is removed.
+
+Retain FCD515 for L81/E18, source row31, nd1.59282/νd68.63/θgF0.5446. H-ZPK5's raw catalog θ0.544704470 is closer than FCD515's0.544115342, but its Abbe residual worsens from0 to−0.29 and source-implied F−C span error grows from+0.008915% to+0.417982%. The patent's two-decimal ν row does not support that trade. Both curves already trace θ0.5446 because the unchanged source-derived partial controls g, so the swap would not improve the authoritative partial. No candidate-based source or production material identification is made.
+
+The claimed material bounds in paragraph 0033/PDFp16 (−0.00047ν+0.5666<θ<−0.00047ν+0.5966 and−0.00274ν+0.7144<θ) remain distinct from the model's0.6438−0.001682ν conversion line. Every source ratio below remains literal; the eight-decimal derived values express arithmetic, not melt precision. Source four-decimal θ/two-decimal ν precision implies roughly±0.00006 in the converted deviation. All20 lens partials and G's separate genuine partial are preserved, along with all21 index/Abbe pairs and21 existing compatible curves.
+
+Figure 3 PDFp5/sheet4 is a native 2560×3300 bilevel page at 300 ppi. The complete air-spaced L81, following L82/L83 bond and camera-side G remain as previously reviewed; no dimensions are remeasured or fit here. The completed 2026-10-30 whole-lens shape coverage and older August19 date remain reused. No source R/d, caps, tight-end constraints, camera plate thickness/gaps, source errata, infinity-only focus controls, interpolated-state limitations or production-correlation qualifications change.
+
+This is a scoped source/catalog assignment follow-up, not a new whole-lens shape review. Source reference/table pages were rendered at180dpi, separately from native figure pixels. No upsampled figure detail is treated as new evidence. The preserved production-correlation and sampled-runtime limits remain separate from source fidelity. No shared catalog row, tolerance, test or engine change is introduced.
+
+| Element | Source row | Literal source θgF |
+| --- | ---: | ---: |
+| L11 | 1 | 0.5375 |
+| L12 | 3 | 0.5633 |
+| L13 | 4 | 0.5340 |
+| L21 | 6 | 0.5434 |
+| L22 | 8 | 0.5375 |
+| L23 | 9 | 0.6136 |
+| L31 | 11 | 0.5375 |
+| L32 | 13 | 0.5933 |
+| L33 | 14 | 0.5898 |
+| L41 | 17 | 0.5375 |
+| L51 | 19 | 0.6004 |
+| L52 | 21 | 0.5457 |
+| L53 | 22 | 0.6054 |
+| L54 | 24 | 0.5375 |
+| L61 | 26 | 0.5938 |
+| L62 | 27 | 0.5520 |
+| L71 | 29 | 0.5300 |
+| L81 | 31 | 0.5446 |
+| L82 | 33 | 0.5375 |
+| L83 | 34 | 0.5834 |
+| Rear block G |36–37|0.5353|

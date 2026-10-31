@@ -542,4 +542,37 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "CDGM Zemax catalog updated Sep. 2026 (cdgmgd.com downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), H-LAF50B, Sellmeier K1-L3; accessed 2026-10-25.",
   },
+  {
+    name: "D-ZLAF85LS-25",
+    vendor: "CDGM",
+    nd: 1.85344,
+    vd: 40.557917,
+    B: [1.70152719, 0.633298236, 1.43191921],
+    C: [0.00796295658, 0.0320099725, 110.67927],
+    PgF: 0.5686,
+    source:
+      "CDGM official Zemax catalog UpdatedSep2026, D-ZLAF85LS-25 literal formula2 row, GC anneal rate25C/h. Downloaded2026-10-31; this catalog state does not identify the source supplier, melt, chemistry or anneal rate. https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c",
+  },
+  {
+    name: "D-ZK3A-25",
+    vendor: "CDGM",
+    B: [0.600125686, 0.885665979, 1.12367562],
+    C: [0.00150823603, 0.0142989412, 95.8973607],
+    nd: 1.58828,
+    vd: 61.012484,
+    PgF: 0.5373,
+    source:
+      "CDGM official September2026 Zemax catalog, D-ZK3A-25 NM/CD row; https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c; retrieved2026-10-31. Vendor formula2 Sellmeier constants retained verbatim, λ in µm and C in µm². Qualified spectral proxy only; no historical supplier, melt or process identity is asserted.",
+  },
+  {
+    name: "D-ZLAF67",
+    vendor: "CDGM",
+    nd: 1.88385,
+    vd: 37.198899,
+    B: [2.10977576, 0.324313076, 1.37618163],
+    C: [0.0111387884, 0.0453343979, 104.419881],
+    PgF: 0.5777,
+    source:
+      "CDGM official Zemax optical glass catalog UpdatedSep2026, native formula2 D-ZLAF67 row, accessed2026-10-31. https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c. This is an approximate spectral proxy; no source supplier, melt, chemistry or process identity implied.",
+  },
 ];

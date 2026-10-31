@@ -34,6 +34,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  below are computed from θgF using the SCHOTT Pg,F normal line.  ║
  * ║  Qualified catalog equivalents provide C/d/F curves; authored    ║
  * ║  patent partial dispersion remains authoritative at g.           ║
+ * Scoped original shape/glass follow-up: 2026-10-30. One inferred rear cap is narrowed,
+ * six free-end shoulders preserve their optical caps; all R/d, aspheres and focus gaps stay unchanged.
+ * The original figure is native 300 ppi; prior 600-dpi renders were upsampling.
+ * Genuine published partials/APD evidence and compatible curve selections from 2026-08-20 are reused.
+ * Glass names are spectral proxies; unidentified medium G11 is not identified as BR chemistry.
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -56,7 +61,7 @@ const LENS_DATA = {
     ],
     elementCount: 18,
     groupCount: 13,
-    focalLengthMm: { marketing: 14, design: 14.417626521333258 },
+    focalLengthMm: { marketing: 14, design: 14.42 },
     fNumber: { marketing: 1.4, design: 1.46 },
   },
 
@@ -66,6 +71,16 @@ const LENS_DATA = {
     patentYear: 2025,
     authors: ["Takahiro Saito"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example 1 (PDF p. 28 / printed p. 11) prints first surface from object plane=240.532 mm at magnification −0.1. The literal gaps give a computed object-to-image conjugate about 239.15 mm, rather than that first-surface distance. Existing focus gaps are retained; treating 240.532 as an image-plane distance is an explicitly qualified interpretation, not a proven source correction.",
+      },
+      {
+        status: "unresolved",
+        note: "Paragraph 0136 (PDF p. 24 / printed p. 7) says L2 moves but then calls L1 and L2 stationary. The abstract, paragraph 0032 and Claim 1 identify the stationary groups as L1 and L3. The literal group boundaries and focus gaps are preserved.",
+      },
+    ],
   },
 
   elements: [
@@ -76,8 +91,10 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.4,
+      indexReference: "d",
       focalLengthMm: -40.86184744412536,
-      glass: "S-BAL42 catalog equivalent (patent 583594; production supplier unspecified)",
+      glass:
+        "S-BAL42 catalog equivalent (patent 583594; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G1",
     },
     {
@@ -87,8 +104,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.497,
       vd: 81.65,
+      indexReference: "d",
       focalLengthMm: -97.45628281399131,
-      glass: "FCD1 catalog equivalent (patent 497817; production supplier unspecified)",
+      glass:
+        "FCD1 catalog equivalent (patent 497817; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "inferred",
       apdNote:
         "Canon's one-UD production count and optical cross-section make patent G2 the strongest UD-location correlation.",
@@ -102,8 +121,10 @@ const LENS_DATA = {
       type: "Biconcave Negative (1× Asph)",
       nd: 1.804,
       vd: 46.5,
+      indexReference: "d",
       focalLengthMm: -34.81371470267882,
-      glass: "S-LAH65V catalog equivalent (patent 804465; production supplier unspecified)",
+      glass:
+        "S-LAH65V catalog equivalent (patent 804465; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G3",
     },
     {
@@ -113,8 +134,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.66565,
       vd: 35.6,
+      indexReference: "d",
       focalLengthMm: 87.85308587230477,
-      glass: "H-ZBaF4 catalog equivalent (patent 666356; production supplier unspecified)",
+      glass:
+        "H-ZBaF4 catalog equivalent (patent 666356; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G4",
     },
     {
@@ -124,12 +147,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.43387,
       vd: 95.1,
+      indexReference: "d",
       focalLengthMm: -61.564294688343814,
-      glass: "CaF2 fluorite (Canon production-correlation inference; patent G5 coordinates)",
+      glass:
+        "Fluorite (CaF2 compatible spectral proxy; production correlation only, historical material and supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Canon's one-fluorite production count, concave fluorite description, and patent G5 coordinate support this correlation.",
-      role: "Negative fluorite-correlated element identified by production architecture.",
+      role: "Low-dispersion negative element with fluorite production correlation; historical source chemistry and supplier are unspecified.",
       diagramLabel: "G5",
     },
     {
@@ -139,8 +164,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.755,
       vd: 52.3,
+      indexReference: "d",
       focalLengthMm: 20.570757112959527,
-      glass: "S-LAH97 catalog equivalent (patent 755523; production supplier unspecified)",
+      glass:
+        "S-LAH97 catalog equivalent (patent 755523; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G6",
       cemented: "C1",
     },
@@ -151,8 +178,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
+      indexReference: "d",
       focalLengthMm: -62.2180735779808,
-      glass: "S-TIH53 catalog equivalent (patent 847238; production supplier unspecified)",
+      glass:
+        "S-TIH53 catalog equivalent (patent 847238; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G7",
       cemented: "C1",
     },
@@ -163,8 +192,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       vd: 42.7,
+      indexReference: "d",
       focalLengthMm: 46.32259664092224,
-      glass: "TAFD5G catalog equivalent (patent 835427; production supplier unspecified)",
+      glass:
+        "TAFD5G catalog equivalent (patent 835427; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G8",
     },
     {
@@ -174,8 +205,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77047,
       vd: 29.74,
+      indexReference: "d",
       focalLengthMm: -52.47559585202313,
-      glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
+      glass:
+        "NBFD29 catalog equivalent (patent 770297; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "patent",
       apdNote: "Patent θgF = 0.5951; dPgF computed against the SCHOTT Pg,F normal line.",
       diagramLabel: "G9",
@@ -188,8 +221,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.1,
+      indexReference: "d",
       focalLengthMm: 24.973323947692432,
-      glass: "S-LAH99 catalog equivalent (patent 001291; production supplier unspecified)",
+      glass:
+        "S-LAH99 catalog equivalent (patent 001291; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G10",
       cemented: "C2",
     },
@@ -200,11 +235,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5706,
       vd: 20.08,
+      indexReference: "d",
       focalLengthMm: 198.36864259446364,
-      glass: "Unmatched (Canon BR optical resin)",
+      glass:
+        "Unmatched (published high-partial-dispersion medium; BR-resin production correlation only, chemistry and cure unspecified)",
       apd: "patent",
       apdNote: "Patent θgF = 0.7782; dPgF computed against the SCHOTT Pg,F normal line.",
-      role: "BR-resin member of the cemented triplet immediately behind the stop.",
+      role: "Published high-partial-dispersion member of the post-stop cemented triplet; proprietary BR-resin identity is a production correlation, not source chemistry.",
       diagramLabel: "G11",
       cemented: "C2",
       dPgF: 0.16817456,
@@ -216,8 +253,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.66565,
       vd: 35.64,
+      indexReference: "d",
       focalLengthMm: -33.36746965765283,
-      glass: "H-ZBaF4 catalog equivalent (patent 666356; production supplier unspecified)",
+      glass:
+        "H-ZBaF4 catalog equivalent (patent 666356; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "patent",
       apdNote: "Patent θgF = 0.5824; dPgF computed against the SCHOTT Pg,F normal line.",
       diagramLabel: "G12",
@@ -231,8 +270,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43875,
       vd: 94.66,
+      indexReference: "d",
       focalLengthMm: 36.95652849212771,
-      glass: "S-FPL55 catalog equivalent (patent 439947; production supplier unspecified)",
+      glass:
+        "S-FPL55 catalog equivalent (patent 439947; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive member of the moving focus group; vendor and production special-element identity remain unresolved.",
       diagramLabel: "G13",
       cemented: "C3",
@@ -244,8 +285,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77047,
       vd: 29.74,
+      indexReference: "d",
       focalLengthMm: -25.60982499541075,
-      glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
+      glass:
+        "NBFD29 catalog equivalent (patent 770297; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: "patent",
       apdNote: "Patent θgF = 0.5951; dPgF computed against the SCHOTT Pg,F normal line.",
       diagramLabel: "G14",
@@ -259,8 +302,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.65,
+      indexReference: "d",
       focalLengthMm: 36.91291254169684,
-      glass: "FCD1 catalog equivalent (patent 497817; production supplier unspecified)",
+      glass:
+        "FCD1 catalog equivalent (patent 497817; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G15",
     },
     {
@@ -270,8 +315,10 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.854,
       vd: 40.4,
+      indexReference: "d",
       focalLengthMm: 52.62882387174715,
-      glass: "L-LAH85V catalog equivalent (patent 854404; production supplier unspecified)",
+      glass:
+        "L-LAH85V catalog equivalent (patent 854404; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G16",
     },
     {
@@ -281,8 +328,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59282,
       vd: 68.6,
+      indexReference: "d",
       focalLengthMm: 39.23913580924248,
-      glass: "FCD515 catalog equivalent (patent 593686; production supplier unspecified)",
+      glass:
+        "FCD515 catalog equivalent (patent 593686; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G17",
       cemented: "C4",
     },
@@ -293,8 +342,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.9165,
       vd: 31.6,
+      indexReference: "d",
       focalLengthMm: -23.318482688363726,
-      glass: "S-LAH88 catalog equivalent (patent 917316; production supplier unspecified)",
+      glass:
+        "S-LAH88 catalog equivalent (patent 917316; compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       diagramLabel: "G18",
       cemented: "C4",
     },
@@ -314,37 +365,47 @@ const LENS_DATA = {
       R: 12.96,
       d: 14.47,
       sd: 19.2,
-      asphere: { K: -0.68209, A4: -2.1692e-6, A6: -9.17628e-9, A8: -2.33882e-10, A10: 8.26939e-13, A12: -1.85607e-15, A14: 0 },
+      rimExtensionSd: 27.8,
+      asphere: {
+        K: -0.68209,
+        A4: -2.1692e-6,
+        A6: -9.17628e-9,
+        A8: -2.33882e-10,
+        A10: 8.26939e-13,
+        A12: -1.85607e-15,
+        A14: 0,
+      },
     },
     { label: "3", R: -8220.485, d: 1.6, sd: 17.3, medium: 2 },
-    { label: "4", R: 48.726, d: 5.09, sd: 16.8 },
+    { label: "4", R: 48.726, d: 5.09, sd: 16.8, rimExtensionSd: 17.3 },
     { label: "5", R: -52.293, d: 2.0, sd: 14.6, medium: 3 },
     {
       label: "6A",
       R: 61.254,
       d: 0.2,
       sd: 14.2,
+      rimExtensionSd: 14.6,
       asphere: { K: 0, A4: 2.29625e-5, A6: 1.76297e-8, A8: 4.18666e-10, A10: -2.45395e-12, A12: 6.29348e-15, A14: 0 },
     },
     { label: "7", R: 30.423, d: 3.13, sd: 14.4, medium: 4 },
     { label: "8", R: 60.805, d: 4.01, sd: 12.5 },
     { label: "9", R: -38.272, d: 1.2, sd: 14.4, medium: 5 },
-    { label: "10", R: 89.263, d: 0.2, sd: 13.9 },
+    { label: "10", R: 89.263, d: 0.2, sd: 13.9, rimExtensionSd: 14.4 },
     { label: "11", R: 33.379, d: 9.18, sd: 14.6, medium: 6 },
     { label: "12", R: -25.609, d: 1.05, sd: 14.6, medium: 7 },
     { label: "13", R: -50.774, d: 0.2, sd: 14.6 },
     { label: "14", R: 121.888, d: 4.07, sd: 14.2, medium: 8 },
     { label: "15", R: -55.78, d: 3.62, sd: 14.2 },
-    { label: "16", R: -26.631, d: 1.1, sd: 13.3, medium: 9 },
+    { label: "16", R: -26.631, d: 1.1, sd: 13.3, rimExtensionSd: 13.6, medium: 9 },
     { label: "17", R: -79.426, d: 2.0, sd: 13.6 },
     { label: "STO", R: "flat", d: 2.43 },
     { label: "19", R: 52.498, d: 5.84, sd: 13.9, medium: 10 },
     { label: "20", R: -45.067, d: 1.0, sd: 13.9, medium: 11 },
     { label: "21", R: -32.493, d: 1.1, sd: 13.9, medium: 12 },
-    { label: "22", R: 71.141, sd: 13.7 },
+    { label: "22", R: 71.141, sd: 13.7, rimExtensionSd: 13.9 },
     { label: "23", R: -120.281, d: 7.55, sd: 12.6, medium: 13 },
     { label: "24", R: -14.562, d: 1.0, sd: 12.6, medium: 14 },
-    { label: "25", R: -57.242, d: 0.2, sd: 14.0 },
+    { label: "25", R: -57.242, d: 0.2, sd: 12.6 },
     { label: "26", R: 39.251, d: 8.64, sd: 15.6, medium: 15 },
     { label: "27", R: -31.928, d: 0.6, sd: 15.6 },
     {
@@ -359,7 +420,15 @@ const LENS_DATA = {
       label: "29A",
       R: -65.817,
       sd: 16.1,
-      asphere: { K: 0, A4: -1.07831e-5, A6: -3.03321e-9, A8: -5.03844e-11, A10: 1.22127e-12, A12: -1.50312e-15, A14: 0 },
+      asphere: {
+        K: 0,
+        A4: -1.07831e-5,
+        A6: -3.03321e-9,
+        A8: -5.03844e-11,
+        A10: 1.22127e-12,
+        A12: -1.50312e-15,
+        A14: 0,
+      },
     },
     { label: "30", R: -1214.157, d: 7.51, sd: 16.4, medium: 17 },
     { label: "31", R: -22.877, d: 1.05, sd: 16.4, medium: 18 },

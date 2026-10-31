@@ -63,14 +63,8 @@ const APERTURE_ROUNDING = 0.005;
  * and no lens may join it.
  */
 const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
-  "canon-ef-28-105mm-f35-45-ii-usm",
-  "canon-ef-28-135mm-f3-5-5-6-is-usm",
-  "canon-ef-28-70mm-f35-45-ii",
-  "canon-ef-70-300mm-f4-56-is-usm",
-  "canon-efs-10-18-f4556-is-stm",
   "canon-powershot-g1-x-mark-ii-125-625-f20-39",
   "canon-powershot-g7x-8-8-36-8-f1-8-2-8",
-  "canon-tse-50f28l-macro",
   "minolta-af-35-105mm-f3-5-4-5-v2",
   "nikkor-z-100-400-f4556",
   "nikon-1-nikkor-vr-10-30-f35-56",

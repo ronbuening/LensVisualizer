@@ -2,15 +2,16 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2024/0045184 A1
-**Application Number:** US 18/347,616
-**Filed:** July 6, 2023
-**Published:** February 8, 2024
-**Priority:** JP 2022-126694, filed August 8, 2022
-**Inventor:** Makoto Nakahara
-**Applicant:** Canon Inc. (Canon Kabushiki Kaisha, Tokyo)
-**Title:** Zoom Lens and Image Pickup Apparatus Having the Same
-**Example details:** FIG. 1; aberration diagrams FIGS. 2A–2C
+**Patent:** US 2024/0045184 A1\
+**Application Number:** US 18/347,616\
+**Filed:** July 6, 2023\
+**Published:** February 8, 2024\
+**Priority:** JP 2022-126694, filed August 8, 2022\
+**Inventor:** Makoto Nakahara\
+**Applicant:** Canon Inc. (Canon Kabushiki Kaisha, Tokyo)\
+**Title:** Zoom Lens and Image Pickup Apparatus Having the Same\
+**Example details:** FIG. 1 / PDF p. 2; aberration diagrams FIGS. 2A–2C / PDF pp. 2–3\
+**Scoped original follow-up:** October 30, 2026; October 1 glass selections and audit history retained
 
 US 2024/0045184 A1 discloses six numerical examples of a negative-lead ultra-wide zoom in which a single positive lens
 immediately behind the aperture stop performs focusing (¶0029–¶0030, ¶0044). Numerical Example 1 is a four-unit design
@@ -99,7 +100,7 @@ at wide to −1.193 at tele, a ratio of 1.875, while β4 stays between 0.837 and
 
 The patent does not publish the stop diameter. The data file uses LensVisualizer's `from-nominal-fno` aperture model,
 which infers the iris radius at each station from the printed f-numbers (4.08, 4.08, 4.12). The inferred radii are
-4.722, 5.460 and 6.154 mm at wide, middle and tele, an increase of 30.3%. The ratio of entrance-pupil diameter to stop
+4.722207, 5.459649 and 6.154380 mm at wide, middle and tele, an increase of 30.3%. The ratio of entrance-pupil diameter to stop
 diameter rises from 0.268 to 0.382 over the same range. In this model, therefore, a fixed diaphragm could not maintain
 the near-constant published f-number; the radii are a calibration to the printed f-numbers, not independent evidence of
 the production diaphragm schedule.
@@ -111,191 +112,109 @@ the wide end is 18.92 mm, compared with 21.64 mm at middle and tele; ¶0038 and 
 smaller wide-end image circle, which allows a smaller front-element diameter. The consequences are quantified under
 Distortion and Image-Circle Strategy.
 
-## Element-by-Element Analysis
+## Element-by-Element Shape and Glass Review
 
-Element focal lengths are standalone thick-lens values in air. Cemented pairs are discussed both as individual elements
-and as net doublets. In-situ heights refer to paraxial rays: the marginal ray at the printed f-number and the chief ray
-scaled to the printed image height. At the wide end's 61° paraxial field these heights are first-order indicators rather
-than real-ray values.
+All sixteen media, four cemented interfaces and every concave end were checked against
+the exact original. There is no separately prescribed hybrid or cement-index layer.
+Paragraph 0039 permits a camera-side plate in general, but the selected Example 1
+numerical prescription and Fig. 1 contain none; no medium is omitted from its table.
+The optical roles below are interpretation of the literal prescription. Every catalog
+name is a compatible spectral proxy; historical supplier, melt, chemistry, annealing
+and manufacturing method remain unspecified.
 
-### Unit L1 — negative front unit
+| Element | Source surfaces | Shape and optical role                  | Source nd / νd | Compatible spectral proxy |
+| ------- | --------------- | --------------------------------------- | -------------- | ------------------------- |
+| E1      | 1–2             | Double-aspheric negative front meniscus | 1.58313 / 59.4 | S-BAL42 / L-BAL42         |
+| E2      | 3–4             | Strong negative front meniscus          | 1.91082 / 35.2 | TAFD35 / H-ZLaF4LA        |
+| E3      | 5–6             | Lower-dispersion negative meniscus      | 1.59282 / 68.6 | FCD515 / FCD505           |
+| E4      | 7–8             | Very-low-dispersion negative in C1      | 1.43875 / 94.7 | S-FPL55                   |
+| E5      | 8–9             | Only positive in L1, G1P, in C1         | 1.88300 / 40.8 | TAFD30 / S-LAH58          |
+| E6      | 11–12           | Single positive focus lens GP           | 1.72047 / 34.7 | S-NBH8 / N-KZFS8          |
+| E7      | 13–14           | High-dispersion negative in C2          | 1.80810 / 22.8 | S-NPH1 / FD225            |
+| E8      | 14–15           | Positive member of C2                   | 1.67300 / 38.3 | S-NBH52V                  |
+| E9      | 16–17           | Strong biconcave negative in C3         | 1.88300 / 40.8 | TAFD30 / S-LAH58          |
+| E10     | 17–18           | High-index positive meniscus in C3      | 1.92286 / 20.9 | E-FDS1 / N-SF66           |
+| E11     | 19–20           | Low-dispersion positive, aspheric rear  | 1.49700 / 81.5 | S-FPL51 / FCD1            |
+| E12     | 21–22           | Very-high-index negative in C4          | 2.05090 / 26.9 | TAFD65 / H-ZLaF96         |
+| E13     | 22–23           | Low-dispersion positive in C4           | 1.49700 / 81.5 | S-FPL51 / FCD1            |
+| E14     | 24–25           | Negative IS meniscus GIS                | 1.88300 / 40.8 | TAFD30 / S-LAH58          |
+| E15     | 26–27           | Double-aspheric negative rear meniscus  | 1.85400 / 40.4 | L-LAH85V                  |
+| E16     | 28–29           | Fixed positive rear field meniscus LN   | 1.49700 / 81.5 | S-FPL51 / FCD1            |
 
-#### E1 — Negative Meniscus, convex to object (2× Asph)
+L1 concentrates negative power in the three front menisci. Its final C1 doublet is
+net positive despite E4's negative power; E5 partly offsets their lateral color.
+The small focus singlet sits behind the stop to reduce its off-axis beam height.
+L3's C2/C3 pairs balance large opposing powers; E11 and C4 provide low-dispersion
+positive correction, while the rear E14/E15 pair is net negative. E14 alone is the
+source's laterally shifted IS member. E16 is a fixed field-correcting meniscus.
+These roles and the source's qualitative focus/IS descriptions do not prove the
+production glass or molding process.
 
-nd = 1.58313, νd = 59.4. Glass: S-BAL42 / L-BAL42 (OHARA) class — 583594 barium crown. f = −62.51 mm.
+### Native rims, shoulders and retained constraints
 
-E1 is by far the largest element: its modeled front semi-diameter is 33.5 mm (Ø67 mm), against 22.7 mm for E2 and 20.8
-mm for the rear element E16. Both surfaces are aspherical, and the rear surface also carries a conic constant (K =
-−0.876). At the wide end, the paraxial chief ray at surface 1 is 33.4 times the marginal-ray height, so its aspheric
-figure acts almost entirely on field-dependent aberrations; it has little leverage on spherical aberration. The glass is
-a moderate-index barium crown with a moulding-grade (low-Tg) equivalent, consistent with the element being one of
-Canon's three GMo aspheres. E1 is the weaker of the two large front menisci (f = −62.51 mm against −30.18 mm for E2).
+The October 1 audit is preserved with its actual date. This follow-up reopens two
+reproducible outline defects: free-end shoulders were closed diagonally in the
+rendered SVG, and several old beam-margin caps exceeded the drawn native blanks.
+The original embeds 2560×3300 pixels at 300 ppi. The earlier 600-dpi rendering was
+upsampling, not additional native detail. In a native Fig. 1 crop, the approximately
+1272 px first/last-vertex span represents 116.69 mm, about 10.9 px/mm. Practical
+height uncertainty is ±0.6 mm, increasing to ±1.0 mm at the front menisci because
+of the optical-cap/outer-blank transition. Leaders, group brackets, focus/IS arrows,
+zoom trajectories and the image-plane line are excluded from measurements.
 
-#### E2 — Negative Meniscus, convex to object
+Approximate native blank half-heights are E1 31.4, E2 21.3, E3 15.7, C1 13.9,
+GP 7.5, C2/C3 7.6, E11 9.0, C4 9.3, GIS 9.8, E15 11.3 and E16 20.0 mm.
+These are drawing measurements, not printed optical apertures. Seventeen inferred
+caps are corrected and eight outer shoulders preserve their corresponding clear
+caps. The adopted model remains explicit about this uncertainty:
 
-nd = 1.91082, νd = 35.2. Glass: TAFD35 (HOYA) / H-ZLaF4LA class — 911352 dense lanthanum flint. f = −30.18 mm.
+| Source surfaces | Adopted clear sd (mm) | Outer extension sd (mm) |
+| --------------- | --------------------- | ----------------------- |
+| 1A / 2A         | 31.5 / 23.7           | S2A 31.5                |
+| 3 / 4           | 21.4 / 16.05          | S4 21.4                 |
+| 5 / 6           | 15.7 / 14.25          | S6 15.7                 |
+| 7 / 8 / 9       | 13.3 / 13.9 / 13.7    | S9 13.9                 |
+| 11 / 12         | 7.6 / 7.6             | none                    |
+| 13 / 14 / 15    | 7.7 / 7.7 / 6.9       | S15 7.7                 |
+| 16 / 17 / 18    | 6.85 / 7.7 / 7.7      | S16 7.7                 |
+| 19 / 20A        | 9.2 / 9.2             | none                    |
+| 21 / 22 / 23    | 9.5 each              | none                    |
+| 24 / 25         | 9.9 / 9.6             | S25 9.9                 |
+| 26A / 27A       | 10.6 / 11.5           | S26A 11.5               |
+| 28 / 29         | 20.2 / 20.2           | none                    |
 
-E2 is the strongest negative element in L1. For a given power, its very high index requires less surface curvature than
-a lower-index glass would. Among L1's negative elements it is the largest lateral-colour contributor: −0.233 mm (F − C)
-at the wide end, compared with −0.180 mm for L1 as a whole (see Chromatic Correction Strategy).
+The C2/C4 October 1 height estimates are superseded by the direct native-scale
+comparison; their source/glass history remains dated. Source R/d, all five aspheres,
+stops, zoom gaps and reconstructed focus controls remain unchanged. All bonded
+interfaces stay curved and connected, without opaque lands or disconnected wings.
+No inferred concave cut is introduced.
 
-#### E3 — Negative Meniscus, convex to object
+A full S7 outer shoulder of 13.9 mm was rejected: its land intrudes 9.463 mm into
+the 9.86 mm S6/7 gap, beyond the unchanged 8.874 mm guard. An initial full S25
+outer 10.6 mm trial similarly gives 5.102 mm intrusion beyond the 5.004 mm allowance
+in the 5.56 mm S25/26 gap; the adopted source-scale S25 outer is 9.9 mm. These are
+margin-guard failures, not claims of literal physical overlap. The S15/S16 optical
+caps remain 6.9/6.85 mm: their common-cap physical separation is 0.085079 mm across
+the printed 0.80 mm gap. The shoulders reproduce the blank topology without opening
+that optical aperture. Source fidelity and sampled pupil transmission remain separate.
 
-nd = 1.59282, νd = 68.6. Glass: FCD515 / FCD505 (HOYA) class — 593686 fluorophosphate crown. f = −87.21 mm.
+## Glass Evidence and Spectral Qualification
 
-E3 is the weakest negative element of L1. Its fluorophosphate-class glass adds negative power with little dispersion.
+Paragraph 0075, PDF p. 20 / printed p. 6, explicitly defines d=587.6 nm, F=486.1 nm,
+C=656.3 nm and νd=(Nd−1)/(NF−NC). Paragraph 0041, PDF p. 17 / printed p. 3, identifies
+the plotted d587.6/g435.8 nm lines. All sixteen pairs match the literal source.
+No individual numeric nC/nF/ng, positional partial dispersion, supplier, melt,
+chemistry, cement formula or molding grade is printed. There are zero unsupported
+active numeric spectral overrides to remove. All sixteen prior compatible curves
+resolve identically after explicit d-reference and spectral-proxy qualification.
 
-#### C1 — Cemented Doublet E4 + E5 (net f = +120.115 mm)
-
-**E4 — Biconcave Negative.** nd = 1.43875, νd = 94.7. Glass: S-FPL55 (OHARA) class — 439947 fluorophosphate (Super UD
-class). f = −34.74 mm.
-
-**E5 — Biconvex Positive.** nd = 1.88300, νd = 40.8. Glass: TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum
-flint. f = +27.83 mm.
-
-E4 is the only νd 94.7 element in the design and is therefore the element most plausibly identified with Canon's single
-Super UD element. The patent does not name glasses or publish partial dispersions, so this assignment is an inference.
-E4 is nearly as strong as E2 (f = −34.74 against −30.18 mm), yet at the wide end it contributes −0.090 mm of lateral
-colour against E2's −0.233 mm. Carrying part of L1's negative power on very low-dispersion glass thus reduces the
-lateral colour that the rest of the system must correct.
-
-E5 is G1P, the strongest (and only) positive lens in L1 (¶0051). It is a high-index, relatively dispersive lanthanum
-flint (νd = 40.8), whose lateral-colour contribution (+0.281 mm at wide) opposes that of the four negative elements.
-Condition (10), 22 < νdG1P < 50, bounds this choice: the patent states that a lower Abbe number makes lateral colour
-during zooming hard to correct, and a higher one makes longitudinal colour during zooming hard to correct (¶0059).
-
-### Unit L2 — focus lens GP
-
-#### E6 — Biconvex Positive (focus lens)
-
-nd = 1.72047, νd = 34.7. Glass: S-NBH8 (OHARA) / N-KZFS8 (Schott) class — 720347 short flint. f = +73.58 mm.
-
-E6 is the entire second unit and the only element that moves during focusing (¶0030, ¶0044). It sits directly behind the
-stop, where the off-axis beam is low: the paraxial chief-ray height at its front surface is 0.32 times the marginal-ray
-height at wide and 0.24 times at tele. The patent's stated rationale is that this position minimises the diameter of the
-focus unit, and a single lens minimises its weight (¶0044). Its modeled semi-diameters are 8.4 and 8.6 mm.
-
-Conditions (2) and (8) constrain the glass to 25 < νdGP < 45 and 1.60 < ndGP < 1.91 (¶0048, ¶0057). The patent links the
-Abbe-number range to chromatic-aberration fluctuation during focusing, and the index range to fluctuations of
-astigmatism and spherical aberration during focusing. The coordinate nd = 1.72047, νd = 34.7 matches OHARA S-NBH8 and
-Schott N-KZFS8, both classed here as short flints. As a positive singlet, E6 is a substantial source of undercorrected
-longitudinal colour (−0.637 mm at wide), which L3 corrects.
-
-### Unit L3 — main positive relay with image stabilizer
-
-#### C2 — Cemented Doublet E7 + E8 (net f = +52.745 mm)
-
-**E7 — Negative Meniscus, convex to object.** nd = 1.80810, νd = 22.8. Glass: S-NPH1 (OHARA) / FD225 (HOYA) class —
-808228 dense flint. f = −25.10 mm.
-
-**E8 — Positive Meniscus, convex to object.** nd = 1.67300, νd = 38.3. Glass: S-NBH52V (OHARA) class — 673383. f =
-+16.55 mm.
-
-C2 opens L3 immediately after E6. The modeled front and cemented-interface semi-diameters are both 8.4 mm, following
-the continuous rim in Fig. 1; the rear remains 6.9 mm to preserve clearance to C3. The thin (0.69 mm) dense-flint E7 is cemented to the thicker positive E8 across a
-strongly curved junction (R = 10.223 mm). The two elements' longitudinal-colour contributions largely cancel (+2.777 and
-−2.447 mm at wide), leaving the doublet net positive in power. The air gap to the next doublet is only 0.80 mm; in the
-model it limits the semi-diameters of surfaces 15 and 16.
-
-#### C3 — Cemented Doublet E9 + E10 (net f = −25.740 mm)
-
-**E9 — Biconcave Negative.** nd = 1.88300, νd = 40.8. Glass: TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum
-flint. f = −11.92 mm.
-
-**E10 — Positive Meniscus, convex to object.** nd = 1.92286, νd = 20.9. Glass: E-FDS1 (HOYA) / N-SF66 (Schott) class —
-923209 dense flint. f = +21.04 mm.
-
-E9 is the strongest negative element in the lens. Paired with E10, a positive element of higher dispersion, it forms the
-only net-negative doublet in L3. Within C3, E9 has the higher Abbe number and acts as the crown of a negative achromat.
-The two elements' longitudinal-colour contributions again nearly cancel (+2.685 and −2.865 mm at wide).
-
-#### E11 — Biconvex Positive (1× Asph)
-
-nd = 1.49700, νd = 81.5. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815 fluorophosphate (UD class). f = +25.04 mm.
-
-E11 is a low-dispersion positive element with an aspherical rear surface (surface 20). It corresponds to Canon's UD
-element that is also a GMo asphere; a moulding-grade FCD1-family glass is among the closest catalog coordinates. At
-surface 20 the paraxial chief-ray height is 2.0 times the marginal-ray height at wide and 1.2 at tele, so this asphere
-acts on both aperture- and field-dependent aberrations. Its longitudinal-colour contribution (−0.644 mm at wide) is
-about the same as that of E6 (−0.637 mm), although its focal length is much shorter (25.04 against 73.58 mm).
-
-#### C4 — Cemented Doublet E12 + E13 (net f = +54.744 mm)
-
-**E12 — Negative Meniscus, convex to object.** nd = 2.05090, νd = 26.9. Glass: TAFD65 (HOYA) / H-ZLaF96 (CDGM) class —
-051269 lanthanum dense flint. f = −27.40 mm.
-
-**E13 — Biconvex Positive.** nd = 1.49700, νd = 81.5. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815
-fluorophosphate (UD class). f = +18.70 mm.
-
-Fig. 1 shows a common optical rim across C4. Surfaces 21–23 therefore use a modeled 9.9 mm semi-diameter, slightly above the approximately 9.3 mm figure reading; the former 11.5 mm front rim introduced an unsupported step.
-
-C4 is a conventional crown-flint achromat: a UD-class positive element cemented to a very-high-index flint negative. E12
-has the highest refractive index in the design (nd = 2.0509) and is only 0.64 mm thick, so the cemented junction carries
-a large index step. E13, at 7.99 mm, is the thickest element in the lens.
-
-#### E14 — Negative Meniscus, convex to object (image stabilizer)
-
-nd = 1.88300, νd = 40.8. Glass: TAFD30 (HOYA) / S-LAH58 (OHARA) class — 883408 lanthanum flint. f = −80.07 mm.
-
-E14 is the image-stabilizing unit LIS, consisting of the single negative lens GIS, which shifts perpendicular to the
-axis (¶0026, ¶0039). Its object-side vertex lies 34.48 mm behind the stop at the wide end. The patent's conditions (3),
-(7), (9) and (11) govern its placement, power, glass and shape; they are discussed under Image Stabilization.
-
-#### E15 — Negative Meniscus, concave to object (2× Asph)
-
-nd = 1.85400, νd = 40.4. Glass: L-LAH85V (OHARA low-Tg) class — 854404 lanthanum flint. f = −62.05 mm.
-
-E15 closes L3 and is the third GMo aspherical element. Its closest catalog coordinate is OHARA's low-Tg moulding glass
-L-LAH85V, although coordinate agreement does not identify the supplier. Both surfaces are aspherical and sit where the
-chief ray is well above the marginal ray (4.83 and 5.26 times at surfaces 26 and 27 at wide). Their correction therefore
-acts mainly on field aberrations. E15 and E14 together form the net-negative rear part of L3 (f = −34.221 mm).
-
-### Unit L4 — fixed rear meniscus
-
-#### E16 — Positive Meniscus, convex to image
-
-nd = 1.49700, νd = 81.5. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) class — 497815 fluorophosphate (UD class). f = +71.72 mm.
-
-E16 is the whole of L4 (the patent's LN), is fixed during zooming and focusing (¶0031, ¶0073), and is the third UD-class
-element. Here the chief ray is 7.0 to 10.9 times the marginal-ray height at wide (surfaces 28–29), so E16 works mainly
-on the off-axis bundles, in the manner of a field lens. Condition (6) bounds its power relative to L1 (|fL1/fLN| =
-0.270); ¶0055 explains that a stronger positive LN would strengthen the retrofocus asymmetry and make wide-end
-distortion harder to correct.
-
-## Glass Identification and Selection
-
-The patent publishes nd and νd only. The labels below are coordinate matches against the OHARA, HOYA, Schott, CDGM,
-HIKARI and Sumita catalogs plus OHARA's low-Tg sheet. All twelve distinct coordinates have a catalog glass within 0.001
-on the metric √(Δnd² + (Δνd/50)²). A coordinate match does not establish the supplier or melt.
-
-| Coordinate (nd / νd) | Label in data file                               | Elements      | Role                                     |
-| -------------------- | ------------------------------------------------ | ------------- | ---------------------------------------- |
-| 1.58313 / 59.4       | S-BAL42 / L-BAL42 class — barium crown           | E1            | Large double-sided front asphere         |
-| 1.91082 / 35.2       | TAFD35 / H-ZLaF4LA class — dense lanthanum flint | E2            | Strongest negative power in L1           |
-| 1.59282 / 68.6       | FCD515 / FCD505 class — fluorophosphate crown    | E3            | Low-dispersion negative meniscus         |
-| 1.43875 / 94.7       | S-FPL55 class — Super UD class                   | E4            | Low-dispersion negative in C1            |
-| 1.88300 / 40.8      | TAFD30 / S-LAH58 class — lanthanum flint         | E5, E9, E14   | G1P; negative achromat crown; IS element |
-| 1.72047 / 34.7      | S-NBH8 / N-KZFS8 class — short flint             | E6            | Focus lens GP                            |
-| 1.80810 / 22.8       | S-NPH1 / FD225 class — dense flint               | E7            | Flint of C2                              |
-| 1.67300 / 38.3       | S-NBH52V class                                   | E8            | Positive member of C2                    |
-| 1.92286 / 20.9       | E-FDS1 / N-SF66 class — dense flint              | E10           | Positive flint of C3                     |
-| 1.49700 / 81.5       | S-FPL51 / FCD1 class — UD class                  | E11, E13, E16 | UD asphere; crown of C4; rear field lens |
-| 2.05090 / 26.9       | TAFD65 / H-ZLaF96 class — lanthanum dense flint  | E12           | Flint of C4                              |
-| 1.85400 / 40.4       | L-LAH85V (low-Tg) class                          | E15           | Rear GMo asphere                         |
-
-Three observations follow from the table:
-
-- **Low-dispersion glass on both sides of the stop.** Canon's "1 Super UD + 3 UD" maps onto the one νd 94.7 element (E4)
-  and the three νd 81.5 elements (E11, E13, E16). This mapping is inferred from the coordinates. Three of the four sit
-  behind the stop.
-- **Mouldable glasses on the aspheric elements.** All three aspherical elements (E1, E11, E15) have exact coordinate
-  matches among low-Tg or moulding-grade glasses (L-BAL42, the FCD1 moulding family, L-LAH85V). This is consistent with
-  Canon's GMo description.
-- **Repeated lanthanum flint.** The 883408 lanthanum flint appears in three roles: G1P in L1, the negative member of C3,
-  and the IS element. Its Abbe number sits inside conditions (9) and (10), which constrain GIS and G1P.
-
-No partial-dispersion data are published, and the data file carries no line indices. The chromatic analysis below is
-therefore limited to primary (F − C) colour; secondary spectrum is not assessed, and no apochromatic claim is made.
+The four APD tags on E4/E11/E13/E16 remain inferred from low-dispersion coordinates
+and the compatible curves, consistent with the previously recorded production UD
+count. Neither exact production position nor fluorophosphate chemistry is established.
+A catalog low-Tg or molding-grade match is not evidence that the historical lens
+was molded from that catalog glass. The source-derived F−C index difference supports
+a primary-color diagnostic; any fuller spectral tracing uses the qualified catalog
+proxies, rather than source-measured line indices or source secondary-spectrum data.
 
 ## Focus Mechanism
 
@@ -348,26 +267,21 @@ applied as the next term of the same even series. All coefficients are copied un
 | 26      | E15 front | −26.667 | 0            | 1.66615e−04 | −1.90317e−06 | 1.23230e−08  | −9.41453e−11 | 4.39584e−13  | —            |
 | 27      | E15 rear  | −55.445 | 0            | 1.69532e−04 | −1.38711e−06 | 4.53596e−09  | −6.87436e−12 | 2.41668e−14  | —            |
 
-The patent does not publish semi-diameters. The departures below are evaluated at the data file's **modeled**
-semi-diameters and change with any different clear aperture. All five surfaces are flatter at the modeled rim than their
-base curves.
+The five coefficient rows above match the original on PDF pp. 20–21; K=k follows
+the printed (1+k) conic form, including the two printed A14 terms. All are preserved.
+At the adopted inferred clear caps, the recalculated rim values are:
 
-- **Surface 1 (E1 front).** At h = 33.5 mm the surface departs −4.263 mm from its base sphere (R = 37.0 mm); the rim
-  slope is 53.6°. The front face of the large meniscus is flattened substantially toward the edge.
-- **Surface 2 (E1 rear).** The modeled semi-diameter (25.6 mm) exceeds |R| = 17.814 mm, so no base sphere exists at the
-  rim. The prolate conic base (K = −0.876) already flattens the surface; the polynomial terms add a further −2.194 mm at
-  the rim, where the slope is 48.5°.
-- **Surface 20 (E11 rear).** The departure is +0.254 mm at h = 10.85 mm, a mild flattening of a convex surface with R =
-  −31.043 mm.
-- **Surfaces 26 and 27 (E15).** The departures are +0.566 mm at h = 10.6 mm and +0.995 mm at h = 11.5 mm. On surface 27
-  the aspheric terms bring the surface back almost parallel to the vertex plane at the rim (local slope 0.2°).
+| Surface | Clear sd | Polynomial departure from its conic base | Signed rim slope |
+| ------- | -------: | ---------------------------------------: | ---------------: |
+| 1A      |     31.5 |                             −3.058541 mm |      +49.014747° |
+| 2A      |     23.7 |                             −1.337887 mm |      +48.658643° |
+| 20A     |      9.2 |                             +0.135424 mm |      −14.426955° |
+| 26A     |     10.6 |                             +0.566422 mm |      −15.345242° |
+| 27A     |     11.5 |                             +0.995408 mm |       +0.211324° |
 
-For a fourth-order aspheric term, the weight of the field-dependent Seidel contributions relative to spherical
-aberration scales with powers of the chief-to-marginal height ratio at the surface (Welford 1986). This ratio is about
-33 at surface 1, 2.0 at surface 20 and about 5 at surfaces 26–27 at the wide end. The front and rear aspheres therefore
-act principally on off-axis aberrations, whereas surface 20 has meaningful leverage on both aperture- and
-field-dependent terms. The patent does not publish third-order data, so this allocation is first-order interpretation,
-not a patent statement.
+These are computed at modeled caps, not source measurements. At S2A the adopted
+height exceeds |R|, so the comparison is to its valid prolate conic, not a base
+sphere outside its domain. No coefficient or radius is tuned to match a drawing.
 
 ## Image Stabilization
 
@@ -391,7 +305,7 @@ bound this sensitivity and the associated aberration changes:
 
 ## Chromatic Correction Strategy
 
-Only primary (F − C) colour can be evaluated from the published data. The values below come from paraxial traces with
+The following retained calculation is a primary (F − C) diagnostic from the published nd/νd pairs; it does not identify the source material spectrum. The values below come from paraxial traces with
 each glass's nF − nC = (nd − 1)/νd. Longitudinal colour (LCA) is the separation of the F and C paraxial foci. Lateral
 colour (TCA) is the F − C chief-ray height difference at the printed image height. Contributions are obtained by
 enabling dispersion in one unit at a time; the four unit contributions add to within 0.0005 mm of the whole-system
@@ -433,8 +347,7 @@ A real meridional chief ray through the centre of the stop reaches the wide-end 
 64.51°. With the model's focal length of 10.3155 mm, the corresponding undistorted height is 21.635 mm, giving Dist_w =
 −12.55% (printed −12.56%; condition (13): −20.0 < Dist_w < −8.0). The undistorted height matches the printed middle and
 tele image height of 21.64 mm, the full-frame half-diagonal. The wide-end optical image circle is therefore smaller than
-the sensor diagonal by the amount the barrel distortion compresses it. After electronic correction, the image fills the
-full frame with a diagonal field of 129.02° (twice the real chief-ray angle). This is the mechanism of ¶0038 and claim
+the sensor diagonal by the amount the barrel distortion compresses it. The patent intends electronic correction to fill the full output frame; the modeled optical diagonal field is 129.02° (twice the real chief-ray angle). This trace does not validate a production digital correction map. This is the mechanism of ¶0038 and claim
 26: a smaller wide-end image circle permits a smaller front element. Condition (12), Ymax_w/fL1 = −0.977, bounds the
 wide-end image height relative to the front-unit focal length (¶0061).
 
@@ -455,15 +368,15 @@ inside the base ranges.
 | No.  | Expression                 | Range         | Table 1 | Recomputed |
 | ---- | -------------------------- | ------------- | ------- | ---------- |
 | (1)  | D2w/TLw                    | 0.48 – 0.65   | 0.51    | 0.515      |
-| (2)  | νdGP                       | 25 – 45       | 34.7   | 34.7      |
+| (2)  | νdGP                       | 25 – 45       | 34.7    | 34.7       |
 | (3)  | DISw/DSPw                  | 0.35 – 0.80   | 0.52    | 0.525      |
 | (4)  | Skw/TLw                    | 0.04 – 0.25   | 0.09    | 0.094      |
 | (5)  | fL1/fL2                    | −0.45 – −0.15 | −0.26   | −0.263     |
 | (6)  | \|fL1/fLN\|                | 0.00 – 0.40   | 0.27    | 0.270      |
 | (7)  | \|fLN/fLIS\|               | 0.50 – 1.60   | 0.90    | 0.896      |
 | (8)  | ndGP                       | 1.60 – 1.91   | 1.72    | 1.72047    |
-| (9)  | νdGIS                      | 35 – 60       | 40.8   | 40.8      |
-| (10) | νdG1P                      | 22 – 50       | 40.8   | 40.8      |
+| (9)  | νdGIS                      | 35 – 60       | 40.8    | 40.8       |
+| (10) | νdG1P                      | 22 – 50       | 40.8    | 40.8       |
 | (11) | (R1 + R2)/(R1 − R2) of GIS | 3.5 – 13.0    | 6.89    | 6.891      |
 | (12) | Ymax_w/fL1                 | −1.60 – −0.40 | −0.98   | −0.977     |
 | (13) | Dist_w (%)                 | −20.0 – −8.0  | −12.56  | −12.55     |
@@ -500,11 +413,47 @@ distortion check above is weak supporting evidence that the printed surface tabl
 times the wide-end focal length). It is zoom-invariant. L1 contributes −0.03629 mm⁻¹, which nearly cancels the positive
 contributions of L2 (+0.00792), L3 (+0.02239) and L4 (+0.00927 mm⁻¹).
 
-**Modeled quantities.** Semi-diameters are not published. The data file's values come from real-ray envelopes
-(full-aperture axial bundle, full-field chief ray and partial off-axis bundles) with 8% clearance, reduced where edge
-thickness, rim slope or gap clearance required. The narrowest constraint is the 0.80 mm E8–E9 air gap at surfaces 15/16.
-The stop radii are an f-number calibration, and the close-focus states are the reconstruction described under Focus
-Mechanism.
+**October 30 scoped verification.** The reopened source review confirms 29 rows,
+24 fixed distances, the constant printed d29=12.13 mm, four source gap schedules,
+sixteen d-reference pairs and all five aspheres (32 K/polynomial entries). The three
+infinity stations are published; all finite and interpolated controls remain the
+existing reconstruction. The native-scale caps and shoulders above replace the old
+beam-margin silhouette. Glass selections are unchanged and the October 1 audit
+remains historical coverage, not a new source date.
+
+Surface, image-circle, aperture and format-chief checks pass at the three source
+stations and all 65 sampled zoom positions, within the unchanged 3% aperture and
+99% chief-coverage thresholds. A geometry-identical 65-station diagnostic clone
+has zero position/iris difference. Across 65 zoom × 21 focus controls, all 1365
+actual generated SVGs contain sixteen finite, closed, connected paths with zero
+hidden renderer trim. The worst sampled infinity BF displacement between source
+stations is −0.635794 mm at zoom 0.28125 (EFL 12.612474 mm, BF 11.494206 mm,
+printed image gap 12.13 mm). Linear interpolation is illustrative and does not
+establish a focus-preserving production cam.
+
+Dense actual finite-object checks use 390 positive Gaussian conjugates plus 65
+infinity states. Six wide-end finite full-format chief seeds remain unbracketed
+at focus .01/.05/.25/.5/.75/1; those targets exceed the source's smaller 18.92 mm
+wide image height. The other 131,823 pupil rays have all axial pupils/converged
+chiefs clear, with 17,498 ordinary marginal clips and 52 independently classified
+bounded-cap misses (six at the first asphere and 46 at S13). An independent positive
+object-distance supplement (250/focus mm from the image plane) samples 131,823 rays
+with the same six unsolved seeds, 17,476 ordinary clips and 49 bounded-cap misses.
+No unexplained intersection failure or unaimed ray remains in these samples.
+Neither run proves those six extreme finite-field targets are reachable.
+
+At the three printed infinity image heights, 873 pupil rays have all axial pupils
+and chiefs clear, with 114 ordinary clips and no seed/intersection failure. A separate
+bounding-sphere angular test over 65 zoom × 3 focus controls samples 56,745 rays in
+the source-height angular range: all axial pupils/chiefs clear, 6562 ordinary clips
+and 13 exact-intersection S13 cap misses. It has zero source-range seed failures.
+Of 585 additional 80/89/90° extreme bundles, 552 have no converged vector chief.
+Those extremes are limitations, not coverage. This angular test at finite focus
+controls is distinct from an actual finite-object test, and source-height intervals
+between the three numerical stations are illustrative.
+Centered IS is the only modeled stabilization state. Passing contours, axial pupils
+or chief rays does not establish full-pupil transmission at every field, a production
+focus cam, a historical material assignment or a production digital correction map.
 
 ## Design Heritage and Context
 
@@ -540,3 +489,15 @@ low-dispersion-glass count agree with the production RF10-20mm F4 L IS STM, whic
    2026); Schott optical glass overview (2025); CDGM (September 2024); HIKARI general catalog; Sumita (version
    14.01.03).
 8. Welford, W. T. _Aberrations of Optical Systems._ Bristol: Adam Hilger, 1986.
+
+### 2026-10-30 — Finite-field target clarification
+
+The explicit finite-object pupil grids above place rays on actual object planes,
+but scale off-axis object height using current paraxial magnification. Their nominal
+full-format field is therefore an object-field scaling, not an inverse solve that
+forces the distorted chief image to the sensor corner. Axial and converged-chief
+clearance remains valid for those sampled object points. It does not certify actual
+image-height edge reach at every finite conjugate. The six unbracketed wide-end
+finite targets refer to that stated object-field scaling. Infinity inverse-image-
+height checks and bounding-sphere angular probes are separate scopes. This dated
+clarification changes no source-review count, R/d, caps, aspheres, glass or controls.

@@ -14,20 +14,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ remain fixed. With R1 normalized as the axial origin, this is represented  ║
  * ║ by the single variable gap D14. All three rows are exact focus keyframes. ║
  * ║                                                                            ║
- * ║ Patent R9 is printed only as the diaphragm; data R = 1e15 is the schema's ║
- * ║ zero-power STO representation, not a patent-tabulated curvature.              ║
+ * ║ Patent R9 names only the diaphragm; R = "flat" is the neutral STO
+ * ║ representation, not a patent-tabulated curvature.
  * ║                                                                            ║
- * ║ Semi-diameters are modeling inferences because the patent does not         ║
- * ║ tabulate clear apertures. They were derived from full-field                ║
- * ║ marginal/chief-ray envelopes at infinity, 0.5×, and 1.0×, then rounded     ║
- * ║ outward with clearance and checked against the Example-1 optical section   ║
- * ║ (patent Fig. 1). The stop radius is derived from the design f-number       ║
- * ║ (FNo = 2.89).                                                              ║
- * ║                                                                            ║
- * ║ Glass identity: the patent publishes d-line nd/νd only. The six-digit     ║
- * ║ coordinate classes are retained without asserting a historical vendor.     ║
- * ║ Current-catalog equivalents exist, but nC/nF/ng/dPgF are intentionally     ║
- * ║ omitted because the patent does not publish those line data.               ║
+ * ║ Semi-diameters are inferred from the native Example-1 Fig.1 (PDF p.8),
+ * ║ with axial-beam floors across all focus controls. Source-height trials below
+ * ║ the full iris beam are rejected: surface 12 needs 13.3 mm and 13/14 need
+ * ║ 13.5 mm at the 1x finite conjugate. No cut or outer extension is resolved.
+ * ║ Source R/d and all three published D14 focus keyframes remain unchanged.
+ * ║
+ * ║ Glass: the patent names no spectral line (PDF p.4). 10 of 10 printed pairs   ║
+ * ║ match catalog d-line coordinates and none match the e-line, so the table is  ║
+ * ║ read as d-line. 10 media use catalog curves as spectral proxies; supplier,   ║
+ * ║ melt and chemistry stay unspecified. No explicit line indices or dPgF is     ║
+ * ║ treated as source data.                                                      ║
  * ║                                                                            ║
  * ║ Product correlation / marketed specifications: Canon Camera Museum,        ║
  * ║ https://global.canon/en/c-museum/product/ef289.html                         ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
     specs: ["10 ELEMENTS / 9 GROUPS", "100mm f/2.8 (marketed)", "F/2.89 DESIGN", "1.0× MACRO", "0.31 m MFD (marketed)"],
     elementCount: 10,
     groupCount: 9,
-    focalLengthMm: { marketing: 100, design: 100.035238895 },
+    focalLengthMm: { marketing: 100, design: 100 },
     fNumber: { marketing: 2.8, design: 2.89 },
   },
 
@@ -72,7 +72,8 @@ const LENS_DATA = {
       vd: 60.7,
       indexReference: "d",
       focalLengthMm: 160.763571,
-      glass: "603607 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "J-SK14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 2,
@@ -83,7 +84,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 127.917023,
-      glass: "786442 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 3,
@@ -94,7 +96,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 125.169113,
-      glass: "786442 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 4,
@@ -105,7 +108,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -46.729671,
-      glass: "805254 — d-line coordinate class (historical vendor unresolved)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 5,
@@ -116,7 +119,8 @@ const LENS_DATA = {
       vd: 30.1,
       indexReference: "d",
       focalLengthMm: -44.572309,
-      glass: "699301 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "E-FD15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D1",
     },
     {
@@ -128,7 +132,8 @@ const LENS_DATA = {
       vd: 40.9,
       indexReference: "d",
       focalLengthMm: 56.945473,
-      glass: "806409 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "P-LASF47 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       cemented: "D1",
     },
     {
@@ -140,7 +145,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: 63.026971,
-      glass: "786442 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "S-LAH51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 8,
@@ -151,7 +157,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 71.271302,
-      glass: "805254 — d-line coordinate class (historical vendor unresolved)",
+      glass: "SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 9,
@@ -162,7 +168,8 @@ const LENS_DATA = {
       vd: 40.1,
       indexReference: "d",
       focalLengthMm: -30.171137,
-      glass: "762401 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "S-LAM55 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
     {
       id: 10,
@@ -173,32 +180,33 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       focalLengthMm: 98.343522,
-      glass: "516641 — d-line coordinate class (historical vendor unresolved)",
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 82.83, d: 4.2, sd: 25.5, medium: 1 },
-    { label: "2", R: 557.6, d: 3.6, sd: 25.5 },
-    { label: "3", R: 62.43, d: 4.2, sd: 22.5, medium: 2 },
-    { label: "4", R: 159.85, d: 0.15, sd: 22.5 },
-    { label: "5", R: 38.67, d: 6.41, sd: 19.5, medium: 3 },
-    { label: "6", R: 59.07, d: 2.86, sd: 19.5 },
-    { label: "7", R: 128.46, d: 1.8, sd: 16.0, medium: 4 },
-    { label: "8", R: 28.92, d: 5.45, sd: 16.0 },
+    { label: "1", R: 82.83, d: 4.2, sd: 17.5, medium: 1 },
+    { label: "2", R: 557.6, d: 3.6, sd: 17.5 },
+    { label: "3", R: 62.43, d: 4.2, sd: 16.5, medium: 2 },
+    { label: "4", R: 159.85, d: 0.15, sd: 16.5 },
+    { label: "5", R: 38.67, d: 6.41, sd: 15.5, medium: 3 },
+    { label: "6", R: 59.07, d: 2.86, sd: 15.5 },
+    { label: "7", R: 128.46, d: 1.8, sd: 13.5, medium: 4 },
+    { label: "8", R: 28.92, d: 5.45, sd: 13.5 },
     { label: "STO", R: "flat", d: 5.08 },
-    { label: "10", R: -26.31, d: 1.8, sd: 13.0, medium: 5 },
-    { label: "11", R: -173.98, d: 4.5, sd: 14.5, medium: 6 },
-    { label: "12", R: -36.74, d: 0.15, sd: 15.0 },
-    { label: "13", R: 230.07, d: 4.0, sd: 16.5, medium: 7 },
-    { label: "14", R: -62.64, sd: 16.5 },
-    { label: "15", R: 425.29, d: 3.7, sd: 16.5, medium: 8 },
-    { label: "16", R: -66.08, d: 1.83, sd: 16.5 },
-    { label: "17", R: -60.97, d: 1.5, sd: 16.0, medium: 9 },
-    { label: "18", R: 37.3, d: 14.09, sd: 16.0 },
-    { label: "19", R: 44.78, d: 5.5, sd: 21.0, medium: 10 },
-    { label: "20", R: 363.26, d: 42.4201237822, sd: 21.0 },
+    { label: "10", R: -26.31, d: 1.8, sd: 13, medium: 5 },
+    { label: "11", R: -173.98, d: 4.5, sd: 13, medium: 6 },
+    { label: "12", R: -36.74, d: 0.15, sd: 13.3 },
+    { label: "13", R: 230.07, d: 4.0, sd: 13.5, medium: 7 },
+    { label: "14", R: -62.64, sd: 13.5 },
+    { label: "15", R: 425.29, d: 3.7, sd: 12, medium: 8 },
+    { label: "16", R: -66.08, d: 1.83, sd: 12 },
+    { label: "17", R: -60.97, d: 1.5, sd: 12, medium: 9 },
+    { label: "18", R: 37.3, d: 14.09, sd: 12 },
+    { label: "19", R: 44.78, d: 5.5, sd: 17, medium: 10 },
+    { label: "20", R: 363.26, d: 42.4201237822, sd: 17 },
   ],
 
   focus: {

@@ -2027,4 +2027,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for molding glass M-PCD55AR.",
   },
+  {
+    name: "M-NBFD82",
+    vendor: "Hoya",
+    nd: 1.814741,
+    vd: 37.027807,
+    polynomial: [3.188026, -0.01217842, 0.03719308, -0.0002817531, 0.000180448, -4.18291e-6],
+    PgF: 0.5816,
+    source:
+      "HOYA retained official Zemax catalog2026-07-07 including obsolete entries, M-NBFD82 literal formula1 row; locally inspected2026-10-31, current portal timed out. No source supplier, melt, chemistry or process identity implied. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
 ];

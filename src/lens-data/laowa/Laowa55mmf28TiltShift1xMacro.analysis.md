@@ -34,10 +34,10 @@ The surface-by-surface Petzval sum is +0.001626655 mm⁻¹ at the d-line. This i
 The cemented-component powers are calculated separately from the standalone elements:
 
 | Component | Source surface span | Compound focal length in air |
-|---|---:|---:|
-| D1 | 11–13 | +1524.608301 mm |
-| D2 | 14–16 | -154.141934 mm |
-| D3 | 22–24 | -96.182453 mm |
+| --------- | ------------------: | ---------------------------: |
+| D1        |               11–13 |              +1524.608301 mm |
+| D2        |               14–16 |               -154.141934 mm |
+| D3        |               22–24 |                -96.182453 mm |
 
 ## Element-by-Element Analysis
 
@@ -131,18 +131,18 @@ This final biconvex positive singlet is separated from D3. It is part of the net
 
 The native coordinates were screened without an assumed supplier against primary OHARA, HOYA, SCHOTT, HIKARI and SUMITA AGF catalogs and the primary CDGM PDF. Candidate rows and signed residuals are retained in the evidence. The narrow coordinate screen uses |Δnd|≤0.00005 and |Δνd|≤0.15; coordinate agreement is not proof of the production supplier or dispersion curve. OHARA S- and L-prefixes are kept distinct. [3]
 
-| Native nd / νd | Elements | Model disposition |
-|---|---|---|
-| 1.49700 / 81.61 | L1, L9, L12 | H-FK61 (CDGM coordinate equivalent; supplier unconfirmed) |
-| 1.49700 / 85.00 | L2 | Unmatched (native nd=1.49700, vd=85.00; supplier unconfirmed) |
-| 1.53878 / 52.52 | L13 | Unmatched (native nd=1.53878, vd=52.52; supplier unconfirmed) |
-| 1.57371 / 70.00 | L3 | Unmatched (native nd=1.57371, vd=70.00; supplier unconfirmed) |
-| 1.78346 / 32.08 | L11 | Unmatched (native nd=1.78346, vd=32.08; supplier unconfirmed) |
-| 1.78451 / 48.06 | L10 | Unmatched (native nd=1.78451, vd=48.06; supplier unconfirmed) |
-| 1.84666 / 23.78 | L8 | H-ZF52 (CDGM coordinate equivalent; supplier unconfirmed) |
-| 1.85561 / 23.21 | L6 | Unmatched (native nd=1.85561, vd=23.21; supplier unconfirmed) |
-| 1.88300 / 40.80 | L4, L5, L14 | 883408 — coordinate class; supplier unconfirmed |
-| 1.92286 / 20.88 | L7 | 923209 — coordinate class; supplier unconfirmed |
+| Native nd / νd  | Elements    | Model disposition                                             |
+| --------------- | ----------- | ------------------------------------------------------------- |
+| 1.49700 / 81.61 | L1, L9, L12 | H-FK61 (CDGM coordinate equivalent; supplier unconfirmed)     |
+| 1.49700 / 85.00 | L2          | Unmatched (native nd=1.49700, vd=85.00; supplier unconfirmed) |
+| 1.53878 / 52.52 | L13         | Unmatched (native nd=1.53878, vd=52.52; supplier unconfirmed) |
+| 1.57371 / 70.00 | L3          | Unmatched (native nd=1.57371, vd=70.00; supplier unconfirmed) |
+| 1.78346 / 32.08 | L11         | Unmatched (native nd=1.78346, vd=32.08; supplier unconfirmed) |
+| 1.78451 / 48.06 | L10         | Unmatched (native nd=1.78451, vd=48.06; supplier unconfirmed) |
+| 1.84666 / 23.78 | L8          | H-ZF52 (CDGM coordinate equivalent; supplier unconfirmed)     |
+| 1.85561 / 23.21 | L6          | Unmatched (native nd=1.85561, vd=23.21; supplier unconfirmed) |
+| 1.88300 / 40.80 | L4, L5, L14 | 883408 — coordinate class; supplier unconfirmed               |
+| 1.92286 / 20.88 | L7          | 923209 — coordinate class; supplier unconfirmed               |
 
 The independent source-precision screen uses |Δnd|≤0.000005 and |Δνd|≤0.005, separately from the broader coordinate-class screen above. Four of the ten distinct native pairs have at least one nominal catalog row in that tighter box. OHARA unprefixed FPL51 and S-FPL51 remain distinct, and the nominal Sumita K-LaSFn17 match has a small coefficient-derived nd/νd disagreement retained in the evidence. These catalog results do not identify the actual production glass.
 
@@ -155,10 +155,10 @@ The manufacturer markets two ED elements and one high-index element. Those label
 The source supplies three coaxial states: infinity, 0.5x and 1.0x. G1 remains fixed; G2 moves objectward as the main focusing group and G3 independently moves objectward as the auxiliary correction group. The stop travels with G2. The production lens uses manual focus. No continuous source cam law is supplied. [1,2]
 
 | Source label | D(6), G1–G2 gap | D(19), stop-to-G3 gap | BF, last glass to image | Computed signed Gaussian magnification | Derived object-to-image distance |
-|---|---:|---:|---:|---:|---:|
-| infinity | 47.3370 mm | 1.4700 mm | 46.8077 mm | Infinity rounding residual | Infinity (source state) |
-| 0.5x | 27.0548 mm | 6.7287 mm | 61.8312 mm | -0.499168871 | 297.955281 mm |
-| 1.0x | 1.0500 mm | 9.8404 mm | 84.7243 mm | -0.962488251 | 265.469480 mm |
+| ------------ | --------------: | --------------------: | ----------------------: | -------------------------------------: | -------------------------------: |
+| infinity     |      47.3370 mm |             1.4700 mm |              46.8077 mm |             Infinity rounding residual |          Infinity (source state) |
+| 0.5x         |      27.0548 mm |             6.7287 mm |              61.8312 mm |                           -0.499168871 |                    297.955281 mm |
+| 1.0x         |       1.0500 mm |             9.8404 mm |              84.7243 mm |                           -0.962488251 |                    265.469480 mm |
 
 The patent's variable-spacing table names the three gaps D(6), D(19) and BF; Figure 1 marks the infinity value of D(6) as D12, the G1–G2 separation of condition 5. From infinity to the printed 0.5x state G2 moves -20.2822 mm and G3 moves -15.0235 mm; from infinity to the printed 1.0x endpoint, G2 moves -46.2870 mm and G3 moves -37.9166 mm in the fixed first-vertex frame. The negative signs mean objectward motion, the direction of both arrows in Figure 1. The increasing BF exactly compensates the moving assemblies so the first-vertex/image track remains fixed at the source precision.
 
@@ -172,15 +172,15 @@ The source table publishes half-field ω=31.543° and a 67 mm image-circle diame
 
 The governing source inequalities are evaluated from unchanged native surfaces and spacings. Summary-table values are separately retained and are not used to tune the source prescription. [1]
 
-| No. | Governing condition | Computed value | Printed Example 1 summary | Bound |
-|---|---|---:|---:|---|
-| 1 | 0.6 <= \|F1a/F0\| <= 1.0 | 0.741179427 | 0.739 | PASS |
-| 2 | 0.5 <= F2/F0 <= 1.2 | 0.867271669 | 0.867 | PASS |
-| 3 | 0.3 <= LS/Ymax <= 1.0 | 0.674865734 | 0.675 | PASS |
-| 4 | 0.6 <= \|F0/BF_INF\| <= 1.6 | 1.175381272 | 1.175 | PASS |
-| 5 | 0.4 <= \|D12/F0\| <= 1.2 | 0.860383423 | 0.861 | PASS |
-| 6 | 1.0 <= \|S2_A/S3_A\| <= 1.7 | 1.350031617 | 1.350 | PASS |
-| 7 | 0.8 <= \|S2_B/S3_B\| <= 1.6 | 1.220758190 | 1.221 | PASS |
+| No. | Governing condition         | Computed value | Printed Example 1 summary | Bound |
+| --- | --------------------------- | -------------: | ------------------------: | ----- |
+| 1   | 0.6 <= \|F1a/F0\| <= 1.0    |    0.741179427 |                     0.739 | PASS  |
+| 2   | 0.5 <= F2/F0 <= 1.2         |    0.867271669 |                     0.867 | PASS  |
+| 3   | 0.3 <= LS/Ymax <= 1.0       |    0.674865734 |                     0.675 | PASS  |
+| 4   | 0.6 <= \|F0/BF_INF\| <= 1.6 |    1.175381272 |                     1.175 | PASS  |
+| 5   | 0.4 <= \|D12/F0\| <= 1.2    |    0.860383423 |                     0.861 | PASS  |
+| 6   | 1.0 <= \|S2_A/S3_A\| <= 1.7 |    1.350031617 |                     1.350 | PASS  |
+| 7   | 0.8 <= \|S2_B/S3_B\| <= 1.6 |    1.220758190 |                     1.221 | PASS  |
 
 Every governing inequality is satisfied, but some printed summary values do not round-match the calculation at their published precision. Those are source discrepancies, not reproduced values.
 
@@ -222,3 +222,11 @@ The official manual specifies ±12 mm shift and ±10° tilt. Those are productio
    - hikari.zip: https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/nikon-hikari20220701.zip
 
 4. Laowa official product page and construction overlay, independently checked against the original patent topology: https://www.laowalens.com/camera-lens-82 ; https://www.laowalens.com/Public/Uploads/uploadfile/images/20241011/jingtoujiegou.png
+
+## Scoped material and catalog follow-up — 2026-10-31
+
+The completed source/shape/glass review remains dated **2026-10-29**, with its earlier Oct 6/Oct 8 history preserved. This follow-up directly checks only material/reference evidence and the corresponding Figure 1 interfaces. CN118671950A Example 1, PDF page 6 / printed 4, ¶0056 explicitly defines d-line Nd; ¶0060–0061 prints all fourteen glass pairs and the final row, with the source focus table on page 7. The native table is872×869 plus its continuation and Figure 1 on page 11 is853×404, both 150 ppi. Enlarged displays do not add source resolution. The three cemented junctions are S12 (L6/L7), S15 (L8/L9) and S23 (L12/L13). No resin layer, independent cement medium, filter or rear plate is prescribed. No individual C/F/g indices, partial-dispersion value, source APD designation or dispersion coefficients are supplied.
+
+The existing catalog and the already downloaded full OHARA/SUMITA/CDGM/Hikari/HOYA data were screened without substituting source coordinates. The official [NHG2601 catalog](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf), February 2026, adds a separate 184-header screen. None gives a strong new row for the six unresolved media. L3's nearby FCD615 has nominal residuals −0.00227/+1.61; L6's S-NBH56 or NHG H-ZF56 has−0.00083/+1.59; L10's YGH52 neighborhood has+0.00199/+1.9417. These loose bounds are insufficient reason to replace the documented unresolved dispositions. L2, L11 and L13 have no candidate in the ordinary compatibility window. The isolated polymer product ranges published by [Osaka Gas Chemicals](https://www.ogc.co.jp/e/products/fluorene/okp.html) and [Kuraray](https://methacrylate.kuraray.com/en/products/parapet/optical-grade/) do not supply compatible ordinary-glass evidence for these source media; none is reclassified as resin.
+
+The eight existing proxy assignments, both inferred ED/APD tags and six unresolved labels are retained. No data byte changes. Source numerical values, geometry, cuts/shoulders, iris, tilt/shift controls and source focus states remain fixed. The earlier sampled beam/movement limitations and unresolved production materials remain; this is no new complete shape inspection, optical tuning or count increment.

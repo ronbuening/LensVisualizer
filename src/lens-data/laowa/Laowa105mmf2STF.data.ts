@@ -184,7 +184,7 @@ const LENS_DATA = {
       vd: 56.37,
       indexReference: "d",
       focalLengthMm: 44.69074,
-      glass: "Unmatched (crown; source nd 1.67128, vd 56.37)",
+      glass: "LAKN4 (SUMITA approximate compatible spectral proxy; source supplier, melt and chemistry unspecified)",
       cemented: "D3",
     },
     {
@@ -207,7 +207,7 @@ const LENS_DATA = {
       vd: 36.87,
       indexReference: "d",
       focalLengthMm: 49.972461,
-      glass: "Unmatched (high-index glass; source nd 1.81538, vd 36.87)",
+      glass: "M-NBFD82 (HOYA compatible spectral proxy; source supplier, melt, chemistry and process unspecified)",
     },
   ],
 

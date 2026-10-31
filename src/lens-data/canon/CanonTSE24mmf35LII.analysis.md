@@ -127,7 +127,7 @@ one of its physical elements is negative.
 ### C2 — Cemented L6 + L7
 
 **L6: nd = 1.79600, νd = 38.1. Glass: 796381 — S-LAM73 compatible spectral proxy. f = +19.323522 mm.**\
-**L7: nd = 1.77236, νd = 36.1. Glass: Unmatched 772361. f = -32.958173 mm.**
+**L7: nd = 1.77236, νd = 36.1. Glass: 772361 — source coordinate; no compatible sourced curve. f = -32.958173 mm.**
 
 L6 is biconvex and positive; L7 is a negative meniscus cemented at surface 11. The pair is the second positive cemented
 component of L1b and has a computed air-bounded focal length of +46.641601 mm. Together C1 and C2 form the patent's
@@ -136,7 +136,7 @@ positive rear subunit of L1, substantially cancelling the divergence generated b
 ### C3 — Cemented L8 + L9
 
 **L8: nd = 1.78571, νd = 48.6. Glass: 786486 — N-LAF21 compatible spectral proxy. f = -69.308816 mm.**\
-**L9: nd = 1.67769, νd = 31.4. Glass: Unmatched 678314. f = +27.070108 mm.**
+**L9: nd = 1.67769, νd = 31.4. Glass: 678314 — source coordinate; no compatible sourced curve. f = +27.070108 mm.**
 
 C3 begins the nine-element rear unit immediately behind the stop. L8 is a negative meniscus and L9 a positive meniscus;
 the cemented pair is nevertheless net positive, with a computed air-bounded focal length of +46.858828 mm. The sign of
@@ -145,8 +145,8 @@ the cemented component therefore differs from L8's standalone sign.
 ### C4 — Cemented L10 + L11 + L12 triplet
 
 **L10: nd = 1.88300, νd = 40.8. Glass: 883408 — vendor-unresolved coordinate class. f = -20.705976 mm.**\
-**L11: nd = 1.55400, νd = 52.2. Glass: Unmatched 554522. f = +15.767917 mm.**\
-**L12: nd = 1.84175, νd = 37.2. Glass: Unmatched 842372. f = -15.039490 mm.**
+**L11: nd = 1.55400, νd = 52.2. Glass: 554522 — source coordinate; no compatible sourced curve. f = +15.767917 mm.**\
+**L12: nd = 1.84175, νd = 37.2. Glass: 842372 — source coordinate; no compatible sourced curve. f = -15.039490 mm.**
 
 The rear unit's central cemented triplet is negative as a component, with an independently computed air-bounded focal
 length of -21.272346 mm. This is an example of why the individual focal lengths must not be conflated with the power of
@@ -188,20 +188,20 @@ The patent gives refractive indices and d-line Abbe numbers but does not name gl
 therefore preserves six-digit coordinate codes and qualifies compatible catalog curves as spectral proxies, without inferring a production vendor from nd and
 νd alone. This is particularly important for coordinates that exist in several manufacturers' families.
 
-| Glass annotation | nd | νd | Elements | Data-level interpretation |
-|---|---:|---:|---|---|
-| 583594 — vendor-unresolved coordinate class | 1.58313 | 59.4 | L1 | Moderate-index crown-like coordinate |
-| 883408 — vendor-unresolved coordinate class | 1.88300 | 40.8 | L2, L10, L14 | Very high-index coordinate class |
-| 497815 — high-Abbe low-dispersion coordinate class (vendor unresolved) | 1.49700 | 81.5 | L3, L13, L15 | High-Abbe low-dispersion coordinate |
-| 616587 — K-PSK200 compatible spectral proxy | 1.61601 | 58.7 | L4 | Vendor unresolved |
-| 884408 — S-LAH58 compatible spectral proxy | 1.88397 | 40.8 | L5 | Vendor unresolved |
-| 796381 — S-LAM73 compatible spectral proxy | 1.79600 | 38.1 | L6 | High-index coordinate class |
-| Unmatched 772361 | 1.77236 | 36.1 | L7 | High-index coordinate class |
-| 786486 — N-LAF21 compatible spectral proxy | 1.78571 | 48.6 | L8 | High-index coordinate class |
-| Unmatched 678314 | 1.67769 | 31.4 | L9 | High-dispersion coordinate class |
-| Unmatched 554522 | 1.55400 | 52.2 | L11 | Moderate-index coordinate class |
-| Unmatched 842372 | 1.84175 | 37.2 | L12 | High-index coordinate class |
-| 699301 — vendor-unresolved coordinate class | 1.69895 | 30.1 | L16 | High-dispersion coordinate class |
+| Glass annotation                                                       |      nd |   νd | Elements     | Data-level interpretation            |
+| ---------------------------------------------------------------------- | ------: | ---: | ------------ | ------------------------------------ |
+| 583594 — vendor-unresolved coordinate class                            | 1.58313 | 59.4 | L1           | Moderate-index crown-like coordinate |
+| 883408 — vendor-unresolved coordinate class                            | 1.88300 | 40.8 | L2, L10, L14 | Very high-index coordinate class     |
+| 497815 — high-Abbe low-dispersion coordinate class (vendor unresolved) | 1.49700 | 81.5 | L3, L13, L15 | High-Abbe low-dispersion coordinate  |
+| 616587 — K-PSK200 compatible spectral proxy                            | 1.61601 | 58.7 | L4           | Vendor unresolved                    |
+| 884408 — S-LAH58 compatible spectral proxy                             | 1.88397 | 40.8 | L5           | Vendor unresolved                    |
+| 796381 — S-LAM73 compatible spectral proxy                             | 1.79600 | 38.1 | L6           | High-index coordinate class          |
+| 772361 — source coordinate; no compatible sourced curve                | 1.77236 | 36.1 | L7           | High-index coordinate class          |
+| 786486 — N-LAF21 compatible spectral proxy                             | 1.78571 | 48.6 | L8           | High-index coordinate class          |
+| 678314 — source coordinate; no compatible sourced curve                | 1.67769 | 31.4 | L9           | High-dispersion coordinate class     |
+| 554522 — source coordinate; no compatible sourced curve                | 1.55400 | 52.2 | L11          | Moderate-index coordinate class      |
+| 842372 — source coordinate; no compatible sourced curve                | 1.84175 | 37.2 | L12          | High-index coordinate class          |
+| 699301 — vendor-unresolved coordinate class                            | 1.69895 | 30.1 | L16          | High-dispersion coordinate class     |
 
 Canon states that the production lens uses three UD elements. The patent model contains the 497815 low-dispersion
 coordinate class exactly three times, which supports the production correlation at the class/count level. It does not
@@ -217,10 +217,10 @@ toward the object. Canon independently describes the production lens as rear foc
 The data model preserves this rigid motion with two coupled gaps. The gap in front of the moving stop/rear-unit assembly
 shrinks by the same amount that the final image-side gap grows:
 
-| State | d12: surface 12 to STO | d27: rear surface to image plane | Rear-unit translation |
-|---|---:|---:|---:|
-| Infinity | 10.990000 mm | 54.960000 mm | 0 mm |
-| Reconstructed close state | 2.940675 mm | 63.009325 mm | 8.049325 mm objectward |
+| State                     | d12: surface 12 to STO | d27: rear surface to image plane |  Rear-unit translation |
+| ------------------------- | ---------------------: | -------------------------------: | ---------------------: |
+| Infinity                  |           10.990000 mm |                     54.960000 mm |                   0 mm |
+| Reconstructed close state |            2.940675 mm |                     63.009325 mm | 8.049325 mm objectward |
 
 The sum `d12 + d27` is conserved, so the stop and all surfaces of L2 translate as one rigid optical assembly. The close
 endpoint is solved against Canon's 0.21 m closest-focus specification using an object-to-image-plane distance convention.
@@ -240,15 +240,15 @@ Numerical Example 1 has one aspherical surface: `2A`, the rear surface of L1. Th
 Accordingly, the patent's `k` is stored directly as the standard conic constant `K`; no κ-to-K conversion is applied.
 The data file carries:
 
-| Term | Value |
-|---|---:|
-| K | -6.60488000e-01 |
-| A4 | +1.69030000e-06 |
-| A6 | +5.21355000e-11 |
-| A8 | +1.39305000e-11 |
-| A10 | -6.83548000e-14 |
-| A12 | -1.94007000e-17 |
-| A14 | 0 (schema completion; not a patent term) |
+| Term |                                    Value |
+| ---- | ---------------------------------------: |
+| K    |                          -6.60488000e-01 |
+| A4   |                          +1.69030000e-06 |
+| A6   |                          +5.21355000e-11 |
+| A8   |                          +1.39305000e-11 |
+| A10  |                          -6.83548000e-14 |
+| A12  |                          -1.94007000e-17 |
+| A14  | 0 (schema completion; not a patent term) |
 
 No scaling is applied, so the patent coefficients are used without transformation. At the authored semi-diameter of
 16.425 mm, the conic radicand remains positive. Independent evaluation gives a polynomial departure of 0.092675 mm from
@@ -295,13 +295,13 @@ the authored prescription. Condition (5) depends on spectral line indices that N
 its +0.032 value is retained as the patent's Table-1 result for G3 rather than presented as an independently reconstructed
 line-index calculation.
 
-| Condition | Example-1 value | Preferred range / threshold | Result |
-|---|---:|---:|---|
-| (1) `f1/f` | -1.400812 | -1.55 to -1.27 | Pass |
-| (2) `(G2R1-G2R2)/(G2R1+G2R2)` | +0.235000 | +0.14 to +0.35 | Pass |
-| (3) `f1/f2` | +0.622824 | +0.43 to +0.69 | Pass |
-| (4) `f13/f` | -0.444029 | -0.59 to -0.35 | Pass |
-| (5) `θgF - (0.6438 - 0.001682νd)` for G3 | +0.032 (patent Table 1) | > +0.020 | Pass by source value |
+| Condition                                |         Example-1 value | Preferred range / threshold | Result               |
+| ---------------------------------------- | ----------------------: | --------------------------: | -------------------- |
+| (1) `f1/f`                               |               -1.400812 |              -1.55 to -1.27 | Pass                 |
+| (2) `(G2R1-G2R2)/(G2R1+G2R2)`            |               +0.235000 |              +0.14 to +0.35 | Pass                 |
+| (3) `f1/f2`                              |               +0.622824 |              +0.43 to +0.69 | Pass                 |
+| (4) `f13/f`                              |               -0.444029 |              -0.59 to -0.35 | Pass                 |
+| (5) `θgF - (0.6438 - 0.001682νd)` for G3 | +0.032 (patent Table 1) |                    > +0.020 | Pass by source value |
 
 Conditions (1)–(4) are computed from the final prescription rather than copied from the patent's rounded Table-1 values.
 Condition (5) is explicitly source-limited.
@@ -327,20 +327,19 @@ common-band element edge thickness of 1.128253 mm at L16, and a worst shared-ban
 chief ray at 33.569447 mm image height, close to the patent's rounded 33.63 mm value; other pupil samples show ordinary
 vignetting rather than being allowed to propagate outside the authored clear apertures.
 
-
 ## Sources / References
 
-- US 2010/0208366 A1, Suguru Inoue, *Optical System and Image Pickup Apparatus Having the Same*, published August 19,
-  2010. Numerical Example 1; especially ¶0043–¶0047, ¶0050–¶0077, and printed pp. 5–6.
+- US 2010/0208366 A1, Suguru Inoue, _Optical System and Image Pickup Apparatus Having the Same_, published August 19, 2010. Numerical Example 1; especially ¶0043–¶0047, ¶0050–¶0077, and printed pp. 5–6.
   https://patents.google.com/patent/US20100208366A1/en
-- Canon Camera Museum, *TS-E24mm f/3.5L II*. Production identity, June 2009 marketing date, 16 elements / 11 groups,
+- Canon Camera Museum, _TS-E24mm f/3.5L II_. Production identity, June 2009 marketing date, 16 elements / 11 groups,
   eight diaphragm blades, 0.21 m closest focus, 0.34× maximum magnification, front glass-molded asphere, and three UD
   elements. https://global.canon/en/c-museum/product/ef402.html
-- Canon U.S.A., *TS-E 24mm f/3.5L II*. 24 mm f/3.5 marketing specification, 67.2 mm image circle, 84° centered diagonal
+- Canon U.S.A., _TS-E 24mm f/3.5L II_. 24 mm f/3.5 marketing specification, 67.2 mm image circle, 84° centered diagonal
   field, rear focusing with no floating system, 0.21 m closest focus, 0.34× maximum magnification, and eight-blade
   aperture. https://www.usa.canon.com/support/p/ts-e-24mm-f-3-5l-ii
-- Canon UK Store, *TS-E 24mm f/3.5L II*. ±12 mm shift and ±8.5° tilt limits.
+- Canon UK Store, _TS-E 24mm f/3.5L II_. ±12 mm shift and ±8.5° tilt limits.
   https://www.canon.co.uk/store/canon-ts-e-24mm-f-3-5l-ii-lens/3552B005/
+
 ## Integration audit — 2026-09-11 UTC
 
 US 2010/0208366 A1, Fig. 1, PDF p2 (600 dpi; 90-degree rotation; crop 0.15,0.34,0.58,0.66). Retained all SDs from the published effective diameters. The drawing is consistent in relative shape; schematic rims do not supersede the numerical ea column. L4/L5/L6/L8 now use qualified K-PSK200/S-LAH58/S-LAM73/N-LAF21 curves. L7/L9/L11/L12 remain explicitly unmatched after a vendor-catalog coefficient search.
@@ -350,3 +349,29 @@ Surface validation and image-circle audits passed. Display names were checked ag
 Direct local-SVG comparison retains the authoritative published effective-aperture values (SD = ea/2), excluding the drawing’s mechanical flanges. The stop and rear unit L2 move objectward toward near focus, with L1 fixed. L3/L13/L15 now resolve through the newly added Sumita K-PFK80 curve, a compatible curve with supplier unspecified (nominal nd/vd 1.497/81.5; coefficient-evaluated vd 81.3504). L3 retains the patent’s dPgF = +0.032 and patent APD tag; L13/L15 receive inferred APD tags from the catalog curve (deviation approximately +0.02999). Searches of Sumita’s discontinued-inclusive August 2026 catalog and OHARA_260701.AGF (433 entries, including special-order and discontinued glass) do not resolve L7/L9/L11/L12 within the existing compatibility tolerances; those four stay explicitly unmatched.
 
 Diagram labels follow the patent’s front-unit subdivision: L1a covers the three negative lenses G1–G3 (S1–S6), L1b covers the two positive cemented components (S7–S12), and L2 is the moving rear unit. Both L1 subunits stay fixed during focus.
+
+## Reused Coverage and Runtime Follow-up — 2026-10-30
+
+The completed original shape-and-glass integration review above retains its actual **2026-09-11** date. Canonical V1→V2 parity against commit 9c847f958 proves the same optical prescription, clear caps, asphere, media, spectral fields, focus reconstruction and movement controls, excluding only the later structured `source.example`. No fresh full original inspection is claimed. The current optical model is reused.
+
+A narrow metadata check of the local original `patents/US20100208366A1.pdf`, PDFp15/printedp5, Numerical Example 1 “Various Data,” confirms printed focal length 24.26 mm. Only `catalog.focalLengthMm.design` changes from computed 24.247181396mm to source 24.26mm; computed EFL remains separately qualified above. The native2560 × 3300 bilevel 300 ppi page was inspected; no new figure/shape/glass review is attributed to this metadata check.
+
+Current runtime supplements sample65 focus geometries. Collimated control grids clear12,545/12,545axial pupil samples; these remain collimated through focus-adjusted geometry. A separate actual Gaussian finite-object grid clears3,185/3,185 axial samples and195/195 chiefs, with0 aim failures. The authored close endpoint remains an inferred210mm object-to-image reconstruction, β−.33384224, and midpoint 280.937602 mm is illustrative. The source infinity state's small residual is not reinterpreted as a published finite object. Near 49-point bundles are49/35/27 at axial/0.6/1 paraxial object-field fractions; these fractions are not inverse-solved actual sensor corners.
+
+All 455 focus/aperture combinations (65×7 presets) return a traced real workingF-number. Centered generic full-frame inverse-height coverage reaches100%; the separate source54.19° bounding-sphere chief clears and reaches33.569447 mm versus source33.63mm. All 1,040 centered and1,200 moved SVG paths are finite, connected and closed, with zero hidden trimming.
+
+Movement sampling covers3 focus×5 shift×5 tilt poses at the authored ±12 mm/±8.5° limits, five actual sensor targets and193 current-iris pupil samples per prepared field. Of 375 fields 351 are usable and24 outside the declared projection domain. No unresolved chiefs or unaimed pupil samples occur. Physical ray outcomes are51,697 clear/15,962 clipped/84failed intersections; sensor outcomes separately21,097usable/15,962 clipped/30,684 missed-sensor. These launch collimated scene directions through moved focus-adjusted geometry, not actual finite moved-object illumination. The existing unmeasured rear-vertex fallback hinge and production group-count discrepancy remain limitations; no source shape, caps, iris, spectral value or control is tuned to these samples.
+
+Surface, image-circle, aperture and centered full-frame field checks pass. No cuts are authored. Sampled runtime checks do not certify production or extreme finite tilt/shift illumination.
+
+## October 31, 2026 — Scoped Catalog Search for Four Source Coordinates
+
+The completed September 11 original shape/glass coverage and October 30 reuse/metadata followup retain their actual dates. This followup checks material tables, reference notation, published partial evidence and manufacturer catalogs only; no new shape inspection is claimed. Direct original US20100208366A1 Numerical Example 1, PDF p. 15/printed p. 5, confirms L7 1.77236/36.1, L9 1.67769/31.4, L11 1.55400/52.2 and L12 1.84175/37.2. Paragraph 0083 identifies d-line coordinates. Table 1, PDF p. 18, assigns the published +0.032 normal-line deviation to G3/L3 only; none is transferred to these four media. All source numeric fields and the existing L3 partial remain unchanged.
+
+The source search covers complete downloaded official SUMITA August 26, 2026 all-glass AGF (header August 21; 433 records), OHARA July 1, 2026 all-products AGF (433 records), Nikon/Hikari official archive updated October 2023 (392 records), CDGM September 2026 AGF (352 records), and 184 optical coordinate headers in NHG version 2601, revised February 2026. These are 1,794 records, including variants and duplicate formula records, not 1,794 distinct physical materials. No checked row falls within the unchanged ±0.003 nd / ±2 νd compatibility limits for any of the four targets. HOYA’s current all-glass download timed out; no exhaustive claim about every manufacturer or unpublished/custom material is made.
+
+Closest failures illustrate why matching is refused: L7 versus OHARA S-NBH59 1.766342/35.82343 has Δnd −0.006018, outside the index guard; L9 versus S-TIM25 1.67270/32.099206 has Δnd −0.00499; L11 versus Hikari J-KZFH4 1.552981/55.071703 has Δν +2.871703; L12 versus CDGM D-ZLAF85LN-25 1.84443/40.067973 has Δν +2.867973. NHG's closest relevant ZLaF53 coordinate 1.83441/37.28 remains Δnd −0.00734 from L12. No reference-line mixing, nearby-code alias, curve fitting, coefficient adjustment or guard relaxation resolves these failures.
+
+These four glass labels now retain their source six-digit coordinate strings without the resolver-excluding Unmatched marker. This permits a future sourced row to be considered if it actually satisfies compatibility; it does not claim an optical curve, identified chemistry or historical supplier now. The current resolver still supplies no catalog curve for L7/L9/L11/L12, and total coverage remains 12/16. No source material pair, partial, shape, stop, focus or tilt/shift control is changed.
+
+Primary sources accessed October 31, 2026: [SUMITA all-glass AGF](https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf), [OHARA all-products archive](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), [Nikon/Hikari archive](https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/nikon-hikari20220701.zip), [CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), and [NHG 2601 complete catalog](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf). The bounded negative search remains open to better future evidence; no new catalog row is manufactured for these four coordinates.

@@ -23,16 +23,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ The patent gives no stop diameter. The stop radius is derived from the     ║
  * ║ design f-number at each zoom station. The per-state iris radii inferred    ║
- * ║ from the paraxial entrance pupil are 9.2435 / 11.3557 / 12.6903 mm; the    ║
- * ║ wide-open iris radii traced from nominalFno are 9.252 / 11.394 /           ║
- * ║ 12.788 mm. nominalFno carries the published design values 4.08 / 4.08 /    ║
+ * ║ from the paraxial entrance pupil are 9.2435 / 11.3557 / 12.6903 mm;    ║
+ * ║ the current derived runtime iris uses those same radii.                  ║
+ * ║ nominalFno carries the published design values 4.08 / 4.08 /                ║
  * ║ 4.12; marketed aperture remains f/4.                                       ║
  * ║                                                                            ║
  * ║ Semi-diameters are modeled inferences because Example 1 publishes none.   ║
- * ║ They were derived from marginal/chief-ray envelopes at all three zoom     ║
- * ║ states, refined against Canon's official production block diagram, and    ║
- * ║ bounded by the 77 mm filter / 83.5 mm barrel envelope. D1 through D4      ║
- * ║ use common rim radii across each cemented pair, matching Figure 1 while   ║
+ * ║ They retain source-supported beam constraints and the native Figure 1      ║
+ * ║ silhouette (300 ppi); inferred caps/outer shoulders carry about ±0.8 mm.   ║
+ * ║ Fifteen source-shaped caps and one resolved S26 shoulder were reviewed.  ║
+ * ║ Five cemented pairs remain connected; D2 front is gap limited at 12.5.    ║
+ * ║ Its interface/rear 12.6 caps clear the working probe without a new land.   ║
  * ║ retaining positive edge thickness. Geometry was checked using actual     ║
  * ║ spherical sag/slope, shared-band cross-gap clearance,                     ║
  * ║ and off-axis bundle clipping; no obsolete sd/|R| rule was used.           ║
@@ -48,7 +49,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Manufacturer sources used for product metadata:
  * https://www.usa.canon.com/support/p/rf70-200mm-f4-l-is-usm
  * https://global.canon/en/c-museum/product/rf501.html
- * HOYA spectral data for patent-explicit NBFD13:
+ * HOYA spectral proxy for source-illustrated NBFD13; selected-source partial retained:
  * https://www.hoya-opticalworld.com/english/datadownload/index.html
  */
 
@@ -86,6 +87,12 @@ const LENS_DATA = {
     patentYear: 2021,
     authors: ["Makoto Nakahara"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example1, PDF17/printed5, states overall lengths137.50/175.84/193.12 mm versus literal source-row tracks137.52/175.84/193.14. Table1, PDF20/printed8, states positive-front Abbe average75.89 versus75.85 from surface-row70.2/81.5. Printed rounding is an unproved explanation; no unique numerical source correction is established, and all R/d/nd/vd/stops/cams remain unchanged.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -96,9 +103,11 @@ const LENS_DATA = {
       label: "L1-1",
       type: "Positive Meniscus",
       nd: 1.48749,
+      indexReference: "d",
       vd: 70.2,
       focalLengthMm: 211.780861,
-      glass: "487702 — low-dispersion crown class (vendor unresolved)",
+      glass:
+        "487702 — low-dispersion crown class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       role: "Front positive collector in L1.",
     },
     {
@@ -107,9 +116,11 @@ const LENS_DATA = {
       label: "L1-2",
       type: "Negative Meniscus",
       nd: 1.6134,
+      indexReference: "d",
       vd: 44.3,
       focalLengthMm: -116.9495,
-      glass: "613443 — medium-dispersion class (vendor unresolved)",
+      glass:
+        "613443 — medium-dispersion class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D1",
     },
     {
@@ -118,9 +129,11 @@ const LENS_DATA = {
       label: "L1-3",
       type: "Positive Meniscus",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 95.103345,
-      glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      glass:
+        "497815 — UD-class low-dispersion glass (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
@@ -133,9 +146,11 @@ const LENS_DATA = {
       label: "L2-1",
       type: "Negative Meniscus",
       nd: 1.51633,
+      indexReference: "d",
       vd: 64.1,
       focalLengthMm: -118.643135,
-      glass: "516641 — crown class (vendor unresolved)",
+      glass:
+        "516641 — crown class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
     },
     {
       id: 5,
@@ -143,9 +158,11 @@ const LENS_DATA = {
       label: "L2-2",
       type: "Biconcave Negative",
       nd: 1.54072,
+      indexReference: "d",
       vd: 47.2,
       focalLengthMm: -40.893237,
-      glass: "541472 — flint class (vendor unresolved)",
+      glass:
+        "541472 — flint class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D2",
     },
     {
@@ -154,9 +171,11 @@ const LENS_DATA = {
       label: "L2-3",
       type: "Positive Meniscus",
       nd: 2.00069,
+      indexReference: "d",
       vd: 25.5,
       focalLengthMm: 62.256614,
-      glass: "001255 — high-index flint class (vendor unresolved)",
+      glass:
+        "001255 — high-index flint class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D2",
     },
     {
@@ -165,9 +184,11 @@ const LENS_DATA = {
       label: "L3-1",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 49.467608,
-      glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      glass:
+        "497815 — UD-class low-dispersion glass (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
@@ -179,9 +200,11 @@ const LENS_DATA = {
       label: "L4-1",
       type: "Biconcave Negative",
       nd: 1.76385,
+      indexReference: "d",
       vd: 48.5,
       focalLengthMm: -17.535654,
-      glass: "764485 — lanthanum-crown class (vendor unresolved)",
+      glass:
+        "764485 — high-index moderate-dispersion coordinate class (supplier/composition unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D3",
     },
     {
@@ -190,18 +213,19 @@ const LENS_DATA = {
       label: "L4-2 / Gp",
       type: "Biconvex Positive",
       nd: 1.8061,
+      indexReference: "d",
       vd: 40.7,
       focalLengthMm: 24.195613,
-      glass: "NBFD13 (HOYA)",
+      glass: "NBFD13 (HOYA; source-illustrated compatible spectral proxy, historical supplier/melt unresolved)",
       apd: "patent",
       apdNote:
-        "Patent ¶0033 explicitly names HOYA NBFD13 (νd = 40.73, θgF = 0.5671); current HOYA 2026 catalog ΔPgF = -0.0078.",
+        "Selected Example1 Table1 (PDF20/printed8) publishes νdp40.73 and θgFp0.5671; surface table retains rounded νd40.7. Engine dPgF−0.0082426 derives from published θ and its linear normal convention. Source cubic-normal condition(1)−0.0046 is distinct. Paragraph0033 names NBFD13 as an example material, not verified historical supplier/melt.",
       role: "Patent positive lens Gp inside net-negative L4/Ln; chromatic-control element governed by conditions (1)–(4).",
       cemented: "D3",
-      dPgF: -0.0078,
-      nC: 1.80022,
-      nF: 1.82001,
-      ng: 1.83123,
+      // Source Table 1, PDF20/printed8: selected Example1 theta_gF = 0.5671.
+      // Engine linear normal at retained surface vd40.7 is0.5753426; delta=-0.0082426.
+      // Source cubic-normal condition(1)=-0.0046 is a different definition, not this field.
+      dPgF: -0.0082426,
     },
     {
       id: 10,
@@ -209,9 +233,11 @@ const LENS_DATA = {
       label: "L5-1",
       type: "Negative Meniscus",
       nd: 2.0509,
+      indexReference: "d",
       vd: 26.9,
       focalLengthMm: -36.677549,
-      glass: "051269 — very-high-index flint class (vendor unresolved)",
+      glass:
+        "051269 — very-high-index flint class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D4",
     },
     {
@@ -220,9 +246,11 @@ const LENS_DATA = {
       label: "L5-2",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 37.770901,
-      glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      glass:
+        "497815 — UD-class low-dispersion glass (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
@@ -235,9 +263,11 @@ const LENS_DATA = {
       label: "L5-3",
       type: "Biconvex Positive",
       nd: 1.83481,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: 40.542379,
-      glass: "835427 — lanthanum class (vendor unresolved)",
+      glass:
+        "835427 — high-index coordinate class (supplier/composition unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
     },
     {
       id: 13,
@@ -245,9 +275,11 @@ const LENS_DATA = {
       label: "L6-1",
       type: "Biconcave Negative",
       nd: 1.83481,
+      indexReference: "d",
       vd: 42.7,
       focalLengthMm: -30.020722,
-      glass: "835427 — lanthanum class (vendor unresolved)",
+      glass:
+        "835427 — high-index coordinate class (supplier/composition unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D5",
     },
     {
@@ -256,9 +288,11 @@ const LENS_DATA = {
       label: "L6-2",
       type: "Positive Meniscus",
       nd: 1.72825,
+      indexReference: "d",
       vd: 28.5,
       focalLengthMm: 74.628967,
-      glass: "728285 — dense-flint class (vendor unresolved)",
+      glass:
+        "728285 — dense-flint class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       cemented: "D5",
     },
     {
@@ -267,9 +301,11 @@ const LENS_DATA = {
       label: "L7-1",
       type: "Negative Meniscus",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: -84.739762,
-      glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      glass:
+        "497815 — UD-class low-dispersion glass (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
       apd: "inferred",
       apdNote:
         "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
@@ -281,27 +317,29 @@ const LENS_DATA = {
       label: "L7-2",
       type: "Biconvex Positive",
       nd: 1.85478,
+      indexReference: "d",
       vd: 24.8,
       focalLengthMm: 121.787626,
-      glass: "855248 — high-index flint class (vendor unresolved)",
+      glass:
+        "855248 — high-index flint class (vendor unresolved); qualified spectral proxy only, historical supplier/composition unresolved",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 90.644, d: 5.0, sd: 30.0, medium: 1 },
-    { label: "2", R: 729.457, d: 0.15, sd: 29.5 },
+    { label: "1", R: 90.644, d: 5.0, sd: 25.5, medium: 1 },
+    { label: "2", R: 729.457, d: 0.15, sd: 25.5 },
     { label: "3", R: 118.536, d: 1.72, sd: 25.0, medium: 2 },
     { label: "4", R: 44.444, d: 7.63, sd: 25.0, medium: 3 },
     { label: "5", R: 701.885, sd: 25.0 },
-    { label: "7", R: 61.503, d: 1.45, sd: 16.0, medium: 4 },
-    { label: "8", R: 30.444, d: 4.9, sd: 15.5 },
+    { label: "7", R: 61.503, d: 1.45, sd: 13.5, medium: 4 },
+    { label: "8", R: 30.444, d: 4.9, sd: 13.5 },
     { label: "9", R: -46.693, d: 1.45, sd: 12.5, medium: 5 },
-    { label: "10", R: 42.46, d: 2.4, sd: 12.5, medium: 6 },
-    { label: "11", R: 129.562, sd: 12.5 },
+    { label: "10", R: 42.46, d: 2.4, sd: 12.6, medium: 6 },
+    { label: "11", R: 129.562, sd: 12.6 },
     { label: "STO", R: "flat", d: 0.27 },
-    { label: "13", R: 30.808, d: 5.46, sd: 14.5, medium: 7 },
-    { label: "14", R: -114.56, sd: 15.5 },
+    { label: "13", R: 30.808, d: 5.46, sd: 13.8, medium: 7 },
+    { label: "14", R: -114.56, sd: 13.8 },
     { label: "15", R: -34.891, d: 0.76, sd: 12.8, medium: 8 },
     { label: "16", R: 21.946, d: 5.06, sd: 12.8, medium: 9 },
     { label: "17", R: -157.249, sd: 12.8 },
@@ -310,13 +348,13 @@ const LENS_DATA = {
     { label: "20", R: -41.283, d: 0.15, sd: 14.5 },
     { label: "21", R: 40.548, d: 4.63, sd: 17.0, medium: 12 },
     { label: "22", R: -194.106, sd: 16.5 },
-    { label: "23", R: -110.386, d: 0.9, sd: 15.0, medium: 13 },
-    { label: "24", R: 32.543, d: 3.04, sd: 15.5, medium: 14 },
-    { label: "25", R: 77.918, sd: 16.0 },
-    { label: "26", R: -27.078, d: 1.55, sd: 20.0, medium: 15 },
-    { label: "27", R: -77.278, d: 0.15, sd: 20.5 },
-    { label: "28", R: 133.694, d: 2.87, sd: 21.5, medium: 16 },
-    { label: "29", R: -465.663, sd: 21.5 },
+    { label: "23", R: -110.386, d: 0.9, sd: 13.5, medium: 13 },
+    { label: "24", R: 32.543, d: 3.04, sd: 13.5, medium: 14 },
+    { label: "25", R: 77.918, sd: 13.5 },
+    { label: "26", R: -27.078, d: 1.55, sd: 15.5, rimExtensionSd: 17.0, medium: 15 },
+    { label: "27", R: -77.278, d: 0.15, sd: 17.0 },
+    { label: "28", R: 133.694, d: 2.87, sd: 19.0, medium: 16 },
+    { label: "29", R: -465.663, sd: 19.0 },
   ],
 
   zoom: {

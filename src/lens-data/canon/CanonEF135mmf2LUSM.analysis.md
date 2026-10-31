@@ -8,15 +8,15 @@
 **Published:** 2018-03-29
 **Inventor:** Tomohiko Ishibashi
 **Applicant:** Canon Inc.
-**Title:** 光学系およびそれを有する光学機器 (*Optical system and optical apparatus having the same*, descriptive translation)
+**Title:** 光学系およびそれを有する光学機器 (_Optical system and optical apparatus having the same_, descriptive translation)
 
-**Example details:** Numerical Example 1
+**Example details:** Prescription and focus table on PDF p. 15; Fig. 1(a)/(b) on p. 21; d-line definitions in ¶¶0105–0107, pp. 14–15
 
 The prescription modeled here is Numerical Example 1 of JP 2018-049102 A. The patent describes a three-group positive–negative–positive photographic system in which the negative middle group moves imageward for focusing, while the first and third groups remain fixed (¶¶0089–0093). The numerical table gives a 133.50 mm focal length, F2.06, 21.64 mm image height, 0.900 m close-focus state, and −0.19 close-focus magnification (¶0108 and Table 1).
 
-The project correlation is the **CANON EF 135mm f/2 L USM**. Canon's Camera Museum records the production lens as a 135 mm f/2 Canon EF lens marketed in April 1996 with 10 elements in 8 groups, two UD elements, 0.9 m closest focusing distance, 0.19× maximum magnification, eight diaphragm blades, ring USM, and rear focusing. Those production specifications converge closely with the Example-1 base prescription: 10 elements in 8 air-spaced groups, design focal length 133.495358 mm, modeled F/2.059788, two elements at `nd = 1.49700, νd = 81.5`, and a negative internal focusing group behind the stop.
+The project correlation is the **CANON EF 135mm f/2 L USM**. Canon's Camera Museum records the production lens as a 135 mm f/2 Canon EF lens marketed in April 1996 with 10 elements in 8 groups, two UD elements, 0.9 m closest focusing distance, 0.19× maximum magnification, eight diaphragm blades, ring USM, and rear focusing. Those production specifications converge closely with the Example-1 base prescription: 10 elements in 8 air-spaced groups, computed EFL 133.495358 mm, modeled F/2.059788, two elements at `nd = 1.49700, νd = 81.5`, and a negative internal focusing group behind the stop.
 
-This correlation does **not** make the 2018 publication the original production patent. The marketed lens predates the application by approximately two decades, and Example 1 adds two radial-transmission films that Canon's production specification does not identify as features of the retail EF135mm f/2L USM. The modeled prescription is therefore treated as a later Canon apodized embodiment built around a base formula strongly correlated with the production lens, as fixed by the project job card.
+This correlation does **not** make the 2018 publication the original production patent. The marketed lens predates the application by approximately two decades, and Example 1 adds two radial-transmission films that Canon's production specification does not identify as features of the retail EF135mm f/2L USM. The modeled prescription is therefore treated as a later Canon apodized embodiment built around a base formula strongly correlated with the production lens, as an inferential product correlation.
 
 No dimensional scaling is applied. The prescription remains at `s = 1.000000`; marketed 135 mm / f/2 and exact design values are kept separate throughout.
 
@@ -28,13 +28,21 @@ The design contains **10 physical elements in 8 air-spaced groups**. In the pate
 - **G2, negative:** the cemented L6+L7 doublet immediately behind the stop. Its net isolated focal length is −65.391598 mm, and it is the sole focusing group.
 - **G3, positive:** the fixed rear section L8–L10. Its independently computed focal length is +82.075174 mm.
 
-The aperture stop is the single neutral plane between G1 and G2. The modeled stop semi-diameter is the patent's published 35.51 mm effective diameter divided by two, or 17.755 mm. The source publishes effective diameters for every optical surface, so the data file uses those values directly as semi-diameters after division by two rather than enlarging them to remove intentional pupil clipping.
+The aperture stop is the single neutral plane between G1 and G2. The source stop row prints an effective diameter of 35.51 mm. The current model derives its physical iris from the existing design f-number instead of authoring that effective diameter as a physical stop: the computed iris radius is 17.205209 mm for the retained nominal F/2.059788. Agreement with that f-number is a consequence of calibration rather than independent evidence for the iris radius. The source publishes effective diameters for every optical surface, so the non-stop optical caps retain those values directly after division by two. Source-supported outer lands preserve those clear caps; the data does not enlarge them to remove intentional pupil clipping.
 
 Two cemented components occur. D1 is L6+L7 and is identical to functional group G2; its net power is strongly negative despite L6 being positive as an isolated element. D2 is L8+L9. Its isolated cemented focal length is approximately −611.891077 mm, so the pair is only weakly negative as a component; it nevertheless sits inside the net-positive G3, where the positive L10 and the in-situ separations determine the group power. These component and group powers are not interchangeable with the standalone focal lengths of their individual elements.
 
 Under the project's quantitative architecture definitions, this prescription is **not** classified as telephoto: total first-vertex-to-image track divided by EFL is 1.161987969, which exceeds unity. It is also not retrofocus: BFD/EFL is 0.405375478, well below unity. Canon's historical product page categorizes the lens as a telephoto lens by focal-length class; that marketing/category terminology is separate from the project's first-order architecture test.
 
 The most distinctive feature of the selected patent embodiment is not an aspheric surface or a zoom mechanism but the placement of two apodization films on opposite sides of the stop. The first is on the object-side surface of L4 (surface 7), and the second is on the image-side surface of L9 (surface 17). The patent uses this separated placement to control the way apodization changes with image height and with the motion of the focusing group (¶¶0023–0034, ¶¶0091–0093).
+
+### Outer Shoulders and Concave Ends
+
+The native Fig. 1 raster on PDF p. 21 is approximately 400 ppi; the rotated views remain native pixels, while enlarged reading views add no detail. The infinity panel spans approximately 445 px between the first and last glass vertices, compared with the 101.00 mm source vertex length, giving about 4.4 px/mm. Ink and schematic outer-edge uncertainty is approximately ±0.7 mm; the printed effective diameters remain authoritative for the clear caps.
+
+Three standalone rear faces resolve outer shoulders. Surface 4 retains its 28.985 mm clear radius and extends the drawn rim to 29.665 mm; surface 6 retains 26.870 mm and extends to 28.720 mm; surface 10 retains 18.980 mm and extends to 21.160 mm. These conservative outer anchors follow the opposite face's source cap and the resolved shoulder, rather than claiming a measured production blank diameter. The smaller apparent differences on L1, L4 and L10 are not independently resolved beyond native ink uncertainty.
+
+The cemented D1/D2 outlines remain constrained. Trials extending only their air-facing ends leave an unsupported notch at the shorter published bonded-interface aperture; completing the drawn outer blank would require changing a source clear radius or inventing an opaque junction land. Neither change is made. No inferred rim cut is added. Actual SVGs at infinity, intermediate focus and the published 0.900 m setting preserve finite connected elements without hidden trimming. Sampled finite-object rays retain ordinary full-field vignetting; the two source apodization films still have no numerical radial-transmission model, and the later patent embodiment remains separate from a confirmed retail prescription.
 
 ## Element-by-Element Analysis
 
@@ -98,32 +106,32 @@ L10 is the final positive element of fixed G3 and supplies the strong positive c
 
 ## Glass Identification and Selection
 
-The data file deliberately does not assign production-vendor identities. JP 2018-049102 A publishes `nd` and `νd` but no per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`. A cross-vendor coordinate audit found compatible coefficient-backed catalog rows for every physical glass. The supplier-neutral six-digit labels therefore enable qualified spectral proxies while the patent coordinates remain authoritative; they do not establish Canon's historical vendor or melt.
+The data file deliberately does not assign production-vendor identities. Paragraphs 0105–0107 explicitly define `nd`/`νd` at d = 587.6 nm using C = 656.3 nm and F = 486.1 nm. Numerical Example 1 publishes all ten medium pairs but no per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`. A cross-vendor coordinate audit found compatible coefficient-backed catalog rows for every physical glass. The supplier-neutral six-digit labels therefore enable qualified spectral proxies while the patent coordinates remain authoritative; they do not establish Canon's historical vendor or melt.
 
-| Data-file glass annotation | nd | νd | Elements | Interpretation |
-|---|---:|---:|---|---|
-| 487702 class; supplier unspecified | 1.48749 | 70.2 | L1 | Catalog-equivalent coefficient proxy for a high-Abbe crown-like coordinate |
-| 497815 UD-class coordinate; supplier unspecified | 1.49700 | 81.5 | L2, L4 | Catalog-equivalent coefficient proxy; consistent with the production lens's two-UD-element count |
-| 834372 class; supplier unspecified | 1.83400 | 37.2 | L3, L10 | Catalog-equivalent coefficient proxy for a high-index coordinate |
-| 717295 class; supplier unspecified | 1.71736 | 29.5 | L5 | Catalog-equivalent coefficient proxy for a flint-like coordinate |
-| 847239 class; supplier unspecified | 1.84666 | 23.9 | L6 | Catalog-equivalent coefficient proxy for a very high-index, low-Abbe coordinate |
-| 720502 class; supplier unspecified | 1.71999 | 50.2 | L7 | Catalog-equivalent coefficient proxy for the higher-Abbe partner in moving D1 |
-| 741278 class; supplier unspecified | 1.74077 | 27.8 | L8 | Catalog-equivalent coefficient proxy for the low-Abbe member of rear D2 |
-| 773496 class; supplier unspecified | 1.77250 | 49.6 | L9 | Catalog-equivalent coefficient proxy for the higher-Abbe member of rear D2 |
+| Data-file glass annotation                       |      nd |   νd | Elements | Interpretation                                                                                   |
+| ------------------------------------------------ | ------: | ---: | -------- | ------------------------------------------------------------------------------------------------ |
+| 487702 class; supplier unspecified               | 1.48749 | 70.2 | L1       | Catalog-equivalent coefficient proxy for a high-Abbe crown-like coordinate                       |
+| 497815 UD-class coordinate; supplier unspecified | 1.49700 | 81.5 | L2, L4   | Catalog-equivalent coefficient proxy; consistent with the production lens's two-UD-element count |
+| 834372 class; supplier unspecified               | 1.83400 | 37.2 | L3, L10  | Catalog-equivalent coefficient proxy for a high-index coordinate                                 |
+| 717295 class; supplier unspecified               | 1.71736 | 29.5 | L5       | Catalog-equivalent coefficient proxy for a flint-like coordinate                                 |
+| 847239 class; supplier unspecified               | 1.84666 | 23.9 | L6       | Catalog-equivalent coefficient proxy for a very high-index, low-Abbe coordinate                  |
+| 720502 class; supplier unspecified               | 1.71999 | 50.2 | L7       | Catalog-equivalent coefficient proxy for the higher-Abbe partner in moving D1                    |
+| 741278 class; supplier unspecified               | 1.74077 | 27.8 | L8       | Catalog-equivalent coefficient proxy for the low-Abbe member of rear D2                          |
+| 773496 class; supplier unspecified               | 1.77250 | 49.6 | L9       | Catalog-equivalent coefficient proxy for the higher-Abbe member of rear D2                       |
 
 The front group combines high-Abbe positive elements with lower-Abbe negative elements, and both cemented rear components pair glasses with markedly different Abbe numbers. That pattern is consistent with ordinary longitudinal and secondary chromatic balancing in a fast long-focus lens. The coefficient proxies improve chromatic tracing but do not establish historical glass identities or patent partial dispersion. Because the patent contains no line indices or `dPgF`, no APO or anomalous-partial-dispersion behavior is claimed here.
 
-Canon's statement that the production EF135mm f/2L USM uses two UD elements remains a **manufacturer product fact**, not a glass-identity assignment for the patent. The data marks L2 and L4 as inferred UD positions so the diagram communicates that correlation, while the absence of patent line indices or `dPgF` still precludes an anomalous-partial-dispersion or APO claim.
+Canon's statement that the production EF135mm f/2L USM uses two UD elements remains a **manufacturer product fact**, not a glass-identity assignment for the patent. The inferred APD tags on L2/L4 describe only the currently selected compatible K-PFK80 spectral proxy, whose catalog-derived deviation from the engine normal line is approximately +0.030. That value is not authored as a per-lens `dPgF` override and is not patent evidence of APD or material identity. The production two-UD count is separate correlation context; it does not identify the historical chemistry, supplier or melt.
 
 ## Focus Mechanism
 
 Focus is **published**, not reconstructed. Paragraph ¶0093 states that G2 moves while G1 and G3 remain fixed. In the data file, the two variable air spaces reproduce the patent's infinity and close-focus columns exactly:
 
-| Variable spacing | Infinity | 0.900 m close state | Change |
-|---|---:|---:|---:|
-| D11, stop to G2 (`STO`) | 2.28 mm | 17.81 mm | +15.53 mm |
-| D14, G2 to G3 (`14`) | 22.52 mm | 6.99 mm | −15.53 mm |
-| Sum | 24.80 mm | 24.80 mm | 0.00 mm |
+| Variable spacing        | Infinity | 0.900 m close state |    Change |
+| ----------------------- | -------: | ------------------: | --------: |
+| D11, stop to G2 (`STO`) |  2.28 mm |            17.81 mm | +15.53 mm |
+| D14, G2 to G3 (`14`)    | 22.52 mm |             6.99 mm | −15.53 mm |
+| Sum                     | 24.80 mm |            24.80 mm |   0.00 mm |
 
 The conserved 24.80 mm sum shows that the cemented negative G2 translates rigidly by **15.53 mm imageward** without changing the fixed axial position of G3. No reversal or secondary floating motion is present in the selected embodiment.
 
@@ -145,20 +153,20 @@ The absence of a transmission law also limits spectral interpretation. Condition
 
 JP 2018-049102 A gives twelve principal conditions governing power distribution, track length, focus-dependent marginal-ray height, apodization transmission, field angle, and the placement of the two transmission-distribution elements. The selected prescription satisfies every condition that can be evaluated from the published geometry or Table-1 values; condition (9) remains indeterminate because its spectral transmission data are absent.
 
-| Condition | Requirement | Example-1 value used here | Basis |
-|---|---|---:|---|
-| (1) | `0 ≤ Te1/T1 ≤ 0.4` | 0.05 | Patent Table 1; radial transmission law not numerically published |
-| (2) | `0.6 ≤ Te2/T2 ≤ 1` | 0.62 | Patent Table 1; radial transmission law not numerically published |
-| (3) | `−0.05 ≤ f/ff ≤ 4` | 1.421829995 | Independently recomputed paraxially |
-| (4) | `0.5 ≤ L/f ≤ 2` | 1.161987969 | Independently recomputed from track and EFL |
-| (5) | `0.85 ≤ hm1/hi1 ≤ 1.15` | 0.954184839 | Exact spherical marginal-ray trace |
-| (6) | `0.5 ≤ hm2/hi2 ≤ 0.96` | 0.849417141 | Exact spherical marginal-ray trace |
-| (7) | `0.85 ≤ Th1/T1` | 0.99 | Patent Table 1 |
-| (8) | `0.85 ≤ Th2/T2` | 1.00 | Patent Table 1 |
-| (9) | `(Tλmax − Tλmin)/Tλmax ≤ 0.20` | not determinable | Required 430–700 nm transmission spectrum not published |
-| (10) | `1° ≤ ω ≤ 25°` | 9.207724444° | Independently recomputed from image height and EFL |
-| (11) | `0.25 ≤ LF1/Lf` | 0.463601533 (Table-1 surface) / 0.310344828 (literal near side) | Both interpretations independently reconstructed |
-| (12) | `0.25 ≤ LF2/Lr` | 0.866803279 (Table-1 surface) / 0.692622951 (literal near side) | Both interpretations independently reconstructed |
+| Condition | Requirement                    |                                       Example-1 value used here | Basis                                                             |
+| --------- | ------------------------------ | --------------------------------------------------------------: | ----------------------------------------------------------------- |
+| (1)       | `0 ≤ Te1/T1 ≤ 0.4`             |                                                            0.05 | Patent Table 1; radial transmission law not numerically published |
+| (2)       | `0.6 ≤ Te2/T2 ≤ 1`             |                                                            0.62 | Patent Table 1; radial transmission law not numerically published |
+| (3)       | `−0.05 ≤ f/ff ≤ 4`             |                                                     1.421829995 | Independently recomputed paraxially                               |
+| (4)       | `0.5 ≤ L/f ≤ 2`                |                                                     1.161987969 | Independently recomputed from track and EFL                       |
+| (5)       | `0.85 ≤ hm1/hi1 ≤ 1.15`        |                                                     0.954184839 | Exact spherical marginal-ray trace                                |
+| (6)       | `0.5 ≤ hm2/hi2 ≤ 0.96`         |                                                     0.849417141 | Exact spherical marginal-ray trace                                |
+| (7)       | `0.85 ≤ Th1/T1`                |                                                            0.99 | Patent Table 1                                                    |
+| (8)       | `0.85 ≤ Th2/T2`                |                                                            1.00 | Patent Table 1                                                    |
+| (9)       | `(Tλmax − Tλmin)/Tλmax ≤ 0.20` |                                                not determinable | Required 430–700 nm transmission spectrum not published           |
+| (10)      | `1° ≤ ω ≤ 25°`                 |                                                    9.207724444° | Independently recomputed from image height and EFL                |
+| (11)      | `0.25 ≤ LF1/Lf`                | 0.463601533 (Table-1 surface) / 0.310344828 (literal near side) | Both interpretations independently reconstructed                  |
+| (12)      | `0.25 ≤ LF2/Lr`                | 0.866803279 (Table-1 surface) / 0.692622951 (literal near side) | Both interpretations independently reconstructed                  |
 
 Conditions (11) and (12) expose an internal source inconsistency that is preserved rather than corrected. Paragraphs ¶0081 and ¶0085 define `LF1` and `LF2` to the side of each apodization element nearest the stop. For L4 that literal surface is 8, giving `LF1/Lf = 0.310344828`; Table 1 instead uses surface 7, the actual coated surface, giving 0.463601533. For L9 the literal near side is surface 16, giving `LF2/Lr = 0.692622951`; Table 1 uses coated surface 17, giving 0.866803279. Both readings satisfy the lower bound of 0.25, so the contradiction does not change the selected prescription or its compliance.
 
@@ -166,32 +174,34 @@ Conditions (11) and (12) expose an internal source inconsistency that is preserv
 
 The final data file was independently recomputed from its authored TypeScript arrays using sequential reduced-angle tracing and a separate ABCD product, with exact spherical tracing for the wide-open marginal ray and the close-focus checks. The principal results are:
 
-| Quantity | Independent result | Patent/source value |
-|---|---:|---:|
-| Effective focal length | 133.495358106 mm | 133.50 mm |
-| Back focal distance | 54.115744633 mm | 54.12 mm |
-| First vertex to image track | 155.120000000 mm | 155.12 mm |
-| Front principal point | +85.933506150 mm | +85.94 mm |
-| Rear principal point | −79.379613473 mm | −79.38 mm |
-| Entrance pupil position from surface 1 | +74.832605285 mm | +74.83 mm |
-| Exit pupil position from surface 19 | −91.487340977 mm | −91.49 mm |
-| Exact wide-open f-number | F/2.059788166 | F2.06 |
-| Close-state paraxial magnification | −0.191410433 | −0.19 |
-| Petzval sum | 0.0010461209589 mm⁻¹ | — |
+| Quantity                               |   Independent result | Patent/source value |
+| -------------------------------------- | -------------------: | ------------------: |
+| Effective focal length                 |     133.495358106 mm |           133.50 mm |
+| Back focal distance                    |      54.115744633 mm |            54.12 mm |
+| First vertex to image track            |     155.120000000 mm |           155.12 mm |
+| Front principal point                  |     +85.933506150 mm |           +85.94 mm |
+| Rear principal point                   |     −79.379613473 mm |           −79.38 mm |
+| Entrance pupil position from surface 1 |     +74.832605285 mm |           +74.83 mm |
+| Exit pupil position from surface 19    |     −91.487340977 mm |           −91.49 mm |
+| Calibrated geometric f-number          |        F/2.059788166 |               F2.06 |
+| Close-state paraxial magnification     |         −0.191410433 |               −0.19 |
+| Petzval sum                            | 0.0010461209589 mm⁻¹ |                   — |
 
 The Petzval sum is calculated surface by surface as `φ/(n·n′)`, not from element powers. Expressed only as a signed air-image equivalent, `−1/P` is approximately −955.912403 mm.
 
-The source semi-diameters also remain geometrically viable in both published focus states. The minimum computed element edge thickness is **1.658391 mm**, the maximum actual spherical rim slope is **51.335064°**, and the maximum shared-band cross-gap sag-intrusion fraction is **0.814454**, below the current 0.90 limit. The full-field chief ray and the tested quarter-stop admitted band remain within the published apertures in both directions at infinity and at the published close state. Wider full-field pupil-edge rays show the intentional vignetting discussed by the patent; the data file does not enlarge the clear apertures to suppress it.
+The source clear semi-diameters and the three outer lands remain geometrically viable in both published focus states. The minimum computed element edge thickness is **1.658391 mm**, the maximum actual spherical rim slope is **51.335064°**, and the maximum shared-band cross-gap sag-intrusion fraction is **0.814454**, below the current 0.90 limit. The full-field chief ray and the tested quarter-stop admitted band remain within the published apertures in both directions at infinity and at the published close state. Wider full-field pupil-edge rays show the intentional vignetting discussed by the patent; the data file does not enlarge the clear apertures to suppress it.
 
 All powered surfaces are spherical. Numerical Example 1 publishes no aspheric equation, conic constant, or polynomial coefficients, so there is no aspherical-surface section and no coefficient scaling or conic conversion to document.
 
 No sensor cover glass, filter plate, dummy plane, flare-cutter plane, or other inactive optical plane is present in Numerical Example 1, and none is introduced in the model. No source prescription value is corrected. The only source contradiction retained is the `LF1/LF2` reference-surface wording described above.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 133.5 mm from PDF p. 15 (Numerical Example 1, Various data). The independently computed 133.495358 mm EFL remains a model result. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
-1. **JP 2018-049102 A**, Canon Inc., Tomohiko Ishibashi, *光学系およびそれを有する光学機器*, published 2018-03-29. Primary prescription source: ¶¶0089–0108, Numerical Example 1; Table 1; Figures 1, 2, and 7.
+1. **JP 2018-049102 A**, Canon Inc., Tomohiko Ishibashi, _光学系およびそれを有する光学機器_, published 2018-03-29. Primary prescription source: ¶¶0089–0108, Numerical Example 1; Table 1; Figures 1, 2, and 7.
 2. **Canon Camera Museum — EF135mm f/2L USM**, Canon Inc. Official production-lens identity and specifications: <https://global.canon/en/c-museum/product/ef335.html>.
 3. **Canon Camera Museum — EF135mm F2L USM (Japanese)**, Canon Inc. Official source for the ring-USM and rear-focus description: <https://global.canon/ja/c-museum/product/ef335.html>.
 4. **Companion prescription:** `CanonEF135mmf2LUSM.data.ts`. Authoritative for element names, shapes, stored glass annotations, exact modeled EFL/f-number, focus variables, and semi-diameters.
-5. **Independent calculations:** `CanonEF135mmf2LUSM.calculations.json` and `CanonEF135mmf2LUSM.verify.py`. Reduced-angle/ABCD, exact marginal-ray, movement, Petzval, and geometry verification.
-6. **Glass-coordinate audit:** `CanonEF135mmf2LUSM.glass-audit.csv`, based on authoritative OHARA, HOYA, SCHOTT, HIKARI, SUMITA, and CDGM optical-glass catalogs. The audit is used to reject unproved vendor identities, not to assign catalog glass names to the patent.

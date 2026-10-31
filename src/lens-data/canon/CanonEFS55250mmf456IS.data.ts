@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Patent source: US 2008/0112063 A1, Numerical Embodiment 2 (T. Hatada).      ║
  * ║ Production correlation: original Canon EF-S55-250mm f/4-5.6 IS.             ║
  * ║ 12 elements / 10 air-separated groups; all spherical; 3 zoom units (+/-/+). ║
- * ║ No uniform scale is applied: patent EFL is ~56.90-241.32 mm versus the      ║
+ * ║ No uniform scale is applied: printed EFL is 56.9-241.3 mm versus the      ║
  * ║ marketed 55-250 mm range.                                                    ║
  * ║                                                                              ║
  * ║ ZOOM / FOCUS MODEL                                                           ║
@@ -32,15 +32,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   Example 2 publishes no clear-aperture table. SDs are modeling inferences   ║
  * ║   derived from marginal/chief-ray envelopes, the 13.66 mm image height,      ║
  * ║   endpoint pupil geometry, Fig. 5 proportions, and geometric validation.     ║
+ * ║   Native Figure5 (300ppi, ~16.3px/mm, +/-0.8mm) updates fifteen caps; no  ║
+ * ║   separate outer shoulder is resolved; adjacent gap-limited caps stay.   ║
  * ║   They pass positive edge thickness, actual spherical rim-slope, all-state   ║
- * ║   shared-gap intrusion, and default off-axis containment checks.              ║
+ * ║   shared-gap intrusion and source-state checks. Interpolated/close states ║
+ * ║   retain disclosed defocus, vignetting and unavailable launch limits.     ║
+ * ║   Earlier default off-axis containment checks remain historical.              ║
  * ║                                                                              ║
  * ║ GLASS / SPECTRAL DATA                                                        ║
- * ║   The patent publishes only nd/vd. nC, nF, ng, and dPgF are catalog-derived  ║
- * ║   from coordinate-compatible public catalog equivalents; not patent facts.   ║
- * ║   G5 is catalog-unresolved: its line indices are a documented spectral proxy ║
- * ║   fitted to the patent nd/vd while retaining nearest S-TIH53WN dPgF=+0.0179. ║
- * ║   G6 uses exact-coordinate CDGM H-ZLaF50E; vendor identity is not asserted.  ║
+ * ║   Original paragraph0114 explicitly defines d-line nd/vd. Forty-eight       ║
+ * ║   catalog-derived per-lens nC/nF/ng/dPgF overrides are removed (2026-10-30). ║
+ * ║   Twelve compatible catalog curves are qualified spectral proxies; G5 uses ║
+ * ║   SFLDN3 without its former fitted line-index overrides. Historical         ║
+ * ║   supplier, melt, chemistry and manufacturing identity remain unresolved. ║
  * ║                                                                              ║
  * ║ SOURCE INCLUSIONS / EXCLUSIONS                                               ║
  * ║   Active prescription only. No sensor cover glass, filter, inactive dummy,   ║
@@ -67,7 +71,7 @@ const LENS_DATA = {
     ],
     elementCount: 12,
     groupCount: 10,
-    focalLengthMm: { marketing: [55, 250], design: [56.89803314244613, 241.31565770112968] },
+    focalLengthMm: { marketing: [55, 250], design: [56.9, 241.3] },
   },
 
   source: {
@@ -76,6 +80,12 @@ const LENS_DATA = {
     patentYear: 2008,
     authors: ["Takahiro Hatada"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Original paragraph 0092, PDF page 33 / printed 3, defines maximum moving distance for reciprocation as maximum absolute excursion. Numerical Embodiment 2 Table 1, PDF page 36 / printed 6, gives m2/m1=-.002, agreeing with signed endpoint displacement -.002194 rather than the sampled maximum-excursion magnitude .120510. The latter remains within broad .150 but exceeds preferred .100. Preserve all three published zoom gaps, their L2 reversal and every focus/stop control; this is a source definition/summary conflict, not an isolated numeric error. Original analysis conclusion retained, structured qualification added 2026-10-30.",
+      },
+    ],
   },
 
   elements: [
@@ -86,13 +96,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.14,
+      indexReference: "d",
       focalLengthMm: 142.8438280075935,
       glass: "S-BSL7 (OHARA-equivalent; exact patent coordinate match)",
       role: "Positive front collector in the first zoom/focus unit.",
-      dPgF: -0.0024,
-      nC: 1.51386,
-      nF: 1.52191,
-      ng: 1.52621,
     },
     {
       id: 2,
@@ -101,14 +108,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.801,
       vd: 34.97,
+      indexReference: "d",
       focalLengthMm: -118.02127955686271,
       glass: "S-LAM66 (OHARA-equivalent; exact patent coordinate match)",
       role: "Negative member of the L1 cemented pair.",
       cemented: "D1",
-      dPgF: 0.0015,
-      nC: 1.79427,
-      nF: 1.81718,
-      ng: 1.83061,
     },
     {
       id: 3,
@@ -117,14 +121,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.54,
+      indexReference: "d",
       focalLengthMm: 95.7633626092133,
       glass: "S-FPL51 (OHARA-equivalent; exact patent coordinate match)",
       role: "Low-dispersion positive member; strongest coordinate-based candidate for Canon's one marketed UD element.",
       cemented: "D1",
-      dPgF: 0.028,
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
     },
     {
       id: 4,
@@ -133,14 +134,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.87,
+      indexReference: "d",
       focalLengthMm: -24.643170680345932,
       glass: "S-LAL8 (OHARA-equivalent; exact patent coordinate match)",
       role: "Negative member of the cemented image-stabilizing L2 unit.",
       cemented: "D2",
-      dPgF: -0.0084,
-      nC: 1.70897,
-      nF: 1.72221,
-      ng: 1.72943,
     },
     {
       id: 5,
@@ -149,14 +147,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.93,
+      indexReference: "d",
       focalLengthMm: 37.79081808402992,
-      glass: "Unmatched (847239 high-index flint; patent vd=23.93; nearest OHARA S-TIH53WN vd=23.86)",
-      role: "Positive cemented partner in L2; spectral line indices are a documented proxy, not a catalog identity claim.",
+      glass: "SFLDN3 (SUMITA compatible spectral proxy; source supplier, melt and chemistry unspecified)",
+      role: "Positive cemented partner in L2; the compatible catalog curve estimates dispersion without identifying the source medium.",
       cemented: "D2",
-      dPgF: 0.0179,
-      nC: 1.8365583532390366,
-      nF: 1.8719390469289656,
-      ng: 1.8938979978065582,
     },
     {
       id: 6,
@@ -165,13 +160,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.57,
+      indexReference: "d",
       focalLengthMm: -46.76625339617364,
       glass: "H-ZLaF50E (CDGM-equivalent; exact patent coordinate match)",
       role: "Rear negative element of the transversely shifted L2 image-stabilizing unit.",
-      dPgF: -0.0088,
-      nC: 1.798821,
-      nF: 1.816084,
-      ng: 1.825709,
     },
     {
       id: 7,
@@ -180,13 +172,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.63854,
       vd: 55.38,
+      indexReference: "d",
       focalLengthMm: 53.23888131956188,
       glass: "S-BSM18 (OHARA-equivalent; exact patent coordinate match)",
       role: "Positive front element of the third zoom unit.",
-      dPgF: -0.0035,
-      nC: 1.63505,
-      nF: 1.64658,
-      ng: 1.65291,
     },
     {
       id: 8,
@@ -195,13 +184,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.64,
+      indexReference: "d",
       focalLengthMm: 65.0554012993556,
       glass: "S-BSM14 (OHARA-equivalent; exact patent coordinate match)",
       role: "Positive element immediately objectward of the aperture stop.",
-      dPgF: -0.0019,
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
     },
     {
       id: 9,
@@ -210,13 +196,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.23,
+      indexReference: "d",
       focalLengthMm: 71.27694561293687,
       glass: "S-FSL5 (OHARA-equivalent; exact patent coordinate match)",
       role: "Low-index positive element immediately imageward of the stop.",
-      dPgF: 0.0022,
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
     },
     {
       id: 10,
@@ -225,13 +208,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.78,
+      indexReference: "d",
       focalLengthMm: -41.307185179830554,
       glass: "S-TIH53 (OHARA-equivalent; exact patent coordinate match)",
       role: "High-index negative element in the rear half of L3.",
-      dPgF: 0.0175,
-      nC: 1.83649,
-      nF: 1.8721,
-      ng: 1.89419,
     },
     {
       id: 11,
@@ -240,13 +220,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.16,
+      indexReference: "d",
       focalLengthMm: -45.406313287229686,
       glass: "S-LAH60 (OHARA-equivalent; exact patent coordinate match)",
       role: "Negative meniscus in the rear relay section of L3.",
-      dPgF: -0.0037,
-      nC: 1.82738,
-      nF: 1.84982,
-      ng: 1.86278,
     },
     {
       id: 12,
@@ -255,40 +232,38 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.68893,
       vd: 31.07,
+      indexReference: "d",
       focalLengthMm: 54.60024437604166,
       glass: "S-TIM28 (OHARA-equivalent; exact patent coordinate match)",
       role: "Final positive element of L3 before the image space.",
-      dPgF: 0.0092,
-      nC: 1.6825,
-      nF: 1.70467,
-      ng: 1.71797,
     },
   ],
 
+  // 2026-10-30 native Figure5: figure-based caps; no resolved separate air shoulder; source R/d unchanged.
   surfaces: [
-    { label: "1", R: 80.99515, d: 4.75045, sd: 25.0, medium: 1 },
-    { label: "2", R: -808.56, d: 0.15, sd: 24.8 },
-    { label: "3", R: 77.54341, d: 2.6, sd: 21.6, medium: 2 },
-    { label: "4", R: 41.96489, d: 5.6768, sd: 21.8, medium: 3 },
-    { label: "5", R: 338.8565, sd: 21.6 },
-    { label: "6", R: -209.128, d: 1.4, sd: 11.2, medium: 4 },
-    { label: "7", R: 19.23569, d: 3.20257, sd: 11.4, medium: 5 },
-    { label: "8", R: 44.55107, d: 2.32179, sd: 9.7 },
+    { label: "1", R: 80.99515, d: 4.75045, sd: 22.5, medium: 1 },
+    { label: "2", R: -808.56, d: 0.15, sd: 22.5 },
+    { label: "3", R: 77.54341, d: 2.6, sd: 21, medium: 2 },
+    { label: "4", R: 41.96489, d: 5.6768, sd: 21, medium: 3 },
+    { label: "5", R: 338.8565, sd: 21 },
+    { label: "6", R: -209.128, d: 1.4, sd: 10.5, medium: 4 },
+    { label: "7", R: 19.23569, d: 3.20257, sd: 10.5, medium: 5 },
+    { label: "8", R: 44.55107, d: 2.32179, sd: 10.5 },
     { label: "9", R: -43.5451, d: 1.1, sd: 9.52, medium: 6 },
     { label: "10", R: 278.5068, sd: 9.7 },
-    { label: "11", R: 52.26289, d: 2.99623, sd: 10.7, medium: 7 },
-    { label: "12", R: -95.0852, d: 0.15, sd: 10.7 },
-    { label: "13", R: 47.03856, d: 2.89978, sd: 10.7, medium: 8 },
-    { label: "14", R: -231.037, d: 1.56909, sd: 10.5 },
+    { label: "11", R: 52.26289, d: 2.99623, sd: 11.5, medium: 7 },
+    { label: "12", R: -95.0852, d: 0.15, sd: 11.5 },
+    { label: "13", R: 47.03856, d: 2.89978, sd: 11.5, medium: 8 },
+    { label: "14", R: -231.037, d: 1.56909, sd: 11.5 },
     { label: "STO", R: "flat", d: 0.49801 },
     { label: "16", R: 30.2435, d: 2.78922, sd: 10.0, medium: 9 },
-    { label: "17", R: 226.3014, d: 0.60067, sd: 9.5 },
+    { label: "17", R: 226.3014, d: 0.60067, sd: 10 },
     { label: "18", R: -125.291, d: 3.02154, sd: 9.0, medium: 10 },
     { label: "19", R: 49.05197, d: 11.42731, sd: 9.2 },
     { label: "20", R: 65.37414, d: 2.01377, sd: 7.2, medium: 11 },
     { label: "21", R: 23.64292, d: 8.70092, sd: 7.1 },
-    { label: "22", R: 47.7313, d: 2.36466, sd: 7.4, medium: 12 },
-    { label: "23", R: -173.907, sd: 7.4 },
+    { label: "22", R: 47.7313, d: 2.36466, sd: 9, medium: 12 },
+    { label: "23", R: -173.907, sd: 9 },
   ],
 
   zoom: {

@@ -36,6 +36,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-31 scoped material followup: all sixteen source d-line pairs retained.
+ * NHG 2601 adds no better curve for the three unresolved coordinates; broad candidates
+ * alter their known F-C spans materially. Prior whole shape reviews retain their dates.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "laowa-12mm-f28-zero-d",

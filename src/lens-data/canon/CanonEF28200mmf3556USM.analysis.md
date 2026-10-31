@@ -7,7 +7,7 @@
 **Published:** December 21, 2001  
 **Inventor:** Makoto Mitsusaka  
 **Applicant:** Canon Inc.  
-**Title:** Zoom lens and optical device using the same  
+**Title:** Zoom lens and optical device using the same
 
 The prescription is Numerical Example 1 of JP 2001-350095 A (¶0054; PDF p. 6). The selected production correlation is the Canon EF
 28-200mm f/3.5-5.6 USM. This identification is fixed for the present analysis, but it is not represented as an explicit
@@ -36,19 +36,21 @@ The negative signs printed at radii 20, 28, and 29 are retained. This sign treat
 reproduces the stated focal lengths, and reproduces all five group-power ratios in Patent Table 1. It is a source
 correction rather than a change of radius-sign convention.
 
+All index-dependent calculations below use the retained source numbers, read as d-line values. The original names no spectral line; see the glass section.
+
 ## Optical Architecture
 
 The lens is a five-group zoom with the power sequence positive-negative-positive-negative-positive (¶0010). The aperture stop is
 located between the second and third groups at source surface 16. The patent's numerical example therefore has the
 following functional arrangement:
 
-| Group | Surfaces | Computed group focal length | Principal function |
-|---|---:|---:|---|
-| G1 | 1-5 | +90.817140 mm | Positive front collector and wide-angle entrance group |
-| G2 | 6A-15 | -14.471292 mm | Strong negative variator and inner-focus group |
-| G3 | 17-21 | +24.601852 mm | Positive post-stop relay group |
-| G4 | 22-24 | -41.255033 mm | Negative compensating group |
-| G5 | 25-30 | +48.870271 mm | Positive rear relay and image-forming group |
+| Group | Surfaces | Computed group focal length | Principal function                                     |
+| ----- | -------: | --------------------------: | ------------------------------------------------------ |
+| G1    |      1-5 |               +90.817140 mm | Positive front collector and wide-angle entrance group |
+| G2    |    6A-15 |               -14.471292 mm | Strong negative variator and inner-focus group         |
+| G3    |    17-21 |               +24.601852 mm | Positive post-stop relay group                         |
+| G4    |    22-24 |               -41.255033 mm | Negative compensating group                            |
+| G5    |    25-30 |               +48.870271 mm | Positive rear relay and image-forming group            |
 
 These are focal lengths of the complete functional-group matrices. They are not sums of the standalone element powers
 listed later, and they do not describe the contribution of an element while embedded in the complete zoom.
@@ -80,39 +82,37 @@ not equal the element's in-situ contribution inside a cemented assembly or movin
 
 ### C1: L1 and L2 - Cemented Front Pair
 
-**L1 - Negative Meniscus.** nd = 1.846660, νd = 23.9. Glass: S-TIH53WN (OHARA). Standalone f = -146.891018 mm.  
-**L2 - Positive Meniscus.** nd = 1.622992, νd = 58.2. Glass: S-BSM15 (OHARA). Standalone f = +99.820738 mm.
+**L1 - Negative Meniscus.** Printed $n_d$ = 1.846660, $\nu_d$ = 23.9. Glass: S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -146.891018 mm.
+
+**L2 - Positive Meniscus.** Printed $n_d$ = 1.622992, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +99.820738 mm.
 
 L1 is a negative meniscus cemented to the positive-meniscus L2. Although the two standalone powers oppose each other,
 the complete C1 assembly is weakly positive, with a computed focal length in air of +322.765489 mm. This is distinct
 from the +90.817140 mm focal length of the complete G1 matrix after L3 and the internal spacings are included.
 
 The pairing places a high-index, low-Abbe flint-like material against a lower-index crown-like material. The combination
-provides first-order chromatic balancing while preserving the bending needed by the large front group. The catalog line
-indices and dPgF values support wavelength-dependent modeling, but the pair does not justify an apochromatic claim.
+provides first-order chromatic balancing while preserving the bending needed by the large front group. The printed pairs and their catalog curves do not justify an apochromatic claim.
 
 ### L3 - Positive Meniscus
 
-**L3 - Positive Meniscus.** nd = 1.622992, νd = 58.2. Glass: S-BSM15 (OHARA). Standalone f = +123.299441 mm.
+**L3 - Positive Meniscus.** Printed $n_d$ = 1.622992, $\nu_d$ = 58.2. Glass: S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +123.299441 mm.
 
 L3 is a separate positive meniscus behind C1. It adds most of the remaining positive power required to make G1 a
-positive group while leaving an air space between the cemented front pair and the rear member. Its use of the same
-S-BSM15 identification as L2 keeps the positive portion of G1 within one crown-like dispersion family.
+positive group while leaving an air space between the cemented front pair and the rear member. Its repeated source coordinate with L2 keeps the positive portion of G1 within one crown-like dispersion class; supplier, melt and chemistry stay unspecified.
 
-The large inferred semi-diameters of G1 follow the 135-format image height, the wide-angle chief rays, the patent optical
-section, and the commercial 72 mm filter envelope. They are modeling values rather than dimensions published in the
-numerical example.
+The revised inferred G1 heights follow native Fig. 1. They remain modeling values with about ±1 mm endpoint uncertainty, rather than published production clear apertures or dimensions inferred from a filter thread.
 
 ### H1: L4r and L4 - Hybrid Negative Aspheric Component
 
-**L4r - Neg. Meniscus (1× Asph).** nd = 1.514210, νd = 51.4. Glass: Unmatched (thin replica/aspheric layer; nd=1.514210, vd=51.4). Standalone
-f = -847.565314 mm.  
-**L4 - Negative Meniscus.** nd = 1.834000, νd = 37.2. Glass: S-LAH60 (OHARA). Standalone f = -22.775172 mm.
+**L4r - Neg. Meniscus (1× Asph).** Printed $n_d$ = 1.514210, $\nu_d$ = 51.4. Glass: Unmatched (bonded thin layer; source n=1.51421, ν=51.4; no catalog row within tolerance). Standalone
+f = -847.565314 mm.
+
+**L4 - Negative Meniscus.** Printed $n_d$ = 1.834000, $\nu_d$ = 37.2. Glass: S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -22.775172 mm.
 
 L4r is the 0.05 mm layer entered at aspherical surface 6A and bonded to the L4 substrate at surface 7. Its very weak
 standalone power reflects the thin-layer model; its significance lies in the aspheric departure and in the interface it
-creates with the high-index substrate. No catalog identity is assigned because the stored nd/νd pair does not support a
-defensible public-glass match.
+creates with the high-index substrate. No catalog curve is assigned because the printed $n_d$/$\nu_d$ pair matches no catalog row within
+tolerance.
 
 The combined H1 assembly has a computed focal length in air of -22.163305 mm. It therefore acts as a strong negative
 front component of G2. The asphere is positioned where the chief- and marginal-ray geometry changes strongly with zoom,
@@ -121,7 +121,7 @@ modeling inference; the patent itself supplies the optical layer but not a manuf
 
 ### L5 - Biconcave Negative Element
 
-**L5 - Biconcave Negative.** nd = 1.834807, νd = 42.7. Glass: S-LAH55V (OHARA). Standalone f = -26.393152 mm.
+**L5 - Biconcave Negative.** Printed $n_d$ = 1.834807, $\nu_d$ = 42.7. Glass: S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -26.393152 mm.
 
 L5 is a biconcave negative singlet separated from H1 by a substantial air gap. It reinforces the negative power of G2
 without adding another cemented interface. Its high index allows strong curvature and power within the compact second
@@ -133,7 +133,7 @@ and focusing.
 
 ### L6 - Biconvex Positive Element
 
-**L6 - Biconvex Positive.** nd = 1.846660, νd = 23.9. Glass: S-TIH53WN (OHARA). Standalone f = +19.601756 mm.
+**L6 - Biconvex Positive.** Printed $n_d$ = 1.846660, $\nu_d$ = 23.9. Glass: S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +19.601756 mm.
 
 L6 is a strong biconvex positive singlet embedded within the otherwise negative G2. Its positive power moderates the
 ray bending produced by H1 and L5 while preserving the net negative group focal length. Because it uses the same
@@ -145,33 +145,34 @@ air spaces and the negative members around it; the complete G2 remains strongly 
 
 ### C2: L7 and L8 - Cemented Negative Pair
 
-**L7 - Biconcave Negative.** nd = 1.804000, νd = 46.6. Glass: S-LAH65V (OHARA). Standalone f = -21.342363 mm.  
-**L8 - Biconvex Positive.** nd = 1.846660, νd = 23.9. Glass: S-TIH53WN (OHARA). Standalone f = +71.917980 mm.
+**L7 - Biconcave Negative.** Printed $n_d$ = 1.804000, $\nu_d$ = 46.6. Glass: S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -21.342363 mm.
+
+**L8 - Biconvex Positive.** Printed $n_d$ = 1.846660, $\nu_d$ = 23.9. Glass: S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +71.917980 mm.
 
 L7 is biconcave and cemented to the biconvex L8. The complete C2 assembly remains negative, with a computed focal length
 in air of -30.803767 mm. This final negative assembly completes G2 immediately before the large zoom-dependent gap D15
 and the aperture stop.
 
 The Abbe-number ordering is opposite to that of a conventional positive crown/negative flint achromat: the more strongly
-negative member has the higher νd, while the weaker positive member has the lower νd. That arrangement is consistent
+negative member has the higher $\nu_d$, while the weaker positive member has the lower $\nu_d$. That arrangement is consistent
 with the patent's explicit dispersion constraints for the second group and permits longitudinal color correction without
 surrendering the required negative group power.
 
 ### L9 - First Positive Element of G3
 
-**L9 - Biconvex Positive.** nd = 1.518229, νd = 58.9. Glass: S-NSL3 (OHARA). Standalone f = +30.181663 mm.
+**L9 - Biconvex Positive.** Printed $n_d$ = 1.518229, $\nu_d$ = 58.9. Glass: S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +30.181663 mm.
 
 L9 is a biconvex positive singlet immediately behind the stop. It supplies the first strong convergence in G3 and helps
-set the exit-pupil geometry of the rear system. The stored nd = 1.518229 and νd = 58.9 match the current OHARA S-NSL3
-entry at the patent's printed precision.
+set the exit-pupil geometry of the rear system. The printed $n_d$ = 1.518229 and $\nu_d$ = 58.9 match S-NSL3, whose catalog curve serves as the spectral proxy for this medium.
 
 Its position next to the stop gives it high leverage over axial marginal rays while limiting the chief-ray height
 relative to the large front group. This placement supports a compact positive relay after the negative variator.
 
 ### C3: L10 and L11 - Weak Positive Cemented Pair
 
-**L10 - Biconvex Positive.** nd = 1.517417, νd = 52.4. Glass: S-NSL36 (OHARA). Standalone f = +24.801607 mm.  
-**L11 - Negative Meniscus.** nd = 1.846660, νd = 23.9. Glass: S-TIH53WN (OHARA). Standalone f = -28.742226 mm.
+**L10 - Biconvex Positive.** Printed $n_d$ = 1.517417, $\nu_d$ = 52.4. Glass: S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +24.801607 mm.
+
+**L11 - Negative Meniscus.** Printed $n_d$ = 1.846660, $\nu_d$ = 23.9. Glass: S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -28.742226 mm.
 
 L10 is biconvex and cemented to the negative-meniscus L11. Their strong opposing standalone powers reduce to a weakly
 positive cemented assembly with a computed focal length in air of +140.951566 mm. Together with L9, C3 leaves G3
@@ -183,42 +184,43 @@ this prescription, but the result is properly described as chromatic balancing r
 
 ### C4: L12 and L13 - Cemented Negative Compensator
 
-**L12 - Positive Meniscus.** nd = 1.728250, νd = 28.5. Glass: S-TIH10 (OHARA). Standalone f = +35.971241 mm.  
-**L13 - Negative Meniscus.** nd = 1.882997, νd = 40.8. Glass: S-LAH58 (OHARA). Standalone f = -19.819009 mm.
+**L12 - Positive Meniscus.** Printed $n_d$ = 1.728250, $\nu_d$ = 28.5. Glass: S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +35.971241 mm.
+
+**L13 - Negative Meniscus.** Printed $n_d$ = 1.882997, $\nu_d$ = 40.8. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -19.819009 mm.
 
 L12 is a positive meniscus cemented to the stronger negative-meniscus L13. Their net focal length in air is -41.255033
 mm. Since G4 contains only this cemented pair, the cemented-assembly focal length and the functional-group focal length
 are the same.
 
 The pair acts as the negative compensator between G3 and G5. Its zoom-dependent position changes the conjugate relation
-between the two positive rear groups while preserving the fixed image plane. The combination of a low-νd positive member
-and a higher-νd negative member also supplies chromatic leverage without changing the group's negative sign.
+between the two positive rear groups while preserving the fixed image plane. The combination of a low-$\nu_d$ positive member
+and a higher-$\nu_d$ negative member also supplies chromatic leverage without changing the group's negative sign.
 
 ### L14 - Biconvex Positive Rear Asphere
 
-**L14 - Biconvex Positive (1× Asph).** nd = 1.583126, νd = 59.4. Glass: S-BAL42 (OHARA). Standalone f = +28.643528 mm.
+**L14 - Biconvex Positive (1× Asph).** Printed $n_d$ = 1.583126, $\nu_d$ = 59.4. Glass: S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +28.643528 mm.
 
 L14 is the leading positive element of G5. Its rear surface, 26A, carries the second aspherical prescription. This member
 provides the principal positive power at the front of the rear group while the asphere controls the peripheral departure
 before the weaker positive L15 and final negative L16.
 
-The high νd and moderate index make L14 a crown-like positive component. The aspheric surface reduces the need to obtain
+The high $\nu_d$ and moderate index make L14 a crown-like positive component. The aspheric surface reduces the need to obtain
 all correction through extreme spherical bending. The patent and Canon product description establish the presence of an
 aspherical element, but they do not specify whether this particular surface was polished, molded, or replicated.
 
 ### L15 - Weak Biconvex Positive Element
 
-**L15 - Biconvex Positive.** nd = 1.518229, νd = 58.9. Glass: S-NSL3 (OHARA). Standalone f = +100.846418 mm.
+**L15 - Biconvex Positive.** Printed $n_d$ = 1.518229, $\nu_d$ = 58.9. Glass: S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = +100.846418 mm.
 
 L15 is a weak positive singlet behind L14. It extends the positive action of G5 while distributing the rear-group power
-over two separated positive elements. The same current-catalog S-NSL3 match used for L9 applies here.
+over two separated positive elements. The printed coordinate repeats L9, and both media use the same S-NSL3 catalog curve as a spectral proxy; no historical glass identity is established for either.
 
 Its large standalone focal length shows that it is not the primary power-bearing element of G5. Its in-situ value lies in
 its spacing relative to L14 and L16 and in the way that spacing shapes the rear principal plane over the zoom range.
 
 ### L16 - Final Negative Meniscus
 
-**L16 - Negative Meniscus.** nd = 1.806098, νd = 40.9. Glass: S-LAH53 (OHARA). Standalone f = -30.242699 mm.
+**L16 - Negative Meniscus.** Printed $n_d$ = 1.806098, $\nu_d$ = 40.9. Glass: S-LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). Standalone f = -30.242699 mm.
 
 L16 is the final negative meniscus. It counteracts part of the positive power of L14 and L15 while leaving G5 positive at
 +48.870271 mm. Its position near the image side gives it substantial influence over the rear principal plane and the
@@ -231,35 +233,35 @@ a claim about the fully corrected best-focus surface.
 
 ## Glass Identification and Selection
 
-The patent supplies nd and νd values but does not identify manufacturers. Catalog matching was therefore performed
-against the current OHARA catalog. Eleven distinct pairs match current entries at the patent's printed precision, while
-the thin aspheric layer remains explicitly unmatched. These are current spectral equivalents, not proof of the historical
-glass melts used in production.
+All 17 modeled media, including the 0.05 mm bonded aspheric layer, are taken directly from Numerical Example 1 on PDF p. 6. Paragraph 0050 on PDF p. 5 defines ni/νi as refractive index and Abbe number, without specifying a spectral reference line. The claims, example introduction and tables supply no explicit material d/e definition or numeric wavelength. The d/g labels on the aberration plots identify plotted wavelengths; they do not define the prescription's ni/νi values.
 
-| Glass identification | nd | νd | dPgF | Modeled entries | Identification status |
-|---|---:|---:|---:|---|---|
-| S-TIH53WN (OHARA) | 1.846660 | 23.9 | +0.0179 | L1, L6, L8, L11 | Current-catalog match at source precision |
-| S-BSM15 (OHARA) | 1.622992 | 58.2 | -0.0016 | L2, L3 | Current-catalog match at source precision |
-| Unmatched (thin replica/aspheric layer; nd=1.514210, vd=51.4) | 1.514210 | 51.4 | - | L4r | No defensible catalog match |
-| S-LAH60 (OHARA) | 1.834000 | 37.2 | -0.0037 | L4 | Current-catalog match at source precision |
-| S-LAH55V (OHARA) | 1.834807 | 42.7 | -0.0075 | L5 | Current-catalog match at source precision |
-| S-LAH65V (OHARA) | 1.804000 | 46.6 | -0.0088 | L7 | Current-catalog match at source precision |
-| S-NSL3 (OHARA) | 1.518229 | 58.9 | -0.0005 | L9, L15 | Current-catalog match at source precision |
-| S-NSL36 (OHARA) | 1.517417 | 52.4 | -0.0002 | L10 | Current-catalog match at source precision |
-| S-TIH10 (OHARA) | 1.728250 | 28.5 | +0.0123 | L12 | Current-catalog match at source precision |
-| S-LAH58 (OHARA) | 1.882997 | 40.8 | -0.0088 | L13 | Current-catalog match at source precision |
-| S-BAL42 (OHARA) | 1.583126 | 59.4 | -0.0020 | L14 | Current-catalog match at source precision |
-| S-LAH53 (OHARA) | 1.806098 | 40.9 | -0.0052 | L16 | Current-catalog match at source precision |
+All 17 literal pairs are retained. The patent publishes no per-medium nC/nF/ng/dPgF values.
 
-For every resolved catalog glass, the data file stores nC, nF, ng, and dPgF directly on the corresponding element. These
-are catalog-derived spectral properties rather than patent facts. In particular, S-TIH53WN is a current OHARA equivalent
-introduced after the patent's filing; its label and line data do not establish the historical production melt. The
-unmatched L4r layer carries no invented line indices or partial-dispersion value.
+The patent names no spectral line. 16 of 17 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 16 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. The remaining medium, the 0.05 mm hybrid replica layer (L4r, 1.514210 / 51.4), has no catalog row within tolerance and stays Unmatched.
 
-The glass palette repeatedly combines high-index, low- or moderate-νd materials with crown-like positive members. This
-strategy is visible in C1, C2, C3, and C4 and is reinforced by the patent's group-specific Abbe-number conditions. The
-line-index data permit more faithful chromatic tracing than nd/νd alone. They do not, however, establish an apochromatic
-classification, and no APO claim is made.
+The thin-layer manufacturing process is inferred. No APD evidence, source filter, rear plate or numerical cement is supplied.
+
+| Modeled medium | Printed $n_d$ | Printed $\nu_d$ | Glass                                                                                                         |
+| -------------- | ------------: | --------------: | ------------------------------------------------------------------------------------------------------------- |
+| L1             |      1.846660 |            23.9 | S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L2             |      1.622992 |            58.2 | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L3             |      1.622992 |            58.2 | S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L4r            |      1.514210 |            51.4 | Unmatched (bonded thin layer; source n=1.51421, ν=51.4; no catalog row within tolerance)                      |
+| L4             |      1.834000 |            37.2 | S-LAH60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L5             |      1.834807 |            42.7 | S-LAH55V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L6             |      1.846660 |            23.9 | S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L7             |      1.804000 |            46.6 | S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)  |
+| L8             |      1.846660 |            23.9 | S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L9             |      1.518229 |            58.9 | S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    |
+| L10            |      1.517417 |            52.4 | S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L11            |      1.846660 |            23.9 | S-TIH53WN (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified) |
+| L12            |      1.728250 |            28.5 | S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L13            |      1.882997 |            40.8 | S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L14            |      1.583126 |            59.4 | S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+| L15            |      1.518229 |            58.9 | S-NSL3 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)    |
+| L16            |      1.806098 |            40.9 | S-LAH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)   |
+
+The named S-series entries are OHARA catalog rows, used as spectral proxies; neither their dispersion curves nor their catalog partials are evidence of production glass. The coordinate match fixes the reference line only.
 
 ## Focus Mechanism
 
@@ -276,11 +278,11 @@ states. The reconstruction applies four constraints:
 3. D5 + D15 is conserved at each zoom station, as required by rigid translation of G2 between its adjacent groups.
 4. The paraxial imaging condition is solved for an object-to-image distance of 450 mm.
 
-| State | G2 motion toward object | D5 infinity → close | D15 infinity → close | Conserved D5 + D15 | Computed magnification magnitude |
-|---|---:|---:|---:|---:|---:|
-| Wide | 1.215715 mm | 2.340000 → 1.124285 mm | 18.540000 → 19.755715 mm | 20.880000 mm | 0.079332 |
-| Middle | 3.061103 mm | 28.590000 → 25.528897 mm | 9.120000 → 12.181103 mm | 37.710000 mm | 0.183108 |
-| Tele | 8.315696 mm | 47.130000 → 38.814304 mm | 1.750000 → 10.065696 mm | 48.880000 mm | 0.275305 |
+| State  | G2 motion toward object |      D5 infinity → close |     D15 infinity → close | Conserved D5 + D15 | Computed magnification magnitude |
+| ------ | ----------------------: | -----------------------: | -----------------------: | -----------------: | -------------------------------: |
+| Wide   |             1.215715 mm |   2.340000 → 1.124285 mm | 18.540000 → 19.755715 mm |       20.880000 mm |                         0.079332 |
+| Middle |             3.061103 mm | 28.590000 → 25.528897 mm |  9.120000 → 12.181103 mm |       37.710000 mm |                         0.183108 |
+| Tele   |             8.315696 mm | 47.130000 → 38.814304 mm |  1.750000 → 10.065696 mm |       48.880000 mm |                         0.275305 |
 
 The tele-state reconstruction gives |m| = 0.275305, consistent with Canon's rounded 0.28× specification. Magnification
 was not used as a free tuning target; it follows from the fixed-distance imaging solution. No alternative multi-group
@@ -299,19 +301,16 @@ X = (Y²/r) / (1 + sqrt(1 - (Y/r)²))
 The conic base is spherical. In the LensVisualizer convention this is K = 0. The patent prints A = 0; its B, C, D, and E
 map directly to A4, A6, A8, and A10. No nonzero Y¹² coefficient is supplied.
 
-| Surface | K | A4 (mm⁻³) | A6 (mm⁻⁵) | A8 (mm⁻⁷) | A10 (mm⁻⁹) |
-|---|---:|---:|---:|---:|---:|
-| 6A | 0 | +4.38644e-6 | +2.81127e-8 | -2.86365e-10 | +1.27865e-12 |
-| 26A | 0 | +1.07579e-5 | +1.68849e-8 | +7.49501e-12 | -1.82624e-13 |
+| Surface |   K |   A4 (mm⁻³) |   A6 (mm⁻⁵) |    A8 (mm⁻⁷) |   A10 (mm⁻⁹) |
+| ------- | --: | ----------: | ----------: | -----------: | -----------: |
+| 6A      |   0 | +4.38644e-6 | +2.81127e-8 | -2.86365e-10 | +1.27865e-12 |
+| 26A     |   0 | +1.07579e-5 | +1.68849e-8 | +7.49501e-12 | -1.82624e-13 |
 
 No dimensional scaling was applied, so the coefficients are stored without a scale transformation. Had a uniform scale
 factor s been required, each coefficient A_p would have been divided by s^(p-1) while K remained unchanged; that
 operation is not part of this model.
 
-The patent does not publish mechanical semi-diameters. At the authored and independently geometry-validated
-semi-diameters, the polynomial departures from the spherical base are +97.325130 µm at 11.3 mm on 6A and +393.503122 µm
-at 13.2 mm on 26A. These heights are modeling results at inferred apertures, not patent-published asphere departures or
-manufacturer clear-aperture dimensions.
+The patent does not publish mechanical semi-diameters. Source asphere coefficients are retained without tuning. The shared 13.4 mm front/bonded boundary of the thin layer gives a positive 0.019367 mm minimum layer thickness in a 13,401-point profile scan; it creates no disconnected resin wing. The layer's own outer endpoint cannot be independently resolved at the native raster scale, so that shared component boundary remains qualified. These are geometric modeling results, not published production clear apertures or manufacturing evidence.
 
 Surface 6A is modeled as the exposed surface of a bonded thin layer on L4, making a replica or hybrid interpretation
 probable. Surface 26A is modeled directly on the L14 substrate. The available sources do not establish the production
@@ -320,20 +319,18 @@ method of either surface.
 ## Chromatic Correction Strategy
 
 The chromatic strategy is distributed among several opposing-power pairs rather than isolated in one special glass.
-C1 uses a negative, high-index, low-νd member against a positive crown-like member. C2 and C4 reverse the usual simple
+C1 uses a negative, high-index, low-$\nu_d$ member against a positive crown-like member. C2 and C4 reverse the usual simple
 achromat power/dispersion ordering, while C3 uses a conventional positive crown-like member against a high-index,
-low-νd negative member. These combinations allow the moving groups to preserve their required net signs while
+low-$\nu_d$ negative member. These combinations allow the moving groups to preserve their required net signs while
 controlling longitudinal color.
 
 The patent's material conditions are satisfied by Numerical Example 1. The second group has a 22.640 Abbe-number
 difference between the designated negative and positive materials, exceeding both the main lower limit of 15 and the
-preferred lower limit of 20. The designated positive material in that group has νd = 37.160, within both the main
+preferred lower limit of 20. The designated positive material in that group has $\nu_d$ = 37.160, within both the main
 35-45 range and the preferred 35-40 range. The third group's designated positive/negative Abbe-number difference is
 28.500, exceeding the main limit of 20 and preferred limit of 25.
 
-Current OHARA line indices and dPgF values are stored for the resolved materials, so wavelength-dependent behavior need
-not be reduced to a plain Abbe interpolation. The data still do not support calling the zoom apochromatic: no source
-claims APO correction, and the unmatched hybrid layer lacks resolved spectral data.
+No individual source line indices or partial-dispersion values are available. The catalog curves supply C/F/g dispersion for 16 media as spectral proxies; the hybrid layer has no catalog match. No source claims APO correction, and no APD classification is assigned.
 
 ## Conditional Expressions
 
@@ -341,16 +338,16 @@ The patent provides material and group-power conditions for the five-group archi
 ¶0033-¶0042). Numerical Example 1 satisfies
 both the broad claim intervals and the narrower preferred intervals.
 
-| Condition | Example 1 | Main interval | Preferred interval | Result |
-|---|---:|---|---|---|
-| ν2dn - ν2dp | 22.640 | > 15.0 | > 20.0 | Passes both |
-| ν3bp - ν3bn | 28.500 | > 20.0 | > 25.0 | Passes both |
-| ν2a | 37.160 | 35.0 < x < 45.0 | 35.0 < x < 40.0 | Passes both |
-| f1/ft | +0.470 | 0.38 < x < 0.58 | 0.42 < x < 0.53 | Passes both |
-| f2/ft | -0.075 | -0.09 < x < -0.06 | -0.085 < x < -0.065 | Passes both |
-| f3/ft | +0.127 | 0.10 < x < 0.15 | 0.11 < x < 0.14 | Passes both |
-| f4/ft | -0.214 | -0.26 < x < -0.15 | -0.23 < x < -0.17 | Passes both |
-| f5/ft | +0.253 | 0.18 < x < 0.30 | 0.21 < x < 0.28 | Passes both |
+| Condition   | Example 1 | Main interval     | Preferred interval  | Result      |
+| ----------- | --------: | ----------------- | ------------------- | ----------- |
+| ν2dn - ν2dp |    22.640 | > 15.0            | > 20.0              | Passes both |
+| ν3bp - ν3bn |    28.500 | > 20.0            | > 25.0              | Passes both |
+| ν2a         |    37.160 | 35.0 < x < 45.0   | 35.0 < x < 40.0     | Passes both |
+| f1/ft       |    +0.470 | 0.38 < x < 0.58   | 0.42 < x < 0.53     | Passes both |
+| f2/ft       |    -0.075 | -0.09 < x < -0.06 | -0.085 < x < -0.065 | Passes both |
+| f3/ft       |    +0.127 | 0.10 < x < 0.15   | 0.11 < x < 0.14     | Passes both |
+| f4/ft       |    -0.214 | -0.26 < x < -0.15 | -0.23 < x < -0.17   | Passes both |
+| f5/ft       |    +0.253 | 0.18 < x < 0.30   | 0.21 < x < 0.28     | Passes both |
 
 The independently computed group ratios differ from Patent Table 1 by no more than 0.000398. This agreement is one of
 the checks supporting the four restored and three retained negative radius signs and the positive-negative-positive-negative-positive power
@@ -362,35 +359,30 @@ Sequential paraxial tracing in height/reduced-angle coordinates was checked agai
 formulation. The maximum matrix-element difference was 4.26326e-14, and the system determinant remained unity within
 floating-point precision.
 
-| Zoom state | Patent f | Computed EFL | Residual | Modeled f-number | Computed BFD | Patent f·tan ω image height |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 28.92 mm | 28.896161 mm | -0.023839 mm | f/3.63 | 38.245833 mm | 21.634924 mm |
-| Middle | 80.00 mm | 79.937822 mm | -0.062178 mm | f/5.06 | 52.547644 mm | 21.630600 mm |
-| Tele | 193.14 mm | 192.911008 mm | -0.228992 mm | f/5.88 | 60.202808 mm | 21.629989 mm |
+| Zoom state |  Patent f |  Computed EFL |     Residual | Modeled f-number | Computed BFD | Patent f·tan ω image height |
+| ---------- | --------: | ------------: | -----------: | ---------------: | -----------: | --------------------------: |
+| Wide       |  28.92 mm |  28.896161 mm | -0.023839 mm |           f/3.63 | 38.245833 mm |                21.634924 mm |
+| Middle     |  80.00 mm |  79.937822 mm | -0.062178 mm |           f/5.06 | 52.547644 mm |                21.630600 mm |
+| Tele       | 193.14 mm | 192.911008 mm | -0.228992 mm |           f/5.88 | 60.202808 mm |                21.629989 mm |
 
 The nearly constant 21.63 mm image height follows independently from the published focal lengths and half-fields and is
 consistent with the diagonal semi-field of the 135 format. The modeled f-number array uses the exact patent states,
 whereas the product identity retains the rounded f/3.5-5.6 designation.
 
-The patent does not publish a stop diameter. The authored stop semi-diameter, 8.437157 mm, is the inferred wide-state
-value. The corresponding independently inferred effective stop radii are 8.437157, 8.233896, and 8.169032 mm at the
-wide, middle, and tele states. The variation is carried by the per-state modeled f-number rather than represented as a
-single published mechanical iris dimension.
+The patent does not publish a stop diameter. The actual derived iris radii are 8.437157/8.233896/8.169032 mm, with project paraxial f-numbers 3.63/5.06/5.88. Independent collimated real-beam input-diameter ratios are approximately 3.682585/5.153861/5.988473. The existing stop position and derived rule remain unchanged. Neither convention establishes a physical station-by-station iris schedule.
 
-The inferred semi-diameters were checked at every infinity and reconstructed-close state for edge thickness, actual rim
-slope, conic limits, cross-gap intrusion, and the configured off-axis ray fan. The minimum modeled edge thickness is
-0.103517 mm, the maximum actual rim slope is 49.592852°, and no numerical semi-diameter reduction is required. These
-checks establish internal geometric consistency; they do not convert the inferred apertures into manufacturer dimensions.
+The 2026-10-30 native-figure pass revised 14 inferred clear caps and added one S8 rear shoulder. All 65 diagnostic zooms now reach the configured aperture through the stop; the old S17 = 9.1 mm cap caused up to +2.333156% axial restriction at intermediate zooms. Source Fig. 1 supports the adopted 9.8 mm S17 cap, which removes that unintended clipping without changing R/d or the iris rule. All 65 positions pass existing surface/aperture checks and at least 99% corner coverage, with no unsolved field, undersized image circle or blocked chief. The diagnostic reproduces authored surface positions and stop radii with zero difference.
 
+Across 65 zoom × 21 focus controls, all 1,365 render states have 17 finite, closed, connected paths with zero hidden renderer trimming. Nine actual SVGs were compared directly with native Fig. 1(A/B/C). A separate 441-control × three-field × 97-pupil probe samples 128,331 rays with positive object-to-image distances 450/focus mm at finite focus, using the shared field/chief solver at infinity. Every axial bundle is 97/97 clear; every chief ray clears, with no seed or aiming failure. All 2,908 full-field marginal noBracket entries occur before S1 and independently intersect the unrestricted first sphere outside its adopted 30.5 mm cap; none is an unexplained inside-cap failure. Other off-axis clipping remains ordinary sampled vignetting.
+
+The linear zoom/focus interpolation remains illustrative. At zoom t = 0.8125 infinity BF is 63.596146 mm against image gap 57.332122 mm, +6.264025 mm defocus, with computed EFL 144.681129 mm. Only the three source infinity stations are quantitative anchors. The reconstructed finite-focus anchors target 450 mm, but the positive-object rim probe does not certify intermediate focus accuracy or a production field map.
 ## Modeling Boundaries and Source Corrections
 
 The model is a native-scale transcription. No focal-length scaling, dimensional scaling, image-plane scaling, or
 asphere-coefficient transformation was applied.
 
 The aperture-stop position is published as source surface 16 and is therefore not inferred. Its semi-diameter is inferred
-from the modeled f-number and entrance-pupil geometry. Mechanical semi-diameters are also inferred because Numerical
-Example 1 gives none. Their basis is the full set of published infinity states, the constrained close-focus states,
-135-format image height, the patent sections, and the commercial filter envelope.
+from the modeled f-number and entrance-pupil geometry. Clear semi-diameters remain inferred because Numerical Example 1 gives none. Native Fig. 1 now supplies their optical-rim basis, with runtime probes kept separate from source fidelity and production correlation.
 
 No sensor cover glass, filter, inactive dummy plane, flare cutter, blocker, or mechanical component appears as an active
 plane in Numerical Example 1, and none is included in the data. No omitted plate requires an air-equivalent rear-spacing
@@ -400,24 +392,28 @@ The abstract's description of a positive fourth group and negative fifth group c
 architecture in ¶0010, the figures, the numerical prescription, and the computed group powers. The data follows the convergent evidence: G4 is
 negative and G5 is positive.
 
-Four radii have restored negative signs: 12, 18, 23, and 26A. The printed negative signs at 20, 28, and 29 are retained.
-If all seven signs are stripped, the computed focal lengths collapse to approximately 9.168, 20.012, and 46.349 mm. With
-the verified sign treatment, the model reproduces the published zoom states and all five group-power ratios.
+Four existing radius signs are retained and formalized in `source.errata`: source rows 12, 18, 23 and 26 print positive values, while the model uses −45.611/−29.422/−15.708/−20.778 mm. The printed negative signs at 20, 28 and 29 are retained. All 16 combinations of the four omitted signs were compared independently. Only the complete restored block reproduces the three focal summaries and all five Table 1 ratios (PDF p. 9); its maximum ratio residual is 0.000398. Literal printed rows yield EFL −2.985733/−5.309944/−10.170225 mm. Claim 5 on PDF p. 2 independently rejects the printed block and accepts the restored ratios 0.470214/−0.074926/0.127378/−0.213602/0.253030. Source-summary isolates the block and claims corroborate it as a unit. No numeric R/d change was needed in this review.
+
+The native figure is a 1656 × 2339 raster at 200 ppi. The roughly 256-pixel first-to-last vertex span over 93.27 mm gives about 2.75 px/mm, or 0.36 mm per native pixel. Practical rim uncertainty is about ±1 mm; a three-times reading enlargement adds no native resolution. Fig. 1's W/M/T sections belong to Example 1, while Fig. 5/9/13 show sibling configurations. Group brackets, arrows and SP/leader strokes are excluded from endpoint measurements.
+
+The front doublet follows roughly 30.5 mm endpoints; L3 follows 27.8. The hybrid front/bonded pair follows the roughly 13.4 mm component rim. S8 retains its 10.7 mm clear cap and gains `rimExtensionSd: 13.4` for the resolved rear shoulder. The native concave endpoint is not precise enough to demand the initially tried 9.8 mm cap, so 10.7 remains within practical uncertainty. G4 follows roughly 9 mm endpoints; rear L14/L15 follow 11.4/11.5. All other small endpoint differences remain unresolved within native uncertainty.
+
+Retained constraints: a full S13 = 9.2 mm blank gives 1.17 mm combined sag against the existing 0.954 mm allowance across D12 = 1.06. A full S29 = 11.3 gives 2.59 against 2.070 mm allowed across D28 = 2.3. Their existing clear caps 8.2 and 10 mm remain. No source coefficient or R/d was tuned to fit a drawing, no tolerance was relaxed, and no opaque interface land, disconnected resin wing or inferred cut was introduced. See the [audit sidecar](./CanonEF28200mmf3556USM.audit.md) for the complete element disposition.
 
 The finite-focus rows are a constrained reconstruction and must not be cited as patent-published spacings. The model uses
 G2-only movement because this is both permitted by the patent and consistent with Canon's production description. The
 solution is disclosed in the data header, focus description, and this analysis.
 
+## Source-Stated Catalog Focal Length — 2026-10-30
+
+The catalog design focal length copies the source-stated 28.92 / 193.14 mm endpoints from PDF p. 6 (Numerical Example 1 heading and variable-spacing focal-length row). Computed 28.896161 / 192.911008 mm EFLs remain model diagnostics under the retained source-erratum qualification. This metadata follow-up adds no original shape/glass review and changes no R/d, asphere, stop, zoom/focus gap or aperture rule.
+
 ## Sources
 
-1. JP 2001-350095 A, *Zoom lens and optical apparatus using the same*, Canon Inc., Numerical Example 1. The attached
+1. JP 2001-350095 A, _Zoom lens and optical apparatus using the same_, Canon Inc., Numerical Example 1. The attached
    patent PDF is the numerical and architectural authority; the prescription appears on PDF page 6, the example table and
    condition summary on PDF page 9, and the zoom sections and aberration plots on PDF pages 10-16.
 2. Canon Camera Museum, “EF28-200mm f/3.5-5.6 USM,” official product identity and marketed specifications:
    <https://global.canon/en/c-museum/product/ef361.html>.
-3. OHARA optical-glass catalog data, used for catalog identity, nC, nF, ng, and dPgF values:
+3. OHARA glass catalog, the source of the catalog curves used as spectral proxies:
    <https://oharacorp.com/glass-catalog/>.
-4. Stage 1 and Stage 2 calculation artifacts: `paraxial_zoom_verification.csv`, `functional_group_powers.csv`,
-   `cemented_assembly_powers.csv`, `petzval_surface_by_surface.csv`, `pupil_verification.csv`,
-   `constrained_focus_reconstruction.csv`, `glass_spectral_properties.csv`, and
-   `CanonEF28200mmf3556USM.stage2.report.json`.

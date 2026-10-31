@@ -9,9 +9,9 @@
 **Published:** May 28, 2015
 **Inventor:** Shigenobu Sugita
 **Applicant:** Canon Inc. (Canon Kabushiki Kaisha)
-**Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
+**Title:** _Zoom Lens and Image Pickup Apparatus Including the Same_
 
-**Example details:** Numerical Example 2
+**Example details:** Numerical Example 2, ¶0092, PDF page 22 (printed page 8); Fig. 4 on PDF page 5 (drawing sheet 4)
 
 The prescription is the unscaled Numerical Example 2 of US 2015/0146044 A1. The patent describes Example 2 as a
 six-unit zoom with a positive-negative-positive-negative-positive-negative power sequence, a zoom ratio of 3.78, and
@@ -64,14 +64,14 @@ The patent states that L2 and L5 remain fixed during zooming. From wide to tele,
 while L4 moves toward the image (¶0074, ¶0079). Positions recomputed from the modeled spacings, referenced to
 the fixed first surface of L2, are:
 
-| Unit | Wide (mm) | Intermediate (mm) | Tele (mm) | Wide→tele (mm) | Interpretation |
-|---|---:|---:|---:|---:|---|
-| L1 | -22.18 | -73.68 | -99.18 | -77.00 | objectward |
-| L2 | 0.00 | 0.00 | 0.00 | 0.00 | fixed |
-| L3 | 55.94 | 42.48 | 19.59 | -36.35 | objectward |
-| L4 | 81.76 | 89.34 | 93.79 | +12.03 | imageward |
-| L5 | 103.55 | 103.55 | 103.56 | +0.01 | fixed within source rounding |
-| L6 | 126.53 | 123.46 | 117.91 | -8.62 | objectward |
+| Unit | Wide (mm) | Intermediate (mm) | Tele (mm) | Wide→tele (mm) | Interpretation               |
+| ---- | --------: | ----------------: | --------: | -------------: | ---------------------------- |
+| L1   |    -22.18 |            -73.68 |    -99.18 |         -77.00 | objectward                   |
+| L2   |      0.00 |              0.00 |      0.00 |           0.00 | fixed                        |
+| L3   |     55.94 |             42.48 |     19.59 |         -36.35 | objectward                   |
+| L4   |     81.76 |             89.34 |     93.79 |         +12.03 | imageward                    |
+| L5   |    103.55 |            103.55 |    103.56 |          +0.01 | fixed within source rounding |
+| L6   |    126.53 |            123.46 |    117.91 |          -8.62 | objectward                   |
 
 None of the three published zoom stations demonstrates a movement reversal. The 0.01 mm L5 scatter is the accumulated
 rounding of tabulated spacings, not evidence of a real L5 zoom stroke.
@@ -274,30 +274,35 @@ publish per-element nC, nF, ng, PgF, or dPgF. The data therefore uses vendor-neu
 class-level catalog hints, and qualified coefficient proxies where the public coordinate match is compatible. These
 strings are material annotations, not proof that Canon purchased any named vendor glass for the production lens.
 
-| Elements | nd | νd | Data-file glass annotation |
-|---|---:|---:|---|
-| E01 | 1.62299 | 58.2 | 623582 crown class (vendor unresolved) |
-| E02, E21 | 1.65412 | 39.7 | 654397 KZFS/NBH-class flint (vendor unresolved) |
-| E03 | 1.43875 | 94.9 | 439950 ultra-low-dispersion crown; S-FPL53-class (vendor unresolved) |
-| E04 | 1.59551 | 39.2 | 596392 flint class (vendor unresolved) |
-| E05, E06 | 1.77250 | 49.6 | 773496 lanthanum flint class (vendor unresolved) |
-| E07 | 1.60311 | 60.6 | 603607 crown class (vendor unresolved) |
-| E08, E16 | 1.84666 | 23.8 | 847238 dense-flint class (vendor unresolved) |
-| E09 | 1.43387 | 95.1 | CaF2 fluorite coefficient proxy; production-correlation inference, patent material unnamed |
-| E10 | 1.51742 | 52.4 | 517524 class; S-NSL36 is the closest public coordinate match |
-| E11 | 1.90366 | 31.3 | 904313 high-index lanthanum-flint class (vendor unresolved) |
-| E12 | 1.59270 | 35.3 | 593353 flint class (vendor unresolved) |
-| E13 | 1.78472 | 25.7 | 785257 dense-flint class (vendor unresolved) |
-| E14 | 1.76200 | 40.1 | 762401 lanthanum-flint class (OHARA S-LAM55 / HIKARI J-LAF05 coordinate) |
-| E15 | 1.48749 | 70.2 | 487702 low-index crown; S-FSL5-class (vendor unresolved) |
-| E17, E20 | 1.72916 | 54.7 | 729547 lanthanum-crown class (vendor unresolved) |
-| E18 | 1.88300 | 40.8 | 883408 high-index lanthanum-flint class (vendor unresolved) |
-| E19 | 1.80518 | 25.4 | 805254/805255 dense-flint class (vendor unresolved) |
+| Elements |      nd |   νd | Data-file glass annotation                                                                 |
+| -------- | ------: | ---: | ------------------------------------------------------------------------------------------ |
+| E01      | 1.62299 | 58.2 | 623582 crown class (vendor unresolved)                                                     |
+| E02, E21 | 1.65412 | 39.7 | 654397 KZFS/NBH-class flint (vendor unresolved)                                            |
+| E03      | 1.43875 | 94.9 | 439950 ultra-low-dispersion crown; S-FPL53-class (vendor unresolved)                       |
+| E04      | 1.59551 | 39.2 | 596392 flint class (vendor unresolved)                                                     |
+| E05, E06 | 1.77250 | 49.6 | 773496 lanthanum flint class (vendor unresolved)                                           |
+| E07      | 1.60311 | 60.6 | 603607 crown class (vendor unresolved)                                                     |
+| E08, E16 | 1.84666 | 23.8 | 847238 dense-flint class (vendor unresolved)                                               |
+| E09      | 1.43387 | 95.1 | CaF2 fluorite coefficient proxy; production-correlation inference, patent material unnamed |
+| E10      | 1.51742 | 52.4 | 517524 class; S-NSL36 is the closest public coordinate match                               |
+| E11      | 1.90366 | 31.3 | 904313 high-index lanthanum-flint class (vendor unresolved)                                |
+| E12      | 1.59270 | 35.3 | 593353 flint class (vendor unresolved)                                                     |
+| E13      | 1.78472 | 25.7 | 785257 dense-flint class (vendor unresolved)                                               |
+| E14      | 1.76200 | 40.1 | 762401 lanthanum-flint class (OHARA S-LAM55 / HIKARI J-LAF05 coordinate)                   |
+| E15      | 1.48749 | 70.2 | 487702 low-index crown; S-FSL5-class (vendor unresolved)                                   |
+| E17, E20 | 1.72916 | 54.7 | 729547 lanthanum-crown class (vendor unresolved)                                           |
+| E18      | 1.88300 | 40.8 | 883408 high-index lanthanum-flint class (vendor unresolved)                                |
+| E19      | 1.80518 | 25.4 | 805254/805255 dense-flint class (vendor unresolved)                                        |
 
 The palette spans very-low-dispersion positive materials and high-index, low-Abbe partners. That spread is consistent
 with a design in which chromatic correction is distributed across several zoom units rather than delegated to one
 cemented achromat. The data supports this first-order statement through nd and νd only. It does not support an APO label,
 nor does it support claims about anomalous partial dispersion or secondary-spectrum correction for any particular glass.
+
+All 21 modeled media currently resolve coordinate-compatible catalog curves. That coverage includes the qualified
+CaF2 proxy and both inferred low-dispersion classifications; it does not identify Canon’s historical suppliers,
+melts or material chemistry. No source line-index or partial-dispersion values are replaced by catalog-derived
+per-element overrides.
 
 The production lens is a separate source fact: Canon identifies one fluorite element and one Super UD element. The patent
 coordinate pattern is consistent with those two special low-dispersion elements at E03 and E09. The data encodes these
@@ -344,16 +349,16 @@ The patent defines eight conditions governing the final focus unit and the six-u
 the modeled prescription and the patent Table 1 quantities reproduces all eight published rounded values and places every result
 inside its required open interval.
 
-| Condition | Computed | Patent rounded | Required interval | Result |
-|---|---:|---:|---|---|
-| (1) fN / fT | -0.117770 | -0.118 | (-0.15, -0.05) | pass |
-| (2) o1N / dN | -0.106287 | -0.106 | (-0.30, -0.05) | pass |
-| (3) LN / fT | 0.243303 | 0.243 | (0.15, 0.35) | pass |
-| (4) d34 / dN | 0.229333 | 0.229 | (0.15, 0.60) | pass |
-| (5) fN-1 / fT | 0.112276 | 0.112 | (0.05, 0.20) | pass |
-| (6) DT(5fT) / fT | 0.023371 | 0.023 | (0.015, 0.030) | pass |
-| (7) f1 / fT | 0.499162 | 0.499 | (0.35, 0.60) | pass |
-| (8) f2 / fT | -0.142038 | -0.142 | (-0.20, -0.10) | pass |
+| Condition        |  Computed | Patent rounded | Required interval | Result |
+| ---------------- | --------: | -------------: | ----------------- | ------ |
+| (1) fN / fT      | -0.117770 |         -0.118 | (-0.15, -0.05)    | pass   |
+| (2) o1N / dN     | -0.106287 |         -0.106 | (-0.30, -0.05)    | pass   |
+| (3) LN / fT      |  0.243303 |          0.243 | (0.15, 0.35)      | pass   |
+| (4) d34 / dN     |  0.229333 |          0.229 | (0.15, 0.60)      | pass   |
+| (5) fN-1 / fT    |  0.112276 |          0.112 | (0.05, 0.20)      | pass   |
+| (6) DT(5fT) / fT |  0.023371 |          0.023 | (0.015, 0.030)    | pass   |
+| (7) f1 / fT      |  0.499162 |          0.499 | (0.35, 0.60)      | pass   |
+| (8) f2 / fT      | -0.142038 |         -0.142 | (-0.20, -0.10)    | pass   |
 
 Conditions (1) and (2) are central to the patent's focus-unit concept: L6 must have sufficiently strong negative power and
 an object-side front principal point to provide focus sensitivity without excessive spherical-aberration variation
@@ -377,11 +382,11 @@ the production IS group from the evidence available here.
 The modeled prescription was independently recomputed with sequential height/reduced-angle tracing and a
 separate ABCD matrix calculation. The two methods agree to better than 1e-12 at every published zoom station.
 
-| State | Computed EFL (mm) | Patent f (mm) | Computed BFD (mm) | Patent BF (mm) | Computed track (mm) | Patent track (mm) |
-|---|---:|---:|---:|---:|---:|---:|
-| Wide | 102.757858 | 102.79 | 67.230219 | 67.26 | 234.72 | 234.72 |
-| Intermediate | 200.025122 | 199.97 | 70.351713 | 70.32 | 286.21 | 286.21 |
-| Telephoto | 388.939059 | 389.03 | 75.843156 | 75.88 | 311.72 | 311.71 |
+| State        | Computed EFL (mm) | Patent f (mm) | Computed BFD (mm) | Patent BF (mm) | Computed track (mm) | Patent track (mm) |
+| ------------ | ----------------: | ------------: | ----------------: | -------------: | ------------------: | ----------------: |
+| Wide         |        102.757858 |        102.79 |         67.230219 |          67.26 |              234.72 |            234.72 |
+| Intermediate |        200.025122 |        199.97 |         70.351713 |          70.32 |              286.21 |            286.21 |
+| Telephoto    |        388.939059 |        389.03 |         75.843156 |          75.88 |              311.72 |            311.71 |
 
 The small residuals are consistent with the patent's rounded radii, thicknesses, indices, and printed cardinal values.
 The 0.01 mm telephoto track difference is the patent's own independent rounding mismatch and is not corrected in the
@@ -401,12 +406,19 @@ cemented-group net EFLs are D1 -638.420 mm, D2 -128.982 mm, D3 +391.679 mm, D4 -
 values are distinct from both the individual standalone element focal lengths and the six complete functional-unit
 powers.
 
+The 2026-10-30 original-PDF review retained every published effective diameter and its corresponding half-diameter
+clear aperture. Native 300-dpi Fig. 4 does not separate a clear cap endpoint from an outer shoulder or resolve an
+additional concave-end land. No rim extension or inferred cut is added merely to square the figure’s schematic
+end strokes. Fresh actual SVG outlines at the three zoom stations contain 21 finite element paths, connected
+cemented groups and zero hidden renderer trimming. Focus states repeat the published infinity prescription;
+finite-focus floating trajectories remain unmodeled.
+
 No scaled dimensions, asphere-coefficient transformations, omitted plate corrections, inferred semi-diameters, or
 invented focus rows are present in this prescription.
 
 ## Sources / References
 
-1. Shigenobu Sugita, **US 2015/0146044 A1**, *Zoom Lens and Image Pickup Apparatus Including the Same*, Canon Kabushiki
+1. Shigenobu Sugita, **US 2015/0146044 A1**, _Zoom Lens and Image Pickup Apparatus Including the Same_, Canon Kabushiki
    Kaisha, published May 28, 2015. Numerical Example 2 and Table 1 are the prescription sources.
 2. Canon Camera Museum, **EF100-400mm f/4.5-5.6L IS II USM**:
    https://global.canon/en/c-museum/product/ef437.html
@@ -418,3 +430,31 @@ invented focus rows are present in this prescription.
 7. HIKARI optical-glass catalog: https://www.hikari-g.co.jp/optical_glass/catalog/
 8. SUMITA optical-glass data: https://www.sumita-opt.co.jp/en/download/
 9. CDGM optical-glass data: https://www.cdgmgd.com/
+
+## Runtime interpolation limits — 2026-10-30
+
+The three published zoom stations remain the source-supported quantitative states. A geometry-identical 65-position
+runtime follow-up finds a maximum sampled aperture difference of 3.2209% at z = 0.828125
+and maximum absolute paraxial defocus of 10.107651 mm at z = 0.796875. Intermediate slider
+positions illustrate interpolation and are not a published focus-preserving cam. All sampled corner chiefs clear,
+all generated paths are finite and closed, and hidden renderer trim is zero. No source data or controls were altered.
+
+## 2026-10-30 — Current-state iris runtime follow-up
+
+This is a runtime-only correction using the unchanged prescription and controls. It does not repeat the original-PDF shape/glass inspection or change its date. The earlier full-pupil helper used the base wide-state `lens.stop.physicalSemiDiameter`. The corrected helper uses the current prepared state's STO semi-diameter, so variable-iris zooms receive their actual aperture. The separate 65-position aperture/chief/first-order census already used the actual state iris and is unchanged. Prior full-pupil counts are superseded here.
+
+The three printed infinity stations retain 49/49 axial passage. Illustrative intervals reach 45/49: 33 of 65 zoom positions have four axial boundary clips, at source optical surfaces S15, S16, S21, S22. Total axial passage is 64,113/66,885. These intervals already retain the separately documented aperture/first-order limitations; a passing source station is not proof of full-iris clearance throughout interpolation. Focus geometry is unchanged at all slider positions; these are infinity geometries, not newly reconstructed finite-focus states.
+
+| Zoom z | Focus state                | Axial / 0.6-field / corner survivors (of 49) |
+| ------ | -------------------------- | -------------------------------------------- |
+| 0      | Infinity / unchanged focus | 49 / 39 / 29                                 |
+| 0.5    | Infinity / unchanged focus | 49 / 45 / 25                                 |
+| 1      | Infinity / unchanged focus | 49 / 39 / 22                                 |
+
+The 65-zoom × 21-focus census evaluates 1,365 states and 200,655 pupil launches. Every sample is aimed and all 4,095 chiefs clear. Element paths remain finite, closed and connected, with zero hidden renderer trimming. Source-station shapes, inferred cuts (none), material evidence, all source R/d, image planes, aperture schedule, controls and existing guards are unchanged. These are sampled runtime results, separate from source fidelity and production correlation.
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal range is 102.79–389.03 mm, taken directly from Numerical Example2, paragraph0092, PDF p22 / printed8: Various data focal-length row102.79/199.97/389.03. The prior computed model EFL range 102.75785763652577–388.9390594335833 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

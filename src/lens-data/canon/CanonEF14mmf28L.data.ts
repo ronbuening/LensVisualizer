@@ -18,6 +18,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  +2.04161e-9 is reconstructed from Example 1 and dimensional sanity;     ║
  * ║  it is not a literal complete transcription of the damaged line.         ║
  * ║                                                                            ║
+ * ║  Original-PDF review 2026-10-30: Numerical Example 2, PDF page 6,     ║
+ * ║  and Fig. 4, PDF page 7. The patent names no spectral line. 14 of 14       ║
+ * ║  printed pairs match catalog d-line coordinates and none match the         ║
+ * ║  e-line, so the table is read as d-line. 14 media use catalog curves as    ║
+ * ║  spectral proxies; supplier, melt and chemistry stay unspecified. No       ║
+ * ║  catalog C/F/g copies are authored. S2/S4/S6/S8 retain their optical caps  ║
+ * ║  and gain the resolved rear shoulders via rimExtensionSd.                  ║
+ * ║                                                                            ║
  * ║  Semi-diameters are not patent-listed. These are renderer estimates      ║
  * ║  proportioned against the Example 2 section drawing, then checked for    ║
  * ║  clearance, edge thickness, surface slope, SD ratio, and signed          ║
@@ -42,7 +50,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "14 ELEMENTS / 10 GROUPS",
-      "f = 14.201 mm",
+      "PATENT f = 14.2 mm / MODELED EFL 14.201 mm",
       "F/2.8 (DESIGN 1:2.892)",
       "FIELD: 2×56.72° (HEADING 113.4°)",
       "1 ASPHERICAL SURFACE",
@@ -50,7 +58,7 @@ const LENS_DATA = {
     ],
     elementCount: 14,
     groupCount: 10,
-    focalLengthMm: { marketing: 14, design: 14.201254 },
+    focalLengthMm: { marketing: 14, design: 14.2 },
     fNumber: { marketing: 2.8, design: 2.892 },
   },
 
@@ -72,11 +80,9 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -97.290202,
-      glass: "S-LAL14 (OHARA)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "First image-facing negative meniscus in the distributed fixed front group.",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 2,
@@ -86,11 +92,9 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -1210.999554,
-      glass: "S-BSM14 (OHARA)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative meniscus whose object-side asphere corrects extreme-field distortion.",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
     },
     {
       id: 3,
@@ -100,11 +104,9 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -51.444873,
-      glass: "S-LAL14 (OHARA)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Third image-facing negative meniscus; increases front-group divergence progressively.",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 4,
@@ -114,11 +116,9 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -47.79789,
-      glass: "S-LAH66 (OHARA)",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index fourth negative meniscus in the fixed front group.",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 5,
@@ -128,12 +128,10 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -24.41362,
-      glass: "S-LAL14 (OHARA)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Fifth negative meniscus; cemented to L6 for zonal and higher-order spherical correction.",
       cemented: "J1",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
     },
     {
       id: 6,
@@ -143,12 +141,10 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       focalLengthMm: 21.052217,
-      glass: "S-TIM8 (OHARA)",
+      glass:
+        "S-TIM8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear component of the net-positive J1 cemented pair.",
       cemented: "J1",
-      nC: 1.59103,
-      nF: 1.60621,
-      ng: 1.61501,
     },
     {
       id: 7,
@@ -158,12 +154,10 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.8,
       focalLengthMm: 16.494741,
-      glass: "S-TIL26 (OHARA)",
+      glass:
+        "S-TIL26 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the first rear-group cemented pair.",
       cemented: "J2",
-      nC: 1.56339,
-      nF: 1.57664,
-      ng: 1.58423,
     },
     {
       id: 8,
@@ -173,12 +167,10 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -63.632718,
-      glass: "S-LAH66 (OHARA)",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Object-facing negative meniscus cemented behind L7; J2 remains net positive.",
       cemented: "J2",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 9,
@@ -188,11 +180,9 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -30.293081,
-      glass: "S-LAH66 (OHARA)",
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second object-facing negative meniscus immediately before the aperture stop.",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
     },
     {
       id: 10,
@@ -202,12 +192,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: 65.166257,
-      glass: "S-BSM14 (OHARA)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the weakly negative post-stop J3 pair.",
       cemented: "J3",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
     },
     {
       id: 11,
@@ -217,12 +205,10 @@ const LENS_DATA = {
       nd: 1.7432,
       vd: 49.3,
       focalLengthMm: -48.570574,
-      glass: "S-LAM60 (OHARA)",
+      glass:
+        "S-LAM60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear component that makes J3 net negative and bounds the corrective air lens.",
       cemented: "J3",
-      nC: 1.73865,
-      nF: 1.75372,
-      ng: 1.76205,
     },
     {
       id: 12,
@@ -232,7 +218,8 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 21.3,
       focalLengthMm: -29.223516,
-      glass: "PBH71 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "PBH71 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Very-high-index, high-dispersion negative component of the chromatically active J4 pair.",
       cemented: "J4",
     },
@@ -244,12 +231,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 24.92255,
-      glass: "S-FSL5 (OHARA)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive partner in J4; the cemented pair is net positive.",
       cemented: "J4",
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
     },
     {
       id: 14,
@@ -259,18 +244,16 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: 42.572843,
-      glass: "S-LAH65V (OHARA)",
+      glass:
+        "S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element; shares rear positive power and moderates spherical undercorrection.",
-      nC: 1.79882,
-      nF: 1.81608,
-      ng: 1.82569,
     },
   ],
 
   /* ── Surfaces ── */
   surfaces: [
     { label: "1", R: 44.219, d: 3.1, sd: 31.9, medium: 1 },
-    { label: "2", R: 25.992, d: 11.3, sd: 24.4 },
+    { label: "2", R: 25.992, d: 11.3, sd: 24.4, rimExtensionSd: 31.9 },
     {
       label: "3A",
       R: 58.892,
@@ -279,11 +262,11 @@ const LENS_DATA = {
       medium: 2,
       asphere: { K: 0, A4: 9.62849e-6, A6: 2.04161e-9, A8: -8.992e-12, A10: 1.9629e-14 },
     },
-    { label: "4", R: 52.468, d: 0.15, sd: 21.1 },
+    { label: "4", R: 52.468, d: 0.15, sd: 21.1, rimExtensionSd: 22.5 },
     { label: "5", R: 36.687, d: 1.7, sd: 18.4, medium: 3 },
-    { label: "6", R: 17.786, d: 6.43, sd: 14.6 },
+    { label: "6", R: 17.786, d: 6.43, sd: 14.6, rimExtensionSd: 18.4 },
     { label: "7", R: 48.285, d: 1.3, sd: 13.6, medium: 4 },
-    { label: "8", R: 20.678, d: 8.28, sd: 12.0 },
+    { label: "8", R: 20.678, d: 8.28, sd: 12.0, rimExtensionSd: 13.6 },
     { label: "9", R: 205.374, d: 1.5, sd: 9.8, medium: 5 },
     { label: "10", R: 15.663, d: 10.13, sd: 8.8, medium: 6 },
     { label: "11", R: -47.65, sd: 8.0 },

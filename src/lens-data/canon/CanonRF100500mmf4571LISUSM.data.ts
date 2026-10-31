@@ -1,42 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF 100-500mm f/4.5-7.1 L IS USM                      ║
- * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: US 2021/0003832 A1, Numerical Example 2.                       ║
- * ║  Correlation target: production Canon RF100-500mm F4.5-7.1 L IS USM.    ║
- * ║  Patent model: 20 elements / 14 air-separated groups; 8 zoom units;      ║
- * ║  all-spherical; no scaling.                                               ║
- * ║                                                                            ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only      ║
- * ║  infinity-focus zoom spacings. It states that L4 moves object-side and    ║
- * ║  L6 image-side for closer focus, but gives no finite-focus coordinates.   ║
- * ║  All close-focus entries in `var` therefore duplicate infinity values.    ║
- * ║                                                                            ║
- * ║  Zoom gaps: patent d5, d10, d16, d18, d25, d28, d30, d35. L4 reverses    ║
- * ║  between wide→middle and middle→tele, so the 225 mm control point is      ║
- * ║  retained. Surface 16 is represented by the required label `STO`.         ║
- * ║                                                                            ║
- * ║  Rear normalization: source surfaces 36-37 are optical block G            ║
- * ║  (1.00 mm, nd=1.51633) plus 1.00 mm air and are excluded. The authored   ║
- * ║  gap after surface 35 is the equivalent-air distance                      ║
- * ║  d35 + 1/1.51633 + 1, giving 21.139487 / 32.089487 / 63.569487 mm.       ║
- * ║                                                                            ║
- * ║  Semi-diameters are modeling values, not patent clear apertures. They     ║
- * ║  were derived from sequential y-nu marginal/chief-ray envelopes at the    ║
- * ║  three published infinity zoom states using 0.60× the patent half-field,  ║
- * ║  then constrained by element edge thickness, actual spherical rim slope,  ║
- * ║  shared-gap sag intrusion, the 93.8 mm production barrel OD, and Fig. 3.  ║
- * ║  Default on-axis and off-axis LensVisualizer ray fractions remain inside  ║
- * ║  the authored apertures at all three zoom control points. A 600 dpi       ║
- * ║  figure audit restores terminal L82/L83 to a 17.2-17.9 mm rim envelope.  ║
- * ║                                                                            ║
- * ║  Spectral note: the patent publishes nd, vd, and theta_gF, not nC/nF/ng.  ║
- * ║  Structured dPgF is derived from each patent theta_gF row. Named OHARA   ║
- * ║  and HOYA equivalents supply coordinate-compatible catalog curves, not   ║
- * ║  patent values or supplier attributions.                                  ║
- * ╚════════════════════════════════════════════════════════════════════════════╝
+ * Original US2021/0003832A1, Numerical Example2 ¶0065 PDFp19 (printed6),
+ * single-lens continuation PDFp20; Figure3 PDFp5 (Sheet4), Figures4A–C pp6–7.
+ * All active R/d, source index/Abbe pairs, genuine theta_gF rows, stop, source
+ * three zoom stations and focus-duplicate controls are retained. Catalog design
+ * range103–490mm is source-stated; literal computed EFLs are separately qualified.
+ * Camera-side G, source36–37, is restored via rearPlates: physical D35 values
+ * 19.48/30.43/61.91mm, t1mm/nd1.51633/vd64.14/theta.5353, trailing air1mm.
+ * The source defines BF and overall length using air-equivalent BF; the actual
+ * image plane is t(1−1/n)=.340513mm farther back than the former reduced fold.
+ * Native Figure3 is a 300ppi bilevel scan; 600dpi views are2× upsampling.
+ * Optical rims are measured at about.0918mm/native pixel, verified by R1 sag,
+ * excluding leaders, rays, brackets and barrel OD. Two tight concave ends and
+ * one bonded cap retain explicit geometric/source-outline constraints. No cut,
+ * unsupported shoulder or interface land is added. All media have explicit d
+ * references. Positive d-line citations (¶0062 PDFp18: d587.6/F486.1/
+ * C656.3/g435.8nm) are documented here and in the sidecars, outside the
+ * uncertainty-only indexReferenceNote field (2026-10-31). All20 lens theta
+ * literals and the G-block ratio remain explicit in the sidecar source table.
+ * All21 compatible curves are unchanged qualified proxies; theta-derived dPgF values are
+ * genuine source constraints, with no individual numerical C/F/g indices.
+ * Focus geometry remains infinity-only. Three source axial bundles clear;
+ * illustrative zoom intervals have sampled marginal clipping and defocus.
+ * Unresolved source total: middle air-equivalent overall length284.18mm versus
+ * literal prescription284.169487mm. No R/d or cam is fitted to that discrepancy.
  */
 
 const LENS_DATA = {
@@ -61,7 +49,7 @@ const LENS_DATA = {
     ],
     elementCount: 20,
     groupCount: 14,
-    focalLengthMm: { marketing: [100, 500], design: [102.988151, 489.985751] },
+    focalLengthMm: { marketing: [100, 500], design: [103, 490] },
     fNumber: { marketing: 4.5, design: 4.6 },
   },
 
@@ -71,6 +59,12 @@ const LENS_DATA = {
     patentYear: 2021,
     authors: ["Masato Katayose", "Junya Ichimura"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example2 p19 VariousData prints middle overall length284.18mm; literal spacings plus the source-defined air-equivalent BF give284.169487051mm (rounds284.17). Rounding is an unproved hypothesis; all source R/d and zoom controls are retained. Physical track284.51mm includes the restored1mm camera plate and is a separate quantity.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -81,6 +75,7 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: 264.36,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -95,6 +90,7 @@ const LENS_DATA = {
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.6134,
+      indexReference: "d",
       vd: 44.27,
       focalLengthMm: -203.84,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -108,6 +104,7 @@ const LENS_DATA = {
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.43875,
+      indexReference: "d",
       vd: 94.66,
       focalLengthMm: 163.66,
       glass: "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
@@ -123,6 +120,7 @@ const LENS_DATA = {
       label: "Element 21",
       type: "Negative Meniscus",
       nd: 1.6968,
+      indexReference: "d",
       vd: 55.53,
       focalLengthMm: -93.53,
       glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -135,6 +133,7 @@ const LENS_DATA = {
       label: "Element 22",
       type: "Biconcave Negative",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: -64.48,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -150,6 +149,7 @@ const LENS_DATA = {
       label: "Element 23",
       type: "Positive Meniscus",
       nd: 1.76182,
+      indexReference: "d",
       vd: 26.52,
       focalLengthMm: 106.95,
       glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -163,6 +163,7 @@ const LENS_DATA = {
       label: "Element 31",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: 68.05,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -177,6 +178,7 @@ const LENS_DATA = {
       label: "Element 32",
       type: "Biconvex Positive",
       nd: 1.5927,
+      indexReference: "d",
       vd: 35.31,
       focalLengthMm: 55.31,
       glass: "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
@@ -190,6 +192,7 @@ const LENS_DATA = {
       label: "Element 33",
       type: "Biconcave Negative",
       nd: 1.95375,
+      indexReference: "d",
       vd: 32.32,
       focalLengthMm: -44.06,
       glass: "TAFD45L (HOYA catalog equivalent; production supplier unspecified; patent class 954323)",
@@ -203,6 +206,7 @@ const LENS_DATA = {
       label: "Element 41",
       type: "Negative Meniscus",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: -99.09,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -217,6 +221,7 @@ const LENS_DATA = {
       label: "Element 51",
       type: "Positive Meniscus",
       nd: 1.68893,
+      indexReference: "d",
       vd: 31.07,
       focalLengthMm: 63.84,
       glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
@@ -229,6 +234,7 @@ const LENS_DATA = {
       label: "Element 52",
       type: "Biconvex Positive",
       nd: 1.51823,
+      indexReference: "d",
       vd: 58.9,
       focalLengthMm: 52.11,
       glass: "S-NSL3 (OHARA catalog equivalent; production supplier unspecified)",
@@ -242,6 +248,7 @@ const LENS_DATA = {
       label: "Element 53",
       type: "Negative Meniscus",
       nd: 2.0509,
+      indexReference: "d",
       vd: 26.94,
       focalLengthMm: -40.36,
       glass: "TAFD65 (HOYA catalog equivalent; production supplier unspecified; patent class 051269)",
@@ -255,6 +262,7 @@ const LENS_DATA = {
       label: "Element 54",
       type: "Plano-Convex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: 93.3,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -269,6 +277,7 @@ const LENS_DATA = {
       label: "Element 61",
       type: "Biconvex Positive",
       nd: 1.64769,
+      indexReference: "d",
       vd: 33.79,
       focalLengthMm: 72.6,
       glass: "S-TIM22 (OHARA catalog equivalent; production supplier unspecified)",
@@ -282,6 +291,7 @@ const LENS_DATA = {
       label: "Element 62",
       type: "Biconcave Negative",
       nd: 1.7725,
+      indexReference: "d",
       vd: 49.6,
       focalLengthMm: -33.13,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -295,6 +305,7 @@ const LENS_DATA = {
       label: "Element 71",
       type: "Biconvex Positive",
       nd: 1.48749,
+      indexReference: "d",
       vd: 70.23,
       focalLengthMm: 67.32,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -307,6 +318,7 @@ const LENS_DATA = {
       label: "Element 81",
       type: "Biconcave Negative",
       nd: 1.59282,
+      indexReference: "d",
       vd: 68.63,
       focalLengthMm: -51.96,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified; patent class 593686)",
@@ -321,6 +333,7 @@ const LENS_DATA = {
       label: "Element 82",
       type: "Biconcave Negative",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.54,
       focalLengthMm: -63.16,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -336,6 +349,7 @@ const LENS_DATA = {
       label: "Element 83",
       type: "Biconvex Positive",
       nd: 1.72047,
+      indexReference: "d",
       vd: 34.71,
       focalLengthMm: 66.42,
       glass: "S-NBH8 (OHARA catalog equivalent; production supplier unspecified)",
@@ -347,41 +361,41 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 119.358, d: 7.73, sd: 44.1, medium: 1 },
-    { label: "2", R: 1275.564, d: 0.2, sd: 42.5 },
-    { label: "3", R: 135.831, d: 2.7, sd: 35.0, medium: 2 },
-    { label: "4", R: 64.613, d: 10.4, sd: 35.6, medium: 3 },
-    { label: "5", R: 613.372, sd: 35.2 },
-    { label: "6", R: 677.114, d: 1.5, sd: 17.2, medium: 4 },
-    { label: "7", R: 59.396, d: 4.31, sd: 14.5 },
-    { label: "8", R: -57.692, d: 1.5, sd: 16.2, medium: 5 },
+    { label: "1", R: 119.358, d: 7.73, sd: 35.6, medium: 1 },
+    { label: "2", R: 1275.564, d: 0.2, sd: 35.6 },
+    { label: "3", R: 135.831, d: 2.7, sd: 34.2, medium: 2 },
+    { label: "4", R: 64.613, d: 10.4, sd: 33.0, medium: 3 },
+    { label: "5", R: 613.372, sd: 34.2 },
+    { label: "6", R: 677.114, d: 1.5, sd: 16.1, medium: 4 },
+    { label: "7", R: 59.396, d: 4.31, sd: 14.9 },
+    { label: "8", R: -57.692, d: 1.5, sd: 16.3, medium: 5 },
     { label: "9", R: 72.706, d: 3.01, sd: 16.3, medium: 6 },
-    { label: "10", R: 663.179, sd: 16.4 },
-    { label: "11", R: 51.886, d: 6.54, sd: 17.0, medium: 7 },
-    { label: "12", R: -93.065, d: 0.2, sd: 16.5 },
+    { label: "10", R: 663.179, sd: 16.3 },
+    { label: "11", R: 51.886, d: 6.54, sd: 17.3, medium: 7 },
+    { label: "12", R: -93.065, d: 0.2, sd: 17.3 },
     { label: "13", R: 55.544, d: 5.65, sd: 16.5, medium: 8 },
-    { label: "14", R: -76.962, d: 1.8, sd: 15.5, medium: 9 },
-    { label: "15", R: 93.608, d: 5, sd: 15.2 },
+    { label: "14", R: -76.962, d: 1.8, sd: 16.5, medium: 9 },
+    { label: "15", R: 93.608, d: 5, sd: 16.5 },
     { label: "STO", R: "flat" },
-    { label: "17", R: -38.443, d: 1.1, sd: 14.3, medium: 10 },
-    { label: "18", R: -176.882, sd: 14.4 },
-    { label: "19", R: -332.898, d: 4.01, sd: 17.0, medium: 11 },
-    { label: "20", R: -39.041, d: 0.2, sd: 17.0 },
-    { label: "21", R: 109.93, d: 4.88, sd: 15.0, medium: 12 },
-    { label: "22", R: -35.252, d: 1.3, sd: 15.6, medium: 13 },
-    { label: "23", R: -212.824, d: 0.2, sd: 15.8 },
-    { label: "24", R: 46.37, d: 3.41, sd: 17.0, medium: 14 },
-    { label: "25", R: "flat", sd: 16.2 },
-    { label: "26", R: 119.406, d: 2.86, sd: 14.5, medium: 15 },
-    { label: "27", R: -76.832, d: 1.2, sd: 14.1, medium: 16 },
-    { label: "28", R: 38.643, sd: 14.0 },
-    { label: "29", R: 57.241, d: 5.79, sd: 15.2, medium: 17 },
-    { label: "30", R: -74.354, sd: 15.0 },
-    { label: "31", R: -92.834, d: 1.4, sd: 12.8, medium: 18 },
-    { label: "32", R: 46.355, d: 4.59, sd: 12.6 },
-    { label: "33", R: -64.622, d: 1.4, sd: 17.2, medium: 19 },
-    { label: "34", R: 61.474, d: 4.87, sd: 17.5, medium: 20 },
-    { label: "35", R: -208.837, sd: 17.9 },
+    { label: "17", R: -38.443, d: 1.1, sd: 12.7, medium: 10 },
+    { label: "18", R: -176.882, sd: 12.7 },
+    { label: "19", R: -332.898, d: 4.01, sd: 13.9, medium: 11 },
+    { label: "20", R: -39.041, d: 0.2, sd: 13.9 },
+    { label: "21", R: 109.93, d: 4.88, sd: 13.4, medium: 12 },
+    { label: "22", R: -35.252, d: 1.3, sd: 13.4, medium: 13 },
+    { label: "23", R: -212.824, d: 0.2, sd: 13.4 },
+    { label: "24", R: 46.37, d: 3.41, sd: 13.6, medium: 14 },
+    { label: "25", R: "flat", sd: 13.6 },
+    { label: "26", R: 119.406, d: 2.86, sd: 12.7, medium: 15 },
+    { label: "27", R: -76.832, d: 1.2, sd: 12.7, medium: 16 },
+    { label: "28", R: 38.643, sd: 12.7 },
+    { label: "29", R: 57.241, d: 5.79, sd: 15.9, medium: 17 },
+    { label: "30", R: -74.354, sd: 15.9 },
+    { label: "31", R: -92.834, d: 1.4, sd: 15.4, medium: 18 },
+    { label: "32", R: 46.355, d: 4.59, sd: 14.7 },
+    { label: "33", R: -64.622, d: 1.4, sd: 17.3, medium: 19 },
+    { label: "34", R: 61.474, d: 4.87, sd: 17.3, medium: 20 },
+    { label: "35", R: -208.837, sd: 17.3 },
   ],
 
   zoom: {
@@ -462,14 +476,29 @@ const LENS_DATA = {
     "35": {
       label: "BF",
       values: [
-        [21.139487, 21.139487],
-        [32.089487, 32.089487],
-        [63.569487, 63.569487],
+        [19.48, 19.48],
+        [30.43, 30.43],
+        [61.91, 61.91],
       ],
     },
   },
 
   aperture: { fStops: [4.6, 5.6, 8, 11, 16, 22, 32, 45, 54], maxFNumber: 54, blades: 9 },
+
+  rearPlates: [
+    {
+      label: "G",
+      thicknessMm: 1,
+      nd: 1.51633,
+      vd: 64.14,
+      indexReference: "d",
+      dPgF: -0.00061652,
+      glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      gapAfterMm: 1,
+      source:
+        "US 2021/0003832 A1, Example 2 ¶0065 PDF p19, source S36–37: thickness 1 mm, nd 1.51633 / vd 64.14, theta_gF 0.5353, trailing air 1 mm. Source-derived dPgF retains that published ratio; curve is a qualified proxy. No plate diameter is printed.",
+    },
+  ],
 
   groups: [
     { text: "L1 (+)", fromSurface: "1", toSurface: "5" },

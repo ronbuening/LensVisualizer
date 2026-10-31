@@ -1,7 +1,14 @@
 /** US20200257181A1 Numerical Example 1, PDF pages 14–15, Figures 1A–1B.
  * Source A16 terms and published physical iris schedule retained.
+ * Native Figure 1 resolves outer air shoulders at S2A/S4A; clear sd stays source-backed.
  * Air-only flare diaphragm S21 remains omitted; d20+d21 preserves vertex spacing
- * but does not simulate its clipping. No cover glass or filter block is present.
+ * but does not simulate its clipping. Source row21 is fully dimensioned: d20=3.52,
+ * d21=7.04/1.27/-1.05 and flare diameters25.93/22.49/21.91 (PDF15/printed6).
+ * Literal restoration is rejected by ordinary negative-gap validation at tele;
+ * the schema also cannot schedule a secondary surface's sd independently of STO.
+ * The omitted plane is a source-model representation limit, not missing evidence.
+ * No constant secondary aperture or refraction reordering substitutes for it.
+ * No cover glass or filter block is present.
  * Finite-focus gaps are unpublished and focus remains disabled.
  */
 
@@ -32,7 +39,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2020/0257181 A1",
-    example: { label: "Example 1", id: "1" },
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2020,
     authors: ["Yuichi Gyoda"],
     assignees: ["Canon Inc."],
@@ -261,6 +268,7 @@ const LENS_DATA = {
       R: 16.526,
       d: 10.57,
       sd: 18.92,
+      rimExtensionSd: 27.52,
       asphere: {
         K: -9.81344e-1,
         A4: 4.49709e-7,
@@ -292,6 +300,7 @@ const LENS_DATA = {
       R: 91.828,
       d: 5.56,
       sd: 15.74,
+      rimExtensionSd: 18.1,
       asphere: {
         A4: 6.34981e-6,
         A6: -1.29871e-7,

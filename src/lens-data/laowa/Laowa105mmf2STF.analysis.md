@@ -144,7 +144,7 @@ vendor glass.
 
 ### L9 — Plano-Convex
 
-nd = 1.67128, νd = 56.37. Glass: Unmatched (crown; source nd 1.67128, vd 56.37). f = +44.690740 mm.
+nd = 1.67128, νd = 56.37. Glass: LAKN4 (SUMITA approximate compatible spectral proxy; source supplier, melt and chemistry unspecified). f = +44.690740 mm.
 
 The positive plano-convex compensator follows the APD and shares the curved S16 interface.
 Its plane rear surface is S17. The L8/L9 pair has calculated net focal length +179.340029 mm,
@@ -162,10 +162,10 @@ not identify the actual supplier.
 
 ### L11 — Biconvex Positive
 
-nd = 1.81538, νd = 36.87. Glass: Unmatched (high-index glass; source nd 1.81538, vd 36.87). f = +49.972461 mm.
+nd = 1.81538, νd = 36.87. Glass: M-NBFD82 (HOYA compatible spectral proxy; source supplier, melt, chemistry and process unspecified). f = +49.972461 mm.
 
-The final biconvex positive lens completes Gr2. Its source index and Abbe combination
-remains explicitly unmatched in the checked catalogs. The following variable D22 is the
+The final biconvex positive lens completes Gr2. Its source pair is retained while
+M-NBFD82 supplies a qualified compatible dispersion estimate. The following variable D22 is the
 physical final-vertex-to-image gap, not an omitted cover-glass equivalence. No sensor plate
 or other unlisted optical element is added.
 
@@ -176,29 +176,28 @@ Schott, HIKARI, CDGM and Sumita catalogues. Agreement in nd and νd does not ide
 supplier. An equivalent name is given only where a catalogue glass matches closely;
 otherwise the element is marked Unmatched.
 
-| Elements | Patent nd / νd | Glass assignment |
-|---|---|---|
-| L1 | 1.48749 / 70.44 | FC5, HOYA coordinate equivalent |
-| L2 | 1.92286 / 20.88 | E-FDS1, HOYA coordinate equivalent |
-| L3 | 1.69449 / 29.84 | Unmatched flint |
-| L4, L7 | 1.80420 / 46.50 | TAF3, HOYA coordinate equivalent |
-| L5 | 1.55102 / 66.41 | Unmatched crown |
-| L6 | 1.78472 / 25.72 | SF11, Schott coordinate equivalent; catalog νd 25.76 |
-| L8 | 1.50400 / 63.00 | Unmatched neutral-gray APD material |
-| L9 | 1.67128 / 56.37 | Unmatched crown |
-| L10 | 1.62004 / 36.30 | E-F2, HOYA coordinate equivalent |
-| L11 | 1.81538 / 36.87 | Unmatched high-index glass |
+| Elements | Patent nd / νd  | Glass assignment                                     |
+| -------- | --------------- | ---------------------------------------------------- |
+| L1       | 1.48749 / 70.44 | FC5, HOYA coordinate equivalent                      |
+| L2       | 1.92286 / 20.88 | E-FDS1, HOYA coordinate equivalent                   |
+| L3       | 1.69449 / 29.84 | Unmatched flint                                      |
+| L4, L7   | 1.80420 / 46.50 | TAF3, HOYA coordinate equivalent                     |
+| L5       | 1.55102 / 66.41 | Unmatched crown                                      |
+| L6       | 1.78472 / 25.72 | SF11, Schott coordinate equivalent; catalog νd 25.76 |
+| L8       | 1.50400 / 63.00 | Unmatched neutral-gray APD material                  |
+| L9       | 1.67128 / 56.37 | LAKN4, SUMITA approximate compatible proxy           |
+| L10      | 1.62004 / 36.30 | E-F2, HOYA coordinate equivalent                     |
+| L11      | 1.81538 / 36.87 | M-NBFD82, HOYA compatible proxy                      |
 
-The five named glasses, on six elements, carry catalogue dispersion curves; the five
-unmatched elements are modeled from nd and νd alone. The patent's nd/νd values are used
+Seven named curves, on eight elements, provide qualified catalog dispersion; the three
+unmatched elements L3/L5/L8 remain modeled from nd and νd alone. The patent's nd/νd values are used
 unchanged.
 
 The patent gives no nC, nF, ng or partial-dispersion data, and none is assigned. Laowa marks
 L4, L5 and L9 as Low Dispersion [2, 5]. Only L5 (νd = 66.41 at nd = 1.55102, in the
 phosphate-crown region) is consistent with a low-dispersion crown, and it carries the
-viewer's inferred anomalous-partial-dispersion tag. L4 (νd = 46.50, matching the lanthanum
-flint TAF3) and L9 (νd = 56.37, in the lanthanum-crown region) are ordinary lanthanum glasses
-and are left untagged. Neither apochromatic performance nor anomalous partial dispersion is
+viewer's inferred anomalous-partial-dispersion tag. L4 (νd = 46.50, using TAF3) and L9 (νd = 56.37, using approximate LAKN4)
+remain untagged. Those catalog families do not establish the source chemical compositions. Neither apochromatic performance nor anomalous partial dispersion is
 established. Elsewhere in this text APD means apodization.
 
 ## Focus Mechanism
@@ -207,9 +206,9 @@ The patent tabulates two focus states, infinity and 0.15×; it gives no intermed
 or cam law [1, PDF p. 6, ¶0046].
 
 | Patent state | D11, mm | D22, mm |
-|---|---:|---:|
-| Infinity | 13.5722 | 39.6422 |
-| 0.15× | 7.0000 | 55.5496 |
+| ------------ | ------: | ------: |
+| Infinity     | 13.5722 | 39.6422 |
+| 0.15×        |  7.0000 | 55.5496 |
 
 Relative to the image plane, Gr1 moves 9.3352 mm toward the object and Gr2 moves 15.9074 mm
 toward the object, so D11 closes by 6.5722 mm. This agrees with the two objectward arrows in
@@ -276,11 +275,11 @@ their blade shapes.
 The patent's conditions concern the complete focal length F, the standalone APD focal
 length FA, and the isolated group focal lengths F1 and F2 [1, ¶0006–0024, ¶0062–0063].
 
-| Patent condition | Calculated Example 1 value | Result |
-|---|---:|---|
-| 0.5 ≤ abs(F/FA) ≤ 2.5 | 1.718151960006 | Satisfied |
-| 1 ≤ abs(F1/F2) ≤ 4 | 3.128117067109 | Satisfied |
-| 0.3 ≤ A ≤ 0.7 | 0.5 | Satisfied |
+| Patent condition      | Calculated Example 1 value | Result    |
+| --------------------- | -------------------------: | --------- |
+| 0.5 ≤ abs(F/FA) ≤ 2.5 |             1.718151960006 | Satisfied |
+| 1 ≤ abs(F1/F2) ≤ 4    |             3.128117067109 | Satisfied |
+| 0.3 ≤ A ≤ 0.7         |                        0.5 | Satisfied |
 
 The calculated ratios round to the printed 1.718 and 3.128. The patent relates these bounds
 to APD power, relative group power and useful transmission. They do not, by themselves,
@@ -332,3 +331,13 @@ the patent.
    release as reproduced by [Photography Blog](https://www.photographyblog.com/news/us_pricing_announced_for_laowa_105mm_f_2_stf_lens)
    and construction diagram as reproduced by [Photo Rumors](https://photorumors.com/2016/03/06/venus-optics-laowa-stf-105mm-f2-lens-officially-announced).
    One high-refractive, three low-dispersion and one apodization element; no aspherical element.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The **2026-10-30** original shape/glass review and inferred-cut evidence retain their actual date. This narrow material/reference check uses only CN104991330B Example 1: PDF page 5 / printed 3, ¶0040 explicitly defines d-line Nd, and source S16 prints L9 **1.67128/56.37**; PDF page 6 / printed 4 source S21 prints L11 **1.81538/36.87**. Native pages are 2481×3509 at 300 ppi, inspected without treating enlargement as new detail. Neither medium has individual C/F/g indices, numerical partial dispersion or a material designation. The separate neutral-gray L8 remains an absorbing source medium; ¶0019 on PDF page 4 defines its d 587.56 nm transmission, so ordinary H-K3 is rejected despite coordinate proximity. Its absorption law is unchanged.
+
+[SUMITA's official 2026-08-21 AGF](https://www.sumita-opt.co.jp/en/download/), legacy LAKN4 row 11050, gives a verbatim formula 1 polynomial that passes the existing validator. Evaluated residuals to L9 are **−0.00027578/+0.907085**, PgF 0.543427 with no source partial to compare. It improves both coordinate residuals over existing S-LAL52 (−0.001281/+0.957972 nominal) and J-LAK02 (−0.00128/+0.979561), while its Abbe difference remains substantial and explicit. This is an **approximate** spectral proxy, not an exact match.
+
+The retained [official HOYA20260707 AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), M-NBFD82 row 14755, supplies a new compatible curve for L11: evaluated residuals **−0.00063943/+0.157807**, PgF 0.581593. No existing compatible row appears in the full 700-entry scan. Current HOYA network retrieval is unavailable; the retained primary file, not a newly downloaded copy, is inspected. Neither manufacturer's grade or process names identify Laowa's historical supplier, melt, composition or manufacturing method.
+
+Only L9/L11 proxy labels change in data. All source numeric values, APD dispositions, absorption, cemented interfaces, cuts/shoulders, stops, focus/zoom controls and genuine evidence remain fixed. Existing source-shape and sampled beam-clearance findings are not re-counted; the new catalog choices improve estimated spectra without resolving production material identity.

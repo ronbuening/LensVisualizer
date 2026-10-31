@@ -8,14 +8,14 @@
 **Published:** 1997-08-15
 **Inventor:** Hideki Ogawa
 **Applicant:** Canon Inc.
-**Title:** *Macro Lens* (マクロレンズ)
-
+**Title:** _Macro Lens_ (マクロレンズ)
+**Example details:** Numerical Example 1, ¶0057 on PDF page 6 (printed columns 9–10); Fig. 1 on PDF page 17 (columns 31–32)
 
 The prescription is Numerical Example 1 of JP 1997-211319 A. The job card fixes that example as the production correlation for the CANON EF 180mm f/3.5 L Macro USM; the patent itself does not identify the commercial lens by model name. The correlation rests on several convergent features rather than on a manufacturer statement that Example 1 became the production prescription.
 
 1. Numerical Example 1 is a 180 mm, f/3.6 design, while Canon marketed the production lens as 180 mm f/3.5. The small aperture difference is retained rather than reconciled: the data file uses `apertureMarketing: 3.5`, `apertureDesign: 3.6`, and `nominalFno: 3.6`.
 2. The example contains 14 elements in 12 air-separated optical groups, exactly matching Canon's published 12-group/14-element production specification.
-3. Canon identifies production elements 2, 4, and 11 as UD elements. Those positions correspond to the three Example 1 elements having the same low-index, high-Abbe coordinate, nd = 1.49700 and νd = 81.6.
+3. Canon identifies production elements 2, 4, and 11 as UD elements. Those positions correspond to the three Example 1 elements having the same low-index, high-Abbe coordinate, $n_d=1.49700$ and $\nu_d=81.6$.
 4. The patent publishes a floating focus in which L2 moves imageward and L3 moves objectward. Canon describes the production lens as moving its second and third focusing groups on different trajectories while maintaining constant external length.
 5. The published example reaches 1.0×. Independent paraxial solution of the final data file gives 0.475566 m from subject plane to image plane at the 1.0× endpoint, consistent with Canon's rounded 0.48 m minimum focusing distance.
 6. The application was filed on 1996-01-29, shortly before Canon's April 1996 market introduction of the production lens.
@@ -32,14 +32,14 @@ Numerical Example 1 is all-spherical. It contains no aspheric surfaces, no diffr
 
 Independent first-order calculation from the final TypeScript arrays gives the following functional-group focal lengths:
 
-| Functional group | Computed EFL (mm) | Sign |
-|---|---:|---|
-| L1a | 85.623329 | Positive |
-| L1b | 514.654104 | Positive |
-| L1a + L1b | 75.268567 | Positive |
-| L2 | -50.108430 | Negative |
-| L3 | 205.195680 | Positive |
-| L4 | 184.157663 | Positive |
+| Functional group | Computed EFL (mm) | Sign     |
+| ---------------- | ----------------: | -------- |
+| L1a              |         85.623329 | Positive |
+| L1b              |        514.654104 | Positive |
+| L1a + L1b        |         75.268567 | Positive |
+| L2               |        -50.108430 | Negative |
+| L3               |        205.195680 | Positive |
+| L4               |        184.157663 | Positive |
 
 The patent permits L4 to be positive or negative in the general invention (¶0016); Example 1 is positive by independent trace. The dominant focusing action is assigned to the compact negative L2 group, with L3 moving oppositely as a floating correction group. L1a, L1b, L4, the stop plane, and the image plane remain fixed in this embodiment.
 
@@ -53,31 +53,31 @@ The focal lengths in this section are isolated-in-air thick-element EFLs compute
 
 ### Element 1 (L1) — Positive Meniscus
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 — crown class (supplier unresolved). f = +562.086404 mm.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +562.086404 mm.**
 
 Element 1 is the front member of L1a. Its isolated power is weakly positive, and its role in the data model is chiefly as part of the positive collecting front section rather than as a separately moving component. It remains fixed throughout focus.
 
 ### Element 2 (L2) — Biconvex Positive
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +112.405768 mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +112.405768 mm.**
 
-Element 2 is a substantially stronger positive member of L1a. Canon identifies the second element of the production lens as UD. The data records that manufacturer position as an inferred diagram classification without assigning a specific supplier glass or importing unpublished line indices.
+Element 2 is a substantially stronger positive member of L1a. Canon identifies the second element of the production lens as UD. The data records that manufacturer position as an inferred diagram classification; the H-FK61 catalog curve is a spectral proxy for the printed pair and assigns no specific supplier glass.
 
 ### Element 3 (L3) — Negative Meniscus
 
-**nd = 1.80100, νd = 35.0. Glass: 801350 — high-index class (supplier unresolved). f = -180.113853 mm.**
+**$n_d=1.80100$, $\nu_d=35.0$. Glass: S-LAM66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -180.113853 mm.**
 
 Element 3 supplies negative isolated power inside the otherwise positive L1a assembly. Its placement between the stronger positive Elements 2 and 4 gives the front group an alternating positive-negative-positive power sequence, while the complete L1a remains strongly positive at 85.623329 mm EFL.
 
 ### Element 4 (L4) — Positive Meniscus
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +150.787175 mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +150.787175 mm.**
 
-Element 4 completes L1a and uses the same nd/νd coordinate as Element 2. Canon identifies the fourth production element as UD. As with Element 2, the data preserves that production position as an inferred diagram classification but does not promote any coordinate-compatible public catalog glass to an asserted supplier identity.
+Element 4 completes L1a and uses the same $n_d$/$\nu_d$ coordinate as Element 2. Canon identifies the fourth production element as UD. As with Element 2, the data preserves that production position as an inferred diagram classification and uses the H-FK61 catalog curve only as a spectral proxy, not as an asserted supplier identity.
 
 ### Element 5 (L5) — Negative Meniscus
 
-**nd = 1.80518, νd = 25.4. Glass: 805254 — dense-flint class (supplier unresolved). f = -235.636073 mm.**
+**$n_d=1.80518$, $\nu_d=25.4$. Glass: N-SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -235.636073 mm.**
 
 Element 5 is the negative L1b1 meniscus singled out in the patent's focusing-aberration argument. The patent explains that, as L2 moves imageward for close focus, the axial-ray height in L2 falls and its positive spherical-aberration contribution changes; L1b is configured so that its own contribution changes in the compensating direction (¶0022–¶0027). The rear surface of Element 5, surface 10 in the data file, has independently computed surface power φ = -0.02589836 mm⁻¹.
 
@@ -85,25 +85,25 @@ That surface enters conditional expression (1). Using the computed L1 focal leng
 
 ### Element 6 (L6) — Positive Meniscus
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 — crown class (supplier unresolved). f = +158.754640 mm.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +158.754640 mm.**
 
 Element 6 is the positive L1b2 member. The patent states that this positive lens maintains L1b as a positive group while allowing the preceding negative meniscus to provide the desired focus-dependent aberration behavior (¶0026). The complete L1b group remains weakly positive, with a computed EFL of 514.654104 mm.
 
 ### Element 7 (L7) — Biconcave Negative
 
-**nd = 1.88300, νd = 40.8. Glass: 883408 — high-index lanthanum class (supplier unresolved). f = -48.651521 mm.**
+**$n_d=1.88300$, $\nu_d=40.8$. Glass: S-LAH58 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -48.651521 mm.**
 
 Element 7 is the front element of the moving L2 group and has the strongest isolated negative power among the non-cemented elements. L2 as a whole is the principal negative focusing group, with a computed EFL of -50.108430 mm. From infinity to 1.0×, this rigid group translates 29.38 mm imageward.
 
 ### Element 8 (L8) — Biconcave Negative, cemented to Element 9
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 — crown class (supplier unresolved). f = -64.540879 mm.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -64.540879 mm.**
 
-Element 8 is the negative L2n member identified by the patent's condition (4). Its nd = 1.48749 and νd = 70.2 satisfy `N2n < 1.55` and `ν2n > 55`. The patent associates this low-index, high-Abbe negative member with control of residual chromatic aberration in the preceding positive system (¶0045–¶0047). That is a patent design rationale; the authored model does not attempt a line-by-line chromatic proof because no C/F/g indices or validated Sellmeier identity are available.
+Element 8 is the negative L2n member identified by the patent's condition (4). Its $n_d=1.48749$ and $\nu_d=70.2$ satisfy `N2n < 1.55` and `ν2n > 55`. The patent associates this low-index, high-Abbe negative member with control of residual chromatic aberration in the preceding positive system (¶0045–¶0047). That is a patent design rationale; the authored model does not attempt a line-by-line chromatic proof because the patent prints no C/F/g indices and the catalog curve is only a spectral proxy.
 
 ### Element 9 (L9) — Positive Meniscus, cemented to Element 8
 
-**nd = 1.84666, νd = 23.9. Glass: 847239 — dense-flint class (supplier unresolved). f = +62.663609 mm.**
+**$n_d=1.84666$, $\nu_d=23.9$. Glass: S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +62.663609 mm.**
 
 Element 9 is the positive member of the L2 cemented pair. The shared surface 16 correctly carries the downstream Element 9 identity and index in the data file.
 
@@ -111,19 +111,19 @@ Considered individually in air, Elements 8 and 9 have strong and nearly opposing
 
 ### Element 10 (L10) — Plano-Convex Positive
 
-**nd = 1.76200, νd = 40.1. Glass: 762401 — lanthanum class (supplier unresolved). f = +54.750656 mm.**
+**$n_d=1.76200$, $\nu_d=40.1$. Glass: S-LAM55 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +54.750656 mm.**
 
 Element 10 is the positive front member of L3 and has the strongest isolated positive power in that group. Its rear face is plane in the published prescription. L3 moves objectward during close focusing, opposite the motion of L2.
 
 ### Element 11 (L11) — Biconvex Positive, cemented to Element 12
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +83.051492 mm.**
+**$n_d=1.49700$, $\nu_d=81.6$. Glass: H-FK61 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +83.051492 mm.**
 
-Element 11 is the positive L3p member named in conditional expression (6). Its nd = 1.49700 and νd = 81.6 satisfy `N3p < 1.55` and `ν3p > 55` (¶0050–¶0051). Canon also identifies the eleventh production element as UD. The data preserves that position as an inferred diagram classification while leaving the supplier and detailed partial-dispersion behavior unresolved.
+Element 11 is the positive L3p member named in conditional expression (6). Its $n_d=1.49700$ and $\nu_d=81.6$ satisfy `N3p < 1.55` and `ν3p > 55` (¶0050–¶0051). Canon also identifies the eleventh production element as UD. The data preserves that position as an inferred diagram classification; the supplier stays unspecified and the patent prints no partial-dispersion data.
 
 ### Element 12 (L12) — Biconcave Negative, cemented to Element 11
 
-**nd = 1.59270, νd = 35.3. Glass: 593353 — flint class (supplier unresolved). f = -34.091213 mm.**
+**$n_d=1.59270$, $\nu_d=35.3$. Glass: S-FTM16 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -34.091213 mm.**
 
 Element 12 is the strong negative partner of Element 11. At their shared surface 22, the data correctly switches to the downstream Element 12 identity and index.
 
@@ -131,45 +131,45 @@ The isolated cemented E11/E12 pair has net EFL -61.302378 mm, or -16.312581 D. T
 
 ### Element 13 (L13) — Negative Meniscus
 
-**nd = 1.83400, νd = 37.2. Glass: 834372 — high-index lanthanum class (supplier unresolved). f = -535.598550 mm.**
+**$n_d=1.83400$, $\nu_d=37.2$. Glass: J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = -535.598550 mm.**
 
 Element 13 is the weak negative front member of L4. The patent describes one preferred fourth-group form as a negative meniscus followed by a positive lens (¶0052), which is the arrangement used by Example 1.
 
 ### Element 14 (L14) — Biconvex Positive
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 — crown class (supplier unresolved). f = +143.107597 mm.**
+**$n_d=1.48749$, $\nu_d=70.2$. Glass: S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = +143.107597 mm.**
 
 Element 14 is the final positive lens and completes L4. The pair of Elements 13 and 14 yields a positive L4 group with computed EFL 184.157663 mm. L4 remains fixed during the published Example 1 focus sequence, and the final 67.54 mm surface-to-image spacing is constant in every published focus row.
 
 ## Glass Identification and Selection
 
-Example 1 uses nine distinct nd/νd coordinates. The patent does not name glass suppliers, and several public catalogs contain identical or near-identical six-digit coordinates. The data therefore uses generic class/code labels rather than assigning a vendor glass whose composition and partial dispersion are not established.
+Example 1 uses nine distinct $n_d$/$\nu_d$ coordinates. The patent names no spectral line. 14 of 14 printed pairs match catalog d-line coordinates and none match the e-line, so the table is read as d-line. 14 media use catalog curves as spectral proxies; supplier, melt and chemistry stay unspecified. Several public catalogs contain identical or near-identical coordinates, so the curve names are not supplier identifications.
 
-| Data-file glass label | nd | νd | Elements | Status |
-|---|---:|---:|---|---|
-| 487702 — crown class (supplier unresolved) | 1.48749 | 70.2 | 1, 6, 8, 14 | Generic coordinate class |
-| 497816 — low-dispersion / UD crown class (supplier unresolved) | 1.49700 | 81.6 | 2, 4, 11 | Production positions identified by Canon as UD; supplier unresolved |
-| 801350 — high-index class (supplier unresolved) | 1.80100 | 35.0 | 3 | Generic coordinate class |
-| 805254 — dense-flint class (supplier unresolved) | 1.80518 | 25.4 | 5 | Generic coordinate class |
-| 883408 — high-index lanthanum class (supplier unresolved) | 1.88300 | 40.8 | 7 | Generic coordinate class |
-| 847239 — dense-flint class (supplier unresolved) | 1.84666 | 23.9 | 9 | Generic coordinate class |
-| 762401 — lanthanum class (supplier unresolved) | 1.76200 | 40.1 | 10 | Generic coordinate class |
-| 593353 — flint class (supplier unresolved) | 1.59270 | 35.3 | 12 | Generic coordinate class |
-| 834372 — high-index lanthanum class (supplier unresolved) | 1.83400 | 37.2 | 13 | Generic coordinate class |
+| Catalog curve (spectral proxy) | Printed $n_d$ | Printed $\nu_d$ | Elements    | Note                                                |
+| ------------------------------ | ------------: | --------------: | ----------- | --------------------------------------------------- |
+| S-FSL5                         |       1.48749 |            70.2 | 1, 6, 8, 14 |                                                     |
+| H-FK61                         |       1.49700 |            81.6 | 2, 4, 11    | UD classification inferred from production positions |
+| S-LAM66                        |       1.80100 |            35.0 | 3           |                                                     |
+| N-SF6                          |       1.80518 |            25.4 | 5           |                                                     |
+| S-LAH58                        |       1.88300 |            40.8 | 7           |                                                     |
+| S-NPH53                        |       1.84666 |            23.9 | 9           |                                                     |
+| S-LAM55                        |       1.76200 |            40.1 | 10          |                                                     |
+| S-FTM16                        |       1.59270 |            35.3 | 12          |                                                     |
+| J-LASF010                      |       1.83400 |            37.2 | 13          |                                                     |
 
-The stored index/Abbe values are treated as d-line nd/νd coordinates. The patent's ¶0054 labels the quantities only as refractive index and Abbe number, but the numerical coordinate system and the patent's d/g aberration notation are consistent with ordinary d-line glass coding. No e-line conversion is applied.
+Paragraph 0054 labels the numerical quantities only as refractive index and Abbe number. The d/g aberration legend identifies plotted rays and does not explicitly define those table columns. The source numeric pairs are retained without an e-line conversion.
 
-No element in the data file carries `nC`, `nF`, `ng`, or `dPgF`. Consequently, the analysis does not claim apochromatic correction, quantify anomalous partial dispersion, or promote Canon's “UD” production label into a specific optical-glass identity. The inferred tags communicate Canon's element-position classification on the diagram; modeled chromatic behavior remains limited to the data actually stored.
+No element in the data file carries `nC`, `nF`, `ng`, or `dPgF`. Consequently, the analysis does not claim apochromatic correction, quantify anomalous partial dispersion, or promote Canon's “UD” production label into a specific optical-glass identity. The inferred tags communicate Canon's element-position classification on the diagram; modeled chromatic behavior comes from the catalog curves used as spectral proxies.
 
 ## Focus Mechanism
 
 Example 1 publishes four focus states: infinity, 0.1×, 0.5×, and 1.0×. The patent's moving gaps are:
 
-| Gap | ∞ | 0.1× | 0.5× | 1.0× |
-|---|---:|---:|---:|---:|
-| d12 | 2.20 | 5.19 | 17.03 | 31.58 |
-| d17 | 32.31 | 29.32 | 17.48 | 2.93 |
-| d18 | 17.54 | 15.39 | 7.93 | 1.10 |
+| Gap |     ∞ |  0.1× |  0.5× |  1.0× |
+| --- | ----: | ----: | ----: | ----: |
+| d12 |  2.20 |  5.19 | 17.03 | 31.58 |
+| d17 | 32.31 | 29.32 | 17.48 |  2.93 |
+| d18 | 17.54 | 15.39 |  7.93 |  1.10 |
 | d23 | 28.15 | 30.30 | 37.76 | 44.59 |
 | d27 | 67.54 | 67.54 | 67.54 | 67.54 |
 
@@ -183,24 +183,24 @@ Canon's manual also distinguishes nominal maximum aperture from close-focus effe
 
 ## Chromatic Correction Strategy
 
-The chromatic strategy is visible at the level of index/Abbe placement and patent constraints, but not at the level of verified secondary-spectrum ray tracing. Canon identifies Elements 2, 4, and 11 as UD in the production lens; the three corresponding data elements share nd = 1.49700 and νd = 81.6. Two lie in the fixed positive L1a group and one is the positive member of the moving L3 cemented pair.
+The chromatic strategy is visible at the level of index/Abbe placement and patent constraints, but not at the level of verified secondary-spectrum ray tracing. Canon identifies Elements 2, 4, and 11 as UD in the production lens; the three corresponding data elements share $n_d=1.49700$ and $\nu_d=81.6$. Two lie in the fixed positive L1a group and one is the positive member of the moving L3 cemented pair.
 
 The patent additionally constrains the negative L2n member, Element 8, to low refractive index and high Abbe number (`N2n < 1.55`, `ν2n > 55`) and applies the same form of constraint to the positive L3p member, Element 11 (`N3p < 1.55`, `ν3p > 55`). The patent states that these choices support chromatic correction (¶0045–¶0051).
 
-Those statements are source-level design intent, not a license to infer detailed partial-dispersion behavior. Because the patent does not publish C/F/g indices or `dPgF`, and because the generic glass labels are not validated supplier Sellmeier identities, the data file cannot independently establish APO behavior or quantify secondary-spectrum correction.
+Those statements are source-level design intent, not a license to infer detailed partial-dispersion behavior. Because the patent does not publish C/F/g indices or `dPgF`, and the catalog curves are only spectral proxies, the data file cannot independently establish APO behavior or quantify secondary-spectrum correction.
 
 ## Conditional Expressions
 
 The patent gives six principal numerical conditions relevant to Example 1. Recalculation from the final TypeScript prescription gives:
 
-| Condition | Computed value | Patent requirement | Result |
-|---|---:|---|---|
-| (1) `|φ| f1` | 1.949332414 | 1.4 < value < 2.6; preferred 1.8 < value < 2.1 | Pass; preferred range also passed |
-| (2) `f1b / f1` | 6.837570116 | 2 < value < 15 | Pass |
-| (3) `f1a / f1` | 1.137570869 | 1.05 < value < 1.74; preferred 1.10 < value < 1.45 | Pass; preferred range also passed |
-| (4) L2n glass | N2n = 1.48749, ν2n = 70.2 | N2n < 1.55 and ν2n > 55 | Pass |
-| (5) `|f2| / f` | 0.278365593 | 0.15 < value < 0.45 | Pass |
-| (6) L3p glass | N3p = 1.49700, ν3p = 81.6 | N3p < 1.55 and ν3p > 55 | Pass |
+| Condition      |            Computed value | Patent requirement                                 | Result                            |
+| -------------- | ------------------------: | -------------------------------------------------- | --------------------------------- | ---------------------------------------------- | --------------------------------- |
+| (1) `          |                         φ | f1`                                                | 1.949332414                       | 1.4 < value < 2.6; preferred 1.8 < value < 2.1 | Pass; preferred range also passed |
+| (2) `f1b / f1` |               6.837570116 | 2 < value < 15                                     | Pass                              |
+| (3) `f1a / f1` |               1.137570869 | 1.05 < value < 1.74; preferred 1.10 < value < 1.45 | Pass; preferred range also passed |
+| (4) L2n glass  | N2n = 1.48749, ν2n = 70.2 | N2n < 1.55 and ν2n > 55                            | Pass                              |
+| (5) `          |                        f2 | / f`                                               | 0.278365593                       | 0.15 < value < 0.45                            | Pass                              |
+| (6) L3p glass  | N3p = 1.49700, ν3p = 81.6 | N3p < 1.55 and ν3p > 55                            | Pass                              |
 
 The computed group focal lengths differ slightly from the rounded values in patent Table 1 because the prescription itself is printed to finite radius and index precision. The largest of the checked group-level differences is L1b: 514.654104 mm computed from the printed prescription versus 514.975 mm in the patent's Table 1. This is retained as source precision, not “corrected” by altering the prescription.
 
@@ -210,11 +210,19 @@ The final data file reproduces the patent's infinity first-order behavior at pri
 
 The 1.0× endpoint solves to magnification -1.000360 and 0.475566 m subject-to-image distance. The fixed 223.51 mm first-vertex-to-image track is conserved across all four published focus rows. The Petzval sum, evaluated surface by surface as `φ/(n n′)`, is +0.000555440 mm⁻¹.
 
-The inferred clear-aperture model is geometrically conservative rather than a claim about Canon's mechanical drawings. Across the audited focus range, the smallest calculated positive element edge thickness is 0.740087 mm, the maximum actual spherical rim angle is 36.0231°, and the minimum shared-gap physical clearance is 0.375397 mm. Example 1 is all-spherical, so no conic-limit or asphere-departure check applies. Representative ray sampling shows ordinary vignetting at some air-separated rims toward the close-focus/off-axis extremes, but no representative ray first-clips at either cemented interface.
+The 2026-10-30 original-PDF pass reviewed the native 200-dpi Fig. 1 section and all four published focus rows. The final air-separated meniscus now uses 17.6 mm clear radii on surfaces 24/25, and the final positive lens uses 19.0 mm on surfaces 26/27, matching their native relative heights. These remain figure-derived estimates. The other clear radii are retained; the source does not resolve a separate cap endpoint followed by an outer shoulder or concave land. No equal-height blocks, bonded-interface lands or unlisted layers are introduced. Actual SVG outlines remain finite and connected with no hidden trimming across the source keyframes and interpolated control states.
+
+The inferred clear-aperture model is geometrically conservative rather than a claim about Canon's mechanical drawings. Across the audited focus range, the smallest calculated positive element edge thickness is 0.740087 mm, the maximum actual spherical rim angle is 36.0231°, and the minimum shared-gap physical clearance is 0.375397 mm. Example 1 is all-spherical, so no conic-limit or asphere-departure check applies. Fixed-iris pupil sampling finds outer on-axis clipping at the published focus rows, increasing toward 1.0×, as well as off-axis vignetting. No sampled first clip occurs at either cemented interface. The infinity aperture census meets its 3% f/3.6 gate, but the model does not establish full f/5.8 finite-beam clearance. Attempts to square the inferred moving-unit/L1b rims can make adjacent source profiles overlap; source R/d and geometry limits are retained, with those trials recorded in the audit.
 
 ## Sources / References
 
-- JP 1997-211319 A (特開平9-211319), *Macro Lens*, Hideki Ogawa / Canon Inc.; especially ¶0016–¶0017, ¶0022–¶0027, ¶0035–¶0055, Numerical Example 1 on p. 6, Table 1, and Figs. 1, 12–15, 56.
+- JP 1997-211319 A (特開平9-211319), _Macro Lens_, Hideki Ogawa / Canon Inc.; especially ¶0016–¶0017, ¶0022–¶0027, ¶0035–¶0055, Numerical Example 1 on p. 6, Table 1, and Figs. 1, 12–15, 56.
 - Canon Camera Museum, “EF180mm f/3.5L Macro USM”: https://global.canon/en/c-museum/product/ef334.html
 - Canon Camera Museum (Japanese), “EF180mm F3.5L マクロ USM”: https://global.canon/ja/c-museum/product/ef334.html
-- Canon, *EF180mm f/3.5L MACRO USM 使用説明書*: https://cweb.canon.jp/manual/ef/macro/ef180f35lmacrousm-ja.pdf
+- Canon, _EF180mm f/3.5L MACRO USM 使用説明書_: https://cweb.canon.jp/manual/ef/macro/ef180f35lmacrousm-ja.pdf
+
+## 2026-10-30 — Source-Stated Catalog Design Metadata
+
+This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 180.0 mm, taken directly from Numerical Example1, paragraph0057, PDF p6 / printed columns9–10: source f=180mm, fno3.6. The prior computed model EFL value 180.009424 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
+
+All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.

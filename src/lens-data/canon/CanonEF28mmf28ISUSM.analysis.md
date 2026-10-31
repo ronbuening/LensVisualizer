@@ -16,6 +16,7 @@
 
 **Title:** Optical system and image pickup apparatus having the same (descriptive translation)
 
+**Example details:** Numerical Example 1, ¶0054, PDF page 9 (prescription and asphere), PDF page 10 (BF/track summary); Figure 1–3, PDF page 13; explicit d-line definition in ¶0052, PDF page 9
 
 Numerical Example 1 is treated as the fixed production correlation for the CANON EF 28mm f/2.8 IS USM. The patent
 does not name the commercial lens, and Canon does not publish a statement identifying the product with this
@@ -70,8 +71,8 @@ surface 19, a co-located flare-cut stop whose aperture is larger than the final 
 lens track from surface 2 to surface 18 is 55.81 mm. The patent's 95.79 mm reported total length includes the 1.70
 mm dummy offset; the normalized physical first-surface-to-image distance is 94.09 mm using the published back focus.
 
-No scale factor was applied. All refracting-surface semi-diameters are one-half of the patent's published effective
-diameters. The aperture-stop semi-diameter is the sole exception: 6.4366219 mm is the inferred clear iris needed to
+No scale factor was applied. All refracting-surface clear semi-diameters remain one-half of the patent's published effective diameters. The 2026-10-30 original review adds three resolved air-facing outer shoulders
+while preserving every printed optical cap; see the figure review below. The aperture-stop semi-diameter is the sole exception: 6.4366219 mm is the inferred clear iris needed to
 reproduce f/2.86. Treating the source's 13.11 mm effective-diameter entry as the exact clear stop would yield
 approximately f/2.808. The modeled stop therefore distinguishes the clear iris from the published aperture envelope.
 
@@ -79,16 +80,16 @@ approximately f/2.808. The modeled stop therefore distinguishes the clear iris f
 
 ### L1 — Negative Meniscus
 
-**nd = 1.60311, νd = 60.6. Glass: 603606/603607 crown class (catalog vendor unresolved). Standalone f = -79.0677
+**nd = 1.60311, νd = 60.6. Glass: J-SK14 / Hikari (compatible spectral proxy; historical glass unresolved). Standalone f = -79.0677
 mm.**
 
 L1 is the first and stronger negative component of the fixed front group. Its object-side convex meniscus form
 expands the field before the strongly converging rear system and is the principal source of the long-back-focus
-behavior. The element is not assigned to a named vendor glass because the patent publishes only `nd` and `νd`.
+behavior. The source publishes only its d-line index/Abbe pair. J-SK14 is the already selected compatible spectral proxy, not evidence of an historical supplier or melt.
 
 ### L2 — Biconvex Positive
 
-**nd = 1.77250, νd = 49.6. Glass: 773496 lanthanum crown class (catalog vendor unresolved). Standalone f = +131.0771
+**nd = 1.77250, νd = 49.6. Glass: J-LASF016 / Hikari (compatible spectral proxy; historical glass unresolved). Standalone f = +131.0771
 mm.**
 
 L2 is a weak biconvex positive element behind L1. It moderates the first element's negative power while retaining a
@@ -97,7 +98,7 @@ the relevant architectural quantity: `f = -230.3746 mm` for the complete fixed g
 
 ### L3 — Negative Meniscus
 
-**nd = 1.48749, νd = 70.2. Glass: 487702 low-index crown class (catalog vendor unresolved). Standalone f = -55.2488
+**nd = 1.48749, νd = 70.2. Glass: S-FSL5 / Ohara (compatible spectral proxy; historical glass unresolved). Standalone f = -55.2488
 mm.**
 
 L3 begins the rigid moving focus group. Its negative meniscus precedes the high-power pre-stop doublet and
@@ -107,10 +108,10 @@ any anomalous-dispersion claim.
 
 ### D1 — L4/L5 Pre-Stop Cemented Doublet
 
-**L4: nd = 1.91082, νd = 35.3. Glass: 911353 high-index lanthanum class (catalog vendor unresolved). Standalone f =
+**L4: nd = 1.91082, νd = 35.3. Glass: H-ZLaF4LA / CDGM (compatible spectral proxy; historical glass unresolved). Standalone f =
 +16.5519 mm.**
 
-**L5: nd = 1.73800, νd = 32.3. Glass: 738323 flint class (catalog vendor unresolved). Standalone f = -23.4056
+**L5: nd = 1.73800, νd = 32.3. Glass: J-KZFH9 / Hikari (compatible spectral proxy; historical glass unresolved). Standalone f = -23.4056
 mm.**
 
 L4 is a strongly positive biconvex element. L5 is a biconcave negative element cemented directly to it at source
@@ -122,7 +123,7 @@ should not be described as an ED or apochromatic doublet.
 
 ### Gis — Biconvex Positive Stabilization Element
 
-**nd = 1.72916, νd = 54.7. Glass: 729547 lanthanum crown class (catalog vendor unresolved). Standalone f = +72.8224
+**nd = 1.72916, νd = 54.7. Glass: TAC8 / Hoya (compatible spectral proxy; historical glass unresolved). Standalone f = +72.8224
 mm.**
 
 Gis is a single biconvex positive element immediately behind the aperture stop. Its computed focal length reproduces
@@ -131,10 +132,10 @@ by moving Gis laterally rather than by changing its axial spacing (¶0020, ¶002
 
 ### D2 — L7/L8 Rear Cemented Doublet
 
-**L7: nd = 1.74000, νd = 28.3. Glass: 740283 dense-flint class (catalog vendor unresolved). Standalone f = -19.6730
+**L7: nd = 1.74000, νd = 28.3. Glass: S-TIH3 / Ohara (compatible spectral proxy; historical glass unresolved). Standalone f = -19.6730
 mm.**
 
-**L8: nd = 1.69680, νd = 55.5. Glass: 697555 lanthanum crown class (catalog vendor unresolved). Standalone f =
+**L8: nd = 1.69680, νd = 55.5. Glass: J-LAK14 / Hikari (compatible spectral proxy; historical glass unresolved). Standalone f =
 +28.3195 mm.**
 
 L7 is a strongly negative meniscus followed by the positive meniscus L8, cemented at source surface 15. The cemented
@@ -144,7 +145,7 @@ establish anomalous partial dispersion or apochromatic correction.
 
 ### L9 — Positive Meniscus with Object-Side Asphere
 
-**nd = 1.58313, νd = 59.4. Glass: 583594 molded-crown class (catalog vendor unresolved). Standalone f = +47.6129
+**nd = 1.58313, νd = 59.4. Glass: J-SK12 / Hikari (compatible spectral proxy; historical glass unresolved). Standalone f = +47.6129
 mm.**
 
 L9 is the final positive meniscus. Its object-side surface 17A carries the prescription's only asphere. At the
@@ -155,30 +156,23 @@ that element with L9, while the glass vendor remains unresolved.
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive indices and Abbe numbers but no glass manufacturer, catalog designation,
-Sellmeier coefficients, `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The data file therefore uses vendor-neutral six-digit
-classes and does not assert a specific melt. These annotations are catalog-audit results, not patent facts.
+The source explicitly defines nd/νd relative to the d-line in ¶0052 / PDF page 9; ¶0021 identifies d at 587.6 nm and g at 435.8 nm for the aberration figures. All nine numerical pairs match the original. The source supplies no glass manufacturer, catalog designation, Sellmeier data, individual C/F/g indices, relative partial dispersion or APD evidence. No per-lens spectral overrides are authored or removed.
 
-| Element | nd | νd | Data-file annotation | Interpretation |
-|---|---:|---:|---|---|
-| L1 | 1.60311 | 60.6 | 603606/603607 crown class | Moderate-index crown; vendor unresolved |
-| L2 | 1.77250 | 49.6 | 773496 lanthanum crown class | High-index positive front-pair component |
-| L3 | 1.48749 | 70.2 | 487702 low-index crown class | Low-index, high-Abbe crown class |
-| L4 | 1.91082 | 35.3 | 911353 high-index lanthanum class | Highest-index glass; vendor match unresolved |
-| L5 | 1.73800 | 32.3 | 738323 flint class | Negative member of D1 |
-| Gis | 1.72916 | 54.7 | 729547 lanthanum crown class | Positive stabilization element |
-| L7 | 1.74000 | 28.3 | 740283 dense-flint class | Strong negative member of D2 |
-| L8 | 1.69680 | 55.5 | 697555 lanthanum crown class | Positive member of D2 |
-| L9 | 1.58313 | 59.4 | 583594 molded-crown class | Glass-mold-compatible final asphere class |
+The older six-digit class labels already resolved to nine catalog curves at runtime. The original review makes those same proxies explicit, without changing the selected curves or numeric source pairs. They are compatible spectral models, not historical glass identifications.
 
-L4 maps to the six-digit class 911353 in cross-vendor catalog data, but the patent supplies no evidence that selects
-a manufacturer or melt. The class annotation is therefore defensible while a vendor-specific name is not. L7 has an
-exact current OHARA `nd`/`νd` pair, but that coincidence does not prove production use of OHARA glass. L9 is
-intentionally described as a molded-crown class rather than as ordinary S-BAL42 because Canon identifies a
-glass-molded aspherical element while the patent does not identify a vendor.
+| Element | Source nd / νd | Retained spectral proxy | Qualification                                       |
+| ------- | -------------: | ----------------------- | --------------------------------------------------- |
+| L1      | 1.60311 / 60.6 | J-SK14 / Hikari         | Historical identity unresolved                      |
+| L2      | 1.77250 / 49.6 | J-LASF016 / Hikari      | Historical identity unresolved                      |
+| L3      | 1.48749 / 70.2 | S-FSL5 / Ohara          | Historical identity unresolved                      |
+| L4      | 1.91082 / 35.3 | H-ZLaF4LA / CDGM        | Historical identity unresolved                      |
+| L5      | 1.73800 / 32.3 | J-KZFH9 / Hikari        | Historical identity unresolved; no source APD claim |
+| Gis     | 1.72916 / 54.7 | TAC8 / Hoya             | Historical identity unresolved                      |
+| L7      | 1.74000 / 28.3 | S-TIH3 / Ohara          | Historical identity unresolved                      |
+| L8      | 1.69680 / 55.5 | J-LAK14 / Hikari        | Historical identity unresolved                      |
+| L9      | 1.58313 / 59.4 | J-SK12 / Hikari         | Historical identity and molding route unresolved    |
 
-No element carries an anomalous-partial-dispersion designation. The analysis therefore makes no APO claim and does
-not attribute secondary-spectrum behavior to a catalog glass that the prescription has not resolved.
+The catalog codes cannot establish source chemistry, vendor, melt, resin/cement formulation or a manufacturing route. A compatible KZFH proxy does not prove source anomalous dispersion. The retained `apd: false` annotations carry no source APD designation rather than proof of an exactly normal melt. Catalog-proxy chromatic plots remain approximations, including any proxy partial-dispersion behavior. The patent does not support an APO claim. Canon's production molded-asphere statement is correlation context and does not identify the numerical example's glass or process.
 
 ## Focus Mechanism
 
@@ -191,11 +185,11 @@ state in the data file is therefore classified as **CONSTRAINED_RECONSTRUCTION**
 state. It is solved from Canon's rounded 0.23 m minimum focusing distance while enforcing the patent's single rigid
 moving unit.
 
-| Spacing | Infinity | Modeled 0.23 m state | Change |
-|---|---:|---:|---:|
-| D5, fixed group to moving group | 7.050000 mm | 0.982340 mm | -6.067660 mm |
-| BF, final surface to image | 38.280000 mm | 44.347660 mm | +6.067660 mm |
-| D5 + BF | 45.330000 mm | 45.330000 mm | 0 |
+| Spacing                         |     Infinity | Modeled 0.23 m state |       Change |
+| ------------------------------- | -----------: | -------------------: | -----------: |
+| D5, fixed group to moving group |  7.050000 mm |          0.982340 mm | -6.067660 mm |
+| BF, final surface to image      | 38.280000 mm |         44.347660 mm | +6.067660 mm |
+| D5 + BF                         | 45.330000 mm |         45.330000 mm |            0 |
 
 The reconstructed object distance from the first physical lens surface is 135.91 mm after accounting for the
 first-surface-to-image distance. Exact paraxial imaging gives magnification `-0.204163×`, consistent with Canon's
@@ -220,15 +214,15 @@ $$
 The patent's `k` maps directly to the standard conic constant `K`; it is not a shifted convention. No nonzero conic
 is published, so `K = 0`.
 
-| Coefficient | Surface 17A value |
-|---|---:|
-| K | 0 |
-| A4 | -2.52195e-5 mm⁻³ |
-| A6 | +4.30341e-8 mm⁻⁵ |
-| A8 | -6.12181e-10 mm⁻⁷ |
-| A10 | +1.94445e-12 mm⁻⁹ |
-| A12 | 0 mm⁻¹¹ |
-| A14 | 0 mm⁻¹³, schema completion only |
+| Coefficient |               Surface 17A value |
+| ----------- | ------------------------------: |
+| K           |                               0 |
+| A4          |                -2.52195e-5 mm⁻³ |
+| A6          |                +4.30341e-8 mm⁻⁵ |
+| A8          |               -6.12181e-10 mm⁻⁷ |
+| A10         |               +1.94445e-12 mm⁻⁹ |
+| A12         |                         0 mm⁻¹¹ |
+| A14         | 0 mm⁻¹³, schema completion only |
 
 No scaling was applied, so no coefficient transformation was required. At the patent-published semi-diameter of
 9.735 mm, the polynomial departure from the spherical base is `-0.2243942 mm`; the total sag is `-0.9577244 mm`. The
@@ -256,14 +250,14 @@ add a lateral-decenter control or invent an unpublished stabilization travel.
 The patent defines six design conditions in paragraphs 0029 and 0038. All are satisfied by Numerical Example 1 at
 source precision.
 
-| Condition | Patent table | Source-consistent recomputation | Result and reference treatment |
-|---|---:|---:|---|
-| (1) `f/fis` | 0.393 | 0.392749 | Pass |
-| (2) `Dis/DL` | 0.071 | 0.071118 | Pass; reproduces table with dummy-inclusive `DL` |
-| (3) `DFS/f` | 0.668 | 0.667832 | Pass |
-| (4) `|(1-βis)βr|` | 0.505 | 0.499627 | Pass; 1.064% rounded-source residual |
-| (5) `Lis/DL` | 0.028 | 0.027647 | Pass; reproduces table with dummy-inclusive `DL` |
-| (6) `TL/f` | 3.349 | 3.349301 | Pass; reproduces table with dummy-inclusive `TL` |
+| Condition    | Patent table | Source-consistent recomputation | Result and reference treatment                   |
+| ------------ | -----------: | ------------------------------: | ------------------------------------------------ | -------- | ------------------------------------ |
+| (1) `f/fis`  |        0.393 |                        0.392749 | Pass                                             |
+| (2) `Dis/DL` |        0.071 |                        0.071118 | Pass; reproduces table with dummy-inclusive `DL` |
+| (3) `DFS/f`  |        0.668 |                        0.667832 | Pass                                             |
+| (4) `        |    (1-βis)βr |                               ` | 0.505                                            | 0.499627 | Pass; 1.064% rounded-source residual |
+| (5) `Lis/DL` |        0.028 |                        0.027647 | Pass; reproduces table with dummy-inclusive `DL` |
+| (6) `TL/f`   |        3.349 |                        3.349301 | Pass; reproduces table with dummy-inclusive `TL` |
 
 The third column follows the rounded first-order values used by the patent table. Substituting the independently
 computed EFL gives 0.392703, 0.667890, and 3.349590 for conditions (1), (3), and dummy-inclusive (6), respectively;
@@ -273,20 +267,36 @@ included. With physical first-lens normalization, conditions (2), (5), and (6) b
 3.289860 respectively; each still satisfies its stated bound. The analysis preserves both references rather than
 silently redefining the prescription.
 
+## Original Figure Review — 2026-10-30
+
+Original Figure 1 on PDF page 13 embeds a 1068 × 646 JPEG at approximately 199 × 198 ppi. It was inspected at native resolution; enlarged viewing adds no source detail. The small front-page abstract image is not substituted for that figure. The approximately 493-pixel first-to-last physical vertex span over 55.81 mm gives about 8.83 px/mm; practical outer-outline uncertainty is around ±0.8 mm after schematic and ink differences. The clear-aperture authority is the numerical effective-diameter table, not this drawing scale. FS dummy/flare-cutter strokes, stop symbols, brackets and leaders are excluded.
+
+| Air-facing surface | Retained published clear sd | Added outer `rimExtensionSd` | Source disposition                                                                          |
+| ------------------ | --------------------------: | ---------------------------: | ------------------------------------------------------------------------------------------- |
+| S3                 |                   18.075 mm |                    21.000 mm | Resolved rear shoulder of front negative meniscus, anchored to published S2 cap             |
+| S7                 |                   10.270 mm |                    11.720 mm | Resolved rear shoulder of moving negative meniscus, anchored to published S6 cap            |
+| S14                |                    6.410 mm |                     7.590 mm | Resolved front shoulder of rear doublet; conservative anchor is the existing bonded S15 cap |
+
+Every element, concave end, both cemented interfaces (S9/S15) and the S17A asphere was inspected. No hybrid/resin layer, separate cement medium, source filter or rear plate is tabulated. Three shoulders and zero inferred cuts are authored. Every source clear cap, R/d and asphere coefficient remains unchanged.
+
+The full schematic rear-doublet blank is about 9.4 mm in inferred semi-height. A 9.4 mm S14 outer trial is numerically valid, but is rejected as a full-blank reconstruction: the source's 7.59 mm bonded cap cannot certify material beyond that interface, and filling a rectangular band would require an unsupported bonded land or expanding the published optical boundary. The conservative S14 outer height stops at that bonded-cap anchor. The continuous S10/S16/S17A outlines do not resolve additional distinct lands strongly enough to author them. The source's full outer blank is therefore not claimed to be a verified mechanical reconstruction.
+
+Existing `gapSagFrac: 0.95` is retained, with no tolerance relaxation. It preserves the printed S3/S4 caps and approximately 0.418374 mm physical rim clearance. The source LF-sign discrepancy and dummy-inclusive track definitions above remain qualified source constraints rather than reasons to change optical numbers.
+
 ## Verification Summary
 
 Independent reduced-angle tracing and an ABCD matrix check were rerun from the compiled TypeScript arrays. The two
 methods agree to below `1e-14` in the system matrix.
 
-| Quantity | Verified result | Source comparison |
-|---|---:|---|
-| Effective focal length | 28.5975287 mm | Patent: 28.60 mm |
-| Back focal distance | 38.2716985 mm | Patent: 38.28 mm |
-| Modeled maximum f-number | 2.8600000 | Patent: 2.86 |
-| Petzval sum | +0.004246560834 mm⁻¹ | Computed surface by surface as `φ/(n·n′)` |
-| Petzval radius, `-1/ΣP` | -235.484676 mm | Computed |
-| Close-focus travel | 6.0676601 mm | Constrained reconstruction |
-| Close-focus magnification | -0.204163× | Canon marketing: 0.20× |
+| Quantity                  |      Verified result | Source comparison                         |
+| ------------------------- | -------------------: | ----------------------------------------- |
+| Effective focal length    |        28.5975287 mm | Patent: 28.60 mm                          |
+| Back focal distance       |        38.2716985 mm | Patent: 38.28 mm                          |
+| Modeled maximum f-number  |            2.8600000 | Patent: 2.86                              |
+| Petzval sum               | +0.004246560834 mm⁻¹ | Computed surface by surface as `φ/(n·n′)` |
+| Petzval radius, `-1/ΣP`   |       -235.484676 mm | Computed                                  |
+| Close-focus travel        |         6.0676601 mm | Constrained reconstruction                |
+| Close-focus magnification |           -0.204163× | Canon marketing: 0.20×                    |
 
 Geometry checks on both focus endpoints found a minimum element edge thickness of 1.159166 mm, a maximum actual
 rim-slope angle of 42.514496°, and a minimum physical air clearance of 0.418374 mm. No surface crossing or
@@ -294,10 +304,18 @@ conic-limit failure was found. Representative on-axis rays fill the modeled stop
 close focus. At 60% field, the most extreme pupil sample can vignette first at surface 14, the air-to-glass entrance
 of the rear cemented group; no representative ray first clips at a cemented interface.
 
+### Runtime clearance and retained limits
+
+Surface, image-circle, infinity aperture-census and corner-field checks pass. The aperture census tests beam clearance under the existing paraxial iris rule, not equality with a real marginal-ray working f-number. The derived iris remains 6.436622 mm; the generic source 13.11 mm effective-diameter row is envelope evidence rather than an independently proved physical iris radius. Real aimed working f-number is 2.907917 at infinity, 3.045075 at focus 0.5 and 3.184428 at the reconstructed 0.23 m endpoint. The finite-conjugate working values are separate from the source's infinity f/2.86 target.
+
+Across 21 focus positions and six apertures, all 126 real working-ray calls trace; baseline/candidate results are identical. A 193-point circular-pupil probe at axial, half-field and corner fields over all 21 focus states gives identical baseline/candidate passing counts at all 63 fields. Every axial sample passes and all chiefs are aimed and valid; corner counts remain 103/193 at infinity and 113/193 at modeled close focus. This is retained off-axis vignetting, not full-pupil illumination. Actual SVGs at infinity, mid and close focus were compared with original Figure 1; 21 focus states produce 189 finite, singly connected, closed paths with zero hidden trimming and corner aiming near 21.65 mm.
+
+The source publishes infinity spacings only. The product-MFD constrained focus reconstruction and its continuous interpolation are not a measured source cam law. Source Figure 3(A/B), also on PDF page 13, was inspected at its native 974 × 275 pixels and approximately 200 ppi. It compares centered and 0.5° stabilized states but publishes no millimetre lateral travel. Runtime remains centered with no IS-decenter control; those stabilized aberrations are not certified by centered clearance. Source fidelity, sampled runtime behavior and production correlation remain separate. Older product links below are correlation context, not fresh external-source checks.
+
 ## Sources
 
 - **Patent prescription and design statements:** JP 2013-054269 A, Numerical Example 1, especially ¶0019–¶0029,
-  ¶0037–¶0043, and ¶0052–¶0054; source PDF supplied with the companion audit.
+  ¶0037–¶0043, and ¶0052–¶0054; source `patents/JP2013054269A.pdf`, SHA-256 `2d1b064b6dd2665d520a6d3dc1cb2710b48d366634e929ce7c1f153ce818e1b3`, inspected 2026-10-30. Numerical Example 1 is PDF page 9 with summary continuing page 10; Figures 1–3 are PDF page 13.
 - **Production identity, release timing, construction, MFD, magnification, glass-molded asphere, and micro-USM
   wording:** [Canon Camera Museum — EF28mm f/2.8 IS USM][canon-museum].
 - **Production optical specifications and conflicting Ring-USM wording:** [Canon Europe — EF 28mm f/2.8 IS USM
@@ -307,3 +325,19 @@ of the rear cemented group; no representative ray first clips at a cemented inte
 
 [canon-museum]: https://global.canon/en/c-museum/product/ef421.html
 [canon-europe]: https://www.canon-europe.com/lenses/ef-28mm-f-2-8-is-usm-lens/specification.html
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.8250 and 21.6500 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 21.6500 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 20 positive-real-object geometries, 60/60 target chiefs converge: 60 clear the current caps and 0 clip. Across the converged fields, 193 current-iris samples per field give 9,092 passed, 2,488 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.230000000 |           0.230000 | 193 / 154 / 113                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 40.175193% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.751941102 m versus label 4.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.

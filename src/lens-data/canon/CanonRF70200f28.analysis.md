@@ -4,7 +4,7 @@
 
 **Patent:** JP2021-056407A, Numerical Example 3
 
-**Inventors:** Makoto Nakahara (中原 誠), Shunji Iwamoto (岩本 俊二), Shinto Katayose (片寄 慎斗)
+**Inventors:** Makoto Nakahara (中原 誠), Shunji Iwamoto (岩本 俊二), Masato Katayose (片寄 慎斗)
 
 **Assignee:** Canon Inc.
 
@@ -20,31 +20,31 @@ The front group extends objectward on zooming, so the former description “inte
 
 ## Element by element
 
-| Element | nd / vd | Calculated isolated focal length (mm) | Role |
-|---|---|---|---|
-| 1 | 1.497 / 81.5 | 240.6 | Positive Meniscus singlet |
-| 2 | 1.6134 / 44.3 | -163.33 | Negative Meniscus element of cemented doublet D1 |
-| 3 | 1.43875 / 94.7 | 117.29 | Plano-Convex Positive element of cemented doublet D1 |
-| 4 | 1.59282 / 68.6 | -101.22 | Biconcave Negative singlet |
-| 5 | 1.76385 / 48.5 | -36.58 | Biconcave Negative element of cemented doublet D2 |
-| 6 | 1.85478 / 24.8 | 58.34 | Positive Meniscus element of cemented doublet D2 |
-| 7 | 1.497 / 81.5 | 67.04 | Biconvex Positive (1× Asph) singlet |
-| 8 | 1.5927 / 35.3 | -34.67 | Biconcave Negative element of cemented doublet D3; G4 focus objectward |
-| 9 | 1.72825 / 28.5 | 46.53 | Biconvex Positive element of cemented doublet D3; G4 focus objectward |
-| 10 | 2.0509 / 26.9 | -67.79 | Negative Meniscus element of cemented doublet D4 |
-| 11 | 1.497 / 81.5 | 54.62 | Biconvex Positive element of cemented doublet D4 |
-| 12 | 1.497 / 81.5 | 65.7 | Biconvex Positive element of cemented doublet D5 |
-| 13 | 2.0509 / 26.9 | -103.4 | Negative Meniscus element of cemented doublet D5 |
-| 14 | 1.90043 / 37.4 | 59.9 | Biconvex Positive singlet |
-| 15 | 1.618 / 63.4 | -55.03 | Negative Meniscus singlet; G6 focus imageward |
-| 16 | 1.85478 / 24.8 | 89.66 | Positive Meniscus singlet; rear G7, no source focus arrow |
-| 17 | 1.58313 / 59.4 | -60.64 | Neg. Meniscus (1× Asph) singlet; rear G7, no source focus arrow |
+| Element | nd / vd        | Calculated isolated focal length (mm) | Role                                                                   |
+| ------- | -------------- | ------------------------------------- | ---------------------------------------------------------------------- |
+| 1       | 1.497 / 81.5   | 240.6                                 | Positive Meniscus singlet                                              |
+| 2       | 1.6134 / 44.3  | -163.33                               | Negative Meniscus element of cemented doublet D1                       |
+| 3       | 1.43875 / 94.7 | 117.29                                | Plano-Convex Positive element of cemented doublet D1                   |
+| 4       | 1.59282 / 68.6 | -101.22                               | Biconcave Negative singlet                                             |
+| 5       | 1.76385 / 48.5 | -36.58                                | Biconcave Negative element of cemented doublet D2                      |
+| 6       | 1.85478 / 24.8 | 58.34                                 | Positive Meniscus element of cemented doublet D2                       |
+| 7       | 1.497 / 81.5   | 67.04                                 | Biconvex Positive (1× Asph) singlet                                    |
+| 8       | 1.5927 / 35.3  | -34.67                                | Biconcave Negative element of cemented doublet D3; G4 focus objectward |
+| 9       | 1.72825 / 28.5 | 46.53                                 | Biconvex Positive element of cemented doublet D3; G4 focus objectward  |
+| 10      | 2.0509 / 26.9  | -67.79                                | Negative Meniscus element of cemented doublet D4                       |
+| 11      | 1.497 / 81.5   | 54.62                                 | Biconvex Positive element of cemented doublet D4                       |
+| 12      | 1.497 / 81.5   | 65.7                                  | Biconvex Positive element of cemented doublet D5                       |
+| 13      | 2.0509 / 26.9  | -103.4                                | Negative Meniscus element of cemented doublet D5                       |
+| 14      | 1.90043 / 37.4 | 59.9                                  | Biconvex Positive singlet                                              |
+| 15      | 1.618 / 63.4   | -55.03                                | Negative Meniscus singlet; G6 focus imageward                          |
+| 16      | 1.85478 / 24.8 | 89.66                                 | Positive Meniscus singlet; rear G7, no source focus arrow              |
+| 17      | 1.58313 / 59.4 | -60.64                                | Neg. Meniscus (1× Asph) singlet; rear G7, no source focus arrow        |
 
 Individual focal lengths are recalculated as isolated thick lenses in air. Published group focal lengths remain +155.12, −48.48, +67.04, −155.65, +38.75, −55.03 and −224.14 mm. These are different quantities, particularly for cemented components.
 
 ## Glass and aspheres
 
-Source nd/vd values are retained. All catalog names are compatible counterparts with production identity unspecified. Current compatible entries include S-NBM51 (L2), S-LAH96 (L5), S-FTM16 (L8), S-TIH10 (L9) and TAFD65 (L10/L13). Earlier audit statements that these codes lacked compatible entries are superseded. Matching coordinates do not establish supplier, chemical composition, molding suitability, coatings or drive hardware.
+Source nd/vd values are retained. All catalog names are compatible counterparts with production identity unspecified. Current compatible entries include FCD515 (L4), S-NBM51 (L2), S-LAH96 (L5), S-FTM16 (L8), S-TIH10 (L9) and TAFD65 (L10/L13). Earlier audit statements that these codes lacked compatible entries are superseded. Matching coordinates do not establish supplier, chemical composition, molding suitability, coatings or drive hardware.
 
 Removed unsupported L1 dPgF=0.028 and L3 dPgF=0.046 overrides and all five inferred APD badges. No per-element partial-dispersion measurements are given by this example. Catalog dispersion is a qualified approximation, not a patent measurement.
 
@@ -54,7 +54,7 @@ Two aspheric surfaces, S13 and S30, retain the complete source coefficient sets 
 
 Figure 5's dashed arrows identify G4 (L8/L9) moving objectward and G6/LN (L15) moving imageward for close focus. The old description instead assigned the second focusing unit to G7/LR and asserted two Nano USM drive assignments; those claims are removed. Numerical finite-focus gaps are not published, so the focus control remains disabled rather than displaying a fabricated travel. The 0.70 m label is retained legacy retail metadata, not a modeled source conjugate. Image stabilization remains centered; no lateral displacement is simulated.
 
-The three infinity-focus zoom stations retain source f=72.13/100.00/194.06 mm, and now retain the full f-number schedule 2.89/2.89/2.91. The viewer infers physical iris radii 12.67084395/13.71135495/16.73950154 mm from those f-numbers. Intermediate iris sizes are interpolated and focus keeps the current zoom iris. This is explicitly a calculated schedule, not source-published physical aperture diameters. The preset series begins at f/2.89; the existing f/16 viewer upper limit is a display setting.
+The three infinity-focus zoom stations retain source f=72.13/100.00/194.06 mm, and now retain the full f-number schedule 2.89/2.89/2.91. The viewer infers physical iris radii 12.67084395/13.71135495/16.73950154 mm from those f-numbers. At illustrative intermediate zooms the current canonical rule derives the iris from the interpolated source f-number and that state's paraxial pupil geometry; focus geometry is unchanged. This is explicitly a calculated schedule, not source-published physical aperture diameters. The current preset series begins at f/2.89 and extends to f/32; f/16 was a sampled stopped-down display state in the earlier audit.
 
 Independent matrix EFL values are 72.14864, 100.02609 and 194.01198 mm. Numerical tracks are 161.59, 187.07 and 220.04 mm versus source summary 161.59, 187.06 and 220.03 mm. Source gaps and rounded summary values remain distinct; no hidden fit repairs them.
 
@@ -67,3 +67,21 @@ Figure 5 was rendered at 600 dpi and rotated to object-left for optical-rim insp
 - Original local patents/JP2021056407A.pdf, Numerical Example 3, Figure 5, paragraph 0018 explaining dashed focus arrows, and numerical-data conventions.
 - [JP 2021-056407 A patent record](https://patents.google.com/patent/JP2021056407A/en).
 - Current local glass catalog for qualified compatible counterparts.
+
+## Reused source review and current runtime supplement — 2026-10-30
+
+The completed original shape-and-glass review remains **2026-09-09**, with earlier source/glass work dated 2026-05-04. This is a runtime/prose follow-up, not a fresh original inspection. Current canonical optical content is exactly equal to review commit `c905777d9`, excluding only the later `source.example` annotation. Current data SHA256 is `e40000b2a3695e04ff5dbf3cebda07cb12ccbb60f0888d60159063168888b4d9` and remains byte-identical; source R/d, media, spectral curve choices, caps, stops and zoom/focus controls are unchanged. Compatible catalog names remain qualified proxies, not production identities.
+
+The current census covers 65 unique zoom positions 0:1/64:1. Three stations 0/.5/1 are source-published; 62 interval geometries and their iris values are illustrative interpolation. Twenty-one focus values at every zoom produce the same infinity geometry, so there is no finite-conjugate clearance claim. The actual state iris, not a wide-end radius, is used by the pupil checks.
+
+Collimated 49-point bundles at 0/.6/1 of the modeled maximum angular field pass 49/42/21 wide, 49/41/20 middle and 45/36/12 tele. Across 65 zooms, 3,165/3,185 axial samples and 195/195 chiefs pass, with 0 failed seeds. The tele axial loss occurs at the existing constrained S9 cap; the maximum traced aperture deficit is 1.16166%, with 0 sampled states over 3%. This sampled loss is retained, not described as full axial clearance. The maximum paraxial image-plane residual is +3.354042mm at illustrative zoom.796875; source station values remain distinct from intervals. Minimum angular-field image-height coverage is93.383% of the generic 21.65mm reference; these fields are not inverse-solved sensor corners.
+
+All 17 actual SVG bodies remain finite, closed and connected with 0 hidden trimming over the 65-state census. The prior source SD review and retained S9 constraint are reused; no data is fitted to the interval residuals or beam loss. Centered IS, absent numerical finite-focus gaps and unverified production correlation remain limitations.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The completed original shape/glass review remains dated **2026-09-09**; the Oct 30 reuse/runtime record above describes the unchanged data at that time. This narrow material check confirms JP2021056407A Numerical Example 3, PDF page 15, source S7 / L4, at **1.59282/68.6**. ¶0062 on page 12 explicitly defines d 587.6/C656.3/F486.1/g435.8 nm. The tables are vector text rendered for inspection; this is not added native raster detail. No individual C/F/g indices or partial-dispersion values are published for this medium.
+
+The full existing 700-entry catalog scan finds FCD515 closer than both the former S-FPM2 and suggested H-ZPK5. Evaluated nd/νd residuals are **+0.00000428/+0.024378**, versus S-FPM2 **+0.00239959/−0.864277** and H-ZPK5 **−0.00002003/−0.257976**. FCD515's PgF 0.544115 is a catalog estimate without a source partial value to compare. The retained [official HOYA 2026-07-07 AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), row 292, confirms its native formula 1 polynomial; the current primary row lists νd 68.62, while the existing catalog's older rounded annotation is68.63. Coefficient-derived νd is68.624378. The discontinued FCD505 primary row shares the polynomial, while the existing FCD505 implementation is an older fitted Sellmeier approximation; the existing verbatim-polynomial FCD515 row avoids a new duplicate. Current HOYA retrieval remains unavailable; this pass inspects the retained primary file rather than claiming a new download.
+
+Only L4's proxy label and explicit reference annotations change. All source pairs, geometry, aspheres, rims, stops, zoom/focus controls and APD/partial dispositions stay fixed; the standard authored-nd anchor preserves d-line geometry. The proxy improves estimated dispersion coverage without establishing production supplier, melt or chemistry. Existing aperture, interpolation, finite-focus and field limitations remain as recorded above.

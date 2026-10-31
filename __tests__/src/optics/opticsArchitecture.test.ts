@@ -156,6 +156,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/chromatic/glassCatalog.ts#CATALOG": { kind: "constant" },
   "src/optics/chromatic/glassCatalog.ts#CODE6_CANDIDATES": { kind: "constant" },
   "src/optics/chromatic/glassCatalog.ts#CODE6_INDEX": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#NON_NUMERIC_CATALOG_NAME_PATTERNS": { kind: "constant" },
   "src/optics/chromatic/glassCatalogAliases.ts#ALIASES": { kind: "constant" },
   "src/optics/chromatic/glassCatalogData.ts#DUPLICATE_CODE6_PRECEDENCE": { kind: "constant" },
   "src/optics/chromatic/glassCatalogData.ts#GLASS_CATALOG_ENTRIES_BY_NAME": { kind: "constant" },

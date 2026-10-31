@@ -13,8 +13,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Canon specifies 12 elements / 10 groups. Its official block diagram  ║
  * ║    adds a plane-parallel front plate and a plane-parallel rear filter    ║
  * ║    group to the patent's 10-element powered core. They are not modeled:  ║
- * ║    the patent gives no prescription for the front plate, and project     ║
- * ║    rules exclude filters. elementCount/groupCount therefore describe     ║
+ * ║    the selected patent gives no dimensions/materials for either plate.   ║
+ * ║    elementCount/groupCount therefore describe only the sourced core,     ║
  * ║    the transcribed patent prescription.                                  ║
  * ║                                                                          ║
  * ║  NOTE ON APERTURE STOP:                                                  ║
@@ -22,6 +22,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    is estimated in D13 from Canon's production block diagram, 8.00 mm   ║
  * ║    before R14. D13 remains 32.20 mm at infinity and 17.71 mm at 2.5 m.  ║
  * ║    The stop radius is derived from the patent design f-number (f/1.86).  ║
+ * ║                                                                          ║
+ * ║  Original-PDF review 2026-10-30: Example 1, PDF page 5; Fig. 1,      ║
+ * ║  PDF page 7. S10 keeps its 31.3 mm clear cap and gains the resolved   ║
+ * ║  outer shoulder to 36.5 mm. All source R/d and focus rows retained.   ║
+ * ║  Source theta_3a/theta_3b are kept as published partial ratios; their    ║
+ * ║  wavelength convention is unspecified.                                   ║
+ * ║                                                                          ║
+ * ║  NOTE ON SPECTRAL LINE:                                                  ║
+ * ║    The patent names no spectral line. 10 of 10 printed pairs match       ║
+ * ║    catalog d-line coordinates and none match the e-line, so the table    ║
+ * ║    is read as d-line. 10 media use catalog curves as spectral proxies;   ║
+ * ║    supplier, melt and chemistry stay unspecified.                        ║
  * ║                                                                          ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                 ║
  * ║    The patent publishes no clear apertures. SDs use combined marginal-  ║
@@ -46,7 +58,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "10 POWERED ELEMENTS / 8 GROUPS (PATENT CORE)",
-      "f ≈ 200.017 mm",
+      "MODELED EFL ≈ 200.017 mm",
       "f/1.86 PATENT DESIGN",
       "2ω = 12.3°",
       "3 UD-CLASS ELEMENTS",
@@ -54,7 +66,7 @@ const LENS_DATA = {
     ],
     elementCount: 10,
     groupCount: 8,
-    focalLengthMm: { marketing: 200, design: 200.016526 },
+    focalLengthMm: { marketing: 200, design: 200.0 },
     fNumber: { marketing: 1.8, design: 1.86 },
   },
 
@@ -76,14 +88,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 194.863158,
-      glass: "S-FPL51 (OHARA; 497816 class, supplier inferred)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote: "Current OHARA S-FPL51 catalog coordinate; dPgF = +0.0280.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "First low-dispersion positive collector in G1; one of the three production UD-correlated positions.",
-      dPgF: 0.028,
-      nC: 1.495136,
-      nF: 1.501231,
-      ng: 1.504507,
     },
     {
       id: 2,
@@ -93,14 +102,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 272.181368,
-      glass: "S-FPL51 (OHARA; 497816 class, supplier inferred)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote: "Current OHARA S-FPL51 catalog coordinate; dPgF = +0.0280.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "Second low-dispersion positive collector in G1; distributes positive power across the front group.",
-      dPgF: 0.028,
-      nC: 1.495136,
-      nF: 1.501231,
-      ng: 1.504507,
     },
     {
       id: 3,
@@ -110,11 +116,9 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       focalLengthMm: -145.573569,
-      glass: "BPH5 (historical OHARA; exact 654397 spectral match, supplier inferred)",
-      role: "First negative flint in G1; supplies opposite power and dispersion to the preceding ED positives.",
-      nC: 1.64921,
-      nF: 1.66569,
-      ng: 1.6751,
+      glass:
+        "BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
+      role: "First negative flint in G1; supplies opposite power and dispersion to the preceding low-dispersion positives.",
     },
     {
       id: 4,
@@ -124,14 +128,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 154.436378,
-      glass: "S-FPL51 (OHARA; 497816 class, supplier inferred)",
+      glass:
+        "S-FPL51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       apd: "inferred",
-      apdNote: "Current OHARA S-FPL51 catalog coordinate; dPgF = +0.0280.",
+      apdNote: "Production UD-position correlation only; no selected APD measurement.",
       role: "Third low-dispersion positive in G1; corresponds to the third UD-highlighted production position.",
-      dPgF: 0.028,
-      nC: 1.495136,
-      nF: 1.501231,
-      ng: 1.504507,
     },
     {
       id: 5,
@@ -141,11 +142,9 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       focalLengthMm: -281.405845,
-      glass: "S-LAL14 (OHARA; exact 697555 coordinate, supplier inferred)",
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative rear member of G1, immediately ahead of the first focus-variable gap.",
-      nC: 1.692974,
-      nF: 1.705522,
-      ng: 1.71234,
     },
     {
       id: 6,
@@ -155,12 +154,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 139.100259,
-      glass: "PBH53 (historical OHARA; exact 847239 spectral match, supplier inferred)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Standalone-positive high-index component of the cemented, net-negative moving focus group.",
       cemented: "D1",
-      nC: 1.83653,
-      nF: 1.87198,
-      ng: 1.89382,
     },
     {
       id: 7,
@@ -170,12 +167,10 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 43.8,
       focalLengthMm: -60.288767,
-      glass: "BPM4 (historical OHARA; exact 613438 spectral match, supplier inferred)",
+      glass:
+        "BPM4 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component that makes cemented doublet D1 net negative; D1 is the sole moving focus group.",
       cemented: "D1",
-      nC: 1.60921,
-      nF: 1.6232,
-      ng: 1.63107,
     },
     {
       id: 8,
@@ -185,12 +180,12 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       focalLengthMm: -58.224609,
-      glass: "BPH5 (historical OHARA; exact 654397 spectral match, supplier inferred)",
+      glass:
+        "BPH5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strongly object-concave negative at the front of G3; forms the chromatically constrained rear doublet.",
+      apdNote:
+        "Patent Example 1 correspondence table: theta_3a = 1.271845; partial-dispersion wavelength convention unspecified.",
       cemented: "D2",
-      nC: 1.64921,
-      nF: 1.66569,
-      ng: 1.6751,
     },
     {
       id: 9,
@@ -200,15 +195,12 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.6,
       focalLengthMm: 71.057526,
-      glass: "S-LAL7 (historical OHARA spectral match; supplier inferred)",
-      apd: "inferred",
-      apdNote: "Historical OHARA S-LAL7: theta_g,d = 1.2379 and delta theta_g,F = -0.0042.",
-      role: "Positive partner in D2; its historical OHARA spectral data best match the patent's theta_3b condition.",
+      glass:
+        "S-LAL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
+      apdNote:
+        "Patent Example 1 correspondence table: theta_3b = 1.238095; partial-dispersion wavelength convention unspecified.",
+      role: "Positive partner in D2; its published theta_3b participates in the patent's secondary-spectrum condition.",
       cemented: "D2",
-      dPgF: -0.0042,
-      nC: 1.64821,
-      nF: 1.65934,
-      ng: 1.66537,
     },
     {
       id: 10,
@@ -218,11 +210,9 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       focalLengthMm: 112.566809,
-      glass: "S-PHM52 (OHARA; exact 618634 coordinate, supplier inferred)",
+      glass:
+        "S-PHM52 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive singlet; with weakly negative D2, makes G3 net positive.",
-      nC: 1.615036,
-      nF: 1.624794,
-      ng: 1.630103,
     },
   ],
 
@@ -237,7 +227,7 @@ const LENS_DATA = {
     { label: "7", R: 67.274, d: 15.55, sd: 42.0, medium: 4 },
     { label: "8", R: 502.839, d: 0.5, sd: 37.0 },
     { label: "9", R: 44.766, d: 4.5, sd: 36.5, medium: 5 },
-    { label: "10", R: 34.941, sd: 31.3 },
+    { label: "10", R: 34.941, sd: 31.3, rimExtensionSd: 36.5 },
     { label: "11", R: -1069.676, d: 6.0, sd: 27.0, medium: 6 },
     { label: "12", R: -106.363, d: 2.5, sd: 26.0, medium: 7 },
     { label: "13", R: 57.199, sd: 25.0 },

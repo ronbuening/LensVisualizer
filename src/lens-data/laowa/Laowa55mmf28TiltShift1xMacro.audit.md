@@ -26,11 +26,11 @@ The independently executed full-iris202-state envelope gives S22 maximum9.110975
 
 ## Independently checked numerical results
 
-| Source state | EFL mm | Gaussian BFD mm | Printed image gap mm | Computed signed magnification | Object-to-image mm |
-|---|---:|---:|---:|---:|---:|
-| infinity | 55.018493787 | 46.809061096 | 46.8077 | source infinity; rounding residual retained | source infinity |
-| 0.5x | 55.416947375 | 34.168784958 | 61.8312 | -0.499168871 | 297.955281 |
-| 1.0x | 58.737407921 | 28.190234984 | 84.7243 | -0.962488251 | 265.469480 |
+| Source state |       EFL mm | Gaussian BFD mm | Printed image gap mm |               Computed signed magnification | Object-to-image mm |
+| ------------ | -----------: | --------------: | -------------------: | ------------------------------------------: | -----------------: |
+| infinity     | 55.018493787 |    46.809061096 |              46.8077 | source infinity; rounding residual retained |    source infinity |
+| 0.5x         | 55.416947375 |    34.168784958 |              61.8312 |                                -0.499168871 |         297.955281 |
+| 1.0x         | 58.737407921 |    28.190234984 |              84.7243 |                                -0.962488251 |         265.469480 |
 
 First-vertex/image track is 190.1122 mm at all three source stations. Surface-by-surface Petzval sum is +0.001626654736 mm⁻¹. Isolated elements, cemented compounds and functional groups are separately evaluated. All three source/model matrices, principal planes, pupils, individual Petzval terms and focal powers agree with the freshly executed independent branch within declared finite-plane tolerances.
 
@@ -44,7 +44,7 @@ All nominal finite magnification mismatches remain FAIL observations. Their fina
 
 The55 condition 7 summary denominator S3_A conflicts with the governing B/B definition; both literals remain recorded, with S3_B used for the endpoint ratio. Condition 4 in the authored analysis uses computed EFL/computed collimated BFD,1.175381272. The frozen baseline used computed EFL/printed source infinity gap,1.175415451. Both satisfy the condition and round to1.175; this is an explicit denominator convention, not a transcription correction.
 
-The independent f*tan(omega) radius is 33.772199178 mm, distinct from the source 33.5 mm circle radius. Angular field, paraxial rectilinear height and published circle metadata are not silently interchanged.
+The independent f\*tan(omega) radius is 33.772199178 mm, distinct from the source 33.5 mm circle radius. Angular field, paraxial rectilinear height and published circle metadata are not silently interchanged.
 
 ## Geometry, aperture and actual engine scope
 
@@ -76,20 +76,20 @@ Observed completion ordering, rather than manually entered approximate freeze ti
 
 Stage4 leaves data bytes unchanged. It corrects the inherited claim that native ok implies an image hit, tightens source attribution for doublet counts, distinguishes strict catalog coordinates from class-level proxies, adds exact source-plane locators/conventions, and records the executed full-iris S22 margin. Every old/new correction and reason is retained in evidence.independentPass.corrections. Newly corrected analyses were manually reviewed and all inherited numeric/prose tests rerun.
 
-| Analysis claim / section | Executed fact or governing source |
-|---|---|
-| Patent identity, dates, authorship | Original PDF front page; evidence.job/sources; final structured data |
-| Production association, mounts, format, mechanical context | Primary manual p6, official product page/overlay; independentPass.manufacturerRecheck |
-| Counts, shapes, element sequence and cement ownership | Original prescription; final parsed surfaces/elements; source mapping checks |
-| System EFL/BFD/track/principal planes/pupils/ratios | results.implementedModel state fields, independently compared with independentBaseline.execution |
-| Standalone element and compound/group powers | Final parsed element spans; implementedModel and independent state element/group/compound results |
-| Petzval | All individual surface phi/(n*nPrime) terms and sum; d-line qualification |
-| Glass statements and screen limits | Author glassEvidence plus independentPass.independentCatalogEvidence; actual runtime diagnostics |
-| Focus table, finite conjugates, movement and control coordinate | Parsed var/focusPositions; state image matrices; facts.motion; no production-MFD substitution |
-| Conditional bounds and summaries | facts.conditions, raw source summaries and failed comparisons;55 denominator conventions explicitly separated |
-| Iris calibration versus Gaussian f-number | Exact axial stop solve and independently checked pupil ratio; inferred-diameter disclosure |
-| Limited field and clipping/unknown claims | Native field-domain records, analytic cap-miss dispositions and limited_coaxial_acceptance_scope |
-|55 S22 full-rim clearance | Freshly executed independentBaseline.s22FullIrisSupport;202 samples, not continuum proof |
+| Analysis claim / section                                        | Executed fact or governing source                                                                             |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Patent identity, dates, authorship                              | Original PDF front page; evidence.job/sources; final structured data                                          |
+| Production association, mounts, format, mechanical context      | Primary manual p6, official product page/overlay; independentPass.manufacturerRecheck                         |
+| Counts, shapes, element sequence and cement ownership           | Original prescription; final parsed surfaces/elements; source mapping checks                                  |
+| System EFL/BFD/track/principal planes/pupils/ratios             | results.implementedModel state fields, independently compared with independentBaseline.execution              |
+| Standalone element and compound/group powers                    | Final parsed element spans; implementedModel and independent state element/group/compound results             |
+| Petzval                                                         | All individual surface phi/(n\*nPrime) terms and sum; d-line qualification                                    |
+| Glass statements and screen limits                              | Author glassEvidence plus independentPass.independentCatalogEvidence; actual runtime diagnostics              |
+| Focus table, finite conjugates, movement and control coordinate | Parsed var/focusPositions; state image matrices; facts.motion; no production-MFD substitution                 |
+| Conditional bounds and summaries                                | facts.conditions, raw source summaries and failed comparisons;55 denominator conventions explicitly separated |
+| Iris calibration versus Gaussian f-number                       | Exact axial stop solve and independently checked pupil ratio; inferred-diameter disclosure                    |
+| Limited field and clipping/unknown claims                       | Native field-domain records, analytic cap-miss dispositions and limited_coaxial_acceptance_scope              |
+| 55 S22 full-rim clearance                                       | Freshly executed independentBaseline.s22FullIrisSupport;202 samples, not continuum proof                      |
 
 ## Final gate and pending integration
 
@@ -111,22 +111,22 @@ Source: `patents/CN118671950A.pdf`, PDF page 11, Figure 1 (Example 1, infinity s
 
 Scale: axis at row 564; vertex crossings at 431 (surface 1), 443, 569, 590, 701, 1031, 1053, 1079, 1113, 1135, 1185, 1195, 1201, 1247, 1265, 1285, 1293, 1337, 1345, 1369, 1413, 1435 and the image line at 1762. Surface 1 to image 190.11 mm over 1331 px gives 0.1428 mm/px; surface 7 to 26 (57.57 mm over 404.5 px) gives 0.1423; surface 2 to 6 (36.70 mm over 258.5 px) gives 0.1420. Used 0.1425 mm/px (0.285 mm per native pixel). Vertical scale equals axial scale: the surface 2 arc meets the L1 block edge at a sag of 13.9 mm, which is a height of 30.45 mm on R = 40.3091, against 30.25 mm read directly. One native pixel is about 2% of a G2 rim.
 
-| Surface | Element | Before | Figure 1 | After | Evidence |
-|---|---|---:|---:|---:|---|
-| 1 | L1 front | 38.5 | 38.2 (block) | 38.5 | agrees |
-| 2 | L1 rear | 28.264 | 30.3 (arc end) | 28.264 | held by the cross-gap limit; see below |
-| 3 | L2 front | 28.264 | 30.0 (arc end) | 28.264 | held by the cross-gap limit; see below |
-| 4 | L2 rear | 33.5 | 31.4–31.6 arc end, 33.1 block | 33.5 | within 7%; kept |
-| 5, 6 | L3 | 32.5 | 33.3 | 32.5 | agrees |
-| 7, 8 | L4 | 17 | 17.1 | 17 | agrees |
-| 9, 10 | L5 | 16 | 16.0 | 16 | agrees |
-| 11–13 | L6/L7 | 15 | 14.8, square block | 15 | agrees |
-| 14–16 | L8/L9 | 14 | 13.6–13.7, square block | 14 | agrees |
-| 17, 18 | L10 | 13 | 12.4 | 13 | 5% over; kept |
-| 20, 21 | L11 | 12 | 11.0–11.1 | 12 | 8–9% over; kept as inside the change threshold |
-| 22 | L12 front | 10.0 | 11.4–11.5, square block | 11.5 | figure 15% larger and both drawings square-cut |
-| 23, 24 | L12/L13 | 11.5 | 11.4–11.5 | 11.5 | agrees |
-| 25, 26 | L14 | 16 | 16.5–16.6 | 16 | agrees |
+| Surface | Element   | Before |                      Figure 1 |  After | Evidence                                       |
+| ------- | --------- | -----: | ----------------------------: | -----: | ---------------------------------------------- |
+| 1       | L1 front  |   38.5 |                  38.2 (block) |   38.5 | agrees                                         |
+| 2       | L1 rear   | 28.264 |                30.3 (arc end) | 28.264 | held by the cross-gap limit; see below         |
+| 3       | L2 front  | 28.264 |                30.0 (arc end) | 28.264 | held by the cross-gap limit; see below         |
+| 4       | L2 rear   |   33.5 | 31.4–31.6 arc end, 33.1 block |   33.5 | within 7%; kept                                |
+| 5, 6    | L3        |   32.5 |                          33.3 |   32.5 | agrees                                         |
+| 7, 8    | L4        |     17 |                          17.1 |     17 | agrees                                         |
+| 9, 10   | L5        |     16 |                          16.0 |     16 | agrees                                         |
+| 11–13   | L6/L7     |     15 |            14.8, square block |     15 | agrees                                         |
+| 14–16   | L8/L9     |     14 |       13.6–13.7, square block |     14 | agrees                                         |
+| 17, 18  | L10       |     13 |                          12.4 |     13 | 5% over; kept                                  |
+| 20, 21  | L11       |     12 |                     11.0–11.1 |     12 | 8–9% over; kept as inside the change threshold |
+| 22      | L12 front |   10.0 |       11.4–11.5, square block |   11.5 | figure 15% larger and both drawings square-cut |
+| 23, 24  | L12/L13   |   11.5 |                     11.4–11.5 |   11.5 | agrees                                         |
+| 25, 26  | L14       |     16 |                     16.5–16.6 |     16 | agrees                                         |
 
 Changed: surface 22 only, 10.0 to 11.5 mm. Figure 1 draws the L12/L13 doublet as one rectangle with the surface 22 arc starting at the block corner, with no flat annulus of the kind it draws on the L1 rear and L2 front, so the three surfaces keep one height. The earlier 10.0 mm entrance limit recorded above is superseded. The validator accepts the edited file; the surface 21 to 22 gap carries 3.92 mm of combined sag against a 5.75 mm allowance.
 
@@ -154,32 +154,32 @@ Independent second look at the lens as the local site draws it, against `patents
 
 Figure 1 was measured again from scratch on a 600 dpi resampling of the 150 dpi raster. Axis at row 1128; vertex crossings at columns 864 (surface 1), 888, 1138.5, 1181.5, 1404, 2063, 2106.5, 2157.5, 2226, 2271.5, 2371.5, 2389.5, 2403, 2494, 2530.5, 2571 (surface 20), 2586, 2674, 2689, 2737.5, 2827, 2870.5 and the image line at 3524.5. Surface 1 to image is 190.11 mm over 2660.5 px, 0.07146 mm/px (0.2858 mm per native pixel); every other vertex falls within 3 px (0.2 mm, under one native pixel) of its prescription position at that scale. Heights are read on both sides of the axis and quoted at the line centre.
 
-| Element | Surfaces | Figure 1 | Maker diagram (relative) | Stored before | Stored after |
-|---|---|---:|---|---:|---:|
-| L1 front block | 1 | 38.2 | tallest, flat front, bevelled rear corner | 38.5 | 38.5 |
-| L1 rear arc end | 2 | 30.2–30.4 | meets L2 at the rim | 29.5 | 29.5 |
-| L2 front | 3 | arc ends 30.0–30.4, flat land up to the 33.2 block top | square block, arc runs to the block corner | 29.5 | 32.5 |
-| L2 rear | 4 | 33.2 block | square block, 0.94 of L1 | 33.5 | 32.5 |
-| L3 | 5, 6 | 33.4, knife-edge tips | level with L2, small flat tip | 32.5 | 32.5 |
-| L4 | 7, 8 | 17.1 | tallest behind the gap | 17 | 17 |
-| L5 | 9, 10 | 15.9 | 0.97 of L4 | 16 | 16 |
-| L6/L7 | 11–13 | 14.8, one block | L7 stepped below L6 | 15 | 15 |
-| L8/L9 | 14–16 | 13.65, one block | L9 stepped below L8 | 14 | 14 |
-| L10 | 17, 18 | 12.4 | 0.81 of L4 | 13 | 13 |
-| L11 | 20, 21 | 11.05 | level with L12/L13 | 12 | 11.0 |
-| L12/L13 | 22–24 | 11.45, square block | square block | 11.5 | 11.5 |
-| L14 | 25, 26 | 16.5 | 0.76 of L4 | 16 | 16 |
+| Element         | Surfaces |                                               Figure 1 | Maker diagram (relative)                   | Stored before | Stored after |
+| --------------- | -------- | -----------------------------------------------------: | ------------------------------------------ | ------------: | -----------: |
+| L1 front block  | 1        |                                                   38.2 | tallest, flat front, bevelled rear corner  |          38.5 |         38.5 |
+| L1 rear arc end | 2        |                                              30.2–30.4 | meets L2 at the rim                        |          29.5 |         29.5 |
+| L2 front        | 3        | arc ends 30.0–30.4, flat land up to the 33.2 block top | square block, arc runs to the block corner |          29.5 |         32.5 |
+| L2 rear         | 4        |                                             33.2 block | square block, 0.94 of L1                   |          33.5 |         32.5 |
+| L3              | 5, 6     |                                  33.4, knife-edge tips | level with L2, small flat tip              |          32.5 |         32.5 |
+| L4              | 7, 8     |                                                   17.1 | tallest behind the gap                     |            17 |           17 |
+| L5              | 9, 10    |                                                   15.9 | 0.97 of L4                                 |            16 |           16 |
+| L6/L7           | 11–13    |                                        14.8, one block | L7 stepped below L6                        |            15 |           15 |
+| L8/L9           | 14–16    |                                       13.65, one block | L9 stepped below L8                        |            14 |           14 |
+| L10             | 17, 18   |                                                   12.4 | 0.81 of L4                                 |            13 |           13 |
+| L11             | 20, 21   |                                                  11.05 | level with L12/L13                         |            12 |         11.0 |
+| L12/L13         | 22–24    |                                    11.45, square block | square block                               |          11.5 |         11.5 |
+| L14             | 25, 26   |                                                   16.5 | 0.76 of L4                                 |            16 |           16 |
 
 Changes and their evidence:
 
-| Field | Before | After | Evidence |
-|---|---|---|---|
-| Surface 3 `sd` | 29.5 | 32.5 | Both drawings show L2 as a square-cut block with a flat top. With unequal faces the site drew a slanted top rising 4 mm from front to rear. The validator evaluates the surface 2 to 3 gap at the shared 29.5 mm height, so the combined sag stays 17.40 mm of 17.912 mm and `gapSagFrac` 0.98 is still the value needed. |
-| Surface 4 `sd` | 33.5 | 32.5 | Figure 1 draws L3 a fraction taller than the L2 block (33.4 against 33.2) and the maker diagram draws them level; the site drew L2 1 mm taller than L3. L3 cannot be raised to meet it: its two faces cross at 33.35 mm. |
-| Surfaces 20, 21 `sd` | 12 | 11.0 | Figure 1 draws L11 at 11.05 mm, below the 11.45 mm rear doublet, on both sides of the axis; the site drew it 0.5 mm taller than the doublet. The first pass listed this as an open limitation. |
-| `groups` | G1, G2, G3 | G1, G1a, G2, G3 | Figure 1 brackets G1a over the two front negative elements, and claim 1 and paragraph 0053 define it. G1a spans surfaces 1–4. |
-| `varLabels` | D12, D19, BF | D6 (G1–G2), D19 (STO–G3), BF | The variable-spacing table names the rows D(6), D(19) and BF. D12 is the figure's symbol for the infinity value of D(6); next to a surface-numbered D19 it read as surface 12, a cemented interface. Same form as the Laowa 58 mm and 65 mm entries. |
-| `focusDescription` | packaging wording with schema field names | plain statement of the three states, the travel of each group and the computed endpoint | Numbers below. |
+| Field                | Before                                    | After                                                                                   | Evidence                                                                                                                                                                                                                                                                                                                  |
+| -------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Surface 3 `sd`       | 29.5                                      | 32.5                                                                                    | Both drawings show L2 as a square-cut block with a flat top. With unequal faces the site drew a slanted top rising 4 mm from front to rear. The validator evaluates the surface 2 to 3 gap at the shared 29.5 mm height, so the combined sag stays 17.40 mm of 17.912 mm and `gapSagFrac` 0.98 is still the value needed. |
+| Surface 4 `sd`       | 33.5                                      | 32.5                                                                                    | Figure 1 draws L3 a fraction taller than the L2 block (33.4 against 33.2) and the maker diagram draws them level; the site drew L2 1 mm taller than L3. L3 cannot be raised to meet it: its two faces cross at 33.35 mm.                                                                                                  |
+| Surfaces 20, 21 `sd` | 12                                        | 11.0                                                                                    | Figure 1 draws L11 at 11.05 mm, below the 11.45 mm rear doublet, on both sides of the axis; the site drew it 0.5 mm taller than the doublet. The first pass listed this as an open limitation.                                                                                                                            |
+| `groups`             | G1, G2, G3                                | G1, G1a, G2, G3                                                                         | Figure 1 brackets G1a over the two front negative elements, and claim 1 and paragraph 0053 define it. G1a spans surfaces 1–4.                                                                                                                                                                                             |
+| `varLabels`          | D12, D19, BF                              | D6 (G1–G2), D19 (STO–G3), BF                                                            | The variable-spacing table names the rows D(6), D(19) and BF. D12 is the figure's symbol for the infinity value of D(6); next to a surface-numbered D19 it read as surface 12, a cemented interface. Same form as the Laowa 58 mm and 65 mm entries.                                                                      |
+| `focusDescription`   | packaging wording with schema field names | plain statement of the three states, the travel of each group and the computed endpoint | Numbers below.                                                                                                                                                                                                                                                                                                            |
 
 Rims judged and left alone. L1 stays 38.5 / 29.5 mm and still renders as a taper where both drawings show a flat-fronted flanged block. No admissible pair squares it. The surface 2 sphere touches the surface 3 sphere at 29.862 mm, so any larger surface 2 rim passes through L2, and with L2 squared the validator refuses each one tried: 29.8 mm (combined sag 17.82 mm against the 17.554 mm allowance), 30.3 mm (18.55 mm), 33 mm and 36.2 mm (22.03 mm at the 32.5 mm shared height); 38.5 mm also exceeds the rim-slope limit (72.8° against 64.2°). Before L2 was squared, 33 mm and 36.2 mm passed the validator, because the check ran at the 29.5 mm surface 3 rim, while wrapping L1 around L2 by 3.8 mm and past its rear vertex. Squaring L1 the other way, with surface 1 at 29.5 mm, passes the validator but blocks the chief ray of the 33.5 mm image point, which needs 34.86 mm on surface 1, and makes L1 shorter than L2 against both drawings. L3, L4, L5, both G2 doublets, L10, the rear doublet and L14 agree with Figure 1 within 5% and keep the drawn order of heights. The stop semi-diameter is unchanged.
 
@@ -199,3 +199,13 @@ Open limitations: the L1 taper described above. The L2 front face is drawn as on
 - S2 keeps its 29.5 mm optical cap and gains an opaque extension to the 38.5 mm L1 outer radius, restoring its source flange. The facing L2 front S3 retains the 32.5 mm outer rim with `rimCutDepthMm: 4.60`, ending its concave cap at 29.61521 mm. The figure's native cap/edge share is approximately q=0.90±0.016 (edge about 116 px). A literal 29.236 mm candidate fails the inferred-cut beam sweep: maximum ray radius is 29.4978 mm at infinity / field 27.34°, requiring at least 29.5855 mm. The accepted cap moves outward to clear the beam and its 0.3% margin. Both lands pass the unchanged 0.98 gap allowance; no source radii, axial spacings or allowance were tuned. This replaces the previously disclosed L1 taper/L2 overextended front curve. No further resolved land was established, and cemented caps remain unchanged.
 - Fresh glass check confirms all 14 native nd/νd pairs against the source, including L2 1.49700/85.00; ¶0056 explicitly defines d-line Nd. Eight elements retain compatible catalog spectra and six remain unmatched (L2, L3, L6, L10, L11, L13), without replacing optimizer-floated coordinates by loose nearby catalog rows. The two existing ED/APD annotations remain inferred; L1 shares the ED-class coordinate but has no manufacturer-position tag. No source line indices, partial dispersion or coefficient data are supplied. Supplier/melt identity remains unconfirmed.
 - Verification: focused surface validation including the complete inferred-cut beam sweep passes; image-circle audit reports zero undersized surfaces and aperture remains within 3% without a rim limiter. All nine actual production SVG states at focus/zoom 0, 0.5, 1 have finite paths and zero hidden trim; their raster montage was directly inspected. The narrow source-model clearance is not a manufacturing tolerance certificate.
+
+## 2026-10-31 — Scoped material/reference and catalog follow-up
+
+Reuse the actual Oct 29 complete shape/glass review and all earlier dates. Direct narrow source inspection: exact `patents/CN118671950A.pdf`, Example 1, PDF page 6 / printed 4 ¶0056 d-line definition and ¶0060–0061 all 14 medium pairs; source focus rows page 7; Figure 1 page 11. Native table 872×869 plus26th-row continuation, native figure 853×404,150 ppi; magnification is not additional resolution. Source S12/S15/S23 are the three cemented media changes; every medium is ordinary glass, with no separately prescribed resin/cement/filter/plate. No source C/F/g, numerical partial dispersion, APD designation or coefficient backfill is available.
+
+Existing and full retained manufacturer tables were reused as the bounded search baseline, then screened against [official NHG2601](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf)184 coordinate headers. No strong new match: unresolved L2 1.49700/85.00, L3 1.57371/70.00, L6 1.85561/23.21, L10 1.78451/48.06, L11 1.78346/32.08 and L13 1.53878/52.52 remain. Rejected boundary-only alternatives: FCD615 for L3 (−0.00227/+1.61), S-NBH56/NHG H-ZF56 for L6 (−0.00083/+1.59), YGH52/S-YGH52 for L10 (+0.00199/+1.9417). Coordinate compatibility alone does not resolve these native floated design coordinates.
+
+Additional public manufacturer checks: Osaka Gas OKP lists optical polymers at nD1.607–1.656/νD21–27 and requests company/name/email for coefficient downloads; no form was sent. Kuraray PARAPET/KURARITY are PMMA/acrylic polymer products, with no compatible ordinary-glass row identified. LZOS's public catalog page was not usable: its www hostname failed certificate validation, its canonical non-www page returned a JavaScript-cookie redirect, and the web reader returned502. These are bounded source-access/search outcomes, not proof that unpublished glass does not exist.
+
+Retain all 8 active curves,6 unmatched media,2 inferred APD tags and source qualifications. Data remains byte-identical. All R/d, indices/Abbe values, caps, cuts, stops and movement/focus controls are preserved. No new full-lens source/shape review, beam sweep or production claim is added.

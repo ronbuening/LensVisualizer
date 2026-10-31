@@ -451,10 +451,16 @@ E-line color channels are traced at C′/e/F′/g on every dispersion tier, so n
 is safe; do not add d-line `nC` / `nF` to an e-line element. Writing `indexReference: "d"` or `apd: false` explicitly
 records that the author checked; both may also be left out.
 
-For a historical source whose spectral line is unspecified, keep an explicit `Unmatched (...)` glass disposition and
-add `indexReferenceNote` explaining the uncertainty and the approximate tracing reference. The inspector then labels
-the values `n (source)` / `ν (source)` instead of asserting d/e identity. The note does not change the tracing
-convention or enable catalog resolution.
+For a historical source whose spectral line is unspecified and fails the coordinate test below, keep an explicit
+`Unmatched (...)` glass disposition and add `indexReferenceNote` explaining the uncertainty and the approximate tracing
+reference. The inspector then labels the values `n (source)` / `ν (source)` instead of asserting d/e identity. The note
+does not change the tracing convention or enable catalog resolution.
+
+A source that names no line can still establish one numerically. Treat a table as d-line when at least 80% of its pairs
+reproduce a catalog nd / νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none reproduces a catalog ne / νe in the same
+window. Plotted d and g aberration curves support that reading but do not replace it. Such a lens omits
+`indexReferenceNote` and may use catalog curves, and its audit log records the match counts. Its labels stay qualified
+spectral proxies, because the test fixes the reference line, not the supplier, melt or chemistry.
 
 ### Bulk absorption (`absorptionCoefficientPerMm`)
 

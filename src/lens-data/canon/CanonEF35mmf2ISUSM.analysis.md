@@ -7,8 +7,9 @@
 **Published:** July 23, 2015\
 **Inventor:** Akira Mizuma\
 **Applicant:** Canon Inc.\
-**Title:** *Optical System and Imaging Apparatus Including the Same*\
-**Example details:** First Numerical Embodiment
+**Title:** _Optical System and Imaging Apparatus Including the Same_\
+**Example details:** Numerical Embodiment 1 (source heading: First Numerical Embodiment)\
+**Original-PDF review:** 2026-10-30; native Figure 1, PDF p. 2 / sheet 1; table, asphere and definitions, PDF p. 19 / printed p. 5.
 
 The prescription modeled here is the first numerical embodiment of US 2015/0205081 A1. The patent gives a 34.49 mm, F2.05 retrofocus wide-angle design with a 32.10° half field, 21.64 mm image height, 38.30 mm back focus, ten elements in eight air-separated groups, one image-stabilizing singlet immediately behind the aperture diaphragm, and one aspherical surface on the final positive lens (¶¶0030–0034, 0055, 0058–0060; Fig. 1).
 
@@ -41,7 +42,7 @@ The element focal lengths quoted below are **standalone air-boundary focal lengt
 
 ### E1 — Negative Meniscus, convex to object
 
-`nd = 1.48749, νd = 70.2. Glass: 487702 (vendor unresolved). f = −113.401636 mm.`
+`nd = 1.48749, νd = 70.2. Glass: S-FSL5 (qualified spectral proxy). f = −113.401636 mm.`
 
 E1 is the front negative meniscus of the fixed L1 unit. The patent specifies this first element as a negative meniscus with its convex surface toward the object (¶0033). Its negative standalone power supplies the front-diverging action expected in a retrofocus wide-angle form, while the following positive E2 largely compensates that power within L1.
 
@@ -49,7 +50,7 @@ No separate aberration-correction task is assigned to E1 in the patent. Its inte
 
 ### E2 — Positive Meniscus
 
-`nd = 1.77250, νd = 49.6. Glass: 773496 (vendor unresolved). f = +102.722803 mm.`
+`nd = 1.77250, νd = 49.6. Glass: J-LASF016 (qualified spectral proxy). f = +102.722803 mm.`
 
 E2 is the positive member that completes the fixed L1 unit. In isolation its power is comparable in magnitude to E1 but opposite in sign. Once the air spacing and thick-lens effects of the two elements are included, L1 is only weakly positive as a complete unit, with a computed air-boundary EFL of +927.520 mm.
 
@@ -57,7 +58,7 @@ This distinction is important: the individual +102.723 mm focal length of E2 is 
 
 ### E3 — Negative Meniscus, concave to image
 
-`nd = 1.58144, νd = 40.8. Glass: 581407-class (vendor unresolved). f = −34.187654 mm.`
+`nd = 1.58144, νd = 40.8. Glass: S-TIL25 (qualified spectral proxy). f = −34.187654 mm.`
 
 E3 is the first element of the translating L2 unit. The patent describes this lens as a negative meniscus with its concave surface toward the image (¶0033). Its strong negative standalone power alters the convergence entering the following positive E4 and begins the internal power redistribution of L2.
 
@@ -65,16 +66,16 @@ Because E3 moves with the complete L2 unit during focus, its separations to E4 a
 
 ### E4 — Biconvex Positive
 
-`nd = 1.88300, νd = 40.8. Glass: 883408 (vendor unresolved). f = +28.090931 mm.`
+`nd = 1.88300, νd = 40.8. Glass: S-LAH58 (qualified spectral proxy). f = +28.090931 mm.`
 
 E4 is one of the strongest positive standalone elements in the design. It follows the negative E3 and precedes the supplementary cemented pair Lc. The patent's architecture requires a positive lens in this position before Lc and the aperture diaphragm (¶0033).
 
-E4's high refractive index allows substantial positive power in a short axial thickness. The data do not assign a vendor glass, and the 883408 coordinate label resolves to a catalog-equivalent dispersion curve without identifying the production supplier.
+E4's high refractive index allows substantial positive power in a short axial thickness. The compatible S-LAH58 curve is a spectral proxy; neither its name nor its coordinate match identifies a production supplier or melt.
 
 ### E5/E6 — Cemented Lc: Positive Meniscus + Biconcave Negative
 
-**E5:** `nd = 1.88300, νd = 40.8. Glass: 883408 (vendor unresolved). f = +35.348452 mm.`\
-**E6:** `nd = 1.61293, νd = 37.0. Glass: 613370 (vendor unresolved). f = −25.127604 mm.`
+**E5:** `nd = 1.88300, νd = 40.8. Glass: S-LAH58 (qualified spectral proxy). f = +35.348452 mm.`\
+**E6:** `nd = 1.61293, νd = 37.0. Glass: E-F3 (qualified spectral proxy). f = −25.127604 mm.`
 
 E5 and E6 form the patent's cemented lens Lc on the object side of the diaphragm. The individual standalone powers have opposite signs, but the complete cemented pair has a verified air-boundary EFL of **−79.460196 mm**. That cemented net power, rather than either isolated element focal length, is the quantity used in the patent's Lc/Gis balance.
 
@@ -84,7 +85,7 @@ In the installed infinity paraxial ray, Lc bends the reduced angle in the opposi
 
 ### E7 / Gis — Biconvex Positive Stabilizing Singlet
 
-`nd = 1.69680, νd = 55.5. Glass: 697555 (vendor unresolved). f = +64.771182 mm.`
+`nd = 1.69680, νd = 55.5. Glass: J-LAK14 (qualified spectral proxy). f = +64.771182 mm.`
 
 E7 is the single positive image-stabilizing lens Gis. It lies immediately behind the aperture stop, with 2.68 mm from the diaphragm plane to its object-side surface. The patent makes this near-stop placement fundamental: reducing the ray height at Gis permits a smaller stabilizer and reduces off-axis aberration variation as the unit moves laterally (¶¶0035–0037).
 
@@ -94,8 +95,8 @@ The standalone E7 focal length is +64.771182 mm. The verified Example-1 image-sh
 
 ### E8/E9 — Rear Cemented Pair J2: Negative Meniscus + Positive Meniscus
 
-**E8:** `nd = 1.73800, νd = 32.3. Glass: 738323 (vendor unresolved). f = −24.324857 mm.`\
-**E9:** `nd = 1.59522, νd = 67.7. Glass: 595677 (vendor unresolved). f = +36.470531 mm.`
+**E8:** `nd = 1.73800, νd = 32.3. Glass: J-KZFH9 (qualified spectral proxy). f = −24.324857 mm.`\
+**E9:** `nd = 1.59522, νd = 67.7. Glass: S-FPM2 (qualified spectral proxy). f = +36.470531 mm.`
 
 E8 and E9 form the negative/positive cemented pair that follows Gis. The patent specifies this cemented sequence on the image side of the stabilizer (¶0034). The data annotate it as `J2`; that label is a LensVisualizer convenience rather than a patent designation.
 
@@ -105,7 +106,7 @@ The large dispersion contrast between E8 (`νd = 32.3`) and E9 (`νd = 67.7`) is
 
 ### E10 — Positive Meniscus with S18A Asphere
 
-`nd = 1.58313, νd = 59.4. Glass: 583594-class (vendor unresolved). f = +52.756446 mm.`
+`nd = 1.58313, νd = 59.4. Glass: J-SK12 (qualified spectral proxy). f = +52.756446 mm.`
 
 E10 is the final positive lens and carries the prescription's sole asphere on its front surface, S18A. The patent specifically prefers a positive aspherical lens closest to the image plane because this placement can reduce sagittal image-plane tilt toward the field edge (¶0049).
 
@@ -113,25 +114,23 @@ Canon's production documentation states that the EF 35mm f/2 IS USM uses one gla
 
 The final element also works immediately ahead of the long rear air space. Its modeled E10 rim geometry is constrained by the inferred semi-diameter rather than a published clear aperture, so quantitative rim-departure statements are tied explicitly to that modeled aperture in the asphere section below.
 
-## Glass Identification and Selection
+## Glass and Spectral Qualification
 
-The patent supplies only d-line refractive index `nd` and Abbe number `νd`. It does not name glass manufacturers and does not publish per-element `nC`, `nF`, `ng`, `PgF`, `dPgF`, or Sellmeier coefficients. The final data therefore retain conservative six-digit/code-family labels rather than asserting a vendor melt.
+The source explicitly defines prescription nd/νd on the d-line in ¶0058 (PDF p. 19 / printed p. 5); ¶0032 identifies d as 587.6 nm and the plotted g-line as 435.8 nm. The latter plot legend does not supply an individual ng value. All ten literal index/Abbe pairs remain unchanged. No per-medium C/F/g index, partial dispersion, APD, manufacturer or melt is published, and no such override is authored.
 
-| Authored glass label | nd | νd | Element(s) | Prescription role |
-|---|---:|---:|---|---|
-| 487702 (vendor unresolved) | 1.48749 | 70.2 | E1 | Front negative meniscus |
-| 773496 (vendor unresolved) | 1.77250 | 49.6 | E2 | Positive member of fixed L1 |
-| 581407-class (vendor unresolved) | 1.58144 | 40.8 | E3 | Negative front member of L2 |
-| 883408 (vendor unresolved) | 1.88300 | 40.8 | E4, E5 | Strong positive elements before the stop |
-| 613370 (vendor unresolved) | 1.61293 | 37.0 | E6 | Negative member of Lc |
-| 697555 (vendor unresolved) | 1.69680 | 55.5 | E7 / Gis | Positive stabilizing singlet |
-| 738323 (vendor unresolved) | 1.73800 | 32.3 | E8 | Negative member of rear cemented pair |
-| 595677 (vendor unresolved) | 1.59522 | 67.7 | E9 | Positive member of rear cemented pair |
-| 583594-class (vendor unresolved) | 1.58313 | 59.4 | E10 | Final positive aspherical lens |
+| Elements | Source nd / νd | Compatible spectral proxy |
+| -------- | -------------- | ------------------------- |
+| E1       | 1.48749 / 70.2 | S-FSL5                    |
+| E2       | 1.77250 / 49.6 | J-LASF016                 |
+| E3       | 1.58144 / 40.8 | S-TIL25                   |
+| E4, E5   | 1.88300 / 40.8 | S-LAH58                   |
+| E6       | 1.61293 / 37.0 | E-F3                      |
+| E7       | 1.69680 / 55.5 | J-LAK14                   |
+| E8       | 1.73800 / 32.3 | J-KZFH9                   |
+| E9       | 1.59522 / 67.7 | S-FPM2                    |
+| E10      | 1.58313 / 59.4 | J-SK12                    |
 
-Catalog comparison against OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA finds several exact or near-exact optical-coordinate matches, often with more than one vendor occupying the same `nd`/`νd` position. Those are catalog-derived equivalences, not evidence of the actual Canon melt. The conservative labels in the data are therefore more defensible than assigning a specific catalog name.
-
-The prescription uses substantial ordinary dispersion contrast, especially in Lc and the rear E8+E9 cemented pair. The patent additionally constrains the stabilizer glass to `νdis > 35`, preferably `νdis > 40`, and Example 1 uses `νd = 55.5` (¶¶0050, 0053–0054). This supports a conventional chromatic-correction discussion, but not an APO or anomalous-partial-dispersion claim.
+These ten are the same compatible curves selected by the previous coordinate labels, now named and qualified explicitly. Compatibility uses the existing catalog tolerances; small Abbe/index residuals remain proxy uncertainty, not evidence of a specific historical formulation. The source's stabilizer νd condition supports ordinary dispersion discussion, but not APD or APO claims. No separate cement medium, hybrid layer, filter or rear plate is listed in this numerical embodiment.
 
 ## Focus Mechanism
 
@@ -139,16 +138,18 @@ Canon describes the production EF 35mm f/2 IS USM as using a rear-focusing syste
 
 The data therefore use a **CONSTRAINED_RECONSTRUCTION**, not a source-published close-focus state. The mechanism has one axial degree of freedom, so the reconstruction preserves L2 internally and varies only the gap ahead of L2 and the back-focus gap behind it. Canon's rounded 0.24 m closest-focus distance provides the conjugate target; the rounded 0.24× maximum magnification provides an independent check. For this reconstruction, the 0.24 m distance is normalized from the object plane to the image/sensor plane; with the 104.50 mm lens track fixed, the close-state object plane is 135.50 mm in front of S1.
 
-| Spacing / result | Infinity | Reconstructed 0.24 m state |
-|---|---:|---:|
-| D4, S4→S5 | 9.910000 mm | 1.686668 mm |
-| BF, S19→image | 38.300000 mm | 46.523332 mm |
-| D4 + BF | 48.210000 mm | 48.210000 mm |
-| L2 axial shift | 0 | 8.223332 mm objectward |
-| Gaussian EFL | 34.501498 mm | 34.199596 mm |
-| Absolute magnification | — | 0.240100 |
+| Spacing / result       |     Infinity | Reconstructed 0.24 m state |
+| ---------------------- | -----------: | -------------------------: |
+| D4, S4→S5              |  9.910000 mm |                1.686668 mm |
+| BF, S19→image          | 38.300000 mm |               46.523332 mm |
+| D4 + BF                | 48.210000 mm |               48.210000 mm |
+| L2 axial shift         |            0 |     8.223332 mm objectward |
+| Gaussian EFL           | 34.501498 mm |               34.199596 mm |
+| Absolute magnification |            — |                   0.240100 |
 
 The solved close state has a paraxial conjugacy residual of `8.53 × 10⁻14 mm`. Solving the inverse problem from exactly 0.24× instead predicts an object-to-image distance of 240.056 mm, only 0.056 mm from the rounded 0.24 m Canon specification. The agreement is the basis for retaining the reconstruction, but the close-state spacings remain a model rather than patent-published data.
+
+The intermediate linear control is illustrative rather than a source-certified focus cam. Independent finite-conjugate sampling over twenty-one focus settings finds a largest residual of approximately −1.0731 mm at focus 0.55; at focus 0.5/displayed 0.48 m the residual is −1.05214 mm. The close 0.24 m endpoint remains solved to numerical precision, and the infinity rounded prescription is within 0.000743 mm of the authored plane. No source gap or control is retuned to remove that interpolation error.
 
 Canon documents ring-USM drive for the production lens. The patent itself specifies the moving optical unit but does not tie that movement to a particular production motor or mechanical cam law.
 
@@ -163,15 +164,15 @@ $$
 
 The patent's `k` maps directly to the standard conic constant `K`; therefore `K = 0` is the spherical-base case. The final data use:
 
-| Coefficient | S18A value |
-|---|---:|
-| K | 0 |
-| A4 | −1.49529 × 10⁻5 mm⁻3 |
-| A6 | +4.91763 × 10⁻9 mm⁻5 |
-| A8 | −4.11063 × 10⁻11 mm⁻7 |
-| A10 | 0 |
-| A12 | 0 |
-| A14 | 0 |
+| Coefficient |            S18A value |
+| ----------- | --------------------: |
+| K           |                     0 |
+| A4          |  −1.49529 × 10⁻5 mm⁻3 |
+| A6          |  +4.91763 × 10⁻9 mm⁻5 |
+| A8          | −4.11063 × 10⁻11 mm⁻7 |
+| A10         |                     0 |
+| A12         |                     0 |
+| A14         |                     0 |
 
 A10 and A12 are not tabulated for Example 1 and are represented as zero; A14 is the schema-required zero term beyond the published polynomial. No uniform scale was applied (`s = 1.000000`), so the patent radii, spacings, image-plane coordinates, and asphere coefficients remain unscaled. Consequently, no `A_p/s^(p-1)` coefficient transformation is required, and K remains unchanged.
 
@@ -193,13 +194,13 @@ Canon's product documentation confirms that the production lens includes optical
 
 The patent defines five principal conditions controlling stabilizer placement, stabilizer power, Lc/Gis power balance, image-shaking sensitivity, and Gis dispersion (¶¶0041–0054). Using the final prescription and the patent's stated `f = 34.49 mm` where Table 1 does so, independent calculation reproduces all five Example-1 entries.
 
-| Eq. | Patent condition | Computed Example 1 | Patent Table 1 |
-|---|---|---:|---:|
-| (1) | `0 < Dis/DL < 0.25` | 0.040483 | 0.040 |
-| (2) | `0.3 < fis/f < 3.5` | 1.877970 | 1.88 |
-| (3) | `0.3 < −fc/fis < 3.5` | 1.226783 | 1.23 |
-| (4) | `0.1 < |(1 − βis)βr| < 1.3` | 0.614385 | 0.614 |
-| (5) | `35 < νdis` | 55.5 | 55.5 |
+| Eq. | Patent condition      | Computed Example 1 | Patent Table 1 |
+| --- | --------------------- | -----------------: | -------------: | -------- | ----- |
+| (1) | `0 < Dis/DL < 0.25`   |           0.040483 |          0.040 |
+| (2) | `0.3 < fis/f < 3.5`   |           1.877970 |           1.88 |
+| (3) | `0.3 < −fc/fis < 3.5` |           1.226783 |           1.23 |
+| (4) | `0.1 <                |        (1 − βis)βr |         < 1.3` | 0.614385 | 0.614 |
+| (5) | `35 < νdis`           |               55.5 |           55.5 |
 
 Condition (1) is governed directly by the 2.68 mm stop-to-Gis separation and the 66.20 mm first-to-last-surface length. Condition (2) limits the positive Gis power relative to the whole lens. Condition (3) governs the opposite-sign balance of Lc and Gis. Condition (4) is the in-system image-shaking sensitivity rather than a standalone group power. Condition (5) constrains the d-line Abbe number of the stabilizing singlet.
 
@@ -213,15 +214,21 @@ Surface-by-surface Petzval evaluation using `φ/(n·n′)` gives a sum of **0.00
 
 The patent publishes the location of the aperture diaphragm as S12 but does not publish its diameter. The authored physical stop semi-diameter, **9.767427 mm**, is inferred from the verified F2.05 pupil geometry. The patent likewise publishes no surface semi-diameters. All authored `sd` values are model-derived from the stop/pupil solution, exact meridional ray envelopes, the patent's 21.64 mm image height and 32.10° half field, the reconstructed 0.24 m state, and Fig. 1 proportions.
 
-The screenshot-led 600-dpi Fig. 1 review refined S1/S2 to 25.2 mm, S5/S6 to 15.2/12.6 mm, Gis to 10.5 mm, and S18A/S19 to 11.9 mm. The front meniscus and final asphere now have level rims closer to the drawing. S5/S6 excludes the drawn mounting flange. Smaller central and rear cemented-pair rims were rejected because they clipped rays, including at the internal cemented interface. The retained apertures pass surface validation, image-circle coverage, and render diagnostics through infinity/close focus. The default infinity 0.6-field, ±0.75-pupil fan remains clear; full-field vignetting is still possible. These are modeling apertures, not patent clear-aperture specifications.
+The original 2026-09-06 prescription/glass coverage remains in the audit. The 2026-10-30 scoped reopening addresses missing resolved shoulders and the resulting source-outline discrepancy, reuses unchanged prescription/curve conclusions, and reports peripheral vignetting rather than using it to enlarge source blanks. The 2026-10-30 inspection used the original native 2560 × 3300 pages at 300 ppi; the earlier 600-dpi display was upsampling. Figure 1 has about 12.4 px/mm axial/vertical scale. Eight inferred cap fields now follow the optical contours: S2 21.8 mm, S7/S8 11.8 mm, S9/S10 11.2 mm, S15 10.0 mm and S16/S17 11.0 mm. Outer shoulders extend S2 to 25.2 mm, S6 to 15.2 mm and S15 to 11.0 mm while preserving their clear caps. These estimates carry practical ±0.5 mm drawing uncertainty. The S6 feature is part of the closed negative-element outline; the original provides no separate mounting-flange identification. Mechanical brackets, leaders, rays and the IS arrow are excluded. The cemented interfaces are continuous clear curves; no opaque bonded land or unsupported blank is added.
+
+Surface and image-circle checks pass with unchanged guards. Across twenty-one reconstructed focus settings, ten actual SVG paths per state are finite, connected and closed, with zero hidden trimming. Eight iris settings per focus give 168/168 traced working-ray calls in both versions. At the infinity F2.05 target the real working value is 2.10493; the paraxial iris convention and physical ray-derived value remain distinct. No inferred cut is used.
+
+A 193-point circular pupil at axial/half/corner field over those twenty-one focus settings gives 12,159 samples per version. All axial pupils and all sixty-three chiefs clear. Inferred cap changes alter peripheral vignetting: passing half/corner counts are 169/109 at infinity and 175/127 at close, versus 186/111 and 186/133 previously. The candidate has 112 blocked off-axis aiming attempts; 109 unrestricted ghost traces exceed the named limiting caps, while the other three independently intersect the first sphere at radii 29.109–29.330 mm, beyond its retained 25.2 mm cap. These are reported as blocked, not successfully aimed samples. Zero unexplained inside-cap misses were found. The source's 32.10° infinity angle reaches 21.2356 mm; the format corner reaches 21.65 mm near 32.6°. These field statements are separate.
+
+The native outline is closer to the selected source, while production pupil transmission remains unverified. Centered sampling does not certify the source's displaced 0.3° IS plots. [The original-PDF audit](CanonEF35mmf2ISUSM.audit.md) records the shape, glass, source and runtime evidence.
 
 No sensor cover glass, filter, inactive dummy plane, flare cutter, blocker, mirror, or other mechanical plane appears in the Example-1 numerical prescription, so no such optical plate was omitted or replaced by an air-equivalent spacing. No patent numerical value was corrected. Machine-extracted text contains OCR defects, but the modeled values correspond to the rendered source table rather than to those OCR errors.
 
-The data also contain no vendor-resolved spectral annotation: `nC`, `nF`, `ng`, and `dPgF` are absent. Accordingly, this analysis makes no APO or anomalous-partial-dispersion claim.
+The data contain ten qualified compatible catalog curves, but no published individual line-index or partial-dispersion overrides: `nC`, `nF`, `ng`, and `dPgF` remain absent. Accordingly, this analysis makes no APO or anomalous-partial-dispersion claim.
 
 ## Sources and References
 
-- Akira Mizuma, **US 2015/0205081 A1**, *Optical System and Imaging Apparatus Including the Same*, Canon Inc., published July 23, 2015. Relevant material: Fig. 1; Figs. 3A–3B; ¶¶0026–0055; ¶¶0058–0060; Table 1.
+- Akira Mizuma, **US 2015/0205081 A1**, _Optical System and Imaging Apparatus Including the Same_, Canon Inc., published July 23, 2015. Relevant material: Fig. 1; Figs. 3A–3B; ¶¶0026–0055; ¶¶0058–0060; Table 1.
 - Canon Camera Museum, **EF35mm f/2 IS USM**: <https://global.canon/en/c-museum/product/ef426.html>. Production identity, December 2012 introduction, 10 elements/8 groups, 8-blade diaphragm, 0.24 m MFD, 0.24× maximum magnification, image stabilization, ring USM, and one glass-molded aspherical lens.
 - Canon U.S.A., **EF 35mm f/2 IS USM Support — Technical Specifications**: <https://www.usa.canon.com/support/p/ef-35mm-f-2-is-usm>. Production focal length/aperture, 10/8 construction, 63° diagonal angle of view, rear-focusing system, and 0.24 m closest focus.
 - OHARA optical-glass catalogs: <https://www.ohara-inc.co.jp/en/product/catalog/>.
@@ -230,3 +237,7 @@ The data also contain no vendor-resolved spectral annotation: `nC`, `nF`, `ng`, 
 - HIKARI optical-glass catalog: <https://www.hikari-g.co.jp/optical_glass/catalog/>.
 - CDGM optical-glass database: <https://www.cdgmgd.com/database/toWebDatabase.htm?url=database>.
 - SUMITA optical-glass downloads: <https://sumita-opt.co.jp/en/download/>.
+
+## Source-stated focal metadata — 2026-10-30
+
+Original US2015/0205081A1, First Numerical Embodiment / paragraph0060, PDF p.19 / printed5, Various Data states focal length34.49mm. Retained computed EFL34.5015mm is a model result. This metadata correction preserves all R/d, material pairs, clear caps, source stops and focus/zoom controls. The earlier shape/glass review dates and results are retained; no additional lens review is counted.

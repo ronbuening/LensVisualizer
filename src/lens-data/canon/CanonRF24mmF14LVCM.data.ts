@@ -1,50 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF 24mm f/1.4 L VCM                                  ║
- * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: JP 2025-15010 A, Numerical Example 3.                          ║
- * ║  Correlation target: production Canon RF24mm F1.4 L VCM.                ║
- * ║  Patent model: 15 elements / 11 air-separated components, grouped into  ║
- * ║  five functional lens groups; 2 aspherical surfaces; no scaling.        ║
- * ║                                                                            ║
- * ║  Focus status: PUBLISHED. L2 moves imageward and L4 moves objectward.    ║
- * ║  The source publishes four focus rows:                                   ║
- * ║    β=0.00:   d9=1.20, d11=8.91, d15=6.78, d22=1.85 mm                  ║
- * ║    β=-0.022: d9=1.69, d11=8.41, d15=6.40, d22=2.23 mm                  ║
- * ║    β=-0.10:  d9=3.37, d11=6.73, d15=5.08, d22=3.55 mm                  ║
- * ║    β=-0.17:  d9=4.82, d11=5.28, d15=3.91, d22=4.73 mm                  ║
- * ║  All four published rows are stored as exact focus keyframes. Motion    ║
- * ║  between them is piecewise-linear visualization.                        ║
- * ║                                                                            ║
- * ║  The patent prints f=24.72 mm and Fno=1.46. The rounded prescription     ║
- * ║  independently computes EFL=24.713123 mm at infinity. Marketing remains ║
- * ║  separate at 24 mm / f/1.4. nominalFno=1.46 controls pupil geometry.     ║
- * ║                                                                            ║
- * ║  Patent GB surfaces 28-29 are a separate optical block/filter equivalent ║
- * ║  and are excluded. Their optical effect is normalized to a 15.18 mm      ║
- * ║  air-equivalent spacing from surface 27 to IMG, preserving patent BF/TL. ║
- * ║                                                                            ║
- * ║  Semi-diameters are modeling values, not patent clear apertures. The     ║
- * ║  patent publishes none. They were derived from the patent Fig. 5 section ║
- * ║  and calibrated stop/pupil geometry, then checked with exact meridional  ║
- * ║  ray envelopes in all four published focus states plus edge thickness,   ║
- * ║  actual rim slope, shared-gap intrusion, conic limits, and render-trim   ║
- * ║  proxies. A 600 dpi Figure 5 audit refined the cemented E9/E10 rim from  ║
- * ║  13.5 to 11.7 mm. The stop radius is derived from the design f-number    ║
- * ║  (F/1.46) and is therefore inferred rather than independently published. ║
- * ║                                                                            ║
- * ║  Glass note: the patent supplies nd and νd only. All 15 elements use    ║
- * ║  coordinate-compatible catalog-equivalent Sellmeier curves, with labels ║
- * ║  explicitly preserving unresolved production suppliers. No patent       ║
- * ║  nC/nF/ng/dPgF values are invented.                                      ║
- * ║                                                                            ║
- * ║  The patent permits optional lateral L3 stabilization, but Canon lists   ║
- * ║  optical IS as not provided on the production lens. No IS motion is      ║
- * ║  authored. Patent Table 1's BF/f=0.47 is retained only in the audit;     ║
- * ║  published BF/f=15.18/24.72=0.61408.                                    ║
- * ╚════════════════════════════════════════════════════════════════════════════╝
+ * JP2025015010A, Numerical Example3 ¶0089 PDFpp15–16; Fig5/6 PDFp27.
+ * Original shape/glass review2026-10-30, retaining historical Aug20 dates.
+ * Native423ppi figures; earlier600dpi measurements are ~1.42× upsampling.
+ * All active lens R/d,15 source nd/vd pairs, aspheres, stop and four source
+ * focus rows retained. Catalog design24.72 is printed, computedEFL24.713123 separate.
+ * Camera-side GB sourceS28–29 restored through rearPlates: D27=13.52,t1mm,
+ * nd1.51633/vd64.1,air1mm. Source printed BF15.18 is rounded air-equivalent;
+ * physical image plane118.51 is .34mm behind the old rounded fold118.17.
+ * All16 media have explicit d provenance;16 compatible curves are qualified
+ * proxies, not historical supplier/melt/chemistry. No numerical C/F/g/partials
+ * published or invented; Table1 nu4p81.54 is an Abbe aggregate, not partial dispersion.
+ * S2 clear cap16.0/outer19.1 follows the resolved native shoulder.
+ * D3 S16–18 common12.2 is a modeled finite-beam floor, not a measured patent
+ * dimension: old native reference~11.67 (current estimate11.4–11.7,±.16–.24mm).
+ * The literal source near beta row reproduces-.17 within its print bin; at
+ * unchanged canonical iris it reachesS18=12.133954, clipping old11.7.
+ * No R/d, iris, guard or cam fitted.67focus samples include4 source rows;
+ * collimated geometry census and Gaussian finite-object supplement are separate.
+ * Both pass axial/chiefs after the inferred rim raise, with0 hidden trim.
+ * Source far beta print-bin, field/plot and BF/f contradictions remain unresolved;
+ * generic full-frame field reaches~89%, optical IS unmodeled, production correlation inferred.
+ * 2026-10-31 scoped reference-label correction: retain explicit d; source citation
+ * belongs here rather than in the uncertainty-only indexReferenceNote field.
+ * JP2025015010A ¶0082 PDFp12 defines nd at d587.6nm and vd using F486.1/C656.3nm; source also names g435.8nm, without numerical C/F/g/partial data.
  */
 
 const LENS_DATA = {
@@ -67,7 +47,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 11,
-    focalLengthMm: { marketing: 24, design: 24.713123 },
+    focalLengthMm: { marketing: 24, design: 24.72 },
     fNumber: { marketing: 1.4, design: 1.46 },
   },
 
@@ -77,6 +57,20 @@ const LENS_DATA = {
     patentYear: 2025,
     authors: ["Kenji Shinohara", "Yuki Matsuba"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "JP2025015010A Table1 PDFp22 Example3 prints BF/f=.47, versus numerical table p15 BF15.18/f24.72=.61408 and literal plate's reduced rear distance15.179487mm. Original physical plate/gaps retained; source ratio discrepancy has no uniquely established numerical replacement in the original.",
+      },
+      {
+        status: "unresolved",
+        note: "JP2025015010A Example3 p15 prints field37.14°, Fig6A/B PDFp27 labels omega37.6°. Native Fig6A distortion reads about−13.2±.4%, while literal modeled d-chief at37.6° gives−10.94%. Source R/d/aspheres/materials retained; field convention/plot correlation is unresolved, no fit.",
+      },
+      {
+        status: "unresolved",
+        note: "JP2025015010A p15 far focus beta−.022 gives modeled Gaussian−.0226777 from literal spacings and physical GB, outside its±.0005 print bin. Middle−.1004845 and near−.1707554 remain inside printed−.10/−.17±.005 bins. No object-distance plane is published; inferred conjugates and source beta labels stay distinct, with no spacing/cam correction.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -87,6 +81,7 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.59349,
+      indexReference: "d",
       vd: 67.0,
       focalLengthMm: -52.148246,
       glass: "J-PSKH4 catalog equivalent (patent 593670; production supplier unspecified)",
@@ -97,6 +92,7 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.54814,
+      indexReference: "d",
       vd: 45.8,
       focalLengthMm: -35.631525,
       glass: "LLF1 catalog equivalent (patent 548458; production supplier unspecified)",
@@ -107,6 +103,7 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.76385,
+      indexReference: "d",
       vd: 48.5,
       focalLengthMm: 24.869542,
       glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
@@ -118,6 +115,7 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.85478,
+      indexReference: "d",
       vd: 24.8,
       focalLengthMm: -57.252937,
       glass: "S-NBH56 catalog equivalent (patent 855248; production supplier unspecified)",
@@ -129,6 +127,7 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 2.00069,
+      indexReference: "d",
       vd: 25.5,
       focalLengthMm: 43.795312,
       glass: "TAFD40L-W catalog equivalent (patent 001255; production supplier unspecified)",
@@ -139,6 +138,7 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.62004,
+      indexReference: "d",
       vd: 36.3,
       focalLengthMm: -167.877978,
       glass: "E-F2 catalog equivalent (patent 620363; production supplier unspecified)",
@@ -149,6 +149,7 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.76385,
+      indexReference: "d",
       vd: 48.5,
       focalLengthMm: 27.259062,
       glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
@@ -160,6 +161,7 @@ const LENS_DATA = {
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.72047,
+      indexReference: "d",
       vd: 34.7,
       focalLengthMm: -33.678789,
       glass: "N-KZFS8 catalog equivalent (patent 720347; production supplier unspecified)",
@@ -171,9 +173,10 @@ const LENS_DATA = {
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 55.175782,
-      glass: "H-FK61 catalog equivalent (patent 497816; production supplier unspecified)",
+      glass: "H-FK61 catalog equivalent (source 497815, compatible catalog 497816; production supplier unspecified)",
       apd: "inferred",
       apdNote: "First of the two patent 1.497/81.5 elements correlated with Canon's published two-UD production count.",
       role: "First product-correlated UD element in the moving positive L4 group.",
@@ -185,6 +188,7 @@ const LENS_DATA = {
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.77047,
+      indexReference: "d",
       vd: 29.7,
       focalLengthMm: -20.214523,
       glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
@@ -196,9 +200,10 @@ const LENS_DATA = {
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.497,
+      indexReference: "d",
       vd: 81.5,
       focalLengthMm: 39.737184,
-      glass: "H-FK61 catalog equivalent (patent 497816; production supplier unspecified)",
+      glass: "H-FK61 catalog equivalent (source 497815, compatible catalog 497816; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Second of the two patent 1.497/81.5 elements correlated with Canon's published two-UD production count.",
@@ -210,6 +215,7 @@ const LENS_DATA = {
       label: "Element 12",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.804,
+      indexReference: "d",
       vd: 46.5,
       focalLengthMm: 37.876794,
       glass: "TAF3D catalog equivalent (patent 804465; production supplier unspecified)",
@@ -220,6 +226,7 @@ const LENS_DATA = {
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.92286,
+      indexReference: "d",
       vd: 20.9,
       focalLengthMm: 53.875285,
       glass: "N-SF66 catalog equivalent (patent 923209; production supplier unspecified)",
@@ -231,6 +238,7 @@ const LENS_DATA = {
       label: "Element 14",
       type: "Biconcave Negative",
       nd: 1.77047,
+      indexReference: "d",
       vd: 29.7,
       focalLengthMm: -36.93535,
       glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
@@ -242,6 +250,7 @@ const LENS_DATA = {
       label: "Element 15",
       type: "Negative Meniscus",
       nd: 1.65412,
+      indexReference: "d",
       vd: 39.7,
       focalLengthMm: -170.525195,
       glass: "N-KZFS5 catalog equivalent (patent 654397; production supplier unspecified)",
@@ -252,7 +261,7 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspheres: standard LensVisualizer K convention; K=0 is spherical base ── */
   surfaces: [
     { label: "1", R: 72.288, d: 1.3, sd: 19.1, medium: 1 },
-    { label: "2", R: 21.526, d: 13.44, sd: 19.1 },
+    { label: "2", R: 21.526, d: 13.44, sd: 16, rimExtensionSd: 19.1 },
     { label: "3", R: -29.716, d: 1.22, sd: 15.5, medium: 2 },
     { label: "4", R: 57.813, d: 3.61, sd: 15.5 },
     { label: "5", R: 84.776, d: 10.56, sd: 16.0, medium: 3 },
@@ -266,9 +275,9 @@ const LENS_DATA = {
     { label: "13", R: 1242.125, d: 7.29, sd: 13.5, medium: 7 },
     { label: "14", R: -21.123, d: 1.09, sd: 13.5, medium: 8 },
     { label: "15", R: -166.674, sd: 13.5 },
-    { label: "16", R: -33.613, d: 5.21, sd: 11.7, medium: 9 },
-    { label: "17", R: -15.879, d: 1.0, sd: 11.7, medium: 10 },
-    { label: "18", R: 834.948, d: 1.99, sd: 11.7 },
+    { label: "16", R: -33.613, d: 5.21, sd: 12.2, medium: 9 },
+    { label: "17", R: -15.879, d: 1.0, sd: 12.2, medium: 10 },
+    { label: "18", R: 834.948, d: 1.99, sd: 12.2 },
     { label: "19", R: 49.688, d: 8.75, sd: 17.1, medium: 11 },
     { label: "20", R: -30.861, d: 0.2, sd: 17.1 },
     {
@@ -289,7 +298,7 @@ const LENS_DATA = {
     { label: "24", R: -78.962, d: 1.25, sd: 16.5, medium: 14 },
     { label: "25", R: 44.799, d: 4.93, sd: 15.6 },
     { label: "26", R: -80.385, d: 1.2, sd: 15.6, medium: 15 },
-    { label: "27", R: -289.464, d: 15.18, sd: 15.6 },
+    { label: "27", R: -289.464, d: 13.52, sd: 15.6 },
   ],
 
   focus: {
@@ -310,6 +319,20 @@ const LENS_DATA = {
   },
 
   aperture: { nominalFNumber: 1.46, fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16] },
+
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 1,
+      nd: 1.51633,
+      vd: 64.1,
+      indexReference: "d",
+      glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      gapAfterMm: 1,
+      source:
+        "JP2025015010A Numerical Example3 ¶0089 PDFp15 source S28–29: t1mm, nd1.51633/vd64.1, physical D27=13.52mm, trailing air1mm. Camera-side optical block defined¶0017 p5, not lens-holder filter. No plate diameter is printed; source d reference¶0082 p12, no numerical partials. Qualified compatible curve, material and supplier unidentified.",
+    },
+  ],
 
   /* ── Patent functional groups and cemented components ── */
   groups: [

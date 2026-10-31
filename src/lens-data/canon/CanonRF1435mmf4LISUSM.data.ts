@@ -29,7 +29,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ radius is derived from the design f-number at each zoom station.           ║
  * ║                                                                            ║
  * ║ Semi-diameters: all refracting surfaces use one-half of the patent-listed  ║
- * ║ effective diameters. The 4A→5 air gap is physically non-intersecting but   ║
+ * ║ effective diameters. Native Figure7 resolves outer shoulders on2/4A,    ║
+ * ║ preserving optical clear caps (2026-10-30). The 4A→5 air gap is physically non-intersecting but   ║
  * ║ uses 92.203% of the gap at the shared published band, so gapSagFrac is      ║
  * ║ explicitly 0.93 rather than the shared 0.90 default.                       ║
  * ║                                                                            ║
@@ -70,7 +71,7 @@ const LENS_DATA = {
     ],
     elementCount: 16,
     groupCount: 12,
-    focalLengthMm: { marketing: [14, 35], design: [14.41888, 33.959239] },
+    focalLengthMm: { marketing: [14, 35], design: [14.42, 33.95] },
     fNumber: { marketing: 4, design: 4.08 },
   },
 
@@ -80,6 +81,12 @@ const LENS_DATA = {
     patentYear: 2022,
     authors: ["Takahiro Hatada"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Numerical Example 3 Various Types of Data, PDF page 23 / printed 9, gives wide half-angle 53.26 degrees, while Figure 8A, PDF page 9 / sheet 8, prints 56.3 degrees. Both original labels are retained. Public vector chief checks at infinity give absolute image heights 17.494158 and 19.321012 mm respectively, versus source image height 21.64; the runtime format-corner query 21.65 requires a larger angle and is limited by published 26A/27A caps. No unique field convention or isolated coefficient error is established. Preserve all R/d/aspheres, published clear caps, projection defaults and controls; no profile override or cap inflation is used to reconcile the source. Structured qualification added 2026-10-30.",
+      },
+    ],
   },
 
   elements: [
@@ -296,7 +303,7 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 53.599, d: 1.4, sd: 21.91, medium: 1 },
-    { label: "2", R: 18.113, d: 5.22, sd: 16.105 },
+    { label: "2", R: 18.113, d: 5.22, sd: 16.105, rimExtensionSd: 21.91 },
     {
       label: "3A",
       R: 22.075,
@@ -318,6 +325,7 @@ const LENS_DATA = {
       R: 10.628,
       d: 10.87,
       sd: 13.23,
+      rimExtensionSd: 15.825,
       asphere: {
         K: -0.560601,
         A4: -6.16452e-5,

@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * surfaces 25–30 are the attachment (group 5) and are left out. ¶0040 states that Example 2 uses the same master
  * zoom, and its rows 3–26 print the same radii, glasses and fixed spacings as surfaces 1–24 (its D2 is variable
  * and its stop diameter reads 16.66). R, d, nd, νd and the three aspheres (surfaces 1, 3 and 21;
- * K = 0 in the patent's (1+K) conic form) are the printed values, and every sd is half the printed effective
+ * K = 0 in the patent's (1+K) conic form) are the printed values, and every non-stop sd is half the printed effective
  * diameter. E1's nd 1.58373 is kept as printed; the common moldable crown is 1.58313, but Canon's US 2010/0033848 A1
  * prints the same 1.58373, so a misprint is unconfirmed. The 0.10 mm and 0.15 mm resin layers of the two replica
  * aspheres are separate media, so 14 entries model the 12 glass elements.
@@ -15,9 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Names: ¶0034 and Fig. 1 call the groups L1–L4 and the focusing subgroup Lf, so the brackets use those names and the
  * glass elements are E1–E12, with R1 and R2 for the resin layers. H1 is the hybrid E2 + R1; C1, C2 and C3 are the
  * cemented pairs E4–E5, E8–E9 and E11–E12. R2 carries no cemented tag, so that C3 reads as Canon's two-element
- * doublet rather than a triplet; the C3 bracket still spans R2. Fig. 1(A) draws each element's edge
- * 1.0–1.2 mm beyond the larger of its printed radii (a cemented group as one block): the mechanical edge, not the
- * effective diameter, so the printed values are kept.
+ * doublet rather than a triplet; the C3 bracket still spans R2. Fig. 1(A) resolves an E1 rear annulus and E2 rear
+ * shoulder: rimExtensionSd on 2/5 preserves the printed clear caps. Other outer blank strokes remain constrained
+ * by native raster uncertainty, bonded interfaces and the two source resin layers; no opaque junction land or resin wing
+ * is added. Every non-stop clear sd remains half the source effective diameter.
  *
  * Derived values: the patent prints focal length, BF and image height only for the system with the attachment fitted.
  * The bare focal lengths (17.49/23.99/25.78/38.83 mm) and the last gap D24 (image distance) are computed paraxially
@@ -52,7 +53,6 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: {
       marketing: [17, 40],
-      design: [17.491619, 38.831255],
     },
     fNumber: {
       marketing: 4,
@@ -60,7 +60,7 @@ const LENS_DATA = {
     },
     specs: [
       "12 ELEMENTS / 9 GROUPS",
-      "DESIGN f = 17.49–38.83 mm",
+      "BARE-MASTER MODELED f = 17.49–38.83 mm",
       "DESIGN F/4.1",
       "3 ASPHERICAL SURFACES / 3 ELEMENTS",
     ],
@@ -84,8 +84,10 @@ const LENS_DATA = {
       nd: 1.58373,
       vd: 59.4,
       focalLengthMm: -38.77,
-      glass: "Unmatched (1.58373/59.4 glass-moldable crown; S-BAL42/L-BAL42 class)",
-      role: "Front negative element of group L1, with the glass-molded aspherical front surface",
+      indexReference: "d",
+      glass:
+        "K-SKLD120-M (SUMITA post-molding catalog spectral proxy; source supplier, melt, chemistry and process unspecified)",
+      role: "Front negative element of group L1 with an aspherical front surface; source manufacturing process is unspecified.",
       diagramLabel: "E1",
     },
     {
@@ -109,7 +111,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: -27.33,
-      glass: "S-LAH66 (OHARA)",
+      glass: "S-LAH66 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Negative element of the Lf focusing subgroup, carrying replica layer R1",
       diagramLabel: "E2",
       cemented: "H1",
@@ -122,7 +124,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 52.95,
-      glass: "S-NPH53 (OHARA)",
+      glass: "S-NPH53 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Positive meniscus closing the Lf focusing subgroup",
       diagramLabel: "E3",
     },
@@ -134,7 +136,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       focalLengthMm: -44.49,
-      glass: "S-TIH10 (OHARA)",
+      glass: "S-TIH10 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Negative element of cemented doublet C1 in group L2",
       diagramLabel: "E4",
       cemented: "C1",
@@ -147,7 +149,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       focalLengthMm: 32.1,
-      glass: "S-BSL7 (OHARA)",
+      glass: "S-BSL7 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Positive element of cemented doublet C1 in group L2",
       diagramLabel: "E5",
       cemented: "C1",
@@ -160,7 +162,7 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.3,
       focalLengthMm: 37.04,
-      glass: "S-LAL12 (OHARA)",
+      glass: "S-LAL12 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Positive rear singlet of group L2, just ahead of the stop",
       diagramLabel: "E6",
     },
@@ -172,7 +174,7 @@ const LENS_DATA = {
       nd: 1.71999,
       vd: 50.2,
       focalLengthMm: -50.88,
-      glass: "S-LAL10 (OHARA)",
+      glass: "S-LAL10 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Negative singlet behind the stop, first element of group L3",
       diagramLabel: "E7",
     },
@@ -184,7 +186,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.2,
       focalLengthMm: -37.8,
-      glass: "S-BSM22 (OHARA)",
+      glass: "S-BSM22 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Negative element of cemented doublet C2 in group L3",
       diagramLabel: "E8",
       cemented: "C2",
@@ -197,7 +199,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 40.5,
-      glass: "S-TIH6 (OHARA)",
+      glass: "S-TIH6 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Positive flint meniscus of cemented doublet C2 in group L3",
       diagramLabel: "E9",
       cemented: "C2",
@@ -210,10 +212,11 @@ const LENS_DATA = {
       nd: 1.43875,
       vd: 95.0,
       focalLengthMm: 35.33,
-      glass: "S-FPL53 (OHARA)",
+      glass: "S-FPL53 (OHARA spectral proxy; production supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "nd/νd match the S-FPL53 fluorophosphate class; Canon's diagram places its Super UD element here.",
-      role: "Positive front element of group L4 (Super UD)",
+      apdNote:
+        "APD is inferred from the compatible S-FPL53 spectral proxy, not printed patent partials; the production Super UD placement is a separate correlation.",
+      role: "Positive front element of group L4 (production Super UD-position correlation)",
       diagramLabel: "E10",
     },
     {
@@ -236,7 +239,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       focalLengthMm: -21.53,
-      glass: "S-LAH60 (OHARA)",
+      glass: "S-LAH60 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Negative element of cemented doublet C3 in group L4, carrying replica layer R2",
       diagramLabel: "E11",
       cemented: "C3",
@@ -249,7 +252,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 29.31,
-      glass: "S-FSL5 (OHARA)",
+      glass: "S-FSL5 (OHARA spectral proxy; production supplier unconfirmed)",
       role: "Positive rear element of cemented doublet C3 in group L4",
       diagramLabel: "E12",
       cemented: "C3",
@@ -275,6 +278,7 @@ const LENS_DATA = {
       label: "2",
       R: 22.591,
       sd: 18.03,
+      rimExtensionSd: 26.04,
     },
     {
       label: "3A",
@@ -301,6 +305,7 @@ const LENS_DATA = {
       label: "5",
       R: 24.773,
       sd: 13.96,
+      rimExtensionSd: 15.905,
       d: 2.09,
     },
     {

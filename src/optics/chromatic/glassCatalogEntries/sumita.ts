@@ -735,4 +735,34 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for legacy K7. It shares a six-digit code with another vendor's row, so code6 is omitted.",
   },
+  {
+    name: "K-SKLD200-M",
+    vendor: "Sumita",
+    nd: 1.58355,
+    vd: 58.8,
+    polynomial: [2.469288, -0.01092027, 0.013964277, 0.00017615739, 9.1016177e-6, -3.9848031e-7],
+    source:
+      "Sumita official vendor AGF, K-SKLD200(M) row, native Zemax formula 1; https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-10-31. Coefficients retained verbatim. Reference post-molding coordinate; manufacturer warns actual indices depend on lens geometry/molding process. Base code587590 is omitted because it does not encode this molding-state pair. This curve does not identify a Canon material, supplier, melt or process.",
+    PgF: 0.5417,
+  },
+  {
+    name: "K-SKLD120-M",
+    vendor: "Sumita",
+    polynomial: [2.47209, -0.011710437, 0.013292551, 0.00033538382, -1.3094931e-5, 4.3086267e-7],
+    nd: 1.58401,
+    vd: 59.5,
+    source:
+      "SUMITA official all-glass Zemax catalog zemax.agf, header2026/08/21 (download page updated2026/08/26), K-SKLD120(M) formula1 row 1421; matched PG source C/d/F/g and vd in after_molding_20260821.pdf row41. Accessed2026-10-31; https://www.sumita-opt.co.jp/en/download/.",
+    PgF: 0.5379,
+  },
+  {
+    name: "LAKN4",
+    vendor: "Sumita",
+    nd: 1.671,
+    vd: 57.2,
+    polynomial: [2.743899, -0.01243972, 0.01731865, 0.0003001866, -2.638817e-6, 4.313606e-7],
+    PgF: 0.5434,
+    source:
+      "SUMITA official all-glass Zemax catalog header2026/08/21; accessed2026-10-31. Legacy LAKN4 literal formula1 row; no source supplier, melt, chemistry or process identity implied. https://www.sumita-opt.co.jp/en/download/",
+  },
 ];

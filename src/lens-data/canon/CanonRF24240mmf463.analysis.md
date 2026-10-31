@@ -10,24 +10,38 @@
 
 ---
 
+## Reused Source Coverage and Current Qualifications
+
+The completed original shape-and-glass review dated **2026-09-23** is reused. Earlier glass coverage dated 2026-05-04,
+May 19/20, July 29 and August 7 remains historical. The **2026-10-30** work adds current runtime/label qualifications,
+with no fresh original-PDF inspection or additional source-review count. Current canonical prescription coordinates and controls equal
+the Sept23 prescription; source metadata and qualified catalog labels are tracked separately. The scoped
+October31 catalog update below deliberately changes the L14 spectral proxy, with its source medium still unnamed.
+
+All named catalog glasses below are qualified current spectral proxies, not historical supplier, melt, chemistry or
+annealing identities. Chemical-family descriptions refer to those current candidates. The unidentified 1.53110/55.9
+L14 medium does not establish resin, cycloolefin or a molding process; actual data labels now state that uncertainty.
+The two UD/APD positions are product-correlated inferences; source nd/νd alone does not establish a numerical partial
+ratio or historical anomalous-dispersion medium. No numerical C/F/g/partial override is present or invented.
+
 ## 1. Overview
 
 The Canon RF 24-240mm F4-6.3 IS USM is a 10× superzoom for Canon's full-frame RF mirrorless system. Canon's published specifications describe the optical formula as **21 elements in 15 groups**, incorporating **1 aspherical lens** and **2 UD (Ultra-low Dispersion) lenses**, with a 7-blade circular aperture diaphragm. The patent's Example 1 matches the production lens in element count, group count, and general architecture, and is the basis for this analysis. It is also the only example with the production focal range: Examples 2 and 3 extend to 295 mm and 280 mm, and Examples 4 and 5 are four-unit 24.72–200 mm designs.
 
 ### Key Specifications (Manufacturer vs. Patent Example 1)
 
-| Parameter | Canon Published | Patent Example 1 |
-|-----------|----------------|-------------------|
-| Focal Length | 24–240 mm | 24.72–232.80 mm |
-| Maximum Aperture | f/4–6.3 | f/4.12–6.41 |
-| Zoom Ratio | 10× | 9.42× |
-| Elements / Groups | 21 / 15 | 21 / 15 |
-| Close Focus (wide) | 0.50 m | — |
-| Close Focus (tele) | 0.78 m | — |
-| Aspherical Elements | 1 | 1 (2 asph. surfaces) |
-| UD Elements | 2 | 2 |
-| Aperture Blades | 7 (circular) | — |
-| Image Height | 21.6 mm (36×24) | 19.00 mm (wide), 21.64 mm (mid, tele) |
+| Parameter           | Canon Published | Patent Example 1                      |
+| ------------------- | --------------- | ------------------------------------- |
+| Focal Length        | 24–240 mm       | 24.72–232.80 mm                       |
+| Maximum Aperture    | f/4–6.3         | f/4.12–6.41                           |
+| Zoom Ratio          | 10×             | 9.42×                                 |
+| Elements / Groups   | 21 / 15         | 21 / 15                               |
+| Close Focus (wide)  | 0.50 m          | —                                     |
+| Close Focus (tele)  | 0.78 m          | —                                     |
+| Aspherical Elements | 1               | 1 (2 asph. surfaces)                  |
+| UD Elements         | 2               | 2                                     |
+| Aperture Blades     | 7 (circular)    | —                                     |
+| Image Height        | 21.6 mm (36×24) | 19.00 mm (wide), 21.64 mm (mid, tele) |
 
 The slight focal-length and f-number discrepancies are normal between patent design examples and production-tuned lenses. The marketing "24–240mm" and "f/4–6.3" values are rounded from the computed design values per standard industry practice.
 
@@ -39,14 +53,14 @@ The patent's wide-end image height of 19.00 mm is smaller than the 21.64 mm full
 
 The lens consists of six lens units (zoom groups) arranged front-to-rear, with sign convention indicating their refractive power:
 
-| Unit | Patent Label | Power | Focal Length | Elements | Surfaces | Role |
-|------|-------------|-------|-------------|----------|----------|------|
-| 1 | L1 | Positive | +103.63 mm | L1, L2, L3 | 1–5 | Front positive group (collecting) |
-| 2 | L2 | Negative | −16.74 mm | L4, L5, L6, L7 | 6–13 | Variator (main zoom power) |
-| 3 | L3 / XYZ | Positive | +60.67 mm | L8–L13 | 14 (stop)–24 | Correction group with OIS unit |
-| 4 | L4 | Positive | +22.87 mm | L14–L17 | 25–31 | Relay / compensator |
-| 5 | L5 | Negative | −53.51 mm | L18, L19 | 32–34 | Focus group |
-| 6 | L6 | Negative | −138.27 mm | L20, L21 | 35–37 | Rear field corrector |
+| Unit | Patent Label | Power    | Focal Length | Elements       | Surfaces     | Role                              |
+| ---- | ------------ | -------- | ------------ | -------------- | ------------ | --------------------------------- |
+| 1    | L1           | Positive | +103.63 mm   | L1, L2, L3     | 1–5          | Front positive group (collecting) |
+| 2    | L2           | Negative | −16.74 mm    | L4, L5, L6, L7 | 6–13         | Variator (main zoom power)        |
+| 3    | L3 / XYZ     | Positive | +60.67 mm    | L8–L13         | 14 (stop)–24 | Correction group with OIS unit    |
+| 4    | L4           | Positive | +22.87 mm    | L14–L17        | 25–31        | Relay / compensator               |
+| 5    | L5           | Negative | −53.51 mm    | L18, L19       | 32–34        | Focus group                       |
+| 6    | L6           | Negative | −138.27 mm   | L20, L21       | 35–37        | Rear field corrector              |
 
 This is a **positive-lead** zoom of the form **+ − + + − −**, which the patent describes as a first lens unit with positive power, second with negative, third with positive, and a rear group (LR) comprising the fourth (positive), fifth (negative), and sixth (negative) units. The intervals between all six units vary during zooming.
 
@@ -54,14 +68,14 @@ This is a **positive-lead** zoom of the form **+ − + + − −**, which the pa
 
 During zooming from wide (24.72 mm) to tele (232.80 mm), the six variable air gaps change as follows:
 
-| Gap | Location | Wide (mm) | Mid (mm) | Tele (mm) | Change |
-|-----|----------|-----------|----------|-----------|--------|
-| d5 | L1 → L2 | 1.34 | 32.74 | 59.28 | +57.94 |
-| d13 | L2 → L3 | 22.25 | 8.64 | 2.35 | −19.90 |
-| d24 | L3 → L4 | 8.46 | 3.21 | 1.00 | −7.46 |
-| d31 | L4 → L5 | 3.73 | 4.64 | 1.50 | +0.91, then −3.14 |
-| d34 | L5 → L6 | 15.54 | 14.63 | 17.77 | −0.91, then +3.14 |
-| d37 | BFD | 15.78 | 45.06 | 57.20 | +41.42 |
+| Gap | Location | Wide (mm) | Mid (mm) | Tele (mm) | Change            |
+| --- | -------- | --------- | -------- | --------- | ----------------- |
+| d5  | L1 → L2  | 1.34      | 32.74    | 59.28     | +57.94            |
+| d13 | L2 → L3  | 22.25     | 8.64     | 2.35      | −19.90            |
+| d24 | L3 → L4  | 8.46      | 3.21     | 1.00      | −7.46             |
+| d31 | L4 → L5  | 3.73      | 4.64     | 1.50      | +0.91, then −3.14 |
+| d34 | L5 → L6  | 15.54     | 14.63    | 17.77     | −0.91, then +3.14 |
+| d37 | BFD      | 15.78     | 45.06    | 57.20     | +41.42            |
 
 The dominant zoom action is the separation of L1 from L2 (d5 expanding by nearly 58 mm) while L2 closes toward L3 (d13 contracting by 20 mm). This is the classic variator mechanism: the negative second unit moves image-ward relative to the positive first unit, increasing the system's effective focal length. The total track grows from 142 mm at wide to 214 mm at tele—the lens is a rotary-extending zoom, not an internal zoom, consistent with the production lens's two-stage barrel extension.
 
@@ -79,23 +93,23 @@ The patent gives open F-numbers of 4.12 / 5.66 / 6.41 and a single stop effectiv
 
 Canon's published "15 groups" count refers to the air-separated optical groups (not the zoom units). Tracing through the prescription, the 21 elements form exactly 15 air-separated groups:
 
-| Group | Elements | Configuration | Lens Unit |
-|-------|----------|---------------|-----------|
-| 1 | L1 + L2 | Cemented doublet | L1 |
-| 2 | L3 | Singlet | L1 |
-| 3 | L4 | Singlet | L2 |
-| 4 | L5 | Singlet | L2 |
-| 5 | L6 | Singlet | L2 |
-| 6 | L7 | Singlet | L2 |
-| 7 | L8 | Singlet | L3 (subunit X) |
-| 8 | L9 + L10 | Cemented doublet | L3 (subunit X) |
-| 9 | L11 + L12 | Cemented doublet | L3 (subunit Y / OIS) |
-| 10 | L13 | Singlet | L3 (subunit Z) |
-| 11 | L14 | Singlet (aspherical) | L4 |
-| 12 | L15 + L16 | Cemented doublet | L4 |
-| 13 | L17 | Singlet | L4 |
-| 14 | L18 + L19 | Cemented doublet | L5 |
-| 15 | L20 + L21 | Cemented doublet | L6 |
+| Group | Elements  | Configuration        | Lens Unit            |
+| ----- | --------- | -------------------- | -------------------- |
+| 1     | L1 + L2   | Cemented doublet     | L1                   |
+| 2     | L3        | Singlet              | L1                   |
+| 3     | L4        | Singlet              | L2                   |
+| 4     | L5        | Singlet              | L2                   |
+| 5     | L6        | Singlet              | L2                   |
+| 6     | L7        | Singlet              | L2                   |
+| 7     | L8        | Singlet              | L3 (subunit X)       |
+| 8     | L9 + L10  | Cemented doublet     | L3 (subunit X)       |
+| 9     | L11 + L12 | Cemented doublet     | L3 (subunit Y / OIS) |
+| 10    | L13       | Singlet              | L3 (subunit Z)       |
+| 11    | L14       | Singlet (aspherical) | L4                   |
+| 12    | L15 + L16 | Cemented doublet     | L4                   |
+| 13    | L17       | Singlet              | L4                   |
+| 14    | L18 + L19 | Cemented doublet     | L5                   |
+| 15    | L20 + L21 | Cemented doublet     | L6                   |
 
 This gives 6 cemented doublets and 9 singlets, totaling 15 groups — matching Canon's specification.
 
@@ -182,9 +196,10 @@ The boundary between subunit Y and subunit Z is confirmed by the patent's condit
 This is the strongest positive unit in the rear half of the lens. It relays the image formed by the front groups toward the sensor and contains the only aspherical element in the design.
 
 **L14** (surfaces 25–26): nd = 1.53110, νd = 55.9 — **★ Aspherical Element**
-A weak **positive meniscus** singlet (f = +105.0 mm), convex toward the object (R₁ = +45.6 mm, R₂ = +246.6 mm — both radii positive). Both surfaces carry aspherical profiles (detailed in Section 5). The patent does not name the material. Its nd = 1.53110 / νd = 55.9 coordinate (code 531559) matches no catalog glass. The coordinate is typical of cycloolefin optical resins, which suggests a molded resin element. That is an inference; the patent does not say whether the production element is molded resin or molded glass.
+A weak **positive meniscus** singlet (f = +105.0 mm), convex toward the object (R₁ = +45.6 mm, R₂ = +246.6 mm — both radii positive). Both surfaces carry aspherical profiles (detailed in Section 5). The patent does not name the material. Its nd = 1.53110 / νd = 55.9 coordinate (code 531559) matches no catalog glass. The medium chemistry and manufacturing process are unidentified; the coordinate does not establish resin, cycloolefin or glass molding.
 
 **L15 + L16** (surfaces 27–29): Cemented doublet
+
 - **L15**: nd = 1.85478, νd = 24.8 — **biconcave negative** (f = −99.6 mm) in dense flint glass (OHARA S-NBH56 catalog equivalent)
 - **L16**: nd = 1.59282, νd = 68.6 — **biconvex positive** (f = +39.3 mm) in HOYA FCD515 catalog-equivalent low-dispersion phosphate crown; production supplier unspecified
 
@@ -196,6 +211,7 @@ A **positive biconvex** element (f = +47.0 mm) — the second UD element in the 
 ### 4.5 Lens Unit 5 — Focus Group (f = −53.51 mm)
 
 **L18 + L19** (surfaces 32–34): Cemented doublet
+
 - **L18**: nd = 1.80518, νd = 25.4 — **positive meniscus** (f = +166.3 mm) in heavy flint, convex toward object
 - **L19**: nd = 1.63854, νd = 55.4 — **negative meniscus** (f = −40.0 mm) in barium crown, convex toward object
 
@@ -206,6 +222,7 @@ The focus group's negative power (−53.51 mm) means it acts as a diverging elem
 ### 4.6 Lens Unit 6 — Rear Field Corrector (f = −138.27 mm)
 
 **L20 + L21** (surfaces 35–37): Cemented doublet
+
 - **L20**: nd = 1.83481, νd = 42.7 — **biconcave negative** (f = −32.0 mm) in lanthanum dense flint
 - **L21**: nd = 1.84666, νd = 23.8 — **biconvex positive** (f = +43.2 mm) in heavy flint
 
@@ -223,27 +240,27 @@ Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h�
 
 ### Surface 25 (front of L14)
 
-| Parameter | Value |
-|-----------|-------|
-| R | 45.628 mm |
+| Parameter | Value              |
+| --------- | ------------------ |
+| R         | 45.628 mm          |
 | K (conic) | 0 (spherical base) |
-| A4 | −3.69428 × 10⁻⁶ |
-| A6 | −1.81514 × 10⁻⁷ |
-| A8 | +1.12707 × 10⁻⁹ |
-| A10 | −1.37724 × 10⁻¹¹ |
-| A12 | +4.19334 × 10⁻¹⁴ |
+| A4        | −3.69428 × 10⁻⁶    |
+| A6        | −1.81514 × 10⁻⁷    |
+| A8        | +1.12707 × 10⁻⁹    |
+| A10       | −1.37724 × 10⁻¹¹   |
+| A12       | +4.19334 × 10⁻¹⁴   |
 
 ### Surface 26 (rear of L14)
 
-| Parameter | Value |
-|-----------|-------|
-| R | 246.555 mm |
+| Parameter | Value              |
+| --------- | ------------------ |
+| R         | 246.555 mm         |
 | K (conic) | 0 (spherical base) |
-| A4 | +2.68822 × 10⁻⁵ |
-| A6 | −1.85641 × 10⁻⁷ |
-| A8 | +9.59349 × 10⁻¹⁰ |
-| A10 | −1.18429 × 10⁻¹¹ |
-| A12 | +3.67346 × 10⁻¹⁴ |
+| A4        | +2.68822 × 10⁻⁵    |
+| A6        | −1.85641 × 10⁻⁷    |
+| A8        | +9.59349 × 10⁻¹⁰   |
+| A10       | −1.18429 × 10⁻¹¹   |
+| A12       | +3.67346 × 10⁻¹⁴   |
 
 Both surfaces have K = 0, meaning the base curve is spherical and all aspherical correction comes from the even-order polynomial terms. At h = 10 mm, where the beam passes through this element across zoom positions, the aspherical departures from the base sphere are:
 
@@ -252,9 +269,9 @@ Both surfaces have K = 0, meaning the base curve is spherical and all aspherical
 
 At the patent effective semi-diameters (10.79 mm and 11.285 mm), the departures are about −320 µm and +65 µm. Surface 26's sag slope turns over just inside its 11.285 mm rim.
 
-The dominant effect of surface 25's aspherical profile is to flatten the surface progressively toward the rim compared to a sphere, which primarily corrects **spherical aberration** and **coma** in the converging beam. Surface 26's profile adds a compensating steepening that helps control **astigmatism** and **field curvature**. Because both surfaces are on the same element, the designer can independently tune on-axis and off-axis correction while keeping the manufacturing to a single precision-molded part.
+The dominant effect of surface 25's aspherical profile is to flatten the surface progressively toward the rim compared to a sphere, which primarily corrects **spherical aberration** and **coma** in the converging beam. Surface 26's profile adds a compensating steepening that helps control **astigmatism** and **field curvature**. Because both surfaces are on the same element, the designer can independently tune on-axis and off-axis correction on one modeled homogeneous body; its fabrication process remains unidentified.
 
-The L14 material (nd = 1.531, νd = 55.9) is not named in the patent. The coordinate is typical of molded optical resin, which would make the doubly aspherical element inexpensive to produce, but that reading is an inference.
+The L14 material (nd = 1.531, νd = 55.9) is not named in the patent. Neither resin chemistry nor manufacturing cost/process is established by the source pair. The published E48R curve is now used only as a qualified spectral proxy; it does not establish a ZEONEX grade, polymer formulation or supplier in this lens.
 
 ### Why only one aspherical element?
 
@@ -271,7 +288,7 @@ Canon identifies two UD (Ultra-low Dispersion) elements in the production lens. 
 1. **L2** (nd = 1.49700, νd = 81.5) — in the front group cemented doublet
 2. **L17** (nd = 1.49700, νd = 81.5) — in the rear relay group
 
-Both elements use the same fluorophosphate crown glass. UD glass has anomalous partial dispersion: it bends blue and red light more equally than conventional glass, reducing secondary chromatic aberration (the residual color error that persists even after primary achromatization). The placement of one UD element near the front (where the marginal ray is high) and one near the rear (where off-axis rays diverge) provides chromatic correction across both the aperture and the field.
+Both elements use the same fluorophosphate crown glass. The current proxy has its own partial-dispersion curve, but source nd/νd and product UD counts do not identify a historical anomalous-dispersion medium or prove quantitative secondary-spectrum correction. The placement of one UD element near the front (where the marginal ray is high) and one near the rear (where off-axis rays diverge) provides chromatic correction across both the aperture and the field.
 
 ### Ultra-High-Index Glasses (nd ≥ 2.0)
 
@@ -286,31 +303,31 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 
 ### Glass Summary Table
 
-| Element | nd | νd | Glass Type | Category |
-|---------|-------|-------|------------|----------|
-| L1 | 1.90366 | 31.3 | S-LAH95 type | Lanthanum dense flint |
-| L2 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
-| L3 | 1.61800 | 63.4 | S-PHM52 type | Phosphate crown |
-| L4 | 1.85150 | 40.8 | S-LAH89 type | Lanthanum dense flint |
-| L5 | 1.85150 | 40.8 | S-LAH89 type | Lanthanum dense flint |
-| L6 | 1.92286 | 20.9 | E-FDS1 (HOYA) | Ultra-high index dense flint |
-| L7 | 1.77250 | 49.6 | S-LAH66 type | Lanthanum crown |
-| L8 | 1.76182 | 26.5 | S-TIH14 type | Heavy flint |
-| L9 | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408) | Barium crown |
-| L10 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
-| L11 | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255) | Ultra-high index dense flint |
-| L12 | 1.72000 | 43.7 | S-LAM52 | Lanthanum glass |
-| L13 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
-| L14 | 1.53110 | 55.9 | Unmatched (531559) | Not stated; resin-class coordinate **(ASPH)** |
-| L15 | 1.85478 | 24.8 | S-NBH56 (OHARA) | Dense flint |
-| L16 | 1.59282 | 68.6 | FCD515 (HOYA catalog equivalent) | Low-dispersion phosphate crown |
-| L17 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
-| L18 | 1.80518 | 25.4 | S-TIH6 (OHARA) | Heavy flint |
-| L19 | 1.63854 | 55.4 | S-BSM18 type | Barium crown |
-| L20 | 1.83481 | 42.7 | S-LAH55 (835427 coordinate match) | Lanthanum dense flint |
-| L21 | 1.84666 | 23.8 | S-TIH53 type | Heavy flint |
+| Element | nd      | νd   | Glass Type                         | Category                                     |
+| ------- | ------- | ---- | ---------------------------------- | -------------------------------------------- |
+| L1      | 1.90366 | 31.3 | S-LAH95 type                       | Lanthanum dense flint                        |
+| L2      | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**               |
+| L3      | 1.61800 | 63.4 | S-PHM52 type                       | Phosphate crown                              |
+| L4      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                        |
+| L5      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                        |
+| L6      | 1.92286 | 20.9 | E-FDS1 (HOYA)                      | Ultra-high index dense flint                 |
+| L7      | 1.77250 | 49.6 | S-LAH66 type                       | Lanthanum crown                              |
+| L8      | 1.76182 | 26.5 | S-TIH14 type                       | Heavy flint                                  |
+| L9      | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408)   | Barium crown                                 |
+| L10     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint                 |
+| L11     | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255)   | Ultra-high index dense flint                 |
+| L12     | 1.72000 | 43.7 | S-LAM52                            | Lanthanum glass                              |
+| L13     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint                 |
+| L14     | 1.53110 | 55.9 | E48R (qualified spectral proxy)    | Source medium/process unspecified **(ASPH)** |
+| L15     | 1.85478 | 24.8 | S-NBH56 (OHARA)                    | Dense flint                                  |
+| L16     | 1.59282 | 68.6 | FCD515 (HOYA catalog equivalent)   | Low-dispersion phosphate crown               |
+| L17     | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**               |
+| L18     | 1.80518 | 25.4 | S-TIH6 (OHARA)                     | Heavy flint                                  |
+| L19     | 1.63854 | 55.4 | S-BSM18 type                       | Barium crown                                 |
+| L20     | 1.83481 | 42.7 | S-LAH55 (835427 coordinate match)  | Lanthanum dense flint                        |
+| L21     | 1.84666 | 23.8 | S-TIH53 type                       | Heavy flint                                  |
 
-*Note: Glass identifications are based on 6-digit nd/νd code matching against major catalogs. Canon may use proprietary melt equivalents; the catalog names here indicate the glass type and optical properties.*
+_Note: Glass identifications are based on 6-digit nd/νd code matching against major catalogs. Canon may use proprietary melt equivalents; the catalog names here indicate the glass type and optical properties._
 
 ---
 
@@ -335,11 +352,11 @@ The optical image stabilization (IS) system resides entirely within lens unit 3 
 
 ### Subunit Architecture
 
-| Subunit | Elements | Power | Focal Length | Purpose |
-|---------|----------|-------|-------------|---------|
-| X | L8, L9+L10 | Positive | +55.81 mm | Converges beam, reduces IS unit diameter |
-| Y | L11+L12 | Positive | +41.45 mm | IS shift element (moves ⊥ to axis) |
-| Z | L13 | Negative | −30.98 mm | Amplifies Y's correction, reduces shift distance |
+| Subunit | Elements   | Power    | Focal Length | Purpose                                          |
+| ------- | ---------- | -------- | ------------ | ------------------------------------------------ |
+| X       | L8, L9+L10 | Positive | +55.81 mm    | Converges beam, reduces IS unit diameter         |
+| Y       | L11+L12    | Positive | +41.45 mm    | IS shift element (moves ⊥ to axis)               |
+| Z       | L13        | Negative | −30.98 mm    | Amplifies Y's correction, reduces shift distance |
 
 The subunit X converges the beam before it enters the IS element, reducing the physical diameter of the shifted doublet. This directly benefits the actuator mechanism: a smaller, lighter IS element requires less motor force and responds faster, supporting Canon's claimed 5-stop stabilization performance.
 
@@ -349,14 +366,14 @@ Subunit Z's negative power amplifies the angular deviation produced by subunit Y
 
 The patent defines six inequalities governing the IS system's design balance:
 
-| Expression | Value | Range | Status |
-|------------|-------|-------|--------|
-| fxyz/fw | 2.45 | 0.01–4.55 | ✓ |
-| fxyz/fy | 1.46 | 0.82–10.0 | ✓ |
-| fxyz/fz | −1.96 | −10.0 to −1.3 | ✓ |
-| lis/fy | 1.28 | 0.60–50.0 | ✓ |
-| fxyz/fx | 1.09 | 0.30–10.0 | ✓ |
-| (Ryz1+Ryz2)/(Ryz1−Ryz2) | 2.39 | 0.5–75.0 | ✓ |
+| Expression              | Value | Range         | Status |
+| ----------------------- | ----- | ------------- | ------ |
+| fxyz/fw                 | 2.45  | 0.01–4.55     | ✓      |
+| fxyz/fy                 | 1.46  | 0.82–10.0     | ✓      |
+| fxyz/fz                 | −1.96 | −10.0 to −1.3 | ✓      |
+| lis/fy                  | 1.28  | 0.60–50.0     | ✓      |
+| fxyz/fx                 | 1.09  | 0.30–10.0     | ✓      |
+| (Ryz1+Ryz2)/(Ryz1−Ryz2) | 2.39  | 0.5–75.0      | ✓      |
 
 ---
 
@@ -372,11 +389,11 @@ A Petzval radius of 656 mm produces a field sag of approximately 0.36 mm at the 
 
 Independent paraxial ray tracing through all 37 surfaces confirms the patent's stated focal lengths:
 
-| Position | Patent EFL | Computed EFL | Error |
-|----------|-----------|-------------|-------|
-| Wide angle | 24.72 mm | 24.72 mm | −0.01% |
-| Intermediate | 85.00 mm | 84.99 mm | −0.01% |
-| Telephoto | 232.80 mm | 232.72 mm | −0.04% |
+| Position     | Patent EFL | Computed EFL | Error  |
+| ------------ | ---------- | ------------ | ------ |
+| Wide angle   | 24.72 mm   | 24.72 mm     | −0.01% |
+| Intermediate | 85.00 mm   | 84.99 mm     | −0.01% |
+| Telephoto    | 232.80 mm  | 232.72 mm    | −0.04% |
 
 The sub-0.1% agreement validates the transcribed surface data against the patent's stated specifications. The paraxial back focus (15.786 / 45.071 / 57.203 mm) agrees with the published BF (15.78 / 45.06 / 57.20 mm) within 0.011 mm. The published BF is an air-equivalent distance with no glass block listed, so the stored last gap is the patent value. Entrance-pupil positions from a real trace (30.56 / 98.82 / 259.35 mm) match the published 30.57 / 98.84 / 259.37 mm.
 
@@ -394,10 +411,35 @@ The Canon RF 24-240mm F4-6.3 IS USM, as represented by patent Example 1, exempli
 
 4. **Cost-effective chromatic correction** using only two UD elements — strategically placed in the front group and rear relay group — supplemented by six cemented doublets distributed throughout the system.
 
-5. **Single aspherical element** in the relay group, a molded double asphere whose material the patent does not name, controlling spherical aberration and field curvature across all zoom positions while balancing optical performance against production cost.
+5. **Single aspherical element** in the relay group, a double asphere whose medium and fabrication process are unidentified, controlling spherical aberration and field curvature across all zoom positions while balancing optical performance against production cost.
 
 6. **Fast, quiet rear focus** via a two-element cemented doublet (L18+L19) that moves toward the image during close focusing, enabling the Nano USM autofocus system.
 
 ---
 
-*Analysis prepared from patent US 2020/0142167 A1, Numerical Data 1, cross-referenced with Canon's published product specifications for the RF24-240mm F4-6.3 IS USM. Glass identifications are inferred from nd/νd pairs and should be considered approximate catalog equivalents. All focal lengths and optical parameters verified by independent paraxial ray trace computation.*
+_Analysis prepared from patent US 2020/0142167 A1, Numerical Data 1, cross-referenced with Canon's published product specifications for the RF24-240mm F4-6.3 IS USM. Glass identifications are inferred from nd/νd pairs and should be considered approximate catalog equivalents. All focal lengths and optical parameters verified by independent paraxial ray trace computation._
+
+## 2026-10-30 Runtime Follow-up on Reused Coverage
+
+The baseline current raw data SHA256 is `f396674a15ef26ba8fb7355654dc3b559f8e8bcf2cdf4864ac8c9f19226559cb`.
+Canonical source R/d, material pairs, ED-derived clear caps, aspheres, stop, gaps, cams and guards exactly match the
+completed Sept23 review. Label-only qualifications retain all 20 current compatible curves and the one unresolved
+medium, with every other parsed field identical. Exact excluded paths/hashes are recorded in the audit.
+
+All 1,365 zoom×focus combinations have identical geometry across focus; focus remains infinity-only. The 65 unique
+zoom states include 3 published stations and 62 illustrative intervals. The actual-iris census passes 3,005/3,185 axial
+and 195/195 chief samples, zero unaimed. Source-position pupil bundles at axial/.6/edge are 49/48/8,49/44/26 and49/37/19.
+Twenty-seven illustrative positions clip marginal axial samples; 23 exceed 3% effective-aperture deficit, with maximum
+12.2521% at z=.828125. Maximum interval paraxial defocus is +12.283607929 mm at z=.8125. Minimum generic field coverage
+is 90.5988%; published wide image height 19.00 mm remains separate from generic full-frame radius 21.65 mm.
+
+These limits belong to existing interval interpolation and source ED constraints. No cap, cam, source aperture or
+guard was fitted to remove them. Source three stations retain their original numerical values. All 21 actual SVG
+paths remain finite, closed and connected across 65 geometries, zero hidden trim. No new original-figure comparison
+is claimed; inherited source fidelity, sampled current runtime and production correlation remain separate.
+
+## 2026-10-31 — Scoped catalog-source follow-up
+
+The September23 completed source/shape review and October30 qualification dates are preserved. This follow-up directly rechecked the rendered selected original US20200142167A1 Numerical Data1 row25 (PDF23 / printed6) and its paragraph0051 reference definition (PDF20 / printed3): d587.6/F486.1/C656.3/g435.8 nm, with no per-element spectral indices or partial for L14. The source1.53110/55.9 remains literal.
+
+The public E48R polynomial is sourced from ZEON.AGF in a permission-bearing, pinned RadiantZemax archival copy, not a new direct vendor download: https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf . Its native formula1 uses wavelength in micrometres,25°C and the published0.400–1.600µm range. It evaluates nd1.531160165 / νd56.043827969, differing from the source by+.000060165 /+.143827969. It is a compatible numerical spectral proxy, not identification of the unknown source medium or proof of resin chemistry, supplier, melt or process. All21 modeled media now have compatible curves; the source's unassigned material identity remains unresolved. No source index, Abbe, partial, asphere, R/d, clear cap, focus/zoom/iris control or physical plate is altered. The retained finite-focus, field, IS and interpolation qualifications above remain applicable.

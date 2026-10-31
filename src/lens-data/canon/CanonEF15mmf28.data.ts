@@ -23,9 +23,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The patent does not tabulate clear apertures. SDs are inferred   ║
  * ║    from the patent/Canon section drawings, the f/2.8 entrance       ║
  * ║    pupil, displayed-ray clearance, and renderer limits.             ║
- * ║    Verified constraints: sd/|R| < 0.90; same-element SD ratio       ║
- * ║    <= 1.25; edge thickness >= 0.50 mm; signed cross-gap sag        ║
- * ║    intrusion <= 90% of the axial air gap.                           ║
+ * ║    Original Fig. 2: first curved face/blank reaches about 30 mm;   ║
+ * ║    S2/S4 extensions retain existing clear caps at 14.25/11.4 mm.  ║
+ * ║    S6 also has a resolved rear shoulder: outer 11.5, clear 10.0. ║
+ * ║    S7/S8 use 6.8 mm to match the smaller source positive element.  ║
+ * ║    S2 remains slope-limited: a 14.9 mm trial fails the existing    ║
+ * ║    guard. 75–90 degree vector chiefs remain a model limitation.    ║
+ * ║                                                                    ║
+ * ║  NOTE ON SPECTRAL LINE:                                            ║
+ * ║    The patent names no spectral line. 8 of 8 printed pairs match   ║
+ * ║    catalog d-line coordinates and none match the e-line, so the    ║
+ * ║    table is read as d-line. 8 media use catalog curves as spectral ║
+ * ║    proxies; supplier, melt and chemistry stay unspecified.         ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design.           ║
  * ║    No rear gelatin filter, sensor cover glass, hood, or mechanics. ║
@@ -53,7 +62,7 @@ const LENS_DATA = {
     ],
     elementCount: 8,
     groupCount: 7,
-    focalLengthMm: { marketing: 15, design: 15.286506817 },
+    focalLengthMm: { marketing: 15, design: 15.3 },
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
@@ -75,7 +84,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -33.615501,
-      glass: "S-BSM14 (OHARA exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Large front negative meniscus accepting the extreme field and beginning the retrofocus conversion.",
     },
     {
@@ -86,7 +96,8 @@ const LENS_DATA = {
       nd: 1.617,
       vd: 62.8,
       focalLengthMm: -59.765845,
-      glass: "S-PHM51 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "S-PHM51 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second negative meniscus; continues field-angle compression with relatively weak standalone power.",
     },
     {
@@ -97,7 +108,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       focalLengthMm: -45.777815,
-      glass: "S-BSM14 (OHARA exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final front negative meniscus; its rear radius participates in claim condition (1).",
     },
     {
@@ -108,7 +120,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: 32.842152,
-      glass: "S-NPH53 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive element before the stop; starts the positive relay after the negative front converter.",
     },
     {
@@ -119,7 +132,8 @@ const LENS_DATA = {
       nd: 1.51112,
       vd: 60.5,
       focalLengthMm: 63.06703,
-      glass: "NSL7 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "NSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak positive post-stop meniscus with much stronger image-side refracting surface.",
     },
     {
@@ -130,7 +144,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       focalLengthMm: -26.480431,
-      glass: "S-NPH53 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "PBH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative component of the nearly afocal cemented doublet.",
       cemented: "D1",
     },
@@ -142,7 +157,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 29.029791,
-      glass: "S-FSL5 (OHARA exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive low-dispersion component of the nearly afocal cemented doublet.",
       cemented: "D1",
     },
@@ -154,21 +170,22 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       focalLengthMm: 45.834475,
-      glass: "S-FSL5 (OHARA exact catalog equivalent; patent vendor unspecified)",
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Symmetric final positive element; a principal discriminator of Numerical Example 3.",
     },
   ],
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 78.06, d: 2.5, sd: 17.8, medium: 1 },
-    { label: "2", R: 15.9, d: 11.83, sd: 14.25 },
+    { label: "1", R: 78.06, d: 2.5, sd: 30.0, medium: 1 },
+    { label: "2", R: 15.9, d: 11.83, sd: 14.25, rimExtensionSd: 30.0 },
     { label: "3", R: 22.22, d: 2.5, sd: 13.6, medium: 2 },
-    { label: "4", R: 13.27, d: 7.54, sd: 11.4 },
+    { label: "4", R: 13.27, d: 7.54, sd: 11.4, rimExtensionSd: 13.6 },
     { label: "5", R: 127.88, d: 5.34, sd: 11.5, medium: 3 },
-    { label: "6", R: 22.35, d: 1.85, sd: 10.0 },
-    { label: "7", R: 32.04, d: 6.71, sd: 9.5, medium: 4 },
-    { label: "8", R: -190.22, d: 3.84, sd: 8.5 },
+    { label: "6", R: 22.35, d: 1.85, sd: 10.0, rimExtensionSd: 11.5 },
+    { label: "7", R: 32.04, d: 6.71, sd: 6.8, medium: 4 },
+    { label: "8", R: -190.22, d: 3.84, sd: 6.8 },
     { label: "STO", R: "flat", d: 3.53 },
     { label: "10", R: -289.77, d: 2.72, sd: 7.4, medium: 5 },
     { label: "11", R: -29.1, d: 0.15, sd: 8.0 },

@@ -151,15 +151,15 @@ or production catalog products, and it does not publish per-element nC, nF, ng, 
 however, find a compatible full-coefficient spectral proxy for every physical element. The data file keeps the patent
 coordinate first and labels each proxy explicitly so that a catalog match is not mistaken for a production-glass claim.
 
-| Patent coordinate | nd | νd | Elements | Catalog spectral proxy |
-|---|---:|---:|---|---|
-| 487702 | 1.48749 | 70.2 | E1, E4 | S-FSL5 |
-| 596392 | 1.59551 | 39.2 | E2, E10 | E-F8 |
-| 835427 | 1.83481 | 42.7 | E3 | S-LAH55 |
-| 900374 | 1.90043 | 37.4 | E5 | TAFD37A |
-| 654397 | 1.65412 | 39.7 | E6, E7 | N-KZFS5 |
-| 593686 | 1.59282 | 68.6 | E8 | FCD515 |
-| 804465 | 1.80400 | 46.5 | E9 | TAF3D |
+| Patent coordinate |      nd |   νd | Elements | Catalog spectral proxy |
+| ----------------- | ------: | ---: | -------- | ---------------------- |
+| 487702            | 1.48749 | 70.2 | E1, E4   | S-FSL5                 |
+| 596392            | 1.59551 | 39.2 | E2, E10  | E-F8                   |
+| 835427            | 1.83481 | 42.7 | E3       | S-LAH55                |
+| 900374            | 1.90043 | 37.4 | E5       | TAFD37A                |
+| 654397            | 1.65412 | 39.7 | E6, E7   | N-KZFS5                |
+| 593686            | 1.59282 | 68.6 | E8       | FCD515                 |
+| 804465            | 1.80400 | 46.5 | E9       | TAF3D                  |
 
 Those proxies provide Sellmeier curves for visualization while the production suppliers remain unspecified. Because the
 patent does not identify the actual melts or publish partial-dispersion data, no apochromatic or anomalous-partial-
@@ -180,11 +180,11 @@ the published single-L2 mechanism constraint d5 + d7 = 38.44 mm and solving the 
 unrounded infinity solution of d5 = 18.440755893 mm and d7 = 19.999244107 mm. The data file uses the disclosed
 source-precision values 18.44 mm and 20.00 mm.
 
-| Focus state | d5 (mm) | d7 (mm) | Status |
-|---|---:|---:|---|
-| Patent printed infinity row | 16.25 | 22.19 | preserved as source record; not authored as the working infinity state |
-| Authored infinity base | 18.44 | 20.00 | constrained reconstruction |
-| Published near row | 3.50 | 34.94 | direct patent transcription |
+| Focus state                 | d5 (mm) | d7 (mm) | Status                                                                 |
+| --------------------------- | ------: | ------: | ---------------------------------------------------------------------- |
+| Patent printed infinity row |   16.25 |   22.19 | preserved as source record; not authored as the working infinity state |
+| Authored infinity base      |   18.44 |   20.00 | constrained reconstruction                                             |
+| Published near row          |    3.50 |   34.94 | direct patent transcription                                            |
 
 From the authored infinity state to the published near row, L2 moves 14.94 mm toward the object. The near row traces to
 an object-to-image-plane distance of 4.494738 m with paraxial magnification -0.141990. These computed results closely
@@ -211,13 +211,13 @@ with first-order power at diffraction order $m=+1$ given by $\phi_{DOE}=-2C_2$. 
 used as the reference wavelength. The data model therefore adopts 587.6 nm as a disclosed modeling choice rather than
 claiming that the numerical table explicitly fixed a different wavelength.
 
-| Radial power | Coefficient |
-|---:|---:|
-| 2 | -4.69717e-5 mm^-1 |
-| 4 | +1.13471e-8 mm^-3 |
-| 6 | -2.69625e-12 mm^-5 |
-| 8 | -4.35136e-15 mm^-7 |
-| 10 | +2.95662e-18 mm^-9 |
+| Radial power |        Coefficient |
+| -----------: | -----------------: |
+|            2 |  -4.69717e-5 mm^-1 |
+|            4 |  +1.13471e-8 mm^-3 |
+|            6 | -2.69625e-12 mm^-5 |
+|            8 | -4.35136e-15 mm^-7 |
+|           10 | +2.95662e-18 mm^-9 |
 
 The quadratic term gives a verified first-order diffractive power of +9.39434e-5 mm^-1 and a corresponding DOE focal
 length of 10644.707345 mm at the modeled reference condition. This phase interaction changes ray momentum and paraxial
@@ -240,14 +240,14 @@ diffractive phase surface remains the only source-explicit higher-order chromati
 The patent defines six principal design conditions for the disclosed architecture. Independent computation reproduces
 the rounded Example 1 values in Table 1:
 
-| Condition | Computed value | Patent bound | Result |
-|---|---:|---:|---|
-| $d_{DOE}/f$ | 0.020974813 | 0.00 < value <= 0.13 | pass |
-| $f_{DOE}/f$ | 18.300880848 | 3.3 <= value <= 33.2 | pass |
-| $f_1/f$ | 0.660689418 | 0.14 <= value <= 1.56 | pass |
-| $f_3/f$ | -0.148732055 | -0.55 <= value <= -0.06 | pass |
-| $f_2/f$ | 0.345637411 | 0.14 <= value <= 0.70 | pass |
-| $L/f$ | 0.493200378 | 0.35 <= value <= 0.70 | pass |
+| Condition   | Computed value |            Patent bound | Result |
+| ----------- | -------------: | ----------------------: | ------ |
+| $d_{DOE}/f$ |    0.020974813 |    0.00 < value <= 0.13 | pass   |
+| $f_{DOE}/f$ |   18.300880848 |    3.3 <= value <= 33.2 | pass   |
+| $f_1/f$     |    0.660689418 |   0.14 <= value <= 1.56 | pass   |
+| $f_3/f$     |   -0.148732055 | -0.55 <= value <= -0.06 | pass   |
+| $f_2/f$     |    0.345637411 |   0.14 <= value <= 0.70 | pass   |
+| $L/f$       |    0.493200378 |   0.35 <= value <= 0.70 | pass   |
 
 These computations use the patent-defined quantities and its printed focal length where the condition definitions call
 for $f$, which is why the displayed $L/f$ value differs slightly from a ratio formed with the authored 581.639114 mm EFL.
@@ -291,15 +291,15 @@ The final data arrays were independently re-evaluated with both sequential reduc
 The two methods agree to the recorded floating-point precision for the tested infinity state. The principal results from
 the authored source-precision infinity base are:
 
-| Quantity | Patent | Authored model |
-|---|---:|---:|
-| EFL | 581.65 mm | 581.639114 mm |
-| BFD | 138.06 mm | 138.055489 mm |
-| Front principal point | -1102.24 mm | -1102.204200 mm |
-| Rear principal point | -443.59 mm | -443.583625 mm |
-| Entrance pupil position | 399.66 mm | 399.697988 mm |
-| Exit pupil position | -24.31 mm | -24.314251 mm |
-| Front surface to image | 286.87 mm | 286.87 mm |
+| Quantity                |      Patent |  Authored model |
+| ----------------------- | ----------: | --------------: |
+| EFL                     |   581.65 mm |   581.639114 mm |
+| BFD                     |   138.06 mm |   138.055489 mm |
+| Front principal point   | -1102.24 mm | -1102.204200 mm |
+| Rear principal point    |  -443.59 mm |  -443.583625 mm |
+| Entrance pupil position |   399.66 mm |   399.697988 mm |
+| Exit pupil position     |   -24.31 mm |   -24.314251 mm |
+| Front surface to image  |   286.87 mm |       286.87 mm |
 
 The small residuals are consistent with authoring the reconstructed infinity gaps to the patent's two-decimal spacing
 precision rather than storing the unrounded EFL root. The near endpoint independently gives 4.494738 m and
@@ -319,3 +319,23 @@ geometric-asphere departure, cover-glass correction, or folded-path treatment is
 - Canon official RF600mm F11 IS STM specifications PDF:
   https://downloads.canon.com/nw/camera/products/lenses/rf600/RF600mm_ISSTM_specifications.pdf
 - Canon U.S.A., July 9, 2020 launch release: https://www.usa.canon.com/newsroom/2020/20200709-camera
+
+## October 30, 2026 — Reused Original Coverage and Current Runtime Qualification
+
+The completed August 20, 2026 original source, figure, identity and ten-medium glass review is reused with its actual date. Its full analysis and audit were committed in `cb6f5967935a`. Converter canonical comparison of that reviewed prescription with current data is exact after only later `focus.published` provenance metadata; the later `source.example` addition identifies the same numerical configuration. No original PDF was reopened, no new native measurement was made, and this followup adds no fresh source review. The prior 600 dpi figure review is retained as a historical rendering description, not newly established native resolution.
+
+The only data-field correction is `catalog.focalLengthMm.design`, from the old computed 581.639114 mm to the already-recorded printed 581.65 mm. Marketing 600 mm remains separate. Every surface, clear cap, diffractive term, medium, gap, iris rule and control stays unchanged. All ten compatible spectral proxies retain their identities and numeric pairs, with no per-position nC/nF/ng/dPgF override or APD claim. Compatibility does not establish historical supplier, melt or chemistry. No filter or rear medium is added to the selected source configuration.
+
+The infinity d5/d7 = 18.44/20.00 mm pair remains the disclosed constrained reconstruction, contrasted with printed 16.25/22.19 mm; both conserve the 38.44 mm sum required by the assumed rigid L2 movement. Cardinal-data agreement does not uniquely prove that the reconstructed gaps were intended printed values. The published near 3.50/34.94 mm row remains unchanged. The present note neither corrects those source coordinates nor fits a cam to improve runtime clearance.
+
+Current code gives infinity EFL 581.644302131 mm and BF 138.057271688 mm, versus printed 581.65/138.06 mm. Those current values are distinguished from the earlier calculations retained above and in the historical data header. The current derived iris radius is 8.310620974 mm; the older 8.31053 mm value is historical. Canonical ingest normalizes the old authored stop radius to the same current derived iris rule, so canonical equality does not imply byte equality of the old explicit stop record. The nominal f/11.31 rule and an exact working-f-number result are separate: five of 65 current working calls trace (infinity 11.390019988), while 60 vignette from focus 0.078125 onward at S5 and later S4. A precise close working value is unavailable with these retained source-reviewed caps.
+
+Standard surface/image-circle checks pass, as do the single infinity station aperture (within 3%) and generic-format chief coverage (at least 99%). A 65-control collimated pupil grid uses 193 samples per bundle on axis, half/full generic field and the diagram field. Infinity axis/full-format pass 193/145 of 193; near-control axis/full-format pass 169/140. The near axial outer-ring loss occurs at S4, the retained E3 cap. These are collimated launches through focus-adjusted geometry, not actual finite-object coverage. Clear chiefs do not imply a clear full pupil.
+
+A separate explicit finite-object supplement includes diffractive paraxial power in both full and pre-stop matrices. Independent comparison against public `computeSystemMatrix` plus the final image transfer across all 65 controls agrees within 1.3e-11. At 64 positive finite controls, object heights are inverse-solved to actual image targets 0/10.82/21.64 mm, solving unclipped chief geometry before testing real apertures. All 192 chief roots converge and physically clear. The sampled pupils give 31,078 passed, 5,082 clipped, 896 unresolved no-bracket continuations and zero unaimed rays. The source-near row passes 169/169/141 of 193 on axis/half/full field, with 0/0/14 unresolved marginal continuations. These failures are neither suppressed nor treated as proof that no physical ray exists. No cap is enlarged or guard relaxed to obtain clearance.
+
+At the near endpoint, the DOE-aware Gaussian object-to-image distance is 4.494832203 m with magnification −0.141987065, versus the 4.5 m display label. The display-plane first-order residual is −0.104002200 mm; reconstructed infinity residual is −0.002728312 mm. The largest sampled relative Gaussian-distance/display-label difference is 3.763000% at focus 0.015625 (277.162559 m versus displayed 288 m). Intermediate controls are illustrative model states, not additional source stations or a demonstrated production cam.
+
+The 2.130678368° angle derived from the previously recorded source height/focal-length pair gives |Y| 21.880490 mm at infinity, while the current generic-format solve targets 21.65 mm at 2.108743971°. The public ordinary and bounding-sphere vector chief solves both converge at that derived infinity angle. Applying it at near control is only a diagnostic: the ordinary path converges at |Y| 24.955335 mm, but the separate bounding-sphere solve fails to bracket. The failed vector result is not a valid image height or proof that no ray exists. Actual finite image-edge checks are the independently inverse-solved targets above.
+
+Across all 65 current focus states, 650 actual SVG element paths remain finite, closed and connected with zero hidden renderer trimming. Current centered SVGs were inspected for intact bonded outlines and rigid focus-group translation; comparison with the patent figure remains the completed August 20 coverage rather than a new original inspection. No inferred cut exists. The reconstruction, sampled aperture limits, source fidelity and production correlation remain separate conclusions; no authored IS decenter or production mechanical-obstruction model is claimed.

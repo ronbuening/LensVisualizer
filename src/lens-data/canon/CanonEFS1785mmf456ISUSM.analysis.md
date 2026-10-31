@@ -1,14 +1,14 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 2006/0023317 A1  
-**Application Number:** 11/189,183  
-**Priority:** July 30, 2004  
-**Filed:** July 25, 2005  
-**Published:** February 2, 2006  
-**Inventor:** Makoto Fujimoto  
-**Assignee:** Canon Kabushiki Kaisha  
-**Title:** Zoom Lens System and Image Pickup Apparatus Using the Same  
-**Example details:** Exemplary Embodiment 1
+**Patent:** US 2006/0023317 A1\
+**Application Number:** 11/189,183\
+**Priority:** July 30, 2004\
+**Filed:** July 25, 2005\
+**Published:** February 2, 2006\
+**Inventor:** Makoto Fujimoto\
+**Assignee:** Canon Kabushiki Kaisha\
+**Title:** Zoom Lens System and Image Pickup Apparatus Using the Same\
+**Example details:** Numerical Embodiment 1 (corresponding to Exemplary Embodiment 1)
 
 The prescription represented here is the selected correlation for the CANON EF-S 17-85mm f/4-5.6 IS USM. The patent does not identify that commercial product by name, so the correlation is not presented as manufacturer confirmation. It rests instead on several convergent source facts.
 
@@ -29,28 +29,28 @@ The design is a five-unit zoom with power sequence positive-negative-positive-ne
 
 The intrinsic air-equivalent focal lengths below are computed for the isolated units from the final data arrays. They describe each unit's standalone power, not its scalar contribution while embedded in the complete zoom system.
 
-| Unit | Elements | Intrinsic f in air | Function in the authored model |
-|---|---|---:|---|
-| L1 | E1-E3 | +66.469026 mm | Positive front unit |
-| L2 | E4-E7 | -11.200228 mm | Strong negative zoom/focus unit |
-| L3 | E8-E11 | +21.934239 mm | Positive central unit behind the stop |
-| L4 | E12-E14 | -27.918158 mm | Negative unit containing the IS subunit |
-| L5 | E15-E17 | +34.075353 mm | Positive rear unit containing the double-sided asphere and weak-negative G5b pair |
+| Unit | Elements | Intrinsic f in air | Function in the authored model                                                    |
+| ---- | -------- | -----------------: | --------------------------------------------------------------------------------- |
+| L1   | E1-E3    |      +66.469026 mm | Positive front unit                                                               |
+| L2   | E4-E7    |      -11.200228 mm | Strong negative zoom/focus unit                                                   |
+| L3   | E8-E11   |      +21.934239 mm | Positive central unit behind the stop                                             |
+| L4   | E12-E14  |      -27.918158 mm | Negative unit containing the IS subunit                                           |
+| L5   | E15-E17  |      +34.075353 mm | Positive rear unit containing the double-sided asphere and weak-negative G5b pair |
 
-The aperture stop lies between surfaces 13 and 15. Surface label `STO` carries the patent's variable spacing `d14`. Its authored semi-diameter of 5.42 mm is not source-published; it is derived from the paraxial stop radii of the modeled maximum-aperture states.
+The aperture stop lies between surfaces 13 and 15. Surface label `STO` carries the patent's variable spacing `d14`. No physical diameter is source-published. The current data derives its active iris from the Figure 2 design f-numbers; source-station radii are 4.606743 / 5.409613 / 4.844751 mm. No `STO.sd = 5.42` value is authored in the current schema.
 
 The infinity zoom table is transcribed at 17.55, 35.00, and 82.48 mm. Patent spacings `d5`, `d13`, `d14`, `d20`, and `d25` remain exact. The stop-to-L3 spacing has a small reversal, 4.28 → 1.72 → 1.74 mm, so the interpolation is intentionally piecewise rather than globally monotonic.
 
 With each prescription normalized to its Gaussian image plane, wide-to-long-end movement from the final data arrays is:
 
 | Unit | Long minus wide | Direction in the fixed-image-plane model |
-|---|---:|---|
-| L1 | -26.503352 mm | objectward |
-| L2 | +1.086648 mm | imageward |
-| STO | -10.243352 mm | objectward |
-| L3 | -12.783352 mm | objectward |
-| L4 | -4.863352 mm | objectward |
-| L5 | -12.783352 mm | objectward |
+| ---- | --------------: | ---------------------------------------- |
+| L1   |   -26.503352 mm | objectward                               |
+| L2   |    +1.086648 mm | imageward                                |
+| STO  |   -10.243352 mm | objectward                               |
+| L3   |   -12.783352 mm | objectward                               |
+| L4   |    -4.863352 mm | objectward                               |
+| L5   |   -12.783352 mm | objectward                               |
 
 Most of these motions agree with the gap trends described in ¶0052-¶0055. One direct source contradiction remains: ¶0054 says L4 moves toward the image side while the Numerical Embodiment 1 spacings, when referenced to the fixed Gaussian image plane, move L4 4.863352 mm objectward. The data preserves the numerical prescription rather than changing it to force agreement with the prose.
 
@@ -60,8 +60,8 @@ The computed total-length-to-EFL ratios are 7.6583, 4.1779, and 1.9511. Under th
 
 ### D1 — E1 Negative Meniscus + E2 Plano-Convex Positive
 
-**E1:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = -103.787953 mm.  
-**E2:** nd = 1.6031, νd = 60.6. Glass: 603606 optical-glass class (vendor unspecified). f = +78.408224 mm.  
+**E1:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = -103.787953 mm.\
+**E2:** nd = 1.6031, νd = 60.6. Glass: 603606 optical-glass class (vendor unspecified). f = +78.408224 mm.\
 **Cemented pair:** intrinsic f = +328.964306 mm.
 
 E1 and E2 form the first cemented pair of L1. The individual elements have opposite standalone powers, but the cemented combination is weakly positive. This pair precedes the separate positive E3, so the complete L1 unit is substantially more positive than D1 alone.
@@ -84,7 +84,7 @@ E4 is the strongest standalone negative element in the four-element L2 focus uni
 
 **nd = 1.8830, νd = 40.8. Glass: 883408 optical-glass class (vendor unspecified). f = -23.306865 mm.**
 
-E5 adds negative standalone power inside L2. It is air-spaced from both neighbors, so its power is not to be conflated with a cemented-group value. Its radius, thickness, and index remain source-published. Figure 1 review showed that the earlier 8.0/8.5 mm inferred rims visibly under-represented this member, so surfaces 8/9 use 11.8/12.5 mm while retaining valid edge and air-gap geometry.
+E5 adds negative standalone power inside L2. It is air-spaced from both neighbors, so its power is not to be conflated with a cemented-group value. Its radius, thickness, and index remain source-published. The 2026-10-30 native Figure 1 check resolves a prior assignment error: the taller rectangle belongs to E4 (R6/R7), while the following E5 curved endpoints are about 8.5 mm. The 2026-08-25 enlargement to 11.8/12.5 is superseded by 8.5/8.5; its historical date remains in the audit. E4 front S6 becomes 12.5, and its resolved rear S7 shoulder preserves the gap-limited 8.15 clear cap.
 
 ### E6 — Biconvex Positive
 
@@ -100,24 +100,24 @@ E7 closes L2 immediately before the variable `d13` gap leading to the stop. In t
 
 ### D2 — E8 Negative Meniscus + E9 Biconvex Positive
 
-**E8:** nd = 1.7200, νd = 50.2. Glass: 720502 optical-glass class (vendor unspecified). f = -26.270728 mm.  
-**E9:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +23.342132 mm.  
+**E8:** nd = 1.7200, νd = 50.2. Glass: 720502 optical-glass class (vendor unspecified). f = -26.270728 mm.\
+**E9:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +23.342132 mm.\
 **Cemented pair:** intrinsic f = +200.629066 mm.
 
 D2 is the first of two cemented pairs in L3. Its net intrinsic power is weakly positive even though its front component is negative. The pair lies directly behind the aperture stop and contributes to the positive L3 unit.
 
 ### D3 — E10 Biconvex Positive + E11 Negative Meniscus
 
-**E10:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +16.600005 mm.  
-**E11:** nd = 1.6889, νd = 31.1. Glass: 689311 optical-glass class (vendor unspecified). f = -52.454987 mm.  
+**E10:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +16.600005 mm.\
+**E11:** nd = 1.6889, νd = 31.1. Glass: 689311 optical-glass class (vendor unspecified). f = -52.454987 mm.\
 **Cemented pair:** intrinsic f = +24.287281 mm.
 
 D3 supplies most of L3's isolated positive power. The large difference in νd between E10 and E11 establishes an ordinary achromatizing index/dispersion contrast at the d-line/Abbe level. Compatible catalog curves support chromatic tracing, but the patent does not publish the line indices needed for a stronger secondary-spectrum or APO claim.
 
 ### D4 / L4a — E12 Positive Meniscus + E13 Biconcave Negative
 
-**E12:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = +28.304194 mm.  
-**E13:** nd = 1.7620, νd = 40.1. Glass: 762401 optical-glass class (vendor unspecified). f = -18.939534 mm.  
+**E12:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = +28.304194 mm.\
+**E13:** nd = 1.7620, νd = 40.1. Glass: 762401 optical-glass class (vendor unspecified). f = -18.939534 mm.\
 **Cemented L4a pair:** intrinsic f = -55.344224 mm.
 
 The patent divides L4 into L4a and L4b and describes L4a as a positive-plus-negative combination that can move transversely for image stabilization (¶0057-¶0059). The final prescription follows that identification: E12 and E13 are the cemented L4a pair and have weak negative net power in isolation.
@@ -140,8 +140,8 @@ The selected numerical example does not name E15's glass manufacturer. Paragraph
 
 ### D5 / G5b — E16 Positive Meniscus + E17 Negative Meniscus
 
-**E16:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +80.747831 mm.  
-**E17:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = -42.325481 mm.  
+**E16:** nd = 1.4875, νd = 70.2. Glass: 487702 optical-glass class (vendor unspecified). f = +80.747831 mm.\
+**E17:** nd = 1.8467, νd = 23.9. Glass: 847239 optical-glass class (vendor unspecified). f = -42.325481 mm.\
 **Cemented G5b pair:** intrinsic f = -79.648844 mm.
 
 D5 is the weak-negative cemented combination lens G5b described in ¶0063. The patent's design rationale focuses on reducing the difference between the facing curvatures of G5a and G5b while controlling the combination lens's net power, thereby addressing ghost-light and coma constraints (¶0013-¶0019, ¶0062, ¶0071-¶0074).
@@ -152,20 +152,20 @@ E16 and E17 should not be read as individually performing the full G5b function:
 
 The final data deliberately uses vendor-neutral six-digit optical-glass coordinate classes. Numerical Embodiment 1 publishes `nd` to four decimals and `νd` to one decimal but does not name a manufacturer. The resolver may use a coordinate-compatible curve from the verified catalog, but that proxy does not establish a historical production supplier or melt.
 
-| Authored coordinate class | nd | νd | Elements |
-|---|---:|---:|---|
+| Authored coordinate class  |     nd |   νd | Elements     |
+| -------------------------- | -----: | ---: | ------------ |
 | 847239 optical-glass class | 1.8467 | 23.9 | E1, E12, E17 |
-| 603606 optical-glass class | 1.6031 | 60.6 | E2, E14 |
-| 734515 optical-glass class | 1.7340 | 51.5 | E3 |
-| 773496 optical-glass class | 1.7725 | 49.6 | E4 |
-| 883408 optical-glass class | 1.8830 | 40.8 | E5 |
-| 805254 optical-glass class | 1.8052 | 25.4 | E6 |
-| 804466 optical-glass class | 1.8040 | 46.6 | E7 |
-| 720502 optical-glass class | 1.7200 | 50.2 | E8 |
+| 603606 optical-glass class | 1.6031 | 60.6 | E2, E14      |
+| 734515 optical-glass class | 1.7340 | 51.5 | E3           |
+| 773496 optical-glass class | 1.7725 | 49.6 | E4           |
+| 883408 optical-glass class | 1.8830 | 40.8 | E5           |
+| 805254 optical-glass class | 1.8052 | 25.4 | E6           |
+| 804466 optical-glass class | 1.8040 | 46.6 | E7           |
+| 720502 optical-glass class | 1.7200 | 50.2 | E8           |
 | 487702 optical-glass class | 1.4875 | 70.2 | E9, E10, E16 |
-| 689311 optical-glass class | 1.6889 | 31.1 | E11 |
-| 762401 optical-glass class | 1.7620 | 40.1 | E13 |
-| 583594 optical-glass class | 1.5831 | 59.4 | E15 |
+| 689311 optical-glass class | 1.6889 | 31.1 | E11          |
+| 762401 optical-glass class | 1.7620 | 40.1 | E13          |
+| 583594 optical-glass class | 1.5831 | 59.4 | E15          |
 
 No `nC`, `nF`, `ng`, or `dPgF` fields are authored as patent evidence because Numerical Embodiment 1 does not publish them. The g-line curves in Figure 2 demonstrate that the patent evaluated chromatic behavior, but they do not supply per-element line indices. Catalog-resolved curves are qualified spectral proxies only; they do not support an APO designation or a claim of anomalous partial dispersion.
 
@@ -177,11 +177,11 @@ Canon describes the production lens as an inner-focusing design with a focusing 
 
 The data therefore marks focus as `CONSTRAINED_RECONSTRUCTION`. Only L2 translates. At each zoom position, `d5` and `d13` change by equal and opposite amounts, preserving `d5 + d13`; all other optical-unit gaps remain at their corresponding zoom-state values. The Gaussian image plane is held fixed. Canon's 0.35 m MFD is referenced to the image plane and is normalized to an object-to-surface-1 distance before solving the finite conjugate.
 
-| Design f | d5 infinity | d5 at 0.35 m | d13 infinity | d13 at 0.35 m | L2 shift | Computed |m| |
-|---:|---:|---:|---:|---:|---:|---:|
-| 17.55 mm | 2.150000 | 1.048778 | 14.250000 | 15.351222 | -1.101222 mm | 0.069299 |
-| 35.00 mm | 14.600000 | 12.686323 | 8.920000 | 10.833677 | -1.913677 mm | 0.123734 |
-| 82.48 mm | 29.740000 | 24.871995 | 2.920000 | 7.788005 | -4.868005 mm | 0.202141 |
+| Design f | d5 infinity | d5 at 0.35 m | d13 infinity | d13 at 0.35 m |     L2 shift | Computed | m   |     |
+| -------: | ----------: | -----------: | -----------: | ------------: | -----------: | -------: | --- | --- |
+| 17.55 mm |    2.150000 |     1.048778 |    14.250000 |     15.351222 | -1.101222 mm | 0.069299 |
+| 35.00 mm |   14.600000 |    12.686323 |     8.920000 |     10.833677 | -1.913677 mm | 0.123734 |
+| 82.48 mm |   29.740000 |    24.871995 |     2.920000 |      7.788005 | -4.868005 mm | 0.202141 |
 
 The sign convention in this table takes positive L2 travel as imageward. All three solutions are therefore objectward, directly opposite the direction stated in ¶0056. This contradiction is not silently reconciled. The mechanism constraint is retained, the numerical finite-conjugate solution is retained, and the source statement remains identified as contradictory.
 
@@ -198,10 +198,10 @@ $$
 
 The patent's `K` is therefore already the standard conic constant used by LensVisualizer. No `K` conversion is applied. The prescription is unscaled (`s = 1`), so the polynomial coefficients also require no scale transformation. In the data file, patent coefficients `B` through `F` map directly to `A4` through `A12`; `A14` is zero because the source supplies no fourteenth-order term.
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 |
-|---|---:|---:|---:|---:|---:|---:|
-| 26A | +2.291 | -7.384e-6 | +9.674e-9 | -1.371e-10 | +2.396e-13 | +8.332e-16 |
-| 27A | -0.1619 | +1.514e-5 | +3.849e-8 | -1.638e-10 | +3.147e-13 | +1.097e-15 |
+| Surface |       K |        A4 |        A6 |         A8 |        A10 |        A12 |
+| ------- | ------: | --------: | --------: | ---------: | ---------: | ---------: |
+| 26A     |  +2.291 | -7.384e-6 | +9.674e-9 | -1.371e-10 | +2.396e-13 | +8.332e-16 |
+| 27A     | -0.1619 | +1.514e-5 | +3.849e-8 | -1.638e-10 | +3.147e-13 | +1.097e-15 |
 
 The patent does not publish clear apertures for these surfaces. Their authored semi-diameters, 14.5 mm for 26A and 15.5 mm for 27A, are modeled values derived from the pupil/field envelope and geometry constraints. Both are inside the real-sag domains of their conic bases: approximately 24.994 mm for 26A and 20.689 mm for 27A. The current validator's stricter 0.98 conic limit for positive K gives about 24.494 mm for 26A, still well beyond its authored 14.5 mm rim.
 
@@ -239,29 +239,29 @@ The result reproduces the patent's 0.43 and satisfies the `< 0.5`, `< 0.45`, and
 
 Table 1 itself contains a dimensional labeling inconsistency: the entries 34.07 and -79.65 appear under headings presented as φ5 and φ5b, but independent matrix calculation shows that these numbers are focal lengths in millimeters. Their reciprocal-power ratio nevertheless gives the published 0.43. The analysis preserves that source issue rather than treating 34.07 and -79.65 as powers.
 
-## Verification Summary
+## Scoped native-source review and current runtime — 2026-10-30
 
-The final data arrays were independently recomputed with sequential height/reduced-angle tracing and explicit ABCD matrix composition. The two methods agree to better than 1×10⁻¹² in the system matrices at all three authored infinity states.
+The exact original `patents/US20060023317A1.pdf` was inspected: US 2006/0023317 A1, Numerical Embodiment 1, PDF pages 16–17 / printed pages 4–5. Paragraph 0078 on page 16 explicitly defines the d-line reference and conic-plus-polynomial equation. Figure 1 is on PDF page 2 / sheet 1; Figures 2A–2C on page 3 / sheet 2 give Fno. 4.11 / 4.45 / 5.77 and Y = 13.65 mm. The numerical header's rounded wide Fno. 4.0 is retained separately. No prescription publication or example is substituted.
 
-| Patent zoom position | Computed EFL | Residual vs tabulated f | Computed BFD | First-surface-to-image track |
-|---:|---:|---:|---:|---:|
-| 17.55 mm | 17.552678 mm | +0.002678 mm | 38.083640 mm | 134.423640 mm |
-| 35.00 mm | 34.986440 mm | -0.013560 mm | 45.269362 mm | 146.169362 mm |
-| 82.48 mm | 82.482175 mm | +0.002175 mm | 50.866993 mm | 160.926993 mm |
+The unchanged 2026-08-25 prescription, cap constraints and 17-medium glass conclusions are reused with their actual date. Reopening is limited to the reproducible E4/E5 outline assignment, omitted air shoulders, stale current-iris prose, structured source/model qualifications and current runtime checks. It does not create an additional reused lens count. The source's seventeen rounded d-line pairs remain unchanged; all 17 compatible curves remain qualified spectral proxies. No historical supplier, melt, chemistry, cement, coating or manufacturing identity is established. The source prints no individual C/F/g indices, partial-dispersion or APD measurements, and no per-lens spectral override is added or removed. Its generic GFK70 example in paragraph 0064 is not an identification of a numerical-example medium.
 
-The residuals are consistent with the patent's printed precision. Using the published 13.65 mm image height, `2 atan(Y/f)` gives 75.750°, 42.612°, and 18.794° for the three tabulated focal lengths. The endpoint values reproduce the patent's 75.7°-18.8° full-field range.
+The original embeds 2560 × 3300 one-bit pages at native 300 ppi. The earlier 600 dpi viewing enlarged that raster. In the wide section the axial scale is about 11.2 native px/mm, with practical ±0.6 mm rim uncertainty from broad lines and modest figure anisotropy. Brackets, leaders, Q/F motion arrows and the axis are excluded. The clean native L2 crop distinguishes four elements by their weak/strong source curvatures: E4's tall meniscus blank, E5's smaller biconcave outline, E6 positive and E7 negative.
 
-The data uses Figure 2's f/4.11, f/4.45, and f/5.77 values as `nominalFno`. The patent header instead prints f/4.0-5.77, while Canon markets the production lens as f/4-5.6. These three levels of description remain separate. Because the patent does not publish a physical stop diameter, the maximum-aperture stop opening is solved from the source f-number states rather than used as an independent f-number check.
+The accepted clear-cap changes are S6 11.0 → 12.5 mm and S8/S9 11.8/12.5 → 8.5/8.5 mm. Three resolved air-facing vertical strokes become `rimExtensionSd`: S7 outer 12.5 / clear 8.15, S11 outer 8.5 / clear 6.85, S12 outer 7.75 / clear 6.85. No opaque bonded-interface lands, inferred cuts or resin layers are added. Other caps, including the geometry-constrained rear G5b pair, retain the dated review disposition. The front plain blank does not authorize an opaque flat-face land, and no new rear optical aperture is inferred from contaminated G5b leaders.
 
-The paraxially required physical stop diameters are 9.213486, 10.819226, and 9.689501 mm at the three zoom positions. The maximum paraxial radius is 5.409613 mm at 35 mm, so the data's `STO.sd = 5.42 mm` leaves approximately 0.01039 mm of radial clearance over that value. The active wide-open iris opening is zoom-dependent: tracing the nominal entrance-pupil marginal ray exactly gives iris radii of 4.637, 5.463, and 4.877 mm, so the 35 mm opening is slightly larger than `STO.sd`.
+A trial S11 = 8.5 / S12 = 7.75 clear aperture fails the source 0.050 mm gap: shared sag 0.054664 mm exceeds the unchanged 0.045 mm permitted intrusion at every source zoom station. Retain 6.85 clear caps and represent only resolved outer strokes. Source R/d, both aspheres, all material numbers, source zoom rows, derived iris and constrained close-focus cams remain unchanged. No tolerance or source value is adjusted to fit the drawing or a ray.
 
-All surface semi-diameters are modeling inferences because the patent provides no clear-aperture table. They were sized around full-pupil paraxial marginal/chief bundles through 0.60 times the published 13.65 mm image height at infinity and at the reconstructed 0.35 m state, then limited by edge thickness, actual rim slope, conic domain, and shared-gap intrusion. The resulting model intentionally does not claim full-pupil clearance at the extreme image corner.
+The source numerical prescription reproduces EFL 17.552678 / 34.986440 / 82.482175 mm. Its final image gap is unpublished, so the existing computed BFD 38.083640 / 45.269362 / 50.866993 remains a model quantity, with source-station infinity residual below 4 × 10⁻¹² mm by construction. Derived iris radii are 4.606743 / 5.409613 / 4.844751 mm; real working values are 4.130558 / 4.502434 / 5.808035 under 1/(2 n′ sin θ′). The separate aperture census preserves the paraxial-reference beam convention and matches source targets 4.11 / 4.45 / 5.77. No physical iris schedule is source-published.
 
-Across all six defined zoom/focus states, the independently checked geometry gives a minimum element edge-thickness margin of +0.285422 mm, a maximum actual rim angle of 52.8730°, a maximum shared-gap intrusion fraction of 0.848838 against the 0.90 limit, and a minimum 0.60-field full-pupil clearance of +0.010387 mm. These values are validation results for the authored geometry, not patent dimensions.
+A 65-position clone matches actual runtime z/sd geometry at every sampled zoom and focus 0/0.5/1 (maximum difference zero). All 65 infinity aperture stations meet the unchanged 3% criterion; the field audit reaches at least 99%. The largest sampled infinity defocus is +1.087070 mm at zoom 0.828125, where actual EFL is 60.054892 versus displayed linear 66.158750 mm. Three source stations do not define the continuous compensator cam.
 
-The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is +0.001872081814 mm⁻¹, corresponding to a signed reciprocal scale of +534.164689 mm. This is a computed first-order property of the final prescription.
+The retained constrained close endpoints at source zooms place the 0.35 m object on the image to below 10⁻¹² mm, but intermediate focus/zoom is not continuously focus preserving: the 65 zoom × 21 focus census reaches +1.469221 mm finite conjugate residual at tele / focus 0.4 (displayed 0.875 m), and the worst intermediate close residual is −1.139519 mm. At 21 zoom × 21 focus positions × eight presets, 3432 of 3528 real working calls trace and 96 are unavailable with `object-inside-lens`, unchanged from baseline. Those twelve early-focus/intermediate-zoom state combinations are a runtime conjugate limitation, not evidence for a source radius or cam change.
 
-No patent radius, center thickness, refractive index, Abbe number, published zoom spacing, or asphere coefficient is scaled or corrected in the data. The model uses `s = 1`; consequently all radii, thicknesses, image-plane distances, and asphere coefficients remain in the patent's original dimensional scale. The only authored quantities not printed as prescription rows are the computed BFD/image-plane spacings, reconstructed close-focus pairs, physical stop semi-diameter, and other inferred semi-diameters described above.
+A separate current-iris 193-point pupil at 65 zoom × five focus positions × four fields gives 1300 field states. Every axial pupil passes 193/193. Source infinity corner counts are 109 / 147 / 163, versus baseline 103 / 147 / 163; close counts are 113 / 123 / 113, versus 74 / 123 / 113. Off-axis clipping remains and does not certify production illumination. The five-focus pupil grid does not represent the separate unavailable early-focus states.
+
+Surface validation passes and image-circle audit reports zero undersized lenses. At 65 zoom × 21 focus states, 23,205 actual SVG paths are finite, closed and connected, with zero hidden renderer trimming. The largest queried runtime APS-C corner shortfall is 13.998032 versus 14.175 mm at a reconstructed finite state; this is explicitly separate from the source Y = 13.65 mm and the passing infinity field census. Wide/middle/tele SVGs were compared with the native source wide section, showing the corrected E4/E5 assignment and connected concave-end shoulders. No source tele section is invented.
+
+Existing source/model issues are formalized as unresolved `source.errata`, with no numeric correction: paragraph 0054 L4 imageward wording versus the computed fixed-image-plane kinematics; paragraph 0056 imageward near-focus L2 wording versus the retained objectward constrained reconstruction; and Table 1's φ5/φ5b labels applied to values matching focal lengths. The source supplies neither a final image spacing nor a finite-focus table, so these remain qualified model/source discrepancies. IS transverse travel remains uncalibrated and unmodeled. Source fidelity, sampled centered runtime, spectral proxies and production correlation remain separate conclusions.
 
 ## Sources / References
 
@@ -270,3 +270,21 @@ No patent radius, center thickness, refractive index, Abbe number, published zoo
 3. Canon U.S.A., **EF-S 17-85mm f/4-5.6 IS USM Support** — 17-85mm f/4-5.6, 17 elements in 12 groups, inner focusing with focusing cam, 0.35 m closest focus, and ring USM. <https://www.usa.canon.com/support/p/ef-s-17-85mm-f-4-5-6-is-usm>
 4. Canon Latin America, **EF-S 17-85mm f/4-5.6 IS USM** — EF-S/APS-C product identity, Image Stabilizer, ring-type USM, and 0.35 m close focus. <https://www.cla.canon.com/en/p/ef-s-17-85mm-f-4-5-6-is-usm>
 5. Current optical-glass catalogs consulted for coordinate-class ambiguity only: OHARA <https://oharacorp.com/>, HOYA <https://www.hoya-opticalworld.com/english/datadownload/index.html>, SCHOTT <https://www.schott.com/en-gb/products/optical-glass-p1000267/downloads>, HIKARI <https://www.hikari-g.co.jp/optical_glass/catalog/>, CDGM <https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods>, and SUMITA <https://www.sumita-opt.co.jp/en/download/>. No vendor name from these catalogs is assigned to Numerical Embodiment 1.
+
+## Runtime Launch Qualification - 2026-10-30
+
+This is a runtime-only supplement to the dated source/shape/glass review above. No original PDF was reinspected for this supplement; source review dates, prescription values, controls and review counts remain unchanged. Earlier pupil/chief grids labeled near or close sampled **collimated rays through focus-adjusted geometry**. Those labels identify the control geometry, not finite-object illumination. Independently computed finite paraxial residuals and exact-working-f-number probes remain separate; the latter use the runtime distance-label object plane.
+
+The explicit finite-object supplement samples 20 positive focus positions at nine zoom positions. The complete current ABCD matrix, including any rear plates, supplies the real Gaussian object plane. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 7.0875 and 14.1750 mm; paraxial object-height scaling alone is not accepted as the actual image-edge solve. Geometric roots are solved before current-aperture classification. The 14.1750 mm edge is the viewer format corner, which may exceed the selected source's image height; these probes do not establish production illumination or source support for an inferred continuous cam.
+
+Of 176 positive-real-object geometries, 528/528 target chiefs converge: 488 clear the current caps and 40 clip. A further 4 sampled control geometries have no positive real Gaussian object, first at zoom 0.625, focus 0.05 (object-to-first-surface -11385.767099 mm); finite-object bundles are not asserted for them. Across the converged fields, 193 current-iris samples per field give 88,683 passed, 13,221 clipped, 0 failed and 0 unaimed rays. Minimum sampled axial transmission is 193/193. No clear aperture, R/d, stop, cam, tolerance or source field is altered to clear those diagnostics.
+
+Selected current close geometries, with Gaussian conjugates and their exact aimed bundle counts:
+
+| Zoom control | Aberration control | Gaussian object-to-image (m) | Distance label (m) | Axis / half / edge passing of 193 | Chief result          |
+| -----------: | -----------------: | ---------------------------: | -----------------: | --------------------------------- | --------------------- |
+|            0 |                  0 |                  0.350000000 |           0.350000 | 193 / 193 / 113                   | clear / clear / clear |
+|          0.5 |                  0 |                  0.350000000 |           0.350000 | 193 / 193 / 136                   | clear / clear / clear |
+|            1 |                  0 |                  0.350000000 |           0.350000 | 193 / 193 / 124                   | clear / clear / clear |
+
+The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 3776.298921% at zoom 0.875, focus 0.1, aberration control 0: Gaussian 135.670462250 m versus label 3.500000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
