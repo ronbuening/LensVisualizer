@@ -2538,8 +2538,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4A | Element 2 | abbe | `Unmatched (molded optical polymer, COP-like coordinates nd 1.53504 / νd 55.7; supplier and grade unconfirmed)` | Explicit unmatched/proprietary annotation |
-| 19A | Element 9 | abbe | `Unmatched (molded optical polymer, COP-like coordinates nd 1.53504 / νd 55.7; supplier and grade unconfirmed)` | Explicit unmatched/proprietary annotation |
+| 4A | Element 2 | abbe | `Unmatched (source nd 1.53504 / νd 55.7; material identity and spectrum unresolved)` | Explicit unmatched/proprietary annotation |
+| 19A | Element 9 | abbe | `Unmatched (source nd 1.53504 / νd 55.7; material identity and spectrum unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) - 80.0% trusted (8/10); 80.0% Sellmeier (8/10) - GB 978,797
 
