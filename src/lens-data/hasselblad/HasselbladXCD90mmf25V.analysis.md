@@ -5,7 +5,7 @@
 **Patent:** JP 2022-99402 A (Japanese Patent Application Laid-Open)
 **Title:** 撮像光学系と、撮像光学系を用いる撮像装置およびカメラシステム
 ("Imaging optical system, and imaging device and camera system using imaging optical system")
-**Applicant:** Panasonic IP Management Co., Ltd.
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
 **Inventor:** Nishioka Takehiro (西岡 毅洋)
 **Filed:** 23 December 2020
 **Published:** 5 July 2022
@@ -13,7 +13,7 @@
 
 ### Patent-to-Production Matching
 
-This patent is filed by Panasonic IP Management, not by Hasselblad (Victor Hasselblad AB) or its parent DJI. The prescription in Example 1 is normalised to a full-frame image circle ($\text{IH}_\text{max} = 21.633\;\text{mm}$, corresponding to a 43.27 mm diagonal). The Hasselblad XCD 2,5/90V is a medium-format lens covering a 43.8 × 32.9 mm sensor (diagonal ≈ 54.78 mm). The production lens is identified with this patent by uniform geometric scaling and convergent specification matching:
+This patent is filed by Panasonic Intellectual Property Management, not by Hasselblad (Victor Hasselblad AB) or its parent DJI. The prescription in Example 1 is normalised to a full-frame image circle ($\text{IH}_\text{max} = 21.633\;\text{mm}$, corresponding to a 43.27 mm diagonal). The Hasselblad XCD 2,5/90V is a medium-format lens covering a 43.8 × 32.9 mm sensor (diagonal ≈ 54.78 mm). The production lens is identified with this patent by uniform geometric scaling and convergent specification matching:
 
 1. **Focal length.** The patent's EFL = 71.28 mm. Scaling by the factor $90/71.28 = 1.2626$ yields 90.0 mm, matching the production focal length exactly. The Hasselblad product page also cites a 71 mm full-frame equivalent focal length.
 2. **Maximum aperture.** The patent's F/2.56 corresponds to the marketed f/2.5 (typical rounding from a design value).

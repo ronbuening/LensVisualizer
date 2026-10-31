@@ -7,7 +7,7 @@
 **Filed in Japan:** 18 June 1971, as printed on the Japanese publication  
 **Published:** 2 June 1976  
 **Inventors:** Rinzō Watanabe (渡辺 林蔵); Ellis I. Betensky  
-**Applicant:** Kino Precision Industries Co., Ltd. (キノ精密工業株式会社)  
+**Applicant:** Kino Seimitsu Kogyo K.K. (キノ精密工業株式会社)  
 **Title:** Zoom Lens (ズームレンズ)  
 **Example details:** Table 1, the sole numerical example  
 **English counterpart:** US 3,817,600, _Zoom Lens Having Close-Up Focusing Mode of Operation_, granted 18 June 1974

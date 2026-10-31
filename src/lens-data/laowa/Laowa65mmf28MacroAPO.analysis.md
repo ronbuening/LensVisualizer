@@ -7,7 +7,7 @@
 ## Patent Reference and Production Identification
 
 **Patent:** CN 110161666A, "一种高倍率微距镜头" (A High-Magnification Macro Lens)
-**Applicant:** 安徽长庚光学科技有限公司 (Anhui Changeng Optical Technology Co., Ltd.) — the corporate entity behind Laowa.
+**Applicant:** 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd.) — the corporate entity behind Laowa.
 **Inventor:** 李大勇 (Li Dayong)
 **Filed:** 2019-05-20; **Published:** 2019-08-23
 **Classification:** G02B 15/20, G02B 27/00
@@ -257,7 +257,7 @@ The small discrepancy in conditional (1) (0.337 vs 0.333) arises from using the 
 
 ## Sources
 
-1. CN 110161666A, "一种高倍率微距镜头," filed 2019-05-20, published 2019-08-23. 安徽长庚光学科技有限公司 (Anhui Changeng Optical Technology Co., Ltd.), inventor 李大勇.
+1. CN 110161666A, "一种高倍率微距镜头," filed 2019-05-20, published 2019-08-23. 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd.), inventor 李大勇.
 2. [Laowa product page, "Laowa 65mm f/2.8 2X Ultra-Macro APO."](https://www.venuslens.net/product/laowa-65mm-f-2-8-2x-ultra-macro-apo/)
 3. Digital Camera World, "Laowa 65mm f/2.8 2x Ultra Macro APO review," March 2020.
 4. CDGM glass catalog data accessed via refractiveindex.info (Zemax catalog 2022-06) and sinoptix.eu glass equivalency tables.

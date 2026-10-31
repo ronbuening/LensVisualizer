@@ -179,3 +179,9 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 14 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
 | Element 15 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
 | Rear plate F | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+
+## 2026-10-31 — Same-application assignee verification
+
+- Visually checked the local A1 text: its front page names the inventor and no organization.
+- Google Patents lists one assignment for application 09/799,058 in the [legal events](https://patents.google.com/patent/US20020015231A1/en): Hideki Ogawa to Canon Kabushiki Kaisha, 2001-07-17, before the A1 publication of 2002-02-07. The grant is US 6,473,232 B2. The page gives no reel/frame, and the underlying instrument was not inspected.
+- `source.assignees` already read Canon Inc. without this basis on record. The value stays; the data comment and the analysis header now state the evidence. Optical data are unchanged.
