@@ -170,7 +170,7 @@ exclusive responsibility for one aberration.
 
 ### L10 — Positive Meniscus, Convex to Image
 
-**Corrected $n_d=1.603112$, $\nu_d=60.6997$. Glass: S-BSM14/J-SK14-equivalent 603/607 crown class. Standalone
+**Corrected $n_d=1.603112$, $\nu_d=60.6997$. Glass: J-SK14 qualified HIKARI catalog proxy; source supplier/melt unspecified. Standalone
 $f=+43.604\ \mathrm{mm}$.**
 
 Both radii are negative, with the rear surface much more strongly curved, so L10 is a positive meniscus convex to the
@@ -207,7 +207,7 @@ OHARA, HOYA, SCHOTT, and HIKARI catalog data without seeding the search with a d
 | L7      |             Printed 1.728250 / 28.64 | S-TIH10 approximate proxy | Published C/F/g imply ν = 28.4606065; source inconsistency unresolved |
 | L8      |                              805/254 | S-TIH6 / SF6 class        | Dense flint                                                           |
 | L9      |                              835/427 | S-LAH55V class            | Dense lanthanum flint                                                 |
-| L10     |                    corrected 603/607 | S-BSM14 / J-SK14 class    | Printed $n_d=1.613112$ is impossible                                  |
+| L10 | corrected 603/607 | J-SK14 qualified proxy | Printed $n_d=1.613112$ is impossible; source C/F/g retained |
 | L11     |                              773/496 | S-LAH66 class             | Full spectral match; not the later S-LAH66N variant                   |
 
 The strongest chromatic design choice is L5. From its patent line indices,
@@ -402,3 +402,14 @@ and schematic uncertainty. A shoulder identifies an outer blank outline, not add
 This metadata-only follow-up preserves the original review date and source inspection. The catalog design focal value is 24.6 mm, taken directly from Numerical Example6, Table6, PDF p10 (captionp9): header f=24.6mm, F/1.45. The prior computed model EFL value 24.5994023367 mm remains a calculated result, separately qualified in this analysis; it is not a printed source target.
 
 All R/d, media, spectral values, stops, apertures, gaps, focus/zoom controls, source-errata dispositions and retained limitations are unchanged. This correction adds no fresh shape/glass review and makes no claim to resolve an authored reconstruction or production correlation.
+
+
+## 2026-10-31 — Full-source spectral proxy comparison
+
+Exact local original JP 1999-030743 A, Numerical Example 6, Table6 (caption PDF p9, native numerical/spectral table p10/printed cols17–18). Paragraph 0041 (PDF p4/col6) explicitly defines d/g/C/F index columns; it does not print extra numerical wavelengths. Source row 19 is L10: printed d1.613112, g1.615392, C1.600082, F1.610018 and ν60.70. The existing source-supported nd emendation1.603112 remains unchanged, as do all source errata, published image gap and resulting1.666626mm focus discrepancy. Figure 7 (middle native bitmap on PDF p13,677×461 at about 200 ppi) identifies the complete R19/R20 positive meniscus; no bonded layer or new shoulder is inferred. The completed 2026-10-30 shape review and actual 2026-09-25 correction history remain reused.
+
+Use J-SK14 only as a closer full-spectrum catalog proxy. BACD14 was the initial partial-ratio lead, but the actual printed-index θgF is0.540861513688, distinct from the engine reconstruction0.540862055304 from rounded stored dPgF. BACD14 improves catalog θ residual relative to S-BSM14, yet J-SK14 fits the full C/d/F/g vector better. Anchored maximum residuals are17.28838×10⁻⁶ for S-BSM14,7.72930×10⁻⁶ for BACD14 and2.54303×10⁻⁶ for J-SK14; RMS residuals are9.33553/5.32071/1.56848×10⁻⁶. The improvement over S-BSM14 is much larger than the source's six-decimal half-rounding unit0.5×10⁻⁶. Source F−C span error improves from+0.096616% to+0.009349%. This does not make J-SK14 an exact source match: its residual still spans several printed last digits, and historical supplier, melt and chemistry remain unspecified.
+
+Paragraph 0035/condition (12), PDF p4/col6, compares θgF with0.641−0.0016νd. That optional source comparison line differs from the engine normal line0.6438−0.001682νd. For L10 the source bound is0.5438805152, so its printed θ remains below the optional condition; neither the proxy change nor the preserved derived dPgF is a new patent APD designation. All thirty-three genuine source C/F/g points and every source number/partial/APD/control remain untouched. Complete line-index tracing already has priority, so all actual chromatic channels stay exactly identical; the change improves the qualified catalog annotation, not the traced prescription or a production-material claim.
+
+This is a scoped catalog-assignment follow-up. The selected original reference/spectral pages were freshly rendered for numerical reading and native figure pixels inspected for the relevant body/interface only. The prior whole-lens shape pass is reused with its actual date. Source R/d, caps, aspheres, stops, gaps, zoom/focus controls, source spectral values, source errata, field/interpolation limits and production-correlation qualifications are preserved. No source-medium identity or new whole-review count is claimed.

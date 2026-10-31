@@ -14,16 +14,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2696** elements have multiple coordinate-compatible candidates
+- **2695** elements have multiple coordinate-compatible candidates
 - **491** lens files are affected
-- **277** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **119** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
-| Vendor context | 277 |
+| Vendor context | 276 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -102,7 +102,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAH65V (OHARA; 804/466 dense lanthanum-flint class equivalent)` | 1.80400 / 46.58 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L6 |
 | `S-TIH6 (OHARA; 805/254 SF6-class equivalent)` | 1.80518 / 25.42 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗)<br>N-SF6 (Schott, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L8 |
 | `S-LAH55V (OHARA; 835/427 dense lanthanum-flint class equivalent)` | 1.83481 / 42.72 (d) | S-LAH55V — direct name evidence outranks six-digit code evidence. | S-LAH55 (Ohara, code, vendor ✓, preferred code row)<br>TAFD5G (Hoya, code, vendor ✗, alternate code row)<br>TAFD5F (Hoya, code, vendor ✗, alternate code row)<br>J-LASF05 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L9 |
-| `S-BSM14 (OHARA; J-SK14 603/607 class; patent nd emended)` | 1.60311 / 60.70 (d) | S-BSM14 — Annotation vendor context matches Ohara. | J-SK14 (Hikari, name, vendor ✗)<br>BACD14 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L10 |
 | `S-LAH66 (qualified OHARA 773/496 spectral proxy; historical supplier unconfirmed)` | 1.77250 / 49.60 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | S-LAH66N (Ohara, code, vendor ✓, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>TAF1 (Hoya, code, vendor ✗, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row) | 1 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) L11 |
 | `S-LAL14 (OHARA catalog equivalent; qualified spectral proxy; historical supplier unconfirmed, 697-555)` | 1.69680 / 55.50 (d) | S-LAL14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>LAC14 (Hoya, code, vendor ✗, alternate code row) | 2 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) L11 |
 | `PBH53 / PBH53W (OHARA historical equivalent; qualified spectral proxy; historical supplier unconfirmed, 847-239)` | 1.84666 / 23.90 (d) | PBH53 — direct name evidence outranks six-digit code evidence. | S-NPH53 (Ohara, code, vendor ✓, preferred code row)<br>S-TIH53WN (Ohara, code, vendor ✓, alternate code row) | 3 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) L12 |

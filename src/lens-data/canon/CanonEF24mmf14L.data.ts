@@ -238,7 +238,7 @@ const LENS_DATA = {
       vd: 60.699678,
       focalLengthMm: 43.604265,
       indexReference: "d",
-      glass: "S-BSM14 (OHARA; J-SK14 603/607 class; patent nd emended)",
+      glass: "J-SK14 (HIKARI catalog curve; qualified full-spectrum proxy; source nd emendation retained; historical supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive rear meniscus; satisfies optional conditions (10) and (11), but not (12).",
       dPgF: -0.0008410863,
       nC: 1.600082,

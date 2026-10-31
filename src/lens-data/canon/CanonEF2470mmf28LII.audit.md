@@ -120,3 +120,14 @@ conjugate and is not a certified production field map.
 
 Source fidelity, sampled runtime clearance and production correlation remain separate conclusions. No original is
 missing or unusable; the retained source and runtime limitations above remain explicit.
+
+
+## 2026-10-31 — Full-source spectral proxy comparison
+
+Exact local original US 8,736,971 B2, Numerical Example 3. PDF p18 (printed cols9–10) defines the numerical d-line reference. PDF p16/col6 names rounded g436/F486/d588/C656nm, defines θgF=(ng−nF)/(nF−nC), and prints condition(3) using θgF−(0.6438−0.001682νd). PDF p17/col8 uses the same line in condition(4). Table1, PDF p20/col13, prints Example 3 +0.014 and−0.009. These are genuine source deviations, not published absolute per-medium C/F/g indices. The source row 8 on PDF p19/col12 assigns E5 nd1.59522/νd67.7; preserve those coordinates and both authored source partials. Native Figure 5 on PDF p8/sheet7 was inspected for this independent negative element and the following cemented interface; the extracted source page is2560×3300 at 300 ppi. The completed 2026-10-30 shape review and actual older dates remain reused.
+
+Retain S-FPM2 rather than J-PSKH1. The central θ reconstructed from printed +0.014 and67.7 is0.5439286; the deviation is printed to only three decimals, with a half-rounding interval of0.0005 before ν rounding. S-FPM2 catalog θ0.544235896 and J-PSKH1 θ0.543997267 are both within that published deviation precision. J-PSKH1's smaller ratio residual therefore is not independent evidence of a better source material. It would worsen nd offset from−0.000000411 to−0.002029990 and source-implied F−C span error from−0.052808% to−0.635407%. The curve's current-temperature/source-grade identity is not established by the patent.
+
+The actual engine already reconstructs g from the preserved source partial, retaining θ0.5439286 with either compatible catalog curve; only the borrowed C/F span would change. A raw catalog θ ranking would therefore worsen the authoritative span without improving the traced partial. No label, pair, source deviation, APD tag, R/d, asphere, cap, stop or control is changed. Rounded source wavelengths remain named Fraunhofer-line references, not fabricated exact per-lens wavelength measurements.
+
+This is a scoped catalog-assignment follow-up. The selected original reference/spectral pages were freshly rendered for numerical reading and native figure pixels inspected for the relevant body/interface only. The prior whole-lens shape pass is reused with its actual date. Source R/d, caps, aspheres, stops, gaps, zoom/focus controls, source spectral values, source errata, field/interpolation limits and production-correlation qualifications are preserved. No source-medium identity or new whole-review count is claimed.
