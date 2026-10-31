@@ -7,7 +7,7 @@
 **Filed:** 2024-12-06  
 **Priority:** JP 2024-126493, 2024-08-02  
 **Published:** 2026-02-03  
-**Inventor:** Shioda Ryo (盐田了)  
+**Inventor:** Ryo Shioda (盐田了)\
 **Applicant:** Sigma Corporation (株式会社适马)  
 **Classification:** G02B 15/14, G02B 15/16, G02B 13/18  
 **Example details:** 实施例1 / 数值实施例1; Figs. 1–7
@@ -30,7 +30,7 @@ Manufacturer specifications govern external product metadata. The data file ther
 
 The system is a negative-lead constant-length zoom. The claimed sequence is G1(−) · G2(+) · G3(+) · GR, where GR is the image-side group (§0010). In Numerical Example 1, GR resolves into four optical units: G4(−), G5(+), G6(−), and G7(+). The full first-order power sequence from object to image is therefore negative–positive–positive–negative–positive–negative–positive.
 
-G1 is a fixed negative front group. It contains two molded/aspherical negative menisci followed by a cemented doublet. Holding this large-diameter front group stationary is central to the patent’s mechanical argument: the patent criticizes prior constant-length or moving-front zoom constructions for mid-zoom field curvature, front-group mass, and sealing/rigidity issues (§0016–§0018, §0044–§0045).
+G1 is a fixed negative front group. It contains two aspherical negative menisci followed by a cemented doublet. Holding this large-diameter front group stationary is central to the patent’s mechanical argument: the patent criticizes prior constant-length or moving-front zoom constructions for mid-zoom field curvature, front-group mass, and sealing/rigidity issues (§0016–§0018, §0044–§0045).
 
 G2 and G3 are positive cemented doublets and serve as the principal variator pair. The important kinematic feature is not merely that G1–G2 collapses as the lens zooms. It is that the G2–G3 interval is smallest at both ends and largest near the middle zoom state. In Example 1, D12 falls from 24.2001 mm to 1.3704 mm, while D23 goes from 1.0967 mm to 4.7167 mm and back to 1.0966 mm. This is the non-monotonic spacing condition that the patent uses to suppress mid-zoom aberration excursions while preserving constant length.
 
@@ -43,14 +43,14 @@ Element focal lengths below are standalone thick-lens values in air. Group focal
 ### G1 — Fixed front negative group
 
 **L1 — Negative meniscus, convex to object; aspherical front.**  
-nd = 1.59271, νd = 66.97. Glass: MP-PCD51-70 / PCD51-class Hoya precision-mold preform. f = −53.05 mm.
+nd = 1.59271, νd = 66.97. Glass: MP-PCD51-70 / PCD51-class HOYA catalog proxy (source vendor/process unspecified). f = −53.05 mm.
 
 L1 is the large front asphere. The front radius is very shallow at +250.0000 mm, while the rear radius is +27.8483 mm, so the element is a strong negative meniscus whose bending controls the entry geometry of the wide-angle chief rays. The aspherical front face is placed at the largest available clear aperture, where it is most effective against wide-end distortion and field curvature.
 
 **L2 — Negative meniscus, convex to object; both faces aspherical.**  
-nd = 1.55352, νd = 71.72, ΔPgF = +0.02070. Glass: MP-FCD500-20 Hoya precision-mold ED preform. f = −193.43 mm.
+nd = 1.55352, νd = 71.72, ΔPgF = +0.02070. Glass: MP-FCD500-20 HOYA catalog proxy (source vendor/process unspecified). f = −193.43 mm.
 
-L2 is a low-power but high-leverage molded ED asphere. Both surfaces are polynomial aspheres, so this element contributes off-axis correction without adding strong paraxial power. Its high Abbe number and positive ΔPgF make it chromatically benign. Because Sigma does not publish the SLD positions, L2 should be treated as a low-dispersion molded asphere and a possible SLD candidate, not as a definitively excluded element.
+L2 is a low-power but high-leverage low-dispersion asphere. Both surfaces are polynomial aspheres, so this element contributes off-axis correction without adding strong paraxial power. Its high Abbe number and positive ΔPgF make it chromatically benign. Because Sigma does not publish the SLD positions, L2 should be treated as a low-dispersion asphere and a possible SLD candidate, not as a definitively excluded element.
 
 **L3 / L4 — Cemented doublet, biconcave + biconvex.**
 
@@ -101,7 +101,7 @@ nd = 1.59282, νd = 68.62, ΔPgF = +0.01932. Glass: Hoya FCD505/FCD515 family. f
 L13 is an air-spaced low-dispersion positive element using the same d-line glass constants as L12. It reinforces G5’s positive power while maintaining the chromatic correction scheme established by the L11/L12 doublet.
 
 **L14 — Positive meniscus, convex to object; both faces aspherical.**  
-nd = 1.59271, νd = 66.97, ΔPgF = +0.00904. Glass: MP-PCD51-70 / PCD51-class Hoya precision-mold preform. f = +70.91 mm.
+nd = 1.59271, νd = 66.97, ΔPgF = +0.00904. Glass: MP-PCD51-70 / PCD51-class HOYA catalog proxy (source vendor/process unspecified). f = +70.91 mm.
 
 L14 closes the strong positive G5 group. Its two aspherical surfaces operate in the converging cone behind the stop, where they are effective against spherical aberration and coma without needing a large element diameter.
 
@@ -116,32 +116,32 @@ G6 is a single negative element and is the focusing group. The patent states tha
 
 **L16 / L17 — Cemented doublet, biconvex asphere + biconcave.**
 
-- **L16:** nd = 1.80610, νd = 40.73, ΔPgF = −0.00552. Glass: MP-NBFD130 Hoya precision-mold preform. f = +43.37 mm.
+- **L16:** nd = 1.80610, νd = 40.73, ΔPgF = −0.00552. Glass: MP-NBFD130 HOYA catalog proxy (source vendor/process unspecified). f = +43.37 mm.
 - **L17:** nd = 1.85451, νd = 25.15, ΔPgF = +0.00732. Glass: Hoya NBFD25. f = −46.96 mm.
 
 G7 has isolated focal length +401.6 mm, so it is nearly afocal. Its function is rear correction and back-focus regulation rather than primary convergence. The front face of L16 is the final aspherical surface, placed close to the image plane to clean residual off-axis aberration.
 
 ## Glass Identification and Selection
 
-The patent does not name commercial glass catalogs, but the d-line indices, Abbe numbers, and θgF values map coherently to Hoya optical-glass families. The molded/aspherical elements are best identified by Hoya precision-mold preform names where those names reproduce the exact d-line constants. The FCD505/FCD515 case is treated as an alias family rather than a unique catalog name, because Hoya-family datasets list essentially the same 1.59282 / 68.62 class under both designations.
+The patent does not name commercial suppliers, melts, glass chemistry or element manufacturing processes. The existing compatible HOYA catalog curves are qualified spectral proxies. MP-prefixed preform names identify catalog alternatives rather than proving source molding. FCD505/FCD515 are retained as coordinate-compatible alternatives, without asserting that those names are historical aliases or that their chemistry is identical. The source d-line pairs and all seventeen printed absolute θgF ratios are stronger evidence than a catalog-name association; genuine partial dispersion remains source-backed.
 
-| Elements | Glass identification | nd | νd | θgF | ΔPgF | Role |
-|---|---:|---:|---:|---:|---:|---|
-| L1, L14 | MP-PCD51-70 / PCD51-class Hoya precision-mold preform | 1.59271 | 66.97 | 0.5367 | +0.00904 | Molded aspherical menisci |
-| L2 | MP-FCD500-20 Hoya precision-mold ED preform | 1.55352 | 71.72 | 0.5398 | +0.02070 | Molded ED asphere |
-| L3 | Hoya FC5 | 1.48749 | 70.44 | 0.5306 | +0.00919 | Low-dispersion negative crown; possible SLD candidate |
-| L4 | Hoya TAFD34 | 1.85033 | 42.70 | 0.5646 | −0.00677 | High-index positive partner |
-| L5 | Hoya FCD705 | 1.55032 | 75.50 | 0.5401 | +0.02781 | Low-dispersion positive; strong SLD candidate in G2 |
-| L6 | Hoya NBFD29 | 1.77047 | 29.74 | 0.5951 | +0.00038 | Dense-flint G2 partner |
-| L7 | Hoya FF8 | 1.75211 | 25.05 | 0.6192 | +0.01604 | Dense flint in G3 |
-| L8 | Hoya TAC6L | 1.75500 | 52.32 | 0.5473 | −0.00675 | High-index crown in G3 |
-| L9 | Hoya NBFD11 | 1.78590 | 43.94 | 0.5612 | −0.00794 | Negative flint in G4 |
-| L10 | Hoya FDS16-W | 1.98612 | 16.48 | 0.6656 | +0.04700 | High-index anomalous dense flint |
-| L11 | Hoya NBFD32 | 1.73037 | 32.23 | 0.5899 | −0.00033 | Negative flint in G5 |
-| L12, L13 | Hoya FCD505/FCD515 family | 1.59282 | 68.62 | 0.5440 | +0.01932 | Low-dispersion positives; plausible SLD candidates in G5 |
-| L15 | Hoya NBF1 | 1.74330 | 49.22 | 0.5495 | −0.01013 | Internal focusing negative meniscus |
-| L16 | MP-NBFD130 Hoya precision-mold preform | 1.80610 | 40.73 | 0.5694 | −0.00552 | Molded rear asphere |
-| L17 | Hoya NBFD25 | 1.85451 | 25.15 | 0.6103 | +0.00732 | Rear dense flint |
+| Elements |                                                             Glass identification |      nd |    νd |    θgF |     ΔPgF | Role                                                     |
+| -------- | -------------------------------------------------------------------------------: | ------: | ----: | -----: | -------: | -------------------------------------------------------- |
+| L1, L14  | MP-PCD51-70 / PCD51-class HOYA catalog proxy (source vendor/process unspecified) | 1.59271 | 66.97 | 0.5367 | +0.00904 | Aspherical menisci                                       |
+| L2       |              MP-FCD500-20 HOYA catalog proxy (source vendor/process unspecified) | 1.55352 | 71.72 | 0.5398 | +0.02070 | Low-dispersion asphere                                   |
+| L3       |                                                                         Hoya FC5 | 1.48749 | 70.44 | 0.5306 | +0.00919 | Low-dispersion negative crown; possible SLD candidate    |
+| L4       |                                                                      Hoya TAFD34 | 1.85033 | 42.70 | 0.5646 | −0.00677 | High-index positive partner                              |
+| L5       |                                                                      Hoya FCD705 | 1.55032 | 75.50 | 0.5401 | +0.02781 | Low-dispersion positive; strong SLD candidate in G2      |
+| L6       |                                                                      Hoya NBFD29 | 1.77047 | 29.74 | 0.5951 | +0.00038 | Dense-flint G2 partner                                   |
+| L7       |                                                                         Hoya FF8 | 1.75211 | 25.05 | 0.6192 | +0.01604 | Dense flint in G3                                        |
+| L8       |                                                                       Hoya TAC6L | 1.75500 | 52.32 | 0.5473 | −0.00675 | High-index crown in G3                                   |
+| L9       |                                                                      Hoya NBFD11 | 1.78590 | 43.94 | 0.5612 | −0.00794 | Negative flint in G4                                     |
+| L10      |                                                                     Hoya FDS16-W | 1.98612 | 16.48 | 0.6656 | +0.04700 | High-index anomalous dense flint                         |
+| L11      |                                                                      Hoya NBFD32 | 1.73037 | 32.23 | 0.5899 | −0.00033 | Negative flint in G5                                     |
+| L12, L13 |                                                        Hoya FCD505/FCD515 family | 1.59282 | 68.62 | 0.5440 | +0.01932 | Low-dispersion positives; plausible SLD candidates in G5 |
+| L15      |                                                                        Hoya NBF1 | 1.74330 | 49.22 | 0.5495 | −0.01013 | Internal focusing negative meniscus                      |
+| L16      |                MP-NBFD130 HOYA catalog proxy (source vendor/process unspecified) | 1.80610 | 40.73 | 0.5694 | −0.00552 | Rear asphere                                             |
+| L17      |                                                                      Hoya NBFD25 | 1.85451 | 25.15 | 0.6103 | +0.00732 | Rear dense flint                                         |
 
 The patent-published optical constants justify the low-dispersion and anomalous-partial-dispersion assignments above, but not the exact manufacturer SLD labeling. The SLD count is therefore tied to Sigma’s published construction, while individual positions are described as candidates unless the glass type is independently determinative.
 
@@ -153,15 +153,15 @@ Focusing is internal and performed by G6, the single negative meniscus L15. The 
 
 The patent publishes infinity-focus zoom separations only. It does not give close-focus spacings, close-focus β values, or a finite-distance prescription. Consequently, the data file uses the published infinity spacings for both the infinity and close-focus endpoints, while storing the manufacturer’s 0.28 m minimum focusing distance as product metadata.
 
-| Gap | Between | Wide | Middle | Tele |
-|---|---|---:|---:|---:|
-| d7 / D12 | G1–G2 | 24.2001 | 10.3101 | 1.3704 |
-| d10 / D23 | G2–G3 | 1.0967 | 4.7167 | 1.0966 |
-| d13 | G3–stop/G4 | 1.7600 | 13.8950 | 29.4811 |
-| d17 | G4–G5 | 11.0343 | 7.0293 | 1.6434 |
-| d24 | G5–G6 | 3.5756 | 2.6096 | 1.6000 |
-| d26 | G6–G7 | 6.5786 | 7.5446 | 8.5541 |
-| BF | G7–image | 16.6727 | 18.8127 | 21.1723 |
+| Gap       | Between    |    Wide |  Middle |    Tele |
+| --------- | ---------- | ------: | ------: | ------: |
+| d7 / D12  | G1–G2      | 24.2001 | 10.3101 |  1.3704 |
+| d10 / D23 | G2–G3      |  1.0967 |  4.7167 |  1.0966 |
+| d13       | G3–stop/G4 |  1.7600 | 13.8950 | 29.4811 |
+| d17       | G4–G5      | 11.0343 |  7.0293 |  1.6434 |
+| d24       | G5–G6      |  3.5756 |  2.6096 |  1.6000 |
+| d26       | G6–G7      |  6.5786 |  7.5446 |  8.5541 |
+| BF        | G7–image   | 16.6727 | 18.8127 | 21.1723 |
 
 The D23 row is the key patent feature: it reaches a maximum at the middle zoom position rather than at the endpoints.
 
@@ -173,14 +173,14 @@ $$
 z(y)=\frac{(1/r)y^2}{1+\sqrt{1-(1+K)(y/r)^2}} + A_4y^4 + A_6y^6 + A_8y^8 + A_{10}y^{10}+A_{12}y^{12}+A_{14}y^{14}
 $$
 
-| Surface | K | A4 | A6 | A8 | A10 | A12 | A14 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 0 | 8.81137E−06 | −9.35247E−09 | 3.56200E−12 | 9.76737E−15 | −1.41083E−17 | 6.28920E−21 |
-| 3 | 0 | −2.07372E−06 | 7.46142E−09 | −1.62322E−11 | 9.72804E−15 | 0 | 0 |
-| 4 | 0 | 6.10616E−06 | 6.61601E−09 | −4.17607E−11 | 5.07229E−14 | 0 | 0 |
-| 23 | 0 | −8.60792E−06 | 1.99952E−09 | −4.94951E−11 | −7.59311E−14 | 5.27607E−16 | 0 |
-| 24 | 0 | 3.85958E−06 | 1.95216E−08 | −7.83598E−11 | 1.91464E−13 | 0 | 0 |
-| 27 | 0 | 1.05308E−06 | 5.18117E−08 | −4.36191E−10 | 2.64638E−12 | −5.67644E−15 | 0 |
+| Surface |   K |           A4 |           A6 |           A8 |          A10 |          A12 |         A14 |
+| ------- | --: | -----------: | -----------: | -----------: | -----------: | -----------: | ----------: |
+| 1       |   0 |  8.81137E−06 | −9.35247E−09 |  3.56200E−12 |  9.76737E−15 | −1.41083E−17 | 6.28920E−21 |
+| 3       |   0 | −2.07372E−06 |  7.46142E−09 | −1.62322E−11 |  9.72804E−15 |            0 |           0 |
+| 4       |   0 |  6.10616E−06 |  6.61601E−09 | −4.17607E−11 |  5.07229E−14 |            0 |           0 |
+| 23      |   0 | −8.60792E−06 |  1.99952E−09 | −4.94951E−11 | −7.59311E−14 |  5.27607E−16 |           0 |
+| 24      |   0 |  3.85958E−06 |  1.95216E−08 | −7.83598E−11 |  1.91464E−13 |            0 |           0 |
+| 27      |   0 |  1.05308E−06 |  5.18117E−08 | −4.36191E−10 |  2.64638E−12 | −5.67644E−15 |           0 |
 
 The front aspheres work primarily on distortion, oblique field curvature, and coma at the wide end. The L14 double asphere works in the converging rear cone to reduce spherical aberration and coma. The L16 asphere is close to the image plane and handles residual off-axis correction after the focusing group.
 
@@ -194,23 +194,23 @@ This confirms that the design is not simply using “many low-dispersion glasses
 
 The fifteen patent conditions were recalculated from the transcribed prescription and independently checked by paraxial ray trace.
 
-| # | Expression | Range | Computed | Patent EX1 |
-|---|---|---:|---:|---:|
-| 1 | (D23T − D23W)/(D12W − D12T) | −0.08 to 0.08 | 0.000 | 0.00 |
-| 2 | (D23N − D23W)/(D12W − D12T) | 0.08 to 0.40 | 0.159 | 0.16 |
-| 3 | (D23N − D23T)/(D12W − D12T) | 0.08 to 0.40 | 0.159 | 0.16 |
-| 4 | (D34T − D34W)/(D12W − D12T) | 0.50 to 2.00 | 1.214 | 1.21 |
-| 5 | (LTN − LTW)/LTW | −0.04 to 0.06 | 0.000 | 0.00 |
-| 6 | (LTT − LTW)/LTW | −0.06 to 0.08 | 0.000 | 0.00 |
-| 7 | ndP(G1) − ndN(G1) | 0.20 to 0.45 | 0.306 | 0.31 |
-| 8 | ΔPgF(P,G2) − ΔPgF(N,G2) | >0.010 | 0.027 | 0.027 |
-| 9 | ΔPgF(P,GR) − ΔPgF(N,GR) | >0.010 | 0.021 | 0.021 |
-| 10 | fw/f1 | −0.60 to −0.30 | −0.421 | −0.42 |
-| 11 | ft/f2 | 0.20 to 0.60 | 0.477 | 0.48 |
-| 12 | ft/f3 | 0.40 to 0.80 | 0.514 | 0.51 |
-| 13 | ft/f4 | −1.40 to −0.70 | −0.962 | −0.96 |
-| 14 | ft/fw | 1.75 to 3.50 | 2.205 | 2.21 |
-| 15 | FnoT | 1.40 to 2.80 | 1.86 | 1.86 |
+| #   | Expression                  |          Range | Computed | Patent EX1 |
+| --- | --------------------------- | -------------: | -------: | ---------: |
+| 1   | (D23T − D23W)/(D12W − D12T) |  −0.08 to 0.08 |    0.000 |       0.00 |
+| 2   | (D23N − D23W)/(D12W − D12T) |   0.08 to 0.40 |    0.159 |       0.16 |
+| 3   | (D23N − D23T)/(D12W − D12T) |   0.08 to 0.40 |    0.159 |       0.16 |
+| 4   | (D34T − D34W)/(D12W − D12T) |   0.50 to 2.00 |    1.214 |       1.21 |
+| 5   | (LTN − LTW)/LTW             |  −0.04 to 0.06 |    0.000 |       0.00 |
+| 6   | (LTT − LTW)/LTW             |  −0.06 to 0.08 |    0.000 |       0.00 |
+| 7   | ndP(G1) − ndN(G1)           |   0.20 to 0.45 |    0.306 |       0.31 |
+| 8   | ΔPgF(P,G2) − ΔPgF(N,G2)     |         >0.010 |    0.027 |      0.027 |
+| 9   | ΔPgF(P,GR) − ΔPgF(N,GR)     |         >0.010 |    0.021 |      0.021 |
+| 10  | fw/f1                       | −0.60 to −0.30 |   −0.421 |      −0.42 |
+| 11  | ft/f2                       |   0.20 to 0.60 |    0.477 |       0.48 |
+| 12  | ft/f3                       |   0.40 to 0.80 |    0.514 |       0.51 |
+| 13  | ft/f4                       | −1.40 to −0.70 |   −0.962 |      −0.96 |
+| 14  | ft/fw                       |   1.75 to 3.50 |    2.205 |       2.21 |
+| 15  | FnoT                        |   1.40 to 2.80 |     1.86 |       1.86 |
 
 All computed values fall inside the patent’s claimed ranges and match the patent’s correspondence table to the printed precision.
 
@@ -224,7 +224,7 @@ The prescription was re-entered directly from the patent’s numerical tables, n
 - **Total track:** 133.60 mm at all three zoom positions.
 - **Petzval sum:** +3.2503 × 10−3 mm−1, computed surface-by-surface as Σφ/(n·n′), corresponding to Petzval radius −307.7 mm by the project sign convention.
 - **Semi-diameters:** not patent-published. The data file uses inferred renderer semi-diameters checked for edge thickness, surface slope, element SD ratio, and cross-gap sag intrusion. These should not be mistaken for manufacturer-published clear apertures.
-- **Aperture stop:** a single `STO.sd` value is used in the data file. The paraxial stop radius required to reproduce F1.86 differs by zoom position because the entrance-pupil magnification changes; the data file uses the tele-end maximum clear stop radius and records the patent F-number as both `nominalFno` and `apertureDesign`.
+- **Aperture stop:** the physical radius is inferred from the shared zoom aperture rule at source F1.86, not a published diaphragm dimension. Current wide/mid/tele radii are9.162400/9.932539/10.934081 mm, reflecting entrance-pupil magnification. The iris is recomputed at each zoom position; all focus inputs retain infinity geometry.
 
 ## Sources and References
 
@@ -232,3 +232,15 @@ The prescription was re-entered directly from the patent’s numerical tables, n
 - Sigma Corporation, “Launch schedule of Sigma 17-40mm F1.8 DC | Art,” 2025-06-17. Product metadata used for marketed focal length, production mounts, lens construction, diaphragm blade count, minimum focus distance, maximum magnification, and HLA/internal-zoom statements.
 - Hoya Optics official catalog sheets and catalog tables for MP-PCD51-70, MP-FCD500-20, MP-NBFD130, TAFD34, NBFD29, TAC6L, NBFD25, and related Hoya dense-flint and fluor-crown families.
 - Secondary cross-checks against public optical-glass datasets were used only where Hoya family names are aliased across catalog generations, especially the FCD505/FCD515 1.59282 / 68.62 class. The stored prescription values remain the patent values.
+
+## Reused Coverage and Runtime Follow-up — 2026-10-30
+
+The July 4 original shape review and October 8 all-seventeen-material partial-dispersion review retain their actual 2026 dates in the audit. Canonical parity against b7deb2216 excludes only the later structured source.example. No fresh original PDF inspection is claimed. Current source-prescription numerics, inferred clear caps, aspheres, source spectral values and zoom/focus controls remain identical. Seventeen labels and five roles now qualify catalog/vendor/process and SLD-position claims; all seventeen curve identities and all compiled C/d/F/g indices remain identical.
+
+Public normal-line reconstruction of the unchanged dPgF values recovers every documented source θgF within 4.6×10⁻⁷ (stored six-decimal deviation rounding). The source's four-decimal θgF precision is not increased by those carried calculation digits. The source deviation uses 0.648285−0.00180123νd; the engine uses 0.6438−0.001682νd. The October 8 conversion remains intact; no genuine source ratio is removed or mistaken for a catalog override.
+
+Current 65 unique infinity zoom geometries clear 3,185/3,185 axial49-point pupils and195/195 chiefs, with0 aim failures. All 1,365 sampled focus inputs (65 zoom × 21 focus) duplicate infinity: the production 0.28 m metadata does not establish a finite optical state. All 520 zoom/aperture working F-number computations trace; nominal 1.86 gives real working F-number1.884258/1.893906/1.902847 at wide/mid/tele. Those real marginal results are distinct from the nominal paraxial aperture rule.
+
+Three published zoom stations are separated from illustrative interpolation. The maximum interval first-order focus residual is −0.435125 mm at zoom 0.78125; source-station residuals are+.000825/+.001106/+.001728mm. No source R/d or cam law is fitted to erase these residuals. The centered APS-C inverse-height field check reaches91.9516% at wide (13.034133 of 14.175 mm), limited by front caps S1A/S2/S3; mid/tele reach100%. Wide source-field reach and full pupil transmission are separate: wide/mid/tele49-point bundles pass49/46/6,49/48/22 and49/40/22 at axial/0.6/full modeled angular-field fractions. These are collimated current-iris bundles, not finite-object or unvignetted-corner claims.
+
+All 1,105 actual generated SVG paths across 65 zoom states are finite, closed and connected with0 hidden trim. Surface/image-circle/aperture audits pass; field audit explicitly retains the wide 91.9516%limit. No cuts are authored. Source fidelity, sampled runtime clearance and production correlation remain separate conclusions; inferred caps, unknown historical process/supplier and unavailable finite-focus prescription remain qualified.

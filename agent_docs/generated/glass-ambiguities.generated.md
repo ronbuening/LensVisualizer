@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2705** elements have multiple coordinate-compatible candidates
+- **2703** elements have multiple coordinate-compatible candidates
 - **490** lens files are affected
-- **285** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **283** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **119** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1577 |
+| Smallest reference-index residual | 1575 |
 | Evidence-source priority | 837 |
 | Vendor context | 277 |
 | Stable canonical-name order | 12 |
@@ -1482,7 +1482,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `001291 — very-high-index glass class (vendor unspecified)` | 2.00100 / 29.13 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.8e-8) | J-LASFH16 (Hikari, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L4 |
 | `923209 — dense high-dispersion flint class (vendor unspecified)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L5 |
 | `835427 — high-index glass class (vendor unspecified)` | 1.83481 / 42.72 (d) | J-LASF05 — smallest d-line \|Δn\| (2.1e-8 vs 2.9e-6) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L6 |
-| `713539 — lanthanum crown class (vendor unspecified)` | 1.71300 / 53.94 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L7 |
+| `713539 — high-Abbe coordinate proxy (vendor/chemistry unspecified)` | 1.71300 / 53.94 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L7 |
 | `728283 — flint class (vendor unspecified)` | 1.72825 / 28.32 (d) | H-ZF4A — smallest d-line \|Δn\| (3.6e-8 vs 2.2e-7) | E-FD10 (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L8 |
 | `620603 — SK16/BSM16 class (supplier unconfirmed)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [SCHACHT S-TRAVENAR 135mm f/2.8](../../src/lens-data/schacht/SchachtSTravenar135mmf28.data.ts) L2 |
 | `728284 — SF10-class dense flint (supplier unconfirmed)` | 1.72825 / 28.40 (d) | SF10 — direct name evidence outranks six-digit code evidence. | J-SF10 (Hikari, code, alternate code row) | 1 | [SCHACHT S-TRAVENAR 135mm f/2.8](../../src/lens-data/schacht/SchachtSTravenar135mmf28.data.ts) L4 |
@@ -1555,12 +1555,11 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `TAFD35-class high-index lanthanum glass (911/353)` | 1.91082 / 35.25 (d) | TAFD35 — direct name evidence outranks six-digit code evidence. | H-ZLaF4LA (CDGM, code, alternate code row) | 1 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) L16 |
 | `M-LAC130-class molded lanthanum crown (694/532)` | 1.69350 / 53.20 (d) | M-LAC130 — direct name evidence outranks six-digit code evidence. | L-LAL13 (Ohara, code, alternate code row)<br>S-LAL13 (Ohara, code, preferred code row) | 1 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) L23 |
 | `SF6 / S-TIH6-class dense flint (805/255)` | 1.80518 / 25.46 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, name)<br>J-SF6 (Hikari, code, alternate code row)<br>H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) L41 |
-| `MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)` | 1.59271 / 66.97 (d) | MP-PCD51-70 — smallest d-line \|Δn\| (2.8e-6 vs 7.8e-4) | PCD51 (Hoya, name, vendor ✓) | 2 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) L1 |
-| `FCD505/FCD515 family (Hoya, 593/686 anomalous ED)` | 1.59282 / 68.62 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) L12 |
+| `FCD505/FCD515 family (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)` | 1.59282 / 68.62 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) L12 |
 | `FCD1 (Hoya) / S-FPL51 class` | 1.49700 / 81.61 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 1 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) E3 |
 | `FCD100 (Hoya) / S-FPL53 class` | 1.43700 / 95.10 (d) | FCD100 — Annotation vendor context matches Hoya. | S-FPL53 (Ohara, name, vendor ✗) | 2 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) E5 |
-| `BSC7 / N-BK7 / S-BSL7 class crown` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 1.8e-6) | BSC7 (Hoya, name)<br>S-BSL7 (Ohara, name) | 1 | [SIGMA 23mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) L12 |
-| `E-FL6 (HOYA) / S-TIL26 (OHARA) class` | 1.56732 / 42.84 (d) | E-FL6 — smallest d-line \|Δn\| (3.5e-7 vs 1.9e-6) | S-TIL26 (Ohara, name, vendor ✓) | 1 | [SIGMA 23mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) L31 |
+| `BSC7 / N-BK7 / S-BSL7 (qualified spectral proxies)` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 1.8e-6) | BSC7 (Hoya, name)<br>S-BSL7 (Ohara, name) | 1 | [SIGMA 23mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) L12 |
+| `E-FL6 / S-TIL26 (qualified spectral proxies)` | 1.56732 / 42.84 (d) | E-FL6 — smallest d-line \|Δn\| (3.5e-7 vs 1.9e-6) | S-TIL26 (Ohara, name) | 1 | [SIGMA 23mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) L31 |
 | `583594 crown class (S-BAL42 / SK12 / D-ZK2 equivalents; patent vendor unspecified)` | 1.58313 / 59.38 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | J-SK12 (Hikari, code, alternate code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [SIGMA 24mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) L1 |
 | `437951 fluorophosphate ED class (FCD100 / S-FPL53 equivalents; Sigma FLD class)` | 1.43700 / 95.10 (d) | FCD100 — smallest d-line \|Δn\| (5.6e-7 vs 1.8e-3) | S-FPL53 (Ohara, name) | 2 | [SIGMA 24mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) L2 |
 | `001255 high-index dense flint class (TAFD40 / H-ZLaF90A equivalents)` | 2.00069 / 25.46 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | J-LASFH17 (Hikari, code, alternate code row)<br>TAFD40L-W (Hoya, code, alternate code row) | 1 | [SIGMA 24mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) L3 |

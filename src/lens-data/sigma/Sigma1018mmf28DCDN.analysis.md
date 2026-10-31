@@ -13,16 +13,16 @@
 **Worked examples in patent:** 7
 **Example details:** 第2実施例, Figure 8
 
-This file transcribes and interprets Numerical Example 2 of JP 2024-104911 A. The embodiment is an APS-C constant-aperture ultra-wide zoom with 13 glass elements in 10 air-separated groups, seven aspherical surfaces, a 10.30-17.50 mm computed focal-length range, Fno 2.92, and an image height of 14.20 mm. Those values match the production identity of the Sigma 10-18 mm F2.8 DC DN | Contemporary after normal marketing rounding.
+This file transcribes and interprets Numerical Example 2 of JP 2024-104911 A. The embodiment is an APS-C constant-aperture ultra-wide zoom with 13 glass elements in 10 air-separated groups, seven aspherical surfaces, a 10.30-17.50 mm computed focal-length range, Fno 2.92, and an image height of 14.20 mm. Those values support a family-level association with the marketed lens; they do not establish the exact production prescription or prove a cause for the source/product differences.
 
 The identification rests on convergent evidence:
 
 1. **Element and group count.** Example 2 resolves to 13 elements in 10 groups when cemented pairs are counted as single air-separated groups. Sigma publishes the production lens as 13 elements in 10 groups.
-2. **Special-element count.** The patent has seven aspherical surfaces on four elements: L1, L2, L10, and L13. Sigma publishes four aspherical elements. The three νd = 95.10 elements, L3, L9, and L12, correspond to the three published FLD-class elements; L10 is the most plausible SLD-class element, although Sigma does not publish element positions for its SLD label.
-3. **Focal length and aperture.** Independent paraxial trace gives 10.300 / 13.500 / 17.500 mm at wide / middle / telephoto and a constant patent F-number of 2.92. This corresponds to the marketed 10-18 mm F2.8 specification.
+2. **Special-element count.** The patent has seven aspherical surfaces on four elements: L1, L2, L10, and L13. Sigma publishes four aspherical elements. The high-Abbe L3/L9/L12 coordinates support an inferred association with the production FLD count; L10 is an inferred SLD candidate. The patent identifies neither those brand classes nor their chemistry, historical supplier or melt.
+3. **Focal length and aperture.** Independent paraxial tracing gives 10.300 / 13.500 / 17.500 mm. The source prints Fno 2.92 at every station; the physical iris is inferred from that nominal target. The marketed 10–18 mm f/2.8 specifications and the current exact working f-number remain separate quantities.
 4. **Image format.** The patent image height Y = 14.20 mm corresponds to an APS-C-scale image circle, matching Sigma's DC designation.
 5. **Focus mechanism.** The patent states that G4, a single biconcave element L11, moves toward the image for near focus. This is consistent with the production lens being an internally focused stepping-motor AF lens.
-6. **Field.** The patent full field 2ω is 113.21° / 93.70° / 77.07°. Sigma publishes a production APS-C angle-of-view range of 109.7°-76.5° for L-Mount, Fujifilm X, and Sony E, and 106.6°-73.4° for Canon RF. The small difference is consistent with the distinction between patent-design image geometry and manufacturer-published corrected/camera-format specifications.
+6. **Field.** The patent full field 2ω is 113.21° / 93.70° / 77.07°. Sigma publishes a production APS-C angle-of-view range of 109.7°-76.5° for L-Mount, Fujifilm X, and Sony E, and 106.6°-73.4° for Canon RF. These differences remain source/product limitations; no unpublished digital-correction or rounding explanation is established.
 7. **Timing.** The patent was filed in January 2023 and published after the product launch cycle, which is consistent with a production-family optical patent rather than a later retrospective filing.
 
 Examples 1 and 2 are near-twin APS-C f/2.8 embodiments: both are 10.30-17.50 mm, Fno 2.92, Y = 14.20 mm, 13 elements / 10 groups, and the same glass map. Example 2 is retained as the analyzed embodiment because the supplied analysis selected it and the patent figure sequence explicitly associates Figure 8 with Example 2. Example 3 is a wider APS-C sibling at 9.30-17.46 mm. Examples 4-7 are full-frame f/4.12 embodiments with Y = 21.63 mm and do not correspond to this APS-C 10-18 mm production lens.
@@ -31,13 +31,13 @@ Examples 1 and 2 are near-twin APS-C f/2.8 embodiments: both are 10.30-17.50 mm,
 
 Example 2 is a compact retrofocus, negative-lead, five-unit zoom. The patent describes a front lens group GF of net negative power and a rear lens group GR of net positive power. In the numerical prescription this expands into five moving groups:
 
-| Group | Surfaces | Power | Patent group focal length | Function |
-|---|---:|---:|---:|---|
-| G1 / GF | 1-7 | Negative | -15.17 mm | Wide-angle front negative group and retrofocus field-forming unit |
-| G2 | 8-12 | Positive | +42.43 mm | Weak positive collector and first rear cemented corrector |
-| G3 | stop-18 | Positive | +19.52 mm | Strong positive group behind the stop; stop moves with this group |
-| G4 | 19-20 | Negative | -25.70 mm | Single-element inner-focus group |
-| G5 | 21-24 | Positive | +61.24 mm | Rear gathering and field/distortion correction group |
+| Group   | Surfaces |    Power | Patent group focal length | Function                                                          |
+| ------- | -------: | -------: | ------------------------: | ----------------------------------------------------------------- |
+| G1 / GF |      1-7 | Negative |                 -15.17 mm | Wide-angle front negative group and retrofocus field-forming unit |
+| G2      |     8-12 | Positive |                 +42.43 mm | Weak positive collector and first rear cemented corrector         |
+| G3      |  stop-18 | Positive |                 +19.52 mm | Strong positive group behind the stop; stop moves with this group |
+| G4      |    19-20 | Negative |                 -25.70 mm | Single-element inner-focus group                                  |
+| G5      |    21-24 | Positive |                 +61.24 mm | Rear gathering and field/distortion correction group              |
 
 The power sequence is negative-positive-positive-negative-positive. The negative front group gives the lens its wide-angle retrofocus character, and the positive rear groups restore image-side convergence while keeping the back focal distance long enough for mirrorless mounts. At the wide end BF = 16.3954 mm, giving BF/EFL = 1.592; this is a genuine retrofocus condition, not merely a long mechanical rear clearance.
 
@@ -65,14 +65,14 @@ nd = 1.59201, νd = 67.02. Glass: Hoya M-PCD51 match. f = -41.78 mm.
 
 L2 is the second object-convex negative meniscus in the front group. Both faces are aspherical, and the image-side surface is the only surface in this example with non-zero odd-order polynomial terms. This makes L2 the most geometrically aggressive aspheric element in the patent prescription.
 
-Its relatively high Abbe number compared with the high-index lanthanum elements helps the front group balance lateral color. Because it is also one of the moldable Hoya M-prefix matches, it fits the production statement that the lens uses multiple glass-molded aspherical elements.
+Its relatively high Abbe number compared with the higher-index source media helps balance lateral color. The compatible M-PCD51 catalog curve does not establish the historical grade, chemistry or production molding process.
 
 #### L3-L4 — Cemented biconcave / biconvex doublet
 
 L3: nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 match. f = -30.94 mm.
 L4: nd = 1.87071, νd = 40.73. Glass: Hoya TAFD32 match. f = +25.66 mm.
 
-L3 is a fluorite-class crown with very high Abbe number and strong positive partial-dispersion deviation. L4 is a dense positive lanthanum partner. Together they form a weakly positive cemented group in air, with f ≈ +141.72 mm. In the complete G1 system the pair acts primarily as a chromatic and field corrector rather than as the main power source.
+L3 is a high-Abbe coordinate-class crown with very high Abbe number and strong positive partial-dispersion deviation. L4 is a high-index positive partner. Together they form a weakly positive cemented group in air, with f ≈ +141.72 mm. In the complete G1 system the pair acts primarily as a chromatic and field corrector rather than as the main power source.
 
 The large index contrast at the cemented interface bends oblique bundles without adding an air-glass surface. This is useful in the front group, where field and lateral color are difficult to control without increasing element count or front diameter.
 
@@ -130,7 +130,7 @@ The glass has a relatively low partial-dispersion deviation, which helps keep th
 
 nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 match. f = +24.41 mm.
 
-L12 is the third fluorite-class crown in the design. Its strong positive power is placed relatively far to the rear, where it helps collect the steeply converging bundle while contributing high positive ΔPgF to the rear-of-stop positive-element average used in condition 8.
+L12 is the third high-Abbe coordinate-class crown in the design. Its strong positive power is placed relatively far to the rear, where it helps collect the steeply converging bundle while contributing high positive ΔPgF to the rear-of-stop positive-element average used in condition 8.
 
 #### L13 — Biconcave negative, both surfaces aspherical
 
@@ -144,25 +144,25 @@ The patent gives nd, νd, and θgF for each element, but it does not name glass 
 
 ΔPgF is calculated from the patent's stated relation: ΔPgF = θgF - (0.648285 - 0.00180123 × νd).
 
-| Element | Catalog match | nd | νd | θgF | ΔPgF | Optical role |
-|---|---|---:|---:|---:|---:|---|
-| L1 | M-TAFD305 (Hoya) | 1.85135 | 40.10 | 0.5694 | -0.0067 | High-index first asphere |
-| L2 | M-PCD51 (Hoya) | 1.59201 | 67.02 | 0.5358 | +0.0082 | Moldable anomalous crown asphere |
-| L3 | FCD100 (Hoya) | 1.43700 | 95.10 | 0.5335 | +0.0565 | FLD-class front-group crown |
-| L4 | TAFD32 (Hoya) | 1.87071 | 40.73 | 0.5681 | -0.0068 | Dense positive doublet partner |
-| L5 | NBFD30 (Hoya) | 1.85883 | 30.00 | 0.5978 | +0.0036 | Positive collector |
-| L6 | TAFD65 (Hoya) | 2.05090 | 26.94 | 0.6050 | +0.0052 | NR1 high-index negative |
-| L7 | FF5 (Hoya) | 1.59270 | 35.45 | 0.5926 | +0.0082 | PR1 positive doublet partner |
-| L8 | S-LAH88 (Ohara) | 1.91650 | 31.60 | 0.5910 | -0.0004 | NR2 dense negative |
-| L9 | FCD100 (Hoya) | 1.43700 | 95.10 | 0.5335 | +0.0565 | PR2 FLD-class crown |
-| L10 | M-FCD500 (Hoya) | 1.55332 | 71.68 | 0.5402 | +0.0210 | Inferred SLD-class asphere |
-| L11 | NBF1 (Hoya) / H-LaF53 (CDGM) | 1.74330 | 49.22 | 0.5493 | -0.0103 | Moving focus group |
-| L12 | FCD100 (Hoya) | 1.43700 | 95.10 | 0.5335 | +0.0565 | Rear FLD-class crown |
-| L13 | M-NBFD130 (Hoya) | 1.80610 | 40.73 | 0.5693 | -0.0056 | Rear moldable asphere |
+| Element | Qualified spectral proxy     |      nd |    νd |    θgF |    ΔPgF | Optical role                                         |
+| ------- | ---------------------------- | ------: | ----: | -----: | ------: | ---------------------------------------------------- |
+| L1      | M-TAFD305 (Hoya)             | 1.85135 | 40.10 | 0.5694 | -0.0067 | High-index first asphere                             |
+| L2      | M-PCD51 (Hoya)               | 1.59201 | 67.02 | 0.5358 | +0.0082 | Low-dispersion coordinate-class asphere              |
+| L3      | FCD100 (Hoya)                | 1.43700 | 95.10 | 0.5335 | +0.0565 | High-Abbe class; production FLD association inferred |
+| L4      | TAFD32 (Hoya)                | 1.87071 | 40.73 | 0.5681 | -0.0068 | Dense positive doublet partner                       |
+| L5      | NBFD30 (Hoya)                | 1.85883 | 30.00 | 0.5978 | +0.0036 | Positive collector                                   |
+| L6      | TAFD65 (Hoya)                | 2.05090 | 26.94 | 0.6050 | +0.0052 | NR1 high-index negative                              |
+| L7      | FF5 (Hoya)                   | 1.59270 | 35.45 | 0.5926 | +0.0082 | PR1 positive doublet partner                         |
+| L8      | S-LAH88 (Ohara)              | 1.91650 | 31.60 | 0.5910 | -0.0004 | NR2 dense negative                                   |
+| L9      | FCD100 (Hoya)                | 1.43700 | 95.10 | 0.5335 | +0.0565 | PR2 high-Abbe class; FLD association inferred        |
+| L10     | M-FCD500 (Hoya)              | 1.55332 | 71.68 | 0.5402 | +0.0210 | Inferred SLD-class asphere                           |
+| L11     | NBF1 (Hoya) / H-LaF53 (CDGM) | 1.74330 | 49.22 | 0.5493 | -0.0103 | Moving focus group                                   |
+| L12     | FCD100 (Hoya)                | 1.43700 | 95.10 | 0.5335 | +0.0565 | Rear high-Abbe class; FLD association inferred       |
+| L13     | M-NBFD130 (Hoya)             | 1.80610 | 40.73 | 0.5693 | -0.0056 | Rear asphere; qualified spectral proxy               |
 
-The published production count of three FLD elements is best mapped to L3, L9, and L12, all νd = 95.10 FCD100 matches. The single SLD element is most plausibly L10, the M-FCD500 element with νd = 71.68 and ΔPgF = +0.0210. L2 is a secondary low-dispersion moldable crown and could be considered an alternative SLD candidate, but its lower ΔPgF makes L10 the stronger assignment.
+The production FLD association with L3/L9/L12 is an inference from their high-Abbe source coordinates and compatible FCD100 proxy; it does not identify historical chemistry or supplier. The single SLD element is most plausibly L10, the M-FCD500 element with νd = 71.68 and ΔPgF = +0.0210. L2 is a secondary low-dispersion coordinate-class crown and could be considered an alternative SLD candidate, but its lower ΔPgF makes L10 the stronger assignment.
 
-The data file carries a `dPgF` value on every element for chromatic tracing. That field is the patent's θgF minus the engine's normal line (0.6438 - 0.001682 × νd), not the patent's ΔPgF tabulated above; L1 and L7, where the two lines nearly cross, keep four-decimal figures that agree with it within 0.0003. The APD display tag is limited to the three FLD elements and the strongest SLD candidate. Ordinary dense flints and mild near-normal glasses are not marked as APD merely because the patent publishes θgF for them.
+The data file carries a `dPgF` value on every element for chromatic tracing. That field is the patent's θgF minus the engine's normal line (0.6438 - 0.001682 × νd), not the patent's ΔPgF tabulated above; L1 and L7, where the two lines nearly cross, keep four-decimal figures that agree with it within 0.0003. All four APD display tags are inferred from their published ratios relative to a normal line. The source supplies partial-ratio conditions, but no individual anomalous-material designation, FLD/SLD identity or catalog grade. Ordinary dense flints and mild near-normal glasses are not marked as APD merely because the patent publishes θgF for them.
 
 ## Focus Mechanism
 
@@ -170,13 +170,13 @@ The patent describes focusing from infinity to close distance by moving G4 towar
 
 The patent publishes only infinity-focus zoom separations. It does not provide close-focus separation tables or focus travel. Therefore the data file models the infinity zoom states only; close-focus metadata is taken from the manufacturer specification, 0.116 m at the wide end and 0.191 m at the telephoto end.
 
-| Gap | Between groups | Wide | Middle | Telephoto |
-|---|---|---:|---:|---:|
-| d7 | G1-G2 | 16.5964 | 7.7505 | 1.5720 |
-| d12 | G2-stop/G3 | 3.2532 | 3.0431 | 2.5382 |
-| d18 | G3-G4 | 1.6000 | 2.5118 | 3.3767 |
-| d20 | G4-G5 | 4.6173 | 3.7055 | 2.8406 |
-| BF | G5-image | 16.3954 | 19.7381 | 23.9736 |
+| Gap | Between groups |    Wide |  Middle | Telephoto |
+| --- | -------------- | ------: | ------: | --------: |
+| d7  | G1-G2          | 16.5964 |  7.7505 |    1.5720 |
+| d12 | G2-stop/G3     |  3.2532 |  3.0431 |    2.5382 |
+| d18 | G3-G4          |  1.6000 |  2.5118 |    3.3767 |
+| d20 | G4-G5          |  4.6173 |  3.7055 |    2.8406 |
+| BF  | G5-image       | 16.3954 | 19.7381 |   23.9736 |
 
 ## Aspherical Surfaces
 
@@ -192,15 +192,15 @@ Here K is the ordinary conic constant: K = 0 is spherical and K = -1 is parabolo
 
 The original Example 2 coefficients are:
 
-| Surface | K | Non-zero coefficients |
-|---|---:|---|
-| 1 | 0 | A4 = +3.57607E-05, A6 = -1.17819E-07, A8 = +3.35081E-10, A10 = -6.45434E-13, A12 = +5.60529E-16 |
-| 3 | 0 | A4 = -1.08527E-04, A6 = +9.36708E-07, A8 = -3.94825E-09, A10 = +8.17700E-12, A12 = -7.19759E-15 |
-| 4 | -0.20000 | A3 = -8.61492E-06, A4 = -9.04369E-05, A5 = +1.49662E-06, A6 = -6.10593E-09, A7 = +3.07996E-07, A8 = -5.78057E-08, A9 = +3.22483E-09, A10 = +1.20097E-10, A11 = -1.86496E-11, A12 = +1.23408E-12, A13 = -1.53332E-13, A14 = +7.16732E-15 |
-| 17 | 0 | A4 = -3.94666E-05, A6 = -2.00299E-07, A8 = +3.02534E-10, A10 = -3.61272E-12, A12 = +1.10093E-13 |
-| 18 | 0 | A4 = -2.02550E-05, A6 = -2.24984E-07, A8 = +1.61641E-09, A10 = -9.56611E-12, A12 = +5.04251E-14 |
-| 23 | -1.00000 | A4 = -3.17786E-05, A6 = -6.56688E-07, A8 = +3.22451E-09, A10 = -4.39587E-13 |
-| 24 | 0 | A4 = +5.38996E-05, A6 = -2.92940E-07, A8 = -4.43503E-10, A10 = +6.04648E-11, A12 = -3.46836E-13 |
+| Surface |        K | Non-zero coefficients                                                                                                                                                                                                                   |
+| ------- | -------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1       |        0 | A4 = +3.57607E-05, A6 = -1.17819E-07, A8 = +3.35081E-10, A10 = -6.45434E-13, A12 = +5.60529E-16                                                                                                                                         |
+| 3       |        0 | A4 = -1.08527E-04, A6 = +9.36708E-07, A8 = -3.94825E-09, A10 = +8.17700E-12, A12 = -7.19759E-15                                                                                                                                         |
+| 4       | -0.20000 | A3 = -8.61492E-06, A4 = -9.04369E-05, A5 = +1.49662E-06, A6 = -6.10593E-09, A7 = +3.07996E-07, A8 = -5.78057E-08, A9 = +3.22483E-09, A10 = +1.20097E-10, A11 = -1.86496E-11, A12 = +1.23408E-12, A13 = -1.53332E-13, A14 = +7.16732E-15 |
+| 17      |        0 | A4 = -3.94666E-05, A6 = -2.00299E-07, A8 = +3.02534E-10, A10 = -3.61272E-12, A12 = +1.10093E-13                                                                                                                                         |
+| 18      |        0 | A4 = -2.02550E-05, A6 = -2.24984E-07, A8 = +1.61641E-09, A10 = -9.56611E-12, A12 = +5.04251E-14                                                                                                                                         |
+| 23      | -1.00000 | A4 = -3.17786E-05, A6 = -6.56688E-07, A8 = +3.22451E-09, A10 = -4.39587E-13                                                                                                                                                             |
+| 24      |        0 | A4 = +5.38996E-05, A6 = -2.92940E-07, A8 = -4.43503E-10, A10 = +6.04648E-11, A12 = -3.46836E-13                                                                                                                                         |
 
 The companion data file now transcribes the complete surface-4 row directly, including A3, A5, A7, A9, A11, and A13. Its ordinary conic constant K = -0.2 and all A3–A14 values match Numerical Example 2. At the 10.25 mm data-file semi-diameter, the exact profile departs from the corresponding paraxial sphere by −911.983 µm.
 
@@ -208,7 +208,7 @@ The companion data file now transcribes the complete surface-4 row directly, inc
 
 The patent's glass strategy depends on partial dispersion, not just Abbe number. In GF, the mean ΔPgF of the negative elements L1, L2, and L3 is +0.0194, while the positive L4 is -0.0068. Their difference, +0.0262, satisfies condition 3.
 
-Behind the stop, the positive elements L9, L10, and L12 average ΔPgF = +0.0447, satisfying condition 8, while the negative elements L8, L11, and L13 average ΔPgF = -0.0054, satisfying condition 10. The design therefore pairs high-ΔPgF positive fluorite-class crowns against low-ΔPgF dense negative glasses behind the stop. That is the principal secondary-spectrum control mechanism.
+Behind the stop, the positive elements L9, L10, and L12 average ΔPgF = +0.0447, satisfying condition 8, while the negative elements L8, L11, and L13 average ΔPgF = -0.0054, satisfying condition 10. The design therefore pairs high-ΔPgF positive high-Abbe coordinate-class crowns against low-ΔPgF dense negative glasses behind the stop. That is the principal secondary-spectrum control mechanism.
 
 The correct characterization is not apochromatic. The patent publishes θgF values and uses anomalous partial dispersion deliberately, but it does not claim APO correction or provide a three-wavelength residual analysis.
 
@@ -216,52 +216,73 @@ The correct characterization is not apochromatic. The patent publishes θgF valu
 
 The following values were recomputed from the transcribed Example 2 prescription where paraxial computation is sufficient. Condition 2 is a finite-ray local-curvature condition involving the chief-ray intersection with NF1 at maximum image height; the patent's tabulated value is adopted for that term.
 
-| # | Expression | Example 2 value | Result |
-|---|---|---:|---|
-| 1 | 1.81 < ndNF1 < 2.15 | 1.851 | Met |
-| 2 | 0.05 < fw(1/RE1 - 1/RE2 - 1/RC1 + 1/RC2) < 0.50 | 0.160 | Met |
-| 3 | -0.010 < ΔPgFNFA - ΔPgFPFA < 0.050 | 0.0262 | Met |
-| 4 | 0.30 < ndNR1 - ndPR1 < 0.60 | 0.458 | Met |
-| 5 | 0.015 < ΔPgFPR2 - ΔPgFNR2 | 0.0569 | Met |
-| 6 | 0.20 < ndNR2 - ndPR2 < 0.60 | 0.479 | Met |
-| 7 | 1.40 < ndPRA < 1.65 | 1.476 | Met |
-| 8 | 0.020 < ΔPgFPRA | 0.0447 | Met |
-| 9 | 1.75 < ndNRA < 2.10 | 1.822 | Met |
-| 10 | ΔPgFNRA < 0.010 | -0.0054 | Met |
-| 11 | -1.50 < sqrt(fw ft) / fF < -0.50 | -0.885 | Met |
-| 12 | 0.40 < sqrt(fw ft) / fR < 0.80 | 0.595 | Met |
+| #   | Expression                                      | Example 2 value | Result |
+| --- | ----------------------------------------------- | --------------: | ------ |
+| 1   | 1.81 < ndNF1 < 2.15                             |           1.851 | Met    |
+| 2   | 0.05 < fw(1/RE1 - 1/RE2 - 1/RC1 + 1/RC2) < 0.50 |           0.160 | Met    |
+| 3   | -0.010 < ΔPgFNFA - ΔPgFPFA < 0.050              |          0.0262 | Met    |
+| 4   | 0.30 < ndNR1 - ndPR1 < 0.60                     |           0.458 | Met    |
+| 5   | 0.015 < ΔPgFPR2 - ΔPgFNR2                       |          0.0569 | Met    |
+| 6   | 0.20 < ndNR2 - ndPR2 < 0.60                     |           0.479 | Met    |
+| 7   | 1.40 < ndPRA < 1.65                             |           1.476 | Met    |
+| 8   | 0.020 < ΔPgFPRA                                 |          0.0447 | Met    |
+| 9   | 1.75 < ndNRA < 2.10                             |           1.822 | Met    |
+| 10  | ΔPgFNRA < 0.010                                 |         -0.0054 | Met    |
+| 11  | -1.50 < sqrt(fw ft) / fF < -0.50                |          -0.885 | Met    |
+| 12  | 0.40 < sqrt(fw ft) / fR < 0.80                  |           0.595 | Met    |
 
 ## Verification Summary
 
-The prescription was re-entered from the rendered patent pages and verified by an independent paraxial y-ν trace.
+The 2026-10-30 reinspection used the exact local JP 2024-104911 A, Numerical Example 2, paragraphs 0097–0105,
+Tables on PDF/printed pp. 17–18 and corresponding Figure 8 on p. 36. The embedded Figure 8 is a usable native
+2600 × 1506 one-bit raster at approximately 797 ppi. The old thumbnail/source-blocker conclusion is superseded.
+The prescription tables are vector text, checked on rendered pages. No different publication was substituted.
 
-| Quantity | Computed | Patent table |
-|---|---:|---:|
-| EFL, wide | 10.3002 mm | 10.30 mm |
-| EFL, middle | 13.5001 mm | 13.50 mm |
-| EFL, telephoto | 17.5003 mm | 17.50 mm |
-| BFD, wide | 16.3958 mm | 16.3954 mm |
-| BFD, middle | 19.7384 mm | 19.7381 mm |
-| BFD, telephoto | 23.9741 mm | 23.9736 mm |
-| G1 focal length | -15.1707 mm | -15.17 mm |
-| G2 focal length | +42.4345 mm | +42.43 mm |
-| G3 focal length | +19.5222 mm | +19.52 mm |
-| G4 focal length | -25.7019 mm | -25.70 mm |
-| G5 focal length | +61.2447 mm | +61.24 mm |
+All R/d, seven aspheres including the full odd/even S4 polynomial, thirteen index/Abbe pairs, genuine published
+partial ratios, iris derivation and zoom schedules are retained. No source filter or rear plate is dimensioned
+in this example. Every medium is d-line referenced by paragraph 0078 (pp. 12–13): d 587.56 nm, g 435.84 nm,
+F 486.13 nm. No individual C/F/g indices are printed. All thirteen catalog curves remain qualified spectral
+proxies, without historical supplier, melt, chemistry or manufacturing-process identification.
 
-The surface-by-surface Petzval sum, computed as Σ((n' - n)/(R n n')), is +5.144E-03 mm^-1, corresponding to a Petzval radius of -194.4 mm. This value is not tabulated in the patent and is reported only as an independent diagnostic.
+Figure-based estimates correct eighteen clear caps and add only two connected free-air shoulders: S2 clear
+12.3 / outer 17.8 mm and S4A clear 10.25 / outer 12.3 mm. The axial scale is about 26.13 native pixels/mm;
+±0.5 mm includes stroke reading and schematic/calibration uncertainty, rather than claiming dimensional tolerances.
+The retained D2 shared S11 cap 6.68 mm leaves a sloping modeled top where the drawing has separate outer blank
+steps. No opaque bonded land is invented. L1's inferred clear-cap ratio is now 17.8/12.3 ≈ 1.447.
 
-The following implementation details are reflected in the data file:
+Full-clear S2=17.8 is rejected at the spherical domain/rim-slope guard (90° versus 64.2°). Full-clear S4A=12.3
+violates the unchanged 0.90 sag guard: 6.48 mm versus 6.237 mm allowed in the 6.9302 mm physical gap. The adopted
+shoulders retain those optical caps and cap-anchored walls. All thirteen actual SVG elements are finite,
+closed, connected and untrimmed across 65 zoom states (845 contours); the final source comparison uses the
+candidate with G4 caps reduced to 6.4 mm, not the earlier taller-G4 trial.
 
-- The optical prescription is unscaled; all R, d, nd, and νd values follow Example 2 directly.
-- The data file uses the patent infinity zoom spacings only. Manufacturer close-focus distance is recorded as metadata, but no close-focus optical travel is synthesized.
-- Semi-diameters are conservative diagrammatic estimates because the patent does not publish clear apertures. They were checked for sd/|R| < 0.90, element front/rear SD ratio ≤ 1.25 (except L1, 1.37), positive edge thickness, and signed cross-gap sag clearance. The second review changed only these estimated SD values; it did not change the patent prescription radii, thicknesses, glasses, zoom spacings, or computed paraxial values. The 2026-09-24 field-coverage pass raised surfaces 1A/2, 22 and 23A, with partners 21 and 24A, so the traced wide-end chief ray reaches the Y = 14.20 mm corner. That chief ray crosses surface 1A at 16.28 mm while sd/|R| < 0.90 caps surface 2 near 12.7 mm, so L1's ratio cannot stay at 1.25.
-- APD UI tagging is intentionally restricted to L3, L9, L10, and L12. The remaining elements still carry `dPgF` values derived from the patent's θgF (referred to the engine's normal line), but they are not highlighted as special anomalous-dispersion elements.
-- Surface 4 retains the original patent's complete odd/even polynomial through A14.
+All 65 zoom positions pass the aperture and generic field checks: 3,185/3,185 sampled axial rays and 195/195
+chief rays clear, with zero aim/intersection failures; 8,757/9,555 total pupil samples pass and 798 off-axis
+samples clip. The minimum sampled generic image-height coverage is 99.99936%. Source angles 56.605°/46.85°/
+38.535° produce actual chief image heights 14.200952/14.199978/14.200218 mm, versus printed 14.20 mm. These
+are sampled clearance results, not an unvignetted continuum claim. The source's printed optical track rounds
+consistently with the literal gaps; sparse zoom interpolation reaches a −0.381242 mm image-plane residual.
+
+All 455 working-aperture preset calls trace. The current exact working values at the source wide/middle/tele
+states are f/2.978431, f/2.998312 and f/3.042380; they are distinct from nominal Fno 2.92. The old S10 cap 5.35 mm
+stopped the intended nominal beam at every station; the source-supported 7.5 mm cap removes that restriction
+without changing the iris. All 1,365 sampled zoom/focus inputs confirm focus is a no-op. Paragraph 0102 describes
+G4 focusing imageward, but all published d0 values are infinity and no finite-focus travel is supplied. No
+finite-source or close-focus cam validation is claimed.
+
+Eleven active partial fields reconstruct the printed θgF within rounding (less than 4.6e−7). Under the existing
+0.0003 retention rule, L1 keeps dPgF −0.0067 and L7 +0.0082: they reconstruct θ 0.5696518 / 0.5923731 versus
+printed 0.5694 / 0.5926, errors +0.0002518 / −0.0002269. Those errors exceed the four-decimal print bin and are
+explicit retained runtime approximations, not exact source reproduction. The exact printed values and the
+patent's own normal-line definition remain in the glass table and conditional-expression discussion.
+
+Surface, image-circle, aperture and field audits pass; there are no inferred rim cuts. Source fidelity, sampled
+runtime behavior and production correlation remain separate conclusions. Independent read-only QA confirmed
+the native cap hierarchy, two free-air shoulders, retained bonded-interface constraint and inferred APD status.
 
 ## Deviations Between Patent and Production Specifications
 
-The patent design and production lens agree on the main optical identity, but the following differences should be read as normal patent-to-product and marketing conventions:
+The family correlation remains qualified by the following source/product differences; their precise causes are not established:
 
 - Patent EFL is 10.30-17.50 mm; production marking is 10-18 mm.
 - Patent Fno is 2.92; production marking is F2.8.

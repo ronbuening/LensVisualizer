@@ -6,10 +6,10 @@ Patent: JP 2024-104911 A, Numerical Example 2
 
 ### Phase 1 - Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| L1, L2, L4-L8, L11, L13 | `apd` | `patent` | `false` | Patent Example 2 publishes theta_gF for every element, but those rows are not all special APD glasses. |
-| L10 | `apdNote` | `inferred SLD-class element` | `strongest non-FLD SLD candidate` | Keeps the APD highlight on the patent-listed dPgF = +0.0210 row while making the Sigma SLD placement explicit as an inference. |
+| Element / surface       | Field     | Before                       | After                             | Justification                                                                                                                  |
+| ----------------------- | --------- | ---------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| L1, L2, L4-L8, L11, L13 | `apd`     | `patent`                     | `false`                           | Patent Example 2 publishes theta_gF for every element, but those rows are not all special APD glasses.                         |
+| L10                     | `apdNote` | `inferred SLD-class element` | `strongest non-FLD SLD candidate` | Keeps the APD highlight on the patent-listed dPgF = +0.0210 row while making the Sigma SLD placement explicit as an inference. |
 
 L3, L9, and L12 remain patent-tagged APD rows because their nd/vd and dPgF match the three FLD-class elements. L10 remains patent-tagged as the strongest non-FLD SLD candidate. All elements retain their patent-derived `dPgF` values for chromatic tracing.
 
@@ -50,14 +50,14 @@ surface 2 with 1A would give 13.4 mm, past the sd/|R| < 0.90 rim-slope limit (ab
 than 8.9 so L13 keeps the ≤ 1.25 front/rear ratio the analysis states. Figure 8 is a thumbnail (sd-audit queue
 Section C), so no figure measurement was used.
 
-| Surface | Before | After | Justification |
-|---|---|---|---|
-| 1A | 13.75 | 16.8 | wide corner chief ray 16.28 mm + clearance; no aspheric turnover to 20.2 mm |
-| 2 | 11.0 | 12.3 | wide corner chief ray 11.78 mm + clearance; scaling with 1A fails sd/\|R\| < 0.90 |
-| 21 | 7.05 | 8.7 | scaled with surface 22 (×1.24); corner chief ray 5.78 mm |
-| 22 | 5.65 | 7.0 | wide corner chief ray 6.46 mm + clearance |
-| 23A | 5.65 | 7.1 | wide corner chief ray 6.60 mm (middle 6.00 mm) + clearance; no turnover to 8.6 mm |
-| 24A | 7.05 | 8.8 | scaled with 23A (×1.26), held at 8.8 for the L13 ratio; corner chief ray 6.85 mm; no turnover to 10.7 mm |
+| Surface | Before | After | Justification                                                                                            |
+| ------- | ------ | ----- | -------------------------------------------------------------------------------------------------------- |
+| 1A      | 13.75  | 16.8  | wide corner chief ray 16.28 mm + clearance; no aspheric turnover to 20.2 mm                              |
+| 2       | 11.0   | 12.3  | wide corner chief ray 11.78 mm + clearance; scaling with 1A fails sd/\|R\| < 0.90                        |
+| 21      | 7.05   | 8.7   | scaled with surface 22 (×1.24); corner chief ray 5.78 mm                                                 |
+| 22      | 5.65   | 7.0   | wide corner chief ray 6.46 mm + clearance                                                                |
+| 23A     | 5.65   | 7.1   | wide corner chief ray 6.60 mm (middle 6.00 mm) + clearance; no turnover to 8.6 mm                        |
+| 24A     | 7.05   | 8.8   | scaled with 23A (×1.26), held at 8.8 for the L13 ratio; corner chief ray 6.85 mm; no turnover to 10.7 mm |
 
 The validator accepts the new values, all three stations now reach 100% of the corner with every rim clear, the
 image-circle floor still reports nothing undersized, and no render trim appears at any zoom station. L1's front/rear
@@ -71,23 +71,95 @@ quoted surface-4A departure at 10.25 mm is unchanged.
 - Numerical Example 2 [面データ] on PDF page 17 prints an absolute θgF for every glass. The patent prints no per-element deviation; the condition table on page 31 gives only the group values (3) 0.0262, (5) 0.0569, (8) 0.0447 and (10) −0.0054, which the per-element deviations below reproduce.
 - All thirteen stored `dPgF` values were the patent's own deviation (θgF minus the patent's line, rounded to four decimals), copied straight into the field. The engine rebuilds ng from `dPgF` against 0.6438 − 0.001682·νd, so the correct value is θgF − (0.6438 − 0.001682·νd) at the element's stored νd. The two lines differ by 0.004485 − 0.00011923·νd and cross near νd 37.6.
 
-| Element | νd | Patent θgF | Patent's deviation | Stored before | Engine-line value | Stored after |
-|---|---:|---:|---:|---:|---:|---:|
-| L1 | 40.10 | 0.5694 | −0.0067 | −0.0067 | −0.006952 | −0.0067 (unchanged) |
-| L2 | 67.02 | 0.5358 | +0.0082 | +0.0082 | +0.004728 | +0.004728 |
-| L3 | 95.10 | 0.5335 | +0.0565 | +0.0565 | +0.049658 | +0.049658 |
-| L4 | 40.73 | 0.5681 | −0.0068 | −0.0068 | −0.007192 | −0.007192 |
-| L5 | 30.00 | 0.5978 | +0.0036 | +0.0036 | +0.004460 | +0.004460 |
-| L6 | 26.94 | 0.6050 | +0.0052 | +0.0052 | +0.006513 | +0.006513 |
-| L7 | 35.45 | 0.5926 | +0.0082 | +0.0082 | +0.008427 | +0.0082 (unchanged) |
-| L8 | 31.60 | 0.5910 | −0.0004 | −0.0004 | +0.000351 | +0.000351 |
-| L9 | 95.10 | 0.5335 | +0.0565 | +0.0565 | +0.049658 | +0.049658 |
-| L10 | 71.68 | 0.5402 | +0.0210 | +0.0210 | +0.016966 | +0.016966 |
-| L11 | 49.22 | 0.5493 | −0.0103 | −0.0103 | −0.011712 | −0.011712 |
-| L12 | 95.10 | 0.5335 | +0.0565 | +0.0565 | +0.049658 | +0.049658 |
-| L13 | 40.73 | 0.5693 | −0.0056 | −0.0056 | −0.005992 | −0.005992 |
+| Element |    νd | Patent θgF | Patent's deviation | Stored before | Engine-line value |        Stored after |
+| ------- | ----: | ---------: | -----------------: | ------------: | ----------------: | ------------------: |
+| L1      | 40.10 |     0.5694 |            −0.0067 |       −0.0067 |         −0.006952 | −0.0067 (unchanged) |
+| L2      | 67.02 |     0.5358 |            +0.0082 |       +0.0082 |         +0.004728 |           +0.004728 |
+| L3      | 95.10 |     0.5335 |            +0.0565 |       +0.0565 |         +0.049658 |           +0.049658 |
+| L4      | 40.73 |     0.5681 |            −0.0068 |       −0.0068 |         −0.007192 |           −0.007192 |
+| L5      | 30.00 |     0.5978 |            +0.0036 |       +0.0036 |         +0.004460 |           +0.004460 |
+| L6      | 26.94 |     0.6050 |            +0.0052 |       +0.0052 |         +0.006513 |           +0.006513 |
+| L7      | 35.45 |     0.5926 |            +0.0082 |       +0.0082 |         +0.008427 | +0.0082 (unchanged) |
+| L8      | 31.60 |     0.5910 |            −0.0004 |       −0.0004 |         +0.000351 |           +0.000351 |
+| L9      | 95.10 |     0.5335 |            +0.0565 |       +0.0565 |         +0.049658 |           +0.049658 |
+| L10     | 71.68 |     0.5402 |            +0.0210 |       +0.0210 |         +0.016966 |           +0.016966 |
+| L11     | 49.22 |     0.5493 |            −0.0103 |       −0.0103 |         −0.011712 |           −0.011712 |
+| L12     | 95.10 |     0.5335 |            +0.0565 |       +0.0565 |         +0.049658 |           +0.049658 |
+| L13     | 40.73 |     0.5693 |            −0.0056 |       −0.0056 |         −0.005992 |           −0.005992 |
 
 - Left unchanged: L1 (stored −0.0067, 0.000252 from the engine-line value) and L7 (stored +0.0082, 0.000227 from it). Both sit close to the crossing of the two lines, so the copied deviation already equals the engine-line value within the 0.0003 tolerance and was not re-rounded. No element is e-line referenced and none authors nC/nF/ng.
 - nd, νd, glass labels, `apd` tags and surfaces are untouched. The `apdNote` on L3, L9, L10 and L12 now quotes the patent θgF, the patent's deviation on the patent's line and the runtime value; no `apdNote` was added elsewhere. A header note in the data file names both lines.
 - `Sigma1018mmf28DCDN.analysis.md`: the ΔPgF column and the condition (3) / (5) / (8) / (10) values are the patent's deviation, labelled as the patent's relation, and stay as they are. Two sentences that said the data file keeps the patent-derived ΔPgF (Glass Identification, and the APD bullet in the Verification Summary) now say the field holds θgF referred to the engine's line.
 - The 2026-06-13 entries above ("retain their patent-derived `dPgF` values", "Patent theta_gF-derived dPgF values were retained") describe the file as it stood then and are superseded by this section.
+
+## 2026-10-30 — Native-figure reopening and source/glass qualification
+
+This is a scoped reopening for newly resolved Figure 8 evidence, the reproducible S10 nominal-beam clipping,
+and material/APD qualifications. The June 13, July 24, September 24 and October 8 review dates and conclusions
+above are historical; this section supersedes their old thumbnail and individual patent-APD claims.
+
+Exact unchanged local original: `patents/JP2024104911A.pdf`, SHA256 `5d995181823781fc46275966651468a145eb4155bde85a6a0dfe7fc09dbe0433`.
+Numerical Example 2: paragraphs 0097–0105 (pp. 16–17), all 24 surface/stop rows and thirteen nd/vd/θgF media
+(p. 17), all seven aspheres including S4 A3–A14 (pp. 17–18), three infinity zoom stations and five group powers
+(p. 18). Figure 8 on p. 36 is explicitly associated with Example 2 in paragraph 0097. All were checked directly
+on rendered originals. No alternate family publication supplied numerical or shape evidence.
+
+The native embedded Figure 8 is 2600 × 1506, one-bit, approximately 797 ppi; a 600 dpi page render downsamples
+it. Native extraction resolves the optical rims and two free-air steps. This supersedes the stale Section C
+thumbnail blocker without treating magnification as extra source resolution. Brackets, labels, arrows, leaders,
+axis and image plane are excluded. S1–S7 vertex span about 544 px / 20.8164 mm gives 26.13 px/mm; inferred
+heights carry about ±0.5 mm schematic/stroke/calibration uncertainty. They are not published effective diameters.
+
+| Surface | Before clear SD mm | Reviewed clear SD mm |
+| ------- | -----------------: | -------------------: |
+| 1A      |               16.8 |                 17.8 |
+| 3A      |                 12 |                 12.3 |
+| 5       |              10.25 |                 10.5 |
+| 8       |                  9 |                  7.5 |
+| 9       |                7.2 |                  7.5 |
+| 10      |               5.35 |                  7.5 |
+| 12      |                  7 |                  7.5 |
+| 14      |                7.7 |                  7.6 |
+| 15      |                  8 |                  7.6 |
+| 16      |                8.4 |                  7.6 |
+| 17A     |                8.6 |                  7.6 |
+| 18A     |                8.8 |                  7.6 |
+| 19      |                8.8 |                  6.4 |
+| 20      |                8.8 |                  6.4 |
+| 21      |                8.7 |                  8.5 |
+| 22      |                  7 |                  8.5 |
+| 23A     |                7.1 |                  8.5 |
+| 24A     |                8.8 |                  8.5 |
+
+S2 retains clear 12.3 with outer 17.8; S4A retains clear 10.25 with outer 12.3. Both shoulders are connected,
+air-facing and cap-anchored. Full-clear S2=17.8 fails its spherical domain and 64.2° rim-slope guard (90°).
+Full-clear S4A=12.3 requires 6.48 mm cross-gap sag versus unchanged 6.237 mm allowed in the 6.9302 mm physical
+gap; this is a guard violation, not a claim that 6.48 exceeds the entire physical gap. Both trials are rejected.
+S11's shared bonded cap 6.68 remains; the native D2 blank steps cannot be represented by inventing opaque
+lands. Coextensive D1/G3/G5 cap heights are supported by the native outlines. G4's smaller approximately 6.4 mm
+height is retained in the final candidate and final SVG. No disconnected resin, cut or extra plate is authored.
+
+Every modeled medium was checked against the thirteen original p. 17 rows. Paragraph 0078, pp. 12–13, defines
+d 587.56, g 435.84 and F 486.13 nm. There are no printed individual C/F/g indices, supplier names, melt or
+chemistry identities. All thirteen existing compatible catalog curves remain identical and qualified. All
+thirteen published θgF values are preserved; eleven active converted fields reconstruct them within rounded
+precision. Per the specification's 0.0003 retention rule, L1/L7 retain their historical active approximations:
+printed θ .5694/.5926 versus reconstructed .5696518/.5923731 (errors +.0002518/−.0002269, beyond the print bin).
+The exact source ratios, source-specific normal and these limits remain explicit. No unsupported per-lens
+catalog line override was present. Four APD tags become inferred: published partial-ratio conditions alone do
+not establish individual patent-designated anomalous materials, FLD/SLD brand class or chemistry.
+
+All source R/d, all aspheres, index/Abbe pairs, structured partial numbers, stop/iris derivation and controls
+are protected by parsed equality; all thirteen curve identities are unchanged. Surface/image-circle audits
+pass. All 65 zoom aperture/field checks pass with 3185/3185 axial rays and 195/195 chiefs, 8757/9555 total
+pupil rays clear, 798 marginal clips, zero intersection/aim failures. Source field chiefs reach 14.200952 /
+14.199978 / 14.200218 mm against printed 14.20; generic coverage minimum99.99936%. All455 working preset
+calls trace. Current exact-working f/2.978431 / 2.998312 / 3.042380 is not the nominal2.92 calibration. The old
+S10=5.35 cap's 3.7/11.3/21.6% nominal beam restriction is removed by source-supported7.5, without iris tuning.
+
+All845 sampled actual element contours (65zooms ×13) are finite, closed, connected and untrimmed. Final SVG
+comparison uses final G4=6.4; the earlier taller-G4 trial is rejected as unnecessary blank overextension.
+All1365 zoom/focus combinations confirm inert focus; source d0 is∞ at every station, with no finite prescription.
+The interpolation image residual −.381242mm, off-axis vignetting, inferred iris and production correlation
+remain limitations. No rim cuts exist. Independent read-only original/candidate QA confirmed the two shoulders,
+native hierarchy, bonded-interface constraint and APD qualifications. Runtime sampling is not production proof.

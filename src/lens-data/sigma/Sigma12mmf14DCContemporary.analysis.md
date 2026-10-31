@@ -8,7 +8,7 @@
 **Published:** 24 December 2025  
 **Inventor:** Kyosuke Murakami  
 **Applicant:** Sigma Corporation  
-**Title:** Optical system (光学系)  
+**Title:** Optical system (光学系)
 
 The prescription reproduces the selected Japanese publication, particularly the
 surface and asphere tables on pages 12–13 and Figure 1 on page 20. The source
@@ -59,14 +59,14 @@ The source attributes incidence-angle moderation ahead of the focus element to
 G1, and divides off-axis correction between the front and final groups. [1, ¶0017–0021]
 
 | Functional group | Surface span | Computed standalone group focal length, mm |
-|---|---|---:|
-| G1 | 1–8 | -26.1451 |
-| G1A | 1–4 | -19.0906 |
-| G1B | 5–8 | +131.3957 |
-| G2 | 9–10 | -38.1136 |
-| G3 | 11–16 | +17.0358 |
-| Gr | 11–27 | +20.4387 |
-| GL | 24–27 | +22.2228 |
+| ---------------- | ------------ | -----------------------------------------: |
+| G1               | 1–8          |                                   -26.1451 |
+| G1A              | 1–4          |                                   -19.0906 |
+| G1B              | 5–8          |                                  +131.3957 |
+| G2               | 9–10         |                                   -38.1136 |
+| G3               | 11–16        |                                   +17.0358 |
+| Gr               | 11–27        |                                   +20.4387 |
+| GL               | 24–27        |                                   +22.2228 |
 
 The aperture is source surface 17, represented as STO. The standalone cemented
 pairs have net focal lengths −22.1902 mm for L9–L10 and +78.6565 mm for L11–L12.
@@ -222,19 +222,19 @@ vendors. A six-manufacturer catalog comparison retains alternative matches and
 nearest nonmatches separately. Named classes in the data are optical-coordinate
 proxies, not evidence that a particular supplier furnished the lens.
 
-| Elements | Source nd | Source νd | Qualified catalog relationship |
-|---|---:|---:|---|
-| L1 | 1.69350 | 53.20 | M-LAC130 / P-LAK35 class (supplier unconfirmed) |
-| L2 | 1.61800 | 63.40 | PCD4 / K-PSKn2 class (supplier unconfirmed) |
-| L3, L12 | 1.59282 | 68.62 | FCD515 / FCD505 class (supplier unconfirmed) |
-| L4, L10 | 1.94594 | 17.98 | FDS18 class (HOYA coordinate proxy; supplier unconfirmed) |
-| L5 | 1.90110 | 27.06 | NBFD27 class (supplier unconfirmed) |
-| L6, L14 | 1.80610 | 40.73 | M-NBFD130 / NBFD13 class (supplier unconfirmed) |
-| L7 | 1.69895 | 30.05 | E-FD15 class (supplier unconfirmed) |
-| L8 | 1.75500 | 52.32 | TAC6 / S-LAH97 class (supplier unconfirmed) |
-| L9 | 1.69350 | 50.81 | S-LAL58 / LAL58 class (supplier unconfirmed) |
-| L11 | 1.84666 | 23.84 | FDS90-SGP class (supplier unconfirmed) |
-| L13 | 1.98612 | 16.48 | FDS16-W class (supplier unconfirmed) |
+| Elements | Source nd | Source νd | Qualified catalog relationship                            |
+| -------- | --------: | --------: | --------------------------------------------------------- |
+| L1       |   1.69350 |     53.20 | M-LAC130 / P-LAK35 class (supplier unconfirmed)           |
+| L2       |   1.61800 |     63.40 | PCD4 / K-PSKn2 class (supplier unconfirmed)               |
+| L3, L12  |   1.59282 |     68.62 | FCD515 / FCD505 class (supplier unconfirmed)              |
+| L4, L10  |   1.94594 |     17.98 | FDS18 class (HOYA coordinate proxy; supplier unconfirmed) |
+| L5       |   1.90110 |     27.06 | NBFD27 class (supplier unconfirmed)                       |
+| L6, L14  |   1.80610 |     40.73 | M-NBFD130 / NBFD13 class (supplier unconfirmed)           |
+| L7       |   1.69895 |     30.05 | E-FD15 class (supplier unconfirmed)                       |
+| L8       |   1.75500 |     52.32 | TAC6 / S-LAH97 class (supplier unconfirmed)               |
+| L9       |   1.69350 |     50.81 | S-LAL58 / LAL58 class (supplier unconfirmed)              |
+| L11      |   1.84666 |     23.84 | FDS90-SGP class (supplier unconfirmed)                    |
+| L13      |   1.98612 |     16.48 | FDS16-W class (supplier unconfirmed)                      |
 
 The HOYA FDS18/FDS18-W coordinate is 1.94595/17.98, compared with the
 retained patent value 1.94594/17.98. Other listed alternatives agree at the
@@ -260,13 +260,13 @@ Focus status is PUBLISHED. Only G2, the single negative element L5 between
 surfaces 9 and 10, moves. The fixed front and rear assemblies preserve the
 first-vertex-to-image track. [1, ¶0054–0057 and p. 13]
 
-| Quantity | Infinity | Published near state |
-|---|---:|---:|
-| D8, mm | 6.3767 | 4.8808 |
-| D10, mm | 1.8000 | 3.2959 |
-| Last-surface image gap, mm | 16.5939 | 16.5939 |
-| Object-to-first-vertex distance, mm | ∞ | 85.0203 |
-| Object-to-image distance, mm | ∞ | 170.3769 |
+| Quantity                            | Infinity | Published near state |
+| ----------------------------------- | -------: | -------------------: |
+| D8, mm                              |   6.3767 |               4.8808 |
+| D10, mm                             |   1.8000 |               3.2959 |
+| Last-surface image gap, mm          |  16.5939 |              16.5939 |
+| Object-to-first-vertex distance, mm |        ∞ |              85.0203 |
+| Object-to-image distance, mm        |        ∞ |             170.3769 |
 
 The displacement is 1.4959 mm toward the object. The source's integer 170 mm
 heading is consistent with the more precise object-to-image distance obtained
@@ -287,21 +287,9 @@ incident chief angle would compare different reference planes.
 
 ### Physical iris and f-number conventions
 
-The source does not give a physical diaphragm diameter. The model's inferred
-stop radius, 10.1250847952 mm, is calibrated from the infinity f/1.46 condition
-using exact tracing. That calibration is not independent stop-size evidence.
-The iris is retained at the same physical radius during focus.
+The source does not give a physical diaphragm diameter. The earlier review used a 10.1250847952 mm physical radius calibrated by exact working F-number at infinity, rather than independent stop-size evidence. The original V1 record explicitly stored that radius. Current V2 ingestion derives a 9.4611053642 mm physical radius from nominal 1.46 under the shared paraxial-pupil aperture rule. Canonical source-prescription parity does not imply the historical engine used the same inferred iris.
 
-At the source conjugates, image-space working f-number N = 1/(2 NA) is
-1.459857 at infinity and 1.458278 near, agreeing with printed 1.46 to its
-0.01 rounding precision. The source does not explicitly state a metrological
-definition, so this is a numerically supported working-N interpretation.
-
-At close focus, Gaussian EFL divided by the exact parallel entrance diameter
-instead gives approximately 1.4130; the paraxial-pupil version gives 1.3228.
-These are retained alternative-definition differences. They do not imply a
-published iris schedule. No focus-dependent iris law is invented to make all
-f-number definitions identical.
+Current real working F-number is 1.547949702 at infinity and 1.546492111 at the source near geometry. The earlier review's 1.459857/1.458278 results belong to the earlier calibrated iris and are retained as historical evidence, not current runtime claims. These different aperture definitions remain unresolved against the source's printed 1.46; no new focus-dependent iris schedule or per-lens calibration is introduced. The physical iris remains fixed during focus.
 
 ## Aspherical Surfaces
 
@@ -314,17 +302,17 @@ with p = 4, 6, …, 18. Thus K is used unchanged; surface 2 has a paraboloidal
 base K = −1, while the other five bases have K = 0. All dimensions are in
 millimetres and Aₚ has units mm^(1−p). No linear scaling was applied. [1, ¶0078]
 
-| Coefficient | 1A | 2A | 11A | 12A | 26A | 27A |
-|---|---:|---:|---:|---:|---:|---:|
-| K | 0.00000 | -1.00000 | 0.00000 | 0.00000 | 0.00000 | 0.00000 |
-| A4 | 1.31560E-05 | 1.68730E-05 | -1.08825E-05 | 1.72766E-05 | -3.20873E-05 | 2.15722E-05 |
-| A6 | -6.19834E-08 | -8.66163E-08 | 2.53703E-07 | 2.39932E-07 | 2.57014E-07 | 3.22870E-07 |
-| A8 | 3.83875E-10 | 8.25356E-10 | -6.43577E-09 | -5.96424E-09 | -2.63031E-09 | -1.31472E-09 |
-| A10 | -1.43272E-12 | -5.71469E-12 | 9.52718E-11 | 8.61358E-11 | 7.07714E-13 | -1.44838E-11 |
-| A12 | 2.94648E-15 | 2.73868E-14 | -7.79452E-13 | -6.74993E-13 | 5.06286E-14 | 1.45826E-13 |
-| A14 | -2.49140E-18 | -9.25046E-17 | 3.01436E-15 | 2.43764E-15 | -1.01483E-16 | -3.58030E-16 |
-| A16 | 0.00000E+00 | 2.02761E-19 | -4.35900E-18 | -3.18931E-18 | 0.00000E+00 | 0.00000E+00 |
-| A18 | 0.00000E+00 | -2.14912E-22 | 0.00000E+00 | 0.00000E+00 | 0.00000E+00 | 0.00000E+00 |
+| Coefficient |           1A |           2A |          11A |          12A |          26A |          27A |
+| ----------- | -----------: | -----------: | -----------: | -----------: | -----------: | -----------: |
+| K           |      0.00000 |     -1.00000 |      0.00000 |      0.00000 |      0.00000 |      0.00000 |
+| A4          |  1.31560E-05 |  1.68730E-05 | -1.08825E-05 |  1.72766E-05 | -3.20873E-05 |  2.15722E-05 |
+| A6          | -6.19834E-08 | -8.66163E-08 |  2.53703E-07 |  2.39932E-07 |  2.57014E-07 |  3.22870E-07 |
+| A8          |  3.83875E-10 |  8.25356E-10 | -6.43577E-09 | -5.96424E-09 | -2.63031E-09 | -1.31472E-09 |
+| A10         | -1.43272E-12 | -5.71469E-12 |  9.52718E-11 |  8.61358E-11 |  7.07714E-13 | -1.44838E-11 |
+| A12         |  2.94648E-15 |  2.73868E-14 | -7.79452E-13 | -6.74993E-13 |  5.06286E-14 |  1.45826E-13 |
+| A14         | -2.49140E-18 | -9.25046E-17 |  3.01436E-15 |  2.43764E-15 | -1.01483E-16 | -3.58030E-16 |
+| A16         |  0.00000E+00 |  2.02761E-19 | -4.35900E-18 | -3.18931E-18 |  0.00000E+00 |  0.00000E+00 |
+| A18         |  0.00000E+00 | -2.14912E-22 |  0.00000E+00 |  0.00000E+00 |  0.00000E+00 |  0.00000E+00 |
 
 The nonzero A18 on surface 2 is retained. No asphere is replaced by an even-order
 refit or truncated to the leading coefficient. At the inferred optical radii,
@@ -332,13 +320,13 @@ the departures below are from the vertex-curvature sphere; surface 2 therefore
 includes both its conic departure and its polynomial terms.
 
 | Surface | Modeled optical semi-diameter, mm | Departure from vertex sphere, µm |
-|---|---:|---:|
-| 1A | 18.0 | +862.449 |
-| 2A | 13.8 | -1055.775 |
-| 11A | 11.7 | -184.628 |
-| 12A | 11.7 | +346.236 |
-| 26A | 10.6 | -368.143 |
-| 27A | 10.6 | +473.896 |
+| ------- | --------------------------------: | -------------------------------: |
+| 1A      |                              18.0 |                         +862.449 |
+| 2A      |                              13.8 |                        -1055.775 |
+| 11A     |                              11.7 |                         -184.628 |
+| 12A     |                              11.7 |                         +346.236 |
+| 26A     |                              10.6 |                         -368.143 |
+| 27A     |                              10.6 |                         +473.896 |
 
 The positive departure of 1A and the negative total departure of 2A reshape the
 front meniscus relative to its vertex spheres. The opposite-signed departures
@@ -360,14 +348,14 @@ B2 and Br are the source group lateral magnifications; θR1 and θR2 are the fin
 element's surface-slope angles at the maximum-image-height chief ray. [1, ¶0022,
 ¶0027, ¶0035, ¶0042, ¶0047–0049; Table 1]
 
-| Condition | Source value | Recomputed value | Required interval or sign |
-|---|---:|---:|---|
-| TT/EXP | −1.81 | −1.812760 | −2.2 < value < −1.0 |
-| f/f3 | 0.724 | 0.723780 | 0.50 < value < 1.00 |
-| f1b/f1a | −6.88 | −6.882727 | −30.0 < value < −4.0 |
-| Br²(1 − B2²) | 1.023 | 1.023363 | 0.70 < value < 1.25 |
-| θR1 | −4.91° | −4.908379° | Negative |
-| θR2 | 9.37° | 9.372643° | Positive |
+| Condition    | Source value | Recomputed value | Required interval or sign |
+| ------------ | -----------: | ---------------: | ------------------------- |
+| TT/EXP       |        −1.81 |        −1.812760 | −2.2 < value < −1.0       |
+| f/f3         |        0.724 |         0.723780 | 0.50 < value < 1.00       |
+| f1b/f1a      |        −6.88 |        −6.882727 | −30.0 < value < −4.0      |
+| Br²(1 − B2²) |        1.023 |         1.023363 | 0.70 < value < 1.25       |
+| θR1          |       −4.91° |       −4.908379° | Negative                  |
+| θR2          |        9.37° |        9.372643° | Positive                  |
 
 All six reproduce the printed precision. A separate central-difference calculation
 also reproduces the focus sensitivity. Paragraph 0047 calls R2 an object-side
@@ -396,14 +384,13 @@ and shared-band gap checks. Native shape helpers require no hidden trim. These
 samples and a native cross-section comparison are not a continuous-state proof
 or a mounted-browser rendering test.
 
-The actual default UI fan has two close wide-open focus-tracking ±0.83 rays
-that clip at STO. They are blocked/ghost continuations, not transmitted samples.
+The earlier review recorded two close wide-open focus-tracking ±0.83 rays in its then-current default UI fan that
+clip at STO. They are blocked/ghost continuations, not transmitted samples.
 The separate physical-stop-targeted axial disc transmits at both source
 conjugates, including samples within 0.00001% of the boundary.
 
 A true-source-object stress grid at full field includes four wide-open rays at
-110% of the axial entrance-reference radius that first clip at cemented surface
-22. These retained outer stress observations do not occur in the default UI
+110% of the axial entrance-reference radius that first clip at cemented surface 22. These retained outer stress observations do not occur in the default UI
 bundle, the 0.6-field physical-stop survey, or the tested source-field grid through
 100% of that launch-radius reference. The sample grid is not an off-axis pupil
 map or a claim of unvignetted full-aperture corner coverage.
@@ -420,3 +407,13 @@ camera stack, and do not certify production MTF or chromatic performance.
 4. [US20250383527A1](https://patents.google.com/patent/US20250383527A1/en), same-priority application metadata, for inventor romanization only.
 5. Manufacturer optical-glass catalogs: [OHARA](https://www.ohara-inc.co.jp/en/product/catalog/), July 2026; [HOYA](https://www.hoya-opticalworld.com/english/datadownload/index.html), July 2026 including obsolete grades; [Schott](https://www.schott.com/en-gb/products/optical-glass), preferred/special catalog; [Sumita](https://www.sumita-opt.co.jp/en/download/), August 2026; [CDGM](https://www.cdgmgd.com/go.htm?k=ge_lei_xia_zai&url=downList), September 2026; [HIKARI](https://www.hikari-g.co.jp/optical_glass/catalog/), all-glass workbook. Exact catalog bytes and applicable rows are identified in the accompanying evidence.
 6. LensVisualizer, [authored asphere-cap intersection selection (pull request #760)](https://github.com/ronbuening/LensVisualizer/pull/760). Engine change only; source prescription and aperture values remain unchanged.
+
+## Reused Source Coverage and Runtime Follow-up — 2026-10-30
+
+Completed source shape-and-glass coverage was present by **2026-10-05** in pull request #760 / commit 3f00f2109. Its exact prior inspection date was not recorded; the analysis dates product consultation to October 4. Those dates are preserved without inventing an exact source-review date. The original analysis records direct Japanese prescription/aspheres, native Figure 1 optical extents excluding mechanical flanges, qualified 14-medium glass evidence and explicit finite-conjugate/renderer limits. Current canonical source prescription equals the carried-forward #766 record (cb944bb43), excluding only the later structured source.example. No fresh full original shape/glass inspection is claimed.
+
+The data file remains byte-identical. All source R/d/aspheres, clear caps, nd/νd values, spectral qualifications and focus/field controls stay fixed, including fourteen compatible catalog proxies and no authored line-index/partial-dispersion overrides. The existing inferred-iris policy is reported above; it is not tuned to reproduce historical calibration.
+
+Current 65-state collimated control grids clear 12,545/12,545 axial samples. A separate Gaussian finite-object grid clears 3,185/3,185 axial samples and 195 chiefs with 0 aim failures; midpoint 269.533503 mm and other intervals are illustrative, not published mechanical conjugates. The Gaussian near object-to-image 170.369814 mm differs slightly from the authored published object 85.0203 mm ahead of the first vertex (170.3769 mm to image). Nominal infinity is kept separate from the small numerical Gaussian residual. Field fractions in this grid are paraxial object-field probes, not inverse-solved sensor corners.
+
+A separate explicit 85.0203 mm near-object check inverse-solves the chief to actual image heights 0/7.0875/14.175 mm before classifying apertures. All 3 chief roots converge and clear; 193-point bundles transmit 193/174/96 rays respectively, with 116 total clips and 0 failed/unaimed rays. Centered APS-C inverse-height coverage reaches 100%; the source infinity 51.645° bounding-sphere chief separately clears at 14.199006 mm. All 520 real working F-number computations trace, but their values retain the definition mismatch above. Actual SVGs across 65 focus states produce 910 finite closed connected paths with zero hidden trim. Surface, image-circle, aperture and field gates pass. No production identity or unvignetted corner pupil is certified.

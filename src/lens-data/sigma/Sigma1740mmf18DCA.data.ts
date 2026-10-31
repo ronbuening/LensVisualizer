@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: CN 121454749 A, Numerical Example 1 (Sigma /        ║
  * ║  Shioda Ryo). Negative-lead constant-length APS-C zoom.            ║
  * ║  17 elements / 11 air-separated groups, six aspherical surfaces    ║
- * ║  on four molded elements.                                          ║
+ * ║  on four elements; source process not established.                                          ║
  * ║                                                                    ║
  * ║  Zoom: internal zoom, constant front-vertex-to-image track         ║
  * ║  of 133.60 mm at the three patent zoom states.                     ║
@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Aperture note: the patent tabulates Fno = 1.86 at all zoom         ║
  * ║  positions. The stop radius is derived from the design f-number at  ║
  * ║  each zoom station; nominalFno carries the patent's 1.86            ║
- * ║  (radii 9.28 / 10.11 / 11.20 mm). apertureMarketing is F1.8.        ║
+ * ║  (current inferred radii 9.16 / 9.93 / 10.93 mm); marketing is F1.8.        ║
  * ║                                                                    ║
  * ║  Partial dispersion: the patent lists θgF per glass. `dPgF` is       ║
  * ║  θgF minus the engine's normal line (0.6438 − 0.001682·νd), not      ║
@@ -78,8 +78,8 @@ const LENS_DATA = {
       nd: 1.59271,
       vd: 66.97,
       focalLengthMm: -53.05,
-      glass: "MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)",
-      role: "Front molded aspherical negative meniscus; wide-end distortion and field-curvature control.",
+      glass: "MP-PCD51-70 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
+      role: "Front aspherical negative meniscus; wide-end distortion and field-curvature control.",
       dPgF: 0.005544,
     },
     {
@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.55352,
       vd: 71.72,
       focalLengthMm: -193.43,
-      glass: "MP-FCD500-20 (Hoya precision-mold ED preform)",
+      glass: "MP-FCD500-20 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Low-dispersion double-aspherical front-group meniscus.",
       dPgF: 0.016633,
     },
@@ -102,10 +102,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.44,
       focalLengthMm: -50.62,
-      glass: "FC5 (Hoya)",
+      glass: "FC5 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Low-dispersion negative member of the G1 cemented doublet.",
       cemented: "D1",
-      dPgF: 0.005280,
+      dPgF: 0.00528,
     },
     {
       id: 4,
@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.85033,
       vd: 42.7,
       focalLengthMm: 51.28,
-      glass: "TAFD34 (Hoya)",
+      glass: "TAFD34 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "High-index positive partner closing the fixed negative front group.",
       cemented: "D1",
       dPgF: -0.007379,
@@ -128,8 +128,8 @@ const LENS_DATA = {
       nd: 1.55032,
       vd: 75.5,
       focalLengthMm: 47.11,
-      glass: "FCD705 (Hoya)",
-      role: "SLD positive element of G2; anomalous partial dispersion for secondary-spectrum control.",
+      glass: "FCD705 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
+      role: "Low-dispersion positive element of G2 with source partial dispersion; production SLD position inferred.",
       cemented: "D2",
       dPgF: 0.023291,
     },
@@ -141,7 +141,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.74,
       focalLengthMm: -109.5,
-      glass: "NBFD29 (Hoya)",
+      glass: "NBFD29 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Dense flint partner in the first positive variator.",
       cemented: "D2",
       dPgF: 0.001323,
@@ -154,7 +154,7 @@ const LENS_DATA = {
       nd: 1.75211,
       vd: 25.05,
       focalLengthMm: -122.43,
-      glass: "FF8 (Hoya)",
+      glass: "FF8 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "High-dispersion negative member of the second positive variator.",
       cemented: "D3",
       dPgF: 0.017534,
@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.32,
       focalLengthMm: 46.53,
-      glass: "TAC6L (Hoya)",
+      glass: "TAC6L (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "High-index positive member of G3 with near-index-matched cement interface.",
       cemented: "D3",
       dPgF: -0.008498,
@@ -180,7 +180,7 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 43.94,
       focalLengthMm: -24.33,
-      glass: "NBFD11 (Hoya)",
+      glass: "NBFD11 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Strong negative element immediately behind the stop.",
       cemented: "D4",
       dPgF: -0.008693,
@@ -193,7 +193,7 @@ const LENS_DATA = {
       nd: 1.98612,
       vd: 16.48,
       focalLengthMm: 61.71,
-      glass: "FDS16-W (Hoya)",
+      glass: "FDS16-W (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Very-high-index, high-dispersion positive partner in G4.",
       cemented: "D4",
       dPgF: 0.049519,
@@ -206,7 +206,7 @@ const LENS_DATA = {
       nd: 1.73037,
       vd: 32.23,
       focalLengthMm: -34.22,
-      glass: "NBFD32 (Hoya)",
+      glass: "NBFD32 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Negative flint opening the strong positive master group G5.",
       cemented: "D5",
       dPgF: 0.000311,
@@ -219,8 +219,9 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       focalLengthMm: 29.09,
-      glass: "FCD505/FCD515 family (Hoya, 593/686 anomalous ED)",
-      role: "SLD positive partner in the G5 front doublet.",
+      glass:
+        "FCD505/FCD515 family (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
+      role: "Low-dispersion positive partner in the G5 front doublet; production SLD position inferred.",
       cemented: "D5",
       dPgF: 0.015619,
     },
@@ -232,8 +233,9 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       focalLengthMm: 35.08,
-      glass: "FCD505/FCD515 family (Hoya, 593/686 anomalous ED)",
-      role: "Air-spaced SLD positive element in G5.",
+      glass:
+        "FCD505/FCD515 family (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
+      role: "Air-spaced low-dispersion positive element in G5; production SLD position inferred.",
       dPgF: 0.015619,
     },
     {
@@ -244,7 +246,7 @@ const LENS_DATA = {
       nd: 1.59271,
       vd: 66.97,
       focalLengthMm: 70.91,
-      glass: "MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)",
+      glass: "MP-PCD51-70 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Double-aspherical positive meniscus closing G5.",
       dPgF: 0.005544,
     },
@@ -256,7 +258,7 @@ const LENS_DATA = {
       nd: 1.7433,
       vd: 49.22,
       focalLengthMm: -39.78,
-      glass: "NBF1 (Hoya)",
+      glass: "NBF1 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Single-element G6 internal focusing group.",
       dPgF: -0.011512,
     },
@@ -268,8 +270,8 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.73,
       focalLengthMm: 43.37,
-      glass: "MP-NBFD130 (Hoya precision-mold preform)",
-      role: "Molded aspherical positive front member of the nearly afocal rear corrector.",
+      glass: "MP-NBFD130 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
+      role: "Aspherical positive front member of the nearly afocal rear corrector.",
       cemented: "D6",
       dPgF: -0.005892,
     },
@@ -281,7 +283,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.15,
       focalLengthMm: -46.96,
-      glass: "NBFD25 (Hoya)",
+      glass: "NBFD25 (HOYA catalog-compatible spectral proxy; source vendor/chemistry/process unspecified)",
       role: "Rear dense flint member of G7.",
       cemented: "D6",
       dPgF: 0.008802,
@@ -295,7 +297,15 @@ const LENS_DATA = {
       d: 2.0027,
       sd: 20.2,
       medium: 1,
-      asphere: { K: 0, A4: 8.81137e-6, A6: -9.35247e-9, A8: 3.562e-12, A10: 9.76737e-15, A12: -1.41083e-17, A14: 6.2892e-21 },
+      asphere: {
+        K: 0,
+        A4: 8.81137e-6,
+        A6: -9.35247e-9,
+        A8: 3.562e-12,
+        A10: 9.76737e-15,
+        A12: -1.41083e-17,
+        A14: 6.2892e-21,
+      },
     },
     { label: "2", R: 27.8483, d: 5.9106, sd: 16.2 },
     {

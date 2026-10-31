@@ -2170,8 +2170,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7A | Element 4 | abbe | `Unmatched (lanthanum crown class; source 1.77271 / 49.70)` | Explicit unmatched/proprietary annotation |
-| 22A | Element 13 | abbe | `Unmatched (low-dispersion crown class; source 1.55352 / 71.5)` | Explicit unmatched/proprietary annotation |
+| 7A | Element 4 | abbe | `Unmatched (source 1.77271 / 49.70; unidentified medium; approximate dispersion)` | Explicit unmatched/proprietary annotation |
+| 22A | Element 13 | abbe | `Unmatched (source 1.55352 / 71.50; unidentified medium; approximate dispersion)` | Explicit unmatched/proprietary annotation |
 
 ### [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) - 86.7% trusted (13/15); 86.7% Sellmeier (13/15) - CN 120871380 A
 

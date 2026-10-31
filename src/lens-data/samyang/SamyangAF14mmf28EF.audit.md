@@ -22,11 +22,11 @@ Modelling decision recorded 2026-10-08: the image plane is placed at the fixed D
 
 The decision covers a limited model, not a patent correction. Literal D4 remains 0.495503/0.514995/0.572628 mm and D5 remains +0.004497/−0.014995/−0.072628 mm. Plate vertices remain z127.097060/129.597060 mm from S1. The modeled reference is z130.097060 mm. Negative D5 is not propagated as physical air, and D3 stays 36.200000 mm.
 
-| State | Literal IMG z (mm) | Model z (mm) | Gaussian defocus to model (mm) |
-|---|---:|---:|---:|
-| infinity | 130.092563 | 130.097060 | -0.019252870 |
-| MGA=-1/30 | 130.112055 | 130.097060 | +0.003863574 |
-| TL=0.2m | 130.169688 | 130.097060 | +0.075972691 |
+| State     | Literal IMG z (mm) | Model z (mm) | Gaussian defocus to model (mm) |
+| --------- | -----------------: | -----------: | -----------------------------: |
+| infinity  |         130.092563 |   130.097060 |                   -0.019252870 |
+| MGA=-1/30 |         130.112055 |   130.097060 |                   +0.003863574 |
+| TL=0.2m   |         130.169688 |   130.097060 |                   +0.075972691 |
 
 ## Numerical reconstruction and source discrepancies
 
@@ -35,6 +35,7 @@ Independent scalar reduced-angle and ABCD computations agree, and a small exact 
 The bare-lens BFD is 38.3289538814 mm from S26. With the source plate, the Gaussian physical BFD is 39.1807471304 mm from S26. S1–S26 track is 90.897060 mm, and the approved total reference track is 130.097060 mm. Surface Petzval sum is +0.00518138510909 mm^-1. The full per-interface and cardinal results remain executable in results.
 
 Unresolved source statements are retained, not repaired:
+
 - G1=S1–13 computes positive +25.111991061 mm, contrary to the generic negative-power description.
 - Table10 f1st345.936 computes348.460392178; fAF99.513 computes98.643520496; fG3 118.196 computes115.047351021 mm. Their differences exceed source rounding.
 - Equation5's Table10 D/y=12.08/21.7=0.556682 falls outside0.65–0.75. The published S7 radius would give a passing ratio, but has not been substituted for Table10.
@@ -114,23 +115,23 @@ Heights below use 11.62 px/mm (0.0861 mm/px), that is, the published S7 height a
 
 Rim heights are the outermost ink less half of the 4–5 px line width, taken on the four half-panels (both sides of both panels); the clean readings agree within 1 px. G2 is read on the upper panel, because the focus-travel lines cross it in the lower one.
 
-| Element | Surfaces | Stored | Figure (px) | Figure (mm) | Stored / figure | Disposition |
-|---|---|---:|---:|---:|---:|---|
-| L1 | 1, 2 | 39 | 442.5 | 38.1 | 1.02 | retained; square-cut as drawn |
-| L2 front | 3 | 24.5 | 282 | 24.3 | 1.01 | retained |
-| L2 rear | 4 | 19.9 | 222 (curve end) | 19.1 | 1.04 | retained, within noise |
-| L3 front | 5 | 18.8 | 219 | 18.8 | 1.00 | retained |
-| L3 rear | 6 | 15.03 | 179 (curve end) | 15.4 | 0.98 | retained; 15.03 is the most the default cross-gap rule admits against S7 |
-| L4 front | 7A | 15.06 | 175 | 15.06 | — | published; the ruler |
-| L4 rear | 8A | 12.31 | curve carried to the L4 rim | — | — | published; the sheet shows no step at 12.31 |
-| L5 front | 9 | 11.8 | 151 | 13.0 | 0.91 | retained; capped by the cross-gap rule (below) |
-| L5–L6 junction, L6 rear | 10, 11 | 12.2 | 151 | 13.0 | 0.94 | retained, within noise, kept with S9 |
-| L7 | 12, 13 | 10.2 | 114.5 | 9.85 | 1.04 | retained |
-| L8–L10 | 14–17 | 9 | 104 | 8.95 | 1.01 | retained |
-| L11–L12 | 19–21 | 7.8 | 93.5 | 8.05 | 0.97 | retained |
-| L13 | 22A, 23A | 7.8 | 89.5 | 7.70 | 1.01 | retained |
-| L14 | 24, 25 | 8.5 | 97.5 | 8.39 | 1.01 | retained |
-| L15 rear | 26 | 9.2 | 110.5 | 9.51 | 0.97 | retained |
+| Element                 | Surfaces | Stored |                 Figure (px) | Figure (mm) | Stored / figure | Disposition                                                              |
+| ----------------------- | -------- | -----: | --------------------------: | ----------: | --------------: | ------------------------------------------------------------------------ |
+| L1                      | 1, 2     |     39 |                       442.5 |        38.1 |            1.02 | retained; square-cut as drawn                                            |
+| L2 front                | 3        |   24.5 |                         282 |        24.3 |            1.01 | retained                                                                 |
+| L2 rear                 | 4        |   19.9 |             222 (curve end) |        19.1 |            1.04 | retained, within noise                                                   |
+| L3 front                | 5        |   18.8 |                         219 |        18.8 |            1.00 | retained                                                                 |
+| L3 rear                 | 6        |  15.03 |             179 (curve end) |        15.4 |            0.98 | retained; 15.03 is the most the default cross-gap rule admits against S7 |
+| L4 front                | 7A       |  15.06 |                         175 |       15.06 |               — | published; the ruler                                                     |
+| L4 rear                 | 8A       |  12.31 | curve carried to the L4 rim |           — |               — | published; the sheet shows no step at 12.31                              |
+| L5 front                | 9        |   11.8 |                         151 |        13.0 |            0.91 | retained; capped by the cross-gap rule (below)                           |
+| L5–L6 junction, L6 rear | 10, 11   |   12.2 |                         151 |        13.0 |            0.94 | retained, within noise, kept with S9                                     |
+| L7                      | 12, 13   |   10.2 |                       114.5 |        9.85 |            1.04 | retained                                                                 |
+| L8–L10                  | 14–17    |      9 |                         104 |        8.95 |            1.01 | retained                                                                 |
+| L11–L12                 | 19–21    |    7.8 |                        93.5 |        8.05 |            0.97 | retained                                                                 |
+| L13                     | 22A, 23A |    7.8 |                        89.5 |        7.70 |            1.01 | retained                                                                 |
+| L14                     | 24, 25   |    8.5 |                        97.5 |        8.39 |            1.01 | retained                                                                 |
+| L15 rear                | 26       |    9.2 |                       110.5 |        9.51 |            0.97 | retained                                                                 |
 
 No surface value changed. Thirteen of the fifteen elements sit within 4 % of the drawing, inside the 5–8 % measurement noise, and the stored set already carries the drawn step pattern (L2 above L3 above L4 above the doublet, L15 above L14). The iris ticks open to 80.7 px, 6.95 mm on this scale, against the calibrated 7.189 mm; the stop was not touched.
 
@@ -190,21 +191,21 @@ Scale, measured again from the 366 dpi raster. The axes are rows 1204 and 2358. 
 
 Rim heights, taken to the centre of the outline stroke on both sides of the upper panel:
 
-| Element | Surfaces | Figure (px, above / below) | Figure (mm) | Stored (mm) | Stored / figure |
-|---|---|---:|---:|---:|---:|
-| L1 | 1, 2 | 443.5 / 443.5 | 38.07 | 39 | 1.02 |
-| L2 front | 3 | 282.5 / 283.5 | 24.29 | 24.5 | 1.01 |
-| L2 rear, end of the curve | 4 | located by sag | 19.11 | 19.9 | 1.04 |
-| L3 front | 5 | 219.5 / 220.0 | 18.86 | 18.8 | 1.00 |
-| L3 rear, end of the curve | 6 | located by sag | 15.34 | 15.03 | 0.98 |
-| L4 | 7A | 175.5 / 175.5 | 15.06 | 15.06 | published |
-| L5–L6 | 9, 10, 11 | 151.5 / 151.5 | 13.00 | 13 | 1.00 |
-| L7 | 12, 13 | 114.5 / 115.5 | 9.87 | 10.2 | 1.03 |
-| L8–L10 | 14–17 | 104.5 / 104.5 | 8.97 | 9 | 1.00 |
-| L11–L12 | 19–21 | 93.5 / 94.5 | 8.07 | 7.8 | 0.97 |
-| L13 | 22A, 23A | 89.5 / 90.5 | 7.73 | 7.8 | 1.01 |
-| L14 | 24, 25 | 97.5 / 97.0 | 8.35 | 8.5 | 1.02 |
-| L15 rear | 26 | 110.5 / 111.5 | 9.53 | 9.2 | 0.97 |
+| Element                   | Surfaces  | Figure (px, above / below) | Figure (mm) | Stored (mm) | Stored / figure |
+| ------------------------- | --------- | -------------------------: | ----------: | ----------: | --------------: |
+| L1                        | 1, 2      |              443.5 / 443.5 |       38.07 |          39 |            1.02 |
+| L2 front                  | 3         |              282.5 / 283.5 |       24.29 |        24.5 |            1.01 |
+| L2 rear, end of the curve | 4         |             located by sag |       19.11 |        19.9 |            1.04 |
+| L3 front                  | 5         |              219.5 / 220.0 |       18.86 |        18.8 |            1.00 |
+| L3 rear, end of the curve | 6         |             located by sag |       15.34 |       15.03 |            0.98 |
+| L4                        | 7A        |              175.5 / 175.5 |       15.06 |       15.06 |       published |
+| L5–L6                     | 9, 10, 11 |              151.5 / 151.5 |       13.00 |          13 |            1.00 |
+| L7                        | 12, 13    |              114.5 / 115.5 |        9.87 |        10.2 |            1.03 |
+| L8–L10                    | 14–17     |              104.5 / 104.5 |        8.97 |           9 |            1.00 |
+| L11–L12                   | 19–21     |                93.5 / 94.5 |        8.07 |         7.8 |            0.97 |
+| L13                       | 22A, 23A  |                89.5 / 90.5 |        7.73 |         7.8 |            1.01 |
+| L14                       | 24, 25    |                97.5 / 97.0 |        8.35 |         8.5 |            1.02 |
+| L15 rear                  | 26        |              110.5 / 111.5 |        9.53 |         9.2 |            0.97 |
 
 Every stored value is within 4.2 % of the sheet, inside the measurement noise, and the drawn order of heights between neighbours is kept. The iris ticks open to 80.7 px (6.93 mm) at x = 1359 px, 69.7 mm from S1 against 69.575 mm in the table; the stop was not touched.
 
@@ -223,12 +224,12 @@ Clearance, from an independent exact meridional trace with the rear plate. The c
 
 Changed, with the reason:
 
-| Field | Before | After | Evidence |
-|---|---|---|---|
-| `groups` text | FIXED G1, FOCUS G2, FIXED G3 | G13 (FIXED), G23 (FOCUS), G33 (FIXED) | 도면7 and ¶0068 name the groups G13, G23 and G33; the Note column of Table 7 marks them fixed, focusing and fixed. The element labels already carry the same embodiment suffix. No power sign is given because G13 computes positive against the patent's wording. |
-| `doublets` text and `cemented` | D1, T1, D2, D3 | C1, C2, C3, C4 | Table 9 uses D0–D5 for air distances, and `varLabels` shows D1 and D2 beside the focus slider; the same strings marked two cemented pairs. The surface ranges were already right. |
-| `focusDescription` | "L8–L10 (G2)"; "G1 and G3 stay fixed" | "L8–L10 (group G23; L83–L103 in the patent figure)"; "G13 and G33 stay fixed" | follows the bracket texts |
-| Data-file header | "only G2 moves"; "G1 (S1-13)" | "only G23 moves"; "G13 (S1-13)"; a LABELS note added | follows the bracket texts |
+| Field                          | Before                                | After                                                                         | Evidence                                                                                                                                                                                                                                                           |
+| ------------------------------ | ------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `groups` text                  | FIXED G1, FOCUS G2, FIXED G3          | G13 (FIXED), G23 (FOCUS), G33 (FIXED)                                         | 도면7 and ¶0068 name the groups G13, G23 and G33; the Note column of Table 7 marks them fixed, focusing and fixed. The element labels already carry the same embodiment suffix. No power sign is given because G13 computes positive against the patent's wording. |
+| `doublets` text and `cemented` | D1, T1, D2, D3                        | C1, C2, C3, C4                                                                | Table 9 uses D0–D5 for air distances, and `varLabels` shows D1 and D2 beside the focus slider; the same strings marked two cemented pairs. The surface ranges were already right.                                                                                  |
+| `focusDescription`             | "L8–L10 (G2)"; "G1 and G3 stay fixed" | "L8–L10 (group G23; L83–L103 in the patent figure)"; "G13 and G33 stay fixed" | follows the bracket texts                                                                                                                                                                                                                                          |
+| Data-file header               | "only G2 moves"; "G1 (S1-13)"         | "only G23 moves"; "G13 (S1-13)"; a LABELS note added                          | follows the bracket texts                                                                                                                                                                                                                                          |
 
 Checked and found correct:
 
@@ -263,15 +264,29 @@ Three sentences changed: the group paragraph now gives the patent's G13, G23 and
 Follow-up decision of the same day: each element's `name` is now its patent reference sign, the same string as its `diagramLabel`, so the diagram, the inspector, the Abbe diagram and the element table name an element the same way, as in the Samyang 100mm Macro file of this batch. The tens digits count the elements front to rear and the trailing 3 marks Example 3. Ids, `label` (Element 1 to Element 15) and every optical value are unchanged.
 
 | Element | Before | After | Element | Before | After | Element | Before | After |
-|---:|---|---|---:|---|---|---:|---|---|
-| 1 | L1 | L13 | 6 | L6 | L63 | 11 | L11 | L113 |
-| 2 | L2 | L23 | 7 | L7 | L73 | 12 | L12 | L123 |
-| 3 | L3 | L33 | 8 | L8 | L83 | 13 | L13 | L133 |
-| 4 | L4 | L43 | 9 | L9 | L93 | 14 | L14 | L143 |
-| 5 | L5 | L53 | 10 | L10 | L103 | 15 | L15 | L153 |
+| ------: | ------ | ----- | ------: | ------ | ----- | ------: | ------ | ----- |
+|       1 | L1     | L13   |       6 | L6     | L63   |      11 | L11    | L113  |
+|       2 | L2     | L23   |       7 | L7     | L73   |      12 | L12    | L123  |
+|       3 | L3     | L33   |       8 | L8     | L83   |      13 | L13    | L133  |
+|       4 | L4     | L43   |       9 | L9     | L93   |      14 | L14    | L143  |
+|       5 | L5     | L53   |      10 | L10    | L103  |      15 | L15    | L153  |
 
 The strings that named elements by the old form were remapped by element id: five `role` texts, `focusDescription` (now "the cemented triplet L83–L103 (group G23)"), three passages of the data-file header (the names note, the L53–L63 rim line and the L43 / L133 glass line), and in the analysis the fifteen element headings (now "L13 (element 1)" to "L153 (element 15)"), the group and glass tables and sixteen passages of prose. The analysis states the convention once, in its first section. `sourceErrata`, `apdNote`, the `finiteConjugates` and `rearPlates` sources and the bracket texts held no element name. After the change the only strings matching a sequential name in either file are L13 where the first element is meant.
 
 From this point the log names elements by the patent's signs. Everything above this paragraph, including the earlier parts of this section and all earlier sections, uses the sequential L1–L15: "L13" there is the thirteenth element (the aspherical biconvex singlet, now L133), and "L5–L6", "L7" and "L8–L10" there are now L53–L63, L73 and L83–L103.
 
 On the page after the change: the first element is labelled L13 on the diagram and its inspector reads "Element 1 L13", Positive Meniscus, NBFD15, "Weak positive front meniscus of the fixed first group"; the thirteenth is labelled L133 and its inspector reads "Element 13 L133", Biconvex Positive (2× Asph), "Separated double-sided aspherical biconvex element of the rear group"; element 8 reads "L83, TRIPLET C2 … cemented focusing triplet L83–L103", and the Abbe diagram markers carry the same signs. The engine builds the lens without error, the surface validator reports none and the engine values are unchanged (EFL 14.190782 mm, f/2.851, half-field 57.871°).
+
+## 2026-10-30 — Scoped original cap/shoulder and spectral-override reopening
+
+- Preserve completed original source/shape/glass/control coverage and actual 2026-10-08/2026-10-11 dates. Directly reopened the same local KR101918210B1, SHA-256 `4ee7eb1bb37c39968354cc8ae8210524e9cb8965666335ffa9c35a0c7a673028`: Example 3, Table 7/8 p. 16, Table 9 pp. 16–17, Figure 7 p. 24. Table 7/definition ¶0100 p. 13 gives Nd/Vd and H-Ape; ¶0128 p. 17 gives ray-fan wavelengths 656.2700/587.5600/479.9100 nm, not per-medium line indices or partials. No alternate publication replaces these source checks.
+- Original Eq. 6 is visibly blank on p. 12, ¶0095–0097. The four K/A–F lists remain unchanged under the previously disclosed sibling-based standard-conic interpretation. This source limitation is now also recorded in source.errata; no literal formula recovery, new source substitution or coefficient fit is claimed.
+- Inspect native 2027×2326 Figure 7 raster at 366×365 ppi; reading-aid table renders 180 dpi are vector text renders. Native X scale 1111.3 px/90.897060 mm = 12.225 px/mm; Y scale 175.5 px/15.06 mm = 11.65 px/mm. Practical ±0.6 mm rim uncertainty. Native and 3× nearest-neighbor crops are distinguished, excluding leaders/rays/brackets/mechanical marks.
+- S4 inferred clear 19.9 → 19.1 mm from resolved 222 px optical endpoint, removing the old paraxial-estimator allowance; add free-end outer 24.5 mm. S6 clear 15.03 retained with outer 18.8 mm. Both connected native vertical steps are represented as rimExtensionSd, not extended optical spheres (their outer heights exceed |R|). Every other clear cap, especially printed S7/S8 15.06/12.31, stays unchanged.
+- Rejected S8 outer 15.06 trial: land/neighbor intrusion 8.290 > existing guard 8.213 in physical gap 8.555 mm. Positive physical gap remains; no tolerance is increased, no threshold-fit partial shoulder is invented. Existing S8 tapered closure and prior 0.96 gapSagFrac exception remain explicit. No opaque bonded lands, resin wings or unsupported blocks are added.
+- Check all sixteen media, including physical OD3; retain all original pairs and d-reference notation. Remove 39 catalog-derived active nC/nF/ng fields from thirteen elements. Thirteen drawn proxy curves plus OD3 retain fourteen compatible catalog selections; L43/L133 remain Unmatched/unidentified with approximate dispersion. Inferred APD is qualified and never promoted to source designation. No source numeric line/partial data removed; no supplier, melt or chemistry inferred.
+- Sole source-summary metadata correction: catalog design 14.190782147128807 computed → printed 14.194604 mm. All R/d, four K/A4–A14 sets, two gap schedules/three source conjugate states, fixed reference, physical plate and controls unchanged. OD3 remains 2.5 mm/1.51680/64.20, pre-air 36.2 mm/post-reference 0.5 mm; its unreported aperture remains a generated assumption. No inferred cuts exist.
+- Standard surface/image-circle/single infinity aperture and field checks pass. Sixty-six focus controls × seven f-stops = 462 traced working calls; current derived iris 7.026947446 mm, native working values 2.922592696/2.922021218/2.917552798 distinguished from the prior calibrated 7.188930 mm and source Fno 2.851/2.853/2.938. All 990 actual SVG element paths finite/closed/connected, zero hidden trim. Protected runtime difference zero, excluding the deliberate S4 cap change. Final source-scale infinity/near SVGs and three-state contours visually compared with original panels.
+- Native infinity vector launch at 57.871° converges and chief clears at |Y| 21.701270 mm. Iris-filling 193-sample bundle: 73 pass/103 clip/17 unresolved no-bracket, axis 193 pass; half-angle 173 pass/20 clip. Separate 65°/80°/89° diagnostics fail to bracket outside source field, no coverage claim. This differs from the older entrance-offset meridional fan; no radiometric or complete-pupil claim.
+- Actual source D0 405.430516/69.902940 finite object planes: six inverse chiefs at Y0/10.85/21.7 all converge and clear. Full-edge object angles 57.490484/55.949815° versus printed 57.495/55.966, minimum margins 0.555870/0.889207 mm. Middle pupil pass 193/156/77 of 193, unresolved 0/0/8; near 193/152/86, unresolved 0. Overall 857 pass/293 clip/8 unresolved/0 unaimed, both axial bundles fully clear.
+- Separate positive Gaussian object-plane grid: 65 controls × three actual image targets, 195/195 chiefs clear; 27,870 pass/9,390 clip/375 unresolved no-bracket, every axial 193 clear. Native Gaussian totals 0.539035/0.203177 m versus source/display 0.535528/0.200000; focus 0.015625 yields 5.414372 m versus display 12.8 m (57.700219%). No optics/cam is fitted to remove the fixed-reference/interpolation limitation. Source, Gaussian, collimated and production conclusions remain separate in analysis.
