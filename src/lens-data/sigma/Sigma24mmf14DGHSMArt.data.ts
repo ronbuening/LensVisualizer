@@ -8,25 +8,31 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 15 elements in 11 groups. Aspheres S3, S26 and S27 keep the printed coefficients, including
  * the S3 A12 term. No printed dimension, index, coefficient or image plane is corrected.
  * Semi-diameters are inferred from Figure 1 (8.04 px/mm axially, 8.08 radially, by arc fit)
- * and are not measured factory apertures. Air gaps close at S2-S3 22.4, S8-S9 19.5 and S25-S26
- * 16.0 mm. G1 therefore stops about 5% inside the drawing (L2 22.1 mm, L4 and C1 19.2 mm), while
- * L1, G2A and L11 to L15 stay on it. Flat drawn lands are rim cuts on S4, S6, S16 and S18, clear
- * of the wide-open beams, and rim extensions on S2, S25 and S26, whose caps stop at 22.5, 15.9
- * and 15.9 mm and whose rims run to 28.0, 16.9 and 17.2 mm. gapSagFrac 0.98 is set for the
- * S25-S26 lands, which close 0.975 of their 0.4138 mm gap; S8-S9 close 0.969 of theirs. S4's and
- * S6's cuts stand outside the drawn cap ends to clear the beams. The on-axis marginal ray clears
- * every rim at both printed states.
+ * and are not measured factory apertures. Outer rims are L1 28.0 mm, L2 23.2, L3 21.3, L4 20.2,
+ * C1 20.0, L7 17.7, C2 16.1, L10 14.0, L11 and L12 15.6, L13 17.0, L14 16.9 and L15 17.2 mm. Air
+ * gaps close at S2-S3 22.4, S8-S9 19.5 and S25-S26 16.0 mm, so optical caps end short of several
+ * rims. Flat drawn lands are rim cuts on S4, S16 and S18, clear of the wide-open beams, and rim
+ * extensions, which add no aperture, on S2 (cap 22.5 mm), S5 (20.2), S6 (18.85), S7, S8, S9 and
+ * S11 (19.2), S25 (15.7) and S26 (15.9). The caps of S6 and S25 are real apertures: the fan ends
+ * in Figures 4 and 5 stop on them, at heights that match the lands Figure 1 draws there. Those
+ * fans also stop near 18.35 mm at S11 and 16.5 mm at S12, where Figure 1 draws plain arcs, so
+ * those rims stay on the figure and the model passes more of the -x side than the patent.
+ * L2's front cap stops at 22.1 mm, so its top edge rises to the drawn 23.2 mm at the rear land.
+ * A cemented face cannot carry L11's drawn flange, so T1's edge rises from 14.0 to 15.6 mm where
+ * the figure draws it flat. The tightest air gaps are S8-S9, whose lands close 0.969 of theirs,
+ * and S25-S26, 0.874 of their 0.4138 mm. The on-axis marginal ray clears every rim at both
+ * printed states.
  * The iris is derived from the design F1.47 as a paraxial entrance pupil at infinity: radius
  * 12.3155 mm, fixed through focus. Its real marginal ray gives working f/1.4995 at infinity
  * and f/1.5987 at the near state, where the patent prints F1.60 without defining that value.
  * G1 is fixed. G2A and G2B with the stop move independently toward the object. Only infinity
  * and the near state are printed. The 63 positions between them are inferred, with both groups
- * on one shared path, and are not a factory cam. The printed infinity state sits just off its
- * paraxial focus, so the distance law has a pole at focus 0.000474 (label 522.46 m) and
- * distance labels near infinity are unreliable.
+ * driven by one assumed focus parameter, and are not a factory cam. The printed infinity state
+ * sits just off its paraxial focus, so the distance law has a pole at focus 0.000474 (label
+ * 522.46 m) and distance labels near infinity are unreliable.
  * The near state is 247.5954 mm object to image: d0 115 mm plus track 132.5954 mm.
  * Printed image planes are kept, with paraxial residuals of +1.172 and +1.329 um; best-focus
- * MTF is a diagnostic only. Simulated MTF stays weak at the near-state edge: about 0.070
+ * MTF is a diagnostic only. Simulated MTF stays weak at the near-state edge: about 0.071
  * tangential at 40 lp/mm at the reference wavelength.
  * Glass labels are catalog coordinate equivalents, not confirmed suppliers or melts.
  */
@@ -106,8 +112,7 @@ const LENS_DATA = {
       focalLengthMm: -112.38706022226863,
       glass: "FCD100 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
-      dPgF: 0.049777,
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD100 curve.",
       role: "Third front meniscus, in FLD glass; completes the negative front section.",
     },
     {
@@ -135,8 +140,7 @@ const LENS_DATA = {
       focalLengthMm: -55.50526393067005,
       glass: "FCD100 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
-      dPgF: 0.049777,
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD100 curve.",
       role: "Negative member of doublet C1, in FLD glass.",
       cemented: "C1",
     },
@@ -166,8 +170,7 @@ const LENS_DATA = {
       focalLengthMm: 48.32112342990436,
       glass: "FCD515 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
-      dPgF: 0.015751,
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD515 curve.",
       role: "Biconvex positive opening moving group G2A, in SLD glass.",
     },
     {
@@ -182,8 +185,7 @@ const LENS_DATA = {
       focalLengthMm: 50.975516108358995,
       glass: "FCD515 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
-      dPgF: 0.015751,
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD515 curve.",
       role: "Positive member of doublet C2 in G2A, in SLD glass.",
       cemented: "C2",
     },
@@ -213,8 +215,7 @@ const LENS_DATA = {
       focalLengthMm: 73.23319868300683,
       glass: "FCD100 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
-      dPgF: 0.049777,
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD100 curve.",
       role: "Positive meniscus opening triplet T1 just behind the stop, in FLD glass.",
       cemented: "T1",
     },
@@ -244,8 +245,7 @@ const LENS_DATA = {
       focalLengthMm: 90.11512988698966,
       glass: "FCD515 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
-      dPgF: 0.015751,
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD515 curve.",
       role: "Positive rear member of triplet T1, in SLD glass.",
       cemented: "T1",
     },
@@ -261,8 +261,7 @@ const LENS_DATA = {
       focalLengthMm: 38.74512044320456,
       glass: "FCD515 (HOYA, coordinate equivalent)",
       apd: "inferred",
-      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
-      dPgF: 0.015751,
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so its partial dispersion comes from the catalog FCD515 curve.",
       role: "Strongest of the four SLD positives, in rear group G2B.",
     },
     {
@@ -325,28 +324,30 @@ const LENS_DATA = {
     {
       label: "4",
       R: 28.8431,
-      sd: 22.1,
-      rimCutDepthMm: 8.54,
+      sd: 23.2,
+      rimCutDepthMm: 8.32,
       d: 7.6405,
     },
     {
       label: "5",
       R: 100.4997,
       sd: 20.2,
+      rimExtensionSd: 21.3,
       medium: 3,
       d: 1.4,
     },
     {
       label: "6",
       R: 32.8511,
-      sd: 20.2,
-      rimCutDepthMm: 6.22,
+      sd: 18.85,
+      rimExtensionSd: 21.3,
       d: 6.115,
     },
     {
       label: "7",
       R: 143.4549,
       sd: 19.2,
+      rimExtensionSd: 20.2,
       medium: 4,
       d: 4.2773,
     },
@@ -354,19 +355,21 @@ const LENS_DATA = {
       label: "8",
       R: -119.4892,
       sd: 19.2,
+      rimExtensionSd: 20.2,
       d: 3.2925,
     },
     {
       label: "9",
       R: -41.2211,
       sd: 19.2,
+      rimExtensionSd: 20,
       medium: 5,
       d: 2.4229,
     },
     {
       label: "10",
       R: 59.9885,
-      sd: 19.2,
+      sd: 20.0,
       medium: 6,
       d: 5.7,
     },
@@ -374,6 +377,7 @@ const LENS_DATA = {
       label: "11",
       R: -177.6617,
       sd: 19.2,
+      rimExtensionSd: 20,
     },
     {
       label: "12",
@@ -464,7 +468,7 @@ const LENS_DATA = {
     {
       label: "25",
       R: 77.1561,
-      sd: 15.9,
+      sd: 15.7,
       rimExtensionSd: 16.9,
       d: 0.4138,
     },
@@ -520,7 +524,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "G1 stays fixed. G2A moves 4.2435 mm and G2B with the stop moves 4.9011 mm toward the object, each on its own path, so the overall length does not change. The patent prints only infinity and a near state 247.5954 mm from object to image; its table rounds that to 248 mm and Sigma quotes 25 cm. Positions between them are inferred with both groups on one shared path, which is not a factory cam, and MTF is computed only at the two printed states. Distance labels near infinity are unreliable, and the printed image plane is kept with its small focus residual. The iris stays fixed, and the working f-number rises from f/1.50 at infinity to f/1.60 at the near state.",
+      "G1 stays fixed, so the overall length does not change. G2A moves 4.2435 mm and G2B with the stop moves 4.9011 mm toward the object; the patent says they move independently. It prints only infinity and a near state 247.5954 mm from object to image; its table rounds that to 248 mm and Sigma quotes 25 cm. Positions between them are inferred with G2B keeping a fixed 1.155 ratio to G2A's travel, which is not a factory cam, and MTF is computed only at the two printed states. Distance labels near infinity are unreliable, and the printed image plane is kept with its small focus residual. The iris stays fixed, and the working f-number rises from f/1.50 at infinity to f/1.60 at the near state.",
   },
   gaps: {
     "11": {
@@ -627,7 +631,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.74,
   },
-  checks: { gapSagFrac: 0.98 },
+  checks: { gapSagFrac: 0.97 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

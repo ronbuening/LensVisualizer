@@ -79,3 +79,46 @@ Overlaying the engine outline on Figure 1 at these scales puts every curve withi
 Declined: S14's drawn land. S14 `sd` 9.0 with `rimExtensionSd` 10.3 passes the validator and matches the figure, but from this rim set it takes the corner from 48.3 % to 40.0 % at infinity and from 72.2 % to 60.9 % at 500 mm, 8–11 points against the 5-point line. The file keeps S14 at `sd` 10.3, so its rear corner stands 0.7 mm past the figure's land.
 
 Limitation: Figure 1 ends L13 at a flat step 2.8 mm tall at S6, where L14 continues as free glass to its 17.4 mm tip. The model carries S6 as one junction to the tip, because lands cannot go on cemented surfaces.
+
+## 2026-10-31 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and at the 500 mm state, both slider and patent-position modes, the focus overlay, and the element inspectors, against Figure 1 at native resolution, the front-page copy, Sigma's construction drawing, the tables on pp. 15–16, and Figures 2–5. Rims were re-measured from the raw 1-bit rasters. Axis rows 227 and 280.5, and the crossings give 7.620 px/mm along the axis, S1 to S17A. Figure 1 is the infinity state: S10 reads 29.79 mm against 29.80 mm. Lower-side edges, clear of the group brackets: L11 19.80, L12 18.48, L13 17.43, triplet 10.30, final doublet 12.01 mm. Each stored edge stands within 0.2 mm, so those rims are kept.
+
+Movement, from p. 15 ¶0074 and the p. 16 table: G2 alone moves, and only toward the image between infinity and 500 mm. d8 rises from 2.7902 to 8.3091 mm, +5.5189 mm, and d10 falls from 11.3404 to 5.8216 mm, −5.5188 mm. Figure 1's arrow under G2 points to the image. In the file, the first column is infinity, the last is the printed 500 mm state, all 65 positions are monotonic, and d8 + d10 stays between 14.1306 and 14.1307 mm. The overlay shows G1 and G3 fixed, G2 moving right, and 5.52 mm of travel. The slider reads ∞ to 50 cm, 1.00 m at mid travel and 51 cm just short of the end, and patent-position mode offers ∞ and 50 cm. The printed heading 撮影距離500mm is object to image: d0 425.0723 mm plus 74.9279 mm gives 500.0002 mm. Nothing needed changing.
+
+New evidence on S14. Figures 4 and 5 (pp. 26–27) are transverse fans plotted against pupil position, and their fans shorten with field. Each fan end is a ray the design vignettes. Tracing the printed prescription at each digitised end, with the plots' +x on the image-height side, the ends fall on constant heights at a single surface at each state: 18.46–18.58 mm and 18.39–18.48 mm on S1, 9.35–9.36 mm and 9.33–9.36 mm on S11, and 8.89–8.93 mm and 8.90–8.92 mm on S14. Three clear radii, S1 18.45, S11 9.35 and S14 8.90 mm, with the 12.81 mm stop, then reproduce the plots:
+
+| Image height | Figure 4, low / high / sagittal | Traced | Figure 5, low / high / sagittal | Traced |
+| --- | ---: | ---: | ---: | ---: |
+| 100 % | −0.713 / 0.175 / 0.642 | −0.708 / 0.178 / 0.634 | −0.778 / 0.320 / 0.875 | −0.782 / 0.320 / 0.870 |
+| 90 % | −0.742 / 0.291 / 0.767 | −0.736 / 0.292 / 0.762 | −0.807 / 0.436 / 0.933 | −0.806 / 0.434 / 0.934 |
+| 70 % | −0.800 / 0.516 / 0.875 | −0.794 / 0.514 / 0.872 | −0.858 / 0.655 / 1.000 | −0.858 / 0.656 / stop |
+| 50 % | −0.851 / 0.669 / 0.942 | −0.852 / 0.668 / 0.938 | −0.909 / 0.800 / 1.000 | −0.910 / 0.800 / stop |
+| 30 % | −0.916 / 0.807 / 0.975 | −0.910 / 0.808 / 0.974 | −0.960 / 0.931 / 1.000 | −0.964 / 0.930 / stop |
+
+Pupil values are normalised to the 0 % fan. The meridional ends fit to 0.004 at infinity and 0.002 at 500 mm RMS, and the sagittal ends were not used in the fit. S14 is the land the semi-diameter pass declined. Its drawn cap end reads 8.91–8.98 mm on Figure 1, 8.93–9.03 mm on the front page and about 9.4 mm on Sigma's drawing of a different prescription, so the figure reading is solid and the land is a real design aperture. The 8–11 point cost recorded above moves the corner toward the patent's own value, so the decline is reversed.
+
+| Surface | Before | After | Evidence |
+| --- | --- | --- | --- |
+| S14 | `sd` 10.3 | `sd` 8.9, `rimExtensionSd` 10.3 | Fan ends 8.89–8.93 mm at both states, Figure 1 cap end and land |
+
+No other value changed. S1 and S11 keep their rims because Figure 1 draws no land at 18.45 or 9.35 mm. S2's 18.4 mm cap stays: the fans fit S1 at 18.45 mm, equally S2 at about 17.9 mm, so the first pass's aperture is not too tight. Against the printed fan ends, the meridional RMS error falls from 0.092 to 0.041 at infinity and from 0.104 to 0.032 at 500 mm.
+
+Illumination on the engine's full-pupil lattice:
+
+| State | Field | Transmitted, before / after | Relative illumination, before / after | All three fan radii |
+| --- | ---: | ---: | ---: | ---: |
+| Infinity | 14.3° | 48.3 / 38.8 % | 39.0 / 31.2 % | 36.0 / 29.1 % |
+| 500 mm | 12.5° | 72.2 / 59.2 % | 51.1 / 40.9 % | 55.8 / 38.8 % |
+
+Both corners move past the 5-point line, by 9.5 and 13.0 points. The reading is solid, as set out above. `sd` 10.3 with no extension restores 48.3 % and 72.2 %. The largest change is at the corners, and fields out to 4.8° at infinity and 6.3° at 500 mm do not change.
+
+On-axis clearance at S14: the marginal ray reaches 7.69 mm at infinity and 6.93 mm at 500 mm with the 12.81 mm stop, 7.33 and 6.60 mm with the 12.14 mm stop. The corner chief ray reaches 7.58 and 6.89 mm. The validator passes, the image-circle check finds nothing undersized, the chief ray reaches 14.20 of 14.20 mm, the aperture audit stays within 3 %, and the S10 rim-cut probe traced 969,440 rays with none clipped. F/1.46 and the 12.14 mm stop are unchanged. Engine half-field falls from 16.42° to 16.12°, above the printed 14.31°, because S14 now ranks next after S17A among the field limits.
+
+MTF at 40 lp/mm, S/T, recomputed for this rim set: edge at infinity 0.37/0.35 → 0.41/0.43, half field at 500 mm 0.07/0.31 → 0.07/0.33, edge at 500 mm 0.20/0.15 → 0.24/0.15, photopic edge at 500 mm 0.22/0.03 → 0.27/0.03, best-axial edge at 500 mm 0.01/0.01 → 0.01/0.03. Axis and the infinity half-field values are unchanged. The edge rises because the land removes the worst rays of the fan.
+
+Aberrations, model against the plots. Infinity, Figure 2: ΔS/ΔM at full field +0.012/−0.079 mm against about +0.015/−0.073, at 75 % −0.063/−0.024 against −0.063/−0.024, distortion +3.20 % against about +3.2 %. 500 mm, Figure 3: full field +0.033/+0.069 against about +0.034/+0.073, about −0.10 mm at 70 % on both, distortion +6.13 % against about +6.0 %. Transverse fans agree too: at the infinity corner +0.0146 and −0.0034 mm at the fan ends against about +0.015 and −0.004 in Figure 4, and at the 500 mm corner −0.0373 and +0.0257 mm against about −0.037 and +0.026 in Figure 5. No asphere sign slip is indicated. The 500 mm astigmatism came from a finite-object trace of the printed table, because the engine's field-curvature helper launches collimated rays there.
+
+Labels found correct. Element designations are the patent's L11–L35, and `name` equals `diagramLabel` on all ten. `type` agrees with the signs of R and with ¶0073–¶0075. `focalLengthMm` is present on all ten. The inspector shows Element 2 as APD (inferred) and ASPH ×2, Element 10 as doublet C3 and ASPH, Element 8 as triplet C2, and Element 5 as the focusing element. `A` suffixes sit on S3, S4 and S17 only, matching the printed asterisks. The stop sits between L14 and L21 at surface 8. Group brackets G1 S1–S7, G2 S9–S10 and G3 S11–S17 match the p. 16 group table. C1, C2 and C3 cover the three cemented components and do not collide with d8 or d10. No cement layer is tagged. ¶0052 treats anomalous dispersion only as an average over G1's positive elements, so no element earns `apd: "patent"`. Sigma's drawing has one blue SLD fill, on element 2, and two red aspherical outlines, on elements 2 and 10, which matches the single `"inferred"` tag on L12 and the specs line. Sigma's element and group counts match: 10 in 6.
+
+Open limitations: L31 repeats L13's step at cemented S12, a stroke about 0.9 mm tall where L32 runs on to its rim, and neither can be modelled. Figure 1 draws nothing at S1's and S11's fan radii, so the corner stays about 3 points brighter than those radii give, on the engine's lattice. The stop stays at 12.14 mm under the one-stop rule, so the fan comparison above is a statement about the patent's apertures, not the model's working f-number.

@@ -138,7 +138,7 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote: "νd 81.54 glass at the position the maker's construction diagram marks as ED.",
-      role: "ED positive singlet directly behind the stop, opening the G3 front subgroup.",
+      role: "ED positive singlet directly behind the stop, opening the front unit G3f of G3.",
       diagramLabel: "L6",
     },
     {
@@ -150,7 +150,7 @@ const LENS_DATA = {
       vd: 70.23,
       focalLengthMm: 30.35892,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Positive crown element of the cemented doublet in the G3 front subgroup.",
+      role: "Positive crown element of the cemented doublet in G3f.",
       diagramLabel: "L7",
       cemented: "C3",
     },
@@ -176,7 +176,7 @@ const LENS_DATA = {
       vd: 37.95,
       focalLengthMm: -26.66225,
       glass: "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Negative singlet opening the G3 rear subgroup.",
+      role: "Negative singlet opening the rear unit G3b of G3.",
       diagramLabel: "L9",
     },
     {
@@ -188,7 +188,7 @@ const LENS_DATA = {
       vd: 60.64,
       focalLengthMm: 40.28502,
       glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Positive crown singlet in the G3 rear subgroup.",
+      role: "Positive crown singlet in G3b.",
       diagramLabel: "L10",
     },
     {
@@ -200,7 +200,7 @@ const LENS_DATA = {
       vd: 49.6,
       focalLengthMm: 31.16929,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "High-index positive singlet closing G3.",
+      role: "High-index positive singlet closing G3b and G3.",
       diagramLabel: "L11",
     },
     {
@@ -323,14 +323,14 @@ const LENS_DATA = {
       label: "15",
       R: -94.069,
       d: 0.98,
-      sd: 7.8,
+      sd: 7.6,
       medium: 9,
     },
     {
       label: "16",
       R: 24.369,
       d: 1.644,
-      sd: 7.8,
+      sd: 7.6,
     },
     {
       label: "17",
@@ -784,7 +784,7 @@ const LENS_DATA = {
       1.0,
     ],
     description:
-      "G4 moves toward the image for closer focus; the other three groups do not move. The patent plots aberrations at 0.9 m but prints no close-focus spacings, so the travel is calculated for a 0.9 m object-to-image distance: 1.40 / 3.80 / 6.38 mm at the wide, middle and telephoto positions. These positions reproduce the f-numbers printed in Fig. 7 to within 0.001, and 0.9 m is the marketed minimum focus distance. Distance labels are approximate, by up to about 6.5% at far focus, and finite-conjugate MTF is unavailable.",
+      "G4 moves toward the image for closer focus; G1, G2 and G3 do not move. The patent plots aberrations at 0.9 m but prints no close-focus spacings, so the travel is calculated for a 0.9 m object-to-image distance: 1.40 / 3.80 / 6.38 mm at the wide, middle and telephoto positions. These positions reproduce the f-numbers printed in Fig. 7 to within 0.001, and 0.9 m is the marketed minimum focus distance. Distance labels are approximate, by up to about 6.5% at far focus, and finite-conjugate MTF is unavailable.",
   },
   gaps: {
     "3": {
@@ -2222,8 +2222,13 @@ const LENS_DATA = {
       toSurface: "8",
     },
     {
-      text: "G3 (+)",
+      text: "G3f (+)",
       fromSurface: "STO",
+      toSurface: "14",
+    },
+    {
+      text: "G3b (+)",
+      fromSurface: "15",
       toSurface: "20",
     },
     {

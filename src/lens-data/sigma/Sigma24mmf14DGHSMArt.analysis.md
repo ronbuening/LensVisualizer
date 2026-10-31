@@ -162,7 +162,7 @@ pair sits on that catalog row, and all 33 pairs printed across the patent's nine
 sit on catalog rows, so these are catalog glasses rather than optimized values. The names
 do not identify a production supplier or melt. The patent publishes nd and νd at the d line
 (587.56 nm) but no partial dispersion, so chromatic results use catalog dispersion, and the
-FLD and SLD positions carry catalog dPgF values marked as inferred. M-BACD5N and M-TAF1 are
+FLD and SLD positions are marked as inferred and take their partial dispersion from the catalog curves. M-BACD5N and M-TAF1 are
 moulding-grade rows; the patent prints their nominal values and does not state a process.
 
 | Elements | nd | νd | Catalog equivalent | Class |
@@ -252,21 +252,38 @@ not a separate thin composite layer; fabrication method remains unverified.
 
 The patent does not list clear semi-diameters or an iris radius, so the model's rims are
 **inferred** from Figure 1, whose arcs fit the prescription to 0.4 px at 8.04 px/mm axially
-and 8.08 px/mm radially. The drawn heights cannot all serve as clear rims. Used that way they
-would cross the air gaps after S2, S4, S6, S8 and S25, which close at about 22.4, 21.9, 21.1,
-19.5 and 16.0 mm, and S2's radius of curvature is only 25.79 mm. The rims therefore keep the
-drawing's order and steps: L1 28.0 mm, L2 22.1, L3 20.2, L4 and C1 19.2, L7 17.7, L8 and
-L9 16.1, L10 14.0, L11 and L12 15.6, L13 17.0, L14 16.9 and L15 17.2 mm. L2 to C1 sit about 5%
-inside the drawing, where those gaps limit them; L1, G2A and L11 to L15 stay on it.
+and 8.08 px/mm radially. The model's outer rims are L1 28.0 mm, L2 23.2, L3 21.3, L4 20.2,
+C1 20.0, L7 17.7, L8 and L9 16.1, L10 14.0, L11 and L12 15.6, L13 17.0, L14 16.9 and L15
+17.2 mm. The optical caps cannot all run out to those heights. They would cross the air gaps after S2,
+S8 and S25, which close at about 22.4, 19.5 and 16.0 mm, and S2's radius of curvature is only
+25.79 mm.
 
-The flat lands the figure draws are modeled two ways. Rim cuts behind L2, L3 and L9 and ahead
-of L10 clear every wide-open beam, and those on S4 and S6 stand at the beam reach, outside the
-drawn cap ends. Rim extensions carry L1, L14 and L15 past their optical caps: S2's cap stops
-at 22.5 mm and its rim runs to 28.0 mm, and the caps of S25 and S26 stop at 15.9 mm, just short
-of where those faces meet, with rims at 16.9 and 17.2 mm. An extension is opaque and adds no
-aperture. The on-axis marginal ray clears every rim at both printed states. None of this proves
-a factory aperture, and the model's vignetting must not be presented as measured production
-vignetting.
+The flat lands the figure draws are modeled two ways. Rim cuts behind L2 and L9 and ahead of
+L10 clear every wide-open beam. Rim extensions carry an outline past its optical cap: S2's cap
+stops at 22.5 mm and its rim runs to 28.0 mm, S5's cap stops at 20.2 mm, S6's at 18.85 mm, the
+caps of S7, S8, S9 and S11 at 19.2 mm, S25's at 15.7 mm and S26's at 15.9 mm, just short of
+where those faces meet. An extension is opaque and adds no aperture, so these rims follow the
+drawing while the clear apertures stay at the caps.
+
+The lateral-aberration plots (Figures 4 and 5) give a second reading of the patent's apertures,
+because their meridional fans shorten with field and each end is a ray the design vignettes.
+Normalized to the 0% fan, the 100% fans end at −0.711 / +0.637 at infinity and −0.930 / +0.672
+at the near state. The +x ends fall near 15.7 mm on S25 at both states, on the land Figure 1
+draws there, and the −x end at the infinity corner meets S6 at 18.85 mm, against the 18.76 mm
+cap end Figure 1 draws, so those two caps are set to the fans. These plot comparisons use the
+stop of about 12.66 mm that the 0% fan implies, close to the stop marks in Figure 1, not the
+model's 12.3155 mm iris. On that basis the model ends those fans at −0.712 / +0.649 and +0.666.
+The remaining −x ends stop near 18.35 mm at S11 and 16.5 mm at S12, where Figure 1 draws plain
+arcs with no land. Those rims stay on the figure, so the model passes more of that side of the
+beam than the patent's fans show: its near-state end is −1.046 against −0.930. With those two
+radii as well, all 20 ends would fit to 0.011.
+
+Two outlines remain simpler than the figure. L2's front cap stops at 22.1 mm, just short of
+S2, so its top edge rises straight to 23.2 mm at the rear land where the figure draws a short
+chamfer and a flat. The figure carries L11 forward as a flange above L10, flat at 15.7 mm; a
+cemented face cannot carry a land, so T1's edge rises from 14.0 mm at S19 to 15.6 mm at S20.
+The on-axis marginal ray clears every rim at both printed states. None of this proves a factory
+aperture, and the model's vignetting must not be presented as measured production vignetting.
 
 The iris size follows from the design F1.47: the paraxial entrance-pupil diameter at
 infinity equals EFL / F-number, a radius of 8.386 mm, which gives a fixed iris radius of
@@ -290,15 +307,15 @@ infinity and 39.709° with the near-state spacings, matching the printed 41.69°
 The near object-to-first-vertex angle of about 45.85° is a different geometric quantity,
 not a field-angle disagreement.
 
-At the image corner, about 30% of the wide-open beam reaches the image at infinity and about
-39% at the near state on these inferred rims, so edge results rest on a small part of the
+At the image corner, about 28% of the wide-open beam reaches the image at infinity and about
+38% at the near state on these inferred rims, so edge results rest on a small part of the
 pupil.
 
 Diffraction MTF at the printed image planes converges at the center, mid-field and edge.
 **Convergence is not optical quality.** At 40 lp/mm wide open at the reference wavelength,
-the infinity center is about 0.551 and the 21.65 mm edge about 0.229 sagittal / 0.200
-tangential. At the near state the center is about 0.759 and the edge about 0.219 sagittal /
-**0.070 tangential**. Photopic values, on the catalog dispersion of the equivalent glasses,
+the infinity center is about 0.551 and the 21.65 mm edge about 0.228 sagittal / 0.194
+tangential. At the near state the center is about 0.759 and the edge about 0.225 sagittal /
+**0.071 tangential**. Photopic values, on the catalog dispersion of the equivalent glasses,
 are lower: about 0.354 at the infinity center and 0.194 / 0.010 at the near edge. Best-axial
 focus lifts the centers but leaves the near edge weak. Stopping to f/8 improves most values
 but does not replace the wide-open result. Inferred rims, catalog glass equivalents and the

@@ -7,9 +7,9 @@
  * positions between the two printed states.
  * Semi-diameters: estimated from Figure 1, native scale 7.620 px/mm along the axis and 7.574 px/mm across it from arc
  * fits, and floor-checked by real-ray trace. Figure 1 draws lands on S2, S10 and S14. S10's cut radius, 11.08 mm, is the
- * drawn cap end. S2's cap ends at the drawn 18.4 mm, a real aperture, with its land extended to 19.6 mm. S14's land,
- * drawn from 8.9 mm, is omitted, as it would cost 8–11 points of corner light. Wide open the corner passes 48.3 % at
- * infinity and 72.2 % at 500 mm.
+ * drawn cap end. S2 and S14 end their caps at the drawn 18.4 mm and 8.9 mm, real apertures, with lands extended to
+ * 19.6 mm and 10.3 mm. The ray fans of Figures 4 and 5 end at an 8.90 mm radius on S14, which confirms that aperture.
+ * Wide open the corner passes 38.8 % at infinity and 59.2 % at 500 mm.
  * Stop: 12.14 mm radius from the engine's paraxial rule at F/1.46. The printed F-numbers match a real-ray stop of about
  * 12.81 mm, so the traced working f/# is 1.53 at infinity and 1.70 at 500 mm, against 1.46 and 1.62 printed.
  * Glass: catalog equivalents of the printed nd/νd, supplier unconfirmed. dPgF is the printed PgF minus the engine's
@@ -304,7 +304,8 @@ const LENS_DATA = {
     {
       label: "14",
       R: 18.7021,
-      sd: 10.3,
+      sd: 8.9,
+      rimExtensionSd: 10.3,
       d: 4.0685,
     },
     {

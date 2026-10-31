@@ -7,7 +7,7 @@
 **Inventor:** Takeshi Asakura
 **Applicant:** Sigma Corporation
 **Title:** Imaging optical system (結像光学系)
-**Example details:** Numerical Example 1, original pp. 15–16; Figure 1, p. 26; asphere conventions, p. 14.
+**Example details:** Numerical Example 1, original pp. 15–16; Figure 1, p. 26; transverse ray fans, Figures 4 and 5, pp. 26–27; asphere conventions, p. 14.
 
 This is an unscaled transcription of the patent example, a **related design**,
 not a confirmed factory prescription of the SIGMA 56mm f/1.4 DC DN | Contemporary
@@ -115,7 +115,7 @@ This positive biconvex central member of C2 has high index and is cemented on bo
 
 nd = 1.59270, νd = 35.44. Glass: FF5 (HOYA) equivalent. f = -21.35 mm.
 
-The final negative member of C2 shares S13 and ends at S14. That concave rear face is the surface behind the patent's condition (8) value of −0.0199 and lowers the Petzval sum (¶0056). The small triplet rim inferred from Figure 1 dominates off-axis clipping and is not a measurement of factory vignetting.
+The final negative member of C2 shares S13 and ends at S14. That concave rear face is the surface behind the patent's condition (8) value of −0.0199 and lowers the Petzval sum (¶0056). The face ends at an 8.9 mm clear radius, which Figure 1 draws and the ray fans of Figures 4 and 5 confirm, and that radius limits the rear side of the off-axis beams.
 
 ### L34 — Biconcave Negative
 
@@ -210,14 +210,19 @@ The patent's tables give no clear semi-diameters. The rims were read from
 Figure 1, whose arcs fit the printed radii at 7.62 px/mm along the axis and
 7.57 px/mm across it, and rounded to 0.1 mm; about 0.2 mm of reading uncertainty
 remains, and the mechanical boundaries are unknown. Elements use square rims, and
-the concave rear faces of L21 and L11 end in flat lands where Figure 1 ends the
-curves, at 11.08 mm and 18.4 mm. L21's land lies outside the wide-open beams, while
-L11's is a real aperture that trims them off axis. Figure 1 also ends L33's rear
-curve at about 8.9 mm, but the model carries its 10.3 mm rim without a land, because
-that height would lower the corner by a further 8–11 points. Sigma's drawing shows
-larger triplet rims, about 11.2 mm on L31 and L32 and 12.3 mm on L33 against
-10.3 mm, and L14 stepped down to about 15.6 mm against 17.3 mm, so the model's
-vignetting is not a production measurement.
+the concave rear faces of L21, L33 and L11 end in flat lands where Figure 1 ends
+the curves, at 11.08 mm, 8.9 mm and 18.4 mm. L21's land lies outside the wide-open
+beams, while L33's and L11's are real apertures that trim them off axis.
+
+Figures 4 and 5 show how much the patent itself vignettes. Their transverse ray
+fans shorten with field, and every fan end, at both focus states, traces back to
+one of three clear radii: 18.45 mm on S1, 9.35 mm on S11 and 8.90 mm on S14. The S14
+radius is the curve end Figure 1 draws. Figure 1 draws nothing at the other two, so
+S1 and S11 stay open to their rims and the model's corners are slightly brighter
+than the patent's; stopping those two faces as well would give 36.0% at infinity and
+55.8% at the 500 mm state. Sigma's drawing shows larger triplet rims, about 11.2 mm
+on L31 and L32 and 12.3 mm on L33 against 10.3 mm, and L14 stepped down to about
+15.6 mm against 17.3 mm, so the model's vignetting is not a production measurement.
 
 The model sizes every stop by one rule: a paraxial entrance pupil of EFL / F, here
 36.95 mm at F/1.46, which gives a 12.14 mm stop radius. The printed F-numbers
@@ -236,9 +241,8 @@ The chief ray to Y = 14.20 mm leaves at 14.31° at infinity, matching the printe
 2ω of 28.62°. At the 500 mm state its launch slope gives a full angle of 25.05°,
 matching the print, while the angle from the object point to the first vertex is
 26.56°. These are different definitions and are not interchangeable. Wide open the
-model passes 48.3% of the beam at the 14.3° corner at infinity and 72.2% at the
-12.5° corner at the 500 mm state, limited mainly by the inferred rims of L11 and
-triplet C2.
+model passes 38.8% of the beam at the 14.3° corner at infinity and 59.2% at the
+12.5° corner at the 500 mm state, limited mainly by the curve ends of L11 and L33.
 
 ## Model Scope and Limitations
 
@@ -248,10 +252,10 @@ rims, not a production lens.
 
 At the model's wide-open stop on the authored image plane, reference-line
 diffraction MTF at 40 lp/mm is S/T 0.92/0.92 on axis, 0.32/0.88 at half field and
-0.37/0.35 at the edge at infinity. At the 500 mm state it falls to 0.23/0.23 on
-axis, 0.07/0.31 at half field and 0.20/0.15 at the edge, with a photopic edge of
-0.22/0.03. A best-axial focus shift of −0.088 mm lifts the 500 mm axis to 0.58 but
-lowers the reference edge to 0.01/0.01, and it is not applied. The weak 500 mm
+0.41/0.43 at the edge at infinity. At the 500 mm state it falls to 0.23/0.23 on
+axis, 0.07/0.33 at half field and 0.24/0.15 at the edge, with a photopic edge of
+0.27/0.03. A best-axial focus shift of −0.088 mm lifts the 500 mm axis to 0.58 but
+lowers the reference edge to 0.01/0.03, and it is not applied. The weak 500 mm
 result follows from the printed spacings and is not a quality measure of the product.
 
 The model's +3.2% corner pincushion is close to the roughly 2.8% Photozone reports

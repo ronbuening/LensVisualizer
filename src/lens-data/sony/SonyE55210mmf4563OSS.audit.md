@@ -62,4 +62,69 @@ The wide corner rises because G2 was its limiter. That follows from the figure r
 
 Maker drawing, as the second check: it shows 13 elements in 9 groups, ED at elements 2 and 8, aspherical at elements 10 and 11. Its rims relative to L1, with Fig. 1 in brackets: L3 0.86 (0.86), L4 0.48 (0.44), L6 0.56 (0.43), L7 0.47 (0.46), L8–L9 0.49 (0.46), L10 0.40 (0.38), L11 0.35 (0.34), L12–L13 0.62 (0.61). The two disagree on G2: Sony draws L6 taller than L4 and G2 taller than G3, the patent the reverse. That image is small and this is a related design, so the patent figure governs. Both put G2 well above the old 7.78 mm.
 
-Open: the lands on S5 and S20A remain undrawn, for the illumination reason above.
+Closed by the second review below: the S5 and S20A lands are drawn, on the evidence of Figs. 14A–16A.
+
+## 2026-10-31 — Second review: diagram, labels and movement
+
+Compared: the local page at 55, 105.05 and 199.1 mm at infinity and 1 m, both movement overlays and the inspectors of elements 2, 3, 8, 10 and 11, against FIG. 1 at the native raster, FIG. 4, Figs. 5–7, Figs. 14–16, the patent text and Sony's drawing. This pass found one rim question open and two labelling faults. Everything else the first pass settled held.
+
+FIG. 1 was re-measured independently and agrees with the first pass: 1791 px from S1 to the image plane against 120.505 mm is 14.86 px/mm, the glass centre line is x = 1418.3 with the printed axis line 6.8 px off it, and the G2 and G3 to G5 rims read as recorded above. A zoomed overlay of every group shows the model on the ink apart from the three places listed here.
+
+Rims:
+
+| Surface | Before (mm) | After (mm) | Evidence |
+|---|---|---|---|
+| S5 (E3 rear) | sd 17.183 | sd 15.0, `rimExtensionSd` 17.183 | FIG. 1 land row 2345, cap end 225.8 px on both sides, 15.2 mm, against an edge of 252.3 px; Figs. 14A–16A set 15.0 |
+| S20A (E11 rear) | sd 6.757 | sd 5.9, `rimExtensionSd` 6.757 | FIG. 1 land row 1324, cap end 87 to 90 px, 5.95 mm, against an edge of 101 px; Figs. 14A–16A set 5.9 |
+
+The new evidence is in the lateral-aberration sheets, PDF pages 9–11 (FIG. 14A wide, 15A intermediate, 16A tele). Their tangential fans at Y′ = ±0.25 stop far short of the full pupil, which is what the Y′ = 0 fan spans, so the design itself is vignetted at the corner and its fan ends say where. Digitized at the native raster, with the +0.25 panel and the mirrored −0.25 panel averaged, and traced in the model at 13.9 mm, the height the printed ω reach:
+
+| Position | Patent fan ends | Model with old rims | Limiters | Model with 15.0 / 5.9 mm |
+|---|---|---|---|---|
+| 55 mm | −0.546 / +0.381 | −0.840 / +0.616 | S6, S20A | −0.552 / +0.380 |
+| 105.05 mm | −0.428 / +0.511 | −0.638 / +0.712 | S4, S19A | −0.434 / +0.508 |
+| 199.1 mm | −0.483 / +0.555 | −0.640 / +0.722 | S4, S19A | −0.506 / +0.566 |
+
+Two radii reproduce all six ends within 0.023, including the change of sign in the asymmetry between wide and intermediate, and they are the two radii where FIG. 1 draws its lands. At exactly 13.75 mm (Y′ = 0.25 at 55×) the same radii give −0.576 / +0.392, −0.446 / +0.516 and −0.512 / +0.572. A scan puts S5 at 14.95 and S20A at 5.89 mm. FIG. 1's 15.2 mm for S5 is 3 px larger, which is within the drawn stroke, so the fans set the value and the figure confirms the land. The first pass declined these lands for the illumination they cost; these plots show that cost is the patent's own design behaviour.
+
+Floors: axial marginal maxima over all 65 stations at infinity and at 1 m are 14.43 mm on S5 and 5.24 mm on S20A, 0.57 and 0.66 mm inside the new caps, and the corner chief ray reaches 12.15 and 4.49 mm. The validator passes with `checks.gapSagFrac` unchanged at 1, the image-circle check reports no undersized rim, field coverage is 65/65 at ≥99 %, 65/65 stations hold the stated f-number with no rim limiter, and no clearance tool flags a clip. Engine half-field stays 15.57°, wide-open f/4.64 and the stop radius 6.973 mm are unchanged. On-axis working f-number and on-axis MTF do not move, because the axial beam clears both caps. LSA still peaks at 0.25 mm.
+
+Corner illumination at 14.1 mm, wide open at infinity, with each station's own wide-open stop:
+
+| Position | Before | After | Change |
+|---|---|---|---|
+| 55 mm | 75.2 % | 44.4 % | −30.8 |
+| 105.05 mm | 69.6 % | 43.0 % | −26.6 |
+| 199.1 mm | 65.9 % | 44.5 % | −21.4 |
+
+This loses more than 5 points at every station, and it stays because the reading is solid: FIG. 1 draws both lands on both sides of the axis, and the fan ends fix the radii independently. Removing `rimExtensionSd` and restoring sd 17.183011 and 6.757364 restores the Before column. S5 at 16.4 mm with S20A at 6.6 mm would stay within 5 points (72.1 / 64.9 / 62.4 %), but that fits neither the figure nor the fans. The app's Vignetting tab reads 44.4 %, 43.0 % and 44.5 % on the local page. The After figures in the first pass's table and the 71 % and 77 % then quoted in the analysis came from the batch's vignetting helper, which keeps the wide-end stop radius (6.97 mm) at every zoom. With the real 7.10 and 7.73 mm stops those stations read 69.6 % and 65.9 %, as above, and the app showed 65.9 % at tele before this change.
+
+Labels:
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Element `name`, `diagramLabel` | L1–L13 | E1–E13 | The patent's L signs name components and groups: cemented L11, L21, L32, front group L51, back group L52. Sequential L4, L11 and L12 here were different glass from the patent's L4, L11 and L12 |
+| Group bracket | G4 focus (+) | G4 (+) | The text ran into "G3 (+)" at 55 mm. `focus.description` and E10's role carry the focus duty |
+| Roles of E10, E11 | no patent sign | patent L4, patent L51 | Col. 12 names them |
+
+Mapping for the entries above this section: L1–L13 there are E1–E13 here. Patent L11 is E1/E2, L12 E3, L21 E4/E5, L22 E6, L31 E7, L32 E8/E9, L4 E10, L51 E11, L52 E12/E13. `label` stays "Element n". The doublet brackets stay C1–C4, one per cemented component with the right surface ranges; "D" does not collide with the d-gaps here but C was already consistent. The analysis used E1 for Example 1, and that wording is gone.
+
+Checked and correct, unchanged: group brackets G1 1–5, G2 6–10, G3 12–16, G4 17A–18A, G5 19A–23 match Table 1's margin. G5 stays one bracket, since L51 and L52 are its front and back groups and OSS is on the element. The stop sits at surface 11 and moves with G3 (col. 12). `A` suffixes are on 17–20 only, as Table 1's asterisks. Every `type` agrees with the signs of R and col. 12's wording. `focalLengthMm` is on all 13 and matches the thick-element trace. No cement layer is modeled as an element. Gap labels d5, d10, d16, d18, Bf are the patent's. `apd: "inferred"` sits on E2 and E8, the two green positions in Sony's drawing, and the patent names no special glass, so nothing is `"patent"`. Sony's purple falls on E10 and E11. That drawing shows 13 elements in 9 groups.
+
+Astigmatism and distortion at the printed fields, in f = 1 units, against Figs. 5–7: T −0.0022 / −0.0080 / −0.0033 and distortion +1.90 / +2.99 / +1.78 %, each on the plotted curve, including the tele T bulge of about +0.002 near 0.6 of the field. No asphere sign is in doubt.
+
+Movement, position of each group's front vertex from the image plane at 55×, from Table 3:
+
+| Group | 55 mm | 105.05 mm | 199.1 mm | Wide to tele | Patent |
+|---|---|---|---|---|---|
+| G1 | 120.505 | 137.335 | 164.560 | objectward 44.055, monotonic | Text and FIG. 4 agree |
+| G2 | 92.730 | 93.940 | 110.825 | objectward 18.095, monotonic, slow then fast | FIG. 4's curved path agrees |
+| G3 and stop | 68.915 | 79.145 | 102.410 | objectward 33.495, monotonic | Text and FIG. 4 agree |
+| G4 | 50.435 | 61.105 | 80.740 | objectward 30.305, monotonic | FIG. 4 agrees |
+| G5 | 41.745 | 52.030 | 75.240 | objectward 33.495, monotonic | Text and FIG. 4 agree |
+
+Stations ascend wide to tele and all five gap tables list them in that order. d5 grows and d10 shrinks, as the text says. G3 and G5 move together; d16 + d18 stays 17.325 / 17.27 / 17.325 mm, the printed rounding. No group reverses at any of the 65 stations in either focus column. d16 and d18 turn at the printed intermediate row, and the printed rows require that (11.00 → 10.56 → 14.19 mm). The inferred cam moves the turn to station 31, a 0.0002 mm dip below the printed 10.560 mm, which is rounding. G4 leaves a straight line by at most 0.14 mm.
+
+Focus: the first column is infinity and matches Table 3, the last is the 1 m state, d16 falls and d18 rises by equal amounts at every station, and only G4 moves, objectward, as col. 12 says: 1.03 / 2.69 / 6.02 mm. The page shows 1.00 m at the near end. `focus.conjugates` is absent, as recorded.
+
+Open: FIG. 1's notch at the E1/E2 rim sits on a cemented junction and is not modeled. The sagittal fans of Figs. 14A–16A run to the pupil edge at Y′ = ±0.25, while a round clip at S5 stops the sagittal ray at 0.90 at tele (the ray reaches 16.16 mm there), so the patent's plotted pupil is not a pure round clip and the model may be slightly tight in that one direction. G2's interpolated path has a corner at the printed intermediate row (1.21 mm in the first half, 16.885 mm in the second), where FIG. 4 draws a smooth curve; only the three printed rows are sourced. At 1 m, d16 rises from 7.87 mm at 105 mm to 8.28 mm at 154 mm and falls to 8.17 mm at tele. That gap turn exists only in the inferred cam, and G4 still moves objectward at every step. OSS stays centered, so the fans with stabilization on, Figs. 14B–16B, are not reproduced.

@@ -13,9 +13,11 @@
  * Semi-diameters are estimated from Fig. 1 (wide state, 14.86 px/mm on both axes) and floor-checked by real-ray trace.
  * Fig. 1 draws the S8 and S9 rims meeting. Those faces cross at 8.23 mm, so both caps stop at 8.2 mm, and
  * checks.gapSagFrac = 1 admits the pair (1.64 of 1.65 mm). Lands carry them to the drawn 8.7 and 8.54 mm rims
- * (rimExtensionSd). The lands Fig. 1 draws on S5 and S20A are left out: their cap ends, 15.4 and 5.8 mm, would cost
- * 8.5 to 16.8 points of corner illumination.
- * OSS (patent L51, L11 here) is modeled centered. Glass names are catalog coordinate equivalents.
+ * (rimExtensionSd). Fig. 1 also ends the S5 and S20A caps on lands, and those clear radii are real limits: the
+ * tangential fans of Figs. 14A to 16A stop where S5 at 15.0 mm and S20A at 5.9 mm clip the corner beam at all three
+ * printed stations (Fig. 1 reads 15.2 and 5.95 mm). Corner transmission is about 44 % at all three.
+ * The patent's L signs name components (L11, L21, L32 and L52 are cemented), so the elements here are E1 to E13.
+ * OSS (patent L51, E11 here) is modeled centered. Glass names are catalog coordinate equivalents.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -61,7 +63,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.9108,
@@ -70,12 +72,12 @@ const LENS_DATA = {
       focalLengthMm: -131.4570612209773,
       glass: "TAFD35 (HOYA, coordinate equivalent)",
       role: "Negative front member of the first-group cemented doublet.",
-      diagramLabel: "L1",
+      diagramLabel: "E1",
       cemented: "C1",
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -87,12 +89,12 @@ const LENS_DATA = {
       apdNote:
         "One of the two ED positions Sony marks on the construction diagram; the patent nd/vd fits ED-class FCD1 but prints no partial dispersion, so the catalog glass's value is used.",
       role: "ED positive rear member of the first-group cemented doublet.",
-      diagramLabel: "L2",
+      diagramLabel: "E2",
       cemented: "C1",
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.4875,
@@ -101,11 +103,11 @@ const LENS_DATA = {
       focalLengthMm: 280.6699959223813,
       glass: "FC5 (HOYA, coordinate equivalent)",
       role: "Weak positive meniscus completing the first group.",
-      diagramLabel: "L3",
+      diagramLabel: "E3",
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.8061,
@@ -114,12 +116,12 @@ const LENS_DATA = {
       focalLengthMm: -14.124424076123814,
       glass: "NBFD13 (HOYA, coordinate equivalent)",
       role: "Strong negative front member of the second-group cemented doublet.",
-      diagramLabel: "L4",
+      diagramLabel: "E4",
       cemented: "C2",
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.8467,
@@ -128,12 +130,12 @@ const LENS_DATA = {
       focalLengthMm: 17.851685708173363,
       glass: "FDS90 (HOYA, coordinate equivalent)",
       role: "High-dispersion positive rear member of the second-group cemented doublet.",
-      diagramLabel: "L5",
+      diagramLabel: "E5",
       cemented: "C2",
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.9108,
@@ -142,11 +144,11 @@ const LENS_DATA = {
       focalLengthMm: -34.50830071101502,
       glass: "TAFD35 (HOYA, coordinate equivalent)",
       role: "Negative singlet completing the second group.",
-      diagramLabel: "L6",
+      diagramLabel: "E6",
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.9108,
@@ -155,11 +157,11 @@ const LENS_DATA = {
       focalLengthMm: 32.98144616418539,
       glass: "TAFD35 (HOYA, coordinate equivalent)",
       role: "Positive singlet just behind the stop; front of the third group.",
-      diagramLabel: "L7",
+      diagramLabel: "E7",
     },
     {
       id: 8,
-      name: "L8",
+      name: "E8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -171,12 +173,12 @@ const LENS_DATA = {
       apdNote:
         "The second ED position Sony marks on the construction diagram; the patent nd/vd fits ED-class FCD1 but prints no partial dispersion, so the catalog glass's value is used.",
       role: "ED positive front member of the third-group cemented doublet.",
-      diagramLabel: "L8",
+      diagramLabel: "E8",
       cemented: "C3",
     },
     {
       id: 9,
-      name: "L9",
+      name: "E9",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.8467,
@@ -185,12 +187,12 @@ const LENS_DATA = {
       focalLengthMm: -32.247354410590795,
       glass: "FDS90 (HOYA, coordinate equivalent)",
       role: "High-dispersion negative rear member of the third-group cemented doublet.",
-      diagramLabel: "L9",
+      diagramLabel: "E9",
       cemented: "C3",
     },
     {
       id: 10,
-      name: "L10",
+      name: "E10",
       label: "Element 10",
       type: "Biconvex Positive (Asph)",
       nd: 1.4971,
@@ -198,12 +200,12 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 46.90370085112796,
       glass: "M-FCD1 (HOYA, coordinate equivalent)",
-      role: "Double-aspheric focus element; the whole of the fourth group.",
-      diagramLabel: "L10",
+      role: "Double-aspheric focus element (patent L4); the whole of the fourth group.",
+      diagramLabel: "E10",
     },
     {
       id: 11,
-      name: "L11",
+      name: "E11",
       label: "Element 11",
       type: "Biconcave Negative (Asph)",
       nd: 1.592,
@@ -211,12 +213,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -30.46757821836867,
       glass: "M-PCD51 (HOYA, coordinate equivalent)",
-      role: "Double-aspheric OSS element at the front of the fifth group; shifts across the axis, modeled centered.",
-      diagramLabel: "L11",
+      role:
+        "Double-aspheric OSS element (patent L51) at the front of the fifth group; shifts across the axis, modeled centered.",
+      diagramLabel: "E11",
     },
     {
       id: 12,
-      name: "L12",
+      name: "E12",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.6034,
@@ -225,12 +228,12 @@ const LENS_DATA = {
       focalLengthMm: 22.942812764212103,
       glass: "E-F5 (HOYA, coordinate equivalent)",
       role: "Positive front member of the rear cemented doublet in the fifth group.",
-      diagramLabel: "L12",
+      diagramLabel: "E12",
       cemented: "C4",
     },
     {
       id: 13,
-      name: "L13",
+      name: "E13",
       label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.8348,
@@ -239,7 +242,7 @@ const LENS_DATA = {
       focalLengthMm: -24.45601967724616,
       glass: "TAFD5F (HOYA, coordinate equivalent)",
       role: "Negative rear member of the rear cemented doublet; last element before the image.",
-      diagramLabel: "L13",
+      diagramLabel: "E13",
       cemented: "C4",
     },
   ],
@@ -274,7 +277,8 @@ const LENS_DATA = {
     {
       label: "5",
       R: 74.745,
-      sd: 17.183011,
+      sd: 15.0,
+      rimExtensionSd: 17.183011,
     },
     {
       label: "6",
@@ -390,7 +394,8 @@ const LENS_DATA = {
     {
       label: "20A",
       R: 25.080000000000002,
-      sd: 6.757364,
+      sd: 5.9,
+      rimExtensionSd: 6.757364,
       d: 16.169999999999998,
       asphere: {
         K: 0.0,
@@ -4388,7 +4393,7 @@ const LENS_DATA = {
       toSurface: "16",
     },
     {
-      text: "G4 focus (+)",
+      text: "G4 (+)",
       fromSurface: "17A",
       toSurface: "18A",
     },

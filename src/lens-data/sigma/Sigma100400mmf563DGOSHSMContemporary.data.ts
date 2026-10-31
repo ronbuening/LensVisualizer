@@ -16,12 +16,12 @@
  * 37 vertices, and floor-checked by real-ray trace at every printed zoom and focus state. The figure is isotropic to 1 %,
  * and the application's print of it has lost the glass lines. L3 32.9 and L19 11.8 mm are the figure's rims, and L1/L2
  * read 33.65 mm but stay at 33.4 mm, inside the 67 mm filter thread. Sigma's drawing shows 32.2, 30.8 and 14.2 mm there.
- * Fig. 1 draws flat lands on S10, S12, S13, S20, S24, S34 and S35. Cuts end the S12, S13, S24 and S35 caps at 12.23,
- * 12.18, 11.03 and 12.57 mm: S24 at the figure's land, the others moved out to clear the traced beams. Extensions end
- * S10, S20 and S34 at 12.7, 12.1 and 11.4 mm and carry the land out to 14.5, 13.0 and 11.8 mm. Those caps are real clear
- * apertures. The drawn cap ends, 11.3, 11.7 and 10.4 mm, would clip the on-axis beam at S10 and S20 and darken the corner
- * at S34, so S20 stops at the on-axis beam and S10 and S34 at a 1-point corner loss. S12/S13 need gapSagFrac 0.97. The
- * stop radius follows the printed F-numbers.
+ * Fig. 1 draws flat lands on S10, S12, S13, S20, S24, S34 and S35. Cuts end the S12, S13 and S24 caps at 12.00, 11.59 and
+ * 11.03 mm, on the figure's lands. Extensions end S10, S20, S34 and S35 at 12.2, 12.1, 10.7 and 11.7 mm and carry the
+ * land out to 14.5, 13.0, 11.8 and 14.0 mm. Those caps are real clear apertures, where the drawn land, the on-axis beam
+ * and the ends of the patent's meridional fans (Figs. 3, 6, 9) agree. Five more fan limits, S3 29.95, S6 19.66, S17 12.5, S27 11.28 and S28 11.31 mm, sit inside glass the figure draws to
+ * its full edge and are not modeled, so corners pass more light than the fans imply. The stop radius follows the printed
+ * F-numbers.
  * Stabilization: G2b (L7–L9) is the patent's shifting group (¶0073); the model is centred only.
  * Production correlation is inferred, not proven: Sigma lists 21 elements / 15 groups with four SLD elements, and its
  * construction drawing fits Example 1 at the wide position to 0.14 mm RMS over 32 surface positions, with SLD at L2, L3,
@@ -408,7 +408,7 @@ const LENS_DATA = {
     {
       label: "10",
       R: 78.9,
-      sd: 12.7,
+      sd: 12.2,
       rimExtensionSd: 14.5,
       d: 6.15,
     },
@@ -423,14 +423,14 @@ const LENS_DATA = {
       label: "12",
       R: 92.7,
       sd: 12.5,
-      rimCutDepthMm: 0.81,
+      rimCutDepthMm: 0.78,
       d: 2.35,
     },
     {
       label: "13",
       R: -51.9,
       sd: 12.7,
-      rimCutDepthMm: 1.45,
+      rimCutDepthMm: 1.31,
       medium: 8,
       d: 1.0,
     },
@@ -566,15 +566,15 @@ const LENS_DATA = {
     {
       label: "34",
       R: 27.56,
-      sd: 11.4,
+      sd: 10.7,
       rimExtensionSd: 11.8,
       d: 6.9,
     },
     {
       label: "35",
       R: -77.95,
-      sd: 14.0,
-      rimCutDepthMm: 1.02,
+      sd: 11.7,
+      rimExtensionSd: 14.0,
       medium: 20,
       d: 1.0,
     },
@@ -2694,17 +2694,22 @@ const LENS_DATA = {
       toSurface: "5",
     },
     {
-      text: "G2",
+      text: "G2a",
       fromSurface: "6",
+      toSurface: "10",
+    },
+    {
+      text: "G2b OS",
+      fromSurface: "11",
       toSurface: "15",
     },
     {
       text: "G3",
       fromSurface: "16",
-      toSurface: "24",
+      toSurface: "STO",
     },
     {
-      text: "G4",
+      text: "G4 AF",
       fromSurface: "26",
       toSurface: "32",
     },
@@ -2714,11 +2719,40 @@ const LENS_DATA = {
       toSurface: "37",
     },
   ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "C2",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+    {
+      text: "C3",
+      fromSurface: "13",
+      toSurface: "15",
+    },
+    {
+      text: "C4",
+      fromSurface: "22",
+      toSurface: "24",
+    },
+    {
+      text: "C5",
+      fromSurface: "28",
+      toSurface: "30",
+    },
+    {
+      text: "C6",
+      fromSurface: "35",
+      toSurface: "37",
+    },
+  ],
   layout: {
     yScFill: 0.72,
-  },
-  checks: {
-    gapSagFrac: 0.97,
   },
 } satisfies LensDataV2Input;
 

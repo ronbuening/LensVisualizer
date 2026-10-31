@@ -5,7 +5,7 @@
 **Filed:** 14 June 2016  
 **Published:** 21 December 2017  
 **Inventor:** Noriyuki Ogasawara (original 小笠原典行)  
-**Assignee:** Sigma Corporation  
+**Applicant:** Sigma Corporation  
 **Title:** 防振機能を備えた変倍結像光学系 (original Japanese; translation: Variable-magnification imaging optical system with image stabilization)  
 **Example details:** Example 1 (数値実施例１), pp. 13–14; Figure 1 and infinity aberration Figures 2, 5 and 8. The grant [JP 6690425 B2](https://patents.google.com/patent/JP6690425B2/en) prints identical numerical tables for all five examples and a clearer Figure 1.
 
@@ -33,7 +33,7 @@ There are 21 spherical elements in 15 air-separated groups. The patent tabulates
 | G4   | S26–S32         |         +53.204238 | Positive zoom and internal-focus unit           |
 | G5   | S33–S37         |         -58.909508 | Negative rear zoom unit                         |
 
-The iris is surface 25, 4.10 mm behind S24, with the variable gap d25 after it. Its radius follows the printed F-number at each zoom position: the paraxial entrance pupil is 20.03 / 33.80 / 59.68 mm across at wide / middle / tele, and the stop radius is 10.53 / 10.50 / 10.51 mm. G2a (S6–S10) and G2b (S11–S15) stay fixed axially during zoom and focus (claim 2, ¶0072–0073); only G2b moves laterally for stabilization, which the model does not simulate. The printed spacings hold G2 within 0.0006 mm of one position relative to the image.
+The iris is surface 25, on the image side of G3 (¶0075), 4.10 mm behind S24, so it travels with G3; the variable gap d25 follows it. Its radius follows the printed F-number at each zoom position: the paraxial entrance pupil is 20.03 / 33.80 / 59.68 mm across at wide / middle / tele, and the stop radius is 10.53 / 10.50 / 10.51 mm. G2a (S6–S10) and G2b (S11–S15) stay fixed axially during zoom and focus (claim 2, ¶0072–0073); only G2b moves laterally for stabilization, which the model does not simulate. The printed spacings hold G2 within 0.0006 mm of one position relative to the image.
 
 ### Printed states and the derived zoom cam
 
@@ -229,11 +229,13 @@ G2b (S11–S15) moves transversely for shake correction (¶0073). The model is c
 
 The patent prints no clear apertures, so every semi-diameter is inferred, and none is a measured factory aperture. They are measured from the grant's Figure 1 at the wide position, the only print that keeps its glass lines, at 8.2 px/mm from the printed axial layout. The drawing is true to scale within 1 %: its arcs, stop tick and element edge widths all fit the prescription. L3 reaches 32.9 mm and L19 reaches 11.8 mm. L1 and L2 read 33.65 mm and are set to 33.4 mm, which keeps the front element inside the 67 mm filter thread. Sigma's construction diagram draws the front group 1.2 to 2 mm smaller and L19 about 2.4 mm larger. The on-axis beam stays clear of all of them at every printed position; it reaches 29.84 mm at S1 at the tele position and 8.02 mm at S33.
 
-The figure ends seven concave faces on flat lands. At S12, S13, S24 and S35 the land is a cut that ends the cap at 12.23, 12.18, 11.03 and 12.57 mm. Only S24 sits at the drawn height; the others sit further out than drawn so that the land clears the traced beams. S12 and S13 would cross at 12.44 mm without their lands.
+The figure ends seven concave faces on flat lands. At S12, S13 and S24 the land is a cut that ends the cap at 12.00, 11.59 and 11.03 mm, on the drawn land, and every traced beam clears it. S12 and S13 would cross at 12.44 mm without their lands.
 
-At S10, S20 and S34 the clear aperture itself ends at 12.7, 12.1 and 11.4 mm, and a land carries the outline out to the element edge at 14.5, 13.0 and 11.8 mm. The drawn cap ends are smaller still, at 11.3, 11.7 and 10.4 mm, but the on-axis beam needs 12.16 mm at S10 and 12.03 mm at S20, and S34 at its drawn height would darken the corner by 6 to 8 points.
+At S10, S20, S34 and S35 the clear aperture itself ends at 12.2, 12.1, 10.7 and 11.7 mm, and a land carries the outline out to the element edge at 14.5, 13.0, 11.8 and 14.0 mm. These heights sit where the drawing, the on-axis beam and the patent's own ray plots agree. The on-axis beam needs 12.16 mm at S10 and 12.03 mm at S20, and the outermost rays the patent plots at the wide corner pass S34 at 10.71 mm and S35 at 11.68 mm.
 
-Wide open at infinity, geometric transmission at the frame corner is 56 % at the wide position, 68 % at the middle position and 61 % at the tele position. The front rims set the middle and tele values: Sigma's smaller front group would give 64 % and 57 %, with the wide position unchanged. The S10 and S20 apertures shade the field inside the corner more than the corner itself. At the wide position transmission is 77 % at 9.7°, where it would be 82 % without them.
+Wide open at infinity, geometric transmission at the frame corner is 47 % at the wide position, 65 % at the middle position and 57 % at the tele position. The front rims set the middle and tele values: Sigma's smaller front group would give 61 % and 53 %, with the wide position unchanged. The S10 and S20 apertures also shade the field inside the corner. At the wide position transmission is 73 % at 9.7°, where it would be 82 % without them.
+
+The patent's meridional fans in Figures 3, 6 and 9 show that the design vignettes more than this. Off axis they stop short of the full pupil, at -0.33 and +0.53 of it at the wide corner and -0.31 and +0.81 at the tele corner. Seven circular apertures reproduce every readable fan end within about 0.01 of the pupil at all three zoom positions: S3 29.95, S6 19.66, S10 12.2, S17 12.5, S27 11.28, S28 11.31 and S34 10.7 mm. S10 and S34 are the lands modeled above. The other five lie inside glass that Figure 1 draws to its full edge with no land, so the model leaves them out. With all seven, corner transmission would be 37 %, 50 % and 46 %, so the modeled corners are an upper bound on the printed design.
 
 The model keeps the printed image plane at every printed position, and it does not refit best focus. The stabilizer stays centred, and the intermediate zoom and all finite-focus positions are derived.
 

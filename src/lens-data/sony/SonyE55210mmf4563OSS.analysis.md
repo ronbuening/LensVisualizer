@@ -7,9 +7,9 @@
 **Inventor:** Masaki Maruyama
 **Assignee:** Sony Corporation
 **Title:** Zoom lens and imaging device
-**Example details:** Numerical Working Example 1, Tables 1–3 and 10, Figure 1; uniform 55× scale inferred.
+**Example details:** Numerical Working Example 1, Tables 1–3 and 10, Figures 1 and 14–16; uniform 55× scale inferred.
 
-Numerical Working Example 1 (E1) is a **related Sony design**, not a confirmed
+Numerical Working Example 1 is a **related Sony design**, not a confirmed
 factory prescription for the Sony E 55–210mm f/4.5–6.3 OSS (SEL55210). The grant
 and the published application US 2013/0033621 A1 print identical tables. The
 Japanese priority filing is dated 5 August 2011, and the lens was announced later
@@ -17,18 +17,18 @@ that month. The correlation rests on these points:
 
 1. The example's thirteen elements in nine air-separated groups match Sony's
    published construction, and its five moving groups fit a compact telephoto zoom.
-2. Sony's diagram marks ED elements at L2 and L8 and aspherical elements at L10
-   and L11. E1 has its 1.4970/81.61 glass at L2 and L8, and aspheric surfaces on
-   both faces of L10 and L11. Sony's text counts two of each.
-3. E1's L10 also has a very high Abbe number. Sony's count treats it as aspherical
-   rather than ED; the drawing does not settle the material.
+2. Sony's diagram marks ED elements at E2 and E8 and aspherical elements at E10
+   and E11. Example 1 has its 1.4970/81.61 glass at E2 and E8, and aspheric surfaces
+   on both faces of E10 and E11. Sony's text counts two of each.
+3. Example 1's E10 also has a very high Abbe number. Sony's count treats it as
+   aspherical rather than ED; the drawing does not settle the material.
 4. The single positive G4 focus element and the transverse stabilizer at the front
    of G5 fit Sony's internal focus and OSS. F/4.64–6.49 sits close to the marketed
    f/4.5–6.3.
 5. Example 2 has fourteen elements, a doublet G4 and F/7.30 at tele, unlike the
    production lens. Example 3 keeps thirteen elements in nine groups and two
-   aspherical elements, but adds a third 1.4970/81.61 element at L3 and reaches
-   only 3.46×. E1 is the closest of the three, which is not proof of identity.
+   aspherical elements, but adds a third 1.4970/81.61 element at E3 and reaches
+   only 3.46×. Example 1 is the closest of the three, which is not proof of identity.
 
 The patent gives radii and distances with f = 1.00/1.91/3.62; Table 10 gives the
 less rounded tele ratio 3.624. **No production scale is published.** The model
@@ -52,11 +52,15 @@ directly, but 4.64 gives a tele-to-wide stop ratio of 1.109, close to Example 3'
 ## Optical Architecture
 
 The five moving groups have powers positive–negative–positive–positive–negative.
-G1 comprises L1–L3, G2 L4–L6, G3 L7–L9, G4 L10 and G5 L11–L13. Four cemented
-pairs are L1/L2, L4/L5, L8/L9 and L12/L13. These five moving groups are not the
+G1 comprises E1–E3, G2 E4–E6, G3 E7–E9, G4 E10 and G5 E11–E13. Four cemented
+pairs are E1/E2, E4/E5, E8/E9 and E12/E13. These five moving groups are not the
 nine air-separated groups in the catalog count. The aperture stop lies between G2
 and G3 and moves with G3. No camera-side plate is tabulated in this example, and
 none is modeled.
+
+The patent's L signs name components, not single elements, so the elements here run
+E1 to E13. Its L11 is E1/E2, L12 is E3, L21 is E4/E5, L22 is E6, L31 is E7, L32 is
+E8/E9, L4 is E10, L51 is E11 and L52 is E12/E13.
 
 All groups change position with zoom. The patent states that G1, G3 and G5 move
 objectward and that G3 and G5 move together. Their printed d16 + d18 sum is
@@ -70,79 +74,79 @@ The focal lengths below are isolated thick-element values at d-line, using the
 patent's constants at the inferred 55× scale. They are not additive powers of
 cemented assemblies. Optical roles are positional interpretations.
 
-### L1 — Negative Meniscus
+### E1 — Negative Meniscus
 
 nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = -131.457 mm.
 
 Negative meniscus forming the front of cemented C1, with high-index material.
 
-### L2 — Biconvex Positive
+### E2 — Biconvex Positive
 
 nd = 1.4970, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — ED class, inferred. f = +70.113 mm.
 
 Positive biconvex rear of C1 with a very high Abbe number; it sits at the first ED position on Sony's diagram.
 
-### L3 — Positive Meniscus
+### E3 — Positive Meniscus
 
 nd = 1.4875, νd = 70.44. Glass: FC5 (HOYA, coordinate equivalent). f = +280.670 mm.
 
 Weak positive meniscus singlet that completes the positive front group.
 
-### L4 — Biconcave Negative
+### E4 — Biconcave Negative
 
 nd = 1.8061, νd = 40.73. Glass: NBFD13 (HOYA, coordinate equivalent). f = -14.124 mm.
 
 Negative biconcave front member of C2, supplying most of the negative group's power.
 
-### L5 — Positive Meniscus
+### E5 — Positive Meniscus
 
 nd = 1.8467, νd = 23.78. Glass: FDS90 (HOYA, coordinate equivalent). f = +17.852 mm.
 
 Positive meniscus rear of C2, with a low Abbe number that opposes its negative partner.
 
-### L6 — Biconcave Negative
+### E6 — Biconcave Negative
 
 nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = -34.508 mm.
 
 Negative biconcave singlet that completes G2. The narrow air space in front of it limits the inferred rims.
 
-### L7 — Biconvex Positive
+### E7 — Biconvex Positive
 
 nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = +32.981 mm.
 
 Positive biconvex singlet that begins G3 immediately behind the stop.
 
-### L8 — Biconvex Positive
+### E8 — Biconvex Positive
 
 nd = 1.4970, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — ED class, inferred. f = +30.861 mm.
 
 Positive biconvex front of C3 with a very high Abbe number; it sits at the second ED position on Sony's diagram.
 
-### L9 — Biconcave Negative
+### E9 — Biconcave Negative
 
 nd = 1.8467, νd = 23.78. Glass: FDS90 (HOYA, coordinate equivalent). f = -32.247 mm.
 
 Negative biconcave rear of C3, supplying opposing power within the positive third group.
 
-### L10 — Biconvex Positive (Asph)
+### E10 — Biconvex Positive (Asph)
 
 nd = 1.4971, νd = 81.56. Glass: M-FCD1 (HOYA, coordinate equivalent). f = +46.904 mm.
 
 Double-aspheric positive biconvex singlet that is the entire focus group (patent L4). Its index and Abbe number sit on the coordinates of a moulding glass in the FCD1 family.
 
-### L11 — Biconcave Negative (Asph)
+### E11 — Biconcave Negative (Asph)
 
 nd = 1.5920, νd = 67.02. Glass: M-PCD51 (HOYA, coordinate equivalent). f = -30.468 mm.
 
 Double-aspheric negative biconcave singlet that forms the front of G5 and is the patent's stabilizing element (patent L51).
 
-### L12 — Biconvex Positive
+### E12 — Biconvex Positive
 
 nd = 1.6034, νd = 38.01. Glass: E-F5 (HOYA, coordinate equivalent). f = +22.943 mm.
 
 Positive biconvex front of C4, the rear part of G5 (patent L52).
 
-### L13 — Biconcave Negative
+### E13 — Biconcave Negative
 
 nd = 1.8348, νd = 42.72. Glass: TAFD5F (HOYA, coordinate equivalent). f = -24.456 mm.
 
@@ -160,17 +164,17 @@ those catalog rows.
 
 | Glass (HOYA equivalent) | nd | νd | θgF (catalog) | Elements | Role |
 | ------- | ---: | ---: | ---: | ---- | ---- |
-| TAFD35 | 1.9108 | 35.25 | 0.5822 | L1, L6, L7 | High-index meniscus, negative and positive singlets |
-| FCD1 | 1.4970 | 81.61 | 0.5389 | L2, L8 | ED positive members of C1 and C3 (inferred) |
-| FC5 | 1.4875 | 70.44 | 0.5306 | L3 | Low-dispersion crown |
-| NBFD13 | 1.8061 | 40.73 | 0.5672 | L4 | Strong negative member of C2 |
-| FDS90 | 1.8467 | 23.78 | 0.6192 | L5, L9 | Dense flint partners in C2 and C3 |
-| M-FCD1 | 1.4971 | 81.56 | 0.5385 | L10 | Aspheric focus element |
-| M-PCD51 | 1.5920 | 67.02 | 0.5359 | L11 | Aspheric stabilizing element |
-| E-F5 | 1.6034 | 38.01 | 0.5828 | L12 | Positive member of C4 |
-| TAFD5F | 1.8348 | 42.72 | 0.5651 | L13 | Negative member of C4 |
+| TAFD35 | 1.9108 | 35.25 | 0.5822 | E1, E6, E7 | High-index meniscus, negative and positive singlets |
+| FCD1 | 1.4970 | 81.61 | 0.5389 | E2, E8 | ED positive members of C1 and C3 (inferred) |
+| FC5 | 1.4875 | 70.44 | 0.5306 | E3 | Low-dispersion crown |
+| NBFD13 | 1.8061 | 40.73 | 0.5672 | E4 | Strong negative member of C2 |
+| FDS90 | 1.8467 | 23.78 | 0.6192 | E5, E9 | Dense flint partners in C2 and C3 |
+| M-FCD1 | 1.4971 | 81.56 | 0.5385 | E10 | Aspheric focus element |
+| M-PCD51 | 1.5920 | 67.02 | 0.5359 | E11 | Aspheric stabilizing element |
+| E-F5 | 1.6034 | 38.01 | 0.5828 | E12 | Positive member of C4 |
+| TAFD5F | 1.8348 | 42.72 | 0.5651 | E13 | Negative member of C4 |
 
-L2 and L8 are tagged as inferred ED from Sony's diagram. L10 has a similar Abbe
+E2 and E8 are tagged as inferred ED from Sony's diagram. E10 has a similar Abbe
 number but is left untagged because Sony's count of two ED elements is already met.
 No measured color or APO claim is made.
 
@@ -202,7 +206,7 @@ manufacturer firmware or a measured calibration.
 
 ## Aspherical Surfaces
 
-Surfaces S17 and S18 form L10; S19 and S20 form L11. The patent uses the standard
+Surfaces S17 and S18 form E10; S19 and S20 form E11. The patent uses the standard
 (1+K) conic equation and prints K = 0 on all four faces, with A4, A6, A8 and A10.
 Uniform scaling by s = 55 leaves K unchanged and transforms each coefficient An to
 An/s^(n−1), while every radius, thickness and spacing is multiplied by s. The
@@ -218,12 +222,12 @@ data file.
 
 The aspheric terms give correction freedom on the focus and stabilizing elements;
 their separate contributions are not measured here. The patent does not state how
-the surfaces are made, but the moulding-glass coordinates of L10 and L11 point to
+the surfaces are made, but the moulding-glass coordinates of E10 and E11 point to
 glass-moulded aspheres.
 
 ## Image Stabilization
 
-The patent shifts L11 (its L51), the negative front of G5, perpendicular to the
+The patent shifts E11 (its L51), the negative front of G5, perpendicular to the
 axis for blur correction. Sony confirms OSS on the SEL55210. The model keeps all
 surfaces centered, so stabilizer stroke and off-center image quality are not
 simulated.
@@ -235,14 +239,22 @@ against 55.00 / 105.05 / 199.10 mm from the rounded printed f values. The
 differences are kept, not fitted away. The 14.1 mm APS-C semi-diagonal needs half
 fields of 14.13° / 7.44° / 3.97° at 55×, slightly wider than the printed angles.
 
-Rims are inferred from Figure 1, not factory clear apertures. L4 reaches 8.7 mm, as
+Rims are inferred from Figure 1, not factory clear apertures. E4 reaches 8.7 mm, as
 drawn, above the 7.77 mm on-axis telephoto marginal ray at S6. The clear apertures of
 S8 and S9 stop at 8.2 mm, because those faces meet at 8.23 mm, and the model leaves
 0.01 mm of air between them. Figure 1 draws those rims touching, so opaque lands carry
-L5 to 8.7 mm and L6 to 8.54 mm. Figure 1 also ends the concave rear faces of L3 and
-L11 on short flat lands near 15.4 mm and 5.8 mm. The model leaves these out, because
-apertures that small would darken the corners by 8 to 17 points. Wide open, geometric
-transmission at the 14.1 mm corner is about 75 % / 71 % / 77 % at the three stations.
+E5 to 8.7 mm and E6 to 8.54 mm.
+
+Figure 1 also ends the concave rear faces of E3 and E11 on short flat lands, and the
+patent's own ray plots show those two radii limit the design. The tangential fans of
+Figs. 14A to 16A stop short of the full pupil at the corner, at about −0.55 to +0.38
+at wide, −0.43 to +0.51 at mid and −0.48 to +0.56 at tele. Clear apertures of 15.0 mm
+on S5 and 5.9 mm on S20A give −0.55 to +0.38, −0.43 to +0.51 and −0.51 to +0.57, so
+the model uses them, with lands out to each element's edge. The on-axis beam clears
+both, at 14.43 mm and 5.24 mm. The sagittal fans run to the pupil edge even at tele,
+where a round clip at S5 stops the sagittal ray near 0.9, so the model's clips may be
+slightly tighter there than the patent's plotted pupil. Wide open, geometric
+transmission at the 14.1 mm corner is about 44 % / 43 % / 45 % at the three stations.
 These are modeled clips, not measured factory vignetting.
 
 The iris radius is 6.97 / 7.10 / 7.73 mm at the three stations, set so the paraxial

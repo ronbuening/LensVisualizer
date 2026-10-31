@@ -77,3 +77,61 @@ These come from the engine's full-pupil lattice, and the engine half-field and f
 Maker section (the OM SYSTEM drawing, read at the 3.598 px/mm recorded above, assumed to hold across the axis): 13 elements in 10 groups, ED on element 6 and HR on element 8, no aspherical mark. Count and grouping agree with Fig. 3. Its rims read 17.4 / 17.1 / 9.9 / 8.2 / 9.3 mm for L1–L5, 9.3 / 8.2 / 9.0 mm for L6–L8, 8.75 / 8.75 / 9.3 mm for L9–L11 and 8.75 / 8.75 mm for L12–L13, which is 2–21% above Fig. 3. The two inset cemented partners, L4 and L7, agree best. The drawings disagree on order in three places: the maker's L5 stands 1.1 mm proud of L4 where Fig. 3 has it 0.4 mm below, its L7 sits 0.8 mm inside L8 where Fig. 3 has them about level, and its L13 matches L12 where Fig. 3 has it 0.6 mm lower. Fig. 3 of the modeled example governs.
 
 Live check at WE, ST and TE, each at infinity and closest focus: the local page rendered all six states, and the silhouette follows Fig. 3 apart from the L3–L4 step and the L5 land described above. Limitations: the rims remain inferred, and Fig. 3 shows the patent example, not a confirmed production lens.
+
+## 2026-10-31 — Second review: diagram, labels and movement
+
+Compared the local page at WE, ST and TE, each at infinity and closest focus, with Fig. 3 on PDF page 4 of `patents/US8767310B2.pdf` at the native 300 dpi raster, its text on PDF pages 35–36, and Figs. 6 and 7 on PDF pages 7 and 8. The maker's section (the OM SYSTEM drawing) was read as the second check. Only US 8,767,310 B2 was used.
+
+| Field                       | Before                             | After                                                | Evidence                                                                                                                                                  |
+| --------------------------- | ---------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sd` S15, S16 (L9)          | 7.8 / 7.8                          | 7.6 / 7.6                                            | Fig. 3 line centres 92.95 px on panels (a), (b), (c), 7.54 mm; outer edge 7.6 mm. Both drawings put L9 below L8 and L10; the render had it level with L8. |
+| `groups`                    | G3 (+), STO–20                     | G3f (+), STO–14; G3b (+), 15–20                      | Fig. 3 brackets and the text's "front unit G3f" and "rear unit G3b", PDF page 35.                                                                         |
+| `role` L6, L7, L9, L10, L11 | "G3 front / rear subgroup"         | Names G3f and G3b                                    | Same; the units are unchanged.                                                                                                                            |
+| `focus.description`         | "the other three groups"           | "G1, G2 and G3"                                      | Five bracket labels now show, and the patent's count of four groups stands.                                                                               |
+| `.analysis.md`              | G3 row and L7, L9, L10, L11 prose  | Names the units and their elements                   | Keeps the prose in step with the labels.                                                                                                                  |
+
+Scale in both directions: 23 surface crossings fit 12.319 px/mm on panel (a) at 0.075 mm RMS and 12.326 px/mm on panel (c) at 0.092 mm RMS. Across the axis the drawn image line is 267 px long on all three panels, which is 12.34 px/mm at the printed 10.82 mm. Curvature fits with a free vertex on 11 deep arcs give a mean of 11.95 px/mm on each of panels (a) and (c), but they range from 10.9 to 13.1 and do not lean one way (S18 reads 10.9, S16 reads 13.0), so that is arc-by-arc drawing scatter and not a stretch. The straight marks govern, and the figure is taken as isotropic. The L9 change rests on ratios to its neighbours, which do not depend on the scale.
+
+Rims, re-measured as line centres averaged over panels (a), (b) and (c), at 12.33 px/mm:
+
+| Element      | L1    | L2    | L3   | L4   | L5   | L6   | L7   | L8   | L9   | L10  | L11  | L12  | L13  |
+| ------------ | ----- | ----- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Reading, mm  | 16.3  | 16.1  | 8.72 | 7.97 | 7.59 | 7.75 | 7.82 | 7.66 | 7.54 | 7.97 | 8.14 | 7.74 | 7.14 |
+| Stored, mm   | 16.5  | 16.5  | 8.9  | 8.0  | 7.7  | 7.8  | 7.8  | 7.8  | 7.6  | 8.0  | 8.2  | 7.8  | 7.2  |
+
+The stored rims follow the outer edge of the stroke, so they sit between 0.3% below and 2.4% above the line centres. L9 was the one outlier, at 3.4% above, and it sits 0.8% above now. The figure gives L9/L10 0.946 and L9/L11 0.926, against 0.95 and 0.927 now and 0.975 and 0.951 before. On the maker's drawing the same four rims measure 32.5 / 31.5 / 32.5 / 33.5 px for L8–L11, which is the same order; the 8.75 mm recorded above for L10 reads about 9.0 mm here. S15 and S16 stay above their floors: on-axis marginal ray 6.17 mm, corner chief ray 3.72 mm.
+
+Declined, all within noise: L1 stands about 0.2 mm above L2 and L7 about 0.15 mm above L8 in Fig. 3, and both pairs are cemented, so either step would put a bevel on an element drawn square. L2's 0.4 mm excess is the largest gap to a reading, at 2.4%; L1 and L2 share S2, G1's height against L3 matches the figure (1.85 against 1.87), and S1 sets the engine half-field at the long end. The L3/L4 step stays open as the first pass left it: Fig. 3 ends S5 at about 8.0 mm, with L3's rear wall rising from there to 8.8 mm, and `rimExtensionSd` is refused on a cemented interface. L5's land and `gapSagFrac` 0.94 are unchanged and agree with this reading.
+
+Effect of the L9 change, wide open at infinity. The figures come from the engine's full-pupil lattice:
+
+| Position | Corner transmission, before → after | Corner relative illumination, before → after | Engine half-field, before → after | f-number, before → after |
+| -------- | ----------------------------------- | -------------------------------------------- | --------------------------------- | ------------------------ |
+| WE       | 70.4% → 70.4%                       | 67.4% → 67.4%                                | 18.39° → 18.39°                   | 4.08 → 4.08              |
+| ST       | 66.3% → 66.3%                       | 64.1% → 64.1%                                | 10.52° → 10.52°                   | 4.56 → 4.56              |
+| TE       | 64.4% → 64.4%                       | 62.7% → 62.7%                                | 7.16° → 7.16°                     | 5.91 → 5.91              |
+
+Six interpolated zoom positions are also unchanged at the corner. L9 starts to limit the beam only below about 7.5 mm. The validator reports no errors, `clearap.mjs` shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`, the image-circle check finds nothing undersized, traced corner coverage is 100% and all 65 stations stay within 3% of the stated f-number with no rim limiter.
+
+Zoom, printed infinity rows, as distance of each group's first vertex from the image plane in mm. Positive travel is objectward:
+
+| Group | WE      | ST      | TE      | WE→ST   | ST→TE   | WE→TE   | Patent, PDF pages 29 and 35–36                          | Model                     |
+| ----- | ------- | ------- | ------- | ------- | ------- | ------- | ------------------------------------------------------- | ------------------------- |
+| G1    | 101.747 | 130.620 | 161.249 | +28.873 | +30.629 | +59.502 | To the object side while d3 grows                       | Monotonic                 |
+| G2    | 93.347  | 89.780  | 99.366  | −3.567  | +9.586  | +6.019  | Imageward, then objectward, on a concave orbit          | One turn, at ST           |
+| G3    | 70.314  | 76.161  | 90.086  | +5.847  | +13.925 | +19.772 | To the object side; d20 first grows, then narrows       | Monotonic; d20 turns once |
+| G4    | 31.993  | 37.675  | 58.473  | +5.682  | +20.798 | +26.480 | To the object side                                      | Monotonic                 |
+
+The 65 stations ascend from 40.8 to 147.004 mm, with the printed rows exact at indices 0, 32 and 64. `turns.mjs` reports only the two turning points the printed rows require: G2 at ST, and d20 at station 22 (62.6 mm, 9.570 mm), where the printed rows need one maximum somewhere. The interpolation adds no reversal.
+
+Focus: the first column is infinity at every station and the last is the closest state. G4 alone moves, toward the image, as the text states, by 1.395 / 3.798 / 6.380 mm at WE / ST / TE. d3 and d8 do not vary with focus, d20 rises and d24 falls at every step, and d20 + d24 stays constant to machine precision. The slider's near end reads 90 cm. The `mv=zoom` and `mv=focus` overlays, including the tele end, show these directions; the overlay now counts five bracket rows, with G3f and G3b travelling together.
+
+Labels and tags checked and found correct: the patent prints no element designations, so sequential L1–L13 stand, with `name` and `diagramLabel` equal; the patent uses G for groups, so nothing clashes. All 13 `type` strings agree with the signs of R, and all 13 stored focal lengths match an independent thick-lens calculation to the last digit. C1, C2 and C3 cover surfaces 1–3, 4–6 and 12–14, the three cemented interfaces 2, 5 and 13. There are no aspheric surfaces and no `A` suffix. The stop is surface 9, 1.0 mm before surface 10, between L5 and L6. G3f and G3b are both positive: Condition (3) prints 0.95 on PDF page 37, and the calculated ratio is 37.235 / 39.07 = 0.953; Condition (4) prints 0.44 against 12.654 / 28.72 = 0.441, which confirms the split at d14. The patent text says nothing about anomalous dispersion or a named glass, so no `apd: "patent"` belongs here. The maker's drawing marks L6 as ED and L8 as HR, with no aspherical mark; L6 keeps `apd: "inferred"`, L8 correctly has none because HR is an index mark, and the `specs` line agrees. Inspectors for L3, L4, L6, L8, L9, L11 and L13 read true. Front-page inventors, assignee, filing date and parent application agree with the file.
+
+Aberrations against Fig. 6, from an independent exact trace of the printed table, with the app's own tabs agreeing where shown. Distortion at 10.82 mm is −3.70 / +0.39 / +1.08% at WE / ST / TE, and the plots read about −3.8 / +0.3 / +0.9%; the app shows −3.70% at WE. At TE, meridional and sagittal focus are −0.280 and −0.156 mm against the plot's −0.285 and −0.155 mm, and the app prints T −0.28 / S −0.16 mm. The d-line spherical aberration curves agree in shape and size at all three positions: at WE it reads −0.110 mm at the 70% zone and −0.044 mm at the rim, and at ST it crosses the axis at the rim, +0.006 mm, as drawn. Plot values are read by eye from the 300 dpi sheet. Column 21 calls the meridional curve solid, but the plot's own legend labels the solid curve ΔS and the dashed one ΔM, and the trace agrees with the legend. All 13 elements and the plate resolve to catalog rows with P_g,F, so no element needs further identification; the patent prints no line indices beyond nd and νd.
+
+Group focal lengths calculated from the table are +127.84 / −28.10 / +28.71 / −38.14 mm against the printed +127.83 / −28.11 / +28.72 / −38.15 mm. The differences reach 0.015 mm, too small to suggest a misprint, and the system focal lengths agree to within 0.001 mm.
+
+Live page after the edits, at WE, ST and TE, each at infinity and closest focus: L9 now stands below L8 and L10 as both drawings show, G3f and G3b label their elements without colliding with G2 or G4, and nothing else moved. The final model outline is overlaid on panel (c) in the review scratch folder.
+
+Limitations: the L3/L4 step cannot be drawn; L4 keeps a slanted upper edge from S5 at 8.9 mm to S6 at 8.0 mm until a cemented land exists. Rims remain inferred from the figure.

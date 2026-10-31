@@ -17,8 +17,8 @@
  * stretched across the axis: vertices give 7.618 px/mm along it, the arcs of the printed radii and the stop tick give
  * 8.55 px/mm across it, and rim heights use the second scale. S2/S3 stop at the drawn cap ends, 13.49 mm; the blocks
  * drawn past them are not clear aperture. S12 and S14 carry inferred flat lands, cut radii 11.44 and 11.23 mm. The
- * figure draws L11 square, meeting L12, but S20 and S21 cross at 12.75 mm, so L11 is 12.6 mm, about 0.08 mm of air at
- * the rim, which needs checks.gapSagFrac 0.98 on the S20–S21 gap.
+ * figure draws L11 square, meeting L12, but S20 and S21 cross at 12.75 mm, so S20's cap ends at 12.6 mm and a land
+ * carries it to L11's 13.0 mm rim, 0.023 mm of air there, which needs checks.gapSagFrac 1.00 on the S20–S21 gap.
  * The 65 focus controls reparameterize the printed gap paths and are not a recovered cam.
  * Only infinity, −0.5× and −1× are published; intermediate finite MTF is not certified.
  * Stop: radius 10.616 mm from paraxial EPD 23.43 mm at F/2.90, fixed through focus. Working f/# traces
@@ -102,8 +102,8 @@ const LENS_DATA = {
       nF: 1.82775572034564,
       ng: 1.8472247352710132,
       glass: "FD60 (HOYA, coordinate equivalent)",
-      role: "Negative dense-flint member of cemented doublet C1 in G1A, concave to the object.",
-      cemented: "C1",
+      role: "Negative dense-flint member of cemented doublet DB1 in G1A, concave to the object.",
+      cemented: "DB1",
     },
     {
       id: 3,
@@ -118,8 +118,8 @@ const LENS_DATA = {
       nF: 1.8857282862754727,
       ng: 1.897872766265652,
       glass: "TAFD32 (HOYA, coordinate equivalent)",
-      role: "High-index positive member of cemented doublet C1, convex to the image.",
-      cemented: "C1",
+      role: "High-index positive member of cemented doublet DB1, convex to the image.",
+      cemented: "DB1",
     },
     {
       id: 4,
@@ -170,8 +170,8 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Inferred SLD position: the FCD515-class glass (nd 1.59280, νd 68.62, printed PgF 0.5440) fits one of Sigma's two SLD elements; the patent names no element.",
-      role: "Positive member of cemented doublet C2 in G1B.",
-      cemented: "C2",
+      role: "Positive member of cemented doublet DB2 in G1B.",
+      cemented: "DB2",
     },
     {
       id: 7,
@@ -186,8 +186,8 @@ const LENS_DATA = {
       nF: 1.6875236565122786,
       ng: 1.6999906673919802,
       glass: "E-FD5 (HOYA, coordinate equivalent)",
-      role: "Negative member of cemented doublet C2; last element of G1, directly ahead of the stop.",
-      cemented: "C2",
+      role: "Negative member of cemented doublet DB2; last element of G1, directly ahead of the stop.",
+      cemented: "DB2",
     },
     {
       id: 8,
@@ -202,8 +202,8 @@ const LENS_DATA = {
       nF: 1.4922815694207838,
       ng: 1.4959530451448042,
       glass: "FC5 (HOYA, coordinate equivalent)",
-      role: "Negative member of cemented doublet C3; first lens behind the stop in G2.",
-      cemented: "C3",
+      role: "Negative member of cemented doublet DB3; first lens behind the stop in G2.",
+      cemented: "DB3",
     },
     {
       id: 9,
@@ -221,8 +221,8 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Inferred SLD position: the low-dispersion glass (nd 1.55230, νd 71.54, printed PgF 0.5389) fits one of Sigma's two SLD elements; the patent names no element.",
-      role: "Positive member of cemented doublet C3, with the aspherical rear surface S16.",
-      cemented: "C3",
+      role: "Positive member of cemented doublet DB3, with the aspherical rear surface S16.",
+      cemented: "DB3",
     },
     {
       id: 10,
@@ -420,7 +420,7 @@ const LENS_DATA = {
     {
       label: "19",
       R: 84.6604,
-      sd: 12.6,
+      sd: 13.0,
       medium: 11,
       d: 0.9,
     },
@@ -428,6 +428,7 @@ const LENS_DATA = {
       label: "20",
       R: 35.1686,
       sd: 12.6,
+      rimExtensionSd: 13.0,
       d: 3.22,
     },
     {
@@ -482,6 +483,7 @@ const LENS_DATA = {
       gapAfterMm: 1.0,
       nd: 1.523,
       vd: 58.59,
+      glass: "Unmatched (printed nd 1.52300, νd 58.59; line indices from printed PgF and PdC)",
       indexReference: "d",
       nC: 1.520288148148148,
       nF: 1.529214586106844,
@@ -535,7 +537,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED infinity, \u22120.5\u00d7 and \u22121\u00d7 states. Floating focus: G1 (L1\u2013L7) and G2 (stop, L8\u2013L10) extend toward the object along different paths, by 48.80 mm and 45.80 mm at 1:1, while G3 (L11\u2013L13) stays fixed to the image. The S18\u2013S19 air gap is the sum of the printed d18 and d19 rows. Positions between the published states are inferred along the printed gap paths and are not a factory cam, so distance labels there, above all near infinity, are approximate. The \u22121\u00d7 state is the patent's own conjugate, 257.88 mm object to image; Sigma markets 25.8 cm. The iris stays at its infinity size: working f/# traces 2.91 / 3.86 / 4.82 against the printed 2.90 / 3.86 / 4.99.",
+      "PUBLISHED infinity, \u22120.5\u00d7 and \u22121\u00d7 states. Floating focus: G1 (G1A and G1B, L1\u2013L7) and G2 (stop, L8\u2013L10) extend toward the object along different paths, by 48.80 mm and 45.80 mm at 1:1, while G3 (L11\u2013L13) stays fixed to the image. The S18\u2013S19 air gap is the sum of the printed d18 and d19 rows. Positions between the published states are inferred along the printed gap paths and are not a factory cam, so distance labels there, above all near infinity, are approximate. The \u22121\u00d7 state is the patent's own conjugate, 257.88 mm object to image; Sigma markets 25.8 cm. The iris stays at its infinity size: working f/# traces 2.91 / 3.86 / 4.82 against the printed 2.90 / 3.86 / 4.99.",
   },
   gaps: {
     "12": {
@@ -603,8 +605,13 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 (+)",
+      text: "G1A (+)",
       fromSurface: "1",
+      toSurface: "7",
+    },
+    {
+      text: "G1B (+)",
+      fromSurface: "8",
       toSurface: "12",
     },
     {
@@ -613,24 +620,24 @@ const LENS_DATA = {
       toSurface: "18",
     },
     {
-      text: "G3 (-)",
+      text: "G3 (−)",
       fromSurface: "19",
       toSurface: "24A",
     },
   ],
   doublets: [
     {
-      text: "C1",
+      text: "DB1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "C2",
+      text: "DB2",
       fromSurface: "10",
       toSurface: "12",
     },
     {
-      text: "C3",
+      text: "DB3",
       fromSurface: "14",
       toSurface: "16A",
     },
@@ -638,7 +645,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.74,
   },
-  checks: { gapSagFrac: 0.98 },
+  checks: { gapSagFrac: 1.0 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -137,3 +137,97 @@ The caps cost more inside the corner than at it. The engine reads 91.9 and 76.9 
 **Sigma's drawing as second check.** Count and grouping agree, 21 elements in 15 groups, with SLD at elements 2, 3, 18 and 20. At its fitted 5.77 px/mm the rims read 32.2 / 31.1 / 30.7 at L1 / L2 / L3, 21.7 at L4, 15.2 at L5/L6, 12.6 at L7, 12.7 at L8/L9, 13.4 at L10, 13.6 at L11, 13.7 at L12, 12.6 at L13/L14, 13.1 at L15, 12.9 at L16/L17, 12.4 at L18 and 14.1 at L19 and L20/L21. It supports the L7 and L8/L9 change directly and also draws L12 above L13/L14. It disagrees with the patent at the front group, 1.5 to 2.5 mm smaller; at L5/L6, 0.9 mm larger; at L12, 0.7 mm larger; at L15, 0.9 mm larger; and at L19, 2.3 mm larger. The prescription is a related design, so the drawing cannot overrule the figure of the example it models.
 
 Limitation: the S10, S20 and S34 caps are inferred clear apertures, not mechanical data, and they set modeled vignetting inside the corner. The figure draws them smaller still, but S10's and S20's drawn caps would clip the on-axis beam, so those two lands cannot be taken as drawn. The figure governs a design that is not proven to be the factory lens.
+
+## 2026-10-31 — Second review: diagram, labels and movement
+
+An independent look at the lens as the local site shows it, against the grant's Fig. 1 (p. 25, native 2229 × 1424 px), the application's text and tables (pp. 2, 12–14), the grant's aberration plots (Figs. 2 to 9, pp. 25–26) and Sigma's construction drawing, read directly. This section supersedes the S10, S12, S13, S34 and S35 rows, the corner figures and the `gapSagFrac` note of the semi-diameter pass.
+
+**Rims re-measured.** Axis row 735 and 8.2175 px/mm hold. The flat rim rows give half-heights of 276.5, 270, 172, 117, 102.5, 104, 111, 109, 107, 105, 100, 101, 101, 97 and 115 px at L1, L3, L4, L5/L6, L7, L8/L9, L10, L11, L12, L13/L14, L15, L16/L17, L18, L19 and L20/L21, which repeats the first pass to the pixel. The stop tick's inner end, 87 px, gives 8.26 px/mm again, so the figure is isotropic. Every rim that follows these readings stays.
+
+**Lands read a second way.** The first pass read each cap end from the row where the stroke leaves the curve. A land is square to the axis, so its column also gives the cap's sag. Each stroke was fitted to its printed radius from 45 px to just below the cap, which gives a bias of 0.3 to 0.6 px. The wall column less that bias gives the depth, and the radius follows with ±0.5 px on the column. Steep faces read well; shallow ones do not. Pixel dumps also show S19's stroke hiding S20's near the rim, and S12's stroke shows no wall beyond its natural column run.
+
+| Surface | Wall column | Depth | Cap from the wall | Cap from rows | On-axis max | Before | Final |
+| ------- | ----------- | ----- | ----------------- | ------------- | ----------- | ------ | ----- |
+| S10 | 652 | 0.865 | 11.65 (11.24–12.05) | 11.32 | 12.16 | 12.7 | 12.2 |
+| S12 | 710 | 0.780 | 12.00 (11.53–12.46) | 11.46 | 11.33 | 12.23 | 12.00 |
+| S13 | 712 | 1.314 | 11.61 (11.34–11.87) | 11.60 | 11.32 | 12.18 | 11.59 |
+| S20 | 1034 | 0.877 | 11.89 (11.47–12.29) | 11.68 | 12.03 | 12.1 | 12.1 |
+| S24 | 1112 | 2.289 | 11.19 (11.05–11.33) | 11.03 | 10.84 | 11.03 | 11.03 |
+| S34 | 1601 | 2.097 | 10.54 (10.40–10.69) | 10.40 | 7.74 | 11.4 | 10.7 |
+| S35 | 1633 | 0.880 | 11.68 (11.27–12.07) | 11.5 | 7.50 | 12.57 | 11.7 |
+
+S10's and S20's drawn caps are therefore not clearly under the on-axis beam, as the semi-diameter pass said. S20's range contains it and S10's stops 0.11 mm short.
+
+**The patent's fans.** The meridional panels of Figs. 3, 6 and 9 (wide, middle, tele at infinity) stop short of the full pupil off axis, so they print the design's vignetting. Ends were read from the native rasters against ±140.5 px for the full pupil, about ±0.007. Rays were traced at the same image heights, 21.63 mm scaled, and normalized to the paraxial entrance pupil. The patent's negative side is the ray that front rims clip, and its positive side the ray that rear rims clip. The middle 100 % negative end hides under the axis label, so it is only a bound.
+
+| Position | Height | Patent − / + | Final model − / + | Seven apertures − / + |
+| -------- | ------ | ------------ | ----------------- | --------------------- |
+| Wide | 100 % | 0.33 / 0.53 | 0.452 / 0.527 | 0.331 / 0.527 |
+| Wide | 90 % | 0.52 / 0.59 | 0.570 / 0.660 | 0.517 / 0.592 |
+| Wide | 70 % | 0.80 / 0.71 | 0.803 / 0.845 | 0.803 / 0.718 |
+| Wide | 50 % | 0.95 / 0.83 | 0.962 / 0.959 | 0.944 / 0.835 |
+| Wide | 30 % | 0.98 / 0.95 | 0.985 / 0.991 | 0.978 / 0.951 |
+| Middle | 100 % | ≤ 0.28 / 0.85 | 0.414 / 0.892 | 0.247 / 0.853 |
+| Middle | 90 % | 0.41 / 0.88 | 0.575 / 0.952 | 0.406 / 0.880 |
+| Middle | 70 % | 0.72 / 0.93 | 0.835 / 1.01 | 0.718 / 0.930 |
+| Middle | 50 % | 0.95 / 0.98 | 0.969 / 0.999 | 0.951 / 0.980 |
+| Middle | 30 % | 0.98 / 1.00 | 0.986 / 0.992 | 0.979 / 0.992 |
+| Tele | 100 % | 0.31 / 0.81 | 0.410 / 0.836 | 0.309 / 0.818 |
+| Tele | 90 % | 0.38 / 0.84 | 0.481 / 0.891 | 0.379 / 0.851 |
+| Tele | 70 % | 0.52 / 0.91 | 0.623 / 1.00 | 0.520 / 0.916 |
+| Tele | 50 % | 0.66 / 0.98 | 0.765 / 0.994 | 0.660 / 0.983 |
+| Tele | 30 % | 0.80 / 1.00 | 0.905 / 0.988 | 0.800 / 0.988 |
+
+The seven-aperture column adds S3 29.95, S6 19.66, S17 12.5, S27 11.28 and S28 11.31 mm to the final S10 12.2 and S34 10.7 mm. Every end agrees within about 0.01; the 1.00 rows differ only by the model's 0.988 on-axis normalization. The heights of the end rays show which surface binds: the seven middle and tele ends with an S3 limit sit at 29.94 to 30.01 mm, the two wide S6 ends at 19.65 and 19.68 mm, and the four S17 ends at 12.48 to 12.57 mm.
+
+Those ends fix the lands. The wide 70 % negative end passes S10 at 12.18 mm, which is also the on-axis beam's 12.16 mm. The wide 100 % positive end passes S34 at 10.71 mm and S35 at 11.68 mm, against wall readings of 10.54 and 11.68 mm. The S20 ends reach 12.03 mm, the on-axis beam's height. No fan ray needs S12, S13 or S24 above its cap. The remaining five limits lie inside glass Fig. 1 draws to its full edge with no land, 0.9 to 3.7 mm under the drawn rim, and they are not modeled.
+
+**Changes.**
+
+| Item | Before | After | Evidence |
+| ---- | ------ | ----- | -------- |
+| S10 `sd` | 12.7 | 12.2 | Fan end 12.18, on-axis 12.16, wall reading up to 12.05. Wall now 0.7 px from the drawn stroke, 1.3 px before |
+| S34 `sd` | 11.4 | 10.7 | Fan end 10.71, wall 10.54 (10.40–10.69), rows 10.40. Wall now 0.5 px off, 3.1 px before. Nothing on-axis needs more than 7.74 mm |
+| S35 | `sd` 14.0, cut 1.02 (cap 12.57) | `sd` 11.7, `rimExtensionSd` 14.0 | Fan end 11.68, wall 11.68. A cut has to clear the model's wider beams, so an extension carries the drawn land |
+| S13 `rimCutDepthMm` | 1.45 (cap 12.18) | 1.31 (cap 11.59) | Wall 11.61 and rows 11.60. The lower S10 cap brought the beam reach inside it |
+| S12 `rimCutDepthMm` | 0.81 (cap 12.23) | 0.78 (cap 12.00) | Wall depth 0.780. The drawn walls stand 2 px, 0.24 mm, apart; they were 0.09 mm apart and are now 0.26 mm |
+| `groups` | G1, G2, G3 to S24, G4, G5 | G1, G2a, G2b OS, G3 to STO, G4 AF, G5 | Fig. 1 draws G2a and G2b and ¶0073 makes G2b the shifting group. The table starts G4 at S26, ¶0075 puts the stop on G3's image side, d24 is fixed, and Fig. 1's G3 bracket covers S |
+| `doublets` | absent | C1–C6 at S1–3, S8–10, S13–15, S22–24, S28–30, S35–37 | One per cemented pair, matching the element `cemented` tags. This was the only lens of the batch without the block |
+
+"G4 focus" touched G5 at the tele end, so the bracket reads "G4 AF". Element numbers stay as the patent's L numbers without `diagramLabel`: the inspector shows Element 2 and L2 together, so diagram and inspector agree.
+
+**Corner illumination, wide open.** Engine figures are the app's vignetting analysis, run from a corrected script with each station's own wide-open stop; `vig.mjs` keeps the wide-end stop, and its earlier tele 61.1 % is really 61.5 %. Full-pupil figures use the semi-diameter pass's skew-ray tracer at grid 61, which traces the same stops.
+
+| State | Semi-diameter pass | Final | All seven fan apertures |
+| ----- | ------------------ | ----- | ----------------------- |
+| Wide, infinity, engine | 55.9 | 47.2 | 37.1 |
+| Middle, infinity, engine | 68.3 | 64.9 | 50.2 |
+| Tele, infinity, engine | 61.5 | 56.7 | 46.3 |
+| Wide, infinity, full pupil | 56.1 | 47.5 | — |
+| Middle, infinity, full pupil | 68.7 | 65.4 | — |
+| Tele, infinity, full pupil | 61.8 | 57.0 | — |
+| Wide, closest, full pupil | 60.9 | 52.4 | — |
+| Middle, closest, full pupil | 82.3 | 80.9 | — |
+| Tele, closest, full pupil | 83.7 | 83.7 | — |
+
+The wide corner loses 8.7 points, past the 5-point line: S34 takes 4.8 and S10 3.9. The readings are solid. Fan ends are read to ±0.007, and for each land the fan, the on-axis beam or the wall agree within 0.15 mm, and the patent's own fans put the corner lower still. S10 at 12.7 mm, S34 at 11.4 mm and S35 back at `sd` 14.0 with cut 1.02 restore 55.9 / 68.3 / 61.5 %. The corner loses 8.2 and 7.8 points at 121 and 142 mm, and 3.3 to 4.5 points from 168 to 329 mm. Inside the corner, 7.1° at f = 142 mm goes from 86.3 to 82.7 % and 9.7° at the wide position from 76.9 to 72.6 %. S35's land costs no corner light at these rims.
+
+The engine half-field is 13.96 / 7.87 / 5.02°, from 14.46 / 7.87 / 5.02°: S34 and S35 lower the wide value, which stays above the printed 11.68°. F-numbers stay 5.15 / 5.92 / 6.50, stop radius 10.53 mm at the wide position, and all 65 stations stay within 3 % of the stated f-number. clearap shows no axial clip and no blocked chief ray at infinity or closest focus, with S10 at 0.04 mm over its on-axis 12.16 mm. `audit:surface` prints OK, nothing is undersized at the image circle, and field coverage is 100 % at all 65 stations. The dense cut probe, 5.46 million rays at grid 21 over 81 zoom × 35 focus states, clips none: refined reach is 11.32, 11.30 and 10.76 mm against cuts at 12.00, 11.59 and 11.03 mm.
+
+**After the edits.** The live page was shot at infinity and closest focus at all three printed positions, with both movement overlays and the inspector at L2, L18, L19 and L20. C1–C6 sit clear of the STO label, the group labels stay legible at every state, L19's and L20's lands now show as drawn, and the final overlay tracks Fig. 1 everywhere except S8–S9, which stand 2 px over the drawn rim inside the noise band.
+
+**Cross-gap limit.** S12/S13 now use 88.9 % of the gap. `checks.gapSagFrac` 0.97 is no longer needed: the file passes `audit:surface` at the 0.9 default and at 0.89, and 0.88 is refused at S12/S13 (2.090 mm against 2.068 mm) and S19/S20. The value is left for the coordinator.
+
+**Checked and correct.** All 37 rows, 21 element indices and 15 printed gaps match pp. 13–14. Every `type` agrees with the signs of R, every `focalLengthMm` matches a thick-lens calculation, and no surface is aspheric, as the patent says and the `A` labels show. The stop sits at surface 25 between L14 and L15. The four `apd: "inferred"` tags sit at L2, L3, L18 and L20, the four blue elements on Sigma's drawing, which also shows 21 elements in 15 groups and no aspheric mark; the patent's text designates no special glass. Roles were read against ¶0029, ¶0057–0058, ¶0070–0077 and ¶0125–0127. All 21 glass labels resolve to their printed nd/νd, and FCD1, FCD705 and PCD51 give θgF 0.5389, 0.5400 and 0.5366 as the analysis says.
+
+**Movement.** Stations ascend wide to tele, and the printed rows are stations 0, 32 and 64. Relative to the image, G1 moves +37.69 and +22.21 mm toward the object, 59.90 mm in all, G3 +6.52 and +17.68 mm, G4 +19.26 and +11.63 mm, and G5 +26.44 and +16.23 mm, all monotonic. G2 stays within 0.0006 mm. d5 rises, d15 and d32 fall and d25 reverses, 30.20 / 17.46 / 23.51 mm, as printed and as claim 1 allows. Fig. 1's arrows agree: G2 straight down, the other four toward the object. Between printed rows D5, D15, BF and D25 + D32 are linear to 1e-14 mm, and the only reversal is the printed one. Station focal lengths equal the calculated EFL within 0.01 mm, and focus error between stations peaks at 0.0187 mm at infinity near the tele end.
+
+Focus moves G4 alone toward the object, as claim 3, ¶0076 and Fig. 1's arrow say. D25 + D32 stays constant to 1e-14 mm and every other gap is unchanged. Travel is 1.63 / 4.05 / 12.45 mm and the smallest D25 is 11.06 mm. The first column is infinity and the last 1.6 m. The slider reads 1.60 m at wide, middle and tele, against a paraxial 1599.8 / 1600.0 / 1600.0 mm, and 3.20 m and 6.40 m at t = 0.5 and 0.25, against 3199.9 and 6400.8 mm. The file has no `focus.conjugates`.
+
+**Aberrations against the patent.** Model and Figs. 2, 5 and 8 at the field edge agree in sign and size. Wide, 11.68°: tangential +0.17 and sagittal +0.17 mm against about +0.18 and +0.18 mm, distortion +1.44 % against about +1.5 %. Middle, 6.01°: -0.04 and +0.01 mm against about -0.04 and +0.01 mm, distortion +2.72 % against about +2.7 %. Tele, 3.10°: -0.56 and -0.20 mm against about -0.5 and -0.19 mm, distortion +2.84 % against about +3 %.
+
+**Sigma's drawing, read directly.** Its cap ends sit near 13.6 mm at S10, 11.4 at S24, 12.1 at S34 and 13.1 at S35, with no land visible at S12, S13 or S20. Its S34 land takes 15 % of the rim, against the figure's 11 %. It draws wider caps than the patent, and it cannot overrule the figure of the modeled example.
+
+**Rejected.** S10 and S20 were not raised to recover mid-field light: no reading supports it. S3, S6, S17, S27 and S28 keep their drawn rims. Their fan limits would need `rimExtensionSd` lands the figure does not draw, up to 0.26 mm off the drawn curve. The values and their corners are in the tables above for a later decision.
+
+Decided: those five apertures stay as drawn, because the figure draws no land there, so the modeled corners stay above the patent's fans by 10 / 15 / 10 points at wide / middle / tele. `checks.gapSagFrac` is removed, and the file passes at the 0.9 default.

@@ -27,7 +27,7 @@ The all-spherical design has four groups of positive, negative, positive and neg
 | ----- | ---------------------------- | -------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | G1    | L1–L2 / 1–3                  |                 +127.83 mm | Front positive cemented collector; moves objectward during zoom.                                                                                                                                                          |
 | G2    | L3–L5 / 4–8                  |                  −28.11 mm | Negative variator: a cemented pair followed by a negative singlet. The printed positions move about 3.6 mm imageward by the middle position before turning objectward; the overall trajectory is concave, not monotonic. |
-| G3    | L6–L11 / 9–20 including iris |                  +28.72 mm | Positive relay that the patent splits into front and rear subgroups, G3f and G3b. The iris is surface 9, 1 mm before surface 10; its radius is 6.760 / 6.761 / 6.765 mm at WE / ST / TE for pupil diameters of 10.00 / 17.00 / 24.87 mm. |
+| G3    | L6–L11 / 9–20 including iris |                  +28.72 mm | Positive relay that the patent splits into a front unit G3f (L6–L8) and a rear unit G3b (L9–L11), each positive and labelled separately on the diagram; they move together. The iris is surface 9, 1 mm before surface 10; its radius is 6.760 / 6.761 / 6.765 mm at WE / ST / TE for pupil diameters of 10.00 / 17.00 / 24.87 mm. |
 | G4    | L12–L13 / 21–24              |                  −38.15 mm | Two-element rear negative group; moves objectward for zoom and imageward for near focus.                                                                                                                                  |
 
 All four groups move for zooming. The printed G3–G4 gap first grows and then shrinks. The model keeps the three printed infinity positions exactly. Between them G1 to G3 move linearly and G4 is solved to hold the image plane, which puts the widest G3–G4 gap, 9.57 mm, near 63 mm rather than at the printed 77.5 mm position. This is an interpolation constrained by the printed positions, **not a recovered factory zoom cam**.
@@ -76,7 +76,7 @@ Low-dispersion positive singlet immediately behind the stop. The maker's diagram
 
 nd = 1.48749, νd = 70.23. Glass: S-FSL5 (OHARA catalog equivalent; production supplier unspecified). f = +30.359 mm.
 
-Positive crown member of the G3 front cemented pair.
+Positive crown member of the G3f cemented pair.
 
 ### L8 — Biconcave Negative
 
@@ -88,19 +88,19 @@ High-index negative partner cemented at surface 13; the maker's diagram marks th
 
 nd = 1.72342, νd = 37.95. Glass: S-BAH28 (OHARA catalog equivalent; production supplier unspecified). f = -26.662 mm.
 
-Negative singlet starting the rear G3 subgroup.
+Negative singlet starting the rear unit G3b.
 
 ### L10 — Biconvex Positive
 
 nd = 1.60311, νd = 60.64. Glass: S-BSM14 (OHARA catalog equivalent; production supplier unspecified). f = +40.285 mm.
 
-Positive crown singlet in the rear relay.
+Positive crown singlet in G3b.
 
 ### L11 — Biconvex Positive
 
 nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA catalog equivalent; production supplier unspecified). f = +31.169 mm.
 
-Positive high-index singlet completing G3.
+Positive high-index singlet completing G3b and G3.
 
 ### L12 — Positive Meniscus
 
