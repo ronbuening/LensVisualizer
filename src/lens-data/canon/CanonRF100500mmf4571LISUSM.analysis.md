@@ -485,3 +485,40 @@ At the **published half-fields 11.86 / 5.49 / 2.53°**, clear chiefs reach **21.
 The model’s ΔPgF reference line is distinct from the source’s claimed material bounds in ¶0033 (PDF p. 16): 60 < νd < 100, −0.00047νd + 0.5666 < θgF < −0.00047νd + 0.5966, and −0.00274νd + 0.7144 < θgF. Each original lens θgF is retained explicitly in its material note; neither conversion nor a compatible catalog code replaces those source inequalities.
 
 The four-decimal θgF and two-decimal νd rows imply roughly ±0.00006 printed precision in the converted ΔPgF. Eight-decimal stored results preserve arithmetic, not melt precision. The actual source θ values and their reference-line definitions remain the evidence.
+
+
+## 2026-10-31 — Source-vector catalog follow-up
+
+Exact local original US 2021/0003832 A1, Numerical Example 2, paragraph 0065 PDFp19/printed6. Paragraph 0062 PDFp18/printed5 explicitly defines every numerical nd/νd at d587.6nm and θgF using g435.8/F486.1/C656.3nm. All twenty element indexReferenceNote strings positively cite that definition and their printed θ row; none describes uncertainty in the spectral reference. The separate rearPlate G note is retained unchanged. Move exactly these20 positive citations to the data header and the source table below, preserving the explicit d references and every θ-derived dPgF field. This restores inspector nd/νd semantics and inventory eligibility without changing any traced channel. No genuine reference-uncertainty note is removed.
+
+Retain FCD515 for L81/E18, source row31, nd1.59282/νd68.63/θgF0.5446. H-ZPK5's raw catalog θ0.544704470 is closer than FCD515's0.544115342, but its Abbe residual worsens from0 to−0.29 and source-implied F−C span error grows from+0.008915% to+0.417982%. The patent's two-decimal ν row does not support that trade. Both curves already trace θ0.5446 because the unchanged source-derived partial controls g, so the swap would not improve the authoritative partial. No candidate-based source or production material identification is made.
+
+The claimed material bounds in paragraph 0033/PDFp16 (−0.00047ν+0.5666<θ<−0.00047ν+0.5966 and−0.00274ν+0.7144<θ) remain distinct from the model's0.6438−0.001682ν conversion line. Every source ratio below remains literal; the eight-decimal derived values express arithmetic, not melt precision. Source four-decimal θ/two-decimal ν precision implies roughly±0.00006 in the converted deviation. All20 lens partials and G's separate genuine partial are preserved, along with all21 index/Abbe pairs and21 existing compatible curves.
+
+Figure 3 PDFp5/sheet4 is a native 2560×3300 bilevel page at 300 ppi. The complete air-spaced L81, following L82/L83 bond and camera-side G remain as previously reviewed; no dimensions are remeasured or fit here. The completed 2026-10-30 whole-lens shape coverage and older August19 date remain reused. No source R/d, caps, tight-end constraints, camera plate thickness/gaps, source errata, infinity-only focus controls, interpolated-state limitations or production-correlation qualifications change.
+
+This is a scoped source/catalog assignment follow-up, not a new whole-lens shape review. Source reference/table pages were rendered at180dpi, separately from native figure pixels. No upsampled figure detail is treated as new evidence. The preserved production-correlation and sampled-runtime limits remain separate from source fidelity. No shared catalog row, tolerance, test or engine change is introduced.
+
+| Element | Source row | Literal source θgF |
+| --- | ---: | ---: |
+| L11 | 1 | 0.5375 |
+| L12 | 3 | 0.5633 |
+| L13 | 4 | 0.5340 |
+| L21 | 6 | 0.5434 |
+| L22 | 8 | 0.5375 |
+| L23 | 9 | 0.6136 |
+| L31 | 11 | 0.5375 |
+| L32 | 13 | 0.5933 |
+| L33 | 14 | 0.5898 |
+| L41 | 17 | 0.5375 |
+| L51 | 19 | 0.6004 |
+| L52 | 21 | 0.5457 |
+| L53 | 22 | 0.6054 |
+| L54 | 24 | 0.5375 |
+| L61 | 26 | 0.5938 |
+| L62 | 27 | 0.5520 |
+| L71 | 29 | 0.5300 |
+| L81 | 31 | 0.5446 |
+| L82 | 33 | 0.5375 |
+| L83 | 34 | 0.5834 |
+| Rear block G |36–37|0.5353|

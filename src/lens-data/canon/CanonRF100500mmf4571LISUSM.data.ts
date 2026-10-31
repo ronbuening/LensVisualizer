@@ -15,7 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * excluding leaders, rays, brackets and barrel OD. Two tight concave ends and
  * one bonded cap retain explicit geometric/source-outline constraints. No cut,
  * unsupported shoulder or interface land is added. All media have explicit d
- * references and qualified compatible curves; theta-derived dPgF values are
+ * references. Positive d-line citations (¶0062 PDFp18: d587.6/F486.1/
+ * C656.3/g435.8nm) are documented here and in the sidecars, outside the
+ * uncertainty-only indexReferenceNote field (2026-10-31). All20 lens theta
+ * literals and the G-block ratio remain explicit in the sidecar source table.
+ * All21 compatible curves are unchanged qualified proxies; theta-derived dPgF values are
  * genuine source constraints, with no individual numerical C/F/g indices.
  * Focus geometry remains infinity-only. Three source axial bundles clear;
  * illustrative zoom intervals have sampled marginal clipping and defocus.
@@ -72,8 +76,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: 264.36,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -89,8 +91,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6134,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5633; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 44.27,
       focalLengthMm: -203.84,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -105,8 +105,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43875,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5340; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 94.66,
       focalLengthMm: 163.66,
       glass: "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
@@ -123,8 +121,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5434; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 55.53,
       focalLengthMm: -93.53,
       glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -138,8 +134,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: -64.48,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -156,8 +150,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.76182,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.6136; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 26.52,
       focalLengthMm: 106.95,
       glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
@@ -172,8 +164,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: 68.05,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -189,8 +179,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5933; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 35.31,
       focalLengthMm: 55.31,
       glass: "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
@@ -205,8 +193,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.95375,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5898; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 32.32,
       focalLengthMm: -44.06,
       glass: "TAFD45L (HOYA catalog equivalent; production supplier unspecified; patent class 954323)",
@@ -221,8 +207,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: -99.09,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -238,8 +222,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.68893,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.6004; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 31.07,
       focalLengthMm: 63.84,
       glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
@@ -253,8 +235,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51823,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5457; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 58.9,
       focalLengthMm: 52.11,
       glass: "S-NSL3 (OHARA catalog equivalent; production supplier unspecified)",
@@ -269,8 +249,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.0509,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.6054; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 26.94,
       focalLengthMm: -40.36,
       glass: "TAFD65 (HOYA catalog equivalent; production supplier unspecified; patent class 051269)",
@@ -285,8 +263,6 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: 93.3,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -302,8 +278,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5938; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 33.79,
       focalLengthMm: 72.6,
       glass: "S-TIM22 (OHARA catalog equivalent; production supplier unspecified)",
@@ -318,8 +292,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5520; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 49.6,
       focalLengthMm: -33.13,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
@@ -334,8 +306,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5300; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 70.23,
       focalLengthMm: 67.32,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -349,8 +319,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59282,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5446; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 68.63,
       focalLengthMm: -51.96,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified; patent class 593686)",
@@ -366,8 +334,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5375; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 81.54,
       focalLengthMm: -63.16,
       glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
@@ -384,8 +350,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72047,
       indexReference: "d",
-      indexReferenceNote:
-        "US 2021/0003832 A1, ¶0062 p.18 defines all numerical nd/vd at d=587.6nm; Example2 ¶0065 p.19 publishes each θgF. Published theta_gF=0.5834; stored dPgF converts this ratio using the model normal line0.6438−0.001682vd, distinct from the patent claim bounds.",
       vd: 34.71,
       focalLengthMm: 66.42,
       glass: "S-NBH8 (OHARA catalog equivalent; production supplier unspecified)",
