@@ -29,6 +29,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/**
+ * Reference provenance, rechecked 2026-10-31: US 10,571,651 B2 PDF p. 17
+ * (printed col. 11) explicitly defines numerical nd/vd at the d-line;
+ * Numerical Data 1 contains all twelve source pairs. Plot definitions on
+ * PDF p. 14 give d 587.56 nm and g 435.8 nm. No individual C/F/g indices
+ * or partial ratios are published. These positive citations are not
+ * reference uncertainty; all twelve catalog curves remain qualified
+ * numerical proxies, without historical supplier, melt or chemistry claims.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "canon-tse-50f28l-macro",
@@ -80,8 +89,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5927,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 35.3,
       focalLengthMm: -81.9,
       glass: "S-FTM16 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -94,8 +101,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5927,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 35.3,
       focalLengthMm: -58.6,
       glass: "S-FTM16 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -108,8 +113,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7495,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 35.3,
       focalLengthMm: 48.5,
       glass: "S-LAM7 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -122,8 +125,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65412,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 39.7,
       focalLengthMm: -76.0,
       glass: "S-NBH5 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -136,8 +137,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.85478,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 24.8,
       focalLengthMm: 62.8,
       glass: "S-NBH56 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -150,8 +149,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 81.5,
       focalLengthMm: 39.5,
       glass: "S-FPL51 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -165,8 +162,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 29.8,
       focalLengthMm: -102.3,
       glass: "S-NBH55 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -180,8 +175,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 63.4,
       focalLengthMm: 33.5,
       glass: "S-PHM52 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -195,8 +188,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.65412,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 39.7,
       focalLengthMm: -26.3,
       glass: "S-NBH5 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -210,8 +201,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.95375,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 32.3,
       focalLengthMm: -17.9,
       glass: "S-LAH98 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -225,8 +214,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 81.5,
       focalLengthMm: 36.8,
       glass: "S-FPL51 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
@@ -240,8 +227,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "US10571651B2 PDFp17 (printedcol11), Numerical Data1, defines nd/vd for d-line; plot definitions PDFp14 give d587.56nm/g435.8nm. Only source nd/vd pairs are numerical; no individual C/F/g indices or partial ratios are published.",
       vd: 29.1,
       focalLengthMm: 47.9,
       glass: "S-LAH99 (OHARA catalog equivalent; source vendor/chemistry unspecified)",

@@ -15,6 +15,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source figure fidelity, sampled clearance and production correlation
  * are separate conclusions. Close-focus travel is not tabulated or modeled.
  */
+/**
+ * Reference provenance, rechecked 2026-10-31: JP 2024-104911 A paragraph
+ * 0078, PDF pp. 12–13, explicitly defines nd/vd at d 587.56 nm and theta_gF
+ * using g 435.84 nm and F 486.13 nm. Numerical Example 2 on PDF p. 17
+ * prints all thirteen nd/vd/theta_gF rows, without individual C/F/g indices.
+ * Positive citations belong here rather than in indexReferenceNote.
+ * All catalog identities, literal source ratios, source/model normal-line
+ * distinction and documented L1/L7 rounding retentions remain unchanged;
+ * no historical supplier, melt or chemistry identity is established.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-10-18mm-f28-dc-dn",
@@ -66,8 +76,6 @@ const LENS_DATA = {
       role: "High-index object-side aspherical negative meniscus that starts the retrofocus wide-angle front group.",
       dPgF: -0.0067,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 2,
@@ -82,8 +90,6 @@ const LENS_DATA = {
       role: "Second object-convex negative meniscus; both faces are aspherical in the patent.",
       dPgF: 0.004728,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 3,
@@ -101,8 +107,6 @@ const LENS_DATA = {
       cemented: "D1",
       dPgF: 0.049658,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 4,
@@ -118,8 +122,6 @@ const LENS_DATA = {
       cemented: "D1",
       dPgF: -0.007192,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 5,
@@ -134,8 +136,6 @@ const LENS_DATA = {
       role: "Weak positive collector at the front of the rear positive lens group.",
       dPgF: 0.00446,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 6,
@@ -151,8 +151,6 @@ const LENS_DATA = {
       cemented: "D2",
       dPgF: 0.006513,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 7,
@@ -168,8 +166,6 @@ const LENS_DATA = {
       cemented: "D2",
       dPgF: 0.0082,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 8,
@@ -185,8 +181,6 @@ const LENS_DATA = {
       cemented: "D3",
       dPgF: 0.000351,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 9,
@@ -204,8 +198,6 @@ const LENS_DATA = {
       cemented: "D3",
       dPgF: 0.049658,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 10,
@@ -222,8 +214,6 @@ const LENS_DATA = {
       role: "Strong positive aspherical low-dispersion element immediately behind the stop group.",
       dPgF: 0.016966,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 11,
@@ -239,8 +229,6 @@ const LENS_DATA = {
       role: "Single-element inner-focus group moving imageward for near focus.",
       dPgF: -0.011712,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 12,
@@ -257,8 +245,6 @@ const LENS_DATA = {
       role: "Rear high-Abbe coordinate-class positive element contributing strong gathering power in G5.",
       dPgF: 0.049658,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
     {
       id: 13,
@@ -273,8 +259,6 @@ const LENS_DATA = {
       role: "Rear aspherical negative field/distortion corrector.",
       dPgF: -0.005992,
       indexReference: "d",
-      indexReferenceNote:
-        "JP2024104911A paragraph0078, PDFpp12–13: d587.56nm, g435.84nm and F486.13nm; all13 nd/vd/theta_gF rows are NumericalExample2 p17. No individual C/F/g indices or historical supplier/chemistry is published.",
     },
   ],
   surfaces: [
