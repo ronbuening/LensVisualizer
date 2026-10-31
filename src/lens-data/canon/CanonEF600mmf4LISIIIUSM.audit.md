@@ -149,3 +149,11 @@ correlation are separate findings.
 - The source never names the historical supplier, melt or fluorite/Super UD chemistry. Those labels
   remain qualified product associations with compatible spectral proxies; APD identity remains inferred.
   No separate hybrid, resin or cement medium, inferred cut or beam exemption is invented.
+
+## 2026-10-31 — Scoped source-partial candidate review; current curves retained
+
+The completed Oct 30 review and Aug 20/Aug 21/Oct 4 history remain dated as written. Narrow direct source check: exact `patents/US20190041605A1.pdf`, Numerical Data 4 PDF p. 14/printed 7, S1/S15/S21 at 1.59349/67.00/θgF0.5361. PDF p. 10 ¶0032 explicitly defines νd=(Nd−1)/(NF−NC), θgF=(Ng−NF)/(NF−NC); p9 ¶0027 supplies d587.56/g435.835/C656.27/F486.13 nm. Engine-normal conversion, not a source normal formula, gives existing dPgF +0.004994. Figure 4A p5 identifies the ordinary front/focus singlets and bonded S21 media transition; G remains the source filter. Native2560×3300/300 ppi pages were read, not upsampling counted as new evidence.
+
+Retained official HOYA20260707 AGF rows694 PCD51 and7214 M-PCD51 are distinct source states. M-PCD51 raw PgF error−0.000230889 is smaller than PCD51+0.000545275, but nd becomes−0.001476254 from source, versus current+0.000003092. Source C–F span is0.00885805970; current0.00885786178, alternate0.00883303296. Borrowed-curve effective νd worsens67.001497→67.189832. The actual runtime θ remains exactly0.5361 for both because source dPgF controls g; there is no source-channel accuracy gain to justify the swap.
+
+Reject M-PCD51 for E1/E8/E12. All17 source nd/νd/θ rows and genuine derived partials, G, APD dispositions, R/d, caps, stops and controls remain untouched. All existing curve/channel identities stay equal. Data is byte-identical; only audit/analysis record the balanced negative result and remove repeated qualification text. No new curve, molding identity, spectral override, full-review count or runtime-clearance claim is added.

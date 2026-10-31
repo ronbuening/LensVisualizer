@@ -380,3 +380,11 @@ certified by sampled clearance.
 3. Canon Camera Museum, "EF70-200mm f/2.8L IS III USM," https://global.canon/en/c-museum/product/ef469.html.
 4. OHARA INC., "Glass Type," https://www.ohara-inc.co.jp/en/product/01000/.
 5. OHARA Corporation, "S-FPL51," https://oharacorp.com/glass/s-fpl51/.
+
+## Scoped source-partial and catalog follow-up — 2026-10-31
+
+Preserve the actual **2026-10-30** complete source/shape/glass review and earlier June 25/Oct 12 history. Direct source check: US20090296231A1 Numerical Embodiment 2, prescription PDF page 20/printed 6 ¶0114, gives PR L5/S9 and N2 L7/S13 **nd 1.49700/νd 81.5**. Paragraph0070 on page 17 maps the special PR/N2 evidence to those two elements; ¶0078 page 18 defines θ=(ng−nF)/(nF−nC), and ¶0111 page 19 explicitly identifies d-reference indices. Table 1 page 22 gives **θgF0.539** for Embodiment 2. The source condition θ>0.6425−0.0015ν is an inequality, not the engine normal line. Existing dPgF+0.032283 correctly converts the absolute published θ through0.6438−0.001682ν. Figure 4 page 5 confirms the PR singlet and N2's cemented interface; native 2560×3300/300 ppi pages were read without upsampling claims.
+
+FCD1's raw PgF 0.538851832 is closer to the printed 0.539 than S-FPL51's0.537459539 (errors−0.000148168 versus−0.001540461). However, evaluated Abbe shifts from81.545888 to81.608950, farther from source 81.5. The source-implied C–F span is0.00609815951; current0.00609471922 is closer than alternate0.00609001633. Effective borrowed-curveν would worsen81.546004→81.608977. The existing FCD1 row also retains its separately documented historical a0 normalization for stable catalog resolution; this review changes no shared coefficient or ranking.
+
+Both variants already trace exactly source θ0.539 through the unchanged published dPgF. Thus a closer raw catalog g-partial does not establish improved modeled source accuracy when it worsens C/F. Retain S-FPL51 for L5/L7 and every other assignment; do not extend their special partial/APD evidence to other equal-coordinate elements. All23 source pairs, both genuine partial fields, six source/inferred APD dispositions, data bytes, R/d, rims, stops and zoom/focus controls stay fixed. No new row, spectral override or complete review count is added; earlier source/model and production limitations remain.

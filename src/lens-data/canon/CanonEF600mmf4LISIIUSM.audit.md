@@ -217,3 +217,11 @@ Existing gapSagFrac 0.95 is unchanged, preserving literal S20/S21 caps with 4.99
 0.316737 mm positive clearance. No new tolerance is relaxed. Actual August 20/21 and October 4/8 historical entries
 above remain dated as written. Original source fidelity, sampled runtime clearance and production correlation are
 separate, with exact first-row correction provenance, prime stop representation, finite full iris and lateral IS explicit.
+
+## 2026-10-31 — Scoped printed-θ/X and alternate-curve review; S-LAL10 retained
+
+Preserve Oct 30 complete source/shape review and all earlier dates. Native direct check: exact `patents/US20110090576A1.pdf`, Third Numerical Embodiment PDF p. 10/printed 5 ¶0060, S19/L22b1.72000/50.2/θgF0.5535/X−0.0058. The footnote is explicitly X=θgF−(0.6438−0.001682νd), the same normal convention as the engine. ¶0022 p7 independently defines θgF=(Ng−NF)/(NF−NC) and d587.6/F486.1/C656.3/g435.8 nm. Figure 5 p4 shows the cemented L22 pair and separate G; native pages2560×3300/300 ppi were inspected.
+
+Keep printed θ and X distinct: stored X−0.0058 implies0.5535636, differing+0.0000636 from independently printed 0.5535, as already documented under the source-rounding retention policy. Do not compare catalog candidates only to private reconstructed θ. Existing S-LAL10 raw θ0.552117113 gives−0.001382887 versus printed; existing K-LaK10 raw θ0.553607747 gives+0.000107747, yet its evaluatedν50.303209 is farther from source 50.2 than current50.230564. Source expected C–F span0.01434262948 is closer to current0.01433380895 than alternate0.01431319957; effective borrowed-curveν worsens50.230891→50.303218.
+
+Both runtime variants preserve θ0.5535636 because sourceX remains authoritative. Reject the K-LaK10 swap despite its closer raw partial; retain S-LAL10, all 16 genuine X values and source APD flags. No absolute source line indices are invented. Data remains byte-identical, with unchanged filter, R/d, literal clear apertures, stops/controls and prior runtime/source limitations. Only dated audit/analysis notes are added; no new row or complete source-shape count follows.

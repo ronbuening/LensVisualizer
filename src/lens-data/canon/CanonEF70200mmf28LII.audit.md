@@ -143,3 +143,11 @@ certified by sampled clearance.
   curvature, L18 biconcave and L21 biconvex. No numeric radius is changed to obtain these classifications.
 - Historical 2026-06-25 and 2026-10-12 reviews remain above; prior broader source APD/line-index
   qualifications are superseded by the exact current source mapping. No inferred cut is present.
+
+## 2026-10-31 — Scoped absolute-partial and balanced catalog review; curves retained
+
+The Oct 30 complete source-shape/glass review and June 25/Oct 12 history remain unchanged. Narrow exact original check: `patents/US20090296231A1.pdf`, Numerical Embodiment 2 PDF p. 20/printed 6 ¶0114, PR L5/S9 and N2 L7/S13 at 1.49700/81.5; Table 1 p22 θgF0.539. ¶0070 p17 assigns PR/N2 to L5/L7; ¶0078 p18 defines θ=(ng−nF)/(nF−nC), ¶0111 p19 d-reference Nd/νd. Source inequality0.6425−0.0015ν<θ is not mistaken for a normal line. Engine conversion gives unchanged dPgF +0.032283. Figure 4 p5 verifies ordinary connected PR/N2 topology and the N2 cemented interface, without new material layers. Native2560×3300/300 ppi, not upsampled measurements.
+
+Reject alternate FCD1 after balancing the published source constraints. Its raw θ error−0.000148168 beats S-FPL51−0.001540461, but evaluatedν81.608950 is farther from source 81.5 than81.545888. Source C–F span0.00609815951 is closer to current0.00609471922 than proposed0.00609001633; effective runtimeν worsens81.546004→81.608977. Both variants already preserve publishedθ0.539 through the source partial override. The documented FCD1 coefficient-normalization decision and catalog ranking are untouched.
+
+Keep S-FPL51, all 23 source pairs, the two genuine dPgF fields and current APD dispositions; no catalog line copies or partial propagation to other UD-class bodies. Data is byte-identical, so current surface geometry and all channels/controls remain equal. Only this scoped audit/analysis record changes, with no new row, complete shape review count or improved-production-spectrum claim.
